@@ -10,16 +10,17 @@
 	"engines": {
 		"node": ">=18"
 	},
-  "scripts": {
-    "dev": "yarn run model:compile:fr && next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "model:compile": "yarn --cwd ./nosgestesclimat/ compile",
+	"scripts": {
+		"dev": "next dev --turbo",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"model:compile": "yarn --cwd ./nosgestesclimat/ compile",
 		"model:compile:fr": "yarn --cwd ./nosgestesclimat/ compile:fr",
 		"model:rules-watch": "yarn --cwd ./nosgestesclimat/ compile:rules-watch",
 		"serve": "webpack serve --mode development --config webpack.dev.js",
 		"start:watch": "yarn run serve & yarn run model:watch",
+		"dev:model": "yarn run model:compile:fr && yarn run model:watch",
 		"compile": "NODE_ENV=production yarn run webpack --config webpack.prod.js",
 		"stats": "webpack --config webpack.prod.js --profile --json > stats.json",
 		"e2e": "yarn run e2e:generate:personas && cypress open",
@@ -39,21 +40,21 @@
 		"illustration": "cat source/images/illustration.svg | sed -e 's/inkscape:label/class/g; s/#6861b3/var(--color)/g' | svgr --ref > source/components/IllustrationSVG.tsx",
 		"lint:fix": "eslint . --ext .js,.ts,.tsx --fix",
 		"sitemap": "ts-node ./scripts/generateSitemap.ts "
-  },
-  "dependencies": {
-    "@types/node": "20.4.6",
-    "@types/react": "18.2.18",
-    "@types/react-dom": "18.2.7",
-    "autoprefixer": "10.4.14",
-    "eslint": "8.46.0",
-    "eslint-config-next": "13.4.12",
-    "next": "13.4.12",
-    "postcss": "8.4.27",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss": "3.3.3",
-    "typescript": "5.1.6",
-    "@babel/runtime": "^7.20.7",
+	},
+	"dependencies": {
+		"@types/node": "20.4.6",
+		"@types/react": "18.2.18",
+		"@types/react-dom": "18.2.7",
+		"autoprefixer": "10.4.14",
+		"eslint": "8.46.0",
+		"eslint-config-next": "13.4.12",
+		"next": "13.4.12",
+		"postcss": "8.4.27",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"tailwindcss": "3.3.3",
+		"typescript": "5.1.6",
+		"@babel/runtime": "^7.20.7",
 		"@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
 		"@sentry/react": "^7.48.0",
 		"@svgr/webpack": "6.2.1",
@@ -118,8 +119,8 @@
 		"yaml": "^2.2.2",
 		"yarn": "^1.22.19",
 		"yjs": "^13.5.39"
-  },
-  "browserslist": [
+	},
+	"browserslist": [
 		"> 1% in FR"
 	],
 	"devDependencies": {

@@ -3,41 +3,39 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+	color: rgb(var(--foreground-rgb));
+	background: linear-gradient(
+			to bottom,
+			transparent,
+			rgb(var(--background-end-rgb))
+		)
+		rgb(var(--background-start-rgb));
 }
 
 html[data-useragent*='MSIE'] #outdated-browser,
-html[data-useragent*='Safari'][data-useragent*='Version/8']
-  #outdated-browser,
-html[data-useragent*='Safari'][data-useragent*='Version/7']
-  #outdated-browser,
+html[data-useragent*='Safari'][data-useragent*='Version/8'] #outdated-browser,
+html[data-useragent*='Safari'][data-useragent*='Version/7'] #outdated-browser,
 html[data-useragent*='Trident'] #outdated-browser {
-  display: block !important;
+	display: block !important;
 }
 
 html[data-useragent*='MSIE'] #js,
 html[data-useragent*='Safari'][data-useragent*='Version/8'] #js,
 html[data-useragent*='Safari'][data-useragent*='Version/7'] #js,
 html[data-useragent*='Trident'] #js {
-  display: none !important;
+	display: none !important;
 }
