@@ -1,0 +1,31 @@
+# Since 11/07/2023, we do not use "/contribuer" but "questions-frequentes" for de the FAQ.
+[[redirects]]
+  from = "/contribuer"
+  to = "/questions-frequentes"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/conference/*"
+  to = "/conférence/:splat"
+
+# As it is an SPA, here, all urls has to be supported in react
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  framework = "#custom"
+  command = "yarn start" # Command to start your dev server
+  port = 8888 # The port that the netlify dev will be accessible on
+  targetPort = 8080
+  publish = "dist" # If you use a _redirect file, provide the path to your static content folder
+
+[[edge_functions]]
+  path = "/geolocation"
+  function = "geolocation"
+
+[functions]
+  node_bundler = "esbuild"
+

@@ -33,3 +33,20 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.tags*
+.tmp
+.DS_Store
+yarn-error.log
+
+node_modules/
+.env
+
+# Local Netlify folder
+.netlify
+
+/cypress/videos/*
+/cypress/screenshots/*
+# They are automatically generated when running cypress in CI
+/cypress/e2e/test-completion/persona-*.cy.js
+dist
