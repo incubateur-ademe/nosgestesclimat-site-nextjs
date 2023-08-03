@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Le site Web nosgestesclimat.fr
 
-## Getting Started
+## C'est quoi ?
 
-First, run the development server:
+Un simulateur d'empreinte climat individuelle de consommation à l'année, utilisant le modèle [nosgestesclimat](https://github.com/datagir/nosgestesclimat).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+Pour contribuer au modèle, données sous-jacentes et textes du questionnaire (calculs, facteurs d'émission, textes, questions, réponses, suggestions de saisie), [suivez le guide de contribution](https://github.com/datagir/nosgestesclimat/blob/master/CONTRIBUTING.md).
+
+Pour tout ce qui touche à l'interface (style d'un bouton, graphique de résultat, code javascript, etc.) c'est ici [sur le dépôt du *site*](https://github.com/datagir/nosgestesclimat-site/issues).
+
+> 🇬🇧 Most of the documentation (including issues and the wiki) is written in french, please raise an [issue](https://github.com/datagir/nosgestesclimat-site/issues/new) if you are interested and do not speak French.
+
+## Et techniquement ?
+
+C'est un un _fork_ d'un outil de vulgarisation de l'empreinte climat [futur.eco](https://futur.eco), lui-même forké d'un simulateur public de cotisations sociales [mon-entreprise.fr](https://mon-entreprise.fr), qui permet de coder en français des règles de calculs, dans le langage [publi.codes](https://publi.codes). De ces règles de calcul, des simulateurs (pour l'utilisateur lambda) et des pages de documentation qui expliquent le calcul (pour l'expert ou le curieux) sont générés automatiquement.
+
+Le code est en NextJS / Typescript / React / TailwindCSS, entre autres.
+
+### 🇬🇧 Installation
+
+The footprint model is stored in the [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) `nosgestesclimat/` pointing to the corresponding GitHub [repository](https://github.com/datagir/nosgestesclimat).
+
+Consequently, to fetch all the data you need to provide the `--recursive` flag when cloning this repository or if it's already cloned you need to run `git submodule update --init --recursive`.
+
+The model YAML files will then be loaded locally (no installation needed, they are loaded by webpack), and your changes to these files will refresh the UI instantly.
+
+> The production version fetches the JSON compiled YAML rules deployed by datagir/nosgestesclimat.
+
+Then run this command from this repo:
+
+```
+yarn && yarn start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> Note: recompiling the model in all supported regions and languages could significantly slow down your dev process.
+> Therefore, instead of running `yarn start` you can run webpack in dev mode with `yarn serve` and watch the compilation of the model in a specified language and region with `yarn model:rules-watch -t fr -o FR`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+If you want to run the automatic localisation, which depends on a Netlify Edge function, you must run `netlify dev`.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 🇬🇧 Tests
 
-## Learn More
+You can run e2e tests (Cypress) by firt starting a local server with `yarn run
+serve`, then, run cypress tests with `yarn run test` (or `yarn run e2e` to open
+the Cypress GUI) -- it will generate [personas spec
+files](https://github.com/datagir/nosgestesclimat-site/wiki/Contributing#tests).
 
-To learn more about Next.js, take a look at the following resources:
+## Réutilisations de ce code
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Attention, même si la licence MIT vous permet de réutiliser ce code à votre guise, en citant clairement le fait que vous reprenez nos travaux, vous ne pouvez pas réutiliser la marque Nos Gestes Climat. [Veuillez lire notre guide de personnalisation](https://github.com/datagir/nosgestesclimat-site/blob/master/PERSONNALISATION.md)
