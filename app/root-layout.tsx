@@ -1,6 +1,9 @@
+import i18next, { t } from 'i18next'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
+import { use } from 'react'
+import { I18nextProvider } from 'react-i18next'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -18,6 +21,7 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode
 }) {
+	use
 	return (
 		<html lang="en">
 			<head>
@@ -133,7 +137,7 @@ export default function RootLayout({
           IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
         */}
 				<Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
-				{children}
+				<I18nextProvider i18n={i18next}>{children}</I18nextProvider>
 			</body>
 		</html>
 	)

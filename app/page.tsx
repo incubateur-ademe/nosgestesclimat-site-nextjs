@@ -1,10 +1,9 @@
-import AnimatedIllustration from '@/components/AnimatedIllustration'
-import Title from '@/components/groupe/Title'
 import animate from '@/components/ui/animate'
 import { IframeOptionsContext } from '@/contexts/IframeOptionsContext'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import InlineLink from '@/design-system/inputs/InlineLink'
-import Main from '@/design-system/layouts/Main'
+import Main from '@/design-system/layout/Main'
+import Title from '@/design-system/layout/Title'
 import LogoADEME from '@/images/logoADEME.svg'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -24,13 +23,17 @@ import {
 	matomoEventParcoursTestReprendre,
 	matomoEventParcoursTestStart,
 } from '../constants/matomo-events'
-import LandingExplanations from './LandingExplanations'
+import AnimatedIllustration from './_components/AnimatedIllustration'
+import LandingExplanations from './_components/LandingExplanations'
 
 export default function Home() {
 	const { trackEvent } = useMatomo()
 	const { t } = useTranslation()
 	const mobile = useMediaQuery(`(max-width: ${fluidLayoutMinWidth})`)
 	const { isIframe } = useContext(IframeOptionsContext)
+
+	console.log('TODO : replace logic here')
+	const hasData = true
 
 	return (
 		<Main>
