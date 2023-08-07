@@ -21,6 +21,15 @@ const nextConfig = {
 		locales: ['fr', 'en-US'],
 		defaultLocale: 'fr',
 	},
+	locales: ['fr', 'en-US'],
+	defaultLocale: 'fr',
+	webpack: function (config) {
+		config.module.rules.push({
+			test: /\.ya?ml$/,
+			use: 'yaml-loader',
+		})
+		return config
+	},
 }
 
 module.exports = withMDX(nextConfig)

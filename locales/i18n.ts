@@ -1,6 +1,9 @@
+'use client'
+
+import { Lang } from '@/types/translation'
 import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import { getLangInfos, Lang } from './translation'
+import { getLangInfos } from './translation'
 import unitsTranslations from './units.yaml'
 
 i18next
@@ -13,7 +16,7 @@ i18next
 				.flatMap((key) => {
 					const lng = key.toLowerCase()
 					return [
-						[lng, { units: unitsTranslations[lng] }],
+						[lng, { units: unitsTranslations[parseInt(lng)] }],
 						// [lng, { categories: categoriesTranslations[lng] }],
 					]
 				})

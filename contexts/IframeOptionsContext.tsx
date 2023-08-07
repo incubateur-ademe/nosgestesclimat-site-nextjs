@@ -1,6 +1,8 @@
+'use client'
+
+import { getMatomoEventVisitViaIframe } from '@/constants/matomo'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { PropsWithChildren, createContext } from 'react'
-import { getMatomoEventVisitViaIframe } from '../constants/matomo-events'
-import { useMatomo } from '../contexts/MatomoContext'
 import { getIsIframe } from '../utils/getIsIframe'
 
 export const IframeOptionsContext = createContext<{ isIframe?: boolean }>({})
@@ -13,8 +15,6 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
 	const isIframe = getIsIframe()
 	const isIframeParameterDefined = urlParams.get('iframe') !== null
 
-	const { trackEvent } = useMatomo()
-
 	// Si l'on détecte que l'on est dans un iframe sans paramètre iframe défini
 	// on essaie de récupérer l'URL du referrer
 	if (isIframe && !isIframeParameterDefined) {
@@ -22,7 +22,7 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
 		urlParams.set('integratorUrl', document.referrer)
 	}
 
-	if (isIframe && trackEvent) {
+	if (isIframe) {
 		trackEvent(
 			getMatomoEventVisitViaIframe(
 				urlParams.get('integratorUrl') || "Pas d'URL d'intégration"
