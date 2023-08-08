@@ -19,9 +19,6 @@ i18next
 	.use(LanguageDetector)
 	.use(
 		resourcesToBackend((language: string) => {
-			import(`@/locales/ui/ui-${language.toLowerCase()}.yaml`).then((res) => {
-				console.log(res)
-			})
 			return import(`@/locales/ui/ui-${language.toLowerCase()}.yaml`)
 		})
 	)

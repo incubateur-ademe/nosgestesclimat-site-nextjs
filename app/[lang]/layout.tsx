@@ -1,13 +1,48 @@
 // Initialise react-i18next
 import '@/locales/i18n'
 import { dir } from 'i18next'
-import { Inter } from 'next/font/google'
 import Script from 'next/script'
 
 import { languages } from '@/constants/translation'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+import localFont from 'next/font/local'
+
+const marianne = localFont({
+	src: [
+		{
+			path: 'fonts/Marianne-Thin.woff2',
+			weight: '100',
+			style: 'normal',
+		},
+		{
+			path: 'fonts/Marianne-Light.woff2',
+			weight: '300',
+			style: 'normal',
+		},
+		{
+			path: 'fonts/Marianne-Regular.woff2',
+			weight: 'normal',
+			style: 'normal',
+		},
+		{
+			path: 'fonts/Marianne-Medium.woff2',
+			weight: '500',
+			style: 'normal',
+		},
+		{
+			path: 'fonts/Marianne-Bold.woff2',
+			weight: 'bold',
+			style: 'normal',
+		},
+		{
+			path: 'fonts/Marianne-ExtraBold.woff2',
+			weight: '800',
+			style: 'normal',
+		},
+	],
+	variable: '--font-marianne',
+})
 
 export async function generateStaticParams() {
 	return languages.map((lng) => ({ lng }))
@@ -100,7 +135,7 @@ export default function RootLayout({
 				</Script>
 			</head>
 
-			<body className={inter.className}>
+			<body className={marianne.className}>
 				<Script id="script-user-agent">{`
           const b = document.documentElement;
           b.setAttribute('data-useragent', navigator.userAgent);
