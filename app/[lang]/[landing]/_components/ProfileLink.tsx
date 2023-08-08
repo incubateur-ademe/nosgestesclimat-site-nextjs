@@ -1,13 +1,14 @@
 'use client'
 
+import TransClient from '@/components/translation/TransClient'
 import { getOpenmojiURL } from '@/constants/urls'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { Appear } from '@/design-system/utils/Animate'
-import { Trans, useTranslation } from 'react-i18next'
+import { useClientTranslation } from '@/locales/client'
 
 export default function ProfileLink() {
 	// const { hasData } = useProfileData()
-	const { t } = useTranslation()
+	const { t } = useClientTranslation()
 
 	/*
 	if (!hasData) {
@@ -25,7 +26,7 @@ export default function ProfileLink() {
 				>
 					<img alt="" src={getOpenmojiURL('profile')} className="w-6" />
 					<span className="ml-2">
-						<Trans>Voir le détail de ma simulation</Trans>
+						<TransClient>Voir le détail de ma simulation</TransClient>
 					</span>
 				</InlineLink>
 			</div>

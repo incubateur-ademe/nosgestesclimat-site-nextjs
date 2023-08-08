@@ -28,7 +28,6 @@ exports.handler = async () => {
 			body: JSON.stringify(data.totalSubscribers),
 		}
 	} catch (e) {
-		console.log(e)
 		return {
 			statusCode: 404,
 		}

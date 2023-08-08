@@ -24,7 +24,7 @@ export default function ButtonLink({
 		<Link
 			href={href}
 			onClick={onClick}
-			className={`inline-flex items-center ${sizeClassNames[size]} font-bold no-underline rounded-md shadow-sm transition-colors border-solid ${colorClassNames[color]} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600 disabled:opacity-50 ${className}`}
+			className={`inline-flex items-center ${sizeClassNames[size]} font-bold no-underline whitespace-nowrap rounded-md shadow-sm transition-colors border-solid ${colorClassNames[color]} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600 disabled:opacity-50 ${className}`}
 			{...props}
 		>
 			{children}

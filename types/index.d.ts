@@ -4,5 +4,7 @@ declare module '*.yaml' {
 }
 
 declare global {
-	_paq: any
+	var window: {
+		_paq: any
+	}
 }

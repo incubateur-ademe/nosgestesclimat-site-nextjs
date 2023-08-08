@@ -17,18 +17,25 @@ const nextConfig = {
 	pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
 	// Optionally, add any other Next.js config below
 	reactStrictMode: true,
-	i18n: {
-		locales: ['fr', 'en-US'],
-		defaultLocale: 'fr',
-	},
-	locales: ['fr', 'en-US'],
-	defaultLocale: 'fr',
 	webpack: function (config) {
 		config.module.rules.push({
 			test: /\.ya?ml$/,
 			use: 'yaml-loader',
 		})
 		return config
+	},
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'abc-transitionbascarbone.fr',
+				port: '',
+				pathname: '/wp-content/uploads/**',
+			},
+		],
+		dangerouslyAllowSVG: true,
+		contentDispositionType: 'attachment',
+		contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
 	},
 }
 

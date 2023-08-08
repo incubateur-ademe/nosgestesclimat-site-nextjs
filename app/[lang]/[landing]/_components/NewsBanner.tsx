@@ -1,10 +1,11 @@
 'use client'
 
+import TransClient from '@/components/translation/TransClient'
+import { useClientTranslation } from '@/locales/client'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
 import { sortReleases } from '@/utils/sortReleases'
 import Link from 'next/link'
-import { Trans, useTranslation } from 'react-i18next'
 
 export const localStorageKey = 'last-viewed-release'
 
@@ -13,7 +14,7 @@ export const determinant = (word: string) =>
 	/^[aeiouy]/i.exec(word) ? 'd’' : 'de '
 
 export default function NewsBanner() {
-	const { t, i18n } = useTranslation()
+	const { t, i18n } = useClientTranslation()
 	const currentLangInfos = getCurrentLangInfos(i18n)
 
 	const releases = sortReleases(currentLangInfos.releases),
@@ -53,13 +54,13 @@ export default function NewsBanner() {
 			<div>
 				<h2 className="flex items-center m-0">
 					<span className="bg-primary w-3 h-3 inline-block rounded-2xl mr-2"></span>{' '}
-					<Trans>Nouveautés</Trans>
+					<TransClient>Nouveautés</TransClient>
 				</h2>
 				<div>
 					<small className="max-w-[12rem]">
-						<Trans i18nKey={'components.NewsBanner.miseAJourDate'}>
-							Dernière mise à jour {{ date }}
-						</Trans>
+						<TransClient i18nKey={'components.NewsBanner.miseAJourDate'}>
+							Dernière mise à jour {date}
+						</TransClient>
 					</small>
 				</div>
 				<div>

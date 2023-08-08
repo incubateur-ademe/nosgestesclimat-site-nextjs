@@ -59,7 +59,6 @@ describe('The Group creation page /groupes/creer', () => {
 			.invoke('readText')
 			.then((text) => {
 				text.then((URL) => {
-					console.log(URL)
 					groupURL = URL
 				})
 			})

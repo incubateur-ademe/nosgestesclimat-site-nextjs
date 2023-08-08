@@ -1,6 +1,6 @@
 import { defaultNS, fallbackLng, languages } from '@/constants/translation'
 
-export function getOptions(lng = fallbackLng, ns = defaultNS) {
+export function getOptions(lng = fallbackLng, namespace = defaultNS) {
 	return {
 		// debug: true,
 		supportedLngs: languages,
@@ -8,6 +8,6 @@ export function getOptions(lng = fallbackLng, ns = defaultNS) {
 		lng,
 		fallbackNS: defaultNS,
 		defaultNS,
-		ns,
+		ns: namespace,
 	}
 }

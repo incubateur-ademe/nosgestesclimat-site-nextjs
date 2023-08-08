@@ -1,6 +1,6 @@
-import { fallbackLng, languages } from '@/constants/translation'
 import acceptLanguage from 'accept-language'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
+import { fallbackLng, languages } from './constants/translation'
 
 acceptLanguage.languages(languages)
 
@@ -11,10 +11,10 @@ export const config = {
 
 const cookieName = 'i18next'
 
-export function middleware(req: any) {
+export function middleware(req: NextRequest) {
 	let lng
 	if (req.cookies.has(cookieName))
-		lng = acceptLanguage.get(req.cookies.get(cookieName).value)
+		lng = acceptLanguage.get(req?.cookies?.get(cookieName)?.value)
 	if (!lng) lng = acceptLanguage.get(req.headers.get('Accept-Language'))
 	if (!lng) lng = fallbackLng
 
@@ -29,9 +29,9 @@ export function middleware(req: any) {
 	}
 
 	if (req.headers.has('referer')) {
-		const refererUrl = new URL(req.headers.get('referer'))
-		const lngInReferer = languages.find((language) =>
-			refererUrl.pathname.startsWith(`/${language}`)
+		const refererUrl = new URL(req?.headers?.get('referer') || '')
+		const lngInReferer = languages.find((l) =>
+			refererUrl.pathname.startsWith(`/${l}`)
 		)
 		const response = NextResponse.next()
 		if (lngInReferer) response.cookies.set(cookieName, lngInReferer)

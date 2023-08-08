@@ -47,7 +47,6 @@ async function fetchReleases() {
 	const data = await response.json()
 	if (!data) throw Error('fetch release failed : no releases returned')
 	if (!Array.isArray(data)) {
-		console.log(data)
 		throw Error('fetch release failed, releases are not an array')
 	}
 	const filtered = data.filter(Boolean).filter((release) => !release.draft)

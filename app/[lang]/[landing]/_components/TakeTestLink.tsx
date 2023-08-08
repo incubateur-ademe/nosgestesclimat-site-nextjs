@@ -1,5 +1,6 @@
 'use client'
 
+import TransClient from '@/components/translation/TransClient'
 import {
 	matomoEventParcoursTestReprendre,
 	matomoEventParcoursTestStart,
@@ -7,13 +8,11 @@ import {
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { Trans } from 'react-i18next'
 
 export default function TakeTestLink({ hasData }: { hasData?: boolean }) {
 	return (
 		<ButtonLink
 			href="/simulateur/bilan"
-			className={`ui__ plain button cta`}
 			css={hasData ? 'padding: 1rem!important;' : ''}
 			data-cypress-id="do-the-test-link"
 			onClick={() => {
@@ -28,9 +27,9 @@ export default function TakeTestLink({ hasData }: { hasData?: boolean }) {
 			<ProgressCircle progress={0} white />
 			<span>
 				{hasData ? (
-					<Trans>Reprendre mon test</Trans>
+					<TransClient>Reprendre mon test</TransClient>
 				) : (
-					<Trans>Faire le test</Trans>
+					<TransClient>Faire le test</TransClient>
 				)}
 			</span>
 		</ButtonLink>

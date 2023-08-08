@@ -4,10 +4,11 @@ import { languages } from '@/constants/translation'
 import i18next from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import resourcesToBackend from 'i18next-resources-to-backend'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import {
 	initReactI18next,
-	useTranslation as useTranslationOrg,
+	useTranslation as useLibTranslation,
 } from 'react-i18next'
 import { getOptions } from './settings'
 
@@ -17,10 +18,12 @@ i18next
 	.use(initReactI18next)
 	.use(LanguageDetector)
 	.use(
-		resourcesToBackend(
-			(language: string, namespace: string) =>
-				import(`./locales/${language}/${namespace}.json`)
-		)
+		resourcesToBackend((language: string) => {
+			import(`@/locales/ui/ui-${language.toLowerCase()}.yaml`).then((res) => {
+				console.log(res)
+			})
+			return import(`@/locales/ui/ui-${language.toLowerCase()}.yaml`)
+		})
 	)
 	.init({
 		...getOptions(),
@@ -31,14 +34,12 @@ i18next
 		preload: runsOnServerSide ? languages : [],
 	})
 
-export function useTranslationClientComponent(
-	language: string,
-	namespace: string,
-	options: {}
-) {
-	const ret = useTranslationOrg(namespace, options)
+export function useClientTranslation() {
+	const { locale: language } = useRouter()
 
-	const { i18n } = ret
+	const transObject = useLibTranslation()
+
+	const { i18n } = transObject
 
 	if (runsOnServerSide && language && i18n.resolvedLanguage !== language) {
 		i18n.changeLanguage(language)
@@ -49,14 +50,17 @@ export function useTranslationClientComponent(
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		useEffect(() => {
 			if (activeLng === i18n.resolvedLanguage) return
+
 			setActiveLng(i18n.resolvedLanguage)
 		}, [activeLng, i18n.resolvedLanguage])
 
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		useEffect(() => {
 			if (!language || i18n.resolvedLanguage === language) return
+
 			i18n.changeLanguage(language)
 		}, [language, i18n])
 	}
-	return ret
+
+	return transObject
 }

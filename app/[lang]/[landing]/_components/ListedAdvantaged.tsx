@@ -1,8 +1,14 @@
 import Link from 'next/link'
 import { Trans } from 'react-i18next'
 
+type Avantage = {
+	illustration: string
+	icon?: string
+	text: React.ReactNode
+}
+
 export default function ListedAdvantages() {
-	const advantages = [
+	const advantages: Avantage[] = [
 		{
 			illustration: '🪟',
 			text: (

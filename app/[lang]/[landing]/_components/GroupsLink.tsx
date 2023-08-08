@@ -1,9 +1,9 @@
 'use client'
 
+import TransClient from '@/components/translation/TransClient'
 import { matomoEventModeGroupeCTAStart } from '@/constants/matomo'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { Trans } from 'react-i18next'
 
 export default function GroupsLink() {
 	return (
@@ -23,7 +23,7 @@ export default function GroupsLink() {
 				className="w-32 h-auto mr-4"
 			/>
 			<span>
-				<Trans>En groupe</Trans>
+				<TransClient>En groupe</TransClient>
 			</span>
 		</ButtonLink>
 	)

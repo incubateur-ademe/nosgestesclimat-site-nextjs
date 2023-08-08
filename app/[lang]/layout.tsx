@@ -15,20 +15,20 @@ export async function generateStaticParams() {
 
 export default function RootLayout({
 	children,
-	params: { language },
+	params: { lng },
 }: {
 	children: React.ReactNode
 	params: {
-		language: string
+		lng: string
 	}
 }) {
 	return (
-		<html lang={language} dir={dir(language)}>
+		<html lang={lng} dir={dir(lng)}>
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="initial-scale=1" />
 
-				<link rel="icon" href="/images/favicon.png" />
+				<link rel="icon" href="./favicon.png" />
 
 				<link
 					rel="alternate"
@@ -89,47 +89,22 @@ export default function RootLayout({
         */}
 				<Script id="script-netlify">
 					{`
-          if (window.location.href.includes('iframe')) {
-            let cookieIsSet = document.cookie.includes('nf_ab')
-            if (!cookieIsSet) {
-              document.cookie = "nf_ab=${Math.random()}; sameSite=None; secure=true"
-              window.location.reload(true) // We need to reload the page for the client to match the server
-            }
-          }
+						if (window.location.href.includes('iframe')) {
+							const cookieIsSet = document.cookie.includes('nf_ab');
+							if (!cookieIsSet) {
+								document.cookie = "nf_ab=${Math.random()}; sameSite=None; secure=true";
+								window.location.reload(); // We need to reload the page for the client to match the server
+							}
+						}
           `}
 				</Script>
 			</head>
 
 			<body className={inter.className}>
 				<Script id="script-user-agent">{`
-          var b = document.documentElement
-          b.setAttribute('data-useragent', navigator.userAgent)
+          const b = document.documentElement;
+          b.setAttribute('data-useragent', navigator.userAgent);
         `}</Script>
-
-				{/* Matomo */}
-				<Script id="script-matomo">{`
-          var _paq = window._paq || []
-          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-          if (!window.location.pathname.match(/\/(sondage|conférence|enquête)\//)) {
-            _paq.push(['trackPageView'])
-          }
-          _paq.push(['enableLinkTracking'])
-          ;(function () {
-            var u = '//stats.data.gouv.fr/'
-            _paq.push(['setTrackerUrl', u + 'matomo.php'])
-            _paq.push(['setSiteId', '153'])
-
-            var d = document,
-              g = d.createElement('script'),
-              s = d.getElementsByTagName('script')[0]
-            g.type = 'text/javascript'
-            g.async = true
-            g.defer = true
-            g.src = u + 'matomo.js'
-            s.parentNode.insertBefore(g, s)
-          })()
-        `}</Script>
-				{/* End Matomo Code */}
 
 				{/*
           Polyfill and source for old browser

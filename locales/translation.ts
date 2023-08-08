@@ -3,23 +3,18 @@
 */
 
 import { i18n } from 'i18next'
-import yaml from 'yaml'
 
-const parseYaml = (content: string) => {
-	const parsedYaml = yaml.parse(content)
-
+const parseYaml = (yaml: { entries: {} }) => {
 	//Remove keys that make the bundle heavier but are only useful for translation purposes, not in the UI
-	return Array.isArray(parsedYaml)
-		? parsedYaml.map((entry) =>
+	return Array.isArray(yaml)
+		? yaml.map((entry) =>
 				Object.fromEntries(
 					Object.entries(entry).filter(([key]) => !key.endsWith('.lock'))
 				)
 		  )
 		: {
 				entries: Object.fromEntries(
-					Object.entries(parsedYaml.entries).filter(
-						([key]) => !key.endsWith('.lock')
-					)
+					Object.entries(yaml.entries).filter(([key]) => !key.endsWith('.lock'))
 				),
 		  }
 }

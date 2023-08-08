@@ -3,8 +3,6 @@
 import { ForwardedRef, useEffect, useRef, useState } from 'react'
 import IllustrationSVG from './IllustrationSVG'
 
-const windowAnimationDuration = '60s'
-
 export default function AnimatedIllustration({
 	small,
 	className,
