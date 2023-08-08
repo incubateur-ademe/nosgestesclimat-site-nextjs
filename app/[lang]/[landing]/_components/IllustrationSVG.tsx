@@ -284,7 +284,7 @@ const IllustrationSVG = forwardRef((props, ref: ForwardedRef<SVGElement>) => (
 				width={223.97}
 				style={{
 					opacity: 1,
-					fill: 'var(--color)',
+					fill: '#5758BB',
 					fillOpacity: 1,
 					fillRule: 'evenodd',
 					stroke: 'none',
@@ -294,7 +294,7 @@ const IllustrationSVG = forwardRef((props, ref: ForwardedRef<SVGElement>) => (
 			<g
 				style={{
 					opacity: 1,
-					fill: 'var(--color)',
+					fill: '#5758BB',
 					fillOpacity: 1,
 					fillRule: 'evenodd',
 					stroke: 'none',
@@ -353,7 +353,7 @@ const IllustrationSVG = forwardRef((props, ref: ForwardedRef<SVGElement>) => (
 			<path
 				d="m68.216 115.968 17.633 21.599-18.612-.392-8.727-21.207z"
 				style={{
-					fill: 'var(--color)',
+					fill: '#5758BB',
 					fillOpacity: 1,
 					stroke: 'none',
 					strokeWidth: '.271997px',
@@ -3197,7 +3197,7 @@ const IllustrationSVG = forwardRef((props, ref: ForwardedRef<SVGElement>) => (
 				style={{
 					display: 'inline',
 					opacity: 1,
-					fill: 'var(--color)',
+					fill: '#5758BB',
 					fillOpacity: 1,
 					fillRule: 'evenodd',
 					stroke: 'none',

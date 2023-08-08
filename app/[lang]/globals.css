@@ -16,6 +16,7 @@
 }
 
 body {
+	direction: ltr;
 }
 
 html[data-useragent*='MSIE'] #outdated-browser,
