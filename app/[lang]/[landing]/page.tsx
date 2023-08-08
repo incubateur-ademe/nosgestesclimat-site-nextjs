@@ -3,6 +3,7 @@ import Title from '@/design-system/layout/Title'
 import NewsBanner from './_components/NewsBanner'
 
 import republiqueFr from '@/assets/images/marianne.svg'
+import TransServer from '@/components/translation/TransServer'
 import { useServerTranslation } from '@/locales'
 import Image from 'next/image'
 import AnimatedIllustration from './_components/AnimatedIllustration'
@@ -14,31 +15,24 @@ import TakeTestButton from './_components/TakeTestLink'
 export default async function Landing({ lang }: { lang: string }) {
 	const hasData = true
 
-	const { t } = await useServerTranslation(lang, 'entries')
-	console.log(
-		t(
-			'Connaissez-vous votre empreinte sur le climat ?',
-			'publicodes.Landing.question'
-		)
-	)
+	const { t } = await useServerTranslation(lang)
+
+	console.log(t('publicodes.Landing.question'))
+
 	return (
 		<Main>
 			<div className="flex items-center justify-center flex-wrap mt-12 p-2 gap-4 w-full max-w-[36rem] md:max-w-none mx-auto">
 				<div className="md:flex gap-10">
 					<div className="flex flex-col md:w-1/2">
 						<Title
-							title={t(
-								'Connaissez-vous votre empreinte sur le climat ?',
-								'publicodes.Landing.question'
-							)}
+							title={
+								<TransServer lang={lang} i18nKey="publicodes.Landing.question">
+									Connaissez-vous votre empreinte sur le climat ?
+								</TransServer>
+							}
 						/>
 						<AnimatedIllustration className="block md:hidden" />
-						<p>
-							{t(
-								'En 10 minutes, obtenez une estimation de votre empreinte carbone de consommation.',
-								'sites.publicodes.Landing.description'
-							)}
-						</p>
+						<p>{t('sites.publicodes.Landing.description')}</p>
 						<div>
 							<div className="my-4 flex flex-wrap gap-4 items-stretch">
 								<TakeTestButton />

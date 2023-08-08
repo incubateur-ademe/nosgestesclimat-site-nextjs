@@ -75,6 +75,7 @@
 		"i18next-resources-to-backend": "^1.1.4",
 		"imports-loader": "^4.0.0",
 		"isomorphic-fetch": "^3.0.0",
+		"js-yaml-loader": "^1.2.2",
 		"json-stable-stringify": "^1.0.1",
 		"lz-string": "^1.5.0",
 		"markdown-to-jsx": "^7.3.1",
@@ -122,7 +123,7 @@
 		"webpack-dev-server": "^4.9.3",
 		"y-webrtc": "^10.2.3",
 		"y-websocket": "^1.4.3",
-		"yaml": "^2.2.2",
+		"yaml": "^2.3.1",
 		"yarn": "^1.22.19",
 		"yjs": "^13.5.39"
 	},

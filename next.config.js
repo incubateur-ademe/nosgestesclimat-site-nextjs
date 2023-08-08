@@ -1,3 +1,5 @@
+const localYamlLoader = require('./utils/loaders/local-yaml-loader')
+
 const withMDX = require('@next/mdx')({
 	extension: /\.mdx?$/,
 	options: {
@@ -20,7 +22,7 @@ const nextConfig = {
 	webpack: function (config) {
 		config.module.rules.push({
 			test: /\.ya?ml$/,
-			use: 'yaml-loader',
+			use: 'js-yaml-loader',
 		})
 		return config
 	},

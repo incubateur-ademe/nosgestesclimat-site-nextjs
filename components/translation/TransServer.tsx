@@ -4,9 +4,14 @@ import { Trans } from 'react-i18next/TransWithoutContext'
 
 export default async function TransServer({
 	children,
-	locale,
-}: PropsWithChildren<{ locale: string }>) {
-	const { t } = await useServerTranslation(locale)
+	lang,
+	i18nKey,
+}: PropsWithChildren<{ lang: string; i18nKey?: string }>) {
+	const { t } = await useServerTranslation(lang)
 
-	return <Trans t={t}>{children}</Trans>
+	return (
+		<Trans i18nKey={i18nKey} t={t}>
+			{children}
+		</Trans>
+	)
 }
