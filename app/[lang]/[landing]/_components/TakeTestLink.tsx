@@ -13,7 +13,6 @@ export default function TakeTestLink({ hasData }: { hasData?: boolean }) {
 	return (
 		<ButtonLink
 			href="/simulateur/bilan"
-			css={hasData ? 'padding: 1rem!important;' : ''}
 			data-cypress-id="do-the-test-link"
 			onClick={() => {
 				if (hasData) {
@@ -23,6 +22,8 @@ export default function TakeTestLink({ hasData }: { hasData?: boolean }) {
 
 				trackEvent(matomoEventParcoursTestStart)
 			}}
+			size="xl"
+			className="px-20"
 		>
 			<ProgressCircle progress={0} white />
 			<span>

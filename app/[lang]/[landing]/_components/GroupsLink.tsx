@@ -1,9 +1,11 @@
 'use client'
 
+import silhouette from '@/assets/images/silhouettes.svg'
 import TransClient from '@/components/translation/TransClient'
 import { matomoEventModeGroupeCTAStart } from '@/constants/matomo'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import Image from 'next/image'
 
 export default function GroupsLink() {
 	return (
@@ -14,14 +16,10 @@ export default function GroupsLink() {
 				trackEvent(matomoEventModeGroupeCTAStart)
 			}}
 			data-cypress-id="as-a-group-link"
+			size="xl"
+			color="secondary"
 		>
-			<img
-				src="/images/silhouettes.svg"
-				alt=""
-				width="100"
-				height="100"
-				className="w-32 h-auto mr-4"
-			/>
+			<Image src={silhouette} alt="" className="w-8 h-auto mr-4" />
 			<span>
 				<TransClient>En groupe</TransClient>
 			</span>

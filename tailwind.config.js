@@ -3,11 +3,12 @@ module.exports = {
 	content: [
 		'./design-system/**/*.{js,ts,jsx,tsx,mdx}',
 		'./app/**/*.{js,ts,jsx,tsx,mdx}',
+		'./components/**/*.{js,ts,jsx,tsx,mdx}',
 	],
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['var(--font-marianne)'],
+				sans: 'var(--font-marianne)',
 			},
 			colors: {
 				// primary: '#491273',

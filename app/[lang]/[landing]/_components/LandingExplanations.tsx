@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 	return [{ lang: 'fr' }, { lang: 'en-US' }]
 }
 
-export default function LandingExplanations({ locale }: { locale: string }) {
+export default function LandingExplanations() {
 	const { isIframe } = useContext(IframeOptionsContext)
 
 	const { t } = useClientTranslation()

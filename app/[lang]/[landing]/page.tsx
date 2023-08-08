@@ -2,7 +2,7 @@ import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
 import NewsBanner from './_components/NewsBanner'
 
-import republiqueFr from '@/images/marianne.svg'
+import republiqueFr from '@/assets/images/marianne.svg'
 import { useServerTranslation } from '@/locales'
 import Image from 'next/image'
 import AnimatedIllustration from './_components/AnimatedIllustration'
@@ -40,7 +40,7 @@ export default async function Landing({ lang }: { lang: string }) {
 							)}
 						</p>
 						<div>
-							<div className="my-4 flex flex-wrap gap-4">
+							<div className="my-4 flex flex-wrap gap-4 items-stretch">
 								<TakeTestButton />
 
 								<GroupsLink />

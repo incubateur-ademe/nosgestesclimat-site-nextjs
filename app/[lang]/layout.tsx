@@ -6,6 +6,7 @@ import Script from 'next/script'
 import { languages } from '@/constants/translation'
 import './globals.css'
 
+import Logo from '@/components/Logo'
 import localFont from 'next/font/local'
 
 const marianne = localFont({
@@ -148,6 +149,7 @@ export default function RootLayout({
         */}
 				<Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
 
+				<Logo showText />
 				{children}
 			</body>
 		</html>

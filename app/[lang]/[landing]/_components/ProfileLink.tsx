@@ -1,10 +1,11 @@
 'use client'
 
+import profileIcon from '@/assets/images/silhouette.svg'
 import TransClient from '@/components/translation/TransClient'
-import { getOpenmojiURL } from '@/constants/urls'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { Appear } from '@/design-system/utils/Animate'
 import { useClientTranslation } from '@/locales/client'
+import Image from 'next/image'
 
 export default function ProfileLink() {
 	// const { hasData } = useProfileData()
@@ -24,7 +25,7 @@ export default function ProfileLink() {
 					title={t('Page profil')}
 					className="w-[18rem] rounded-sm flex items-center"
 				>
-					<img alt="" src={getOpenmojiURL('profile')} className="w-6" />
+					<Image alt="" src={profileIcon} className="w-6" />
 					<span className="ml-2">
 						<TransClient>Voir le détail de ma simulation</TransClient>
 					</span>
