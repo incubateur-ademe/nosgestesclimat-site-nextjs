@@ -1,10 +1,10 @@
 import { createInstance } from 'i18next'
 import resourcesToBackend from 'i18next-resources-to-backend'
+import { currentLocale } from 'next-i18n-router'
 import { initReactI18next } from 'react-i18next/initReactI18next'
 import { getOptions } from './settings'
 import uiEnYaml from './ui/ui-en-us.yaml'
 import uiFrYaml from './ui/ui-fr.yaml'
-console.log('uiFrYaml', Object.keys(uiFrYaml))
 
 const initI18next = async (language: string) => {
 	const i18nInstance = createInstance()
@@ -13,11 +13,11 @@ const initI18next = async (language: string) => {
 		.use(
 			resourcesToBackend((language: string) => {
 				switch (language) {
-					case 'en':
-						return uiEnYaml.entries
+					case 'en-US':
+						return (uiEnYaml as unknown as { entries: {} }).entries
 					case 'fr':
 					default:
-						return uiFrYaml.entries
+						return (uiFrYaml as unknown as { entries: {} }).entries
 				}
 			})
 		)
@@ -27,10 +27,11 @@ const initI18next = async (language: string) => {
 }
 
 export async function useServerTranslation(
-	language: string,
 	namespace?: string,
 	options?: { keyPrefix: string }
 ) {
+	const language = currentLocale()
+
 	const i18nextInstance = await initI18next(language || '')
 
 	i18nextInstance.getFixedT(

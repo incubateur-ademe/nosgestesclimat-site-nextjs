@@ -1,14 +1,12 @@
 'use client'
-
-import Markdown from 'markdown-to-jsx'
 import { Trans } from 'react-i18next'
 
 import LandingContainer from './LandingContainer'
 
 import { IframeOptionsContext } from '@/contexts/IframeOptionsContext'
 import { useClientTranslation } from '@/locales/client'
-import ContentEn from '@/locales/pages/en-us/landing.md'
-import ContentFr from '@/locales/pages/fr/landing.md'
+import LandingContentEn from '@/locales/pages/en-us/landing.mdx'
+import LandingContentFr from '@/locales/pages/fr/landing.mdx'
 import { useContext } from 'react'
 import ListedAdvantages from './ListedAdvantaged'
 
@@ -31,8 +29,8 @@ export default function LandingExplanations() {
 		<>
 			<div className="w-full">
 				<LandingContainer background>
-					<ContentFr />
-					<ContentEn />
+					<LandingContentFr />
+					<LandingContentEn />
 				</LandingContainer>
 
 				<LandingContainer>
@@ -40,9 +38,7 @@ export default function LandingExplanations() {
 						<Trans>Ouvert, documenté et contributif</Trans>
 					</h2>
 					<ListedAdvantages />
-					<Markdown
-						children={t('sites.publicodes.LandingExplanations.faqLink')}
-					/>
+					{t('sites.publicodes.LandingExplanations.faqLink')}
 				</LandingContainer>
 			</div>
 		</>

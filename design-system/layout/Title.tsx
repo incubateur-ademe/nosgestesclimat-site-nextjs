@@ -15,7 +15,7 @@ export default function Title({
 	const Tag = tag
 	return (
 		<div className="relative pb-5 mb-4">
-			<Tag className="mb-1" {...props}>
+			<Tag className="mb-1 text-primaryDark" {...props}>
 				{title}
 			</Tag>
 

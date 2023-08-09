@@ -59,7 +59,7 @@ export default function NewsBanner() {
 				<div>
 					<small className="max-w-[12rem]">
 						<TransClient i18nKey={'components.NewsBanner.miseAJourDate'}>
-							Dernière mise à jour {date}
+							Dernière mise à jour {{ date } as unknown as React.ReactNode}
 						</TransClient>
 					</small>
 				</div>

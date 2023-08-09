@@ -9,10 +9,6 @@ export const metadata: Metadata = {
 }
 */
 
-export default function Page({
-	params: { lang },
-}: {
-	params: { lang: string }
-}) {
-	return <Landing lang={lang} />
+export default function Page() {
+	return <Landing />
 }

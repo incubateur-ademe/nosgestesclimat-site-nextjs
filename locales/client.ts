@@ -17,22 +17,30 @@ import uiFrYaml from './ui/ui-fr.yaml'
 const runsOnServerSide = typeof window === 'undefined'
 
 i18next
-	.use(initReactI18next)
 	.use(LanguageDetector)
 	.use(
 		resourcesToBackend((language: string) => {
 			switch (language) {
-				case 'en':
-					return uiEnYaml.entries
+				case 'en-US':
+					return (uiEnYaml as unknown as { entries: {} }).entries
 				case 'fr':
 				default:
-					return uiFrYaml.entries
+					return (uiFrYaml as unknown as { entries: {} }).entries
 			}
 		})
 	)
+	.use(initReactI18next)
 	.init({
 		...getOptions(),
 		lng: undefined, // let detect the language on client side
+		resources: {
+			'en-US': {
+				translation: (uiEnYaml as unknown as { entries: {} }).entries,
+			},
+			fr: {
+				translation: (uiFrYaml as unknown as { entries: {} }).entries,
+			},
+		},
 		detection: {
 			order: ['path', 'htmlTag', 'cookie', 'navigator'],
 		},
@@ -40,11 +48,19 @@ i18next
 	})
 
 export function useClientTranslation() {
+	const [initChangeLang, setInitChangeLang] = useState(false)
 	const { lang } = useContext(LangContext)
 
-	const transObject = useLibTranslation()
+	const transObject = useLibTranslation('translation')
 
 	const { i18n } = transObject
+
+	useEffect(() => {
+		if (!initChangeLang) {
+			i18n.changeLanguage(lang)
+			setInitChangeLang(true)
+		}
+	}, [lang, initChangeLang, i18n])
 
 	if (runsOnServerSide && lang && i18n.resolvedLanguage !== lang) {
 		i18n.changeLanguage(lang)
@@ -69,3 +85,5 @@ export function useClientTranslation() {
 
 	return transObject
 }
+
+export default i18next

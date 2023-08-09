@@ -1,3 +1,5 @@
+'use client'
+
 import { useClientTranslation } from '@/locales/client'
 import { PropsWithChildren } from 'react'
 import { Trans } from 'react-i18next'

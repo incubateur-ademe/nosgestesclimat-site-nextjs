@@ -11,7 +11,6 @@ export default function GroupsLink() {
 	return (
 		<ButtonLink
 			href="/groupe"
-			className="ui__ button cta"
 			onClick={() => {
 				trackEvent(matomoEventModeGroupeCTAStart)
 			}}

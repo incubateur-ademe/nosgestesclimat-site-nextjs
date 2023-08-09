@@ -81,6 +81,7 @@
 		"markdown-to-jsx": "^7.3.1",
 		"mini-css-extract-plugin": "^2.6.1",
 		"next": "13.4.12",
+		"next-i18n-router": "^3.1.0",
 		"node-fetch": "^3.2.10",
 		"path-browserify": "^1.0.1",
 		"postcss": "8.4.27",

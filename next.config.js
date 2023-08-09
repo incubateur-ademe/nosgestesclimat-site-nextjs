@@ -1,7 +1,7 @@
-const localYamlLoader = require('./utils/loaders/local-yaml-loader')
+const { i18nRewriter } = require('next-i18n-router')
 
 const withMDX = require('@next/mdx')({
-	extension: /\.mdx?$/,
+	extension: /\.mdx$/,
 	options: {
 		// If you use remark-gfm, you'll need to use next.config.mjs
 		// as the package is ESM only
@@ -38,6 +38,14 @@ const nextConfig = {
 		dangerouslyAllowSVG: true,
 		contentDispositionType: 'attachment',
 		contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+	},
+	async rewrites() {
+		return {
+			afterFiles: i18nRewriter({
+				locales: ['fr', 'en-US'],
+				defaultLocale: 'fr',
+			}),
+		}
 	},
 }
 

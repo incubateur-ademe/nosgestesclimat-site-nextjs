@@ -12,12 +12,10 @@ import LandingExplanations from './_components/LandingExplanations'
 import ProfileLink from './_components/ProfileLink'
 import TakeTestButton from './_components/TakeTestLink'
 
-export default async function Landing({ lang }: { lang: string }) {
+export default async function Landing() {
 	const hasData = true
 
-	const { t } = await useServerTranslation(lang)
-
-	console.log(t('publicodes.Landing.question'))
+	const { t } = await useServerTranslation()
 
 	return (
 		<Main>
@@ -26,7 +24,7 @@ export default async function Landing({ lang }: { lang: string }) {
 					<div className="flex flex-col md:w-1/2">
 						<Title
 							title={
-								<TransServer lang={lang} i18nKey="publicodes.Landing.question">
+								<TransServer i18nKey="publicodes.Landing.question">
 									Connaissez-vous votre empreinte sur le climat ?
 								</TransServer>
 							}
