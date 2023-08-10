@@ -7,7 +7,7 @@ import { languages } from '@/constants/translation'
 import '@/locales/client'
 import './globals.css'
 
-import Footer from '@/components/Footer'
+import Footer from '@/components/layout/Footer'
 import Logo from '@/components/Logo'
 import { LangProvider } from '@/contexts/LangContext'
 import { currentLocale } from 'next-i18n-router'
@@ -16,32 +16,32 @@ import localFont from 'next/font/local'
 const marianne = localFont({
 	src: [
 		{
-			path: 'fonts/Marianne-Thin.woff2',
+			path: '_fonts/Marianne-Thin.woff2',
 			weight: '100',
 			style: 'normal',
 		},
 		{
-			path: 'fonts/Marianne-Light.woff2',
+			path: '_fonts/Marianne-Light.woff2',
 			weight: '300',
 			style: 'normal',
 		},
 		{
-			path: 'fonts/Marianne-Regular.woff2',
+			path: '_fonts/Marianne-Regular.woff2',
 			weight: 'normal',
 			style: 'normal',
 		},
 		{
-			path: 'fonts/Marianne-Medium.woff2',
+			path: '_fonts/Marianne-Medium.woff2',
 			weight: '500',
 			style: 'normal',
 		},
 		{
-			path: 'fonts/Marianne-Bold.woff2',
+			path: '_fonts/Marianne-Bold.woff2',
 			weight: 'bold',
 			style: 'normal',
 		},
 		{
-			path: 'fonts/Marianne-ExtraBold.woff2',
+			path: '_fonts/Marianne-ExtraBold.woff2',
 			weight: '800',
 			style: 'normal',
 		},

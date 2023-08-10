@@ -3,7 +3,7 @@ import franceRelanceLogo from '@/assets/images/logo-france-relance.svg'
 import ueLogo from '@/assets/images/union-européenne.svg'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Image from 'next/image'
-import TransServer from './translation/TransServer'
+import TransServer from '../translation/TransServer'
 
 export default function Footer() {
 	return (

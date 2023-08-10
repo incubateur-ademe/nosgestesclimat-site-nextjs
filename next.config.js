@@ -2,10 +2,6 @@ const { i18nRewriter } = require('next-i18n-router')
 
 const withMDX = require('@next/mdx')({
 	extension: /\.mdx$/,
-	options: {
-		// If you use `MDXProvider`, uncomment the following line.
-		// providerImportSource: "@mdx-js/react",
-	},
 })
 
 /** @type {import('next').NextConfig} */
@@ -29,6 +25,18 @@ const nextConfig = {
 				hostname: 'abc-transitionbascarbone.fr',
 				port: '',
 				pathname: '/wp-content/uploads/**',
+			},
+			{
+				protocol: 'https',
+				hostname: 'upload.wikimedia.org',
+				port: '',
+				pathname: '/wikipedia/commons/**',
+			},
+			{
+				protocol: 'https',
+				hostname: 'user-images.githubusercontent.com',
+				port: '',
+				pathname: '/**',
 			},
 		],
 		dangerouslyAllowSVG: true,
