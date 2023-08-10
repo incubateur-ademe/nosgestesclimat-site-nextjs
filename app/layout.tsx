@@ -7,6 +7,7 @@ import { languages } from '@/constants/translation'
 import '@/locales/client'
 import './globals.css'
 
+import Footer from '@/components/Footer'
 import Logo from '@/components/Logo'
 import { LangProvider } from '@/contexts/LangContext'
 import { currentLocale } from 'next-i18n-router'
@@ -152,7 +153,10 @@ export default function RootLayout({
 
 				<Logo showText />
 
-				<LangProvider lang={lang ?? ''}>{children}</LangProvider>
+				<LangProvider lang={lang ?? ''}>
+					{children}
+					<Footer />
+				</LangProvider>
 			</body>
 		</html>
 	)

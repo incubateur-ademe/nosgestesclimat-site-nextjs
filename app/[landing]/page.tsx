@@ -19,7 +19,7 @@ export default async function Landing() {
 
 	return (
 		<Main>
-			<div className="flex items-center justify-center flex-wrap mt-12 p-2 gap-4 w-full max-w-[36rem] md:max-w-none mx-auto">
+			<div className="flex items-center justify-center flex-wrap mt-6 p-10 gap-4 w-full md:max-w-none mx-auto">
 				<div className="md:flex gap-10">
 					<div className="flex flex-col md:w-1/2">
 						<Title
@@ -44,7 +44,7 @@ export default async function Landing() {
 							</div>
 						</div>
 					</div>
-					<AnimatedIllustration className="hidden md:block w-1/2" />
+					<AnimatedIllustration className="hidden md:block w-1/2 text-center" />
 				</div>
 
 				<div className="flex justify-between items-center flex-wrap mt-4 gap-10">

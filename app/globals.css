@@ -15,8 +15,16 @@
 	}
 }
 
+* {
+	box-sizing: border-box;
+}
+
 body {
 	direction: ltr;
+}
+
+a {
+	@apply text-primary hover:!text-primaryDark transition-colors underline inline-block;
 }
 
 html[data-useragent*='MSIE'] #outdated-browser,

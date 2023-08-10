@@ -1,3 +1,4 @@
+import Card from '@/design-system/layout/Card'
 import Link from 'next/link'
 import { Trans } from 'react-i18next'
 
@@ -22,7 +23,7 @@ export default function ListedAdvantages() {
 			illustration: '🔎',
 			text: (
 				<Trans>
-					L\'intégralité du calcul est{' '}
+					L'intégralité du calcul est{' '}
 					<Link href="/documentation">documenté</Link> en ligne pour les curieux
 					et les experts.
 				</Trans>
@@ -40,16 +41,17 @@ export default function ListedAdvantages() {
 	]
 
 	return (
-		<ul className="flex justify-center items-center flex-wrap pl-0 m-0">
+		<ul className="flex justify-center items-center flex-wrap pl-0 m-0 gap-4">
 			{advantages.map((advantage) => (
-				<li
+				<Card
+					tag="li"
 					key={advantage.illustration}
-					className="ui__ card box width-[14rem] height-[14rem] justify-center"
+					className="w-[14rem] h-[14rem] flex flex-col justify-center items-center gap-4"
 				>
 					<span className="text-[200%]">{advantage.illustration}</span>
 
-					<div className="max-w-[40rem]">{advantage.text}</div>
-				</li>
+					<div className="text-center text-base">{advantage.text}</div>
+				</Card>
 			))}
 		</ul>
 	)
