@@ -24,7 +24,7 @@ body {
 }
 
 a {
-	@apply text-primary hover:!text-primaryDark transition-colors underline inline-block;
+	@apply inline-block text-primary underline transition-colors hover:!text-primaryDark;
 }
 
 html[data-useragent*='MSIE'] #outdated-browser,
@@ -129,5 +129,17 @@ html[data-useragent*='Trident'] #js {
 	}
 	to {
 		transform: translateX(-100%);
+	}
+}
+
+/*
+	RegionGrid
+*/
+.region-grid {
+	grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+}
+@media (max-width: 400px) {
+	.region-grid {
+		grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
 	}
 }
