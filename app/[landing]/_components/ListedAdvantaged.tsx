@@ -41,7 +41,7 @@ export default function ListedAdvantages() {
 	]
 
 	return (
-		<ul className="flex justify-center items-center flex-wrap pl-0 m-0 gap-4">
+		<ul className="flex justify-between items-center flex-wrap pl-0 m-0 gap-4">
 			{advantages.map((advantage) => (
 				<Card
 					tag="li"

@@ -3,6 +3,7 @@
 import TransClient from '@/components/translation/TransClient'
 import { IframeOptionsContext } from '@/contexts/IframeOptionsContext'
 import { useLang } from '@/contexts/LangContext'
+import InlineLink from '@/design-system/inputs/InlineLink'
 import { useClientTranslation } from '@/locales/client'
 import LandingContentEn from '@/locales/pages/en-us/landing.mdx'
 import LandingContentFr from '@/locales/pages/fr/landing.mdx'
@@ -28,7 +29,7 @@ export default function LandingExplanations() {
 
 	return (
 		<>
-			<div className="bg-gray-100  py-10">
+			<div className="bg-primaryLight  py-10">
 				<div className="w-full max-w-3xl mx-auto">
 					{lang === 'fr' && <LandingContentFr />}
 					{lang === 'en-US' && <LandingContentEn />}
@@ -39,6 +40,11 @@ export default function LandingExplanations() {
 					<TransClient>Ouvert, documenté et contributif</TransClient>
 				</h2>
 				<ListedAdvantages />
+				<h2>Des questions ?</h2>
+				<p>
+					Retrouvez les réponses aux questions courantes sur notre page{' '}
+					<InlineLink href="/questions-frequentes">FAQ</InlineLink>.
+				</p>
 			</div>
 		</>
 	)

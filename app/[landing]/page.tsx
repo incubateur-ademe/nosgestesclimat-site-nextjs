@@ -29,7 +29,7 @@ export default async function Landing() {
 								</TransServer>
 							}
 						/>
-						<AnimatedIllustration className="block md:hidden" />
+						<AnimatedIllustration className="block md:hidden text-center" />
 						<p>{t('sites.publicodes.Landing.description')}</p>
 						<div>
 							<div className="my-4 flex flex-wrap gap-4 items-stretch">

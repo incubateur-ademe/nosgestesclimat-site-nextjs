@@ -19,13 +19,13 @@ export default function ProfileLink() {
 
 	return (
 		<Appear delay={1}>
-			<div className="mt-4 md:flex md:justify-center">
+			<div className="md:flex md:justify-center">
 				<InlineLink
 					href="/profil"
 					title={t('Page profil')}
 					className="w-[18rem] rounded-sm flex items-center"
 				>
-					<Image alt="" src={profileIcon} className="w-6" />
+					<Image alt="" src={profileIcon} className="w-6 h-auto" />
 					<span className="ml-2">
 						<TransClient>Voir le détail de ma simulation</TransClient>
 					</span>

@@ -1,6 +1,7 @@
 'use client'
 
 import TransClient from '@/components/translation/TransClient'
+import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/locales/client'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
@@ -50,7 +51,7 @@ export default function NewsBanner() {
 	)
 
 	return showBanner ? (
-		<div className="ui__ card box min-w-[20rem] relative text-left">
+		<Card className="min-w-[20rem] p-8 relative text-left">
 			<div>
 				<h2 className="flex items-center m-0">
 					<span className="bg-primary w-3 h-3 inline-block rounded-2xl mr-2"></span>{' '}
@@ -63,17 +64,17 @@ export default function NewsBanner() {
 						</TransClient>
 					</small>
 				</div>
-				<div>
+				<div className="mt-2">
 					<Link href={'/nouveautés'}>{capitaliseString(lastRelease.name)}</Link>
 				</div>
 			</div>
 			<button
 				// onClick={() => setLastViewedRelease(lastRelease.name)}
-				className="border-none absolute right-2 top-2 p-0 text-primaryDark"
+				className="border-none absolute right-2 top-2 p-0 text-primaryDark bg-transparent w-8 h-8 text-lg"
 				title={t('Fermer la notification de nouveautés')}
 			>
 				&times;
 			</button>
-		</div>
+		</Card>
 	) : null
 }
