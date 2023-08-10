@@ -1,6 +1,7 @@
 import Title from '@/design-system/layout/Title'
 import { useServerTranslation } from '@/locales'
 
+import Main from '@/design-system/layout/Main'
 import { getServerPathname } from '@/helpers/getServerPathname'
 import NewsList from './_components/NewsList'
 
@@ -16,10 +17,10 @@ export default async function News() {
 	const title = t('Les nouveautés ✨')
 
 	return (
-		<div className={'ui__ container ' + (isReleasePage ? '' : 'fluid')}>
+		<Main maxWidth="3xl">
 			<Title data-cypress-id="news-title" title={title} />
 			<p>{t('pages.News.premierParagraphe')}</p>
 			<NewsList />
-		</div>
+		</Main>
 	)
 }
