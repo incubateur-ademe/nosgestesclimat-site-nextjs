@@ -23,6 +23,12 @@ body {
 	direction: ltr;
 }
 
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
 a {
 	@apply inline-block text-primary underline transition-colors hover:!text-primaryDark;
 }

@@ -2,12 +2,13 @@ import internationalIllustration from '@/assets/images/international-illustratio
 import TransServer from '@/components/translation/TransServer'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import InlineLink from '@/design-system/inputs/InlineLink'
+import Container from '@/design-system/layout/Container'
 import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
 import { useServerTranslation } from '@/locales'
 import Image from 'next/image'
 import RegionGrid from './_components/RegionGrid'
-console.log(internationalIllustration)
+
 export default async function International() {
 	const { t } = await useServerTranslation()
 
@@ -17,7 +18,7 @@ export default async function International() {
 	)
 
 	return (
-		<Main maxWidth="3xl">
+		<Main>
 			{/*
 			<Meta
 				title={title}
@@ -25,21 +26,20 @@ export default async function International() {
 				image="https://nosgestesclimat.fr/images/international-illustration.jpeg"
 			/>
   */}
+			<Container maxWidth="3xl" className="pb-12 pt-8">
+				<div className="flex items-start justify-between gap-4">
+					<div className="text-center">
+						<Title title={title} />
 
-			<div>
-				<div>
-					<Title title={title} />
+						<Image
+							src={internationalIllustration}
+							alt=""
+							className="max-w-12 py-8 md:hidden"
+							width="300"
+							height="300"
+						/>
 
-					<Image
-						src={'/images/international-illustration.jpeg'}
-						alt=""
-						className="max-w-[40vh] p-8 md:hidden"
-						width="300"
-						height="200"
-					/>
-
-					<p>{description}</p>
-					<div>
+						<p className="mb-8">{description}</p>
 						<div>
 							<ButtonLink href="/simulateur/bilan" size="xl" className="px-20">
 								<span>
@@ -48,58 +48,58 @@ export default async function International() {
 							</ButtonLink>
 						</div>
 					</div>
+
+					<Image
+						src={internationalIllustration}
+						alt=""
+						aria-hidden="true"
+						className="mx-auto hidden max-w-md p-8 md:block"
+						width="300"
+						height="300"
+					/>
 				</div>
-
-				<img
-					src="/images/international-illustration.jpeg"
-					css={`
-						padding: 2rem;
-						max-width: 40vh;
-						margin: 0 auto;
-					`}
-					aria-hidden="true"
-					className="mx-auto hidden max-w-[40vh] p-8 md:block"
-				/>
+			</Container>
+			<div className="bg-primaryLight">
+				<Container maxWidth="3xl" className="pb-12 pt-8">
+					<h2>
+						<TransServer i18nKey="international.pourquoi.titre">
+							Adapté à votre pays
+						</TransServer>
+					</h2>
+					<p>
+						<TransServer i18nKey="international.pourquoi.1">
+							Les modes de vies ne sont pas les mêmes en fonction du pays dans
+							lequel on vit. Certains pays ont un réseau ferré très développé,
+							d'autres sont insulaires et donc reposent davantage sur le ferry
+							et l'avion.
+						</TransServer>
+					</p>
+					<p>
+						<TransServer i18nKey="international.pourquoi.2">
+							Au fur et à mesure que l'électricité prend une place très
+							importante grâce à la transition énergétique, l'empreinte carbone
+							du mix électrique influence fortement le calcul d'empreinte
+							climat.
+						</TransServer>
+					</p>
+					<p>
+						<TransServer i18nKey="international.pourquoi.3">
+							Nous utilisons, quand disponible, l'empreinte du mix électrique
+							fournie par{' '}
+							<a href="https://app.electricitymaps.com/map" target="_blank">
+								<img
+									alt="Electricity Maps"
+									src="/images/electricitymaps.svg"
+									css="margin-left: .6rem; height: 1rem; vertical-align: sub"
+								/>
+							</a>
+							.
+						</TransServer>
+					</p>
+				</Container>
 			</div>
 
-			<div>
-				<h2>
-					<TransServer i18nKey="international.pourquoi.titre">
-						Adapté à votre pays
-					</TransServer>
-				</h2>
-				<p>
-					<TransServer i18nKey="international.pourquoi.1">
-						Les modes de vies ne sont pas les mêmes en fonction du pays dans
-						lequel on vit. Certains pays ont un réseau ferré très développé,
-						d'autres sont insulaires et donc reposent davantage sur le ferry et
-						l'avion.
-					</TransServer>
-				</p>
-				<p>
-					<TransServer i18nKey="international.pourquoi.2">
-						Au fur et à mesure que l'électricité prend une place très importante
-						grâce à la transition énergétique, l'empreinte carbone du mix
-						électrique influence fortement le calcul d'empreinte climat.
-					</TransServer>
-				</p>
-				<p>
-					<TransServer i18nKey="international.pourquoi.3">
-						Nous utilisons, quand disponible, l'empreinte du mix électrique
-						fournie par{' '}
-						<a href="https://app.electricitymaps.com/map" target="_blank">
-							<img
-								alt="Electricity Maps"
-								src="/images/electricitymaps.svg"
-								css="margin-left: .6rem; height: 1rem; vertical-align: sub"
-							/>
-						</a>
-						.
-					</TransServer>
-				</p>
-			</div>
-
-			<div>
+			<Container maxWidth="3xl" className="pb-12 pt-8">
 				<h2>
 					<TransServer i18nKey="international.comment.titre">
 						Comment ça marche ?
@@ -130,15 +130,17 @@ export default async function International() {
 						</span>
 					</p>
 				</p>
+			</Container>
+
+			<div className="bg-primaryLight">
+				<Container maxWidth="3xl" className="pb-12 pt-8">
+					<div css=" margin: 0 auto">
+						<RegionGrid shouldShowButton={false} />
+					</div>
+				</Container>
 			</div>
 
-			<div>
-				<div css=" margin: 0 auto">
-					<RegionGrid shouldShowButton={false} />
-				</div>
-			</div>
-
-			<div>
+			<Container maxWidth="3xl" className="pb-12 pt-8">
 				<h2>
 					<TransServer i18nKey="international.ensuite.titre">
 						Vous ne trouvez pas votre pays ?
@@ -152,7 +154,7 @@ export default async function International() {
 						<InlineLink href="/a-propos">Écrivez-nous !</InlineLink>
 					</TransServer>
 				</p>
-			</div>
+			</Container>
 		</Main>
 	)
 }
