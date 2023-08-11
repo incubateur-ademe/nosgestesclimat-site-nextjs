@@ -1,4 +1,4 @@
-import LandingContent from '@/app/[landing]/_components/LandingContainer'
+import LandingContent from '@/app/_landing/_components/LandingContainer'
 import franceRelanceLogo from '@/assets/images/logo-france-relance.svg'
 import ueLogo from '@/assets/images/union-européenne.svg'
 import InlineLink from '@/design-system/inputs/InlineLink'
