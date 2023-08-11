@@ -7,7 +7,6 @@
 const fs = require('fs')
 const stringify = require('json-stable-stringify')
 
-const utils = require('../../nosgestesclimat/scripts/i18n/utils')
 const cli = require('../../nosgestesclimat/scripts/i18n/cli')
 const deepl = require('../../nosgestesclimat/scripts/i18n/deepl')
 

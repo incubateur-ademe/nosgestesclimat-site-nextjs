@@ -6,16 +6,19 @@ import { getPath } from '../../_helpers/getPath'
 
 type Props = {
 	releases: Release[]
-	selectedRelease: number
+	selectedReleaseIndex: number
 }
 
-export default function ReleaseSelect({ releases, selectedRelease }: Props) {
+export default function ReleaseSelect({
+	releases,
+	selectedReleaseIndex,
+}: Props) {
 	const router = useRouter()
 
 	return (
 		<select
 			className="block md:hidden"
-			value={selectedRelease}
+			value={selectedReleaseIndex}
 			onChange={(evt) => {
 				console.log('evt:', evt)
 				console.log('target:', evt.target)

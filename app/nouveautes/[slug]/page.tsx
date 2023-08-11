@@ -5,7 +5,6 @@ import { useServerTranslation } from '@/locales'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import Image from 'next/image'
 import { extractImage } from '../_helpers/extractImage'
 import { getFormattedDate } from '../_helpers/getFormattedDate'
 import { getPath } from '../_helpers/getPath'
@@ -15,10 +14,6 @@ import ReleaseSelect from './_components/ReleaseSelect'
 
 const removeGithubIssuesReferences = (text: string) =>
 	text.replace(/#[0-9]{1,5}/g, '')
-
-const MDXComponents = {
-	img: (props: any) => <Image {...props} alt={props.alt} />,
-}
 
 export default async function NewsPage({
 	params: { slug },
@@ -41,32 +36,28 @@ export default async function NewsPage({
 		return null
 	}
 
-	const selectedRelease = data.findIndex(
+	const selectedReleaseIndex = data.findIndex(
 		({ name }) => encodeURI(slugifyString(name)) === slug
 	)
 
-	if (!slug || selectedRelease === -1) {
+	if (!slug || selectedReleaseIndex === -1) {
 		return <Route404 />
 	}
 
-	const releaseName = data[selectedRelease]?.name?.toLowerCase()
-	const body = data[selectedRelease]?.body
+	const releaseName = data[selectedReleaseIndex]?.name?.toLowerCase()
+	const body = data[selectedReleaseIndex]?.body
 
 	const image = extractImage(body)
 
 	const releaseDateCool = getFormattedDate(
-		new Date(data[selectedRelease].published_at),
+		new Date(data[selectedReleaseIndex].published_at),
 		currentLangInfos.abrvLocale
 	)
 
 	return (
-		<div
-			css={`
-				padding: 0 0.6rem;
-				margin: 0 auto;
-			`}
-		>
-			{/*
+		<main>
+			<div className="news-page flex items-start justify-center gap-8">
+				{/*
       <Meta
 				title={`${t('Nouveautés')} ${releaseDateCool} - ${capitaliseString(
 					releaseName
@@ -75,50 +66,67 @@ export default async function NewsPage({
 			/>
       */}
 
-			<label title={t('titre de la version')}>
-				<ReleaseSelect releases={data} selectedRelease={selectedRelease} />
-			</label>
-			<section className="flex">
-				<ul className="w-[12rem] flex-col t-4 mr-4 pl-0 text-sm border-r-solid border-r-primaryLight border-r-[1px] hidden md:sticky md:flex">
-					{data.map(({ name, published_at: date }, index) => (
-						<li className="list-none list-inside p-0 m-0" key={name}>
-							<InlineLink className="py-1 px-2 m-0" href={getPath(index, data)}>
-								{name}
-								<div>
-									<small>
-										{getFormattedDate(
-											new Date(date),
-											currentLangInfos.abrvLocale
-										)}
-									</small>
-								</div>
-							</InlineLink>
-						</li>
-					))}
-				</ul>
-				<div className="flex-1 max-w-3xl">
-					<Title title={capitaliseString(releaseName) || ''} />
-					<MDXRemote
-						source={removeGithubIssuesReferences(body)}
-						components={MDXComponents}
+				<label title={t('titre de la version')}>
+					<ReleaseSelect
+						releases={data}
+						selectedReleaseIndex={selectedReleaseIndex}
 					/>
+				</label>
+				<section className="flex">
+					<ul className="t-4 mr-4 hidden w-[12rem] flex-col border-0 border-r-[1px] border-solid border-r-gray-200 pl-0 text-sm md:sticky md:flex">
+						{data.map(({ name, published_at: date }, index) => {
+							const isActive = selectedReleaseIndex === index
+							return (
+								<li
+									className={`m-0 list-inside list-none p-0 ${
+										isActive ? 'bg-primary !text-white' : ''
+									}`}
+									key={name}
+								>
+									<InlineLink
+										className={`m-0 px-2 py-1 ${isActive ? 'text-white' : ''}`}
+										href={getPath(index, data)}
+									>
+										{name}
+										<div>
+											<small>
+												{getFormattedDate(
+													new Date(date),
+													currentLangInfos.abrvLocale
+												)}
+											</small>
+										</div>
+									</InlineLink>
+								</li>
+							)
+						})}
+					</ul>
+					<div className="max-w-4xl flex-1">
+						<Title
+							className="text-3xl"
+							title={capitaliseString(releaseName) || ''}
+							subtitle={t('Nouveautés')}
+						/>
 
-					<div className="flex justify-between mt-10">
-						{selectedRelease + 1 < data.length ? (
-							<InlineLink href={getPath(selectedRelease + 1, data)}>
-								← {data[selectedRelease + 1].name}
-							</InlineLink>
-						) : (
-							<span /> // For spacing
-						)}
-						{selectedRelease > 0 && (
-							<InlineLink href={getPath(selectedRelease - 1, data)}>
-								{data[selectedRelease - 1].name} →
-							</InlineLink>
-						)}
+						<MDXRemote source={removeGithubIssuesReferences(body)} />
+
+						<div className="mt-10 flex justify-between">
+							{selectedReleaseIndex + 1 < data.length && (
+								<>
+									<InlineLink href={getPath(selectedReleaseIndex + 1, data)}>
+										← {data[selectedReleaseIndex + 1].name}
+									</InlineLink>{' '}
+								</>
+							)}
+							{selectedReleaseIndex > 0 && (
+								<InlineLink href={getPath(selectedReleaseIndex - 1, data)}>
+									{data[selectedReleaseIndex - 1].name} →
+								</InlineLink>
+							)}
+						</div>
 					</div>
-				</div>
-			</section>
-		</div>
+				</section>
+			</div>
+		</main>
 	)
 }

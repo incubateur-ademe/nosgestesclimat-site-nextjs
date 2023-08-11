@@ -53,7 +53,7 @@ export default function Footer() {
 					<InlineLink href="/diffuser">
 						<TransServer>Diffuser</TransServer>
 					</InlineLink>
-					<InlineLink href="/nouveautés">
+					<InlineLink href="/nouveautes">
 						<TransServer>Nouveautés</TransServer>
 					</InlineLink>
 					<InlineLink href="/international">
