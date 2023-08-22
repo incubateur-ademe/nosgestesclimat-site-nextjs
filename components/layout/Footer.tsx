@@ -8,7 +8,6 @@ import TransServer from '../translation/TransServer'
 
 export default function Footer() {
 	const pathname = getServerPathname() as unknown as string
-	console.log(pathname)
 
 	const isLandingPage = pathname === '/'
 
@@ -39,7 +38,7 @@ export default function Footer() {
 				)}
 
 				<div className="flex flex-wrap items-center justify-center gap-3">
-					<InlineLink href="/à-propos">
+					<InlineLink href="/a-propos">
 						<TransServer>À propos</TransServer>
 					</InlineLink>
 

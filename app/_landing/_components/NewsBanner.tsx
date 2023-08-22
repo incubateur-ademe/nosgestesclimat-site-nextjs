@@ -51,10 +51,10 @@ export default function NewsBanner() {
 	)
 
 	return showBanner ? (
-		<Card className="min-w-[20rem] p-8 relative text-left">
+		<Card className="relative min-w-[20rem] p-8 text-left">
 			<div>
-				<h2 className="flex items-center m-0">
-					<span className="bg-primary w-3 h-3 inline-block rounded-2xl mr-2"></span>{' '}
+				<h2 className="m-0 flex items-center">
+					<span className="mr-2 inline-block h-3 w-3 rounded-2xl bg-primary"></span>{' '}
 					<TransClient>Nouveautés</TransClient>
 				</h2>
 				<div>
@@ -65,12 +65,12 @@ export default function NewsBanner() {
 					</small>
 				</div>
 				<div className="mt-2">
-					<Link href={'/nouveautés'}>{capitaliseString(lastRelease.name)}</Link>
+					<Link href={'/nouveautes'}>{capitaliseString(lastRelease.name)}</Link>
 				</div>
 			</div>
 			<button
 				// onClick={() => setLastViewedRelease(lastRelease.name)}
-				className="border-none absolute right-2 top-2 p-0 text-primaryDark bg-transparent w-8 h-8 text-lg"
+				className="absolute right-2 top-2 h-8 w-8 border-none bg-transparent p-0 text-lg text-primaryDark"
 				title={t('Fermer la notification de nouveautés')}
 			>
 				&times;
