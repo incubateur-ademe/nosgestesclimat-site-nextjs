@@ -41,6 +41,9 @@ export default function Navigation() {
 	let persona: Persona | undefined = undefined
 	let pullRequestNumber: number | undefined = undefined
 
+	const buttonClassNames = 'flex !w-full flex-col gap-1 !py-2 h-full'
+	const liClassNames = 'min-w-[84px] w-full md:w-auto'
+
 	return (
 		<nav
 			id="mainNavigation"
@@ -49,11 +52,11 @@ export default function Navigation() {
 		>
 			<Logo size="small" className="hidden md:block" />
 
-			<div className="z-100 fixed bottom-0 left-0 m-0 w-full md:static md:z-auto md:mt-4 md:w-auto">
-				<ul className="m-0 flex h-16 w-full list-none flex-col justify-center bg-white px-4 py-2  shadow-sm md:h-auto md:flex-col md:justify-start md:bg-none md:shadow-none">
-					<li>
+			<div className="z-100 fixed bottom-0 left-0 m-0 w-full border-0 border-t-[1px] border-solid border-grey-200 md:static md:z-auto md:mt-4 md:w-auto md:border-none">
+				<ul className="m-0 flex h-20 w-full list-none justify-between bg-white px-4 py-1 shadow-md md:h-auto  md:flex-col md:justify-start md:bg-none md:py-2 md:shadow-none">
+					<li className={liClassNames}>
 						<ButtonLink
-							className="flex w-full  gap-4"
+							className={buttonClassNames}
 							color="text"
 							href="/simulateur/bilan"
 						>
@@ -62,12 +65,12 @@ export default function Navigation() {
 						</ButtonLink>
 					</li>
 
-					<li>
+					<li className={liClassNames}>
 						<ButtonLink
 							color="text"
 							href="/actions"
 							aria-disabled={false /* enquête && !testCompleted */}
-							className="flex w-full gap-4"
+							className={buttonClassNames}
 						>
 							<ActionsInteractiveIcon />
 							<TransClient>Agir</TransClient>
@@ -75,9 +78,9 @@ export default function Navigation() {
 					</li>
 
 					{!enquete && (
-						<li>
+						<li className={liClassNames}>
 							<ButtonLink
-								className="flex w-full gap-4"
+								className={buttonClassNames}
 								color="text"
 								href="/profil"
 							>
@@ -103,9 +106,9 @@ export default function Navigation() {
 					)}
 
 					{!enquete && (
-						<li>
+						<li className={liClassNames}>
 							<ButtonLink
-								className="flex w-full gap-4"
+								className={buttonClassNames}
 								color="text"
 								href="/groupes"
 							>
@@ -123,14 +126,14 @@ export default function Navigation() {
 					)}
 
 					{pullRequestNumber && (
-						<li>
+						<li className={liClassNames}>
 							<ButtonLink
 								color="text"
 								href={
 									'https://github.com/datagir/nosgestesclimat/pull/' +
 									pullRequestNumber
 								}
-								className="flex gap-4"
+								className={buttonClassNames}
 							>
 								<Image
 									src={openmojiURL('github')}
