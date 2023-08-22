@@ -18,7 +18,7 @@ export default function GroupsLink() {
 			size="xl"
 			color="secondary"
 		>
-			<Image src={silhouette} alt="" className="w-8 h-auto mr-4" />
+			<Image src={silhouette} alt="" className="mr-4 h-auto w-8" />
 			<span>
 				<TransClient>En groupe</TransClient>
 			</span>

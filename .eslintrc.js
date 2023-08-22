@@ -25,7 +25,7 @@ module.exports = {
 	settings: {
 		'import/resolver': {
 			alias: {
-				map: [['@', './source']],
+				map: [['@', './src']],
 				extensions: ['.tsx', '.ts', '.js', '.jsx', '.svg'],
 			},
 		},

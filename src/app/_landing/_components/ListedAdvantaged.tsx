@@ -41,12 +41,12 @@ export default function ListedAdvantages() {
 	]
 
 	return (
-		<ul className="flex justify-between items-center flex-wrap pl-0 m-0 gap-4">
+		<ul className="m-0 flex flex-wrap items-center justify-between gap-4 pl-0">
 			{advantages.map((advantage) => (
 				<Card
 					tag="li"
 					key={advantage.illustration}
-					className="w-[14rem] h-[14rem] flex flex-col justify-center items-center gap-4"
+					className="flex h-[14rem] w-[14rem] flex-col items-center justify-center gap-4"
 				>
 					<span className="text-[200%]">{advantage.illustration}</span>
 
