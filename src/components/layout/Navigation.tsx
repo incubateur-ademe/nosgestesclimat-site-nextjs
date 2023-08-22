@@ -47,7 +47,7 @@ export default function Navigation() {
 			tabIndex={0}
 			className="my-2 flex flex-col justify-center outline-none md:sticky md:top-0 md:my-0 md:h-screen md:w-[14rem] md:shrink-0 md:justify-start md:overflow-hidden md:border-0 md:border-r-[1px] md:border-solid md:border-grey-200"
 		>
-			<Logo size="small" />
+			<Logo size="small" className="hidden md:block" />
 
 			<div className="z-100 fixed bottom-0 left-0 m-0 w-full md:static md:z-auto md:mt-4 md:w-auto">
 				<ul className="m-0 flex h-16 w-full list-none flex-col justify-center bg-white px-4 py-2  shadow-sm md:h-auto md:flex-col md:justify-start md:bg-none md:shadow-none">

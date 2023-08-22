@@ -2,7 +2,13 @@ import logo from '@/assets/images/petit-logo@3x.png'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function Logo({ size = 'large' }: { size?: 'small' | 'large' }) {
+export default function Logo({
+	size = 'large',
+	className,
+}: {
+	size?: 'small' | 'large'
+	className?: string
+}) {
 	const classnames = {
 		small: {
 			image: 'h-auto w-[50px]',
@@ -15,7 +21,9 @@ export default function Logo({ size = 'large' }: { size?: 'small' | 'large' }) {
 	}
 
 	return (
-		<div className="flex w-full items-center justify-center pb-4 pt-8">
+		<div
+			className={`flex w-full items-center justify-center pb-4 pt-8 ${className}`}
+		>
 			<Link
 				href="/"
 				data-cypress-id="home-logo-link"

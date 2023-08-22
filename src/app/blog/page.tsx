@@ -2,6 +2,7 @@
 
 import PageLayout from '@/components/layout/PageLayout'
 import TransClient from '@/components/translation/TransClient'
+import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
 import PostListItem from './_components/PostListItem'
 import { blogData } from './_data/articles'
@@ -9,24 +10,19 @@ import { blogData } from './_data/articles'
 export default function Blog() {
 	return (
 		<PageLayout shouldShowMenu>
-			<div>
-				{/*
+			{/*
 			<Meta
 				title={title}
 				description={description}
 				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
 			/>
   */}
-
+			<Main className="max-w-[800px]">
 				<Title
 					title={<TransClient>Le Blog</TransClient>}
 					data-cypress-id="blog-title"
 				/>
-				<div
-					css={`
-						text-align: center;
-					`}
-				>
+				<div>
 					<img
 						alt=""
 						className="h-[237px] w-full object-cover object-center"
@@ -37,12 +33,12 @@ export default function Blog() {
 					</p>
 				</div>
 
-				<ul className="grid list-none grid-cols-1 justify-center gap-4 pl-0 md:grid-cols-2">
+				<ul className="grid list-none grid-cols-1 justify-center gap-4 pl-0 sm:grid-cols-2">
 					{blogData.map((post) => (
-						<PostListItem post={post} />
+						<PostListItem post={post} key={post.slug} />
 					))}
 				</ul>
-			</div>
+			</Main>
 		</PageLayout>
 	)
 }

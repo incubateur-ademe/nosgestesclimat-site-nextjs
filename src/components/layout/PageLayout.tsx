@@ -18,7 +18,7 @@ export default function PageLayout({
 				}
 			>
 				{shouldShowMenu && <SideMenu />}
-				<div className="p-8">{children}</div>
+				<div className="w-full p-8">{children}</div>
 			</div>
 		</>
 	)
