@@ -10,11 +10,11 @@ import { blogData } from '../_data/articles'
 export default function BlogPost() {
 	const { slug } = useParams()
 	const markdownFile = blogData.find(
-		(element) => element.slug == decodeURI(slug as string)
+		(element) => element.slug == decodeURI(slug as string),
 	)
 	const BlogContent = markdownFile?.content as JSXElementConstructor<any>
-	const title = markdownFile?.title
-	const description = markdownFile?.description
+	// const title = markdownFile?.title
+	// const description = markdownFile?.description
 
 	console.log('TODO: add meta - BlogArticle')
 

@@ -1,6 +1,6 @@
+import TransServer from '@/components/translation/TransServer'
 import Card from '@/design-system/layout/Card'
 import Link from 'next/link'
-import { Trans } from 'react-i18next'
 
 type Avantage = {
 	illustration: string
@@ -13,29 +13,29 @@ export default function ListedAdvantages() {
 		{
 			illustration: '🪟',
 			text: (
-				<Trans>
+				<TransServer>
 					Le code source est ouvert, le site est{' '}
 					<Link href="/nouveautés">amélioré régulièrement</Link>.
-				</Trans>
+				</TransServer>
 			),
 		},
 		{
 			illustration: '🔎',
 			text: (
-				<Trans>
+				<TransServer>
 					L'intégralité du calcul est{' '}
 					<Link href="/documentation">documenté</Link> en ligne pour les curieux
 					et les experts.
-				</Trans>
+				</TransServer>
 			),
 		},
 		{
 			illustration: '🖋️',
 			text: (
-				<Trans>
+				<TransServer>
 					Une idée ? Une correction ? Une remarque ? Toute contribution{' '}
 					<Link href="/contact">est la bienvenue</Link>!
-				</Trans>
+				</TransServer>
 			),
 		},
 	]

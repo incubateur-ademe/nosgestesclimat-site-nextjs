@@ -1,9 +1,11 @@
 'use client'
 
+import dessinNGC from '@/assets/images/dessin-nosgestesclimat.png'
 import PageLayout from '@/components/layout/PageLayout'
 import TransClient from '@/components/translation/TransClient'
 import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
+import Image from 'next/image'
 import PostListItem from './_components/PostListItem'
 import { blogData } from './_data/articles'
 
@@ -17,16 +19,18 @@ export default function Blog() {
 				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
 			/>
   */}
-			<Main className="max-w-[800px]">
+			<Main className="max-w-[800px] p-8">
 				<Title
 					title={<TransClient>Le Blog</TransClient>}
 					data-cypress-id="blog-title"
 				/>
 				<div>
-					<img
+					<Image
 						alt=""
 						className="h-[237px] w-full object-cover object-center"
-						src="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
+						width={400}
+						height={100}
+						src={dessinNGC}
 					/>
 					<p>
 						<TransClient>Découvrez nos articles de blog :</TransClient>

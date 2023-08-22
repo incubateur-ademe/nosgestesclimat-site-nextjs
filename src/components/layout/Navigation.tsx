@@ -41,19 +41,19 @@ export default function Navigation() {
 	let persona: Persona | undefined = undefined
 	let pullRequestNumber: number | undefined = undefined
 
-	const buttonClassNames = 'flex !w-full flex-col gap-1 !py-2 h-full'
+	const buttonClassNames =
+		'flex !w-full flex-col md:flex-row gap-1 py-2 md:py-4 h-full'
 	const liClassNames = 'min-w-[84px] w-full md:w-auto'
 
 	return (
 		<nav
 			id="mainNavigation"
-			tabIndex={0}
 			className="my-2 flex flex-col justify-center outline-none md:sticky md:top-0 md:my-0 md:h-screen md:w-[14rem] md:shrink-0 md:justify-start md:overflow-hidden md:border-0 md:border-r-[1px] md:border-solid md:border-grey-200"
 		>
 			<Logo size="small" className="hidden md:block" />
 
 			<div className="z-100 fixed bottom-0 left-0 m-0 w-full border-0 border-t-[1px] border-solid border-grey-200 md:static md:z-auto md:mt-4 md:w-auto md:border-none">
-				<ul className="m-0 flex h-20 w-full list-none justify-between bg-white px-4 py-1 shadow-md md:h-auto  md:flex-col md:justify-start md:bg-none md:py-2 md:shadow-none">
+				<ul className="m-0 flex h-20 w-full list-none justify-between bg-white px-4 py-1 shadow-md md:h-auto md:flex-col md:justify-start md:gap-1 md:bg-none md:py-2 md:shadow-none">
 					<li className={liClassNames}>
 						<ButtonLink
 							className={buttonClassNames}
