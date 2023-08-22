@@ -15,8 +15,8 @@ export default function Logo({
 			text: 'text-xl',
 		},
 		large: {
-			image: 'h-auto w-[100px]',
-			text: 'text-3xl',
+			image: 'h-auto w-[50px] md:w-[100px]',
+			text: 'md:text-3xl',
 		},
 	}
 
@@ -36,7 +36,7 @@ export default function Logo({
 				/>
 
 				<div
-					className={`ml-2 hidden font-extrabold uppercase !leading-[0.85] text-primaryDark lg:block ${classnames[size].text}`}
+					className={`ml-2 text-lg font-extrabold uppercase !leading-[0.85] text-primaryDark lg:block ${classnames[size].text}`}
 				>
 					<span className="block w-full !leading-[0.85]">Nos</span>
 					<span className="block w-full !leading-[0.85]">Gestes</span>

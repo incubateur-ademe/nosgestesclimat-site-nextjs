@@ -31,17 +31,18 @@ export default function LandingExplanations() {
 
 	return (
 		<>
-			<div className="bg-primaryLight  py-10">
+			<div className="bg-primaryLight px-4 py-10">
 				<div className="mx-auto w-full max-w-3xl">
 					<LandingContent />
 				</div>
 			</div>
-			<div className="mx-auto w-full max-w-3xl py-10">
+
+			<div className="mx-auto w-full max-w-3xl px-4 py-10 md:px-8">
 				<h2>
 					<TransClient>Ouvert, documenté et contributif</TransClient>
 				</h2>
 				<ListedAdvantages />
-				<h2>
+				<h2 className="mt-8">
 					<TransClient>Des questions ?</TransClient>
 				</h2>
 				<p>

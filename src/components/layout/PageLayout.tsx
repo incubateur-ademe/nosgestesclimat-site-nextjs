@@ -13,12 +13,14 @@ export default function PageLayout({
 		<>
 			{!shouldShowMenu && <Logo />}
 			<div
+
+			
 				className={
 					shouldShowMenu ? pageWithMenuClassnames : pageWithoutMenuClassnames
 				}
 			>
 				{shouldShowMenu && <SideMenu />}
-				<div className="w-full p-8">{children}</div>
+				<div className="w-full">{children}</div>
 			</div>
 		</>
 	)

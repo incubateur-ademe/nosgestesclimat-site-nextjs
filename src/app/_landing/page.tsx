@@ -14,34 +14,35 @@ import ProfileLink from './_components/ProfileLink'
 import TakeTestButton from './_components/TakeTestLink'
 
 export default async function Landing() {
-	const hasData = true
+	// const hasData = true
 
 	const { t } = await useServerTranslation()
 
 	return (
 		<PageLayout>
 			<Main>
-				<div className="mx-auto mt-6 flex w-full flex-wrap items-center justify-center gap-4 p-10 md:max-w-none">
+				<div className="mx-auto flex w-full flex-wrap items-center justify-center gap-4 px-4 pb-8 text-center md:mt-6 md:max-w-none md:p-10 md:px-8 md:text-left">
 					<div className="gap-10 md:flex">
-						<div className="flex flex-col md:w-1/2">
+						<div className="flex flex-col  md:w-1/2 ">
 							<Title
 								title={
 									<TransServer i18nKey="publicodes.Landing.question">
 										Connaissez-vous votre empreinte sur le climat ?
 									</TransServer>
 								}
+								className="text-2xl md:text-4xl"
 							/>
 							<AnimatedIllustration className="block text-center md:hidden" />
 							<p>{t('sites.publicodes.Landing.description')}</p>
 							<div>
-								<div className="my-4 flex flex-wrap items-stretch gap-4">
+								<div className="my-4 flex flex-wrap items-stretch justify-center gap-4 md:justify-normal">
 									<TakeTestButton />
 
 									<GroupsLink />
 
 									<ProfileLink />
 								</div>
-								<div className="flex flex-wrap items-center justify-between">
+								<div className="text-center md:text-left">
 									<NewsBanner />
 								</div>
 							</div>
