@@ -5,11 +5,8 @@ const ProgressCircle = ({ progress = 0, pathLength = 0, white = false }) => (
 		aria-label="Avancement du test"
 		role="progressbar"
 		aria-valuenow={Math.round(progress * 100)}
-		className="progress-icon"
 		viewBox="0 0 50 50"
-		css={`
-			width: 2rem;
-		`}
+		className="w-8"
 	>
 		<motion.path
 			fill="none"

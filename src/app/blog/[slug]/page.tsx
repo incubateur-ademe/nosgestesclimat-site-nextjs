@@ -1,14 +1,18 @@
-import { useTranslation } from 'react-i18next'
+'use client'
 
-import { Link, useParams } from 'react-router-dom'
+import PageLayout from '@/components/layout/PageLayout'
+import TransClient from '@/components/translation/TransClient'
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
+import { JSXElementConstructor } from 'react'
 import { blogData } from '../_data/articles'
 
-const MarkdownPageWrapper = () => {
-	const { t } = useTranslation()
+export default function BlogPost() {
 	const { slug } = useParams()
-
-	const markdownFile = blogData.find((element) => element.slug == slug)
-	const Content = markdownFile?.content || ''
+	const markdownFile = blogData.find(
+		(element) => element.slug == decodeURI(slug as string)
+	)
+	const BlogContent = markdownFile?.content as JSXElementConstructor<any>
 	const title = markdownFile?.title
 	const description = markdownFile?.description
 
@@ -17,19 +21,26 @@ const MarkdownPageWrapper = () => {
 	if (!markdownFile) {
 		return (
 			<div>
-				<Link to="/blog">← {t('Retour à la liste des articles')}</Link>
+				<Link href="/blog">
+					← <TransClient>Retour à la liste des articles</TransClient>
+				</Link>
 				<br />
-				{t("Oups, nous n'avons pas d'article correspondant")}
+				<TransClient>
+					Oups, nous n'avons pas d'article correspondant
+				</TransClient>
 			</div>
 		)
 	}
 
 	return (
-		<div>
-			<Link to="/blog">← {t('Retour à la liste des articles')}</Link>
-			<Content />
-		</div>
+		<PageLayout shouldShowMenu>
+			<div className="flex max-w-[800px] flex-col">
+				<Link href="/blog">
+					← <TransClient>Retour à la liste des articles</TransClient>
+				</Link>
+
+				<BlogContent />
+			</div>
+		</PageLayout>
 	)
 }
-
-export default MarkdownPageWrapper

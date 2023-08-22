@@ -1,19 +1,12 @@
+'use client'
+
 import budgetFR from '@/locales/blog/fr/budget.mdx'
 import campusFr from '@/locales/blog/fr/campus.mdx'
 import gesTransportFr from '@/locales/blog/fr/gesTransport.mdx'
 import historyFr from '@/locales/blog/fr/historique.mdx'
 import impactMobiliteFR from '@/locales/blog/fr/mobilite.mdx'
 import dayFr from '@/locales/blog/fr/mondialEnvironnement.mdx'
-import { MDXProps } from 'mdx/types'
-import { ReactElement } from 'react'
-
-type BlogPost = {
-	date: string
-	title: string
-	slug: string
-	description: string
-	content: (props: MDXProps) => ReactElement
-}
+import { BlogPost } from '@/types/blog'
 
 export const blogData: BlogPost[] = [
 	{
