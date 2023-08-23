@@ -1,21 +1,19 @@
 type Props = {
 	name: string
 	label: string | React.ReactNode
-	type?: string
 	isInvalid?: boolean
 	error?: string
 	helperText?: string
 	className?: string
 	placeholder?: string
-	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+	onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
 	value?: string
 	required?: boolean
 }
 
-export default function TextInputGroup({
+export default function TextAreaInputGroup({
 	name,
 	label,
-	type = 'text',
 	error,
 	helperText,
 	className,
@@ -39,9 +37,8 @@ export default function TextInputGroup({
 			{helperText && (
 				<span className="mt-1 text-xs text-slate-500">{helperText}</span>
 			)}
-			<input
+			<textarea
 				name={name}
-				type={type}
 				placeholder={placeholder}
 				className={`mt-3 max-w-[30rem] rounded-md border-solid border-grey-200 bg-grey-100 !p-4 text-sm transition-colors focus:border-primary focus:ring-2 focus:ring-primary ${
 					error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''

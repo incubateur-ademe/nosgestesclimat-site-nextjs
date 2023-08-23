@@ -18,7 +18,7 @@ export function useFlag(inputCode: RegionCode): string | undefined {
 }
 
 export default function CountryFlag({ code }: { code: string }) {
-	const flagSrc = useFlag(code as RegionCode)
+	const flagSrc = useFlag(code)
 
 	if (!flagSrc) return null
 

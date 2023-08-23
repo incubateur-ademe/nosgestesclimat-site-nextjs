@@ -9,12 +9,14 @@ const parseYaml = (yaml: { entries: {} }) => {
 	return Array.isArray(yaml)
 		? yaml.map((entry) =>
 				Object.fromEntries(
-					Object.entries(entry).filter(([key]) => !key.endsWith('.lock'))
-				)
+					Object.entries(entry).filter(([key]) => !key.endsWith('.lock')),
+				),
 		  )
 		: {
 				entries: Object.fromEntries(
-					Object.entries(yaml.entries).filter(([key]) => !key.endsWith('.lock'))
+					Object.entries(yaml.entries).filter(
+						([key]) => !key.endsWith('.lock'),
+					),
 				),
 		  }
 }
@@ -127,11 +129,11 @@ export function changeLangTo(i18n: i18n, currentLangState: Lang) {
 
 export function getMarkdownInCurrentLang(
 	markdownFiles: Array<[Lang, string]>,
-	currentLangState: Lang
+	currentLangState: Lang,
 ) {
 	return (
 		markdownFiles.find(
-			([lang]) => getLangInfos(lang).abrv === currentLangState
+			([lang]) => getLangInfos(lang).abrv === currentLangState,
 		)?.[1] || markdownFiles[0][1]
 	)
 }
