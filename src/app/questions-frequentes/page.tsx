@@ -1,9 +1,11 @@
 'use client'
 
+import PageLayout from '@/components/layout/PageLayout'
 import TransClient from '@/components/translation/TransClient'
 import Card from '@/design-system/layout/Card'
+import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
-import { MDXRemote } from 'next-mdx-remote/rsc'
+import Markdown from '@/design-system/utils/Markdown'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { getCurrentLangInfos } from '../../locales/translation'
@@ -76,8 +78,9 @@ export default function FAQ() {
 	const { t } = useTranslation()
 
 	return (
-		<div className="pb-4">
-			{/*
+		<PageLayout shouldShowMenu>
+			<Main className="p-8">
+				{/*
       <Meta
 				title={t('meta.publicodes.FAQ.title')}
 				description={t('meta.publicodes.FAQ.description')}
@@ -88,78 +91,98 @@ export default function FAQ() {
 			</Meta>
       */}
 
-			<Title title={t('Questions fréquentes')} />
-			<p>
-				<TransClient i18nKey={'publicodes.FAQ.description'}>
-					Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les
-					réponses aux questions les plus fréquentes. S’il vous reste des
-					interrogations ou si vous souhaitez nous proposer des améliorations,
-					rendez-vous tout en bas. Bonne lecture !
-				</TransClient>
-			</p>
-			{!hasData && (
+				<Title title={t('Questions fréquentes')} />
 				<p>
-					<TransClient i18nKey={'publicodes.FAQ.faireletest'}>
-						Vous n'avez pas encore débuté votre test,{' '}
-						<strong>
-							<a href="./simulateur/bilan">lancez-vous !</a>
-						</strong>
+					<TransClient i18nKey={'publicodes.FAQ.description'}>
+						Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les
+						réponses aux questions les plus fréquentes. S’il vous reste des
+						interrogations ou si vous souhaitez nous proposer des améliorations,
+						rendez-vous tout en bas. Bonne lecture !
 					</TransClient>
 				</p>
-			)}
-			<div className="pb-4">
-				{categories.map((category) => (
-					<li key={category} className="list-none">
-						<h2 className="capitalize">{category}</h2>
-						<ul className="pl-2">
-							{FAQContent.filter((el) => el.catégorie === category).map(
-								({
-									question,
-									réponse,
-									id,
-								}: {
-									question: string
-									réponse: string
-									id: string
-								}) => {
-									return (
-										<li key={id} className="list-none text-lg font-bold">
-											<details id={id}>
-												<button
-													onClick={(e) =>
-														handleDetailsToggle(
-															id,
-															(
-																e?.currentTarget
-																	?.parentElement as HTMLElement & {
-																	open: boolean
-																}
-															)?.open ?? false,
-														)
-													}
+				{!hasData && (
+					<p>
+						<TransClient i18nKey={'publicodes.FAQ.faireletest'}>
+							Vous n'avez pas encore débuté votre test,{' '}
+							<strong>
+								<a href="./simulateur/bilan">lancez-vous !</a>
+							</strong>
+						</TransClient>
+					</p>
+				)}
+				<div className="pb-4">
+					{categories.map((category) => {
+						return (
+							<li key={category} className="list-none">
+								<h2 className="capitalize">{category}</h2>
+								<ul className="pl-2">
+									{FAQContent.filter((el) => el.catégorie === category).map(
+										({
+											question,
+											réponse,
+											id,
+										}: {
+											question: string
+											réponse: string
+											id: string
+										}) => {
+											return (
+												<li
+													key={id}
+													className="whitespace-wrap mb-2 list-none font-bold"
 												>
-													<h3 className="inline">{question}</h3>
-												</button>
-												<Card className="m-4 p-2">
-													<MDXRemote source={réponse} />
-												</Card>
-											</details>
-										</li>
-									)
-								},
-							)}
-						</ul>
-					</li>
-				))}
-			</div>
+													<details id={id}>
+														<summary
+															role="button"
+															tabIndex={0}
+															className="cursor-pointer border-none bg-transparent text-left text-base"
+															onClick={(e) =>
+																handleDetailsToggle(
+																	id,
+																	(
+																		e?.currentTarget
+																			?.parentElement as HTMLElement & {
+																			open: boolean
+																		}
+																	)?.open ?? false,
+																)
+															}
+															onKeyDown={(e) =>
+																handleDetailsToggle(
+																	id,
+																	(
+																		e?.currentTarget
+																			?.parentElement as HTMLElement & {
+																			open: boolean
+																		}
+																	)?.open ?? false,
+																)
+															}
+														>
+															<h3 className="inline text-black">{question}</h3>
+														</summary>
+														<Card className="m-4 p-2">
+															<Markdown>{réponse}</Markdown>
+														</Card>
+													</details>
+												</li>
+											)
+										},
+									)}
+								</ul>
+							</li>
+						)
+					})}
+				</div>
 
-			<h2 className="text-3xl">
-				🙋‍♀️
-				<Trans i18nKey={'publicodes.FAQ.titreQuestion'}>
-					J'ai une autre question
-				</Trans>
-			</h2>
-			<GithubContributionCard />
-		</div>
+				<h2 className="text-3xl">
+					<span className="mr-2 inline-block">🙋‍♀️</span>
+					<Trans i18nKey={'publicodes.FAQ.titreQuestion'}>
+						J'ai une autre question
+					</Trans>
+				</h2>
+				<GithubContributionCard />
+			</Main>
+		</PageLayout>
 	)
 }

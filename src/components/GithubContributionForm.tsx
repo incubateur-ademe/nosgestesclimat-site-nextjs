@@ -61,8 +61,8 @@ export default function GithubContributionForm() {
 
 	const { t } = useClientTranslation()
 
-	return !URL ? (
-		<form>
+	return !issueURL ? (
+		<form className="mt-8">
 			<TextInputGroup
 				label={<TransClient>Le titre bref de votre problème</TransClient>}
 				name="sujet"
