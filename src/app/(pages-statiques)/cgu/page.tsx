@@ -4,18 +4,18 @@ import PageLayout from '@/components/layout/PageLayout'
 import Main from '@/design-system/layout/Main'
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
-import AboutEn from '@/locales/pages/en-us/about.mdx'
-import AboutFr from '@/locales/pages/fr/about.mdx'
+import CGUEn from '@/locales/pages/en-us/CGU.mdx'
+import CGUFr from '@/locales/pages/fr/CGU.mdx'
 // import contentEs from '@/locales/pages/es/CGU.md'
 // import contentIt from '@/locales/pages/it/CGU.md'
 
 export default function CGU() {
 	const locale = useLocale()
 
-	const AboutLocalised = getLocalisedMDX({
+	const CGULocalised = getLocalisedMDX({
 		dictionnaries: {
-			fr: AboutFr,
-			'en-US': AboutEn,
+			fr: CGUFr,
+			'en-US': CGUEn,
 		},
 		locale: locale ?? '',
 	})
@@ -23,7 +23,7 @@ export default function CGU() {
 	return (
 		<PageLayout shouldShowMenu>
 			<Main className="max-w-[800px] p-8">
-				<AboutLocalised />
+				<CGULocalised />
 			</Main>
 		</PageLayout>
 	)
