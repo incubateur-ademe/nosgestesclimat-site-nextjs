@@ -1,3 +1,4 @@
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 @tailwind base;
@@ -33,6 +34,27 @@ body {
 
 a {
 	@apply inline-block text-primary underline transition-colors hover:!text-primaryDark;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	@apply font-bold;
+	@apply text-primaryDark;
+}
+
+img {
+	max-width: 100%;
+}
+
+a,
+p,
+span,
+strong {
+	line-height: 1.5;
 }
 
 html[data-useragent*='MSIE'] #outdated-browser,
@@ -166,4 +188,59 @@ blockquote {
 
 .news-page ul li {
 	margin-bottom: 0.5rem;
+}
+
+/*
+	Gamecard
+*/
+.game-card-1 {
+	@apply fill-primary;
+	fill-opacity: 0.996078;
+	fill-rule: 'evenodd';
+	@apply stroke-primaryDark;
+	stroke-width: 7.2062;
+	stroke-linecap: 'round';
+	stroke-linejoin: 'round';
+	stroke-miterlimit: 19.2;
+	stroke-dasharray: 'none';
+	stroke-opacity: 1;
+}
+
+.game-card-2 {
+	@apply fill-primary;
+	fill-opacity: 0.996078;
+	fill-rule: 'evenodd';
+	@apply stroke-primaryDark;
+	stroke-width: 7.2062;
+	stroke-linecap: 'round';
+	stroke-linejoin: 'round';
+	stroke-miterlimit: 19.2;
+	stroke-dasharray: 'none';
+	stroke-opacity: 1;
+}
+
+.game-card-3 {
+	fill: white;
+	fill-opacity: 0.997404;
+	fill-rule: 'evenodd';
+	@apply stroke-primaryDark;
+	stroke-width: 10.1932;
+	stroke-linecap: 'round';
+	stroke-linejoin: 'round';
+	stroke-miterlimit: 19.2;
+	stroke-dasharray: 'none';
+	stroke-opacity: 1;
+}
+
+.game-card-3-active {
+	@apply fill-green-700;
+}
+
+.game-card-number {
+	font-size: 1rem;
+	line-height: 1.25;
+	letter-spacing: 0;
+	stroke-width: 0.385599;
+	fill: 'white';
+	font-weight: 'bold';
 }

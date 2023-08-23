@@ -12,7 +12,6 @@ export default function CountryListItem({
 	code,
 	shouldShowButton,
 	label,
-	isSelected,
 }: Props) {
 	return (
 		<Card

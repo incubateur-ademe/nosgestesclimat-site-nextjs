@@ -25,7 +25,7 @@ export default function TakeTestLink({ hasData }: { hasData?: boolean }) {
 			size="xl"
 			className="px-20"
 		>
-			<ProgressCircle progress={0} white />
+			<ProgressCircle progress={0} white className="mr-2" />
 			<span>
 				{hasData ? (
 					<TransClient>Reprendre mon test</TransClient>

@@ -9,6 +9,7 @@ type Props = {
 	placeholder?: string
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 	value?: string
+	required?: boolean
 }
 
 export default function TextInputGroup({
@@ -21,6 +22,7 @@ export default function TextInputGroup({
 	placeholder,
 	onChange,
 	value,
+	required = false,
 	...props
 }: Props) {
 	return (
@@ -35,22 +37,23 @@ export default function TextInputGroup({
 				</span>
 			</label>
 			{helperText && (
-				<span className="text-xs text-slate-500 mt-1">{helperText}</span>
+				<span className="mt-1 text-xs text-slate-500">{helperText}</span>
 			)}
 			<input
 				name={name}
 				type={type}
 				placeholder={placeholder}
-				className={`border-solid border-grey-200 rounded-md bg-grey-100 text-sm !p-4 mt-3 max-w-[30rem] focus:ring-2 focus:ring-primary focus:border-primary transition-colors ${
-					error ? 'ring-2 !ring-red-700 !bg-red-50 !border-red-200' : ''
+				className={`mt-3 max-w-[30rem] rounded-md border-solid border-grey-200 bg-grey-100 !p-4 text-sm transition-colors focus:border-primary focus:ring-2 focus:ring-primary ${
+					error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
 				}`}
 				onChange={onChange}
 				aria-describedby={`error-${name}`}
 				value={value}
+				required={required}
 				{...props}
 			/>
 			{error && (
-				<span id={`error-${name}`} className="text-xs text-red-700 mt-2">
+				<span id={`error-${name}`} className="mt-2 text-xs text-red-700">
 					{error}
 				</span>
 			)}

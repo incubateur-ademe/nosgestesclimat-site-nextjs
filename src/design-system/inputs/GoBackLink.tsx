@@ -1,13 +1,14 @@
-import { Trans } from 'react-i18next'
-import Link from './Link'
+'use client'
+import TransClient from '@/components/translation/TransClient'
+import Link from 'next/link'
 
 export default function GoBackLink({ className }: { className?: string }) {
 	return (
 		<Link
 			href="/groupes"
-			className={`${className} no-underline inline-block text-primary hover:opacity-80 !text-[1rem] transition-opacity px-0`}
+			className={`${className} inline-block px-0 !text-[1rem] text-primary no-underline transition-opacity hover:opacity-80`}
 		>
-			← <Trans>Retour</Trans>
+			← <TransClient>Retour</TransClient>
 		</Link>
 	)
 }

@@ -5,7 +5,7 @@ type Props = {
 	onClick: MouseEventHandler<HTMLButtonElement>
 	className?: string
 	size?: ButtonSize
-	color?: 'primary' | 'secondary'
+	color?: 'primary' | 'secondary' | 'text'
 	type?: 'button' | 'submit' | 'reset'
 	disabled?: boolean
 	id?: string
@@ -13,9 +13,10 @@ type Props = {
 
 export const colorClassNames = {
 	primary:
-		'border-0 transition-colors text-white bg-primary hover:bg-primaryDark hover:!text-white',
+		'border-0 transition-colors text-white bg-primary shadow-sm hover:bg-primaryDark hover:!text-white',
 	secondary:
-		'border-solid border-2 !border-primary text-primary bg-transparent hover:bg-primaryLight',
+		'border-solid border-2 !border-primary text-primary shadow-sm bg-transparent hover:bg-primaryLight',
+	text: 'border-0 text-primary bg-transparent !shadow-none hover:bg-primaryLight hover:!text-primary',
 }
 
 export const sizeClassNames = {
@@ -42,7 +43,7 @@ export default function Button({
 			type={type}
 			aria-disabled={disabled}
 			id={id}
-			className={`inline-flex items-center ${sizeClassNames[size]} rounded-md border border-transparent text-sm font-medium no-underline shadow-sm ${colorClassNames[color]} transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 aria-disabled:opacity-50 ${className}`}
+			className={`inline-flex items-center transition-colors ${sizeClassNames[size]} rounded-md border border-transparent text-sm font-medium no-underline ${colorClassNames[color]} transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 aria-disabled:opacity-50 ${className}`}
 			{...props}
 		>
 			{children}

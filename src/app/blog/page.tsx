@@ -1,18 +1,17 @@
 'use client'
 
+import dessinNGC from '@/assets/images/dessin-nosgestesclimat.png'
+import PageLayout from '@/components/layout/PageLayout'
+import TransClient from '@/components/translation/TransClient'
+import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
-import { useClientTranslation } from '@/locales/client'
+import Image from 'next/image'
 import PostListItem from './_components/PostListItem'
 import { blogData } from './_data/articles'
 
 export default function Blog() {
-	const { t } = useClientTranslation()
-
-	const title = t('Le blog')
-	const description = t('pages.Blog.premierParagraphe')
-
 	return (
-		<div>
+		<PageLayout shouldShowMenu>
 			{/*
 			<Meta
 				title={title}
@@ -20,26 +19,30 @@ export default function Blog() {
 				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
 			/>
   */}
-
-			<Title title={title} data-cypress-id="blog-title" />
-			<div
-				css={`
-					text-align: center;
-				`}
-			>
-				<img
-					alt={description}
-					className="h-[237px] w-full object-cover object-center"
-					src="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
+			<Main className="max-w-[800px] p-8">
+				<Title
+					title={<TransClient>Le Blog</TransClient>}
+					data-cypress-id="blog-title"
 				/>
-				<p>{description}</p>
-			</div>
+				<div>
+					<Image
+						alt=""
+						className="h-[237px] w-full object-cover object-center"
+						width={400}
+						height={100}
+						src={dessinNGC}
+					/>
+					<p>
+						<TransClient>Découvrez nos articles de blog :</TransClient>
+					</p>
+				</div>
 
-			<ul className="flex list-none flex-wrap justify-center pl-0">
-				{blogData.map((post) => (
-					<PostListItem post={post} />
-				))}
-			</ul>
-		</div>
+				<ul className="grid list-none grid-cols-1 justify-center gap-4 pl-0 sm:grid-cols-2">
+					{blogData.map((post) => (
+						<PostListItem post={post} key={post.slug} />
+					))}
+				</ul>
+			</Main>
+		</PageLayout>
 	)
 }

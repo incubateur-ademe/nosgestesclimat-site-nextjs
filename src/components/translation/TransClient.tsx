@@ -8,7 +8,7 @@ export default function TransClient({
 	children,
 	i18nKey,
 }: PropsWithChildren<{ i18nKey?: string }>) {
-	const { t, i18n } = useClientTranslation()
+	const { t } = useClientTranslation()
 
 	return (
 		<Trans t={t} i18nKey={i18nKey}>

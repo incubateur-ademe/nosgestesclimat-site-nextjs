@@ -1,6 +1,8 @@
+'use client'
+
+import TransClient from '@/components/translation/TransClient'
 import Card from '@/design-system/layout/Card'
 import Link from 'next/link'
-import { Trans } from 'react-i18next'
 
 type Avantage = {
 	illustration: string
@@ -13,40 +15,40 @@ export default function ListedAdvantages() {
 		{
 			illustration: '🪟',
 			text: (
-				<Trans>
+				<TransClient>
 					Le code source est ouvert, le site est{' '}
 					<Link href="/nouveautés">amélioré régulièrement</Link>.
-				</Trans>
+				</TransClient>
 			),
 		},
 		{
 			illustration: '🔎',
 			text: (
-				<Trans>
+				<TransClient>
 					L'intégralité du calcul est{' '}
 					<Link href="/documentation">documenté</Link> en ligne pour les curieux
 					et les experts.
-				</Trans>
+				</TransClient>
 			),
 		},
 		{
 			illustration: '🖋️',
 			text: (
-				<Trans>
+				<TransClient>
 					Une idée ? Une correction ? Une remarque ? Toute contribution{' '}
 					<Link href="/contact">est la bienvenue</Link>!
-				</Trans>
+				</TransClient>
 			),
 		},
 	]
 
 	return (
-		<ul className="m-0 flex flex-wrap items-center justify-between gap-4 pl-0">
+		<ul className="m-0 flex flex-wrap items-center gap-4 pl-0">
 			{advantages.map((advantage) => (
 				<Card
 					tag="li"
 					key={advantage.illustration}
-					className="flex h-[14rem] w-[14rem] flex-col items-center justify-center gap-4"
+					className="flex h-[14rem] w-full flex-col items-center justify-center gap-4 md:w-[14rem]"
 				>
 					<span className="text-[200%]">{advantage.illustration}</span>
 

@@ -6,10 +6,11 @@ import DiffuserFr from '@/locales/pages/fr/diffuser.mdx'
 import Main from '@/design-system/layout/Main'
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 
-import { useLang } from '@/contexts/LangContext'
+import PageLayout from '@/components/layout/PageLayout'
+import { useLocale } from '@/hooks/useLocale'
 
-export default async function Diffuser() {
-	const locale = useLang()
+export default function Diffuser() {
+	const locale = useLocale()
 
 	const DiffuserLocalised = getLocalisedMDX({
 		dictionnaries: {
@@ -20,8 +21,10 @@ export default async function Diffuser() {
 	})
 
 	return (
-		<Main>
-			<DiffuserLocalised />
-		</Main>
+		<PageLayout shouldShowMenu>
+			<Main className="max-w-[800px] p-8">
+				<DiffuserLocalised />
+			</Main>
+		</PageLayout>
 	)
 }

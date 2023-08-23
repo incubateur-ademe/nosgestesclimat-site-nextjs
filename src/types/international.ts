@@ -3,7 +3,7 @@ export type RegionAuthor = {
 	url?: string
 }
 
-export type RegionCode = string & keyof Region
+export type RegionCode = string
 
 export type RegionParams = {
 	code: RegionCode

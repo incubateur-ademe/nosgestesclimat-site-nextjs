@@ -1,11 +1,11 @@
 'use client'
 
 import { languages } from '@/constants/translation'
-import { LangContext } from '@/contexts/LangContext'
+import { useLocale } from '@/hooks/useLocale'
 import i18next from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import resourcesToBackend from 'i18next-resources-to-backend'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
 	initReactI18next,
 	useTranslation as useLibTranslation,
@@ -22,12 +22,12 @@ i18next
 		resourcesToBackend((language: string) => {
 			switch (language) {
 				case 'en-US':
-					return (uiEnYaml as unknown as { entries: {} }).entries
+					return (uiEnYaml as unknown as { entries: { entries: [] } }).entries
 				case 'fr':
 				default:
-					return (uiFrYaml as unknown as { entries: {} }).entries
+					return (uiFrYaml as unknown as { entries: { entries: [] } }).entries
 			}
-		})
+		}),
 	)
 	.use(initReactI18next)
 	.init({
@@ -35,10 +35,12 @@ i18next
 		lng: undefined, // let detect the language on client side
 		resources: {
 			'en-US': {
-				translation: (uiEnYaml as unknown as { entries: {} }).entries,
+				translation: (uiEnYaml as unknown as { entries: { entries: [] } })
+					.entries,
 			},
 			fr: {
-				translation: (uiFrYaml as unknown as { entries: {} }).entries,
+				translation: (uiFrYaml as unknown as { entries: { entries: [] } })
+					.entries,
 			},
 		},
 		detection: {
@@ -49,7 +51,7 @@ i18next
 
 export function useClientTranslation() {
 	const [initChangeLang, setInitChangeLang] = useState(false)
-	const { lang } = useContext(LangContext)
+	const locale = useLocale()
 
 	const transObject = useLibTranslation('translation')
 
@@ -57,13 +59,13 @@ export function useClientTranslation() {
 
 	useEffect(() => {
 		if (!initChangeLang) {
-			i18n.changeLanguage(lang)
+			i18n.changeLanguage(locale || '')
 			setInitChangeLang(true)
 		}
-	}, [lang, initChangeLang, i18n])
+	}, [locale, initChangeLang, i18n])
 
-	if (runsOnServerSide && lang && i18n.resolvedLanguage !== lang) {
-		i18n.changeLanguage(lang)
+	if (runsOnServerSide && locale && i18n.resolvedLanguage !== locale) {
+		i18n.changeLanguage(locale)
 	} else {
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		const [activeLng, setActiveLng] = useState(i18n.resolvedLanguage)
@@ -77,10 +79,10 @@ export function useClientTranslation() {
 
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		useEffect(() => {
-			if (!lang || i18n.resolvedLanguage === lang) return
+			if (!locale || i18n.resolvedLanguage === locale) return
 
-			i18n.changeLanguage(lang)
-		}, [lang, i18n])
+			i18n.changeLanguage(locale)
+		}, [locale, i18n])
 	}
 
 	return transObject
