@@ -63,7 +63,9 @@ export default function Navigation() {
 							href="/simulateur/bilan"
 						>
 							<ProgressCircle className="md:mr-4" />
-							<TransClient>Le test</TransClient>
+							<span className="font-normal text-primaryDark">
+								<TransClient>Le test</TransClient>
+							</span>
 						</ButtonLink>
 					</li>
 
@@ -75,7 +77,10 @@ export default function Navigation() {
 							className={buttonClassNames}
 						>
 							<ActionsInteractiveIcon className="md:mr-4" />
-							<TransClient>Agir</TransClient>
+
+							<span className="font-normal text-primaryDark">
+								<TransClient>Agir</TransClient>
+							</span>
 						</ButtonLink>
 					</li>
 
@@ -96,13 +101,15 @@ export default function Navigation() {
 										height="25"
 									/>
 								</div>
-								{!persona ? (
-									t('Profil')
-								) : (
-									<span className="rounded-sm bg-primary px-2 text-white">
-										{(persona as Persona)?.nom}
-									</span>
-								)}
+								<span className="font-normal text-primaryDark">
+									{!persona ? (
+										t('Profil')
+									) : (
+										<span className="rounded-sm bg-primary px-2 text-white">
+											{(persona as Persona)?.nom}
+										</span>
+									)}
+								</span>
 							</ButtonLink>
 						</li>
 					)}
@@ -122,7 +129,10 @@ export default function Navigation() {
 									width="25"
 									height="25"
 								/>
-								<TransClient>Groupes</TransClient>
+
+								<span className="font-normal text-primaryDark">
+									<TransClient>Groupes</TransClient>
+								</span>
 							</ButtonLink>
 						</li>
 					)}
@@ -145,7 +155,10 @@ export default function Navigation() {
 									width="20"
 									height="20"
 								/>
-								#{pullRequestNumber}
+								<span className="font-base text-primaryDark">
+									#{pullRequestNumber}
+								</span>
+
 								<Button
 									color="text"
 									onClick={() => {

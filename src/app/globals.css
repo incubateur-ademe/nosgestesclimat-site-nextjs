@@ -34,6 +34,16 @@ a {
 	@apply inline-block text-primary underline transition-colors hover:!text-primaryDark;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	@apply font-bold;
+	@apply text-primaryDark;
+}
+
 img {
 	max-width: 100%;
 }
