@@ -1,5 +1,3 @@
-'use client'
-
 import { useRule } from '@/publicodes-state'
 import MosaicChild from './mosaic/MosaicChild'
 

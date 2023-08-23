@@ -1,5 +1,3 @@
-'use client'
-
 import { useRule } from '@/publicodes-state'
 import ChoicesInput from './question/ChoicesInput'
 import Label from './question/Label'

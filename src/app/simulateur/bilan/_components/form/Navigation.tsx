@@ -1,5 +1,3 @@
-'use client'
-
 import { useForm, useRule } from '@/publicodes-state'
 
 import Button from '@/design-system/inputs/Button'

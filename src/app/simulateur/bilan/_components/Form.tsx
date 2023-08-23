@@ -1,5 +1,3 @@
-'use client'
-
 import { useForm } from '@/publicodes-state'
 import Navigation from './form/Navigation'
 import Question from './form/Question'

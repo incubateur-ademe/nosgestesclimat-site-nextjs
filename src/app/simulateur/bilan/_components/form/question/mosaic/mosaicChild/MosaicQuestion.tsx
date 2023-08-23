@@ -1,5 +1,3 @@
-'use client'
-
 import { useRule } from '@/publicodes-state'
 import MosaicChoicesInput from './mosaicQuestion/MosaicChoicesInput'
 import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
