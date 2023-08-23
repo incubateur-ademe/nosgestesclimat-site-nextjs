@@ -3,19 +3,17 @@ import Image from 'next/image'
 import { use } from 'react'
 import { fetchSupportedRegions } from '../_helpers/fetchSupportedRegions'
 
-export function getFlagImgSrc(
-	inputCode: RegionCode | undefined
-): string | undefined {
+export function getFlagImgSrc(inputCode: RegionCode): string | undefined {
 	if (!inputCode) {
 		return undefined
 	}
 	return `https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${inputCode.toLowerCase()}.svg`
 }
 
-export function useFlag(inputCode: RegionCode | undefined): string | undefined {
+export function useFlag(inputCode: RegionCode): string | undefined {
 	const supportedRegions = use(fetchSupportedRegions)
 
-	const code = supportedRegions?.fr?.drapeau ?? inputCode
+	const code = (supportedRegions?.fr?.drapeau as RegionCode) ?? inputCode
 	return getFlagImgSrc(code)
 }
 

@@ -1,3 +1,4 @@
+import emImage from '@/assets/images/electricitymaps.svg'
 import internationalIllustration from '@/assets/images/international-illustration.jpeg'
 import TransServer from '@/components/translation/TransServer'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
@@ -14,7 +15,7 @@ export default async function International() {
 
 	const title = t("Le calculateur d'empreinte climat international")
 	const description = t(
-		'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.'
+		'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.',
 	)
 
 	return (
@@ -87,10 +88,12 @@ export default async function International() {
 							Nous utilisons, quand disponible, l'empreinte du mix électrique
 							fournie par{' '}
 							<a href="https://app.electricitymaps.com/map" target="_blank">
-								<img
+								<Image
 									alt="Electricity Maps"
-									src="/images/electricitymaps.svg"
-									css="margin-left: .6rem; height: 1rem; vertical-align: sub"
+									src={emImage}
+									className="ml-2 h-4"
+									width="100"
+									height="100"
 								/>
 							</a>
 							.
@@ -117,15 +120,7 @@ export default async function International() {
 							Explorez en détail les spécificités de chaque pays.
 						</TransServer>
 						&nbsp;
-						<span
-							css={`
-								background: var(--lighterColor);
-								border-radius: 0.4rem;
-								padding: 0.1rem 0.4rem;
-								white-space: nowrap;
-								margin-left: 0.4rem;
-							`}
-						>
+						<span className="ml-2 whitespace-nowrap rounded-sm bg-primaryLight px-2 py-1">
 							⏳️ <TransServer>À venir !</TransServer>
 						</span>
 					</p>
@@ -134,7 +129,7 @@ export default async function International() {
 
 			<div className="bg-primaryLight">
 				<Container maxWidth="3xl" className="pb-12 pt-8">
-					<div css=" margin: 0 auto">
+					<div className="mx-auto my-0">
 						<RegionGrid shouldShowButton={false} />
 					</div>
 				</Container>
