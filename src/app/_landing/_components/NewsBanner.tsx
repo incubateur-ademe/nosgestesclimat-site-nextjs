@@ -47,7 +47,7 @@ export default function NewsBanner() {
 			year: 'numeric',
 			month: 'long',
 			day: 'numeric',
-		}
+		},
 	)
 
 	return showBanner ? (

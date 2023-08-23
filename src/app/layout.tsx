@@ -3,12 +3,11 @@ import '@/locales/i18n'
 import { dir } from 'i18next'
 import Script from 'next/script'
 
-import { languages } from '@/constants/translation'
 import '@/locales/client'
 import './globals.css'
 
 import Footer from '@/components/layout/Footer'
-import { LangProvider } from '@/contexts/LangContext'
+
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 
@@ -47,10 +46,6 @@ const marianne = localFont({
 	],
 	variable: '--font-marianne',
 })
-
-export async function generateStaticParams() {
-	return languages.map((lng) => ({ lng }))
-}
 
 export default function RootLayout({
 	children,
@@ -150,10 +145,8 @@ export default function RootLayout({
         */}
 				<Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
 
-				<LangProvider lang={lang ?? ''}>
-					{children}
-					<Footer />
-				</LangProvider>
+				{children}
+				<Footer />
 			</body>
 		</html>
 	)

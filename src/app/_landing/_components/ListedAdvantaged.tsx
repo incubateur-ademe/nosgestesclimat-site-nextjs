@@ -1,4 +1,6 @@
-import TransServer from '@/components/translation/TransServer'
+'use client'
+
+import TransClient from '@/components/translation/TransClient'
 import Card from '@/design-system/layout/Card'
 import Link from 'next/link'
 
@@ -13,29 +15,29 @@ export default function ListedAdvantages() {
 		{
 			illustration: '🪟',
 			text: (
-				<TransServer>
+				<TransClient>
 					Le code source est ouvert, le site est{' '}
 					<Link href="/nouveautés">amélioré régulièrement</Link>.
-				</TransServer>
+				</TransClient>
 			),
 		},
 		{
 			illustration: '🔎',
 			text: (
-				<TransServer>
+				<TransClient>
 					L'intégralité du calcul est{' '}
 					<Link href="/documentation">documenté</Link> en ligne pour les curieux
 					et les experts.
-				</TransServer>
+				</TransClient>
 			),
 		},
 		{
 			illustration: '🖋️',
 			text: (
-				<TransServer>
+				<TransClient>
 					Une idée ? Une correction ? Une remarque ? Toute contribution{' '}
 					<Link href="/contact">est la bienvenue</Link>!
-				</TransServer>
+				</TransClient>
 			),
 		},
 	]

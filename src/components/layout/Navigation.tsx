@@ -5,6 +5,8 @@ import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import CardGameIcon from '../icons/CardGameIcon'
 
 import closePlain from '@/assets/images/close-plain.svg'
+import profileImage from '@/assets/images/silhouette.svg'
+import groupImage from '@/assets/images/silhouettes.svg'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useClientTranslation } from '@/locales/client'
@@ -13,10 +15,10 @@ import Image from 'next/image'
 import Logo from '../Logo'
 import TransClient from '../translation/TransClient'
 
-const ActionsInteractiveIcon = () => {
+const ActionsInteractiveIcon = ({ className = '' }) => {
 	const actionChoices = {}
 	const count = Object.values(actionChoices).filter((a) => a === true).length
-	return <CardGameIcon number={count} />
+	return <CardGameIcon className={className} number={count} />
 }
 
 const openmojis = {
@@ -37,9 +39,9 @@ export const conferenceImg = openmojiURL('conference')
 export default function Navigation() {
 	const { t } = useClientTranslation()
 
-	let enquete = ''
-	let persona: Persona | undefined = undefined
-	let pullRequestNumber: number | undefined = undefined
+	const enquete = ''
+	const persona: Persona | undefined = undefined
+	const pullRequestNumber: number | undefined = undefined
 
 	const buttonClassNames =
 		'flex !w-full flex-col md:flex-row gap-1 py-2 md:py-4 h-full'
@@ -60,7 +62,7 @@ export default function Navigation() {
 							color="text"
 							href="/simulateur/bilan"
 						>
-							<ProgressCircle />
+							<ProgressCircle className="md:mr-4" />
 							<TransClient>Le test</TransClient>
 						</ButtonLink>
 					</li>
@@ -72,7 +74,7 @@ export default function Navigation() {
 							aria-disabled={false /* enquête && !testCompleted */}
 							className={buttonClassNames}
 						>
-							<ActionsInteractiveIcon />
+							<ActionsInteractiveIcon className="md:mr-4" />
 							<TransClient>Agir</TransClient>
 						</ButtonLink>
 					</li>
@@ -86,12 +88,12 @@ export default function Navigation() {
 							>
 								<div className="relative">
 									<Image
-										src={openmojiURL('profile')}
+										src={profileImage}
 										alt=""
-										className="w-8"
+										className="w-8 md:mr-4"
 										aria-hidden="true"
-										width="1"
-										height="1"
+										width="25"
+										height="25"
 									/>
 								</div>
 								{!persona ? (
@@ -113,12 +115,12 @@ export default function Navigation() {
 								href="/groupes"
 							>
 								<Image
-									src={openmojiURL('silhouettes')}
+									src={groupImage}
 									alt=""
-									className="w-8"
+									className="w-8 md:mr-4"
 									aria-hidden="true"
-									width="1"
-									height="1"
+									width="25"
+									height="25"
 								/>
 								<TransClient>Groupes</TransClient>
 							</ButtonLink>
@@ -138,10 +140,10 @@ export default function Navigation() {
 								<Image
 									src={openmojiURL('github')}
 									alt=""
-									className="w-8"
+									className="w-8 md:mr-4"
 									aria-hidden="true"
-									width="1"
-									height="1"
+									width="20"
+									height="20"
 								/>
 								#{pullRequestNumber}
 								<Button

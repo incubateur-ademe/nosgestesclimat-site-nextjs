@@ -34,7 +34,7 @@ export default function BlogPost() {
 
 	return (
 		<PageLayout shouldShowMenu>
-			<div className="flex max-w-[800px] flex-col">
+			<div className="flex max-w-[800px] flex-col p-8">
 				<Link href="/blog">
 					← <TransClient>Retour à la liste des articles</TransClient>
 				</Link>

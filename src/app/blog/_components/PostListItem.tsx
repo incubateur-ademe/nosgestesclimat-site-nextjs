@@ -1,15 +1,16 @@
 'use client'
 
 import { getFormattedDate } from '@/app/nouveautes/_helpers/getFormattedDate'
-import { useLang } from '@/contexts/LangContext'
+
 import Card from '@/design-system/layout/Card'
+import { useLocale } from '@/hooks/useLocale'
 import { BlogPost } from '@/types/blog'
 import Image from 'next/image'
 
 import Link from 'next/link'
 
 export default function PostListItem({ post }: { post: BlogPost }) {
-	const locale = useLang()
+	const locale = useLocale()
 
 	return (
 		<li key={post.slug} className="h-[18rem]">

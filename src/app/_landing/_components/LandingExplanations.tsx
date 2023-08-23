@@ -1,14 +1,15 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
 import { IframeOptionsContext } from '@/contexts/IframeOptionsContext'
-import { useLang } from '@/contexts/LangContext'
-import InlineLink from '@/design-system/inputs/InlineLink'
+
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
+import { useLocale } from '@/hooks/useLocale'
 import LandingContentEn from '@/locales/pages/en-us/landing.mdx'
 import LandingContentFr from '@/locales/pages/fr/landing.mdx'
 import { useContext } from 'react'
 import ListedAdvantages from './ListedAdvantaged'
+import OpenSourceBlock from './OpenSourceBlock'
+import QuestionsBlock from './QuestionsBlock'
 
 // Commented until validation by a native speaker
 // import contentEs from '../../locales/pages/es/landing.md'
@@ -17,14 +18,14 @@ import ListedAdvantages from './ListedAdvantaged'
 export default function LandingExplanations() {
 	const { isIframe } = useContext(IframeOptionsContext)
 
-	const lang = useLang()
+	const lang = useLocale()
 
 	const LandingContent = getLocalisedMDX({
 		dictionnaries: {
 			fr: LandingContentFr,
 			'en-US': LandingContentEn,
 		},
-		locale: lang,
+		locale: lang || '',
 	})
 
 	if (isIframe) return null
@@ -37,21 +38,10 @@ export default function LandingExplanations() {
 				</div>
 			</div>
 
-			<div className="mx-auto w-full max-w-3xl px-4 py-10 md:px-8">
-				<h2>
-					<TransClient>Ouvert, documenté et contributif</TransClient>
-				</h2>
+			<OpenSourceBlock>
 				<ListedAdvantages />
-				<h2 className="mt-8">
-					<TransClient>Des questions ?</TransClient>
-				</h2>
-				<p>
-					<TransClient>
-						Retrouvez les réponses aux questions courantes sur notre page{' '}
-						<InlineLink href="/questions-frequentes">FAQ</InlineLink>.
-					</TransClient>
-				</p>
-			</div>
+			</OpenSourceBlock>
+			<QuestionsBlock />
 		</>
 	)
 }

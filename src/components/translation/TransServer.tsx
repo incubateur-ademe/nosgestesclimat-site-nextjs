@@ -1,3 +1,4 @@
+'server only'
 import { useServerTranslation } from '@/locales'
 import { PropsWithChildren } from 'react'
 import { Trans } from 'react-i18next/TransWithoutContext'
