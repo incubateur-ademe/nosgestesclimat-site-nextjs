@@ -42,7 +42,7 @@ export default function Button({
 			type={type}
 			aria-disabled={disabled}
 			id={id}
-			className={`inline-flex items-center ${sizeClassNames[size]} border border-transparent text-sm font-medium no-underline rounded-md shadow-sm ${colorClassNames[color]} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary aria-disabled:opacity-50 transition-colors ${className}`}
+			className={`inline-flex items-center ${sizeClassNames[size]} rounded-md border border-transparent text-sm font-medium no-underline shadow-sm ${colorClassNames[color]} transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 aria-disabled:opacity-50 ${className}`}
 			{...props}
 		>
 			{children}

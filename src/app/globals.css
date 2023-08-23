@@ -1,5 +1,6 @@
 @tailwind components;
 @tailwind utilities;
+@tailwind base;
 
 :root {
 	--foreground-rgb: 0, 0, 0;
@@ -27,6 +28,7 @@ html,
 body {
 	margin: 0;
 	padding: 0;
+	color: #32337b;
 }
 
 a {

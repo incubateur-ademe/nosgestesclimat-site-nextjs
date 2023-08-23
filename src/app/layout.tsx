@@ -12,6 +12,8 @@ import Logo from '@/components/Logo'
 import { LangProvider } from '@/contexts/LangContext'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
+import { UserProvider } from '@/publicodes-state'
+
 
 const marianne = localFont({
 	src: [
@@ -58,7 +60,8 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode
 }) {
-	const lang = currentLocale()
+	//const lang = currentLocale()
+	const lang = 'fr'
 
 	return (
 		<html lang={lang ?? ''} dir={dir(lang ?? '')}>
@@ -150,13 +153,15 @@ export default function RootLayout({
           IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
         */}
 				<Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
-
+				<UserProvider>
 				<Logo showText />
 
 				<LangProvider lang={lang ?? ''}>
+
 					{children}
 					<Footer />
 				</LangProvider>
+				</UserProvider>
 			</body>
 		</html>
 	)
