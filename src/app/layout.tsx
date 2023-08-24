@@ -1,9 +1,9 @@
 // Initialise react-i18next
-import '@/locales/i18n'
+import '@/locales/initClient'
+import '@/locales/initServer'
 import { dir } from 'i18next'
 import Script from 'next/script'
 
-import '@/locales/client'
 import './globals.css'
 
 import Footer from '@/components/layout/Footer'

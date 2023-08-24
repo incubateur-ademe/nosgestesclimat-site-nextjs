@@ -3,7 +3,7 @@
 import Link from '@/components/Link'
 import TransClient from '@/components/translation/TransClient'
 import Card from '@/design-system/layout/Card'
-import { useClientTranslation } from '@/locales/client'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
 import { sortReleases } from '@/utils/sortReleases'

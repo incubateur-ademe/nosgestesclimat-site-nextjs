@@ -1,12 +1,12 @@
 import Title from '@/design-system/layout/Title'
-import { useServerTranslation } from '@/locales'
 
 import Main from '@/design-system/layout/Main'
 import { getServerPathname } from '@/helpers/getServerPathname'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import NewsList from './_components/NewsList'
 
 export default async function News() {
-  const { t } = await useServerTranslation()
+  const { t } = await getServerTranslation()
 
   const pathname = getServerPathname() as unknown as string
 

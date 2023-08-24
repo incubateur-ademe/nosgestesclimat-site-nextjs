@@ -3,14 +3,14 @@ import { getCurrentLangInfos } from '@/locales/translation'
 import Image from 'next/image'
 
 import Link from '@/components/Link'
-import { useServerTranslation } from '@/locales'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { extractImage } from '../_helpers/extractImage'
 import { getFormattedDate } from '../_helpers/getFormattedDate'
 import { getPath } from '../_helpers/getPath'
 import { sortReleases } from '../_helpers/sortReleases'
 
 export default async function NewsList() {
-  const { i18n } = await useServerTranslation()
+  const { i18n } = await getServerTranslation()
 
   const currentLangInfos = getCurrentLangInfos(i18n)
 
