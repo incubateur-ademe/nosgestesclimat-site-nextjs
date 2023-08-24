@@ -27,6 +27,7 @@
 		"buffer": "^6.0.3",
 		"chrome-aws-lambda": "^10.1.0",
 		"core-js": "^3.27.1",
+		"crypto-js": "^4.1.1",
 		"framer-motion": "^10.16.1",
 		"fuse.js": "6.6.2",
 		"html-webpack-plugin": "^5.5.0",
@@ -78,6 +79,7 @@
 	"devDependencies": {
 		"@svgr/cli": "^8.1.0",
 		"@types/cheerio": "^0.22.31",
+		"@types/crypto-js": "^4.1.1",
 		"@types/mdx": "^2.0.6",
 		"@types/node": "^20.5.2",
 		"@types/react": "^18.0.14",

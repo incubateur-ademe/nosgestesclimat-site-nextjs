@@ -44,7 +44,7 @@ export default function useCategories({ engine, order }: Props) {
                       : currentValue
                   )
                   ?.rawNode?.formule?.somme?.map(
-                    (rule) =>
+                    (rule: any) =>
                       (currentValue === 'logement'
                         ? 'logement . impact'
                         : currentValue) +
