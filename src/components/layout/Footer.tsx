@@ -59,7 +59,7 @@ export default function Footer() {
 				<InlineLink href="/blog">
 					<TransServer>Blog</TransServer>
 				</InlineLink>
-				<InlineLink href="/plan">
+				<InlineLink href="/plan-du-site">
 					<TransServer i18nKey="publicodes.planDuSite.title">
 						Plan du site
 					</TransServer>
