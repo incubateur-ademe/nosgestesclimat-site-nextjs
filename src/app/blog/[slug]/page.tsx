@@ -1,8 +1,8 @@
 'use client'
 
+import Link from '@/components/Link'
 import PageLayout from '@/components/layout/PageLayout'
 import TransClient from '@/components/translation/TransClient'
-import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { JSXElementConstructor } from 'react'
 import { blogData } from '../_data/articles'

@@ -1,8 +1,8 @@
 import Card from '@/design-system/layout/Card'
 import { getCurrentLangInfos } from '@/locales/translation'
 import Image from 'next/image'
-import Link from 'next/link'
 
+import Link from '@/components/Link'
 import { useServerTranslation } from '@/locales'
 import { extractImage } from '../_helpers/extractImage'
 import { getFormattedDate } from '../_helpers/getFormattedDate'
@@ -42,7 +42,7 @@ export default async function NewsList() {
             <li key={name} className='flex-1'>
               <Card tag={Link} href={getPath(index, data)}>
                 <Image
-                  src={extractImage(body)}
+                  src={extractImage(body) ?? ''}
                   alt=''
                   width='300'
                   height='200'

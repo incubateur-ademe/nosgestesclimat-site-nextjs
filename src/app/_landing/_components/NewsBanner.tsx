@@ -1,12 +1,12 @@
 'use client'
 
+import Link from '@/components/Link'
 import TransClient from '@/components/translation/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/locales/client'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
 import { sortReleases } from '@/utils/sortReleases'
-import Link from 'next/link'
 import { ReactNode, useEffect, useState } from 'react'
 
 export const localStorageKey = 'last-viewed-release'

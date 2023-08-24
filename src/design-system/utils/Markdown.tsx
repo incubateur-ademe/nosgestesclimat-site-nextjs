@@ -1,8 +1,10 @@
 'use client'
-import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
-import Link from 'next/link'
 
-type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
+import Link from '@/components/Link'
+import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
+import { ComponentProps } from 'react'
+
+type MarkdownProps = ComponentProps<typeof MarkdownToJsx> & {
   className?: string
   components?: MarkdownToJSX.Overrides
   renderers?: Record<string, unknown>
@@ -23,8 +25,7 @@ export default function Markdown({
           a: Link,
           ...components,
         },
-      }}
-    >
+      }}>
       {children}
     </MarkdownToJsx>
   )

@@ -1,13 +1,14 @@
 'use client'
 
+import Link from '@/components/Link'
 import TransClient from '@/components/translation/TransClient'
 import Card from '@/design-system/layout/Card'
-import Link from 'next/link'
+import { ReactNode } from 'react'
 
 type Avantage = {
   illustration: string
   icon?: string
-  text: React.ReactNode
+  text: ReactNode
 }
 
 export default function ListedAdvantages() {
@@ -17,7 +18,7 @@ export default function ListedAdvantages() {
       text: (
         <TransClient>
           Le code source est ouvert, le site est{' '}
-          <Link href='/nouveautés'>amélioré régulièrement</Link>.
+          <Link href='/nouveautes'>amélioré régulièrement</Link>.
         </TransClient>
       ),
     },
@@ -48,8 +49,7 @@ export default function ListedAdvantages() {
         <Card
           tag='li'
           key={advantage.illustration}
-          className='flex h-[14rem] w-full flex-col items-center justify-center gap-4 md:w-[14rem]'
-        >
+          className='flex h-[14rem] w-full flex-col items-center justify-center gap-4 md:w-[14rem]'>
           <span className='text-[200%]'>{advantage.illustration}</span>
 
           <div className='text-center text-base'>{advantage.text}</div>
