@@ -1,48 +1,43 @@
-type Persona = {
-  nom: string
-  icônes: string
-  situation: Situation
-  description?: string
-  résumé: string
-}
+import { DottedName } from '@/components/publicodesUtils'
+import { Persona } from '@/sites/publicodes/personas/personasUtils'
 
-export type Situation = Record<string, any>
+export type Situation = Record<DottedName, any>
 
 type QuestionsKind =
-  | "à l'affiche"
-  | 'non prioritaires'
-  | 'liste'
-  | 'liste noire'
+	| "à l'affiche"
+	| 'non prioritaires'
+	| 'liste'
+	| 'liste noire'
 
 export type ObjectifsConfig =
-  | Array<string>
-  | Array<{ icône: string; nom: string; objectifs: Array<string> }>
+	| Array<DottedName>
+	| Array<{ icône: string; nom: string; objectifs: Array<DottedName> }>
 
 export type SimulationConfig = {
-  objectifs: ObjectifsConfig
-  'objectifs cachés': Array<string>
-  situation: Simulation['situation']
-  bloquant?: Array<string>
-  questions?: Partial<Record<QuestionsKind, Array<string>>>
-  branches?: Array<{ nom: string; situation: SimulationConfig['situation'] }>
-  'unité par défaut': string
+	objectifs: ObjectifsConfig
+	'objectifs cachés': Array<DottedName>
+	situation: Simulation['situation']
+	bloquant?: Array<DottedName>
+	questions?: Partial<Record<QuestionsKind, Array<DottedName>>>
+	branches?: Array<{ nom: string; situation: SimulationConfig['situation'] }>
+	'unité par défaut': string
 }
 
-export type StoredTrajets = Record<string, any>
+export type StoredTrajets = Record<DottedName, any>
 
 export type Simulation = {
-  config: SimulationConfig
-  url: string
-  hiddenNotifications: Array<string>
-  situation: Situation
-  hiddenControls?: Array<string>
-  targetUnit?: string
-  foldedSteps?: Array<string>
-  unfoldedStep?: string | null
-  persona?: Persona
-  date?: Date
-  id?: string
-  eventsSent?: Record<string, boolean>
-  actionChoices?: Record<string, boolean>
-  storedTrajets?: StoredTrajets
+	config: SimulationConfig
+	url: string
+	hiddenNotifications: Array<string>
+	situation: Situation
+	hiddenControls?: Array<string>
+	targetUnit?: string
+	foldedSteps?: Array<DottedName>
+	unfoldedStep?: DottedName | null
+	persona?: Persona
+	date?: Date
+	id?: string
+	eventsSent?: Record<string, boolean>
+	actionChoices?: Record<string, boolean>
+	storedTrajets?: StoredTrajets
 }

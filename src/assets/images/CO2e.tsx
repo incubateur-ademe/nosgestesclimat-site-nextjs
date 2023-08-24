@@ -1,4 +1,4 @@
-function SvgCo2E(props: any) {
+function SvgCo2E(props) {
   return (
     <svg viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg' {...props}>
       <path fill='#f1b31c' d='M69.627 34.34H47.915v28.951h21.712z' />
@@ -19,13 +19,13 @@ function SvgCo2E(props: any) {
         <text
           style={{
             lineHeight: 1.25,
+            InkscapeFontSpecification: 'Ubuntu',
           }}
           x={22.572}
           y={48.242}
           fontSize={10.853}
           fontFamily='Ubuntu'
-          strokeWidth={0.543}
-        >
+          strokeWidth={0.543}>
           <tspan x={22.572} y={48.242} fontWeight={700}>
             {'CO\u2082e'}
           </tspan>

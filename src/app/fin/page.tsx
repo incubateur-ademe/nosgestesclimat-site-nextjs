@@ -1,3 +1,8 @@
 export default function Fin() {
-  return <>Fin</>
+  return (
+    <>
+      <Total />
+      <Worst />
+    </>
+  )
 }

@@ -5,10 +5,10 @@ import { EvaluatedNode, Evaluation, RuleNode, Unit } from 'publicodes'
 export type MissingVariables = Record<string, number>
 
 export type EvaluationDecoration = {
-  nodeValue: Evaluation<number>
-  unit?: Unit
-  traversedVariables?: Array<string>
-  missingVariables: MissingVariables
+	nodeValue: Evaluation<number>
+	unit?: Unit
+	traversedVariables?: Array<string>
+	missingVariables: MissingVariables
 }
 
 //---- Extends publicodes types to handle Nos Gestes Climat (NGC) model rules.
@@ -16,8 +16,8 @@ export type EvaluationDecoration = {
 export type Color = `#${string}`
 
 export type SuggestionsNode = Record<
-  string,
-  string | number | Record<string, string | number>
+	string,
+	string | number | Record<string, string | number>
 >
 
 /** Represents a rule name, i.e. root key in the raw parsed YAML. */
@@ -29,16 +29,16 @@ export type DottedName = string
  * @see https://github.com/datagir/nosgestesclimat-site/wiki/mosaic
  */
 export type MosaiqueNode = {
-  type: 'selection' | 'nombre'
-  clé: string
-  total?: number
-  suggestions?: SuggestionsNode
+	type: 'selection' | 'nombre'
+	clé: string
+	total?: number
+	suggestions?: SuggestionsNode
 }
 
 export type MosaicInfos = {
-  mosaicRule: RuleNode
-  mosaicParams: MosaiqueNode
-  mosaicDottedNames: [string, NGCRuleNode][]
+	mosaicRule: RuleNode
+	mosaicParams: MosaiqueNode
+	mosaicDottedNames: [string, NGCRuleNode][]
 }
 
 /**
@@ -51,15 +51,15 @@ export type MosaicInfos = {
  *
  * @see https://github.com/betagouv/publicodes/blob/5a1ba0f09e4b7949ce51b48eabae58b8b606c4b5/packages/core/source/rule.ts#L18-L42
  */
-export type NGCRule = {
-  abréviation?: string
-  couleur?: Color
-  mosaique?: MosaiqueNode
-  type?: 'notification'
-  sévérité?: 'avertissement' | 'information' | 'invalide'
-  action?: { dépasse: DottedName[] }
-  // NOTE(@EmileRolley): used in Action.tsx but I don't if it is really needed..
-  plus?: boolean
+export type NGCRule = Rule & {
+	abréviation?: string
+	couleur?: Color
+	mosaique?: MosaiqueNode
+	type?: 'notification'
+	sévérité?: 'avertissement' | 'information' | 'invalide'
+	action?: { dépasse: DottedName[] }
+	// NOTE(@EmileRolley): used in Action.tsx but I don't if it is really needed..
+	plus?: boolean
 }
 
 /**
@@ -68,7 +68,7 @@ export type NGCRule = {
  * @note It represents a node returned after parsing, i.e. returned by the engine.
  */
 export type NGCRuleNode = Omit<RuleNode<DottedName>, 'rawNode'> & {
-  rawNode: NGCRule
+	rawNode: NGCRule
 }
 
 /**
@@ -93,12 +93,12 @@ export type NGCRules = Record<DottedName, NGCRule>
 export type NGCEvaluatedRuleNode = NGCRuleNode & EvaluationDecoration
 
 export type Category = EvaluatedNode<number> & {
-  dottedName: DottedName
-  title: string
-  name: string
-  rawNode: NGCRuleNode
-  documentationDottedName: DottedName
-  icons?: string[]
-  color?: Color
-  abbreviation: string
+	dottedName: DottedName
+	title: string
+	name: string
+	rawNode: NGCRuleNode
+	documentationDottedName: DottedName
+	icons?: string[]
+	color?: Color
+	abbreviation: string
 }
