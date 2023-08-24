@@ -146,7 +146,7 @@ export default function RootLayout({
           IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
         */}
 				<Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
-				<UserProvider>
+				<UserProvider forgetSimulations>
 					{children}
 					<Footer />
 				</UserProvider>

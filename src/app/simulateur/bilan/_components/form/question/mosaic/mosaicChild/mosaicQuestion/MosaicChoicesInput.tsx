@@ -10,7 +10,7 @@ export default function MosaicChoicesInput({ question, title }: Props) {
 	const checked = !isMissing && value
 	return (
 		<button
-			className={`mb-2 rounded border border-primary px-4 py-2 text-xl ${
+			className={`rounded border border-primary px-4 py-2 text-xl ${
 				checked ? 'bg-primary text-white' : 'bg-grey-100 text-primary'
 			}`}
 			onClick={() => {

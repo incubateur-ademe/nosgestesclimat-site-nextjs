@@ -42,26 +42,32 @@ export default function useValue({
 		return Promise.resolve({ oldTotal, newTotal })
 	}
 
-	const setDefaultAsValue = () => {
+	const setDefaultAsValue = async (): Promise<any> => {
+		let situationToUpdate = {}
 		if (type.includes('mosaic')) {
-			questionsOfMosaic.map((question) => {
-				const rule = engine.getRule(question)
-				const evaluation = engine.evaluate(question)
-				updateSituation({
-					[question]: checkValueValidity({
-						value: evaluation.nodeValue,
-						type: getType({ rule, evaluation, dottedName: question }),
-					}),
-				})
-			})
+			situationToUpdate = questionsOfMosaic.reduce(
+				(accumulator, currentValue) => {
+					const rule = engine.getRule(currentValue)
+					const evaluation = engine.evaluate(currentValue)
+					return {
+						...accumulator,
+						[currentValue]: checkValueValidity({
+							value: evaluation.nodeValue,
+							type: getType({ rule, evaluation, dottedName: currentValue }),
+						}),
+					}
+				},
+				{},
+			)
 		} else {
-			updateSituation({
+			situationToUpdate = {
 				[dottedName]: checkValueValidity({ value, type }),
-			})
+			}
 		}
-	}
 
-	console.log(engine.evaluate('transport . mobilité douce').missingVariables)
+		const { oldTotal, newTotal } = await updateSituation(situationToUpdate)
+		return Promise.resolve({ oldTotal, newTotal })
+	}
 
 	return { value, displayValue, isMissing, setValue, setDefaultAsValue }
 }

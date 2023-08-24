@@ -17,8 +17,8 @@ type Props = {
 	children: React.ReactNode
 	loader: React.ReactNode
 	defaultSituation?: any
-	situation: any
-	setSituation: Function
+	situation?: any
+	updateSituation: Function
 }
 
 export default function SimulationProvider({
@@ -28,7 +28,7 @@ export default function SimulationProvider({
 	loader,
 	defaultSituation,
 	situation: externalSituation,
-	setSituation: setExternalSituation,
+	updateSituation: updateExternalSituation,
 }: Props) {
 	const engine = useEngine(rules)
 
@@ -36,7 +36,7 @@ export default function SimulationProvider({
 		engine,
 		defaultSituation,
 		externalSituation,
-		setExternalSituation,
+		updateExternalSituation,
 	})
 
 	const { categories, subcategories } = useCategories({
