@@ -19,7 +19,7 @@ export default function NewsBanner() {
   const isServer = typeof window === 'undefined'
 
   const [lastViewedRelease, setLastViewedRelease] = useState(
-    !isServer ? localStorage.getItem(localStorageKey) : ''
+    isServer ? undefined : localStorage.getItem(localStorageKey)
   )
 
   const { t, i18n } = useClientTranslation()
@@ -29,13 +29,14 @@ export default function NewsBanner() {
   const lastRelease = releases && releases[0]
 
   const handleUpdateViewedRelease = () => {
-    window.localStorage.setItem(localStorageKey, lastRelease.name)
+    localStorage.setItem(localStorageKey, lastRelease.name)
     setLastViewedRelease(lastRelease.name)
   }
 
   useEffect(() => {
     if (!lastViewedRelease) {
       window.localStorage.setItem(localStorageKey, lastRelease.name)
+      setLastViewedRelease('none')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -45,7 +46,9 @@ export default function NewsBanner() {
   // We only want to show the banner to returning visitors, so we initiate the
   // local storage value with the last release.
   const shouldShowBanner =
-    lastRelease.name && lastViewedRelease !== lastRelease.name
+    lastRelease.name &&
+    lastViewedRelease &&
+    lastViewedRelease !== lastRelease.name
 
   const date = new Date(lastRelease.published_at).toLocaleDateString(
     currentLangInfos.abrvLocale,
@@ -60,22 +63,20 @@ export default function NewsBanner() {
   if (!shouldShowBanner) return null
 
   return (
-    <Card className='relative min-w-[20rem] p-8 text-left'>
+    <Card className='relative min-w-[20rem] p-8 text-left flex-col'>
+      <h2 className='m-0 flex items-center'>
+        <span className='mr-2 inline-block h-3 w-3 rounded-2xl bg-primary'></span>{' '}
+        <TransClient>Nouveautés</TransClient>
+      </h2>
       <div>
-        <h2 className='m-0 flex items-center'>
-          <span className='mr-2 inline-block h-3 w-3 rounded-2xl bg-primary'></span>{' '}
-          <TransClient>Nouveautés</TransClient>
-        </h2>
-        <div>
-          <small className='max-w-[12rem]'>
-            <TransClient i18nKey={'components.NewsBanner.miseAJourDate'}>
-              Dernière mise à jour {{ date } as unknown as ReactNode}
-            </TransClient>
-          </small>
-        </div>
-        <div className='mt-2'>
-          <Link href={'/nouveautes'}>{capitaliseString(lastRelease.name)}</Link>
-        </div>
+        <small className='max-w-[12rem]'>
+          <TransClient i18nKey={'components.NewsBanner.miseAJourDate'}>
+            Dernière mise à jour {{ date } as unknown as ReactNode}
+          </TransClient>
+        </small>
+      </div>
+      <div className='mt-2'>
+        <Link href={'/nouveautes'}>{capitaliseString(lastRelease.name)}</Link>
       </div>
       <button
         onClick={handleUpdateViewedRelease}
