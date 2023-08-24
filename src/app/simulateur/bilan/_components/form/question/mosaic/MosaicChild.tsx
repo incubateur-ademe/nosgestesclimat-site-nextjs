@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { useRule } from '@/publicodes-state'
 import MosaicQuestion from './mosaicChild/MosaicQuestion'
 

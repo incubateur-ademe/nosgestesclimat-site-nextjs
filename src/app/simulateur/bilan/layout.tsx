@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import rules from './co2-model.FR-lang.fr-opti.json'
 
 import { useUser, SimulationProvider } from '@/publicodes-state'
+import PageLayout from '@/components/layout/PageLayout'
 
 export default function SimulateurLayout({
 	children,
@@ -42,7 +43,9 @@ export default function SimulateurLayout({
 			}
 			updateSituation={updateSituationOfCurrentSimulation}
 		>
-			<div className="mx-auto w-full max-w-4xl">{children}</div>
+			<PageLayout shouldShowMenu>
+				<div>{children}</div>
+			</PageLayout>
 		</SimulationProvider>
 	) : (
 		'Initialisation'

@@ -1,4 +1,7 @@
+import React from 'react'
+
 import { useRule } from '@/publicodes-state'
+
 type Props = {
 	question: string
 	setValue: Function
