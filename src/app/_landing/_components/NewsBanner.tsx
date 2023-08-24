@@ -18,8 +18,9 @@ export default function NewsBanner() {
 	const { t, i18n } = useClientTranslation()
 	const currentLangInfos = getCurrentLangInfos(i18n)
 
-	const releases = sortReleases(currentLangInfos.releases),
-		lastRelease = releases && releases[0]
+	const releases = sortReleases(currentLangInfos.releases)
+	const lastRelease = releases && releases[0]
+
 	/*
 	const [lastViewedRelease, setLastViewedRelease] = usePersistingState(
 		localStorageKey,
