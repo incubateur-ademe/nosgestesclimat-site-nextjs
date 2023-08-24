@@ -12,7 +12,7 @@
   ],
   "rules": {
     "react/no-unescaped-entities": "off",
-    "react/react-in-jsx-scope": 1,
+    "react/react-in-jsx-scope": 0,
     "no-unused-vars": 1,
     "no-undef": 1,
     "no-redeclare": 1,
