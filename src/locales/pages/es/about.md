@@ -96,4 +96,3 @@ Europa](https://answers.netlify.com/t/is-there-a-list-of-where-netlifys-cdn-pops
 ## Condiciones de uso
 
 Están disponibles en [esta página](/cgu).
-

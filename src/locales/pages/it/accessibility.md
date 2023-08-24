@@ -24,45 +24,45 @@ motivi.
 
 #### Non conformità
 
--   Le immagini che forniscono informazioni non hanno alternative o non
-    hanno alternative rilevanti;
--   Le immagini decorative non vengono ignorate dalle tecnologie
-    assistive;
--   Le immagini hanno didascalie non correttamente collegate;
--   Il testo e i componenti dell'interfaccia non hanno un contrasto
-    sufficiente
--   I link non hanno un'intestazione esplicita;
--   Le funzioni JavaScript non sono compatibili con le tecnologie
-    assistive (ad es. carosello, mostra e nascondi contenuto, campi di
-    completamento automatico e finestre modali);
--   I cambiamenti di contesto vengono attivati senza che l'utente ne sia
-    informato;
--   I messaggi di stato non vengono restituiti dalle tecnologie
-    assistive
--   Le pagine contengono errori nel codice sorgente
--   Le pagine non hanno un titolo pertinente;
--   Le modifiche linguistiche nel testo non sono riportate;
--   Le pagine utilizzano i tag per scopi di presentazione (ad esempio,
-    testo non strutturato in tag di paragrafo);
--   Le pagine hanno una gerarchia di titoli irrilevante (titoli mancanti
-    o mal definiti)
--   La struttura e le aree principali delle pagine sono poco definite;
--   Le sequenze di elementi non sono strutturate con liste
--   Alcuni testi con un colore di carattere definito non hanno un colore
-    di sfondo associato;
--   Le indicazioni visive della messa a fuoco non sono sufficientemente
-    contrastate;
--   I campi del modulo non hanno un'etichetta collegata correttamente o
-    non hanno un'etichetta pertinente;
--   I raggruppamenti di campi della stessa natura non hanno un titolo;
--   I pulsanti dei moduli hanno un titolo non pertinente;
--   Gli aiuti all'immissione non sono collegati ai rispettivi campi;
--   Il sito non dispone di un sistema di navigazione;
--   I link di accesso rapido non sono visibili sui telefoni cellulari;
--   I contenuti criptici non hanno alternative;
--   L'orientamento delle pagine è limitato alla modalità verticale;
--   Le funzioni che possono essere utilizzate con un gesto complesso non
-    hanno alternative con una gestione semplice.
+- Le immagini che forniscono informazioni non hanno alternative o non
+  hanno alternative rilevanti;
+- Le immagini decorative non vengono ignorate dalle tecnologie
+  assistive;
+- Le immagini hanno didascalie non correttamente collegate;
+- Il testo e i componenti dell'interfaccia non hanno un contrasto
+  sufficiente
+- I link non hanno un'intestazione esplicita;
+- Le funzioni JavaScript non sono compatibili con le tecnologie
+  assistive (ad es. carosello, mostra e nascondi contenuto, campi di
+  completamento automatico e finestre modali);
+- I cambiamenti di contesto vengono attivati senza che l'utente ne sia
+  informato;
+- I messaggi di stato non vengono restituiti dalle tecnologie
+  assistive
+- Le pagine contengono errori nel codice sorgente
+- Le pagine non hanno un titolo pertinente;
+- Le modifiche linguistiche nel testo non sono riportate;
+- Le pagine utilizzano i tag per scopi di presentazione (ad esempio,
+  testo non strutturato in tag di paragrafo);
+- Le pagine hanno una gerarchia di titoli irrilevante (titoli mancanti
+  o mal definiti)
+- La struttura e le aree principali delle pagine sono poco definite;
+- Le sequenze di elementi non sono strutturate con liste
+- Alcuni testi con un colore di carattere definito non hanno un colore
+  di sfondo associato;
+- Le indicazioni visive della messa a fuoco non sono sufficientemente
+  contrastate;
+- I campi del modulo non hanno un'etichetta collegata correttamente o
+  non hanno un'etichetta pertinente;
+- I raggruppamenti di campi della stessa natura non hanno un titolo;
+- I pulsanti dei moduli hanno un titolo non pertinente;
+- Gli aiuti all'immissione non sono collegati ai rispettivi campi;
+- Il sito non dispone di un sistema di navigazione;
+- I link di accesso rapido non sono visibili sui telefoni cellulari;
+- I contenuti criptici non hanno alternative;
+- L'orientamento delle pagine è limitato alla modalità verticale;
+- Le funzioni che possono essere utilizzate con un gesto complesso non
+  hanno alternative con una gestione semplice.
 
 #### Eccezioni per il carico sproporzionato
 
@@ -103,19 +103,19 @@ il 15/06/2022.
 
 ### Tecnologie utilizzate per la realizzazione del sito
 
--   HTML5
--   CSS
--   JavaScript
+- HTML5
+- CSS
+- JavaScript
 
 ### Agenti utente, tecnologie assistive e strumenti utilizzati per verificare l'accessibilità
 
 I test delle pagine web sono stati eseguiti con le seguenti combinazioni
 di browser e screen reader:
 
--   Firefox 97 e NVDA 2021.3 ;
--   Firefox 97 e JAWS 2020;
--   Safari 15.0 e VoiceOver (macOS Big Sur, versione 11.6);
--   Chrome 96.0 e TalkBack (nativo di Android 10.0).
+- Firefox 97 e NVDA 2021.3 ;
+- Firefox 97 e JAWS 2020;
+- Safari 15.0 e VoiceOver (macOS Big Sur, versione 11.6);
+- Chrome 96.0 e TalkBack (nativo di Android 10.0).
 
 La verifica dell'accessibilità è il risultato di un test manuale,
 assistito da strumenti (fogli CSS dedicati, estensioni HeadingsMaps e
@@ -123,26 +123,26 @@ WebDeveloper Toolbar, Color Contrast Analyser).
 
 ### Pagine del sito che sono state controllate per verificarne la conformità
 
--   Home : https://nosgestesclimat.fr/
--   Informazioni su : https://nosgestesclimat.fr/%C3%A0-propos
--   Cosa c'è di nuovo :
-    https://nosgestesclimat.fr/nouveaut%C3%A9s/las-n%C3%A9ous
--   Documentazione: https://nosgestesclimat.fr/documentation
--   Contribuire: https://nosgestesclimat.fr/contribuer
--   Diffusione: https://nosgestesclimat.fr/diffuser
--   Tutorial : https://nosgestesclimat.fr/tutoriel
--   Il test: https://nosgestesclimat.fr/simulateur/bilan
--   Fine:
-    https://nosgestesclimat.fr/fin?details=a2.87t2.81l2.19s1.11d0.64n0.22
--   Atto: https://nosgestesclimat.fr/actions
--   Azione:
-    https://nosgestesclimat.fr/actions/alimentation/boisson/eau-en-bouteille/arr%C3%Aater
--   Conferenza: https://nosgestesclimat.fr/conf%C3%A9rence
--   Conferenza Cambriano-Bassa Salute:
-    https://nosgestesclimat.fr/conf%C3%A9rence/cambrien-bas-hant%C3%A9
--   Potenza: https://nosgestesclimat.fr/documentation/alimentation
--   Spegnere i dispositivi in standby:
-    https://nosgestesclimat.fr/actions/plus/logement/%C3%A9teindre-appareils
+- Home : https://nosgestesclimat.fr/
+- Informazioni su : https://nosgestesclimat.fr/%C3%A0-propos
+- Cosa c'è di nuovo :
+  https://nosgestesclimat.fr/nouveaut%C3%A9s/las-n%C3%A9ous
+- Documentazione: https://nosgestesclimat.fr/documentation
+- Contribuire: https://nosgestesclimat.fr/contribuer
+- Diffusione: https://nosgestesclimat.fr/diffuser
+- Tutorial : https://nosgestesclimat.fr/tutoriel
+- Il test: https://nosgestesclimat.fr/simulateur/bilan
+- Fine:
+  https://nosgestesclimat.fr/fin?details=a2.87t2.81l2.19s1.11d0.64n0.22
+- Atto: https://nosgestesclimat.fr/actions
+- Azione:
+  https://nosgestesclimat.fr/actions/alimentation/boisson/eau-en-bouteille/arr%C3%Aater
+- Conferenza: https://nosgestesclimat.fr/conf%C3%A9rence
+- Conferenza Cambriano-Bassa Salute:
+  https://nosgestesclimat.fr/conf%C3%A9rence/cambrien-bas-hant%C3%A9
+- Potenza: https://nosgestesclimat.fr/documentation/alimentation
+- Spegnere i dispositivi in standby:
+  https://nosgestesclimat.fr/actions/plus/logement/%C3%A9teindre-appareils
 
 ## Feedback e contatti
 
@@ -175,11 +175,11 @@ diritti.
 
 Ci sono diversi modi per farlo:
 
--   [un modulo di
-    contatto](https://formulaire.defenseurdesdroits.fr/code/afficher.php?ETAPE=accueil_2016);
--   l'[elenco dei delegati della vostra
-    regione](https://www.defenseurdesdroits.fr/office/) con le loro
-    informazioni di contatto diretto;
--   numero di telefono: 09 69 39 00 00 ;
--   un indirizzo postale (posta gratuita, senza affrancatura): Le
-    Défenseur des droits - Libre réponse 71120 - 75342 Paris CEDEX 07.
+- [un modulo di
+  contatto](https://formulaire.defenseurdesdroits.fr/code/afficher.php?ETAPE=accueil_2016);
+- l'[elenco dei delegati della vostra
+  regione](https://www.defenseurdesdroits.fr/office/) con le loro
+  informazioni di contatto diretto;
+- numero di telefono: 09 69 39 00 00 ;
+- un indirizzo postale (posta gratuita, senza affrancatura): Le
+  Défenseur des droits - Libre réponse 71120 - 75342 Paris CEDEX 07.

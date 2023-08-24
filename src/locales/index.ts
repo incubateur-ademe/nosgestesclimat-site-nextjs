@@ -7,45 +7,45 @@ import uiEnYaml from './ui/ui-en-us.yaml'
 import uiFrYaml from './ui/ui-fr.yaml'
 
 const initI18next = async (language: string) => {
-	const i18nInstance = createInstance()
-	await i18nInstance
-		.use(initReactI18next)
-		.use(
-			resourcesToBackend((language: string) => {
-				switch (language) {
-					case 'en-US':
-						return (uiEnYaml as unknown as { entries: {} }).entries
-					case 'fr':
-					default:
-						return (uiFrYaml as unknown as { entries: {} }).entries
-				}
-			})
-		)
-		.init(getOptions(language))
+  const i18nInstance = createInstance()
+  await i18nInstance
+    .use(initReactI18next)
+    .use(
+      resourcesToBackend((language: string) => {
+        switch (language) {
+          case 'en-US':
+            return (uiEnYaml as unknown as { entries: {} }).entries
+          case 'fr':
+          default:
+            return (uiFrYaml as unknown as { entries: {} }).entries
+        }
+      })
+    )
+    .init(getOptions(language))
 
-	return i18nInstance
+  return i18nInstance
 }
 
 export async function useServerTranslation(
-	namespace?: string,
-	options?: { keyPrefix: string }
+  namespace?: string,
+  options?: { keyPrefix: string }
 ) {
-	const language = currentLocale()
+  const language = currentLocale()
 
-	const i18nextInstance = await initI18next(language || '')
+  const i18nextInstance = await initI18next(language || '')
 
-	i18nextInstance.getFixedT(
-		language || '',
-		'translation',
-		options?.keyPrefix ?? ''
-	)
+  i18nextInstance.getFixedT(
+    language || '',
+    'translation',
+    options?.keyPrefix ?? ''
+  )
 
-	return {
-		t: i18nextInstance.getFixedT(
-			language || '',
-			Array.isArray(namespace) ? namespace[0] : namespace,
-			options?.keyPrefix ?? ''
-		),
-		i18n: i18nextInstance,
-	}
+  return {
+    t: i18nextInstance.getFixedT(
+      language || '',
+      Array.isArray(namespace) ? namespace[0] : namespace,
+      options?.keyPrefix ?? ''
+    ),
+    i18n: i18nextInstance,
+  }
 }

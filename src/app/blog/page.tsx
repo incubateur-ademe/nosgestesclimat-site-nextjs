@@ -10,39 +10,39 @@ import PostListItem from './_components/PostListItem'
 import { blogData } from './_data/articles'
 
 export default function Blog() {
-	return (
-		<PageLayout shouldShowMenu>
-			{/*
+  return (
+    <PageLayout shouldShowMenu>
+      {/*
 			<Meta
 				title={title}
 				description={description}
 				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
 			/>
   */}
-			<Main className="max-w-[800px] p-8">
-				<Title
-					title={<TransClient>Le Blog</TransClient>}
-					data-cypress-id="blog-title"
-				/>
-				<div>
-					<Image
-						alt=""
-						className="h-[237px] w-full object-cover object-center"
-						width={400}
-						height={100}
-						src={dessinNGC}
-					/>
-					<p>
-						<TransClient>Découvrez nos articles de blog :</TransClient>
-					</p>
-				</div>
+      <Main className='max-w-[800px] p-8'>
+        <Title
+          title={<TransClient>Le Blog</TransClient>}
+          data-cypress-id='blog-title'
+        />
+        <div>
+          <Image
+            alt=''
+            className='h-[237px] w-full object-cover object-center'
+            width={400}
+            height={100}
+            src={dessinNGC}
+          />
+          <p>
+            <TransClient>Découvrez nos articles de blog :</TransClient>
+          </p>
+        </div>
 
-				<ul className="grid list-none grid-cols-1 justify-center gap-4 pl-0 sm:grid-cols-2">
-					{blogData.map((post) => (
-						<PostListItem post={post} key={post.slug} />
-					))}
-				</ul>
-			</Main>
-		</PageLayout>
-	)
+        <ul className='grid list-none grid-cols-1 justify-center gap-4 pl-0 sm:grid-cols-2'>
+          {blogData.map((post) => (
+            <PostListItem post={post} key={post.slug} />
+          ))}
+        </ul>
+      </Main>
+    </PageLayout>
+  )
 }

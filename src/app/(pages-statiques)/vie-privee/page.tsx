@@ -9,21 +9,21 @@ import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
 
 export default function Diffuser() {
-	const locale = useLocale()
+  const locale = useLocale()
 
-	const DiffuserLocalised = getLocalisedMDX({
-		dictionnaries: {
-			fr: PrivacyFr,
-			'en-US': PrivacyEn,
-		},
-		locale: locale ?? '',
-	})
+  const DiffuserLocalised = getLocalisedMDX({
+    dictionnaries: {
+      fr: PrivacyFr,
+      'en-US': PrivacyEn,
+    },
+    locale: locale ?? '',
+  })
 
-	return (
-		<PageLayout shouldShowMenu>
-			<Main className="max-w-[800px] p-8">
-				<DiffuserLocalised />
-			</Main>
-		</PageLayout>
-	)
+  return (
+    <PageLayout shouldShowMenu>
+      <Main className='max-w-[800px] p-8'>
+        <DiffuserLocalised />
+      </Main>
+    </PageLayout>
+  )
 }

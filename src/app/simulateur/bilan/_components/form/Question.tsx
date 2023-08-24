@@ -6,23 +6,23 @@ import NumberInput from './question/NumberInput'
 import Suggestions from './question/Suggestions'
 
 type Props = {
-	question: string
+  question: string
 }
 
 export default function Question({ question }: Props) {
-	const { type, setValue } = useRule(question)
+  const { type, setValue } = useRule(question)
 
-	return (
-		<div className="mb-4">
-			<Label question={question} />
-			<Suggestions question={question} setValue={setValue} />
-			{type === 'number' && (
-				<NumberInput question={question} setValue={setValue} />
-			)}
-			{type === 'choices' && (
-				<ChoicesInput question={question} setValue={setValue} />
-			)}
-			{type === 'mosaic' && <Mosaic question={question} setValue={setValue} />}
-		</div>
-	)
+  return (
+    <div className='mb-4'>
+      <Label question={question} />
+      <Suggestions question={question} setValue={setValue} />
+      {type === 'number' && (
+        <NumberInput question={question} setValue={setValue} />
+      )}
+      {type === 'choices' && (
+        <ChoicesInput question={question} setValue={setValue} />
+      )}
+      {type === 'mosaic' && <Mosaic question={question} setValue={setValue} />}
+    </div>
+  )
 }

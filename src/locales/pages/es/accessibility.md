@@ -25,47 +25,47 @@ siguientes razones.
 
 #### Incumplimiento
 
--   Las imágenes que proporcionan información no tienen alternativa o no
-    son relevantes;
--   Las imágenes decorativas no son ignoradas por las tecnologías de
-    asistencia;
--   Las imágenes tienen subtítulos que no están bien enlazados;
--   El texto y los componentes de la interfaz no tienen suficiente
-    contraste
--   Los enlaces no tienen un título explícito;
--   Las funciones de JavaScript no son compatibles con las tecnologías
-    de asistencia (por ejemplo, carrusel, mostrar y ocultar contenido,
-    campos de autocompletar y ventanas modales);
--   Los cambios de contexto se activan sin que el usuario sea informado;
--   Los mensajes de estado no son devueltos por las tecnologías de
-    asistencia
--   Las páginas contienen errores en el código fuente
--   Las páginas no tienen un título de página relevante;
--   No se informa de los cambios de idioma en el texto;
--   Las páginas utilizan etiquetas para su presentación (por ejemplo,
-    texto no estructurado en etiquetas de párrafo);
--   Las páginas tienen una jerarquía de títulos irrelevante (faltan
-    títulos o están mal definidos)
--   La estructura y las áreas principales de las páginas están mal
-    definidas;
--   Las secuencias de elementos no se estructuran con listas
--   Algunos textos con un color de fuente definido no tienen un color de
-    fondo asociado;
--   Las indicaciones visuales de enfoque no están suficientemente
-    contrastadas;
--   Los campos del formulario no tienen una etiqueta correctamente
-    vinculada o no tienen una etiqueta relevante;
--   Las agrupaciones de campos de la misma naturaleza no tienen título;
--   Los botones del formulario tienen un título que no es relevante;
--   Las ayudas a la entrada no están vinculadas a sus respectivos
-    campos;
--   El sitio no tiene un sistema de navegación;
--   Los enlaces de acceso rápido no son visibles en los teléfonos
-    móviles;
--   El contenido críptico no tiene alternativa;
--   La orientación de las páginas está restringida al modo vertical;
--   Las funcionalidades que se pueden utilizar con un gesto complejo no
-    tienen alternativa con una gestión sencilla.
+- Las imágenes que proporcionan información no tienen alternativa o no
+  son relevantes;
+- Las imágenes decorativas no son ignoradas por las tecnologías de
+  asistencia;
+- Las imágenes tienen subtítulos que no están bien enlazados;
+- El texto y los componentes de la interfaz no tienen suficiente
+  contraste
+- Los enlaces no tienen un título explícito;
+- Las funciones de JavaScript no son compatibles con las tecnologías
+  de asistencia (por ejemplo, carrusel, mostrar y ocultar contenido,
+  campos de autocompletar y ventanas modales);
+- Los cambios de contexto se activan sin que el usuario sea informado;
+- Los mensajes de estado no son devueltos por las tecnologías de
+  asistencia
+- Las páginas contienen errores en el código fuente
+- Las páginas no tienen un título de página relevante;
+- No se informa de los cambios de idioma en el texto;
+- Las páginas utilizan etiquetas para su presentación (por ejemplo,
+  texto no estructurado en etiquetas de párrafo);
+- Las páginas tienen una jerarquía de títulos irrelevante (faltan
+  títulos o están mal definidos)
+- La estructura y las áreas principales de las páginas están mal
+  definidas;
+- Las secuencias de elementos no se estructuran con listas
+- Algunos textos con un color de fuente definido no tienen un color de
+  fondo asociado;
+- Las indicaciones visuales de enfoque no están suficientemente
+  contrastadas;
+- Los campos del formulario no tienen una etiqueta correctamente
+  vinculada o no tienen una etiqueta relevante;
+- Las agrupaciones de campos de la misma naturaleza no tienen título;
+- Los botones del formulario tienen un título que no es relevante;
+- Las ayudas a la entrada no están vinculadas a sus respectivos
+  campos;
+- El sitio no tiene un sistema de navegación;
+- Los enlaces de acceso rápido no son visibles en los teléfonos
+  móviles;
+- El contenido críptico no tiene alternativa;
+- La orientación de las páginas está restringida al modo vertical;
+- Las funcionalidades que se pueden utilizar con un gesto complejo no
+  tienen alternativa con una gestión sencilla.
 
 #### Excepciones por carga desproporcionada
 
@@ -105,19 +105,19 @@ Esta declaración se estableció el 27/05/2022. Se actualizó el
 
 ### Tecnologías utilizadas para la realización del sitio
 
--   HTML5
--   CSS
--   JavaScript
+- HTML5
+- CSS
+- JavaScript
 
 ### Agentes de usuario, tecnologías de asistencia y herramientas utilizadas para verificar la accesibilidad
 
 Las pruebas de las páginas web se realizaron con las siguientes
 combinaciones de navegadores y lectores de pantalla:
 
--   Firefox 97 y NVDA 2021.3 ;
--   Firefox 97 y JAWS 2020;
--   Safari 15.0 y VoiceOver (macOS Big Sur, versión 11.6);
--   Chrome 96.0 y TalkBack (Android 10.0 nativo).
+- Firefox 97 y NVDA 2021.3 ;
+- Firefox 97 y JAWS 2020;
+- Safari 15.0 y VoiceOver (macOS Big Sur, versión 11.6);
+- Chrome 96.0 y TalkBack (Android 10.0 nativo).
 
 La comprobación de la accesibilidad es el resultado de pruebas manuales,
 asistidas por herramientas (hojas CSS dedicadas, HeadingsMaps y
@@ -126,26 +126,26 @@ Analyser).
 
 ### Páginas del sitio que han sido verificadas para su cumplimiento
 
--   Inicio : https://nosgestesclimat.fr/
--   Acerca de : https://nosgestesclimat.fr/%C3%A0-propos
--   Novedades :
-    https://nosgestesclimat.fr/nouveaut%C3%A9s/las-n%C3%A9ous
--   Documentación: https://nosgestesclimat.fr/documentation
--   Contribuir: https://nosgestesclimat.fr/contribuer
--   Difundir: https://nosgestesclimat.fr/diffuser
--   Tutorial : https://nosgestesclimat.fr/tutoriel
--   La prueba: https://nosgestesclimat.fr/simulateur/bilan
--   Fin:
-    https://nosgestesclimat.fr/fin?details=a2.87t2.81l2.19s1.11d0.64n0.22
--   Acto: https://nosgestesclimat.fr/actions
--   Acción:
-    https://nosgestesclimat.fr/actions/alimentation/boisson/eau-en-bouteille/arr%C3%Aater
--   Conferencia: https://nosgestesclimat.fr/conf%C3%A9rence
--   Conferencia Cambrian-Low-Health:
-    https://nosgestesclimat.fr/conf%C3%A9rence/cambrien-bas-hant%C3%A9
--   Potencia: https://nosgestesclimat.fr/documentation/alimentation
--   Apagar mis dispositivos en espera :
-    https://nosgestesclimat.fr/actions/plus/logement/%C3%A9teindre-appareils
+- Inicio : https://nosgestesclimat.fr/
+- Acerca de : https://nosgestesclimat.fr/%C3%A0-propos
+- Novedades :
+  https://nosgestesclimat.fr/nouveaut%C3%A9s/las-n%C3%A9ous
+- Documentación: https://nosgestesclimat.fr/documentation
+- Contribuir: https://nosgestesclimat.fr/contribuer
+- Difundir: https://nosgestesclimat.fr/diffuser
+- Tutorial : https://nosgestesclimat.fr/tutoriel
+- La prueba: https://nosgestesclimat.fr/simulateur/bilan
+- Fin:
+  https://nosgestesclimat.fr/fin?details=a2.87t2.81l2.19s1.11d0.64n0.22
+- Acto: https://nosgestesclimat.fr/actions
+- Acción:
+  https://nosgestesclimat.fr/actions/alimentation/boisson/eau-en-bouteille/arr%C3%Aater
+- Conferencia: https://nosgestesclimat.fr/conf%C3%A9rence
+- Conferencia Cambrian-Low-Health:
+  https://nosgestesclimat.fr/conf%C3%A9rence/cambrien-bas-hant%C3%A9
+- Potencia: https://nosgestesclimat.fr/documentation/alimentation
+- Apagar mis dispositivos en espera :
+  https://nosgestesclimat.fr/actions/plus/logement/%C3%A9teindre-appareils
 
 ## Comentarios y contacto
 
@@ -177,11 +177,11 @@ quejas o una solicitud de remisión al Defensor de los Derechos.
 
 Hay varias formas de hacerlo:
 
--   [un formulario de
-    contacto](https://formulaire.defenseurdesdroits.fr/code/afficher.php?ETAPE=accueil_2016);
--   la [lista de los delegados de
-    su](https://www.defenseurdesdroits.fr/office/) región con sus datos
-    de contacto directos;
--   un número de teléfono: 09 69 39 00 00 ;
--   una dirección postal (correo gratuito, sin franqueo): Le Défenseur
-    des droits - Libre réponse 71120 - 75342 Paris CEDEX 07.
+- [un formulario de
+  contacto](https://formulaire.defenseurdesdroits.fr/code/afficher.php?ETAPE=accueil_2016);
+- la [lista de los delegados de
+  su](https://www.defenseurdesdroits.fr/office/) región con sus datos
+  de contacto directos;
+- un número de teléfono: 09 69 39 00 00 ;
+- una dirección postal (correo gratuito, sin franqueo): Le Défenseur
+  des droits - Libre réponse 71120 - 75342 Paris CEDEX 07.

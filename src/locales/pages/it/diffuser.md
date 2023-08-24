@@ -56,10 +56,10 @@ personalizzazione](https://github.com/datagir/nosgestesclimat-site/blob/master/P
 
 I contributi sono gratuiti. Siamo alla ricerca di :
 
--   persone che amano destreggiarsi tra unità fisiche e calcoli di
-    modelli trovando le migliori fonti di dati disponibili
--   sviluppatori e designer per migliorare il sito, il suo design e la
-    sua funzionalità
+- persone che amano destreggiarsi tra unità fisiche e calcoli di
+  modelli trovando le migliori fonti di dati disponibili
+- sviluppatori e designer per migliorare il sito, il suo design e la
+  sua funzionalità
 
 Tutto è su
 [Github](https://github.com/datagir/?q=nosgestesclimat&type=&language=&sort=),

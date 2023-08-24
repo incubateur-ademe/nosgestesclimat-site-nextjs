@@ -6,22 +6,20 @@ const pageWithMenuClassnames = 'flex justify-start'
 const pageWithoutMenuClassnames = ''
 
 export default function PageLayout({
-	children,
-	shouldShowMenu,
+  children,
+  shouldShowMenu,
 }: PropsWithChildren<{ shouldShowMenu?: boolean }>) {
-	return (
-		<>
-			{!shouldShowMenu && <Logo />}
-			<div
-
-			
-				className={
-					shouldShowMenu ? pageWithMenuClassnames : pageWithoutMenuClassnames
-				}
-			>
-				{shouldShowMenu && <SideMenu />}
-				<div className="w-full">{children}</div>
-			</div>
-		</>
-	)
+  return (
+    <>
+      {!shouldShowMenu && <Logo />}
+      <div
+        className={
+          shouldShowMenu ? pageWithMenuClassnames : pageWithoutMenuClassnames
+        }
+      >
+        {shouldShowMenu && <SideMenu />}
+        <div className='w-full'>{children}</div>
+      </div>
+    </>
+  )
 }

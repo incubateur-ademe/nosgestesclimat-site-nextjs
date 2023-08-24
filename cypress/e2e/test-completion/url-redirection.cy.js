@@ -27,34 +27,34 @@ import { clickSkipTutoButton, mainSimulator, walkthroughTest } from '../utils'
 // }
 
 describe('check redirection when an unknow rule is specified for the simulator root rule to use', () => {
-	it("should redirect to 'bilan'", () => {
-		cy.visit('/simulateur/unknown')
-		cy.wait(1000)
-		clickSkipTutoButton()
-		cy.url().should(
-			'includes',
-			Cypress.config().baseUrl + `/simulateur/${mainSimulator}`
-		)
-	})
+  it("should redirect to 'bilan'", () => {
+    cy.visit('/simulateur/unknown')
+    cy.wait(1000)
+    clickSkipTutoButton()
+    cy.url().should(
+      'includes',
+      Cypress.config().baseUrl + `/simulateur/${mainSimulator}`
+    )
+  })
 })
 
 describe('check question redirection from the URL for sub-simulators', () => {
-	it('should redirect to the first question of the sub-simulator /transport/avion', () => {
-		cy.visit('/simulateur/transport/avion')
-		cy.get('[id="id-question-transport.avion.usager"]')
-	})
+  it('should redirect to the first question of the sub-simulator /transport/avion', () => {
+    cy.visit('/simulateur/transport/avion')
+    cy.get('[id="id-question-transport.avion.usager"]')
+  })
 
-	it('should redirect to the first question of the sub-simulator /transport/avion', () => {
-		cy.visit('/simulateur/divers/produits-consommables')
-		cy.get('[id="id-question-divers.produits-consommables.consommation"]')
-	})
+  it('should redirect to the first question of the sub-simulator /transport/avion', () => {
+    cy.visit('/simulateur/divers/produits-consommables')
+    cy.get('[id="id-question-divers.produits-consommables.consommation"]')
+  })
 
-	it('should arrive to the simulation ending page when the last question is answered', () => {
-		cy.visit('/simulateur/transport/avion')
-		cy.get('[id="id-question-transport.avion.usager"]')
-		walkthroughTest({})
-		cy.get('[data-cypress-id="simulation-ending"')
-	})
+  it('should arrive to the simulation ending page when the last question is answered', () => {
+    cy.visit('/simulateur/transport/avion')
+    cy.get('[id="id-question-transport.avion.usager"]')
+    walkthroughTest({})
+    cy.get('[data-cypress-id="simulation-ending"')
+  })
 })
 
 // ============================================================================

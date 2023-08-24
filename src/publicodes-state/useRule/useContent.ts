@@ -5,19 +5,19 @@ import { useMemo } from 'react'
 type Props = {
   dottedName: string
   rule: any
-  evaluation: any
   everyMosaicChildWhoIsReallyInMosaic: string[]
 }
 
-export default function useContent({ dottedName, rule, evaluation }: Props) {
+export default function useContent({ dottedName, rule }: Props) {
   const category = useMemo(() => dottedName.split(' . ')[0], [dottedName])
-
+  console.log(rule)
   const title = useMemo(
     () => rule.rawNode.titre || rule.titre || rule.title, //FFS
     [rule]
   )
   const label = useMemo(() => rule.rawNode.question, [rule])
   const description = useMemo(() => rule.rawNode.description, [rule])
+  const icons = useMemo(() => rule.rawNode['icônes'], [rule])
   const unit = useMemo(() => rule.rawNode['unité'], [rule])
   const suggestions = useMemo(
     () =>
@@ -30,5 +30,5 @@ export default function useContent({ dottedName, rule, evaluation }: Props) {
     [rule]
   )
 
-  return { category, title, label, unit, suggestions, description }
+  return { category, title, label, description, icons, unit, suggestions }
 }

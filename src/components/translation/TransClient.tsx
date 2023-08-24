@@ -5,14 +5,14 @@ import { PropsWithChildren } from 'react'
 import { Trans } from 'react-i18next'
 
 export default function TransClient({
-	children,
-	i18nKey,
+  children,
+  i18nKey,
 }: PropsWithChildren<{ i18nKey?: string }>) {
-	const { t } = useClientTranslation()
+  const { t } = useClientTranslation()
 
-	return (
-		<Trans t={t} i18nKey={i18nKey}>
-			{children}
-		</Trans>
-	)
+  return (
+    <Trans t={t} i18nKey={i18nKey}>
+      {children}
+    </Trans>
+  )
 }

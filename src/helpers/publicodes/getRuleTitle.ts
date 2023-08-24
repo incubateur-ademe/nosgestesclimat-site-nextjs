@@ -1,7 +1,7 @@
 export const getRuleTitle = (rule: {
-	plus: string
-	titre?: string
-	dottedName: string
+  plus: string
+  titre?: string
+  dottedName: string
 }) =>
-	rule.titre ??
-	rule.dottedName.split(' . ')[rule.dottedName.split(' . ').length - 1]
+  rule.titre ??
+  rule.dottedName.split(' . ')[rule.dottedName.split(' . ').length - 1]

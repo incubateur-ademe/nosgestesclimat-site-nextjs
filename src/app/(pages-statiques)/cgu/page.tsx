@@ -10,21 +10,21 @@ import CGUFr from '@/locales/pages/fr/CGU.mdx'
 // import contentIt from '@/locales/pages/it/CGU.md'
 
 export default function CGU() {
-	const locale = useLocale()
+  const locale = useLocale()
 
-	const CGULocalised = getLocalisedMDX({
-		dictionnaries: {
-			fr: CGUFr,
-			'en-US': CGUEn,
-		},
-		locale: locale ?? '',
-	})
+  const CGULocalised = getLocalisedMDX({
+    dictionnaries: {
+      fr: CGUFr,
+      'en-US': CGUEn,
+    },
+    locale: locale ?? '',
+  })
 
-	return (
-		<PageLayout shouldShowMenu>
-			<Main className="max-w-[800px] p-8">
-				<CGULocalised />
-			</Main>
-		</PageLayout>
-	)
+  return (
+    <PageLayout shouldShowMenu>
+      <Main className='max-w-[800px] p-8'>
+        <CGULocalised />
+      </Main>
+    </PageLayout>
+  )
 }

@@ -3,92 +3,92 @@
 import { useMemo } from 'react'
 
 type Props = {
-	dottedName: string
-	engine: any
-	evaluation: any
-	type: string
-	getType: Function
-	questionsOfMosaic: string[]
-	updateSituation: Function
+  dottedName: string
+  engine: any
+  evaluation: any
+  type: string
+  getType: Function
+  questionsOfMosaic: string[]
+  updateSituation: Function
 }
 
 export default function useValue({
-	dottedName,
-	engine,
-	evaluation,
-	type,
-	getType,
-	questionsOfMosaic,
-	updateSituation,
+  dottedName,
+  engine,
+  evaluation,
+  type,
+  getType,
+  questionsOfMosaic,
+  updateSituation,
 }: Props) {
-	const value = useMemo(() => evaluation.nodeValue, [evaluation])
+  const value = useMemo(() => evaluation.nodeValue, [evaluation])
 
-	const displayValue = useMemo(
-		() => checkValueValidity({ value, type }),
-		[value, type],
-	)
+  const displayValue = useMemo(
+    () => checkValueValidity({ value, type }),
+    [value, type]
+  )
 
-	// TODO: Doesn't work well with mosaic
-	const isMissing = useMemo(
-		() => Object.keys(evaluation.missingVariables).length !== 0,
-		[evaluation],
-	)
+  // TODO: Doesn't work well with mosaic
+  const isMissing = useMemo(
+    () => Object.keys(evaluation.missingVariables).length !== 0,
+    [evaluation]
+  )
 
-	// TODO: add return  Promise({validValue: boolean, validRule: boolean, oldTotal: number, newTotal: number})
-	const setValue = async (value: any): Promise<any> => {
-		const { oldTotal, newTotal } = await updateSituation({
-			[dottedName]: checkValueValidity({ value, type }),
-		})
-		return Promise.resolve({ oldTotal, newTotal })
-	}
+  // TODO: add return  Promise({validValue: boolean, validRule: boolean, oldTotal: number, newTotal: number})
+  const setValue = async (value: any): Promise<any> => {
+    const { oldTotal, newTotal } = await updateSituation({
+      [dottedName]: checkValueValidity({ value, type }),
+    })
+    return Promise.resolve({ oldTotal, newTotal })
+  }
 
-	const setDefaultAsValue = async (): Promise<any> => {
-		let situationToUpdate = {}
-		if (type.includes('mosaic')) {
-			situationToUpdate = questionsOfMosaic.reduce(
-				(accumulator, currentValue) => {
-					const rule = engine.getRule(currentValue)
-					const evaluation = engine.evaluate(currentValue)
-					return {
-						...accumulator,
-						[currentValue]: checkValueValidity({
-							value: evaluation.nodeValue,
-							type: getType({ rule, evaluation, dottedName: currentValue }),
-						}),
-					}
-				},
-				{},
-			)
-		} else {
-			situationToUpdate = {
-				[dottedName]: checkValueValidity({ value, type }),
-			}
-		}
+  const setDefaultAsValue = async (): Promise<any> => {
+    let situationToUpdate = {}
+    if (type.includes('mosaic')) {
+      situationToUpdate = questionsOfMosaic.reduce(
+        (accumulator, currentValue) => {
+          const rule = engine.getRule(currentValue)
+          const evaluation = engine.evaluate(currentValue)
+          return {
+            ...accumulator,
+            [currentValue]: checkValueValidity({
+              value: evaluation.nodeValue,
+              type: getType({ rule, evaluation, dottedName: currentValue }),
+            }),
+          }
+        },
+        {}
+      )
+    } else {
+      situationToUpdate = {
+        [dottedName]: checkValueValidity({ value, type }),
+      }
+    }
 
-		const { oldTotal, newTotal } = await updateSituation(situationToUpdate)
-		return Promise.resolve({ oldTotal, newTotal })
-	}
+    const { oldTotal, newTotal } = await updateSituation(situationToUpdate)
+    return Promise.resolve({ oldTotal, newTotal })
+  }
 
-	return { value, displayValue, isMissing, setValue, setDefaultAsValue }
+  return { value, displayValue, isMissing, setValue, setDefaultAsValue }
 }
 // FFS
 const checkValueValidity = ({
-	value,
-	type,
+  value,
+  type,
 }: {
-	value: any
-	type: string
+  value: any
+  type: string
 }): number | string =>
-	type === 'choices'
-		? value === null || value === false || value === 'non'
-			? 'non'
-			: typeof value === 'string'
-			? !value.startsWith("'")
-				? `'${value}'`
-				: value
-			: 'oui'
-		: type === 'mosaic'
-		? 'mosaic'
-		: !value
-		? 0
-		: value
+  type === 'choices'
+    ? value === null || value === false || value === 'non'
+      ? 'non'
+      : typeof value === 'string'
+      ? !value.startsWith("'")
+        ? `'${value}'`
+        : value
+      : 'oui'
+    : type === 'mosaic'
+    ? 'mosaic'
+    : !value
+    ? 0
+    : value

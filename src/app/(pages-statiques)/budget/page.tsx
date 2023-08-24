@@ -11,38 +11,38 @@ import contentFrTop from '@/locales/pages/fr/budgetTop.mdx'
 import SelectYear from './_components/SelectYear'
 
 export default function Budget() {
-	const locale = useLocale()
+  const locale = useLocale()
 
-	const BudgetContentTop = getLocalisedMDX({
-		dictionnaries: {
-			fr: contentFrTop,
-			'en-US': contentEnTop,
-		},
-		locale: locale ?? '',
-	})
+  const BudgetContentTop = getLocalisedMDX({
+    dictionnaries: {
+      fr: contentFrTop,
+      'en-US': contentEnTop,
+    },
+    locale: locale ?? '',
+  })
 
-	const BudgetContentBottom = getLocalisedMDX({
-		dictionnaries: {
-			fr: contentFrBottom,
-			'en-US': contentEnBottom,
-		},
-		locale: locale ?? '',
-	})
+  const BudgetContentBottom = getLocalisedMDX({
+    dictionnaries: {
+      fr: contentFrBottom,
+      'en-US': contentEnBottom,
+    },
+    locale: locale ?? '',
+  })
 
-	return (
-		<PageLayout shouldShowMenu>
-			<Main className="max-w-[800px] p-8">
-				{/*
+  return (
+    <PageLayout shouldShowMenu>
+      <Main className='max-w-[800px] p-8'>
+        {/*
       <Meta
 				title={t('meta.publicodes.Budget.title')}
 				description={t('meta.publicodes.Budget.description')}
 			/>
       */}
 
-				<BudgetContentTop />
-				<SelectYear />
-				<BudgetContentBottom />
-			</Main>
-		</PageLayout>
-	)
+        <BudgetContentTop />
+        <SelectYear />
+        <BudgetContentBottom />
+      </Main>
+    </PageLayout>
+  )
 }

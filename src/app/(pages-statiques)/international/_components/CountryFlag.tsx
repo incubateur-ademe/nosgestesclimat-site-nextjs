@@ -4,32 +4,32 @@ import { use } from 'react'
 import { fetchSupportedRegions } from '../_helpers/fetchSupportedRegions'
 
 export function getFlagImgSrc(inputCode: RegionCode): string | undefined {
-	if (!inputCode) {
-		return undefined
-	}
-	return `https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${inputCode.toLowerCase()}.svg`
+  if (!inputCode) {
+    return undefined
+  }
+  return `https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${inputCode.toLowerCase()}.svg`
 }
 
 export function useFlag(inputCode: RegionCode): string | undefined {
-	const supportedRegions = use(fetchSupportedRegions)
+  const supportedRegions = use(fetchSupportedRegions)
 
-	const code = (supportedRegions?.fr?.drapeau as RegionCode) ?? inputCode
-	return getFlagImgSrc(code)
+  const code = (supportedRegions?.fr?.drapeau as RegionCode) ?? inputCode
+  return getFlagImgSrc(code)
 }
 
 export default function CountryFlag({ code }: { code: string }) {
-	const flagSrc = useFlag(code)
+  const flagSrc = useFlag(code)
 
-	if (!flagSrc) return null
+  if (!flagSrc) return null
 
-	return (
-		<Image
-			src={flagSrc}
-			alt=""
-			aria-hidden="true"
-			className="mr-1 h-4 w-4 align-sub"
-			width={16}
-			height={16}
-		/>
-	)
+  return (
+    <Image
+      src={flagSrc}
+      alt=''
+      aria-hidden='true'
+      className='mr-1 h-4 w-4 align-sub'
+      width={16}
+      height={16}
+    />
+  )
 }

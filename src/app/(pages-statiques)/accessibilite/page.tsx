@@ -10,21 +10,21 @@ import accessibilityFr from '@/locales/pages/fr/accessibility.mdx'
 // import contentIt from '@/locales/pages/it/Accessibility.md'
 
 export default function Accessibility() {
-	const locale = useLocale()
+  const locale = useLocale()
 
-	const AccessibilityLocalised = getLocalisedMDX({
-		dictionnaries: {
-			fr: accessibilityFr,
-			'en-US': accessibilityEn,
-		},
-		locale: locale ?? '',
-	})
+  const AccessibilityLocalised = getLocalisedMDX({
+    dictionnaries: {
+      fr: accessibilityFr,
+      'en-US': accessibilityEn,
+    },
+    locale: locale ?? '',
+  })
 
-	return (
-		<PageLayout shouldShowMenu>
-			<Main className="max-w-[800px] p-8">
-				<AccessibilityLocalised />
-			</Main>
-		</PageLayout>
-	)
+  return (
+    <PageLayout shouldShowMenu>
+      <Main className='max-w-[800px] p-8'>
+        <AccessibilityLocalised />
+      </Main>
+    </PageLayout>
+  )
 }

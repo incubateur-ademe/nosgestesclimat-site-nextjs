@@ -6,21 +6,21 @@ import { getServerPathname } from '@/helpers/getServerPathname'
 import NewsList from './_components/NewsList'
 
 export default async function News() {
-	const { t } = await useServerTranslation()
+  const { t } = await useServerTranslation()
 
-	const pathname = getServerPathname() as unknown as string
+  const pathname = getServerPathname() as unknown as string
 
-	const path = decodeURIComponent(pathname)
+  const path = decodeURIComponent(pathname)
 
-	const isReleasePage = path.length > '/nouveautés/'.length
+  const isReleasePage = path.length > '/nouveautés/'.length
 
-	const title = t('Les nouveautés ✨')
+  const title = t('Les nouveautés ✨')
 
-	return (
-		<Main maxWidth="3xl">
-			<Title data-cypress-id="news-title" title={title} />
-			<p>{t('pages.News.premierParagraphe')}</p>
-			<NewsList />
-		</Main>
-	)
+  return (
+    <Main maxWidth='3xl'>
+      <Title data-cypress-id='news-title' title={title} />
+      <p>{t('pages.News.premierParagraphe')}</p>
+      <NewsList />
+    </Main>
+  )
 }

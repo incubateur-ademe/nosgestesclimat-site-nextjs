@@ -16,32 +16,32 @@ import QuestionsBlock from './QuestionsBlock'
 // import contentIt from '../../locales/pages/it/landing.md'
 
 export default function LandingExplanations() {
-	const { isIframe } = useContext(IframeOptionsContext)
+  const { isIframe } = useContext(IframeOptionsContext)
 
-	const lang = useLocale()
+  const lang = useLocale()
 
-	const LandingContent = getLocalisedMDX({
-		dictionnaries: {
-			fr: LandingContentFr,
-			'en-US': LandingContentEn,
-		},
-		locale: lang || '',
-	})
+  const LandingContent = getLocalisedMDX({
+    dictionnaries: {
+      fr: LandingContentFr,
+      'en-US': LandingContentEn,
+    },
+    locale: lang || '',
+  })
 
-	if (isIframe) return null
+  if (isIframe) return null
 
-	return (
-		<>
-			<div className="bg-primaryLight px-4 py-10">
-				<div className="mx-auto w-full max-w-3xl">
-					<LandingContent />
-				</div>
-			</div>
+  return (
+    <>
+      <div className='bg-primaryLight px-4 py-10'>
+        <div className='mx-auto w-full max-w-3xl'>
+          <LandingContent />
+        </div>
+      </div>
 
-			<OpenSourceBlock>
-				<ListedAdvantages />
-			</OpenSourceBlock>
-			<QuestionsBlock />
-		</>
-	)
+      <OpenSourceBlock>
+        <ListedAdvantages />
+      </OpenSourceBlock>
+      <QuestionsBlock />
+    </>
+  )
 }

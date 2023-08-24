@@ -4,13 +4,13 @@
   question: ¿Por qué me preguntan la edad de mi equipo electrónico?
   question.lock: Pourquoi me demande-t-on l’âge de mes équipements électroniques ?
   réponse: >
-    
+
     Al igual que en el caso de los coches, se hace una depreciación de los productos electrónicos cuya fabricación tiene un impacto muy elevado en el clima (especialmente por la fase de extracción de las materias primas).
 
 
     Por lo tanto, le pedimos la antigüedad del producto para saber el periodo restante a amortizar. Vea la pregunta específica de la depreciación para entender de qué se trata.
   réponse.lock: >
-    
+
     À l’instar de ce qui est fait pour la voiture, un amortissement est réalisé pour les produits électroniques dont la fabrication à un très fort impact sur le climat (notamment à cause de la phase d’extraction des matières premières).
 
 
@@ -23,7 +23,7 @@
   question.lock: Les questions posées ne correspondent pas bien à mon type
     d’alimentation (de saison, poisson, légumes du potager, etc.)
   réponse: >
-    
+
     NGC es, sobre todo, una herramienta diseñada para el público en general. Por eso hemos querido limitar el número de preguntas a los aspectos que sabemos que son los más importantes en nuestra dieta.
 
 
@@ -32,7 +32,7 @@
 
     Le explicamos cómo [aquí](https://github.com/betagouv/ecolab-data/issues/185).
   réponse.lock: >
-    
+
     NGC est, avant tout, un outil pensé pour le grand public. C’est pourquoi nous avons souhaité limiter le nombre de questions aux aspects que nous savons les plus importants de notre alimentation.
 
 
@@ -47,13 +47,13 @@
   question.lock: J’utilise un combustible qui n’est pas renseigné dans l’outil.
     Comment faire ?
   réponse: >
-    
+
     En la actualidad, tendrá que razonar con el combustible más parecido al que utiliza. NGC ha decidido centrarse en los tipos de combustible más utilizados en Francia.
 
 
     Sin embargo, como parte del desarrollo continuo de NGC, es posible que se añadan algunos tipos de combustible en el futuro.
   réponse.lock: >
-    
+
     A l’heure actuelle, il vous faudra raisonner avec le combustible qui s’approche le plus possible du combustible que vous utilisez. NGC fait le choix de se focaliser sur les types de combustible les plus utilisés en France.
 
 
@@ -64,13 +64,13 @@
   question: ¿Por qué tampoco preguntamos por los alimentos locales?
   question.lock: Pourquoi ne pose-t-on pas non plus de question sur l’alimentation locale ?
   réponse: >
-    
+
     Los alimentos locales nos permiten reducir las distancias de transporte de los productos que consumimos, al tiempo que apoyamos a los agricultores de nuestras regiones.
 
 
     Sin embargo, la cuestión del origen de nuestros productos y los impactos asociados no pueden resumirse en la comparación entre la corta y la larga distancia. Los efectos de la escala, la centralización de los productos, la eficiencia del transporte utilizado y muchos otros parámetros complican la cuestión desde el punto de vista de la contabilidad del carbono. En cuanto a la posibilidad de informar sobre el origen de los productos que consumimos, supondría añadir un montón de preguntas, desviando a la UCS de su objetivo de público general.
   réponse.lock: >
-    
+
     L’alimentation locale permet en effet de réduire les distances de transports des produits que nous consommons tout en soutenant les agriculteurs de nos régions.
 
 
@@ -81,13 +81,13 @@
   question: Entiendo el objetivo de las 2 toneladas, pero me cuesta imaginarlo.
   question.lock: J'ai compris l'objectif de 2 tonnes, mais j'ai beaucoup de mal à l'imaginer.
   réponse: >
-    
+
     El ejercicio de la huella de carbono también puede provocar desánimo porque contamos fríamente las emisiones del estilo de vida que conocemos, sin aprehender en este momento todas las posibilidades de una vida baja en carbono.
 
 
     Pasear por la naturaleza, tocar música, montar en bicicleta, navegar, aprovechar el tren por todo el país, pasar tiempo con nuestros seres queridos, salir de fiesta, leer, charlar, cultivar el jardín, aprender a cocinar de otra manera... Una vida con bajas emisiones de carbono está llena de experiencias alegres, que no necesariamente se incluyen en una huella de carbono individual, pero que estarán en el centro de los estilos de vida que estamos inventando en este mismo momento.
   réponse.lock: >
-    
+
     L'exercice du bilan carbone peut aussi provoquer un découragement car nous comptons froidement les émissions du mode de vie qu'on connait, sans appréhender à ce stade toutes les possibilités d'une vie bas carbone.
 
 
@@ -100,7 +100,7 @@
   question.lock: Oui mais quand même, ce poste représente parfois plus que
     certains de mes impacts…
   réponse: >
-    
+
     De hecho, puede ser frustrante que se cuenten impactos sobre los que no tenemos ninguna influencia directa.
 
 
@@ -112,7 +112,7 @@
 
     Este es el objetivo de ¡Nos Gestes Climat! sensibilizar y concienciar a la gente sobre estos temas
   réponse.lock: >
-    
+
     En effet, il peut être frustrant de se voir comptabiliser des impacts pour lesquels nous n’avons aucun levier d’action direct.
 
 
@@ -130,7 +130,7 @@
     al respecto?
   question.lock: Je consomme bio mais je ne vois pas de questions spécifiques à ce sujet ?
   réponse: >
-    
+
     **Nota: comer ecológico no reduce por sí mismo la huella de carbono
 
 
@@ -142,7 +142,7 @@
 
     Desde la contaminación del suelo y de las aguas subterráneas, pasando por la pérdida de biodiversidad, hasta la preservación de la salud de los agricultores, los alimentos ecológicos reducen considerablemente muchos otros impactos ambientales, al tiempo que reducen los riesgos para nuestra salud. Aquí estamos tocando temas medioambientales en general, y debemos dar un paso atrás en nuestro cálculo centrado al 100% en los gases de efecto invernadero.
   réponse.lock: >
-    
+
     **Attention : manger bio ne réduit pas, en soi, l’empreinte carbone.**
 
 
@@ -156,12 +156,13 @@
 - catégorie: digital
   catégorie.lock: numérique
   id: impact-numérique
-  question: He oído que lo digital tiene un gran impacto en el clima, el simulador
+  question:
+    He oído que lo digital tiene un gran impacto en el clima, el simulador
     parece decirme lo contrario.
   question.lock: J'ai entendu dire que le numérique avait un gros impact sur le
     climat, le simulateur semble me dire le contraire…
   réponse: >
-    
+
     La evaluación del impacto de la tecnología digital, y más concretamente de los contenidos "desmaterializados" (streaming, videoconferencia, almacenamiento en la nube, envío de correos electrónicos, etc.) sigue siendo objeto de trabajo entre los agentes técnicos e institucionales.
 
 
@@ -173,7 +174,7 @@
 
     Y si quiere ayudarnos a mejorar estas reflexiones, por favor, contribuya. Le explicamos cómo [aquí](https://github.com/betagouv/ecolab-data/issues/185).
   réponse.lock: >
-    
+
     L’évaluation des impacts du numérique et plus particulièrement des contenus « dématérialisés » (streaming, visio-conférence, stockage sur un cloud, envoi de mail, etc.) est encore un sujet de travail parmi les acteurs techniques et institutionnels.
 
 
@@ -192,7 +193,7 @@
   question.lock: C’est donc pour éviter que cela soit défavorable à notre
     empreinte carbone que vous ne posez pas la question du bio ?
   réponse: >
-    
+
     No.
 
 
@@ -201,7 +202,7 @@
 
     El tema principal de este punto es el consumo de carne y productos animales (leche, queso, etc.) que representan, entre ambos, cerca del 75% de la huella de carbono de la dieta del francés medio. Por lo tanto, saber que tu nabo es ecológico o que la carne de vacuno que comes se ha criado con alimentos ecológicos es algo secundario, ya que lo que está en juego es la reducción del consumo de carne, sobre todo de carne roja.
   réponse.lock: >
-    
+
     Non.
 
 
@@ -255,7 +256,8 @@
   id: ges
   question: ¿Cuál es la huella de carbono? ¿Cómo es que lo que como o mi cubo de
     basura emite gases de efecto invernadero (GEI)?
-  question.lock: Qu'est-ce que l'empreinte carbone ? Comment se fait-il que ce que
+  question.lock:
+    Qu'est-ce que l'empreinte carbone ? Comment se fait-il que ce que
     je mange ou que ma poubelle émettent des gaz à effet de serre (GES) ?
   réponse: >
     Todo lo que consumimos, usamos y tiramos requiere material (que ha
@@ -292,7 +294,8 @@
 - catégorie: consumo
   catégorie.lock: consommation
   id: effet-qualité
-  question: Suelo comprar productos duraderos y respetuosos con el medio ambiente,
+  question:
+    Suelo comprar productos duraderos y respetuosos con el medio ambiente,
     pero la herramienta no parece marcar la diferencia. ¿Por qué?
   question.lock: J’achète souvent des biens durables et écologiques mais l’outil
     ne semble pas faire la différence. Comment cela se fait-il ?
@@ -339,7 +342,7 @@
   question.lock: À la fin de mon calcul il y a un poste « service public »,
     qu’est-ce que c’est ?
   réponse: >
-    
+
     Esta partida representa la huella de carbono de los servicios públicos franceses a escala individual. Es decir, el impacto de los servicios se distribuye entre los 66 millones de franceses.
 
 
@@ -351,7 +354,7 @@
 
     En segundo lugar, intentar contabilizar cuánto de un servicio público utiliza un individuo "de verdad" no es posible actualmente con los datos que tenemos sobre la huella de este sector.
   réponse.lock: >
-    
+
     Ce poste représente l’empreinte carbone des services publics français ramené à une échelle individuelle. C’est-à-dire que l’on répartit l’impact des services entre les 66 millions de français.
 
 
@@ -392,7 +395,7 @@
 
     [discutirlo](https://github.com/datagir/nosgestesclimat-site/issues/71).
   réponse.lock: >
-    
+
     Pour l'instant réservé aux français métropolitains, nous sommes en train d'ajouter les territoires d'outre-mer, puis les pays francophones. Le chantier de traduction est également lancé, en anglais d'abord, ce qui nous permettra d'ajouter tous les pays européens.
 
 
@@ -406,7 +409,7 @@
   question: ¿Por qué no tener en cuenta el ahorro individual?
   question.lock: Pourquoi ne pas prendre en compte l'épargne individuelle ?
   réponse: >
-    
+
     Las emisiones de los combustibles fósiles financiados por los bancos son contabilizadas por quienes los utilizan.
 
 
@@ -417,7 +420,7 @@
 
     Nos resultaría muy difícil, dados los datos actuales, incluir en el modelo una cuota de responsabilidad por la huella de la riqueza personal, sin que se produzca una doble contabilización.
   réponse.lock: >
-    
+
     Les émissions des énergies fossiles financées par les banques sont comptabilisées pour ceux qui les utilisent.
 
 
@@ -493,7 +496,7 @@
   question.lock: Je n'ai pas de voiture mais on me demande quand même toutes ses
     informations …
   réponse: >
-    
+
     En cuanto introduces un kilometraje del coche superior a 0, la herramienta intenta "aplicarte" una parte de la depreciación de la construcción del coche que estás utilizando.
 
 
@@ -514,7 +517,7 @@
 
     **De media, un coche está parado el 95% del tiempo, así que es buena idea compartirlo
   réponse.lock: >
-    
+
     Dès que vous renseignez un kilométrage parcouru en voiture plus grand que 0, l’outil cherche à vous « appliquer » une part de l'amortissement de la construction de la voiture que vous utilisez.
 
 
@@ -541,13 +544,13 @@
   question.lock: Pourquoi est-ce que je ne peux pas renseigner le type de
     carburant que j’utilise ?
   réponse: >
-    
+
     NGC opta por no preguntar por el tipo de combustible, simplemente porque **no hay mucha diferencia entre ellos.** Ya sea gasolina, gasóleo o GLP, los impactos son muy similares. Por eso nos centramos en los aspectos más importantes (número de kilómetros recorridos, número de ocupantes, uso del transporte público, etc.).
 
 
     A este respecto, no dude en consultar este [simulador] (https://ecolab.ademe.fr/transport) para comparar el impacto climático de diferentes modos de transporte para un mismo trayecto.
   réponse.lock: >
-    
+
     NGC fait le choix de ne pas poser de question sur le type de carburant, tout simplement car **il n’y a pas beaucoup de différence entre eux.** Qu’il s’agisse d’essence, de gazole ou de GPL, les impacts sont très similaires. Nous nous concentrons donc sur les enjeux les plus importants (nombre de km parcourus, nombre d’occupants, utilisation des transports en commun, etc.).
 
 
@@ -558,7 +561,7 @@
   question: ¿Tengo que informar de mis viajes de negocios?
   question.lock: Dois-je renseigner mes déplacements pro ?
   réponse: >
-    
+
     No.
 
 
@@ -573,7 +576,7 @@
 
     Sin embargo, la realidad es a menudo muy diferente y no podemos culpar a aquellos cuya movilidad diaria se centra en el coche porque están lejos de su lugar de trabajo. Aunque se puedan cuestionar algunas opciones, muchos de nosotros estamos, de hecho, obligados a utilizar el coche individual, por falta de alternativas serias disponibles (transporte público, teletrabajo, uso compartido del coche, etc.).
   réponse.lock: >
-    
+
     Non.
 
 
@@ -595,7 +598,7 @@
   question.lock: Je suis raccordé au réseau de chaleur de ma collectivité mais
     cette option n’est pas proposée par l’outil…
   réponse: >
-    
+
     En efecto, NGC no permite informar si está conectado a una red de calor, por varias razones.
 
 
@@ -607,7 +610,7 @@
 
     Tampoco hemos optado por considerar una red de calefacción "media", dado que su impacto en términos de gases de efecto invernadero puede variar mucho en función de la proporción de hidrocarburos utilizados en su funcionamiento.
   réponse.lock: >
-    
+
     En effet, NGC ne permet pas de renseigner si on est raccordé à un réseau de chaleur, et ce pour plusieurs raisons.
 
 
@@ -626,7 +629,7 @@
   question.lock: Mon logement est alimenté en électricité verte, pourquoi ne
     puis-je pas le prendre en compte ?
   réponse: >
-    
+
     A menos que disponga de su propia fuente de electricidad (paneles fotovoltaicos), la llamada electricidad "verde" suministrada por los productores de energías renovables no puede llegarle sin la existencia de la red eléctrica francesa, una red única compartida por todos
 
 
@@ -638,7 +641,7 @@
 
     Sin embargo, suscribir un [contrato de electricidad "verde"](https://agirpourlatransition.ademe.fr/particuliers/vertvolt) es una buena manera de estar en fase con los propios valores, de participar en la creación de puestos de trabajo no deslocalizables y de enviar un mensaje a los responsables políticos a favor del desarrollo de las energías renovables.
   réponse.lock: >
-    
+
     À moins de posséder sa propre source d’électricité (panneaux photovoltaïque), l’électricité dite « verte » fournie par les producteurs d’énergie renouvelable ne peut vous être acheminée sans l’existence du **réseau électrique français, réseau unique et partagé par tous.**
 
 
