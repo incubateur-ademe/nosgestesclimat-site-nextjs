@@ -55,6 +55,10 @@ h6 {
   @apply text-primaryDark;
 }
 
+h1 {
+  @apply text-2xl;
+}
+
 img {
   max-width: 100%;
 }

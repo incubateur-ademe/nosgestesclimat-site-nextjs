@@ -13,10 +13,9 @@ export default function PageLayout({
     <>
       {!shouldShowMenu && <Logo />}
       <div
-        className={
+        className={`m-auto max-w-6xl mt-4 ${
           shouldShowMenu ? pageWithMenuClassnames : pageWithoutMenuClassnames
-        }
-      >
+        }`}>
         {shouldShowMenu && <SideMenu />}
         <div className='w-full'>{children}</div>
       </div>

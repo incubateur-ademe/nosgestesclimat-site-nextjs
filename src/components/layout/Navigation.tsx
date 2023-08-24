@@ -50,8 +50,7 @@ export default function Navigation() {
   return (
     <nav
       id='mainNavigation'
-      className='my-2 flex flex-col justify-center outline-none md:sticky md:top-0 md:my-0 md:h-screen md:w-[14rem] md:shrink-0 md:justify-start md:overflow-hidden md:border-0 md:border-r-[1px] md:border-solid md:border-grey-200'
-    >
+      className='mr-4 my-2 flex flex-col justify-center outline-none md:sticky md:top-0 md:my-0 md:h-screen md:w-[14rem] md:shrink-0 md:justify-start md:overflow-hidden md:border-0 md:border-r-[1px] md:border-solid md:border-grey-200'>
       <Logo size='small' className='hidden md:block' />
 
       <div className='z-100 fixed bottom-0 left-0 m-0 w-full border-0 border-t-[1px] border-solid border-grey-200 md:static md:z-auto md:mt-4 md:w-auto md:border-none'>
@@ -60,8 +59,7 @@ export default function Navigation() {
             <ButtonLink
               className={buttonClassNames}
               color='text'
-              href='/simulateur/bilan'
-            >
+              href='/simulateur/bilan'>
               <ProgressCircle className='md:mr-4' />
               <span className='font-normal text-primaryDark'>
                 <TransClient>Le test</TransClient>
@@ -74,8 +72,7 @@ export default function Navigation() {
               color='text'
               href='/actions'
               aria-disabled={false /* enquête && !testCompleted */}
-              className={buttonClassNames}
-            >
+              className={buttonClassNames}>
               <ActionsInteractiveIcon className='md:mr-4' />
 
               <span className='font-normal text-primaryDark'>
@@ -89,8 +86,7 @@ export default function Navigation() {
               <ButtonLink
                 className={buttonClassNames}
                 color='text'
-                href='/profil'
-              >
+                href='/profil'>
                 <div className='relative'>
                   <Image
                     src={profileImage}
@@ -119,8 +115,7 @@ export default function Navigation() {
               <ButtonLink
                 className={buttonClassNames}
                 color='text'
-                href='/groupes'
-              >
+                href='/groupes'>
                 <Image
                   src={groupImage}
                   alt=''
@@ -145,8 +140,7 @@ export default function Navigation() {
                   'https://github.com/datagir/nosgestesclimat/pull/' +
                   pullRequestNumber
                 }
-                className={buttonClassNames}
-              >
+                className={buttonClassNames}>
                 <Image
                   src={openmojiURL('github')}
                   alt=''
@@ -169,8 +163,7 @@ export default function Navigation() {
 							dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number: null })
               */
                     // reset PR number
-                  }}
-                >
+                  }}>
                   <Image
                     className='w-6'
                     src={closePlain}

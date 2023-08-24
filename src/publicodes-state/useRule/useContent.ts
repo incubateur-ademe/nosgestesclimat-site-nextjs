@@ -10,7 +10,7 @@ type Props = {
 
 export default function useContent({ dottedName, rule }: Props) {
   const category = useMemo(() => dottedName.split(' . ')[0], [dottedName])
-  console.log(rule)
+
   const title = useMemo(
     () => rule.rawNode.titre || rule.titre || rule.title, //FFS
     [rule]
