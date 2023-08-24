@@ -42,7 +42,8 @@ export default function Footer() {
 
         <InlineLink
           className='flex items-center justify-center'
-          href={'/documentation'}>
+          href={'/documentation'}
+        >
           <TransServer>Documentation</TransServer>
         </InlineLink>
 
