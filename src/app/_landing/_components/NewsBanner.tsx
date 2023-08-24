@@ -16,8 +16,10 @@ export const determinant = (word: string) =>
   /^[aeiouy]/i.exec(word) ? 'd’' : 'de '
 
 export default function NewsBanner() {
+  const isServer = typeof window === 'undefined'
+
   const [lastViewedRelease, setLastViewedRelease] = useState(
-    localStorage.getItem(localStorageKey)
+    !isServer ? localStorage.getItem(localStorageKey) : ''
   )
 
   const { t, i18n } = useClientTranslation()
@@ -26,16 +28,14 @@ export default function NewsBanner() {
   const releases = sortReleases(currentLangInfos.releases)
   const lastRelease = releases && releases[0]
 
-  console.log({ lastRelease, lastViewedRelease })
-
   const handleUpdateViewedRelease = () => {
-    localStorage.setItem(localStorageKey, lastRelease.name)
+    window.localStorage.setItem(localStorageKey, lastRelease.name)
     setLastViewedRelease(lastRelease.name)
   }
 
   useEffect(() => {
     if (!lastViewedRelease) {
-      localStorage.setItem(localStorageKey, lastRelease.name)
+      window.localStorage.setItem(localStorageKey, lastRelease.name)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
