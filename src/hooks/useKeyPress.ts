@@ -5,17 +5,17 @@ import { useEffect } from 'react'
  * @param {function} action - the action to perform on key press
  */
 export default function useKeypress(
-	key: string,
-	control: boolean,
-	action: Function,
-	eventType = 'keyup',
-	hookConditions
+  key: string,
+  control: boolean,
+  action: Function,
+  eventType = 'keyup',
+  hookConditions
 ) {
-	useEffect(() => {
-		function onKeyup(e) {
-			if (e.key === key && (!control || e.ctrlKey)) action(e)
-		}
-		window.addEventListener(eventType, onKeyup)
-		return () => window.removeEventListener(eventType, onKeyup)
-	}, hookConditions)
+  useEffect(() => {
+    function onKeyup(e) {
+      if (e.key === key && (!control || e.ctrlKey)) action(e)
+    }
+    window.addEventListener(eventType, onKeyup)
+    return () => window.removeEventListener(eventType, onKeyup)
+  }, hookConditions)
 }

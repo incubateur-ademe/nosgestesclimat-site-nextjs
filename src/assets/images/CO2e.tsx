@@ -25,7 +25,8 @@ function SvgCo2E(props) {
           y={48.242}
           fontSize={10.853}
           fontFamily='Ubuntu'
-          strokeWidth={0.543}>
+          strokeWidth={0.543}
+        >
           <tspan x={22.572} y={48.242} fontWeight={700}>
             {'CO\u2082e'}
           </tspan>

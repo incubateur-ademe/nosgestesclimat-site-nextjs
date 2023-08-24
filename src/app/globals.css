@@ -66,6 +66,10 @@ strong {
   line-height: 1.5;
 }
 
+sub {
+  line-height: 0;
+}
+
 html[data-useragent*='MSIE'] #outdated-browser,
 html[data-useragent*='Safari'][data-useragent*='Version/8'] #outdated-browser,
 html[data-useragent*='Safari'][data-useragent*='Version/7'] #outdated-browser,
