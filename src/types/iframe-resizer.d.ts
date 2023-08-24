@@ -1,3 +1,3 @@
 interface Window {
-	parentIFrame?: any
+  parentIFrame?: any
 }

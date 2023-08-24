@@ -98,4 +98,3 @@ tramite un CDN: nonostante la sede in California, il sito sarà servito
 ## Termini e condizioni d'uso
 
 Sono disponibili in [questa pagina](/cgu).
-

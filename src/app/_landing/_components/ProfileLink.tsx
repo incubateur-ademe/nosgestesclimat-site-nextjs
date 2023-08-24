@@ -8,29 +8,29 @@ import { useClientTranslation } from '@/locales/client'
 import Image from 'next/image'
 
 export default function ProfileLink() {
-	// const { hasData } = useProfileData()
-	const { t } = useClientTranslation()
+  // const { hasData } = useProfileData()
+  const { t } = useClientTranslation()
 
-	/*
+  /*
 	if (!hasData) {
 		return null
 	}
 	*/
 
-	return (
-		<Appear delay={1}>
-			<div className="md:flex md:justify-center">
-				<InlineLink
-					href="/profil"
-					title={t('Page profil')}
-					className="w-[18rem] rounded-sm flex items-center"
-				>
-					<Image alt="" src={profileIcon} className="w-6 h-auto" />
-					<span className="ml-2">
-						<TransClient>Voir le détail de ma simulation</TransClient>
-					</span>
-				</InlineLink>
-			</div>
-		</Appear>
-	)
+  return (
+    <Appear delay={1}>
+      <div className='md:flex md:justify-center'>
+        <InlineLink
+          href='/profil'
+          title={t('Page profil')}
+          className='w-[18rem] rounded-sm flex items-center'
+        >
+          <Image alt='' src={profileIcon} className='w-6 h-auto' />
+          <span className='ml-2'>
+            <TransClient>Voir le détail de ma simulation</TransClient>
+          </span>
+        </InlineLink>
+      </div>
+    </Appear>
+  )
 }

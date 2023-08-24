@@ -266,7 +266,8 @@
 - catégorie: alimentazione
   catégorie.lock: alimentation
   id: bio-2
-  question: Quindi è per evitare che questo sia dannoso per la nostra impronta di
+  question:
+    Quindi è per evitare che questo sia dannoso per la nostra impronta di
     carbonio che non si pone la domanda del biologico?
   question.lock: C’est donc pour éviter que cela soit défavorable à notre
     empreinte carbone que vous ne posez pas la question du bio ?
@@ -531,7 +532,8 @@
 - catégorie: generale
   catégorie.lock: général
   id: déprime
-  question: Capisco l'obiettivo delle 2 tonnellate, ma lo trovo molto difficile da
+  question:
+    Capisco l'obiettivo delle 2 tonnellate, ma lo trovo molto difficile da
     immaginare.
   question.lock: J'ai compris l'objectif de 2 tonnes, mais j'ai beaucoup de mal à l'imaginer.
   réponse: >
@@ -628,7 +630,8 @@
 - catégorie: consumo
   catégorie.lock: consommation
   id: effet-qualité
-  question: Acquisto spesso prodotti sostenibili ed ecologici, ma lo strumento non
+  question:
+    Acquisto spesso prodotti sostenibili ed ecologici, ma lo strumento non
     sembra fare la differenza. Perché?
   question.lock: J’achète souvent des biens durables et écologiques mais l’outil
     ne semble pas faire la différence. Comment cela se fait-il ?
@@ -983,7 +986,8 @@
   id: ges
   question: Qual è l'impronta di carbonio? Perché ciò che mangio o la mia
     spazzatura emettono gas a effetto serra (GHG)?
-  question.lock: Qu'est-ce que l'empreinte carbone ? Comment se fait-il que ce que
+  question.lock:
+    Qu'est-ce que l'empreinte carbone ? Comment se fait-il que ce que
     je mange ou que ma poubelle émettent des gaz à effet de serre (GES) ?
   réponse: >
     Tutto ciò che consumiamo, usiamo o gettiamo via ha richiesto materiale

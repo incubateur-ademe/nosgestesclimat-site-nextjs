@@ -4,30 +4,20 @@ type Props = {
   engine: any
   defaultSituation?: any
   externalSituation: any
-  setExternalSituation: Function
+  updateExternalSituation: Function
 }
 export default function useSituation({
   engine,
   defaultSituation = {},
   externalSituation,
-  setExternalSituation,
+  updateExternalSituation,
 }: Props) {
-  const [internalsituation, setInternalSituation] = useState(defaultSituation)
-
-  const [localSituation, setLocalSituation] =
-    externalSituation && setExternalSituation
-      ? [externalSituation, setExternalSituation]
-      : [internalsituation, setInternalSituation]
-
   const [situation, setSituation] = useState(defaultSituation)
 
   const updateSituation = (situationToAdd: any) => {
     console.log('update situation', situationToAdd)
     const oldTotal = engine.evaluate('bilan').nodeValue
-    setLocalSituation({
-      ...localSituation,
-      ...situationToAdd,
-    })
+    updateExternalSituation(situationToAdd)
 
     // TODO: this is shit
     return new Promise((resolve) => {
@@ -39,10 +29,10 @@ export default function useSituation({
   }
 
   useEffect(() => {
-    console.log('set situation', localSituation)
-    engine.setSituation(localSituation)
-    setSituation(localSituation)
-  }, [localSituation, engine])
+    console.log('set situation', externalSituation)
+    engine.setSituation(externalSituation)
+    setSituation(externalSituation)
+  }, [externalSituation, engine])
 
   return {
     situation,

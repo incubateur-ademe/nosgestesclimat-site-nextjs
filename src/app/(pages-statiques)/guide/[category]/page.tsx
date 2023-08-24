@@ -10,53 +10,53 @@ import { use } from 'react'
 import { getCategoryContent } from '../_helpers/getCategoryContent'
 
 export default function GuideAlimentation() {
-	const documentationData: { [key: string]: string } = use(
-		handleFetchDocumentation,
-	)
+  const documentationData: { [key: string]: string } = use(
+    handleFetchDocumentation
+  )
 
-	const { category } = useParams()
+  const { category } = useParams()
 
-	const Content = getCategoryContent(category as string)
+  const Content = getCategoryContent(category as string)
 
-	if (!Content) return null
+  if (!Content) return null
 
-	const actionsPlus = Object.entries(documentationData)
-		.filter(([key]) => key.startsWith('actions-plus/'))
-		.map(([key, value]) => ({
-			plus: value,
-			dottedName: key.replace('actions-plus/', ''),
-		}))
+  const actionsPlus = Object.entries(documentationData)
+    .filter(([key]) => key.startsWith('actions-plus/'))
+    .map(([key, value]) => ({
+      plus: value,
+      dottedName: key.replace('actions-plus/', ''),
+    }))
 
-	const relatedActions = actionsPlus.filter(
-		(action) => category === action.dottedName.split(' . ')[0],
-	)
+  const relatedActions = actionsPlus.filter(
+    (action) => category === action.dottedName.split(' . ')[0]
+  )
 
-	return (
-		<div className="mx-auto my-4 flex flex-col items-start justify-center">
-			<ButtonLink color="text" href="/guide">
-				<span className="mr-2 inline-block">◀</span>
-				<TransClient>Retour</TransClient>
-			</ButtonLink>
+  return (
+    <div className='mx-auto my-4 flex flex-col items-start justify-center'>
+      <ButtonLink color='text' href='/guide'>
+        <span className='mr-2 inline-block'>◀</span>
+        <TransClient>Retour</TransClient>
+      </ButtonLink>
 
-			<div>
-				<Content />
+      <div>
+        <Content />
 
-				<h2>
-					<TransClient>Pour aller plus loin</TransClient>:
-				</h2>
-				<div>
-					{relatedActions.map((action) => (
-						<ButtonLink
-							key={action.dottedName}
-							color="secondary"
-							size="sm"
-							href={'/actions/plus/' + utils.encodeRuleName(action.dottedName)}
-						>
-							{getRuleTitle(action)}
-						</ButtonLink>
-					))}
-				</div>
-			</div>
-		</div>
-	)
+        <h2>
+          <TransClient>Pour aller plus loin</TransClient>:
+        </h2>
+        <div>
+          {relatedActions.map((action) => (
+            <ButtonLink
+              key={action.dottedName}
+              color='secondary'
+              size='sm'
+              href={'/actions/plus/' + utils.encodeRuleName(action.dottedName)}
+            >
+              {getRuleTitle(action)}
+            </ButtonLink>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
 }

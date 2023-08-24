@@ -2,36 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number'] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
+  }
+}
+
 :root {
-	--foreground-rgb: 0, 0, 0;
-	--background-start-rgb: 214, 219, 220;
-	--background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-		--foreground-rgb: 255, 255, 255;
-		--background-start-rgb: 0, 0, 0;
-		--background-end-rgb: 0, 0, 0;
-	}
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-	direction: ltr;
+  direction: ltr;
 }
 
 html,
 body {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
+  color: #32337b;
 }
 
 a {
-	@apply inline-block text-primary underline transition-colors hover:!text-primaryDark;
+  @apply inline-block text-primary underline transition-colors hover:!text-primaryDark;
 }
 
 h1,
@@ -40,205 +51,209 @@ h3,
 h4,
 h5,
 h6 {
-	@apply font-bold;
-	@apply text-primaryDark;
+  @apply font-bold;
+  @apply text-primaryDark;
 }
 
 img {
-	max-width: 100%;
+  max-width: 100%;
 }
 
 a,
 p,
 span,
 strong {
-	line-height: 1.5;
+  line-height: 1.5;
+}
+
+sub {
+  line-height: 0;
 }
 
 html[data-useragent*='MSIE'] #outdated-browser,
 html[data-useragent*='Safari'][data-useragent*='Version/8'] #outdated-browser,
 html[data-useragent*='Safari'][data-useragent*='Version/7'] #outdated-browser,
 html[data-useragent*='Trident'] #outdated-browser {
-	display: block !important;
+  display: block !important;
 }
 
 html[data-useragent*='MSIE'] #js,
 html[data-useragent*='Safari'][data-useragent*='Version/8'] #js,
 html[data-useragent*='Safari'][data-useragent*='Version/7'] #js,
 html[data-useragent*='Trident'] #js {
-	display: none !important;
+  display: none !important;
 }
 
 /*
 	Animated illustration
 */
 .landing-animated-illustration > svg {
-	max-width: 32rem;
-	height: auto;
-	margin: 1rem auto;
-	border-radius: 0.8rem;
-	width: 95%;
+  max-width: 32rem;
+  height: auto;
+  margin: 1rem auto;
+  border-radius: 0.8rem;
+  width: 95%;
 }
 
 .landing-animated-illustration--small > svg {
-	max-width: 15rem;
+  max-width: 15rem;
 }
 
 .prefix__avion {
-	animation: traversée 90s infinite;
-	animation-timing-function: linear;
+  animation: traversée 90s infinite;
+  animation-timing-function: linear;
 }
 
 @keyframes traversée {
-	from {
-		transform: translateX(0%);
-	}
-	to {
-		transform: translateX(100%);
-	}
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 
 .prefix__fenetres rect:nth-child(3) {
-	animation: jour-nuit 60s infinite;
-	animation-delay: 1s;
-	animation-timing-function: steps(5, end);
+  animation: jour-nuit 60s infinite;
+  animation-delay: 1s;
+  animation-timing-function: steps(5, end);
 }
 
 .prefix__fenetres rect:nth-child(5) {
-	animation: jour-nuit 60s infinite;
-	animation-delay: 3s;
-	animation-timing-function: steps(5, end);
+  animation: jour-nuit 60s infinite;
+  animation-delay: 3s;
+  animation-timing-function: steps(5, end);
 }
 
 .prefix__fenetres rect:nth-child(10) {
-	animation: jour-nuit 60s infinite;
-	animation-delay: 5s;
-	animation-timing-function: steps(5, end);
+  animation: jour-nuit 60s infinite;
+  animation-delay: 5s;
+  animation-timing-function: steps(5, end);
 }
 
 @keyframes jour-nuit {
-	0% {
-		opacity: 0;
-	}
-	20% {
-		opacity: 1;
-	}
-	40% {
-		opacity: 0;
-	}
-	60% {
-		opacity: 1;
-	}
-	80% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .landing-animated-illustration--cycling .prefix__cycliste {
-	animation: traversée-inversée 45s infinite; /*, saute linear 1s infinite; Pas possible de combiner les deux, à cause du transform:*/
+  animation: traversée-inversée 45s infinite; /*, saute linear 1s infinite; Pas possible de combiner les deux, à cause du transform:*/
 }
 .landing-animated-illustration--cycling .prefix__velo {
-	animation: traversée-inversée 45s infinite;
+  animation: traversée-inversée 45s infinite;
 }
 @keyframes saute {
-	from {
-		transform: translateY(0%);
-	}
-	to {
-		transform: translateY(5%);
-	}
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(5%);
+  }
 }
 @keyframes traversée-inversée {
-	from {
-		transform: translateX(0%);
-	}
-	to {
-		transform: translateX(-100%);
-	}
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 /*
 	RegionGrid
 */
 .region-grid {
-	grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
 }
 @media (max-width: 400px) {
-	.region-grid {
-		grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
-	}
+  .region-grid {
+    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  }
 }
 
 blockquote {
-	@apply bg-primaryLight;
-	@apply rounded-md;
-	padding: 0.25rem 1rem;
-	margin: 1rem 0;
-	@apply text-primaryDark;
+  @apply bg-primaryLight;
+  @apply rounded-md;
+  padding: 0.25rem 1rem;
+  margin: 1rem 0;
+  @apply text-primaryDark;
 }
 .news-page ul {
-	padding-left: 1rem;
-	list-style: '› ';
+  padding-left: 1rem;
+  list-style: '› ';
 }
 
 .news-page ul li {
-	margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 /*
 	Gamecard
 */
 .game-card-1 {
-	@apply fill-primary;
-	fill-opacity: 0.996078;
-	fill-rule: 'evenodd';
-	@apply stroke-primaryDark;
-	stroke-width: 7.2062;
-	stroke-linecap: 'round';
-	stroke-linejoin: 'round';
-	stroke-miterlimit: 19.2;
-	stroke-dasharray: 'none';
-	stroke-opacity: 1;
+  @apply fill-primary;
+  fill-opacity: 0.996078;
+  fill-rule: 'evenodd';
+  @apply stroke-primaryDark;
+  stroke-width: 7.2062;
+  stroke-linecap: 'round';
+  stroke-linejoin: 'round';
+  stroke-miterlimit: 19.2;
+  stroke-dasharray: 'none';
+  stroke-opacity: 1;
 }
 
 .game-card-2 {
-	@apply fill-primary;
-	fill-opacity: 0.996078;
-	fill-rule: 'evenodd';
-	@apply stroke-primaryDark;
-	stroke-width: 7.2062;
-	stroke-linecap: 'round';
-	stroke-linejoin: 'round';
-	stroke-miterlimit: 19.2;
-	stroke-dasharray: 'none';
-	stroke-opacity: 1;
+  @apply fill-primary;
+  fill-opacity: 0.996078;
+  fill-rule: 'evenodd';
+  @apply stroke-primaryDark;
+  stroke-width: 7.2062;
+  stroke-linecap: 'round';
+  stroke-linejoin: 'round';
+  stroke-miterlimit: 19.2;
+  stroke-dasharray: 'none';
+  stroke-opacity: 1;
 }
 
 .game-card-3 {
-	fill: white;
-	fill-opacity: 0.997404;
-	fill-rule: 'evenodd';
-	@apply stroke-primaryDark;
-	stroke-width: 10.1932;
-	stroke-linecap: 'round';
-	stroke-linejoin: 'round';
-	stroke-miterlimit: 19.2;
-	stroke-dasharray: 'none';
-	stroke-opacity: 1;
+  fill: white;
+  fill-opacity: 0.997404;
+  fill-rule: 'evenodd';
+  @apply stroke-primaryDark;
+  stroke-width: 10.1932;
+  stroke-linecap: 'round';
+  stroke-linejoin: 'round';
+  stroke-miterlimit: 19.2;
+  stroke-dasharray: 'none';
+  stroke-opacity: 1;
 }
 
 .game-card-3-active {
-	@apply fill-green-700;
+  @apply fill-green-700;
 }
 
 .game-card-number {
-	font-size: 1rem;
-	line-height: 1.25;
-	letter-spacing: 0;
-	stroke-width: 0.385599;
-	fill: 'white';
-	font-weight: 'bold';
+  font-size: 1rem;
+  line-height: 1.25;
+  letter-spacing: 0;
+  stroke-width: 0.385599;
+  fill: 'white';
+  font-weight: 'bold';
 }

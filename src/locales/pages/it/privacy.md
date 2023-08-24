@@ -217,14 +217,14 @@ indirizzo IP, ad esempio, viene anonimizzato prima di essere registrato.
 
 Si noti che :
 
--   I dati raccolti non vengono incrociati con altre elaborazioni
--   I cookie non consentono di tracciare la navigazione dell'utente su
-    altri siti
+- I dati raccolti non vengono incrociati con altre elaborazioni
+- I cookie non consentono di tracciare la navigazione dell'utente su
+  altri siti
 
 Per approfondire, è possibile consultare le schede informative proposte
 dalla Commission Nationale de l'Informatique et des Libertés (CNIL):
 
--   [Cookie e tracker: cosa dice la
-    legge?](https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi)
--   [Cookie: strumenti per
-    controllarli](https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser)
+- [Cookie e tracker: cosa dice la
+  legge?](https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi)
+- [Cookie: strumenti per
+  controllarli](https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser)

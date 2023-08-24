@@ -2,7 +2,7 @@ const { readFileSync, writeFileSync } = require('fs')
 const { parse } = require('yaml')
 
 const personas = parse(
-	readFileSync('./nosgestesclimat/personas/personas-fr.yaml', 'utf8')
+  readFileSync('./nosgestesclimat/personas/personas-fr.yaml', 'utf8')
 )
 
 const getFileContent = (name, data) => `
@@ -20,10 +20,10 @@ describe('check for test completion', () => {
 `
 
 Object.entries(personas).map(([dottedName, data]) => {
-	const name = dottedName.split(' . ')[1]
-	writeFileSync(
-		`./cypress/e2e/test-completion/persona-${name}.cy.js`,
-		getFileContent(name, data)
-	)
-	console.log(`[OK] persona-${name}.cy.js`)
+  const name = dottedName.split(' . ')[1]
+  writeFileSync(
+    `./cypress/e2e/test-completion/persona-${name}.cy.js`,
+    getFileContent(name, data)
+  )
+  console.log(`[OK] persona-${name}.cy.js`)
 })

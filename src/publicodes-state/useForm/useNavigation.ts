@@ -44,16 +44,14 @@ export default function useNavigation({
   )
 
   // TODO : use Promises
-  const gotoNextQuestion = () => {
+  const gotoNextQuestion = async () => {
     const currentIndex = relevantQuestions.indexOf(currentQuestion)
     if (currentIndex < relevantQuestions.length) {
-      setDefaultAsValue()
+      await setDefaultAsValue()
 
-      setTimeout(() => {
-        setCurrentQuestion(
-          relevantQuestions[relevantQuestions.indexOf(currentQuestion) + 1]
-        )
-      }, 100)
+      setCurrentQuestion(
+        relevantQuestions[relevantQuestions.indexOf(currentQuestion) + 1]
+      )
     }
   }
   const gotoPrevQuestion = () => {

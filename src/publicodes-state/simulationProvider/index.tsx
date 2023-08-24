@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useMemo } from 'react'
-import Engine from 'publicodes'
+import React from 'react'
 
 import SimulationContext from './context'
+import useEngine from './useEngine'
 import useCategories from './useCategories'
 import useQuestions from './useQuestions'
 import useProgression from './useProgression'
@@ -17,8 +17,8 @@ type Props = {
   children: React.ReactNode
   loader: React.ReactNode
   defaultSituation?: any
-  situation: any
-  setSituation: Function
+  situation?: any
+  updateSituation: Function
 }
 
 export default function SimulationProvider({
@@ -28,15 +28,15 @@ export default function SimulationProvider({
   loader,
   defaultSituation,
   situation: externalSituation,
-  setSituation: setExternalSituation,
+  updateSituation: updateExternalSituation,
 }: Props) {
-  const engine = useMemo(() => new Engine(rules), [rules])
+  const engine = useEngine(rules)
 
   const { situation, updateSituation } = useSituation({
     engine,
     defaultSituation,
     externalSituation,
-    setExternalSituation,
+    updateExternalSituation,
   })
 
   const { categories, subcategories } = useCategories({

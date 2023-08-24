@@ -1,2 +1,2 @@
 export const extractImage = (body: string) =>
-	body.match('<img.+src=(?:"|\')(.+?)(?:"|\')(?:.+?)>')?.[1]
+  body.match('<img.+src=(?:"|\')(.+?)(?:"|\')(?:.+?)>')?.[1]

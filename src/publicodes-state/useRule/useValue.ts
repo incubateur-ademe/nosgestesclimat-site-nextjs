@@ -42,28 +42,35 @@ export default function useValue({
     return Promise.resolve({ oldTotal, newTotal })
   }
 
-  const setDefaultAsValue = () => {
+  const setDefaultAsValue = async (): Promise<any> => {
+    let situationToUpdate = {}
     if (type.includes('mosaic')) {
-      questionsOfMosaic.map((question) => {
-        const rule = engine.getRule(question)
-        const evaluation = engine.evaluate(question)
-        updateSituation({
-          [question]: checkValueValidity({
-            value: evaluation.nodeValue,
-            type: getType({ rule, evaluation, dottedName: question }),
-          }),
-        })
-      })
+      situationToUpdate = questionsOfMosaic.reduce(
+        (accumulator, currentValue) => {
+          const rule = engine.getRule(currentValue)
+          const evaluation = engine.evaluate(currentValue)
+          return {
+            ...accumulator,
+            [currentValue]: checkValueValidity({
+              value: evaluation.nodeValue,
+              type: getType({ rule, evaluation, dottedName: currentValue }),
+            }),
+          }
+        },
+        {}
+      )
     } else {
-      updateSituation({
+      situationToUpdate = {
         [dottedName]: checkValueValidity({ value, type }),
-      })
+      }
     }
+
+    const { oldTotal, newTotal } = await updateSituation(situationToUpdate)
+    return Promise.resolve({ oldTotal, newTotal })
   }
 
   return { value, displayValue, isMissing, setValue, setDefaultAsValue }
 }
-
 // FFS
 const checkValueValidity = ({
   value,
@@ -74,12 +81,12 @@ const checkValueValidity = ({
 }): number | string =>
   type === 'choices'
     ? value === null || value === false || value === 'non'
-      ? `non`
+      ? 'non'
       : typeof value === 'string'
-      ? value.charAt(0) !== `'`
+      ? !value.startsWith("'")
         ? `'${value}'`
         : value
-      : `oui`
+      : 'oui'
     : type === 'mosaic'
     ? 'mosaic'
     : !value

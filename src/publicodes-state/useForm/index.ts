@@ -44,6 +44,7 @@ export default function useForm() {
     remainingQuestions,
     questionsByCategories,
     currentQuestion,
+    setCurrentQuestion,
     gotoNextQuestion,
     gotoPrevQuestion,
     noPrevQuestion,

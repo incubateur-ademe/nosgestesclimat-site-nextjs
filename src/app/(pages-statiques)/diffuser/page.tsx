@@ -10,21 +10,21 @@ import PageLayout from '@/components/layout/PageLayout'
 import { useLocale } from '@/hooks/useLocale'
 
 export default function Diffuser() {
-	const locale = useLocale()
+  const locale = useLocale()
 
-	const DiffuserLocalised = getLocalisedMDX({
-		dictionnaries: {
-			fr: DiffuserFr,
-			'en-US': DiffuserEn,
-		},
-		locale: locale ?? '',
-	})
+  const DiffuserLocalised = getLocalisedMDX({
+    dictionnaries: {
+      fr: DiffuserFr,
+      'en-US': DiffuserEn,
+    },
+    locale: locale ?? '',
+  })
 
-	return (
-		<PageLayout shouldShowMenu>
-			<Main className="max-w-[800px] p-8">
-				<DiffuserLocalised />
-			</Main>
-		</PageLayout>
-	)
+  return (
+    <PageLayout shouldShowMenu>
+      <Main className='max-w-[800px] p-8'>
+        <DiffuserLocalised />
+      </Main>
+    </PageLayout>
+  )
 }

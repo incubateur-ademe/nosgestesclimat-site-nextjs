@@ -2,9 +2,6 @@ const { i18nRewriter } = require('next-i18n-router')
 
 const withMDX = require('@next/mdx')({
 	extension: /\.mdx$/,
-	experimental: {
-		mdxRs: true,
-	},
 })
 
 /** @type {import('next').NextConfig} */
@@ -18,15 +15,7 @@ const nextConfig = {
 			test: /\.ya?ml$/,
 			use: 'js-yaml-loader',
 		})
-		/*
-		config.resolve.fallback = {
-			// if you miss it, all the other options in fallback, specified
-			// by next.js will be dropped.
-			...config.resolve.fallback,
 
-			fs: false, // the solution
-		}
-*/
 		return config
 	},
 	images: {

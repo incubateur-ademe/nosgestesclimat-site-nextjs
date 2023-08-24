@@ -5,13 +5,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuid } from 'uuid'
 
 export const useSetUserId = () => {
-	const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-	const userId = useSelector((state: AppState) => state.user.userId)
+  const userId = useSelector((state: AppState) => state.user.userId)
 
-	useEffect(() => {
-		if (!userId) {
-			dispatch(setUserId(uuid()))
-		}
-	}, [userId, dispatch])
+  useEffect(() => {
+    if (!userId) {
+      dispatch(setUserId(uuid()))
+    }
+  }, [userId, dispatch])
 }

@@ -9,9 +9,14 @@ import usePersistentSimulations from './usePersistentSimulations'
 type Props = {
   children: React.ReactNode
   storageKey?: string
+  forgetSimulations?: boolean
 }
 
-export default function UserProvider({ children, storageKey = 'ngc' }: Props) {
+export default function UserProvider({
+  children,
+  storageKey = 'ngc',
+  forgetSimulations,
+}: Props) {
   const { user, setUser } = usePersistentUser({ storageKey })
 
   const {
@@ -19,7 +24,7 @@ export default function UserProvider({ children, storageKey = 'ngc' }: Props) {
     setSimulations,
     currentSimulation,
     setCurrentSimulation,
-  } = usePersistentSimulations({ storageKey })
+  } = usePersistentSimulations({ storageKey, forgetSimulations })
 
   return (
     <UserContext.Provider

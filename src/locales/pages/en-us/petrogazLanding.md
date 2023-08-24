@@ -23,7 +23,7 @@ Reducing oil and gas consumption is therefore necessary for the climate. But as 
 
 Furthermore, like any fossil resource, oil and gas stocks will not be renewed in our lifetime, nor in the lifetime of our great-grandchildren: global tensions on demand may strongly affect our economy, whose energy consumption is mostly fossil (oil and gas).
 
-<a href="https://www.insee.fr/fr/statistiques/2119697">According to INSEE,</a> in 2021, 37% of our energy consumption was source from Africa (12% from Algeria, 11% from Nigeria, 10% from Libya), 23% from the former USSR, including 9% from Russia**, and 15% from the Middle East, including 8% from Saudi Arabia.
+<a href="https://www.insee.fr/fr/statistiques/2119697">According to INSEE,</a> in 2021, 37% of our energy consumption was source from Africa (12% from Algeria, 11% from Nigeria, 10% from Libya), 23% from the former USSR, including 9% from Russia\*\*, and 15% from the Middle East, including 8% from Saudi Arabia.
 
 ## The case of Russia's war in Ukraine 🇺🇦
 

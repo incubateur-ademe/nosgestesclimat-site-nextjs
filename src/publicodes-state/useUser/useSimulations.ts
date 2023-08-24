@@ -32,7 +32,7 @@ export default function useSimulations({
     return id
   }
 
-  const updateSituationOfCurrentSimulation = (situation: any) => {
+  const updateSituationOfCurrentSimulation = (situationToAdd: any) => {
     if (currentSimulation) {
       setSimulations((prevSimulation: any) => [
         ...prevSimulation.filter(
@@ -42,7 +42,12 @@ export default function useSimulations({
           ...prevSimulation.find(
             (simulation: any) => simulation.id === currentSimulation
           ),
-          situation,
+          situation: {
+            ...prevSimulation.find(
+              (simulation: any) => simulation.id === currentSimulation
+            ).situation,
+            ...situationToAdd,
+          },
         },
       ])
     }

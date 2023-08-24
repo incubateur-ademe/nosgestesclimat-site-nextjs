@@ -4,10 +4,10 @@ import { useContext, useMemo } from 'react'
 
 import sumulationContext from '../simulationProvider/context'
 import useChoices from './useChoices'
-import useValue from './useValue'
 import useContent from './useContent'
-import useType from './useType'
 import useMosaic from './useMosaic'
+import useType from './useType'
+import useValue from './useValue'
 
 export default function useRule(dottedName: string) {
   const {
@@ -30,20 +30,20 @@ export default function useRule(dottedName: string) {
     evaluation,
   })
 
-  const { questionsOfMosaic } = useMosaic({
+  const { childrenOfMosaic, questionsOfMosaic } = useMosaic({
+    engine,
     dottedName,
+    rule,
     type,
     everyMosaicChildWhoIsReallyInMosaic,
   })
 
-  const { category, title, label, description, unit, suggestions } = useContent(
-    {
+  const { category, title, label, description, icons, unit, suggestions } =
+    useContent({
       dottedName,
       rule,
-      evaluation,
       everyMosaicChildWhoIsReallyInMosaic,
-    }
-  )
+    })
 
   const choices = useChoices({ rule, type })
 
@@ -64,9 +64,11 @@ export default function useRule(dottedName: string) {
     title,
     label,
     description,
+    icons,
     unit,
     suggestions,
     choices,
+    childrenOfMosaic,
     questionsOfMosaic,
     value,
     displayValue,

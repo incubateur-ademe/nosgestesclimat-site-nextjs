@@ -6,18 +6,18 @@ import CryptoJS from 'crypto-js'
  * @param {string} data - Data to decrypt
  */
 exports.handler = async (event) => {
-	const data = String(event.body)
+  const data = String(event.body)
 
-	const decryptedData = CryptoJS.AES.decrypt(
-		data,
-		process.env.ENCRYPTION_KEY
-	).toString(CryptoJS.enc.Utf8)
+  const decryptedData = CryptoJS.AES.decrypt(
+    data,
+    process.env.ENCRYPTION_KEY
+  ).toString(CryptoJS.enc.Utf8)
 
-	return {
-		statusCode: 200,
-		headers: {
-			'Content-Type': 'application/json;charset=utf-8',
-		},
-		body: JSON.stringify(decryptedData),
-	}
+  return {
+    statusCode: 200,
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify(decryptedData),
+  }
 }

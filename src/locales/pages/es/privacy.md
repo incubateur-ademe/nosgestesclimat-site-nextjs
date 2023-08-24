@@ -218,14 +218,14 @@ imposible asociar sus visitas a este sitio con su persona.
 
 Hay que tener en cuenta que :
 
--   Los datos recogidos no se cruzan con otros tratamientos
--   Las cookies no permiten rastrear la navegación del usuario en otros
-    sitios
+- Los datos recogidos no se cruzan con otros tratamientos
+- Las cookies no permiten rastrear la navegación del usuario en otros
+  sitios
 
 Para ir más lejos, puede consultar las fichas propuestas por la Comisión
 Nacional de la Informática y las Libertades (CNIL):
 
--   [Cookies y rastreadores: ¿qué dice la
-    ley?](https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi)
--   [Cookies: herramientas para
-    controlarlas](https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser)
+- [Cookies y rastreadores: ¿qué dice la
+  ley?](https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi)
+- [Cookies: herramientas para
+  controlarlas](https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser)

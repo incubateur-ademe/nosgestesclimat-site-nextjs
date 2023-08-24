@@ -1,2 +1,2 @@
 export const slugifyString = (name: string) =>
-	name.toLowerCase().replaceAll(' ', '-')
+  name.toLowerCase().replaceAll(' ', '-')
