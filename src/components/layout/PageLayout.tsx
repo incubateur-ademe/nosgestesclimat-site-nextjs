@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import Logo from '../Logo'
-import SideMenu from './Navigation'
+import Navigation from './navigation/Navigation'
 
 const pageWithMenuClassnames = 'flex justify-start'
 const pageWithoutMenuClassnames = ''
@@ -15,9 +15,8 @@ export default function PageLayout({
       <div
         className={
           shouldShowMenu ? pageWithMenuClassnames : pageWithoutMenuClassnames
-        }
-      >
-        {shouldShowMenu && <SideMenu />}
+        }>
+        {shouldShowMenu && <Navigation />}
         <div className='w-full'>{children}</div>
       </div>
     </>

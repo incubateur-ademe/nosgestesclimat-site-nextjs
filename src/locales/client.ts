@@ -1,6 +1,5 @@
 'use client'
 
-import { languages } from '@/constants/translation'
 import { useLocale } from '@/hooks/useLocale'
 import i18next from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
@@ -24,8 +23,10 @@ i18next
         case 'en-US':
           return (uiEnYaml as unknown as { entries: { entries: [] } }).entries
         case 'fr':
-        default:
           return (uiFrYaml as unknown as { entries: { entries: [] } }).entries
+
+        default:
+          return undefined
       }
     })
   )
@@ -46,7 +47,6 @@ i18next
     detection: {
       order: ['path', 'htmlTag', 'cookie', 'navigator'],
     },
-    preload: runsOnServerSide ? languages : [],
   })
 
 export function useClientTranslation() {
