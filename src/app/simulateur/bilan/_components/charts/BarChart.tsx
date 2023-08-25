@@ -1,5 +1,5 @@
 import { useEngine, useForm } from '@/publicodes-state'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Flipped, Flipper } from 'react-flip-toolkit'
 
 import Category from './barChart/Category'
@@ -9,9 +9,11 @@ type categoryObject = {
   value: number
 }
 export default function BarChart() {
-  const { categories } = useForm()
+  const { categories, currentCategory } = useForm()
 
   const { getValue } = useEngine()
+
+  const [open, setOpen] = useState(null)
 
   const sortedCategories = useMemo(
     () =>
@@ -28,6 +30,9 @@ export default function BarChart() {
     [categories, getValue]
   )
 
+  const max =
+    sortedCategories[0]?.value > 5000 ? sortedCategories[0]?.value : 5000
+
   return (
     <Flipper
       flipKey={sortedCategories
@@ -38,7 +43,10 @@ export default function BarChart() {
           <Category
             category={category.dottedName}
             value={category.value} // FFS (we have to do this to deal with the idiotic "transport . empreinte" exception)
-            max={sortedCategories[0].value}
+            current={category.dottedName === currentCategory}
+            open={category.dottedName === open}
+            setOpen={setOpen}
+            max={max}
           />
         </Flipped>
       ))}
