@@ -2,26 +2,27 @@
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useRule } from '@/publicodes-state'
-import { Category } from '@/types/model'
 import { useRouter } from 'next/navigation'
 
 type AnswerProps = {
-  rule: Category
+  rule: string
   level: number
 }
 
-export default function Answer({ rule, level }: AnswerProps) {
+export default function Answer({ rule: dottedName, level }: AnswerProps) {
   const { t } = useClientTranslation()
 
   const router = useRouter()
 
   const { setCurrentQuestion } = useForm()
 
+  const rule = useRule(dottedName)
+
   const translateUnits = (units: string[]) => {
     return units.map((unit: string) => t(unit, { ns: 'units' }))
   }
 
-  const levelDottedName = rule.dottedName.split(' . ')
+  const levelDottedName = dottedName.split(' . ')
 
   let levelRule = undefined
   try {
@@ -40,7 +41,7 @@ export default function Answer({ rule, level }: AnswerProps) {
   }
 
   return (
-    <tr key={rule.dottedName} className="bg-primaryLight">
+    <tr key={dottedName} className="bg-primaryLight">
       <td>
         {levelRule && (
           <div>
@@ -53,7 +54,7 @@ export default function Answer({ rule, level }: AnswerProps) {
         <button
           className="inline-block p-2 w-full text-left font-medium"
           onClick={() => {
-            setCurrentQuestion(rule.dottedName)
+            setCurrentQuestion(dottedName)
             router.push('/simulateur/bilan')
           }}>
           <span

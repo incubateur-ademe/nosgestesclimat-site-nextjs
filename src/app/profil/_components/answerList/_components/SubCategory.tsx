@@ -25,13 +25,15 @@ export default function SubCategory({ ruleDottedName, rules, level }: Props) {
   const isFirstLevel = level === 1
 
   const categoryClassName = isFirstLevel
-    ? `!bg-[${rule.color}] w-[30rem] max-w-full text-white`
+    ? `!bg-green-700 [${
+        rule?.color ?? '#444444'
+      }] w-[30rem] max-w-full text-white`
     : ''
 
   return (
     <div>
       <Card
-        onClick={() => setIsLocallyOpen(!open)}
+        onClick={() => setIsLocallyOpen(!isOpen)}
         className={`${categoryClassName} cursor-pointer inline-flex justify-start items-center mb-4`}>
         <span role="img" aria-label="category icon" className="mr-2 text-2xl">
           {rule?.icons}
@@ -44,15 +46,13 @@ export default function SubCategory({ ruleDottedName, rules, level }: Props) {
         )}
 
         <div className="ml-auto">
-          <small>
-            {rules.length}{' '}
-            {isFirstLevel && (
-              <span role="img" aria-label="Emoji bubble speech">
-                💬
-              </span>
-            )}
-          </small>
-          <span>{!open ? '▶' : '▼'}</span>
+          {rules.length}{' '}
+          {isFirstLevel && (
+            <span role="img" aria-label="Emoji bubble speech">
+              💬
+            </span>
+          )}
+          <span className="inline-block ml-2">{!isOpen ? '▶' : '▼'}</span>
         </div>
       </Card>
       {isOpen && <RecursiveStepsTable rules={rules} level={level} />}

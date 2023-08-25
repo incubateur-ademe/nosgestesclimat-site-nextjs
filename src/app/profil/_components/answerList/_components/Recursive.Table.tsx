@@ -1,9 +1,8 @@
-import { Category } from '@/types/model'
 import StepsTable from './StepTable'
 import SubCategory from './SubCategory'
 
 type Props = {
-  rules: Category[]
+  rules: string[]
   level: number
 }
 
@@ -11,14 +10,14 @@ export default function RecursiveStepsTable({ rules, level }: Props) {
   const rulesByParents = rules.reduce(
     (parentRulesObject, nextRule) => {
       const modifiedParentRulesObject = { ...parentRulesObject }
-      const splitedDottedName = nextRule.dottedName.split(' . ')
+      const splitedDottedName = nextRule.split(' . ')
 
       const parentRule = splitedDottedName.slice(0, level + 1).join(' . ')
 
       const currentChildRulesArray = modifiedParentRulesObject[parentRule] ?? []
 
       const updatedChildRulesArray = currentChildRulesArray.some(
-        ({ dottedName }) => dottedName === nextRule.dottedName
+        (dottedName) => dottedName === nextRule
       )
         ? currentChildRulesArray
         : [...currentChildRulesArray, nextRule]
@@ -28,7 +27,7 @@ export default function RecursiveStepsTable({ rules, level }: Props) {
         [parentRule]: updatedChildRulesArray,
       }
     },
-    {} as { [key: string]: Category[] }
+    {} as { [key: string]: string[] }
   )
 
   const lonelyRules = Object.values(rulesByParents)
