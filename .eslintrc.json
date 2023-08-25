@@ -8,8 +8,12 @@
     "prettier",
     "plugin:jsx-a11y/strict",
     "plugin:react-hooks/recommended",
-    "plugin:cypress/recommended"
+    "plugin:cypress/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
+  "root": true,
+  "parser": "@typescript-eslint/parser",
   "rules": {
     "react/no-unescaped-entities": "off",
     "react/react-in-jsx-scope": 0,

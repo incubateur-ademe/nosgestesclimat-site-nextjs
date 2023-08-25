@@ -22,7 +22,7 @@ Hydrate l'application avec un objet utilisateur persisté. Permet d'utiliser le 
 #### Props
 
 - `storageKey: string`
-  - Définit la clé du localstorage ou seront sauvegardées les informations de l'utilisateur
+  - Définit la clé du localStorage ou seront sauvegardées les informations de l'utilisateur
   - **Facultatif**
 
 ---
@@ -30,7 +30,7 @@ Hydrate l'application avec un objet utilisateur persisté. Permet d'utiliser le 
 ### SimulationProvider
 
 Hydrate l'application avec un moteur Publicodes, sa situation et les informations du formulaire associé. Permet d'utiliser les hooks `useForm` et `useRule`.
-Il peut être utilisé à l'intérieur de `UserProvider` (celui ci pouvant fournir `situation` et `setSituation`) ou tout seul (dans ce cas la situation s'initialise à partir de `defaultSituation` et ne sera pas persistée).
+Il peut être utilisé à l'intérieur de `UserProvider` (celui ci pouvant fournir `situation` et `setSituation`) ou tout seul (dans ce cas la situation s'initialise à partir de `defaultSituation` et ne sera pas persistante).
 
 #### Props
 
@@ -39,7 +39,7 @@ Il peut être utilisé à l'intérieur de `UserProvider` (celui ci pouvant fourn
 - `categoryOrder?:  string[]`
   - Array contenant la liste des catégories dans l'ordre dans lequel elles doivent s'afficher dans le formulaire
 - `loader:  React.ReactNode`
-  - Composant React à afficher le temps de l'initialisation du formulaire
+  - Composant React à afficher le temps de l'initialization du formulaire
 - `defaultSituation?:  situation` (**Facultatif**)
   - La situation de départ du formulaire.
   - N'est pris en compte que si `situation` n'est pas renseigné.
@@ -54,7 +54,7 @@ Il peut être utilisé à l'intérieur de `UserProvider` (celui ci pouvant fourn
 
 ### useUser
 
-Retourne l'ensemble des informations utilisateur persistées et les setters permettant de les mettre à jour. Nécessite d'être à l'intérieur du provider `UserProvider`
+Retourne l'ensemble des informations utilisateur persistantes et les setters permettant de les mettre à jour. Nécessite d'être à l'intérieur du provider `UserProvider`
 
 #### Paramètres d'entrée
 
