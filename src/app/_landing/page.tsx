@@ -5,7 +5,7 @@ import PageLayout from '@/components/layout/PageLayout'
 import TransServer from '@/components/translation/TransServer'
 import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
-import { useServerTranslation } from '@/locales'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 import AnimatedIllustration from './_components/AnimatedIllustration'
 import GroupsLink from './_components/GroupsLink'
@@ -16,7 +16,7 @@ import TakeTestButton from './_components/TakeTestLink'
 export default async function Landing() {
   // const hasData = true
 
-  const { t } = await useServerTranslation()
+  const { t } = await getServerTranslation()
 
   return (
     <PageLayout>

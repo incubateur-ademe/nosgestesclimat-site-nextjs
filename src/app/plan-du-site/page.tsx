@@ -1,10 +1,10 @@
 'use client'
 
+import Link from '@/components/Link'
 import PageLayout from '@/components/layout/PageLayout'
 import TransClient from '@/components/translation/TransClient'
 import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
-import Link from 'next/link'
 
 const appURL =
   process.env.NODE_ENV === 'development'

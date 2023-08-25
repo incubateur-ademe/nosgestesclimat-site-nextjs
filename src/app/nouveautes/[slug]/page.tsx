@@ -1,7 +1,7 @@
 import Route404 from '@/components/layout/404'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
-import { useServerTranslation } from '@/locales'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
 import { MDXRemote } from 'next-mdx-remote/rsc'
@@ -20,7 +20,7 @@ export default async function NewsPage({
 }: {
   params: { slug: string }
 }) {
-  const { t, i18n } = await useServerTranslation()
+  const { t, i18n } = await getServerTranslation()
   const currentLangInfos = getCurrentLangInfos(i18n)
 
   console.log('TODO : replace persisting state logic here - NewsPage.tsx')
@@ -81,12 +81,10 @@ export default async function NewsPage({
                   className={`m-0 list-inside list-none p-0 ${
                     isActive ? 'bg-primary !text-white' : ''
                   }`}
-                  key={name}
-                >
+                  key={name}>
                   <InlineLink
                     className={`m-0 px-2 py-1 ${isActive ? 'text-white' : ''}`}
-                    href={getPath(index, data)}
-                  >
+                    href={getPath(index, data)}>
                     {name}
                     <div>
                       <small>

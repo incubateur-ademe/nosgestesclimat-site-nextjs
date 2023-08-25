@@ -1,16 +1,16 @@
 import Card from '@/design-system/layout/Card'
 import { getCurrentLangInfos } from '@/locales/translation'
 import Image from 'next/image'
-import Link from 'next/link'
 
-import { useServerTranslation } from '@/locales'
+import Link from '@/components/Link'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { extractImage } from '../_helpers/extractImage'
 import { getFormattedDate } from '../_helpers/getFormattedDate'
 import { getPath } from '../_helpers/getPath'
 import { sortReleases } from '../_helpers/sortReleases'
 
 export default async function NewsList() {
-  const { i18n } = await useServerTranslation()
+  const { i18n } = await getServerTranslation()
 
   const currentLangInfos = getCurrentLangInfos(i18n)
 
@@ -42,7 +42,7 @@ export default async function NewsList() {
             <li key={name} className='flex-1'>
               <Card tag={Link} href={getPath(index, data)}>
                 <Image
-                  src={extractImage(body)}
+                  src={extractImage(body) ?? ''}
                   alt=''
                   width='300'
                   height='200'

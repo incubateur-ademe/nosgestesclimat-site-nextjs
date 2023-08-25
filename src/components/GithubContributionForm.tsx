@@ -4,10 +4,10 @@ import TransClient from '@/components/translation/TransClient'
 import Button from '@/design-system/inputs/Button'
 import TextAreaInputGroup from '@/design-system/inputs/TextAreaInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
-import { useClientTranslation } from '@/locales/client'
-import Link from 'next/link'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useSearchParams } from 'next/navigation'
 import { Dispatch, SetStateAction, useState } from 'react'
+import Link from './Link'
 
 type CreateIssueProps = {
   title: string
@@ -123,8 +123,7 @@ export default function GithubContributionForm() {
             disableButton: setIsButtonDisabled,
             labels: ['❓ FAQ', '💁 contribution externe'],
           })
-        }}
-      >
+        }}>
         <TransClient>Envoyer</TransClient>
       </Button>
     </form>

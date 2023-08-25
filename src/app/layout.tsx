@@ -1,16 +1,17 @@
 // Initialise react-i18next
-import '@/locales/i18n'
+import '@/locales/initClient'
+import '@/locales/initServer'
 import { dir } from 'i18next'
 import Script from 'next/script'
 
-import '@/locales/client'
 import './globals.css'
 
 import Footer from '@/components/layout/Footer'
 
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
-import { UserProvider } from '@/publicodes-state'
+import { ReactNode } from 'react'
+import Providers from './_components/Providers'
 
 const marianne = localFont({
   src: [
@@ -48,13 +49,8 @@ const marianne = localFont({
   variable: '--font-marianne',
 })
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  //const lang = currentLocale()
-  const lang = 'fr'
+export default function RootLayout({ children }: { children: ReactNode }) {
+  const lang = currentLocale()
 
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
@@ -146,10 +142,10 @@ export default function RootLayout({
           IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
         */}
         <Script src='https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver' />
-        <UserProvider forgetSimulations>
-          {children}
-          <Footer />
-        </UserProvider>
+
+        <Providers>{children}</Providers>
+
+        <Footer />
       </body>
     </html>
   )

@@ -6,12 +6,14 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Container from '@/design-system/layout/Container'
 import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
-import { useServerTranslation } from '@/locales'
+
+import Link from '@/components/Link'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 import RegionGrid from './_components/RegionGrid'
 
 export default async function International() {
-  const { t } = await useServerTranslation()
+  const { t } = await getServerTranslation()
 
   const title = t("Le calculateur d'empreinte climat international")
   const description = t(
@@ -87,7 +89,7 @@ export default async function International() {
             <TransServer i18nKey='international.pourquoi.3'>
               Nous utilisons, quand disponible, l'empreinte du mix électrique
               fournie par{' '}
-              <a href='https://app.electricitymaps.com/map' target='_blank'>
+              <Link href='https://app.electricitymaps.com/map' target='_blank'>
                 <Image
                   alt='Electricity Maps'
                   src={emImage}
@@ -95,7 +97,7 @@ export default async function International() {
                   width='100'
                   height='100'
                 />
-              </a>
+              </Link>
               .
             </TransServer>
           </p>

@@ -16,7 +16,7 @@
     "no-unused-vars": 1,
     "no-undef": 1,
     "no-redeclare": 1,
-    "react/prop-types": 1,
+    "react/prop-types": 0,
     "react/jsx-no-undef": 1,
     "react/display-name": 1,
     "jsx-a11y/label-has-associated-control": 1,

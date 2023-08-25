@@ -1,13 +1,12 @@
 'use client'
 
 import { getFormattedDate } from '@/app/nouveautes/_helpers/getFormattedDate'
+import Link from '@/components/Link'
 
 import Card from '@/design-system/layout/Card'
 import { useLocale } from '@/hooks/useLocale'
 import { BlogPost } from '@/types/blog'
 import Image from 'next/image'
-
-import Link from 'next/link'
 
 export default function PostListItem({ post }: { post: BlogPost }) {
   const locale = useLocale()
@@ -17,8 +16,7 @@ export default function PostListItem({ post }: { post: BlogPost }) {
       <Card
         tag={Link}
         href={`/blog/${post.slug}`}
-        className='flex h-full w-full flex-col !p-10 text-primaryDark no-underline'
-      >
+        className='flex h-full w-full flex-col !p-10 text-primaryDark no-underline'>
         <Image
           src={post.image || ''}
           width='100'

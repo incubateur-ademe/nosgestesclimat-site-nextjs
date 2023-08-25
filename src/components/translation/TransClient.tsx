@@ -1,6 +1,6 @@
 'use client'
 
-import { useClientTranslation } from '@/locales/client'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { PropsWithChildren } from 'react'
 import { Trans } from 'react-i18next'
 
