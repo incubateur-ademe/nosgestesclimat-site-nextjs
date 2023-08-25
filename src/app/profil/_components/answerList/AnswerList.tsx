@@ -5,8 +5,7 @@ import { Trans } from 'react-i18next'
 
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
-import { Simulation } from '@/types/simulation'
+import { useForm } from '@/publicodes-state'
 import CategoryTable from './_components/CategoryTable'
 import { AllOpenProvider } from './_contexts/AllOpenContext'
 
@@ -15,21 +14,15 @@ export default function AnswerList() {
 
   const { t } = useClientTranslation()
 
-  const { simulations, currentSimulation: currentSimulationId } = useUser()
-
-  const currentSimulation = simulations.find(
-    (simulation: Simulation) => simulation.id === currentSimulationId
-  )
-
-  const { foldedSteps = [] } = currentSimulation || {}
+  const { progression } = useForm()
 
   return (
     <AllOpenProvider value={isAllOpen}>
-      <div className="answer-list">
-        {foldedSteps.length > 0 ?? (
+      <div>
+        {progression > 0 && (
           <>
-            <div className="flex items-center">
-              <h2>
+            <div className="flex items-center justify-between w-[30rem] gap-2 mb-4">
+              <h2 className="mb-0">
                 <Trans>📋 Mes réponses</Trans>
               </h2>
 

@@ -3,7 +3,6 @@
 import Card from '@/design-system/layout/Card'
 import { useRule } from '@/publicodes-state'
 import { Category } from '@/types/model'
-import Image from 'next/image'
 import { useContext, useState } from 'react'
 import { AllOpenContext } from '../_contexts/AllOpenContext'
 import RecursiveStepsTable from './Recursive.Table'
@@ -33,10 +32,16 @@ export default function SubCategory({ ruleDottedName, rules, level }: Props) {
     <div>
       <Card
         onClick={() => setIsLocallyOpen(!open)}
-        className={`${categoryClassName} cursor-pointer inline-flex justify-start items-center`}>
-        <Image src={rule?.icons?.[0]} alt="" width="50" height="50" />
+        className={`${categoryClassName} cursor-pointer inline-flex justify-start items-center mb-4`}>
+        <span role="img" aria-label="category icon" className="mr-2 text-2xl">
+          {rule?.icons}
+        </span>
 
-        {isFirstLevel ? <h2>{rule.title}</h2> : <h3>{rule.title}</h3>}
+        {isFirstLevel ? (
+          <h2 className="m-0">{rule.title}</h2>
+        ) : (
+          <h3 className="m-0">{rule.title}</h3>
+        )}
 
         <div className="ml-auto">
           <small>

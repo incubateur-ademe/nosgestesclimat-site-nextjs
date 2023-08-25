@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
+import { ReactNode } from 'react'
 import TutorialLink from './_components/TutorialLink'
 import AnswerList from './_components/answerList/AnswerList'
 /*
@@ -27,15 +28,13 @@ export default function Profil() {
   const router = useRouter()
 
   const { simulations, currentSimulation: currentSimulationId } = useUser()
-  console.log({ simulations })
+
   const currentSimulation = simulations.find(
     (simulation: Simulation) => simulation.id === currentSimulationId
   )
-  console.log(currentSimulation)
   const { persona, answered } = currentSimulation || {}
 
   const { progression, remainingQuestions, relevantQuestions } = useForm()
-  console.log({ progression, remainingQuestions, relevantQuestions })
 
   const percentFinished = Math.round(progression * 100)
 
@@ -87,9 +86,11 @@ export default function Profil() {
             <Card className="mr-8 flex-col">
               <p className="text-lg">
                 <TransClient i18nKey={'publicodes.Profil.recap'}>
-                  Vous avez terminé le test à {{ percentFinished }} % (
-                  {{ answeredQuestionsLength }} questions) et choisi{' '}
-                  {{ actionChoicesLength }} actions.
+                  Vous avez terminé le test à{' '}
+                  {{ percentFinished } as unknown as ReactNode} % (
+                  {{ answeredQuestionsLength } as unknown as ReactNode}{' '}
+                  questions) et choisi{' '}
+                  {{ actionChoicesLength } as unknown as ReactNode} actions.
                 </TransClient>{' '}
               </p>
             </Card>
