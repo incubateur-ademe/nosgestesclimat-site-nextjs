@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 type Props = {
   engine: any
+  safeEvaluate: any
   defaultSituation?: any
   externalSituation: any
   updateExternalSituation: Function
 }
 export default function useSituation({
   engine,
+  safeEvaluate,
   defaultSituation = {},
   externalSituation,
   updateExternalSituation,
@@ -16,13 +18,13 @@ export default function useSituation({
 
   const updateSituation = (situationToAdd: any) => {
     console.log('update situation', situationToAdd)
-    const oldTotal = engine.evaluate('bilan').nodeValue
+    const oldTotal = safeEvaluate('bilan').nodeValue
     updateExternalSituation(situationToAdd)
 
     // TODO: this is shit
     return new Promise((resolve) => {
       requestAnimationFrame(() => {
-        const newTotal = engine.evaluate('bilan').nodeValue
+        const newTotal = safeEvaluate('bilan').nodeValue
         resolve({ oldTotal, newTotal })
       })
     })

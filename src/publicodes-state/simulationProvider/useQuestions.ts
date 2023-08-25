@@ -1,12 +1,18 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 type Props = {
   engine: any
+  safeEvaluate: any
   categories: string[]
   situation: any
 }
 
-export default function useQuestions({ engine, categories, situation }: Props) {
+export default function useQuestions({
+  engine,
+  safeEvaluate,
+  categories,
+  situation,
+}: Props) {
   const everyQuestions = useMemo<string[]>(
     () =>
       Object.entries(engine.getParsedRules())
@@ -26,7 +32,7 @@ export default function useQuestions({ engine, categories, situation }: Props) {
 
   const baseMissingInputs = useMemo(
     () =>
-      Object.keys(engine.evaluate('bilan').missingVariables).filter(
+      Object.keys(safeEvaluate('bilan').missingVariables).filter(
         (missingInput: string) => everyQuestions.includes(missingInput)
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -35,7 +41,7 @@ export default function useQuestions({ engine, categories, situation }: Props) {
 
   const missingInputs = useMemo(
     () =>
-      Object.keys(engine.evaluate('bilan').missingVariables).filter(
+      Object.keys(safeEvaluate('bilan').missingVariables).filter(
         (missingInput: string) => everyQuestions.includes(missingInput)
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps

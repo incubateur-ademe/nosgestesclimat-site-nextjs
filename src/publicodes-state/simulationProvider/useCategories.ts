@@ -1,13 +1,14 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 
 type Props = {
   engine: any
+  safeEvaluate: Function
   order: string[] | null
 }
 
-export default function useCategories({ engine, order }: Props) {
+export default function useCategories({ engine, safeEvaluate, order }: Props) {
   const missingVariables = useMemo(
-    () => Object.keys(engine.evaluate('bilan').missingVariables),
+    () => Object.keys(safeEvaluate('bilan').missingVariables),
     [engine]
   )
 
@@ -44,7 +45,7 @@ export default function useCategories({ engine, order }: Props) {
                       : currentValue
                   )
                   ?.rawNode?.formule?.somme?.map(
-                    (rule) =>
+                    (rule: any) =>
                       (currentValue === 'logement'
                         ? 'logement . impact'
                         : currentValue) +

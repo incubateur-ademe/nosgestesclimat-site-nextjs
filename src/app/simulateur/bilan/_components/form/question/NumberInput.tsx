@@ -19,7 +19,7 @@ export default function NumberInput({ question, setValue }: Props) {
         placeholder={value.toLocaleString('fr-fr', {
           maximumFractionDigits: 1,
         })}
-        onChange={(event) => setValue(event.target.value)}
+        onChange={(event) => setValue(Number(event.target.value))}
       />
       &nbsp;
       {unit}
