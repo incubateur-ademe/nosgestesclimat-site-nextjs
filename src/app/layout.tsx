@@ -8,10 +8,10 @@ import './globals.css'
 
 import Footer from '@/components/layout/Footer'
 
+import { UserProvider } from '@/publicodes-state'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import { ReactNode } from 'react'
-import Providers from './_components/Providers'
 
 const marianne = localFont({
   src: [
@@ -143,7 +143,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         */}
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
 
-        <Providers>{children}</Providers>
+        <UserProvider>{children}</UserProvider>
 
         <Footer />
       </body>
