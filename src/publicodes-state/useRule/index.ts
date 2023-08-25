@@ -38,12 +38,20 @@ export default function useRule(dottedName: string) {
     everyMosaicChildWhoIsReallyInMosaic,
   })
 
-  const { category, title, label, description, icons, unit, suggestions } =
-    useContent({
-      dottedName,
-      rule,
-      everyMosaicChildWhoIsReallyInMosaic,
-    })
+  const {
+    category,
+    title,
+    label,
+    description,
+    icons,
+    unit,
+    color,
+    suggestions,
+  } = useContent({
+    dottedName,
+    rule,
+    everyMosaicChildWhoIsReallyInMosaic,
+  })
 
   const choices = useChoices({ rule, type })
 
@@ -66,6 +74,7 @@ export default function useRule(dottedName: string) {
     description,
     icons,
     unit,
+    color,
     suggestions,
     choices,
     childrenOfMosaic,

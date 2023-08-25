@@ -19,6 +19,7 @@ export default function useContent({ dottedName, rule }: Props) {
   const description = useMemo(() => rule.rawNode.description, [rule])
   const icons = useMemo(() => rule.rawNode['icônes'], [rule])
   const unit = useMemo(() => rule.rawNode['unité'], [rule])
+  const color = useMemo(() => rule.rawNode['couleur'], [rule])
   const suggestions = useMemo(
     () =>
       rule.rawNode.suggestions
@@ -30,5 +31,14 @@ export default function useContent({ dottedName, rule }: Props) {
     [rule]
   )
 
-  return { category, title, label, description, icons, unit, suggestions }
+  return {
+    category,
+    title,
+    label,
+    description,
+    icons,
+    unit,
+    color,
+    suggestions,
+  }
 }
