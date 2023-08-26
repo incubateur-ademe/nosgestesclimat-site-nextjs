@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { useRule } from '@/publicodes-state'
 import MosaicChild from './mosaic/MosaicChild'
 
@@ -12,10 +10,12 @@ export default function Mosaic({ question }: Props) {
   const { childrenOfMosaic } = useRule(question)
 
   return (
-    <div className='grid grid-cols-2 gap-4'>
-      {childrenOfMosaic.map((childOfMosaic) => (
-        <MosaicChild key={childOfMosaic} child={childOfMosaic} />
-      ))}
+    <div className="grid grid-cols-2 gap-4">
+      {childrenOfMosaic
+        ? childrenOfMosaic.map((childOfMosaic) => (
+            <MosaicChild key={childOfMosaic} child={childOfMosaic} />
+          ))
+        : 'Cette mosaique n a pas d enfants.'}
     </div>
   )
 }

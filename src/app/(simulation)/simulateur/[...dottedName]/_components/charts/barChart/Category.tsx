@@ -26,7 +26,7 @@ export default function Category({
   return (
     <div
       {...props}
-      className={`p-2 rounded-xl ${current ? 'bg-primaryLight' : ''}`}>
+      className={`p-4 pb-1 rounded-xl ${current ? 'bg-primaryLight' : ''}`}>
       <BarChartItem
         label={`${icons} ${title}`}
         value={value}

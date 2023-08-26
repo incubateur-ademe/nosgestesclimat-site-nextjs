@@ -27,7 +27,10 @@ export default function useRule(dottedName: string) {
   const rule = useMemo(() => safeGetRule(dottedName), [dottedName, engine])
 
   if (!rule.rawNode) {
-    return {}
+    return {
+      setValue: () => null,
+      setDefaultAsValue: () => null,
+    }
   }
   const { type, getType } = useType({
     dottedName,

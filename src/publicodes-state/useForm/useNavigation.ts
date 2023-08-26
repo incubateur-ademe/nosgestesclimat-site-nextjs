@@ -8,7 +8,7 @@ type Props = {
   currentQuestion: string
   currentCategory: string
   setCurrentQuestion: Function
-  setDefaultAsValue: () => Promise<any>
+  setDefaultAsValue: Function
 }
 
 export default function useNavigation({

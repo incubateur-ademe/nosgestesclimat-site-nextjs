@@ -20,17 +20,25 @@ export default function useContent({ dottedName, rule }: Props) {
   const icons = useMemo(() => rule.rawNode['icônes'], [rule])
   const unit = useMemo(() => rule.rawNode['unité'], [rule])
   const color = useMemo(() => rule.rawNode['couleur'], [rule])
-  const suggestions = useMemo(
-    () =>
-      rule.rawNode.suggestions
-        ? Object.keys(rule.rawNode.suggestions).map((key: string) => ({
-            label: key,
-            value: rule.rawNode.suggestions[key],
-          }))
-        : [],
-    [rule]
-  )
 
+  const suggestions = useMemo(() => {
+    const suggestionsFolder =
+      rule.rawNode.mosaique?.suggestions || rule.rawNode.suggestions
+    return suggestionsFolder
+      ? Object.keys(suggestionsFolder).map((key: string) => ({
+          label: key,
+          value: suggestionsFolder[key],
+        }))
+      : []
+  }, [rule])
+
+  if (dottedName === 'alimentation . plats') {
+    console.log(rule, suggestions)
+  }
+
+  if (dottedName === 'transport . avion . court courrier . heures de vol') {
+    console.log(rule, suggestions)
+  }
   return {
     category,
     title,

@@ -13,8 +13,8 @@ export default function Category({ category }: Props) {
 
   return (
     <div
-      className={`p-4 border border-white ${
-        currentCategory === category ? '' : 'border-dotted'
+      className={`p-4 border border-primary border-dotted ${
+        currentCategory === category ? 'bg-primaryLight' : ''
       } rounded`}>
       <h3
         className={`${
