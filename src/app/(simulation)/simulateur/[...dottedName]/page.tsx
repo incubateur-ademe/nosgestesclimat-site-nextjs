@@ -10,9 +10,7 @@ import Total from './_components/Total'
 
 export default function Simulateur() {
   const router = useRouter()
-
   const { currentQuestion } = useForm()
-
   useEffect(() => {
     router.push('/simulateur/bilan/' + currentQuestion.split(' . ').join('/'))
   }, [currentQuestion])

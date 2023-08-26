@@ -12,8 +12,8 @@ export default function Category() {
 
   const [open, setOpen] = useState(false)
   return (
-    <>
-      <div className=" relative flex justify-center items-center gap-4 rounded-sm bg-primary text-white text-center p-2 mb-5 ">
+    <div className="mb-2">
+      <div className="relative flex justify-center items-center gap-4 rounded-lg overflow-hidden bg-primary text-white text-center p-2 mb-2 ">
         <Progress />
         <Planet />
         <Link
@@ -32,6 +32,6 @@ export default function Category() {
         <ToggleButton setOpen={setOpen} />
       </div>
       {open ? <Explanation setOpen={setOpen} /> : null}
-    </>
+    </div>
   )
 }
