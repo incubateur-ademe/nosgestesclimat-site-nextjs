@@ -21,7 +21,7 @@ export default function BarChart() {
         .map((category: string) => ({
           dottedName: category,
           value: getValue(
-            category === 'transport' ? 'transport . empreinte' : category
+            category === 'transport' ? 'transport . empreinte' : category // Model shenanigans (we have to do this to deal with the idiotic "transport . empreinte" exception)
           ),
         }))
         .sort((a: categoryObject, b: categoryObject) =>
@@ -37,12 +37,12 @@ export default function BarChart() {
     <Flipper
       flipKey={sortedCategories
         .map((category: categoryObject) => category.dottedName)
-        .join()}>
+        .join('')}>
       {sortedCategories.map((category: categoryObject) => (
         <Flipped flipId={category.dottedName} key={category.dottedName}>
           <Category
             category={category.dottedName}
-            value={category.value} // FFS (we have to do this to deal with the idiotic "transport . empreinte" exception)
+            value={category.value}
             current={category.dottedName === currentCategory}
             open={category.dottedName === open}
             setOpen={setOpen}

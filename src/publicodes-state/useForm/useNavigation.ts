@@ -8,7 +8,7 @@ type Props = {
   currentQuestion: string
   currentCategory: string
   setCurrentQuestion: Function
-  setDefaultAsValue: Function
+  setDefaultAsValue: () => Promise<any>
 }
 
 export default function useNavigation({
@@ -44,14 +44,18 @@ export default function useNavigation({
   )
 
   // TODO : use Promises
-  const gotoNextQuestion = async () => {
+  const gotoNextQuestion = async (): Promise<string> => {
     const currentIndex = relevantQuestions.indexOf(currentQuestion)
-    if (currentIndex < relevantQuestions.length) {
-      await setDefaultAsValue()
-
-      setCurrentQuestion(
+    await setDefaultAsValue()
+    if (currentIndex < relevantQuestions.length - 1) {
+      console.log('should not return end')
+      const newCurrentQuestion =
         relevantQuestions[relevantQuestions.indexOf(currentQuestion) + 1]
-      )
+      setCurrentQuestion(newCurrentQuestion)
+      return newCurrentQuestion
+    } else {
+      console.log('should return end')
+      return 'end'
     }
   }
   const gotoPrevQuestion = () => {

@@ -1,17 +1,12 @@
 'use client'
 
-import { useEffect } from 'react'
+import { ReactNode, useEffect } from 'react'
 
 import rules from './co2-model.FR-lang.fr-opti.json'
 
-import { useUser, SimulationProvider } from '@/publicodes-state'
-import PageLayout from '@/components/layout/PageLayout'
+import { SimulationProvider, useUser } from '@/publicodes-state'
 
-export default function SimulateurLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function Providers({ children }: { children: ReactNode }) {
   const {
     simulations,
     currentSimulation,
@@ -41,11 +36,8 @@ export default function SimulateurLayout({
           (simulation: any) => simulation.id === currentSimulation
         )?.situation || {}
       }
-      updateSituation={updateSituationOfCurrentSimulation}
-    >
-      <PageLayout shouldShowMenu>
-        <div>{children}</div>
-      </PageLayout>
+      updateSituation={updateSituationOfCurrentSimulation}>
+      {children}
     </SimulationProvider>
   ) : (
     'Initialisation'

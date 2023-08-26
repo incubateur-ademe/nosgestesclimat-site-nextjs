@@ -7,7 +7,7 @@ type Props = {
 export default function DisplayValue({ value, color, white }: Props) {
   return (
     <div
-      className={`leading-none ${white ? 'text-white' : ''}`}
+      className={` pr-4 leading-none ${white ? 'text-white' : ''}`}
       style={white ? {} : { color }}>
       <strong className="text-lg">
         {value.toLocaleString('fr-fr', {

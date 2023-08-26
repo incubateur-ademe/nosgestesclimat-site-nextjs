@@ -65,7 +65,7 @@ export default function useQuestions({
                 currentValue.includes(
                   accumulatedSubRule
                     .replace(' . présent', '')
-                    .replace(' . propriétaire', '') // FFS
+                    .replace(' . propriétaire', '') // Model shenanigans
                 )
             )
               ? [...accumulator, currentValue]

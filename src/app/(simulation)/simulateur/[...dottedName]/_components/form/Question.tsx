@@ -13,7 +13,7 @@ export default function Question({ question }: Props) {
   const { type, setValue } = useRule(question)
 
   return (
-    <div className='mb-4'>
+    <div className="mb-4">
       <Label question={question} />
       <Suggestions question={question} setValue={setValue} />
       {type === 'number' && (

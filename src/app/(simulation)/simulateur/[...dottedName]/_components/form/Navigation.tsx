@@ -1,4 +1,5 @@
 import { useForm, useRule } from '@/publicodes-state'
+import { useRouter } from 'next/navigation'
 
 import Button from '@/design-system/inputs/Button'
 
@@ -16,13 +17,23 @@ export default function Form({ question }: Props) {
   } = useForm()
   const { isMissing } = useRule(question)
 
+  const router = useRouter()
   return (
-    <div className='flex justify-end  gap-4'>
+    <div className="flex justify-end  gap-4">
       <Button disabled={noPrevQuestion} onClick={gotoPrevQuestion}>
         ← Précédent
       </Button>
-      <Button disabled={noNextQuestion} onClick={gotoNextQuestion}>
-        {isMissing
+      <Button
+        onClick={async () => {
+          const nextQuestion = await gotoNextQuestion()
+          console.log(nextQuestion)
+          if (nextQuestion === 'end') {
+            router.push('/fin')
+          }
+        }}>
+        {noNextQuestion
+          ? 'Terminer'
+          : isMissing
           ? 'Je ne sais pas →'
           : noNextQuestionInCategory
           ? 'Next category →'

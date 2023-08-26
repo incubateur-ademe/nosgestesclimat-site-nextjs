@@ -39,18 +39,13 @@ export default function useCategories({ engine, safeEvaluate, order }: Props) {
               : engine
                   .getRule(
                     currentValue === 'logement'
-                      ? 'logement . impact'
+                      ? 'logement . impact' // Model shenanigans
                       : currentValue === 'transport'
                       ? 'transport . empreinte'
                       : currentValue
                   )
                   ?.rawNode?.formule?.somme?.map(
-                    (rule: any) =>
-                      (currentValue === 'logement'
-                        ? 'logement . impact'
-                        : currentValue) +
-                      ' . ' +
-                      rule
+                    (rule: any) => currentValue + ' . ' + rule
                   ) || [],
         }),
         {}

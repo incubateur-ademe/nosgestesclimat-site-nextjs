@@ -81,7 +81,7 @@ body {
 }
 
 a {
-  @apply inline-block text-primary underline transition-colors hover:!text-primaryDark;
+  @apply inline-block text-primary underline transition-colors hover:text-primaryDark;
 }
 
 h1,

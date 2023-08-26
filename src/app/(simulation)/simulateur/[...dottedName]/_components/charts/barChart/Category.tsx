@@ -19,11 +19,14 @@ export default function Category({
   current,
   open,
   setOpen,
+  ...props
 }: Props) {
   const { title, icons, color } = useRule(category)
 
   return (
-    <div className={`p-2 rounded-xl ${current ? 'bg-primaryLight' : ''}`}>
+    <div
+      {...props}
+      className={`p-2 rounded-xl ${current ? 'bg-primaryLight' : ''}`}>
       <BarChartItem
         label={`${icons} ${title}`}
         value={value}

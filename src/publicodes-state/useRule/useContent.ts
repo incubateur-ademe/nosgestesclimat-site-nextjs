@@ -12,7 +12,7 @@ export default function useContent({ dottedName, rule }: Props) {
   const category = useMemo(() => dottedName.split(' . ')[0], [dottedName])
 
   const title = useMemo(
-    () => rule.rawNode.titre || rule.titre || rule.title, //FFS
+    () => rule.rawNode.titre || rule.titre || rule.title, // Model shenanigans
     [rule]
   )
   const label = useMemo(() => rule.rawNode.question, [rule])

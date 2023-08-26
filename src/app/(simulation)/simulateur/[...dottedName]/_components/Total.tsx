@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useState } from 'react'
 
 import { useRule } from '@/publicodes-state'
@@ -12,10 +13,12 @@ export default function Category() {
   const [open, setOpen] = useState(false)
   return (
     <>
-      <div className="relative flex justify-center items-center gap-4 rounded-sm bg-primary text-white text-center p-2 mb-5 ">
+      <div className=" relative flex justify-center items-center gap-4 rounded-sm bg-primary text-white text-center p-2 mb-5 ">
         <Progress />
         <Planet />
-        <div className="z-10">
+        <Link
+          href="/fin"
+          className="no-underline	text-white hover:text-white z-10">
           <span className="block font-bold text-3xl">
             {(value / 1000).toLocaleString('fr-fr', {
               maximumFractionDigits: 1,
@@ -25,7 +28,7 @@ export default function Category() {
           <span className="block">
             de CO<sub>2</sub>e / an
           </span>
-        </div>
+        </Link>
         <ToggleButton setOpen={setOpen} />
       </div>
       {open ? <Explanation setOpen={setOpen} /> : null}

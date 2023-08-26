@@ -9,7 +9,7 @@ type Props = {
 }
 
 export default function useType({ dottedName, rule, evaluation }: Props) {
-  // FFS
+  // Model shenanigans
   const getType = ({
     dottedName,
     rule,

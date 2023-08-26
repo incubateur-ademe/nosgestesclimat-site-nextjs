@@ -18,13 +18,11 @@ export default function BarChartItem({
   const percentOfMax = (value / max) * 100
 
   return (
-    <button onClick={onClick} className="mb-2 block w-full text-left">
-      <div className="leading-none font-semibold text-black mb-1 text-sm ml-2">
-        {label}
-      </div>
-      <div className="flex justify-start items-center gap-2 h-6 ">
+    <button onClick={onClick} className="mb-4 block w-full text-left">
+      <div className="leading-none text-black mb-1 text-sm ml-2">{label}</div>
+      <div className="flex justify-start items-center gap-2 h-8 ">
         <div
-          className="flex justify-end items-center px-4 h-full origin-left transition-transform rounded-full"
+          className="flex justify-end items-center h-full origin-left transition-all rounded-full"
           style={{
             width: `${percentOfMax}%`,
             backgroundColor: color,

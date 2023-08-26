@@ -2,7 +2,7 @@ import { useEngine, useForm } from '@/publicodes-state'
 import { useMemo } from 'react'
 import { Flipped, Flipper } from 'react-flip-toolkit'
 
-import Subcategory from './subcategories/SubCategory'
+import Subcategory from '@/components/misc/Subcategory'
 
 type Props = {
   category: string
@@ -38,11 +38,7 @@ export default function Subcategories({ category, max, color }: Props) {
         .join()}>
       {sortedSubcategories.map((subcategory: categoryObject) => (
         <Flipped flipId={subcategory.dottedName} key={subcategory.dottedName}>
-          <Subcategory
-            category={subcategory.dottedName}
-            max={max}
-            color={color}
-          />
+          <Subcategory subcategory={subcategory.dottedName} max={max} />
         </Flipped>
       ))}
     </Flipper>

@@ -17,7 +17,7 @@ export default function useSituation({
   const [situation, setSituation] = useState(defaultSituation)
 
   const updateSituation = (situationToAdd: any) => {
-    console.log('update situation', situationToAdd)
+    // console.log('update situation', situationToAdd)
     const oldTotal = safeEvaluate('bilan').nodeValue
     updateExternalSituation(situationToAdd)
 
@@ -31,7 +31,7 @@ export default function useSituation({
   }
 
   useEffect(() => {
-    console.log('set situation', externalSituation)
+    // console.log('set situation', externalSituation)
     engine.setSituation(externalSituation)
     setSituation(externalSituation)
   }, [externalSituation, engine])
