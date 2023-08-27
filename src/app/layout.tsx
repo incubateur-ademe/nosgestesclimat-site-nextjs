@@ -12,6 +12,7 @@ import { UserProvider } from '@/publicodes-state'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import { ReactNode } from 'react'
+import QueryClientProviderWrapper from './_components/QueryClientProviderWrapper'
 
 const marianne = localFont({
   src: [
@@ -142,8 +143,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
         */}
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
-
-        <UserProvider>{children}</UserProvider>
+        <QueryClientProviderWrapper>
+          <UserProvider>{children}</UserProvider>
+        </QueryClientProviderWrapper>
 
         <Footer />
       </body>

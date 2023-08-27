@@ -4,7 +4,7 @@ import PageLayout from '@/components/layout/PageLayout'
 import Main from '@/design-system/layout/Main'
 import Providers from './_components/Providers'
 
-export default function SimulateurLayout({
+export default async function SimulateurLayout({
   children,
 }: {
   children: ReactNode
