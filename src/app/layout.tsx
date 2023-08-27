@@ -57,6 +57,7 @@ export default async function RootLayout({
 }) {
   const lang = currentLocale()
 
+  // TODO: endpoint should not be static (and should point to local if available)
   const region = await fetch(
     'https://nosgestesclimat.fr/.netlify/functions/geolocation'
   )

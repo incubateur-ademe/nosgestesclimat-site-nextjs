@@ -7,7 +7,11 @@ import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
 import { useCurrentLocale } from 'next-i18n-router/client'
 
-export default function Providers({ children }: { children: ReactNode }) {
+type Props = {
+  supportedRegions: any
+  children: ReactNode
+}
+export default function Providers({ children, supportedRegions }: Props) {
   const {
     user,
     simulations,
@@ -20,7 +24,7 @@ export default function Providers({ children }: { children: ReactNode }) {
 
   const { data: rules, isFetched } = useRules({
     lang: lang || 'fr',
-    region: user.region?.code || 'FR',
+    region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
   })
 
   useEffect(() => {
