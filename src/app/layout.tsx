@@ -50,8 +50,18 @@ const marianne = localFont({
   variable: '--font-marianne',
 })
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode
+}) {
   const lang = currentLocale()
+
+  const region = await fetch(
+    'https://nosgestesclimat.fr/.netlify/functions/geolocation'
+  )
+    .then((res) => res.json())
+    .then((res) => res.country)
 
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
@@ -144,7 +154,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         */}
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
         <QueryClientProviderWrapper>
-          <UserProvider>{children}</UserProvider>
+          <UserProvider initialRegion={region}>{children}</UserProvider>
         </QueryClientProviderWrapper>
 
         <Footer />

@@ -8,7 +8,7 @@ type Props = {
 
 export default function ChoicesInput({ question }: Props) {
   const { value, isMissing, choices, setValue } = useRule(question)
-  console.log(value, choices)
+
   return (
     <div className="align flex flex-col items-end">
       {choices &&

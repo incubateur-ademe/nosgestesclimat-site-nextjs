@@ -2,16 +2,16 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 type Props = {
-  language: string
+  lang: string
   region: string
 }
-export function useRules({ language, region }: Props) {
+export function useRules({ lang, region }: Props) {
   return useQuery(
-    ['rules', language, region],
+    ['rules', lang, region],
     () =>
       axios
         .get(
-          `https://data.nosgestesclimat.fr/co2-model.${region}-lang.${language}-opti.json`
+          `https://data.nosgestesclimat.fr/co2-model.${region}-lang.${lang}-opti.json`
         )
         .then((res) => res.data),
     {

@@ -2,8 +2,10 @@
 
 import { ReactNode, useEffect } from 'react'
 
+import { i18nConfig } from '@/constants/i18n'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
+import { useCurrentLocale } from 'next-i18n-router/client'
 
 export default function Providers({ children }: { children: ReactNode }) {
   const {
@@ -14,9 +16,11 @@ export default function Providers({ children }: { children: ReactNode }) {
     updateSituationOfCurrentSimulation,
   } = useUser()
 
+  const lang = useCurrentLocale(i18nConfig)
+
   const { data: rules, isFetched } = useRules({
-    language: user.language || 'fr',
-    region: user.region || 'FR',
+    lang: lang || 'fr',
+    region: user.region?.code || 'FR',
   })
 
   useEffect(() => {

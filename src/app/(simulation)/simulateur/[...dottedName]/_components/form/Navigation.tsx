@@ -28,7 +28,6 @@ export default function Form({ question }: Props) {
         color={isMissing ? 'secondary' : 'primary'}
         onClick={async () => {
           const nextQuestion = await gotoNextQuestion()
-          console.log(nextQuestion)
           if (nextQuestion === 'end') {
             router.push('/fin')
           }

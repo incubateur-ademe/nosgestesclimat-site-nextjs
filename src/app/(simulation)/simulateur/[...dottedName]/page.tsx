@@ -6,7 +6,6 @@ import Form from './_components/Form'
 import Total from './_components/Total'
 
 export default function Simulateur() {
-  console.log('refresh')
   return (
     <>
       <Title title={'Votre bilan climat personnel'} />
