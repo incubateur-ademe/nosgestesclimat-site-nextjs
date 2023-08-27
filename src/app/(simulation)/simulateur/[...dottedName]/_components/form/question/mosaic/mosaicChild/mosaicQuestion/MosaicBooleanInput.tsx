@@ -6,7 +6,7 @@ type Props = {
   icons: string
 }
 
-export default function MosaicChoicesInput({ question, title, icons }: Props) {
+export default function MosaicBooleanInput({ question, title, icons }: Props) {
   const { value, setValue, isMissing } = useRule(question)
 
   const checked = !isMissing && value

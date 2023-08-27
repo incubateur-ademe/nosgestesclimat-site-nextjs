@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
+import QuestionButton from '@/components/misc/QuestionButton'
 import { useRule } from '@/publicodes-state'
 import Explanation from './total/Explanation'
 import Planet from './total/Planet'
 import Progress from './total/Progress'
-import ToggleButton from './total/ToggleButton'
 import ValueChangeDisplay from './total/ValueChangeDisplay'
 
 export default function Category() {
@@ -31,7 +31,10 @@ export default function Category() {
             de CO<sub>2</sub>e / an
           </span>
         </Link>
-        <ToggleButton setOpen={setOpen} />
+        <QuestionButton
+          onClick={() => setOpen((prevOpen) => !prevOpen)}
+          color="white"
+        />
         <ValueChangeDisplay />
       </div>
       {open ? <Explanation setOpen={setOpen} /> : null}

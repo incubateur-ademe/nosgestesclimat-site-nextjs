@@ -3,33 +3,21 @@
 import { useMemo } from 'react'
 
 type Props = {
+  dottedName: string
   rule: any
   type: string
 }
 
-//TODO : Use real choices and not dottedName
-export default function useChoices({ rule, type }: Props) {
+export default function useChoices({ dottedName, rule, type }: Props) {
   const choices = useMemo(() => {
     if (type === 'choices') {
       const unePossibilite: any = rule.rawNode.formule
         ? rule.rawNode.formule['une possibilité']
         : rule.rawNode['une possibilité']
       if (unePossibilite) {
-        return unePossibilite['possibilités'].map((choice: string) => ({
-          value: `'${choice}'`,
-          label: choice,
-        }))
+        return unePossibilite['possibilités']
       } else {
-        return [
-          {
-            value: 'non',
-            label: 'Non',
-          },
-          {
-            value: 'oui',
-            label: 'Oui',
-          },
-        ]
+        return []
       }
     }
     return null

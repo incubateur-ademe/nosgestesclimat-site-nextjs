@@ -33,7 +33,14 @@ export default function useType({ dottedName, rule, evaluation }: Props) {
       dottedName.includes('propriétaire') ||
       dottedName.includes('présent')
     ) {
-      return 'choices'
+      const unePossibilite: any = rule.rawNode.formule
+        ? rule.rawNode.formule['une possibilité']
+        : rule.rawNode['une possibilité']
+      if (unePossibilite) {
+        return 'choices'
+      } else {
+        return 'boolean'
+      }
     }
     return 'number'
   }

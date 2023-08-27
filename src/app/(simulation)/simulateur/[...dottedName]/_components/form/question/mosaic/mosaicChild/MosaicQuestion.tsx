@@ -1,7 +1,5 @@
-import React from 'react'
-
 import { useRule } from '@/publicodes-state'
-import MosaicChoicesInput from './mosaicQuestion/MosaicChoicesInput'
+import MosaicBooleanInput from './mosaicQuestion/MosaicBooleanInput'
 import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
 
 type Props = {
@@ -18,8 +16,8 @@ export default function MosaicQuestion({ question, title, icons }: Props) {
       {type === 'number' && (
         <MosaicNumberInput question={question} title={title} icons={icons} />
       )}
-      {type === 'choices' && (
-        <MosaicChoicesInput question={question} title={title} icons={icons} />
+      {type === 'boolean' && (
+        <MosaicBooleanInput question={question} title={title} icons={icons} />
       )}
     </>
   )

@@ -3,11 +3,10 @@ import { useForm, useRule } from '@/publicodes-state'
 
 type Props = {
   question: string
-  setValue: any
 }
 
-export default function Suggestions({ question, setValue }: Props) {
-  const { suggestions } = useRule(question)
+export default function Suggestions({ question }: Props) {
+  const { suggestions, setValue } = useRule(question)
   const { updateSituation } = useForm()
   return suggestions?.length ? (
     <div className="mb-2 flex flex-wrap gap-2 text-sm">

@@ -82,12 +82,12 @@ const checkValueValidity = ({
   type: string
 }): number | string =>
   type === 'choices'
+    ? value.startsWith("'")
+      ? value
+      : `'${value}'`
+    : type === 'boolean'
     ? value === null || value === false || value === 'non'
       ? 'non'
-      : typeof value === 'string'
-      ? !value.startsWith("'")
-        ? `'${value}'`
-        : value
       : 'oui'
     : type === 'mosaic'
     ? 'mosaic'

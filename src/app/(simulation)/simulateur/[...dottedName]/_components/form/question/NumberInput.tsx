@@ -2,11 +2,10 @@ import { useRule } from '@/publicodes-state'
 
 type Props = {
   question: string
-  setValue: Function
 }
 
-export default function NumberInput({ question, setValue }: Props) {
-  const { unit, value, isMissing } = useRule(question)
+export default function NumberInput({ question }: Props) {
+  const { unit, value, isMissing, setValue } = useRule(question)
 
   return (
     <div className="flex items-center justify-end gap-1">

@@ -3,7 +3,6 @@ import MosaicChild from './mosaic/MosaicChild'
 
 type Props = {
   question: string
-  setValue: Function
 }
 
 export default function Mosaic({ question }: Props) {
