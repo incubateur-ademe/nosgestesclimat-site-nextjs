@@ -10,7 +10,7 @@ export default function useInitialisation({
   currentCategory,
 }: Props) {
   const formInitialized = useMemo(
-    () => currentQuestion && currentCategory,
+    () => (currentQuestion && currentCategory ? true : false),
     [currentQuestion, currentCategory]
   )
   return formInitialized

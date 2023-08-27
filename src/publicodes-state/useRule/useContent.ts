@@ -32,13 +32,6 @@ export default function useContent({ dottedName, rule }: Props) {
       : []
   }, [rule])
 
-  if (dottedName === 'alimentation . plats') {
-    console.log(rule, suggestions)
-  }
-
-  if (dottedName === 'transport . avion . court courrier . heures de vol') {
-    console.log(rule, suggestions)
-  }
   return {
     category,
     title,

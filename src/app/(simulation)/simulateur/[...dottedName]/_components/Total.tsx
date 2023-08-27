@@ -6,11 +6,13 @@ import Explanation from './total/Explanation'
 import Planet from './total/Planet'
 import Progress from './total/Progress'
 import ToggleButton from './total/ToggleButton'
+import ValueChangeDisplay from './total/ValueChangeDisplay'
 
 export default function Category() {
   const { value } = useRule('bilan')
 
   const [open, setOpen] = useState(false)
+
   return (
     <div className="mb-2">
       <div className="relative flex justify-center items-center gap-4 rounded-lg overflow-hidden bg-primary text-white text-center p-2 mb-2 ">
@@ -30,6 +32,7 @@ export default function Category() {
           </span>
         </Link>
         <ToggleButton setOpen={setOpen} />
+        <ValueChangeDisplay />
       </div>
       {open ? <Explanation setOpen={setOpen} /> : null}
     </div>

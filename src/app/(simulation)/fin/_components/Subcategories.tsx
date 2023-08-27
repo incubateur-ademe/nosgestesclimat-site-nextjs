@@ -32,7 +32,6 @@ export default function Subcategories() {
         ),
     [subcategories, getValue]
   )
-  console.log(sortedSubcategories)
   return (
     <div>
       {sortedSubcategories.map((subCategory) => (

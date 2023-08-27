@@ -1,12 +1,12 @@
-# Publicodes State
+Publicodes State
 
 Cette librairie met à disposition des hooks React permettant de gérer le state d'un utilisateur de Nos Gestes Climat et ses simulations associées.
 
-Cette librairie souhaite permettre une façon simple et claire de modulariser le code de Nos Gestes Climat en permettant de séparer toute la logique utilisateur/formulaire/publicodes du reste du front-end. Cette séparation des préoccupations permet au front-end d'évoluer rapidement sans avoir à ce soucier des complexités du moteur publicodes.
+Cette librairie souhaite permettre une façon simple et claire de modulariser le code de Nos Gestes Climat en permettant de séparer toute la logique utilisateur/formulaire/publicodes du reste du front-end. Cette séparation des préoccupations permet au front-end d'évoluer rapidement sans avoir à ce soucier des complexités du moteur Publicodes.
 
 Ce que cette librairie ne fait pas :
 
-- Chargement des fichiers de règles Publicodes. Un fichier de règle doit être fourni déjà chargé au provider de la librairie
+- Chargement des fichiers de règles Publicodes. Un fichier de règle doit être fourni déjà chargé au provider de la librairie.
 - Régionalisation et internationalisation. Le fichier de règle étant fourni par le front-end, la librairie n'a aucune idée de la langue de celui-ci.
 
 ## Utilisation
@@ -30,7 +30,7 @@ Hydrate l'application avec un objet utilisateur persisté. Permet d'utiliser le 
 ### SimulationProvider
 
 Hydrate l'application avec un moteur Publicodes, sa situation et les informations du formulaire associé. Permet d'utiliser les hooks `useForm` et `useRule`.
-Il peut être utilisé à l'intérieur de `UserProvider` (celui ci pouvant fournir `situation` et `setSituation`) ou tout seul (dans ce cas la situation s'initialise à partir de `defaultSituation` et ne sera pas persistante).
+Il peut être utilisé à l'intérieur de `UserProvider` (celui-ci pouvant fournir `situation` et `setSituation`) ou tout seul (dans ce cas la situation s'initialise à partir de `defaultSituation` et ne sera pas persistante).
 
 #### Props
 
@@ -58,7 +58,7 @@ Retourne l'ensemble des informations utilisateur persistantes et les setters per
 
 #### Paramètres d'entrée
 
-Ne prend pas de paramètre en entrée.
+Ne prends pas de paramètre en entrée.
 
 #### Valeurs de retour
 
@@ -96,7 +96,7 @@ Ne prend pas de paramètre en entrée.
   - Un array contenant les noms des catégories de question.
 - `relevantQuestions: string[]`
   - Un array contenant les noms de l'ensemble des questions qui relèvent de la simulation
-  - Il contient l'ensemble des questions déjà répondus et celles restantes
+  - Il contient l'ensemble des questions déjà répondues et celles restantes
   - Les questions sont classées dans l'ordre d'apparition dans le formulaire
 - `remainingQuestions: string[]`
   - Un array contenant les noms de l'ensemble des questions restantes dans la simulation
@@ -108,7 +108,7 @@ Ne prend pas de paramètre en entrée.
   - Le pourcentage de complétion de la catégorie en cours
 - `gotoNextQuestion: () => null`
   - Une fonction permettant de passer à la question suivante
-  - Si aucune réponse n'a été apporté à la question en cours, la réponse par défaut sera utilisée
+  - Si aucune réponse n'a été apportée à la question en cours, la réponse par défaut sera utilisée
 - `gotoPrevQuestion: () => null`
   - Une fonction permettant de passer à la question suivante
 - `noPrevQuestion: boolean`
