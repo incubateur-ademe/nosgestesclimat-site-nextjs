@@ -1,3 +1,4 @@
+import Button from '@/design-system/inputs/Button'
 import { useForm, useRule } from '@/publicodes-state'
 
 type Props = {
@@ -11,9 +12,9 @@ export default function Suggestions({ question, setValue }: Props) {
   return suggestions?.length ? (
     <div className="mb-2 flex flex-wrap gap-2 text-sm">
       {suggestions.map((suggestion: { [key: string]: string }) => (
-        <button
+        <Button
           key={suggestion.label}
-          className="rounded bg-primary px-4  py-2 text-white"
+          size="sm"
           onClick={() => {
             if (typeof suggestion.value === 'object') {
               updateSituation(
@@ -31,7 +32,7 @@ export default function Suggestions({ question, setValue }: Props) {
             }
           }}>
           {suggestion.label}
-        </button>
+        </Button>
       ))}
     </div>
   ) : null
