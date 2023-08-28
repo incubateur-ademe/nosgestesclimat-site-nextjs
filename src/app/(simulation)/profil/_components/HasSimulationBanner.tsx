@@ -43,7 +43,9 @@ export default function HasSimulationBanner() {
         </Card>
         <details className="mt-3 max-w-full text-sm">
           <TransClient i18nKey={'publicodes.Profil.locationDonnées'}>
-            <summary className="mb-2">Où sont mes données ? </summary>
+            <summary className="mb-2 cursor-pointer">
+              Où sont mes données ?{' '}
+            </summary>
             <span className="!text-xs">
               Vos données sont stockées dans votre navigateur, vous avez donc le
               contrôle total sur elles.

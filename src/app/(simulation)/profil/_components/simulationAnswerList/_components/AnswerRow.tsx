@@ -40,7 +40,7 @@ export default function Answer({ ruleDottedName, level }: AnswerProps) {
   if (rule.unit?.numerators) {
     rule.unit.numerators = translateUnits(rule.unit.numerators)
   }
-
+  console.log('TODO : handle storedAmortissement here')
   return (
     <tr key={ruleDottedName} className="bg-primaryLight w-full even:bg-white">
       <td className="pl-2">
@@ -59,7 +59,7 @@ export default function Answer({ ruleDottedName, level }: AnswerProps) {
             router.push('/simulateur/bilan')
           }}>
           <span
-            className={`decoration-dashed underline-offset-4 inline-block underline`}>
+            className={`decoration-dotted underline-offset-4 inline-block underline`}>
             {rule.displayValue?.toLocaleString()} {rule.unit}
             {/* rule.passedQuestion && (
               <span role="img" aria-label="shoulder emoji">

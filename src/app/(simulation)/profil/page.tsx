@@ -8,7 +8,7 @@ import { Simulation } from '@/types/simulation'
 import Title from '@/design-system/layout/Title'
 import HasSimulationBanner from './_components/HasSimulationBanner'
 import NoSimulationBanner from './_components/NoSimulationBanner'
-import SimulationAnswerList from './_components/answerList/SimulationAnswerList'
+import SimulationAnswerList from './_components/simulationAnswerList/SimulationAnswerList'
 /*
 export const metadata: Metadata = {
   title: 'Mon profil',
