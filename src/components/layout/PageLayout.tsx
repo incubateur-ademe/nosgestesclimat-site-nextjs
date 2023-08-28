@@ -13,7 +13,7 @@ export default function PageLayout({
     <>
       {!shouldShowMenu && <Logo />}
       <div
-        className={`m-auto max-w-6xl mt-4 ${
+        className={`m-auto max-w-7xl mt-4 ${
           shouldShowMenu ? pageWithMenuClassnames : pageWithoutMenuClassnames
         }`}>
         {shouldShowMenu && <Navigation />}
