@@ -8,6 +8,7 @@ import { Simulation } from '@/types/simulation'
 import Title from '@/design-system/layout/Title'
 import HasSimulationBanner from './_components/HasSimulationBanner'
 import NoSimulationBanner from './_components/NoSimulationBanner'
+import Localisation from './_components/localisation/Localisation'
 import SimulationAnswerList from './_components/simulationAnswerList/SimulationAnswerList'
 /*
 export const metadata: Metadata = {
@@ -42,7 +43,7 @@ export default function Profil() {
 
       <HasSimulationBanner />
 
-      {/* <Localisation /> */}
+      <Localisation />
 
       <SimulationAnswerList />
 

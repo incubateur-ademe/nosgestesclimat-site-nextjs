@@ -21,6 +21,9 @@ export default function useUser() {
   const updateEmail = (email: string) =>
     setUser((prevUser: any) => ({ ...prevUser, email }))
 
+  const updateRegion = (region: { code: string; name: string }) =>
+    setUser((prevUser: any) => ({ ...prevUser, region }))
+
   const { updateSituationOfCurrentSimulation, initSimulation } = useSimulations(
     {
       simulations,
@@ -34,6 +37,7 @@ export default function useUser() {
     user,
     updateName,
     updateEmail,
+    updateRegion,
     simulations,
     currentSimulation,
     setCurrentSimulation,

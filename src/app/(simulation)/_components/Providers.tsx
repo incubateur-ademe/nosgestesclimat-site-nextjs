@@ -35,6 +35,8 @@ export default function Providers({
     }
   }, [initSimulation, currentSimulation])
 
+  console.log({ currentSimulation, isFetched })
+
   return currentSimulation && isFetched ? (
     <SimulationProvider
       key={currentSimulation}

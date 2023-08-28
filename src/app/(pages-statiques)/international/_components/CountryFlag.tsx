@@ -1,7 +1,7 @@
 import { RegionCode } from '@/types/international'
 import Image from 'next/image'
 import { use } from 'react'
-import { fetchSupportedRegions } from '../_helpers/fetchSupportedRegions'
+import { fetchSupportedRegions } from '../../../../helpers/localisation/fetchSupportedRegions'
 
 export function getFlagImgSrc(inputCode: RegionCode): string | undefined {
   if (!inputCode) {
@@ -17,7 +17,13 @@ export function useFlag(inputCode: RegionCode): string | undefined {
   return getFlagImgSrc(code)
 }
 
-export default function CountryFlag({ code }: { code: string }) {
+export default function CountryFlag({
+  code,
+  className,
+}: {
+  code: string
+  className?: string
+}) {
   const flagSrc = useFlag(code)
 
   if (!flagSrc) return null
@@ -25,9 +31,9 @@ export default function CountryFlag({ code }: { code: string }) {
   return (
     <Image
       src={flagSrc}
-      alt=''
-      aria-hidden='true'
-      className='mr-1 h-4 w-4 align-sub'
+      alt=""
+      aria-hidden="true"
+      className={`mr-1 h-4 w-4 align-sub ${className}`}
       width={16}
       height={16}
     />

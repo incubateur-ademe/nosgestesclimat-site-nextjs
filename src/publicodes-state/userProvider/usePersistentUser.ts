@@ -16,6 +16,7 @@ export default function usePersistentUser({
     setUser(
       JSON.parse(localStorage.getItem(storageKey) || '{}').user || {
         region: initialRegion,
+        initialRegion,
       }
     )
 
