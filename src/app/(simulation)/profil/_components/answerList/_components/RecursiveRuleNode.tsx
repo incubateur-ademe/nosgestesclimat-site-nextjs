@@ -1,5 +1,5 @@
-import StepsTable from './StepTable'
-import Subcategory from './Subcategory'
+import AnwsersTable from './AnswersTable'
+import RuleNode from './RuleNode'
 
 type Props = {
   rules: string[]
@@ -41,7 +41,7 @@ export default function RecursiveStepsTable({ rules, level }: Props) {
         .map(([key, values]) => {
           console.log({ key, values })
           return (
-            <Subcategory
+            <RuleNode
               key={key}
               rules={values}
               ruleDottedName={key}
@@ -50,7 +50,7 @@ export default function RecursiveStepsTable({ rules, level }: Props) {
           )
         })}
 
-      <StepsTable rules={lonelyRules} level={level} />
+      <AnwsersTable rules={lonelyRules} level={level} />
     </div>
   )
 }

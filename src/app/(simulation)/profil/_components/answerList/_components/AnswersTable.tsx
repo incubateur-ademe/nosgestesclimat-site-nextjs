@@ -1,16 +1,16 @@
-import Answer from './Answer'
+import AnswerRow from './AnswerRow'
 
 type Props = {
   rules: string[]
   level: number
 }
 
-export default function StepsTable({ rules, level }: Props) {
+export default function AnwsersTable({ rules, level }: Props) {
   return (
     <table className="w-full">
       <tbody className="w-full">
         {rules.map((ruleDottedName) => (
-          <Answer
+          <AnswerRow
             key={ruleDottedName}
             level={level}
             ruleDottedName={ruleDottedName}

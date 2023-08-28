@@ -37,10 +37,7 @@ export default function CheckboxInputGroup({
           {...props}
         />
 
-        <span
-          className={`text-sm font-bold text-slate-900 ${
-            error ? '!text-red-700' : ''
-          }`}>
+        <span className={`text-sm font-bold  ${error ? '!text-red-700' : ''}`}>
           {label}
         </span>
       </label>

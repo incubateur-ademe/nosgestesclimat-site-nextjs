@@ -60,7 +60,7 @@ export default function Answer({ ruleDottedName, level }: AnswerProps) {
           }}>
           <span
             className={`decoration-dashed underline-offset-4 inline-block underline`}>
-            {rule.displayValue}
+            {rule.displayValue?.toLocaleString()} {rule.unit}
             {/* rule.passedQuestion && (
               <span role="img" aria-label="shoulder emoji">
                 🤷🏻

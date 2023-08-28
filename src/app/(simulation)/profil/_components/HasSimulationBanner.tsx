@@ -29,7 +29,7 @@ export default function HasSimulationBanner() {
 
   return (
     <div className="flex items-start flex-wrap">
-      <div className="w-[30rem]">
+      <div className="w-[30rem] mt-4">
         <Card className="mr-8 flex-col">
           <p className="text-lg">
             <TransClient i18nKey={'publicodes.Profil.recap'}>
@@ -56,7 +56,7 @@ export default function HasSimulationBanner() {
         </details>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col my-4">
         {isSimulationInProgress && (
           <ButtonLink color="primary" href="/simulateur/bilan">
             <TransClient>

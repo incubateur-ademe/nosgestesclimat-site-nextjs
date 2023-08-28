@@ -6,15 +6,15 @@ import TransClient from '@/components/translation/TransClient'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm } from '@/publicodes-state'
-import CategoryTable from './_components/CategoryTable'
+import RuleNode from './_components/RuleNode'
 import { AllOpenProvider } from './_contexts/AllOpenContext'
 
-export default function AnswerList() {
+export default function SimulationAnswerList() {
   const [isAllOpen, setIsAllOpen] = useState(false)
 
   const { t } = useClientTranslation()
 
-  const { progression } = useForm()
+  const { progression, categories, relevantQuestions } = useForm()
 
   if (progression === 0) return null
 
@@ -22,7 +22,10 @@ export default function AnswerList() {
     <AllOpenProvider value={isAllOpen}>
       <div className="flex items-center justify-between w-[30rem] gap-2 mb-4">
         <h2 className="mb-0">
-          <TransClient>📋 Mes réponses</TransClient>
+          <span role="img" aria-label="emoji notepad" className="mr-4">
+            📋
+          </span>
+          <TransClient>Mes réponses</TransClient>
         </h2>
 
         <div className="flex items-center">
@@ -34,7 +37,23 @@ export default function AnswerList() {
           />
         </div>
       </div>
-      <CategoryTable />
+
+      {categories.map((category: string) => {
+        const categoryQuestions = relevantQuestions.filter((question: string) =>
+          question.includes(category)
+        )
+
+        if (!categoryQuestions.length) return null
+
+        return (
+          <RuleNode
+            key={category}
+            ruleDottedName={category}
+            rules={categoryQuestions}
+            level={1}
+          />
+        )
+      })}
     </AllOpenProvider>
   )
 }
