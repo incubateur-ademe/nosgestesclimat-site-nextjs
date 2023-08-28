@@ -21,6 +21,7 @@ type Props = {
 }
 
 export default function SimulationProvider({
+  children,
   rules,
   categoryOrder,
   loader,
