@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import Logo from '../Logo'
-import Navigation from './navigation/Navigation'
+import Navigation from './pageLayout/Navigation'
 
 const pageWithMenuClassnames = 'flex justify-start'
 const pageWithoutMenuClassnames = ''

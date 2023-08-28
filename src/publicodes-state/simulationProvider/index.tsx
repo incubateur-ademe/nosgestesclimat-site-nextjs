@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 
 import SimulationContext from './context'
 import useCategories from './useCategories'
@@ -14,8 +14,7 @@ import useSituation from './useSituation'
 type Props = {
   rules: any
   categoryOrder: string[]
-  children: React.ReactNode
-  loader: React.ReactNode
+  loader: ReactNode
   defaultSituation?: any
   situation?: any
   updateSituation: Function
@@ -24,12 +23,11 @@ type Props = {
 export default function SimulationProvider({
   rules,
   categoryOrder,
-  children,
   loader,
   defaultSituation,
   situation: externalSituation,
   updateSituation: updateExternalSituation,
-}: Props) {
+}: PropsWithChildren<Props>) {
   const { engine, safeEvaluate, safeGetRule } = useEngine(rules)
 
   const { situation, updateSituation } = useSituation({

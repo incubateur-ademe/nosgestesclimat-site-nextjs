@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 
 import PageLayout from '@/components/layout/PageLayout'
 import Main from '@/design-system/layout/Main'
@@ -6,9 +6,7 @@ import Providers from './_components/Providers'
 
 export default async function SimulateurLayout({
   children,
-}: {
-  children: ReactNode
-}) {
+}: PropsWithChildren) {
   // TODO: endpoint should not be static (and should point to local if available)
   const supportedRegions = await fetch(
     'https://data.nosgestesclimat.fr/supportedRegions.json'

@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useEffect } from 'react'
+import { PropsWithChildren, useEffect } from 'react'
 
 import { i18nConfig } from '@/constants/i18n'
 import { useRules } from '@/hooks/useRules'
@@ -9,9 +9,11 @@ import { useCurrentLocale } from 'next-i18n-router/client'
 
 type Props = {
   supportedRegions: any
-  children: ReactNode
 }
-export default function Providers({ children, supportedRegions }: Props) {
+export default function Providers({
+  children,
+  supportedRegions,
+}: PropsWithChildren<Props>) {
   const {
     user,
     simulations,

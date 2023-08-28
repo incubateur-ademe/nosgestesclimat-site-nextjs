@@ -11,7 +11,7 @@ import Footer from '@/components/layout/Footer'
 import { UserProvider } from '@/publicodes-state'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 import QueryClientProviderWrapper from './_components/QueryClientProviderWrapper'
 
 const marianne = localFont({
@@ -50,11 +50,7 @@ const marianne = localFont({
   variable: '--font-marianne',
 })
 
-export default async function RootLayout({
-  children,
-}: {
-  children: ReactNode
-}) {
+export default async function RootLayout({ children }: PropsWithChildren) {
   const lang = currentLocale()
 
   // TODO: endpoint should not be static (and should point to local if available)
