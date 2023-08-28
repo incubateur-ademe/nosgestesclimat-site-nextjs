@@ -13,9 +13,9 @@ type Props = {
 
 export const colorClassNames = {
   primary:
-    'transition-colors text-white bg-primary shadow-sm hover:bg-primaryDark',
+    'transition-colors text-white bg-primary shadow-sm hover:text-white hover:bg-primaryDark',
   secondary:
-    'border-solid  border-primary text-primary shadow-sm bg-transparent hover:bg-primary hover:text-white',
+    'border-solid border-primary border-2 text-primary shadow-sm bg-transparent hover:bg-primaryLight hover:border-primaryDark',
   text: 'text-primary bg-transparent shadow-none hover:bg-primaryLight hover:text-primary hover:border-primary',
 }
 
