@@ -26,6 +26,9 @@ export const sizeClassNames = {
   xl: 'px-10 py-6 text-2xl',
 }
 
+export const baseClassNames =
+  'inline-flex items-center whitespace-nowrap rounded-md font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 aria-disabled:opacity-50'
+
 export default function Button({
   onClick,
   children,
@@ -43,7 +46,7 @@ export default function Button({
       type={type}
       aria-disabled={disabled}
       id={id}
-      className={`inline-flex border-2 items-center transition-colors ${sizeClassNames[size]} rounded-md border text-sm font-medium no-underline ${colorClassNames[color]} transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 aria-disabled:opacity-50 ${className}`}
+      className={`${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]} ${className}`}
       {...props}>
       {children}
     </button>
