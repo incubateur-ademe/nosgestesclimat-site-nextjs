@@ -1,5 +1,5 @@
 import { useForm } from '@/publicodes-state'
-import SubCategory from './SubCategory'
+import Subcategory from './Subcategory'
 
 export default function CategoryTable() {
   const { categories, relevantQuestions } = useForm()
@@ -12,7 +12,7 @@ export default function CategoryTable() {
     if (!categoryQuestions.length) return null
 
     return (
-      <SubCategory
+      <Subcategory
         key={category}
         ruleDottedName={category}
         rules={categoryQuestions}

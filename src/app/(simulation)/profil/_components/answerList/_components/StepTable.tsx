@@ -1,17 +1,20 @@
-import { Category } from '@/types/model'
 import Answer from './Answer'
 
 type Props = {
-  rules: Category[]
+  rules: string[]
   level: number
 }
 
 export default function StepsTable({ rules, level }: Props) {
   return (
-    <table>
-      <tbody>
-        {rules.map((rule) => (
-          <Answer key={rule.dottedName} level={level} rule={rule} />
+    <table className="w-full">
+      <tbody className="w-full">
+        {rules.map((ruleDottedName) => (
+          <Answer
+            key={ruleDottedName}
+            level={level}
+            ruleDottedName={ruleDottedName}
+          />
         ))}
       </tbody>
     </table>

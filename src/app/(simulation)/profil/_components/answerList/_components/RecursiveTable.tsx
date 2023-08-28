@@ -1,5 +1,5 @@
 import StepsTable from './StepTable'
-import SubCategory from './SubCategory'
+import Subcategory from './Subcategory'
 
 type Props = {
   rules: string[]
@@ -31,23 +31,24 @@ export default function RecursiveStepsTable({ rules, level }: Props) {
   )
 
   const lonelyRules = Object.values(rulesByParents)
-    .map((els) => (els.length === 1 ? els : []))
+    .map((ruleNames) => (ruleNames.length === 1 ? ruleNames : []))
     .flat()
 
   return (
-    <div className="pl-4  border-solid border-0 border-l-2 border-grey-200">
-      {Object.entries(rulesByParents).map(([key, values]) => {
-        return (
-          values.length > 1 ?? (
-            <SubCategory
+    <div className="pl-4 pt-4 mb-4 border-dashed border-0 border-l border-grey-200">
+      {Object.entries(rulesByParents)
+        .filter(([key, values]) => values.length > 1)
+        .map(([key, values]) => {
+          console.log({ key, values })
+          return (
+            <Subcategory
               key={key}
               rules={values}
               ruleDottedName={key}
               level={level + 1}
             />
           )
-        )
-      })}
+        })}
 
       <StepsTable rules={lonelyRules} level={level} />
     </div>

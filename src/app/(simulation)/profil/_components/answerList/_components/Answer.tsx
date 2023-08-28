@@ -5,26 +5,27 @@ import { useForm, useRule } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 
 type AnswerProps = {
-  rule: string
+  ruleDottedName: string
   level: number
 }
 
-export default function Answer({ rule: dottedName, level }: AnswerProps) {
+export default function Answer({ ruleDottedName, level }: AnswerProps) {
   const { t } = useClientTranslation()
 
   const router = useRouter()
 
   const { setCurrentQuestion } = useForm()
 
-  const rule = useRule(dottedName)
+  const rule = useRule(ruleDottedName)
 
   const translateUnits = (units: string[]) => {
     return units.map((unit: string) => t(unit, { ns: 'units' }))
   }
 
-  const levelDottedName = dottedName.split(' . ')
+  const levelDottedName = ruleDottedName.split(' . ')
 
   let levelRule = undefined
+
   try {
     levelRule = useRule(
       (levelDottedName.slice(0, level + 1) as any).join(' . ')
@@ -41,8 +42,8 @@ export default function Answer({ rule: dottedName, level }: AnswerProps) {
   }
 
   return (
-    <tr key={dottedName} className="bg-primaryLight">
-      <td>
+    <tr key={ruleDottedName} className="bg-primaryLight w-full even:bg-white">
+      <td className="pl-2">
         {levelRule && (
           <div>
             <small>{levelRule.title}</small>
@@ -52,21 +53,20 @@ export default function Answer({ rule: dottedName, level }: AnswerProps) {
       </td>
       <td>
         <button
-          className="inline-block p-2 w-full text-left font-medium"
+          className="inline-block p-4 w-full text-right font-medium"
           onClick={() => {
-            setCurrentQuestion(dottedName)
+            setCurrentQuestion(ruleDottedName)
             router.push('/simulateur/bilan')
           }}>
           <span
-            className={`decoration-dashed underline-offset-4 inline-block underline ${
-              rule.passedQuestion ? 'opacity-50' : ''
-            }}`}>
-            {rule.value}
-            {rule.passedQuestion && (
+            className={`decoration-dashed underline-offset-4 inline-block underline`}>
+            {rule.displayValue}
+            {/* rule.passedQuestion && (
               <span role="img" aria-label="shoulder emoji">
                 🤷🏻
               </span>
-            )}
+            )
+            */}
           </span>
         </button>
         {/*storedTrajets[rule.dottedName] &&
