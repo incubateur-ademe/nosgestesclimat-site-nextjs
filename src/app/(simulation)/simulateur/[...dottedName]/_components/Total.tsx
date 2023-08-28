@@ -8,7 +8,7 @@ import Planet from './total/Planet'
 import Progress from './total/Progress'
 import ValueChangeDisplay from './total/ValueChangeDisplay'
 
-export default function Category() {
+export default function Total() {
   const { value } = useRule('bilan')
 
   const [open, setOpen] = useState(false)
