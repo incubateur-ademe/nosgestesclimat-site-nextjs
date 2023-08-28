@@ -11,7 +11,8 @@ import Footer from '@/components/layout/Footer'
 import { UserProvider } from '@/publicodes-state'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
+import QueryClientProviderWrapper from './_components/QueryClientProviderWrapper'
 
 const marianne = localFont({
   src: [
@@ -49,8 +50,15 @@ const marianne = localFont({
   variable: '--font-marianne',
 })
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: PropsWithChildren) {
   const lang = currentLocale()
+
+  // TODO: endpoint should not be static (and should point to local if available)
+  const region = await fetch(
+    'https://nosgestesclimat.fr/.netlify/functions/geolocation'
+  )
+    .then((res) => res.json())
+    .then((res) => res.country)
 
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
@@ -142,8 +150,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
         */}
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
-
-        <UserProvider>{children}</UserProvider>
+        <QueryClientProviderWrapper>
+          <UserProvider initialRegion={region}>{children}</UserProvider>
+        </QueryClientProviderWrapper>
 
         <Footer />
       </body>

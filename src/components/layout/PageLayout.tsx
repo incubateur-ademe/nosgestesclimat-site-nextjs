@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import Logo from '../Logo'
-import Navigation from './navigation/Navigation'
+import Navigation from './pageLayout/Navigation'
 
 const pageWithMenuClassnames = 'flex justify-start'
 const pageWithoutMenuClassnames = ''
@@ -13,11 +13,11 @@ export default function PageLayout({
     <>
       {!shouldShowMenu && <Logo />}
       <div
-        className={
+        className={`m-auto max-w-6xl mt-4 ${
           shouldShowMenu ? pageWithMenuClassnames : pageWithoutMenuClassnames
-        }>
+        }`}>
         {shouldShowMenu && <Navigation />}
-        <div className='w-full'>{children}</div>
+        <div className="w-full">{children}</div>
       </div>
     </>
   )

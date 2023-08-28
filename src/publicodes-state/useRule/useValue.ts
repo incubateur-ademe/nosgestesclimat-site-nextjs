@@ -4,7 +4,8 @@ import { useMemo } from 'react'
 
 type Props = {
   dottedName: string
-  engine: any
+  safeGetRule: any
+  safeEvaluate: any
   evaluation: any
   type: string
   getType: Function
@@ -14,7 +15,8 @@ type Props = {
 
 export default function useValue({
   dottedName,
-  engine,
+  safeGetRule,
+  safeEvaluate,
   evaluation,
   type,
   getType,
@@ -47,8 +49,8 @@ export default function useValue({
     if (type.includes('mosaic')) {
       situationToUpdate = questionsOfMosaic.reduce(
         (accumulator, currentValue) => {
-          const rule = engine.getRule(currentValue)
-          const evaluation = engine.evaluate(currentValue)
+          const rule = safeGetRule(currentValue)
+          const evaluation = safeEvaluate(currentValue)
           return {
             ...accumulator,
             [currentValue]: checkValueValidity({
@@ -71,7 +73,7 @@ export default function useValue({
 
   return { value, displayValue, isMissing, setValue, setDefaultAsValue }
 }
-// FFS
+// Model shenanigans
 const checkValueValidity = ({
   value,
   type,
@@ -80,12 +82,12 @@ const checkValueValidity = ({
   type: string
 }): number | string =>
   type === 'choices'
+    ? value.startsWith("'")
+      ? value
+      : `'${value}'`
+    : type === 'boolean'
     ? value === null || value === false || value === 'non'
       ? 'non'
-      : typeof value === 'string'
-      ? !value.startsWith("'")
-        ? `'${value}'`
-        : value
       : 'oui'
     : type === 'mosaic'
     ? 'mosaic'

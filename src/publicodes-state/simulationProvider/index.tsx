@@ -1,39 +1,39 @@
 'use client'
 
-import React from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 
 import SimulationContext from './context'
-import useEngine from './useEngine'
 import useCategories from './useCategories'
-import useQuestions from './useQuestions'
-import useProgression from './useProgression'
 import useCurrent from './useCurrent'
-import useSituation from './useSituation'
+import useEngine from './useEngine'
 import useInitialisation from './useInitialisation'
+import useProgression from './useProgression'
+import useQuestions from './useQuestions'
+import useSituation from './useSituation'
 
 type Props = {
   rules: any
   categoryOrder: string[]
-  children: React.ReactNode
-  loader: React.ReactNode
+  loader: ReactNode
   defaultSituation?: any
   situation?: any
   updateSituation: Function
 }
 
 export default function SimulationProvider({
+  children,
   rules,
   categoryOrder,
-  children,
   loader,
   defaultSituation,
   situation: externalSituation,
   updateSituation: updateExternalSituation,
-}: Props) {
-  const engine = useEngine(rules)
+}: PropsWithChildren<Props>) {
+  const { engine, safeEvaluate, safeGetRule } = useEngine(rules)
 
   const { situation, updateSituation } = useSituation({
     engine,
+    safeEvaluate,
     defaultSituation,
     externalSituation,
     updateExternalSituation,
@@ -41,6 +41,7 @@ export default function SimulationProvider({
 
   const { categories, subcategories } = useCategories({
     engine,
+    safeEvaluate,
     order: categoryOrder,
   })
 
@@ -49,7 +50,7 @@ export default function SimulationProvider({
     everyMosaicChildWhoIsReallyInMosaic,
     relevantQuestions,
     questionsByCategories,
-  } = useQuestions({ engine, categories, situation })
+  } = useQuestions({ engine, safeEvaluate, categories, situation })
 
   const {
     remainingQuestions,
@@ -80,6 +81,8 @@ export default function SimulationProvider({
       value={{
         rules,
         engine,
+        safeGetRule,
+        safeEvaluate,
         situation,
         updateSituation,
         categories,
@@ -94,8 +97,7 @@ export default function SimulationProvider({
         currentQuestion,
         currentCategory,
         setCurrentQuestion,
-      }}
-    >
+      }}>
       {formInitialized ? children : loader}
     </SimulationContext.Provider>
   )

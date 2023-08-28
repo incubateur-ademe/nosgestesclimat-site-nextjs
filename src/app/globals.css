@@ -81,7 +81,7 @@ body {
 }
 
 a {
-  @apply inline-block text-primary underline transition-colors hover:!text-primaryDark;
+  @apply inline-block text-primary underline transition-colors hover:text-primaryDark;
 }
 
 h1,
@@ -92,6 +92,10 @@ h5,
 h6 {
   @apply font-bold;
   @apply text-primaryDark;
+}
+
+h1 {
+  @apply text-2xl;
 }
 
 img {

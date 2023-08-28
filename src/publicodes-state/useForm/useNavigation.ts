@@ -43,15 +43,16 @@ export default function useNavigation({
     [questionsByCategories, currentIndexInCategory, currentCategory]
   )
 
-  // TODO : use Promises
-  const gotoNextQuestion = async () => {
+  const gotoNextQuestion = async (): Promise<string> => {
     const currentIndex = relevantQuestions.indexOf(currentQuestion)
-    if (currentIndex < relevantQuestions.length) {
-      await setDefaultAsValue()
-
-      setCurrentQuestion(
+    await setDefaultAsValue()
+    if (currentIndex < relevantQuestions.length - 1) {
+      const newCurrentQuestion =
         relevantQuestions[relevantQuestions.indexOf(currentQuestion) + 1]
-      )
+      setCurrentQuestion(newCurrentQuestion)
+      return newCurrentQuestion
+    } else {
+      return 'end'
     }
   }
   const gotoPrevQuestion = () => {

@@ -1,23 +1,24 @@
 'use client'
 
-import React from 'react'
+import { PropsWithChildren } from 'react'
 
 import UserContext from './context'
-import usePersistentUser from './usePersistentUser'
 import usePersistentSimulations from './usePersistentSimulations'
+import usePersistentUser from './usePersistentUser'
 
 type Props = {
-  children: React.ReactNode
   storageKey?: string
+  initialRegion: { code: string; name: string }
   forgetSimulations?: boolean
 }
 
 export default function UserProvider({
   children,
   storageKey = 'ngc',
+  initialRegion,
   forgetSimulations,
-}: Props) {
-  const { user, setUser } = usePersistentUser({ storageKey })
+}: PropsWithChildren<Props>) {
+  const { user, setUser } = usePersistentUser({ storageKey, initialRegion })
 
   const {
     simulations,
@@ -35,8 +36,7 @@ export default function UserProvider({
         setSimulations,
         currentSimulation,
         setCurrentSimulation,
-      }}
-    >
+      }}>
       {children}
     </UserContext.Provider>
   )

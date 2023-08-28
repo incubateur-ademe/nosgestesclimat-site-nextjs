@@ -2,8 +2,8 @@
 
 import { useContext } from 'react'
 
-import simulationContext from '../simulationProvider/context'
 import { useRule } from '..'
+import simulationContext from '../simulationProvider/context'
 import useNavigation from './useNavigation'
 
 export default function useForm() {
@@ -16,6 +16,7 @@ export default function useForm() {
     currentQuestion,
     currentCategory,
     setCurrentQuestion,
+    updateSituation,
     progression,
     progressionByCategory,
   }: any = useContext(simulationContext)
@@ -45,6 +46,7 @@ export default function useForm() {
     questionsByCategories,
     currentQuestion,
     setCurrentQuestion,
+    updateSituation,
     gotoNextQuestion,
     gotoPrevQuestion,
     noPrevQuestion,

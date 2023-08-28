@@ -13,10 +13,10 @@ type Props = {
 
 export const colorClassNames = {
   primary:
-    'border-0 transition-colors text-white bg-primary shadow-sm hover:bg-primaryDark hover:!text-white',
+    'transition-colors text-white bg-primary shadow-sm hover:bg-primaryDark',
   secondary:
-    'border-solid border-2 !border-primary text-primary shadow-sm bg-transparent hover:bg-primaryLight',
-  text: 'border-0 text-primary bg-transparent !shadow-none hover:bg-primaryLight hover:!text-primary',
+    'border-solid  border-primary text-primary shadow-sm bg-transparent hover:bg-primary hover:text-white',
+  text: 'text-primary bg-transparent shadow-none hover:bg-primaryLight hover:text-primary hover:border-primary',
 }
 
 export const sizeClassNames = {
@@ -43,9 +43,8 @@ export default function Button({
       type={type}
       aria-disabled={disabled}
       id={id}
-      className={`inline-flex items-center transition-colors ${sizeClassNames[size]} rounded-md border border-transparent text-sm font-medium no-underline ${colorClassNames[color]} transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 aria-disabled:opacity-50 ${className}`}
-      {...props}
-    >
+      className={`inline-flex border-2 items-center transition-colors ${sizeClassNames[size]} rounded-md border text-sm font-medium no-underline ${colorClassNames[color]} transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 aria-disabled:opacity-50 ${className}`}
+      {...props}>
       {children}
     </button>
   )
