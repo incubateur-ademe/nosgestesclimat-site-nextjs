@@ -11,7 +11,7 @@ import ValueChangeDisplay from './total/ValueChangeDisplay'
 export default function Total() {
   const { value } = useRule('bilan')
 
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <div className="mb-2">
@@ -32,12 +32,12 @@ export default function Total() {
           </span>
         </Link>
         <QuestionButton
-          onClick={() => setOpen((prevOpen) => !prevOpen)}
+          onClick={() => setIsOpen((previsOpen) => !previsOpen)}
           color="white"
         />
         <ValueChangeDisplay />
       </div>
-      {open ? <Explanation setOpen={setOpen} /> : null}
+      {isOpen ? <Explanation setIsOpen={setIsOpen} /> : null}
     </div>
   )
 }

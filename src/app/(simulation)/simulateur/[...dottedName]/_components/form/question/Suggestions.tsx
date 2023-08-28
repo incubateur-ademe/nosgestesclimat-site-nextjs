@@ -8,7 +8,9 @@ type Props = {
 export default function Suggestions({ question }: Props) {
   const { suggestions, setValue } = useRule(question)
   const { updateSituation } = useForm()
-  return suggestions?.length ? (
+
+  if (!suggestions?.length) return
+  return (
     <div className="mb-2 flex flex-wrap gap-2 text-sm">
       {suggestions.map((suggestion: { [key: string]: string }) => (
         <Button
@@ -34,5 +36,5 @@ export default function Suggestions({ question }: Props) {
         </Button>
       ))}
     </div>
-  ) : null
+  )
 }

@@ -13,7 +13,7 @@ export default function BarChart() {
 
   const { getValue } = useEngine()
 
-  const [open, setOpen] = useState(null)
+  const [isOpen, setIsOpen] = useState(null)
 
   const sortedCategories = useMemo(
     () =>
@@ -44,8 +44,8 @@ export default function BarChart() {
             category={category.dottedName}
             value={category.value}
             current={category.dottedName === currentCategory}
-            open={category.dottedName === open}
-            setOpen={setOpen}
+            isOpen={category.dottedName === isOpen}
+            setIsOpen={setIsOpen}
             max={max}
           />
         </Flipped>

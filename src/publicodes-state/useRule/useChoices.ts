@@ -3,12 +3,11 @@
 import { useMemo } from 'react'
 
 type Props = {
-  dottedName: string
   rule: any
   type: string
 }
 
-export default function useChoices({ dottedName, rule, type }: Props) {
+export default function useChoices({ rule, type }: Props) {
   const choices = useMemo(() => {
     if (type === 'choices') {
       const unePossibilite: any = rule.rawNode.formule

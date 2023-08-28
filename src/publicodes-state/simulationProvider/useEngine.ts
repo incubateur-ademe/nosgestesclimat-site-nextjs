@@ -5,6 +5,7 @@ import Engine from 'publicodes'
 export default function useEngine(rules: any) {
   const engine = useMemo(() => new Engine(rules), [rules])
 
+  // Todo: send errors to Sentry
   const safeEvaluate = useMemo(
     () => (rule: string) => {
       let evaluation = {}

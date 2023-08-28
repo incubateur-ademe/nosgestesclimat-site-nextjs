@@ -61,7 +61,7 @@ export default function useRule(dottedName: string) {
     everyMosaicChildWhoIsReallyInMosaic,
   })
 
-  const choices = useChoices({ dottedName, rule, type })
+  const choices = useChoices({ rule, type })
 
   const { value, displayValue, isMissing, setValue, setDefaultAsValue } =
     useValue({

@@ -20,7 +20,9 @@ export default function Subcategory({
   // Model Shenanigans
   const { value: inhabitants } = useRule('logement . saisie habitants')
 
-  return value ? (
+  if (!value) return
+
+  return (
     <div {...props}>
       <BarChartItem
         label={`${icons || ''} ${title}`}
@@ -30,5 +32,5 @@ export default function Subcategory({
         onClick={onClick}
       />
     </div>
-  ) : null
+  )
 }

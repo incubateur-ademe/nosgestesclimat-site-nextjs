@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { useState } from 'react'
 
 import { useRule } from '@/publicodes-state'
@@ -11,26 +9,24 @@ type Props = {
 export default function Label({ question }: Props) {
   const { label, description } = useRule(question)
 
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
-      <div className='mb-3 text-xl font-semibold'>
+      <div className="mb-3 text-xl font-semibold">
         {label}{' '}
         <button
-          onClick={() => setOpen((prevOpen) => !prevOpen)}
-          className='inline-block h-8 w-8 rounded-full border-none bg-primary text-base font-bold text-white'
-        >
+          onClick={() => setIsOpen((previsOpen) => !previsOpen)}
+          className="inline-block h-8 w-8 rounded-full border-none bg-primary text-base font-bold text-white">
           <code>i</code>
         </button>
       </div>
-      {open ? (
-        <div className='mb-3'>
+      {isOpen ? (
+        <div className="mb-3">
           {description}{' '}
           <button
-            onClick={() => setOpen(false)}
-            className='block uppercase text-primary underline'
-          >
+            onClick={() => setIsOpen(false)}
+            className="block uppercase text-primary underline">
             Fermer
           </button>
         </div>

@@ -19,12 +19,13 @@ export default function ValueChangeDisplay() {
     return () => clearTimeout(timer)
   }, [value])
 
-  return value - prevValue !== 0 ? (
+  if (value - prevValue === 0) return
+  return (
     <div className="absolute right-4 py-2 px-4 bg-white rounded text-primaryDark">
       <strong className="text-lg">{displayDifference}</strong>{' '}
       <span className="font-light text-xs">
         kgCO<sub>2</sub>e
       </span>
     </div>
-  ) : null
+  )
 }

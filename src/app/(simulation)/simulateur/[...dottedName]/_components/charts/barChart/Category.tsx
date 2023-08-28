@@ -8,8 +8,8 @@ type Props = {
   value: number
   max: number
   current: boolean
-  open: boolean
-  setOpen: Function
+  isOpen: boolean
+  setIsOpen: Function
 }
 
 export default function Category({
@@ -17,8 +17,8 @@ export default function Category({
   value,
   max,
   current,
-  open,
-  setOpen,
+  isOpen,
+  setIsOpen,
   ...props
 }: Props) {
   const { title, icons, color } = useRule(category)
@@ -33,12 +33,12 @@ export default function Category({
         max={max}
         color={color}
         onClick={() =>
-          setOpen((prevOpen: string | null) =>
-            prevOpen === category ? null : category
+          setIsOpen((previsOpen: string | null) =>
+            previsOpen === category ? null : category
           )
         }
       />
-      {open ? (
+      {isOpen ? (
         <Subcategories category={category} max={max} color={color} />
       ) : null}
     </div>

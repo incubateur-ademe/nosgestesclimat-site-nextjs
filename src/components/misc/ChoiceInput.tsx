@@ -14,7 +14,7 @@ export default function ChoiceInput({
   active,
   onClick,
 }: Props) {
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <>
       <div className="flex gap-2 mb-2 items-center">
@@ -31,10 +31,12 @@ export default function ChoiceInput({
           </span>
         </button>
         {description ? (
-          <QuestionButton onClick={() => setOpen((prevOpen) => !prevOpen)} />
+          <QuestionButton
+            onClick={() => setIsOpen((previsOpen) => !previsOpen)}
+          />
         ) : null}
       </div>
-      {description && open ? (
+      {description && isOpen ? (
         <p className="mb-4 rounded-md bg-grey-100 p-2 w-1/2 text-sm">
           {description}
         </p>
