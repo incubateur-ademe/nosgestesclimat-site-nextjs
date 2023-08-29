@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function Profil() {
   const { simulations, currentSimulation: currentSimulationId } = useUser()
 
-  const currentSimulation = simulations.find(
+  const currentSimulation = (simulations as Simulation[]).find(
     (simulation: Simulation) => simulation.id === currentSimulationId
   )
   const { persona } = currentSimulation || {}
@@ -35,7 +35,7 @@ export default function Profil() {
         <p>
           <em>
             <TransClient>👤 Vous utilisez actuellement le persona</TransClient>{' '}
-            <code>{persona.nom}</code>
+            <code>{(persona as any).nom}</code>
           </em>
         </p>
       )}

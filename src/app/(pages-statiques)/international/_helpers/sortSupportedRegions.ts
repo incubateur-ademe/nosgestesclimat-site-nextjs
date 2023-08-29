@@ -1,4 +1,4 @@
-import { Region, RegionCode, RegionParams } from '@/types/international'
+import { Region, RegionParams } from '@/types/international'
 
 export const sortSupportedRegions = (
   // TODO : fix type
@@ -9,11 +9,11 @@ export const sortSupportedRegions = (
     Object.entries(supportedRegions).sort(
       (a: Partial<Region>, b: Partial<Region>) => {
         const nameA = (
-          a[1][currentLang as RegionCode] as RegionParams
+          (a as Array<any>)[1][currentLang] as RegionParams
         )?.nom.toUpperCase() // ignore upper and lowercase
 
         const nameB = (
-          b[1][currentLang as RegionCode] as RegionParams
+          (b as Array<any>)[1][currentLang] as RegionParams
         )?.nom.toUpperCase() // ignore upper and lowercase
 
         if (nameA < nameB) {

@@ -92,7 +92,7 @@ export default async function International() {
               <Link href="https://app.electricitymaps.com/map" target="_blank">
                 <Image
                   alt="Electricity Maps"
-                  src={emImage}
+                  src={emImage as string}
                   className="ml-2 h-4"
                   width="100"
                   height="100"

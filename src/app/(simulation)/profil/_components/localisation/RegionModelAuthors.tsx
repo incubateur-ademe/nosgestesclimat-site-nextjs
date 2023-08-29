@@ -27,7 +27,7 @@ export default function RegionModelAuthors({
         {authors.length > 0 &&
           authors.map((author, i) => {
             return (
-              <span>
+              <span key={author.nom}>
                 <Link href={author?.url ?? '#'} target="_blank">
                   {author.nom}
                 </Link>

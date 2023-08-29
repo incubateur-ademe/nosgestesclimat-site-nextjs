@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 
 import budget from '../_data/budget.yaml'
 import RessourcesAllocationTable from './RessourcesAllocationTable'
@@ -6,7 +6,7 @@ import RessourcesAllocationTable from './RessourcesAllocationTable'
 export type BudgetType = {
   [year: string]: {
     [product: string]: {
-      description: ReactI18NextChildren
+      description: ReactNode
     }
   }
 }
@@ -34,16 +34,15 @@ export default function SelectYear() {
 
   return (
     <>
-      <div className='mb-4 inline-flex items-center'>
+      <div className="mb-4 inline-flex items-center">
         <b>Année :</b>
         <select
-          className='mb-0 ml-4 w-[10rem]'
-          name='année'
+          className="mb-0 ml-4 w-[10rem]"
+          name="année"
           value={selectedYear}
           onChange={(e) => {
             setSelectedYear(e.target.value)
-          }}
-        >
+          }}>
           {years.map((year) => (
             <option key={year} value={year}>
               {year}
@@ -51,10 +50,20 @@ export default function SelectYear() {
           ))}
         </select>
       </div>
-      <p>{budget[selectedYear as any]?.description}</p>
+      <p>
+        {
+          (budget[selectedYear as any] as unknown as { description: string })
+            ?.description
+        }
+      </p>
       <RessourcesAllocationTable
         selectedYear={selectedYear}
-        budget={budget}
+        budget={
+          budget as unknown as Record<
+            string,
+            Record<string, Record<string, number>>
+          >
+        }
         products={products}
         categories={categories}
       />

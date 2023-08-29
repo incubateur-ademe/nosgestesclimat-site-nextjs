@@ -7,6 +7,7 @@ import { fetchSupportedRegions } from '@/helpers/localisation/fetchSupportedRegi
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
+import { SuppportedRegions } from '@/types/international'
 import { use } from 'react'
 import RegionModelAuthors from './RegionModelAuthors'
 import RegionSelector from './RegionSelector'
@@ -16,7 +17,7 @@ export default function Localisation({ title = 'Ma région de simulation' }) {
 
   const locale = useLocale()
 
-  const supportedRegions = use(fetchSupportedRegions)
+  const supportedRegions: SuppportedRegions = use(fetchSupportedRegions)
 
   const { user, updateRegion } = useUser()
   const { region, initialRegion } = user || {}
@@ -60,7 +61,9 @@ export default function Localisation({ title = 'Ma région de simulation' }) {
                   color="text"
                   size="sm"
                   onClick={() => {
-                    updateRegion(initialRegion)
+                    updateRegion(
+                      initialRegion as { code: string; name: string }
+                    )
                   }}>
                   <TransClient>Revenir à ma région par défaut </TransClient>{' '}
                   <span aria-label={initialRegion.nom}>

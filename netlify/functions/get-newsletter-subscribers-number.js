@@ -2,10 +2,6 @@ import SibApiV3Sdk from 'sib-api-v3-sdk'
 
 const NGC_LIST_ID = 22
 
-type Data = {
-  totalSubscribers: number
-}
-
 exports.handler = async () => {
   const defaultClient = SibApiV3Sdk.ApiClient.instance
 
@@ -16,7 +12,7 @@ exports.handler = async () => {
   const contactApiInstance = new SibApiV3Sdk.ContactsApi()
 
   try {
-    const data: Data = await contactApiInstance.getList(NGC_LIST_ID)
+    const data = await contactApiInstance.getList(NGC_LIST_ID)
 
     return {
       statusCode: 200,

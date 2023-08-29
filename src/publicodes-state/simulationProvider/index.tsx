@@ -17,7 +17,7 @@ type Props = {
   loader: ReactNode
   defaultSituation?: any
   situation?: any
-  updateSituation: Function
+  updateSituation: (arg: any) => void
 }
 
 export default function SimulationProvider({

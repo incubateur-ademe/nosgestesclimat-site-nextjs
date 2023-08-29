@@ -1,11 +1,13 @@
 import SibApiV3Sdk from 'sib-api-v3-sdk'
 
-const NGC_LIST_ID = 22
+const TEMPLATE_ID_GROUP_CREATED = 57
+const TEMPLATE_ID_GROUP_JOINED = 58
 
-exports.handler = async (event: { body: string }) => {
+exports.handler = async (event) => {
   const data = JSON.parse(event.body)
 
-  const { email, shareURL, simulationURL } = data
+  const { email, shareURL, groupURL, deleteURL, groupName, name, isCreation } =
+    data
 
   const defaultClient = SibApiV3Sdk.ApiClient.instance
 
@@ -19,11 +21,11 @@ exports.handler = async (event: { body: string }) => {
   const createContact = new SibApiV3Sdk.CreateContact()
 
   createContact.email = email
+  createContact.name = name
   createContact.attributes = {
     OPT_IN: true,
   }
 
-  createContact.listIds = [NGC_LIST_ID]
   try {
     await contactApiInstance.createContact(createContact)
   } catch (e) {
@@ -47,10 +49,15 @@ exports.handler = async (event: { body: string }) => {
       email,
     },
   ]
-  sendSmtpEmail.templateId = 55
+  sendSmtpEmail.templateId = isCreation
+    ? TEMPLATE_ID_GROUP_CREATED
+    : TEMPLATE_ID_GROUP_JOINED
   sendSmtpEmail.params = {
     SHARE_URL: shareURL,
-    SIMULATION_URL: simulationURL,
+    GROUP_URL: groupURL,
+    DELETE_URL: deleteURL,
+    GROUP_NAME: groupName,
+    NAME: name,
   }
 
   try {

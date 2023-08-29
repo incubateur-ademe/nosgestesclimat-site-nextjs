@@ -58,7 +58,14 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     'https://nosgestesclimat.fr/.netlify/functions/geolocation'
   )
     .then((res) => res.json())
-    .then((res) => res.country)
+    .then(
+      (res: {
+        country: {
+          code: string
+          name: string
+        }
+      }) => res.country
+    )
 
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>

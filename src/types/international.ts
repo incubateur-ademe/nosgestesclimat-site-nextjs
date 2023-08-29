@@ -24,7 +24,7 @@ export type Localisation = {
 }
 
 export type SupportedRegionType = {
-  [currentLang: string]: { nom: string }
+  [currentLang: string]: { nom: string; authors: RegionAuthor[] }
 }
 
 export type SuppportedRegions = { [key: string]: SupportedRegionType }

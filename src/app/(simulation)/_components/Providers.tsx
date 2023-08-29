@@ -5,6 +5,7 @@ import { PropsWithChildren, useEffect } from 'react'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
+import { Simulation } from '@/types/simulation'
 
 type Props = {
   supportedRegions: any
@@ -47,8 +48,8 @@ export default function Providers({
       ]}
       loader={<div>Loading</div>}
       situation={
-        simulations.find(
-          (simulation: any) => simulation.id === currentSimulation
+        (simulations as Array<Simulation>).find(
+          (simulation: Simulation) => simulation.id === currentSimulation
         )?.situation || {}
       }
       updateSituation={updateSituationOfCurrentSimulation}>
