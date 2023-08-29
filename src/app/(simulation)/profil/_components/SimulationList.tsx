@@ -7,8 +7,8 @@ import { Trans } from 'react-i18next'
 export default function SimulationList() {
   const {
     simulations,
-    currentSimulation: currentSimulationId,
-    setCurrentSimulation,
+    currentSimulationId,
+    setCurrentSimulationId,
     deleteSimulation,
   } = useUser()
 
@@ -66,7 +66,7 @@ export default function SimulationList() {
                             setAllStoredTrajets(simulation.storedTrajets)
                           )
                           */
-                            setCurrentSimulation(simulation.id)
+                            setCurrentSimulationId(simulation.id)
                           }}>
                           <TransClient>Charger</TransClient>
                         </Button>

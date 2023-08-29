@@ -18,6 +18,6 @@ export type UserContextType = {
   setUser: (prevUser: any) => void
   simulations: Simulation[]
   setSimulations: (simulations: Simulation[]) => void
-  currentSimulation: string
-  setCurrentSimulation: (currentSimulationId: string) => void
+  currentSimulationId: string
+  setCurrentSimulationId: (currentSimulationId: string) => void
 }

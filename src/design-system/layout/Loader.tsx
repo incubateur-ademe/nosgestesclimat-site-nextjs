@@ -6,11 +6,25 @@ type Props = {
   className?: string
 }
 
+const sizesClassNames = {
+  sm: 'w-3 h-3 border-2',
+  md: 'w-6 h-6 border-2',
+  lg: 'w-12 h-12 border-4',
+}
+
+const colorsClassNames = {
+  light: 'border-white border-b-transparent',
+  dark: 'border-primaryDark border-b-transparent',
+}
+
 export default function Loader({
   size = 'md',
   color = 'light',
   className,
 }: Props) {
-  // Check global.css for the definition of the loader class
-  return <span className={`loader as-${size} as-${color} ${className}`} />
+  return (
+    <span
+      className={`border-solid rounded-[50%] inline-block animate-spin ${sizesClassNames[size]} ${colorsClassNames[color]} ${className}`}
+    />
+  )
 }

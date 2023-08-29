@@ -19,6 +19,6 @@ export default React.createContext<UserContextType>({
   setUser: () => {},
   simulations: [],
   setSimulations: () => {},
-  currentSimulation: '',
-  setCurrentSimulation: () => {},
+  currentSimulationId: '',
+  setCurrentSimulationId: () => {},
 })

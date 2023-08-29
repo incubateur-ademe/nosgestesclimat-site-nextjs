@@ -17,7 +17,7 @@ export default function Providers({
   const {
     user,
     simulations,
-    currentSimulation,
+    currentSimulationId,
     initSimulation,
     updateSituationOfCurrentSimulation,
   } = useUser()
@@ -30,14 +30,14 @@ export default function Providers({
   })
 
   useEffect(() => {
-    if (!currentSimulation) {
+    if (!currentSimulationId) {
       initSimulation()
     }
-  }, [initSimulation, currentSimulation])
+  }, [initSimulation, currentSimulationId])
 
-  return currentSimulation && !isInitialLoading ? (
+  return currentSimulationId && !isInitialLoading ? (
     <SimulationProvider
-      key={currentSimulation}
+      key={currentSimulationId}
       rules={rules}
       categoryOrder={[
         'transport',
@@ -49,7 +49,7 @@ export default function Providers({
       loader={<div>Loading</div>}
       situation={
         (simulations as Array<Simulation>).find(
-          (simulation: Simulation) => simulation.id === currentSimulation
+          (simulation: Simulation) => simulation.id === currentSimulationId
         )?.situation || {}
       }
       updateSituation={updateSituationOfCurrentSimulation}>

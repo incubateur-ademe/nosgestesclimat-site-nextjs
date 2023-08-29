@@ -8,9 +8,7 @@ import TutorialLink from './TutorialLink'
 export default function NoSimulationBanner() {
   const { progression } = useForm()
 
-  if (progression > 0) {
-    return null
-  }
+  if (progression > 0) return null
 
   return (
     <Card className="!w-[35rem] max-w-full p-8 mt-4 flex-col flex items-start gap-2 !shadow-none">

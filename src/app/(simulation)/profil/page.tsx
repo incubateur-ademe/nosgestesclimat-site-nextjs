@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 */
 
 export default function Profil() {
-  const { simulations, currentSimulation: currentSimulationId } = useUser()
+  const { simulations, currentSimulationId } = useUser()
 
   const currentSimulation = (simulations as Simulation[]).find(
     (simulation: Simulation) => simulation.id === currentSimulationId

@@ -12,8 +12,8 @@ export default function useUser() {
     setUser,
     simulations,
     setSimulations,
-    currentSimulation,
-    setCurrentSimulation,
+    currentSimulationId,
+    setCurrentSimulationId,
   }: any = useContext(userContext)
 
   const updateName = (name: string) =>
@@ -38,8 +38,8 @@ export default function useUser() {
     {
       simulations,
       setSimulations,
-      currentSimulation,
-      setCurrentSimulation,
+      currentSimulationId,
+      setCurrentSimulationId,
     }
   )
 
@@ -50,8 +50,8 @@ export default function useUser() {
     updateRegion,
     simulations,
     deleteSimulation,
-    currentSimulation,
-    setCurrentSimulation,
+    currentSimulationId,
+    setCurrentSimulationId,
     updateSituationOfCurrentSimulation,
     initSimulation,
   }
