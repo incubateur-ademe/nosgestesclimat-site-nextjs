@@ -11,13 +11,16 @@ type Props = {
   shouldShowButton?: boolean
   selectedRegionCode?: string
   updateCurrentRegion?: (code: string) => void
+  className?: string
 }
 
 export default function RegionGrid({
   shouldShowButton = true,
   selectedRegionCode,
   updateCurrentRegion,
-}: Props) {
+  className,
+  ...props
+}: Props & React.HTMLAttributes<HTMLUListElement>) {
   const supportedRegions: string[] = use(fetchSupportedRegions)
 
   const locale = useLocale()
@@ -28,7 +31,9 @@ export default function RegionGrid({
   )
 
   return (
-    <ul className="region-grid mx-auto mt-4 grid max-w-[760px] gap-4 p-0">
+    <ul
+      className={`region-grid mx-auto mt-4 grid max-w-[760px] gap-4 p-0 ${className}`}
+      {...props}>
       {Object.entries(sortedSupportedRegions).map(([code, params]) => {
         return (
           <li className="my-2 flex list-none justify-center" key={code}>

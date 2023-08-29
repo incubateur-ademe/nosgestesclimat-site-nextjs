@@ -24,7 +24,7 @@ export default function Providers({
 
   const lang = useCurrentLocale(i18nConfig)
 
-  const { data: rules, isFetched } = useRules({
+  const { data: rules, isInitialLoading } = useRules({
     lang: lang || 'fr',
     region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
   })
@@ -35,7 +35,7 @@ export default function Providers({
     }
   }, [initSimulation, currentSimulation])
 
-  return currentSimulation && isFetched ? (
+  return currentSimulation && !isInitialLoading ? (
     <SimulationProvider
       key={currentSimulation}
       rules={rules}

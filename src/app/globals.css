@@ -301,3 +301,45 @@ blockquote {
   fill: 'white';
   font-weight: 'bold';
 }
+
+/*
+  Loader
+*/
+.loader {
+  border-style: solid;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s infinite linear;
+}
+.loader.as-sm {
+  width: 0.875rem;
+  height: 0.875rem;
+  border-width: 2px;
+}
+.loader.as-md {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-width: 2px;
+}
+.loader.as-lg {
+  width: 3px;
+  height: 3px;
+  border-width: 5px;
+}
+.loader.as-dark {
+  @apply border-primaryDark;
+  border-bottom-color: transparent;
+}
+.loader.as-light {
+  border-color: white;
+  border-bottom-color: transparent;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
