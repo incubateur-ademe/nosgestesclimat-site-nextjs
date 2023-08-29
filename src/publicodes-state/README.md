@@ -70,9 +70,9 @@ Ne prends pas de paramètre en entrée.
   - Une fonction permettant de mettre à jour l'email de l'utilisateur
 - `simulations: simulation[]`
   - Un array contenant les simulations de l'utilisateur
-- `currentSimulation: string`
+- `currentSimulationId: string`
   - L'ID de la simulation en cours
-- `setCurrentSimulation: (currentSimulation: string) => null`
+- `setCurrentSimulationId: (currentSimulationId: string) => null`
   - Une fonction permettant de mettre à jour la simulation en cours
 - `updateSituationOfCurrentSimulation: (situation: situation) => null`
   - Une fonction permettant de mettre à jour la situation de la simulation en cours.

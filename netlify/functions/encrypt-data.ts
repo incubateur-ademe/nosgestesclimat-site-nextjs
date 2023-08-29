@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/require-await */
+import { Handler } from '@netlify/functions'
 import CryptoJS from 'crypto-js'
 
 /**
  * Encrypts data with AES
  * @param {string} data - Data to encrypt
  */
-exports.handler = async (event) => {
-  const data = JSON.parse(event.body as string)
+const handler: Handler = async (event) => {
+  const data = JSON.parse(event.body as string) as string
 
   const encryptedData = CryptoJS.AES.encrypt(
     data,
-    process.env.ENCRYPTION_KEY
+    process.env.ENCRYPTION_KEY || ''
   ).toString()
 
   return {
@@ -21,3 +22,5 @@ exports.handler = async (event) => {
     body: JSON.stringify(encryptedData),
   }
 }
+
+export { handler }

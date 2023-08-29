@@ -2,18 +2,17 @@
 
 import Card from '@/design-system/layout/Card'
 import { useRule } from '@/publicodes-state'
-import { Category } from '@/types/model'
 import { useContext, useState } from 'react'
 import { AllOpenContext } from '../_contexts/AllOpenContext'
-import RecursiveStepsTable from './Recursive.Table'
+import RecursiveRuleNode from './RecursiveRuleNode'
 
 type Props = {
   ruleDottedName: string
-  rules: Category[]
+  rules: string[]
   level: number
 }
 
-export default function SubCategory({ ruleDottedName, rules, level }: Props) {
+export default function Subcategory({ ruleDottedName, rules, level }: Props) {
   const rule = useRule(ruleDottedName)
 
   const [isLocallyOpen, setIsLocallyOpen] = useState(false)
@@ -25,37 +24,39 @@ export default function SubCategory({ ruleDottedName, rules, level }: Props) {
   const isFirstLevel = level === 1
 
   const categoryClassName = isFirstLevel
-    ? `!bg-green-700 [${
-        rule?.color ?? '#444444'
-      }] w-[30rem] max-w-full text-white`
+    ? `w-[30rem] max-w-full text-white px-4 py-6`
     : ''
 
   return (
     <div>
       <Card
         onClick={() => setIsLocallyOpen(!isOpen)}
-        className={`${categoryClassName} cursor-pointer inline-flex justify-start items-center mb-4`}>
-        <span role="img" aria-label="category icon" className="mr-2 text-2xl">
+        className={`${categoryClassName} cursor-pointer inline-flex justify-start items-center mb-4`}
+        style={isFirstLevel ? { backgroundColor: rule?.color } : {}}>
+        <span role="img" aria-label="category icon" className="mr-4 text-2xl">
           {rule?.icons}
         </span>
 
         {isFirstLevel ? (
-          <h2 className="m-0">{rule.title}</h2>
+          <h2 className="m-0 text-white font-light">{rule.title}</h2>
         ) : (
           <h3 className="m-0">{rule.title}</h3>
         )}
 
-        <div className="ml-auto">
+        <div className={isFirstLevel ? 'ml-auto text-white' : 'ml-4'}>
           {rules.length}{' '}
           {isFirstLevel && (
             <span role="img" aria-label="Emoji bubble speech">
               💬
             </span>
           )}
-          <span className="inline-block ml-2">{!isOpen ? '▶' : '▼'}</span>
+          <span
+            className={`inline-block ml-4 ${isFirstLevel ? 'text-white' : ''}`}>
+            {!isOpen ? '▶' : '▼'}
+          </span>
         </div>
       </Card>
-      {isOpen && <RecursiveStepsTable rules={rules} level={level} />}
+      {isOpen && <RecursiveRuleNode rules={rules} level={level} />}
     </div>
   )
 }

@@ -23,8 +23,8 @@ export default function UserProvider({
   const {
     simulations,
     setSimulations,
-    currentSimulation,
-    setCurrentSimulation,
+    currentSimulationId,
+    setCurrentSimulationId,
   } = usePersistentSimulations({ storageKey, forgetSimulations })
 
   return (
@@ -34,8 +34,8 @@ export default function UserProvider({
         setUser,
         simulations,
         setSimulations,
-        currentSimulation,
-        setCurrentSimulation,
+        currentSimulationId,
+        setCurrentSimulationId,
       }}>
       {children}
     </UserContext.Provider>

@@ -2,10 +2,10 @@
 
 import { PropsWithChildren, useEffect } from 'react'
 
-import { i18nConfig } from '@/constants/i18n'
+import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
-import { useCurrentLocale } from 'next-i18n-router/client'
+import { Simulation } from '@/types/simulation'
 
 type Props = {
   supportedRegions: any
@@ -17,27 +17,27 @@ export default function Providers({
   const {
     user,
     simulations,
-    currentSimulation,
+    currentSimulationId,
     initSimulation,
     updateSituationOfCurrentSimulation,
   } = useUser()
 
-  const lang = useCurrentLocale(i18nConfig)
+  const lang = useLocale()
 
-  const { data: rules, isFetched } = useRules({
+  const { data: rules, isInitialLoading } = useRules({
     lang: lang || 'fr',
     region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
   })
 
   useEffect(() => {
-    if (!currentSimulation) {
+    if (!currentSimulationId) {
       initSimulation()
     }
-  }, [initSimulation, currentSimulation])
+  }, [initSimulation, currentSimulationId])
 
-  return currentSimulation && isFetched ? (
+  return currentSimulationId && !isInitialLoading ? (
     <SimulationProvider
-      key={currentSimulation}
+      key={currentSimulationId}
       rules={rules}
       categoryOrder={[
         'transport',
@@ -48,8 +48,8 @@ export default function Providers({
       ]}
       loader={<div>Loading</div>}
       situation={
-        simulations.find(
-          (simulation: any) => simulation.id === currentSimulation
+        (simulations as Array<Simulation>).find(
+          (simulation: Simulation) => simulation.id === currentSimulationId
         )?.situation || {}
       }
       updateSituation={updateSituationOfCurrentSimulation}>

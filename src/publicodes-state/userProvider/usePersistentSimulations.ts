@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 type Props = {
   storageKey: string
@@ -11,19 +11,20 @@ export default function usePersistentSimulations({
   const [initialized, setInitialized] = useState(false)
 
   const [simulations, setSimulations] = useState<any[]>([])
-  const [currentSimulation, setCurrentSimulation] = useState<string>('')
+  const [currentSimulationId, setCurrentSimulationId] = useState<string>('')
 
   useEffect(() => {
     const storedSimulations: any[] = forgetSimulations
       ? []
       : JSON.parse(localStorage.getItem(storageKey) || '{}').simulations || []
+
     const storedCurrentSimulation: string = forgetSimulations
       ? ''
       : JSON.parse(localStorage.getItem(storageKey) || '{}')
-          .currentSimulation || ''
+          .currentSimulationId || ''
 
     setSimulations(storedSimulations)
-    setCurrentSimulation(storedCurrentSimulation)
+    setCurrentSimulationId(storedCurrentSimulation)
     setInitialized(true)
   }, [storageKey, forgetSimulations])
 
@@ -42,15 +43,15 @@ export default function usePersistentSimulations({
       const currentStorage = JSON.parse(
         localStorage.getItem(storageKey) || '{}'
       )
-      const updatedStorage = { ...currentStorage, currentSimulation }
+      const updatedStorage = { ...currentStorage, currentSimulationId }
       localStorage.setItem(storageKey, JSON.stringify(updatedStorage))
     }
-  }, [storageKey, currentSimulation, initialized])
+  }, [storageKey, currentSimulationId, initialized])
 
   return {
     simulations,
     setSimulations,
-    currentSimulation,
-    setCurrentSimulation,
+    currentSimulationId,
+    setCurrentSimulationId,
   }
 }
