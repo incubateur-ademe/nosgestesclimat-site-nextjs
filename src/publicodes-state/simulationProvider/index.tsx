@@ -1,12 +1,11 @@
 'use client'
 
-import { PropsWithChildren, ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 
 import SimulationContext from './context'
 import useCategories from './useCategories'
 import useCurrent from './useCurrent'
 import useEngine from './useEngine'
-import useInitialisation from './useInitialisation'
 import useProgression from './useProgression'
 import useQuestions from './useQuestions'
 import useSituation from './useSituation'
@@ -14,7 +13,6 @@ import useSituation from './useSituation'
 type Props = {
   rules: any
   categoryOrder: string[]
-  loader: ReactNode
   defaultSituation?: any
   situation?: any
   updateSituation: Function
@@ -24,7 +22,6 @@ export default function SimulationProvider({
   children,
   rules,
   categoryOrder,
-  loader,
   defaultSituation,
   situation: externalSituation,
   updateSituation: updateExternalSituation,
@@ -53,9 +50,13 @@ export default function SimulationProvider({
   } = useQuestions({ engine, safeEvaluate, categories, situation })
 
   const {
+    remainingCategories,
+    answeredCategories,
     remainingQuestions,
+    answeredQuestions,
     progression,
     remainingQuestionsByCategories,
+    answeredQuestionsByCategories,
     progressionByCategory,
   } = useProgression({
     categories,
@@ -64,16 +65,15 @@ export default function SimulationProvider({
     questionsByCategories,
   })
 
-  const { currentQuestion, currentCategory, setCurrentQuestion } = useCurrent({
-    engine,
-    situation,
-    remainingQuestions,
-    categories,
-  })
-
-  const formInitialized = useInitialisation({
+  const {
     currentQuestion,
     currentCategory,
+    setCurrentQuestion,
+    setCurrentCategory,
+  } = useCurrent({
+    engine,
+    situation,
+    categories,
   })
 
   return (
@@ -90,15 +90,20 @@ export default function SimulationProvider({
         everyMosaicChildWhoIsReallyInMosaic,
         relevantQuestions,
         questionsByCategories,
-        progression,
+        remainingCategories,
+        answeredCategories,
         remainingQuestions,
+        answeredQuestions,
+        progression,
         remainingQuestionsByCategories,
+        answeredQuestionsByCategories,
         progressionByCategory,
         currentQuestion,
         currentCategory,
         setCurrentQuestion,
+        setCurrentCategory,
       }}>
-      {formInitialized ? children : loader}
+      {children}
     </SimulationContext.Provider>
   )
 }

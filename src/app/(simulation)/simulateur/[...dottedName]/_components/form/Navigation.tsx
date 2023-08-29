@@ -8,28 +8,50 @@ type Props = {
   question: string
 }
 
-export default function Form({ question }: Props) {
+export default function Navigation({ question }: Props) {
   const {
     gotoPrevQuestion,
     gotoNextQuestion,
+    gotoPrevCategory,
+    gotoNextCategory,
     noPrevQuestion,
     noNextQuestion,
-    noNextQuestionInCategory,
+    noPrevCategory,
+    noNextCategory,
   } = useForm()
-  const { isMissing } = useRule(question)
+  const { isMissing, setDefaultAsValue } = useRule(question)
 
   const router = useRouter()
   return (
     <div className="flex justify-end  gap-4">
-      <Button disabled={noPrevQuestion} onClick={gotoPrevQuestion} color="text">
+      <Button
+        disabled={noPrevQuestion && noPrevCategory}
+        onClick={() => {
+          if (noPrevQuestion) {
+            if (!noPrevCategory) {
+              gotoPrevCategory()
+            }
+          } else {
+            gotoPrevQuestion()
+          }
+        }}
+        color="text">
         <TransClient>← Précédent</TransClient>
       </Button>
       <Button
         color={isMissing ? 'secondary' : 'primary'}
         onClick={async () => {
-          const nextQuestion = await gotoNextQuestion()
-          if (nextQuestion === 'end') {
-            router.push('/fin')
+          if (isMissing) {
+            await setDefaultAsValue()
+          }
+          if (noNextQuestion) {
+            if (noNextCategory) {
+              return router.push('/fin')
+            } else {
+              gotoNextCategory()
+            }
+          } else {
+            gotoNextQuestion()
           }
         }}>
         <TransClient>

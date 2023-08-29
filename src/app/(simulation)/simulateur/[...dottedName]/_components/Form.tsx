@@ -1,28 +1,54 @@
 import { useForm } from '@/publicodes-state'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo } from 'react'
+
+import CategoryIntroduction from './form/CategoryIntroduction'
 import Navigation from './form/Navigation'
 import Question from './form/Question'
 
 export default function Form() {
-  const { currentQuestion, setCurrentQuestion } = useForm()
+  const {
+    remainingCategories,
+    remainingQuestionsByCategories,
+    currentQuestion,
+    setCurrentQuestion,
+    currentCategory,
+    setCurrentCategory,
+  } = useForm()
+
   const router = useRouter()
+
+  const isInitialized = useMemo(
+    () => (currentQuestion && currentCategory ? true : false),
+    [currentQuestion, currentCategory]
+  )
 
   const searchParams = useSearchParams()
   const questionInQueryParams = searchParams.get('question')
 
-  const [isInitialized, setIsInitialized] = useState(false)
-
   useEffect(() => {
-    if (!isInitialized && questionInQueryParams) {
-      setCurrentQuestion(
-        decodeURI(
-          questionInQueryParams.replaceAll('.', ' . ').replaceAll('_', ' ')
+    if (!currentCategory) {
+      if (questionInQueryParams) {
+        setCurrentQuestion(
+          decodeURI(
+            questionInQueryParams.replaceAll('.', ' . ').replaceAll('_', ' ')
+          )
         )
-      )
+        setCurrentCategory(
+          decodeURI(questionInQueryParams.split('.')[0].replaceAll('_', ' '))
+        )
+      } else {
+        setCurrentCategory(remainingCategories[0])
+      }
     }
-    setIsInitialized(true)
-  }, [questionInQueryParams])
+  }, [
+    currentCategory,
+    questionInQueryParams,
+    remainingCategories,
+    remainingQuestionsByCategories,
+    setCurrentCategory,
+    setCurrentQuestion,
+  ])
 
   useEffect(() => {
     if (isInitialized) {
@@ -32,13 +58,20 @@ export default function Form() {
         { scroll: false }
       )
     }
-  }, [currentQuestion, isInitialized])
+  }, [router, currentQuestion, currentCategory, isInitialized])
 
-  if (!isInitialized) return
-  return (
+  if (!currentCategory) return
+  return currentQuestion ? (
     <div className="rounded-lg bg-primaryLight p-4 mb-4">
       <Question question={currentQuestion} key={currentQuestion} />
       <Navigation question={currentQuestion} />
     </div>
+  ) : (
+    <CategoryIntroduction
+      category={currentCategory}
+      startCategory={() =>
+        setCurrentQuestion(remainingQuestionsByCategories[currentCategory][0])
+      }
+    />
   )
 }

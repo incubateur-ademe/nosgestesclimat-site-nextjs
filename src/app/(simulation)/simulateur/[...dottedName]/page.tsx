@@ -6,16 +6,12 @@ import Debug from './_components/Debug'
 import Form from './_components/Form'
 import Total from './_components/Total'
 
-export default function Simulateur({
-  params,
-}: {
-  params: { dottedName: string[] }
-}) {
+export default function Simulateur() {
   return (
     <>
       <Title title={'Votre bilan climat personnel'} />
       <Total />
-      <Form params={params} />
+      <Form />
       <Charts />
       <Debug />
     </>

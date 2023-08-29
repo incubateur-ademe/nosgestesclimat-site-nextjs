@@ -73,24 +73,24 @@ export default function useValue({
 
   return { value, displayValue, isMissing, setValue, setDefaultAsValue }
 }
-// Model shenanigans
+
 const checkValueValidity = ({
   value,
   type,
 }: {
   value: any
   type: string
-}): number | string =>
-  type === 'choices'
-    ? value.startsWith("'")
-      ? value
-      : `'${value}'`
-    : type === 'boolean'
-    ? value === null || value === false || value === 'non'
-      ? 'non'
-      : 'oui'
-    : type === 'mosaic'
-    ? 'mosaic'
-    : !value
-    ? 0
-    : value
+}): number | string => {
+  switch (type) {
+    case 'choices':
+      return value.startsWith("'") ? value : `'${value}'`
+    case 'boolean':
+      return value === null || value === false || value === 'non' // Model shenanigans
+        ? 'non'
+        : 'oui'
+    case 'mosaic':
+      return 'mosaic'
+    default:
+      return !value ? 0 : value
+  }
+}

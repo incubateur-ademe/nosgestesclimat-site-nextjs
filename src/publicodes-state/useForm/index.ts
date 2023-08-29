@@ -2,7 +2,6 @@
 
 import { useContext } from 'react'
 
-import { useRule } from '..'
 import simulationContext from '../simulationProvider/context'
 import useNavigation from './useNavigation'
 
@@ -11,49 +10,66 @@ export default function useForm() {
     categories,
     subcategories,
     relevantQuestions,
-    remainingQuestions,
     questionsByCategories,
     currentQuestion,
     currentCategory,
     setCurrentQuestion,
+    setCurrentCategory,
     updateSituation,
+    remainingCategories,
+    answeredCategories,
+    remainingQuestions,
+    answeredQuestions,
     progression,
+    remainingQuestionsByCategories,
+    answeredQuestionsByCategories,
     progressionByCategory,
   }: any = useContext(simulationContext)
 
-  const { setDefaultAsValue } = useRule(currentQuestion)
-
   const {
-    gotoNextQuestion,
     gotoPrevQuestion,
+    gotoNextQuestion,
+    gotoPrevCategory,
+    gotoNextCategory,
     noPrevQuestion,
     noNextQuestion,
-    noNextQuestionInCategory,
+    noPrevCategory,
+    noNextCategory,
   } = useNavigation({
-    relevantQuestions,
+    categories,
     questionsByCategories,
+    remainingQuestionsByCategories,
     currentQuestion,
     currentCategory,
     setCurrentQuestion,
-    setDefaultAsValue,
+    setCurrentCategory,
   })
 
   return {
     categories,
     subcategories,
     relevantQuestions,
-    remainingQuestions,
     questionsByCategories,
     currentQuestion,
+    currentCategory,
     setCurrentQuestion,
+    setCurrentCategory,
     updateSituation,
-    gotoNextQuestion,
     gotoPrevQuestion,
+    gotoNextQuestion,
+    gotoPrevCategory,
+    gotoNextCategory,
     noPrevQuestion,
     noNextQuestion,
-    noNextQuestionInCategory,
-    currentCategory,
+    noPrevCategory,
+    noNextCategory,
+    remainingCategories,
+    answeredCategories,
+    remainingQuestions,
+    answeredQuestions,
     progression,
+    remainingQuestionsByCategories,
+    answeredQuestionsByCategories,
     progressionByCategory,
   }
 }
