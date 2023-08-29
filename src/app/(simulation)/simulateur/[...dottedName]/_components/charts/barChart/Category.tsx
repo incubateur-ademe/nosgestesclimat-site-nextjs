@@ -1,4 +1,4 @@
-import { useRule } from '@/publicodes-state'
+import { useForm, useRule } from '@/publicodes-state'
 
 import BarChartItem from '@/components/misc/BarChartItem'
 import Subcategories from './category/Subcategories'
@@ -22,6 +22,7 @@ export default function Category({
   ...props
 }: Props) {
   const { title, icons, color } = useRule(category)
+  const { setCurrentCategory, setCurrentQuestion } = useForm()
 
   return (
     <div
@@ -32,11 +33,14 @@ export default function Category({
         value={value}
         max={max}
         color={color}
-        onClick={() =>
+        onClick={() => {
           setIsOpen((previsOpen: string | null) =>
             previsOpen === category ? null : category
           )
-        }
+          console.log(category)
+          setCurrentCategory(category)
+          setCurrentQuestion(null)
+        }}
       />
       {isOpen ? (
         <Subcategories category={category} max={max} color={color} />
