@@ -28,49 +28,47 @@ export default function Localisation({ title = 'Ma région de simulation' }) {
         <span
           role="img"
           aria-label="emoji pin"
-          className="inline-blocl mr-4"
+          className="inline-blocl mr-3"
           aria-hidden>
           📍
-        </span>{' '}
+        </span>
         <span>{t(title)}</span>
       </h2>
 
       {region && (
-        <>
-          <p>
-            <span>
-              <TransClient>Vous faites cette simulation depuis :</TransClient>{' '}
-              <strong>{region.name}</strong>
-              <CountryFlag code={region.code} className="inline-block ml-2" />.
-            </span>
-            {!isRegionSupported && (
-              <>
-                {t('components.localisation.Localisation.warnMessage', {
-                  countryName: region.country,
-                })}
-              </>
-            )}
-            {region.code !== initialRegion.code && (
-              <div className="mt-2">
-                <Button
-                  color="text"
-                  size="sm"
-                  onClick={() => {
-                    updateRegion(initialRegion)
-                  }}>
-                  <TransClient>Revenir à ma région par défaut </TransClient>{' '}
-                  <span aria-label={initialRegion.nom}>
-                    <CountryFlag
-                      code={initialRegion.code}
-                      className="inline-block ml-2"
-                    />
-                  </span>
-                </Button>
-              </div>
-            )}
-          </p>
+        <div className="my-4">
+          <span>
+            <TransClient>Vous faites cette simulation depuis :</TransClient>{' '}
+            <strong>{region.name}</strong>
+            <CountryFlag code={region.code} className="inline-block ml-2" />.
+          </span>
+          {!isRegionSupported && (
+            <>
+              {t('components.localisation.Localisation.warnMessage', {
+                countryName: region.country,
+              })}
+            </>
+          )}
+          {region.code !== initialRegion.code && (
+            <div className="mt-2">
+              <Button
+                color="text"
+                size="sm"
+                onClick={() => {
+                  updateRegion(initialRegion)
+                }}>
+                <TransClient>Revenir à ma région par défaut </TransClient>{' '}
+                <span aria-label={initialRegion.nom}>
+                  <CountryFlag
+                    code={initialRegion.code}
+                    className="inline-block ml-2"
+                  />
+                </span>
+              </Button>
+            </div>
+          )}
           <RegionModelAuthors authors={supportedRegions[region.code].authors} />
-        </>
+        </div>
       )}
 
       {!region && (

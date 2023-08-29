@@ -2,10 +2,9 @@
 
 import { PropsWithChildren, useEffect } from 'react'
 
-import { i18nConfig } from '@/constants/i18n'
+import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
-import { useCurrentLocale } from 'next-i18n-router/client'
 
 type Props = {
   supportedRegions: any
@@ -22,7 +21,7 @@ export default function Providers({
     updateSituationOfCurrentSimulation,
   } = useUser()
 
-  const lang = useCurrentLocale(i18nConfig)
+  const lang = useLocale()
 
   const { data: rules, isInitialLoading } = useRules({
     lang: lang || 'fr',

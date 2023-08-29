@@ -33,7 +33,7 @@ export default function RegionSelector({
 
   const { isFetching } = useRules({
     lang: locale || 'fr',
-    region,
+    region: region?.code || 'FR',
   })
 
   return (
