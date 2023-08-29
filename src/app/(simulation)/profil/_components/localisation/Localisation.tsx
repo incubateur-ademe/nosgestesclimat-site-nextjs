@@ -25,7 +25,11 @@ export default function Localisation({ title = 'Ma région de simulation' }) {
   return (
     <div className="mt-8">
       <h2 className="text-lg">
-        <span role="img" aria-label="emoji pin" aria-hidden>
+        <span
+          role="img"
+          aria-label="emoji pin"
+          className="inline-blocl mr-4"
+          aria-hidden>
           📍
         </span>{' '}
         <span>{t(title)}</span>
