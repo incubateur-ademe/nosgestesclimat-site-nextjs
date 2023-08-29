@@ -2,6 +2,7 @@
 
 import { useContext } from 'react'
 
+import { Simulation } from '@/types/simulation'
 import userContext from '../userProvider/context'
 import useSimulations from './useSimulations'
 
@@ -24,6 +25,15 @@ export default function useUser() {
   const updateRegion = (region: { code: string; name: string }) =>
     setUser((prevUser: any) => ({ ...prevUser, region }))
 
+  const deleteSimulation = (deletedSimulationId: string) => {
+    setUser((prevUser: any) => ({
+      ...prevUser,
+      simulations: prevUser.simulations.filter(
+        (simulation: Simulation) => simulation.id !== deletedSimulationId
+      ),
+    }))
+  }
+
   const { updateSituationOfCurrentSimulation, initSimulation } = useSimulations(
     {
       simulations,
@@ -39,6 +49,7 @@ export default function useUser() {
     updateEmail,
     updateRegion,
     simulations,
+    deleteSimulation,
     currentSimulation,
     setCurrentSimulation,
     updateSituationOfCurrentSimulation,

@@ -23,15 +23,14 @@ export default function TakeTestLink({ hasData }: { hasData?: boolean }) {
         trackEvent(matomoEventParcoursTestStart)
       }}
       size="xl"
-      className="px-12">
+      className="px-12 ">
       <ProgressCircle progress={0} white className="mr-2" />
-      <span>
-        {hasData ? (
-          <TransClient>Reprendre mon test</TransClient>
-        ) : (
-          <TransClient>Faire le test</TransClient>
-        )}
-      </span>
+
+      {hasData ? (
+        <TransClient>Reprendre mon test</TransClient>
+      ) : (
+        <TransClient>Faire le test</TransClient>
+      )}
     </ButtonLink>
   )
 }

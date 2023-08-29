@@ -8,6 +8,7 @@ import { Simulation } from '@/types/simulation'
 import Title from '@/design-system/layout/Title'
 import HasSimulationBanner from './_components/HasSimulationBanner'
 import NoSimulationBanner from './_components/NoSimulationBanner'
+import SimulationList from './_components/SimulationList'
 import Localisation from './_components/localisation/Localisation'
 import SimulationAnswerList from './_components/simulationAnswerList/SimulationAnswerList'
 /*
@@ -47,22 +48,21 @@ export default function Profil() {
 
       <SimulationAnswerList />
 
-      {/*simulations && (
-          <div className="mt-8">
-            <h2>
-              💾 <Trans>Mon historique des simulations</Trans>
-            </h2>
-            <p>
-              <Trans i18nKey={'publicodes.Profil.simulations'}>
-                Chaque simulation que vous faite est sauvegardée dans votre
-                navigateur Web. Vous êtes le seul à y avoir accès.
-              </Trans>
-            </p>
-            <SimulationList
-              {...{ dispatch, list: simulationList, currentSimulationId }}
-            />
-          </div>
-        )*/}
+      {simulations && (
+        <div className="mt-8">
+          <h2 className="text-lg">
+            <span className="inline-block mr-4">💾</span>
+            <TransClient>Mon historique des simulations</TransClient>
+          </h2>
+          <p>
+            <TransClient i18nKey={'publicodes.Profil.simulations'}>
+              Chaque simulation que vous faite est sauvegardée dans votre
+              navigateur Web. Vous êtes le seul à y avoir accès.
+            </TransClient>
+          </p>
+          <SimulationList />
+        </div>
+      )}
     </>
   )
 }
