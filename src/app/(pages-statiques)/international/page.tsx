@@ -8,9 +8,9 @@ import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
 
 import Link from '@/components/Link'
+import RegionGrid from '@/components/misc/RegionGrid'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
-import RegionGrid from '../../../components/misc/RegionGrid'
 
 export default async function International() {
   const { t } = await getServerTranslation()

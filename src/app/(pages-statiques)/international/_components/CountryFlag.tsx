@@ -1,7 +1,7 @@
+import { fetchSupportedRegions } from '@/helpers/localisation/fetchSupportedRegions'
 import { RegionCode } from '@/types/international'
 import Image from 'next/image'
 import { use } from 'react'
-import { fetchSupportedRegions } from '../../../../helpers/localisation/fetchSupportedRegions'
 
 export function getFlagImgSrc(inputCode: RegionCode): string | undefined {
   if (!inputCode) {

@@ -5,6 +5,7 @@ import TransClient from '@/components/translation/TransClient'
 import Button from '@/design-system/inputs/Button'
 import { fetchSupportedRegions } from '@/helpers/localisation/fetchSupportedRegions'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import { use } from 'react'
 import RegionModelAuthors from './RegionModelAuthors'
@@ -12,6 +13,8 @@ import RegionSelector from './RegionSelector'
 
 export default function Localisation({ title = 'Ma région de simulation' }) {
   const { t } = useClientTranslation()
+
+  const locale = useLocale()
 
   const supportedRegions = use(fetchSupportedRegions)
 
@@ -49,25 +52,30 @@ export default function Localisation({ title = 'Ma région de simulation' }) {
               })}
             </>
           )}
-          {region.code !== initialRegion.code && (
-            <div className="mt-2">
-              <Button
-                color="text"
-                size="sm"
-                onClick={() => {
-                  updateRegion(initialRegion)
-                }}>
-                <TransClient>Revenir à ma région par défaut </TransClient>{' '}
-                <span aria-label={initialRegion.nom}>
-                  <CountryFlag
-                    code={initialRegion.code}
-                    className="inline-block ml-2"
-                  />
-                </span>
-              </Button>
-            </div>
-          )}
-          <RegionModelAuthors authors={supportedRegions[region.code].authors} />
+
+          <div className="flex gap-2 items-baseline">
+            {region.code !== initialRegion.code && (
+              <div className="mt-2">
+                <Button
+                  color="text"
+                  size="sm"
+                  onClick={() => {
+                    updateRegion(initialRegion)
+                  }}>
+                  <TransClient>Revenir à ma région par défaut </TransClient>{' '}
+                  <span aria-label={initialRegion.nom}>
+                    <CountryFlag
+                      code={initialRegion.code}
+                      className="inline-block ml-2"
+                    />
+                  </span>
+                </Button>
+              </div>
+            )}
+            <RegionModelAuthors
+              authors={supportedRegions[region.code][locale || 'fr'].authors}
+            />
+          </div>
         </div>
       )}
 

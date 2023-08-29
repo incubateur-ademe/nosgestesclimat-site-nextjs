@@ -12,6 +12,8 @@ export default function SimulationList() {
     deleteSimulation,
   } = useUser()
 
+  console.log('TODO : implement action and persona logic here')
+
   return (
     <div className="mt-8">
       <h2 className="text-lg">
@@ -57,6 +59,7 @@ export default function SimulationList() {
                           size="sm"
                           onClick={() => {
                             /*
+                          // TODO : implement action logic here
                           dispatch(setCurrentSimulation(simulation))
                           dispatch(setActionsChoices(simulation.actionChoices))
                           dispatch(
