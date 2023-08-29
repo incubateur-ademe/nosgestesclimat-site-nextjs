@@ -1,5 +1,5 @@
 import { ButtonSize } from '@/types/values'
-import { MouseEventHandler } from 'react'
+import { HtmlHTMLAttributes, MouseEventHandler, PropsWithChildren } from 'react'
 
 type Props = {
   onClick: MouseEventHandler<HTMLButtonElement>
@@ -9,7 +9,7 @@ type Props = {
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   id?: string
-} & React.PropsWithChildren
+} & PropsWithChildren
 
 export const colorClassNames = {
   primary:
@@ -39,7 +39,7 @@ export default function Button({
   disabled,
   id,
   ...props
-}: Props) {
+}: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLButtonElement>>) {
   return (
     <button
       onClick={disabled ? () => {} : onClick}

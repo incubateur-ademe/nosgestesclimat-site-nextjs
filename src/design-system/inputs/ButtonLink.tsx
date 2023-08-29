@@ -1,6 +1,6 @@
 import Link from '@/components/Link'
 import { ButtonSize } from '@/types/values'
-import { PropsWithChildren } from 'react'
+import { HtmlHTMLAttributes, PropsWithChildren } from 'react'
 import { baseClassNames, colorClassNames, sizeClassNames } from './Button'
 
 type Props = {
@@ -9,9 +9,8 @@ type Props = {
   color?: 'primary' | 'secondary' | 'text'
   size?: ButtonSize
   onClick?: () => void
-} & PropsWithChildren
+}
 
-// Create a button component styled with tailwindcss
 export default function ButtonLink({
   href,
   children,
@@ -20,7 +19,7 @@ export default function ButtonLink({
   size = 'md',
   onClick,
   ...props
-}: Props) {
+}: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLAnchorElement>>) {
   return (
     <Link
       href={href}
