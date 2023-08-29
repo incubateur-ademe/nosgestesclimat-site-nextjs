@@ -3,7 +3,7 @@ import QuestionButton from './QuestionButton'
 
 type Props = {
   label: string
-  description: string
+  description?: string
   active: boolean
   onClick: any
 }

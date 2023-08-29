@@ -7,13 +7,12 @@ import Subcategory from '@/components/misc/Subcategory'
 type Props = {
   category: string
   max: number
-  color: string
 }
 type categoryObject = {
   dottedName: string
   value: number
 }
-export default function Subcategories({ category, max, color }: Props) {
+export default function Subcategories({ category, max }: Props) {
   const { subcategories } = useForm()
 
   const { getValue } = useEngine()

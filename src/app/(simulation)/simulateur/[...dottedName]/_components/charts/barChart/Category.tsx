@@ -9,7 +9,7 @@ type Props = {
   max: number
   current: boolean
   isOpen: boolean
-  setIsOpen: Function
+  setIsOpen: any
 }
 
 export default function Category({

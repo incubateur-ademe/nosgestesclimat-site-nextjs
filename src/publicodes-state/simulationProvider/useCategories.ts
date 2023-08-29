@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 type Props = {
   engine: any
-  safeEvaluate: Function
+  safeEvaluate: any
   order: string[] | null
 }
 

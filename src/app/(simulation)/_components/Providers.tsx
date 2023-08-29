@@ -46,7 +46,6 @@ export default function Providers({
         'divers',
         'services sociétaux',
       ]}
-      loader={<div>Loading</div>}
       situation={
         (simulations as Array<Simulation>).find(
           (simulation: Simulation) => simulation.id === currentSimulationId

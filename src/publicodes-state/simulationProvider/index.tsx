@@ -70,11 +70,7 @@ export default function SimulationProvider({
     currentCategory,
     setCurrentQuestion,
     setCurrentCategory,
-  } = useCurrent({
-    engine,
-    situation,
-    categories,
-  })
+  } = useCurrent()
 
   return (
     <SimulationContext.Provider

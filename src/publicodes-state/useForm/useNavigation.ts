@@ -7,8 +7,8 @@ type Props = {
   }
   currentQuestion: string
   currentCategory: string
-  setCurrentQuestion: Function
-  setCurrentCategory: Function
+  setCurrentQuestion: any
+  setCurrentCategory: any
 }
 
 export default function useNavigation({

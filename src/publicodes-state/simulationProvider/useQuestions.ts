@@ -138,9 +138,9 @@ export default function useQuestions({
   }: {
     question: string
     situation: {
-      [key: string]: string[]
+      [key: string]: any
     }
-  }) => situation.hasOwnProperty(question)
+  }) => situation[question] || situation[question] === 0
 
   const isQuestionMissing = ({
     question,

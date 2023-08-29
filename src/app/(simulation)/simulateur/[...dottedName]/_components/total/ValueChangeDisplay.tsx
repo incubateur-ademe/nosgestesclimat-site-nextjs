@@ -13,7 +13,7 @@ export default function ValueChangeDisplay() {
   })}`
 
   useEffect(() => {
-    let timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       setPrevValue(value)
     }, 1000)
     return () => clearTimeout(timer)

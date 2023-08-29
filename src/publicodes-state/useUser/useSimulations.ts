@@ -3,10 +3,10 @@
 import { v4 as uuidv4 } from 'uuid'
 
 type Props = {
-  simulations: Object[]
-  setSimulations: Function
+  simulations: any[]
+  setSimulations: any
   currentSimulationId: string
-  setCurrentSimulationId: Function
+  setCurrentSimulationId: any
 }
 export default function useSimulations({
   simulations,

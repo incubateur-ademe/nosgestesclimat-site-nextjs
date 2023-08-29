@@ -8,9 +8,9 @@ type Props = {
   safeEvaluate: any
   evaluation: any
   type: string
-  getType: Function
+  getType: any
   questionsOfMosaic: string[]
-  updateSituation: Function
+  updateSituation: any
 }
 
 export default function useValue({
