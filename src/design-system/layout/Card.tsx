@@ -25,7 +25,7 @@ export default function Card({
   } & HTMLAttributes<HTMLDivElement>
 >) {
   const Tag = tag || 'div'
-
+  console.log({ style })
   return (
     <Tag
       onClick={onClick}

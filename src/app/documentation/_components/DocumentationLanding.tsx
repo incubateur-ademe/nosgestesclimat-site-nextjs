@@ -1,16 +1,16 @@
 'use client'
 
 import TransClient from '@/components/translation/TransClient'
-import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
 import Markdown from 'markdown-to-jsx'
-import Image from 'next/image'
 import Link from 'next/link'
 import { utils } from 'publicodes'
 
+import Card from '@/design-system/layout/Card'
+import { NGCRules } from '@/types/model'
 import editorialisedModels from '../_data/editorialisedModels.yaml'
 import SearchBar from './SearchBar'
 
@@ -28,7 +28,9 @@ export default function DocumentationLanding() {
 
   if (!data) return null
 
-  const rules = data as { [key: string]: { couleur: string; résumé: string } }
+  const rules = data as NGCRules & {
+    [key: string]: { couleur: string; résumé: string }
+  }
 
   const editos = (editorialisedModels as unknown as string[]).map(
     (dottedName: string) => ({
@@ -59,41 +61,31 @@ export default function DocumentationLanding() {
         </Link>
       </p>
 
-      <h2>
-        <TransClient>Explorez nos modèles</TransClient>
-      </h2>
-
       <SearchBar rules={rules} />
 
-      <h2>
+      <h2 className="mt-4 text-xl">
         <TransClient>Quelques suggestions </TransClient>
       </h2>
 
-      <ol className="flex justify-start items-center flex-wrap max-w-[60rem] p-0">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 flex-wrap max-w-[60rem] p-0 gap-2">
         {editos.map(({ dottedName, résumé }) => {
-          const bgClassName = `bg-${getColor(dottedName) || 'primary'}`
-
           return (
-            <Card
-              tag="li"
-              key={dottedName}
-              className={`h-[12rem] w-[11rem] flex-auto ${bgClassName}`}>
-              <Link href={'/documentation/' + utils.encodeRuleName(dottedName)}>
-                <span className="absolute top-1/2 left-1/2 -translate-1/2 whitespace-nowrap opacity-20">
-                  <Image
-                    src={`/images/model/${dottedName}.svg`}
-                    width="100"
-                    height="100"
-                    alt=""
-                  />
-                </span>
-
-                {résumé && <h2>{<Markdown>{résumé}</Markdown>}</h2>}
-              </Link>
-            </Card>
+            <li key={dottedName}>
+              <Card
+                tag={Link}
+                style={{ backgroundColor: getColor(dottedName) || '#5758BB' }}
+                href={'/documentation/' + utils.encodeRuleName(dottedName)}
+                className="h-[12rem] flex-auto relative text-white no-underline">
+                {résumé && (
+                  <h2 className="text-base text-white">
+                    {<Markdown>{résumé}</Markdown>}
+                  </h2>
+                )}
+              </Card>
+            </li>
           )
         })}
-      </ol>
+      </ul>
     </div>
   )
 }

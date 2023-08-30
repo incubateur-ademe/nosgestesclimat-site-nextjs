@@ -1,8 +1,8 @@
+import TransClient from '@/components/translation/TransClient'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { NGCRules } from '@/types/model'
 import Fuse from 'fuse.js'
-import Image from 'next/image'
 import { utils } from 'publicodes'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -33,29 +33,12 @@ const searchWeights = [
 
 export default function SearchBar({ rules }: { rules: NGCRules }) {
   const [input, setInput] = useState('')
-  const [results, setResults] = useState<
-    Array<{
-      item: SearchItem
-      matches: Matches
-    }>
-  >([])
+  const [results, setResults] = useState<Fuse.FuseResult<SearchItem>[]>([])
 
   const rulesList: any[] = Object.entries(rules).map(([dottedName, rule]) => ({
     ...rule,
     dottedName,
   }))
-
-  const fuseSearchRef = useRef(
-    () =>
-      new Fuse(rules, {
-        keys: searchWeights,
-        includeMatches: true,
-        minMatchCharLength: 2,
-        useExtendedSearch: true,
-        distance: 50,
-        threshold: 0.3,
-      })
-  )
 
   const searchIndex: Array<SearchItem> = useMemo(
     () =>
@@ -71,16 +54,24 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
     [rules]
   )
 
+  const fuseSearchRef = useRef(
+    () =>
+      new Fuse(searchIndex, {
+        keys: searchWeights,
+        includeMatches: true,
+        minMatchCharLength: 2,
+        useExtendedSearch: true,
+        distance: 50,
+        threshold: 0.3,
+      })
+  )
+
   useEffect(() => {
-    if (input.length < 3) {
-      setResults([])
-      return
-    }
+    if (input.length < 3) return
 
     const fuse = fuseSearchRef.current()
-    const results = {
-      ...fuse.search(input + '|' + input.replace(/ /g, '|')),
-    }
+
+    const results = [...fuse.search(input + '|' + input.replace(/ /g, '|'))]
 
     setResults(results)
   }, [searchIndex, input])
@@ -89,48 +80,55 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
 
   return (
     <>
-      <label
-        title={t('Entrez des mots clefs')}
-        className="py-2 flex items-center h-8">
-        <Image
-          src="/images/1F50D.svg"
-          width="100"
-          height="100"
-          className="w-12"
-          alt=""
-        />
-        <input
-          autoFocus
-          type="search"
-          value={input}
-          placeholder={t('Entrez des mots clefs ici')}
-          onChange={(e) => {
-            const input = e.target.value
+      <Card className="!bg-primaryLight flex-col my-8">
+        <h2 className="text-xl">
+          <span
+            role="img"
+            aria-label="emoji search"
+            aria-hidden
+            className="inline-block mr-3 ">
+            🔍
+          </span>
+          <TransClient>Explorez nos modèles</TransClient>
+        </h2>
 
-            setInput(input)
-          }}
-        />
-      </label>
-      {input.length > 2 && !results.length ? (
-        <Card role="status" alert="info" className="p-2 rounded-sm mt-2">
-          <Trans i18nKey="noresults">
-            Aucun résultat ne correspond à cette recherche
-          </Trans>
-        </Card>
-      ) : (
-        input.length > 2 && (
-          <ul className="pl-4 m-0 list-none">
-            {(!results.length && !input.length
-              ? searchIndex.map((item) => ({ item, matches: [] }))
-              : results
-            ).map(({ item, matches }) => (
-              <RuleListItem
-                key={item.dottedName}
-                {...{ item, matches, rules }}
-              />
-            ))}
-          </ul>
-        )
+        <label
+          title={t('Entrez des mots clefs')}
+          className="py-2 flex items-center">
+          <input
+            autoFocus
+            type="search"
+            value={input}
+            placeholder={t('Entrez des mots-clefs de recherche')}
+            className="p-4 rounded-md border border-solid border-primaryLight w-full"
+            onChange={(e) => {
+              const input = e.target.value
+
+              setInput(input)
+            }}
+          />
+        </label>
+
+        {input.length > 2 && !results.length && (
+          <div role="status" className="p-2 rounded-sm mt-2">
+            <Trans i18nKey="noresults">
+              Aucun résultat ne correspond à cette recherche
+            </Trans>
+          </div>
+        )}
+      </Card>
+
+      {input.length > 2 && (
+        <ul className="px-4 m-0 list-none bg-white rounded-md">
+          {results.map(({ item, matches }) => (
+            <RuleListItem
+              key={item.dottedName}
+              item={item}
+              matches={matches as Matches}
+              rules={rules}
+            />
+          ))}
+        </ul>
       )}
     </>
   )

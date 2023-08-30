@@ -1,16 +1,18 @@
 import { NGCRules } from '@/types/model'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
+import Fuse from 'fuse.js'
 import Link from 'next/link'
+import highlightMatches from '../_helpers/highlightMatches'
 import { Matches, SearchItem } from './SearchBar'
 
 export default function RuleListItem({
   rules,
   item,
-  matches = null,
+  matches = undefined,
 }: {
   rules: NGCRules
   item: SearchItem
-  matches: Matches | null
+  matches: Fuse.FuseResultMatch[] | undefined
 }) {
   return (
     <li
@@ -26,8 +28,11 @@ export default function RuleListItem({
             .map((name) => (
               <span key={name}>
                 {matches
-                  ? matches.filter(
-                      (m) => m.key === 'espace' && m.value === name
+                  ? highlightMatches(
+                      name,
+                      matches.filter(
+                        (m) => m.key === 'espace' && m.value === name
+                      ) as Matches
                     )
                   : name}{' '}
                 ›{' '}
@@ -35,16 +40,13 @@ export default function RuleListItem({
             ))}
           <br />
         </small>
-        <span
-          css={`
-            margin-right: 0.6rem;
-          `}>
-          {rules[item.dottedName]?.icônes}
+        <span className="mr-2">
+          {(rules[item.dottedName] as unknown as { icônes: string })?.icônes}
         </span>
         {matches
           ? highlightMatches(
               item.title,
-              matches.filter((m) => m.key === 'title')
+              matches.filter((m) => m.key === 'title') as Matches
             )
           : item.title}
       </Link>
