@@ -38,7 +38,9 @@ export default function References({ references }: ReferencesProps) {
     <ul className="list-none pl-2">
       {Object.entries(references).map(([name, link]) => {
         const domain = cleanDomain(link)
+
         const path = link.split(domain)[1]
+
         return (
           <li key={name} className="mb-2 w-full flex items-center">
             {!referencesWithoutKeys && (
@@ -54,12 +56,14 @@ export default function References({ references }: ReferencesProps) {
                 )}
               </span>
             )}
+
             <Link
               href={link}
               target="_blank"
               rel="noreferrer"
               className="flex items-center min-w-1/2 no-underline mr-4 flex-1">
               <span className="ui__ label">{domain}</span>
+
               <span className="inline-block ml-2">
                 {referencesWithoutKeys ? path : capitalise0(name)}
               </span>

@@ -27,8 +27,6 @@ export default function DocumentationContent() {
   })
   const { engine } = useEngine(rules)
 
-  // console.log('engineParsedRules:', engine.context.parsedRules)
-  // console.log('url:', url)
   const documentationPath = '/documentation'
 
   console.log('TODO: handle og:image')

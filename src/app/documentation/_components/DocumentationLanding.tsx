@@ -43,7 +43,7 @@ export default function DocumentationLanding() {
     rules[dottedName.split(' . ')[0]].couleur
 
   return (
-    <div className="ui__ container">
+    <div>
       <Title title={<TransClient>Documentation</TransClient>} />
 
       <p>
@@ -55,11 +55,11 @@ export default function DocumentationLanding() {
         </TransClient>
       </p>
 
-      <p>
+      <div>
         <Link href="/modele">
           💡 <TransClient> En savoir plus sur notre modèle</TransClient>
         </Link>
-      </p>
+      </div>
 
       <SearchBar rules={rules} />
 

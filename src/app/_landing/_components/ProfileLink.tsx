@@ -9,11 +9,10 @@ import { useForm } from '@/publicodes-state'
 import Image from 'next/image'
 
 export default function ProfileLink() {
-  const params = useForm()
-  console.log(params)
+  const { progression } = useForm()
   const { t } = useClientTranslation()
 
-  if (!params?.progression) {
+  if (!progression) {
     return null
   }
 
