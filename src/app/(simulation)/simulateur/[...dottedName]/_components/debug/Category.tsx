@@ -9,7 +9,7 @@ export default function Category({ category }: Props) {
   const { value, title, isMissing } = useRule(
     category === 'transport' ? 'transport . empreinte' : category // Model shenanigans
   )
-  const { subcategories, questionsByCategories, currentCategory } = useForm()
+  const { questionsByCategories, currentCategory } = useForm()
 
   return (
     <div
@@ -27,13 +27,6 @@ export default function Category({ category }: Props) {
           <CategoryQuestion key={question} question={question} />
         ))}
       </div>
-      {/* {
-        <div className='text-xs '>
-          {subcategories[category].map((subcategory: string) => (
-            <CategoryQuestion key={subcategory} question={subcategory} />
-          ))}
-        </div>
-      } */}
     </div>
   )
 }

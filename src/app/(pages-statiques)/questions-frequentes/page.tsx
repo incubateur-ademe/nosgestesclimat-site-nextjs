@@ -6,9 +6,9 @@ import Card from '@/design-system/layout/Card'
 import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
 import Markdown from '@/design-system/utils/Markdown'
+import { getCurrentLangInfos } from '@/locales/translation'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { getCurrentLangInfos } from '../../locales/translation'
 import GithubContributionCard from './_components/GithubContributionCard'
 type FAQType = {
   question: string
@@ -79,7 +79,7 @@ export default function FAQ() {
 
   return (
     <PageLayout shouldShowMenu>
-      <Main className='p-8'>
+      <Main className="p-8">
         {/*
       <Meta
 				title={t('meta.publicodes.FAQ.title')}
@@ -105,17 +105,17 @@ export default function FAQ() {
             <TransClient i18nKey={'publicodes.FAQ.faireletest'}>
               Vous n'avez pas encore débuté votre test,{' '}
               <strong>
-                <a href='./simulateur/bilan'>lancez-vous !</a>
+                <a href="./simulateur/bilan">lancez-vous !</a>
               </strong>
             </TransClient>
           </p>
         )}
-        <div className='pb-4'>
+        <div className="pb-4">
           {categories.map((category) => {
             return (
-              <li key={category} className='list-none'>
-                <h2 className='capitalize'>{category}</h2>
-                <ul className='pl-2'>
+              <li key={category} className="list-none">
+                <h2 className="capitalize">{category}</h2>
+                <ul className="pl-2">
                   {FAQContent.filter((el) => el.catégorie === category).map(
                     ({
                       question,
@@ -129,13 +129,12 @@ export default function FAQ() {
                       return (
                         <li
                           key={id}
-                          className='whitespace-wrap mb-2 list-none font-bold'
-                        >
+                          className="whitespace-wrap mb-2 list-none font-bold">
                           <details id={id}>
                             <summary
-                              role='button'
+                              role="button"
                               tabIndex={0}
-                              className='cursor-pointer border-none bg-transparent text-left text-base'
+                              className="cursor-pointer border-none bg-transparent text-left text-base"
                               onClick={(e) =>
                                 handleDetailsToggle(
                                   id,
@@ -157,11 +156,10 @@ export default function FAQ() {
                                     }
                                   )?.open ?? false
                                 )
-                              }
-                            >
-                              <h3 className='inline text-black'>{question}</h3>
+                              }>
+                              <h3 className="inline text-black">{question}</h3>
                             </summary>
-                            <Card className='m-4 p-2'>
+                            <Card className="m-4 p-2">
                               <Markdown>{réponse}</Markdown>
                             </Card>
                           </details>
@@ -175,8 +173,8 @@ export default function FAQ() {
           })}
         </div>
 
-        <h2 className='text-3xl'>
-          <span className='mr-2 inline-block'>🙋‍♀️</span>
+        <h2 className="text-3xl">
+          <span className="mr-2 inline-block">🙋‍♀️</span>
           <Trans i18nKey={'publicodes.FAQ.titreQuestion'}>
             J'ai une autre question
           </Trans>

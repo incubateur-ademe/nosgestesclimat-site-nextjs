@@ -14,7 +14,7 @@ export function useRules({ lang, region }: Props) {
         .get(
           `https://data.nosgestesclimat.fr/co2-model.${region}-lang.${lang}-opti.json`
         )
-        .then((res) => res.data),
+        .then((res) => res.data as unknown),
     {
       keepPreviousData: true,
       refetchOnWindowFocus: false,

@@ -15,10 +15,34 @@ export default function useProgression({
   questionsByCategories,
   categories,
 }: Props) {
+  const remainingCategories: string[] = useMemo(
+    () =>
+      categories.filter((category) =>
+        missingInputs.find((missingInput) => missingInput.includes(category))
+      ),
+    [categories, missingInputs]
+  )
+  const answeredCategories: string[] = useMemo(
+    () =>
+      categories.filter(
+        (category) =>
+          !missingInputs.find((missingInput) => missingInput.includes(category))
+      ),
+    [categories, missingInputs]
+  )
+
   const remainingQuestions: string[] = useMemo(
     () =>
       relevantQuestions.filter((question) =>
         missingInputs.find((missingInput) => missingInput.includes(question))
+      ),
+    [relevantQuestions, missingInputs]
+  )
+  const answeredQuestions: string[] = useMemo(
+    () =>
+      relevantQuestions.filter(
+        (question) =>
+          !missingInputs.find((missingInput) => missingInput.includes(question))
       ),
     [relevantQuestions, missingInputs]
   )
@@ -46,6 +70,20 @@ export default function useProgression({
     [remainingQuestions, categories]
   )
 
+  const answeredQuestionsByCategories = useMemo(
+    () =>
+      categories.reduce(
+        (accumulator: object, currentValue: string) => ({
+          ...accumulator,
+          [currentValue]: answeredQuestions.filter((question) =>
+            question.includes(currentValue)
+          ),
+        }),
+        {}
+      ),
+    [answeredQuestions, categories]
+  )
+
   const progressionByCategory = useMemo(
     () =>
       categories.reduce(
@@ -63,9 +101,13 @@ export default function useProgression({
   )
 
   return {
+    remainingCategories,
+    answeredCategories,
     remainingQuestions,
+    answeredQuestions,
     progression,
     remainingQuestionsByCategories,
+    answeredQuestionsByCategories,
     progressionByCategory,
   }
 }

@@ -24,14 +24,8 @@ export default function useRule(dottedName: string) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [dottedName, engine, situation]
   )
-  const rule = useMemo(() => safeGetRule(dottedName), [dottedName, engine])
+  const rule = useMemo(() => safeGetRule(dottedName), [dottedName, safeGetRule])
 
-  if (!rule.rawNode) {
-    return {
-      setValue: () => null,
-      setDefaultAsValue: () => null,
-    }
-  }
   const { type, getType } = useType({
     dottedName,
     rule,

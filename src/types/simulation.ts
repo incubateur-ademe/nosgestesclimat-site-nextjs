@@ -1,5 +1,5 @@
-import { DottedName } from '@/components/publicodesUtils'
-import { Persona } from '@/sites/publicodes/personas/personasUtils'
+type DottedName = string
+type Persona = string
 
 export type Situation = Record<DottedName, any>
 
@@ -36,7 +36,7 @@ export type Simulation = {
   unfoldedStep?: DottedName | null
   persona?: Persona
   date?: Date
-  id?: string
+  id: string
   eventsSent?: Record<string, boolean>
   actionChoices?: Record<string, boolean>
   storedTrajets?: StoredTrajets

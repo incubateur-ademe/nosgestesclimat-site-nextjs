@@ -5,7 +5,7 @@ type Props = {
   safeEvaluate: any
   defaultSituation?: any
   externalSituation: any
-  updateExternalSituation: Function
+  updateExternalSituation: any
 }
 export default function useSituation({
   engine,

@@ -25,5 +25,6 @@
   },
   "files.associations": {
     "*.publicodes": "yaml"
-  }
+  },
+  "workbench.colorTheme": "React Theme"
 }

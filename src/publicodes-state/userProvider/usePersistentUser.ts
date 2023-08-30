@@ -10,12 +10,13 @@ export default function usePersistentUser({
 }: Props) {
   const [initialized, setInitialized] = useState(false)
 
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState<any>({})
 
   useEffect(() => {
     setUser(
       JSON.parse(localStorage.getItem(storageKey) || '{}').user || {
         region: initialRegion,
+        initialRegion,
       }
     )
 

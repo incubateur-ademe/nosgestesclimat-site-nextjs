@@ -1,12 +1,12 @@
 import Route404 from '@/components/layout/404'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
+import { getFormattedDate } from '@/helpers/date/getFormattedDate'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { extractImage } from '../_helpers/extractImage'
-import { getFormattedDate } from '../_helpers/getFormattedDate'
 import { getPath } from '../_helpers/getPath'
 import { slugifyString } from '../_helpers/slugifyString'
 import { sortReleases } from '../_helpers/sortReleases'
@@ -56,7 +56,7 @@ export default async function NewsPage({
 
   return (
     <main>
-      <div className='news-page flex items-start justify-center gap-8'>
+      <div className="news-page flex items-start justify-center gap-8">
         {/*
       <Meta
 				title={`${t('Nouveautés')} ${releaseDateCool} - ${capitaliseString(
@@ -72,8 +72,8 @@ export default async function NewsPage({
             selectedReleaseIndex={selectedReleaseIndex}
           />
         </label>
-        <section className='flex'>
-          <ul className='t-4 mr-4 hidden w-[12rem] flex-col border-0 border-r-[1px] border-solid border-r-gray-200 pl-0 text-sm md:sticky md:flex'>
+        <section className="flex">
+          <ul className="t-4 mr-4 hidden w-[12rem] flex-col border-0 border-r-[1px] border-solid border-r-gray-200 pl-0 text-sm md:sticky md:flex">
             {data.map(({ name, published_at: date }, index) => {
               const isActive = selectedReleaseIndex === index
               return (
@@ -99,16 +99,16 @@ export default async function NewsPage({
               )
             })}
           </ul>
-          <div className='max-w-4xl flex-1'>
+          <div className="max-w-4xl flex-1">
             <Title
-              className='text-3xl'
+              className="text-3xl"
               title={capitaliseString(releaseName) || ''}
               subtitle={t('Nouveautés')}
             />
 
             <MDXRemote source={removeGithubIssuesReferences(body)} />
 
-            <div className='mt-10 flex justify-between'>
+            <div className="mt-10 flex justify-between">
               {selectedReleaseIndex + 1 < data.length && (
                 <>
                   <InlineLink href={getPath(selectedReleaseIndex + 1, data)}>

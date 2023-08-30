@@ -4,7 +4,7 @@ import TransClient from '@/components/translation/TransClient'
 import Button from '@/design-system/inputs/Button'
 import { useForm } from '@/publicodes-state'
 
-type Props = { setIsOpen: Function }
+type Props = { setIsOpen: any }
 
 export default function Explanation({ setIsOpen }: Props) {
   const { progression } = useForm()

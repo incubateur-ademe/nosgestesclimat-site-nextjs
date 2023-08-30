@@ -9,15 +9,17 @@
     "plugin:jsx-a11y/strict",
     "plugin:react-hooks/recommended",
     "plugin:cypress/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:@typescript-eslint/recommended"
   ],
   "root": true,
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "."
+  },
   "rules": {
     "react/no-unescaped-entities": "off",
     "react/react-in-jsx-scope": 0,
-    "no-unused-vars": 1,
     "no-undef": 1,
     "no-redeclare": 1,
     "react/prop-types": 0,
@@ -25,6 +27,11 @@
     "react/display-name": 1,
     "jsx-a11y/label-has-associated-control": 1,
     "react/jsx-no-target-blank": 1,
-    "no-unreachable": 1
+    "no-unreachable": 1,
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unsafe-member-access": "warn",
+    "@typescript-eslint/no-unsafe-assignment": "warn",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
   }
 }

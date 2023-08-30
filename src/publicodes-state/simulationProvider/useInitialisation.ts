@@ -8,5 +8,5 @@ export default function useInitialisation({
   currentCategory,
 }: Props) {
   const formInitialized = currentQuestion && currentCategory ? true : false
-  return formInitialized
+  return formInitialized || true
 }

@@ -44,6 +44,7 @@ export default function useType({ dottedName, rule, evaluation }: Props) {
     }
     return 'number'
   }
+
   const type = useMemo(() => {
     return getType({ dottedName, rule, evaluation })
   }, [dottedName, rule, evaluation])

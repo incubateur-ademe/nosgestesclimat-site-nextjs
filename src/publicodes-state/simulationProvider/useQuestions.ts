@@ -30,12 +30,11 @@ export default function useQuestions({
     [engine]
   )
 
-  const baseMissingInputs = useMemo(
+  const initialMissingInputs = useMemo(
     () =>
       Object.keys(safeEvaluate('bilan').missingVariables).filter(
         (missingInput: string) => everyQuestions.includes(missingInput)
       ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [engine, everyQuestions]
   )
 
@@ -127,16 +126,7 @@ export default function useQuestions({
                   }
                 }
                 return 0
-              })
-              .sort((a: string, b: string) =>
-                categories.indexOf(a.split(' . ')[0]) >
-                categories.indexOf(b.split(' . ')[0])
-                  ? 1
-                  : categories.indexOf(a.split(' . ')[0]) <
-                    categories.indexOf(b.split(' . ')[0])
-                  ? -1
-                  : 0
-              ),
+              }),
           ]
         : [],
     [categories, everyQuestions, everyMosaicChildWhoIsReallyInMosaic]
@@ -148,9 +138,9 @@ export default function useQuestions({
   }: {
     question: string
     situation: {
-      [key: string]: string[]
+      [key: string]: any
     }
-  }) => situation.hasOwnProperty(question)
+  }) => situation[question] || situation[question] === 0
 
   const isQuestionMissing = ({
     question,
@@ -193,7 +183,7 @@ export default function useQuestions({
         : askableQuestions.filter((question) =>
             isQuestionMissing({
               question,
-              missingInputs: baseMissingInputs,
+              missingInputs: initialMissingInputs,
               everyMosaic,
             })
           )
@@ -202,7 +192,7 @@ export default function useQuestions({
     everyQuestions,
     askableQuestions,
     missingInputs,
-    baseMissingInputs,
+    initialMissingInputs,
     everyMosaic,
     situation,
   ])

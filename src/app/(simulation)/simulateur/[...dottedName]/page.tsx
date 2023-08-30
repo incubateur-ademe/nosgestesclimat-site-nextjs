@@ -1,4 +1,5 @@
 'use client'
+
 import Title from '@/design-system/layout/Title'
 import Charts from './_components/Charts'
 import Debug from './_components/Debug'

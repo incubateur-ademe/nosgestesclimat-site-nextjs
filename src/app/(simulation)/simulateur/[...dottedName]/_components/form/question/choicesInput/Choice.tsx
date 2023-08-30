@@ -9,13 +9,11 @@ type Props = {
 }
 
 export default function Choice({ question, choice, active, setValue }: Props) {
-  const { title, label, description, icons } = useRule(
-    question + ' . ' + choice
-  )
+  const { title, description, icons } = useRule(question + ' . ' + choice)
 
   return (
     <ChoiceInput
-      label={`${title} ${icons || ''} `}
+      label={`${title} ${icons || ''}`}
       description={description}
       active={active}
       onClick={() => setValue(choice)}
