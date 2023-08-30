@@ -14,7 +14,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prebuild": "node ./scripts/prebuild.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.11",
