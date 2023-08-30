@@ -12,7 +12,6 @@ export default function Card({
   href,
   onClick,
   style,
-  alert,
   ...props
 }: PropsWithChildren<
   {
@@ -21,11 +20,10 @@ export default function Card({
     tag?: ElementType | string
     onClick?: () => void
     style?: CSSProperties
-    alert?: string
   } & HTMLAttributes<HTMLDivElement>
 >) {
   const Tag = tag || 'div'
-  console.log({ style })
+
   return (
     <Tag
       onClick={onClick}

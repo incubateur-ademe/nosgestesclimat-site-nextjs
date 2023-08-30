@@ -54,7 +54,7 @@ export default function DocumentationContent() {
                 />
               </Helmet>
               */}
-            <Markdown children={children} noRouter={false} />
+            <Markdown>{children}</Markdown>
             {/*children.includes('<RavijenChart/>') && (
                 <GraphContainer>
                   <RavijenChart />

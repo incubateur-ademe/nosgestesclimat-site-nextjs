@@ -4,6 +4,7 @@ import TransClient from '@/components/translation/TransClient'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { handleFetchDocumentation } from '@/helpers/fetchDocumentation'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
+import { NGCRule } from '@/types/model'
 import { useParams } from 'next/navigation'
 import { utils } from 'publicodes'
 import { use } from 'react'
@@ -32,9 +33,9 @@ export default function GuideAlimentation() {
   )
 
   return (
-    <div className='mx-auto my-4 flex flex-col items-start justify-center'>
-      <ButtonLink color='text' href='/guide'>
-        <span className='mr-2 inline-block'>◀</span>
+    <div className="mx-auto my-4 flex flex-col items-start justify-center">
+      <ButtonLink color="text" href="/guide">
+        <span className="mr-2 inline-block">◀</span>
         <TransClient>Retour</TransClient>
       </ButtonLink>
 
@@ -48,11 +49,15 @@ export default function GuideAlimentation() {
           {relatedActions.map((action) => (
             <ButtonLink
               key={action.dottedName}
-              color='secondary'
-              size='sm'
-              href={'/actions/plus/' + utils.encodeRuleName(action.dottedName)}
-            >
-              {getRuleTitle(action)}
+              color="secondary"
+              size="sm"
+              href={'/actions/plus/' + utils.encodeRuleName(action.dottedName)}>
+              {getRuleTitle(
+                action as unknown as NGCRule & {
+                  dottedName: string
+                  titre: string
+                }
+              )}
             </ButtonLink>
           ))}
         </div>

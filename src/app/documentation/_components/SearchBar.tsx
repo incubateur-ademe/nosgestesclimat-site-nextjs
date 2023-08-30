@@ -51,6 +51,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
           dottedName: rule.dottedName,
           espace: rule.dottedName.split(' . ').reverse(),
         })),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [rules]
   )
 
@@ -96,7 +97,6 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
           title={t('Entrez des mots clefs')}
           className="py-2 flex items-center">
           <input
-            autoFocus
             type="search"
             value={input}
             placeholder={t('Entrez des mots-clefs de recherche')}

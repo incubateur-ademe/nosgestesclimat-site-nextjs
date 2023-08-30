@@ -21,7 +21,7 @@ export default function useNavigation({
   setCurrentCategory,
 }: Props) {
   const currentQuestionIndex = useMemo(
-    () => questionsByCategories[currentCategory]?.indexOf(currentQuestion),
+    () => questionsByCategories?.[currentCategory]?.indexOf(currentQuestion),
     [questionsByCategories, currentQuestion, currentCategory]
   )
 
@@ -37,7 +37,7 @@ export default function useNavigation({
   const noNextQuestion = useMemo(
     () =>
       currentQuestionIndex ===
-      questionsByCategories[currentCategory]?.length - 1,
+      questionsByCategories?.[currentCategory]?.length - 1,
     [questionsByCategories, currentQuestionIndex, currentCategory]
   )
 
@@ -46,7 +46,7 @@ export default function useNavigation({
     [currentCategoryIndex]
   )
   const noNextCategory = useMemo(
-    () => currentCategoryIndex === categories.length - 1,
+    () => currentCategoryIndex === categories?.length - 1,
     [currentCategoryIndex, categories]
   )
 
@@ -54,7 +54,7 @@ export default function useNavigation({
     if (noPrevQuestion) return
 
     const newCurrentQuestion =
-      questionsByCategories[currentCategory][currentQuestionIndex - 1]
+      questionsByCategories?.[currentCategory][currentQuestionIndex - 1]
 
     setCurrentQuestion(newCurrentQuestion)
     return newCurrentQuestion
@@ -63,7 +63,7 @@ export default function useNavigation({
     if (noNextQuestion) return
 
     const newCurrentQuestion =
-      questionsByCategories[currentCategory][currentQuestionIndex + 1]
+      questionsByCategories?.[currentCategory][currentQuestionIndex + 1]
 
     setCurrentQuestion(newCurrentQuestion)
     return newCurrentQuestion
@@ -74,8 +74,8 @@ export default function useNavigation({
 
     const newCurrentCategory = categories[currentCategoryIndex - 1]
     const newCurrentQuestion =
-      questionsByCategories[newCurrentCategory][
-        questionsByCategories[newCurrentCategory].length - 1
+      questionsByCategories?.[newCurrentCategory][
+        questionsByCategories?.[newCurrentCategory].length - 1
       ]
 
     setCurrentCategory(newCurrentCategory)

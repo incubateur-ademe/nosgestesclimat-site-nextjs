@@ -1,5 +1,3 @@
-'use client'
-
 import dessinNGC from '@/assets/images/dessin-nosgestesclimat.png'
 import PageLayout from '@/components/layout/PageLayout'
 import TransClient from '@/components/translation/TransClient'

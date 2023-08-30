@@ -68,12 +68,11 @@ export default async function NewsPage({
 			/>
       */}
 
-        <label title={t('titre de la version')}>
-          <ReleaseSelect
-            releases={data}
-            selectedReleaseIndex={selectedReleaseIndex}
-          />
-        </label>
+        <ReleaseSelect
+          releases={data}
+          selectedReleaseIndex={selectedReleaseIndex}
+        />
+
         <section className="flex">
           <ul className="t-4 mr-4 hidden w-[12rem] flex-col border-0 border-r-[1px] border-solid border-r-gray-200 pl-0 text-sm md:sticky md:flex">
             {data.map(({ name, published_at: date }, index) => {
