@@ -4,10 +4,10 @@ import TransServer from '@/components/translation/TransServer'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Container from '@/design-system/layout/Container'
-import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
 
 import Link from '@/components/Link'
+import PageLayout from '@/components/layout/PageLayout'
 import RegionGrid from '@/components/misc/RegionGrid'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
@@ -21,7 +21,7 @@ export default async function International() {
   )
 
   return (
-    <Main>
+    <PageLayout shouldLimitMainWidth={false}>
       {/*
 			<Meta
 				title={title}
@@ -152,6 +152,6 @@ export default async function International() {
           </TransServer>
         </p>
       </Container>
-    </Main>
+    </PageLayout>
   )
 }

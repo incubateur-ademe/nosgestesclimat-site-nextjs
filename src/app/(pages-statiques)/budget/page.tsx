@@ -1,7 +1,6 @@
 'use client'
 
 import PageLayout from '@/components/layout/PageLayout'
-import Main from '@/design-system/layout/Main'
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
 import contentEnBottom from '@/locales/pages/en-us/budgetBottom.mdx'
@@ -31,18 +30,16 @@ export default function Budget() {
 
   return (
     <PageLayout shouldShowMenu>
-      <Main className='max-w-[800px] p-8'>
-        {/*
+      {/*
       <Meta
 				title={t('meta.publicodes.Budget.title')}
 				description={t('meta.publicodes.Budget.description')}
 			/>
       */}
 
-        <BudgetContentTop />
-        <SelectYear />
-        <BudgetContentBottom />
-      </Main>
+      <BudgetContentTop />
+      <SelectYear />
+      <BudgetContentBottom />
     </PageLayout>
   )
 }

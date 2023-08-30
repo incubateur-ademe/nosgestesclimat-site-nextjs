@@ -1,7 +1,6 @@
 'use client'
 
 import PageLayout from '@/components/layout/PageLayout'
-import Main from '@/design-system/layout/Main'
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
 import AboutEn from '@/locales/pages/en-us/about.mdx'
@@ -22,9 +21,7 @@ export default function About() {
 
   return (
     <PageLayout shouldShowMenu>
-      <Main className='max-w-[800px] p-8'>
-        <AboutLocalised />
-      </Main>
+      <AboutLocalised />
     </PageLayout>
   )
 }

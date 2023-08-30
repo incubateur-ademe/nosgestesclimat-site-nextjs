@@ -1,4 +1,9 @@
-import { CSSProperties, ElementType, PropsWithChildren } from 'react'
+import {
+  CSSProperties,
+  ElementType,
+  HTMLAttributes,
+  PropsWithChildren,
+} from 'react'
 
 export default function Card({
   children,
@@ -7,14 +12,18 @@ export default function Card({
   href,
   onClick,
   style,
+  alert,
   ...props
-}: PropsWithChildren & {
-  className?: string
-  href?: string /* Used only for links */
-  tag?: ElementType | string
-  onClick?: () => void
-  style?: CSSProperties
-}) {
+}: PropsWithChildren<
+  {
+    className?: string
+    href?: string /* Used only for links */
+    tag?: ElementType | string
+    onClick?: () => void
+    style?: CSSProperties
+    alert?: string
+  } & HTMLAttributes<HTMLDivElement>
+>) {
   const Tag = tag || 'div'
 
   return (
