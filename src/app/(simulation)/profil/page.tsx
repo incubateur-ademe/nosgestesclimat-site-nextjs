@@ -1,54 +1,21 @@
-'use client'
-
-import TransClient from '@/components/translation/TransClient'
-
-import { useUser } from '@/publicodes-state'
-import { Simulation } from '@/types/simulation'
+import TransServer from '@/components/translation/TransServer'
 
 import Title from '@/design-system/layout/Title'
-import HasSimulationBanner from './_components/HasSimulationBanner'
-import NoSimulationBanner from './_components/NoSimulationBanner'
-import SimulationList from './_components/SimulationList'
-import Localisation from './_components/localisation/Localisation'
-import SimulationAnswerList from './_components/simulationAnswerList/SimulationAnswerList'
-/*
+import { Metadata } from 'next'
+import ProfilPageContent from './_components/ProfilPageContent'
+
 export const metadata: Metadata = {
   title: 'Mon profil',
   description:
     'Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.',
 }
-*/
 
 export default function Profil() {
-  const { simulations, currentSimulationId } = useUser()
-
-  const currentSimulation = (simulations as Simulation[]).find(
-    (simulation: Simulation) => simulation.id === currentSimulationId
-  )
-  const { persona } = currentSimulation || {}
-
   return (
     <>
-      <Title title={<TransClient>Mon profil</TransClient>} />
+      <Title title={<TransServer>Mon profil</TransServer>} />
 
-      {persona && (
-        <p>
-          <em>
-            <TransClient>👤 Vous utilisez actuellement le persona</TransClient>{' '}
-            <code>{(persona as any).nom}</code>
-          </em>
-        </p>
-      )}
-
-      <NoSimulationBanner />
-
-      <HasSimulationBanner />
-
-      <Localisation />
-
-      <SimulationAnswerList />
-
-      {simulations && <SimulationList />}
+      <ProfilPageContent />
     </>
   )
 }

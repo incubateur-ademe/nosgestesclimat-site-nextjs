@@ -35,6 +35,7 @@ export default function useQuestions({
       Object.keys(safeEvaluate('bilan').missingVariables).filter(
         (missingInput: string) => everyQuestions.includes(missingInput)
       ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [engine, everyQuestions]
   )
 

@@ -42,9 +42,7 @@ export default function Category({
           setCurrentQuestion(null)
         }}
       />
-      {isOpen ? (
-        <Subcategories category={category} max={max} color={color} />
-      ) : null}
+      {isOpen ? <Subcategories category={category} max={max} /> : null}
     </div>
   )
 }

@@ -1,13 +1,15 @@
+import { ChangeEvent, ReactNode } from 'react'
+
 type Props = {
   name: string
-  label: string | React.ReactNode
+  label: string | ReactNode
   type?: string
   isInvalid?: boolean
   error?: string
   helperText?: string
   className?: string
   placeholder?: string
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   value?: string
   required?: boolean
 }
@@ -26,18 +28,17 @@ export default function TextInputGroup({
   ...props
 }: Props) {
   return (
-    <div className={`flex flex-col ${className}`} aria-live='polite'>
+    <div className={`flex flex-col ${className}`} aria-live="polite">
       <label htmlFor={name}>
         <span
           className={`text-sm font-bold text-slate-900 ${
             error ? '!text-red-700' : ''
-          }`}
-        >
+          }`}>
           {label}
         </span>
       </label>
       {helperText && (
-        <span className='mt-1 text-xs text-slate-500'>{helperText}</span>
+        <span className="mt-1 text-xs text-slate-500">{helperText}</span>
       )}
       <input
         name={name}
@@ -53,7 +54,7 @@ export default function TextInputGroup({
         {...props}
       />
       {error && (
-        <span id={`error-${name}`} className='mt-2 text-xs text-red-700'>
+        <span id={`error-${name}`} className="mt-2 text-xs text-red-700">
           {error}
         </span>
       )}

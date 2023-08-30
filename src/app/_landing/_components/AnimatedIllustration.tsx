@@ -21,12 +21,11 @@ export default function AnimatedIllustration({
 
   return (
     <div
-      aria-hidden='true'
+      aria-hidden="true"
       className={`landing-animated-illustration ${
         isCycling ? 'landing-animated-illustration--cycling' : ''
-      } ${small} ${className}`}
-    >
-      <IllustrationSVG ref={svgRef as ForwardedRef<SVGElement | null>} />
+      } ${small} ${className}`}>
+      <IllustrationSVG ref={svgRef as unknown as ForwardedRef<SVGSVGElement>} />
     </div>
   )
 }

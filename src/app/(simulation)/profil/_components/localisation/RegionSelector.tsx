@@ -81,6 +81,7 @@ export default function RegionSelector({
             </TransClient>{' '}
             <a
               target="_blank"
+              rel="noopener noreferrer"
               className="align-top"
               href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md">
               <TransClient>Suivez le guide !</TransClient>

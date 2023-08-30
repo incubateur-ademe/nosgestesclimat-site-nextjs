@@ -21,6 +21,7 @@ export default function usePersistentUser({
     )
 
     setInitialized(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storageKey])
 
   useEffect(() => {

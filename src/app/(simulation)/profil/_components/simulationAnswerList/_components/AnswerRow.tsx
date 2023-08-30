@@ -24,15 +24,9 @@ export default function Answer({ ruleDottedName, level }: AnswerProps) {
 
   const levelDottedName = ruleDottedName.split(' . ')
 
-  let levelRule = undefined
-
-  try {
-    levelRule = useRule(
-      (levelDottedName.slice(0, level + 1) as any).join(' . ')
-    )
-  } catch (e) {
-    console.log('useRule error:', e)
-  }
+  const levelRule = useRule(
+    (levelDottedName.slice(0, level + 1) as any).join(' . ')
+  )
 
   if (rule.unit?.denominators) {
     rule.unit.denominators = translateUnits(rule.unit.denominators)

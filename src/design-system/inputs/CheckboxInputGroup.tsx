@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ChangeEvent, ReactNode } from 'react'
 
 type Props = {
   name: string
@@ -6,7 +6,7 @@ type Props = {
   isInvalid?: boolean
   error?: string
   className?: string
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   value?: boolean
   required?: boolean
 }

@@ -4,6 +4,12 @@ const shouldUseDevTracker =
 
 const groupExclusionRegexp = /\/(sondage|conférence)\//
 
+declare global {
+  interface Window {
+    _paq: any[]
+  }
+}
+
 export const trackEvent = (args: string[]) => {
   if (shouldUseDevTracker) {
     // eslint-disable-next-line no-console

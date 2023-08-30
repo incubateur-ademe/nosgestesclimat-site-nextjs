@@ -1,5 +1,13 @@
+import { ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import TextInputGroup from './TextInputGroup'
+
+type Props = {
+  prenom: string
+  setPrenom: (prenom: string) => void
+  errorPrenom: string
+  setErrorPrenom: (errorPrenom: string) => void
+}
 
 export default function PrenomInput({
   prenom,
@@ -7,7 +15,7 @@ export default function PrenomInput({
   errorPrenom,
   setErrorPrenom,
   ...props
-}) {
+}: Props) {
   const { t } = useTranslation()
 
   return (
@@ -16,10 +24,10 @@ export default function PrenomInput({
       helperText={t(
         'Il sera visible uniquement par les participants du groupe'
       )}
-      name='prenom'
-      placeholder='Jean-Marc'
-      className='mt-4'
-      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+      name="prenom"
+      placeholder="Jean-Marc"
+      className="mt-4"
+      onChange={(e: ChangeEvent<HTMLInputElement>) => {
         setPrenom(e.target.value)
         if (errorPrenom) {
           setErrorPrenom('')

@@ -1,5 +1,6 @@
 export enum Lang {
   Default = 'Fr',
+  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   Fr = 'Fr',
   En = 'En',
   // Commented until validation by a native speaker
@@ -21,3 +22,5 @@ export type LangInfos = {
   releases: Release[] // The releases content in JSON
   uiTrad: any // The UI translation in YAML
 }
+
+export type YamlEntry = { entries: { [key: string]: string } }

@@ -1,9 +1,10 @@
 import { MDXProps } from 'mdx/types'
+import React from 'react'
 
 type Props = {
   dictionnaries: {
-    fr: (props: MDXProps) => JSX.Element
-    'en-US': (props: MDXProps) => JSX.Element
+    fr: (props: MDXProps) => React.JSX.Element
+    'en-US': (props: MDXProps) => React.JSX.Element
   }
   locale: string
 }

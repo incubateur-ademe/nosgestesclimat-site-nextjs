@@ -51,7 +51,7 @@ export type MosaicInfos = {
  *
  * @see https://github.com/betagouv/publicodes/blob/5a1ba0f09e4b7949ce51b48eabae58b8b606c4b5/packages/core/source/rule.ts#L18-L42
  */
-export type NGCRule = Rule & {
+export type NGCRule = {
   abréviation?: string
   couleur?: Color
   mosaique?: MosaiqueNode

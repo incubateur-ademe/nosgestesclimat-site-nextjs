@@ -2,7 +2,7 @@
 
 import { useLocale } from '@/hooks/useLocale'
 import { capitaliseString } from '@/utils/capitaliseString'
-import { use } from 'react'
+import { HTMLAttributes, use } from 'react'
 import CountryListItem from '../../app/(pages-statiques)/international/_components/CountryListItem'
 import { sortSupportedRegions } from '../../app/(pages-statiques)/international/_helpers/sortSupportedRegions'
 import { fetchSupportedRegions } from '../../helpers/localisation/fetchSupportedRegions'
@@ -20,7 +20,7 @@ export default function RegionGrid({
   updateCurrentRegion,
   className,
   ...props
-}: Props & React.HTMLAttributes<HTMLUListElement>) {
+}: Props & HTMLAttributes<HTMLUListElement>) {
   const supportedRegions: string[] = use(fetchSupportedRegions)
 
   const locale = useLocale()

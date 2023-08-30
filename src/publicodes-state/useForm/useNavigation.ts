@@ -9,6 +9,7 @@ type Props = {
   currentCategory: string
   setCurrentQuestion: any
   setCurrentCategory: any
+  remainingQuestionsByCategories: any
 }
 
 export default function useNavigation({

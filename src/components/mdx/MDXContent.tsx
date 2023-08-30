@@ -1,24 +1,24 @@
 'use client'
-
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
 import { MDXProps } from 'mdx/types'
+import { JSX } from 'react'
 
 type Props = {
-	contentFr: (props: MDXProps) => JSX.Element
-	contentEn: (props: MDXProps) => JSX.Element
+  contentFr: (props: MDXProps) => JSX.Element
+  contentEn: (props: MDXProps) => JSX.Element
 }
 
 export default function MDXContent({ contentFr, contentEn }: Props) {
-	const locale = useLocale()
+  const locale = useLocale()
 
-	const Content = getLocalisedMDX({
-		dictionnaries: {
-			fr: contentFr,
-			'en-US': contentEn,
-		},
-		locale: locale ?? '',
-	})
+  const Content = getLocalisedMDX({
+    dictionnaries: {
+      fr: contentFr,
+      'en-US': contentEn,
+    },
+    locale: locale ?? '',
+  })
 
-	return <Content />
+  return <Content />
 }

@@ -1,9 +1,11 @@
+import { JSX, PropsWithChildren } from 'react'
+
 export default function Container({
   children,
   className,
   tag,
   maxWidth,
-}: React.PropsWithChildren<{
+}: PropsWithChildren<{
   className?: string
   tag?: () => JSX.Element
   maxWidth?: string

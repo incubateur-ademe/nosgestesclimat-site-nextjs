@@ -6,7 +6,6 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { extractImage } from '../_helpers/extractImage'
 import { getPath } from '../_helpers/getPath'
 import { slugifyString } from '../_helpers/slugifyString'
 import { sortReleases } from '../_helpers/sortReleases'
@@ -47,12 +46,15 @@ export default async function NewsPage({
   const releaseName = data[selectedReleaseIndex]?.name?.toLowerCase()
   const body = data[selectedReleaseIndex]?.body
 
+  console.log('TODO : replace extractImage logic here - Nouveautés')
+  /*
   const image = extractImage(body)
 
   const releaseDateCool = getFormattedDate(
     new Date(data[selectedReleaseIndex].published_at),
     currentLangInfos.abrvLocale
   )
+  */
 
   return (
     <main>

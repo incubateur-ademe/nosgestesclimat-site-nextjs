@@ -41,6 +41,7 @@ export default function RecursiveStepsTable({ rules, level }: Props) {
         .map(([key, values]) => {
           if (values.length > 1) return [key, values]
 
+          // eslint-disable-next-line react-hooks/rules-of-hooks
           const rule = useRule(key)
 
           if (rule?.questionsOfMosaic && rule.questionsOfMosaic.length > 0) {
@@ -49,7 +50,7 @@ export default function RecursiveStepsTable({ rules, level }: Props) {
 
           return [key, values]
         })
-        .filter(([key, values]) => values.length > 1)
+        .filter(([, values]) => values.length > 1)
         .map(([key, values]) => {
           return (
             <RuleNode

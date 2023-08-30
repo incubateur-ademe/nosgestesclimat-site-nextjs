@@ -1,4 +1,4 @@
-import React from 'react'
+import { JSX } from 'react'
 
 import Separator from './Separator'
 
@@ -18,14 +18,14 @@ export default function Title({
 }: Props) {
   const Tag = tag
   return (
-    <div className='relative mb-4 pb-5'>
+    <div className="relative mb-4 pb-5">
       <Tag className={`mb-1 text-primaryDark ${className}`} {...props}>
         {title}
       </Tag>
 
-      {subtitle && <p className='text-slate-500'>{subtitle}</p>}
+      {subtitle && <p className="text-slate-500">{subtitle}</p>}
 
-      <Separator className='absolute bottom-0 left-0 hidden lg:block' />
+      <Separator className="absolute bottom-0 left-0 hidden lg:block" />
     </div>
   )
 }
