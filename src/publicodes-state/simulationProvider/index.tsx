@@ -1,39 +1,36 @@
 'use client'
 
-import React from 'react'
+import { PropsWithChildren } from 'react'
 
 import SimulationContext from './context'
-import useEngine from './useEngine'
 import useCategories from './useCategories'
-import useQuestions from './useQuestions'
-import useProgression from './useProgression'
 import useCurrent from './useCurrent'
+import useEngine from './useEngine'
+import useProgression from './useProgression'
+import useQuestions from './useQuestions'
 import useSituation from './useSituation'
-import useInitialisation from './useInitialisation'
 
 type Props = {
   rules: any
   categoryOrder: string[]
-  children: React.ReactNode
-  loader: React.ReactNode
   defaultSituation?: any
   situation?: any
-  updateSituation: Function
+  updateSituation: (arg: any) => void
 }
 
 export default function SimulationProvider({
+  children,
   rules,
   categoryOrder,
-  children,
-  loader,
   defaultSituation,
   situation: externalSituation,
   updateSituation: updateExternalSituation,
-}: Props) {
-  const engine = useEngine(rules)
+}: PropsWithChildren<Props>) {
+  const { engine, safeEvaluate, safeGetRule } = useEngine(rules)
 
   const { situation, updateSituation } = useSituation({
     engine,
+    safeEvaluate,
     defaultSituation,
     externalSituation,
     updateExternalSituation,
@@ -41,6 +38,7 @@ export default function SimulationProvider({
 
   const { categories, subcategories } = useCategories({
     engine,
+    safeEvaluate,
     order: categoryOrder,
   })
 
@@ -49,12 +47,16 @@ export default function SimulationProvider({
     everyMosaicChildWhoIsReallyInMosaic,
     relevantQuestions,
     questionsByCategories,
-  } = useQuestions({ engine, categories, situation })
+  } = useQuestions({ engine, safeEvaluate, categories, situation })
 
   const {
+    remainingCategories,
+    answeredCategories,
     remainingQuestions,
+    answeredQuestions,
     progression,
     remainingQuestionsByCategories,
+    answeredQuestionsByCategories,
     progressionByCategory,
   } = useProgression({
     categories,
@@ -63,23 +65,20 @@ export default function SimulationProvider({
     questionsByCategories,
   })
 
-  const { currentQuestion, currentCategory, setCurrentQuestion } = useCurrent({
-    engine,
-    situation,
-    remainingQuestions,
-    categories,
-  })
-
-  const formInitialized = useInitialisation({
+  const {
     currentQuestion,
     currentCategory,
-  })
+    setCurrentQuestion,
+    setCurrentCategory,
+  } = useCurrent()
 
   return (
     <SimulationContext.Provider
       value={{
         rules,
         engine,
+        safeGetRule,
+        safeEvaluate,
         situation,
         updateSituation,
         categories,
@@ -87,16 +86,20 @@ export default function SimulationProvider({
         everyMosaicChildWhoIsReallyInMosaic,
         relevantQuestions,
         questionsByCategories,
-        progression,
+        remainingCategories,
+        answeredCategories,
         remainingQuestions,
+        answeredQuestions,
+        progression,
         remainingQuestionsByCategories,
+        answeredQuestionsByCategories,
         progressionByCategory,
         currentQuestion,
         currentCategory,
         setCurrentQuestion,
-      }}
-    >
-      {formInitialized ? children : loader}
+        setCurrentCategory,
+      }}>
+      {children}
     </SimulationContext.Provider>
   )
 }

@@ -1,5 +1,5 @@
 import { ButtonSize } from '@/types/values'
-import { MouseEventHandler } from 'react'
+import { HtmlHTMLAttributes, MouseEventHandler, PropsWithChildren } from 'react'
 
 type Props = {
   onClick: MouseEventHandler<HTMLButtonElement>
@@ -9,14 +9,14 @@ type Props = {
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   id?: string
-} & React.PropsWithChildren
+} & PropsWithChildren
 
 export const colorClassNames = {
   primary:
-    'border-0 transition-colors text-white bg-primary shadow-sm hover:bg-primaryDark hover:!text-white',
+    'transition-colors text-white bg-primary shadow-sm hover:text-white hover:bg-primaryDark',
   secondary:
-    'border-solid border-2 !border-primary text-primary shadow-sm bg-transparent hover:bg-primaryLight',
-  text: 'border-0 text-primary bg-transparent !shadow-none hover:bg-primaryLight hover:!text-primary',
+    'border-solid border-primary border-2 text-primary shadow-sm bg-transparent hover:bg-primaryLight hover:border-primaryDark',
+  text: 'text-primary bg-transparent shadow-none hover:bg-primaryLight hover:text-primary hover:border-primary',
 }
 
 export const sizeClassNames = {
@@ -25,6 +25,9 @@ export const sizeClassNames = {
   lg: 'px-8 py-4 text-lg',
   xl: 'px-10 py-6 text-2xl',
 }
+
+export const baseClassNames =
+  'inline-flex items-center whitespace-nowrap rounded-md font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 aria-disabled:opacity-50'
 
 export default function Button({
   onClick,
@@ -36,16 +39,15 @@ export default function Button({
   disabled,
   id,
   ...props
-}: Props) {
+}: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLButtonElement>>) {
   return (
     <button
       onClick={disabled ? () => {} : onClick}
       type={type}
       aria-disabled={disabled}
       id={id}
-      className={`inline-flex items-center transition-colors ${sizeClassNames[size]} rounded-md border border-transparent text-sm font-medium no-underline ${colorClassNames[color]} transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 aria-disabled:opacity-50 ${className}`}
-      {...props}
-    >
+      className={`${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]} ${className}`}
+      {...props}>
       {children}
     </button>
   )

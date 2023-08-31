@@ -1,12 +1,14 @@
+import { ChangeEvent, ReactNode } from 'react'
+
 type Props = {
   name: string
-  label: string | React.ReactNode
+  label: string | ReactNode
   isInvalid?: boolean
   error?: string
   helperText?: string
   className?: string
   placeholder?: string
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void
   value?: string
   required?: boolean
 }
@@ -24,18 +26,17 @@ export default function TextAreaInputGroup({
   ...props
 }: Props) {
   return (
-    <div className={`flex flex-col ${className}`} aria-live='polite'>
+    <div className={`flex flex-col ${className}`} aria-live="polite">
       <label htmlFor={name}>
         <span
           className={`text-sm font-bold text-slate-900 ${
             error ? '!text-red-700' : ''
-          }`}
-        >
+          }`}>
           {label}
         </span>
       </label>
       {helperText && (
-        <span className='mt-1 text-xs text-slate-500'>{helperText}</span>
+        <span className="mt-1 text-xs text-slate-500">{helperText}</span>
       )}
       <textarea
         name={name}
@@ -50,7 +51,7 @@ export default function TextAreaInputGroup({
         {...props}
       />
       {error && (
-        <span id={`error-${name}`} className='mt-2 text-xs text-red-700'>
+        <span id={`error-${name}`} className="mt-2 text-xs text-red-700">
           {error}
         </span>
       )}

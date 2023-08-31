@@ -45,7 +45,7 @@ export default function useMosaic({
     () =>
       everyMosaicChildWhoIsReallyInMosaic.filter((mosaicChild) =>
         mosaicChild.includes(dottedName)
-      ),
+      ) || [],
     [dottedName, everyMosaicChildWhoIsReallyInMosaic]
   )
 

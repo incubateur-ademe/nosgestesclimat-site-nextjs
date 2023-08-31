@@ -1,3 +1,4 @@
+import { YamlEntry } from '@/types/translation'
 import { createInstance } from 'i18next'
 import resourcesToBackend from 'i18next-resources-to-backend'
 import { initReactI18next } from 'react-i18next/initReactI18next'
@@ -13,10 +14,10 @@ const initI18next = async (language: string) => {
       resourcesToBackend((language: string) => {
         switch (language) {
           case 'en-US':
-            return (uiEnYaml as unknown as { entries: {} }).entries
+            return (uiEnYaml as unknown as YamlEntry).entries
           case 'fr':
           default:
-            return (uiFrYaml as unknown as { entries: {} }).entries
+            return (uiFrYaml as unknown as YamlEntry).entries
         }
       })
     )

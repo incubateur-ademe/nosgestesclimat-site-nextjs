@@ -1,12 +1,18 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 type Props = {
   engine: any
+  safeEvaluate: any
   categories: string[]
   situation: any
 }
 
-export default function useQuestions({ engine, categories, situation }: Props) {
+export default function useQuestions({
+  engine,
+  safeEvaluate,
+  categories,
+  situation,
+}: Props) {
   const everyQuestions = useMemo<string[]>(
     () =>
       Object.entries(engine.getParsedRules())
@@ -24,9 +30,9 @@ export default function useQuestions({ engine, categories, situation }: Props) {
     [engine]
   )
 
-  const baseMissingInputs = useMemo(
+  const initialMissingInputs = useMemo(
     () =>
-      Object.keys(engine.evaluate('bilan').missingVariables).filter(
+      Object.keys(safeEvaluate('bilan').missingVariables).filter(
         (missingInput: string) => everyQuestions.includes(missingInput)
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -35,7 +41,7 @@ export default function useQuestions({ engine, categories, situation }: Props) {
 
   const missingInputs = useMemo(
     () =>
-      Object.keys(engine.evaluate('bilan').missingVariables).filter(
+      Object.keys(safeEvaluate('bilan').missingVariables).filter(
         (missingInput: string) => everyQuestions.includes(missingInput)
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,7 +65,7 @@ export default function useQuestions({ engine, categories, situation }: Props) {
                 currentValue.includes(
                   accumulatedSubRule
                     .replace(' . présent', '')
-                    .replace(' . propriétaire', '') // FFS
+                    .replace(' . propriétaire', '') // Model shenanigans
                 )
             )
               ? [...accumulator, currentValue]
@@ -121,16 +127,7 @@ export default function useQuestions({ engine, categories, situation }: Props) {
                   }
                 }
                 return 0
-              })
-              .sort((a: string, b: string) =>
-                categories.indexOf(a.split(' . ')[0]) >
-                categories.indexOf(b.split(' . ')[0])
-                  ? 1
-                  : categories.indexOf(a.split(' . ')[0]) <
-                    categories.indexOf(b.split(' . ')[0])
-                  ? -1
-                  : 0
-              ),
+              }),
           ]
         : [],
     [categories, everyQuestions, everyMosaicChildWhoIsReallyInMosaic]
@@ -142,9 +139,9 @@ export default function useQuestions({ engine, categories, situation }: Props) {
   }: {
     question: string
     situation: {
-      [key: string]: string[]
+      [key: string]: any
     }
-  }) => situation.hasOwnProperty(question)
+  }) => situation[question] || situation[question] === 0
 
   const isQuestionMissing = ({
     question,
@@ -187,7 +184,7 @@ export default function useQuestions({ engine, categories, situation }: Props) {
         : askableQuestions.filter((question) =>
             isQuestionMissing({
               question,
-              missingInputs: baseMissingInputs,
+              missingInputs: initialMissingInputs,
               everyMosaic,
             })
           )
@@ -196,7 +193,7 @@ export default function useQuestions({ engine, categories, situation }: Props) {
     everyQuestions,
     askableQuestions,
     missingInputs,
-    baseMissingInputs,
+    initialMissingInputs,
     everyMosaic,
     situation,
   ])

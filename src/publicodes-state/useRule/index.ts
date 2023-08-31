@@ -12,17 +12,19 @@ import useValue from './useValue'
 export default function useRule(dottedName: string) {
   const {
     engine,
+    safeGetRule,
+    safeEvaluate,
     everyMosaicChildWhoIsReallyInMosaic,
     situation,
     updateSituation,
   }: any = useContext(sumulationContext)
 
   const evaluation = useMemo(
-    () => engine.evaluate(dottedName),
+    () => safeEvaluate(dottedName),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [dottedName, engine, situation]
   )
-  const rule = useMemo(() => engine.getRule(dottedName), [dottedName, engine])
+  const rule = useMemo(() => safeGetRule(dottedName), [dottedName, safeGetRule])
 
   const { type, getType } = useType({
     dottedName,
@@ -38,19 +40,28 @@ export default function useRule(dottedName: string) {
     everyMosaicChildWhoIsReallyInMosaic,
   })
 
-  const { category, title, label, description, icons, unit, suggestions } =
-    useContent({
-      dottedName,
-      rule,
-      everyMosaicChildWhoIsReallyInMosaic,
-    })
+  const {
+    category,
+    title,
+    label,
+    description,
+    icons,
+    unit,
+    color,
+    suggestions,
+  } = useContent({
+    dottedName,
+    rule,
+    everyMosaicChildWhoIsReallyInMosaic,
+  })
 
   const choices = useChoices({ rule, type })
 
   const { value, displayValue, isMissing, setValue, setDefaultAsValue } =
     useValue({
       dottedName,
-      engine,
+      safeGetRule,
+      safeEvaluate,
       evaluation,
       type,
       getType,
@@ -66,6 +77,7 @@ export default function useRule(dottedName: string) {
     description,
     icons,
     unit,
+    color,
     suggestions,
     choices,
     childrenOfMosaic,

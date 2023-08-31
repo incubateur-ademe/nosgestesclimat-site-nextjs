@@ -4,17 +4,19 @@ import { useMemo } from 'react'
 
 type Props = {
   dottedName: string
-  engine: any
+  safeGetRule: any
+  safeEvaluate: any
   evaluation: any
   type: string
-  getType: Function
+  getType: any
   questionsOfMosaic: string[]
-  updateSituation: Function
+  updateSituation: any
 }
 
 export default function useValue({
   dottedName,
-  engine,
+  safeGetRule,
+  safeEvaluate,
   evaluation,
   type,
   getType,
@@ -47,8 +49,8 @@ export default function useValue({
     if (type.includes('mosaic')) {
       situationToUpdate = questionsOfMosaic.reduce(
         (accumulator, currentValue) => {
-          const rule = engine.getRule(currentValue)
-          const evaluation = engine.evaluate(currentValue)
+          const rule = safeGetRule(currentValue)
+          const evaluation = safeEvaluate(currentValue)
           return {
             ...accumulator,
             [currentValue]: checkValueValidity({
@@ -71,24 +73,24 @@ export default function useValue({
 
   return { value, displayValue, isMissing, setValue, setDefaultAsValue }
 }
-// FFS
+
 const checkValueValidity = ({
   value,
   type,
 }: {
   value: any
   type: string
-}): number | string =>
-  type === 'choices'
-    ? value === null || value === false || value === 'non'
-      ? 'non'
-      : typeof value === 'string'
-      ? !value.startsWith("'")
-        ? `'${value}'`
-        : value
-      : 'oui'
-    : type === 'mosaic'
-    ? 'mosaic'
-    : !value
-    ? 0
-    : value
+}): number | string => {
+  switch (type) {
+    case 'choices':
+      return value.startsWith("'") ? value : `'${value}'`
+    case 'boolean':
+      return value === null || value === false || value === 'non' // Model shenanigans
+        ? 'non'
+        : 'oui'
+    case 'mosaic':
+      return 'mosaic'
+    default:
+      return !value ? 0 : value
+  }
+}

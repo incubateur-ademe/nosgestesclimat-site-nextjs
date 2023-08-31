@@ -10,25 +10,34 @@ type Props = {
 
 export default function useContent({ dottedName, rule }: Props) {
   const category = useMemo(() => dottedName.split(' . ')[0], [dottedName])
-  console.log(rule)
-  const title = useMemo(
-    () => rule.rawNode.titre || rule.titre || rule.title, //FFS
-    [rule]
-  )
+
+  const title = useMemo(() => rule.title, [rule])
+
   const label = useMemo(() => rule.rawNode.question, [rule])
   const description = useMemo(() => rule.rawNode.description, [rule])
   const icons = useMemo(() => rule.rawNode['icônes'], [rule])
   const unit = useMemo(() => rule.rawNode['unité'], [rule])
-  const suggestions = useMemo(
-    () =>
-      rule.rawNode.suggestions
-        ? Object.keys(rule.rawNode.suggestions).map((key: string) => ({
-            label: key,
-            value: rule.rawNode.suggestions[key],
-          }))
-        : [],
-    [rule]
-  )
+  const color = useMemo(() => rule.rawNode['couleur'], [rule])
 
-  return { category, title, label, description, icons, unit, suggestions }
+  const suggestions = useMemo(() => {
+    const suggestionsFolder =
+      rule.rawNode.mosaique?.suggestions || rule.rawNode.suggestions
+    return suggestionsFolder
+      ? Object.keys(suggestionsFolder).map((key: string) => ({
+          label: key,
+          value: suggestionsFolder[key],
+        }))
+      : []
+  }, [rule])
+
+  return {
+    category,
+    title,
+    label,
+    description,
+    icons,
+    unit,
+    color,
+    suggestions,
+  }
 }

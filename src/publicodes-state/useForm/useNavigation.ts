@@ -1,73 +1,107 @@
 import { useMemo } from 'react'
 
 type Props = {
-  relevantQuestions: string[]
+  categories: string[]
   questionsByCategories: {
     [key: string]: string[]
   }
   currentQuestion: string
   currentCategory: string
-  setCurrentQuestion: Function
-  setDefaultAsValue: Function
+  setCurrentQuestion: any
+  setCurrentCategory: any
+  remainingQuestionsByCategories: any
 }
 
 export default function useNavigation({
-  relevantQuestions,
+  categories,
   questionsByCategories,
   currentQuestion,
   currentCategory,
   setCurrentQuestion,
-  setDefaultAsValue,
+  setCurrentCategory,
 }: Props) {
-  const currentIndex = useMemo(
-    () => relevantQuestions.indexOf(currentQuestion),
-    [relevantQuestions, currentQuestion]
-  )
-
-  const currentIndexInCategory = useMemo(
-    () => questionsByCategories[currentCategory]?.indexOf(currentQuestion),
+  const currentQuestionIndex = useMemo(
+    () => questionsByCategories?.[currentCategory]?.indexOf(currentQuestion),
     [questionsByCategories, currentQuestion, currentCategory]
   )
 
-  const noPrevQuestion = useMemo(() => currentIndex === 0, [currentIndex])
+  const currentCategoryIndex = useMemo(
+    () => categories?.indexOf(currentCategory),
+    [categories, currentCategory]
+  )
 
+  const noPrevQuestion = useMemo(
+    () => currentQuestionIndex === 0,
+    [currentQuestionIndex]
+  )
   const noNextQuestion = useMemo(
-    () => currentIndex === relevantQuestions.length - 1,
-    [currentIndex, relevantQuestions]
-  )
-
-  const noNextQuestionInCategory = useMemo(
     () =>
-      currentIndexInCategory ===
-      questionsByCategories[currentCategory].length - 1,
-    [questionsByCategories, currentIndexInCategory, currentCategory]
+      currentQuestionIndex ===
+      questionsByCategories?.[currentCategory]?.length - 1,
+    [questionsByCategories, currentQuestionIndex, currentCategory]
   )
 
-  // TODO : use Promises
-  const gotoNextQuestion = async () => {
-    const currentIndex = relevantQuestions.indexOf(currentQuestion)
-    if (currentIndex < relevantQuestions.length) {
-      await setDefaultAsValue()
+  const noPrevCategory = useMemo(
+    () => currentCategoryIndex === 0,
+    [currentCategoryIndex]
+  )
+  const noNextCategory = useMemo(
+    () => currentCategoryIndex === categories?.length - 1,
+    [currentCategoryIndex, categories]
+  )
 
-      setCurrentQuestion(
-        relevantQuestions[relevantQuestions.indexOf(currentQuestion) + 1]
-      )
-    }
-  }
   const gotoPrevQuestion = () => {
-    const currentIndex = relevantQuestions.indexOf(currentQuestion)
-    if (currentIndex > 0) {
-      setCurrentQuestion(
-        relevantQuestions[relevantQuestions.indexOf(currentQuestion) - 1]
-      )
-    }
+    if (noPrevQuestion) return
+
+    const newCurrentQuestion =
+      questionsByCategories?.[currentCategory][currentQuestionIndex - 1]
+
+    setCurrentQuestion(newCurrentQuestion)
+    return newCurrentQuestion
+  }
+  const gotoNextQuestion = () => {
+    if (noNextQuestion) return
+
+    const newCurrentQuestion =
+      questionsByCategories?.[currentCategory][currentQuestionIndex + 1]
+
+    setCurrentQuestion(newCurrentQuestion)
+    return newCurrentQuestion
+  }
+
+  const gotoPrevCategory = () => {
+    if (noPrevCategory) return
+
+    const newCurrentCategory = categories[currentCategoryIndex - 1]
+    const newCurrentQuestion =
+      questionsByCategories?.[newCurrentCategory][
+        questionsByCategories?.[newCurrentCategory].length - 1
+      ]
+
+    setCurrentCategory(newCurrentCategory)
+    setCurrentQuestion(newCurrentQuestion)
+
+    return newCurrentCategory
+  }
+  const gotoNextCategory = () => {
+    if (noNextCategory) return
+
+    const newCurrentCategory = categories[currentCategoryIndex + 1]
+
+    setCurrentCategory(newCurrentCategory)
+    setCurrentQuestion(null)
+
+    return newCurrentCategory
   }
 
   return {
-    gotoNextQuestion,
     gotoPrevQuestion,
+    gotoNextQuestion,
+    gotoPrevCategory,
+    gotoNextCategory,
     noPrevQuestion,
     noNextQuestion,
-    noNextQuestionInCategory,
+    noPrevCategory,
+    noNextCategory,
   }
 }

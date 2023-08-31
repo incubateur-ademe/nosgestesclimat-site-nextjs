@@ -1,6 +1,60 @@
-import { UserProvider } from '@/publicodes-state'
-import { PropsWithChildren } from 'react'
+'use client'
 
-export default function Providers({ children }: PropsWithChildren) {
-  return <UserProvider forgetSimulations>{children}</UserProvider>
+import { PropsWithChildren, useEffect } from 'react'
+
+import { useLocale } from '@/hooks/useLocale'
+import { useRules } from '@/hooks/useRules'
+import { SimulationProvider, useUser } from '@/publicodes-state'
+import { Simulation } from '@/types/simulation'
+
+type Props = {
+  supportedRegions: any
+}
+export default function Providers({
+  children,
+  supportedRegions,
+}: PropsWithChildren<Props>) {
+  const {
+    user,
+    simulations,
+    currentSimulationId,
+    initSimulation,
+    updateSituationOfCurrentSimulation,
+  } = useUser()
+
+  const lang = useLocale()
+
+  const { data: rules, isInitialLoading } = useRules({
+    lang: lang || 'fr',
+    region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
+  })
+
+  useEffect(() => {
+    if (!currentSimulationId) {
+      initSimulation()
+    }
+  }, [initSimulation, currentSimulationId])
+
+  return currentSimulationId && !isInitialLoading ? (
+    <SimulationProvider
+      key={currentSimulationId}
+      rules={rules}
+      categoryOrder={[
+        'transport',
+        'alimentation',
+        'logement',
+        'divers',
+        'services sociétaux',
+      ]}
+      situation={
+        (simulations as Array<Simulation>).find(
+          (simulation: Simulation) => simulation.id === currentSimulationId
+        )?.situation || {}
+      }
+      updateSituation={updateSituationOfCurrentSimulation}>
+      {children}
+    </SimulationProvider>
+  ) : (
+    'Initialisation'
+  )
 }

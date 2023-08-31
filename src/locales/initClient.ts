@@ -1,5 +1,6 @@
 'use client'
 
+import { YamlEntry } from '@/types/translation'
 import i18next from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import resourcesToBackend from 'i18next-resources-to-backend'
@@ -14,9 +15,9 @@ i18next
     resourcesToBackend((language: string) => {
       switch (language) {
         case 'en-US':
-          return (uiEnYaml as unknown as { entries: { entries: [] } }).entries
+          return (uiEnYaml as unknown as YamlEntry).entries
         case 'fr':
-          return (uiFrYaml as unknown as { entries: { entries: [] } }).entries
+          return (uiFrYaml as unknown as YamlEntry).entries
 
         default:
           return undefined

@@ -3,7 +3,6 @@
 import Link from '@/components/Link'
 import PageLayout from '@/components/layout/PageLayout'
 import TransClient from '@/components/translation/TransClient'
-import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
 
 const appURL =
@@ -55,41 +54,40 @@ export default function PlanDuSite() {
 
   return (
     <PageLayout shouldShowMenu>
-      <Main className='max-w-[800px] p-8'>
-        <Title
-          title={
-            <TransClient i18nKey='publicodes.planDuSite.title'>
-              Plan du site
-            </TransClient>
-          }
-        />
+      <Title
+        title={
+          <TransClient i18nKey="publicodes.planDuSite.title">
+            Plan du site
+          </TransClient>
+        }
+      />
 
-        {Object.entries(links).map(([categoryTitle, categoryLinks]) => (
-          <section key={categoryTitle} className='mb-2'>
-            <h2>
-              <TransClient i18nKey={`${categoryTitle}`}>
-                {categoryTitle}
-              </TransClient>
-            </h2>
-            <ul className='m-0 list-none p-0'>
-              {Object.entries(categoryLinks).map(([linkKey, linkUrl]) => (
-                <li key={linkKey}>
-                  <Link href={linkUrl}>
-                    <TransClient i18nKey={`${linkKey}`}>{linkKey}</TransClient>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
-        <section>
+      {Object.entries(links).map(([categoryTitle, categoryLinks]) => (
+        <section key={categoryTitle} className="mb-2">
           <h2>
-            <TransClient i18nKey='publicodes.planDuSite.actionsPlus'>
-              Les actions
+            <TransClient i18nKey={`${categoryTitle}`}>
+              {categoryTitle}
             </TransClient>
           </h2>
-          <ul className='m-0 list-none p-0'>
-            {/*
+          <ul className="m-0 list-none p-0">
+            {Object.entries(categoryLinks).map(([linkKey, linkUrl]) => (
+              <li key={linkKey}>
+                <Link href={linkUrl}>
+                  <TransClient i18nKey={`${linkKey}`}>{linkKey}</TransClient>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+      <section>
+        <h2>
+          <TransClient i18nKey="publicodes.planDuSite.actionsPlus">
+            Les actions
+          </TransClient>
+        </h2>
+        <ul className="m-0 list-none p-0">
+          {/*
           rawActionsList.map((action) => {
 						return (
 							<li key={action.dottedName}>
@@ -104,9 +102,8 @@ export default function PlanDuSite() {
 						)
 					})
         */}
-          </ul>
-        </section>
-      </Main>
+        </ul>
+      </section>
     </PageLayout>
   )
 }

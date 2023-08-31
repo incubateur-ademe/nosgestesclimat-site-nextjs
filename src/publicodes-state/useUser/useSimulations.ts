@@ -3,16 +3,16 @@
 import { v4 as uuidv4 } from 'uuid'
 
 type Props = {
-  simulations: Object[]
-  setSimulations: Function
-  currentSimulation: string
-  setCurrentSimulation: Function
+  simulations: any[]
+  setSimulations: any
+  currentSimulationId: string
+  setCurrentSimulationId: any
 }
 export default function useSimulations({
   simulations,
   setSimulations,
-  currentSimulation,
-  setCurrentSimulation,
+  currentSimulationId,
+  setCurrentSimulationId,
 }: Props) {
   const initSimulation = ({
     situation = {},
@@ -28,23 +28,23 @@ export default function useSimulations({
         persona,
       },
     ])
-    setCurrentSimulation(id)
+    setCurrentSimulationId(id)
     return id
   }
 
   const updateSituationOfCurrentSimulation = (situationToAdd: any) => {
-    if (currentSimulation) {
+    if (currentSimulationId) {
       setSimulations((prevSimulation: any) => [
         ...prevSimulation.filter(
-          (simulation: any) => simulation.id !== currentSimulation
+          (simulation: any) => simulation.id !== currentSimulationId
         ),
         {
           ...prevSimulation.find(
-            (simulation: any) => simulation.id === currentSimulation
+            (simulation: any) => simulation.id === currentSimulationId
           ),
           situation: {
             ...prevSimulation.find(
-              (simulation: any) => simulation.id === currentSimulation
+              (simulation: any) => simulation.id === currentSimulationId
             ).situation,
             ...situationToAdd,
           },
@@ -55,7 +55,7 @@ export default function useSimulations({
 
   return {
     simulations,
-    currentSimulation,
+    currentSimulationId,
     updateSituationOfCurrentSimulation,
     initSimulation,
   }

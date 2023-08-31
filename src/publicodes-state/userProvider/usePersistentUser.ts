@@ -1,20 +1,38 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 type Props = {
   storageKey: string
+  initialRegion: { code: string; name: string }
 }
-export default function usePersistentUser({ storageKey }: Props) {
-  const [user, setUser] = useState({})
+export default function usePersistentUser({
+  storageKey,
+  initialRegion,
+}: Props) {
+  const [initialized, setInitialized] = useState(false)
+
+  const [user, setUser] = useState<any>({})
 
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem(storageKey) || '{}').user || {})
+    setUser(
+      JSON.parse(localStorage.getItem(storageKey) || '{}').user || {
+        region: initialRegion,
+        initialRegion,
+      }
+    )
+
+    setInitialized(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storageKey])
 
   useEffect(() => {
-    const currentStorage = JSON.parse(localStorage.getItem(storageKey) || '{}')
-    const updatedStorage = { ...currentStorage, user }
-    localStorage.setItem(storageKey, JSON.stringify(updatedStorage))
-  }, [storageKey, user])
+    if (initialized) {
+      const currentStorage = JSON.parse(
+        localStorage.getItem(storageKey) || '{}'
+      )
+      const updatedStorage = { ...currentStorage, user }
+      localStorage.setItem(storageKey, JSON.stringify(updatedStorage))
+    }
+  }, [storageKey, user, initialized])
 
   return { user, setUser }
 }

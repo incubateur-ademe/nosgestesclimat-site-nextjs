@@ -3,7 +3,6 @@
 import DiffuserEn from '@/locales/pages/en-us/diffuser.mdx'
 import DiffuserFr from '@/locales/pages/fr/diffuser.mdx'
 
-import Main from '@/design-system/layout/Main'
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 
 import PageLayout from '@/components/layout/PageLayout'
@@ -22,9 +21,7 @@ export default function Diffuser() {
 
   return (
     <PageLayout shouldShowMenu>
-      <Main className='max-w-[800px] p-8'>
-        <DiffuserLocalised />
-      </Main>
+      <DiffuserLocalised />
     </PageLayout>
   )
 }

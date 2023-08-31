@@ -1,29 +1,12 @@
-import { useMemo } from 'react'
-import Engine from 'publicodes'
+import { useContext } from 'react'
+import simulationContext from '../simulationProvider/context'
 
-type Props = {
-  rules?: any
-  situation: any
-}
-export default function useEngine({ rules, situation }: Props) {
-  const engine = useMemo(
-    () =>
-      new Engine(rules).setSituation(safeGetSituation({ situation, rules })),
-    [rules, situation]
-  )
+export default function useEngine() {
+  const { safeEvaluate }: any = useContext(simulationContext)
 
-  const getValue = (dottedName: string) => engine.evaluate(dottedName).nodeValue
+  const getValue = (dottedName: string) => safeEvaluate(dottedName).nodeValue
 
   return {
     getValue,
   }
 }
-
-const safeGetSituation = ({ situation, rules }: any): any =>
-  situation
-    ? Object.fromEntries(
-        Object.entries(situation).filter(([ruleName]) =>
-          Object.keys(rules).includes(ruleName)
-        )
-      )
-    : {}

@@ -1,7 +1,6 @@
 'use client'
 
 import PageLayout from '@/components/layout/PageLayout'
-import Main from '@/design-system/layout/Main'
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
 import accessibilityEn from '@/locales/pages/en-us/accessibility.mdx'
@@ -22,9 +21,7 @@ export default function Accessibility() {
 
   return (
     <PageLayout shouldShowMenu>
-      <Main className='max-w-[800px] p-8'>
-        <AccessibilityLocalised />
-      </Main>
+      <AccessibilityLocalised />
     </PageLayout>
   )
 }

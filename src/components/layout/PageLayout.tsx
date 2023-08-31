@@ -1,6 +1,7 @@
+import Main from '@/design-system/layout/Main'
 import { PropsWithChildren } from 'react'
 import Logo from '../Logo'
-import Navigation from './navigation/Navigation'
+import Navigation from './pageLayout/Navigation'
 
 const pageWithMenuClassnames = 'flex justify-start'
 const pageWithoutMenuClassnames = ''
@@ -8,16 +9,25 @@ const pageWithoutMenuClassnames = ''
 export default function PageLayout({
   children,
   shouldShowMenu,
-}: PropsWithChildren<{ shouldShowMenu?: boolean }>) {
+  shouldLimitMainWidth = true,
+}: PropsWithChildren<{
+  shouldShowMenu?: boolean
+  shouldLimitMainWidth?: boolean
+}>) {
   return (
     <>
       {!shouldShowMenu && <Logo />}
       <div
-        className={
+        className={`m-auto max-w-7xl ${
           shouldShowMenu ? pageWithMenuClassnames : pageWithoutMenuClassnames
-        }>
+        }`}>
         {shouldShowMenu && <Navigation />}
-        <div className='w-full'>{children}</div>
+        <Main
+          className={`w-full ${
+            shouldLimitMainWidth ? 'max-w-[800px] p-8' : ''
+          }`}>
+          {children}
+        </Main>
       </div>
     </>
   )

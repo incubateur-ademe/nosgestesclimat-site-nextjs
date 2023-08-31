@@ -4,7 +4,7 @@
 
 import { i18n } from 'i18next'
 
-const parseYaml = (yaml: { entries: {} }) => {
+const parseYaml = (yaml: YamlEntry) => {
   //Remove keys that make the bundle heavier but are only useful for translation purposes, not in the UI
   return Array.isArray(yaml)
     ? yaml.map((entry) =>
@@ -25,8 +25,8 @@ import uiFrYaml from './ui/ui-fr.yaml'
 // import uiEs from './ui/ui-es.yaml'
 // import uiIt from './ui/ui-it.yaml'
 
-const uiFr = parseYaml(uiFrYaml)
-const uiEn = parseYaml(uiEnYaml)
+const uiFr = parseYaml(uiFrYaml as unknown as YamlEntry)
+const uiEn = parseYaml(uiEnYaml as unknown as YamlEntry)
 
 import faqEnYaml from './faq/FAQ-en-us.yaml'
 import faqFrYaml from './faq/FAQ-fr.yaml'
@@ -34,10 +34,10 @@ import faqFrYaml from './faq/FAQ-fr.yaml'
 // import faqEs from './faq/FAQ-es.yaml'
 // import faqIt from './faq/FAQ-it.yaml'
 
-const faqFr = parseYaml(faqFrYaml)
-const faqEn = parseYaml(faqEnYaml)
+const faqFr = parseYaml(faqFrYaml as unknown as YamlEntry)
+const faqEn = parseYaml(faqEnYaml as unknown as YamlEntry)
 
-import { Lang, LangInfos } from '@/types/translation'
+import { Lang, LangInfos, YamlEntry } from '@/types/translation'
 import releasesEn from './releases/releases-en-us.json'
 import releasesFr from './releases/releases-fr.json'
 // Commented until validation by a native speaker
@@ -53,7 +53,7 @@ export function getLangInfos(lang: Lang): LangInfos {
         name: 'English',
         abrv: 'en',
         abrvLocale: 'en-US',
-        faqContent: faqEn,
+        faqContent: faqEn as unknown as string,
         releases: releasesEn,
         uiTrad: uiEn.entries,
       }
@@ -85,7 +85,7 @@ export function getLangInfos(lang: Lang): LangInfos {
         name: 'Français',
         abrv: 'fr',
         abrvLocale: 'fr-FR',
-        faqContent: faqFr,
+        faqContent: faqFr as unknown as string,
         releases: releasesFr,
         uiTrad: uiFr.entries,
       }
