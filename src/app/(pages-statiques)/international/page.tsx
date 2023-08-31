@@ -6,8 +6,6 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Container from '@/design-system/layout/Container'
 import Title from '@/design-system/layout/Title'
 
-import PageLayout from '@/components/layout/PageLayout'
-import RegionGrid from '@/components/misc/RegionGrid'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -21,14 +19,7 @@ export default async function International() {
   )
 
   return (
-    <PageLayout shouldLimitMainWidth={false}>
-      {/*
-			<Meta
-				title={title}
-				description={description}
-				image="https://nosgestesclimat.fr/images/international-illustration.jpeg"
-			/>
-  */}
+    <>
       <Container maxWidth="3xl" className="pb-12 pt-8">
         <div className="flex items-start justify-between gap-4">
           <div className="text-center md:text-left">
@@ -131,9 +122,7 @@ export default async function International() {
 
       <div className="bg-primaryLight">
         <Container maxWidth="3xl" className="pb-12 pt-8">
-          <div className="mx-auto my-0">
-            <RegionGrid shouldShowButton={false} />
-          </div>
+          <div className="mx-auto my-0"></div>
         </Container>
       </div>
 
@@ -152,6 +141,6 @@ export default async function International() {
           </TransServer>
         </p>
       </Container>
-    </PageLayout>
+    </>
   )
 }

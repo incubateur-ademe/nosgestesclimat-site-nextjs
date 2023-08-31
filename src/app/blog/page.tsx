@@ -1,5 +1,4 @@
 import dessinNGC from '@/assets/images/dessin-nosgestesclimat.png'
-import PageLayout from '@/components/layout/PageLayout'
 import TransClient from '@/components/translation/TransClient'
 import Title from '@/design-system/layout/Title'
 import { Metadata } from 'next'
@@ -14,7 +13,8 @@ export const metadata: Metadata = {
 
 export default function Blog() {
   return (
-    <PageLayout shouldShowMenu>
+    <>
+      {' '}
       <Title
         title={<TransClient>Le Blog</TransClient>}
         data-cypress-id="blog-title"
@@ -31,12 +31,11 @@ export default function Blog() {
           <TransClient>Découvrez nos articles de blog :</TransClient>
         </p>
       </div>
-
       <ul className="grid list-none grid-cols-1 justify-center gap-4 pl-0 sm:grid-cols-2">
         {blogData.map((post) => (
           <PostListItem post={post} key={post.slug} />
         ))}
       </ul>
-    </PageLayout>
+    </>
   )
 }

@@ -1,6 +1,5 @@
 'use client'
 
-import PageLayout from '@/components/layout/PageLayout'
 import TransClient from '@/components/translation/TransClient'
 import Title from '@/design-system/layout/Title'
 import Link from 'next/link'
@@ -53,7 +52,8 @@ export default function PlanDuSite() {
   */
 
   return (
-    <PageLayout shouldShowMenu>
+    <>
+      {' '}
       <Title
         title={
           <TransClient i18nKey="publicodes.planDuSite.title">
@@ -61,7 +61,6 @@ export default function PlanDuSite() {
           </TransClient>
         }
       />
-
       {Object.entries(links).map(([categoryTitle, categoryLinks]) => (
         <section key={categoryTitle} className="mb-2">
           <h2>
@@ -104,6 +103,6 @@ export default function PlanDuSite() {
         */}
         </ul>
       </section>
-    </PageLayout>
+    </>
   )
 }

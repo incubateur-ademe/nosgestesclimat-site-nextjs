@@ -1,4 +1,3 @@
-import Route404 from '@/components/layout/404'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
 import { getFormattedDate } from '@/helpers/date/getFormattedDate'
@@ -40,7 +39,7 @@ export default async function NewsPage({
   )
 
   if (!slug || selectedReleaseIndex === -1) {
-    return <Route404 />
+    return
   }
 
   const releaseName = data[selectedReleaseIndex]?.name?.toLowerCase()

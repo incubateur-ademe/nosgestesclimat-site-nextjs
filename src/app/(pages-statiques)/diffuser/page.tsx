@@ -5,7 +5,6 @@ import DiffuserFr from '@/locales/pages/fr/diffuser.mdx'
 
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 
-import PageLayout from '@/components/layout/PageLayout'
 import { useLocale } from '@/hooks/useLocale'
 
 export default function Diffuser() {
@@ -19,9 +18,5 @@ export default function Diffuser() {
     locale: locale ?? '',
   })
 
-  return (
-    <PageLayout shouldShowMenu>
-      <DiffuserLocalised />
-    </PageLayout>
-  )
+  return <DiffuserLocalised />
 }

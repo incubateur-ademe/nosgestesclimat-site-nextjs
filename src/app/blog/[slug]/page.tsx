@@ -1,6 +1,5 @@
 'use client'
 
-import PageLayout from '@/components/layout/PageLayout'
 import TransClient from '@/components/translation/TransClient'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
@@ -33,14 +32,12 @@ export default function BlogPost() {
   }
 
   return (
-    <PageLayout shouldShowMenu>
-      <div className="flex max-w-[800px] flex-col p-8">
-        <Link href="/blog">
-          ← <TransClient>Retour à la liste des articles</TransClient>
-        </Link>
+    <div className="flex max-w-[800px] flex-col p-8">
+      <Link href="/blog">
+        ← <TransClient>Retour à la liste des articles</TransClient>
+      </Link>
 
-        <BlogContent />
-      </div>
-    </PageLayout>
+      <BlogContent />
+    </div>
   )
 }

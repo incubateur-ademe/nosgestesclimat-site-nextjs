@@ -6,8 +6,6 @@ import Script from 'next/script'
 
 import './globals.css'
 
-import Footer from '@/components/layout/Footer'
-
 import { UserProvider } from '@/publicodes-state'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
@@ -160,8 +158,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <QueryClientProviderWrapper>
           <UserProvider initialRegion={region}>{children}</UserProvider>
         </QueryClientProviderWrapper>
-
-        <Footer />
       </body>
     </html>
   )

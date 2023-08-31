@@ -1,6 +1,5 @@
 'use client'
 
-import PageLayout from '@/components/layout/PageLayout'
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
 import AboutEn from '@/locales/pages/en-us/about.mdx'
@@ -19,9 +18,5 @@ export default function About() {
     locale: locale ?? '',
   })
 
-  return (
-    <PageLayout shouldShowMenu>
-      <AboutLocalised />
-    </PageLayout>
-  )
+  return <AboutLocalised />
 }

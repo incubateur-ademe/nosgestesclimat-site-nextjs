@@ -1,6 +1,5 @@
 'use client'
 
-import PageLayout from '@/components/layout/PageLayout'
 import TransClient from '@/components/translation/TransClient'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
@@ -77,7 +76,7 @@ export default function FAQ() {
   const { t } = useTranslation()
 
   return (
-    <PageLayout shouldShowMenu>
+    <>
       {/*
       <Meta
 				title={t('meta.publicodes.FAQ.title')}
@@ -178,6 +177,6 @@ export default function FAQ() {
         </Trans>
       </h2>
       <GithubContributionCard />
-    </PageLayout>
+    </>
   )
 }

@@ -1,6 +1,5 @@
 'use client'
 
-import PageLayout from '@/components/layout/PageLayout'
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
 import accessibilityEn from '@/locales/pages/en-us/accessibility.mdx'
@@ -19,9 +18,5 @@ export default function Accessibility() {
     locale: locale ?? '',
   })
 
-  return (
-    <PageLayout shouldShowMenu>
-      <AccessibilityLocalised />
-    </PageLayout>
-  )
+  return <AccessibilityLocalised />
 }

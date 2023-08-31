@@ -10,7 +10,6 @@ import { useUser } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
 import { use } from 'react'
 import RegionModelAuthors from './RegionModelAuthors'
-import RegionSelector from './RegionSelector'
 
 export default function Localisation({ title = 'Ma région de simulation' }) {
   const { t } = useClientTranslation()
@@ -90,7 +89,6 @@ export default function Localisation({ title = 'Ma région de simulation' }) {
           </TransClient>
         </p>
       )}
-      <RegionSelector supportedRegions={supportedRegions} />
     </div>
   )
 }

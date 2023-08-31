@@ -1,4 +1,3 @@
-import PageLayout from '@/components/layout/PageLayout'
 import { Metadata } from 'next'
 import DocumentationLanding from './_components/DocumentationLanding'
 
@@ -9,9 +8,5 @@ export const metadata: Metadata = {
 }
 
 export default function Documentation() {
-  return (
-    <PageLayout shouldShowMenu>
-      <DocumentationLanding />
-    </PageLayout>
-  )
+  return <DocumentationLanding />
 }

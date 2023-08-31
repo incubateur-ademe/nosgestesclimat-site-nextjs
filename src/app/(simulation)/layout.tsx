@@ -1,6 +1,5 @@
 import { PropsWithChildren } from 'react'
 
-import PageLayout from '@/components/layout/PageLayout'
 import Providers from '../_components/Providers'
 
 export default async function SimulateurLayout({
@@ -11,9 +10,5 @@ export default async function SimulateurLayout({
     'https://data.nosgestesclimat.fr/supportedRegions.json'
   ).then((res) => res.json())
 
-  return (
-    <Providers supportedRegions={supportedRegions}>
-      <PageLayout shouldShowMenu>{children}</PageLayout>
-    </Providers>
-  )
+  return <Providers supportedRegions={supportedRegions}>{children}</Providers>
 }

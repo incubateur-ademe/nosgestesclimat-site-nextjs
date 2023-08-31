@@ -1,6 +1,5 @@
 'use client'
 
-import PageLayout from '@/components/layout/PageLayout'
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
 import contentEnBottom from '@/locales/pages/en-us/budgetBottom.mdx'
@@ -29,7 +28,7 @@ export default function Budget() {
   })
 
   return (
-    <PageLayout shouldShowMenu>
+    <>
       {/*
       <Meta
 				title={t('meta.publicodes.Budget.title')}
@@ -40,6 +39,6 @@ export default function Budget() {
       <BudgetContentTop />
       <SelectYear />
       <BudgetContentBottom />
-    </PageLayout>
+    </>
   )
 }
