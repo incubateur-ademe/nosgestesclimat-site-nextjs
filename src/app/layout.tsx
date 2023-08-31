@@ -1,6 +1,5 @@
 // Initialise react-i18next
-import '@/locales/initClient'
-import '@/locales/initServer'
+
 import { dir } from 'i18next'
 import Script from 'next/script'
 
