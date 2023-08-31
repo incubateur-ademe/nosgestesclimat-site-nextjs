@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { useState } from 'react'
 
 import QuestionButton from '@/components/misc/QuestionButton'
@@ -7,6 +6,7 @@ import Explanation from '../../app/(simulation)/simulateur/[...dottedName]/_comp
 import Planet from '../../app/(simulation)/simulateur/[...dottedName]/_components/total/Planet'
 import Progress from '../../app/(simulation)/simulateur/[...dottedName]/_components/total/Progress'
 import ValueChangeDisplay from '../../app/(simulation)/simulateur/[...dottedName]/_components/total/ValueChangeDisplay'
+import Link from '../Link'
 
 export default function Total() {
   const { value } = useRule('bilan')

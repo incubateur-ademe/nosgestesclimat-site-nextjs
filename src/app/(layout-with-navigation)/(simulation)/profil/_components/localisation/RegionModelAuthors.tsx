@@ -1,7 +1,7 @@
 'use client'
 
+import Link from '@/components/Link'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import Link from 'next/link'
 
 export type RegionAuthor = {
   nom: string

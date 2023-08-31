@@ -1,5 +1,4 @@
-import Link from 'next/link'
-
+import Link from '@/components/Link'
 import TransClient from '@/components/translation/TransClient'
 import Button from '@/design-system/inputs/Button'
 import { useForm } from '@/publicodes-state'
