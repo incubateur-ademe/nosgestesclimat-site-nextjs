@@ -2,12 +2,11 @@
 
 import Script from 'next/script'
 
-import './globals.css'
-
-
+import Footer from '@/components/layout/Footer'
 import localFont from 'next/font/local'
 import { PropsWithChildren } from 'react'
 import QueryClientProviderWrapper from './_components/QueryClientProviderWrapper'
+import './globals.css'
 
 const marianne = localFont({
   src: [
@@ -152,8 +151,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
         */}
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
-       {children}</UserProvider>
-        </QueryClientProviderWrapper>
+        <QueryClientProviderWrapper>{children}</QueryClientProviderWrapper>
 
         <Footer />
       </body>
