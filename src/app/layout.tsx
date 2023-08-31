@@ -2,7 +2,6 @@
 
 import Script from 'next/script'
 
-import Footer from '@/components/layout/Footer'
 import localFont from 'next/font/local'
 import { PropsWithChildren } from 'react'
 import './globals.css'
@@ -137,8 +136,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         */}
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
         {children}
-
-        <Footer />
       </body>
     </html>
   )
