@@ -60,7 +60,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         }
       }) => res.country
     )
-
+  console.log(region)
   return (
     <html lang={lang ?? ''}>
       <head>
