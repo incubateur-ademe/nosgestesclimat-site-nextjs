@@ -80,7 +80,7 @@
     "> 1% in FR"
   ],
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.40.1",
+    "@netlify/plugin-nextjs": "4.39.4",
     "@svgr/cli": "^8.1.0",
     "@types/cheerio": "^0.22.31",
     "@types/crypto-js": "^4.1.1",
