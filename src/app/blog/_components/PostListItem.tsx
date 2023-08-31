@@ -1,7 +1,7 @@
 'use client'
 
-import Link from '@/components/Link'
 import { getFormattedDate } from '@/helpers/date/getFormattedDate'
+import Link from 'next/link'
 
 import Card from '@/design-system/layout/Card'
 import { useLocale } from '@/hooks/useLocale'

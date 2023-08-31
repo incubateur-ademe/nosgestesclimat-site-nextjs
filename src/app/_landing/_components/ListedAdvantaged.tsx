@@ -1,8 +1,8 @@
 'use client'
 
-import Link from '@/components/Link'
 import TransClient from '@/components/translation/TransClient'
 import Card from '@/design-system/layout/Card'
+import Link from 'next/link'
 import { ReactNode } from 'react'
 
 type Avantage = {
@@ -18,7 +18,7 @@ export default function ListedAdvantages() {
       text: (
         <TransClient>
           Le code source est ouvert, le site est{' '}
-          <Link href='/nouveautes'>amélioré régulièrement</Link>.
+          <Link href="/nouveautes">amélioré régulièrement</Link>.
         </TransClient>
       ),
     },
@@ -27,7 +27,7 @@ export default function ListedAdvantages() {
       text: (
         <TransClient>
           L'intégralité du calcul est{' '}
-          <Link href='/documentation'>documenté</Link> en ligne pour les curieux
+          <Link href="/documentation">documenté</Link> en ligne pour les curieux
           et les experts.
         </TransClient>
       ),
@@ -37,22 +37,22 @@ export default function ListedAdvantages() {
       text: (
         <TransClient>
           Une idée ? Une correction ? Une remarque ? Toute contribution{' '}
-          <Link href='/contact'>est la bienvenue</Link>!
+          <Link href="/contact">est la bienvenue</Link>!
         </TransClient>
       ),
     },
   ]
 
   return (
-    <ul className='m-0 flex flex-wrap items-center gap-4 pl-0'>
+    <ul className="m-0 flex flex-wrap items-center gap-4 pl-0">
       {advantages.map((advantage) => (
         <Card
-          tag='li'
+          tag="li"
           key={advantage.illustration}
-          className='flex h-[14rem] w-full flex-col items-center justify-center gap-4 md:w-[14rem]'>
-          <span className='text-[200%]'>{advantage.illustration}</span>
+          className="flex h-[14rem] w-full flex-col items-center justify-center gap-4 md:w-[14rem]">
+          <span className="text-[200%]">{advantage.illustration}</span>
 
-          <div className='text-center text-base'>{advantage.text}</div>
+          <div className="text-center text-base">{advantage.text}</div>
         </Card>
       ))}
     </ul>

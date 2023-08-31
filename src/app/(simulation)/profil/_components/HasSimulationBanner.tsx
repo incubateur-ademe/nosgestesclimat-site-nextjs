@@ -1,12 +1,12 @@
 'use client'
 
-import Link from '@/components/Link'
 import TransClient from '@/components/translation/TransClient'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { useForm } from '@/publicodes-state'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ReactNode } from 'react'
 import TutorialLink from './TutorialLink'

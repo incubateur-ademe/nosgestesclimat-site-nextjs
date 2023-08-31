@@ -1,7 +1,7 @@
 'use client'
 
-import Link from '@/components/Link'
 import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
+import Link from 'next/link'
 import { ComponentProps } from 'react'
 
 type MarkdownProps = ComponentProps<typeof MarkdownToJsx> & {

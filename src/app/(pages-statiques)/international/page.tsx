@@ -6,11 +6,11 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Container from '@/design-system/layout/Container'
 import Title from '@/design-system/layout/Title'
 
-import Link from '@/components/Link'
 import PageLayout from '@/components/layout/PageLayout'
 import RegionGrid from '@/components/misc/RegionGrid'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default async function International() {
   const { t } = await getServerTranslation()

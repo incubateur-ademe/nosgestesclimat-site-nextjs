@@ -1,8 +1,8 @@
 'use client'
 
-import Link from '@/components/Link'
 import PageLayout from '@/components/layout/PageLayout'
 import TransClient from '@/components/translation/TransClient'
+import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { JSXElementConstructor } from 'react'
 import { blogData } from '../_data/articles'
@@ -21,7 +21,7 @@ export default function BlogPost() {
   if (!markdownFile) {
     return (
       <div>
-        <Link href='/blog'>
+        <Link href="/blog">
           ← <TransClient>Retour à la liste des articles</TransClient>
         </Link>
         <br />
@@ -34,8 +34,8 @@ export default function BlogPost() {
 
   return (
     <PageLayout shouldShowMenu>
-      <div className='flex max-w-[800px] flex-col p-8'>
-        <Link href='/blog'>
+      <div className="flex max-w-[800px] flex-col p-8">
+        <Link href="/blog">
           ← <TransClient>Retour à la liste des articles</TransClient>
         </Link>
 

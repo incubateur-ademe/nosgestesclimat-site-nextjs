@@ -1,5 +1,5 @@
-import Link from '@/components/Link'
 import { ButtonSize } from '@/types/values'
+import Link from 'next/link'
 import { HtmlHTMLAttributes, PropsWithChildren } from 'react'
 import { baseClassNames, colorClassNames, sizeClassNames } from './Button'
 
