@@ -1,7 +1,6 @@
 // Initialise react-i18next
 import '@/locales/initClient'
 import '@/locales/initServer'
-import { dir } from 'i18next'
 import Script from 'next/script'
 
 import './globals.css'
@@ -67,7 +66,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     )
 
   return (
-    <html lang={lang ?? ''} dir={dir(lang ?? '')}>
+    <html lang={lang ?? ''}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1" />
