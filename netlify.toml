@@ -2,7 +2,7 @@
   path = "/geolocation"
   function = "geolocation"
 
-[functions]
+[[functions]]
   node_bundler = "esbuild"
 
 [[plugins]]
