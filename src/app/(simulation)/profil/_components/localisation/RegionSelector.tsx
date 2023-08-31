@@ -1,4 +1,3 @@
-import NewTabSvg from '@/components/icons/NewTabSvg'
 import RegionGrid from '@/components/misc/RegionGrid'
 import TransClient from '@/components/translation/TransClient'
 import Card from '@/design-system/layout/Card'
@@ -85,7 +84,6 @@ export default function RegionSelector({
               className="align-top"
               href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md">
               <TransClient>Suivez le guide !</TransClient>
-              <NewTabSvg className="!-mt-1" />
             </a>
           </p>
         </Card>

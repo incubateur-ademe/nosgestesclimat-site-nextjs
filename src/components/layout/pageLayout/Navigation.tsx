@@ -2,7 +2,6 @@
 
 // import { loadPreviousSimulation, resetLocalisation } from '@/actions/actions'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
-import CardGameIcon from '../../icons/CardGameIcon'
 
 import closePlain from '@/assets/images/close-plain.svg'
 import profileImage from '@/assets/images/silhouette.svg'
@@ -14,12 +13,6 @@ import Image from 'next/image'
 import Logo from '../../Logo'
 import TransClient from '../../translation/TransClient'
 import NavLink from './navigation/NavLink'
-
-const ActionsInteractiveIcon = ({ className = '' }) => {
-  const actionChoices = {}
-  const count = Object.values(actionChoices).filter((a) => a === true).length
-  return <CardGameIcon className={className} number={count} />
-}
 
 const openmojis = {
   test: '25B6',
@@ -59,8 +52,6 @@ export default function Navigation() {
           </NavLink>
 
           <NavLink href="/actions">
-            <ActionsInteractiveIcon className="md:mr-4" />
-
             <span className="font-normal text-primaryDark">
               <TransClient>Agir</TransClient>
             </span>
