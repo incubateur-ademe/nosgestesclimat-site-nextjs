@@ -7,7 +7,7 @@ import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useSearchParams } from 'next/navigation'
 import { Dispatch, SetStateAction, useState } from 'react'
-import Link from './Link'
+import Link from '../Link'
 
 type CreateIssueProps = {
   title: string
@@ -62,10 +62,10 @@ export default function GithubContributionForm() {
   const { t } = useClientTranslation()
 
   return !issueURL ? (
-    <form className='mt-8'>
+    <form className="mt-8">
       <TextInputGroup
         label={<TransClient>Le titre bref de votre problème</TransClient>}
-        name='sujet'
+        name="sujet"
         required
         value={sujet}
         onChange={(e) => setSujet(e.target.value)}
@@ -85,13 +85,13 @@ export default function GithubContributionForm() {
             </p>
           </TransClient>
         }
-        aria-describedby='messageAttention'
+        aria-describedby="messageAttention"
         value={comment}
         onChange={(e) => setComment(e.target?.value)}
-        name='comment'
+        name="comment"
         required
       />
-      <p id='messageAttention'>
+      <p id="messageAttention">
         <em>
           <TransClient>
             Cette contribution sera publique : n'y mettez pas d'informations
@@ -102,7 +102,7 @@ export default function GithubContributionForm() {
 
       <Button
         aria-disabled={isButtonDisabled}
-        type='submit'
+        type="submit"
         onClick={(e) => {
           if (isButtonDisabled) return null
 
@@ -128,7 +128,7 @@ export default function GithubContributionForm() {
       </Button>
     </form>
   ) : (
-    <p role='status'>
+    <p role="status">
       <TransClient i18nKey={'publicodes.Contribution.remerciements'}>
         Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur{' '}
         <Link href={issueURL ?? ''}>ce lien</Link>.
