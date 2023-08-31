@@ -1,11 +1,10 @@
 import initI18next from '@/locales/initServer'
-import { currentLocale } from 'next-i18n-router'
 
 export async function getServerTranslation(
   namespace?: string,
   options?: { keyPrefix: string }
 ) {
-  const language = currentLocale()
+  const language = 'fr'
 
   const i18nextInstance = await initI18next(language || '')
 

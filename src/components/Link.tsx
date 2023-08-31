@@ -1,8 +1,6 @@
 'use client'
 
-import { i18nConfig } from '@/constants/i18n'
 import { languages } from '@/constants/translation'
-import { useCurrentLocale } from 'next-i18n-router/client'
 import NextLink from 'next/link'
 import { PropsWithChildren } from 'react'
 
@@ -22,7 +20,7 @@ export default function Link({
   title,
   target,
 }: PropsWithChildren<Props>) {
-  const locale = useCurrentLocale(i18nConfig)
+  const locale = 'fr'
 
   const localisedHref = `${locale !== languages[0] ? `/${locale}` : ''}${href}`
 
