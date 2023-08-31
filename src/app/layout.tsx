@@ -41,7 +41,7 @@ const marianne = localFont({
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang={'fr'}>
+    <html lang={lang ?? ''}>
       <head></head>
 
       <body className={marianne.className}>{children}</body>
