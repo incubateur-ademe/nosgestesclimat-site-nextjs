@@ -3,24 +3,34 @@ import NewsBanner from './_components/NewsBanner'
 import republiqueFr from '@/assets/images/marianne.svg'
 import PageLayout from '@/components/layout/PageLayout'
 import TransServer from '@/components/translation/TransServer'
-import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { Metadata } from 'next'
 import Image from 'next/image'
+import Providers from '../_components/Providers'
 import AnimatedIllustration from './_components/AnimatedIllustration'
 import GroupsLink from './_components/GroupsLink'
 import LandingExplanations from './_components/LandingExplanations'
 import ProfileLink from './_components/ProfileLink'
 import TakeTestButton from './_components/TakeTestLink'
 
-export default async function Landing() {
-  // const hasData = true
+export const metadata: Metadata = {
+  title:
+    "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat",
+  description:
+    'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.',
+}
 
+export default async function Landing() {
   const { t } = await getServerTranslation()
 
+  const supportedRegions = await fetch(
+    'https://data.nosgestesclimat.fr/supportedRegions.json'
+  ).then((res) => res.json())
+
   return (
-    <PageLayout>
-      <Main>
+    <Providers supportedRegions={supportedRegions}>
+      <PageLayout shouldLimitMainWidth={false}>
         <div className="mx-auto flex w-full flex-wrap items-center justify-center gap-4 px-4 pb-8 text-center md:mt-6 md:max-w-none md:p-10 md:px-8 md:text-left">
           <div className="gap-10 md:flex">
             <div className="flex flex-col  md:w-1/2 ">
@@ -98,7 +108,7 @@ export default async function Landing() {
         </div>
 
         <LandingExplanations />
-      </Main>
-    </PageLayout>
+      </PageLayout>
+    </Providers>
   )
 }
