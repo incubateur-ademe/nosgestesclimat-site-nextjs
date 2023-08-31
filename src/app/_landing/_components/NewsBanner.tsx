@@ -7,7 +7,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
 import { sortReleases } from '@/utils/sortReleases'
-import { ReactNode, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const localStorageKey = 'last-viewed-release'
 
@@ -50,37 +50,37 @@ export default function NewsBanner() {
     lastViewedRelease &&
     lastViewedRelease !== lastRelease.name
 
-  const date = new Date(lastRelease.published_at).toLocaleDateString(
-    currentLangInfos.abrvLocale,
-    {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }
-  )
+  // const date = new Date(lastRelease.published_at).toLocaleDateString(
+  //   currentLangInfos.abrvLocale,
+  //   {
+  //     weekday: 'long',
+  //     year: 'numeric',
+  //     month: 'long',
+  //     day: 'numeric',
+  //   }
+  // )
 
   if (!shouldShowBanner) return null
 
   return (
-    <Card className='relative min-w-[20rem] p-8 text-left flex-col'>
-      <h2 className='m-0 flex items-center'>
-        <span className='mr-2 inline-block h-3 w-3 rounded-2xl bg-primary'></span>{' '}
+    <Card className="relative min-w-[20rem] p-8 text-left flex-col">
+      <h2 className="m-0 flex items-center">
+        <span className="mr-2 inline-block h-3 w-3 rounded-2xl bg-primary"></span>{' '}
         <TransClient>Nouveautés</TransClient>
       </h2>
       <div>
-        <small className='max-w-[12rem]'>
+        <small className="max-w-[12rem]">
           <TransClient i18nKey={'components.NewsBanner.miseAJourDate'}>
-            Dernière mise à jour {{ date } as unknown as ReactNode}
+            Dernière mise à jour
           </TransClient>
         </small>
       </div>
-      <div className='mt-2'>
+      <div className="mt-2">
         <Link href={'/nouveautes'}>{capitaliseString(lastRelease.name)}</Link>
       </div>
       <button
         onClick={handleUpdateViewedRelease}
-        className='absolute right-2 top-2 h-8 w-8 border-none bg-transparent p-0 text-lg text-primaryDark'
+        className="absolute right-2 top-2 h-8 w-8 border-none bg-transparent p-0 text-lg text-primaryDark"
         title={t('Fermer la notification de nouveautés')}>
         &times;
       </button>
