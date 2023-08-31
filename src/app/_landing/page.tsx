@@ -6,7 +6,6 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { Metadata } from 'next'
 import Image from 'next/image'
-import Providers from '../_components/Providers'
 import AnimatedIllustration from './_components/AnimatedIllustration'
 import GroupsLink from './_components/GroupsLink'
 import LandingExplanations from './_components/LandingExplanations'
@@ -28,7 +27,7 @@ export default async function Landing() {
   ).then((res) => res.json())
 
   return (
-    <Providers supportedRegions={supportedRegions}>
+    <>
       <div className="mx-auto flex w-full flex-wrap items-center justify-center gap-4 px-4 pb-8 text-center md:mt-6 md:max-w-none md:p-10 md:px-8 md:text-left">
         <div className="gap-10 md:flex">
           <div className="flex flex-col  md:w-1/2 ">
@@ -106,6 +105,6 @@ export default async function Landing() {
       </div>
 
       <LandingExplanations />
-    </Providers>
+    </>
   )
 }
