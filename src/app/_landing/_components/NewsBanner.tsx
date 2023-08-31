@@ -50,15 +50,15 @@ export default function NewsBanner() {
     lastViewedRelease &&
     lastViewedRelease !== lastRelease.name
 
-  const date = new Date(lastRelease.published_at).toLocaleDateString(
-    currentLangInfos.abrvLocale,
-    {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }
-  )
+  // const date = new Date(lastRelease.published_at).toLocaleDateString(
+  //   currentLangInfos.abrvLocale,
+  //   {
+  //     weekday: 'long',
+  //     year: 'numeric',
+  //     month: 'long',
+  //     day: 'numeric',
+  //   }
+  // )
 
   if (!shouldShowBanner) return null
 
