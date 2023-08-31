@@ -1,3 +1,3 @@
-export default function layout() {
-  return <div>layout</div>
+export default function layout({ children }: any) {
+  return <div>{children}</div>
 }
