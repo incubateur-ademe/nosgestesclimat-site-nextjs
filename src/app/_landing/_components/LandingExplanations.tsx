@@ -1,12 +1,9 @@
 'use client'
 
-import { IframeOptionsContext } from '@/contexts/IframeOptionsContext'
-
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
 import LandingContentEn from '@/locales/pages/en-us/landing.mdx'
 import LandingContentFr from '@/locales/pages/fr/landing.mdx'
-import { useContext } from 'react'
 import ListedAdvantages from './ListedAdvantaged'
 import OpenSourceBlock from './OpenSourceBlock'
 import QuestionsBlock from './QuestionsBlock'
@@ -16,8 +13,6 @@ import QuestionsBlock from './QuestionsBlock'
 // import contentIt from '../../locales/pages/it/landing.md'
 
 export default function LandingExplanations() {
-  const { isIframe } = useContext(IframeOptionsContext)
-
   const lang = useLocale()
 
   const LandingContent = getLocalisedMDX({
@@ -28,7 +23,7 @@ export default function LandingExplanations() {
     locale: lang || '',
   })
 
-  if (isIframe) return null
+  return null
 
   return (
     <>
