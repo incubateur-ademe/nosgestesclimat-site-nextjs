@@ -1,17 +1,19 @@
+'use client'
+
 import actionImg from '@/assets/images/E10C.svg'
 import TransServer from '@/components/translation/TransServer'
 import Card from '@/design-system/layout/Card'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 
-export default async function ActionsTutorial({
+export default function ActionsTutorial({
   value,
   unit,
 }: {
   value: string
   unit: string
 }) {
-  const { t } = await getServerTranslation()
+  const { t } = useClientTranslation()
   return (
     <Card className="my-6">
       <h2 className="flex items-center">

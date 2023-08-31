@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 
 import QuestionButton from '@/components/misc/QuestionButton'

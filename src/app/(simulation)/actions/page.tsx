@@ -1,12 +1,12 @@
 'use client'
 
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
-import { useForm, useUser } from '@/publicodes-state'
+import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { NGCRules } from '@/types/model'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import ActionsTutorial from './_components/ActionsTutorial'
 import SimulationMissing from './_components/SimulationMissing'
 import { getCarbonFootprint } from './_helpers/getCarbonFootprint'
@@ -27,11 +27,12 @@ export default function Actions({
   const { progression, categories } = useForm()
 
   const { user } = useUser()
+  const { getValue } = useEngine()
 
-  const metric = String(searchParams.métrique) || ''
+  const metric = searchParams.métrique || ''
   const category = searchParams.catégorie
 
-  const rules = useRules({
+  const { data: rules } = useRules({
     lang: locale || 'fr',
     region: user?.region?.code || 'FR',
   }) as unknown as NGCRules
@@ -41,12 +42,20 @@ export default function Actions({
 */
   const tutorials = {}
 
-  const { targets, interestingActions } = useActions({
-    metric,
-    focusedAction,
-    rules,
-    radical,
-  })
+  const actions = useMemo(
+    () =>
+      useActions({
+        metric,
+        focusedAction,
+        rules,
+        radical,
+        getValue,
+        user,
+      }),
+    [metric, focusedAction, rules, radical, getValue, user]
+  )
+
+  const { targets, interestingActions } = actions
 
   const bilan = targets.find((t) => t.dottedName === 'bilan')
 
@@ -72,7 +81,7 @@ export default function Actions({
   const isSimulationWellStarted = progression > 0.5
 
   const [value, unit] = getCarbonFootprint({ t, i18n }, bilan.nodeValue)
-
+  console.log(value, unit)
   return (
     <div className="pb-4 my-4 mx-auto">
       {!isSimulationWellStarted && <SimulationMissing />}

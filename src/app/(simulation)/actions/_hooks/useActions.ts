@@ -1,4 +1,3 @@
-import { useRule, useUser } from '@/publicodes-state'
 import { NGCRules } from '@/types/model'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import { sortBy } from '@/utils/sortBy'
@@ -14,21 +13,29 @@ type Props = {
 
 export default function useActions({
   focusedAction,
-  rules,
+  rules = [],
   radical,
   metric,
+  getValue,
+  user,
 }: Props) {
-  const { user } = useUser()
-
   const { actionChoices } = user
 
   const flatActions = metric ? rules[`actions ${metric}`] : rules['actions']
 
-  const objectifs = ['bilan', ...(flatActions as any).formule.somme]
+  const objectifs = [
+    'bilan',
+    ...(((flatActions as any) || {})?.formule?.somme || []),
+  ]
 
   const targets: any[] = objectifs.map((o) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    return useRule(o)
+    const ruleContent = getValue(o)
+
+    return {
+      ...ruleContent,
+      dottedName: o,
+    }
   })
 
   const actions = targets.filter((t) => t.dottedName !== 'bilan')
