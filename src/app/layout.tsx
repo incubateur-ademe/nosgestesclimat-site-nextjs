@@ -46,20 +46,6 @@ const marianne = localFont({
 export default async function RootLayout({ children }: PropsWithChildren) {
   const lang = 'fr'
 
-  // TODO: endpoint should not be static (and should point to local if available)
-  const region = await fetch(
-    'https://nosgestesclimat.fr/.netlify/functions/geolocation'
-  )
-    .then((res) => res.json())
-    .then(
-      (res: {
-        country: {
-          code: string
-          name: string
-        }
-      }) => res.country
-    )
-  console.log(region)
   return (
     <html lang={lang ?? ''}>
       <head>
