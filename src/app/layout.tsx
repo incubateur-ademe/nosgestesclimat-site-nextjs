@@ -1,8 +1,11 @@
 // Initialise react-i18next
 
+import { currentLocale } from 'next-i18n-router'
 import { PropsWithChildren } from 'react'
 
 export default async function RootLayout({ children }: PropsWithChildren) {
+  const lang = currentLocale()
+
   return (
     <html lang={'fr'}>
       <head>
