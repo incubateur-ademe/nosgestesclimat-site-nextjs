@@ -1,6 +1,5 @@
 // Initialise react-i18next
-import '@/locales/initClient'
-import '@/locales/initServer'
+
 import Script from 'next/script'
 
 import './globals.css'
