@@ -1,5 +1,10 @@
 // Initialise react-i18next
 
+import Script from 'next/script'
+
+import './globals.css'
+
+import { UserProvider } from '@/publicodes-state'
 import localFont from 'next/font/local'
 import { PropsWithChildren } from 'react'
 
@@ -102,7 +107,20 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <meta name="theme-color" content="#5758BB" />
       </head>
 
-      <body className={marianne.className}>{children}</body>
+      <body className={marianne.className}>
+        <Script id="script-user-agent">{`
+          const b = document.documentElement;
+          b.setAttribute('data-useragent', navigator.userAgent);
+        `}</Script>
+
+        {/*
+          Polyfill and source for old browser
+          Add polyfill.io for a very narrow web feature
+          IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
+        */}
+        <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
+        <UserProvider initialRegion={region}>{children}</UserProvider>
+      </body>
     </html>
   )
 }
