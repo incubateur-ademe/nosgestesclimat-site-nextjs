@@ -4,8 +4,6 @@ import TransClient from '@/components/translation/TransClient'
 import Title from '@/design-system/layout/Title'
 import { Metadata } from 'next'
 import Image from 'next/image'
-import PostListItem from './_components/PostListItem'
-import { blogData } from './_data/articles'
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -32,11 +30,7 @@ export default function Blog() {
         </p>
       </div>
 
-      <ul className="grid list-none grid-cols-1 justify-center gap-4 pl-0 sm:grid-cols-2">
-        {blogData.map((post) => (
-          <PostListItem post={post} key={post.slug} />
-        ))}
-      </ul>
+      <ul className="grid list-none grid-cols-1 justify-center gap-4 pl-0 sm:grid-cols-2"></ul>
     </PageLayout>
   )
 }
