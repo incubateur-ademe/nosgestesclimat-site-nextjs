@@ -13,6 +13,9 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  fetchOptions: {
+    cache: 'no-cache',
+  },
   webpack: function (config) {
     config.module.rules.push({
       test: /\.ya?ml$/,
