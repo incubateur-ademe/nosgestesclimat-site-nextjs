@@ -5,7 +5,6 @@ import Script from 'next/script'
 
 import './globals.css'
 
-import { UserProvider } from '@/publicodes-state'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import { PropsWithChildren } from 'react'
@@ -153,7 +152,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
         */}
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
-        <UserProvider initialRegion={region}>{children}</UserProvider>
+        {children}
       </body>
     </html>
   )
