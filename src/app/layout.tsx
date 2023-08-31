@@ -121,7 +121,9 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         */}
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
         <QueryClientProviderWrapper>
-          <UserProvider initialRegion={region}>{children}</UserProvider>
+          <UserProvider initialRegion={{ code: 'fr', name: 'France' }}>
+            {children}
+          </UserProvider>
         </QueryClientProviderWrapper>
       </body>
     </html>
