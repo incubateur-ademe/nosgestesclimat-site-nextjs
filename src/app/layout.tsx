@@ -7,7 +7,6 @@ import Script from 'next/script'
 import './globals.css'
 
 import { UserProvider } from '@/publicodes-state'
-import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import { PropsWithChildren } from 'react'
 import QueryClientProviderWrapper from './_components/QueryClientProviderWrapper'
@@ -49,8 +48,7 @@ const marianne = localFont({
 })
 
 export default async function RootLayout({ children }: PropsWithChildren) {
-  const lang = currentLocale()
-
+  const lang = 'fr'
   // TODO: endpoint should not be static (and should point to local if available)
   const region = await fetch(
     'https://nosgestesclimat.fr/.netlify/functions/geolocation'
