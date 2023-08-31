@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
-import QuestionButton from '@/components/misc/QuestionButton'
 import { useRule } from '@/publicodes-state'
 import Explanation from './total/Explanation'
 import Planet from './total/Planet'
@@ -31,10 +30,7 @@ export default function Total() {
             de CO<sub>2</sub>e / an
           </span>
         </Link>
-        <QuestionButton
-          onClick={() => setIsOpen((previsOpen) => !previsOpen)}
-          color="white"
-        />
+
         <ValueChangeDisplay />
       </div>
       {isOpen ? <Explanation setIsOpen={setIsOpen} /> : null}

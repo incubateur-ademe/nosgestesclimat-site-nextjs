@@ -19,7 +19,7 @@ export default function Question({ question }: Props) {
       <Suggestions question={question} />
       {type === 'number' && <NumberInput question={question} />}
       {type === 'boolean' && <BooleanInput question={question} />}
-      {type === 'choices' && <ChoicesInput question={question} />}
+      {type === 'choices' && <ChoicesInput />}
       {type === 'mosaic' && <Mosaic question={question} />}
     </div>
   )
