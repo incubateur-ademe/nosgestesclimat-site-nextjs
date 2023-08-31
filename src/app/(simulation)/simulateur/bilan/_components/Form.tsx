@@ -52,11 +52,11 @@ export default function Form() {
 
   useEffect(() => {
     if (isInitialized) {
-      router.push(
-        '/simulateur/bilan?question=' +
-          currentQuestion.replaceAll(' . ', '.').replaceAll(' ', '_'),
-        { scroll: false }
-      )
+      // router.push(
+      //   '/simulateur/bilan?question=' +
+      //     currentQuestion.replaceAll(' . ', '.').replaceAll(' ', '_'),
+      //   { scroll: false }
+      // )
     }
   }, [router, currentQuestion, currentCategory, isInitialized])
 
