@@ -10,15 +10,14 @@ import Image from 'next/image'
 export default function GroupsLink() {
   return (
     <ButtonLink
-      href='/groupe'
+      href="/groupe"
       onClick={() => {
         trackEvent(matomoEventModeGroupeCTAStart)
       }}
-      data-cypress-id='as-a-group-link'
-      size='xl'
-      color='secondary'
-    >
-      <Image src={silhouette} alt='' className='mr-4 h-auto w-8' />
+      data-cypress-id="as-a-group-link"
+      size="lg"
+      color="secondary">
+      <Image src={silhouette} alt="" className="mr-4 h-auto w-8" />
       <span>
         <TransClient>En groupe</TransClient>
       </span>
