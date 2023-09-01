@@ -8,8 +8,19 @@ type Props = { toggleOpen: any }
 
 export default function Explanation({ toggleOpen }: Props) {
   const { progression } = useForm()
+
   return (
-    <div className="border-4 border-primary mb-2 rounded-lg p-4 pt-2">
+    <div className="relative border-4 border-primary mt-6 mb-2 rounded-lg p-4 pt-2">
+      <svg
+        width="28"
+        height="24"
+        viewBox="0 0 28 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="absolute bottom-full left-1/2 -translate-x-1/2 ">
+        <path d="M14 0L27.8564 24H0.143594L14 0Z" className=" fill-primary" />
+      </svg>
+
       <div className="flex justify-end">
         <button onClick={toggleOpen} className="text-3xl leading-none">
           ×
