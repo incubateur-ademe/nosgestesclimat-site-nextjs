@@ -9,11 +9,13 @@ type Props = {
   rules: NGCRules
   radical: boolean
   metric: string
+  getValue: (dottedName: string) => any
+  user: any
 }
 
 export default function useActions({
   focusedAction,
-  rules = [],
+  rules,
   radical,
   metric,
   getValue,

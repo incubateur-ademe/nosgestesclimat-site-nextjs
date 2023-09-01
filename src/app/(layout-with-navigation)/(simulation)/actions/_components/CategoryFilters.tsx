@@ -1,23 +1,28 @@
-import { useRouter } from 'next/navigation'
+type Props = {
+  categories: any
+  // metric: string
+  isSelected: boolean
+  countByCategory: any
+}
 
 export default function CategoryFilters({
   categories,
-  metric,
-  selected,
+  // metric,
+  isSelected,
   countByCategory,
-}) {
-  const router = useRouter()
+}: Props) {
+  // const router = useRouter()
 
   return (
     <ul className="flex flex-wrap list-none justify-center pl-0">
-      {categories.map((category) => {
+      {categories.map((category: any) => {
         const getBackgroundColor = () => {
           switch (true) {
             case !countByCategory[category.dottedName]:
               return '#ccc'
-            case selected:
+            case isSelected:
               return '#aaa'
-            case selected === category.dottedName:
+            case isSelected === category.dottedName:
             default:
               return category.color
           }
@@ -31,7 +36,9 @@ export default function CategoryFilters({
             }}>
             <button
               className="text-white font-bold"
-              onClick={() =>
+              onClick={() => {
+                // Todo : implement logic
+                /*
                 setSearchParams(
                   new URLSearchParams({
                     ...(metric ? { métrique: metric } : {}),
@@ -40,7 +47,8 @@ export default function CategoryFilters({
                       : { catégorie: category.dottedName }),
                   })
                 )
-              }>
+                */
+              }}>
               {category.title}{' '}
               <span className="bg-white text-primaryDark rounded-md w-4 inline-block">
                 {countByCategory[category.dottedName] || 0}

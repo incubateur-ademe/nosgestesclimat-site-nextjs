@@ -1,7 +1,5 @@
 import { getCurrentLangInfos } from '@/locales/translation'
-import { JSX } from 'react'
-
-type TranslationFunctionType = (key: string) => JSX.Element | string
+import { TranslationFunctionType } from '@/types/translation'
 
 const getRawUnitDigitsArray = ({
   value,

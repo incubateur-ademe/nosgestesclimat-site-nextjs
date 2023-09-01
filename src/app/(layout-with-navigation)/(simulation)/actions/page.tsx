@@ -9,6 +9,7 @@ import ActionsTutorial from './_components/ActionsTutorial'
 import CategoryFilters from './_components/CategoryFilters'
 import MetricsFilters from './_components/MetricsFilters'
 import SimulationMissing from './_components/SimulationMissing'
+import AllActions from './_components/allActions/AllActions'
 import { getCarbonFootprint } from './_helpers/getCarbonFootprint'
 import useActions from './_hooks/useActions'
 
@@ -24,7 +25,7 @@ export default function Actions({
 
   const metric = searchParams.métrique || ''
 
-  const [metricTargeted, setMetricTargeted] = useState(metric)
+  const [metricTargeted] = useState(metric)
 
   const { progression, categories } = useForm()
 
@@ -40,8 +41,9 @@ export default function Actions({
 
   const actions = useMemo(
     () =>
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       useActions({
-        metric: metricTargeted,
+        metric: metricTargeted as string,
         focusedAction,
         rules,
         radical,
@@ -95,8 +97,8 @@ export default function Actions({
 
         <CategoryFilters
           categories={categories}
-          metric={metric}
-          selected={category}
+          // metric={metric}
+          isSelected={!!category}
           countByCategory={countByCategory}
         />
 
@@ -107,14 +109,12 @@ export default function Actions({
         />
 
         <AllActions
-          {...{
-            actions: finalActions.reverse(),
-            bilan,
-            rules,
-            focusedAction,
-            focusAction,
-            radical,
-          }}
+          actions={finalActions.reverse()}
+          rules={rules}
+          bilan={bilan}
+          focusAction={focusAction}
+          focusedAction={focusedAction}
+          radical={radical}
         />
       </div>
     </div>
