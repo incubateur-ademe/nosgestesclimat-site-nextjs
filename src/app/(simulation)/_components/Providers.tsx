@@ -56,6 +56,6 @@ export default function Providers({
       {children}
     </SimulationProvider>
   ) : (
-    <Loader />
+    <Loader color="dark" />
   )
 }
