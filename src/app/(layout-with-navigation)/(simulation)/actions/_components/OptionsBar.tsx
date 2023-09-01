@@ -7,13 +7,13 @@ import { useState } from 'react'
 import ActionsChosenIndicator from './ActionsChosenIndicator'
 
 type Props = {
-  finalActions: any
+  actions: any
   setRadical: any
   radical: boolean
 }
 
 export default function ActionsOptionsBar({
-  finalActions,
+  actions,
   setRadical,
   radical,
 }: Props) {
@@ -21,7 +21,7 @@ export default function ActionsOptionsBar({
 
   const { t } = useClientTranslation()
 
-  const numberOfAvailableFinalActions = finalActions.length
+  const numberOfAvailableFinalActions = actions.length
 
   if (!visible) {
     return (

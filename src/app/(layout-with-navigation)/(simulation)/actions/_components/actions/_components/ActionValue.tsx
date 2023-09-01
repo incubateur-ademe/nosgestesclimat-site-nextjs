@@ -43,7 +43,10 @@ export default function ActionValue({
 
   const { correctedValue, stringValue, unit, sign } = getFormattedActionValue(
     { t, i18n },
-    getValue(dottedName)
+    {
+      nodeValue: getValue(dottedName),
+      unit: { numerators: 'kgCO2' },
+    }
   )
 
   if (correctedValue == undefined) {
@@ -53,26 +56,26 @@ export default function ActionValue({
   const relativeValue = Math.round(100 * (correctedValue / total))
 
   return (
-    <div className="text-center">
+    <div>
       {hasFormula && isDisabled ? (
         t('Non applicable')
       ) : (
-        <div>
-          {sign}&nbsp;
-          <span
-            className={`bg-primary rounded-sm text-white px-2 border-2 border-solid border-primary ${
-              correctedValue != undefined && correctedValue < 0
-                ? 'bg-red-500'
-                : ''
-            }`}>
+        <div
+          className={`bg-primary rounded-[0.25rem] text-white pl-2 pr-[2px] border-2 border-solid border-primary ${
+            correctedValue != undefined && correctedValue < 0
+              ? 'bg-red-500'
+              : ''
+          }`}>
+          <span>
+            {sign ?? ''}&nbsp;
             <strong>{stringValue}</strong>&nbsp;
             <span>{t(unit, { ns: 'units' })}</span>
-            {total && (
-              <span className="ml-2 px-2 bg-primaryLight rounded-s-sm">
-                {Math.abs(relativeValue)}%
-              </span>
-            )}
           </span>
+          {total && (
+            <span className="ml-2 px-1 bg-primaryLight text-primaryDark rounded-e-sm">
+              {Math.abs(relativeValue)}%
+            </span>
+          )}
         </div>
       )}
     </div>

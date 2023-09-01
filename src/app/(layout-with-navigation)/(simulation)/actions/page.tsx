@@ -1,12 +1,12 @@
 'use client'
 
 import { useEngine, useForm, useUser } from '@/publicodes-state'
-import { useState } from 'react'
 
 import ActionsTutorial from './_components/ActionsTutorial'
-import CategoryFilters from './_components/categoryFilters/CategoryFilters'
 import PetrolFilter from './_components/PetrolFilter'
 import SimulationMissing from './_components/SimulationMissing'
+import Actions from './_components/actions/Actions'
+import CategoryFilters from './_components/categoryFilters/CategoryFilters'
 import getActions from './_helpers/getActions'
 
 export default function ActionsPage({
@@ -14,9 +14,6 @@ export default function ActionsPage({
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  const [radical, setRadical] = useState(true)
-  const [focusedAction, focusAction] = useState('')
-
   const metric = (searchParams.métrique || '') as string
 
   const category = searchParams.catégorie
@@ -32,9 +29,9 @@ export default function ActionsPage({
 
   const actions = getActions({
     metric,
-    focusedAction,
+    focusedAction: '',
     rules,
-    radical,
+    radical: true,
     getRuleObject,
     user,
   })
@@ -68,22 +65,7 @@ export default function ActionsPage({
 
         <CategoryFilters actions={actionsDisplayed} />
 
-        {/*
-        <OptionsBar
-          setRadical={setRadical}
-          radical={radical}
-          finalActions={finalActions}
-        />
-
-        <Actions
-          actions={finalActions.reverse()}
-          rules={rules}
-          bilan={bilan}
-          focusAction={focusAction}
-          focusedAction={focusedAction}
-          radical={radical}
-        />
-             */}
+        <Actions actions={actions.reverse()} rules={rules} />
       </div>
     </div>
   )

@@ -6,9 +6,8 @@ import {
   getMatomoEventActionRejected,
 } from '@/constants/matomo'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
-import { extractCategoriesNamespaces } from '@/helpers/publicodes/extractCategoriesNamespaces'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
+import { useEngine, useForm, useRule, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Image from 'next/image'
@@ -27,18 +26,19 @@ export default function ActionListCard({
   total,
   rule,
   focusAction,
-  isFocused,
 }: Props) {
   const { t } = useClientTranslation()
 
   const { rules } = useEngine()
+
+  const { categories } = useForm()
 
   const { getCurrentSimulation } = useUser()
 
   const { nodeValue, dottedName, title } = evaluation
   const { icônes: icons } = rule
 
-  const { actionChoices } = getCurrentSimulation()
+  const { actionChoices = [] } = getCurrentSimulation()
 
   const flatRule = rules[dottedName]
 
@@ -48,8 +48,6 @@ export default function ActionListCard({
     !hasFormula || nodeValue === 0 || nodeValue === false || nodeValue === null
 
   const { remainingQuestions } = useForm()
-
-  const { getValue } = useEngine()
 
   const nbRemainingQuestions = remainingQuestions.length
 
@@ -65,39 +63,36 @@ export default function ActionListCard({
     }
   )
 
-  const categories = extractCategoriesNamespaces(rules, getValue)
   const foundCategory = categories.find(
-    (cat) => cat.dottedName === dottedName.split(' . ')[0]
+    (cat: string) => cat === dottedName.split(' . ')[0]
   )
 
+  const categoryRuleObject = useRule(foundCategory)
+
   const categoryColor =
-    foundCategory?.color ||
+    categoryRuleObject?.color ||
     rules[dottedName.split(' . ')[0]]?.couleur ||
     'var(--color)'
 
   return (
     <div
-      className={`relative w-full flex flex-col justify-between items-center h-[14.5rem] ${
+      className={`relative w-full flex flex-col justify-between items-center h-[15rem] rounded-lg overflow-auto border-4 border-solid ${
         !hasFormula ? 'h-[13rem]' : ''
-      } ${hasRemainingQuestions ? 'bg-gray-100' : ''} ${
-        isDisabled ? 'opacity-80 text-gray-500' : ''
-      } ${isFocused ? 'border-4 border-solid border-green-500' : ''} ${
-        actionChoices[evaluation.dottedName]
-          ? 'border-4 border-solid border-green-500 bg-green-700'
-          : ''
-      }`}>
+      }`}
+      style={{ borderColor: categoryColor }}>
       <div
         style={{ backgroundColor: categoryColor }}
-        className="flex items-center w-full h-[6rem]">
+        className="flex items-center w-full h-[7rem]">
         <Link
-          className="z-10 no-underline"
+          className="z-10 no-underline w-full"
           href={'/actions/' + encodeRuleName(dottedName)}>
-          <h2 className="text-center font-bold inline-block text-white">
+          <h2 className="text-center font-bold inline-block text-white text-lg w-full">
             {title}
           </h2>
         </Link>
+
         {icons && (
-          <span className="absolute top-[10%] -translate-x-1/2 left-1/2 text-2xl whitespace-nowrap grayscale opacity-30">
+          <span className="absolute top-[10%] -translate-x-1/2 left-1/2 text-2xl whitespace-nowrap grayscale opacity-30 text-[4rem]">
             {icons}
           </span>
         )}

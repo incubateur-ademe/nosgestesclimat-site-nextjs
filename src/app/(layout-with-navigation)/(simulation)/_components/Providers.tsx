@@ -38,8 +38,6 @@ export default function Providers({
     }
   }, [initSimulation, currentSimulationId])
 
-  console.log('HERE')
-
   return currentSimulationId && !isInitialLoading ? (
     <SimulationProvider
       key={currentSimulationId}
