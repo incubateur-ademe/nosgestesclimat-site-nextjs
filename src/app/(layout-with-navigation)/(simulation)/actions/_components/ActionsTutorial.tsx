@@ -1,7 +1,8 @@
 'use client'
 
 import actionImg from '@/assets/images/E10C.svg'
-import TransServer from '@/components/translation/TransServer'
+import TransClient from '@/components/translation/TransClient'
+import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
@@ -14,47 +15,53 @@ export default function ActionsTutorial({
   unit: string
 }) {
   const { t } = useClientTranslation()
+
   return (
-    <Card className="my-6">
+    <Card className="my-6 flex-col items-start !bg-primaryLight">
       <h2 className="flex items-center">
         <Image src={actionImg} alt="" width={32} height={32} />
-        <TransServer>Passer à l'action !</TransServer>
+
+        <TransClient>Passer à l'action !</TransClient>
       </h2>
+
       <p>
-        <TransServer i18nKey={'publicodes.ActionTutorial.félicitation'}>
+        <TransClient i18nKey={'publicodes.ActionTutorial.félicitation'}>
           Vous avez terminé votre simulation, 👏 bravo !
-        </TransServer>
+        </TransClient>
       </p>
+
       <p>{t('publicodes.ActionTutorial.msgEstimation', { value, unit })}</p>
 
       <p>
-        <TransServer i18nKey={'publicodes.ActionTutorial.msgPrésentation'}>
+        <TransClient i18nKey={'publicodes.ActionTutorial.msgPrésentation'}>
           Pour vous aider, nous vous présenterons{' '}
           <strong>une liste d'actions</strong> :
-        </TransServer>
+        </TransClient>
       </p>
 
       <ul className="list-none">
         <li>
-          <TransServer>✅ sélectionnez celles qui vous intéressent</TransServer>
+          <TransClient>✅ sélectionnez celles qui vous intéressent</TransClient>
         </li>
+
         <li>
-          <TransServer>
+          <TransClient>
             ❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.
-          </TransServer>
+          </TransClient>
         </li>
       </ul>
+
       <p>
-        <TransServer i18nKey={'publicodes.ActionTutorial.msgPrécision'}>
+        <TransClient i18nKey={'publicodes.ActionTutorial.msgPrécision'}>
           💡 Pour améliorer la précision, certaines actions vous poseront
           quelques questions en plus.
-        </TransServer>
+        </TransClient>
       </p>
-      <button
-        className="ui__ button plain cta"
+
+      <Button
         onClick={() => console.log('TODO: implement logic to skip tutorial')}>
-        <TransServer>Démarrer</TransServer>
-      </button>
+        <TransClient>Démarrer</TransClient>
+      </Button>
     </Card>
   )
 }

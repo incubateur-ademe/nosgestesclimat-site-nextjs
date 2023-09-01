@@ -8,7 +8,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import Image from 'next/image'
-import ActionList from './ActionList'
+import ActionList from './_components/ActionList'
 
 type Props = {
   actions: any
@@ -19,7 +19,7 @@ type Props = {
   radical: boolean
 }
 
-export default function AllActions({
+export default function Actions({
   actions: rawActions,
   bilan,
   rules,

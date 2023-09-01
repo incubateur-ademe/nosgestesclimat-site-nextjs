@@ -2,7 +2,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine } from '@/publicodes-state'
 import { TranslationFunctionType } from '@/types/translation'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
-import { getCarbonFootprint } from '../../_helpers/getCarbonFootprint'
+import { getCarbonFootprint } from '../../../_helpers/getCarbonFootprint'
 
 export const getFormattedActionValue = (
   { t, i18n }: { t: TranslationFunctionType; i18n: any },

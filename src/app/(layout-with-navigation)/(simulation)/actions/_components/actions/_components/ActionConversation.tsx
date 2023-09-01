@@ -1,6 +1,6 @@
 import { useForm } from '@/publicodes-state'
 import { useEffect } from 'react'
-import Form from '../../../simulateur/[...dottedName]/_components/Form'
+import Form from '../../../../simulateur/[...dottedName]/_components/Form'
 
 export default function ActionConversation({
   dottedName,

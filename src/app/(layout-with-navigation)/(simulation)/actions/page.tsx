@@ -4,16 +4,14 @@ import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { useMemo, useState } from 'react'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import ActionsOptionsBar from './_components/ActionsOptionsBar'
 import ActionsTutorial from './_components/ActionsTutorial'
 import CategoryFilters from './_components/CategoryFilters'
-import MetricsFilters from './_components/MetricsFilters'
+import PetrolFilter from './_components/PetrolFilter'
 import SimulationMissing from './_components/SimulationMissing'
-import AllActions from './_components/allActions/AllActions'
+import useActions from './_helpers/getActions'
 import { getCarbonFootprint } from './_helpers/getCarbonFootprint'
-import useActions from './_hooks/useActions'
 
-export default function Actions({
+export default function ActionsPage({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
@@ -33,7 +31,7 @@ export default function Actions({
   const { getValue, rules } = useEngine()
 
   const category = searchParams.catégorie
-
+  console.log(rules)
   /*
   const tutorials = useSelector((state: AppState) => state.tutorials)
 */
@@ -53,16 +51,14 @@ export default function Actions({
     [metricTargeted, focusedAction, rules, radical, getValue, user]
   )
 
-  const { targets, interestingActions } = actions
-
-  const bilan = targets.find((t) => t.dottedName === 'bilan')
+  const bilan = { ...getValue('bilan'), dottedName: 'bilan' }
 
   const filterByCategory = (actions: any) =>
     actions.filter((action: any) =>
       category ? action.dottedName.split(' . ')[0] === category : true
     )
 
-  const finalActions = filterByCategory(interestingActions)
+  const finalActions = filterByCategory(actions)
 
   const countByCategory = finalActions.reduce(
     (accumulator: any, action: any) => {
@@ -93,7 +89,7 @@ export default function Actions({
           isSimulationWellStarted ? '' : 'pointer-events-none opacity-70'
         }
         aria-hidden={isSimulationWellStarted ? 'false' : 'true'}>
-        <MetricsFilters />
+        <PetrolFilter />
 
         <CategoryFilters
           categories={categories}
@@ -101,14 +97,14 @@ export default function Actions({
           isSelected={!!category}
           countByCategory={countByCategory}
         />
-
-        <ActionsOptionsBar
+        {/*
+        <OptionsBar
           setRadical={setRadical}
           radical={radical}
           finalActions={finalActions}
         />
 
-        <AllActions
+        <Actions
           actions={finalActions.reverse()}
           rules={rules}
           bilan={bilan}
@@ -116,6 +112,7 @@ export default function Actions({
           focusedAction={focusedAction}
           radical={radical}
         />
+             */}
       </div>
     </div>
   )
