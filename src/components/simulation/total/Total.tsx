@@ -2,11 +2,11 @@ import Link from 'next/link'
 
 import QuestionButton from '@/components/misc/QuestionButton'
 import { useRule, useUser } from '@/publicodes-state'
-import Explanation from './total/Explanation'
-import ListToggle from './total/ListToggle'
-import Planet from './total/Planet'
-import Progress from './total/Progress'
-import ValueChangeDisplay from './total/ValueChangeDisplay'
+import Explanation from '../../../app/(layout-with-navigation)/(simulation)/simulateur/[root]/_components/total/Explanation'
+import ListToggle from '../../../app/(layout-with-navigation)/(simulation)/simulateur/[root]/_components/total/ListToggle'
+import Planet from '../../../app/(layout-with-navigation)/(simulation)/simulateur/[root]/_components/total/Planet'
+import Progress from '../../../app/(layout-with-navigation)/(simulation)/simulateur/[root]/_components/total/Progress'
+import ValueChangeDisplay from '../../../app/(layout-with-navigation)/(simulation)/simulateur/[root]/_components/total/ValueChangeDisplay'
 
 type Props = {
   toggleQuestionList: () => void

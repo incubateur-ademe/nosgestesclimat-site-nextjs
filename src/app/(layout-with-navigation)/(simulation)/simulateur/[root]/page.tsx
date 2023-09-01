@@ -3,10 +3,10 @@
 import Title from '@/design-system/layout/Title'
 import FormProvider from '@/publicodes-state/formProvider'
 import { useState } from 'react'
+import Total from '../../../../../components/simulation/total/Total'
 import Charts from './_components/Charts'
 import Form from './_components/Form'
 import Summary from './_components/Summary'
-import Total from './_components/Total'
 
 type Props = { params: { root: string } }
 

@@ -1,7 +1,10 @@
+'use client'
+
 import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { useMemo, useState } from 'react'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import ActionsOptionsBar from './_components/ActionsOptionsBar'
 import ActionsTutorial from './_components/ActionsTutorial'
 import CategoryFilters from './_components/CategoryFilters'
 import MetricsFilters from './_components/MetricsFilters'
@@ -97,7 +100,11 @@ export default function Actions({
           countByCategory={countByCategory}
         />
 
-        <ActionsOptionsBar {...{ setRadical, radical, finalActions }} />
+        <ActionsOptionsBar
+          setRadical={setRadical}
+          radical={radical}
+          finalActions={finalActions}
+        />
 
         <AllActions
           {...{
