@@ -4,17 +4,34 @@ type Props = {
   question: string
   title: string
   icons: string
+  description: string
 }
 
-export default function NumberInput({ question, title, icons }: Props) {
+export default function NumberInput({
+  question,
+  title,
+  icons,
+  description,
+}: Props) {
   const { value, setValue, isMissing } = useRule(question)
 
+  // Model shenanigans for description split...
   return (
     <div
       className={
-        'flex items-center justify-between rounded  bg-grey-100 p-4 text-xl font-semibold'
+        'flex gap-4 items-center justify-between rounded  bg-grey-100 p-4'
       }>
-      {title} {icons}
+      <div>
+        <span className="text-xl font-semibold">
+          {title}&nbsp;{icons}
+        </span>
+        {description ? (
+          <>
+            <br />
+            <p className="mb-0 text-sm italic">{description.split('\n')[0]}</p>
+          </>
+        ) : null}
+      </div>
       <div className="flex items-center">
         <Button
           disabled={value === 0}

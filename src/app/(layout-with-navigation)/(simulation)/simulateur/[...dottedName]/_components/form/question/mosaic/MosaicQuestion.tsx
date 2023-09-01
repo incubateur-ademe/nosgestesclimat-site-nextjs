@@ -16,12 +16,17 @@ export default function MosaicQuestion({ question }: Props) {
     return dottedNameArray.join(' . ')
   }, [question])
 
-  const { title, icons } = useRule(parentRule)
+  const { title, icons, description } = useRule(parentRule)
 
   return (
     <>
       {type === 'number' && (
-        <MosaicNumberInput question={question} title={title} icons={icons} />
+        <MosaicNumberInput
+          question={question}
+          title={title}
+          icons={icons}
+          description={description}
+        />
       )}
       {type === 'boolean' && (
         <MosaicBooleanInput question={question} title={title} icons={icons} />
