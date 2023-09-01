@@ -2,7 +2,8 @@ import { useContext } from 'react'
 import simulationContext from '../simulationProvider/context'
 
 export default function useEngine() {
-  const { safeEvaluate, safeGetRule }: any = useContext(simulationContext)
+  const { safeEvaluate, rules, safeGetRule }: any =
+    useContext(simulationContext)
 
   const getValue = (dottedName: string) => safeEvaluate(dottedName).nodeValue
 
@@ -11,5 +12,6 @@ export default function useEngine() {
   return {
     getValue,
     checkIfValid,
+    rules,
   }
 }

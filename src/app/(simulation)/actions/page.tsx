@@ -1,13 +1,10 @@
-'use client'
-
-import { useLocale } from '@/hooks/useLocale'
-import { useRules } from '@/hooks/useRules'
 import { useEngine, useForm, useUser } from '@/publicodes-state'
-import { NGCRules } from '@/types/model'
 import { useMemo, useState } from 'react'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import ActionsTutorial from './_components/ActionsTutorial'
+import CategoryFilters from './_components/CategoryFilters'
+import MetricsFilters from './_components/MetricsFilters'
 import SimulationMissing from './_components/SimulationMissing'
 import { getCarbonFootprint } from './_helpers/getCarbonFootprint'
 import useActions from './_hooks/useActions'
@@ -22,20 +19,16 @@ export default function Actions({
   const [radical, setRadical] = useState(true)
   const [focusedAction, focusAction] = useState('')
 
-  const locale = useLocale()
+  const metric = searchParams.métrique || ''
+
+  const [metricTargeted, setMetricTargeted] = useState(metric)
 
   const { progression, categories } = useForm()
 
   const { user } = useUser()
-  const { getValue } = useEngine()
+  const { getValue, rules } = useEngine()
 
-  const metric = searchParams.métrique || ''
   const category = searchParams.catégorie
-
-  const { data: rules } = useRules({
-    lang: locale || 'fr',
-    region: user?.region?.code || 'FR',
-  }) as unknown as NGCRules
 
   /*
   const tutorials = useSelector((state: AppState) => state.tutorials)
@@ -45,14 +38,14 @@ export default function Actions({
   const actions = useMemo(
     () =>
       useActions({
-        metric,
+        metric: metricTargeted,
         focusedAction,
         rules,
         radical,
         getValue,
         user,
       }),
-    [metric, focusedAction, rules, radical, getValue, user]
+    [metricTargeted, focusedAction, rules, radical, getValue, user]
   )
 
   const { targets, interestingActions } = actions
@@ -81,7 +74,7 @@ export default function Actions({
   const isSimulationWellStarted = progression > 0.5
 
   const [value, unit] = getCarbonFootprint({ t, i18n }, bilan.nodeValue)
-  console.log(value, unit)
+
   return (
     <div className="pb-4 my-4 mx-auto">
       {!isSimulationWellStarted && <SimulationMissing />}
@@ -89,13 +82,13 @@ export default function Actions({
       {isSimulationWellStarted && (tutorials as any).actions !== 'skip' && (
         <ActionsTutorial value={value} unit={unit} />
       )}
-      {/*
+
       <div
         className={
           isSimulationWellStarted ? '' : 'pointer-events-none opacity-70'
         }
         aria-hidden={isSimulationWellStarted ? 'false' : 'true'}>
-        <MetricFilters selected={metric} />
+        <MetricsFilters />
 
         <CategoryFilters
           categories={categories}
@@ -116,9 +109,7 @@ export default function Actions({
             radical,
           }}
         />
-        
       </div>
-      */}
     </div>
   )
 }
