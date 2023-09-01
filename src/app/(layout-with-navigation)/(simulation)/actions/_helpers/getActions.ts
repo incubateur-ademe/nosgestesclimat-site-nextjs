@@ -8,7 +8,7 @@ type Props = {
   rules: any
   radical: boolean
   metric: string
-  getValue: (dottedName: string) => any
+  getRuleObject: (dottedName: string) => any
   user: any
 }
 
@@ -17,7 +17,7 @@ export default function getActions({
   rules,
   radical,
   metric,
-  getValue,
+  getRuleObject,
   user,
 }: Props) {
   const { actionChoices } = user
@@ -26,7 +26,7 @@ export default function getActions({
   const actionsObject = metric ? rules[`actions ${metric}`] : rules.actions
 
   const actions: any[] = actionsObject?.formule?.somme?.map((o: any) => {
-    const ruleContent = getValue(o)
+    const ruleContent = getRuleObject(o)
 
     return {
       ...ruleContent,

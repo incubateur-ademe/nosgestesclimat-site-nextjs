@@ -5,16 +5,18 @@ import TransClient from '@/components/translation/TransClient'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useEngine } from '@/publicodes-state'
 import Image from 'next/image'
+import { getCarbonFootprint } from '../_helpers/getCarbonFootprint'
 
-export default function ActionsTutorial({
-  value,
-  unit,
-}: {
-  value: string
-  unit: string
-}) {
-  const { t } = useClientTranslation()
+export default function ActionsTutorial() {
+  const { t, i18n } = useClientTranslation()
+
+  const { getValue } = useEngine()
+
+  const bilan = { ...getValue('bilan'), dottedName: 'bilan' }
+
+  const [value, unit] = getCarbonFootprint({ t, i18n }, bilan.nodeValue)
 
   return (
     <Card className="my-6 flex-col items-start !bg-primaryLight">

@@ -9,8 +9,11 @@ export default function useEngine() {
 
   const checkIfValid = (dottedName: string) => safeGetRule(dottedName).rawNode
 
+  const getRuleObject = (dottedName: string) => safeEvaluate(dottedName)
+
   return {
     getValue,
+    getRuleObject,
     checkIfValid,
     rules,
   }
