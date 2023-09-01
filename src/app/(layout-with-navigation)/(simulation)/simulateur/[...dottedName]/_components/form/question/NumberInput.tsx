@@ -11,7 +11,7 @@ export default function NumberInput({ question }: Props) {
     <div className="flex items-center justify-end gap-1">
       <input
         className={
-          'rounded border border-primary bg-grey-100 p-2 transition-colors focus:border-primary focus:ring-2 focus:ring-primary'
+          'text-right rounded border border-primary bg-grey-100 p-2 transition-colors focus:border-primary focus:ring-2 focus:ring-primary'
         }
         type="number"
         value={isMissing ? '' : value}

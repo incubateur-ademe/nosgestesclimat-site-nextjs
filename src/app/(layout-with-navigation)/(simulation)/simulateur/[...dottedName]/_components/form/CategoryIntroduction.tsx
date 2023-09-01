@@ -1,3 +1,4 @@
+import TransClient from '@/components/translation/TransClient'
 import Button from '@/design-system/inputs/Button'
 import { useRule } from '@/publicodes-state'
 
@@ -19,7 +20,9 @@ export default function CategoryIntroduction({
       <div className="text-6xl bg-white rounded-full w-20 h-20 flex justify-center items-center leading-none">
         {icons}
       </div>
-      <Button onClick={startCategory}>Démarrer</Button>
+      <Button onClick={startCategory}>
+        <TransClient>Commencer</TransClient>
+      </Button>
     </div>
   )
 }

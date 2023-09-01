@@ -1,6 +1,6 @@
 import { useForm } from '@/publicodes-state'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 
 import CategoryIntroduction from './form/CategoryIntroduction'
 import Navigation from './form/Navigation'
@@ -24,19 +24,16 @@ export default function Form() {
   )
 
   const searchParams = useSearchParams()
-  const questionInQueryParams = searchParams.get('question')
+  const questionInQueryParams = decodeURI(searchParams.get('question') || '')
+    ?.replaceAll('.', ' . ')
+    .replaceAll('_', ' ')
+  const prevQuestionInQueryParams = useRef(questionInQueryParams)
 
   useEffect(() => {
     if (!currentCategory) {
       if (questionInQueryParams) {
-        setCurrentQuestion(
-          decodeURI(
-            questionInQueryParams.replaceAll('.', ' . ').replaceAll('_', ' ')
-          )
-        )
-        setCurrentCategory(
-          decodeURI(questionInQueryParams.split('.')[0].replaceAll('_', ' '))
-        )
+        setCurrentQuestion(questionInQueryParams)
+        setCurrentCategory(questionInQueryParams.split(' . ')[0])
       } else {
         setCurrentCategory(remainingCategories[0])
       }
@@ -48,6 +45,22 @@ export default function Form() {
     remainingQuestionsByCategories,
     setCurrentCategory,
     setCurrentQuestion,
+  ])
+
+  useEffect(() => {
+    if (
+      currentQuestion !== questionInQueryParams &&
+      prevQuestionInQueryParams.current !== questionInQueryParams
+    ) {
+      setCurrentQuestion(questionInQueryParams)
+      setCurrentCategory(questionInQueryParams.split(' . ')[0])
+    }
+    prevQuestionInQueryParams.current = questionInQueryParams
+  }, [
+    questionInQueryParams,
+    currentQuestion,
+    setCurrentQuestion,
+    setCurrentCategory,
   ])
 
   useEffect(() => {

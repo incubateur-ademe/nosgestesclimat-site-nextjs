@@ -24,20 +24,22 @@ export default function Navigation({ question }: Props) {
   const router = useRouter()
   return (
     <div className="flex justify-end  gap-4">
-      <Button
-        disabled={noPrevQuestion && noPrevCategory}
-        onClick={() => {
-          if (noPrevQuestion) {
-            if (!noPrevCategory) {
-              gotoPrevCategory()
+      {!(noPrevQuestion && noPrevCategory) ? (
+        <Button
+          disabled={noPrevQuestion && noPrevCategory}
+          onClick={() => {
+            if (noPrevQuestion) {
+              if (!noPrevCategory) {
+                gotoPrevCategory()
+              }
+            } else {
+              gotoPrevQuestion()
             }
-          } else {
-            gotoPrevQuestion()
-          }
-        }}
-        color="text">
-        <TransClient>← Précédent</TransClient>
-      </Button>
+          }}
+          color="text">
+          <TransClient>← Précédent</TransClient>
+        </Button>
+      ) : null}
       <Button
         color={isMissing ? 'secondary' : 'primary'}
         onClick={async () => {
