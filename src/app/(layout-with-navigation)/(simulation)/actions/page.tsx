@@ -60,9 +60,9 @@ export default function ActionsPage({
       )}
 
       <div
-        className={
+        className={`${
           isSimulationWellStarted ? '' : 'pointer-events-none opacity-70'
-        }
+        } text-center`}
         aria-hidden={isSimulationWellStarted ? 'false' : 'true'}>
         <PetrolFilter />
 

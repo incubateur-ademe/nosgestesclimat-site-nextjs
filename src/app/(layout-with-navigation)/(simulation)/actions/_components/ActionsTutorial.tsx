@@ -14,7 +14,7 @@ export default function ActionsTutorial() {
 
   const { getValue } = useEngine()
 
-  const bilan = { ...getValue('bilan'), dottedName: 'bilan' }
+  const bilan = { nodeValue: getValue('bilan'), dottedName: 'bilan' }
 
   const [value, unit] = getCarbonFootprint({ t, i18n }, bilan.nodeValue)
 

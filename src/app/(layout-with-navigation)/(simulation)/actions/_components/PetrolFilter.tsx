@@ -23,7 +23,7 @@ export default function PetrolFilter() {
 
   return (
     <Button
-      className="mx-auto mb-2 w-64 text-center py-1 px-2 rounded-md text-white font-bold bg-primaryDark flex items-center justify-center"
+      className="!inline-block mx-auto mb-2 w-64 text-center py-1 px-2 rounded-md text-white font-bold bg-primaryDark"
       onClick={handleClick}
       size="sm">
       <span>
