@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 import QuestionButton from './QuestionButton'
 
 type Props = {
@@ -38,7 +39,7 @@ export default function ChoiceInput({
       </div>
       {description && isOpen ? (
         <p className="mb-4 rounded-md bg-grey-100 p-2 w-1/2 text-sm">
-          {description}
+          <ReactMarkdown linkTarget="_blank">{description}</ReactMarkdown>
         </p>
       ) : null}
     </>

@@ -19,7 +19,7 @@ const checkClassNames = {
 }
 export default function MosaicBooleanInput({ question, title, icons }: Props) {
   const { value, setValue, isMissing, isInactive } = useRule(question)
-  console.log('inactive', isInactive)
+
   const status = isInactive
     ? 'inactive'
     : !isMissing && value
