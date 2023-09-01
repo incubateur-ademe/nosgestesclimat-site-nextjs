@@ -2,6 +2,7 @@
 
 import { PropsWithChildren, useEffect } from 'react'
 
+import Loader from '@/design-system/layout/Loader'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
@@ -55,6 +56,6 @@ export default function Providers({
       {children}
     </SimulationProvider>
   ) : (
-    'Initialisation'
+    <Loader />
   )
 }

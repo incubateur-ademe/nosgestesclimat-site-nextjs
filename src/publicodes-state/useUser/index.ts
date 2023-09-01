@@ -34,6 +34,9 @@ export default function useUser() {
     }))
   }
 
+  const getCurrentSimulation = () =>
+    simulations.find((simulation: any) => simulation.id === currentSimulationId)
+
   const { updateSituationOfCurrentSimulation, initSimulation } = useSimulations(
     {
       simulations,
@@ -52,6 +55,7 @@ export default function useUser() {
     deleteSimulation,
     currentSimulationId,
     setCurrentSimulationId,
+    getCurrentSimulation,
     updateSituationOfCurrentSimulation,
     initSimulation,
   }

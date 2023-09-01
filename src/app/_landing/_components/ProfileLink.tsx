@@ -5,17 +5,14 @@ import TransClient from '@/components/translation/TransClient'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { Appear } from '@/design-system/utils/Animate'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm } from '@/publicodes-state'
+import { useUser } from '@/publicodes-state'
 import Image from 'next/image'
 
 export default function ProfileLink() {
-  const { progression } = useForm()
+  const { getCurrentSimulation } = useUser()
   const { t } = useClientTranslation()
 
-  if (!progression) {
-    return null
-  }
-
+  if (!Object.keys(getCurrentSimulation()?.situation || {}).length) return
   return (
     <Appear delay={1}>
       <div className="md:flex md:justify-center">

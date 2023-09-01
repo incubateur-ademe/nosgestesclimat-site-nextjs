@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
 
 import PageLayout from '@/components/layout/PageLayout'
-import Providers from '../_components/Providers'
+import Providers from './_components/Providers'
 
 export default async function SimulateurLayout({
   children,
