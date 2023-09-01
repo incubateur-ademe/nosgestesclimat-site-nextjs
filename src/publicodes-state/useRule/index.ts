@@ -9,7 +9,7 @@ import useMosaic from './useMosaic'
 import useType from './useType'
 import useValue from './useValue'
 
-export default function useRule(dottedName: string) {
+export default function useRule(dottedName = '') {
   const {
     engine,
     safeGetRule,
@@ -32,11 +32,8 @@ export default function useRule(dottedName: string) {
     evaluation,
   })
 
-  const { childrenOfMosaic, questionsOfMosaic } = useMosaic({
-    engine,
+  const { questionsOfMosaic } = useMosaic({
     dottedName,
-    rule,
-    type,
     everyMosaicChildWhoIsReallyInMosaic,
   })
 
@@ -48,6 +45,7 @@ export default function useRule(dottedName: string) {
     icons,
     unit,
     color,
+    isInactive,
     suggestions,
   } = useContent({
     dottedName,
@@ -78,9 +76,9 @@ export default function useRule(dottedName: string) {
     icons,
     unit,
     color,
+    isInactive,
     suggestions,
     choices,
-    childrenOfMosaic,
     questionsOfMosaic,
     value,
     displayValue,

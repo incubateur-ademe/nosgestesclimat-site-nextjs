@@ -1,0 +1,15 @@
+{
+	"name": "Nos gestes climat",
+	"description": "Calcule ton empreinte sur le climat",
+	"display": "standalone",
+	"lang": "fr",
+	"orientation": "portrait-primary",
+	"theme_color": "#532fc5",
+	"icons": [
+		{
+			"src": "/images/logo.svg",
+			"sizes": "144x144",
+			"type": "image/svg+xml"
+		}
+	]
+}
