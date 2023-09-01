@@ -4,16 +4,14 @@ import TransClient from '@/components/translation/TransClient'
 import Button from '@/design-system/inputs/Button'
 import { useForm } from '@/publicodes-state'
 
-type Props = { setIsOpen: any }
+type Props = { toggleOpen: any }
 
-export default function Explanation({ setIsOpen }: Props) {
+export default function Explanation({ toggleOpen }: Props) {
   const { progression } = useForm()
   return (
     <div className="border-4 border-primary mb-2 rounded-lg p-4 pt-2">
       <div className="flex justify-end">
-        <button
-          onClick={() => setIsOpen((previsOpen: boolean) => !previsOpen)}
-          className="text-3xl leading-none">
+        <button onClick={toggleOpen} className="text-3xl leading-none">
           ×
         </button>
       </div>
@@ -46,9 +44,7 @@ export default function Explanation({ setIsOpen }: Props) {
         </TransClient>
       </p>
       <div className="flex justify-end">
-        <Button onClick={() => setIsOpen((previsOpen: boolean) => !previsOpen)}>
-          J'ai compris
-        </Button>
+        <Button onClick={toggleOpen}>J'ai compris</Button>
       </div>
     </div>
   )

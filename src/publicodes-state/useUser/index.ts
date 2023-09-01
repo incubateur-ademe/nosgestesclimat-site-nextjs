@@ -10,6 +10,8 @@ export default function useUser() {
   const {
     user,
     setUser,
+    tutorials,
+    setTutorials,
     simulations,
     setSimulations,
     currentSimulationId,
@@ -21,6 +23,18 @@ export default function useUser() {
 
   const updateEmail = (email: string) =>
     setUser((prevUser: any) => ({ ...prevUser, email }))
+
+  const hideTutorial = (tutorial: string) =>
+    setTutorials((prevTutorials: any) => ({
+      ...prevTutorials,
+      [tutorial]: true,
+    }))
+
+  const showTutorial = (tutorial: string) =>
+    setTutorials((prevTutorials: any) => ({
+      ...prevTutorials,
+      [tutorial]: false,
+    }))
 
   const updateRegion = (region: { code: string; name: string }) =>
     setUser((prevUser: any) => ({ ...prevUser, region }))
@@ -51,6 +65,9 @@ export default function useUser() {
     updateName,
     updateEmail,
     updateRegion,
+    tutorials,
+    showTutorial,
+    hideTutorial,
     simulations,
     deleteSimulation,
     currentSimulationId,

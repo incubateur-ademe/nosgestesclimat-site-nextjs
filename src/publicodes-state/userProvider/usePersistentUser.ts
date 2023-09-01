@@ -19,10 +19,8 @@ export default function usePersistentUser({
         initialRegion,
       }
     )
-
     setInitialized(true)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [storageKey])
+  }, [storageKey, initialRegion])
 
   useEffect(() => {
     if (initialized) {

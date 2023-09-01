@@ -4,6 +4,7 @@ import { PropsWithChildren } from 'react'
 
 import UserContext from './context'
 import usePersistentSimulations from './usePersistentSimulations'
+import usePersistentTutorials from './usePersistentTutorials'
 import usePersistentUser from './usePersistentUser'
 
 type Props = {
@@ -20,6 +21,8 @@ export default function UserProvider({
 }: PropsWithChildren<Props>) {
   const { user, setUser } = usePersistentUser({ storageKey, initialRegion })
 
+  const { tutorials, setTutorials } = usePersistentTutorials({ storageKey })
+
   const {
     simulations,
     setSimulations,
@@ -32,6 +35,8 @@ export default function UserProvider({
       value={{
         user,
         setUser,
+        tutorials,
+        setTutorials,
         simulations,
         setSimulations,
         currentSimulationId,
