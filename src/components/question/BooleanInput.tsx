@@ -1,23 +1,22 @@
 import ChoiceInput from '@/components/misc/ChoiceInput'
-import { useRule } from '@/publicodes-state'
 
 type Props = {
-  question: string
+  value: string
+  isMissing: boolean
+  setValue: (value: string) => void
 }
 
-export default function BooleanInput({ question }: Props) {
-  const { value, isMissing, setValue } = useRule(question)
-
+export default function BooleanInput({ value, isMissing, setValue }: Props) {
   return (
     <div className="align flex flex-col items-end">
       <ChoiceInput
         label="Oui"
-        active={!isMissing && value}
+        active={!(isMissing && value)}
         onClick={() => setValue('oui')}
       />
       <ChoiceInput
         label="Non"
-        active={!isMissing && !value}
+        active={!(isMissing && !value)}
         onClick={() => setValue('non')}
       />
     </div>

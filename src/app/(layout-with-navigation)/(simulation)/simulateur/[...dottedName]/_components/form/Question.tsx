@@ -12,18 +12,48 @@ type Props = {
 }
 
 export default function Question({ question }: Props) {
-  const { type, assistance } = useRule(question)
+  const {
+    type,
+    label,
+    description,
+    unit,
+    value,
+    setValue,
+    isMissing,
+    choices,
+    assistance,
+  } = useRule(question)
 
   return (
     <>
       <div className="mb-4">
-        <Label question={question} />
+        <Label label={label} description={description} />
         <Suggestions question={question} />
-        {type === 'number' && <NumberInput question={question} />}
-        {type === 'boolean' && <BooleanInput question={question} />}
-        {type === 'choices' && <ChoicesInput question={question} />}
+        {type === 'number' && (
+          <NumberInput
+            unit={unit}
+            value={value}
+            setValue={setValue}
+            isMissing={isMissing}
+          />
+        )}
+        {type === 'boolean' && (
+          <BooleanInput
+            value={value}
+            setValue={setValue}
+            isMissing={isMissing}
+          />
+        )}
+        {type === 'choices' && (
+          <ChoicesInput
+            choices={choices}
+            value={value}
+            setValue={setValue}
+            isMissing={isMissing}
+          />
+        )}
         {type === 'mosaic' && <Mosaic question={question} />}
-      </div>{' '}
+      </div>
       {assistance ? (
         <Assistance question={question} assistance={assistance} />
       ) : null}

@@ -1,14 +1,18 @@
-import { useRule } from '@/publicodes-state'
-
 import Choice from './choicesInput/Choice'
 
 type Props = {
-  question: string
+  value: string
+  isMissing: boolean
+  choices: any[]
+  setValue: (value: string) => void
 }
 
-export default function ChoicesInput({ question }: Props) {
-  const { value, isMissing, choices, setValue } = useRule(question)
-
+export default function ChoicesInput({
+  value,
+  isMissing,
+  choices,
+  setValue,
+}: Props) {
   return (
     <div className="align flex flex-col items-end">
       {choices &&
