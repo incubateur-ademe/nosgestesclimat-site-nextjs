@@ -11,7 +11,6 @@ declare global {
 }
 
 export const trackEvent = (args: string[]) => {
-  return
   if (shouldUseDevTracker) {
     // eslint-disable-next-line no-console
     console?.debug(args)
@@ -21,5 +20,5 @@ export const trackEvent = (args: string[]) => {
   if (window.location.pathname.match(groupExclusionRegexp)) return
 
   // Pass a copy of the array to avoid mutation
-  window._paq.push([...args])
+  window?._paq?.push([...args])
 }

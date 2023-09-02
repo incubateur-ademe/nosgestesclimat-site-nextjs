@@ -1,23 +1,32 @@
-import { useState } from 'react'
-
 import { useRule } from '@/publicodes-state'
+import { QuestionSize } from '@/types/values'
+import { useState } from 'react'
 
 type Props = {
   question: string
+  size: QuestionSize
 }
 
-export default function Label({ question }: Props) {
+const sizeClassNames = {
+  sm: 'text-sm',
+  md: ' text-xl',
+}
+const buttonSizeClassNames = {
+  sm: 'h-6 w-6 text-sm',
+  md: 'h-8 w-8 text-md',
+}
+export default function Label({ question, size = 'md' }: Props) {
   const { label, description } = useRule(question)
 
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
-      <div className="mb-3 text-xl font-semibold">
+      <div className={`mb-3 ${sizeClassNames[size]} font-semibold`}>
         {label}{' '}
         <button
           onClick={() => setIsOpen((previsOpen) => !previsOpen)}
-          className="inline-block h-8 w-8 rounded-full border-none bg-primary text-base font-bold text-white">
+          className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary text-base font-bold text-white`}>
           <code>i</code>
         </button>
       </div>
