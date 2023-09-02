@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 type Props = {
   question: string
-  size: QuestionSize
+  size?: QuestionSize
 }
 
 const sizeClassNames = {

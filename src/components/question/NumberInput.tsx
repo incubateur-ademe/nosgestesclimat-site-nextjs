@@ -3,7 +3,7 @@ import { QuestionSize } from '@/types/values'
 
 type Props = {
   question: string
-  size: QuestionSize
+  size?: QuestionSize
 }
 
 const sizeClassNames = {
