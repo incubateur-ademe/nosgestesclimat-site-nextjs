@@ -46,6 +46,7 @@ export default function useRule(dottedName = '') {
     icons,
     unit,
     color,
+    assistance,
     isInactive,
     suggestions,
   } = useContent({
@@ -77,6 +78,7 @@ export default function useRule(dottedName = '') {
     icons,
     unit,
     color,
+    assistance,
     isInactive,
     suggestions,
     choices,

@@ -18,6 +18,7 @@ export default function useContent({ dottedName, rule }: Props) {
   const icons = useMemo(() => rule.rawNode['icônes'], [rule])
   const unit = useMemo(() => rule.rawNode['unité'], [rule])
   const color = useMemo(() => rule.rawNode['couleur'], [rule])
+  const assistance = useMemo(() => rule.rawNode['aide'], [rule])
   const isInactive = useMemo(() => rule.rawNode['inactif'] === 'oui', [rule])
 
   const suggestions = useMemo(() => {
@@ -39,6 +40,7 @@ export default function useContent({ dottedName, rule }: Props) {
     icons,
     unit,
     color,
+    assistance,
     isInactive,
     suggestions,
   }
