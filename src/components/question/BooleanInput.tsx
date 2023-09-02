@@ -11,12 +11,12 @@ export default function BooleanInput({ value, isMissing, setValue }: Props) {
     <div className="align flex flex-col items-end">
       <ChoiceInput
         label="Oui"
-        active={!(isMissing && value)}
+        active={!isMissing && value ? true : false}
         onClick={() => setValue('oui')}
       />
       <ChoiceInput
         label="Non"
-        active={!(isMissing && !value)}
+        active={!isMissing && !value ? true : false}
         onClick={() => setValue('non')}
       />
     </div>

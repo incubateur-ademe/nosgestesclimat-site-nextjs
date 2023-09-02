@@ -3,11 +3,15 @@ import Link from 'next/link'
 import QuestionButton from '@/components/misc/QuestionButton'
 import { useRule, useUser } from '@/publicodes-state'
 import Explanation from './total/Explanation'
+import ListToggle from './total/ListToggle'
 import Planet from './total/Planet'
 import Progress from './total/Progress'
 import ValueChangeDisplay from './total/ValueChangeDisplay'
 
-export default function Total() {
+type Props = {
+  toggleQuestionList: () => void
+}
+export default function Total({ toggleQuestionList }: Props) {
   const { value } = useRule('bilan')
 
   const { tutorials, hideTutorial, showTutorial } = useUser()
@@ -37,6 +41,7 @@ export default function Total() {
         </Link>
         <QuestionButton onClick={toggleOpen} color="white" />
         <ValueChangeDisplay />
+        <ListToggle toggleQuestionList={toggleQuestionList} />
       </div>
       {!tutorials.scoreExplanation ? (
         <Explanation toggleOpen={toggleOpen} />
