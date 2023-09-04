@@ -25,7 +25,6 @@ export default function CategoryQuestion({
 
   return (
     <button
-      disabled={isMissing}
       className={`relative overflow-hidden flex gap-4 w-full justify-between items-center mb-2 p-4 pl-6 rounded-lg font-bold text-left ${statusClassNames[status]} `}
       onClick={() => {
         setCurrentQuestion(question)
