@@ -4,10 +4,6 @@ import { Flipped, Flipper } from 'react-flip-toolkit'
 
 import Category from './barChart/Category'
 
-type categoryObject = {
-  dottedName: string
-  value: number
-}
 export default function BarChart() {
   const { categories, currentCategory } = useForm()
 
@@ -17,16 +13,13 @@ export default function BarChart() {
 
   const sortedCategories = useMemo(
     () =>
-      categories
-        .map((category: string) => ({
-          dottedName: category,
-          value: getValue(
-            category === 'transport' ? 'transport . empreinte' : category // Model shenanigans (we have to do this to deal with the idiotic "transport . empreinte" exception)
-          ),
-        }))
-        .sort((a: categoryObject, b: categoryObject) =>
-          a.value > b.value ? -1 : 1
-        ),
+      categories.sort((a: string, b: string) =>
+        getValue(
+          a === 'transport' ? 'transport . empreinte' : a // Model shenanigans (we have to do this to deal with the idiotic "transport . empreinte" exception)
+        ) > getValue(b === 'transport' ? 'transport . empreinte' : b)
+          ? -1
+          : 1
+      ),
     [categories, getValue]
   )
 
@@ -35,16 +28,13 @@ export default function BarChart() {
 
   return (
     <Flipper
-      flipKey={sortedCategories
-        .map((category: categoryObject) => category.dottedName)
-        .join('')}>
-      {sortedCategories.map((category: categoryObject) => (
-        <Flipped flipId={category.dottedName} key={category.dottedName}>
+      flipKey={sortedCategories.map((category: string) => category).join('')}>
+      {sortedCategories.map((category: string) => (
+        <Flipped flipId={category} key={category}>
           <Category
-            category={category.dottedName}
-            value={category.value}
-            current={category.dottedName === currentCategory}
-            isOpen={category.dottedName === isOpen}
+            category={category}
+            current={category === currentCategory}
+            isOpen={category === isOpen}
             setIsOpen={setIsOpen}
             max={max}
           />

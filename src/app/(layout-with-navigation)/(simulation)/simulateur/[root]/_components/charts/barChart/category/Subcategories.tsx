@@ -8,10 +8,6 @@ type Props = {
   category: string
   max: number
 }
-type categoryObject = {
-  dottedName: string
-  value: number
-}
 export default function Subcategories({ category, max }: Props) {
   const { subcategories } = useForm()
 
@@ -21,24 +17,18 @@ export default function Subcategories({ category, max }: Props) {
     () =>
       subcategories[category]
         .filter((subcategory: string) => checkIfValid(subcategory))
-        .map((subcategory: string) => ({
-          dottedName: subcategory,
-          value: getValue(subcategory),
-        }))
-        .sort((a: categoryObject, b: categoryObject) =>
-          a.value > b.value ? -1 : 1
-        ),
+        .sort((a: string, b: string) => (getValue(a) > getValue(b) ? -1 : 1)),
     [subcategories, category, getValue, checkIfValid]
   )
 
   return (
     <Flipper
       flipKey={sortedSubcategories
-        .map((subcategory: categoryObject) => subcategory.dottedName)
+        .map((subcategory: string) => subcategory)
         .join()}>
-      {sortedSubcategories.map((subcategory: categoryObject) => (
-        <Flipped flipId={subcategory.dottedName} key={subcategory.dottedName}>
-          <Subcategory subcategory={subcategory.dottedName} max={max} />
+      {sortedSubcategories.map((subcategory: string) => (
+        <Flipped flipId={subcategory} key={subcategory}>
+          <Subcategory subcategory={subcategory} max={max} />
         </Flipped>
       ))}
     </Flipper>

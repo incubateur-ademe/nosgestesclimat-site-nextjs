@@ -1,11 +1,10 @@
-import { useForm, useRule } from '@/publicodes-state'
+import { useRule } from '@/publicodes-state'
 
 import BarChartItem from '@/components/misc/BarChartItem'
 import Subcategories from './category/Subcategories'
 
 type Props = {
   category: string
-  value: number
   max: number
   current: boolean
   isOpen: boolean
@@ -14,20 +13,18 @@ type Props = {
 
 export default function Category({
   category,
-  value,
   max,
-  current,
   isOpen,
   setIsOpen,
   ...props
 }: Props) {
   const { title, icons, color } = useRule(category)
-  const { setCurrentCategory, setCurrentQuestion } = useForm()
+  const { value } = useRule(
+    category === 'transport' ? 'transport . empreinte' : category
+  )
 
   return (
-    <div
-      {...props}
-      className={`p-4 pb-1 rounded-xl ${current ? 'bg-primaryLight' : ''}`}>
+    <div {...props} className={`p-4 pb-1 rounded-xl `}>
       <BarChartItem
         label={`${icons} ${title}`}
         value={value}
@@ -37,9 +34,6 @@ export default function Category({
           setIsOpen((previsOpen: string | null) =>
             previsOpen === category ? null : category
           )
-          console.log(category)
-          setCurrentCategory(category)
-          setCurrentQuestion(null)
         }}
       />
       {isOpen ? <Subcategories category={category} max={max} /> : null}
