@@ -49,7 +49,7 @@ export default function ActionsPage({
   const isSimulationWellStarted = progression > 0.5
 
   return (
-    <div className="pb-4 my-4 mx-auto">
+    <div className="mx-auto my-4 pb-4">
       {!isSimulationWellStarted && <SimulationMissing />}
 
       {isSimulationWellStarted && (tutorials as any).actions !== 'skip' && (
@@ -65,7 +65,7 @@ export default function ActionsPage({
 
         <CategoryFilters actions={actionsDisplayed} />
 
-        <Actions actions={actions.reverse()} rules={rules} />
+        <Actions actions={actionsDisplayed.reverse()} rules={rules} />
       </div>
     </div>
   )

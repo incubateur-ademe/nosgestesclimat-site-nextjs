@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import ActionConversation from './ActionConversation'
 import ActionListCard from './ActionListCard'
 
@@ -18,18 +18,11 @@ export default function ActionList({
   focusAction,
 }: Props) {
   return (
-    <ul className="flex justify-center items-center flex-wrap list-none p-0">
+    <ul className="flex list-none flex-wrap items-center justify-center p-0">
       <AnimatePresence>
         {actions.map((evaluation) => {
           const cardComponent = (
-            <motion.li
-              key={evaluation.dottedName}
-              layoutId={evaluation.dottedName}
-              animate={{ scale: 1 }}
-              initial={{ scale: 0.8 }}
-              exit={{ scale: 0.2 }}
-              transition={{ duration: 1 }}
-              className="w-[12rem] m-2">
+            <li key={evaluation.dottedName} className="m-2 w-[12rem]">
               <ActionListCard
                 key={evaluation.dottedName}
                 focusAction={focusAction}
@@ -38,7 +31,7 @@ export default function ActionList({
                 evaluation={evaluation}
                 total={bilan?.nodeValue}
               />
-            </motion.li>
+            </li>
           )
 
           if (focusedAction === evaluation.dottedName) {
@@ -46,19 +39,12 @@ export default function ActionList({
 
             return (
               <>
-                <motion.li
-                  key={convId}
-                  layoutId={convId}
-                  animate={{ scale: 1 }}
-                  initial={{ scale: 0.8 }}
-                  exit={{ scale: 0.2 }}
-                  transition={{ duration: 0.5 }}
-                  className="w-full m-4 h-auto">
+                <li key={convId} className="m-4 h-auto w-full">
                   <ActionConversation
                     key={focusedAction}
                     dottedName={focusedAction}
                   />
-                </motion.li>
+                </li>
                 {cardComponent}
               </>
             )

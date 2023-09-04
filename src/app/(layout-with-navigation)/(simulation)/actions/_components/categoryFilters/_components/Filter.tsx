@@ -29,23 +29,26 @@ export default function Filter({ dottedName, countByCategory }: Props) {
 
   return (
     <li
-      className="rounded-md height-[1.8rem]"
+      className="height-[1.8rem] rounded-md"
       style={{
         backgroundColor: getBackgroundColor(),
       }}>
       <button
-        className="text-white font-bold text-xs p-2"
+        className="p-2 text-xs font-bold text-white"
         onClick={() => {
           router.replace(
             `${window.location.origin}${window.location.pathname}${
               metric || !isSelected ? '?' : ''
             }${metric ? `métrique=${metric}` : ''}${
               isSelected ? '' : `${metric ? '&' : ''}catégorie=${dottedName}`
-            }`
+            }`,
+            {
+              scroll: false,
+            }
           )
         }}>
         {rule.title}{' '}
-        <span className="bg-white text-primaryDark rounded-full w-4 inline-block ml-2">
+        <span className="ml-2 inline-block w-4 rounded-full bg-white text-primaryDark">
           {countByCategory[dottedName] || 0}
         </span>
       </button>

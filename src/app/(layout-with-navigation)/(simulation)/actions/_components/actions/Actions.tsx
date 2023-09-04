@@ -6,7 +6,6 @@ import imageSrc from '@/assets/images/270A.svg'
 import TransClient from '@/components/translation/TransClient'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
-import { FromTop } from '@/design-system/utils/Animate'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useUser } from '@/publicodes-state'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
@@ -104,18 +103,19 @@ export default function Actions({
         radical={radical}
         actions={rawActions}
       />
+
       {maxImpactAction.value < 100 && (
-        <FromTop>
-          <Card className="ui__ card box">
-            <TransClient i18nKey={'publicodes.AllActions.msgPlusActions'}>
-              <p>
-                Nous n'avons plus d'actions chiffrées très impactantes à vous
-                proposer 🤷
-              </p>
-              <p>Découvrez plus bas quelques pistes pour agir autrement ⏬</p>
-            </TransClient>
-          </Card>
-        </FromTop>
+        <Card className="my-8 flex-col">
+          <TransClient i18nKey={'publicodes.AllActions.msgPlusActions'}>
+            <p>
+              Nous n'avons plus d'actions chiffrées très impactantes à vous
+              proposer 🤷
+            </p>
+            <p className="mb-0">
+              Découvrez plus bas quelques pistes pour agir autrement ⏬
+            </p>
+          </TransClient>
+        </Card>
       )}
 
       {radical ? numberedActions : numberedActions.slice().reverse()}
@@ -132,6 +132,7 @@ export default function Actions({
           <TransClient>Actions d'engagement</TransClient> &#9660;
         </p>
       </div>
+
       <ActionList
         actions={notRejected.filter(
           (a: { value: any }) => a.value === undefined
@@ -141,6 +142,7 @@ export default function Actions({
         focusAction={focusAction}
         focusedAction={focusedAction}
       />
+
       <div className="my-4 h-8 w-full text-center">
         <p className="inline-flex items-center rounded-full bg-primaryDark px-4 text-sm  font-medium text-white ">
           <Image
@@ -161,6 +163,7 @@ export default function Actions({
         focusAction={focusAction}
         focusedAction={focusedAction}
       />
+
       {rejected.length > 0 && (
         <div>
           <h2>
@@ -175,6 +178,7 @@ export default function Actions({
           />
         </div>
       )}
+
       <ButtonLink href="/actions/plus">
         <span role="img" aria-label="emoji books" aria-hidden>
           📚
