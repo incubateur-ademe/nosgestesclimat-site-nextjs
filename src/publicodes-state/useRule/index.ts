@@ -1,7 +1,6 @@
 'use client'
 
 import { useContext, useMemo } from 'react'
-import formContext from '../formProvider/context'
 import sumulationContext from '../simulationProvider/context'
 import useChoices from './useChoices'
 import useContent from './useContent'
@@ -10,9 +9,14 @@ import useType from './useType'
 import useValue from './useValue'
 
 export default function useRule(dottedName = '') {
-  const { engine, safeGetRule, safeEvaluate, situation, updateSituation }: any =
-    useContext(sumulationContext)
-  const { everyMosaicChildWhoIsReallyInMosaic }: any = useContext(formContext)
+  const {
+    engine,
+    safeGetRule,
+    safeEvaluate,
+    situation,
+    updateSituation,
+    everyMosaicChildWhoIsReallyInMosaic,
+  }: any = useContext(sumulationContext)
 
   const evaluation = useMemo(
     () => safeEvaluate(dottedName),

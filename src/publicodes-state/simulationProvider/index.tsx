@@ -3,13 +3,12 @@
 import { PropsWithChildren } from 'react'
 
 import SimulationContext from './context'
-import useCategories from './useCategories'
 import useEngine from './useEngine'
+import useRules from './useRules'
 import useSituation from './useSituation'
 
 type Props = {
   rules: any
-  categoryOrder: string[]
   defaultSituation?: any
   situation?: any
   updateSituation: (arg: any) => void
@@ -18,7 +17,6 @@ type Props = {
 export default function SimulationProvider({
   children,
   rules,
-  categoryOrder,
   defaultSituation,
   situation: externalSituation,
   updateSituation: updateExternalSituation,
@@ -33,11 +31,12 @@ export default function SimulationProvider({
     updateExternalSituation,
   })
 
-  const { categories, subcategories } = useCategories({
-    engine,
-    safeEvaluate,
-    order: categoryOrder,
-  })
+  const {
+    everyQuestions,
+    everyMosaic,
+    everyNotifications,
+    everyMosaicChildWhoIsReallyInMosaic,
+  } = useRules({ engine })
 
   return (
     <SimulationContext.Provider
@@ -48,8 +47,10 @@ export default function SimulationProvider({
         safeEvaluate,
         situation,
         updateSituation,
-        categories,
-        subcategories,
+        everyQuestions,
+        everyMosaic,
+        everyNotifications,
+        everyMosaicChildWhoIsReallyInMosaic,
       }}>
       {children}
     </SimulationContext.Provider>

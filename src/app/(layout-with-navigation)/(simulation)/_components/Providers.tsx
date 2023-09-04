@@ -4,7 +4,6 @@ import Loader from '@/design-system/layout/Loader'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
-import FormProvider from '@/publicodes-state/formProvider'
 import { Simulation } from '@/types/simulation'
 import { usePathname } from 'next/navigation'
 import { PropsWithChildren, useEffect } from 'react'
@@ -43,20 +42,13 @@ export default function Providers({
     <SimulationProvider
       key={currentSimulationId}
       rules={rules}
-      categoryOrder={[
-        'transport',
-        'alimentation',
-        'logement',
-        'divers',
-        'services sociétaux',
-      ]}
       situation={
         (simulations as Array<Simulation>).find(
           (simulation: Simulation) => simulation.id === currentSimulationId
         )?.situation || {}
       }
       updateSituation={updateSituationOfCurrentSimulation}>
-      <FormProvider>{children}</FormProvider>
+      {children}
     </SimulationProvider>
   ) : pathname === '/tutoriel' ? (
     children
