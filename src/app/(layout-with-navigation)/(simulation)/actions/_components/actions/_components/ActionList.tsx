@@ -1,6 +1,6 @@
 import { AnimatePresence } from 'framer-motion'
+import ActionCard from './ActionCard'
 import ActionConversation from './ActionConversation'
-import ActionListCard from './ActionListCard'
 
 type Props = {
   actions: any[]
@@ -23,7 +23,7 @@ export default function ActionList({
         {actions.map((evaluation) => {
           const cardComponent = (
             <li key={evaluation.dottedName} className="m-2 w-[12rem]">
-              <ActionListCard
+              <ActionCard
                 key={evaluation.dottedName}
                 focusAction={focusAction}
                 isFocused={focusedAction === evaluation.dottedName}

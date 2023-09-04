@@ -21,12 +21,13 @@ type Props = {
   isFocused: boolean
 }
 
-export default function ActionListCard({
+export default function ActionCard({
   evaluation,
   total,
   rule,
   focusAction,
 }: Props) {
+  console.log(evaluation)
   const { t } = useClientTranslation()
 
   const { rules } = useEngine()
@@ -76,23 +77,23 @@ export default function ActionListCard({
 
   return (
     <div
-      className={`relative w-full flex flex-col justify-between items-center h-[15rem] rounded-lg overflow-auto border-4 border-solid ${
+      className={`relative flex h-[15rem] w-full flex-col items-center justify-between overflow-auto rounded-lg border-4 border-solid ${
         !hasFormula ? 'h-[13rem]' : ''
       }`}
       style={{ borderColor: categoryColor }}>
       <div
         style={{ backgroundColor: categoryColor }}
-        className="flex items-center w-full h-[7rem]">
+        className="flex h-[7rem] w-full items-center">
         <Link
-          className="z-10 no-underline w-full"
+          className="z-10 w-full no-underline"
           href={'/actions/' + encodeRuleName(dottedName)}>
-          <h2 className="text-center font-bold inline-block text-white text-lg w-full">
+          <h2 className="inline-block w-full text-center text-lg font-bold text-white">
             {title}
           </h2>
         </Link>
 
         {icons && (
-          <span className="absolute top-[10%] -translate-x-1/2 left-1/2 text-2xl whitespace-nowrap grayscale opacity-30 text-[4rem]">
+          <span className="absolute left-1/2 top-0 flex -translate-x-1/2 gap-8 whitespace-nowrap text-[4rem] opacity-20 grayscale ">
             {icons}
           </span>
         )}
@@ -119,13 +120,13 @@ export default function ActionListCard({
 
           {hasRemainingQuestions && (
             <button
-              className="text-primary cursor-pointer"
+              className="cursor-pointer text-primary"
               onClick={() => focusAction(dottedName)}>
               {remainingQuestionsText}
             </button>
           )}
         </div>
-        <div className="flex justify-evenly mb-4">
+        <div className="mb-4 flex justify-evenly gap-4">
           <button
             title={t("Choisir l'action")}
             aria-pressed={actionChoices[dottedName]}
@@ -153,7 +154,7 @@ export default function ActionListCard({
             }}>
             <Image
               src={image1Src}
-              className={`w-12 ${isDisabled ? 'grayscale' : ''}`}
+              className={`w-10 ${isDisabled ? 'grayscale' : ''}`}
               alt=""
             />
           </button>
@@ -175,7 +176,7 @@ export default function ActionListCard({
             }}>
             <Image
               src={image2Src}
-              className={`w-12 ${isDisabled ? 'grayscale' : ''}`}
+              className={`w-8 ${isDisabled ? 'grayscale' : ''}`}
               alt=""
             />
           </button>

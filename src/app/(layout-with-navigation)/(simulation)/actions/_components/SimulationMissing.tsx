@@ -7,10 +7,10 @@ import Card from '@/design-system/layout/Card'
 
 export default function SimulationMissing() {
   return (
-    <div>
+    <div className="mb-8">
       <Card className="flex-col !bg-primaryLight">
         <h2>
-          <TransClient>Oups, vous n'avez pas complété le test</TransClient>
+          <TransClient>Calcul d'empreinte carbone manquant</TransClient>
         </h2>
         <p>
           🔒{' '}
