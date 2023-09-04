@@ -1,7 +1,7 @@
 import { useForm } from '@/publicodes-state'
-import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useMemo, useRef } from 'react'
 
+import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import CategoryIntroduction from './form/CategoryIntroduction'
 import Navigation from './form/Navigation'
 import Question from './form/Question'
@@ -16,17 +16,13 @@ export default function Form() {
     setCurrentCategory,
   } = useForm()
 
-  const router = useRouter()
-
   const isInitialized = useMemo(
     () => (currentQuestion && currentCategory ? true : false),
     [currentQuestion, currentCategory]
   )
 
-  const searchParams = useSearchParams()
-  const questionInQueryParams = decodeURI(searchParams.get('question') || '')
-    ?.replaceAll('.', ' . ')
-    .replaceAll('_', ' ')
+  const { questionInQueryParams, setQuestionInQueryParams } =
+    useQuestionInQueryParams()
   const prevQuestionInQueryParams = useRef(questionInQueryParams)
 
   useEffect(() => {
@@ -65,13 +61,14 @@ export default function Form() {
 
   useEffect(() => {
     if (isInitialized) {
-      router.push(
-        '/simulateur/bilan?question=' +
-          currentQuestion.replaceAll(' . ', '.').replaceAll(' ', '_'),
-        { scroll: false }
-      )
+      setQuestionInQueryParams(currentQuestion)
     }
-  }, [router, currentQuestion, currentCategory, isInitialized])
+  }, [
+    setQuestionInQueryParams,
+    currentQuestion,
+    currentCategory,
+    isInitialized,
+  ])
 
   if (!currentCategory) return
   return currentQuestion ? (
