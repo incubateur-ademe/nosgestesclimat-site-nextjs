@@ -1,13 +1,13 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
-import { PropsWithChildren, useEffect } from 'react'
-
 import Loader from '@/design-system/layout/Loader'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
+import FormProvider from '@/publicodes-state/formProvider'
 import { Simulation } from '@/types/simulation'
+import { usePathname } from 'next/navigation'
+import { PropsWithChildren, useEffect } from 'react'
 
 type Props = {
   supportedRegions: any
@@ -56,7 +56,7 @@ export default function Providers({
         )?.situation || {}
       }
       updateSituation={updateSituationOfCurrentSimulation}>
-      {children}
+      <FormProvider>{children}</FormProvider>
     </SimulationProvider>
   ) : pathname === '/tutoriel' ? (
     children

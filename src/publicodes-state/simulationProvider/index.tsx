@@ -4,10 +4,7 @@ import { PropsWithChildren } from 'react'
 
 import SimulationContext from './context'
 import useCategories from './useCategories'
-import useCurrent from './useCurrent'
 import useEngine from './useEngine'
-import useProgression from './useProgression'
-import useQuestions from './useQuestions'
 import useSituation from './useSituation'
 
 type Props = {
@@ -42,36 +39,6 @@ export default function SimulationProvider({
     order: categoryOrder,
   })
 
-  const {
-    missingInputs,
-    everyMosaicChildWhoIsReallyInMosaic,
-    relevantQuestions,
-    questionsByCategories,
-  } = useQuestions({ engine, safeEvaluate, categories, situation })
-
-  const {
-    remainingCategories,
-    answeredCategories,
-    remainingQuestions,
-    answeredQuestions,
-    progression,
-    remainingQuestionsByCategories,
-    answeredQuestionsByCategories,
-    progressionByCategory,
-  } = useProgression({
-    categories,
-    missingInputs,
-    relevantQuestions,
-    questionsByCategories,
-  })
-
-  const {
-    currentQuestion,
-    currentCategory,
-    setCurrentQuestion,
-    setCurrentCategory,
-  } = useCurrent()
-
   return (
     <SimulationContext.Provider
       value={{
@@ -83,21 +50,6 @@ export default function SimulationProvider({
         updateSituation,
         categories,
         subcategories,
-        everyMosaicChildWhoIsReallyInMosaic,
-        relevantQuestions,
-        questionsByCategories,
-        remainingCategories,
-        answeredCategories,
-        remainingQuestions,
-        answeredQuestions,
-        progression,
-        remainingQuestionsByCategories,
-        answeredQuestionsByCategories,
-        progressionByCategory,
-        currentQuestion,
-        currentCategory,
-        setCurrentQuestion,
-        setCurrentCategory,
       }}>
       {children}
     </SimulationContext.Provider>
