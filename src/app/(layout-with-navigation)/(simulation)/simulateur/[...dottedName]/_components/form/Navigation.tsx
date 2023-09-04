@@ -28,12 +28,13 @@ export default function Navigation({ question }: Props) {
         <Button
           disabled={noPrevQuestion && noPrevCategory}
           onClick={() => {
-            if (noPrevQuestion) {
-              if (!noPrevCategory) {
-                gotoPrevCategory()
-              }
-            } else {
+            if (!noPrevQuestion) {
               gotoPrevQuestion()
+              return
+            }
+            if (!noPrevCategory) {
+              gotoPrevCategory()
+              return
             }
           }}
           color="text">
@@ -46,12 +47,12 @@ export default function Navigation({ question }: Props) {
           if (isMissing) {
             await setDefaultAsValue()
           }
-          if (!noPrevQuestion) {
-            gotoPrevQuestion()
+          if (!noNextQuestion) {
+            gotoNextQuestion()
             return
           }
-          if (!noPrevCategory) {
-            gotoPrevCategory()
+          if (!noNextCategory) {
+            gotoNextCategory()
             return
           }
           router.push('/fin')
