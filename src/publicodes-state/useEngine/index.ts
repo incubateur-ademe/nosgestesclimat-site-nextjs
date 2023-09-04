@@ -6,10 +6,10 @@ export default function useEngine() {
 
   const getValue = (dottedName: string) => safeEvaluate(dottedName).nodeValue
 
-  const isValid = (dottedName: string) => safeGetRule(dottedName).rawNode
+  const checkIfValid = (dottedName: string) => safeGetRule(dottedName).rawNode
 
   return {
     getValue,
-    isValid,
+    checkIfValid,
   }
 }

@@ -15,12 +15,12 @@ type categoryObject = {
 export default function Subcategories({ category, max }: Props) {
   const { subcategories } = useForm()
 
-  const { getValue, isValid } = useEngine()
+  const { getValue, checkIfValid } = useEngine()
 
   const sortedSubcategories = useMemo(
     () =>
       subcategories[category]
-        .filter((subcategory: string) => isValid(subcategory))
+        .filter((subcategory: string) => checkIfValid(subcategory))
         .map((subcategory: string) => ({
           dottedName: subcategory,
           value: getValue(subcategory),
@@ -28,7 +28,7 @@ export default function Subcategories({ category, max }: Props) {
         .sort((a: categoryObject, b: categoryObject) =>
           a.value > b.value ? -1 : 1
         ),
-    [subcategories, category, getValue, isValid]
+    [subcategories, category, getValue, checkIfValid]
   )
 
   return (
