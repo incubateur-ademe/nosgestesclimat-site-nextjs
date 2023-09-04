@@ -17,9 +17,13 @@ export default function NorthStarBanner({
 
   const { t } = useClientTranslation()
 
-  const { progression } = useForm()
+  const { progression, actionChoices } = useForm()
 
-  const { user, updateNorthStarRatings, currentSimulation } = useUser()
+  const actionChoicesLength = Object.values(actionChoices).filter(
+    (value) => value
+  ).length
+
+  const { user, updateNorthStarRatings } = useUser()
 
   const shouldDisplayLearn =
     user?.northStarRatings?.learned === 'display' ||
@@ -28,7 +32,7 @@ export default function NorthStarBanner({
   const shouldDisplayAction =
     (user?.northStarRatings?.action === 'display' ||
       user?.northStarRatings?.action === 'no_display') &&
-    currentSimulation?.actionChoices?.length > 1
+    actionChoicesLength > 1
 
   const shouldDisplayNorthstarBanner =
     progression === 1 &&
@@ -75,16 +79,16 @@ export default function NorthStarBanner({
         setIsAnimationCompleted(true)
       }}
       id="northstarBanner"
-      className="w-auto bg-green-50 rounded-lg h-auto relative m-0 sm:m-2 shadow-md">
+      className="relative m-0 h-auto w-auto rounded-lg bg-green-50 shadow-md sm:m-2">
       <button
-        className="absolute top-0 right-0 text-lg bold w-10 h-10 text-center"
+        className="bold absolute right-0 top-0 h-10 w-10 text-center text-lg"
         onClick={closeFeedback}
         aria-label={t('Fermer le bandeau de feedback')}>
         &#215;
       </button>
 
       <div className="flex items-center justify-center">
-        <div className="p-6 max-w-[420px] m-auto">
+        <div className="m-auto max-w-[420px] p-6">
           <h2>
             <Trans i18nKey={'publicodes.northstar.title'}>
               <b>Petite question entre nous...</b>

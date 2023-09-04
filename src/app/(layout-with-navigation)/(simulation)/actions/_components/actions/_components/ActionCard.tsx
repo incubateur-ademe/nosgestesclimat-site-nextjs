@@ -7,10 +7,11 @@ import {
 } from '@/constants/matomo'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useForm, useRule, useUser } from '@/publicodes-state'
+import { useEngine, useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Image from 'next/image'
+import { filterRelevantMissingVariables } from '../_helpers/filterRelevantMissingVariables'
 import ActionValue from './ActionValue'
 
 type Props = {
@@ -27,30 +28,37 @@ export default function ActionCard({
   rule,
   focusAction,
 }: Props) {
-  console.log(evaluation)
   const { t } = useClientTranslation()
 
   const { rules } = useEngine()
 
-  const { categories } = useForm()
+  const {
+    categories,
+    actionChoices,
+    toggleActionChoice,
+    setActionChoiceValue,
+  } = useForm()
 
-  const { getCurrentSimulation } = useUser()
+  const hasSelectedAction =
+    Object.values(actionChoices).filter((value) => value).length > 0
 
-  const { nodeValue, dottedName, title } = evaluation
+  const { nodeValue, dottedName, title, missingVariables } = evaluation
   const { icônes: icons } = rule
 
-  const { actionChoices = [] } = getCurrentSimulation()
-
   const flatRule = rules[dottedName]
+  if (!flatRule.formule) {
+    console.log(missingVariables)
+  }
 
   const hasFormula = flatRule.formule
 
-  const isDisabled =
-    !hasFormula || nodeValue === 0 || nodeValue === false || nodeValue === null
+  const isDisabled = !hasFormula
+    ? false
+    : nodeValue === 0 || nodeValue === false || nodeValue === null
 
-  const { remainingQuestions } = useForm()
-
-  const nbRemainingQuestions = remainingQuestions.length
+  const nbRemainingQuestions = filterRelevantMissingVariables(
+    Object.keys(missingVariables || {})
+  )?.length
 
   const hasRemainingQuestions = nbRemainingQuestions > 0
 
@@ -77,17 +85,17 @@ export default function ActionCard({
 
   return (
     <div
-      className={`relative flex h-[15rem] w-full flex-col items-center justify-between overflow-auto rounded-lg border-4 border-solid ${
+      className={`relative flex h-[16rem] w-full flex-col items-center overflow-auto rounded-lg border-4 border-solid ${
         !hasFormula ? 'h-[13rem]' : ''
       }`}
       style={{ borderColor: categoryColor }}>
       <div
         style={{ backgroundColor: categoryColor }}
-        className="flex h-[7rem] w-full items-center">
+        className="flex h-[6rem] w-full items-center">
         <Link
           className="z-10 w-full no-underline"
           href={'/actions/' + encodeRuleName(dottedName)}>
-          <h2 className="inline-block w-full text-center text-lg font-bold text-white">
+          <h2 className="inline-block w-full text-center text-base font-bold text-white">
             {title}
           </h2>
         </Link>
@@ -99,22 +107,21 @@ export default function ActionCard({
         )}
       </div>
 
-      <div className="mt-auto">
+      <div className="mt-2 flex flex-1 flex-col justify-between">
         <div className="relative mb-6">
-          <div className={hasRemainingQuestions ? 'blur grayscale' : ''}>
-            <ActionValue
-              dottedName={dottedName}
-              total={total}
-              isDisabled={isDisabled}
-              hasFormula={hasFormula}
-            />
-          </div>
+          <ActionValue
+            dottedName={dottedName}
+            total={total}
+            isDisabled={isDisabled}
+            hasFormula={hasFormula}
+            isBlurred={hasRemainingQuestions}
+          />
 
           {hasRemainingQuestions && (
             <NotificationBubble
               onClick={() => focusAction(dottedName)}
               title={remainingQuestionsText}
-              number={remainingQuestions.length}
+              number={nbRemainingQuestions}
             />
           )}
 
@@ -129,28 +136,20 @@ export default function ActionCard({
         <div className="mb-4 flex justify-evenly gap-4">
           <button
             title={t("Choisir l'action")}
+            type="button"
             aria-pressed={actionChoices[dottedName]}
             className={hasRemainingQuestions ? 'grayscale' : ''}
-            onClick={(e) => {
+            onClick={() => {
               if (hasRemainingQuestions) {
                 focusAction(dottedName)
                 return null
               }
 
-              /*
-              TODO : implement action selection logic
-              dispatch(
-                setActionChoice(
-                  dottedName,
-                  actionChoices[dottedName] === true ? null : true
-                )
-              )
-              */
-              if (!actionChoices[dottedName]) {
+              toggleActionChoice(dottedName)
+
+              if (!hasSelectedAction) {
                 trackEvent(getMatomoEventActionAccepted(dottedName, nodeValue))
               }
-              e.stopPropagation()
-              e.preventDefault()
             }}>
             <Image
               src={image1Src}
@@ -158,18 +157,14 @@ export default function ActionCard({
               alt=""
             />
           </button>
+
           <button
             title={t("Rejeter l'action")}
             onClick={(e) => {
-              /*
-              dispatch(
-                setActionChoice(
-                  dottedName,
-
-                  actionChoices[dottedName] === false ? null : false
-                )
+              setActionChoiceValue(
+                dottedName,
+                actionChoices[dottedName] === false ? null : false
               )
-              */
               trackEvent(getMatomoEventActionRejected(dottedName, nodeValue))
               e.stopPropagation()
               e.preventDefault()

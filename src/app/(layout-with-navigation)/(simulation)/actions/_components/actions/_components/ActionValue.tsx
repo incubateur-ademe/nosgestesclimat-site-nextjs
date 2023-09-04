@@ -31,11 +31,13 @@ export default function ActionValue({
   isDisabled,
   hasFormula,
   dottedName,
+  isBlurred,
 }: {
   total: number
   isDisabled: boolean
   hasFormula: boolean
   dottedName: string
+  isBlurred?: boolean
 }) {
   const { t, i18n } = useClientTranslation()
 
@@ -61,18 +63,18 @@ export default function ActionValue({
         t('Non applicable')
       ) : (
         <div
-          className={`bg-primary rounded-[0.25rem] text-white pl-2 pr-[2px] border-2 border-solid border-primary ${
+          className={`inline-block rounded-[0.25rem] border-2 border-solid border-primary bg-primary pl-2 pr-[2px] text-white ${
             correctedValue != undefined && correctedValue < 0
               ? 'bg-red-500'
               : ''
-          }`}>
+          }${isBlurred ? 'blur-[2px] grayscale' : ''}`}>
           <span>
             {sign ?? ''}&nbsp;
             <strong>{stringValue}</strong>&nbsp;
             <span>{t(unit, { ns: 'units' })}</span>
           </span>
           {total && (
-            <span className="ml-2 px-1 bg-primaryLight text-primaryDark rounded-e-sm">
+            <span className="ml-2 rounded-e-sm bg-primaryLight px-1 text-primaryDark">
               {Math.abs(relativeValue)}%
             </span>
           )}

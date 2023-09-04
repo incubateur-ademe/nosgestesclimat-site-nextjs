@@ -23,6 +23,9 @@ export default function useForm() {
     remainingQuestionsByCategories,
     answeredQuestionsByCategories,
     progressionByCategory,
+    actionChoices,
+    toggleActionChoice,
+    setActionChoiceValue,
   }: any = useContext(formContext)
 
   const {
@@ -70,5 +73,8 @@ export default function useForm() {
     remainingQuestionsByCategories,
     answeredQuestionsByCategories,
     progressionByCategory,
+    actionChoices,
+    toggleActionChoice,
+    setActionChoiceValue,
   }
 }

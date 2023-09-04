@@ -12,7 +12,8 @@ import { ReactNode } from 'react'
 import TutorialLink from './TutorialLink'
 
 export default function HasSimulationBanner() {
-  const { progression, remainingQuestions, relevantQuestions } = useForm()
+  const { progression, remainingQuestions, relevantQuestions, actionChoices } =
+    useForm()
 
   const router = useRouter()
 
@@ -24,12 +25,11 @@ export default function HasSimulationBanner() {
   const isSimulationInProgress = progression > 0 && progression < 1
   if (progression === 0) return null
 
-  console.log('TODO : implement actions selected system')
-  const actionChoicesLength = 0
+  const actionChoicesLength = actionChoices?.length
 
   return (
-    <div className="flex items-start flex-wrap">
-      <div className="w-[30rem] mt-4">
+    <div className="flex flex-wrap items-start">
+      <div className="mt-4 w-[30rem]">
         <Card className="mr-8 flex-col">
           <p className="text-lg">
             <TransClient i18nKey={'publicodes.Profil.recap'}>
@@ -58,7 +58,7 @@ export default function HasSimulationBanner() {
         </details>
       </div>
 
-      <div className="flex flex-col my-4">
+      <div className="my-4 flex flex-col">
         {isSimulationInProgress && (
           <ButtonLink color="primary" href="/simulateur/bilan">
             <TransClient>
@@ -76,7 +76,7 @@ export default function HasSimulationBanner() {
           <span
             role="img"
             aria-label="recycle emoji"
-            className="text-xl inline-block mr-2">
+            className="mr-2 inline-block text-xl">
             ♻️
           </span>{' '}
           <TransClient>Recommencer</TransClient>
