@@ -1,6 +1,7 @@
 import Choice from './choicesInput/Choice'
 
 type Props = {
+  question: string
   value: string
   isMissing: boolean
   choices: any[]
@@ -8,6 +9,7 @@ type Props = {
 }
 
 export default function ChoicesInput({
+  question,
   value,
   isMissing,
   choices,

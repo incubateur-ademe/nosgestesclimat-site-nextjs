@@ -46,6 +46,7 @@ export default function Question({ question }: Props) {
         )}
         {type === 'choices' && (
           <ChoicesInput
+            question={question}
             choices={choices}
             value={value}
             setValue={setValue}
