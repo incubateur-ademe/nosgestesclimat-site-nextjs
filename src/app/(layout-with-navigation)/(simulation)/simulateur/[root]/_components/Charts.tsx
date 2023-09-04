@@ -1,6 +1,6 @@
 import { useForm } from '@/publicodes-state'
 import BarChart from './charts/BarChart'
-import CategoryChart from './charts/CategoryChart'
+import InlineChart from './charts/InlineChart'
 
 export default function Charts() {
   const { currentCategory } = useForm()
@@ -8,7 +8,7 @@ export default function Charts() {
   if (!currentCategory) return
   return (
     <>
-      <CategoryChart />
+      <InlineChart />
       <BarChart />
     </>
   )

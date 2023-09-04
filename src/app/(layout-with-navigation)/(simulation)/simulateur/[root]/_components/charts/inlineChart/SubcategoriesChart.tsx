@@ -1,9 +1,9 @@
 import { useEngine, useForm, useRule } from '@/publicodes-state'
 import { useMemo } from 'react'
 
-import Subcategory from './categoryChart/Subcategory'
+import Subcategory from './subcategoriesChart/Subcategory'
 
-export default function Charts() {
+export default function SubcategoriesChart() {
   const { subcategories, currentCategory } = useForm()
 
   const { value: total } = useRule(
@@ -23,9 +23,7 @@ export default function Charts() {
   return (
     <>
       <h4 className="uppercase text-2xl">{title}</h4>
-      <div
-        className="flex h-12 rounded overflow-hidden"
-        style={{ backgroundColor: color }}>
+      <div className="flex h-12 mb-4" style={{ backgroundColor: color }}>
         {filteredSubcategories.map((subcategory: string, index: number) => (
           <Subcategory
             key={subcategory}
