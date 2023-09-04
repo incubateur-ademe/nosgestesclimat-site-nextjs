@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 
 import { useRule } from '@/publicodes-state'
@@ -21,9 +23,9 @@ export default function ValueChangeDisplay() {
 
   if (value - prevValue === 0) return
   return (
-    <div className="absolute right-24 py-2 px-4 bg-white rounded text-primaryDark">
+    <div className="absolute right-24 rounded bg-white px-4 py-2 text-primaryDark">
       <strong className="text-lg">{displayDifference}</strong>{' '}
-      <span className="font-light text-xs">
+      <span className="text-xs font-light">
         kgCO<sub>2</sub>e
       </span>
     </div>

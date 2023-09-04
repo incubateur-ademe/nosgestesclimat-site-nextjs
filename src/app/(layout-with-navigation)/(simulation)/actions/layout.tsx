@@ -1,5 +1,5 @@
 import NorthStarBanner from '@/components/northstar/NorthstarBanner'
-import Total from '@/components/simulation/Total'
+import Total from '@/components/total/Total'
 import TransServer from '@/components/translation/TransServer'
 import Title from '@/design-system/layout/Title'
 import { PropsWithChildren } from 'react'
