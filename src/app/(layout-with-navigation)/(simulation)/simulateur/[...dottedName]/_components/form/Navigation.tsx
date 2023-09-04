@@ -46,15 +46,15 @@ export default function Navigation({ question }: Props) {
           if (isMissing) {
             await setDefaultAsValue()
           }
-          if (noNextQuestion) {
-            if (noNextCategory) {
-              return router.push('/fin')
-            } else {
-              gotoNextCategory()
-            }
-          } else {
-            gotoNextQuestion()
+          if (!noPrevQuestion) {
+            gotoPrevQuestion()
+            return
           }
+          if (!noPrevCategory) {
+            gotoPrevCategory()
+            return
+          }
+          router.push('/fin')
         }}>
         <TransClient>
           {noNextQuestion
