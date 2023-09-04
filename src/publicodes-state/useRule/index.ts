@@ -32,7 +32,7 @@ export default function useRule(dottedName = '') {
     evaluation,
   })
 
-  const { questionsOfMosaic, shouldDisplayAucun } = useMosaic({
+  const { questionsOfMosaic, shouldDisplayAucun, parent } = useMosaic({
     dottedName,
     rule,
     everyMosaicChildWhoIsReallyInMosaic,
@@ -83,6 +83,7 @@ export default function useRule(dottedName = '') {
     suggestions,
     choices,
     questionsOfMosaic,
+    parent,
     shouldDisplayAucun,
     value,
     displayValue,

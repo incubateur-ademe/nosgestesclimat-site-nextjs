@@ -1,5 +1,5 @@
 import { useRule } from '@/publicodes-state'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 
 import Label from '@/components/question/Label'
 import NumberInput from '@/components/question/NumberInput'
@@ -11,15 +11,9 @@ type Props = {
 
 //TODO: Model shenanigans
 export default function Assistance({ question, assistance }: Props) {
-  const { setValue: setValueOfParent } = useRule(question)
+  const { setValue: setValueOfParent, parent } = useRule(question)
 
-  const parentRule = useMemo(() => {
-    const dottedNameArray = question.split(' . ')
-    dottedNameArray.pop()
-    return dottedNameArray.join(' . ')
-  }, [question])
-
-  const assistanceFullDottedName = parentRule + ' . ' + assistance
+  const assistanceFullDottedName = parent + ' . ' + assistance
 
   const {
     type,

@@ -1,5 +1,4 @@
 import { useRule } from '@/publicodes-state'
-import { useMemo } from 'react'
 import MosaicBooleanInput from './mosaicQuestion/MosaicBooleanInput'
 import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
 
@@ -8,15 +7,9 @@ type Props = {
 }
 
 export default function MosaicQuestion({ question }: Props) {
-  const { type } = useRule(question)
+  const { type, parent } = useRule(question)
 
-  const parentRule = useMemo(() => {
-    const dottedNameArray = question.split(' . ')
-    dottedNameArray.pop()
-    return dottedNameArray.join(' . ')
-  }, [question])
-
-  const { title, icons, description } = useRule(parentRule)
+  const { title, icons, description } = useRule(parent)
 
   return (
     <>

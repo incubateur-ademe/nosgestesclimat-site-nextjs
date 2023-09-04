@@ -26,5 +26,11 @@ export default function useMosaic({
     [rule]
   )
 
-  return { questionsOfMosaic, shouldDisplayAucun }
+  const parent = useMemo(() => {
+    const dottedNameArray = dottedName.split(' . ')
+    dottedNameArray.pop()
+    return dottedNameArray.join(' . ')
+  }, [dottedName])
+
+  return { questionsOfMosaic, shouldDisplayAucun, parent }
 }
