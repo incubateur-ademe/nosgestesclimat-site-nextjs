@@ -17,6 +17,10 @@ export const metadata: Metadata = {
     "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat",
   description:
     'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.',
+  title:
+    "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat",
+  description:
+    'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.',
 }
 
 export default async function Landing() {
@@ -89,6 +93,20 @@ export default async function Landing() {
             </svg>
           </a>
 
+          <a href="https://abc-transitionbascarbone.fr">
+            <Image
+              className="!ml-4 h-auto w-24"
+              src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
+              alt={t("Logo de l'Association pour la transition Bas Carbone")}
+              width="600"
+              height="2"
+            />
+          </a>
+        </div>
+      </div>
+      <LandingExplanations />
+    </>
+  )
           <a href="https://abc-transitionbascarbone.fr">
             <Image
               className="!ml-4 h-auto w-24"
