@@ -2,13 +2,19 @@ import { useMemo } from 'react'
 
 type Props = {
   engine: any
+  root: string
   safeEvaluate: any
   order: string[] | null
 }
 
-export default function useCategories({ engine, safeEvaluate, order }: Props) {
+export default function useCategories({
+  engine,
+  root,
+  safeEvaluate,
+  order,
+}: Props) {
   const missingVariables = useMemo(
-    () => Object.keys(safeEvaluate('bilan').missingVariables),
+    () => Object.keys(safeEvaluate(root).missingVariables),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [engine]
   )

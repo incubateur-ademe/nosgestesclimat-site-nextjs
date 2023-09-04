@@ -1,8 +1,7 @@
 'use client'
 
 import { useContext } from 'react'
-
-import simulationContext from '../simulationProvider/context'
+import formContext from '../formProvider/context'
 import useNavigation from './useNavigation'
 
 export default function useForm() {
@@ -24,7 +23,7 @@ export default function useForm() {
     remainingQuestionsByCategories,
     answeredQuestionsByCategories,
     progressionByCategory,
-  }: any = useContext(simulationContext)
+  }: any = useContext(formContext)
 
   const {
     gotoPrevQuestion,

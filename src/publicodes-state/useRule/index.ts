@@ -1,7 +1,6 @@
 'use client'
 
 import { useContext, useMemo } from 'react'
-
 import sumulationContext from '../simulationProvider/context'
 import useChoices from './useChoices'
 import useContent from './useContent'
@@ -14,9 +13,9 @@ export default function useRule(dottedName = '') {
     engine,
     safeGetRule,
     safeEvaluate,
-    everyMosaicChildWhoIsReallyInMosaic,
     situation,
     updateSituation,
+    everyMosaicChildWhoIsReallyInMosaic,
   }: any = useContext(sumulationContext)
 
   const evaluation = useMemo(

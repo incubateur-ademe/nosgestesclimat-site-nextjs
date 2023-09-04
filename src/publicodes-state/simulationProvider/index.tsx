@@ -3,16 +3,12 @@
 import { PropsWithChildren } from 'react'
 
 import SimulationContext from './context'
-import useCategories from './useCategories'
-import useCurrent from './useCurrent'
 import useEngine from './useEngine'
-import useProgression from './useProgression'
-import useQuestions from './useQuestions'
+import useRules from './useRules'
 import useSituation from './useSituation'
 
 type Props = {
   rules: any
-  categoryOrder: string[]
   defaultSituation?: any
   situation?: any
   updateSituation: (arg: any) => void
@@ -21,7 +17,6 @@ type Props = {
 export default function SimulationProvider({
   children,
   rules,
-  categoryOrder,
   defaultSituation,
   situation: externalSituation,
   updateSituation: updateExternalSituation,
@@ -36,41 +31,12 @@ export default function SimulationProvider({
     updateExternalSituation,
   })
 
-  const { categories, subcategories } = useCategories({
-    engine,
-    safeEvaluate,
-    order: categoryOrder,
-  })
-
   const {
-    missingInputs,
+    everyQuestions,
+    everyMosaic,
+    everyNotifications,
     everyMosaicChildWhoIsReallyInMosaic,
-    relevantQuestions,
-    questionsByCategories,
-  } = useQuestions({ engine, safeEvaluate, categories, situation })
-
-  const {
-    remainingCategories,
-    answeredCategories,
-    remainingQuestions,
-    answeredQuestions,
-    progression,
-    remainingQuestionsByCategories,
-    answeredQuestionsByCategories,
-    progressionByCategory,
-  } = useProgression({
-    categories,
-    missingInputs,
-    relevantQuestions,
-    questionsByCategories,
-  })
-
-  const {
-    currentQuestion,
-    currentCategory,
-    setCurrentQuestion,
-    setCurrentCategory,
-  } = useCurrent()
+  } = useRules({ engine })
 
   return (
     <SimulationContext.Provider
@@ -81,23 +47,10 @@ export default function SimulationProvider({
         safeEvaluate,
         situation,
         updateSituation,
-        categories,
-        subcategories,
+        everyQuestions,
+        everyMosaic,
+        everyNotifications,
         everyMosaicChildWhoIsReallyInMosaic,
-        relevantQuestions,
-        questionsByCategories,
-        remainingCategories,
-        answeredCategories,
-        remainingQuestions,
-        answeredQuestions,
-        progression,
-        remainingQuestionsByCategories,
-        answeredQuestionsByCategories,
-        progressionByCategory,
-        currentQuestion,
-        currentCategory,
-        setCurrentQuestion,
-        setCurrentCategory,
       }}>
       {children}
     </SimulationContext.Provider>

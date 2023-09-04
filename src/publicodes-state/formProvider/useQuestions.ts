@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 
 type Props = {
   engine: any
+  root: string
   safeEvaluate: any
   categories: string[]
   situation: any
@@ -9,6 +10,7 @@ type Props = {
 
 export default function useQuestions({
   engine,
+  root,
   safeEvaluate,
   categories,
   situation,
@@ -32,7 +34,7 @@ export default function useQuestions({
 
   const initialMissingInputs = useMemo(
     () =>
-      Object.keys(safeEvaluate('bilan').missingVariables).filter(
+      Object.keys(safeEvaluate(root).missingVariables).filter(
         (missingInput: string) => everyQuestions.includes(missingInput)
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,7 +43,7 @@ export default function useQuestions({
 
   const missingInputs = useMemo(
     () =>
-      Object.keys(safeEvaluate('bilan').missingVariables).filter(
+      Object.keys(safeEvaluate(root).missingVariables).filter(
         (missingInput: string) => everyQuestions.includes(missingInput)
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps

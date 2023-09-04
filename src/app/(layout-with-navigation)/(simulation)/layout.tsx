@@ -1,5 +1,4 @@
 import { PropsWithChildren } from 'react'
-
 import Providers from './_components/Providers'
 
 export default async function SimulateurLayout({
