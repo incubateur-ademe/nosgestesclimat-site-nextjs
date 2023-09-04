@@ -11,7 +11,7 @@ import AnimatedIllustration from './_components/AnimatedIllustration'
 import GroupsLink from './_components/GroupsLink'
 import LandingExplanations from './_components/LandingExplanations'
 import ProfileLink from './_components/ProfileLink'
-import TakeTestButton from './_components/TakeTestLink'
+import TakeTestLink from './_components/TakeTestLink'
 export const metadata: Metadata = {
   title:
     "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat",
@@ -40,7 +40,7 @@ export default async function Landing() {
             <p>{t('sites.publicodes.Landing.description')}</p>
             <div>
               <div className="my-4 flex flex-wrap items-stretch justify-center gap-4 md:justify-normal">
-                <TakeTestButton />
+                <TakeTestLink />
 
                 <GroupsLink />
 

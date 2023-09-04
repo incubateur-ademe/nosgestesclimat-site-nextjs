@@ -1,5 +1,6 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { PropsWithChildren, useEffect } from 'react'
 
 import Loader from '@/design-system/layout/Loader'
@@ -24,6 +25,8 @@ export default function Providers({
   } = useUser()
 
   const lang = useLocale()
+
+  const pathname = usePathname()
 
   const { data: rules, isInitialLoading } = useRules({
     lang: lang || 'fr',
@@ -55,6 +58,8 @@ export default function Providers({
       updateSituation={updateSituationOfCurrentSimulation}>
       {children}
     </SimulationProvider>
+  ) : pathname === '/tutoriel' ? (
+    children
   ) : (
     <Loader color="dark" />
   )

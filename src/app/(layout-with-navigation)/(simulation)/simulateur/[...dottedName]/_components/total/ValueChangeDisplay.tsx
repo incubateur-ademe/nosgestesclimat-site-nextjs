@@ -21,7 +21,7 @@ export default function ValueChangeDisplay() {
 
   if (value - prevValue === 0) return
   return (
-    <div className="absolute right-4 py-2 px-4 bg-white rounded text-primaryDark">
+    <div className="absolute right-24 py-2 px-4 bg-white rounded text-primaryDark">
       <strong className="text-lg">{displayDifference}</strong>{' '}
       <span className="font-light text-xs">
         kgCO<sub>2</sub>e

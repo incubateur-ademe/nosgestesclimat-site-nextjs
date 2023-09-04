@@ -8,7 +8,7 @@ export default function PageLayout({ children }: PropsWithChildren) {
     <>
       <div className="m-auto max-w-7xl flex justify-start">
         <Navigation />
-        <Main className="w-full max-w-[800px] p-8">{children}</Main>
+        <Main className="w-full max-w-4xl py-8 px-4">{children}</Main>
       </div>
     </>
   )

@@ -1,17 +1,25 @@
 import Link from 'next/link'
-import { useState } from 'react'
 
 import QuestionButton from '@/components/misc/QuestionButton'
-import { useRule } from '@/publicodes-state'
+import { useRule, useUser } from '@/publicodes-state'
 import Explanation from './total/Explanation'
+import ListToggle from './total/ListToggle'
 import Planet from './total/Planet'
 import Progress from './total/Progress'
 import ValueChangeDisplay from './total/ValueChangeDisplay'
 
-export default function Total() {
+type Props = {
+  toggleQuestionList: () => void
+}
+export default function Total({ toggleQuestionList }: Props) {
   const { value } = useRule('bilan')
 
-  const [isOpen, setIsOpen] = useState(false)
+  const { tutorials, hideTutorial, showTutorial } = useUser()
+
+  const toggleOpen = () =>
+    tutorials.scoreExplanation
+      ? showTutorial('scoreExplanation')
+      : hideTutorial('scoreExplanation')
 
   return (
     <div className="mb-2">
@@ -31,13 +39,13 @@ export default function Total() {
             de CO<sub>2</sub>e / an
           </span>
         </Link>
-        <QuestionButton
-          onClick={() => setIsOpen((previsOpen) => !previsOpen)}
-          color="white"
-        />
+        <QuestionButton onClick={toggleOpen} color="white" />
         <ValueChangeDisplay />
+        <ListToggle toggleQuestionList={toggleQuestionList} />
       </div>
-      {isOpen ? <Explanation setIsOpen={setIsOpen} /> : null}
+      {!tutorials.scoreExplanation ? (
+        <Explanation toggleOpen={toggleOpen} />
+      ) : null}
     </div>
   )
 }

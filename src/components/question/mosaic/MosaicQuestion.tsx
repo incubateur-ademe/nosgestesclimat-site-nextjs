@@ -4,17 +4,22 @@ import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
 
 type Props = {
   question: string
-  title: string
-  icons: string
 }
 
-export default function MosaicQuestion({ question, title, icons }: Props) {
-  const { type } = useRule(question)
+export default function MosaicQuestion({ question }: Props) {
+  const { type, parent } = useRule(question)
+
+  const { title, icons, description } = useRule(parent)
 
   return (
     <>
       {type === 'number' && (
-        <MosaicNumberInput question={question} title={title} icons={icons} />
+        <MosaicNumberInput
+          question={question}
+          title={title}
+          icons={icons}
+          description={description}
+        />
       )}
       {type === 'boolean' && (
         <MosaicBooleanInput question={question} title={title} icons={icons} />

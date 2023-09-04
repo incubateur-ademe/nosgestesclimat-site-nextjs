@@ -1,9 +1,21 @@
 'use client'
 
-import { UserContextType } from '@/types/user'
-import React from 'react'
+import { Simulation } from '@/types/simulation'
+import { User } from '@/types/user'
+import { createContext } from 'react'
 
-export default React.createContext<UserContextType>({
+type UserContextType = {
+  user: User
+  setUser: (prevUser: User) => void
+  tutorials: object
+  setTutorials: (prevTutorials: object) => void
+  simulations: Simulation[]
+  setSimulations: (simulations: Simulation[]) => void
+  currentSimulationId: string
+  setCurrentSimulationId: (currentSimulationId: string) => void
+}
+
+export default createContext<UserContextType>({
   user: {
     region: {
       code: '',
@@ -17,6 +29,8 @@ export default React.createContext<UserContextType>({
     email: '',
   },
   setUser: () => {},
+  tutorials: {},
+  setTutorials: () => {},
   simulations: [],
   setSimulations: () => {},
   currentSimulationId: '',

@@ -1,5 +1,3 @@
-import { Simulation } from './simulation'
-
 export type User = {
   region: {
     code: string
@@ -11,13 +9,4 @@ export type User = {
   }
   name: string
   email: string
-}
-
-export type UserContextType = {
-  user: User
-  setUser: (prevUser: any) => void
-  simulations: Simulation[]
-  setSimulations: (simulations: Simulation[]) => void
-  currentSimulationId: string
-  setCurrentSimulationId: (currentSimulationId: string) => void
 }

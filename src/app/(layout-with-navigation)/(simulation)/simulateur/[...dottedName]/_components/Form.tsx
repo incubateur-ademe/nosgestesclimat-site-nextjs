@@ -1,7 +1,7 @@
 import { useForm } from '@/publicodes-state'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 
+import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import CategoryIntroduction from './form/CategoryIntroduction'
 import Navigation from './form/Navigation'
 import Question from './form/Question'
@@ -16,27 +16,20 @@ export default function Form() {
     setCurrentCategory,
   } = useForm()
 
-  const router = useRouter()
-
   const isInitialized = useMemo(
     () => (currentQuestion && currentCategory ? true : false),
     [currentQuestion, currentCategory]
   )
 
-  const searchParams = useSearchParams()
-  const questionInQueryParams = searchParams.get('question')
+  const { questionInQueryParams, setQuestionInQueryParams } =
+    useQuestionInQueryParams()
+  const prevQuestionInQueryParams = useRef(questionInQueryParams)
 
   useEffect(() => {
     if (!currentCategory) {
       if (questionInQueryParams) {
-        setCurrentQuestion(
-          decodeURI(
-            questionInQueryParams.replaceAll('.', ' . ').replaceAll('_', ' ')
-          )
-        )
-        setCurrentCategory(
-          decodeURI(questionInQueryParams.split('.')[0].replaceAll('_', ' '))
-        )
+        setCurrentQuestion(questionInQueryParams)
+        setCurrentCategory(questionInQueryParams.split(' . ')[0])
       } else {
         setCurrentCategory(remainingCategories[0])
       }
@@ -51,14 +44,31 @@ export default function Form() {
   ])
 
   useEffect(() => {
-    if (isInitialized) {
-      router.push(
-        '/simulateur/bilan?question=' +
-          currentQuestion.replaceAll(' . ', '.').replaceAll(' ', '_'),
-        { scroll: false }
-      )
+    if (
+      currentQuestion !== questionInQueryParams &&
+      prevQuestionInQueryParams.current !== questionInQueryParams
+    ) {
+      setCurrentQuestion(questionInQueryParams)
+      setCurrentCategory(questionInQueryParams.split(' . ')[0])
     }
-  }, [router, currentQuestion, currentCategory, isInitialized])
+    prevQuestionInQueryParams.current = questionInQueryParams
+  }, [
+    questionInQueryParams,
+    currentQuestion,
+    setCurrentQuestion,
+    setCurrentCategory,
+  ])
+
+  useEffect(() => {
+    if (isInitialized) {
+      setQuestionInQueryParams(currentQuestion)
+    }
+  }, [
+    setQuestionInQueryParams,
+    currentQuestion,
+    currentCategory,
+    isInitialized,
+  ])
 
   if (!currentCategory) return
   return currentQuestion ? (
