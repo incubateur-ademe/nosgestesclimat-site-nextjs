@@ -23,7 +23,7 @@ export default function Subcategory({ subcategory, total, position }: Props) {
       className={`flex h-full justify-center items-center border-white border-ltransition-all ${positionClassNames[position]}`}
       style={{ width: `${percent}%` }}>
       <Image
-        className="grayscale brightness-200 invert"
+        style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}
         src={`/images/model/${subcategory}.svg`}
         alt={title}
         width={32}
