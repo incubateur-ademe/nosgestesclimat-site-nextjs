@@ -2,7 +2,7 @@ import { useForm, useRule } from '@/publicodes-state'
 
 import CategoryQuestion from './category/CategoryQuestion'
 type Props = {
-  category: any
+  category: string
   toggleQuestionList: () => void
 }
 

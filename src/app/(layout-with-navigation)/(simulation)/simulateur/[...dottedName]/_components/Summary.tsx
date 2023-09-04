@@ -1,10 +1,10 @@
 import { useForm } from '@/publicodes-state'
-import Category from './debug/Category'
+import Category from './summary/Category'
 
 type Props = {
   toggleQuestionList: () => void
 }
-export default function Debug({ toggleQuestionList }: Props) {
+export default function Summary({ toggleQuestionList }: Props) {
   const { categories } = useForm()
   return (
     <div>

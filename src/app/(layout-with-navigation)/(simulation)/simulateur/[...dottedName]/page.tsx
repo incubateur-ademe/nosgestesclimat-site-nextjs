@@ -2,8 +2,8 @@
 import Title from '@/design-system/layout/Title'
 import { useState } from 'react'
 import Charts from './_components/Charts'
-import Debug from './_components/Debug'
 import Form from './_components/Form'
+import Summary from './_components/Summary'
 import Total from './_components/Total'
 
 export default function Simulateur() {
@@ -16,7 +16,7 @@ export default function Simulateur() {
       <Title title={'Votre bilan climat personnel'} />
       <Total toggleQuestionList={toggleQuestionList} />
       {isQuestionListOpen ? (
-        <Debug toggleQuestionList={toggleQuestionList} />
+        <Summary toggleQuestionList={toggleQuestionList} />
       ) : (
         <>
           <Form />
