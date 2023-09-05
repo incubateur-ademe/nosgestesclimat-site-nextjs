@@ -69,10 +69,10 @@ export default function Form() {
     currentCategory,
     isInitialized,
   ])
-
+  console.log(remainingQuestionsByCategories)
   if (!currentCategory) return
   return currentQuestion ? (
-    <div className="rounded-lg bg-primaryLight p-4 mb-4">
+    <div className="mb-4 rounded-lg bg-primaryLight p-4">
       <Question question={currentQuestion} key={currentQuestion} />
       <Navigation question={currentQuestion} />
     </div>

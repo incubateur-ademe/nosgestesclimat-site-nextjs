@@ -1,5 +1,5 @@
-import Navigation from '@/app/(layout-with-navigation)/(simulation)/simulateur/[root]/_components/form/Navigation'
-import Question from '@/app/(layout-with-navigation)/(simulation)/simulateur/[root]/_components/form/Question'
+import Navigation from '@/app/(layout-with-navigation)/(simulation)/(layout-with-form-provider)/simulateur/[root]/_components/form/Navigation'
+import Question from '@/app/(layout-with-navigation)/(simulation)/(layout-with-form-provider)/simulateur/[root]/_components/form/Question'
 import { useForm } from '@/publicodes-state'
 import { useEffect } from 'react'
 
@@ -50,7 +50,7 @@ export default function ActionForm({ category, onComplete }: Props) {
   //   remainingQuestionsByCategories,
   // ])
 
-  if (!currentQuestion) return null
+  if (!currentQuestion || !currentCategory) return null
 
   return (
     <div className="mb-4 rounded-lg bg-primaryLight p-4 text-left">

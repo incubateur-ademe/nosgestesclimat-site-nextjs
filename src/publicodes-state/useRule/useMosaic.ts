@@ -22,7 +22,7 @@ export default function useMosaic({
   )
 
   const shouldDisplayAucun = useMemo(
-    () => rule?.rawNode?.mosaique?.type === 'selection',
+    () => rule.rawNode.mosaique?.type === 'selection',
     [rule]
   )
 

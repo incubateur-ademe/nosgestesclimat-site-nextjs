@@ -1,3 +1,4 @@
+// TODO : refactor this function which seems overly complex
 export const filterIrrelevantActions = ({ actions, actionChoices }: any) => {
   // pour chaque action choisie, on regarde ses frères et soeurs en récupérant la catégorie de l'action
   const testedActions = Object.keys(actionChoices || {})?.reduce(

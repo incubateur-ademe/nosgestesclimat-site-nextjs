@@ -7,23 +7,23 @@ import TutorialLink from './TutorialLink'
 
 export default function NoSimulationBanner() {
   const { progression } = useForm()
-
+  console.log(progression)
   if (progression > 0) return null
 
   return (
-    <Card className="!w-[35rem] max-w-full p-8 mt-4 flex-col flex items-start gap-2 !shadow-none">
+    <Card className="mt-4 flex !w-[35rem] max-w-full flex-col items-start gap-2 p-8 !shadow-none">
       <p>
         <span
           role="img"
           aria-label="hole emoji"
-          className="text-3xl inline-block mr-4">
+          className="mr-4 inline-block text-3xl">
           🕳️
         </span>
 
         <TransClient>Vous n'avez pas encore fait le test.</TransClient>
       </p>
 
-      <div className="flex flex-wrap items-center gap-4 w-full">
+      <div className="flex w-full flex-wrap items-center gap-4">
         <ButtonLink href="/simulateur/bilan">
           <ProgressCircle className="mr-2" white />
 

@@ -2,17 +2,21 @@
 
 import Meta from '@/components/misc/Meta'
 import TransClient from '@/components/translation/TransClient'
+import { getMatomoEventActionAccepted } from '@/constants/matomo'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useForm, useRule } from '@/publicodes-state'
+import { useEngine, useRule, useUser } from '@/publicodes-state'
+import FormProvider from '@/publicodes-state/formProvider'
 import { NGCRuleNode } from '@/types/model'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useParams } from 'next/navigation'
 import { utils } from 'publicodes'
 import emoji from 'react-easy-emoji'
-import Form from '../../../simulateur/[...dottedName]/_components/Form'
+import ActionForm from '../../_components/actions/_components/ActionForm'
+import { filterRelevantMissingVariables } from '../../_helpers/filterRelevantMissingVariables'
 
 const { decodeRuleName, encodeRuleName } = utils
 
@@ -27,10 +31,15 @@ export default function Content() {
 
   const { t } = useClientTranslation()
 
-  const { rules } = useEngine()
-  const { remainingQuestions } = useForm()
+  const { rules, getValue, getRuleObject } = useEngine()
+
+  const { actionChoices, toggleActionChoice } = useUser()
 
   const dottedName = decodeRuleName(formattedDottedName ?? '')
+
+  const nbRemainingQuestions = filterRelevantMissingVariables(
+    Object.keys(getRuleObject(dottedName).missingVariables || {})
+  )?.length
 
   const rule = useRule(dottedName)
 
@@ -98,12 +107,30 @@ export default function Content() {
         </div>
       </Card>
 
-      {remainingQuestions.length > 0 && (
+      {nbRemainingQuestions > 0 && (
         <>
-          <h3>
+          <h3 className="mt-4">
             <TransClient>Personnalisez cette estimation</TransClient>
           </h3>
-          <Form />
+
+          <FormProvider root={dottedName} categoryOrder={[]}>
+            <ActionForm
+              key={dottedName}
+              category={dottedName.split(' . ')[0]}
+              onComplete={() => {
+                toggleActionChoice(dottedName)
+
+                if (!actionChoices[dottedName]) {
+                  trackEvent(
+                    getMatomoEventActionAccepted(
+                      dottedName,
+                      getValue(dottedName)
+                    )
+                  )
+                }
+              }}
+            />
+          </FormProvider>
         </>
       )}
 

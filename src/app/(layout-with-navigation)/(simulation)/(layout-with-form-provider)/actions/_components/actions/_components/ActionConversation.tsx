@@ -1,4 +1,4 @@
-import Form from '@/app/(layout-with-navigation)/(simulation)/simulateur/[root]/_components/Form'
+import Form from '@/app/(layout-with-navigation)/(simulation)/(layout-with-form-provider)/simulateur/[root]/_components/Form'
 import { useEffect } from 'react'
 
 export default function ActionConversation({

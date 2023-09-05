@@ -11,8 +11,8 @@ import { useEngine, useForm, useRule, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Image from 'next/image'
+import { filterRelevantMissingVariables } from '../../../_helpers/filterRelevantMissingVariables'
 import { getIsActionDisabled } from '../../../_helpers/getIsActionDisabled'
-import { filterRelevantMissingVariables } from '../_helpers/filterRelevantMissingVariables'
 import ActionValue from './ActionValue'
 
 type Props = {
@@ -73,11 +73,11 @@ export default function ActionCard({
     }
   )
 
-  const foundCategory = categories.find(
-    (cat: string) => cat === dottedName.split(' . ')[0]
+  const foundCategory = categories?.find(
+    (cat: string) => cat === dottedName?.split(' . ')?.[0]
   )
 
-  const categoryRuleObject = useRule(foundCategory)
+  const categoryRuleObject = useRule(foundCategory || 'bilan')
 
   const categoryColor =
     categoryRuleObject?.color ||

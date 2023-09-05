@@ -16,11 +16,11 @@ export default function SimulationAnswerList() {
 
   const { progression, categories, relevantQuestions } = useForm()
 
-  if (progression === 0) return null
+  if (!progression) return null
 
   return (
     <AllOpenProvider value={isAllOpen}>
-      <div className="mb-4 flex w-[30rem] items-center justify-between gap-2">
+      <div className="mb-4 mt-8 flex w-[30rem] items-center justify-between gap-2">
         <h2 className="mb-0">
           <span role="img" aria-label="emoji notepad" className="mr-4">
             📋

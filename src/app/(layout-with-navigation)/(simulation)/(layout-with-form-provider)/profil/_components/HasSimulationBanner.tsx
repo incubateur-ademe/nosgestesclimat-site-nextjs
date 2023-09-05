@@ -6,25 +6,26 @@ import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useUser } from '@/publicodes-state'
-import { useRouter } from 'next/navigation'
-import { ReactNode } from 'react'
 import TutorialLink from './TutorialLink'
 
 export default function HasSimulationBanner() {
+  const { t } = useClientTranslation()
+
   const { progression, remainingQuestions, relevantQuestions } = useForm()
 
-  const { actionChoices } = useUser()
-
-  const router = useRouter()
+  const { actionChoices, updateSituationOfCurrentSimulation } = useUser()
 
   const percentFinished = Math.round(progression * 100)
 
   const answeredQuestionsLength =
     (relevantQuestions || []).length - (remainingQuestions || []).length
 
-  const isSimulationInProgress = progression > 0 && progression < 1
-  if (progression === 0) return null
+  const isSimulationInProgress =
+    progression !== undefined && progression > 0 && progression < 1
+
+  if (!progression) return null
 
   const actionChoicesLength = actionChoices?.length
 
@@ -33,13 +34,11 @@ export default function HasSimulationBanner() {
       <div className="mt-4 w-[30rem]">
         <Card className="mr-8 flex-col">
           <p className="text-lg">
-            <TransClient i18nKey={'publicodes.Profil.recap'}>
-              Vous avez terminé le test à{' '}
-              {{ percentFinished } as unknown as ReactNode} % (
-              {{ answeredQuestionsLength } as unknown as ReactNode} questions)
-              et choisi {{ actionChoicesLength } as unknown as ReactNode}{' '}
-              actions.
-            </TransClient>{' '}
+            {t('publicodes.Profil.recap', {
+              percentFinished,
+              answeredQuestionsLength,
+              actionChoicesLength,
+            })}{' '}
           </p>
         </Card>
         <details className="mt-3 max-w-full text-sm">
@@ -72,7 +71,7 @@ export default function HasSimulationBanner() {
           color="secondary"
           className="my-2 !text-base"
           onClick={() => {
-            router.push('/simulateur/bilan')
+            updateSituationOfCurrentSimulation({})
           }}>
           <span
             role="img"
