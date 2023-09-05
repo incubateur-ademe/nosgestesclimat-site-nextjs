@@ -4,6 +4,8 @@ const filteredDottedNames = [
   'services sociétaux . voter',
   'divers . aider les autres',
   'divers . partage NGC',
+  'transport . voiture . aide km',
+  'divers . autres produits',
 ]
 
 export const filterRelevantMissingVariables = (missingVariables: any) => {

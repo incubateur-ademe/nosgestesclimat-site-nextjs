@@ -1,13 +1,11 @@
-import { useForm } from '@/publicodes-state'
+import Form from '@/app/(layout-with-navigation)/(simulation)/simulateur/[root]/_components/Form'
 import { useEffect } from 'react'
-import Form from '../../../../simulateur/[...dottedName]/_components/Form'
 
 export default function ActionConversation({
   dottedName,
 }: {
   dottedName: string
 }) {
-  const { remainingQuestions } = useForm()
   // const configSet = useSelector((state: AppState) => state.simulation?.config)
 
   // TODO here we need to apply a rustine to accommodate for this issue
@@ -33,5 +31,5 @@ export default function ActionConversation({
   }
   */
 
-  return remainingQuestions.length > 0 ? <Form /> : null
+  return <Form />
 }

@@ -1,4 +1,4 @@
-import { AnimatePresence } from 'framer-motion'
+import FormProvider from '@/publicodes-state/formProvider'
 import ActionCard from './ActionCard'
 import ActionConversation from './ActionConversation'
 
@@ -19,39 +19,39 @@ export default function ActionList({
 }: Props) {
   return (
     <ul className="flex list-none flex-wrap items-center justify-center p-0">
-      <AnimatePresence>
-        {actions.map((evaluation) => {
-          const cardComponent = (
-            <li key={evaluation.dottedName} className="m-2 w-[12rem]">
-              <ActionCard
-                key={evaluation.dottedName}
-                focusAction={focusAction}
-                isFocused={focusedAction === evaluation.dottedName}
-                rule={rules[evaluation.dottedName]}
-                evaluation={evaluation}
-                total={bilan?.nodeValue}
-              />
-            </li>
-          )
+      {actions.map((evaluation) => {
+        const cardComponent = (
+          <li key={evaluation.dottedName} className="m-2 w-[12rem]">
+            <ActionCard
+              focusAction={focusAction}
+              isFocused={focusedAction === evaluation.dottedName}
+              rule={rules[evaluation.dottedName]}
+              evaluation={evaluation}
+              total={bilan?.nodeValue}
+            />
+          </li>
+        )
 
-          if (focusedAction === evaluation.dottedName) {
-            const convId = 'conv'
+        if (focusedAction === evaluation.dottedName) {
+          const convId = 'conv'
+          const category = focusedAction.split(' . ')[0]
 
-            return (
-              <>
-                <li key={convId} className="m-4 h-auto w-full">
+          return (
+            <div key={convId}>
+              <li className="m-4 h-auto w-full">
+                <FormProvider root={category} categoryOrder={[category]}>
                   <ActionConversation
                     key={focusedAction}
                     dottedName={focusedAction}
                   />
-                </li>
-                {cardComponent}
-              </>
-            )
-          }
-          return cardComponent
-        })}
-      </AnimatePresence>
+                </FormProvider>
+              </li>
+              {cardComponent}
+            </div>
+          )
+        }
+        return cardComponent
+      })}
     </ul>
   )
 }

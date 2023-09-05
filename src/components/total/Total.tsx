@@ -3,21 +3,32 @@
 import Link from 'next/link'
 
 import QuestionButton from '@/components/misc/QuestionButton'
-import { useRule, useUser } from '@/publicodes-state'
+import { useEngine, useRule, useUser } from '@/publicodes-state'
 
-import ValueChangeDisplay from './ValueChangeDisplay'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
 import Planet from './_components/Planet'
 import Progress from './_components/Progress'
+import ValueChangeDisplay from './_components/ValueChangeDisplay'
 
 type Props = {
-  toggleQuestionList: () => void
+  toggleQuestionList?: () => void
 }
 export default function Total({ toggleQuestionList }: Props) {
   const { value } = useRule('bilan')
 
-  const { tutorials, hideTutorial, showTutorial } = useUser()
+  const { getValue } = useEngine()
+
+  const { tutorials, hideTutorial, showTutorial, actionChoices } = useUser()
+
+  const actionChoicesSumValue = Object.keys(actionChoices || {}).reduce(
+    (acc, key) => {
+      return acc + (actionChoices[key] ? getValue(key) : 0)
+    },
+    0
+  )
+
+  const carbonFootprintValue = value - actionChoicesSumValue
 
   const toggleOpen = () =>
     tutorials.scoreExplanation
@@ -33,7 +44,7 @@ export default function Total({ toggleQuestionList }: Props) {
           href="/fin"
           className="z-10	text-white no-underline hover:text-white">
           <span className="block text-3xl font-bold">
-            {(value / 1000).toLocaleString('fr-fr', {
+            {(carbonFootprintValue / 1000).toLocaleString('fr-fr', {
               maximumFractionDigits: 1,
             })}{' '}
             tonnes
@@ -42,9 +53,13 @@ export default function Total({ toggleQuestionList }: Props) {
             de CO<sub>2</sub>e / an
           </span>
         </Link>
+
         <QuestionButton onClick={toggleOpen} color="white" />
-        <ValueChangeDisplay />
-        <ListToggle toggleQuestionList={toggleQuestionList} />
+
+        <ValueChangeDisplay value={carbonFootprintValue} />
+        {toggleQuestionList && (
+          <ListToggle toggleQuestionList={toggleQuestionList} />
+        )}
       </div>
       {!tutorials.scoreExplanation ? (
         <Explanation toggleOpen={toggleOpen} />

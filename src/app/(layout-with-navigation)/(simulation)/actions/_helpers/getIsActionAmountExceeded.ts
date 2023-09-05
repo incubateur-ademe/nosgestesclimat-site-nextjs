@@ -8,7 +8,7 @@ export const getIsActionAmountExceeded = (
   return (
     Object.entries(rules).find(([key, r]: [key: string, r: NGCRule]) => {
       const isExceedingAmount = r?.action?.dépasse
-
+      console.log(isExceedingAmount)
       return (
         isExceedingAmount &&
         isExceedingAmount.includes(dottedName) &&

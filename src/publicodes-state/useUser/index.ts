@@ -4,10 +4,14 @@ import { useContext } from 'react'
 
 import { NorthStarType, NorthStarValue } from '@/types/northstar'
 import { Simulation } from '@/types/simulation'
+import simulationContext from '../simulationProvider/context'
 import userContext from '../userProvider/context'
 import useSimulations from './useSimulations'
 
 export default function useUser() {
+  const { actionChoices, toggleActionChoice, setActionChoiceValue }: any =
+    useContext(simulationContext)
+
   const {
     user,
     setUser,
@@ -91,5 +95,8 @@ export default function useUser() {
     getCurrentSimulation,
     updateSituationOfCurrentSimulation,
     initSimulation,
+    actionChoices,
+    toggleActionChoice,
+    setActionChoiceValue,
   }
 }

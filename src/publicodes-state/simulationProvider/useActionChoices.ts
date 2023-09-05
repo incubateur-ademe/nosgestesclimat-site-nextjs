@@ -8,7 +8,9 @@ export default function useActionChoices() {
   const toggleActionChoice = (toggledActionChoice: string) => {
     setActionChoices((prevActionChoice) => ({
       ...prevActionChoice,
-      actionChoiceAdded: prevActionChoice?.[toggledActionChoice] ? false : true,
+      [toggledActionChoice]: prevActionChoice?.[toggledActionChoice]
+        ? undefined
+        : true,
     }))
   }
 

@@ -17,9 +17,11 @@ export default function NorthStarBanner({
 
   const { t } = useClientTranslation()
 
-  const { progression, actionChoices } = useForm()
+  const { progression } = useForm()
 
-  const actionChoicesLength = Object.values(actionChoices).filter(
+  const { actionChoices } = useUser()
+
+  const actionChoicesLength = Object.values(actionChoices || {}).filter(
     (value) => value
   ).length
 

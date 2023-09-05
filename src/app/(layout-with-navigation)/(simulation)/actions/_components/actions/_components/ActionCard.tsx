@@ -7,10 +7,11 @@ import {
 } from '@/constants/matomo'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useForm, useRule } from '@/publicodes-state'
+import { useEngine, useForm, useRule, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Image from 'next/image'
+import { getIsActionDisabled } from '../../../_helpers/getIsActionDisabled'
 import { filterRelevantMissingVariables } from '../_helpers/filterRelevantMissingVariables'
 import ActionValue from './ActionValue'
 
@@ -32,29 +33,32 @@ export default function ActionCard({
 
   const { rules } = useEngine()
 
-  const {
-    categories,
-    actionChoices,
-    toggleActionChoice,
-    setActionChoiceValue,
-  } = useForm()
+  const { categories } = useForm()
 
-  const hasSelectedAction =
-    Object.values(actionChoices).filter((value) => value).length > 0
+  const { actionChoices, toggleActionChoice, setActionChoiceValue } = useUser()
 
   const { nodeValue, dottedName, title, missingVariables } = evaluation
+  if (dottedName === 'alimentation . devenir végétalien') {
+    console.log(dottedName, actionChoices)
+  }
+  const isSelected = Object.keys(actionChoices || {}).some((key) => {
+    if (dottedName === 'alimentation . devenir végétalien') {
+      console.log(key, dottedName, actionChoices[key])
+    }
+    return key === dottedName && actionChoices[key]
+  })
+
   const { icônes: icons } = rule
 
-  const flatRule = rules[dottedName]
-  if (!flatRule.formule) {
-    console.log(missingVariables)
+  if (dottedName === 'alimentation . devenir végétalien') {
+    console.log({ isSelected })
   }
+
+  const flatRule = rules[dottedName]
 
   const hasFormula = flatRule.formule
 
-  const isDisabled = !hasFormula
-    ? false
-    : nodeValue === 0 || nodeValue === false || nodeValue === null
+  const isDisabled = getIsActionDisabled(flatRule)
 
   const nbRemainingQuestions = filterRelevantMissingVariables(
     Object.keys(missingVariables || {})
@@ -88,7 +92,10 @@ export default function ActionCard({
       className={`relative flex h-[16rem] w-full flex-col items-center overflow-auto rounded-lg border-4 border-solid ${
         !hasFormula ? 'h-[13rem]' : ''
       }`}
-      style={{ borderColor: categoryColor }}>
+      style={{
+        borderColor: isSelected ? 'rgb(45, 164, 78)' : categoryColor,
+        backgroundColor: isSelected ? 'rgba(45, 164, 78, 0.23)' : '',
+      }}>
       <div
         style={{ backgroundColor: categoryColor }}
         className="flex h-[6rem] w-full items-center">
@@ -147,7 +154,7 @@ export default function ActionCard({
 
               toggleActionChoice(dottedName)
 
-              if (!hasSelectedAction) {
+              if (!isSelected) {
                 trackEvent(getMatomoEventActionAccepted(dottedName, nodeValue))
               }
             }}>

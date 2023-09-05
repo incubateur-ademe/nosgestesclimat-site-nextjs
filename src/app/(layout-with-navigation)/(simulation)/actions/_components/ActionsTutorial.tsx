@@ -5,7 +5,7 @@ import TransClient from '@/components/translation/TransClient'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine } from '@/publicodes-state'
+import { useEngine, useUser } from '@/publicodes-state'
 import Image from 'next/image'
 import { getCarbonFootprint } from '../_helpers/getCarbonFootprint'
 
@@ -13,6 +13,8 @@ export default function ActionsTutorial() {
   const { t, i18n } = useClientTranslation()
 
   const { getValue } = useEngine()
+
+  const { hideTutorial } = useUser()
 
   const bilan = { nodeValue: getValue('bilan'), dottedName: 'bilan' }
 
@@ -60,8 +62,7 @@ export default function ActionsTutorial() {
         </TransClient>
       </p>
 
-      <Button
-        onClick={() => console.log('TODO: implement logic to skip tutorial')}>
+      <Button onClick={() => hideTutorial('actions')}>
         <TransClient>Démarrer</TransClient>
       </Button>
     </Card>

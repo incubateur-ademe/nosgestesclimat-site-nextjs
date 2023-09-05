@@ -2,6 +2,7 @@
 
 import { useEngine, useForm, useUser } from '@/publicodes-state'
 
+import { useState } from 'react'
 import ActionsTutorial from './_components/ActionsTutorial'
 import PetrolFilter from './_components/PetrolFilter'
 import SimulationMissing from './_components/SimulationMissing'
@@ -14,27 +15,26 @@ export default function ActionsPage({
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
+  const [radical, setRadical] = useState(true)
   const metric = (searchParams.métrique || '') as string
 
   const category = searchParams.catégorie
 
   const { progression } = useForm()
 
-  const { user } = useUser()
+  const { user, tutorials } = useUser()
   const { rules, getRuleObject } = useEngine()
-  /*
-  const tutorials = useSelector((state: AppState) => state.tutorials)
-*/
-  const tutorials = {}
 
   const actions = getActions({
     metric,
     focusedAction: '',
     rules,
-    radical: true,
+    radical,
     getRuleObject,
     user,
   })
+
+  console.log(actions.length)
 
   const filterByCategory = (actions: any) =>
     actions.filter((action: any) =>
@@ -47,12 +47,13 @@ export default function ActionsPage({
   // we'd better check if the test is finished
   // but is it too restrictive ?
   const isSimulationWellStarted = progression > 0.5
+  console.log(actionsDisplayed.length)
 
   return (
     <div className="mx-auto my-4 pb-4">
       {!isSimulationWellStarted && <SimulationMissing />}
 
-      {isSimulationWellStarted && (tutorials as any).actions !== 'skip' && (
+      {isSimulationWellStarted && !(tutorials as any).actions && (
         <ActionsTutorial />
       )}
 
@@ -65,7 +66,12 @@ export default function ActionsPage({
 
         <CategoryFilters actions={actionsDisplayed} />
 
-        <Actions actions={actionsDisplayed.reverse()} rules={rules} />
+        <Actions
+          actions={actionsDisplayed.reverse()}
+          rules={rules}
+          radical={radical}
+          setRadical={setRadical}
+        />
       </div>
     </div>
   )

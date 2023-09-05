@@ -17,16 +17,18 @@ import ActionList from './_components/ActionList'
 type Props = {
   actions: any
   rules: any
+  radical: boolean
+  setRadical: (radical: boolean) => void
 }
 
 export default function Actions({
   actions: rawActions,
-
+  radical,
+  setRadical,
   rules,
 }: Props) {
   const { t } = useClientTranslation()
 
-  const [radical, setRadical] = useState(true)
   const [focusedAction, focusAction] = useState('')
 
   const { getValue } = useEngine()
@@ -49,10 +51,9 @@ export default function Actions({
     }),
   }))
 
-  const userObject = useUser()
+  const { actionChoices } = useUser()
 
-  const { actionChoices } = userObject.getCurrentSimulation()
-
+  console.log(actionChoices)
   const rejected = actions.filter(
     (a: any) => actionChoices?.[a.dottedName] === false
   )

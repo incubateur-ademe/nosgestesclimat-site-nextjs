@@ -2,10 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-import { useRule } from '@/publicodes-state'
-
-export default function ValueChangeDisplay() {
-  const { value } = useRule('bilan')
+export default function ValueChangeDisplay({ value }: { value: number }) {
   const [prevValue, setPrevValue] = useState(value)
 
   const displayDifference = `${value - prevValue > 0 ? '+' : '-'} ${Math.abs(

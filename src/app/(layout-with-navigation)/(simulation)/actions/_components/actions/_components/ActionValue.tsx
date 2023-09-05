@@ -55,7 +55,7 @@ export default function ActionValue({
     return
   }
 
-  const relativeValue = Math.round(100 * (correctedValue / total))
+  const relativeValue = Math.abs(Math.round(100 * (correctedValue / total)))
 
   return (
     <div>
@@ -73,9 +73,9 @@ export default function ActionValue({
             <strong>{stringValue}</strong>&nbsp;
             <span>{t(unit, { ns: 'units' })}</span>
           </span>
-          {total && (
+          {total && relativeValue > 0 && (
             <span className="ml-2 rounded-e-sm bg-primaryLight px-1 text-primaryDark">
-              {Math.abs(relativeValue)}%
+              {relativeValue}%
             </span>
           )}
         </div>
