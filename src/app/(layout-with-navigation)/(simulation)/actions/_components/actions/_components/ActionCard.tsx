@@ -19,7 +19,7 @@ type Props = {
   action: any
   total: number
   rule: any
-  focusAction: (dottedName: string) => void
+  setFocusedAction: (dottedName: string) => void
   isFocused: boolean
 }
 
@@ -27,7 +27,7 @@ export default function ActionCard({
   action,
   total,
   rule,
-  focusAction,
+  setFocusedAction,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -86,6 +86,7 @@ export default function ActionCard({
 
   return (
     <div
+      id={dottedName}
       className={`relative flex h-[16rem] w-full flex-col items-center overflow-auto rounded-lg border-4 border-solid ${
         !hasFormula ? 'h-[13rem]' : ''
       }`}
@@ -123,7 +124,7 @@ export default function ActionCard({
 
           {hasRemainingQuestions && (
             <NotificationBubble
-              onClick={() => focusAction(dottedName)}
+              onClick={() => setFocusedAction(dottedName)}
               title={remainingQuestionsText}
               number={nbRemainingQuestions}
             />
@@ -132,7 +133,7 @@ export default function ActionCard({
           {hasRemainingQuestions && (
             <button
               className="cursor-pointer text-primary"
-              onClick={() => focusAction(dottedName)}>
+              onClick={() => setFocusedAction(dottedName)}>
               {remainingQuestionsText}
             </button>
           )}
@@ -146,7 +147,7 @@ export default function ActionCard({
             onClick={() => {
               if (isDisabled) return
               if (hasRemainingQuestions) {
-                focusAction(dottedName)
+                setFocusedAction(dottedName)
                 return null
               }
 

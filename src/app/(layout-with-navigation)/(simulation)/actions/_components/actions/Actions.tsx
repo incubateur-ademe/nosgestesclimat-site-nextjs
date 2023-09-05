@@ -17,18 +17,16 @@ type Props = {
   actions: any
   rules: any
   radical: boolean
-  setRadical: (radical: boolean) => void
 }
 
 export default function Actions({
   actions: rawActions,
   radical,
-  setRadical,
   rules,
 }: Props) {
   const { t } = useClientTranslation()
 
-  const [focusedAction, focusAction] = useState('')
+  const [focusedAction, setFocusedAction] = useState('')
 
   const { getValue } = useEngine()
 
@@ -82,8 +80,8 @@ export default function Actions({
           actions={thresholdActions}
           rules={rules}
           bilan={bilan}
-          focusAction={focusAction}
           focusedAction={focusedAction}
+          setFocusedAction={setFocusedAction}
         />
 
         <div className="my-4 h-8 w-full text-center">
@@ -132,7 +130,7 @@ export default function Actions({
         )}
         rules={rules}
         bilan={bilan}
-        focusAction={focusAction}
+        setFocusedAction={setFocusedAction}
         focusedAction={focusedAction}
       />
 
@@ -153,7 +151,7 @@ export default function Actions({
         actions={notRejected.filter((a: { value: any }) => a.value < 0)}
         rules={rules}
         bilan={bilan}
-        focusAction={focusAction}
+        setFocusedAction={setFocusedAction}
         focusedAction={focusedAction}
       />
 
@@ -166,7 +164,7 @@ export default function Actions({
             actions={rejected}
             rules={rules}
             bilan={bilan}
-            focusAction={focusAction}
+            setFocusedAction={setFocusedAction}
             focusedAction={focusedAction}
           />
         </div>

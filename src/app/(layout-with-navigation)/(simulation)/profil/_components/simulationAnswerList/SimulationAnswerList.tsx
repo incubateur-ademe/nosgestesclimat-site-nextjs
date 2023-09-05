@@ -20,7 +20,7 @@ export default function SimulationAnswerList() {
 
   return (
     <AllOpenProvider value={isAllOpen}>
-      <div className="flex items-center justify-between w-[30rem] gap-2 mb-4">
+      <div className="mb-4 flex w-[30rem] items-center justify-between gap-2">
         <h2 className="mb-0">
           <span role="img" aria-label="emoji notepad" className="mr-4">
             📋
@@ -38,7 +38,7 @@ export default function SimulationAnswerList() {
         </div>
       </div>
 
-      {categories.map((category: string) => {
+      {categories?.map((category: string) => {
         const categoryQuestions = relevantQuestions.filter((question: string) =>
           question.includes(category)
         )

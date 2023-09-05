@@ -6,9 +6,15 @@ import Button from '@/design-system/inputs/Button'
 
 type Props = {
   question: string
+  shouldDisableRouter?: boolean
+  onComplete?: () => void
 }
 
-export default function Navigation({ question }: Props) {
+export default function Navigation({
+  question,
+  shouldDisableRouter = false,
+  onComplete,
+}: Props) {
   const {
     gotoPrevQuestion,
     gotoNextQuestion,
@@ -55,7 +61,14 @@ export default function Navigation({ question }: Props) {
             gotoNextCategory()
             return
           }
-          router.push('/fin')
+
+          if (onComplete) {
+            onComplete()
+          }
+
+          if (!shouldDisableRouter) {
+            router.push('/fin')
+          }
         }}>
         <TransClient>
           {noNextQuestion

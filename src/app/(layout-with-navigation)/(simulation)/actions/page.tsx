@@ -72,7 +72,6 @@ export default function ActionsPage({
           actions={actionsDisplayed.reverse()}
           rules={rules}
           radical={radical}
-          setRadical={setRadical}
         />
       </div>
     </div>

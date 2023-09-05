@@ -1,13 +1,16 @@
+import { getMatomoEventActionAccepted } from '@/constants/matomo'
+import { useUser } from '@/publicodes-state'
 import FormProvider from '@/publicodes-state/formProvider'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import ActionCard from './ActionCard'
-import ActionConversation from './ActionConversation'
+import ActionForm from './ActionForm'
 
 type Props = {
   actions: any[]
   rules: any
   bilan: any
   focusedAction: string
-  focusAction: (dottedName: string) => void
+  setFocusedAction: (dottedName: string) => void
 }
 
 export default function ActionList({
@@ -15,15 +18,17 @@ export default function ActionList({
   rules,
   bilan,
   focusedAction,
-  focusAction,
+  setFocusedAction,
 }: Props) {
+  const { toggleActionChoice, actionChoices } = useUser()
+
   return (
     <ul className="flex list-none flex-wrap items-center justify-center p-0">
       {actions.map((action) => {
         const cardComponent = (
           <li key={action.dottedName} className="m-2 w-[12rem]">
             <ActionCard
-              focusAction={focusAction}
+              setFocusedAction={setFocusedAction}
               isFocused={focusedAction === action.dottedName}
               rule={rules[action.dottedName]}
               action={action}
@@ -36,17 +41,42 @@ export default function ActionList({
           const convId = 'conv'
 
           return (
-            <div key={convId}>
-              <li className="m-4 h-auto w-full">
+            <>
+              <li className="m-4 h-auto w-full" key={convId}>
                 <FormProvider root={action.dottedName} categoryOrder={[]}>
-                  <ActionConversation
-                    key={focusedAction}
-                    dottedName={focusedAction}
+                  <ActionForm
+                    key={action.dottedName}
+                    category={action.dottedName.split(' . ')[0]}
+                    onComplete={() => {
+                      toggleActionChoice(action.dottedName)
+
+                      if (!actionChoices[action.dottedName]) {
+                        trackEvent(
+                          getMatomoEventActionAccepted(
+                            action.dottedName,
+                            action.nodeValue
+                          )
+                        )
+                      }
+                      setFocusedAction('')
+
+                      setTimeout(() => {
+                        // scroll to div bearing the dottedName i
+                        const el = document.getElementById(action.dottedName)
+                        if (el) {
+                          el.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center',
+                            inline: 'center',
+                          })
+                        }
+                      }, 100)
+                    }}
                   />
                 </FormProvider>
               </li>
               {cardComponent}
-            </div>
+            </>
           )
         }
         return cardComponent

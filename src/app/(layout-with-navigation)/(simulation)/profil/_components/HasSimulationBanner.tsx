@@ -6,21 +6,22 @@ import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
-import { useForm } from '@/publicodes-state'
+import { useForm, useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { ReactNode } from 'react'
 import TutorialLink from './TutorialLink'
 
 export default function HasSimulationBanner() {
-  const { progression, remainingQuestions, relevantQuestions, actionChoices } =
-    useForm()
+  const { progression, remainingQuestions, relevantQuestions } = useForm()
+
+  const { actionChoices } = useUser()
 
   const router = useRouter()
 
   const percentFinished = Math.round(progression * 100)
 
   const answeredQuestionsLength =
-    relevantQuestions.length - remainingQuestions.length
+    (relevantQuestions || []).length - (remainingQuestions || []).length
 
   const isSimulationInProgress = progression > 0 && progression < 1
   if (progression === 0) return null
