@@ -19,27 +19,26 @@ export default function ActionList({
 }: Props) {
   return (
     <ul className="flex list-none flex-wrap items-center justify-center p-0">
-      {actions.map((evaluation) => {
+      {actions.map((action) => {
         const cardComponent = (
-          <li key={evaluation.dottedName} className="m-2 w-[12rem]">
+          <li key={action.dottedName} className="m-2 w-[12rem]">
             <ActionCard
               focusAction={focusAction}
-              isFocused={focusedAction === evaluation.dottedName}
-              rule={rules[evaluation.dottedName]}
-              evaluation={evaluation}
+              isFocused={focusedAction === action.dottedName}
+              rule={rules[action.dottedName]}
+              action={action}
               total={bilan?.nodeValue}
             />
           </li>
         )
 
-        if (focusedAction === evaluation.dottedName) {
+        if (focusedAction === action.dottedName) {
           const convId = 'conv'
-          const category = focusedAction.split(' . ')[0]
 
           return (
             <div key={convId}>
               <li className="m-4 h-auto w-full">
-                <FormProvider root={category} categoryOrder={[category]}>
+                <FormProvider root={action.dottedName} categoryOrder={[]}>
                   <ActionConversation
                     key={focusedAction}
                     dottedName={focusedAction}

@@ -16,7 +16,7 @@ import { filterRelevantMissingVariables } from '../_helpers/filterRelevantMissin
 import ActionValue from './ActionValue'
 
 type Props = {
-  evaluation: any
+  action: any
   total: number
   rule: any
   focusAction: (dottedName: string) => void
@@ -24,7 +24,7 @@ type Props = {
 }
 
 export default function ActionCard({
-  evaluation,
+  action,
   total,
   rule,
   focusAction,
@@ -37,28 +37,25 @@ export default function ActionCard({
 
   const { actionChoices, toggleActionChoice, setActionChoiceValue } = useUser()
 
-  const { nodeValue, dottedName, title, missingVariables } = evaluation
-  if (dottedName === 'alimentation . devenir végétalien') {
-    console.log(dottedName, actionChoices)
-  }
+  const { nodeValue, dottedName, title, missingVariables, traversedVariables } =
+    action
+
   const isSelected = Object.keys(actionChoices || {}).some((key) => {
-    if (dottedName === 'alimentation . devenir végétalien') {
-      console.log(key, dottedName, actionChoices[key])
-    }
     return key === dottedName && actionChoices[key]
   })
 
   const { icônes: icons } = rule
 
-  if (dottedName === 'alimentation . devenir végétalien') {
-    console.log({ isSelected })
-  }
-
   const flatRule = rules[dottedName]
 
   const hasFormula = flatRule.formule
 
-  const isDisabled = getIsActionDisabled(flatRule)
+  const isDisabled =
+    (getIsActionDisabled(flatRule) &&
+      Object.keys(actionChoices || {}).some((key) => {
+        return traversedVariables.includes(key)
+      })) ||
+    action.isIrrelevant
 
   const nbRemainingQuestions = filterRelevantMissingVariables(
     Object.keys(missingVariables || {})
@@ -147,6 +144,7 @@ export default function ActionCard({
             aria-pressed={actionChoices[dottedName]}
             className={hasRemainingQuestions ? 'grayscale' : ''}
             onClick={() => {
+              if (isDisabled) return
               if (hasRemainingQuestions) {
                 focusAction(dottedName)
                 return null
@@ -168,6 +166,7 @@ export default function ActionCard({
           <button
             title={t("Rejeter l'action")}
             onClick={(e) => {
+              if (isDisabled) return
               setActionChoiceValue(
                 dottedName,
                 actionChoices[dottedName] === false ? null : false

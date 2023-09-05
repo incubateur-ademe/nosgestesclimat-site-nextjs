@@ -1,26 +1,23 @@
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import { sortBy } from '@/utils/sortBy'
+import { filterIrrelevantActions } from './filterIrrelevantActions'
 import { getIsActionDisabled } from './getIsActionDisabled'
 
 type Props = {
-  focusedAction: string
   rules: any
   radical: boolean
   metric: string
   getRuleObject: (dottedName: string) => any
-  user: any
+  actionChoices: any
 }
 
 export default function getActions({
-  focusedAction,
   rules,
   radical,
   metric,
   getRuleObject,
-} // user,
-: Props) {
-  // const { actionChoices } = user
-
+  actionChoices,
+}: Props) {
   // Each targeted metric has its own prefiltered actions
   const actionsObject = metric ? rules[`actions ${metric}`] : rules.actions
 
@@ -33,24 +30,18 @@ export default function getActions({
     }
   })
 
+  const relevantActions = filterIrrelevantActions({
+    actions,
+    actionChoices,
+  })
+
   const sortedActionsByImpact = sortBy(
     (value) => (radical ? 1 : -1) * (getCorrectedValue(value as any) || 1)
-  )(actions)
+  )(relevantActions)
 
   return sortedActionsByImpact.filter((action: any) => {
     const flatRule = rules[action.dottedName] as { formule: string }
-    /*
-    const isAmountExceeded = getIsActionAmountExceeded(
-      action.dottedName,
-      rules,
-      actionChoices
-    )
-    */
-    const isActionDisabled = getIsActionDisabled(flatRule, action.nodeValue)
 
-    return (
-      //!isAmountExceeded &&
-      action.dottedName === focusedAction || !isActionDisabled
-    )
+    return !getIsActionDisabled(flatRule, action.nodeValue)
   })
 }

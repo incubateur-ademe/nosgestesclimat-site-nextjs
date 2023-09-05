@@ -22,32 +22,25 @@ export default function ActionsPage({
 
   const { progression } = useForm()
 
-  const { user, tutorials } = useUser()
+  const { tutorials, actionChoices } = useUser()
   const { rules, getRuleObject } = useEngine()
 
   const actions = getActions({
     metric,
-    focusedAction: '',
     rules,
     radical,
     getRuleObject,
-    user,
+    actionChoices,
   })
 
-  console.log(actions.length)
-
-  const filterByCategory = (actions: any) =>
-    actions.filter((action: any) =>
-      category ? action.dottedName.split(' . ')[0] === category : true
-    )
-
-  const actionsDisplayed = filterByCategory(actions)
+  const actionsDisplayed = actions.filter((action: any) =>
+    category ? action.dottedName.split(' . ')[0] === category : true
+  )
 
   //TODO this is quite a bad design
   // we'd better check if the test is finished
   // but is it too restrictive ?
   const isSimulationWellStarted = progression > 0.5
-  console.log(actionsDisplayed.length)
 
   return (
     <div className="mx-auto my-4 pb-4">

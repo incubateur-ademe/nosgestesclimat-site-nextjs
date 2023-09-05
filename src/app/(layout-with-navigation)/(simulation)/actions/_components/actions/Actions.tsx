@@ -43,6 +43,8 @@ export default function Actions({
     [1, t("plus d'1 kg")],
   ]
 
+  const { actionChoices } = useUser()
+
   const actions = rawActions.map((a: any) => ({
     ...a,
     value: getCorrectedValue({
@@ -51,9 +53,6 @@ export default function Actions({
     }),
   }))
 
-  const { actionChoices } = useUser()
-
-  console.log(actionChoices)
   const rejected = actions.filter(
     (a: any) => actionChoices?.[a.dottedName] === false
   )
