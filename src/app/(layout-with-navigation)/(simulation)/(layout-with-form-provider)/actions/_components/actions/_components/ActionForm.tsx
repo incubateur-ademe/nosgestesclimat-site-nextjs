@@ -16,7 +16,7 @@ export default function ActionForm({ category, onComplete }: Props) {
     setCurrentCategory,
     currentCategory,
   } = useForm()
-  console.log({ remainingQuestionsByCategories, currentCategory, category })
+
   useEffect(() => {
     if (category && !currentCategory) {
       setCurrentCategory(category)
@@ -33,22 +33,6 @@ export default function ActionForm({ category, onComplete }: Props) {
     remainingQuestionsByCategories,
     setCurrentQuestion,
   ])
-
-  // useEffect(() => {
-  //   if (
-  //     currentQuestion &&
-  //     currentCategory &&
-  //     remainingQuestionsByCategories[category].length <= 0
-  //   ) {
-  //     onComplete()
-  //   }
-  // }, [
-  //   category,
-  //   currentCategory,
-  //   currentQuestion,
-  //   onComplete,
-  //   remainingQuestionsByCategories,
-  // ])
 
   if (!currentQuestion || !currentCategory) return null
 

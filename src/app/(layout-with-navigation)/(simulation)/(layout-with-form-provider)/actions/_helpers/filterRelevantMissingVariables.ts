@@ -1,3 +1,4 @@
+// Gathered from nosgestesclimat-site
 const filteredDottedNames = [
   'divers . publicité',
   'services sociétaux . pression locale',

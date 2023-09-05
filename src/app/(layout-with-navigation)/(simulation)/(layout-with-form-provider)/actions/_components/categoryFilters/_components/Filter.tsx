@@ -27,6 +27,18 @@ export default function Filter({ dottedName, countByCategory }: Props) {
     }
   }
 
+  const buildURL = () => {
+    const siteURL = `${window.location.origin}${window.location.pathname}`
+
+    const searchParamsStart = metric || !isSelected ? '?' : ''
+
+    const metricSearchParam = metric ? `métrique=${metric}&` : ''
+
+    const searchParamsPart = `${searchParamsStart}${metricSearchParam}catégorie=${dottedName}`
+
+    return `${siteURL}${searchParamsPart}`
+  }
+
   return (
     <li
       className="height-[1.8rem] rounded-md"
@@ -36,16 +48,9 @@ export default function Filter({ dottedName, countByCategory }: Props) {
       <button
         className="p-2 text-xs font-bold text-white"
         onClick={() => {
-          router.replace(
-            `${window.location.origin}${window.location.pathname}${
-              metric || !isSelected ? '?' : ''
-            }${metric ? `métrique=${metric}` : ''}${
-              isSelected ? '' : `${metric ? '&' : ''}catégorie=${dottedName}`
-            }`,
-            {
-              scroll: false,
-            }
-          )
+          router.replace(buildURL(), {
+            scroll: false,
+          })
         }}>
         {rule.title}{' '}
         <span className="ml-2 inline-block w-4 rounded-full bg-white text-primaryDark">

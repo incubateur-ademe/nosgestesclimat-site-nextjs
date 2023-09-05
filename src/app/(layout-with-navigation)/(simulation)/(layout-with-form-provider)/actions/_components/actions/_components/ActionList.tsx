@@ -61,7 +61,7 @@ export default function ActionList({
                       setFocusedAction('')
 
                       setTimeout(() => {
-                        // scroll to div bearing the dottedName i
+                        // scroll to div bearing the dottedName
                         const el = document.getElementById(action.dottedName)
                         if (el) {
                           el.scrollIntoView({
@@ -75,6 +75,7 @@ export default function ActionList({
                   />
                 </FormProvider>
               </li>
+
               {cardComponent}
             </>
           )

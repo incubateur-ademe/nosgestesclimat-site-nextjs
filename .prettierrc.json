@@ -11,9 +11,5 @@
   "jsxSingleQuote": false,
   "arrowParens": "always",
   "endOfLine": "lf",
-  "plugins": [
-    "prettier-plugin-organize-imports",
-    "prettier-plugin-tailwindcss"
-  ],
-  "tailwindFunctions": ["tw"]
+  "plugins": ["prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"]
 }

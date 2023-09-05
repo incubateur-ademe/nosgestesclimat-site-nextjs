@@ -39,6 +39,7 @@ export default function getActions({
     (value) => (radical ? 1 : -1) * (getCorrectedValue(value as any) || 1)
   )(relevantActions)
 
+  // Filter disabled actions
   return sortedActionsByImpact.filter((action: any) => {
     const flatRule = rules[action.dottedName] as { formule: string }
 

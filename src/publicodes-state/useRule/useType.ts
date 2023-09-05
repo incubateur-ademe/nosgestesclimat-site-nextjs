@@ -19,10 +19,10 @@ export default function useType({ dottedName, rule, evaluation }: Props) {
     rule: any
     evaluation: any
   }) => {
-    if (!rule?.rawNode?.question) {
+    if (!rule.rawNode.question) {
       return 'notQuestion'
     }
-    if (rule?.rawNode?.mosaique) {
+    if (rule.rawNode.mosaique) {
       return 'mosaic'
     }
     if (

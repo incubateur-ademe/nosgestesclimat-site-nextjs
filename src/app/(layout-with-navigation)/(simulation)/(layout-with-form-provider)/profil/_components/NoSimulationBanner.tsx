@@ -7,7 +7,7 @@ import TutorialLink from './TutorialLink'
 
 export default function NoSimulationBanner() {
   const { progression } = useForm()
-  console.log(progression)
+
   if (progression > 0) return null
 
   return (

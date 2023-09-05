@@ -23,6 +23,7 @@ export default function Form() {
 
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()
+
   const prevQuestionInQueryParams = useRef(questionInQueryParams)
 
   useEffect(() => {
@@ -69,8 +70,9 @@ export default function Form() {
     currentCategory,
     isInitialized,
   ])
-  console.log(remainingQuestionsByCategories)
+
   if (!currentCategory) return
+
   return currentQuestion ? (
     <div className="mb-4 rounded-lg bg-primaryLight p-4">
       <Question question={currentQuestion} key={currentQuestion} />

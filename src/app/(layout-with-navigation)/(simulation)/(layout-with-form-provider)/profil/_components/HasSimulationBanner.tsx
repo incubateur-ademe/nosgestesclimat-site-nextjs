@@ -15,7 +15,7 @@ export default function HasSimulationBanner() {
 
   const { progression, remainingQuestions, relevantQuestions } = useForm()
 
-  const { actionChoices, updateSituationOfCurrentSimulation } = useUser()
+  const { actionChoices } = useUser()
 
   const percentFinished = Math.round(progression * 100)
 
@@ -71,7 +71,7 @@ export default function HasSimulationBanner() {
           color="secondary"
           className="my-2 !text-base"
           onClick={() => {
-            updateSituationOfCurrentSimulation({})
+            console.log('TODO: implement this')
           }}>
           <span
             role="img"

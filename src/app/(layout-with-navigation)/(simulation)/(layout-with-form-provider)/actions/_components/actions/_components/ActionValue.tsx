@@ -4,7 +4,7 @@ import { TranslationFunctionType } from '@/types/translation'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import { getCarbonFootprint } from '../../../_helpers/getCarbonFootprint'
 
-export const getFormattedActionValue = (
+const getFormattedActionValue = (
   { t, i18n }: { t: TranslationFunctionType; i18n: any },
   actionValue: { nodeValue: number; unit: { numerators: string } }
 ) => {
@@ -73,6 +73,7 @@ export default function ActionValue({
             <strong>{stringValue}</strong>&nbsp;
             <span>{t(unit, { ns: 'units' })}</span>
           </span>
+
           {total && relativeValue > 0 && (
             <span className="ml-2 rounded-e-sm bg-primaryLight px-1 text-primaryDark">
               {relativeValue}%

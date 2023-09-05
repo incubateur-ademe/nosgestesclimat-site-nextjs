@@ -12,7 +12,7 @@ type Props = {
   radical: boolean
 }
 
-export default function OptionsBar({ actions, setRadical, radical }: Props) {
+export default function OptionBar({ actions, setRadical, radical }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
   const { t } = useClientTranslation()
