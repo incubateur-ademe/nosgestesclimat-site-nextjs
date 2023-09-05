@@ -11,7 +11,6 @@ import { useEngine, useUser } from '@/publicodes-state'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import Image from 'next/image'
 import { useState } from 'react'
-import ActionsOptionsBar from '../OptionsBar'
 import ActionList from './_components/ActionList'
 
 type Props = {
@@ -97,13 +96,7 @@ export default function Actions({
   })
 
   return (
-    <div>
-      <ActionsOptionsBar
-        setRadical={setRadical}
-        radical={radical}
-        actions={rawActions}
-      />
-
+    <>
       {maxImpactAction.value < 100 && (
         <Card className="my-8 flex-col">
           <TransClient i18nKey={'publicodes.AllActions.msgPlusActions'}>
@@ -195,6 +188,6 @@ export default function Actions({
           </TransClient>
         </div>
       </ButtonLink>
-    </div>
+    </>
   )
 }

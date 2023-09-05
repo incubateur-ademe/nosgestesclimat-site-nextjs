@@ -4,6 +4,7 @@ import { useEngine, useForm, useUser } from '@/publicodes-state'
 
 import { useState } from 'react'
 import ActionsTutorial from './_components/ActionsTutorial'
+import OptionsBar from './_components/OptionsBar'
 import PetrolFilter from './_components/PetrolFilter'
 import SimulationMissing from './_components/SimulationMissing'
 import Actions from './_components/actions/Actions'
@@ -57,7 +58,15 @@ export default function ActionsPage({
         aria-hidden={isSimulationWellStarted ? 'false' : 'true'}>
         <PetrolFilter />
 
-        <CategoryFilters actions={actionsDisplayed} />
+        <div className="relative">
+          <CategoryFilters actions={actionsDisplayed} />
+
+          <OptionsBar
+            setRadical={setRadical}
+            radical={radical}
+            actions={actionsDisplayed}
+          />
+        </div>
 
         <Actions
           actions={actionsDisplayed.reverse()}

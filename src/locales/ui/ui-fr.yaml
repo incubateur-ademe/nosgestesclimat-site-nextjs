@@ -363,7 +363,7 @@ entries:
   publicodes.ActionTutorial.msgPrécision: 💡 Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.
   publicodes.ActionTutorial.msgPrésentation: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
-  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} actions disponibles,'
+  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} actions disponibles'
   publicodes.AllActions.allerPlusLoin: <0>Aller plus loin</0><1><0>Au-delà d'un simple chiffre, découvrez les enjeux qui se cachent derrière chaque action.</0></1>
   publicodes.AllActions.msgPlusActions: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
