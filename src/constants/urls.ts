@@ -10,3 +10,10 @@ const openmojis = {
 } as { [key: string]: string }
 
 export const getOpenmojiURL = (name: string) => `/images/${openmojis[name]}.svg`
+
+const secure = process.env.NODE_ENV === 'development' ? '' : 's'
+const protocol = `http${secure}://`
+
+export const serverURL = protocol + process.env.SERVER_URL
+
+export const simulationURL = serverURL + '/simulation/'

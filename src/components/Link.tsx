@@ -4,7 +4,7 @@ import { i18nConfig } from '@/constants/i18n'
 import { languages } from '@/constants/translation'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import NextLink from 'next/link'
-import { PropsWithChildren } from 'react'
+import { HTMLAttributes, PropsWithChildren } from 'react'
 
 type Props = {
   href: string
@@ -21,7 +21,8 @@ export default function Link({
   onClick,
   title,
   target,
-}: PropsWithChildren<Props>) {
+  ...props
+}: PropsWithChildren<HTMLAttributes<HTMLAnchorElement> & Props>) {
   const locale = useCurrentLocale(i18nConfig)
 
   const localisedHref = `${locale !== languages[0] ? `/${locale}` : ''}${href}`
@@ -32,7 +33,9 @@ export default function Link({
       className={className}
       onClick={onClick}
       title={title}
-      target={target}>
+      target={target}
+      prefetch={true}
+      {...props}>
       {children}
     </NextLink>
   )

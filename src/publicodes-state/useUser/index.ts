@@ -2,11 +2,16 @@
 
 import { useContext } from 'react'
 
+import { NorthStarType, NorthStarValue } from '@/types/northstar'
 import { Simulation } from '@/types/simulation'
+import simulationContext from '../simulationProvider/context'
 import userContext from '../userProvider/context'
 import useSimulations from './useSimulations'
 
 export default function useUser() {
+  const { actionChoices, toggleActionChoice, setActionChoiceValue }: any =
+    useContext(simulationContext)
+
   const {
     user,
     setUser,
@@ -39,14 +44,20 @@ export default function useUser() {
   const updateRegion = (region: { code: string; name: string }) =>
     setUser((prevUser: any) => ({ ...prevUser, region }))
 
-  const deleteSimulation = (deletedSimulationId: string) => {
+  const updateNorthStarRatings = ({
+    type,
+    value,
+  }: {
+    type: NorthStarType
+    value: NorthStarValue
+  }) =>
     setUser((prevUser: any) => ({
       ...prevUser,
-      simulations: prevUser.simulations.filter(
-        (simulation: Simulation) => simulation.id !== deletedSimulationId
-      ),
+      northStarRatings: {
+        ...(prevUser?.northStarRatings || {}),
+        [type]: value,
+      },
     }))
-  }
 
   const getCurrentSimulation = () =>
     simulations.find((simulation: any) => simulation.id === currentSimulationId)
@@ -60,6 +71,14 @@ export default function useUser() {
     }
   )
 
+  const deleteSimulation = (deletedSimulationId: string) => {
+    setSimulations((prevSimulations: any) =>
+      [...prevSimulations].filter(
+        (simulation: Simulation) => simulation.id !== deletedSimulationId
+      )
+    )
+  }
+
   return {
     user,
     updateName,
@@ -68,6 +87,7 @@ export default function useUser() {
     tutorials,
     showTutorial,
     hideTutorial,
+    updateNorthStarRatings,
     simulations,
     deleteSimulation,
     currentSimulationId,
@@ -75,5 +95,8 @@ export default function useUser() {
     getCurrentSimulation,
     updateSituationOfCurrentSimulation,
     initSimulation,
+    actionChoices,
+    toggleActionChoice,
+    setActionChoiceValue,
   }
 }

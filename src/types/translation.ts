@@ -1,3 +1,5 @@
+import { JSX } from 'react'
+
 export enum Lang {
   Default = 'Fr',
   // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
@@ -24,3 +26,5 @@ export type LangInfos = {
 }
 
 export type YamlEntry = { entries: { [key: string]: string } }
+
+export type TranslationFunctionType = (key: string) => JSX.Element | string

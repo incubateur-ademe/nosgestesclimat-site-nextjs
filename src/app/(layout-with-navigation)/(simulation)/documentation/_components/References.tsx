@@ -1,5 +1,5 @@
+import Link from '@/components/Link'
 import Image from 'next/image'
-import Link from 'next/link'
 import { capitalise0 } from 'publicodes'
 import { RulePage } from 'publicodes-react'
 import { ComponentProps } from 'react'
@@ -60,7 +60,7 @@ export default function References({ references }: ReferencesProps) {
             <Link
               href={link}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="flex items-center min-w-1/2 no-underline mr-4 flex-1">
               <span className="ui__ label">{domain}</span>
 
