@@ -9,7 +9,7 @@ export default function Block({ subcategory }: Props) {
 
   return (
     <div
-      className={`flex h-12 items-center justify-center`}
+      className={`flex h-14 items-center justify-center`}
       style={{ backgroundColor: color }}>
       <Image
         style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}

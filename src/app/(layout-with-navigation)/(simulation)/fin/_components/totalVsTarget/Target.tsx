@@ -11,7 +11,7 @@ export default function Target({ total }: Props) {
   return (
     <div className="flex flex-col justify-end h-full w-28">
       <div
-        className="relative flex w-full justify-center items-center border-white border-ltransition-all bg-primary rounded-t"
+        className="relative flex w-full justify-center items-center border-white border-ltransition-all bg-primary rounded-t text-4xl"
         style={{ height: `${percent}%` }}>
         <NumberDisplay number={2000} />
         <Annotation content="Mon objectif annuel" />
