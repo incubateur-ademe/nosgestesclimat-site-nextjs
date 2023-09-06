@@ -21,7 +21,8 @@ export default function Link({
   onClick,
   title,
   target,
-}: PropsWithChildren<Props & HTMLAttributes<HTMLAnchorElement>>) {
+  ...props
+}: PropsWithChildren<HTMLAttributes<HTMLAnchorElement> & Props>) {
   const locale = useCurrentLocale(i18nConfig)
 
   const localisedHref = `${locale !== languages[0] ? `/${locale}` : ''}${href}`
@@ -32,7 +33,8 @@ export default function Link({
       className={className}
       onClick={onClick}
       title={title}
-      target={target}>
+      target={target}
+      {...props}>
       {children}
     </NextLink>
   )
