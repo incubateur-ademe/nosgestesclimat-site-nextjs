@@ -7,7 +7,7 @@ export default function TotalVsTarget() {
 
   return (
     <div className="py-12 px-36 bg-primaryLight rounded-lg">
-      <div className="mt-12 flex items-end justify-around border-b-4 border-primary h-[48rem]">
+      <div className="mt-12 flex items-end justify-around border-b-4 border-primary h-[36rem]">
         <Total total={total} />
         <Target total={total} />
       </div>

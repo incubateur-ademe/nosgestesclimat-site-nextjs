@@ -54,7 +54,7 @@ export default function useRule(dottedName = '') {
   } = useContent({
     dottedName,
     rule,
-    everyMosaicChildWhoIsReallyInMosaic,
+    safeGetRule,
   })
 
   const choices = useChoices({ rule, type })

@@ -32,7 +32,8 @@ export default function Link({
       className={className}
       onClick={onClick}
       title={title}
-      target={target}>
+      target={target}
+      prefetch={true}>
       {children}
     </NextLink>
   )
