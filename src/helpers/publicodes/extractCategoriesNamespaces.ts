@@ -21,7 +21,10 @@ export const extractCategoriesNamespaces = (
 
     const node = getValue(categoryName)
 
-    const { icônes, couleur } = rules[categoryName]
+    const { icônes, couleur } = rules[categoryName] as unknown as {
+      icônes: string
+      couleur: string
+    }
 
     return {
       ...node,
