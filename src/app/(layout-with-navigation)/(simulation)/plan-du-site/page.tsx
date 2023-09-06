@@ -3,10 +3,13 @@
 import Link from '@/components/Link'
 import TransClient from '@/components/translation/TransClient'
 import Title from '@/design-system/layout/Title'
+import { useEngine } from '@/publicodes-state'
+import { utils } from 'publicodes'
+import getActions from '../(layout-with-form-provider)/actions/_helpers/getActions'
 
 const appURL =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8080'
+    ? 'http://localhost:3000'
     : 'https://nosgestesclimat.fr'
 
 const links = {
@@ -51,6 +54,16 @@ export default function PlanDuSite() {
 	})
   */
 
+  const { rules, getRuleObject } = useEngine()
+
+  const actions = getActions({
+    rules,
+    radical: true,
+    getRuleObject,
+    actionChoices: [] as any[],
+    metric: '',
+  })
+
   return (
     <>
       <Title
@@ -86,21 +99,18 @@ export default function PlanDuSite() {
           </TransClient>
         </h2>
         <ul className="m-0 list-none p-0">
-          {/*
-          rawActionsList.map((action) => {
-						return (
-							<li key={action.dottedName}>
-								<Link
-									href={`${appURL}/actions/${utils.encodeRuleName(
-										action.dottedName,
-									)}`}
-								>
-									{getTitle(action)}
-								</Link>
-							</li>
-						)
-					})
-        */}
+          {actions.map((action: any) => {
+            return (
+              <li key={action.dottedName}>
+                <Link
+                  href={`${appURL}/actions/${utils.encodeRuleName(
+                    action.dottedName
+                  )}`}>
+                  {action.title}
+                </Link>
+              </li>
+            )
+          })}
         </ul>
       </section>
     </>
