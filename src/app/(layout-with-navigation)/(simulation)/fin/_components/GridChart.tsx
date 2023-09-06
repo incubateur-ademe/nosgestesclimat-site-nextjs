@@ -29,19 +29,21 @@ export default function GridChart() {
           dottedName: subcategory,
           squares: Math.round(getValue(subcategory) / valueOfEachSquare),
         }))
-        .filter((subcategory: any) => subcategory.squares),
-    // .reduce(
-    //   (accumulator, currentValue) => [
-    //     ...accumulator,
-    //     ...Array.apply(null, Array(currentValue.squares)).map(() => ({
-    //       dottedName: currentValue.dottedName,
-    //     })),
-    //   ],
-    //   []
-    // )
+        .filter((subcategory: any) => subcategory.squares)
+
+        .reduce(
+          (accumulator: any[], currentValue: any) => [
+            ...accumulator,
+            // eslint-disable-next-line prefer-spread
+            ...Array.apply(null, Array(currentValue.squares)).map(() => ({
+              dottedName: currentValue.dottedName,
+            })),
+          ],
+          []
+        ),
     [subcategories, getValue, checkIfValid, valueOfEachSquare]
   )
-  console.log(sortedSubcategories)
+
   return (
     <div className="p-12 bg-primaryLight rounded-lg">
       <h3 className="text-center text-xl">
