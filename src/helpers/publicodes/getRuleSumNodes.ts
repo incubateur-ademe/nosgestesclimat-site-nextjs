@@ -1,5 +1,5 @@
 import { NGCRuleNode, NGCRulesNodes } from '@/types/model'
-import { utils } from 'publicodes'
+import { RuleNode, utils } from 'publicodes'
 
 export function getRuleSumNodes(
   rules: NGCRulesNodes,
@@ -14,7 +14,11 @@ export function getRuleSumNodes(
   return formula['somme']
     ?.map((name: string) => {
       try {
-        const node = utils.disambiguateReference(rules, rule.dottedName, name)
+        const node = utils.disambiguateReference(
+          rules as Record<string, RuleNode<string>>,
+          rule.dottedName,
+          name
+        )
         return node
       } catch (e) {
         console.log(
