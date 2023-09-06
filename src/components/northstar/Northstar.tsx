@@ -35,7 +35,7 @@ export default function NorthStarInput({
     user,
     updateNorthStarRatings,
     currentSimulationId,
-    currentSimulation,
+    getCurrentSimulation,
   } = useUser()
 
   const ratings = user?.northStarRatings
@@ -50,7 +50,7 @@ export default function NorthStarInput({
 
       const newRatings = setRating(ratings, type, rating, text)
 
-      postData(currentSimulation, currentSimulationId, newRatings)
+      postData(getCurrentSimulation(), currentSimulationId, newRatings)
     }, 1000)
   }
 
@@ -68,7 +68,7 @@ export default function NorthStarInput({
       [0, 1, 2, 3].includes(ratings.action)
     ) {
       // cas ou l'utilisateur a déjà envoyé une note, pour ne pas écraser les résultats en base
-      postData(currentSimulation, currentSimulationId, newRatings)
+      postData(getCurrentSimulation(), currentSimulationId, newRatings)
     } else {
       postData(null, currentSimulationId, newRatings)
     }
@@ -78,7 +78,7 @@ export default function NorthStarInput({
     currentSimulationId,
     isAnimationCompleted,
     text,
-    currentSimulation,
+    getCurrentSimulation,
     updateNorthStarRatings,
   ])
 
@@ -93,7 +93,7 @@ export default function NorthStarInput({
   }
 
   return (
-    <ul className="flex flex-wrap justify-center list-none p-0 m-0">
+    <ul className="m-0 flex list-none flex-wrap justify-center p-0">
       <li>
         <EmojiButton
           onClick={() => submitFeedback(0)}
