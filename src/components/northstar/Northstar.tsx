@@ -29,6 +29,7 @@ export default function NorthStarInput({
   text: string
 }) {
   const { t } = useTranslation()
+
   const [hasSelectedRating, setHasSelectedRating] = useState(false)
 
   const {
