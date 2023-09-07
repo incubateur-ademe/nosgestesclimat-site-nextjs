@@ -1,35 +1,31 @@
-import { correctValue, extractCategories } from '@/components/publicodesUtils'
+import { extractCategoriesObjects } from '@/helpers/publicodes/extractCategoriesObjects'
 import { SimulationResults } from '@/types/groups'
-import Engine from 'publicodes'
+import { getCorrectedValue } from '@/utils/getCorrectedValue'
 
 export const getSimulationResults = ({
-	engine,
+  rules,
+  getRuleObject,
 }: {
-	engine: Engine
+  rules: any
+  getRuleObject: (dottedName: string) => any
 }): SimulationResults => {
-	let resultsObject
+  const resultsObject: any = {}
 
-	if (engine) {
-		resultsObject = {}
+  const categories = extractCategoriesObjects(rules, getRuleObject)
 
-		const rules = engine.getParsedRules()
+  categories.forEach((category: any) => {
+    resultsObject[
+      category.name === 'transport . empreinte' ? 'transports' : category.name
+    ] = (Math.round(((category.nodeValue as number) ?? 0) / 10) / 100).toFixed(
+      2
+    )
+  })
 
-		const categories = extractCategories(rules, engine)
+  const evaluation = getRuleObject('bilan')
+  const { nodeValue: rawNodeValue, unit } = evaluation
+  const valueTotal = getCorrectedValue({ nodeValue: rawNodeValue, unit })
 
-		categories.forEach((category) => {
-			resultsObject[
-				category.name === 'transport . empreinte' ? 'transports' : category.name
-			] = (
-				Math.round(((category.nodeValue as number) ?? 0) / 10) / 100
-			).toFixed(2)
-		})
+  resultsObject.total = ((valueTotal as number) / 10 / 100).toFixed(2)
 
-		const evaluation = engine.evaluate('bilan')
-		const { nodeValue: rawNodeValue, unit } = evaluation
-		const valueTotal = correctValue({ nodeValue: rawNodeValue, unit })
-
-		resultsObject.total = ((valueTotal as number) / 10 / 100).toFixed(2)
-	}
-
-	return resultsObject
+  return resultsObject
 }

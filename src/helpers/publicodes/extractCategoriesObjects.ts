@@ -1,12 +1,12 @@
 import { NGCRule, NGCRuleNode, NGCRulesNodes } from '@/types/model'
 import { getRuleSumNodes } from './getRuleSumNodes'
 
-export const extractCategoriesNamespaces = (
+export const extractCategoriesObjects = (
   rules: NGCRulesNodes,
-  getValue: (dottedName: string) => NGCRule,
+  getRuleObject: (dottedName: string) => NGCRule,
   parentRule = 'bilan'
 ) => {
-  const rule = getValue(parentRule) as NGCRuleNode
+  const rule = getRuleObject(parentRule) as NGCRuleNode
 
   const sumNodes = getRuleSumNodes(rules, rule)
 
@@ -19,7 +19,7 @@ export const extractCategoriesNamespaces = (
   const categories = sumNodes.map((dottedName: string) => {
     const categoryName = dottedName.split(' . ')[0]
 
-    const node = getValue(categoryName)
+    const node = getRuleObject(categoryName)
 
     const { icônes, couleur } = rules[categoryName] as unknown as {
       icônes: string

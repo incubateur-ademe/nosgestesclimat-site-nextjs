@@ -1,19 +1,24 @@
-import GoBackLink from '@/components/groupe/GoBackLink'
-import Title from '@/components/groupe/Title'
-import Meta from '@/components/utils/Meta'
-import { GROUP_URL } from '@/constants/urls'
-import { useMatomo } from '@/contexts/MatomoContext'
-import { AppState } from '@/reducers/rootReducer'
-import { Group } from '@/types/groups'
-import { captureException } from '@sentry/react'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { Navigate, useSearchParams } from 'react-router-dom'
+'use client'
 
-import { useEngine } from '@/components/utils/EngineContext'
-import { fetchUpdateGroupMember } from '@/utils/fetchUpdateGroupMember'
-import { getSimulationResults } from '@/utils/getSimulationResults'
+import { GROUP_URL } from '@/constants/urls'
+
+import { captureException } from '@sentry/react'
+import { useEffect, useRef, useState } from 'react'
+
+import Meta from '@/components/misc/Meta'
+import Button from '@/design-system/inputs/Button'
+import GoBackLink from '@/design-system/inputs/GoBackLink'
+import InlineTextInput from '@/design-system/inputs/InlineTextInput'
+import Title from '@/design-system/layout/Title'
+import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useTempEngine, useUser } from '@/publicodes-state'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import { fetchUpdateGroupMember } from '../_helpers/fetchUpdateGroupMember'
+import { getSimulationResults } from '../_helpers/getSimulationResults'
 import Classement from './components/Classement'
 import FeedbackBlock from './components/FeedbackBlock'
 import Footer from './components/Footer'
@@ -22,213 +27,211 @@ import PointsFortsFaibles from './components/PointsFortsFaibles'
 import VotreEmpreinte from './components/VotreEmpreinte'
 import { Results, useGetGroupStats } from './hooks/useGetGroupStats'
 
-import { matomoEventUpdateGroupName } from '@/analytics/matomo-events'
-import Button from '@/components/groupe/Button'
-import InlineTextInput from '@/components/groupe/InlineTextInput'
-import Separator from '@/components/groupe/Separator'
-import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
-import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
+import pencilIcon from '@/assets/images/pencil.svg'
+import TransClient from '@/components/translation/TransClient'
+import { matomoEventUpdateGroupName } from '@/constants/matomo'
+import Separator from '@/design-system/layout/Separator'
+import { useRules } from '@/hooks/useRules'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 
-export default function GroupeDashboard() {
-	const [group, setGroup] = useState<Group | null>(null)
-	const [isEditingTitle, setIsEditingTitle] = useState(false)
-	const [isSubmitting, setIsSubmitting] = useState(false)
+export default function GroupResultsPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
+  const [isEditingTitle, setIsEditingTitle] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSynced, setIsSynced] = useState(false)
 
-	const [searchParams] = useSearchParams()
+  const rules = useRules({})
 
-	const { trackEvent } = useMatomo()
+  const { getRuleObject } = useTempEngine()
 
-	const { t } = useTranslation()
+  const { groupId } = searchParams
 
-	const groupId = searchParams.get('groupId')
+  const router = useRouter()
 
-	const userId = useSelector((state: AppState) => state.user.userId)
+  const { data: group, refetch } = useQuery(
+    ['group'],
+    () =>
+      axios
+        .get(`${GROUP_URL}/${groupId}`)
+        .then(({ data }) => data)
+        .catch((e) => captureException(e)),
+    {
+      enabled: !!groupId,
+    }
+  )
 
-	const intervalRef = useRef<NodeJS.Timer>()
+  const { mutate: updateGroupName } = useMutation({
+    mutationFn: (groupName: string) =>
+      axios.post(GROUP_URL + '/update', {
+        _id: groupId,
+        name: groupName,
+      }),
+  })
 
-	const [synced, setSynced] = useState(false)
-	const results: Results | null = useGetGroupStats({
-		groupMembers: group?.members,
-		userId: userId || '',
-		synced,
-	})
+  const { t } = useClientTranslation()
 
-	const engine = useEngine()
+  const { user, getCurrentSimulation } = useUser()
 
-	const currentSimulation = useGetCurrentSimulation()
+  const currentSimulation = getCurrentSimulation()
 
-	const resultsOfUser = getSimulationResults({
-		engine,
-	})
-	const handleFetchGroup = useCallback(async () => {
-		try {
-			const response = await fetch(`${GROUP_URL}/${groupId}`)
+  const userId = user?.id
 
-			if (!response.ok) {
-				throw new Error('Error while fetching group')
-			}
+  const intervalRef = useRef<NodeJS.Timeout>()
 
-			const groupFetched: Group = await response.json()
+  const results: Results | null = useGetGroupStats({
+    groupMembers: group?.members,
+    userId: userId || '',
+    isSynced,
+  })
 
-			setGroup(groupFetched)
-		} catch (error) {
-			captureException(error)
-		}
-	}, [groupId])
+  const resultsOfUser = getSimulationResults({
+    rules,
+    getRuleObject,
+  })
 
-	// If the user has a simulation we update the group accordingly
-	// This is flaky and should incorporate a failsafe to ensure we do not update ad aeternam
-	useEffect(() => {
-		const currentMember = group?.members.find(
-			(groupMember) => groupMember.userId === userId
-		)
-		if (group && currentMember && currentSimulation) {
-			if (resultsOfUser?.total !== currentMember?.results?.total) {
-				fetchUpdateGroupMember({
-					group,
-					userId: userId ?? '',
-					simulation: currentSimulation,
-					results: resultsOfUser,
-				}).then(() => handleFetchGroup())
-			} else {
-				setSynced(true)
-			}
-		}
-	}, [group, userId, resultsOfUser, currentSimulation, handleFetchGroup])
+  // If the user has a simulation we update the group accordingly
+  // This is flaky and should incorporate a failsafe to ensure we do not update ad aeternam
+  useEffect(() => {
+    const currentMember = group?.members.find(
+      (groupMember: { userId: string }) => groupMember.userId === userId
+    )
+    if (group && currentMember && currentSimulation) {
+      if (resultsOfUser?.total !== currentMember?.results?.total) {
+        fetchUpdateGroupMember({
+          group,
+          userId: userId ?? '',
+          simulation: currentSimulation,
+          results: resultsOfUser,
+        }).then(() => refetch())
+      } else {
+        setIsSynced(true)
+      }
+    }
+  }, [group, userId, resultsOfUser, currentSimulation, refetch])
 
-	useEffect(() => {
-		if (groupId && !group) {
-			handleFetchGroup()
+  useEffect(() => {
+    if (groupId && !group) {
+      intervalRef.current = setInterval(() => refetch(), 60000)
+    }
+  }, [groupId, group, userId, refetch])
 
-			intervalRef.current = setInterval(() => handleFetchGroup(), 60000)
-		}
-	}, [groupId, group, userId, handleFetchGroup])
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    }
+  }, [])
 
-	useEffect(() => {
-		return () => {
-			if (intervalRef.current) {
-				clearInterval(intervalRef.current)
-			}
-		}
-	}, [])
+  const handleSubmit = async (groupNameUpdated: string) => {
+    setIsSubmitting(true)
+    try {
+      updateGroupName(groupNameUpdated)
 
-	const handleSubmit = async (value: string) => {
-		setIsSubmitting(true)
-		try {
-			const response = await fetch(GROUP_URL + '/update', {
-				method: 'POST',
-				body: JSON.stringify({
-					_id: group?._id,
-					name: value,
-				}),
-				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-				},
-			})
+      refetch()
 
-			const groupUpdated: Group = await response.json()
+      setIsSubmitting(false)
+      setIsEditingTitle(false)
 
-			if (!response.ok) {
-				throw new Error(JSON.stringify(group))
-			}
+      trackEvent(matomoEventUpdateGroupName)
+    } catch (e) {
+      captureException(e)
+    }
+  }
 
-			setGroup(groupUpdated)
-			setIsSubmitting(false)
-			setIsEditingTitle(false)
-			trackEvent(matomoEventUpdateGroupName)
-		} catch (e) {
-			captureException(e)
-		}
-	}
+  if (!groupId) {
+    router.push('/groupes')
+  }
 
-	if (!groupId) {
-		return <Navigate to="/groupes" />
-	}
+  if (!group) {
+    return null
+  }
 
-	if (!group) {
-		return null
-	}
+  if (
+    !group?.members?.some(
+      (member: { userId: string }) => member.userId === userId
+    )
+  ) {
+    return router.push(`/groupes/invitation?groupId=${group._id}`)
+  }
 
-	if (!group?.members?.some((member) => member.userId === userId)) {
-		return <Navigate to={`/groupes/invitation?groupId=${group._id}`} />
-	}
+  return (
+    <>
+      <main className="p-4">
+        <GoBackLink className="mb-4 font-bold" />
+        <Meta
+          title={t('Mon groupe, nos bilans carbone personnels')}
+          description={t(
+            "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
+          )}
+        />
+        <AutoCanonicalTag />
+        {isEditingTitle ? (
+          <InlineTextInput
+            defaultValue={group?.name}
+            label={t('Modifier le nom du groupe')}
+            name="group-name-input"
+            onClose={() => setIsEditingTitle(false)}
+            onSubmit={handleSubmit}
+            isLoading={isSubmitting}
+            data-cypress-id="group-edit-input-name"
+          />
+        ) : (
+          <Title
+            data-cypress-id="group-name"
+            title={
+              <span className="flex items-center justify-between">
+                <span>
+                  <span>{group?.emoji}</span> <span>{group?.name}</span>
+                </span>
+                <Button
+                  className="!p-1"
+                  onClick={() => setIsEditingTitle(true)}
+                  color="secondary"
+                  data-cypress-id="group-name-edit-button">
+                  <Image
+                    src={pencilIcon}
+                    alt={t(
+                      'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé'
+                    )}
+                  />
+                </Button>
+              </span>
+            }
+          />
+        )}
+        <FeedbackBlock />
+        <div className="mt-4">
+          <h2 className="m-0 text-lg font-bold">
+            <TransClient>Le classement</TransClient>
+          </h2>
+        </div>
+        <Classement group={group} />
 
-	return (
-		<>
-			<main className="p-4">
-				<GoBackLink className="mb-4 font-bold" />
-				<Meta
-					title={t('Mon groupe, nos bilans carbone personnels')}
-					description={t(
-						"Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
-					)}
-				/>
-				<AutoCanonicalTag />
-				{isEditingTitle ? (
-					<InlineTextInput
-						defaultValue={group?.name}
-						label={t('Modifier le nom du groupe')}
-						name="group-name-input"
-						onClose={() => setIsEditingTitle(false)}
-						onSubmit={handleSubmit}
-						isLoading={isSubmitting}
-						data-cypress-id="group-edit-input-name"
-					/>
-				) : (
-					<Title
-						data-cypress-id="group-name"
-						title={
-							<span className="flex justify-between items-center">
-								<span>
-									<span>{group?.emoji}</span> <span>{group?.name}</span>
-								</span>
-								<Button
-									className="!p-1"
-									onClick={() => setIsEditingTitle(true)}
-									color="secondary"
-									data-cypress-id="group-name-edit-button"
-								>
-									<img
-										src="/images/pencil.svg"
-										alt={t(
-											'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé'
-										)}
-									/>
-								</Button>
-							</span>
-						}
-					/>
-				)}
-				<FeedbackBlock />
-				<div className="mt-4">
-					<h2 className="font-bold text-lg m-0">
-						<Trans>Le classement</Trans>
-					</h2>
-				</div>
-				<Classement group={group} />
+        <InviteBlock group={group} />
 
-				<InviteBlock group={group} />
+        {group?.members?.length > 1 ? (
+          <>
+            <Separator className="my-8" />
+            <PointsFortsFaibles
+              pointsFaibles={results?.pointsFaibles}
+              pointsForts={results?.pointsForts}
+            />
+            <Separator className="mb-6 mt-10" />
+          </>
+        ) : (
+          <Separator className="mb-6 mt-8" />
+        )}
 
-				{group?.members?.length > 1 ? (
-					<>
-						<Separator className="my-8" />
-						<PointsFortsFaibles
-							pointsFaibles={results?.pointsFaibles}
-							pointsForts={results?.pointsForts}
-						/>
-						<Separator className="mt-10 mb-6" />
-					</>
-				) : (
-					<Separator className="mt-8 mb-6" />
-				)}
-
-				<VotreEmpreinte
-					categoriesFootprints={results?.currentMemberAllFootprints}
-					membersLength={group?.members?.length}
-				/>
-			</main>
-			<Footer />
-		</>
-	)
+        <VotreEmpreinte
+          categoriesFootprints={results?.currentMemberAllFootprints}
+          membersLength={group?.members?.length}
+        />
+      </main>
+      <Footer />
+    </>
+  )
 }

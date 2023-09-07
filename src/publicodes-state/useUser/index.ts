@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 
 import userContext from '../userProvider/context'
 import useActions from './useActions'
@@ -10,6 +10,9 @@ import useTutorials from './useTutorials'
 import useUserDetails from './useUserDetails'
 
 export default function useUser() {
+  const [groupToRedirectToAfterTest, setGroupToRedirectToAfterTest] =
+    useState<any>(undefined)
+
   const {
     user,
     setUser,
@@ -64,5 +67,7 @@ export default function useUser() {
     initSimulation,
     toggleActionChoice,
     rejectAction,
+    groupToRedirectToAfterTest,
+    setGroupToRedirectToAfterTest,
   }
 }
