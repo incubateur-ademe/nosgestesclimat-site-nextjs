@@ -2,10 +2,10 @@
 
 import { useContext, useMemo } from 'react'
 import { useEngine } from '..'
-import sumulationContext from '../simulationProvider/context'
+import simulationContext from '../simulationProvider/context'
 
 export default function useActions() {
-  const { engine }: any = useContext(sumulationContext)
+  const { engine }: any = useContext(simulationContext)
 
   const { getValue } = useEngine()
 
