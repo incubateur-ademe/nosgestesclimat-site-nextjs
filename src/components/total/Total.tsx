@@ -19,7 +19,10 @@ export default function Total({ toggleQuestionList }: Props) {
 
   const { getValue } = useEngine()
 
-  const { tutorials, hideTutorial, showTutorial, actionChoices } = useUser()
+  const { tutorials, hideTutorial, showTutorial, getCurrentSimulation } =
+    useUser()
+
+  const { actionChoices } = getCurrentSimulation()
 
   const actionChoicesSumValue = Object.keys(actionChoices || {}).reduce(
     (acc, key) => {
