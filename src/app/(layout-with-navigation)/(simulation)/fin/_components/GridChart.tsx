@@ -44,7 +44,7 @@ export default function GridChart() {
   )
 
   return (
-    <div className="rounded-lg bg-primaryLight p-12">
+    <>
       <h3 className="text-center text-xl">
         <TransClient>De quoi est faite mon empreinte&nbsp;?</TransClient>
       </h3>
@@ -58,6 +58,6 @@ export default function GridChart() {
           ) : null
         )}
       </div>
-    </div>
+    </>
   )
 }

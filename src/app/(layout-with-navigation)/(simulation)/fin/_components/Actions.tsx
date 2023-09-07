@@ -1,3 +1,4 @@
+import TransClient from '@/components/translation/TransClient'
 import { useActions, useEngine } from '@/publicodes-state'
 import { useMemo } from 'react'
 import Action from './actions/Action'
@@ -21,10 +22,20 @@ export default function Actions() {
   )
 
   return (
-    <div className="flex flex-col gap-8 rounded-lg bg-primaryLight p-12">
-      {filteredSameCategoriesActions.map((action, index) =>
-        index < 3 ? <Action key={action} action={action} /> : null
-      )}
+    <div className="px-12">
+      <h3 className="text-center text-xl">
+        <TransClient>Comment réduire mon empreinte&nbsp;?</TransClient>
+      </h3>
+      <p className="text-center text-lg italic">
+        <TransClient>
+          Les 3 actions au plus fort impact pour vous&nbsp;:
+        </TransClient>
+      </p>
+      <div className="flex flex-col gap-8 ">
+        {filteredSameCategoriesActions.map((action, index) =>
+          index < 3 ? <Action key={action} action={action} /> : null
+        )}
+      </div>
     </div>
   )
 }

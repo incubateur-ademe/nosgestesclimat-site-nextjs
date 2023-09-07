@@ -8,6 +8,7 @@ import Slider from 'react-slick'
 import Actions from './_components/Actions'
 import GridChart from './_components/GridChart'
 import { NewsletterForm } from './_components/NewsletterForm'
+import Slide from './_components/Slide'
 import TotalVsTarget from './_components/TotalVsTarget'
 import './slick.css'
 
@@ -17,9 +18,15 @@ export default function Fin() {
       <NorthStarBanner type="learned" />
       <Title title={'Votre bilan climat personnel'} />
       <Slider dots={true} infinite={true} className="mx-16 mb-4">
-        <Actions />
-        <TotalVsTarget />
-        <GridChart />
+        <Slide>
+          <Actions />
+        </Slide>
+        <Slide noMargin>
+          <TotalVsTarget />
+        </Slide>
+        <Slide>
+          <GridChart />
+        </Slide>
       </Slider>
       <NewsletterForm />
     </FormProvider>

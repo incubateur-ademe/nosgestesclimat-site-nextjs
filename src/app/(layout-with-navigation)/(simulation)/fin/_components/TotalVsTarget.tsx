@@ -25,7 +25,7 @@ export default function TotalVsTarget() {
 
   return (
     <div
-      className="rounded-lg bg-primaryLight px-36 py-12"
+      className="h-full px-36 py-12"
       style={{
         background: `linear-gradient(
       180deg,
