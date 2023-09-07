@@ -3,9 +3,9 @@
 import Link from '@/components/Link'
 import TransClient from '@/components/translation/TransClient'
 import Title from '@/design-system/layout/Title'
-import { useEngine } from '@/publicodes-state'
+import { useTempEngine } from '@/publicodes-state'
 import { utils } from 'publicodes'
-import getActions from '../(layout-with-form-provider)/actions/_helpers/getActions'
+import getActions from '../actions/_helpers/getActions'
 
 const appURL =
   process.env.NODE_ENV === 'development'
@@ -54,7 +54,7 @@ export default function PlanDuSite() {
 	})
   */
 
-  const { rules, getRuleObject } = useEngine()
+  const { rules, getRuleObject } = useTempEngine()
 
   const actions = getActions({
     rules,

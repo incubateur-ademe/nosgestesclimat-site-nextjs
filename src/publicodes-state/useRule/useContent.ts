@@ -5,10 +5,10 @@ import { useMemo } from 'react'
 type Props = {
   dottedName: string
   rule: any
-  everyMosaicChildWhoIsReallyInMosaic: string[]
+  safeGetRule: any
 }
 
-export default function useContent({ dottedName, rule }: Props) {
+export default function useContent({ dottedName, rule, safeGetRule }: Props) {
   const category = useMemo(() => dottedName.split(' . ')[0], [dottedName])
 
   const title = useMemo(() => rule.title, [rule])
@@ -17,7 +17,10 @@ export default function useContent({ dottedName, rule }: Props) {
   const description = useMemo(() => rule.rawNode.description, [rule])
   const icons = useMemo(() => rule.rawNode['icônes'], [rule])
   const unit = useMemo(() => rule.rawNode['unité'], [rule])
-  const color = useMemo(() => rule.rawNode['couleur'], [rule])
+  const color = useMemo(
+    () => safeGetRule(category).rawNode['couleur'],
+    [category, safeGetRule]
+  )
   const assistance = useMemo(() => rule.rawNode['aide'], [rule])
   const isInactive = useMemo(() => rule.rawNode['inactif'] === 'oui', [rule])
 

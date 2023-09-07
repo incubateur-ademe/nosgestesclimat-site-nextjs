@@ -25,6 +25,9 @@ export default function useRule(dottedName = '') {
   )
   const rule = useMemo(() => safeGetRule(dottedName), [dottedName, safeGetRule])
 
+  if (!rule.rawNode) {
+    console.log(dottedName)
+  }
   const { type, getType } = useType({
     dottedName,
     rule,
@@ -51,7 +54,7 @@ export default function useRule(dottedName = '') {
   } = useContent({
     dottedName,
     rule,
-    everyMosaicChildWhoIsReallyInMosaic,
+    safeGetRule,
   })
 
   const choices = useChoices({ rule, type })

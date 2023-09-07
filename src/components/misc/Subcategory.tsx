@@ -1,6 +1,5 @@
-import { useRule } from '@/publicodes-state'
-
 import BarChartItem from '@/components/misc/BarChartItem'
+import { useRule } from '@/publicodes-state'
 
 type Props = {
   subcategory: string
