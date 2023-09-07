@@ -1,4 +1,5 @@
 export { default as SimulationProvider } from './simulationProvider'
+export { default as useActions } from './useActions'
 export { default as useForm } from './useForm'
 export { default as useRule } from './useRule'
 

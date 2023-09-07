@@ -10,7 +10,6 @@ export default function GridChart() {
 
   const numberOfSquares = 100
   const valueOfEachSquare = total / numberOfSquares
-  console.log(valueOfEachSquare)
   const { subcategories } = useForm()
 
   const { getValue, checkIfValid } = useEngine()
@@ -45,7 +44,7 @@ export default function GridChart() {
   )
 
   return (
-    <div className="p-12 bg-primaryLight rounded-lg">
+    <div className="rounded-lg bg-primaryLight p-12">
       <h3 className="text-center text-xl">
         <TransClient>De quoi est faite mon empreinte&nbsp;?</TransClient>
       </h3>
