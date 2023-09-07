@@ -8,7 +8,7 @@ import Card from '@/design-system/layout/Card'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useRule, useUser } from '@/publicodes-state'
+import { useEngine, useRule, useTempEngine, useUser } from '@/publicodes-state'
 import FormProvider from '@/publicodes-state/formProvider'
 import { NGCRuleNode } from '@/types/model'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -31,7 +31,8 @@ export default function ActionDetailPage({
 
   const { t } = useClientTranslation()
 
-  const { rules, getValue, getRuleObject } = useEngine()
+  const { getValue } = useEngine()
+  const { rules, getRuleObject } = useTempEngine()
 
   const { actionChoices, toggleActionChoice } = useUser()
 

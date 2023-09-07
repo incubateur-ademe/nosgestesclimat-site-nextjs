@@ -1,9 +1,8 @@
 'use client'
 
-<<<<<<<< HEAD:src/app/(layout-with-navigation)/(simulation)/simulateur/[root]/page.tsx
-========
 import Total from '@/components/total/Total'
->>>>>>>> main:src/app/(layout-with-navigation)/(simulation)/(layout-with-form-provider)/simulateur/[root]/page.tsx
+import TransClient from '@/components/translation/TransClient'
+import { orderedCategories } from '@/constants/orderedCategories'
 import Title from '@/design-system/layout/Title'
 import FormProvider from '@/publicodes-state/formProvider'
 import { useState } from 'react'
@@ -19,16 +18,8 @@ export default function Simulateur({ params }: Props) {
     setIsQuestionListOpen((prevIsQuestionListOpen) => !prevIsQuestionListOpen)
 
   return (
-    <FormProvider
-      root={params.root}
-      categoryOrder={[
-        'transport',
-        'alimentation',
-        'logement',
-        'divers',
-        'services sociétaux',
-      ]}>
-      <Title title={'Votre bilan climat personnel'} />
+    <FormProvider root={params.root} categoryOrder={orderedCategories}>
+      <Title title={<TransClient>Votre bilan climat personnel</TransClient>} />
       <Total toggleQuestionList={toggleQuestionList} />
       {isQuestionListOpen ? (
         <Summary toggleQuestionList={toggleQuestionList} />

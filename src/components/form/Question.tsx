@@ -1,10 +1,10 @@
-import Assistance from '@/components/question/Assistance'
-import BooleanInput from '@/components/question/BooleanInput'
-import ChoicesInput from '@/components/question/ChoicesInput'
-import Label from '@/components/question/Label'
-import Mosaic from '@/components/question/Mosaic'
-import NumberInput from '@/components/question/NumberInput'
-import Suggestions from '@/components/question/Suggestions'
+import Assistance from '@/components/form/question/Assistance'
+import BooleanInput from '@/components/form/question/BooleanInput'
+import ChoicesInput from '@/components/form/question/ChoicesInput'
+import Label from '@/components/form/question/Label'
+import Mosaic from '@/components/form/question/Mosaic'
+import NumberInput from '@/components/form/question/NumberInput'
+import Suggestions from '@/components/form/question/Suggestions'
 import { useRule } from '@/publicodes-state'
 
 type Props = {

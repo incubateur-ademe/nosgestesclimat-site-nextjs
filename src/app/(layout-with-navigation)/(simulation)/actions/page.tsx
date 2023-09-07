@@ -1,6 +1,6 @@
 'use client'
 
-import { useEngine, useForm, useUser } from '@/publicodes-state'
+import { useForm, useTempEngine, useUser } from '@/publicodes-state'
 
 import { useState } from 'react'
 import ActionsTutorial from './_components/ActionsTutorial'
@@ -24,7 +24,7 @@ export default function ActionsPage({
   const { progression } = useForm()
 
   const { tutorials, actionChoices } = useUser()
-  const { rules, getRuleObject } = useEngine()
+  const { rules, getRuleObject } = useTempEngine()
 
   const actions = getActions({
     metric,

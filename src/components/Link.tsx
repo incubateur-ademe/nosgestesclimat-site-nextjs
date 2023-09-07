@@ -34,12 +34,8 @@ export default function Link({
       onClick={onClick}
       title={title}
       target={target}
-<<<<<<< HEAD
-      prefetch={true}>
-=======
       prefetch={true}
       {...props}>
->>>>>>> main
       {children}
     </NextLink>
   )

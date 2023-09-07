@@ -1,20 +1,13 @@
-import { useForm, useRule } from '@/publicodes-state'
-import { useRouter } from 'next/navigation'
-
 import TransClient from '@/components/translation/TransClient'
 import Button from '@/design-system/inputs/Button'
+import { useForm, useRule } from '@/publicodes-state'
 
 type Props = {
   question: string
-  shouldDisableRouter?: boolean
   onComplete?: () => void
 }
 
-export default function Navigation({
-  question,
-  shouldDisableRouter = false,
-  onComplete,
-}: Props) {
+export default function Navigation({ question, onComplete = () => '' }: Props) {
   const {
     gotoPrevQuestion,
     gotoNextQuestion,
@@ -27,7 +20,6 @@ export default function Navigation({
   } = useForm()
   const { isMissing, setDefaultAsValue } = useRule(question)
 
-  const router = useRouter()
   return (
     <div className="flex justify-end  gap-4">
       {!(noPrevQuestion && noPrevCategory) ? (
@@ -62,13 +54,7 @@ export default function Navigation({
             return
           }
 
-          if (onComplete) {
-            onComplete()
-          }
-
-          if (!shouldDisableRouter) {
-            router.push('/fin')
-          }
+          onComplete()
         }}>
         <TransClient>
           {noNextQuestion

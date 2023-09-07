@@ -7,7 +7,7 @@ import {
 } from '@/constants/matomo'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useForm, useRule, useUser } from '@/publicodes-state'
+import { useForm, useRule, useTempEngine, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Image from 'next/image'
@@ -31,7 +31,7 @@ export default function ActionCard({
 }: Props) {
   const { t } = useClientTranslation()
 
-  const { rules } = useEngine()
+  const { rules } = useTempEngine()
 
   const { categories } = useForm()
 

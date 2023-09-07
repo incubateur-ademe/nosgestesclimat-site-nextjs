@@ -1,8 +1,8 @@
 import { useRule } from '@/publicodes-state'
 import { useState } from 'react'
 
-import Label from '@/components/question/Label'
-import NumberInput from '@/components/question/NumberInput'
+import Label from '@/components/form/question/Label'
+import NumberInput from '@/components/form/question/NumberInput'
 
 type Props = {
   question: string
@@ -26,7 +26,7 @@ export default function Assistance({ question, assistance }: Props) {
   const [inputValue, setInputValue] = useState(0)
 
   return (
-    <div className="mb-2 w-2/3 bg-white p-4 rounded-lg">
+    <div className="mb-2 w-2/3 rounded-lg bg-white p-4">
       <Label size="sm" label={label} description={description} />
       {type === 'number' && (
         <NumberInput

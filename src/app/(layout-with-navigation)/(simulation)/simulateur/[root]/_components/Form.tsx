@@ -1,10 +1,11 @@
 import { useForm } from '@/publicodes-state'
 import { useEffect, useMemo, useRef } from 'react'
 
+import Navigation from '@/components/form/Navigation'
+import Question from '@/components/form/Question'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
+import { useRouter } from 'next/navigation'
 import CategoryIntroduction from './form/CategoryIntroduction'
-import Navigation from './form/Navigation'
-import Question from './form/Question'
 
 export default function Form() {
   const {
@@ -20,6 +21,8 @@ export default function Form() {
     () => (currentQuestion && currentCategory ? true : false),
     [currentQuestion, currentCategory]
   )
+
+  const router = useRouter()
 
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()
@@ -76,7 +79,10 @@ export default function Form() {
   return currentQuestion ? (
     <div className="mb-4 rounded-lg bg-primaryLight p-4">
       <Question question={currentQuestion} key={currentQuestion} />
-      <Navigation question={currentQuestion} />
+      <Navigation
+        question={currentQuestion}
+        onComplete={() => router.push('/fin')}
+      />
     </div>
   ) : (
     <CategoryIntroduction

@@ -1,5 +1,5 @@
-import Navigation from '@/app/(layout-with-navigation)/(simulation)/(layout-with-form-provider)/simulateur/[root]/_components/form/Navigation'
-import Question from '@/app/(layout-with-navigation)/(simulation)/(layout-with-form-provider)/simulateur/[root]/_components/form/Question'
+import Navigation from '@/components/form/Navigation'
+import Question from '@/components/form/Question'
 import { useForm } from '@/publicodes-state'
 import { useEffect } from 'react'
 
@@ -39,11 +39,7 @@ export default function ActionForm({ category, onComplete }: Props) {
   return (
     <div className="mb-4 rounded-lg bg-primaryLight p-4 text-left">
       <Question question={currentQuestion} key={currentQuestion} />
-      <Navigation
-        shouldDisableRouter
-        question={currentQuestion}
-        onComplete={onComplete}
-      />
+      <Navigation question={currentQuestion} onComplete={onComplete} />
     </div>
   )
 }
