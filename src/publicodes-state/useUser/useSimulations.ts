@@ -72,6 +72,17 @@ export default function useSimulations({
     setSimulations(updatedSimulations)
   }
 
+  const getCurrentSimulation = () =>
+    simulations.find((simulation: any) => simulation.id === currentSimulationId)
+
+  const deleteSimulation = (deletedSimulationId: string) => {
+    setSimulations((prevSimulations: any) =>
+      [...prevSimulations].filter(
+        (simulation: Simulation) => simulation.id !== deletedSimulationId
+      )
+    )
+  }
+
   return {
     simulations,
     currentSimulation: simulations.find(
@@ -81,5 +92,7 @@ export default function useSimulations({
     updateSituationOfCurrentSimulation,
     updateCurrentSimulationActionChoices,
     initSimulation,
+    deleteSimulation,
+    getCurrentSimulation,
   }
 }
