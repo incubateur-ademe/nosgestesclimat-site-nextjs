@@ -19,7 +19,9 @@ export default function NorthStarBanner({
 
   const { progression } = useForm()
 
-  const { actionChoices } = useUser()
+  const { getCurrentSimulation } = useUser()
+
+  const { actionChoices } = getCurrentSimulation()
 
   const actionChoicesLength = Object.values(actionChoices || {}).filter(
     (value) => value

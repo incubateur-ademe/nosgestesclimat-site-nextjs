@@ -7,7 +7,9 @@ import { useUser } from '@/publicodes-state'
 export default function ActionsChosenIndicator() {
   const { t } = useClientTranslation()
 
-  const { actionChoices } = useUser()
+  const { getCurrentSimulation } = useUser()
+
+  const { actionChoices } = getCurrentSimulation()
 
   const count = Object.values(actionChoices).filter((a) => a === true).length
 

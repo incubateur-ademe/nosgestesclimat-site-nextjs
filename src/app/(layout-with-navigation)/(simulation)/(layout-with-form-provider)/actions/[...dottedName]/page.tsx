@@ -33,7 +33,9 @@ export default function ActionDetailPage({
 
   const { rules, getValue, getRuleObject } = useEngine()
 
-  const { actionChoices, toggleActionChoice } = useUser()
+  const { getCurrentSimulation, toggleActionChoice } = useUser()
+
+  const { actionChoices } = getCurrentSimulation()
 
   const dottedName = decodeRuleName(formattedDottedName ?? '')
 

@@ -23,7 +23,10 @@ export default function ActionsPage({
 
   const { progression } = useForm()
 
-  const { tutorials, actionChoices } = useUser()
+  const { tutorials, getCurrentSimulation } = useUser()
+
+  const { actionChoices } = getCurrentSimulation()
+
   const { rules, getRuleObject } = useEngine()
 
   const actions = getActions({
