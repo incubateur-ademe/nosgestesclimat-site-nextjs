@@ -18,7 +18,8 @@
     "tsconfigRootDir": "."
   },
   "globals": {
-    "React": "writable"
+    "React": "writable",
+    "NodeJS": "writable"
   },
   "rules": {
     "react/no-unescaped-entities": "off",

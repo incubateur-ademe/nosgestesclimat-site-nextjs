@@ -1,7 +1,7 @@
+import Link from '@/components/Link'
 import { NGCRules } from '@/types/model'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Fuse from 'fuse.js'
-import Link from 'next/link'
 import highlightMatches from '../_helpers/highlightMatches'
 import { Matches, SearchItem } from './SearchBar'
 

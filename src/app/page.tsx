@@ -1,7 +1,7 @@
 import NewsBanner from './_components/NewsBanner'
 
 import republiqueFr from '@/assets/images/marianne.svg'
-import Logo from '@/components/Logo'
+import Logo from '@/components/misc/Logo'
 import TransServer from '@/components/translation/TransServer'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'

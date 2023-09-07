@@ -7,7 +7,8 @@ import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
 import useEngine from '@/publicodes-state/simulationProvider/useEngine'
 import Head from 'next/head'
-import Link from 'next/link'
+
+import Link from '@/components/Link'
 import { RulePage } from 'publicodes-react'
 import References from './References'
 

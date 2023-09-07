@@ -62,6 +62,15 @@ const nextConfig = {
       }),
     }
   },
+  async redirects() {
+    return [
+      {
+        source: '/actions/liste',
+        destination: '/actions',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = withMDX(nextConfig)

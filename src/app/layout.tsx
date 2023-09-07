@@ -8,11 +8,10 @@ import './globals.css'
 
 import Footer from '@/components/layout/Footer'
 
-import { UserProvider } from '@/publicodes-state'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import { PropsWithChildren } from 'react'
-import QueryClientProviderWrapper from './_components/QueryClientProviderWrapper'
+import Providers from './(layout-with-navigation)/_components/Providers'
 
 const marianne = localFont({
   src: [
@@ -157,10 +156,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
         */}
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
-        <QueryClientProviderWrapper>
-          <UserProvider initialRegion={region}>{children}</UserProvider>
-        </QueryClientProviderWrapper>
 
+        <Providers region={region}>{children}</Providers>
         <Footer />
       </body>
     </html>
