@@ -1,31 +1,48 @@
 'use client'
 
 import { GROUP_NAMES } from '@/constants/groupNames'
-import { GROUP_URL, NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
+import { GROUP_URL } from '@/constants/urls'
 
-import { useEngine, useUser } from '@/publicodes-state'
-import { Group } from '@/types/groups'
+import { useEngine, useTempEngine, useUser } from '@/publicodes-state'
 
 import TransClient from '@/components/translation/TransClient'
+import { matomoEventCreationGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useLocale } from '@/hooks/useLocale'
+import { useRules } from '@/hooks/useRules'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
+import { useMutation } from '@tanstack/react-query'
+import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { FormEvent, FormEventHandler, useState } from 'react'
 import { getSimulationResults } from '../_helpers/getSimulationResults'
+import { useGetGroups } from '../_hooks/useGetGroups'
 
-export default function CreerGroupe() {
-  const { user, getCurrentSimulation } = useUser()
+export default function CreerGroupePage() {
+  const { user, updateName, updateEmail, getCurrentSimulation } = useUser()
+
+  const currentSimulation = getCurrentSimulation()
+
+  const locale = useLocale()
 
   const { getValue } = useEngine()
 
-  const userId = user?.id
+  const { getRuleObject } = useTempEngine()
 
-  const { name, id, email: emailFromUserObject, groups } = user
+  const { data: groups } = useGetGroups(user?.id)
+
+  const { data: rules }: { data: any } = useRules({
+    region: user.region.code,
+    lang: locale || 'fr',
+  })
+
+  const { name, id: userId, email: emailFromUserObject } = user
 
   const [prenom, setPrenom] = useState(name || '')
   const [errorPrenom, setErrorPrenom] = useState('')
@@ -33,11 +50,30 @@ export default function CreerGroupe() {
   const [errorEmail, setErrorEmail] = useState('')
   const [fetching, setFetching] = useState(false)
 
+  const { mutateAsync: createGroup } = useMutation({
+    mutationFn: ({
+      groupNameObject,
+      results,
+    }: {
+      groupNameObject: { name: string; emoji: string }
+      results: any
+    }) =>
+      axios
+        .post(GROUP_URL + '/create', {
+          name: groupNameObject.name,
+          emoji: groupNameObject.emoji,
+          ownerEmail: email,
+          ownerName: prenom,
+          userId,
+          simulation: currentSimulation,
+          results,
+        })
+        .then((res) => res.data),
+  })
+
   const { t } = useClientTranslation()
 
   const router = useRouter()
-
-  const currentSimulation = getCurrentSimulation()
 
   const groupBaseURL = `${window.location.origin}/groupes`
 
@@ -74,37 +110,20 @@ export default function CreerGroupe() {
 
       const groupNameObject = GROUP_NAMES[groups.length % GROUP_NAMES.length]
 
-      const response = await fetch(GROUP_URL + '/create', {
-        method: 'POST',
-        body: JSON.stringify({
-          name: groupNameObject.name,
-          emoji: groupNameObject.emoji,
-          ownerEmail: email,
-          ownerName: prenom,
-          userId,
-          simulation: currentSimulation,
-          results,
-        }),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
-      const group: Group = await response.json()
+      const group = await createGroup({ groupNameObject, results })
 
-      if (!response.ok) {
-        setFetching(false)
-        throw new Error(JSON.stringify(group))
-      }
+      updateName(prenom)
+      updateEmail(email)
 
       dispatch(addGroupToUser(group))
-      dispatch(setUserNameAndEmail(prenom, email))
 
       // The user will be redirected to the test in order to take it
       if (!currentSimulation) {
         dispatch(setGroupToRedirectTo(group))
+
         setFetching(false)
-        navigate('/simulateur/bilan')
+
+        router.push('/simulateur/bilan')
         return
       }
 
@@ -112,23 +131,23 @@ export default function CreerGroupe() {
 
       // Send email to owner
       if (email) {
-        await fetch(`${NETLIFY_FUNCTIONS_URL}/group-email-service`, {
-          method: 'POST',
-          body: JSON.stringify({
-            email,
-            name: prenom,
-            groupName: group.name,
-            isCreation: true,
-            groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
-            shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
-            deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${userId}&mtm_campaign=invitation-groupe-email`,
-          }),
+        await axios.post('/api/send-email-group', {
+          email,
+          name: prenom,
+          groupName: group.name,
+          isCreation: true,
+          groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
+          shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
+          deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${userId}&mtm_campaign=invitation-groupe-email`,
         })
       }
+
       setFetching(false)
+
       router.push(`/groupes/resultats?groupId=${group._id}`)
     } catch (e) {
       setFetching(false)
+
       captureException(e)
     }
   }
@@ -145,6 +164,7 @@ export default function CreerGroupe() {
         <AutoCanonicalTag />
 				 */}
         <GoBackLink className="mb-4 font-bold" />
+
         <Title
           title={t("Créer un groupe d'amis")}
           subtitle={t(
@@ -159,12 +179,14 @@ export default function CreerGroupe() {
             setErrorPrenom={setErrorPrenom}
             data-cypress-id="group-input-owner-name"
           />
+
           <EmailInput
             email={email}
             setEmail={setEmail}
             errorEmail={errorEmail}
             setErrorEmail={setErrorEmail}
           />
+
           <Button
             type="submit"
             data-cypress-id="button-create-group"

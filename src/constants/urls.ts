@@ -20,5 +20,5 @@ export const SIMULATION_URL = SERVER_URL + '/simulation/'
 
 export const GROUP_URL =
   (process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
+    ? 'http://localhost:3001'
     : SERVER_URL) + '/group'
