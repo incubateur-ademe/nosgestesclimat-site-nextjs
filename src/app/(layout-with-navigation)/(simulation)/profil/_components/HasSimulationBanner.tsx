@@ -15,7 +15,9 @@ export default function HasSimulationBanner() {
 
   const { progression, remainingQuestions, relevantQuestions } = useForm()
 
-  const { actionChoices } = useUser()
+  const { getCurrentSimulation } = useUser()
+
+  const { actionChoices } = getCurrentSimulation()
 
   const percentFinished = Math.round(progression * 100)
 

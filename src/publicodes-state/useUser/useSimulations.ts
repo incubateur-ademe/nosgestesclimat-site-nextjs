@@ -59,6 +59,19 @@ export default function useSimulations({
     }
   }
 
+  const updateCurrentSimulationActionChoices = (actionChoices: any) => {
+    const updatedSimulations = simulations.map((simulation) => {
+      if (simulation.id === currentSimulationId) {
+        return {
+          ...simulation,
+          actionChoices,
+        }
+      }
+      return simulation
+    })
+    setSimulations(updatedSimulations)
+  }
+
   return {
     simulations,
     currentSimulation: simulations.find(
@@ -66,6 +79,7 @@ export default function useSimulations({
     ),
     currentSimulationId,
     updateSituationOfCurrentSimulation,
+    updateCurrentSimulationActionChoices,
     initSimulation,
   }
 }

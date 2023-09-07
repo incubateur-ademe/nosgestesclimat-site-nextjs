@@ -3,7 +3,6 @@
 import { PropsWithChildren } from 'react'
 
 import SimulationContext from './context'
-import useActionChoices from './useActionChoices'
 import useEngine from './useEngine'
 import useRules from './useRules'
 import useSituation from './useSituation'
@@ -39,9 +38,6 @@ export default function SimulationProvider({
     everyMosaicChildWhoIsReallyInMosaic,
   } = useRules({ engine })
 
-  const { actionChoices, toggleActionChoice, setActionChoiceValue } =
-    useActionChoices()
-
   return (
     <SimulationContext.Provider
       value={{
@@ -55,9 +51,6 @@ export default function SimulationProvider({
         everyMosaic,
         everyNotifications,
         everyMosaicChildWhoIsReallyInMosaic,
-        actionChoices,
-        toggleActionChoice,
-        setActionChoiceValue,
       }}>
       {children}
     </SimulationContext.Provider>

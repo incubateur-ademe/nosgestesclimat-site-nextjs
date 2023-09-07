@@ -35,7 +35,9 @@ export default function ActionCard({
 
   const { categories } = useForm()
 
-  const { actionChoices, toggleActionChoice, setActionChoiceValue } = useUser()
+  const { getCurrentSimulation, toggleActionChoice, rejectAction } = useUser()
+
+  const { actionChoices } = getCurrentSimulation()
 
   const { nodeValue, dottedName, title, missingVariables, traversedVariables } =
     action
@@ -142,7 +144,7 @@ export default function ActionCard({
           <button
             title={t("Choisir l'action")}
             type="button"
-            aria-pressed={actionChoices[dottedName]}
+            aria-pressed={actionChoices?.[dottedName]}
             className={hasRemainingQuestions ? 'grayscale' : ''}
             onClick={() => {
               if (isDisabled) return
@@ -168,10 +170,7 @@ export default function ActionCard({
             title={t("Rejeter l'action")}
             onClick={(e) => {
               if (isDisabled) return
-              setActionChoiceValue(
-                dottedName,
-                actionChoices[dottedName] === false ? null : false
-              )
+              rejectAction(dottedName)
               trackEvent(getMatomoEventActionRejected(dottedName, nodeValue))
               e.stopPropagation()
               e.preventDefault()

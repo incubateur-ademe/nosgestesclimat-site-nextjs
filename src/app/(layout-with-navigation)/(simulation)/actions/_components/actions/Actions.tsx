@@ -40,7 +40,9 @@ export default function Actions({
     [1, t("plus d'1 kg")],
   ]
 
-  const { actionChoices } = useUser()
+  const { getCurrentSimulation } = useUser()
+
+  const { actionChoices } = getCurrentSimulation()
 
   const actions = rawActions.map((a: any) => ({
     ...a,

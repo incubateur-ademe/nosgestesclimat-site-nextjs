@@ -20,7 +20,9 @@ export default function ActionList({
   focusedAction,
   setFocusedAction,
 }: Props) {
-  const { toggleActionChoice, actionChoices } = useUser()
+  const { toggleActionChoice, getCurrentSimulation } = useUser()
+
+  const { actionChoices } = getCurrentSimulation()
 
   return (
     <ul className="flex list-none flex-wrap items-center justify-center p-0">
