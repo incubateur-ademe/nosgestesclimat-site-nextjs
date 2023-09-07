@@ -22,7 +22,7 @@ export default function Category({ category, total, position }: Props) {
   if (percent < 5) return
   return (
     <div
-      className={`relative flex w-full justify-center items-center border-white border-ltransition-all ${positionClassNames[position]}`}
+      className={`relative flex w-full justify-center items-center border-black border-ltransition-all ${positionClassNames[position]}`}
       style={{ height: `${percent}%`, backgroundColor: color }}>
       <Image
         style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}

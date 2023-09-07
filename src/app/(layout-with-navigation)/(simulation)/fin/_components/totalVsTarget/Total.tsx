@@ -14,7 +14,7 @@ export default function Total({ total }: Props) {
     <div className="relative w-28 h-full">
       <Annotation content="Mon empreinte carbone" />
       <NumberDisplay number={total} />
-      <div className="flex flex-col h-full rounded-t overflow-hidden">
+      <div className="flex flex-col h-full rounded-t border-2 border-black overflow-hidden">
         {categories.map((category: string, index: number) => (
           <Category
             key={category}
