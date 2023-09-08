@@ -1,134 +1,107 @@
-import { removeGroupFromUser } from '@/actions/actions'
-import Button from '@/components/groupe/Button'
-import Title from '@/components/groupe/Title'
-import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
+import TransClient from '@/components/translation/TransClient'
 import { GROUP_URL } from '@/constants/urls'
-import { Group } from '@/types/groups'
+import Button from '@/design-system/inputs/Button'
+import Title from '@/design-system/layout/Title'
+import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
+import { Member } from '@/types/groups'
 import { captureException } from '@sentry/react'
-import { useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
-import { Navigate, useNavigate, useSearchParams } from 'react-router-dom'
+import { useMutation } from '@tanstack/react-query'
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
+import { useTranslation } from 'react-i18next'
+import { useFetchGroup } from '../_hooks/useFetchGroup'
 
-export default function SupprimerDonnees() {
-	const [hasDeleted, setHasDeleted] = useState(false)
-	const [shouldRedirect, setShouldRedirect] = useState(false)
-	const [group, setGroup] = useState<Group>()
-	const [errorGroup, setErrorGroup] = useState('')
+export default function SupprimerGroupePage({
+  searchParams,
+}: {
+  searchParams: { groupId: string; userId: string }
+}) {
+  const router = useRouter()
 
-	const dispatch = useDispatch()
+  const { groupId, userId } = searchParams
 
-	const navigate = useNavigate()
+  const { data: group, refetch: refetchGroup, isError } = useFetchGroup(groupId)
 
-	const [searchParams] = useSearchParams()
+  const { mutateAsync: deleteUserOrGroupIfOwner, isSuccess } = useMutation({
+    mutationFn: () =>
+      axios.post(`${GROUP_URL}/delete`, {
+        groupId,
+        userId,
+      }),
+  })
 
-	const groupId = searchParams.get('groupId')
-	const userId = searchParams.get('userId')
+  const { t } = useTranslation()
 
-	const { t } = useTranslation()
+  const handleDelete = async () => {
+    if (!group) return
 
-	const handleDelete = async () => {
-		if (!group) return
-		try {
-			await fetch(`${GROUP_URL}/delete`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					groupId,
-					userId,
-				}),
-			})
+    try {
+      await deleteUserOrGroupIfOwner()
 
-			dispatch(removeGroupFromUser(group))
+      // Refresh cache
+      refetchGroup()
+    } catch (error) {
+      captureException(error)
+    }
+  }
 
-			setHasDeleted(true)
-		} catch (error) {
-			captureException(error)
-		}
-	}
+  const isOwner = group?.owner?.userId === userId
 
-	useEffect(() => {
-		// Redirect to landing if no groupId or userId
-		if (!groupId || !userId) {
-			setShouldRedirect(true)
-			return
-		}
+  if (
+    !groupId ||
+    !userId ||
+    (group &&
+      group?.members.findIndex((member: Member) => member.userId === userId) <
+        0)
+  ) {
+    router.push('/')
+    return
+  }
 
-		const handleFetchGroup = async () => {
-			try {
-				const response = await fetch(`${GROUP_URL}/${groupId}`)
+  if (!groupId) {
+    router.push('/groupes')
+    return
+  }
 
-				if (!response.ok) {
-					throw new Error('Error while fetching group')
-				}
+  return (
+    <main className="p-4 md:p-8">
+      <AutoCanonicalTag />
 
-				const groupFetched: Group = await response.json()
+      <Title title={t('Supprimer mes données')} />
 
-				// Redirect to landing if user is not in group
-				if (
-					groupFetched.members.findIndex((member) => member.userId === userId) <
-					0
-				) {
-					setShouldRedirect(true)
-					return
-				}
+      {isSuccess && <TransClient>Données supprimées.</TransClient>}
 
-				setGroup(groupFetched)
-			} catch (error) {
-				setErrorGroup(
-					t(
-						"Oups, une erreur s'est produite au moment de récupérer les données du groupe."
-					)
-				)
-			}
-		}
+      {!isSuccess && (
+        <p className="my-4">
+          {isOwner ? (
+            <TransClient>
+              Supprimer votre groupe <strong>{group?.name}</strong> ? Les
+              données sauvegardées seront supprimées pour tous les membres du
+              groupe. Cette action est irréversible.
+            </TransClient>
+          ) : (
+            <TransClient>
+              Supprimer vos données de groupe enregistrées ? Seules vos données
+              de membre seront supprimées. Cette action est irréversible.
+            </TransClient>
+          )}
+        </p>
+      )}
 
-		// Verify group and user existence
-		handleFetchGroup()
-	}, [groupId, userId, t])
+      {isError && (
+        <p className="mt-4 text-red-600">
+          <TransClient>
+            Oups, une erreur s'est produite au moment de récupérer les données
+            du groupe.
+          </TransClient>
+        </p>
+      )}
 
-	const isOwner = group?.owner?.userId === userId
-
-	if (shouldRedirect) {
-		navigate('/')
-	}
-
-	if (!groupId) {
-		return <Navigate to="/groupes" />
-	}
-
-	return (
-		<main className="p-4 md:p-8">
-			<AutoCanonicalTag />
-			<Title title={t('Supprimer mes données')} />
-			{hasDeleted && <Trans>Données supprimées.</Trans>}
-			{!hasDeleted && (
-				<p className="my-4">
-					{isOwner ? (
-						<Trans>
-							Supprimer votre groupe <strong>{group?.name}</strong> ? Les
-							données sauvegardées seront supprimées pour tous les membres du
-							groupe. Cette action est irréversible.
-						</Trans>
-					) : (
-						<Trans>
-							Supprimer vos données de groupe enregistrées ? Seules vos données
-							de membre seront supprimées. Cette action est irréversible.
-						</Trans>
-					)}
-				</p>
-			)}
-
-			{errorGroup && <p className="text-red-600 mt-4">{errorGroup}</p>}
-
-			<Button
-				disabled={!!errorGroup || !group || hasDeleted}
-				onClick={handleDelete}
-			>
-				<Trans>Supprimer mes données</Trans>
-			</Button>
-		</main>
-	)
+      <Button
+        disabled={!!isError || !group || isSuccess}
+        onClick={handleDelete}>
+        <TransClient>Supprimer mes données</TransClient>
+      </Button>
+    </main>
+  )
 }
