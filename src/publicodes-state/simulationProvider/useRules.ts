@@ -5,6 +5,12 @@ type Props = {
 }
 
 export default function useRules({ engine }: Props) {
+  const everyRules = useMemo<string[]>(
+    () => Object.entries(engine.getParsedRules()).map((rule: any) => rule[0]),
+
+    [engine]
+  )
+
   const everyQuestions = useMemo<string[]>(
     () =>
       Object.entries(engine.getParsedRules())
@@ -58,6 +64,7 @@ export default function useRules({ engine }: Props) {
   )
 
   return {
+    everyRules,
     everyQuestions,
     everyMosaic,
     everyNotifications,

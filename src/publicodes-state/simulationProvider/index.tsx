@@ -23,20 +23,22 @@ export default function SimulationProvider({
 }: PropsWithChildren<Props>) {
   const { engine, safeEvaluate, safeGetRule } = useEngine(rules)
 
-  const { situation, updateSituation } = useSituation({
-    engine,
-    safeEvaluate,
-    defaultSituation,
-    externalSituation,
-    updateExternalSituation,
-  })
-
   const {
+    everyRules,
     everyQuestions,
     everyMosaic,
     everyNotifications,
     everyMosaicChildWhoIsReallyInMosaic,
   } = useRules({ engine })
+
+  const { situation, updateSituation } = useSituation({
+    engine,
+    everyRules,
+    safeEvaluate,
+    defaultSituation,
+    externalSituation,
+    updateExternalSituation,
+  })
 
   return (
     <SimulationContext.Provider
