@@ -1,6 +1,8 @@
+import { ActionChoices, Simulation } from '../types'
+
 type Props = {
-  getCurrentSimulation: any
-  updateCurrentSimulationActionChoices: any
+  getCurrentSimulation: () => Simulation | undefined
+  updateCurrentSimulationActionChoices: (actionChoices: ActionChoices) => void
 }
 export default function useActions({
   getCurrentSimulation,
@@ -34,7 +36,7 @@ export default function useActions({
     const currentSimulation = getCurrentSimulation()
 
     updateCurrentSimulationActionChoices({
-      ...currentSimulation.actionChoices,
+      ...currentSimulation?.actionChoices,
       [actionChoiceDottedName]: false,
     })
   }

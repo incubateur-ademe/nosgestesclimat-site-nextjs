@@ -5,11 +5,13 @@ type Props = {
   questionsByCategories: {
     [key: string]: string[]
   }
-  currentQuestion: string
-  currentCategory: string
-  setCurrentQuestion: any
-  setCurrentCategory: any
-  remainingQuestionsByCategories: any
+  currentQuestion: string | null
+  currentCategory: string | null
+  setCurrentQuestion: (question: string | null) => void
+  setCurrentCategory: (question: string | null) => void
+  remainingQuestionsByCategories: {
+    [key: string]: string[]
+  }
 }
 
 export default function useNavigation({
@@ -20,38 +22,43 @@ export default function useNavigation({
   setCurrentQuestion,
   setCurrentCategory,
 }: Props) {
-  const currentQuestionIndex = useMemo(
-    () => questionsByCategories?.[currentCategory]?.indexOf(currentQuestion),
+  const currentQuestionIndex = useMemo<number>(
+    () =>
+      currentCategory && currentQuestion
+        ? questionsByCategories?.[currentCategory]?.indexOf(currentQuestion)
+        : 0,
     [questionsByCategories, currentQuestion, currentCategory]
   )
 
-  const currentCategoryIndex = useMemo(
-    () => categories?.indexOf(currentCategory),
+  const currentCategoryIndex = useMemo<number>(
+    () => (currentCategory ? categories?.indexOf(currentCategory) : 0),
     [categories, currentCategory]
   )
 
-  const noPrevQuestion = useMemo(
+  const noPrevQuestion = useMemo<boolean>(
     () => currentQuestionIndex === 0,
     [currentQuestionIndex]
   )
-  const noNextQuestion = useMemo(
+  const noNextQuestion = useMemo<boolean>(
     () =>
-      currentQuestionIndex ===
-      questionsByCategories?.[currentCategory]?.length - 1,
+      currentCategory
+        ? currentQuestionIndex ===
+          questionsByCategories?.[currentCategory]?.length - 1
+        : false,
     [questionsByCategories, currentQuestionIndex, currentCategory]
   )
 
-  const noPrevCategory = useMemo(
+  const noPrevCategory = useMemo<boolean>(
     () => currentCategoryIndex === 0,
     [currentCategoryIndex]
   )
-  const noNextCategory = useMemo(
+  const noNextCategory = useMemo<boolean>(
     () => currentCategoryIndex === categories?.length - 1,
     [currentCategoryIndex, categories]
   )
 
-  const gotoPrevQuestion = () => {
-    if (noPrevQuestion) return
+  const gotoPrevQuestion = (): string | undefined => {
+    if (noPrevQuestion || !currentCategory) return
 
     const newCurrentQuestion =
       questionsByCategories?.[currentCategory][currentQuestionIndex - 1]
@@ -59,8 +66,8 @@ export default function useNavigation({
     setCurrentQuestion(newCurrentQuestion)
     return newCurrentQuestion
   }
-  const gotoNextQuestion = () => {
-    if (noNextQuestion) return
+  const gotoNextQuestion = (): string | undefined => {
+    if (noNextQuestion || !currentCategory) return
 
     const newCurrentQuestion =
       questionsByCategories?.[currentCategory][currentQuestionIndex + 1]
@@ -69,7 +76,7 @@ export default function useNavigation({
     return newCurrentQuestion
   }
 
-  const gotoPrevCategory = () => {
+  const gotoPrevCategory = (): string | undefined => {
     if (noPrevCategory) return
 
     const newCurrentCategory = categories[currentCategoryIndex - 1]
@@ -83,7 +90,7 @@ export default function useNavigation({
 
     return newCurrentCategory
   }
-  const gotoNextCategory = () => {
+  const gotoNextCategory = (): string | undefined => {
     if (noNextCategory) return
 
     const newCurrentCategory = categories[currentCategoryIndex + 1]

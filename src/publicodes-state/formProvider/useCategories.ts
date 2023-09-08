@@ -1,9 +1,10 @@
 import { useMemo } from 'react'
+import { Engine, NGCEvaluatedNode } from '../types'
 
 type Props = {
-  engine: any
+  engine: Engine
   root: string
-  safeEvaluate: any
+  safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   order: string[] | null
 }
 
@@ -14,7 +15,7 @@ export default function useCategories({
   order,
 }: Props) {
   const missingVariables = useMemo(
-    () => Object.keys(safeEvaluate(root).missingVariables),
+    () => Object.keys(safeEvaluate(root)?.missingVariables || {}),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [engine]
   )
@@ -23,7 +24,7 @@ export default function useCategories({
     () =>
       missingVariables
         .reduce(
-          (accumulator: any, currentValue: string) =>
+          (accumulator: string[], currentValue: string) =>
             accumulator.includes(currentValue.split(' . ')[0])
               ? accumulator
               : [...accumulator, currentValue.split(' . ')[0]],
@@ -52,7 +53,7 @@ export default function useCategories({
                       : currentValue
                   )
                   ?.rawNode?.formule?.somme?.map(
-                    (rule: any) => currentValue + ' . ' + rule
+                    (rule: string) => currentValue + ' . ' + rule
                   ) || [],
         }),
         {}

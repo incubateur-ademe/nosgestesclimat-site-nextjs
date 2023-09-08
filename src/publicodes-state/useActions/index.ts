@@ -4,8 +4,12 @@ import { useContext, useMemo } from 'react'
 import { useEngine } from '..'
 import simulationContext from '../simulationProvider/context'
 
+type ActionObject = {
+  dottedName: string
+  value: number
+}
 export default function useActions() {
-  const { engine }: any = useContext(simulationContext)
+  const { engine } = useContext(simulationContext)
 
   const { getValue } = useEngine()
 
@@ -17,8 +21,10 @@ export default function useActions() {
           dottedName: action,
           value: getValue(action),
         }))
-        .sort((a: any, b: any) => (a.value > b.value ? -1 : 1))
-        .map((actionObject: any) => actionObject.dottedName),
+        .sort((a: ActionObject, b: ActionObject) =>
+          a.value > b.value ? -1 : 1
+        )
+        .map((actionObject: ActionObject) => actionObject.dottedName),
     [engine, getValue]
   )
 

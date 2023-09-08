@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { User } from '../types'
 
 type Props = {
   storageKey: string
@@ -8,9 +9,20 @@ export default function usePersistentUser({
   storageKey,
   initialRegion,
 }: Props) {
-  const [initialized, setInitialized] = useState(false)
+  const [initialized, setInitialized] = useState<boolean>(false)
 
-  const [user, setUser] = useState<any>({})
+  const [user, setUser] = useState<User>({
+    region: {
+      code: '',
+      name: '',
+    },
+    initialRegion: {
+      code: '',
+      name: '',
+    },
+    name: '',
+    email: '',
+  })
 
   useEffect(() => {
     setUser(

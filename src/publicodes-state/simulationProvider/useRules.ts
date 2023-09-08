@@ -1,12 +1,16 @@
+import Engine from 'publicodes'
 import { useMemo } from 'react'
 
 type Props = {
-  engine: any
+  engine: Engine
 }
 
 export default function useRules({ engine }: Props) {
   const everyRules = useMemo<string[]>(
-    () => Object.entries(engine.getParsedRules()).map((rule: any) => rule[0]),
+    () =>
+      Object.entries(engine.getParsedRules()).map(
+        (rule: (string | any)[]) => rule[0]
+      ),
 
     [engine]
   )
@@ -14,8 +18,8 @@ export default function useRules({ engine }: Props) {
   const everyQuestions = useMemo<string[]>(
     () =>
       Object.entries(engine.getParsedRules())
-        .filter((rule: any) => rule[1].rawNode.question)
-        .map((question: any) => question[0]),
+        .filter((rule: (string | any)[]) => rule[1].rawNode.question)
+        .map((question: (string | any)[]) => question[0]),
 
     [engine]
   )
@@ -23,7 +27,7 @@ export default function useRules({ engine }: Props) {
   const everyMosaic = useMemo<string[]>(
     () =>
       Object.entries(engine.getParsedRules())
-        .filter((rule: any) => rule[1].rawNode.mosaique)
+        .filter((rule: (string | any)[]) => rule[1].rawNode.mosaique)
         .map((question) => question[0]),
     [engine]
   )

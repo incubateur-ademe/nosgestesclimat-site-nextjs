@@ -1,39 +1,33 @@
 import { useEffect, useState } from 'react'
+import { Engine, NodeValue, Situation } from '../types'
 
 type Props = {
-  engine: any
-  everyRules: any
-  safeEvaluate: any
-  defaultSituation?: any
-  externalSituation: any
-  updateExternalSituation: any
+  engine: Engine
+  everyRules: string[]
+  defaultSituation?: Situation
+  externalSituation: Situation
+  updateExternalSituation: (situation: Situation) => void
 }
 export default function useSituation({
   engine,
   everyRules,
-  safeEvaluate,
   defaultSituation = {},
   externalSituation,
   updateExternalSituation,
 }: Props) {
   const [situation, setSituation] = useState(defaultSituation)
 
-  const updateSituation = (situationToAdd: any) => {
-    // console.log('update situation', situationToAdd)
-    const oldTotal = safeEvaluate('bilan').nodeValue
-
+  const updateSituation = (situationToAdd: Situation): Promise<void> => {
     const safeSitationToAdd = getSafeSituation({
       situation: situationToAdd,
       everyRules,
     })
-    console.log(situationToAdd, safeSitationToAdd)
     updateExternalSituation(safeSitationToAdd)
 
     // TODO: this is shit
     return new Promise((resolve) => {
       requestAnimationFrame(() => {
-        const newTotal = safeEvaluate('bilan').nodeValue
-        resolve({ oldTotal, newTotal })
+        resolve()
       })
     })
   }
@@ -44,7 +38,6 @@ export default function useSituation({
       situation: externalSituation,
       everyRules,
     })
-    console.log(safeSituation, externalSituation)
     engine.setSituation(safeSituation)
     setSituation(safeSituation)
   }, [externalSituation, engine, everyRules])
@@ -55,11 +48,17 @@ export default function useSituation({
   }
 }
 
-const getSafeSituation = ({ situation, everyRules }: any) =>
+const getSafeSituation = ({
+  situation,
+  everyRules,
+}: {
+  situation: Situation
+  everyRules: string[]
+}): Situation =>
   everyRules
     .filter((rule: string) => situation[rule])
     .reduce(
-      (accumulator: any, currentValue: any) => ({
+      (accumulator: { [key: string]: NodeValue }, currentValue: string) => ({
         ...accumulator,
         [currentValue]: situation[currentValue],
       }),

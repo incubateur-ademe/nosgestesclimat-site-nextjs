@@ -1,16 +1,19 @@
 'use client'
 
-import { Simulation } from '@/types/simulation'
-import { User } from '@/types/user'
 import { createContext } from 'react'
+import { Simulation, Tutorials, User } from '../types'
 
 type UserContextType = {
   user: User
-  setUser: (prevUser: User) => void
-  tutorials: object
-  setTutorials: (prevTutorials: object) => void
+  setUser: (user: User | ((prevUser: User) => void)) => void
+  tutorials: Tutorials
+  setTutorials: (
+    tutorials: Tutorials | ((prevTutorials: Tutorials) => void)
+  ) => void
   simulations: Simulation[]
-  setSimulations: (simulations: Simulation[]) => void
+  setSimulations: (
+    simulations: Simulation[] | ((prevSimulation: Simulation[]) => void)
+  ) => void
   currentSimulationId: string
   setCurrentSimulationId: (currentSimulationId: string) => void
 }

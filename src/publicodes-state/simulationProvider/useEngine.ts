@@ -1,14 +1,14 @@
-import { useMemo } from 'react'
-
 import Engine from 'publicodes'
+import { useMemo } from 'react'
+import { NGCEvaluatedNode, NGCRuleNode, Rules } from '../types'
 
-export default function useEngine(rules: any) {
+export default function useEngine(rules: Rules) {
   const engine = useMemo(() => new Engine(rules), [rules])
 
   // Todo: send errors to Sentry
-  const safeEvaluate = useMemo(
+  const safeEvaluate = useMemo<(rule: string) => NGCEvaluatedNode | null>(
     () => (rule: string) => {
-      let evaluation = {}
+      let evaluation = null
       try {
         evaluation = engine.evaluate(rule)
       } catch (error) {
@@ -18,9 +18,9 @@ export default function useEngine(rules: any) {
     },
     [engine]
   )
-  const safeGetRule = useMemo(
+  const safeGetRule = useMemo<(rule: string) => NGCRuleNode | null>(
     () => (rule: string) => {
-      let evaluation = {}
+      let evaluation = null
       try {
         evaluation = engine.getRule(rule)
       } catch (error) {

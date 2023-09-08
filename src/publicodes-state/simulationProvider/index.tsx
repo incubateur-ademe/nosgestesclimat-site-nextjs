@@ -2,16 +2,17 @@
 
 import { PropsWithChildren } from 'react'
 
+import { Rules, Situation } from '../types'
 import SimulationContext from './context'
 import useEngine from './useEngine'
 import useRules from './useRules'
 import useSituation from './useSituation'
 
 type Props = {
-  rules: any
-  defaultSituation?: any
-  situation?: any
-  updateSituation: (arg: any) => void
+  rules: Rules
+  defaultSituation?: Situation
+  situation: Situation
+  updateSituation: (situation: Situation) => void
 }
 
 export default function SimulationProvider({
@@ -34,7 +35,6 @@ export default function SimulationProvider({
   const { situation, updateSituation } = useSituation({
     engine,
     everyRules,
-    safeEvaluate,
     defaultSituation,
     externalSituation,
     updateExternalSituation,

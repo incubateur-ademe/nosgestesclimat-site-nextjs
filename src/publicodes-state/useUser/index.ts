@@ -19,7 +19,7 @@ export default function useUser() {
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
-  }: any = useContext(userContext)
+  } = useContext(userContext)
 
   const { updateName, updateEmail, updateRegion } = useUserDetails({ setUser })
 

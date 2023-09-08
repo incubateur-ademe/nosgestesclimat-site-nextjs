@@ -1,16 +1,21 @@
 'use client'
 
 import { useMemo } from 'react'
+import { NGCEvaluatedNode, NGCRuleNode, NodeValue, Situation } from '../types'
 
 type Props = {
   dottedName: string
-  safeGetRule: any
-  safeEvaluate: any
-  evaluation: any
-  type: string
-  getType: any
+  safeGetRule: (rule: string) => NGCRuleNode | null
+  safeEvaluate: (rule: string) => NGCEvaluatedNode | null
+  evaluation: NGCEvaluatedNode | null
+  type: string | undefined
+  getType: (args: {
+    dottedName: string
+    rule: NGCRuleNode | null | any // Model shenanigans: question alimentation . local . consommation is missing "formule"
+    evaluation: NGCEvaluatedNode | null
+  }) => string | undefined
   questionsOfMosaic: string[]
-  updateSituation: any
+  updateSituation: (situationToAdd: Situation) => Promise<void>
 }
 
 export default function useValue({
@@ -23,30 +28,28 @@ export default function useValue({
   questionsOfMosaic,
   updateSituation,
 }: Props) {
-  const value = useMemo(() => evaluation.nodeValue, [evaluation])
+  const value = useMemo(() => evaluation?.nodeValue, [evaluation])
 
   const displayValue = useMemo(
-    () => checkValueValidity({ value, type }),
+    () => type && value && checkValueValidity({ value, type }),
     [value, type]
   )
 
   // TODO: Doesn't work well with mosaic
   const isMissing = useMemo(
-    () => Object.keys(evaluation.missingVariables).length !== 0,
+    () => Object.keys(evaluation?.missingVariables || {}).length !== 0,
     [evaluation]
   )
 
-  // TODO: add return  Promise({validValue: boolean, validRule: boolean, oldTotal: number, newTotal: number})
-  const setValue = async (value: any): Promise<any> => {
-    const { oldTotal, newTotal } = await updateSituation({
+  const setValue = async (value: NodeValue): Promise<void> => {
+    return updateSituation({
       [dottedName]: checkValueValidity({ value, type }),
     })
-    return Promise.resolve({ oldTotal, newTotal })
   }
 
-  const setDefaultAsValue = async (): Promise<any> => {
+  const setDefaultAsValue = async (): Promise<void> => {
     let situationToUpdate = {}
-    if (type.includes('mosaic')) {
+    if (type?.includes('mosaic')) {
       situationToUpdate = questionsOfMosaic.reduce(
         (accumulator, currentValue) => {
           const rule = safeGetRule(currentValue)
@@ -54,7 +57,7 @@ export default function useValue({
           return {
             ...accumulator,
             [currentValue]: checkValueValidity({
-              value: evaluation.nodeValue,
+              value: evaluation?.nodeValue,
               type: getType({ rule, evaluation, dottedName: currentValue }),
             }),
           }
@@ -67,8 +70,7 @@ export default function useValue({
       }
     }
 
-    const { oldTotal, newTotal } = await updateSituation(situationToUpdate)
-    return Promise.resolve({ oldTotal, newTotal })
+    return updateSituation(situationToUpdate)
   }
 
   return { value, displayValue, isMissing, setValue, setDefaultAsValue }
@@ -79,8 +81,8 @@ const checkValueValidity = ({
   type,
 }: {
   value: any
-  type: string
-}): number | string => {
+  type: string | undefined
+}): NodeValue => {
   switch (type) {
     case 'choices':
       return value.startsWith("'") ? value : `'${value}'`

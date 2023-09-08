@@ -1,7 +1,8 @@
 import { NorthStarType, NorthStarValue } from '@/types/northstar'
+import { User } from '../types'
 
 type Props = {
-  setUser: any
+  setUser: (user: User | ((prevUser: User) => void)) => void
 }
 export default function useNorthStar({ setUser }: Props) {
   const updateNorthStarRatings = ({
@@ -11,7 +12,7 @@ export default function useNorthStar({ setUser }: Props) {
     type: NorthStarType
     value: NorthStarValue
   }) =>
-    setUser((prevUser: any) => ({
+    setUser((prevUser: User) => ({
       ...prevUser,
       northStarRatings: {
         ...(prevUser?.northStarRatings || {}),

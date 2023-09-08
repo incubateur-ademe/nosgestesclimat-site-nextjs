@@ -1,11 +1,15 @@
 import { useEffect, useMemo, useState } from 'react'
+import { Engine, NGCEvaluatedNode, Situation } from '../types'
 
 type Props = {
-  engine: any
+  engine: Engine
   root: string
-  safeEvaluate: any
+  safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   categories: string[]
-  situation: any
+  situation: Situation
+  everyQuestions: string[]
+  everyMosaic: string[]
+  everyMosaicChildWhoIsReallyInMosaic: string[]
 }
 
 export default function useQuestions({
@@ -14,67 +18,26 @@ export default function useQuestions({
   safeEvaluate,
   categories,
   situation,
+  everyQuestions,
+  everyMosaic,
+  everyMosaicChildWhoIsReallyInMosaic,
 }: Props) {
-  const everyQuestions = useMemo<string[]>(
+  const initialMissingInputs = useMemo<string[]>(
     () =>
-      Object.entries(engine.getParsedRules())
-        .filter((rule: any) => rule[1].rawNode.question)
-        .map((question: any) => question[0]),
-
-    [engine]
-  )
-
-  const everyMosaic = useMemo<string[]>(
-    () =>
-      Object.entries(engine.getParsedRules())
-        .filter((rule: any) => rule[1].rawNode.mosaique)
-        .map((question) => question[0]),
-    [engine]
-  )
-
-  const initialMissingInputs = useMemo(
-    () =>
-      Object.keys(safeEvaluate(root).missingVariables).filter(
+      Object.keys(safeEvaluate(root)?.missingVariables || {}).filter(
         (missingInput: string) => everyQuestions.includes(missingInput)
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [engine, everyQuestions]
   )
 
-  const missingInputs = useMemo(
+  const missingInputs = useMemo<string[]>(
     () =>
-      Object.keys(safeEvaluate(root).missingVariables).filter(
+      Object.keys(safeEvaluate(root)?.missingVariables || {}).filter(
         (missingInput: string) => everyQuestions.includes(missingInput)
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [engine, everyQuestions, situation]
-  )
-
-  // TODO : There's got to be a better way
-  const everyMosaicChildWhoIsReallyInMosaic = useMemo<string[]>(
-    () =>
-      everyQuestions
-        .filter((currentValue: string) =>
-          everyMosaic.find(
-            (mosaic) => currentValue !== mosaic && currentValue.includes(mosaic)
-          )
-        )
-        .reduce(
-          (accumulator: string[], currentValue: string) =>
-            !accumulator.find(
-              (accumulatedSubRule) =>
-                currentValue !== accumulatedSubRule &&
-                currentValue.includes(
-                  accumulatedSubRule
-                    .replace(' . présent', '')
-                    .replace(' . propriétaire', '') // Model shenanigans
-                )
-            )
-              ? [...accumulator, currentValue]
-              : accumulator,
-          []
-        ),
-    [everyQuestions, everyMosaic]
   )
 
   // TODO : this is shit
@@ -84,7 +47,7 @@ export default function useQuestions({
         ? [
             ...everyQuestions
               .filter(
-                (question: any) =>
+                (question: string) =>
                   !everyMosaicChildWhoIsReallyInMosaic.find(
                     (mosaic) => mosaic === question
                   )
@@ -140,9 +103,7 @@ export default function useQuestions({
     situation,
   }: {
     question: string
-    situation: {
-      [key: string]: any
-    }
+    situation: Situation
   }) => situation[question] || situation[question] === 0
 
   const isQuestionMissing = ({
@@ -162,7 +123,7 @@ export default function useQuestions({
 
   const [relevantQuestions, setRelevantQuestions] = useState<string[]>([])
   useEffect(() => {
-    setRelevantQuestions((prevRelevantQuestion: any) =>
+    setRelevantQuestions((prevRelevantQuestion: string[]) =>
       prevRelevantQuestion.length
         ? [
             ...prevRelevantQuestion.filter(
@@ -203,7 +164,7 @@ export default function useQuestions({
   const questionsByCategories = useMemo(
     () =>
       categories.reduce(
-        (accumulator: object, currentValue: string) => ({
+        (accumulator: { [key: string]: string[] }, currentValue: string) => ({
           ...accumulator,
           [currentValue]: relevantQuestions.filter((question) =>
             question.includes(currentValue)
