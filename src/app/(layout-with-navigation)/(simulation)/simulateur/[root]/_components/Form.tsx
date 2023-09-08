@@ -1,9 +1,11 @@
-import { useForm } from '@/publicodes-state'
+import { useForm, useUser } from '@/publicodes-state'
 import { useEffect, useMemo, useRef } from 'react'
 
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
+import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import CategoryIntroduction from './form/CategoryIntroduction'
 
@@ -16,6 +18,9 @@ export default function Form() {
     currentCategory,
     setCurrentCategory,
   } = useForm()
+
+  const { groupToRedirectToAfterTest, setGroupToRedirectToAfterTest } =
+    useUser()
 
   const isInitialized = useMemo(
     () => (currentQuestion && currentCategory ? true : false),
@@ -81,7 +86,21 @@ export default function Form() {
       <Question question={currentQuestion} key={currentQuestion} />
       <Navigation
         question={currentQuestion}
-        onComplete={() => router.push('/fin')}
+        onComplete={() => {
+          // When a user joins a group without having his test passed
+          if (groupToRedirectToAfterTest) {
+            const groupId = groupToRedirectToAfterTest._id
+
+            trackEvent(getMatomoEventJoinedGroupe(groupId))
+
+            setGroupToRedirectToAfterTest(undefined)
+
+            router.push(`/groupes/resultats?groupId=${groupId}`)
+            return
+          }
+
+          router.push('/fin')
+        }}
       />
     </div>
   ) : (

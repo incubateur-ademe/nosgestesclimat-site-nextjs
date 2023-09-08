@@ -1,5 +1,23 @@
-import { useEngine, useForm } from '@/publicodes-state'
+import { getRuleSumNodes } from '@/helpers/publicodes/getRuleSumNodes'
+import { useEngine, useForm, useTempEngine } from '@/publicodes-state'
 import { Member } from '@/types/groups'
+
+export function getSubcategories({
+  rules,
+  category,
+  getRuleObject,
+}: {
+  rules: any
+  category: string
+  getRuleObject: (dottedName: string) => any
+}): string[] | undefined {
+  const categoryFormatted =
+    category === 'logement' ? 'logement . impact' : category
+
+  const rule = getRuleObject(categoryFormatted)
+
+  return getRuleSumNodes(rules, rule)
+}
 
 export const useGetGroupAndUserFootprints = ({
   groupMembers,
@@ -12,7 +30,9 @@ export const useGetGroupAndUserFootprints = ({
 }) => {
   const { categories } = useForm()
 
-  const { getValue, getSubcategories } = useEngine()
+  const { rules, getRuleObject } = useTempEngine()
+
+  const { getValue } = useEngine()
 
   if (!groupMembers || !userId || !isSynced) return {}
 
@@ -37,13 +57,11 @@ export const useGetGroupAndUserFootprints = ({
           } as any
 
           const isCurrentMember = groupMember.userId === userId
-          /*
-    // Why ?
-    setSituationForValidKeys({
-      engine,
-      situation: groupMember?.simulation?.situation,
-    })
-    */
+          // if (isCurrentMember) {
+          //   updateSituationOfCurrentSimulation(
+          //     groupMember?.simulation?.situation
+          //   )
+          // }
 
           categories
             // Model shenanigans
@@ -79,9 +97,11 @@ export const useGetGroupAndUserFootprints = ({
               }
 
               const currentCategorySubcategories =
-                getSubcategories(
-                  category === 'transport' ? 'transport . empreinte' : category
-                ) || []
+                getSubcategories({
+                  rules,
+                  category,
+                  getRuleObject,
+                }) || []
 
               currentCategorySubcategories.forEach((subCategory: string) => {
                 const subCategoryValue = getValue(subCategory)

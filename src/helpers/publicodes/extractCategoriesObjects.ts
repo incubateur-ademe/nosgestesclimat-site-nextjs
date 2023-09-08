@@ -9,7 +9,7 @@ export const extractCategoriesObjects = (
   const rule = getRuleObject(parentRule) as NGCRuleNode
 
   const categories = getRuleSumNodes(rules, rule)
-
+  console.log(parentRule, categories)
   if (!categories) {
     // NOTE(@EmileRolley): needed to handle custom 'services sociétaux' rule that is not a sum
     // in international models.

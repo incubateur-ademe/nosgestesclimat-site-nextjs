@@ -21,10 +21,6 @@ export function getRuleSumNodes(
         )
         return node
       } catch (e) {
-        console.log(
-          `One element of the sum is not a variable. It could be a raw number injected by the optimisation algorithm.`,
-          e
-        )
         return null
       }
     })
