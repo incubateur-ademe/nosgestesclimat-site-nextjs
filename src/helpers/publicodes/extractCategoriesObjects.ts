@@ -8,15 +8,15 @@ export const extractCategoriesObjects = (
 ) => {
   const rule = getRuleObject(parentRule) as NGCRuleNode
 
-  const sumNodes = getRuleSumNodes(rules, rule)
+  const categories = getRuleSumNodes(rules, rule)
 
-  if (sumNodes == undefined) {
+  if (!categories) {
     // NOTE(@EmileRolley): needed to handle custom 'services sociétaux' rule that is not a sum
     // in international models.
     return []
   }
 
-  const categories = sumNodes.map((dottedName: string) => {
+  return categories.map((dottedName: string) => {
     const categoryName = dottedName.split(' . ')[0]
 
     const node = getRuleObject(categoryName)
@@ -32,6 +32,4 @@ export const extractCategoriesObjects = (
       color: couleur,
     }
   })
-
-  return categories
 }

@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import simulationContext from '../simulationProvider/context'
 import { NodeValue } from '../types'
+
 export default function useEngine() {
   const { safeEvaluate, safeGetRule, updateSituation } =
     useContext(simulationContext)
@@ -18,10 +19,14 @@ export default function useEngine() {
   const checkIfValid = (dottedName: string): boolean =>
     safeGetRule(dottedName) ? true : false
 
+  const getSubcategories = (dottedName: string) =>
+    safeEvaluate(dottedName)?.rawNode?.valeur?.somme
+
   return {
     getValue,
     getNumericValue,
     getCategory,
+    getSubcategories,
     checkIfValid,
     updateSituation,
   }

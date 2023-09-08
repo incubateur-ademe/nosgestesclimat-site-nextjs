@@ -49,3 +49,25 @@ export type SimulationResults = {
     variation: string
   }
 }
+
+export type ValueObject = {
+  title: string
+  value: number
+  mean?: number
+  name: string
+  variation?: number
+  icon?: string
+  isCategory?: boolean
+}
+
+export type Points = {
+  key: string
+  resultObject: ValueObject
+}
+
+export type Results = {
+  userFootprintByCategoriesAndSubcategories: Record<string, ValueObject>
+  groupFootprintByCategoriesAndSubcategories: Record<string, ValueObject>
+  pointsForts: Points[]
+  pointsFaibles: Points[]
+}

@@ -8,8 +8,8 @@ import CreateOtherGroupsSection from './_components/CreateOtherGroupsSection'
 import NoSimulationSection from './_components/NoSimulationSection'
 import ServerErrorSection from './_components/ServerErrorSection'
 import { useGetGroups } from './_hooks/useGetGroups'
-import FeedbackBlock from './resultats/components/FeedbackBlock'
-import SondagesBlock from './resultats/components/SondagesBlock'
+import FeedbackBlock from './resultats/_components/FeedbackBlock'
+import SondagesBlock from './resultats/_components/SondagesBlock'
 
 export default function GroupesPage() {
   const { t } = useClientTranslation()

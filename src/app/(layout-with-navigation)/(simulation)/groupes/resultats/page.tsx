@@ -12,26 +12,26 @@ import InlineTextInput from '@/design-system/inputs/InlineTextInput'
 import Title from '@/design-system/layout/Title'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useTempEngine, useUser } from '@/publicodes-state'
+import { useEngine, useUser } from '@/publicodes-state'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { fetchUpdateGroupMember } from '../_helpers/fetchUpdateGroupMember'
 import { getSimulationResults } from '../_helpers/getSimulationResults'
-import Classement from './components/Classement'
-import FeedbackBlock from './components/FeedbackBlock'
-import Footer from './components/Footer'
-import InviteBlock from './components/InviteBlock'
-import PointsFortsFaibles from './components/PointsFortsFaibles'
-import VotreEmpreinte from './components/VotreEmpreinte'
-import { Results, useGetGroupStats } from './hooks/useGetGroupStats'
+import Classement from './_components/Classement'
+import FeedbackBlock from './_components/FeedbackBlock'
+import Footer from './_components/Footer'
+import InviteBlock from './_components/InviteBlock'
+import PointsFortsFaibles from './_components/PointsFortsFaibles'
+import VotreEmpreinte from './_components/VotreEmpreinte'
+import { useGetGroupStats } from './_hooks/useGetGroupStats'
 
 import pencilIcon from '@/assets/images/pencil.svg'
 import TransClient from '@/components/translation/TransClient'
 import { matomoEventUpdateGroupName } from '@/constants/matomo'
 import Separator from '@/design-system/layout/Separator'
-import { useRules } from '@/hooks/useRules'
+import { Results } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function GroupResultsPage({
@@ -43,9 +43,7 @@ export default function GroupResultsPage({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSynced, setIsSynced] = useState(false)
 
-  const rules = useRules({})
-
-  const { getRuleObject } = useTempEngine()
+  const { getValue } = useEngine()
 
   const { groupId } = searchParams
 
@@ -88,8 +86,7 @@ export default function GroupResultsPage({
   })
 
   const resultsOfUser = getSimulationResults({
-    rules,
-    getRuleObject,
+    getValue,
   })
 
   // If the user has a simulation we update the group accordingly
@@ -203,12 +200,15 @@ export default function GroupResultsPage({
             }
           />
         )}
+
         <FeedbackBlock />
+
         <div className="mt-4">
           <h2 className="m-0 text-lg font-bold">
             <TransClient>Le classement</TransClient>
           </h2>
         </div>
+
         <Classement group={group} />
 
         <InviteBlock group={group} />
@@ -227,7 +227,9 @@ export default function GroupResultsPage({
         )}
 
         <VotreEmpreinte
-          categoriesFootprints={results?.currentMemberAllFootprints}
+          categoriesFootprints={
+            results?.userFootprintByCategoriesAndSubcategories
+          }
           membersLength={group?.members?.length}
         />
       </main>
