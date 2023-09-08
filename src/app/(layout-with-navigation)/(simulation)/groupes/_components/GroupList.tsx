@@ -1,3 +1,5 @@
+'use client'
+
 import GroupItem from './GroupItem'
 
 type Props = {

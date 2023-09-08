@@ -1,7 +1,9 @@
+'use client'
+
+import TransClient from '@/components/translation/TransClient'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Separator from '@/design-system/layout/Separator'
 import { Group } from '@/types/groups'
-import { Trans } from 'react-i18next'
 import GroupList from './GroupList'
 
 export default function CreateOtherGroupsSection({
@@ -15,19 +17,21 @@ export default function CreateOtherGroupsSection({
 
       <Separator className="mb-4 mt-8" />
 
-      <h3 className="text-md font-bold mb-1">
-        <Trans>Créez un autre groupe</Trans>
+      <h3 className="text-md mb-1 font-bold">
+        <TransClient>Créez un autre groupe</TransClient>
       </h3>
 
-      <p className="text-sm mb-6">
-        Vous pouvez créer un nouveau groupe avec d’autres amis.
+      <p className="mb-6 text-sm">
+        <TransClient>
+          Vous pouvez créer un nouveau groupe avec d’autres amis.
+        </TransClient>
       </p>
 
       <ButtonLink
         href={'/groupes/creer'}
         color="secondary"
         data-cypress-id="button-create-other-group">
-        <Trans>Créer un autre groupe</Trans>
+        <TransClient>Créer un autre groupe</TransClient>
       </ButtonLink>
     </>
   )

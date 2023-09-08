@@ -1,5 +1,5 @@
 import Brevo from '@getbrevo/brevo'
-import ApiClient from '@getbrevo/brevo/src/ApiClient'
+import BrevoClient from '@getbrevo/brevo/src/ApiClient'
 
 const TEMPLATE_ID_GROUP_CREATED = 57
 const TEMPLATE_ID_GROUP_JOINED = 58
@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 
   console.log(Brevo)
 
-  const defaultClient = ApiClient.instance
+  const defaultClient = BrevoClient.instance
 
   // Configure API key authorization: api-key
   const apiKey = defaultClient.authentications['api-key']
@@ -64,9 +64,10 @@ export async function POST(req: Request) {
   try {
     await transacApiInstance.sendTransacEmail(sendSmtpEmail)
   } catch (e) {
-    return {
-      statusCode: 404,
-    }
+    console.log(e)
+    return new Response('Error', {
+      status: 404,
+    })
   }
 
   // Respond with the stream

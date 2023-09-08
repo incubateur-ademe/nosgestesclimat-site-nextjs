@@ -1,5 +1,7 @@
+'use client'
+
 import Link from '@/components/Link'
-import TransServer from '@/components/translation/TransServer'
+import TransClient from '@/components/translation/TransClient'
 import { Group } from '@/types/groups'
 import ChevronRight from './ChevronRight'
 
@@ -12,9 +14,9 @@ export default function GroupItem({ group }: Props) {
   return (
     <Link
       href={`/groupes/resultats?groupId=${group?._id}`}
-      className="border-solid border-[1px] border-gray-200 bg-gray-100 no-underline rounded-sm px-5 py-2 decoration-auto mb-3">
+      className="mb-3 rounded-sm border-[1px] border-solid border-gray-200 bg-gray-100 px-5 py-2 no-underline decoration-auto">
       <div className="flex items-center justify-between py-4">
-        <div className="flex items-center w-full">
+        <div className="flex w-full items-center">
           <div className="flex-shrink-0 text-2xl">
             <span>{group?.emoji}</span>
           </div>
@@ -22,14 +24,14 @@ export default function GroupItem({ group }: Props) {
             <div className="text-md font-bold text-gray-900">
               {group?.name ?? 'Nom du groupe'}
             </div>
-            <div className="text-sm text-violet-900 flex gap-1">
+            <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
                 {group?.members?.length ?? 0}{' '}
-                <TransServer>participant</TransServer>
+                <TransClient>participant</TransClient>
                 {group?.members?.length > 1 ? 's' : ''}
               </span>{' '}
               <span> - </span>{' '}
-              <div className="inline text-ellipsis overflow-hidden whitespace-nowrap w-24 md:w-60">
+              <div className="inline w-24 overflow-hidden text-ellipsis whitespace-nowrap md:w-60">
                 {group?.members?.map((member) => member?.name).join(', ') ?? ''}
               </div>
             </div>

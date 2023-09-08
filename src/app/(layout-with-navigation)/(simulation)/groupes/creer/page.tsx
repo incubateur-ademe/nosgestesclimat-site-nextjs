@@ -111,7 +111,7 @@ export default function CreerGroupePage() {
         rules,
         getRuleObject,
       })
-      console.log(results)
+
       const groupNameObject = GROUP_NAMES[groups.length % GROUP_NAMES.length]
 
       const group = await createGroup({ groupNameObject, results })
