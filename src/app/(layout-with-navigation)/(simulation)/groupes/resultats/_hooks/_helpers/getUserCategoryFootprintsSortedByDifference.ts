@@ -5,11 +5,8 @@ const sortByDifference = (a: Points, b: Points) => {
     return 0
   }
 
-  if ((b?.resultObject?.difference || 0) > 0) {
-    return -1
-  }
-
-  return (b?.resultObject?.difference || 0) > (a?.resultObject?.difference || 0)
+  return Math.abs(b?.resultObject?.difference || 0) <
+    Math.abs(a?.resultObject?.difference || 0)
     ? -1
     : 1
 }
@@ -24,7 +21,9 @@ export const getUserCategoryFootprintsSortedByDifference = ({
   ).filter(
     ([key, resultObject]) =>
       !resultObject?.isCategory &&
-      resultObject?.value &&
+      resultObject?.value !== undefined &&
+      resultObject?.value !== null &&
+      !isNaN(resultObject?.value) &&
       // We don't want to display the "services publics" category
       key !== 'services publics'
   )

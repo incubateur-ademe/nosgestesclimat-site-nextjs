@@ -69,7 +69,7 @@ export default function VotreEmpreinte({
                     </div>
                   </div>
                   {membersLength > 1 && (
-                    <PercentageDiff variation={categoryObject.variation || 0} />
+                    <PercentageDiff value={categoryObject.difference || 0} />
                   )}
                 </div>
                 <div className="flex items-center gap-4">

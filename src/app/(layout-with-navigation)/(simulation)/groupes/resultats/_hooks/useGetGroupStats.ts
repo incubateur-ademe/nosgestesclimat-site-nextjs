@@ -82,7 +82,7 @@ export const useGetGroupStats = ({
   })
 
   results.pointsForts = positiveDifferenceCategoriesSorted.slice(0, 2)
-  results.pointsFaibles = negativeDifferenceCategoriesSorted.slice(-3)
+  results.pointsFaibles = negativeDifferenceCategoriesSorted.slice(0, 3)
 
   return results as Results
 }
