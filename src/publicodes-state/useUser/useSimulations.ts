@@ -1,15 +1,14 @@
 'use client'
 
+import { Dispatch, SetStateAction } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { ActionChoices, Simulation, Situation } from '../types'
 
 type Props = {
   simulations: Simulation[]
-  setSimulations: (
-    simulations: Simulation[] | ((prevSimulation: Simulation[]) => void)
-  ) => void
+  setSimulations: Dispatch<SetStateAction<Simulation[]>>
   currentSimulationId: string
-  setCurrentSimulationId: (id: string) => void
+  setCurrentSimulationId: Dispatch<SetStateAction<string>>
 }
 export default function useSimulations({
   simulations,
@@ -30,6 +29,7 @@ export default function useSimulations({
         date: new Date().toISOString(),
         situation,
         persona,
+        actionChoices: {},
       },
     ])
 
@@ -45,6 +45,7 @@ export default function useSimulations({
           (simulation: Simulation) => simulation.id === currentSimulationId
         )
 
+        if (!simulationUpdated) return prevSimulations // TODO: should throw error
         return [
           ...prevSimulations.filter(
             (simulation: Simulation) => simulation.id !== currentSimulationId

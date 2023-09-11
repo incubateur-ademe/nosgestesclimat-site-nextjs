@@ -1,9 +1,7 @@
+import { Dispatch, SetStateAction } from 'react'
 import { Tutorials } from '../types'
-
 type Props = {
-  setTutorials: (
-    tutorials: Tutorials | ((prevTutorials: Tutorials) => void)
-  ) => void
+  setTutorials: Dispatch<SetStateAction<Tutorials>>
 }
 
 export default function useTutorials({ setTutorials }: Props) {

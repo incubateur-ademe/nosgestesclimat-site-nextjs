@@ -42,7 +42,11 @@ export default function Actions({
 
   const { getCurrentSimulation } = useUser()
 
-  const { actionChoices } = getCurrentSimulation()
+  const currentSimulation = getCurrentSimulation()
+
+  if (!currentSimulation) return
+
+  const actionChoices = currentSimulation.actionChoices
 
   const actions = rawActions.map((a: any) => ({
     ...a,

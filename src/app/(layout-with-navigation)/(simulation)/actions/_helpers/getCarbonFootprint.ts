@@ -1,4 +1,5 @@
 import { getCurrentLangInfos } from '@/locales/translation'
+import { NodeValue } from '@/publicodes-state/types'
 import { TranslationFunctionType } from '@/types/translation'
 
 const getRawUnitDigitsArray = ({
@@ -32,11 +33,11 @@ const getRawUnitDigitsArray = ({
 
 export const getCarbonFootprint = (
   { t, i18n }: { t: TranslationFunctionType; i18n: any }, // We need to be passed as an argument instead of calling useTranslation inside the body, to avoid 'Rendered more hooks than during the previous render.'
-  possiblyNegativeValue: number,
+  possiblyNegativeValue: NodeValue,
   isConcise = false,
   noSign?: boolean
 ): [string, string] => {
-  const rawValue = Math.abs(possiblyNegativeValue)
+  const rawValue = Math.abs(Number(possiblyNegativeValue))
 
   const [raw, unit, digits] = getRawUnitDigitsArray({
     value: rawValue,
@@ -46,7 +47,7 @@ export const getCarbonFootprint = (
 
   const abrvLocale = getCurrentLangInfos(i18n).abrvLocale
 
-  const signedValue = raw * (possiblyNegativeValue < 0 ? -1 : 1)
+  const signedValue = raw * (Number(possiblyNegativeValue) < 0 ? -1 : 1)
   const resultValue = noSign ? raw : signedValue
 
   const value: string = resultValue.toLocaleString(abrvLocale, {

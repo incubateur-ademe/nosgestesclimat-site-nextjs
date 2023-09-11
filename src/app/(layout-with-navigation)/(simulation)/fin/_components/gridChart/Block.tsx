@@ -14,7 +14,7 @@ export default function Block({ subcategory }: Props) {
       <Image
         style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}
         src={`/images/model/${subcategory}.svg`}
-        alt={title}
+        alt={title || 'icône'}
         width={32}
         height={32}
       />

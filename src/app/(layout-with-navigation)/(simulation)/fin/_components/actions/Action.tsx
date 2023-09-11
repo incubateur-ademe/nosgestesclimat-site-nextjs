@@ -7,13 +7,14 @@ type Props = {
 }
 
 export default function Action({ action }: Props) {
-  const { value: total } = useRule('bilan')
+  const { numericValue: total } = useRule('bilan')
 
-  const { title, icons, color, value } = useRule(action)
+  const { title, icons, color, numericValue } = useRule(action)
 
-  const relativeValue = Math.abs(Math.round(100 * (value / total)))
+  const relativeValue = Math.abs(Math.round(100 * (numericValue / total)))
 
-  const { formattedValue, unit } = formatCarbonFootprint(value)
+  const { formattedValue, unit } = formatCarbonFootprint(numericValue)
+
   return (
     <div
       className="rounded-lg px-12 py-4 text-white"

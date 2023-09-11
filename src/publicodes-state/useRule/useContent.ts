@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo } from 'react'
-import { NGCRuleNode } from '../types'
+import { NGCRuleNode, Suggestion } from '../types'
 
 type Props = {
   dottedName: string
@@ -10,22 +10,40 @@ type Props = {
 }
 
 export default function useContent({ dottedName, rule, safeGetRule }: Props) {
-  const category = useMemo(() => dottedName.split(' . ')[0], [dottedName])
+  const category = useMemo<string>(
+    () => dottedName.split(' . ')[0],
+    [dottedName]
+  )
 
-  const title = useMemo(() => rule?.title, [rule])
+  const title = useMemo<string | undefined>(() => rule?.title, [rule])
 
-  const label = useMemo(() => rule?.rawNode.question, [rule])
-  const description = useMemo(() => rule?.rawNode.description, [rule])
-  const icons = useMemo(() => rule?.rawNode['icônes'], [rule])
-  const unit = useMemo(() => rule?.rawNode['unité'], [rule])
-  const color = useMemo(
+  const label = useMemo<string | undefined>(
+    () => rule?.rawNode.question,
+    [rule]
+  )
+  const description = useMemo<string | undefined>(
+    () => rule?.rawNode.description,
+    [rule]
+  )
+  const icons = useMemo<string | undefined>(
+    () => rule?.rawNode['icônes'],
+    [rule]
+  )
+  const unit = useMemo<string | undefined>(() => rule?.rawNode['unité'], [rule])
+  const color = useMemo<string | undefined>(
     () => safeGetRule(category)?.rawNode['couleur'],
     [category, safeGetRule]
   )
-  const assistance = useMemo(() => rule?.rawNode['aide'], [rule])
-  const isInactive = useMemo(() => rule?.rawNode['inactif'] === 'oui', [rule])
+  const assistance = useMemo<string | undefined>(
+    () => rule?.rawNode['aide'],
+    [rule]
+  )
+  const isInactive = useMemo<boolean>(
+    () => rule?.rawNode['inactif'] === 'oui',
+    [rule]
+  )
 
-  const suggestions = useMemo(() => {
+  const suggestions = useMemo<Suggestion[] | undefined>(() => {
     const suggestionsFolder =
       rule?.rawNode.mosaique?.suggestions || rule?.rawNode.suggestions
     return suggestionsFolder

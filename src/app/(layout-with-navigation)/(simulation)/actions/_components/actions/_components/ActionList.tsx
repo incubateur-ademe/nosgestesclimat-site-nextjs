@@ -22,7 +22,11 @@ export default function ActionList({
 }: Props) {
   const { toggleActionChoice, getCurrentSimulation } = useUser()
 
-  const { actionChoices } = getCurrentSimulation()
+  const currentSimulation = getCurrentSimulation()
+
+  if (!currentSimulation) return
+
+  const actionChoices = currentSimulation.actionChoices
 
   return (
     <ul className="flex list-none flex-wrap items-center justify-center p-0">

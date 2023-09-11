@@ -6,13 +6,13 @@ import { useMemo } from 'react'
 import Block from './gridChart/Block'
 
 export default function GridChart() {
-  const { value: total } = useRule('bilan')
+  const { numericValue: total } = useRule('bilan')
 
   const numberOfSquares = 100
   const valueOfEachSquare = total / numberOfSquares
   const { subcategories } = useForm()
 
-  const { getValue, checkIfValid } = useEngine()
+  const { getNumericValue, checkIfValid } = useEngine()
   const sortedSubcategories = useMemo(
     () =>
       Object.keys(subcategories)
@@ -26,7 +26,7 @@ export default function GridChart() {
         .filter((subcategory: any) => checkIfValid(subcategory))
         .map((subcategory: string) => ({
           dottedName: subcategory,
-          squares: Math.round(getValue(subcategory) / valueOfEachSquare),
+          squares: Math.round(getNumericValue(subcategory) / valueOfEachSquare),
         }))
         .filter((subcategory: any) => subcategory.squares)
 
@@ -40,7 +40,7 @@ export default function GridChart() {
           ],
           []
         ),
-    [subcategories, getValue, checkIfValid, valueOfEachSquare]
+    [subcategories, getNumericValue, checkIfValid, valueOfEachSquare]
   )
 
   return (

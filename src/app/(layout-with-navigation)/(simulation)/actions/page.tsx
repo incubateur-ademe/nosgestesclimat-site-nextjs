@@ -25,9 +25,13 @@ export default function ActionsPage({
 
   const { tutorials, getCurrentSimulation } = useUser()
 
-  const { actionChoices } = getCurrentSimulation()
+  const currentSimulation = getCurrentSimulation()
 
   const { rules, getRuleObject } = useTempEngine()
+
+  if (!currentSimulation) return
+
+  const actionChoices = currentSimulation.actionChoices
 
   const actions = getActions({
     metric,

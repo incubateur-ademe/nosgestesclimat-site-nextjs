@@ -17,7 +17,11 @@ export default function HasSimulationBanner() {
 
   const { getCurrentSimulation } = useUser()
 
-  const { actionChoices } = getCurrentSimulation()
+  const currentSimulation = getCurrentSimulation()
+
+  if (!currentSimulation) return
+
+  const actionChoices = currentSimulation.actionChoices
 
   const percentFinished = Math.round(progression * 100)
 

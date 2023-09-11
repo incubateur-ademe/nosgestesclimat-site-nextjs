@@ -1,7 +1,7 @@
 import TransClient from '@/components/translation/TransClient'
 import Button from '@/design-system/inputs/Button'
 import { useUser } from '@/publicodes-state'
-import { Simulation } from '@/types/simulation'
+import { Simulation } from '@/publicodes-state/types'
 import { Trans } from 'react-i18next'
 
 export default function SimulationList() {
@@ -21,7 +21,7 @@ export default function SimulationList() {
           role="img"
           aria-label="emoji save"
           aria-hidden
-          className="inline-block mr-4">
+          className="mr-4 inline-block">
           💾
         </span>
         <TransClient>Mon historique des simulations</TransClient>
@@ -45,7 +45,7 @@ export default function SimulationList() {
                 <summary>
                   <div className="inline-flex">
                     <span>{simulationDate.toLocaleDateString()}</span>
-                    <span className="ml-1 w-[8rem] overflow-hidden whitespace-nowrap overflow-ellipsis hidden md:inline-block">
+                    <span className="ml-1 hidden w-[8rem] overflow-hidden overflow-ellipsis whitespace-nowrap md:inline-block">
                       - {simulation.id}
                     </span>
                     {currentSimulationId === simulation.id ? (

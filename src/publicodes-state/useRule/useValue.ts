@@ -28,11 +28,29 @@ export default function useValue({
   questionsOfMosaic,
   updateSituation,
 }: Props) {
-  const value = useMemo(() => evaluation?.nodeValue, [evaluation])
+  const value = useMemo<NodeValue>(() => evaluation?.nodeValue, [evaluation])
 
-  const displayValue = useMemo(
-    () => type && value && checkValueValidity({ value, type }),
-    [value, type]
+  const displayValue = useMemo<string | number>(() => {
+    if (type === 'choices') {
+      const stringValue = String(value)
+      return stringValue.startsWith("'")
+        ? stringValue.substring(1, stringValue.length - 1)
+        : stringValue
+    }
+    if (type === 'boolean') {
+      return value === null || value === false || value === 'non' // Model shenanigans
+        ? 'non'
+        : 'oui'
+    }
+    if (type === 'mosaic') {
+      return 'mosaic'
+    }
+    return Number(value)
+  }, [value, type])
+
+  const numericValue = useMemo<number>(
+    () => (Number(value) === value ? value : 0),
+    [value]
   )
 
   // TODO: Doesn't work well with mosaic
@@ -73,7 +91,14 @@ export default function useValue({
     return updateSituation(situationToUpdate)
   }
 
-  return { value, displayValue, isMissing, setValue, setDefaultAsValue }
+  return {
+    value,
+    displayValue,
+    numericValue,
+    isMissing,
+    setValue,
+    setDefaultAsValue,
+  }
 }
 
 const checkValueValidity = ({

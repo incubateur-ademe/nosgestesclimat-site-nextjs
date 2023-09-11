@@ -24,6 +24,16 @@ export type Situation = {
   [key: string]: NodeValue
 }
 
+export type Suggestion = {
+  label: string
+  value: any // TODO: sorry...
+  // value:
+  //   | NodeValue
+  //   | {
+  //       [key: string]: NodeValue
+  //     }
+}
+
 export type Engine = any
 
 export type NGCRuleNode = RuleNode & {
@@ -43,6 +53,7 @@ export type Simulation = {
   date: Date | string
   situation: Situation
   actionChoices: ActionChoices
+  persona?: string
 }
 
 type Color = `#${string}`

@@ -1,8 +1,9 @@
 import { NorthStarType, NorthStarValue } from '@/types/northstar'
+import { Dispatch, SetStateAction } from 'react'
 import { User } from '../types'
 
 type Props = {
-  setUser: (user: User | ((prevUser: User) => void)) => void
+  setUser: Dispatch<SetStateAction<User>>
 }
 export default function useNorthStar({ setUser }: Props) {
   const updateNorthStarRatings = ({

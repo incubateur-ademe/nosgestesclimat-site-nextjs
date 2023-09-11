@@ -18,7 +18,7 @@ const getBackgroundColor = (score: number) =>
   ]
 
 export default function TotalVsTarget() {
-  const { value: total } = useRule('bilan')
+  const { numericValue: total } = useRule('bilan')
 
   const backgroundColor = getBackgroundColor(total).toHexString()
   const backgroundColor2 = getBackgroundColor(total + 2000).toHexString()

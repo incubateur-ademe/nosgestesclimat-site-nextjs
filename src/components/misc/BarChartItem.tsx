@@ -2,7 +2,7 @@ import DisplayValue from './barChartItem/DisplayValue'
 
 type Props = {
   label: string
-  color: string
+  color?: string
   value: number
   max: number
   onClick: (e: any) => void
@@ -10,7 +10,7 @@ type Props = {
 
 export default function BarChartItem({
   label,
-  color,
+  color = '#ff0000',
   value,
   max,
   onClick,
@@ -19,10 +19,10 @@ export default function BarChartItem({
 
   return (
     <button onClick={onClick} className="mb-4 block w-full text-left">
-      <div className="leading-none text-black mb-1 text-sm ml-2">{label}</div>
-      <div className="flex justify-start items-center gap-2 h-8 ">
+      <div className="mb-1 ml-2 text-sm leading-none text-black">{label}</div>
+      <div className="flex h-8 items-center justify-start gap-2 ">
         <div
-          className="flex justify-end items-center h-full origin-left transition-all rounded-full"
+          className="flex h-full origin-left items-center justify-end rounded-full transition-all"
           style={{
             width: `${percentOfMax}%`,
             backgroundColor: color,

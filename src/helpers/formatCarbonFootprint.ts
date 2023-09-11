@@ -1,11 +1,14 @@
+import { NodeValue } from '@/publicodes-state/types'
+
 export default function formatCarbonFootprint(
-  value: number,
+  value: NodeValue,
   { localize = true, locale = 'fr-FR', maximumFractionDigits = 1 } = {
     localize: true,
     locale: 'fr-FR',
     maximumFractionDigits: 1,
   }
 ) {
+  value = Number(value)
   const negative = value < 0
 
   value = Math.abs(value)

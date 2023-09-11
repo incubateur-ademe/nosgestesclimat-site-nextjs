@@ -9,7 +9,11 @@ export default function ActionsChosenIndicator() {
 
   const { getCurrentSimulation } = useUser()
 
-  const { actionChoices } = getCurrentSimulation()
+  const currentSimulation = getCurrentSimulation()
+
+  if (!currentSimulation) return
+
+  const actionChoices = currentSimulation.actionChoices
 
   const count = Object.values(actionChoices).filter((a) => a === true).length
 

@@ -1,6 +1,5 @@
 'use client'
 
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useRule } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 
@@ -10,17 +9,11 @@ type AnswerProps = {
 }
 
 export default function Answer({ ruleDottedName, level }: AnswerProps) {
-  const { t } = useClientTranslation()
-
   const router = useRouter()
 
   const { setCurrentQuestion } = useForm()
 
   const rule = useRule(ruleDottedName)
-
-  const translateUnits = (units: string[]) => {
-    return units.map((unit: string) => t(unit, { ns: 'units' }))
-  }
 
   const levelDottedName = ruleDottedName.split(' . ')
 
@@ -28,15 +21,9 @@ export default function Answer({ ruleDottedName, level }: AnswerProps) {
     (levelDottedName.slice(0, level + 1) as any).join(' . ')
   )
 
-  if (rule.unit?.denominators) {
-    rule.unit.denominators = translateUnits(rule.unit.denominators)
-  }
-  if (rule.unit?.numerators) {
-    rule.unit.numerators = translateUnits(rule.unit.numerators)
-  }
   console.log('TODO : handle storedAmortissement here')
   return (
-    <tr key={ruleDottedName} className="bg-primaryLight w-full even:bg-white">
+    <tr key={ruleDottedName} className="w-full bg-primaryLight even:bg-white">
       <td className="pl-2">
         {levelRule && (
           <div>
@@ -47,13 +34,13 @@ export default function Answer({ ruleDottedName, level }: AnswerProps) {
       </td>
       <td>
         <button
-          className="inline-block p-4 w-full text-right font-medium"
+          className="inline-block w-full p-4 text-right font-medium"
           onClick={() => {
             setCurrentQuestion(ruleDottedName)
             router.push('/simulateur/bilan')
           }}>
           <span
-            className={`decoration-dotted underline-offset-4 inline-block underline`}>
+            className={`inline-block underline decoration-dotted underline-offset-4`}>
             {rule.displayValue?.toLocaleString()} {rule.unit}
             {/* rule.passedQuestion && (
               <span role="img" aria-label="shoulder emoji">

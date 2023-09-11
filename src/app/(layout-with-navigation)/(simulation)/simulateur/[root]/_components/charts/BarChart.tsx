@@ -7,24 +7,28 @@ import Category from './barChart/Category'
 export default function BarChart() {
   const { categories, currentCategory } = useForm()
 
-  const { getValue } = useEngine()
+  const { getNumericValue } = useEngine()
 
   const [isOpen, setIsOpen] = useState(null)
 
   const sortedCategories = useMemo(
     () =>
-      categories.sort((a: string, b: string) =>
-        getValue(
-          a === 'transport' ? 'transport . empreinte' : a // Model shenanigans (we have to do this to deal with the idiotic "transport . empreinte" exception)
-        ) > getValue(b === 'transport' ? 'transport . empreinte' : b)
-          ? -1
-          : 1
-      ),
-    [categories, getValue]
+      categories.sort((a: string, b: string) => {
+        const valueOfA =
+          getNumericValue(
+            a === 'transport' ? 'transport . empreinte' : a // Model shenanigans (we have to do this to deal with the idiotic "transport . empreinte" exception)
+          ) || 0
+        const valueOfB =
+          getNumericValue(b === 'transport' ? 'transport . empreinte' : b) || 0
+        return valueOfA > valueOfB ? -1 : 1
+      }),
+    [categories, getNumericValue]
   )
 
-  const max =
-    sortedCategories[0]?.value > 5000 ? sortedCategories[0]?.value : 5000
+  const max = useMemo(() => {
+    const maxValue = getNumericValue(sortedCategories[0]) || 0
+    return maxValue > 5000 ? maxValue : 5000
+  }, [sortedCategories, getNumericValue])
 
   return (
     <Flipper

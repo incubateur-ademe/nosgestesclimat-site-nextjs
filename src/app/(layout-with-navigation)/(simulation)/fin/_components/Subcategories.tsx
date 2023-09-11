@@ -1,8 +1,8 @@
 'use client'
-import { useEngine, useForm } from '@/publicodes-state'
-import { useMemo } from 'react'
 
 import Subcategory from '@/components/misc/Subcategory'
+import { useEngine, useForm } from '@/publicodes-state'
+import { useMemo } from 'react'
 
 type categoryObject = {
   dottedName: string
@@ -11,12 +11,12 @@ type categoryObject = {
 
 export default function Subcategories() {
   const { subcategories } = useForm()
-  const { getValue } = useEngine()
+  const { getNumericValue } = useEngine()
   const sortedSubcategories = useMemo(
     () =>
       Object.keys(subcategories)
         .reduce(
-          (accumulator: any, currentValue: any) => [
+          (accumulator: string[], currentValue: string) => [
             ...accumulator,
             ...subcategories[currentValue],
           ],
@@ -24,13 +24,13 @@ export default function Subcategories() {
         )
         .map((subcategory: string) => ({
           dottedName: subcategory,
-          value: getValue(subcategory),
+          value: getNumericValue(subcategory) || 0,
         }))
         .filter((subcategory: categoryObject) => subcategory.value)
         .sort((a: categoryObject, b: categoryObject) =>
           a.value > b.value ? -1 : 1
         ),
-    [subcategories, getValue]
+    [subcategories, getNumericValue]
   )
   return (
     <div>

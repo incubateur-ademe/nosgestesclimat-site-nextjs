@@ -1,7 +1,7 @@
-import { Simulation } from '@/types/simulation'
+import { Simulation } from '@/publicodes-state/types'
 
 type SimulationFormatted = {
-	[key: string]: any
+  [key: string]: any
 }
 
 /**
@@ -10,29 +10,29 @@ type SimulationFormatted = {
  * @returns
  */
 export const formatDataForDB = (
-	simulation: Simulation
+  simulation: Simulation
 ): SimulationFormatted => {
-	const simulationFormatted = { ...simulation }
+  const simulationFormatted = { ...simulation }
 
-	return Object.entries(
-		simulationFormatted.situation as { [key: string]: any }
-	).reduce((acc: { [key: string]: any }, [key, value]: [string, any]) => {
-		acc[key.replaceAll(' . ', '_').replaceAll(' ', '-')] = value
-		return acc
-	}, {})
+  return Object.entries(
+    simulationFormatted.situation as { [key: string]: any }
+  ).reduce((acc: { [key: string]: any }, [key, value]: [string, any]) => {
+    acc[key.replaceAll(' . ', '_').replaceAll(' ', '-')] = value
+    return acc
+  }, {})
 }
 
 export const reformateDataFromDB = (
-	simulation: Simulation
+  simulation: Simulation
 ): SimulationFormatted => {
-	const simulationFormatted = { ...simulation }
+  const simulationFormatted = { ...simulation }
 
-	if (!simulationFormatted.situation) return simulationFormatted
+  if (!simulationFormatted.situation) return simulationFormatted
 
-	return Object.entries(
-		simulationFormatted.situation as { [key: string]: any }
-	).reduce((acc: { [key: string]: any }, [key, value]: [string, any]) => {
-		acc[key.replaceAll('_', ' . ').replaceAll('-', ' ')] = value
-		return acc
-	}, {})
+  return Object.entries(
+    simulationFormatted.situation as { [key: string]: any }
+  ).reduce((acc: { [key: string]: any }, [key, value]: [string, any]) => {
+    acc[key.replaceAll('_', ' . ').replaceAll('-', ' ')] = value
+    return acc
+  }, {})
 }

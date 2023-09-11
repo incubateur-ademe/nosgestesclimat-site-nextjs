@@ -1,7 +1,8 @@
+import { Dispatch, SetStateAction } from 'react'
 import { User } from '../types'
 
 type Props = {
-  setUser: (user: User | ((prevUser: User) => void)) => void
+  setUser: Dispatch<SetStateAction<User>>
 }
 export default function useUserDetails({ setUser }: Props) {
   const updateName = (name: string) =>

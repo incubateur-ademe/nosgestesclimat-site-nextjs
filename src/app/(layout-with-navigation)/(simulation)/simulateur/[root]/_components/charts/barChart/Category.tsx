@@ -19,17 +19,17 @@ export default function Category({
   ...props
 }: Props) {
   const { title, icons, color } = useRule(category)
-  const { value } = useRule(
+  const { numericValue } = useRule(
     category === 'transport' ? 'transport . empreinte' : category
   )
 
   return (
-    <div {...props} className={`p-4 pb-1 rounded-xl `}>
+    <div {...props} className={`rounded-xl p-4 pb-1 `}>
       <BarChartItem
         label={`${icons} ${title}`}
-        value={value}
+        value={numericValue}
         max={max}
-        color={color}
+        color={color || '#ffffff'}
         onClick={() => {
           setIsOpen((previsOpen: string | null) =>
             previsOpen === category ? null : category

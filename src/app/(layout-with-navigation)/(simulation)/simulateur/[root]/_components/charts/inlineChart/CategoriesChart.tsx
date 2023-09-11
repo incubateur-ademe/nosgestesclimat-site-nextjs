@@ -5,7 +5,7 @@ import Category from './categoriesChart/Category'
 export default function CategoriesChart() {
   const { categories, currentCategory } = useForm()
 
-  const { value: total } = useRule('bilan')
+  const { numericValue: total } = useRule('bilan')
 
   return (
     <>

@@ -21,7 +21,9 @@ export default function NorthStarBanner({
 
   const { getCurrentSimulation } = useUser()
 
-  const { actionChoices } = getCurrentSimulation()
+  const currentSimulation = getCurrentSimulation()
+
+  const actionChoices = currentSimulation?.actionChoices
 
   const actionChoicesLength = Object.values(actionChoices || {}).filter(
     (value) => value

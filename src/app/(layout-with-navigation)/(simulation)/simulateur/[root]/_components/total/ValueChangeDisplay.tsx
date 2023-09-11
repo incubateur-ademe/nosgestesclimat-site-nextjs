@@ -3,27 +3,28 @@ import { useEffect, useState } from 'react'
 import { useRule } from '@/publicodes-state'
 
 export default function ValueChangeDisplay() {
-  const { value } = useRule('bilan')
-  const [prevValue, setPrevValue] = useState(value)
+  const { numericValue } = useRule('bilan')
 
-  const displayDifference = `${value - prevValue > 0 ? '+' : '-'} ${Math.abs(
-    value - prevValue
-  ).toLocaleString('fr-fr', {
+  const [prevValue, setPrevValue] = useState(numericValue)
+
+  const displayDifference = `${
+    numericValue - prevValue > 0 ? '+' : '-'
+  } ${Math.abs(numericValue - prevValue).toLocaleString('fr-fr', {
     maximumFractionDigits: 1,
   })}`
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setPrevValue(value)
+      setPrevValue(numericValue)
     }, 1000)
     return () => clearTimeout(timer)
-  }, [value])
+  }, [numericValue])
 
-  if (value - prevValue === 0) return
+  if (numericValue - prevValue === 0) return
   return (
-    <div className="absolute right-24 py-2 px-4 bg-white rounded text-primaryDark">
+    <div className="absolute right-24 rounded bg-white px-4 py-2 text-primaryDark">
       <strong className="text-lg">{displayDifference}</strong>{' '}
-      <span className="font-light text-xs">
+      <span className="text-xs font-light">
         kgCO<sub>2</sub>e
       </span>
     </div>

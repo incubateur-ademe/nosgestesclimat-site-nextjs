@@ -14,10 +14,10 @@ const positionClassNames = {
 }
 export default function Category({ category, total, position }: Props) {
   const { title, color } = useRule(category)
-  const { value } = useRule(
+  const { numericValue } = useRule(
     category === 'transport' ? 'transport . empreinte' : category
   )
-  const percent = (value / total) * 100
+  const percent = (numericValue / total) * 100
 
   if (percent < 5) return
   return (
@@ -27,7 +27,7 @@ export default function Category({ category, total, position }: Props) {
       <Image
         style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}
         src={`/images/model/${category}.svg`}
-        alt={title}
+        alt={title || category}
         width={32}
         height={32}
       />

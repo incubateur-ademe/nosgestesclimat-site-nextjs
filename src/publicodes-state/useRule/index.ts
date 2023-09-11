@@ -9,7 +9,7 @@ import useMosaic from './useMosaic'
 import useType from './useType'
 import useValue from './useValue'
 
-export default function useRule(dottedName: string = '') {
+export default function useRule(dottedName: string) {
   const {
     engine,
     safeGetRule,
@@ -65,17 +65,23 @@ export default function useRule(dottedName: string = '') {
 
   const choices = useChoices({ rule, type })
 
-  const { value, displayValue, isMissing, setValue, setDefaultAsValue } =
-    useValue({
-      dottedName,
-      safeGetRule,
-      safeEvaluate,
-      evaluation,
-      type,
-      getType,
-      questionsOfMosaic,
-      updateSituation,
-    })
+  const {
+    value,
+    displayValue,
+    numericValue,
+    isMissing,
+    setValue,
+    setDefaultAsValue,
+  } = useValue({
+    dottedName,
+    safeGetRule,
+    safeEvaluate,
+    evaluation,
+    type,
+    getType,
+    questionsOfMosaic,
+    updateSituation,
+  })
 
   return {
     type,
@@ -95,6 +101,7 @@ export default function useRule(dottedName: string = '') {
     shouldDisplayAucun,
     value,
     displayValue,
+    numericValue,
     isMissing,
     setValue,
     setDefaultAsValue,
