@@ -13,11 +13,11 @@ on:
 
 jobs:
   sleep:
-    name: If first run wait 3 min for the Vercel preview to be deployed
+    name: Wait 3 min for the Vercel preview to be deployed
     runs-on: ubuntu-latest
     steps:
-      - name: Sleep for 2 min
-        run: sleep 2m
+      - name: Sleep for 90s
+        run: sleep 90s
         shell: bash
 
   e2e:
