@@ -1,5 +1,6 @@
 'use client'
 
+import { captureException } from '@sentry/react'
 import { useContext, useMemo } from 'react'
 import simulationContext from '../simulationProvider/context'
 import { NGCEvaluatedNode, NGCRuleNode } from '../types'
@@ -29,9 +30,10 @@ export default function useRule(dottedName: string) {
     [dottedName, safeGetRule]
   )
 
-  // TODO: add Sentry call
   if (!rule) {
-    captureException(new Error(`Error in useRule while parsing rule: ${dottedName`))
+    captureException(
+      new Error(`Error in useRule while parsing rule: ${dottedName}`)
+    )
   }
 
   const { type, getType } = useType({
