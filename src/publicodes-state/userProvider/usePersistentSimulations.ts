@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Simulation } from '../types'
 
 type Props = {
   storageKey: string
@@ -8,13 +9,13 @@ export default function usePersistentSimulations({
   storageKey,
   forgetSimulations,
 }: Props) {
-  const [initialized, setInitialized] = useState(false)
+  const [initialized, setInitialized] = useState<boolean>(false)
 
-  const [simulations, setSimulations] = useState<any[]>([])
+  const [simulations, setSimulations] = useState<Simulation[]>([])
   const [currentSimulationId, setCurrentSimulationId] = useState<string>('')
 
   useEffect(() => {
-    const storedSimulations: any[] = forgetSimulations
+    const storedSimulations: Simulation[] = forgetSimulations
       ? []
       : JSON.parse(localStorage.getItem(storageKey) || '{}').simulations || []
 

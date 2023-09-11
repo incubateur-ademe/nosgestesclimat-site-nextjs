@@ -36,8 +36,6 @@ export default function ActionDetailPage({
 
   const { getCurrentSimulation, toggleActionChoice } = useUser()
 
-  const { actionChoices } = getCurrentSimulation()
-
   const dottedName = decodeRuleName(formattedDottedName ?? '')
 
   const nbRemainingQuestions = filterRelevantMissingVariables(
@@ -45,6 +43,12 @@ export default function ActionDetailPage({
   )?.length
 
   const rule = useRule(dottedName)
+
+  const currentSimulation = getCurrentSimulation()
+
+  if (!currentSimulation) return
+
+  const actionChoices = currentSimulation.actionChoices
 
   const { title } = rule
 
@@ -126,7 +130,7 @@ export default function ActionDetailPage({
                   trackEvent(
                     getMatomoEventActionAccepted(
                       dottedName,
-                      getValue(dottedName)
+                      String(getValue(dottedName))
                     )
                   )
                 }

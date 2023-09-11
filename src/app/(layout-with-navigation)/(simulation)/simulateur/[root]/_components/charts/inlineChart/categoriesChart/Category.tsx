@@ -20,15 +20,14 @@ export default function Category({
   current,
 }: Props) {
   const { title, color } = useRule(category)
-  const { value } = useRule(
+  const { numericValue } = useRule(
     category === 'transport' ? 'transport . empreinte' : category
   )
-  const percent = (value / total) * 100
-  console.log(current)
-  if (percent < 5) return
+  const percent = (numericValue / total) * 100
+
   return (
     <div
-      className={`relative flex h-full justify-center items-center border-white border-ltransition-all ${positionClassNames[position]}`}
+      className={`border-ltransition-all relative flex h-full items-center justify-center border-white ${positionClassNames[position]}`}
       style={{ width: `${percent}%`, backgroundColor: color }}>
       {current ? (
         <svg
@@ -45,13 +44,15 @@ export default function Category({
           />
         </svg>
       ) : null}
-      <Image
-        style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}
-        src={`/images/model/${category}.svg`}
-        alt={title}
-        width={32}
-        height={32}
-      />
+      {percent > 5 ? (
+        <Image
+          style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}
+          src={`/images/model/${category}.svg`}
+          alt={title || category}
+          width={32}
+          height={32}
+        />
+      ) : null}
     </div>
   )
 }

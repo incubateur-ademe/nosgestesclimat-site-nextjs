@@ -1,12 +1,13 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine } from '@/publicodes-state'
+import { NodeValue } from '@/publicodes-state/types'
 import { TranslationFunctionType } from '@/types/translation'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import { getCarbonFootprint } from '../../../_helpers/getCarbonFootprint'
 
 const getFormattedActionValue = (
   { t, i18n }: { t: TranslationFunctionType; i18n: any },
-  actionValue: { nodeValue: number; unit: { numerators: string } }
+  actionValue: { nodeValue: NodeValue; unit: { numerators: string } }
 ) => {
   const correctedValue = getCorrectedValue(actionValue)
 
@@ -46,7 +47,7 @@ export default function ActionValue({
   const { correctedValue, stringValue, unit, sign } = getFormattedActionValue(
     { t, i18n },
     {
-      nodeValue: getValue(dottedName),
+      nodeValue: getValue(dottedName) || 0,
       unit: { numerators: 'kgCO2' },
     }
   )

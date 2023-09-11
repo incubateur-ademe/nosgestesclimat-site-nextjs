@@ -23,7 +23,7 @@ export const NewsletterForm = () => {
   } = useSubscribeUser()
 
   return (
-    <div id="newsletter-form-container" className="max-w-lg mx-auto">
+    <div id="newsletter-form-container" className="mx-auto max-w-lg">
       <div>
         {isSuccess ? (
           <Confirmation />
@@ -32,7 +32,7 @@ export const NewsletterForm = () => {
             id="newsletter-form"
             onSubmit={(event) => {
               event.preventDefault()
-              if (isLoading) return
+              if (isLoading || !simulation) return
               subscribeUser({ simulation, email, optIn })
             }}>
             <Text />
@@ -75,7 +75,7 @@ export const NewsletterForm = () => {
               </TransClient>
             </p>
             {isError && (
-              <div className="text-red-600 text-xs">
+              <div className="text-xs text-red-600">
                 Une erreur est survenue
               </div>
             )}

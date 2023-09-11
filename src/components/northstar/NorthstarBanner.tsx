@@ -21,7 +21,9 @@ export default function NorthStarBanner({
 
   const { getCurrentSimulation } = useUser()
 
-  const { actionChoices } = getCurrentSimulation()
+  const currentSimulation = getCurrentSimulation()
+
+  const actionChoices = currentSimulation?.actionChoices
 
   const actionChoicesLength = Object.values(actionChoices || {}).filter(
     (value) => value
@@ -116,8 +118,11 @@ export default function NorthStarBanner({
           ) : (
             <>
               <p>
-                <TransClient i18nKey={'publicodes.northstar.title'}>
-                  <b>Petite question entre nous...</b>
+                <TransClient i18nKey={'publicodes.northstar.learned'}>
+                  <b>
+                    Est-ce que "Nos Gestes Climat" vous a permis d'apprendre
+                    quelque chose ?
+                  </b>
                 </TransClient>
               </p>
               <Northstar

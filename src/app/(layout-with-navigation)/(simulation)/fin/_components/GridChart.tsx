@@ -6,14 +6,13 @@ import { useMemo } from 'react'
 import Block from './gridChart/Block'
 
 export default function GridChart() {
-  const { value: total } = useRule('bilan')
+  const { numericValue: total } = useRule('bilan')
 
   const numberOfSquares = 100
   const valueOfEachSquare = total / numberOfSquares
-  console.log(valueOfEachSquare)
   const { subcategories } = useForm()
 
-  const { getValue, checkIfValid } = useEngine()
+  const { getNumericValue, checkIfValid } = useEngine()
   const sortedSubcategories = useMemo(
     () =>
       Object.keys(subcategories)
@@ -27,7 +26,7 @@ export default function GridChart() {
         .filter((subcategory: any) => checkIfValid(subcategory))
         .map((subcategory: string) => ({
           dottedName: subcategory,
-          squares: Math.round(getValue(subcategory) / valueOfEachSquare),
+          squares: Math.round(getNumericValue(subcategory) / valueOfEachSquare),
         }))
         .filter((subcategory: any) => subcategory.squares)
 
@@ -41,11 +40,11 @@ export default function GridChart() {
           ],
           []
         ),
-    [subcategories, getValue, checkIfValid, valueOfEachSquare]
+    [subcategories, getNumericValue, checkIfValid, valueOfEachSquare]
   )
 
   return (
-    <div className="p-12 bg-primaryLight rounded-lg">
+    <>
       <h3 className="text-center text-xl">
         <TransClient>De quoi est faite mon empreinte&nbsp;?</TransClient>
       </h3>
@@ -59,6 +58,6 @@ export default function GridChart() {
           ) : null
         )}
       </div>
-    </div>
+    </>
   )
 }

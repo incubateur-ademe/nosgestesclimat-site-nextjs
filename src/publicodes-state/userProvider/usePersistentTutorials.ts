@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
+import { Tutorials } from '../types'
 
 type Props = {
   storageKey: string
 }
 export default function usePersistentTutorials({ storageKey }: Props) {
-  const [initialized, setInitialized] = useState(false)
+  const [initialized, setInitialized] = useState<boolean>(false)
 
-  const [tutorials, setTutorials] = useState<any>({})
+  const [tutorials, setTutorials] = useState<Tutorials>({})
 
   useEffect(() => {
     setTutorials(

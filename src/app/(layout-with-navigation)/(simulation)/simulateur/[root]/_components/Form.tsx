@@ -64,7 +64,7 @@ export default function Form() {
   ])
 
   useEffect(() => {
-    if (isInitialized) {
+    if (isInitialized && currentQuestion) {
       setQuestionInQueryParams(currentQuestion)
     }
   }, [

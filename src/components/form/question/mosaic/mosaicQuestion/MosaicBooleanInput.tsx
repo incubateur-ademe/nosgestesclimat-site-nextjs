@@ -3,8 +3,8 @@ import { useRule } from '@/publicodes-state'
 
 type Props = {
   question: string
-  title: string
-  icons: string
+  title?: string
+  icons?: string
 }
 
 const buttonClassNames = {
@@ -28,16 +28,18 @@ export default function MosaicBooleanInput({ question, title, icons }: Props) {
   return (
     <button
       disabled={isInactive}
-      className={`relative rounded border px-4 py-2 text-xl text-left ${buttonClassNames[status]}`}
+      className={`relative rounded border px-4 py-2 text-left text-xl ${buttonClassNames[status]}`}
       onClick={() => {
         setValue(!value)
       }}>
-      <span
-        className={`${checkClassNames[status]} flex items-center gap-2 before:block before:h-5 before:w-5 before:rounded-sm before:border-2`}>
-        {icons} {title}
-      </span>
+      {title && icons ? (
+        <span
+          className={`${checkClassNames[status]} flex items-center gap-2 before:block before:h-5 before:w-5 before:rounded-sm before:border-2`}>
+          {icons} {title}
+        </span>
+      ) : null}
       {isInactive ? (
-        <div className="absolute right-4 top-1 bottom-1 flex items-center justify-center border-2 bg-white border-black text-black font-semibold rounded p-2 text-xs -rotate-12">
+        <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded border-2 border-black bg-white p-2 text-xs font-semibold text-black">
           <TransClient>Bientôt disponible</TransClient>
         </div>
       ) : null}

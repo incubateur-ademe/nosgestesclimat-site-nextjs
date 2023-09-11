@@ -2,16 +2,17 @@
 
 import { PropsWithChildren } from 'react'
 
+import { Rules, Situation } from '../types'
 import SimulationContext from './context'
 import useEngine from './useEngine'
 import useRules from './useRules'
 import useSituation from './useSituation'
 
 type Props = {
-  rules: any
-  defaultSituation?: any
-  situation?: any
-  updateSituation: (arg: any) => void
+  rules: Rules
+  defaultSituation?: Situation
+  situation: Situation
+  updateSituation: (situation: Situation) => void
 }
 
 export default function SimulationProvider({
@@ -23,20 +24,21 @@ export default function SimulationProvider({
 }: PropsWithChildren<Props>) {
   const { engine, safeEvaluate, safeGetRule } = useEngine(rules)
 
-  const { situation, updateSituation } = useSituation({
-    engine,
-    safeEvaluate,
-    defaultSituation,
-    externalSituation,
-    updateExternalSituation,
-  })
-
   const {
+    everyRules,
     everyQuestions,
     everyMosaic,
     everyNotifications,
     everyMosaicChildWhoIsReallyInMosaic,
   } = useRules({ engine })
+
+  const { situation, updateSituation } = useSituation({
+    engine,
+    everyRules,
+    defaultSituation,
+    externalSituation,
+    updateExternalSituation,
+  })
 
   return (
     <SimulationContext.Provider

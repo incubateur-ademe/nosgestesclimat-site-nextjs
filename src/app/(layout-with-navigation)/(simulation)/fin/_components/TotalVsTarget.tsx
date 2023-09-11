@@ -18,14 +18,14 @@ const getBackgroundColor = (score: number) =>
   ]
 
 export default function TotalVsTarget() {
-  const { value: total } = useRule('bilan')
+  const { numericValue: total } = useRule('bilan')
 
   const backgroundColor = getBackgroundColor(total).toHexString()
   const backgroundColor2 = getBackgroundColor(total + 2000).toHexString()
 
   return (
     <div
-      className="py-12 px-36 bg-primaryLight rounded-lg"
+      className="h-full px-36 py-12"
       style={{
         background: `linear-gradient(
       180deg,
@@ -33,7 +33,7 @@ export default function TotalVsTarget() {
       ${backgroundColor2} 100%
     )`,
       }}>
-      <div className="mt-12 flex items-end justify-around border-b-4 border-primary h-[36rem]">
+      <div className="mt-12 flex h-[36rem] items-end justify-around border-b-4 border-black ">
         <Total total={total} />
         <Target total={total} />
       </div>

@@ -1,80 +1,30 @@
 'use client'
 
-import { PropsWithChildren, useContext } from 'react'
-
+import { PropsWithChildren, useContext, useMemo } from 'react'
 import simulationContext from '../simulationProvider/context'
-import SimulationContext from './context'
-import useCategories from './useCategories'
-import useCurrent from './useCurrent'
-import useProgression from './useProgression'
-import useQuestions from './useQuestions'
+import Provider from './Provider'
 
 type Props = {
   root?: string
   categoryOrder: string[]
 }
 
-export default function FormProvider({
+export default function CheckFormProvider({
   root = 'bilan',
   categoryOrder,
   children,
 }: PropsWithChildren<Props>) {
-  const { engine, safeEvaluate, situation }: any = useContext(simulationContext)
+  const { safeEvaluate } = useContext(simulationContext)
 
-  const { categories, subcategories } = useCategories({
-    engine,
-    root,
-    safeEvaluate,
-    order: categoryOrder,
-  })
+  const isRootSafe = useMemo<boolean>(
+    () => (safeEvaluate(root) ? true : false),
+    [safeEvaluate, root]
+  )
 
-  const { missingInputs, relevantQuestions, questionsByCategories } =
-    useQuestions({ engine, root, safeEvaluate, categories, situation })
-
-  const {
-    remainingCategories,
-    answeredCategories,
-    remainingQuestions,
-    answeredQuestions,
-    progression,
-    remainingQuestionsByCategories,
-    answeredQuestionsByCategories,
-    progressionByCategory,
-  } = useProgression({
-    categories,
-    missingInputs,
-    relevantQuestions,
-    questionsByCategories,
-  })
-
-  const {
-    currentQuestion,
-    currentCategory,
-    setCurrentQuestion,
-    setCurrentCategory,
-  } = useCurrent()
-
+  if (!isRootSafe) return <div>La racine du formulaire n'existe pas</div>
   return (
-    <SimulationContext.Provider
-      value={{
-        categories,
-        subcategories,
-        relevantQuestions,
-        questionsByCategories,
-        remainingCategories,
-        answeredCategories,
-        remainingQuestions,
-        answeredQuestions,
-        progression,
-        remainingQuestionsByCategories,
-        answeredQuestionsByCategories,
-        progressionByCategory,
-        currentQuestion,
-        currentCategory,
-        setCurrentQuestion,
-        setCurrentCategory,
-      }}>
+    <Provider root={root} categoryOrder={categoryOrder}>
       {children}
-    </SimulationContext.Provider>
+    </Provider>
   )
 }

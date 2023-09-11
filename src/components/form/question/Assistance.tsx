@@ -30,11 +30,11 @@ export default function Assistance({ question, assistance }: Props) {
       <Label size="sm" label={label} description={description} />
       {type === 'number' && (
         <NumberInput
-          unit={unit.split('/')[0]}
+          unit={unit ? unit.split('/')[0] : ''}
           value={inputValue}
           setValue={(value: number) => {
             setValueOfParent(
-              Math.round(12 * (value / constantMultiplier) * 10) / 10
+              Math.round(12 * (value / Number(constantMultiplier)) * 10) / 10
             )
             setInputValue(value)
           }}

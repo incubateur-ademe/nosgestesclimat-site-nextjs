@@ -6,24 +6,28 @@ import Subcategory from './subcategoriesChart/Subcategory'
 export default function SubcategoriesChart() {
   const { subcategories, currentCategory } = useForm()
 
-  const { value: total } = useRule(
-    currentCategory === 'transport' ? 'transport . empreinte' : currentCategory
+  const { numericValue: total } = useRule(
+    currentCategory === 'transport'
+      ? 'transport . empreinte'
+      : currentCategory || ''
   )
-  const { title, color } = useRule(currentCategory)
+  const { title, color } = useRule(currentCategory || '')
   const { checkIfValid } = useEngine()
 
   const filteredSubcategories = useMemo(
     () =>
-      subcategories[currentCategory]?.filter((subcategory: string) =>
-        checkIfValid(subcategory)
-      ) || [],
+      (currentCategory &&
+        subcategories[currentCategory]?.filter((subcategory: string) =>
+          checkIfValid(subcategory)
+        )) ||
+      [],
     [subcategories, currentCategory, checkIfValid]
   )
 
   return (
     <>
-      <h4 className="uppercase text-2xl">{title}</h4>
-      <div className="flex h-12 mb-4" style={{ backgroundColor: color }}>
+      <h4 className="text-2xl uppercase">{title}</h4>
+      <div className="mb-4 flex h-12" style={{ backgroundColor: color }}>
         {filteredSubcategories.map((subcategory: string, index: number) => (
           <Subcategory
             key={subcategory}

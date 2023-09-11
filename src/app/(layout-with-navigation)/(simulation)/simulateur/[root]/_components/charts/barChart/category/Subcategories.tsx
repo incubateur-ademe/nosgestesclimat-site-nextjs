@@ -11,14 +11,16 @@ type Props = {
 export default function Subcategories({ category, max }: Props) {
   const { subcategories } = useForm()
 
-  const { getValue, checkIfValid } = useEngine()
+  const { getNumericValue, checkIfValid } = useEngine()
 
   const sortedSubcategories = useMemo(
     () =>
       subcategories[category]
         .filter((subcategory: string) => checkIfValid(subcategory))
-        .sort((a: string, b: string) => (getValue(a) > getValue(b) ? -1 : 1)),
-    [subcategories, category, getValue, checkIfValid]
+        .sort((a: string, b: string) =>
+          getNumericValue(a) > getNumericValue(b) ? -1 : 1
+        ),
+    [subcategories, category, getNumericValue, checkIfValid]
   )
 
   return (

@@ -32,14 +32,14 @@ export default function Question({ question }: Props) {
         {type === 'number' && (
           <NumberInput
             unit={unit}
-            value={value}
+            value={Number(value)}
             setValue={setValue}
             isMissing={isMissing}
           />
         )}
         {type === 'boolean' && (
           <BooleanInput
-            value={value}
+            value={String(value)}
             setValue={setValue}
             isMissing={isMissing}
           />
@@ -48,7 +48,7 @@ export default function Question({ question }: Props) {
           <ChoicesInput
             question={question}
             choices={choices}
-            value={value}
+            value={String(value)}
             setValue={setValue}
             isMissing={isMissing}
           />

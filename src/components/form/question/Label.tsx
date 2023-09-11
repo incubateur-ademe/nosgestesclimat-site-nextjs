@@ -2,7 +2,7 @@ import { QuestionSize } from '@/types/values'
 import { useState } from 'react'
 
 type Props = {
-  label: string
+  label?: string
   description?: string
   size?: QuestionSize
 }
@@ -18,6 +18,7 @@ const buttonSizeClassNames = {
 export default function Label({ label, description, size = 'md' }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
+  if (!label) return
   return (
     <>
       <div className={`mb-3 ${sizeClassNames[size]} font-semibold`}>

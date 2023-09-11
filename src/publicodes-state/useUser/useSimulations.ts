@@ -1,13 +1,14 @@
 'use client'
 
-import { Simulation } from '@/types/simulation'
+import { Dispatch, SetStateAction } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { ActionChoices, Simulation, Situation } from '../types'
 
 type Props = {
-  simulations: any[]
-  setSimulations: any
+  simulations: Simulation[]
+  setSimulations: Dispatch<SetStateAction<Simulation[]>>
   currentSimulationId: string
-  setCurrentSimulationId: any
+  setCurrentSimulationId: Dispatch<SetStateAction<string>>
 }
 export default function useSimulations({
   simulations,
@@ -18,16 +19,17 @@ export default function useSimulations({
   const initSimulation = ({
     situation = {},
     persona,
-  }: { situation?: any; persona?: string } = {}) => {
+  }: { situation?: Situation; persona?: string } = {}) => {
     const id = uuidv4()
 
-    setSimulations((prevSimulations: any[]) => [
+    setSimulations((prevSimulations: Simulation[]) => [
       ...prevSimulations,
       {
         id,
         date: new Date().toISOString(),
         situation,
         persona,
+        actionChoices: {},
       },
     ])
 
@@ -36,21 +38,22 @@ export default function useSimulations({
     return id
   }
 
-  const updateSituationOfCurrentSimulation = (situationToAdd: any) => {
+  const updateSituationOfCurrentSimulation = (situationToAdd: Situation) => {
     if (currentSimulationId) {
-      setSimulations((prevSimulations: any) => {
+      setSimulations((prevSimulations: Simulation[]) => {
         const simulationUpdated = prevSimulations.find(
           (simulation: Simulation) => simulation.id === currentSimulationId
         )
 
+        if (!simulationUpdated) return prevSimulations // TODO: should throw error
         return [
           ...prevSimulations.filter(
-            (simulation: any) => simulation.id !== currentSimulationId
+            (simulation: Simulation) => simulation.id !== currentSimulationId
           ),
           {
             ...simulationUpdated,
             situation: {
-              ...simulationUpdated.situation,
+              ...simulationUpdated?.situation,
               ...situationToAdd,
             },
           },
@@ -59,7 +62,9 @@ export default function useSimulations({
     }
   }
 
-  const updateCurrentSimulationActionChoices = (actionChoices: any) => {
+  const updateCurrentSimulationActionChoices = (
+    actionChoices: ActionChoices
+  ) => {
     const updatedSimulations = simulations.map((simulation) => {
       if (simulation.id === currentSimulationId) {
         return {
@@ -72,6 +77,19 @@ export default function useSimulations({
     setSimulations(updatedSimulations)
   }
 
+  const getCurrentSimulation = (): Simulation | undefined =>
+    simulations.find(
+      (simulation: Simulation) => simulation.id === currentSimulationId
+    )
+
+  const deleteSimulation = (deletedSimulationId: string) => {
+    setSimulations((prevSimulations: Simulation[]) =>
+      [...prevSimulations].filter(
+        (simulation: Simulation) => simulation.id !== deletedSimulationId
+      )
+    )
+  }
+
   return {
     simulations,
     currentSimulation: simulations.find(
@@ -81,5 +99,7 @@ export default function useSimulations({
     updateSituationOfCurrentSimulation,
     updateCurrentSimulationActionChoices,
     initSimulation,
+    deleteSimulation,
+    getCurrentSimulation,
   }
 }

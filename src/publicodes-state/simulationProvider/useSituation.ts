@@ -1,43 +1,66 @@
 import { useEffect, useState } from 'react'
+import { Engine, NodeValue, Situation } from '../types'
 
 type Props = {
-  engine: any
-  safeEvaluate: any
-  defaultSituation?: any
-  externalSituation: any
-  updateExternalSituation: any
+  engine: Engine
+  everyRules: string[]
+  defaultSituation?: Situation
+  externalSituation: Situation
+  updateExternalSituation: (situation: Situation) => void
 }
 export default function useSituation({
   engine,
-  safeEvaluate,
+  everyRules,
   defaultSituation = {},
   externalSituation,
   updateExternalSituation,
 }: Props) {
   const [situation, setSituation] = useState(defaultSituation)
 
-  const updateSituation = (situationToAdd: any) => {
-    // console.log('update situation', situationToAdd)
-    const oldTotal = safeEvaluate('bilan').nodeValue
-    updateExternalSituation(situationToAdd)
+  const updateSituation = (situationToAdd: Situation): Promise<void> => {
+    const safeSitationToAdd = getSafeSituation({
+      situation: situationToAdd,
+      everyRules,
+    })
+    updateExternalSituation(safeSitationToAdd)
 
     // TODO: this is shit
     return new Promise((resolve) => {
       requestAnimationFrame(() => {
-        const newTotal = safeEvaluate('bilan').nodeValue
-        resolve({ oldTotal, newTotal })
+        resolve()
       })
     })
   }
 
   useEffect(() => {
-    // console.log('set situation', externalSituation)
-    engine.setSituation(externalSituation)
-    setSituation(externalSituation)
-  }, [externalSituation, engine])
+    //console.log('set situation', externalSituation)
+    const safeSituation = getSafeSituation({
+      situation: externalSituation,
+      everyRules,
+    })
+    engine.setSituation(safeSituation)
+    setSituation(safeSituation)
+  }, [externalSituation, engine, everyRules])
 
   return {
     situation,
     updateSituation,
   }
 }
+
+const getSafeSituation = ({
+  situation,
+  everyRules,
+}: {
+  situation: Situation
+  everyRules: string[]
+}): Situation =>
+  everyRules
+    .filter((rule: string) => situation[rule])
+    .reduce(
+      (accumulator: Record<string, NodeValue>, currentValue: string) => ({
+        ...accumulator,
+        [currentValue]: situation[currentValue],
+      }),
+      {}
+    )

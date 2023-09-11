@@ -1,7 +1,7 @@
 import { QuestionSize } from '@/types/values'
 
 type Props = {
-  unit: string
+  unit?: string
   value: number
   isMissing: boolean
   setValue: (value: number) => void
@@ -23,7 +23,7 @@ export default function NumberInput({
     <div
       className={`flex items-center justify-end gap-1 ${sizeClassNames[size]}`}>
       <input
-        className={`text-right rounded border border-primary bg-grey-100 p-2 transition-colors focus:border-primary focus:ring-2 focus:ring-primary`}
+        className={`rounded border border-primary bg-grey-100 p-2 text-right transition-colors focus:border-primary focus:ring-2 focus:ring-primary`}
         type="number"
         min="0"
         value={isMissing ? '' : value}
@@ -34,8 +34,12 @@ export default function NumberInput({
           setValue(Number(event.target.value))
         }}
       />
-      &nbsp;
-      {unit}
+      {unit ? (
+        <>
+          &nbsp;
+          {unit}
+        </>
+      ) : null}
     </div>
   )
 }

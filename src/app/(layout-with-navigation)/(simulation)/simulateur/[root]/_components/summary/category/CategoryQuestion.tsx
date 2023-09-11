@@ -2,7 +2,7 @@ import { useForm, useRule } from '@/publicodes-state'
 
 type Props = {
   question: string
-  color: string
+  color?: string
   toggleQuestionList: () => void
 }
 
@@ -13,7 +13,7 @@ const statusClassNames = {
 }
 export default function CategoryQuestion({
   question,
-  color,
+  color = '#ff0000',
   toggleQuestionList,
 }: Props) {
   const { label, isMissing, displayValue, unit } = useRule(question)
@@ -25,19 +25,19 @@ export default function CategoryQuestion({
 
   return (
     <button
-      className={`relative overflow-hidden flex gap-4 w-full justify-between items-center mb-2 p-4 pl-6 rounded-lg font-bold text-left ${statusClassNames[status]} `}
+      className={`relative mb-2 flex w-full items-center justify-between gap-4 overflow-hidden rounded-lg p-4 pl-6 text-left font-bold ${statusClassNames[status]} `}
       onClick={() => {
         setCurrentQuestion(question)
         toggleQuestionList()
       }}>
       <div
-        className="absolute top-0 bottom-0 left-0 w-2"
+        className="absolute bottom-0 left-0 top-0 w-2"
         style={{ backgroundColor: color }}
       />
       <div className="w-1/2">{label}</div>
-      <div className="text-lg flex align-center justify-end">
+      <div className="align-center flex justify-end text-lg">
         {displayValue !== 'mosaic' ? (
-          <div className="bg-white !text-primaryDark px-4 py-2 rounded-lg first-letter:uppercase">
+          <div className="rounded-lg bg-white px-4 py-2 !text-primaryDark first-letter:uppercase">
             {displayValue
               .toLocaleString('fr-fr', {
                 maximumFractionDigits: 2,

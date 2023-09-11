@@ -14,7 +14,6 @@ export default function useForm() {
     currentCategory,
     setCurrentQuestion,
     setCurrentCategory,
-    updateSituation,
     remainingCategories,
     answeredCategories,
     remainingQuestions,
@@ -23,7 +22,7 @@ export default function useForm() {
     remainingQuestionsByCategories,
     answeredQuestionsByCategories,
     progressionByCategory,
-  }: any = useContext(formContext)
+  } = useContext(formContext)
 
   const {
     gotoPrevQuestion,
@@ -53,7 +52,6 @@ export default function useForm() {
     currentCategory,
     setCurrentQuestion,
     setCurrentCategory,
-    updateSituation,
     gotoPrevQuestion,
     gotoNextQuestion,
     gotoPrevCategory,

@@ -11,10 +11,10 @@ export default function Total({ total }: Props) {
   const { categories } = useForm()
 
   return (
-    <div className="relative w-28 h-full">
+    <div className="relative h-full w-28">
       <Annotation content="Mon empreinte carbone" />
       <NumberDisplay number={total} />
-      <div className="flex flex-col h-full rounded-t border-2 border-black overflow-hidden">
+      <div className="flex h-full flex-col overflow-hidden rounded-t border-4 border-b-0 border-black">
         {categories.map((category: string, index: number) => (
           <Category
             key={category}

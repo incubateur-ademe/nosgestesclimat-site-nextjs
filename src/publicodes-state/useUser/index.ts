@@ -2,10 +2,12 @@
 
 import { useContext } from 'react'
 
-import { NorthStarType, NorthStarValue } from '@/types/northstar'
-import { Simulation } from '@/types/simulation'
 import userContext from '../userProvider/context'
+import useActions from './useActions'
+import useNorthStar from './useNorthStar'
 import useSimulations from './useSimulations'
+import useTutorials from './useTutorials'
+import useUserDetails from './useUserDetails'
 
 export default function useUser() {
   const {
@@ -17,12 +19,16 @@ export default function useUser() {
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
-  }: any = useContext(userContext)
+  } = useContext(userContext)
+
+  const { updateName, updateEmail, updateRegion } = useUserDetails({ setUser })
 
   const {
     updateSituationOfCurrentSimulation,
     initSimulation,
+    deleteSimulation,
     updateCurrentSimulationActionChoices,
+    getCurrentSimulation,
   } = useSimulations({
     simulations,
     setSimulations,
@@ -30,85 +36,14 @@ export default function useUser() {
     setCurrentSimulationId,
   })
 
-  const getCurrentSimulation = () =>
-    simulations.find((simulation: any) => simulation.id === currentSimulationId)
+  const { toggleActionChoice, rejectAction } = useActions({
+    getCurrentSimulation,
+    updateCurrentSimulationActionChoices,
+  })
 
-  const deleteSimulation = (deletedSimulationId: string) => {
-    setSimulations((prevSimulations: any) =>
-      [...prevSimulations].filter(
-        (simulation: Simulation) => simulation.id !== deletedSimulationId
-      )
-    )
-  }
+  const { hideTutorial, showTutorial } = useTutorials({ setTutorials })
 
-  const toggleActionChoice = (actionChoiceDottedName: string) => {
-    const currentSimulation = getCurrentSimulation()
-
-    if (!currentSimulation) return
-
-    const isActionSelected = Object.keys(
-      currentSimulation.actionChoices || {}
-    ).some(
-      (actionChoiceKey: string) => actionChoiceKey === actionChoiceDottedName
-    )
-
-    if (isActionSelected) {
-      const actionChoicesUpdated = { ...currentSimulation.actionChoices }
-      delete actionChoicesUpdated[actionChoiceDottedName]
-
-      updateCurrentSimulationActionChoices(actionChoicesUpdated)
-    } else {
-      updateCurrentSimulationActionChoices({
-        ...currentSimulation.actionChoices,
-        [actionChoiceDottedName]: true,
-      })
-    }
-  }
-
-  const rejectAction = (actionChoiceDottedName: string) => {
-    const currentSimulation = getCurrentSimulation()
-
-    updateCurrentSimulationActionChoices({
-      ...currentSimulation.actionChoices,
-      [actionChoiceDottedName]: false,
-    })
-  }
-
-  const updateName = (name: string) =>
-    setUser((prevUser: any) => ({ ...prevUser, name }))
-
-  const updateEmail = (email: string) =>
-    setUser((prevUser: any) => ({ ...prevUser, email }))
-
-  const hideTutorial = (tutorial: string) =>
-    setTutorials((prevTutorials: any) => ({
-      ...prevTutorials,
-      [tutorial]: true,
-    }))
-
-  const showTutorial = (tutorial: string) =>
-    setTutorials((prevTutorials: any) => ({
-      ...prevTutorials,
-      [tutorial]: false,
-    }))
-
-  const updateRegion = (region: { code: string; name: string }) =>
-    setUser((prevUser: any) => ({ ...prevUser, region }))
-
-  const updateNorthStarRatings = ({
-    type,
-    value,
-  }: {
-    type: NorthStarType
-    value: NorthStarValue
-  }) =>
-    setUser((prevUser: any) => ({
-      ...prevUser,
-      northStarRatings: {
-        ...(prevUser?.northStarRatings || {}),
-        [type]: value,
-      },
-    }))
+  const { updateNorthStarRatings } = useNorthStar({ setUser })
 
   return {
     user,

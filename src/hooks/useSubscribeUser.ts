@@ -1,4 +1,4 @@
-import { Simulation } from '@/types/simulation'
+import { Simulation } from '@/publicodes-state/types'
 import { formatDataForDB } from '@/utils/formatDataForDB'
 import * as Sentry from '@sentry/react'
 import { useMutation } from '@tanstack/react-query'

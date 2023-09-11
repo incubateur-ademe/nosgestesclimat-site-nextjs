@@ -24,7 +24,7 @@ export default function ActionForm({ category, onComplete }: Props) {
   }, [category, currentCategory, setCurrentCategory])
 
   useEffect(() => {
-    if (!currentQuestion) {
+    if (currentCategory && !currentQuestion) {
       setCurrentQuestion(remainingQuestionsByCategories[currentCategory]?.[0])
     }
   }, [

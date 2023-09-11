@@ -15,23 +15,24 @@ type Props = {
   toggleQuestionList?: () => void
 }
 export default function Total({ toggleQuestionList }: Props) {
-  const { value } = useRule('bilan')
+  const { numericValue } = useRule('bilan')
 
-  const { getValue } = useEngine()
+  const { getNumericValue } = useEngine()
 
   const { tutorials, hideTutorial, showTutorial, getCurrentSimulation } =
     useUser()
 
-  const { actionChoices } = getCurrentSimulation()
+  const currentSimulation = getCurrentSimulation()
 
-  const actionChoicesSumValue = Object.keys(actionChoices || {}).reduce(
-    (acc, key) => {
-      return acc + (actionChoices[key] ? getValue(key) : 0)
-    },
-    0
-  )
+  const actionChoicesSumValue = Object.keys(
+    currentSimulation?.actionChoices || {}
+  ).reduce((acc, key) => {
+    return (
+      acc + (currentSimulation?.actionChoices[key] ? getNumericValue(key) : 0)
+    )
+  }, 0)
 
-  const carbonFootprintValue = value - actionChoicesSumValue
+  const carbonFootprintValue = numericValue - actionChoicesSumValue
 
   const toggleOpen = () =>
     tutorials.scoreExplanation

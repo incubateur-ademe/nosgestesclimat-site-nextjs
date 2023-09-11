@@ -37,27 +37,14 @@ export default function ActionCard({
 
   const { getCurrentSimulation, toggleActionChoice, rejectAction } = useUser()
 
-  const { actionChoices } = getCurrentSimulation()
-
   const { nodeValue, dottedName, title, missingVariables, traversedVariables } =
     action
-
-  const isSelected = Object.keys(actionChoices || {}).some((key) => {
-    return key === dottedName && actionChoices[key]
-  })
 
   const { icônes: icons } = rule
 
   const flatRule = rules[dottedName]
 
   const hasFormula = flatRule.formule
-
-  const isDisabled =
-    (getIsActionDisabled(flatRule) &&
-      Object.keys(actionChoices || {}).some((key) => {
-        return traversedVariables.includes(key)
-      })) ||
-    action.isIrrelevant
 
   const nbRemainingQuestions = filterRelevantMissingVariables(
     Object.keys(missingVariables || {})
@@ -85,6 +72,23 @@ export default function ActionCard({
     categoryRuleObject?.color ||
     rules[dottedName.split(' . ')[0]]?.couleur ||
     'var(--color)'
+
+  const currentSimulation = getCurrentSimulation()
+
+  if (!currentSimulation) return
+
+  const actionChoices = currentSimulation.actionChoices
+
+  const isSelected = Object.keys(actionChoices || {}).some((key) => {
+    return key === dottedName && actionChoices[key]
+  })
+
+  const isDisabled =
+    (getIsActionDisabled(flatRule) &&
+      Object.keys(actionChoices || {}).some((key) => {
+        return traversedVariables.includes(key)
+      })) ||
+    action.isIrrelevant
 
   return (
     <div

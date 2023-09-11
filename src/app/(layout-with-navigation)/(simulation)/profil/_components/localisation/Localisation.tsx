@@ -44,17 +44,17 @@ export default function Localisation({ title = 'Ma région de simulation' }) {
           <span>
             <TransClient>Vous faites cette simulation depuis :</TransClient>{' '}
             <strong>{region.name}</strong>
-            <CountryFlag code={region.code} className="inline-block ml-2" />.
+            <CountryFlag code={region.code} className="ml-2 inline-block" />.
           </span>
           {!isRegionSupported && (
             <>
               {t('components.localisation.Localisation.warnMessage', {
-                countryName: region.country,
+                countryName: region.name,
               })}
             </>
           )}
 
-          <div className="flex gap-2 items-baseline">
+          <div className="flex items-baseline gap-2">
             {region.code !== initialRegion.code && (
               <div className="mt-2">
                 <Button
@@ -66,10 +66,10 @@ export default function Localisation({ title = 'Ma région de simulation' }) {
                     )
                   }}>
                   <TransClient>Revenir à ma région par défaut </TransClient>{' '}
-                  <span aria-label={initialRegion.nom}>
+                  <span aria-label={initialRegion.name}>
                     <CountryFlag
                       code={initialRegion.code}
-                      className="inline-block ml-2"
+                      className="ml-2 inline-block"
                     />
                   </span>
                 </Button>
