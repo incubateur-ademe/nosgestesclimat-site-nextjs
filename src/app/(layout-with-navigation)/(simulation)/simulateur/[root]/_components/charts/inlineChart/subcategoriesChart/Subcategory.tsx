@@ -28,6 +28,7 @@ export default function Subcategory({ subcategory, total, position }: Props) {
         alt={title || subcategory}
         width={32}
         height={32}
+        className="h-6 w-6 md:h-8 md:w-8"
       />
     </div>
   )

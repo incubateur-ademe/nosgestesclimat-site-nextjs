@@ -9,11 +9,11 @@ type Props = {
 
 const sizeClassNames = {
   sm: 'text-sm',
-  md: ' text-xl',
+  md: 'text-lg md:text-xl',
 }
 const buttonSizeClassNames = {
   sm: 'h-6 w-6 text-sm',
-  md: 'h-8 w-8 text-md',
+  md: 'h-6 w-6 text-sm md:h-8 md:w-8 md:text-base',
 }
 export default function Label({ label, description, size = 'md' }: Props) {
   const [isOpen, setIsOpen] = useState(false)

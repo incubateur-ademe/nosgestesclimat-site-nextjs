@@ -12,7 +12,7 @@ export default function Suggestions({ question }: Props) {
 
   if (!suggestions?.length) return
   return (
-    <div className="mb-2 flex flex-wrap gap-2 text-sm">
+    <div className="mb-4 flex flex-wrap gap-2 text-sm">
       {suggestions.map((suggestion) => (
         <Button
           key={suggestion.label}

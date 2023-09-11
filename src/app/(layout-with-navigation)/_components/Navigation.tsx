@@ -47,7 +47,7 @@ export default function Navigation() {
   return (
     <nav
       id="mainNavigation"
-      className="my-2 flex flex-col justify-center outline-none md:sticky md:top-0 md:my-0 md:h-screen md:w-[14rem] md:shrink-0 md:justify-start md:overflow-hidden md:border-0 md:border-r-[1px] md:border-solid md:border-grey-200">
+      className="z-50 my-2 flex flex-col justify-center outline-none md:sticky md:top-0 md:my-0 md:h-screen md:w-[14rem] md:shrink-0 md:justify-start md:overflow-hidden md:border-0 md:border-r-[1px] md:border-solid md:border-grey-200">
       <Logo size="small" className="hidden md:block" />
 
       <div className="z-100 fixed bottom-0 left-0 m-0 w-full border-0 border-t-[1px] border-solid border-grey-200 md:static md:z-auto md:mt-4 md:w-auto md:border-none">

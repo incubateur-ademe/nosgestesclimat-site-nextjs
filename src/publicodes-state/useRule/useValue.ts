@@ -60,6 +60,7 @@ export default function useValue({
   )
 
   const setValue = async (value: NodeValue): Promise<void> => {
+    console.log(checkValueValidity({ value, type }))
     return updateSituation({
       [dottedName]: checkValueValidity({ value, type }),
     })

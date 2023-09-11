@@ -22,6 +22,7 @@ export default function useSituation({
       situation: situationToAdd,
       everyRules,
     })
+    console.log(situationToAdd, safeSitationToAdd)
     updateExternalSituation(safeSitationToAdd)
 
     // TODO: this is shit
@@ -33,7 +34,7 @@ export default function useSituation({
   }
 
   useEffect(() => {
-    //console.log('set situation', externalSituation)
+    console.log('set situation', externalSituation)
     const safeSituation = getSafeSituation({
       situation: externalSituation,
       everyRules,

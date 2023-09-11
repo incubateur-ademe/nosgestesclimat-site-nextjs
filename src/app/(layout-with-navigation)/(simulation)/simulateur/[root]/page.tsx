@@ -19,7 +19,11 @@ export default function Simulateur({ params }: Props) {
 
   return (
     <FormProvider root={params.root} categoryOrder={orderedCategories}>
-      <Title title={<TransClient>Votre bilan climat personnel</TransClient>} />
+      <div className="hidden md:block">
+        <Title
+          title={<TransClient>Votre bilan climat personnel</TransClient>}
+        />
+      </div>
       <Total toggleQuestionList={toggleQuestionList} />
       {isQuestionListOpen ? (
         <Summary toggleQuestionList={toggleQuestionList} />

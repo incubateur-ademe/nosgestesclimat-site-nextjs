@@ -25,7 +25,7 @@ export default function CategoryQuestion({
 
   return (
     <button
-      className={`relative mb-2 flex w-full items-center justify-between gap-4 overflow-hidden rounded-lg p-4 pl-6 text-left font-bold ${statusClassNames[status]} `}
+      className={`relative mb-2 flex w-full flex-col items-end justify-between gap-2 overflow-hidden rounded-lg p-4 pl-6 text-left font-bold md:flex-row md:items-center md:gap-4 ${statusClassNames[status]} `}
       onClick={() => {
         setCurrentQuestion(question)
         toggleQuestionList()
@@ -34,8 +34,8 @@ export default function CategoryQuestion({
         className="absolute bottom-0 left-0 top-0 w-2"
         style={{ backgroundColor: color }}
       />
-      <div className="w-1/2">{label}</div>
-      <div className="align-center flex justify-end text-lg">
+      <div className="text-sm md:w-1/2 md:text-base">{label}</div>
+      <div className="align-center flex justify-end whitespace-nowrap md:text-lg">
         {displayValue !== 'mosaic' ? (
           <div className="rounded-lg bg-white px-4 py-2 !text-primaryDark first-letter:uppercase">
             {displayValue

@@ -3,7 +3,7 @@ import SubcategoriesChart from './inlineChart/SubcategoriesChart'
 
 export default function InlineChart() {
   return (
-    <div>
+    <div className="mb-4">
       <SubcategoriesChart />
       <CategoriesChart />
     </div>
