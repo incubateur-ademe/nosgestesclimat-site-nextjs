@@ -1,6 +1,6 @@
 describe('check for about page status', () => {
   beforeEach(() => {
-    cy.visit('/nouveautés')
+    cy.visit('/nouveautes')
   })
 
   it('has a title', () => {
