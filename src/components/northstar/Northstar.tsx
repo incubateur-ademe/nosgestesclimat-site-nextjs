@@ -58,8 +58,6 @@ export default function NorthStarInput({
   useEffect(() => {
     if (!isAnimationCompleted) return
 
-    console.log('ratings', ratings)
-    console.log('type', type)
     if (!ratings || ratings[type] !== 'no_display') return
 
     updateNorthStarRatings({ type, value: 'display' })
