@@ -20,7 +20,7 @@ export default function Suggestions({ question }: Props) {
           onClick={() => {
             if (typeof suggestion.value === 'object') {
               updateSituation(
-                Object.keys(suggestion.value as object).reduce(
+                Object.keys(suggestion.value).reduce(
                   (accumulator: Situation, currentValue: string) => ({
                     ...accumulator,
                     [question + ' . ' + currentValue]:
