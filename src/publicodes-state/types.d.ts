@@ -34,6 +34,7 @@ export type Suggestion = {
   //     }
 }
 
+// TODO: what's the type of Engine ?
 export type Engine = any
 
 export type NGCRuleNode = RuleNode & {
@@ -54,6 +55,14 @@ export type Simulation = {
   situation: Situation
   actionChoices: ActionChoices
   persona?: string
+}
+
+export type Persona = {
+  nom: string
+  icônes: string
+  situation: Situation
+  description?: string
+  résumé: string
 }
 
 type Color = `#${string}`

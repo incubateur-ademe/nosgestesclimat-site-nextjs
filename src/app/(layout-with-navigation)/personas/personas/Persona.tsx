@@ -3,9 +3,10 @@
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useUser } from '@/publicodes-state'
+import { Persona as PersonaType } from '@/publicodes-state/types'
 
 type Props = {
-  persona: any
+  persona: PersonaType
   dottedName: string
 }
 
