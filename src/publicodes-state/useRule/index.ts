@@ -31,7 +31,7 @@ export default function useRule(dottedName: string) {
 
   // TODO: add Sentry call
   if (!rule) {
-    console.log(dottedName)
+    captureException(new Error(`Error in useRule while parsing rule: ${dottedName`))
   }
 
   const { type, getType } = useType({
