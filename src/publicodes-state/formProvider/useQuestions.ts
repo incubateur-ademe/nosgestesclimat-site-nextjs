@@ -161,10 +161,10 @@ export default function useQuestions({
     situation,
   ])
 
-  const questionsByCategories = useMemo<{ [key: string]: string[] }>(
+  const questionsByCategories = useMemo<Record<string, string[]>>(
     () =>
       categories.reduce(
-        (accumulator: { [key: string]: string[] }, currentValue: string) => ({
+        (accumulator: Record<string, string[]>, currentValue: string) => ({
           ...accumulator,
           [currentValue]: relevantQuestions.filter((question) =>
             question.includes(currentValue)

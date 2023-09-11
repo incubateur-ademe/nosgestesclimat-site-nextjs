@@ -16,13 +16,9 @@ export type User = {
 
 export type Rules = any
 
-export type Tutorials = {
-  [key: string]: boolean
-}
+export type Tutorials = Record<string, boolean>
 
-export type Situation = {
-  [key: string]: NodeValue
-}
+export type Situation = Record<string, NodeValue>
 
 export type Suggestion = {
   label: string
@@ -43,9 +39,7 @@ export type NGCRuleNode = RuleNode & {
 
 export type NGCEvaluatedNode = EvaluatedNode
 
-export type ActionChoices = {
-  [key: string]: boolean
-}
+export type ActionChoices = Record<string, boolean>
 
 export type NodeValue = Evaluation
 

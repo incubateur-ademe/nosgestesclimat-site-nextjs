@@ -36,7 +36,7 @@ export default function useCategories({
     [missingVariables, order]
   )
 
-  const subcategories = useMemo<{ [key: string]: string[] }>(
+  const subcategories = useMemo<Record<string, string[]>>(
     () =>
       categories.reduce(
         (accumulator: object, currentValue: string) => ({

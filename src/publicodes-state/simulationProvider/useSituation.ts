@@ -58,7 +58,7 @@ const getSafeSituation = ({
   everyRules
     .filter((rule: string) => situation[rule])
     .reduce(
-      (accumulator: { [key: string]: NodeValue }, currentValue: string) => ({
+      (accumulator: Record<string, NodeValue>, currentValue: string) => ({
         ...accumulator,
         [currentValue]: situation[currentValue],
       }),

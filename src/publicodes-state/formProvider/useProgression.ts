@@ -4,9 +4,7 @@ type Props = {
   missingInputs: string[]
   categories: string[]
   relevantQuestions: string[]
-  questionsByCategories: {
-    [key: string]: string[]
-  }
+  questionsByCategories: Record<string, string[]>
 }
 
 export default function useProgression({
@@ -56,10 +54,10 @@ export default function useProgression({
     [relevantQuestions, remainingQuestions]
   )
 
-  const remainingQuestionsByCategories = useMemo<{ [key: string]: string[] }>(
+  const remainingQuestionsByCategories = useMemo<Record<string, string[]>>(
     () =>
       categories.reduce(
-        (accumulator: { [key: string]: string[] }, currentValue: string) => ({
+        (accumulator: Record<string, string[]>, currentValue: string) => ({
           ...accumulator,
           [currentValue]: remainingQuestions.filter((question) =>
             question.includes(currentValue)
@@ -70,10 +68,10 @@ export default function useProgression({
     [remainingQuestions, categories]
   )
 
-  const answeredQuestionsByCategories = useMemo<{ [key: string]: string[] }>(
+  const answeredQuestionsByCategories = useMemo<Record<string, string[]>>(
     () =>
       categories.reduce(
-        (accumulator: { [key: string]: string[] }, currentValue: string) => ({
+        (accumulator: Record<string, string[]>, currentValue: string) => ({
           ...accumulator,
           [currentValue]: answeredQuestions.filter((question) =>
             question.includes(currentValue)
@@ -84,10 +82,10 @@ export default function useProgression({
     [answeredQuestions, categories]
   )
 
-  const progressionByCategory = useMemo<{ [key: string]: number }>(
+  const progressionByCategory = useMemo<Record<string, number>>(
     () =>
       categories.reduce(
-        (accumulator: { [key: string]: number }, currentValue: string) => ({
+        (accumulator: Record<string, number>, currentValue: string) => ({
           ...accumulator,
           [currentValue]: questionsByCategories[currentValue].length
             ? (questionsByCategories[currentValue].length -

@@ -2,16 +2,12 @@ import { useMemo } from 'react'
 
 type Props = {
   categories: string[]
-  questionsByCategories: {
-    [key: string]: string[]
-  }
+  questionsByCategories: Record<string, string[]>
   currentQuestion: string | null
   currentCategory: string | null
   setCurrentQuestion: (question: string | null) => void
   setCurrentCategory: (question: string | null) => void
-  remainingQuestionsByCategories: {
-    [key: string]: string[]
-  }
+  remainingQuestionsByCategories: Record<string, string[]>
 }
 
 export default function useNavigation({
