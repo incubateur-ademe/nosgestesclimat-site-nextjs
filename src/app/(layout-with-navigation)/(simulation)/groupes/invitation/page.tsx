@@ -14,7 +14,6 @@ import { Member, SimulationResults } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 import { fetchAddUserToGroup } from '../_helpers/fetchAddUserToGroup'
@@ -66,18 +65,24 @@ export default function RejoindreGroupe({
       }),
   })
 
-  const sendEmailToGroupOwner = async () => {
+  const sendEmailToInvited = async () => {
     if (!email) {
       return
     }
 
-    await axios.post('/api/send-email-group', {
-      email,
-      name: prenom,
-      groupName: group.name,
-      groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
-      shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
-      deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${userId}&mtm_campaign=invitation-groupe-email`,
+    await fetch('/api/sendGroupConfirmationEmails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        name: prenom,
+        groupName: group.name,
+        groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
+        shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
+        deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${userId}&mtm_campaign=invitation-groupe-email`,
+      }),
     })
   }
 
@@ -114,8 +119,8 @@ export default function RejoindreGroupe({
     try {
       await addUserToGroup(results)
 
-      // Send email to owner confirming the group creation
-      sendEmailToGroupOwner()
+      // Send email to invited friend confirming the adding to the group
+      sendEmailToInvited()
 
       // Si l'utilisateur a déjà une simulation de complétée, on le redirige vers le dashboard
       if (progression ?? progression > 0) {

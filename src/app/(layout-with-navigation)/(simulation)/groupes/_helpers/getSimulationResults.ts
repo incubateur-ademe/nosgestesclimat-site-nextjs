@@ -1,10 +1,11 @@
 import { orderedCategories } from '@/constants/orderedCategories'
+import { NodeValue } from '@/publicodes-state/types'
 import { SimulationResults } from '@/types/groups'
 
 export const getSimulationResults = ({
   getValue,
 }: {
-  getValue: (dottedName: string) => number
+  getValue: (dottedName: string) => NodeValue
 }): SimulationResults => {
   const resultsObject: any = {}
 
@@ -18,7 +19,7 @@ export const getSimulationResults = ({
 
   const valueBilan = getValue('bilan')
 
-  resultsObject.total = (valueBilan / 10 / 100).toFixed(2)
+  resultsObject.total = ((valueBilan as number) / 10 / 100).toFixed(2)
 
   return resultsObject
 }
