@@ -1,6 +1,8 @@
+import { orderedCategories } from '@/constants/orderedCategories'
 import { getRuleSumNodes } from '@/helpers/publicodes/getRuleSumNodes'
-import { useEngine, useForm, useTempEngine } from '@/publicodes-state'
+import { useEngine, useTempEngine } from '@/publicodes-state'
 import { Member } from '@/types/groups'
+import { setSituationForValidKeys } from './_helpers/setSituationForValidKeys'
 
 export function getSubcategories({
   rules,
@@ -11,6 +13,7 @@ export function getSubcategories({
   category: string
   getRuleObject: (dottedName: string) => any
 }): string[] | undefined {
+  // Model shenanigans
   const categoryFormatted =
     category === 'logement' ? 'logement . impact' : category
 
@@ -28,11 +31,9 @@ export const useGetGroupAndUserFootprints = ({
   userId: string | null
   isSynced: boolean
 }) => {
-  const { categories } = useForm()
-
   const { rules, getRuleObject } = useTempEngine()
 
-  const { getValue } = useEngine()
+  const { engine, getValue } = useEngine()
 
   if (!groupMembers || !userId || !isSynced) return {}
 
@@ -48,6 +49,13 @@ export const useGetGroupAndUserFootprints = ({
           },
           groupMember: Member
         ) => {
+          const isCurrentMember = groupMember.userId === userId
+
+          setSituationForValidKeys({
+            engine,
+            situation: groupMember?.simulation?.situation,
+          })
+
           // Create a copy of the accumulator
           const updatedGroupFootprintByCategoriesAndSubcategories = {
             ...groupFootprintByCategoriesAndSubcategories,
@@ -56,14 +64,7 @@ export const useGetGroupAndUserFootprints = ({
             ...userFootprintByCategoriesAndSubcategories,
           } as any
 
-          const isCurrentMember = groupMember.userId === userId
-          // if (isCurrentMember) {
-          //   updateSituationOfCurrentSimulation(
-          //     groupMember?.simulation?.situation
-          //   )
-          // }
-
-          categories
+          orderedCategories
             // Model shenanigans
             .map((category: string) =>
               category === 'transport' ? 'transport . empreinte' : category

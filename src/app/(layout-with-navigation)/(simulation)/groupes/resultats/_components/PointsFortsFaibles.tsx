@@ -1,30 +1,15 @@
 'use client'
 
 import { Points } from '@/types/groups'
-import { formatValue } from 'publicodes'
 import { Trans } from 'react-i18next'
-import Badge from './Badge'
-import PercentageDiff from './PercentageDiff'
+import PointsListItem from './PointsListItem'
 
-const ListItem = ({ icon, title, value, variation }) => (
-  <li className="mb-3 flex items-center justify-between rounded-md bg-[#F8F8F7] p-3 text-sm last:mb-0">
-    <p className="mb-0 flex items-center">
-      <span className="mr-3 inline-block text-lg">{icon}</span>
-      {title}
-      <PercentageDiff variation={variation} />
-    </p>
-
-    <Badge>
-      <strong>{formatValue(value as number, { precision: 0 })}</strong> kg
-    </Badge>
-  </li>
-)
 export default function PointsFortsFaibles({
   pointsForts,
   pointsFaibles,
 }: {
-  pointsForts: Points
-  pointsFaibles: Points
+  pointsForts?: Points[]
+  pointsFaibles?: Points[]
 }) {
   return (
     <div>
@@ -36,13 +21,13 @@ export default function PointsFortsFaibles({
       </p>
       <ul className="pl-0">
         {pointsForts?.map((point, index) => {
-          const { title, value, variation } = point.resultObject
+          const { name, value, variation } = point.resultObject
+
           return (
-            <ListItem
-              icon={icon}
-              title={title}
+            <PointsListItem
+              name={name}
               value={value}
-              variation={variation}
+              variation={variation || 0}
               key={`points-forts-${index}`}
             />
           )
@@ -54,13 +39,12 @@ export default function PointsFortsFaibles({
       </h2>
       <ul className="pl-0">
         {pointsFaibles?.map((point, index) => {
-          const { icon, title, value, variation } = point.resultObject
+          const { name, value, variation } = point.resultObject
           return (
-            <ListItem
-              icon={icon}
-              title={title}
+            <PointsListItem
+              name={name}
               value={value}
-              variation={variation}
+              variation={variation || 0}
               key={`points-faibles-${index}`}
             />
           )

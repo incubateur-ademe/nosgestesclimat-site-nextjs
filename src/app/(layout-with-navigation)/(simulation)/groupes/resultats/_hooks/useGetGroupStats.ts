@@ -3,7 +3,7 @@ import { getUserCategoryFootprintsSortedByVariation } from './_helpers/getUserCa
 import { useGetGroupAndUserFootprints } from './useGetGroupAndUserFootprints'
 
 const getVariation = ({ value, mean }: { value: number; mean: number }) => {
-  return ((value - (mean || 0)) / (mean || 1)) * 100
+  return (((value || 0) - (mean || 0)) / (mean || 1)) * 100
 }
 
 export const useGetGroupStats = ({
@@ -39,16 +39,18 @@ export const useGetGroupStats = ({
     pointsFaibles: {} as Points[],
   }
 
-  results.groupFootprintByCategoriesAndSubcategories =
-    groupFootprintByCategoriesAndSubcategories
-  results.userFootprintByCategoriesAndSubcategories =
-    userFootprintByCategoriesAndSubcategories
+  results.groupFootprintByCategoriesAndSubcategories = {
+    ...groupFootprintByCategoriesAndSubcategories,
+  }
+  results.userFootprintByCategoriesAndSubcategories = {
+    ...userFootprintByCategoriesAndSubcategories,
+  }
 
   // Calculate the mean for the group for each category
   Object.keys(groupFootprintByCategoriesAndSubcategories).forEach((key) => {
     // Calculate mean for the group for each category
     results.groupFootprintByCategoriesAndSubcategories[key].mean =
-      groupFootprintByCategoriesAndSubcategories[key].value /
+      results.groupFootprintByCategoriesAndSubcategories[key].value /
       groupMembers.length
   })
 
@@ -58,15 +60,17 @@ export const useGetGroupStats = ({
     (key) => {
       results.userFootprintByCategoriesAndSubcategories[key].variation =
         getVariation({
-          value: userFootprintByCategoriesAndSubcategories[key].value,
-          mean: groupFootprintByCategoriesAndSubcategories[key]?.mean,
+          value: results.userFootprintByCategoriesAndSubcategories[key].value,
+          mean:
+            results.groupFootprintByCategoriesAndSubcategories[key]?.mean || 0,
         })
     }
   )
 
   const userCategoriesAndSubcategoriesFootprintsSortedByVariation =
     getUserCategoryFootprintsSortedByVariation({
-      userFootprintByCategoriesAndSubcategories,
+      userFootprintByCategoriesAndSubcategories:
+        results.userFootprintByCategoriesAndSubcategories,
     })
 
   results.pointsForts =

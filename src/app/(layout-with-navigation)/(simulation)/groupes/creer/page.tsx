@@ -3,7 +3,7 @@
 import { GROUP_NAMES } from '@/constants/groupNames'
 import { GROUP_URL } from '@/constants/urls'
 
-import { useTempEngine, useUser } from '@/publicodes-state'
+import { useEngine, useForm, useUser } from '@/publicodes-state'
 
 import TransClient from '@/components/translation/TransClient'
 import { matomoEventCreationGroupe } from '@/constants/matomo'
@@ -13,8 +13,6 @@ import GoBackLink from '@/design-system/inputs/GoBackLink'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useLocale } from '@/hooks/useLocale'
-import { useRules } from '@/hooks/useRules'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { useMutation } from '@tanstack/react-query'
@@ -35,16 +33,11 @@ export default function CreerGroupePage() {
 
   const currentSimulation = getCurrentSimulation()
 
-  const locale = useLocale()
+  const { progression } = useForm()
 
-  const { getRuleObject } = useTempEngine()
+  const { getValue } = useEngine()
 
   const { data: groups } = useGetGroups(user?.id)
-
-  const { data: rules }: { data: any } = useRules({
-    region: user.region.code,
-    lang: locale || 'fr',
-  })
 
   const { name, id: userId, email: emailFromUserObject } = user
 
@@ -108,8 +101,7 @@ export default function CreerGroupePage() {
 
     try {
       const results = getSimulationResults({
-        rules,
-        getRuleObject,
+        getValue,
       })
 
       const groupNameObject = GROUP_NAMES[groups.length % GROUP_NAMES.length]
@@ -120,7 +112,7 @@ export default function CreerGroupePage() {
       updateEmail(email)
 
       // The user will be redirected to the test in order to take it
-      if (!currentSimulation) {
+      if (progression && progression > 0) {
         setGroupToRedirectToAfterTest(group)
 
         setFetching(false)
@@ -148,7 +140,6 @@ export default function CreerGroupePage() {
 
       router.push(`/groupes/resultats?groupId=${group._id}`)
     } catch (e) {
-      console.log(e)
       setFetching(false)
 
       captureException(e)

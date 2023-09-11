@@ -51,12 +51,10 @@ export type SimulationResults = {
 }
 
 export type ValueObject = {
-  title: string
+  name: string
   value: number
   mean?: number
-  name: string
   variation?: number
-  icon?: string
   isCategory?: boolean
 }
 

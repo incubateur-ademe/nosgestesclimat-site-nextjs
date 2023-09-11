@@ -12,7 +12,7 @@ export default function useEngine(rules: Rules) {
       try {
         evaluation = engine.evaluate(rule)
       } catch (error) {
-        console.error(error)
+        console.warn(error)
       }
       return evaluation
     },

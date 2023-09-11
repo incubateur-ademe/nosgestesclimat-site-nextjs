@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export default function FeedbackBlock() {
   return (
-    <div className="items-top mt-4 flex justify-between gap-3 rounded-md border-[1px] border-solid border-grey-200 p-4">
+    <div className="items-top flex justify-between gap-3 rounded-md border-[1px] border-solid border-grey-200 p-4 text-sm">
       <Flask />
       <div>
         <p className="mb-2">
