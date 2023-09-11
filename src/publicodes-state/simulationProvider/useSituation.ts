@@ -22,7 +22,6 @@ export default function useSituation({
       situation: situationToAdd,
       everyRules,
     })
-    console.log(situationToAdd, safeSitationToAdd)
     updateExternalSituation(safeSitationToAdd)
 
     // TODO: this is shit
@@ -57,7 +56,7 @@ const getSafeSituation = ({
   everyRules: string[]
 }): Situation =>
   everyRules
-    .filter((rule: string) => situation[rule])
+    .filter((rule: string) => situation[rule] || situation[rule] === 0)
     .reduce(
       (accumulator: Record<string, NodeValue>, currentValue: string) => ({
         ...accumulator,

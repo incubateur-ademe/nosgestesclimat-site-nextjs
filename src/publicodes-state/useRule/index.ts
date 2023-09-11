@@ -20,14 +20,13 @@ export default function useRule(dottedName: string) {
     updateSituation,
     everyMosaicChildWhoIsReallyInMosaic,
   } = useContext(simulationContext)
+
   const evaluation = useMemo<NGCEvaluatedNode | null>(
     () => safeEvaluate(dottedName),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [dottedName, engine, situation]
   )
-  if (dottedName === 'alimentation . plats') {
-    console.log(evaluation)
-  }
+
   const rule = useMemo<NGCRuleNode | null>(
     () => safeGetRule(dottedName),
     [dottedName, safeGetRule]
