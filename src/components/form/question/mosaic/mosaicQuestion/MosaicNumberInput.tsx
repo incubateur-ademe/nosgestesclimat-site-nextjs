@@ -19,18 +19,20 @@ export default function NumberInput({
   return (
     <div
       className={
-        'flex items-center justify-between gap-4 rounded  bg-grey-100 p-4'
+        'flex items-center justify-between gap-4 rounded  bg-grey-100 px-4 py-2 md:py-4'
       }>
       <div>
         {title && icons ? (
-          <span className="text-xl font-semibold">
+          <span className="font-semibold md:text-xl">
             {title}&nbsp;{icons}
           </span>
         ) : null}
         {description ? (
           <>
             <br />
-            <p className="mb-0 text-sm italic">{description.split('\n')[0]}</p>
+            <p className="mb-0 text-xs italic md:text-sm">
+              {description.split('\n')[0]}
+            </p>
           </>
         ) : null}
       </div>
@@ -42,7 +44,7 @@ export default function NumberInput({
           -
         </Button>
         <input
-          className="bg-transparent-100 w-10 text-center"
+          className="bg-transparent-100  w-10 text-center"
           type="number"
           value={isMissing ? '' : Number(value)}
           placeholder={String(value)}

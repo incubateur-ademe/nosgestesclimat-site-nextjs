@@ -11,7 +11,7 @@ export default function QuestionButton({ onClick, color = 'primary' }: Props) {
   return (
     <button
       onClick={onClick}
-      className={`${colorClassNames[color]} z-10 h-6 w-6 rounded-full border-2 bg-transparent text-sm font-bold leading-none md:h-7 md:w-7 md:text-lg`}>
+      className={`${colorClassNames[color]} z-10 h-6 w-6 rounded-full border-2 bg-transparent text-sm font-bold leading-none md:h-7 md:w-7 md:text-lg md:leading-none`}>
       ?
     </button>
   )

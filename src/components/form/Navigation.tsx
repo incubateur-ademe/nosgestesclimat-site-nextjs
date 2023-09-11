@@ -57,7 +57,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
           onComplete()
         }}>
         <TransClient>
-          {noNextQuestion
+          {noNextQuestion && noNextCategory
             ? 'Terminer'
             : isMissing
             ? 'Je ne sais pas →'

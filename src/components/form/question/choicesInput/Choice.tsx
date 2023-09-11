@@ -13,7 +13,12 @@ export default function Choice({ question, choice, active, setValue }: Props) {
 
   return (
     <ChoiceInput
-      label={`${title} ${icons || ''}`}
+      label={
+        <>
+          {title}
+          {icons ? <span className="whitespace-nowrap">{icons}</span> : null}
+        </>
+      }
       description={description}
       active={active}
       onClick={() => setValue(choice)}
