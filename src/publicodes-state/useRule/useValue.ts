@@ -59,12 +59,10 @@ export default function useValue({
     [evaluation]
   )
 
-  const setValue = async (value: NodeValue): Promise<void> => {
-    console.log(checkValueValidity({ value, type }))
-    return updateSituation({
+  const setValue = async (value: NodeValue): Promise<void> =>
+    updateSituation({
       [dottedName]: checkValueValidity({ value, type }),
     })
-  }
 
   const setDefaultAsValue = async (): Promise<void> => {
     let situationToUpdate = {}

@@ -9,7 +9,7 @@ export default function Mosaic({ question }: Props) {
   const { questionsOfMosaic } = useRule(question)
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid gap-4 md:grid-cols-2">
       {questionsOfMosaic
         ? questionsOfMosaic.map((questionOfMosaic) => (
             <MosaicQuestion
