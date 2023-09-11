@@ -14,13 +14,13 @@ export default function useCategories({
   safeEvaluate,
   order,
 }: Props) {
-  const missingVariables = useMemo(
+  const missingVariables = useMemo<string[]>(
     () => Object.keys(safeEvaluate(root)?.missingVariables || {}),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [engine]
   )
 
-  const categories = useMemo(
+  const categories = useMemo<string[]>(
     () =>
       missingVariables
         .reduce(
@@ -36,7 +36,7 @@ export default function useCategories({
     [missingVariables, order]
   )
 
-  const subcategories = useMemo(
+  const subcategories = useMemo<{ [key: string]: string[] }>(
     () =>
       categories.reduce(
         (accumulator: object, currentValue: string) => ({

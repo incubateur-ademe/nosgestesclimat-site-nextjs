@@ -56,10 +56,10 @@ export default function useProgression({
     [relevantQuestions, remainingQuestions]
   )
 
-  const remainingQuestionsByCategories = useMemo(
+  const remainingQuestionsByCategories = useMemo<{ [key: string]: string[] }>(
     () =>
       categories.reduce(
-        (accumulator: object, currentValue: string) => ({
+        (accumulator: { [key: string]: string[] }, currentValue: string) => ({
           ...accumulator,
           [currentValue]: remainingQuestions.filter((question) =>
             question.includes(currentValue)
@@ -70,10 +70,10 @@ export default function useProgression({
     [remainingQuestions, categories]
   )
 
-  const answeredQuestionsByCategories = useMemo(
+  const answeredQuestionsByCategories = useMemo<{ [key: string]: string[] }>(
     () =>
       categories.reduce(
-        (accumulator: object, currentValue: string) => ({
+        (accumulator: { [key: string]: string[] }, currentValue: string) => ({
           ...accumulator,
           [currentValue]: answeredQuestions.filter((question) =>
             question.includes(currentValue)
@@ -84,10 +84,10 @@ export default function useProgression({
     [answeredQuestions, categories]
   )
 
-  const progressionByCategory = useMemo(
+  const progressionByCategory = useMemo<{ [key: string]: number }>(
     () =>
       categories.reduce(
-        (accumulator: object, currentValue: string) => ({
+        (accumulator: { [key: string]: number }, currentValue: string) => ({
           ...accumulator,
           [currentValue]: questionsByCategories[currentValue].length
             ? (questionsByCategories[currentValue].length -

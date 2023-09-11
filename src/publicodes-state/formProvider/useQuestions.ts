@@ -104,7 +104,7 @@ export default function useQuestions({
   }: {
     question: string
     situation: Situation
-  }) => situation[question] || situation[question] === 0
+  }): boolean => (situation[question] ? true : situation[question] === 0)
 
   const isQuestionMissing = ({
     question,
@@ -161,7 +161,7 @@ export default function useQuestions({
     situation,
   ])
 
-  const questionsByCategories = useMemo(
+  const questionsByCategories = useMemo<{ [key: string]: string[] }>(
     () =>
       categories.reduce(
         (accumulator: { [key: string]: string[] }, currentValue: string) => ({

@@ -9,7 +9,7 @@ type Props = {
 }
 
 export default function useChoices({ rule, type }: Props) {
-  const choices = useMemo(() => {
+  const choices = useMemo<string[]>(() => {
     if (type === 'choices') {
       const unePossibilite: any = rule?.rawNode.formule
         ? rule?.rawNode.formule['une possibilité']

@@ -16,7 +16,7 @@ export default function CheckFormProvider({
 }: PropsWithChildren<Props>) {
   const { safeEvaluate } = useContext(simulationContext)
 
-  const isRootSafe = useMemo(
+  const isRootSafe = useMemo<boolean>(
     () => (safeEvaluate(root) ? true : false),
     [safeEvaluate, root]
   )
