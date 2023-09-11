@@ -1,6 +1,8 @@
+import { visit } from '../utils.js'
+
 describe('check for about page status', () => {
   beforeEach(() => {
-    cy.visit('a-propos')
+    visit('a-propos')
   })
 
   it('has a title', () => {

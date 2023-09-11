@@ -1,7 +1,5 @@
 import { defineConfig } from "cypress";
 
-const testLangURL = process.env.CYPRESS_testLangURL ?? "en-US";
-
 export default defineConfig({
   projectId: "bkkrae",
   env: {
@@ -9,11 +7,10 @@ export default defineConfig({
     personas_fr_url: "https://data.nosgestesclimat.fr/personas-fr.json",
     localisation_param: "FR",
     language_param: "fr",
+    testLangURL: process.env.CYPRESS_testLangURL ?? "en-US",
   },
   e2e: {
-    baseUrl: `${
-      process.env.CYPRESS_baseUrl ?? "http://localhost:3000"
-    }/${testLangURL}`,
+    baseUrl: process.env.CYPRESS_baseUrl ?? "http://localhost:3000",
     setupNodeEvents(on, config) {},
     experimentalRunAllSpecs: true,
     specPattern: "cypress/e2e/integration/**/*.cy.js",
