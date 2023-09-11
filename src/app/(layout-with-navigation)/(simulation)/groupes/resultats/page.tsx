@@ -157,7 +157,7 @@ export default function GroupResultsPage({
 
   return (
     <>
-      <main className="p-4">
+      <div className="p-4 pb-0">
         <GoBackLink className="mb-4 font-bold" />
         <Meta
           title={t('Mon groupe, nos bilans carbone personnels')}
@@ -232,7 +232,7 @@ export default function GroupResultsPage({
           }
           membersLength={group?.members?.length}
         />
-      </main>
+      </div>
       <Footer />
     </>
   )

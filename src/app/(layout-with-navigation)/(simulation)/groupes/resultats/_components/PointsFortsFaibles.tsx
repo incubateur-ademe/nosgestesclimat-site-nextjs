@@ -21,13 +21,13 @@ export default function PointsFortsFaibles({
       </p>
       <ul className="pl-0">
         {pointsForts?.map((point, index) => {
-          const { name, value, variation } = point.resultObject
+          const { name, value, difference } = point.resultObject
 
           return (
             <PointsListItem
               name={name}
               value={value}
-              variation={variation || 0}
+              difference={difference || 0}
               key={`points-forts-${index}`}
             />
           )
@@ -39,12 +39,12 @@ export default function PointsFortsFaibles({
       </h2>
       <ul className="pl-0">
         {pointsFaibles?.map((point, index) => {
-          const { name, value, variation } = point.resultObject
+          const { name, value, difference } = point.resultObject
           return (
             <PointsListItem
               name={name}
               value={value}
-              variation={variation || 0}
+              difference={difference || 0}
               key={`points-faibles-${index}`}
             />
           )

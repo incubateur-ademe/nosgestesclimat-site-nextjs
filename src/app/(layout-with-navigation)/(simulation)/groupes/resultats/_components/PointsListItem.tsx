@@ -6,13 +6,13 @@ import PercentageDiff from './PercentageDiff'
 type PointsListItemProps = {
   name: string
   value: number
-  variation: number
+  difference: number
 }
 
 export default function PointsListItem({
   name,
   value,
-  variation,
+  difference,
 }: PointsListItemProps) {
   const rule = useRule(name)
 
@@ -21,7 +21,7 @@ export default function PointsListItem({
       <p className="mb-0 flex items-center">
         <span className="mr-3 inline-block text-lg">{rule?.icons}</span>
         {rule?.title}
-        <PercentageDiff variation={variation} />
+        <PercentageDiff value={difference} />
       </p>
 
       <Badge>

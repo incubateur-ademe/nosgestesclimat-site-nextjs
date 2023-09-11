@@ -1,8 +1,11 @@
 import { orderedCategories } from '@/constants/orderedCategories'
 import { getRuleSumNodes } from '@/helpers/publicodes/getRuleSumNodes'
-import { useEngine, useTempEngine } from '@/publicodes-state'
+import {
+  useDisposableEngine,
+  useEngine,
+  useTempEngine,
+} from '@/publicodes-state'
 import { Member } from '@/types/groups'
-import { setSituationForValidKeys } from './_helpers/setSituationForValidKeys'
 
 export function getSubcategories({
   rules,
@@ -33,7 +36,13 @@ export const useGetGroupAndUserFootprints = ({
 }) => {
   const { rules, getRuleObject } = useTempEngine()
 
-  const { engine, getValue } = useEngine()
+  const { getValue } = useEngine()
+
+  const { getValue: getDisposableEngineValue, updateSituation } =
+    useDisposableEngine({
+      rules,
+      situation: {},
+    })
 
   if (!groupMembers || !userId || !isSynced) return {}
 
@@ -51,10 +60,9 @@ export const useGetGroupAndUserFootprints = ({
         ) => {
           const isCurrentMember = groupMember.userId === userId
 
-          setSituationForValidKeys({
-            engine,
-            situation: groupMember?.simulation?.situation,
-          })
+          if (!isCurrentMember) {
+            updateSituation(groupMember?.simulation?.situation)
+          }
 
           // Create a copy of the accumulator
           const updatedGroupFootprintByCategoriesAndSubcategories = {
@@ -70,7 +78,9 @@ export const useGetGroupAndUserFootprints = ({
               category === 'transport' ? 'transport . empreinte' : category
             )
             .forEach((category: any) => {
-              const categoryValue = getValue(category)
+              const categoryValue = isCurrentMember
+                ? getValue(category)
+                : getDisposableEngineValue(category)
 
               const defaultCategoryObject = {
                 name: category,
@@ -105,7 +115,9 @@ export const useGetGroupAndUserFootprints = ({
                 }) || []
 
               currentCategorySubcategories.forEach((subCategory: string) => {
-                const subCategoryValue = getValue(subCategory)
+                const subCategoryValue = isCurrentMember
+                  ? getValue(subCategory)
+                  : getDisposableEngineValue(subCategory)
 
                 // Same here if the property doesn't exist in the accumulator, we add it
                 // otherwise we add the value to the existing sum

@@ -1,9 +1,15 @@
 import { Member, Points, Results, ValueObject } from '@/types/groups'
-import { getUserCategoryFootprintsSortedByVariation } from './_helpers/getUserCategoryFootprintsSortedByVariation'
+import { getUserCategoryFootprintsSortedByDifference } from './_helpers/getUserCategoryFootprintsSortedByDifference'
 import { useGetGroupAndUserFootprints } from './useGetGroupAndUserFootprints'
 
-const getVariation = ({ value, mean }: { value: number; mean: number }) => {
-  return (((value || 0) - (mean || 0)) / (mean || 1)) * 100
+const getDifferenceInPercent = ({
+  value,
+  mean,
+}: {
+  value: number
+  mean: number
+}) => {
+  return ((value - mean) / mean) * 100
 }
 
 export const useGetGroupStats = ({
@@ -58,8 +64,8 @@ export const useGetGroupStats = ({
   // and subcategory
   Object.keys(results.userFootprintByCategoriesAndSubcategories).forEach(
     (key) => {
-      results.userFootprintByCategoriesAndSubcategories[key].variation =
-        getVariation({
+      results.userFootprintByCategoriesAndSubcategories[key].difference =
+        getDifferenceInPercent({
           value: results.userFootprintByCategoriesAndSubcategories[key].value,
           mean:
             results.groupFootprintByCategoriesAndSubcategories[key]?.mean || 0,
@@ -67,16 +73,16 @@ export const useGetGroupStats = ({
     }
   )
 
-  const userCategoriesAndSubcategoriesFootprintsSortedByVariation =
-    getUserCategoryFootprintsSortedByVariation({
-      userFootprintByCategoriesAndSubcategories:
-        results.userFootprintByCategoriesAndSubcategories,
-    })
+  const {
+    positiveDifferenceCategoriesSorted,
+    negativeDifferenceCategoriesSorted,
+  } = getUserCategoryFootprintsSortedByDifference({
+    userFootprintByCategoriesAndSubcategories:
+      results.userFootprintByCategoriesAndSubcategories,
+  })
 
-  results.pointsForts =
-    userCategoriesAndSubcategoriesFootprintsSortedByVariation.slice(0, 2)
-  results.pointsFaibles =
-    userCategoriesAndSubcategoriesFootprintsSortedByVariation.slice(-3)
+  results.pointsForts = positiveDifferenceCategoriesSorted.slice(0, 2)
+  results.pointsFaibles = negativeDifferenceCategoriesSorted.slice(-3)
 
   return results as Results
 }

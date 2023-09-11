@@ -54,7 +54,7 @@ export type ValueObject = {
   name: string
   value: number
   mean?: number
-  variation?: number
+  difference?: number
   isCategory?: boolean
 }
 
