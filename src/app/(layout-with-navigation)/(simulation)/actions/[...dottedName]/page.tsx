@@ -39,7 +39,7 @@ export default function ActionDetailPage({
   const dottedName = decodeRuleName(formattedDottedName ?? '')
 
   const nbRemainingQuestions = filterRelevantMissingVariables(
-    Object.keys(/*getRuleObject(dottedName).missingVariables ||*/ {})
+    Object.keys(getRuleObject(dottedName).missingVariables || {})
   )?.length
 
   const rule = useRule(dottedName)
