@@ -82,7 +82,6 @@
     "> 1% in FR"
   ],
   "devDependencies": {
-    "@getbrevo/brevo": "^1.0.1",
     "@netlify/plugin-nextjs": "^4.40.1",
     "@svgr/cli": "^8.1.0",
     "@types/cheerio": "^0.22.32",
