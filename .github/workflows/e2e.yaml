@@ -13,7 +13,7 @@ on:
 
 jobs:
   sleep:
-    name: If first run wait 3 min for the Netlify preview to be deployed
+    name: If first run wait 3 min for the Vercel preview to be deployed
     runs-on: ubuntu-latest
     steps:
       - name: Sleep for 2 min
@@ -46,10 +46,10 @@ jobs:
             echo "CYPRESS_baseUrl=https://nosgestesclimat-git-${{ steps.branch-name.outputs.current_branch }}-nos-gestes-climat.vercel.app" >> "$GITHUB_ENV";
             echo "MODE=preview" >> "$GITHUB_ENV";
       
-      - name: Setup baseUrl to nosgestesclimat.fr
+      - name: Setup baseUrl to https://nosgestesclimat.vercel.app
         if: ${{ !success() || steps.branch-name.outputs.is_default == 'true' }}
         run: |
-            echo "CYPRESS_baseUrl=https://nosgestesclimat.fr" >> "$GITHUB_ENV"
+            echo "CYPRESS_baseUrl=https://nosgestesclimat.vercel.app" >> "$GITHUB_ENV"
             echo "MODE=production" >> "$GITHUB_ENV"
 
       - name: Test - e2e [${{ env.MODE }}]
