@@ -28,7 +28,7 @@ export default function Evolution(props) {
         </span>
         <TransClient>
           de visites ce mois ci
-          <Small>&nbsp;(par rapport au mois d'avant)</Small>
+          <small>&nbsp;(par rapport au mois d'avant)</small>
         </TransClient>
         <div>
           <span className="text-3xl font-bold">

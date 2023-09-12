@@ -1,11 +1,9 @@
 import TransClient from '@/components/translation/TransClient'
 import Card from '@/design-system/layout/Card'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { getCurrentLangInfos } from '@/locales/translation'
+import { useUser } from '@/publicodes-state'
 
 export default function IframeFigures(props) {
-  const { i18n } = useClientTranslation()
-  const currentLangInfos = getCurrentLangInfos(i18n)
+  const { user } = useUser()
   if (!props.pages.length || !props.activePages.length) return
   const [iframes, activeIframes] =
     props.pages &&
@@ -21,7 +19,7 @@ export default function IframeFigures(props) {
         <Card>
           <p className="text-3xl">
             {' '}
-            {Math.round(iframes).toLocaleString(currentLangInfos.abrvLocale)}
+            {Math.round(iframes).toLocaleString(user?.region?.code)}
             <small>&nbsp;%</small>
           </p>
           <span className="text-center text-xl  font-bold">
@@ -31,9 +29,8 @@ export default function IframeFigures(props) {
         <Card>
           <p>
             {' '}
-            {Math.round(activeIframes).toLocaleString(
-              currentLangInfos.abrvLocale
-            ) || '-'}
+            {Math.round(activeIframes).toLocaleString(user?.region?.code) ||
+              '-'}
             <small>&nbsp;%</small>
           </p>
           <p>

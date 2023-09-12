@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import TransClient from '@/components/translation/TransClient'
+import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Table from './sources/Table'
 
@@ -10,10 +10,8 @@ export default function Sources(props) {
 
   return (
     <>
-      <Title>
-        <TransClient>Origine des visites</TransClient>
-      </Title>
-      <Tile className="w-full text-left lg:w-1/2">
+      <Title title={t('Origine des visites')}></Title>
+      <div className="w-full text-left lg:w-1/2">
         {newWebsites ? (
           <Table
             title={t('Sites Web')}
@@ -43,7 +41,7 @@ export default function Sources(props) {
           total={props.total}
           limit={5}
         />
-      </Tile>
+      </div>
     </>
   )
 }

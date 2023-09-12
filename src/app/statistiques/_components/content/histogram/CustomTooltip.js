@@ -1,20 +1,12 @@
-import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
-
 import TransClient from '@/components/translation/TransClient'
-import {
-  getLangFromAbreviation,
-  getLangInfos,
-} from '../../../../locales/translation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useUser } from '@/publicodes-state'
 
-const Number = styled.span`
-  font-size: 1.125rem;
-  font-weight: 700;
-`
 export default function CustomTooltip(props) {
   const label = props.label && props.label.replace(/\s/g, ' ')
-  const { t, i18n } = useTranslation()
-  const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+  const { t, i18n } = useClientTranslation()
+
+  const { user } = useUser()
 
   return props.active && props.payload && props.payload.length ? (
     <div className="border border-[#f0f0f0] bg-white p-4">
@@ -25,12 +17,12 @@ export default function CustomTooltip(props) {
       ) : (
         <div className="text-[#6a6a6a]">
           {t('Entre') + ' '}
-          {label.split('-')[0].toLocaleString(currentLangInfos.abrvLocale)}{' '}
+          {label.split('-')[0].toLocaleString(user?.region?.code)}{' '}
           {t('et') + ' '}
           {label
             .split('-')[1]
             .split(' ')[0]
-            .toLocaleString(currentLangInfos.abrvLocale)}{' '}
+            .toLocaleString(user?.region?.code)}{' '}
           {t('minutes')}
         </div>
       )}

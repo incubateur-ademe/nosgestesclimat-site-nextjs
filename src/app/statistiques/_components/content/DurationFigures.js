@@ -1,10 +1,8 @@
 import TransClient from '@/components/translation/TransClient'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { getLangFromAbreviation, getLangInfos } from '@/locales/translation'
+import { useUser } from '@/publicodes-state'
 
 export default function DurationFigures(props) {
-  const { i18n } = useClientTranslation()
-  const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+  const { user } = useUser()
 
   return (
     <div className=" flex w-full justify-center pt-0 text-center lg:w-[40%] lg:flex-col lg:pt-4">
@@ -13,9 +11,7 @@ export default function DurationFigures(props) {
           <span className="bold inline-flex items-end justify-center text-center text-2xl text-primary">
             {' '}
             {!isNaN(props.avgduration)
-              ? Math.round(props.avgduration).toLocaleString(
-                  currentLangInfos.abrvLocale
-                )
+              ? Math.round(props.avgduration).toLocaleString(user?.region?.code)
               : '-'}
             <small className="text-lg">&nbsp;min</small>
           </span>

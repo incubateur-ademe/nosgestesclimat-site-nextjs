@@ -1,14 +1,19 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useUser } from '@/publicodes-state'
 import emoji from 'react-easy-emoji'
-import { humanWeight } from '../../../sites/publicodes/HumanWeight'
+import { humanWeight } from '../utils/HumanWeight'
 
 export default function TotalChart(props) {
   const { t, i18n } = useClientTranslation()
-
+  const { user } = useUser()
   const maxScore = Math.max(...props.flatScoreArray)
   const minValue = 2000 // 2 tonnes, the ultimate objective
-  const max = humanWeight({ t, i18n }, maxScore, true).join(' ')
-  const min = humanWeight({ t, i18n }, minValue, true).join(' ')
+  const max = humanWeight({ t, i18n }, maxScore, true, user?.region?.code).join(
+    ' '
+  )
+  const min = humanWeight({ t, i18n }, minValue, true, user?.region?.code).join(
+    ' '
+  )
 
   return (
     <div>
@@ -22,8 +27,15 @@ export default function TotalChart(props) {
             style={{
               left: `${((elt - minValue) / (maxScore - minValue)) * 100} %`,
             }}
-            title={humanWeight({ t, i18n }, elt, true).join(' ')}
-            aria-label={humanWeight({ t, i18n }, elt, true).join(' ')}></li>
+            title={humanWeight({ t, i18n }, elt, true, user?.region?.code).join(
+              ' '
+            )}
+            aria-label={humanWeight(
+              { t, i18n },
+              elt,
+              true,
+              user?.region?.code
+            ).join(' ')}></li>
         ))}
       </ul>
 

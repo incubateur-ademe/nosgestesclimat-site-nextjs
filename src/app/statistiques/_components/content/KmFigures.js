@@ -1,11 +1,11 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { getLangFromAbreviation, getLangInfos } from '@/locales/translation'
+import { useUser } from '@/publicodes-state'
 
 export default function KmFigures(props) {
   const userPercent = (props.kmhelp / props.simulationsfromhelp) * 100
   const ridesavg = props.ridesnumber / props.kmhelp
-  const { t, i18n } = useClientTranslation()
-  const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+  const { t } = useClientTranslation()
+  const { user } = useUser()
 
   return (
     <div>
@@ -13,19 +13,14 @@ export default function KmFigures(props) {
         <div>
           <span>
             {' '}
-            {Math.round(userPercent).toLocaleString(
-              currentLangInfos.abrvLocale
-            )}
-            %
+            {Math.round(userPercent).toLocaleString(user?.region?.code)}%
           </span>
           <span>{t("ont utilisé l'aide à la saisie des km")}</span>
         </div>
       </div>
       <div>
         <div>
-          <span>
-            {Math.round(ridesavg).toLocaleString(currentLangInfos.abrvLocale)}
-          </span>
+          <span>{Math.round(ridesavg).toLocaleString(user?.region?.code)}</span>
           <span>{t('trajets saisis en moyenne')}</span>
         </div>
       </div>

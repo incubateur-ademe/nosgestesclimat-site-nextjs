@@ -1,5 +1,9 @@
 'use client'
 
+import TransClient from '@/components/translation/TransClient'
+import Card from '@/design-system/layout/Card'
+import Title from '@/design-system/layout/Title'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
   useActiveEntryPages,
   useAllTime,
@@ -24,26 +28,11 @@ import {
 import Chart from './content/Chart'
 import DurationChart from './content/DurationChart'
 import DurationFigures from './content/DurationFigures'
-import Evolution, {
-  Block,
-  BlockWrapper,
-  Wrapper as EvolutionWrapper,
-  Number,
-} from './content/Evolution'
+import Evolution from './content/Evolution'
 import IframeFigures from './content/IframeFigures'
 import KmFigures from './content/KmFigures'
 import ScoreFromURL from './content/ScoreFromURL'
 import Sources from './content/Sources'
-
-const Wrapper = styled.div`
-  display: flex;
-  width: 100%;
-  margin-bottom: 2rem;
-
-  @media screen and (max-width: ${1200}px) {
-    flex-direction: column;
-  }
-`
 
 // Do not try [toRenderWithRequestData]  until all [requestResults] are successful.
 // Otherwise, an informative message in rendered.
@@ -58,13 +47,7 @@ const UseQueryResultHandler = ({ requestResults, toRenderWithRequestData }) => {
         {notSuccessfulRequests.map(({ error, isError, isLoading }) => {
           if (isError) {
             return (
-              <p
-                key={JSON.stringify(error)}
-                css={`
-                  font-size: small;
-                  font-style: italic;
-                  color: #ff3831;
-                `}>
+              <p key={JSON.stringify(error)}>
                 <TransClient>
                   Une erreur est survenue lors de la récupération des données
                 </TransClient>{' '}
@@ -74,12 +57,7 @@ const UseQueryResultHandler = ({ requestResults, toRenderWithRequestData }) => {
           }
           if (isLoading) {
             return (
-              <p
-                key={JSON.stringify(error)}
-                css={`
-                  font-size: small;
-                  font-style: italic;
-                `}>
+              <p key={JSON.stringify(error)}>
                 <TransClient>Récupération des données</TransClient>...
               </p>
             )
@@ -113,15 +91,15 @@ export default function StatsContent() {
   const homepageVisitorsData = useHomepageVisitors()
   const sharedSimulations = useGetSharedSimulationEvents()
 
-  const { t } = useTransClientlation()
+  const { t } = useClientTranslation()
 
   return (
     <div>
       <Title title={<TransClient>Statistiques</TransClient>} />
-      <Section>
-        <Section.Title>
+      <div>
+        <div>
           <TransClient>Générales</TransClient>
-        </Section.Title>
+        </div>
         <UseQueryResultHandler
           requestResults={[period, reference, allTime, simulations]}
           toRenderWithRequestData={([
@@ -130,7 +108,7 @@ export default function StatsContent() {
             allTimeData,
             simulationsData,
           ]) => (
-            <Wrapper>
+            <div>
               <Evolution
                 period={periodData.value}
                 reference={referenceData.value}
@@ -138,52 +116,34 @@ export default function StatsContent() {
                 simulations={simulationsData}
               />
               <Chart elementAnalysedTitle={t('visites')} />
-            </Wrapper>
+            </div>
           )}
         />
-        <Wrapper>
-          <EvolutionWrapper
-            css={`
-              padding-top: 1rem;
-            `}>
-            <BlockWrapper
-              css={`
-                margin-bottom: 1rem;
-              `}>
-              <Block>
-                <Number>
+        <div>
+          <div>
+            <div>
+              <Card>
+                <strong>
                   {homepageVisitorsData?.data?.[0]?.nb_visits
                     ?.toString()
                     ?.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') || (
-                    <span
-                      css={`
-                        color: grey;
-                        font-size: 0.5rem;
-                      `}>
-                      Chargement...
-                    </span>
+                    <span>Chargement...</span>
                   )}
-                </Number>{' '}
+                </strong>{' '}
                 &nbsp;<TransClient>visites sur la page d'accueil</TransClient>
-              </Block>
-            </BlockWrapper>
-            <BlockWrapper>
-              <Block>
-                <Number>
+              </Card>
+            </div>
+            <div>
+              <Card>
+                <strong>
                   {sharedSimulations?.data?.[0]?.nb_events || (
-                    <span
-                      css={`
-                        color: grey;
-                        font-size: 0.5rem;
-                      `}>
-                      Chargement...
-                    </span>
+                    <span>Chargement...</span>
                   )}
-                </Number>{' '}
+                </strong>{' '}
                 &nbsp;<TransClient>partages du site</TransClient>
-              </Block>
-            </BlockWrapper>
-          </EvolutionWrapper>
+              </Card>
+            </div>
+          </div>
           <Chart
             name="chart-simulation-terminees"
             elementAnalysedTitle={t('simulations terminées')}
@@ -192,7 +152,7 @@ export default function StatsContent() {
             key="chart-simulation-terminees"
             color="#30C691"
           />
-        </Wrapper>
+        </div>
         <UseQueryResultHandler
           requestResults={[total, websites, oldWebsites, socials, keywords]}
           toRenderWithRequestData={([
@@ -211,12 +171,12 @@ export default function StatsContent() {
             />
           )}
         />
-      </Section>
-      <Section>
-        <Section.Title>
+      </div>
+      <div>
+        <div>
           <TransClient>Intégrations et Iframes</TransClient>
-        </Section.Title>
-        <Section.Intro>
+        </div>
+        <details>
           <TransClient
             i18nKey={'components.stats.StatsContent.integrationEtIframes'}>
             <summary>En savoir plus</summary>
@@ -231,25 +191,25 @@ export default function StatsContent() {
               <i>(Données valables pour les 30 derniers jours)</i>
             </p>
           </TransClient>
-        </Section.Intro>
+        </details>
         <UseQueryResultHandler
           requestResults={[entryPages, activeEntryPages]}
           toRenderWithRequestData={([entryPagesData, activeEntryPagesData]) => (
-            <Wrapper>
+            <div>
               <IframeFigures
                 pages={entryPagesData}
                 activePages={activeEntryPagesData}
               />
-            </Wrapper>
+            </div>
           )}
         />
-      </Section>
-      <Section>
-        <Section.Title>
+      </div>
+      <div>
+        <div>
           <TransClient>
             Northstar: les statistiques "étoile du nord"
           </TransClient>
-        </Section.Title>
+        </div>
         <TransClient i18nKey={'components.stats.StatsContent.infosNorthstar'}>
           <p>
             En fin de simulation, une bannière apparaît afin de recueillir le
@@ -261,12 +221,12 @@ export default function StatsContent() {
             via Metabase.
           </p>
         </TransClient>
-      </Section>
-      <Section>
-        <Section.Title>
+      </div>
+      <div>
+        <div>
           <TransClient>Durée des visites</TransClient>
-        </Section.Title>
-        <Section.Intro>
+        </div>
+        <div>
           <TransClient
             i18nKey={'components.stats.StatsContent.dureeDesVisites'}>
             <summary>En savoir plus</summary>
@@ -279,22 +239,22 @@ export default function StatsContent() {
               (l'utilisateur a cliqué sur "Faire le test").
             </p>
           </TransClient>
-        </Section.Intro>
+        </div>
         <UseQueryResultHandler
           requestResults={[avgduration]}
           toRenderWithRequestData={([avgdurationData]) => (
-            <Wrapper>
+            <div>
               <DurationFigures avgduration={avgdurationData} />
               {duration.isSuccess && <DurationChart duration={duration.data} />}
-            </Wrapper>
+            </div>
           )}
         />
-      </Section>
-      <Section>
-        <Section.Title>
+      </div>
+      <div>
+        <div>
           <TransClient>Score de nos utilisateurs</TransClient>
-        </Section.Title>
-        <Section.Intro>
+        </div>
+        <div>
           <TransClient
             i18nKey={'components.stats.StatsContent.scoreUtilisateurs'}>
             <summary>En savoir plus</summary>
@@ -316,20 +276,20 @@ export default function StatsContent() {
               qui crée de nouveaux url de fin).
             </p>
           </TransClient>
-        </Section.Intro>
+        </div>
         <UseQueryResultHandler
           requestResults={[pages]}
           toRenderWithRequestData={([pagesData]) => (
-            <Wrapper>
+            <div>
               <ScoreFromURL pages={pagesData} />
-            </Wrapper>
+            </div>
           )}
         />
-      </Section>
-      <Section>
-        <Section.Title>
+      </div>
+      <div>
+        <div>
           <TransClient>La voiture en chiffres</TransClient>
-        </Section.Title>
+        </div>
         <UseQueryResultHandler
           requestResults={[kmhelp, simulationsfromhelp, ridesnumber]}
           toRenderWithRequestData={([
@@ -344,7 +304,7 @@ export default function StatsContent() {
             />
           )}
         />
-      </Section>
+      </div>
     </div>
   )
 }

@@ -1,8 +1,22 @@
 import TransClient from '@/components/translation/TransClient'
+import Card from '@/design-system/layout/Card'
 import { formatValue } from 'publicodes'
-import { rehydrateDetails, sumFromDetails } from '../../../sites/publicodes/fin'
-import Tile from '../utils/Tile'
 import TotalChart from './TotalChart'
+
+// details=a2.6t2.1s1.3l1.0b0.8f0.2n0.1
+export const rehydrateDetails = (encodedDetails) =>
+  encodedDetails &&
+  encodedDetails
+    .match(/[a-z][0-9]+\.[0-9][0-9]/g)
+    .map(([category, ...rest]) => [category, 1000 * +rest.join('')])
+    // Here we convert categories with an old name to the new one
+    // 'biens divers' was renamed to 'divers'
+    .map(([category, ...rest]) =>
+      category === 'b' ? ['d', ...rest] : [category, ...rest]
+    )
+
+export const sumFromDetails = (details) =>
+  details?.reduce((memo, [name, value]) => memo + value, 0) || 0
 
 export default function ScoreFromURL(props) {
   if (!props.pages.length) return
@@ -23,8 +37,8 @@ export default function ScoreFromURL(props) {
 
   return (
     <div className="w-full text-center">
-      <Tile>
-        <TopBlock>
+      <Card>
+        <div>
           <div className="text-3xl">
             {roundedMeanScore} <TransClient>tonnes</TransClient>{' '}
             <small>
@@ -40,8 +54,8 @@ export default function ScoreFromURL(props) {
               Données valables pour les 30 derniers jours
             </TransClient>
           </p>
-        </TopBlock>
-      </Tile>
+        </div>
+      </Card>
     </div>
   )
 }

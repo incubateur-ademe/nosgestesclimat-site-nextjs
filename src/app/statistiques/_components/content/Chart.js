@@ -8,16 +8,13 @@ import {
   YAxis,
 } from 'recharts'
 
-import { getLangFromAbreviation, getLangInfos } from '@/locales/translation'
-
-import { useClientTranslation } from '@/hooks/useClientTranslation.js'
+import { useUser } from '@/publicodes-state/index'
 import { useChart } from '../../_helpers/matomo.js'
 import CustomTooltip from './chart/CustomTooltip.js'
 import Search from './chart/Search.js'
 
-export default function Chart() {
-  const { i18n } = useClientTranslation()
-  const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+export default function Chart(props) {
+  const { user } = useUser()
 
   const [chartDate, setChartDate] = useState('12')
   const [chartPeriod, setChartPeriod] = useState('week')
@@ -67,11 +64,11 @@ export default function Chart() {
               tickFormatter={(tick) => {
                 const date = new Date(tick.split(',')[0])
                 return props.period === 'month'
-                  ? date.toLocaleDateString(currentLangInfos.abrvLocale, {
+                  ? date.toLocaleDateString(user?.region?.code, {
                       month: 'long',
                       year: 'numeric',
                     })
-                  : date.toLocaleDateString(currentLangInfos.abrvLocale, {
+                  : date.toLocaleDateString(user?.region?.code, {
                       day: '2-digit',
                       month: '2-digit',
                     })

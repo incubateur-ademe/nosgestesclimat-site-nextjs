@@ -1,13 +1,9 @@
-import { useTranslation } from 'react-i18next'
-
-import {
-  getLangFromAbreviation,
-  getLangInfos,
-} from '../../../../locales/translation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useUser } from '@/publicodes-state'
 
 export default function CustomTooltip(props) {
-  const { t, i18n } = useTranslation()
-  const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+  const { t, i18n } = useClientTranslation()
+  const { user } = useUser()
 
   return props.active && props.payload && props.payload.length ? (
     <div className="border border-[#f0f0f0] p-4">
@@ -15,7 +11,7 @@ export default function CustomTooltip(props) {
         <span>
           Semaine du{' '}
           {new Date(props.label.split(',')[0]).toLocaleDateString(
-            currentLangInfos.abrvLocale,
+            user?.region?.code,
             {
               day: '2-digit',
               month: '2-digit',
@@ -23,7 +19,7 @@ export default function CustomTooltip(props) {
           )}{' '}
           au{' '}
           {new Date(props.label.split(',')[1]).toLocaleDateString(
-            currentLangInfos.abrvLocale,
+            user?.region?.code,
             {
               day: '2-digit',
               month: '2-digit',
@@ -33,25 +29,19 @@ export default function CustomTooltip(props) {
       )}
       {props.period === 'month' && (
         <span>
-          {new Date(props.label).toLocaleDateString(
-            currentLangInfos.abrvLocale,
-            {
-              month: 'long',
-              year: 'numeric',
-            }
-          )}
+          {new Date(props.label).toLocaleDateString(user?.region?.code, {
+            month: 'long',
+            year: 'numeric',
+          })}
         </span>
       )}
       {props.period === 'day' && (
         <span>
-          {new Date(props.label).toLocaleDateString(
-            currentLangInfos.abrvLocale,
-            {
-              weekday: 'long',
-              day: '2-digit',
-              month: 'long',
-            }
-          )}
+          {new Date(props.label).toLocaleDateString(user?.region?.code, {
+            weekday: 'long',
+            day: '2-digit',
+            month: 'long',
+          })}
         </span>
       )}
       <div>

@@ -1,21 +1,14 @@
-import styled from 'styled-components'
-
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import FancySelect from '../../utils/FancySelect'
 
-import { useTranslation } from 'react-i18next'
-import { range } from '../../../../utils'
+export function range(start, end) {
+  return Array(end - start + 1)
+    .fill(0)
+    .map((_, idx) => start + idx)
+}
 
-const Wrapper = styled.div`
-  margin-bottom: 0.5rem;
-  text-align: right;
-  font-size: 0.85rem;
-
-  @media screen and (max-width: ${800}px) {
-    font-size: 0.75rem;
-  }
-`
 export default function Search(props) {
-  const { t } = useTranslation()
+  const { t } = useClientTranslation()
 
   return (
     <div className="mb-2 text-right text-sm">
