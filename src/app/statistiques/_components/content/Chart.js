@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import {
   Area,
   AreaChart,
@@ -8,33 +7,16 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import styled from 'styled-components'
 
 import { getLangFromAbreviation, getLangInfos } from '@/locales/translation'
 
+import { useClientTranslation } from '@/hooks/useClientTranslation.js'
 import { useChart } from '../../_helpers/matomo.js'
 import CustomTooltip from './chart/CustomTooltip.js'
 import Search from './chart/Search.js'
 
-const Wrapper = styled.div`
-  width: 60%;
-  padding-left: 1rem;
-
-  @media screen and (max-width: ${1200}px) {
-    width: 100%;
-    padding-left: 0rem;
-  }
-
-  svg {
-    overflow: visible;
-  }
-`
-const ChartWrapper = styled.div`
-  height: 22rem;
-`
-
 export default function Chart() {
-  const { i18n } = useTranslation()
+  const { i18n } = useClientTranslation()
   const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
   const [chartDate, setChartDate] = useState('12')
@@ -68,7 +50,7 @@ export default function Chart() {
   }, [chart])
 
   return chart && data ? (
-    <Wrapper>
+    <div className="w-full lg:w-1/2">
       <Search
         elementAnalysedTitle={props.elementAnalysedTitle}
         period={chartPeriod}
@@ -76,7 +58,7 @@ export default function Chart() {
         setPeriod={setChartPeriod}
         setDate={setChartDate}
       />
-      <ChartWrapper>
+      <div className="h-[22rem]">
         <ResponsiveContainer>
           <AreaChart data={data}>
             <XAxis
@@ -119,7 +101,7 @@ export default function Chart() {
             />
           </AreaChart>
         </ResponsiveContainer>
-      </ChartWrapper>
-    </Wrapper>
+      </div>
+    </div>
   ) : null
 }

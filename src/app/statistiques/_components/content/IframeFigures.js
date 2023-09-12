@@ -1,11 +1,7 @@
+import TransClient from '@/components/translation/TransClient'
+import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { getCurrentLangInfos } from '@/locales/translation'
-
-const Text = () => <p className="m-0 text-right text-sm font-light" />
-
-const Number = () => (
-  <div className=" bold inline-flex items-end justify-center text-center text-4xl text-primary" />
-)
 
 export default function IframeFigures(props) {
   const { i18n } = useClientTranslation()
@@ -22,74 +18,68 @@ export default function IframeFigures(props) {
   return (
     <div>
       <div className="flex w-full justify-center pt-0 text-center">
-        <Tile.Tile>
-          <Tile.Content>
-            <Number>
-              {' '}
-              {Math.round(iframes).toLocaleString(currentLangInfos.abrvLocale)}
-              <Small>&nbsp;%</Small>
-            </Number>
-            <span className="text-center text-xl  font-bold">
-              <Trans>des visites affichées en iframe</Trans>
-            </span>
-          </Tile.Content>
-        </Tile.Tile>
-        <TileWrapper>
-          <Tile.Content>
-            <Number>
-              {' '}
-              {Math.round(activeIframes).toLocaleString(
-                currentLangInfos.abrvLocale
-              ) || '-'}
-              <small>&nbsp;%</small>
-            </Number>
-            <Label>
-              <Trans>des visites en iframe sont actives</Trans>
-            </Label>
-          </Tile.Content>
-        </TileWrapper>
+        <Card>
+          <p className="text-3xl">
+            {' '}
+            {Math.round(iframes).toLocaleString(currentLangInfos.abrvLocale)}
+            <small>&nbsp;%</small>
+          </p>
+          <span className="text-center text-xl  font-bold">
+            <TransClient>des visites affichées en iframe</TransClient>
+          </span>
+        </Card>
+        <Card>
+          <p>
+            {' '}
+            {Math.round(activeIframes).toLocaleString(
+              currentLangInfos.abrvLocale
+            ) || '-'}
+            <small>&nbsp;%</small>
+          </p>
+          <p>
+            <TransClient>des visites en iframe sont actives</TransClient>
+          </p>
+        </Card>
       </div>
-      <Tile.Tile>
-        <Tile.Content>
-          <table className="statistics-iframe-table">
-            <tbody>
-              <tr>
-                <th>
-                  <Trans>Intégrateurs identifiés</Trans>
-                </th>
-                <th>
-                  <Trans>Visites</Trans>
-                </th>
-                <th>%</th>
-              </tr>
-              {iframePages &&
-                iframePages.map(
-                  (line, index) =>
-                    index < 5 && (
-                      <tr key={line.label + line.entry_nb_visits}>
-                        <td>{line.label}</td>
-                        <td>
-                          {line.entry_nb_visits
-                            .toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
-                        </td>
-                        <td>
-                          {totalIframe &&
-                            Math.round(
-                              (line.entry_nb_visits / totalIframe) * 10000
-                            ) / 100}
-                          %
-                        </td>
-                      </tr>
-                    )
-                )}
-            </tbody>
-          </table>
-          <Text>
-            <Trans>Données valables pour les 30 derniers jours</Trans>
-          </Text>
-        </Tile.Content>
-      </Tile.Tile>
+      <Card>
+        <table className="statistics-iframe-table">
+          <tbody>
+            <tr>
+              <th>
+                <TransClient>Intégrateurs identifiés</TransClient>
+              </th>
+              <th>
+                <TransClient>Visites</TransClient>
+              </th>
+              <th>%</th>
+            </tr>
+            {iframePages &&
+              iframePages.map(
+                (line, index) =>
+                  index < 5 && (
+                    <tr key={line.label + line.entry_nb_visits}>
+                      <td>{line.label}</td>
+                      <td>
+                        {line.entry_nb_visits
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
+                      </td>
+                      <td>
+                        {totalIframe &&
+                          Math.round(
+                            (line.entry_nb_visits / totalIframe) * 10000
+                          ) / 100}
+                        %
+                      </td>
+                    </tr>
+                  )
+              )}
+          </tbody>
+        </table>
+        <p>
+          <TransClient>Données valables pour les 30 derniers jours</TransClient>
+        </p>
+      </Card>
     </div>
   )
 }
