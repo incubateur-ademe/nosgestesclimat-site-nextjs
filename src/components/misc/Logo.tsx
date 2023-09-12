@@ -6,15 +6,22 @@ export default function Logo({
   size = 'large',
   className,
 }: {
-  size?: 'small' | 'large'
+  size?: 'xs' | 'small' | 'large'
   className?: string
 }) {
   const classnames = {
+    xs: {
+      wrapper: 'pb-2',
+      image: 'h-auto w-8',
+      text: 'text-xs',
+    },
     small: {
+      wrapper: 'pb-4 pt-8',
       image: 'h-auto w-[50px]',
       text: 'text-xl',
     },
     large: {
+      wrapper: 'pb-4 pt-8',
       image: 'h-auto w-[50px] md:w-[100px]',
       text: 'md:text-3xl',
     },
@@ -22,7 +29,7 @@ export default function Logo({
 
   return (
     <div
-      className={`flex w-full items-center justify-center pb-4 pt-8 ${className}`}>
+      className={`flex w-full items-center justify-center ${classnames[size].wrapper} ${className}`}>
       <Link
         href="/"
         data-cypress-id="home-logo-link"
