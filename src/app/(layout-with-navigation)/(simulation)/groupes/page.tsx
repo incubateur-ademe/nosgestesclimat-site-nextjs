@@ -1,6 +1,8 @@
 'use client'
 
+import Meta from '@/components/misc/Meta'
 import Title from '@/design-system/layout/Title'
+import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import CreateFirstGroupSection from './_components/CreateFirstGroupSection'
@@ -22,8 +24,6 @@ export default function GroupesPage() {
 
   return (
     <main className="p-4 md:p-8">
-      {/*
-			TODO: uncomment
       <Meta
         title={t("Mes groupes, simulateur d'empreinte carbone")}
         description={t(
@@ -32,7 +32,6 @@ export default function GroupesPage() {
       />
 
       <AutoCanonicalTag />
-				*/}
 
       <Title
         title={t("Groupe d'amis")}
