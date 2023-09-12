@@ -1,6 +1,6 @@
 import Engine from 'publicodes'
 import { useMemo } from 'react'
-import { safeEvaluate as safeEvaluateHelper } from '../helpers/safeEvaluateHelper'
+import { safeEvaluateHelper } from '../helpers/safeEvaluateHelper'
 
 type Props = {
   rules?: any
