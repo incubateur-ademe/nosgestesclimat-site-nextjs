@@ -2,7 +2,7 @@ import Engine from 'publicodes'
 import { NGCEvaluatedNode } from '../types'
 
 // Todo: send errors to Sentry
-export const safeEvaluate = (
+export const safeEvaluateHelper = (
   rule: string,
   engineUsed: Engine
 ): NGCEvaluatedNode | null => {

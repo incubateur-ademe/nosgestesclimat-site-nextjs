@@ -1,6 +1,6 @@
 import Engine from 'publicodes'
 import { useMemo } from 'react'
-import { safeEvaluate as safeEvaluateHelper } from '../helpers/safeEvaluate'
+import { safeEvaluateHelper } from '../helpers/safeEvaluateHelper'
 import { NGCEvaluatedNode, NGCRuleNode, Rules } from '../types'
 
 export default function useEngine(rules: Rules) {
