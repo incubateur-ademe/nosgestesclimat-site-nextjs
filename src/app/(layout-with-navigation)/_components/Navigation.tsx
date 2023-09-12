@@ -47,20 +47,20 @@ export default function Navigation() {
   return (
     <nav
       id="mainNavigation"
-      className="z-50 my-2 flex flex-col justify-center outline-none md:sticky md:top-0 md:my-0 md:h-screen md:w-[14rem] md:shrink-0 md:justify-start md:overflow-hidden md:border-0 md:border-r-[1px] md:border-solid md:border-grey-200">
-      <Logo size="small" className="hidden md:block" />
+      className="z-50 my-2 flex flex-col justify-center outline-none lg:sticky lg:top-0 lg:my-0 lg:h-screen lg:w-[14rem] lg:shrink-0 lg:justify-start lg:overflow-hidden lg:border-0 lg:border-r-[1px] lg:border-solid lg:border-grey-200">
+      <Logo size="small" className="hidden lg:block" />
 
-      <div className="z-100 fixed bottom-0 left-0 m-0 w-full border-0 border-t-[1px] border-solid border-grey-200 md:static md:z-auto md:mt-4 md:w-auto md:border-none">
-        <ul className="m-0 flex h-20 w-full list-none justify-between bg-white px-4 py-1 shadow-md md:h-auto md:flex-col md:justify-start md:gap-1 md:bg-none md:py-2 md:shadow-none">
+      <div className="z-100 fixed bottom-0 left-0 m-0 w-full border-0 border-t-[1px] border-solid border-grey-200 lg:static lg:z-auto lg:mt-4 lg:w-auto lg:border-none">
+        <ul className="m-0 flex h-20 w-full list-none justify-between bg-white px-4 py-1 shadow-md lg:h-auto lg:flex-col lg:justify-start lg:gap-1 lg:bg-none lg:py-2 lg:shadow-none">
           <NavLink href="/simulateur/bilan">
-            <ProgressCircle className="md:mr-4" />
+            <ProgressCircle className="lg:mr-4" />
             <span className="font-normal text-primaryDark">
               <TransClient>Le test</TransClient>
             </span>
           </NavLink>
 
           <NavLink href="/actions">
-            <ActionsInteractiveIcon className="md:mr-4" />
+            <ActionsInteractiveIcon className="lg:mr-4" />
 
             <span className="font-normal text-primaryDark">
               <TransClient>Agir</TransClient>
@@ -73,7 +73,7 @@ export default function Navigation() {
                 <Image
                   src={profileImage}
                   alt=""
-                  className="w-8 md:mr-4"
+                  className="w-8 lg:mr-4"
                   aria-hidden="true"
                   width="25"
                   height="25"
@@ -96,7 +96,7 @@ export default function Navigation() {
               <Image
                 src={groupImage}
                 alt=""
-                className="w-8 md:mr-4"
+                className="w-8 lg:mr-4"
                 aria-hidden="true"
                 width="25"
                 height="25"
@@ -117,7 +117,7 @@ export default function Navigation() {
               <Image
                 src={openmojiURL('github')}
                 alt=""
-                className="w-8 md:mr-4"
+                className="w-8 lg:mr-4"
                 aria-hidden="true"
                 width="20"
                 height="20"

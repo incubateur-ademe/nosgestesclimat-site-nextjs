@@ -183,3 +183,33 @@ export default function useQuestions({
     questionsByCategories,
   }
 }
+
+export function getNextSteps(missingVariables: Array<string>): Array<string> {
+  const byCount = ([, [count]]: [unknown, [number]]) => count
+  const byScore = ([, [, score]]: [unknown, [unknown, number]]) => score
+
+  const missingByTotalScore = missingVariables.reduce(
+    mergeWith((a, b) => a + b),
+    {}
+  )
+
+  const innerKeys = flatten(map(keys, missingVariables)),
+    missingByTargetsAdvanced = Object.fromEntries(
+      Object.entries(countBy(identity, innerKeys)).map(
+        // Give higher score to top level questions
+        ([name, score]) => [
+          name,
+          score + Math.max(0, 4 - name.split('.').length),
+        ]
+      )
+    )
+
+  const missingByCompound = mergeWith(
+      pair,
+      missingByTargetsAdvanced,
+      missingByTotalScore
+    ),
+    pairs = Object.entries(missingByCompound),
+    sortedPairs = sortWith([descend(byCount), descend(byScore) as any], pairs)
+  return map(head, sortedPairs) as any
+}
