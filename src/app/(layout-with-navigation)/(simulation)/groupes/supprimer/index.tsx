@@ -1,15 +1,13 @@
 import TransClient from '@/components/translation/TransClient'
-import { GROUP_URL } from '@/constants/urls'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { Member } from '@/types/groups'
 import { captureException } from '@sentry/react'
-import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { useFetchGroup } from '../_hooks/useFetchGroup'
+import { useDeleteGroup } from './_hooks/useDeleteGroup'
 
 export default function SupprimerGroupePage({
   searchParams,
@@ -22,13 +20,7 @@ export default function SupprimerGroupePage({
 
   const { data: group, refetch: refetchGroup, isError } = useFetchGroup(groupId)
 
-  const { mutateAsync: deleteUserOrGroupIfOwner, isSuccess } = useMutation({
-    mutationFn: () =>
-      axios.post(`${GROUP_URL}/delete`, {
-        groupId,
-        userId,
-      }),
-  })
+  const { mutateAsync: deleteUserOrGroupIfOwner, isSuccess } = useDeleteGroup()
 
   const { t } = useTranslation()
 
@@ -36,7 +28,10 @@ export default function SupprimerGroupePage({
     if (!group) return
 
     try {
-      await deleteUserOrGroupIfOwner()
+      await deleteUserOrGroupIfOwner({
+        groupId,
+        userId,
+      })
 
       // Refresh cache
       refetchGroup()

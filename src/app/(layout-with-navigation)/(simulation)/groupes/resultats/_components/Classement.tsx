@@ -3,8 +3,9 @@
 import { Group } from '@/types/groups'
 import { formatValue } from 'publicodes'
 import { useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
 
+import TransClient from '@/components/translation/TransClient'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { getTopThreeAndRestMembers } from '../_utils/getTopThreeAndRestMembers'
 import ClassementMember from './ClassementMember'
@@ -16,7 +17,7 @@ export default function Classement({ group }: { group: Group }) {
     user: { id: userId },
   } = useUser()
 
-  const language = useTranslation().i18n.language
+  const language = useClientTranslation().i18n.language
 
   if (!group) {
     return null
@@ -53,7 +54,7 @@ export default function Classement({ group }: { group: Group }) {
                 })}
               </strong>{' '}
               <span className="text-sm font-light">
-                <Trans>tonnes</Trans>
+                <TransClient>tonnes</TransClient>
               </span>
             </span>
           ) : (
@@ -91,7 +92,7 @@ export default function Classement({ group }: { group: Group }) {
                       })}
                     </strong>{' '}
                     <span className="text-sm font-light">
-                      <Trans>tonnes</Trans>
+                      <TransClient>tonnes</TransClient>
                     </span>
                   </span>
                 ) : (
@@ -113,11 +114,11 @@ export default function Classement({ group }: { group: Group }) {
       {group.members.length > 5 && !isExpanded && (
         <button
           onClick={() => setIsExpanded(true)}
-          className="mt-4 w-full border-none bg-transparent text-center text-sm text-primary underline">
-          <Trans>
+          className="bg-transClientparent mt-4 w-full border-none text-center text-sm text-primary underline">
+          <TransClient>
             Voir les {String(group.members.length - 5)} autre{withS} participant
             {withS}
-          </Trans>
+          </TransClient>
         </button>
       )}
     </>

@@ -1,7 +1,7 @@
+import TransClient from '@/components/translation/TransClient'
 import { SimulationResults, ValueObject } from '@/types/groups'
 import { formatValue } from 'publicodes'
 import { JSX } from 'react'
-import { Trans } from 'react-i18next'
 import PercentageDiff from './PercentageDiff'
 
 const EMOJI_TEXT_MAP: {
@@ -42,11 +42,11 @@ export default function VotreEmpreinte({
   return (
     <>
       <h2 className="mb-1 mt-0 text-lg" data-cypress-id="votre-empreinte-title">
-        <Trans>Votre empreinte</Trans>
+        <TransClient>Votre empreinte</TransClient>
       </h2>
       {membersLength > 1 && (
         <p className="text-gray-500">
-          <Trans>Par rapport à la moyenne du groupe.</Trans>
+          <TransClient>Par rapport à la moyenne du groupe.</TransClient>
         </p>
       )}
 
