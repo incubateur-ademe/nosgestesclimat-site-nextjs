@@ -25,7 +25,7 @@ export default function TotalVsTarget() {
 
   return (
     <div
-      className="h-full px-36 py-12"
+      className="h-full p-4 md:px-36 md:py-12"
       style={{
         background: `linear-gradient(
       180deg,
@@ -33,7 +33,7 @@ export default function TotalVsTarget() {
       ${backgroundColor2} 100%
     )`,
       }}>
-      <div className="mt-12 flex h-[36rem] items-end justify-around border-b-4 border-black ">
+      <div className="mt-12 flex h-96 items-end justify-around border-b-4 border-black md:h-[36rem] ">
         <Total total={total} />
         <Target total={total} />
       </div>
