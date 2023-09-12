@@ -1,5 +1,15 @@
 import { NGCRuleNode, NGCRulesNodes } from '@/types/model'
-import { RuleNode, utils } from 'publicodes'
+
+const formatCategoryName = (category: string) => {
+  switch (category) {
+    case 'logement . impact':
+      return 'logement'
+    case 'transport . empreinte':
+      return 'transport'
+    default:
+      return category
+  }
+}
 
 export function getRuleSumNodes(
   rules: NGCRulesNodes,
@@ -7,24 +17,15 @@ export function getRuleSumNodes(
 ): string[] | undefined {
   const formula = rule.rawNode.formule
 
-  if (!formula || !formula['somme']) {
+  if (!formula || !formula.somme) {
     return undefined
   }
 
-  return formula['somme']
+  return formula.somme
     ?.map((name: string) => {
       try {
-        const node = utils.disambiguateReference(
-          rules as Record<string, RuleNode<string>>,
-          rule.dottedName,
-          name
-        )
-        return node
+        return `${formatCategoryName(rule.dottedName)} . ${name}`
       } catch (e) {
-        console.log(
-          `One element of the sum is not a variable. It could be a raw number injected by the optimisation algorithm.`,
-          e
-        )
         return null
       }
     })
