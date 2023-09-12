@@ -16,17 +16,17 @@ export default function TotalChart(props) {
   )
 
   return (
-    <div>
+    <div className="w-full">
       <ul
         title="Empreinte totale"
         className="relative mx-auto h-8 w-full list-none border-2 border-black">
         {props.flatScoreArray.map((elt, index) => (
           <li
             key={index}
-            className="absolute -ml-2 h-full w-3 bg-primary opacity-5"
             style={{
-              left: `${((elt - minValue) / (maxScore - minValue)) * 100} %`,
+              left: `${((elt - minValue) / (maxScore - minValue)) * 100}%`,
             }}
+            className="absolute bottom-0 top-0 -ml-2 h-full w-2 bg-primary opacity-5"
             title={humanWeight({ t, i18n }, elt, true, user?.region?.code).join(
               ' '
             )}

@@ -24,7 +24,7 @@ export default function visitDuration(props) {
   })
 
   return (
-    <div className="h-[22rem] w-full lg:w-1/5">
+    <div className="h-[22rem] w-full">
       <h4>
         <TransClient>Nombre de visites pour les 60 derniers jours</TransClient>
       </h4>
@@ -33,7 +33,7 @@ export default function visitDuration(props) {
           <XAxis dataKey="label" />
           <YAxis />
           <Tooltip content={<CustomTooltip label={duration} />} />
-          <Bar dataKey="nb_visits" fill="var(--color)" />
+          <Bar dataKey="nb_visits" fill="#5758BB" />
         </BarChart>
       </ResponsiveContainer>
     </div>

@@ -14,69 +14,68 @@ export default function IframeFigures(props) {
     props.pages && getIdentifiedIframes(props.pages)
 
   return (
-    <div>
-      <div className="flex w-full justify-center pt-0 text-center">
-        <Card>
-          <p className="text-3xl">
+    <div className="mt-4">
+      <div className="mb-4 grid w-full grid-cols-1 justify-center gap-4 md:grid-cols-2">
+        <Card className="flex-col">
+          <p className="mb-0 text-3xl font-bold">
             {' '}
             {Math.round(iframes).toLocaleString(user?.region?.code)}
             <small>&nbsp;%</small>
           </p>
-          <span className="text-center text-xl  font-bold">
+          <p className="text-sm">
             <TransClient>des visites affichées en iframe</TransClient>
-          </span>
+          </p>
         </Card>
-        <Card>
-          <p>
+        <Card className="flex-col">
+          <p className="mb-0 text-3xl font-bold">
             {' '}
             {Math.round(activeIframes).toLocaleString(user?.region?.code) ||
               '-'}
             <small>&nbsp;%</small>
           </p>
-          <p>
+          <p className="text-sm">
             <TransClient>des visites en iframe sont actives</TransClient>
           </p>
         </Card>
       </div>
-      <Card>
-        <table className="statistics-iframe-table">
-          <tbody>
-            <tr>
-              <th>
-                <TransClient>Intégrateurs identifiés</TransClient>
-              </th>
-              <th>
-                <TransClient>Visites</TransClient>
-              </th>
-              <th>%</th>
-            </tr>
-            {iframePages &&
-              iframePages.map(
-                (line, index) =>
-                  index < 5 && (
-                    <tr key={line.label + line.entry_nb_visits}>
-                      <td>{line.label}</td>
-                      <td>
-                        {line.entry_nb_visits
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
-                      </td>
-                      <td>
-                        {totalIframe &&
-                          Math.round(
-                            (line.entry_nb_visits / totalIframe) * 10000
-                          ) / 100}
-                        %
-                      </td>
-                    </tr>
-                  )
-              )}
-          </tbody>
-        </table>
-        <p>
-          <TransClient>Données valables pour les 30 derniers jours</TransClient>
-        </p>
-      </Card>
+
+      <table className="statistics-iframe-table">
+        <tbody>
+          <tr>
+            <th>
+              <TransClient>Intégrateurs identifiés</TransClient>
+            </th>
+            <th>
+              <TransClient>Visites</TransClient>
+            </th>
+            <th>%</th>
+          </tr>
+          {iframePages &&
+            iframePages.map(
+              (line, index) =>
+                index < 5 && (
+                  <tr key={line.label + line.entry_nb_visits}>
+                    <td>{line.label}</td>
+                    <td>
+                      {line.entry_nb_visits
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
+                    </td>
+                    <td>
+                      {totalIframe &&
+                        Math.round(
+                          (line.entry_nb_visits / totalIframe) * 10000
+                        ) / 100}
+                      %
+                    </td>
+                  </tr>
+                )
+            )}
+        </tbody>
+      </table>
+      <p className="text-right text-sm font-light">
+        <TransClient>Données valables pour les 30 derniers jours</TransClient>
+      </p>
     </div>
   )
 }

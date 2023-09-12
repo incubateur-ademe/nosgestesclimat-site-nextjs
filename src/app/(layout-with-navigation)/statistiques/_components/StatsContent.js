@@ -44,10 +44,10 @@ const UseQueryResultHandler = ({ requestResults, toRenderWithRequestData }) => {
   if (notSuccessfulRequests.length > 0) {
     return (
       <div>
-        {notSuccessfulRequests.map(({ error, isError, isLoading }) => {
+        {notSuccessfulRequests.map(({ error, isError, isLoading }, index) => {
           if (isError) {
             return (
-              <p key={JSON.stringify(error)}>
+              <p key={`${JSON.stringify(error)}-${index}`}>
                 <TransClient>
                   Une erreur est survenue lors de la récupération des données
                 </TransClient>{' '}
@@ -57,7 +57,7 @@ const UseQueryResultHandler = ({ requestResults, toRenderWithRequestData }) => {
           }
           if (isLoading) {
             return (
-              <p key={JSON.stringify(error)}>
+              <p key={`${JSON.stringify(error)}-${index}`}>
                 <TransClient>Récupération des données</TransClient>...
               </p>
             )
@@ -96,10 +96,10 @@ export default function StatsContent() {
   return (
     <div>
       <Title title={<TransClient>Statistiques</TransClient>} />
-      <div>
-        <div>
+      <div className="mt-8">
+        <h2>
           <TransClient>Générales</TransClient>
-        </div>
+        </h2>
         <UseQueryResultHandler
           requestResults={[period, reference, allTime, simulations]}
           toRenderWithRequestData={([
@@ -108,41 +108,46 @@ export default function StatsContent() {
             allTimeData,
             simulationsData,
           ]) => (
-            <div>
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
               <Evolution
                 period={periodData.value}
                 reference={referenceData.value}
                 allTime={allTimeData.value}
                 simulations={simulationsData}
               />
-              <Chart elementAnalysedTitle={t('visites')} />
+              <Chart key="visites" elementAnalysedTitle={t('visites')} />
             </div>
           )}
         />
-        <div>
-          <div>
-            <div>
-              <Card>
-                <strong>
+        <div className="mt-4">
+          <div className="flex flex-row gap-4">
+            <Card className="flex-1 flex-col">
+              <p className="mb-0">
+                <strong className="text-3xl">
                   {homepageVisitorsData?.data?.[0]?.nb_visits
                     ?.toString()
                     ?.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') || (
                     <span>Chargement...</span>
                   )}
                 </strong>{' '}
-                &nbsp;<TransClient>visites sur la page d'accueil</TransClient>
-              </Card>
-            </div>
-            <div>
-              <Card>
-                <strong>
-                  {sharedSimulations?.data?.[0]?.nb_events || (
-                    <span>Chargement...</span>
-                  )}
-                </strong>{' '}
-                &nbsp;<TransClient>partages du site</TransClient>
-              </Card>
-            </div>
+              </p>
+              <p className="text-sm">
+                <TransClient>visites sur la page d'accueil</TransClient>
+              </p>
+            </Card>
+
+            <Card className="flex-1 flex-col">
+              <strong className="text-3xl">
+                {sharedSimulations?.data?.[0]?.nb_events
+                  ?.toString()
+                  ?.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') || (
+                  <span>Chargement...</span>
+                )}
+              </strong>{' '}
+              <p className="mb-0 text-sm">
+                <TransClient>partages du site</TransClient>
+              </p>
+            </Card>
           </div>
           <Chart
             name="chart-simulation-terminees"
@@ -172,15 +177,15 @@ export default function StatsContent() {
           )}
         />
       </div>
-      <div>
-        <div>
+      <div className="mt-8">
+        <h3>
           <TransClient>Intégrations et Iframes</TransClient>
-        </div>
+        </h3>
         <details>
           <TransClient
             i18nKey={'components.stats.StatsContent.integrationEtIframes'}>
-            <summary>En savoir plus</summary>
-            <p>
+            <summary className="mb-4">En savoir plus</summary>
+            <p className="mb-4">
               Les intégrations en iframe sont détéctées via le paramètre
               'iframe' dans l'URL, ceci seulement si l'intégrateur a utilisé le{' '}
               <a href="./diffuser">script dédié</a>. Ainsi, les visites via les
@@ -204,12 +209,12 @@ export default function StatsContent() {
           )}
         />
       </div>
-      <div>
-        <div>
+      <div className="mt-8">
+        <h3>
           <TransClient>
             Northstar: les statistiques "étoile du nord"
           </TransClient>
-        </div>
+        </h3>
         <TransClient i18nKey={'components.stats.StatsContent.infosNorthstar'}>
           <p>
             En fin de simulation, une bannière apparaît afin de recueillir le
@@ -222,14 +227,14 @@ export default function StatsContent() {
           </p>
         </TransClient>
       </div>
-      <div>
-        <div>
+      <div className="mt-8">
+        <h3>
           <TransClient>Durée des visites</TransClient>
-        </div>
-        <div>
+        </h3>
+        <details>
           <TransClient
             i18nKey={'components.stats.StatsContent.dureeDesVisites'}>
-            <summary>En savoir plus</summary>
+            <summary className="mb-4">En savoir plus</summary>
             <p>
               Cette section est générée à partir des visites des 60 derniers
               jours. Les visites dont le temps passé sur le site est inférieur à
@@ -239,25 +244,25 @@ export default function StatsContent() {
               (l'utilisateur a cliqué sur "Faire le test").
             </p>
           </TransClient>
-        </div>
+        </details>
         <UseQueryResultHandler
           requestResults={[avgduration]}
           toRenderWithRequestData={([avgdurationData]) => (
-            <div>
+            <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
               <DurationFigures avgduration={avgdurationData} />
               {duration.isSuccess && <DurationChart duration={duration.data} />}
             </div>
           )}
         />
       </div>
-      <div>
-        <div>
+      <div className="mt-8">
+        <h3>
           <TransClient>Score de nos utilisateurs</TransClient>
-        </div>
-        <div>
+        </h3>
+        <details>
           <TransClient
             i18nKey={'components.stats.StatsContent.scoreUtilisateurs'}>
-            <summary>En savoir plus</summary>
+            <summary className="mb-4">En savoir plus</summary>
             <p>
               Bien sûr, nous ne collectons pas{' '}
               <a href="/vie-priv%C3%A9e">les données utlisateurs</a>. Néanmoins,
@@ -276,7 +281,7 @@ export default function StatsContent() {
               qui crée de nouveaux url de fin).
             </p>
           </TransClient>
-        </div>
+        </details>
         <UseQueryResultHandler
           requestResults={[pages]}
           toRenderWithRequestData={([pagesData]) => (
@@ -286,10 +291,10 @@ export default function StatsContent() {
           )}
         />
       </div>
-      <div>
-        <div>
+      <div className="mt-8">
+        <h3>
           <TransClient>La voiture en chiffres</TransClient>
-        </div>
+        </h3>
         <UseQueryResultHandler
           requestResults={[kmhelp, simulationsfromhelp, ridesnumber]}
           toRenderWithRequestData={([

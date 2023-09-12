@@ -37,14 +37,17 @@ export default function ScoreFromURL(props) {
 
   return (
     <div className="w-full text-center">
-      <Card>
+      <Card className="flex-col">
         <div>
-          <div className="text-3xl">
-            {roundedMeanScore} <TransClient>tonnes</TransClient>{' '}
-            <small>
+          <div className="mb-4">
+            <span className="text-xl">
+              {roundedMeanScore} <TransClient>tonnes</TransClient>{' '}
+            </span>
+
+            <span className="text-sm">
               <TransClient>de CO₂e en moyenne</TransClient> ({totalVisits}{' '}
               <TransClient>simulations</TransClient>)
-            </small>
+            </span>
           </div>
 
           <TotalChart flatScoreArray={flatScoreArray} />

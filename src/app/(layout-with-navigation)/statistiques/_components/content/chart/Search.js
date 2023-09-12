@@ -11,7 +11,7 @@ export default function Search(props) {
   const { t } = useClientTranslation()
 
   return (
-    <div className="mb-2 text-right text-sm">
+    <div className="mb-2 text-left text-sm">
       {t('Nombre de')} {props.elementAnalysedTitle} {t('pour les ')}
       <FancySelect
         fancy

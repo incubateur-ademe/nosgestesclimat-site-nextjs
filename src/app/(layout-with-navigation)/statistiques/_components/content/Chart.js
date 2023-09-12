@@ -47,7 +47,7 @@ export default function Chart(props) {
   }, [chart])
 
   return chart && data ? (
-    <div className="w-full lg:w-1/2">
+    <div className="mt-4">
       <Search
         elementAnalysedTitle={props.elementAnalysedTitle}
         period={chartPeriod}
@@ -55,7 +55,7 @@ export default function Chart(props) {
         setPeriod={setChartPeriod}
         setDate={setChartDate}
       />
-      <div className="h-[22rem]">
+      <div className="h-60">
         <ResponsiveContainer>
           <AreaChart data={data}>
             <XAxis
@@ -92,8 +92,8 @@ export default function Chart(props) {
             <Area
               type="monotone"
               dataKey={'Visiteurs'}
-              stroke={props.color ?? 'var(--darkColor)'}
-              fill={props.color ?? 'var(--color)'}
+              stroke={props.color ?? '#32337B'}
+              fill={props.color ?? '#5758BB'}
               fillOpacity={1}
             />
           </AreaChart>

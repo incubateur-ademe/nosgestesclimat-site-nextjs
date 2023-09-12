@@ -47,7 +47,7 @@ export default function Table(props) {
               )}
           </tbody>
         </table>
-        <p>
+        <p className="text-right text-sm font-light">
           <TransClient>Données valables pour les 30 derniers jours</TransClient>
         </p>
       </div>
