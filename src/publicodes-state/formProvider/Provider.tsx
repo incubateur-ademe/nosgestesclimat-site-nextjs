@@ -20,8 +20,8 @@ export default function FormProvider({
   children,
 }: PropsWithChildren<Props>) {
   const {
-    engine,
     safeEvaluate,
+    safeGetRule,
     situation,
     everyQuestions,
     everyMosaic,
@@ -29,15 +29,14 @@ export default function FormProvider({
   } = useContext(simulationContext)
 
   const { categories, subcategories } = useCategories({
-    engine,
     root,
+    safeGetRule,
     safeEvaluate,
     order: categoryOrder,
   })
 
   const { missingInputs, relevantQuestions, questionsByCategories } =
     useQuestions({
-      engine,
       root,
       safeEvaluate,
       categories,

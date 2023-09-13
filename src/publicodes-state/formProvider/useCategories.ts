@@ -1,23 +1,22 @@
 import { useMemo } from 'react'
-import { Engine, NGCEvaluatedNode } from '../types'
+import { NGCEvaluatedNode, NGCRuleNode } from '../types'
 
 type Props = {
-  engine: Engine
   root: string
+  safeGetRule: (rule: string) => NGCRuleNode | null
   safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   order: string[] | null
 }
 
 export default function useCategories({
-  engine,
   root,
+  safeGetRule,
   safeEvaluate,
   order,
 }: Props) {
   const missingVariables = useMemo<string[]>(
     () => Object.keys(safeEvaluate(root)?.missingVariables || {}),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [engine]
+    [safeEvaluate, root]
   )
 
   const categories = useMemo<string[]>(
@@ -44,21 +43,19 @@ export default function useCategories({
           [currentValue]:
             currentValue === 'services sociétaux'
               ? []
-              : engine
-                  .getRule(
-                    currentValue === 'logement'
-                      ? 'logement . impact' // Model shenanigans
-                      : currentValue === 'transport'
-                      ? 'transport . empreinte'
-                      : currentValue
-                  )
-                  ?.rawNode?.formule?.somme?.map(
-                    (rule: string) => currentValue + ' . ' + rule
-                  ) || [],
+              : safeGetRule(
+                  currentValue === 'logement'
+                    ? 'logement . impact' // Model shenanigans
+                    : currentValue === 'transport'
+                    ? 'transport . empreinte'
+                    : currentValue
+                )?.rawNode?.formule?.somme?.map(
+                  (rule: string) => currentValue + ' . ' + rule
+                ) || [],
         }),
         {}
       ),
-    [engine, categories]
+    [categories, safeGetRule]
   )
 
   return { categories, subcategories }

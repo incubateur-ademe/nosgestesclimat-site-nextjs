@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Engine, NGCEvaluatedNode, Situation } from '../types'
+import { NGCEvaluatedNode, Situation } from '../types'
 
 type Props = {
-  engine: Engine
   root: string
   safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   categories: string[]
@@ -13,7 +12,6 @@ type Props = {
 }
 
 export default function useQuestions({
-  engine,
   root,
   safeEvaluate,
   categories,
@@ -27,20 +25,23 @@ export default function useQuestions({
       Object.keys(safeEvaluate(root)?.missingVariables || {}).filter(
         (missingInput: string) => everyQuestions.includes(missingInput)
       ),
+    [safeEvaluate, everyQuestions, root]
+  )
+
+  const missingVariables = useMemo(
+    () => safeEvaluate(root)?.missingVariables || {},
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [engine, everyQuestions]
+    [safeEvaluate, situation, root]
   )
 
   const missingInputs = useMemo<string[]>(
     () =>
-      Object.keys(safeEvaluate(root)?.missingVariables || {}).filter(
-        (missingInput: string) => everyQuestions.includes(missingInput)
+      Object.keys(missingVariables).filter((missingInput: string) =>
+        everyQuestions.includes(missingInput)
       ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [engine, everyQuestions, situation]
+    [missingVariables, everyQuestions]
   )
 
-  // TODO : this is shit
   const askableQuestions = useMemo<string[]>(
     () =>
       categories.length
@@ -52,50 +53,28 @@ export default function useQuestions({
                     (mosaic) => mosaic === question
                   )
               )
+
               .sort((a: string, b: string) => {
                 const aSplittedName = a.split(' . ')
                 const bSplittedName = b.split(' . ')
-                for (let i = 1; i < aSplittedName.length; i++) {
-                  if (!bSplittedName[i]) {
+                for (let i = 0; i < 2; i++) {
+                  if (bSplittedName[i] < aSplittedName[i]) {
                     return 1
                   }
-                  if (!aSplittedName[i]) {
-                    return -1
-                  }
-
-                  if (
-                    ['présent', 'propriétaire', 'usager'].includes(
-                      bSplittedName[i]
-                    )
-                  ) {
-                    return 1
-                  }
-                  if (
-                    ['présent', 'propriétaire', 'usager'].includes(
-                      aSplittedName[i]
-                    )
-                  ) {
-                    return -1
-                  }
-                  if (['km'].includes(bSplittedName[i])) {
-                    return 1
-                  }
-                  if (['km'].includes(aSplittedName[i])) {
-                    return -1
-                  }
-
-                  if (aSplittedName[i] > bSplittedName[i]) {
-                    return 1
-                  }
-                  if (aSplittedName[i] < bSplittedName[i]) {
+                  if (bSplittedName[i] > aSplittedName[i]) {
                     return -1
                   }
                 }
-                return 0
+                return missingVariables[b] - missingVariables[a]
               }),
           ]
         : [],
-    [categories, everyQuestions, everyMosaicChildWhoIsReallyInMosaic]
+    [
+      categories,
+      missingVariables,
+      everyQuestions,
+      everyMosaicChildWhoIsReallyInMosaic,
+    ]
   )
 
   const isQuestionAnswered = ({
@@ -161,6 +140,10 @@ export default function useQuestions({
     situation,
   ])
 
+  console.log(safeEvaluate('transport . avion . usager'))
+  console.log(
+    safeEvaluate('transport . avion . court courrier . heures de vol')
+  )
   const questionsByCategories = useMemo<Record<string, string[]>>(
     () =>
       categories.reduce(

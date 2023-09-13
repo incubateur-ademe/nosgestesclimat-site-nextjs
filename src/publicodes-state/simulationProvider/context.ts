@@ -15,6 +15,7 @@ type SimulationContextType = {
   safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   situation: Situation
   updateSituation: (situationToAdd: Situation) => Promise<void>
+  everyRules: string[]
   everyQuestions: string[]
   everyMosaic: string[]
   everyNotifications: string[]
@@ -27,6 +28,7 @@ export default createContext<SimulationContextType>({
   safeEvaluate: () => null,
   situation: {},
   updateSituation: () => Promise.resolve(),
+  everyRules: [],
   everyQuestions: [],
   everyMosaic: [],
   everyNotifications: [],

@@ -49,6 +49,7 @@ export default function SimulationProvider({
         safeEvaluate,
         situation,
         updateSituation,
+        everyRules,
         everyQuestions,
         everyMosaic,
         everyNotifications,
