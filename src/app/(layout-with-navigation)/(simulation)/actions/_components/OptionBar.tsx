@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useState } from 'react'
@@ -43,10 +43,10 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
         <ActionsChosenIndicator />
       </small>{' '}
       <small className="hidden md:block">
-        <TransClient>Triées par :</TransClient>
+        <Trans>Triées par :</Trans>
       </small>{' '}
       <small className="block md:hidden">
-        <TransClient>Tri :</TransClient>
+        <Trans>Tri :</Trans>
       </small>{' '}
       <Button
         size="sm"
@@ -56,11 +56,11 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
         title={t('Choisir le type de tri des actions')}>
         {radical ? (
           <span>
-            <TransClient>le + d'impact climat</TransClient>
+            <Trans>le + d'impact climat</Trans>
           </span>
         ) : (
           <span>
-            <TransClient>le - d'impact climat</TransClient>
+            <Trans>le - d'impact climat</Trans>
           </span>
         )}
       </Button>

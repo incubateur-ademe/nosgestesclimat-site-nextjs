@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import {
   matomoEventParcoursTestReprendre,
   matomoEventParcoursTestStart,
@@ -30,9 +30,9 @@ export default function TakeTestLink() {
       <ProgressCircle progress={0} white className="mr-2" />
 
       {currentSimulationId ? (
-        <TransClient>Reprendre mon test</TransClient>
+        <Trans>Reprendre mon test</Trans>
       ) : (
-        <TransClient>Faire le test</TransClient>
+        <Trans>Faire le test</Trans>
       )}
     </ButtonLink>
   )

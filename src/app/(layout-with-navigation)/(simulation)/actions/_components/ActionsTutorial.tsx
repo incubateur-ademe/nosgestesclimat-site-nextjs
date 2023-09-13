@@ -1,7 +1,7 @@
 'use client'
 
 import actionImg from '@/assets/images/E10C.svg'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -25,45 +25,45 @@ export default function ActionsTutorial() {
       <h2 className="flex items-center">
         <Image src={actionImg} alt="" width={32} height={32} />
 
-        <TransClient>Passer à l'action !</TransClient>
+        <Trans>Passer à l'action !</Trans>
       </h2>
 
       <p>
-        <TransClient i18nKey={'publicodes.ActionTutorial.félicitation'}>
+        <Trans i18nKey={'publicodes.ActionTutorial.félicitation'}>
           Vous avez terminé votre simulation, 👏 bravo !
-        </TransClient>
+        </Trans>
       </p>
 
       <p>{t('publicodes.ActionTutorial.msgEstimation', { value, unit })}</p>
 
       <p>
-        <TransClient i18nKey={'publicodes.ActionTutorial.msgPrésentation'}>
+        <Trans i18nKey={'publicodes.ActionTutorial.msgPrésentation'}>
           Pour vous aider, nous vous présenterons{' '}
           <strong>une liste d'actions</strong> :
-        </TransClient>
+        </Trans>
       </p>
 
       <ul className="list-none">
         <li>
-          <TransClient>✅ sélectionnez celles qui vous intéressent</TransClient>
+          <Trans>✅ sélectionnez celles qui vous intéressent</Trans>
         </li>
 
         <li>
-          <TransClient>
+          <Trans>
             ❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.
-          </TransClient>
+          </Trans>
         </li>
       </ul>
 
       <p>
-        <TransClient i18nKey={'publicodes.ActionTutorial.msgPrécision'}>
+        <Trans i18nKey={'publicodes.ActionTutorial.msgPrécision'}>
           💡 Pour améliorer la précision, certaines actions vous poseront
           quelques questions en plus.
-        </TransClient>
+        </Trans>
       </p>
 
       <Button onClick={() => hideTutorial('actions')}>
-        <TransClient>Démarrer</TransClient>
+        <Trans>Démarrer</Trans>
       </Button>
     </Card>
   )

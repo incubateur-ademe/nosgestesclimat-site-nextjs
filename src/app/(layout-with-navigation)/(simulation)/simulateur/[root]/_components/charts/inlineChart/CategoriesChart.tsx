@@ -9,7 +9,7 @@ export default function CategoriesChart() {
 
   return (
     <>
-      <div className="flex h-12">
+      <div className="flex h-8 md:h-12">
         {categories.map((category: string, index: number) => (
           <Category
             key={category}

@@ -1,7 +1,8 @@
 import ChoiceInput from '@/components/misc/ChoiceInput'
+import { NodeValue } from '@/publicodes-state/types'
 
 type Props = {
-  value: string
+  value: NodeValue
   isMissing: boolean
   setValue: (value: string) => void
 }

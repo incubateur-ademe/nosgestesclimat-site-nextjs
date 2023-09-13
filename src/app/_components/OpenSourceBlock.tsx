@@ -1,13 +1,13 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import { PropsWithChildren } from 'react'
 
 export default function OpenSourceBlock({ children }: PropsWithChildren) {
   return (
-    <div className='mx-auto w-full max-w-3xl px-4 pb-4 pt-10 md:px-8'>
+    <div className="mx-auto w-full max-w-3xl px-4 pb-4 pt-10 md:px-8">
       <h2>
-        <TransClient>Ouvert, documenté et contributif</TransClient>
+        <Trans>Ouvert, documenté et contributif</Trans>
       </h2>
       {children}
     </div>

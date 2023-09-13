@@ -9,6 +9,8 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import CategoryIntroduction from './form/CategoryIntroduction'
 
+import questions from '@/components/questions'
+
 export default function Form() {
   const {
     remainingCategories,
@@ -83,7 +85,11 @@ export default function Form() {
 
   return currentQuestion ? (
     <div className="mb-4 rounded-lg bg-primaryLight p-4">
-      <Question question={currentQuestion} key={currentQuestion} />
+      {questions[currentQuestion] ? (
+        questions[currentQuestion]
+      ) : (
+        <Question question={currentQuestion} key={currentQuestion} />
+      )}
       <Navigation
         question={currentQuestion}
         onComplete={() => {

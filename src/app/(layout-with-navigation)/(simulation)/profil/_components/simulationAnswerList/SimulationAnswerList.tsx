@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm } from '@/publicodes-state'
@@ -25,7 +25,7 @@ export default function SimulationAnswerList() {
           <span role="img" aria-label="emoji notepad" className="mr-4">
             📋
           </span>
-          <TransClient>Mes réponses</TransClient>
+          <Trans>Mes réponses</Trans>
         </h2>
 
         <div className="flex items-center">

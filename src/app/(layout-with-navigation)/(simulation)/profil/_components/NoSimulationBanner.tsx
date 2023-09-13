@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
@@ -20,14 +20,14 @@ export default function NoSimulationBanner() {
           🕳️
         </span>
 
-        <TransClient>Vous n'avez pas encore fait le test.</TransClient>
+        <Trans>Vous n'avez pas encore fait le test.</Trans>
       </p>
 
       <div className="flex w-full flex-wrap items-center gap-4">
         <ButtonLink href="/simulateur/bilan">
           <ProgressCircle className="mr-2" white />
 
-          <TransClient>Commencer le test</TransClient>
+          <Trans>Commencer le test</Trans>
         </ButtonLink>
 
         <TutorialLink />

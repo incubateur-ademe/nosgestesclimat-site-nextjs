@@ -1,6 +1,6 @@
+import ValueChangeDisplay from '@/components/misc/ValueChangeDisplay'
 import { useEngine, useForm, useRule } from '@/publicodes-state'
 import { useMemo } from 'react'
-
 import Subcategory from './subcategoriesChart/Subcategory'
 
 export default function SubcategoriesChart() {
@@ -26,8 +26,11 @@ export default function SubcategoriesChart() {
 
   return (
     <>
-      <h4 className="text-2xl uppercase">{title}</h4>
-      <div className="mb-4 flex h-12" style={{ backgroundColor: color }}>
+      <div className="flex items-center gap-4">
+        <h4 className="relative text-xl uppercase md:text-2xl">{title}</h4>
+        <ValueChangeDisplay />
+      </div>
+      <div className="mb-4 flex h-8 md:h-12" style={{ backgroundColor: color }}>
         {filteredSubcategories.map((subcategory: string, index: number) => (
           <Subcategory
             key={subcategory}

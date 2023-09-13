@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { getCurrentLangInfos } from '@/locales/translation'
@@ -63,24 +63,24 @@ export default function NewsBanner() {
   if (!shouldShowBanner) return null
 
   return (
-    <Card className='relative min-w-[20rem] p-8 text-left flex-col'>
-      <h2 className='m-0 flex items-center'>
-        <span className='mr-2 inline-block h-3 w-3 rounded-2xl bg-primary'></span>{' '}
-        <TransClient>Nouveautés</TransClient>
+    <Card className="relative min-w-[20rem] flex-col p-8 text-left">
+      <h2 className="m-0 flex items-center">
+        <span className="mr-2 inline-block h-3 w-3 rounded-2xl bg-primary"></span>{' '}
+        <Trans>Nouveautés</Trans>
       </h2>
       <div>
-        <small className='max-w-[12rem]'>
-          <TransClient i18nKey={'components.NewsBanner.miseAJourDate'}>
+        <small className="max-w-[12rem]">
+          <Trans i18nKey={'components.NewsBanner.miseAJourDate'}>
             Dernière mise à jour {{ date } as unknown as ReactNode}
-          </TransClient>
+          </Trans>
         </small>
       </div>
-      <div className='mt-2'>
+      <div className="mt-2">
         <Link href={'/nouveautes'}>{capitaliseString(lastRelease.name)}</Link>
       </div>
       <button
         onClick={handleUpdateViewedRelease}
-        className='absolute right-2 top-2 h-8 w-8 border-none bg-transparent p-0 text-lg text-primaryDark'
+        className="absolute right-2 top-2 h-8 w-8 border-none bg-transparent p-0 text-lg text-primaryDark"
         title={t('Fermer la notification de nouveautés')}>
         &times;
       </button>

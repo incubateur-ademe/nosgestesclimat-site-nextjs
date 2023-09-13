@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -69,10 +69,10 @@ export const NewsletterForm = () => {
             />
 
             <p className="text-xs text-gray-500">
-              <TransClient>
+              <Trans>
                 Vous pourrez choisir de ne plus recevoir nos emails à tout
                 moment
-              </TransClient>
+              </Trans>
             </p>
             {isError && (
               <div className="text-xs text-red-600">
@@ -81,7 +81,7 @@ export const NewsletterForm = () => {
             )}
 
             <Button onClick={() => null} type="submit" disabled={isLoading}>
-              <TransClient>Envoyer</TransClient>
+              <Trans>Envoyer</Trans>
             </Button>
             <input
               type="text"

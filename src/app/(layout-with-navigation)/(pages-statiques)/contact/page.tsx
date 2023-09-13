@@ -1,7 +1,7 @@
 'use client'
 
 import GithubContributionForm from '@/components/misc/GithubContributionForm'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 
@@ -15,22 +15,22 @@ export default function Contact() {
 			></Meta>
   */}
 
-      <Title title={<TransClient>Contact</TransClient>} />
+      <Title title={<Trans>Contact</Trans>} />
       <h2>
         🙋‍♀️{' '}
-        <TransClient i18nKey={'publicodes.Contact.titreQuestion'}>
+        <Trans i18nKey={'publicodes.Contact.titreQuestion'}>
           J'ai une question
-        </TransClient>
+        </Trans>
       </h2>
       <p>
-        <TransClient i18nKey={'publicodes.Contact.description'}>
+        <Trans i18nKey={'publicodes.Contact.description'}>
           N'hésitez pas à consulter notre{' '}
           <a href="./questions-frequentes">FAQ</a> avant de nous écire, vous y
           trouverez sans doute la réponse à votre question !
-        </TransClient>
+        </Trans>
       </p>
       <p>
-        <TransClient i18nKey={'publicodes.Contact.form'}>
+        <Trans i18nKey={'publicodes.Contact.form'}>
           Pour toute remarque ou question,{' '}
           <strong>
             nous vous recommandons{' '}
@@ -40,20 +40,20 @@ export default function Contact() {
           </strong>{' '}
           afin de suivre les échanges plus facilement. Vous pouvez également
           nous envoyer un message via le formulaire de contact ci-dessous.
-        </TransClient>
+        </Trans>
       </p>
       <Card className="my-4 py-4">
         <GithubContributionForm />
       </Card>
       <p>
-        <TransClient i18nKey={'publicodes.Contact.mail'}>
+        <Trans i18nKey={'publicodes.Contact.mail'}>
           Enfin, vous avez la possibilité de nous envoyer un mail à l'adresse{' '}
           <a href="mailto:contact@nosgestesclimat.fr">
             contact@nosgestesclimat.fr
           </a>
           . Cependant, le délais de réponse sera plus long que les solutions
           précédentes.
-        </TransClient>
+        </Trans>
       </p>
     </div>
   )

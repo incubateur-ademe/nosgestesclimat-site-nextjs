@@ -6,6 +6,7 @@ import simulationContext from '../simulationProvider/context'
 import { NGCEvaluatedNode, NGCRuleNode } from '../types'
 import useChoices from './useChoices'
 import useContent from './useContent'
+import useMissing from './useMissing'
 import useMosaic from './useMosaic'
 import useType from './useType'
 import useValue from './useValue'
@@ -25,6 +26,7 @@ export default function useRule(dottedName: string) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [dottedName, engine, situation]
   )
+
   const rule = useMemo<NGCRuleNode | null>(
     () => safeGetRule(dottedName),
     [dottedName, safeGetRule]
@@ -67,23 +69,19 @@ export default function useRule(dottedName: string) {
 
   const choices = useChoices({ rule, type })
 
-  const {
-    value,
-    displayValue,
-    numericValue,
-    isMissing,
-    setValue,
-    setDefaultAsValue,
-  } = useValue({
-    dottedName,
-    safeGetRule,
-    safeEvaluate,
-    evaluation,
-    type,
-    getType,
-    questionsOfMosaic,
-    updateSituation,
-  })
+  const { isMissing } = useMissing({ dottedName, questionsOfMosaic, situation })
+
+  const { value, displayValue, numericValue, setValue, setDefaultAsValue } =
+    useValue({
+      dottedName,
+      safeGetRule,
+      safeEvaluate,
+      evaluation,
+      type,
+      getType,
+      questionsOfMosaic,
+      updateSituation,
+    })
 
   return {
     type,

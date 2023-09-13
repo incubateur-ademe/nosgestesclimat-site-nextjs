@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import TextAreaInputGroup from '@/design-system/inputs/TextAreaInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -64,7 +64,7 @@ export default function GithubContributionForm() {
   return !issueURL ? (
     <form className="mt-8">
       <TextInputGroup
-        label={<TransClient>Le titre bref de votre problème</TransClient>}
+        label={<Trans>Le titre bref de votre problème</Trans>}
         name="sujet"
         required
         value={sujet}
@@ -73,7 +73,7 @@ export default function GithubContributionForm() {
 
       <TextAreaInputGroup
         label={
-          <TransClient i18nKey={'publicodes.Contribution.descriptionComplète'}>
+          <Trans i18nKey={'publicodes.Contribution.descriptionComplète'}>
             <p>La description complète de votre problème</p>
             <p>
               <small>
@@ -83,7 +83,7 @@ export default function GithubContributionForm() {
                 nous aiderez à résoudre le bug plus rapidement.
               </small>
             </p>
-          </TransClient>
+          </Trans>
         }
         aria-describedby="messageAttention"
         value={comment}
@@ -93,10 +93,10 @@ export default function GithubContributionForm() {
       />
       <p id="messageAttention">
         <em>
-          <TransClient>
+          <Trans>
             Cette contribution sera publique : n'y mettez pas d'informations
             sensibles
-          </TransClient>
+          </Trans>
         </em>
       </p>
 
@@ -124,15 +124,15 @@ export default function GithubContributionForm() {
             labels: ['❓ FAQ', '💁 contribution externe'],
           })
         }}>
-        <TransClient>Envoyer</TransClient>
+        <Trans>Envoyer</Trans>
       </Button>
     </form>
   ) : (
     <p role="status">
-      <TransClient i18nKey={'publicodes.Contribution.remerciements'}>
+      <Trans i18nKey={'publicodes.Contribution.remerciements'}>
         Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur{' '}
         <Link href={issueURL ?? ''}>ce lien</Link>.
-      </TransClient>
+      </Trans>
     </p>
   )
 }

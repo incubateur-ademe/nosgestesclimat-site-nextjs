@@ -1,6 +1,7 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
+import useWindowSize from '@/hooks/useWindowSize'
 import { useEngine, useForm, useRule } from '@/publicodes-state'
 import { useMemo } from 'react'
 import Block from './gridChart/Block'
@@ -8,7 +9,8 @@ import Block from './gridChart/Block'
 export default function GridChart() {
   const { numericValue: total } = useRule('bilan')
 
-  const numberOfSquares = 100
+  const { width } = useWindowSize()
+  const numberOfSquares = width < 768 ? 64 : 100
   const valueOfEachSquare = total / numberOfSquares
   const { subcategories } = useForm()
 
@@ -45,12 +47,12 @@ export default function GridChart() {
 
   return (
     <>
-      <h3 className="text-center text-xl">
-        <TransClient>De quoi est faite mon empreinte&nbsp;?</TransClient>
+      <h3 className="mb-2 text-center text-lg md:mb-4 md:text-xl">
+        <Trans>De quoi est faite mon empreinte&nbsp;?</Trans>
       </h3>
-      <div className="grid grid-cols-10	gap-1">
+      <div className="grid grid-cols-8 gap-1	md:grid-cols-10">
         {sortedSubcategories.map((subCategory: any, index: number) =>
-          index < 100 ? (
+          index < numberOfSquares ? (
             <Block
               key={subCategory.dottedName + index}
               subcategory={subCategory.dottedName}

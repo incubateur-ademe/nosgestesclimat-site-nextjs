@@ -1,5 +1,5 @@
 import dessinNGC from '@/assets/images/dessin-nosgestesclimat.png'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { Metadata } from 'next'
 import Image from 'next/image'
@@ -14,10 +14,7 @@ export const metadata: Metadata = {
 export default function Blog() {
   return (
     <>
-      <Title
-        title={<TransClient>Le Blog</TransClient>}
-        data-cypress-id="blog-title"
-      />
+      <Title title={<Trans>Le Blog</Trans>} data-cypress-id="blog-title" />
       <div>
         <Image
           alt=""
@@ -27,7 +24,7 @@ export default function Blog() {
           src={dessinNGC}
         />
         <p>
-          <TransClient>Découvrez nos articles de blog :</TransClient>
+          <Trans>Découvrez nos articles de blog :</Trans>
         </p>
       </div>
 

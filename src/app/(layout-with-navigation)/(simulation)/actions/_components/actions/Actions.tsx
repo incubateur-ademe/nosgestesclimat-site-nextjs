@@ -3,7 +3,7 @@
 import imageSrc2 from '@/assets/images/26D4.svg'
 import imageSrc from '@/assets/images/270A.svg'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -103,7 +103,7 @@ export default function Actions({
     <>
       {maxImpactAction.value < 100 && (
         <Card className="my-8 flex-col">
-          <TransClient i18nKey={'publicodes.AllActions.msgPlusActions'}>
+          <Trans i18nKey={'publicodes.AllActions.msgPlusActions'}>
             <p>
               Nous n'avons plus d'actions chiffrées très impactantes à vous
               proposer 🤷
@@ -111,7 +111,7 @@ export default function Actions({
             <p className="mb-0">
               Découvrez plus bas quelques pistes pour agir autrement ⏬
             </p>
-          </TransClient>
+          </Trans>
         </Card>
       )}
 
@@ -126,7 +126,7 @@ export default function Actions({
             width={36}
             alt=""
           />
-          <TransClient>Actions d'engagement</TransClient> &#9660;
+          <Trans>Actions d'engagement</Trans> &#9660;
         </p>
       </div>
 
@@ -149,7 +149,7 @@ export default function Actions({
             width={36}
             alt=""
           />
-          <TransClient>Actions négatives</TransClient> &#9660;
+          <Trans>Actions négatives</Trans> &#9660;
         </p>
       </div>
 
@@ -164,7 +164,7 @@ export default function Actions({
       {rejected.length > 0 && (
         <div>
           <h2>
-            <TransClient>Actions écartées :</TransClient>
+            <Trans>Actions écartées :</Trans>
           </h2>
           <ActionList
             actions={rejected}
@@ -181,7 +181,7 @@ export default function Actions({
           📚
         </span>
         <div>
-          <TransClient i18nKey={'publicodes.AllActions.allerPlusLoin'}>
+          <Trans i18nKey={'publicodes.AllActions.allerPlusLoin'}>
             <h2>Aller plus loin</h2>
             <p>
               <small>
@@ -189,7 +189,7 @@ export default function Actions({
                 derrière chaque action.
               </small>
             </p>
-          </TransClient>
+          </Trans>
         </div>
       </ButtonLink>
     </>

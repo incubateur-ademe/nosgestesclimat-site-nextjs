@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useUser } from '@/publicodes-state'
 
@@ -12,7 +12,7 @@ export default function ButtonStart() {
       href="/simulateur/bilan"
       data-cypress-id="skip-tuto-button"
       onClick={() => hideTutorial('testIntro')}>
-      <TransClient>C'est parti ! →</TransClient>
+      <Trans>C'est parti ! →</Trans>
     </ButtonLink>
   )
 }

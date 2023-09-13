@@ -10,10 +10,10 @@ type Props = {
 
 export default function NavLink({ href, children }: Props) {
   return (
-    <li className='min-w-[84px] w-full md:w-auto'>
+    <li className="w-full min-w-[84px] lg:w-auto">
       <ButtonLink
-        className='flex !w-full flex-col md:flex-row gap-1 py-2 md:py-4 h-full'
-        color='text'
+        className="flex h-full !w-full flex-col gap-1 py-2 lg:flex-row lg:py-4"
+        color="text"
         href={href}>
         {children}
       </ButtonLink>

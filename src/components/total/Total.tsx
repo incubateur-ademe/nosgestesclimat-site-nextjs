@@ -3,13 +3,12 @@
 import Link from 'next/link'
 
 import QuestionButton from '@/components/misc/QuestionButton'
+import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { useEngine, useRule, useUser } from '@/publicodes-state'
-
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
 import Planet from './_components/Planet'
 import Progress from './_components/Progress'
-import ValueChangeDisplay from './_components/ValueChangeDisplay'
 
 type Props = {
   toggleQuestionList?: () => void
@@ -40,27 +39,22 @@ export default function Total({ toggleQuestionList }: Props) {
       : hideTutorial('scoreExplanation')
 
   return (
-    <div className="mb-2">
-      <div className="relative mb-2 flex items-center justify-center gap-4 overflow-hidden rounded-lg bg-primary p-2 text-center text-white ">
+    <div className="md:mb-2">
+      <div className="relative mb-2 flex items-center gap-4 overflow-hidden rounded-lg bg-primary px-4 py-2 text-white md:justify-center md:text-center ">
         <Progress />
         <Planet />
         <Link
           href="/fin"
           className="z-10	text-white no-underline hover:text-white">
-          <span className="block text-3xl font-bold">
-            {(carbonFootprintValue / 1000).toLocaleString('fr-fr', {
-              maximumFractionDigits: 1,
-            })}{' '}
-            tonnes
+          <span className="block text-2xl font-bold md:text-3xl">
+            {formatCarbonFootprint(carbonFootprintValue).formattedValue}{' '}
+            {formatCarbonFootprint(carbonFootprintValue).unit}
           </span>
-          <span className="block">
+          <span className="block text-sm md:text-base">
             de CO<sub>2</sub>e / an
           </span>
         </Link>
-
         <QuestionButton onClick={toggleOpen} color="white" />
-
-        <ValueChangeDisplay value={carbonFootprintValue} />
         {toggleQuestionList && (
           <ListToggle toggleQuestionList={toggleQuestionList} />
         )}

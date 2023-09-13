@@ -11,7 +11,7 @@ export default function Total({ total }: Props) {
   const { categories } = useForm()
 
   return (
-    <div className="relative h-full w-28">
+    <div className="relative h-full w-16 md:w-28">
       <Annotation content="Mon empreinte carbone" />
       <NumberDisplay number={total} />
       <div className="flex h-full flex-col overflow-hidden rounded-t border-4 border-b-0 border-black">

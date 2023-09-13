@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useForm, useRule } from '@/publicodes-state'
 
@@ -36,7 +36,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
             }
           }}
           color="text">
-          <TransClient>← Précédent</TransClient>
+          <Trans>← Précédent</Trans>
         </Button>
       ) : null}
       <Button
@@ -56,13 +56,13 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
 
           onComplete()
         }}>
-        <TransClient>
-          {noNextQuestion
+        <Trans>
+          {noNextQuestion && noNextCategory
             ? 'Terminer'
             : isMissing
             ? 'Je ne sais pas →'
             : 'Suivant →'}
-        </TransClient>
+        </Trans>
       </Button>
     </div>
   )

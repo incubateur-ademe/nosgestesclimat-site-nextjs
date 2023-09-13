@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
@@ -44,30 +44,30 @@ export default function DocumentationLanding() {
 
   return (
     <div>
-      <Title title={<TransClient>Documentation</TransClient>} />
+      <Title title={<Trans>Documentation</Trans>} />
 
       <p>
-        <TransClient i18nKey={'meta.publicodes.pages.Documentation.intro'}>
+        <Trans i18nKey={'meta.publicodes.pages.Documentation.intro'}>
           Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du
           même nom, composé d'un ensemble de briques. Sur cette documentation,
           vous avez accès en toute transparence à l'ensemble des variables du
           calcul.
-        </TransClient>
+        </Trans>
       </p>
 
       <div>
         <Link href="/modele">
-          💡 <TransClient> En savoir plus sur notre modèle</TransClient>
+          💡 <Trans> En savoir plus sur notre modèle</Trans>
         </Link>
       </div>
 
       <SearchBar rules={rules} />
 
       <h2 className="mt-4 text-xl">
-        <TransClient>Quelques suggestions </TransClient>
+        <Trans>Quelques suggestions </Trans>
       </h2>
 
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 flex-wrap max-w-[60rem] p-0 gap-2">
+      <ul className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3">
         {editos.map(({ dottedName, résumé }) => {
           return (
             <li key={dottedName}>
@@ -75,7 +75,7 @@ export default function DocumentationLanding() {
                 tag={Link}
                 style={{ backgroundColor: getColor(dottedName) || '#5758BB' }}
                 href={'/documentation/' + utils.encodeRuleName(dottedName)}
-                className="h-[12rem] flex-auto relative text-white no-underline">
+                className="relative h-[12rem] flex-auto text-white no-underline">
                 {résumé && (
                   <h2 className="text-base text-white">
                     {<Markdown>{résumé}</Markdown>}

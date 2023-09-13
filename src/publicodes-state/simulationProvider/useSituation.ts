@@ -33,7 +33,7 @@ export default function useSituation({
   }
 
   useEffect(() => {
-    //console.log('set situation', externalSituation)
+    console.log('set situation', externalSituation)
     const safeSituation = getSafeSituation({
       situation: externalSituation,
       everyRules,
@@ -56,7 +56,7 @@ const getSafeSituation = ({
   everyRules: string[]
 }): Situation =>
   everyRules
-    .filter((rule: string) => situation[rule])
+    .filter((rule: string) => situation[rule] || situation[rule] === 0)
     .reduce(
       (accumulator: Record<string, NodeValue>, currentValue: string) => ({
         ...accumulator,

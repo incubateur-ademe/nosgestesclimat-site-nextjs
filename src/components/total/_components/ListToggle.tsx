@@ -4,7 +4,9 @@ type Props = {
 
 export default function ListToggle({ toggleQuestionList }: Props) {
   return (
-    <button onClick={toggleQuestionList} className="absolute right-6 w-8 h-8">
+    <button
+      onClick={toggleQuestionList}
+      className="absolute right-4 h-8 w-8 md:right-6">
       <svg
         className="fill-white"
         viewBox="0 0 32 32"

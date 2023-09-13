@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import { useRule } from '@/publicodes-state'
 
 type Props = {
@@ -40,7 +40,7 @@ export default function MosaicBooleanInput({ question, title, icons }: Props) {
       ) : null}
       {isInactive ? (
         <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded border-2 border-black bg-white p-2 text-xs font-semibold text-black">
-          <TransClient>Bientôt disponible</TransClient>
+          <Trans>Bientôt disponible</Trans>
         </div>
       ) : null}
     </button>

@@ -1,8 +1,7 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useUser } from '@/publicodes-state'
 import { Simulation } from '@/publicodes-state/types'
-import { Trans } from 'react-i18next'
 
 export default function SimulationList() {
   const {
@@ -24,13 +23,13 @@ export default function SimulationList() {
           className="mr-4 inline-block">
           💾
         </span>
-        <TransClient>Mon historique des simulations</TransClient>
+        <Trans>Mon historique des simulations</Trans>
       </h2>
       <p>
-        <TransClient i18nKey={'publicodes.Profil.simulations'}>
+        <Trans i18nKey={'publicodes.Profil.simulations'}>
           Chaque simulation que vous faite est sauvegardée dans votre navigateur
           Web. Vous êtes le seul à y avoir accès.
-        </TransClient>
+        </Trans>
       </p>
       <ul>
         {simulations.map((simulation: Simulation) => {
@@ -68,7 +67,7 @@ export default function SimulationList() {
                           */
                             setCurrentSimulationId(simulation.id)
                           }}>
-                          <TransClient>Charger</TransClient>
+                          <Trans>Charger</Trans>
                         </Button>
                         <Button
                           className="mx-2"
@@ -76,7 +75,7 @@ export default function SimulationList() {
                           onClick={() => {
                             deleteSimulation(simulation.id)
                           }}>
-                          <TransClient>Supprimer</TransClient>
+                          <Trans>Supprimer</Trans>
                         </Button>
                       </span>
                     )}
@@ -84,12 +83,12 @@ export default function SimulationList() {
                 </summary>
                 <ul>
                   <li>
-                    <TransClient>Date complète :</TransClient>
+                    <Trans>Date complète :</Trans>
                     {simulationDate.toLocaleDateString()}{' '}
                     {simulationDate.toLocaleTimeString()}.
                   </li>
                   <li>
-                    <TransClient>Identifiant :</TransClient> {simulation.id}.
+                    <Trans>Identifiant :</Trans> {simulation.id}.
                   </li>
                 </ul>
               </details>

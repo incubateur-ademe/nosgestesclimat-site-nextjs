@@ -9,7 +9,7 @@ export default function Block({ subcategory }: Props) {
 
   return (
     <div
-      className={`flex h-14 items-center justify-center`}
+      className={`flex h-8 items-center justify-center md:h-14`}
       style={{ backgroundColor: color }}>
       <Image
         style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}
@@ -17,6 +17,7 @@ export default function Block({ subcategory }: Props) {
         alt={title || 'icône'}
         width={32}
         height={32}
+        className="h-6 w-6 md:h-8 md:w-8"
       />
     </div>
   )

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import { useParams } from 'next/navigation'
 import { JSXElementConstructor } from 'react'
 import { blogData } from '../_data/articles'
@@ -21,12 +21,10 @@ export default function BlogPost() {
     return (
       <div>
         <Link href="/blog">
-          ← <TransClient>Retour à la liste des articles</TransClient>
+          ← <Trans>Retour à la liste des articles</Trans>
         </Link>
         <br />
-        <TransClient>
-          Oups, nous n'avons pas d'article correspondant
-        </TransClient>
+        <Trans>Oups, nous n'avons pas d'article correspondant</Trans>
       </div>
     )
   }
@@ -34,7 +32,7 @@ export default function BlogPost() {
   return (
     <div className="flex max-w-[800px] flex-col p-8">
       <Link href="/blog">
-        ← <TransClient>Retour à la liste des articles</TransClient>
+        ← <Trans>Retour à la liste des articles</Trans>
       </Link>
 
       <BlogContent />

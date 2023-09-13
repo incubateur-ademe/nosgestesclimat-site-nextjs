@@ -1,11 +1,11 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { NGCRules } from '@/types/model'
 import Fuse from 'fuse.js'
 import { utils } from 'publicodes'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import RuleListItem from './RuleListIem'
 
 export type SearchItem = {
@@ -81,26 +81,26 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
 
   return (
     <>
-      <Card className="!bg-primaryLight flex-col my-8">
+      <Card className="my-8 flex-col !bg-primaryLight">
         <h2 className="text-xl">
           <span
             role="img"
             aria-label="emoji search"
             aria-hidden
-            className="inline-block mr-3 ">
+            className="mr-3 inline-block ">
             🔍
           </span>
-          <TransClient>Explorez nos modèles</TransClient>
+          <Trans>Explorez nos modèles</Trans>
         </h2>
 
         <label
           title={t('Entrez des mots clefs')}
-          className="py-2 flex items-center">
+          className="flex items-center py-2">
           <input
             type="search"
             value={input}
             placeholder={t('Entrez des mots-clefs de recherche')}
-            className="p-4 rounded-md border border-solid border-primaryLight w-full"
+            className="w-full rounded-md border border-solid border-primaryLight p-4"
             onChange={(e) => {
               const input = e.target.value
 
@@ -110,7 +110,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
         </label>
 
         {input.length > 2 && !results.length && (
-          <div role="status" className="p-2 rounded-sm mt-2">
+          <div role="status" className="mt-2 rounded-sm p-2">
             <Trans i18nKey="noresults">
               Aucun résultat ne correspond à cette recherche
             </Trans>
@@ -119,7 +119,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
       </Card>
 
       {input.length > 2 && (
-        <ul className="px-4 m-0 list-none bg-white rounded-md">
+        <ul className="m-0 list-none rounded-md bg-white px-4">
           {results.map(({ item, matches }) => (
             <RuleListItem
               key={item.dottedName}

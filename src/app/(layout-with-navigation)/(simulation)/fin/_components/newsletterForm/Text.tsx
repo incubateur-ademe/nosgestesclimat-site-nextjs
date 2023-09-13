@@ -1,34 +1,34 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 export default function Text() {
   const { data: numberSubscribers } = useNumberSubscribers()
   return (
     <>
       <h3 className="text-xl">
-        <TransClient>Vous souhaitez recevoir vos résultats ?</TransClient> 💡
+        <Trans>Vous souhaitez recevoir vos résultats ?</Trans> 💡
       </h3>
       <p>
-        <TransClient>Laissez-nous votre email</TransClient>
+        <Trans>Laissez-nous votre email</Trans>
         {numberSubscribers && (
           <span>
-            <TransClient>, comme déjà </TransClient>
+            <Trans>, comme déjà </Trans>
             <strong>
               {numberSubscribers.toLocaleString()}{' '}
-              <TransClient>autres utilisateurs, </TransClient>
+              <Trans>autres utilisateurs, </Trans>
             </strong>
           </span>
         )}
-        <TransClient> pour recevoir </TransClient>
+        <Trans> pour recevoir </Trans>
         <strong>
-          <TransClient>votre résultat</TransClient>
+          <Trans>votre résultat</Trans>
         </strong>{' '}
-        <TransClient>et </TransClient>
+        <Trans>et </Trans>
         <strong>
-          <TransClient>des conseils</TransClient>
+          <Trans>des conseils</Trans>
         </strong>{' '}
-        <TransClient>
+        <Trans>
           pour réduire votre empreinte carbone (1 fois par mois max.).{' '}
-        </TransClient>
+        </Trans>
       </p>
     </>
   )

@@ -1,4 +1,4 @@
-import TransServer from '@/components/translation/TransServer'
+import Trans from '@/components/translation/Trans'
 import { orderedCategories } from '@/constants/orderedCategories'
 import Title from '@/design-system/layout/Title'
 import FormProvider from '@/publicodes-state/formProvider'
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function Profil() {
   return (
     <FormProvider root={'bilan'} categoryOrder={orderedCategories}>
-      <Title title={<TransServer>Mon profil</TransServer>} />
+      <Title title={<Trans>Mon profil</Trans>} />
       <ProfilPageContent />
     </FormProvider>
   )

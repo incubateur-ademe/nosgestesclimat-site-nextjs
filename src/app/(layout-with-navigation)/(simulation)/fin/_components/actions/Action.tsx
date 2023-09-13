@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
 
@@ -17,13 +17,13 @@ export default function Action({ action }: Props) {
 
   return (
     <div
-      className="rounded-lg px-12 py-4 text-white"
+      className="rounded-lg p-4 text-white md:px-12"
       style={{ backgroundColor: color }}>
-      <div className="mb-4 flex items-center gap-12 border-b border-white pb-2">
+      <div className="mb-4 flex items-center gap-4 border-b border-white pb-2 md:gap-12">
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
           {icons}
         </div>{' '}
-        <div className="text-xl font-bold">{title}</div>
+        <div className="flex-1  text-lg font-bold md:text-xl">{title}</div>
       </div>
       <div className="flex justify-center">
         <div
@@ -32,7 +32,7 @@ export default function Action({ action }: Props) {
             -&nbsp;
             <strong>{formattedValue}</strong>&nbsp;
             <span>
-              <TransClient>{unit}</TransClient>
+              <Trans>{unit}</Trans>
             </span>
           </span>
           {total && relativeValue > 0 && (
