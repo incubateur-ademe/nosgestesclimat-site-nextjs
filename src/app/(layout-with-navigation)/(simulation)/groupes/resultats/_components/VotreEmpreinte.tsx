@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import { SimulationResults, ValueObject } from '@/types/groups'
 import { formatValue } from 'publicodes'
 import { JSX } from 'react'
@@ -42,11 +42,11 @@ export default function VotreEmpreinte({
   return (
     <>
       <h2 className="mb-1 mt-0 text-lg" data-cypress-id="votre-empreinte-title">
-        <TransClient>Votre empreinte</TransClient>
+        <Trans>Votre empreinte</Trans>
       </h2>
       {membersLength > 1 && (
         <p className="text-gray-500">
-          <TransClient>Par rapport à la moyenne du groupe.</TransClient>
+          <Trans>Par rapport à la moyenne du groupe.</Trans>
         </p>
       )}
 

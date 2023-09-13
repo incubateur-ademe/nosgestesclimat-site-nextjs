@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -48,9 +48,9 @@ const UseQueryResultHandler = ({ requestResults, toRenderWithRequestData }) => {
           if (isError) {
             return (
               <p key={`${JSON.stringify(error)}-${index}`}>
-                <TransClient>
+                <Trans>
                   Une erreur est survenue lors de la récupération des données
-                </TransClient>{' '}
+                </Trans>{' '}
                 : {error.message}
               </p>
             )
@@ -58,7 +58,7 @@ const UseQueryResultHandler = ({ requestResults, toRenderWithRequestData }) => {
           if (isLoading) {
             return (
               <p key={`${JSON.stringify(error)}-${index}`}>
-                <TransClient>Récupération des données</TransClient>...
+                <Trans>Récupération des données</Trans>...
               </p>
             )
           }
@@ -95,10 +95,10 @@ export default function StatsContent() {
 
   return (
     <div>
-      <Title title={<TransClient>Statistiques</TransClient>} />
+      <Title title={<Trans>Statistiques</Trans>} />
       <div className="mt-8">
         <h2>
-          <TransClient>Générales</TransClient>
+          <Trans>Générales</Trans>
         </h2>
         <UseQueryResultHandler
           requestResults={[period, reference, allTime, simulations]}
@@ -132,7 +132,7 @@ export default function StatsContent() {
                 </strong>{' '}
               </p>
               <p className="text-sm">
-                <TransClient>visites sur la page d'accueil</TransClient>
+                <Trans>visites sur la page d'accueil</Trans>
               </p>
             </Card>
 
@@ -145,7 +145,7 @@ export default function StatsContent() {
                 )}
               </strong>{' '}
               <p className="mb-0 text-sm">
-                <TransClient>partages du site</TransClient>
+                <Trans>partages du site</Trans>
               </p>
             </Card>
           </div>
@@ -179,10 +179,10 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h3>
-          <TransClient>Intégrations et Iframes</TransClient>
+          <Trans>Intégrations et Iframes</Trans>
         </h3>
         <details>
-          <TransClient
+          <Trans
             i18nKey={'components.stats.StatsContent.integrationEtIframes'}>
             <summary className="mb-4">En savoir plus</summary>
             <p className="mb-4">
@@ -195,7 +195,7 @@ export default function StatsContent() {
               potentiellement sous-estimé par rapport à la réalité.{' '}
               <i>(Données valables pour les 30 derniers jours)</i>
             </p>
-          </TransClient>
+          </Trans>
         </details>
         <UseQueryResultHandler
           requestResults={[entryPages, activeEntryPages]}
@@ -211,11 +211,11 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h3>
-          <TransClient>
+          <Trans>
             Northstar: les statistiques "étoile du nord"
-          </TransClient>
+          </Trans>
         </h3>
-        <TransClient i18nKey={'components.stats.StatsContent.infosNorthstar'}>
+        <Trans i18nKey={'components.stats.StatsContent.infosNorthstar'}>
           <p>
             En fin de simulation, une bannière apparaît afin de recueillir le
             sentiment de nos utilisateurs sur le rôle de Nos Gestes Climat dans
@@ -225,14 +225,14 @@ export default function StatsContent() {
             <a href="./northstar">page dédiée "Northstar"</a>, ont été générées
             via Metabase.
           </p>
-        </TransClient>
+        </Trans>
       </div>
       <div className="mt-8">
         <h3>
-          <TransClient>Durée des visites</TransClient>
+          <Trans>Durée des visites</Trans>
         </h3>
         <details>
-          <TransClient
+          <Trans
             i18nKey={'components.stats.StatsContent.dureeDesVisites'}>
             <summary className="mb-4">En savoir plus</summary>
             <p>
@@ -243,7 +243,7 @@ export default function StatsContent() {
               temps moyen sur le site a été calculé à partir des visites actives
               (l'utilisateur a cliqué sur "Faire le test").
             </p>
-          </TransClient>
+          </Trans>
         </details>
         <UseQueryResultHandler
           requestResults={[avgduration]}
@@ -257,10 +257,10 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h3>
-          <TransClient>Score de nos utilisateurs</TransClient>
+          <Trans>Score de nos utilisateurs</Trans>
         </h3>
         <details>
-          <TransClient
+          <Trans
             i18nKey={'components.stats.StatsContent.scoreUtilisateurs'}>
             <summary className="mb-4">En savoir plus</summary>
             <p>
@@ -280,7 +280,7 @@ export default function StatsContent() {
               reprises sur la page de fin, en changeant ses réponses au test (ce
               qui crée de nouveaux url de fin).
             </p>
-          </TransClient>
+          </Trans>
         </details>
         <UseQueryResultHandler
           requestResults={[pages]}
@@ -293,7 +293,7 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h3>
-          <TransClient>La voiture en chiffres</TransClient>
+          <Trans>La voiture en chiffres</Trans>
         </h3>
         <UseQueryResultHandler
           requestResults={[kmhelp, simulationsfromhelp, ridesnumber]}

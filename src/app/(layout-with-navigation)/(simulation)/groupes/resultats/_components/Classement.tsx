@@ -4,7 +4,7 @@ import { Group } from '@/types/groups'
 import { formatValue } from 'publicodes'
 import { useState } from 'react'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { getTopThreeAndRestMembers } from '../_utils/getTopThreeAndRestMembers'
@@ -54,7 +54,7 @@ export default function Classement({ group }: { group: Group }) {
                 })}
               </strong>{' '}
               <span className="text-sm font-light">
-                <TransClient>tonnes</TransClient>
+                <Trans>tonnes</Trans>
               </span>
             </span>
           ) : (
@@ -92,7 +92,7 @@ export default function Classement({ group }: { group: Group }) {
                       })}
                     </strong>{' '}
                     <span className="text-sm font-light">
-                      <TransClient>tonnes</TransClient>
+                      <Trans>tonnes</Trans>
                     </span>
                   </span>
                 ) : (
@@ -114,11 +114,11 @@ export default function Classement({ group }: { group: Group }) {
       {group.members.length > 5 && !isExpanded && (
         <button
           onClick={() => setIsExpanded(true)}
-          className="bg-transClientparent mt-4 w-full border-none text-center text-sm text-primary underline">
-          <TransClient>
+          className="bg-Transparent mt-4 w-full border-none text-center text-sm text-primary underline">
+          <Trans>
             Voir les {String(group.members.length - 5)} autre{withS} participant
             {withS}
-          </TransClient>
+          </Trans>
         </button>
       )}
     </>
