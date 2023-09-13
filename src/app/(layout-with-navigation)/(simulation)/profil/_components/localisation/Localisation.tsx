@@ -1,7 +1,7 @@
 'use client'
 
 import CountryFlag from '@/components/misc/CountryFlag'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { fetchSupportedRegions } from '@/helpers/localisation/fetchSupportedRegions'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -42,7 +42,7 @@ export default function Localisation({ title = 'Ma région de simulation' }) {
       {region && (
         <div className="my-4">
           <span>
-            <TransClient>Vous faites cette simulation depuis :</TransClient>{' '}
+            <Trans>Vous faites cette simulation depuis :</Trans>{' '}
             <strong>{region.name}</strong>
             <CountryFlag code={region.code} className="ml-2 inline-block" />.
           </span>
@@ -65,7 +65,7 @@ export default function Localisation({ title = 'Ma région de simulation' }) {
                       initialRegion as { code: string; name: string }
                     )
                   }}>
-                  <TransClient>Revenir à ma région par défaut </TransClient>{' '}
+                  <Trans>Revenir à ma région par défaut </Trans>{' '}
                   <span aria-label={initialRegion.name}>
                     <CountryFlag
                       code={initialRegion.code}
@@ -84,10 +84,10 @@ export default function Localisation({ title = 'Ma région de simulation' }) {
 
       {!region && (
         <p>
-          <TransClient i18nKey="components.localisation.Localisation.warnMessage2">
+          <Trans i18nKey="components.localisation.Localisation.warnMessage2">
             Nous n'avons pas pu détecter votre pays de simulation, le modèle
             Français vous est proposé par défaut.
-          </TransClient>
+          </Trans>
         </p>
       )}
       <RegionSelector supportedRegions={supportedRegions} />

@@ -1,7 +1,7 @@
 'use client'
 
 import Total from '@/components/total/Total'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import { orderedCategories } from '@/constants/orderedCategories'
 import Title from '@/design-system/layout/Title'
 import FormProvider from '@/publicodes-state/formProvider'
@@ -20,9 +20,7 @@ export default function Simulateur({ params }: Props) {
   return (
     <FormProvider root={params.root} categoryOrder={orderedCategories}>
       <div className="hidden md:block">
-        <Title
-          title={<TransClient>Votre bilan climat personnel</TransClient>}
-        />
+        <Title title={<Trans>Votre bilan climat personnel</Trans>} />
       </div>
       <Total toggleQuestionList={toggleQuestionList} />
       {isQuestionListOpen ? (

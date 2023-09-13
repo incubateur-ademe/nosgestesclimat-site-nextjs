@@ -1,17 +1,15 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 
 export default function Confirmation() {
   return (
     <div>
-      <div className="text-2xl text-left font-bold bg-transparent text-left;">
+      <div className="text-left; bg-transparent text-left text-2xl font-bold">
         <p>
-          <TransClient>Merci pour votre inscription !</TransClient> 🌱
+          <Trans>Merci pour votre inscription !</Trans> 🌱
         </p>
       </div>
-      <p className="text-left mt-4">
-        <TransClient>
-          Vous allez recevoir un email de notre part sous peu.
-        </TransClient>
+      <p className="mt-4 text-left">
+        <Trans>Vous allez recevoir un email de notre part sous peu.</Trans>
       </p>
     </div>
   )

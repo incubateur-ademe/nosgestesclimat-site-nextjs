@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useTempEngine } from '@/publicodes-state'
 import { utils } from 'publicodes'
@@ -68,24 +68,20 @@ export default function PlanDuSite() {
     <>
       <Title
         title={
-          <TransClient i18nKey="publicodes.planDuSite.title">
-            Plan du site
-          </TransClient>
+          <Trans i18nKey="publicodes.planDuSite.title">Plan du site</Trans>
         }
       />
 
       {Object.entries(links).map(([categoryTitle, categoryLinks]) => (
         <section key={categoryTitle} className="mb-2">
           <h2>
-            <TransClient i18nKey={`${categoryTitle}`}>
-              {categoryTitle}
-            </TransClient>
+            <Trans i18nKey={`${categoryTitle}`}>{categoryTitle}</Trans>
           </h2>
           <ul className="m-0 list-none p-0">
             {Object.entries(categoryLinks).map(([linkKey, linkUrl]) => (
               <li key={linkKey}>
                 <Link href={linkUrl}>
-                  <TransClient i18nKey={`${linkKey}`}>{linkKey}</TransClient>
+                  <Trans i18nKey={`${linkKey}`}>{linkKey}</Trans>
                 </Link>
               </li>
             ))}
@@ -94,9 +90,7 @@ export default function PlanDuSite() {
       ))}
       <section>
         <h2>
-          <TransClient i18nKey="publicodes.planDuSite.actionsPlus">
-            Les actions
-          </TransClient>
+          <Trans i18nKey="publicodes.planDuSite.actionsPlus">Les actions</Trans>
         </h2>
         <ul className="m-0 list-none p-0">
           {actions.map((action: any) => {

@@ -3,7 +3,7 @@ import ueLogo from '@/assets/images/union-européenne.svg'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { getServerPathname } from '@/helpers/getServerPathname'
 import Image from 'next/image'
-import TransServer from '../translation/TransServer'
+import Trans from '../translation/Trans'
 
 export default function Footer() {
   const pathname = getServerPathname() as unknown as string
@@ -11,64 +11,61 @@ export default function Footer() {
   const isLandingPage = pathname === '/'
 
   return (
-    <footer className='flex flex-col gap-4 bg-primaryLight py-8 pb-32 md:pb-8'>
+    <footer className="flex flex-col gap-4 bg-primaryLight py-8 pb-32 md:pb-8">
       {isLandingPage && (
-        <div className='m-4 flex flex-wrap items-center justify-center gap-4'>
+        <div className="m-4 flex flex-wrap items-center justify-center gap-4">
           <Image
             src={franceRelanceLogo}
-            alt='Logo de France Relance'
-            className='mr-2 h-auto w-[5rem]'
-            width='96'
-            height='86'
+            alt="Logo de France Relance"
+            className="mr-2 h-auto w-[5rem]"
+            width="96"
+            height="86"
           />
 
-          <div className='flex flex-col items-center justify-center font-bold'>
+          <div className="flex flex-col items-center justify-center font-bold">
             <Image
               src={ueLogo}
               alt="Logo de l'Union Européenne"
-              className='mr-2 h-auto w-[5rem]'
-              width='96'
-              height='86'
+              className="mr-2 h-auto w-[5rem]"
+              width="96"
+              height="86"
             />
             <span>NextGenerationEU</span>
           </div>
         </div>
       )}
 
-      <div className='flex flex-wrap items-center justify-center gap-3'>
-        <InlineLink href='/a-propos'>
-          <TransServer>À propos</TransServer>
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        <InlineLink href="/a-propos">
+          <Trans>À propos</Trans>
         </InlineLink>
 
         <InlineLink
-          className='flex items-center justify-center'
-          href={'/documentation'}
-        >
-          <TransServer>Documentation</TransServer>
+          className="flex items-center justify-center"
+          href={'/documentation'}>
+          <Trans>Documentation</Trans>
         </InlineLink>
 
-        <InlineLink href='/diffuser'>
-          <TransServer>Diffuser</TransServer>
+        <InlineLink href="/diffuser">
+          <Trans>Diffuser</Trans>
         </InlineLink>
-        <InlineLink href='/nouveautes'>
-          <TransServer>Nouveautés</TransServer>
+        <InlineLink href="/nouveautes">
+          <Trans>Nouveautés</Trans>
         </InlineLink>
-        <InlineLink href='/international'>
-          <TransServer>International</TransServer>
+        <InlineLink href="/international">
+          <Trans>International</Trans>
         </InlineLink>
-        <InlineLink href='/blog'>
-          <TransServer>Blog</TransServer>
+        <InlineLink href="/blog">
+          <Trans>Blog</Trans>
         </InlineLink>
-        <InlineLink href='/plan-du-site'>
-          <TransServer i18nKey='publicodes.planDuSite.title'>
-            Plan du site
-          </TransServer>
+        <InlineLink href="/plan-du-site">
+          <Trans i18nKey="publicodes.planDuSite.title">Plan du site</Trans>
         </InlineLink>
       </div>
 
-      <div className='flex w-full items-center justify-center'>
-        <InlineLink href='/accessibilite' className='text-sm'>
-          <TransServer>Accessibilité : partiellement conforme</TransServer>
+      <div className="flex w-full items-center justify-center">
+        <InlineLink href="/accessibilite" className="text-sm">
+          <Trans>Accessibilité : partiellement conforme</Trans>
         </InlineLink>
       </div>
     </footer>

@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
 
@@ -32,7 +32,7 @@ export default function Action({ action }: Props) {
             -&nbsp;
             <strong>{formattedValue}</strong>&nbsp;
             <span>
-              <TransClient>{unit}</TransClient>
+              <Trans>{unit}</Trans>
             </span>
           </span>
           {total && relativeValue > 0 && (

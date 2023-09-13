@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { handleFetchDocumentation } from '@/helpers/fetchDocumentation'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
@@ -36,14 +36,14 @@ export default function GuideAlimentation() {
     <div className="mx-auto my-4 flex flex-col items-start justify-center">
       <ButtonLink color="text" href="/guide">
         <span className="mr-2 inline-block">◀</span>
-        <TransClient>Retour</TransClient>
+        <Trans>Retour</Trans>
       </ButtonLink>
 
       <div>
         <Content />
 
         <h2>
-          <TransClient>Pour aller plus loin</TransClient>:
+          <Trans>Pour aller plus loin</Trans>:
         </h2>
         <div>
           {relatedActions.map((action) => (

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import useWindowSize from '@/hooks/useWindowSize'
 import { useEngine, useForm, useRule } from '@/publicodes-state'
 import { useMemo } from 'react'
@@ -48,7 +48,7 @@ export default function GridChart() {
   return (
     <>
       <h3 className="mb-2 text-center text-lg md:mb-4 md:text-xl">
-        <TransClient>De quoi est faite mon empreinte&nbsp;?</TransClient>
+        <Trans>De quoi est faite mon empreinte&nbsp;?</Trans>
       </h3>
       <div className="grid grid-cols-8 gap-1	md:grid-cols-10">
         {sortedSubcategories.map((subCategory: any, index: number) =>

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { ReactNode } from 'react'
 
@@ -16,43 +16,43 @@ export default function ListedAdvantages() {
     {
       illustration: '🪟',
       text: (
-        <TransClient>
+        <Trans>
           Le code source est ouvert, le site est{' '}
-          <Link href='/nouveautes'>amélioré régulièrement</Link>.
-        </TransClient>
+          <Link href="/nouveautes">amélioré régulièrement</Link>.
+        </Trans>
       ),
     },
     {
       illustration: '🔎',
       text: (
-        <TransClient>
+        <Trans>
           L'intégralité du calcul est{' '}
-          <Link href='/documentation'>documenté</Link> en ligne pour les curieux
+          <Link href="/documentation">documenté</Link> en ligne pour les curieux
           et les experts.
-        </TransClient>
+        </Trans>
       ),
     },
     {
       illustration: '🖋️',
       text: (
-        <TransClient>
+        <Trans>
           Une idée ? Une correction ? Une remarque ? Toute contribution{' '}
-          <Link href='/contact'>est la bienvenue</Link>!
-        </TransClient>
+          <Link href="/contact">est la bienvenue</Link>!
+        </Trans>
       ),
     },
   ]
 
   return (
-    <ul className='m-0 flex flex-wrap items-center gap-4 pl-0'>
+    <ul className="m-0 flex flex-wrap items-center gap-4 pl-0">
       {advantages.map((advantage) => (
         <Card
-          tag='li'
+          tag="li"
           key={advantage.illustration}
-          className='flex h-[14rem] w-full flex-col items-center justify-center gap-4 md:w-[14rem]'>
-          <span className='text-[200%]'>{advantage.illustration}</span>
+          className="flex h-[14rem] w-full flex-col items-center justify-center gap-4 md:w-[14rem]">
+          <span className="text-[200%]">{advantage.illustration}</span>
 
-          <div className='text-center text-base'>{advantage.text}</div>
+          <div className="text-center text-base">{advantage.text}</div>
         </Card>
       ))}
     </ul>

@@ -5,7 +5,7 @@ import { useForm, useUser } from '@/publicodes-state'
 import { NorthStarType } from '@/types/northstar'
 import { motion } from 'framer-motion'
 import { JSX, useEffect, useRef, useState } from 'react'
-import TransClient from '../translation/TransClient'
+import Trans from '../translation/Trans'
 import Northstar from './Northstar'
 
 export default function NorthStarBanner({
@@ -96,18 +96,18 @@ export default function NorthStarBanner({
       <div className="flex items-center justify-center">
         <div className="m-auto max-w-[420px] p-6">
           <h2>
-            <TransClient i18nKey={'publicodes.northstar.title'}>
+            <Trans i18nKey={'publicodes.northstar.title'}>
               <b>Petite question entre nous...</b>
-            </TransClient>
+            </Trans>
           </h2>
 
           {type === 'action' ? (
             <>
               <p>
-                <TransClient i18nKey={'publicodes.northstar.action'}>
+                <Trans i18nKey={'publicodes.northstar.action'}>
                   Nos Gestes Climat vous donne envie d'agir pour réduire votre
                   empreinte carbone ?
-                </TransClient>
+                </Trans>
               </p>
               <Northstar
                 type="action"
@@ -118,12 +118,12 @@ export default function NorthStarBanner({
           ) : (
             <>
               <p>
-                <TransClient i18nKey={'publicodes.northstar.learned'}>
+                <Trans i18nKey={'publicodes.northstar.learned'}>
                   <b>
                     Est-ce que "Nos Gestes Climat" vous a permis d'apprendre
                     quelque chose ?
                   </b>
-                </TransClient>
+                </Trans>
               </p>
               <Northstar
                 type="learned"

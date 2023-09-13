@@ -1,7 +1,7 @@
 'use client'
 
 import Meta from '@/components/misc/Meta'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import { getMatomoEventActionAccepted } from '@/constants/matomo'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
@@ -83,7 +83,7 @@ export default function ActionDetailPage({
           aria-label="arrow pointing left">
           ◀
         </span>{' '}
-        <TransClient> Retour à la liste</TransClient>
+        <Trans> Retour à la liste</Trans>
       </ButtonLink>
 
       <Card className="mt-4 flex-col">
@@ -107,7 +107,7 @@ export default function ActionDetailPage({
                 className="mr-3 text-xl">
                 📚
               </span>
-              <TransClient>Comprendre le calcul</TransClient>
+              <Trans>Comprendre le calcul</Trans>
             </ButtonLink>
           </div>
         </div>
@@ -116,7 +116,7 @@ export default function ActionDetailPage({
       {nbRemainingQuestions > 0 && (
         <>
           <h3 className="mt-4">
-            <TransClient>Personnalisez cette estimation</TransClient>
+            <Trans>Personnalisez cette estimation</Trans>
           </h3>
 
           <FormProvider root={dottedName} categoryOrder={[]}>
@@ -143,7 +143,7 @@ export default function ActionDetailPage({
       {relatedActions && (
         <div className="mt-8">
           <h3>
-            <TransClient>Sur le même sujet</TransClient>
+            <Trans>Sur le même sujet</Trans>
           </h3>
           <div className="flex flex-wrap gap-2">
             {relatedActions.map((action, index) => (

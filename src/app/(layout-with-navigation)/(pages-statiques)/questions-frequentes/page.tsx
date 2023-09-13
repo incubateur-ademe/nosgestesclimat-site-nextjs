@@ -1,12 +1,12 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Markdown from '@/design-system/utils/Markdown'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { useEffect } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import GithubContributionCard from './_components/GithubContributionCard'
 type FAQType = {
   question: string
@@ -79,21 +79,21 @@ export default function FAQ() {
     <>
       <Title title={t('Questions fréquentes')} />
       <p>
-        <TransClient i18nKey={'publicodes.FAQ.description'}>
+        <Trans i18nKey={'publicodes.FAQ.description'}>
           Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les
           réponses aux questions les plus fréquentes. S’il vous reste des
           interrogations ou si vous souhaitez nous proposer des améliorations,
           rendez-vous tout en bas. Bonne lecture !
-        </TransClient>
+        </Trans>
       </p>
       {!hasData && (
         <p>
-          <TransClient i18nKey={'publicodes.FAQ.faireletest'}>
+          <Trans i18nKey={'publicodes.FAQ.faireletest'}>
             Vous n'avez pas encore débuté votre test,{' '}
             <strong>
               <a href="./simulateur/bilan">lancez-vous !</a>
             </strong>
-          </TransClient>
+          </Trans>
         </p>
       )}
       <div className="pb-4">

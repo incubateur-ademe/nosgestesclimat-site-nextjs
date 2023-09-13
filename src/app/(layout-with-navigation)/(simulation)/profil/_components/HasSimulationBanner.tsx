@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
@@ -48,7 +48,7 @@ export default function HasSimulationBanner() {
           </p>
         </Card>
         <details className="mt-3 max-w-full text-sm">
-          <TransClient i18nKey={'publicodes.Profil.locationDonnées'}>
+          <Trans i18nKey={'publicodes.Profil.locationDonnées'}>
             <summary className="mb-2 cursor-pointer">
               Où sont mes données ?{' '}
             </summary>
@@ -56,10 +56,10 @@ export default function HasSimulationBanner() {
               Vos données sont stockées dans votre navigateur, vous avez donc le
               contrôle total sur elles.
             </span>
-          </TransClient>
+          </Trans>
 
           <Link href="/vie-privee">
-            <TransClient>En savoir plus</TransClient>
+            <Trans>En savoir plus</Trans>
           </Link>
         </details>
       </div>
@@ -67,9 +67,9 @@ export default function HasSimulationBanner() {
       <div className="my-4 flex flex-col">
         {isSimulationInProgress && (
           <ButtonLink color="primary" href="/simulateur/bilan">
-            <TransClient>
+            <Trans>
               <ProgressCircle white className="mr-2" /> Finir mon test
-            </TransClient>
+            </Trans>
           </ButtonLink>
         )}
 
@@ -85,7 +85,7 @@ export default function HasSimulationBanner() {
             className="mr-2 inline-block text-xl">
             ♻️
           </span>{' '}
-          <TransClient>Recommencer</TransClient>
+          <Trans>Recommencer</Trans>
         </Button>
 
         <TutorialLink className="!text-base font-normal" />

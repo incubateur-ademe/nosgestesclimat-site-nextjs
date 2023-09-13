@@ -1,6 +1,6 @@
 import NewTabSvg from '@/components/icons/NewTabSvg'
 import RegionGrid from '@/components/misc/RegionGrid'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Loader from '@/design-system/layout/Loader'
 import { sortSupportedRegions } from '@/helpers/localisation/sortSupportedRegions'
@@ -41,13 +41,13 @@ export default function RegionSelector({
       <details open={isOpen}>
         <summary
           aria-disabled={isFetching || undefined}
-          className={`rounded-md p-4 w-auto cursor-pointer bg-primaryLight middle ${
+          className={`middle w-auto cursor-pointer rounded-md bg-primaryLight p-4 ${
             isFetching ? 'pointer-events-none opacity-60' : ''
           }`}>
           <span>
-            🗺️ <TransClient>Choisir une autre région</TransClient>{' '}
+            🗺️ <Trans>Choisir une autre région</Trans>{' '}
             <small title={`${numberOfRegions} régions`}>
-              ({numberOfRegions} <TransClient>disponibles</TransClient>)
+              ({numberOfRegions} <Trans>disponibles</Trans>)
             </small>
           </span>
           {isFetching && (
@@ -67,7 +67,7 @@ export default function RegionSelector({
           className={isFetching ? 'pointer-events-none opacity-60' : ''}
           aria-disabled={isFetching || undefined}
         />
-        <Card className="items-center mt-4">
+        <Card className="mt-4 items-center">
           <span
             role="img"
             aria-label="emoji world"
@@ -76,15 +76,13 @@ export default function RegionSelector({
             🌐
           </span>
           <p className="mb-0">
-            <TransClient>
-              Envie de contribuer à une version pour votre région ?
-            </TransClient>{' '}
+            <Trans>Envie de contribuer à une version pour votre région ?</Trans>{' '}
             <a
               target="_blank"
               rel="noopener noreferrer"
               className="align-top"
               href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md">
-              <TransClient>Suivez le guide !</TransClient>
+              <Trans>Suivez le guide !</Trans>
               <NewTabSvg className="!-mt-1" />
             </a>
           </p>

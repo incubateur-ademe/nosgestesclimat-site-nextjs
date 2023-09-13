@@ -1,7 +1,7 @@
 'use client'
 
 import profileIcon from '@/assets/images/silhouette.svg'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { Appear } from '@/design-system/utils/Animate'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -19,10 +19,10 @@ export default function ProfileLink() {
         <InlineLink
           href="/profil"
           title={t('Page profil')}
-          className="w-[18rem] rounded-sm flex items-center">
-          <Image alt="" src={profileIcon} className="w-6 h-auto" />
+          className="flex w-[18rem] items-center rounded-sm">
+          <Image alt="" src={profileIcon} className="h-auto w-6" />
           <span className="ml-2">
-            <TransClient>Voir le détail de ma simulation</TransClient>
+            <Trans>Voir le détail de ma simulation</Trans>
           </span>
         </InlineLink>
       </div>

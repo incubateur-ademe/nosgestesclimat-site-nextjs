@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import { useUser } from '@/publicodes-state'
 import { Simulation } from '@/types/simulation'
 import HasSimulationBanner from './HasSimulationBanner'
@@ -21,7 +21,7 @@ export default function ProfilPageContent() {
       {persona && (
         <p>
           <em>
-            <TransClient>👤 Vous utilisez actuellement le persona</TransClient>{' '}
+            <Trans>👤 Vous utilisez actuellement le persona</Trans>{' '}
             <code>{(persona as any).nom}</code>
           </em>
         </p>

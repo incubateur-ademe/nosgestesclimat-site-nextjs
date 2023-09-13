@@ -9,7 +9,7 @@ import profileImage from '@/assets/images/silhouette.svg'
 import groupImage from '@/assets/images/silhouettes.svg'
 
 import Logo from '@/components/misc/Logo'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Persona } from '@/types/persona'
@@ -55,7 +55,7 @@ export default function Navigation() {
           <NavLink href="/simulateur/bilan">
             <ProgressCircle className="lg:mr-4" />
             <span className="font-normal text-primaryDark">
-              <TransClient>Le test</TransClient>
+              <Trans>Le test</Trans>
             </span>
           </NavLink>
 
@@ -63,7 +63,7 @@ export default function Navigation() {
             <ActionsInteractiveIcon className="lg:mr-4" />
 
             <span className="font-normal text-primaryDark">
-              <TransClient>Agir</TransClient>
+              <Trans>Agir</Trans>
             </span>
           </NavLink>
 
@@ -103,7 +103,7 @@ export default function Navigation() {
               />
 
               <span className="font-normal text-primaryDark">
-                <TransClient>Groupes</TransClient>
+                <Trans>Groupes</Trans>
               </span>
             </NavLink>
           )}
