@@ -12,7 +12,7 @@ import { capitaliseString } from '@/utils/capitaliseString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import Link from '../Link'
 import CountryFlag from '../misc/CountryFlag'
-import TransClient from './TransClient'
+import Trans from './Trans'
 
 export default function LocalisationBanner() {
   const { t } = useClientTranslation()
@@ -58,9 +58,9 @@ export default function LocalisationBanner() {
               {code !== defaultModelRegionCode && (
                 <span>
                   {' '}
-                  <TransClient i18nKey="components.localisation.LocalisationMessage.betaMsg">
+                  <Trans i18nKey="components.localisation.LocalisationMessage.betaMsg">
                     Elle est actuellement en version <strong>bêta</strong>.
-                  </TransClient>
+                  </Trans>
                 </span>
               )}{' '}
             </p>
@@ -68,17 +68,17 @@ export default function LocalisationBanner() {
 
           {!regionParams && code && (
             <section>
-              <TransClient>
+              <Trans>
                 Nous avons détecté que vous faites cette simulation depuis
-              </TransClient>{' '}
+              </Trans>{' '}
               {countryName}
               <CountryFlag code={code} />.
               <p className="mt-2">
                 <b>
-                  <TransClient i18nKey="components.localisation.LocalisationMessage.warnMessage">
+                  <Trans i18nKey="components.localisation.LocalisationMessage.warnMessage">
                     Votre région n'est pas encore supportée, le modèle Français
                     vous est proposé par défaut
-                  </TransClient>
+                  </Trans>
                 </b>
                 <CountryFlag code={defaultModelRegionCode} />
                 <b>.</b>
@@ -88,10 +88,10 @@ export default function LocalisationBanner() {
 
           {!regionParams && !code && (
             <p className="mb-0">
-              <TransClient i18nKey="components.localisation.LocalisationMessage.warnMessage2">
+              <Trans i18nKey="components.localisation.LocalisationMessage.warnMessage2">
                 Nous n'avons pas pu détecter votre pays de simulation, le modèle
                 Français vous est proposé par défaut
-              </TransClient>
+              </Trans>
               <CountryFlag code={defaultModelRegionCode} />.
             </p>
           )}
@@ -99,9 +99,7 @@ export default function LocalisationBanner() {
           <p>
             <small>
               <Link href="/profil">
-                <TransClient>
-                  Choisissez une région parmi celles disponibles !
-                </TransClient>
+                <Trans>Choisissez une région parmi celles disponibles !</Trans>
               </Link>
             </small>
           </p>
@@ -114,7 +112,7 @@ export default function LocalisationBanner() {
 
               trackEvent(getMatomoEventChangeRegion(code))
             }}>
-            <TransClient>J'ai compris</TransClient>
+            <Trans>J'ai compris</Trans>
           </Button>
         </div>
       </div>
