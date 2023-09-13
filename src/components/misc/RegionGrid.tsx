@@ -1,11 +1,11 @@
 'use client'
 
 import CountryListItem from '@/components/misc/CountryListItem'
+import { fetchSupportedRegions } from '@/helpers/localisation/fetchSupportedRegions'
 import { sortSupportedRegions2 } from '@/helpers/localisation/sortSupportedRegions'
-import { useGetSupportedRegions } from '@/hooks/useGetSupportedRegions'
 import { useLocale } from '@/hooks/useLocale'
 import { capitaliseString } from '@/utils/capitaliseString'
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes, use } from 'react'
 
 type Props = {
   shouldShowButton?: boolean
@@ -21,7 +21,7 @@ export default function RegionGrid({
   className,
   ...props
 }: Props & HTMLAttributes<HTMLUListElement>) {
-  const { data: supportedRegions } = useGetSupportedRegions()
+  const supportedRegions: string[] = use(fetchSupportedRegions)
 
   const locale = useLocale()
 

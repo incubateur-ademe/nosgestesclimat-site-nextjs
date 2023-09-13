@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/TransClient'
 import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
@@ -143,9 +143,9 @@ export default function InvitationForm({ group }: { group: Group }) {
         aria-disabled={!prenom}
         data-cypress-id="button-join-group">
         {currentSimulation ? (
-          <Trans>Rejoindre</Trans>
+          <TransClient>Rejoindre</TransClient>
         ) : (
-          <Trans>Rejoindre et passer mon test</Trans>
+          <TransClient>Rejoindre et passer mon test</TransClient>
         )}
       </Button>
     </form>

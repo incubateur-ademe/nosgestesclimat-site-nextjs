@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/TransClient'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Separator from '@/design-system/layout/Separator'
 import { Group } from '@/types/groups'
@@ -18,20 +18,20 @@ export default function CreateOtherGroupsSection({
       <Separator className="mb-4 mt-8" />
 
       <h3 className="text-md mb-1 font-bold">
-        <Trans>Créez un autre groupe</Trans>
+        <TransClient>Créez un autre groupe</TransClient>
       </h3>
 
       <p className="mb-6 text-sm">
-        <Trans>
+        <TransClient>
           Vous pouvez créer un nouveau groupe avec d’autres amis.
-        </Trans>
+        </TransClient>
       </p>
 
       <ButtonLink
         href={'/groupes/creer'}
         color="secondary"
         data-cypress-id="button-create-other-group">
-        <Trans>Créer un autre groupe</Trans>
+        <TransClient>Créer un autre groupe</TransClient>
       </ButtonLink>
     </>
   )

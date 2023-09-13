@@ -16,7 +16,7 @@ import PointsFortsFaibles from './_components/PointsFortsFaibles'
 import VotreEmpreinte from './_components/VotreEmpreinte'
 import { useGetGroupStats } from './_hooks/useGetGroupStats'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/TransClient'
 import Separator from '@/design-system/layout/Separator'
 import { Results } from '@/types/groups'
 import { useFetchGroup } from '../_hooks/useFetchGroup'
@@ -105,7 +105,7 @@ export default function GroupResultsPage({
 
         <div className="mt-4">
           <h2 className="m-0 text-lg font-bold">
-            <Trans>Le classement</Trans>
+            <TransClient>Le classement</TransClient>
           </h2>
         </div>
 

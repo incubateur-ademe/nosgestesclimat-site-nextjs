@@ -8,9 +8,9 @@ const cliProgress = require('cli-progress')
 const fs = require('fs')
 
 const paths = require('./paths')
-const utils = require('./utils')
-const deepl = require('./deepl')
-const cli = require('./cli')
+const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
+const deepl = require('./../../nosgestesclimat/scripts/i18n/deepl')
+const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 
 const { srcLang, destLangs, force, remove } = cli.getArgs(
   'Calls the DeepL API to translate the UI from the French one.',

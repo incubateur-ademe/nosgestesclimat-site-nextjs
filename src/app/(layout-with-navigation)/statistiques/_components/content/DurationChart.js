@@ -7,7 +7,7 @@ import {
   YAxis,
 } from 'recharts'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/TransClient'
 import CustomTooltip from './histogram/CustomTooltip'
 
 export default function visitDuration(props) {
@@ -26,7 +26,7 @@ export default function visitDuration(props) {
   return (
     <div className="h-[22rem] w-full">
       <h4>
-        <Trans>Nombre de visites pour les 60 derniers jours</Trans>
+        <TransClient>Nombre de visites pour les 60 derniers jours</TransClient>
       </h4>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={duration}>

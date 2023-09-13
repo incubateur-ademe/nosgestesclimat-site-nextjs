@@ -8,8 +8,8 @@ const fs = require('fs')
 const ramda = require('ramda')
 const child_process = require('child_process')
 
-const utils = require('./utils')
-const cli = require('./cli')
+const utils = require('../../nosgestesclimat/scripts/i18n/utils')
+const cli = require('../../nosgestesclimat/scripts/i18n/cli')
 const paths = require('./paths')
 
 const { remove } = cli.getArgs(

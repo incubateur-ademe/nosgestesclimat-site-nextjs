@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/TransClient'
 import Card from '@/design-system/layout/Card'
 import { formatValue } from 'publicodes'
 import TotalChart from './TotalChart'
@@ -41,21 +41,21 @@ export default function ScoreFromURL(props) {
         <div>
           <div className="mb-4">
             <span className="text-xl">
-              {roundedMeanScore} <Trans>tonnes</Trans>{' '}
+              {roundedMeanScore} <TransClient>tonnes</TransClient>{' '}
             </span>
 
             <span className="text-sm">
-              <Trans>de CO₂e en moyenne</Trans> ({totalVisits}{' '}
-              <Trans>simulations</Trans>)
+              <TransClient>de CO₂e en moyenne</TransClient> ({totalVisits}{' '}
+              <TransClient>simulations</TransClient>)
             </span>
           </div>
 
           <TotalChart flatScoreArray={flatScoreArray} />
 
           <p>
-            <Trans>
+            <TransClient>
               Données valables pour les 30 derniers jours
-            </Trans>
+            </TransClient>
           </p>
         </div>
       </Card>

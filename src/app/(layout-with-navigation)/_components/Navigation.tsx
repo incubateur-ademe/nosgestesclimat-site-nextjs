@@ -9,9 +9,7 @@ import profileImage from '@/assets/images/silhouette.svg'
 import groupImage from '@/assets/images/silhouettes.svg'
 
 import Logo from '@/components/misc/Logo'
-import LanguageSwitchButton from '@/components/translation/LanguageSwitchButton'
 import Trans from '@/components/translation/Trans'
-
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Persona } from '@/types/persona'
@@ -149,9 +147,6 @@ export default function Navigation() {
               </Button>
             </NavLink>
           )}
-          <li className="mt-4 text-center">
-            <LanguageSwitchButton />
-          </li>
         </ul>
       </div>
     </nav>

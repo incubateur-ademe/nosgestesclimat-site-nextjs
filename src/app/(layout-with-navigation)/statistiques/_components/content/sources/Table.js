@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/TransClient'
 
 export default function Table(props) {
   return (
@@ -48,7 +48,7 @@ export default function Table(props) {
           </tbody>
         </table>
         <p className="text-right text-sm font-light">
-          <Trans>Données valables pour les 30 derniers jours</Trans>
+          <TransClient>Données valables pour les 30 derniers jours</TransClient>
         </p>
       </div>
     </div>

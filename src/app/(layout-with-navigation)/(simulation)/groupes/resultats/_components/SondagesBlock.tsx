@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/TransClient'
 import Separator from '@/design-system/layout/Separator'
 
 export default function SondagesBlock() {
@@ -9,17 +9,17 @@ export default function SondagesBlock() {
     <div>
       <Separator className="mb-4 mt-8" />
       <h3 className="text-md mb-1 font-bold">
-        <Trans>Entreprises, collectivités, écoles</Trans>
+        <TransClient>Entreprises, collectivités, écoles</TransClient>
       </h3>
       <p>
-        <Trans>
+        <TransClient>
           Les <strong>sondages</strong> et <strong>conférences</strong> vous
           permettent de comparer votre empreinte en direct ou en groupes de plus
           de 20 personnes
-        </Trans>
+        </TransClient>
       </p>
       <Link className="font-bold" href="/groupe">
-        <Trans>Commencer</Trans>
+        <TransClient>Commencer</TransClient>
       </Link>
     </div>
   )

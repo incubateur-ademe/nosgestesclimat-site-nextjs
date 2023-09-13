@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useEffect, useState } from 'react'
 export default function Evolution(props) {
@@ -23,7 +23,7 @@ export default function Evolution(props) {
               .replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
           </p>{' '}
           <p className="mb-0 text-sm">
-            <Trans>visites depuis le lancement</Trans>
+            <TransClient>visites depuis le lancement</TransClient>
           </p>
         </div>
       </Card>
@@ -34,10 +34,10 @@ export default function Evolution(props) {
             {Math.round(percent * 10) / 10}%
           </p>{' '}
           <p>
-            <Trans>
+            <TransClient>
               de visites ce mois ci
               <small>&nbsp;(par rapport au mois d'avant)</small>
-            </Trans>
+            </TransClient>
           </p>
         </div>
 
@@ -48,7 +48,7 @@ export default function Evolution(props) {
               .replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
           </p>{' '}
           <p className="mb-0 text-sm">
-            <Trans>simulations terminées depuis le lancement</Trans>
+            <TransClient>simulations terminées depuis le lancement</TransClient>
           </p>
         </div>
       </Card>
