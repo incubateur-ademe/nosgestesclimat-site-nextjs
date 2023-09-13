@@ -22,6 +22,7 @@ export default function usePersistentUser({
     },
     name: '',
     email: '',
+    id: '',
   })
 
   useEffect(() => {

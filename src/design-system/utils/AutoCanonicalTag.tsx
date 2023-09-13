@@ -1,3 +1,5 @@
+'use client'
+
 import Head from 'next/head'
 
 export default function AutoCanonicalTag({
@@ -5,6 +7,8 @@ export default function AutoCanonicalTag({
 }: {
   overrideHref?: string
 }) {
+  if (!window) return null
+
   return (
     <Head>
       <link

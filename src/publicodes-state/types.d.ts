@@ -12,6 +12,7 @@ export type User = {
   name: string
   email: string
   northStarRatings?: any // TODO: should be NorthStartType or something
+  id: string
 }
 
 export type Rules = any

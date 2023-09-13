@@ -1,6 +1,8 @@
+import { visit } from '../utils.js'
+
 describe('check for homepage status', () => {
   beforeEach(() => {
-    cy.visit('/')
+    visit('/')
   })
 
   it('has a start button', () => {

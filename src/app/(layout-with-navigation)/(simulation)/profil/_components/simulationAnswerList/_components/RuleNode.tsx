@@ -12,7 +12,7 @@ type Props = {
   level: number
 }
 
-export default function Subcategory({ ruleDottedName, rules, level }: Props) {
+export default function RuleNode({ ruleDottedName, rules, level }: Props) {
   const rule = useRule(ruleDottedName)
 
   const [isLocallyOpen, setIsLocallyOpen] = useState(false)
@@ -31,14 +31,14 @@ export default function Subcategory({ ruleDottedName, rules, level }: Props) {
     <div>
       <Card
         onClick={() => setIsLocallyOpen(!isOpen)}
-        className={`${categoryClassName} cursor-pointer inline-flex justify-start items-center mb-4`}
+        className={`${categoryClassName} mb-4 inline-flex cursor-pointer items-center justify-start`}
         style={isFirstLevel ? { backgroundColor: rule?.color } : {}}>
         <span role="img" aria-label="category icon" className="mr-4 text-2xl">
           {rule?.icons}
         </span>
 
         {isFirstLevel ? (
-          <h2 className="m-0 text-white font-light">{rule.title}</h2>
+          <h2 className="m-0 font-light text-white">{rule.title}</h2>
         ) : (
           <h3 className="m-0">{rule.title}</h3>
         )}
@@ -51,7 +51,7 @@ export default function Subcategory({ ruleDottedName, rules, level }: Props) {
             </span>
           )}
           <span
-            className={`inline-block ml-4 ${isFirstLevel ? 'text-white' : ''}`}>
+            className={`ml-4 inline-block ${isFirstLevel ? 'text-white' : ''}`}>
             {!isOpen ? '▶' : '▼'}
           </span>
         </div>

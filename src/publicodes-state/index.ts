@@ -9,3 +9,5 @@ export { default as UserProvider } from './userProvider'
 export { default as useEngine } from './useEngine'
 
 export { default as useTempEngine } from './useTempEngine'
+
+export { default as useDisposableEngine } from './useDisposableEngine'

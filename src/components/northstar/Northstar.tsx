@@ -1,4 +1,4 @@
-import { simulationURL } from '@/constants/urls'
+import { SIMULATION_URL } from '@/constants/urls'
 import { useUser } from '@/publicodes-state'
 import {
   NorthStarRatings,
@@ -150,7 +150,7 @@ const postData = async (data: any, id: string, ratings: NorthStarRatings) => {
   const body = { data: selectedData, id }
 
   try {
-    await fetch(simulationURL, {
+    await fetch(SIMULATION_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
