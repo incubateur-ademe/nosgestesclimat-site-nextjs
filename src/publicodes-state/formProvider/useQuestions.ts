@@ -140,10 +140,6 @@ export default function useQuestions({
     situation,
   ])
 
-  console.log(safeEvaluate('transport . avion . usager'))
-  console.log(
-    safeEvaluate('transport . avion . court courrier . heures de vol')
-  )
   const questionsByCategories = useMemo<Record<string, string[]>>(
     () =>
       categories.reduce(
