@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
-import TransClient from './TransClient'
-import TransServer from './TransServer'
+import TransClient from './trans/TransClient'
+import TransServer from './trans/TransServer'
 
 export default function Trans({
   children,
