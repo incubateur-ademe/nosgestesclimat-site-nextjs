@@ -1,7 +1,7 @@
 'use client'
 
 import Meta from '@/components/misc/Meta'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -60,10 +60,10 @@ export default function RejoindreGroupe({
 
       <Title
         title={
-          <TransClient>
+          <Trans>
             {group?.owner?.name} vous a invité à rejoindre le groupe{' '}
             <span className="text-violet-900">{group?.name}</span>
-          </TransClient>
+          </Trans>
         }
         subtitle={t(
           "Comparez vos résultats avec votre famille ou un groupe d'amis."

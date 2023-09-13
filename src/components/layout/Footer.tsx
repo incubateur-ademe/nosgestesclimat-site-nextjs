@@ -3,6 +3,7 @@ import ueLogo from '@/assets/images/union-européenne.svg'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { getServerPathname } from '@/helpers/getServerPathname'
 import Image from 'next/image'
+import LanguageSwitchButton from '../translation/LanguageSwitchButton'
 import Trans from '../translation/Trans'
 
 export default function Footer() {
@@ -67,6 +68,9 @@ export default function Footer() {
         <InlineLink href="/accessibilite" className="text-sm">
           <Trans>Accessibilité : partiellement conforme</Trans>
         </InlineLink>
+      </div>
+      <div className="text-center">
+        <LanguageSwitchButton />
       </div>
     </footer>
   )

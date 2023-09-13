@@ -100,6 +100,7 @@ export default async function Landing() {
           </a>
         </div>
       </div>
+
       <LandingExplanations />
     </>
   )

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { Group } from '@/types/groups'
 import { useEffect, useRef, useState } from 'react'
@@ -23,12 +23,12 @@ const SubmitButton = ({
       className="flex w-[8rem] justify-center whitespace-nowrap"
       onClick={isShareDefined ? handleShare : handleCopy}
       data-cypress-id="invite-button">
-      {isShareDefined && <TransClient>Partager</TransClient>}
+      {isShareDefined && <Trans>Partager</Trans>}
       {!isShareDefined &&
         (isCopied ? (
-          <TransClient>Copié !</TransClient>
+          <Trans>Copié !</Trans>
         ) : (
-          <TransClient>Copier le lien</TransClient>
+          <Trans>Copier le lien</Trans>
         ))}
     </Button>
   )
@@ -92,13 +92,13 @@ export default function InviteBlock({ group }: { group: Group }) {
   return (
     <div className="mt-4 rounded-md bg-grey-100 p-4">
       <h2 className="mt-0 text-lg">
-        <TransClient>Vous êtes le premier 🥳</TransClient>
+        <Trans>Vous êtes le premier 🥳</Trans>
       </h2>
       <p className="mb-4">
-        <TransClient>
+        <Trans>
           Partagez cette page à vos proches pour leur permettre de rejoindre
           votre groupe.
-        </TransClient>
+        </Trans>
       </p>
       <SubmitButton
         isShareDefined={isShareDefined}

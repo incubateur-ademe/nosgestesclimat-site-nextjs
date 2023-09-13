@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Link from 'next/link'
 
 export default function FeedbackBlock() {
@@ -9,17 +9,17 @@ export default function FeedbackBlock() {
       <Flask />
       <div>
         <p className="mb-2">
-          <TransClient>
+          <Trans>
             Cette nouvelle fonctionnalité est en expérimentation ! Vous
             rencontrez un bug ou avez une idée d’amélioration ?
-          </TransClient>
+          </Trans>
         </p>
         <Link
           className="font-bold"
           href="https://tally.so/r/meDdDJ"
           target="_blank"
           rel="noopener noreferrer">
-          <TransClient>Donnez votre avis !</TransClient>
+          <Trans>Donnez votre avis !</Trans>
         </Link>
       </div>
     </div>

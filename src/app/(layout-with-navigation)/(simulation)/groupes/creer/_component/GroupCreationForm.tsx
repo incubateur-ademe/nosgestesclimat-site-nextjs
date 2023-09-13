@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import { GROUP_NAMES } from '@/constants/groupNames'
 import { matomoEventCreationGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
@@ -135,9 +135,9 @@ export default function GroupCreationForm() {
         onClick={handleSubmit}
         aria-disabled={!prenom && !isLoading}>
         {progression > 0 ? (
-          <TransClient>Créer le groupe</TransClient>
+          <Trans>Créer le groupe</Trans>
         ) : (
-          <TransClient>Créer et passer mon test</TransClient>
+          <Trans>Créer et passer mon test</Trans>
         )}
       </Button>
     </form>

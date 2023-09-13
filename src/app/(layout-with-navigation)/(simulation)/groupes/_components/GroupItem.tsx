@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import { Group } from '@/types/groups'
 import ChevronRight from './ChevronRight'
 
@@ -27,7 +27,7 @@ export default function GroupItem({ group }: Props) {
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
                 {group?.members?.length ?? 0}{' '}
-                <TransClient>participant</TransClient>
+                <Trans>participant</Trans>
                 {group?.members?.length > 1 ? 's' : ''}
               </span>{' '}
               <span> - </span>{' '}

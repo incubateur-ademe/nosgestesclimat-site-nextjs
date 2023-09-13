@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
@@ -64,38 +64,38 @@ export default function SupprimerGroupePage({
 
       <Title title={t('Supprimer mes données')} />
 
-      {isSuccess && <TransClient>Données supprimées.</TransClient>}
+      {isSuccess && <Trans>Données supprimées.</Trans>}
 
       {!isSuccess && (
         <p className="my-4">
           {isOwner ? (
-            <TransClient>
+            <Trans>
               Supprimer votre groupe <strong>{group?.name}</strong> ? Les
               données sauvegardées seront supprimées pour tous les membres du
               groupe. Cette action est irréversible.
-            </TransClient>
+            </Trans>
           ) : (
-            <TransClient>
+            <Trans>
               Supprimer vos données de groupe enregistrées ? Seules vos données
               de membre seront supprimées. Cette action est irréversible.
-            </TransClient>
+            </Trans>
           )}
         </p>
       )}
 
       {isError && (
         <p className="mt-4 text-red-600">
-          <TransClient>
+          <Trans>
             Oups, une erreur s'est produite au moment de récupérer les données
             du groupe.
-          </TransClient>
+          </Trans>
         </p>
       )}
 
       <Button
         disabled={!!isError || !group || isSuccess}
         onClick={handleDelete}>
-        <TransClient>Supprimer mes données</TransClient>
+        <Trans>Supprimer mes données</Trans>
       </Button>
     </main>
   )
