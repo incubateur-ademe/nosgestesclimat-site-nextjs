@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/TransClient'
+import Trans from '@/components/translation/Trans'
 import { JSX } from 'react'
 import Badge from './Badge'
 
@@ -24,7 +24,7 @@ export default function ClassementMember({
         {name}
         {isCurrentMember && (
           <Badge className="ml-2 inline rounded-sm !border-pink-100 !bg-pink-200 !text-xs !text-pink-500">
-            <TransClient>Vous</TransClient>
+            <Trans>Vous</Trans>
           </Badge>
         )}
       </div>

@@ -15,7 +15,7 @@ export default function TakeTestLink() {
   console.log(tutorials)
   return (
     <ButtonLink
-      href={tutorials.testIntro ? '/simulateur/bilan' : 'tutoriel'}
+      href={tutorials.testIntro ? '/simulateur/bilan' : '/tutoriel'}
       data-cypress-id="do-the-test-link"
       onClick={() => {
         if (currentSimulationId) {
