@@ -10,7 +10,7 @@ export default function Footer() {
   const isLandingPage = pathname === '/'
 
   return (
-    <footer className="mb-8 flex flex-col gap-4 bg-primaryLight p-8 pb-32 md:mb-0 md:pb-8">
+    <footer className="flex flex-col gap-4 bg-primaryLight p-8 pb-32 md:mb-0 md:pb-8">
       {isLandingPage && (
         <div className="m-4 flex flex-wrap items-center justify-center gap-4">
           <Image
