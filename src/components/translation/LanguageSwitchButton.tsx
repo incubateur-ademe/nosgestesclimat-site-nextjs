@@ -34,7 +34,7 @@ export default function LanguageSwitchButton() {
       })
     )
     router.refresh()
-    window.location.reload()
+    // window.location.reload()
   }
 
   return (

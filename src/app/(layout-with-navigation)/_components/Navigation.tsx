@@ -4,16 +4,12 @@
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import CardGameIcon from '../../../components/icons/CardGameIcon'
 
-import closePlain from '@/assets/images/close-plain.svg'
-import profileImage from '@/assets/images/silhouette.svg'
-import groupImage from '@/assets/images/silhouettes.svg'
-
 import Logo from '@/components/misc/Logo'
 import LanguageSwitchButton from '@/components/translation/LanguageSwitchButton'
 import Trans from '@/components/translation/Trans'
 
-import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useGetPRNumber } from '@/hooks/useGetPRNumber'
 import { Persona } from '@/types/persona'
 import Image from 'next/image'
 import NavLink from './navigation/NavLink'
@@ -35,7 +31,7 @@ const openmojis = {
   github: 'E045',
 }
 export const openmojiURL = (name: keyof typeof openmojis) =>
-  `@/assets/images/${openmojis[name]}.svg`
+  `/images/misc/${openmojis[name]}.svg`
 export const actionImg = openmojiURL('action')
 export const conferenceImg = openmojiURL('conference')
 
@@ -44,7 +40,7 @@ export default function Navigation() {
 
   const enquete = ''
   const persona: Persona | undefined = undefined
-  const pullRequestNumber: number | undefined = undefined
+  const pullRequestNumber = useGetPRNumber()
 
   return (
     <nav
@@ -73,7 +69,7 @@ export default function Navigation() {
             <NavLink href="/profil">
               <div className="relative">
                 <Image
-                  src={profileImage}
+                  src="/images/misc/silhouette.svg"
                   alt=""
                   className="w-8 lg:mr-4"
                   aria-hidden="true"
@@ -96,7 +92,7 @@ export default function Navigation() {
           {!enquete && (
             <NavLink href="/groupes">
               <Image
-                src={groupImage}
+                src="/images/misc/silhouettes.svg"
                 alt=""
                 className="w-8 lg:mr-4"
                 aria-hidden="true"
@@ -128,8 +124,7 @@ export default function Navigation() {
                 #{pullRequestNumber}
               </span>
 
-              <Button
-                color="text"
+              <button
                 onClick={() => {
                   /*
 							setSearchParams(omit(['PR'], searchParams))
@@ -141,15 +136,15 @@ export default function Navigation() {
                 }}>
                 <Image
                   className="w-6"
-                  src={closePlain}
+                  src="/images/misc/close-plain.svg"
                   alt=""
                   width="1"
                   height="1"
                 />
-              </Button>
+              </button>
             </NavLink>
           )}
-          <li className="mt-4 text-center">
+          <li className="mt-4 hidden text-center lg:block">
             <LanguageSwitchButton />
           </li>
         </ul>

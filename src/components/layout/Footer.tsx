@@ -1,5 +1,3 @@
-import franceRelanceLogo from '@/assets/images/logo-france-relance.svg'
-import ueLogo from '@/assets/images/union-européenne.svg'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { getServerPathname } from '@/helpers/getServerPathname'
 import Image from 'next/image'
@@ -16,7 +14,7 @@ export default function Footer() {
       {isLandingPage && (
         <div className="m-4 flex flex-wrap items-center justify-center gap-4">
           <Image
-            src={franceRelanceLogo}
+            src="/images/misc/logo-france-relance.svg"
             alt="Logo de France Relance"
             className="mr-2 h-auto w-[5rem]"
             width="96"
@@ -25,7 +23,7 @@ export default function Footer() {
 
           <div className="flex flex-col items-center justify-center font-bold">
             <Image
-              src={ueLogo}
+              src="/images/misc/union-européenne.svg"
               alt="Logo de l'Union Européenne"
               className="mr-2 h-auto w-[5rem]"
               width="96"

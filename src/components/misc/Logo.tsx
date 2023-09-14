@@ -1,4 +1,3 @@
-import logo from '@/assets/images/petit-logo@3x.png'
 import Image from 'next/image'
 import Link from '../Link'
 
@@ -35,8 +34,10 @@ export default function Logo({
         data-cypress-id="home-logo-link"
         className="mx-auto my-1 flex items-center justify-center no-underline md:my-4 lg:mx-auto lg:my-4">
         <Image
-          src={logo}
+          src="/images/misc/petit-logo@3x.png"
           alt="Logo Nos Gestes Climat"
+          width="200"
+          height="200"
           className={classnames[size].image}
         />
 

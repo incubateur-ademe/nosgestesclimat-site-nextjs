@@ -1,6 +1,5 @@
 'use client'
 
-import actionImg from '@/assets/images/E10C.svg'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
@@ -23,7 +22,7 @@ export default function ActionsTutorial() {
   return (
     <Card className="my-6 flex-col items-start !bg-primaryLight">
       <h2 className="flex items-center">
-        <Image src={actionImg} alt="" width={32} height={32} />
+        <Image src="/images/E10C.svg" alt="" width={32} height={32} />
 
         <Trans>Passer à l'action !</Trans>
       </h2>

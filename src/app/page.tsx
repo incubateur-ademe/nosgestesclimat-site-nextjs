@@ -1,6 +1,5 @@
 import NewsBanner from './_components/NewsBanner'
 
-import republiqueFr from '@/assets/images/marianne.svg'
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
@@ -56,7 +55,7 @@ export default async function Landing() {
 
         <div className="mt-4 flex flex-wrap items-center justify-between gap-10">
           <Image
-            src={republiqueFr}
+            src="/images/misc/marianne.svg"
             alt="République Française"
             className="mr-3 h-auto w-24"
             width="96"
@@ -92,7 +91,7 @@ export default async function Landing() {
           <a href="https://abc-transitionbascarbone.fr">
             <Image
               className="!ml-4 h-auto w-24"
-              src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
+              src="/images/misc/logo-ABC-web.png"
               alt={t("Logo de l'Association pour la transition Bas Carbone")}
               width="600"
               height="2"

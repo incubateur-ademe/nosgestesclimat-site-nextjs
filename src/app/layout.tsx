@@ -11,7 +11,7 @@ import Footer from '@/components/layout/Footer'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import { PropsWithChildren } from 'react'
-import Providers from './(layout-with-navigation)/_components/Providers'
+import Providers from './_components/Providers'
 
 const marianne = localFont({
   src: [
