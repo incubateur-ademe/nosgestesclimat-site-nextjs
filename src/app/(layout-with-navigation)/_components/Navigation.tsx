@@ -12,6 +12,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useGetPRNumber } from '@/hooks/useGetPRNumber'
 import { Persona } from '@/types/persona'
 import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
 import NavLink from './navigation/NavLink'
 
 const ActionsInteractiveIcon = ({ className = '' }) => {
@@ -38,9 +39,15 @@ export const conferenceImg = openmojiURL('conference')
 export default function Navigation() {
   const { t } = useClientTranslation()
 
+  const router = useRouter()
+
+  const pathname = usePathname()
+
   const enquete = ''
+
   const persona: Persona | undefined = undefined
-  const pullRequestNumber = useGetPRNumber()
+
+  const { PRNumber, clearPRNumber } = useGetPRNumber()
 
   return (
     <nav
@@ -106,11 +113,10 @@ export default function Navigation() {
             </NavLink>
           )}
 
-          {pullRequestNumber && (
+          {PRNumber && (
             <NavLink
               href={
-                'https://github.com/datagir/nosgestesclimat/pull/' +
-                pullRequestNumber
+                'https://github.com/datagir/nosgestesclimat/pull/' + PRNumber
               }>
               <Image
                 src={openmojiURL('github')}
@@ -120,19 +126,15 @@ export default function Navigation() {
                 width="20"
                 height="20"
               />
-              <span className="font-base text-primaryDark">
-                #{pullRequestNumber}
-              </span>
+              <span className="font-base text-primaryDark">#{PRNumber}</span>
 
               <button
-                onClick={() => {
-                  /*
-							setSearchParams(omit(['PR'], searchParams))
-							dispatch(resetLocalisation())
-							chooseIp(undefined)
-							dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number: null })
-              */
-                  // reset PR number
+                onClick={(event) => {
+                  event.stopPropagation()
+
+                  clearPRNumber()
+
+                  router.push(pathname)
                 }}>
                 <Image
                   className="w-6"

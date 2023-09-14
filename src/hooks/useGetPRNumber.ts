@@ -3,25 +3,45 @@ import { useSearchParams } from 'next/navigation'
 
 const PR_NUMBER_KEY = 'PR'
 
-export function useGetPRNumber(): string {
+function getPRNumberFromStorage() {
+  return sessionStorage.getItem(PR_NUMBER_KEY) ?? ''
+}
+
+function clearPRNumberFromStorage() {
+  sessionStorage.removeItem(PR_NUMBER_KEY)
+}
+
+export function useGetPRNumber(): {
+  PRNumber?: string
+  clearPRNumber: () => void
+} {
   const isClient = useIsClient()
   const searchParams = useSearchParams()
 
+  // Don't use sessionStorage on the server
   if (!isClient) {
-    return ''
+    return {
+      clearPRNumber: clearPRNumberFromStorage,
+    }
   }
 
   const PRNumberFromURL = searchParams.get('PR')
 
-  const savedPRNumber = isClient && localStorage.getItem(PR_NUMBER_KEY)
-
+  const savedPRNumber = isClient && getPRNumberFromStorage()
+  // Use the PR number from sessionStorage if it exists and there is no PR number in the URL
   if (savedPRNumber && !PRNumberFromURL) {
-    return localStorage.getItem(PR_NUMBER_KEY) ?? ''
+    return {
+      PRNumber: savedPRNumber,
+      clearPRNumber: clearPRNumberFromStorage,
+    }
   }
 
   if (PRNumberFromURL) {
-    localStorage.setItem(PR_NUMBER_KEY, PRNumberFromURL)
+    sessionStorage.setItem(PR_NUMBER_KEY, PRNumberFromURL)
   }
 
-  return PRNumberFromURL ?? ''
+  return {
+    PRNumber: PRNumberFromURL ?? '',
+    clearPRNumber: clearPRNumberFromStorage,
+  }
 }
