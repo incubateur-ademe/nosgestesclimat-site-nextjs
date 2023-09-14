@@ -1,5 +1,3 @@
-import image1Src from '@/assets/images/2714.svg'
-import image2Src from '@/assets/images/274C.svg'
 import Link from '@/components/Link'
 import {
   getMatomoEventActionAccepted,
@@ -164,7 +162,9 @@ export default function ActionCard({
               }
             }}>
             <Image
-              src={image1Src}
+              src="/images/misc/2714.svg"
+              width={100}
+              height={100}
               className={`w-10 ${isDisabled ? 'grayscale' : ''}`}
               alt=""
             />
@@ -180,7 +180,9 @@ export default function ActionCard({
               e.preventDefault()
             }}>
             <Image
-              src={image2Src}
+              src="/images/misc/274C.svg"
+              width={100}
+              height={100}
               className={`w-8 ${isDisabled ? 'grayscale' : ''}`}
               alt=""
             />

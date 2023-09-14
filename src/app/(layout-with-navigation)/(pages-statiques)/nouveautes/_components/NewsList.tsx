@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from '@/components/Link'
 import { getFormattedDate } from '@/helpers/date/getFormattedDate'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { extractImage } from '../_helpers/extractImage'
+import { extractImageSrc } from '../_helpers/extractImage'
 import { getPath } from '../_helpers/getPath'
 import { sortReleases } from '../_helpers/sortReleases'
 
@@ -29,7 +29,7 @@ export default async function NewsList() {
 
   return (
     <div>
-      <ul className="flex list-none flex-wrap pl-0 w-full gap-4">
+      <ul className="grid w-full list-none grid-cols-1 gap-4 pl-0 md:grid-cols-2">
         {data.map(
           (
             {
@@ -38,30 +38,33 @@ export default async function NewsList() {
               body,
             }: { name: string; published_at: string; body: string },
             index: number
-          ) => (
-            <li key={name} className="flex-1">
-              <Card tag={Link} href={getPath(index, data)}>
-                <Image
-                  src={extractImage(body) ?? ''}
-                  alt=""
-                  width="300"
-                  height="200"
-                  className="object-cover w-[12rem] h-[8rem] mb-2 mr-4"
-                />
-                <div>
-                  <h2 className="text-base">{name}</h2>
+          ) => {
+            const image = extractImageSrc(body)
+            return (
+              <li key={name} className="flex-1">
+                <Card tag={Link} href={getPath(index, data)}>
+                  <Image
+                    src={image.startsWith('https') ? image : ''}
+                    alt=""
+                    width="300"
+                    height="200"
+                    className="mb-2 mr-4 h-[8rem] w-[12rem] object-cover"
+                  />
                   <div>
-                    <small>
-                      {getFormattedDate(
-                        new Date(date),
-                        currentLangInfos.abrvLocale
-                      )}
-                    </small>
+                    <h2 className="text-base">{name}</h2>
+                    <div>
+                      <small>
+                        {getFormattedDate(
+                          new Date(date),
+                          currentLangInfos.abrvLocale
+                        )}
+                      </small>
+                    </div>
                   </div>
-                </div>
-              </Card>
-            </li>
-          )
+                </Card>
+              </li>
+            )
+          }
         )}
       </ul>
     </div>

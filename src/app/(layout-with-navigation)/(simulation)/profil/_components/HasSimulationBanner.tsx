@@ -42,8 +42,8 @@ export default function HasSimulationBanner() {
           <p className="text-lg">
             {t('publicodes.Profil.recap', {
               percentFinished,
-              answeredQuestionsLength,
-              actionChoicesLength,
+              answeredQuestionsLength: answeredQuestionsLength || 0,
+              actionChoicesLength: actionChoicesLength || 0,
             })}{' '}
           </p>
         </Card>

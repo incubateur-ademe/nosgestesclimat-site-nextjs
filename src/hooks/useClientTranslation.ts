@@ -1,14 +1,15 @@
+import { useIsClient } from '@/app/_components/IsClientCtxProvider'
 import '@/locales/initClient'
 import { useEffect, useState } from 'react'
 import { useTranslation as useLibTranslation } from 'react-i18next'
 import { useLocale } from './useLocale'
 
-const runsOnServerSide = typeof window === 'undefined'
-
 export function useClientTranslation() {
   const [initChangeLang, setInitChangeLang] = useState(false)
   const locale = useLocale()
   const transObject = useLibTranslation('translation')
+
+  const isClient = useIsClient()
 
   const { i18n } = transObject
 
@@ -19,7 +20,7 @@ export function useClientTranslation() {
     }
   }, [locale, initChangeLang, i18n])
 
-  if (runsOnServerSide && locale && i18n.resolvedLanguage !== locale) {
+  if (!isClient && locale && i18n.resolvedLanguage !== locale) {
     i18n.changeLanguage(locale)
   } else {
     // eslint-disable-next-line react-hooks/rules-of-hooks

@@ -11,7 +11,7 @@ import Footer from '@/components/layout/Footer'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import { PropsWithChildren } from 'react'
-import Providers from './(layout-with-navigation)/_components/Providers'
+import Providers from './_components/Providers'
 
 const marianne = localFont({
   src: [
@@ -72,7 +72,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1" />
 
-        <link rel="icon" href="./favicon.png" />
+        <link rel="icon" href="/images/misc/favicon.png" />
 
         <link
           rel="alternate"

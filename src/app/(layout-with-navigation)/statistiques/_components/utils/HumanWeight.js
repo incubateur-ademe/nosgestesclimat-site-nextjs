@@ -1,5 +1,5 @@
 export const humanWeight = (
-  { t, i18n }, // We need to be passed as an argument instead of calling useTranslation inside the body, to avoid 'Rendered more hooks than during the previous render.'
+  { t }, // We need to be passed as an argument instead of calling useTranslation inside the body, to avoid 'Rendered more hooks than during the previous render.'
   possiblyNegativeValue,
   concise = false,
   noSign,
