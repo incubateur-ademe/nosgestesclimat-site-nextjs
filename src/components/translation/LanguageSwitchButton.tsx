@@ -33,8 +33,8 @@ export default function LanguageSwitchButton() {
         href: currentUrl,
       })
     )
-
     router.refresh()
+    window.location.reload()
   }
 
   return (
