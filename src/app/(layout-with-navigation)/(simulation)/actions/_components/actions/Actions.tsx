@@ -173,7 +173,7 @@ export default function Actions({
         </div>
       )}
 
-      <ButtonLink href="/actions/plus">
+      <ButtonLink href="/actions/plus" className="!whitespace-normal">
         <span role="img" aria-label="emoji books" aria-hidden>
           📚
         </span>
