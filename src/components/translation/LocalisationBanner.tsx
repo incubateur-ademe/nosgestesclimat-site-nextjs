@@ -81,7 +81,7 @@ export default function LocalisationBanner() {
                     Votre région n'est pas encore supportée, le modèle Français
                     vous est proposé par défaut
                   </Trans>
-                </b>
+                </b>{' '}
                 <CountryFlag code={defaultModelRegionCode} className="inline" />
                 <b>.</b>
               </p>
@@ -93,7 +93,7 @@ export default function LocalisationBanner() {
               <Trans i18nKey="components.localisation.LocalisationMessage.warnMessage2">
                 Nous n'avons pas pu détecter votre pays de simulation, le modèle
                 Français vous est proposé par défaut
-              </Trans>
+              </Trans>{' '}
               <CountryFlag code={defaultModelRegionCode} className="inline" />.
             </p>
           )}
