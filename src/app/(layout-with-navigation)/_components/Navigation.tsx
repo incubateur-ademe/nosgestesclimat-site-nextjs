@@ -5,7 +5,6 @@ import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import CardGameIcon from '../../../components/icons/CardGameIcon'
 
 import Logo from '@/components/misc/Logo'
-import LanguageSwitchButton from '@/components/translation/LanguageSwitchButton'
 import Trans from '@/components/translation/Trans'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -146,9 +145,6 @@ export default function Navigation() {
               </button>
             </NavLink>
           )}
-          <li className="mt-4 hidden text-center lg:block">
-            <LanguageSwitchButton />
-          </li>
         </ul>
       </div>
     </nav>
