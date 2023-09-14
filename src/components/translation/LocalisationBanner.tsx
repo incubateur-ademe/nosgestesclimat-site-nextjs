@@ -68,11 +68,13 @@ export default function LocalisationBanner() {
 
           {!regionParams && code && (
             <section>
-              <Trans>
-                Nous avons détecté que vous faites cette simulation depuis
-              </Trans>{' '}
-              {countryName}
-              <CountryFlag code={code} />.
+              <p>
+                <Trans>
+                  Nous avons détecté que vous faites cette simulation depuis
+                </Trans>{' '}
+                {countryName} <CountryFlag code={code} className="inline" />.
+              </p>
+
               <p className="mt-2">
                 <b>
                   <Trans i18nKey="components.localisation.LocalisationMessage.warnMessage">
@@ -80,7 +82,7 @@ export default function LocalisationBanner() {
                     vous est proposé par défaut
                   </Trans>
                 </b>
-                <CountryFlag code={defaultModelRegionCode} />
+                <CountryFlag code={defaultModelRegionCode} className="inline" />
                 <b>.</b>
               </p>
             </section>
@@ -92,7 +94,7 @@ export default function LocalisationBanner() {
                 Nous n'avons pas pu détecter votre pays de simulation, le modèle
                 Français vous est proposé par défaut
               </Trans>
-              <CountryFlag code={defaultModelRegionCode} />.
+              <CountryFlag code={defaultModelRegionCode} className="inline" />.
             </p>
           )}
 
