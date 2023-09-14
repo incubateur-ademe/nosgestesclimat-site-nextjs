@@ -24,9 +24,9 @@ export default async function Landing() {
   return (
     <>
       <Logo />
-      <div className="mx-auto flex flex-col items-center justify-center gap-4 px-4 pb-8 text-center md:mt-6 md:max-w-none md:p-10 md:px-8 md:text-left">
+      <div className="mx-auto flex flex-col justify-center gap-4 px-4 pb-8 text-center md:mx-auto md:mt-6 md:w-full md:max-w-6xl md:p-10 md:px-8 md:text-left">
         <div className="gap-10 md:flex">
-          <div className="flex flex-col  md:w-1/2 ">
+          <div className="my-12 flex flex-col md:my-0 md:flex-1">
             <Title
               title={
                 <Trans i18nKey="publicodes.Landing.question">
@@ -38,7 +38,7 @@ export default async function Landing() {
 
             <p>{t('sites.publicodes.Landing.description')}</p>
             <div>
-              <div className="my-4 flex flex-wrap items-stretch justify-center gap-4 md:justify-normal">
+              <div className="my-4 flex flex-col flex-wrap items-center justify-center gap-4 md:flex-row md:justify-normal">
                 <TakeTestLink />
 
                 <GroupsLink />
@@ -50,14 +50,14 @@ export default async function Landing() {
               </div>
             </div>
           </div>
-          <AnimatedIllustration className="hidden w-1/2 text-center md:block" />
+          <AnimatedIllustration className="hidden w-[512px] max-w-[40%] text-center md:block" />
         </div>
 
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-10">
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-10">
           <Image
             src="/images/misc/marianne.svg"
             alt="République Française"
-            className="mr-3 h-auto w-24"
+            className="h-auto w-24"
             width="96"
             height="86"
           />
@@ -90,7 +90,7 @@ export default async function Landing() {
 
           <a href="https://abc-transitionbascarbone.fr">
             <Image
-              className="!ml-4 h-auto w-24"
+              className="h-auto w-24"
               src="/images/misc/logo-ABC-web.png"
               alt={t("Logo de l'Association pour la transition Bas Carbone")}
               width="600"

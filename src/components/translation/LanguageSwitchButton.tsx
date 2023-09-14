@@ -39,7 +39,7 @@ export default function LanguageSwitchButton() {
   }
 
   return (
-    <div className="mx-auto flex justify-center gap-2">
+    <div className="flex gap-2">
       <Button
         lang="fr"
         color={locale === 'fr' ? 'primary' : 'secondary'}

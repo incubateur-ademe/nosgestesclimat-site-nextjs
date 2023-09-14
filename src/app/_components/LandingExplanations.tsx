@@ -32,7 +32,7 @@ export default function LandingExplanations() {
 
   return (
     <>
-      <div className="bg-primaryLight xl:rounded-md px-4 py-10">
+      <div className="bg-primaryLight px-4 py-10 xl:rounded-md">
         <div className="mx-auto w-full max-w-3xl">
           <LandingContent />
         </div>
@@ -41,6 +41,7 @@ export default function LandingExplanations() {
       <OpenSourceBlock>
         <ListedAdvantages />
       </OpenSourceBlock>
+
       <QuestionsBlock />
     </>
   )

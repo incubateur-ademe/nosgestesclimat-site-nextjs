@@ -10,7 +10,7 @@ export default function Footer() {
   const isLandingPage = pathname === '/'
 
   return (
-    <footer className="mb-8 flex flex-col gap-4 bg-primaryLight py-8 pb-32 md:mb-0 md:pb-8">
+    <footer className="mb-8 flex flex-col gap-4 bg-primaryLight p-8 pb-32 md:mb-0 md:pb-8">
       {isLandingPage && (
         <div className="m-4 flex flex-wrap items-center justify-center gap-4">
           <Image
@@ -34,14 +34,12 @@ export default function Footer() {
         </div>
       )}
 
-      <div className="flex flex-wrap items-center justify-center gap-3">
+      <div className="flex flex-col flex-wrap justify-start gap-2 md:flex-row md:items-center md:justify-center md:gap-3">
         <InlineLink href="/a-propos">
           <Trans>À propos</Trans>
         </InlineLink>
 
-        <InlineLink
-          className="flex items-center justify-center"
-          href={'/documentation'}>
+        <InlineLink href={'/documentation'}>
           <Trans>Documentation</Trans>
         </InlineLink>
 
@@ -62,12 +60,12 @@ export default function Footer() {
         </InlineLink>
       </div>
 
-      <div className="flex w-full items-center justify-center">
-        <InlineLink href="/accessibilite" className="text-sm">
+      <div className="flex w-full md:justify-center">
+        <InlineLink href="/accessibilite">
           <Trans>Accessibilité : partiellement conforme</Trans>
         </InlineLink>
       </div>
-      <div className="text-center">
+      <div className="mt-2 md:flex md:justify-center">
         <LanguageSwitchButton />
       </div>
     </footer>

@@ -15,7 +15,9 @@ export default function ProfilPageContent() {
   const currentSimulation = (simulations as Simulation[]).find(
     (simulation: Simulation) => simulation.id === currentSimulationId
   )
+
   const { persona } = currentSimulation || {}
+
   return (
     <>
       {persona && (
