@@ -2,7 +2,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 
 export default function CustomTooltip(props) {
-  const { t, i18n } = useClientTranslation()
+  const { t } = useClientTranslation()
   const { user } = useUser()
 
   return props.active && props.payload && props.payload.length ? (
