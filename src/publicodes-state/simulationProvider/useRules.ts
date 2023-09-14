@@ -70,7 +70,6 @@ export default function useRules({ engine }: Props) {
   return {
     everyRules,
     everyQuestions,
-    everyMosaic,
     everyNotifications,
     everyMosaicChildWhoIsReallyInMosaic,
   }

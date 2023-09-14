@@ -17,7 +17,6 @@ type SimulationContextType = {
   updateSituation: (situationToAdd: Situation) => Promise<void>
   everyRules: string[]
   everyQuestions: string[]
-  everyMosaic: string[]
   everyNotifications: string[]
   everyMosaicChildWhoIsReallyInMosaic: string[]
 }
@@ -30,7 +29,6 @@ export default createContext<SimulationContextType>({
   updateSituation: () => Promise.resolve(),
   everyRules: [],
   everyQuestions: [],
-  everyMosaic: [],
   everyNotifications: [],
   everyMosaicChildWhoIsReallyInMosaic: [],
 })

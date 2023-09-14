@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo } from 'react'
+import getQuestionsOfMosaic from '../helpers/getQuestionsOfMosaic'
 import { NGCRuleNode } from '../types'
 
 type Props = {
@@ -16,9 +17,10 @@ export default function useMosaic({
 }: Props) {
   const questionsOfMosaic = useMemo<string[]>(
     () =>
-      everyMosaicChildWhoIsReallyInMosaic.filter((mosaicChild) =>
-        mosaicChild.includes(dottedName)
-      ) || [],
+      getQuestionsOfMosaic({
+        dottedName,
+        everyMosaicChildWhoIsReallyInMosaic,
+      }),
     [dottedName, everyMosaicChildWhoIsReallyInMosaic]
   )
 

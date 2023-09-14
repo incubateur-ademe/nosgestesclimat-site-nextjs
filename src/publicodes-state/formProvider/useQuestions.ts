@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
+import getIsMissing from '../helpers/getIsMissing'
+import getQuestionsOfMosaic from '../helpers/getQuestionsOfMosaic'
 import { NGCEvaluatedNode, Situation } from '../types'
 
 type Props = {
@@ -7,7 +9,6 @@ type Props = {
   categories: string[]
   situation: Situation
   everyQuestions: string[]
-  everyMosaic: string[]
   everyMosaicChildWhoIsReallyInMosaic: string[]
 }
 
@@ -17,17 +18,8 @@ export default function useQuestions({
   categories,
   situation,
   everyQuestions,
-  everyMosaic,
   everyMosaicChildWhoIsReallyInMosaic,
 }: Props) {
-  const initialMissingInputs = useMemo<string[]>(
-    () =>
-      Object.keys(safeEvaluate(root)?.missingVariables || {}).filter(
-        (missingInput: string) => everyQuestions.includes(missingInput)
-      ),
-    [safeEvaluate, everyQuestions, root]
-  )
-
   const missingVariables = useMemo(
     () => safeEvaluate(root)?.missingVariables || {},
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -44,101 +36,81 @@ export default function useQuestions({
 
   const askableQuestions = useMemo<string[]>(
     () =>
-      categories.length
-        ? [
-            ...everyQuestions
-              .filter(
-                (question: string) =>
-                  !everyMosaicChildWhoIsReallyInMosaic.find(
-                    (mosaic) => mosaic === question
-                  )
-              )
+      everyQuestions
+        .filter(
+          (question) =>
+            !everyMosaicChildWhoIsReallyInMosaic.find(
+              (mosaic) => mosaic === question
+            )
+        )
+        .sort((a, b) => {
+          const aSplittedName = a.split(' . ')
+          const bSplittedName = b.split(' . ')
+          for (let i = 0; i < 2; i++) {
+            if (bSplittedName[i] < aSplittedName[i]) {
+              return 1
+            }
+            if (bSplittedName[i] > aSplittedName[i]) {
+              return -1
+            }
+          }
+          if (a.includes('km') || a.includes('propriétaire')) {
+            return -1
+          }
+          if (b.includes('km') || b.includes('propriétaire')) {
+            return 1
+          }
+          if (bSplittedName.length > aSplittedName.length) {
+            return -1
+          }
+          if (aSplittedName.length > bSplittedName.length) {
+            return 1
+          }
+          return missingVariables[b] - missingVariables[a]
+        }),
+    [missingVariables, everyQuestions, everyMosaicChildWhoIsReallyInMosaic]
+  )
 
-              .sort((a: string, b: string) => {
-                const aSplittedName = a.split(' . ')
-                const bSplittedName = b.split(' . ')
-                for (let i = 0; i < 2; i++) {
-                  if (bSplittedName[i] < aSplittedName[i]) {
-                    return 1
-                  }
-                  if (bSplittedName[i] > aSplittedName[i]) {
-                    return -1
-                  }
-                }
-                return missingVariables[b] - missingVariables[a]
+  const [relevantQuestions, setRelevantQuestions] = useState<string[]>([])
+  useEffect(
+    function () {
+      setRelevantQuestions((prevRelevantQuestions) => [
+        ...prevRelevantQuestions.filter(
+          (dottedName: string) =>
+            !getIsMissing({
+              dottedName,
+              situation,
+              questionsOfMosaic: getQuestionsOfMosaic({
+                dottedName,
+                everyMosaicChildWhoIsReallyInMosaic,
               }),
-          ]
-        : [],
+            })
+        ),
+        ...askableQuestions
+          .filter((question) =>
+            Object.keys(missingVariables).find((missingVariable) =>
+              missingVariable.includes(question)
+            )
+          )
+          .filter((dottedName: string) =>
+            getIsMissing({
+              dottedName,
+              situation,
+              questionsOfMosaic: getQuestionsOfMosaic({
+                dottedName,
+                everyMosaicChildWhoIsReallyInMosaic,
+              }),
+            })
+          ),
+      ])
+    },
     [
-      categories,
+      askableQuestions,
+      situation,
       missingVariables,
-      everyQuestions,
       everyMosaicChildWhoIsReallyInMosaic,
     ]
   )
-
-  const isQuestionAnswered = ({
-    question,
-    situation,
-  }: {
-    question: string
-    situation: Situation
-  }): boolean => (situation[question] ? true : situation[question] === 0)
-
-  const isQuestionMissing = ({
-    question,
-    missingInputs,
-    everyMosaic,
-  }: {
-    question: string
-    missingInputs: string[]
-    everyMosaic: string[]
-  }): boolean =>
-    everyMosaic.includes(question)
-      ? missingInputs.find((missingInput) => missingInput.includes(question))
-        ? true
-        : false
-      : missingInputs.includes(question)
-
-  const [relevantQuestions, setRelevantQuestions] = useState<string[]>([])
-  useEffect(() => {
-    setRelevantQuestions((prevRelevantQuestion: string[]) =>
-      prevRelevantQuestion.length
-        ? [
-            ...prevRelevantQuestion.filter(
-              (question: string) =>
-                isQuestionAnswered({ question, situation }) ||
-                (everyMosaic.includes(question) &&
-                  !isQuestionMissing({
-                    question,
-                    missingInputs,
-                    everyMosaic,
-                  }))
-            ),
-            ...askableQuestions.filter((question: string) =>
-              isQuestionMissing({
-                question,
-                missingInputs,
-                everyMosaic,
-              })
-            ),
-          ]
-        : askableQuestions.filter((question) =>
-            isQuestionMissing({
-              question,
-              missingInputs: initialMissingInputs,
-              everyMosaic,
-            })
-          )
-    )
-  }, [
-    everyQuestions,
-    askableQuestions,
-    missingInputs,
-    initialMissingInputs,
-    everyMosaic,
-    situation,
-  ])
 
   const questionsByCategories = useMemo<Record<string, string[]>>(
     () =>
@@ -154,10 +126,10 @@ export default function useQuestions({
     [relevantQuestions, categories]
   )
 
+  //console.log(questionsByCategories)
+
   return {
     missingInputs,
-    everyQuestions,
-    everyMosaicChildWhoIsReallyInMosaic,
     relevantQuestions,
     questionsByCategories,
   }

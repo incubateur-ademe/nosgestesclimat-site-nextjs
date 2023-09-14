@@ -60,6 +60,7 @@ export default function useNavigation({
       questionsByCategories?.[currentCategory][currentQuestionIndex - 1]
 
     setCurrentQuestion(newCurrentQuestion)
+
     return newCurrentQuestion
   }
   const gotoNextQuestion = (): string | undefined => {
@@ -69,6 +70,7 @@ export default function useNavigation({
       questionsByCategories?.[currentCategory][currentQuestionIndex + 1]
 
     setCurrentQuestion(newCurrentQuestion)
+
     return newCurrentQuestion
   }
 

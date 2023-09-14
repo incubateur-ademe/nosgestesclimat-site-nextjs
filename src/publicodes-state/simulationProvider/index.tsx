@@ -27,7 +27,6 @@ export default function SimulationProvider({
   const {
     everyRules,
     everyQuestions,
-    everyMosaic,
     everyNotifications,
     everyMosaicChildWhoIsReallyInMosaic,
   } = useRules({ engine })
@@ -51,7 +50,6 @@ export default function SimulationProvider({
         updateSituation,
         everyRules,
         everyQuestions,
-        everyMosaic,
         everyNotifications,
         everyMosaicChildWhoIsReallyInMosaic,
       }}>

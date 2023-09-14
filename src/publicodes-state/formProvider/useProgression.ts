@@ -20,6 +20,7 @@ export default function useProgression({
       ),
     [categories, missingInputs]
   )
+
   const answeredCategories: string[] = useMemo(
     () =>
       categories.filter(

@@ -1,6 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useForm, useRule } from '@/publicodes-state'
+import { useState } from 'react'
 
 type Props = {
   question: string
@@ -19,12 +20,12 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
     noNextCategory,
   } = useForm()
   const { isMissing, setDefaultAsValue } = useRule(question)
-
+  const [isSettingDefaultValue, setIsSettingDefaultValue] = useState(false)
   return (
     <div className="flex justify-end  gap-4">
       {!(noPrevQuestion && noPrevCategory) ? (
         <Button
-          disabled={noPrevQuestion && noPrevCategory}
+          disabled={(noPrevQuestion && noPrevCategory) || isSettingDefaultValue}
           onClick={() => {
             if (!noPrevQuestion) {
               gotoPrevQuestion()
@@ -41,10 +42,13 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
       ) : null}
       <Button
         color={isMissing ? 'secondary' : 'primary'}
+        disabled={isSettingDefaultValue}
         onClick={async () => {
+          setIsSettingDefaultValue(true)
           if (isMissing) {
             await setDefaultAsValue()
           }
+          setIsSettingDefaultValue(false)
           if (!noNextQuestion) {
             gotoNextQuestion()
             return
@@ -53,7 +57,6 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
             gotoNextCategory()
             return
           }
-
           onComplete()
         }}>
         <Trans>

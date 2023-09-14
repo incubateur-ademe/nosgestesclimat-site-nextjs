@@ -24,7 +24,6 @@ export default function FormProvider({
     safeGetRule,
     situation,
     everyQuestions,
-    everyMosaic,
     everyMosaicChildWhoIsReallyInMosaic,
   } = useContext(simulationContext)
 
@@ -42,7 +41,6 @@ export default function FormProvider({
       categories,
       situation,
       everyQuestions,
-      everyMosaic,
       everyMosaicChildWhoIsReallyInMosaic,
     })
 
