@@ -1,5 +1,4 @@
-import Engine from 'publicodes'
-import { NGCEvaluatedNode } from '../types'
+import { Engine, NGCEvaluatedNode } from '../types'
 
 // Todo: send errors to Sentry
 export const safeEvaluateHelper = (

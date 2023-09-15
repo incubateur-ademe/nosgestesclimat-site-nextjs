@@ -15,6 +15,15 @@ export default function useRules({ engine }: Props) {
     [engine]
   )
 
+  const everyInactiveRules = useMemo<string[]>(
+    () =>
+      Object.entries(engine.getParsedRules())
+        .filter((rule: (string | any)[]) => rule[1].rawNode.inactif === 'oui')
+        .map((rule: (string | any)[]) => rule[0]),
+
+    [engine]
+  )
+
   const everyQuestions = useMemo<string[]>(
     () =>
       Object.entries(engine.getParsedRules())
@@ -69,8 +78,8 @@ export default function useRules({ engine }: Props) {
 
   return {
     everyRules,
+    everyInactiveRules,
     everyQuestions,
-    everyMosaic,
     everyNotifications,
     everyMosaicChildWhoIsReallyInMosaic,
   }

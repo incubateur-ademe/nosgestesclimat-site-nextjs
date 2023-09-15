@@ -30,7 +30,7 @@ export default function Suggestions({ question }: Props) {
                 )
               )
             } else {
-              setValue(suggestion.value)
+              setValue(suggestion.value, question)
             }
           }}>
           {suggestion.label}

@@ -1,28 +1,27 @@
 import { useMemo } from 'react'
-import { Engine, NGCEvaluatedNode } from '../types'
-
+import { safeEvaluateHelper } from '../helpers/safeEvaluateHelper'
+import { Engine, NGCRuleNode } from '../types'
 type Props = {
   engine: Engine
   root: string
-  safeEvaluate: (rule: string) => NGCEvaluatedNode | null
+  safeGetRule: (rule: string) => NGCRuleNode | null
   order: string[] | null
 }
 
 export default function useCategories({
   engine,
   root,
-  safeEvaluate,
+  safeGetRule,
   order,
 }: Props) {
-  const missingVariables = useMemo<string[]>(
-    () => Object.keys(safeEvaluate(root)?.missingVariables || {}),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [engine]
+  const pristineMissingVariables = useMemo<Record<string, number>>(
+    () => safeEvaluateHelper(root, engine)?.missingVariables || {},
+    [engine, root]
   )
 
   const categories = useMemo<string[]>(
     () =>
-      missingVariables
+      Object.keys(pristineMissingVariables)
         .reduce(
           (accumulator: string[], currentValue: string) =>
             accumulator.includes(currentValue.split(' . ')[0])
@@ -33,7 +32,7 @@ export default function useCategories({
         .sort((a: string, b: string) =>
           !order ? 0 : order.indexOf(a) > order.indexOf(b) ? 1 : -1
         ),
-    [missingVariables, order]
+    [pristineMissingVariables, order]
   )
 
   const subcategories = useMemo<Record<string, string[]>>(
@@ -44,21 +43,19 @@ export default function useCategories({
           [currentValue]:
             currentValue === 'services sociétaux'
               ? []
-              : engine
-                  .getRule(
-                    currentValue === 'logement'
-                      ? 'logement . impact' // Model shenanigans
-                      : currentValue === 'transport'
-                      ? 'transport . empreinte'
-                      : currentValue
-                  )
-                  ?.rawNode?.formule?.somme?.map(
-                    (rule: string) => currentValue + ' . ' + rule
-                  ) || [],
+              : safeGetRule(
+                  currentValue === 'logement'
+                    ? 'logement . impact' // Model shenanigans
+                    : currentValue === 'transport'
+                    ? 'transport . empreinte'
+                    : currentValue
+                )?.rawNode?.formule?.somme?.map(
+                  (rule: string) => currentValue + ' . ' + rule
+                ) || [],
         }),
         {}
       ),
-    [engine, categories]
+    [categories, safeGetRule]
   )
 
   return { categories, subcategories }

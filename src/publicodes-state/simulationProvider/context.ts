@@ -11,24 +11,36 @@ import {
 type SimulationContextType = {
   rules: Rules
   engine: Engine
+  pristineEngine: Engine
   safeGetRule: (rule: string) => NGCRuleNode | null
   safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   situation: Situation
   updateSituation: (situationToAdd: Situation) => Promise<void>
+  foldedSteps: string[]
+  addFoldedStep: (foldedStep: string) => void
+  everyRules: string[]
+  everyInactiveRules: string[]
   everyQuestions: string[]
-  everyMosaic: string[]
   everyNotifications: string[]
   everyMosaicChildWhoIsReallyInMosaic: string[]
+  categories: string[]
+  subcategories: Record<string, string[]>
 }
 export default createContext<SimulationContextType>({
   rules: null,
   engine: null,
+  pristineEngine: null,
   safeGetRule: () => null,
   safeEvaluate: () => null,
   situation: {},
   updateSituation: () => Promise.resolve(),
+  foldedSteps: [],
+  addFoldedStep: () => '',
+  everyRules: [],
+  everyInactiveRules: [],
   everyQuestions: [],
-  everyMosaic: [],
   everyNotifications: [],
   everyMosaicChildWhoIsReallyInMosaic: [],
+  categories: [],
+  subcategories: {},
 })

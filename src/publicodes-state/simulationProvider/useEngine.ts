@@ -6,6 +6,8 @@ import { NGCEvaluatedNode, NGCRuleNode, Rules } from '../types'
 export default function useEngine(rules: Rules) {
   const engine = useMemo(() => new Engine(rules), [rules])
 
+  const pristineEngine = useMemo(() => engine.shallowCopy(), [engine])
+
   const safeEvaluate = useMemo<(rule: string) => NGCEvaluatedNode | null>(
     () => (rule: string) => safeEvaluateHelper(rule, engine),
     [engine]
@@ -24,5 +26,5 @@ export default function useEngine(rules: Rules) {
     [engine]
   )
 
-  return { engine, safeEvaluate, safeGetRule }
+  return { engine, pristineEngine, safeEvaluate, safeGetRule }
 }

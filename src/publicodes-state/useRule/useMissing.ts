@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo } from 'react'
+import getIsMissing from '../helpers/getIsMissing'
 import { Situation } from '../types'
 
 type Props = {
@@ -14,15 +15,15 @@ export default function useValue({
   situation,
   questionsOfMosaic,
 }: Props) {
-  const isMissing = useMemo(() => {
-    if (situation[dottedName]) {
-      return false
-    }
-    if (questionsOfMosaic.find((question) => situation[question])) {
-      return false
-    }
-    return true
-  }, [dottedName, situation, questionsOfMosaic])
+  const isMissing = useMemo(
+    () =>
+      getIsMissing({
+        dottedName,
+        situation,
+        questionsOfMosaic,
+      }),
+    [dottedName, situation, questionsOfMosaic]
+  )
 
   return {
     isMissing,

@@ -27,9 +27,10 @@ export default function useUser() {
   const { updateName, updateEmail, updateRegion } = useUserDetails({ setUser })
 
   const {
-    updateSituationOfCurrentSimulation,
     initSimulation,
     deleteSimulation,
+    updateSituationOfCurrentSimulation,
+    updateFoldedStepsOfCurrentSimulation,
     updateCurrentSimulationActionChoices,
     getCurrentSimulation,
   } = useSimulations({
@@ -61,9 +62,10 @@ export default function useUser() {
     deleteSimulation,
     currentSimulationId,
     setCurrentSimulationId,
+    updateSituationOfCurrentSimulation,
+    updateFoldedStepsOfCurrentSimulation,
     updateCurrentSimulationActionChoices,
     getCurrentSimulation,
-    updateSituationOfCurrentSimulation,
     initSimulation,
     toggleActionChoice,
     rejectAction,

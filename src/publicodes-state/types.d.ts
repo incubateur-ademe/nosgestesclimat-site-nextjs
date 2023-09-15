@@ -1,4 +1,9 @@
-import { EvaluatedNode, Evaluation, RuleNode } from 'publicodes'
+import {
+  EvaluatedNode,
+  Evaluation,
+  Engine as PublicodesEngine,
+  RuleNode,
+} from 'publicodes'
 
 export type User = {
   region: {
@@ -31,8 +36,7 @@ export type Suggestion = {
   //     }
 }
 
-// TODO: what's the type of Engine ?
-export type Engine = any
+export type Engine = PublicodesEngine
 
 export type NGCRuleNode = RuleNode & {
   rawNode: NGCRule
@@ -48,6 +52,7 @@ export type Simulation = {
   id: string
   date: Date | string
   situation: Situation
+  foldedSteps: string[]
   actionChoices: ActionChoices
   persona?: string
 }

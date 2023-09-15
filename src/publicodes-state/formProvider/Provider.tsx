@@ -1,49 +1,39 @@
 'use client'
 
 import { PropsWithChildren, useContext } from 'react'
-
 import simulationContext from '../simulationProvider/context'
-import SimulationContext from './context'
-import useCategories from './useCategories'
+import FormContext from './context'
 import useCurrent from './useCurrent'
 import useProgression from './useProgression'
 import useQuestions from './useQuestions'
 
 type Props = {
   root?: string
-  categoryOrder: string[]
 }
 
 export default function FormProvider({
   root = 'bilan',
-  categoryOrder,
   children,
 }: PropsWithChildren<Props>) {
   const {
-    engine,
+    categories,
+    subcategories,
     safeEvaluate,
     situation,
+    foldedSteps,
     everyQuestions,
-    everyMosaic,
+    everyInactiveRules,
     everyMosaicChildWhoIsReallyInMosaic,
   } = useContext(simulationContext)
 
-  const { categories, subcategories } = useCategories({
-    engine,
-    root,
-    safeEvaluate,
-    order: categoryOrder,
-  })
-
-  const { missingInputs, relevantQuestions, questionsByCategories } =
+  const { missingVariables, relevantQuestions, questionsByCategories } =
     useQuestions({
-      engine,
       root,
       safeEvaluate,
       categories,
+      foldedSteps,
       situation,
       everyQuestions,
-      everyMosaic,
       everyMosaicChildWhoIsReallyInMosaic,
     })
 
@@ -57,8 +47,10 @@ export default function FormProvider({
     answeredQuestionsByCategories,
     progressionByCategory,
   } = useProgression({
+    missingVariables,
+    everyQuestions,
+    everyInactiveRules,
     categories,
-    missingInputs,
     relevantQuestions,
     questionsByCategories,
   })
@@ -71,8 +63,9 @@ export default function FormProvider({
   } = useCurrent()
 
   return (
-    <SimulationContext.Provider
+    <FormContext.Provider
       value={{
+        // TODO: Categories shouldn't be returned by this provider
         categories,
         subcategories,
         relevantQuestions,
@@ -91,6 +84,6 @@ export default function FormProvider({
         setCurrentCategory,
       }}>
       {children}
-    </SimulationContext.Provider>
+    </FormContext.Provider>
   )
 }

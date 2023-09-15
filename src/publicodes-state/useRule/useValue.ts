@@ -16,6 +16,7 @@ type Props = {
   }) => string | undefined
   questionsOfMosaic: string[]
   updateSituation: (situationToAdd: Situation) => Promise<void>
+  addFoldedStep: (foldedStep: string) => void
 }
 
 export default function useValue({
@@ -27,6 +28,7 @@ export default function useValue({
   getType,
   questionsOfMosaic,
   updateSituation,
+  addFoldedStep,
 }: Props) {
   const value = useMemo<NodeValue>(() => evaluation?.nodeValue, [evaluation])
 
@@ -53,18 +55,20 @@ export default function useValue({
     [value]
   )
 
-  // TODO: Doesn't work well with mosaic
-  const isMissing = useMemo(
-    () => Object.keys(evaluation?.missingVariables || {}).length !== 0,
-    [evaluation]
-  )
+  const setValue = async (
+    value: NodeValue,
+    foldedStep?: string
+  ): Promise<void> => {
+    if (foldedStep) addFoldedStep(foldedStep)
 
-  const setValue = async (value: NodeValue): Promise<void> =>
-    updateSituation({
+    return updateSituation({
       [dottedName]: checkValueValidity({ value, type }),
     })
+  }
 
-  const setDefaultAsValue = async (): Promise<void> => {
+  const setDefaultAsValue = async (foldedStep?: string): Promise<void> => {
+    if (foldedStep) addFoldedStep(foldedStep)
+
     let situationToUpdate = {}
     if (type?.includes('mosaic')) {
       situationToUpdate = questionsOfMosaic.reduce(
@@ -94,7 +98,6 @@ export default function useValue({
     value,
     displayValue,
     numericValue,
-    isMissing,
     setValue,
     setDefaultAsValue,
   }

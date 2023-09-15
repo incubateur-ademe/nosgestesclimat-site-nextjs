@@ -5,6 +5,7 @@ type Props = {
   question: string
   title?: string
   icons?: string
+  setValue: (value: string) => void
 }
 
 const buttonClassNames = {
@@ -17,8 +18,13 @@ const checkClassNames = {
   checked: 'before:border-white',
   unchecked: 'before:border-primary',
 }
-export default function MosaicBooleanInput({ question, title, icons }: Props) {
-  const { value, setValue, isMissing, isInactive } = useRule(question)
+export default function MosaicBooleanInput({
+  question,
+  title,
+  icons,
+  setValue,
+}: Props) {
+  const { value, isMissing, isInactive } = useRule(question)
 
   const status = isInactive
     ? 'inactive'
@@ -30,7 +36,7 @@ export default function MosaicBooleanInput({ question, title, icons }: Props) {
       disabled={isInactive}
       className={`relative rounded border px-4 py-2 text-left text-xl ${buttonClassNames[status]}`}
       onClick={() => {
-        setValue(!value)
+        setValue(value === 'oui' ? 'non' : 'oui') // TODO: shouldn't we have 'oui' and 'non' ?
       }}>
       {title && icons ? (
         <span

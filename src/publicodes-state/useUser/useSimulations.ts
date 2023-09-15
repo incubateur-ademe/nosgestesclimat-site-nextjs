@@ -28,8 +28,9 @@ export default function useSimulations({
         id,
         date: new Date().toISOString(),
         situation,
-        persona,
+        foldedSteps: [],
         actionChoices: {},
+        persona,
       },
     ])
 
@@ -62,6 +63,27 @@ export default function useSimulations({
     }
   }
 
+  const updateFoldedStepsOfCurrentSimulation = (foldedStep: string) => {
+    if (currentSimulationId) {
+      setSimulations((prevSimulations: Simulation[]) => {
+        const simulationUpdated = prevSimulations.find(
+          (simulation: Simulation) => simulation.id === currentSimulationId
+        )
+
+        if (!simulationUpdated) return prevSimulations // TODO: should throw error
+        return [
+          ...prevSimulations.filter(
+            (simulation: Simulation) => simulation.id !== currentSimulationId
+          ),
+          {
+            ...simulationUpdated,
+            foldedSteps: [...simulationUpdated.foldedSteps, foldedStep],
+          },
+        ]
+      })
+    }
+  }
+
   const updateCurrentSimulationActionChoices = (
     actionChoices: ActionChoices
   ) => {
@@ -77,11 +99,6 @@ export default function useSimulations({
     setSimulations(updatedSimulations)
   }
 
-  const getCurrentSimulation = (): Simulation | undefined =>
-    simulations.find(
-      (simulation: Simulation) => simulation.id === currentSimulationId
-    )
-
   const deleteSimulation = (deletedSimulationId: string) => {
     setSimulations((prevSimulations: Simulation[]) =>
       [...prevSimulations].filter(
@@ -90,16 +107,21 @@ export default function useSimulations({
     )
   }
 
+  // TODO: getCurrentSimulation and currentSimulation shouldn't coexist
+  const getCurrentSimulation = (): Simulation | undefined =>
+    simulations.find(
+      (simulation: Simulation) => simulation.id === currentSimulationId
+    )
+
   return {
     simulations,
-    currentSimulation: simulations.find(
-      (simulation: Simulation) => simulation.id === currentSimulationId
-    ),
+    currentSimulation: getCurrentSimulation(),
+    getCurrentSimulation,
     currentSimulationId,
     updateSituationOfCurrentSimulation,
+    updateFoldedStepsOfCurrentSimulation,
     updateCurrentSimulationActionChoices,
     initSimulation,
     deleteSimulation,
-    getCurrentSimulation,
   }
 }

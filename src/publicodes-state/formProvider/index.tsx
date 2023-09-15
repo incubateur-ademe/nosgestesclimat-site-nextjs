@@ -6,12 +6,10 @@ import Provider from './Provider'
 
 type Props = {
   root?: string
-  categoryOrder: string[]
 }
 
-export default function CheckFormProvider({
+export default function FailSafeFormProvider({
   root = 'bilan',
-  categoryOrder,
   children,
 }: PropsWithChildren<Props>) {
   const { safeEvaluate } = useContext(simulationContext)
@@ -22,9 +20,5 @@ export default function CheckFormProvider({
   )
 
   if (!isRootSafe) return <div>La racine du formulaire n'existe pas</div>
-  return (
-    <Provider root={root} categoryOrder={categoryOrder}>
-      {children}
-    </Provider>
-  )
+  return <Provider root={root}>{children}</Provider>
 }
