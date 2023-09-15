@@ -80,7 +80,7 @@ export default function SimulationProvider({
         categories,
         subcategories,
       }}>
-      {initialized ? children : 'loading'}
+      {initialized ? children : null}
     </SimulationContext.Provider>
   )
 }

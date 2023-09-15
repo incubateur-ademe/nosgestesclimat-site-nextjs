@@ -82,9 +82,19 @@ export default function Form() {
     isInitialized,
   ])
 
-  if (!currentCategory) return
+  if (!currentCategory) return 'Vous avez tout fini :)'
 
-  return currentQuestion ? (
+  if (!currentQuestion)
+    return (
+      <CategoryIntroduction
+        category={currentCategory}
+        startCategory={() =>
+          setCurrentQuestion(remainingQuestionsByCategories[currentCategory][0])
+        }
+      />
+    )
+
+  return (
     <div className="mb-4 rounded-lg bg-primaryLight p-4">
       {questions[currentQuestion] ? (
         questions[currentQuestion]
@@ -110,12 +120,5 @@ export default function Form() {
         }}
       />
     </div>
-  ) : (
-    <CategoryIntroduction
-      category={currentCategory}
-      startCategory={() =>
-        setCurrentQuestion(remainingQuestionsByCategories[currentCategory][0])
-      }
-    />
   )
 }

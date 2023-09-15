@@ -1,17 +1,16 @@
 import { useMemo } from 'react'
 
 type Props = {
-  categories: string[]
+  remainingCategories: string[]
   questionsByCategories: Record<string, string[]>
   currentQuestion: string | null
   currentCategory: string | null
   setCurrentQuestion: (question: string | null) => void
   setCurrentCategory: (question: string | null) => void
-  remainingQuestionsByCategories: Record<string, string[]>
 }
 
 export default function useNavigation({
-  categories,
+  remainingCategories,
   questionsByCategories,
   currentQuestion,
   currentCategory,
@@ -27,8 +26,8 @@ export default function useNavigation({
   )
 
   const currentCategoryIndex = useMemo<number>(
-    () => (currentCategory ? categories?.indexOf(currentCategory) : 0),
-    [categories, currentCategory]
+    () => (currentCategory ? remainingCategories?.indexOf(currentCategory) : 0),
+    [remainingCategories, currentCategory]
   )
 
   const noPrevQuestion = useMemo<boolean>(
@@ -49,8 +48,8 @@ export default function useNavigation({
     [currentCategoryIndex]
   )
   const noNextCategory = useMemo<boolean>(
-    () => currentCategoryIndex === categories?.length - 1,
-    [currentCategoryIndex, categories]
+    () => currentCategoryIndex === remainingCategories?.length - 1,
+    [currentCategoryIndex, remainingCategories]
   )
 
   const gotoPrevQuestion = (): string | undefined => {
@@ -77,7 +76,7 @@ export default function useNavigation({
   const gotoPrevCategory = (): string | undefined => {
     if (noPrevCategory) return
 
-    const newCurrentCategory = categories[currentCategoryIndex - 1]
+    const newCurrentCategory = remainingCategories[currentCategoryIndex - 1]
     const newCurrentQuestion =
       questionsByCategories?.[newCurrentCategory][
         questionsByCategories?.[newCurrentCategory].length - 1
@@ -91,7 +90,7 @@ export default function useNavigation({
   const gotoNextCategory = (): string | undefined => {
     if (noNextCategory) return
 
-    const newCurrentCategory = categories[currentCategoryIndex + 1]
+    const newCurrentCategory = remainingCategories[currentCategoryIndex + 1]
 
     setCurrentCategory(newCurrentCategory)
     setCurrentQuestion(null)

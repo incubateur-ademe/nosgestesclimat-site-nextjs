@@ -34,9 +34,8 @@ export default function useForm() {
     noPrevCategory,
     noNextCategory,
   } = useNavigation({
-    categories,
+    remainingCategories,
     questionsByCategories,
-    remainingQuestionsByCategories,
     currentQuestion,
     currentCategory,
     setCurrentQuestion,
