@@ -1,5 +1,4 @@
 import { MDXProps } from 'mdx/types'
-import { StaticImageData } from 'next/image'
 import { ReactElement } from 'react'
 
 export type BlogPost = {
@@ -8,5 +7,5 @@ export type BlogPost = {
   slug: string
   description: string
   content: (props: MDXProps) => ReactElement
-  image?: StaticImageData
+  image?: string
 }

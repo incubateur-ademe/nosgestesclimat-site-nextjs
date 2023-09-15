@@ -1,8 +1,5 @@
 'use client'
 
-import imageSrc2 from '@/assets/images/26D4.svg'
-import imageSrc from '@/assets/images/270A.svg'
-
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
@@ -120,7 +117,7 @@ export default function Actions({
       <div className="my-4 h-8 w-full text-center">
         <p className="inline-flex items-center rounded-full bg-primaryDark px-4 text-sm font-medium  text-white">
           <Image
-            src={imageSrc}
+            src="/images/misc/270A.svg"
             className="mr-2 align-middle invert "
             height={36}
             width={36}
@@ -143,7 +140,7 @@ export default function Actions({
       <div className="my-4 h-8 w-full text-center">
         <p className="inline-flex items-center rounded-full bg-primaryDark px-4 text-sm  font-medium text-white ">
           <Image
-            src={imageSrc2}
+            src="/images/misc/26D4.svg"
             className="mr-2 invert"
             height={36}
             width={36}
@@ -176,7 +173,7 @@ export default function Actions({
         </div>
       )}
 
-      <ButtonLink href="/actions/plus">
+      <ButtonLink href="/actions/plus" className="!whitespace-normal">
         <span role="img" aria-label="emoji books" aria-hidden>
           📚
         </span>

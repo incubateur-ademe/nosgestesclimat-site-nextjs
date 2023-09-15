@@ -1,19 +1,20 @@
-import { serverURL } from '@/constants/urls'
-import { useQuery } from '@tanstack/react-query'
+import { SERVER_URL } from '@/constants/urls'
 import axios from 'axios'
+// A previous version of react-query is used here
+import { useQuery } from 'react-query'
 
 const idSite = 153
 
 const kmDate = '2022-02-24,today'
 const MESURE_START_DATE = '2021-02-01,today'
-console.log({ serverURL })
+
 export const useX = (queryName, urlQuery, transformResult, keepPreviousData) =>
   useQuery(
     queryName,
     () =>
       axios
         .get(
-          'http://localhost:3001' +
+          SERVER_URL +
             '/get-stats?requestParams=' +
             encodeURIComponent(urlQuery)
         )

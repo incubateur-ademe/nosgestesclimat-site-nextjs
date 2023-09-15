@@ -11,7 +11,7 @@ import { captureException } from '@sentry/react'
 import { useRouter } from 'next/router'
 import { FormEvent, FormEventHandler, useState } from 'react'
 import { getSimulationResults } from '../../_helpers/getSimulationResults'
-import { useGetGroups } from '../../_hooks/useGetGroups'
+import { useFetchGroups } from '../../_hooks/usFetchGroups'
 import { validateForm } from '../_helpers/validateForm'
 import useCreateGroup from '../_hooks/useCreateGroup'
 import { useSendGroupConfirmationEmail } from '../_hooks/useSendGroupConfirmationEmail'
@@ -40,7 +40,7 @@ export default function GroupCreationForm() {
 
   const { getValue } = useEngine()
 
-  const { data: groups } = useGetGroups(user?.id)
+  const { data: groups } = useFetchGroups(user?.id)
 
   const router = useRouter()
 
@@ -113,7 +113,9 @@ export default function GroupCreationForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit as FormEventHandler<HTMLFormElement>}>
+    <form
+      onSubmit={handleSubmit as FormEventHandler<HTMLFormElement>}
+      autoComplete="off">
       <PrenomInput
         prenom={prenom}
         setPrenom={setPrenom}

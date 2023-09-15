@@ -1,7 +1,7 @@
 'use client'
 
 import CountryListItem from '@/components/misc/CountryListItem'
-import { sortSupportedRegions2 } from '@/helpers/localisation/sortSupportedRegions'
+import { sortSupportedRegions } from '@/helpers/localisation/sortSupportedRegions'
 import { useGetSupportedRegions } from '@/hooks/useGetSupportedRegions'
 import { useLocale } from '@/hooks/useLocale'
 import { capitaliseString } from '@/utils/capitaliseString'
@@ -25,11 +25,10 @@ export default function RegionGrid({
 
   const locale = useLocale()
 
-  // TODO: CLEAN YOUR SHIT
-  const sortedSupportedRegions = sortSupportedRegions2(
+  const sortedSupportedRegions = sortSupportedRegions({
     supportedRegions,
-    locale || 'fr'
-  )
+    currentLocale: locale || 'fr',
+  })
 
   return (
     <ul

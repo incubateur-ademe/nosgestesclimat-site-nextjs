@@ -1,6 +1,7 @@
 'use client'
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+// A previous version of react-query is used here
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import StatsContent from './_components/StatsContent'
 

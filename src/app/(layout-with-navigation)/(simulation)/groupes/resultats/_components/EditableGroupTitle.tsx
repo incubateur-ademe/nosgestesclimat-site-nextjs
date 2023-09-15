@@ -1,4 +1,3 @@
-import pencilIcon from '@/assets/images/pencil.svg'
 import { matomoEventUpdateGroupName } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import InlineTextInput from '@/design-system/inputs/InlineTextInput'
@@ -66,7 +65,7 @@ export default function EditableGroupTitle({ groupId }: { groupId: string }) {
                 color="secondary"
                 data-cypress-id="group-name-edit-button">
                 <Image
-                  src={pencilIcon}
+                  src="/images/misc/pencil.svg"
                   alt={t(
                     'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé'
                   )}

@@ -1,5 +1,3 @@
-import emImage from '@/assets/images/electricitymaps.svg'
-import internationalIllustration from '@/assets/images/international-illustration.jpeg'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import InlineLink from '@/design-system/inputs/InlineLink'
@@ -28,7 +26,7 @@ export default async function International() {
             <Title title={title} />
 
             <Image
-              src={internationalIllustration}
+              src="/images/misc/international-illustration.jpeg"
               alt=""
               className="max-w-12 py-8 md:hidden"
               width="300"
@@ -46,7 +44,7 @@ export default async function International() {
           </div>
 
           <Image
-            src={internationalIllustration}
+            src="/images/misc/international-illustration.jpeg"
             alt=""
             aria-hidden="true"
             className="mx-auto hidden max-w-md p-8 md:block"
@@ -55,7 +53,7 @@ export default async function International() {
           />
         </div>
       </Container>
-      <div className="bg-primaryLight">
+      <div className="rounded-md bg-primaryLight">
         <Container maxWidth="3xl" className="pb-12 pt-8">
           <h2>
             <Trans i18nKey="international.pourquoi.titre">
@@ -85,7 +83,7 @@ export default async function International() {
               <Link href="https://app.electricitymaps.com/map" target="_blank">
                 <Image
                   alt="Electricity Maps"
-                  src={emImage as string}
+                  src="/images/misc/electricitymaps.svg"
                   className="ml-2 h-4"
                   width="100"
                   height="100"
@@ -122,7 +120,7 @@ export default async function International() {
         </p>
       </Container>
 
-      <div className="bg-primaryLight">
+      <div className="rounded-md bg-primaryLight">
         <Container maxWidth="3xl" className="pb-12 pt-8">
           <div className="mx-auto my-0">
             <RegionGrid shouldShowButton={false} />

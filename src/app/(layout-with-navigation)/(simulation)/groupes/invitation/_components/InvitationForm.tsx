@@ -118,7 +118,7 @@ export default function InvitationForm({ group }: { group: Group }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} autoComplete="off">
       <PrenomInput
         prenom={prenom}
         setPrenom={setPrenom}

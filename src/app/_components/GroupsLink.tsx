@@ -1,6 +1,5 @@
 'use client'
 
-import silhouette from '@/assets/images/silhouettes.svg'
 import Trans from '@/components/translation/Trans'
 import { matomoEventModeGroupeCTAStart } from '@/constants/matomo'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
@@ -17,7 +16,14 @@ export default function GroupsLink() {
       data-cypress-id="as-a-group-link"
       size="lg"
       color="secondary">
-      <Image src={silhouette} alt="" className="mr-4 h-auto w-8" />
+      <Image
+        src="/images/misc/silhouettes.svg"
+        alt=""
+        className="mr-4 h-auto w-8"
+        width={100}
+        height={100}
+        aria-hidden
+      />
       <span>
         <Trans>En groupe</Trans>
       </span>

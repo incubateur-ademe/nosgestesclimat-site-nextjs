@@ -8,6 +8,7 @@ import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
 import { sortReleases } from '@/utils/sortReleases'
 import { ReactNode, useEffect, useState } from 'react'
+import { useIsClient } from './IsClientCtxProvider'
 
 export const localStorageKey = 'last-viewed-release'
 
@@ -16,10 +17,10 @@ export const determinant = (word: string) =>
   /^[aeiouy]/i.exec(word) ? 'd’' : 'de '
 
 export default function NewsBanner() {
-  const isServer = typeof window === 'undefined'
+  const isClient = useIsClient()
 
   const [lastViewedRelease, setLastViewedRelease] = useState(
-    isServer ? undefined : localStorage.getItem(localStorageKey)
+    isClient && localStorage.getItem(localStorageKey)
   )
 
   const { t, i18n } = useClientTranslation()

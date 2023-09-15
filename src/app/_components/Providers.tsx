@@ -3,6 +3,7 @@
 import QueryClientProviderWrapper from '@/app/_components/QueryClientProviderWrapper'
 import { UserProvider } from '@/publicodes-state'
 import { PropsWithChildren } from 'react'
+import { IsClientCtxProvider } from './IsClientCtxProvider'
 
 export default function Providers({
   children,
@@ -12,7 +13,9 @@ export default function Providers({
 
   return (
     <QueryClientProviderWrapper>
-      <UserProvider initialRegion={region}>{children}</UserProvider>
+      <UserProvider initialRegion={region}>
+        <IsClientCtxProvider>{children}</IsClientCtxProvider>
+      </UserProvider>
     </QueryClientProviderWrapper>
   )
 }

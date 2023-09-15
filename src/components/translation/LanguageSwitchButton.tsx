@@ -25,6 +25,7 @@ export default function LanguageSwitchButton() {
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
 
     const expires = '; expires=' + date.toUTCString()
+
     document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`
 
     router.push(
@@ -33,28 +34,34 @@ export default function LanguageSwitchButton() {
         href: currentUrl,
       })
     )
-
     router.refresh()
+    // window.location.reload()
   }
 
   return (
-    <Button
-      color="secondary"
-      onClick={handleChange}
-      size="sm"
-      aria-label={
-        locale === 'fr' ? t('Switch to English') : t('Passer en français')
-      }
-      className="flex gap-2">
-      {locale === 'fr' ? (
-        <>
-          <span aria-hidden>🇬🇧</span> <span>En</span>
-        </>
-      ) : (
-        <>
-          <span aria-hidden>🇫🇷</span> <span>Fr</span>
-        </>
-      )}
-    </Button>
+    <div className="flex gap-2">
+      <Button
+        lang="fr"
+        color={locale === 'fr' ? 'primary' : 'secondary'}
+        onClick={handleChange}
+        size="sm"
+        aria-label={
+          locale === 'fr' ? t('Français sélectionné') : t('Passer en français')
+        }
+        className="flex gap-2 px-4 py-3">
+        <span>FR</span> <span aria-hidden>🇫🇷</span>
+      </Button>
+      <Button
+        lang="en"
+        color={locale === 'en-US' ? 'primary' : 'secondary'}
+        onClick={handleChange}
+        size="sm"
+        aria-label={
+          locale === 'fr' ? t('English selected') : t('Switch to english')
+        }
+        className="flex gap-2 px-4 py-3">
+        <span>EN</span> <span aria-hidden>🇬🇧</span>
+      </Button>
+    </div>
   )
 }

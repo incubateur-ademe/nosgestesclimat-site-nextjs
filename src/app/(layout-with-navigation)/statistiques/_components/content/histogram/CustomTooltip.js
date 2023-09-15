@@ -4,7 +4,7 @@ import { useUser } from '@/publicodes-state'
 
 export default function CustomTooltip(props) {
   const label = props.label && props.label.replace(/\s/g, ' ')
-  const { t, i18n } = useClientTranslation()
+  const { t } = useClientTranslation()
 
   const { user } = useUser()
 

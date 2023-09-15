@@ -1,6 +1,5 @@
 'use client'
 
-import profileIcon from '@/assets/images/silhouette.svg'
 import Trans from '@/components/translation/Trans'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { Appear } from '@/design-system/utils/Animate'
@@ -20,7 +19,14 @@ export default function ProfileLink() {
           href="/profil"
           title={t('Page profil')}
           className="flex w-[18rem] items-center rounded-sm">
-          <Image alt="" src={profileIcon} className="h-auto w-6" />
+          <Image
+            alt=""
+            src="/images/misc/silhouette.svg"
+            className="h-auto w-6"
+            aria-hidden
+            height={100}
+            width={100}
+          />
           <span className="ml-2">
             <Trans>Voir le détail de ma simulation</Trans>
           </span>

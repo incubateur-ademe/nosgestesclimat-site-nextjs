@@ -1,11 +1,13 @@
 import Route404 from '@/components/layout/404'
+import Meta from '@/components/misc/Meta'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
+import Markdown from '@/design-system/utils/Markdown'
 import { getFormattedDate } from '@/helpers/date/getFormattedDate'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
-import { MDXRemote } from 'next-mdx-remote/rsc'
+import { extractImageSrc } from '../_helpers/extractImage'
 import { getPath } from '../_helpers/getPath'
 import { slugifyString } from '../_helpers/slugifyString'
 import { sortReleases } from '../_helpers/sortReleases'
@@ -27,6 +29,8 @@ export default async function NewsPage({
 
   const data = sortReleases(currentLangInfos.releases)
 
+  console.log(data)
+
   // useEffect(() => {
   // 	setLastViewedRelease(lastRelease.name)
   // }, [])
@@ -46,86 +50,82 @@ export default async function NewsPage({
   const releaseName = data[selectedReleaseIndex]?.name?.toLowerCase()
   const body = data[selectedReleaseIndex]?.body
 
-  console.log('TODO : replace extractImage logic here - Nouveautés')
-  /*
-  const image = extractImage(body)
+  const image = extractImageSrc(body)
 
   const releaseDateCool = getFormattedDate(
     new Date(data[selectedReleaseIndex].published_at),
     currentLangInfos.abrvLocale
   )
-  */
 
   return (
-    <main>
-      <div className="news-page flex items-start justify-center gap-8">
-        {/*
+    <div className="news-page flex items-start justify-center gap-8">
       <Meta
-				title={`${t('Nouveautés')} ${releaseDateCool} - ${capitaliseString(
-					releaseName
-				)}`}
-				image={image}
-			/>
-      */}
+        title={`${t('Nouveautés')} ${releaseDateCool} - ${capitaliseString(
+          releaseName
+        )}`}
+        image={image}
+        description={t(
+          'Consultez les dernières nouveautés de Nos Gestes Climat'
+        )}
+      />
 
-        <ReleaseSelect
-          releases={data}
-          selectedReleaseIndex={selectedReleaseIndex}
-        />
+      <ReleaseSelect
+        releases={data}
+        selectedReleaseIndex={selectedReleaseIndex}
+      />
 
-        <section className="flex">
-          <ul className="t-4 mr-4 hidden w-[12rem] flex-col border-0 border-r-[1px] border-solid border-r-gray-200 pl-0 text-sm md:sticky md:flex">
-            {data.map(({ name, published_at: date }, index) => {
-              const isActive = selectedReleaseIndex === index
-              return (
-                <li
-                  className={`m-0 list-inside list-none p-0 ${
-                    isActive ? 'bg-primary !text-white' : ''
-                  }`}
-                  key={name}>
-                  <InlineLink
-                    className={`m-0 px-2 py-1 ${isActive ? 'text-white' : ''}`}
-                    href={getPath(index, data)}>
-                    {name}
-                    <div>
-                      <small>
-                        {getFormattedDate(
-                          new Date(date),
-                          currentLangInfos.abrvLocale
-                        )}
-                      </small>
-                    </div>
-                  </InlineLink>
-                </li>
-              )
-            })}
-          </ul>
-          <div className="max-w-4xl flex-1">
-            <Title
-              className="text-3xl"
-              title={capitaliseString(releaseName) || ''}
-              subtitle={t('Nouveautés')}
-            />
-
-            <MDXRemote source={removeGithubIssuesReferences(body)} />
-
-            <div className="mt-10 flex justify-between">
-              {selectedReleaseIndex + 1 < data.length && (
-                <>
-                  <InlineLink href={getPath(selectedReleaseIndex + 1, data)}>
-                    ← {data[selectedReleaseIndex + 1].name}
-                  </InlineLink>{' '}
-                </>
-              )}
-              {selectedReleaseIndex > 0 && (
-                <InlineLink href={getPath(selectedReleaseIndex - 1, data)}>
-                  {data[selectedReleaseIndex - 1].name} →
+      <section className="flex">
+        <ul className="t-4 mr-4 hidden w-[12rem] flex-col border-0 border-r-[1px] border-solid border-r-gray-200 pl-0 text-sm md:sticky md:flex">
+          {data.map(({ name, published_at: date }, index) => {
+            const isActive = selectedReleaseIndex === index
+            return (
+              <li
+                className={`m-0 list-inside list-none p-0 ${
+                  isActive ? 'bg-primary !text-white' : ''
+                }`}
+                key={name}>
+                <InlineLink
+                  className={`m-0 px-2 py-1 ${isActive ? 'text-white' : ''}`}
+                  href={getPath(index, data)}>
+                  {name}
+                  <div>
+                    <small>
+                      {getFormattedDate(
+                        new Date(date),
+                        currentLangInfos.abrvLocale
+                      )}
+                    </small>
+                  </div>
                 </InlineLink>
-              )}
-            </div>
+              </li>
+            )
+          })}
+        </ul>
+        <div className="max-w-4xl flex-1">
+          <Title
+            className="text-3xl"
+            title={capitaliseString(releaseName) || ''}
+            subtitle={t('Nouveautés')}
+          />
+
+          <Markdown>{removeGithubIssuesReferences(body)}</Markdown>
+
+          <div className="mt-10 flex justify-between">
+            {selectedReleaseIndex + 1 < data.length && (
+              <>
+                <InlineLink href={getPath(selectedReleaseIndex + 1, data)}>
+                  ← {data[selectedReleaseIndex + 1].name}
+                </InlineLink>{' '}
+              </>
+            )}
+            {selectedReleaseIndex > 0 && (
+              <InlineLink href={getPath(selectedReleaseIndex - 1, data)}>
+                {data[selectedReleaseIndex - 1].name} →
+              </InlineLink>
+            )}
           </div>
-        </section>
-      </div>
-    </main>
+        </div>
+      </section>
+    </div>
   )
 }

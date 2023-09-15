@@ -16,7 +16,7 @@ export const rehydrateDetails = (encodedDetails) =>
     )
 
 export const sumFromDetails = (details) =>
-  details?.reduce((memo, [name, value]) => memo + value, 0) || 0
+  details?.reduce((memo, [, value]) => memo + value, 0) || 0
 
 export default function ScoreFromURL(props) {
   if (!props.pages.length) return
@@ -53,9 +53,7 @@ export default function ScoreFromURL(props) {
           <TotalChart flatScoreArray={flatScoreArray} />
 
           <p>
-            <Trans>
-              Données valables pour les 30 derniers jours
-            </Trans>
+            <Trans>Données valables pour les 30 derniers jours</Trans>
           </p>
         </div>
       </Card>

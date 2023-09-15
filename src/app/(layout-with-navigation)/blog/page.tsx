@@ -1,4 +1,3 @@
-import dessinNGC from '@/assets/images/dessin-nosgestesclimat.png'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { Metadata } from 'next'
@@ -21,7 +20,7 @@ export default function Blog() {
           className="h-[237px] w-full object-cover object-center"
           width={400}
           height={100}
-          src={dessinNGC}
+          src="/images/misc/dessin-nosgestesclimat.png"
         />
         <p>
           <Trans>Découvrez nos articles de blog :</Trans>

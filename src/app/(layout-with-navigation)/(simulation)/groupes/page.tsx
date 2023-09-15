@@ -7,9 +7,8 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import CreateFirstGroupSection from './_components/CreateFirstGroupSection'
 import CreateOtherGroupsSection from './_components/CreateOtherGroupsSection'
-import NoSimulationSection from './_components/NoSimulationSection'
 import ServerErrorSection from './_components/ServerErrorSection'
-import { useGetGroups } from './_hooks/useGetGroups'
+import { useFetchGroups } from './_hooks/usFetchGroups'
 import FeedbackBlock from './resultats/_components/FeedbackBlock'
 import SondagesBlock from './resultats/_components/SondagesBlock'
 
@@ -17,10 +16,10 @@ export default function GroupesPage() {
   const { t } = useClientTranslation()
 
   const { getCurrentSimulation, user } = useUser()
-
+  console.log(user)
   const currentSimulation = getCurrentSimulation()
 
-  const { data: groups, isFetched } = useGetGroups(user?.id)
+  const { data: groups, isFetched } = useFetchGroups(user?.id)
 
   return (
     <main className="p-4 md:p-8">
@@ -44,11 +43,7 @@ export default function GroupesPage() {
 
       {isFetched && !groups && <ServerErrorSection />}
 
-      {!currentSimulation && <NoSimulationSection />}
-
-      {currentSimulation && groups && groups?.length === 0 && (
-        <CreateFirstGroupSection />
-      )}
+      {groups && groups?.length === 0 && <CreateFirstGroupSection />}
 
       {currentSimulation && groups && groups?.length > 0 && (
         <CreateOtherGroupsSection groups={groups} />

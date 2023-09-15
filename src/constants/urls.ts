@@ -14,7 +14,8 @@ export const getOpenmojiURL = (name: string) => `/images/${openmojis[name]}.svg`
 const secure = process.env.NODE_ENV === 'development' ? '' : 's'
 const protocol = `http${secure}://`
 
-export const SERVER_URL = protocol + process.env.SERVER_URL
+export const SERVER_URL =
+  protocol + (process.env.SERVER_URL || process.env.NEXT_PUBLIC_SERVER_URL)
 
 export const SIMULATION_URL = SERVER_URL + '/simulation/'
 

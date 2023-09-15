@@ -15,7 +15,7 @@ export default function HasSimulationBanner() {
 
   const { progression, remainingQuestions, relevantQuestions } = useForm()
 
-  const { getCurrentSimulation } = useUser()
+  const { getCurrentSimulation, initSimulation } = useUser()
 
   const currentSimulation = getCurrentSimulation()
 
@@ -42,8 +42,8 @@ export default function HasSimulationBanner() {
           <p className="text-lg">
             {t('publicodes.Profil.recap', {
               percentFinished,
-              answeredQuestionsLength,
-              actionChoicesLength,
+              answeredQuestionsLength: answeredQuestionsLength || 0,
+              actionChoicesLength: actionChoicesLength || 0,
             })}{' '}
           </p>
         </Card>
@@ -77,7 +77,7 @@ export default function HasSimulationBanner() {
           color="secondary"
           className="my-2 !text-base"
           onClick={() => {
-            console.log('TODO: implement this')
+            initSimulation()
           }}>
           <span
             role="img"

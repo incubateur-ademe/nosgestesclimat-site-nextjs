@@ -4,18 +4,14 @@
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import CardGameIcon from '../../../components/icons/CardGameIcon'
 
-import closePlain from '@/assets/images/close-plain.svg'
-import profileImage from '@/assets/images/silhouette.svg'
-import groupImage from '@/assets/images/silhouettes.svg'
-
 import Logo from '@/components/misc/Logo'
-import LanguageSwitchButton from '@/components/translation/LanguageSwitchButton'
 import Trans from '@/components/translation/Trans'
 
-import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useGetPRNumber } from '@/hooks/useGetPRNumber'
 import { Persona } from '@/types/persona'
 import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
 import NavLink from './navigation/NavLink'
 
 const ActionsInteractiveIcon = ({ className = '' }) => {
@@ -35,16 +31,22 @@ const openmojis = {
   github: 'E045',
 }
 export const openmojiURL = (name: keyof typeof openmojis) =>
-  `@/assets/images/${openmojis[name]}.svg`
+  `/images/misc/${openmojis[name]}.svg`
 export const actionImg = openmojiURL('action')
 export const conferenceImg = openmojiURL('conference')
 
 export default function Navigation() {
   const { t } = useClientTranslation()
 
+  const router = useRouter()
+
+  const pathname = usePathname()
+
   const enquete = ''
+
   const persona: Persona | undefined = undefined
-  const pullRequestNumber: number | undefined = undefined
+
+  const { PRNumber, clearPRNumber } = useGetPRNumber()
 
   return (
     <nav
@@ -52,17 +54,21 @@ export default function Navigation() {
       className="z-50 my-2 flex flex-col justify-center outline-none lg:sticky lg:top-0 lg:my-0 lg:h-screen lg:w-[14rem] lg:shrink-0 lg:justify-start lg:overflow-hidden lg:border-0 lg:border-r-[1px] lg:border-solid lg:border-grey-200">
       <Logo size="small" className="hidden lg:block" />
 
-      <div className="z-100 fixed bottom-0 left-0 m-0 w-full border-0 border-t-[1px] border-solid border-grey-200 lg:static lg:z-auto lg:mt-4 lg:w-auto lg:border-none">
+      <div className="z-100 fixed bottom-0 left-0 m-0 w-screen border-0 border-t-[1px] border-solid border-grey-200 lg:static lg:z-auto lg:mt-4 lg:w-auto lg:border-none">
         <ul className="m-0 flex h-20 w-full list-none justify-between bg-white px-4 py-1 shadow-md lg:h-auto lg:flex-col lg:justify-start lg:gap-1 lg:bg-none lg:py-2 lg:shadow-none">
-          <NavLink href="/simulateur/bilan">
+          <NavLink
+            href="/simulateur/bilan"
+            className="justify-end !p-0 lg:justify-start lg:!p-4">
             <ProgressCircle className="lg:mr-4" />
             <span className="font-normal text-primaryDark">
               <Trans>Le test</Trans>
             </span>
           </NavLink>
 
-          <NavLink href="/actions">
-            <ActionsInteractiveIcon className="lg:mr-4" />
+          <NavLink
+            href="/actions"
+            className="justify-end !p-0 lg:justify-start lg:!p-4">
+            <ActionsInteractiveIcon className="w-12 lg:mr-4" />
 
             <span className="font-normal text-primaryDark">
               <Trans>Agir</Trans>
@@ -73,7 +79,7 @@ export default function Navigation() {
             <NavLink href="/profil">
               <div className="relative">
                 <Image
-                  src={profileImage}
+                  src="/images/misc/silhouette.svg"
                   alt=""
                   className="w-8 lg:mr-4"
                   aria-hidden="true"
@@ -96,7 +102,7 @@ export default function Navigation() {
           {!enquete && (
             <NavLink href="/groupes">
               <Image
-                src={groupImage}
+                src="/images/misc/silhouettes.svg"
                 alt=""
                 className="w-8 lg:mr-4"
                 aria-hidden="true"
@@ -110,11 +116,10 @@ export default function Navigation() {
             </NavLink>
           )}
 
-          {pullRequestNumber && (
+          {PRNumber && (
             <NavLink
               href={
-                'https://github.com/datagir/nosgestesclimat/pull/' +
-                pullRequestNumber
+                'https://github.com/datagir/nosgestesclimat/pull/' + PRNumber
               }>
               <Image
                 src={openmojiURL('github')}
@@ -124,34 +129,26 @@ export default function Navigation() {
                 width="20"
                 height="20"
               />
-              <span className="font-base text-primaryDark">
-                #{pullRequestNumber}
-              </span>
+              <span className="font-base text-primaryDark">#{PRNumber}</span>
 
-              <Button
-                color="text"
-                onClick={() => {
-                  /*
-							setSearchParams(omit(['PR'], searchParams))
-							dispatch(resetLocalisation())
-							chooseIp(undefined)
-							dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number: null })
-              */
-                  // reset PR number
+              <button
+                onClick={(event) => {
+                  event.stopPropagation()
+
+                  clearPRNumber()
+
+                  router.push(pathname)
                 }}>
                 <Image
                   className="w-6"
-                  src={closePlain}
+                  src="/images/misc/close-plain.svg"
                   alt=""
                   width="1"
                   height="1"
                 />
-              </Button>
+              </button>
             </NavLink>
           )}
-          <li className="mt-4 text-center">
-            <LanguageSwitchButton />
-          </li>
         </ul>
       </div>
     </nav>
