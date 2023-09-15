@@ -1,4 +1,4 @@
-import { NGCRule } from '@/types/model'
+import { NGCRule } from '@/publicodes-state/types'
 
 export const getRuleTitle = (
   rule: NGCRule & { dottedName: string; titre: string }

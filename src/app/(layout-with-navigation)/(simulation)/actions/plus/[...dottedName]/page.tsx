@@ -9,7 +9,8 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
-import { NGCRule, NGCRules } from '@/types/model'
+import { NGCRule } from '@/publicodes-state/types'
+import { NGCRules } from '@/types/model'
 import { usePathname } from 'next/navigation'
 import { utils } from 'publicodes'
 import { useFetchDocumentation } from '../../_hooks/useFetchDocumentation'
@@ -18,8 +19,8 @@ export default function ActionPlus() {
   const { t } = useClientTranslation()
   const encodedName = usePathname().replace('/actions/plus/', '')
 
-  const dottedName = utils.decodeRuleName(decodeURI(encodedName))
-  console.log('dottedName', dottedName, encodedName)
+  const dottedName: string = utils.decodeRuleName(decodeURI(encodedName))
+
   const locale = useLocale()
   const { user } = useUser()
 
