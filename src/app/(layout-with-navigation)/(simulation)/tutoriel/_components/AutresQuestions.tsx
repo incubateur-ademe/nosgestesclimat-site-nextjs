@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function AutresQuestions() {
   return (
-    <div className="order-last mb-8 pb-8 md:order-none">
+    <div className="order-last mb-8 md:order-none">
       <h5 className="mb-2 text-lg">D’autres questions ?</h5>
       <ul className="mb-1 list-none p-0">
         <li className="mb-2" id={'empreinte'}>

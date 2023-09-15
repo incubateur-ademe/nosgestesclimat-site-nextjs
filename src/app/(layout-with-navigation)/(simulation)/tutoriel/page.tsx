@@ -11,7 +11,6 @@ export default function Tutoriel() {
     <div className="flex flex-col p-4">
       <Title
         data-cypress-id="tutoriel-title"
-        className="text-lg md:text-3xl"
         title={
           <>
             <span className="inline text-secondary">

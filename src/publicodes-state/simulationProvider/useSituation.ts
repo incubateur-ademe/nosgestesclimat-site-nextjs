@@ -33,7 +33,6 @@ export default function useSituation({
   }
 
   useEffect(() => {
-    console.log('set situation', externalSituation)
     const safeSituation = getSafeSituation({
       situation: externalSituation,
       everyRules,
