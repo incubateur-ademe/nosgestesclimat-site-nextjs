@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { v4 as uuid } from 'uuid'
 import { User } from '../types'
 
 type Props = {
@@ -22,7 +23,7 @@ export default function usePersistentUser({
     },
     name: '',
     email: '',
-    id: '',
+    id: uuid(),
   })
 
   useEffect(() => {

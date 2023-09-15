@@ -9,7 +9,7 @@ import CreateFirstGroupSection from './_components/CreateFirstGroupSection'
 import CreateOtherGroupsSection from './_components/CreateOtherGroupsSection'
 import NoSimulationSection from './_components/NoSimulationSection'
 import ServerErrorSection from './_components/ServerErrorSection'
-import { useGetGroups } from './_hooks/useGetGroups'
+import { useFetchGroups } from './_hooks/usFetchGroups'
 import FeedbackBlock from './resultats/_components/FeedbackBlock'
 import SondagesBlock from './resultats/_components/SondagesBlock'
 
@@ -19,8 +19,8 @@ export default function GroupesPage() {
   const { getCurrentSimulation, user } = useUser()
 
   const currentSimulation = getCurrentSimulation()
-
-  const { data: groups, isFetched } = useGetGroups(user?.id)
+  console.log(user)
+  const { data: groups, isFetched } = useFetchGroups(user?.id)
 
   return (
     <main className="p-4 md:p-8">
