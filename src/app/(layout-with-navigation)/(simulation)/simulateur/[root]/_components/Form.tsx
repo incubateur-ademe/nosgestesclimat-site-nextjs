@@ -29,6 +29,7 @@ export default function Form() {
     [currentQuestion, currentCategory]
   )
 
+  console.log(remainingCategories)
   const router = useRouter()
 
   const { questionInQueryParams, setQuestionInQueryParams } =
@@ -104,7 +105,7 @@ export default function Form() {
             router.push(`/groupes/resultats?groupId=${groupId}`)
             return
           }
-
+          console.log('ON COMPLETE')
           router.push('/fin')
         }}
       />

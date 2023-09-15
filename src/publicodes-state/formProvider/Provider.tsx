@@ -23,6 +23,7 @@ export default function FormProvider({
     situation,
     foldedSteps,
     everyQuestions,
+    everyInactiveRules,
     everyMosaicChildWhoIsReallyInMosaic,
   } = useContext(simulationContext)
 
@@ -49,6 +50,7 @@ export default function FormProvider({
   } = useProgression({
     missingVariables,
     everyQuestions,
+    everyInactiveRules,
     categories,
     relevantQuestions,
     questionsByCategories,

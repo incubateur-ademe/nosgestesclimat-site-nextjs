@@ -35,12 +35,13 @@ export default function SimulationProvider({
 
   const {
     everyRules,
+    everyInactiveRules,
     everyQuestions,
     everyNotifications,
     everyMosaicChildWhoIsReallyInMosaic,
   } = useRules({ engine: pristineEngine })
 
-  const { situation, updateSituation } = useSituation({
+  const { situation, updateSituation, initialized } = useSituation({
     engine,
     everyRules,
     defaultSituation,
@@ -54,7 +55,7 @@ export default function SimulationProvider({
     safeGetRule,
     order: categoryOrder,
   })
-
+  console.log('initialized', initialized)
   return (
     <SimulationContext.Provider
       value={{
@@ -72,13 +73,14 @@ export default function SimulationProvider({
           }
         },
         everyRules,
+        everyInactiveRules,
         everyQuestions,
         everyNotifications,
         everyMosaicChildWhoIsReallyInMosaic,
         categories,
         subcategories,
       }}>
-      {children}
+      {initialized ? children : 'loading'}
     </SimulationContext.Provider>
   )
 }

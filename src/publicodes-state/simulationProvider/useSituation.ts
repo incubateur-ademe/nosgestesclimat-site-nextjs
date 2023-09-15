@@ -15,6 +15,7 @@ export default function useSituation({
   externalSituation,
   updateExternalSituation,
 }: Props) {
+  const [initialized, setInitialized] = useState(false)
   const [situation, setSituation] = useState(defaultSituation)
 
   const updateSituation = (situationToAdd: Situation): Promise<void> => {
@@ -33,18 +34,20 @@ export default function useSituation({
   }
 
   useEffect(() => {
-    //console.log('set situation', externalSituation)
+    console.log('set situation', externalSituation)
     const safeSituation = getSafeSituation({
       situation: externalSituation,
       everyRules,
     })
     engine.setSituation(safeSituation)
     setSituation(safeSituation)
+    setInitialized(true)
   }, [externalSituation, engine, everyRules])
 
   return {
     situation,
     updateSituation,
+    initialized,
   }
 }
 

@@ -19,6 +19,7 @@ type SimulationContextType = {
   foldedSteps: string[]
   addFoldedStep: (foldedStep: string) => void
   everyRules: string[]
+  everyInactiveRules: string[]
   everyQuestions: string[]
   everyNotifications: string[]
   everyMosaicChildWhoIsReallyInMosaic: string[]
@@ -36,6 +37,7 @@ export default createContext<SimulationContextType>({
   foldedSteps: [],
   addFoldedStep: () => '',
   everyRules: [],
+  everyInactiveRules: [],
   everyQuestions: [],
   everyNotifications: [],
   everyMosaicChildWhoIsReallyInMosaic: [],

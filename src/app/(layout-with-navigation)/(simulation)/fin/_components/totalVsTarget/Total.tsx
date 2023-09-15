@@ -9,7 +9,7 @@ type Props = {
 }
 export default function Total({ total }: Props) {
   const { categories } = useForm()
-  console.log(categories)
+
   return (
     <div className="relative h-full w-16 md:w-28">
       <Annotation content="Mon empreinte carbone" />

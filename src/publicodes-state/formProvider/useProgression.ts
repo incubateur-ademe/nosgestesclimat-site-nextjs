@@ -1,8 +1,9 @@
 import { useMemo } from 'react'
 
 type Props = {
-  missingVariables: any
-  everyQuestions: any
+  missingVariables: Record<string, number>
+  everyQuestions: string
+  everyInactiveRules: string
   categories: string[]
   relevantQuestions: string[]
   questionsByCategories: Record<string, string[]>
@@ -11,16 +12,19 @@ type Props = {
 export default function useProgression({
   missingVariables,
   everyQuestions,
+  everyInactiveRules,
   relevantQuestions,
   questionsByCategories,
   categories,
 }: Props) {
   const missingInputs = useMemo<string[]>(
     () =>
-      Object.keys(missingVariables).filter((missingInput: string) =>
-        everyQuestions.includes(missingInput)
+      Object.keys(missingVariables).filter(
+        (missingInput: string) =>
+          everyQuestions.includes(missingInput) &&
+          !everyInactiveRules.includes(missingInput)
       ),
-    [missingVariables, everyQuestions]
+    [missingVariables, everyQuestions, everyInactiveRules]
   )
 
   const remainingCategories: string[] = useMemo(

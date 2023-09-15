@@ -26,6 +26,7 @@ export default function useQuestions({
     () => safeEvaluate(root)?.missingVariables || {},
     [safeEvaluate, root, situation]
   )
+
   const remainingQuestions = useMemo<string[]>(
     () =>
       everyQuestions
