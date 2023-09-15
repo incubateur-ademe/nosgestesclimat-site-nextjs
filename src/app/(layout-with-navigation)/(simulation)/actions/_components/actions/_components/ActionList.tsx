@@ -49,7 +49,7 @@ export default function ActionList({
           return (
             <>
               <li className="m-4 h-auto w-full" key={convId}>
-                <FormProvider root={action.dottedName} categoryOrder={[]}>
+                <FormProvider root={action.dottedName}>
                   <ActionForm
                     key={action.dottedName}
                     category={action.dottedName.split(' . ')[0]}

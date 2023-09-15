@@ -119,7 +119,7 @@ export default function ActionDetailPage({
             <Trans>Personnalisez cette estimation</Trans>
           </h3>
 
-          <FormProvider root={dottedName} categoryOrder={[]}>
+          <FormProvider root={dottedName}>
             <ActionForm
               key={dottedName}
               category={dottedName.split(' . ')[0]}

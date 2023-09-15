@@ -4,7 +4,7 @@ import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
 
 type Props = {
   question: string
-  parentMosaic: StringConstructor
+  parentMosaic: string
 }
 
 export default function MosaicQuestion({ question, parentMosaic }: Props) {

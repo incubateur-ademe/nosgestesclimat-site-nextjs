@@ -2,7 +2,6 @@
 
 import Total from '@/components/total/Total'
 import Trans from '@/components/translation/Trans'
-import { orderedCategories } from '@/constants/orderedCategories'
 import Title from '@/design-system/layout/Title'
 import FormProvider from '@/publicodes-state/formProvider'
 import { useState } from 'react'
@@ -18,7 +17,7 @@ export default function Simulateur({ params }: Props) {
     setIsQuestionListOpen((prevIsQuestionListOpen) => !prevIsQuestionListOpen)
 
   return (
-    <FormProvider root={params.root} categoryOrder={orderedCategories}>
+    <FormProvider root={params.root}>
       <div className="hidden md:block">
         <Title title={<Trans>Votre bilan climat personnel</Trans>} />
       </div>

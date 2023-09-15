@@ -8,7 +8,7 @@ export default function useCurrent() {
   return {
     currentQuestion,
     currentCategory,
-    setCurrentQuestion: (newCurrentQuestion: string) => {
+    setCurrentQuestion: (newCurrentQuestion: string | null) => {
       setCurrentQuestion(newCurrentQuestion)
       if (newCurrentQuestion)
         setCurrentCategory(newCurrentQuestion.split(' . ')[0])

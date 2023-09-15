@@ -1,7 +1,6 @@
 'use client'
 
 import NorthStarBanner from '@/components/northstar/NorthstarBanner'
-import { orderedCategories } from '@/constants/orderedCategories'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import FormProvider from '@/publicodes-state/formProvider'
 import Slider from 'react-slick'
@@ -14,7 +13,7 @@ import './slick.css'
 
 export default function Fin() {
   return (
-    <FormProvider root={'bilan'} categoryOrder={orderedCategories}>
+    <FormProvider>
       <NorthStarBanner type="learned" />
       <div className="mb-12 flex justify-start md:mx-16">
         <ButtonLink size="sm" color="secondary" href="/simulateur/bilan">
