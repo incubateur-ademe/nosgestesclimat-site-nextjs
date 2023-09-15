@@ -36,7 +36,7 @@ export default function MosaicBooleanInput({
       disabled={isInactive}
       className={`relative rounded border px-4 py-2 text-left text-xl ${buttonClassNames[status]}`}
       onClick={() => {
-        setValue(value === 'oui' ? 'non' : 'oui') // TODO: shouldn't we have 'oui' and 'non' ?
+        setValue(value ? 'non' : 'oui') // TODO: shouldn't we have 'oui' and 'non' ?
       }}>
       {title && icons ? (
         <span
