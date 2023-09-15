@@ -12,7 +12,7 @@ export default function CategoryIntroduction({
   category,
   startCategory,
 }: Props) {
-  const { title, icons, color } = useRule(category)
+  const { title, color } = useRule(category)
   return (
     <div
       className="mb-4 flex flex-col items-center gap-4 rounded-lg p-8"
