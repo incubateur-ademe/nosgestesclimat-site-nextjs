@@ -8,6 +8,7 @@ type Props = {
   safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   categories: string[]
   situation: Situation
+  foldedSteps: string[]
   everyQuestions: string[]
   everyMosaicChildWhoIsReallyInMosaic: string[]
 }
@@ -17,24 +18,15 @@ export default function useQuestions({
   safeEvaluate,
   categories,
   situation,
+  foldedSteps,
   everyQuestions,
   everyMosaicChildWhoIsReallyInMosaic,
 }: Props) {
-  const missingVariables = useMemo(
+  const missingVariables = useMemo<Record<string, number>>(
     () => safeEvaluate(root)?.missingVariables || {},
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [safeEvaluate, situation, root]
+    [safeEvaluate, root, situation]
   )
-
-  const missingInputs = useMemo<string[]>(
-    () =>
-      Object.keys(missingVariables).filter((missingInput: string) =>
-        everyQuestions.includes(missingInput)
-      ),
-    [missingVariables, everyQuestions]
-  )
-
-  const askableQuestions = useMemo<string[]>(
+  const remainingQuestions = useMemo<string[]>(
     () =>
       everyQuestions
         .filter(
@@ -42,6 +34,11 @@ export default function useQuestions({
             !everyMosaicChildWhoIsReallyInMosaic.find(
               (mosaic) => mosaic === question
             )
+        )
+        .filter((question) =>
+          Object.keys(missingVariables).find((missingVariable) =>
+            missingVariable.includes(question)
+          )
         )
         .sort((a, b) => {
           const aSplittedName = a.split(' . ')
@@ -74,38 +71,23 @@ export default function useQuestions({
   const [relevantQuestions, setRelevantQuestions] = useState<string[]>([])
   useEffect(
     function () {
-      setRelevantQuestions((prevRelevantQuestions) => [
-        ...prevRelevantQuestions.filter(
-          (dottedName: string) =>
-            !getIsMissing({
+      setRelevantQuestions([
+        ...foldedSteps,
+        ...remainingQuestions.filter((dottedName: string) =>
+          getIsMissing({
+            dottedName,
+            situation,
+            questionsOfMosaic: getQuestionsOfMosaic({
               dottedName,
-              situation,
-              questionsOfMosaic: getQuestionsOfMosaic({
-                dottedName,
-                everyMosaicChildWhoIsReallyInMosaic,
-              }),
-            })
+              everyMosaicChildWhoIsReallyInMosaic,
+            }),
+          })
         ),
-        ...askableQuestions
-          .filter((question) =>
-            Object.keys(missingVariables).find((missingVariable) =>
-              missingVariable.includes(question)
-            )
-          )
-          .filter((dottedName: string) =>
-            getIsMissing({
-              dottedName,
-              situation,
-              questionsOfMosaic: getQuestionsOfMosaic({
-                dottedName,
-                everyMosaicChildWhoIsReallyInMosaic,
-              }),
-            })
-          ),
       ])
     },
     [
-      askableQuestions,
+      foldedSteps,
+      remainingQuestions,
       situation,
       missingVariables,
       everyMosaicChildWhoIsReallyInMosaic,
@@ -126,10 +108,8 @@ export default function useQuestions({
     [relevantQuestions, categories]
   )
 
-  //console.log(questionsByCategories)
-
   return {
-    missingInputs,
+    missingVariables,
     relevantQuestions,
     questionsByCategories,
   }

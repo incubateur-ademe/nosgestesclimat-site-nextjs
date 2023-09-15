@@ -1,27 +1,27 @@
 import { useMemo } from 'react'
-import { NGCEvaluatedNode, NGCRuleNode } from '../types'
-
+import { safeEvaluateHelper } from '../helpers/safeEvaluateHelper'
+import { Engine, NGCRuleNode } from '../types'
 type Props = {
+  engine: Engine
   root: string
   safeGetRule: (rule: string) => NGCRuleNode | null
-  safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   order: string[] | null
 }
 
 export default function useCategories({
+  engine,
   root,
   safeGetRule,
-  safeEvaluate,
   order,
 }: Props) {
-  const missingVariables = useMemo<string[]>(
-    () => Object.keys(safeEvaluate(root)?.missingVariables || {}),
-    [safeEvaluate, root]
+  const pristineMissingVariables = useMemo<Record<string, number>>(
+    () => safeEvaluateHelper(root, engine)?.missingVariables || {},
+    [engine, root]
   )
 
   const categories = useMemo<string[]>(
     () =>
-      missingVariables
+      Object.keys(pristineMissingVariables)
         .reduce(
           (accumulator: string[], currentValue: string) =>
             accumulator.includes(currentValue.split(' . ')[0])
@@ -32,7 +32,7 @@ export default function useCategories({
         .sort((a: string, b: string) =>
           !order ? 0 : order.indexOf(a) > order.indexOf(b) ? 1 : -1
         ),
-    [missingVariables, order]
+    [pristineMissingVariables, order]
   )
 
   const subcategories = useMemo<Record<string, string[]>>(

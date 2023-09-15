@@ -3,31 +3,25 @@ import { Simulation } from '../types'
 
 type Props = {
   storageKey: string
-  forgetSimulations?: boolean
 }
-export default function usePersistentSimulations({
-  storageKey,
-  forgetSimulations,
-}: Props) {
+export default function usePersistentSimulations({ storageKey }: Props) {
   const [initialized, setInitialized] = useState<boolean>(false)
 
   const [simulations, setSimulations] = useState<Simulation[]>([])
   const [currentSimulationId, setCurrentSimulationId] = useState<string>('')
 
   useEffect(() => {
-    const storedSimulations: Simulation[] = forgetSimulations
-      ? []
-      : JSON.parse(localStorage.getItem(storageKey) || '{}').simulations || []
+    const storedSimulations: Simulation[] =
+      JSON.parse(localStorage.getItem(storageKey) || '{}').simulations || []
 
-    const storedCurrentSimulation: string = forgetSimulations
-      ? ''
-      : JSON.parse(localStorage.getItem(storageKey) || '{}')
-          .currentSimulationId || ''
+    const storedCurrentSimulation: string =
+      JSON.parse(localStorage.getItem(storageKey) || '{}')
+        .currentSimulationId || ''
 
     setSimulations(storedSimulations)
     setCurrentSimulationId(storedCurrentSimulation)
     setInitialized(true)
-  }, [storageKey, forgetSimulations])
+  }, [storageKey])
 
   useEffect(() => {
     if (initialized) {

@@ -5,6 +5,7 @@ type Props = {
   title?: string
   icons?: string
   description?: string
+  setValue: (value: number) => void
 }
 
 export default function NumberInput({
@@ -12,8 +13,9 @@ export default function NumberInput({
   title,
   icons,
   description,
+  setValue,
 }: Props) {
-  const { value, setValue, isMissing } = useRule(question)
+  const { value, isMissing } = useRule(question)
 
   // Model shenanigans for description split...
   return (
@@ -48,7 +50,7 @@ export default function NumberInput({
           type="number"
           value={isMissing ? '' : Number(value)}
           placeholder={String(value)}
-          onChange={(event) => setValue(event.target.value)}
+          onChange={(event) => setValue(Number(event.target.value))}
         />
         <Button
           onClick={() => setValue(Number(value) + 1)}

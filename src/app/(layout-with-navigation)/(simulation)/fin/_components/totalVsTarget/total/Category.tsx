@@ -19,7 +19,6 @@ export default function Category({ category, total, position }: Props) {
   )
   const percent = (numericValue / total) * 100
 
-  if (percent < 5) return
   return (
     <div
       className={`relative flex w-full items-center justify-center  border-black transition-all ${positionClassNames[position]}`}

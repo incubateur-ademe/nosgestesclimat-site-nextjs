@@ -1,10 +1,10 @@
 'use client'
 
+import { orderedCategories } from '@/constants/orderedCategories'
 import Loader from '@/design-system/layout/Loader'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
-import { Simulation } from '@/types/simulation'
 import { usePathname } from 'next/navigation'
 import { PropsWithChildren, useEffect } from 'react'
 
@@ -17,10 +17,11 @@ export default function Providers({
 }: PropsWithChildren<Props>) {
   const {
     user,
-    simulations,
+    getCurrentSimulation,
     currentSimulationId,
     initSimulation,
     updateSituationOfCurrentSimulation,
+    updateFoldedStepsOfCurrentSimulation,
   } = useUser()
 
   const lang = useLocale()
@@ -42,12 +43,11 @@ export default function Providers({
     <SimulationProvider
       key={currentSimulationId}
       rules={rules}
-      situation={
-        (simulations as Array<Simulation>).find(
-          (simulation: Simulation) => simulation.id === currentSimulationId
-        )?.situation || {}
-      }
-      updateSituation={updateSituationOfCurrentSimulation}>
+      situation={getCurrentSimulation()?.situation || {}}
+      updateSituation={updateSituationOfCurrentSimulation}
+      foldedSteps={getCurrentSimulation()?.foldedSteps || []}
+      addFoldedStep={updateFoldedStepsOfCurrentSimulation}
+      categoryOrder={orderedCategories}>
       {children}
     </SimulationProvider>
   ) : pathname === '/tutoriel' ? (

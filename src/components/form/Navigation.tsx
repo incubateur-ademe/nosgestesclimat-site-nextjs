@@ -46,7 +46,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
         onClick={async () => {
           setIsSettingDefaultValue(true)
           if (isMissing) {
-            await setDefaultAsValue()
+            await setDefaultAsValue(question)
           }
           setIsSettingDefaultValue(false)
           if (!noNextQuestion) {

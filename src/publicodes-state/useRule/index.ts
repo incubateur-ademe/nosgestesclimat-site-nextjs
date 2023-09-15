@@ -18,6 +18,7 @@ export default function useRule(dottedName: string) {
     safeEvaluate,
     situation,
     updateSituation,
+    addFoldedStep,
     everyMosaicChildWhoIsReallyInMosaic,
   } = useContext(simulationContext)
 
@@ -81,6 +82,7 @@ export default function useRule(dottedName: string) {
       getType,
       questionsOfMosaic,
       updateSituation,
+      addFoldedStep,
     })
 
   return {

@@ -1,18 +1,28 @@
 import { useMemo } from 'react'
 
 type Props = {
-  missingInputs: string[]
+  missingVariables: any
+  everyQuestions: any
   categories: string[]
   relevantQuestions: string[]
   questionsByCategories: Record<string, string[]>
 }
 
 export default function useProgression({
-  missingInputs,
+  missingVariables,
+  everyQuestions,
   relevantQuestions,
   questionsByCategories,
   categories,
 }: Props) {
+  const missingInputs = useMemo<string[]>(
+    () =>
+      Object.keys(missingVariables).filter((missingInput: string) =>
+        everyQuestions.includes(missingInput)
+      ),
+    [missingVariables, everyQuestions]
+  )
+
   const remainingCategories: string[] = useMemo(
     () =>
       categories.filter((category) =>

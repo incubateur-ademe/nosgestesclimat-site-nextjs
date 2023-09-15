@@ -10,14 +10,12 @@ import usePersistentUser from './usePersistentUser'
 type Props = {
   storageKey?: string
   initialRegion: { code: string; name: string }
-  forgetSimulations?: boolean
 }
 
 export default function UserProvider({
   children,
   storageKey = 'ngc',
   initialRegion,
-  forgetSimulations,
 }: PropsWithChildren<Props>) {
   const { user, setUser } = usePersistentUser({ storageKey, initialRegion })
 
@@ -28,7 +26,7 @@ export default function UserProvider({
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
-  } = usePersistentSimulations({ storageKey, forgetSimulations })
+  } = usePersistentSimulations({ storageKey })
 
   return (
     <UserContext.Provider

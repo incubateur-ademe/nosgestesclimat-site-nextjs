@@ -14,6 +14,7 @@ export default function Mosaic({ question }: Props) {
         ? questionsOfMosaic.map((questionOfMosaic) => (
             <MosaicQuestion
               key={questionOfMosaic}
+              parentMosaic={question}
               question={questionOfMosaic}
             />
           ))

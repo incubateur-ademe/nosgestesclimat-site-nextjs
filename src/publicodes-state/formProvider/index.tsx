@@ -9,7 +9,7 @@ type Props = {
   categoryOrder: string[]
 }
 
-export default function CheckFormProvider({
+export default function FailSafeFormProvider({
   root = 'bilan',
   categoryOrder,
   children,
