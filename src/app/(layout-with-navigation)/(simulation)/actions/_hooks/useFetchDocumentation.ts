@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 export function useFetchDocumentation(PRNumber?: string) {
+  // TODO : fix the PRNumber logic using the vercel preview url
   const documentationUrl =
     (PRNumber
       ? `https://deploy-preview-${PRNumber}--ecolab-data.netlify.app`
