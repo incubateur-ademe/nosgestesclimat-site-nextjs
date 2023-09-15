@@ -9,7 +9,7 @@ export default function Slide({
 }: PropsWithChildren<Props>) {
   return (
     <div
-      className={`h-full rounded-lg bg-primaryLight${
+      className={`max-w-screen mx-auto h-[30rem] w-[34rem] rounded-lg bg-primaryLight${
         noMargin ? '' : ' p-4 md:p-12'
       } overflow-hidden`}>
       {children}

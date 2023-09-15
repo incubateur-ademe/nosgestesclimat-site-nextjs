@@ -71,6 +71,8 @@ export default function NorthStarBanner({
     }
   }, [])
 
+  console.log(shouldDisplayNorthstarBanner)
+
   if (!shouldDisplayNorthstarBanner) {
     return null
   }
