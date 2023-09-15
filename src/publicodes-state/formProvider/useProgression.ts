@@ -2,8 +2,8 @@ import { useMemo } from 'react'
 
 type Props = {
   missingVariables: Record<string, number>
-  everyQuestions: string
-  everyInactiveRules: string
+  everyQuestions: string[]
+  everyInactiveRules: string[]
   categories: string[]
   relevantQuestions: string[]
   questionsByCategories: Record<string, string[]>
