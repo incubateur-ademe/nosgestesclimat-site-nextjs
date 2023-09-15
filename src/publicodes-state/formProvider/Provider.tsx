@@ -19,7 +19,6 @@ export default function FormProvider({
     categories,
     subcategories,
     safeEvaluate,
-    safeGetRule,
     situation,
     foldedSteps,
     everyQuestions,

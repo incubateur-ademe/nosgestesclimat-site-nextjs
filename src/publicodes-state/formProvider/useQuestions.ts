@@ -24,6 +24,7 @@ export default function useQuestions({
 }: Props) {
   const missingVariables = useMemo<Record<string, number>>(
     () => safeEvaluate(root)?.missingVariables || {},
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [safeEvaluate, root, situation]
   )
 
