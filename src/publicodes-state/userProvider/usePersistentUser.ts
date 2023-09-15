@@ -23,7 +23,7 @@ export default function usePersistentUser({
     },
     name: '',
     email: '',
-    id: uuid(),
+    id: '',
   })
 
   useEffect(() => {
@@ -31,6 +31,7 @@ export default function usePersistentUser({
       JSON.parse(localStorage.getItem(storageKey) || '{}').user || {
         region: initialRegion,
         initialRegion,
+        id: uuid(),
       }
     )
     setInitialized(true)

@@ -1,6 +1,7 @@
 'use client'
 
 import { Dispatch, SetStateAction, createContext } from 'react'
+import { v4 as uuid } from 'uuid'
 import { Simulation, Tutorials, User } from '../types'
 
 type UserContextType = {
@@ -26,7 +27,7 @@ export default createContext<UserContextType>({
     },
     name: '',
     email: '',
-    id: '',
+    id: uuid(),
   },
   setUser: () => {},
   tutorials: {},
