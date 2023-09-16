@@ -43,20 +43,26 @@ export default function useCategories({
           [currentValue]:
             currentValue === 'services sociétaux'
               ? []
-              : safeGetRule(
-                  currentValue === 'logement'
-                    ? 'logement . impact' // Model shenanigans
-                    : currentValue === 'transport'
-                    ? 'transport . empreinte'
-                    : currentValue
-                )?.rawNode?.formule?.somme?.map(
-                  (rule: string) => currentValue + ' . ' + rule
-                ) || [],
+              : (
+                  safeGetRule(
+                    currentValue === 'logement'
+                      ? 'logement . impact' // Model shenanigans
+                      : currentValue === 'transport'
+                      ? 'transport . empreinte'
+                      : currentValue
+                  )?.rawNode?.formule?.somme?.map(
+                    (rule: string) => currentValue + ' . ' + rule
+                  ) || []
+                ).sort((a: string, b: string) =>
+                  (safeEvaluateHelper(a, engine)?.nodeValue || 0) >
+                  (safeEvaluateHelper(b, engine)?.nodeValue || 0)
+                    ? -1
+                    : 1
+                ),
         }),
         {}
       ),
     [categories, safeGetRule]
   )
-
   return { categories, subcategories }
 }

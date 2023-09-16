@@ -7,6 +7,7 @@ type Props = {
   root: string
   safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   categories: string[]
+  subcategories: Record<string, string[]>
   situation: Situation
   foldedSteps: string[]
   everyQuestions: string[]
@@ -17,6 +18,7 @@ export default function useQuestions({
   root,
   safeEvaluate,
   categories,
+  subcategories,
   situation,
   foldedSteps,
   everyQuestions,
@@ -45,18 +47,56 @@ export default function useQuestions({
         .sort((a, b) => {
           const aSplittedName = a.split(' . ')
           const bSplittedName = b.split(' . ')
-          for (let i = 0; i < 2; i++) {
-            if (bSplittedName[i] < aSplittedName[i]) {
-              return 1
-            }
-            if (bSplittedName[i] > aSplittedName[i]) {
-              return -1
-            }
+
+          if (
+            categories.indexOf(aSplittedName[0]) >
+            categories.indexOf(bSplittedName[0])
+          ) {
+            return 1
           }
-          if (a.includes('km') || a.includes('propriétaire')) {
+          if (
+            categories.indexOf(aSplittedName[0]) <
+            categories.indexOf(bSplittedName[0])
+          ) {
             return -1
           }
-          if (b.includes('km') || b.includes('propriétaire')) {
+
+          const categoryOfBothQuestions = aSplittedName[0]
+          const aCategoryAndSubcategory =
+            aSplittedName[0] + ' . ' + aSplittedName[1]
+          const bCategoryAndSubcategory =
+            bSplittedName[0] + ' . ' + bSplittedName[1]
+          if (
+            subcategories[categoryOfBothQuestions].indexOf(
+              aCategoryAndSubcategory
+            ) >
+            subcategories[categoryOfBothQuestions].indexOf(
+              bCategoryAndSubcategory
+            )
+          ) {
+            return 1
+          }
+          if (
+            subcategories[categoryOfBothQuestions].indexOf(
+              aCategoryAndSubcategory
+            ) <
+            subcategories[categoryOfBothQuestions].indexOf(
+              bCategoryAndSubcategory
+            )
+          ) {
+            return -1
+          }
+
+          if (a.includes('km')) {
+            return -1
+          }
+          if (b.includes('km')) {
+            return 1
+          }
+          if (a.includes('propriétaire')) {
+            return -1
+          }
+          if (b.includes('propriétaire')) {
             return 1
           }
           if (bSplittedName.length > aSplittedName.length) {
@@ -67,9 +107,15 @@ export default function useQuestions({
           }
           return missingVariables[b] - missingVariables[a]
         }),
-    [missingVariables, everyQuestions, everyMosaicChildWhoIsReallyInMosaic]
+    [
+      categories,
+      subcategories,
+      missingVariables,
+      everyQuestions,
+      everyMosaicChildWhoIsReallyInMosaic,
+    ]
   )
-
+  console.log(subcategories, remainingQuestions)
   const [relevantQuestions, setRelevantQuestions] = useState<string[]>([])
   useEffect(
     function () {

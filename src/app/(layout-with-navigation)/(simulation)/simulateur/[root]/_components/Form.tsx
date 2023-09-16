@@ -29,7 +29,6 @@ export default function Form() {
     [currentQuestion, currentCategory]
   )
 
-  console.log(remainingCategories)
   const router = useRouter()
 
   const { questionInQueryParams, setQuestionInQueryParams } =
