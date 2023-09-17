@@ -62,7 +62,7 @@ export default function useCategories({
         }),
         {}
       ),
-    [categories, safeGetRule]
+    [categories, safeGetRule, engine]
   )
   return { categories, subcategories }
 }
