@@ -1,17 +1,24 @@
+import { useDebug } from '@/hooks/useDebug'
 import { useForm } from '@/publicodes-state'
-import Category from './summary/Category'
+import Question from './summary/Question'
 
 type Props = {
   toggleQuestionList: () => void
+  isQuestionListOpen: boolean
 }
-export default function Summary({ toggleQuestionList }: Props) {
-  const { categories } = useForm()
+export default function Summary({
+  toggleQuestionList,
+  isQuestionListOpen,
+}: Props) {
+  const isDebug = useDebug()
+
+  const { relevantQuestions } = useForm()
   return (
-    <div>
-      {categories.map((category: any) => (
-        <Category
-          key={category}
-          category={category}
+    <div className={isQuestionListOpen || isDebug ? 'block' : 'hidden'}>
+      {relevantQuestions.map((question: any) => (
+        <Question
+          key={question}
+          question={question}
           toggleQuestionList={toggleQuestionList}
         />
       ))}

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import getIsMissing from '../helpers/getIsMissing'
 import getQuestionsOfMosaic from '../helpers/getQuestionsOfMosaic'
 import { NGCEvaluatedNode, Situation } from '../types'
@@ -25,7 +25,12 @@ export default function useQuestions({
   everyMosaicChildWhoIsReallyInMosaic,
 }: Props) {
   const missingVariables = useMemo<Record<string, number>>(
-    () => safeEvaluate(root)?.missingVariables || {},
+    () =>
+      Object.fromEntries(
+        Object.entries(safeEvaluate(root)?.missingVariables || {}).filter(
+          (missingVariable) => everyQuestions.includes(missingVariable[0])
+        )
+      ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [safeEvaluate, root, situation]
   )
@@ -48,6 +53,7 @@ export default function useQuestions({
           const aSplittedName = a.split(' . ')
           const bSplittedName = b.split(' . ')
 
+          // We first sort by category
           if (
             categories.indexOf(aSplittedName[0]) >
             categories.indexOf(bSplittedName[0])
@@ -61,6 +67,7 @@ export default function useQuestions({
             return -1
           }
 
+          // then by subcategory
           const categoryOfBothQuestions = aSplittedName[0]
           const aCategoryAndSubcategory =
             aSplittedName[0] + ' . ' + aSplittedName[1]
@@ -87,6 +94,7 @@ export default function useQuestions({
             return -1
           }
 
+          // then if there is a km or a proprietaire
           if (a.includes('km')) {
             return -1
           }
@@ -99,12 +107,16 @@ export default function useQuestions({
           if (b.includes('propriétaire')) {
             return 1
           }
+
+          // then by length
           if (bSplittedName.length > aSplittedName.length) {
             return -1
           }
           if (aSplittedName.length > bSplittedName.length) {
             return 1
           }
+
+          // then by number of missing variables
           return missingVariables[b] - missingVariables[a]
         }),
     [
@@ -115,29 +127,25 @@ export default function useQuestions({
       everyMosaicChildWhoIsReallyInMosaic,
     ]
   )
-  console.log(subcategories, remainingQuestions)
-  const [relevantQuestions, setRelevantQuestions] = useState<string[]>([])
-  useEffect(
-    function () {
-      setRelevantQuestions([
-        ...foldedSteps,
-        ...remainingQuestions.filter((dottedName: string) =>
-          getIsMissing({
+
+  const relevantQuestions = useMemo<string[]>(
+    () => [
+      ...foldedSteps,
+      ...remainingQuestions.filter((dottedName: string) =>
+        getIsMissing({
+          dottedName,
+          situation,
+          questionsOfMosaic: getQuestionsOfMosaic({
             dottedName,
-            situation,
-            questionsOfMosaic: getQuestionsOfMosaic({
-              dottedName,
-              everyMosaicChildWhoIsReallyInMosaic,
-            }),
-          })
-        ),
-      ])
-    },
+            everyMosaicChildWhoIsReallyInMosaic,
+          }),
+        })
+      ),
+    ],
     [
       foldedSteps,
       remainingQuestions,
       situation,
-      missingVariables,
       everyMosaicChildWhoIsReallyInMosaic,
     ]
   )
@@ -158,6 +166,7 @@ export default function useQuestions({
 
   return {
     missingVariables,
+    remainingQuestions,
     relevantQuestions,
     questionsByCategories,
   }

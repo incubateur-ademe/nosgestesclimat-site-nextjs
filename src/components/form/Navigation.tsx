@@ -12,27 +12,20 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
   const {
     gotoPrevQuestion,
     gotoNextQuestion,
-    gotoPrevCategory,
-    gotoNextCategory,
     noPrevQuestion,
     noNextQuestion,
-    noPrevCategory,
-    noNextCategory,
+    isLastQuestionOfCategory,
   } = useForm()
   const { isMissing, setDefaultAsValue } = useRule(question)
   const [isSettingDefaultValue, setIsSettingDefaultValue] = useState(false)
   return (
     <div className="flex justify-end  gap-4">
-      {!(noPrevQuestion && noPrevCategory) ? (
+      {!noPrevQuestion ? (
         <Button
-          disabled={(noPrevQuestion && noPrevCategory) || isSettingDefaultValue}
+          disabled={isSettingDefaultValue}
           onClick={() => {
             if (!noPrevQuestion) {
               gotoPrevQuestion()
-              return
-            }
-            if (!noPrevCategory) {
-              gotoPrevCategory()
               return
             }
           }}
@@ -47,18 +40,17 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
           setIsSettingDefaultValue(true)
           await setDefaultAsValue(question)
           setIsSettingDefaultValue(false)
+          if (isLastQuestionOfCategory) {
+            console.log('Category Change')
+          }
           if (!noNextQuestion) {
             gotoNextQuestion()
-            return
-          }
-          if (!noNextCategory) {
-            gotoNextCategory()
             return
           }
           onComplete()
         }}>
         <Trans>
-          {noNextQuestion && noNextCategory
+          {noNextQuestion
             ? 'Terminer'
             : isMissing
             ? 'Je ne sais pas →'
