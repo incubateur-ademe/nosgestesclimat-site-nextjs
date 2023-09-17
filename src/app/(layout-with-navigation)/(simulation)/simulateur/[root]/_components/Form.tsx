@@ -1,98 +1,56 @@
-import { useForm, useUser } from '@/publicodes-state'
-import { useEffect, useMemo, useRef } from 'react'
-
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
+import questions from '@/components/questions'
 import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
+import { useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
-import CategoryIntroduction from './form/CategoryIntroduction'
-
-import questions from '@/components/questions'
+import { useEffect, useState } from 'react'
+import TestCompleted from './form/TestCompleted'
 
 export default function Form() {
-  const {
-    remainingCategories,
-    remainingQuestionsByCategories,
-    currentQuestion,
-    setCurrentQuestion,
-    currentCategory,
-    setCurrentCategory,
-  } = useForm()
+  const { remainingQuestions, currentQuestion, setCurrentQuestion } = useForm()
 
   const { groupToRedirectToAfterTest, setGroupToRedirectToAfterTest } =
     useUser()
 
-  const isInitialized = useMemo(
-    () => (currentQuestion && currentCategory ? true : false),
-    [currentQuestion, currentCategory]
-  )
+  const [isInitialized, setIsInitialized] = useState(false)
 
-  console.log(remainingCategories)
   const router = useRouter()
 
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()
 
-  const prevQuestionInQueryParams = useRef(questionInQueryParams)
-
   useEffect(() => {
-    if (!currentCategory) {
+    if (!isInitialized) {
       if (questionInQueryParams) {
         setCurrentQuestion(questionInQueryParams)
-        setCurrentCategory(questionInQueryParams.split(' . ')[0])
       } else {
-        setCurrentCategory(remainingCategories[0])
+        setCurrentQuestion(remainingQuestions[0])
       }
+      setIsInitialized(true)
     }
   }, [
-    currentCategory,
     questionInQueryParams,
-    remainingCategories,
-    remainingQuestionsByCategories,
-    setCurrentCategory,
+    remainingQuestions,
     setCurrentQuestion,
-  ])
-
-  useEffect(() => {
-    if (
-      currentQuestion !== questionInQueryParams &&
-      prevQuestionInQueryParams.current !== questionInQueryParams
-    ) {
-      setCurrentQuestion(questionInQueryParams)
-      setCurrentCategory(questionInQueryParams.split(' . ')[0])
-    }
-    prevQuestionInQueryParams.current = questionInQueryParams
-  }, [
-    questionInQueryParams,
-    currentQuestion,
-    setCurrentQuestion,
-    setCurrentCategory,
+    isInitialized,
   ])
 
   useEffect(() => {
     if (isInitialized && currentQuestion) {
       setQuestionInQueryParams(currentQuestion)
     }
-  }, [
-    setQuestionInQueryParams,
-    currentQuestion,
-    currentCategory,
-    isInitialized,
-  ])
+  }, [setQuestionInQueryParams, currentQuestion, isInitialized])
 
-  if (!currentCategory) return 'Vous avez tout fini :)'
+  if (!isInitialized) {
+    return
+  }
 
-  if (!currentQuestion)
-    return (
-      <CategoryIntroduction
-        category={currentCategory}
-        startCategory={() =>
-          setCurrentQuestion(remainingQuestionsByCategories[currentCategory][0])
-        }
-      />
-    )
+  if (!currentQuestion) {
+    return <TestCompleted />
+  }
 
   return (
     <div className="mb-4 rounded-lg bg-primaryLight p-4">
@@ -115,8 +73,11 @@ export default function Form() {
             router.push(`/groupes/resultats?groupId=${groupId}`)
             return
           }
-          console.log('ON COMPLETE')
-          router.push('/fin')
+
+          // Not sure why but we need a timer
+          setTimeout(() => {
+            router.push('/fin')
+          }, 500)
         }}
       />
     </div>

@@ -8,7 +8,7 @@ import AvantDeCommencer from './_components/AvantDeCommencer'
 
 export default function Tutoriel() {
   return (
-    <div className="flex flex-col p-4">
+    <div className="flex flex-col">
       <Title
         data-cypress-id="tutoriel-title"
         title={
@@ -21,9 +21,7 @@ export default function Tutoriel() {
         }
       />
       <AvantDeCommencer />
-
       <AutresQuestions />
-
       <div className="mb-8 flex justify-between border-t border-gray-200 pt-8">
         <ButtonLink href="/" color="secondary">
           ←

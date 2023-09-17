@@ -55,7 +55,7 @@ export default function SimulationProvider({
     safeGetRule,
     order: categoryOrder,
   })
-  console.log('initialized', initialized)
+
   return (
     <SimulationContext.Provider
       value={{
@@ -67,6 +67,7 @@ export default function SimulationProvider({
         situation,
         updateSituation,
         foldedSteps,
+        //TODO: should clean a bit
         addFoldedStep: (foldedStep) => {
           if (!foldedSteps.includes(foldedStep)) {
             addFoldedStep(foldedStep)

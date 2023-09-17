@@ -12,7 +12,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function TakeTestLink() {
   const { tutorials, currentSimulationId } = useUser()
-  console.log(tutorials)
+
   return (
     <ButtonLink
       href={tutorials.testIntro ? '/simulateur/bilan' : '/tutoriel'}

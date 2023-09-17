@@ -1,33 +1,20 @@
 import { useMemo } from 'react'
 
 type Props = {
-  remainingCategories: string[]
-  questionsByCategories: Record<string, string[]>
+  remainingQuestions: string[]
+  relevantQuestions: string[]
   currentQuestion: string | null
-  currentCategory: string | null
   setCurrentQuestion: (question: string | null) => void
-  setCurrentCategory: (question: string | null) => void
 }
 
 export default function useNavigation({
-  remainingCategories,
-  questionsByCategories,
+  relevantQuestions,
   currentQuestion,
-  currentCategory,
   setCurrentQuestion,
-  setCurrentCategory,
 }: Props) {
   const currentQuestionIndex = useMemo<number>(
-    () =>
-      currentCategory && currentQuestion
-        ? questionsByCategories?.[currentCategory]?.indexOf(currentQuestion)
-        : 0,
-    [questionsByCategories, currentQuestion, currentCategory]
-  )
-
-  const currentCategoryIndex = useMemo<number>(
-    () => (currentCategory ? remainingCategories?.indexOf(currentCategory) : 0),
-    [remainingCategories, currentCategory]
+    () => (currentQuestion ? relevantQuestions?.indexOf(currentQuestion) : 0),
+    [relevantQuestions, currentQuestion]
   )
 
   const noPrevQuestion = useMemo<boolean>(
@@ -35,77 +22,41 @@ export default function useNavigation({
     [currentQuestionIndex]
   )
   const noNextQuestion = useMemo<boolean>(
-    () =>
-      currentCategory
-        ? currentQuestionIndex ===
-          questionsByCategories?.[currentCategory]?.length - 1
-        : false,
-    [questionsByCategories, currentQuestionIndex, currentCategory]
+    () => !relevantQuestions[currentQuestionIndex + 1],
+    [relevantQuestions, currentQuestionIndex]
   )
 
-  const noPrevCategory = useMemo<boolean>(
-    () => currentCategoryIndex === 0,
-    [currentCategoryIndex]
-  )
-  const noNextCategory = useMemo<boolean>(
-    () => currentCategoryIndex === remainingCategories?.length - 1,
-    [currentCategoryIndex, remainingCategories]
+  const isLastQuestionOfCategory = useMemo<boolean>(
+    () =>
+      relevantQuestions[currentQuestionIndex + 1]?.split(' . ')[0] !==
+      currentQuestion?.split(' . ')[0],
+    [currentQuestion, currentQuestionIndex, relevantQuestions]
   )
 
   const gotoPrevQuestion = (): string | undefined => {
-    if (noPrevQuestion || !currentCategory) return
+    if (noPrevQuestion) return
 
-    const newCurrentQuestion =
-      questionsByCategories?.[currentCategory][currentQuestionIndex - 1]
+    const newCurrentQuestion = relevantQuestions[currentQuestionIndex - 1]
 
     setCurrentQuestion(newCurrentQuestion)
 
     return newCurrentQuestion
   }
   const gotoNextQuestion = (): string | undefined => {
-    if (noNextQuestion || !currentCategory) return
+    if (noNextQuestion) return
 
-    const newCurrentQuestion =
-      questionsByCategories?.[currentCategory][currentQuestionIndex + 1]
+    const newCurrentQuestion = relevantQuestions[currentQuestionIndex + 1]
 
     setCurrentQuestion(newCurrentQuestion)
 
     return newCurrentQuestion
   }
 
-  const gotoPrevCategory = (): string | undefined => {
-    if (noPrevCategory) return
-
-    const newCurrentCategory = remainingCategories[currentCategoryIndex - 1]
-    const newCurrentQuestion =
-      questionsByCategories?.[newCurrentCategory][
-        questionsByCategories?.[newCurrentCategory].length - 1
-      ]
-
-    setCurrentCategory(newCurrentCategory)
-    setCurrentQuestion(newCurrentQuestion)
-
-    return newCurrentCategory
-  }
-  const gotoNextCategory = (): string | undefined => {
-    if (noNextCategory) return
-
-    const newCurrentCategory = remainingCategories[currentCategoryIndex + 1]
-
-    setCurrentCategory(newCurrentCategory)
-    setCurrentQuestion(null)
-
-    return newCurrentCategory
-  }
-
   return {
     gotoPrevQuestion,
     gotoNextQuestion,
-    gotoPrevCategory,
-    gotoNextCategory,
     noPrevQuestion,
     noNextQuestion,
-    noPrevCategory,
-    noNextCategory,
+    isLastQuestionOfCategory,
   }
 }

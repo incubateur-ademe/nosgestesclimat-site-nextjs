@@ -14,32 +14,22 @@ export default function useForm() {
     currentCategory,
     setCurrentQuestion,
     setCurrentCategory,
-    remainingCategories,
-    answeredCategories,
     remainingQuestions,
-    answeredQuestions,
     progression,
     remainingQuestionsByCategories,
-    answeredQuestionsByCategories,
-    progressionByCategory,
   } = useContext(formContext)
 
   const {
     gotoPrevQuestion,
     gotoNextQuestion,
-    gotoPrevCategory,
-    gotoNextCategory,
     noPrevQuestion,
     noNextQuestion,
-    noPrevCategory,
-    noNextCategory,
+    isLastQuestionOfCategory,
   } = useNavigation({
-    remainingCategories,
-    questionsByCategories,
+    remainingQuestions,
+    relevantQuestions,
     currentQuestion,
-    currentCategory,
     setCurrentQuestion,
-    setCurrentCategory,
   })
 
   return {
@@ -53,19 +43,11 @@ export default function useForm() {
     setCurrentCategory,
     gotoPrevQuestion,
     gotoNextQuestion,
-    gotoPrevCategory,
-    gotoNextCategory,
     noPrevQuestion,
     noNextQuestion,
-    noPrevCategory,
-    noNextCategory,
-    remainingCategories,
-    answeredCategories,
+    isLastQuestionOfCategory,
     remainingQuestions,
-    answeredQuestions,
     progression,
     remainingQuestionsByCategories,
-    answeredQuestionsByCategories,
-    progressionByCategory,
   }
 }

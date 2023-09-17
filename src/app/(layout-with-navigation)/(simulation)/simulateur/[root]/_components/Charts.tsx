@@ -8,7 +8,7 @@ export default function Charts() {
   const [isBarChartVisible, setIsBarChartVisible] = useState(false)
   if (!currentCategory) return
   return (
-    <>
+    <div className="flex flex-col">
       <InlineChart />
       <button
         className="mx-auto"
@@ -33,6 +33,6 @@ export default function Charts() {
         </svg>
       </button>
       {isBarChartVisible ? <BarChart /> : null}
-    </>
+    </div>
   )
 }

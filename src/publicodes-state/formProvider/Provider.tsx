@@ -22,37 +22,25 @@ export default function FormProvider({
     situation,
     foldedSteps,
     everyQuestions,
-    everyInactiveRules,
     everyMosaicChildWhoIsReallyInMosaic,
   } = useContext(simulationContext)
 
-  const { missingVariables, relevantQuestions, questionsByCategories } =
+  const { remainingQuestions, relevantQuestions, questionsByCategories } =
     useQuestions({
       root,
       safeEvaluate,
       categories,
+      subcategories,
       foldedSteps,
       situation,
       everyQuestions,
       everyMosaicChildWhoIsReallyInMosaic,
     })
 
-  const {
-    remainingCategories,
-    answeredCategories,
-    remainingQuestions,
-    answeredQuestions,
-    progression,
-    remainingQuestionsByCategories,
-    answeredQuestionsByCategories,
-    progressionByCategory,
-  } = useProgression({
-    missingVariables,
-    everyQuestions,
-    everyInactiveRules,
+  const { progression, remainingQuestionsByCategories } = useProgression({
     categories,
+    remainingQuestions,
     relevantQuestions,
-    questionsByCategories,
   })
 
   const {
@@ -70,14 +58,9 @@ export default function FormProvider({
         subcategories,
         relevantQuestions,
         questionsByCategories,
-        remainingCategories,
-        answeredCategories,
         remainingQuestions,
-        answeredQuestions,
         progression,
         remainingQuestionsByCategories,
-        answeredQuestionsByCategories,
-        progressionByCategory,
         currentQuestion,
         currentCategory,
         setCurrentQuestion,

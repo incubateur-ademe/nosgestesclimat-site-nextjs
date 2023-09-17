@@ -8,6 +8,7 @@ import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useDebug } from '@/hooks/useDebug'
 import { useGetPRNumber } from '@/hooks/useGetPRNumber'
 import { Persona } from '@/types/persona'
 import Image from 'next/image'
@@ -40,6 +41,8 @@ export default function Navigation() {
 
   const router = useRouter()
 
+  const isDebug = useDebug()
+
   const pathname = usePathname()
 
   const enquete = ''
@@ -53,7 +56,11 @@ export default function Navigation() {
       id="mainNavigation"
       className="z-50 my-2 flex flex-col justify-center outline-none lg:sticky lg:top-0 lg:my-0 lg:h-screen lg:w-[14rem] lg:shrink-0 lg:justify-start lg:overflow-hidden lg:border-0 lg:border-r-[1px] lg:border-solid lg:border-grey-200">
       <Logo size="small" className="hidden lg:block" />
-
+      {isDebug ? (
+        <div className="mx-auto hidden rounded-lg bg-red-600 px-4 py-2 text-center font-bold uppercase text-white lg:block">
+          Debug
+        </div>
+      ) : null}
       <div className="z-100 fixed bottom-0 left-0 m-0 w-screen border-0 border-t-[1px] border-solid border-grey-200 lg:static lg:z-auto lg:mt-4 lg:w-auto lg:border-none">
         <ul className="m-0 flex h-20 w-full list-none justify-between bg-white px-4 py-1 shadow-md lg:h-auto lg:flex-col lg:justify-start lg:gap-1 lg:bg-none lg:py-2 lg:shadow-none">
           <NavLink
