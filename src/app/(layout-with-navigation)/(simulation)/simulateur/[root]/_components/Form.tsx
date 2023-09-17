@@ -22,7 +22,6 @@ export default function Form() {
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()
 
-  console.log(remainingQuestions)
   useEffect(() => {
     if (!isInitialized) {
       if (questionInQueryParams) {
