@@ -24,10 +24,10 @@ export default function Fin() {
         <Slide noMargin>
           <TotalVsTarget />
         </Slide>
-        <Slide>
+        <Slide className="h-[34rem]">
           <GridChart />
         </Slide>
-        <Slide>
+        <Slide className="h-[42rem]">
           <Actions />
         </Slide>
       </Slider>
