@@ -28,9 +28,9 @@ export default async function International() {
             <Image
               src="/images/misc/international-illustration.jpeg"
               alt=""
-              className="max-w-12 py-8 md:hidden"
-              width="300"
-              height="300"
+              className="max-w-12 mx-auto py-8 md:hidden"
+              width="100"
+              height="100"
             />
 
             <p className="mb-8">{description}</p>
@@ -54,7 +54,7 @@ export default async function International() {
         </div>
       </Container>
       <div className="rounded-md bg-primaryLight">
-        <Container maxWidth="3xl" className="pb-12 pt-8">
+        <Container maxWidth="3xl" className="px-4 pb-12 pt-8">
           <h2>
             <Trans i18nKey="international.pourquoi.titre">
               Adapté à votre pays

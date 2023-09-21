@@ -1,3 +1,4 @@
+import { useGetResultsFromDetailParam } from '@/hooks/useGetResultsFromDetailParam'
 import { useRule } from '@/publicodes-state'
 import Image from 'next/image'
 
@@ -12,12 +13,23 @@ const positionClassNames = {
   last: 'border-t-2',
   middle: 'border-y-2',
 }
-export default function Category({ category, total, position }: Props) {
+export default function Category({
+  category,
+  total: totalFromProps,
+  position,
+}: Props) {
   const { title, color } = useRule(category)
   const { numericValue } = useRule(
     category === 'transport' ? 'transport . empreinte' : category
   )
-  const percent = (numericValue / total) * 100
+
+  const resultFromURL = useGetResultsFromDetailParam()
+
+  const value = resultFromURL?.[category[0]] ?? numericValue
+
+  const total = resultFromURL?.bilan ?? totalFromProps
+
+  const percent = (value / total) * 100
 
   return (
     <div

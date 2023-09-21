@@ -4,7 +4,7 @@ type Props = {
 
 export default function Annotation({ content }: Props) {
   return (
-    <div className="absolute left-full top-0 ml-6 md:ml-12">
+    <div className="absolute -top-8 left-full ml-6 md:ml-12">
       <svg
         width="715"
         height="789"

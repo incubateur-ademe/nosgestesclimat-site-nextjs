@@ -4,12 +4,12 @@ import { i18nConfig } from '@/constants/i18n'
 import { getLocalisedURL } from '@/helpers/localisation/getLocalisedURL'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import NextLink from 'next/link'
-import { HTMLAttributes, PropsWithChildren } from 'react'
+import { HTMLAttributes, MouseEventHandler, PropsWithChildren } from 'react'
 
 type Props = {
   href: string
   className?: string
-  onClick?: () => void
+  onClick?: MouseEventHandler<HTMLAnchorElement>
   title?: string
   target?: string
 }
