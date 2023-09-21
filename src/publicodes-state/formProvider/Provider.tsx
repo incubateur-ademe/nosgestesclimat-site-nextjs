@@ -18,6 +18,7 @@ export default function FormProvider({
   const {
     categories,
     subcategories,
+    safeGetRule,
     safeEvaluate,
     situation,
     foldedSteps,
@@ -28,6 +29,7 @@ export default function FormProvider({
   const { remainingQuestions, relevantQuestions, questionsByCategories } =
     useQuestions({
       root,
+      safeGetRule,
       safeEvaluate,
       categories,
       subcategories,

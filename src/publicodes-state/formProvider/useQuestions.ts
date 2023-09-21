@@ -1,10 +1,12 @@
 import { useMemo } from 'react'
 import getIsMissing from '../helpers/getIsMissing'
 import getQuestionsOfMosaic from '../helpers/getQuestionsOfMosaic'
-import { NGCEvaluatedNode, Situation } from '../types'
+import getType from '../helpers/getType'
+import { NGCEvaluatedNode, NGCRuleNode, Situation } from '../types'
 
 type Props = {
   root: string
+  safeGetRule: (rule: string) => NGCRuleNode | null
   safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   categories: string[]
   subcategories: Record<string, string[]>
@@ -16,6 +18,7 @@ type Props = {
 
 export default function useQuestions({
   root,
+  safeGetRule,
   safeEvaluate,
   categories,
   subcategories,
@@ -130,7 +133,16 @@ export default function useQuestions({
 
   const relevantQuestions = useMemo<string[]>(
     () => [
-      ...foldedSteps,
+      ...foldedSteps.filter(
+        (foldedStep) =>
+          !(
+            getType({
+              dottedName: foldedStep,
+              rule: safeGetRule(foldedStep),
+              evaluation: safeEvaluate(foldedStep),
+            }) !== 'boolean' && safeEvaluate(foldedStep)?.nodeValue === null
+          )
+      ),
       ...remainingQuestions.filter((dottedName: string) =>
         getIsMissing({
           dottedName,
@@ -147,6 +159,8 @@ export default function useQuestions({
       remainingQuestions,
       situation,
       everyMosaicChildWhoIsReallyInMosaic,
+      safeGetRule,
+      safeEvaluate,
     ]
   )
 

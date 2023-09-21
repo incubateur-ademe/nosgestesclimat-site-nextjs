@@ -7,11 +7,16 @@ export const useDebug = () => {
   useEffect(() => {
     const debugInQueryParams = searchParams.get('debug') ? true : false
     if (debugInQueryParams) {
-      sessionStorage.setItem('debug', 'true')
+      if (typeof sessionStorage !== 'undefined') {
+        sessionStorage?.setItem('debug', 'true')
+      }
     }
   }, [searchParams])
 
-  const isDebug = sessionStorage.getItem('debug') ? true : false
+  const isDebug =
+    typeof sessionStorage !== 'undefined' && sessionStorage?.getItem('debug')
+      ? true
+      : false
 
   return isDebug
 }

@@ -39,7 +39,7 @@ export default function useRule(dottedName: string) {
     )
   }
 
-  const { type, getType } = useType({
+  const { type } = useType({
     dottedName,
     rule,
     evaluation,
@@ -79,7 +79,6 @@ export default function useRule(dottedName: string) {
       safeEvaluate,
       evaluation,
       type,
-      getType,
       questionsOfMosaic,
       updateSituation,
       addFoldedStep,

@@ -12,7 +12,8 @@ const statusClassNames = {
   default: 'bg-primaryLight',
 }
 export default function Question({ question, toggleQuestionList }: Props) {
-  const { label, isMissing, displayValue, unit, color } = useRule(question)
+  const { label, isMissing, displayValue, unit, type, color } =
+    useRule(question)
 
   const { currentQuestion, setCurrentQuestion } = useForm()
 
@@ -33,7 +34,15 @@ export default function Question({ question, toggleQuestionList }: Props) {
         className="absolute bottom-0 left-0 top-0 w-2"
         style={{ backgroundColor: color }}
       />
-      <div className="text-sm md:w-2/3 md:text-base">{label}</div>
+      <div className="text-sm md:w-2/3 md:text-base">
+        {isDebug ? (
+          <>
+            {question} ({type})
+          </>
+        ) : (
+          label
+        )}
+      </div>
       <div className="align-center flex justify-end whitespace-nowrap md:text-lg">
         {displayValue !== 'mosaic' ? (
           <div

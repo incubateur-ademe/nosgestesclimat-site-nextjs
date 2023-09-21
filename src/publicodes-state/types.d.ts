@@ -42,7 +42,12 @@ export type NGCRuleNode = RuleNode & {
   rawNode: NGCRule
 }
 
-export type NGCEvaluatedNode = EvaluatedNode
+//TODO: complete explanation type
+export type NGCEvaluatedNode = EvaluatedNode & {
+  explanation: {
+    ruleDisabledByItsParent: boolean
+  }
+}
 
 export type ActionChoices = Record<string, boolean>
 
