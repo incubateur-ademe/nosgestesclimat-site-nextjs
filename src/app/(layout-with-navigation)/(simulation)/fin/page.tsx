@@ -14,7 +14,7 @@ import './slick.css'
 
 export default function Fin() {
   const [step, setStep] = useState(0)
-  console.log({ step })
+
   return (
     <FormProvider>
       <NorthStarBanner type="learned" />
