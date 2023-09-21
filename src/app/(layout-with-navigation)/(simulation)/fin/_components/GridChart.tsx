@@ -68,10 +68,12 @@ export default function GridChart() {
       <div className="mt-4 flex flex-col items-center gap-4">
         <CopyButton
           className="items-start justify-center p-2 text-sm md:text-base"
-          textToCopy={formatResultToDetailParam({
-            categories,
-            getValue: getNumericValue,
-          })}
+          textToCopy={`https://nosgestesclimat.fr/fin?${formatResultToDetailParam(
+            {
+              categories,
+              getValue: getNumericValue,
+            }
+          )}`}
           copiedStateText={
             <>
               <ShareImage />
