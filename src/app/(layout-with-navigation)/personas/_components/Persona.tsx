@@ -25,10 +25,13 @@ export default function Persona({ persona, dottedName }: Props) {
           : ''
       } flex-col items-center`}>
       <div className="text-lg">{persona['icônes']}</div>
+
       <h3>{persona.nom}</h3>
+
       <p className="text-center text-sm">
         {persona['résumé'] || persona['description']}
       </p>
+
       {!isCurrentPersonaSelected && (
         <Button
           size="sm"
@@ -43,6 +46,7 @@ export default function Persona({ persona, dottedName }: Props) {
           <Trans>Sélectionner</Trans>
         </Button>
       )}
+
       {isCurrentPersonaSelected && (
         <p className="align-self-end mb-0 mt-auto p-1 text-sm font-bold">
           <Trans>Sélectionné·e</Trans>
