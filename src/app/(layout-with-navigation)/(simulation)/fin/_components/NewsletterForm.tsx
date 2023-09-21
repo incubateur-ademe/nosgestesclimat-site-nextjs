@@ -2,6 +2,7 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import Separator from '@/design-system/layout/Separator'
 import { useSubscribeUser } from '@/hooks/useSubscribeUser'
 import { useUser } from '@/publicodes-state'
 import { useState } from 'react'
@@ -23,7 +24,8 @@ export const NewsletterForm = () => {
   } = useSubscribeUser()
 
   return (
-    <div id="newsletter-form-container" className="mx-auto max-w-lg">
+    <div id="newsletter-form-container" className="mx-auto mb-4 max-w-lg">
+      <Separator className="my-4" />
       <div>
         {isSuccess ? (
           <Confirmation />

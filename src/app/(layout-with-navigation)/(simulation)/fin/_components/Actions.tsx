@@ -23,14 +23,14 @@ export default function Actions() {
   )
 
   return (
-    <div className="md:px-12">
+    <div>
       <h3 className="mb-2 text-center text-lg md:mb-4 md:text-xl">
         <Trans>Comment réduire mon empreinte&nbsp;?</Trans>
       </h3>
-      <p className="text-center text-sm italic md:text-lg">
+      <p className="text-center text-sm italic md:text-base">
         <Trans>Les 3 actions au plus fort impact pour vous&nbsp;:</Trans>
       </p>
-      <div className="mb-4 flex flex-col gap-4 md:mb-8 md:gap-8">
+      <div className="mb-4 flex flex-col gap-4">
         {filteredSameCategoriesActions.map((action, index) =>
           index < 3 ? <Action key={action} action={action} /> : null
         )}

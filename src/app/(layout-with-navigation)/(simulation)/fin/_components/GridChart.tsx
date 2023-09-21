@@ -1,10 +1,14 @@
 'use client'
 
+import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
+import CopyButton from '@/design-system/inputs/CopyButton'
+import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import useWindowSize from '@/hooks/useWindowSize'
 import { useEngine, useForm, useRule } from '@/publicodes-state'
 import { useMemo } from 'react'
 import Block from './gridChart/Block'
+import ShareImage from './gridChart/ShareImage'
 
 export default function GridChart() {
   const { numericValue: total } = useRule('bilan')
@@ -12,7 +16,7 @@ export default function GridChart() {
   const { width } = useWindowSize()
   const numberOfSquares = width < 768 ? 64 : 100
   const valueOfEachSquare = total / numberOfSquares
-  const { subcategories } = useForm()
+  const { subcategories, categories } = useForm()
 
   const { getNumericValue, checkIfValid } = useEngine()
   const sortedSubcategories = useMemo(
@@ -59,6 +63,29 @@ export default function GridChart() {
             />
           ) : null
         )}
+      </div>
+
+      <div className="mt-4 flex flex-col items-center gap-4">
+        <CopyButton
+          className="items-start justify-center p-2 text-sm md:text-base"
+          textToCopy={`https://nosgestesclimat.fr/fin?${formatResultToDetailParam(
+            {
+              categories,
+              getValue: getNumericValue,
+            }
+          )}`}
+          copiedStateText={
+            <>
+              <ShareImage />
+              <Trans>Copié !</Trans>
+            </>
+          }>
+          <ShareImage />
+          <Trans>Partager mes résultats</Trans>
+        </CopyButton>
+        <Link href="/documentation/bilan">
+          <Trans>Comprendre le calcul</Trans>
+        </Link>
       </div>
     </>
   )
