@@ -1,3 +1,5 @@
+import Trans from '@/components/translation/Trans'
+import Button from '@/design-system/inputs/Button'
 import { useRule } from '@/publicodes-state'
 import tinygradient from 'tinygradient'
 import Target from './totalVsTarget/Target'
@@ -25,7 +27,7 @@ export default function TotalVsTarget() {
 
   return (
     <div
-      className="h-[30rem] p-4 md:px-36 md:py-12"
+      className="h-[36rem] p-4 md:px-36 md:py-12"
       style={{
         background: `linear-gradient(
       180deg,
@@ -33,9 +35,30 @@ export default function TotalVsTarget() {
       ${backgroundColor2} 100%
     )`,
       }}>
-      <div className="mt-12 flex h-[19rem] items-end justify-around border-b-4 border-black md:h-[20rem] ">
+      <div className="mt-12 flex h-[20rem] flex-1 items-end justify-around border-b-4 border-black md:h-[20rem]">
         <Total total={total} />
         <Target total={total} />
+      </div>
+
+      <div className="text-center">
+        <Button
+          className="mt-8"
+          onClick={() =>
+            document
+              .getElementById('newsletter-form-container')
+              ?.scrollIntoView({
+                behavior: 'smooth',
+              })
+          }>
+          <span
+            role="img"
+            aria-hidden
+            aria-label="send"
+            className="mr-2 inline-block">
+            📩
+          </span>
+          <Trans>Sauvegarder mes résultats</Trans>
+        </Button>
       </div>
     </div>
   )

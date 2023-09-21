@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react'
 
 export default function Annotation({ children }: PropsWithChildren) {
   return (
-    <div className="absolute bottom-[calc(100%+3rem)] left-[2.5rem]">
+    <div className="absolute -left-[2rem] bottom-[calc(100%+6rem)] md:bottom-[calc(100%+3rem)] md:left-[2.5rem]">
       <svg
         width="715"
         height="789"

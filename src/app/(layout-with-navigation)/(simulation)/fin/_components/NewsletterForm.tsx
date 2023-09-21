@@ -24,7 +24,7 @@ export const NewsletterForm = () => {
   } = useSubscribeUser()
 
   return (
-    <div id="newsletter-form-container" className="mx-auto max-w-lg">
+    <div id="newsletter-form-container" className="mx-auto mb-4 max-w-lg">
       <Separator className="my-4" />
       <div>
         {isSuccess ? (
