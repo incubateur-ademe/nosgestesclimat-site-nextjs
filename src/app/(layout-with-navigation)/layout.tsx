@@ -1,6 +1,7 @@
 import Main from '@/design-system/layout/Main'
 import { PropsWithChildren } from 'react'
 
+import Footer from '@/components/layout/Footer'
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import MobileHeader from './_components/MobileHeader'
 import Navigation from './_components/Navigation'
@@ -19,6 +20,7 @@ export default function PageLayout({ children }: PropsWithChildren) {
           {children}
         </Main>
       </div>
+      <Footer />
     </>
   )
 }

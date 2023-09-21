@@ -7,11 +7,7 @@ export default function DemoIframePage() {
 
       <p>Ci-dessous, nosgestesclimat.fr intégré comme un iframe paramétré.</p>
 
-      <Script
-        id="nosgestesclimat"
-        src="http://localhost:3000/iframe.js"
-        data-share-data="true"
-      />
+      <Script id="nosgestesclimat" src="/iframe.js" data-share-data="true" />
     </div>
   )
 }
