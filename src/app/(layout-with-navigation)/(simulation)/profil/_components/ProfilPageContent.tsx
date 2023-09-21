@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import { useUser } from '@/publicodes-state'
 import { Simulation } from '@/types/simulation'
+import { capitaliseString } from '@/utils/capitaliseString'
 import HasSimulationBanner from './HasSimulationBanner'
 import NoSimulationBanner from './NoSimulationBanner'
 import SimulationList from './SimulationList'
@@ -22,10 +23,10 @@ export default function ProfilPageContent() {
     <>
       {persona && (
         <p>
-          <em>
-            <Trans>👤 Vous utilisez actuellement le persona</Trans>{' '}
-            <code>{(persona as any).nom}</code>
-          </em>
+          <Trans>👤 Vous utilisez actuellement le persona</Trans>{' '}
+          <span className="font-bold">
+            {capitaliseString(persona.split(' . ')[1])}
+          </span>
         </p>
       )}
 
