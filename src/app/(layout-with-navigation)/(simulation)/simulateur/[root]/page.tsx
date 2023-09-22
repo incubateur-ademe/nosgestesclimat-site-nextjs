@@ -7,6 +7,7 @@ import { useDebug } from '@/hooks/useDebug'
 import FormProvider from '@/publicodes-state/formProvider'
 import { useState } from 'react'
 import Charts from './_components/Charts'
+import Faq from './_components/Faq'
 import Form from './_components/Form'
 import Summary from './_components/Summary'
 
@@ -33,6 +34,7 @@ export default function Simulateur({ params }: Props) {
         toggleQuestionList={toggleQuestionList}
         isQuestionListOpen={isQuestionListOpen}
       />
+      <Faq />
     </FormProvider>
   )
 }
