@@ -34,7 +34,7 @@ const iframeAttributes = {
   mozallowfullscreen: true,
   allow: 'fullscreen',
   id: 'iframeNGC',
-  style: 'border: none; width: 100%; display: block; height: 800px;',
+  style: 'border: none; width: 100%; display: block; height: 1001px;',
 }
 
 for (var key in iframeAttributes) {
