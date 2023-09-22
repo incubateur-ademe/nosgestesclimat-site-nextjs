@@ -10,7 +10,8 @@ import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useDebug } from '@/hooks/useDebug'
 import { useGetPRNumber } from '@/hooks/useGetPRNumber'
-import { Persona } from '@/types/persona'
+import { useUser } from '@/publicodes-state'
+import { capitaliseString } from '@/utils/capitaliseString'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import NavLink from './navigation/NavLink'
@@ -31,8 +32,10 @@ const openmojis = {
   personas: '1F465',
   github: 'E045',
 }
+
 export const openmojiURL = (name: keyof typeof openmojis) =>
   `/images/misc/${openmojis[name]}.svg`
+
 export const actionImg = openmojiURL('action')
 export const conferenceImg = openmojiURL('conference')
 
@@ -47,7 +50,9 @@ export default function Navigation() {
 
   const enquete = ''
 
-  const persona: Persona | undefined = undefined
+  const { getCurrentSimulation } = useUser()
+
+  const persona: string | undefined = getCurrentSimulation()?.persona
 
   const { PRNumber, clearPRNumber } = useGetPRNumber()
 
@@ -98,8 +103,8 @@ export default function Navigation() {
                 {!persona ? (
                   t('Profil')
                 ) : (
-                  <span className="rounded-sm bg-primary px-2 text-white">
-                    {(persona as Persona)?.nom}
+                  <span className="rounded-md bg-primary px-4 py-2 text-white">
+                    {capitaliseString(persona.split(' . ')[1])}
                   </span>
                 )}
               </span>
