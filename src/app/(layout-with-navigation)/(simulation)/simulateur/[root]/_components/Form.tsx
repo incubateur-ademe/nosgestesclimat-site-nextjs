@@ -2,20 +2,28 @@ import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import questions from '@/components/questions'
 import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
+import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import { useForm, useUser } from '@/publicodes-state'
+import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import TestCompleted from './form/TestCompleted'
 
 export default function Form() {
-  const { remainingQuestions, currentQuestion, setCurrentQuestion } = useForm()
+  const {
+    remainingQuestions,
+    currentQuestion,
+    setCurrentQuestion,
+    categories,
+  } = useForm()
 
   const { groupToRedirectToAfterTest, setGroupToRedirectToAfterTest } =
     useUser()
 
   const [isInitialized, setIsInitialized] = useState(false)
+
+  const { getValue } = useEngine()
 
   const router = useRouter()
 
@@ -76,7 +84,9 @@ export default function Form() {
 
           // Not sure why but we need a timer
           setTimeout(() => {
-            router.push('/fin')
+            router.push(
+              `/fin?${formatResultToDetailParam({ categories, getValue })}`
+            )
           }, 500)
         }}
       />

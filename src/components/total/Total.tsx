@@ -4,7 +4,8 @@ import Link from 'next/link'
 
 import QuestionButton from '@/components/misc/QuestionButton'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
-import { useEngine, useRule, useUser } from '@/publicodes-state'
+import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
+import { useEngine, useForm, useRule, useUser } from '@/publicodes-state'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
 import Planet from './_components/Planet'
@@ -16,7 +17,11 @@ type Props = {
 export default function Total({ toggleQuestionList }: Props) {
   const { numericValue } = useRule('bilan')
 
-  const { getNumericValue } = useEngine()
+  const { getNumericValue, getValue } = useEngine()
+
+  const { categories } = useForm()
+
+  const detailsParamString = formatResultToDetailParam({ categories, getValue })
 
   const { tutorials, hideTutorial, showTutorial, getCurrentSimulation } =
     useUser()
@@ -44,7 +49,7 @@ export default function Total({ toggleQuestionList }: Props) {
         <Progress />
         <Planet />
         <Link
-          href="/fin"
+          href={`/fin${detailsParamString ? `?${detailsParamString}` : ''}`}
           className="z-10	text-white no-underline hover:text-white">
           <span className="block text-2xl font-bold md:text-3xl">
             {formatCarbonFootprint(carbonFootprintValue).formattedValue}{' '}

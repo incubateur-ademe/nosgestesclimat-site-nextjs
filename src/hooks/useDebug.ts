@@ -9,6 +9,7 @@ export const useDebug = () => {
 
   useEffect(() => {
     const debugInQueryParams = searchParams.get('debug') ? true : false
+
     if (debugInQueryParams && isClient) {
       sessionStorage.setItem('debug', 'true')
     }
