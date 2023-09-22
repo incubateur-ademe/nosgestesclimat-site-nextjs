@@ -11,8 +11,7 @@ import { utils } from 'publicodes'
 
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useGetPRNumber } from '@/hooks/useGetPRNumber'
-import { NGCRule } from '@/publicodes-state/types'
-import { NGCRules } from '@/types/model'
+import { NGCRule, NGCRules } from '@/publicodes-state/types'
 import { useFetchDocumentation } from '../_hooks/useFetchDocumentation'
 
 export default function ActionList() {

@@ -42,6 +42,8 @@ export type NGCRuleNode = RuleNode & {
   rawNode: NGCRule
 }
 
+export type NGCRulesNodes = Record<string, NGCRuleNode>
+
 export type NGCEvaluatedNode = EvaluatedNode
 
 export type ActionChoices = Record<string, boolean>
@@ -101,3 +103,5 @@ type NGCRule = {
   aide?: string
   inactif?: string
 }
+
+export type NGCRules = Record<string, NGCRule>

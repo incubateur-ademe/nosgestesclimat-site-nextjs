@@ -10,8 +10,6 @@
  * ]
  */
 
-import { DottedName } from '@/types/model'
-
 // Partage
 export const getMatomoEventShareMobile = (score: number) => [
   'trackEvent',
@@ -41,7 +39,7 @@ export const getMatomoEventClickDontKnow = (currentQuestion: string) => [
   'Clic bouton "Je ne sais pas"',
   currentQuestion,
 ]
-export const getMatomoEventClickHelp = (dottedName: DottedName) => [
+export const getMatomoEventClickHelp = (dottedName: string) => [
   'trackEvent',
   'help',
   dottedName,
@@ -61,7 +59,7 @@ export const matomoEventKilometerHelpClickClose = [
   'Aide saisie km',
   'Ferme aide à la saisie km voiture',
 ]
-export const getMatomoEventAmortissement = (dottedName: DottedName) => [
+export const getMatomoEventAmortissement = (dottedName: string) => [
   'trackEvent',
   'Formulaire',
   'Utilisation amortissement avion',
@@ -189,12 +187,12 @@ export const getMatomoEventClickActionButtonEndPage = (
 
 // Actions
 export const getMatomoEventActionRejected = (
-  dottedName: DottedName,
+  dottedName: string,
   nodeValue: string
 ) => ['trackEvent', '/actions', 'Action rejetée', dottedName, nodeValue]
 
 export const getMatomoEventActionAccepted = (
-  dottedName: DottedName,
+  dottedName: string,
   nodeValue: string
 ) => ['trackEvent', '/actions', 'Action sélectionnée', dottedName, nodeValue]
 

@@ -9,18 +9,26 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
-import { NGCRule } from '@/publicodes-state/types'
-import { NGCRules } from '@/types/model'
-import { usePathname } from 'next/navigation'
+import { NGCRule, NGCRules } from '@/publicodes-state/types'
+
 import { utils } from 'publicodes'
 import { useFetchDocumentation } from '../../_hooks/useFetchDocumentation'
 
-export default function ActionPlus() {
+type Props = {
+  params: {
+    dottedName: string[]
+  }
+}
+
+export default function ActionPlus({
+  params: { dottedName: dottedNameArray },
+}: Props) {
   const { t } = useClientTranslation()
-  const encodedName = usePathname().replace('/actions/plus/', '')
 
-  const dottedName: string = utils.decodeRuleName(decodeURI(encodedName))
-
+  const dottedName: string = utils.decodeRuleName(
+    dottedNameArray.map(decodeURI).join(' . ')
+  )
+  console.log(dottedName)
   const locale = useLocale()
   const { user } = useUser()
 
@@ -55,7 +63,7 @@ export default function ActionPlus() {
           <Trans>◀ Retour à la liste des fiches</Trans>
         </ButtonLink>
 
-        <ButtonLink size="sm" href={'/actions/' + encodedName}>
+        <ButtonLink size="sm" href={'/actions/' + dottedNameArray.join('/')}>
           <Trans>🧮 Voir le geste climat correspondant</Trans>
         </ButtonLink>
       </div>
