@@ -59,7 +59,7 @@ export default function Navigation() {
   return (
     <nav
       id="mainNavigation"
-      className="z-50 my-2 flex flex-col justify-center outline-none lg:sticky lg:top-0 lg:my-0 lg:h-screen lg:w-[14rem] lg:shrink-0 lg:justify-start lg:overflow-hidden lg:border-0 lg:border-r-[1px] lg:border-solid lg:border-grey-200">
+      className="z-50 my-2 flex h-auto flex-col justify-center pb-8 outline-none lg:sticky lg:top-0 lg:my-4 lg:w-[14rem] lg:shrink-0 lg:justify-start lg:overflow-hidden lg:border-0 lg:border-r-[1px] lg:border-solid lg:border-grey-200">
       <Logo size="small" className="hidden lg:block" />
       {isDebug ? (
         <div className="mx-auto hidden rounded-lg bg-red-600 px-4 py-2 text-center font-bold uppercase text-white lg:block">

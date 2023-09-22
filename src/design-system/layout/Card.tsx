@@ -27,7 +27,7 @@ export default function Card({
   return (
     <Tag
       onClick={onClick}
-      className={`flex bg-white rounded-md border-[1px] border-solid border-gray-200 shadow-sm p-4 list-none ${className}`}
+      className={`flex list-none flex-col rounded-md border-[1px] border-solid border-gray-200 bg-white p-4 shadow-sm ${className}`}
       href={href}
       style={style}
       {...props}>

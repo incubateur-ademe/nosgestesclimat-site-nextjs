@@ -121,7 +121,7 @@ export default function StatsContent() {
         />
         <div className="mt-4">
           <div className="flex flex-row gap-4">
-            <Card className="flex-1 flex-col">
+            <Card className="flex-1">
               <p className="mb-0">
                 <strong className="text-3xl">
                   {homepageVisitorsData?.data?.[0]?.nb_visits
@@ -136,7 +136,7 @@ export default function StatsContent() {
               </p>
             </Card>
 
-            <Card className="flex-1 flex-col">
+            <Card className="flex-1">
               <strong className="text-3xl">
                 {sharedSimulations?.data?.[0]?.nb_events
                   ?.toString()
@@ -182,8 +182,7 @@ export default function StatsContent() {
           <Trans>Intégrations et Iframes</Trans>
         </h3>
         <details>
-          <Trans
-            i18nKey={'components.stats.StatsContent.integrationEtIframes'}>
+          <Trans i18nKey={'components.stats.StatsContent.integrationEtIframes'}>
             <summary className="mb-4">En savoir plus</summary>
             <p className="mb-4">
               Les intégrations en iframe sont détéctées via le paramètre
@@ -211,9 +210,7 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h3>
-          <Trans>
-            Northstar: les statistiques "étoile du nord"
-          </Trans>
+          <Trans>Northstar: les statistiques "étoile du nord"</Trans>
         </h3>
         <Trans i18nKey={'components.stats.StatsContent.infosNorthstar'}>
           <p>
@@ -232,8 +229,7 @@ export default function StatsContent() {
           <Trans>Durée des visites</Trans>
         </h3>
         <details>
-          <Trans
-            i18nKey={'components.stats.StatsContent.dureeDesVisites'}>
+          <Trans i18nKey={'components.stats.StatsContent.dureeDesVisites'}>
             <summary className="mb-4">En savoir plus</summary>
             <p>
               Cette section est générée à partir des visites des 60 derniers
@@ -260,8 +256,7 @@ export default function StatsContent() {
           <Trans>Score de nos utilisateurs</Trans>
         </h3>
         <details>
-          <Trans
-            i18nKey={'components.stats.StatsContent.scoreUtilisateurs'}>
+          <Trans i18nKey={'components.stats.StatsContent.scoreUtilisateurs'}>
             <summary className="mb-4">En savoir plus</summary>
             <p>
               Bien sûr, nous ne collectons pas{' '}

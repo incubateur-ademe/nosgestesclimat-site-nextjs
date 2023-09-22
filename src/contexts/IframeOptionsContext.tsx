@@ -1,18 +1,30 @@
 'use client'
 
+import { useIsClient } from '@/app/_components/IsClientCtxProvider'
 import { getMatomoEventVisitViaIframe } from '@/constants/matomo'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { PropsWithChildren, createContext } from 'react'
 import { getIsIframe } from '../utils/getIsIframe'
 
-export const IframeOptionsContext = createContext<{ isIframe?: boolean }>({})
+export const IframeOptionsContext = createContext<{
+  isIframe?: boolean
+  iframeShareData?: string | null
+  iframeLocalisation?: string | null
+  iframeOnlySimulation?: boolean
+}>({})
 
 const nullDecode = (string: string) =>
   string == null ? string : decodeURIComponent(string)
 
 export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
+  const isClient = useIsClient()
+
+  if (!isClient) return children
+
   const urlParams = new URLSearchParams(window.location.search)
+
   const isIframe = getIsIframe()
+
   const isIframeParameterDefined = urlParams.get('iframe') !== null
 
   // Si l'on détecte que l'on est dans un iframe sans paramètre iframe défini
@@ -42,7 +54,21 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
       nullDecode(new URLSearchParams(document.location.search).get(key) ?? ''),
     ])
   )
-  const finalValue = { ...iframeIntegratorOptions, isIframe }
+
+  const iframeShareData = urlParams.get('shareData')
+
+  const iframeLocalisation = urlParams.get('localisation')
+
+  const iframeOnlySimulation = Boolean(urlParams.get('onlySimulation'))
+
+  const finalValue = {
+    ...iframeIntegratorOptions,
+    isIframe,
+    iframeShareData,
+    iframeLocalisation,
+    iframeOnlySimulation,
+  }
+
   return (
     <IframeOptionsContext.Provider value={finalValue}>
       {children}

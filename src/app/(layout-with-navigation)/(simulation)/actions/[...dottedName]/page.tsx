@@ -86,7 +86,7 @@ export default function ActionDetailPage({
         <Trans> Retour à la liste</Trans>
       </ButtonLink>
 
-      <Card className="mt-4 flex-col">
+      <Card className="mt-4">
         <header className="mb-4">
           <h2 className="flex items-center gap-2">
             {icons && <span className="flex">{icons}</span>}

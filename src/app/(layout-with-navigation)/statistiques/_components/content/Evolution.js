@@ -15,7 +15,7 @@ export default function Evolution(props) {
 
   return (
     <div className="flex flex-row gap-4 md:!flex-col">
-      <Card className="flex-1">
+      <Card className="flex-1 flex-row">
         <div className="m-0">
           <p className="mb-0 text-4xl font-bold">
             {props.allTime
@@ -27,7 +27,7 @@ export default function Evolution(props) {
           </p>
         </div>
       </Card>
-      <Card className="flex-1 flex-col gap-4">
+      <Card className="flex-1 gap-4">
         <div className="text-sm">
           <p className="mb-0 text-3xl font-bold">
             {percent > 0 && '+'}

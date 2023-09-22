@@ -44,7 +44,7 @@ export default function LocalisationBanner() {
 
   return (
     <Card
-      className="mx-auto mb-8 w-[32rem] max-w-full bg-[]"
+      className="mx-auto mb-8 w-[32rem] max-w-full flex-row"
       style={{ backgroundColor: '#fff8d3' }}>
       <div className="flex gap-8">
         <div className="flex w-8 items-center text-4xl">📍</div>

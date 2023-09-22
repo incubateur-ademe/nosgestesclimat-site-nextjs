@@ -21,18 +21,20 @@ export default function Simulateur({ params }: Props) {
 
   return (
     <FormProvider root={params.root}>
-      <div className="hidden md:block">
-        <Title title={<Trans>Votre bilan climat personnel</Trans>} />
+      <div className="pb-16">
+        <div className="hidden md:block">
+          <Title title={<Trans>Votre bilan climat personnel</Trans>} />
+        </div>
+        <Total toggleQuestionList={toggleQuestionList} />
+        <div className={isQuestionListOpen && !isDebug ? 'hidden' : 'block'}>
+          <Form />
+          <Charts />
+        </div>
+        <Summary
+          toggleQuestionList={toggleQuestionList}
+          isQuestionListOpen={isQuestionListOpen}
+        />
       </div>
-      <Total toggleQuestionList={toggleQuestionList} />
-      <div className={isQuestionListOpen && !isDebug ? 'hidden' : 'block'}>
-        <Form />
-        <Charts />
-      </div>
-      <Summary
-        toggleQuestionList={toggleQuestionList}
-        isQuestionListOpen={isQuestionListOpen}
-      />
     </FormProvider>
   )
 }

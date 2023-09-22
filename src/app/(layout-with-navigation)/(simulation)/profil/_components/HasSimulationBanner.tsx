@@ -38,7 +38,7 @@ export default function HasSimulationBanner() {
   return (
     <div className="flex flex-wrap items-start">
       <div className="mt-4 w-[30rem]">
-        <Card className="mr-8 flex-col">
+        <Card className="mr-8">
           <p className="text-lg">
             {t('publicodes.Profil.recap', {
               percentFinished,

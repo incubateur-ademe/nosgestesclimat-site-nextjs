@@ -18,6 +18,8 @@ export default async function Route404() {
           className="m-10 h-auto w-40"
           alt=""
           src="/images/misc/map-directions.png"
+          width={100}
+          height={100}
         />
         <em>
           <Trans i18nKey="404.action">Revenir en lieu sûr</Trans>

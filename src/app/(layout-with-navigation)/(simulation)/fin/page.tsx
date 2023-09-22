@@ -1,5 +1,6 @@
 'use client'
 
+import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import NorthStarBanner from '@/components/northstar/NorthstarBanner'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import FormProvider from '@/publicodes-state/formProvider'
@@ -18,6 +19,9 @@ export default function Fin() {
   return (
     <FormProvider>
       <NorthStarBanner type="learned" />
+
+      <IframeDataShareModal />
+
       <div className="mb-12 flex justify-start md:mx-16">
         <ButtonLink size="sm" color="secondary" href="/simulateur/bilan">
           ← Revenir au test

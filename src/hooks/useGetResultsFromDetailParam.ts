@@ -1,3 +1,4 @@
+import { rehydrateDetail } from '@/helpers/url/rehydrateDetail'
 import { useSearchParams } from 'next/navigation'
 
 export function useGetResultsFromDetailParam() {
@@ -7,15 +8,7 @@ export function useGetResultsFromDetailParam() {
 
   if (!detail) return null
 
-  const footprintByCategory = detail.match(/[a-z][0-9]+\.[0-9][0-9]/g)?.reduce(
-    (acc, [category, ...rest]) => {
-      return {
-        ...acc,
-        [category === 'b' ? 'd' : category]: 1000 * +rest.join(''),
-      }
-    },
-    {} as Record<string, number>
-  )
+  const footprintByCategory = rehydrateDetail(detail)
 
   if (!footprintByCategory) return null
 

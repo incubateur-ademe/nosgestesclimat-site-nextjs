@@ -99,7 +99,7 @@ export default function Actions({
   return (
     <>
       {maxImpactAction.value < 100 && (
-        <Card className="my-8 flex-col">
+        <Card className="my-8">
           <Trans i18nKey={'publicodes.AllActions.msgPlusActions'}>
             <p>
               Nous n'avons plus d'actions chiffrées très impactantes à vous
