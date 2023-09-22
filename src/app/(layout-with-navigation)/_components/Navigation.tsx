@@ -7,7 +7,6 @@ import CardGameIcon from '../../../components/icons/CardGameIcon'
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
 
-import { useIframe } from '@/contexts/IframeOptionsContext'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useDebug } from '@/hooks/useDebug'
 import { useGetPRNumber } from '@/hooks/useGetPRNumber'
@@ -43,8 +42,6 @@ export const conferenceImg = openmojiURL('conference')
 export default function Navigation() {
   const { t } = useClientTranslation()
 
-  const { iframeOnlySimulation } = useIframe()
-
   const router = useRouter()
 
   const isDebug = useDebug()
@@ -62,9 +59,7 @@ export default function Navigation() {
   return (
     <nav
       id="mainNavigation"
-      className={`z-50 my-2 flex flex-col justify-center outline-none lg:sticky lg:top-0 lg:my-0  lg:w-[14rem] lg:shrink-0 lg:justify-start lg:overflow-hidden lg:border-0 lg:border-r-[1px] lg:border-solid lg:border-grey-200 ${
-        iframeOnlySimulation ? 'lg:h-auto' : 'lg:h-screen'
-      }`}>
+      className="z-50 my-2 flex flex-col justify-center outline-none lg:sticky lg:top-0 lg:my-0  lg:h-auto lg:w-[14rem] lg:shrink-0 lg:justify-start lg:overflow-hidden lg:border-0 lg:border-r-[1px] lg:border-solid lg:border-grey-200">
       <Logo size="small" className="hidden lg:block" />
       {isDebug ? (
         <div className="mx-auto hidden rounded-lg bg-red-600 px-4 py-2 text-center font-bold uppercase text-white lg:block">

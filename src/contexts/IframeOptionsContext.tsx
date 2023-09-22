@@ -20,8 +20,6 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
 
   const isIframe = getIsIframe()
 
-  console.log({ isIframe })
-
   const isIframeParameterDefined = urlParams.get('iframe') !== null
 
   // Si l'on détecte que l'on est dans un iframe sans paramètre iframe défini
