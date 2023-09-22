@@ -23,7 +23,7 @@ export default function Persona({ persona, dottedName }: Props) {
         isCurrentPersonaSelected
           ? '!border-2 border-green-500 bg-green-200'
           : ''
-      } flex-col items-center`}>
+      } items-center`}>
       <div className="text-lg">{persona['icônes']}</div>
 
       <h3>{persona.nom}</h3>

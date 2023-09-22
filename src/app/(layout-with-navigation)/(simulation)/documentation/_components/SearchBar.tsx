@@ -81,7 +81,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
 
   return (
     <>
-      <Card className="my-8 flex-col !bg-primaryLight">
+      <Card className="my-8 !bg-primaryLight">
         <h2 className="text-xl">
           <span
             role="img"

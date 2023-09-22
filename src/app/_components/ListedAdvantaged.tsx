@@ -49,7 +49,7 @@ export default function ListedAdvantages() {
         <Card
           tag="li"
           key={advantage.illustration}
-          className="flex h-[14rem] w-full flex-col items-center justify-center gap-4 md:w-[14rem]">
+          className="flex h-[14rem] w-full items-center justify-center gap-4 md:w-[14rem]">
           <span className="text-[200%]">{advantage.illustration}</span>
 
           <div className="text-center text-base">{advantage.text}</div>

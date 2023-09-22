@@ -6,7 +6,7 @@ import Card from '@/design-system/layout/Card'
 
 export default function GithubContributionCard() {
   return (
-    <Card className="flex flex-col">
+    <Card>
       <p className="mt-0">
         <Trans i18nKey={'publicodes.Contribution.liensVersGithub'}>
           Pour toute remarque ou question, nous vous invitons à{' '}

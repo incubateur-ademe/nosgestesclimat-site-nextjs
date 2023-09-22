@@ -16,7 +16,7 @@ export default function IframeFigures(props) {
   return (
     <div className="mt-4">
       <div className="mb-4 grid w-full grid-cols-1 justify-center gap-4 md:grid-cols-2">
-        <Card className="flex-col">
+        <Card>
           <p className="mb-0 text-3xl font-bold">
             {' '}
             {Math.round(iframes).toLocaleString(user?.region?.code)}
@@ -26,7 +26,7 @@ export default function IframeFigures(props) {
             <Trans>des visites affichées en iframe</Trans>
           </p>
         </Card>
-        <Card className="flex-col">
+        <Card>
           <p className="mb-0 text-3xl font-bold">
             {' '}
             {Math.round(activeIframes).toLocaleString(user?.region?.code) ||

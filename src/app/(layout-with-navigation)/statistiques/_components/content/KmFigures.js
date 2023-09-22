@@ -10,7 +10,7 @@ export default function KmFigures(props) {
 
   return (
     <div className="flex flex-col gap-4 md:flex-row">
-      <Card className="flex-1 flex-col">
+      <Card className="flex-1">
         <div>
           <p className="mb-0 text-3xl font-bold">
             {' '}
@@ -21,7 +21,7 @@ export default function KmFigures(props) {
           </p>
         </div>
       </Card>
-      <Card className="flex-1 flex-col">
+      <Card className="flex-1">
         <div>
           <p className="mb-0 text-3xl font-bold">
             {Math.round(ridesavg).toLocaleString(user?.region?.code)}

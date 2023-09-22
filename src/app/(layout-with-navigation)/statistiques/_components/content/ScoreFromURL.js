@@ -37,7 +37,7 @@ export default function ScoreFromURL(props) {
 
   return (
     <div className="w-full text-center">
-      <Card className="flex-col">
+      <Card>
         <div>
           <div className="mb-4">
             <span className="text-xl">

@@ -8,7 +8,7 @@ import Card from '@/design-system/layout/Card'
 export default function SimulationMissing() {
   return (
     <div className="mb-8">
-      <Card className="flex-col !bg-primaryLight">
+      <Card className="!bg-primaryLight">
         <h2>
           <Trans>Calcul d'empreinte carbone manquant</Trans>
         </h2>

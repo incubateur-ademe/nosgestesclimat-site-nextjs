@@ -64,7 +64,7 @@ export default function NewsBanner() {
   if (!shouldShowBanner) return null
 
   return (
-    <Card className="relative min-w-[20rem] flex-col p-8 text-left">
+    <Card className="relative min-w-[20rem] p-8 text-left">
       <h2 className="m-0 flex items-center">
         <span className="mr-2 inline-block h-3 w-3 rounded-2xl bg-primary"></span>{' '}
         <Trans>Nouveautés</Trans>

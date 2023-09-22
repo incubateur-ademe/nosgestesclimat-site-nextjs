@@ -31,7 +31,7 @@ export default function RuleNode({ ruleDottedName, rules, level }: Props) {
     <div>
       <Card
         onClick={() => setIsLocallyOpen(!isOpen)}
-        className={`${categoryClassName} mb-4 inline-flex cursor-pointer items-center justify-start`}
+        className={`${categoryClassName} mb-4 inline-flex cursor-pointer flex-row items-center justify-start`}
         style={isFirstLevel ? { backgroundColor: rule?.color } : {}}>
         <span role="img" aria-label="category icon" className="mr-4 text-2xl">
           {rule?.icons}
