@@ -27,6 +27,10 @@ export default function IframeDataShareModal() {
 
       setIsOpen(true)
     }, shareDataPopupTimeout)
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
   }, [])
 
   const onReject = () => {
