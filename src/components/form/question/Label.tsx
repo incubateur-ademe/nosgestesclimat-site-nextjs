@@ -1,3 +1,4 @@
+import Markdown from '@/design-system/utils/Markdown'
 import { QuestionSize } from '@/types/values'
 import { useState } from 'react'
 
@@ -31,9 +32,9 @@ export default function Label({ label, description, size = 'md' }: Props) {
           </button>
         ) : null}
       </div>
-      {isOpen ? (
+      {isOpen && description ? (
         <div className="mb-3">
-          {description}{' '}
+          <Markdown>{description}</Markdown>{' '}
           <button
             onClick={() => setIsOpen(false)}
             className="block uppercase text-primary underline">

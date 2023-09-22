@@ -100,6 +100,7 @@ type NGCRule = {
   sévérité?: string
   action?: { dépasse: string[] }
   icônes?: string
+  sévérité?: 'avertissement' | 'information' | 'invalide'
   dottedName?: string
   plus?: boolean
   formule?: Formule

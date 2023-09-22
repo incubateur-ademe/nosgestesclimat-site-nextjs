@@ -44,7 +44,7 @@ export default function useRules({ engine }: Props) {
   const everyNotifications = useMemo<string[]>(
     () =>
       Object.entries(engine.getParsedRules())
-        .filter((rule: any) => rule[1].rawNode.notification)
+        .filter((rule: any) => rule[1].rawNode.type === 'notification') // Model shenanigans: type is only used for notifications
         .map((question) => question[0]),
     [engine]
   )

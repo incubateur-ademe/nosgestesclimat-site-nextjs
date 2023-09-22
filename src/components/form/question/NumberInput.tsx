@@ -6,6 +6,7 @@ type Props = {
   isMissing: boolean
   setValue: (value: number) => void
   size?: QuestionSize
+  min?: number
 }
 
 const sizeClassNames = {
@@ -18,6 +19,7 @@ export default function NumberInput({
   isMissing,
   setValue,
   size = 'md',
+  min = 0,
 }: Props) {
   return (
     <div
@@ -25,7 +27,7 @@ export default function NumberInput({
       <input
         className={`rounded border border-primary bg-grey-100 p-2 text-right transition-colors focus:border-primary focus:ring-2 focus:ring-primary`}
         type="number"
-        min="0"
+        min={min}
         value={isMissing ? '' : value}
         placeholder={value.toLocaleString('fr-fr', {
           maximumFractionDigits: 1,

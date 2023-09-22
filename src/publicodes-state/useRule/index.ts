@@ -8,6 +8,7 @@ import useChoices from './useChoices'
 import useContent from './useContent'
 import useMissing from './useMissing'
 import useMosaic from './useMosaic'
+import useNotifications from './useNotifications'
 import useType from './useType'
 import useValue from './useValue'
 
@@ -19,6 +20,7 @@ export default function useRule(dottedName: string) {
     situation,
     updateSituation,
     addFoldedStep,
+    everyNotifications,
     everyMosaicChildWhoIsReallyInMosaic,
   } = useContext(simulationContext)
 
@@ -45,6 +47,12 @@ export default function useRule(dottedName: string) {
     evaluation,
   })
 
+  const { notifications, activeNotifications } = useNotifications({
+    dottedName,
+    everyNotifications,
+    safeEvaluate,
+    situation,
+  })
   const { questionsOfMosaic, shouldDisplayAucun, parent } = useMosaic({
     dottedName,
     rule,
@@ -97,6 +105,8 @@ export default function useRule(dottedName: string) {
     isInactive,
     suggestions,
     choices,
+    notifications,
+    activeNotifications,
     questionsOfMosaic,
     parent,
     shouldDisplayAucun,
