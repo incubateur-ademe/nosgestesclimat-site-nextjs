@@ -70,6 +70,7 @@ export async function POST(req: Request) {
 
 export async function GET() {
   // Respond with the stream
+
   return new NextResponse('Emails sent.', {
     status: 200,
   })
