@@ -1,4 +1,4 @@
-import { NGCRuleNode, NGCRulesNodes } from '@/types/model'
+import { NGCRuleNode, NGCRulesNodes } from '@/publicodes-state/types'
 
 const formatCategoryName = (category: string) => {
   switch (category) {

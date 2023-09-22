@@ -63,7 +63,7 @@ export async function POST(req: Request) {
     axiosConf
   )
 
-  return new NextResponse('Emails sent.', {
+  return new NextResponse('Email sent.', {
     status: 200,
   })
 }

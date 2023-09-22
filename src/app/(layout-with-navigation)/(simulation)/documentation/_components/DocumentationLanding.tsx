@@ -10,7 +10,7 @@ import { utils } from 'publicodes'
 
 import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
-import { NGCRules } from '@/types/model'
+import { NGCRules } from '@/publicodes-state/types'
 import editorialisedModels from '../_data/editorialisedModels.yaml'
 import SearchBar from './SearchBar'
 

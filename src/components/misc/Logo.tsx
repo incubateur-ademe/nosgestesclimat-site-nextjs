@@ -11,8 +11,8 @@ export default function Logo({
   const classnames = {
     xs: {
       wrapper: 'pb-2',
-      image: 'h-auto w-8',
-      text: 'text-xs',
+      image: 'h-auto w-8 md:w-[50px]',
+      text: 'text-xs md:text-xl',
     },
     small: {
       wrapper: 'pb-4 pt-8',

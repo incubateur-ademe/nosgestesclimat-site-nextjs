@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
-import { NGCRules } from '@/types/model'
+import { NGCRules } from '@/publicodes-state/types'
 import Fuse from 'fuse.js'
 import { utils } from 'publicodes'
 import { useEffect, useMemo, useRef, useState } from 'react'
