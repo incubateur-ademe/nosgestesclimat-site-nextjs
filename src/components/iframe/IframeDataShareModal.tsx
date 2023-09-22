@@ -1,8 +1,8 @@
-import { useIframe } from '@/contexts/IframeOptionsContext'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useGetResultsFromDetailParam } from '@/hooks/useGetResultsFromDetailParam'
+import { useIframe } from '@/hooks/useIframe'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import Trans from '../translation/Trans'
 

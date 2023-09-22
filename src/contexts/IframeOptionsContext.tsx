@@ -3,7 +3,7 @@
 import { useIsClient } from '@/app/_components/IsClientCtxProvider'
 import { getMatomoEventVisitViaIframe } from '@/constants/matomo'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { PropsWithChildren, createContext, useContext } from 'react'
+import { PropsWithChildren, createContext } from 'react'
 import { getIsIframe } from '../utils/getIsIframe'
 
 export const IframeOptionsContext = createContext<{
@@ -75,5 +75,3 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
     </IframeOptionsContext.Provider>
   )
 }
-
-export const useIframe = () => useContext(IframeOptionsContext)
