@@ -1,5 +1,6 @@
 'use client'
 
+import { useIsClient } from '@/app/_components/IsClientCtxProvider'
 import { getMatomoEventVisitViaIframe } from '@/constants/matomo'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { PropsWithChildren, createContext, useContext } from 'react'
@@ -16,6 +17,10 @@ const nullDecode = (string: string) =>
   string == null ? string : decodeURIComponent(string)
 
 export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
+  const isClient = useIsClient()
+
+  if (!isClient) return children
+
   const urlParams = new URLSearchParams(window.location.search)
 
   const isIframe = getIsIframe()
