@@ -6,9 +6,7 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Markdown from '@/design-system/utils/Markdown'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useLocale } from '@/hooks/useLocale'
-import { useRules } from '@/hooks/useRules'
-import { useUser } from '@/publicodes-state'
+import { useTempEngine } from '@/publicodes-state'
 import { NGCRule, NGCRules } from '@/publicodes-state/types'
 
 import { utils } from 'publicodes'
@@ -28,14 +26,8 @@ export default function ActionPlus({
   const dottedName: string = utils.decodeRuleName(
     dottedNameArray.map(decodeURI).join(' . ')
   )
-  console.log(dottedName)
-  const locale = useLocale()
-  const { user } = useUser()
 
-  const { data: rules } = useRules({
-    region: user.region.code,
-    lang: locale || 'fr',
-  })
+  const { rules } = useTempEngine()
 
   const { data: documentation } = useFetchDocumentation()
 
