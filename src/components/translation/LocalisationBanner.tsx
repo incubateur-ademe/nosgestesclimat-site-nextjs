@@ -1,20 +1,23 @@
 'use client'
 
+import Link from '@/components/Link'
+import CountryFlag from '@/components/misc/CountryFlag'
 import { getMatomoEventChangeRegion } from '@/constants/matomo'
 import { defaultModelRegionCode } from '@/constants/translation'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useGetSupportedRegions } from '@/hooks/useGetSupportedRegions'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
+import { SuppportedRegions } from '@/types/international'
 import { capitaliseString } from '@/utils/capitaliseString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import Link from '../Link'
-import CountryFlag from '../misc/CountryFlag'
 import Trans from './Trans'
 
-export default function LocalisationBanner() {
+type Props = {
+  supportedRegions: SuppportedRegions
+}
+export default function LocalisationBanner({ supportedRegions }: Props) {
   const { t } = useClientTranslation()
 
   const { user, tutorials, hideTutorial } = useUser()
@@ -22,8 +25,6 @@ export default function LocalisationBanner() {
   const currentLocale = useLocale() as string
 
   const { code } = user?.region ?? {}
-
-  const { data: supportedRegions } = useGetSupportedRegions()
 
   if (!supportedRegions) return null
 

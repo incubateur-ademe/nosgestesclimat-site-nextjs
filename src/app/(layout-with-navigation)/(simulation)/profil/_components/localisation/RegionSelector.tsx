@@ -56,6 +56,7 @@ export default function RegionSelector({
         </summary>
 
         <RegionGrid
+          supportedRegions={supportedRegions}
           updateCurrentRegion={(code: string) => {
             updateRegion({
               code,

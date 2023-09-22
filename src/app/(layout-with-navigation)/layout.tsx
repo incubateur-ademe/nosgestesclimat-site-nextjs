@@ -1,21 +1,20 @@
-import Main from '@/design-system/layout/Main'
-import { PropsWithChildren } from 'react'
-
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
+import Main from '@/design-system/layout/Main'
+import { useSupportedRegions } from '@/hooks/useSupportedRegions'
+import { PropsWithChildren } from 'react'
 import MobileHeader from './_components/MobileHeader'
 import Navigation from './_components/Navigation'
 
-export default function PageLayout({ children }: PropsWithChildren) {
+export default async function PageLayout({ children }: PropsWithChildren) {
+  const supportedRegions = await useSupportedRegions()
+
   return (
     <>
       <div className="m-auto flex max-w-7xl justify-start">
         <Navigation />
-
         <Main className="w-full max-w-4xl p-2 md:px-4 md:py-8">
           <MobileHeader />
-
-          <LocalisationBanner />
-
+          <LocalisationBanner supportedRegions={supportedRegions} />
           {children}
         </Main>
       </div>

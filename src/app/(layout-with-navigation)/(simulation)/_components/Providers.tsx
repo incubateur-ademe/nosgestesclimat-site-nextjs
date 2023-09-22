@@ -5,11 +5,12 @@ import Loader from '@/design-system/layout/Loader'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
+import { SuppportedRegions } from '@/types/international'
 import { usePathname } from 'next/navigation'
 import { PropsWithChildren, useEffect } from 'react'
 
 type Props = {
-  supportedRegions: any
+  supportedRegions: SuppportedRegions
 }
 export default function Providers({
   children,

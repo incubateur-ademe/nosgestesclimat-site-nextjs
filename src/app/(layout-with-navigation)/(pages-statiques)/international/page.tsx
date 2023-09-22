@@ -1,12 +1,12 @@
+import Link from '@/components/Link'
+import RegionGrid from '@/components/misc/RegionGrid'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Container from '@/design-system/layout/Container'
 import Title from '@/design-system/layout/Title'
-
-import Link from '@/components/Link'
-import RegionGrid from '@/components/misc/RegionGrid'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { useSupportedRegions } from '@/hooks/useSupportedRegions'
 import Image from 'next/image'
 
 export default async function International() {
@@ -17,6 +17,8 @@ export default async function International() {
     'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.'
   )
 
+  const supportedRegions = await useSupportedRegions()
+
   // TODO: add back full width somehow
   return (
     <>
@@ -24,7 +26,6 @@ export default async function International() {
         <div className="flex items-start justify-between gap-4">
           <div className="text-center md:text-left">
             <Title title={title} />
-
             <Image
               src="/images/misc/international-illustration.jpeg"
               alt=""
@@ -123,7 +124,10 @@ export default async function International() {
       <div className="rounded-md bg-primaryLight">
         <Container maxWidth="3xl" className="pb-12 pt-8">
           <div className="mx-auto my-0">
-            <RegionGrid shouldShowButton={false} />
+            <RegionGrid
+              shouldShowButton={false}
+              supportedRegions={supportedRegions}
+            />
           </div>
         </Container>
       </div>
