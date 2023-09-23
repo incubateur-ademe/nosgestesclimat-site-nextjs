@@ -67,7 +67,9 @@ export default function useUser() {
      * A setter for updating the user email
      */
     updateEmail,
-    /** A setter for updating the user current region */
+    /**
+     * A setter for updating the user current region
+     */
     updateRegion,
     /**
      * A list of all tutorials seen by the user (that we do not need to show)
@@ -81,15 +83,45 @@ export default function useUser() {
      * Set a tutorial to seen (it should not be displayed)
      */
     hideTutorial,
+    /**
+     * Update the specified north star rating
+     */
     updateNorthStarRatings,
+    /**
+     * A list of every simulations of the user (and their associated informations)
+     */
     simulations,
+    /**
+     * Delete a the specified simulation
+     */
     deleteSimulation,
+    /**
+     * Return the current simulation ID (if there is one)
+     */
     currentSimulationId,
+    /**
+     * Set the current simulation ID
+     */
     setCurrentSimulationId,
+    /**
+     * Update the situation of the current simulation (by adding the passed situation to the existing situation)
+     */
     updateSituationOfCurrentSimulation,
+    /**
+     * Add a folded step to the list of folded step of the current simulation
+     */
     updateFoldedStepsOfCurrentSimulation,
+    /**
+     * Replace the actions choices of the current simulation by the one passed
+     */
     updateCurrentSimulationActionChoices,
+    /**
+     * Return the current simulation object
+     */
     getCurrentSimulation,
+    /**
+     * Create a new simulation (with the situation and the persona passed if applicable), set it as current and return its ID
+     */
     initSimulation,
     toggleActionChoice,
     rejectAction,

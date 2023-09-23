@@ -11,7 +11,6 @@ type Props = {
   storageKey?: string
   initialRegion: { code: string; name: string }
 }
-
 export default function UserProvider({
   children,
   storageKey = 'ngc',
