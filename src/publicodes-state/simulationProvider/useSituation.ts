@@ -9,6 +9,13 @@ type Props = {
   externalSituation: Situation
   updateExternalSituation: (situation: Situation) => void
 }
+/**
+ * update situation lifecycle:
+ * 1) We sanitize the situation
+ * 2) We update the situation of the simulation of the user (externalSituation)
+ * 3) We wait one frame before resolving the promise (this way the user state is updated)
+ * 4) We detect that the external situation has changed and we update the engine situation and the internal situation based on it
+ */
 export default function useSituation({
   engine,
   everyRules,

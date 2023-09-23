@@ -1,5 +1,10 @@
 import { useCallback, useState } from 'react'
 
+/**
+ * Get and set current question and category.
+ *
+ * currentCategory could be inferred from current question. It is not deleted for now because it is used in the actions page
+ */
 export default function useCurrent() {
   const [currentQuestion, setCurrentQuestion] = useState<null | string>(null)
 

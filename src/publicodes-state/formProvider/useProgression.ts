@@ -6,6 +6,11 @@ type Props = {
   relevantQuestions: string[]
 }
 
+/**
+ * Get progression and remaining questions sorted by category
+ *
+ * remainingQuestionsByCategories is not really usefull. It is not deleted for now because it is used in the actions page
+ */
 export default function useProgression({
   categories,
   remainingQuestions,
