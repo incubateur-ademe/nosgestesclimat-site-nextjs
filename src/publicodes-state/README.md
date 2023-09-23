@@ -1,8 +1,8 @@
-Publicodes State
+# Publicodes State
 
 Cette librairie met à disposition des hooks React permettant de gérer le state d'un utilisateur de Nos Gestes Climat et ses simulations associées.
 
-Cette librairie souhaite permettre une façon simple et claire de modulariser le code de Nos Gestes Climat en permettant de séparer toute la logique utilisateur/formulaire/publicodes du reste du front-end. Cette séparation des préoccupations permet au front-end d'évoluer rapidement sans avoir à ce soucier des complexités du moteur Publicodes.
+Cette librairie souhaite permettre une façon simple et claire de modulariser le code de Nos Gestes Climat en permettant de séparer toute la logique utilisateur/formulaire/publicodes du reste du front-end. Cette séparation des préoccupations permet au front-end d'évoluer rapidement sans avoir à se soucier des complexités du moteur Publicodes.
 
 Ce que cette librairie ne fait pas :
 
