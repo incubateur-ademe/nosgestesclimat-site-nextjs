@@ -8,7 +8,7 @@ type Props = {
   lang?: string
   region?: string
 }
-// TODO: endpoint should not be static (and should point to local if available)
+
 export function useRules({ lang, region }: Props) {
   const locale = useLocale()
   const { user } = useUser()

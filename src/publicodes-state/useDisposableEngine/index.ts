@@ -1,25 +1,24 @@
 import Engine from 'publicodes'
 import { useMemo } from 'react'
 import { safeEvaluateHelper } from '../helpers/safeEvaluateHelper'
+import { safeGetSituation } from '../helpers/safeGetSituation'
+import { Situation } from '../types'
 
 type Props = {
   rules?: any
-  situation: any
+  situation: Situation
 }
-
-export const safeGetSituation = ({ situation, rules }: any): any =>
-  situation
-    ? Object.fromEntries(
-        Object.entries(situation).filter(([ruleName]) =>
-          Object.keys(rules).includes(ruleName)
-        )
-      )
-    : {}
-
+/**
+ * A hook that set up a separate engine to use for calculation.
+ *
+ * Very ressource intensive. Use with caution
+ */
 export default function useDisposableEngine({ rules, situation }: Props) {
   const engine = useMemo(
     () =>
-      new Engine(rules).setSituation(safeGetSituation({ situation, rules })),
+      new Engine(rules).setSituation(
+        safeGetSituation({ situation, everyRules: Object.keys(rules) })
+      ),
     [rules, situation]
   )
 
@@ -34,7 +33,12 @@ export default function useDisposableEngine({ rules, situation }: Props) {
     safeEvaluate(dottedName, engine)?.nodeValue
 
   const updateSituation = (newSituation: any) => {
-    engine.setSituation(safeGetSituation({ situation: newSituation, rules }))
+    engine.setSituation(
+      safeGetSituation({
+        situation: newSituation,
+        everyRules: Object.keys(rules),
+      })
+    )
   }
 
   return {

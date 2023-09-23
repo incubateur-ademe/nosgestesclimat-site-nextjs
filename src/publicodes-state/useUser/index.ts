@@ -9,6 +9,11 @@ import useSimulations from './useSimulations'
 import useTutorials from './useTutorials'
 import useUserDetails from './useUserDetails'
 
+/**
+ * A hook to get and set every info about a user
+ *
+ * Maybe it shouldn't be in publicodes-state
+ */
 export default function useUser() {
   const [groupToRedirectToAfterTest, setGroupToRedirectToAfterTest] =
     useState<any>(undefined)

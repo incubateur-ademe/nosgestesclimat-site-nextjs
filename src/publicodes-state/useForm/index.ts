@@ -4,6 +4,9 @@ import { useContext } from 'react'
 import formContext from '../formProvider/context'
 import useNavigation from './useNavigation'
 
+/**
+ * A hook to help display a form inside the simulation
+ */
 export default function useForm() {
   const {
     categories,

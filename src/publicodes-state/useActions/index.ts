@@ -8,6 +8,11 @@ type ActionObject = {
   dottedName: string
   value: number
 }
+/**
+ * A hook to help with the actions display and processing.
+ *
+ * Not really used for now but will be essential when we redo the actions page
+ */
 export default function useActions() {
   const { engine } = useContext(simulationContext)
 
@@ -28,5 +33,10 @@ export default function useActions() {
     [engine, getValue]
   )
 
-  return { orderedActions }
+  return {
+    /**
+     * Every relevant actions, ordered by value
+     */
+    orderedActions,
+  }
 }

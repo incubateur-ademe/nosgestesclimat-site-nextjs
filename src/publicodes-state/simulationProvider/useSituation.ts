@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Engine, NodeValue, Situation } from '../types'
+import { safeGetSituation } from '../helpers/safeGetSituation'
+import { Engine, Situation } from '../types'
 
 type Props = {
   engine: Engine
@@ -19,7 +20,7 @@ export default function useSituation({
   const [situation, setSituation] = useState(defaultSituation)
 
   const updateSituation = (situationToAdd: Situation): Promise<void> => {
-    const safeSitationToAdd = getSafeSituation({
+    const safeSitationToAdd = safeGetSituation({
       situation: situationToAdd,
       everyRules,
     })
@@ -34,7 +35,7 @@ export default function useSituation({
   }
 
   useEffect(() => {
-    const safeSituation = getSafeSituation({
+    const safeSituation = safeGetSituation({
       situation: externalSituation,
       everyRules,
     })
@@ -49,20 +50,3 @@ export default function useSituation({
     initialized,
   }
 }
-
-const getSafeSituation = ({
-  situation,
-  everyRules,
-}: {
-  situation: Situation
-  everyRules: string[]
-}): Situation =>
-  everyRules
-    .filter((rule: string) => situation[rule] || situation[rule] === 0)
-    .reduce(
-      (accumulator: Record<string, NodeValue>, currentValue: string) => ({
-        ...accumulator,
-        [currentValue]: situation[currentValue],
-      }),
-      {}
-    )
