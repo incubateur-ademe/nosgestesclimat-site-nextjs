@@ -8,8 +8,13 @@ import Card from '@/design-system/layout/Card'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useRule, useTempEngine, useUser } from '@/publicodes-state'
-import FormProvider from '@/publicodes-state/formProvider'
+import {
+  FormProvider,
+  useEngine,
+  useRule,
+  useTempEngine,
+  useUser,
+} from '@/publicodes-state'
 import { NGCRuleNode } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { utils } from 'publicodes'

@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useSupportedRegions } from '@/hooks/useSupportedRegions'
-import FormProvider from '@/publicodes-state/formProvider'
+import { FormProvider } from '@/publicodes-state'
 import { Metadata } from 'next'
 import ProfilPageContent from './_components/ProfilPageContent'
 

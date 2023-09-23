@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,9 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     },
     "forceConsistentCasingInFileNames": true
   },
@@ -34,9 +28,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "netlify/functions/**/*.ts"
-, "src/app/(layout-with-navigation)/statistiques/_components/StatsContent.js", "src/app/(layout-with-navigation)/statistiques/_components/content/Chart.js"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "netlify/functions/**/*.ts",
+    "src/app/(layout-with-navigation)/statistiques/_components/StatsContent.js",
+    "src/app/(layout-with-navigation)/statistiques/_components/content/Chart.js"
+  ],
+  "exclude": ["node_modules"]
 }

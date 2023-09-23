@@ -2,10 +2,7 @@
 
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useLocale } from '@/hooks/useLocale'
-import { useRules } from '@/hooks/useRules'
-import { useUser } from '@/publicodes-state'
-import useEngine from '@/publicodes-state/simulationProvider/useEngine'
+import { useEngine } from '@/publicodes-state'
 import Head from 'next/head'
 
 import Link from '@/components/Link'
@@ -16,17 +13,7 @@ export default function DocumentationContent() {
   const { i18n } = useClientTranslation()
   const path = window.location.pathname.split('/documentation/')[1]
 
-  const locale = useLocale()
-
-  const {
-    user: { region },
-  } = useUser()
-
-  const { data: rules } = useRules({
-    lang: locale || 'fr',
-    region: region?.code || 'FR',
-  })
-  const { engine } = useEngine(rules)
+  const { engine } = useEngine()
 
   const documentationPath = '/documentation'
 

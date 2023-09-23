@@ -3,7 +3,7 @@ import simulationContext from '../simulationProvider/context'
 import { NodeValue } from '../types'
 
 export default function useEngine() {
-  const { safeEvaluate, safeGetRule, updateSituation } =
+  const { engine, safeEvaluate, safeGetRule, updateSituation } =
     useContext(simulationContext)
 
   const getValue = (dottedName: string): NodeValue =>
@@ -27,6 +27,7 @@ export default function useEngine() {
   }
 
   return {
+    engine,
     getValue,
     getNumericValue,
     getCategory,

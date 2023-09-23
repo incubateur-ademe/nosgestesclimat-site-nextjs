@@ -1,6 +1,5 @@
 import { getMatomoEventActionAccepted } from '@/constants/matomo'
-import { useUser } from '@/publicodes-state'
-import FormProvider from '@/publicodes-state/formProvider'
+import { FormProvider, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
