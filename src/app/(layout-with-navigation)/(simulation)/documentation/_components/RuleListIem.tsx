@@ -1,5 +1,5 @@
 import Link from '@/components/Link'
-import { NGCRules } from '@/types/model'
+import { NGCRules } from '@/publicodes-state/types'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Fuse from 'fuse.js'
 import highlightMatches from '../_helpers/highlightMatches'
@@ -17,7 +17,7 @@ export default function RuleListItem({
   return (
     <li
       key={item.dottedName}
-      className="my-2 p-2 border-b border-solid border-primaryLight">
+      className="my-2 border-b border-solid border-primaryLight p-2">
       <Link
         href={`/documentation/${encodeRuleName(item.dottedName)}`}
         className="decoration-none">

@@ -68,7 +68,7 @@ export default function RegionSelector({
           className={isFetching ? 'pointer-events-none opacity-60' : ''}
           aria-disabled={isFetching || undefined}
         />
-        <Card className="mt-4 items-center">
+        <Card className="mt-4 flex-row items-center">
           <span
             role="img"
             aria-label="emoji world"

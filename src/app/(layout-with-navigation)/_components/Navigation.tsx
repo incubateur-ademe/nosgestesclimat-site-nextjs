@@ -10,7 +10,8 @@ import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useDebug } from '@/hooks/useDebug'
 import { useGetPRNumber } from '@/hooks/useGetPRNumber'
-import { Persona } from '@/types/persona'
+import { useUser } from '@/publicodes-state'
+import { capitaliseString } from '@/utils/capitaliseString'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import NavLink from './navigation/NavLink'
@@ -31,8 +32,10 @@ const openmojis = {
   personas: '1F465',
   github: 'E045',
 }
+
 export const openmojiURL = (name: keyof typeof openmojis) =>
   `/images/misc/${openmojis[name]}.svg`
+
 export const actionImg = openmojiURL('action')
 export const conferenceImg = openmojiURL('conference')
 
@@ -47,14 +50,16 @@ export default function Navigation() {
 
   const enquete = ''
 
-  const persona: Persona | undefined = undefined
+  const { getCurrentSimulation } = useUser()
+
+  const persona: string | undefined = getCurrentSimulation()?.persona
 
   const { PRNumber, clearPRNumber } = useGetPRNumber()
 
   return (
     <nav
       id="mainNavigation"
-      className="z-50 my-2 flex flex-col justify-center outline-none lg:sticky lg:top-0 lg:my-0 lg:h-screen lg:w-[14rem] lg:shrink-0 lg:justify-start lg:overflow-hidden lg:border-0 lg:border-r-[1px] lg:border-solid lg:border-grey-200">
+      className="z-50 my-2 flex h-auto flex-col justify-center pb-8 outline-none lg:sticky lg:top-0 lg:my-4 lg:w-[14rem] lg:shrink-0 lg:justify-start lg:overflow-hidden lg:border-0 lg:border-r-[1px] lg:border-solid lg:border-grey-200">
       <Logo size="small" className="hidden lg:block" />
       {isDebug ? (
         <div className="mx-auto hidden rounded-lg bg-red-600 px-4 py-2 text-center font-bold uppercase text-white lg:block">
@@ -98,8 +103,8 @@ export default function Navigation() {
                 {!persona ? (
                   t('Profil')
                 ) : (
-                  <span className="rounded-sm bg-primary px-2 text-white">
-                    {(persona as Persona)?.nom}
+                  <span className="rounded-md bg-primary px-4 py-2 text-white">
+                    {capitaliseString(persona.split(' . ')[1])}
                   </span>
                 )}
               </span>

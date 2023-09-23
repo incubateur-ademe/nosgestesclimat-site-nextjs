@@ -11,7 +11,7 @@ export default function NoSimulationBanner() {
   if (progression > 0) return null
 
   return (
-    <Card className="mt-4 flex !w-[35rem] max-w-full flex-col items-start gap-2 p-8 !shadow-none">
+    <Card className="mt-4 flex !w-[35rem] max-w-full items-start gap-2 p-8 !shadow-none">
       <p>
         <span
           role="img"

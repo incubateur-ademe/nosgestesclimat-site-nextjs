@@ -10,7 +10,7 @@ import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useRule, useTempEngine, useUser } from '@/publicodes-state'
 import FormProvider from '@/publicodes-state/formProvider'
-import { NGCRuleNode } from '@/types/model'
+import { NGCRuleNode } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { utils } from 'publicodes'
 import ActionForm from '../_components/actions/_components/ActionForm'
@@ -86,7 +86,7 @@ export default function ActionDetailPage({
         <Trans> Retour à la liste</Trans>
       </ButtonLink>
 
-      <Card className="mt-4 flex-col">
+      <Card className="mt-4">
         <header className="mb-4">
           <h2 className="flex items-center gap-2">
             {icons && <span className="flex">{icons}</span>}

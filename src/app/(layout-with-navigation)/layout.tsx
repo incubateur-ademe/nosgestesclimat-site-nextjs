@@ -2,6 +2,8 @@ import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import Main from '@/design-system/layout/Main'
 import { useSupportedRegions } from '@/hooks/useSupportedRegions'
 import { PropsWithChildren } from 'react'
+
+import Footer from '@/components/layout/Footer'
 import MobileHeader from './_components/MobileHeader'
 import Navigation from './_components/Navigation'
 
@@ -18,6 +20,7 @@ export default async function PageLayout({ children }: PropsWithChildren) {
           {children}
         </Main>
       </div>
+      <Footer />
     </>
   )
 }

@@ -42,7 +42,10 @@ export default async function NewsList() {
             const image = extractImageSrc(body)
             return (
               <li key={name} className="flex-1">
-                <Card tag={Link} href={getPath(index, data)}>
+                <Card
+                  tag={Link}
+                  href={getPath(index, data)}
+                  className="flex-row">
                   <Image
                     src={image.startsWith('https') ? image : ''}
                     alt=""

@@ -42,7 +42,7 @@ export default function Contact() {
           nous envoyer un message via le formulaire de contact ci-dessous.
         </Trans>
       </p>
-      <Card className="my-4 py-4">
+      <Card className="my-4 flex-row py-4">
         <GithubContributionForm />
       </Card>
       <p>

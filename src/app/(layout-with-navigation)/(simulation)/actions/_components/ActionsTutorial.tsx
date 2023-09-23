@@ -20,7 +20,7 @@ export default function ActionsTutorial() {
   const [value, unit] = getCarbonFootprint({ t, i18n }, bilan.nodeValue)
 
   return (
-    <Card className="my-6 flex-col items-start !bg-primaryLight">
+    <Card className="my-6 items-start !bg-primaryLight">
       <h2 className="flex items-center">
         <Image src="/images/E10C.svg" alt="" width={32} height={32} />
 

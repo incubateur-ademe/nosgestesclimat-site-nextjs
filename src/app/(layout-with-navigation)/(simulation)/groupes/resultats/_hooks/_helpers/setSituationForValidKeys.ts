@@ -1,5 +1,6 @@
+import { NGCRulesNodes } from '@/publicodes-state/types'
 import { safeGetSituation } from '@/publicodes-state/useDisposableEngine'
-import { NGCRulesNodes } from '@/types/model'
+
 import { Situation } from '@/types/simulation'
 import Engine from 'publicodes'
 

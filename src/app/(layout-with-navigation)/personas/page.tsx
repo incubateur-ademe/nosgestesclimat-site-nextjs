@@ -1,7 +1,8 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { currentLocale } from 'next-i18n-router'
-import Persona from './personas/Persona'
+import Persona from './_components/Persona'
+import PersonaExplanations from './_components/PersonaExplanations'
 
 export default async function Personas() {
   const lang = currentLocale()
@@ -30,7 +31,7 @@ export default async function Personas() {
           comme si vous étiez l'un des profils types que nous avons listés.
         </Trans>
       </p>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
         {Object.keys(personas).map((key) => (
           <Persona
             key={key}
@@ -39,6 +40,7 @@ export default async function Personas() {
           />
         ))}
       </div>
+      <PersonaExplanations />
     </>
   )
 }

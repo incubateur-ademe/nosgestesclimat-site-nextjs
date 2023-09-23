@@ -8,7 +8,7 @@ export default function DurationFigures(props) {
   return (
     <div className="flex w-full lg:flex-col">
       <div className="w-full">
-        <Card className="flex-col">
+        <Card>
           <p className="mb-0 inline-flex items-end text-3xl font-bold">
             {' '}
             {!isNaN(props.avgduration)
