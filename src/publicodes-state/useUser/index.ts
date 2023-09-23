@@ -50,12 +50,31 @@ export default function useUser() {
   const { updateNorthStarRatings } = useNorthStar({ setUser })
 
   return {
+    /**
+     * All the information about the user (for now: name, email, region and north star rating)
+     */
     user,
+    /**
+     * A setter for updating the user name (not used for now)
+     */
     updateName,
+    /**
+     * A setter for updating the user email
+     */
     updateEmail,
+    /** A setter for updating the user current region */
     updateRegion,
+    /**
+     * A list of all tutorials seen by the user (that we do not need to show)
+     */
     tutorials,
+    /**
+     * Set a tutorial to not seen (it should be displayed)
+     */
     showTutorial,
+    /**
+     * Set a tutorial to seen (it should not be displayed)
+     */
     hideTutorial,
     updateNorthStarRatings,
     simulations,

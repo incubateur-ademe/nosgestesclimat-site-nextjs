@@ -9,7 +9,13 @@ export default function getType({
   dottedName,
   rule,
   evaluation,
-}: Props): string | undefined {
+}: Props):
+  | 'notQuestion'
+  | 'mosaic'
+  | 'choices'
+  | 'boolean'
+  | 'number'
+  | undefined {
   if (!rule || !evaluation) return
 
   if (!rule.rawNode.question) {
