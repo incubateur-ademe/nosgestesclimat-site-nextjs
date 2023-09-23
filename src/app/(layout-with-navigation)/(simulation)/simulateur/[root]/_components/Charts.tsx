@@ -8,7 +8,7 @@ export default function Charts() {
   const [isBarChartVisible, setIsBarChartVisible] = useState(false)
   if (!currentCategory) return
   return (
-    <div className="flex flex-col">
+    <div className="mb-8 flex flex-col">
       <InlineChart />
       <button
         className="mx-auto"

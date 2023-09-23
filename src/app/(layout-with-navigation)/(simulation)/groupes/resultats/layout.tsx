@@ -1,4 +1,4 @@
-import FormProvider from '@/publicodes-state/formProvider'
+import { FormProvider } from '@/publicodes-state'
 import { PropsWithChildren } from 'react'
 
 export default function Layout({

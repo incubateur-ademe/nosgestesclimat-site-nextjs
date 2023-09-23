@@ -3,7 +3,7 @@
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import NorthStarBanner from '@/components/northstar/NorthstarBanner'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import FormProvider from '@/publicodes-state/formProvider'
+import { FormProvider } from '@/publicodes-state'
 import { useState } from 'react'
 import Slider from 'react-slick'
 import Actions from './_components/Actions'

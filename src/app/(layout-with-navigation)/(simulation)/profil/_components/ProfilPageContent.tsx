@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import { useUser } from '@/publicodes-state'
+import { SuppportedRegions } from '@/types/international'
 import { Simulation } from '@/types/simulation'
 import { capitaliseString } from '@/utils/capitaliseString'
 import HasSimulationBanner from './HasSimulationBanner'
@@ -10,7 +11,10 @@ import SimulationList from './SimulationList'
 import Localisation from './localisation/Localisation'
 import SimulationAnswerList from './simulationAnswerList/SimulationAnswerList'
 
-export default function ProfilPageContent() {
+type Props = {
+  supportedRegions: SuppportedRegions
+}
+export default function ProfilPageContent({ supportedRegions }: Props) {
   const { simulations, currentSimulationId } = useUser()
 
   const currentSimulation = (simulations as Simulation[]).find(
@@ -34,7 +38,7 @@ export default function ProfilPageContent() {
 
       <HasSimulationBanner />
 
-      <Localisation />
+      <Localisation supportedRegions={supportedRegions} />
 
       <SimulationAnswerList />
 

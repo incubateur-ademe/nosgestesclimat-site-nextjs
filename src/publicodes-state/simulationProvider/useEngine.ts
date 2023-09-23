@@ -3,6 +3,13 @@ import { useMemo } from 'react'
 import { safeEvaluateHelper } from '../helpers/safeEvaluateHelper'
 import { NGCEvaluatedNode, NGCRuleNode, Rules } from '../types'
 
+/**
+ * Initiate the engine based on the rules we pass
+ *
+ * Also return safeEvaluate and safeGetRule wich catch errors if dottedName is invalid
+ *
+ * And a pristine engine wich can be used to assess rules without any situation (for exemple, we can reliably get the categories this way)
+ */
 export default function useEngine(rules: Rules) {
   const engine = useMemo(() => new Engine(rules), [rules])
 

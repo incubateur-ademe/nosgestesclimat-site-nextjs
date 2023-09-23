@@ -1,6 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import FormProvider from '@/publicodes-state/formProvider'
+import { useSupportedRegions } from '@/hooks/useSupportedRegions'
+import { FormProvider } from '@/publicodes-state'
 import { Metadata } from 'next'
 import ProfilPageContent from './_components/ProfilPageContent'
 
@@ -10,11 +11,13 @@ export const metadata: Metadata = {
     'Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.',
 }
 
-export default function Profil() {
+export default async function Profil() {
+  const supportedRegions = await useSupportedRegions()
+
   return (
     <FormProvider>
       <Title title={<Trans>Mon profil</Trans>} />
-      <ProfilPageContent />
+      <ProfilPageContent supportedRegions={supportedRegions} />
     </FormProvider>
   )
 }

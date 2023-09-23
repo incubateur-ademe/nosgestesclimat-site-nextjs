@@ -8,6 +8,9 @@ type Props = {
   root?: string
 }
 
+/**
+ * This is not the real provider but a failsafe: if root is invalid we do not go further
+ */
 export default function FailSafeFormProvider({
   root = 'bilan',
   children,

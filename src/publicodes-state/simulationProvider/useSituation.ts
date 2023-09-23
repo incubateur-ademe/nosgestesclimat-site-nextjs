@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Engine, NodeValue, Situation } from '../types'
+import { safeGetSituation } from '../helpers/safeGetSituation'
+import { Engine, Situation } from '../types'
 
 type Props = {
   engine: Engine
@@ -8,6 +9,13 @@ type Props = {
   externalSituation: Situation
   updateExternalSituation: (situation: Situation) => void
 }
+/**
+ * update situation lifecycle:
+ * 1) We sanitize the situation
+ * 2) We update the situation of the simulation of the user (externalSituation)
+ * 3) We wait one frame before resolving the promise (this way the user state is updated)
+ * 4) We detect that the external situation has changed and we update the engine situation and the internal situation based on it
+ */
 export default function useSituation({
   engine,
   everyRules,
@@ -19,7 +27,7 @@ export default function useSituation({
   const [situation, setSituation] = useState(defaultSituation)
 
   const updateSituation = (situationToAdd: Situation): Promise<void> => {
-    const safeSitationToAdd = getSafeSituation({
+    const safeSitationToAdd = safeGetSituation({
       situation: situationToAdd,
       everyRules,
     })
@@ -34,7 +42,7 @@ export default function useSituation({
   }
 
   useEffect(() => {
-    const safeSituation = getSafeSituation({
+    const safeSituation = safeGetSituation({
       situation: externalSituation,
       everyRules,
     })
@@ -49,20 +57,3 @@ export default function useSituation({
     initialized,
   }
 }
-
-const getSafeSituation = ({
-  situation,
-  everyRules,
-}: {
-  situation: Situation
-  everyRules: string[]
-}): Situation =>
-  everyRules
-    .filter((rule: string) => situation[rule] || situation[rule] === 0)
-    .reduce(
-      (accumulator: Record<string, NodeValue>, currentValue: string) => ({
-        ...accumulator,
-        [currentValue]: situation[currentValue],
-      }),
-      {}
-    )

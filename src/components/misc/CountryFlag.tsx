@@ -1,21 +1,4 @@
-import { fetchSupportedRegions } from '@/helpers/localisation/fetchSupportedRegions'
-import { RegionCode, SuppportedRegions } from '@/types/international'
 import Image from 'next/image'
-import { use } from 'react'
-
-export function getFlagImgSrc(inputCode: RegionCode): string | undefined {
-  if (!inputCode) {
-    return undefined
-  }
-  return `https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${inputCode.toLowerCase()}.svg`
-}
-
-export function useFlag(inputCode: RegionCode): string | undefined {
-  const supportedRegions: SuppportedRegions = use(fetchSupportedRegions)
-
-  const code = (supportedRegions?.fr?.drapeau ?? inputCode) as unknown as string
-  return getFlagImgSrc(code)
-}
 
 export default function CountryFlag({
   code,
@@ -24,9 +7,7 @@ export default function CountryFlag({
   code: string
   className?: string
 }) {
-  const flagSrc = useFlag(code)
-
-  if (!flagSrc) return null
+  const flagSrc = `https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${code.toLowerCase()}.svg`
 
   return (
     <Image

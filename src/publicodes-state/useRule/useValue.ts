@@ -1,19 +1,14 @@
 'use client'
 
 import { useMemo } from 'react'
+import getType from '../helpers/getType'
 import { NGCEvaluatedNode, NGCRuleNode, NodeValue, Situation } from '../types'
-
 type Props = {
   dottedName: string
   safeGetRule: (rule: string) => NGCRuleNode | null
   safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   evaluation: NGCEvaluatedNode | null
   type: string | undefined
-  getType: (args: {
-    dottedName: string
-    rule: NGCRuleNode | null | any // Model shenanigans: question alimentation . local . consommation is missing "formule"
-    evaluation: NGCEvaluatedNode | null
-  }) => string | undefined
   questionsOfMosaic: string[]
   updateSituation: (situationToAdd: Situation) => Promise<void>
   addFoldedStep: (foldedStep: string) => void
@@ -25,7 +20,6 @@ export default function useValue({
   safeEvaluate,
   evaluation,
   type,
-  getType,
   questionsOfMosaic,
   updateSituation,
   addFoldedStep,

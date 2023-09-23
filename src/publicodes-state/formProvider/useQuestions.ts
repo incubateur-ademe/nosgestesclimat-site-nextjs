@@ -1,10 +1,12 @@
 import { useMemo } from 'react'
 import getIsMissing from '../helpers/getIsMissing'
 import getQuestionsOfMosaic from '../helpers/getQuestionsOfMosaic'
-import { NGCEvaluatedNode, Situation } from '../types'
+import getType from '../helpers/getType'
+import { NGCEvaluatedNode, NGCRuleNode, Situation } from '../types'
 
 type Props = {
   root: string
+  safeGetRule: (rule: string) => NGCRuleNode | null
   safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   categories: string[]
   subcategories: Record<string, string[]>
@@ -14,8 +16,12 @@ type Props = {
   everyMosaicChildWhoIsReallyInMosaic: string[]
 }
 
+/**
+ * This is were we get all the questions of the form in the correct order
+ */
 export default function useQuestions({
   root,
+  safeGetRule,
   safeEvaluate,
   categories,
   subcategories,
@@ -37,13 +43,16 @@ export default function useQuestions({
 
   const remainingQuestions = useMemo<string[]>(
     () =>
+      // We take every questions
       everyQuestions
+        // We remove all that are in mosaics
         .filter(
           (question) =>
             !everyMosaicChildWhoIsReallyInMosaic.find(
               (mosaic) => mosaic === question
             )
         )
+        // and all that are not missing
         .filter((question) =>
           Object.keys(missingVariables).find((missingVariable) =>
             missingVariable.includes(question)
@@ -94,7 +103,7 @@ export default function useQuestions({
             return -1
           }
 
-          // then if there is a km or a proprietaire
+          // then if there is a km or a proprietaire (this is shit)
           if (a.includes('km')) {
             return -1
           }
@@ -128,10 +137,33 @@ export default function useQuestions({
     ]
   )
 
-  const relevantQuestions = useMemo<string[]>(
+  const relevantAnsweredQuestions = useMemo<string[]>(
+    () =>
+      /**
+       * We take every foldedSteps and then check if their value is null (wich mean they ever are a boolean set to "non" or they are disabled).
+       * We check via getType if they are a boolean. If not, it means they are disabled and are not relevant (not displayed)
+       */
+      foldedSteps.filter(
+        (foldedStep) =>
+          !(
+            getType({
+              dottedName: foldedStep,
+              rule: safeGetRule(foldedStep),
+              evaluation: safeEvaluate(foldedStep),
+            }) !== 'boolean' && safeEvaluate(foldedStep)?.nodeValue === null
+          )
+      ),
+    [foldedSteps, safeGetRule, safeEvaluate]
+  )
+
+  const tempRelevantQuestions = useMemo<string[]>(
     () => [
-      ...foldedSteps,
+      /**
+       * We add every answered questions to display and every not answered questions to display to get every relevant questions
+       */
+      ...relevantAnsweredQuestions,
       ...remainingQuestions.filter((dottedName: string) =>
+        // We check again if the question is missing or not to make sure mosaic are correctly assessed (this is less than ideal)
         getIsMissing({
           dottedName,
           situation,
@@ -143,11 +175,25 @@ export default function useQuestions({
       ),
     ],
     [
-      foldedSteps,
+      relevantAnsweredQuestions,
       remainingQuestions,
       situation,
       everyMosaicChildWhoIsReallyInMosaic,
     ]
+  )
+
+  /**
+   * There is a small delay between adding a question to the answered questions and removing it from the missing questions.
+   * So we need to check for duplicates
+   *
+   * (yes, this is shit)
+   */
+  const relevantQuestions = useMemo<string[]>(
+    () =>
+      tempRelevantQuestions.filter(
+        (question, index) => tempRelevantQuestions.indexOf(question) === index
+      ),
+    [tempRelevantQuestions]
   )
 
   const questionsByCategories = useMemo<Record<string, string[]>>(
@@ -167,6 +213,7 @@ export default function useQuestions({
   return {
     missingVariables,
     remainingQuestions,
+    relevantAnsweredQuestions,
     relevantQuestions,
     questionsByCategories,
   }

@@ -3,21 +3,25 @@
 import CountryFlag from '@/components/misc/CountryFlag'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import { fetchSupportedRegions } from '@/helpers/localisation/fetchSupportedRegions'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
-import { use } from 'react'
 import RegionModelAuthors from './RegionModelAuthors'
 import RegionSelector from './RegionSelector'
 
-export default function Localisation({ title = 'Ma région de simulation' }) {
+type Props = {
+  title?: string
+  supportedRegions: SuppportedRegions
+}
+
+export default function Localisation({
+  title = 'Ma région de simulation',
+  supportedRegions,
+}: Props) {
   const { t } = useClientTranslation()
 
   const locale = useLocale()
-
-  const supportedRegions: SuppportedRegions = use(fetchSupportedRegions)
 
   const { user, updateRegion } = useUser()
   const { region, initialRegion } = user || {}

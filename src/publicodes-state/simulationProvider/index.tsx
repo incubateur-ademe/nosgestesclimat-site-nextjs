@@ -10,13 +10,37 @@ import useRules from './useRules'
 import useSituation from './useSituation'
 
 type Props = {
+  /**
+   * A publicodes rules object
+   */
   rules: Rules
+  /**
+   * The starting situation of engine
+   */
   defaultSituation?: Situation
+  /**
+   * The situation object of the current simulation of the user
+   */
   situation: Situation
+  /**
+   * A function to update the situation of the current simulation of the user (the passed situation is added to the current situation)
+   */
   updateSituation: (situation: Situation) => void
+  /**
+   * Every answered questions of the current simulation
+   */
   foldedSteps: string[]
+  /**
+   * A function to add a question to the list of the answered questions of the current simulation
+   */
   addFoldedStep: (foldedStep: string) => void
+  /**
+   * The order in wich we should display the categories
+   */
   categoryOrder: string[]
+  /**
+   * The root rule of the simulation
+   */
   root?: string
 }
 

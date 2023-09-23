@@ -8,9 +8,15 @@ import useChoices from './useChoices'
 import useContent from './useContent'
 import useMissing from './useMissing'
 import useMosaic from './useMosaic'
+import useNotifications from './useNotifications'
 import useType from './useType'
 import useValue from './useValue'
 
+/**
+ * A hook to get and set every information about a specific rule
+ *
+ * It should ALWAYS be used to access a rule (unless we need to compare mutliples rules with useEngine)
+ */
 export default function useRule(dottedName: string) {
   const {
     engine,
@@ -19,6 +25,7 @@ export default function useRule(dottedName: string) {
     situation,
     updateSituation,
     addFoldedStep,
+    everyNotifications,
     everyMosaicChildWhoIsReallyInMosaic,
   } = useContext(simulationContext)
 
@@ -39,15 +46,20 @@ export default function useRule(dottedName: string) {
     )
   }
 
-  const { type, getType } = useType({
+  const { type } = useType({
     dottedName,
     rule,
     evaluation,
   })
 
-  const { questionsOfMosaic, shouldDisplayAucun, parent } = useMosaic({
+  const { notifications, activeNotifications } = useNotifications({
     dottedName,
-    rule,
+    everyNotifications,
+    safeEvaluate,
+    situation,
+  })
+  const { questionsOfMosaic, parent } = useMosaic({
+    dottedName,
     everyMosaicChildWhoIsReallyInMosaic,
   })
 
@@ -79,33 +91,99 @@ export default function useRule(dottedName: string) {
       safeEvaluate,
       evaluation,
       type,
-      getType,
       questionsOfMosaic,
       updateSituation,
       addFoldedStep,
     })
 
   return {
+    /**
+     * The type of the question (set to "notQuestion" if not a question)
+     */
     type,
+    /**
+     * The parent category of the rule
+     */
     category,
+    /**
+     * The title of the rule ("title" in Publicodes)
+     */
     title,
+    /**
+     * The label of the rule ("rawNode.question" in Publicodes)
+     */
     label,
+    /**
+     * The description of the rule ("rawNode.description" in Publicodes)
+     */
     description,
+    /**
+     * The icons of the rule ("rawNode.icônes" in Publicodes)
+     */
     icons,
+    /**
+     * The unit of the rule ("rawNode.unité" in Publicodes)
+     */
     unit,
+    /**
+     * The color of the parent category ("rawNode.couleur" in Publicodes)
+     */
     color,
+    /**
+     * The question used to help answer  ("rawNode.aide" in Publicodes)
+     */
     assistance,
+    /**
+     * True if the rule is not yet active ("rawNode.inactif" in Publicodes)
+     */
     isInactive,
+    /**
+     * A list of suggestions to display as {label: value}
+     */
     suggestions,
+    /**
+     * A list of choices to display as partial dottedNames
+     */
     choices,
+    /**
+     * A list of notifications associated with the question
+     */
+    notifications,
+    /**
+     * A list of active (that should be displayed) notifications associated with the rule
+     */
+    activeNotifications,
+    /**
+     * A list of questions to display inside the mosaic (if the rule is a mosaic)
+     */
     questionsOfMosaic,
+    /**
+     * The direct parent of the rule
+     */
     parent,
-    shouldDisplayAucun,
+    /**
+     * The value of the rule ("nodeValue" in Publicodes)
+     */
     value,
+    /**
+     * The value formated as string (true => oui) or number,  without the unit
+     */
     displayValue,
+    /**
+     * The value as a number (0 if the value is not a number)
+     */
     numericValue,
+    /**
+     * True if the question is not answered
+     */
     isMissing,
+    /**
+     * Setter for the value of the rule, with the possibility to add a dottedName in the foldedSteps
+     */
     setValue,
+    /**
+     * Set default value as value, with the possibility to add a dottedName in the foldedSteps
+     */
     setDefaultAsValue,
   }
 }

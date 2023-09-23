@@ -8,10 +8,15 @@ import usePersistentTutorials from './usePersistentTutorials'
 import usePersistentUser from './usePersistentUser'
 
 type Props = {
+  /**
+   * The localstorage key in use
+   */
   storageKey?: string
+  /**
+   * The inital region of the user
+   */
   initialRegion: { code: string; name: string }
 }
-
 export default function UserProvider({
   children,
   storageKey = 'ngc',

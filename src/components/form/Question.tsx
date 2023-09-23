@@ -3,6 +3,7 @@ import BooleanInput from '@/components/form/question/BooleanInput'
 import ChoicesInput from '@/components/form/question/ChoicesInput'
 import Label from '@/components/form/question/Label'
 import Mosaic from '@/components/form/question/Mosaic'
+import Notification from '@/components/form/question/Notification'
 import NumberInput from '@/components/form/question/NumberInput'
 import Suggestions from '@/components/form/question/Suggestions'
 import { useRule } from '@/publicodes-state'
@@ -10,6 +11,13 @@ import { useRule } from '@/publicodes-state'
 type Props = {
   question: string
 }
+
+//TODO: It should maayyybe be described in the model...
+const questionsThatCantBeZero = [
+  'transport . voiture . saisie voyageurs',
+  'logement . saisie habitants',
+  'logement . surface',
+]
 
 export default function Question({ question }: Props) {
   const {
@@ -23,6 +31,7 @@ export default function Question({ question }: Props) {
     isMissing,
     choices,
     assistance,
+    activeNotifications,
   } = useRule(question)
 
   return (
@@ -34,8 +43,12 @@ export default function Question({ question }: Props) {
           <NumberInput
             unit={unit}
             value={numericValue}
-            setValue={(value) => setValue(value, question)}
+            setValue={(value) => {
+              const limit = questionsThatCantBeZero.includes(question) ? 1 : 0
+              setValue(value < limit ? limit : value, question)
+            }}
             isMissing={isMissing}
+            min={questionsThatCantBeZero.includes(question) ? 1 : 0}
           />
         )}
         {type === 'boolean' && (
@@ -59,6 +72,9 @@ export default function Question({ question }: Props) {
       {assistance ? (
         <Assistance question={question} assistance={assistance} />
       ) : null}
+      {activeNotifications.map((notification) => (
+        <Notification key={notification} notification={notification} />
+      ))}
     </>
   )
 }

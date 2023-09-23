@@ -11,6 +11,7 @@ type Props = {
 export default function useChoices({ rule, type }: Props) {
   const choices = useMemo<string[]>(() => {
     if (type === 'choices') {
+      // Model shenanigans: sometimes "une possibilité" is in rawNode, sometimes it is in formule
       const unePossibilite: any = rule?.rawNode.formule
         ? rule?.rawNode.formule['une possibilité']
         : rule?.rawNode['une possibilité']

@@ -3,6 +3,7 @@ import Question from '@/components/form/Question'
 import questions from '@/components/questions'
 import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
+import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -11,28 +12,34 @@ import { useEffect, useState } from 'react'
 import TestCompleted from './form/TestCompleted'
 
 export default function Form() {
+  const router = useRouter()
+
+  const isDebug = useDebug()
+
+  const { groupToRedirectToAfterTest, setGroupToRedirectToAfterTest } =
+    useUser()
+
   const {
     remainingQuestions,
+    relevantAnsweredQuestions,
     currentQuestion,
     setCurrentQuestion,
     categories,
   } = useForm()
 
-  const { groupToRedirectToAfterTest, setGroupToRedirectToAfterTest } =
-    useUser()
-
-  const [isInitialized, setIsInitialized] = useState(false)
-
   const { getValue } = useEngine()
-
-  const router = useRouter()
 
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()
 
+  const [isInitialized, setIsInitialized] = useState(false)
+
   useEffect(() => {
     if (!isInitialized) {
-      if (questionInQueryParams) {
+      if (
+        questionInQueryParams &&
+        (relevantAnsweredQuestions.includes(questionInQueryParams) || isDebug)
+      ) {
         setCurrentQuestion(questionInQueryParams)
       } else {
         setCurrentQuestion(remainingQuestions[0])
@@ -40,8 +47,10 @@ export default function Form() {
       setIsInitialized(true)
     }
   }, [
+    isDebug,
     questionInQueryParams,
     remainingQuestions,
+    relevantAnsweredQuestions,
     setCurrentQuestion,
     isInitialized,
   ])

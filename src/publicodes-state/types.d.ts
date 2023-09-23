@@ -44,7 +44,12 @@ export type NGCRuleNode = RuleNode & {
 
 export type NGCRulesNodes = Record<string, NGCRuleNode>
 
-export type NGCEvaluatedNode = EvaluatedNode
+//TODO: complete explanation type
+export type NGCEvaluatedNode = EvaluatedNode & {
+  explanation: {
+    ruleDisabledByItsParent: boolean
+  }
+}
 
 export type ActionChoices = Record<string, boolean>
 
@@ -97,6 +102,7 @@ type NGCRule = {
   sévérité?: string
   action?: { dépasse: string[] }
   icônes?: string
+  sévérité?: 'avertissement' | 'information' | 'invalide'
   dottedName?: string
   plus?: boolean
   formule?: Formule

@@ -1,4 +1,5 @@
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useCallback } from 'react'
 
 export const useQuestionInQueryParams = () => {
   const router = useRouter()
@@ -9,12 +10,15 @@ export const useQuestionInQueryParams = () => {
     ?.replaceAll('.', ' . ')
     .replaceAll('_', ' ')
 
-  const setQuestionInQueryParams = (question: string) =>
-    router.push(
-      '/simulateur/bilan?question=' +
-        question.replaceAll(' . ', '.').replaceAll(' ', '_'),
-      { scroll: false }
-    )
+  const setQuestionInQueryParams = useCallback(
+    (question: string) =>
+      router.push(
+        '/simulateur/bilan?question=' +
+          question.replaceAll(' . ', '.').replaceAll(' ', '_'),
+        { scroll: false }
+      ),
+    [router]
+  )
 
   return { questionInQueryParams, setQuestionInQueryParams }
 }
