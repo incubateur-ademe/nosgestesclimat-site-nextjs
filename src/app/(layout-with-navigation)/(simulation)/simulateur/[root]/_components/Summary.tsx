@@ -13,6 +13,7 @@ export default function Summary({
   const isDebug = useDebug()
 
   const { relevantQuestions } = useForm()
+
   return (
     <div className={isQuestionListOpen || isDebug ? 'mb-8 block' : 'hidden'}>
       {relevantQuestions.map((question: any) => (

@@ -131,9 +131,9 @@ export default function useQuestions({
     ]
   )
 
-  const relevantQuestions = useMemo<string[]>(
-    () => [
-      ...foldedSteps.filter(
+  const relevantAnsweredQuestions = useMemo<string[]>(
+    () =>
+      foldedSteps.filter(
         (foldedStep) =>
           !(
             getType({
@@ -143,6 +143,11 @@ export default function useQuestions({
             }) !== 'boolean' && safeEvaluate(foldedStep)?.nodeValue === null
           )
       ),
+    [foldedSteps, safeGetRule, safeEvaluate]
+  )
+  const tempRelevantQuestions = useMemo<string[]>(
+    () => [
+      ...relevantAnsweredQuestions,
       ...remainingQuestions.filter((dottedName: string) =>
         getIsMissing({
           dottedName,
@@ -155,13 +160,19 @@ export default function useQuestions({
       ),
     ],
     [
-      foldedSteps,
+      relevantAnsweredQuestions,
       remainingQuestions,
       situation,
       everyMosaicChildWhoIsReallyInMosaic,
-      safeGetRule,
-      safeEvaluate,
     ]
+  )
+
+  const relevantQuestions = useMemo<string[]>(
+    () =>
+      tempRelevantQuestions.filter(
+        (question, index) => tempRelevantQuestions.indexOf(question) === index
+      ),
+    [tempRelevantQuestions]
   )
 
   const questionsByCategories = useMemo<Record<string, string[]>>(
@@ -181,6 +192,7 @@ export default function useQuestions({
   return {
     missingVariables,
     remainingQuestions,
+    relevantAnsweredQuestions,
     relevantQuestions,
     questionsByCategories,
   }

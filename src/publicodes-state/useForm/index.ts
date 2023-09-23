@@ -15,6 +15,7 @@ export default function useForm() {
     setCurrentQuestion,
     setCurrentCategory,
     remainingQuestions,
+    relevantAnsweredQuestions,
     progression,
     remainingQuestionsByCategories,
   } = useContext(formContext)
@@ -47,6 +48,7 @@ export default function useForm() {
     noNextQuestion,
     isLastQuestionOfCategory,
     remainingQuestions,
+    relevantAnsweredQuestions,
     progression,
     remainingQuestionsByCategories,
   }
