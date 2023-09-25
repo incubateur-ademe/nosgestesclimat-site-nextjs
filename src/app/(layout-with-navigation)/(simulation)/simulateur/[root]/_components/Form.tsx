@@ -81,7 +81,7 @@ export default function Form() {
         onComplete={() => {
           // When a user joins a group without having his test passed
           if (groupToRedirectToAfterTest) {
-            const groupId = groupToRedirectToAfterTest._id
+            const groupId = groupToRedirectToAfterTest?._id
 
             trackEvent(getMatomoEventJoinedGroupe(groupId))
 

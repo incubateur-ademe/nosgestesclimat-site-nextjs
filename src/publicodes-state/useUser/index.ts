@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 
 import userContext from '../userProvider/context'
 import useActions from './useActions'
@@ -15,9 +15,6 @@ import useUserDetails from './useUserDetails'
  * Maybe it shouldn't be in publicodes-state
  */
 export default function useUser() {
-  const [groupToRedirectToAfterTest, setGroupToRedirectToAfterTest] =
-    useState<any>(undefined)
-
   const {
     user,
     setUser,
@@ -27,6 +24,8 @@ export default function useUser() {
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
+    groupToRedirectToAfterTest,
+    setGroupToRedirectToAfterTest,
   } = useContext(userContext)
 
   const { updateName, updateEmail, updateRegion } = useUserDetails({ setUser })
@@ -123,8 +122,18 @@ export default function useUser() {
      * Create a new simulation (with the situation and the persona passed if applicable), set it as current and return its ID
      */
     initSimulation,
+    /**
+     * Toggle the action choice of the current simulation
+     */
     toggleActionChoice,
+    /**
+     * Reject the action choice of the current simulation
+     */
     rejectAction,
+    /*
+     * When a user creates or joins a group without having a simulation, we lead him to the simulation page,
+     * and once completed we redirect him to the group page.
+     */
     groupToRedirectToAfterTest,
     setGroupToRedirectToAfterTest,
   }

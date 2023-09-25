@@ -87,7 +87,7 @@ export default function GroupCreationForm() {
       updateEmail(email)
 
       // The user will be redirected to the test in order to take it
-      if (progression && progression > 0) {
+      if (progression <= 0) {
         setGroupToRedirectToAfterTest(group)
 
         router.push('/simulateur/bilan')
