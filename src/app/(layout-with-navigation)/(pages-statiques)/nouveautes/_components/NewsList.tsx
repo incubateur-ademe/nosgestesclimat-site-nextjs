@@ -14,14 +14,7 @@ export default async function NewsList() {
 
   const currentLangInfos = getCurrentLangInfos(i18n)
 
-  console.log('TODO : replace persisting state logic here - NewsList.tsx')
-  // const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
-
   const data = sortReleases(currentLangInfos.releases)
-
-  // useEffect(() => {
-  // 	setLastViewedRelease(lastRelease.name)
-  // }, [])
 
   if (!data) {
     return null
@@ -40,6 +33,8 @@ export default async function NewsList() {
             index: number
           ) => {
             const image = extractImageSrc(body)
+
+            console.log(image)
             return (
               <li key={name} className="flex-1">
                 <Card
