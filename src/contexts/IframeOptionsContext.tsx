@@ -19,11 +19,11 @@ const nullDecode = (string: string) =>
 export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
   const isClient = useIsClient()
 
-  if (!isClient) return children
+  const isIframe = isClient && getIsIframe()
+
+  if (!isIframe) return children
 
   const urlParams = new URLSearchParams(window.location.search)
-
-  const isIframe = getIsIframe()
 
   const isIframeParameterDefined = urlParams.get('iframe') !== null
 
@@ -60,6 +60,11 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
   const iframeLocalisation = urlParams.get('localisation')
 
   const iframeOnlySimulation = Boolean(urlParams.get('onlySimulation'))
+
+  if (iframeOnlySimulation) {
+    // Add class to body that hides the header and the footer
+    document.body.classList.add(isIframe ? 'iframe' : '')
+  }
 
   const finalValue = {
     ...iframeIntegratorOptions,

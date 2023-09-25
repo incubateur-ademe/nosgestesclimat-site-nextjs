@@ -14,7 +14,6 @@ export default function Main({
   const isClient = useIsClient()
 
   const isIframe = isClient && getIsIframe()
-  console.log({ isIframe })
 
   return (
     <main
