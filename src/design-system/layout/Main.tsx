@@ -1,5 +1,6 @@
 'use client'
 
+import { useIsClient } from '@/app/_components/IsClientCtxProvider'
 import { getIsIframe } from '@/utils/getIsIframe'
 import { PropsWithChildren } from 'react'
 
@@ -10,7 +11,10 @@ export default function Main({
 }: PropsWithChildren<{ maxWidth?: string; className?: string }>) {
   const maxWidthClass = maxWidth ? `max-w-${maxWidth} mx-auto` : ''
 
-  const isIframe = getIsIframe()
+  const isClient = useIsClient()
+
+  const isIframe = isClient && getIsIframe()
+  console.log({ isIframe })
 
   return (
     <main

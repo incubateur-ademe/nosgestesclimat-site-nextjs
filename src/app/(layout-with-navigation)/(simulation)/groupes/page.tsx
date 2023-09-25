@@ -22,7 +22,7 @@ export default function GroupesPage() {
   const { data: groups, isFetched } = useFetchGroups(user?.id)
 
   return (
-    <main className="p-4 md:p-8">
+    <div className="p-4 md:p-8">
       <Meta
         title={t("Mes groupes, simulateur d'empreinte carbone")}
         description={t(
@@ -50,6 +50,6 @@ export default function GroupesPage() {
       )}
 
       <SondagesBlock />
-    </main>
+    </div>
   )
 }
