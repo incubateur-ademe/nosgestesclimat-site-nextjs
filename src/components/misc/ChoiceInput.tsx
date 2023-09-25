@@ -20,16 +20,16 @@ export default function ChoiceInput({
     <>
       <div className="mb-2 flex items-center gap-2">
         <button
-          className={`rounded border border-primary px-4 py-2 text-right md:text-xl ${
+          className={`flex items-center gap-2 rounded border border-primary px-4 py-2 text-right md:text-xl ${
             active ? 'bg-primary text-white' : 'bg-grey-100 text-primary'
           }`}
           onClick={onClick}>
           <span
             className={`${
-              active ? 'before:border-white' : 'before:border-primary'
-            } flex items-center gap-2 before:block before:h-4 before:w-4 before:rounded-full before:border-2 md:before:h-5 md:before:w-5`}>
-            {label}
-          </span>
+              active ? 'border-white' : 'border-primary'
+            } flex h-4 w-4 items-center justify-center rounded-full border-2 before:h-3 before:w-3 before:rounded-full before:bg-white md:h-5 md:w-5`}
+          />
+          {label}
         </button>
         {description ? (
           <QuestionButton
@@ -45,3 +45,20 @@ export default function ChoiceInput({
     </>
   )
 }
+
+/*
+ &:after {
+    align-items: center;
+    color: ${(props) => props.color || props.theme.colors.main};
+    content: '✓';
+    display: flex;
+    font-size: 1.75em;
+    justify-content: center;
+    left: 0;
+    line-height: 0.7;
+    opacity: ${(props) => (props.checked ? 1 : 0)};
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+  }
+  */
