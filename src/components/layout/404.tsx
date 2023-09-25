@@ -13,10 +13,10 @@ export default async function Route404() {
       </h1>
 
       <InlineLink href="/" className="flex flex-col items-center !text-center">
-        {/* TODO: credits for the image to add: https://thenounproject.com/term/treasure-map/96666/ */}
         <Image
           className="m-10 h-auto w-40"
           alt=""
+          title="Credits for the image goes to: https://thenounproject.com/term/treasure-map/96666/"
           src="/images/misc/map-directions.png"
           width={100}
           height={100}

@@ -12,10 +12,6 @@ import { useIsClient } from './IsClientCtxProvider'
 
 export const localStorageKey = 'last-viewed-release'
 
-// TODO: support translations
-export const determinant = (word: string) =>
-  /^[aeiouy]/i.exec(word) ? 'd’' : 'de '
-
 export default function NewsBanner() {
   const isClient = useIsClient()
 

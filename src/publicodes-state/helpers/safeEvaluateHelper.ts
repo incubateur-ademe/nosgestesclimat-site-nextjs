@@ -1,6 +1,6 @@
+import { captureException } from '@sentry/react'
 import { Engine, NGCEvaluatedNode } from '../types'
 
-// Todo: send errors to Sentry
 export const safeEvaluateHelper = (
   rule: string,
   engineUsed: Engine
@@ -9,6 +9,7 @@ export const safeEvaluateHelper = (
   try {
     evaluation = engineUsed.evaluate(rule)
   } catch (error) {
+    captureException(error)
     console.warn(error)
   }
   return evaluation
