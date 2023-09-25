@@ -1,6 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
+import Meta from '@/components/misc/Meta'
 import Trans from '@/components/translation/Trans'
 import { useParams } from 'next/navigation'
 import { JSXElementConstructor } from 'react'
@@ -12,11 +13,7 @@ export default function BlogPost() {
     (element) => element.slug == decodeURI(slug as string)
   )
   const BlogContent = markdownFile?.content as JSXElementConstructor<any>
-  // const title = markdownFile?.title
-  // const description = markdownFile?.description
-
-  console.log('TODO: add meta - BlogArticle')
-
+  console.log({ markdownFile })
   if (!markdownFile) {
     return (
       <div>
@@ -30,10 +27,15 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="flex max-w-[800px] flex-col p-8">
+    <div className="flex max-w-[800px] flex-col gap-4 p-8">
       <Link href="/blog">
         ← <Trans>Retour à la liste des articles</Trans>
       </Link>
+
+      <Meta
+        title={markdownFile?.title}
+        description={markdownFile?.description}
+      />
 
       <BlogContent />
     </div>

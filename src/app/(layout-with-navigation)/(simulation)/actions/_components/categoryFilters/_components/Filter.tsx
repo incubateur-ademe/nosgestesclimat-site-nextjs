@@ -34,7 +34,9 @@ export default function Filter({ dottedName, countByCategory }: Props) {
 
     const metricSearchParam = metric ? `métrique=${metric}&` : ''
 
-    const searchParamsPart = `${searchParamsStart}${metricSearchParam}catégorie=${dottedName}`
+    const searchParamsPart = `${searchParamsStart}${metricSearchParam}${
+      isSelected ? '' : `catégorie=${dottedName}`
+    }`
 
     return `${siteURL}${searchParamsPart}`
   }
