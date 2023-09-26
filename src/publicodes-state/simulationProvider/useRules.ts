@@ -11,7 +11,6 @@ export default function useRules({ engine }: Props) {
       Object.entries(engine.getParsedRules()).map(
         (rule: (string | any)[]) => rule[0]
       ),
-
     [engine]
   )
 
@@ -20,7 +19,6 @@ export default function useRules({ engine }: Props) {
       Object.entries(engine.getParsedRules())
         .filter((rule: (string | any)[]) => rule[1].rawNode.inactif === 'oui')
         .map((rule: (string | any)[]) => rule[0]),
-
     [engine]
   )
 
@@ -29,7 +27,6 @@ export default function useRules({ engine }: Props) {
       Object.entries(engine.getParsedRules())
         .filter((rule: (string | any)[]) => rule[1].rawNode.question)
         .map((question: (string | any)[]) => question[0]),
-
     [engine]
   )
 
