@@ -1,15 +1,14 @@
 // Initialise react-i18next
+import useGeolocation from '@/hooks/useGeolocation'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import { dir } from 'i18next'
-import Script from 'next/script'
-
-import './globals.css'
-
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
+import Script from 'next/script'
 import { PropsWithChildren } from 'react'
 import Providers from './_components/Providers'
+import './globals.css'
 
 const marianne = localFont({
   src: [
@@ -49,20 +48,7 @@ const marianne = localFont({
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   const lang = currentLocale()
-
-  // TODO: endpoint should not be static (and should point to local if available)
-  const region = await fetch(
-    'https://nosgestesclimat.fr/.netlify/functions/geolocation'
-  )
-    .then((res) => res.json())
-    .then(
-      (res: {
-        country: {
-          code: string
-          name: string
-        }
-      }) => res.country
-    )
+  const region = useGeolocation()
 
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
