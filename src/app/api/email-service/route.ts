@@ -1,8 +1,5 @@
 import axios from 'axios'
-import { NextResponse } from 'next/server'
-
-const TEMPLATE_ID_GROUP_CREATED = 57
-const TEMPLATE_ID_GROUP_JOINED = 58
+import { NextRequest, NextResponse } from 'next/server'
 
 const axiosConf = {
   headers: {
@@ -10,10 +7,9 @@ const axiosConf = {
   },
 }
 
-export async function POST(req: Request) {
-  const result = await req.json()
-  const { email, shareURL, groupURL, deleteURL, groupName, name, isCreation } =
-    result
+export async function POST(request: NextRequest) {
+  const result = await request.json()
+  const { email, shareURL, simulationURL } = result
 
   // Add contact to list
   try {
@@ -21,7 +17,6 @@ export async function POST(req: Request) {
       'https://api.brevo.com/v3/contacts',
       {
         email,
-        name,
         attributes: {
           OPT_IN: true,
         },
@@ -29,7 +24,8 @@ export async function POST(req: Request) {
       axiosConf
     )
   } catch (error) {
-    // Do nothing, the contact already exists
+    console.log(error)
+    return NextResponse.error()
   }
 
   await axios.post(
@@ -49,29 +45,16 @@ export async function POST(req: Request) {
           email,
         },
       ],
-      templateId: isCreation
-        ? TEMPLATE_ID_GROUP_CREATED
-        : TEMPLATE_ID_GROUP_JOINED,
+      templateId: 55,
       params: {
         SHARE_URL: shareURL,
-        GROUP_URL: groupURL,
-        DELETE_URL: deleteURL,
-        GROUP_NAME: groupName,
-        NAME: name,
+        SIMULATION_URL: simulationURL,
       },
     },
     axiosConf
   )
 
   return new NextResponse('Email sent.', {
-    status: 200,
-  })
-}
-
-export async function GET() {
-  // Respond with the stream
-
-  return new NextResponse('This function do not support GET.', {
     status: 200,
   })
 }
