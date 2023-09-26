@@ -29,10 +29,12 @@ export async function POST(req: Request) {
       axiosConf
     )
   } catch (error) {
-    // Do nothing, the contact already exists
+    return new NextResponse('Contact already exist.', {
+      status: 200,
+    })
   }
 
-  axios.post(
+  await axios.post(
     'https://api.brevo.com/v3/smtp/email',
     {
       sender: {
@@ -69,9 +71,7 @@ export async function POST(req: Request) {
 }
 
 export async function GET() {
-  // Respond with the stream
-
-  return new NextResponse('Emails sent.', {
+  return new NextResponse('This function do not support GET.', {
     status: 200,
   })
 }
