@@ -45,20 +45,3 @@ export default function ChoiceInput({
     </>
   )
 }
-
-/*
- &:after {
-    align-items: center;
-    color: ${(props) => props.color || props.theme.colors.main};
-    content: '✓';
-    display: flex;
-    font-size: 1.75em;
-    justify-content: center;
-    left: 0;
-    line-height: 0.7;
-    opacity: ${(props) => (props.checked ? 1 : 0)};
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-  }
-  */
