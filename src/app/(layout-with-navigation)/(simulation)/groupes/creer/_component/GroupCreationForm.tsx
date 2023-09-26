@@ -38,6 +38,8 @@ export default function GroupCreationForm() {
 
   const { progression } = useForm()
 
+  const hasCompletedTest = progression === 1
+
   const { getValue } = useEngine()
 
   const { data: groups } = useFetchGroups(user?.id)
@@ -87,7 +89,7 @@ export default function GroupCreationForm() {
       updateEmail(email)
 
       // The user will be redirected to the test in order to take it
-      if (progression <= 0) {
+      if (!hasCompletedTest) {
         setGroupToRedirectToAfterTest(group)
 
         router.push('/simulateur/bilan')
@@ -136,7 +138,7 @@ export default function GroupCreationForm() {
         data-cypress-id="button-create-group"
         onClick={handleSubmit}
         aria-disabled={!prenom && !isLoading}>
-        {progression > 0 ? (
+        {hasCompletedTest ? (
           <Trans>Créer le groupe</Trans>
         ) : (
           <Trans>Créer et passer mon test</Trans>
