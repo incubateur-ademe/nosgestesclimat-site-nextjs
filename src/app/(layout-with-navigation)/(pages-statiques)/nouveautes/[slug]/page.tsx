@@ -29,8 +29,6 @@ export default async function NewsPage({
 
   const data = sortReleases(currentLangInfos.releases)
 
-  console.log(data)
-
   // useEffect(() => {
   // 	setLastViewedRelease(lastRelease.name)
   // }, [])

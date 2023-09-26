@@ -13,7 +13,7 @@ export default function BlogPost() {
     (element) => element.slug == decodeURI(slug as string)
   )
   const BlogContent = markdownFile?.content as JSXElementConstructor<any>
-  console.log({ markdownFile })
+
   if (!markdownFile) {
     return (
       <div>

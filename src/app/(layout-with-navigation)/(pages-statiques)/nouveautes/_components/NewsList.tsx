@@ -34,7 +34,6 @@ export default async function NewsList() {
           ) => {
             const image = extractImageSrc(body)
 
-            console.log(image)
             return (
               <li key={name} className="flex-1">
                 <Card
