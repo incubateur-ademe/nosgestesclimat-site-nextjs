@@ -10,6 +10,7 @@ import Charts from './_components/Charts'
 import Faq from './_components/Faq'
 import Form from './_components/Form'
 import Summary from './_components/Summary'
+import Tracking from './_components/Tracking'
 
 type Props = { params: { root: string } }
 
@@ -35,6 +36,7 @@ export default function Simulateur({ params }: Props) {
         isQuestionListOpen={isQuestionListOpen}
       />
       <Faq />
+      <Tracking />
     </FormProvider>
   )
 }

@@ -32,6 +32,12 @@ export default function useNavigation({
       currentQuestion?.split(' . ')[0],
     [currentQuestion, currentQuestionIndex, relevantQuestions]
   )
+  const isFirstQuestionOfCategory = useMemo<boolean>(
+    () =>
+      relevantQuestions[currentQuestionIndex - 1]?.split(' . ')[0] !==
+      currentQuestion?.split(' . ')[0],
+    [currentQuestion, currentQuestionIndex, relevantQuestions]
+  )
 
   const gotoPrevQuestion = (): string | undefined => {
     if (noPrevQuestion) return
@@ -57,6 +63,7 @@ export default function useNavigation({
     gotoNextQuestion,
     noPrevQuestion,
     noNextQuestion,
+    isFirstQuestionOfCategory,
     isLastQuestionOfCategory,
   }
 }

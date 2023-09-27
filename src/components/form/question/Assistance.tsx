@@ -27,7 +27,12 @@ export default function Assistance({ question, assistance }: Props) {
 
   return (
     <div className="mb-2 w-2/3 rounded-lg bg-white p-4">
-      <Label size="sm" label={label} description={description} />
+      <Label
+        question={question}
+        size="sm"
+        label={label}
+        description={description}
+      />
       {type === 'number' && (
         <NumberInput
           unit={unit ? unit.split('/')[0] : ''}

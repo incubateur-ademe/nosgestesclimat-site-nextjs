@@ -9,7 +9,6 @@ type Props = {
   email: string
   optIn: boolean
 }
-// TODO: need real endpoint and use Axios
 export function useSubscribeUser() {
   return useMutation(
     async ({ simulation, email, optIn }: Props): Promise<any> => {
@@ -20,24 +19,21 @@ export function useSubscribeUser() {
       if (!idSimulationSaved)
         return Promise.reject(Error(`Impossible d'enregistrer la simulation`))
 
-      return axios.post(
-        `${'https://nosgestesclimat.fr/.netlify/functions'}/email-service`,
-        {
-          email,
-          optIn,
-          simulationURL:
-            location.toString().replace('/fin', '/mon-empreinte-carbone') +
-            `&sid=${encodeURIComponent(
-              idSimulationSaved
-            )}&mtm_campaign=retrouver-ma-simulation`,
-          // URL already contains the query param details
-          shareURL:
-            location
-              .toString()
-              .replace('/fin', '/mon-empreinte-carbone/partage') +
-            '&mtm_campaign=partage-email',
-        }
-      )
+      return axios.post(`/api/email-service`, {
+        email,
+        optIn,
+        simulationURL:
+          location.toString().replace('/fin', '/mon-empreinte-carbone') +
+          `&sid=${encodeURIComponent(
+            idSimulationSaved
+          )}&mtm_campaign=retrouver-ma-simulation`,
+        // URL already contains the query param details
+        shareURL:
+          location
+            .toString()
+            .replace('/fin', '/mon-empreinte-carbone/partage') +
+          '&mtm_campaign=partage-email',
+      })
     }
   )
 }
@@ -49,9 +45,11 @@ const saveSimulationInDB = async (data: Simulation) => {
     dataFormatted.situation = formatDataForDB(dataFormatted)
   }
 
+  console.log(dataFormatted)
+
   try {
     const response = await axios.post(
-      'https://nosgestesclimat-pr27.osc-fr1.scalingo.io/email-simulation',
+      `https://${process.env.NEXT_PUBLIC_SERVER_URL}/email-simulation`,
       {
         data: dataFormatted,
       },
@@ -61,9 +59,8 @@ const saveSimulationInDB = async (data: Simulation) => {
         },
       }
     )
-    const simulationSaved = response.data
-
-    return simulationSaved
+    const idSimulationSaved = response.data
+    return idSimulationSaved
   } catch (e) {
     Sentry.captureException(e)
   }

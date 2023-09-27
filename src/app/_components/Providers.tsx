@@ -1,11 +1,12 @@
 'use client'
 
-import QueryClientProviderWrapper from '@/app/_components/QueryClientProviderWrapper'
 import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
-import { IframeResizer } from '@/design-system/utils/IframeResizer'
 import { UserProvider } from '@/publicodes-state'
 import { PropsWithChildren } from 'react'
 import { IsClientCtxProvider } from './IsClientCtxProvider'
+import { IframeResizer } from './providers/IframeResizer'
+import PageViewTracker from './providers/PageViewTracker'
+import QueryClientProviderWrapper from './providers/QueryClientProviderWrapper'
 
 export default function Providers({
   children,
@@ -15,8 +16,12 @@ export default function Providers({
     <IsClientCtxProvider>
       <IframeOptionsProvider>
         <QueryClientProviderWrapper>
-          <IframeResizer />
-          <UserProvider initialRegion={region}>{children}</UserProvider>
+          <PageViewTracker>
+            <IframeResizer />
+            <UserProvider initialRegion={region}>
+              <IsClientCtxProvider>{children}</IsClientCtxProvider>
+            </UserProvider>
+          </PageViewTracker>
         </QueryClientProviderWrapper>
       </IframeOptionsProvider>
     </IsClientCtxProvider>

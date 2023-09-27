@@ -1,6 +1,12 @@
 import Trans from '@/components/translation/Trans'
+import {
+  getMatomoEventClickDontKnow,
+  getMatomoEventClickNextQuestion,
+  getMatomoEventClickPrevQuestion,
+} from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import { useForm, useRule } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
 
 type Props = {
@@ -9,13 +15,8 @@ type Props = {
 }
 
 export default function Navigation({ question, onComplete = () => '' }: Props) {
-  const {
-    gotoPrevQuestion,
-    gotoNextQuestion,
-    noPrevQuestion,
-    noNextQuestion,
-    isLastQuestionOfCategory,
-  } = useForm()
+  const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
+    useForm()
   const { isMissing, setDefaultAsValue } = useRule(question)
   const [isSettingDefaultValue, setIsSettingDefaultValue] = useState(false)
   return (
@@ -24,9 +25,9 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
         <Button
           disabled={isSettingDefaultValue}
           onClick={() => {
+            trackEvent(getMatomoEventClickPrevQuestion(question))
             if (!noPrevQuestion) {
               gotoPrevQuestion()
-              return
             }
           }}
           color="text">
@@ -37,12 +38,15 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
         color={isMissing ? 'secondary' : 'primary'}
         disabled={isSettingDefaultValue}
         onClick={async () => {
+          if (isMissing) {
+            trackEvent(getMatomoEventClickDontKnow(question))
+          } else {
+            trackEvent(getMatomoEventClickNextQuestion(question))
+          }
           setIsSettingDefaultValue(true)
           await setDefaultAsValue(question)
           setIsSettingDefaultValue(false)
-          if (isLastQuestionOfCategory) {
-            console.log('Category Change')
-          }
+
           if (!noNextQuestion) {
             gotoNextQuestion()
             return

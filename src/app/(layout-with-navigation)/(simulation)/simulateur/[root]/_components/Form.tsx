@@ -1,10 +1,12 @@
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import questions from '@/components/questions'
+import { getMatomoEventParcoursTestOver } from '@/constants/matomo'
 import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useEngine, useForm, useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import TestCompleted from './form/TestCompleted'
@@ -25,7 +27,7 @@ export default function Form() {
     categories,
   } = useForm()
 
-  const { getValue } = useEngine()
+  const { getValue, getNumericValue } = useEngine()
 
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()
@@ -79,6 +81,8 @@ export default function Form() {
       <Navigation
         question={currentQuestion}
         onComplete={() => {
+          trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
+
           // When a user joins a group without having his test passed
           if (groupToRedirectToAfterTest) {
             handleUpdateGroupAndRedirectToGroup({

@@ -37,7 +37,7 @@ export default function Question({ question }: Props) {
   return (
     <>
       <div className="mb-4">
-        <Label label={label} description={description} />
+        <Label question={question} label={label} description={description} />
         <Suggestions question={question} />
         {type === 'number' && (
           <NumberInput

@@ -43,7 +43,7 @@ export default function Localisation({
         <span>{t(title)}</span>
       </h2>
 
-      {region && (
+      {region?.code && (
         <div className="my-4">
           <span>
             <Trans>Vous faites cette simulation depuis :</Trans>{' '}
@@ -59,7 +59,7 @@ export default function Localisation({
           )}
 
           <div className="flex items-baseline gap-2">
-            {region.code !== initialRegion.code && (
+            {initialRegion && region.code !== initialRegion.code && (
               <div className="mt-2">
                 <Button
                   color="text"

@@ -33,12 +33,22 @@ export const getMatomoEventClickNextQuestion = (currentQuestion: string) => [
   'Clic bouton "Suivant"',
   currentQuestion,
 ]
+export const getMatomoEventClickPrevQuestion = (currentQuestion: string) => [
+  'trackEvent',
+  'Formulaire',
+  'Clic bouton "Précédent"',
+  currentQuestion,
+]
 export const getMatomoEventClickDontKnow = (currentQuestion: string) => [
   'trackEvent',
   'Formulaire',
   'Clic bouton "Je ne sais pas"',
   currentQuestion,
 ]
+export const getMatomoEventClickSuggestion = (
+  dottedName: string,
+  suggestion: string
+) => ['trackEvent', 'Formulaire', 'Suggestion', dottedName, suggestion]
 export const getMatomoEventClickHelp = (dottedName: string) => [
   'trackEvent',
   'help',
@@ -148,12 +158,9 @@ export const matomoEventFirstAnswer = [
   'NGC',
   '1ère réponse au bilan',
 ]
-export const getMatomoEventParcoursTestCategoryStarted = (category: string) => [
-  'trackEvent',
-  'NGC',
-  'Catégorie démarrée',
-  category,
-]
+export const getMatomoEventParcoursTestCategoryStarted = (
+  category: string | null
+) => ['trackEvent', 'NGC', 'Catégorie démarrée', category]
 export const matomoEvent50PercentProgress = [
   'trackEvent',
   'NGC',
@@ -169,7 +176,7 @@ export const getMatomoEventParcoursTestOver = (bilan: number | undefined) => [
   'NGC',
   'A terminé la simulation',
   null,
-  bilan || '',
+  String(bilan || ''),
 ]
 export const matomoEventClickBanner = [
   'trackEvent',

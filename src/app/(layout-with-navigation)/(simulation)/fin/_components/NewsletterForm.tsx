@@ -21,6 +21,7 @@ export const NewsletterForm = () => {
     isLoading,
     isSuccess,
     isError,
+    error,
   } = useSubscribeUser()
 
   return (
@@ -40,6 +41,7 @@ export const NewsletterForm = () => {
             <Text />
             <TextInputGroup
               name="EMAIL"
+              type="email"
               label="Entrez votre adresse email"
               placeholder="Email"
               value={email}
@@ -76,11 +78,6 @@ export const NewsletterForm = () => {
                 moment
               </Trans>
             </p>
-            {isError && (
-              <div className="text-xs text-red-600">
-                Une erreur est survenue
-              </div>
-            )}
 
             <Button onClick={() => null} type="submit" disabled={isLoading}>
               <Trans>Envoyer</Trans>
@@ -94,6 +91,9 @@ export const NewsletterForm = () => {
             />
             <input type="hidden" name="locale" value="en" readOnly />
             <input type="hidden" name="html_type" value="simple" readOnly />
+            {isError && (
+              <div className="mt-4 text-red-600">{error?.toString()}</div>
+            )}
           </form>
         )}
       </div>
