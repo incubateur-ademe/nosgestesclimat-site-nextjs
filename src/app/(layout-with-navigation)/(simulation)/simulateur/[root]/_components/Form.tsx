@@ -6,6 +6,7 @@ import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailPar
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useEngine, useForm, useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import TestCompleted from './form/TestCompleted'
