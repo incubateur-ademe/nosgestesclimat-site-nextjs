@@ -25,7 +25,10 @@ export default function Link({
 }: PropsWithChildren<HTMLAttributes<HTMLAnchorElement> & Props>) {
   const locale = useCurrentLocale(i18nConfig)
 
-  const localisedHref = getLocalisedURL({ href, locale: locale || 'fr' })
+  // If href includes ":" it must be an external link
+  const localisedHref = href.includes(':')
+    ? href
+    : getLocalisedURL({ href, locale: locale || 'fr' })
 
   return (
     <NextLink
