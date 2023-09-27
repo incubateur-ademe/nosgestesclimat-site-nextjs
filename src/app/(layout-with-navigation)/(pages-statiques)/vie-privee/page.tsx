@@ -1,21 +1,12 @@
-'use client'
+import { Metadata } from 'next'
+import ViePrivee from './_components/ViePrivee'
 
-import PrivacyEn from '@/locales/pages/en-us/privacy.mdx'
-import PrivacyFr from '@/locales/pages/fr/privacy.mdx'
+export const metadata: Metadata = {
+  title: 'Vie privée - Nos Gestes Climat',
+  description:
+    'Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.',
+}
 
-import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
-import { useLocale } from '@/hooks/useLocale'
-
-export default function Diffuser() {
-  const locale = useLocale()
-
-  const DiffuserLocalised = getLocalisedMDX({
-    dictionnaries: {
-      fr: PrivacyFr,
-      'en-US': PrivacyEn,
-    },
-    locale: locale ?? '',
-  })
-
-  return <DiffuserLocalised />
+export default function ViePriveePage() {
+  return <ViePrivee />
 }
