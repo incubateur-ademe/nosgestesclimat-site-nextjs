@@ -27,6 +27,7 @@ export default function useForm() {
     gotoNextQuestion,
     noPrevQuestion,
     noNextQuestion,
+    isFirstQuestionOfCategory,
     isLastQuestionOfCategory,
   } = useNavigation({
     remainingQuestions,
@@ -80,6 +81,10 @@ export default function useForm() {
      * Is true if there is no next question in the form
      */
     noNextQuestion,
+    /**
+     * Is true if there is no previous question in the current category
+     */
+    isFirstQuestionOfCategory,
     /**
      * Is true if there is no next question in the current category
      */

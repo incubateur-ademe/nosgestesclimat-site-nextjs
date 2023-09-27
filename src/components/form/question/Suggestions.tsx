@@ -1,6 +1,8 @@
+import { getMatomoEventClickSuggestion } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import { useEngine, useRule } from '@/publicodes-state'
 import { Situation } from '@/publicodes-state/types'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
   question: string
@@ -18,6 +20,9 @@ export default function Suggestions({ question }: Props) {
           key={suggestion.label}
           size="sm"
           onClick={() => {
+            trackEvent(
+              getMatomoEventClickSuggestion(question, suggestion.label)
+            )
             if (typeof suggestion.value === 'object') {
               updateSituation(
                 Object.keys(suggestion.value).reduce(

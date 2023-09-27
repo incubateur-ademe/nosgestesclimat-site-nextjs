@@ -43,7 +43,7 @@ export default function Localisation({
         <span>{t(title)}</span>
       </h2>
 
-      {region && (
+      {region?.code && (
         <div className="my-4">
           <span>
             <Trans>Vous faites cette simulation depuis :</Trans>{' '}

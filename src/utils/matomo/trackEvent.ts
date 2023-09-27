@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-export const trackEvent = (args: string[]) => {
+export const trackEvent = (args: (string | null)[]) => {
   if (shouldUseDevTracker) {
     // eslint-disable-next-line no-console
     console?.debug(args)
