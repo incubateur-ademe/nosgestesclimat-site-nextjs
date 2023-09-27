@@ -1,41 +1,30 @@
-'use client'
-
-import Total from '@/components/total/Total'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { useDebug } from '@/hooks/useDebug'
 import { FormProvider } from '@/publicodes-state'
-import { useState } from 'react'
-import Charts from './_components/Charts'
+import { Metadata } from 'next'
 import Faq from './_components/Faq'
-import Form from './_components/Form'
-import Summary from './_components/Summary'
+import Simulateur from './_components/Simulateur'
 import Tracking from './_components/Tracking'
 
 type Props = { params: { root: string } }
 
-export default function Simulateur({ params }: Props) {
-  const [isQuestionListOpen, setIsQuestionListOpen] = useState(false)
-  const toggleQuestionList = () =>
-    setIsQuestionListOpen((prevIsQuestionListOpen) => !prevIsQuestionListOpen)
+export const metadata: Metadata = {
+  title: 'Simulateur d’empreinte climat - Nos Gestes Climat',
+  description:
+    'Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.',
+}
 
-  const isDebug = useDebug()
-
+export default function SimulateurPage({ params }: Props) {
   return (
     <FormProvider root={params.root}>
       <div className="hidden md:block">
         <Title title={<Trans>Votre bilan climat personnel</Trans>} />
       </div>
-      <Total toggleQuestionList={toggleQuestionList} />
-      <div className={isQuestionListOpen && !isDebug ? 'hidden' : 'block'}>
-        <Form />
-        <Charts />
-      </div>
-      <Summary
-        toggleQuestionList={toggleQuestionList}
-        isQuestionListOpen={isQuestionListOpen}
-      />
+
+      <Simulateur />
+
       <Faq />
+
       <Tracking />
     </FormProvider>
   )
