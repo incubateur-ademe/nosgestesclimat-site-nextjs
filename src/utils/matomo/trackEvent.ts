@@ -13,7 +13,10 @@ declare global {
 export const trackEvent = (args: (string | null)[]) => {
   if (shouldUseDevTracker) {
     // eslint-disable-next-line no-console
-    console?.debug(args)
+    console?.debug(
+      'trackEvent:',
+      args.filter((arg, index) => index > 0).join(' => ')
+    )
     return
   }
 
@@ -26,7 +29,7 @@ export const trackEvent = (args: (string | null)[]) => {
 export const trackPageView = (url: string) => {
   if (shouldUseDevTracker) {
     // eslint-disable-next-line no-console
-    console?.debug('trackPageView', url)
+    console?.debug('trackPageView:', url)
     return
   }
 
