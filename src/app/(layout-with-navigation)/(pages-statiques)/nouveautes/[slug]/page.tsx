@@ -29,8 +29,6 @@ export default async function NewsPage({
 
   const data = sortReleases(currentLangInfos.releases)
 
-  console.log(data)
-
   // useEffect(() => {
   // 	setLastViewedRelease(lastRelease.name)
   // }, [])
@@ -81,11 +79,13 @@ export default async function NewsPage({
             return (
               <li
                 className={`m-0 list-inside list-none p-0 ${
-                  isActive ? 'bg-primary !text-white' : ''
+                  isActive ? 'bg-primary' : ''
                 }`}
                 key={name}>
                 <InlineLink
-                  className={`m-0 px-2 py-1 ${isActive ? 'text-white' : ''}`}
+                  className={`m-0 px-2 py-1 ${
+                    isActive ? 'text-white hover:!text-white' : ''
+                  }`}
                   href={getPath(index, data)}>
                   {name}
                   <div>

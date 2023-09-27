@@ -22,7 +22,7 @@ export default function ActionsTutorial() {
   return (
     <Card className="my-6 items-start !bg-primaryLight">
       <h2 className="flex items-center">
-        <Image src="/images/E10C.svg" alt="" width={32} height={32} />
+        <Image src="/images/misc/E10C.svg" alt="" width={32} height={32} />
 
         <Trans>Passer à l'action !</Trans>
       </h2>

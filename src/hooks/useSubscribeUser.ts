@@ -16,6 +16,7 @@ export function useSubscribeUser() {
       const idSimulationSaved: string = await saveSimulationInDB(
         simulation as unknown as Simulation
       )
+
       if (!idSimulationSaved)
         return Promise.reject(Error(`Impossible d'enregistrer la simulation`))
 
@@ -61,6 +62,7 @@ const saveSimulationInDB = async (data: Simulation) => {
       }
     )
     const simulationSaved = response.data
+
     return simulationSaved
   } catch (e) {
     Sentry.captureException(e)

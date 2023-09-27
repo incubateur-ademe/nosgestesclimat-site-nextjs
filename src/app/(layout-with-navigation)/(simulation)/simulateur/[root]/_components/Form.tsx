@@ -1,23 +1,21 @@
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import questions from '@/components/questions'
-import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useEngine, useForm, useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import TestCompleted from './form/TestCompleted'
+import { useUpdateGroupAndRedirectToGroup } from './form/_hooks/useUpdateGroupAndRedirectToGroup'
 
 export default function Form() {
   const router = useRouter()
 
   const isDebug = useDebug()
 
-  const { groupToRedirectToAfterTest, setGroupToRedirectToAfterTest } =
-    useUser()
+  const { groupToRedirectToAfterTest } = useUser()
 
   const {
     remainingQuestions,
@@ -33,6 +31,8 @@ export default function Form() {
     useQuestionInQueryParams()
 
   const [isInitialized, setIsInitialized] = useState(false)
+
+  const handleUpdateGroupAndRedirectToGroup = useUpdateGroupAndRedirectToGroup()
 
   useEffect(() => {
     if (!isInitialized) {
@@ -81,13 +81,9 @@ export default function Form() {
         onComplete={() => {
           // When a user joins a group without having his test passed
           if (groupToRedirectToAfterTest) {
-            const groupId = groupToRedirectToAfterTest._id
-
-            trackEvent(getMatomoEventJoinedGroupe(groupId))
-
-            setGroupToRedirectToAfterTest(undefined)
-
-            router.push(`/groupes/resultats?groupId=${groupId}`)
+            handleUpdateGroupAndRedirectToGroup({
+              group: groupToRedirectToAfterTest,
+            })
             return
           }
 

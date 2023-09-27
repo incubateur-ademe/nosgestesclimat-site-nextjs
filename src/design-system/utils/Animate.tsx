@@ -17,7 +17,6 @@ export const Appear = ({ children, delay = 0 }: Props) => (
   </motion.div>
 )
 
-// Todo : better animate with fromRight on desktop
 export const FromBottom = ({ children, delay = 0 }: Props) => (
   <motion.div
     initial={{ opacity: 0, y: 200, scale: 0.3 }}

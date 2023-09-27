@@ -37,17 +37,13 @@ export default function Answer({ ruleDottedName, level }: AnswerProps) {
           className="inline-block w-full p-4 text-right font-medium"
           onClick={() => {
             setCurrentQuestion(ruleDottedName)
-            router.push('/simulateur/bilan')
+            router.push(
+              `/simulateur/bilan?question=${ruleDottedName.replaceAll(' ', '')}`
+            )
           }}>
           <span
             className={`inline-block underline decoration-dotted underline-offset-4`}>
             {rule.displayValue?.toLocaleString()} {rule.unit}
-            {/* rule.passedQuestion && (
-              <span role="img" aria-label="shoulder emoji">
-                🤷🏻
-              </span>
-            )
-            */}
           </span>
         </button>
         {/*storedTrajets[rule.dottedName] &&

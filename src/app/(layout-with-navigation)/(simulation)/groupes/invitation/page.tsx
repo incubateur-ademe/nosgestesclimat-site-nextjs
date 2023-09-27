@@ -48,7 +48,7 @@ export default function RejoindreGroupe({
   }
 
   return (
-    <main className="p-4 md:p-8">
+    <div className="p-4 md:p-8">
       <Meta
         title={t('Rejoindre un groupe - Nos Gestes Climat')}
         description={t(
@@ -71,6 +71,6 @@ export default function RejoindreGroupe({
       />
 
       <InvitationForm group={group} />
-    </main>
+    </div>
   )
 }

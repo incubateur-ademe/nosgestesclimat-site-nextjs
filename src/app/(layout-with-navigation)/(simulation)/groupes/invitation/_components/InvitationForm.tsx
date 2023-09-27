@@ -35,6 +35,8 @@ export default function InvitationForm({ group }: { group: Group }) {
 
   const { progression } = useForm()
 
+  const hasCompletedTest = progression === 1
+
   const currentSimulation = getCurrentSimulation()
 
   const { mutateAsync: addUserToGroup } = useAddUserToGroup()
@@ -104,7 +106,7 @@ export default function InvitationForm({ group }: { group: Group }) {
       sendEmailToInvited()
 
       // Si l'utilisateur a déjà une simulation de complétée, on le redirige vers le dashboard
-      if (progression ?? progression > 0) {
+      if (hasCompletedTest) {
         trackEvent(getMatomoEventJoinedGroupe(group?._id))
         router.push(groupURL)
       } else {
@@ -126,23 +128,26 @@ export default function InvitationForm({ group }: { group: Group }) {
         setErrorPrenom={setErrorPrenom}
         data-cypress-id="member-name"
       />
+
       <EmailInput
         email={email}
         setEmail={setEmail}
         errorEmail={errorEmail}
         setErrorEmail={setErrorEmail}
       />
-      {!currentSimulation && (
+
+      {!hasCompletedTest && (
         <p className="mb-2 text-xs">
           Vous devrez compléter votre test après avoir rejoint le groupe.
         </p>
       )}
+
       <Button
         type="submit"
         onClick={handleSubmit}
         aria-disabled={!prenom}
         data-cypress-id="button-join-group">
-        {currentSimulation ? (
+        {hasCompletedTest ? (
           <Trans>Rejoindre</Trans>
         ) : (
           <Trans>Rejoindre et passer mon test</Trans>

@@ -107,7 +107,6 @@ export default function useSimulations({
     )
   }
 
-  // TODO: getCurrentSimulation and currentSimulation shouldn't coexist
   const getCurrentSimulation = (): Simulation | undefined =>
     simulations.find(
       (simulation: Simulation) => simulation.id === currentSimulationId
