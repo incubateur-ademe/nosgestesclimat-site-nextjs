@@ -24,7 +24,6 @@ export default function Tracking() {
     if (prevProgression.current < 0.9 && progression >= 0.9) {
       trackEvent(matomoEvent90PercentProgress)
     }
-
     prevProgression.current = progression
   }, [progression])
 
