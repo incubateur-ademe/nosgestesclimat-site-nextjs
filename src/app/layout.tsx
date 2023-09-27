@@ -54,6 +54,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
       <head>
         <meta charSet="utf-8" />
+
         <meta name="viewport" content="initial-scale=1" />
 
         <link rel="icon" href="/images/misc/favicon.png" />
@@ -63,11 +64,13 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           hrefLang="en"
           href="https://nosgestesclimat.fr/?lang=en"
         />
+
         <link
           rel="alternate"
           hrefLang="fr"
           href="https://nosgestesclimat.fr/?lang=fr"
         />
+
         <link
           rel="alternate"
           hrefLang="x-default"
@@ -76,20 +79,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <meta property="og:type" content="website" />
 
-        <meta
-          property="og:title"
-          content="<%= htmlWebpackPlugin.options.title %>"
-        />
-
-        <meta
-          property="og:description"
-          content="<%= htmlWebpackPlugin.options.description %>"
-        />
-
-        <meta
-          property="og:image"
-          content="<%= htmlWebpackPlugin.options.logo %>"
-        />
         <meta
           name="google-site-verification"
           content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"
@@ -100,20 +89,21 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <link rel="manifest" href="../manifest.webmanifest" />
 
         <meta name="theme-color" content="#5758BB" />
+
         <Script id="matomo">
           {`
-             var _paq = window._paq = window._paq || [];
+            var _paq = window._paq = window._paq || [];
              /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-             _paq.push(["setExcludedQueryParams", ["detail","diapo"]]);
-             _paq.push(['trackPageView']);
-             _paq.push(['enableLinkTracking']);
-             (function() {
-               var u="https://matomo-incubateur-ademe.osc-fr1.scalingo.io/";
-               _paq.push(['setTrackerUrl', u+'matomo.php']);
-               _paq.push(['setSiteId', '1']);
-               var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-               g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-             })();
+            _paq.push(["setExcludedQueryParams", ["detail","diapo"]]);
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+              var u="https://matomo-incubateur-ademe.osc-fr1.scalingo.io/";
+              _paq.push(['setTrackerUrl', u+'matomo.php']);
+              _paq.push(['setSiteId', '1']);
+              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+              g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+            })();
           `}
         </Script>
       </head>
@@ -123,7 +113,9 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           const b = document.documentElement;
           b.setAttribute('data-useragent', navigator.userAgent);
         `}</Script>
+
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
+
         <Providers region={region}>{children}</Providers>
       </body>
     </html>

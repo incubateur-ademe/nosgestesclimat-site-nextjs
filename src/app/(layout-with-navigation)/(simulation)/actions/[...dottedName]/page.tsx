@@ -1,6 +1,6 @@
 'use client'
 
-import Meta from '@/components/misc/Meta'
+import Meta from '@/components/misc/MetaOpenGraph'
 import Trans from '@/components/translation/Trans'
 import { getMatomoEventActionAccepted } from '@/constants/matomo'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
