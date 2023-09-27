@@ -11,7 +11,7 @@ export default function Slide({
 }: PropsWithChildren<Props>) {
   return (
     <div
-      className={`mx-auto h-[30rem] w-[34rem] max-w-full rounded-lg bg-primaryLight${
+      className={`mx-auto w-[34rem] max-w-full rounded-lg bg-primaryLight${
         noMargin ? '' : ' p-4 md:p-8'
       } overflow-hidden ${className}`}>
       {children}
