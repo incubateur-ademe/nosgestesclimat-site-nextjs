@@ -185,5 +185,9 @@ export default function useRule(dottedName: string) {
      * Set default value as value, with the possibility to add a dottedName in the foldedSteps
      */
     setDefaultAsValue,
+    /**
+     * Add a dottedName in the foldedSteps
+     */
+    addFoldedStep,
   }
 }
