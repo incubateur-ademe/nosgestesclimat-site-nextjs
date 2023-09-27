@@ -8,6 +8,7 @@ import { useForm } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef } from 'react'
 
+// TODO: It should be a hook instead of a component
 export default function Tracking() {
   const { progression, isFirstQuestionOfCategory, currentCategory } = useForm()
 
