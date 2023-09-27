@@ -8,6 +8,11 @@ const axiosConf = {
 }
 
 export async function GET() {
+  if (!process.env.BREVO_API_KEY) {
+    return new NextResponse('0', {
+      status: 200,
+    })
+  }
   const listInfos = await axios.get(
     'https://api.brevo.com/v3/contacts/lists/22',
 

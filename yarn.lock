@@ -2149,6 +2149,11 @@
   resolved "https://registry.yarnpkg.com/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
+"@socialgouv/matomo-next@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/matomo-next/-/matomo-next-1.8.0.tgz#1dee455a440b84bc135381a85fef33d000698222"
+  integrity sha512-00EdsbW0u/VrKFa7DfVjnXV4oXA6Ag3kkCisSL2nFseRQhEsds5T8xsAgvNQAtiMW9AR6Mz3TNZt7A2/mIb9kA==
+
 "@socket.io/component-emitter@~3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.1.0.tgz#96116f2a912e0c02817345b3c10751069920d553"
