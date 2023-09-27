@@ -374,3 +374,11 @@ blockquote {
   font-weight: 700;
   text-align: right;
 }
+
+/*
+  Iframe
+  */
+  .iframe header,
+  .iframe footer {
+    display: none;
+  }

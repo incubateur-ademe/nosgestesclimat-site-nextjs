@@ -13,15 +13,17 @@ export default function Providers({
   region,
 }: PropsWithChildren<{ region: { code: string; name: string } }>) {
   return (
-    <IframeOptionsProvider>
-      <QueryClientProviderWrapper>
-        <PageViewTracker>
-          <IframeResizer />
-          <UserProvider initialRegion={region}>
-            <IsClientCtxProvider>{children}</IsClientCtxProvider>
-          </UserProvider>
-        </PageViewTracker>
-      </QueryClientProviderWrapper>
-    </IframeOptionsProvider>
+    <IsClientCtxProvider>
+      <IframeOptionsProvider>
+        <QueryClientProviderWrapper>
+          <PageViewTracker>
+            <IframeResizer />
+            <UserProvider initialRegion={region}>
+              <IsClientCtxProvider>{children}</IsClientCtxProvider>
+            </UserProvider>
+          </PageViewTracker>
+        </QueryClientProviderWrapper>
+      </IframeOptionsProvider>
+    </IsClientCtxProvider>
   )
 }

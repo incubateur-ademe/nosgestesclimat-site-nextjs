@@ -20,7 +20,7 @@ export default function NavLink({
   return (
     <li className="w-full min-w-[84px] md:w-auto">
       <ButtonLink
-        className={`flex h-full !w-full flex-col gap-1 py-2 lg:flex-row lg:py-4 ${
+        className={`flex h-full !w-full flex-col gap-1 py-2 focus-within:z-10 lg:flex-row lg:py-4 ${
           isActive ? ' !bg-primaryLight' : ''
         } ${className}`}
         href={href}

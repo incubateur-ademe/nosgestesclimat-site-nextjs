@@ -57,7 +57,7 @@ export const useGetGroupAndUserFootprints = ({
       const isCurrentMember = groupMember.userId === userId
 
       if (!isCurrentMember) {
-        updateSituation(groupMember?.simulation?.situation)
+        updateSituation(groupMember?.simulation?.situation || {})
       }
 
       // Create a copy of the accumulator

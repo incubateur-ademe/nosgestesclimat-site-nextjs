@@ -69,6 +69,8 @@ export default function EditableGroupTitle({ groupId }: { groupId: string }) {
                   alt={t(
                     'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé'
                   )}
+                  width={24}
+                  height={24}
                 />
               </Button>
             </span>

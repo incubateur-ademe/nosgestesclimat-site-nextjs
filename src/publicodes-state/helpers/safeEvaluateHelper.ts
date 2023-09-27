@@ -1,6 +1,5 @@
 import { Engine, NGCEvaluatedNode } from '../types'
 
-// Todo: send errors to Sentry
 export const safeEvaluateHelper = (
   rule: string,
   engineUsed: Engine
@@ -9,6 +8,7 @@ export const safeEvaluateHelper = (
   try {
     evaluation = engineUsed.evaluate(rule)
   } catch (error) {
+    // TODO: Sending error to Sentry breaks the app
     console.warn(error)
   }
   return evaluation

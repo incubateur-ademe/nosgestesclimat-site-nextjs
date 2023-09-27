@@ -15,6 +15,7 @@ export function useSubscribeUser() {
       const idSimulationSaved: string = await saveSimulationInDB(
         simulation as unknown as Simulation
       )
+
       if (!idSimulationSaved)
         return Promise.reject(Error(`Impossible d'enregistrer la simulation`))
 

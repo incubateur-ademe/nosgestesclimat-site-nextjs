@@ -59,7 +59,7 @@ export default function SupprimerGroupePage({
   }
 
   return (
-    <main className="p-4 md:p-8">
+    <div className="p-4 md:p-8">
       <AutoCanonicalTag />
 
       <Title title={t('Supprimer mes données')} />
@@ -97,6 +97,6 @@ export default function SupprimerGroupePage({
         onClick={handleDelete}>
         <Trans>Supprimer mes données</Trans>
       </Button>
-    </main>
+    </div>
   )
 }

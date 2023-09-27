@@ -11,7 +11,7 @@ export default function CreerGroupePage() {
   const { t } = useClientTranslation()
 
   return (
-    <main className="p-4 md:p-8">
+    <div className="p-4 md:p-8">
       <Meta
         title={t('Créer un groupe et calculer notre empreinte carbone')}
         description={t(
@@ -31,6 +31,6 @@ export default function CreerGroupePage() {
       />
 
       <GroupCreationForm />
-    </main>
+    </div>
   )
 }
