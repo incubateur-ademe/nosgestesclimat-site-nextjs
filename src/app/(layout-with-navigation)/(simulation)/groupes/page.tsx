@@ -1,35 +1,22 @@
-'use client'
-
-import Meta from '@/components/misc/Meta'
 import Title from '@/design-system/layout/Title'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
-import CreateFirstGroupSection from './_components/CreateFirstGroupSection'
-import CreateOtherGroupsSection from './_components/CreateOtherGroupsSection'
-import ServerErrorSection from './_components/ServerErrorSection'
-import { useFetchGroups } from './_hooks/usFetchGroups'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { Metadata } from 'next'
+import Groups from './_components/Groups'
 import FeedbackBlock from './resultats/_components/FeedbackBlock'
 import SondagesBlock from './resultats/_components/SondagesBlock'
 
-export default function GroupesPage() {
-  const { t } = useClientTranslation()
+export const metadata: Metadata = {
+  title: 'Mes groupes, simulateur d’empreinte carbone - Nos Gestes Climat',
+  description:
+    'Calculez votre empreinte carbone en groupe et comparez la avec l’empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.',
+}
 
-  const { getCurrentSimulation, user } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
-
-  const { data: groups, isFetched } = useFetchGroups(user?.id)
+export default async function GroupesPage() {
+  const { t } = await getServerTranslation()
 
   return (
     <div className="p-4 md:p-8">
-      <Meta
-        title={t("Mes groupes, simulateur d'empreinte carbone")}
-        description={t(
-          "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
-        )}
-      />
-
       <AutoCanonicalTag />
 
       <Title
@@ -41,13 +28,7 @@ export default function GroupesPage() {
 
       <FeedbackBlock />
 
-      {isFetched && !groups && <ServerErrorSection />}
-
-      {groups && groups?.length === 0 && <CreateFirstGroupSection />}
-
-      {currentSimulation && groups && groups?.length > 0 && (
-        <CreateOtherGroupsSection groups={groups} />
-      )}
+      <Groups />
 
       <SondagesBlock />
     </div>
