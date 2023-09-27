@@ -6,6 +6,6 @@ export const metadata: Metadata = {
   description: "Conditions générales d'utilisation du site.",
 }
 
-export default function CGU() {
+export default function CGUPage() {
   return <Content />
 }

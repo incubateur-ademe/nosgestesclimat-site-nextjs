@@ -6,6 +6,6 @@ export const metadata: Metadata = {
   description: "Informations relatives à la création d'un contexte spécifique.",
 }
 
-export default function ContextesSondages() {
+export default function ContextesSondagesPage() {
   return <Content />
 }

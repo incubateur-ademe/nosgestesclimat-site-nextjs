@@ -7,11 +7,18 @@ import { getFormattedDate } from '@/helpers/date/getFormattedDate'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
+import { Metadata } from 'next'
 import { extractImageSrc } from '../_helpers/extractImage'
 import { getPath } from '../_helpers/getPath'
 import { slugifyString } from '../_helpers/slugifyString'
 import { sortReleases } from '../_helpers/sortReleases'
 import ReleaseSelect from './_components/ReleaseSelect'
+
+export const metadata: Metadata = {
+  title: 'Les nouveautés - Nos Gestes Climat',
+  description:
+    'Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.',
+}
 
 const removeGithubIssuesReferences = (text: string) =>
   text.replace(/#[0-9]{1,5}/g, '')
@@ -22,16 +29,10 @@ export default async function NewsPage({
   params: { slug: string }
 }) {
   const { t, i18n } = await getServerTranslation()
+
   const currentLangInfos = getCurrentLangInfos(i18n)
 
-  console.log('TODO : replace persisting state logic here - NewsPage.tsx')
-  // const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
-
   const data = sortReleases(currentLangInfos.releases)
-
-  // useEffect(() => {
-  // 	setLastViewedRelease(lastRelease.name)
-  // }, [])
 
   if (!data) {
     return null

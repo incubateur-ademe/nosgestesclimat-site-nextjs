@@ -1,14 +1,12 @@
-'use client'
+import { Metadata } from 'next'
+import Guide from './_components/Guide'
 
-import GuideContent from './_content/guide.mdx'
+export const metadata: Metadata = {
+  title: 'Le guide - Nos Gestes Climat',
+  description:
+    'Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.',
+}
 
-export default function Guide() {
-  return (
-    <div>
-      {/*
-      <Meta title={'Guide'} />
-      */}
-      <GuideContent />
-    </div>
-  )
+export default function GuidePage() {
+  return <Guide />
 }

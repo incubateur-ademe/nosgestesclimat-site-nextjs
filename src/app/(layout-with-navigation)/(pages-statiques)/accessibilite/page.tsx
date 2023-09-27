@@ -1,22 +1,11 @@
-'use client'
+import { Metadata } from 'next'
+import Accessibilite from './_components/Accessibilite'
 
-import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
-import { useLocale } from '@/hooks/useLocale'
-import accessibilityEn from '@/locales/pages/en-us/accessibility.mdx'
-import accessibilityFr from '@/locales/pages/fr/accessibility.mdx'
-// import contentEs from '@/locales/pages/es/Accessibility.md'
-// import contentIt from '@/locales/pages/it/Accessibility.md'
+export const metadata: Metadata = {
+  title: 'Accessibilité - Nos Gestes Climat',
+  description: "Informations relatives à l'accessibilité de Nos Gestes Climat.",
+}
 
-export default function Accessibility() {
-  const locale = useLocale()
-
-  const AccessibilityLocalised = getLocalisedMDX({
-    dictionnaries: {
-      fr: accessibilityFr,
-      'en-US': accessibilityEn,
-    },
-    locale: locale ?? '',
-  })
-
-  return <AccessibilityLocalised />
+export default function AccessibilityPage() {
+  return <Accessibilite />
 }
