@@ -23,3 +23,8 @@ export const GROUP_URL =
   (process.env.NODE_ENV === 'development'
     ? 'http://localhost:3001'
     : SERVER_URL) + '/group'
+
+export const SAVE_SIMULATION_URL =
+  (process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3001'
+    : SERVER_URL) + '/email-simulation'

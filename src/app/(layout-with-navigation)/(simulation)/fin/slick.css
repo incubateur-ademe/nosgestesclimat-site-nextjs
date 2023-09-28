@@ -42,7 +42,6 @@
   position: relative;
   left: 0;
   top: 0;
-  display: flex;
   margin-left: auto;
   margin-right: auto;
 }
@@ -117,12 +116,9 @@
 
 .slick-slide {
   float: left;
-  height: inherit;
   min-height: 1px;
 }
-.slick-slide > div {
-  height: 100%;
-}
+
 .slick-slide img {
   display: block;
 }

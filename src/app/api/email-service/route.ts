@@ -24,8 +24,7 @@ export async function POST(request: NextRequest) {
       axiosConf
     )
   } catch (error) {
-    console.log(error)
-    return NextResponse.error()
+    // Do nothing, the contact already exists
   }
 
   await axios.post(

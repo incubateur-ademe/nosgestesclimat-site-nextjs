@@ -1,3 +1,4 @@
+import { SAVE_SIMULATION_URL } from '@/constants/urls'
 import { Simulation } from '@/publicodes-state/types'
 import { formatDataForDB } from '@/utils/formatDataForDB'
 import * as Sentry from '@sentry/react'
@@ -49,7 +50,7 @@ const saveSimulationInDB = async (data: Simulation) => {
 
   try {
     const response = await axios.post(
-      `https://${process.env.NEXT_PUBLIC_SERVER_URL}/email-simulation`,
+      SAVE_SIMULATION_URL,
       {
         data: dataFormatted,
       },
