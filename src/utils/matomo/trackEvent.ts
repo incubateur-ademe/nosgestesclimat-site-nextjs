@@ -1,7 +1,3 @@
-const shouldUseDevTracker =
-  process.env.NODE_ENV === 'development' ||
-  process.env.CONTEXT === 'deploy-preview'
-
 const groupExclusionRegexp = /\/(sondage|conférence)\//
 
 declare global {
@@ -11,15 +7,6 @@ declare global {
 }
 
 export const trackEvent = (args: (string | null)[]) => {
-  if (shouldUseDevTracker) {
-    // eslint-disable-next-line no-console
-    console?.debug(
-      'trackEvent:',
-      args.filter((arg, index) => index > 0).join(' => ')
-    )
-    return
-  }
-
   if (window.location.pathname.match(groupExclusionRegexp)) return
 
   // Pass a copy of the array to avoid mutation
@@ -27,12 +14,6 @@ export const trackEvent = (args: (string | null)[]) => {
 }
 
 export const trackPageView = (url: string) => {
-  if (shouldUseDevTracker) {
-    // eslint-disable-next-line no-console
-    console?.debug('trackPageView:', url)
-    return
-  }
-
   if (window.location.pathname.match(groupExclusionRegexp)) return
 
   window?._paq.push(['setCustomUrl', url])
