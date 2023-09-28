@@ -28,7 +28,13 @@ export default function LanguageSwitchButton() {
     const expires = '; expires=' + date.toUTCString()
 
     document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`
-
+    console.log(
+      getLocalisedURL({
+        locale: newLocale || 'fr',
+        href: currentUrl,
+        shouldLog: true,
+      })
+    )
     router.push(
       getLocalisedURL({
         locale: newLocale || 'fr',
