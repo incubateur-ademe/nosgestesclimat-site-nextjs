@@ -9,7 +9,7 @@ type Props = {
 }
 
 export default function Suggestions({ question }: Props) {
-  const { suggestions, setValue } = useRule(question)
+  const { suggestions, setValue, addFoldedStep } = useRule(question)
   const { updateSituation } = useEngine()
 
   if (!suggestions?.length) return
@@ -34,6 +34,7 @@ export default function Suggestions({ question }: Props) {
                   {}
                 )
               )
+              addFoldedStep(question)
             } else {
               setValue(suggestion.value, question)
             }
