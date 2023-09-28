@@ -4,7 +4,7 @@ import { useSupportedRegions } from '@/hooks/useSupportedRegions'
 import { PropsWithChildren } from 'react'
 
 import Footer from '@/components/layout/Footer'
-import MetaOGImage from '@/components/misc/MetaOGImage'
+
 import MobileHeader from './_components/MobileHeader'
 import Navigation from './_components/Navigation'
 
@@ -13,8 +13,6 @@ export default async function PageLayout({ children }: PropsWithChildren) {
 
   return (
     <>
-      <MetaOGImage />
-
       <div className="m-auto flex max-w-7xl justify-start">
         <Navigation />
 

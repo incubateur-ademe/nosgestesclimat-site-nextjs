@@ -77,8 +77,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           href="https://nosgestesclimat.fr"
         />
 
-        <meta property="og:type" content="website" />
-
         <meta
           name="google-site-verification"
           content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"
