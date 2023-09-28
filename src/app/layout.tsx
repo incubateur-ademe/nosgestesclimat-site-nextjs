@@ -105,12 +105,13 @@ export default async function RootLayout({ children }: PropsWithChildren) {
              var _paq = window._paq = window._paq || [];
              /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
              _paq.push(["setExcludedQueryParams", ["detail","diapo"]]);
-             _paq.push(['trackPageView']);
              _paq.push(['enableLinkTracking']);
              (function() {
                var u="https://matomo-incubateur-ademe.osc-fr1.scalingo.io/";
                _paq.push(['setTrackerUrl', u+'matomo.php']);
-               _paq.push(['setSiteId', '1']);
+               _paq.push(['setSiteId', ${
+                 process.env.mode !== 'production' ? '2' : '1'
+               }]);
                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
                g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
              })();
