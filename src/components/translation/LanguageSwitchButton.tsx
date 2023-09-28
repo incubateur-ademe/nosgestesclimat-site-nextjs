@@ -1,7 +1,7 @@
 'use client'
 
+import { i18nConfig } from '@/constants/i18n'
 import Button from '@/design-system/inputs/Button'
-import { getLocalisedURL } from '@/helpers/localisation/getLocalisedURL'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRouter } from 'next/navigation'
@@ -28,20 +28,20 @@ export default function LanguageSwitchButton() {
     const expires = '; expires=' + date.toUTCString()
 
     document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`
-    console.log(
-      getLocalisedURL({
-        locale: newLocale || 'fr',
-        href: currentUrl,
-        shouldLog: true,
-      })
-    )
+
+    if (locale === i18nConfig.defaultLocale) {
+      router.push('/' + newLocale + currentUrl)
+    } else {
+      router.push(currentUrl.replace(`/${locale}`, `/${newLocale}`))
+    }
+    /*
     router.push(
       getLocalisedURL({
         locale: newLocale || 'fr',
         href: currentUrl,
-        shouldLog: true,
       })
     )
+    */
 
     router.refresh()
   }
