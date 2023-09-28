@@ -13,6 +13,12 @@ const BASE_URL =
     ? 'http://localhost:3000'
     : 'https://nosgestesclimat.fr'
 
+const URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE = [
+  'diapo=bilan',
+  'diapo=categories',
+  'diapo=actions',
+]
+
 const buildURL = ({
   params,
   searchParams,
@@ -50,9 +56,11 @@ export function getMetadataObject({
       type: 'website',
       images: [
         {
-          url:
-            generateOGImageURL(url) ??
-            'https://nosgestesclimat.vercel.app/images/misc/dessin-nosgestesclimat.png',
+          url: URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE.some((urlPart) =>
+            url.includes(urlPart)
+          )
+            ? generateOGImageURL(url)
+            : 'https://nosgestesclimat.vercel.app/images/misc/dessin-nosgestesclimat.png',
         },
       ],
     },
