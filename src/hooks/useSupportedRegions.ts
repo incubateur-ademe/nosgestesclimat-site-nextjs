@@ -3,7 +3,7 @@
 export const useSupportedRegions = () =>
   fetch(
     `${
-      process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER ??
+      // process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER ??
       'https://data.nosgestesclimat.fr'
     }/supportedRegions.json`
   ).then((response) => response.json())

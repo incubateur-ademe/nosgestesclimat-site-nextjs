@@ -12,6 +12,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "dev:model": "NEXT_PUBLIC_LOCAL_DATA_SERVER=http://localhost:9000 next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
