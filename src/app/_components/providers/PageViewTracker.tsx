@@ -9,6 +9,10 @@ export default function PageViewTracker({ children }: PropsWithChildren) {
     const url = `${pathname}${
       [...searchParams.keys()].length ? '?' + searchParams : ''
     }`
+    // We do not want to track the form without the queston attached
+    if (url === '/simulateur/bilan') {
+      return
+    }
     trackPageView(url)
   }, [pathname, searchParams])
 
