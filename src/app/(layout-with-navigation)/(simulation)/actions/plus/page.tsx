@@ -9,10 +9,19 @@ import { useUser } from '@/publicodes-state'
 import Image from 'next/image'
 import { utils } from 'publicodes'
 
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useGetPRNumber } from '@/hooks/useGetPRNumber'
 import { NGCRule, NGCRules } from '@/publicodes-state/types'
 import { useFetchDocumentation } from '../_hooks/useFetchDocumentation'
+
+export function generateMetadata() {
+  return getMetadataObject({
+    title: 'Actions, la liste - Nos Gestes Climat',
+    description:
+      'Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.',
+  })
+}
 
 export default function ActionList() {
   const locale = useLocale()

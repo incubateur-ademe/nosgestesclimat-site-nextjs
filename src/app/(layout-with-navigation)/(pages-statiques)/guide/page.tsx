@@ -1,10 +1,12 @@
-import { Metadata } from 'next'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Guide from './_components/Guide'
 
-export const metadata: Metadata = {
-  title: 'Le guide - Nos Gestes Climat',
-  description:
-    'Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.',
+export function generateMetadata() {
+  return getMetadataObject({
+    title: 'Le guide - Nos Gestes Climat',
+    description:
+      'Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.',
+  })
 }
 
 export default function GuidePage() {

@@ -19,7 +19,6 @@ export function generateMetadata() {
       "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat",
     description:
       'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.',
-    url: 'https://nosgestesclimat.fr',
   })
 }
 

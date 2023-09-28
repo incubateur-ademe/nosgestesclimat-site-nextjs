@@ -1,8 +1,8 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getCurrentLangInfos } from '@/locales/translation'
-import { Metadata } from 'next'
 import FAQListItem from './_components/FAQListItem'
 import GithubContributionCard from './_components/GithubContributionCard'
 import Scroller from './_components/Scroller'
@@ -14,11 +14,13 @@ type FAQType = {
   id: string
 }
 
-export const metadata: Metadata = {
-  title:
-    "Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat",
-  description:
-    'Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.',
+export function generateMetadata() {
+  return getMetadataObject({
+    title:
+      "Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat",
+    description:
+      'Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.',
+  })
 }
 
 export default async function FAQPage() {

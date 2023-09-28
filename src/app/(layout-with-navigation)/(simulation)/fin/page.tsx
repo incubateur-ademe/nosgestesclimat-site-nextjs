@@ -1,17 +1,19 @@
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import NorthStarBanner from '@/components/northstar/NorthstarBanner'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
 import { Diapo } from '@/types/fin'
-import { Metadata } from 'next'
 import FinSlider from './_components/FinSlider'
 import { NewsletterForm } from './_components/NewsletterForm'
 import './slick.css'
 
-export const metadata: Metadata = {
-  title: "Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat",
-  description:
-    "Vos résultats de tests de notre simulateur d'empreinte carbone.",
+export function generateMetadata() {
+  return getMetadataObject({
+    title: "Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat",
+    description:
+      "Vos résultats de tests de notre simulateur d'empreinte carbone.",
+  })
 }
 
 export default function FinPage({

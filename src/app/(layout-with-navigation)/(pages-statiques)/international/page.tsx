@@ -6,16 +6,18 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Container from '@/design-system/layout/Container'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { useSupportedRegions } from '@/hooks/useSupportedRegions'
-import { Metadata } from 'next'
 import Image from 'next/image'
 
 const SHARED_TITLE = 'Le calculateur d’empreinte climat international'
 const SHARED_DESCRIPTION = `Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.`
 
-export const metadata: Metadata = {
-  title: SHARED_TITLE,
-  description: SHARED_DESCRIPTION,
+export function generateMetadata() {
+  return getMetadataObject({
+    title: SHARED_TITLE,
+    description: SHARED_DESCRIPTION,
+  })
 }
 
 export default async function International() {

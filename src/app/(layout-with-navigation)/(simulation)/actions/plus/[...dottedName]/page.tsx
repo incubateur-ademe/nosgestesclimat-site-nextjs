@@ -1,16 +1,24 @@
 'use client'
 
-import Meta from '@/components/misc/MetaOpenGraph'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Markdown from '@/design-system/utils/Markdown'
-import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useTempEngine } from '@/publicodes-state'
-import { NGCRule, NGCRules } from '@/publicodes-state/types'
+import { NGCRules } from '@/publicodes-state/types'
 
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { utils } from 'publicodes'
 import { useFetchDocumentation } from '../../_hooks/useFetchDocumentation'
+
+export function generateMetadata() {
+  return getMetadataObject({
+    title:
+      "Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat",
+    description:
+      'Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.',
+  })
+}
 
 type Props = {
   params: {
@@ -43,13 +51,6 @@ export default function ActionPlus({
 
   return (
     <div>
-      <Meta
-        title={getRuleTitle(
-          rule as NGCRule & { dottedName: string; titre: string }
-        )}
-        description={t('En savoir plus sur cette action.')}
-      />
-
       <div className="mb-8 mt-4 flex flex-wrap gap-4">
         <ButtonLink size="sm" color="text" href={'/actions/plus'}>
           <Trans>◀ Retour à la liste des fiches</Trans>

@@ -3,14 +3,16 @@
 import Loader from '@/design-system/layout/Loader'
 
 import Title from '@/design-system/layout/Title'
-import { Metadata } from 'next'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-export const metadata: Metadata = {
-  title: 'Nos statistiques "phares" - Nos Gestes Climat',
-  description:
-    "Observez nos l'évolution de nos deux mesures d'impact principales.",
+export function generateMetadata() {
+  return getMetadataObject({
+    title: 'Nos statistiques "phares" - Nos Gestes Climat',
+    description:
+      "Observez nos l'évolution de nos deux mesures d'impact principales.",
+  })
 }
 
 export default function NorthStarPage() {

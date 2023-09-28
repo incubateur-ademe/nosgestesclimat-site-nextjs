@@ -2,8 +2,16 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { APP_URL } from '@/constants/urls'
 import Title from '@/design-system/layout/Title'
-import { Metadata } from 'next'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Actions from './_components/Actions'
+
+export function generateMetadata() {
+  return getMetadataObject({
+    title: 'Plan du site - Nos Gestes Climat',
+    description:
+      'Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.',
+  })
+}
 
 const links = {
   'Nos outils': {
@@ -31,12 +39,6 @@ const links = {
     'publicodes.planDuSite.petroleEtGaz': `${APP_URL}/pétrole-et-gaz`,
     'publicodes.planDuSite.documentation': `${APP_URL}/documentation`,
   },
-}
-
-export const metadata: Metadata = {
-  title: 'Plan du site - Nos Gestes Climat',
-  description:
-    'Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.',
 }
 
 export default function PlanDuSitePage() {

@@ -2,11 +2,13 @@ import GithubContributionForm from '@/components/misc/GithubContributionForm'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import { Metadata } from 'next'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 
-export const metadata: Metadata = {
-  title: 'Contact - Nos Gestes Climat',
-  description: "Contactez l'équipe de Nos Gestes Climat.",
+export function generateMetadata() {
+  return getMetadataObject({
+    title: 'Contact - Nos Gestes Climat',
+    description: "Contactez l'équipe de Nos Gestes Climat.",
+  })
 }
 
 export default function Contact() {

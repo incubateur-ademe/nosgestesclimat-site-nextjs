@@ -1,13 +1,15 @@
 'use client'
 
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
-import { Metadata } from 'next'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Invitation from './_components/Invitation'
 
-export const metadata: Metadata = {
-  title: 'Rejoindre un groupe - Nos Gestes Climat',
-  description:
-    "Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.",
+export function generateMetadata() {
+  return getMetadataObject({
+    title: 'Rejoindre un groupe - Nos Gestes Climat',
+    description:
+      "Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.",
+  })
 }
 
 export default function RejoindreGroupePage({

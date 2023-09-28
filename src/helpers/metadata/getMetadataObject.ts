@@ -3,7 +3,6 @@ import { generateOGImageURL } from '../openGraph/generateOGImageURL'
 type Props = {
   title: string
   description: string
-  url: string
   params?: Record<string, string>
   searchParams?: Record<string, string>
 }

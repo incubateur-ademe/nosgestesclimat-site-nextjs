@@ -1,13 +1,12 @@
 'use client'
 
-import Meta from '@/components/misc/MetaOpenGraph'
 import Trans from '@/components/translation/Trans'
 import { getMatomoEventActionAccepted } from '@/constants/matomo'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import Markdown from '@/design-system/utils/Markdown'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import {
   FormProvider,
   useEngine,
@@ -21,6 +20,15 @@ import { utils } from 'publicodes'
 import ActionForm from '../_components/actions/_components/ActionForm'
 import { filterRelevantMissingVariables } from '../_helpers/filterRelevantMissingVariables'
 
+export function generateMetadata() {
+  return getMetadataObject({
+    title:
+      "Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat",
+    description:
+      'Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.',
+  })
+}
+
 const { decodeRuleName, encodeRuleName } = utils
 
 export default function ActionDetailPage({
@@ -33,8 +41,6 @@ export default function ActionDetailPage({
   const formattedDottedName = pathParamsDottedName
     ?.map(decodeURIComponent)
     ?.join(' . ')
-
-  const { t } = useClientTranslation()
 
   const { getValue } = useEngine()
   const { rules, getRuleObject } = useTempEngine()
@@ -71,10 +77,6 @@ export default function ActionDetailPage({
 
   return (
     <div className="mx-auto max-w-[600px]">
-      <Meta
-        title={t('Action') + ' : ' + title}
-        description={description ?? ''}
-      />
       <AutoCanonicalTag />
 
       <ButtonLink

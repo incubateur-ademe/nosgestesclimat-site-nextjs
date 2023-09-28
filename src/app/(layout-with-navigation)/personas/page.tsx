@@ -1,14 +1,16 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { Metadata } from 'next'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { currentLocale } from 'next-i18n-router'
 import Persona from './_components/Persona'
 import PersonaExplanations from './_components/PersonaExplanations'
 
-export const metadata: Metadata = {
-  title: "Nos personas d'utilisateurs types - Nos Gestes Climat",
-  description:
-    "Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.",
+export function generateMetadata() {
+  return getMetadataObject({
+    title: "Nos personas d'utilisateurs types - Nos Gestes Climat",
+    description:
+      "Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.",
+  })
 }
 
 export default async function Personas() {

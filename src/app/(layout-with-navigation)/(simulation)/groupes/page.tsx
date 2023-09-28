@@ -1,15 +1,17 @@
 import Title from '@/design-system/layout/Title'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { Metadata } from 'next'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Groups from './_components/Groups'
 import FeedbackBlock from './resultats/_components/FeedbackBlock'
 import SondagesBlock from './resultats/_components/SondagesBlock'
 
-export const metadata: Metadata = {
-  title: 'Mes groupes, simulateur d’empreinte carbone - Nos Gestes Climat',
-  description:
-    'Calculez votre empreinte carbone en groupe et comparez la avec l’empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.',
+export function generateMetadata() {
+  return getMetadataObject({
+    title: 'Mes groupes, simulateur d’empreinte carbone - Nos Gestes Climat',
+    description:
+      'Calculez votre empreinte carbone en groupe et comparez la avec l’empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.',
+  })
 }
 
 export default async function GroupesPage() {

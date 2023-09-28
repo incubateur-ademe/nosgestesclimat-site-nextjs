@@ -5,14 +5,16 @@ import FeedbackBlock from './_components/FeedbackBlock'
 import Footer from './_components/Footer'
 
 import Trans from '@/components/translation/Trans'
-import { Metadata } from 'next'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import EditableGroupTitle from './_components/EditableGroupTitle'
 import GroupResults from './_components/GroupResults'
 
-export const metadata: Metadata = {
-  title: 'Mon groupe, nos bilans carbone personnels - Nos Gestes Climat',
-  description:
-    "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.",
+export function generateMetadata() {
+  return getMetadataObject({
+    title: 'Mon groupe, nos bilans carbone personnels - Nos Gestes Climat',
+    description:
+      "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.",
+  })
 }
 
 export default function GroupResultsPage({
