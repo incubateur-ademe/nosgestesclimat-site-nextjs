@@ -90,13 +90,9 @@ export default function Form() {
             })
             return
           }
-
-          // Not sure why but we need a timer
-          setTimeout(() => {
-            router.push(
-              `/fin?${formatResultToDetailParam({ categories, getValue })}`
-            )
-          }, 500)
+          router.push(
+            `/fin?${formatResultToDetailParam({ categories, getValue })}`
+          )
         }}
       />
     </div>
