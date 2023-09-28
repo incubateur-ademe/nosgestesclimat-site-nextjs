@@ -26,11 +26,12 @@ export function useRules({ lang, region }: Props) {
         .then((res) => res.data as unknown),
     {
       keepPreviousData: true,
-      // When we work locally on the model we want the rules to be updated as much as possible (on window focus and every 3 seconds)
+      // When we work locally on the model we want the rules to be updated as much as possible (on window focus and every second)
       refetchOnWindowFocus: process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER
         ? true
         : false,
-      refetchInterval: process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER ? 3000 : false,
+      refetchInterval: process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER ? 1000 : false,
+      refetchIntervalInBackground: true,
     }
   )
 }
