@@ -1,15 +1,8 @@
-'use client'
-
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import Markdown from '@/design-system/utils/Markdown'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useTempEngine } from '@/publicodes-state'
-import { NGCRules } from '@/publicodes-state/types'
 
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { utils } from 'publicodes'
-import { useFetchDocumentation } from '../../_hooks/useFetchDocumentation'
+import ActionPlusContent from './_components/ActionPlusContent'
 
 export function generateMetadata() {
   return getMetadataObject({
@@ -29,26 +22,6 @@ type Props = {
 export default function ActionPlus({
   params: { dottedName: dottedNameArray },
 }: Props) {
-  const { t } = useClientTranslation()
-
-  const dottedName: string = utils.decodeRuleName(
-    dottedNameArray.map(decodeURI).join(' . ')
-  )
-
-  const { rules } = useTempEngine()
-
-  const { data: documentation } = useFetchDocumentation()
-
-  if (!documentation) {
-    return null
-  }
-
-  const rule = {
-    ...(rules as NGCRules)[dottedName],
-    dottedName,
-    plus: documentation['actions-plus/' + dottedName],
-  }
-
   return (
     <div>
       <div className="mb-8 mt-4 flex flex-wrap gap-4">
@@ -61,11 +34,7 @@ export default function ActionPlus({
         </ButtonLink>
       </div>
 
-      <div>
-        <Markdown>
-          {rule.plus || t("Cette fiche détaillée n'existe pas encore")}
-        </Markdown>
-      </div>
+      <ActionPlusContent dottedNameArray={dottedNameArray} />
     </div>
   )
 }

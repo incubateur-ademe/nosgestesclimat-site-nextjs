@@ -1,3 +1,5 @@
+'use client'
+
 import useQueryParams from '@/hooks/useQueryParams'
 import { Diapo } from '@/types/fin'
 import Slider from 'react-slick'

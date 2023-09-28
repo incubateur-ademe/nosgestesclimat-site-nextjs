@@ -1,4 +1,5 @@
 'use client'
+
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
 import { MDXProps } from 'mdx/types'

@@ -1,3 +1,5 @@
+'use client'
+
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
 import DiffuserEn from '@/locales/pages/en-us/diffuser.mdx'

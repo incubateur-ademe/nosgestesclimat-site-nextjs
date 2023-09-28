@@ -1,3 +1,5 @@
+'use client'
+
 import Separator from '@/design-system/layout/Separator'
 import { useUser } from '@/publicodes-state'
 import { Results } from '@/types/groups'

@@ -32,6 +32,7 @@ export default function FinPage({
           ← Revenir au test
         </ButtonLink>
       </div>
+
       <FinSlider searchParams={searchParams} />
 
       <NewsletterForm />

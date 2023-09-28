@@ -1,3 +1,5 @@
+'use client'
+
 import { useForm, useTempEngine, useUser } from '@/publicodes-state'
 import { useState } from 'react'
 import getActions from '../_helpers/getActions'

@@ -5,6 +5,7 @@ type Props = {
   description: string
   params?: Record<string, string>
   searchParams?: Record<string, string>
+  noImage?: boolean
 }
 
 const BASE_URL =
@@ -42,6 +43,7 @@ export function getMetadataObject({
   description,
   params,
   searchParams,
+  noImage = false,
 }: Props) {
   const url = buildURL({ params, searchParams })
 
@@ -59,11 +61,12 @@ export function getMetadataObject({
       type: 'website',
       images: [
         {
-          url: URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE.some((urlPart) =>
-            url.includes(urlPart)
-          )
-            ? generateOGImageURL(url)
-            : 'https://nosgestesclimat.vercel.app/images/misc/dessin-nosgestesclimat.png',
+          url:
+            URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE.some((urlPart) =>
+              url.includes(urlPart)
+            ) && !noImage
+              ? generateOGImageURL(url)
+              : 'https://nosgestesclimat.vercel.app/images/misc/dessin-nosgestesclimat.png',
         },
       ],
     },
