@@ -1,5 +1,8 @@
+import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import APropos from './_components/APropos'
+import AboutEn from '@/locales/pages/en-us/about.mdx'
+import AboutFr from '@/locales/pages/fr/about.mdx'
+import { currentLocale } from 'next-i18n-router'
 
 export function generateMetadata() {
   return getMetadataObject({
@@ -9,5 +12,15 @@ export function generateMetadata() {
 }
 
 export default function AProposPage() {
-  return <APropos />
+  const locale = currentLocale()
+
+  const AProposLocalised = getLocalisedMDX({
+    dictionnaries: {
+      fr: AboutFr,
+      'en-US': AboutEn,
+    },
+    locale: locale ?? '',
+  })
+
+  return <AProposLocalised />
 }
