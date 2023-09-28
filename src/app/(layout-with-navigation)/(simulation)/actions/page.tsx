@@ -52,7 +52,9 @@ export default function ActionsPage({
 
   return (
     <div className="mx-auto my-4 pb-4">
-      {!isSimulationWellStarted && <SimulationMissing />}
+      {!isSimulationWellStarted && (
+        <SimulationMissing progression={progression} />
+      )}
 
       {isSimulationWellStarted && !(tutorials as any).actions && (
         <ActionsTutorial />
