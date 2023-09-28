@@ -24,7 +24,5 @@ export function getLocalisedURL({
   if (shouldLog)
     console.log(`${locale !== languages[0] ? `/${locale}` : ''}${href}`)
 
-  return `${locale !== languages[0] ? `/${locale}` : ''}${
-    href === '/' ? '' : href
-  }`
+  return `/${locale}${href === '/' ? '' : href}`
 }
