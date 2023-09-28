@@ -45,6 +45,10 @@ export function getMetadataObject({
 }: Props) {
   const url = buildURL({ params, searchParams })
 
+  console.log(
+    'TODO: change images fallback URL before using this in production.'
+  )
+
   return {
     title,
     description,
