@@ -12,7 +12,7 @@ export default function SimulationList() {
   } = useUser()
 
   return (
-    <div className="mt-8">
+    <div className="my-6 md:my-8">
       <h2 className="text-lg">
         <span
           role="img"

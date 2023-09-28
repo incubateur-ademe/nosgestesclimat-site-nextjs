@@ -20,7 +20,7 @@ export default function SimulationAnswerList() {
 
   return (
     <AllOpenProvider value={isAllOpen}>
-      <div className="mb-4 mt-8 flex w-[30rem] items-center justify-between gap-2">
+      <div className="my-8 flex items-center justify-between gap-2 md:w-[30rem]">
         <h2 className="mb-0">
           <span role="img" aria-label="emoji notepad" className="mr-4">
             📋

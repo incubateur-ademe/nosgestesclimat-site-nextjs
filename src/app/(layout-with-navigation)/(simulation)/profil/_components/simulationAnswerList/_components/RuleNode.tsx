@@ -38,7 +38,9 @@ export default function RuleNode({ ruleDottedName, rules, level }: Props) {
         </span>
 
         {isFirstLevel ? (
-          <h2 className="m-0 font-light text-white">{rule.title}</h2>
+          <h2 className="m-0 font-light text-white">
+            {rule.title?.split(' ')[0]}
+          </h2>
         ) : (
           <h3 className="m-0">{rule.title}</h3>
         )}
