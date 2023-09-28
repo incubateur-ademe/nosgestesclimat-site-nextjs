@@ -33,6 +33,7 @@ export default function LanguageSwitchButton() {
       getLocalisedURL({
         locale: newLocale || 'fr',
         href: currentUrl,
+        shouldLog: true,
       })
     )
 
