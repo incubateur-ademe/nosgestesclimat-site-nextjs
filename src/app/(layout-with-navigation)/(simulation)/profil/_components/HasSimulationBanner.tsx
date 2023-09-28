@@ -36,7 +36,7 @@ export default function HasSimulationBanner() {
   const actionChoicesLength = actionChoices?.length
 
   return (
-    <div className="flex flex-wrap items-start">
+    <div className="flex flex-wrap">
       <div className="sm:mt-4 sm:w-[30rem]">
         <Card className="mr-8">
           <p className="text-base md:text-lg">
@@ -64,7 +64,7 @@ export default function HasSimulationBanner() {
         </details>
       </div>
 
-      <div className="my-4 flex w-full flex-col items-center md:items-start">
+      <div className="my-4 flex w-full flex-col items-stretch md:w-auto md:items-start">
         {isSimulationInProgress && (
           <ButtonLink color="primary" href="/simulateur/bilan">
             <Trans>

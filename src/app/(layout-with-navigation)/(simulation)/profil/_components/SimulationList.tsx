@@ -12,7 +12,7 @@ export default function SimulationList() {
   } = useUser()
 
   return (
-    <div className="my-6 md:my-8">
+    <div className="my-6">
       <h2 className="text-lg">
         <span
           role="img"
@@ -37,7 +37,7 @@ export default function SimulationList() {
               : new Date()
 
           return (
-            <li key={simulation.id} className="list-none">
+            <li key={simulation.id} className="mb-2 list-none">
               <details>
                 <summary>
                   <div className="inline-flex">
