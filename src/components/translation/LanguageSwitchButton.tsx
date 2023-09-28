@@ -50,7 +50,6 @@ export default function LanguageSwitchButton() {
         aria-label={
           locale === 'fr' ? t('Français sélectionné') : t('Passer en français')
         }
-        aria-disabled={locale === 'fr'}
         className="flex gap-2 px-4 py-3">
         <span>FR</span> <span aria-hidden>🇫🇷</span>
       </Button>
@@ -63,7 +62,6 @@ export default function LanguageSwitchButton() {
         aria-label={
           locale === 'fr' ? t('English selected') : t('Switch to english')
         }
-        aria-disabled={locale === 'en-US'}
         className="flex gap-2 px-4 py-3">
         <span>EN</span> <span aria-hidden>🇬🇧</span>
       </Button>
