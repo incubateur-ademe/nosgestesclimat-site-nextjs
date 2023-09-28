@@ -31,7 +31,9 @@ export function useRules({ lang, region }: Props) {
         ? true
         : false,
       refetchInterval: process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER ? 1000 : false,
-      refetchIntervalInBackground: true,
+      refetchIntervalInBackground: process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER
+        ? true
+        : false,
     }
   )
 }
