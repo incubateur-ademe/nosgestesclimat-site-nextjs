@@ -11,6 +11,7 @@ export default function LanguageSwitchButton() {
 
   const currentUrl =
     typeof window !== 'undefined' ? window.location.pathname : '/'
+
   const locale = useLocale()
 
   const router = useRouter()
@@ -34,8 +35,8 @@ export default function LanguageSwitchButton() {
         href: currentUrl,
       })
     )
+
     router.refresh()
-    // window.location.reload()
   }
 
   return (

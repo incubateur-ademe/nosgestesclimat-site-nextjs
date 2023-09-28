@@ -18,5 +18,7 @@ export function getLocalisedURL({
     return hrefModified.startsWith('/') ? hrefModified : `/${hrefModified}`
   }
 
-  return `${locale !== languages[0] ? `/${locale}` : ''}${href}/`
+  return `${locale !== languages[0] ? `/${locale}` : ''}${href}${
+    href ? '/' : ''
+  }`
 }
