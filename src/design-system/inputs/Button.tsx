@@ -9,6 +9,7 @@ type Props = {
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   id?: string
+  title?: string
 } & PropsWithChildren
 
 export const colorClassNames = {
@@ -38,6 +39,7 @@ export default function Button({
   type,
   disabled,
   id,
+  title,
   ...props
 }: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLButtonElement>>) {
   return (
@@ -45,6 +47,7 @@ export default function Button({
       onClick={disabled ? () => {} : onClick}
       type={type}
       aria-disabled={disabled}
+      title={title}
       id={id}
       className={`${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]} ${className}`}
       {...props}>

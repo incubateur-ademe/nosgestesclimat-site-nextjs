@@ -4,6 +4,7 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useForm } from '@/publicodes-state'
+import { t } from 'i18next'
 
 type Props = { toggleOpen: any }
 
@@ -23,7 +24,10 @@ export default function Explanation({ toggleOpen }: Props) {
       </svg>
 
       <div className="flex justify-end">
-        <button onClick={toggleOpen} className="text-3xl leading-none">
+        <button
+          onClick={toggleOpen}
+          className="text-3xl leading-none"
+          title={t('Fermer')}>
           ×
         </button>
       </div>

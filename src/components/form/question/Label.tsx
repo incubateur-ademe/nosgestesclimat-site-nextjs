@@ -2,6 +2,7 @@ import { getMatomoEventClickHelp } from '@/constants/matomo'
 import Markdown from '@/design-system/utils/Markdown'
 import { QuestionSize } from '@/types/values'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { t } from 'i18next'
 import { useState } from 'react'
 
 type Props = {
@@ -38,7 +39,8 @@ export default function Label({
               trackEvent(getMatomoEventClickHelp(question))
               setIsOpen((previsOpen) => !previsOpen)
             }}
-            className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary text-base font-bold text-white`}>
+            className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary text-base font-bold text-white`}
+            title={t("Voir plus d'informations")}>
             <code>i</code>
           </button>
         ) : null}
@@ -48,7 +50,8 @@ export default function Label({
           <Markdown>{description}</Markdown>{' '}
           <button
             onClick={() => setIsOpen(false)}
-            className="block uppercase text-primary underline">
+            className="block uppercase text-primary underline"
+            title={t('Fermer')}>
             Fermer
           </button>
         </div>
