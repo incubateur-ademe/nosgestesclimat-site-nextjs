@@ -1,6 +1,6 @@
 'use client'
 
-import PrivacyEn from '@/locales/pages/en-us/privacy.mdx'
+import PrivacyEn from '@/locales/pages/en/privacy.mdx'
 import PrivacyFr from '@/locales/pages/fr/privacy.mdx'
 
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
@@ -12,7 +12,7 @@ export default function Diffuser() {
   const DiffuserLocalised = getLocalisedMDX({
     dictionnaries: {
       fr: PrivacyFr,
-      'en-US': PrivacyEn,
+      en: PrivacyEn,
     },
     locale: locale ?? '',
   })

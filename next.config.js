@@ -57,7 +57,7 @@ const nextConfig = {
   // async rewrites() {
   //   return {
   //     afterFiles: i18nRewriter({
-  //       locales: ['fr', 'en-US'],
+  //       locales: ['fr', 'en'],
   //       defaultLocale: 'fr',
   //     }),
   //   }
