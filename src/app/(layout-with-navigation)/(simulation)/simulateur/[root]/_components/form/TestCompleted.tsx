@@ -19,7 +19,10 @@ export default function TestCompleted() {
         <Trans>Vous avez terminé le test 👏</Trans>
       </p>
       <ButtonLink
-        href={`/fin${detailsParamString ? `?${detailsParamString}` : ''}`}>
+        //TODO: there should be a helper for that
+        href={`/fin?diapo=bilan${
+          detailsParamString ? `&${detailsParamString}` : ''
+        }`}>
         <Trans>Voir mon résultat</Trans>
       </ButtonLink>
       <p className="mb-0 mt-4 text-lg">ou</p>
