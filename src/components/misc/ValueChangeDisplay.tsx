@@ -33,7 +33,7 @@ export default function ValueChangeDisplay() {
 
   if (!shouldDisplay) return
   return (
-    <div>
+    <div className="animate-valuechange" key={numericValue}>
       <strong className="text-lg">{displayDifference}</strong>{' '}
       <span className="text-xs font-light">
         kgCO<sub>2</sub>e
