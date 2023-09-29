@@ -11,14 +11,18 @@ import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function TakeTestLink() {
-  const { tutorials, currentSimulationId } = useUser()
+  const { tutorials, getCurrentSimulation } = useUser()
+
+  const currentSimulation = getCurrentSimulation()
+
+  const isSimulationStarted = currentSimulation?.foldedSteps?.length
 
   return (
     <ButtonLink
       href={tutorials.testIntro ? '/simulateur/bilan' : '/tutoriel'}
       data-cypress-id="do-the-test-link"
       onClick={() => {
-        if (currentSimulationId) {
+        if (isSimulationStarted) {
           trackEvent(matomoEventParcoursTestReprendre)
           return
         }
@@ -29,7 +33,7 @@ export default function TakeTestLink() {
       className="px-12 ">
       <ProgressCircle progress={0} white className="mr-2" />
 
-      {currentSimulationId ? (
+      {isSimulationStarted ? (
         <Trans>Reprendre mon test</Trans>
       ) : (
         <Trans>Faire le test</Trans>
