@@ -1,18 +1,19 @@
 'use client'
 
 import { i18nConfig } from '@/constants/i18n'
+import Button from '@/design-system/inputs/Button'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { usePathname, useRouter } from 'next/navigation'
-import { ChangeEvent } from 'react'
 
-export default function LanguageChanger() {
+export default function LanguageSwitchButton() {
+  const { t } = useClientTranslation()
+
   const router = useRouter()
   const currentPathname = usePathname()
   const currentLocale = useCurrentLocale(i18nConfig)
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const newLocale = e.target.value
-
+  const handleChange = (newLocale: string) => {
     // set cookie for next-i18n-router
     const days = 30
     const date = new Date()
@@ -30,9 +31,25 @@ export default function LanguageChanger() {
   }
 
   return (
-    <select onChange={handleChange} value={currentLocale}>
-      <option value="en">English</option>
-      <option value="fr">Français</option>
-    </select>
+    <div className="flex gap-2">
+      <Button
+        lang="fr"
+        color={currentLocale === 'fr' ? 'primary' : 'secondary'}
+        onClick={() => handleChange('fr')}
+        size="sm"
+        aria-label={t('Passer en français')}
+        className="flex gap-2 px-4 py-3">
+        <span>FR</span> <span aria-hidden>🇫🇷</span>
+      </Button>
+      <Button
+        lang="en"
+        color={currentLocale === 'en' ? 'primary' : 'secondary'}
+        onClick={() => handleChange('en')}
+        size="sm"
+        aria-label={t('Switch to english')}
+        className="flex gap-2 px-4 py-3">
+        <span>EN</span> <span aria-hidden>🇬🇧</span>
+      </Button>
+    </div>
   )
 }
