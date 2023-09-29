@@ -19,7 +19,7 @@ const parseYaml = (yaml: YamlEntry) => {
       }
 }
 
-import uiEnYaml from './ui/ui-en-us.yaml'
+import uiEnYaml from './ui/ui-en.yaml'
 import uiFrYaml from './ui/ui-fr.yaml'
 // Commented until validation by a native speaker
 // import uiEs from './ui/ui-es.yaml'
@@ -28,7 +28,7 @@ import uiFrYaml from './ui/ui-fr.yaml'
 const uiFr = parseYaml(uiFrYaml as unknown as YamlEntry)
 const uiEn = parseYaml(uiEnYaml as unknown as YamlEntry)
 
-import faqEnYaml from './faq/FAQ-en-us.yaml'
+import faqEnYaml from './faq/FAQ-en.yaml'
 import faqFrYaml from './faq/FAQ-fr.yaml'
 // Commented until validation by a native speaker
 // import faqEs from './faq/FAQ-es.yaml'
@@ -38,7 +38,7 @@ const faqFr = parseYaml(faqFrYaml as unknown as YamlEntry)
 const faqEn = parseYaml(faqEnYaml as unknown as YamlEntry)
 
 import { Lang, LangInfos, YamlEntry } from '@/types/translation'
-import releasesEn from './releases/releases-en-us.json'
+import releasesEn from './releases/releases-en.json'
 import releasesFr from './releases/releases-fr.json'
 // Commented until validation by a native speaker
 // import releasesEs from './releases/releases-es.json'
@@ -52,7 +52,7 @@ export function getLangInfos(lang: Lang): LangInfos {
       return {
         name: 'English',
         abrv: 'en',
-        abrvLocale: 'en-US',
+        abrvLocale: 'en',
         faqContent: faqEn as unknown as string,
         releases: releasesEn,
         uiTrad: uiEn.entries,
