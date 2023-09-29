@@ -1,8 +1,8 @@
 'use client'
 
-import { i18nConfig } from '@/constants/i18n'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import i18nConfig from '@/i18nConfig'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { usePathname, useRouter } from 'next/navigation'
 
