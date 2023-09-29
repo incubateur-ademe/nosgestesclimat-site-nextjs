@@ -1,5 +1,5 @@
 // Initialise react-i18next
-import useGeolocation from '@/hooks/useGeolocation'
+import getGeolocation from '@/helpers/getGeolocation'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import { dir } from 'i18next'
@@ -48,7 +48,7 @@ const marianne = localFont({
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   const lang = currentLocale()
-  const region = await useGeolocation()
+  const region = await getGeolocation()
 
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
