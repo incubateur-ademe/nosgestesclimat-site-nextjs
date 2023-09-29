@@ -1,5 +1,3 @@
-// const { i18nRewriter } = require('next-i18n-router')
-
 const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
 })
@@ -54,14 +52,6 @@ const nextConfig = {
       },
     ],
   },
-  // async rewrites() {
-  //   return {
-  //     afterFiles: i18nRewriter({
-  //       locales: ['fr', 'en'],
-  //       defaultLocale: 'fr',
-  //     }),
-  //   }
-  // },
   async redirects() {
     return [
       {
