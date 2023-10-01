@@ -17,7 +17,7 @@ export default function AProposPage() {
   const AProposLocalised = getLocalisedMDX({
     dictionnaries: {
       fr: AboutFr,
-      'en-US': AboutEn,
+      en: AboutEn,
     },
     locale: locale ?? '',
   })

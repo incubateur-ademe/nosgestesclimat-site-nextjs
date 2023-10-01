@@ -3,7 +3,7 @@ import { createInstance } from 'i18next'
 import resourcesToBackend from 'i18next-resources-to-backend'
 import { initReactI18next } from 'react-i18next/initReactI18next'
 import { getOptions } from './settings'
-import uiEnYaml from './ui/ui-en-us.yaml'
+import uiEnYaml from './ui/ui-en.yaml'
 import uiFrYaml from './ui/ui-fr.yaml'
 
 const initI18next = async (language: string) => {
@@ -13,7 +13,7 @@ const initI18next = async (language: string) => {
     .use(
       resourcesToBackend((language: string) => {
         switch (language) {
-          case 'en-US':
+          case 'en':
             return (uiEnYaml as unknown as YamlEntry).entries
           case 'fr':
           default:
