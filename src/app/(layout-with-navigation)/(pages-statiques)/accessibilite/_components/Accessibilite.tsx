@@ -2,7 +2,7 @@
 
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
-import accessibilityEn from '@/locales/pages/en-us/accessibility.mdx'
+import accessibilityEn from '@/locales/pages/en/accessibility.mdx'
 import accessibilityFr from '@/locales/pages/fr/accessibility.mdx'
 
 export default function Accessibilite() {
@@ -11,7 +11,7 @@ export default function Accessibilite() {
   const AccessibilityLocalised = getLocalisedMDX({
     dictionnaries: {
       fr: accessibilityFr,
-      'en-US': accessibilityEn,
+      en: accessibilityEn,
     },
     locale: locale ?? '',
   })

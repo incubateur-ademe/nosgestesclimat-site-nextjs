@@ -1,6 +1,6 @@
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import AboutEn from '@/locales/pages/en-us/about.mdx'
+import AboutEn from '@/locales/pages/en/about.mdx'
 import AboutFr from '@/locales/pages/fr/about.mdx'
 import { currentLocale } from 'next-i18n-router'
 
