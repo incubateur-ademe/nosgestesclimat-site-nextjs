@@ -20,7 +20,7 @@ export default function Subcategory({ subcategory, total, position }: Props) {
   if (percent < 5) return
   return (
     <div
-      className={`border-ltransition-all flex h-full items-center justify-center border-white ${positionClassNames[position]}`}
+      className={`flex h-full items-center justify-center border-l border-white transition-all ${positionClassNames[position]} ease-in-out`}
       style={{ width: `${percent}%` }}>
       <Image
         style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}

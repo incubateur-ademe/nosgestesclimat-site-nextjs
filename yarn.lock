@@ -8269,10 +8269,10 @@ publicodes-react@^1.0.0-beta.72:
   dependencies:
     styled-components "^6.0.7"
 
-publicodes@1.0.0-beta.67:
-  version "1.0.0-beta.67"
-  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.67.tgz#8882627ab03cb7d04c6a89f6730c20a7820cf2fe"
-  integrity sha512-B/VD0pfQsm6preH6je1U3dRQ26IYwEvrw8v3JFZsVPVTm4lWan/TVuuTxLjMNFkJ1MbA0Y9JcjRYFmQLjNCBCQ==
+publicodes@1.0.0-beta.72:
+  version "1.0.0-beta.72"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.72.tgz#4cc2900a8c2f316b92bf4bae2f8411f6ad235a3a"
+  integrity sha512-spk7twEF7c8OOX2grUlLSHUr35YDhSxOAxAlW/RmNtRNDEkTeFzDDLqxtdLWNrIkz0GIKmkVZZaiqantgHR10w==
 
 pump@^2.0.0:
   version "2.0.1"
