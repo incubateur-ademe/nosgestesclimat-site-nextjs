@@ -73,7 +73,7 @@ export function getMetadataObject({
           url.includes(urlPart)
         ) && !noImage
           ? generateOGImageURL(url)
-          : 'nosgestesclimat-git-1356-nos-gestes-climat.vercel.app/images/misc/dessin-nosgestesclimat_thumbnail.png',
+          : 'https://nosgestesclimat-git-1356-nos-gestes-climat.vercel.app/images/misc/dessin-nosgestesclimat_thumbnail.png',
     },
   }
 }
