@@ -114,7 +114,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         `}</Script>
 
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
-
         <Providers region={region}>{children}</Providers>
       </body>
     </html>

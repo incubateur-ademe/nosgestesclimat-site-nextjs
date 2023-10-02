@@ -20,8 +20,8 @@ export function useRules({ lang, region }: Props) {
       axios
         .get(
           `${dataServer}/co2-model.${user?.region?.code || region}-lang.${
-            // TODO: The model should be "en" and not "en"
-            (locale === 'en' ? 'en' : locale) || lang
+            // TODO: The model should be "en" and not "en-us"
+            (locale === 'en' ? 'en-us' : locale) || lang
           }-opti.json`
         )
         .then((res) => res.data as unknown),
