@@ -19,6 +19,7 @@ export default function Suggestions({ question }: Props) {
         <Button
           key={suggestion.label}
           size="sm"
+          className="capitalize"
           onClick={() => {
             trackEvent(
               getMatomoEventClickSuggestion(question, suggestion.label)
