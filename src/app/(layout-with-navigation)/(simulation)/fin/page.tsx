@@ -1,26 +1,26 @@
-'use client'
-
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import NorthStarBanner from '@/components/northstar/NorthstarBanner'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import useQueryParams from '@/hooks/useQueryParams'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
-import Slider from 'react-slick'
-import Actions from './_components/Actions'
-import GridChart from './_components/GridChart'
+import { Diapo } from '@/types/fin'
+import FinSlider from './_components/FinSlider'
 import { NewsletterForm } from './_components/NewsletterForm'
-import Slide from './_components/Slide'
-import TotalVsTarget from './_components/TotalVsTarget'
 import './slick.css'
 
-type Diapo = 'bilan' | 'categories' | 'actions'
+export async function generateMetadata() {
+  return getMetadataObject({
+    title: "Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat",
+    description:
+      "Vos résultats de tests de notre simulateur d'empreinte carbone.",
+  })
+}
 
-const diapoList = ['bilan', 'categories', 'actions']
-export default function Fin({ searchParams }: any) {
-  const diapo: Diapo = searchParams.diapo || 'bilan'
-
-  const { setQueryParams } = useQueryParams()
-
+export default function FinPage({
+  searchParams,
+}: {
+  searchParams: Record<string, Diapo>
+}) {
   return (
     <FormProvider>
       <NorthStarBanner type="learned" />
@@ -32,28 +32,9 @@ export default function Fin({ searchParams }: any) {
           ← Revenir au test
         </ButtonLink>
       </div>
-      <Slider
-        slidesToShow={1}
-        dots={true}
-        infinite={true}
-        adaptiveHeight={true}
-        className={`mb-4 md:mx-16`}
-        initialSlide={diapoList.indexOf(diapo)}
-        // NOTE: afterChange is broken when adaptiveHeight is set to true. See:
-        // https://github.com/akiran/react-slick/issues/1262. Therefoe this hacky solution.
-        beforeChange={(prevSlide, nextSlide) => {
-          setTimeout(() => setQueryParams({ diapo: diapoList[nextSlide] }), 500)
-        }}>
-        <Slide noMargin className="md:h-[33rem]">
-          <TotalVsTarget />
-        </Slide>
-        <Slide className="h-[32rem] md:h-[44rem]">
-          <GridChart />
-        </Slide>
-        <Slide className="h-[42rem]">
-          <Actions />
-        </Slide>
-      </Slider>
+
+      <FinSlider searchParams={searchParams} />
+
       <NewsletterForm />
     </FormProvider>
   )

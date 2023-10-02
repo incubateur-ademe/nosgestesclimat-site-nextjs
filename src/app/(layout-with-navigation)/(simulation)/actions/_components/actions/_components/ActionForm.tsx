@@ -1,3 +1,5 @@
+'use client'
+
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import { useForm } from '@/publicodes-state'

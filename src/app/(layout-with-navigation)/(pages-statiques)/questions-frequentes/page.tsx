@@ -1,13 +1,12 @@
-'use client'
-
 import Trans from '@/components/translation/Trans'
-import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import Markdown from '@/design-system/utils/Markdown'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getCurrentLangInfos } from '@/locales/translation'
-import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
+import FAQListItem from './_components/FAQListItem'
 import GithubContributionCard from './_components/GithubContributionCard'
+import Scroller from './_components/Scroller'
+
 type FAQType = {
   question: string
   réponse: string
@@ -15,56 +14,23 @@ type FAQType = {
   id: string
 }
 
-export default function FAQ() {
-  useEffect(() => {
-    const handleAnchor = () => {
-      if (window.location.hash) {
-        const anchor = decodeURI(window.location.hash.substring(1)) // Extrait l'ancre de l'URL sans le '#'
-        const questionElement = document.getElementById(anchor)
-        if (questionElement) {
-          // Faites défiler jusqu'à la question si nécessaire
-          questionElement.scrollIntoView({ behavior: 'smooth' })
-          questionElement.setAttribute('open', 'true')
-        }
-      }
-    }
+export async function generateMetadata() {
+  return getMetadataObject({
+    title:
+      "Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat",
+    description:
+      'Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.',
+  })
+}
 
-    handleAnchor()
+export default async function FAQPage() {
+  const { i18n, t } = await getServerTranslation()
 
-    document.addEventListener('DOMContentLoaded', handleAnchor)
-
-    return () => {
-      document.removeEventListener('DOMContentLoaded', handleAnchor)
-    }
-  }, [])
-
-  const handleDetailsToggle = (id: string, isOpen: boolean) => {
-    let newURL = window.location.pathname
-    if (!isOpen) {
-      newURL = window.location.pathname + `#${id}`
-    }
-    window.history.pushState(null, '', newURL)
-  }
-
-  const { i18n } = useTranslation()
   const FAQContent = getCurrentLangInfos(i18n)
     .faqContent as unknown as FAQType[]
+
   const { hasData } = { hasData: false }
 
-  /*
-	const structuredFAQ = {
-		'@context': 'https://schema.org',
-		'@type': 'FAQPage',
-		mainEntity: FAQContent.map((element) => ({
-			'@type': 'Question',
-			name: element.question,
-			acceptedAnswer: {
-				'@type': 'Answer',
-				text: renderToString(<Markdown children={element.réponse} noRouter />),
-			},
-		})),
-	}
-  */
   const categories: string[] = FAQContent.reduce((memo, next) => {
     if (memo.includes(next.catégorie)) {
       return [...memo]
@@ -73,11 +39,12 @@ export default function FAQ() {
     return [...memo, next.catégorie]
   }, [] as string[])
 
-  const { t } = useTranslation()
-
   return (
     <>
       <Title title={t('Questions fréquentes')} />
+
+      <Scroller />
+
       <p>
         <Trans i18nKey={'publicodes.FAQ.description'}>
           Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les
@@ -86,6 +53,7 @@ export default function FAQ() {
           rendez-vous tout en bas. Bonne lecture !
         </Trans>
       </p>
+
       {!hasData && (
         <p>
           <Trans i18nKey={'publicodes.FAQ.faireletest'}>
@@ -96,6 +64,7 @@ export default function FAQ() {
           </Trans>
         </p>
       )}
+
       <div className="pb-4">
         {categories.map((category) => {
           return (
@@ -113,43 +82,12 @@ export default function FAQ() {
                     id: string
                   }) => {
                     return (
-                      <li
+                      <FAQListItem
+                        id={id}
                         key={id}
-                        className="whitespace-wrap mb-2 list-none font-bold">
-                        <details id={id}>
-                          <summary
-                            role="button"
-                            tabIndex={0}
-                            className="cursor-pointer border-none bg-transparent text-left text-base"
-                            onClick={(e) =>
-                              handleDetailsToggle(
-                                id,
-                                (
-                                  e?.currentTarget
-                                    ?.parentElement as HTMLElement & {
-                                    open: boolean
-                                  }
-                                )?.open ?? false
-                              )
-                            }
-                            onKeyDown={(e) =>
-                              handleDetailsToggle(
-                                id,
-                                (
-                                  e?.currentTarget
-                                    ?.parentElement as HTMLElement & {
-                                    open: boolean
-                                  }
-                                )?.open ?? false
-                              )
-                            }>
-                            <h3 className="inline text-black">{question}</h3>
-                          </summary>
-                          <Card className="m-4 p-2">
-                            <Markdown>{réponse}</Markdown>
-                          </Card>
-                        </details>
-                      </li>
+                        question={question}
+                        réponse={réponse}
+                      />
                     )
                   }
                 )}

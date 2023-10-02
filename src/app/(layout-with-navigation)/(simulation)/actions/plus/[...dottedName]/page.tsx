@@ -1,16 +1,17 @@
-'use client'
-
-import Meta from '@/components/misc/Meta'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import Markdown from '@/design-system/utils/Markdown'
-import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useTempEngine } from '@/publicodes-state'
-import { NGCRule, NGCRules } from '@/publicodes-state/types'
 
-import { utils } from 'publicodes'
-import { useFetchDocumentation } from '../../_hooks/useFetchDocumentation'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import ActionPlusContent from './_components/ActionPlusContent'
+
+export async function generateMetadata() {
+  return getMetadataObject({
+    title:
+      "Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat",
+    description:
+      'Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.',
+  })
+}
 
 type Props = {
   params: {
@@ -21,35 +22,8 @@ type Props = {
 export default function ActionPlus({
   params: { dottedName: dottedNameArray },
 }: Props) {
-  const { t } = useClientTranslation()
-
-  const dottedName: string = utils.decodeRuleName(
-    dottedNameArray.map(decodeURI).join(' . ')
-  )
-
-  const { rules } = useTempEngine()
-
-  const { data: documentation } = useFetchDocumentation()
-
-  if (!documentation) {
-    return null
-  }
-
-  const rule = {
-    ...(rules as NGCRules)[dottedName],
-    dottedName,
-    plus: documentation['actions-plus/' + dottedName],
-  }
-
   return (
     <div>
-      <Meta
-        title={getRuleTitle(
-          rule as NGCRule & { dottedName: string; titre: string }
-        )}
-        description={t('En savoir plus sur cette action.')}
-      />
-
       <div className="mb-8 mt-4 flex flex-wrap gap-4">
         <ButtonLink size="sm" color="text" href={'/actions/plus'}>
           <Trans>◀ Retour à la liste des fiches</Trans>
@@ -60,11 +34,7 @@ export default function ActionPlus({
         </ButtonLink>
       </div>
 
-      <div>
-        <Markdown>
-          {rule.plus || t("Cette fiche détaillée n'existe pas encore")}
-        </Markdown>
-      </div>
+      <ActionPlusContent dottedNameArray={dottedNameArray} />
     </div>
   )
 }

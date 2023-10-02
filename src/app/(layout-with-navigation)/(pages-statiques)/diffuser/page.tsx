@@ -1,22 +1,15 @@
-'use client'
-
+import MDXContent from '@/components/mdx/MDXContent'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import DiffuserEn from '@/locales/pages/en/diffuser.mdx'
 import DiffuserFr from '@/locales/pages/fr/diffuser.mdx'
 
-import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
-
-import { useLocale } from '@/hooks/useLocale'
-
-export default function Diffuser() {
-  const locale = useLocale()
-
-  const DiffuserLocalised = getLocalisedMDX({
-    dictionnaries: {
-      fr: DiffuserFr,
-      en: DiffuserEn,
-    },
-    locale: locale ?? '',
+export async function generateMetadata() {
+  return getMetadataObject({
+    title: "Diffuser notre simulateur d'empreinte climat - Nos Gestes Climat",
+    description: 'Diffusez Nos Gestes Climat dans votre organisation.',
   })
+}
 
-  return <DiffuserLocalised />
+export default function DiffuserPage() {
+  return <MDXContent contentEn={DiffuserEn} contentFr={DiffuserFr} />
 }

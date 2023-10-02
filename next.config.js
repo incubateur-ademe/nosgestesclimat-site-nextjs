@@ -61,6 +61,9 @@ const nextConfig = {
       },
     ]
   },
+  experimental: {
+    mdxRs: true,
+  },
 }
 
 module.exports = withMDX(nextConfig)
