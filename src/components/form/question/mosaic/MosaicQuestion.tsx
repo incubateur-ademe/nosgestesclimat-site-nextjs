@@ -28,6 +28,7 @@ export default function MosaicQuestion({ question, parentMosaic }: Props) {
           question={question}
           title={title}
           icons={icons}
+          description={description}
           setValue={(value) => setValue(value, parentMosaic)}
         />
       )}
