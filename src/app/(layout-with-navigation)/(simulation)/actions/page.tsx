@@ -15,5 +15,5 @@ export default function ActionsPage({
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  ;<ActionPageContent searchParams={searchParams} />
+  return <ActionPageContent searchParams={searchParams} />
 }
