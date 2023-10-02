@@ -1,3 +1,4 @@
+import { currentLocale } from 'next-i18n-router'
 import { generateOGImageURL } from '../openGraph/generateOGImageURL'
 
 type Props = {
@@ -22,12 +23,16 @@ const URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE = [
 const buildURL = ({
   params,
   searchParams,
-}: Pick<Props, 'params' | 'searchParams'>) =>
-  `${BASE_URL}${
+  locale,
+}: Pick<Props, 'params' | 'searchParams'> & { locale: string }) => {
+  const localePart = locale === 'fr' ? '' : `/${locale}`
+
+  const paramsPart =
     params && Object.values(params).length > 0
       ? Object.values(params).map((value) => `/${value}`)
       : ''
-  }${
+
+  const searchParamsPart =
     searchParams && Object.values(searchParams).length > 0
       ? `?${Object.entries(searchParams).map(
           ([key, value], index) =>
@@ -36,7 +41,9 @@ const buildURL = ({
             }`
         )}`
       : ''
-  }`
+
+  return `${BASE_URL}${localePart}${paramsPart}${searchParamsPart}`
+}
 
 export function getMetadataObject({
   title,
@@ -45,7 +52,8 @@ export function getMetadataObject({
   searchParams,
   noImage = false,
 }: Props) {
-  const url = buildURL({ params, searchParams })
+  const locale = currentLocale()
+  const url = buildURL({ params, searchParams, locale: locale || 'fr' })
 
   console.log(
     'TODO: change images fallback URL before using this in production.'
@@ -54,7 +62,7 @@ export function getMetadataObject({
   return {
     title,
     description,
-    metadataBase: new URL('https://acme.com'),
+    metadataBase: new URL(url),
     openGraph: {
       title,
       description,
