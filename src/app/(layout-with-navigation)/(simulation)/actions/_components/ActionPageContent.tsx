@@ -5,7 +5,6 @@ import { useState } from 'react'
 import getActions from '../_helpers/getActions'
 import ActionsTutorial from './ActionsTutorial'
 import OptionBar from './OptionBar'
-import PetrolFilter from './PetrolFilter'
 import SimulationMissing from './SimulationMissing'
 import Actions from './actions/Actions'
 import CategoryFilters from './categoryFilters/CategoryFilters'
@@ -64,8 +63,6 @@ export default function ActionPageContent({
           isSimulationWellStarted ? '' : 'pointer-events-none opacity-70'
         } text-center`}
         aria-hidden={isSimulationWellStarted ? 'false' : 'true'}>
-        <PetrolFilter />
-
         <div className="relative">
           <CategoryFilters actions={actionsDisplayed} />
 
