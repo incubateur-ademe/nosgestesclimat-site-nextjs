@@ -1,4 +1,5 @@
 import { currentLocale } from 'next-i18n-router'
+import { generateOGImageURL } from '../openGraph/generateOGImageURL'
 
 type Props = {
   title: string
@@ -13,11 +14,11 @@ const BASE_URL =
     ? 'http://localhost:3000'
     : 'https://nosgestesclimat.fr'
 
-// const URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE = [
-//   'diapo=bilan',
-//   'diapo=categories',
-//   'diapo=actions',
-// ]
+const URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE = [
+  'diapo=bilan',
+  'diapo=categories',
+  'diapo=actions',
+]
 
 const buildURL = ({
   params,
@@ -48,7 +49,8 @@ export function getMetadataObject({
   title,
   description,
   params,
-  searchParams, // noImage = false,
+  searchParams,
+  noImage = false,
 }: Props) {
   const locale = currentLocale()
   const url = buildURL({ params, searchParams, locale: locale || 'fr' })
@@ -66,12 +68,12 @@ export function getMetadataObject({
       description,
       url,
       type: 'website',
-      // images:
-      //   URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE.some((urlPart) =>
-      //     url.includes(urlPart)
-      //   ) && !noImage
-      //     ? generateOGImageURL(url)
-      //     : 'https://nosgestesclimat-git-preprod-nos-gestes-climat.vercel.app/images/misc/dessin-nosgestesclimat_thumbnail.png',
+      images:
+        URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE.some((urlPart) =>
+          url.includes(urlPart)
+        ) && !noImage
+          ? generateOGImageURL(url)
+          : 'https://nosgestesclimat-git-preprod-nos-gestes-climat.vercel.app/images/misc/dessin-nosgestesclimat_thumbnail.png',
     },
   }
 }

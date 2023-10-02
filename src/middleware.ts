@@ -1,8 +1,10 @@
 import i18nConfig from '@/i18nConfig'
 import { i18nRouter } from 'next-i18n-router'
-import { NextRequest } from 'next/server'
+import { NextRequest, userAgent } from 'next/server'
 
 export function middleware(request: NextRequest) {
+  const useragent = userAgent(request)
+  console.log(useragent)
   return i18nRouter(request, i18nConfig)
 }
 
