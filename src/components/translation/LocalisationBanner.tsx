@@ -24,7 +24,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
   const currentLocale = useLocale() as string
 
-  const { code } = user?.region ?? {}
+  const code = user?.region?.code
 
   if (!supportedRegions) return null
 
