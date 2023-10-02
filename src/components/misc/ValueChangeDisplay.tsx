@@ -1,28 +1,39 @@
 'use client'
 
 import { useRule } from '@/publicodes-state'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function ValueChangeDisplay() {
   const { numericValue } = useRule('bilan')
-  const [prevValue, setPrevValue] = useState(numericValue)
+  const prevValue = useRef(numericValue)
 
-  const displayDifference = `${
-    numericValue - prevValue > 0 ? '+' : '-'
-  } ${Math.abs(numericValue - prevValue).toLocaleString('fr-fr', {
-    maximumFractionDigits: 1,
-  })}`
+  const [displayDifference, setDisplayDifference] = useState('')
+
+  const [shouldDisplay, setShouldDisplay] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setPrevValue(numericValue)
-    }, 1000)
+    const difference = numericValue - prevValue.current
+
+    setDisplayDifference(
+      `${difference > 0 ? '+' : '-'} ${Math.abs(difference).toLocaleString(
+        'fr-fr',
+        {
+          maximumFractionDigits: 1,
+        }
+      )}`
+    )
+
+    setShouldDisplay(difference !== 0)
+
+    prevValue.current = numericValue
+
+    const timer = setTimeout(() => setShouldDisplay(false), 3000)
     return () => clearTimeout(timer)
   }, [numericValue])
 
-  if (numericValue - prevValue === 0) return
+  if (!shouldDisplay) return
   return (
-    <div>
+    <div className="animate-valuechange" key={numericValue}>
       <strong className="text-lg">{displayDifference}</strong>{' '}
       <span className="text-xs font-light">
         kgCO<sub>2</sub>e

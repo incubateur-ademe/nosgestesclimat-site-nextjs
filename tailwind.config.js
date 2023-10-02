@@ -30,6 +30,17 @@ module.exports = {
           500: '#D40983',
         },
       },
+      keyframes: {
+        valuechange: {
+          '0%': { opacity: 0, transform: 'translateX(-10%)' },
+          '20%': { opacity: 1 },
+          '80%': { opacity: 1 },
+          '100%': { opacity: 0, transform: 'translateX(10%)' },
+        },
+      },
+      animation: {
+        valuechange: 'valuechange 3s ease-out infinite',
+      },
     },
   },
   plugins: [],
