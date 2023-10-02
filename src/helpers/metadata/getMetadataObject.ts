@@ -66,7 +66,7 @@ export function getMetadataObject({
               url.includes(urlPart)
             ) && !noImage
               ? generateOGImageURL(url)
-              : 'https://nosgestesclimat.vercel.app/images/misc/dessin-nosgestesclimat.png',
+              : 'https://nosgestesclimat.vercel.app/images/misc/dessin-nosgestesclimat_thumbnail.png',
         },
       ],
     },
