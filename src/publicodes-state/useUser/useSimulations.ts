@@ -19,7 +19,7 @@ export default function useSimulations({
   const initSimulation = ({
     situation = {},
     persona,
-    foldedSteps,
+    foldedSteps = [],
   }: {
     situation?: Situation
     persona?: string
@@ -33,7 +33,7 @@ export default function useSimulations({
         id,
         date: new Date().toISOString(),
         situation,
-        foldedSteps: foldedSteps ?? [],
+        foldedSteps,
         actionChoices: {},
         persona,
       },
