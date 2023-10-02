@@ -36,7 +36,6 @@ export default function useSimulations({
         foldedSteps,
         actionChoices: {},
         persona,
-        foldedSteps: []
       },
     ])
 
