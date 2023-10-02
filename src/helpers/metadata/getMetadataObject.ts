@@ -54,6 +54,7 @@ export function getMetadataObject({
   return {
     title,
     description,
+    metadataBase: new URL('https://acme.com'),
     openGraph: {
       title,
       description,
