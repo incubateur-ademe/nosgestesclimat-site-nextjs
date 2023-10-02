@@ -1,5 +1,5 @@
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import Guide from './_components/Guide'
+import GuideContent from './_content/guide.mdx'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -10,5 +10,5 @@ export async function generateMetadata() {
 }
 
 export default function GuidePage() {
-  return <Guide />
+  return <GuideContent />
 }

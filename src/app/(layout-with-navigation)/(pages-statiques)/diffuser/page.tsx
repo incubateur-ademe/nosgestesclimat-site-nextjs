@@ -1,5 +1,7 @@
+import MDXContent from '@/components/mdx/MDXContent'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import Diffuser from './_components/Diffuser'
+import DiffuserEn from '@/locales/pages/en/diffuser.mdx'
+import DiffuserFr from '@/locales/pages/fr/diffuser.mdx'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -9,5 +11,5 @@ export async function generateMetadata() {
 }
 
 export default function DiffuserPage() {
-  return <Diffuser />
+  return <MDXContent contentEn={DiffuserEn} contentFr={DiffuserFr} />
 }

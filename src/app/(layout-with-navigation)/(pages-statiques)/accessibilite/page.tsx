@@ -1,5 +1,7 @@
+import MDXContent from '@/components/mdx/MDXContent'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import Accessibilite from './_components/Accessibilite'
+import accessibilityEn from '@/locales/pages/en/accessibility.mdx'
+import accessibilityFr from '@/locales/pages/fr/accessibility.mdx'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -10,5 +12,5 @@ export async function generateMetadata() {
 }
 
 export default function AccessibilityPage() {
-  return <Accessibilite />
+  return <MDXContent contentEn={accessibilityEn} contentFr={accessibilityFr} />
 }

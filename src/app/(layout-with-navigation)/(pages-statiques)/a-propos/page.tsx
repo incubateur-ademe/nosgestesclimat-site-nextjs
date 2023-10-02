@@ -1,8 +1,7 @@
-import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
+import MDXContent from '@/components/mdx/MDXContent'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import AboutEn from '@/locales/pages/en/about.mdx'
 import AboutFr from '@/locales/pages/fr/about.mdx'
-import { currentLocale } from 'next-i18n-router'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -12,15 +11,5 @@ export async function generateMetadata() {
 }
 
 export default function AProposPage() {
-  const locale = currentLocale()
-
-  const AProposLocalised = getLocalisedMDX({
-    dictionnaries: {
-      fr: AboutFr,
-      en: AboutEn,
-    },
-    locale: locale ?? '',
-  })
-
-  return <AProposLocalised />
+  return <MDXContent contentEn={AboutEn} contentFr={AboutFr} />
 }

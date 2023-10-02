@@ -1,7 +1,6 @@
 'use client'
 
-import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
-import { useLocale } from '@/hooks/useLocale'
+import MDXContent from '@/components/mdx/MDXContent'
 import contentEnBottom from '@/locales/pages/en/budgetBottom.mdx'
 import contentEnTop from '@/locales/pages/en/budgetTop.mdx'
 import contentFrBottom from '@/locales/pages/fr/budgetBottom.mdx'
@@ -9,29 +8,11 @@ import contentFrTop from '@/locales/pages/fr/budgetTop.mdx'
 import SelectYear from './SelectYear'
 
 export default function Budget() {
-  const locale = useLocale()
-
-  const BudgetContentTop = getLocalisedMDX({
-    dictionnaries: {
-      fr: contentFrTop,
-      en: contentEnTop,
-    },
-    locale: locale ?? '',
-  })
-
-  const BudgetContentBottom = getLocalisedMDX({
-    dictionnaries: {
-      fr: contentFrBottom,
-      en: contentEnBottom,
-    },
-    locale: locale ?? '',
-  })
-
   return (
     <>
-      <BudgetContentTop />
+      <MDXContent contentEn={contentEnTop} contentFr={contentFrTop} />
       <SelectYear />
-      <BudgetContentBottom />
+      <MDXContent contentEn={contentEnBottom} contentFr={contentFrBottom} />
     </>
   )
 }

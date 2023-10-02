@@ -1,5 +1,7 @@
+import MDXContent from '@/components/mdx/MDXContent'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import Content from './_components/Content'
+import ContentEn from '@/locales/pages/en/CGU.mdx'
+import ContentFr from '@/locales/pages/fr/CGU.mdx'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -9,5 +11,5 @@ export async function generateMetadata() {
 }
 
 export default function CGUPage() {
-  return <Content />
+  return <MDXContent contentEn={ContentEn} contentFr={ContentFr} />
 }

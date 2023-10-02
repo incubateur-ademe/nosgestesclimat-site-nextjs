@@ -1,5 +1,7 @@
+import MDXContent from '@/components/mdx/MDXContent'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import ViePrivee from './_components/ViePrivee'
+import PrivacyEn from '@/locales/pages/en/privacy.mdx'
+import PrivacyFr from '@/locales/pages/fr/privacy.mdx'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -10,5 +12,5 @@ export async function generateMetadata() {
 }
 
 export default function ViePriveePage() {
-  return <ViePrivee />
+  return <MDXContent contentEn={PrivacyEn} contentFr={PrivacyFr} />
 }
