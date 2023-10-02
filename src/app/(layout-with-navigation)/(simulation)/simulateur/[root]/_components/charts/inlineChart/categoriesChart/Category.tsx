@@ -27,7 +27,7 @@ export default function Category({
 
   return (
     <div
-      className={`border-ltransition-all relative flex h-full items-center justify-center border-white ${positionClassNames[position]}`}
+      className={`relative flex h-full items-center justify-center border-l border-white transition-all ease-in-out ${positionClassNames[position]}`}
       style={{ width: `${percent}%`, backgroundColor: color }}>
       {current ? (
         <svg

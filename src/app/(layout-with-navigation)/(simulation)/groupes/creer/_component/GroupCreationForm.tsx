@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import { GROUP_NAMES } from '@/constants/groupNames'
 import { matomoEventCreationGroupe } from '@/constants/matomo'

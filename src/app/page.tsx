@@ -1,23 +1,25 @@
-import NewsBanner from './_components/NewsBanner'
-
 import Footer from '@/components/layout/Footer'
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
 import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { Metadata } from 'next'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 import AnimatedIllustration from './_components/AnimatedIllustration'
 import GroupsLink from './_components/GroupsLink'
 import LandingExplanations from './_components/LandingExplanations'
+import NewsBanner from './_components/NewsBanner'
 import ProfileLink from './_components/ProfileLink'
 import TakeTestLink from './_components/TakeTestLink'
-export const metadata: Metadata = {
-  title:
-    "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat",
-  description:
-    'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.',
+
+export async function generateMetadata() {
+  return getMetadataObject({
+    title:
+      "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat",
+    description:
+      'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.',
+  })
 }
 
 export default async function Landing() {
@@ -28,6 +30,7 @@ export default async function Landing() {
       <header>
         <Logo />
       </header>
+
       <Main>
         <div className="mx-auto flex flex-col justify-center gap-4 px-4 pb-8 text-center md:mx-auto md:mt-6 md:w-full md:max-w-6xl md:p-10 md:px-8 md:text-left">
           <div className="gap-10 md:flex">

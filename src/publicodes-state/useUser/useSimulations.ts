@@ -19,7 +19,12 @@ export default function useSimulations({
   const initSimulation = ({
     situation = {},
     persona,
-  }: { situation?: Situation; persona?: string } = {}) => {
+    foldedSteps = [],
+  }: {
+    situation?: Situation
+    persona?: string
+    foldedSteps?: string[]
+  } = {}) => {
     const id = uuidv4()
 
     setSimulations((prevSimulations: Simulation[]) => [
@@ -28,9 +33,10 @@ export default function useSimulations({
         id,
         date: new Date().toISOString(),
         situation,
-        foldedSteps: [],
+        foldedSteps,
         actionChoices: {},
         persona,
+        foldedSteps: []
       },
     ])
 
