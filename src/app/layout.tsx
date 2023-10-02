@@ -102,6 +102,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <meta name="theme-color" content="#5758BB" />
         <Script id="matomo">
           {`
+          
              var _paq = window._paq = window._paq || [];
              /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
              _paq.push(["setExcludedQueryParams", ["detail","diapo"]]);
