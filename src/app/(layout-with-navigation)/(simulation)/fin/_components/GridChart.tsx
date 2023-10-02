@@ -54,7 +54,7 @@ export default function GridChart() {
       <h3 className="mb-2 text-center text-lg md:mb-4 md:text-xl">
         <Trans>De quoi est faite mon empreinte&nbsp;?</Trans>
       </h3>
-      <div className="grid grid-cols-8 gap-1	md:grid-cols-10">
+      <div className="grid grid-cols-8 gap-1	md:grid-cols-10" id="shareImage">
         {sortedSubcategories.map((subCategory: any, index: number) =>
           index < numberOfSquares ? (
             <Block

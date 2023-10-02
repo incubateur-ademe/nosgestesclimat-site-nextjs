@@ -8,6 +8,7 @@ type Props = {
   className?: string
   color?: 'primary' | 'secondary' | 'text'
   size?: ButtonSize
+  title?: string
   onClick?: () => void
 }
 
@@ -17,6 +18,7 @@ export default function ButtonLink({
   className = '',
   color = 'primary',
   size = 'md',
+  title,
   onClick,
   ...props
 }: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLAnchorElement>>) {
@@ -24,6 +26,7 @@ export default function ButtonLink({
     <Link
       href={href}
       onClick={onClick}
+      title={title}
       className={`${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]} ${className}`}
       {...props}>
       {children}

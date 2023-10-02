@@ -1,27 +1,28 @@
-'use client'
-
 import GithubContributionForm from '@/components/misc/GithubContributionForm'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+
+export async function generateMetadata() {
+  return getMetadataObject({
+    title: 'Contact - Nos Gestes Climat',
+    description: "Contactez l'équipe de Nos Gestes Climat.",
+  })
+}
 
 export default function Contact() {
   return (
     <div className="pb-4">
-      {/*
-			<Meta
-				title={t('meta.publicodes.Contact.titre')}
-				description={t('meta.publicodes.Contact.description')}
-			></Meta>
-  */}
-
       <Title title={<Trans>Contact</Trans>} />
+
       <h2>
         🙋‍♀️{' '}
         <Trans i18nKey={'publicodes.Contact.titreQuestion'}>
           J'ai une question
         </Trans>
       </h2>
+
       <p>
         <Trans i18nKey={'publicodes.Contact.description'}>
           N'hésitez pas à consulter notre{' '}
@@ -29,6 +30,7 @@ export default function Contact() {
           trouverez sans doute la réponse à votre question !
         </Trans>
       </p>
+
       <p>
         <Trans i18nKey={'publicodes.Contact.form'}>
           Pour toute remarque ou question,{' '}
@@ -42,9 +44,11 @@ export default function Contact() {
           nous envoyer un message via le formulaire de contact ci-dessous.
         </Trans>
       </p>
+
       <Card className="my-4 flex-row py-4">
         <GithubContributionForm />
       </Card>
+
       <p>
         <Trans i18nKey={'publicodes.Contact.mail'}>
           Enfin, vous avez la possibilité de nous envoyer un mail à l'adresse{' '}

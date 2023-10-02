@@ -1,3 +1,5 @@
+'use client'
+
 import { useIsClient } from '@/app/_components/IsClientCtxProvider'
 import '@/locales/initClient'
 import { useEffect, useState } from 'react'

@@ -20,13 +20,13 @@ export default function SimulationAnswerList() {
 
   return (
     <AllOpenProvider value={isAllOpen}>
-      <div className="mb-4 mt-8 flex w-[30rem] items-center justify-between gap-2">
-        <h2 className="mb-0">
+      <div className="mb-4 mt-6 flex items-center justify-between gap-2 md:w-[35rem]">
+        <h3 className="mb-0">
           <span role="img" aria-label="emoji notepad" className="mr-4">
             📋
           </span>
           <Trans>Mes réponses</Trans>
-        </h2>
+        </h3>
 
         <div className="flex items-center">
           <CheckboxInputGroup
@@ -38,22 +38,24 @@ export default function SimulationAnswerList() {
         </div>
       </div>
 
-      {categories?.map((category: string) => {
-        const categoryQuestions = relevantQuestions.filter((question: string) =>
-          question.includes(category)
-        )
+      <div className="w-full">
+        {categories?.map((category: string) => {
+          const categoryQuestions = relevantQuestions.filter(
+            (question: string) => question.includes(category)
+          )
 
-        if (!categoryQuestions.length) return null
+          if (!categoryQuestions.length) return null
 
-        return (
-          <RuleNode
-            key={category}
-            ruleDottedName={category}
-            rules={categoryQuestions}
-            level={1}
-          />
-        )
-      })}
+          return (
+            <RuleNode
+              key={category}
+              ruleDottedName={category}
+              rules={categoryQuestions}
+              level={1}
+            />
+          )
+        })}
+      </div>
     </AllOpenProvider>
   )
 }
