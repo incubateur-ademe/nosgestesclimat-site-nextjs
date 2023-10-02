@@ -1,12 +1,17 @@
+import { useTranslation } from 'react-i18next'
+
 type Props = {
   toggleQuestionList: () => void
 }
 
 export default function ListToggle({ toggleQuestionList }: Props) {
+  const { t } = useTranslation()
+
   return (
     <button
       onClick={toggleQuestionList}
-      className="absolute right-4 h-8 w-8 md:right-6">
+      className="absolute right-4 h-8 w-8 md:right-6"
+      title={t('Voir la liste des questions')}>
       <svg
         className="fill-white"
         viewBox="0 0 32 32"
