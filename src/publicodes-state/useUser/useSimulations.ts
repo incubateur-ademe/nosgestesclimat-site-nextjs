@@ -33,6 +33,7 @@ export default function useSimulations({
         situation,
         actionChoices: {},
         persona,
+        foldedSteps: []
       },
     ])
 
