@@ -59,16 +59,12 @@ export function getMetadataObject({
       description,
       url,
       type: 'website',
-      images: [
-        {
-          url:
-            URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE.some((urlPart) =>
-              url.includes(urlPart)
-            ) && !noImage
-              ? generateOGImageURL(url)
-              : 'https://nosgestesclimat-git-preprod-nos-gestes-climat.vercel.app/images/misc/dessin-nosgestesclimat_thumbnail.png',
-        },
-      ],
+      images:
+        URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE.some((urlPart) =>
+          url.includes(urlPart)
+        ) && !noImage
+          ? generateOGImageURL(url)
+          : 'https://nosgestesclimat-git-preprod-nos-gestes-climat.vercel.app/images/misc/dessin-nosgestesclimat_thumbnail.png',
     },
   }
 }
