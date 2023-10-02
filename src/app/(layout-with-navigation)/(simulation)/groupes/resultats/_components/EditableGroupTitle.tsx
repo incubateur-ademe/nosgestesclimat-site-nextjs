@@ -1,3 +1,5 @@
+'use client'
+
 import { matomoEventUpdateGroupName } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import InlineTextInput from '@/design-system/inputs/InlineTextInput'

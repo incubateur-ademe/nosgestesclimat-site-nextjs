@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'

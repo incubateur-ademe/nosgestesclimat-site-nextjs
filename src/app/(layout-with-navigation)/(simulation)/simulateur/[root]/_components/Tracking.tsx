@@ -1,3 +1,5 @@
+'use client'
+
 import {
   getMatomoEventParcoursTestCategoryStarted,
   matomoEvent50PercentProgress,
