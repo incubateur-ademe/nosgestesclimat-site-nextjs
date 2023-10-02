@@ -1,6 +1,6 @@
 'use client'
 
-import DiffuserEn from '@/locales/pages/en-us/diffuser.mdx'
+import DiffuserEn from '@/locales/pages/en/diffuser.mdx'
 import DiffuserFr from '@/locales/pages/fr/diffuser.mdx'
 
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
@@ -13,7 +13,7 @@ export default function Diffuser() {
   const DiffuserLocalised = getLocalisedMDX({
     dictionnaries: {
       fr: DiffuserFr,
-      'en-US': DiffuserEn,
+      en: DiffuserEn,
     },
     locale: locale ?? '',
   })

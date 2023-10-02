@@ -15,7 +15,7 @@ export default function MDXContent({ contentFr, contentEn }: Props) {
   const Content = getLocalisedMDX({
     dictionnaries: {
       fr: contentFr,
-      'en-US': contentEn,
+      en: contentEn,
     },
     locale: locale ?? '',
   })

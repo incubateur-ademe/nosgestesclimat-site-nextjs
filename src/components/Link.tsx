@@ -1,7 +1,7 @@
 'use client'
 
-import { i18nConfig } from '@/constants/i18n'
 import { getLocalisedURL } from '@/helpers/localisation/getLocalisedURL'
+import i18nConfig from '@/i18nConfig'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import NextLink from 'next/link'
 import { HTMLAttributes, MouseEventHandler, PropsWithChildren } from 'react'

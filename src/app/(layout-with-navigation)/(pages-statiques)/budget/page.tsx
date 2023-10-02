@@ -2,8 +2,8 @@
 
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useLocale } from '@/hooks/useLocale'
-import contentEnBottom from '@/locales/pages/en-us/budgetBottom.mdx'
-import contentEnTop from '@/locales/pages/en-us/budgetTop.mdx'
+import contentEnBottom from '@/locales/pages/en/budgetBottom.mdx'
+import contentEnTop from '@/locales/pages/en/budgetTop.mdx'
 import contentFrBottom from '@/locales/pages/fr/budgetBottom.mdx'
 import contentFrTop from '@/locales/pages/fr/budgetTop.mdx'
 import SelectYear from './_components/SelectYear'
@@ -14,7 +14,7 @@ export default function Budget() {
   const BudgetContentTop = getLocalisedMDX({
     dictionnaries: {
       fr: contentFrTop,
-      'en-US': contentEnTop,
+      en: contentEnTop,
     },
     locale: locale ?? '',
   })
@@ -22,7 +22,7 @@ export default function Budget() {
   const BudgetContentBottom = getLocalisedMDX({
     dictionnaries: {
       fr: contentFrBottom,
-      'en-US': contentEnBottom,
+      en: contentEnBottom,
     },
     locale: locale ?? '',
   })

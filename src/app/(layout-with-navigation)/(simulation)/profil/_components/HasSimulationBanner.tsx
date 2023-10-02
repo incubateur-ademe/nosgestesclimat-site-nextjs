@@ -68,7 +68,7 @@ export default function HasSimulationBanner() {
         {isSimulationInProgress && (
           <ButtonLink color="primary" href="/simulateur/bilan">
             <Trans>
-              <ProgressCircle white className="mr-2" /> Finir mon test
+              <ProgressCircle white className="mr-2" /> Reprendre mon test
             </Trans>
           </ButtonLink>
         )}

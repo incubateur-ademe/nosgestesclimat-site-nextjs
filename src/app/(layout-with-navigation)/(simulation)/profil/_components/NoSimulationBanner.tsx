@@ -27,7 +27,7 @@ export default function NoSimulationBanner() {
         <ButtonLink href="/simulateur/bilan">
           <ProgressCircle className="mr-2" white />
 
-          <Trans>Commencer le test</Trans>
+          <Trans>Faire le test</Trans>
         </ButtonLink>
 
         <TutorialLink />
