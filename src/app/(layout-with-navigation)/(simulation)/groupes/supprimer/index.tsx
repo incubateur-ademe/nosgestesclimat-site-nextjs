@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 import { useFetchGroup } from '../_hooks/useFetchGroup'
 import { useDeleteGroup } from './_hooks/useDeleteGroup'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Supprimer mes données de groupe - Nos Gestes Climat',
     description:

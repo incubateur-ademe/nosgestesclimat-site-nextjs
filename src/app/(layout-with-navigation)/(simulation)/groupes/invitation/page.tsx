@@ -2,7 +2,7 @@ import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Invitation from './_components/Invitation'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Rejoindre un groupe - Nos Gestes Climat',
     description:

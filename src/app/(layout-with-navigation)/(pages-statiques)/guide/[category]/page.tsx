@@ -4,7 +4,7 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import CategoryGuide from './_components/CategoryGuide'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Le guide - Nos Gestes Climat',
     description:

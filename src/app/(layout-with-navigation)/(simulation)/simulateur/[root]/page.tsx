@@ -8,7 +8,7 @@ import Tracking from './_components/Tracking'
 
 type Props = { params: { root: string } }
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Simulateur d’empreinte climat - Nos Gestes Climat',
     description:

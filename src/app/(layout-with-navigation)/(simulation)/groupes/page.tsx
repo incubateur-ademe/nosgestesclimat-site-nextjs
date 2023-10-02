@@ -6,7 +6,7 @@ import Groups from './_components/Groups'
 import FeedbackBlock from './resultats/_components/FeedbackBlock'
 import SondagesBlock from './resultats/_components/SondagesBlock'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Mes groupes, simulateur d’empreinte carbone - Nos Gestes Climat',
     description:

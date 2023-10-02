@@ -2,7 +2,7 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { capitaliseString } from '@/utils/capitaliseString'
 import Content from './_components/Content'
 
-export function generateMetadata({
+export async function generateMetadata({
   params: { slug },
 }: {
   params: { slug: string }

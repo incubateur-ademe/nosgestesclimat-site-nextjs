@@ -4,7 +4,7 @@ import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ActionDetail from './_components/ActionDetail'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title:
       "Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat",

@@ -5,7 +5,7 @@ import { currentLocale } from 'next-i18n-router'
 import Persona from './_components/Persona'
 import PersonaExplanations from './_components/PersonaExplanations'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: "Nos personas d'utilisateurs types - Nos Gestes Climat",
     description:

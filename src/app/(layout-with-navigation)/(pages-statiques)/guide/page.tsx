@@ -1,7 +1,7 @@
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Guide from './_components/Guide'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Le guide - Nos Gestes Climat',
     description:

@@ -13,7 +13,7 @@ import NewsBanner from './_components/NewsBanner'
 import ProfileLink from './_components/ProfileLink'
 import TakeTestLink from './_components/TakeTestLink'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title:
       "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat",

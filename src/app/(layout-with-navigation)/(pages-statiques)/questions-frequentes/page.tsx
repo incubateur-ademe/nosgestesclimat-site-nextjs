@@ -14,7 +14,7 @@ type FAQType = {
   id: string
 }
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title:
       "Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat",

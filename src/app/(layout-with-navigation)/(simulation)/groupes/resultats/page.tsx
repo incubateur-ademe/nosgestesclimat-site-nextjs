@@ -9,7 +9,7 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import EditableGroupTitle from './_components/EditableGroupTitle'
 import GroupResults from './_components/GroupResults'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Mon groupe, nos bilans carbone personnels - Nos Gestes Climat',
     description:

@@ -4,7 +4,7 @@ import AboutEn from '@/locales/pages/en/about.mdx'
 import AboutFr from '@/locales/pages/fr/about.mdx'
 import { currentLocale } from 'next-i18n-router'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'À propos - Nos Gestes Climat',
     description: 'Informations relatives à Nos Gestes Climat.',

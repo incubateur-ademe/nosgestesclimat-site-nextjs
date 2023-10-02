@@ -13,7 +13,7 @@ import Image from 'next/image'
 const SHARED_TITLE = 'Le calculateur d’empreinte climat international'
 const SHARED_DESCRIPTION = `Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.`
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: SHARED_TITLE,
     description: SHARED_DESCRIPTION,

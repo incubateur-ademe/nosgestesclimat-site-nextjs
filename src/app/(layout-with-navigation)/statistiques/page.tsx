@@ -2,7 +2,7 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ClientProvider from './_components/ClientProvider'
 import StatsContent from './_components/StatsContent'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: "Nos Statistiques d'utilisation - Nos Gestes Climat",
     description:

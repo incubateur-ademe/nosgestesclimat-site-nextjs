@@ -4,7 +4,7 @@ import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Contact - Nos Gestes Climat',
     description: "Contactez l'équipe de Nos Gestes Climat.",

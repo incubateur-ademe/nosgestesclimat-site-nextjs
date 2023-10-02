@@ -5,7 +5,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import GroupCreationForm from './_component/GroupCreationForm'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title:
       'Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat',

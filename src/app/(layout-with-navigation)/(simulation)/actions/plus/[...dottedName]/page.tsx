@@ -4,7 +4,7 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ActionPlusContent from './_components/ActionPlusContent'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title:
       "Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat",

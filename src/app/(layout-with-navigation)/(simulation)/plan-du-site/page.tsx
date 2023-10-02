@@ -5,7 +5,7 @@ import Title from '@/design-system/layout/Title'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Actions from './_components/Actions'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Plan du site - Nos Gestes Climat',
     description:

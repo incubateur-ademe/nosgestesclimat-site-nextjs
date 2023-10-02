@@ -12,7 +12,7 @@ import { slugifyString } from '../_helpers/slugifyString'
 import { sortReleases } from '../_helpers/sortReleases'
 import ReleaseSelect from './_components/ReleaseSelect'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Les nouveautés - Nos Gestes Climat',
     description:

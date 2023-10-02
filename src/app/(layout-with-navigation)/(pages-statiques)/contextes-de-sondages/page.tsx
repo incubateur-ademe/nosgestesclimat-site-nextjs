@@ -1,7 +1,7 @@
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Content from './_components/Content'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Documentation Contexte Sondage - Nos Gestes Climat',
     description:

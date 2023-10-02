@@ -4,7 +4,7 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 import PostList from './_components/PostList'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Blog - Nos Gestes Climat',
     description: 'Découvrez les articles de blog du site Nos Gestes Climat.',

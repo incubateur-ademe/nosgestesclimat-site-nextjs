@@ -7,7 +7,7 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import AutresQuestions from './_components/AutresQuestions'
 import AvantDeCommencer from './_components/AvantDeCommencer'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: "Tutoriel du simulateur d'empreinte climat - Nos Gestes Climat",
     description:

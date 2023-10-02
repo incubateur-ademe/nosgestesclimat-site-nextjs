@@ -1,7 +1,7 @@
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ViePrivee from './_components/ViePrivee'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Vie privée - Nos Gestes Climat',
     description:

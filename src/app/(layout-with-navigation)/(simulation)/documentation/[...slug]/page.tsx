@@ -1,7 +1,7 @@
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import DocumentationContent from '../_components/DocumentationContent'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title:
       "Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat",

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ActionPlusList from './_components/ActionPlusList'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Actions, la liste - Nos Gestes Climat',
     description:

@@ -8,7 +8,7 @@ import FinSlider from './_components/FinSlider'
 import { NewsletterForm } from './_components/NewsletterForm'
 import './slick.css'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: "Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat",
     description:

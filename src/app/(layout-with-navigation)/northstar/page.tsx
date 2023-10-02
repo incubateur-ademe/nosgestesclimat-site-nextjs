@@ -3,7 +3,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import NorthStarIframe from './_components/NorthStarIframe'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Nos statistiques "phares" - Nos Gestes Climat',
     description:

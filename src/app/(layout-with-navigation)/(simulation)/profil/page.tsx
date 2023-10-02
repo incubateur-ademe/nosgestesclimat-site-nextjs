@@ -5,7 +5,7 @@ import { useSupportedRegions } from '@/hooks/useSupportedRegions'
 import { FormProvider } from '@/publicodes-state'
 import ProfilPageContent from './_components/ProfilPageContent'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title: 'Mon profil, voir mon empreinte carbone - Nos Gestes Climat',
     description:

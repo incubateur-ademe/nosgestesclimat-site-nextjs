@@ -1,7 +1,7 @@
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ActionPageContent from './_components/ActionPageContent'
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadataObject({
     title:
       "Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat",
