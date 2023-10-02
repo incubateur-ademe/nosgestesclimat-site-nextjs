@@ -63,10 +63,10 @@ export default function Form() {
     }
   }, [setQuestionInQueryParams, currentQuestion, isInitialized])
 
-  const { color } = useRule(
+  const { color, title } = useRule(
     currentQuestion || 'transport . voiture . propriétaire'
   )
-
+  console.log(title, color)
   if (!isInitialized) {
     return
   }
@@ -77,16 +77,14 @@ export default function Form() {
 
   return (
     <div className="relative mb-4 overflow-hidden rounded-lg bg-primaryLight p-4 pl-6">
+      <div
+        className="absolute bottom-0 left-0 top-0 w-2"
+        style={{ backgroundColor: color }}
+      />
       {questions[currentQuestion] ? (
         questions[currentQuestion]
       ) : (
-        <>
-          <div
-            className="absolute bottom-0 left-0 top-0 w-2"
-            style={{ backgroundColor: color }}
-          />
-          <Question question={currentQuestion} key={currentQuestion} />
-        </>
+        <Question question={currentQuestion} key={currentQuestion} />
       )}
       <Navigation
         question={currentQuestion}
