@@ -6,7 +6,7 @@ import QuestionButton from '@/components/misc/QuestionButton'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useEngine, useForm, useRule, useUser } from '@/publicodes-state'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
 import Planet from './_components/Planet'
@@ -16,6 +16,8 @@ type Props = {
   toggleQuestionList?: () => void
 }
 export default function Total({ toggleQuestionList }: Props) {
+  const { t } = useTranslation()
+
   const { numericValue } = useRule('bilan')
 
   const { getNumericValue, getValue } = useEngine()

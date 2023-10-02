@@ -1,10 +1,12 @@
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   toggleQuestionList: () => void
 }
 
 export default function ListToggle({ toggleQuestionList }: Props) {
+  const { t } = useTranslation()
+
   return (
     <button
       onClick={toggleQuestionList}

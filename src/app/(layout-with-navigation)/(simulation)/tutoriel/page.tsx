@@ -3,11 +3,13 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import ButtonStart from './_components/ButtonStart'
 
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import AutresQuestions from './_components/AutresQuestions'
 import AvantDeCommencer from './_components/AvantDeCommencer'
 
 export default function Tutoriel() {
+  const { t } = useTranslation()
+
   return (
     <div className="flex flex-col">
       <Title

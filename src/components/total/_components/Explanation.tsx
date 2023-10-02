@@ -4,12 +4,14 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useForm } from '@/publicodes-state'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 
 type Props = { toggleOpen: any }
 
 export default function Explanation({ toggleOpen }: Props) {
   const { progression } = useForm()
+
+  const { t } = useTranslation()
 
   return (
     <div className="relative mb-2 mt-6 rounded-lg border-4 border-primary p-4 pt-2">

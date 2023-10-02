@@ -2,8 +2,8 @@ import { getMatomoEventClickHelp } from '@/constants/matomo'
 import Markdown from '@/design-system/utils/Markdown'
 import { QuestionSize } from '@/types/values'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { t } from 'i18next'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   question: string
@@ -27,6 +27,8 @@ export default function Label({
   size = 'md',
 }: Props) {
   const [isOpen, setIsOpen] = useState(false)
+
+  const { t } = useTranslation()
 
   if (!label) return
   return (
