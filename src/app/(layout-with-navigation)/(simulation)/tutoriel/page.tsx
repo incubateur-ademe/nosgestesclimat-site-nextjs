@@ -3,12 +3,12 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import ButtonStart from './_components/ButtonStart'
 
-import { useTranslation } from 'react-i18next'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import AutresQuestions from './_components/AutresQuestions'
 import AvantDeCommencer from './_components/AvantDeCommencer'
 
-export default function Tutoriel() {
-  const { t } = useTranslation()
+export default async function Tutoriel() {
+  const { t } = await getServerTranslation()
 
   return (
     <div className="flex flex-col">
