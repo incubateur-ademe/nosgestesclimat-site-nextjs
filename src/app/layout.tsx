@@ -110,7 +110,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
                var u="https://matomo-incubateur-ademe.osc-fr1.scalingo.io/";
                _paq.push(['setTrackerUrl', u+'matomo.php']);
                _paq.push(['setSiteId', ${
-                 process.env.mode !== 'production' ? '2' : '1'
+                 process.env.NODE_ENV !== 'production' ? '2' : '1'
                }]);
                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
                g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
