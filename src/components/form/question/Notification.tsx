@@ -11,7 +11,7 @@ export default function Notification({ notification }: Props) {
   if (!description) return
 
   return (
-    <div className="mb-4 flex w-2/3 flex-col items-end rounded-md bg-grey-100 p-2 text-sm">
+    <div className="mb-4 flex flex-col items-end rounded-md bg-grey-100 p-4 text-sm">
       <Markdown>{description}</Markdown>
       <Button size="sm" onClick={() => setValue(false)}>
         J'ai compris
