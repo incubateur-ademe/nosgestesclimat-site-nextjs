@@ -1,5 +1,7 @@
+import MDXContent from '@/components/mdx/MDXContent'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import Content from './_components/Content'
+import ContentEn from '@/locales/pages/en/contextes-sondage.mdx'
+import ContentFr from '@/locales/pages/fr/contextes-sondage.mdx'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -10,5 +12,5 @@ export async function generateMetadata() {
 }
 
 export default function ContextesSondagesPage() {
-  return <Content />
+  return <MDXContent contentEn={ContentEn} contentFr={ContentFr} />
 }
