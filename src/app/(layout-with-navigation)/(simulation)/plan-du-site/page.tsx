@@ -16,7 +16,7 @@ export async function generateMetadata() {
 const links = {
   'Nos outils': {
     'publicodes.planDuSite.bilan': `${APP_URL}/simulateur/bilan`,
-    'publicodes.planDuSite.groupe': `${APP_URL}/groupe`,
+    'publicodes.planDuSite.groupe': `sondages.nosgestesclimat.fr`,
     'publicodes.planDuSite.profil': `${APP_URL}/profil`,
     'publicodes.planDuSite.personas': `${APP_URL}/personas`,
     'publicodes.planDuSite.actions': `${APP_URL}/actions`,
