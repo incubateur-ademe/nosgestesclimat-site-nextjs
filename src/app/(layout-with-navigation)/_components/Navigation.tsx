@@ -72,7 +72,7 @@ export default function Navigation() {
             href="/simulateur/bilan"
             className="justify-end !p-0 lg:justify-start lg:!p-4">
             <ProgressCircle className="lg:mr-4" />
-            <span className="text-sm font-normal text-primaryDark md:text-base">
+            <span className="text-base font-normal text-primaryDark md:text-lg">
               <Trans>Le test</Trans>
             </span>
           </NavLink>
@@ -82,7 +82,7 @@ export default function Navigation() {
             className="justify-end !p-0 lg:justify-start lg:!p-4">
             <ActionsInteractiveIcon className="w-12 lg:mr-4" />
 
-            <span className="text-sm font-normal text-primaryDark md:text-base">
+            <span className="text-base font-normal text-primaryDark md:text-lg">
               <Trans>Agir</Trans>
             </span>
           </NavLink>
@@ -99,7 +99,7 @@ export default function Navigation() {
                   height="25"
                 />
               </div>
-              <span className="text-sm font-normal text-primaryDark md:text-base">
+              <span className="text-base font-normal text-primaryDark md:text-lg">
                 {!persona ? (
                   t('Profil')
                 ) : (
@@ -122,7 +122,7 @@ export default function Navigation() {
                 height="25"
               />
 
-              <span className="text-sm font-normal text-primaryDark md:text-base">
+              <span className="text-base font-normal text-primaryDark md:text-lg">
                 <Trans>Groupes</Trans>
               </span>
             </NavLink>
@@ -141,7 +141,7 @@ export default function Navigation() {
                 width="20"
                 height="20"
               />
-              <span className="font-base text-sm text-primaryDark md:text-base">
+              <span className="font-base text-sm text-primaryDark md:text-lg">
                 #{PRNumber}
               </span>
 
