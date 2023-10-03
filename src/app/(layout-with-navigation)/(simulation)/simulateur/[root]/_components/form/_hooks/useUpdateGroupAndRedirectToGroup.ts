@@ -1,4 +1,4 @@
-import { getSimulationResults } from '@/app/(layout-with-navigation)/(simulation)/groupes/_helpers/getSimulationResults'
+import { getSimulationResults } from '@/app/(layout-with-navigation)/(simulation)/amis/_helpers/getSimulationResults'
 import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import { useEngine, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
@@ -42,7 +42,7 @@ export function useUpdateGroupAndRedirectToGroup() {
       trackEvent(getMatomoEventJoinedGroupe(groupId))
     }
 
-    router.push(`/groupes/resultats?groupId=${groupId}`)
+    router.push(`/amis/resultats?groupId=${groupId}`)
   }
 
   return handleUpdateGroupAndRedirectToGroup

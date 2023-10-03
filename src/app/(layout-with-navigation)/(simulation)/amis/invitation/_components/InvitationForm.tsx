@@ -31,7 +31,7 @@ export default function InvitationForm({ group }: { group: Group }) {
   const { getCurrentSimulation, setGroupToRedirectToAfterTest, user } =
     useUser()
 
-  const groupBaseURL = `${window.location.origin}/groupes`
+  const groupBaseURL = `${window.location.origin}/amis`
 
   const { getValue } = useEngine()
 

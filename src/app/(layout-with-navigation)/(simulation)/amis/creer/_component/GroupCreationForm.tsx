@@ -110,7 +110,7 @@ export default function GroupCreationForm() {
         })
       }
 
-      router.push(`/groupes/resultats?groupId=${group._id}`)
+      router.push(`/amis/resultats?groupId=${group._id}`)
     } catch (e) {
       captureException(e)
     }

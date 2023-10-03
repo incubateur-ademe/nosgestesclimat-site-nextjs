@@ -27,7 +27,7 @@ export default function GroupResultsPage({
   const router = useRouter()
 
   if (!groupId) {
-    router.push('/groupes')
+    router.push('/amis')
   }
 
   return (

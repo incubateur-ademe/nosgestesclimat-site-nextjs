@@ -13,7 +13,7 @@ export default function CreateFirstGroupSection() {
         <strong className="text-secondary">1 minute</strong> !
       </p>
       <ButtonLink
-        href={'/groupes/creer'}
+        href={'/amis/creer'}
         data-cypress-id="button-create-first-group">
         <Trans>Commencer</Trans>
       </ButtonLink>
