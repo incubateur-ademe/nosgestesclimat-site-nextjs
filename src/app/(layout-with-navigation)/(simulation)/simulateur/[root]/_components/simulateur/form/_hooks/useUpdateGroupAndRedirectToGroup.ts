@@ -42,7 +42,7 @@ export function useUpdateGroupAndRedirectToGroup() {
       trackEvent(getMatomoEventJoinedGroupe(groupId))
     }
 
-    router.push(`/groupes/resultats?groupId=${groupId}`)
+    router.push(`/amis/resultats?groupId=${groupId}`)
   }
 
   return handleUpdateGroupAndRedirectToGroup
