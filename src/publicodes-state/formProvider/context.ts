@@ -15,6 +15,8 @@ type FormContextType = {
   setCurrentCategory: (category: string | null) => void
   categories: string[]
   subcategories: Record<string, string[]>
+  isNavigationToNextQuestionDisabled: boolean
+  setIsNavigationToNextQuestionDisabled: (value: boolean) => void
 }
 export default createContext<FormContextType>({
   relevantQuestions: [],
@@ -29,4 +31,6 @@ export default createContext<FormContextType>({
   setCurrentCategory: () => '',
   categories: [],
   subcategories: {},
+  isNavigationToNextQuestionDisabled: false,
+  setIsNavigationToNextQuestionDisabled: () => {},
 })

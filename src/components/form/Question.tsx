@@ -6,18 +6,13 @@ import Mosaic from '@/components/form/question/Mosaic'
 import Notification from '@/components/form/question/Notification'
 import NumberInput from '@/components/form/question/NumberInput'
 import Suggestions from '@/components/form/question/Suggestions'
-import { useRule } from '@/publicodes-state'
+import { useForm, useRule } from '@/publicodes-state'
 
 type Props = {
   question: string
 }
 
-//TODO: It should maayyybe be described in the model...
-const questionsThatCantBeZero = [
-  'transport . voiture . saisie voyageurs',
-  'logement . saisie habitants',
-  'logement . surface',
-]
+const NUMBER_INPUT_MIN = 0
 
 export default function Question({ question }: Props) {
   const {
@@ -34,6 +29,11 @@ export default function Question({ question }: Props) {
     activeNotifications,
   } = useRule(question)
 
+  const {
+    setIsNavigationToNextQuestionDisabled,
+    isNavigationToNextQuestionDisabled,
+  } = useForm()
+
   return (
     <>
       <div className="mb-4">
@@ -44,11 +44,19 @@ export default function Question({ question }: Props) {
             unit={unit}
             value={numericValue}
             setValue={(value) => {
-              const limit = questionsThatCantBeZero.includes(question) ? 1 : 0
-              setValue(value < limit ? limit : value, question)
+              if (value <= NUMBER_INPUT_MIN) {
+                setIsNavigationToNextQuestionDisabled(true)
+              } else if (isNavigationToNextQuestionDisabled) {
+                setIsNavigationToNextQuestionDisabled(false)
+              }
+
+              setValue(
+                value < NUMBER_INPUT_MIN ? NUMBER_INPUT_MIN : value,
+                question
+              )
             }}
             isMissing={isMissing}
-            min={questionsThatCantBeZero.includes(question) ? 1 : 0}
+            min={0}
           />
         )}
         {type === 'boolean' && (

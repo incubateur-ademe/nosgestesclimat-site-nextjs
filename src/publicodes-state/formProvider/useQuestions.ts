@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import getIsMissing from '../helpers/getIsMissing'
 import getQuestionsOfMosaic from '../helpers/getQuestionsOfMosaic'
 import getType from '../helpers/getType'
@@ -30,6 +30,11 @@ export default function useQuestions({
   everyQuestions,
   everyMosaicChildWhoIsReallyInMosaic,
 }: Props) {
+  const [
+    isNavigationToNextQuestionDisabled,
+    setIsNavigationToNextQuestionDisabled,
+  ] = useState(false)
+
   const missingVariables = useMemo<Record<string, number>>(
     () =>
       Object.fromEntries(
@@ -216,5 +221,7 @@ export default function useQuestions({
     relevantAnsweredQuestions,
     relevantQuestions,
     questionsByCategories,
+    isNavigationToNextQuestionDisabled,
+    setIsNavigationToNextQuestionDisabled,
   }
 }

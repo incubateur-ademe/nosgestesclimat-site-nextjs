@@ -31,6 +31,8 @@ export default function FormProvider({
     relevantAnsweredQuestions,
     relevantQuestions,
     questionsByCategories,
+    isNavigationToNextQuestionDisabled,
+    setIsNavigationToNextQuestionDisabled,
   } = useQuestions({
     root,
     safeGetRule,
@@ -72,6 +74,8 @@ export default function FormProvider({
         currentCategory,
         setCurrentQuestion,
         setCurrentCategory,
+        isNavigationToNextQuestionDisabled,
+        setIsNavigationToNextQuestionDisabled,
       }}>
       {children}
     </FormContext.Provider>

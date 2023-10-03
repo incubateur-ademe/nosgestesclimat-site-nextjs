@@ -1,6 +1,6 @@
 import { getMatomoEventClickSuggestion } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
-import { useEngine, useRule } from '@/publicodes-state'
+import { useEngine, useForm, useRule } from '@/publicodes-state'
 import { Situation } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
@@ -11,6 +11,8 @@ type Props = {
 export default function Suggestions({ question }: Props) {
   const { suggestions, setValue, addFoldedStep } = useRule(question)
   const { updateSituation } = useEngine()
+
+  const { setIsNavigationToNextQuestionDisabled } = useForm()
 
   if (!suggestions?.length) return
   return (
@@ -39,6 +41,8 @@ export default function Suggestions({ question }: Props) {
             } else {
               setValue(suggestion.value, question)
             }
+
+            setIsNavigationToNextQuestionDisabled(false)
           }}>
           {suggestion.label}
         </Button>

@@ -15,8 +15,14 @@ type Props = {
 }
 
 export default function Navigation({ question, onComplete = () => '' }: Props) {
-  const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
-    useForm()
+  const {
+    gotoPrevQuestion,
+    gotoNextQuestion,
+    noPrevQuestion,
+    noNextQuestion,
+    isNavigationToNextQuestionDisabled,
+  } = useForm()
+  console.log({ isNavigationToNextQuestionDisabled })
   const { isMissing, setDefaultAsValue } = useRule(question)
   const [isSettingDefaultValue, setIsSettingDefaultValue] = useState(false)
   return (
@@ -36,7 +42,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
       ) : null}
       <Button
         color={isMissing ? 'secondary' : 'primary'}
-        disabled={isSettingDefaultValue}
+        disabled={isSettingDefaultValue || isNavigationToNextQuestionDisabled}
         onClick={async () => {
           if (isMissing) {
             trackEvent(getMatomoEventClickDontKnow(question))

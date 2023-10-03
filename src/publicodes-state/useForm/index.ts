@@ -20,6 +20,8 @@ export default function useForm() {
     relevantAnsweredQuestions,
     progression,
     remainingQuestionsByCategories,
+    isNavigationToNextQuestionDisabled,
+    setIsNavigationToNextQuestionDisabled,
   } = useContext(formContext)
 
   const {
@@ -105,5 +107,13 @@ export default function useForm() {
      * Every missing questions needed to complete the form sorted by category
      */
     remainingQuestionsByCategories,
+    /*
+     * Is true if the next button should be disabled
+     */
+    isNavigationToNextQuestionDisabled,
+    /*
+     * Setter for the isNavigationToNextQuestionDisabled
+     */
+    setIsNavigationToNextQuestionDisabled,
   }
 }
