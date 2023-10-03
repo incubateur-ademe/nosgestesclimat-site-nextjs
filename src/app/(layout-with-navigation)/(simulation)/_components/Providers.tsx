@@ -1,5 +1,6 @@
 'use client'
 
+import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import { orderedCategories } from '@/constants/orderedCategories'
 import Loader from '@/design-system/layout/Loader'
 import { useLocale } from '@/hooks/useLocale'
@@ -49,6 +50,7 @@ export default function Providers({
       foldedSteps={getCurrentSimulation()?.foldedSteps || []}
       addFoldedStep={updateFoldedStepsOfCurrentSimulation}
       categoryOrder={orderedCategories}>
+      <LocalisationBanner supportedRegions={supportedRegions} />
       {children}
     </SimulationProvider>
   ) : pathname === '/tutoriel' ? (
