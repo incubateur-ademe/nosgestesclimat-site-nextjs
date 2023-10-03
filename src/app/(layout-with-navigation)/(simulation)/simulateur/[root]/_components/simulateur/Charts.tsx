@@ -1,7 +1,7 @@
 import { useForm } from '@/publicodes-state'
 import { useState } from 'react'
-import BarChart from './BarChart'
-import InlineChart from './InlineChart'
+import BarChart from './charts/BarChart'
+import InlineChart from './charts/InlineChart'
 
 export default function Charts() {
   const { currentCategory } = useForm()

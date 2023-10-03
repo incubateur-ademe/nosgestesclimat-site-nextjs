@@ -3,9 +3,9 @@
 import Total from '@/components/total/Total'
 import { useDebug } from '@/hooks/useDebug'
 import { useState } from 'react'
-import Charts from './charts/Charts'
-import Form from './form/Form'
-import Summary from './summary/Summary'
+import Charts from './simulateur/Charts'
+import Form from './simulateur/Form'
+import Summary from './simulateur/Summary'
 
 export default function Simulateur() {
   const [isQuestionListOpen, setIsQuestionListOpen] = useState(false)

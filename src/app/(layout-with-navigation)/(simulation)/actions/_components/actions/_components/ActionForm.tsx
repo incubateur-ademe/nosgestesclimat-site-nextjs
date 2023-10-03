@@ -3,6 +3,7 @@
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import { useForm } from '@/publicodes-state'
+import { motion } from 'framer-motion'
 import { useEffect } from 'react'
 
 type Props = {
@@ -39,9 +40,13 @@ export default function ActionForm({ category, onComplete }: Props) {
   if (!currentQuestion || !currentCategory) return null
 
   return (
-    <div className="mb-4 rounded-lg bg-primaryLight p-4 text-left">
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3 }}
+      className="mb-4 rounded-lg bg-primaryLight p-4 text-left">
       <Question question={currentQuestion} key={currentQuestion} />
       <Navigation question={currentQuestion} onComplete={onComplete} />
-    </div>
+    </motion.div>
   )
 }
