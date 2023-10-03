@@ -12,13 +12,6 @@ type Props = {
   question: string
 }
 
-//TODO: It should maayyybe be described in the model...
-const questionsThatCantBeZero = [
-  'transport . voiture . saisie voyageurs',
-  'logement . saisie habitants',
-  'logement . surface',
-]
-
 export default function Question({ question }: Props) {
   const {
     type,
@@ -44,11 +37,11 @@ export default function Question({ question }: Props) {
             unit={unit}
             value={numericValue}
             setValue={(value) => {
-              const limit = questionsThatCantBeZero.includes(question) ? 1 : 0
+              const limit = 0
               setValue(value < limit ? limit : value, question)
             }}
             isMissing={isMissing}
-            min={questionsThatCantBeZero.includes(question) ? 1 : 0}
+            min={0}
           />
         )}
         {type === 'boolean' && (

@@ -14,11 +14,21 @@ type Props = {
   onComplete?: () => void
 }
 
+//TODO: It should maayyybe be described in the model...
+const questionsThatCantBeZero = [
+  'transport . voiture . saisie voyageurs',
+  'logement . saisie habitants',
+  'logement . surface',
+]
+
 export default function Navigation({ question, onComplete = () => '' }: Props) {
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
-  const { isMissing, setDefaultAsValue } = useRule(question)
+  const { isMissing, setDefaultAsValue, numericValue } = useRule(question)
   const [isSettingDefaultValue, setIsSettingDefaultValue] = useState(false)
+
+  const nextDisabled =
+    questionsThatCantBeZero.includes(question) && numericValue < 1
   return (
     <div className="flex justify-end  gap-4">
       {!noPrevQuestion ? (
@@ -36,7 +46,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
       ) : null}
       <Button
         color={isMissing ? 'secondary' : 'primary'}
-        disabled={isSettingDefaultValue}
+        disabled={isSettingDefaultValue || nextDisabled}
         onClick={async () => {
           if (isMissing) {
             trackEvent(getMatomoEventClickDontKnow(question))
