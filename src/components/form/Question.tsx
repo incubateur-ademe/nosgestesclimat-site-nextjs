@@ -14,6 +14,12 @@ type Props = {
 
 const NUMBER_INPUT_MIN = 0
 
+const questionsThatCantBeZero = [
+  'transport . voiture . saisie voyageurs',
+  'logement . saisie habitants',
+  'logement . surface',
+]
+
 export default function Question({ question }: Props) {
   const {
     type,
@@ -44,7 +50,10 @@ export default function Question({ question }: Props) {
             unit={unit}
             value={numericValue}
             setValue={(value) => {
-              if (value <= NUMBER_INPUT_MIN) {
+              if (
+                questionsThatCantBeZero.includes(question) &&
+                value <= NUMBER_INPUT_MIN
+              ) {
                 setIsNavigationToNextQuestionDisabled(true)
               } else if (isNavigationToNextQuestionDisabled) {
                 setIsNavigationToNextQuestionDisabled(false)
@@ -56,7 +65,7 @@ export default function Question({ question }: Props) {
               )
             }}
             isMissing={isMissing}
-            min={0}
+            min={NUMBER_INPUT_MIN}
           />
         )}
         {type === 'boolean' && (
