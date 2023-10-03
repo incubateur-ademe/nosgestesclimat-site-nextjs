@@ -3,7 +3,7 @@ import Markdown from '@/design-system/utils/Markdown'
 import { QuestionSize } from '@/types/values'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 type Props = {
   question: string
@@ -52,9 +52,9 @@ export default function Label({
           <Markdown>{description}</Markdown>{' '}
           <button
             onClick={() => setIsOpen(false)}
-            className="block uppercase text-primary underline"
+            className="block text-primary underline"
             title={t('Fermer')}>
-            Fermer
+            <Trans>Fermer</Trans>
           </button>
         </div>
       ) : null}
