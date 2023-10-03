@@ -13,7 +13,7 @@ type Props = {
 export default function GroupItem({ group }: Props) {
   return (
     <Link
-      href={`/groupes/resultats?groupId=${group?._id}`}
+      href={`/amis/resultats?groupId=${group?._id}`}
       className="mb-3 rounded-sm border-[1px] border-solid border-gray-200 bg-gray-100 px-5 py-2 no-underline decoration-auto">
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center">
@@ -26,8 +26,7 @@ export default function GroupItem({ group }: Props) {
             </div>
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
-                {group?.members?.length ?? 0}{' '}
-                <Trans>participant</Trans>
+                {group?.members?.length ?? 0} <Trans>participant</Trans>
                 {group?.members?.length > 1 ? 's' : ''}
               </span>{' '}
               <span> - </span>{' '}

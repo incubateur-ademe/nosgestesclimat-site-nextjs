@@ -22,7 +22,7 @@ export default function Invitation({ groupId }: { groupId: string }) {
   const groupURL = getGroupURL(group)
 
   if (!groupId) {
-    router.push('/groupes')
+    router.push('/amis')
     return
   }
 

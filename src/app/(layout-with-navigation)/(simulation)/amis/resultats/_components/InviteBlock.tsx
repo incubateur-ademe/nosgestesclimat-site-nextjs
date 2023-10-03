@@ -25,11 +25,7 @@ const SubmitButton = ({
       data-cypress-id="invite-button">
       {isShareDefined && <Trans>Partager</Trans>}
       {!isShareDefined &&
-        (isCopied ? (
-          <Trans>Copié !</Trans>
-        ) : (
-          <Trans>Copier le lien</Trans>
-        ))}
+        (isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>)}
     </Button>
   )
 }
@@ -51,7 +47,7 @@ export default function InviteBlock({ group }: { group: Group }) {
   const isShareDefined =
     typeof navigator !== 'undefined' && navigator.share !== undefined
 
-  const sharedURL = `${window.location.origin}/groupes/invitation?groupId=${group?._id}&mtm_campaign=challenge-amis`
+  const sharedURL = `${window.location.origin}/amis/invitation?groupId=${group?._id}&mtm_campaign=challenge-amis`
 
   const handleShare = async () => {
     // TODO: replace with new tracking event

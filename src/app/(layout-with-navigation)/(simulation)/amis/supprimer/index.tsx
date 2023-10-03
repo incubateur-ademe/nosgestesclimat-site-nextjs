@@ -63,7 +63,7 @@ export default function SupprimerGroupePage({
   }
 
   if (!groupId) {
-    router.push('/groupes')
+    router.push('/amis')
     return
   }
 

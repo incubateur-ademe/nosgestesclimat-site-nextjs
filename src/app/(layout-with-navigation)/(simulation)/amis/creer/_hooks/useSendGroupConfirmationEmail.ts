@@ -2,7 +2,7 @@ import { Group } from '@/types/groups'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
-const groupBaseURL = `${window.location.origin}/groupes`
+const groupBaseURL = `${window.location.origin}/amis`
 
 type MutationFnProps = {
   email: string

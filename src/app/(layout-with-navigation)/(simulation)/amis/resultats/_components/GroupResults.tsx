@@ -60,7 +60,7 @@ export default function GroupResults({ groupId }: { groupId: string }) {
       (member: { userId: string }) => member.userId === userId
     )
   ) {
-    return router.push(`/groupes/invitation?groupId=${group._id}`)
+    return router.push(`/amis/invitation?groupId=${group._id}`)
   }
 
   return (

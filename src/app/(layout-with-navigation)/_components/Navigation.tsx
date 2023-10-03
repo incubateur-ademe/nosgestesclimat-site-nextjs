@@ -112,7 +112,7 @@ export default function Navigation() {
           )}
 
           {!enquete && (
-            <NavLink href="/groupes">
+            <NavLink href="/amis">
               <Image
                 src="/images/misc/silhouettes.svg"
                 alt=""
@@ -123,7 +123,7 @@ export default function Navigation() {
               />
 
               <span className="text-base font-normal text-primaryDark md:text-lg">
-                <Trans>Groupes</Trans>
+                <Trans>Amis</Trans>
               </span>
             </NavLink>
           )}

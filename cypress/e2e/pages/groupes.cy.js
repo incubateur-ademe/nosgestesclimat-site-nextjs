@@ -14,7 +14,7 @@ Cypress.automation('remote:debugger:protocol', {
   },
 })
 
-describe('The Group creation page /groupes/creer', () => {
+describe('The Group creation page /amis/creer', () => {
   let groupURL = ''
   it('allows to create a new group and displays it afterwards', () => {
     // Fill simulation
@@ -25,7 +25,7 @@ describe('The Group creation page /groupes/creer', () => {
     walkthroughTest()
 
     // Then create group
-    cy.visit('/groupes')
+    cy.visit('/amis')
 
     // Check that the list is empty and the message is displayed
 
@@ -36,7 +36,7 @@ describe('The Group creation page /groupes/creer', () => {
     cy.get('[data-cypress-id="group-name"]')
 
     // Check that we can create a second group
-    cy.visit('/groupes')
+    cy.visit('/amis')
     cy.get('[data-cypress-id="button-create-other-group"]').click()
     cy.get('input[data-cypress-id="group-input-owner-name"]').type('Jean-Marc')
     cy.get('[data-cypress-id="button-create-group"]').click()
