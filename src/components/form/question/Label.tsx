@@ -2,6 +2,7 @@ import { getMatomoEventClickHelp } from '@/constants/matomo'
 import Markdown from '@/design-system/utils/Markdown'
 import { QuestionSize } from '@/types/values'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -48,7 +49,11 @@ export default function Label({
         ) : null}
       </div>
       {isOpen && description ? (
-        <div className="mb-3">
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.2 }}
+          className="mb-3 origin-top">
           <Markdown>{description}</Markdown>{' '}
           <button
             onClick={() => setIsOpen(false)}
@@ -56,7 +61,7 @@ export default function Label({
             title={t('Fermer')}>
             <Trans>Fermer</Trans>
           </button>
-        </div>
+        </motion.div>
       ) : null}
     </>
   )

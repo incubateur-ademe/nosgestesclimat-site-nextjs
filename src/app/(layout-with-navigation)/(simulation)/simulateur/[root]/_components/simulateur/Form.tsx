@@ -9,8 +9,8 @@ import { useEngine, useForm, useRule, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import TestCompleted from './TestCompleted'
-import { useUpdateGroupAndRedirectToGroup } from './_hooks/useUpdateGroupAndRedirectToGroup'
+import TestCompleted from './form/TestCompleted'
+import { useUpdateGroupAndRedirectToGroup } from './form/_hooks/useUpdateGroupAndRedirectToGroup'
 
 export default function Form() {
   const router = useRouter()

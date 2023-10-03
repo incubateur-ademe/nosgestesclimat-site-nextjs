@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import { useRule } from '@/publicodes-state'
+import { motion } from 'framer-motion'
 
 type Props = {
   question: string
@@ -42,7 +43,16 @@ export default function MosaicBooleanInput({
       }}>
       <span
         className={`${checkClassNames[status]} block h-5 w-5 items-center rounded-sm border-2 leading-4`}>
-        {status === 'checked' ? '✓' : ''}
+        {status === 'checked' ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2 }}>
+            ✓
+          </motion.div>
+        ) : (
+          ''
+        )}
       </span>
       <div className="flex-1">
         {title && icons ? (

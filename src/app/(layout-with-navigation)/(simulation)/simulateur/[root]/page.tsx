@@ -22,11 +22,8 @@ export default function SimulateurPage({ params }: Props) {
       <div className="hidden md:block">
         <Title title={<Trans>Votre bilan climat personnel</Trans>} />
       </div>
-
       <Simulateur />
-
       <Faq />
-
       <Tracking />
     </FormProvider>
   )

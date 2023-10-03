@@ -1,6 +1,6 @@
 import { useDebug } from '@/hooks/useDebug'
 import { useForm } from '@/publicodes-state'
-import Question from './Question'
+import Question from './summary/Question'
 
 type Props = {
   toggleQuestionList: () => void
