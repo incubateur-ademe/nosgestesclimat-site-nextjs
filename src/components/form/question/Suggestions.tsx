@@ -2,6 +2,7 @@ import { getMatomoEventClickSuggestion } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import { useEngine, useRule } from '@/publicodes-state'
 import { Situation } from '@/publicodes-state/types'
+import { capitaliseString } from '@/utils/capitaliseString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
@@ -19,7 +20,6 @@ export default function Suggestions({ question }: Props) {
         <Button
           key={suggestion.label}
           size="sm"
-          className="capitalize"
           onClick={() => {
             trackEvent(
               getMatomoEventClickSuggestion(question, suggestion.label)
@@ -40,7 +40,7 @@ export default function Suggestions({ question }: Props) {
               setValue(suggestion.value, question)
             }
           }}>
-          {suggestion.label}
+          {capitaliseString(suggestion.label)}
         </Button>
       ))}
     </div>

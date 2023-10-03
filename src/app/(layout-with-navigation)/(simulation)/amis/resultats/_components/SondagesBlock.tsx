@@ -18,7 +18,7 @@ export default function SondagesBlock() {
           de 20 personnes
         </Trans>
       </p>
-      <Link className="font-bold" href="https://sondage.nosgestesclimat.fr">
+      <Link className="font-bold" href="https://sondages.nosgestesclimat.fr">
         <Trans>Commencer</Trans>
       </Link>
     </div>
