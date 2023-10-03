@@ -18,7 +18,7 @@ export default async function Personas() {
 
   // TODO: endpoint should not be static (and should point to local if available)
   const personas = await fetch(
-    `https://data.nosgestesclimat.fr/personas-${lang}.json`
+    `https://deploy-preview-2085--ecolab-data.netlify.app/personas-${lang}.json`
   ).then((res) => res.json())
 
   return (

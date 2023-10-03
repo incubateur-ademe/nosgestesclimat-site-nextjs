@@ -6,7 +6,8 @@ export function useFetchDocumentation(PRNumber?: string) {
   const documentationUrl =
     (PRNumber
       ? `https://deploy-preview-${PRNumber}--ecolab-data.netlify.app`
-      : 'https://data.nosgestesclimat.fr') + '/contenu-ecrit.json'
+      : 'https://deploy-preview-2085--ecolab-data.netlify.app') +
+    '/contenu-ecrit.json'
 
   return useQuery({
     queryKey: ['documentation'],

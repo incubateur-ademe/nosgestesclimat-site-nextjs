@@ -11,5 +11,5 @@ export const useDataServer = () => {
 
   const localUrl = process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER
 
-  return localUrl ?? 'https://data.nosgestesclimat.fr'
+  return localUrl ?? 'https://deploy-preview-2085--ecolab-data.netlify.app'
 }
