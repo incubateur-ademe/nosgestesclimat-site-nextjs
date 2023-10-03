@@ -7,7 +7,12 @@ export default function CountryFlag({
   code: string
   className?: string
 }) {
-  const flagSrc = `https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${code.toLowerCase()}.svg`
+  console.log(code)
+  const flagSrc = `https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${(code ===
+  'UK'
+    ? 'gb'
+    : code
+  ).toLowerCase()}.svg`
 
   return (
     <Image
