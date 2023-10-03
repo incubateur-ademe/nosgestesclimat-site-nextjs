@@ -231,9 +231,9 @@ html[data-useragent*='Trident'] #js {
 }
 
 blockquote {
-  @apply bg-gray-200;
+  @apply bg-gray-100;
   @apply rounded-md;
-  padding: 0.25rem 1rem;
+  padding: 1rem 1rem 0.25rem;
   margin: 1rem 0;
   @apply text-primaryDark;
 }
