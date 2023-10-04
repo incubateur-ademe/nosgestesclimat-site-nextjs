@@ -11,45 +11,45 @@ import {
 import { findInBodyAndDo } from '../getters/findInBody'
 import { click } from '../interactions/click'
 
-export async function clickUnderstoodExplanationButton() {
+export function clickUnderstoodExplanationButton() {
   click(UNDERSTOOD_EXPLANATION_BUTTON)
 }
 
-export async function clickUnderstoodLocalisationButton() {
+export function clickUnderstoodLocalisationButton() {
   click(UNDERSTOOD_LOCALISATION_BUTTON)
 }
 
-export async function clickSkipTutorialButton() {
+export function clickSkipTutorialButton() {
   click(SKIP_TUTORIAL_BUTTON)
 }
 
-export async function skipTutoIfExists() {
+export function skipTutoIfExists() {
   findInBodyAndDo(SKIP_TUTORIAL_BUTTON, clickSkipTutorialButton)
 }
 
-export async function clickUnderstoodButtonIfExist() {
+export function clickUnderstoodButtonIfExist() {
   findInBodyAndDo(
     UNDERSTOOD_EXPLANATION_BUTTON,
     clickUnderstoodExplanationButton
   )
 }
 
-export async function clickDontKnowButton() {
+export function clickDontKnowButton() {
   click(DONT_KNOW_BUTTON)
 }
 
-export async function clickPreviousButton() {
+export function clickPreviousButton() {
   click(PREVIOUS_QUESTION_BUTTON)
 }
 
-export async function clickNextButton() {
+export function clickNextButton() {
   click(NEXT_QUESTION_BUTTON)
 }
 
-export async function clickSeeResultsLink() {
+export function clickSeeResultsLink() {
   click(SEE_RESULTS_LINK)
 }
 
-export async function clickDoTheTestLink() {
+export function clickDoTheTestLink() {
   click(DO_THE_TEST_LINK)
 }

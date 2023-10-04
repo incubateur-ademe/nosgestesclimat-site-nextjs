@@ -1,17 +1,18 @@
-import {
-  clickSeeResultsLink,
-  startTestAndSkipTutorial,
-  walkthroughTest,
-} from '../utils'
+import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
+import { setupSimulation } from '../../helpers/simulation/setupSimulation'
 
 describe('check for test completion', () => {
-  it('can finish the test with the default values with unspecified search params', () => {
+  before(() => {
     cy.visit('/')
 
-    startTestAndSkipTutorial()
-
-    walkthroughTest({})
-
-    clickSeeResultsLink()
+    setupSimulation()
   })
+
+  it('can finish the test with the default values with unspecified search params', () => {
+    recursivelyFillSimulation()
+  })
+
+  // after(() => {
+  //   clickSeeResultsLink()
+  // })
 })

@@ -6,13 +6,16 @@ const personas = parse(
 )
 
 const getFileContent = (name, data) => `
-import { walkthroughTest, startTestAndSkipTutorial, clickSeeResultsLink } from '../utils'
+import { recursivelyFillSimulation } from '../helpers/simulation/recursivelyFillSimulation'
+import { clickSeeResultsLink } from '../helpers/elements/buttons'
+
 describe('check for test completion', () => {
 	it("can finish the test with persona '${name}' values", () => {
 		cy.session('${name}', () => {
 			cy.visit(\`/?loc=\${Cypress.env('localisation_param')}&lang=\${Cypress.env('language_param')}\`)
-			startTestAndSkipTutorial()
-			walkthroughTest(${JSON.stringify(data.data)})
+
+			recursivelyFillSimulation(${JSON.stringify(data.data)})
+
 			clickSeeResultsLink()
 		})
 	})

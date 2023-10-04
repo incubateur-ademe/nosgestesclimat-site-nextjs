@@ -47,6 +47,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
       <Button
         color={isMissing ? 'secondary' : 'primary'}
         disabled={isSettingDefaultValue || nextDisabled}
+        data-cypress-id="dont-know-button"
         onClick={async () => {
           if (isMissing) {
             trackEvent(getMatomoEventClickDontKnow(question))

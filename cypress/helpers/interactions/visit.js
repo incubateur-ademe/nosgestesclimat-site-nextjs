@@ -1,4 +1,4 @@
-export async function visit(page) {
+export function visit(page) {
   const url = Cypress.env('testLangURL')
     ? `/${Cypress.env('testLangURL')}/${page}`
     : `/${page}`

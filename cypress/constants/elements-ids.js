@@ -1,7 +1,5 @@
-export const UNDERSTOOD_LOCALISATION_BUTTON =
-  'button-understood-localisation-button'
-export const UNDERSTOOD_EXPLANATION_BUTTON =
-  'button-understood-explanation-button'
+export const UNDERSTOOD_LOCALISATION_BUTTON = 'understood-localisation-button'
+export const UNDERSTOOD_EXPLANATION_BUTTON = 'understood-explanation-button'
 export const START_BUTTON = 'start-button'
 export const SKIP_TUTORIAL_BUTTON = 'skip-tutorial-button'
 export const DONT_KNOW_BUTTON = 'dont-know-button'

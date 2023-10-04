@@ -1,3 +1,5 @@
+import { runSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
+
 Cypress.automation('remote:debugger:protocol', {
   command: 'Browser.grantPermissions',
   params: {
@@ -13,9 +15,7 @@ describe('The Group creation page /amis/creer', () => {
     // Fill simulation
     cy.visit('/')
 
-    startTestAndSkipTutorial()
-
-    walkthroughTest()
+    runSimulation()
 
     // Then create group
     cy.visit('/amis')
@@ -64,11 +64,7 @@ describe('The Group creation page /amis/creer', () => {
     cy.get('[data-cypress-id="member-name"]').type('Jean-Claude')
     cy.get('[data-cypress-id="button-join-group"]').click()
 
-    clickSkipTutoButton()
-    clickUnderstoodButton()
-    clickCategoryStartButton()
-
-    walkthroughTest()
+    runSimulation()
 
     cy.get('[data-cypress-id="see-results-link"]').click()
 
