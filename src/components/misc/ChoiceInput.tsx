@@ -21,8 +21,10 @@ export default function ChoiceInput({
       <div className="mb-2 flex items-center gap-2">
         <button
           className={`flex items-center gap-2 rounded border border-primary px-4 py-2 text-right md:text-xl ${
-            active ? 'bg-primary text-white' : 'bg-grey-100 text-primary'
-          }`}
+            active
+              ? 'bg-primary text-white'
+              : 'bg-grey-100 text-primary hover:bg-primaryLight'
+          } transition-colors`}
           onClick={onClick}>
           <span
             className={`${
