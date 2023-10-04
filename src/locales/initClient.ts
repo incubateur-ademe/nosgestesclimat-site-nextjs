@@ -1,6 +1,5 @@
 'use client'
 
-import { YamlEntry } from '@/types/translation'
 import i18next from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import resourcesToBackend from 'i18next-resources-to-backend'
@@ -10,36 +9,32 @@ import uiEnYaml from './ui/ui-en.yaml'
 import uiFrYaml from './ui/ui-fr.yaml'
 import unitsYaml from './units.yaml'
 
+const enTranslation = {
+  ...(uiEnYaml as unknown as { entries: { entries: [] } }).entries,
+  ...(unitsYaml as any)['en'],
+}
+const frTranslation = {
+  ...(uiFrYaml as unknown as { entries: { entries: [] } }).entries,
+  ...(unitsYaml as any)['fr'],
+}
+const translations: Record<string, any> = {
+  en: enTranslation,
+  fr: frTranslation,
+}
+
 i18next
   .use(LanguageDetector)
-  .use(
-    resourcesToBackend((language: string) => {
-      switch (language) {
-        case 'en':
-          return (uiEnYaml as unknown as YamlEntry).entries
-        case 'fr':
-          return (uiFrYaml as unknown as YamlEntry).entries
-        default:
-          return undefined
-      }
-    })
-  )
+  .use(resourcesToBackend((language: string) => translations[language]))
   .use(initReactI18next)
   .init({
     ...getOptions(),
     lng: undefined, // let detect the language on client side
     resources: {
       en: {
-        translation: {
-          ...(uiEnYaml as unknown as { entries: { entries: [] } }).entries,
-          ...(unitsYaml as any)['en'],
-        },
+        translation: translations['en'],
       },
       fr: {
-        translation: {
-          ...(uiFrYaml as unknown as { entries: { entries: [] } }).entries,
-          ...(unitsYaml as any)['fr'],
-        },
+        translation: translations['fr'],
       },
     },
     detection: {
