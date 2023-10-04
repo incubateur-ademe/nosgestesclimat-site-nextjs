@@ -6,7 +6,10 @@ export const mainSimulator = 'bilan'
 export const encodedRespirationParam = 'th%C3%A9matique'
 
 export async function visit(page) {
-  cy.visit(`/${Cypress.env("testLangURL")}/${page}`)
+  const url = Cypress.env('testLangURL')
+    ? `/${Cypress.env('testLangURL')}/${page}`
+    : `/${page}`
+  cy.visit(url)
 }
 
 export async function clickUnderstoodButton() {

@@ -11,8 +11,8 @@ export default defineConfig({
   },
   e2e: {
     baseUrl: process.env.CYPRESS_baseUrl ?? 'http://localhost:3000',
-    setupNodeEvents(on, config) {},
+    setupNodeEvents() {},
     experimentalRunAllSpecs: true,
-    specPattern: 'cypress/e2e/integration/**/*.cy.js',
+    specPattern: 'cypress/e2e/**/*.cy.js',
   },
 })

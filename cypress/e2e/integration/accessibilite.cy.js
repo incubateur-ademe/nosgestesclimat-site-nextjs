@@ -6,8 +6,8 @@ describe('check for about page status', () => {
   })
 
   it('has a title', () => {
-    cy.get('[data-cypress-id="accessibility-statement-title"]').should(
-      'be.visible'
-    )
+    cy.contains(
+      Cypress.env('testLangURL') === 'en' ? 'Accessibility' : 'Accessibilité'
+    ).should('be.visible')
   })
 })

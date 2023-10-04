@@ -5,7 +5,7 @@ describe('check for about page status', () => {
     visit('nouveautes')
   })
 
-  it('has a title', () => {
+  it('displays at least one news title', () => {
     cy.get('[data-cypress-id="news-title"]').should('be.visible')
   })
 })

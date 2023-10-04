@@ -6,6 +6,8 @@ describe('check for about page status', () => {
   })
 
   it('has a title', () => {
-    cy.get('[data-cypress-id="about-us-title"]').should('be.visible')
+    cy.contains(
+      Cypress.env('testLangURL') === 'en' ? 'About us' : 'À propos'
+    ).should('be.visible')
   })
 })
