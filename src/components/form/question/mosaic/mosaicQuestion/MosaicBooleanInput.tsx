@@ -13,7 +13,7 @@ type Props = {
 const buttonClassNames = {
   inactive: 'border-grey-500 bg-gray-100 text-gray-400',
   checked: 'border-primary bg-primary text-white',
-  unchecked: 'border-primary bg-grey-100 text-primary',
+  unchecked: 'border-primary bg-grey-100 text-primary hover:bg-primaryLight',
 }
 const checkClassNames = {
   inactive: 'border-gray-300',
@@ -37,7 +37,7 @@ export default function MosaicBooleanInput({
   return (
     <button
       disabled={isInactive}
-      className={`relative flex items-center gap-2 rounded border px-4 py-2 text-left ${buttonClassNames[status]}`}
+      className={`relative flex items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
       onClick={() => {
         setValue(value ? 'non' : 'oui')
       }}>
