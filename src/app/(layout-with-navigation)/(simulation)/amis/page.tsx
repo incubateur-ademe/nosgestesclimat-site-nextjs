@@ -23,7 +23,7 @@ export default async function GroupesPage() {
       <AutoCanonicalTag />
 
       <Title
-        title={t("Groupe d'ami·e·s")}
+        title={t("Groupe d'amis")}
         subtitle={t(
           'Comparez vos résultats avec votre famille ou un groupe d’ami·e·s'
         )}
