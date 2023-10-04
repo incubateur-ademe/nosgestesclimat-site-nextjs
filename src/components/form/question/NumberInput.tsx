@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { QuestionSize } from '@/types/values'
 
 type Props = {
@@ -39,7 +40,7 @@ export default function NumberInput({
       {unit ? (
         <>
           &nbsp;
-          {unit}
+          <Trans>{unit}</Trans>
         </>
       ) : null}
     </div>
