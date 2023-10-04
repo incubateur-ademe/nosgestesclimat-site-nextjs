@@ -8,9 +8,7 @@ import { initReactI18next } from 'react-i18next'
 import { getOptions } from './settings'
 import uiEnYaml from './ui/ui-en.yaml'
 import uiFrYaml from './ui/ui-fr.yaml'
-import unitsYaml from './units.yaml'
 
-// console.log('units', unitsYaml['fr'])
 i18next
   .use(LanguageDetector)
   .use(
@@ -20,6 +18,7 @@ i18next
           return (uiEnYaml as unknown as YamlEntry).entries
         case 'fr':
           return (uiFrYaml as unknown as YamlEntry).entries
+
         default:
           return undefined
       }
@@ -31,16 +30,12 @@ i18next
     lng: undefined, // let detect the language on client side
     resources: {
       en: {
-        translation: {
-          ...(uiEnYaml as unknown as { entries: { entries: [] } }).entries,
-          ...(unitsYaml as any)['en'],
-        },
+        translation: (uiEnYaml as unknown as { entries: { entries: [] } })
+          .entries,
       },
       fr: {
-        translation: {
-          ...(uiFrYaml as unknown as { entries: { entries: [] } }).entries,
-          ...(unitsYaml as any)['fr'],
-        },
+        translation: (uiFrYaml as unknown as { entries: { entries: [] } })
+          .entries,
       },
     },
     detection: {
