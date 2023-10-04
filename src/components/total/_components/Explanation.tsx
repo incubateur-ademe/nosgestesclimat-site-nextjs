@@ -66,7 +66,11 @@ export default function Explanation({ toggleOpen }: Props) {
         </Trans>
       </p>
       <div className="flex justify-end">
-        <Button onClick={toggleOpen}>J'ai compris</Button>
+        <Button
+          data-cypress-id="understood-explanation-button"
+          onClick={toggleOpen}>
+          J'ai compris
+        </Button>
       </div>
     </motion.div>
   )

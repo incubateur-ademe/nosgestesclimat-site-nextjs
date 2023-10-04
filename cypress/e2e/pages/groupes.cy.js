@@ -1,11 +1,3 @@
-import {
-  clickCategoryStartButton,
-  clickSkipTutoButton,
-  clickUnderstoodButton,
-  startTestAndSkipTutorial,
-  walkthroughTest,
-} from '../utils'
-
 Cypress.automation('remote:debugger:protocol', {
   command: 'Browser.grantPermissions',
   params: {
@@ -16,6 +8,7 @@ Cypress.automation('remote:debugger:protocol', {
 
 describe('The Group creation page /amis/creer', () => {
   let groupURL = ''
+
   it('allows to create a new group and displays it afterwards', () => {
     // Fill simulation
     cy.visit('/')

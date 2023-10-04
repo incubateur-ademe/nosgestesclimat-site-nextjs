@@ -1,5 +1,5 @@
-const { readFileSync, writeFileSync } = require('fs')
-const { parse } = require('yaml')
+import { readFileSync, writeFileSync } from 'fs'
+import { parse } from 'yaml'
 
 const personas = parse(
   readFileSync('./nosgestesclimat/personas/personas-fr.yaml', 'utf8')

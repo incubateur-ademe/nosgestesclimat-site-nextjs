@@ -1,4 +1,4 @@
-import { visit } from '../utils.js'
+import { visit } from '../../helpers/interactions/visit'
 
 describe('check for about page status', () => {
   beforeEach(() => {

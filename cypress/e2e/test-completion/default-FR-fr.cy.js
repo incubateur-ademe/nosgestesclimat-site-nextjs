@@ -16,8 +16,11 @@ describe('check for test completion', () => {
 
   it('can finish the test with the default values with loc=FR and lang=fr', () => {
     startTestAndSkipTutorial()
+
     walkthroughTest({})
+
     clickSeeResultsLink()
+
     cy.contains(defaultTotalValue).should('be.visible')
   })
 })

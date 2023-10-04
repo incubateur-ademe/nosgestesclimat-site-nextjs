@@ -45,7 +45,7 @@
     },
     // Add override for cypress tests
     {
-      "files": ["cypress/**/*.ts"],
+      "files": ["cypress/**/*.js"],
       "parserOptions": {
         "project": "./cypress/tsconfig.json",
         "tsconfigRootDir": "."

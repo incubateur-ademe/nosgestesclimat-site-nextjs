@@ -10,7 +10,7 @@ export default function ButtonStart() {
   return (
     <ButtonLink
       href="/simulateur/bilan"
-      data-cypress-id="skip-tuto-button"
+      data-cypress-id="skip-tutorial-button"
       onClick={() => hideTutorial('testIntro')}>
       <Trans>C'est parti ! →</Trans>
     </ButtonLink>

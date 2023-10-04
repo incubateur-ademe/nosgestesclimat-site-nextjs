@@ -1,6 +1,8 @@
+import { visit } from '../../helpers/interactions/visit'
+
 describe('check for personas page status', () => {
   beforeEach(() => {
-    cy.visit('/personas')
+    visit('/personas')
   })
 
   it('has a title', () => {

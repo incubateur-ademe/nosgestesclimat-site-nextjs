@@ -1,6 +1,8 @@
+import { visit } from '../../helpers/interactions/visit'
+
 describe('check for group page status', () => {
   beforeEach(() => {
-    cy.visit('https://sondages.nosgestesclimat.fr')
+    visit('https://sondages.nosgestesclimat.fr')
   })
 
   it('has a start button', () => {
