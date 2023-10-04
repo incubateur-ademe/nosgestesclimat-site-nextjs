@@ -14,7 +14,7 @@ export default function SimulationAnswerList() {
 
   const { t } = useClientTranslation()
 
-  const { progression, categories, relevantQuestions } = useForm()
+  const { progression, categories, relevantAnsweredQuestions } = useForm()
 
   if (!progression) return null
 
@@ -40,7 +40,7 @@ export default function SimulationAnswerList() {
 
       <div className="w-full">
         {categories?.map((category: string) => {
-          const categoryQuestions = relevantQuestions.filter(
+          const categoryQuestions = relevantAnsweredQuestions.filter(
             (question: string) => question.includes(category)
           )
 
