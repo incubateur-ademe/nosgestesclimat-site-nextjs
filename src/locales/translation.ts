@@ -3,6 +3,7 @@
 */
 
 import { i18n } from 'i18next'
+import unitsYaml from './units.yaml'
 
 const parseYaml = (yaml: YamlEntry) => {
   //Remove keys that make the bundle heavier but are only useful for translation purposes, not in the UI
@@ -134,4 +135,17 @@ export function getMarkdownInCurrentLang(
       ([lang]) => getLangInfos(lang).abrv === currentLangState
     )?.[1] || markdownFiles[0][1]
   )
+}
+
+const enTranslation = {
+  ...(uiEnYaml as unknown as YamlEntry).entries,
+  ...(unitsYaml as any)['en'],
+}
+const frTranslation = {
+  ...(uiFrYaml as unknown as YamlEntry).entries,
+  ...(unitsYaml as any)['fr'],
+}
+export const translations: Record<string, any> = {
+  en: enTranslation,
+  fr: frTranslation,
 }
