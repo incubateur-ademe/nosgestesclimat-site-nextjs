@@ -10,11 +10,9 @@ export const getSimulationResults = ({
   const resultsObject: any = {}
 
   orderedCategories.forEach((category: any) => {
-    resultsObject[
-      category === 'transport . empreinte' ? 'transports' : category
-    ] = (Math.round(((category.nodeValue as number) ?? 0) / 10) / 100).toFixed(
-      2
-    )
+    resultsObject[category] = (
+      Math.round(((category.nodeValue as number) ?? 0) / 10) / 100
+    ).toFixed(2)
   })
 
   const valueBilan = getValue('bilan')

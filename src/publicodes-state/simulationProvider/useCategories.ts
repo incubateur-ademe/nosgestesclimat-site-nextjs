@@ -44,13 +44,7 @@ export default function useCategories({
             currentValue === 'services sociétaux'
               ? []
               : (
-                  safeGetRule(
-                    currentValue === 'logement'
-                      ? 'logement . impact' // Model shenanigans
-                      : currentValue === 'transport'
-                      ? 'transport . empreinte'
-                      : currentValue
-                  )?.rawNode?.formule?.somme?.map(
+                  safeGetRule(currentValue)?.rawNode?.formule?.somme?.map(
                     (rule: string) => currentValue + ' . ' + rule
                   ) || []
                 ).sort((a: string, b: string) =>
