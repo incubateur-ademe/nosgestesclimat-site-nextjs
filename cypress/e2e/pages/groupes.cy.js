@@ -22,13 +22,13 @@ describe('The Group creation page /amis/creer', () => {
   it('allows to create a new group and displays it afterwards', () => {
     recursivelyFillSimulation()
 
+    cy.visit('/amis')
+
     // Check that we can create our first group
     cy.get('[data-cypress-id="button-create-first-group"]').click()
     cy.get('input[data-cypress-id="group-input-owner-name"]').type('Jean-Marc')
     cy.get('[data-cypress-id="button-create-group"]').click()
     cy.get('[data-cypress-id="group-name"]')
-
-    cy.visit('/amis')
 
     // Check that we can create a second group
     clickAmisLink()
