@@ -6,6 +6,7 @@ import UserContext from './context'
 import usePersistentSimulations from './usePersistentSimulations'
 import usePersistentTutorials from './usePersistentTutorials'
 import usePersistentUser from './usePersistentUser'
+import useUpdateOldLocalStorage from './useUpdateOldLocalStorage'
 
 type Props = {
   /**
@@ -22,6 +23,8 @@ export default function UserProvider({
   storageKey = 'ngc',
   initialRegion,
 }: PropsWithChildren<Props>) {
+  useUpdateOldLocalStorage({ storageKey })
+
   const { user, setUser } = usePersistentUser({ storageKey, initialRegion })
 
   const { tutorials, setTutorials } = usePersistentTutorials({ storageKey })

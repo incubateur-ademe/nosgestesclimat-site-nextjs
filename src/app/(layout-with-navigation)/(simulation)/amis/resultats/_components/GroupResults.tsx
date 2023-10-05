@@ -3,7 +3,7 @@
 import Separator from '@/design-system/layout/Separator'
 import { useUser } from '@/publicodes-state'
 import { Results } from '@/types/groups'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { useFetchGroup } from '../../_hooks/useFetchGroup'
 import { useGetGroupStats } from '../_hooks/useGetGroupStats'
@@ -60,7 +60,9 @@ export default function GroupResults({ groupId }: { groupId: string }) {
       (member: { userId: string }) => member.userId === userId
     )
   ) {
-    return router.push(`/amis/invitation?groupId=${group._id}`)
+    router.push(`/amis/invitation?groupId=${group._id}`)
+
+    return null
   }
 
   return (

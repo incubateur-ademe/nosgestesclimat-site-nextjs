@@ -6,11 +6,7 @@ import Subcategory from './subcategoriesChart/Subcategory'
 export default function SubcategoriesChart() {
   const { subcategories, currentCategory } = useForm()
 
-  const { numericValue: total } = useRule(
-    currentCategory === 'transport'
-      ? 'transport . empreinte'
-      : currentCategory || ''
-  )
+  const { numericValue: total } = useRule(currentCategory || '')
   const { title, color } = useRule(currentCategory || '')
   const { checkIfValid } = useEngine()
 

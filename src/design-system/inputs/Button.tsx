@@ -1,5 +1,6 @@
 import { ButtonSize } from '@/types/values'
 import { HtmlHTMLAttributes, MouseEventHandler, PropsWithChildren } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   onClick: MouseEventHandler<HTMLButtonElement>
@@ -49,7 +50,10 @@ export default function Button({
       aria-disabled={disabled}
       title={title}
       id={id}
-      className={`${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]} ${className}`}
+      className={twMerge(
+        `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
+        className
+      )}
       {...props}>
       {children}
     </button>

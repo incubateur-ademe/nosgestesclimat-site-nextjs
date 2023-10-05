@@ -16,20 +16,13 @@ export default function Subcategory({
   const { category, title, icons, numericValue } = useRule(subcategory)
   const { color } = useRule(category || '')
 
-  // Model Shenanigans
-  const { numericValue: inhabitants } = useRule('logement . saisie habitants')
-
   if (!numericValue) return
 
   return (
     <div {...props}>
       <BarChartItem
         label={`${icons || ''} ${title}`}
-        value={
-          subcategory.includes('logement')
-            ? numericValue / inhabitants
-            : numericValue
-        }
+        value={numericValue}
         max={max}
         color={color}
         onClick={onClick}

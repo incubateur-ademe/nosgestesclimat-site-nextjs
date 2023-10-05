@@ -73,6 +73,7 @@
     "sharp": "^0.32.5",
     "sib-api-v3-sdk": "^8.5.0",
     "socket.io-client": "^4.5.1",
+    "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
     "tinygradient": "^1.1.5",
     "translation-check": "^1.0.2",

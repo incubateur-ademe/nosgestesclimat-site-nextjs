@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -36,6 +38,7 @@ export default function Invitation({ groupId }: { groupId: string }) {
     router.push(groupURL)
     return
   }
+
   return (
     <>
       <Title

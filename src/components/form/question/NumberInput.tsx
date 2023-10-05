@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { QuestionSize } from '@/types/values'
 import { HTMLAttributes } from 'react'
 
@@ -42,7 +43,7 @@ export default function NumberInput({
       {unit ? (
         <>
           &nbsp;
-          {unit}
+          <Trans>{unit}</Trans>
         </>
       ) : null}
     </div>
