@@ -17,8 +17,9 @@
     "start": "next start",
     "lint": "next lint",
     "e2e": "cypress open --e2e",
-    "generate:ui": "node scripts/i18n/generate-ui.js",
-    "translate:ui": "node scripts/i18n/translate-ui.js"
+    "ui:generate": "node scripts/i18n/generate-ui.js",
+    "ui:check": "node scripts/i18n/generate-ui.js && node scripts/i18n/check-ui.js",
+    "ui:translate": "node scripts/i18n/translate-ui.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.15",
@@ -37,7 +38,7 @@
     "framer-motion": "^10.16.4",
     "fuse.js": "6.6.2",
     "html-webpack-plugin": "^5.5.0",
-    "i18next": "^23.5.0",
+    "i18next": "^23.5.1",
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-parser": "^8.7.0",
     "i18next-resources-to-backend": "^1.1.4",
@@ -87,6 +88,7 @@
   ],
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.15",
+    "@incubateur-ademe/nosgestesclimat-scripts": "^0.1.0",
     "@netlify/plugin-nextjs": "^4.40.1",
     "@svgr/cli": "^8.1.0",
     "@types/cheerio": "^0.22.32",
@@ -109,7 +111,7 @@
     "cypress-recurse": "^1.27.0",
     "deepl-node": "^1.6.0",
     "dotenv": "^16.0.3",
-    "eslint": "^8.48.0",
+    "eslint": "7.0.0",
     "eslint-config-next": "13.4.19",
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-alias": "^1.1.2",
