@@ -21,19 +21,18 @@ export default async function Tutoriel() {
 
   return (
     <div className="flex flex-col">
-      <div className="hidden md:block">
-        <Title
-          data-cypress-id="tutoriel-title"
-          title={
-            <>
-              <span className="inline text-secondary">
-                <Trans>10 minutes</Trans>
-              </span>{' '}
-              <Trans>chrono pour calculer votre empreinte sur le climat</Trans>
-            </>
-          }
-        />
-      </div>
+      <Title
+        data-cypress-id="tutoriel-title"
+        className="text-lg md:text-2xl"
+        title={
+          <>
+            <span className="inline text-secondary">
+              <Trans>10 minutes</Trans>
+            </span>{' '}
+            <Trans>chrono pour calculer votre empreinte sur le climat</Trans>
+          </>
+        }
+      />
 
       <AvantDeCommencer />
       <div className="mb-8 flex justify-between border-b border-gray-200 pb-8">
