@@ -14,12 +14,8 @@ export default function BarChart() {
   const sortedCategories = useMemo(
     () =>
       categories.sort((a: string, b: string) => {
-        const valueOfA =
-          getNumericValue(
-            a === 'transport' ? 'transport . empreinte' : a // Model shenanigans (we have to do this to deal with the idiotic "transport . empreinte" exception)
-          ) || 0
-        const valueOfB =
-          getNumericValue(b === 'transport' ? 'transport . empreinte' : b) || 0
+        const valueOfA = getNumericValue(a) || 0
+        const valueOfB = getNumericValue(b) || 0
         return valueOfA > valueOfB ? -1 : 1
       }),
     [categories, getNumericValue]

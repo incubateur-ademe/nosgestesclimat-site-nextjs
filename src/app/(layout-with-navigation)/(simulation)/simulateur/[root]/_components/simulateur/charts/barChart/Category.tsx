@@ -18,10 +18,7 @@ export default function Category({
   setIsOpen,
   ...props
 }: Props) {
-  const { title, icons, color } = useRule(category)
-  const { numericValue } = useRule(
-    category === 'transport' ? 'transport . empreinte' : category
-  )
+  const { title, icons, color, numericValue } = useRule(category)
 
   return (
     <div {...props} className={`rounded-xl p-4 pb-1 `}>

@@ -18,12 +18,17 @@ export default function AvantDeCommencer() {
         </h4>
         <p className="text-sm md:text-base">
           <Trans>
-            Répondez aux questions en votre nom, pas pour votre foyer. Bien sûr,
-            certaines choses sont partagées (au sein de mon logement avec ma
-            famille, la voiture avec les covoitureurs) : cela sera bien pris en
-            compte dans le calcul de votre empreinte carbone, ne vous inquiétez
-            pas !
+            Répondez aux questions en votre nom, pas pour votre foyer.
           </Trans>
+          <span className="hidden md:inline">
+            <Trans>
+              {' '}
+              Bien sûr, certaines choses sont partagées (au sein de mon logement
+              avec ma famille, la voiture avec les covoitureurs) : cela sera
+              bien pris en compte dans le calcul de votre empreinte carbone, ne
+              vous inquiétez pas !
+            </Trans>
+          </span>
         </p>
       </div>
       <div className="relative pl-8">

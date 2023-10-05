@@ -23,6 +23,7 @@ export default async function Tutoriel() {
     <div className="flex flex-col">
       <Title
         data-cypress-id="tutoriel-title"
+        className="text-lg md:text-2xl"
         title={
           <>
             <span className="inline text-secondary">
@@ -34,16 +35,14 @@ export default async function Tutoriel() {
       />
 
       <AvantDeCommencer />
-
-      <AutresQuestions />
-
-      <div className="mb-8 flex justify-between border-t border-gray-200 pt-8">
+      <div className="mb-8 flex justify-between border-b border-gray-200 pb-8">
         <ButtonLink href="/" color="secondary" title={t("revenir à l'accueil")}>
           ←
         </ButtonLink>
 
         <ButtonStart />
       </div>
+      <AutresQuestions />
     </div>
   )
 }

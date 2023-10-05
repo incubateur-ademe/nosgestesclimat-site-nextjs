@@ -18,10 +18,7 @@ export default function Category({
   total: totalFromProps,
   position,
 }: Props) {
-  const { title, color } = useRule(category)
-  const { numericValue } = useRule(
-    category === 'transport' ? 'transport . empreinte' : category
-  )
+  const { title, color, numericValue } = useRule(category)
 
   const resultFromURL = useGetResultsFromDetailParam()
 
