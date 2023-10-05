@@ -15,7 +15,7 @@ export const useDataServer = () => {
     }
   }, [searchParams, isClient])
 
-  const PR = sessionStorage.getItem('PR')
+  const PR = isClient ? sessionStorage.getItem('PR') : null
 
   if (PR) {
     return `https://deploy-preview-${PR}--ecolab-data.netlify.app`
