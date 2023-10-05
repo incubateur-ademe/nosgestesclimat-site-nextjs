@@ -19,10 +19,8 @@ export default function Category({
   position,
   current,
 }: Props) {
-  const { title, color } = useRule(category)
-  const { numericValue } = useRule(
-    category === 'transport' ? 'transport . empreinte' : category
-  )
+  const { title, color, numericValue } = useRule(category)
+
   const percent = (numericValue / total) * 100
 
   return (

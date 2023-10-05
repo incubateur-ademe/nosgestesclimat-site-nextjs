@@ -1,16 +1,5 @@
 import { NGCRuleNode, NGCRulesNodes } from '@/publicodes-state/types'
 
-const formatCategoryName = (category: string) => {
-  switch (category) {
-    case 'logement . impact':
-      return 'logement'
-    case 'transport . empreinte':
-      return 'transport'
-    default:
-      return category
-  }
-}
-
 export function getRuleSumNodes(
   rules: NGCRulesNodes,
   rule: NGCRuleNode
@@ -24,7 +13,7 @@ export function getRuleSumNodes(
   return formula.somme
     ?.map((name: string) => {
       try {
-        return `${formatCategoryName(rule.dottedName)} . ${name}`
+        return `${rule.dottedName} . ${name}`
       } catch (e) {
         return null
       }

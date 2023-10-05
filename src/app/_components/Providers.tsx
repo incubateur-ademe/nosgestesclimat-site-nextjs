@@ -7,6 +7,7 @@ import { IsClientCtxProvider } from './IsClientCtxProvider'
 import { IframeResizer } from './providers/IframeResizer'
 import PageViewTracker from './providers/PageViewTracker'
 import QueryClientProviderWrapper from './providers/QueryClientProviderWrapper'
+import QueryParamsProvider from './providers/QueryParamsProvider'
 
 export default function Providers({
   children,
@@ -14,16 +15,18 @@ export default function Providers({
 }: PropsWithChildren<{ region: { code: string; name: string } }>) {
   return (
     <IsClientCtxProvider>
-      <IframeOptionsProvider>
-        <QueryClientProviderWrapper>
-          <PageViewTracker>
-            <IframeResizer />
-            <UserProvider initialRegion={region}>
-              <IsClientCtxProvider>{children}</IsClientCtxProvider>
-            </UserProvider>
-          </PageViewTracker>
-        </QueryClientProviderWrapper>
-      </IframeOptionsProvider>
+      <QueryParamsProvider>
+        <IframeOptionsProvider>
+          <QueryClientProviderWrapper>
+            <PageViewTracker>
+              <IframeResizer />
+              <UserProvider initialRegion={region}>
+                <IsClientCtxProvider>{children}</IsClientCtxProvider>
+              </UserProvider>
+            </PageViewTracker>
+          </QueryClientProviderWrapper>
+        </IframeOptionsProvider>
+      </QueryParamsProvider>
     </IsClientCtxProvider>
   )
 }
