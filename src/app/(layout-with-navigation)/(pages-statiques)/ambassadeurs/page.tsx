@@ -1,13 +1,14 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import ambassadeurs from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
+import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
 import Image from 'next/image'
 
-const categories: any = Object.keys(ambassadeurs)
+const ambassadeurs = ambassadeursYaml as any
+const categories = Object.keys(ambassadeurs)
 
 export default function page() {
-  console.log(categories)
+  console.log(typeof ambassadeurs['Médias'])
   return (
     <div>
       <Title>
