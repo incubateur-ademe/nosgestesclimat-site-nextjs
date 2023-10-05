@@ -20,7 +20,9 @@ export default function Providers({
           <QueryClientProviderWrapper>
             <PageViewTracker>
               <IframeResizer />
-              <UserProvider initialRegion={region}>
+              <UserProvider
+                initialRegion={region}
+                storageKey="nosgestesclimat::v3">
                 <IsClientCtxProvider>{children}</IsClientCtxProvider>
               </UserProvider>
             </PageViewTracker>
