@@ -11,8 +11,4 @@ describe('The simulation', () => {
   it('can be finished with the default values', () => {
     recursivelyFillSimulation()
   })
-
-  after(() => {
-    cy.get('div[data-cypress-id="fin-slider"]')
-  })
 })
