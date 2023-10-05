@@ -8,8 +8,8 @@ const fs = require('fs')
 const ramda = require('ramda')
 const child_process = require('child_process')
 
-const utils = require('./utils')
-const cli = require('./cli')
+const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
+const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
 const paths = require('./paths')
 
 const { remove } = cli.getArgs(
@@ -36,7 +36,7 @@ try {
   if (fs.existsSync(paths.staticAnalysisFrRes)) {
     fs.unlinkSync(paths.staticAnalysisFrRes)
   }
-  child_process.execSync(`i18next -c ${paths.i18nextParserConfig}`)
+  child_process.execSync(`i18next`)
 } catch (err) {
   cli.printErr('ERROR: an error occured during the analysis!')
   cli.printErr(err.message)

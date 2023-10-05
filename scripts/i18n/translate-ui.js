@@ -6,11 +6,11 @@
 
 const cliProgress = require('cli-progress')
 const fs = require('fs')
+const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
+const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
+const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
 
 const paths = require('./paths')
-const utils = require('./utils')
-const deepl = require('./deepl')
-const cli = require('./cli')
 
 const { srcLang, destLangs, force, remove } = cli.getArgs(
   'Calls the DeepL API to translate the UI from the French one.',
