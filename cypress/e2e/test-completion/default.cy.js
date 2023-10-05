@@ -1,20 +1,18 @@
 import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
 import { setupSimulation } from '../../helpers/simulation/setupSimulation'
 
-describe('check for test completion', () => {
+describe('The simulation', () => {
   before(() => {
     cy.visit('/')
 
     setupSimulation()
   })
 
-  it('can finish the test with the default values with unspecified search params', () => {
+  it('can be finished with the default values', () => {
     recursivelyFillSimulation()
   })
 
   after(() => {
-    cy.get('body').then(() => {
-      cy.get('div[data-cypress-id="fin-slider"]')
-    })
+    cy.get('div[data-cypress-id="fin-slider"]')
   })
 })
