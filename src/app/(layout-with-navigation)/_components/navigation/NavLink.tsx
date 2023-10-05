@@ -2,18 +2,20 @@
 
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { usePathname } from 'next/navigation'
-import { HTMLAttributes, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 type Props = {
   href: string
   children: ReactNode
+  className?: string
 }
 
 export default function NavLink({
   href,
   children,
   className,
-}: Props & HTMLAttributes<HTMLAnchorElement>) {
+  ...props
+}: Props) {
   const pathName = usePathname()
   const isActive = pathName.includes(href)
 
@@ -24,6 +26,7 @@ export default function NavLink({
           isActive ? ' !bg-primaryLight' : ''
         } ${className}`}
         href={href}
+        {...props}
         color="text">
         {children}
       </ButtonLink>

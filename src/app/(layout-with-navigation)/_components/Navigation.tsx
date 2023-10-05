@@ -112,7 +112,7 @@ export default function Navigation() {
           )}
 
           {!enquete && (
-            <NavLink href="/amis">
+            <NavLink href="/amis" data-cypress-id="amis-link">
               <Image
                 src="/images/misc/silhouettes.svg"
                 alt=""

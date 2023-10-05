@@ -1,4 +1,5 @@
 import {
+  AMIS_LINK,
   DONT_KNOW_BUTTON,
   DO_THE_TEST_LINK,
   NEXT_QUESTION_BUTTON,
@@ -47,4 +48,8 @@ export function clickNextButton() {
 
 export function clickDoTheTestLink() {
   click(DO_THE_TEST_LINK)
+}
+
+export function clickAmisLink() {
+  click(AMIS_LINK)
 }

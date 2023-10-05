@@ -8,7 +8,7 @@ import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
 import { usePathname } from 'next/navigation'
-import { PropsWithChildren, useEffect } from 'react'
+import { PropsWithChildren, useEffect, useRef } from 'react'
 
 type Props = {
   supportedRegions: SuppportedRegions
@@ -35,11 +35,14 @@ export default function Providers({
     region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
   })
 
+  const hasInitiatedSimulation = useRef(false)
+
   useEffect(() => {
-    if (!currentSimulationId) {
+    if (!currentSimulationId && !hasInitiatedSimulation.current) {
+      hasInitiatedSimulation.current = true
       initSimulation()
     }
-  }, [initSimulation, currentSimulationId])
+  }, [currentSimulationId, hasInitiatedSimulation, initSimulation])
 
   return currentSimulationId && !isInitialLoading ? (
     <SimulationProvider
