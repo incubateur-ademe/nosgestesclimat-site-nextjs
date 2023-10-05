@@ -6,17 +6,17 @@ type Props = {
   isMissing: boolean
   choices: any[]
   setValue: (value: string) => void
+  'data-cypress-id': string
+  label: string
 }
 
-export default function ChoicesInput({
-  question,
-  value,
-  isMissing,
-  choices,
-  setValue,
-}: Props) {
+export default function ChoicesInput(props: Props) {
+  const { question, value, isMissing, choices, setValue, label } = props
+
   return (
-    <div className="align flex flex-col items-end">
+    <fieldset className="align flex flex-col items-end">
+      <legend className="sr-only">{label}</legend>
+
       {choices &&
         choices.map((choice: any) => (
           <Choice
@@ -25,8 +25,9 @@ export default function ChoicesInput({
             choice={choice}
             active={!isMissing && value === choice}
             setValue={setValue}
+            data-cypress-id={`${props['data-cypress-id']}-${choice}`}
           />
         ))}
-    </div>
+    </fieldset>
   )
 }

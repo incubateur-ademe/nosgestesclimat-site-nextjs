@@ -9,7 +9,7 @@ export default function Mosaic({ question }: Props) {
   const { questionsOfMosaic } = useRule(question)
 
   return (
-    <div className="grid gap-4 md:grid-cols-2">
+    <fieldset className="grid gap-4 md:grid-cols-2">
       {questionsOfMosaic
         ? questionsOfMosaic.map((questionOfMosaic) => (
             <MosaicQuestion
@@ -19,6 +19,6 @@ export default function Mosaic({ question }: Props) {
             />
           ))
         : 'Cette mosaique n a pas d enfants.'}
-    </div>
+    </fieldset>
   )
 }

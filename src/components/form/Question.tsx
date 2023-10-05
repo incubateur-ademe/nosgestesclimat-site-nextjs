@@ -7,6 +7,7 @@ import Notification from '@/components/form/question/Notification'
 import NumberInput from '@/components/form/question/NumberInput'
 import Suggestions from '@/components/form/question/Suggestions'
 import { useRule } from '@/publicodes-state'
+import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 
 type Props = {
   question: string
@@ -42,6 +43,7 @@ export default function Question({ question }: Props) {
             }}
             isMissing={isMissing}
             min={0}
+            data-cypress-id={encodeRuleName(question)}
           />
         )}
         {type === 'boolean' && (
@@ -49,6 +51,8 @@ export default function Question({ question }: Props) {
             value={value}
             setValue={(value) => setValue(value, question)}
             isMissing={isMissing}
+            data-cypress-id={encodeRuleName(question)}
+            label={label || ''}
           />
         )}
         {type === 'choices' && (
@@ -58,6 +62,8 @@ export default function Question({ question }: Props) {
             value={String(value)}
             setValue={(value) => setValue(value, question)}
             isMissing={isMissing}
+            data-cypress-id={encodeRuleName(question)}
+            label={label || ''}
           />
         )}
         {type === 'mosaic' && <Mosaic question={question} />}

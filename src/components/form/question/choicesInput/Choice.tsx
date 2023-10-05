@@ -8,7 +8,13 @@ type Props = {
   setValue: any
 }
 
-export default function Choice({ question, choice, active, setValue }: Props) {
+export default function Choice({
+  question,
+  choice,
+  active,
+  setValue,
+  ...props
+}: Props) {
   const { title, description, icons } = useRule(question + ' . ' + choice)
 
   return (
@@ -22,6 +28,7 @@ export default function Choice({ question, choice, active, setValue }: Props) {
       description={description}
       active={active}
       onClick={() => setValue(choice)}
+      {...props}
     />
   )
 }

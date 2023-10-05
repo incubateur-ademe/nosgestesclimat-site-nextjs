@@ -1,4 +1,5 @@
 import { QuestionSize } from '@/types/values'
+import { HTMLAttributes } from 'react'
 
 type Props = {
   unit?: string
@@ -20,7 +21,8 @@ export default function NumberInput({
   setValue,
   size = 'md',
   min = 0,
-}: Props) {
+  ...props
+}: HTMLAttributes<HTMLInputElement> & Props) {
   return (
     <div
       className={`flex items-center justify-end gap-1 ${sizeClassNames[size]}`}>
@@ -35,6 +37,7 @@ export default function NumberInput({
         onChange={(event) => {
           setValue(Number(event.target.value))
         }}
+        {...props}
       />
       {unit ? (
         <>

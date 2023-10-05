@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import { useRule } from '@/publicodes-state'
+import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import { motion } from 'framer-motion'
 
 type Props = {
@@ -35,12 +36,17 @@ export default function MosaicBooleanInput({
     ? 'checked'
     : 'unchecked'
   return (
-    <button
-      disabled={isInactive}
-      className={`relative flex items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
-      onClick={() => {
-        setValue(value ? 'non' : 'oui')
-      }}>
+    <label
+      className={`relative flex cursor-pointer items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}>
+      <input
+        type="checkbox"
+        disabled={isInactive}
+        className="hidden"
+        onClick={() => {
+          setValue(value ? 'non' : 'oui')
+        }}
+        data-cypress-id={`${encodeRuleName(question)}`}
+      />
       <span
         className={`${checkClassNames[status]} block h-5 w-5 items-center rounded-sm border-2 leading-4`}>
         {status === 'checked' ? (
@@ -74,6 +80,6 @@ export default function MosaicBooleanInput({
           <Trans>Bientôt disponible</Trans>
         </div>
       ) : null}
-    </button>
+    </label>
   )
 }

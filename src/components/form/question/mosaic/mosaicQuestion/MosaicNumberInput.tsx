@@ -51,6 +51,7 @@ export default function NumberInput({
           value={isMissing ? '' : Number(value)}
           placeholder={String(value)}
           onChange={(event) => setValue(Number(event.target.value))}
+          data-cypress-id={`${encodeURI(question)}`}
         />
         <Button
           onClick={() => setValue(Number(value) + 1)}
