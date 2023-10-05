@@ -1,14 +1,14 @@
 /* eslint-disable cypress/no-assigning-return-values */
-import { encodeRuleName } from '../../utils/encodeRuleName'
-import { clickDontKnowButton, clickNextButton } from '../elements/buttons'
-import { isMosaicQuestion } from '../getters/isQuestionMosaic'
+import { decodeRuleName } from '../../utils/decodeRuleName'
+import { clickNextButton } from '../elements/buttons'
+
+const LAST_QUESTION_ID = 'services sociétaux . question-rhétorique-ok'
 
 export function recursivelyFillSimulation(persona = {}) {
-  const bodyPromise = cy.get('body')
   const inputPromise = cy.get('input')
 
   function skipQuestion() {
-    clickDontKnowButton()
+    clickNextButton()
     recursivelyFillSimulation(persona)
   }
 
@@ -16,22 +16,19 @@ export function recursivelyFillSimulation(persona = {}) {
     // All questions have been answered
     if (input.length <= 0) return
 
-    const id = input.attr('id')
-    const type = input.attr('type')
+    const id = decodeRuleName(input.attr('data-cypress-id'))
 
-    bodyPromise.then((body) => {
-      if (id && !isMosaicQuestion(body)) {
-        // TODO(@EmileRolley): need to specify the behavior for mosaic questions
-        cy.log(type)
-        cy.url().should('include', encodeRuleName(id))
-      }
-    })
+    // Is last question
+    if (id === LAST_QUESTION_ID && input.val() === 'on') {
+      clickNextButton()
+      return
+    }
+
+    const type = input.attr('type')
 
     // No value for this persona
     if (!persona[id]) {
-      cy.url().then(() => {
-        skipQuestion()
-      })
+      skipQuestion()
       return
     }
 
@@ -54,6 +51,8 @@ export function recursivelyFillSimulation(persona = {}) {
       cy.wait(100)
 
       clickNextButton()
+
+      cy.wait(500)
 
       // Call itself recursively to go to the next question
       recursivelyFillSimulation()

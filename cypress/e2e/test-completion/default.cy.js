@@ -12,7 +12,9 @@ describe('check for test completion', () => {
     recursivelyFillSimulation()
   })
 
-  // after(() => {
-  //   clickSeeResultsLink()
-  // })
+  after(() => {
+    cy.get('body').then(() => {
+      cy.get('div[data-cypress-id="fin-slider"]')
+    })
+  })
 })
