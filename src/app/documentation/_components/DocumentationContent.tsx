@@ -6,11 +6,13 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
+import { safeGetSituation } from '@/publicodes-state/helpers/safeGetSituation'
+import { Situation } from '@/publicodes-state/types'
 import { SuppportedRegions } from '@/types/international'
 import Head from 'next/head'
 import Engine from 'publicodes'
 import { RulePage } from 'publicodes-react'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import References from './References'
 
 type Props = {
@@ -24,7 +26,7 @@ export default function DocumentationContent({
   const { i18n } = useClientTranslation()
   const path = decodeURI(slugs.join('/'))
 
-  const { user } = useUser()
+  const { user, getCurrentSimulation } = useUser()
 
   const lang = useLocale()
 
@@ -34,7 +36,29 @@ export default function DocumentationContent({
     isOptim: false,
   })
 
-  const engine = useMemo(() => rules && new Engine(rules as any), [rules])
+  const currentSimulation = getCurrentSimulation()
+  const situation = currentSimulation?.situation
+
+  const engine = useMemo<Engine | null>(
+    () => (rules ? new Engine(rules as any) : null),
+    [rules]
+  )
+
+  //TODO: this is shit
+  useEffect(() => {
+    if (engine && situation) {
+      const rules = Object.entries(engine.getParsedRules()).map(
+        (rule: (string | any)[]) => rule[0]
+      )
+
+      const safeSituation: Situation = safeGetSituation({
+        situation,
+        everyRules: rules,
+      })
+
+      engine.setSituation(safeSituation as any)
+    }
+  }, [engine, situation])
 
   const documentationPath = '/documentation'
 

@@ -11,7 +11,7 @@ import { NGCEvaluatedNode, NGCRuleNode, Rules } from '../types'
  * And a pristine engine wich can be used to assess rules without any situation (for exemple, we can reliably get the categories this way)
  */
 export default function useEngine(rules: Rules) {
-  const engine = useMemo(
+  const engine = useMemo<Engine>(
     () =>
       new Engine(rules, {
         logger: {
