@@ -22,6 +22,7 @@
     "ui:translate": "node scripts/i18n/translate-ui.js",
     "faq:translate": "node scripts/i18n/translate-faq.js",
     "faq:check": "node scripts/i18n/check-faq.js",
+    "pages:translate": "node scripts/i18n/translate-pages.js",
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1",
