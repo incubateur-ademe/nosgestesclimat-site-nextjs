@@ -1,4 +1,5 @@
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { useSupportedRegions } from '@/hooks/useSupportedRegions'
 import DocumentationContent from '../_components/DocumentationContent'
 
 export async function generateMetadata() {
@@ -10,6 +11,8 @@ export async function generateMetadata() {
   })
 }
 
-export default function DocumentationPage() {
-  return <DocumentationContent />
+export default async function DocumentationPage() {
+  const supportedRegions = await useSupportedRegions()
+
+  return <DocumentationContent supportedRegions={supportedRegions} />
 }

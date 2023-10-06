@@ -1,29 +1,48 @@
 'use client'
 
+import Link from '@/components/Link'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine } from '@/publicodes-state'
+import { useLocale } from '@/hooks/useLocale'
+import { useRules } from '@/hooks/useRules'
+import { useUser } from '@/publicodes-state'
+import { SuppportedRegions } from '@/types/international'
 import Head from 'next/head'
-
-import Link from '@/components/Link'
+import Engine from 'publicodes'
 import { RulePage } from 'publicodes-react'
+import { useMemo } from 'react'
 import References from './References'
 
-export default function DocumentationContent() {
+type Props = {
+  supportedRegions: SuppportedRegions
+}
+export default function DocumentationContent({ supportedRegions }: Props) {
   const { i18n } = useClientTranslation()
   const path = window.location.pathname.split('/documentation/')[1]
 
-  const { engine } = useEngine()
+  const { user } = useUser()
+
+  const lang = useLocale()
+
+  const { data: rules } = useRules({
+    lang: lang || 'fr',
+    region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
+    isOptim: false,
+  })
+
+  const engine = useMemo(() => rules && new Engine(rules as any), [rules])
 
   const documentationPath = '/documentation'
 
   console.log('TODO: handle og:image')
 
+  if (!engine) return
+
   return (
     <RulePage
       language={i18n.language as 'fr' | 'en'}
       rulePath={(path as string) ?? ''}
-      engine={engine}
+      engine={engine as any}
       documentationPath={documentationPath}
       renderers={{
         Head,
