@@ -1005,3 +1005,5 @@ entries:
   Terminer: Finish
   Suivant →: Next →
   Je ne sais pas →: I don't know →
+  SondagesBlock.description: <1>Surveys</1> and <3>conferences</3> allow you to compare your footprint live or in groups of more than 20 people
+  SondagesBlock.description.lock: Les <1>sondages</1> et <3>conférences</3> vous permettent de comparer votre empreinte en direct ou en groupes de plus de 20 personnes
