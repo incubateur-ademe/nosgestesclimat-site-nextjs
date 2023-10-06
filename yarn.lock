@@ -8262,17 +8262,17 @@ pstree.remy@^1.1.8:
   resolved "https://registry.yarnpkg.com/pstree.remy/-/pstree.remy-1.1.8.tgz#c242224f4a67c21f686839bbdb4ac282b8373d3a"
   integrity sha512-77DZwxQmxKnu3aR542U+X8FypNzbfJ+C5XQDk3uWjWxn6151aIMGthWYRXTqT1E5oJvg+ljaa2OJi+VfvCOQ8w==
 
-publicodes-react@^1.0.0-beta.72:
-  version "1.0.0-beta.72"
-  resolved "https://registry.yarnpkg.com/publicodes-react/-/publicodes-react-1.0.0-beta.72.tgz#7047b34e0aaf6331e8310337dfa3a4ad19dccdcd"
-  integrity sha512-7AmimM70pkXZL2jUWzGsfl8TIhs5MyqG/weQBtQf5+KX4ZTRTKjHMBKPDSlIPOma0VRnCRALT4kMU1RKirntSQ==
+publicodes-react@^1.0.0-beta.76:
+  version "1.0.0-beta.76"
+  resolved "https://registry.yarnpkg.com/publicodes-react/-/publicodes-react-1.0.0-beta.76.tgz#ac11071c7b917cf496fec788fb0c44faa9a48213"
+  integrity sha512-4r/9QUfiozNsTQH25N43OxyJaY+LnPglJUaqOvtnrFW3Uzin4vn3Q3890uX0EV6OXsMr+7JxHKX/kc4cr69IiA==
   dependencies:
-    styled-components "^6.0.7"
+    styled-components "^6.0.8"
 
-publicodes@1.0.0-beta.72:
-  version "1.0.0-beta.72"
-  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.72.tgz#4cc2900a8c2f316b92bf4bae2f8411f6ad235a3a"
-  integrity sha512-spk7twEF7c8OOX2grUlLSHUr35YDhSxOAxAlW/RmNtRNDEkTeFzDDLqxtdLWNrIkz0GIKmkVZZaiqantgHR10w==
+publicodes@1.0.0-beta.76:
+  version "1.0.0-beta.76"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.76.tgz#07b740f18f4846aaa70b5a9c83109658c3c010c4"
+  integrity sha512-lnhRD4UIufN/N4T1LcgheEKX4bF6gSCYroE2po1Cfk0kkmgPn+ORKVT2M+HpHeVlTbPFAjVE1p5hL6P3zXUlLQ==
 
 pump@^2.0.0:
   version "2.0.1"
@@ -9374,10 +9374,10 @@ style-to-object@^0.4.0, style-to-object@^0.4.1:
   dependencies:
     inline-style-parser "0.1.1"
 
-styled-components@^6.0.7:
-  version "6.0.7"
-  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-6.0.7.tgz#1cf4a5e6b6181b29f941934df54af19b7ef05ab0"
-  integrity sha512-xIwWuiRMYR43mskVsW9MGTRjSo7ol4bcVjT595fGUp3OLBJOlOgaiKaxsHdC4a2HqWKqKnh0CmcRbk5ogyDjTg==
+styled-components@^6.0.8:
+  version "6.0.8"
+  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-6.0.8.tgz#90617ad60de39772e03a81c8f3b8e66c12f51c44"
+  integrity sha512-AwI02MTWZwqjzfXgR5QcbmcSn5xVjY4N2TLjSuYnmuBGF3y7GicHz3ysbpUq2EMJP5M8/Nc22vcmF3V3WNZDFA==
   dependencies:
     "@babel/cli" "^7.21.0"
     "@babel/core" "^7.21.0"
