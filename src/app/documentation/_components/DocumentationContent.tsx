@@ -15,10 +15,14 @@ import References from './References'
 
 type Props = {
   supportedRegions: SuppportedRegions
+  slugs: string[]
 }
-export default function DocumentationContent({ supportedRegions }: Props) {
+export default function DocumentationContent({
+  supportedRegions,
+  slugs,
+}: Props) {
   const { i18n } = useClientTranslation()
-  const path = window.location.pathname.split('/documentation/')[1]
+  const path = decodeURI(slugs.join('/'))
 
   const { user } = useUser()
 
@@ -47,31 +51,7 @@ export default function DocumentationContent({ supportedRegions }: Props) {
       renderers={{
         Head,
         Link: ({ children, to }) => <Link href={to || ''}>{children}</Link>,
-        Text: ({ children }) => (
-          <>
-            {/*
-              <Helmet>
-                <meta
-                  property="og:image"
-                  content={`https://ogimager.osc-fr1.scalingo.io/capture/${encodeURIComponent(
-                    window.location.href
-                  )}/${encodeURIComponent('documentation-rule-root header')}`}
-                />
-              </Helmet>
-              */}
-            <Markdown>{children}</Markdown>
-            {/*children.includes('<RavijenChart/>') && (
-                <GraphContainer>
-                  <RavijenChart />
-                </GraphContainer>
-              )*/}
-            {/*children.includes('<RavijenChartSocietaux/>') && (
-                <GraphContainer>
-                  <RavijenChart target="services sociétaux" numberBottomRight />
-                </GraphContainer>
-              )*/}
-          </>
-        ),
+        Text: ({ children }) => <Markdown>{children}</Markdown>,
         References: References as any,
       }}
     />

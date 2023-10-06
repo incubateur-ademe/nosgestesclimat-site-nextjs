@@ -11,8 +11,18 @@ export async function generateMetadata() {
   })
 }
 
-export default async function DocumentationPage() {
+type Props = {
+  params: {
+    slug: string[]
+  }
+}
+export default async function DocumentationPage({ params }: Props) {
   const supportedRegions = await useSupportedRegions()
 
-  return <DocumentationContent supportedRegions={supportedRegions} />
+  return (
+    <DocumentationContent
+      supportedRegions={supportedRegions}
+      slugs={params.slug}
+    />
+  )
 }
