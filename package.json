@@ -19,7 +19,9 @@
     "e2e": "cypress open --e2e",
     "ui:parse": "node scripts/i18n/generate-ui.js",
     "ui:check": "yarn run ui:parse && node scripts/i18n/check-ui.js",
-    "ui:translate": "node scripts/i18n/translate-ui.js"
+    "ui:translate": "node scripts/i18n/translate-ui.js",
+    "faq:translate": "node scripts/i18n/translate-faq.js",
+    "faq:check": "node scripts/i18n/check-faq.js",
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1",
