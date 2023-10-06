@@ -82,7 +82,7 @@ export default function Localisation({
               </div>
             )}
             <RegionModelAuthors
-              authors={supportedRegions[region.code][locale || 'fr'].authors}
+              authors={supportedRegions[region.code][locale ].authors}
             />
           </div>
         </div>
