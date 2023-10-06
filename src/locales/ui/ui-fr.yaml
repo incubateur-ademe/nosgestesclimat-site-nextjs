@@ -792,3 +792,6 @@ entries:
   components.localisation.LocalisationMessage.version: Vous utilisez la version <1>{t(versionName)}</1> du test
   du test: du test
   Vous utilisez la version: Vous utilisez la version
+  Je ne sais pas →: Je ne sais pas →
+  Suivant →: Suivant →
+  Terminer: Terminer

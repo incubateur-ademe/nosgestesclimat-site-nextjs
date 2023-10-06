@@ -6,7 +6,6 @@ import { getMatomoEventChangeRegion } from '@/constants/matomo'
 import { defaultModelRegionCode } from '@/constants/translation'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
@@ -18,8 +17,6 @@ type Props = {
   supportedRegions: SuppportedRegions
 }
 export default function LocalisationBanner({ supportedRegions }: Props) {
-  const { t } = useClientTranslation()
-
   const { user, tutorials, hideTutorial } = useUser()
 
   const currentLocale = useLocale() as string

@@ -1002,3 +1002,6 @@ entries:
   LocalisationBanner.version.lock: Pour le moment, il n'existe pas de modèle de calcul pour {{versionName}}, le modèle Français vous est proposé par défaut.
   Vous utilisez la version: You are using the
   du test: of the test
+  Terminer: Finish
+  Suivant →: Next →
+  Je ne sais pas →: I don't know →
