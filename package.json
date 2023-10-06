@@ -23,6 +23,8 @@
     "faq:translate": "node scripts/i18n/translate-faq.js",
     "faq:check": "node scripts/i18n/check-faq.js",
     "pages:translate": "node scripts/i18n/translate-pages.js",
+    "releases:fetch": "node scripts/fetch-releases.js",
+    "releases:translate": "node scripts/i18n/translate-release.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1",
@@ -123,6 +125,8 @@
     "file-loader": "^6.2.0",
     "intl-locales-supported": "^1.8.11",
     "isomorphic-fetch": "^3.0.0",
+    "json-stable-stringify": "^1.0.2",
+    "mock-local-storage": "^1.1.23",
     "node-pandoc-promise": "^0.0.6",
     "nodemon": "^3.0.1",
     "postcss-loader": "^7.3.3",
