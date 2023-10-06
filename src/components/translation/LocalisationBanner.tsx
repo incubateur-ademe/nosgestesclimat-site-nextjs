@@ -46,15 +46,19 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
   return (
     <Card
       className="mx-auto mb-8 w-[32rem] max-w-full flex-row"
-      style={{ backgroundColor: '#fff8d3' }}>
+      style={{ backgroundColor: '#fff8d3' }}
+    >
       <div className="flex gap-8">
         <div className="flex w-8 items-center text-4xl">📍</div>
         <div className="flex-1">
           {regionParams && (
-            <p className="mb-0 flex items-baseline gap-1">
-              {t('components.localisation.LocalisationMessage.version', {
-                versionName,
-              })}
+            <p className="mb-0 flex-1 items-baseline gap-1">
+              <Trans
+                i18nKey={'components.localisation.LocalisationMessage.version'}
+              >
+                Vous utilisez la version <strong>{{ versionName }}</strong> du
+                test
+              </Trans>
               <CountryFlag code={code} />
               {code !== defaultModelRegionCode && (
                 <span>
@@ -114,7 +118,8 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
               hideTutorial('localisationBanner')
 
               trackEvent(getMatomoEventChangeRegion(code))
-            }}>
+            }}
+          >
             <Trans>J'ai compris</Trans>
           </Button>
         </div>
