@@ -34,7 +34,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
     regionParams?.[currentLocale]?.nom as string
   )
 
-  const versionName = regionParams
+  const versionName: string = regionParams
     ? regionParams?.[currentLocale]?.['gentilé'] ??
       regionParams?.[currentLocale]?.['nom']
     : countryName
@@ -53,12 +53,8 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
         <div className="flex-1">
           {regionParams && (
             <p className="mb-0 flex-1 items-baseline gap-1">
-              <Trans
-                i18nKey={'components.localisation.LocalisationMessage.version'}
-              >
-                Vous utilisez la version <strong>{{ versionName }}</strong> du
-                test
-              </Trans>
+              <Trans>Vous utilisez la version</Trans>{' '}
+              <strong>{versionName}</strong> <Trans>du test</Trans>
               <CountryFlag code={code} />
               {code !== defaultModelRegionCode && (
                 <span>

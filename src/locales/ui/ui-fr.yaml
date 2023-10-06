@@ -789,4 +789,6 @@ entries:
   'Vous faites cette simulation depuis :': 'Vous faites cette simulation depuis :'
   Vous pouvez créer un nouveau groupe avec d’autres amis.: Vous pouvez créer un nouveau groupe avec d’autres amis.
   LocalisationBanner.version: Pour le moment, il n'existe pas de modèle de calcul pour {{versionName}}, le modèle Français vous est proposé par défaut.
-  components.localisation.LocalisationMessage.version: Vous utilisez la version <1>{{versionName}}</1> du test
+  components.localisation.LocalisationMessage.version: Vous utilisez la version <1>{t(versionName)}</1> du test
+  du test: du test
+  Vous utilisez la version: Vous utilisez la version
