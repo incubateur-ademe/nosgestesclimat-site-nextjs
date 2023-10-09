@@ -29,7 +29,7 @@ export const sizeClassNames = {
 }
 
 export const baseClassNames =
-  'inline-flex items-center whitespace-nowrap rounded-md font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-4 aria-disabled:opacity-50 transition-color '
+  'inline-flex items-center whitespace-nowrap rounded-md font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-3 aria-disabled:opacity-50 transition-color '
 
 export default function Button({
   onClick,

@@ -41,8 +41,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
               gotoPrevQuestion()
             }
           }}
-          color="text"
-        >
+          color="text">
           {'← ' + t('Précédent')}
         </Button>
       ) : null}
@@ -59,13 +58,20 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
           await setDefaultAsValue(question)
           setIsSettingDefaultValue(false)
 
+          // Focus the question title upon question change
+          setTimeout(() => {
+            const questionTitle = document.getElementById('question-label')
+
+            questionTitle?.focus()
+          })
+
           if (!noNextQuestion) {
             gotoNextQuestion()
+
             return
           }
           onComplete()
-        }}
-      >
+        }}>
         {noNextQuestion
           ? t('Terminer')
           : isMissing
