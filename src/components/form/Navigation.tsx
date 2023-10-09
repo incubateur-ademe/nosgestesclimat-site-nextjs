@@ -30,6 +30,16 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
 
   const nextDisabled =
     questionsThatCantBeZero.includes(question) && numericValue < 1
+
+  const handleMoveFocus = () => {
+    // Focus the question title upon question change
+    setTimeout(() => {
+      const questionTitle = document.getElementById('question-label')
+
+      questionTitle?.focus()
+    })
+  }
+
   return (
     <div className="flex justify-end  gap-4">
       {!noPrevQuestion ? (
@@ -40,6 +50,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
             if (!noPrevQuestion) {
               gotoPrevQuestion()
             }
+            handleMoveFocus()
           }}
           color="text">
           {'← ' + t('Précédent')}
@@ -58,12 +69,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
           await setDefaultAsValue(question)
           setIsSettingDefaultValue(false)
 
-          // Focus the question title upon question change
-          setTimeout(() => {
-            const questionTitle = document.getElementById('question-label')
-
-            questionTitle?.focus()
-          })
+          handleMoveFocus()
 
           if (!noNextQuestion) {
             gotoNextQuestion()
