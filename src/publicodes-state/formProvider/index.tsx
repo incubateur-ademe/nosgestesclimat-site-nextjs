@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { PropsWithChildren, useContext, useMemo } from 'react'
 import simulationContext from '../simulationProvider/context'
 import Provider from './Provider'
@@ -17,11 +18,16 @@ export default function FailSafeFormProvider({
 }: PropsWithChildren<Props>) {
   const { safeEvaluate } = useContext(simulationContext)
 
+  const router = useRouter()
+
   const isRootSafe = useMemo<boolean>(
     () => (safeEvaluate(root) ? true : false),
     [safeEvaluate, root]
   )
 
-  if (!isRootSafe) return <div>La racine du formulaire n'existe pas</div>
+  if (!isRootSafe) {
+    router.push('/404')
+    return
+  }
   return <Provider root={root}>{children}</Provider>
 }

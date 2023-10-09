@@ -15,8 +15,4 @@ describe('The simulation', () => {
   it('can be finished with the default values and with loc=FR and lang=fr', () => {
     recursivelyFillSimulation()
   })
-
-  after(() => {
-    cy.get('div[data-cypress-id="fin-slider"]')
-  })
 })
