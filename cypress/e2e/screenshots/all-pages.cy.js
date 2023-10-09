@@ -4,7 +4,7 @@ describe('All pages', () => {
 
     cy.visit('/plan-du-site')
 
-    cy.get('data-cypress-id="plan-links"').then((linksContainer) => {
+    cy.get('div[data-cypress-id="plan-links"]').then((linksContainer) => {
       linksContainer.get('a').each((link) => {
         cy.visit(link.attr('href'))
 

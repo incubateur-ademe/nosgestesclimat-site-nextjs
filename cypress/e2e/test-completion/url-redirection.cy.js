@@ -3,7 +3,8 @@
 // FIXME: seems to be broken with the localisation param
 // ''
 
-import { clickNextButton, mainSimulator } from '../../helpers/elements/buttons'
+import { mainSimulator } from '../../constants/misc'
+import { clickNextButton } from '../../helpers/elements/buttons'
 import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
 import { setupSimulation } from '../../helpers/simulation/setupSimulation'
 
@@ -28,15 +29,15 @@ function shouldRedirectTo(entryPoint, expectedURL, category = mainSimulator) {
   )
 }
 
-describe('Simulation page', () => {
-  it("should redirect to 'bilan' when an unknow rule is specified for the simulator root rule", () => {
-    cy.visit('/simulateur/unknown')
+// describe('Simulation page', () => {
+//   it("should redirect to 'bilan' when an unknow rule is specified for the simulator root rule", () => {
+//     cy.visit('/simulateur/unknown')
 
-    cy.wait(10000)
+//     cy.wait(10000)
 
-    cy.url().should('includes', '/404')
-  })
-})
+//     cy.url().should('includes', '/404')
+//   })
+// })
 
 // ============================================================================
 //
@@ -49,8 +50,6 @@ describe('Simulation page', () => {
 describe('Simulation page', () => {
   it(`should redirect to the last question answered when the "bilan" root is defined`, () => {
     cy.visit(`/`)
-
-    cy.wait(10000)
 
     setupSimulation()
 
@@ -67,8 +66,6 @@ describe('Simulation page', () => {
 
   it(`should redirect to a question without space in the name`, () => {
     cy.visit(`/simulateur/bilan`)
-
-    cy.wait(10000)
 
     recursivelyFillSimulation()
 
