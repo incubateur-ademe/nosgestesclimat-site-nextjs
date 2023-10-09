@@ -1,3 +1,5 @@
+'use client'
+
 import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'

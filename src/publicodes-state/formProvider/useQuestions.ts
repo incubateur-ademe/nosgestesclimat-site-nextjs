@@ -140,20 +140,23 @@ export default function useQuestions({
   const relevantAnsweredQuestions = useMemo<string[]>(
     () =>
       /**
-       * We take every foldedSteps and then check if their value is null (wich mean they ever are a boolean set to "non" or they are disabled).
+       * First we check that there is still a question associated to the folded step. If not we cut it.
+       * Then we take every foldedSteps and then check if their value is null (wich mean they ever are a boolean set to "non" or they are disabled).
        * We check via getType if they are a boolean. If not, it means they are disabled and are not relevant (not displayed)
        */
-      foldedSteps.filter(
-        (foldedStep) =>
-          !(
-            getType({
-              dottedName: foldedStep,
-              rule: safeGetRule(foldedStep),
-              evaluation: safeEvaluate(foldedStep),
-            }) !== 'boolean' && safeEvaluate(foldedStep)?.nodeValue === null
-          )
-      ),
-    [foldedSteps, safeGetRule, safeEvaluate]
+      foldedSteps
+        .filter((foldedStep) => everyQuestions.includes(foldedStep))
+        .filter(
+          (foldedStep) =>
+            !(
+              getType({
+                dottedName: foldedStep,
+                rule: safeGetRule(foldedStep),
+                evaluation: safeEvaluate(foldedStep),
+              }) !== 'boolean' && safeEvaluate(foldedStep)?.nodeValue === null
+            )
+        ),
+    [foldedSteps, safeGetRule, safeEvaluate, everyQuestions]
   )
 
   const tempRelevantQuestions = useMemo<string[]>(

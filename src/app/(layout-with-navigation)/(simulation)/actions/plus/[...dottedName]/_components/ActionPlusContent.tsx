@@ -1,3 +1,5 @@
+'use client'
+
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useTempEngine } from '@/publicodes-state'

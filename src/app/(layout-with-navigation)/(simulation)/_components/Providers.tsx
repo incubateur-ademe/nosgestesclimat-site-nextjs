@@ -56,6 +56,8 @@ export default function Providers({
   ) : pathname === '/tutoriel' ? (
     children
   ) : (
-    <Loader color="dark" />
+    <div className="flex flex-1 items-center justify-center">
+      <Loader color="dark" />
+    </div>
   )
 }
