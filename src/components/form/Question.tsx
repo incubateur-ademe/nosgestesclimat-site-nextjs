@@ -8,6 +8,7 @@ import NumberInput from '@/components/form/question/NumberInput'
 import Suggestions from '@/components/form/question/Suggestions'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import { useRule } from '@/publicodes-state'
+import { NGCQuestionType } from '@/publicodes-state/types'
 
 type Props = {
   question: string
@@ -28,17 +29,10 @@ export default function Question({ question }: Props) {
     activeNotifications,
   } = useRule(question)
 
-  return (
-    <>
-      <div className="mb-4">
-        <Label
-          question={question}
-          label={label}
-          description={description}
-          htmlFor={DEFAULT_FOCUS_ELEMENT_ID}
-        />
-        <Suggestions question={question} />
-        {type === 'number' && (
+  const getInput = (type?: NGCQuestionType) => {
+    switch (type) {
+      case 'number':
+        return (
           <NumberInput
             unit={unit}
             value={numericValue}
@@ -51,8 +45,9 @@ export default function Question({ question }: Props) {
             data-cypress-id={question}
             id={DEFAULT_FOCUS_ELEMENT_ID}
           />
-        )}
-        {type === 'boolean' && (
+        )
+      case 'boolean':
+        return (
           <BooleanInput
             value={value}
             setValue={(value) => setValue(value, question)}
@@ -61,8 +56,9 @@ export default function Question({ question }: Props) {
             label={label || ''}
             id={DEFAULT_FOCUS_ELEMENT_ID}
           />
-        )}
-        {type === 'choices' && (
+        )
+      case 'choices':
+        return (
           <ChoicesInput
             question={question}
             choices={choices}
@@ -73,8 +69,20 @@ export default function Question({ question }: Props) {
             label={label || ''}
             id={DEFAULT_FOCUS_ELEMENT_ID}
           />
-        )}
-        {type === 'mosaic' && <Mosaic question={question} />}
+        )
+      case 'mosaic':
+        return <Mosaic question={question} />
+      default:
+        return null
+    }
+  }
+
+  return (
+    <>
+      <div className="mb-4">
+        <Label question={question} label={label} description={description} />
+        <Suggestions question={question} />
+        {getInput(type)}
       </div>
       {assistance ? (
         <Assistance question={question} assistance={assistance} />

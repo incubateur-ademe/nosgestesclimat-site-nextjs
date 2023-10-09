@@ -113,3 +113,10 @@ type NGCRule = {
 }
 
 export type NGCRules = Record<string, NGCRule>
+
+export type NGCQuestionType =
+  | 'notQuestion'
+  | 'mosaic'
+  | 'choices'
+  | 'boolean'
+  | 'number'

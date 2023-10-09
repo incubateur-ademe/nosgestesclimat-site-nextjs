@@ -1,19 +1,20 @@
 'use client'
 
 import { useMemo } from 'react'
-import getType from '../../helpers/getType'
+import getType from '../helpers/getType'
 import {
   NGCEvaluatedNode,
+  NGCQuestionType,
   NGCRuleNode,
   NodeValue,
   Situation,
-} from '../../types'
+} from '../types'
 type Props = {
   dottedName: string
   safeGetRule: (rule: string) => NGCRuleNode | null
   safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   evaluation: NGCEvaluatedNode | null
-  type: string | undefined
+  type: NGCQuestionType | undefined
   questionsOfMosaic: string[]
   updateSituation: (situationToAdd: Situation) => Promise<void>
   addFoldedStep: (foldedStep: string) => void
@@ -32,21 +33,25 @@ export default function useValue({
   const value = useMemo<NodeValue>(() => evaluation?.nodeValue, [evaluation])
 
   const displayValue = useMemo<string | number>(() => {
-    if (type === 'choices') {
-      const stringValue = String(value)
-      return stringValue.startsWith("'")
-        ? stringValue.substring(1, stringValue.length - 1)
-        : stringValue
+    switch (type) {
+      case 'choices': {
+        const stringValue = String(value)
+        return stringValue.startsWith("'")
+          ? stringValue.substring(1, stringValue.length - 1)
+          : stringValue
+      }
+      case 'boolean':
+        return value === null || value === false || value === 'non' // Model shenanigans
+          ? 'non'
+          : 'oui'
+      case 'number':
+        return Number(value)
+      case 'mosaic':
+        return 'mosaic'
+      default:
+        // NOTE(@EmileRolley): I'm not sure what is the wanted behavior for undefined type or 'noQuestion'
+        return 'non défini'
     }
-    if (type === 'boolean') {
-      return value === null || value === false || value === 'non' // Model shenanigans
-        ? 'non'
-        : 'oui'
-    }
-    if (type === 'mosaic') {
-      return 'mosaic'
-    }
-    return Number(value)
   }, [value, type])
 
   const numericValue = useMemo<number>(
