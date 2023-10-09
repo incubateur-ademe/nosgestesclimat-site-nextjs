@@ -12,7 +12,7 @@ export const useQuestionInQueryParams = () => {
 
   const setQuestionInQueryParams = useCallback(
     (question: string) =>
-      router.push(
+      router.replace(
         '/simulateur/bilan?question=' +
           question.replaceAll(' . ', '.').replaceAll(' ', '_'),
         { scroll: false }
