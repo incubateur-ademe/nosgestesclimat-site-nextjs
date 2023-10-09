@@ -16,7 +16,7 @@ export function useRules({ lang, region, isOptim = true }: Props) {
   const dataServer = useDataServer()
 
   return useQuery(
-    ['rules', lang, region],
+    ['rules', lang, region, isOptim],
     () =>
       axios
         .get(
