@@ -91,7 +91,6 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.15",
     "@incubateur-ademe/nosgestesclimat-scripts": "^0.1.0",
-    "@netlify/plugin-nextjs": "^4.40.1",
     "@svgr/cli": "^8.1.0",
     "@types/cheerio": "^0.22.32",
     "@types/crypto-js": "^4.1.2",
