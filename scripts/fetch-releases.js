@@ -9,14 +9,14 @@
 // "public repo" authorization when generating the access token.
 require('dotenv').config()
 require('isomorphic-fetch')
-import { writeFileSync } from 'fs'
-import { join, resolve } from 'path'
+const { writeFileSync } = require('fs')
+const { join, resolve } = require('path')
 
 const repository = 'nosgestesclimat'
-const organization = 'datagir'
+const organization = 'incubateur-ademe'
 
 async function main() {
-  const dir = resolve(__dirname, '../source/locales/releases/')
+  const dir = resolve(__dirname, '../src/locales/releases/')
   const releases = await fetchReleases()
   writeFileSync(
     join(dir, 'releases-fr.json'),
