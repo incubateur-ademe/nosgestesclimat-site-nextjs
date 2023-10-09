@@ -7,9 +7,10 @@ import { useLocale } from './useLocale'
 type Props = {
   lang?: string
   region?: string
+  isOptim?: boolean
 }
 
-export function useRules({ lang, region }: Props) {
+export function useRules({ lang, region, isOptim = true }: Props) {
   const locale = useLocale()
   const { user } = useUser()
   const dataServer = useDataServer()
@@ -22,7 +23,7 @@ export function useRules({ lang, region }: Props) {
           `${dataServer}/co2-model.${user?.region?.code || region}-lang.${
             // TODO: The model should be "en" and not "en-us"
             (locale === 'en' ? 'en-us' : locale) || lang
-          }-opti.json`
+          }${isOptim ? '-opti' : ''}.json`
         )
         .then((res) => res.data as unknown),
     {
