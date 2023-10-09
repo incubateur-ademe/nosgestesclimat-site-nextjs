@@ -23,9 +23,12 @@ const questionsThatCantBeZero = [
 
 export default function Navigation({ question, onComplete = () => '' }: Props) {
   const { t } = useClientTranslation()
+
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
+
   const { isMissing, setDefaultAsValue, numericValue } = useRule(question)
+
   const [isSettingDefaultValue, setIsSettingDefaultValue] = useState(false)
 
   const nextDisabled =
