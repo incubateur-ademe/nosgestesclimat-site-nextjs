@@ -1,14 +1,22 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
 import Image from 'next/image'
+
+export async function generateMetadata() {
+  return getMetadataObject({
+    title: 'Ambassadeurs - Nos Gestes Climat',
+    description:
+      'Découvrez les ambassadeurs de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.',
+  })
+}
 
 const ambassadeurs = ambassadeursYaml as any
 const categories = Object.keys(ambassadeurs)
 
 export default function page() {
-  console.log(typeof ambassadeurs['Médias'])
   return (
     <div>
       <Title>
