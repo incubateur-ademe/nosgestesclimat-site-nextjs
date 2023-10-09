@@ -125,7 +125,6 @@
     "intl-locales-supported": "^1.8.11",
     "isomorphic-fetch": "^3.0.0",
     "json-stable-stringify": "^1.0.2",
-    "mock-local-storage": "^1.1.23",
     "node-pandoc-promise": "^0.0.6",
     "nodemon": "^3.0.1",
     "postcss-loader": "^7.3.3",
