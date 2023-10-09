@@ -17,8 +17,9 @@
     "start": "next start",
     "lint": "next lint",
     "e2e": "cypress open --e2e",
-    "generate:ui": "node scripts/i18n/generate-ui.js",
-    "translate:ui": "node scripts/i18n/translate-ui.js"
+    "ui:parse": "node scripts/i18n/generate-ui.js",
+    "ui:check": " node scripts/i18n/check-ui.js",
+    "ui:translate": "node scripts/i18n/translate-ui.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1",
@@ -84,6 +85,8 @@
   ],
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.15",
+    "@incubateur-ademe/nosgestesclimat-scripts": "^0.1.0",
+    "@netlify/plugin-nextjs": "^4.40.1",
     "@svgr/cli": "^8.1.0",
     "@types/cheerio": "^0.22.32",
     "@types/crypto-js": "^4.1.2",
