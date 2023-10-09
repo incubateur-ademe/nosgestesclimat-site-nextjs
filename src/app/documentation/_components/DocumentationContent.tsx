@@ -47,7 +47,7 @@ export default function DocumentationContent({
   //TODO: this is shit
   useEffect(() => {
     if (engine && situation) {
-      const rules = Object.entries(engine.getParsedRules()).map(
+      const rules = Object.keys(engine.getParsedRules())
         (rule: (string | any)[]) => rule[0]
       )
 
