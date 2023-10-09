@@ -20,7 +20,7 @@ export function useRules({ lang, region, isOptim = true }: Props) {
       : region
 
   return useQuery(
-    ['rules', lang, region],
+    ['rules', lang, region, isOptim],
     () =>
       axios
         .get(
