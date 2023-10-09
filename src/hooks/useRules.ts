@@ -36,7 +36,6 @@ export function useRules({ lang, region, isOptim = true }: Props) {
       refetchOnWindowFocus: process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER
         ? true
         : false,
-      refetchInterval: process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER ? 3000 : false,
     }
   )
 }
