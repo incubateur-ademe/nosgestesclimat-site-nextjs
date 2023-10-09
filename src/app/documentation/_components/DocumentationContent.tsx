@@ -7,7 +7,7 @@ import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
 import { safeGetSituation } from '@/publicodes-state/helpers/safeGetSituation'
-import { Situation } from '@/publicodes-state/types'
+import { Rules, Situation } from '@/publicodes-state/types'
 import { SuppportedRegions } from '@/types/international'
 import Head from 'next/head'
 import Engine from 'publicodes'
@@ -40,7 +40,7 @@ export default function DocumentationContent({
   const situation = currentSimulation?.situation
 
   const engine = useMemo<Engine | null>(
-    () => (rules ? new Engine(rules as any) : null),
+    () => (rules ? new Engine(rules as Rules) : null),
     [rules]
   )
 
@@ -48,8 +48,6 @@ export default function DocumentationContent({
   useEffect(() => {
     if (engine && situation) {
       const rules = Object.keys(engine.getParsedRules())
-        (rule: (string | any)[]) => rule[0]
-      )
 
       const safeSituation: Situation = safeGetSituation({
         situation,
@@ -62,15 +60,13 @@ export default function DocumentationContent({
 
   const documentationPath = '/documentation'
 
-  console.log('TODO: handle og:image')
-
   if (!engine) return
 
   return (
     <RulePage
       language={i18n.language as 'fr' | 'en'}
       rulePath={(path as string) ?? ''}
-      engine={engine as any}
+      engine={engine as Engine}
       documentationPath={documentationPath}
       renderers={{
         Head,
