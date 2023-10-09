@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { useLocale } from '@/hooks/useLocale'
 import { QuestionSize } from '@/types/values'
 import { HTMLAttributes } from 'react'
 
@@ -24,6 +25,8 @@ export default function NumberInput({
   min = 0,
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
+  const locale = useLocale()
+
   return (
     <div
       className={`flex items-center justify-end gap-1 ${sizeClassNames[size]}`}>
@@ -32,7 +35,7 @@ export default function NumberInput({
         type="number"
         min={min}
         value={isMissing ? '' : value}
-        placeholder={value.toLocaleString('fr-fr', {
+        placeholder={value.toLocaleString(locale, {
           maximumFractionDigits: 1,
         })}
         onChange={(event) => {

@@ -6,7 +6,6 @@ import { getMatomoEventChangeRegion } from '@/constants/matomo'
 import { defaultModelRegionCode } from '@/constants/translation'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
@@ -18,8 +17,6 @@ type Props = {
   supportedRegions: SuppportedRegions
 }
 export default function LocalisationBanner({ supportedRegions }: Props) {
-  const { t } = useClientTranslation()
-
   const { user, tutorials, hideTutorial } = useUser()
 
   const currentLocale = useLocale() as string
@@ -34,7 +31,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
     regionParams?.[currentLocale]?.nom as string
   )
 
-  const versionName = regionParams
+  const versionName: string = regionParams
     ? regionParams?.[currentLocale]?.['gentilé'] ??
       regionParams?.[currentLocale]?.['nom']
     : countryName
@@ -46,15 +43,15 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
   return (
     <Card
       className="mx-auto mb-8 w-[32rem] max-w-full flex-row"
-      style={{ backgroundColor: '#fff8d3' }}>
+      style={{ backgroundColor: '#fff8d3' }}
+    >
       <div className="flex gap-8">
         <div className="flex w-8 items-center text-4xl">📍</div>
         <div className="flex-1">
           {regionParams && (
-            <p className="mb-0 flex items-baseline gap-1">
-              {t('components.localisation.LocalisationMessage.version', {
-                versionName,
-              })}
+            <p className="mb-0 flex-1 items-baseline gap-1">
+              <Trans>Vous utilisez la version</Trans>{' '}
+              <strong>{versionName}</strong> <Trans>du test</Trans>
               <CountryFlag code={code} />
               {code !== defaultModelRegionCode && (
                 <span>
@@ -115,7 +112,8 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
               hideTutorial('localisationBanner')
 
               trackEvent(getMatomoEventChangeRegion(code))
-            }}>
+            }}
+          >
             <Trans>J'ai compris</Trans>
           </Button>
         </div>

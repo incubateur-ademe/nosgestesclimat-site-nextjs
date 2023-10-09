@@ -1,4 +1,6 @@
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useDebug } from '@/hooks/useDebug'
+import { useLocale } from '@/hooks/useLocale'
 import { useForm, useRule } from '@/publicodes-state'
 
 type Props = {
@@ -12,6 +14,9 @@ const statusClassNames = {
   default: 'bg-primaryLight',
 }
 export default function Question({ question, toggleQuestionList }: Props) {
+  const locale = useLocale()
+  const { t } = useClientTranslation()
+
   const { label, isMissing, displayValue, unit, type, color } =
     useRule(question)
 
@@ -29,7 +34,8 @@ export default function Question({ question, toggleQuestionList }: Props) {
       onClick={() => {
         setCurrentQuestion(question)
         toggleQuestionList()
-      }}>
+      }}
+    >
       <div
         className="absolute bottom-0 left-0 top-0 w-2"
         style={{ backgroundColor: color }}
@@ -48,13 +54,14 @@ export default function Question({ question, toggleQuestionList }: Props) {
           <div
             className={`rounded-lg bg-white px-4 py-2 ${
               isMissing ? 'text-gray-500' : 'text-primaryDark'
-            } first-letter:uppercase`}>
+            } first-letter:uppercase`}
+          >
             {displayValue
-              .toLocaleString('fr-fr', {
+              .toLocaleString(locale, {
                 maximumFractionDigits: 2,
               })
               .replaceAll("'", '')}{' '}
-            {unit}
+            {t(unit ?? "")}
           </div>
         ) : null}
       </div>

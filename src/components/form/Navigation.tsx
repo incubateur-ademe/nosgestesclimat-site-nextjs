@@ -1,10 +1,10 @@
-import Trans from '@/components/translation/Trans'
 import {
   getMatomoEventClickDontKnow,
   getMatomoEventClickNextQuestion,
   getMatomoEventClickPrevQuestion,
 } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
@@ -22,6 +22,7 @@ const questionsThatCantBeZero = [
 ]
 
 export default function Navigation({ question, onComplete = () => '' }: Props) {
+  const { t } = useClientTranslation()
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
   const { isMissing, setDefaultAsValue, numericValue } = useRule(question)
@@ -40,8 +41,9 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
               gotoPrevQuestion()
             }
           }}
-          color="text">
-          <Trans>← Précédent</Trans>
+          color="text"
+        >
+          {'← ' + t('Précédent')}
         </Button>
       ) : null}
       <Button
@@ -63,14 +65,13 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
             return
           }
           onComplete()
-        }}>
-        <Trans>
-          {noNextQuestion
-            ? 'Terminer'
-            : isMissing
-            ? 'Je ne sais pas →'
-            : 'Suivant →'}
-        </Trans>
+        }}
+      >
+        {noNextQuestion
+          ? t('Terminer')
+          : isMissing
+          ? t('Je ne sais pas') + ' →'
+          : t('Suivant') + ' →'}
       </Button>
     </div>
   )

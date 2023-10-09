@@ -1,4 +1,5 @@
 import ChoiceInput from '@/components/misc/ChoiceInput'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { NodeValue } from '@/publicodes-state/types'
 
 type Props = {
@@ -16,19 +17,21 @@ export default function BooleanInput({
   label,
   ...props
 }: Props) {
+  const { t } = useClientTranslation()
+
   return (
     <fieldset className="align flex flex-col items-end">
       <legend className="sr-only">{label}</legend>
 
       <ChoiceInput
-        label="Oui"
+        label={t('Oui')}
         active={!isMissing && value ? true : false}
         onClick={() => setValue('oui')}
         data-cypress-id={`${props['data-cypress-id']}-oui`}
       />
 
       <ChoiceInput
-        label="Non"
+        label={t('Non')}
         active={!isMissing && !value ? true : false}
         onClick={() => setValue('non')}
         data-cypress-id={`${props['data-cypress-id']}-non`}

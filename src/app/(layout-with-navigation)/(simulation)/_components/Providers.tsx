@@ -31,7 +31,7 @@ export default function Providers({
   const pathname = usePathname()
 
   const { data: rules, isInitialLoading } = useRules({
-    lang: lang || 'fr',
+    lang,
     region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
   })
 
@@ -59,6 +59,8 @@ export default function Providers({
   ) : pathname === '/tutoriel' ? (
     children
   ) : (
-    <Loader color="dark" />
+    <div className="flex flex-1 items-center justify-center">
+      <Loader color="dark" />
+    </div>
   )
 }

@@ -1,15 +1,11 @@
 import Footer from '@/components/layout/Footer'
 import Logo from '@/components/misc/Logo'
 import Main from '@/design-system/layout/Main'
-import { useSupportedRegions } from '@/hooks/useSupportedRegions'
 import { PropsWithChildren } from 'react'
-import Providers from '../(layout-with-navigation)/(simulation)/_components/Providers'
 
 export default async function Layout({ children }: PropsWithChildren) {
-  const supportedRegions = await useSupportedRegions()
-
   return (
-    <Providers supportedRegions={supportedRegions}>
+    <>
       <header>
         <Logo />
       </header>
@@ -19,6 +15,6 @@ export default async function Layout({ children }: PropsWithChildren) {
         </div>
       </Main>
       <Footer />
-    </Providers>
+    </>
   )
 }

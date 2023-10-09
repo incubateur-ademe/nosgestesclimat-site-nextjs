@@ -69,7 +69,7 @@ export default function Explanation({ toggleOpen }: Props) {
         <Button
           data-cypress-id="understood-explanation-button"
           onClick={toggleOpen}>
-          J'ai compris
+          <Trans>J'ai compris</Trans>
         </Button>
       </div>
     </motion.div>
