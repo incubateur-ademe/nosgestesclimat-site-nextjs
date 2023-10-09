@@ -6,18 +6,17 @@
 
 const fs = require('fs')
 const stringify = require('json-stable-stringify')
-
-const cli = require('../../nosgestesclimat/scripts/i18n/cli')
-const deepl = require('../../nosgestesclimat/scripts/i18n/deepl')
+const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
+const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
 
 const { srcLang, destLangs } = cli.getArgs(
   'Calls the DeepL API to translate the JSON release files.',
   { source: true, target: true }
 )
 
-const srcPath = `source/locales/releases/releases-${srcLang}.json`
+const srcPath = `src/locales/releases/releases-${srcLang}.json`
 const getDestPath = (destLang) =>
-  `source/locales/releases/releases-${destLang}.json`
+  `src/locales/releases/releases-${destLang}.json`
 
 const translateTo = async (srcJSON, tradJSON, destPath, destLang) => {
   const alreadyTranslatedReleases = tradJSON.map((release) => {

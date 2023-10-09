@@ -1,4 +1,5 @@
 import ChoiceInput from '@/components/misc/ChoiceInput'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { NodeValue } from '@/publicodes-state/types'
 
 type Props = {
@@ -8,15 +9,16 @@ type Props = {
 }
 
 export default function BooleanInput({ value, isMissing, setValue }: Props) {
+  const { t } = useClientTranslation()
   return (
     <div className="align flex flex-col items-end">
       <ChoiceInput
-        label="Oui"
+        label={t('Oui')}
         active={!isMissing && value ? true : false}
         onClick={() => setValue('oui')}
       />
       <ChoiceInput
-        label="Non"
+        label={t('Non')}
         active={!isMissing && !value ? true : false}
         onClick={() => setValue('non')}
       />

@@ -12,7 +12,7 @@ export default function SondagesBlock() {
         <Trans>Entreprises, collectivités, écoles</Trans>
       </h3>
       <p>
-        <Trans>
+        <Trans i18nKey="SondagesBlock.description">
           Les <strong>sondages</strong> et <strong>conférences</strong> vous
           permettent de comparer votre empreinte en direct ou en groupes de plus
           de 20 personnes

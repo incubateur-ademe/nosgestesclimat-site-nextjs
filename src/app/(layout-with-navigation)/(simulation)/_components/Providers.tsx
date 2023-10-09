@@ -31,7 +31,7 @@ export default function Providers({
   const pathname = usePathname()
 
   const { data: rules, isInitialLoading } = useRules({
-    lang: lang || 'fr',
+    lang,
     region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
   })
 

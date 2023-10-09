@@ -17,8 +17,14 @@
     "start": "next start",
     "lint": "next lint",
     "e2e": "cypress open --e2e",
-    "generate:ui": "node scripts/i18n/generate-ui.js",
-    "translate:ui": "node scripts/i18n/translate-ui.js"
+    "ui:parse": "node scripts/i18n/generate-ui.js",
+    "ui:check": "yarn run ui:parse && node scripts/i18n/check-ui.js",
+    "ui:translate": "node scripts/i18n/translate-ui.js",
+    "faq:translate": "node scripts/i18n/translate-faq.js",
+    "faq:check": "node scripts/i18n/check-faq.js",
+    "pages:translate": "node scripts/i18n/translate-pages.js",
+    "releases:fetch": "node scripts/fetch-releases.js",
+    "releases:translate": "node scripts/i18n/translate-release.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1",
@@ -84,6 +90,7 @@
   ],
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.15",
+    "@incubateur-ademe/nosgestesclimat-scripts": "^0.1.0",
     "@svgr/cli": "^8.1.0",
     "@types/cheerio": "^0.22.32",
     "@types/crypto-js": "^4.1.2",
@@ -117,6 +124,7 @@
     "file-loader": "^6.2.0",
     "intl-locales-supported": "^1.8.11",
     "isomorphic-fetch": "^3.0.0",
+    "json-stable-stringify": "^1.0.2",
     "node-pandoc-promise": "^0.0.6",
     "nodemon": "^3.0.1",
     "postcss-loader": "^7.3.3",
