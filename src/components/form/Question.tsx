@@ -6,7 +6,6 @@ import Mosaic from '@/components/form/question/Mosaic'
 import Notification from '@/components/form/question/Notification'
 import NumberInput from '@/components/form/question/NumberInput'
 import Suggestions from '@/components/form/question/Suggestions'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 
 type Props = {
@@ -14,7 +13,6 @@ type Props = {
 }
 
 export default function Question({ question }: Props) {
-  const { t } = useClientTranslation()
   const {
     type,
     label,
@@ -36,7 +34,7 @@ export default function Question({ question }: Props) {
         <Suggestions question={question} />
         {type === 'number' && (
           <NumberInput
-            unit={unit !== undefined ? t(unit) : ''}
+            unit={unit}
             value={numericValue}
             setValue={(value) => {
               const limit = 0
