@@ -1,9 +1,7 @@
-import { readFileSync, writeFileSync } from 'fs'
-import { parse } from 'yaml'
+const { readFileSync, writeFileSync } = require('fs')
+const { parse } = require('yaml')
 
-const personas = parse(
-  readFileSync('./nosgestesclimat/personas/personas-fr.yaml', 'utf8')
-)
+const personas = parse(readFileSync('./temp/personas-fr.yaml', 'utf8'))
 
 const getFileContent = (name, data) => `
 import { recursivelyFillSimulation } from '../helpers/simulation/recursivelyFillSimulation'

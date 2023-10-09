@@ -18,7 +18,8 @@
     "lint": "next lint",
     "e2e": "cypress open --e2e",
     "generate:ui": "node scripts/i18n/generate-ui.js",
-    "translate:ui": "node scripts/i18n/translate-ui.js"
+    "translate:ui": "node scripts/i18n/translate-ui.js",
+    "e2e:generate:personas": "node cypress/scripts/generateSpecsFromPersonas.cjs"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.15",
