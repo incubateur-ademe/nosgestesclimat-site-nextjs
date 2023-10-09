@@ -14,13 +14,17 @@ export function useRules({ lang, region, isOptim = true }: Props) {
   const locale = useLocale()
   const { user } = useUser()
   const dataServer = useDataServer()
+  const regionCode =
+    user?.region?.code != undefined && user?.region?.code !== ''
+      ? user?.region?.code
+      : region
 
   return useQuery(
     ['rules', lang, region],
     () =>
       axios
         .get(
-          `${dataServer}/co2-model.${user?.region?.code ?? region}-lang.${
+          `${dataServer}/co2-model.${regionCode}-lang.${
             // TODO: The model should be "en" and not "en-us"
             locale === 'en' ? 'en-us' : locale
           }${isOptim ? '-opti' : ''}.json`
