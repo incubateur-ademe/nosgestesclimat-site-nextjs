@@ -4,13 +4,17 @@ import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import i18nConfig from '@/i18nConfig'
 import { useCurrentLocale } from 'next-i18n-router/client'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 export default function LanguageSwitchButton() {
   const { t } = useClientTranslation()
 
   const router = useRouter()
+
   const currentPathname = usePathname()
+
+  const searchParams = useSearchParams().toString()
+
   const currentLocale = useCurrentLocale(i18nConfig)
 
   const handleChange = (newLocale: string) => {
@@ -22,9 +26,17 @@ export default function LanguageSwitchButton() {
     document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`
 
     if (currentLocale === i18nConfig.defaultLocale) {
-      router.push('/' + newLocale + currentPathname)
+      router.push(
+        '/' +
+          newLocale +
+          currentPathname +
+          (searchParams.length > 0 ? `?=${searchParams}` : '')
+      )
     } else {
-      router.push(currentPathname.replace(`/${currentLocale}`, `/${newLocale}`))
+      router.push(
+        currentPathname.replace(`/${currentLocale}`, `/${newLocale}`) +
+          (searchParams.length > 0 ? `?=${searchParams}` : '')
+      )
     }
 
     router.refresh()
