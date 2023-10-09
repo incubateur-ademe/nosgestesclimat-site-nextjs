@@ -17,12 +17,12 @@ export function useClientTranslation() {
 
   useEffect(() => {
     if (!initChangeLang) {
-      i18n.changeLanguage(locale || '')
+      i18n.changeLanguage(locale)
       setInitChangeLang(true)
     }
   }, [locale, initChangeLang, i18n])
 
-  if (!isClient && locale && i18n.resolvedLanguage !== locale) {
+  if (!isClient && i18n.resolvedLanguage !== locale) {
     i18n.changeLanguage(locale)
   } else {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -37,7 +37,7 @@ export function useClientTranslation() {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-      if (!locale || i18n.resolvedLanguage === locale) return
+      if (i18n.resolvedLanguage === locale) return
 
       i18n.changeLanguage(locale)
     }, [locale, i18n])

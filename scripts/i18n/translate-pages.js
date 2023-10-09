@@ -7,9 +7,9 @@
 const fs = require('fs')
 const glob = require('glob')
 
-const utils = require('../../nosgestesclimat/scripts/i18n/utils')
-const deepl = require('../../nosgestesclimat/scripts/i18n/deepl')
-const cli = require('../../nosgestesclimat/scripts/i18n/cli')
+const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
+const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
+const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
 
 const { srcLang, destLangs, srcFile, force } = cli.getArgs(
   'Calls the DeepL API to translate the Markdown files.',
@@ -18,9 +18,10 @@ const { srcLang, destLangs, srcFile, force } = cli.getArgs(
     source: true,
     force: true,
     target: true,
-    defaultSrcFiles: '*.md',
   }
 )
+
+const fileGlob = srcFile ?? '*.{md,mdx}'
 
 const translateTo = async (src, destPath, destLang) => {
   console.log(`Translating to ${cli.yellow(destPath)}...`)
@@ -34,10 +35,10 @@ const translateTo = async (src, destPath, destLang) => {
 
 console.log(
   `Translating Markdown files from ${cli.yellow(
-    `source/locales/pages/${srcLang}/${srcFile}`
+    `source/locales/pages/${srcLang}/${fileGlob}`
   )}...`
 )
-glob(`source/locales/pages/${srcLang}/${srcFile}`, (err, files) => {
+glob(`src/locales/pages/${srcLang}/${fileGlob}`, (err, files) => {
   cli.exitIfError(err, 'ERROR: an error occured while fetching the files:')
   console.log(
     `Found ${cli.withStyle(
@@ -46,6 +47,7 @@ glob(`source/locales/pages/${srcLang}/${srcFile}`, (err, files) => {
     )} files to translate.`
   )
 
+  console.log('files', files)
   files.forEach((file) => {
     const src = fs.readFileSync(file, 'utf8')
     destLangs.forEach((destLang) => {

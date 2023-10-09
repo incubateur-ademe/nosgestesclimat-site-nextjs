@@ -22,18 +22,19 @@ export default function RegionSelector({
 
   const orderedSupportedRegions = sortSupportedRegions({
     supportedRegions,
-    currentLocale: locale || 'fr',
+    currentLocale: locale,
   })
 
   const numberOfRegions = Object.entries(orderedSupportedRegions).length
 
   const { updateRegion, user } = useUser()
 
-  const { region } = user || {}
+  // NOTE(@EmileRolley): how could this be undefined? This doesn't match the type annotations
+  const { region } = user ?? {}
 
   const { isFetching } = useRules({
-    lang: locale || 'fr',
-    region: region?.code || 'FR',
+    lang: locale,
+    region: region?.code ?? 'FR',
   })
 
   return (
@@ -43,7 +44,8 @@ export default function RegionSelector({
           aria-disabled={isFetching || undefined}
           className={`middle w-auto cursor-pointer rounded-md bg-primaryLight p-4 ${
             isFetching ? 'pointer-events-none opacity-60' : ''
-          }`}>
+          }`}
+        >
           <span>
             🗺️ <Trans>Choisir une autre région</Trans>{' '}
             <small title={`${numberOfRegions} régions`}>
@@ -60,7 +62,7 @@ export default function RegionSelector({
           updateCurrentRegion={(code: string) => {
             updateRegion({
               code,
-              name: supportedRegions[code][locale as string]
+              name: supportedRegions[code][locale]
                 ?.nom as unknown as string,
             })
           }}
@@ -73,7 +75,8 @@ export default function RegionSelector({
             role="img"
             aria-label="emoji world"
             aria-hidden
-            className="mr-2">
+            className="mr-2"
+          >
             🌐
           </span>
           <p className="mb-0">
@@ -82,7 +85,8 @@ export default function RegionSelector({
               target="_blank"
               rel="noopener noreferrer"
               className="align-top"
-              href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md">
+              href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md"
+            >
               <Trans>Suivez le guide !</Trans>
               <NewTabSvg className="!-mt-1" />
             </a>
