@@ -19,8 +19,13 @@ export default function useNotifications({
   const notifications = useMemo<string[]>(
     () =>
       everyNotifications.filter(
-        (notification) =>
-          notification.split(' . ')[1] === dottedName.split(' . ')[1],
+        (notification) => {
+          const splitNotification = notification.split(' . ')
+          if (splitNotification.length <= 2) {
+            return splitNotification[0] === dottedName.split(' . ')[0]
+          }
+          return splitNotification[1] === dottedName.split(' . ')[1]
+        },
         [dottedName, everyNotifications]
       ),
     [dottedName, everyNotifications]
