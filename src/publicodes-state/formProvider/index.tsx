@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { PropsWithChildren, useContext, useMemo } from 'react'
 import simulationContext from '../simulationProvider/context'
 import Provider from './Provider'
@@ -17,8 +16,6 @@ export default function FailSafeFormProvider({
   children,
 }: PropsWithChildren<Props>) {
   const { safeEvaluate } = useContext(simulationContext)
-
-  const router = useRouter()
 
   const isRootSafe = useMemo<boolean>(
     () => (safeEvaluate(root) ? true : false),
