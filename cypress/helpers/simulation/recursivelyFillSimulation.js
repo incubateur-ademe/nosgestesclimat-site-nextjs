@@ -24,11 +24,14 @@ export async function recursivelyFillSimulation(persona = {}) {
           return
         }
 
-        const id = decodeRuleName(input.attr('data-cypress-id'))
+        const dottedName = decodeRuleName(cy.url().split('?question=')[1])
 
+        cy.log(dottedName)
         // Is last question
-        if (id === LAST_QUESTION_ID && input.val() === 'on') {
+        if (dottedName === LAST_QUESTION_ID && input.val() === 'on') {
           clickNextButton()
+
+          cy.wait(10000)
 
           cy.get('div[data-cypress-id="fin-slider"]')
 
@@ -39,35 +42,45 @@ export async function recursivelyFillSimulation(persona = {}) {
         const type = input.attr('type')
 
         // Questions should follow the order of the categories
-        checkIfCategoryOrderIsRespected(id)
+        checkIfCategoryOrderIsRespected(dottedName)
+
+        cy.log(dottedName, persona?.situation?.[dottedName])
+
+        const definedPersonaDottedNames = Object.keys(
+          persona?.situation ?? {}
+        ).filter((dottedNameKey) => dottedNameKey.includes(dottedName))
 
         // No value for this persona
-        if (!persona[id]) {
+        if (!definedPersonaDottedNames.length <= 0) {
           skipQuestion()
           return
         }
 
-        const inputTargetedPromise = cy.get(`input[id="${id}"]`)
+        // Single number input or radio
+        if (definedPersonaDottedNames.length === 1) {
+          cy.get(
+            `input[data-cypress-id="${dottedName}${
+              type === 'radio' ? `-${persona?.situation?.[dottedName]}` : ''
+            }"]`
+          ).type(persona.situation[dottedName])
 
-        inputTargetedPromise.then((inputTargeted) => {
-          // Model shenanigans
-          if (persona[id].valeur || persona[id].valeur === 0) {
-            inputTargeted.type(persona[id].valeur)
+          cy.wait(1000)
+        }
 
-            // Text value
-          } else if (type === 'text') {
-            inputTargeted.type(persona[id])
+        if (definedPersonaDottedNames.length > 1) {
+          for (mosaicItemDottedName in definedPersonaDottedNames) {
+            cy.get(`input[data-cypress-id="${mosaicItemDottedName}"]`).type(
+              persona.situation[mosaicItemDottedName]
+            )
 
-            // Checkbox value
-          } else if (type === 'checkbox') {
-            inputTargeted.check(persona[id])
+            cy.wait(1000)
           }
+        }
 
-          clickNextButton()
+        clickNextButton()
 
-          // Call itself recursively to go to the next question
-          answerCurrentQuestion()
-        })
+        // Call itself recursively to go to the next question
+        answerCurrentQuestion()
       })
     }
 

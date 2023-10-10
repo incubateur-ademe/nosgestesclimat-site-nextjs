@@ -40,17 +40,7 @@
     {
       "files": ["*.js", "*.jsx"],
       "parser": "@babel/eslint-parser"
-    },
-    // Add override for cypress tests
-    {
-      "files": ["cypress/**/*.js"],
-      "parserOptions": {
-        "project": "./cypress/tsconfig.json",
-        "tsconfigRootDir": "."
-      },
-      "rules": {
-        "cypress/no-unnecessary-waiting": "off"
-      }
     }
-  ]
+  ],
+  "exclude": ["node_modules", "cypress/**/*"]
 }

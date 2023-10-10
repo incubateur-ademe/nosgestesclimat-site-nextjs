@@ -1,6 +1,5 @@
 import Trans from '@/components/translation/Trans'
 import { useRule } from '@/publicodes-state'
-import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import { motion } from 'framer-motion'
 
 type Props = {
@@ -45,7 +44,7 @@ export default function MosaicBooleanInput({
         onClick={() => {
           setValue(value ? 'non' : 'oui')
         }}
-        data-cypress-id={`${encodeRuleName(question)}`}
+        data-cypress-id={`${question}-${value}`}
       />
       <span
         className={`${checkClassNames[status]} block h-5 w-5 items-center rounded-sm border-2 leading-4`}>

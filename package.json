@@ -17,7 +17,7 @@
     "start": "next start",
     "lint": "next lint",
     "e2e": "cypress open --e2e",
-    "e2e:generate:personas": "node cypress/scripts/generateSpecsFromPersonas.cjs",
+    "e2e:generate:personas": "node cypress/scripts/generateSpecsFromPersonas.mjs",
     "ui:parse": "node scripts/i18n/generate-ui.js",
     "ui:check": "yarn run ui:parse && node scripts/i18n/check-ui.js",
     "ui:translate": "node scripts/i18n/translate-ui.js",
