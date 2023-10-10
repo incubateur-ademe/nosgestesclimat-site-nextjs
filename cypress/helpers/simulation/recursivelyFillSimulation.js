@@ -3,17 +3,12 @@ import { Promise } from 'core-js'
 import { checkIfCategoryOrderIsRespected } from '../categories/checkIfCategoryOrderIsRespected'
 import { clickNextButton } from '../elements/buttons'
 
-const LAST_QUESTION_ID = 'services sociétaux . question-rhétorique-ok'
+const LAST_QUESTION_ID = 'services sociétaux . question rhétorique-ok'
 
 export async function recursivelyFillSimulation(persona = {}) {
   return new Promise((resolve) => {
     function answerCurrentQuestion() {
       const inputPromise = cy.get('input')
-
-      function skipQuestion() {
-        clickNextButton()
-        recursivelyFillSimulation(persona)
-      }
 
       // Cypress doesn't handle async/await
       inputPromise.then((input) => {
@@ -23,56 +18,73 @@ export async function recursivelyFillSimulation(persona = {}) {
           return
         }
 
-        const dottedName = input.attr('data-cypress-id')
+        // @bjlaa: this is a hack to be able to differenciate between
+        // mosaics and single questions ; single questions have not mosaicDottedName defined
+        const [dottedName, mosaicDottedName] = input
+          .attr('data-cypress-id')
+          .split('---')
 
-        cy.log(dottedName)
+        function skipQuestion() {
+          clickNextButton()
+
+          cy.wait(1000)
+
+          answerCurrentQuestion()
+        }
+
         // Is last question
-        if (dottedName === LAST_QUESTION_ID && input.val() === 'on') {
+        if (dottedName === LAST_QUESTION_ID) {
           clickNextButton()
 
           cy.wait(10000)
 
           cy.get('div[data-cypress-id="fin-slider"]')
 
-          resolve()
-          return
+          return resolve()
         }
-
-        const type = input.attr('type')
 
         // Questions should follow the order of the categories
         checkIfCategoryOrderIsRespected(dottedName)
 
-        cy.log(dottedName, persona?.situation?.[dottedName])
+        const type = input.attr('type')
 
-        const definedPersonaDottedNames = Object.keys(
-          persona?.situation ?? {}
-        ).filter((dottedNameKey) => dottedNameKey.includes(dottedName))
-        cy.log(definedPersonaDottedNames)
+        // Special case : radios
+        if (type === 'radio') {
+          const [dottedNameWithoutValueSuffix, value] = dottedName.split('-')
+          if (persona.situation[dottedNameWithoutValueSuffix] === value) {
+            cy.get(`label[data-cypress-id="${dottedName}-label"]`).click()
+
+            cy.wait(1000)
+          } else {
+            skipQuestion()
+          }
+        }
+
         // No value for this persona
-        if (definedPersonaDottedNames.length <= 0) {
+        if (!persona.situation[dottedName]) {
           skipQuestion()
-          cy.wait(1000)
           return
         }
 
         // Single number input or radio
-        if (definedPersonaDottedNames.length === 1) {
-          cy.get(
-            `input[data-cypress-id="${dottedName}${
-              type === 'radio' ? `-${persona?.situation?.[dottedName]}` : ''
-            }"]`
-          ).type(persona.situation[dottedName])
+        if (!mosaicDottedName && persona.situation[dottedName]) {
+          cy.get(`input[data-cypress-id="${dottedName}"]`).type(
+            persona.situation[dottedName]
+          )
 
           cy.wait(1000)
         }
 
+        const mosaicChildren = Object.keys(persona?.situation ?? {}).filter(
+          (dottedNameKey) => dottedNameKey.includes(mosaicDottedName)
+        )
+
         // Is Mosaic
-        if (definedPersonaDottedNames.length > 1) {
-          for (const mosaicItemDottedName of definedPersonaDottedNames) {
-            cy.get(`input[data-cypress-id="${mosaicItemDottedName}"]`).type(
-              persona.situation[mosaicItemDottedName]
-            )
+        if (mosaicChildren.length > 1) {
+          for (const mosaicItemDottedName of mosaicChildren) {
+            cy.get(
+              `input[data-cypress-id="${mosaicItemDottedName}---${mosaicDottedName}"]`
+            ).type(persona.situation[mosaicItemDottedName])
 
             cy.wait(1000)
           }

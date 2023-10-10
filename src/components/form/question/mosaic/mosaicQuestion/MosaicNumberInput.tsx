@@ -20,6 +20,8 @@ export default function NumberInput({
 }: Props) {
   const { value, isMissing, parent } = useRule(question)
 
+  const mosaicDottedName = question.split(' . ').slice(0, -2).join(' . ')
+
   // Model shenanigans for description split...
   return (
     <div
@@ -54,7 +56,7 @@ export default function NumberInput({
           value={isMissing ? '' : Number(value)}
           placeholder={String(value)}
           onChange={(event) => setValue(Number(event.target.value))}
-          data-cypress-id={`${question.split(' . ').slice(0, -2).join(' . ')}`}
+          data-cypress-id={`${question}---${mosaicDottedName}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
         />
         <Button
