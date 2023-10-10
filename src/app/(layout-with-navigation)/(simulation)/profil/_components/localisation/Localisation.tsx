@@ -37,8 +37,7 @@ export default function Localisation({
           role="img"
           aria-label="emoji pin"
           className="inline-blocl mr-3"
-          aria-hidden
-        >
+          aria-hidden>
           📍
         </span>
         <span>{t(title)}</span>
@@ -69,8 +68,7 @@ export default function Localisation({
                     updateRegion(
                       initialRegion as { code: string; name: string }
                     )
-                  }}
-                >
+                  }}>
                   <Trans>Revenir à ma région par défaut </Trans>{' '}
                   <span aria-label={initialRegion.name}>
                     <CountryFlag
@@ -82,7 +80,7 @@ export default function Localisation({
               </div>
             )}
             <RegionModelAuthors
-              authors={supportedRegions[region.code][locale ].authors}
+              authors={supportedRegions[region.code][locale].authors}
             />
           </div>
         </div>
