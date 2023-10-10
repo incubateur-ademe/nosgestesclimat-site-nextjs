@@ -26,7 +26,7 @@ export default function FailSafeFormProvider({
   )
 
   if (!isRootSafe) {
-    router.push('/404')
+    window.location = '/404' as unknown as Location
     return
   }
   return <Provider root={root}>{children}</Provider>

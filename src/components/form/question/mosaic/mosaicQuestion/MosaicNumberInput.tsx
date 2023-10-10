@@ -15,7 +15,7 @@ export default function NumberInput({
   description,
   setValue,
 }: Props) {
-  const { value, isMissing } = useRule(question)
+  const { value, isMissing, parent } = useRule(question)
 
   // Model shenanigans for description split...
   return (
@@ -51,7 +51,7 @@ export default function NumberInput({
           value={isMissing ? '' : Number(value)}
           placeholder={String(value)}
           onChange={(event) => setValue(Number(event.target.value))}
-          data-cypress-id={`${question}`}
+          data-cypress-id={`${question.split(' . ').slice(0, -2).join(' . ')}`}
         />
         <Button
           onClick={() => setValue(Number(value) + 1)}
