@@ -7,6 +7,7 @@ type Props = {
   description?: string
   active: boolean
   onClick: any
+  id?: string
 }
 
 export default function ChoiceInput({
@@ -14,6 +15,7 @@ export default function ChoiceInput({
   description,
   active,
   onClick,
+  id,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   return (
@@ -25,7 +27,8 @@ export default function ChoiceInput({
               ? 'bg-primary text-white'
               : 'bg-grey-100 text-primary hover:bg-primaryLight'
           } transition-colors`}
-          onClick={onClick}>
+          onClick={onClick}
+          id={id}>
           <span
             className={`${
               active ? 'border-white' : 'border-primary'

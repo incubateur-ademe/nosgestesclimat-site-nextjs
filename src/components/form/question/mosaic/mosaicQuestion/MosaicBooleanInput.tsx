@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
 
@@ -8,6 +9,7 @@ type Props = {
   icons?: string
   description?: string
   setValue: (value: string) => void
+  index: number
 }
 
 const buttonClassNames = {
@@ -26,6 +28,7 @@ export default function MosaicBooleanInput({
   icons,
   description,
   setValue,
+  index,
 }: Props) {
   const { value, isMissing, isInactive } = useRule(question)
 
@@ -40,7 +43,8 @@ export default function MosaicBooleanInput({
       className={`relative flex items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
       onClick={() => {
         setValue(value ? 'non' : 'oui')
-      }}>
+      }}
+      id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}>
       <span
         className={`${checkClassNames[status]} block h-5 w-5 items-center rounded-sm border-2 leading-4`}>
         {status === 'checked' ? (

@@ -6,6 +6,7 @@ type Props = {
   isMissing: boolean
   choices: any[]
   setValue: (value: string) => void
+  id?: string
 }
 
 export default function ChoicesInput({
@@ -14,6 +15,7 @@ export default function ChoicesInput({
   isMissing,
   choices,
   setValue,
+  id,
 }: Props) {
   return (
     <div className="align flex flex-col items-end">
@@ -25,6 +27,7 @@ export default function ChoicesInput({
             choice={choice}
             active={!isMissing && value === choice}
             setValue={setValue}
+            id={id}
           />
         ))}
     </div>

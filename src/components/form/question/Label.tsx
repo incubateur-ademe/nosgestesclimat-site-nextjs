@@ -1,3 +1,4 @@
+import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
 import { getMatomoEventClickHelp } from '@/constants/matomo'
 import Markdown from '@/design-system/utils/Markdown'
 import { QuestionSize } from '@/types/values'
@@ -11,6 +12,7 @@ type Props = {
   label?: string
   description?: string
   size?: QuestionSize
+  htmlFor?: string
 }
 
 const sizeClassNames = {
@@ -26,6 +28,7 @@ export default function Label({
   label,
   description,
   size = 'md',
+  htmlFor,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -34,11 +37,10 @@ export default function Label({
   if (!label) return
   return (
     <>
-      <div
+      <label
         className={`mb-3 ${sizeClassNames[size]} font-semibold`}
-        id="question-label"
-        tabIndex={0}
-        aria-label={label}>
+        aria-label={label}
+        htmlFor={htmlFor}>
         {label}{' '}
         {description ? (
           <button
@@ -47,11 +49,12 @@ export default function Label({
               setIsOpen((previsOpen) => !previsOpen)
             }}
             className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary text-base font-bold text-white`}
-            title={t("Voir plus d'informations")}>
+            title={t("Voir plus d'informations")}
+            id={QUESTION_DESCRIPTION_BUTTON_ID}>
             <code>i</code>
           </button>
         ) : null}
-      </div>
+      </label>
       {isOpen && description ? (
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
