@@ -1,4 +1,8 @@
 import {
+  DEFAULT_FOCUS_ELEMENT_ID,
+  QUESTION_DESCRIPTION_BUTTON_ID,
+} from '@/constants/accessibility'
+import {
   getMatomoEventClickDontKnow,
   getMatomoEventClickNextQuestion,
   getMatomoEventClickPrevQuestion,
@@ -37,9 +41,35 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
   const handleMoveFocus = () => {
     // Focus the question title upon question change
     setTimeout(() => {
-      const questionTitle = document.getElementById('question-label')
+      // Default : focus the first element focusable in the modified area of the form
+      const questionDescriptionButton = document.getElementById(
+        QUESTION_DESCRIPTION_BUTTON_ID
+      )
 
-      questionTitle?.focus()
+      if (questionDescriptionButton) {
+        questionDescriptionButton?.focus()
+        return
+      }
+
+      // Otherwise focus the first input or field button
+      const firstInputOrFieldButton = document.getElementById(
+        DEFAULT_FOCUS_ELEMENT_ID
+      )
+
+      if (firstInputOrFieldButton) {
+        firstInputOrFieldButton?.focus()
+        return
+      }
+
+      // Edge case : mosaics
+      const mosaicFirstField = document.getElementById(
+        `${DEFAULT_FOCUS_ELEMENT_ID}-0`
+      )
+
+      if (mosaicFirstField) {
+        mosaicFirstField?.focus()
+        return
+      }
     })
   }
 

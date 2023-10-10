@@ -11,11 +11,12 @@ export default function Mosaic({ question }: Props) {
   return (
     <div className="grid gap-4 md:grid-cols-2">
       {questionsOfMosaic
-        ? questionsOfMosaic.map((questionOfMosaic) => (
+        ? questionsOfMosaic.map((questionOfMosaic, index) => (
             <MosaicQuestion
               key={questionOfMosaic}
               parentMosaic={question}
               question={questionOfMosaic}
+              index={index}
             />
           ))
         : 'Cette mosaique n a pas d enfants.'}
