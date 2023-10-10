@@ -42,7 +42,7 @@ export default function ProfilPageContent({ supportedRegions }: Props) {
 
       <HasSimulationBanner />
 
-      {!isIframe && <Localisation supportedRegions={supportedRegions} />}
+      <Localisation supportedRegions={supportedRegions} />
 
       <SimulationAnswerList />
 
