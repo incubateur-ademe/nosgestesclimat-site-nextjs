@@ -23,7 +23,7 @@ export default function Simulateur() {
 
   useEffect(() => {
     if (!tutorials.testIntro) {
-      router.replace('/tutoriel')
+      setTimeout(() => router.replace('/tutoriel'), 10)
     }
   }, [tutorials])
 
