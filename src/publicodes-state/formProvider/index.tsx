@@ -22,6 +22,9 @@ export default function FailSafeFormProvider({
     [safeEvaluate, root]
   )
 
-  if (!isRootSafe) return <div>La racine du formulaire n'existe pas</div>
+  if (!isRootSafe) {
+    window.location = '/404' as unknown as Location
+    return
+  }
   return <Provider root={root}>{children}</Provider>
 }

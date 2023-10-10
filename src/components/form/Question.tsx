@@ -48,6 +48,7 @@ export default function Question({ question }: Props) {
             }}
             isMissing={isMissing}
             min={0}
+            data-cypress-id={question}
             id={DEFAULT_FOCUS_ELEMENT_ID}
           />
         )}
@@ -56,6 +57,8 @@ export default function Question({ question }: Props) {
             value={value}
             setValue={(value) => setValue(value, question)}
             isMissing={isMissing}
+            data-cypress-id={question}
+            label={label || ''}
             id={DEFAULT_FOCUS_ELEMENT_ID}
           />
         )}
@@ -66,6 +69,8 @@ export default function Question({ question }: Props) {
             value={String(value)}
             setValue={(value) => setValue(value, question)}
             isMissing={isMissing}
+            data-cypress-id={question}
+            label={label || ''}
             id={DEFAULT_FOCUS_ELEMENT_ID}
           />
         )}

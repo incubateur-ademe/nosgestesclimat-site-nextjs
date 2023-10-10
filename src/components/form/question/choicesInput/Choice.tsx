@@ -15,6 +15,7 @@ export default function Choice({
   active,
   setValue,
   id,
+  ...props
 }: Props) {
   const { title, description, icons } = useRule(question + ' . ' + choice)
 
@@ -30,6 +31,7 @@ export default function Choice({
       active={active}
       onClick={() => setValue(choice)}
       id={id}
+      {...props}
     />
   )
 }

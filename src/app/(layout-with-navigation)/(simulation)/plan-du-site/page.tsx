@@ -43,7 +43,7 @@ const links = {
 
 export default function PlanDuSitePage() {
   return (
-    <>
+    <div data-cypress-id="plan-links">
       <Title
         title={
           <Trans i18nKey="publicodes.planDuSite.title">Plan du site</Trans>
@@ -74,6 +74,6 @@ export default function PlanDuSitePage() {
 
         <Actions />
       </section>
-    </>
+    </div>
   )
 }

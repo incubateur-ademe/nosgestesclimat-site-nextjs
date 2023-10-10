@@ -6,6 +6,8 @@ type Props = {
   value: NodeValue
   isMissing: boolean
   setValue: (value: string) => void
+  'data-cypress-id': string
+  label: string
   id?: string
 }
 
@@ -13,22 +15,30 @@ export default function BooleanInput({
   value,
   isMissing,
   setValue,
+  label,
   id,
+  ...props
 }: Props) {
   const { t } = useClientTranslation()
+
   return (
-    <div className="align flex flex-col items-end">
+    <fieldset className="align flex flex-col items-end">
+      <legend className="sr-only">{label}</legend>
+
       <ChoiceInput
         label={t('Oui')}
         active={!isMissing && value ? true : false}
         onClick={() => setValue('oui')}
+        data-cypress-id={`${props['data-cypress-id']}-oui`}
         id={id}
       />
+
       <ChoiceInput
         label={t('Non')}
         active={!isMissing && !value ? true : false}
         onClick={() => setValue('non')}
+        data-cypress-id={`${props['data-cypress-id']}-non`}
       />
-    </div>
+    </fieldset>
   )
 }

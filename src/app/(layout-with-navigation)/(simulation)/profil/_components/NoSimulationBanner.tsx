@@ -23,7 +23,7 @@ export default function NoSimulationBanner() {
         <Trans>Vous n'avez pas encore fait le test.</Trans>
       </p>
 
-      <div className="md: flex w-full flex-wrap items-center justify-start justify-center gap-4">
+      <div className="md: flex w-full flex-wrap items-center justify-start gap-4">
         <ButtonLink href="/simulateur/bilan">
           <ProgressCircle className="mr-2" white />
 

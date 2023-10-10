@@ -1,11 +1,11 @@
-import { visit } from '../utils.js'
+import { visit } from '../../helpers/interactions/visit'
 
 describe('check for about page status', () => {
   beforeEach(() => {
     visit('nouveautes')
   })
 
-  it('has a title', () => {
+  it('displays at least one news title', () => {
     cy.get('[data-cypress-id="news-title"]').should('be.visible')
   })
 })

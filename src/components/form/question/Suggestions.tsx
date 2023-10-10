@@ -19,6 +19,7 @@ export default function Suggestions({ question }: Props) {
       {suggestions.map((suggestion) => (
         <Button
           key={suggestion.label}
+          data-cypress-id="suggestion"
           size="sm"
           onClick={() => {
             trackEvent(

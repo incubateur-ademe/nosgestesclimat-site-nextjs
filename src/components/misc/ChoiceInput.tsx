@@ -1,5 +1,5 @@
 import Markdown from '@/design-system/utils/Markdown'
-import { JSX, useState } from 'react'
+import { HTMLAttributes, JSX, useState } from 'react'
 import QuestionButton from './QuestionButton'
 
 type Props = {
@@ -16,26 +16,32 @@ export default function ChoiceInput({
   active,
   onClick,
   id,
-}: Props) {
+  ...props
+}: HTMLAttributes<HTMLInputElement> & Props) {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
       <div className="mb-2 flex items-center gap-2">
-        <button
-          className={`flex items-center gap-2 rounded border border-primary px-4 py-2 text-right md:text-xl ${
+        <label
+          className={`flex cursor-pointer items-center gap-2 rounded border border-primary px-4 py-2 text-right md:text-xl ${
             active
               ? 'bg-primary text-white'
               : 'bg-grey-100 text-primary hover:bg-primaryLight'
-          } transition-colors`}
-          onClick={onClick}
-          id={id}>
+          } transition-colors`}>
+          <input
+            type="radio"
+            className="hidden"
+            onClick={onClick}
+            id={id}
+            {...props}
+          />
           <span
             className={`${
               active ? 'border-white' : 'border-primary'
             } flex h-4 w-4 items-center justify-center rounded-full border-2 before:h-3 before:w-3 before:rounded-full before:bg-white md:h-5 md:w-5`}
           />
           {label}
-        </button>
+        </label>
         {description ? (
           <QuestionButton
             onClick={() => setIsOpen((previsOpen) => !previsOpen)}

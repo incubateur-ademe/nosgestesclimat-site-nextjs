@@ -1,11 +1,7 @@
-import {
-  clickCategoryStartButton,
-  clickSkipTutoButton,
-  clickUnderstoodButton,
-  startTestAndSkipTutorial,
-  walkthroughTest,
-} from '../utils'
-
+import { clickAmisLink } from '../../helpers/elements/buttons'
+import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
+import { setupSimulation } from '../../helpers/simulation/setupSimulation'
+/*
 Cypress.automation('remote:debugger:protocol', {
   command: 'Browser.grantPermissions',
   params: {
@@ -13,21 +9,20 @@ Cypress.automation('remote:debugger:protocol', {
     origin: window.location.origin,
   },
 })
+*/
 
 describe('The Group creation page /amis/creer', () => {
-  let groupURL = ''
-  it('allows to create a new group and displays it afterwards', () => {
-    // Fill simulation
+  before(() => {
     cy.visit('/')
+    setupSimulation()
+  })
 
-    startTestAndSkipTutorial()
+  let groupURL = ''
 
-    walkthroughTest()
+  it('allows to create a new group and displays it afterwards', () => {
+    recursivelyFillSimulation()
 
-    // Then create group
     cy.visit('/amis')
-
-    // Check that the list is empty and the message is displayed
 
     // Check that we can create our first group
     cy.get('[data-cypress-id="button-create-first-group"]').click()
@@ -36,7 +31,7 @@ describe('The Group creation page /amis/creer', () => {
     cy.get('[data-cypress-id="group-name"]')
 
     // Check that we can create a second group
-    cy.visit('/amis')
+    clickAmisLink()
     cy.get('[data-cypress-id="button-create-other-group"]').click()
     cy.get('input[data-cypress-id="group-input-owner-name"]').type('Jean-Marc')
     cy.get('[data-cypress-id="button-create-group"]').click()
@@ -59,6 +54,7 @@ describe('The Group creation page /amis/creer', () => {
       .invoke('readText')
       .then((text) => {
         text.then((URL) => {
+          cy.log(URL)
           groupURL = URL
         })
       })
@@ -71,11 +67,7 @@ describe('The Group creation page /amis/creer', () => {
     cy.get('[data-cypress-id="member-name"]').type('Jean-Claude')
     cy.get('[data-cypress-id="button-join-group"]').click()
 
-    clickSkipTutoButton()
-    clickUnderstoodButton()
-    clickCategoryStartButton()
-
-    walkthroughTest()
+    recursivelyFillSimulation()
 
     cy.get('[data-cypress-id="see-results-link"]').click()
 

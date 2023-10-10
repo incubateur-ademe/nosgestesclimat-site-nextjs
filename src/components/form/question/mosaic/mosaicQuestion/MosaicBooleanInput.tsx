@@ -38,13 +38,18 @@ export default function MosaicBooleanInput({
     ? 'checked'
     : 'unchecked'
   return (
-    <button
-      disabled={isInactive}
-      className={`relative flex items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
-      onClick={() => {
-        setValue(value ? 'non' : 'oui')
-      }}
-      id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}>
+    <label
+      className={`relative flex cursor-pointer items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}>
+      <input
+        type="checkbox"
+        disabled={isInactive}
+        className="hidden"
+        onClick={() => {
+          setValue(value ? 'non' : 'oui')
+        }}
+        data-cypress-id={`${question}-${value}`}
+        id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
+      />
       <span
         className={`${checkClassNames[status]} block h-5 w-5 items-center rounded-sm border-2 leading-4`}>
         {status === 'checked' ? (
@@ -78,6 +83,6 @@ export default function MosaicBooleanInput({
           <Trans>Bientôt disponible</Trans>
         </div>
       ) : null}
-    </button>
+    </label>
   )
 }

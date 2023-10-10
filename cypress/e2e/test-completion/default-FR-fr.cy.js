@@ -1,23 +1,18 @@
-import {
-  clickSeeResultsLink,
-  defaultTotalValue,
-  startTestAndSkipTutorial,
-  walkthroughTest,
-} from '../utils'
+import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
+import { setupSimulation } from '../../helpers/simulation/setupSimulation'
 
-describe('check for test completion', () => {
-  beforeEach(() => {
+describe('The simulation', () => {
+  before(() => {
     cy.visit(
       `/?loc=${Cypress.env('localisation_param')}&lang=${Cypress.env(
         'language_param'
       )}`
     )
+
+    setupSimulation()
   })
 
-  it('can finish the test with the default values with loc=FR and lang=fr', () => {
-    startTestAndSkipTutorial()
-    walkthroughTest({})
-    clickSeeResultsLink()
-    cy.contains(defaultTotalValue).should('be.visible')
+  it('can be finished with the default values and with loc=FR and lang=fr', () => {
+    recursivelyFillSimulation()
   })
 })

@@ -1,6 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import { useLocale } from '@/hooks/useLocale'
 import { QuestionSize } from '@/types/values'
+import { HTMLAttributes } from 'react'
 
 type Props = {
   unit?: string
@@ -24,8 +25,10 @@ export default function NumberInput({
   size = 'md',
   min = 0,
   id,
-}: Props) {
+  ...props
+}: HTMLAttributes<HTMLInputElement> & Props) {
   const locale = useLocale()
+
   return (
     <div
       className={`flex items-center justify-end gap-1 ${sizeClassNames[size]}`}>
@@ -41,6 +44,7 @@ export default function NumberInput({
           setValue(Number(event.target.value))
         }}
         id={id}
+        {...props}
       />
       {unit ? (
         <>

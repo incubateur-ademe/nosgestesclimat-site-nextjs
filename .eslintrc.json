@@ -42,5 +42,6 @@
       "files": ["*.js", "*.jsx"],
       "parser": "@babel/eslint-parser"
     }
-  ]
+  ],
+  "exclude": ["node_modules", "cypress/**/*"]
 }
