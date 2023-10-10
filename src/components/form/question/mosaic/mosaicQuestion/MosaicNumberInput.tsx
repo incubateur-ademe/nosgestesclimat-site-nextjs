@@ -1,3 +1,4 @@
+import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Button from '@/design-system/inputs/Button'
 import { useRule } from '@/publicodes-state'
 type Props = {
@@ -6,6 +7,7 @@ type Props = {
   icons?: string
   description?: string
   setValue: (value: number) => void
+  index: number
 }
 
 export default function NumberInput({
@@ -14,6 +16,7 @@ export default function NumberInput({
   icons,
   description,
   setValue,
+  index,
 }: Props) {
   const { value, isMissing, parent } = useRule(question)
 
@@ -52,6 +55,7 @@ export default function NumberInput({
           placeholder={String(value)}
           onChange={(event) => setValue(Number(event.target.value))}
           data-cypress-id={`${question.split(' . ').slice(0, -2).join(' . ')}`}
+          id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
         />
         <Button
           onClick={() => setValue(Number(value) + 1)}

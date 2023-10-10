@@ -6,6 +6,7 @@ import Mosaic from '@/components/form/question/Mosaic'
 import Notification from '@/components/form/question/Notification'
 import NumberInput from '@/components/form/question/NumberInput'
 import Suggestions from '@/components/form/question/Suggestions'
+import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import { useRule } from '@/publicodes-state'
 
 type Props = {
@@ -30,7 +31,12 @@ export default function Question({ question }: Props) {
   return (
     <>
       <div className="mb-4">
-        <Label question={question} label={label} description={description} />
+        <Label
+          question={question}
+          label={label}
+          description={description}
+          htmlFor={DEFAULT_FOCUS_ELEMENT_ID}
+        />
         <Suggestions question={question} />
         {type === 'number' && (
           <NumberInput
@@ -43,6 +49,7 @@ export default function Question({ question }: Props) {
             isMissing={isMissing}
             min={0}
             data-cypress-id={question}
+            id={DEFAULT_FOCUS_ELEMENT_ID}
           />
         )}
         {type === 'boolean' && (
@@ -52,6 +59,7 @@ export default function Question({ question }: Props) {
             isMissing={isMissing}
             data-cypress-id={question}
             label={label || ''}
+            id={DEFAULT_FOCUS_ELEMENT_ID}
           />
         )}
         {type === 'choices' && (
@@ -63,6 +71,7 @@ export default function Question({ question }: Props) {
             isMissing={isMissing}
             data-cypress-id={question}
             label={label || ''}
+            id={DEFAULT_FOCUS_ELEMENT_ID}
           />
         )}
         {type === 'mosaic' && <Mosaic question={question} />}

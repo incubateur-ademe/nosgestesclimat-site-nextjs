@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
 
@@ -8,6 +9,7 @@ type Props = {
   icons?: string
   description?: string
   setValue: (value: string) => void
+  index: number
 }
 
 const buttonClassNames = {
@@ -26,6 +28,7 @@ export default function MosaicBooleanInput({
   icons,
   description,
   setValue,
+  index,
 }: Props) {
   const { value, isMissing, isInactive } = useRule(question)
 
@@ -45,6 +48,7 @@ export default function MosaicBooleanInput({
           setValue(value ? 'non' : 'oui')
         }}
         data-cypress-id={`${question}-${value}`}
+        id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
       />
       <span
         className={`${checkClassNames[status]} block h-5 w-5 items-center rounded-sm border-2 leading-4`}>

@@ -8,10 +8,11 @@ type Props = {
   setValue: (value: string) => void
   'data-cypress-id': string
   label: string
+  id?: string
 }
 
 export default function ChoicesInput(props: Props) {
-  const { question, value, isMissing, choices, setValue, label } = props
+  const { question, value, isMissing, choices, setValue, label, id } = props
 
   return (
     <fieldset className="align flex flex-col items-end">
@@ -26,6 +27,7 @@ export default function ChoicesInput(props: Props) {
             active={!isMissing && value === choice}
             setValue={setValue}
             data-cypress-id={`${props['data-cypress-id']}-${choice}`}
+            id={id}
           />
         ))}
     </fieldset>

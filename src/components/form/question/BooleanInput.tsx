@@ -8,6 +8,7 @@ type Props = {
   setValue: (value: string) => void
   'data-cypress-id': string
   label: string
+  id?: string
 }
 
 export default function BooleanInput({
@@ -15,6 +16,7 @@ export default function BooleanInput({
   isMissing,
   setValue,
   label,
+  id,
   ...props
 }: Props) {
   const { t } = useClientTranslation()
@@ -28,6 +30,7 @@ export default function BooleanInput({
         active={!isMissing && value ? true : false}
         onClick={() => setValue('oui')}
         data-cypress-id={`${props['data-cypress-id']}-oui`}
+        id={id}
       />
 
       <ChoiceInput

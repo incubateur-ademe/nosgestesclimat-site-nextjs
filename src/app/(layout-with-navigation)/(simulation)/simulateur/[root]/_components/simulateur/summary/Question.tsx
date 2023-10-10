@@ -1,7 +1,8 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
+import Trans from '@/components/translation/Trans'
 import { useDebug } from '@/hooks/useDebug'
-import { useLocale } from '@/hooks/useLocale'
 import { useForm, useRule } from '@/publicodes-state'
+import ChoicesValue from './question/ChoicesValue'
+import NumberValue from './question/NumberValue'
 
 type Props = {
   question: string
@@ -14,10 +15,7 @@ const statusClassNames = {
   default: 'bg-primaryLight',
 }
 export default function Question({ question, toggleQuestionList }: Props) {
-  const locale = useLocale()
-  const { t } = useClientTranslation()
-
-  const { label, isMissing, displayValue, unit, type, color } =
+  const { label, isMissing, value, displayValue, unit, type, color } =
     useRule(question)
 
   const { currentQuestion, setCurrentQuestion } = useForm()
@@ -34,8 +32,7 @@ export default function Question({ question, toggleQuestionList }: Props) {
       onClick={() => {
         setCurrentQuestion(question)
         toggleQuestionList()
-      }}
-    >
+      }}>
       <div
         className="absolute bottom-0 left-0 top-0 w-2"
         style={{ backgroundColor: color }}
@@ -53,15 +50,15 @@ export default function Question({ question, toggleQuestionList }: Props) {
         {displayValue !== 'mosaic' ? (
           <div
             className={`rounded-lg bg-white px-4 py-2 ${
-              isMissing ? 'text-gray-500' : 'text-primaryDark'
-            } first-letter:uppercase`}
-          >
-            {displayValue
-              .toLocaleString(locale, {
-                maximumFractionDigits: 2,
-              })
-              .replaceAll("'", '')}{' '}
-            {t(unit ?? "")}
+              isMissing ? 'text-gray-300' : 'text-primaryDark'
+            } first-letter:uppercase`}>
+            {type === 'number' && (
+              <NumberValue displayValue={displayValue} unit={unit} />
+            )}
+            {type === 'boolean' && <Trans>{displayValue}</Trans>}
+            {type === 'choices' && (
+              <ChoicesValue value={value} question={question} />
+            )}
           </div>
         ) : null}
       </div>

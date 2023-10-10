@@ -7,6 +7,7 @@ type Props = {
   description?: string
   active: boolean
   onClick: any
+  id?: string
 }
 
 export default function ChoiceInput({
@@ -14,6 +15,7 @@ export default function ChoiceInput({
   description,
   active,
   onClick,
+  id,
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
   const [isOpen, setIsOpen] = useState(false)
@@ -26,7 +28,13 @@ export default function ChoiceInput({
               ? 'bg-primary text-white'
               : 'bg-grey-100 text-primary hover:bg-primaryLight'
           } transition-colors`}>
-          <input type="radio" className="hidden" onClick={onClick} {...props} />
+          <input
+            type="radio"
+            className="hidden"
+            onClick={onClick}
+            id={id}
+            {...props}
+          />
           <span
             className={`${
               active ? 'border-white' : 'border-primary'

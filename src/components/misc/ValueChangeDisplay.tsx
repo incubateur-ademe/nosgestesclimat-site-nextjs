@@ -31,7 +31,7 @@ export default function ValueChangeDisplay() {
 
     const timer = setTimeout(() => setShouldDisplay(false), 3000)
     return () => clearTimeout(timer)
-  }, [numericValue])
+  }, [numericValue, locale])
 
   if (!shouldDisplay) return
   return (
