@@ -1,4 +1,8 @@
+'use client'
+
+import { IframeOptionsContext } from '@/contexts/IframeOptionsContext'
 import Image from 'next/image'
+import { useContext } from 'react'
 import Link from '../Link'
 
 export default function Logo({
@@ -8,6 +12,8 @@ export default function Logo({
   size?: 'xs' | 'small' | 'large'
   className?: string
 }) {
+  const { isIframe } = useContext(IframeOptionsContext)
+
   const classnames = {
     xs: {
       wrapper: 'pb-2',
@@ -32,7 +38,11 @@ export default function Logo({
       <Link
         href="/"
         data-cypress-id="home-logo-link"
-        className="mx-auto my-1 flex items-center justify-center no-underline md:my-4 lg:mx-auto lg:my-4">
+        className={`mx-auto my-1 flex items-center justify-center no-underline md:my-4 lg:mx-auto lg:my-4 ${
+          // @bjlaa : this is a hack to prevent the logo from being clickable in the iframe
+          // not a recommended method a11y-wise, but in this case it's a good fit
+          isIframe ? 'pointer-events-none' : ''
+        }`}>
         <Image
           src="/images/misc/petit-logo@3x.png"
           alt="Logo Nos Gestes Climat"
