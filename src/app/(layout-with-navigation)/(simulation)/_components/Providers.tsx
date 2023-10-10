@@ -7,7 +7,7 @@ import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { PropsWithChildren, useEffect } from 'react'
 
 type Props = {
@@ -17,8 +17,11 @@ export default function Providers({
   children,
   supportedRegions,
 }: PropsWithChildren<Props>) {
+  const router = useRouter()
+
   const {
     user,
+    tutorials,
     getCurrentSimulation,
     currentSimulationId,
     initSimulation,
@@ -33,6 +36,12 @@ export default function Providers({
   const { data: rules, isInitialLoading } = useRules({
     lang,
     region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
+  })
+
+  useEffect(() => {
+    if (!tutorials.testIntro) {
+      router.replace('/tutoriel')
+    }
   })
 
   useEffect(() => {

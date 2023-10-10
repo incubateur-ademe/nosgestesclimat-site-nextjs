@@ -38,7 +38,7 @@ export default function Label({
   return (
     <>
       <label
-        className={`mb-3 ${sizeClassNames[size]} font-semibold`}
+        className={`mb-3 block ${sizeClassNames[size]} font-semibold`}
         aria-label={label}
         htmlFor={htmlFor}>
         {label}{' '}
