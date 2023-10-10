@@ -41,34 +41,20 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
   const handleMoveFocus = () => {
     // Focus the question title upon question change
     setTimeout(() => {
-      // Default : focus the first element focusable in the modified area of the form
-      const questionDescriptionButton = document.getElementById(
-        QUESTION_DESCRIPTION_BUTTON_ID
-      )
+      const focusedElement =
+        // Default : focus the first element focusable in the modified area of the form
+        document.getElementById(
+          QUESTION_DESCRIPTION_BUTTON_ID
+          // Otherwise focus the first input or field button
+        ) ??
+        document.getElementById(
+          DEFAULT_FOCUS_ELEMENT_ID
+          // Edge case : mosaics
+        ) ??
+        document.getElementById(`${DEFAULT_FOCUS_ELEMENT_ID}-0`)
 
-      if (questionDescriptionButton) {
-        questionDescriptionButton?.focus()
-        return
-      }
-
-      // Otherwise focus the first input or field button
-      const firstInputOrFieldButton = document.getElementById(
-        DEFAULT_FOCUS_ELEMENT_ID
-      )
-
-      if (firstInputOrFieldButton) {
-        firstInputOrFieldButton?.focus()
-        return
-      }
-
-      // Edge case : mosaics
-      const mosaicFirstField = document.getElementById(
-        `${DEFAULT_FOCUS_ELEMENT_ID}-0`
-      )
-
-      if (mosaicFirstField) {
-        mosaicFirstField?.focus()
-        return
+      if (focusedElement) {
+        focusedElement?.focus()
       }
     })
   }
