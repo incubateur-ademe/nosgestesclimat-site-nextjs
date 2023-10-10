@@ -7,8 +7,8 @@ import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
-import { usePathname, useRouter } from 'next/navigation'
-import { PropsWithChildren, useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
+import { PropsWithChildren, useEffect } from 'react'
 
 type Props = {
   supportedRegions: SuppportedRegions
@@ -17,11 +17,8 @@ export default function Providers({
   children,
   supportedRegions,
 }: PropsWithChildren<Props>) {
-  const router = useRouter()
-
   const {
     user,
-    tutorials,
     getCurrentSimulation,
     currentSimulationId,
     initSimulation,
@@ -39,19 +36,10 @@ export default function Providers({
   })
 
   useEffect(() => {
-    if (!tutorials.testIntro) {
-      router.replace('/tutoriel')
-    }
-  }, [tutorials])
-
-  const hasInitiatedSimulation = useRef(false)
-
-  useEffect(() => {
-    if (!currentSimulationId && !hasInitiatedSimulation.current) {
-      hasInitiatedSimulation.current = true
+    if (!currentSimulationId) {
       initSimulation()
     }
-  }, [currentSimulationId, hasInitiatedSimulation, initSimulation])
+  }, [initSimulation, currentSimulationId])
 
   return currentSimulationId && !isInitialLoading ? (
     <SimulationProvider
