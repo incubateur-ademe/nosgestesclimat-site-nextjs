@@ -11,7 +11,7 @@ import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 
 type Props = {
   question: string
@@ -37,6 +37,35 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
 
   const nextDisabled =
     questionsThatCantBeZero.includes(question) && numericValue < 1
+
+  async function handleGoToNextQuestion(e: KeyboardEvent | MouseEvent) {
+    e.preventDefault()
+    setIsSettingDefaultValue(true)
+    await setDefaultAsValue(question)
+    setIsSettingDefaultValue(false)
+
+    handleMoveFocus()
+
+    if (!noNextQuestion) {
+      gotoNextQuestion()
+
+      return
+    }
+  }
+
+  const handleMagicKey = async (e: KeyboardEvent) => {
+    if (e.ctrlKey && e.altKey && e.key === 'Escape') {
+      await handleGoToNextQuestion(e)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleMagicKey)
+
+    return () => {
+      document.removeEventListener('keydown', handleMagicKey)
+    }
+  }, [question])
 
   const handleMoveFocus = () => {
     // Focus the question title upon question change
@@ -79,23 +108,15 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
         color={isMissing ? 'secondary' : 'primary'}
         disabled={isSettingDefaultValue || nextDisabled}
         data-cypress-id="next-question-button"
-        onClick={async () => {
+        onClick={async (event) => {
           if (isMissing) {
             trackEvent(getMatomoEventClickDontKnow(question))
           } else {
             trackEvent(getMatomoEventClickNextQuestion(question))
           }
-          setIsSettingDefaultValue(true)
-          await setDefaultAsValue(question)
-          setIsSettingDefaultValue(false)
 
-          handleMoveFocus()
+          await handleGoToNextQuestion(event)
 
-          if (!noNextQuestion) {
-            gotoNextQuestion()
-
-            return
-          }
           onComplete()
         }}>
         {noNextQuestion
