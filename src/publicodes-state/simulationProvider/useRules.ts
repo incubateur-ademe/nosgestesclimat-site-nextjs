@@ -30,11 +30,14 @@ export default function useRules({ engine }: Props) {
     [engine]
   )
 
-  const everyMosaic = useMemo<string[]>(
+  const everyMosaic = useMemo<Array<[string, string]>>(
     () =>
       Object.entries(engine.getParsedRules())
         .filter((rule: (string | any)[]) => rule[1].rawNode.mosaique)
-        .map((question) => question[0]),
+        .map(([dottedName, rule]) => {
+          const mosaicKey = rule.rawNode.mosaique.clé
+          return [dottedName, mosaicKey]
+        }),
     [engine]
   )
 
@@ -52,7 +55,10 @@ export default function useRules({ engine }: Props) {
       everyQuestions
         .filter((currentValue: string) =>
           everyMosaic.find(
-            (mosaic) => currentValue !== mosaic && currentValue.includes(mosaic)
+            ([mosaicDottedName, mosaicKey]) =>
+              currentValue !== mosaicDottedName &&
+              currentValue.includes(mosaicDottedName) &&
+              currentValue.includes(mosaicKey)
           )
         )
         .reduce(
