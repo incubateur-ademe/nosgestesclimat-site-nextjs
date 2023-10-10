@@ -46,31 +46,20 @@ export default function useRules({ engine }: Props) {
     [engine]
   )
 
-  // TODO : There's got to be a better way
   const everyMosaicChildWhoIsReallyInMosaic = useMemo<string[]>(
     () =>
-      everyQuestions
-        .filter((currentValue: string) =>
-          everyMosaic.find(
-            (mosaic) => currentValue !== mosaic && currentValue.includes(mosaic)
+      everyQuestions.filter((currentValue: string) =>
+        everyMosaic.find((mosaic) => {
+          const mosaicRule = engine.getRule(mosaic) as any
+          const key = mosaicRule.rawNode.mosaique['clé']
+          return (
+            currentValue !== mosaic &&
+            currentValue.includes(mosaic) &&
+            currentValue.includes(key)
           )
-        )
-        .reduce(
-          (accumulator: string[], currentValue: string) =>
-            !accumulator.find(
-              (accumulatedSubRule) =>
-                currentValue !== accumulatedSubRule &&
-                currentValue.includes(
-                  accumulatedSubRule
-                    .replace(' . présent', '')
-                    .replace(' . propriétaire', '') // Model shenanigans
-                )
-            )
-              ? [...accumulator, currentValue]
-              : accumulator,
-          []
-        ),
-    [everyQuestions, everyMosaic]
+        })
+      ),
+    [everyQuestions, everyMosaic, engine]
   )
 
   return {
