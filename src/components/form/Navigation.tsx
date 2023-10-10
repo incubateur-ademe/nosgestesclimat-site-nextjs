@@ -23,13 +23,26 @@ const questionsThatCantBeZero = [
 
 export default function Navigation({ question, onComplete = () => '' }: Props) {
   const { t } = useClientTranslation()
+
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
+
   const { isMissing, setDefaultAsValue, numericValue } = useRule(question)
+
   const [isSettingDefaultValue, setIsSettingDefaultValue] = useState(false)
 
   const nextDisabled =
     questionsThatCantBeZero.includes(question) && numericValue < 1
+
+  const handleMoveFocus = () => {
+    // Focus the question title upon question change
+    setTimeout(() => {
+      const questionTitle = document.getElementById('question-label')
+
+      questionTitle?.focus()
+    })
+  }
+
   return (
     <div className="flex justify-end  gap-4">
       {!noPrevQuestion ? (
@@ -40,9 +53,9 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
             if (!noPrevQuestion) {
               gotoPrevQuestion()
             }
+            handleMoveFocus()
           }}
-          color="text"
-        >
+          color="text">
           {'← ' + t('Précédent')}
         </Button>
       ) : null}
@@ -60,13 +73,15 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
           await setDefaultAsValue(question)
           setIsSettingDefaultValue(false)
 
+          handleMoveFocus()
+
           if (!noNextQuestion) {
             gotoNextQuestion()
+
             return
           }
           onComplete()
-        }}
-      >
+        }}>
         {noNextQuestion
           ? t('Terminer')
           : isMissing

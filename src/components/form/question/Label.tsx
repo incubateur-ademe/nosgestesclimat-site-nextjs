@@ -34,7 +34,11 @@ export default function Label({
   if (!label) return
   return (
     <>
-      <div className={`mb-3 ${sizeClassNames[size]} font-semibold`}>
+      <div
+        className={`mb-3 ${sizeClassNames[size]} font-semibold`}
+        id="question-label"
+        tabIndex={0}
+        aria-label={label}>
         {label}{' '}
         {description ? (
           <button

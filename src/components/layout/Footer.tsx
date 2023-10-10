@@ -55,6 +55,9 @@ export default function Footer() {
         <InlineLink href="/blog">
           <Trans>Blog</Trans>
         </InlineLink>
+        <InlineLink href="/ambassadeurs">
+          <Trans>Ambassadeurs</Trans>
+        </InlineLink>
         <InlineLink href="/plan-du-site">
           <Trans i18nKey="publicodes.planDuSite.title">Plan du site</Trans>
         </InlineLink>
