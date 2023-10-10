@@ -14,25 +14,12 @@ export default function useCategories({
   safeGetRule,
   order,
 }: Props) {
-  const pristineMissingVariables = useMemo<Record<string, number>>(
-    () => safeEvaluateHelper(root, engine)?.missingVariables || {},
-    [engine, root]
-  )
-
   const categories = useMemo<string[]>(
     () =>
-      Object.keys(pristineMissingVariables)
-        .reduce(
-          (accumulator: string[], currentValue: string) =>
-            accumulator.includes(currentValue.split(' . ')[0])
-              ? accumulator
-              : [...accumulator, currentValue.split(' . ')[0]],
-          []
-        )
-        .sort((a: string, b: string) =>
-          !order ? 0 : order.indexOf(a) > order.indexOf(b) ? 1 : -1
-        ),
-    [pristineMissingVariables, order]
+      safeGetRule(root)?.rawNode?.formule?.somme.sort((a: string, b: string) =>
+        !order ? 0 : order.indexOf(a) > order.indexOf(b) ? 1 : -1
+      ),
+    [root, order, safeGetRule]
   )
 
   const subcategories = useMemo<Record<string, string[]>>(
@@ -44,13 +31,7 @@ export default function useCategories({
             currentValue === 'services sociétaux'
               ? []
               : (
-                  safeGetRule(
-                    currentValue === 'logement'
-                      ? 'logement . impact' // Model shenanigans
-                      : currentValue === 'transport'
-                      ? 'transport . empreinte'
-                      : currentValue
-                  )?.rawNode?.formule?.somme?.map(
+                  safeGetRule(currentValue)?.rawNode?.formule?.somme?.map(
                     (rule: string) => currentValue + ' . ' + rule
                   ) || []
                 ).sort((a: string, b: string) =>

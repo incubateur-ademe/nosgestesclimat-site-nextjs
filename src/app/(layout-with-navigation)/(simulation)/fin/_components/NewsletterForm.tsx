@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'

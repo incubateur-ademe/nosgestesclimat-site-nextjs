@@ -41,6 +41,7 @@ export default function Persona({ persona, dottedName }: Props) {
             initSimulation({
               situation: persona.situation,
               persona: dottedName,
+              foldedSteps: Object.keys(persona.situation) || [],
             })
           }>
           <Trans>Sélectionner</Trans>

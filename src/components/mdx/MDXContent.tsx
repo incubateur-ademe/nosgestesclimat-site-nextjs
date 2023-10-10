@@ -1,7 +1,6 @@
-'use client'
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
-import { useLocale } from '@/hooks/useLocale'
 import { MDXProps } from 'mdx/types'
+import { currentLocale } from 'next-i18n-router'
 import { JSX } from 'react'
 
 type Props = {
@@ -10,12 +9,12 @@ type Props = {
 }
 
 export default function MDXContent({ contentFr, contentEn }: Props) {
-  const locale = useLocale()
+  const locale = currentLocale()
 
   const Content = getLocalisedMDX({
     dictionnaries: {
       fr: contentFr,
-      'en-US': contentEn,
+      en: contentEn,
     },
     locale: locale ?? '',
   })

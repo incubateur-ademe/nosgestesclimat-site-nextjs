@@ -1,13 +1,14 @@
 'use client'
 
+import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import { orderedCategories } from '@/constants/orderedCategories'
 import Loader from '@/design-system/layout/Loader'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
-import { usePathname } from 'next/navigation'
-import { PropsWithChildren, useEffect } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { PropsWithChildren, useEffect, useRef } from 'react'
 
 type Props = {
   supportedRegions: SuppportedRegions
@@ -16,8 +17,11 @@ export default function Providers({
   children,
   supportedRegions,
 }: PropsWithChildren<Props>) {
+  const router = useRouter()
+
   const {
     user,
+    tutorials,
     getCurrentSimulation,
     currentSimulationId,
     initSimulation,
@@ -30,15 +34,24 @@ export default function Providers({
   const pathname = usePathname()
 
   const { data: rules, isInitialLoading } = useRules({
-    lang: lang || 'fr',
+    lang,
     region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
   })
 
   useEffect(() => {
-    if (!currentSimulationId) {
+    if (!tutorials.testIntro) {
+      router.replace('/tutoriel')
+    }
+  }, [tutorials])
+
+  const hasInitiatedSimulation = useRef(false)
+
+  useEffect(() => {
+    if (!currentSimulationId && !hasInitiatedSimulation.current) {
+      hasInitiatedSimulation.current = true
       initSimulation()
     }
-  }, [initSimulation, currentSimulationId])
+  }, [currentSimulationId, hasInitiatedSimulation, initSimulation])
 
   return currentSimulationId && !isInitialLoading ? (
     <SimulationProvider
@@ -49,11 +62,14 @@ export default function Providers({
       foldedSteps={getCurrentSimulation()?.foldedSteps || []}
       addFoldedStep={updateFoldedStepsOfCurrentSimulation}
       categoryOrder={orderedCategories}>
+      <LocalisationBanner supportedRegions={supportedRegions} />
       {children}
     </SimulationProvider>
   ) : pathname === '/tutoriel' ? (
     children
   ) : (
-    <Loader color="dark" />
+    <div className="flex flex-1 items-center justify-center">
+      <Loader color="dark" />
+    </div>
   )
 }

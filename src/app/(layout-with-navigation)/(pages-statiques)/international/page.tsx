@@ -6,16 +6,25 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Container from '@/design-system/layout/Container'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { useSupportedRegions } from '@/hooks/useSupportedRegions'
 import Image from 'next/image'
+
+const SHARED_TITLE = 'Le calculateur d’empreinte climat international'
+const SHARED_DESCRIPTION = `Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.`
+
+export async function generateMetadata() {
+  return getMetadataObject({
+    title: SHARED_TITLE,
+    description: SHARED_DESCRIPTION,
+  })
+}
 
 export default async function International() {
   const { t } = await getServerTranslation()
 
-  const title = t("Le calculateur d'empreinte climat international")
-  const description = t(
-    'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.'
-  )
+  const title = t(SHARED_TITLE)
+  const description = t(SHARED_DESCRIPTION)
 
   const supportedRegions = await useSupportedRegions()
 
@@ -26,6 +35,7 @@ export default async function International() {
         <div className="flex items-start justify-between gap-4">
           <div className="text-center md:text-left">
             <Title title={title} />
+
             <Image
               src="/images/misc/international-illustration.jpeg"
               alt=""

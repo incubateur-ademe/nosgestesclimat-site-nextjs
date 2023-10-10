@@ -67,12 +67,12 @@ export default function Navigation() {
         </div>
       ) : null}
       <div className="z-100 fixed bottom-0 left-0 m-0 w-screen border-0 border-t-[1px] border-solid border-grey-200 lg:static lg:z-auto lg:mt-4 lg:w-auto lg:border-none">
-        <ul className="m-0 flex h-20 w-full list-none justify-between bg-white px-4 py-1 shadow-md lg:h-auto lg:flex-col lg:justify-start lg:gap-1 lg:bg-none lg:py-2 lg:shadow-none">
+        <ul className="m-0 flex h-20 w-full list-none justify-between bg-white py-1 shadow-md sm:px-4 lg:h-auto lg:flex-col lg:justify-start lg:gap-1 lg:bg-none lg:py-2 lg:shadow-none">
           <NavLink
             href="/simulateur/bilan"
             className="justify-end !p-0 lg:justify-start lg:!p-4">
             <ProgressCircle className="lg:mr-4" />
-            <span className="font-normal text-primaryDark">
+            <span className="text-base text-primaryDark md:text-lg">
               <Trans>Le test</Trans>
             </span>
           </NavLink>
@@ -82,7 +82,7 @@ export default function Navigation() {
             className="justify-end !p-0 lg:justify-start lg:!p-4">
             <ActionsInteractiveIcon className="w-12 lg:mr-4" />
 
-            <span className="font-normal text-primaryDark">
+            <span className="text-base text-primaryDark md:text-lg">
               <Trans>Agir</Trans>
             </span>
           </NavLink>
@@ -99,7 +99,7 @@ export default function Navigation() {
                   height="25"
                 />
               </div>
-              <span className="font-normal text-primaryDark">
+              <span className="text-base text-primaryDark md:text-lg">
                 {!persona ? (
                   t('Profil')
                 ) : (
@@ -112,7 +112,7 @@ export default function Navigation() {
           )}
 
           {!enquete && (
-            <NavLink href="/groupes">
+            <NavLink href="/amis" data-cypress-id="amis-link">
               <Image
                 src="/images/misc/silhouettes.svg"
                 alt=""
@@ -122,8 +122,8 @@ export default function Navigation() {
                 height="25"
               />
 
-              <span className="font-normal text-primaryDark">
-                <Trans>Groupes</Trans>
+              <span className="text-base text-primaryDark md:text-lg">
+                <Trans>Amis</Trans>
               </span>
             </NavLink>
           )}
@@ -141,7 +141,9 @@ export default function Navigation() {
                 width="20"
                 height="20"
               />
-              <span className="font-base text-primaryDark">#{PRNumber}</span>
+              <span className="font-base text-sm text-primaryDark md:text-lg">
+                #{PRNumber}
+              </span>
 
               <button
                 onClick={(event) => {

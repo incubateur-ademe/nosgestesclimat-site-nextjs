@@ -1,17 +1,25 @@
 import Route404 from '@/components/layout/404'
-import Meta from '@/components/misc/Meta'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
 import Markdown from '@/design-system/utils/Markdown'
 import { getFormattedDate } from '@/helpers/date/getFormattedDate'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
-import { extractImageSrc } from '../_helpers/extractImage'
 import { getPath } from '../_helpers/getPath'
 import { slugifyString } from '../_helpers/slugifyString'
 import { sortReleases } from '../_helpers/sortReleases'
 import ReleaseSelect from './_components/ReleaseSelect'
+
+export async function generateMetadata() {
+  return getMetadataObject({
+    title: 'Les nouveautés - Nos Gestes Climat',
+    description:
+      'Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.',
+    noImage: true,
+  })
+}
 
 const removeGithubIssuesReferences = (text: string) =>
   text.replace(/#[0-9]{1,5}/g, '')
@@ -22,16 +30,10 @@ export default async function NewsPage({
   params: { slug: string }
 }) {
   const { t, i18n } = await getServerTranslation()
+
   const currentLangInfos = getCurrentLangInfos(i18n)
 
-  console.log('TODO : replace persisting state logic here - NewsPage.tsx')
-  // const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
-
   const data = sortReleases(currentLangInfos.releases)
-
-  // useEffect(() => {
-  // 	setLastViewedRelease(lastRelease.name)
-  // }, [])
 
   if (!data) {
     return null
@@ -48,25 +50,8 @@ export default async function NewsPage({
   const releaseName = data[selectedReleaseIndex]?.name?.toLowerCase()
   const body = data[selectedReleaseIndex]?.body
 
-  const image = extractImageSrc(body)
-
-  const releaseDateCool = getFormattedDate(
-    new Date(data[selectedReleaseIndex].published_at),
-    currentLangInfos.abrvLocale
-  )
-
   return (
     <div className="news-page flex items-start justify-center gap-8">
-      <Meta
-        title={`${t('Nouveautés')} ${releaseDateCool} - ${capitaliseString(
-          releaseName
-        )}`}
-        image={image}
-        description={t(
-          'Consultez les dernières nouveautés de Nos Gestes Climat'
-        )}
-      />
-
       <ReleaseSelect
         releases={data}
         selectedReleaseIndex={selectedReleaseIndex}

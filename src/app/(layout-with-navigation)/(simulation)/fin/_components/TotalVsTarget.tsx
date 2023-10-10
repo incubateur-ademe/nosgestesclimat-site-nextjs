@@ -35,7 +35,9 @@ export default function TotalVsTarget() {
       ${backgroundColor2} 100%
     )`,
       }}>
-      <div className="mt-12 flex h-[20rem] flex-1 items-end justify-around border-b-4 border-black md:h-[20rem]">
+      <div
+        id="shareImage"
+        className="mt-12 flex h-[20rem] flex-1 items-end justify-around border-b-4 border-black md:h-[20rem]">
         <Total total={total} />
         <Target total={total} />
       </div>

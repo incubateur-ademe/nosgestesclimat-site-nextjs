@@ -6,18 +6,12 @@ import Mosaic from '@/components/form/question/Mosaic'
 import Notification from '@/components/form/question/Notification'
 import NumberInput from '@/components/form/question/NumberInput'
 import Suggestions from '@/components/form/question/Suggestions'
+import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import { useRule } from '@/publicodes-state'
 
 type Props = {
   question: string
 }
-
-//TODO: It should maayyybe be described in the model...
-const questionsThatCantBeZero = [
-  'transport . voiture . saisie voyageurs',
-  'logement . saisie habitants',
-  'logement . surface',
-]
 
 export default function Question({ question }: Props) {
   const {
@@ -37,18 +31,25 @@ export default function Question({ question }: Props) {
   return (
     <>
       <div className="mb-4">
-        <Label question={question} label={label} description={description} />
+        <Label
+          question={question}
+          label={label}
+          description={description}
+          htmlFor={DEFAULT_FOCUS_ELEMENT_ID}
+        />
         <Suggestions question={question} />
         {type === 'number' && (
           <NumberInput
             unit={unit}
             value={numericValue}
             setValue={(value) => {
-              const limit = questionsThatCantBeZero.includes(question) ? 1 : 0
+              const limit = 0
               setValue(value < limit ? limit : value, question)
             }}
             isMissing={isMissing}
-            min={questionsThatCantBeZero.includes(question) ? 1 : 0}
+            min={0}
+            data-cypress-id={question}
+            id={DEFAULT_FOCUS_ELEMENT_ID}
           />
         )}
         {type === 'boolean' && (
@@ -56,6 +57,9 @@ export default function Question({ question }: Props) {
             value={value}
             setValue={(value) => setValue(value, question)}
             isMissing={isMissing}
+            data-cypress-id={question}
+            label={label || ''}
+            id={DEFAULT_FOCUS_ELEMENT_ID}
           />
         )}
         {type === 'choices' && (
@@ -65,6 +69,9 @@ export default function Question({ question }: Props) {
             value={String(value)}
             setValue={(value) => setValue(value, question)}
             isMissing={isMissing}
+            data-cypress-id={question}
+            label={label || ''}
+            id={DEFAULT_FOCUS_ELEMENT_ID}
           />
         )}
         {type === 'mosaic' && <Mosaic question={question} />}

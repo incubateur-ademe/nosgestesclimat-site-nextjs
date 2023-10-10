@@ -1,11 +1,16 @@
-import { Metadata } from 'next'
-import Content from './_components/Content'
+import MDXContent from '@/components/mdx/MDXContent'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import ContentEn from '@/locales/pages/en/contextes-sondage.mdx'
+import ContentFr from '@/locales/pages/fr/contextes-sondage.mdx'
 
-export const metadata: Metadata = {
-  title: 'Documentation Contexte Sondage',
-  description: "Informations relatives à la création d'un contexte spécifique.",
+export async function generateMetadata() {
+  return getMetadataObject({
+    title: 'Documentation Contexte Sondage - Nos Gestes Climat',
+    description:
+      "Informations relatives à la création d'un contexte spécifique.",
+  })
 }
 
-export default function ContextesSondages() {
-  return <Content />
+export default function ContextesSondagesPage() {
+  return <MDXContent contentEn={ContentEn} contentFr={ContentFr} />
 }

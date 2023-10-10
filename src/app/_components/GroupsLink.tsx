@@ -9,7 +9,7 @@ import Image from 'next/image'
 export default function GroupsLink() {
   return (
     <ButtonLink
-      href="/groupes"
+      href="/amis"
       onClick={() => {
         trackEvent(matomoEventModeGroupeCTAStart)
       }}

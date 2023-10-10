@@ -36,10 +36,10 @@ export default function HasSimulationBanner() {
   const actionChoicesLength = actionChoices?.length
 
   return (
-    <div className="flex flex-wrap items-start">
-      <div className="mt-4 w-[30rem]">
+    <div className="flex flex-wrap">
+      <div className="sm:mt-4 sm:w-[30rem]">
         <Card className="mr-8">
-          <p className="text-lg">
+          <p className="text-base md:text-lg">
             {t('publicodes.Profil.recap', {
               percentFinished,
               answeredQuestionsLength: answeredQuestionsLength || 0,
@@ -64,11 +64,11 @@ export default function HasSimulationBanner() {
         </details>
       </div>
 
-      <div className="my-4 flex flex-col">
+      <div className="my-4 flex w-full flex-col items-stretch md:w-auto md:items-start">
         {isSimulationInProgress && (
           <ButtonLink color="primary" href="/simulateur/bilan">
             <Trans>
-              <ProgressCircle white className="mr-2" /> Finir mon test
+              <ProgressCircle white className="mr-2" /> Reprendre mon test
             </Trans>
           </ButtonLink>
         )}

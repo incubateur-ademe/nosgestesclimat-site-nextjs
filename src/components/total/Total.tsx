@@ -6,6 +6,7 @@ import QuestionButton from '@/components/misc/QuestionButton'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useEngine, useForm, useRule, useUser } from '@/publicodes-state'
+import { useTranslation } from 'react-i18next'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
 import Planet from './_components/Planet'
@@ -15,6 +16,8 @@ type Props = {
   toggleQuestionList?: () => void
 }
 export default function Total({ toggleQuestionList }: Props) {
+  const { t } = useTranslation()
+
   const { numericValue } = useRule('bilan')
 
   const { getNumericValue, getValue } = useEngine()
@@ -49,7 +52,9 @@ export default function Total({ toggleQuestionList }: Props) {
         <Progress />
         <Planet />
         <Link
-          href={`/fin${detailsParamString ? `?${detailsParamString}` : ''}`}
+          href={`/fin?diapo=bilan${
+            detailsParamString ? `&${detailsParamString}` : ''
+          }`}
           className="z-10	text-white no-underline hover:text-white">
           <span className="block text-2xl font-bold md:text-3xl">
             {formatCarbonFootprint(carbonFootprintValue).formattedValue}{' '}
@@ -59,7 +64,11 @@ export default function Total({ toggleQuestionList }: Props) {
             de CO<sub>2</sub>e / an
           </span>
         </Link>
-        <QuestionButton onClick={toggleOpen} color="white" />
+        <QuestionButton
+          onClick={toggleOpen}
+          color="white"
+          title={t('Comprendre mon score')}
+        />
         {toggleQuestionList && (
           <ListToggle toggleQuestionList={toggleQuestionList} />
         )}

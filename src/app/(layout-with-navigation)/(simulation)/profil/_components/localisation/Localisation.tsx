@@ -31,7 +31,7 @@ export default function Localisation({
   )
 
   return (
-    <div className="mt-8">
+    <div className="mt-4sm:mt-8">
       <h2 className="text-lg">
         <span
           role="img"
@@ -80,7 +80,7 @@ export default function Localisation({
               </div>
             )}
             <RegionModelAuthors
-              authors={supportedRegions[region.code][locale || 'fr'].authors}
+              authors={supportedRegions[region.code][locale].authors}
             />
           </div>
         </div>

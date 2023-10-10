@@ -231,9 +231,9 @@ html[data-useragent*='Trident'] #js {
 }
 
 blockquote {
-  @apply bg-primaryLight;
+  @apply bg-gray-100;
   @apply rounded-md;
-  padding: 0.25rem 1rem;
+  padding: 1rem 1rem 0.25rem;
   margin: 1rem 0;
   @apply text-primaryDark;
 }
@@ -336,11 +336,11 @@ blockquote {
 }
 .statistics-figure-wrapper {
   width: 100%;
-	text-align: center;
-	padding-top: 0rem;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
+  text-align: center;
+  padding-top: 0rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .statistics-table {
   table-layout: fixed;
@@ -350,8 +350,6 @@ blockquote {
   border-bottom: 2px solid #f0f0f0;
   border-collapse: collapse;
   overflow: hidden;
-
-  
 }
 .statistics-table tr:nth-child(2n + 1) {
   background-color: #f9f8f6;
@@ -378,7 +376,21 @@ blockquote {
 /*
   Iframe
   */
-  .iframe header,
-  .iframe footer {
-    display: none;
-  }
+.iframe header,
+.iframe footer {
+  display: none;
+}
+
+/*
+  Accessibility
+*/
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0,0,0,0);
+	border: 0;
+}

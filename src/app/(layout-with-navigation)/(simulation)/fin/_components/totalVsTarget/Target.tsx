@@ -21,7 +21,7 @@ export default function Target({ total }: Props) {
             <Trans>Mon objectif annuel</Trans>
           </span>
           <InfoLink
-            href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/"
+            href="https://nosgestesclimat.fr/blog/budget"
             target="_blank"
             rel="noopener noreferrer"
           />

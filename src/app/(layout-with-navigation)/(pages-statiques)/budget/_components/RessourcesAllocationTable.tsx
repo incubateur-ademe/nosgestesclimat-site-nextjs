@@ -1,8 +1,10 @@
+import { useLocale } from '@/hooks/useLocale'
+
 const arraySum = (arr: number[]) =>
   arr.reduce((a, b) => (!isNaN(b) ? a + b : a), 0)
 
-const formatValue = (value: number) =>
-  !isNaN(value) ? value.toLocaleString('fr-FR') : '-'
+const formatValue = (value: number, locale: Intl.LocalesArgument) =>
+  !isNaN(value) ? value.toLocaleString(locale) : '-'
 
 type Props = {
   selectedYear: string
@@ -17,24 +19,26 @@ export default function RessourcesAllocationTable({
   products,
   budget,
 }: Props) {
+  const locale = useLocale()
   return (
-    <div className='overflow-auto'>
-      <table className='mb-8 w-full text-left'>
-        <thead className='font-bold'>
+    <div className="overflow-auto">
+      <table className="mb-8 w-full text-left">
+        <thead className="font-bold">
           <tr>
-            <td className='w-[6rem] p-2'>{selectedYear}</td>
-            <td className='w-[6rem] p-2 text-right'>Total</td>
+            <td className="w-[6rem] p-2">{selectedYear}</td>
+            <td className="w-[6rem] p-2 text-right">Total</td>
           </tr>
         </thead>
-        <tbody className='bg-primaryLight'>
+        <tbody className="bg-primaryLight">
           {categories.map((label: string) => (
             <tr key={label}>
-              <td className='w-[6rem] p-2'>{label}</td>
-              <td className='w-[6rem] p-2 text-right font-bold'>
+              <td className="w-[6rem] p-2">{label}</td>
+              <td className="w-[6rem] p-2 text-right font-bold">
                 {formatValue(
                   arraySum(
                     products.map((q) => budget[selectedYear]?.[q]?.[label] ?? 0)
-                  )
+                  ),
+                  locale
                 )}{' '}
                 €
               </td>
@@ -42,15 +46,16 @@ export default function RessourcesAllocationTable({
           ))}
         </tbody>
         <tfoot>
-          <tr className='bg-primary'>
-            <td className='w-[6rem] p-2 font-bold text-white'>Total TTC</td>
-            <td className='w-[6rem] p-2 text-right font-bold text-white'>
+          <tr className="bg-primary">
+            <td className="w-[6rem] p-2 font-bold text-white">Total TTC</td>
+            <td className="w-[6rem] p-2 text-right font-bold text-white">
               {formatValue(
                 arraySum(
                   products.map((q) =>
                     arraySum(Object.values(budget[selectedYear]?.[q] ?? {}))
                   )
-                )
+                ),
+                locale
               )}{' '}
               €
             </td>

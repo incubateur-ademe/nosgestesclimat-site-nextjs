@@ -1,71 +1,49 @@
-'use client'
-
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
+import { APP_URL } from '@/constants/urls'
 import Title from '@/design-system/layout/Title'
-import { useTempEngine } from '@/publicodes-state'
-import { utils } from 'publicodes'
-import getActions from '../actions/_helpers/getActions'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import Actions from './_components/Actions'
 
-const appURL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : 'https://nosgestesclimat.fr'
+export async function generateMetadata() {
+  return getMetadataObject({
+    title: 'Plan du site - Nos Gestes Climat',
+    description:
+      'Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.',
+  })
+}
 
 const links = {
   'Nos outils': {
-    'publicodes.planDuSite.bilan': `${appURL}/simulateur/bilan`,
-    'publicodes.planDuSite.groupe': `${appURL}/groupe`,
-    'publicodes.planDuSite.profil': `${appURL}/profil`,
-    'publicodes.planDuSite.personas': `${appURL}/personas`,
-    'publicodes.planDuSite.actions': `${appURL}/actions`,
-    'publicodes.planDuSite.actionsPlus': `${appURL}/actions/plus`,
+    'publicodes.planDuSite.bilan': `${APP_URL}/simulateur/bilan`,
+    'publicodes.planDuSite.groupe': `sondages.nosgestesclimat.fr`,
+    'publicodes.planDuSite.profil': `${APP_URL}/profil`,
+    'publicodes.planDuSite.personas': `${APP_URL}/personas`,
+    'publicodes.planDuSite.actions': `${APP_URL}/actions`,
+    'publicodes.planDuSite.actionsPlus': `${APP_URL}/actions/plus`,
   },
   Informations: {
-    'publicodes.planDuSite.nouveautes': `${appURL}/nouveautés`,
-    'publicodes.planDuSite.aPropos': `${appURL}/à-propos`,
-    'publicodes.planDuSite.contact': `${appURL}/contact`,
-    'publicodes.planDuSite.viePrivee': `${appURL}/vie-privée`,
-    'publicodes.planDuSite.partenaires': `${appURL}/partenaires`,
-    'publicodes.planDuSite.faq': `${appURL}/questions-frequentes`,
-    'publicodes.planDuSite.stats': `${appURL}/stats`,
-    Blog: `${appURL}/blog`,
+    'publicodes.planDuSite.nouveautes': `${APP_URL}/nouveautés`,
+    'publicodes.planDuSite.aPropos': `${APP_URL}/à-propos`,
+    'publicodes.planDuSite.contact': `${APP_URL}/contact`,
+    'publicodes.planDuSite.viePrivee': `${APP_URL}/vie-privée`,
+    'publicodes.planDuSite.partenaires': `${APP_URL}/partenaires`,
+    'publicodes.planDuSite.faq': `${APP_URL}/questions-frequentes`,
+    'publicodes.planDuSite.stats': `${APP_URL}/stats`,
+    Blog: `${APP_URL}/blog`,
   },
   Documentations: {
-    'publicodes.planDuSite.guide': `${appURL}/guide`,
-    'publicodes.planDuSite.sondageDoc': `${appURL}/groupe/documentation-contexte`,
-    'publicodes.planDuSite.modele': `${appURL}/modèle`,
-    'publicodes.planDuSite.petroleEtGaz': `${appURL}/pétrole-et-gaz`,
-    'publicodes.planDuSite.documentation': `${appURL}/documentation`,
+    'publicodes.planDuSite.guide': `${APP_URL}/guide`,
+    'publicodes.planDuSite.sondageDoc': `${APP_URL}/groupe/documentation-contexte`,
+    'publicodes.planDuSite.modele': `${APP_URL}/modèle`,
+    'publicodes.planDuSite.petroleEtGaz': `${APP_URL}/pétrole-et-gaz`,
+    'publicodes.planDuSite.documentation': `${APP_URL}/documentation`,
   },
 }
 
-export default function PlanDuSite() {
-  // const rules = useSelector((state: AppState) => state.rules)
-  /*
-  const engine = new Engine(rules)
-
-	const { rawActionsList } = useActions({
-		focusedAction: null,
-		rules,
-		radical: true,
-		engine,
-		metric: null,
-	})
-  */
-
-  const { rules, getRuleObject } = useTempEngine()
-
-  const actions = getActions({
-    rules,
-    radical: true,
-    getRuleObject,
-    actionChoices: [] as any[],
-    metric: '',
-  })
-
+export default function PlanDuSitePage() {
   return (
-    <>
+    <div data-cypress-id="plan-links">
       <Title
         title={
           <Trans i18nKey="publicodes.planDuSite.title">Plan du site</Trans>
@@ -88,25 +66,14 @@ export default function PlanDuSite() {
           </ul>
         </section>
       ))}
+
       <section>
         <h2>
           <Trans i18nKey="publicodes.planDuSite.actionsPlus">Les actions</Trans>
         </h2>
-        <ul className="m-0 list-none p-0">
-          {actions.map((action: any) => {
-            return (
-              <li key={action.dottedName}>
-                <Link
-                  href={`${appURL}/actions/${utils.encodeRuleName(
-                    action.dottedName
-                  )}`}>
-                  {action.title}
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+
+        <Actions />
       </section>
-    </>
+    </div>
   )
 }

@@ -1,22 +1,15 @@
-'use client'
-
-import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
-import { useLocale } from '@/hooks/useLocale'
-import AboutEn from '@/locales/pages/en-us/about.mdx'
+import MDXContent from '@/components/mdx/MDXContent'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import AboutEn from '@/locales/pages/en/about.mdx'
 import AboutFr from '@/locales/pages/fr/about.mdx'
-// import contentEs from '@/locales/pages/es/CGU.md'
-// import contentIt from '@/locales/pages/it/CGU.md'
 
-export default function About() {
-  const locale = useLocale()
-
-  const AboutLocalised = getLocalisedMDX({
-    dictionnaries: {
-      fr: AboutFr,
-      'en-US': AboutEn,
-    },
-    locale: locale ?? '',
+export async function generateMetadata() {
+  return getMetadataObject({
+    title: 'À propos - Nos Gestes Climat',
+    description: 'Informations relatives à Nos Gestes Climat.',
   })
+}
 
-  return <AboutLocalised />
+export default function AProposPage() {
+  return <MDXContent contentEn={AboutEn} contentFr={AboutFr} />
 }

@@ -22,25 +22,26 @@ export default function RegionSelector({
 
   const orderedSupportedRegions = sortSupportedRegions({
     supportedRegions,
-    currentLocale: locale || 'fr',
+    currentLocale: locale,
   })
 
   const numberOfRegions = Object.entries(orderedSupportedRegions).length
 
   const { updateRegion, user } = useUser()
 
-  const { region } = user || {}
+  // NOTE(@EmileRolley): how could this be undefined? This doesn't match the type annotations
+  const { region } = user ?? {}
 
   const { isFetching } = useRules({
-    lang: locale || 'fr',
-    region: region?.code || 'FR',
+    lang: locale,
+    region: region?.code ?? 'FR',
+    isOptim: false,
   })
 
   return (
     <>
       <details open={isOpen}>
         <summary
-          aria-disabled={isFetching || undefined}
           className={`middle w-auto cursor-pointer rounded-md bg-primaryLight p-4 ${
             isFetching ? 'pointer-events-none opacity-60' : ''
           }`}>
@@ -60,8 +61,7 @@ export default function RegionSelector({
           updateCurrentRegion={(code: string) => {
             updateRegion({
               code,
-              name: supportedRegions[code][locale as string]
-                ?.nom as unknown as string,
+              name: supportedRegions[code][locale]?.nom as unknown as string,
             })
           }}
           selectedRegionCode={region?.code}

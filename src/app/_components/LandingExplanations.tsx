@@ -3,7 +3,7 @@
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
-import LandingContentEn from '@/locales/pages/en-us/landing.mdx'
+import LandingContentEn from '@/locales/pages/en/landing.mdx'
 import LandingContentFr from '@/locales/pages/fr/landing.mdx'
 import ListedAdvantages from './ListedAdvantaged'
 import OpenSourceBlock from './OpenSourceBlock'
@@ -16,14 +16,14 @@ import QuestionsBlock from './QuestionsBlock'
 export default function LandingExplanations() {
   const { isIframe } = useIframe()
 
-  const lang = useLocale()
+  const locale = useLocale()
 
   const LandingContent = getLocalisedMDX({
     dictionnaries: {
       fr: LandingContentFr,
-      'en-US': LandingContentEn,
+      en: LandingContentEn,
     },
-    locale: lang || '',
+    locale,
   })
 
   if (isIframe) return null

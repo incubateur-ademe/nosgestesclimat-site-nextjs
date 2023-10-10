@@ -27,22 +27,21 @@ export default function RegionGrid({
 
   const sortedSupportedRegions = sortSupportedRegions({
     supportedRegions,
-    currentLocale: locale || 'fr',
+    currentLocale: locale,
   })
 
   return (
     <ul
       className={`region-grid mx-auto mt-4 grid max-w-[760px] gap-4 p-0 ${className}`}
-      {...props}>
+      {...props}
+    >
       {Object.entries(sortedSupportedRegions).map(([code, params]) => {
         return (
           <li className="my-2 flex list-none justify-center" key={code}>
             <CountryListItem
               code={code}
               shouldShowButton={shouldShowButton}
-              label={
-                capitaliseString(params[locale || 'fr']?.nom as string) ?? ''
-              }
+              label={capitaliseString(params[locale]?.nom as string) ?? ''}
               isSelected={code === selectedRegionCode}
               updateCurrentRegion={updateCurrentRegion}
             />

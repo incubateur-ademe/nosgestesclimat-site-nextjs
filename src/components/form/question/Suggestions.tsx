@@ -2,6 +2,7 @@ import { getMatomoEventClickSuggestion } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import { useEngine, useRule } from '@/publicodes-state'
 import { Situation } from '@/publicodes-state/types'
+import { capitaliseString } from '@/utils/capitaliseString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
@@ -18,6 +19,7 @@ export default function Suggestions({ question }: Props) {
       {suggestions.map((suggestion) => (
         <Button
           key={suggestion.label}
+          data-cypress-id="suggestion"
           size="sm"
           onClick={() => {
             trackEvent(
@@ -39,7 +41,7 @@ export default function Suggestions({ question }: Props) {
               setValue(suggestion.value, question)
             }
           }}>
-          {suggestion.label}
+          {capitaliseString(suggestion.label)}
         </Button>
       ))}
     </div>

@@ -1,5 +1,6 @@
 import { ButtonSize } from '@/types/values'
 import { HtmlHTMLAttributes, MouseEventHandler, PropsWithChildren } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   onClick: MouseEventHandler<HTMLButtonElement>
@@ -9,6 +10,7 @@ type Props = {
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   id?: string
+  title?: string
 } & PropsWithChildren
 
 export const colorClassNames = {
@@ -27,7 +29,7 @@ export const sizeClassNames = {
 }
 
 export const baseClassNames =
-  'inline-flex items-center whitespace-nowrap rounded-md font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-4 aria-disabled:opacity-50'
+  'inline-flex items-center whitespace-nowrap rounded-md font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-3 aria-disabled:opacity-50 transition-color '
 
 export default function Button({
   onClick,
@@ -38,6 +40,7 @@ export default function Button({
   type,
   disabled,
   id,
+  title,
   ...props
 }: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLButtonElement>>) {
   return (
@@ -45,8 +48,12 @@ export default function Button({
       onClick={disabled ? () => {} : onClick}
       type={type}
       aria-disabled={disabled}
+      title={title}
       id={id}
-      className={`${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]} ${className}`}
+      className={twMerge(
+        `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
+        className
+      )}
       {...props}>
       {children}
     </button>

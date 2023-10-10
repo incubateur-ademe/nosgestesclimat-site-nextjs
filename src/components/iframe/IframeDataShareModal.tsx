@@ -1,3 +1,5 @@
+'use client'
+
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'

@@ -32,5 +32,5 @@
     "src/app/(layout-with-navigation)/statistiques/_components/StatsContent.js",
     "src/app/(layout-with-navigation)/statistiques/_components/content/Chart.js"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "cypress/**/*"]
 }

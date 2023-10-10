@@ -4,6 +4,7 @@ import {
   HTMLAttributes,
   PropsWithChildren,
 } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 export default function Card({
   children,
@@ -20,6 +21,7 @@ export default function Card({
     tag?: ElementType | string
     onClick?: () => void
     style?: CSSProperties
+    target?: string
   } & HTMLAttributes<HTMLDivElement>
 >) {
   const Tag = tag || 'div'
@@ -27,7 +29,10 @@ export default function Card({
   return (
     <Tag
       onClick={onClick}
-      className={`flex list-none flex-col rounded-md border-[1px] border-solid border-gray-200 bg-white p-4 shadow-sm ${className}`}
+      className={twMerge(
+        `flex list-none flex-col rounded-md border-[1px] border-solid border-gray-200 bg-white p-4 shadow-sm`,
+        className
+      )}
       href={href}
       style={style}
       {...props}>

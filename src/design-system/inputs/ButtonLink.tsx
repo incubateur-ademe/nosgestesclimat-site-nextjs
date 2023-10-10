@@ -1,6 +1,7 @@
 import Link from '@/components/Link'
 import { ButtonSize } from '@/types/values'
 import { HtmlHTMLAttributes, PropsWithChildren } from 'react'
+import { twMerge } from 'tailwind-merge'
 import { baseClassNames, colorClassNames, sizeClassNames } from './Button'
 
 type Props = {
@@ -8,6 +9,7 @@ type Props = {
   className?: string
   color?: 'primary' | 'secondary' | 'text'
   size?: ButtonSize
+  title?: string
   onClick?: () => void
 }
 
@@ -17,6 +19,7 @@ export default function ButtonLink({
   className = '',
   color = 'primary',
   size = 'md',
+  title,
   onClick,
   ...props
 }: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLAnchorElement>>) {
@@ -24,7 +27,11 @@ export default function ButtonLink({
     <Link
       href={href}
       onClick={onClick}
-      className={`${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]} ${className}`}
+      title={title}
+      className={twMerge(
+        `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
+        className
+      )}
       {...props}>
       {children}
     </Link>

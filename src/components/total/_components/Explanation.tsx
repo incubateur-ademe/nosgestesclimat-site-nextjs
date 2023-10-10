@@ -4,14 +4,22 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useForm } from '@/publicodes-state'
+import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 type Props = { toggleOpen: any }
 
 export default function Explanation({ toggleOpen }: Props) {
   const { progression } = useForm()
 
+  const { t } = useTranslation()
+
   return (
-    <div className="relative mb-2 mt-6 rounded-lg border-4 border-primary p-4 pt-2">
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.2 }}
+      className="relative mb-2 mt-6 rounded-lg border-4 border-primary p-4 pt-2">
       <svg
         width="28"
         height="24"
@@ -21,9 +29,11 @@ export default function Explanation({ toggleOpen }: Props) {
         className="absolute bottom-full left-8 md:left-1/2 md:-translate-x-1/2 ">
         <path d="M14 0L27.8564 24H0.143594L14 0Z" className=" fill-primary" />
       </svg>
-
       <div className="flex justify-end">
-        <button onClick={toggleOpen} className="text-3xl leading-none">
+        <button
+          onClick={toggleOpen}
+          className="text-3xl leading-none"
+          title={t('Fermer')}>
           ×
         </button>
       </div>
@@ -56,8 +66,12 @@ export default function Explanation({ toggleOpen }: Props) {
         </Trans>
       </p>
       <div className="flex justify-end">
-        <Button onClick={toggleOpen}>J'ai compris</Button>
+        <Button
+          data-cypress-id="understood-explanation-button"
+          onClick={toggleOpen}>
+          <Trans>J'ai compris</Trans>
+        </Button>
       </div>
-    </div>
+    </motion.div>
   )
 }
