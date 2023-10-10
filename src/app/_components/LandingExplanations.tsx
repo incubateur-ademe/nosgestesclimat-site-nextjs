@@ -16,14 +16,14 @@ import QuestionsBlock from './QuestionsBlock'
 export default function LandingExplanations() {
   const { isIframe } = useIframe()
 
-  const lang = useLocale()
+  const locale = useLocale()
 
   const LandingContent = getLocalisedMDX({
     dictionnaries: {
       fr: LandingContentFr,
       en: LandingContentEn,
     },
-    locale: lang || '',
+    locale,
   })
 
   if (isIframe) return null

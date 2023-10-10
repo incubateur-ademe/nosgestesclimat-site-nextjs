@@ -1,3 +1,4 @@
+import i18nConfig from '@/i18nConfig'
 import { currentLocale } from 'next-i18n-router'
 import { generateOGImageURL } from '../openGraph/generateOGImageURL'
 
@@ -53,7 +54,11 @@ export function getMetadataObject({
   noImage = false,
 }: Props) {
   const locale = currentLocale()
-  const url = buildURL({ params, searchParams, locale: locale || 'fr' })
+  const url = buildURL({
+    params,
+    searchParams,
+    locale: locale ?? i18nConfig.defaultLocale,
+  })
 
   console.log(
     'TODO: change images fallback URL before using this in production.'

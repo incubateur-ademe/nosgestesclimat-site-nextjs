@@ -24,8 +24,8 @@ export default function DocumentationLanding() {
   } = useUser()
 
   const { data } = useRules({
-    lang: locale || 'fr',
-    region: region?.code || 'FR',
+    lang: locale,
+    region: region?.code ?? 'FR',
   })
 
   if (!data) return null
@@ -77,7 +77,8 @@ export default function DocumentationLanding() {
                 tag={Link}
                 style={{ backgroundColor: getColor(dottedName) || '#5758BB' }}
                 href={'/documentation/' + utils.encodeRuleName(dottedName)}
-                className="relative !flex h-[12rem] flex-auto justify-center text-center text-base text-white no-underline">
+                className="relative !flex h-[12rem] flex-auto justify-center text-center text-base text-white no-underline"
+              >
                 <p className="-z-1 absolute bottom-0 left-0 right-0 top-0 text-center align-middle text-[8.5rem] opacity-20 grayscale">
                   {EMOJIS[index]}
                 </p>

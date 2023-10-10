@@ -1,5 +1,6 @@
 'use client'
 
+import { useIsClient } from '@/app/_components/IsClientCtxProvider'
 import Head from 'next/head'
 
 export default function AutoCanonicalTag({
@@ -7,7 +8,9 @@ export default function AutoCanonicalTag({
 }: {
   overrideHref?: string
 }) {
-  if (!window) return null
+  const isClient = useIsClient()
+
+  if (!isClient) return null
 
   return (
     <Head>

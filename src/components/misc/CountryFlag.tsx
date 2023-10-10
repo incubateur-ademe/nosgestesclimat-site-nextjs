@@ -7,7 +7,6 @@ export default function CountryFlag({
   code: string
   className?: string
 }) {
-  console.log(code)
   const flagSrc = `https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${(code ===
   'UK'
     ? 'gb'

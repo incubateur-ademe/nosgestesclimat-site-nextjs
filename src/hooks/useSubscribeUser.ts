@@ -24,16 +24,12 @@ export function useSubscribeUser() {
         email,
         optIn,
         simulationURL:
-          location.toString().replace('/fin', '/mon-empreinte-carbone') +
+          location +
           `&sid=${encodeURIComponent(
             idSimulationSaved
           )}&mtm_campaign=retrouver-ma-simulation`,
         // URL already contains the query param details
-        shareURL:
-          location
-            .toString()
-            .replace('/fin', '/mon-empreinte-carbone/partage') +
-          '&mtm_campaign=partage-email',
+        shareURL: location.toString() + '&mtm_campaign=partage-email',
       })
     }
   )

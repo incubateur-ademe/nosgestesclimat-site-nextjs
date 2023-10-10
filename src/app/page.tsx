@@ -44,7 +44,15 @@ export default async function Landing() {
                 className="text-2xl md:text-4xl"
               />
 
-              <p>{t('sites.publicodes.Landing.description')}</p>
+              <p>
+                {
+                  <Trans i18nKey="sites.publicodes.Landing.description">
+                    Connaissez-vous votre empreinte sur le climat ? Faites le
+                    test et découvrez comment réduire votre empreinte carbone
+                    sur le climat.
+                  </Trans>
+                }
+              </p>
               <div>
                 <div className="my-4 flex flex-col flex-wrap items-center justify-center gap-4 md:flex-row md:justify-normal">
                   <TakeTestLink />

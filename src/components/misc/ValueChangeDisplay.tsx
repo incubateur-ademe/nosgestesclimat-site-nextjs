@@ -1,9 +1,11 @@
 'use client'
 
+import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { useEffect, useRef, useState } from 'react'
 
 export default function ValueChangeDisplay() {
+  const locale = useLocale()
   const { numericValue } = useRule('bilan')
   const prevValue = useRef(numericValue)
 
@@ -16,7 +18,7 @@ export default function ValueChangeDisplay() {
 
     setDisplayDifference(
       `${difference > 0 ? '+' : '-'} ${Math.abs(difference).toLocaleString(
-        'fr-fr',
+        locale,
         {
           maximumFractionDigits: 1,
         }
@@ -29,7 +31,7 @@ export default function ValueChangeDisplay() {
 
     const timer = setTimeout(() => setShouldDisplay(false), 3000)
     return () => clearTimeout(timer)
-  }, [numericValue])
+  }, [numericValue, locale])
 
   if (!shouldDisplay) return
   return (

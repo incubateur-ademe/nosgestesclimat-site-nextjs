@@ -1,5 +1,8 @@
+import Trans from '@/components/translation/Trans'
 import { useDebug } from '@/hooks/useDebug'
 import { useForm, useRule } from '@/publicodes-state'
+import ChoicesValue from './question/ChoicesValue'
+import NumberValue from './question/NumberValue'
 
 type Props = {
   question: string
@@ -12,7 +15,7 @@ const statusClassNames = {
   default: 'bg-primaryLight',
 }
 export default function Question({ question, toggleQuestionList }: Props) {
-  const { label, isMissing, displayValue, unit, type, color } =
+  const { label, isMissing, value, displayValue, unit, type, color } =
     useRule(question)
 
   const { currentQuestion, setCurrentQuestion } = useForm()
@@ -47,14 +50,15 @@ export default function Question({ question, toggleQuestionList }: Props) {
         {displayValue !== 'mosaic' ? (
           <div
             className={`rounded-lg bg-white px-4 py-2 ${
-              isMissing ? 'text-gray-500' : 'text-primaryDark'
+              isMissing ? 'text-gray-300' : 'text-primaryDark'
             } first-letter:uppercase`}>
-            {displayValue
-              .toLocaleString('fr-fr', {
-                maximumFractionDigits: 2,
-              })
-              .replaceAll("'", '')}{' '}
-            {unit}
+            {type === 'number' && (
+              <NumberValue displayValue={displayValue} unit={unit} />
+            )}
+            {type === 'boolean' && <Trans>{displayValue}</Trans>}
+            {type === 'choices' && (
+              <ChoicesValue value={value} question={question} />
+            )}
           </div>
         ) : null}
       </div>

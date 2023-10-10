@@ -5,9 +5,14 @@ import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
 type Props = {
   question: string
   parentMosaic: string
+  index: number
 }
 
-export default function MosaicQuestion({ question, parentMosaic }: Props) {
+export default function MosaicQuestion({
+  question,
+  parentMosaic,
+  index,
+}: Props) {
   const { type, parent, setValue } = useRule(question)
 
   const { title, icons, description } = useRule(parent)
@@ -21,6 +26,7 @@ export default function MosaicQuestion({ question, parentMosaic }: Props) {
           icons={icons}
           description={description}
           setValue={(value) => setValue(value, parentMosaic)}
+          index={index}
         />
       )}
       {type === 'boolean' && (
@@ -30,6 +36,7 @@ export default function MosaicQuestion({ question, parentMosaic }: Props) {
           icons={icons}
           description={description}
           setValue={(value) => setValue(value, parentMosaic)}
+          index={index}
         />
       )}
     </>
