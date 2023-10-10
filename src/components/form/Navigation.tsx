@@ -54,7 +54,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
   }
 
   const handleMagicKey = async (e: KeyboardEvent) => {
-    if (e.ctrlKey && e.altKey && e.key === 'Escape') {
+    if (e.ctrlKey && e.shiftKey && e.key === 'Escape') {
       await handleGoToNextQuestion(e)
     }
   }
