@@ -21,9 +21,11 @@ export default function useNotifications({
       everyNotifications.filter(
         (notification) => {
           const splitNotification = notification.split(' . ')
+          // If notification dottedName has only two names (itself and its category), it should apply to the whole category.
           if (splitNotification.length <= 2) {
             return splitNotification[0] === dottedName.split(' . ')[0]
           }
+          // If not, it should apply to the subcategory
           return splitNotification[1] === dottedName.split(' . ')[1]
         },
         [dottedName, everyNotifications]
