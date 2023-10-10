@@ -60,10 +60,6 @@ export function getMetadataObject({
     locale: locale ?? i18nConfig.defaultLocale,
   })
 
-  console.log(
-    'TODO: change images fallback URL before using this in production.'
-  )
-
   return {
     title,
     description,
@@ -78,7 +74,7 @@ export function getMetadataObject({
           url.includes(urlPart)
         ) && !noImage
           ? generateOGImageURL(url)
-          : 'https://nosgestesclimat-git-preprod-nos-gestes-climat.vercel.app/images/misc/dessin-nosgestesclimat_thumbnail.png',
+          : 'https://nosgestesclimat.vercel.app/images/misc/dessin-nosgestesclimat_thumbnail.png',
     },
   }
 }
