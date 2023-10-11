@@ -3,7 +3,6 @@ import Title from '@/design-system/layout/Title'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { FormProvider } from '@/publicodes-state'
 import GroupCreationForm from './_component/GroupCreationForm'
 
 export async function generateMetadata() {
@@ -30,10 +29,8 @@ export default async function CreerGroupePage() {
           'Comparez vos résultats avec votre famille ou un groupe d’amis'
         )}
       />
-      {/* TODO: this doesn't feel right.. */}
-      <FormProvider>
-        <GroupCreationForm />
-      </FormProvider>
+
+      <GroupCreationForm />
     </div>
   )
 }
