@@ -59,16 +59,6 @@ export default function Form() {
   ])
 
   useEffect(() => {
-    if (
-      isInitialized &&
-      questionInQueryParams &&
-      questionInQueryParams !== currentQuestion
-    ) {
-      setCurrentQuestion(questionInQueryParams)
-    }
-  }, [questionInQueryParams])
-
-  useEffect(() => {
     if (isInitialized && currentQuestion) {
       setQuestionInQueryParams(currentQuestion)
     }
