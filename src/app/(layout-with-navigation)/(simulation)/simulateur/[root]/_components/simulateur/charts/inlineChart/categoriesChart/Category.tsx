@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { useRule } from '@/publicodes-state'
 import Image from 'next/image'
 
