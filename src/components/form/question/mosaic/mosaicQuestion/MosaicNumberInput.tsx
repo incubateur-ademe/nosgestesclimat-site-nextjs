@@ -18,7 +18,7 @@ export default function NumberInput({
   setValue,
   index,
 }: Props) {
-  const { value, isMissing, parent } = useRule(question)
+  const { value, isMissing } = useRule(question)
 
   // Model shenanigans for description split...
   return (
