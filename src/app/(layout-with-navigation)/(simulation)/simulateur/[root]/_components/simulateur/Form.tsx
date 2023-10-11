@@ -5,10 +5,11 @@ import { getMatomoEventParcoursTestOver } from '@/constants/matomo'
 import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import { useEngine, useForm, useRule, useUser } from '@/publicodes-state'
+import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import ColorIndicator from './form/ColorIndicator'
 import TestCompleted from './form/TestCompleted'
 import { useUpdateGroupAndRedirectToGroup } from './form/_hooks/useUpdateGroupAndRedirectToGroup'
 
@@ -58,12 +59,20 @@ export default function Form() {
   ])
 
   useEffect(() => {
+    if (
+      isInitialized &&
+      questionInQueryParams &&
+      questionInQueryParams !== currentQuestion
+    ) {
+      setCurrentQuestion(questionInQueryParams)
+    }
+  }, [questionInQueryParams])
+
+  useEffect(() => {
     if (isInitialized && currentQuestion) {
       setQuestionInQueryParams(currentQuestion)
     }
   }, [setQuestionInQueryParams, currentQuestion, isInitialized])
-
-  const { color } = useRule(currentQuestion || '')
 
   if (!isInitialized) {
     return
@@ -75,12 +84,7 @@ export default function Form() {
 
   return (
     <div className="relative mb-4 overflow-hidden rounded-lg bg-primaryLight p-4 pl-6">
-      {color && (
-        <div
-          className="absolute bottom-0 left-0 top-0 w-2"
-          style={{ backgroundColor: color }}
-        />
-      )}
+      <ColorIndicator question={currentQuestion} />
       {questions[currentQuestion] ? (
         questions[currentQuestion]
       ) : (
