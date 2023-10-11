@@ -12,6 +12,8 @@ import Summary from './simulateur/Summary'
 export default function Simulateur() {
   const router = useRouter()
 
+  const isDebug = useDebug()
+
   const { tutorials } = useUser()
 
   const [isQuestionListOpen, setIsQuestionListOpen] = useState(false)
@@ -19,14 +21,17 @@ export default function Simulateur() {
   const toggleQuestionList = () =>
     setIsQuestionListOpen((prevIsQuestionListOpen) => !prevIsQuestionListOpen)
 
-  const isDebug = useDebug()
-
+  const [isInit, setIsInit] = useState(false)
   useEffect(() => {
-    if (!tutorials.testIntro) {
-      setTimeout(() => router.replace('/tutoriel'), 10)
+    if (!tutorials.testIntro && !isDebug) {
+      console.log('router replace')
+      router.replace('/tutoriel')
+    } else {
+      setIsInit(true)
     }
-  }, [tutorials, router])
+  }, [tutorials, router, isDebug])
 
+  if (!isInit) return null
   return (
     <>
       <Total toggleQuestionList={toggleQuestionList} />
