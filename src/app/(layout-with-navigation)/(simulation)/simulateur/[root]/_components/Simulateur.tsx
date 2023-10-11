@@ -25,7 +25,7 @@ export default function Simulateur() {
     if (!tutorials.testIntro) {
       setTimeout(() => router.replace('/tutoriel'), 10)
     }
-  }, [tutorials])
+  }, [tutorials, router])
 
   return (
     <>
