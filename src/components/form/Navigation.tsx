@@ -12,7 +12,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { MouseEvent, useState } from 'react'
+import { MouseEvent, useCallback, useState } from 'react'
 
 type Props = {
   question: string
@@ -39,35 +39,44 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
   const nextDisabled =
     questionsThatCantBeZero.includes(question) && numericValue < 1
 
-  async function handleGoToNextQuestion(e: KeyboardEvent | MouseEvent) {
-    e.preventDefault()
+  const handleGoToNextQuestion = useCallback(
+    async (e: KeyboardEvent | MouseEvent) => {
+      e.preventDefault()
 
-    if (isMissing) {
-      trackEvent(getMatomoEventClickDontKnow(question))
-    } else {
-      trackEvent(getMatomoEventClickNextQuestion(question))
-    }
+      if (isMissing) {
+        trackEvent(getMatomoEventClickDontKnow(question))
+      } else {
+        trackEvent(getMatomoEventClickNextQuestion(question))
+      }
 
-    setIsSettingDefaultValue(true)
+      setIsSettingDefaultValue(true)
 
-    await setDefaultAsValue(question)
+      await setDefaultAsValue(question)
 
-    setIsSettingDefaultValue(false)
+      setIsSettingDefaultValue(false)
 
-    handleMoveFocus()
+      handleMoveFocus()
 
-    if (!noNextQuestion) {
-      gotoNextQuestion()
+      if (!noNextQuestion) {
+        gotoNextQuestion()
 
-      return
-    }
+        return
+      }
 
-    onComplete()
-  }
+      onComplete()
+    },
+    [
+      question,
+      gotoNextQuestion,
+      noNextQuestion,
+      isMissing,
+      setDefaultAsValue,
+      onComplete,
+    ]
+  )
 
   useMagicKey({
     gotToNextQuestion: handleGoToNextQuestion,
-    question,
   })
 
   const handleMoveFocus = () => {
