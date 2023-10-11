@@ -24,7 +24,6 @@ export default function Simulateur() {
   const [isInit, setIsInit] = useState(false)
   useEffect(() => {
     if (!tutorials.testIntro && !isDebug) {
-      console.log('router replace')
       router.replace('/tutoriel')
     } else {
       setIsInit(true)
