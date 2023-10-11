@@ -1,8 +1,13 @@
 'use client'
 
 import Total from '@/components/total/Total'
+import {
+  matomoEventCloseQuestionsList,
+  matomoEventOpenQuestionsList,
+} from '@/constants/matomo'
 import { useDebug } from '@/hooks/useDebug'
 import { useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Charts from './simulateur/Charts'
@@ -16,8 +21,16 @@ export default function Simulateur() {
 
   const [isQuestionListOpen, setIsQuestionListOpen] = useState(false)
 
-  const toggleQuestionList = () =>
-    setIsQuestionListOpen((prevIsQuestionListOpen) => !prevIsQuestionListOpen)
+  const toggleQuestionList = () => {
+    setIsQuestionListOpen((prevIsQuestionListOpen) => {
+      trackEvent(
+        prevIsQuestionListOpen
+          ? matomoEventCloseQuestionsList
+          : matomoEventOpenQuestionsList
+      )
+      return !prevIsQuestionListOpen
+    })
+  }
 
   const isDebug = useDebug()
 
