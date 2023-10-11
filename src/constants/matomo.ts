@@ -238,3 +238,11 @@ export const matomoEventCloseQuestionsList = [
 export function getMatomoEventClickQuestionsListLink(question: string) {
   return ['trackEvent', 'questions-list', 'click-question-link', question]
 }
+
+export function getMatomoEventClickCategoryGraph(category: string) {
+  return ['trackEvent', 'Formulaire', 'Clic graph category', category]
+}
+
+export function getMatomoEventClickSubcategoryGraph(subcategory: string) {
+  return ['trackEvent', 'Formulaire', 'Clic graph subcategory', subcategory]
+}
