@@ -9,9 +9,10 @@ import {
 } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useMagicKey } from '@/hooks/useMagicKey'
 import { useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { MouseEvent, useEffect, useState } from 'react'
+import { MouseEvent, useState } from 'react'
 
 type Props = {
   question: string
@@ -40,8 +41,17 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
 
   async function handleGoToNextQuestion(e: KeyboardEvent | MouseEvent) {
     e.preventDefault()
+
+    if (isMissing) {
+      trackEvent(getMatomoEventClickDontKnow(question))
+    } else {
+      trackEvent(getMatomoEventClickNextQuestion(question))
+    }
+
     setIsSettingDefaultValue(true)
+
     await setDefaultAsValue(question)
+
     setIsSettingDefaultValue(false)
 
     handleMoveFocus()
@@ -51,21 +61,14 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
 
       return
     }
+
+    onComplete()
   }
 
-  const handleMagicKey = async (e: KeyboardEvent) => {
-    if (e.ctrlKey && e.shiftKey && e.key === 'Escape') {
-      await handleGoToNextQuestion(e)
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleMagicKey)
-
-    return () => {
-      document.removeEventListener('keydown', handleMagicKey)
-    }
-  }, [question])
+  useMagicKey({
+    gotToNextQuestion: handleGoToNextQuestion,
+    question,
+  })
 
   const handleMoveFocus = () => {
     // Focus the question title upon question change
@@ -108,17 +111,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
         color={isMissing ? 'secondary' : 'primary'}
         disabled={isSettingDefaultValue || nextDisabled}
         data-cypress-id="next-question-button"
-        onClick={async (event) => {
-          if (isMissing) {
-            trackEvent(getMatomoEventClickDontKnow(question))
-          } else {
-            trackEvent(getMatomoEventClickNextQuestion(question))
-          }
-
-          await handleGoToNextQuestion(event)
-
-          onComplete()
-        }}>
+        onClick={handleGoToNextQuestion}>
         {noNextQuestion
           ? t('Terminer')
           : isMissing

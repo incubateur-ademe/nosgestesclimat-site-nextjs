@@ -64,9 +64,12 @@ export default function HasSimulationBanner() {
         </details>
       </div>
 
-      <div className="my-4 flex w-full flex-col items-stretch md:w-auto md:items-start">
+      <div className="my-4 flex w-full flex-col md:w-auto md:items-start">
         {isSimulationInProgress && (
-          <ButtonLink color="primary" href="/simulateur/bilan">
+          <ButtonLink
+            color="primary"
+            href="/simulateur/bilan"
+            className="w-full">
             <Trans>
               <ProgressCircle white className="mr-2" /> Reprendre mon test
             </Trans>
@@ -75,7 +78,7 @@ export default function HasSimulationBanner() {
 
         <Button
           color="secondary"
-          className="my-2 !text-base"
+          className="my-2 w-full !text-base"
           onClick={() => {
             initSimulation()
           }}>
@@ -88,7 +91,7 @@ export default function HasSimulationBanner() {
           <Trans>Recommencer</Trans>
         </Button>
 
-        <TutorialLink className="!text-base font-normal" />
+        <TutorialLink className="w-full !text-base font-normal" />
       </div>
     </div>
   )
