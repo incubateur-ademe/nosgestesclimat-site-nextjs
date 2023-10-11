@@ -33,16 +33,6 @@ export default function Simulateur() {
       return !prevIsQuestionListOpen
     })
   }
-  const toggleQuestionList = () => {
-    setIsQuestionListOpen((prevIsQuestionListOpen) => {
-      trackEvent(
-        prevIsQuestionListOpen
-          ? matomoEventCloseQuestionsList
-          : matomoEventOpenQuestionsList
-      )
-      return !prevIsQuestionListOpen
-    })
-  }
 
   const [isInit, setIsInit] = useState(false)
   useEffect(() => {
