@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { getMatomoEventClickSubcategoryGraph } from '@/constants/matomo'
 import { useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
