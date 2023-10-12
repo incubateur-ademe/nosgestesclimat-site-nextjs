@@ -62,7 +62,7 @@ export default function Explanation({ toggleOpen }: Props) {
       <p className="mb-2 md:mb-4">
         <Trans i18nKey={'components.ScoreExplanation.text.p4'}>
           💡 Nous améliorons le calcul et ses valeurs par défaut{' '}
-          <Link href="/nouveautés">tous les mois</Link>!
+          <Link href="/nouveautes">tous les mois</Link>!
         </Trans>
       </p>
       <div className="flex justify-end">

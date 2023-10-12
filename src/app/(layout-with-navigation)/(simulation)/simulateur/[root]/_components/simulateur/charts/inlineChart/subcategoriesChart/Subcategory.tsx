@@ -1,4 +1,8 @@
+/* eslint-disable */
+
+import { getMatomoEventClickSubcategoryGraph } from '@/constants/matomo'
 import { useRule } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
 
 type Props = {
@@ -21,7 +25,10 @@ export default function Subcategory({ subcategory, total, position }: Props) {
   return (
     <div
       className={`flex h-full items-center justify-center border-l border-white transition-all ${positionClassNames[position]} ease-in-out`}
-      style={{ width: `${percent}%` }}>
+      style={{ width: `${percent}%` }}
+      onClick={() =>
+        trackEvent(getMatomoEventClickSubcategoryGraph(subcategory))
+      }>
       <Image
         style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}
         src={`/images/model/${subcategory}.svg`}

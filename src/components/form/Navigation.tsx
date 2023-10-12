@@ -9,9 +9,10 @@ import {
 } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useMagicKey } from '@/hooks/useMagicKey'
 import { useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useState } from 'react'
+import { MouseEvent, useCallback, useState } from 'react'
 
 type Props = {
   question: string
@@ -37,6 +38,46 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
 
   const nextDisabled =
     questionsThatCantBeZero.includes(question) && numericValue < 1
+
+  const handleGoToNextQuestion = useCallback(
+    async (e: KeyboardEvent | MouseEvent) => {
+      e.preventDefault()
+
+      if (isMissing) {
+        trackEvent(getMatomoEventClickDontKnow(question))
+      } else {
+        trackEvent(getMatomoEventClickNextQuestion(question))
+      }
+
+      setIsSettingDefaultValue(true)
+
+      await setDefaultAsValue(question)
+
+      setIsSettingDefaultValue(false)
+
+      handleMoveFocus()
+
+      if (!noNextQuestion) {
+        gotoNextQuestion()
+
+        return
+      }
+
+      onComplete()
+    },
+    [
+      question,
+      gotoNextQuestion,
+      noNextQuestion,
+      isMissing,
+      setDefaultAsValue,
+      onComplete,
+    ]
+  )
+
+  useMagicKey({
+    gotToNextQuestion: handleGoToNextQuestion,
+  })
 
   const handleMoveFocus = () => {
     // Focus the question title upon question change
@@ -79,25 +120,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
         color={isMissing ? 'secondary' : 'primary'}
         disabled={isSettingDefaultValue || nextDisabled}
         data-cypress-id="next-question-button"
-        onClick={async () => {
-          if (isMissing) {
-            trackEvent(getMatomoEventClickDontKnow(question))
-          } else {
-            trackEvent(getMatomoEventClickNextQuestion(question))
-          }
-          setIsSettingDefaultValue(true)
-          await setDefaultAsValue(question)
-          setIsSettingDefaultValue(false)
-
-          handleMoveFocus()
-
-          if (!noNextQuestion) {
-            gotoNextQuestion()
-
-            return
-          }
-          onComplete()
-        }}>
+        onClick={handleGoToNextQuestion}>
         {noNextQuestion
           ? t('Terminer')
           : isMissing
