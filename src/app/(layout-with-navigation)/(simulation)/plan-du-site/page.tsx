@@ -16,17 +16,16 @@ export async function generateMetadata() {
 const links = {
   'Nos outils': {
     'publicodes.planDuSite.bilan': `${APP_URL}/simulateur/bilan`,
-    'publicodes.planDuSite.groupe': `sondages.nosgestesclimat.fr`,
     'publicodes.planDuSite.profil': `${APP_URL}/profil`,
     'publicodes.planDuSite.personas': `${APP_URL}/personas`,
     'publicodes.planDuSite.actions': `${APP_URL}/actions`,
     'publicodes.planDuSite.actionsPlus': `${APP_URL}/actions/plus`,
   },
   Informations: {
-    'publicodes.planDuSite.nouveautes': `${APP_URL}/nouveautés`,
-    'publicodes.planDuSite.aPropos': `${APP_URL}/à-propos`,
+    'publicodes.planDuSite.nouveautes': `${APP_URL}/nouveautes`,
+    'publicodes.planDuSite.aPropos': `${APP_URL}/a-propos`,
     'publicodes.planDuSite.contact': `${APP_URL}/contact`,
-    'publicodes.planDuSite.viePrivee': `${APP_URL}/vie-privée`,
+    'publicodes.planDuSite.viePrivee': `${APP_URL}/vie-privee`,
     'publicodes.planDuSite.partenaires': `${APP_URL}/partenaires`,
     'publicodes.planDuSite.faq': `${APP_URL}/questions-frequentes`,
     'publicodes.planDuSite.stats': `${APP_URL}/stats`,
@@ -35,8 +34,7 @@ const links = {
   Documentations: {
     'publicodes.planDuSite.guide': `${APP_URL}/guide`,
     'publicodes.planDuSite.sondageDoc': `${APP_URL}/groupe/documentation-contexte`,
-    'publicodes.planDuSite.modele': `${APP_URL}/modèle`,
-    'publicodes.planDuSite.petroleEtGaz': `${APP_URL}/pétrole-et-gaz`,
+    'publicodes.planDuSite.modele': `${APP_URL}/modele`,
     'publicodes.planDuSite.documentation': `${APP_URL}/documentation`,
   },
 }

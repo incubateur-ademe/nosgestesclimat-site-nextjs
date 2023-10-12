@@ -6,13 +6,21 @@ describe('All pages', () => {
 
     cy.visit('/plan-du-site')
 
+    cy.wait(3000)
+
     cy.get('div[data-cypress-id="plan-links"]').then((linksContainer) => {
-      linksContainer.get('a').each((link) => {
-        cy.visit(link.attr('href'))
+      const linksElements = linksContainer.find('a')
+      const links = linksElements.map((index, link) => {
+        return link.href
+      })
 
-        cy.wait(10000)
-
-        cy.screenshot()
+      links.each((index, link) => {
+        cy.visit(link)
+          .wait(3000)
+          .screenshot(
+            '/all-pages/' +
+              link.replace('http://localhost:3000/', '').replaceAll('/', '_')
+          )
       })
     })
   })
