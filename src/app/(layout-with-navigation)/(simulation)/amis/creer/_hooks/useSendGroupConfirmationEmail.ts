@@ -14,7 +14,7 @@ type MutationFnProps = {
 export const useSendGroupConfirmationEmail = () => {
   return useMutation({
     mutationFn: ({ email, prenom, group, userId }: MutationFnProps) =>
-      axios.post('/api/send-email-group', {
+      axios.post('/api/send-group-email', {
         email,
         name: prenom,
         groupName: group.name,
