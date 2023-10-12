@@ -39,7 +39,7 @@ export default function Providers({
     if (!currentSimulationId) {
       initSimulation()
     }
-  }, [initSimulation, currentSimulationId])
+  }, [currentSimulationId, initSimulation])
 
   return currentSimulationId && !isInitialLoading ? (
     <SimulationProvider

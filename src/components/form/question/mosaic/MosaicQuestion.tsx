@@ -26,6 +26,7 @@ export default function MosaicQuestion({
           icons={icons}
           description={description}
           setValue={(value) => setValue(value, parentMosaic)}
+          parentMosaic={parentMosaic}
           index={index}
         />
       )}

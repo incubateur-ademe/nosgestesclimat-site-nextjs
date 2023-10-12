@@ -25,7 +25,7 @@ export default async function Personas() {
 
   return (
     <>
-      <Title title={<Trans>Personas</Trans>} />
+      <Title title={<Trans>Personas</Trans>} data-cypress-id="personas-title" />
       <p>
         <Trans>
           Les personas nous servent à tester le simulateur sous toutes ses

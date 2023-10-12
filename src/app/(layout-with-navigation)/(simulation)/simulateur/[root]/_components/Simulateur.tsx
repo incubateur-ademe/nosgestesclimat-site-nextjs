@@ -15,6 +15,8 @@ import Form from './simulateur/Form'
 import Summary from './simulateur/Summary'
 
 export default function Simulateur() {
+  const [isInit, setIsInit] = useState(false)
+
   const router = useRouter()
 
   const isDebug = useDebug()
@@ -34,7 +36,6 @@ export default function Simulateur() {
     })
   }
 
-  const [isInit, setIsInit] = useState(false)
   useEffect(() => {
     if (!tutorials.testIntro && !isDebug) {
       router.replace('/tutoriel')

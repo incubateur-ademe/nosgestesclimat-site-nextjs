@@ -45,32 +45,30 @@ export default function InlineTextInput({
 
   return (
     <div
-      className='flex flex-col'
-      aria-live='polite'
+      className="flex flex-col"
+      aria-live="polite"
       onBlurCapture={(event: FocusEvent) => {
         if (event?.relatedTarget?.id === 'inline-input-button') {
           return
         }
-        onClose()
-      }}
-    >
-      <label htmlFor={name}>
+        // onClose()
+      }}>
+      <label htmlFor={name} className="mb-2">
         <span
           className={`text-sm font-bold text-slate-900 ${
             error ? '!text-red-700' : ''
-          }`}
-        >
+          }`}>
           {label}
         </span>
       </label>
-      <div className='flex items-stretch'>
+      <div className="flex items-stretch">
         <input
           ref={inputRef}
           name={name}
           type={type}
           placeholder={placeholder}
-          className={`flex-1 border-solid border-grey-200 rounded-s-md bg-grey-100 text-sm !p-4 max-w-[30rem] focus:ring-2 focus:ring-primary focus:border-primary transition-colors ${
-            error ? 'ring-2 !ring-red-700 !bg-red-50 !border-red-200' : ''
+          className={`max-w-[30rem] flex-1 rounded-s-md border border-solid border-grey-200 bg-grey-100 !p-4 text-sm transition-colors focus:border-primary focus:ring-2 focus:ring-primary ${
+            error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
           }`}
           aria-describedby={`error-${name}`}
           defaultValue={defaultValue}
@@ -82,13 +80,12 @@ export default function InlineTextInput({
           {...props}
         />
         <Button
-          className='rounded-s-none'
-          id='inline-input-button'
+          className="rounded-s-none !border-2 !border-primary"
+          id="inline-input-button"
           onClick={handleSubmit}
           aria-label={t('Ok, sauvegarder la modification')}
           disabled={isLoading}
-          data-cypress-id='button-inline-input'
-        >
+          data-cypress-id="button-inline-input">
           Ok
         </Button>
       </div>
