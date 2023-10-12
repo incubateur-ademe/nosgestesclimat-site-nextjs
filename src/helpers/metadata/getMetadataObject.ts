@@ -11,7 +11,7 @@ type Props = {
 }
 
 const BASE_URL =
-  process.env.MODE === 'development'
+  process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
     : 'https://nosgestesclimat.fr'
 

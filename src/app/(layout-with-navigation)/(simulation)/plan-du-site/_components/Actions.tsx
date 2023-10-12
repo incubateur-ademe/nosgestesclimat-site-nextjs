@@ -1,7 +1,6 @@
 'use client'
 
 import Link from '@/components/Link'
-import { APP_URL } from '@/constants/urls'
 import { useTempEngine } from '@/publicodes-state'
 import { utils } from 'publicodes'
 import getActions from '../../actions/_helpers/getActions'
@@ -22,10 +21,7 @@ export default function Actions() {
       {actions.map((action: any) => {
         return (
           <li key={action.dottedName}>
-            <Link
-              href={`${APP_URL}/actions/${utils.encodeRuleName(
-                action.dottedName
-              )}`}>
+            <Link href={`/actions/${utils.encodeRuleName(action.dottedName)}`}>
               {action.title}
             </Link>
           </li>
