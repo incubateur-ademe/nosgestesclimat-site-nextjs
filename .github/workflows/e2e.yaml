@@ -52,8 +52,10 @@ jobs:
             echo "CYPRESS_baseUrl=https://nosgestesclimat.vercel.app" >> "$GITHUB_ENV"
             echo "MODE=production" >> "$GITHUB_ENV"
 
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
       - name: Generate personas test files
-        if: ${{ success() && steps.branch-name.outputs.is_default == 'false' }}
         run: yarn run e2e:generate:personas
 
       - name: Test - e2e [${{ env.MODE }}]
