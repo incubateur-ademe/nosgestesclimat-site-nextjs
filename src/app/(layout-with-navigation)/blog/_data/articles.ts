@@ -2,13 +2,33 @@
 
 import budgetFR from '@/locales/blog/fr/budget.mdx'
 import campusFr from '@/locales/blog/fr/campus.mdx'
+import effetRebondFr from '@/locales/blog/fr/effet-rebond.mdx'
 import gesTransportFr from '@/locales/blog/fr/gesTransport.mdx'
 import historyFr from '@/locales/blog/fr/historique.mdx'
+import maladaptationFr from '@/locales/blog/fr/maladaptation.mdx'
 import impactMobiliteFR from '@/locales/blog/fr/mobilite.mdx'
 import dayFr from '@/locales/blog/fr/mondialEnvironnement.mdx'
 import { BlogPost } from '@/types/blog'
 
 export const blogData: BlogPost[] = [
+  {
+    date: '2023-08-24',
+    title: "Qu'est-ce que l'effet rebond ?",
+    slug: 'effet-rebond',
+    description:
+      "Toutes les actions de réduction d'empreinte carbone, quel que soit le domaine, appartiennent à deux catégories : faire moins (réduire l'usage), ou faire mieux (réduire l'empreinte pour le même usage).",
+    content: effetRebondFr,
+    image: '/images/blog/priscilla-du-preez-rollercoaster.jpg',
+  },
+  {
+    date: '2023-08-24',
+    title: 'Avez-vous déjà entendu parler de maladaptation ?',
+    slug: 'maladaptation',
+    description:
+      "L'été est un moment particulièrement propice à la mise en place de stratégie d'adaptation face au changement climatique. Mais toutes ne sont pas inoffensives. ",
+    content: maladaptationFr,
+    image: '/images/blog/william-bossen-fonte-glaces.jpg',
+  },
   {
     date: '2023-06-05',
     title: 'Journée mondiale de l’environnement',
