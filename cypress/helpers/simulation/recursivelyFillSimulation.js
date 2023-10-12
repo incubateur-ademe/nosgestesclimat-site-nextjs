@@ -5,7 +5,10 @@ import { clickNextButton } from '../elements/buttons'
 
 const LAST_QUESTION_ID = 'services sociétaux . question rhétorique-ok'
 
-export async function recursivelyFillSimulation(persona = {}) {
+export async function recursivelyFillSimulation(persona = {}, mode) {
+  const isPersonaEmptyOrNotDefined =
+    !persona || Object.keys(persona).length <= 0
+
   return new Promise((resolve) => {
     function answerCurrentQuestion() {
       const inputPromise = cy.get('input')
@@ -27,7 +30,7 @@ export async function recursivelyFillSimulation(persona = {}) {
         function skipQuestion() {
           clickNextButton()
 
-          cy.wait(1000)
+          if (!isPersonaEmptyOrNotDefined) cy.wait(1000)
 
           answerCurrentQuestion()
         }
@@ -36,9 +39,10 @@ export async function recursivelyFillSimulation(persona = {}) {
         if (dottedName === LAST_QUESTION_ID) {
           clickNextButton()
 
-          cy.wait(10000)
+          cy.wait(1000)
 
-          cy.get('div[data-cypress-id="fin-slider"]')
+          // @bjlaa: the results page is not displayed in group mode
+          if (!mode === 'group') cy.get('div[data-cypress-id="fin-slider"]')
 
           return resolve()
         }
@@ -51,23 +55,23 @@ export async function recursivelyFillSimulation(persona = {}) {
         // Special case : radios
         if (type === 'radio') {
           const [dottedNameWithoutValueSuffix, value] = dottedName.split('-')
-          if (persona.situation[dottedNameWithoutValueSuffix] === value) {
+          if (persona?.situation?.[dottedNameWithoutValueSuffix] === value) {
             cy.get(`label[data-cypress-id="${dottedName}-label"]`).click()
 
             cy.wait(1000)
-          } else {
+          } else if (!dottedName === LAST_QUESTION_ID) {
             skipQuestion()
           }
         }
 
         // No value for this persona
-        if (!persona.situation[dottedName]) {
+        if (!persona?.situation?.[dottedName]) {
           skipQuestion()
           return
         }
 
         // Single number input or radio
-        if (!mosaicDottedName && persona.situation[dottedName]) {
+        if (!mosaicDottedName && persona?.situation?.[dottedName]) {
           cy.get(`input[data-cypress-id="${dottedName}"]`).type(
             persona.situation[dottedName]
           )

@@ -13,12 +13,15 @@ import { useFetchGroup } from '../../_hooks/useFetchGroup'
 import { useUpdateGroupName } from '../_hooks/useUpdateGroupName'
 
 export default function EditableGroupTitle({ groupId }: { groupId: string }) {
+  const formattedGroupId = groupId.endsWith('/')
+    ? groupId.slice(0, -1)
+    : groupId
   const [isEditingTitle, setIsEditingTitle] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const { t } = useClientTranslation()
 
-  const { data: group, refetch } = useFetchGroup(groupId as string)
+  const { data: group } = useFetchGroup(formattedGroupId as string)
 
   const { mutate: updateGroupName } = useUpdateGroupName()
 
@@ -26,11 +29,9 @@ export default function EditableGroupTitle({ groupId }: { groupId: string }) {
     setIsSubmitting(true)
     try {
       updateGroupName({
-        groupId: groupId as string,
+        groupId: formattedGroupId as string,
         groupName: groupNameUpdated,
       })
-
-      refetch()
 
       setIsSubmitting(false)
       setIsEditingTitle(false)
@@ -42,7 +43,7 @@ export default function EditableGroupTitle({ groupId }: { groupId: string }) {
   }
 
   return (
-    <>
+    <div className="my-4">
       {isEditingTitle ? (
         <InlineTextInput
           defaultValue={group?.name}
@@ -79,6 +80,6 @@ export default function EditableGroupTitle({ groupId }: { groupId: string }) {
           }
         />
       )}
-    </>
+    </div>
   )
 }

@@ -15,8 +15,11 @@ export function clickUnderstoodExplanationButton() {
   click(UNDERSTOOD_EXPLANATION_BUTTON)
 }
 
-export function clickUnderstoodLocalisationButton() {
-  click(UNDERSTOOD_LOCALISATION_BUTTON)
+export function clickUnderstoodLocalisationButtonIfItExists() {
+  findInBodyAndDo(
+    `button[data-cypress-id="${UNDERSTOOD_LOCALISATION_BUTTON}"]`,
+    () => click(UNDERSTOOD_LOCALISATION_BUTTON)
+  )
 }
 
 export function clickSkipTutorialButton() {
