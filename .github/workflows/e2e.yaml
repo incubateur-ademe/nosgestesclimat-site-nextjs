@@ -61,7 +61,7 @@ jobs:
           parallel: true
           record: true
           group: 'Test - e2e'
-          spec: cypress/e2e/*.cy.js
+          spec: cypress/e2e/**/*.cy.js
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
