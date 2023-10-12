@@ -8,6 +8,7 @@ type Props = {
   description?: string
   setValue: (value: number) => void
   index: number
+  parentMosaic: string
 }
 
 export default function NumberInput({
@@ -17,10 +18,9 @@ export default function NumberInput({
   description,
   setValue,
   index,
+  parentMosaic,
 }: Props) {
-  const { value, isMissing, parent } = useRule(question)
-
-  const mosaicDottedName = question.split(' . ').slice(0, -2).join(' . ')
+  const { value, isMissing } = useRule(question)
 
   // Model shenanigans for description split...
   return (
@@ -56,7 +56,7 @@ export default function NumberInput({
           value={isMissing ? '' : Number(value)}
           placeholder={String(value)}
           onChange={(event) => setValue(Number(event.target.value))}
-          data-cypress-id={`${question}---${mosaicDottedName}`}
+          data-cypress-id={`${question}---${parentMosaic}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
         />
         <Button

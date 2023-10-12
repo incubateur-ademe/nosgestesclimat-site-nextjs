@@ -8,7 +8,7 @@ type Props = {
   active: boolean
   onClick: any
   id?: string
-  'data-cypress-id': string
+  'data-cypress-id'?: string
 }
 
 export default function ChoiceInput({

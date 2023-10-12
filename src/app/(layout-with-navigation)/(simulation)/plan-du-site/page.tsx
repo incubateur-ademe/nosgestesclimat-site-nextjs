@@ -33,7 +33,6 @@ const links = {
   },
   Documentations: {
     'publicodes.planDuSite.guide': `${APP_URL}/guide`,
-    'publicodes.planDuSite.sondageDoc': `${APP_URL}/groupe/documentation-contexte`,
     'publicodes.planDuSite.modele': `${APP_URL}/modele`,
     'publicodes.planDuSite.documentation': `${APP_URL}/documentation`,
   },

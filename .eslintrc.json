@@ -44,5 +44,5 @@
       "parser": "@babel/eslint-parser"
     }
   ],
-  "exclude": ["node_modules", "cypress/**/*"]
+  "ignorePatterns": ["node_modules", "cypress/**/*"]
 }

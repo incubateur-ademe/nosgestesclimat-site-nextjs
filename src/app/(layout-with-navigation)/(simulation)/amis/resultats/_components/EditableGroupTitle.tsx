@@ -13,9 +13,8 @@ import { useFetchGroup } from '../../_hooks/useFetchGroup'
 import { useUpdateGroupName } from '../_hooks/useUpdateGroupName'
 
 export default function EditableGroupTitle({ groupId }: { groupId: string }) {
-  const formattedGroupId = groupId.endsWith('/')
-    ? groupId.slice(0, -1)
-    : groupId
+  const formattedGroupId = groupId.replaceAll('/', '')
+
   const [isEditingTitle, setIsEditingTitle] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
