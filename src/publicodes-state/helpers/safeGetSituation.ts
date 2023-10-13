@@ -1,18 +1,19 @@
-import { NodeValue, Situation } from '../types'
+import { RuleName, Situation } from '../types'
 
+// FIXME(@EmileRolley): the function should return a Situation
 export const safeGetSituation = ({
   situation,
   everyRules,
 }: {
   situation: Situation
-  everyRules: string[]
+  everyRules: RuleName[]
 }): any =>
   everyRules
-    .filter((rule: string) => situation[rule] || situation[rule] === 0)
+    .filter((rule: RuleName) => situation[rule] || situation[rule] === 0)
     .reduce(
-      (accumulator: Record<string, NodeValue>, currentValue: string) => ({
-        ...accumulator,
-        [currentValue]: situation[currentValue],
+      (situationAcc: Situation, currentRule: RuleName) => ({
+        ...situationAcc,
+        [currentRule]: situation[currentRule],
       }),
       {}
     )

@@ -20,7 +20,10 @@ export default function useDisposableEngine({ rules, situation }: Props) {
   const engine = useMemo(
     () =>
       new Engine(rules).setSituation(
-        safeGetSituation({ situation, everyRules: Object.keys(rules ?? {}) })
+        safeGetSituation({
+          situation,
+          everyRules: Object.keys(rules ?? {}),
+        })
       ),
     [rules, situation]
   )

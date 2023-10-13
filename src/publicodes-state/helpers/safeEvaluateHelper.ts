@@ -1,7 +1,7 @@
-import { Engine, NGCEvaluatedNode } from '../types'
+import { Engine, NGCEvaluatedNode, RuleName } from '../types'
 
 export const safeEvaluateHelper = (
-  rule: string,
+  rule: RuleName,
   engineUsed: Engine
 ): NGCEvaluatedNode | null => {
   try {
