@@ -54,5 +54,3 @@ dist
 
 # Sentry Config File
 .sentryclirc
-.pnp.cjs
-.pnp.loader.mjs
