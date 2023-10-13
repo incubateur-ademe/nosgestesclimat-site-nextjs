@@ -5,19 +5,22 @@ import { safeGetSituation } from '../../helpers/safeGetSituation'
 import { Situation } from '../../types'
 
 type Props = {
-  rules?: any
+  rules?: NGCRules
   situation: Situation
 }
+
 /**
- * A hook that set up a separate engine to use for calculation.
+ * A hook that set up a separate engine, only used to evaluate a specific rule.
  *
- * Very ressource intensive. Use with caution
+ * @note There is no impact on the state current application's state.
+ *
+ * @note It's very ressource intensive, you should use it with caution.
  */
 export default function useDisposableEngine({ rules, situation }: Props) {
   const engine = useMemo(
     () =>
       new Engine(rules).setSituation(
-        safeGetSituation({ situation, everyRules: Object.keys(rules) })
+        safeGetSituation({ situation, everyRules: Object.keys(rules ?? {}) })
       ),
     [rules, situation]
   )
@@ -32,11 +35,11 @@ export default function useDisposableEngine({ rules, situation }: Props) {
   const getValue = (dottedName: string) =>
     safeEvaluate(dottedName, engine)?.nodeValue
 
-  const updateSituation = (newSituation: any) => {
+  const updateSituation = (newSituation: Situation) => {
     engine.setSituation(
       safeGetSituation({
         situation: newSituation,
-        everyRules: Object.keys(rules),
+        everyRules: Object.keys(rules ?? {}),
       })
     )
   }
