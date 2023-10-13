@@ -1,13 +1,15 @@
 'use client'
 
+import { NodeValue } from '@/publicodes-state/types'
 import { useContext, useMemo } from 'react'
 import { useEngine } from '../..'
 import simulationContext from '../../providers/simulationProvider/context'
 
-type ActionObject = {
+type EvaluatedAction = {
   dottedName: string
-  value: number
+  value: NodeValue
 }
+
 /**
  * A hook to help with the actions display and processing.
  *
@@ -26,10 +28,13 @@ export default function useActions() {
           dottedName: action,
           value: getValue(action),
         }))
-        .sort((a: ActionObject, b: ActionObject) =>
-          a.value > b.value ? -1 : 1
-        )
-        .map((actionObject: ActionObject) => actionObject.dottedName),
+        .sort((a: EvaluatedAction, b: EvaluatedAction) => {
+          if (typeof a.value === 'number' && typeof b.value === 'number') {
+            return a.value - b.value
+          }
+          // NOTE(@EmileRolley): what should be done if the values are not numbers?
+        })
+        .map((actionObject: EvaluatedAction) => actionObject.dottedName),
     [engine, getValue]
   )
 
