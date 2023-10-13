@@ -7,7 +7,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
 import { sortReleases } from '@/utils/sortReleases'
-import { ReactNode, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useIsClient } from './IsClientCtxProvider'
 
 export const localStorageKey = 'last-viewed-release'
@@ -38,7 +38,12 @@ export default function NewsBanner() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  if (!lastRelease) return null // Probably a problem fetching releases in the compilation step. It shouldn't happen, the build should fail, but just in case, this potential failure should not put the whole web site down for a side feature
+  if (!lastRelease) {
+    // Probably a problem fetching releases in the compilation step.
+    // It shouldn't happen, the build should fail, but just in case,
+    // this potential failure should not put the whole web site down for a side feature
+    return null
+  }
 
   // We only want to show the banner to returning visitors, so we initiate the
   // local storage value with the last release.
@@ -57,7 +62,9 @@ export default function NewsBanner() {
     }
   )
 
-  if (!shouldShowBanner) return null
+  if (!shouldShowBanner) {
+    return null
+  }
 
   return (
     <Card className="relative min-w-[20rem] p-8 text-left">
@@ -78,7 +85,8 @@ export default function NewsBanner() {
       <button
         onClick={handleUpdateViewedRelease}
         className="absolute right-2 top-2 h-8 w-8 border-none bg-transparent p-0 text-lg text-primaryDark"
-        title={t('Fermer la notification de nouveautés')}>
+        title={t('Fermer la notification de nouveautés')}
+      >
         &times;
       </button>
     </Card>

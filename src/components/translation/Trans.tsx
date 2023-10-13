@@ -1,11 +1,11 @@
-import { PropsWithChildren } from 'react'
+import { TransPropsWithInterpolation } from '@/types/translation'
 import TransClient from './trans/TransClient'
 import TransServer from './trans/TransServer'
 
 export default function Trans({
   children,
   i18nKey,
-}: PropsWithChildren<{ i18nKey?: string }>) {
+}: TransPropsWithInterpolation): JSX.Element {
   const componentType = typeof window === 'undefined' ? 'server' : 'client'
 
   if (componentType === 'server') {

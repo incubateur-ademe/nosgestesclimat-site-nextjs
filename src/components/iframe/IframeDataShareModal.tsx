@@ -76,22 +76,24 @@ export default function IframeDataShareModal() {
         </Trans>
       </h2>
       <div>
-        <Trans i18nKey="publicodes.fin.IframeDataShareModal.text">
-          <p>
-            En cliquant sur le bouton Accepter, vous autorisez{' '}
-            {{ parent }} à récupérer le bilan de votre
-            empreinte climat.
-          </p>
-          <p>
+        <p>
+          <Trans i18nKey="IframeDataShareModal.text1">
+            En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à
+            récupérer le bilan de votre empreinte climat.
+          </Trans>
+        </p>
+        <p>
+          <Trans i18nKey="IframeDataShareModal.text2">
             Il s'agit de vos résultats sur les grandes catégories (transport,
             alimentation...), mais <em>pas</em> le détail question par question
             (vos km en voiture, les m² de votre logement...).
-          </p>
-          <p>
-            Nosgestesclimat.fr n'est pas affilié au site{' '}
-            {{ parent }}.
-          </p>
-        </Trans>
+          </Trans>
+        </p>
+        <p>
+          <Trans i18nKey="IframeDataShareModal.text3">
+            Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
+          </Trans>
+        </p>
       </div>
       <div className="flex gap-4">
         <Button color="secondary" onClick={onReject}>
