@@ -2,7 +2,7 @@
 
 import { PropsWithChildren } from 'react'
 
-import { Rules, Situation } from '../../types'
+import { RuleName, Rules, Situation } from '../types'
 import SimulationContext from './context'
 import useCategories from './useCategories'
 import useEngine from './useEngine'
@@ -29,7 +29,7 @@ type Props = {
   /**
    * Every answered questions of the current simulation
    */
-  foldedSteps: string[]
+  foldedSteps: RuleName[]
   /**
    * A function to add a question to the list of the answered questions of the current simulation
    */
@@ -37,11 +37,11 @@ type Props = {
   /**
    * The order in wich we should display the categories
    */
-  categoryOrder: string[]
+  categoryOrder: RuleName[]
   /**
    * The root rule of the simulation
    */
-  root?: string
+  root?: RuleName
 }
 
 export default function SimulationProvider({
@@ -63,7 +63,10 @@ export default function SimulationProvider({
     everyQuestions,
     everyNotifications,
     everyMosaicChildWhoIsReallyInMosaic,
-  } = useRules({ engine: pristineEngine })
+  } = useRules({
+    // NOTE(@EmileRolley): why do we need to use a engine here instead of provided rules?
+    engine: pristineEngine,
+  })
 
   const { situation, updateSituation, initialized } = useSituation({
     engine,
@@ -104,7 +107,8 @@ export default function SimulationProvider({
         everyMosaicChildWhoIsReallyInMosaic,
         categories,
         subcategories,
-      }}>
+      }}
+    >
       {initialized ? children : null}
     </SimulationContext.Provider>
   )

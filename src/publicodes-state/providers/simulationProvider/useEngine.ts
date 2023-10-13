@@ -1,7 +1,7 @@
 import Engine from 'publicodes'
 import { useMemo } from 'react'
-import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
-import { NGCEvaluatedNode, NGCRuleNode, Rules } from '../../types'
+import { safeEvaluateHelper } from '../helpers/safeEvaluateHelper'
+import { NGCEvaluatedNode, NGCRuleNode, RuleName, Rules } from '../types'
 
 /**
  * Initiate the engine based on the rules we pass
@@ -26,20 +26,19 @@ export default function useEngine(rules: Rules) {
 
   const pristineEngine = useMemo(() => engine.shallowCopy(), [engine])
 
-  const safeEvaluate = useMemo<(rule: string) => NGCEvaluatedNode | null>(
+  const safeEvaluate = useMemo<(rule: RuleName) => NGCEvaluatedNode | null>(
     () => (rule: string) => safeEvaluateHelper(rule, engine),
     [engine]
   )
 
-  const safeGetRule = useMemo<(rule: string) => NGCRuleNode | null>(
-    () => (rule: string) => {
-      let evaluation = null
+  const safeGetRule = useMemo<(rule: RuleName) => NGCRuleNode | null>(
+    () => (rule: RuleName) => {
       try {
-        evaluation = engine.getRule(rule)
+        return engine.getRule(rule)
       } catch (error) {
         console.error(error)
       }
-      return evaluation
+      return null
     },
     [engine]
   )

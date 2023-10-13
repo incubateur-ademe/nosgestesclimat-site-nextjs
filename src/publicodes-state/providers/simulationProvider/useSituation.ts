@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { safeGetSituation } from '../../helpers/safeGetSituation'
-import { Engine, Situation } from '../../types'
+import { safeGetSituation } from '../helpers/safeGetSituation'
+import { Engine, RuleName, Situation } from '../types'
 
 type Props = {
   engine: Engine
-  everyRules: string[]
+  everyRules: RuleName[]
   defaultSituation?: Situation
   externalSituation: Situation
   updateExternalSituation: (situation: Situation) => void
@@ -22,7 +22,11 @@ export default function useSituation({
   defaultSituation = {},
   externalSituation,
   updateExternalSituation,
-}: Props) {
+}: Props): {
+  situation: Situation
+  updateSituation: (situation: Situation) => Promise<void>
+  initialized: boolean
+} {
   const [initialized, setInitialized] = useState(false)
   const [situation, setSituation] = useState(defaultSituation)
 

@@ -1,12 +1,12 @@
 import { useMemo } from 'react'
 import { safeEvaluateHelper } from '../helpers/safeEvaluateHelper'
-import { Engine, NGCRuleNode } from '../types'
+import { Engine, NGCRuleNode, RuleName } from '../types'
 
 type Props = {
   engine: Engine
-  root: string
+  root: RuleName
   safeGetRule: (rule: string) => NGCRuleNode | null
-  order: string[] | null
+  order: RuleName[] | null
 }
 
 export default function useCategories({
@@ -14,8 +14,11 @@ export default function useCategories({
   root,
   safeGetRule,
   order,
-}: Props) {
-  const categories = useMemo<string[]>(() => {
+}: Props): {
+  categories: RuleName[]
+  subcategories: Record<RuleName, RuleName[]>
+} {
+  const categories = useMemo<RuleName[]>(() => {
     const sum = safeGetRule(root)?.rawNode?.formule?.somme
     return order
       ? // NOTE(@EmileRolley): what should be the wanted behavior if the order
@@ -24,9 +27,9 @@ export default function useCategories({
       : sum
   }, [root, order, safeGetRule])
 
-  const subcategories = useMemo<Record<string, string[]>>(
+  const subcategories = useMemo<Record<RuleName, RuleName[]>>(
     () =>
-      categories.reduce((acc: object, category: string) => {
+      categories.reduce((acc: object, category: RuleName) => {
         const categorySum = safeGetRule(category)?.rawNode?.formule?.somme
 
         if (!categorySum || category === 'services sociétaux') {
@@ -37,9 +40,9 @@ export default function useCategories({
         }
 
         const sortedSubCategory = categorySum
-          .map((rule: string) => category + ' . ' + rule)
+          .map((rule: RuleName) => category + ' . ' + rule)
           .sort(
-            (a: string, b: string) =>
+            (a: RuleName, b: RuleName) =>
               (safeEvaluateHelper(a, engine)?.nodeValue ?? 0) -
               (safeEvaluateHelper(b, engine)?.nodeValue ?? 0)
           )
