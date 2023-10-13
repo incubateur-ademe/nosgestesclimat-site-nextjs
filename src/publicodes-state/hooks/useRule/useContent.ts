@@ -1,12 +1,12 @@
 'use client'
 
 import { useMemo } from 'react'
-import { NGCRuleNode, Suggestion } from '../../types'
+import { NGCRuleNode, RuleName, Suggestion } from '../types'
 
 type Props = {
-  dottedName: string
+  dottedName: RuleName
   rule: NGCRuleNode | null
-  safeGetRule: (rule: string) => NGCRuleNode | null
+  safeGetRule: (rule: RuleName) => NGCRuleNode | null
 }
 
 export default function useContent({ dottedName, rule, safeGetRule }: Props) {

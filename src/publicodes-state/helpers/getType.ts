@@ -1,8 +1,15 @@
-import { NGCEvaluatedNode, NGCQuestionType, NGCRuleNode } from '../types'
+import {
+  NGCEvaluatedNode,
+  NGCQuestionType,
+  NGCRuleNode,
+  RuleName,
+} from '../types'
 
 type Props = {
-  dottedName: string
-  rule: NGCRuleNode | null | any // Model shenanigans: question alimentation . local . consommation is missing "formule"
+  dottedName: RuleName
+  // Model shenanigans: question alimentation . local . consommation is missing "formule"
+  // NOTE(@EmileRolley): I don't get why it's a problem?
+  rule: NGCRuleNode | null | any
   evaluation: NGCEvaluatedNode | null
 }
 
@@ -11,7 +18,9 @@ export default function getType({
   rule,
   evaluation,
 }: Props): NGCQuestionType | undefined {
-  if (!rule || !evaluation) return
+  if (!rule || !evaluation) {
+    return undefined
+  }
 
   if (!rule.rawNode.question) {
     return 'notQuestion'

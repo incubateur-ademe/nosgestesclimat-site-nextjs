@@ -1,8 +1,8 @@
-import { Situation } from '../types'
+import { RuleName, Situation } from '../types'
 
 type Props = {
-  dottedName: string
-  questionsOfMosaic: string[]
+  dottedName: RuleName
+  questionsOfMosaic: RuleName[]
   situation: Situation
 }
 

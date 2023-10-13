@@ -4,11 +4,13 @@ import { useMemo } from 'react'
 import { NGCRuleNode } from '../../types'
 
 type Props = {
-  rule: NGCRuleNode | null | any // Model shenanigans: question alimentation . local . consommation is missing "formule"
+  // Model shenanigans: question alimentation . local . consommation is missing "formule"
+  // NOTE(@EmileRolley): I don't get why it's a problem?
+  rule: NGCRuleNode | null | any
   type: string | undefined
 }
 
-export default function useChoices({ rule, type }: Props) {
+export default function useChoices({ rule, type }: Props): string[] {
   const choices = useMemo<string[]>(() => {
     if (type === 'choices') {
       // Model shenanigans: sometimes "une possibilité" is in rawNode, sometimes it is in formule

@@ -1,10 +1,10 @@
 'use client'
 
 import { useMemo } from 'react'
-import { NGCEvaluatedNode, Situation } from '../../types'
+import { NGCEvaluatedNode, RuleName, Situation } from '../types'
 
 type Props = {
-  dottedName: string
+  dottedName: RuleName
   everyNotifications: string[]
   safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   situation: Situation

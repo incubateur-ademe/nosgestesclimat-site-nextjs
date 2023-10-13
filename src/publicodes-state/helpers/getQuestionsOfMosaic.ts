@@ -1,12 +1,12 @@
 type Props = {
-  dottedName: string
-  everyMosaicChildWhoIsReallyInMosaic: string[]
+  dottedName: RuleName
+  everyMosaicChildWhoIsReallyInMosaic: RuleName[]
 }
 
 export default function getQuestionsOfMosaic({
   dottedName,
   everyMosaicChildWhoIsReallyInMosaic,
-}: Props): string[] {
+}: Props): RuleName[] {
   return (
     everyMosaicChildWhoIsReallyInMosaic.filter((mosaicChild) =>
       mosaicChild.includes(dottedName)

@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import simulationContext from '../../providers/simulationProvider/context'
 
 /**
- * This is temporary and should be put to death as soon as possible
+ * FIXME: This is temporary and should be put to death as soon as possible
  */
 export default function useTempEngine() {
   const { safeEvaluate, rules, safeGetRule } =

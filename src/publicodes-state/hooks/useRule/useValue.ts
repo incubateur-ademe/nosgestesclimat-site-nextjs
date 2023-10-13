@@ -7,15 +7,16 @@ import {
   NGCQuestionType,
   NGCRuleNode,
   NodeValue,
+  RuleName,
   Situation,
 } from '../types'
 type Props = {
-  dottedName: string
-  safeGetRule: (rule: string) => NGCRuleNode | null
-  safeEvaluate: (rule: string) => NGCEvaluatedNode | null
+  dottedName: RuleName
+  safeGetRule: (rule: RuleName) => NGCRuleNode | null
+  safeEvaluate: (rule: RuleName) => NGCEvaluatedNode | null
   evaluation: NGCEvaluatedNode | null
   type: NGCQuestionType | undefined
-  questionsOfMosaic: string[]
+  questionsOfMosaic: RuleName[]
   updateSituation: (situationToAdd: Situation) => Promise<void>
   addFoldedStep: (foldedStep: string) => void
 }

@@ -2,15 +2,23 @@
 
 import { useMemo } from 'react'
 import getType from '../helpers/getType'
-import { NGCEvaluatedNode, NGCQuestionType, NGCRuleNode } from '../types'
+import {
+  NGCEvaluatedNode,
+  NGCQuestionType,
+  NGCRuleNode,
+  RuleName,
+} from '../types'
 
 type Props = {
-  dottedName: string
+  dottedName: RuleName
   rule: NGCRuleNode | null
   evaluation: NGCEvaluatedNode | null
 }
 
-export default function useType({ dottedName, rule, evaluation }: Props) {
+export default function useType({ dottedName, rule, evaluation }: Props): {
+  type: NGCQuestionType | undefined
+  getType: (dottedName: Props) => NGCQuestionType | undefined
+} {
   // Model shenanigans
 
   const type = useMemo<NGCQuestionType | undefined>(() => {
