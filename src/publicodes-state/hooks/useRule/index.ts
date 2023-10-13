@@ -13,9 +13,10 @@ import useType from './useType'
 import useValue from './useValue'
 
 /**
- * A hook to get and set every information about a specific rule
+ * A hook to get and set every information about a specific rule.
  *
- * It should ALWAYS be used to access a rule (unless we need to compare mutliples rules with useEngine)
+ * It should ALWAYS be used to access a rule
+ * (unless we need to compare mutliples rules with useEngine).
  */
 export default function useRule(dottedName: string) {
   const {

@@ -21,6 +21,8 @@ export type User = {
   hasSavedSimulation?: boolean
 }
 
+export type RuleName = string
+
 export type Rules = any
 
 export type Tutorials = Record<string, boolean>

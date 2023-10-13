@@ -1,65 +1,77 @@
+/* eslint @typescript-eslint/no-unused-vars: "warn" */
+
+import { NGCRuleNode, RuleName } from '@/publicodes-state/types'
 import Engine from 'publicodes'
 import { useMemo } from 'react'
 
-type Props = {
-  engine: Engine
-}
+type NGCRuleEntry = [RuleName, NGCRuleNode]
 
-export default function useRules({ engine }: Props) {
-  const everyRules = useMemo<string[]>(
+export default function useRules({ engine }: { engine: Engine }): {
+  everyRules: RuleName[]
+  everyInactiveRules: RuleName[]
+  everyQuestions: RuleName[]
+  everyNotifications: RuleName[]
+  everyMosaicChildWhoIsReallyInMosaic: RuleName[]
+} {
+  const everyRules = useMemo<RuleName[]>(
+    () => Object.entries(engine.getParsedRules()).map(([name, _]) => name),
+    [engine]
+  )
+
+  const everyInactiveRules = useMemo<RuleName[]>(
     () =>
-      Object.entries(engine.getParsedRules()).map(
-        (rule: (string | any)[]) => rule[0]
+      Object.entries(engine.getParsedRules())
+        .filter(([_, rule]: NGCRuleEntry) => rule.rawNode.inactif === 'oui')
+        .map(([name]) => name),
+    [engine]
+  )
+
+  const everyQuestions = useMemo<RuleName[]>(
+    () =>
+      Object.entries(engine.getParsedRules())
+        .filter(([_, rule]: NGCRuleEntry) => rule.rawNode.question)
+        .map(([name, _]) => name),
+    [engine]
+  )
+
+  const everyMosaicEntries = useMemo<NGCRuleEntry[]>(
+    () =>
+      Object.entries(engine.getParsedRules()).filter(
+        ([_, rule]: NGCRuleEntry) => rule.rawNode.mosaique
       ),
     [engine]
   )
 
-  const everyInactiveRules = useMemo<string[]>(
+  const everyNotifications = useMemo<RuleName[]>(
     () =>
       Object.entries(engine.getParsedRules())
-        .filter((rule: (string | any)[]) => rule[1].rawNode.inactif === 'oui')
-        .map((rule: (string | any)[]) => rule[0]),
+        .filter(
+          ([_, rule]: NGCRuleEntry) =>
+            // Model shenanigans: type is only used for notifications
+            rule.rawNode.type === 'notification'
+        )
+        .map(([name, _]) => name),
     [engine]
   )
 
-  const everyQuestions = useMemo<string[]>(
+  // FIXME(@EmileRolley): refactoring not tested yet
+  const everyMosaicChildWhoIsReallyInMosaic = useMemo<RuleName[]>(
     () =>
-      Object.entries(engine.getParsedRules())
-        .filter((rule: (string | any)[]) => rule[1].rawNode.question)
-        .map((question: (string | any)[]) => question[0]),
-    [engine]
-  )
-
-  const everyMosaic = useMemo<string[]>(
-    () =>
-      Object.entries(engine.getParsedRules())
-        .filter((rule: (string | any)[]) => rule[1].rawNode.mosaique)
-        .map((question) => question[0]),
-    [engine]
-  )
-
-  const everyNotifications = useMemo<string[]>(
-    () =>
-      Object.entries(engine.getParsedRules())
-        .filter((rule: any) => rule[1].rawNode.type === 'notification') // Model shenanigans: type is only used for notifications
-        .map((question) => question[0]),
-    [engine]
-  )
-
-  const everyMosaicChildWhoIsReallyInMosaic = useMemo<string[]>(
-    () =>
-      everyQuestions.filter((currentValue: string) =>
-        everyMosaic.find((mosaic) => {
-          const mosaicRule = engine.getRule(mosaic) as any
-          const key = mosaicRule.rawNode.mosaique['clé']
+      everyQuestions.filter((question: RuleName) =>
+        everyMosaicEntries.find(([mosaicName, mosaicRule]) => {
+          const mosaicNode = mosaicRule.rawNode?.mosaique
+          if (!mosaicNode) {
+            return false
+          }
+          const key = mosaicNode['clé']
           return (
-            currentValue !== mosaic &&
-            currentValue.includes(mosaic) &&
-            currentValue.includes(key)
+            question !== mosaicName &&
+            question.includes(mosaicName) &&
+            question.includes(key)
           )
         })
       ),
-    [everyQuestions, everyMosaic, engine]
+    [everyQuestions, everyMosaicEntries]
   )
 
   return {
