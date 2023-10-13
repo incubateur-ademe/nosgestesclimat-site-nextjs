@@ -26,11 +26,11 @@ export default function Actions() {
     <div>
       <div id="shareImage">
         <h3 className="mb-2 text-center text-lg md:mb-4 md:text-xl">
-          <Trans>Comment réduire mon empreinte&nbsp;?</Trans>
+          <Trans>Comment réduire mon empreinte ?</Trans>
         </h3>
 
         <p className="text-center text-sm italic md:text-base">
-          <Trans>Les 3 actions au plus fort impact pour vous&nbsp;:</Trans>
+          <Trans>Les 3 actions au plus fort impact pour vous :</Trans>
         </p>
 
         <div className="mb-4 flex flex-col gap-4">

@@ -72,14 +72,14 @@ export default function IframeDataShareModal() {
     <Card className="absolute z-10 bg-white">
       <h2>
         <Trans i18nKey={'publicodes.fin.IframeDataShareModal.partageResultats'}>
-          Partage de vos résultats à {{ parent } as unknown as ReactNode} ?
+          Partage de vos résultats à {{ parent }} ?
         </Trans>
       </h2>
       <div>
         <Trans i18nKey="publicodes.fin.IframeDataShareModal.text">
           <p>
             En cliquant sur le bouton Accepter, vous autorisez{' '}
-            {{ parent } as unknown as ReactNode} à récupérer le bilan de votre
+            {{ parent }} à récupérer le bilan de votre
             empreinte climat.
           </p>
           <p>
@@ -89,7 +89,7 @@ export default function IframeDataShareModal() {
           </p>
           <p>
             Nosgestesclimat.fr n'est pas affilié au site{' '}
-            {{ parent } as unknown as ReactNode}.
+            {{ parent }}.
           </p>
         </Trans>
       </div>
