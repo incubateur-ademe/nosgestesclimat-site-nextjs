@@ -1,6 +1,8 @@
 import Trans from '@/components/translation/Trans'
+import { getMatomoEventClickQuestionsListLink } from '@/constants/matomo'
 import { useDebug } from '@/hooks/useDebug'
 import { useForm, useRule } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import ChoicesValue from './question/ChoicesValue'
 import NumberValue from './question/NumberValue'
 
@@ -31,6 +33,9 @@ export default function Question({ question, toggleQuestionList }: Props) {
       className={`relative mb-2 flex w-full flex-col items-end justify-between gap-2 overflow-hidden rounded-lg p-4 pl-6 text-left font-bold md:flex-row md:items-center md:gap-4 ${statusClassNames[status]} `}
       onClick={() => {
         setCurrentQuestion(question)
+
+        trackEvent(getMatomoEventClickQuestionsListLink(question))
+
         toggleQuestionList()
       }}>
       <div

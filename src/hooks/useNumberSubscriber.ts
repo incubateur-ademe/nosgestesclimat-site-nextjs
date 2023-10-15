@@ -7,9 +7,7 @@ export function useNumberSubscribers() {
     ['number subscribers'],
     () =>
       axios
-        .get(
-          'https://nosgestesclimat.fr/.netlify/functions/get-newsletter-subscribers-number'
-        )
+        .get('/api/get-newsletter-subscribers-number')
         .then((res) => res.data as string),
     {
       keepPreviousData: true,

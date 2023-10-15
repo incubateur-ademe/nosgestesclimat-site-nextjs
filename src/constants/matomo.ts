@@ -222,3 +222,27 @@ export const matomoEventUpdateGroupName = [
   'Groupes',
   'Nom du groupe modifié',
 ]
+
+export const matomoEventOpenQuestionsList = [
+  'trackEvent',
+  'questions-list',
+  'open',
+]
+
+export const matomoEventCloseQuestionsList = [
+  'trackEvent',
+  'questions-list',
+  'close',
+]
+
+export function getMatomoEventClickQuestionsListLink(question: string) {
+  return ['trackEvent', 'questions-list', 'click-question-link', question]
+}
+
+export function getMatomoEventClickCategoryGraph(category: string) {
+  return ['trackEvent', 'Formulaire', 'Clic graph category', category]
+}
+
+export function getMatomoEventClickSubcategoryGraph(subcategory: string) {
+  return ['trackEvent', 'Formulaire', 'Clic graph subcategory', subcategory]
+}

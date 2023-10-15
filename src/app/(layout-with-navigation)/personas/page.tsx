@@ -14,16 +14,18 @@ export async function generateMetadata() {
 }
 
 export default async function Personas() {
-  const lang = currentLocale()
+  const locale = currentLocale()
 
   // TODO: endpoint should not be static (and should point to local if available)
   const personas = await fetch(
-    `https://deploy-preview-2085--ecolab-data.netlify.app/personas-${lang}.json`
+    `https://deploy-preview-2085--ecolab-data.netlify.app/personas-${
+      locale === 'en' ? 'en-us' : locale
+    }.json`
   ).then((res) => res.json())
 
   return (
     <>
-      <Title title={<Trans>Personas</Trans>} />
+      <Title title={<Trans>Personas</Trans>} data-cypress-id="personas-title" />
       <p>
         <Trans>
           Les personas nous servent à tester le simulateur sous toutes ses

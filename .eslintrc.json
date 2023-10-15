@@ -15,7 +15,8 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json",
-    "tsconfigRootDir": "."
+    "tsconfigRootDir": ".",
+    "exclude": ["node_modules", "cypress/**/*"]
   },
   "globals": {
     "React": "writable",
@@ -43,5 +44,5 @@
       "parser": "@babel/eslint-parser"
     }
   ],
-  "exclude": ["node_modules", "cypress/**/*"]
+  "ignorePatterns": ["node_modules", "cypress/**/*"]
 }
