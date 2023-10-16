@@ -63,7 +63,6 @@ export default function useValue({
   const setDefaultAsValue = async (foldedStep?: string): Promise<void> => {
     if (foldedStep) addFoldedStep(foldedStep)
 
-    console.log(value)
     let situationToUpdate = {}
     if (type?.includes('mosaic')) {
       situationToUpdate = questionsOfMosaic.reduce(
