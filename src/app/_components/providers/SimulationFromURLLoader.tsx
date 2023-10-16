@@ -5,16 +5,15 @@ import { useUser } from '@/publicodes-state'
 import { useEffect } from 'react'
 
 export default function SimulationFromURLLoader() {
-  const { addSimulation } = useUser()
+  const { addSimulation, currentSimulationId } = useUser()
 
   const simulationFromURL = useLoadSimulationFromURL()
 
   useEffect(() => {
-    if (simulationFromURL) {
+    if (simulationFromURL && currentSimulationId !== simulationFromURL.id) {
       addSimulation(simulationFromURL)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [simulationFromURL])
 
   return null
 }
