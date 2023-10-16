@@ -64,6 +64,16 @@ const nextConfig = {
         destination: '/amis/:path*',
         permanent: true,
       },
+      {
+        source: '/conférence/:path*',
+        destination: 'https://sondages.nosgestesclimat.fr/conférence/:path*',
+        permanent: true,
+      },
+      {
+        source: '/sondage/:path*',
+        destination: 'https://sondages.nosgestesclimat.fr/sondage/:path*',
+        permanent: true,
+      },
     ]
   },
   experimental: {
