@@ -64,6 +64,11 @@ const nextConfig = {
         destination: '/amis/:path*',
         permanent: true,
       },
+      {
+        source: '/mon-empreinte-carbone/:path*',
+        destination: '/fin/:path*',
+        permanent: true,
+      },
     ]
   },
   experimental: {
