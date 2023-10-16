@@ -60,8 +60,8 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/groupes/*',
-        destination: '/amis/*',
+        source: '/groupes/:path*',
+        destination: '/amis/:path*',
         permanent: true,
       },
     ]
