@@ -19,6 +19,11 @@ export const SERVER_URL =
 
 export const SIMULATION_URL = SERVER_URL + '/simulation/'
 
+export const EMAIL_SIMULATION_URL =
+  (process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3001'
+    : SERVER_URL) + '/email-simulation/'
+
 export const GROUP_URL =
   (process.env.NODE_ENV === 'development'
     ? 'http://localhost:3001'

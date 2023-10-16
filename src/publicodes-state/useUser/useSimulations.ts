@@ -104,6 +104,14 @@ export default function useSimulations({
     setSimulations(updatedSimulations)
   }
 
+  const addSimulation = (simulation: Simulation) => {
+    setSimulations((prevSimulations: Simulation[]) => [
+      ...prevSimulations,
+      simulation,
+    ])
+    setCurrentSimulationId(simulation.id)
+  }
+
   const deleteSimulation = (deletedSimulationId: string) => {
     setSimulations((prevSimulations: Simulation[]) =>
       [...prevSimulations].filter(
@@ -126,6 +134,7 @@ export default function useSimulations({
     updateFoldedStepsOfCurrentSimulation,
     updateCurrentSimulationActionChoices,
     initSimulation,
+    addSimulation,
     deleteSimulation,
   }
 }
