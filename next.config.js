@@ -59,6 +59,11 @@ const nextConfig = {
         destination: '/actions',
         permanent: true,
       },
+      {
+        source: '/groupes/*',
+        destination: '/amis/*',
+        permanent: true,
+      },
     ]
   },
   experimental: {
