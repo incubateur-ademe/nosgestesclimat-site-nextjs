@@ -32,6 +32,7 @@ export default function useUser() {
 
   const {
     initSimulation,
+    addSimulation,
     deleteSimulation,
     updateSituationOfCurrentSimulation,
     updateFoldedStepsOfCurrentSimulation,
@@ -90,6 +91,10 @@ export default function useUser() {
      * A list of every simulations of the user (and their associated informations)
      */
     simulations,
+    /**
+     * Add a simulation to the list of simulations
+     */
+    addSimulation,
     /**
      * Delete a the specified simulation
      */
