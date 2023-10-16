@@ -40,7 +40,7 @@ Recogemos datos anónimos sólo para mejorar este simulador.
 
 ## ¿Cómo integrar este simulador en su sitio?
 
-Te lo contamos todo en nuestra página de [difusión](/diffuser).
+Te lo contamos todo en nuestra página de [difusión](/partenaires).
 
 ## Contacto con nosotros
 

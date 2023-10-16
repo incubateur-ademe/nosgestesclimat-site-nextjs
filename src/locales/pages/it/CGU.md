@@ -69,7 +69,7 @@ repository di codice: https://github.com/datagir/nosgestesclimat-site.
 
 È possibile diffondere il simulatore in diversi modi senza mobilitare le
 competenze di sviluppo. Ulteriori informazioni sono disponibili alla
-pagina ["Diffusione"](https://nosgestesclimat.fr/diffuser).
+pagina ["Diffusione"](https://nosgestesclimat.fr/partenaires).
 
 ## Articolo 5 - Responsabilità
 
