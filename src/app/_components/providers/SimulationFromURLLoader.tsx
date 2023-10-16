@@ -27,12 +27,13 @@ export default function SimulationFromURLLoader() {
       .then((res) => res.data)
   )
 
-  const simulationReformated = simulationFromURL?.data && {
-    ...simulationFromURL?.data,
-    situation: reformateDataFromDB(simulationFromURL?.data),
-  }
-
+  console.log('simulationFromURL', simulationFromURL)
   useEffect(() => {
+    const simulationReformated = simulationFromURL?.data && {
+      ...simulationFromURL?.data,
+      situation: reformateDataFromDB(simulationFromURL?.data),
+    }
+
     if (
       simulationReformated &&
       currentSimulationId !== simulationReformated.id
@@ -44,7 +45,14 @@ export default function SimulationFromURLLoader() {
       const queryString = params.toString()
       router.replace(`${currentPath}${queryString ? `?${queryString}` : ''}`)
     }
-  }, [simulationReformated, addSimulation, currentSimulationId])
+  }, [
+    addSimulation,
+    currentSimulationId,
+    currentPath,
+    router,
+    searchParams,
+    simulationFromURL?.data,
+  ])
 
   return null
 }
