@@ -132,7 +132,7 @@ Analyser).
   https://nosgestesclimat.fr/nouveaut%C3%A9s/las-n%C3%A9ous
 - Documentación: https://nosgestesclimat.fr/documentation
 - Contribuir: https://nosgestesclimat.fr/contribuer
-- Difundir: https://nosgestesclimat.fr/diffuser
+- Difundir: https://nosgestesclimat.fr/partenaires
 - Tutorial : https://nosgestesclimat.fr/tutoriel
 - La prueba: https://nosgestesclimat.fr/simulateur/bilan
 - Fin:

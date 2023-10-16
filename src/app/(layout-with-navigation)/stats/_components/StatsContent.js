@@ -187,8 +187,8 @@ export default function StatsContent() {
             <p className="mb-4">
               Les intégrations en iframe sont détéctées via le paramètre
               'iframe' dans l'URL, ceci seulement si l'intégrateur a utilisé le{' '}
-              <a href="./diffuser">script dédié</a>. Ainsi, les visites via les
-              iframes d'intégrateurs qui n'ont pas utilisé ce script sont
+              <a href="./partenaires">script dédié</a>. Ainsi, les visites via
+              les iframes d'intégrateurs qui n'ont pas utilisé ce script sont
               dispersées dans les visites générales de Nos Gestes Climat. Dans
               l'attente de chiffres plus précis, ce taux est donc
               potentiellement sous-estimé par rapport à la réalité.{' '}
