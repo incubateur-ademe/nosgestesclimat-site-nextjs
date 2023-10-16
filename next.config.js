@@ -65,6 +65,10 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/mon-empreinte-carbone/:path*',
+        destination: '/fin/:path*',
+        permanent: true,
+      },
         source: '/conférence/:path*',
         destination: 'https://sondages.nosgestesclimat.fr/conférence/:path*',
         permanent: true,
