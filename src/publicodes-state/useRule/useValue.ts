@@ -63,6 +63,7 @@ export default function useValue({
   const setDefaultAsValue = async (foldedStep?: string): Promise<void> => {
     if (foldedStep) addFoldedStep(foldedStep)
 
+    console.log(value)
     let situationToUpdate = {}
     if (type?.includes('mosaic')) {
       situationToUpdate = questionsOfMosaic.reduce(
@@ -106,6 +107,9 @@ const checkValueValidity = ({
 }): NodeValue => {
   switch (type) {
     case 'choices':
+      if (!value) {
+        return null
+      }
       return value.startsWith("'") ? value : `'${value}'`
     case 'boolean':
       return value === null || value === false || value === 'non' // Model shenanigans
