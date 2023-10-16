@@ -16,9 +16,12 @@ const protocol = `http${secure}://`
 
 export const SERVER_URL =
   protocol +
-    (process.env.NODE_ENV === 'development'
-      ? 'localhost:3001'
-      : process.env.SERVER_URL) || process.env.NEXT_PUBLIC_SERVER_URL
+  // Local variable SERVER_URL is used for testing defined in env.local
+  (process.env.SERVER_URL ||
+    // Production variable
+    process.env.NEXT_PUBLIC_SERVER_URL ||
+    // Default value
+    'localhost:3001')
 
 export const SIMULATION_URL = SERVER_URL + '/simulation/'
 

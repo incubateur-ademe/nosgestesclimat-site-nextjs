@@ -27,7 +27,6 @@ export default function SimulationFromURLLoader() {
       .then((res) => res.data)
   )
 
-  console.log('simulationFromURL', simulationFromURL)
   useEffect(() => {
     const simulationReformated = simulationFromURL?.data && {
       ...simulationFromURL?.data,
