@@ -5,13 +5,17 @@ import { useUser } from '@/publicodes-state'
 import { reformateDataFromDB } from '@/utils/formatDataForDB'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { useSearchParams } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
 export default function SimulationFromURLLoader() {
   const { addSimulation, currentSimulationId } = useUser()
 
+  const router = useRouter()
+
   const searchParams = useSearchParams()
+
+  const currentPath = usePathname()
 
   const idSimulation = searchParams.get('sid')
 
@@ -34,8 +38,13 @@ export default function SimulationFromURLLoader() {
       currentSimulationId !== simulationReformated.id
     ) {
       addSimulation(simulationReformated)
+
+      const params = new URLSearchParams(searchParams)
+      params.delete('sid')
+      const queryString = params.toString()
+      router.replace(`${currentPath}${queryString ? `?${queryString}` : ''}`)
     }
-  }, [simulationReformated])
+  }, [simulationReformated, addSimulation, currentSimulationId])
 
   return null
 }
