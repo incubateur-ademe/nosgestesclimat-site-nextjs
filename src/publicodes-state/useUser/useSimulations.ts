@@ -105,6 +105,9 @@ export default function useSimulations({
   }
 
   const addSimulation = (simulation: Simulation) => {
+    // Avoid duplicating simulations
+    if (simulations.find((s) => s.id === simulation.id)) return
+
     setSimulations((prevSimulations: Simulation[]) => [
       ...prevSimulations,
       simulation,
