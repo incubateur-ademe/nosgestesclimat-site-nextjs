@@ -129,7 +129,7 @@ WebDeveloper Toolbar, Color Contrast Analyser).
   https://nosgestesclimat.fr/nouveaut%C3%A9s/las-n%C3%A9ous
 - Documentazione: https://nosgestesclimat.fr/documentation
 - Contribuire: https://nosgestesclimat.fr/contribuer
-- Diffusione: https://nosgestesclimat.fr/diffuser
+- Diffusione: https://nosgestesclimat.fr/partenaires
 - Tutorial : https://nosgestesclimat.fr/tutoriel
 - Il test: https://nosgestesclimat.fr/simulateur/bilan
 - Fine:

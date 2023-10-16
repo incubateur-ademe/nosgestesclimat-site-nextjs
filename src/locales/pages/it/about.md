@@ -43,7 +43,7 @@ Raccogliamo dati anonimi solo per migliorare questo simulatore.
 
 ## Come integrare questo simulatore nel vostro sito?
 
-Vi raccontiamo tutto nella nostra pagina di [trasmissione](/diffuser).
+Vi raccontiamo tutto nella nostra pagina di [trasmissione](/partenaires).
 
 ## Contattateci
 

@@ -6,10 +6,10 @@ import { useContext } from 'react'
 import Link from '../Link'
 
 export default function Logo({
-  size = 'large',
+  size = 'lg',
   className,
 }: {
-  size?: 'xs' | 'small' | 'large'
+  size?: 'xs' | 'sm' | 'lg'
   className?: string
 }) {
   const { isIframe } = useContext(IframeOptionsContext)
@@ -20,12 +20,12 @@ export default function Logo({
       image: 'h-auto w-8 md:w-[50px]',
       text: 'text-xs md:text-xl',
     },
-    small: {
+    sm: {
       wrapper: 'pb-4 pt-8',
       image: 'h-auto w-[50px]',
       text: 'text-xl',
     },
-    large: {
+    lg: {
       wrapper: 'pb-4 pt-8',
       image: 'h-auto w-[50px] md:w-[100px]',
       text: 'md:text-3xl',

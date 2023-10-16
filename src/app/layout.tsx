@@ -2,11 +2,13 @@
 import getGeolocation from '@/helpers/getGeolocation'
 import '@/locales/initClient'
 import '@/locales/initServer'
+import { ErrorBoundary } from '@sentry/nextjs'
 import { dir } from 'i18next'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { PropsWithChildren } from 'react'
+import { ErrorFallback } from './_components/ErrorFallback'
 import Providers from './_components/Providers'
 import './globals.css'
 
@@ -113,7 +115,9 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         `}</Script>
 
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
-        <Providers region={region}>{children}</Providers>
+        <ErrorBoundary showDialog fallback={ErrorFallback}>
+          <Providers region={region}>{children}</Providers>
+        </ErrorBoundary>
       </body>
     </html>
   )
