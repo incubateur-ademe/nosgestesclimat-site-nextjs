@@ -70,7 +70,7 @@ código: https://github.com/datagir/nosgestesclimat-site.
 
 Es posible difundir el simulador de varias maneras sin movilizar las
 competencias de desarrollo. Más información en la página
-["Difundir](https://nosgestesclimat.fr/diffuser)".
+["Difundir](https://nosgestesclimat.fr/partenaires)".
 
 ## Artículo 5 - Responsabilidades
 
