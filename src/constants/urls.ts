@@ -15,10 +15,7 @@ const secure = process.env.NODE_ENV === 'development' ? '' : 's'
 const protocol = `http${secure}://`
 
 export const SERVER_URL =
-  protocol +
-    (process.env.NODE_ENV === 'development'
-      ? 'localhost:3001'
-      : process.env.SERVER_URL) || process.env.NEXT_PUBLIC_SERVER_URL
+  protocol + (process.env.NEXT_PUBLIC_SERVER_URL || 'localhost:3001')
 
 export const SIMULATION_URL = SERVER_URL + '/simulation/'
 
