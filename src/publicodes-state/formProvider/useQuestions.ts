@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
 import getIsMissing from '../helpers/getIsMissing'
 import getQuestionsOfMosaic from '../helpers/getQuestionsOfMosaic'
-import getType from '../helpers/getType'
 import { NGCEvaluatedNode, NGCRuleNode, Situation } from '../types'
 
 type Props = {
@@ -21,7 +20,6 @@ type Props = {
  */
 export default function useQuestions({
   root,
-  safeGetRule,
   safeEvaluate,
   categories,
   subcategories,
@@ -141,22 +139,13 @@ export default function useQuestions({
     () =>
       /**
        * First we check that there is still a question associated to the folded step. If not we cut it.
-       * Then we take every foldedSteps and then check if their value is null (wich mean they ever are a boolean set to "non" or they are disabled).
-       * We check via getType if they are a boolean. If not, it means they are disabled and are not relevant (not displayed)
+       * Then we check if the folded step is nullable (it has been disabled by its parent or something). If it is we cut it.
        */
       foldedSteps
         .filter((foldedStep) => everyQuestions.includes(foldedStep))
-        .filter(
-          (foldedStep) =>
-            !(
-              getType({
-                dottedName: foldedStep,
-                rule: safeGetRule(foldedStep),
-                evaluation: safeEvaluate(foldedStep),
-              }) !== 'boolean' && safeEvaluate(foldedStep)?.nodeValue === null
-            )
-        ),
-    [foldedSteps, safeGetRule, safeEvaluate, everyQuestions]
+        .filter((foldedStep) => !safeEvaluate(foldedStep)?.isNullable),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [situation, foldedSteps, safeEvaluate, everyQuestions]
   )
 
   const tempRelevantQuestions = useMemo<string[]>(

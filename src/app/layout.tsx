@@ -2,11 +2,13 @@
 import getGeolocation from '@/helpers/getGeolocation'
 import '@/locales/initClient'
 import '@/locales/initServer'
+import { ErrorBoundary } from '@sentry/nextjs'
 import { dir } from 'i18next'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { PropsWithChildren } from 'react'
+import { ErrorFallback } from './_components/ErrorFallback'
 import Providers from './_components/Providers'
 import './globals.css'
 
@@ -88,24 +90,24 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <meta name="theme-color" content="#5758BB" />
 
-        <Script id="matomo">
-          {`
+        {process.env.NEXT_PUBLIC_MATOMO_ID === '1' ? (
+          <Script id="matomo">
+            {`
           
             var _paq = window._paq = window._paq || [];
              /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
             _paq.push(["setExcludedQueryParams", ["detail","diapo"]]);
             _paq.push(['enableLinkTracking']);
             (function() {
-              var u="https://matomo-incubateur-ademe.osc-fr1.scalingo.io/";
+              var u="https://stats.data.gouv.fr/";
               _paq.push(['setTrackerUrl', u+'matomo.php']);
-              _paq.push(['setSiteId', ${
-                process.env.NODE_ENV !== 'production' ? '2' : '1'
-              }]);
+              _paq.push(['setSiteId', '153');
               var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
               g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
             })();
           `}
-        </Script>
+          </Script>
+        ) : null}
       </head>
 
       <body className={marianne.className}>
@@ -115,7 +117,9 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         `}</Script>
 
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
-        <Providers region={region}>{children}</Providers>
+        <ErrorBoundary showDialog fallback={ErrorFallback}>
+          <Providers region={region}>{children}</Providers>
+        </ErrorBoundary>
       </body>
     </html>
   )

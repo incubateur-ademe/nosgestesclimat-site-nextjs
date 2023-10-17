@@ -8,6 +8,7 @@ import { IframeResizer } from './providers/IframeResizer'
 import PageViewTracker from './providers/PageViewTracker'
 import QueryClientProviderWrapper from './providers/QueryClientProviderWrapper'
 import QueryParamsProvider from './providers/QueryParamsProvider'
+import SimulationFromUrlLoader from './providers/SimulationFromUrlLoader'
 
 export default function Providers({
   children,
@@ -23,6 +24,7 @@ export default function Providers({
               <UserProvider
                 initialRegion={region}
                 storageKey="nosgestesclimat::v3">
+                <SimulationFromUrlLoader />
                 <IsClientCtxProvider>{children}</IsClientCtxProvider>
               </UserProvider>
             </PageViewTracker>
