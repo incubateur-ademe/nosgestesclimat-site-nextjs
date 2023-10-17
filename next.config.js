@@ -84,10 +84,6 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
   },
-  env: {
-    SERVER_URL: process.env.SERVER_URL,
-    BREVO_API_KEY: process.env.BREVO_API_KEY,
-  },
 }
 
 module.exports = withMDX(nextConfig)
