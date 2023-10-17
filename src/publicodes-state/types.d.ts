@@ -49,6 +49,7 @@ export type NGCEvaluatedNode = EvaluatedNode & {
   explanation: {
     ruleDisabledByItsParent: boolean
   }
+  isNullable: boolean
 }
 
 export type ActionChoices = Record<string, boolean>

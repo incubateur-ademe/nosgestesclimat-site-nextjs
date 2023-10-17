@@ -106,6 +106,9 @@ const checkValueValidity = ({
 }): NodeValue => {
   switch (type) {
     case 'choices':
+      if (!value) {
+        return null
+      }
       return value.startsWith("'") ? value : `'${value}'`
     case 'boolean':
       return value === null || value === false || value === 'non' // Model shenanigans
