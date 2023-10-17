@@ -21,13 +21,15 @@ export default function SimulationFromURLLoader() {
 
   const idSimulationDecoded = decodeURIComponent(idSimulation || '')
 
-  const { data: simulationFromURL } = useQuery(['simulationFromURL'], () =>
-    axios
-      .get(`${EMAIL_SIMULATION_URL}${idSimulationDecoded}`)
-      .then((res) => res.data)
+  const { data: simulationFromURL } = useQuery(
+    ['simulationFromURL'],
+    () =>
+      axios
+        .get(`${EMAIL_SIMULATION_URL}${idSimulationDecoded}`)
+        .then((res) => res.data),
+    { enabled: idSimulationDecoded ? true : false }
   )
 
-  console.log('simulationFromURL', simulationFromURL)
   useEffect(() => {
     const simulationReformated = simulationFromURL?.data && {
       ...simulationFromURL?.data,
