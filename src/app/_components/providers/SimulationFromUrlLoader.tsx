@@ -8,7 +8,7 @@ import axios from 'axios'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
-export default function SimulationFromURLLoader() {
+export default function SimulationFromUrlLoader() {
   const { addSimulation, currentSimulationId } = useUser()
 
   const router = useRouter()
@@ -27,7 +27,7 @@ export default function SimulationFromURLLoader() {
       axios
         .get(`${EMAIL_SIMULATION_URL}${idSimulationDecoded}`)
         .then((res) => res.data),
-    { enabled: idSimulationDecoded ? true : false }
+    { enabled: idSimulationDecoded ? true : false, refetchOnWindowFocus: false }
   )
 
   useEffect(() => {
