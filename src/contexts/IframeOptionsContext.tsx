@@ -9,7 +9,7 @@ import { getIsIframe } from '../utils/getIsIframe'
 export const IframeOptionsContext = createContext<{
   isIframe?: boolean
   iframeShareData?: string | null
-  iframeLocalisation?: string | null
+  iframeRegion?: string | null
   iframeOnlySimulation?: boolean
 }>({})
 
@@ -57,7 +57,7 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
 
   const iframeShareData = urlParams.get('shareData')
 
-  const iframeLocalisation = urlParams.get('localisation')
+  const iframeRegion = urlParams.get('region')
 
   const iframeOnlySimulation = Boolean(urlParams.get('onlySimulation'))
 
@@ -70,7 +70,7 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
     ...iframeIntegratorOptions,
     isIframe,
     iframeShareData,
-    iframeLocalisation,
+    iframeRegion,
     iframeOnlySimulation,
   }
 
