@@ -4,6 +4,7 @@ import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
 import { UserProvider } from '@/publicodes-state'
 import { PropsWithChildren } from 'react'
 import { IsClientCtxProvider } from './IsClientCtxProvider'
+import CheckFixedRegion from './providers/CheckFixedRegion'
 import { IframeResizer } from './providers/IframeResizer'
 import PageViewTracker from './providers/PageViewTracker'
 import QueryClientProviderWrapper from './providers/QueryClientProviderWrapper'
@@ -25,6 +26,7 @@ export default function Providers({
                 initialRegion={region}
                 storageKey="nosgestesclimat::v3">
                 <SimulationFromUrlLoader />
+                <CheckFixedRegion />
                 <IsClientCtxProvider>{children}</IsClientCtxProvider>
               </UserProvider>
             </PageViewTracker>
