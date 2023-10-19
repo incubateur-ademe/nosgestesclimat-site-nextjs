@@ -19,7 +19,7 @@ export default function DemoIframePage() {
           id="nosgestesclimat"
           src="/iframeSimulation.js"
           data-only-simulation="true"
-          data-region="CH"
+          data-localisation="CH"
           data-pr="1872"
           data-share-data="true"
         />
