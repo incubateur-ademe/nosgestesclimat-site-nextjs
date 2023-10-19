@@ -79,6 +79,11 @@ const nextConfig = {
         destination: '/fin/:path*',
         permanent: true,
       },
+      {
+        source: '/partenaires',
+        destination: '/diffuser',
+        permanent: true,
+      },
     ]
   },
   experimental: {
