@@ -1,6 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
+import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
@@ -63,17 +64,20 @@ export default function DocumentationContent({
   if (!engine) return
 
   return (
-    <RulePage
-      language={i18n.language as 'fr' | 'en'}
-      rulePath={(path as string) ?? ''}
-      engine={engine as Engine}
-      documentationPath={documentationPath}
-      renderers={{
-        Head,
-        Link: ({ children, to }) => <Link href={to || ''}>{children}</Link>,
-        Text: ({ children }) => <Markdown>{children}</Markdown>,
-        References: References as any,
-      }}
-    />
+    <>
+      <LocalisationBanner supportedRegions={supportedRegions} />
+      <RulePage
+        language={i18n.language as 'fr' | 'en'}
+        rulePath={(path as string) ?? ''}
+        engine={engine as Engine}
+        documentationPath={documentationPath}
+        renderers={{
+          Head,
+          Link: ({ children, to }) => <Link href={to || ''}>{children}</Link>,
+          Text: ({ children }) => <Markdown>{children}</Markdown>,
+          References: References as any,
+        }}
+      />
+    </>
   )
 }
