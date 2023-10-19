@@ -27,7 +27,7 @@ export default function RegionSelector({
 
   const numberOfRegions = Object.entries(orderedSupportedRegions).length
 
-  const { updateRegion, user } = useUser()
+  const { updateRegion, user, tutorials, showTutorial } = useUser()
 
   // NOTE(@EmileRolley): how could this be undefined? This doesn't match the type annotations
   const { region } = user ?? {}
@@ -63,6 +63,7 @@ export default function RegionSelector({
               code,
               name: supportedRegions[code][locale]?.nom as unknown as string,
             })
+            tutorials.localisationBanner && showTutorial('localisationBanner')
           }}
           selectedRegionCode={region?.code}
           className={isFetching ? 'pointer-events-none opacity-60' : ''}

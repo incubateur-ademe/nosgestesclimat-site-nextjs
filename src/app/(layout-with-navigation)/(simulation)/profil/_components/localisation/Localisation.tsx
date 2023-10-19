@@ -23,7 +23,7 @@ export default function Localisation({
 
   const locale = useLocale()
 
-  const { user, updateRegion } = useUser()
+  const { user, updateRegion, tutorials, showTutorial } = useUser()
   const { region, initialRegion } = user || {}
 
   const isRegionSupported = Object.keys(supportedRegions)?.some(
@@ -68,6 +68,8 @@ export default function Localisation({
                     updateRegion(
                       initialRegion as { code: string; name: string }
                     )
+                    tutorials.localisationBanner &&
+                      showTutorial('localisationBanner')
                   }}>
                   <Trans>Revenir à ma région par défaut </Trans>{' '}
                   <span aria-label={initialRegion.name}>
