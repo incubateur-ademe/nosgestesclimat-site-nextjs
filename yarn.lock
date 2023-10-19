@@ -1312,10 +1312,10 @@
   resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
   integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
-"@incubateur-ademe/nosgestesclimat-scripts@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat-scripts/-/nosgestesclimat-scripts-0.2.0.tgz#376ebc9f9bd0f07e9af006e5f9b2fafeb28d3ab0"
-  integrity sha512-XrqDyh4PKnzEITAoJP0n461JMiAAjO5zvIqtfKl2jL20+UeSXjYmz5n1+J8TwvCd3q7Yw8PnUZttOwe51QH17Q==
+"@incubateur-ademe/nosgestesclimat-scripts@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat-scripts/-/nosgestesclimat-scripts-0.2.1.tgz#6f167bd00a9c8ab01333998a1667deedb1b4eb51"
+  integrity sha512-D1KL7qfCa/3Eb/daODcUxwFlzaVPFEQureHhkgmxazgfvgcrAtXyqAOh1Z9BP/+zxdhqTgXDZpzt4/N43Y9vwQ==
   dependencies:
     "@types/node" "^18.11.18"
     deepl-node "^1.10.2"
@@ -8709,7 +8709,7 @@ tapable@^2.0.0, tapable@^2.1.1, tapable@^2.2.0:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.1.tgz#1967a73ef4060a82f12ab96af86d52fdb76eeca0"
   integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
 
-tar-fs@*, tar-fs@3.0.4, tar-fs@^3.0.4:
+tar-fs@3.0.4, tar-fs@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/tar-fs/-/tar-fs-3.0.4.tgz#a21dc60a2d5d9f55e0089ccd78124f1d3771dbbf"
   integrity sha512-5AFQU8b9qLfZCX9zp2duONhPmZv0hGYiBPJsyUdqMjzq/mqVpy/rEUSeHk1+YitmxugaptgBh5oDGU3VsAJq4w==
@@ -8718,7 +8718,7 @@ tar-fs@*, tar-fs@3.0.4, tar-fs@^3.0.4:
     pump "^3.0.0"
     tar-stream "^3.1.5"
 
-tar-fs@^2.0.0:
+tar-fs@^2.0.0, tar-fs@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/tar-fs/-/tar-fs-2.1.1.tgz#489a15ab85f1f0befabb370b7de4f9eb5cbe8784"
   integrity sha512-V0r2Y9scmbDRLCNex/+hYzvp/zyYjvFbHPNgVTKfQvVrb6guiE/fxP+XblDNR011utopbkex2nM4dHNV6GDsng==
