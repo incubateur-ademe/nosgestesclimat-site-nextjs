@@ -1,8 +1,7 @@
 'use client'
 
-import { IframeOptionsContext } from '@/contexts/IframeOptionsContext'
+import { useIframe } from '@/hooks/useIframe'
 import Image from 'next/image'
-import { useContext } from 'react'
 import Link from '../Link'
 
 export default function Logo({
@@ -12,7 +11,7 @@ export default function Logo({
   size?: 'xs' | 'sm' | 'lg'
   className?: string
 }) {
-  const { isIframe } = useContext(IframeOptionsContext)
+  const { isIframe } = useIframe()
 
   const classnames = {
     xs: {
