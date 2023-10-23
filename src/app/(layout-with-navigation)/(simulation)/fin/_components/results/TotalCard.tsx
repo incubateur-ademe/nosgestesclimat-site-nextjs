@@ -8,11 +8,11 @@ export default function TotalCard() {
   const { numericValue } = useRule('bilan')
 
   return (
-    <Card className="flex-row items-center rounded-lg bg-primaryDark p-6 text-white shadow-none">
+    <Card className="w-full flex-row items-center rounded-lg bg-primaryDark p-6 text-white shadow-none">
       <div className="flex-1">
-        <p className="mb-2 text-3xl">
+        <p className="mb-0 text-3xl">
           <strong>{(numericValue / 1000).toFixed(2)}</strong>{' '}
-          <span>tonnes</span>
+          <span className="text-xl">tonnes</span>
         </p>
 
         <p className="mb-0">

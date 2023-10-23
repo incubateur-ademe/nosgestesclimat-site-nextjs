@@ -1,6 +1,6 @@
 import { useRule } from '@/publicodes-state'
 import { formatValue } from 'publicodes'
-import Badge from './Badge'
+import Badge from '../../../../../../design-system/layout/Badge'
 import PercentageDiff from './PercentageDiff'
 
 type PointsListItemProps = {

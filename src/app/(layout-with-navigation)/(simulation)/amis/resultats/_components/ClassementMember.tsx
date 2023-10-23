@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import { JSX } from 'react'
-import Badge from './Badge'
+import Badge from '../../../../../../design-system/layout/Badge'
 
 export default function ClassementMember({
   rank,
