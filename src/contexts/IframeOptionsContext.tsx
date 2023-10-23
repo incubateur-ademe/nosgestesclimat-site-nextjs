@@ -63,8 +63,7 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
 
   if (isIframeOnlySimulation) {
     // Add class to body that hides the header and the footer
-    // @Clemog: Je ne comprends pas ce qui est fait ici ? Pourquoi on a une condition supplémentaire avec isIframe ? Que met-on à jour ?
-    document.body.classList.add(isIframe ? 'iframe' : '')
+    document.body.classList.add('iframeOnlySimulation')
   }
 
   const finalValue = {
