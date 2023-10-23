@@ -1,12 +1,8 @@
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
-import NorthStarBanner from '@/components/northstar/NorthstarBanner'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
-import { Diapo } from '@/types/fin'
-import FinSlider from './_components/FinSlider'
-import { NewsletterForm } from './_components/NewsletterForm'
-import './slick.css'
+import CongratulationsText from './_components/CongratulationsText'
+import Results from './_components/results/Results'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -16,26 +12,14 @@ export async function generateMetadata() {
   })
 }
 
-export default function FinPage({
-  searchParams,
-}: {
-  searchParams: Record<string, Diapo>
-}) {
+export default function FinPage() {
   return (
     <FormProvider>
-      <NorthStarBanner type="learned" />
-
       <IframeDataShareModal />
 
-      <div className="mb-12 flex justify-start md:mx-16">
-        <ButtonLink size="sm" color="secondary" href="/simulateur/bilan">
-          ← Revenir au test
-        </ButtonLink>
-      </div>
+      <CongratulationsText />
 
-      <FinSlider searchParams={searchParams} />
-
-      <NewsletterForm />
+      <Results />
     </FormProvider>
   )
 }
