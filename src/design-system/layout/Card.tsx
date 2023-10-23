@@ -14,16 +14,17 @@ export default function Card({
   onClick,
   style,
   ...props
-}: PropsWithChildren<
-  {
-    className?: string
-    href?: string /* Used only for links */
-    tag?: ElementType | string
-    onClick?: () => void
-    style?: CSSProperties
-    target?: string
-  } & HTMLAttributes<HTMLDivElement>
->) {
+}: HTMLAttributes<HTMLDivElement> &
+  PropsWithChildren<
+    {
+      className?: string
+      href?: string /* Used only for links */
+      tag?: ElementType | string
+      onClick?: () => void
+      style?: CSSProperties
+      target?: string
+    } & HTMLAttributes<HTMLDivElement>
+  >) {
   const Tag = tag || 'div'
 
   return (

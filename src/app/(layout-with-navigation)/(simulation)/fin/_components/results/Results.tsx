@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import CategoriesAccordion from './CategoriesAccordion'
 import TotalCard from './TotalCard'
 import CategoriesChart from './categoriesChart/CategoriesChart'
 
@@ -14,6 +15,8 @@ export default function Results() {
 
         <CategoriesChart />
       </div>
+
+      <CategoriesAccordion />
     </>
   )
 }
