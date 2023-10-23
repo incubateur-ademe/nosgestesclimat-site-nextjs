@@ -68,8 +68,9 @@ export default function Localisation({
                     updateRegion(
                       initialRegion as { code: string; name: string }
                     )
-                    tutorials.localisationBanner &&
+                    if (tutorials.localisationBanner) {
                       showTutorial('localisationBanner')
+                    }
                   }}>
                   <Trans>Revenir à ma région par défaut </Trans>{' '}
                   <span aria-label={initialRegion.name}>

@@ -63,7 +63,9 @@ export default function RegionSelector({
               code,
               name: supportedRegions[code][locale]?.nom as unknown as string,
             })
-            tutorials.localisationBanner && showTutorial('localisationBanner')
+            if (tutorials.localisationBanner) {
+              showTutorial('localisationBanner')
+            }
           }}
           selectedRegionCode={region?.code}
           className={isFetching ? 'pointer-events-none opacity-60' : ''}

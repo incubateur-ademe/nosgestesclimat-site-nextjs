@@ -41,9 +41,9 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
       regionParams?.[currentLocale]?.['nom']
     : countryName
 
-  if (tutorials.localisationBanner) return
+  if (tutorials.localisationBanner) return null
 
-  if (code === defaultModelRegionCode) return
+  if (code === defaultModelRegionCode) return null
 
   return (
     <Card
