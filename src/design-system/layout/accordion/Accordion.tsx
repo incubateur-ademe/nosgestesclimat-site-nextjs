@@ -6,6 +6,7 @@ export type AccordionItemType = {
   icons: string
   className?: string
   category: string
+  isReadOnly?: boolean
 }
 
 export default function Accordion({
@@ -17,13 +18,14 @@ export default function Accordion({
 }) {
   return (
     <ul className={className}>
-      {items.map(({ title, content, icons, category }, index) => (
+      {items.map(({ title, content, icons, category, isReadOnly }, index) => (
         <AccordionItem
           key={`${title}-${index}`}
           title={title}
           content={content}
           icons={icons}
           category={category}
+          isReadOnly={isReadOnly}
         />
       ))}
     </ul>

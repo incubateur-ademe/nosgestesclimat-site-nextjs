@@ -2,6 +2,7 @@
 
 import Accordion from '@/design-system/layout/accordion/Accordion'
 import { useForm, useTempEngine } from '@/publicodes-state'
+import SubcategoriesList from './subcategoriesList/SubCategoriesList'
 
 export default function CategoriesAccordion() {
   const { categories } = useForm()
@@ -13,12 +14,13 @@ export default function CategoriesAccordion() {
       className="mt-8"
       items={categories.map((categoryName) => {
         const categoryObject = getRuleObject(categoryName)
-
+        console.log(categoryName)
         return {
           title: categoryObject?.title,
-          content: 'toto',
           icons: categoryObject?.rawNode.icônes,
           category: categoryName,
+          content: <SubcategoriesList category={categoryName} />,
+          isReadOnly: categoryName === 'services sociétaux',
         }
       })}
     />

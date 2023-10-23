@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
-import CategoriesAccordion from './CategoriesAccordion'
 import TotalCard from './TotalCard'
+import CategoriesAccordion from './categoriesAccordion/CategoriesAccordion'
 import CategoriesChart from './categoriesChart/CategoriesChart'
 
 export default function Results() {
