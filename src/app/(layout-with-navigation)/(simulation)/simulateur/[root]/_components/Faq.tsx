@@ -6,9 +6,9 @@ import Trans from '@/components/translation/Trans'
 import { useIframe } from '@/hooks/useIframe'
 
 export default function Faq() {
-  const { iframeOnlySimulation } = useIframe()
+  const { isIframeOnlySimulation } = useIframe()
 
-  if (iframeOnlySimulation) return null
+  if (isIframeOnlySimulation) return null
 
   return (
     <div className="mx-auto mb-4 rounded-lg bg-primaryLight p-4 text-center">

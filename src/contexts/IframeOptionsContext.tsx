@@ -8,9 +8,9 @@ import { getIsIframe } from '../utils/getIsIframe'
 
 export const IframeOptionsContext = createContext<{
   isIframe?: boolean
-  iframeShareData?: string | null
+  isIframeShareData?: boolean
   iframeRegion?: string | null
-  iframeOnlySimulation?: boolean
+  isIframeOnlySimulation?: boolean
 }>({})
 
 const nullDecode = (string: string) =>
@@ -55,13 +55,13 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
     ])
   )
 
-  const iframeShareData = urlParams.get('shareData')
+  const isIframeShareData = Boolean(urlParams.get('shareData'))
 
   const iframeRegion = urlParams.get('region')
 
-  const iframeOnlySimulation = Boolean(urlParams.get('onlySimulation'))
+  const isIframeOnlySimulation = Boolean(urlParams.get('onlySimulation'))
 
-  if (iframeOnlySimulation) {
+  if (isIframeOnlySimulation) {
     // Add class to body that hides the header and the footer
     // @Clemog: Je ne comprends pas ce qui est fait ici ? Pourquoi on a une condition supplémentaire avec isIframe ? Que met-on à jour ?
     document.body.classList.add(isIframe ? 'iframe' : '')
@@ -70,9 +70,9 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
   const finalValue = {
     ...iframeIntegratorOptions,
     isIframe,
-    iframeShareData,
+    isIframeShareData,
     iframeRegion,
-    iframeOnlySimulation,
+    isIframeOnlySimulation,
   }
 
   return (
