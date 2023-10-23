@@ -80,6 +80,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/nouveaut%C3%A9s',
+        destination: '/nouveautes',
+        permanent: true,
+      },
+      {
         source: '/partenaires',
         destination: '/diffuser',
         permanent: true,
