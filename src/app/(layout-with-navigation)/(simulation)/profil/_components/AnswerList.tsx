@@ -1,12 +1,13 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { useForm } from '@/publicodes-state'
+import { useEngine, useForm } from '@/publicodes-state'
 import Category from './answerList/Category'
 
 export default function AnswerList() {
-  const { categories } = useForm()
+  const { categories, relevantAnsweredQuestions } = useForm()
 
+  const { getCategory } = useEngine()
   return (
     <div>
       <h3>
@@ -15,9 +16,13 @@ export default function AnswerList() {
         </span>
         <Trans>Mes réponses</Trans>
       </h3>
-      {categories.map((category) => (
-        <Category key={category} category={category} />
-      ))}
+      {categories.map((category) =>
+        relevantAnsweredQuestions.find(
+          (question) => getCategory(question) === category
+        ) ? (
+          <Category key={category} category={category} />
+        ) : null
+      )}
     </div>
   )
 }
