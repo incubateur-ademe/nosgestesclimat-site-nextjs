@@ -15,9 +15,7 @@ export default function SubcategoriesList({ category }: { category: string }) {
       return valueB - valueA
     })
 
-  const { numericValue: firstSubcategoryValue } = useRule(
-    sortedSubcategories[0]
-  )
+  const { numericValue: categoryValue } = useRule(category)
 
   return (
     <ul>
@@ -25,7 +23,7 @@ export default function SubcategoriesList({ category }: { category: string }) {
         <SubcategoryListItem
           key={name}
           subcategory={name}
-          maxValue={firstSubcategoryValue}
+          categoryValue={categoryValue}
         />
       ))}
     </ul>

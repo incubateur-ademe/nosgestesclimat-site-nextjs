@@ -4,7 +4,7 @@ import { formatValue } from 'publicodes'
 
 type Props = {
   subcategory: string
-  maxValue: number
+  categoryValue: number
 }
 
 const getIcon = (subcategory: string) => {
@@ -20,14 +20,18 @@ const getIcon = (subcategory: string) => {
   }
 }
 
-export default function SubcategoryListItem({ subcategory, maxValue }: Props) {
+export default function SubcategoryListItem({
+  subcategory,
+  categoryValue,
+}: Props) {
   const { numericValue, title, icons } = useRule(subcategory)
 
   const formattedValue = formatValue(numericValue, { precision: 0 })
 
   if (formattedValue === '0') return null
 
-  const percentageOfMaxValue = 1 - (maxValue - numericValue) / maxValue
+  const percentageOfCategoryValue =
+    1 - (categoryValue - numericValue) / categoryValue
   console.log(icons, typeof icons)
   return (
     <li className="p-3">
@@ -49,7 +53,7 @@ export default function SubcategoryListItem({ subcategory, maxValue }: Props) {
               <div
                 className="h-[6px] rounded-lg bg-pink-500"
                 style={{
-                  width: `calc(${percentageOfMaxValue} * 100%)`,
+                  width: `calc(${percentageOfCategoryValue} * 100%)`,
                 }}
               />
             </div>
