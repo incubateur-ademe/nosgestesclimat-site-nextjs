@@ -14,11 +14,13 @@ export default function TotalCard() {
           <strong>{(numericValue / 1000).toFixed(2)}</strong>{' '}
           <span>tonnes</span>
         </p>
-        <p>
+
+        <p className="mb-0">
           <span className="text-primaryLight">de </span>CO₂-e{' '}
           <span className="text-primaryLight">chaque année</span>
         </p>
       </div>
+
       <div>
         <Image src="/images/misc/planete.svg" width="40" height="40" alt="" />
       </div>

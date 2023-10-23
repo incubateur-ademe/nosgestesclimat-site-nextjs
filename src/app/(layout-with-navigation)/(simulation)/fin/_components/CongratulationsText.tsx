@@ -13,13 +13,13 @@ export default function CongratulationsText() {
         </Trans>
       </h1>
 
-      <p>
+      <p className="mb-0">
         <Trans>
           Découvrez vos résultats, et nos idées d'actions pour vous améliorer.
         </Trans>
       </p>
 
-      <Separator />
+      <Separator className="my-6" />
     </>
   )
 }

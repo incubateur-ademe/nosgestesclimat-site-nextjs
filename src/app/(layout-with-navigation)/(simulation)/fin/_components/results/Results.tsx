@@ -4,7 +4,7 @@ import TotalCard from './TotalCard'
 export default function Results() {
   return (
     <>
-      <h2>
+      <h2 className="text-lg">
         <Trans>Votre bilan</Trans>
       </h2>
 
