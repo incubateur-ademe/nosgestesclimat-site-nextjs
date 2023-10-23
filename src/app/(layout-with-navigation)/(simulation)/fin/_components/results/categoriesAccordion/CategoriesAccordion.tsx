@@ -2,7 +2,7 @@
 
 import Accordion from '@/design-system/layout/accordion/Accordion'
 import { useForm, useTempEngine } from '@/publicodes-state'
-import SubcategoriesList from './subcategoriesList/SubCategoriesList'
+import SubcategoriesList from './subcategoriesList/SubcategoriesList'
 
 export default function CategoriesAccordion() {
   const { categories } = useForm()

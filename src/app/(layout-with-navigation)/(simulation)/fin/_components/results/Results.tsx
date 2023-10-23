@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import Separator from '@/design-system/layout/Separator'
 import TotalCard from './TotalCard'
 import CategoriesAccordion from './categoriesAccordion/CategoriesAccordion'
 import CategoriesChart from './categoriesChart/CategoriesChart'
@@ -17,6 +18,8 @@ export default function Results() {
       </div>
 
       <CategoriesAccordion />
+
+      <Separator className="my-8" />
     </>
   )
 }
