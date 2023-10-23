@@ -21,7 +21,6 @@ export default function DemoIframePage() {
           data-only-simulation="true"
           data-region="CH"
           data-pr="1872"
-          data-share-data="true"
         />
       </main>
     </div>
