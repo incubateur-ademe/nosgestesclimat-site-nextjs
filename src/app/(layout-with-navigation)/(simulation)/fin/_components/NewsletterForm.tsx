@@ -65,7 +65,7 @@ export const NewsletterForm = () => {
                   Gestes Climat et sa{' '}
                   <a
                     target="_blank"
-                    href="https://nosgestesclimat.fr/vie-privée"
+                    href="https://nosgestesclimat.fr/vie-privee"
                     rel="noreferrer"
                     aria-label={
                       'politique de confidentialité, nouvelle fenêtre'
