@@ -22,7 +22,12 @@ export default function TotalCard() {
       </div>
 
       <div>
-        <Image src="/images/misc/planete.svg" width="40" height="40" alt="" />
+        <Image
+          src="/images/misc/planete-terre.svg"
+          width="40"
+          height="40"
+          alt=""
+        />
       </div>
     </Card>
   )
