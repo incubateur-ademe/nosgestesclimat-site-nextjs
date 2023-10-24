@@ -112,7 +112,8 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
             }
             handleMoveFocus()
           }}
-          color="text">
+          color="text"
+        >
           {'← ' + t('Précédent')}
         </Button>
       ) : null}
@@ -120,7 +121,8 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
         color={isMissing ? 'secondary' : 'primary'}
         disabled={isSettingDefaultValue || nextDisabled}
         data-cypress-id="next-question-button"
-        onClick={handleGoToNextQuestion}>
+        onClick={handleGoToNextQuestion}
+      >
         {noNextQuestion
           ? t('Terminer')
           : isMissing

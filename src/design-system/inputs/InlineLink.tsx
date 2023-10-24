@@ -17,7 +17,8 @@ export default function InlineLink({
     <Link
       href={href}
       title={title}
-      className={`text-primary hover:!text-primaryDark transition-colors underline inline-block ${className}`}>
+      className={`inline-block text-primary underline transition-colors hover:!text-primaryDark ${className}`}
+    >
       {children}
     </Link>
   )

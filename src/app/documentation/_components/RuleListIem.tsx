@@ -17,10 +17,12 @@ export default function RuleListItem({
   return (
     <li
       key={item.dottedName}
-      className="my-2 border-b border-solid border-primaryLight p-2">
+      className="my-2 border-b border-solid border-primaryLight p-2"
+    >
       <Link
         href={`/documentation/${encodeRuleName(item.dottedName)}`}
-        className="decoration-none">
+        className="decoration-none"
+      >
         <small className="block">
           {item.espace
             .slice(1)

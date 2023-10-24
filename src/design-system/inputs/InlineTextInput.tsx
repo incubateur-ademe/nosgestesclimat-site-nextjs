@@ -52,12 +52,14 @@ export default function InlineTextInput({
           return
         }
         // onClose()
-      }}>
+      }}
+    >
       <label htmlFor={name} className="mb-2">
         <span
           className={`text-sm font-bold text-slate-900 ${
             error ? '!text-red-700' : ''
-          }`}>
+          }`}
+        >
           {label}
         </span>
       </label>
@@ -85,7 +87,8 @@ export default function InlineTextInput({
           onClick={handleSubmit}
           aria-label={t('Ok, sauvegarder la modification')}
           disabled={isLoading}
-          data-cypress-id="button-inline-input">
+          data-cypress-id="button-inline-input"
+        >
           Ok
         </Button>
       </div>

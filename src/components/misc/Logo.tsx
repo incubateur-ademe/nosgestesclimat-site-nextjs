@@ -33,7 +33,8 @@ export default function Logo({
 
   return (
     <div
-      className={`flex w-full items-center justify-center ${classnames[size].wrapper} ${className}`}>
+      className={`flex w-full items-center justify-center ${classnames[size].wrapper} ${className}`}
+    >
       <Link
         href="/"
         data-cypress-id="home-logo-link"
@@ -41,7 +42,8 @@ export default function Logo({
           // @bjlaa : this is a hack to prevent the logo from being clickable in the iframe
           // not a recommended method a11y-wise, but in this case it's a good fit
           isIframeOnlySimulation ? 'pointer-events-none' : ''
-        }`}>
+        }`}
+      >
         <Image
           src="/images/misc/petit-logo@3x.png"
           alt="Logo Nos Gestes Climat"
@@ -51,7 +53,8 @@ export default function Logo({
         />
 
         <div
-          className={`ml-2 text-lg font-extrabold uppercase !leading-[0.85] text-primaryDark lg:block ${classnames[size].text}`}>
+          className={`ml-2 text-lg font-extrabold uppercase !leading-[0.85] text-primaryDark lg:block ${classnames[size].text}`}
+        >
           <span className="block w-full !leading-[0.85]">Nos</span>
           <span className="block w-full !leading-[0.85]">Gestes</span>
           <span className="block w-full !leading-[0.85]">Climat</span>
