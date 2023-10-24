@@ -132,28 +132,28 @@ export default function Navigation() {
           )}
 
           {PRNumber && !iframeRegion && (
-            <NavLink
-              href={
-                'https://github.com/datagir/nosgestesclimat/pull/' + PRNumber
-              }>
-              <Image
-                src={openmojiURL('github')}
-                alt=""
-                className="w-8 lg:mr-4"
-                aria-hidden="true"
-                width="20"
-                height="20"
-              />
-              <span className="font-base text-sm text-primaryDark md:text-lg">
-                #{PRNumber}
-              </span>
-
+            <>
+              <NavLink
+                href={
+                  'https://github.com/datagir/nosgestesclimat/pull/' + PRNumber
+                }>
+                <Image
+                  src={openmojiURL('github')}
+                  alt=""
+                  className="w-8 lg:mr-4"
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                />
+                <span className="font-base text-sm text-primaryDark md:text-lg">
+                  #{PRNumber}
+                </span>
+              </NavLink>
               <button
+                className="absolute -right-24 w-32 md:relative md:-right-32 md:bottom-12"
                 onClick={(event) => {
                   event.stopPropagation()
-
                   clearPRNumber()
-
                   router.push(pathname)
                 }}>
                 <Image
@@ -164,7 +164,7 @@ export default function Navigation() {
                   height="1"
                 />
               </button>
-            </NavLink>
+            </>
           )}
         </ul>
       </div>
