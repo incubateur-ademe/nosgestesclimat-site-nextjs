@@ -59,7 +59,7 @@ export default function FeedbackBanner({ text, type, className }: Props) {
     )
 
   return (
-    <Card className={cardClassName}>
+    <Card className={`${cardClassName} pt-8`}>
       <p>
         <strong>
           <Trans i18nKey="publicodes.northstar.title">

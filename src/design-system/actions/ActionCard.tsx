@@ -1,3 +1,4 @@
+import { roundValue } from '@/utils/roundValue'
 import { formatValue } from 'publicodes'
 import { ElementType } from 'react'
 import Badge from '../layout/Badge'
@@ -29,12 +30,12 @@ export default function ActionCard({
 
         <Badge color="green">
           <strong>
-            - {formatValue(Math.round(footprintAvoided), { precision: 0 })}
+            - {formatValue(roundValue(footprintAvoided), { precision: 0 })}
           </strong>{' '}
           kg
         </Badge>
       </div>
-      <p className="mt-4 font-bold">{title}</p>
+      <p className="mt-4 pr-2 font-bold text-gray-950">{title}</p>
     </Card>
   )
 }

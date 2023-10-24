@@ -14,7 +14,7 @@ export default function CategoriesAccordion() {
       className="mt-8"
       items={categories.map((categoryName) => {
         const categoryObject = getRuleObject(categoryName)
-        console.log(categoryName)
+
         return {
           title: categoryObject?.title,
           icons: categoryObject?.rawNode.icônes,

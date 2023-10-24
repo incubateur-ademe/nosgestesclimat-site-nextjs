@@ -1,5 +1,6 @@
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
+import { roundValue } from '@/utils/roundValue'
 import { formatValue } from 'publicodes'
 
 type Props = {
@@ -44,7 +45,9 @@ export default function SubcategoryListItem({
             <p className="mb-0">{title}</p>
 
             <div className="text-primaryDark">
-              <strong>{formatValue(numericValue, { precision: 0 })}</strong>{' '}
+              <strong>
+                {formatValue(roundValue(numericValue), { precision: 0 })}
+              </strong>{' '}
               tonnes
             </div>
           </div>
