@@ -10,14 +10,15 @@ import { captureException } from '@sentry/react'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-export default function FeedbackBanner({
-  text,
-  type,
-}: {
+type Props = {
   text: ReactNode
   type: NorthStarType
-}) {
+  className?: string
+}
+
+export default function FeedbackBanner({ text, type, className }: Props) {
   const { user, updateNorthStarRatings } = useUser()
 
   const { getNumericValue } = useEngine()
@@ -48,15 +49,17 @@ export default function FeedbackBanner({
     saveRating()
   }
 
+  const cardClassName = twMerge('border-none bg-grey-100', className)
+
   if (isSuccess)
     return (
-      <Card className="border-none bg-grey-100">
+      <Card className={cardClassName}>
         <Trans i18nKey="northstar.thankyou">Merci pour votre retour !</Trans>
       </Card>
     )
 
   return (
-    <Card className="border-none bg-grey-100">
+    <Card className={cardClassName}>
       <p>
         <strong>
           <Trans i18nKey="publicodes.northstar.title">

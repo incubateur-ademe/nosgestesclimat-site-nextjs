@@ -36,6 +36,7 @@ export default function FinPage() {
       <HowToAct />
 
       <FeedbackBanner
+        className="mb-8 mt-12"
         text={
           <Trans i18nKey="publicodes.northstar.learned">
             Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque
