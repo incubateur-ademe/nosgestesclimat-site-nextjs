@@ -2,7 +2,6 @@
 
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Card from '@/design-system/layout/Card'
 import { useSubscribeUser } from '@/hooks/useSubscribeUser'
@@ -12,7 +11,6 @@ import Confirmation from './_components/Confirmation'
 
 export default function GetResultsByEmail() {
   const [email, setEmail] = useState('')
-  const [shouldSendReminder, setShouldSendReminder] = useState(false)
 
   const { getCurrentSimulation } = useUser()
 
@@ -35,7 +33,6 @@ export default function GetResultsByEmail() {
       simulation,
       email,
       optIn: true,
-      shouldSendReminder,
     })
   }
 
@@ -68,6 +65,8 @@ export default function GetResultsByEmail() {
           />
         </div>
 
+        {/*
+        // Commented until further work on the reminder feature
         <CheckboxInputGroup
           name="SEND_REMINDER"
           value={shouldSendReminder}
@@ -82,6 +81,8 @@ export default function GetResultsByEmail() {
           }
           className="mb-4"
         />
+
+        */}
 
         <Button
           onClick={() => null}
