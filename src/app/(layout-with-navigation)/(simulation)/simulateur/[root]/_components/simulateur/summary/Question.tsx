@@ -1,10 +1,10 @@
+import ChoicesValue from '@/components/misc/ChoicesValue'
+import NumberValue from '@/components/misc/NumberValue'
 import Trans from '@/components/translation/Trans'
 import { getMatomoEventClickQuestionsListLink } from '@/constants/matomo'
 import { useDebug } from '@/hooks/useDebug'
 import { useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import ChoicesValue from './question/ChoicesValue'
-import NumberValue from './question/NumberValue'
 
 type Props = {
   question: string

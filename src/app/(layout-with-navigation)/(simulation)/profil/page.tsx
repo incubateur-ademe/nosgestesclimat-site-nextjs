@@ -3,7 +3,11 @@ import Title from '@/design-system/layout/Title'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { useSupportedRegions } from '@/hooks/useSupportedRegions'
 import { FormProvider } from '@/publicodes-state'
-import ProfilPageContent from './_components/ProfilPageContent'
+import AnswerList from './_components/AnswerList'
+import Localisation from './_components/Localisation'
+import PersonaWarning from './_components/PersonaWarning'
+import SimulationBanner from './_components/SimulationBanner'
+import SimulationList from './_components/SimulationList'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -19,7 +23,11 @@ export default async function Profil() {
   return (
     <FormProvider>
       <Title title={<Trans>Mon profil</Trans>} />
-      <ProfilPageContent supportedRegions={supportedRegions} />
+      <PersonaWarning />
+      <SimulationBanner />
+      <Localisation supportedRegions={supportedRegions} />
+      <AnswerList />
+      <SimulationList />
     </FormProvider>
   )
 }
