@@ -4,7 +4,7 @@ import RecommendedActions from './RecommendedActions'
 
 export default function HowToAct() {
   return (
-    <>
+    <div className="mb-8">
       <h2>Comment agir ?</h2>
 
       <p className="text-gray-600">
@@ -21,6 +21,6 @@ export default function HowToAct() {
           Voir toutes les actions
         </ButtonLink>
       </div>
-    </>
+    </div>
   )
 }

@@ -1,8 +1,10 @@
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
+import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
 import CongratulationsText from './_components/CongratulationsText'
+import FeedbackBanner from './_components/FeedbackBanner'
 import GroupModePromotionBanner from './_components/GroupModePromotionBanner'
 import GetResultsByEmail from './_components/getResultsByEmail/GetResultsByEmail'
 import HowToAct from './_components/howToAct/HowToAct'
@@ -32,6 +34,16 @@ export default function FinPage() {
       <Separator className="my-8" />
 
       <HowToAct />
+
+      <FeedbackBanner
+        text={
+          <Trans i18nKey="publicodes.northstar.learned">
+            Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque
+            chose ?
+          </Trans>
+        }
+        type="learned"
+      />
     </FormProvider>
   )
 }
