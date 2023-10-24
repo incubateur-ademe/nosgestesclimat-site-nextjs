@@ -4,6 +4,7 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import CopyButton from '@/design-system/inputs/CopyButton'
 import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import useWindowSize from '@/hooks/useWindowSize'
 import { useEngine, useForm, useRule } from '@/publicodes-state'
 import { useMemo } from 'react'
@@ -12,6 +13,7 @@ import ShareImage from './gridChart/ShareImage'
 
 export default function GridChart() {
   const { numericValue: total } = useRule('bilan')
+  const { t } = useClientTranslation()
 
   const { width } = useWindowSize()
   const numberOfSquares = width < 768 ? 64 : 100
@@ -35,7 +37,6 @@ export default function GridChart() {
           squares: Math.round(getNumericValue(subcategory) / valueOfEachSquare),
         }))
         .filter((subcategory: any) => subcategory.squares)
-
         .reduce(
           (accumulator: any[], currentValue: any) => [
             ...accumulator,
@@ -52,7 +53,7 @@ export default function GridChart() {
   return (
     <>
       <h3 className="mb-2 text-center text-lg md:mb-4 md:text-xl">
-        <Trans>De quoi est faite mon empreinte&nbsp;?</Trans>
+        {t('De quoi est faite mon empreinte\u202f?')}
       </h3>
       <div className="grid grid-cols-8 gap-1	md:grid-cols-10" id="shareImage">
         {sortedSubcategories.map((subCategory: any, index: number) =>
@@ -77,9 +78,10 @@ export default function GridChart() {
           copiedStateText={
             <>
               <ShareImage />
-              <Trans>Copié !</Trans>
+              {t('Copié\u202f!')}
             </>
-          }>
+          }
+        >
           <ShareImage />
           <Trans>Partager mes résultats</Trans>
         </CopyButton>

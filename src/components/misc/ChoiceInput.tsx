@@ -29,7 +29,8 @@ export default function ChoiceInput({
               ? 'bg-primary text-white'
               : 'bg-grey-100 text-primary hover:bg-primaryLight'
           } transition-colors`}
-          data-cypress-id={`${props['data-cypress-id']}-label`}>
+          data-cypress-id={`${props['data-cypress-id']}-label`}
+        >
           <input
             type="radio"
             className="hidden"

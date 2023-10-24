@@ -8,9 +8,9 @@ import { getIsIframe } from '../utils/getIsIframe'
 
 export const IframeOptionsContext = createContext<{
   isIframe?: boolean
-  iframeShareData?: string | null
-  iframeLocalisation?: string | null
-  iframeOnlySimulation?: boolean
+  isIframeShareData?: boolean
+  iframeRegion?: string | null
+  isIframeOnlySimulation?: boolean
 }>({})
 
 const nullDecode = (string: string) =>
@@ -55,23 +55,23 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
     ])
   )
 
-  const iframeShareData = urlParams.get('shareData')
+  const isIframeShareData = Boolean(urlParams.get('shareData'))
 
-  const iframeLocalisation = urlParams.get('localisation')
+  const iframeRegion = urlParams.get('region')
 
-  const iframeOnlySimulation = Boolean(urlParams.get('onlySimulation'))
+  const isIframeOnlySimulation = Boolean(urlParams.get('onlySimulation'))
 
-  if (iframeOnlySimulation) {
+  if (isIframeOnlySimulation) {
     // Add class to body that hides the header and the footer
-    document.body.classList.add(isIframe ? 'iframe' : '')
+    document.body.classList.add('iframeOnlySimulation')
   }
 
   const finalValue = {
     ...iframeIntegratorOptions,
     isIframe,
-    iframeShareData,
-    iframeLocalisation,
-    iframeOnlySimulation,
+    isIframeShareData,
+    iframeRegion,
+    isIframeOnlySimulation,
   }
 
   return (

@@ -104,7 +104,8 @@ export default function SimulationProvider({
         everyMosaicChildWhoIsReallyInMosaic,
         categories,
         subcategories,
-      }}>
+      }}
+    >
       {initialized ? children : null}
     </SimulationContext.Provider>
   )

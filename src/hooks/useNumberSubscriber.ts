@@ -2,7 +2,9 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 // TODO: endpoint should not be static (and should point to local if available)
-export function useNumberSubscribers() {
+export function useNumberSubscribers(): {
+  data: number | undefined
+} {
   return useQuery(
     ['number subscribers'],
     () =>

@@ -24,7 +24,8 @@ export default function highlightMatches(str: string, matches: Matches) {
           ...acc,
           <span
             className={highlight ? 'bg-primaryLight font-bold' : ''}
-            key={i}>
+            key={i}
+          >
             {currentStr}
           </span>,
         ],
