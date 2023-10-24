@@ -20,9 +20,12 @@ export default function ActionCard({
   ...props
 }: Props) {
   return (
-    <Card tag={tag} className="h-[140px] w-[230px] !no-underline" {...props}>
+    <Card
+      tag={tag}
+      className="h-[140px] w-[230px] pr-2 !no-underline"
+      {...props}>
       <div className="flex justify-between">
-        <Emoji>{icons}</Emoji>
+        <Emoji className="flex gap-1">{icons}</Emoji>
 
         <Badge color="green">
           <strong>
