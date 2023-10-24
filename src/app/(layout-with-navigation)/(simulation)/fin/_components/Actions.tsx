@@ -43,7 +43,7 @@ export default function Actions() {
 
       <div className="flex justify-center">
         <ButtonLink href="/actions" size="lg">
-          Voir toutes les actions
+          {t('Voir toutes les actions')}
         </ButtonLink>
       </div>
     </div>

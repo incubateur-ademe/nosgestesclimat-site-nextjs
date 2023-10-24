@@ -1020,3 +1020,7 @@ entries:
   De quoi est faite mon empreinte ?: What is my footprint made of?
   Comment réduire mon empreinte ?: How can I reduce my footprint?
   'Les 3 actions au plus fort impact pour vous :': 'The 3 actions with the greatest impact for you :'
+  NewsletterForm.confirmation: I agree to receive information from Nos Gestes Climat and its <2>privacy</2> policy
+  NewsletterForm.confirmation.lock: J'accepte de recevoir des informations de la part de Nos Gestes Climat et sa <2>politique de confidentialité</2>
+  newsLetter.Text.p2: to receive <1>your results</1> and <4>advice</4> on how to reduce your carbon footprint (once a month max).
+  newsLetter.Text.p2.lock: pour recevoir <1>votre résultat</1> et <4>des conseils</4> pour réduire votre empreinte carbone (1 fois par mois max).

@@ -5,6 +5,7 @@ import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Separator from '@/design-system/layout/Separator'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useSubscribeUser } from '@/hooks/useSubscribeUser'
 import { useUser } from '@/publicodes-state'
 import { useState } from 'react'
@@ -12,6 +13,7 @@ import Confirmation from './newsletterForm/Confirmation'
 import Text from './newsletterForm/Text'
 
 export const NewsletterForm = () => {
+  const { t } = useClientTranslation()
   const { getCurrentSimulation } = useUser()
   const simulation = getCurrentSimulation()
 
@@ -39,12 +41,13 @@ export const NewsletterForm = () => {
               event.preventDefault()
               if (isLoading || !simulation) return
               subscribeUser({ simulation, email, optIn })
-            }}>
+            }}
+          >
             <Text />
             <TextInputGroup
               name="EMAIL"
               type="email"
-              label="Entrez votre adresse email"
+              label={t('Entrez votre adresse email')}
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.currentTarget.value)}
@@ -57,7 +60,7 @@ export const NewsletterForm = () => {
               onChange={() => setOptIn((prevOptIn) => !prevOptIn)}
               required
               label={
-                <>
+                <Trans i18nKey="NewsletterForm.confirmation">
                   J'accepte de recevoir des informations de la part de Nos
                   Gestes Climat et sa{' '}
                   <a
@@ -66,10 +69,11 @@ export const NewsletterForm = () => {
                     rel="noreferrer"
                     aria-label={
                       'politique de confidentialité, nouvelle fenêtre'
-                    }>
+                    }
+                  >
                     politique de confidentialité
                   </a>
-                </>
+                </Trans>
               }
               className="mb-4"
             />
