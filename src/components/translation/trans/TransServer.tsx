@@ -1,11 +1,12 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { PropsWithChildren } from 'react'
+import { TransPropsWithInterpolation } from '@/types/translation'
+import { ReactElement } from 'react'
 import { Trans } from 'react-i18next/TransWithoutContext'
 
 export default async function TransServer({
   children,
   i18nKey,
-}: PropsWithChildren<{ i18nKey?: string }>) {
+}: TransPropsWithInterpolation): Promise<ReactElement> {
   const { t } = await getServerTranslation()
 
   return (

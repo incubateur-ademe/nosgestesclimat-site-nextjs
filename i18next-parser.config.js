@@ -1,6 +1,6 @@
 // i18next-parser.config.js
 //
-const { is18nKey } = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
+const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
 
 module.exports = {
   contextSeparator: '_',
@@ -16,7 +16,8 @@ module.exports = {
     if (value != undefined) {
       return value !== '' ? value : 'NO_TRANSLATION'
     }
-    return key
+
+    return utils.isI18nKey(key) ? 'NO_TRANSLATION' : key
   },
   // Default value to give to empty keys
 

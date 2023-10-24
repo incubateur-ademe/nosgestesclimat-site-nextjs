@@ -72,7 +72,8 @@ export default function FormProvider({
         currentCategory,
         setCurrentQuestion,
         setCurrentCategory,
-      }}>
+      }}
+    >
       {children}
     </FormContext.Provider>
   )

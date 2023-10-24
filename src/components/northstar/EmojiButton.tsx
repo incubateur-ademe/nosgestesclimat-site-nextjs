@@ -5,8 +5,9 @@ export default function EmojiButton(
 ) {
   return (
     <button
-      className="text-2xl m-0 p-2 transition-transform will-change-transform hover:scale-125"
-      {...props}>
+      className="m-0 p-2 text-2xl transition-transform will-change-transform hover:scale-125"
+      {...props}
+    >
       {props.children}
     </button>
   )

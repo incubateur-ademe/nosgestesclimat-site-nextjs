@@ -24,7 +24,7 @@ export default function Loader({
 }: Props) {
   return (
     <span
-      className={`border-solid rounded-[50%] inline-block animate-spin ${sizesClassNames[size]} ${colorsClassNames[color]} ${className}`}
+      className={`inline-block animate-spin rounded-[50%] border-solid ${sizesClassNames[size]} ${colorsClassNames[color]} ${className}`}
     />
   )
 }

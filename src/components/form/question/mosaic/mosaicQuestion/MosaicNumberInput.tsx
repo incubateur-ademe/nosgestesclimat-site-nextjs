@@ -27,7 +27,8 @@ export default function NumberInput({
     <div
       className={
         'flex items-center justify-between gap-4 rounded  bg-grey-100 px-4 py-2 md:py-4'
-      }>
+      }
+    >
       <div>
         {title && icons ? (
           <span className="font-semibold md:text-xl">
@@ -47,7 +48,8 @@ export default function NumberInput({
         <Button
           disabled={value === 0}
           onClick={() => setValue(Number(value) - 1)}
-          className="z-10 h-10 w-10">
+          className="z-10 h-10 w-10"
+        >
           -
         </Button>
         <input
@@ -61,7 +63,8 @@ export default function NumberInput({
         />
         <Button
           onClick={() => setValue(Number(value) + 1)}
-          className="z-10 h-10 w-10">
+          className="z-10 h-10 w-10"
+        >
           +
         </Button>
       </div>

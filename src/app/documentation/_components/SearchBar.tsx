@@ -87,7 +87,8 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
             role="img"
             aria-label="emoji search"
             aria-hidden
-            className="mr-3 inline-block ">
+            className="mr-3 inline-block "
+          >
             🔍
           </span>
           <Trans>Explorez nos modèles</Trans>
@@ -95,7 +96,8 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
 
         <label
           title={t('Entrez des mots clefs')}
-          className="flex items-center py-2">
+          className="flex items-center py-2"
+        >
           <input
             type="search"
             value={input}

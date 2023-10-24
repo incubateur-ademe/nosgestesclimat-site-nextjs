@@ -23,7 +23,8 @@ export default function CountryListItem({
       }`}
       onClick={
         updateCurrentRegion ? () => updateCurrentRegion(code) : undefined
-      }>
+      }
+    >
       <CountryFlag code={code} />
       {label}
     </Card>

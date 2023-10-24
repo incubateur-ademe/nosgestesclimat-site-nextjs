@@ -1,4 +1,7 @@
-import { JSX } from 'react'
+import { TOptions } from 'i18next'
+import { HTMLProps, JSX } from 'react'
+import { TransProps } from 'react-i18next'
+import { TransChild } from 'react-i18next/TransWithoutContext'
 
 export enum Lang {
   Default = 'Fr',
@@ -28,3 +31,13 @@ export type LangInfos = {
 export type YamlEntry = { entries: { [key: string]: string } }
 
 export type TranslationFunctionType = (key: string) => JSX.Element | string
+
+export type TransPropsWithInterpolation = TransProps<
+  string,
+  string,
+  TOptions,
+  undefined,
+  // NOTE(@EmileRolley): hack to be able to use string interpolation in Trans components.
+  // However, TransProps<string> should be sufficient.
+  HTMLProps<HTMLDivElement> | TransChild
+>

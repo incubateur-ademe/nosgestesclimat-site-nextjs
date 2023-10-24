@@ -1,13 +1,14 @@
 'use client'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { PropsWithChildren } from 'react'
+import { TransPropsWithInterpolation } from '@/types/translation'
+import { ReactElement } from 'react'
 import { Trans } from 'react-i18next'
 
 export default function TransClient({
   children,
   i18nKey,
-}: PropsWithChildren<{ i18nKey?: string }>) {
+}: TransPropsWithInterpolation): ReactElement {
   const { t } = useClientTranslation()
 
   return (
