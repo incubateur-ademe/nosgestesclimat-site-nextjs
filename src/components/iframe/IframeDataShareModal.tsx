@@ -57,7 +57,7 @@ export default function IframeDataShareModal() {
   if (
     !iframeOptions.isIframe ||
     !document.referrer ||
-    !iframeOptions?.iframeShareData
+    !iframeOptions?.isIframeShareData
   ) {
     return null
   }

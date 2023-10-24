@@ -1,8 +1,7 @@
 'use client'
 
-import { IframeOptionsContext } from '@/contexts/IframeOptionsContext'
+import { useIframe } from '@/hooks/useIframe'
 import Image from 'next/image'
-import { useContext } from 'react'
 import Link from '../Link'
 
 export default function Logo({
@@ -12,7 +11,7 @@ export default function Logo({
   size?: 'xs' | 'sm' | 'lg'
   className?: string
 }) {
-  const { isIframe } = useContext(IframeOptionsContext)
+  const { isIframeOnlySimulation } = useIframe()
 
   const classnames = {
     xs: {
@@ -41,7 +40,7 @@ export default function Logo({
         className={`mx-auto my-1 flex items-center justify-center no-underline md:my-4 lg:mx-auto lg:my-4 ${
           // @bjlaa : this is a hack to prevent the logo from being clickable in the iframe
           // not a recommended method a11y-wise, but in this case it's a good fit
-          isIframe ? 'pointer-events-none' : ''
+          isIframeOnlySimulation ? 'pointer-events-none' : ''
         }`}>
         <Image
           src="/images/misc/petit-logo@3x.png"
