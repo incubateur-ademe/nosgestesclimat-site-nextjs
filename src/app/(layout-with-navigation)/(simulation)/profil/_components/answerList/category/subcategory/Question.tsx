@@ -1,3 +1,5 @@
+'use client'
+
 import Link from '@/components/Link'
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'

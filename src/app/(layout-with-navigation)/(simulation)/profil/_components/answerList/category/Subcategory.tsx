@@ -1,3 +1,5 @@
+'use client'
+
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { useForm, useRule } from '@/publicodes-state'
 import { useState } from 'react'

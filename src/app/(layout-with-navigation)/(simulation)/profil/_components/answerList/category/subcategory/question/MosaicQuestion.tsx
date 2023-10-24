@@ -1,3 +1,5 @@
+'use client'
+
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
 import Trans from '@/components/translation/Trans'
