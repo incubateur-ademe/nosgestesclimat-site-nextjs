@@ -1,6 +1,7 @@
 import { roundValue } from '@/utils/roundValue'
 import { formatValue } from 'publicodes'
 import { ElementType } from 'react'
+import { twMerge } from 'tailwind-merge'
 import Badge from '../layout/Badge'
 import Card from '../layout/Card'
 import Emoji from '../utils/Emoji'
@@ -11,6 +12,7 @@ type Props = {
   title: string
   tag?: ElementType | string
   href?: string
+  className?: string
 }
 
 export default function ActionCard({
@@ -18,12 +20,13 @@ export default function ActionCard({
   footprintAvoided,
   title,
   tag = 'div',
+  className,
   ...props
 }: Props) {
   return (
     <Card
       tag={tag}
-      className="h-[140px] w-[230px] pr-2 !no-underline"
+      className={twMerge('h-[140px] w-[230px] pr-2 !no-underline', className)}
       {...props}>
       <div className="flex justify-between">
         <Emoji className="flex gap-1">{icons}</Emoji>

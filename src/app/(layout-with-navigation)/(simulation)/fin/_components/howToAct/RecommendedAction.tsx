@@ -8,6 +8,7 @@ export default function RecommendedAction({
   actionDottedName: string
 }) {
   const { icons, title, numericValue } = useRule(actionDottedName)
+
   return (
     <li>
       <ActionCard
@@ -16,6 +17,7 @@ export default function RecommendedAction({
         footprintAvoided={numericValue}
         tag={Link}
         href={`/actions/${actionDottedName}`}
+        className="transition-colors hover:bg-grey-100"
       />
     </li>
   )

@@ -23,7 +23,7 @@ export default function AccordionItem({
   const [isOpen, setIsOpen] = useState(false)
 
   const { numericValue } = useRule(category)
-  console.log({ title, isReadOnly })
+
   return (
     <li>
       <button

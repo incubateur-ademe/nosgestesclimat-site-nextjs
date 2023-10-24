@@ -30,13 +30,14 @@ export default function CheckboxInputGroup({
 }: Props) {
   return (
     <div className={`flex flex-col ${className}`} aria-live="polite">
-      <label htmlFor={name} className="flex items-center gap-2">
+      <label htmlFor={name} className="flex cursor-pointer items-center gap-2">
         <input
           name={name}
+          id={name}
           type="checkbox"
           className={`mr-2 ${
             sizesClassNames[size]
-          } rounded-md border-solid border-grey-200 bg-grey-100 text-2xl transition-colors focus:border-primary focus:ring-2 focus:ring-primary ${
+          } cursor-pointer rounded-md border-solid border-grey-200 bg-grey-100 text-2xl transition-colors focus:border-primary focus:ring-2 focus:ring-primary ${
             error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
           }`}
           onChange={onChange}

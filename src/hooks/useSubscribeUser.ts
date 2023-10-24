@@ -49,8 +49,6 @@ const saveSimulationInDB = async (data: Simulation) => {
     dataFormatted.situation = formatDataForDB(dataFormatted)
   }
 
-  console.log(dataFormatted)
-
   try {
     const response = await axios.post(
       SAVE_SIMULATION_URL,

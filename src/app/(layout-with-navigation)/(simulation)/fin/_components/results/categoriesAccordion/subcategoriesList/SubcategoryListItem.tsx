@@ -33,7 +33,7 @@ export default function SubcategoryListItem({
 
   const percentageOfCategoryValue =
     1 - (categoryValue - numericValue) / categoryValue
-  console.log(icons, typeof icons)
+
   return (
     <li className="p-3">
       <div className="flex items-baseline gap-4">

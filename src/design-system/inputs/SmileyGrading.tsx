@@ -26,7 +26,7 @@ export default function SmileyGrading({ onClick, disabled }: Props) {
       emoji: '🙂',
       label: t('Oui plutôt, envoyer cette réponse'),
     },
-    { emoji: '😄', label: t('Tout à fait, envoyer cette réponse') },
+    { emoji: '😃', label: t('Tout à fait, envoyer cette réponse') },
   ]
 
   return (
