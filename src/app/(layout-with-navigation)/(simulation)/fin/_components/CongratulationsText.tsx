@@ -5,7 +5,7 @@ import Emoji from '@/design-system/utils/Emoji'
 export default function CongratulationsText() {
   return (
     <>
-      <h1>
+      <h1 className="mt-4">
         <Trans>
           <span className="flex gap-2">
             Vous avez terminé le test ! <Emoji>👏</Emoji>

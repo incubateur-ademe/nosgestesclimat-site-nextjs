@@ -9,10 +9,16 @@ type Props = {
   simulation: Simulation
   email: string
   optIn: boolean
+  shouldSendReminder: boolean
 }
 export function useSubscribeUser() {
   return useMutation(
-    async ({ simulation, email, optIn }: Props): Promise<any> => {
+    async ({
+      simulation,
+      email,
+      optIn,
+      shouldSendReminder,
+    }: Props): Promise<any> => {
       const idSimulationSaved: string = await saveSimulationInDB(
         simulation as unknown as Simulation
       )
@@ -23,6 +29,7 @@ export function useSubscribeUser() {
       return axios.post(`/api/email-service`, {
         email,
         optIn,
+        shouldSendReminder,
         simulationURL:
           location +
           `&sid=${encodeURIComponent(

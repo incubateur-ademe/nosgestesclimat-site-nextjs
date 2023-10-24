@@ -19,7 +19,7 @@ export default function Results() {
 
       <CategoriesAccordion />
 
-      <Separator className="my-8" />
+      <Separator className="mb-6 mt-8" />
     </>
   )
 }

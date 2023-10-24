@@ -2,6 +2,7 @@ import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
 import CongratulationsText from './_components/CongratulationsText'
+import GetResultsByEmail from './_components/getResultsByEmail/GetResultsByEmail'
 import Results from './_components/results/Results'
 
 export async function generateMetadata() {
@@ -20,6 +21,8 @@ export default function FinPage() {
       <CongratulationsText />
 
       <Results />
+
+      <GetResultsByEmail />
     </FormProvider>
   )
 }

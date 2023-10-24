@@ -1,8 +1,9 @@
 import Trans from '@/components/translation/Trans'
+import Card from '@/design-system/layout/Card'
 
 export default function Confirmation() {
   return (
-    <div>
+    <Card className="mb-4 max-w-lg bg-grey-100">
       <div className="text-left; bg-transparent text-left text-2xl font-bold">
         <p>
           <Trans>Merci pour votre inscription !</Trans> 🌱
@@ -11,6 +12,6 @@ export default function Confirmation() {
       <p className="mt-4 text-left">
         <Trans>Vous allez recevoir un email de notre part sous peu.</Trans>
       </p>
-    </div>
+    </Card>
   )
 }

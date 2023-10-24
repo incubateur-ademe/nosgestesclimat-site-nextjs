@@ -131,12 +131,14 @@ export default function InvitationForm({ group }: { group: Group }) {
         data-cypress-id="member-name"
       />
 
-      <EmailInput
-        email={email}
-        setEmail={setEmail}
-        errorEmail={errorEmail}
-        setErrorEmail={setErrorEmail}
-      />
+      <div className="my-4">
+        <EmailInput
+          email={email}
+          setEmail={setEmail}
+          errorEmail={errorEmail}
+          setErrorEmail={setErrorEmail}
+        />
+      </div>
 
       {!hasCompletedTest && (
         <p className="mb-2 text-xs">

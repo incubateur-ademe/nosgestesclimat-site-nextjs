@@ -68,7 +68,7 @@ export default function GithubContributionForm() {
         name="sujet"
         required
         value={sujet}
-        onChange={(e) => setSujet(e.target.value)}
+        onChange={(e) => setSujet((e.target as any).value)}
       />
 
       <TextAreaInputGroup

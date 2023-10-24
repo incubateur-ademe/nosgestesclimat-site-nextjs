@@ -26,7 +26,6 @@ export default function PrenomInput({
       )}
       name="prenom"
       placeholder="Jean-Marc"
-      className="mt-4"
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         setPrenom(e.target.value)
         if (errorPrenom) {
