@@ -2,6 +2,7 @@ import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
 import CongratulationsText from './_components/CongratulationsText'
+import GroupModePromotionBanner from './_components/GroupModePromotionBanner'
 import GetResultsByEmail from './_components/getResultsByEmail/GetResultsByEmail'
 import Results from './_components/results/Results'
 
@@ -23,6 +24,8 @@ export default function FinPage() {
       <Results />
 
       <GetResultsByEmail />
+
+      <GroupModePromotionBanner />
     </FormProvider>
   )
 }
