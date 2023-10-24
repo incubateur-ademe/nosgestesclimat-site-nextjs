@@ -4,6 +4,7 @@ import CountryFlag from '@/components/misc/CountryFlag'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
@@ -29,6 +30,10 @@ export default function Localisation({
   const isRegionSupported = Object.keys(supportedRegions)?.some(
     (supportedRegion: string) => supportedRegion === region?.code
   )
+
+  const { iframeRegion } = useIframe()
+
+  if (iframeRegion) return null
 
   return (
     <div className="mb-8 mt-4 sm:mt-8">
