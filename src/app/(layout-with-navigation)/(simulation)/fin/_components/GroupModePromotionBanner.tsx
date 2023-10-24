@@ -8,7 +8,7 @@ export default async function GroupModePromotionBanner() {
   const { t } = await getServerTranslation()
 
   return (
-    <Card className="flex-row gap-4 bg-primaryDark pb-0 text-white">
+    <Card className="flex-row justify-center gap-4 bg-primaryDark pb-0 text-white md:gap-8">
       <Image
         src="./images/misc/Groupe.svg"
         width="150"
@@ -16,7 +16,7 @@ export default async function GroupModePromotionBanner() {
         alt={t('Une capture du mode Groupe Nos Gestes Climat.')}
       />
 
-      <div className="pb-4">
+      <div className="flex flex-col items-start justify-center pb-4">
         <p>
           <Trans>
             Comparez vos résultats{' '}
@@ -24,7 +24,7 @@ export default async function GroupModePromotionBanner() {
           </Trans>
         </p>
 
-        <ButtonLink href="/amis">
+        <ButtonLink color="secondary" href="/amis">
           <Trans>Créer un groupe</Trans>
         </ButtonLink>
       </div>

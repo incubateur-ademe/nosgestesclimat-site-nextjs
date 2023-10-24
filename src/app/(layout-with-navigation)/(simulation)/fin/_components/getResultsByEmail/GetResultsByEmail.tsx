@@ -42,7 +42,7 @@ export default function GetResultsByEmail() {
   if (isSuccess) return <Confirmation />
 
   return (
-    <Card className="mb-4 max-w-lg border-none bg-grey-100 py-8">
+    <Card className="mb-4 items-center border-none bg-grey-100 py-8">
       <form id="newsletter-form" onSubmit={handleSubmit}>
         <h3 className="text-xl">
           <Trans>

@@ -1,9 +1,11 @@
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
+import Separator from '@/design-system/layout/Separator'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
 import CongratulationsText from './_components/CongratulationsText'
 import GroupModePromotionBanner from './_components/GroupModePromotionBanner'
 import GetResultsByEmail from './_components/getResultsByEmail/GetResultsByEmail'
+import HowToAct from './_components/howToAct/HowToAct'
 import Results from './_components/results/Results'
 
 export async function generateMetadata() {
@@ -26,6 +28,10 @@ export default function FinPage() {
       <GetResultsByEmail />
 
       <GroupModePromotionBanner />
+
+      <Separator className="my-8" />
+
+      <HowToAct />
     </FormProvider>
   )
 }

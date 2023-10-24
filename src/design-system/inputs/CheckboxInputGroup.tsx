@@ -30,7 +30,7 @@ export default function CheckboxInputGroup({
 }: Props) {
   return (
     <div className={`flex flex-col ${className}`} aria-live="polite">
-      <label htmlFor={name} className="flex gap-2">
+      <label htmlFor={name} className="flex items-center gap-2">
         <input
           name={name}
           type="checkbox"
