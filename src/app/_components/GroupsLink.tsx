@@ -15,8 +15,7 @@ export default function GroupsLink() {
       }}
       data-cypress-id="as-a-group-link"
       size="lg"
-      color="secondary"
-    >
+      color="secondary">
       <Image
         src="/images/misc/silhouettes.svg"
         alt=""

@@ -80,8 +80,7 @@ export default function GridChart() {
               <ShareImage />
               {t('Copié\u202f!')}
             </>
-          }
-        >
+          }>
           <ShareImage />
           <Trans>Partager mes résultats</Trans>
         </CopyButton>

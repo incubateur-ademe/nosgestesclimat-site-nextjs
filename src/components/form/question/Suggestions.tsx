@@ -40,8 +40,7 @@ export default function Suggestions({ question }: Props) {
             } else {
               setValue(suggestion.value, question)
             }
-          }}
-        >
+          }}>
           {capitaliseString(suggestion.label)}
         </Button>
       ))}

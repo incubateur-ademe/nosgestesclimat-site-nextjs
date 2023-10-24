@@ -11,8 +11,7 @@ const IllustrationSVG = forwardRef(
       xmlnsXlink="http://www.w3.org/1999/xlink"
       xmlns="http://www.w3.org/2000/svg"
       ref={ref}
-      {...props}
-    >
+      {...props}>
       <defs>
         <linearGradient id="prefix__e">
           <stop
@@ -236,8 +235,7 @@ const IllustrationSVG = forwardRef(
           display: 'inline',
           opacity: 1,
         }}
-        className="prefix__ciel"
-      >
+        className="prefix__ciel">
         <rect
           ry={0.438}
           y={-3.29}
@@ -275,8 +273,7 @@ const IllustrationSVG = forwardRef(
           opacity: 1,
         }}
         transform="translate(44.653 1.13)"
-        className="prefix__infra"
-      >
+        className="prefix__infra">
         <rect
           ry={0.42}
           y={118.585}
@@ -301,24 +298,21 @@ const IllustrationSVG = forwardRef(
             stroke: 'none',
             strokeWidth: 3.77953,
             strokeOpacity: 1,
-          }}
-        >
+          }}>
           <g
             style={{
               fill: '#1600ff',
               fillOpacity: 1,
               fillRule: 'evenodd',
               strokeWidth: 4.18181,
-            }}
-          >
+            }}>
             <g
               style={{
                 fill: '#00ff16',
                 fillOpacity: 1,
                 fillRule: 'evenodd',
                 strokeWidth: 3.77953,
-              }}
-            >
+              }}>
               <rect
                 ry={0}
                 y={127.174}
@@ -1288,8 +1282,7 @@ const IllustrationSVG = forwardRef(
         className="prefix__velo"
         style={{
           display: 'inline',
-        }}
-      >
+        }}>
         <rect
           style={{
             fill: '#ff002f',
@@ -1331,8 +1324,7 @@ const IllustrationSVG = forwardRef(
             fillOpacity: 1,
             stroke: '#332d66',
             strokeOpacity: 1,
-          }}
-        >
+          }}>
           <path
             transform="translate(44.653 1.13)"
             style={{
@@ -2579,8 +2571,7 @@ const IllustrationSVG = forwardRef(
         style={{
           display: 'inline',
         }}
-        className="prefix__avion"
-      >
+        className="prefix__avion">
         <path
           d="M-146.11 22.912H37.051"
           style={{
@@ -2596,8 +2587,7 @@ const IllustrationSVG = forwardRef(
           style={{
             fill: '#4b4586',
             fillOpacity: 1,
-          }}
-        >
+          }}>
           <path
             style={{
               fill: '#4b4586',
@@ -2617,8 +2607,7 @@ const IllustrationSVG = forwardRef(
         style={{
           opacity: 1,
         }}
-        className="prefix__nuages"
-      >
+        className="prefix__nuages">
         <path
           style={{
             display: 'inline',
@@ -2863,8 +2852,7 @@ const IllustrationSVG = forwardRef(
           display: 'inline',
           opacity: 1,
         }}
-        className="prefix__immeubles"
-      >
+        className="prefix__immeubles">
         <path
           d="M137.135 58.11v61.484l-12.235-3.977V62.392Z"
           style={{
@@ -3154,8 +3142,7 @@ const IllustrationSVG = forwardRef(
         style={{
           display: 'inline',
         }}
-        transform="translate(44.653 1.13)"
-      >
+        transform="translate(44.653 1.13)">
         <rect
           ry={0}
           y={80.572}
@@ -3498,8 +3485,7 @@ const IllustrationSVG = forwardRef(
           style={{
             fill: '#cab4cd',
             fillOpacity: 0.682353,
-          }}
-        >
+          }}>
           <path
             style={{
               fill: '#cab4cd',
@@ -3590,8 +3576,7 @@ const IllustrationSVG = forwardRef(
         className="prefix__vache"
         style={{
           display: 'inline',
-        }}
-      >
+        }}>
         <path
           style={{
             fill: '#4b4586',

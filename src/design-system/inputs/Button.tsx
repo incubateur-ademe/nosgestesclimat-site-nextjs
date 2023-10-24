@@ -54,8 +54,7 @@ export default function Button({
         `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
         className
       )}
-      {...props}
-    >
+      {...props}>
       {children}
     </button>
   )

@@ -61,8 +61,7 @@ export default function References({ references }: ReferencesProps) {
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              className="min-w-1/2 mr-4 flex flex-1 items-center no-underline"
-            >
+              className="min-w-1/2 mr-4 flex flex-1 items-center no-underline">
               <span className="ui__ label">{domain}</span>
 
               <span className="ml-2 inline-block">

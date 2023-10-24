@@ -100,8 +100,7 @@ export default function NorthStarInput({
           onClick={() => submitFeedback(0)}
           aria-label={t('Pas vraiment, envoyer cette réponse')}
           title={t('Pas vraiment, envoyer cette réponse')}
-          aria-hidden={false}
-        >
+          aria-hidden={false}>
           🙁
         </EmojiButton>
       </li>
@@ -111,8 +110,7 @@ export default function NorthStarInput({
           onClick={() => submitFeedback(1)}
           aria-label={t('Moyennement, envoyer cette réponse')}
           title={t('Moyennement, envoyer cette réponse')}
-          aria-hidden={false}
-        >
+          aria-hidden={false}>
           😐
         </EmojiButton>
       </li>
@@ -122,8 +120,7 @@ export default function NorthStarInput({
           onClick={() => submitFeedback(2)}
           aria-label={t('Oui plutôt, envoyer cette réponse')}
           title={t('Oui plutôt, envoyer cette réponse')}
-          aria-hidden={false}
-        >
+          aria-hidden={false}>
           🙂
         </EmojiButton>
       </li>
@@ -133,8 +130,7 @@ export default function NorthStarInput({
           onClick={() => submitFeedback(3)}
           aria-label={t('Tout à fait, envoyer cette réponse')}
           title={t('Tout à fait, envoyer cette réponse')}
-          aria-hidden={false}
-        >
+          aria-hidden={false}>
           😀
         </EmojiButton>
       </li>

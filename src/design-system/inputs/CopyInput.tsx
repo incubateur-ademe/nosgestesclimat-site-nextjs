@@ -27,8 +27,7 @@ export default function CopyInput({ textToCopy, className = '' }: Props) {
           navigator.clipboard.writeText(textToCopy)
           setIsCopied(true)
           setTimeout(() => setIsCopied(false), 3000)
-        }}
-      >
+        }}>
         {isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>}
       </Button>
     </div>

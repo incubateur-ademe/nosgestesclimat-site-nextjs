@@ -31,8 +31,7 @@ export default function NumberInput({
 
   return (
     <div
-      className={`flex items-center justify-end gap-1 ${sizeClassNames[size]}`}
-    >
+      className={`flex items-center justify-end gap-1 ${sizeClassNames[size]}`}>
       <input
         className={`rounded border border-primary bg-grey-100 p-2 text-right transition-colors focus:border-primary focus:ring-2 focus:ring-primary`}
         type="number"

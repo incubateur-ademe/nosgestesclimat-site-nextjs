@@ -24,8 +24,7 @@ export default function Providers({
               <IframeResizer />
               <UserProvider
                 initialRegion={region}
-                storageKey="nosgestesclimat::v3"
-              >
+                storageKey="nosgestesclimat::v3">
                 <SimulationFromUrlLoader />
                 <CheckFixedRegion />
                 <IsClientCtxProvider>{children}</IsClientCtxProvider>

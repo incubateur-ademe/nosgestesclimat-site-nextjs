@@ -19,8 +19,7 @@ export default function Main({
     <main
       className={`flex flex-col ${maxWidthClass} ${className} ${
         isIframe ? '' : 'min-h-[calc(100vh-2rem)]'
-      }`}
-    >
+      }`}>
       {children}
     </main>
   )

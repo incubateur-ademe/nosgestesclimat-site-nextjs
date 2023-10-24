@@ -4,8 +4,7 @@ export default function NewTabSvg({ className = '' }) {
       className={`ml-2 inline-block h-auto w-3 fill-primary ${className}`}
       x="0px"
       y="0px"
-      viewBox="0 0 283.178 283.178"
-    >
+      viewBox="0 0 283.178 283.178">
       <path
         d="M254.812,140.713h-20c-4.142,0-7.5,3.358-7.5,7.5v91.186c0,4.84-3.939,8.778-8.779,8.778H43.776
 c-4.839,0-8.775-3.938-8.775-8.778V64.645c0-4.841,3.936-8.78,8.775-8.78h95.855c4.142,0,7.5-3.358,7.5-7.5v-20

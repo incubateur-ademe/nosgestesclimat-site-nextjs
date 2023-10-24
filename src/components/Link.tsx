@@ -38,8 +38,7 @@ export default function Link({
       title={title}
       target={target}
       prefetch={true}
-      {...props}
-    >
+      {...props}>
       {children}
     </NextLink>
   )

@@ -26,8 +26,7 @@ export default function CopyButton({
         navigator.clipboard.writeText(textToCopy)
         setIsCopied(true)
         setTimeout(() => setIsCopied(false), 3000)
-      }}
-    >
+      }}>
       {isCopied
         ? copiedStateText ?? <Trans>Copié !</Trans>
         : children ?? <Trans>Copier le lien</Trans>}

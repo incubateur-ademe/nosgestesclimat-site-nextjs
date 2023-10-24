@@ -32,8 +32,7 @@ export default function ButtonLink({
         `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
         className
       )}
-      {...props}
-    >
+      {...props}>
       {children}
     </Link>
   )

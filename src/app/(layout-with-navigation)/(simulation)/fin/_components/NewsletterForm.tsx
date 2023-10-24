@@ -41,8 +41,7 @@ export const NewsletterForm = () => {
               event.preventDefault()
               if (isLoading || !simulation) return
               subscribeUser({ simulation, email, optIn })
-            }}
-          >
+            }}>
             <Text />
             <TextInputGroup
               name="EMAIL"
@@ -69,8 +68,7 @@ export const NewsletterForm = () => {
                     rel="noreferrer"
                     aria-label={
                       'politique de confidentialité, nouvelle fenêtre'
-                    }
-                  >
+                    }>
                     politique de confidentialité
                   </a>
                 </Trans>

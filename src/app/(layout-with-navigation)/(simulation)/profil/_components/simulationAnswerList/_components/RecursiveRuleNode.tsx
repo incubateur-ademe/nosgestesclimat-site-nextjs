@@ -36,7 +36,7 @@ export default function RecursiveStepsTable({ rules, level }: Props) {
     .flat()
 
   return (
-    <div className="pl-4 pt-4 mb-4 border-dashed border-0 border-l border-grey-200">
+    <div className="mb-4 border-0 border-l border-dashed border-grey-200 pl-4 pt-4">
       {Object.entries(rulesByParents)
         .map(([key, values]) => {
           if (values.length > 1) return [key, values]

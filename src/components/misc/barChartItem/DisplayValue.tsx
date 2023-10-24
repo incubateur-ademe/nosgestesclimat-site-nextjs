@@ -12,8 +12,7 @@ export default function DisplayValue({ value, color, white }: Props) {
   return (
     <div
       className={` pr-4 leading-none ${white ? 'text-white' : ''}`}
-      style={white ? {} : { color }}
-    >
+      style={white ? {} : { color }}>
       <strong className="text-lg">
         {value.toLocaleString(locale, {
           maximumFractionDigits: 0,

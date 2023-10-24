@@ -1,14 +1,13 @@
 import { PropsWithChildren } from 'react'
 
 export default function Badge({
-	children,
-	className,
+  children,
+  className,
 }: { className?: string } & PropsWithChildren) {
-	return (
-		<div
-			className={`py-1 px-2 border-solid border-[1px] border-primaryBorder bg-primaryLight rounded-md text-primary text-sm whitespace-nowrap ${className}`}
-		>
-			{children}
-		</div>
-	)
+  return (
+    <div
+      className={`whitespace-nowrap rounded-md border-[1px] border-solid border-primaryBorder bg-primaryLight px-2 py-1 text-sm text-primary ${className}`}>
+      {children}
+    </div>
+  )
 }

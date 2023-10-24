@@ -26,8 +26,7 @@ export default function BarChartItem({
           style={{
             width: `${percentOfMax}%`,
             backgroundColor: color,
-          }}
-        >
+          }}>
           {percentOfMax > 70 ? (
             <DisplayValue color={color} value={value} white />
           ) : null}

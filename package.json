@@ -16,6 +16,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --write .",
     "e2e": "cypress open --e2e",
     "e2e:generate:personas": "node cypress/scripts/generateSpecsFromPersonas.mjs",
     "ui:parse": "node scripts/i18n/generate-ui.js",

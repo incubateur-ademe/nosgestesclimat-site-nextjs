@@ -25,8 +25,7 @@ export default function Markdown({
           a: Link,
           ...components,
         },
-      }}
-    >
+      }}>
       {children}
     </MarkdownToJsx>
   )

@@ -6,8 +6,7 @@ export default function CardCameIcon({ number = 0, className = '' }) {
       width="210mm"
       height="210mm"
       viewBox="0 0 210 210"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <rect
         className="game-card-1"
         width={105.196}
@@ -42,8 +41,7 @@ export default function CardCameIcon({ number = 0, className = '' }) {
               strokeWidth: 0.385599,
             }}
             x={100}
-            y={135}
-          >
+            y={135}>
             {number}
           </tspan>
         </text>

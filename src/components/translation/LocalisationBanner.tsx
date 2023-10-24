@@ -48,8 +48,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
   return (
     <Card
       className="mx-auto mb-8 w-[32rem] max-w-full flex-row"
-      style={{ backgroundColor: '#fff8d3' }}
-    >
+      style={{ backgroundColor: '#fff8d3' }}>
       <div className="flex gap-8">
         <div className="flex w-8 items-center text-4xl">📍</div>
         <div className="flex-1">
@@ -117,8 +116,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
               hideTutorial('localisationBanner')
 
               trackEvent(getMatomoEventChangeRegion(code))
-            }}
-          >
+            }}>
             <Trans>J'ai compris</Trans>
           </Button>
         </div>

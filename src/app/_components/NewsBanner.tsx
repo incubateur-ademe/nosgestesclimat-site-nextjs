@@ -85,8 +85,7 @@ export default function NewsBanner() {
       <button
         onClick={handleUpdateViewedRelease}
         className="absolute right-2 top-2 h-8 w-8 border-none bg-transparent p-0 text-lg text-primaryDark"
-        title={t('Fermer la notification de nouveautés')}
-      >
+        title={t('Fermer la notification de nouveautés')}>
         &times;
       </button>
     </Card>

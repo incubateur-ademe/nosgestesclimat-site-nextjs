@@ -33,8 +33,7 @@ export default function RegionGrid({
   return (
     <ul
       className={`region-grid mx-auto mt-4 grid max-w-[760px] gap-4 p-0 ${className}`}
-      {...props}
-    >
+      {...props}>
       {Object.entries(sortedSupportedRegions).map(([code, params]) => {
         return (
           <li className="my-2 flex list-none justify-center" key={code}>
