@@ -1,12 +1,14 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { matomoSaveSimulationByGivingEmail } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Separator from '@/design-system/layout/Separator'
 import { useSubscribeUser } from '@/hooks/useSubscribeUser'
 import { useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
 import Confirmation from '../../fin-v2/_components/getResultsByEmail/Confirmation'
 import Text from './Text'
@@ -38,6 +40,9 @@ export const NewsletterForm = () => {
             onSubmit={(event) => {
               event.preventDefault()
               if (isLoading || !simulation) return
+
+              trackEvent(matomoSaveSimulationByGivingEmail)
+
               subscribeUser({ simulation, email, optIn })
             }}>
             <Text />

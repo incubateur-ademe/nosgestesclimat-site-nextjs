@@ -246,3 +246,9 @@ export function getMatomoEventClickCategoryGraph(category: string) {
 export function getMatomoEventClickSubcategoryGraph(subcategory: string) {
   return ['trackEvent', 'Formulaire', 'Clic graph subcategory', subcategory]
 }
+
+export const matomoSaveSimulationByGivingEmail = [
+  'trackEvent',
+  'user',
+  'save-simulation-by-giving-email',
+]

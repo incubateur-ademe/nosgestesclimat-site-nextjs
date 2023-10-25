@@ -1,11 +1,13 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { matomoSaveSimulationByGivingEmail } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Card from '@/design-system/layout/Card'
 import { useSubscribeUser } from '@/hooks/useSubscribeUser'
 import { useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
 import Confirmation from './getResultsByEmail/Confirmation'
 
@@ -28,6 +30,8 @@ export default function GetResultsByEmail() {
     event.preventDefault()
 
     if (isLoading || !simulation) return
+
+    trackEvent(matomoSaveSimulationByGivingEmail)
 
     subscribeUser({
       simulation,
