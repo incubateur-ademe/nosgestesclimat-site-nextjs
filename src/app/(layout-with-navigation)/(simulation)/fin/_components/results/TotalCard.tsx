@@ -1,9 +1,9 @@
 'use client'
 
 import Card from '@/design-system/layout/Card'
+import Emoji from '@/design-system/utils/Emoji'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
-import Image from 'next/image'
 
 export default function TotalCard() {
   const { numericValue } = useRule('bilan')
@@ -23,12 +23,7 @@ export default function TotalCard() {
       </div>
 
       <div>
-        <Image
-          src="/images/misc/planete-terre.svg"
-          width="40"
-          height="40"
-          alt=""
-        />
+        <Emoji className="text-5xl">🌍</Emoji>
       </div>
     </Card>
   )
