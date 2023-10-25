@@ -9,7 +9,7 @@ import { useSubscribeUser } from '@/hooks/useSubscribeUser'
 import { useUser } from '@/publicodes-state'
 import { useState } from 'react'
 import Confirmation from '../../fin/_components/getResultsByEmail/Confirmation'
-import Text from '../../fin/_components/getResultsByEmail/_components/Text'
+import Text from './Text'
 
 export const NewsletterForm = () => {
   const { getCurrentSimulation } = useUser()
