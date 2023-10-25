@@ -11,16 +11,19 @@ type Props = {
 }
 
 export function useRules({ lang, region, isOptim = true }: Props) {
-  const locale = useLocale()
-  const { user } = useUser()
   const dataServer = useDataServer()
+
+  const locale = useLocale()
+
+  const { user } = useUser()
+
   const regionCode =
     user?.region?.code != undefined && user?.region?.code !== ''
       ? user?.region?.code
       : region
 
   return useQuery(
-    ['rules', lang, region, isOptim],
+    ['rules', dataServer, lang, region, isOptim],
     () =>
       axios
         .get(

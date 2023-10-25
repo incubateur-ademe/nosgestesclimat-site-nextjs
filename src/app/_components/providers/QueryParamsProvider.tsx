@@ -1,9 +1,9 @@
-import { useDataServer } from '@/hooks/useDataServer'
 import { useDebug } from '@/hooks/useDebug'
+import { usePRNumber } from '@/hooks/usePRNumber'
 import { PropsWithChildren } from 'react'
 
 export default function QueryParamsProvider({ children }: PropsWithChildren) {
   useDebug()
-  useDataServer()
+  usePRNumber()
   return children
 }
