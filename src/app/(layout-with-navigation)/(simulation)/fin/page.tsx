@@ -1,12 +1,14 @@
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
-import NorthStarBanner from '@/components/northstar/NorthstarBanner'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import Trans from '@/components/translation/Trans'
+import Separator from '@/design-system/layout/Separator'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
-import { Diapo } from '@/types/fin'
-import FinSlider from './_components/FinSlider'
-import { NewsletterForm } from './_components/NewsletterForm'
-import './slick.css'
+import CongratulationsText from './_components/CongratulationsText'
+import FeedbackBanner from './_components/FeedbackBanner'
+import GetResultsByEmail from './_components/GetResultsByEmail'
+import GroupModePromotionBanner from './_components/GroupModePromotionBanner'
+import HowToAct from './_components/HowToAct'
+import Results from './_components/Results'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -16,26 +18,33 @@ export async function generateMetadata() {
   })
 }
 
-export default function FinPage({
-  searchParams,
-}: {
-  searchParams: Record<string, Diapo>
-}) {
+export default function FinPage() {
   return (
     <FormProvider>
-      <NorthStarBanner type="learned" />
-
       <IframeDataShareModal />
 
-      <div className="mb-12 flex justify-start md:mx-16">
-        <ButtonLink size="sm" color="secondary" href="/simulateur/bilan">
-          ← Revenir au test
-        </ButtonLink>
-      </div>
+      <CongratulationsText />
 
-      <FinSlider searchParams={searchParams} />
+      <Results />
 
-      <NewsletterForm />
+      <GetResultsByEmail />
+
+      <GroupModePromotionBanner />
+
+      <Separator className="my-8" />
+
+      <HowToAct />
+
+      <FeedbackBanner
+        className="mb-8 mt-12"
+        text={
+          <Trans i18nKey="publicodes.northstar.learned">
+            Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque
+            chose ?
+          </Trans>
+        }
+        type="learned"
+      />
     </FormProvider>
   )
 }
