@@ -1,5 +1,6 @@
 import { useForm } from '@/publicodes-state'
 
+import { useTranslation } from 'react-i18next'
 import Annotation from './total/Annotation'
 import Category from './total/Category'
 import NumberDisplay from './total/NumberDisplay'
@@ -9,10 +10,11 @@ type Props = {
 }
 export default function Total({ total }: Props) {
   const { categories } = useForm()
+  const { t } = useTranslation()
 
   return (
     <div className="relative h-full w-16 md:w-28">
-      <Annotation content="Mon empreinte carbone" />
+      <Annotation content={t('Mon empreinte carbone')} />
 
       <NumberDisplay number={total} isTotal />
 

@@ -23,7 +23,7 @@ export default function EmailInput({
       label={
         <span>
           {t('Votre adresse email')}{' '}
-          <span className="text-secondary italic"> {t('facultatif')}</span>
+          <span className="italic text-secondary"> {t('facultatif')}</span>
         </span>
       }
       helperText={t(
@@ -31,7 +31,7 @@ export default function EmailInput({
       )}
       name="prenom"
       placeholder="jean-marc@nosgestesclimat.fr"
-      className="mt-6 mb-6"
+      className="mb-6 mt-6"
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
         if (errorEmail) {

@@ -34,7 +34,7 @@ export default async function International() {
       <Container maxWidth="3xl" className="pb-12 pt-8">
         <div className="flex items-start justify-between gap-4">
           <div className="text-center md:text-left">
-            <Title title={title} />
+            <Title title={t(title)} />
 
             <Image
               src="/images/misc/international-illustration.jpeg"

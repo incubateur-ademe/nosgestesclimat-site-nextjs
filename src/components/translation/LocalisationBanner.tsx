@@ -6,6 +6,7 @@ import { getMatomoEventChangeRegion } from '@/constants/matomo'
 import { defaultModelRegionCode } from '@/constants/translation'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
+import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
@@ -23,6 +24,10 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
   const code = user?.region?.code
 
+  const { iframeRegion } = useIframe()
+
+  if (iframeRegion) return null
+
   if (!supportedRegions) return null
 
   const regionParams: any = supportedRegions?.[code]
@@ -36,9 +41,9 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
       regionParams?.[currentLocale]?.['nom']
     : countryName
 
-  if (tutorials.localisationBanner) return
+  if (tutorials.localisationBanner) return null
 
-  if (code === defaultModelRegionCode) return
+  if (code === defaultModelRegionCode) return null
 
   return (
     <Card

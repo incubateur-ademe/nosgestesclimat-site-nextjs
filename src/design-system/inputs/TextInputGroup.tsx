@@ -33,7 +33,8 @@ export default function TextInputGroup({
         <span
           className={`text-sm font-bold text-slate-900 ${
             error ? '!text-red-700' : ''
-          }`}>
+          }`}
+        >
           {label}
         </span>
       </label>

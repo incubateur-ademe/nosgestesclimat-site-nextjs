@@ -5,7 +5,7 @@ export default function Progress() {
 
   return (
     <div
-      className="absolute top-0 bottom-0 left-0 right-0 bg-primaryDark origin-left transition-transform"
+      className="absolute bottom-0 left-0 right-0 top-0 origin-left bg-primaryDark transition-transform"
       style={{ transform: `scaleX(${progression})` }}
     />
   )

@@ -42,9 +42,9 @@ export default function References({ references }: ReferencesProps) {
         const path = link.split(domain)[1]
 
         return (
-          <li key={name} className="mb-2 w-full flex items-center">
+          <li key={name} className="mb-2 flex w-full items-center">
             {!referencesWithoutKeys && (
-              <span className="w-[4.5rem] h-12 flex items-center justify-center mr-4">
+              <span className="mr-4 flex h-12 w-[4.5rem] items-center justify-center">
                 {Object.keys(referencesImages).includes(domain) && (
                   <Image
                     src={
@@ -61,10 +61,11 @@ export default function References({ references }: ReferencesProps) {
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center min-w-1/2 no-underline mr-4 flex-1">
+              className="min-w-1/2 mr-4 flex flex-1 items-center no-underline"
+            >
               <span className="ui__ label">{domain}</span>
 
-              <span className="inline-block ml-2">
+              <span className="ml-2 inline-block">
                 {referencesWithoutKeys ? path : capitalise0(name)}
               </span>
             </Link>

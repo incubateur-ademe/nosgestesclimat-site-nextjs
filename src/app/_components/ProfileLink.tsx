@@ -18,7 +18,8 @@ export default function ProfileLink() {
         <InlineLink
           href="/profil"
           title={t('Page profil')}
-          className="flex w-[18rem] items-center rounded-sm">
+          className="flex w-[18rem] items-center rounded-sm"
+        >
           <Image
             alt=""
             src="/images/misc/silhouette.svg"

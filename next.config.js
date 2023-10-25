@@ -79,6 +79,16 @@ const nextConfig = {
         destination: '/fin/:path*',
         permanent: true,
       },
+      {
+        source: '/nouveaut%C3%A9s',
+        destination: '/nouveautes',
+        permanent: true,
+      },
+      {
+        source: '/vie-priv%C3%A9e',
+        destination: '/vie-privee',
+        permanent: true,
+      },
     ]
   },
   experimental: {

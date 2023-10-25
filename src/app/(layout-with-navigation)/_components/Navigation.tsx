@@ -10,6 +10,7 @@ import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useDebug } from '@/hooks/useDebug'
 import { useGetPRNumber } from '@/hooks/useGetPRNumber'
+import { useIframe } from '@/hooks/useIframe'
 import { useUser } from '@/publicodes-state'
 import { capitaliseString } from '@/utils/capitaliseString'
 import Image from 'next/image'
@@ -55,6 +56,8 @@ export default function Navigation() {
   const persona: string | undefined = getCurrentSimulation()?.persona
 
   const { PRNumber, clearPRNumber } = useGetPRNumber()
+
+  const { iframeRegion } = useIframe()
 
   return (
     <nav
@@ -128,7 +131,7 @@ export default function Navigation() {
             </NavLink>
           )}
 
-          {PRNumber && (
+          {PRNumber && !iframeRegion && (
             <NavLink
               href={
                 'https://github.com/datagir/nosgestesclimat/pull/' + PRNumber

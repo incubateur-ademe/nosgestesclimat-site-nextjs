@@ -381,8 +381,8 @@ entries:
   model.intro.lock: Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.
   model.intro2: Entirely open source and contributive, everyone can<1>explore</1> it, <4>give their opinion</4>, <7>improve it</7>.
   model.intro2.lock: Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>.
-  model.modern: The model is based on <1>publicodes</1>, a language designed by the state to express public interest algorithms.
-  model.modern.lock: Le modèle est basé sur <1>publicodes</1>, un langage conçu par l'État pour exprimer des algorithmes d'intérêt public.
+  model.modern: The model is based on <2>publicodes</2>, a language designed by the State to express algorithms in the public interest.
+  model.modern.lock: Le modèle est basé sur <2>publicodes</2>, un langage conçu par l'État pour exprimer des algorithmes d'intérêt public.
   model.modern2: Fully customizable, from the questions asked to the user to the assumptions of the calculation model, it can be <2>freely</2> reused by any type of actor.
   model.modern2.lock: Entièrement paramétrable, depuis les questions posées à l'utilisateur jusqu'aux hypothèses du modèle de calcul, il peut être réutilisé <2>librement</2> par tout type d'acteur.
   model.modern3: ⬇️ Below, you can see the influence of 3 calculation parameters on the final results.
@@ -466,7 +466,7 @@ entries:
   publicodes.Personas.warningMsg.lock: Sélectionner un persona releguera votre simulation en cours dans votre historique de simulations, accessible en bas de votre <2>page profil</2>.
   publicodes.Profil.locationDonnées: <0>Where is my data stored? </0><1>Your data is stored in your browser, so you have complete control over it.</1>
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
-  publicodes.Profil.recap: You have completed the test at {{percentFinished}} % ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}} actions.
+  publicodes.Profil.recap: You have completed the test at {{percentFinished}} % ({{answeredQuestionsLength}} questions) and chose {{actionChoicesLength}} actions.
   publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}} actions.
   publicodes.Profil.simulations: Every simulation you make is saved in your web browser. Only you have access to it.
   publicodes.Profil.simulations.lock: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
@@ -1007,3 +1007,23 @@ entries:
   Je ne sais pas →: I don't know →
   SondagesBlock.description: <1>Surveys</1> and <3>conferences</3> allow you to compare your footprint live or in groups of more than 20 people
   SondagesBlock.description.lock: Les <1>sondages</1> et <3>conférences</3> vous permettent de comparer votre empreinte en direct ou en groupes de plus de 20 personnes
+  Ambassadeurs: Ambassadors
+  IframeDataShareModal.text1: By clicking on the Accept button, you authorise {{parent}} to retrieve your climate footprint.
+  IframeDataShareModal.text1.lock: En cliquant sur le bouton Accepter, vous autorisez {{parent}} à récupérer le bilan de votre empreinte climat.
+  IframeDataShareModal.text: By clicking on the Accept button, you authorise {{parent}} to retrieve your climate footprint.
+  IframeDataShareModal.text.lock: En cliquant sur le bouton Accepter, vous autorisez {{parent}} à récupérer le bilan de votre empreinte climat.
+  IframeDataShareModal.text3: Nosgestesclimat.fr is not affiliated to the {{parent}} website.
+  IframeDataShareModal.text3.lock: Nosgestesclimat.fr n'est pas affilié au site {{parent}}.
+  IframeDataShareModal.text2: These are your results for the main categories (transport, food, etc.), but <1>not</1> the details question by question (your car mileage, the square metres of your home, etc.).
+  IframeDataShareModal.text2.lock: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <1>pas</1> le détail question par question (vos km en voiture, les m² de votre logement...).
+  Copié !: Copy!
+  De quoi est faite mon empreinte ?: What is my footprint made of?
+  Comment réduire mon empreinte ?: How can I reduce my footprint?
+  'Les 3 actions au plus fort impact pour vous :': 'The 3 actions with the greatest impact for you :'
+  NewsletterForm.confirmation: I agree to receive information from Nos Gestes Climat and its <2>privacy</2> policy
+  NewsletterForm.confirmation.lock: J'accepte de recevoir des informations de la part de Nos Gestes Climat et sa <2>politique de confidentialité</2>
+  newsLetter.Text.p2: to receive <1>your results</1> and <4>advice</4> on how to reduce your carbon footprint (once a month max).
+  newsLetter.Text.p2.lock: pour recevoir <1>votre résultat</1> et <4>des conseils</4> pour réduire votre empreinte carbone (1 fois par mois max).
+  Total.unit: of CO<1>2</1>e / year
+  Total.unit.lock: de CO<1>2</1>e / an
+  Vous utilisez actuellement le persona: You are currently using the persona

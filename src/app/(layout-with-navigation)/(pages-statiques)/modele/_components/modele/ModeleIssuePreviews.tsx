@@ -4,7 +4,7 @@ import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
 import axios from 'axios'
 
-const labelString = ['exposé'].join(',')
+const labelString = ['🖼 exposé'].join(',')
 
 type IssueType = {
   body: string
