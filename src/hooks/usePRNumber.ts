@@ -37,7 +37,7 @@ export function usePRNumber(): {
   if (PRNumberFromURL) {
     sessionStorage.setItem('PR', PRNumberFromURL)
   }
-  console.log('PRNumberFromURL', PRNumberFromURL)
+
   return {
     PRNumber: PRNumberFromURL ?? '',
     clearPRNumber: clearPRNumberFromStorage,
