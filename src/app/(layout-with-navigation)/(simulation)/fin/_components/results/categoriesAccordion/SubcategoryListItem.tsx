@@ -48,7 +48,7 @@ export default function SubcategoryListItem({
               <strong>
                 {formatValue(roundValue(numericValue), { precision: 0 })}
               </strong>{' '}
-              tonnes
+              kg
             </div>
           </div>
           <div className="mt-2">
