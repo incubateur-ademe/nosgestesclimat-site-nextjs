@@ -144,5 +144,5 @@
     "yaml-loader": "^0.8.0",
     "yargs": "^17.7.2"
   },
-  "packageManager": "yarn@3.6.4"
+  "packageManager": "yarn@1.22.19"
 }

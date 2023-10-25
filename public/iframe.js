@@ -5,7 +5,7 @@ const script =
 const integratorUrl = encodeURIComponent(window.location.href.toString())
 
 const srcURL = new URL(script.src)
-const hostname = srcURL.hostname || 'nosgestesclimat.fr'
+const hostname = srcURL.origin || 'nosgestesclimat.fr'
 
 const possibleOptions = [
   { key: 'shareData', legacy: 'partagedatafinsimulation' },
@@ -18,7 +18,7 @@ const optionFragments = possibleOptions.map(({ key, legacy }) => {
   return value != null ? `&${key}=${value}` : ''
 })
 
-const src = `https://${hostname}/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
+const src = `${hostname}/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
   ''
 )}`
 

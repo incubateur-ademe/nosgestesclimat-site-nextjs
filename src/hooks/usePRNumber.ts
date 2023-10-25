@@ -1,17 +1,15 @@
 import { useIsClient } from '@/app/_components/IsClientCtxProvider'
 import { useSearchParams } from 'next/navigation'
 
-const PR_NUMBER_KEY = 'PR'
-
 function getPRNumberFromStorage() {
-  return sessionStorage.getItem(PR_NUMBER_KEY) ?? ''
+  return sessionStorage.getItem('PR') ?? ''
 }
 
 function clearPRNumberFromStorage() {
-  sessionStorage.removeItem(PR_NUMBER_KEY)
+  sessionStorage.removeItem('PR')
 }
 
-export function useGetPRNumber(): {
+export function usePRNumber(): {
   PRNumber?: string
   clearPRNumber: () => void
 } {
@@ -37,7 +35,7 @@ export function useGetPRNumber(): {
   }
 
   if (PRNumberFromURL) {
-    sessionStorage.setItem(PR_NUMBER_KEY, PRNumberFromURL)
+    sessionStorage.setItem('PR', PRNumberFromURL)
   }
 
   return {
