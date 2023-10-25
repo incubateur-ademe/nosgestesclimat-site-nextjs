@@ -123,7 +123,8 @@ export default function GithubContributionForm() {
             disableButton: setIsButtonDisabled,
             labels: ['❓ FAQ', '💁 contribution externe'],
           })
-        }}>
+        }}
+      >
         <Trans>Envoyer</Trans>
       </Button>
     </form>

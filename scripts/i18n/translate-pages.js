@@ -7,7 +7,6 @@
 const fs = require('fs')
 const glob = require('glob')
 
-const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
 const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
 const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
 

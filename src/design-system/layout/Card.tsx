@@ -36,7 +36,8 @@ export default function Card({
       )}
       href={href}
       style={style}
-      {...props}>
+      {...props}
+    >
       {children}
     </Tag>
   )

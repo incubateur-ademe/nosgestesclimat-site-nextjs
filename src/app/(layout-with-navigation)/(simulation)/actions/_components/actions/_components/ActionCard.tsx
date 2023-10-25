@@ -117,7 +117,7 @@ export default function ActionCard({
       </div>
 
       <div className="mt-2 flex flex-1 flex-col justify-between">
-        <div className="relative mb-6">
+        <div className="relative">
           <ActionValue
             dottedName={dottedName}
             total={total}

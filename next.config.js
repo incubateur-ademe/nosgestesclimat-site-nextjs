@@ -84,6 +84,11 @@ const nextConfig = {
         destination: '/nouveautes',
         permanent: true,
       },
+      {
+        source: '/vie-priv%C3%A9e',
+        destination: '/vie-privee',
+        permanent: true,
+      },
     ]
   },
   experimental: {

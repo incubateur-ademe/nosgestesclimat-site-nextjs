@@ -1,5 +1,5 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine } from '@/publicodes-state'
+import { useRule } from '@/publicodes-state'
 import { NodeValue } from '@/publicodes-state/types'
 import { TranslationFunctionType } from '@/types/translation'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
@@ -42,12 +42,12 @@ export default function ActionValue({
 }) {
   const { t, i18n } = useClientTranslation()
 
-  const { getValue } = useEngine()
+  const { numericValue } = useRule(dottedName)
 
   const { correctedValue, stringValue, unit, sign } = getFormattedActionValue(
     { t, i18n },
     {
-      nodeValue: getValue(dottedName) || 0,
+      nodeValue: numericValue,
       unit: { numerators: 'kgCO2' },
     }
   )
@@ -58,29 +58,27 @@ export default function ActionValue({
 
   const relativeValue = Math.abs(Math.round(100 * (correctedValue / total)))
 
-  return (
-    <div>
-      {hasFormula && isDisabled ? (
-        t('Non applicable')
-      ) : (
-        <div
-          className={`inline-block rounded-[0.25rem] border-2 border-solid border-primary bg-primary pl-2 pr-[2px] text-white ${
-            correctedValue != undefined && correctedValue < 0
-              ? 'bg-red-500'
-              : ''
-          }${isBlurred ? 'blur-[2px] grayscale' : ''}`}>
-          <span>
-            {sign ?? ''}&nbsp;
-            <strong>{stringValue}</strong>&nbsp;
-            <span>{t(unit, { ns: 'units' })}</span>
-          </span>
+  if (numericValue === 0) return null
 
-          {total && relativeValue > 0 && (
-            <span className="ml-2 rounded-e-sm bg-primaryLight px-1 text-primaryDark">
-              {relativeValue}%
-            </span>
-          )}
-        </div>
+  if (hasFormula && isDisabled) {
+    return <div>{t('Non applicable')}</div>
+  }
+
+  return (
+    <div
+      className={`mb-6 inline-block rounded-[0.25rem] border-2 border-solid border-primary bg-primary pl-2 pr-[2px] text-white ${
+        correctedValue != undefined && correctedValue < 0 ? 'bg-red-500' : ''
+      }${isBlurred ? 'blur-[2px] grayscale' : ''}`}>
+      <span>
+        {sign ?? ''}&nbsp;
+        <strong>{stringValue}</strong>&nbsp;
+        <span>{t(unit, { ns: 'units' })}</span>
+      </span>
+
+      {total && relativeValue > 0 && (
+        <span className="ml-2 rounded-e-sm bg-primaryLight px-1 text-primaryDark">
+          {relativeValue}%
+        </span>
       )}
     </div>
   )

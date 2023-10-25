@@ -4,11 +4,12 @@ import CountryFlag from '@/components/misc/CountryFlag'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
-import RegionModelAuthors from './RegionModelAuthors'
-import RegionSelector from './RegionSelector'
+import RegionModelAuthors from './localisation/RegionModelAuthors'
+import RegionSelector from './localisation/RegionSelector'
 
 type Props = {
   title?: string
@@ -23,15 +24,19 @@ export default function Localisation({
 
   const locale = useLocale()
 
-  const { user, updateRegion } = useUser()
+  const { user, updateRegion, tutorials, showTutorial } = useUser()
   const { region, initialRegion } = user || {}
 
   const isRegionSupported = Object.keys(supportedRegions)?.some(
     (supportedRegion: string) => supportedRegion === region?.code
   )
 
+  const { iframeRegion } = useIframe()
+
+  if (iframeRegion) return null
+
   return (
-    <div className="mt-4sm:mt-8">
+    <div className="mb-8 mt-4 sm:mt-8">
       <h2 className="text-lg">
         <span
           role="img"
@@ -68,6 +73,9 @@ export default function Localisation({
                     updateRegion(
                       initialRegion as { code: string; name: string }
                     )
+                    if (tutorials.localisationBanner) {
+                      showTutorial('localisationBanner')
+                    }
                   }}>
                   <Trans>Revenir à ma région par défaut </Trans>{' '}
                   <span aria-label={initialRegion.name}>

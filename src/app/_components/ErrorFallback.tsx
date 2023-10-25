@@ -18,7 +18,8 @@ export const ErrorFallback = () => {
       <Button
         onClick={() => {
           window.location.reload()
-        }}>
+        }}
+      >
         <Trans>Recharger la page</Trans>
       </Button>
     </div>

@@ -24,7 +24,8 @@ export default function AnimatedIllustration({
       aria-hidden="true"
       className={`landing-animated-illustration ${
         isCycling ? 'landing-animated-illustration--cycling' : ''
-      } ${small} ${className}`}>
+      } ${small} ${className}`}
+    >
       <IllustrationSVG ref={svgRef as unknown as ForwardedRef<SVGSVGElement>} />
     </div>
   )

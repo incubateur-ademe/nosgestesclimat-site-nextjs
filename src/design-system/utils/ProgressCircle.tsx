@@ -11,7 +11,8 @@ const ProgressCircle = ({
     role="progressbar"
     aria-valuenow={Math.round(progress * 100)}
     viewBox="0 0 50 50"
-    className={`w-8 ${className}`}>
+    className={`w-8 ${className}`}
+  >
     <motion.path
       fill="none"
       strokeWidth="5"

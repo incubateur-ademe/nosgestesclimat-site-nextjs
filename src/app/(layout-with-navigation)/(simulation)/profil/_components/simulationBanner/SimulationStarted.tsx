@@ -1,5 +1,3 @@
-'use client'
-
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
@@ -8,32 +6,22 @@ import Card from '@/design-system/layout/Card'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useUser } from '@/publicodes-state'
-import TutorialLink from './TutorialLink'
+import { Simulation } from '@/publicodes-state/types'
+import TutorialLink from './_components/TutorialLink'
 
-export default function HasSimulationBanner() {
+type Props = {
+  currentSimulation: Simulation
+}
+export default function SimulationStarted({ currentSimulation }: Props) {
   const { t } = useClientTranslation()
 
-  const { progression, remainingQuestions, relevantQuestions } = useForm()
+  const { progression, relevantAnsweredQuestions } = useForm()
 
-  const { getCurrentSimulation, initSimulation } = useUser()
+  const { initSimulation } = useUser()
 
-  const currentSimulation = getCurrentSimulation()
+  const actionChoicesLength = currentSimulation?.actionChoices?.length || 0
 
-  if (!currentSimulation) return
-
-  const actionChoices = currentSimulation.actionChoices
-
-  const percentFinished = Math.round(progression * 100)
-
-  const answeredQuestionsLength =
-    (relevantQuestions || []).length - (remainingQuestions || []).length
-
-  const isSimulationInProgress =
-    progression !== undefined && progression > 0 && progression < 1
-
-  if (!progression) return null
-
-  const actionChoicesLength = actionChoices?.length
+  const isFinished = progression === 1
 
   return (
     <div className="flex flex-wrap">
@@ -41,9 +29,9 @@ export default function HasSimulationBanner() {
         <Card className="mr-8">
           <p className="text-base md:text-lg">
             {t('publicodes.Profil.recap', {
-              percentFinished,
-              answeredQuestionsLength: answeredQuestionsLength || 0,
-              actionChoicesLength: actionChoicesLength || 0,
+              percentFinished: progression * 100,
+              answeredQuestionsLength: relevantAnsweredQuestions.length,
+              actionChoicesLength,
             })}{' '}
           </p>
         </Card>
@@ -56,16 +44,15 @@ export default function HasSimulationBanner() {
               Vos données sont stockées dans votre navigateur, vous avez donc le
               contrôle total sur elles.
             </span>
-          </Trans>
-
-          <Link href="/vie-privee">
+          </Trans>{' '}
+          <Link href="/vie-privee" className="!text-xs">
             <Trans>En savoir plus</Trans>
           </Link>
         </details>
       </div>
 
       <div className="my-4 flex w-full flex-col md:w-auto md:items-start">
-        {isSimulationInProgress && (
+        {!isFinished && (
           <ButtonLink
             color="primary"
             href="/simulateur/bilan"
