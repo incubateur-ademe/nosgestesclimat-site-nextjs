@@ -4,5 +4,6 @@ export const AB_TESTS = [
     stringToMatch: '/fin',
     newPath: '/fin-v2',
     oldPath: '/fin',
+    threshold: 0.5,
   },
 ]

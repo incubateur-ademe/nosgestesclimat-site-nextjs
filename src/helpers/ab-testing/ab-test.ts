@@ -1,8 +1,6 @@
 import { AB_TESTS } from '@/constants/ab-tests'
 import { NextRequest, NextResponse } from 'next/server'
 
-const THRESHOLD = 0.5
-
 export function ABTest(request: NextRequest) {
   const url = request.nextUrl.clone()
 
@@ -18,7 +16,9 @@ export function ABTest(request: NextRequest) {
 
   const variant =
     request.cookies.get(currentABTest.name)?.value ||
-    (randomNumber < THRESHOLD ? currentABTest.newPath : currentABTest.oldPath)
+    (randomNumber < currentABTest.threshold
+      ? currentABTest.newPath
+      : currentABTest.oldPath)
 
   url.pathname = variant as string
 
