@@ -2,8 +2,8 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
+import ChevronRight from '@/design-system/icons/ChevronRight'
 import { Group } from '@/types/groups'
-import ChevronRight from '../../../../../design-system/icons/ChevronRight'
 
 type Props = {
   group: Group

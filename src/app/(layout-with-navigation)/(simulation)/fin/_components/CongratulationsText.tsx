@@ -6,11 +6,9 @@ export default function CongratulationsText() {
   return (
     <>
       <h1 className="mt-4">
-        <Trans>
-          <span className="flex gap-2">
-            Vous avez terminé le test ! <Emoji>👏</Emoji>
-          </span>
-        </Trans>
+        <span className="flex gap-2">
+          <Trans>Vous avez terminé le test&nbsp;!</Trans>&nbsp;<Emoji>👏</Emoji>
+        </span>
       </h1>
 
       <p className="mb-0">

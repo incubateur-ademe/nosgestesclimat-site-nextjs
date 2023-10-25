@@ -5,10 +5,10 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
 import CongratulationsText from './_components/CongratulationsText'
 import FeedbackBanner from './_components/FeedbackBanner'
+import GetResultsByEmail from './_components/GetResultsByEmail'
 import GroupModePromotionBanner from './_components/GroupModePromotionBanner'
-import GetResultsByEmail from './_components/getResultsByEmail/GetResultsByEmail'
-import HowToAct from './_components/howToAct/HowToAct'
-import Results from './_components/results/Results'
+import HowToAct from './_components/HowToAct'
+import Results from './_components/Results'
 
 export async function generateMetadata() {
   return getMetadataObject({

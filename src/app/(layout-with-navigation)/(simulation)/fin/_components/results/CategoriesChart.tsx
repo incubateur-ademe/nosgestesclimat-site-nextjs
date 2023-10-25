@@ -3,7 +3,7 @@
 import Card from '@/design-system/layout/Card'
 import { useEngine, useForm, useRule } from '@/publicodes-state'
 import { useMemo } from 'react'
-import CategoryChartItem from './CategoryChartItem'
+import CategoryChartItem from './categoriesChart/CategoryChartItem'
 
 export default function CategoriesChart() {
   const { categories } = useForm()

@@ -10,7 +10,11 @@ export default function Emoji({
   PropsWithChildren<{ className?: string; alt?: string }>) {
   return (
     // Emojis are decorative and don't need to be read by screen readers
-    <span aria-hidden className={twMerge('inline', className)} {...props}>
+    <span
+      aria-hidden
+      alt=""
+      className={twMerge('inline', className)}
+      {...props}>
       {emoji(children, {
         baseUrl: 'https://twemoji.maxcdn.com/2/svg',
         ext: '.svg',

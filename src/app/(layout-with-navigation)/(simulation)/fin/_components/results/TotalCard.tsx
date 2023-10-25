@@ -1,6 +1,7 @@
 'use client'
 
 import Card from '@/design-system/layout/Card'
+import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
 import Image from 'next/image'
 
@@ -11,7 +12,7 @@ export default function TotalCard() {
     <Card className="w-full flex-row items-center rounded-lg bg-primaryDark p-6 text-white shadow-none">
       <div className="flex-1">
         <p className="mb-0 text-3xl">
-          <strong>{(numericValue / 1000).toFixed(2)}</strong>{' '}
+          <strong>{formatCarbonFootprint(numericValue)?.formattedValue}</strong>{' '}
           <span className="text-xl">tonnes</span>
         </p>
 

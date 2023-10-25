@@ -1,8 +1,8 @@
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
-import TotalCard from './TotalCard'
-import CategoriesAccordion from './categoriesAccordion/CategoriesAccordion'
-import CategoriesChart from './categoriesChart/CategoriesChart'
+import CategoriesAccordion from './results/CategoriesAccordion'
+import CategoriesChart from './results/CategoriesChart'
+import TotalCard from './results/TotalCard'
 
 export default function Results() {
   return (

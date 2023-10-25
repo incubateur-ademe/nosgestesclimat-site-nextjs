@@ -5,24 +5,25 @@ import { formatValue } from 'publicodes'
 import { useState } from 'react'
 import Card from '../Card'
 
-type Props = {
+export type AccordionItemType = {
   title: string
   content: React.ReactNode
   icons: string
-  category: string
+  className?: string
+  dottedName: string
   isReadOnly?: boolean
 }
 
 export default function AccordionItem({
-  category,
+  dottedName,
   title,
   icons,
   content,
   isReadOnly,
-}: Props) {
+}: AccordionItemType) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const { numericValue } = useRule(category)
+  const { numericValue } = useRule(dottedName)
 
   return (
     <li>

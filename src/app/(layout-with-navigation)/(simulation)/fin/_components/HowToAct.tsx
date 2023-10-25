@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import RecommendedActions from './RecommendedActions'
+import RecommendedActions from './howToAct/RecommendedActions'
 
 export default function HowToAct() {
   return (

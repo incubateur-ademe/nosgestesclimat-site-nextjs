@@ -1,33 +1,12 @@
-import AccordionItem from './AccordionItem'
-
-export type AccordionItemType = {
-  title: string
-  content: React.ReactNode
-  icons: string
-  className?: string
-  category: string
-  isReadOnly?: boolean
-}
+import { ReactElement } from 'react'
+import { AccordionItemType } from './AccordionItem'
 
 export default function Accordion({
-  items,
   className = '',
+  children,
 }: {
-  items: AccordionItemType[]
+  children?: ReactElement<AccordionItemType> | ReactElement<AccordionItemType>[]
   className?: string
 }) {
-  return (
-    <ul className={className}>
-      {items.map(({ title, content, icons, category, isReadOnly }, index) => (
-        <AccordionItem
-          key={`${title}-${index}`}
-          title={title}
-          content={content}
-          icons={icons}
-          category={category}
-          isReadOnly={isReadOnly}
-        />
-      ))}
-    </ul>
-  )
+  return <ul className={className}>{children}</ul>
 }

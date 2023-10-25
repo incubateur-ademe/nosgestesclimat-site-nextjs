@@ -7,7 +7,7 @@ import Card from '@/design-system/layout/Card'
 import { useSubscribeUser } from '@/hooks/useSubscribeUser'
 import { useUser } from '@/publicodes-state'
 import { useState } from 'react'
-import Confirmation from './_components/Confirmation'
+import Confirmation from './getResultsByEmail/Confirmation'
 
 export default function GetResultsByEmail() {
   const [email, setEmail] = useState('')

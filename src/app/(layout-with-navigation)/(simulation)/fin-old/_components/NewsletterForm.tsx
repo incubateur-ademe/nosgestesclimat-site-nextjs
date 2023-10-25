@@ -8,7 +8,7 @@ import Separator from '@/design-system/layout/Separator'
 import { useSubscribeUser } from '@/hooks/useSubscribeUser'
 import { useUser } from '@/publicodes-state'
 import { useState } from 'react'
-import Confirmation from '../../fin/_components/getResultsByEmail/_components/Confirmation'
+import Confirmation from '../../fin/_components/getResultsByEmail/Confirmation'
 import Text from '../../fin/_components/getResultsByEmail/_components/Text'
 
 export const NewsletterForm = () => {

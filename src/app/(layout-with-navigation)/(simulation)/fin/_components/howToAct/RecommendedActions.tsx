@@ -5,34 +5,38 @@ import { useMemo } from 'react'
 import RecommendedAction from './RecommendedAction'
 
 export default function RecommendedActions() {
-  const { orderedActions } = useActions()
+  const { orderedActions: orderedActionDottedNames } = useActions()
   const { getCategory } = useEngine()
 
-  const filteredSameCategoriesActions = useMemo(
+  const filteredSameCategoriesActionDottedNames = useMemo(
     () =>
-      orderedActions
+      orderedActionDottedNames
         .reduce(
-          (accumulator: string[], currentValue: string) =>
+          (accumulator: string[], currentActionDottedName: string) =>
             accumulator.find(
-              (action) => getCategory(action) === getCategory(currentValue)
+              (actionDottedName) =>
+                getCategory(actionDottedName) ===
+                getCategory(currentActionDottedName)
             )
               ? accumulator
-              : [...accumulator, currentValue],
+              : [...accumulator, currentActionDottedName],
           []
         )
         .slice(0, 3),
-    [orderedActions, getCategory]
+    [orderedActionDottedNames, getCategory]
   )
 
   return (
     <div className="max-w-screen overflow-scroll">
       <ul className="flex flex-row gap-4">
-        {filteredSameCategoriesActions.map((action, index) => (
-          <RecommendedAction
-            actionDottedName={action}
-            key={`recommended-action-${index}`}
-          />
-        ))}
+        {filteredSameCategoriesActionDottedNames.map(
+          (actionDottedName, index) => (
+            <RecommendedAction
+              actionDottedName={actionDottedName}
+              key={`recommended-actionDottedName-${index}`}
+            />
+          )
+        )}
       </ul>
     </div>
   )
