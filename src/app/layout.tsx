@@ -93,7 +93,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         {process.env.NEXT_PUBLIC_MATOMO_ID === '1' ? (
           <Script id="matomo">
             {`
-          
             var _paq = window._paq = window._paq || [];
              /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
             _paq.push(["setExcludedQueryParams", ["detail","diapo"]]);
@@ -102,12 +101,31 @@ export default async function RootLayout({ children }: PropsWithChildren) {
               var u="https://stats.data.gouv.fr/";
               _paq.push(['setTrackerUrl', u+'matomo.php']);
               _paq.push(['setSiteId', '153']);
+              // Adds the Matomo V2 tracker
+              _paq.push(['addTracker', 'https://matomo-incubateur-ademe.osc-fr1.scalingo.io/matomo.php', '1'])
               var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
               g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
             })();
           `}
           </Script>
-        ) : null}
+        ) : (
+          <Script id="matomo">
+            {`
+            var _paq = window._paq = window._paq || [];
+            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+            _paq.push(["setExcludedQueryParams", ["details"]]);
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+              var u="https://matomo-incubateur-ademe.osc-fr1.scalingo.io/";
+              _paq.push(['setTrackerUrl', u+'matomo.php']);
+              _paq.push(['setSiteId', '2']);
+              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+              g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+            })();
+          `}
+          </Script>
+        )}
       </head>
 
       <body className={marianne.className}>
