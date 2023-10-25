@@ -1,6 +1,7 @@
 import ChevronRight from '@/design-system/icons/ChevronRight'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
+import { motion } from 'framer-motion'
 import { formatValue } from 'publicodes'
 import { useState } from 'react'
 import Card from '../Card'
@@ -29,7 +30,7 @@ export default function AccordionItem({
     <li>
       <button
         onClick={() => !isReadOnly && setIsOpen((prevState) => !prevState)}
-        className={`border-grey-300 flex w-full items-center justify-between px-2 py-4 ${
+        className={`border-grey-300 relative z-10 flex w-full items-center justify-between bg-white px-2 py-4 ${
           isOpen ? '' : 'border-b'
         }`}
         aria-disabled={isReadOnly}>
@@ -56,7 +57,10 @@ export default function AccordionItem({
       </button>
 
       {isOpen && (
-        <div>
+        <motion.div
+          initial={{ opacity: 0.6, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="z-0">
           <Card
             className="mb-4 border-x-0 bg-grey-100"
             style={{
@@ -64,7 +68,7 @@ export default function AccordionItem({
             }}>
             {content}
           </Card>
-        </div>
+        </motion.div>
       )}
     </li>
   )
