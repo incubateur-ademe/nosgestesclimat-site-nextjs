@@ -3,7 +3,7 @@
 import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
-import { useGetPRNumber } from '@/hooks/useGetPRNumber'
+import { usePRNumber } from '@/hooks/usePRNumber'
 import { useTempEngine } from '@/publicodes-state'
 import { NGCRule, NGCRules } from '@/publicodes-state/types'
 import { utils } from 'publicodes'
@@ -12,7 +12,7 @@ import { useFetchDocumentation } from '../../_hooks/useFetchDocumentation'
 export default function ActionPlusList() {
   const { rules } = useTempEngine()
 
-  const { PRNumber } = useGetPRNumber()
+  const { PRNumber } = usePRNumber()
 
   const { data: documentation } = useFetchDocumentation(PRNumber)
 
