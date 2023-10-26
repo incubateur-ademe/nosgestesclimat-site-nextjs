@@ -1,10 +1,10 @@
 'use client'
 
 import Badge from '@/design-system/layout/Badge'
+import BarChart from '@/design-system/utils/BarChart'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
-import { motion } from 'framer-motion'
 import { formatValue } from 'publicodes'
 
 export default function CategoryChartItem({
@@ -35,14 +35,10 @@ export default function CategoryChartItem({
       <div
         className="flex items-end"
         style={{ height: `calc(${percentageOfMaxValue} * 4rem)` }}>
-        <motion.div
-          className="w-[8px] rotate-180 rounded-lg bg-secondary"
-          initial={{ height: 0, display: 'none' }}
-          animate={{
-            height: `calc(${percentageOfMaxValue} * 4rem)`,
-            display: 'block',
-          }}
-          transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
+        <BarChart
+          type="vertical"
+          percentage={percentageOfMaxValue}
+          maxWidth="4rem"
         />
       </div>
 

@@ -25,7 +25,7 @@ export default function CategoriesChart({ className }: { className?: string }) {
   return (
     <Card
       className={twMerge(
-        'mt-4 h-[171px] w-full rounded-lg border-none bg-grey-100 p-3 shadow-none md:mt-0',
+        'mt-4 h-[171px] w-full rounded-lg border-none bg-grey-100 p-3 shadow-none md:mt-0 md:hidden',
         className
       )}>
       <ul className="flex items-end justify-between">

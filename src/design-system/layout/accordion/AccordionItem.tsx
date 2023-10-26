@@ -1,14 +1,13 @@
 import ChevronRight from '@/design-system/icons/ChevronRight'
-import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
 import { formatValue } from 'publicodes'
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import Card from '../Card'
 
 export type AccordionItemType = {
-  title: string
-  content: React.ReactNode
+  title: ReactNode
+  content: ReactNode
   icons: string
   className?: string
   dottedName: string
@@ -18,7 +17,6 @@ export type AccordionItemType = {
 export default function AccordionItem({
   dottedName,
   title,
-  icons,
   content,
   isReadOnly,
 }: AccordionItemType) {
@@ -34,11 +32,7 @@ export default function AccordionItem({
           isOpen ? '' : 'border-b'
         } ${isReadOnly ? '!cursor-default' : ''}`}
         aria-disabled={isReadOnly}>
-        <div className="flex items-center gap-4">
-          <Emoji>{icons}</Emoji>
-
-          <span>{title}</span>
-        </div>
+        <div className="flex flex-1 items-center gap-4">{title}</div>
 
         <div className="flex items-center gap-4 text-primaryDark">
           <span>

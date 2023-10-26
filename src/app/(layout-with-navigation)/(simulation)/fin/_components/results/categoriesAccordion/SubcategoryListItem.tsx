@@ -54,7 +54,7 @@ export default function SubcategoryListItem({
           <div className="mt-2">
             <div>
               <div
-                className="h-[6px] rounded-lg bg-secondary"
+                className="h-[6px] rounded-lg bg-primary"
                 style={{
                   width: `calc(${percentageOfCategoryValue} * 100%)`,
                 }}

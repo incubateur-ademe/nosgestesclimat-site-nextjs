@@ -20,7 +20,7 @@ export default async function GroupModePromotionBanner({
       )}>
       <div className="flex items-end justify-end md:items-center">
         <Image
-          src="./images/misc/Groupe.svg"
+          src="/images/misc/challenge.png"
           width="150"
           height="150"
           alt={t('Une capture du mode Groupe Nos Gestes Climat.')}
