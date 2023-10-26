@@ -11,7 +11,7 @@ module.exports = {
         sans: 'var(--font-marianne)',
       },
       colors: {
-        // primary: '#491273',
+        primaryNew: '#491273',
         primary: '#5758BB',
         // primaryLight: '#E8DFEE',
         primaryLight: '#e6e6f5',

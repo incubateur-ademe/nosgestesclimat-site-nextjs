@@ -1,4 +1,4 @@
-// Initialise react-i18next
+import AbTestingCouleurPalette from '@/ab-testing/tests/AbTestingCouleurPalette'
 import getGeolocation from '@/helpers/getGeolocation'
 import '@/locales/initClient'
 import '@/locales/initServer'
@@ -126,6 +126,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           `}
           </Script>
         )}
+
+        <AbTestingCouleurPalette />
       </head>
 
       <body className={marianne.className}>

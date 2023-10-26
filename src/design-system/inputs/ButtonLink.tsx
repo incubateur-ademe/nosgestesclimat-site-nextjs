@@ -1,4 +1,6 @@
+'use client'
 import Link from '@/components/Link'
+import useAbTesting from '@/hooks/useAbTesting'
 import { ButtonSize } from '@/types/values'
 import { HtmlHTMLAttributes, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -23,6 +25,7 @@ export default function ButtonLink({
   onClick,
   ...props
 }: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLAnchorElement>>) {
+  const abTests = useAbTesting()
   return (
     <Link
       href={href}
@@ -30,10 +33,11 @@ export default function ButtonLink({
       title={title}
       className={twMerge(
         `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
-        className
+        `${className} ${
+          abTests.includes('changement-couleur-palette') ? 'bg-primaryNew' : ''
+        }`
       )}
-      {...props}
-    >
+      {...props}>
       {children}
     </Link>
   )

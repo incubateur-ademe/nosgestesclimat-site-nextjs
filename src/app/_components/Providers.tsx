@@ -1,5 +1,6 @@
 'use client'
 
+import { AbTestingProvider } from '@/contexts/AbTestingContext'
 import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
 import { UserProvider } from '@/publicodes-state'
 import { PropsWithChildren } from 'react'
@@ -17,23 +18,24 @@ export default function Providers({
 }: PropsWithChildren<{ region: { code: string; name: string } }>) {
   return (
     <IsClientCtxProvider>
-      <QueryParamsProvider>
-        <IframeOptionsProvider>
-          <QueryClientProviderWrapper>
-            <PageViewTracker>
-              <IframeResizer />
-              <UserProvider
-                initialRegion={region}
-                storageKey="nosgestesclimat::v3"
-              >
-                <SimulationFromUrlLoader />
-                <CheckFixedRegion />
-                <IsClientCtxProvider>{children}</IsClientCtxProvider>
-              </UserProvider>
-            </PageViewTracker>
-          </QueryClientProviderWrapper>
-        </IframeOptionsProvider>
-      </QueryParamsProvider>
+      <AbTestingProvider>
+        <QueryParamsProvider>
+          <IframeOptionsProvider>
+            <QueryClientProviderWrapper>
+              <PageViewTracker>
+                <IframeResizer />
+                <UserProvider
+                  initialRegion={region}
+                  storageKey="nosgestesclimat::v3">
+                  <SimulationFromUrlLoader />
+                  <CheckFixedRegion />
+                  <IsClientCtxProvider>{children}</IsClientCtxProvider>
+                </UserProvider>
+              </PageViewTracker>
+            </QueryClientProviderWrapper>
+          </IframeOptionsProvider>
+        </QueryParamsProvider>
+      </AbTestingProvider>
     </IsClientCtxProvider>
   )
 }

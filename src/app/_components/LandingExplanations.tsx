@@ -1,6 +1,7 @@
 'use client'
 
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
+import useAbTesting from '@/hooks/useAbTesting'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import LandingContentEn from '@/locales/pages/en/landing.mdx'
@@ -16,6 +17,8 @@ import QuestionsBlock from './QuestionsBlock'
 export default function LandingExplanations() {
   const { isIframe } = useIframe()
 
+  const abTestings = useAbTesting()
+  console.log(abTestings)
   const locale = useLocale()
 
   const LandingContent = getLocalisedMDX({

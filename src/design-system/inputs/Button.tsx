@@ -1,3 +1,6 @@
+'use client'
+
+import useAbTesting from '@/hooks/useAbTesting'
 import { ButtonSize } from '@/types/values'
 import { HtmlHTMLAttributes, MouseEventHandler, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -43,6 +46,8 @@ export default function Button({
   title,
   ...props
 }: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLButtonElement>>) {
+  const abTests = useAbTesting()
+
   return (
     <button
       onClick={disabled ? () => {} : onClick}
@@ -52,10 +57,11 @@ export default function Button({
       id={id}
       className={twMerge(
         `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
-        className
+        `${className} ${
+          abTests.includes('changement-couleur-palette') ? 'bg-primaryNew' : ''
+        }}`
       )}
-      {...props}
-    >
+      {...props}>
       {children}
     </button>
   )
