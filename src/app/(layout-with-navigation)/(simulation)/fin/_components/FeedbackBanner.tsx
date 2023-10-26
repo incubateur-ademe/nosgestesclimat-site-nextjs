@@ -4,6 +4,7 @@ import Trans from '@/components/translation/Trans'
 import { SIMULATION_URL } from '@/constants/urls'
 import SmileyGrading from '@/design-system/inputs/SmileyGrading'
 import Card from '@/design-system/layout/Card'
+import Emoji from '@/design-system/utils/Emoji'
 import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { NorthStarType, NorthStarValue } from '@/types/northstar'
 import { captureException } from '@sentry/react'
@@ -49,12 +50,13 @@ export default function FeedbackBanner({ text, type, className }: Props) {
     saveRating()
   }
 
-  const cardClassName = twMerge('border-none bg-grey-100', className)
+  const cardClassName = twMerge('border-none bg-grey-100 w-[24rem]', className)
 
-  if (isSuccess)
+  if (isSuccess || user.northStarRatings?.[type])
     return (
-      <Card className={cardClassName}>
+      <Card className={`${cardClassName} flex-row gap-3`}>
         <Trans i18nKey="northstar.thankyou">Merci pour votre retour !</Trans>
+        <Emoji className="text-2xl">😊</Emoji>
       </Card>
     )
 

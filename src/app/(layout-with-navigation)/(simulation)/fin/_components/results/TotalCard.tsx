@@ -8,12 +8,14 @@ import { useRule } from '@/publicodes-state'
 export default function TotalCard() {
   const { numericValue } = useRule('bilan')
 
+  const { formattedValue, unit } = formatCarbonFootprint(numericValue)
+
   return (
     <Card className="w-full flex-row items-center rounded-lg bg-primaryDark p-6 text-white shadow-none">
       <div className="flex-1">
         <p className="mb-0 text-3xl">
-          <strong>{formatCarbonFootprint(numericValue)?.formattedValue}</strong>{' '}
-          <span className="text-xl">tonnes</span>
+          <strong>{formattedValue}</strong>{' '}
+          <span className="text-xl">{unit}</span>
         </p>
 
         <p className="mb-0">

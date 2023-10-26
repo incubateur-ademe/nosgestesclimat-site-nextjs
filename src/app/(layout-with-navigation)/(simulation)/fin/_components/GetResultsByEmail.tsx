@@ -43,17 +43,18 @@ export default function GetResultsByEmail() {
   if (isSuccess) return <Confirmation />
 
   return (
-    <Card className="mb-4 items-center border-none bg-grey-100 py-8">
+    <Card className="mb-4 items-start border-none bg-grey-100 py-8">
       <form id="newsletter-form" onSubmit={handleSubmit}>
         <h3 className="text-xl">
           <Trans>
             Recevez vos résultats{' '}
-            <span className="text-pink-500">par email</span>
+            <span className="text-secondary">par email</span>
           </Trans>
         </h3>
 
         <p className="text-gray-600">
-          Et des conseils pour réduire votre impact sur le climat.
+          Et les conseils de Nos Gestes Climat pour réduire votre impact sur le
+          climat.
         </p>
 
         <div className="mb-4">

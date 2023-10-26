@@ -4,6 +4,7 @@ import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
+import { motion } from 'framer-motion'
 import { formatValue } from 'publicodes'
 
 export default function CategoryChartItem({
@@ -31,17 +32,23 @@ export default function CategoryChartItem({
       <Badge>
         <strong>{formattedValue}</strong> t
       </Badge>
-
-      <div>
-        <div
-          className="w-[6px] rounded-lg bg-pink-500"
-          style={{
+      <div
+        className="flex items-end"
+        style={{ height: `calc(${percentageOfMaxValue} * 4rem)` }}>
+        <motion.div
+          className="w-[8px] rotate-180 rounded-lg bg-secondary"
+          initial={{ height: 0, display: 'none' }}
+          animate={{
             height: `calc(${percentageOfMaxValue} * 4rem)`,
+            display: 'block',
           }}
+          transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
         />
       </div>
 
-      <Emoji className="mt-3 text-2xl">{icons}</Emoji>
+      <Emoji className="mt-3 text-2xl" title={title}>
+        {icons}
+      </Emoji>
     </li>
   )
 }
