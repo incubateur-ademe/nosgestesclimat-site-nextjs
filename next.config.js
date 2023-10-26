@@ -89,6 +89,11 @@ const nextConfig = {
         destination: '/vie-privee',
         permanent: true,
       },
+      {
+        source: '/partenaires',
+        destination: '/diffuser',
+        permanent: true,
+      },
     ]
   },
   experimental: {
