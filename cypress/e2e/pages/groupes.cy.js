@@ -57,7 +57,6 @@ describe(
 
     it('allows to join a group with the invitation link and display ', () => {
       cy.clearLocalStorage()
-
       cy.reload()
 
       cy.wait(2000)
