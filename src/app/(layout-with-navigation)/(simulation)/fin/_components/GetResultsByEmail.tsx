@@ -9,9 +9,14 @@ import { useSubscribeUser } from '@/hooks/useSubscribeUser'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 import Confirmation from './getResultsByEmail/Confirmation'
 
-export default function GetResultsByEmail() {
+export default function GetResultsByEmail({
+  className,
+}: {
+  className?: string
+}) {
   const [email, setEmail] = useState('')
 
   const { user, getCurrentSimulation, updateHasSavedSimulation } = useUser()
@@ -42,10 +47,15 @@ export default function GetResultsByEmail() {
     updateHasSavedSimulation(true)
   }
 
-  if (isSuccess || user.hasSavedSimulation) return <Confirmation />
+  if (isSuccess || user.hasSavedSimulation)
+    return <Confirmation className={className} />
 
   return (
-    <Card className="items-start border-none bg-grey-100 py-8">
+    <Card
+      className={twMerge(
+        'items-start border-none bg-grey-100 py-8',
+        className
+      )}>
       <form id="newsletter-form" onSubmit={handleSubmit}>
         <h3 className="text-xl">
           <Trans>

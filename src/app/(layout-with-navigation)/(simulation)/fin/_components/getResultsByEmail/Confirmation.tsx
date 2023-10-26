@@ -1,10 +1,15 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
+import { twMerge } from 'tailwind-merge'
 
-export default function Confirmation() {
+export default function Confirmation({ className }: { className?: string }) {
   return (
-    <Card className="mb-4 items-start border-none bg-grey-100 py-8">
+    <Card
+      className={twMerge(
+        'mb-4 items-start border-none bg-grey-100 py-8',
+        className
+      )}>
       <div className="text-left; bg-transparent text-left text-2xl font-bold">
         <p>
           <Trans>Votre simulation est sauvegardée !</Trans>{' '}
