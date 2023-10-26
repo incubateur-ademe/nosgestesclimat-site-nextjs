@@ -5,7 +5,7 @@ import { clickNextButton } from '../elements/buttons'
 
 const LAST_QUESTION_ID = 'services sociétaux . question rhétorique-ok'
 
-export async function recursivelyFillSimulation(persona = {}, mode) {
+export async function recursivelyFillSimulation(persona = {}) {
   const isPersonaEmptyOrNotDefined =
     !persona || Object.keys(persona).length <= 0
 
@@ -30,7 +30,7 @@ export async function recursivelyFillSimulation(persona = {}, mode) {
         function skipQuestion() {
           clickNextButton()
 
-          if (!isPersonaEmptyOrNotDefined) cy.wait(1000)
+          cy.wait(1000)
 
           answerCurrentQuestion()
         }
@@ -40,11 +40,6 @@ export async function recursivelyFillSimulation(persona = {}, mode) {
           clickNextButton()
 
           cy.wait(1000)
-
-          // @bjlaa: the results page is not displayed in group mode
-          if (mode !== 'group') {
-            cy.get('div[data-cypress-id="fin-slider"]')
-          }
 
           return resolve()
         }
