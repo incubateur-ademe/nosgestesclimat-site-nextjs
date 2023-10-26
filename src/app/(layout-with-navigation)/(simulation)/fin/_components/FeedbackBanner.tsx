@@ -50,7 +50,10 @@ export default function FeedbackBanner({ text, type, className }: Props) {
     saveRating()
   }
 
-  const cardClassName = twMerge('border-none bg-grey-100 w-[24rem]', className)
+  const cardClassName = twMerge(
+    'border-none bg-grey-100 w-[24rem] max-w-full',
+    className
+  )
 
   if (isSuccess || user.northStarRatings?.[type])
     return (
