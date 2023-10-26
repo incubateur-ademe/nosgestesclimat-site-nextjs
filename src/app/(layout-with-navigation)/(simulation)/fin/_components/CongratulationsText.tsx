@@ -6,8 +6,9 @@ export default function CongratulationsText() {
   return (
     <>
       <h1 className="mt-4">
-        <span className="inline">
-          <Trans>Vous avez terminé le test&nbsp;!</Trans>&nbsp;<Emoji>👏</Emoji>
+        <span className="inline-block">
+          <Trans>Vous avez terminé le test&nbsp;!</Trans>&nbsp;
+          <Emoji className="inline-block">👏</Emoji>
         </span>
       </h1>
 
