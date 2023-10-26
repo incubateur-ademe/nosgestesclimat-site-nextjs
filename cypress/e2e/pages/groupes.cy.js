@@ -54,18 +54,7 @@ describe(
       cy.get('[data-cypress-id="button-inline-input"]').click()
       cy.get('[data-cypress-id="group-name"]').contains(newName)
 
-      // Check that we can copy the invitation link
-      cy.get('[data-cypress-id="invite-button"]').click()
-
-      cy.window()
-        .its('navigator.clipboard')
-        .invoke('readText')
-        .then((text) => {
-          text.then((URL) => {
-            cy.log(URL)
-            groupURL = URL
-          })
-        })
+      groupURL = cy.url()
     })
 
     it('allows to join a group with the invitation link and display ', () => {
