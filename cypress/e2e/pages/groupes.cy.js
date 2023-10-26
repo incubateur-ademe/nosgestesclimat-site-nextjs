@@ -53,15 +53,12 @@ describe(
       cy.get('input[data-cypress-id="group-edit-input-name"]').type(newName)
       cy.get('[data-cypress-id="button-inline-input"]').click()
       cy.get('[data-cypress-id="group-name"]').contains(newName)
-
-      groupURL = cy.url()
     })
 
     it('allows to join a group with the invitation link and display ', () => {
-      // Check
-      cy.visit(groupURL)
-
       cy.clearLocalStorage()
+
+      cy.reload()
 
       cy.wait(2000)
 
