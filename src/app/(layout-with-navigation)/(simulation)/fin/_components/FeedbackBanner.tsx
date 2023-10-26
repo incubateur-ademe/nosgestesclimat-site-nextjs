@@ -10,7 +10,7 @@ import { NorthStarType, NorthStarValue } from '@/types/northstar'
 import { captureException } from '@sentry/react'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
-import { ReactNode } from 'react'
+import { ReactNode, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -25,6 +25,8 @@ export default function FeedbackBanner({ text, type, className }: Props) {
   const { getNumericValue } = useEngine()
 
   const { categories, progression } = useForm()
+
+  const hasJustAnswered = useRef(false)
 
   const {
     mutate: saveRating,
@@ -46,6 +48,7 @@ export default function FeedbackBanner({ text, type, className }: Props) {
   })
 
   const handleGrading = (grade: NorthStarValue) => {
+    hasJustAnswered.current = true
     updateNorthStarRatings({ type, value: grade })
     saveRating()
   }
@@ -55,7 +58,11 @@ export default function FeedbackBanner({ text, type, className }: Props) {
     className
   )
 
-  if (isSuccess || user.northStarRatings?.[type])
+  // Display nothing the next time the user visits this page
+  if (!hasJustAnswered?.current && user.northStarRatings?.[type]) return null
+
+  // Display the thank you message if the user has just answered
+  if (hasJustAnswered?.current && (isSuccess || user.northStarRatings?.[type]))
     return (
       <Card
         className={`${cardClassName} h-[200px] flex-row items-center justify-center gap-3`}>
