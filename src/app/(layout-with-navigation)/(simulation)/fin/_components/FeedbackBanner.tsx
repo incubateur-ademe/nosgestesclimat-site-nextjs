@@ -54,7 +54,8 @@ export default function FeedbackBanner({ text, type, className }: Props) {
 
   if (isSuccess || user.northStarRatings?.[type])
     return (
-      <Card className={`${cardClassName} flex-row gap-3`}>
+      <Card
+        className={`${cardClassName} h-[200px] flex-row items-center justify-center gap-3`}>
         <Trans i18nKey="northstar.thankyou">Merci pour votre retour !</Trans>
         <Emoji className="text-2xl">😊</Emoji>
       </Card>

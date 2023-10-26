@@ -11,10 +11,10 @@ export default function Results() {
         <Trans>Votre bilan</Trans>
       </h2>
 
-      <div className="flex flex-col items-stretch md:gap-4">
+      <div className="flex flex-col items-stretch justify-center md:flex-row md:gap-4">
         <TotalCard />
 
-        <CategoriesChart className="md:w-1/2" />
+        <CategoriesChart />
       </div>
 
       <CategoriesAccordion />

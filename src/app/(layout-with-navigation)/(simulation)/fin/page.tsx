@@ -27,7 +27,7 @@ export default function FinPage() {
 
       <Results />
 
-      <div className="flex flex-col gap-4 md:flex-row">
+      <div className="flex flex-col gap-4">
         <GetResultsByEmail />
 
         <GroupModePromotionBanner />

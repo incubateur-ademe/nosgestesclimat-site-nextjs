@@ -14,7 +14,7 @@ import Confirmation from './getResultsByEmail/Confirmation'
 export default function GetResultsByEmail() {
   const [email, setEmail] = useState('')
 
-  const { getCurrentSimulation } = useUser()
+  const { user, getCurrentSimulation, updateHasSavedSimulation } = useUser()
 
   const simulation = getCurrentSimulation()
 
@@ -38,12 +38,14 @@ export default function GetResultsByEmail() {
       email,
       optIn: true,
     })
+
+    updateHasSavedSimulation(true)
   }
 
-  if (isSuccess) return <Confirmation />
+  if (isSuccess || user.hasSavedSimulation) return <Confirmation />
 
   return (
-    <Card className="mb-4 items-start border-none bg-grey-100 py-8">
+    <Card className="items-start border-none bg-grey-100 py-8">
       <form id="newsletter-form" onSubmit={handleSubmit}>
         <h3 className="text-xl">
           <Trans>

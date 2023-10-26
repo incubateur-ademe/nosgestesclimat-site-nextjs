@@ -9,7 +9,7 @@ export default async function GroupModePromotionBanner() {
 
   return (
     <Card className="flex-row justify-center gap-4 border-none bg-primaryDark pb-0 text-white md:gap-8">
-      <div className="flex items-end justify-end">
+      <div className="flex items-end justify-end md:items-center">
         <Image
           src="./images/misc/Groupe.svg"
           width="150"
@@ -19,10 +19,10 @@ export default async function GroupModePromotionBanner() {
       </div>
 
       <div className="flex flex-1 flex-col items-start justify-center pb-4">
-        <p>
+        <p className="font-bold">
           <Trans>
             Comparez vos résultats{' '}
-            <span className="text-pink-100">avec vos proches</span>
+            <span className="text-pink-200">avec vos proches</span>
           </Trans>
         </p>
 
