@@ -42,7 +42,9 @@ export async function recursivelyFillSimulation(persona = {}, mode) {
           cy.wait(1000)
 
           // @bjlaa: the results page is not displayed in group mode
-          if (!mode === 'group') cy.get('div[data-cypress-id="fin-slider"]')
+          if (mode !== 'group') {
+            cy.get('div[data-cypress-id="fin-slider"]')
+          }
 
           return resolve()
         }

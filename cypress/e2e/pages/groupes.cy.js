@@ -28,6 +28,8 @@ describe(
       clickSkipTutorialButton()
       recursivelyFillSimulation(null, 'group')
 
+      cy.wait(2000)
+
       cy.get('[data-cypress-id="group-name"]')
 
       // Check that we can create a second group
