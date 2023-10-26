@@ -4,9 +4,10 @@ type Props = {
   type: 'vertical' | 'horizontal'
   percentage: number
   maxWidth: string
+  index?: number
 }
 
-export default function BarChart({ type, percentage, maxWidth }: Props) {
+export default function BarChart({ type, percentage, maxWidth, index }: Props) {
   const propertyAffected = type === 'vertical' ? 'height' : 'width'
 
   return (
@@ -19,7 +20,11 @@ export default function BarChart({ type, percentage, maxWidth }: Props) {
         [propertyAffected]: `calc(${percentage} * ${maxWidth})`,
         display: 'block',
       }}
-      transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
+      transition={{
+        delay: 0.3,
+        duration: 0.5 + 0.1 * (index ?? 0),
+        ease: 'easeOut',
+      }}
     />
   )
 }

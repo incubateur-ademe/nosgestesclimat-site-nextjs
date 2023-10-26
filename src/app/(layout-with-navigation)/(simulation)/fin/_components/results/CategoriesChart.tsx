@@ -29,11 +29,12 @@ export default function CategoriesChart({ className }: { className?: string }) {
         className
       )}>
       <ul className="flex items-end justify-between">
-        {sortedCategories.map((category) => (
+        {sortedCategories.map((category, index) => (
           <CategoryChartItem
             key={category}
             category={category}
             maxValue={firstCategoryValue}
+            index={index}
           />
         ))}
       </ul>

@@ -10,9 +10,11 @@ import { formatValue } from 'publicodes'
 export default function CategoryChartItem({
   category,
   maxValue,
+  index,
 }: {
   category: string
   maxValue: number
+  index: number
 }) {
   const { t } = useClientTranslation()
 
@@ -39,6 +41,7 @@ export default function CategoryChartItem({
           type="vertical"
           percentage={percentageOfMaxValue}
           maxWidth="4rem"
+          index={index}
         />
       </div>
 

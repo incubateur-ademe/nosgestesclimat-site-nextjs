@@ -9,11 +9,12 @@ export default function CategoriesAccordion() {
 
   return (
     <Accordion className="mt-8">
-      {categories.map((categoryDottedName) => {
+      {categories.map((categoryDottedName, index) => {
         return (
           <AccordionItemWithRule
             key={categoryDottedName}
             dottedName={categoryDottedName}
+            index={index}
           />
         )
       })}

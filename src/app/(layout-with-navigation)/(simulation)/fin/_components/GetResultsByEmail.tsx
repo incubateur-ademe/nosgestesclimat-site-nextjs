@@ -53,7 +53,7 @@ export default function GetResultsByEmail({
   return (
     <Card
       className={twMerge(
-        'items-start border-none bg-grey-100 py-8',
+        'items-start border-none bg-grey-100 py-4',
         className
       )}>
       <form id="newsletter-form" onSubmit={handleSubmit}>
@@ -105,7 +105,7 @@ export default function GetResultsByEmail({
           onClick={() => null}
           type="submit"
           disabled={isLoading}
-          className="mt-8">
+          className="mt-4">
           <Trans>Envoyer</Trans>
         </Button>
 

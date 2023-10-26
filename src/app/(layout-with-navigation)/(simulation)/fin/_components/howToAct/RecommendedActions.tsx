@@ -27,7 +27,7 @@ export default function RecommendedActions() {
   )
 
   return (
-    <div className="max-w-screen overflow-scroll">
+    <div className="max-w-screen overflow-auto">
       <ul className="flex flex-row gap-4">
         {filteredSameCategoriesActionDottedNames.map(
           (actionDottedName, index) => (
