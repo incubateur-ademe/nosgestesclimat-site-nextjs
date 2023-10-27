@@ -8,7 +8,7 @@ on:
       - synchronize
       - ready_for_review
     branches:
-      - 'main'
+      - main
 
 jobs:
   sleep:
