@@ -3,6 +3,10 @@ describe('Visual regression tests of static pages', () => {
     cy.visit('/')
     cy.matchImageSnapshot()
   })
+  it('Should match previous screenshot "Tutoriel"', () => {
+    cy.visit('/tutoriel')
+    cy.matchImageSnapshot()
+  })
   it('Should match previous screenshot "À propos"', () => {
     cy.visit('/a-propos')
     cy.matchImageSnapshot()
@@ -37,14 +41,6 @@ describe('Visual regression tests of static pages', () => {
   })
   it('Should match previous screenshot "Diffuser"', () => {
     cy.visit('/diffuser')
-    cy.matchImageSnapshot()
-  })
-  it('Should match previous screenshot "Nouveautes"', () => {
-    cy.visit('/nouveautes')
-    cy.matchImageSnapshot()
-  })
-  it('Should match previous screenshot "International"', () => {
-    cy.visit('/international')
     cy.matchImageSnapshot()
   })
   it('Should match previous screenshot "Blog"', () => {
