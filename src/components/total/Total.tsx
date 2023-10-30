@@ -49,15 +49,14 @@ export default function Total({ toggleQuestionList }: Props) {
 
   return (
     <div className="md:mb-2">
-      <div className="relative mb-2 flex items-center gap-4 overflow-hidden rounded-lg bg-primary px-4 py-2 text-white md:justify-center md:text-center ">
+      <div className="relative mb-2 flex items-center gap-4 overflow-hidden rounded-lg bg-primaryDark px-4 py-2 text-white md:justify-center md:text-center ">
         <Progress />
         <Planet />
         <Link
           href={`/fin?diapo=bilan${
             detailsParamString ? `&${detailsParamString}` : ''
           }`}
-          className="z-10	text-white no-underline hover:text-white"
-        >
+          className="z-10	text-white no-underline hover:text-white">
           <span className="block text-2xl font-bold md:text-3xl">
             {formatCarbonFootprint(carbonFootprintValue).formattedValue}{' '}
             {formatCarbonFootprint(carbonFootprintValue).unit}

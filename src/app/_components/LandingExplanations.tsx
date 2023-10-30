@@ -30,7 +30,7 @@ export default function LandingExplanations() {
 
   return (
     <>
-      <div className="bg-primaryLight px-4 py-10 xl:rounded-md">
+      <div className="bg-grey-100 px-4 py-10 xl:rounded-md">
         <div className="mx-auto w-full max-w-3xl">
           <LandingContent />
         </div>
