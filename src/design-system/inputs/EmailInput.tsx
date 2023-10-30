@@ -31,7 +31,6 @@ export default function EmailInput({
       )}
       name="prenom"
       placeholder="jean-marc@nosgestesclimat.fr"
-      className="mb-6 mt-6"
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
         if (errorEmail) {
