@@ -51,6 +51,7 @@
     "markdown-to-jsx": "^7.3.2",
     "next": "^13.5.4",
     "next-i18n-router": "^4.1.1",
+    "next-with-split": "^6.0.0",
     "postcss": "8.4.31",
     "process": "^0.11.10",
     "publicodes": "^1.0.0-beta.77",
