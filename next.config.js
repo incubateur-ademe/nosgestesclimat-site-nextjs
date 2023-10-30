@@ -8,7 +8,7 @@ const withSplit = require('next-with-split').withSplit({
     newColorPalette: {
       path: '/*',
       hosts: {
-        original: 'nosgestesclimat.vercel.app',
+        original: 'nosgestesclimat-git-preprod-nos-gestes-climat.vercel.app',
         test: 'nosgestesclimat-git-modif-couleurs-nos-gestes-climat.vercel.app',
       },
     },
