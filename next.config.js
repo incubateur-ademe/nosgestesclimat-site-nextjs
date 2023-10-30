@@ -1,5 +1,18 @@
+/* eslint @typescript-eslint/no-var-requires: 0 */
 const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
+})
+
+const withSplit = require('next-with-split').withSplit({
+  splits: {
+    newColorPalette: {
+      path: '/*',
+      hosts: {
+        original: 'nosgestesclimat.vercel.app',
+        test: 'nosgestesclimat-git-modif-couleurs-nos-gestes-climat.vercel.app',
+      },
+    },
+  },
 })
 
 /** @type {import('next').NextConfig} */
@@ -101,7 +114,7 @@ const nextConfig = {
   },
 }
 
-module.exports = withMDX(nextConfig)
+module.exports = withSplit(withMDX(nextConfig))
 
 // Injected content via Sentry wizard below
 
