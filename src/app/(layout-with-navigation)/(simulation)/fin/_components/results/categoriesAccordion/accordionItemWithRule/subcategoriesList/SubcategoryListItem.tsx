@@ -8,6 +8,7 @@ type Props = {
   categoryValue: number
 }
 
+// TODO : remove when icons will have been added to the model
 const getIcon = (subcategory: string) => {
   switch (subcategory) {
     case 'alimentation . repas':
