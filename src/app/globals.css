@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  *:not(span, code) {
+    @apply text-default;
+  }
   input[type='number']::-webkit-outer-spin-button,
   input[type='number']::-webkit-inner-spin-button,
   input[type='number'] {
@@ -14,7 +17,6 @@
 
   h1 {
     @apply text-2xl;
-    @apply md:text-3xl;
     @apply mb-6;
     @apply font-bold;
   }
@@ -77,25 +79,10 @@ html,
 body {
   margin: 0;
   padding: 0;
-  @apply text-primaryDark;
 }
 
 a {
   @apply inline-block text-primary underline transition-colors hover:text-primaryDark;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-bold;
-  @apply text-primaryDark;
-}
-
-h1 {
-  @apply text-2xl;
 }
 
 img {
