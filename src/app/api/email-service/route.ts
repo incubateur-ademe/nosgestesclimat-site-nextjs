@@ -9,7 +9,17 @@ const axiosConf = {
 
 export async function POST(request: NextRequest) {
   const result = await request.json()
-  const { email, shareURL, simulationURL } = result
+  const { email, shareURL, simulationURL, shouldSendReminder } = result
+
+  const attributes: { [key: string]: string | boolean } = {
+    OPT_IN: false,
+  }
+
+  // In case the user wants to be reminded in 6 months
+  // we need to save the simulation URL permanently in the Brevo contact
+  if (shouldSendReminder) {
+    attributes.SIMULATION_URL = simulationURL
+  }
 
   // Add contact to list
   try {
@@ -17,9 +27,7 @@ export async function POST(request: NextRequest) {
       'https://api.brevo.com/v3/contacts',
       {
         email,
-        attributes: {
-          OPT_IN: true,
-        },
+        attributes,
       },
       axiosConf
     )
