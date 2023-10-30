@@ -5,17 +5,14 @@ import RecommendedActions from './howToAct/RecommendedActions'
 export default function HowToAct() {
   return (
     <>
-      <h2>Comment agir ?</h2>
-
+      <h2>Comment agir ?</h2>{' '}
       <p className="text-gray-600">
         <Trans>
           Découvre nos pistes pour agir dès aujourd’hui pour le climat, ou passe
           le test pour obtenir des recommandations personnalisées.
         </Trans>
       </p>
-
       <RecommendedActions />
-
       <div className="mt-4">
         <ButtonLink href="/actions" color="secondary">
           Voir toutes les actions

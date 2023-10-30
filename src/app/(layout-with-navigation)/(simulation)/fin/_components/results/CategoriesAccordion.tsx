@@ -1,6 +1,6 @@
 'use client'
 
-import Accordion from '@/design-system/layout/accordion/Accordion'
+import Accordion from '@/design-system/layout/Accordion'
 import { useForm, useRule } from '@/publicodes-state'
 import AccordionItemWithRule from './categoriesAccordion/AccordionItemWithRule'
 

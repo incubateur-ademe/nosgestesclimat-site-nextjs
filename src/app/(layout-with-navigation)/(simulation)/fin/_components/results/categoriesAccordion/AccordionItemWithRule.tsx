@@ -2,7 +2,7 @@ import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
 import BarChart from '@/design-system/utils/BarChart'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
-import SubcategoriesList from './SubcategoriesList'
+import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 
 export default function AccordionItemWithRule({
   dottedName,
