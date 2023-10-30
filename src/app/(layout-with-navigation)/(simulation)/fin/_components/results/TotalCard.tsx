@@ -25,7 +25,7 @@ export default function TotalCard() {
         </p>
 
         <Link
-          className="mt-8 text-sm text-white hover:text-primaryLight"
+          className="mt-2 text-sm text-white hover:text-primaryLight"
           href="https://nosgestesclimat.fr/blog/budget">
           Qu'est-ce que ça veut dire ?
         </Link>

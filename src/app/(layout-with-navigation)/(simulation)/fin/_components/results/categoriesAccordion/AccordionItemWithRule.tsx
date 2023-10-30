@@ -6,18 +6,17 @@ import SubcategoriesList from './SubcategoriesList'
 
 export default function AccordionItemWithRule({
   dottedName,
+  maxValue,
   index,
 }: {
   dottedName: string
+  maxValue: number
   index?: number
 }) {
   const { title, icons, numericValue } = useRule(dottedName)
 
-  const { numericValue: totalValue } = useRule('bilan')
-
-  const percentageOfTotalValue = 1 - (totalValue - numericValue) / totalValue
-
-  const augmentedPercentage = percentageOfTotalValue * 2.5
+  const percentageOfTotalValue =
+    (1 - (maxValue - numericValue) / maxValue) * 0.9
 
   const isReadOnly = dottedName === 'services sociétaux'
 
@@ -39,7 +38,7 @@ export default function AccordionItemWithRule({
           <div className="mr-4 hidden flex-1 md:block">
             <BarChart
               type="horizontal"
-              percentage={augmentedPercentage > 1 ? 1 : augmentedPercentage}
+              percentage={percentageOfTotalValue}
               maxWidth="100%"
               index={index}
             />
