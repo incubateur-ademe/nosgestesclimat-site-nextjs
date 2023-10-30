@@ -9,7 +9,7 @@ const withSplit = require('next-with-split').withSplit({
       path: '/*',
       hosts: {
         original:
-          'https://nosgestesclimat-git-preprod-nos-gestes-climat.vercel.app/',
+          'nosgestesclimat-git-add-split-testing-nos-gestes-climat.vercel.app/',
         test: 'nosgestesclimat-git-modif-couleurs-nos-gestes-climat.vercel.app',
       },
     },
