@@ -8,20 +8,6 @@ type Props = {
   categoryValue: number
 }
 
-// TODO : remove when icons will have been added to the model
-const getIcon = (subcategory: string) => {
-  switch (subcategory) {
-    case 'alimentation . repas':
-      return '🍽'
-
-    case 'divers . animaux domestiques':
-      return '🐶'
-
-    default:
-      return ''
-  }
-}
-
 export default function SubcategoryListItem({
   subcategory,
   categoryValue,
@@ -39,7 +25,7 @@ export default function SubcategoryListItem({
     <li className="p-3">
       <div className="flex items-baseline gap-4">
         {/* @bjlaa: flex w-4 is required here because of a bug of react-easy-emoji that creates a duplicate empty element */}
-        <Emoji className="flex w-4">{icons ?? getIcon(subcategory)}</Emoji>
+        <Emoji className="flex w-4">{icons}</Emoji>
 
         <div className="w-full">
           <div className="flex items-center justify-between text-sm md:text-base">
