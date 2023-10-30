@@ -1,5 +1,3 @@
-'use client'
-
 import budgetFR from '@/locales/blog/fr/budget.mdx'
 import campusFr from '@/locales/blog/fr/campus.mdx'
 import effetRebondFr from '@/locales/blog/fr/effet-rebond.mdx'
@@ -8,12 +6,12 @@ import historyFr from '@/locales/blog/fr/historique.mdx'
 import maladaptationFr from '@/locales/blog/fr/maladaptation.mdx'
 import impactMobiliteFR from '@/locales/blog/fr/mobilite.mdx'
 import dayFr from '@/locales/blog/fr/mondialEnvironnement.mdx'
-import { BlogPost } from '@/types/blog'
+import { Post } from '@/types/blog'
 
-export const blogData: BlogPost[] = [
+const posts: Post[] = [
   {
     date: '2023-10-12',
-    title: "Qu'est-ce que l'effet rebond ?",
+    title: "Qu'est-ce que l'effet rebond&nbsp;?",
     slug: 'effet-rebond',
     description:
       "Toutes les actions de réduction d'empreinte carbone, quel que soit le domaine, appartiennent à deux catégories : faire moins (réduire l'usage), ou faire mieux (réduire l'empreinte pour le même usage).",
@@ -22,7 +20,7 @@ export const blogData: BlogPost[] = [
   },
   {
     date: '2023-08-24',
-    title: 'Avez-vous déjà entendu parler de maladaptation ?',
+    title: 'Avez-vous déjà entendu parler de maladaptation&nbsp;?',
     slug: 'maladaptation',
     description:
       "L'été est un moment particulièrement propice à la mise en place de stratégie d'adaptation face au changement climatique. Mais toutes ne sont pas inoffensives. ",
@@ -49,7 +47,7 @@ export const blogData: BlogPost[] = [
   },
   {
     date: '2020-09-21',
-    title: 'Envie de perdre quelques tonnes ?',
+    title: 'Envie de perdre quelques tonnes&nbsp;?',
     slug: 'historique',
     description:
       'Cette invitation à perdre quelques tonnes, un brin provoquante, ne date pas d’hier : c’était déjà celle du Coach Carbone lancé en 2010 par l’ADEME et la FNH (Fondation pour la Nature et l’Homme) créée par Nicolas Hulot. ',
@@ -67,7 +65,7 @@ export const blogData: BlogPost[] = [
   },
   {
     date: '2020-05-16',
-    title: "Le budget et l'empreinte carbone, c'est quoi ?",
+    title: "Le budget et l'empreinte carbone, c'est quoi&nbsp;?",
     slug: 'budget',
     description:
       "Une explication pas à pas des objectifs climat, de l'échelle de la Terre à celle de l'individu.",
@@ -84,3 +82,5 @@ export const blogData: BlogPost[] = [
     image: '/images/blog/velo.png',
   },
 ]
+
+export default posts

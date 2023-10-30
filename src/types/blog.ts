@@ -1,11 +1,11 @@
 import { MDXProps } from 'mdx/types'
 import { ReactElement } from 'react'
 
-export type BlogPost = {
+export type Post = {
   date: string
   title: string
   slug: string
-  description: string
   content: (props: MDXProps) => ReactElement
+  description?: string
   image?: string
 }
