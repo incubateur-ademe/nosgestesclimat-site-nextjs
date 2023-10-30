@@ -1312,10 +1312,10 @@
   resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
   integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
-"@incubateur-ademe/nosgestesclimat-scripts@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat-scripts/-/nosgestesclimat-scripts-0.2.1.tgz#6f167bd00a9c8ab01333998a1667deedb1b4eb51"
-  integrity sha512-D1KL7qfCa/3Eb/daODcUxwFlzaVPFEQureHhkgmxazgfvgcrAtXyqAOh1Z9BP/+zxdhqTgXDZpzt4/N43Y9vwQ==
+"@incubateur-ademe/nosgestesclimat-scripts@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat-scripts/-/nosgestesclimat-scripts-0.2.2.tgz#fc36d92db1519e23cc255b24881ad9f149542562"
+  integrity sha512-DeBf4uihcFeV0qymHA4ussr5LdFNdT6kyppHKkb41LApOH+fUoYgCWdxJQwOtXgxxzSrhrFGVfBDpBnpzzPIKg==
   dependencies:
     "@types/node" "^18.11.18"
     deepl-node "^1.10.2"
