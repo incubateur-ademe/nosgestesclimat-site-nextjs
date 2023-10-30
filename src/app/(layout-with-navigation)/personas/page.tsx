@@ -18,9 +18,7 @@ export default async function Personas() {
 
   // TODO: endpoint should not be static (and should point to local if available)
   const personas = await fetch(
-    `https://deploy-preview-2085--ecolab-data.netlify.app/personas-${
-      locale === 'en' ? 'en-us' : locale
-    }.json`
+    `https://deploy-preview-2085--ecolab-data.netlify.app/personas-${locale}.json`
   ).then((res) => res.json())
 
   return (
@@ -28,7 +26,7 @@ export default async function Personas() {
       <Title title={<Trans>Personas</Trans>} data-cypress-id="personas-title" />
       <p>
         <Trans>
-          Les personas nous servent à tester le simulateur sous toutes ses
+          Les personas nous servent à tester le simulateur sous toutes ses adf
           coutures, et à vérifier qu’il s’adapte bien à toutes les situations de
           vie des citoyens métropolitains. De par leur présence, ils nous
           forcent à penser à tous les cas d’usage, pour nous projeter dans
