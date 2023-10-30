@@ -1,5 +1,5 @@
 import { useEngine, useForm, useRule } from '@/publicodes-state'
-import SubcategoryListItem from '../SubcategoryListItem'
+import SubcategoryListItem from './subcategoriesList/SubcategoryListItem'
 
 export default function SubcategoriesList({ category }: { category: string }) {
   const { getNumericValue, checkIfValid } = useEngine()
