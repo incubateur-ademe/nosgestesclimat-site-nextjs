@@ -1,11 +1,8 @@
+import { Post } from '@/types/blog'
 import Item from './list/Item'
 
 type Props = {
-  items: {
-    slug: string
-    title: string
-    date: string
-  }[]
+  items: Post[]
   path: string
 }
 export default function PostList({ items, path }: Props) {
