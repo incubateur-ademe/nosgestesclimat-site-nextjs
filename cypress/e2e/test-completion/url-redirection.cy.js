@@ -1,5 +1,6 @@
-import { clickNextButton } from '../../../helpers/elements/buttons'
-import { setupSimulation } from '../../../helpers/simulation/setupSimulation'
+import { mainSimulator } from '../../constants/misc'
+import { clickNextButton } from '../../helpers/elements/buttons'
+import { setupSimulation } from '../../helpers/simulation/setupSimulation'
 
 const thirdQuestion = 'transport.voiture.motorisation'
 
@@ -15,7 +16,7 @@ describe('Simulation page', () => {
 
     cy.url().should('includes', `?question=${thirdQuestion}`)
 
-    cy.visit(`/simulateur/bilan?question=logement.surface`)
+    cy.visit(`/simulateur/${mainSimulator}?question=logement.surface`)
 
     cy.url().should('includes', `?question=${thirdQuestion}`)
   })

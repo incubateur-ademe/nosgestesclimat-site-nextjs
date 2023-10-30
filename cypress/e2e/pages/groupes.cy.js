@@ -1,8 +1,8 @@
 import {
   clickAmisLink,
   clickSkipTutorialButton,
-} from '../../../helpers/elements/buttons'
-import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
+} from '../../helpers/elements/buttons'
+import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
 
 describe(
   'The Group creation page /amis/creer',
