@@ -1,0 +1,58 @@
+---
+title: Guadeloupe
+date: 2022-10-04T08:17:41Z
+---
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Guadeloupe_from_ISS.jpg/640px-Guadeloupe_from_ISS.jpg?uselang=fr)
+
+> L'île de la [Guadeloupe](https://fr.wikipedia.org/wiki/Guadeloupe)
+
+> En bref : 
+> - la première déclinaison régionale pour dépasser la France métropolitaine
+> - une plateforme d'internationalisation contributive
+> - encore et toujours des améliorations du modèle : valeurs par défaut du chauffage, climatisation, biogaz
+
+## NGC international 🗺️
+Nous lançons l'internationalisation et la régionalisation avec [un premier nouveau territoire : la Guadeloupe](https://github.com/datagir/nosgestesclimat-site/pull/626) !
+
+Ce travail essentiel qu'on avait pour l'instant mis de côté a été motivé par l'initiative de [MOLOKOÏ](https://molokoi.com/), entreprise engagée sur son territoire dans la lutte contre le changement climatique et de [Samuel Charvet](https://gp.linkedin.com/in/samuel-charvet-830773223) étudiant à l'université des Antilles à Point-à-Pitre. 
+
+<p align="center">
+<img width="800" alt="screenshot" src="https://user-images.githubusercontent.com/55186402/193768356-bfd5da7b-7883-4d5e-8b89-bd252b704565.png">
+</p>
+
+
+La personnalisation du facteur du mix électrique, les suggestions localisées pour l'avion et l'ajout du ferry inter-îles sont les principales particularités de la version Guadeloupe, évidemment amenée à évoluer.
+
+Ce n'est qu'une première brique, notre objectif étant de créer une communauté de contributeurs d'abord en France, puis en Europe et dans le monde. 
+
+## Ajout de la climatisation ❄️
+
+La différentiation du modèle pour la Guadeloupe nous a permis de nous rendre compte de l'importance de la climatisation, et l'importance relative du chauffage (pour l'eau chaude) dans cette région tropicale où aucun mois n'est significativement plus froid qu'un autre. 
+
+D'abord réservé à la Guadeloupe, nous avons étendu [ce modèle climatisation](https://nosgestesclimat.fr/documentation/logement/climatisation) à la France métropolitaine (en fait, le modèle standard à ce stade car historique) étant donné l'ampleur de l'équipement en climatisation en 2020 : 25% des ménages en seraient dotés. 
+
+Son empreinte est double : sa consommation d'électricité (particulièrement carbonée en Guadeloupe) *et* ses fuites de gaz à effet de serre, qui sont significatives (plusieurs centaines de kg de CO2e par climatiseur et par an) même dans une France au mix électrique décarboné.
+
+Le sujet est complexe (comme souvent), ce modèle n'est donc qu'une [première itération](https://github.com/datagir/nosgestesclimat/pull/1488) à préciser. 
+
+## Biogaz 🔥🌱
+
+C'est une question maintes fois posée : quid du "gaz vert", aussi appelé biogaz et plus précisément biométhane ? 
+
+Nous avons investigué l'[empreinte du biogaz](https://nosgestesclimat.fr/documentation/logement/gaz/biogaz) et validé la possibilité de l'ajouter dans notre calcul, c'est chose faite. 
+
+> ⚠️ Attention, ce n'est absolument pas une solution parfaite, qui ne doit pas remplacer la réduction plus pérenne de sa consommation de gaz via l'électrification, la sobriété et l'efficacité énergétique.
+
+
+## Chauffage : valeurs moyennes 🌡️
+
+Un [travail sur les valeurs moyennes de simulation du chauffage](https://github.com/datagir/nosgestesclimat/pull/1433) a été fait en analysant attentivement les statistiques du [parc de logement français](https://nosgestesclimat.fr/documentation/parc-français).
+
+ ## Tech ⚙️
+ 
+Comme vous le savez peut-être, la particularité de nosgestesclimat est d'être un formulaire généré à partir d'un [modèle de calcul ouvert](nosgestesclimat.fr/documentation). C'est ce qui le rend particulièrement robuste aux évolutions, car nous n'ordonnons pas péniblement les questions à la main, et nous ne recodons pas les intrications du genre "si l'utilisateur a dit qu'il vivait en appartement, alors ne pas lui poser la question de la tondeuse" : tout est géré pour nous. 
+
+La gestion des questions "mosaïques" (les cases à cocher "chauffage" ou encore le choix des menus du midi et soir) a été améliorée, et réside maintenant directement dans [le modèle directement que ça se passe](https://github.com/datagir/nosgestesclimat-site/blob/master/docs/mosaic.md), aux côtés des autres questions ! 
+
+Quel intérêt ? Cela permet aux contributeurs qui ne souhaitent pas s'embêter avec le Javascript (et autres considérations de codeurs) de modifier les questions dans un langage très simple d'accès. 

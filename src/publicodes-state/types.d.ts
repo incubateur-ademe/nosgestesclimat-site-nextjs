@@ -18,6 +18,7 @@ export type User = {
   email: string
   northStarRatings?: any // TODO: should be NorthStartType or something
   id: string
+  hasSavedSimulation?: boolean
 }
 
 export type Rules = any

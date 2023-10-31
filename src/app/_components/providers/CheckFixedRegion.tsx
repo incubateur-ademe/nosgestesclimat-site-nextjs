@@ -9,8 +9,7 @@ export default function CheckFixedRegion() {
 
   useEffect(() => {
     // Do nothing if region is the same as the user's
-    if (!fixedRegionCode && fixedRegionCode === user?.region?.code) return
-
+    if (!fixedRegionCode || fixedRegionCode === user?.region?.code) return
     const region = countries.find((country) => country.code === fixedRegionCode)
     if (region) {
       updateRegion(region)
