@@ -1,6 +1,7 @@
 import Label from '@/components/form/question/Label'
 import NumberInput from '@/components/form/question/NumberInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
@@ -11,6 +12,8 @@ type Props = {
 
 export default function ThreeYearsInput({ question }: Props) {
   const { t } = useClientTranslation()
+
+  const locale = useLocale()
 
   const { unit, numericValue, setValue } = useRule(question)
 
@@ -49,7 +52,6 @@ export default function ThreeYearsInput({ question }: Props) {
         size="sm"
         className="mb-2 justify-start"
       />
-
       <Label question={question} size="sm" label="2021" />
       <NumberInput
         unit={unit}
@@ -60,10 +62,17 @@ export default function ThreeYearsInput({ question }: Props) {
         className="mb-2 justify-start"
       />
       <p className="mb-0 rounded-lg bg-primaryLight p-4 font-bold">
-        {t('Total :')} {value2023 + value2022 + value2021}&nbsp;
+        {t('Total :')}{' '}
+        {(value2023 + value2022 + value2021).toLocaleString(locale, {
+          maximumFractionDigits: 1,
+        })}
+        &nbsp;
         {unit}
         <br />
-        {t('Total par an\u202f:')} {numericValue}&nbsp;{unit}
+        {t('Total par an\u202f:')}{' '}
+        {numericValue.toLocaleString(locale, { maximumFractionDigits: 1 })}
+        &nbsp;
+        {unit}
       </p>
     </motion.div>
   )
