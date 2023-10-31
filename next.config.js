@@ -3,19 +3,7 @@ const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
 })
 
-const withSplit = require('next-with-split').withSplit({
-  splits: {
-    newColorPalette: {
-      path: '*',
-      hosts: {
-        original:
-          'nosgestesclimat-git-add-split-testing-nos-gestes-climat.vercel.app',
-        'modif-couleurs':
-          'nosgestesclimat-git-modif-couleurs-nos-gestes-climat.vercel.app',
-      },
-    },
-  },
-})
+const withSplit = require('next-with-split').withSplit({})
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
