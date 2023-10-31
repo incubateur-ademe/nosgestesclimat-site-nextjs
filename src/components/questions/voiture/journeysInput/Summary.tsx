@@ -1,33 +1,24 @@
-import { Journey } from '@/types/journey'
+import { useLocale } from '@/hooks/useLocale'
 
 type Props = {
-  journeys: Journey[]
+  total: number
+  averagePassengers: number
+  totalForOnePassenger: number
 }
 
-const periods: Record<string, number> = {
-  day: 365,
-  week: 52,
-  month: 12,
-  year: 1,
-}
+export default function Summary({
+  total,
+  averagePassengers,
+  totalForOnePassenger,
+}: Props) {
+  const locale = useLocale()
 
-export default function Summary({ journeys }: Props) {
-  const total = journeys.reduce(
-    (accumulator, currentValue) =>
-      accumulator +
-      currentValue.distance *
-        currentValue.reccurrence *
-        periods[currentValue.period],
-    0
-  )
-  const averagePassengers =
-    journeys.reduce(
-      (accumulator, currentValue) => accumulator + currentValue.passengers,
-      0
-    ) / journeys.length
   return (
-    <div>
-      {total} km avec en moyenne {averagePassengers} voyageurs
+    <div className="px-2 text-right text-xs">
+      {total.toLocaleString(locale)} km avec en moyenne{' '}
+      {averagePassengers.toLocaleString(locale)} voyageurs. Soit{' '}
+      {totalForOnePassenger ? totalForOnePassenger.toLocaleString(locale) : 0}{' '}
+      km pour une personne.
     </div>
   )
 }

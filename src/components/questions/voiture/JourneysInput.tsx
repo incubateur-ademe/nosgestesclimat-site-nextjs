@@ -1,7 +1,8 @@
 import Trans from '@/components/translation/Trans'
+import { useRule } from '@/publicodes-state'
 import { Journey } from '@/types/journey'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import AddJourney from './journeysInput/AddJourney'
 import JourneyItem from './journeysInput/JourneyItem'
 import Summary from './journeysInput/Summary'
@@ -9,8 +10,58 @@ import Summary from './journeysInput/Summary'
 type Props = {
   question: string
 }
+
+const periods: Record<string, number> = {
+  day: 365,
+  week: 52,
+  month: 12,
+  year: 1,
+}
+
 export default function JourneysInput({ question }: Props) {
+  const { setValue } = useRule(question)
+
   const [journeys, setJourneys] = useState<Journey[]>([])
+
+  const total = useMemo(
+    () =>
+      journeys.reduce(
+        (accumulator, currentValue) =>
+          accumulator +
+          currentValue.distance *
+            currentValue.reccurrence *
+            periods[currentValue.period],
+        0
+      ),
+    [journeys]
+  )
+
+  const averagePassengers = useMemo(
+    () =>
+      journeys.reduce(
+        (accumulator, currentValue) =>
+          accumulator +
+          currentValue.passengers *
+            currentValue.distance *
+            currentValue.reccurrence *
+            periods[currentValue.period],
+        0
+      ) / total || 0,
+    [journeys, total]
+  )
+
+  const totalForOnePassenger = useMemo(
+    () => (journeys.length ? total / averagePassengers : 0),
+    [journeys, total, averagePassengers]
+  )
+  const prevTotalForOnePassenger = useRef(totalForOnePassenger)
+
+  useEffect(() => {
+    if (prevTotalForOnePassenger.current !== totalForOnePassenger) {
+      setValue(totalForOnePassenger)
+    }
+    prevTotalForOnePassenger.current = totalForOnePassenger
+  }, [totalForOnePassenger, setValue])
 
   return (
     <motion.div
@@ -46,7 +97,11 @@ export default function JourneysInput({ question }: Props) {
           <AddJourney key={journeys.length} setJourneys={setJourneys} />
         </tbody>
       </table>
-      <Summary journeys={journeys} />
+      <Summary
+        total={total}
+        averagePassengers={averagePassengers}
+        totalForOnePassenger={totalForOnePassenger}
+      />
     </motion.div>
   )
 }
