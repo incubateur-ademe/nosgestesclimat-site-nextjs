@@ -41,7 +41,7 @@ export default function DocumentationContent({
           Text: ({ children }) => (
             <>
               <Markdown>{children}</Markdown>
-              {children.includes('<RavijenChart/>') && <RavijenChart />}
+              {children.includes('RavijenChart') && <RavijenChart />}
             </>
           ),
           References: References as any,

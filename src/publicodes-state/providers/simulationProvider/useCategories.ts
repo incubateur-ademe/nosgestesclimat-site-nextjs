@@ -52,6 +52,6 @@ export default function useCategories({
       ),
     [categories, safeGetRule, engine]
   )
-  console.log(subcategories)
+
   return { categories, subcategories }
 }
