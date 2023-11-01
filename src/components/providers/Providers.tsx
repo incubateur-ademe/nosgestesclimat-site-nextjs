@@ -12,10 +12,12 @@ import { PropsWithChildren, useEffect } from 'react'
 
 type Props = {
   supportedRegions: SuppportedRegions
+  isOptim?: boolean
 }
 export default function Providers({
   children,
   supportedRegions,
+  isOptim = true,
 }: PropsWithChildren<Props>) {
   const {
     user,
@@ -33,6 +35,7 @@ export default function Providers({
   const { data: rules, isInitialLoading } = useRules({
     lang,
     region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
+    isOptim: isOptim,
   })
 
   useEffect(() => {

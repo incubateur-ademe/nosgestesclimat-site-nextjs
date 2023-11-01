@@ -27,30 +27,31 @@ export default function useCategories({
       categories.reduce(
         (accumulator: object, currentValue: string) => ({
           ...accumulator,
-          [currentValue]:
-            currentValue === 'services sociétaux'
-              ? []
-              : (
-                  safeGetRule(currentValue)?.rawNode?.formule?.somme?.map(
-                    (rule: string) => {
-                      // If the rule contains more than one name, it is not just the subcategory but the whole thing, so no need to preprend the category
-                      if (rule.split(' . ').length > 1) {
-                        return rule
-                      } else {
-                        return currentValue + ' . ' + rule
-                      }
-                    }
-                  ) || []
-                ).sort((a: string, b: string) =>
-                  (safeEvaluateHelper(a, engine)?.nodeValue || 0) >
-                  (safeEvaluateHelper(b, engine)?.nodeValue || 0)
-                    ? -1
-                    : 1
-                ),
+          [currentValue]: (
+            safeGetRule(currentValue)?.rawNode?.formule?.somme?.map(
+              (rule: string) => {
+                // If the rule contains more than one name, it is not just the subcategory but the whole thing, so no need to preprend the category
+                if (rule.split(' . ').length > 1) {
+                  return rule
+                  // Exception for services sociétaux
+                } else if (currentValue === 'services sociétaux') {
+                  return rule
+                } else {
+                  return currentValue + ' . ' + rule
+                }
+              }
+            ) || []
+          ).sort((a: string, b: string) =>
+            (safeEvaluateHelper(a, engine)?.nodeValue || 0) >
+            (safeEvaluateHelper(b, engine)?.nodeValue || 0)
+              ? -1
+              : 1
+          ),
         }),
         {}
       ),
     [categories, safeGetRule, engine]
   )
+  console.log(subcategories)
   return { categories, subcategories }
 }

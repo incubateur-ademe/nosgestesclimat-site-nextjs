@@ -1,4 +1,3 @@
-import Providers from '@/app/_components/Providers'
 import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import DocumentationContent from '../_components/DocumentationContent'
@@ -21,11 +20,9 @@ export default async function DocumentationPage({ params }: Props) {
   const supportedRegions = await getSupportedRegions()
 
   return (
-    <Providers supportedRegions={supportedRegions}>
-      <DocumentationContent
-        supportedRegions={supportedRegions}
-        slugs={params.slug}
-      />
-    </Providers>
+    <DocumentationContent
+      supportedRegions={supportedRegions}
+      slugs={params.slug}
+    />
   )
 }
