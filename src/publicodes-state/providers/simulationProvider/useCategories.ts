@@ -31,10 +31,11 @@ export default function useCategories({
             safeGetRule(currentValue)?.rawNode?.formule?.somme?.map(
               (rule: string) => {
                 // If the rule contains more than one name, it is not just the subcategory but the whole thing, so no need to preprend the category
-                if (rule.split(' . ').length > 1) {
-                  return rule
-                  // Exception for services sociétaux
-                } else if (currentValue === 'services sociétaux') {
+                // and exception for services sociétaux
+                if (
+                  rule.split(' . ').length > 1 ||
+                  currentValue === 'services sociétaux'
+                ) {
                   return rule
                 } else {
                   return currentValue + ' . ' + rule
