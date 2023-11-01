@@ -1,5 +1,6 @@
+import Providers from '@/app/_components/Providers'
+import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { useSupportedRegions } from '@/hooks/useSupportedRegions'
 import DocumentationContent from '../_components/DocumentationContent'
 
 export async function generateMetadata() {
@@ -17,12 +18,14 @@ type Props = {
   }
 }
 export default async function DocumentationPage({ params }: Props) {
-  const supportedRegions = await useSupportedRegions()
+  const supportedRegions = await getSupportedRegions()
 
   return (
-    <DocumentationContent
-      supportedRegions={supportedRegions}
-      slugs={params.slug}
-    />
+    <Providers supportedRegions={supportedRegions}>
+      <DocumentationContent
+        supportedRegions={supportedRegions}
+        slugs={params.slug}
+      />
+    </Providers>
   )
 }

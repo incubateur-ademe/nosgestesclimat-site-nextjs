@@ -24,19 +24,11 @@ export default function useEngine() {
   const checkIfValid = (dottedName: string): boolean =>
     safeGetRule(dottedName) ? true : false
 
-  const getSubcategories = (dottedName: string) => {
-    const evaluation = safeEvaluate(dottedName)
-    return (
-      evaluation?.rawNode?.valeur?.somme || evaluation?.rawNode?.formule?.somme
-    )
-  }
-
   return {
     engine,
     getValue,
     getNumericValue,
     getCategory,
-    getSubcategories,
     checkIfValid,
     updateSituation,
   }
