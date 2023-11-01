@@ -29,7 +29,7 @@ export default function SimulationStarted({ currentSimulation }: Props) {
         <Card className="mr-8">
           <p className="text-base md:text-lg">
             {t('publicodes.Profil.recap', {
-              percentFinished: progression * 100,
+              percentFinished: (progression * 100).toFixed(0),
               answeredQuestionsLength: relevantAnsweredQuestions.length,
               actionChoicesLength,
             })}{' '}
