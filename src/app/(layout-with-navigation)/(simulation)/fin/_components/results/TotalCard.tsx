@@ -1,12 +1,16 @@
 'use client'
 
 import Link from '@/components/Link'
+import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 
 export default function TotalCard() {
+  const { t } = useClientTranslation()
+
   const { numericValue } = useRule('bilan')
 
   const { formattedValue, unit } = formatCarbonFootprint(numericValue)
@@ -25,9 +29,15 @@ export default function TotalCard() {
         </p>
 
         <Link
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={t(
+            "Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet."
+          )}
           className="mt-2 text-sm text-white hover:text-primaryLight"
           href="https://nosgestesclimat.fr/blog/budget">
-          Qu'est-ce que ça veut dire ?
+          Qu'est-ce que ça veut dire&#8239;?&nbsp;
+          <ExternalLinkIcon className="stroke-white" />
         </Link>
       </div>
 
