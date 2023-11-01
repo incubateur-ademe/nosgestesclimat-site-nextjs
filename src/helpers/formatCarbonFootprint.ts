@@ -41,9 +41,7 @@ export default function formatCarbonFootprint(
 
   if (numberValue >= 1000) {
     tempValue = numberValue / 1000
-    unit = shouldUseAbbreviation
-      ? `tonne${numberValue === 1000 ? '' : 's'}`
-      : 't'
+    unit = shouldUseAbbreviation ? 't' : `tonne${numberValue < 2000 ? '' : 's'}`
   }
 
   return {

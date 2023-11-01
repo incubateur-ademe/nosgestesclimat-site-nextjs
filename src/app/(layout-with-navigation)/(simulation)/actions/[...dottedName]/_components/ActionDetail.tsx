@@ -5,8 +5,13 @@ import { getMatomoEventActionAccepted } from '@/constants/matomo'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
-import { useEngine, useRule, useTempEngine, useUser } from '@/publicodes-state'
-import FormProvider from '@/publicodes-state/providers/formProvider/Provider'
+import {
+  FormProvider,
+  useEngine,
+  useRule,
+  useTempEngine,
+  useUser,
+} from '@/publicodes-state'
 import { NGCRuleNode } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { utils } from 'publicodes'
