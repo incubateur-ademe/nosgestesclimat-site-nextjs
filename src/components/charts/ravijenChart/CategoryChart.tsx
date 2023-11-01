@@ -1,10 +1,10 @@
-import { useEngine, useForm } from '@/publicodes-state'
+import { useEngine, useSimulation } from '@/publicodes-state'
 import SubcategoryChartBlock from './categoryChart/SubcategoryChartBlock'
 import TotalCategoryBlock from './categoryChart/TotalCategoryBlock'
 
 export default function CategoryChart({ category }: { category: string }) {
   const { getNumericValue, checkIfValid } = useEngine()
-  const { subcategories } = useForm()
+  const { subcategories } = useSimulation()
 
   const sortedSubcategories = subcategories[category]
     ?.filter((subcategory: string) => checkIfValid(subcategory))
