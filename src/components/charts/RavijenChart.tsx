@@ -8,11 +8,8 @@ export default function RavijenChart() {
   const { getNumericValue } = useEngine()
 
   const worstFootprintCategoryValue = orderedCategories
-    .map((category) => ({
-      category,
-      value: getNumericValue(category) ?? 0,
-    }))
-    .sort((a, b) => b.value - a.value)[0]?.value
+    .map((category) => getNumericValue(category) ?? 0)
+    .sort((a, b) => b - a)[0]
 
   return (
     <ul className="flex h-[40rem] w-[36rem] max-w-full items-end gap-1">

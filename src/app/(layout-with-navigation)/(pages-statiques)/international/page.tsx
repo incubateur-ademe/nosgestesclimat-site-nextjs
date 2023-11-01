@@ -6,7 +6,7 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Container from '@/design-system/layout/Container'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { useSupportedRegions } from '@/helpers/getSupportedRegions'
+import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 
@@ -26,7 +26,7 @@ export default async function International() {
   const title = t(SHARED_TITLE)
   const description = t(SHARED_DESCRIPTION)
 
-  const supportedRegions = await useSupportedRegions()
+  const supportedRegions = await getSupportedRegions()
 
   // TODO: add back full width somehow
   return (

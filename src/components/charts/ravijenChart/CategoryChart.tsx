@@ -18,6 +18,7 @@ export default function CategoryChart({ category, maxValue }: Props) {
 
   const sortedSubcategories = subcategories[category]
     ?.filter((subcategory: string) => checkIfValid(subcategory))
+    // Get the value to display in the EnigmaticMoreChartBlock
     .map((subcategory) => {
       const categoryValue = getNumericValue(category) ?? 0
 

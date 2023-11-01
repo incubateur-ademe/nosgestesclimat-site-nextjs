@@ -27,11 +27,13 @@ export default function SubcategoryChartBlock({
 
   const { formattedValue, unit } = formatCarbonFootprint(numericValue)
 
+  // Here we compare the value of the current category to the value of the
+  // category with the highest value. We then use this ratio to calculate the
+  // height of the block, with all blocks on the same scale.
   const categoryRatio = 1 - (maxValue - categoryNumericvalue) / maxValue
 
   const heightPercentage =
-    (1 - (categoryNumericvalue - numericValue) / categoryNumericvalue) *
-    (100 * categoryRatio)
+    (numericValue / categoryNumericvalue) * (100 * categoryRatio)
 
   if (heightPercentage < LIMIT_PERCENTAGE_TO_SQUASH && index !== 0) return null
 
