@@ -21,7 +21,20 @@ const periods: Record<string, number> = {
 export default function JourneysInput({ question }: Props) {
   const { setValue } = useRule(question)
 
+  const [isInitialized, setIsInitialized] = useState(false)
+
   const [journeys, setJourneys] = useState<Journey[]>([])
+
+  useEffect(() => {
+    setJourneys(JSON.parse(localStorage.getItem(question) || '[]'))
+    setIsInitialized(true)
+  }, [question])
+
+  useEffect(() => {
+    if (isInitialized) {
+      localStorage.setItem(question, JSON.stringify(journeys))
+    }
+  }, [journeys, isInitialized, question])
 
   const total = useMemo(
     () =>

@@ -4,7 +4,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 type Props = {
   question: string
@@ -15,7 +15,7 @@ export default function ThreeYearsInput({ question }: Props) {
 
   const locale = useLocale()
 
-  const { unit, numericValue, setValue } = useRule(question)
+  const { unit, setValue } = useRule(question)
 
   const [currentYearValue, setCurrentYearValue] = useState(0)
   const [lastYearValue, setLastYearValue] = useState(0)
@@ -23,19 +23,45 @@ export default function ThreeYearsInput({ question }: Props) {
 
   const currentYear = new Date().getFullYear()
 
+  const [isInitialized, setIsInitialized] = useState(false)
+
   useEffect(() => {
-    const computedValue =
-      (currentYearValue + lastYearValue + yearBeforeLastValue) / 3
-    if (numericValue !== computedValue && computedValue) {
-      setValue(computedValue)
+    const years = JSON.parse(localStorage.getItem(question) || '[0, 0, 0]')
+    console.log(years[0])
+    setCurrentYearValue(years[0])
+    setLastYearValue(years[1])
+    setYearBeforeLastValue(years[2])
+    setIsInitialized(true)
+  }, [question])
+
+  useEffect(() => {
+    if (isInitialized) {
+      console.log('currentYearValue', currentYearValue)
+      localStorage.setItem(
+        question,
+        JSON.stringify([currentYearValue, lastYearValue, yearBeforeLastValue])
+      )
     }
   }, [
     currentYearValue,
     lastYearValue,
     yearBeforeLastValue,
-    numericValue,
-    setValue,
+    question,
+    isInitialized,
   ])
+
+  const totalValue = useMemo(
+    () => (currentYearValue + lastYearValue + yearBeforeLastValue) / 3,
+    [currentYearValue, lastYearValue, yearBeforeLastValue]
+  )
+
+  const prevTotalValue = useRef(totalValue)
+  useEffect(() => {
+    if (totalValue !== prevTotalValue.current) {
+      setValue(totalValue)
+    }
+    prevTotalValue.current = totalValue
+  }, [totalValue, setValue])
 
   return (
     <motion.div
@@ -91,7 +117,7 @@ export default function ThreeYearsInput({ question }: Props) {
         {unit}
         <br />
         {t('Total par an\u202f:')}{' '}
-        {numericValue.toLocaleString(locale, { maximumFractionDigits: 1 })}
+        {totalValue.toLocaleString(locale, { maximumFractionDigits: 1 })}
         &nbsp;
         {unit}
       </p>
