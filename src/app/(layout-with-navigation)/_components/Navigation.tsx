@@ -10,7 +10,7 @@ import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useDebug } from '@/hooks/useDebug'
 import { useUser } from '@/publicodes-state'
-import { capitaliseString } from '@/utils/capitaliseString'
+import { capitalizeString } from '@/utils/capitalizeString'
 import Image from 'next/image'
 import NavLink from './navigation/NavLink'
 import PRIndicator from './navigation/PRIndicator'
@@ -92,7 +92,7 @@ export default function Navigation() {
                   t('Profil')
                 ) : (
                   <span className="rounded-md bg-primary px-4 py-2 text-white">
-                    {capitaliseString(persona.split(' . ')[1])}
+                    {capitalizeString(persona.split(' . ')[1])}
                   </span>
                 )}
               </span>

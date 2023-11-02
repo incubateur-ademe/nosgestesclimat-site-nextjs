@@ -3,7 +3,7 @@ import Trans from '@/components/translation/Trans'
 import Markdown from '@/design-system/utils/Markdown'
 import getPost from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { capitaliseString } from '@/utils/capitaliseString'
+import { capitalizeString } from '@/utils/capitalizeString'
 import { currentLocale } from 'next-i18n-router'
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 
 export async function generateMetadata({ params: { slug } }: Props) {
   return getMetadataObject({
-    title: `${capitaliseString(decodeURI(slug))?.replaceAll(
+    title: `${capitalizeString(decodeURI(slug))?.replaceAll(
       '-',
       ' '
     )}, nouveautés - Nos Gestes Climat`,

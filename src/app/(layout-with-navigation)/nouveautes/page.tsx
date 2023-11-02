@@ -18,7 +18,7 @@ export default async function Releases() {
   const locale = currentLocale()
   const { t } = await getServerTranslation()
 
-  const posts = await getPosts(`src/locales/nouveautes/${locale}/`)
+  const releases = await getPosts(`src/locales/nouveautes/${locale}/`)
 
   return (
     <>
@@ -29,7 +29,7 @@ export default async function Releases() {
           ici les dernières nouveautés.
         </Trans>
       </p>
-      <List items={posts} path="/nouveautes" />
+      <List items={releases} path="/nouveautes" />
     </>
   )
 }
