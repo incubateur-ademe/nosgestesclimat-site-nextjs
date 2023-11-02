@@ -1,0 +1,85 @@
+---
+title: Tré-la-Tête
+date: 2022-09-26T17:15:37Z
+---
+
+![Glacier de Tré-la-Tête](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Glacier_de_Tré-la-Tête.jpg/640px-Glacier_de_Tré-la-Tête.jpg)
+
+> Le [glacier de Tré-la-Tête](https://fr.wikipedia.org/wiki/Glacier_de_Tré-la-Tête) est le 4ème plus grand glacier en France. Une 📽️ [vidéo Brut intéressante à son sujet suite à l'été hors normes 2022 (29/07/2022)](https://www.francetvinfo.fr/meteo/canicule/video-un-glaciologue-repond-a-cinq-questions-sur-les-glaciers_5283679.html)
+
+> **En bref** : 
+> - nouveau logo, nouvelle iconographie, nouvelle page d'accueil 
+> - un grand nombre de petites améliorations du site et du modèle de calcul
+
+## 🎨 Un nouveau logo, une nouvelle page d'accueil, et de nouveaux icônes
+
+Vous ne l'aurez pas manqué, Nos Gestes Climat se pare d'un nouveau logo  🥳. 
+
+![](https://nosgestesclimat.fr/images/petit-logo.png)
+
+Fréquemment cité dans la presse, il y passera encore moins inaperçu. 
+
+<details><summary>Voici quelques extraits rien que sur les deux dernières semaines ⬇️ : </summary>
+
+Article du [Ouest-France](https://www.ouest-france.fr/bretagne/carhaix-plouguer-29270/a-carhaix-ces-specialistes-de-l-energie-donnent-leurs-conseils-pour-consommer-moins-bc1250aa-3346-11ed-8dd8-fdb9fa809eb1) : À Carhaix, ces spécialistes de l’énergie donnent leurs conseils pour consommer moins
+
+> Il est également possible de calculer son empreinte carbone sur nosgestesclimat.fr
+
+Article de [France Inter](https://www.radiofrance.fr/franceinter/un-champion-de-trail-nous-explique-pourquoi-il-renonce-a-une-course-en-raison-de-son-bilan-carbone-7787049) : Un traileur de haut niveau nous explique pourquoi il renonce aux Mondiaux en raison de son bilan carbone 
+
+> Andy Symonds a donc calculé, via le site "Nos gestes climat", que se rendre en avion en Thaïlande ferait exploser son bilan carbone.
+
+ Le Dauphiné Libéré [a lancé un sondage et cite NGC](https://www.ledauphine.com/environnement/2022/09/21/les-citoyens-attendent-que-l-etat-les-accompagne-dans-leurs-efforts)   Retrouvez les résultats de notre sondage “Les Français et leur empreinte carbone” 
+
+> Un Français émet en moyenne 11,2 tonnes de CO2e ​ par an. Les experts estiment qu‘il faudrait limiter ce chiffre à 2 tonnes par an pour freiner le changement climatique et respecter les objectifs de l’Accord de Paris. Pour connaître votre empreinte carbone, l’Ademe a lancé un outil en ligne “Nos gestes climat”.
+
+Ainsi qu'[outside.fr](https://www.outside.fr/comment-evaluer-votre-empreinte-carbone-les-3-meilleurs-calculateurs).
+
+</details>
+
+La page d'accueil suit cette évolution graphique avec quelques paragraphes pour introduire le sujet (et ses limites). 
+
+
+
+### Avant 
+
+![image](https://user-images.githubusercontent.com/1177762/191323489-088461c2-b1b9-46fe-bce2-c1e459104569.png)
+
+### Après
+
+![image](https://user-images.githubusercontent.com/1177762/191323550-993c5109-ae91-4baa-8853-af240bf4c279.png)
+
+
+![image](https://user-images.githubusercontent.com/1177762/191323669-952493a1-7b17-4d38-a48b-313f2a592863.png)
+
+
+
+De la même façon, nous avons travaillé [le style et la lisibilité des icônes](https://github.com/datagir/nosgestesclimat-site/pull/570) métier tout au long du site.
+
+![image](https://user-images.githubusercontent.com/1177762/192312016-67af3382-6e02-49db-b791-8ba1702eb0ce.png)
+
+
+## 🐎 Performances (écoconception)
+
+Nous avons terminé la phase 2 de nos travaux de sobriété, en termes de poids du site, avec un [gain significatif](https://github.com/datagir/nosgestesclimat-site/pull/602). C'est tout relatif, mais un peu de sobriété de notre côté est la moindre des choses !
+
+## 👆️ Autres améliorations de l'interface
+
+- Le [mode sondage](https://nosgestesclimat.fr/groupe) n'est plus en beta, il a déjà été utilisé par des centaines d'organisations
+- une notification apparait quand votre logement est amorti (= construit il y a longtemps) : dans ce cas, nous ne vous demandons pas sa surface notamment (car nous n'en avons pas besoin pour le calcul), cela étonnait certains utilisateurs
+- les saisies de nombres dans le questionnaire sont maintenants plus contraints (vous ne pouvez plus renseigner zéro passagers dans la voiture par exemple) pour réduire les erreurs que peuvent provoquer des valeurs non attendues (valeurs infinies ou nulles)
+- le bouton "Je ne sais pas" fait son apparition dans les mosaïques (https://github.com/datagir/nosgestesclimat-site/pull/604)
+- le certificat d'accessibilité (https://github.com/datagir/nosgestesclimat-site/pull/621) est en ligne, témoignant de notre travail sur cet aspect important des sites Web
+
+Globalement, un travail important a été fait sur le tri et la fermeture de centaines de tickets de retours, [côté modèle](https://github.com/datagir/nosgestesclimat/issues) comme [côté site](https://github.com/datagir/nosgestesclimat-site/issues), la contribution du plus grand nombre reste toujours notre priorité.
+
+## 🧮 Côté modèle de calcul
+
+- mise à jour des [facteurs d'émission avion](https://github.com/datagir/nosgestesclimat/pull/1489)
+- la part "consommation" du thé [est déjà incluse dans votre facture d'électricité](https://github.com/datagir/nosgestesclimat/pull/1494), c'était un bug repéré grace à notre travail en parallèle sur [monconvertisseurco2.fr](https://monconvertisseurco2.fr/empreinte-carbone/boisson)
+- le facteur d'émission du mix électrique français pour 2021 [est mis à jour](https://github.com/datagir/nosgestesclimat/pull/1484)
+
+## 🌅 Prochainement...
+
+Nous travaillons actuellement sur une régionalisation (outre-mer) et internationalisation du site 😎. À bientôt !
+

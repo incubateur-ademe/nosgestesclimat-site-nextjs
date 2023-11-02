@@ -1,11 +1,11 @@
-import { useSupportedRegions } from '@/hooks/useSupportedRegions'
+import Providers from '@/components/providers/Providers'
+import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { PropsWithChildren } from 'react'
-import Providers from './_components/Providers'
 
 export default async function SimulateurLayout({
   children,
 }: PropsWithChildren) {
-  const supportedRegions = await useSupportedRegions()
+  const supportedRegions = await getSupportedRegions()
 
   return <Providers supportedRegions={supportedRegions}>{children}</Providers>
 }

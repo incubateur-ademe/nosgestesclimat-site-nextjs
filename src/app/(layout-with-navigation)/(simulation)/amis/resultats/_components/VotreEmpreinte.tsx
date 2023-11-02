@@ -2,7 +2,7 @@ import Trans from '@/components/translation/Trans'
 import { SimulationResults, ValueObject } from '@/types/groups'
 import { formatValue } from 'publicodes'
 import { JSX } from 'react'
-import PercentageDiff from './PercentageDiff'
+import PercentageDiff from './pointsListItem/PercentageDiff'
 
 const EMOJI_TEXT_MAP: {
   [key in keyof Partial<SimulationResults>]: {

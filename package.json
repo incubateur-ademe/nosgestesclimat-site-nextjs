@@ -42,6 +42,7 @@
     "core-js": "^3.33.0",
     "framer-motion": "^10.16.4",
     "fuse.js": "6.6.2",
+    "html-to-image": "^1.11.11",
     "html-webpack-plugin": "^5.5.3",
     "i18next": "^23.5.1",
     "i18next-browser-languagedetector": "^7.1.0",
@@ -93,7 +94,6 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.15",
     "@incubateur-ademe/nosgestesclimat-scripts": "^0.2.1",
-    "@simonsmith/cypress-image-snapshot": "^9.0.1",
     "@svgr/cli": "^8.1.0",
     "@types/cheerio": "^0.22.32",
     "@types/crypto-js": "^4.1.2",
