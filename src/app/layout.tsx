@@ -52,6 +52,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   const lang = currentLocale()
   const region = await getGeolocation()
 
+  console.log('Split testing : branche B.')
+
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
       <head>
