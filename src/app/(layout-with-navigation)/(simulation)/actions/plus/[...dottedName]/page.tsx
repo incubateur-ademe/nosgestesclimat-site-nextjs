@@ -1,3 +1,4 @@
+import Route404 from '@/components/layout/404'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Markdown from '@/design-system/utils/Markdown'
@@ -35,11 +36,13 @@ export default async function ActionPlus({
         <ButtonLink size="sm" color="text" href={'/actions/plus'}>
           <Trans>◀ Retour à la liste des fiches</Trans>
         </ButtonLink>
-        <ButtonLink size="sm" href={'/actions/' + dottedNameArray.join('/')}>
-          <Trans>🧮 Voir le geste climat correspondant</Trans>
-        </ButtonLink>
+        {action ? (
+          <ButtonLink size="sm" href={'/actions/' + dottedNameArray.join('/')}>
+            <Trans>🧮 Voir le geste climat correspondant</Trans>
+          </ButtonLink>
+        ) : null}
       </div>
-      <Markdown>{action}</Markdown>
+      {action ? <Markdown>{action}</Markdown> : <Route404 />}
     </div>
   )
 }
