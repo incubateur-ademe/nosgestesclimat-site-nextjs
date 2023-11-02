@@ -4,6 +4,6 @@ export const getSupportedRegions = () =>
   fetch(
     `${
       // process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER ??
-      'https://deploy-preview-2085--ecolab-data.netlify.app'
+      'https://data.nosgestesclimat.fr/'
     }/supportedRegions.json`
   ).then((response) => response.json())

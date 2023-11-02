@@ -11,5 +11,5 @@ export const useDataServer = () => {
     return localUrl
   }
 
-  return 'https://deploy-preview-2085--ecolab-data.netlify.app'
+  return 'https://data.nosgestesclimat.fr/'
 }
