@@ -38,9 +38,7 @@ export default async function Landing() {
               <Title
                 title={
                   <Trans i18nKey="publicodes.Landing.question">
-                    {process.env.NEXT_PUBLIC_IS_TARGET_SPLIT_TESTING
-                      ? 'SPLIT TESTING IS ON'
-                      : 'Connaissez-vous votre empreinte sur le climat ?'}
+                    Connaissez-vous votre empreinte sur le climat ?
                   </Trans>
                 }
                 className="text-2xl md:text-4xl"
