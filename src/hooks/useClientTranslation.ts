@@ -1,47 +1,22 @@
 'use client'
 
-import { useIsClient } from '@/app/_components/IsClientCtxProvider'
 import '@/locales/initClient'
-import { useEffect, useState } from 'react'
-import { useTranslation as useLibTranslation } from 'react-i18next'
+import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocale } from './useLocale'
 
 export function useClientTranslation() {
-  const [initChangeLang, setInitChangeLang] = useState(false)
   const locale = useLocale()
-  const transObject = useLibTranslation('translation')
+  const prevLocale = useRef(locale)
 
-  const isClient = useIsClient()
-
-  const { i18n } = transObject
+  const transObject = useTranslation('translation')
 
   useEffect(() => {
-    if (!initChangeLang) {
-      i18n.changeLanguage(locale)
-      setInitChangeLang(true)
+    if (locale !== prevLocale.current) {
+      transObject.i18n.changeLanguage(locale)
     }
-  }, [locale, initChangeLang, i18n])
-
-  if (!isClient && i18n.resolvedLanguage !== locale) {
-    i18n.changeLanguage(locale)
-  } else {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [activeLng, setActiveLng] = useState(i18n.resolvedLanguage)
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-      if (activeLng === i18n.resolvedLanguage) return
-
-      setActiveLng(i18n.resolvedLanguage)
-    }, [activeLng, i18n.resolvedLanguage])
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-      if (i18n.resolvedLanguage === locale) return
-
-      i18n.changeLanguage(locale)
-    }, [locale, i18n])
-  }
+    prevLocale.current = locale
+  }, [locale, transObject])
 
   return transObject
 }

@@ -4,11 +4,11 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useIsClient } from '@/hooks/useIsClient'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { capitaliseString } from '@/utils/capitaliseString'
 import { sortReleases } from '@/utils/sortReleases'
 import { useEffect, useState } from 'react'
-import { useIsClient } from './IsClientCtxProvider'
 
 export const localStorageKey = 'last-viewed-release'
 
@@ -85,8 +85,7 @@ export default function NewsBanner() {
       <button
         onClick={handleUpdateViewedRelease}
         className="absolute right-2 top-2 h-8 w-8 border-none bg-transparent p-0 text-lg text-primaryDark"
-        title={t('Fermer la notification de nouveautés')}
-      >
+        title={t('Fermer la notification de nouveautés')}>
         &times;
       </button>
     </Card>
