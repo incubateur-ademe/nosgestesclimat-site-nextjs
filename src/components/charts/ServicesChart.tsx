@@ -1,13 +1,7 @@
 import { useTempEngine } from '@/publicodes-state'
 import RavijenChart from './RavijenChart'
 
-export default function ServicesChart({
-  squashLimitPercentage,
-  isInverted = true,
-}: {
-  squashLimitPercentage?: number
-  isInverted?: boolean
-}) {
+export default function ServicesChart() {
   const { getRuleObject } = useTempEngine()
 
   const rootObject = getRuleObject('services sociétaux')
@@ -29,8 +23,8 @@ export default function ServicesChart({
     <RavijenChart
       categories={serviceCategories}
       subcategories={serviceSubcategories}
-      squashLimitPercentage={squashLimitPercentage}
-      isInverted={isInverted}
+      squashLimitPercentage={1.4}
+      isInverted={true}
       shouldAlwaysDisplayValue={true}
     />
   )
