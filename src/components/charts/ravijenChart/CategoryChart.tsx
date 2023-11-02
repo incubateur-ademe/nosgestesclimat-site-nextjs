@@ -1,6 +1,6 @@
 'use client'
 
-import { LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
+import { DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
 import { useEngine } from '@/publicodes-state'
 import SubcategoryChartBlock from './categoryChart/SubcategoryChartBlock'
 import TotalCategoryBlock from './categoryChart/TotalCategoryBlock'
@@ -9,18 +9,20 @@ type Props = {
   category: string
   subcategories: string[]
   maxValue: number
-  squashPercentage?: number
+  squashLimitPercentage?: number
+  isInverted?: boolean
 }
 
 export default function CategoryChart({
   category,
   subcategories,
   maxValue,
-  squashPercentage,
+  squashLimitPercentage,
+  isInverted = false,
 }: Props) {
   const { getNumericValue, checkIfValid } = useEngine()
 
-  let percentageSquashed = 0
+  let sumSquashedSubcategoriesPercentage = 0
 
   const sortedSubcategories = subcategories
     ?.filter((subcategory: string) => checkIfValid(subcategory))
@@ -33,9 +35,10 @@ export default function CategoryChart({
       const subcategoryPercentage = (subcategoryValue / categoryValue) * 100
 
       if (
-        subcategoryPercentage < (squashPercentage ?? LIMIT_PERCENTAGE_TO_SQUASH)
+        subcategoryPercentage <
+        (squashLimitPercentage ?? DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH)
       ) {
-        percentageSquashed += subcategoryPercentage
+        sumSquashedSubcategoriesPercentage += subcategoryPercentage
       }
       return subcategory
     })
@@ -47,8 +50,14 @@ export default function CategoryChart({
     })
 
   return (
-    <div className="flex h-full flex-col justify-end gap-[1px]">
-      <div className="flex h-[calc(100%-7rem)] flex-col justify-end gap-[1px]">
+    <div
+      className={`flex h-full ${
+        isInverted ? 'flex-col-reverse' : 'flex-col'
+      } justify-end gap-[4px]`}>
+      <div
+        className={`flex h-[calc(100%-7rem)] ${
+          isInverted ? 'flex-col-reverse' : 'flex-col'
+        } justify-end gap-[1px]`}>
         {sortedSubcategories?.map((subcategory: string, index: number) => {
           return (
             <SubcategoryChartBlock
@@ -57,7 +66,10 @@ export default function CategoryChart({
               subcategory={subcategory}
               maxValue={maxValue}
               index={index}
-              percentageSquashed={percentageSquashed}
+              squashLimitPercentage={squashLimitPercentage}
+              sumSquashedSubcategoriesPercentage={
+                sumSquashedSubcategoriesPercentage
+              }
             />
           )
         })}

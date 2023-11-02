@@ -42,9 +42,9 @@ export default function DocumentationContent({
           Text: ({ children }) => (
             <>
               <Markdown>{children}</Markdown>
-              {children.includes('RavijenChart') && <BilanChart />}
-              {children.includes('RavijenChartSocietaux') && (
-                <ServicesChart squashPercentage={0} />
+              {children.includes('<RavijenChart/>') && <BilanChart />}
+              {children.includes('<RavijenChartSocietaux/>') && (
+                <ServicesChart squashLimitPercentage={1.4} />
               )}
             </>
           ),

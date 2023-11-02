@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import SafeImage from '@/components/images/SafeImage'
-import { LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
+import { DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
 import { capitaliseString } from '@/utils/capitaliseString'
@@ -14,7 +14,8 @@ type Props = {
   subcategory: string
   maxValue: number
   index: number
-  percentageSquashed: number
+  squashLimitPercentage?: number
+  sumSquashedSubcategoriesPercentage?: number
 }
 
 export default function SubcategoryChartBlock({
@@ -22,12 +23,13 @@ export default function SubcategoryChartBlock({
   category,
   maxValue,
   index,
-  percentageSquashed,
+  squashLimitPercentage,
+  sumSquashedSubcategoriesPercentage,
 }: Props) {
   const { numericValue: categoryNumericvalue } = useRule(category)
 
   const subcategoryObject = useRule(subcategory)
-  const { title, numericValue, color } = subcategoryObject
+  const { title, abbreviatedTitle, numericValue, color } = subcategoryObject
 
   const { formattedValue, unit } = formatCarbonFootprint(numericValue)
 
@@ -39,36 +41,38 @@ export default function SubcategoryChartBlock({
   const heightPercentage =
     (numericValue / categoryNumericvalue) * (100 * categoryRatio)
 
+  // Replace only the first item squashed by the EnigmaticMoreChartBlock
   if (
-    heightPercentage < (percentageSquashed ?? LIMIT_PERCENTAGE_TO_SQUASH) &&
+    heightPercentage <
+      (squashLimitPercentage ?? DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH) &&
     index !== 0
-  )
+  ) {
     return null
-
-  if (
-    heightPercentage < (percentageSquashed ?? LIMIT_PERCENTAGE_TO_SQUASH) &&
+  } else if (
+    heightPercentage <
+      (squashLimitPercentage ?? DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH) &&
     index === 0
   ) {
     return (
       <EnigmaticMoreChartBlock
-        color={color ?? '#333'}
-        percentageSquashed={percentageSquashed}
+        color={color ?? '#5758BB'}
+        percentageSquashed={sumSquashedSubcategoriesPercentage ?? 0}
       />
     )
   }
 
-  const isSmall = heightPercentage < 12
+  const isSmall = heightPercentage < 13
 
   const titleFormatted = capitaliseString(
-    removePercentageFromString(title ?? '')
+    removePercentageFromString(abbreviatedTitle ?? title ?? '')
   )
 
   return (
     <Link
       title={`${titleFormatted}, ${formattedValue} ${unit}, voir la documentation`}
       href={`/documentation/${subcategory.replaceAll(' . ', '/')}`}
-      className={`flex items-center !text-white !no-underline hover:!underline ${
-        isSmall ? 'flex-row justify-center gap-1' : 'flex-col pt-2'
+      className={`relative flex items-center py-2 !text-white !no-underline hover:!underline ${
+        isSmall ? 'flex-row justify-center gap-1' : 'flex-col flex-wrap'
       }`}
       style={{
         backgroundColor: color ?? '#32337B',
@@ -80,20 +84,18 @@ export default function SubcategoryChartBlock({
         alt={`${titleFormatted}, ${formattedValue} ${unit}`}
         width={24}
         height={24}
-        className="h-6 w-6"
+        className={`h-6 w-6 ${isSmall ? '' : 'mb-1'}`}
       />
 
       <p className={`${isSmall ? 'mb-0' : 'mb-1'} text-center text-[0.65rem]`}>
         {titleFormatted}
       </p>
 
-      {!isSmall && (
-        <p className="mb-0 text-sm">
-          <strong>
-            {formattedValue} {unit}
-          </strong>
-        </p>
-      )}
+      <p className="absolute bottom-0 right-1 z-10 mb-0 bg-primaryDark pl-1 text-[0.65rem]">
+        <strong>
+          {formattedValue} {unit}
+        </strong>
+      </p>
     </Link>
   )
 }

@@ -8,15 +8,19 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { toPng } from 'html-to-image'
 import CategoryChart from './ravijenChart/CategoryChart'
 
+type Props = {
+  categories: string[]
+  subcategories: { [key: string]: string[] }
+  squashLimitPercentage?: number
+  isInverted?: boolean
+}
+
 export default function RavijenChart({
   categories,
   subcategories,
-  squashPercentage,
-}: {
-  categories: string[]
-  subcategories: { [key: string]: string[] }
-  squashPercentage?: number
-}) {
+  squashLimitPercentage,
+  isInverted = false,
+}: Props) {
   const { getNumericValue } = useEngine()
 
   if (!categories) return null
@@ -36,7 +40,8 @@ export default function RavijenChart({
               category={category}
               subcategories={subcategories[category]}
               maxValue={worstFootprintCategoryValue}
-              squashPercentage={squashPercentage}
+              squashLimitPercentage={squashLimitPercentage}
+              isInverted={isInverted}
             />
           </li>
         ))}

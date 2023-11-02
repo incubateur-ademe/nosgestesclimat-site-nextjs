@@ -66,6 +66,7 @@ export default function useRule(dottedName: string) {
   const {
     category,
     title,
+    abbreviatedTitle,
     label,
     description,
     icons,
@@ -109,6 +110,10 @@ export default function useRule(dottedName: string) {
      * The title of the rule ("title" in Publicodes)
      */
     title,
+    /**
+     * The abbreviated title of the rule ("rawNode.abréviation" in Publicodes)
+     */
+    abbreviatedTitle,
     /**
      * The label of the rule ("rawNode.question" in Publicodes)
      */
