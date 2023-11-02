@@ -8,8 +8,8 @@ const personas = await fetch(
   .then(parse)
 
 const getFileContent = (name, data) => `
-import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
-import { setupSimulation } from '../../helpers/simulation/setupSimulation'
+import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
+import { setupSimulation } from '../../../helpers/simulation/setupSimulation'
 
 describe('Persona ${name}', () => {
 	before(() => {
@@ -27,7 +27,7 @@ describe('Persona ${name}', () => {
 Object.entries(personas).map(([dottedName, data]) => {
   const name = dottedName.split(' . ')[1]
   writeFileSync(
-    `./cypress/e2e/test-completion/persona-${name}.cy.js`,
+    `./cypress/e2e/integration/test-completion/persona-${name}.cy.js`,
     getFileContent(name, data)
   )
   console.log(JSON.stringify(data))
