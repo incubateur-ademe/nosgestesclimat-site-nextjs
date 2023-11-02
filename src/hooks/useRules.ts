@@ -1,5 +1,5 @@
 import { useUser } from '@/publicodes-state'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useDataServer } from './useDataServer'
 import { useLocale } from './useLocale'
@@ -22,9 +22,9 @@ export function useRules({ lang, region, isOptim = true }: Props) {
       ? user?.region?.code
       : region
 
-  return useQuery(
-    ['rules', dataServer, lang, region, isOptim],
-    () =>
+  return useQuery({
+    queryKey: ['rules', dataServer, lang, region, isOptim],
+    queryFn: () =>
       axios
         .get(
           `${dataServer}/co2-model.${regionCode}-lang.${
@@ -33,12 +33,7 @@ export function useRules({ lang, region, isOptim = true }: Props) {
           }${isOptim ? '-opti' : ''}.json`
         )
         .then((res) => res.data as unknown),
-    {
-      keepPreviousData: true,
-      // When we work locally on the model we want the rules to be updated as much as possible (on window focus and every 3 seconds)
-      refetchOnWindowFocus: process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER
-        ? true
-        : false,
-    }
-  )
+
+    placeholderData: keepPreviousData,
+  })
 }
