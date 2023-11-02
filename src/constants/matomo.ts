@@ -252,3 +252,9 @@ export const matomoSaveSimulationByGivingEmail = [
   'user',
   'save-simulation-by-giving-email',
 ]
+
+export const matomoDownloadRavijenChart = [
+  'trackEvent',
+  'documentation',
+  'download-ravijen-chart',
+]

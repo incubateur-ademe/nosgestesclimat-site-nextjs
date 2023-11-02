@@ -1,32 +1,47 @@
 import { NodeValue } from '@/publicodes-state/types'
+type Options = {
+  localize?: boolean
+  locale?: string
+  maximumFractionDigits?: number
+  shouldUseAbbreviation?: boolean
+}
 
 export default function formatCarbonFootprint(
   value: NodeValue,
-  { localize = true, locale = 'fr-FR', maximumFractionDigits = 1 } = {
+  {
+    localize = true,
+    locale = 'fr-FR',
+    maximumFractionDigits = 1,
+    shouldUseAbbreviation = false,
+  }: Options = {
     localize: true,
     locale: 'fr-FR',
     maximumFractionDigits: 1,
+    shouldUseAbbreviation: false,
   }
 ) {
-  value = Number(value)
-  const negative = value < 0
+  let numberValue = Number(value)
 
-  value = Math.abs(value)
+  const negative = numberValue < 0
+
+  numberValue = Math.abs(numberValue)
 
   let tempValue = 0
   let unit = null
 
-  if (value > 0 && value < 1) {
-    tempValue = value * 1000
+  if (numberValue > 0 && numberValue < 1) {
+    tempValue = numberValue * 1000
     unit = 'g'
   }
-  if (value >= 1 && value < 1000) {
-    tempValue = value
+
+  if (numberValue >= 1 && numberValue < 1000) {
+    tempValue = numberValue
     unit = 'kg'
   }
-  if (value >= 1000) {
-    tempValue = value / 1000
-    unit = 'tonnes'
+
+  if (numberValue >= 1000) {
+    tempValue = numberValue / 1000
+    unit = shouldUseAbbreviation ? 't' : `tonne${numberValue < 2000 ? '' : 's'}`
   }
 
   return {
