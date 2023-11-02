@@ -3,27 +3,21 @@
 import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
-import { usePRNumber } from '@/hooks/usePRNumber'
 import { useTempEngine } from '@/publicodes-state'
 import { NGCRule, NGCRules } from '@/publicodes-state/types'
-import { utils } from 'publicodes'
-import { useFetchDocumentation } from '../../_hooks/useFetchDocumentation'
+import { Post } from '@/types/posts'
 
-export default function ActionPlusList() {
+type Props = {
+  actions: Post[]
+}
+export default function ActionPlusList({ actions }: Props) {
   const { rules } = useTempEngine()
-
-  const { PRNumber } = usePRNumber()
-
-  const { data: documentation } = useFetchDocumentation(PRNumber)
-
-  if (!documentation) {
-    return null
-  }
 
   const plusListe = Object.entries(rules as NGCRules)
     .map(([dottedName, rule]) => ({ ...rule, dottedName }))
     .map((rule) => {
-      const plus = documentation?.['actions-plus/' + rule.dottedName]
+      const plus = actions.find((action) => action.slug === rule.dottedName)
+        ?.content
       return { ...rule, plus }
     })
     .filter((r) => r.plus)
@@ -35,7 +29,10 @@ export default function ActionPlusList() {
           <Card
             className="h-[12rem] flex-col items-center justify-center no-underline"
             tag={Link}
-            href={'/actions/plus/' + utils.encodeRuleName(rule.dottedName)}>
+            href={
+              '/actions/plus/' +
+              rule.dottedName.replaceAll(' . ', '/').replaceAll(' ', '-')
+            }>
             <div className="mb-8 text-2xl">{rule.icônes || '🎯'}</div>
             <div className="text-center">
               {getRuleTitle(

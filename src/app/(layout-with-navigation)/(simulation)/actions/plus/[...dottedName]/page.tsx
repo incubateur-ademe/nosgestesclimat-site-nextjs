@@ -1,8 +1,9 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-
+import Markdown from '@/design-system/utils/Markdown'
+import getPost from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import ActionPlusContent from './_components/ActionPlusContent'
+import { currentLocale } from 'next-i18n-router'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -19,22 +20,26 @@ type Props = {
   }
 }
 
-export default function ActionPlus({
+export default async function ActionPlus({
   params: { dottedName: dottedNameArray },
 }: Props) {
+  const locale = currentLocale()
+  const action = await getPost(
+    `src/locales/actions-plus/${locale}/`,
+    decodeURI(dottedNameArray.join(' . ').replaceAll('-', ' '))
+  )
+
   return (
     <div>
       <div className="mb-8 mt-4 flex flex-wrap gap-4">
         <ButtonLink size="sm" color="text" href={'/actions/plus'}>
           <Trans>◀ Retour à la liste des fiches</Trans>
         </ButtonLink>
-
         <ButtonLink size="sm" href={'/actions/' + dottedNameArray.join('/')}>
           <Trans>🧮 Voir le geste climat correspondant</Trans>
         </ButtonLink>
       </div>
-
-      <ActionPlusContent dottedNameArray={dottedNameArray} />
+      <Markdown>{action}</Markdown>
     </div>
   )
 }

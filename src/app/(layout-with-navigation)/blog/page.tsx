@@ -1,9 +1,9 @@
-import List from '@/components/blog/List'
+import List from '@/components/posts/List'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
+import getPosts from '@/helpers/markdown/getPosts'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
-import posts from './_data/articles'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -12,7 +12,9 @@ export async function generateMetadata() {
   })
 }
 
-export default function Blog() {
+export default async function Blog() {
+  const posts = await getPosts('src/locales/blog/fr/')
+
   return (
     <>
       <Title title={<Trans>Le Blog</Trans>} data-cypress-id="blog-title" />

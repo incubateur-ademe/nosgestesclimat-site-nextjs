@@ -1,9 +1,9 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
+import Markdown from '@/design-system/utils/Markdown'
+import getPost from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { capitaliseString } from '@/utils/capitaliseString'
-import { JSXElementConstructor } from 'react'
-import posts from '../_data/articles'
 
 type Props = {
   params: { slug: string }
@@ -20,11 +20,8 @@ export async function generateMetadata({ params: { slug } }: Props) {
   })
 }
 
-export default function BlogPost({ params: { slug } }: Props) {
-  const markdownFile = posts.find(
-    (element: any) => element.slug == decodeURI(slug as string)
-  )
-  const Content = markdownFile?.content as JSXElementConstructor<any>
+export default async function BlogPost({ params: { slug } }: Props) {
+  const content = await getPost('src/locales/blog/fr/', slug)
 
   return (
     <div>
@@ -33,8 +30,8 @@ export default function BlogPost({ params: { slug } }: Props) {
       </Link>
       <br />
       <br />
-      {markdownFile ? (
-        <Content />
+      {content ? (
+        <Markdown>{content}</Markdown>
       ) : (
         <Trans>Oups, nous n'avons pas d'article correspondant</Trans>
       )}
