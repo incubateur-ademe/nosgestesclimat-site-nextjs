@@ -1,22 +1,28 @@
 'use client'
 
 import { LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
-import { useEngine, useSimulation } from '@/publicodes-state'
+import { useEngine } from '@/publicodes-state'
 import SubcategoryChartBlock from './categoryChart/SubcategoryChartBlock'
 import TotalCategoryBlock from './categoryChart/TotalCategoryBlock'
 
 type Props = {
   category: string
+  subcategories: string[]
   maxValue: number
+  squashPercentage?: number
 }
 
-export default function CategoryChart({ category, maxValue }: Props) {
+export default function CategoryChart({
+  category,
+  subcategories,
+  maxValue,
+  squashPercentage,
+}: Props) {
   const { getNumericValue, checkIfValid } = useEngine()
-  const { subcategories } = useSimulation()
 
   let percentageSquashed = 0
 
-  const sortedSubcategories = subcategories[category]
+  const sortedSubcategories = subcategories
     ?.filter((subcategory: string) => checkIfValid(subcategory))
     // Get the value to display in the EnigmaticMoreChartBlock
     .map((subcategory) => {
@@ -26,7 +32,9 @@ export default function CategoryChart({ category, maxValue }: Props) {
 
       const subcategoryPercentage = (subcategoryValue / categoryValue) * 100
 
-      if (subcategoryPercentage < LIMIT_PERCENTAGE_TO_SQUASH) {
+      if (
+        subcategoryPercentage < (squashPercentage ?? LIMIT_PERCENTAGE_TO_SQUASH)
+      ) {
         percentageSquashed += subcategoryPercentage
       }
       return subcategory

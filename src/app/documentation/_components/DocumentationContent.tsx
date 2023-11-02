@@ -1,7 +1,8 @@
 'use client'
 
 import Link from '@/components/Link'
-import RavijenChart from '@/components/charts/RavijenChart'
+import BilanChart from '@/components/charts/BilanChart'
+import ServicesChart from '@/components/charts/ServicesChart'
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -41,7 +42,10 @@ export default function DocumentationContent({
           Text: ({ children }) => (
             <>
               <Markdown>{children}</Markdown>
-              {children.includes('RavijenChart') && <RavijenChart />}
+              {children.includes('RavijenChart') && <BilanChart />}
+              {children.includes('RavijenChartSocietaux') && (
+                <ServicesChart squashPercentage={0} />
+              )}
             </>
           ),
           References: References as any,

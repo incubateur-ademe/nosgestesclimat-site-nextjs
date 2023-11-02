@@ -4,5 +4,9 @@ import { PropsWithChildren } from 'react'
 
 export default async function Layout({ children }: PropsWithChildren) {
   const supportedRegions = await getSupportedRegions()
-  return <Providers supportedRegions={supportedRegions}>{children}</Providers>
+  return (
+    <Providers supportedRegions={supportedRegions} isOptim={false}>
+      {children}
+    </Providers>
+  )
 }
