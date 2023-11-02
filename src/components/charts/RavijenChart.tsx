@@ -13,6 +13,7 @@ type Props = {
   subcategories: { [key: string]: string[] }
   squashLimitPercentage?: number
   isInverted?: boolean
+  shouldAlwaysDisplayValue?: boolean
 }
 
 export default function RavijenChart({
@@ -20,6 +21,7 @@ export default function RavijenChart({
   subcategories,
   squashLimitPercentage,
   isInverted = false,
+  shouldAlwaysDisplayValue,
 }: Props) {
   const { getNumericValue } = useEngine()
 
@@ -42,6 +44,7 @@ export default function RavijenChart({
               maxValue={worstFootprintCategoryValue}
               squashLimitPercentage={squashLimitPercentage}
               isInverted={isInverted}
+              shouldAlwaysDisplayValue={shouldAlwaysDisplayValue}
             />
           </li>
         ))}

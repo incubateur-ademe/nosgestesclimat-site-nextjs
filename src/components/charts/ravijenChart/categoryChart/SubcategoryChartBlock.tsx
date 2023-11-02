@@ -16,6 +16,7 @@ type Props = {
   index: number
   squashLimitPercentage?: number
   sumSquashedSubcategoriesPercentage?: number
+  shouldAlwaysDisplayValue?: boolean
 }
 
 export default function SubcategoryChartBlock({
@@ -25,6 +26,7 @@ export default function SubcategoryChartBlock({
   index,
   squashLimitPercentage,
   sumSquashedSubcategoriesPercentage,
+  shouldAlwaysDisplayValue,
 }: Props) {
   const { numericValue: categoryNumericvalue } = useRule(category)
 
@@ -82,20 +84,26 @@ export default function SubcategoryChartBlock({
         style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}
         src={`/images/model/${subcategory}.svg`}
         alt={`${titleFormatted}, ${formattedValue} ${unit}`}
-        width={24}
-        height={24}
-        className={`h-6 w-6 ${isSmall ? '' : 'mb-1'}`}
+        width={20}
+        height={20}
+        className={`h-5 w-5 ${isSmall ? '' : 'mb-1'}`}
       />
 
       <p className={`${isSmall ? 'mb-0' : 'mb-1'} text-center text-[0.65rem]`}>
         {titleFormatted}
       </p>
 
-      <p className="absolute bottom-0 right-1 z-10 mb-0 bg-primaryDark pl-1 text-[0.65rem]">
-        <strong>
-          {formattedValue} {unit}
-        </strong>
-      </p>
+      {!isSmall && !shouldAlwaysDisplayValue && (
+        <p
+          style={{
+            backgroundColor: color ?? '#32337B',
+          }}
+          className="absolute bottom-0 right-1 z-10 mb-0  pl-1 text-[0.65rem]">
+          <strong>
+            {formattedValue} {unit}
+          </strong>
+        </p>
+      )}
     </Link>
   )
 }

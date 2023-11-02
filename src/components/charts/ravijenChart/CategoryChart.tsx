@@ -11,6 +11,7 @@ type Props = {
   maxValue: number
   squashLimitPercentage?: number
   isInverted?: boolean
+  shouldAlwaysDisplayValue?: boolean
 }
 
 export default function CategoryChart({
@@ -19,6 +20,7 @@ export default function CategoryChart({
   maxValue,
   squashLimitPercentage,
   isInverted = false,
+  shouldAlwaysDisplayValue,
 }: Props) {
   const { getNumericValue, checkIfValid } = useEngine()
 
@@ -70,6 +72,7 @@ export default function CategoryChart({
               sumSquashedSubcategoriesPercentage={
                 sumSquashedSubcategoriesPercentage
               }
+              shouldAlwaysDisplayValue={shouldAlwaysDisplayValue}
             />
           )
         })}

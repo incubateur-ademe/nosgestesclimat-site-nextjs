@@ -31,6 +31,7 @@ export default function ServicesChart({
       subcategories={serviceSubcategories}
       squashLimitPercentage={squashLimitPercentage}
       isInverted={isInverted}
+      shouldAlwaysDisplayValue={true}
     />
   )
 }
