@@ -53,6 +53,8 @@ export type SimulationResults = {
 export type ValueObject = {
   name: string
   value: number
+  title?: string
+  icon?: string
   mean?: number
   difference?: number
   isCategory?: boolean

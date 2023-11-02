@@ -73,6 +73,8 @@ export const useGetGroupAndUserFootprints = ({
           name: category,
           value: categoryValue,
           isCategory: true,
+          title: rules[category].title,
+          icon: rules[category]?.rawNode?.icônes,
         }
 
         // If the category is not in the accumulator, we add its name as a new key in the object along with its value
