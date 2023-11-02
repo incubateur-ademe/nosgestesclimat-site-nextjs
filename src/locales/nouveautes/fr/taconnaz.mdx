@@ -1,0 +1,62 @@
+---
+title: Taconnaz
+date: 2021-11-02T11:01:01Z
+---
+
+![Glacier de Taconnaz](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Taconnaz.JPG/576px-Taconnaz.JPG)
+
+> En bref : 
+> - refonte du parcours action 🎯 : glissez des actions dans votre panier pour réduire votre empreinte. 
+> - le menu poisson 🐟️ est enfin arrivé ! 
+> - un nouveau menu permanent permet de naviguer plus facilement
+> - vous pouvez maintenant partager vos liens de conférence avec un QRcode
+
+## Un nouveau parcours de passage à l'action 🎯
+
+Beaucoup d'utilisateurs nous reprochaient la simplicité de notre parcours de passage à l'action. Nous l'avons revu entièrement, pour le rapprocher d'un mini-jeu où l'objectif est de réduire son empreinte. 
+
+![ngc-action-2](https://user-images.githubusercontent.com/1177762/139829768-5759d428-1e0d-4c7d-9fd3-682dbebb1b90.gif)
+
+Ce n'est qu'un début : nous avons déjà prévu les [prochaines étapes](https://github.com/datagir/nosgestesclimat-site/issues/359) pour faciliter encore plus l'engagement.
+
+Nous introduisons aussi les *personas* : des profils types que vous pouvez sélectionner pour vivre le parcours action comme un citoyen donné. 
+
+## Le menu 🐟️
+
+Nous avons reçu des dizaines de demandes pour intégrer un menu poisson sur l'écran de choix du régime. Il y en a maintenant 2 ! 
+
+![Capture d’écran du 2021-11-02 11-29-03](https://user-images.githubusercontent.com/1177762/139830102-bd7cee54-c1fd-454c-8eb0-7ce2a750ffa8.png)
+
+Ces nouveaux plats ont étés confectionnés à partie de la base [Agribalyse](https://agribalyse.fr/), et le calcul est bien sûr *ouvert*. De nombreuses nouveautés sur l'alimentation suivront. 
+
+## Un nouveau menu pour l'application 
+
+Nosgestesclimat est conçu pour être utilisable sur mobile comme sur bureau. La version mobile dispose maintenat d'un menu permanent en bas de l'écran, et la version bureau d'un nouvel agencement en deux colonnes, avec un menu lui aussi présent à gauche. 
+
+![Capture d’écran du 2021-11-02 11-31-33](https://user-images.githubusercontent.com/1177762/139830463-203c8896-0eda-49ad-ba45-be1a19e180de.png)
+
+Ce nouveau menu rend l'application plus accessible, et ce n'est qu'une amélioration d'accessibilité parmi plein d'autres que nous avons [prévues](https://github.com/datagir/nosgestesclimat-site/issues/350).
+
+## La moyenne française passe à 9 tonnes ! 
+
+Malheureusement, cela ne reflète pas d'efforts inattendus, mais d'une amélioration de la méthode de calcul du ministère de l'environnement. 
+
+Une bonne nouvelle cependant : l'administration française prend le sujet au sérieux, améliore ses calculs et explique les différences de façon scientifique. 
+
+Explications détaillées [ici](https://twitter.com/maeool/status/1453282887583866885).
+
+Alors pourquoi nous affichons dans le simulateur une moyenne à 9,8 tonnes ? Parce que notre calcul est fait via une autre méthode que celle du gouvernement, complémentaire. Plus d'infos [ici](https://github.com/datagir/nosgestesclimat-site/issues/365#issuecomment-957321261).
+
+
+## Améliorations du mode conférence 🏟️
+
+Ce mode collectif d'utilisation de nosgestesclimat est de plus en plus utilisé. Pour faciliter le partage du lien en début de conférence, nous générons un super QRCode qu' vous n'avez plus qu'à projeter ou envoyer par mail
+![Capture d’écran du 2021-11-02 11-32-27](https://user-images.githubusercontent.com/1177762/139830597-63fe1856-5622-4c52-b7f4-23ccbfaa6bd9.png). 
+
+Autre amélioration, nous excluons des résultats du groupe les simulations ayant abouti à une empreinte trop élevée, supérieure à 100 tonnes. Cette limite sera bientôt configurable. 
+
+## Améliorations techniques 🐇
+
+Nous continuons d'alléger le site, en supprimant une bibliothèque d'animation graphique (react-spring) et en découpant mieux le mode conférence du reste de l'application. 
+
+Bien évidemment, de nombreux bugs remontés ont aussi été corrigés.

@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
+import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { useSupportedRegions } from '@/hooks/useSupportedRegions'
 import { FormProvider } from '@/publicodes-state'
 import AnswerList from './_components/AnswerList'
 import Localisation from './_components/Localisation'
@@ -18,7 +18,7 @@ export async function generateMetadata() {
 }
 
 export default async function Profil() {
-  const supportedRegions = await useSupportedRegions()
+  const supportedRegions = await getSupportedRegions()
 
   return (
     <FormProvider>
