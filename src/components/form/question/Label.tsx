@@ -6,6 +6,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   question: string
@@ -40,7 +41,10 @@ export default function Label({
   return (
     <>
       <label
-        className={`block ${sizeClassNames[size]} font-semibold ${className}`}
+        className={twMerge(
+          `block ${sizeClassNames[size]} font-semibold`,
+          className
+        )}
         aria-label={label}
         htmlFor={htmlFor}>
         {label}{' '}

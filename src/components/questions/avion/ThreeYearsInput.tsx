@@ -17,16 +17,25 @@ export default function ThreeYearsInput({ question }: Props) {
 
   const { unit, numericValue, setValue } = useRule(question)
 
-  const [value2023, setValue2023] = useState(0)
-  const [value2022, setValue2022] = useState(0)
-  const [value2021, setValue2021] = useState(0)
+  const [currentYearValue, setCurrentYearValue] = useState(0)
+  const [lastYearValue, setLastYearValue] = useState(0)
+  const [yearBeforeLastValue, setYearBeforeLastValue] = useState(0)
+
+  const currentYear = new Date().getFullYear()
 
   useEffect(() => {
-    const computedValue = (value2023 + value2022 + value2021) / 3
+    const computedValue =
+      (currentYearValue + lastYearValue + yearBeforeLastValue) / 3
     if (numericValue !== computedValue && computedValue) {
       setValue(computedValue)
     }
-  }, [value2023, value2022, value2021, numericValue, setValue])
+  }, [
+    currentYearValue,
+    lastYearValue,
+    yearBeforeLastValue,
+    numericValue,
+    setValue,
+  ])
 
   return (
     <motion.div
@@ -34,36 +43,48 @@ export default function ThreeYearsInput({ question }: Props) {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
       className="mb-2 rounded-lg bg-white p-4">
-      <Label question={question} size="sm" label="2023" />
+      <Label question={question} size="sm" label={String(currentYear)} />
       <NumberInput
         unit={unit}
-        value={value2023}
-        setValue={(value: number) => setValue2023(value)}
-        isMissing={value2023 ? false : true}
+        value={currentYearValue}
+        setValue={(value: number) => setCurrentYearValue(value)}
+        isMissing={currentYearValue ? false : true}
         size="sm"
         className="mb-2 justify-start"
       />
-      <Label question={question} size="sm" label="2022" />
+      <Label
+        question={question}
+        size="sm"
+        label={String(Number(currentYear) - 1)}
+      />
       <NumberInput
         unit={unit}
-        value={value2022}
-        setValue={(value: number) => setValue2022(value)}
-        isMissing={value2022 ? false : true}
+        value={lastYearValue}
+        setValue={(value: number) => setLastYearValue(value)}
+        isMissing={lastYearValue ? false : true}
         size="sm"
         className="mb-2 justify-start"
       />
-      <Label question={question} size="sm" label="2021" />
+      <Label
+        question={question}
+        size="sm"
+        label={String(Number(currentYear) - 2)}
+      />
       <NumberInput
         unit={unit}
-        value={value2021}
-        setValue={(value: number) => setValue2021(value)}
-        isMissing={value2021 ? false : true}
+        value={yearBeforeLastValue}
+        setValue={(value: number) => setYearBeforeLastValue(value)}
+        isMissing={yearBeforeLastValue ? false : true}
         size="sm"
         className="mb-2 justify-start"
       />
       <p className="mb-0 rounded-lg bg-primaryLight p-4 font-bold">
         {t('Total :')}{' '}
-        {(value2023 + value2022 + value2021).toLocaleString(locale, {
+        {(
+          currentYearValue +
+          lastYearValue +
+          yearBeforeLastValue
+        ).toLocaleString(locale, {
           maximumFractionDigits: 1,
         })}
         &nbsp;
