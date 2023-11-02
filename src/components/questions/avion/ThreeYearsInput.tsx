@@ -27,7 +27,6 @@ export default function ThreeYearsInput({ question }: Props) {
 
   useEffect(() => {
     const years = JSON.parse(localStorage.getItem(question) || '[0, 0, 0]')
-    console.log(years[0])
     setCurrentYearValue(years[0])
     setLastYearValue(years[1])
     setYearBeforeLastValue(years[2])
@@ -36,7 +35,6 @@ export default function ThreeYearsInput({ question }: Props) {
 
   useEffect(() => {
     if (isInitialized) {
-      console.log('currentYearValue', currentYearValue)
       localStorage.setItem(
         question,
         JSON.stringify([currentYearValue, lastYearValue, yearBeforeLastValue])
