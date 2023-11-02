@@ -9,7 +9,7 @@ import localFont from 'next/font/local'
 import Script from 'next/script'
 import { PropsWithChildren } from 'react'
 import { ErrorFallback } from './_components/ErrorFallback'
-import Providers from './_components/Providers'
+import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 
 const marianne = localFont({
@@ -136,7 +136,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
         <ErrorBoundary showDialog fallback={ErrorFallback}>
-          <Providers region={region}>{children}</Providers>
+          <MainLayoutProviders region={region}>{children}</MainLayoutProviders>
         </ErrorBoundary>
       </body>
     </html>
