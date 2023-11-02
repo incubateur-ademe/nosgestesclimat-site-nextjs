@@ -1,5 +1,19 @@
+/* eslint @typescript-eslint/no-var-requires: 0 */
 const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
+})
+
+const withSplit = require('next-with-split').withSplit({
+  splits: {
+    testNextWithSplit: {
+      path: '*',
+      hosts: {
+        original: 'nosgestesclimat.vercel.app',
+        'test-branch-split':
+          'nosgestesclimat-git-test-branch-split-nos-gestes-climat.vercel.app',
+      },
+    },
+  },
 })
 
 /** @type {import('next').NextConfig} */
@@ -101,7 +115,7 @@ const nextConfig = {
   },
 }
 
-module.exports = withMDX(nextConfig)
+module.exports = withSplit(withMDX(nextConfig))
 
 // Injected content via Sentry wizard below
 

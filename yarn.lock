@@ -6939,6 +6939,11 @@ next-i18n-router@^4.1.1:
     "@formatjs/intl-localematcher" "^0.2.32"
     negotiator "^0.6.3"
 
+next-with-split@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/next-with-split/-/next-with-split-6.0.0.tgz#e95b3d01e0d0a878fea113a26f52d11bdb70c263"
+  integrity sha512-QTKWhsbUlpXuWtJBlcYzeLdJK01DNrtGmsk9kA/H0UZ1qRVF90xZH7Na6j5L0jV7O08MpbRfYPDkRTdNkAmXHA==
+
 next@^13.5.4:
   version "13.5.6"
   resolved "https://registry.yarnpkg.com/next/-/next-13.5.6.tgz#e964b5853272236c37ce0dd2c68302973cf010b1"
