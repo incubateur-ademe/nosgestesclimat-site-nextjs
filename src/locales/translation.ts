@@ -39,8 +39,6 @@ const faqFr = parseYaml(faqFrYaml as unknown as YamlEntry)
 const faqEn = parseYaml(faqEnYaml as unknown as YamlEntry)
 
 import { Lang, LangInfos, YamlEntry } from '@/types/translation'
-import releasesEn from './releases/releases-en.json'
-import releasesFr from './releases/releases-fr.json'
 // Commented until validation by a native speaker
 // import releasesEs from './releases/releases-es.json'
 // import releasesIt from './releases/releases-it.json'
@@ -55,7 +53,6 @@ export function getLangInfos(lang: Lang): LangInfos {
         abrv: 'en',
         abrvLocale: 'en',
         faqContent: faqEn as unknown as string,
-        releases: releasesEn,
         uiTrad: uiEn.entries,
       }
     }
@@ -87,7 +84,6 @@ export function getLangInfos(lang: Lang): LangInfos {
         abrv: 'fr',
         abrvLocale: 'fr-FR',
         faqContent: faqFr as unknown as string,
-        releases: releasesFr,
         uiTrad: uiFr.entries,
       }
     }

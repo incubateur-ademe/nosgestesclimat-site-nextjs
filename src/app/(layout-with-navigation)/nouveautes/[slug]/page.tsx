@@ -23,7 +23,7 @@ export async function generateMetadata({ params: { slug } }: Props) {
 
 export default async function Release({ params: { slug } }: Props) {
   const locale = currentLocale()
-  const content = await getPost(`src/locales/releases/${locale}/`, slug)
+  const content = await getPost(`src/locales/nouveautes/${locale}/`, slug)
 
   return (
     <div>

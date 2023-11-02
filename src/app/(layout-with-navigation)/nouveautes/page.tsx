@@ -18,7 +18,7 @@ export default async function Releases() {
   const locale = currentLocale()
   const { t } = await getServerTranslation()
 
-  const posts = await getPosts(`src/locales/releases/${locale}/`)
+  const posts = await getPosts(`src/locales/nouveautes/${locale}/`)
 
   return (
     <>
