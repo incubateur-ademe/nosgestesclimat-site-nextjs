@@ -39,7 +39,6 @@ export default function useValue({
         : stringValue
     }
     if (type === 'boolean') {
-      console.log(dottedName, value)
       return value === undefined
         ? 'Pas de choix'
         : value === null || value === false || value === 'non' // Model shenanigans
