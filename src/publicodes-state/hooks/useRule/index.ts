@@ -58,9 +58,10 @@ export default function useRule(dottedName: string) {
     safeEvaluate,
     situation,
   })
-  const { questionsOfMosaic, parent } = useMosaic({
+  const { questionsOfMosaic, parent, mosaicType } = useMosaic({
     dottedName,
     everyMosaicChildWhoIsReallyInMosaic,
+    rule,
   })
 
   const {
@@ -157,6 +158,10 @@ export default function useRule(dottedName: string) {
      * A list of questions to display inside the mosaic (if the rule is a mosaic)
      */
     questionsOfMosaic,
+    /**
+     * The type of the mosaic 'selection' ou 'nombre' (if the rule is a mosaic)
+     */
+    mosaicType,
     /**
      * The direct parent of the rule
      */
