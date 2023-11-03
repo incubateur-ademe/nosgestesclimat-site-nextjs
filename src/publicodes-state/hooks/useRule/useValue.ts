@@ -39,7 +39,10 @@ export default function useValue({
         : stringValue
     }
     if (type === 'boolean') {
-      return value === null || value === false || value === 'non' // Model shenanigans
+      console.log(dottedName, value)
+      return value === undefined
+        ? 'Pas de choix'
+        : value === null || value === false || value === 'non' // Model shenanigans
         ? 'non'
         : 'oui'
     }
@@ -116,7 +119,9 @@ const checkValueValidity = ({
       }
       return value.startsWith("'") ? value : `'${value}'`
     case 'boolean':
-      return value === null || value === false || value === 'non' // Model shenanigans
+      return value === undefined
+        ? undefined
+        : value === null || value === false || value === 'non' // Model shenanigans
         ? 'non'
         : 'oui'
     case 'mosaic':
