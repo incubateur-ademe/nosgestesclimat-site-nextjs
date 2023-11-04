@@ -7,7 +7,8 @@ export function useFetchDocumentation(PRNumber?: string) {
   const documentationUrl =
     (PRNumber
       ? `https://deploy-preview-${PRNumber}--ecolab-data.netlify.app`
-      : NGC_MODEL_API_URL) + '/contenu-ecrit.json'
+      : // TODO: the documentation is now available from the source code
+        NGC_MODEL_API_URL) + '/contenu-ecrit.json'
 
   return useQuery({
     queryKey: ['documentation'],
