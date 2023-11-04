@@ -1,3 +1,4 @@
+import { NGC_MODEL_API_URL } from '@/constants/urls'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
@@ -6,7 +7,7 @@ export function useFetchDocumentation(PRNumber?: string) {
   const documentationUrl =
     (PRNumber
       ? `https://deploy-preview-${PRNumber}--ecolab-data.netlify.app`
-      : 'https://data.nosgestesclimat.fr') + '/contenu-ecrit.json'
+      : NGC_MODEL_API_URL) + '/contenu-ecrit.json'
 
   return useQuery({
     queryKey: ['documentation'],

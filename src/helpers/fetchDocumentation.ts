@@ -1,5 +1,7 @@
+import { NGC_MODEL_API_URL } from '@/constants/urls'
+
 export const handleFetchDocumentation = fetch(
-  'https://data.nosgestesclimat.fr/contenu-ecrit.json',
+  NGC_MODEL_API_URL + '/contenu-ecrit.json',
   {
     mode: 'cors',
   }
