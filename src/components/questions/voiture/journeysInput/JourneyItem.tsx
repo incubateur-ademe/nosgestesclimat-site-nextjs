@@ -1,5 +1,5 @@
 import Button from '@/design-system/inputs/Button'
-import { Journey, JourneyPeriod } from '@/types/journey'
+import { Journey } from '@/types/journey'
 import { Dispatch, SetStateAction } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -9,13 +9,14 @@ type Props = {
   setJourneys: Dispatch<SetStateAction<Journey[]>>
 }
 
-const periods: Record<JourneyPeriod, string> = {
+export const periods: Record<string, string> = {
   day: 'jour',
   week: 'semaine',
   month: 'mois',
   year: 'an',
 }
-const labels: Record<string, string> = {
+
+export const labels: Record<string, string> = {
   holidays: 'Vacances',
   work: 'Domicile-Travail',
   family: 'Visite familiale',

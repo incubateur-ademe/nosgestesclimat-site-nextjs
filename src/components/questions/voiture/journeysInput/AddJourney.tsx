@@ -1,8 +1,13 @@
+import {
+  labels,
+  periods,
+} from '@/components/questions/voiture/journeysInput/JourneyItem'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
-import { Journey, JourneyPeriod } from '@/types/journey'
+import { Journey } from '@/types/journey'
+import { TFunction } from 'i18next'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
@@ -11,31 +16,45 @@ type Props = {
   setJourneys: Dispatch<SetStateAction<Journey[]>>
 }
 
+function Selector<T extends string | number>({
+  value,
+  items,
+  setValue,
+  t,
+}: {
+  value: T
+  items: Record<string, T>
+  setValue: Dispatch<SetStateAction<T>>
+  t: TFunction
+}) {
+  return (
+    <Select
+      className="p-2 text-sm"
+      value={value}
+      onChange={(e) => setValue(e.currentTarget.value as T)}>
+      {Object.entries(items).map(([key, label], i) => {
+        return (
+          <option key={i} value={key}>
+            {t(label.toString())}
+          </option>
+        )
+      })}
+    </Select>
+  )
+}
+
 export default function JourneyItem({ setJourneys }: Props) {
   const { t } = useTranslation()
-  const [label, setLabel] = useState('')
+  const [label, setLabel] = useState('holidays')
   const [distance, setDistance] = useState('10')
   const [reccurrence, setReccurrence] = useState(1)
-  const [period, setPeriod] = useState<JourneyPeriod>('week')
+  const [period, setPeriod] = useState('week')
   const [passengers, setPassengers] = useState(1)
 
   return (
     <tr className="">
       <td className="border-t border-primary py-4 pl-2 pr-2 text-sm md:pr-4">
-        <Select
-          className="p-2 text-sm"
-          value={period}
-          onChange={(e) => setLabel(e.currentTarget.value as Journey['label'])}>
-          <option value="holidays">{t('Vacances')}</option>
-          <option value="work">{t('Domicile-Travail')}</option>
-          <option value="family">{t('Visite familiale')}</option>
-          <option value="school">{t('Mobilité académique')}</option>
-          <option value="sport">{t('Sport ou Loisir')}</option>
-          <option value="occasional">{t('Sorties ponctuelles')}</option>
-          <option value="shopping">{t('Courses')}</option>
-          <option value="medical">{t('RDV médicaux')}</option>
-          <option value="weekends">{t('Week-end')}</option>
-        </Select>
+        <Selector value={label} items={labels} setValue={setLabel} t={t} />
       </td>
       <td className="border-t border-primary px-2 py-4 text-sm md:px-4">
         <span className="flex items-center gap-2">
@@ -59,30 +78,18 @@ export default function JourneyItem({ setJourneys }: Props) {
             onChange={(e) => setReccurrence(Number(e.currentTarget.value))}
           />{' '}
           x
-          <Select
-            className="p-2 text-sm"
-            value={period}
-            onChange={(e) =>
-              setPeriod(e.currentTarget.value as Journey['period'])
-            }>
-            <option value="day">{t('jour')}</option>
-            <option value="week">{t('semaine')}</option>
-            <option value="month">{t('mois')}</option>
-            <option value="year">{t('an')}</option>
-          </Select>
+          <Selector value={period} items={periods} setValue={setPeriod} t={t} />
         </span>
       </td>
       <td className="border-t border-primary px-2 py-4 text-sm md:px-4">
-        <Select
-          className="p-2 text-sm"
+        <Selector
           value={passengers}
-          onChange={(e) => setPassengers(Number(e.currentTarget.value))}>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-        </Select>
+          items={Object.fromEntries(
+            new Array(5).fill(0).map((_, i) => [i + 1, i + 1])
+          )}
+          setValue={setPassengers}
+          t={t}
+        />
       </td>
       <td className="border-t border-primary py-4 pl-2 pr-2 text-right text-sm md:pl-4">
         <Button
