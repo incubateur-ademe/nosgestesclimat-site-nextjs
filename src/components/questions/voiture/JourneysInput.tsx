@@ -49,19 +49,23 @@ export default function JourneysInput({ question }: Props) {
     [journeys]
   )
 
-  const averagePassengers = useMemo(
-    () =>
-      journeys.reduce(
-        (accumulator, currentValue) =>
-          accumulator +
-          currentValue.passengers *
-            currentValue.distance *
-            currentValue.reccurrence *
-            periods[currentValue.period],
-        0
-      ) / total || 0,
-    [journeys, total]
-  )
+  const averagePassengers = useMemo(() => {
+    if (!total) {
+      return 1
+    } else {
+      return (
+        journeys.reduce(
+          (accumulator, currentValue) =>
+            accumulator +
+            currentValue.passengers *
+              currentValue.distance *
+              currentValue.reccurrence *
+              periods[currentValue.period],
+          0
+        ) / total
+      )
+    }
+  }, [journeys, total])
 
   const totalForOnePassenger = useMemo(
     () => (journeys.length ? total / averagePassengers : 0),
