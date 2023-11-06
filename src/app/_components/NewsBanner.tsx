@@ -1,5 +1,3 @@
-'use client'
-
 import getPosts from '@/helpers/markdown/getPosts'
 import { currentLocale } from 'next-i18n-router'
 import Banner from './newsBanner/Banner'
