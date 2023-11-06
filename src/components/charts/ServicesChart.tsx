@@ -1,19 +1,14 @@
-import { useTempEngine } from '@/publicodes-state'
+import { useEngine } from '@/publicodes-state'
 import RavijenChart from './RavijenChart'
 
 export default function ServicesChart() {
-  const { getRuleObject } = useTempEngine()
+  const { getSubcategories } = useEngine()
 
-  const rootObject = getRuleObject('services sociétaux')
-
-  const serviceCategories = rootObject.rawNode.formule.somme
+  const serviceCategories = getSubcategories('services sociétaux')
 
   const serviceSubcategories = serviceCategories.reduce(
     (acc: { [key: string]: string[] }, category: string) => {
-      const categoryObject = getRuleObject(category)
-
-      acc[category] = categoryObject.rawNode.formule.somme
-
+      acc[category] = getSubcategories(category)
       return acc
     },
     {}

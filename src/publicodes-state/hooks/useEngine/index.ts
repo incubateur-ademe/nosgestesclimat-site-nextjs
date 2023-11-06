@@ -21,6 +21,9 @@ export default function useEngine() {
 
   const getCategory = (dottedName: string): string => dottedName.split(' . ')[0]
 
+  const getSubcategories = (dottedName: string): string[] =>
+    safeGetRule(dottedName)?.rawNode?.formule?.somme
+
   const checkIfValid = (dottedName: string): boolean =>
     safeGetRule(dottedName) ? true : false
 
@@ -29,6 +32,7 @@ export default function useEngine() {
     getValue,
     getNumericValue,
     getCategory,
+    getSubcategories,
     checkIfValid,
     updateSituation,
   }
