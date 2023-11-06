@@ -13,16 +13,23 @@ type Props = {
 }
 
 const buttonClassNames = {
-  inactive: 'border-grey-500 bg-gray-100 text-gray-400',
-  checked: 'border-primary-500 bg-primary-500 text-white',
+  inactive: 'border-grey-500 bg-gray-100 text-gray-400 cursor-default',
+  checked: 'border-primary-500 bg-primary-200 text-primary-500 border-2',
   unchecked:
     'border-primary-500 bg-grey-100 text-primary-500 hover:bg-primary-100',
 }
 const checkClassNames = {
   inactive: 'border-gray-300',
-  checked: 'border-white',
-  unchecked: 'border-primary',
+  checked: 'border-primary-500',
+  unchecked: 'border-grey-200',
 }
+
+const labelClassNames = {
+  inactive: 'text-gray-500',
+  checked: 'text-primary-700',
+  unchecked: 'text-gray-700',
+}
+
 export default function MosaicBooleanInput({
   question,
   title,
@@ -52,12 +59,13 @@ export default function MosaicBooleanInput({
         id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
       />
       <span
-        className={`${checkClassNames[status]} block h-5 w-5 items-center rounded-sm border-2 leading-4`}>
+        className={`${checkClassNames[status]} flex h-5 w-5 items-center items-center justify-center rounded-sm border-2 leading-4`}>
         {status === 'checked' ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.2 }}>
+            transition={{ duration: 0.2 }}
+            className={`font-mono text-2xl ${labelClassNames[status]}`}>
             ✓
           </motion.div>
         ) : (
@@ -66,7 +74,7 @@ export default function MosaicBooleanInput({
       </span>
       <div className="flex-1">
         {title && icons ? (
-          <span className="font-semibold md:text-xl">
+          <span className={`font-medium md:text-xl ${labelClassNames[status]}`}>
             {title}&nbsp;{icons}
           </span>
         ) : null}

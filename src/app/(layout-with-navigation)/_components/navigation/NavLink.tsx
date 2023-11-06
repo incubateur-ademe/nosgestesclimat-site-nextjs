@@ -23,7 +23,7 @@ export default function NavLink({
     <li className="w-full sm:min-w-[84px] md:w-auto">
       <ButtonLink
         className={`flex h-full !w-full flex-col gap-1 py-2 focus-within:z-10 lg:flex-row lg:py-4 ${
-          isActive ? ' !bg-primary-100' : 'font-normal'
+          isActive ? ' !bg-primary-100 !text-primary-500' : 'font-normal'
         } ${className}`}
         href={href}
         {...props}

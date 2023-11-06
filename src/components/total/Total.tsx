@@ -49,7 +49,7 @@ export default function Total({ toggleQuestionList }: Props) {
 
   return (
     <div className="md:mb-2">
-      <div className="bg-primary-700 relative mb-2 flex items-center gap-4 overflow-hidden rounded-lg px-4 py-2 text-white md:justify-center md:text-center ">
+      <div className="relative mb-2 flex items-center gap-4 overflow-hidden rounded-lg bg-primary-400 px-4 py-2 text-white md:justify-center md:text-center ">
         <Progress />
         <Planet />
         <Link
@@ -63,7 +63,7 @@ export default function Total({ toggleQuestionList }: Props) {
           </span>
           <span className="block text-sm md:text-base">
             <Trans i18nKey="Total.unit">
-              de CO<sub>2</sub>e / an
+              de CO<sub className="text-white">2</sub>e / an
             </Trans>
           </span>
         </Link>
