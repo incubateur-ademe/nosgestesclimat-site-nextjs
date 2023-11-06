@@ -5,7 +5,11 @@ import { NodeValue } from '../../types'
 /**
  * A hook that make available some basic functions on the engine (and the engine itself).
  *
- * It should only be used when it is needed to compare rules between them. If not, useRule should be used
+ * It should only be used when it is needed to compare rules between them.
+ * If not, useRule should be used.
+ *
+ * NOTE(@EmileRolley): could you be more a bit more specific about the usage of
+ * [useEngine] instead of [useRule]?
  */
 export default function useEngine() {
   const { engine, safeEvaluate, safeGetRule, updateSituation } =
@@ -22,7 +26,7 @@ export default function useEngine() {
   const getCategory = (dottedName: string): string => dottedName.split(' . ')[0]
 
   const checkIfValid = (dottedName: string): boolean =>
-    safeGetRule(dottedName) ? true : false
+    safeGetRule(dottedName) !== null
 
   return {
     engine,
