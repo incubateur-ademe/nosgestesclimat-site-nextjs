@@ -25,11 +25,11 @@ export default function RavijenChart({
 }: Props) {
   const { getNumericValue } = useEngine()
 
-  if (!categories) return null
-
   const worstFootprintCategoryValue = categories
     ?.map((category) => getNumericValue(category) ?? 0)
     ?.sort((a, b) => b - a)[0]
+
+  if (!categories) return null
 
   return (
     <>
