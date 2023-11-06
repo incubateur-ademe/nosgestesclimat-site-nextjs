@@ -1,9 +1,9 @@
-import { PropsWithChildren } from 'react'
+import { ChangeEvent, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
   value?: string | number
-  onChange?: any
+  onChange?: (e: ChangeEvent<HTMLSelectElement>) => void
   className?: string
 }
 
