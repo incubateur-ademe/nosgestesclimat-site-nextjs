@@ -2,6 +2,7 @@ import Trans from '@/components/translation/Trans'
 import { useLocale } from '@/hooks/useLocale'
 import { QuestionSize } from '@/types/values'
 import { HTMLAttributes } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   unit?: string
@@ -11,6 +12,7 @@ type Props = {
   size?: QuestionSize
   min?: number
   id?: string
+  className?: string
 }
 
 const sizeClassNames = {
@@ -24,6 +26,7 @@ export default function NumberInput({
   setValue,
   size = 'md',
   min = 0,
+  className,
   id,
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
@@ -31,8 +34,10 @@ export default function NumberInput({
 
   return (
     <div
-      className={`flex items-center justify-end gap-1 ${sizeClassNames[size]}`}
-    >
+      className={twMerge(
+        `flex items-center justify-end gap-1 ${sizeClassNames[size]}`,
+        className
+      )}>
       <input
         className={`rounded border border-primary bg-grey-100 p-2 text-right transition-colors focus:border-primary focus:ring-2 focus:ring-primary`}
         type="number"

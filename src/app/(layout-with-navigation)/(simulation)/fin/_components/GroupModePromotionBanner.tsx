@@ -36,7 +36,7 @@ export default async function GroupModePromotionBanner({
           </Trans>
         </p>
 
-        <ButtonLink color="secondary" href="/amis">
+        <ButtonLink color="secondary" href="/amis" className="bg-white">
           <Trans>Créer un groupe</Trans>
         </ButtonLink>
       </div>

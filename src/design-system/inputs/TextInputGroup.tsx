@@ -11,7 +11,7 @@ type Props = {
   className?: string
   placeholder?: string
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
-  value?: string
+  value?: string | number
   required?: boolean
 }
 
