@@ -29,7 +29,7 @@ export default function AddJourney({ journey, odd, setJourneys }: Props) {
         className={`border-x ${
           odd ? 'border-white' : 'border-primaryLight'
         } px-4 py-2 text-left text-sm`}>
-        {journey.distance} km
+        {journey.distance || 0} km
       </td>
       <td
         className={`border-x ${

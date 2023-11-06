@@ -18,7 +18,11 @@ export default function Voture({ question }: Props) {
           size="sm"
           onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
           className="mb-2">
-          {isOpen ? <Trans>Fermer</Trans> : <Trans>Entrer mes trajets</Trans>}
+          {isOpen ? (
+            <Trans>Fermer</Trans>
+          ) : (
+            <Trans>Détailler mes trajets 🚗</Trans>
+          )}
         </Button>
         {isOpen ? <JourneysInput question={question} /> : null}
       </div>

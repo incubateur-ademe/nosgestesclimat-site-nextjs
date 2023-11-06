@@ -10,7 +10,7 @@ type Props = {
 
 export default function JourneyItem({ setJourneys }: Props) {
   const [label, setLabel] = useState('')
-  const [distance, setDistance] = useState(10)
+  const [distance, setDistance] = useState('10')
   const [reccurrence, setReccurrence] = useState(1)
   const [period, setPeriod] = useState('week')
   const [passengers, setPassengers] = useState(1)
@@ -32,7 +32,7 @@ export default function JourneyItem({ setJourneys }: Props) {
             name="distance"
             type="number"
             value={distance}
-            onChange={(e) => setDistance(Number(e.currentTarget.value))}
+            onChange={(e) => setDistance(e.currentTarget.value)}
           />{' '}
           km
         </span>
@@ -77,7 +77,14 @@ export default function JourneyItem({ setJourneys }: Props) {
           onClick={() =>
             setJourneys((prevJourneys) => [
               ...prevJourneys,
-              { id: uuid(), label, distance, reccurrence, period, passengers },
+              {
+                id: uuid(),
+                label,
+                distance: Number(distance),
+                reccurrence,
+                period,
+                passengers,
+              },
             ])
           }>
           Ajouter
