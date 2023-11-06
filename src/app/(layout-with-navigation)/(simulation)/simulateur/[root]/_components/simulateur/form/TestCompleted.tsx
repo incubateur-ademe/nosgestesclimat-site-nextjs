@@ -7,7 +7,6 @@ import Star from './testCompleted/Star'
 
 export default function TestCompleted() {
   const { categories } = useForm()
-
   const { getValue } = useEngine()
 
   const detailsParamString = formatResultToDetailParam({ categories, getValue })
@@ -16,7 +15,7 @@ export default function TestCompleted() {
     <div className="mb-4 flex flex-col items-center rounded-lg bg-primaryLight p-4">
       <Star />
       <p className="mb-4 text-lg">
-        <Trans>Vous avez terminé le test 👏</Trans>
+        <Trans>Vous avez terminé le test</Trans>&nbsp;👏
       </p>
       <ButtonLink
         //TODO: there should be a helper for that
@@ -25,9 +24,11 @@ export default function TestCompleted() {
         }`}>
         <Trans>Voir mon résultat</Trans>
       </ButtonLink>
-      <p className="mb-0 mt-4 text-lg">ou</p>
+      <p className="mb-0 mt-4 text-lg">
+        <Trans>ou</Trans>
+      </p>
       <Link className="mb-4 text-lg" href="/profil">
-        Modifier mes réponses
+        <Trans>Modifier mes réponses</Trans>
       </Link>
     </div>
   )

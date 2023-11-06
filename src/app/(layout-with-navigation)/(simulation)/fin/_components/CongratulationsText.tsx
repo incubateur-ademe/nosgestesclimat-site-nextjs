@@ -1,14 +1,12 @@
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
-import Emoji from '@/design-system/utils/Emoji'
 
 export default function CongratulationsText() {
   return (
     <>
       <h1 className="mt-4">
         <span className="inline-block">
-          <Trans>Vous avez terminé le test&nbsp;!</Trans>&nbsp;
-          <Emoji className="inline-block">👏</Emoji>
+          <Trans>Vous avez terminé le test</Trans>&nbsp;👏
         </span>
       </h1>
 
