@@ -18,12 +18,19 @@ export default function JourneyItem({ setJourneys }: Props) {
   return (
     <tr className="">
       <td className="border-t border-primary py-4 pl-2 pr-2 text-sm md:pr-4">
-        <TextInputGroup
-          className="w-16 p-2 text-sm md:w-24"
-          name="label"
-          value={label}
-          onChange={(e) => setLabel(e.currentTarget.value)}
-        />
+        <select
+          value={period}
+          onChange={(e) => setLabel(e.currentTarget.value as Journey['label'])}>
+          <option value="holidays">Vacances</option>
+          <option value="work">Domicile-Travail</option>
+          <option value="family">Visite familiale</option>
+          <option value="school">Mobilité académique</option>
+          <option value="sport">Sport ou Loisir</option>
+          <option value="occasional">Sorties ponctuelles</option>
+          <option value="shopping">Courses</option>
+          <option value="medical">RDV médicaux</option>
+          <option value="weekends">Week-end</option>
+        </select>
       </td>
       <td className="border-t border-primary px-2 py-4 text-sm md:px-4">
         <span className="flex items-center gap-2">
