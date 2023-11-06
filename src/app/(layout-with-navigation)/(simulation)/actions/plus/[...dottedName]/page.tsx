@@ -4,7 +4,6 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Markdown from '@/design-system/utils/Markdown'
 import getPost from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { currentLocale } from 'next-i18n-router'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -24,9 +23,8 @@ type Props = {
 export default async function ActionPlus({
   params: { dottedName: dottedNameArray },
 }: Props) {
-  const locale = currentLocale()
   const action = await getPost(
-    `src/locales/actions-plus/${locale}/`,
+    `src/locales/actions-plus/fr/`,
     decodeURI(dottedNameArray.join(' . ').replaceAll('-', ' '))
   )
 

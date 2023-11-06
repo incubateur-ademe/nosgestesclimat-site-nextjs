@@ -1,7 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import getPosts from '@/helpers/markdown/getPosts'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { currentLocale } from 'next-i18n-router'
 import Image from 'next/image'
 import ActionPlusList from './_components/ActionPlusList'
 
@@ -14,8 +13,7 @@ export async function generateMetadata() {
 }
 
 export default async function ActionList() {
-  const locale = currentLocale()
-  const actions = await getPosts(`src/locales/actions-plus/${locale}/`)
+  const actions = await getPosts(`src/locales/actions-plus/fr/`)
 
   return (
     <div className="mt-8">

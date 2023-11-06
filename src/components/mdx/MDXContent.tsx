@@ -16,7 +16,7 @@ export default function MDXContent({ contentFr, contentEn }: Props) {
       fr: contentFr,
       en: contentEn || contentFr,
     },
-    locale: locale ?? '',
+    locale: locale ?? 'fr',
   })
 
   return <Content />
