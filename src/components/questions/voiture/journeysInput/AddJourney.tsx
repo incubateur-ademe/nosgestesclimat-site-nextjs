@@ -1,4 +1,5 @@
 import Button from '@/design-system/inputs/Button'
+import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { Journey } from '@/types/journey'
 import { Dispatch, SetStateAction, useState } from 'react'
@@ -18,7 +19,8 @@ export default function JourneyItem({ setJourneys }: Props) {
   return (
     <tr className="">
       <td className="border-t border-primary py-4 pl-2 pr-2 text-sm md:pr-4">
-        <select
+        <Select
+          className="p-2 text-sm"
           value={period}
           onChange={(e) => setLabel(e.currentTarget.value as Journey['label'])}>
           <option value="holidays">Vacances</option>
@@ -30,7 +32,7 @@ export default function JourneyItem({ setJourneys }: Props) {
           <option value="shopping">Courses</option>
           <option value="medical">RDV médicaux</option>
           <option value="weekends">Week-end</option>
-        </select>
+        </Select>
       </td>
       <td className="border-t border-primary px-2 py-4 text-sm md:px-4">
         <span className="flex items-center gap-2">
@@ -54,7 +56,8 @@ export default function JourneyItem({ setJourneys }: Props) {
             onChange={(e) => setReccurrence(Number(e.currentTarget.value))}
           />{' '}
           x
-          <select
+          <Select
+            className="p-2 text-sm"
             value={period}
             onChange={(e) =>
               setPeriod(e.currentTarget.value as Journey['period'])
@@ -63,12 +66,12 @@ export default function JourneyItem({ setJourneys }: Props) {
             <option value="week">semaine</option>
             <option value="month">mois</option>
             <option value="year">an</option>
-          </select>
+          </Select>
         </span>
       </td>
       <td className="border-t border-primary px-2 py-4 text-sm md:px-4">
-        <select
-          className="w-12"
+        <Select
+          className="p-2 text-sm"
           value={passengers}
           onChange={(e) => setPassengers(Number(e.currentTarget.value))}>
           <option value={1}>1</option>
@@ -76,7 +79,7 @@ export default function JourneyItem({ setJourneys }: Props) {
           <option value={3}>3</option>
           <option value={4}>4</option>
           <option value={5}>5</option>
-        </select>
+        </Select>
       </td>
       <td className="border-t border-primary py-4 pl-2 pr-2 text-right text-sm md:pl-4">
         <Button
