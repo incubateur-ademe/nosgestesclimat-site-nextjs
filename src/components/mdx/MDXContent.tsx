@@ -5,7 +5,7 @@ import { JSX } from 'react'
 
 type Props = {
   contentFr: (props: MDXProps) => JSX.Element
-  contentEn: (props: MDXProps) => JSX.Element
+  contentEn?: (props: MDXProps) => JSX.Element
 }
 
 export default function MDXContent({ contentFr, contentEn }: Props) {
@@ -14,9 +14,9 @@ export default function MDXContent({ contentFr, contentEn }: Props) {
   const Content = getLocalisedMDX({
     dictionnaries: {
       fr: contentFr,
-      en: contentEn,
+      en: contentEn || contentFr,
     },
-    locale: locale ?? '',
+    locale: locale ?? 'fr',
   })
 
   return <Content />

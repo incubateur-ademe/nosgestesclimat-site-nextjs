@@ -4,7 +4,7 @@ import CountryListItem from '@/components/misc/CountryListItem'
 import { sortSupportedRegions } from '@/helpers/localisation/sortSupportedRegions'
 import { useLocale } from '@/hooks/useLocale'
 import { SuppportedRegions } from '@/types/international'
-import { capitaliseString } from '@/utils/capitaliseString'
+import { capitalizeString } from '@/utils/capitalizeString'
 import { HTMLAttributes } from 'react'
 
 type Props = {
@@ -33,15 +33,14 @@ export default function RegionGrid({
   return (
     <ul
       className={`region-grid mx-auto mt-4 grid max-w-[760px] gap-4 p-0 ${className}`}
-      {...props}
-    >
+      {...props}>
       {Object.entries(sortedSupportedRegions).map(([code, params]) => {
         return (
           <li className="my-2 flex list-none justify-center" key={code}>
             <CountryListItem
               code={code}
               shouldShowButton={shouldShowButton}
-              label={capitaliseString(params[locale]?.nom as string) ?? ''}
+              label={capitalizeString(params[locale]?.nom as string) ?? ''}
               isSelected={code === selectedRegionCode}
               updateCurrentRegion={updateCurrentRegion}
             />

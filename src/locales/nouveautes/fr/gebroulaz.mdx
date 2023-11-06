@@ -1,11 +1,13 @@
 ---
 title: Gébroulaz
 date: 2022-06-08T16:30:50Z
+image: https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Glacier_de_Gébroulaz2.jpg/640px-Glacier_de_Gébroulaz2.jpg
 ---
 
 ![Glacier de Gébroulaz](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Glacier_de_Gébroulaz2.jpg/640px-Glacier_de_Gébroulaz2.jpg)
 
 > En bref :
+>
 > - Arrivée du mode sondage
 > - Une nouvelle métrique : le pétrole
 > - Améliorations du modèle de calcul : caravane, camping car, carburant voiture, numérique ...
@@ -13,64 +15,70 @@ date: 2022-06-08T16:30:50Z
 > - Des nouvelles ressources pédagogiques
 
 ## Arrivée du mode sondage ! 💾
-* **Qu'est ce que c'est ?**
-Le mode « sondage » dans Nos Gestes Climat permet de faire le test à plusieurs tout en sauvegardant les données de manière pérenne (empreinte carbone totale et par catégorie). Ce mode peut-être particulièrement intéressant dans le cadre d’un atelier ou d’un évènement, un [guide animateur](https://nosgestesclimat.fr/groupe/guide) est disponible pour vous aider !
+
+- **Qu'est ce que c'est ?**
+  Le mode « sondage » dans Nos Gestes Climat permet de faire le test à plusieurs tout en sauvegardant les données de manière pérenne (empreinte carbone totale et par catégorie). Ce mode peut-être particulièrement intéressant dans le cadre d’un atelier ou d’un évènement, un [guide animateur](https://nosgestesclimat.fr/groupe/guide) est disponible pour vous aider !
 
 ![image](https://user-images.githubusercontent.com/55186402/171632300-dba6d437-a9bd-44b3-afc3-874c1e7307d6.png)
 
-* **La personnalisation du sondage**
-L'arrivée de ce nouveau mode s'accompagne d'une fonctionnalité supplémentaire qui permet l’ajout de quelques questions pour recueillir des informations supplémentaires en introduction au test. A titre d'exemple, cela peut être utile pour organiser un sondage à l’échelle d’une organisation tout en permettant de filtrer les résultats par type de répondant (statut…), âge, lieu de vie (en veillant bien sûr à ne pas compromettre les standards de RGPD). Nous avons également travaillé sur la sécurité des sondages pour éviter l'introduction de failles dans notre base via cette feature. Vous trouverez toutes les infos dans notre [documentation](https://nosgestesclimat.fr/groupe/documentation-contexte) !
+- **La personnalisation du sondage**
+  L'arrivée de ce nouveau mode s'accompagne d'une fonctionnalité supplémentaire qui permet l’ajout de quelques questions pour recueillir des informations supplémentaires en introduction au test. A titre d'exemple, cela peut être utile pour organiser un sondage à l’échelle d’une organisation tout en permettant de filtrer les résultats par type de répondant (statut…), âge, lieu de vie (en veillant bien sûr à ne pas compromettre les standards de RGPD). Nous avons également travaillé sur la sécurité des sondages pour éviter l'introduction de failles dans notre base via cette feature. Vous trouverez toutes les infos dans notre [documentation](https://nosgestesclimat.fr/groupe/documentation-contexte) !
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/55186402/171632420-ada9f5c5-b1ab-45a5-b0f7-05d95df2b3bc.png">
 
-* **La page de visualisation du mode groupe est mieux filtrée**
-Dans la version précédente, tout utilisateur s'étant connecté au sondage apparaissait dans le graphe de visualisation. Certaines personnes comptaient alors pour 1 participant sans même avoir fait le test (avec un score correspondant aux valeurs par défaut) et les visites fantômes faussaient les résultats (notamment la valeur moyenne !). Ce n'est plus le cas dans cette version puisque les données affichées sont filtrées en excluant les utilisateurs ayant rempli moins de 10% des questions du test. Dans le cas où le sondage est personnalisé (cf ci-dessus), un filtre supplémentaire est appliqué pour n'afficher que les participants ayant complété les questions de contexte.
+- **La page de visualisation du mode groupe est mieux filtrée**
+  Dans la version précédente, tout utilisateur s'étant connecté au sondage apparaissait dans le graphe de visualisation. Certaines personnes comptaient alors pour 1 participant sans même avoir fait le test (avec un score correspondant aux valeurs par défaut) et les visites fantômes faussaient les résultats (notamment la valeur moyenne !). Ce n'est plus le cas dans cette version puisque les données affichées sont filtrées en excluant les utilisateurs ayant rempli moins de 10% des questions du test. Dans le cas où le sondage est personnalisé (cf ci-dessus), un filtre supplémentaire est appliqué pour n'afficher que les participants ayant complété les questions de contexte.
 
 ## Une nouvelle métrique : le pétrole ! 🛢
-Pour mieux visualiser la quantité de pétrole que nous consommons dans nos vies, nous avons décidé d’ajouter à Nos Gestes Climat le nombre de pleins correspondants, en complément du CO₂e. Pour le moment, cette métrique est rapportée seulement aux émissions directes liées au pétrole (déplacements, chauffage au fioul ...). 
+
+Pour mieux visualiser la quantité de pétrole que nous consommons dans nos vies, nous avons décidé d’ajouter à Nos Gestes Climat le nombre de pleins correspondants, en complément du CO₂e. Pour le moment, cette métrique est rapportée seulement aux émissions directes liées au pétrole (déplacements, chauffage au fioul ...).
 Le moyen à la fois de souligner notre dépendance à ces énergies fossiles mais aussi de mieux visualiser l’impact des actions que l’on peut mettre en place : le nombre de passages à la pompe parle davantage que les tonnes de CO₂e, alors swipez sur l'écran de fin pour voir votre impact pétrole !
 
 <img width="577" alt="image" src="https://user-images.githubusercontent.com/55186402/171646402-b2d769d1-0626-4a0d-8903-90b7727383e0.png">
 
 ## Améliorations du modèle de calcul 🧮
-* **Ajout de la caravane & camping-car**
-Il y a désormais plus de choix dans Nos Gestes Climat pour partir en vacances ! Caravanes et camping-cars ont trouvé leur place. Attention, pour la caravane, le nombre de kilomètres parcourus est bien à inclure dans les kilomètres parcourus en voiture. Plus d'infos sur la méthodologie dans l'issue #1317.
-![image](https://user-images.githubusercontent.com/1177762/160854704-aa5b1010-e8f9-43cb-966b-ba80e6a8f731.png)
 
-* **Changement ratio voyageurs**
-Avec l'arrivée de l'aide à la saisie des km dans [la dernière release](https://nosgestesclimat.fr/nouveaut%C3%A9s/las-n%C3%A9ous), une question subsistait quant au choix taux de remplissage du véhicule appliqué pour attribuer l'amortissement au différents utilisateurs de la voiture. Une réflexion a été menée pour finalement changer le ratio initialement choisi, les détails sont disponibles dans l'issue #1337 et dans la [note de la variable "ratio voyageurs".](https://github.com/datagir/nosgestesclimat/blob/8fe4b633502fe52dda7eccdc0e9db01b9f677e57/data/transport/transport%20.%20voiture.yaml#L53) 
+- **Ajout de la caravane & camping-car**
+  Il y a désormais plus de choix dans Nos Gestes Climat pour partir en vacances ! Caravanes et camping-cars ont trouvé leur place. Attention, pour la caravane, le nombre de kilomètres parcourus est bien à inclure dans les kilomètres parcourus en voiture. Plus d'infos sur la méthodologie dans l'issue #1317.
+  ![image](https://user-images.githubusercontent.com/1177762/160854704-aa5b1010-e8f9-43cb-966b-ba80e6a8f731.png)
 
-* **Plus de choix de carburants**
-Gazole (B7 ou B10), essence (E5 ou E10) ou essence E85 (biocarburants), on peut choisir ! Attention toutefois au message passé à l'utilisateur lorsqu'il sélectionne les biocarburants. L'impact carbone est plus faible certes, mais le facteur d'émission est particulièrement incertain : les enjeux liés à l'affectation des sols n'étant pas pris en compte notamment ! Une notification s'affiche donc pour expliquer cet enjeu ! Toutes les infos et discussions sont dans l'issue correspondante #1396 !
+- **Changement ratio voyageurs**
+  Avec l'arrivée de l'aide à la saisie des km dans [la dernière release](https://nosgestesclimat.fr/nouveaut%C3%A9s/las-n%C3%A9ous), une question subsistait quant au choix taux de remplissage du véhicule appliqué pour attribuer l'amortissement au différents utilisateurs de la voiture. Une réflexion a été menée pour finalement changer le ratio initialement choisi, les détails sont disponibles dans l'issue #1337 et dans la [note de la variable "ratio voyageurs".](https://github.com/datagir/nosgestesclimat/blob/8fe4b633502fe52dda7eccdc0e9db01b9f677e57/data/transport/transport%20.%20voiture.yaml#L53)
 
-* **Amélioration de la mosaïque numérique**
-De nouveaux objets ont été ajouté pour la mosaïque des objets numériques #1359 :
+- **Plus de choix de carburants**
+  Gazole (B7 ou B10), essence (E5 ou E10) ou essence E85 (biocarburants), on peut choisir ! Attention toutefois au message passé à l'utilisateur lorsqu'il sélectionne les biocarburants. L'impact carbone est plus faible certes, mais le facteur d'émission est particulièrement incertain : les enjeux liés à l'affectation des sols n'étant pas pris en compte notamment ! Une notification s'affiche donc pour expliquer cet enjeu ! Toutes les infos et discussions sont dans l'issue correspondante #1396 !
+
+- **Amélioration de la mosaïque numérique**
+  De nouveaux objets ont été ajouté pour la mosaïque des objets numériques #1359 :
+
   - 🎵 enceinte bluetooth
-  -  🔊 enceinte vocale
+  - 🔊 enceinte vocale
   - ⌚️ montre connectée
   - 🕹 console de salon
   - 🎮 console portable
- 
-* **Nouveaux modes chauffage**
-Il est maintenant possible de choisir la pompe à chaleur (#1360) ! Des réflexions sont en cours pour ajouter également les réseaux de chaleur.
+
+- **Nouveaux modes chauffage**
+  Il est maintenant possible de choisir la pompe à chaleur (#1360) ! Des réflexions sont en cours pour ajouter également les réseaux de chaleur.
 
 ## Des améliorations dans les actions 💪
-* **Une action "Acheter une voiture électrique" fait son apparition.** 
-Proposée dans le cas où vous êtes déjà propriétaire d'une voiture, cette action permet aux utilisateurs de se rendre compte de l'impact (positif ou négatif) de l'achat d'une voiture électrique neuve ou d'occasion selon les kilomètres parcourus à l'année.
-<img width="601" alt="image" src="https://user-images.githubusercontent.com/55186402/171641150-ec39e53c-2565-43ae-8379-1b97691c8f03.png">
 
-* **Ajout de mesaidesvelo.fr dans les actions**
-Ajout d'un lien vers [mesaidesvelo.fr](https://mesaidesvelo.fr/) dans les actions pertinentes. L'outil est développé par @mquandalle, qui est développeur sur mon-entreprise.fr, et mesaidesvelo.fr est déjà intégré sur le site officiel [https://www.1jeune1solution.gouv.fr/](https://www.1jeune1solution.gouv.fr/).
-<img width="789" alt="image" src="https://user-images.githubusercontent.com/55186402/171675160-9cd5c968-d2ba-473a-8ca1-8e316ec041f2.png">
+- **Une action "Acheter une voiture électrique" fait son apparition.**
+  Proposée dans le cas où vous êtes déjà propriétaire d'une voiture, cette action permet aux utilisateurs de se rendre compte de l'impact (positif ou négatif) de l'achat d'une voiture électrique neuve ou d'occasion selon les kilomètres parcourus à l'année.
+
+  <img width="601" alt="image" src="https://user-images.githubusercontent.com/55186402/171641150-ec39e53c-2565-43ae-8379-1b97691c8f03.png">
+
+- **Ajout de mesaidesvelo.fr dans les actions**
+  Ajout d'un lien vers [mesaidesvelo.fr](https://mesaidesvelo.fr/) dans les actions pertinentes. L'outil est développé par @mquandalle, qui est développeur sur mon-entreprise.fr, et mesaidesvelo.fr est déjà intégré sur le site officiel [https://www.1jeune1solution.gouv.fr/](https://www.1jeune1solution.gouv.fr/).
+  <img width="789" alt="image" src="https://user-images.githubusercontent.com/55186402/171675160-9cd5c968-d2ba-473a-8ca1-8e316ec041f2.png">
 
 ## Une nouvelle manière de contribuer 👥
 
-La contribution est facilité pour les contributeurs non-devs ! Les dépôts ont été configurés pour vous permettre de modifier ou ajouter de nouvelles fonctionnalités en temps réel via un environnement de développement directement dans votre navigateur. On vous explique tout dans le [tutoriel Gitpod](https://github.com/datagir/nosgestesclimat/blob/master/CONTRIBUTING.md#vous-voulez-contribuer-comme-un-pro) ! 
+La contribution est facilité pour les contributeurs non-devs ! Les dépôts ont été configurés pour vous permettre de modifier ou ajouter de nouvelles fonctionnalités en temps réel via un environnement de développement directement dans votre navigateur. On vous explique tout dans le [tutoriel Gitpod](https://github.com/datagir/nosgestesclimat/blob/master/CONTRIBUTING.md#vous-voulez-contribuer-comme-un-pro) !
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/55186402/171634543-25c6a773-849c-4931-9aef-a96df5506334.png">
 
 ## Des nouvelles ressources 📚
 
-Afin de vous aider lors de vos animations mais aussi pour vous permettre de questionner vos propres résultats, [des fiches guides sont en ligne](https://nosgestesclimat.fr/groupe/guide) ! 
+Afin de vous aider lors de vos animations mais aussi pour vous permettre de questionner vos propres résultats, [des fiches guides sont en ligne](https://nosgestesclimat.fr/groupe/guide) !
 
 **Full Changelog**: https://github.com/datagir/nosgestesclimat/compare/1.5.0...1.6.0
