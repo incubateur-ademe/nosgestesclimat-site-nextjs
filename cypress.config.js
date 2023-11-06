@@ -24,7 +24,6 @@ export default defineConfig({
     experimentalRunAllSpecs: true,
     specPattern: 'cypress/e2e/**/*.cy.js',
   },
-
   component: {
     devServer: {
       framework: 'next',
