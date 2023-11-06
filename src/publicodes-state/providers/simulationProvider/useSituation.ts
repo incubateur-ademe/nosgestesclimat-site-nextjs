@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { safeGetSituation } from '../helpers/safeGetSituation'
-import { Engine, RuleName, Situation } from '../types'
+import { safeGetSituation } from '../../helpers/safeGetSituation'
+import { Engine, RuleName, Situation } from '../../types'
 
 type Props = {
   engine: Engine

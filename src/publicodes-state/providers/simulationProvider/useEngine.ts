@@ -1,7 +1,7 @@
 import Engine from 'publicodes'
 import { useMemo } from 'react'
-import { safeEvaluateHelper } from '../helpers/safeEvaluateHelper'
-import { NGCEvaluatedNode, NGCRuleNode, RuleName, Rules } from '../types'
+import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
+import { NGCEvaluatedNode, NGCRuleNode, RuleName, Rules } from '../../types'
 
 /**
  * Initiate the engine based on the rules we pass

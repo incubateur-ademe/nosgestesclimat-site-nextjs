@@ -57,8 +57,8 @@ export default function useRules({ engine }: { engine: Engine }): {
   // FIXME(@EmileRolley): refactoring not tested yet
   const everyMosaicChildWhoIsReallyInMosaic = useMemo<RuleName[]>(
     () =>
-      everyQuestions.filter((question: RuleName) =>
-        everyMosaicEntries.find(([mosaicName, mosaicRule]) => {
+      everyQuestions.filter((question: RuleName) => {
+        return everyMosaicEntries.find(([mosaicName, mosaicRule]) => {
           const mosaicNode = mosaicRule.rawNode?.mosaique
           if (!mosaicNode) {
             return false
@@ -70,7 +70,7 @@ export default function useRules({ engine }: { engine: Engine }): {
             question.includes(key)
           )
         })
-      ),
+      }),
     [everyQuestions, everyMosaicEntries]
   )
 

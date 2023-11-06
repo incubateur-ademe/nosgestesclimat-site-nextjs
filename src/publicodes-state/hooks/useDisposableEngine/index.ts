@@ -2,7 +2,7 @@ import Engine from 'publicodes'
 import { useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
 import { safeGetSituation } from '../../helpers/safeGetSituation'
-import { Situation } from '../../types'
+import { NGCRules, Situation } from '../../types'
 
 type Props = {
   rules?: NGCRules

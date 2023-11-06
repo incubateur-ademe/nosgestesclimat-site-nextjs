@@ -1,13 +1,13 @@
 'use client'
 
 import { useMemo } from 'react'
-import getType from '../helpers/getType'
+import getType from '../../helpers/getType'
 import {
   NGCEvaluatedNode,
   NGCQuestionType,
   NGCRuleNode,
   RuleName,
-} from '../types'
+} from '../../types'
 
 type Props = {
   dottedName: RuleName

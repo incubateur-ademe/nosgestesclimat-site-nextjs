@@ -1,8 +1,8 @@
 'use client'
 
 import { useMemo } from 'react'
-import getIsMissing from '../helpers/getIsMissing'
-import { RuleName, Situation } from '../types'
+import getIsMissing from '../../helpers/getIsMissing'
+import { RuleName, Situation } from '../../types'
 
 type Props = {
   dottedName: RuleName

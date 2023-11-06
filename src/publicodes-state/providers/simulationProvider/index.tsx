@@ -2,7 +2,7 @@
 
 import { PropsWithChildren } from 'react'
 
-import { RuleName, Rules, Situation } from '../types'
+import { RuleName, Rules, Situation } from '../../types'
 import SimulationContext from './context'
 import useCategories from './useCategories'
 import useEngine from './useEngine'
@@ -107,8 +107,7 @@ export default function SimulationProvider({
         everyMosaicChildWhoIsReallyInMosaic,
         categories,
         subcategories,
-      }}
-    >
+      }}>
       {initialized ? children : null}
     </SimulationContext.Provider>
   )

@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo } from 'react'
-import { NGCEvaluatedNode, RuleName, Situation } from '../types'
+import { NGCEvaluatedNode, RuleName, Situation } from '../../types'
 
 type Props = {
   dottedName: RuleName

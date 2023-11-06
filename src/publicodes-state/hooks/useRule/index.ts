@@ -2,8 +2,8 @@
 
 import { captureException } from '@sentry/react'
 import { useContext, useMemo } from 'react'
-import simulationContext from '../simulationProvider/context'
-import { NGCEvaluatedNode, NGCRuleNode, RuleName } from '../types'
+import simulationContext from '../../providers/simulationProvider/context'
+import { NGCEvaluatedNode, NGCRuleNode, RuleName } from '../../types'
 import useChoices from './useChoices'
 import useContent from './useContent'
 import useMissing from './useMissing'
