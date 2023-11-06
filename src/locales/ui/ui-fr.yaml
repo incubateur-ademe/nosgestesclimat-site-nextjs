@@ -141,10 +141,8 @@ entries:
   publicodes.SimulationMissing.personnas: Vous pouvez aussi continuer avec un <2>profil type</2>.
   publicodes.SimulationMissing.simulationManquante: Pour débloquer ce parcours, vous devez d'abord terminer le test.
   publicodes.fin.IframeDataShareModal.partageResultats: Partage de vos résultats à {{parent}} ?
-  publicodes.northstar.title: <0>Petite question entre nous...</0>
+  publicodes.northstar.title: Petite question entre nous...
   publicodes.northstar.action: Nos Gestes Climat vous donne envie d'agir pour réduire votre empreinte carbone ?
-  publicodes.northstar.learned: <0>Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?</0>
-  publicodes.northstar.thankyou: "{t('Merci pour votre retour\\u202f!')}"
   Pas vraiment, envoyer cette réponse: Pas vraiment, envoyer cette réponse
   Oui plutôt, envoyer cette réponse: Oui plutôt, envoyer cette réponse
   Moyennement, envoyer cette réponse: Moyennement, envoyer cette réponse
@@ -334,7 +332,6 @@ entries:
   Vous utilisez la version: Vous utilisez la version
   Terminer: Terminer
   SondagesBlock.description: Les <1>sondages</1> et <3>conférences</3> vous permettent de comparer votre empreinte en direct ou en groupes de plus de 20 personnes
-  '{displayValue}': '{displayValue}'
   Ambassadeurs: Ambassadeurs
   IframeDataShareModal.text2: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <1>pas</1> le détail question par question (vos km en voiture, les m² de votre logement...).
   IframeDataShareModal.text3: Nosgestesclimat.fr n'est pas affilié au site {{parent}}.
@@ -350,7 +347,6 @@ entries:
   Mon empreinte carbone: Mon empreinte carbone
   Total.unit: de CO<1>2</1>e / an
   Vous utilisez actuellement le persona: Vous utilisez actuellement le persona
-  '{periods[journey.period]}': '{periods[journey.period]}'
   📅 Répondre sur les 3 dernières années: 📅 Répondre sur les 3 dernières années
   Comparez vos résultats <2>avec vos proches</2>: Comparez vos résultats <2>avec vos proches</2>
   Créer un groupe: Créer un groupe
@@ -380,3 +376,14 @@ entries:
   Vous avez terminé le test: Vous avez terminé le test
   Modifier mes réponses: Modifier mes réponses
   ou: ou
+  Comment agir ?: Comment agir ?
+  publicodes.northstar.learned: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?
+  Ajouter: Ajouter
+  an: an
+  avec en moyenne: avec en moyenne
+  jour: jour
+  pour une personne: pour une personne
+  semaine: semaine
+  Soit: Soit
+  voyageurs: voyageurs
+  'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !'

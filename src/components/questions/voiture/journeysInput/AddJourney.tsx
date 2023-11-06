@@ -1,8 +1,10 @@
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { Journey } from '@/types/journey'
 import { Dispatch, SetStateAction, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
 
 type Props = {
@@ -10,6 +12,7 @@ type Props = {
 }
 
 export default function JourneyItem({ setJourneys }: Props) {
+  const { t } = useTranslation()
   const [label, setLabel] = useState('')
   const [distance, setDistance] = useState('10')
   const [reccurrence, setReccurrence] = useState(1)
@@ -62,11 +65,11 @@ export default function JourneyItem({ setJourneys }: Props) {
             onChange={(e) =>
               setPeriod(e.currentTarget.value as Journey['period'])
             }>
-            <option value="day">jour</option>
-            <option value="week">semaine</option>
-            <option value="month">mois</option>
-            <option value="year">an</option>
-          </Select>
+            <option value="day">{t('jour')}</option>
+            <option value="week">{t('semaine')}</option>
+            <option value="month">{t('mois')}</option>
+            <option value="year">{t('an')}</option>
+          </select>
         </span>
       </td>
       <td className="border-t border-primary px-2 py-4 text-sm md:px-4">
@@ -97,7 +100,7 @@ export default function JourneyItem({ setJourneys }: Props) {
               },
             ])
           }>
-          Ajouter
+          <Trans>Ajouter</Trans>
         </Button>
       </td>
     </tr>

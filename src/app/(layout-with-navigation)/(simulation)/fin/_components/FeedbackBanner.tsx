@@ -11,6 +11,7 @@ import { captureException } from '@sentry/react'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { ReactNode, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -20,12 +21,10 @@ type Props = {
 }
 
 export default function FeedbackBanner({ text, type, className }: Props) {
+  const { t } = useTranslation()
   const { user, updateNorthStarRatings } = useUser()
-
   const { getNumericValue } = useEngine()
-
   const { categories, progression } = useForm()
-
   const hasJustAnswered = useRef(false)
 
   const {
@@ -66,7 +65,7 @@ export default function FeedbackBanner({ text, type, className }: Props) {
     return (
       <Card
         className={`${cardClassName} h-[200px] flex-row items-center justify-center gap-3`}>
-        <Trans i18nKey="northstar.thankyou">Merci pour votre retour !</Trans>
+        {t('Merci pour votre retour\u202f!')}
         <Emoji className="text-2xl">😊</Emoji>
       </Card>
     )

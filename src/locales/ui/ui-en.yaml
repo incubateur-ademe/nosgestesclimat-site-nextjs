@@ -238,18 +238,16 @@ entries:
   Reprendre mon test: Resume my test
   model.questions: Discover the <2>list of questions available in the template</2>.
   model.questions.lock: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
-  publicodes.northstar.title: <0>Small question between us...</0>
-  publicodes.northstar.title.lock: <0>Petite question entre nous...</0>
+  publicodes.northstar.title: Just a quick question between us...
+  publicodes.northstar.title.lock: Petite question entre nous...
   Oui plutôt, envoyer cette réponse: Yes, send this answer instead
-  publicodes.northstar.thankyou: "{t('Thanks for coming back!')}"
-  publicodes.northstar.thankyou.lock: "{t('Merci pour votre retour\\u202f!')}"
   Tout à fait, envoyer cette réponse: Absolutely, send this answer
   publicodes.northstar.action: Does Nos Gestes Climat make you want to take action to reduce your carbon footprint?
   publicodes.northstar.action.lock: Nos Gestes Climat vous donne envie d'agir pour réduire votre empreinte carbone ?
   Moyennement, envoyer cette réponse: Moderately, send this answer
   Pas vraiment, envoyer cette réponse: Not really, send this answer
-  publicodes.northstar.learned: <0>Have you learned anything from Nos Gestes Climat?</0>
-  publicodes.northstar.learned.lock: <0>Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?</0>
+  publicodes.northstar.learned: Have you learned anything from Nos Gestes Climat?
+  publicodes.northstar.learned.lock: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?
   Retour à la liste des articles: Back to article list
   Oups, nous n'avons pas d'article correspondant: Oops, we don't have a matching article
   Vous allez recevoir un email de notre part sous peu.: You will receive an email from us shortly.
@@ -460,3 +458,13 @@ entries:
   Vous avez terminé le test\u202f!: You've completed the test!
   Modifier mes réponses: Modify my answers
   ou: or
+  Comment agir ?: What can you do?
+  Ajouter: Add
+  avec en moyenne: with an average
+  pour une personne: for one person
+  jour: day
+  semaine: week
+  Soit: That is
+  voyageurs: travellers
+  an: an
+  'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': "Of course, some things are shared (in my home with my family, the car with my carpoolers): this will be taken into account when calculating your carbon footprint, so don't worry!"

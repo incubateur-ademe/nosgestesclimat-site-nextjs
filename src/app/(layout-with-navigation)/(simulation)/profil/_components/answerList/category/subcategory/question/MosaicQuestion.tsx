@@ -2,14 +2,14 @@
 
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
-import Trans from '@/components/translation/Trans'
 import { useRule } from '@/publicodes-state'
+import { useTranslation } from 'react-i18next'
 
 type Props = { question: string }
 
 export default function MosaicQuestion({ question }: Props) {
+  const { t } = useTranslation()
   const { value, displayValue, unit, type, parent } = useRule(question)
-
   const { title, icons } = useRule(parent)
 
   return (
@@ -22,9 +22,7 @@ export default function MosaicQuestion({ question }: Props) {
           <NumberValue displayValue={displayValue} unit={unit} />
         )}
         {type === 'boolean' && (
-          <span className="capitalize">
-            <Trans>{displayValue}</Trans>
-          </span>
+          <span className="capitalize">{t(displayValue.toString())}</span>
         )}
         {type === 'choices' && (
           <ChoicesValue value={value} question={question} />
