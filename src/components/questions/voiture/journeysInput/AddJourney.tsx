@@ -2,7 +2,7 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
-import { Journey } from '@/types/journey'
+import { Journey, JourneyPeriod } from '@/types/journey'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
@@ -16,7 +16,7 @@ export default function JourneyItem({ setJourneys }: Props) {
   const [label, setLabel] = useState('')
   const [distance, setDistance] = useState('10')
   const [reccurrence, setReccurrence] = useState(1)
-  const [period, setPeriod] = useState('week')
+  const [period, setPeriod] = useState<JourneyPeriod>('week')
   const [passengers, setPassengers] = useState(1)
 
   return (
