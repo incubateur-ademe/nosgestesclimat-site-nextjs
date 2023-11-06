@@ -1,4 +1,4 @@
-import { useIsClient } from '@/app/_components/IsClientCtxProvider'
+import { useIsClient } from '@/hooks/useIsClient'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
