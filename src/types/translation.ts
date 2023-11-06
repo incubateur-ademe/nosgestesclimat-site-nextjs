@@ -24,7 +24,6 @@ export type LangInfos = {
   abrv: string
   abrvLocale: string
   faqContent: string // The FAQ content in YAML
-  releases: Release[] // The releases content in JSON
   uiTrad: any // The UI translation in YAML
 }
 
