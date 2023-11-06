@@ -1,4 +1,3 @@
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
@@ -27,9 +26,9 @@ export default function TestCompleted() {
       <p className="mb-0 mt-4 text-lg">
         <Trans>ou</Trans>
       </p>
-      <Link className="mb-4 text-lg" href="/profil">
+      <ButtonLink color="text" href="/profil">
         <Trans>Modifier mes réponses</Trans>
-      </Link>
+      </ButtonLink>
     </div>
   )
 }
