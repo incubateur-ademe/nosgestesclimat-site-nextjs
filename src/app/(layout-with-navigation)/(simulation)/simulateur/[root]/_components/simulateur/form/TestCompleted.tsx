@@ -13,7 +13,7 @@ export default function TestCompleted() {
   const detailsParamString = formatResultToDetailParam({ categories, getValue })
 
   return (
-    <div className="mb-4 flex flex-col items-center rounded-lg bg-primaryLight p-4">
+    <div className="mb-4 flex flex-col items-center rounded-lg bg-grey-100 p-4">
       <Star />
       <p className="mb-4 text-lg">
         <Trans>Vous avez terminé le test 👏</Trans>

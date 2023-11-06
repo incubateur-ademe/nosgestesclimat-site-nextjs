@@ -27,7 +27,7 @@ export default function Action({ action }: Props) {
       </div>
       <div className="flex justify-center">
         <div
-          className={`inline-block rounded border-2 border-solid border-primary bg-primary pl-2 pr-[2px] text-white `}>
+          className={`border-primary-500 bg-primary-500 inline-block rounded border-2 border-solid pl-2 pr-[2px] text-white `}>
           <span>
             -&nbsp;
             <strong>{formattedValue}</strong>&nbsp;
@@ -36,7 +36,7 @@ export default function Action({ action }: Props) {
             </span>
           </span>
           {total && relativeValue > 0 && (
-            <span className="ml-2 rounded-e-sm bg-primaryLight px-1 text-primaryDark">
+            <span className="text-primary-700 bg-primary-100 ml-2 rounded-e-sm px-1">
               {relativeValue}%
             </span>
           )}

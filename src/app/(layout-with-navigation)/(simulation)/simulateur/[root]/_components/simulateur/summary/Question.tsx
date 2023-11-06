@@ -14,7 +14,7 @@ type Props = {
 const statusClassNames = {
   missing: 'bg-gray-100 text-gray-500',
   current: 'border-2 border-primary',
-  default: 'bg-primaryLight',
+  default: 'bg-primary-100',
 }
 export default function Question({ question, toggleQuestionList }: Props) {
   const { label, isMissing, value, displayValue, unit, type, color } =
@@ -55,7 +55,7 @@ export default function Question({ question, toggleQuestionList }: Props) {
         {displayValue !== 'mosaic' ? (
           <div
             className={`rounded-lg bg-white px-4 py-2 ${
-              isMissing ? 'text-gray-300' : 'text-primaryDark'
+              isMissing ? 'text-gray-300' : 'text-primary-700'
             } first-letter:uppercase`}>
             {type === 'number' && (
               <NumberValue displayValue={displayValue} unit={unit} />

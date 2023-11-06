@@ -16,7 +16,7 @@ export default function PostListItem({ post }: { post: BlogPost }) {
       <Card
         tag={Link}
         href={`/blog/${post.slug}`}
-        className="h-full w-full !p-10 text-primaryDark no-underline">
+        className="text-primary-700 h-full w-full !p-10 no-underline">
         <Image
           src={post.image || ''}
           width="100"

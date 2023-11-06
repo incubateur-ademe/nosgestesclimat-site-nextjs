@@ -60,7 +60,7 @@ export default function Navigation() {
             href="/simulateur/bilan"
             className="justify-end !p-0 lg:justify-start lg:!p-4">
             <ProgressCircle className="lg:mr-4" />
-            <span className="text-base text-primaryDark md:text-lg">
+            <span className="text-primary-700 text-base md:text-lg">
               <Trans>Le test</Trans>
             </span>
           </NavLink>
@@ -70,7 +70,7 @@ export default function Navigation() {
             className="justify-end !p-0 lg:justify-start lg:!p-4">
             <ActionsInteractiveIcon className="w-12 lg:mr-4" />
 
-            <span className="text-base text-primaryDark md:text-lg">
+            <span className="text-primary-700 text-base md:text-lg">
               <Trans>Agir</Trans>
             </span>
           </NavLink>
@@ -87,11 +87,11 @@ export default function Navigation() {
                   height="25"
                 />
               </div>
-              <span className="text-base text-primaryDark md:text-lg">
+              <span className="text-primary-700 text-base md:text-lg">
                 {!persona ? (
                   t('Profil')
                 ) : (
-                  <span className="rounded-md bg-primary px-4 py-2 text-white">
+                  <span className="bg-primary-500 rounded-md px-4 py-2 text-white">
                     {capitaliseString(persona.split(' . ')[1])}
                   </span>
                 )}
@@ -110,7 +110,7 @@ export default function Navigation() {
                 height="25"
               />
 
-              <span className="text-base text-primaryDark md:text-lg">
+              <span className="text-primary-700 text-base md:text-lg">
                 <Trans>Amis</Trans>
               </span>
             </NavLink>

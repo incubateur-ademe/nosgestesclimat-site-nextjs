@@ -64,7 +64,7 @@ export default async function NewsPage({
             return (
               <li
                 className={`m-0 list-inside list-none p-0 ${
-                  isActive ? 'bg-primary' : ''
+                  isActive ? 'bg-primary-500' : ''
                 }`}
                 key={name}>
                 <InlineLink

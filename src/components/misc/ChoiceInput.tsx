@@ -24,13 +24,12 @@ export default function ChoiceInput({
     <>
       <div className="mb-2 flex items-center gap-2">
         <label
-          className={`flex cursor-pointer items-center gap-2 rounded border border-primary px-4 py-2 text-right md:text-xl ${
+          className={`border-primary-500 flex cursor-pointer items-center gap-2 rounded border px-4 py-2 text-right md:text-xl ${
             active
-              ? 'bg-primary text-white'
-              : 'bg-grey-100 text-primary hover:bg-primaryLight'
+              ? 'bg-primary-500 text-white'
+              : 'hover:bg-primary-100 bg-grey-100 text-primary'
           } transition-colors`}
-          data-cypress-id={`${props['data-cypress-id']}-label`}
-        >
+          data-cypress-id={`${props['data-cypress-id']}-label`}>
           <input
             type="radio"
             className="hidden"

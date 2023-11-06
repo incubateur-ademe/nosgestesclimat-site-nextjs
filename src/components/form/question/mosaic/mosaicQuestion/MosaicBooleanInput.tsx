@@ -14,8 +14,9 @@ type Props = {
 
 const buttonClassNames = {
   inactive: 'border-grey-500 bg-gray-100 text-gray-400',
-  checked: 'border-primary bg-primary text-white',
-  unchecked: 'border-primary bg-grey-100 text-primary hover:bg-primaryLight',
+  checked: 'border-primary-500 bg-primary-500 text-white',
+  unchecked:
+    'border-primary-500 bg-grey-100 text-primary-500 hover:bg-primary-100',
 }
 const checkClassNames = {
   inactive: 'border-gray-300',
@@ -39,8 +40,7 @@ export default function MosaicBooleanInput({
     : 'unchecked'
   return (
     <label
-      className={`relative flex cursor-pointer items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
-    >
+      className={`relative flex cursor-pointer items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}>
       <input
         type="checkbox"
         disabled={isInactive}
@@ -52,14 +52,12 @@ export default function MosaicBooleanInput({
         id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
       />
       <span
-        className={`${checkClassNames[status]} block h-5 w-5 items-center rounded-sm border-2 leading-4`}
-      >
+        className={`${checkClassNames[status]} block h-5 w-5 items-center rounded-sm border-2 leading-4`}>
         {status === 'checked' ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.2 }}
-          >
+            transition={{ duration: 0.2 }}>
             ✓
           </motion.div>
         ) : (

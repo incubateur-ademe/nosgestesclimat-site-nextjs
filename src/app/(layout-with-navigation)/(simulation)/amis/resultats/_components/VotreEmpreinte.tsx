@@ -73,7 +73,7 @@ export default function VotreEmpreinte({
                   )}
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="rounded-[5px] border-[1px] border-solid border-primaryBorder bg-primaryLight p-1 text-sm text-primary">
+                  <div className="bg-primary-100 text-primary-500 border-primary-800 rounded-[5px] border-[1px] border-solid p-1 text-sm">
                     <strong>
                       {formatValue(categoryObject.value / 1000, {
                         precision: 1,

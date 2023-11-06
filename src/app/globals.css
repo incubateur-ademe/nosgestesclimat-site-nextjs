@@ -82,7 +82,7 @@ body {
 }
 
 a {
-  @apply inline-block text-primary underline transition-colors hover:text-primaryDark;
+  @apply inline-block text-primary-500 underline transition-colors hover:text-primary-400;
 }
 
 img {
@@ -222,7 +222,7 @@ blockquote {
   @apply rounded-md;
   padding: 1rem 1rem 0.25rem;
   margin: 1rem 0;
-  @apply text-primaryDark;
+  @apply text-primary-700;
 }
 .news-page ul {
   padding-left: 1rem;
@@ -237,10 +237,10 @@ blockquote {
 	Gamecard
 */
 .game-card-1 {
-  @apply fill-primary;
+  @apply fill-primary-500;
   fill-opacity: 0.996078;
   fill-rule: 'evenodd';
-  @apply stroke-primaryDark;
+  @apply stroke-primary-700;
   stroke-width: 7.2062;
   stroke-linecap: 'round';
   stroke-linejoin: 'round';
@@ -250,10 +250,10 @@ blockquote {
 }
 
 .game-card-2 {
-  @apply fill-primary;
+  @apply fill-primary-500;
   fill-opacity: 0.996078;
   fill-rule: 'evenodd';
-  @apply stroke-primaryDark;
+  @apply stroke-primary-500;
   stroke-width: 7.2062;
   stroke-linecap: 'round';
   stroke-linejoin: 'round';
@@ -266,7 +266,7 @@ blockquote {
   fill: white;
   fill-opacity: 0.997404;
   fill-rule: 'evenodd';
-  @apply stroke-primaryDark;
+  @apply stroke-primary-700;
   stroke-width: 10.1932;
   stroke-linecap: 'round';
   stroke-linejoin: 'round';

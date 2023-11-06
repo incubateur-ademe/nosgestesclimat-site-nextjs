@@ -55,7 +55,7 @@ export default function Filter({ dottedName, countByCategory }: Props) {
           })
         }}>
         {rule.title}{' '}
-        <span className="ml-2 inline-block w-4 rounded-full bg-white text-primaryDark">
+        <span className="text-primary-700 ml-2 inline-block w-4 rounded-full bg-white">
           {countByCategory[dottedName] || 0}
         </span>
       </button>

@@ -15,10 +15,10 @@ type Props = {
 
 export const colorClassNames = {
   primary:
-    'transition-colors !text-white bg-primary shadow-sm hover:text-white hover:bg-primaryDark',
+    'transition-colors !text-white bg-primary-500 shadow-sm hover:text-white hover:bg-primary-700',
   secondary:
-    'border-solid border-primary border-2 text-primary bg-transparent shadow-sm hover:bg-primaryLight hover:border-primaryDark',
-  text: 'text-primary bg-transparent shadow-none hover:bg-primaryLight hover:text-primary hover:border-primary',
+    'border-solid border-primary-500 border-2 text-primary-500 bg-transparent shadow-sm hover:bg-primary-100 hover:border-primary-700',
+  text: 'text-primary-500 bg-transparent shadow-none hover:bg-primary-100 hover:text-primary-500 hover:border-primary',
 }
 
 export const sizeClassNames = {
@@ -29,7 +29,7 @@ export const sizeClassNames = {
 }
 
 export const baseClassNames =
-  'inline-flex items-center whitespace-nowrap rounded-md font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-3 aria-disabled:opacity-50 transition-color '
+  'inline-flex items-center whitespace-nowrap rounded-md font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary-700 focus:ring-offset-3 aria-disabled:opacity-50 transition-color '
 
 export default function Button({
   onClick,

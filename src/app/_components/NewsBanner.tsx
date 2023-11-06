@@ -69,7 +69,7 @@ export default function NewsBanner() {
   return (
     <Card className="relative min-w-[20rem] p-8 text-left">
       <h2 className="m-0 flex items-center">
-        <span className="mr-2 inline-block h-3 w-3 rounded-2xl bg-primary"></span>{' '}
+        <span className="bg-primary-500 mr-2 inline-block h-3 w-3 rounded-2xl"></span>{' '}
         <Trans>Nouveautés</Trans>
       </h2>
       <div>
@@ -84,9 +84,8 @@ export default function NewsBanner() {
       </div>
       <button
         onClick={handleUpdateViewedRelease}
-        className="absolute right-2 top-2 h-8 w-8 border-none bg-transparent p-0 text-lg text-primaryDark"
-        title={t('Fermer la notification de nouveautés')}
-      >
+        className="text-primary-700 absolute right-2 top-2 h-8 w-8 border-none bg-transparent p-0 text-lg"
+        title={t('Fermer la notification de nouveautés')}>
         &times;
       </button>
     </Card>

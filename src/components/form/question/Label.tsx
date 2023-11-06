@@ -40,8 +40,7 @@ export default function Label({
       <label
         className={`mb-3 block ${sizeClassNames[size]} font-semibold`}
         aria-label={label}
-        htmlFor={htmlFor}
-      >
+        htmlFor={htmlFor}>
         {label}{' '}
         {description ? (
           <button
@@ -49,10 +48,9 @@ export default function Label({
               trackEvent(getMatomoEventClickHelp(question))
               setIsOpen((previsOpen) => !previsOpen)
             }}
-            className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary text-base font-bold text-white`}
+            className={`inline-block ${buttonSizeClassNames[size]} bg-primary-500 rounded-full border-none text-base font-bold text-white`}
             title={t("Voir plus d'informations")}
-            id={QUESTION_DESCRIPTION_BUTTON_ID}
-          >
+            id={QUESTION_DESCRIPTION_BUTTON_ID}>
             <code>i</code>
           </button>
         ) : null}
@@ -62,14 +60,12 @@ export default function Label({
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2 }}
-          className="mb-3 origin-top"
-        >
+          className="mb-3 origin-top">
           <Markdown>{description}</Markdown>{' '}
           <button
             onClick={() => setIsOpen(false)}
-            className="block text-primary underline"
-            title={t('Fermer')}
-          >
+            className="text-primary-500 block underline"
+            title={t('Fermer')}>
             <Trans>Fermer</Trans>
           </button>
         </motion.div>

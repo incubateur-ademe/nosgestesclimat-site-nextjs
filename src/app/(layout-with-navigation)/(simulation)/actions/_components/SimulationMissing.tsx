@@ -11,7 +11,7 @@ type Props = {
 export default function SimulationMissing({ progression }: Props) {
   return (
     <div className="mb-8">
-      <Card className="!bg-primaryLight">
+      <Card className="!bg-primary-100">
         <h2>
           <Trans>Calcul d'empreinte carbone manquant</Trans>
         </h2>
