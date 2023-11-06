@@ -6,6 +6,7 @@ import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useTempEngine } from '@/publicodes-state'
 import { NGCRule, NGCRules } from '@/publicodes-state/types'
 import { Post } from '@/types/posts'
+import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 
 type Props = {
   actions: Post[]
@@ -29,10 +30,7 @@ export default function ActionPlusList({ actions }: Props) {
           <Card
             className="h-[12rem] flex-col items-center justify-center no-underline"
             tag={Link}
-            href={
-              '/actions/plus/' +
-              rule.dottedName.replaceAll(' . ', '/').replaceAll(' ', '-')
-            }>
+            href={'/actions/plus/' + encodeRuleName(rule.dottedName)}>
             <div className="mb-8 text-2xl">{rule.icônes || '🎯'}</div>
             <div className="text-center">
               {getRuleTitle(
