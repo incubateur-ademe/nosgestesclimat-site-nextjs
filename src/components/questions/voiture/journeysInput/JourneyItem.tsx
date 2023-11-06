@@ -35,7 +35,7 @@ export default function AddJourney({ journey, odd, setJourneys }: Props) {
         className={`border-x ${
           odd ? 'border-white' : 'border-primaryLight'
         } px-4 py-2 text-left text-sm`}>
-        <Trans>{labels[journey.label]}</Trans>
+        {t(labels[journey.label])}
       </td>
       <td
         className={`border-x ${

@@ -26,15 +26,15 @@ export default function JourneyItem({ setJourneys }: Props) {
           className="p-2 text-sm"
           value={period}
           onChange={(e) => setLabel(e.currentTarget.value as Journey['label'])}>
-          <option value="holidays">Vacances</option>
-          <option value="work">Domicile-Travail</option>
-          <option value="family">Visite familiale</option>
-          <option value="school">Mobilité académique</option>
-          <option value="sport">Sport ou Loisir</option>
-          <option value="occasional">Sorties ponctuelles</option>
-          <option value="shopping">Courses</option>
-          <option value="medical">RDV médicaux</option>
-          <option value="weekends">Week-end</option>
+          <option value="holidays">{t('Vacances')}</option>
+          <option value="work">{t('Domicile-Travail')}</option>
+          <option value="family">{t('Visite familiale')}</option>
+          <option value="school">{t('Mobilité académique')}</option>
+          <option value="sport">{t('Sport ou Loisir')}</option>
+          <option value="occasional">{t('Sorties ponctuelles')}</option>
+          <option value="shopping">{t('Courses')}</option>
+          <option value="medical">{t('RDV médicaux')}</option>
+          <option value="weekends">{t('Week-end')}</option>
         </Select>
       </td>
       <td className="border-t border-primary px-2 py-4 text-sm md:px-4">
@@ -69,7 +69,7 @@ export default function JourneyItem({ setJourneys }: Props) {
             <option value="week">{t('semaine')}</option>
             <option value="month">{t('mois')}</option>
             <option value="year">{t('an')}</option>
-          </select>
+          </Select>
         </span>
       </td>
       <td className="border-t border-primary px-2 py-4 text-sm md:px-4">
