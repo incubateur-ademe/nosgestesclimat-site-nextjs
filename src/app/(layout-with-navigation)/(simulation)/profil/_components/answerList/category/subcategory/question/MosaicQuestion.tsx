@@ -2,13 +2,13 @@
 
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
-import { useTranslation } from 'react-i18next'
 
 type Props = { question: string }
 
 export default function MosaicQuestion({ question }: Props) {
-  const { t } = useTranslation()
+  const { t } = useClientTranslation()
   const { value, displayValue, unit, type, parent } = useRule(question)
   const { title, icons } = useRule(parent)
 

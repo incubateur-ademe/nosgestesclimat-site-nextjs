@@ -5,13 +5,13 @@ import { SIMULATION_URL } from '@/constants/urls'
 import SmileyGrading from '@/design-system/inputs/SmileyGrading'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { NorthStarType, NorthStarValue } from '@/types/northstar'
 import { captureException } from '@sentry/react'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { ReactNode, useRef } from 'react'
-import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -21,7 +21,7 @@ type Props = {
 }
 
 export default function FeedbackBanner({ text, type, className }: Props) {
-  const { t } = useTranslation()
+  const { t } = useClientTranslation()
   const { user, updateNorthStarRatings } = useUser()
   const { getNumericValue } = useEngine()
   const { categories, progression } = useForm()
