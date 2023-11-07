@@ -21,7 +21,7 @@ export default function JourneyItem({ setJourneys }: Props) {
       <td className="border-t border-primary py-4 pl-2 pr-2 text-sm md:pr-4">
         <Select
           className="p-2 text-sm"
-          value={period}
+          value={label}
           onChange={(e) => setLabel(e.currentTarget.value as Journey['label'])}>
           <option value="holidays">Vacances</option>
           <option value="work">Domicile-Travail</option>
