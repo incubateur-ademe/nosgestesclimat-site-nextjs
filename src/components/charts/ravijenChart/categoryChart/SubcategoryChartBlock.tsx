@@ -5,7 +5,7 @@ import SafeImage from '@/components/images/SafeImage'
 import { DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
-import { capitaliseString } from '@/utils/capitaliseString'
+import { capitalizeString } from '@/utils/capitalizeString'
 import { removePercentageFromString } from '@/utils/removePercentageFromString'
 import EnigmaticMoreChartBlock from './subcategoryChartBlock/EnigmaticMoreChartBlock'
 
@@ -28,10 +28,10 @@ export default function SubcategoryChartBlock({
   sumSquashedSubcategoriesPercentage,
   shouldAlwaysDisplayValue,
 }: Props) {
-  const { numericValue: categoryNumericvalue } = useRule(category)
+  const { numericValue: categoryNumericvalue, color } = useRule(category)
 
   const subcategoryObject = useRule(subcategory)
-  const { title, abbreviatedTitle, numericValue, color } = subcategoryObject
+  const { title, abbreviatedTitle, numericValue } = subcategoryObject
 
   const { formattedValue, unit } = formatCarbonFootprint(numericValue)
 
@@ -65,7 +65,7 @@ export default function SubcategoryChartBlock({
 
   const isSmall = heightPercentage < 13
 
-  const titleFormatted = capitaliseString(
+  const titleFormatted = capitalizeString(
     removePercentageFromString(abbreviatedTitle ?? title ?? '')
   )
 
