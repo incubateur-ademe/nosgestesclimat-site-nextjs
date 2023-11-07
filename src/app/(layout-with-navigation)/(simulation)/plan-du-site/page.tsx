@@ -46,28 +46,49 @@ export default function PlanDuSitePage() {
         }
       />
 
-      {Object.entries(links).map(([categoryTitle, categoryLinks]) => (
-        <section key={categoryTitle} className="mb-2">
-          <h2>
-            <Trans i18nKey={`${categoryTitle}`}>{categoryTitle}</Trans>
-          </h2>
-          <ul className="m-0 list-none p-0">
-            {Object.entries(categoryLinks).map(([linkKey, linkUrl]) => (
-              <li key={linkKey}>
-                <Link href={linkUrl}>
-                  <Trans i18nKey={`${linkKey}`}>{linkKey}</Trans>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+      <section className="mb-2">
+        <h2>
+          <Trans>Nos outils</Trans>
+        </h2>
+        <ul className="m-0 list-none p-0">
+          {Object.entries(links['Nos outils']).map(([linkKey, linkUrl]) => (
+            <li key={linkKey}>
+              <Link href={linkUrl}>{linkUrl}</Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mb-2">
+        <h2>
+          <Trans>Informations</Trans>
+        </h2>
+        <ul className="m-0 list-none p-0">
+          {Object.entries(links['Informations']).map(([linkKey, linkUrl]) => (
+            <li key={linkKey}>
+              <Link href={linkUrl}>{linkUrl}</Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mb-2">
+        <h2>
+          <Trans>Documentations</Trans>
+        </h2>
+        <ul className="m-0 list-none p-0">
+          {Object.entries(links['Documentations']).map(([linkKey, linkUrl]) => (
+            <li key={linkKey}>
+              <Link href={linkUrl}>{linkUrl}</Link>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <section>
         <h2>
           <Trans i18nKey="publicodes.planDuSite.actionsPlus">Les actions</Trans>
         </h2>
-
         <Actions />
       </section>
     </div>
