@@ -97,6 +97,11 @@ const nextConfig = {
         destination: '/diffuser',
         permanent: true,
       },
+      {
+        source: '/blog/journée-mondial-environnement',
+        destination: '/blog/journee-mondial-environnement',
+        permanent: true,
+      },
     ]
   },
   experimental: {

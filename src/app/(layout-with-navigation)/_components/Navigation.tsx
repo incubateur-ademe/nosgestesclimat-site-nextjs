@@ -12,7 +12,7 @@ import PersonIcon from '@/components/icons/PersonIcon'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useDebug } from '@/hooks/useDebug'
 import { useUser } from '@/publicodes-state'
-import { capitaliseString } from '@/utils/capitaliseString'
+import { capitalizeString } from '@/utils/capitalizeString'
 import NavLink from './navigation/NavLink'
 import PRIndicator from './navigation/PRIndicator'
 
@@ -59,7 +59,7 @@ export default function Navigation() {
         <ul className="m-0 flex h-20 w-full list-none justify-between bg-white py-1 shadow-md sm:px-4 lg:h-auto lg:flex-col lg:justify-start lg:gap-1 lg:bg-none lg:py-2 lg:shadow-none">
           <NavLink
             href="/simulateur/bilan"
-            className="justify-end !p-0 text-default lg:justify-start lg:!p-4">
+            className="text-default justify-end !p-0 lg:justify-start lg:!p-4">
             <ProgressCircle className="lg:mr-4" />
             <span className="text-base md:text-lg">
               <Trans>Le test</Trans>
@@ -68,7 +68,7 @@ export default function Navigation() {
 
           <NavLink
             href="/actions"
-            className="justify-end !p-0 text-default lg:justify-start lg:!p-4">
+            className="text-default justify-end !p-0 lg:justify-start lg:!p-4">
             <ActionsInteractiveIcon className="w-12 lg:mr-4" />
 
             <span className="text-base md:text-lg">
@@ -85,8 +85,8 @@ export default function Navigation() {
                 {!persona ? (
                   t('Profil')
                 ) : (
-                  <span className="rounded-md bg-primary-500 px-4 py-2 text-white">
-                    {capitaliseString(persona.split(' . ')[1])}
+                  <span className="rounded-md bg-primary px-4 py-2 text-white">
+                    {capitalizeString(persona.split(' . ')[1])}
                   </span>
                 )}
               </span>

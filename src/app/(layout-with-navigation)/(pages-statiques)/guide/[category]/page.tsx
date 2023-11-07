@@ -1,8 +1,23 @@
+import Route404 from '@/components/layout/404'
+import MDXContent from '@/components/mdx/MDXContent'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import CategoryGuide from './_components/CategoryGuide'
+import guideAlimentation from '@/locales/guide-mode-groupe/fr/guide-alimentation.mdx'
+import guideDivers from '@/locales/guide-mode-groupe/fr/guide-divers.mdx'
+import guideLogement from '@/locales/guide-mode-groupe/fr/guide-logement.mdx'
+import guideNumerique from '@/locales/guide-mode-groupe/fr/guide-numerique.mdx'
+import guideServicesSocietaux from '@/locales/guide-mode-groupe/fr/guide-services-societaux.mdx'
+import guideTransport from '@/locales/guide-mode-groupe/fr/guide-transport.mdx'
+
+const categories: Record<string, any> = {
+  alimentation: guideAlimentation,
+  divers: guideDivers,
+  logement: guideLogement,
+  numerique: guideNumerique,
+  'services-societaux': guideServicesSocietaux,
+  transport: guideTransport,
+}
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -23,8 +38,11 @@ export default function CategoryGuidePage({
         <span className="mr-2 inline-block">◀</span>
         <Trans>Retour</Trans>
       </ButtonLink>
-
-      <CategoryGuide category={category} />
+      {categories[category] ? (
+        <MDXContent contentFr={categories[category]} />
+      ) : (
+        <Route404 />
+      )}
     </div>
   )
 }

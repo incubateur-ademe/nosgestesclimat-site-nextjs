@@ -6,6 +6,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   question: string
@@ -13,11 +14,12 @@ type Props = {
   description?: string
   size?: QuestionSize
   htmlFor?: string
+  className?: string
 }
 
 const sizeClassNames = {
-  sm: 'text-sm',
-  md: 'text-lg md:text-xl',
+  sm: 'mb-1 text-sm',
+  md: 'mb-3 text-lg md:text-xl',
 }
 const buttonSizeClassNames = {
   sm: 'h-6 w-6 text-sm',
@@ -29,6 +31,7 @@ export default function Label({
   description,
   size = 'md',
   htmlFor,
+  className,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -38,7 +41,10 @@ export default function Label({
   return (
     <>
       <label
-        className={`mb-3 block ${sizeClassNames[size]} font-semibold`}
+        className={twMerge(
+          `block ${sizeClassNames[size]} font-semibold`,
+          className
+        )}
         aria-label={label}
         htmlFor={htmlFor}>
         {label}{' '}

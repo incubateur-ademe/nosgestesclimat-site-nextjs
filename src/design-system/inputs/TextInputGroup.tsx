@@ -1,8 +1,9 @@
-import { ChangeEvent, ReactNode } from 'react'
+import { ChangeEvent, HTMLAttributes, ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   name: string
-  label: string | ReactNode
+  label?: string | ReactNode
   type?: string
   isInvalid?: boolean
   error?: string
@@ -10,7 +11,7 @@ type Props = {
   className?: string
   placeholder?: string
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
-  value?: string
+  value?: string | number
   required?: boolean
 }
 
@@ -26,7 +27,7 @@ export default function TextInputGroup({
   value,
   required = false,
   ...props
-}: Props) {
+}: HTMLAttributes<HTMLInputElement> & Props) {
   return (
     <div className={`flex flex-col ${className}`} aria-live="polite">
       <label htmlFor={name}>
@@ -40,19 +41,26 @@ export default function TextInputGroup({
       {helperText && (
         <span className="mt-1 text-xs text-slate-500">{helperText}</span>
       )}
+
       <input
         name={name}
         type={type}
         placeholder={placeholder}
-        className={`border-grey-300 focus:border-primary-500 focus:ring-primary-500 mt-3 max-w-[30rem] rounded-md border border-solid bg-grey-100 !p-4 text-sm transition-colors focus:ring-2 ${
-          error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
-        }`}
         onChange={onChange}
         aria-describedby={`error-${name}`}
         value={value}
         required={required}
         {...props}
+        className={twMerge(
+          `border-grey-300 ${
+            helperText || label ? ' mt-3' : ''
+          } focus:border-primary-500 focus:ring-primary-500 max-w-[30rem] rounded-md border border-solid bg-grey-100 p-4 text-sm transition-colors focus:ring-2`,
+          `${className} ${
+            error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
+          }`
+        )}
       />
+
       {error && (
         <span id={`error-${name}`} className="mt-2 text-xs text-red-700">
           {error}

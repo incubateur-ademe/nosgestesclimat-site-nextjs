@@ -1,0 +1,35 @@
+---
+title: Bossons
+date: 2020-09-01T15:10:55Z
+image: https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Absolute_MtBlanc_01.jpg/400px-Absolute_MtBlanc_01.jpg
+---
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Absolute_MtBlanc_01.jpg/400px-Absolute_MtBlanc_01.jpg)
+
+> En bref : Alimentation, empreinte moyenne et quelques bugs
+
+Pour cette 2ème version de Nos Gestes Climat, nous avons écouté les retours déjà nombreux et fait ces principaux changements.
+
+## Poste alimentation
+
+Nous introduisons le choix du type de petit déjeuner :
+
+![image](https://user-images.githubusercontent.com/1177762/91868807-6ea72d00-ec75-11ea-81bb-982cac0ea55a.png)
+
+Ainsi qu'un nouveau sélecteur de régime alimentaire, beaucoup moins rigide qu'un régime unique.
+
+![image](https://user-images.githubusercontent.com/1177762/91868962-9c8c7180-ec75-11ea-86fc-2f12f26baf35.png)
+
+## Valeurs par défaut plus représentatives
+
+Le simulateur, par défaut, indique maintenant 11.7 tonnes, un chiffre plus proche de l'empreinte moyenne d'un français (nous étions auparavant à 10).
+
+## Suppression du poste "finance"
+
+Comme expliqué dans #24 , l'attribution d'une empreinte à l'argent que l'on a en banque était un double comptage. Nous l'avons enlevé.
+
+## 🐛 bug voiture partagée
+
+En bref, on surestimait de beaucoup l'empreinte de la location de voiture partagée.
+
+Nous attribuons maintenant une part de la construction du véhicule à chaque personne qui loue une voiture pour se déplacer. Nous faisions l'erreur de lui attribuer _toute_ la construction.

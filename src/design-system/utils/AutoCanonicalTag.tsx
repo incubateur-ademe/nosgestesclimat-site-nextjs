@@ -1,6 +1,6 @@
 'use client'
 
-import { useIsClient } from '@/app/_components/IsClientCtxProvider'
+import { useIsClient } from '@/hooks/useIsClient'
 import Head from 'next/head'
 
 export default function AutoCanonicalTag({

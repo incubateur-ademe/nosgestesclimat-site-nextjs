@@ -9,6 +9,12 @@ type Props = {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   value?: boolean
   required?: boolean
+  size?: 'sm' | 'lg'
+}
+
+const sizesClassNames = {
+  sm: '',
+  lg: 'w-8 h-8',
 }
 
 export default function CheckboxInputGroup({
@@ -19,17 +25,19 @@ export default function CheckboxInputGroup({
   onChange,
   value,
   required = false,
+  size = 'sm',
   ...props
 }: Props) {
   return (
     <div className={`flex flex-col ${className}`} aria-live="polite">
-      <label htmlFor={name}>
+      <label htmlFor={name} className="flex cursor-pointer items-center gap-2">
         <input
           name={name}
+          id={name}
           type="checkbox"
           className={`focus:border-primary-500 focus:ring-primary-500 mr-2 max-w-[30rem] rounded-md border-solid border-grey-200 bg-grey-100 !p-4 text-2xl transition-colors focus:ring-2 ${
-            error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
-          }`}
+            sizesClassNames[size]
+          } ${error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''}`}
           onChange={onChange}
           aria-describedby={`error-${name}`}
           checked={value}
@@ -37,7 +45,7 @@ export default function CheckboxInputGroup({
           {...props}
         />
 
-        <span className={`text-sm font-bold  ${error ? '!text-red-700' : ''}`}>
+        <span className={`text-sm ${error ? '!text-red-700' : ''}`}>
           {label}
         </span>
       </label>

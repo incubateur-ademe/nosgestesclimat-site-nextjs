@@ -1,7 +1,7 @@
 'use client'
 
-import { useIsClient } from '@/app/_components/IsClientCtxProvider'
 import { getMatomoEventVisitViaIframe } from '@/constants/matomo'
+import { useIsClient } from '@/hooks/useIsClient'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { PropsWithChildren, createContext } from 'react'
 import { getIsIframe } from '../utils/getIsIframe'

@@ -6,7 +6,7 @@ import TextAreaInputGroup from '@/design-system/inputs/TextAreaInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useSearchParams } from 'next/navigation'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
 import Link from '../Link'
 
 type CreateIssueProps = {
@@ -68,7 +68,9 @@ export default function GithubContributionForm() {
         name="sujet"
         required
         value={sujet}
-        onChange={(e) => setSujet(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setSujet(e.target.value)
+        }
       />
 
       <TextAreaInputGroup
@@ -123,8 +125,7 @@ export default function GithubContributionForm() {
             disableButton: setIsButtonDisabled,
             labels: ['❓ FAQ', '💁 contribution externe'],
           })
-        }}
-      >
+        }}>
         <Trans>Envoyer</Trans>
       </Button>
     </form>

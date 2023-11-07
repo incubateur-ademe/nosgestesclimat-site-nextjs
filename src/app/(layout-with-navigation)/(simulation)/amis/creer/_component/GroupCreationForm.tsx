@@ -128,12 +128,14 @@ export default function GroupCreationForm() {
         data-cypress-id="group-input-owner-name"
       />
 
-      <EmailInput
-        email={email}
-        setEmail={setEmail}
-        errorEmail={errorEmail}
-        setErrorEmail={setErrorEmail}
-      />
+      <div className="my-4">
+        <EmailInput
+          email={email}
+          setEmail={setEmail}
+          errorEmail={errorEmail}
+          setErrorEmail={setErrorEmail}
+        />
+      </div>
 
       <Button
         type="submit"
