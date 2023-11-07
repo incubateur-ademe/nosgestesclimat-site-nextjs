@@ -1,13 +1,26 @@
-import i18nConfig from '@/i18nConfig'
-import { i18nRouter } from 'next-i18n-router'
-import { NextRequest } from 'next/server'
+import i18nMiddleware from '@/middlewares/i18nMiddleware'
+import splitTestingMiddleware from '@/middlewares/splitTestingMiddleware'
+import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 
-export function middleware(request: NextRequest) {
-  return i18nRouter(request, i18nConfig)
+export const middlewares = [i18nMiddleware, splitTestingMiddleware]
+
+export async function middleware(request: NextRequest) {
+  const response = NextResponse.next()
+  for await (const middlewareFunction of middlewares) {
+    const middlewareResponse = await middlewareFunction(request)
+    if (isRedirecting(middlewareResponse)) {
+      return middlewareResponse
+    }
+    if (isRewriting(middlewareResponse)) {
+      return middlewareResponse
+    }
+  }
+  return response
 }
-
-// only applies this middleware to files in the app directory
-export const config = {
-  matcher:
-    '/((?!api|_next/static|_next/image|favicon.ico|images|.*\\..*|_next).*)',
+function isRedirecting(response: NextResponse): boolean {
+  return response.status === 307 || response.status === 308
+}
+function isRewriting(response: NextResponse): boolean {
+  return response.headers.has('x-middleware-rewrite')
 }
