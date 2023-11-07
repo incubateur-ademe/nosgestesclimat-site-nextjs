@@ -41,9 +41,7 @@ export default async function Personas() {
           comme si vous étiez l'un des profils types que nous avons listés.
         </Trans>
       </p>
-      <div
-        className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4"
-        suppressHydrationWarning>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
         {Object.keys(personas).map((key) => (
           <Persona
             key={key}
