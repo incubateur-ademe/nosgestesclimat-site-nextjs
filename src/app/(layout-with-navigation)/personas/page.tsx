@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { NGC_MODEL_API_URL } from '@/constants/urls'
 import Title from '@/design-system/layout/Title'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { currentLocale } from 'next-i18n-router'
@@ -18,9 +19,7 @@ export default async function Personas() {
 
   // TODO: endpoint should not be static (and should point to local if available)
   const personas = await fetch(
-    `https://deploy-preview-2085--ecolab-data.netlify.app/personas-${
-      locale === 'en' ? 'en-us' : locale
-    }.json`
+    `${NGC_MODEL_API_URL}/personas-${locale}.json`
   ).then((res) => res.json())
 
   return (

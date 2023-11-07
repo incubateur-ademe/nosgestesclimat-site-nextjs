@@ -7,7 +7,7 @@ export default function CongratulationsText() {
     <>
       <h1 className="mt-4">
         <span className="inline-block">
-          <Trans>Vous avez terminé le test&nbsp;!</Trans>&nbsp;
+          <Trans>Vous avez terminé le test !</Trans>&nbsp;
           <Emoji className="inline-block">👏</Emoji>
         </span>
       </h1>
