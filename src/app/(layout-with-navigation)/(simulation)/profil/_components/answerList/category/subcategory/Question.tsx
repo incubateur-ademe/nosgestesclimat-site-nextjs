@@ -3,7 +3,7 @@
 import Link from '@/components/Link'
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
-import Trans from '@/components/translation/Trans'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import MosaicQuestion from './question/MosaicQuestion'
 
@@ -12,6 +12,7 @@ type Props = {
 }
 
 export default function Question({ question }: Props) {
+  const { t } = useClientTranslation()
   const { label, value, displayValue, unit, type, questionsOfMosaic } =
     useRule(question)
 
@@ -30,9 +31,7 @@ export default function Question({ question }: Props) {
             <NumberValue displayValue={displayValue} unit={unit} />
           )}
           {type === 'boolean' && (
-            <span className="capitalize">
-              <Trans>{displayValue}</Trans>
-            </span>
+            <span className="capitalize">{t(displayValue.toString())}</span>
           )}
           {type === 'choices' && (
             <ChoicesValue value={value} question={question} />
