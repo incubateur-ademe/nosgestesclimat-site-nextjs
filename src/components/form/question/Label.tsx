@@ -1,5 +1,6 @@
 import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
 import { getMatomoEventClickHelp } from '@/constants/matomo'
+import Button from '@/design-system/inputs/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import { QuestionSize } from '@/types/values'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -66,14 +67,14 @@ export default function Label({
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2 }}
-          className="mb-3 origin-top">
+          className="mb-3 origin-top rounded-md bg-white p-2 text-sm">
           <Markdown>{description}</Markdown>{' '}
-          <button
+          <Button
+            size="sm"
             onClick={() => setIsOpen(false)}
-            className="text-primary-500 block underline"
             title={t('Fermer')}>
             <Trans>Fermer</Trans>
-          </button>
+          </Button>
         </motion.div>
       ) : null}
     </>

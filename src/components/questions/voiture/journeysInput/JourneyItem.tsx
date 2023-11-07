@@ -29,9 +29,9 @@ const labels: Record<string, string> = {
 
 export default function AddJourney({ journey, odd, setJourneys }: Props) {
   return (
-    <tr className={odd ? 'bg-primaryLight' : ''}>
+    <tr className={odd ? 'bg-primary-100' : ''}>
       <td
-        className={`border-x ${
+        className={`border-r ${
           odd ? 'border-white' : 'border-primaryLight'
         } px-4 py-2 text-left text-sm`}>
         <Trans>{labels[journey.label]}</Trans>

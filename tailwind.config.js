@@ -21,6 +21,10 @@ module.exports = {
            */
           200: '#E8DFEE',
           /**
+           * Background element point of interest darker
+           */
+          300: '#AA90BF',
+          /**
            * Hover
            */
           400: '#6D418F',

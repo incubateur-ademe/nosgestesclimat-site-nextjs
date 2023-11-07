@@ -13,8 +13,8 @@ type Props = {
 
 const statusClassNames = {
   missing: 'bg-gray-100 text-gray-500',
-  current: 'border-2 border-primary',
-  default: 'bg-primary-100',
+  current: 'border-2 border-primary-500 bg-primary-300',
+  default: 'bg-primary-200',
 }
 export default function Question({ question, toggleQuestionList }: Props) {
   const { label, isMissing, value, displayValue, unit, type, color } =

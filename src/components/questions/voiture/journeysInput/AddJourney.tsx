@@ -35,7 +35,7 @@ export default function JourneyItem({ setJourneys }: Props) {
         </Select>
       </td>
       <td className="border-t border-primary px-2 py-4 text-sm md:px-4">
-        <span className="flex items-center gap-2">
+        <span className="flex items-center gap-4">
           <TextInputGroup
             className="w-12 p-2 text-sm md:w-16"
             name="distance"
@@ -47,7 +47,7 @@ export default function JourneyItem({ setJourneys }: Props) {
         </span>
       </td>
       <td className="border-t border-primary px-2 py-4 text-sm md:px-4">
-        <span className="flex items-center gap-2">
+        <span className="flex items-center gap-4">
           <TextInputGroup
             className="w-12 p-2 text-sm md:w-16"
             name="distance"
