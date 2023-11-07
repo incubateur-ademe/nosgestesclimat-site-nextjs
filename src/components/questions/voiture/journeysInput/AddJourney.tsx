@@ -7,40 +7,12 @@ import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { Journey } from '@/types/journey'
-import { TFunction } from 'i18next'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
 
 type Props = {
   setJourneys: Dispatch<SetStateAction<Journey[]>>
-}
-
-function Selector<T extends string | number>({
-  value,
-  items,
-  setValue,
-  t,
-}: {
-  value: T
-  items: Record<string, T>
-  setValue: Dispatch<SetStateAction<T>>
-  t: TFunction
-}) {
-  return (
-    <Select
-      className="p-2 text-sm"
-      value={value}
-      onChange={(e) => setValue(e.currentTarget.value as T)}>
-      {Object.entries(items).map(([key, label], i) => {
-        return (
-          <option key={i} value={key}>
-            {t(label.toString())}
-          </option>
-        )
-      })}
-    </Select>
-  )
 }
 
 export default function JourneyItem({ setJourneys }: Props) {
@@ -54,7 +26,18 @@ export default function JourneyItem({ setJourneys }: Props) {
   return (
     <tr className="">
       <td className="border-t border-primary py-4 pl-2 pr-2 text-sm md:pr-4">
-        <Selector value={label} items={labels} setValue={setLabel} t={t} />
+        <Select
+          className="p-2 text-sm"
+          value={label}
+          onChange={(e) => setLabel(e.currentTarget.value)}>
+          {Object.entries(labels).map(([key, label], i) => {
+            return (
+              <option key={i} value={key}>
+                {t(label)}
+              </option>
+            )
+          })}
+        </Select>
       </td>
       <td className="border-t border-primary px-2 py-4 text-sm md:px-4">
         <span className="flex items-center gap-2">
@@ -78,18 +61,33 @@ export default function JourneyItem({ setJourneys }: Props) {
             onChange={(e) => setReccurrence(Number(e.currentTarget.value))}
           />{' '}
           x
-          <Selector value={period} items={periods} setValue={setPeriod} t={t} />
+          <Select
+            className="p-2 text-sm"
+            value={period}
+            onChange={(e) => setPeriod(e.currentTarget.value)}>
+            {Object.entries(periods).map(([key, period], i) => {
+              return (
+                <option key={i} value={key}>
+                  {t(period)}
+                </option>
+              )
+            })}
+          </Select>
         </span>
       </td>
       <td className="border-t border-primary px-2 py-4 text-sm md:px-4">
-        <Selector
+        <Select
+          className="p-2 text-sm"
           value={passengers}
-          items={Object.fromEntries(
-            new Array(5).fill(0).map((_, i) => [i + 1, i + 1])
-          )}
-          setValue={setPassengers}
-          t={t}
-        />
+          onChange={(e) => setPassengers(Number(e.currentTarget.value))}>
+          {new Array(5).fill(0).map((_, i) => {
+            return (
+              <option key={i + 1} value={i + 1}>
+                {i + 1}
+              </option>
+            )
+          })}
+        </Select>
       </td>
       <td className="border-t border-primary py-4 pl-2 pr-2 text-right text-sm md:pl-4">
         <Button
