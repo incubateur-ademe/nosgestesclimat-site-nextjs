@@ -21,7 +21,9 @@ export default function Voture({ question }: Props) {
           {isOpen ? (
             <Trans>Fermer</Trans>
           ) : (
-            <Trans>Détailler mes trajets 🚗</Trans>
+            <>
+              <Trans>Détailler mes trajets</Trans> 🚗
+            </>
           )}
         </Button>
         {isOpen ? <JourneysInput question={question} /> : null}
