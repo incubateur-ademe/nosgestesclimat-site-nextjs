@@ -1,7 +1,7 @@
-import i18nMiddleware from '@/middlewares/i18nMiddleware'
-import splitTestingMiddleware from '@/middlewares/splitTestingMiddleware'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
+import i18nMiddleware from './middlewares/i18nMiddleware'
+import splitTestingMiddleware from './middlewares/splitTestingMiddleware'
 
 export const middlewares = [i18nMiddleware, splitTestingMiddleware]
 
