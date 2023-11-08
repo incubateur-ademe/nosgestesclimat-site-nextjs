@@ -27,7 +27,7 @@ export default async function Landing() {
   return (
     <>
       <Main>
-        <div className="mx-auto flex flex-col justify-center gap-4 px-4 pb-8 text-center md:mx-auto md:mt-6 md:w-full md:max-w-6xl md:p-10 md:px-8 md:text-left">
+        <div className="mx-auto flex flex-col justify-center gap-4 px-4 pb-8 text-center md:mx-auto md:mt-6 md:w-full md:max-w-5xl md:p-0 md:pb-4 md:pt-8 md:text-left">
           <div className="gap-10 md:flex">
             <div className="my-12 flex flex-col md:my-0 md:flex-1">
               <Title

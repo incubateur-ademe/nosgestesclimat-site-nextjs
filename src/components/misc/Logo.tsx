@@ -22,11 +22,11 @@ export default function Logo({ className }: { className?: string }) {
           alt="Logo Nos Gestes Climat"
           width="200"
           height="200"
-          className="h-auto w-[44px]"
+          className="h-auto w-[50px]"
         />
 
         <div
-          className={`ml-2 text-base font-extrabold uppercase !leading-[0.85] text-primaryDark lg:block`}>
+          className={`ml-2 text-lg font-extrabold uppercase !leading-[0.85] text-primaryDark lg:block`}>
           <span className="block w-full !leading-[0.85]">Nos</span>
           <span className="block w-full !leading-[0.85]">Gestes</span>
           <span className="block w-full !leading-[0.85]">Climat</span>
