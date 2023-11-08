@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Button from '../inputs/Button'
 
@@ -11,8 +11,29 @@ export default function BurgerMenu({
 }) {
   const [isOpen, setIsOpen] = useState(false)
   const genericHamburgerLine = `h-[2px] w-6 my-1 bg-default transition ease transform duration-300`
+
+  const handleClickElsewhere = (event: MouseEvent) => {
+    const burger = document.getElementById('burger-menu')
+
+    if (!burger || burger.contains(event.target as Node)) {
+      return
+    }
+
+    setIsOpen(false)
+  }
+
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener('click', handleClickElsewhere)
+    }
+
+    if (!isOpen) {
+      window.removeEventListener('click', handleClickElsewhere)
+    }
+  }, [isOpen])
+
   return (
-    <>
+    <div id="burger-menu">
       <Button
         color="text"
         onClick={() => setIsOpen((prevValue) => !prevValue)}
@@ -34,11 +55,11 @@ export default function BurgerMenu({
 
       <div
         className={twMerge(
-          'fixed right-0 top-0 z-[9] h-screen w-[90vw] translate-x-full bg-grey-100 p-4 pt-16 shadow-md transition-transform duration-300 ease-in-out',
+          'fixed right-0 top-0 z-[19] h-screen w-[90vw] max-w-[20rem] translate-x-full bg-grey-100 p-4 pt-16 shadow-md transition-transform duration-300 ease-in-out',
           `${isOpen ? 'opacity-1 translate-x-0' : ''}`
         )}>
         {children(() => setIsOpen(false))}
       </div>
-    </>
+    </div>
   )
 }

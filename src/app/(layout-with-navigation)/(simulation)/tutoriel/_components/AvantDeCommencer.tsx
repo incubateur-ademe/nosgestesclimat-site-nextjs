@@ -2,7 +2,7 @@ import Trans from '@/components/translation/Trans'
 
 export default function AvantDeCommencer() {
   return (
-    <div className="relative mb-8 mt-6 flex flex-col bg-grey-100 p-7 md:mt-10">
+    <div className="relative mb-8 mt-6 flex flex-col rounded-md bg-grey-100 p-7 md:mt-10">
       <div
         role="presentation"
         aria-hidden
