@@ -12,6 +12,7 @@ import { useDebug } from '@/hooks/useDebug'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import NavLink from './navigation/NavLink'
 import PRIndicator from './navigation/PRIndicator'
 
@@ -40,6 +41,8 @@ export const conferenceImg = openmojiURL('conference')
 
 export default function Navigation() {
   const { t } = useClientTranslation()
+
+  const router = useRouter()
 
   const isDebug = useDebug()
 
@@ -117,9 +120,14 @@ export default function Navigation() {
           )}
           <PRIndicator />
           {isDebug ? (
-            <div className="mx-auto hidden rounded-lg bg-red-600 px-4 py-2 text-center font-bold uppercase text-white lg:block">
+            <button
+              className="mx-auto hidden rounded-lg bg-red-600 px-4 py-2 text-center font-bold uppercase text-white lg:block"
+              onClick={() => {
+                sessionStorage.removeItem('debug')
+                router.refresh()
+              }}>
               Debug
-            </div>
+            </button>
           ) : null}
         </ul>
       </div>
