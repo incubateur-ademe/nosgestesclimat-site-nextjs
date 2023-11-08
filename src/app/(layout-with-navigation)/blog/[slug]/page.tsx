@@ -1,14 +1,17 @@
+import Link from '@/components/Link'
+import Trans from '@/components/translation/Trans'
+import Markdown from '@/design-system/utils/Markdown'
+import getPost from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { capitaliseString } from '@/utils/capitaliseString'
-import Content from './_components/Content'
+import { capitalizeString } from '@/utils/capitalizeString'
 
-export async function generateMetadata({
-  params: { slug },
-}: {
+type Props = {
   params: { slug: string }
-}) {
+}
+
+export async function generateMetadata({ params: { slug } }: Props) {
   return getMetadataObject({
-    title: `${capitaliseString(decodeURI(slug))?.replaceAll(
+    title: `${capitalizeString(decodeURI(slug))?.replaceAll(
       '-',
       ' '
     )}, article du blog - Nos Gestes Climat`,
@@ -17,10 +20,21 @@ export async function generateMetadata({
   })
 }
 
-export default function BlogPost({
-  params: { slug },
-}: {
-  params: { slug: string }
-}) {
-  return <Content slug={slug} />
+export default async function BlogPost({ params: { slug } }: Props) {
+  const content = await getPost('src/locales/blog/fr/', slug)
+
+  return (
+    <div>
+      <Link href="/blog" className="text-sm">
+        ← <Trans>Retour à la liste des articles</Trans>
+      </Link>
+      <br />
+      <br />
+      {content ? (
+        <Markdown>{content}</Markdown>
+      ) : (
+        <Trans>Oups, nous n'avons pas d'article correspondant</Trans>
+      )}
+    </div>
+  )
 }

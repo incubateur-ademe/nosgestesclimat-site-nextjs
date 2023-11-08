@@ -27,10 +27,9 @@ export function useRules({ lang, region, isOptim = true }: Props) {
     () =>
       axios
         .get(
-          `${dataServer}/co2-model.${regionCode}-lang.${
-            // TODO: The model should be "en" and not "en-us"
-            locale === 'en' ? 'en-us' : locale
-          }${isOptim ? '-opti' : ''}.json`
+          `${dataServer}/co2-model.${regionCode}-lang.${locale}${
+            isOptim ? '-opti' : ''
+          }.json`
         )
         .then((res) => res.data as unknown),
     {

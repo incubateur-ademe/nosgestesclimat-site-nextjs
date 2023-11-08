@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import { useUser } from '@/publicodes-state'
-import { capitaliseString } from '@/utils/capitaliseString'
+import { capitalizeString } from '@/utils/capitalizeString'
 
 export default function PersonaWarning() {
   const { getCurrentSimulation } = useUser()
@@ -14,7 +14,7 @@ export default function PersonaWarning() {
     <p>
       <Trans>👤 Vous utilisez actuellement le persona</Trans>{' '}
       <span className="font-bold">
-        {capitaliseString(persona.split(' . ')[1])}
+        {capitalizeString(persona.split(' . ')[1])}
       </span>
     </p>
   )

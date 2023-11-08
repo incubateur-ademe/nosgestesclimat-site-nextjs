@@ -2,13 +2,13 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
-import { useSupportedRegions } from '@/hooks/useSupportedRegions'
+import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import ModeleDemoBlock from './ModeleDemoBlock'
 import ModeleIssuePreviews from './ModeleIssuePreviews'
 import ModeleStatsBlock from './ModeleStatsBlock'
 
 export default async function Modele() {
-  const supportedRegions = await useSupportedRegions()
+  const supportedRegions = await getSupportedRegions()
 
   return (
     <div>

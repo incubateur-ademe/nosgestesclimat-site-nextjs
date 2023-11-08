@@ -1,6 +1,8 @@
 'use client'
 
 import Link from '@/components/Link'
+import BilanChart from '@/components/charts/BilanChart'
+import ServicesChart from '@/components/charts/ServicesChart'
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -61,8 +63,6 @@ export default function DocumentationContent({
 
   const documentationPath = '/documentation'
 
-  if (!engine) return
-
   return (
     <>
       <LocalisationBanner supportedRegions={supportedRegions} />
@@ -74,7 +74,15 @@ export default function DocumentationContent({
         renderers={{
           Head,
           Link: ({ children, to }) => <Link href={to || ''}>{children}</Link>,
-          Text: ({ children }) => <Markdown>{children}</Markdown>,
+          Text: ({ children }) => (
+            <>
+              <Markdown>{children}</Markdown>
+              {children.includes('<RavijenChart/>') && <BilanChart />}
+              {children.includes('<RavijenChartSocietaux/>') && (
+                <ServicesChart />
+              )}
+            </>
+          ),
           References: References as any,
         }}
       />

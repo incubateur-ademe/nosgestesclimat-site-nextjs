@@ -1,5 +1,6 @@
+import MDXContent from '@/components/mdx/MDXContent'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import GuideContent from './_content/guide.mdx'
+import GuideFr from '@/locales/guide-mode-groupe/fr/guide.mdx'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -10,5 +11,5 @@ export async function generateMetadata() {
 }
 
 export default function GuidePage() {
-  return <GuideContent />
+  return <MDXContent contentFr={GuideFr} />
 }

@@ -21,8 +21,8 @@ export default function AvantDeCommencer() {
             Répondez aux questions en votre nom, pas pour votre foyer.
           </Trans>
           <span className="hidden md:inline">
+            {' '}
             <Trans>
-              {' '}
               Bien sûr, certaines choses sont partagées (au sein de mon logement
               avec ma famille, la voiture avec les covoitureurs) : cela sera
               bien pris en compte dans le calcul de votre empreinte carbone, ne

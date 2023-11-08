@@ -1,3 +1,4 @@
+import { NGC_MODEL_API_URL } from '@/constants/urls'
 import { usePRNumber } from './usePRNumber'
 
 export const useDataServer = () => {
@@ -6,10 +7,5 @@ export const useDataServer = () => {
     return `https://deploy-preview-${PRNumber}--ecolab-data.netlify.app`
   }
 
-  const localUrl = process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER
-  if (localUrl) {
-    return localUrl
-  }
-
-  return 'https://deploy-preview-2085--ecolab-data.netlify.app'
+  return process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER ?? NGC_MODEL_API_URL
 }
