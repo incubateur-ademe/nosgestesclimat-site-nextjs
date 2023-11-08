@@ -13,6 +13,7 @@ type Props = {
   isBasePathActive?: boolean
   activeMatches?: string[]
   icon?: ({ className }: { className?: string }) => JSX.Element
+  onClick?: () => void
 }
 
 export default function NavLink({
@@ -23,6 +24,7 @@ export default function NavLink({
   shouldUseDefaultLink = false,
   // Active on the landing page
   isBasePathActive = false,
+  onClick,
 }: PropsWithChildren<Props>) {
   const pathName = usePathname()
 
@@ -38,12 +40,13 @@ export default function NavLink({
   return (
     <Tag
       href={href}
+      onClick={onClick}
       className={twMerge(
         'text-default group relative flex h-full items-center gap-2 px-2 pb-2 text-lg no-underline transition-colors hover:text-primary',
         `${isActive ? 'stroke-primary font-bold text-primary' : ''}`
       )}>
       {isActive && (
-        <span className="absolute bottom-0 left-0 h-[4px] w-full bg-primary"></span>
+        <span className="absolute bottom-0 left-0 md:h-[4px] md:w-full md:bg-primary"></span>
       )}
       {icon && (
         <Icon
