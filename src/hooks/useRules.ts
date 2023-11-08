@@ -22,22 +22,31 @@ export function useRules({ lang, region, isOptim = true }: Props) {
       ? user?.region?.code
       : region
 
+  let rules: any = null
+
+  if (process.env.NEXT_PUBLIC_LOCAL_DATA) {
+    rules = require(
+      `../../../nosgestesclimat/public/co2-model.${regionCode}-lang.${locale}${
+        isOptim ? '-opti' : ''
+      }.json`
+    )
+  }
+
   return useQuery(
-    ['rules', dataServer, lang, region, isOptim],
+    ['rules', dataServer, lang, region, isOptim, rules],
     () =>
-      axios
-        .get(
-          `${dataServer}/co2-model.${regionCode}-lang.${locale}${
-            isOptim ? '-opti' : ''
-          }.json`
-        )
-        .then((res) => res.data as unknown),
+      rules
+        ? Promise.resolve(rules as unknown)
+        : axios
+            .get(
+              `${dataServer}/co2-model.${regionCode}-lang.${locale}${
+                isOptim ? '-opti' : ''
+              }.json`
+            )
+            .then((res) => res.data as unknown),
     {
       keepPreviousData: true,
-      // When we work locally on the model we want the rules to be updated as much as possible (on window focus and every 3 seconds)
-      refetchOnWindowFocus: process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER
-        ? true
-        : false,
+      refetchOnWindowFocus: false,
     }
   )
 }
