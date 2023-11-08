@@ -15,13 +15,12 @@ type Props = {
 const buttonClassNames = {
   inactive: 'border-grey-500 bg-gray-100 text-gray-400 cursor-default',
   checked: 'border-primary-500 bg-primary-200 text-primary-500 border-2',
-  unchecked:
-    'border-primary-500 bg-grey-100 text-primary-500 hover:bg-primary-100',
+  unchecked: 'border-gray-300 bg-white text-primary-500 hover:bg-primary-100',
 }
 const checkClassNames = {
   inactive: 'border-gray-300',
   checked: 'border-primary-500',
-  unchecked: 'border-grey-200',
+  unchecked: 'border-gray-300',
 }
 
 const labelClassNames = {
