@@ -50,7 +50,7 @@ export default function HeaderDesktop() {
           <div className="mb-2 h-3 w-[1px] bg-gray-300" />
 
           <NavLink
-            href="https://sondages.nogestesclimat.fr"
+            href="https://sondages.nosgestesclimat.fr"
             shouldUseDefaultLink
             icon={OrganisationIcon}>
             Organisations

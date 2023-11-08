@@ -37,7 +37,7 @@ export default function BurgerMenu({
       <Button
         color="text"
         onClick={() => setIsOpen((prevValue) => !prevValue)}
-        className=" absolute right-4 top-4 z-20 flex h-[44px] w-[44px] flex-col items-center justify-center p-0">
+        className=" absolute right-4 top-4 z-[52] flex h-[44px] w-[44px] flex-col items-center justify-center p-0">
         <div
           className={`${genericHamburgerLine} ${
             isOpen ? 'translate-y-2 rotate-45 ' : ''
@@ -55,7 +55,7 @@ export default function BurgerMenu({
 
       <div
         className={twMerge(
-          'fixed right-0 top-0 z-[19] h-screen w-[90vw] max-w-[20rem] translate-x-full bg-grey-100 p-4 pt-16 shadow-md transition-transform duration-300 ease-in-out',
+          'fixed right-0 top-0 z-[51] h-screen w-[90vw] max-w-[20rem] translate-x-full bg-grey-100 p-4 pt-16 shadow-md transition-transform duration-300 ease-in-out',
           `${isOpen ? 'opacity-1 translate-x-0' : ''}`
         )}>
         {children(() => setIsOpen(false))}

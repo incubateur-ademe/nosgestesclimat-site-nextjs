@@ -7,6 +7,8 @@ import OrganisationIcon from '@/components/icons/OrganisationIcon'
 import ProfileIcon from '@/components/icons/ProfileIcon'
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
+import ChevronRight from '@/design-system/icons/ChevronRight'
+import ButtonLink from '@/design-system/inputs/ButtonLink'
 import BurgerMenu from '@/design-system/layout/BurgerMenu'
 import { usePathname } from 'next/navigation'
 import NavLink from './NavLink'
@@ -18,7 +20,7 @@ export default function HeaderMobile() {
     pathname.includes('/simulateur') || pathname.includes('/tutoriel')
 
   return (
-    <header className="relative p-4 lg:hidden">
+    <header className="relative flex justify-between p-4 lg:hidden">
       <Logo />
 
       {!shouldHideMostOfContent && (
@@ -67,8 +69,15 @@ export default function HeaderMobile() {
         </BurgerMenu>
       )}
 
+      {shouldHideMostOfContent && (
+        <ButtonLink href="/" size="sm" color="text">
+          <ChevronRight className="mr-2 inline-block rotate-180 transform" />{' '}
+          <Trans>Revenir à l'accueil</Trans>
+        </ButtonLink>
+      )}
+
       {!shouldHideMostOfContent && (
-        <ul className="fixed bottom-0 left-0 z-10 flex w-screen justify-around border-t border-gray-200 border-t-gray-200 bg-white p-4 shadow-md">
+        <ul className="fixed bottom-0 left-0 z-50 flex w-screen justify-around border-t border-gray-200 border-t-gray-200 bg-white p-4 shadow-md">
           <li className="px-4">
             <NavLink
               href="/tutoriel"
