@@ -50,7 +50,7 @@ export default function NavLink({
         } ${className}`
       )}>
       {isActive && (
-        <span className="absolute bottom-0 left-0 lg:h-[6px] lg:w-full lg:bg-primary"></span>
+        <span className="absolute bottom-0 left-0 lg:h-[5px] lg:w-full lg:bg-primary"></span>
       )}
       {icon && (
         <Icon
