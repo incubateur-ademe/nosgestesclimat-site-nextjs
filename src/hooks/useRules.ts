@@ -25,7 +25,7 @@ export function useRules({ lang, region, isOptim = true }: Props) {
   return useQuery(
     ['rules', dataServer, lang, region, isOptim],
     () =>
-      process.env.NEXT_PUBLIC_LOCAL_DATA
+      process.env.NEXT_PUBLIC_LOCAL_DATA === 'nosgestesclimat'
         ? importLocalRules({ regionCode, locale, isOptim })
         : axios
             .get(
@@ -51,11 +51,11 @@ async function importLocalRules({
   isOptim: boolean
 }) {
   try {
-    return await import(
+    return (await import(
       `../../../nosgestesclimat/public/co2-model.${regionCode}-lang.${locale}${
         isOptim ? '-opti' : ''
       }.json`
-    )
+    )) as unknown
   } catch (e) {
     console.log(e)
   }
