@@ -31,7 +31,7 @@ export default function SubcategoryListItem({
           <div className="flex items-center justify-between text-sm md:text-base">
             <p className="mb-0">{title}</p>
 
-            <div className="text-primaryDark">
+            <div className="text-primary-700">
               <strong>
                 {formatValue(roundValue(numericValue), { precision: 0 })}
               </strong>{' '}
@@ -41,7 +41,7 @@ export default function SubcategoryListItem({
           <div className="mt-2">
             <div>
               <div
-                className="h-[6px] rounded-lg bg-primary"
+                className="bg-primary-500 h-[6px] rounded-lg"
                 style={{
                   width: `calc(${percentageOfCategoryValue} * 100%)`,
                 }}

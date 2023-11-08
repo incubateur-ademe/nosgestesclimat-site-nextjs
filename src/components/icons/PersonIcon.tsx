@@ -34,7 +34,7 @@ export default function PersonIcon({ className }: { className?: string }) {
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="2.27522"
-          className="stroke-primary"
+          className="stroke-primary-500"
           d="m 60.549521,63.348606 c 0,0 0,-2.27522 -1.137611,-6.825664 -1.377532,-5.51252 -4.550442,-9.100884 -11.376106,-9.100884 -5.688053,0 -17.06416,0 -25.027434,0 -6.825664,0 -9.998574,3.588364 -11.376106,9.100884 -1.137611,4.550444 -1.137611,6.825664 -1.137611,6.825664"
           id="path214"
         />

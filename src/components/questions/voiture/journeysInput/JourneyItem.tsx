@@ -34,19 +34,19 @@ export default function AddJourney({ journey, odd, setJourneys }: Props) {
     <tr className={odd ? 'bg-primary-100' : ''}>
       <td
         className={`border-r ${
-          odd ? 'border-white' : 'border-primaryLight'
+          odd ? 'border-white' : 'border-primary-200'
         } px-4 py-2 text-left text-sm`}>
         {t(labels[journey.label])}
       </td>
       <td
         className={`border-x ${
-          odd ? 'border-white' : 'border-primaryLight'
+          odd ? 'border-white' : 'border-primary-200'
         } px-4 py-2 text-left text-sm`}>
         {journey.distance || 0} km
       </td>
       <td
         className={`border-x ${
-          odd ? 'border-white' : 'border-primaryLight'
+          odd ? 'border-white' : 'border-primary-200'
         } px-4 py-2 text-left text-sm`}>
         {journey.reccurrence} x {t(periods[journey.period])}
       </td>

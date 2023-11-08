@@ -85,7 +85,7 @@ export default function Navigation() {
                 {!persona ? (
                   t('Profil')
                 ) : (
-                  <span className="rounded-md bg-primary px-4 py-2 text-white">
+                  <span className="bg-primary-500 rounded-md px-4 py-2 text-white">
                     {capitalizeString(persona.split(' . ')[1])}
                   </span>
                 )}

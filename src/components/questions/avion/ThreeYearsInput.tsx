@@ -102,7 +102,7 @@ export default function ThreeYearsInput({ question }: Props) {
         size="sm"
         className="mb-2 justify-start"
       />
-      <p className="mb-0 rounded-lg bg-primaryLight p-4 font-bold">
+      <p className="bg-primary-200 mb-0 rounded-lg p-4 font-bold">
         {t('Total\u202f:')}{' '}
         {(
           currentYearValue +
