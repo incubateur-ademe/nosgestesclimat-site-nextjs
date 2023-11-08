@@ -3,6 +3,7 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import ButtonStart from './_components/ButtonStart'
 
+import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import AutresQuestions from './_components/AutresQuestions'
@@ -10,9 +11,10 @@ import AvantDeCommencer from './_components/AvantDeCommencer'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: "Tutoriel du simulateur d'empreinte climat - Nos Gestes Climat",
+    title: 'Calculer votre empreinte carbone individuelle - Nos Gestes Climat',
     description:
       'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.',
+    robots: noIndexObject,
   })
 }
 
