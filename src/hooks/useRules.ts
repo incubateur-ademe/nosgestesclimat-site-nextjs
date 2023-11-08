@@ -22,21 +22,15 @@ export function useRules({ lang, region, isOptim = true }: Props) {
       ? user?.region?.code
       : region
 
-  let rules: any = null
-
-  if (process.env.NEXT_PUBLIC_LOCAL_DATA) {
-    rules = require(
-      `../../../nosgestesclimat/public/co2-model.${regionCode}-lang.${locale}${
-        isOptim ? '-opti' : ''
-      }.json`
-    )
-  }
-
   return useQuery(
-    ['rules', dataServer, lang, region, isOptim, rules],
+    ['rules', dataServer, lang, region, isOptim],
     () =>
-      rules
-        ? Promise.resolve(rules as unknown)
+      process.env.NEXT_PUBLIC_LOCAL_DATA
+        ? import(
+            `../../../nosgestesclimat/public/co2-model.${regionCode}-lang.${locale}${
+              isOptim ? '-opti' : ''
+            }.json`
+          )
         : axios
             .get(
               `${dataServer}/co2-model.${regionCode}-lang.${locale}${
