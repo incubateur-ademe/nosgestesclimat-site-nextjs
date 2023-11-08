@@ -1,11 +1,7 @@
+import applySetCookie from '@/utils/applySetCookie'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
-import applySetCookie from './applySetCookie'
-
-const challenger = {
-  branch: 'modif-couleurs',
-  share: 0.5,
-}
+import challenger from '../../split-testing'
 
 const redirectUrl = `https://nosgestesclimat-git-${challenger.branch}-nos-gestes-climat.vercel.app`
 
@@ -14,14 +10,11 @@ function splitTestingMiddleware(request: NextRequest) {
   if (!splitNumber) {
     const randomNumber = Math.random()
     splitNumber = String(randomNumber)
-    console.log(request.url, splitNumber)
-  } else {
-    console.log('GOOD ' + request.url, splitNumber)
   }
 
   const shouldRedirectToChallenger = Number(splitNumber) < challenger.share
 
-  if (!shouldRedirectToChallenger) {
+  if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
     response.cookies.set('split-number', splitNumber)
     applySetCookie(request, response)
