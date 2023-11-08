@@ -28,10 +28,10 @@ export default function SubcategoryChartBlock({
   sumSquashedSubcategoriesPercentage,
   shouldAlwaysDisplayValue,
 }: Props) {
-  const { numericValue: categoryNumericvalue } = useRule(category)
+  const { numericValue: categoryNumericvalue, color } = useRule(category)
 
   const subcategoryObject = useRule(subcategory)
-  const { title, abbreviatedTitle, numericValue, color } = subcategoryObject
+  const { title, abbreviatedTitle, numericValue } = subcategoryObject
 
   const { formattedValue, unit } = formatCarbonFootprint(numericValue)
 

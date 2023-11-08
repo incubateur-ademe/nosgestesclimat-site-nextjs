@@ -17,6 +17,7 @@ export default function SafeImage({ alt, src, ...props }: ImageProps) {
         currentTarget.onerror = null
         setIsErrorLoading(true)
       }}
+      crossOrigin="anonymous"
     />
   )
 }

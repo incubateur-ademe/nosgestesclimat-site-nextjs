@@ -5,6 +5,7 @@ import { SIMULATION_URL } from '@/constants/urls'
 import SmileyGrading from '@/design-system/inputs/SmileyGrading'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { NorthStarType, NorthStarValue } from '@/types/northstar'
 import { captureException } from '@sentry/react'
@@ -20,12 +21,10 @@ type Props = {
 }
 
 export default function FeedbackBanner({ text, type, className }: Props) {
+  const { t } = useClientTranslation()
   const { user, updateNorthStarRatings } = useUser()
-
   const { getNumericValue } = useEngine()
-
   const { categories, progression } = useForm()
-
   const hasJustAnswered = useRef(false)
 
   const {
@@ -66,7 +65,7 @@ export default function FeedbackBanner({ text, type, className }: Props) {
     return (
       <Card
         className={`${cardClassName} h-[200px] flex-row items-center justify-center gap-3`}>
-        <Trans i18nKey="northstar.thankyou">Merci pour votre retour !</Trans>
+        {t('Merci pour votre retour\u202f!')}
         <Emoji className="text-2xl">😊</Emoji>
       </Card>
     )
