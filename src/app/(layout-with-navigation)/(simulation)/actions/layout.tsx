@@ -8,12 +8,10 @@ import { PropsWithChildren } from 'react'
 export default function ActionsLayout({ children }: PropsWithChildren) {
   return (
     <FormProvider>
-      <div className="">
-        <Title title={<Trans>Agir</Trans>} />
-        <Total />
-        <NorthStarBanner type="action" />
-        <div>{children}</div>
-      </div>
+      <Title title={<Trans>Agir</Trans>} />
+      <Total />
+      <NorthStarBanner type="action" />
+      <div>{children}</div>
     </FormProvider>
   )
 }
