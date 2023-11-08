@@ -3,8 +3,6 @@ const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
 })
 
-const withSplit = require('next-with-split').withSplit({})
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Configure pageExtensions to include md and mdx
@@ -109,7 +107,7 @@ const nextConfig = {
   },
 }
 
-module.exports = withSplit(withMDX(nextConfig))
+module.exports = withMDX(nextConfig)
 
 // Injected content via Sentry wizard below
 

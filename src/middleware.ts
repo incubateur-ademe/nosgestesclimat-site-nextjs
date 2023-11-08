@@ -1,10 +1,9 @@
-import { middleware as withSplit } from 'next-with-split'
+import { i18nRouter } from 'next-i18n-router'
 import { NextRequest } from 'next/server'
+import i18nConfig from './i18nConfig'
 
 export function middleware(request: NextRequest) {
-  const res = withSplit(request)
-  return res
-  // return i18nRouter(request, i18nConfig)
+  return i18nRouter(request, i18nConfig)
 }
 
 // only applies this middleware to files in the app directory
