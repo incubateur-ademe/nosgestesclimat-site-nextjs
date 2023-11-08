@@ -1,4 +1,7 @@
 // Initialise react-i18next
+import Logo from '@/components/misc/Logo'
+import Header from '@/design-system/layout/Header'
+import Navigation from '@/design-system/layout/Navigation'
 import getGeolocation from '@/helpers/getGeolocation'
 import '@/locales/initClient'
 import '@/locales/initServer'
@@ -136,7 +139,11 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
         <ErrorBoundary showDialog fallback={ErrorFallback}>
-          <MainLayoutProviders region={region}>{children}</MainLayoutProviders>
+          <MainLayoutProviders region={region}>
+            <Header logo={<Logo />} navigation={<Navigation />} />
+
+            {children}
+          </MainLayoutProviders>
         </ErrorBoundary>
       </body>
     </html>
