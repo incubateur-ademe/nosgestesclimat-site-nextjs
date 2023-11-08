@@ -26,11 +26,7 @@ export function useRules({ lang, region, isOptim = true }: Props) {
     ['rules', dataServer, lang, region, isOptim],
     () =>
       process.env.NEXT_PUBLIC_LOCAL_DATA
-        ? import(
-            `../../../nosgestesclimat/public/co2-model.${regionCode}-lang.${locale}${
-              isOptim ? '-opti' : ''
-            }.json`
-          )
+        ? importLocalRules({ regionCode, locale, isOptim })
         : axios
             .get(
               `${dataServer}/co2-model.${regionCode}-lang.${locale}${
@@ -43,4 +39,24 @@ export function useRules({ lang, region, isOptim = true }: Props) {
       refetchOnWindowFocus: false,
     }
   )
+}
+
+async function importLocalRules({
+  regionCode,
+  locale,
+  isOptim,
+}: {
+  regionCode?: string
+  locale: string
+  isOptim: boolean
+}) {
+  try {
+    return await import(
+      `../../../nosgestesclimat/public/co2-model.${regionCode}-lang.${locale}${
+        isOptim ? '-opti' : ''
+      }.json`
+    )
+  } catch (e) {
+    console.log(e)
+  }
 }
