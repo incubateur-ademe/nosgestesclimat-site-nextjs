@@ -20,7 +20,6 @@ module.exports = {
         title: '#32337B',
         secondary: '#3496E0',
         lightGrey: '#F8F8F7',
-        default: '#1A1A1A',
         grey: {
           100: '#F8F8F7',
           200: '#E3E3DB',
