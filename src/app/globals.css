@@ -19,6 +19,7 @@
     @apply text-2xl;
     @apply mb-6;
     @apply font-bold;
+    @apply leading-tight;
   }
 
   h2 {
@@ -26,6 +27,7 @@
     @apply md:text-2xl;
     @apply mb-4;
     @apply font-bold;
+    @apply leading-tight;
   }
 
   h3 {
@@ -33,6 +35,7 @@
     @apply md:text-xl;
     @apply mb-4;
     @apply font-bold;
+    @apply leading-tight;
   }
 
   h3 {
@@ -40,12 +43,14 @@
     @apply md:text-lg;
     @apply mb-4;
     @apply font-bold;
+    @apply leading-tight;
   }
 
   h4,
   h5,
   h6 {
     @apply font-bold;
+    @apply leading-tight;
   }
 
   p {
@@ -82,7 +87,7 @@ body {
 }
 
 a {
-  @apply inline-block text-primary-500 underline transition-colors hover:text-primary-400;
+  @apply text-primary-500 hover:text-primary-400 inline-block underline transition-colors;
 }
 
 img {

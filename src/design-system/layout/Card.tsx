@@ -6,6 +6,14 @@ import {
 } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+type Props = {
+  className?: string
+  href?: string /* Used only for links */
+  tag?: ElementType | string
+  onClick?: () => void
+  style?: CSSProperties
+  target?: string
+}
 export default function Card({
   children,
   className,
@@ -15,16 +23,7 @@ export default function Card({
   style,
   ...props
 }: HTMLAttributes<HTMLDivElement> &
-  PropsWithChildren<
-    {
-      className?: string
-      href?: string /* Used only for links */
-      tag?: ElementType | string
-      onClick?: () => void
-      style?: CSSProperties
-      target?: string
-    } & HTMLAttributes<HTMLDivElement>
-  >) {
+  PropsWithChildren<Props & HTMLAttributes<HTMLDivElement>>) {
   const Tag = tag || 'div'
 
   return (
@@ -36,8 +35,7 @@ export default function Card({
       )}
       href={href}
       style={style}
-      {...props}
-    >
+      {...props}>
       {children}
     </Tag>
   )

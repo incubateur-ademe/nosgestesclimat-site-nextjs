@@ -45,6 +45,10 @@ module.exports = {
           200: '#E3E3DB',
         },
       },
+      fontSize: {
+        '3xl': '2rem',
+        '5xl': '2.75rem',
+      },
       keyframes: {
         valuechange: {
           '0%': { opacity: 0, transform: 'translateX(-10%)' },
