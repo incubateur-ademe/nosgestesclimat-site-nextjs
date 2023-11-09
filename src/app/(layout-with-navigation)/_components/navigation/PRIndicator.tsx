@@ -24,7 +24,7 @@ export default function PRIndicator() {
         height="20"
       />
       <Link
-        className="font-base text-sm text-primaryDark md:text-lg"
+        className="font-base text-primary-700 text-sm md:text-lg"
         target="_blank"
         href={'https://github.com/datagir/nosgestesclimat/pull/' + PRNumber}>
         #{PRNumber}
