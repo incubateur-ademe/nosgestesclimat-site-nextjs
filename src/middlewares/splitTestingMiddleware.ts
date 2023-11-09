@@ -8,14 +8,17 @@ const redirectUrl = `https://nosgestesclimat-git-${challenger.branch}-nos-gestes
 function splitTestingMiddleware(request: NextRequest) {
   let splitNumber = request.cookies.get('split-number')?.value
 
+  console.log('line 11', splitNumber)
+
   if (!splitNumber) {
     const randomNumber = Math.random()
 
     splitNumber = String(randomNumber)
+    console.log('line 17', splitNumber)
   }
 
   const shouldRedirectToChallenger = Number(splitNumber) < challenger.share
-
+  console.log('line 21', shouldRedirectToChallenger)
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
 
@@ -30,9 +33,13 @@ function splitTestingMiddleware(request: NextRequest) {
     request.nextUrl.origin,
     ''
   )}`
+
   const response = NextResponse.rewrite(rewriteTo)
+
   response.cookies.set('split-number', splitNumber)
+
   applySetCookie(request, response)
+
   return response
 }
 
