@@ -17,8 +17,9 @@ function isI18n(response: NextResponse): boolean {
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next()
+
   for await (const middlewareFunction of middlewares) {
-    const middlewareResponse = await middlewareFunction(request)
+    const middlewareResponse = middlewareFunction(request)
 
     if (isRedirecting(middlewareResponse)) {
       return middlewareResponse

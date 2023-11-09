@@ -1,5 +1,5 @@
 const challenger = {
-  branch: 'modif-couleurs',
+  branch: 'new-nav',
   share: 0.5,
 }
 
