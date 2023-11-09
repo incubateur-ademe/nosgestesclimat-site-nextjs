@@ -29,7 +29,7 @@ export default function Icon({
     <div
       className={`absolute w-full origin-left ${
         isClient ? 'opacity-100' : 'opacity-0'
-      } transition-opacity`}
+      }`}
       style={{
         transform: `rotate(${angle}deg)`,
         transitionDelay: `${delay}ms`,
