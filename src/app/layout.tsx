@@ -56,10 +56,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
       <head>
-        <meta charSet="utf-8" />
-
-        <meta name="viewport" content="initial-scale=1" />
-
         <link rel="icon" href="/images/misc/favicon.png" />
 
         <link
