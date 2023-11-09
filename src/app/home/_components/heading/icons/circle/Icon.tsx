@@ -24,7 +24,7 @@ export default function Icon({
   onClick,
 }: Props) {
   const isClient = useIsClient()
-  const delay = useMemo(() => Math.random() * 1000 + 500, [])
+  const delay = useMemo(() => Math.random() * 1000, [])
   const iconRotation = useMemo(() => (Math.random() - 0.5) * 60, [])
 
   return (
