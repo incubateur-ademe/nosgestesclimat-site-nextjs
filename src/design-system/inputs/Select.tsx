@@ -19,7 +19,7 @@ export default function Select({
       value={value}
       onChange={onChange}
       className={twMerge(
-        `border-grey-300  max-w-[30rem] rounded-md border border-solid bg-grey-100 p-4 text-sm transition-colors focus:border-primary focus:ring-2 focus:ring-primary `,
+        `border-grey-300  focus:border-primary-700 focus:ring-primary-700 max-w-[30rem] rounded-md border border-solid bg-grey-100 p-4 text-sm transition-colors focus:ring-2 `,
         className
       )}>
       {children}

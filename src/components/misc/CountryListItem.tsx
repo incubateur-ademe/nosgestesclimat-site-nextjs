@@ -18,13 +18,12 @@ export default function CountryListItem({
   return (
     <Card
       tag={updateCurrentRegion ? 'button' : ''}
-      className={`flex h-16 w-24 items-center justify-center gap-2 px-3 py-2 text-center text-xs text-primaryDark sm:h-12 sm:!w-36 sm:flex-row sm:justify-start sm:py-0 sm:text-left ${
-        isSelected ? 'border border-solid border-primary !bg-primaryLight' : ''
+      className={`text-primary-700 flex h-16 w-24 items-center justify-center gap-2 px-3 py-2 text-center text-xs sm:h-12 sm:!w-36 sm:flex-row sm:justify-start sm:py-0 sm:text-left ${
+        isSelected ? '!bg-primary-100 border border-solid border-primary' : ''
       }`}
       onClick={
         updateCurrentRegion ? () => updateCurrentRegion(code) : undefined
-      }
-    >
+      }>
       <CountryFlag code={code} />
       {label}
     </Card>
