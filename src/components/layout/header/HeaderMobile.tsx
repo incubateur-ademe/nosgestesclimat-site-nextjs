@@ -3,7 +3,6 @@
 import ActionsIcon from '@/components/icons/ActionsIcon'
 import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
-import OrganisationIcon from '@/components/icons/OrganisationIcon'
 import ProfileIcon from '@/components/icons/ProfileIcon'
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
@@ -32,16 +31,18 @@ export default function HeaderMobile() {
                   Profil
                 </NavLink>
               </li>
-
-              <li>
-                <NavLink
-                  onClick={closeMenu}
-                  href="https://sondages.nogestesclimat.fr"
-                  shouldUseDefaultLink
-                  icon={OrganisationIcon}>
-                  Organisations
-                </NavLink>
-              </li>
+              {/*
+                // TODO : uncomment when organisations are ready
+                <li>
+                  <NavLink
+                    onClick={closeMenu}
+                    href="https://sondages.nogestesclimat.fr"
+                    shouldUseDefaultLink
+                    icon={OrganisationIcon}>
+                    Organisations
+                  </NavLink>
+                </li>
+              */}
 
               <li>
                 <div className="ml-2 h-[1px] w-4 bg-gray-400" />
@@ -49,7 +50,7 @@ export default function HeaderMobile() {
 
               <li>
                 <NavLink onClick={closeMenu} href="/blog">
-                  Notre Blog
+                  Blog
                 </NavLink>
               </li>
 
@@ -61,7 +62,7 @@ export default function HeaderMobile() {
 
               <li>
                 <NavLink onClick={closeMenu} href="/diffuser">
-                  Diffuser NGC
+                  Diffuser Nos Gestes Climat
                 </NavLink>
               </li>
             </ul>
@@ -77,26 +78,35 @@ export default function HeaderMobile() {
       )}
 
       {!shouldHideMostOfContent && (
-        <ul className="fixed bottom-0 left-0 z-50 flex w-screen justify-around border-t border-gray-200 border-t-gray-200 bg-white p-4 shadow-md">
-          <li className="px-4">
+        <ul className="fixed bottom-0 left-0 z-50 flex w-screen justify-around border-t border-gray-200 border-t-gray-200 bg-grey-100 shadow-md">
+          <li className="h-full w-full">
             <NavLink
               href="/tutoriel"
               isBasePathActive
               activeMatches={['/tutoriel', '/simulateur']}
               icon={BilanIcon}
-              className="flex-col">
-              <Trans>Bilan</Trans>
+              className="flex-col  p-2 px-4"
+              activeClassName="bg-white border-r border-gray-200 text-primary-500 font-bold">
+              <Trans>Test</Trans>
             </NavLink>
           </li>
 
-          <li className="px-4">
-            <NavLink className="flex-col" href="/actions" icon={ActionsIcon}>
+          <li className="h-full w-full">
+            <NavLink
+              className="flex-col  p-2 px-4"
+              activeClassName="bg-white border-x border-gray-200 text-primary-500 font-bold"
+              href="/actions"
+              icon={ActionsIcon}>
               <Trans>Actions</Trans>
             </NavLink>
           </li>
 
-          <li className="px-4">
-            <NavLink className="flex-col" href="/amis" icon={AmisIcon}>
+          <li className="h-full w-full">
+            <NavLink
+              className="flex-col p-2 px-4"
+              activeClassName="bg-white border-l border-gray-200 text-primary-500 font-bold"
+              href="/amis"
+              icon={AmisIcon}>
               <Trans>Amis</Trans>
             </NavLink>
           </li>
