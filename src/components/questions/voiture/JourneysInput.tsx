@@ -101,7 +101,7 @@ export default function JourneysInput({ question }: Props) {
             <th className="px-4 py-2 text-left text-sm">
               <Trans>Passagers</Trans>
             </th>
-            <th className="px-4 py-2 text-left text-sm"></th>
+            <th className="px-4 py-2 text-left text-sm opacity-0">Options</th>
           </tr>
           {journeys.map((journey, index) => (
             <JourneyItem

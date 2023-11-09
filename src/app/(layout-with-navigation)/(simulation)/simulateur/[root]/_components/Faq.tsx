@@ -11,7 +11,7 @@ export default function Faq() {
   if (isIframeOnlySimulation) return null
 
   return (
-    <div className="mx-auto mb-4 rounded-lg bg-primaryLight p-4 text-center">
+    <div className="bg-primary-100 mx-auto mb-4 rounded-lg p-4 text-center">
       <p>
         <Trans>Une question, un problème ?</Trans>
       </p>

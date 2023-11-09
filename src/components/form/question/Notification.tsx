@@ -16,8 +16,7 @@ export default function Notification({ notification }: Props) {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="mb-4 flex flex-col items-end rounded-md bg-grey-100 p-4 text-sm"
-    >
+      className="mb-4 flex flex-col items-end rounded-md bg-white p-4 text-sm">
       <Markdown>{description}</Markdown>
       <Button size="sm" onClick={() => setValue(false)}>
         <Trans>J'ai compris</Trans>

@@ -7,11 +7,12 @@ import CardGameIcon from '../../../components/icons/CardGameIcon'
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
 
+import GroupIcon from '@/components/icons/GroupIcon'
+import PersonIcon from '@/components/icons/PersonIcon'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useDebug } from '@/hooks/useDebug'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
-import Image from 'next/image'
 import NavLink from './navigation/NavLink'
 import PRIndicator from './navigation/PRIndicator'
 
@@ -58,40 +59,33 @@ export default function Navigation() {
         <ul className="m-0 flex h-20 w-full list-none justify-between bg-white py-1 shadow-md sm:px-4 lg:h-auto lg:flex-col lg:justify-start lg:gap-1 lg:bg-none lg:py-2 lg:shadow-none">
           <NavLink
             href="/simulateur/bilan"
-            className="justify-end !p-0 lg:justify-start lg:!p-4">
+            className="text-default justify-end !p-0 lg:justify-start lg:!p-4">
             <ProgressCircle className="lg:mr-4" />
-            <span className="text-base text-primaryDark md:text-lg">
+            <span className="text-base md:text-lg">
               <Trans>Le test</Trans>
             </span>
           </NavLink>
 
           <NavLink
             href="/actions"
-            className="justify-end !p-0 lg:justify-start lg:!p-4">
+            className="text-default justify-end !p-0 lg:justify-start lg:!p-4">
             <ActionsInteractiveIcon className="w-12 lg:mr-4" />
 
-            <span className="text-base text-primaryDark md:text-lg">
+            <span className="text-base md:text-lg">
               <Trans>Agir</Trans>
             </span>
           </NavLink>
 
           {!enquete && (
-            <NavLink href="/profil">
+            <NavLink href="/profil" className="text-default">
               <div className="relative">
-                <Image
-                  src="/images/misc/silhouette.svg"
-                  alt=""
-                  className="w-8 lg:mr-4"
-                  aria-hidden="true"
-                  width="25"
-                  height="25"
-                />
+                <PersonIcon className="mr-[20px]" />
               </div>
-              <span className="text-base text-primaryDark md:text-lg">
+              <span className="text-base  md:text-lg">
                 {!persona ? (
                   t('Profil')
                 ) : (
-                  <span className="rounded-md bg-primary px-4 py-2 text-white">
+                  <span className="bg-primary-500 rounded-md px-4 py-2 text-white">
                     {capitalizeString(persona.split(' . ')[1])}
                   </span>
                 )}
@@ -100,17 +94,13 @@ export default function Navigation() {
           )}
 
           {!enquete && (
-            <NavLink href="/amis" data-cypress-id="amis-link">
-              <Image
-                src="/images/misc/silhouettes.svg"
-                alt=""
-                className="w-8 lg:mr-4"
-                aria-hidden="true"
-                width="25"
-                height="25"
-              />
+            <NavLink
+              href="/amis"
+              data-cypress-id="amis-link"
+              className="text-default">
+              <GroupIcon className="mr-[20px]" />
 
-              <span className="text-base text-primaryDark md:text-lg">
+              <span className="text-base md:text-lg">
                 <Trans>Amis</Trans>
               </span>
             </NavLink>
