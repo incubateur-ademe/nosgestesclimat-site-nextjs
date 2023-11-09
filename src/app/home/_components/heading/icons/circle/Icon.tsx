@@ -11,7 +11,6 @@ type Props = {
   angle: number
   rotation: number
   distance: number
-  odd: boolean
   onClick: MouseEventHandler<HTMLDivElement>
 }
 
@@ -20,7 +19,6 @@ export default function Icon({
   angle,
   rotation,
   distance,
-  odd,
   onClick,
 }: Props) {
   const isClient = useIsClient()
@@ -29,9 +27,9 @@ export default function Icon({
 
   return (
     <div
-      className={`absolute w-full origin-left ${odd ? 'md:hidden' : ''} ${
+      className={`absolute w-full origin-left ${
         isClient ? 'opacity-100' : 'opacity-0'
-      } transition-opacity md:block`}
+      } transition-opacity`}
       style={{
         transform: `rotate(${angle}deg)`,
         transitionDelay: `${delay}ms`,

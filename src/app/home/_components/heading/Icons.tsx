@@ -16,9 +16,7 @@ export default function Icons() {
 
   if (!isClient || isMobile) return null
   return (
-    <div
-      className="absolute left-1/2 top-1/2 hidden h-1/2 w-1/2 md:block"
-      aria-hidden="true">
+    <div className="absolute left-1/2 top-1/2 h-1/2 w-1/2" aria-hidden="true">
       {circles.map((distance) => (
         <Circle key={distance} distance={distance} />
       ))}

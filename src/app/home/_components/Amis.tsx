@@ -1,16 +1,13 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
-import { Suspense } from 'react'
 import Screenshot from './amis/Screenshot'
 
 export default function Amis() {
   return (
     <div className="flex-1">
       <div className="mb-6 w-full justify-center overflow-hidden rounded-lg bg-grey-100 px-4 pt-4 md:px-12 md:pt-12">
-        <Suspense fallback={null}>
-          <Screenshot />
-        </Suspense>
+        <Screenshot />
       </div>
       <Kicker>
         <Trans>Entre amis</Trans>

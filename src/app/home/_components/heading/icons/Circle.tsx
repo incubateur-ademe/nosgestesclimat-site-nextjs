@@ -30,7 +30,6 @@ export default function Circle({ distance }: Props) {
       }}>
       {icons.map(({ angle, icon }, index) => (
         <Icon
-          odd={index % 2 ? true : false}
           key={angle}
           icon={icon}
           angle={angle}
