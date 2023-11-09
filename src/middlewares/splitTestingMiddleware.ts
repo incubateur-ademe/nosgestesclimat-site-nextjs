@@ -28,7 +28,7 @@ const splitTestingMiddleware = (
 
     if (
       i18nRouterResponse.headers.get('x-middleware-rewrite') &&
-      i18nRouterResponse.headers.get('x-next-i18n-router-locale') !== 'fr'
+      i18nRouterResponse.headers.get('x-next-i18n-router-locale')
     ) {
       response.headers.set(
         'x-middleware-rewrite',
@@ -55,7 +55,7 @@ const splitTestingMiddleware = (
   response.cookies.set(cookieName, splitNumber)
   if (
     i18nRouterResponse.headers.get('x-middleware-rewrite') &&
-    i18nRouterResponse.headers.get('x-next-i18n-router-locale') !== 'fr'
+    i18nRouterResponse.headers.get('x-next-i18n-router-locale')
   ) {
     response.headers.set(
       'x-middleware-rewrite',

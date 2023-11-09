@@ -6,7 +6,7 @@ import splitTestingMiddleware from './middlewares/splitTestingMiddleware'
 export const middlewares = [i18nMiddleware, splitTestingMiddleware]
 
 export async function middleware(request: NextRequest) {
-  if (!request.nextUrl.href.match('/((?!api|static|.*\\..*|_next).*)')) {
+  if (!request.nextUrl.href.match('/((?!api|static|_next).*)')) {
     const response = NextResponse.next()
     return response
   }
