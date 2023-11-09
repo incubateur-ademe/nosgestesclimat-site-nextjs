@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useIsClient } from '@/hooks/useIsClient'
 import Circle from './icons/Circle'
 
 const distanceBetweenIcons = 5
@@ -11,15 +11,13 @@ for (let i = 0; i < numberOfCircles; i++) {
 }
 
 export default function Icons() {
-  const [shouldDisplay, setShouldDisplay] = useState(false)
-  useEffect(() => {
-    const timer = setTimeout(() => setShouldDisplay(true), 1000)
-    return () => clearTimeout(timer)
-  }, [])
+  const isClient = useIsClient()
 
-  if (!shouldDisplay) return
+  if (!isClient) return null
   return (
-    <div className="absolute left-1/2 top-1/2 h-1/2 w-1/2" aria-hidden="true">
+    <div
+      className="absolute left-1/2 top-1/2 hidden h-1/2 w-1/2 md:block"
+      aria-hidden="true">
       {circles.map((distance) => (
         <Circle key={distance} distance={distance} />
       ))}
