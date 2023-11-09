@@ -7,6 +7,8 @@ type Props = {
   distance: number
 }
 
+const visibleIndex = [9, 10, 11, 12, 13, 14, 15, 16, 28, 29, 30, 31, 32, 33, 34]
+
 export default function Circle({ distance }: Props) {
   const rotation = useMemo(() => Math.random() * 10 + 45, [])
 
@@ -19,7 +21,7 @@ export default function Circle({ distance }: Props) {
         icon: String(Math.round(Math.random() * 100)),
       })
     }
-    setIcons(newIcons)
+    setIcons(newIcons.filter((icon, index) => visibleIndex.includes(index)))
   }, [])
 
   return (
@@ -37,14 +39,7 @@ export default function Circle({ distance }: Props) {
           distance={distance}
           onClick={() => {
             const indexOfIconA = index
-
-            const visibleIndexOfIconB = [
-              9, 10, 11, 12, 13, 14, 15, 16, 28, 29, 30, 31, 32, 33, 34,
-            ]
-            const indexOfIconB =
-              visibleIndexOfIconB[
-                Math.round(Math.random() * (visibleIndexOfIconB.length - 1))
-              ]
+            const indexOfIconB = Math.round(Math.random() * (icons.length - 1))
 
             setIcons((prevIcons) =>
               prevIcons.map(({ icon, angle }, index) => {
