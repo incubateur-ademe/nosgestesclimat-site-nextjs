@@ -23,7 +23,10 @@ export default function HeaderDesktop() {
     <header className="sticky top-0 z-50 hidden gap-4 border-b bg-white shadow-sm lg:block">
       <div className="mx-auto flex max-w-5xl justify-between gap-4 ">
         <div className="flex items-center gap-16">
-          <Logo isSmall={shouldHideMostOfContent} className="py-2" />
+          <Logo
+            isSmall={shouldHideMostOfContent}
+            className={shouldHideMostOfContent ? 'py-2' : 'py-4'}
+          />
 
           <Navigation>
             <li className="px-4">
