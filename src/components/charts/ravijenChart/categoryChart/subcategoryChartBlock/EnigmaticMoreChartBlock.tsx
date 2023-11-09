@@ -12,7 +12,7 @@ export default function EnigmaticMoreChartBlock({
         1
       )}% du total de la catégorie`}
       style={{ backgroundColor: color ?? '', height: `${percentageSquashed}%` }}
-      className="relative font-bold text-white">
+      className="relative cursor-default font-bold text-white">
       <div className="absolute left-1/2 top-1/2 h-8 -translate-x-1/2 -translate-y-1/2 transform">
         ...
       </div>

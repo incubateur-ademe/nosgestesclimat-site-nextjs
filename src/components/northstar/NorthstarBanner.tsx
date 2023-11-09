@@ -85,22 +85,22 @@ export default function NorthStarBanner({
         setIsAnimationCompleted(true)
       }}
       id="northstarBanner"
-      className="relative m-0 h-auto w-auto rounded-lg bg-green-50 shadow-md sm:m-2"
-    >
+      className="relative m-0 h-auto w-auto rounded-lg bg-green-50 shadow-md sm:m-2">
       <button
         className="bold absolute right-0 top-0 h-10 w-10 text-center text-lg"
         onClick={closeFeedback}
-        aria-label={t('Fermer le bandeau de feedback')}
-      >
+        aria-label={t('Fermer le bandeau de feedback')}>
         &#215;
       </button>
 
       <div className="flex items-center justify-center">
         <div className="m-auto max-w-[420px] p-6">
           <h2>
-            <Trans i18nKey={'publicodes.northstar.title'}>
-              <b>Petite question entre nous...</b>
-            </Trans>
+            <b>
+              <Trans i18nKey={'publicodes.northstar.title'}>
+                Petite question entre nous...
+              </Trans>
+            </b>
           </h2>
 
           {type === 'action' ? (
@@ -120,12 +120,12 @@ export default function NorthStarBanner({
           ) : (
             <>
               <p>
-                <Trans i18nKey={'publicodes.northstar.learned'}>
-                  <b>
+                <b>
+                  <Trans i18nKey={'publicodes.northstar.learned'}>
                     Est-ce que "Nos Gestes Climat" vous a permis d'apprendre
                     quelque chose ?
-                  </b>
-                </Trans>
+                  </Trans>
+                </b>
               </p>
               <Northstar
                 type="learned"

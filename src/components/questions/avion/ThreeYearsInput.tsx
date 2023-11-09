@@ -56,10 +56,10 @@ export default function ThreeYearsInput({ question }: Props) {
   const prevTotalValue = useRef(totalValue)
   useEffect(() => {
     if (totalValue !== prevTotalValue.current) {
-      setValue(totalValue)
+      setValue(totalValue, question)
     }
     prevTotalValue.current = totalValue
-  }, [totalValue, setValue])
+  }, [totalValue, setValue, question])
 
   return (
     <motion.div
@@ -102,8 +102,8 @@ export default function ThreeYearsInput({ question }: Props) {
         size="sm"
         className="mb-2 justify-start"
       />
-      <p className="mb-0 rounded-lg bg-primaryLight p-4 font-bold">
-        {t('Total :')}{' '}
+      <p className="bg-primary-200 mb-0 rounded-lg p-4 font-bold">
+        {t('Total\u202f:')}{' '}
         {(
           currentYearValue +
           lastYearValue +

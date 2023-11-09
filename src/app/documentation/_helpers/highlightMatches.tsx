@@ -22,10 +22,7 @@ export default function highlightMatches(str: string, matches: Matches) {
         currentIndice,
         [
           ...acc,
-          <span
-            className={highlight ? 'bg-primaryLight font-bold' : ''}
-            key={i}
-          >
+          <span className={highlight ? 'bg-primary-100 font-bold' : ''} key={i}>
             {currentStr}
           </span>,
         ],

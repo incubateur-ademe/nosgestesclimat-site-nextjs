@@ -1,10 +1,12 @@
 'use client'
 
 import Link from '@/components/Link'
-import { LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
+import SafeImage from '@/components/images/SafeImage'
+import { DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
-import Image from 'next/image'
+import { capitalizeString } from '@/utils/capitalizeString'
+import { removePercentageFromString } from '@/utils/removePercentageFromString'
 import EnigmaticMoreChartBlock from './subcategoryChartBlock/EnigmaticMoreChartBlock'
 
 type Props = {
@@ -12,7 +14,9 @@ type Props = {
   subcategory: string
   maxValue: number
   index: number
-  percentageSquashed: number
+  squashLimitPercentage?: number
+  sumSquashedSubcategoriesPercentage?: number
+  shouldAlwaysDisplayValue?: boolean
 }
 
 export default function SubcategoryChartBlock({
@@ -20,10 +24,14 @@ export default function SubcategoryChartBlock({
   category,
   maxValue,
   index,
-  percentageSquashed,
+  squashLimitPercentage,
+  sumSquashedSubcategoriesPercentage,
+  shouldAlwaysDisplayValue,
 }: Props) {
-  const { numericValue: categoryNumericvalue } = useRule(category)
-  const { title, numericValue, color } = useRule(subcategory)
+  const { numericValue: categoryNumericvalue, color } = useRule(category)
+
+  const subcategoryObject = useRule(subcategory)
+  const { title, abbreviatedTitle, numericValue } = subcategoryObject
 
   const { formattedValue, unit } = formatCarbonFootprint(numericValue)
 
@@ -35,45 +43,62 @@ export default function SubcategoryChartBlock({
   const heightPercentage =
     (numericValue / categoryNumericvalue) * (100 * categoryRatio)
 
-  if (heightPercentage < LIMIT_PERCENTAGE_TO_SQUASH && index !== 0) return null
-
-  if (heightPercentage < LIMIT_PERCENTAGE_TO_SQUASH && index === 0) {
+  // Replace only the first item squashed by the EnigmaticMoreChartBlock
+  if (
+    heightPercentage <
+      (squashLimitPercentage ?? DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH) &&
+    index !== 0
+  ) {
+    return null
+  } else if (
+    heightPercentage <
+      (squashLimitPercentage ?? DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH) &&
+    index === 0
+  ) {
     return (
       <EnigmaticMoreChartBlock
-        color={color}
-        percentageSquashed={percentageSquashed}
+        color={color ?? '#5758BB'}
+        percentageSquashed={sumSquashedSubcategoriesPercentage ?? 0}
       />
     )
   }
 
-  const isSmall = heightPercentage < 12
+  const isSmall = heightPercentage < 13
+
+  const titleFormatted = capitalizeString(
+    removePercentageFromString(abbreviatedTitle ?? title ?? '')
+  )
 
   return (
     <Link
-      title={`${title}, ${formattedValue} ${unit}, voir la documentation`}
+      title={`${titleFormatted}, ${formattedValue} ${unit}, voir la documentation`}
       href={`/documentation/${subcategory.replaceAll(' . ', '/')}`}
-      className={`flex items-center !text-white !no-underline hover:!underline ${
-        isSmall ? 'flex-row justify-center gap-1' : 'flex-col pt-2'
+      className={`relative flex items-center py-2 !text-white !no-underline hover:!underline ${
+        isSmall ? 'flex-row justify-center gap-1' : 'flex-col flex-wrap'
       }`}
       style={{
-        backgroundColor: color,
+        backgroundColor: color ?? '#32337B',
         height: `${heightPercentage}%`,
       }}>
-      <Image
+      <SafeImage
         style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}
         src={`/images/model/${subcategory}.svg`}
-        alt={`${title}, ${formattedValue} ${unit}`}
-        width={24}
-        height={24}
-        className="h-6 w-6"
+        alt={`${titleFormatted}, ${formattedValue} ${unit}`}
+        width={20}
+        height={20}
+        className={`h-5 w-5 ${isSmall ? '' : 'mb-1'}`}
       />
 
       <p className={`${isSmall ? 'mb-0' : 'mb-1'} text-center text-[0.65rem]`}>
-        {title?.split(' ')[0]}
+        {titleFormatted}
       </p>
 
-      {!isSmall && (
-        <p className="mb-0 text-sm">
+      {!isSmall && !shouldAlwaysDisplayValue && (
+        <p
+          style={{
+            backgroundColor: color ?? '#32337B',
+          }}
+          className="absolute bottom-0 right-1 z-10 mb-0  pl-1 text-[0.65rem]">
           <strong>
             {formattedValue} {unit}
           </strong>

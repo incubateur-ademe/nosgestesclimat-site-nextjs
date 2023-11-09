@@ -12,13 +12,16 @@ module.exports = {
   // defaultNamespace: 'units',
   // Default namespace used in your i18next config
 
-  defaultValue: function (locale, namespace, key, value) {
-    if (value != undefined) {
-      return value !== '' ? value : 'NO_TRANSLATION'
-    }
-
-    return utils.isI18nKey(key) ? 'NO_TRANSLATION' : key
-  },
+  // defaultValue:
+  // function (locale, namespace, key, value) {
+  //   if (value != undefined) {
+  //     return value !== '' ? value : 'NO_TRANSLATION'
+  //   }
+  //
+  //   console.log(`utils.isI18nKey(${key})`, utils.isI18nKey(key))
+  //
+  //   return utils.isI18nKey(key) ? 'NO_TRANSLATION' : key
+  // },
   // Default value to give to empty keys
 
   indentation: 2,
@@ -78,7 +81,7 @@ module.exports = {
   sort: true,
   // Whether or not to sort the catalog
 
-  useKeysAsDefaultValue: false,
+  useKeysAsDefaultValue: true,
   // Whether to use the keys as the default value; ex. "Hello": "Hello", "World": "World"
   // The option `defaultValue` will not work if this is set to true
 

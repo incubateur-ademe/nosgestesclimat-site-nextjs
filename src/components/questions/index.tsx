@@ -7,7 +7,7 @@ const questions: Record<string, any> = {
   'transport . avion . court courrier . heures de vol': (
     <Avion
       key="transport . avion . court courrier . heures de vol"
-      question="transport . avion . moyen courrier . heures de vol"
+      question="transport . avion . court courrier . heures de vol"
     />
   ),
   'transport . avion . moyen courrier . heures de vol': (

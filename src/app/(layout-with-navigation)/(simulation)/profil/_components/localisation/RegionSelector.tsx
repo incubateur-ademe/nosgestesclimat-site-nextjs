@@ -42,7 +42,7 @@ export default function RegionSelector({
     <>
       <details open={isOpen}>
         <summary
-          className={`middle w-auto cursor-pointer rounded-md bg-primaryLight p-4 ${
+          className={`middle bg-primary-100 w-auto cursor-pointer rounded-md p-4 ${
             isFetching ? 'pointer-events-none opacity-60' : ''
           }`}>
           <span>

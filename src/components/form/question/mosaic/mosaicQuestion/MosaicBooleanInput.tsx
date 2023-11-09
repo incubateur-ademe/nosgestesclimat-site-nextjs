@@ -13,15 +13,22 @@ type Props = {
 }
 
 const buttonClassNames = {
-  inactive: 'border-grey-500 bg-gray-100 text-gray-400',
-  checked: 'border-primary bg-primary text-white',
-  unchecked: 'border-primary bg-grey-100 text-primary hover:bg-primaryLight',
+  inactive: 'border-grey-500 bg-gray-100 text-gray-400 cursor-default',
+  checked: 'border-primary-500 bg-primary-200 text-primary-500 border-2',
+  unchecked: 'border-gray-300 bg-white text-primary-500 hover:bg-primary-100',
 }
 const checkClassNames = {
   inactive: 'border-gray-300',
-  checked: 'border-white',
-  unchecked: 'border-primary',
+  checked: 'border-primary-500',
+  unchecked: 'border-gray-300',
 }
+
+const labelClassNames = {
+  inactive: 'text-gray-500',
+  checked: 'text-primary-700',
+  unchecked: 'text-gray-700',
+}
+
 export default function MosaicBooleanInput({
   question,
   title,
@@ -39,8 +46,7 @@ export default function MosaicBooleanInput({
     : 'unchecked'
   return (
     <label
-      className={`relative flex cursor-pointer items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
-    >
+      className={`relative flex cursor-pointer items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}>
       <input
         type="checkbox"
         disabled={isInactive}
@@ -52,14 +58,13 @@ export default function MosaicBooleanInput({
         id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
       />
       <span
-        className={`${checkClassNames[status]} block h-5 w-5 items-center rounded-sm border-2 leading-4`}
-      >
+        className={`${checkClassNames[status]} flex h-5 w-5 items-center items-center justify-center rounded-sm border-2 leading-4`}>
         {status === 'checked' ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
-          >
+            className={`font-mono text-2xl ${labelClassNames[status]}`}>
             ✓
           </motion.div>
         ) : (
@@ -68,7 +73,7 @@ export default function MosaicBooleanInput({
       </span>
       <div className="flex-1">
         {title && icons ? (
-          <span className="font-semibold md:text-xl">
+          <span className={`font-medium md:text-xl ${labelClassNames[status]}`}>
             {title}&nbsp;{icons}
           </span>
         ) : null}

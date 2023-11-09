@@ -14,7 +14,10 @@ export default function InfoLink({
   const { t } = useClientTranslation()
 
   return (
-    <Link href={href} className="rounded-full bg-primary text-white" {...props}>
+    <Link
+      href={href}
+      className="bg-primary-500 rounded-full text-white"
+      {...props}>
       <Image
         src="/images/misc/info.svg"
         width={24}

@@ -11,7 +11,7 @@ export default function Table(props) {
                 {props.title}{' '}
                 {props.setNewWebsites && (
                   <button
-                    className="m-0 inline cursor-pointer border-none bg-none p-0 text-sm text-primary"
+                    className="text-primary-500 m-0 inline cursor-pointer border-none bg-none p-0 text-sm"
                     onClick={() =>
                       props.setNewWebsites(
                         (prevNewWebsites) => !prevNewWebsites
