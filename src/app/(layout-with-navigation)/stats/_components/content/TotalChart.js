@@ -26,7 +26,7 @@ export default function TotalChart(props) {
             style={{
               left: `${((elt - minValue) / (maxScore - minValue)) * 100}%`,
             }}
-            className="absolute bottom-0 top-0 -ml-2 h-full w-2 bg-primary opacity-5"
+            className="bg-primary-500 absolute bottom-0 top-0 -ml-2 h-full w-2 opacity-5"
             title={humanWeight({ t, i18n }, elt, true, user?.region?.code).join(
               ' '
             )}

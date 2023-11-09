@@ -4,7 +4,7 @@ import Trans from '../translation/Trans'
 
 export default async function Route404() {
   return (
-    <div className="mx-auto my-16 text-center text-primaryDark">
+    <div className="text-primary-700 mx-auto my-16 text-center">
       <h1 className="flex items-center justify-center">
         <Trans>Oups! Cette page n'existe pas ou n'existe plus</Trans>{' '}
         <span role="img" aria-label="Emoji no" aria-hidden>
