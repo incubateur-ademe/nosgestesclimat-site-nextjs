@@ -12,8 +12,9 @@ for (let i = 0; i < numberOfCircles; i++) {
 
 export default function Icons() {
   const isClient = useIsClient()
+  const isMobile = isClient && window.innerWidth < 768
 
-  if (!isClient) return null
+  if (!isClient || isMobile) return null
   return (
     <div
       className="absolute left-1/2 top-1/2 hidden h-1/2 w-1/2 md:block"

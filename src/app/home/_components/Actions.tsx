@@ -1,19 +1,16 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
-import Image from 'next/image'
+import { Suspense } from 'react'
+import Screenshot from './actions/Screenshot'
 
 export default function Actions() {
   return (
     <div className="flex-1">
       <div className="mb-6 justify-center overflow-hidden rounded-lg bg-grey-100 px-4 pt-4 md:px-12 md:pt-12">
-        <Image
-          className="h-auto max-w-full"
-          src="images/misc/actions.svg"
-          alt="Une capture du parcours Actions de Nos Gestes Climat"
-          width="370"
-          height="305"
-        />
+        <Suspense fallback={null}>
+          <Screenshot />
+        </Suspense>
       </div>
       <Kicker>
         <Trans>Agir pour le climat</Trans>

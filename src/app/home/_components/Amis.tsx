@@ -1,19 +1,16 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
-import Image from 'next/image'
+import { Suspense } from 'react'
+import Screenshot from './amis/Screenshot'
 
 export default function Amis() {
   return (
     <div className="flex-1">
       <div className="mb-6 w-full justify-center overflow-hidden rounded-lg bg-grey-100 px-4 pt-4 md:px-12 md:pt-12">
-        <Image
-          className="h-auto max-w-full drop-shadow-md"
-          src="/images/misc/amis.svg"
-          alt="Une capture du mode Amis Nos Gestes Climat"
-          width="370"
-          height="305"
-        />
+        <Suspense fallback={null}>
+          <Screenshot />
+        </Suspense>
       </div>
       <Kicker>
         <Trans>Entre amis</Trans>

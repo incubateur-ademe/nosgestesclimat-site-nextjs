@@ -29,7 +29,7 @@ export default function Icon({
 
   return (
     <div
-      className={`absolute w-full origin-left ${odd ? 'hidden' : ''} ${
+      className={`absolute w-full origin-left ${odd ? 'md:hidden' : ''} ${
         isClient ? 'opacity-100' : 'opacity-0'
       } transition-opacity md:block`}
       style={{
