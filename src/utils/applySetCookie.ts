@@ -8,6 +8,7 @@ function applySetCookie(req: NextRequest, res: NextResponse): void {
   const setCookies = new ResponseCookies(res.headers)
   const newReqHeaders = new Headers(req.headers)
   const newReqCookies = new RequestCookies(newReqHeaders)
+
   setCookies.getAll().forEach((cookie) => newReqCookies.set(cookie))
 
   return NextResponse.next({

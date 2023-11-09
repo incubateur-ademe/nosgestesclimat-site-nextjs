@@ -1,28 +1,44 @@
 import applySetCookie from '@/utils/applySetCookie'
-import type { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import challenger from '../../split-testing'
 
 const redirectUrl = `https://nosgestesclimat-git-${challenger.branch}-nos-gestes-climat.vercel.app`
 
-function splitTestingMiddleware(request: NextRequest) {
-  let splitNumber = request.cookies.get('split-number')?.value
+const cookieName = `split-number-${challenger.branch}`
 
-  console.log('line 11', splitNumber)
+const splitTestingMiddleware = (
+  request: NextRequest,
+  i18nRouterResponse: any
+) => {
+  console.log(i18nRouterResponse.headers)
+  let splitNumber = request.cookies.get(cookieName)?.value
 
   if (!splitNumber) {
     const randomNumber = Math.random()
 
     splitNumber = String(randomNumber)
-    console.log('line 17', splitNumber)
   }
 
   const shouldRedirectToChallenger = Number(splitNumber) < challenger.share
-  console.log('line 21', shouldRedirectToChallenger)
+
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
 
-    response.cookies.set('split-number', splitNumber)
+    response.cookies.set(cookieName, splitNumber)
+
+    if (
+      i18nRouterResponse.headers.get('x-middleware-rewrite') &&
+      i18nRouterResponse.headers.get('x-next-i18n-router-locale') !== 'fr'
+    ) {
+      response.headers.set(
+        'x-middleware-rewrite',
+        i18nRouterResponse.headers.get('x-middleware-rewrite')
+      )
+      response.headers.set(
+        'x-next-i18n-router-locale',
+        i18nRouterResponse.headers.get('x-next-i18n-router-locale')
+      )
+    }
 
     applySetCookie(request, response)
 
@@ -36,7 +52,20 @@ function splitTestingMiddleware(request: NextRequest) {
 
   const response = NextResponse.rewrite(rewriteTo)
 
-  response.cookies.set('split-number', splitNumber)
+  response.cookies.set(cookieName, splitNumber)
+  if (
+    i18nRouterResponse.headers.get('x-middleware-rewrite') &&
+    i18nRouterResponse.headers.get('x-next-i18n-router-locale') !== 'fr'
+  ) {
+    response.headers.set(
+      'x-middleware-rewrite',
+      i18nRouterResponse.headers.get('x-middleware-rewrite')
+    )
+    response.headers.set(
+      'x-next-i18n-router-locale',
+      i18nRouterResponse.headers.get('x-next-i18n-router-locale')
+    )
+  }
 
   applySetCookie(request, response)
 
