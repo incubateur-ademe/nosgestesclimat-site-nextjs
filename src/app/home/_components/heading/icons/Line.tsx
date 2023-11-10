@@ -28,6 +28,7 @@ export default function Line({ position }: Props) {
       }`}>
       {icons.map(({ rotation, Icon }, index) => (
         <div
+          key={String(rotation) + String(index)}
           className={`${
             isClient ? 'opacity-100' : 'opacity-0'
           } transition-opacity duration-500`}
