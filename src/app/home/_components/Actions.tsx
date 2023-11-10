@@ -6,7 +6,7 @@ import Screenshot from './actions/Screenshot'
 export default function Actions() {
   return (
     <div className="flex-1">
-      <div className="mb-6 justify-center overflow-hidden rounded-lg bg-grey-100 px-4 pt-4 md:px-12 md:pt-12">
+      <div className="mb-6 justify-center overflow-hidden rounded-lg bg-grey-100 px-8 pt-8 md:px-12 md:pt-12">
         <Screenshot />
       </div>
       <Kicker>
