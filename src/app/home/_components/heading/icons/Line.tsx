@@ -34,7 +34,7 @@ export default function Line({ position }: Props) {
           } transition-opacity duration-500`}
           style={{
             transform: `rotate(${rotation}deg)`,
-            transitionDelay: `${index * 100}ms`,
+            transitionDelay: `${index * 100 + 500}ms`,
           }}>
           <Icon />
         </div>

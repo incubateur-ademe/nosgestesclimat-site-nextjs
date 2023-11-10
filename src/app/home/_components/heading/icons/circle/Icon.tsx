@@ -11,6 +11,7 @@ type Props = {
   angle: number
   rotation: number
   distance: number
+  delay?: number
   onClick: MouseEventHandler<HTMLDivElement>
 }
 
@@ -19,20 +20,21 @@ export default function Icon({
   angle,
   rotation,
   distance,
+  delay,
   onClick,
 }: Props) {
   const isClient = useIsClient()
-  const delay = useMemo(() => Math.random() * 1000, [])
+  const innerDelay = useMemo(() => Math.random() * 1000, [])
   const iconRotation = useMemo(() => (Math.random() - 0.5) * 60, [])
 
   return (
     <div
       className={`absolute w-full origin-left ${
         isClient ? 'opacity-100' : 'opacity-0'
-      } transition-opacity duration-500`}
+      } transition-opacity ${delay ? 'duration-200' : 'duration-500'}`}
       style={{
         transform: `rotate(${angle}deg)`,
-        transitionDelay: `${delay}ms`,
+        transitionDelay: `${delay || innerDelay}ms`,
       }}>
       <div
         className="absolute origin-center cursor-default"

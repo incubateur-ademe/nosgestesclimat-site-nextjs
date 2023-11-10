@@ -32,43 +32,53 @@ export default function Circle({ distance }: Props) {
     setIcons(newIcons.filter((icon, index) => visibleIndex.includes(index)))
   }, [])
 
+  const [count, setCount] = useState(1)
+
   return (
     <div
-      className="absolute transition-transform"
-      style={{
-        transform: `rotate(${rotation}deg)`,
-      }}>
-      {icons.map(({ angle, IconComponent }, index) => (
-        <Icon
-          key={angle + IconComponent}
-          IconComponent={IconComponent}
-          angle={angle}
-          rotation={rotation}
-          distance={distance}
-          onClick={() => {
-            const indexOfIconA = index
-            const indexOfIconB = Math.round(Math.random() * (icons.length - 1))
-
-            setIcons((prevIcons) =>
-              prevIcons.map(({ IconComponent, angle }, index) => {
-                if (index === indexOfIconA) {
-                  return {
-                    angle,
-                    IconComponent: icons[indexOfIconB].IconComponent,
+      className={`absolute ${count % 10 === 0 ? 'animate-iconsRotation' : ''}`}>
+      <div
+        className={`absolute transition-transform `}
+        style={{
+          transform: `rotate(${rotation}deg)`,
+        }}>
+        {icons.map(({ angle, IconComponent, delay }, index) => (
+          <Icon
+            key={angle + IconComponent}
+            IconComponent={IconComponent}
+            angle={angle}
+            rotation={rotation}
+            distance={distance}
+            delay={delay}
+            onClick={() => {
+              const indexOfIconA = index
+              const indexOfIconB = Math.round(
+                Math.random() * (icons.length - 1)
+              )
+              setCount((prevCount) => prevCount + 1)
+              setIcons((prevIcons) =>
+                prevIcons.map(({ IconComponent, angle }, index) => {
+                  if (index === indexOfIconA) {
+                    return {
+                      angle,
+                      IconComponent: icons[indexOfIconB].IconComponent,
+                      delay: 1000,
+                    }
                   }
-                }
-                if (index === indexOfIconB) {
-                  return {
-                    angle,
-                    IconComponent: icons[indexOfIconA].IconComponent,
+                  if (index === indexOfIconB) {
+                    return {
+                      angle,
+                      IconComponent: icons[indexOfIconA].IconComponent,
+                      delay: 1250,
+                    }
                   }
-                }
-                return { angle, IconComponent }
-              })
-            )
-          }}
-        />
-      ))}
+                  return { angle, IconComponent, delay: null }
+                })
+              )
+            }}
+          />
+        ))}
+      </div>
     </div>
   )
 }
