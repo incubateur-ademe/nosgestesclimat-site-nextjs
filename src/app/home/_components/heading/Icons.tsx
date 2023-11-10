@@ -4,6 +4,7 @@ import { useIsClient } from '@/hooks/useIsClient'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { useMemo } from 'react'
 import Circle from './icons/Circle'
+import Line from './icons/Line'
 
 const getNumberOfCircles = (windowWidth: number) => {
   if (windowWidth >= 2000) {
@@ -30,8 +31,16 @@ export default function Icons() {
     return circles
   }, [windowWidth])
 
-  console.log(windowWidth, circles)
   if (!isClient) return null
+
+  if (windowWidth < 768) {
+    return (
+      <div className="absolute left-0 top-0 h-full w-full" aria-hidden="true">
+        <Line position="top" />
+        <Line position="bottom" />
+      </div>
+    )
+  }
   return (
     <div className="absolute left-1/2 top-1/2 h-1/2 w-1/2" aria-hidden="true">
       {circles.map((distance) => (

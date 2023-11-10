@@ -9,7 +9,6 @@ import { MouseEventHandler, useMemo } from 'react'
 type Props = {
   IconComponent: any
   angle: number
-  odd: boolean
   rotation: number
   distance: number
   onClick: MouseEventHandler<HTMLDivElement>
@@ -18,7 +17,6 @@ type Props = {
 export default function Icon({
   IconComponent,
   angle,
-  odd,
   rotation,
   distance,
   onClick,
@@ -29,8 +27,8 @@ export default function Icon({
 
   return (
     <div
-      className={`absolute w-full origin-left ${odd ? 'hidden' : ''} md:block ${
-        isClient ? 'opacity-100' : 'md:opacity-0'
+      className={`absolute w-full origin-left ${
+        isClient ? 'opacity-100' : 'opacity-0'
       } transition-opacity`}
       style={{
         transform: `rotate(${angle}deg)`,
