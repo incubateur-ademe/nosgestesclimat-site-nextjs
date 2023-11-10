@@ -50,21 +50,20 @@ export default function Circle({ distance }: Props) {
             const indexOfIconB = Math.round(Math.random() * (icons.length - 1))
 
             setIcons((prevIcons) =>
-              prevIcons.map(({ icon, angle }, index) => {
-                console.log()
+              prevIcons.map(({ IconComponent, angle }, index) => {
                 if (index === indexOfIconA) {
                   return {
                     angle,
-                    icon: icons[indexOfIconB].icon,
+                    IconComponent: icons[indexOfIconB].IconComponent,
                   }
                 }
                 if (index === indexOfIconB) {
                   return {
                     angle,
-                    icon: icons[indexOfIconA].icon,
+                    IconComponent: icons[indexOfIconA].IconComponent,
                   }
                 }
-                return { angle, icon }
+                return { angle, IconComponent }
               })
             )
           }}
