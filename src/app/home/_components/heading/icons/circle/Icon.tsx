@@ -7,16 +7,18 @@ import { useIsClient } from '@/hooks/useIsClient'
 import { MouseEventHandler, useMemo } from 'react'
 
 type Props = {
-  icon: string
+  IconComponent: any
   angle: number
+  odd: boolean
   rotation: number
   distance: number
   onClick: MouseEventHandler<HTMLDivElement>
 }
 
 export default function Icon({
-  icon,
+  IconComponent,
   angle,
+  odd,
   rotation,
   distance,
   onClick,
@@ -27,8 +29,8 @@ export default function Icon({
 
   return (
     <div
-      className={`absolute w-full origin-left ${
-        isClient ? 'opacity-100' : 'opacity-0'
+      className={`absolute w-full origin-left ${odd ? 'hidden' : ''} md:block ${
+        isClient ? 'opacity-100' : 'md:opacity-0'
       } transition-opacity`}
       style={{
         transform: `rotate(${angle}deg)`,
@@ -41,7 +43,7 @@ export default function Icon({
           transform: `rotate(${-(angle + rotation) + iconRotation}deg)`,
         }}
         onClick={onClick}>
-        {icon}
+        <IconComponent />
       </div>
     </div>
   )
