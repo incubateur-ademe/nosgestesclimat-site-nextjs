@@ -31,7 +31,7 @@ export default function Line({ position }: Props) {
           key={String(rotation) + String(index)}
           className={`${
             isClient ? 'opacity-100' : 'opacity-0'
-          } transition-opacity duration-500`}
+          } transition-opacity duration-500 motion-reduce:transition-none`}
           style={{
             transform: `rotate(${rotation}deg)`,
             transitionDelay: `${index * 100 + 500}ms`,

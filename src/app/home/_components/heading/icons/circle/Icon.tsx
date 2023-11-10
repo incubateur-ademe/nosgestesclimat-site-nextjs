@@ -31,7 +31,9 @@ export default function Icon({
     <div
       className={`absolute w-full origin-left ${
         isClient ? 'opacity-100' : 'opacity-0'
-      } transition-opacity ${delay ? 'duration-200' : 'duration-500'}`}
+      } transition-opacity ${
+        delay ? 'duration-200' : 'duration-500'
+      } motion-reduce:transition-none`}
       style={{
         transform: `rotate(${angle}deg)`,
         transitionDelay: `${delay || innerDelay}ms`,
