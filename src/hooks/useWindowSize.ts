@@ -6,7 +6,6 @@ export function useWindowSize() {
 
   useEffect(() => {
     const updateWindowSize = () => {
-      console.log('updateWindowSize')
       setWindowWidth(window?.innerWidth)
       setWindowHeight(window?.innerHeight)
     }
