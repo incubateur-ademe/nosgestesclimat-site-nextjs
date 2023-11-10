@@ -55,7 +55,7 @@ export default function Contributions() {
               <Trans>
                 Une idée&#8239;? Une correction&#8239;? Une remarque&#8239;?
                 Toute contribution{' '}
-                <Link href="/contact">est la bienvenu &#8239;!</Link>
+                <Link href="/contact">est la bienvenue&#8239;!</Link>
               </Trans>
             </p>
           </Card>
