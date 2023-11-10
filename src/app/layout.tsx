@@ -64,14 +64,10 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <link
           rel="alternate"
           hrefLang="en"
-          href="https://nosgestesclimat.fr/?lang=en"
+          href="https://nosgestesclimat.fr/en"
         />
 
-        <link
-          rel="alternate"
-          hrefLang="fr"
-          href="https://nosgestesclimat.fr/?lang=fr"
-        />
+        <link rel="alternate" hrefLang="fr" href="https://nosgestesclimat.fr" />
 
         <link
           rel="alternate"
@@ -134,7 +130,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           b.setAttribute('data-useragent', navigator.userAgent);
         `}</Script>
 
-        <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
         <ErrorBoundary showDialog fallback={ErrorFallback}>
           <MainLayoutProviders region={region}>{children}</MainLayoutProviders>
         </ErrorBoundary>
