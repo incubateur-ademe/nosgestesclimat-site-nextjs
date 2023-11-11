@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { DEFAULT_MODEL_VERSION } from '@/constants/modelAPI'
 import { NGC_MODEL_API_URL } from '@/constants/urls'
 import Title from '@/design-system/layout/Title'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -19,7 +20,7 @@ export default async function Personas() {
 
   // TODO: endpoint should not be static (and should point to local if available)
   const personas = await fetch(
-    `${NGC_MODEL_API_URL}/personas-${locale}.json`
+    `${NGC_MODEL_API_URL}/${DEFAULT_MODEL_VERSION}/${locale}/personas`
   ).then((res) => res.json())
 
   return (

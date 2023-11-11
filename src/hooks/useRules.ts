@@ -13,9 +13,7 @@ type Props = {
 
 export function useRules({ lang, region, isOptim = true }: Props) {
   const dataServer = useDataServer()
-
   const locale = useLocale()
-
   const { user } = useUser()
 
   const regionCode =
