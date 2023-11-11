@@ -37,6 +37,18 @@ const links = {
   },
 }
 
+function getLinkList(entries: Record<string, string>): JSX.Element {
+  return (
+    <ul className="m-0 list-none p-0">
+      {Object.entries(entries).map(([linkKey, linkUrl]) => (
+        <li key={linkKey}>
+          <Link href={linkUrl}>{linkUrl}</Link>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 export default function PlanDuSitePage() {
   return (
     <div data-cypress-id="plan-links">
@@ -50,39 +62,21 @@ export default function PlanDuSitePage() {
         <h2>
           <Trans>Nos outils</Trans>
         </h2>
-        <ul className="m-0 list-none p-0">
-          {Object.entries(links['Nos outils']).map(([linkKey, linkUrl]) => (
-            <li key={linkKey}>
-              <Link href={linkUrl}>{linkUrl}</Link>
-            </li>
-          ))}
-        </ul>
+        {getLinkList(links['Nos outils'])}
       </section>
 
       <section className="mb-2">
         <h2>
           <Trans>Informations</Trans>
         </h2>
-        <ul className="m-0 list-none p-0">
-          {Object.entries(links['Informations']).map(([linkKey, linkUrl]) => (
-            <li key={linkKey}>
-              <Link href={linkUrl}>{linkUrl}</Link>
-            </li>
-          ))}
-        </ul>
+        {getLinkList(links['Informations'])}
       </section>
 
       <section className="mb-2">
         <h2>
           <Trans>Documentations</Trans>
         </h2>
-        <ul className="m-0 list-none p-0">
-          {Object.entries(links['Documentations']).map(([linkKey, linkUrl]) => (
-            <li key={linkKey}>
-              <Link href={linkUrl}>{linkUrl}</Link>
-            </li>
-          ))}
-        </ul>
+        {getLinkList(links['Documentations'])}
       </section>
 
       <section>
