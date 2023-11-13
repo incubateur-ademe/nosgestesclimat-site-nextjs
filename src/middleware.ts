@@ -7,7 +7,11 @@ export function middleware(request: NextRequest) {
 }
 
 // only applies this middleware to files in the app directory
+// export const config = {
+//   matcher:
+//     '/((?!api|_next/static|_next/image|favicon.ico|images|.*\\..*|_next).*)',
+// }
+
 export const config = {
-  matcher:
-    '/((?!api|_next/static|_next/image|favicon.ico|images|.*\\..*|_next).*)',
+  matchers: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 }
