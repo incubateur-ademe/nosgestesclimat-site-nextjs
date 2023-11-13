@@ -7,17 +7,15 @@ import ProfileIcon from '@/components/icons/ProfileIcon'
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { usePathname } from 'next/navigation'
-import Navigation from '../Navigation'
 import NavLink from './NavLink'
+import Navigation from './headerDesktop/Navigation'
 
-export default function HeaderDesktop() {
+export default function HeaderDesktop({
+  shouldHideMostOfContent,
+}: {
+  shouldHideMostOfContent: boolean
+}) {
   const { t } = useClientTranslation()
-
-  const pathname = usePathname()
-
-  const shouldHideMostOfContent =
-    pathname.includes('/simulateur') || pathname.includes('/tutoriel')
 
   return (
     <header className="sticky top-0 z-50 hidden gap-4 border-b bg-white shadow-sm lg:block">
