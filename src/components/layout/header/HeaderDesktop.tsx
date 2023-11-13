@@ -25,7 +25,7 @@ export default function HeaderDesktop({
       <div className="mx-auto flex h-full w-full max-w-5xl justify-between gap-4 ">
         <div className="flex items-center gap-16">
           <div
-            className={`origin-left items-center transition-transform ${
+            className={`l origin-left items-center transition-transform duration-200 ${
               shouldHideMostOfContent ? 'scale-75' : ''
             }`}>
             <Logo />
