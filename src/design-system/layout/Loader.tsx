@@ -14,7 +14,7 @@ const sizesClassNames = {
 
 const colorsClassNames = {
   light: 'border-white border-b-transparent',
-  dark: 'border-primaryDark border-b-transparent',
+  dark: 'border-primary-700 border-b-transparent',
 }
 
 export default function Loader({

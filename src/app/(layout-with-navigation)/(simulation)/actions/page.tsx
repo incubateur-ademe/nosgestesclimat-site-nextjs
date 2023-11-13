@@ -4,9 +4,8 @@ import ActionPageContent from './_components/ActionPageContent'
 export async function generateMetadata() {
   return getMetadataObject({
     title:
-      "Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat",
-    description:
-      'Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.',
+      'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat',
+    description: 'Quelles sont les actions les plus efficaces ?',
   })
 }
 

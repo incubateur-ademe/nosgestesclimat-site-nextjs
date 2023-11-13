@@ -7,9 +7,6 @@
     "type": "git",
     "url": "https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs.git"
   },
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
     "dev": "next dev",
     "dev:model": "NEXT_PUBLIC_LOCAL_DATA=nosgestesclimat next dev",
@@ -42,8 +39,8 @@
     "core-js": "^3.33.0",
     "framer-motion": "^10.16.4",
     "fuse.js": "6.6.2",
-    "html-to-image": "^1.11.11",
     "gray-matter": "^4.0.3",
+    "html-to-image": "^1.11.11",
     "html-webpack-plugin": "^5.5.3",
     "i18next": "^23.5.1",
     "i18next-browser-languagedetector": "^7.1.0",
@@ -145,6 +142,9 @@
     "worker-loader": "^3.0.8",
     "yaml-loader": "^0.8.0",
     "yargs": "^17.7.2"
+  },
+  "engines": {
+    "node": "18.x"
   },
   "packageManager": "yarn@1.22.19"
 }

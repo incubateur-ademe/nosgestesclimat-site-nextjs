@@ -15,7 +15,7 @@ export default async function GroupModePromotionBanner({
   return (
     <Card
       className={twMerge(
-        'w-full flex-row justify-center gap-4 border-none bg-primaryDark pb-0 text-white md:gap-8',
+        'bg-primary-700 w-full flex-row justify-center gap-4 border-none pb-0 text-white md:gap-8',
         className
       )}>
       <div className="flex items-end justify-end md:items-center">
