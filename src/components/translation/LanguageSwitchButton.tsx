@@ -2,9 +2,11 @@
 
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useIframe } from '@/hooks/useIframe'
 import i18nConfig from '@/i18nConfig'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function LanguageSwitchButton() {
   const { t } = useClientTranslation()
@@ -16,6 +18,14 @@ export default function LanguageSwitchButton() {
   const searchParams = useSearchParams().toString()
 
   const currentLocale = useCurrentLocale(i18nConfig)
+
+  // If the lang is fixed by the iframe and is not the same as the current locale, we change it here
+  const { iframeLang } = useIframe()
+  useEffect(() => {
+    if (iframeLang && iframeLang !== currentLocale) {
+      handleChange(iframeLang)
+    }
+  }, [iframeLang, currentLocale])
 
   const handleChange = (newLocale: string) => {
     // set cookie for next-i18n-router
@@ -51,8 +61,7 @@ export default function LanguageSwitchButton() {
         size="sm"
         aria-label={t('Passer en français')}
         className="flex gap-2 px-4 py-3"
-        data-cypress-id="language-switch-button-fr"
-      >
+        data-cypress-id="language-switch-button-fr">
         <span>FR</span> <span aria-hidden>🇫🇷</span>
       </Button>
       <Button
@@ -62,8 +71,7 @@ export default function LanguageSwitchButton() {
         size="sm"
         aria-label={t('Switch to english')}
         className="flex gap-2 px-4 py-3"
-        data-cypress-id="language-switch-button-en"
-      >
+        data-cypress-id="language-switch-button-en">
         <span>EN</span> <span aria-hidden>🇬🇧</span>
       </Button>
     </div>
