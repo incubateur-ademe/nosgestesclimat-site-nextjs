@@ -37,11 +37,9 @@ export async function POST(req: Request) {
     {
       sender: {
         name: 'Nos Gestes Climat',
-        email: 'noreply@nosgestesclimat.fr',
       },
       replyTo: {
         name: 'Nos Gestes Climat',
-        email: 'noreply@nosgestesclimat.fr',
       },
       to: [
         {
