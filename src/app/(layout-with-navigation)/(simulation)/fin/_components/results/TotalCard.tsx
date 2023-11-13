@@ -16,7 +16,7 @@ export default function TotalCard() {
   const { formattedValue, unit } = formatCarbonFootprint(numericValue)
 
   return (
-    <Card className="bg-primary-700 w-full flex-row items-center rounded-lg p-6 text-white shadow-none md:px-10">
+    <Card className="w-full flex-row items-center rounded-lg bg-primary-700 p-6 text-white shadow-none md:px-10">
       <div className="flex-1">
         <p className="mb-0 text-3xl md:text-4xl">
           <strong>{formattedValue}</strong>{' '}
@@ -34,7 +34,7 @@ export default function TotalCard() {
           aria-label={t(
             "Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet."
           )}
-          className="hover:text-primary-200 mt-2 text-sm text-white"
+          className="mt-2 text-sm text-white hover:text-primary-200"
           href="https://nosgestesclimat.fr/blog/budget">
           Qu'est-ce que ça veut dire&#8239;?&nbsp;
           <ExternalLinkIcon className="stroke-white" />
