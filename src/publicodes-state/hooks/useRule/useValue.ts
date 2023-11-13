@@ -39,12 +39,14 @@ export default function useValue({
         : stringValue
     }
     if (type === 'boolean') {
-      return value === null || value === false || value === 'non' // Model shenanigans
+      return value === true
+        ? 'oui'
+        : value === false || value === null // `value`is null when the rule is unapplicable
         ? 'non'
-        : 'oui'
+        : 'none'
     }
     if (type === 'mosaic') {
-      return 'mosaic'
+      return 'none'
     }
     return Number(value)
   }, [value, type])
@@ -116,9 +118,11 @@ const checkValueValidity = ({
       }
       return value.startsWith("'") ? value : `'${value}'`
     case 'boolean':
-      return value === null || value === false || value === 'non' // Model shenanigans
+      return value === 'oui'
+        ? 'oui'
+        : value === 'non' || value === null
         ? 'non'
-        : 'oui'
+        : undefined
     case 'mosaic':
       return 'mosaic'
     default:
