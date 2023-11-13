@@ -3,7 +3,7 @@ import emoji from 'react-easy-emoji'
 import { twMerge } from 'tailwind-merge'
 
 export default function Emoji({
-  children,
+  children = '...',
   className,
   ...props
 }: HTMLAttributes<HTMLSpanElement> &
