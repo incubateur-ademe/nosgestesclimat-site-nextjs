@@ -29,14 +29,13 @@ export default function Logo({
           alt="Logo Nos Gestes Climat"
           width="200"
           height="200"
-          className={twMerge('h-auto w-[50px]', `${isSmall ? 'w-[40px]' : ''}`)}
+          className={'h-auto w-[50px]'}
         />
 
         <div
-          className={twMerge(
-            'text-primary-800 ml-2 text-lg font-extrabold uppercase !leading-[0.85] lg:block',
-            `${isSmall ? 'text-sm' : ''}`
-          )}>
+          className={
+            'text-primary-800 ml-2 origin-left text-lg font-extrabold uppercase !leading-[0.85] transition-all duration-500 lg:block'
+          }>
           <span className="block w-full !leading-[0.85]">Nos</span>
           <span className="block w-full !leading-[0.85]">Gestes</span>
           <span className="block w-full !leading-[0.85]">Climat</span>

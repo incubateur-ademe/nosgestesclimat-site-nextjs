@@ -18,14 +18,18 @@ export default function HeaderDesktop({
   const { t } = useClientTranslation()
 
   return (
-    <header className="sticky top-0 z-50 hidden gap-4 border-b bg-white shadow-sm lg:block">
-      <div className="mx-auto flex max-w-5xl justify-between gap-4 ">
+    <header
+      className={`sticky top-0 z-50  hidden ${
+        shouldHideMostOfContent ? 'h-14' : 'h-20'
+      } items-center gap-4 border-b bg-white shadow-sm transition-all lg:flex`}>
+      <div className="mx-auto flex h-full w-full max-w-5xl justify-between gap-4 ">
         <div className="flex items-center gap-16">
-          <Logo
-            isSmall={shouldHideMostOfContent}
-            className={shouldHideMostOfContent ? 'py-2' : 'py-4'}
-          />
-
+          <div
+            className={`origin-left items-center transition-transform ${
+              shouldHideMostOfContent ? 'scale-75' : ''
+            }`}>
+            <Logo />
+          </div>
           <Navigation>
             <li className="px-4">
               <NavLink
@@ -36,13 +40,11 @@ export default function HeaderDesktop({
                 {!shouldHideMostOfContent && <Trans>Le test</Trans>}
               </NavLink>
             </li>
-
             <li className="px-4">
               <NavLink href="/actions" icon={ActionsIcon} title={t('Actions')}>
                 {!shouldHideMostOfContent && <Trans>Actions</Trans>}
               </NavLink>
             </li>
-
             <li className="px-4">
               <NavLink href="/amis" icon={AmisIcon} title={t('Amis')}>
                 {!shouldHideMostOfContent && <Trans>Amis</Trans>}
@@ -50,7 +52,6 @@ export default function HeaderDesktop({
             </li>
           </Navigation>
         </div>
-
         <div className="flex items-center gap-4">
           <NavLink href="/profil" icon={ProfileIcon} title={t('Profil')}>
             {!shouldHideMostOfContent && <Trans>Profil</Trans>}
