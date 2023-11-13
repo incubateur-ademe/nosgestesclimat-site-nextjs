@@ -9,7 +9,6 @@ import Trans from '@/components/translation/Trans'
 
 import GroupIcon from '@/components/icons/GroupIcon'
 import PersonIcon from '@/components/icons/PersonIcon'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useDebug } from '@/hooks/useDebug'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
@@ -40,14 +39,9 @@ export const actionImg = openmojiURL('action')
 export const conferenceImg = openmojiURL('conference')
 
 export default function Navigation() {
-  const { t } = useClientTranslation()
-
   const isDebug = useDebug()
-
-  const enquete = ''
-
   const { getCurrentSimulation } = useUser()
-
+  const enquete = ''
   const persona: string | undefined = getCurrentSimulation()?.persona
 
   return (
@@ -59,7 +53,7 @@ export default function Navigation() {
         <ul className="m-0 flex h-20 w-full list-none justify-between bg-white py-1 shadow-md sm:px-4 lg:h-auto lg:flex-col lg:justify-start lg:gap-1 lg:bg-none lg:py-2 lg:shadow-none">
           <NavLink
             href="/simulateur/bilan"
-            className="text-default justify-end !p-0 lg:justify-start lg:!p-4">
+            className="justify-end !p-0 text-default lg:justify-start lg:!p-4">
             <ProgressCircle className="lg:mr-4" />
             <span className="text-base md:text-lg">
               <Trans>Le test</Trans>
@@ -68,7 +62,7 @@ export default function Navigation() {
 
           <NavLink
             href="/actions"
-            className="text-default justify-end !p-0 lg:justify-start lg:!p-4">
+            className="justify-end !p-0 text-default lg:justify-start lg:!p-4">
             <ActionsInteractiveIcon className="w-12 lg:mr-4" />
 
             <span className="text-base md:text-lg">
@@ -83,9 +77,9 @@ export default function Navigation() {
               </div>
               <span className="text-base  md:text-lg">
                 {!persona ? (
-                  t('Profil')
+                  <Trans>Profil</Trans>
                 ) : (
-                  <span className="bg-primary-500 rounded-md px-4 py-2 text-white">
+                  <span className="rounded-md bg-primary-500 px-4 py-2 text-white">
                     {capitalizeString(persona.split(' . ')[1])}
                   </span>
                 )}
