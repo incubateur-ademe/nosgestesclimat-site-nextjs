@@ -6,11 +6,32 @@ const redirectUrl = `https://nosgestesclimat-git-${challenger.branch}-nos-gestes
 
 const cookieName = `split-number-${challenger.branch}`
 
+function updateResponseHeaders({
+  i18nRouterResponse,
+  response,
+}: {
+  i18nRouterResponse: any
+  response: any
+}) {
+  if (
+    i18nRouterResponse.headers.get('x-middleware-rewrite') &&
+    i18nRouterResponse.headers.get('x-next-i18n-router-locale')
+  ) {
+    response.headers.set(
+      'x-middleware-rewrite',
+      i18nRouterResponse.headers.get('x-middleware-rewrite')
+    )
+    response.headers.set(
+      'x-next-i18n-router-locale',
+      i18nRouterResponse.headers.get('x-next-i18n-router-locale')
+    )
+  }
+}
+
 const splitTestingMiddleware = (
   request: NextRequest,
   i18nRouterResponse: any
 ) => {
-  console.log(i18nRouterResponse.headers)
   let splitNumber = request.cookies.get(cookieName)?.value
 
   if (!splitNumber) {
@@ -24,21 +45,11 @@ const splitTestingMiddleware = (
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
 
+    console.log('next', response, request.nextUrl)
+
     response.cookies.set(cookieName, splitNumber)
 
-    if (
-      i18nRouterResponse.headers.get('x-middleware-rewrite') &&
-      i18nRouterResponse.headers.get('x-next-i18n-router-locale')
-    ) {
-      response.headers.set(
-        'x-middleware-rewrite',
-        i18nRouterResponse.headers.get('x-middleware-rewrite')
-      )
-      response.headers.set(
-        'x-next-i18n-router-locale',
-        i18nRouterResponse.headers.get('x-next-i18n-router-locale')
-      )
-    }
+    updateResponseHeaders({ i18nRouterResponse, response })
 
     applySetCookie(request, response)
 
@@ -53,19 +64,8 @@ const splitTestingMiddleware = (
   const response = NextResponse.rewrite(rewriteTo)
 
   response.cookies.set(cookieName, splitNumber)
-  if (
-    i18nRouterResponse.headers.get('x-middleware-rewrite') &&
-    i18nRouterResponse.headers.get('x-next-i18n-router-locale')
-  ) {
-    response.headers.set(
-      'x-middleware-rewrite',
-      i18nRouterResponse.headers.get('x-middleware-rewrite')
-    )
-    response.headers.set(
-      'x-next-i18n-router-locale',
-      i18nRouterResponse.headers.get('x-next-i18n-router-locale')
-    )
-  }
+
+  updateResponseHeaders({ i18nRouterResponse, response })
 
   applySetCookie(request, response)
 

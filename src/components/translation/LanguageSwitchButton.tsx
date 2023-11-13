@@ -34,7 +34,7 @@ export default function LanguageSwitchButton() {
       )
     } else {
       router.push(
-        currentPathname.replace(`/${currentLocale}`, `/${newLocale}`) +
+        currentPathname.replace(`/${currentLocale}`, '') +
           (searchParams.length > 0 ? `?=${searchParams}` : '')
       )
     }
@@ -51,8 +51,7 @@ export default function LanguageSwitchButton() {
         size="sm"
         aria-label={t('Passer en français')}
         className="flex gap-2 px-4 py-3"
-        data-cypress-id="language-switch-button-fr"
-      >
+        data-cypress-id="language-switch-button-fr">
         <span>FR</span> <span aria-hidden>🇫🇷</span>
       </Button>
       <Button
@@ -62,8 +61,7 @@ export default function LanguageSwitchButton() {
         size="sm"
         aria-label={t('Switch to english')}
         className="flex gap-2 px-4 py-3"
-        data-cypress-id="language-switch-button-en"
-      >
+        data-cypress-id="language-switch-button-en">
         <span>EN</span> <span aria-hidden>🇬🇧</span>
       </Button>
     </div>
