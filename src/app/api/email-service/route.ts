@@ -38,12 +38,6 @@ export async function POST(request: NextRequest) {
   await axios.post(
     'https://api.brevo.com/v3/smtp/email',
     {
-      sender: {
-        name: 'Nos Gestes Climat',
-      },
-      replyTo: {
-        name: 'Nos Gestes Climat',
-      },
       to: [
         {
           name: email,
