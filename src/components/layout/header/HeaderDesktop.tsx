@@ -19,17 +19,17 @@ export default function HeaderDesktop({
 
   return (
     <header
-      className={`sticky top-0 z-50 hidden items-center lg:flex ${
+      className={`sticky top-0 z-50 hidden items-center lg:block ${
         shouldHideMostOfContent ? 'h-14' : 'h-20'
       }`}>
       <div
         className={`${
           shouldHideMostOfContent ? 'h-14' : 'h-20'
-        } flex w-full items-center border-b bg-white shadow-sm transition-all duration-200 ease-linear`}>
+        } absolute bottom-0 left-0 right-0 top-0 flex w-full items-center border-b bg-white shadow-sm transition-all delay-500 duration-200 ease-linear`}>
         <div className="mx-auto flex h-full w-full max-w-5xl justify-between gap-4 ">
           <div className="flex items-center gap-16">
             <div
-              className={`flex origin-left items-center justify-center transition-transform duration-200 ease-linear ${
+              className={`flex origin-left items-center justify-center transition-transform delay-500 duration-200 ease-linear ${
                 shouldHideMostOfContent ? 'scale-75' : ''
               }`}>
               <Logo />
