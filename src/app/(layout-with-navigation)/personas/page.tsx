@@ -1,9 +1,7 @@
 import Trans from '@/components/translation/Trans'
-import { DEFAULT_MODEL_VERSION } from '@/constants/modelAPI'
-import { NGC_MODEL_API_URL } from '@/constants/urls'
 import Title from '@/design-system/layout/Title'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { currentLocale } from 'next-i18n-router'
+import usePersonas from '@/hooks/usePersonas'
 import Persona from './_components/Persona'
 import PersonaExplanations from './_components/PersonaExplanations'
 
@@ -16,13 +14,7 @@ export async function generateMetadata() {
 }
 
 export default async function Personas() {
-  const locale = currentLocale()
-
-  // TODO: endpoint should not be static (and should point to local if available)
-  const personas = await fetch(
-    `${NGC_MODEL_API_URL}/${DEFAULT_MODEL_VERSION}/${locale}/personas`
-  ).then((res) => res.json())
-
+  const personas = await usePersonas()
   return (
     <>
       <Title title={<Trans>Personas</Trans>} data-cypress-id="personas-title" />
