@@ -3,33 +3,23 @@ import emoji from 'react-easy-emoji'
 import { twMerge } from 'tailwind-merge'
 
 export default function Emoji({
-  children,
+  children = '...',
   className,
   ...props
 }: HTMLAttributes<HTMLSpanElement> &
   PropsWithChildren<{ className?: string; alt?: string }>) {
   return (
     // Emojis are decorative and don't need to be read by screen readers
-    children ? (
-      <span
-        aria-hidden
-        alt=""
-        className={twMerge('inline', className)}
-        {...props}>
-        {emoji(children, {
-          baseUrl: 'https://twemoji.maxcdn.com/2/svg',
-          ext: '.svg',
-          size: '',
-        })}
-      </span>
-    ) : (
-      <span
-        aria-hidden
-        alt=""
-        className={twMerge('inline', className)}
-        {...props}>
-        ...
-      </span>
-    )
+    <span
+      aria-hidden
+      alt=""
+      className={twMerge('inline', className)}
+      {...props}>
+      {emoji(children, {
+        baseUrl: 'https://twemoji.maxcdn.com/2/svg',
+        ext: '.svg',
+        size: '',
+      })}
+    </span>
   )
 }
