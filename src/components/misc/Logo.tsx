@@ -5,13 +5,7 @@ import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 import Link from '../Link'
 
-export default function Logo({
-  className,
-  isSmall,
-}: {
-  className?: string
-  isSmall?: boolean
-}) {
+export default function Logo({ className }: { className?: string }) {
   const { isIframeOnlySimulation } = useIframe()
 
   return (
@@ -34,7 +28,7 @@ export default function Logo({
 
         <div
           className={
-            'text-primary-800 ml-2 origin-left text-lg font-extrabold uppercase !leading-[0.85] transition-all duration-500 lg:block'
+            'ml-2 origin-left text-lg font-extrabold uppercase !leading-[0.85] text-primary-800 transition-all duration-500 lg:block'
           }>
           <span className="block w-full !leading-[0.85]">Nos</span>
           <span className="block w-full !leading-[0.85]">Gestes</span>
