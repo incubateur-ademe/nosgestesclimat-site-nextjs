@@ -21,7 +21,7 @@ export default function HeaderDesktop({
     <header
       className={`sticky top-0 z-50  hidden ${
         shouldHideMostOfContent ? 'h-14' : 'h-20'
-      } items-center gap-4 border-b bg-white shadow-sm transition-all lg:flex`}>
+      } items-center gap-4 border-b bg-white shadow-sm transition-all duration-200 lg:flex`}>
       <div className="mx-auto flex h-full w-full max-w-5xl justify-between gap-4 ">
         <div className="flex items-center gap-16">
           <div

@@ -9,8 +9,6 @@ import { twMerge } from 'tailwind-merge'
 type Props = {
   href: string
   shouldUseDefaultLink?: boolean
-  // Active on the landing page
-  isBasePathActive?: boolean
   activeMatches?: string[]
   icon?: ({ className }: { className?: string }) => JSX.Element
   onClick?: () => void
