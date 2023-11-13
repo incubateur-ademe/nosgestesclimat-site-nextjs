@@ -1,7 +1,7 @@
 'use client'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { KeyboardEvent, ReactNode, useEffect, useState } from 'react'
+import { KeyboardEvent, ReactNode, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Button from '../inputs/Button'
 
@@ -10,10 +10,12 @@ export default function BurgerMenu({
 }: {
   children: (closeMenu: () => void) => ReactNode
 }) {
-  const { t } = useClientTranslation()
-
   const [isOpen, setIsOpen] = useState(false)
   const [isAnimated, setIsAnimated] = useState(false)
+
+  const { t } = useClientTranslation()
+
+  const timeoutRef = useRef<NodeJS.Timeout>()
 
   const genericHamburgerLine = `h-[2px] w-6 my-1 bg-default transition ease transform duration-300`
 
@@ -48,7 +50,7 @@ export default function BurgerMenu({
     // Open the menu with the animation
     if (!isOpen) {
       setIsOpen(true)
-      setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setIsAnimated(true)
       }, 100)
     }
@@ -56,11 +58,15 @@ export default function BurgerMenu({
     // Close with animation
     if (isOpen) {
       setIsAnimated(false)
-      setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setIsOpen(false)
       }, 2000)
     }
   }
+
+  useEffect(() => {
+    return () => clearTimeout(timeoutRef.current)
+  }, [])
 
   return (
     <div id="burger-menu">
