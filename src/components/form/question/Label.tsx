@@ -48,7 +48,7 @@ export default function Label({
         )}
         aria-label={label}
         htmlFor={htmlFor}>
-        <h1>{label}</h1>{' '}
+        <h1 className="mb-0 inline text-lg">{label}</h1>{' '}
         {description ? (
           <button
             onClick={() => {
