@@ -34,8 +34,10 @@ export default function LanguageSwitchButton() {
       )
     } else {
       router.push(
-        currentPathname.replace(`/${currentLocale}`, '') +
-          (searchParams.length > 0 ? `?=${searchParams}` : '')
+        currentPathname.replace(
+          `/${currentLocale}`,
+          currentPathname.split('/').length > 2 ? '' : '/'
+        ) + (searchParams.length > 0 ? `?=${searchParams}` : '')
       )
     }
 
