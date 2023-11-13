@@ -5,7 +5,7 @@ type Props = {
 }
 
 export const colorClassNames = {
-  primary: 'border-primary text-primary',
+  primary: 'border-primary-500 text-primary',
   white: 'border-white text-white',
 }
 export default function QuestionButton({
@@ -17,8 +17,7 @@ export default function QuestionButton({
     <button
       onClick={onClick}
       title={title}
-      className={`${colorClassNames[color]} z-10 h-6 w-6 rounded-full border-2 bg-transparent text-sm font-bold leading-none md:h-7 md:w-7 md:text-lg md:leading-none`}
-    >
+      className={`${colorClassNames[color]} z-10 h-6 w-6 rounded-full border-2 bg-transparent text-sm font-bold leading-none md:h-7 md:w-7 md:text-lg md:leading-none`}>
       ?
     </button>
   )

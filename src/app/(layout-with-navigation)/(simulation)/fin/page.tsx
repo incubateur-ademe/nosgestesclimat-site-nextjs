@@ -1,5 +1,6 @@
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import Trans from '@/components/translation/Trans'
+import { noIndexObject } from '@/constants/metadata'
 import Separator from '@/design-system/layout/Separator'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
@@ -15,6 +16,7 @@ export async function generateMetadata() {
     title: "Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat",
     description:
       "Vos résultats de tests de notre simulateur d'empreinte carbone.",
+    robots: noIndexObject,
   })
 }
 

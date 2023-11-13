@@ -26,7 +26,7 @@ export default function SubCategory({ subcategory }: Props) {
 
   if (!answeredQuestionOfSubcategory.length) return null
   return (
-    <div className="relative mt-2 w-full overflow-hidden rounded-lg bg-primaryLight ">
+    <div className="bg-primary-100 relative mt-2 w-full overflow-hidden rounded-lg ">
       <div
         className="absolute bottom-0 left-0 top-0 w-2"
         style={{ backgroundColor: color }}

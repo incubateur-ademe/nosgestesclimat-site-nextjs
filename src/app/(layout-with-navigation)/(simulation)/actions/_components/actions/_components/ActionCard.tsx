@@ -136,7 +136,7 @@ export default function ActionCard({
 
           {hasRemainingQuestions && (
             <button
-              className="cursor-pointer text-primary"
+              className="text-primary-500 cursor-pointer"
               onClick={() => setFocusedAction(dottedName)}>
               {remainingQuestionsText}
             </button>
