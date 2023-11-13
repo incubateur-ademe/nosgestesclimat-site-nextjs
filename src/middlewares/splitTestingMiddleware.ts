@@ -45,8 +45,6 @@ const splitTestingMiddleware = (
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
 
-    console.log('next', response, request.nextUrl)
-
     response.cookies.set(cookieName, splitNumber)
 
     updateResponseHeaders({ i18nRouterResponse, response })
