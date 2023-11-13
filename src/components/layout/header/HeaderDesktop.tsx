@@ -19,44 +19,51 @@ export default function HeaderDesktop({
 
   return (
     <header
-      className={`sticky top-0 z-50  hidden ${
+      className={`sticky top-0 z-50 hidden items-center lg:flex ${
         shouldHideMostOfContent ? 'h-14' : 'h-20'
-      } items-center gap-4 border-b bg-white shadow-sm transition-all duration-200 lg:flex`}>
-      <div className="mx-auto flex h-full w-full max-w-5xl justify-between gap-4 ">
-        <div className="flex items-center gap-16">
-          <div
-            className={`l origin-left items-center transition-transform duration-200 ${
-              shouldHideMostOfContent ? 'scale-75' : ''
-            }`}>
-            <Logo />
+      }`}>
+      <div
+        className={`${
+          shouldHideMostOfContent ? 'h-14' : 'h-20'
+        } flex w-full items-center border-b bg-white shadow-sm transition-all duration-200 ease-linear`}>
+        <div className="mx-auto flex h-full w-full max-w-5xl justify-between gap-4 ">
+          <div className="flex items-center gap-16">
+            <div
+              className={`flex origin-left items-center justify-center transition-transform duration-200 ease-linear ${
+                shouldHideMostOfContent ? 'scale-75' : ''
+              }`}>
+              <Logo />
+            </div>
+            <Navigation>
+              <li className="px-4">
+                <NavLink
+                  href="/simulateur/bilan"
+                  activeMatches={['/tutoriel', '/simulateur']}
+                  icon={BilanIcon}
+                  title={t('Le test')}>
+                  {!shouldHideMostOfContent && <Trans>Le test</Trans>}
+                </NavLink>
+              </li>
+              <li className="px-4">
+                <NavLink
+                  href="/actions"
+                  icon={ActionsIcon}
+                  title={t('Actions')}>
+                  {!shouldHideMostOfContent && <Trans>Actions</Trans>}
+                </NavLink>
+              </li>
+              <li className="px-4">
+                <NavLink href="/amis" icon={AmisIcon} title={t('Amis')}>
+                  {!shouldHideMostOfContent && <Trans>Amis</Trans>}
+                </NavLink>
+              </li>
+            </Navigation>
           </div>
-          <Navigation>
-            <li className="px-4">
-              <NavLink
-                href="/simulateur/bilan"
-                activeMatches={['/tutoriel', '/simulateur']}
-                icon={BilanIcon}
-                title={t('Le test')}>
-                {!shouldHideMostOfContent && <Trans>Le test</Trans>}
-              </NavLink>
-            </li>
-            <li className="px-4">
-              <NavLink href="/actions" icon={ActionsIcon} title={t('Actions')}>
-                {!shouldHideMostOfContent && <Trans>Actions</Trans>}
-              </NavLink>
-            </li>
-            <li className="px-4">
-              <NavLink href="/amis" icon={AmisIcon} title={t('Amis')}>
-                {!shouldHideMostOfContent && <Trans>Amis</Trans>}
-              </NavLink>
-            </li>
-          </Navigation>
-        </div>
-        <div className="flex items-center gap-4">
-          <NavLink href="/profil" icon={ProfileIcon} title={t('Profil')}>
-            {!shouldHideMostOfContent && <Trans>Profil</Trans>}
-          </NavLink>
-          {/* TODO : uncomment when organisations are ready
+          <div className="flex items-center gap-4">
+            <NavLink href="/profil" icon={ProfileIcon} title={t('Profil')}>
+              {!shouldHideMostOfContent && <Trans>Profil</Trans>}
+            </NavLink>
+            {/* TODO : uncomment when organisations are ready
             <div className="mb-2 h-3 w-[1px] bg-gray-300" />
 
             <NavLink
@@ -66,6 +73,7 @@ export default function HeaderDesktop({
               Organisations
             </NavLink>
           */}
+          </div>
         </div>
       </div>
     </header>
