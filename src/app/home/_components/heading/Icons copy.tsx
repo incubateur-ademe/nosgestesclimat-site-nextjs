@@ -14,7 +14,6 @@ import Line from './icons/Line'
 //   } else return 1
 // }
 
-const numberOfIcons = 205
 export default function Icons() {
   const isClient = useIsClient()
 

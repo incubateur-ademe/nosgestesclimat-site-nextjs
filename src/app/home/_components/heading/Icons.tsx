@@ -46,6 +46,7 @@ export default async function Icons() {
       {circles.map((circle) =>
         circle.map(({ iconIndex, x, y, rotation, delay }) => (
           <Icon
+            key={String(x) + String(y)}
             iconIndex={iconIndex}
             x={x}
             y={y}
