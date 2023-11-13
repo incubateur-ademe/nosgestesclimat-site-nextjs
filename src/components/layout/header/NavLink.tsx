@@ -24,8 +24,6 @@ export default function NavLink({
   icon,
   activeMatches,
   shouldUseDefaultLink = false,
-  // Active on the landing page
-  isBasePathActive = false,
   onClick,
   className,
   activeClassName,
@@ -34,7 +32,6 @@ export default function NavLink({
   const pathName = usePathname()
 
   const isActive =
-    (pathName === '/' && isBasePathActive) ||
     activeMatches?.some((matchString) => pathName.includes(matchString)) ||
     pathName.includes(href)
 
@@ -47,21 +44,21 @@ export default function NavLink({
       href={href}
       onClick={onClick}
       className={twMerge(
-        'hover:text-primary-500 group relative flex h-full items-center gap-2 px-4 text-sm text-default no-underline transition-colors lg:text-lg',
+        'group relative flex h-full items-center gap-2 px-4 text-sm text-default no-underline transition-colors hover:text-primary-500 lg:text-lg',
         `${
           isActive
-            ? activeClassName || 'stroke-primary-500 text-primary-500 font-bold'
+            ? activeClassName || 'stroke-primary-500 font-bold text-primary-500'
             : ''
         } ${className}`
       )}
       {...props}>
       {isActive && (
-        <span className="lg:bg-primary-500 absolute bottom-0 left-0 lg:h-[5px] lg:w-full"></span>
+        <span className="absolute bottom-0 left-0 lg:h-[5px] lg:w-full lg:bg-primary-500"></span>
       )}
       {icon && (
         <Icon
           className={twMerge(
-            'group-hover:stroke-primary-500 h-5 w-5',
+            'h-5 w-5 group-hover:stroke-primary-500',
             `${isActive ? 'stroke-primary-500' : ''}`
           )}
         />

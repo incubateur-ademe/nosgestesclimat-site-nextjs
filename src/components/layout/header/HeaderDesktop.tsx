@@ -29,8 +29,7 @@ export default function HeaderDesktop({
           <Navigation>
             <li className="px-4">
               <NavLink
-                href="/tutoriel"
-                isBasePathActive
+                href="/simulateur/bilan"
                 activeMatches={['/tutoriel', '/simulateur']}
                 icon={BilanIcon}
                 title={t('Le test')}>
