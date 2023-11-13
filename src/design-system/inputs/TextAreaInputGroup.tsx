@@ -31,8 +31,7 @@ export default function TextAreaInputGroup({
         <span
           className={`text-sm font-bold text-slate-900 ${
             error ? '!text-red-700' : ''
-          }`}
-        >
+          }`}>
           {label}
         </span>
       </label>
@@ -42,7 +41,7 @@ export default function TextAreaInputGroup({
       <textarea
         name={name}
         placeholder={placeholder}
-        className={`mt-3 max-w-[30rem] rounded-md border-solid border-grey-200 bg-grey-100 !p-4 text-sm transition-colors focus:border-primary focus:ring-2 focus:ring-primary ${
+        className={`focus:border-primary-500 focus:ring-primary-500 mt-3 max-w-[30rem] rounded-md border-solid border-grey-200 bg-grey-100 !p-4 text-sm transition-colors focus:ring-2 ${
           error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
         }`}
         onChange={onChange}

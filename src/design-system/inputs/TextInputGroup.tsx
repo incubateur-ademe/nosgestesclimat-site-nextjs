@@ -29,18 +29,15 @@ export default function TextInputGroup({
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
   return (
-    <div className="flex flex-col" aria-live="polite">
-      {label && (
-        <label htmlFor={name}>
-          <span
-            className={`text-sm font-bold text-slate-900 ${
-              error ? '!text-red-700' : ''
-            }`}>
-            {label}
-          </span>
-        </label>
-      )}
-
+    <div className={`flex flex-col ${className}`} aria-live="polite">
+      <label htmlFor={name}>
+        <span
+          className={`text-sm font-bold text-slate-900 ${
+            error ? '!text-red-700' : ''
+          }`}>
+          {label}
+        </span>
+      </label>
       {helperText && (
         <span className="mt-1 text-xs text-slate-500">{helperText}</span>
       )}
@@ -57,7 +54,7 @@ export default function TextInputGroup({
         className={twMerge(
           `border-grey-300 ${
             helperText || label ? ' mt-3' : ''
-          } max-w-[30rem] rounded-md border border-solid bg-grey-100 p-4 text-sm transition-colors focus:border-primary focus:ring-2 focus:ring-primary `,
+          } focus:border-primary-500 focus:ring-primary-500 max-w-[30rem] rounded-md border border-solid bg-grey-100 p-4 text-sm transition-colors focus:ring-2`,
           `${className} ${
             error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
           }`
