@@ -6,7 +6,7 @@ import { useIframe } from '@/hooks/useIframe'
 import i18nConfig from '@/i18nConfig'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 
 export default function LanguageSwitchButton() {
   const { t } = useClientTranslation()
@@ -19,38 +19,41 @@ export default function LanguageSwitchButton() {
 
   const currentLocale = useCurrentLocale(i18nConfig)
 
+  const handleChange = useCallback(
+    (newLocale: string) => {
+      // set cookie for next-i18n-router
+      const days = 30
+      const date = new Date()
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+      const expires = '; expires=' + date.toUTCString()
+      document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`
+
+      if (currentLocale === i18nConfig.defaultLocale) {
+        router.push(
+          '/' +
+            newLocale +
+            currentPathname +
+            (searchParams.length > 0 ? `?=${searchParams}` : '')
+        )
+      } else {
+        router.push(
+          currentPathname.replace(`/${currentLocale}`, `/${newLocale}`) +
+            (searchParams.length > 0 ? `?=${searchParams}` : '')
+        )
+      }
+
+      router.refresh()
+    },
+    [currentLocale, currentPathname, router, searchParams]
+  )
+
   // If the lang is fixed by the iframe and is not the same as the current locale, we change it here
   const { iframeLang } = useIframe()
   useEffect(() => {
     if (iframeLang && iframeLang !== currentLocale) {
       handleChange(iframeLang)
     }
-  }, [iframeLang, currentLocale])
-
-  const handleChange = (newLocale: string) => {
-    // set cookie for next-i18n-router
-    const days = 30
-    const date = new Date()
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
-    const expires = '; expires=' + date.toUTCString()
-    document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`
-
-    if (currentLocale === i18nConfig.defaultLocale) {
-      router.push(
-        '/' +
-          newLocale +
-          currentPathname +
-          (searchParams.length > 0 ? `?=${searchParams}` : '')
-      )
-    } else {
-      router.push(
-        currentPathname.replace(`/${currentLocale}`, `/${newLocale}`) +
-          (searchParams.length > 0 ? `?=${searchParams}` : '')
-      )
-    }
-
-    router.refresh()
-  }
+  }, [iframeLang, currentLocale, handleChange])
 
   return (
     <div className="flex gap-2">
