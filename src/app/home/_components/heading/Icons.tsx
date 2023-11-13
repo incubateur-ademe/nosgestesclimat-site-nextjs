@@ -34,10 +34,10 @@ const placeSvgsInCircle = (numPieces: number, radius: number) => {
 
 const circles = [
   placeSvgsInCircle(30, 450),
-  placeSvgsInCircle(35, 525),
-  placeSvgsInCircle(40, 600),
-  placeSvgsInCircle(45, 675),
-  placeSvgsInCircle(50, 750),
+  placeSvgsInCircle(35, 535),
+  placeSvgsInCircle(40, 620),
+  placeSvgsInCircle(45, 705),
+  placeSvgsInCircle(50, 790),
 ]
 
 export default async function Icons() {
