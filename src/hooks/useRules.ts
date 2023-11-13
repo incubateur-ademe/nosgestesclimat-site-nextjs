@@ -36,7 +36,7 @@ export function useRules({ lang, region, isOptim = true }: Props) {
             .then((res) => res.data as unknown),
     {
       keepPreviousData: true,
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: process.env.NEXT_PUBLIC_LOCAL_DATA ? true : false,
     }
   )
 }
