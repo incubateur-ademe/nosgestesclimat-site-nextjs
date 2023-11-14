@@ -52,14 +52,12 @@ export default function InlineTextInput({
           return
         }
         // onClose()
-      }}
-    >
+      }}>
       <label htmlFor={name} className="mb-2">
         <span
           className={`text-sm font-bold text-slate-900 ${
             error ? '!text-red-700' : ''
-          }`}
-        >
+          }`}>
           {label}
         </span>
       </label>
@@ -69,7 +67,7 @@ export default function InlineTextInput({
           name={name}
           type={type}
           placeholder={placeholder}
-          className={`max-w-[30rem] flex-1 rounded-s-md border border-solid border-grey-200 bg-grey-100 !p-4 text-sm transition-colors focus:border-primary focus:ring-2 focus:ring-primary ${
+          className={`focus:border-primary-500 focus:ring-primary-500 max-w-[30rem] flex-1 rounded-s-md border border-solid border-grey-200 bg-grey-100 !p-4 text-sm transition-colors focus:ring-2 ${
             error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
           }`}
           aria-describedby={`error-${name}`}
@@ -82,13 +80,12 @@ export default function InlineTextInput({
           {...props}
         />
         <Button
-          className="rounded-s-none !border-2 !border-primary"
+          className="!border-primary-500 rounded-s-none !border-2"
           id="inline-input-button"
           onClick={handleSubmit}
           aria-label={t('Ok, sauvegarder la modification')}
           disabled={isLoading}
-          data-cypress-id="button-inline-input"
-        >
+          data-cypress-id="button-inline-input">
           Ok
         </Button>
       </div>

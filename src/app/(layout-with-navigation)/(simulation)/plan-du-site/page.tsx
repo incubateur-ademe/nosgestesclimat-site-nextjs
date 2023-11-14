@@ -1,8 +1,8 @@
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Actions from './_components/Actions'
+import LinkList from './_components/LinkList'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -46,28 +46,31 @@ export default function PlanDuSitePage() {
         }
       />
 
-      {Object.entries(links).map(([categoryTitle, categoryLinks]) => (
-        <section key={categoryTitle} className="mb-2">
-          <h2>
-            <Trans i18nKey={`${categoryTitle}`}>{categoryTitle}</Trans>
-          </h2>
-          <ul className="m-0 list-none p-0">
-            {Object.entries(categoryLinks).map(([linkKey, linkUrl]) => (
-              <li key={linkKey}>
-                <Link href={linkUrl}>
-                  <Trans i18nKey={`${linkKey}`}>{linkKey}</Trans>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+      <section className="mb-2">
+        <h2>
+          <Trans>Nos outils</Trans>
+        </h2>
+        <LinkList entries={links['Nos outils']} />
+      </section>
+
+      <section className="mb-2">
+        <h2>
+          <Trans>Informations</Trans>
+        </h2>
+        <LinkList entries={links['Informations']} />
+      </section>
+
+      <section className="mb-2">
+        <h2>
+          <Trans>Documentations</Trans>
+        </h2>
+        <LinkList entries={links['Documentations']} />
+      </section>
 
       <section>
         <h2>
           <Trans i18nKey="publicodes.planDuSite.actionsPlus">Les actions</Trans>
         </h2>
-
         <Actions />
       </section>
     </div>

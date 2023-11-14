@@ -1,5 +1,10 @@
+import MDXContent from '@/components/mdx/MDXContent'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import Budget from './_components/Budget'
+import contentEnBottom from '@/locales/pages/en/budgetBottom.mdx'
+import contentEnTop from '@/locales/pages/en/budgetTop.mdx'
+import contentFrBottom from '@/locales/pages/fr/budgetBottom.mdx'
+import contentFrTop from '@/locales/pages/fr/budgetTop.mdx'
+import SelectYear from './_components/SelectYear'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -9,5 +14,11 @@ export async function generateMetadata() {
 }
 
 export default function BudgetPage() {
-  return <Budget />
+  return (
+    <>
+      <MDXContent contentEn={contentEnTop} contentFr={contentFrTop} />
+      <SelectYear />
+      <MDXContent contentEn={contentEnBottom} contentFr={contentFrBottom} />
+    </>
+  )
 }

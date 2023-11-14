@@ -44,7 +44,7 @@ export default function ActionForm({ category, onComplete }: Props) {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
-      className="mb-4 rounded-lg bg-primaryLight p-4 text-left">
+      className="bg-primary-100 mb-4 rounded-lg p-4 text-left">
       <Question question={currentQuestion} key={currentQuestion} />
       <Navigation question={currentQuestion} onComplete={onComplete} />
     </motion.div>

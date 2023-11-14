@@ -1316,6 +1316,10 @@
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat-scripts/-/nosgestesclimat-scripts-0.2.2.tgz#fc36d92db1519e23cc255b24881ad9f149542562"
   integrity sha512-DeBf4uihcFeV0qymHA4ussr5LdFNdT6kyppHKkb41LApOH+fUoYgCWdxJQwOtXgxxzSrhrFGVfBDpBnpzzPIKg==
+"@incubateur-ademe/nosgestesclimat-scripts@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat-scripts/-/nosgestesclimat-scripts-0.2.2.tgz#fc36d92db1519e23cc255b24881ad9f149542562"
+  integrity sha512-DeBf4uihcFeV0qymHA4ussr5LdFNdT6kyppHKkb41LApOH+fUoYgCWdxJQwOtXgxxzSrhrFGVfBDpBnpzzPIKg==
   dependencies:
     "@types/node" "^18.11.18"
     deepl-node "^1.10.2"
@@ -8652,9 +8656,9 @@ streamsearch@^1.1.0:
   integrity sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==
 
 streamx@^2.12.0, streamx@^2.12.5, streamx@^2.13.2, streamx@^2.14.0, streamx@^2.15.0:
-  version "2.15.2"
-  resolved "https://registry.yarnpkg.com/streamx/-/streamx-2.15.2.tgz#680eacebdc9c43ede7362c2e6695b34dd413c741"
-  integrity sha512-b62pAV/aeMjUoRN2C/9F0n+G8AfcJjNC0zw/ZmOHeFsIe4m4GzjVW9m6VHXVjk536NbdU9JRwKMJRfkc+zUFTg==
+  version "2.15.1"
+  resolved "https://registry.yarnpkg.com/streamx/-/streamx-2.15.1.tgz#396ad286d8bc3eeef8f5cea3f029e81237c024c6"
+  integrity sha512-fQMzy2O/Q47rgwErk/eGeLu/roaFWV0jVsogDmrszM9uIw8L5OA+t+V93MgYlufNptfjmYR1tOMWhei/Eh7TQA==
   dependencies:
     fast-fifo "^1.1.0"
     queue-tick "^1.0.1"
@@ -9652,6 +9656,9 @@ void-elements@3.1.0:
   integrity sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==
 
 vue-template-compiler@^2.6.11:
+  version "2.7.15"
+  resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.7.15.tgz#ec88ba8ceafe0f17a528b89c57e01e02da92b0de"
+  integrity sha512-yQxjxMptBL7UAog00O8sANud99C6wJF+7kgbcwqkvA38vCGF7HWE66w0ZFnS/kX5gSoJr/PQ4/oS3Ne2pW37Og==
   version "2.7.15"
   resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.7.15.tgz#ec88ba8ceafe0f17a528b89c57e01e02da92b0de"
   integrity sha512-yQxjxMptBL7UAog00O8sANud99C6wJF+7kgbcwqkvA38vCGF7HWE66w0ZFnS/kX5gSoJr/PQ4/oS3Ne2pW37Og==

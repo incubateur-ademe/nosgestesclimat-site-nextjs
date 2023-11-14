@@ -49,19 +49,23 @@ export default function JourneysInput({ question }: Props) {
     [journeys]
   )
 
-  const averagePassengers = useMemo(
-    () =>
-      journeys.reduce(
-        (accumulator, currentValue) =>
-          accumulator +
-          currentValue.passengers *
-            currentValue.distance *
-            currentValue.reccurrence *
-            periods[currentValue.period],
-        0
-      ) / total || 0,
-    [journeys, total]
-  )
+  const averagePassengers = useMemo(() => {
+    if (!total) {
+      return 1
+    } else {
+      return (
+        journeys.reduce(
+          (accumulator, currentValue) =>
+            accumulator +
+            currentValue.passengers *
+              currentValue.distance *
+              currentValue.reccurrence *
+              periods[currentValue.period],
+          0
+        ) / total
+      )
+    }
+  }, [journeys, total])
 
   const totalForOnePassenger = useMemo(
     () => (journeys.length ? total / averagePassengers : 0),
@@ -71,10 +75,10 @@ export default function JourneysInput({ question }: Props) {
 
   useEffect(() => {
     if (prevTotalForOnePassenger.current !== totalForOnePassenger) {
-      setValue(totalForOnePassenger)
+      setValue(totalForOnePassenger, question)
     }
     prevTotalForOnePassenger.current = totalForOnePassenger
-  }, [totalForOnePassenger, setValue])
+  }, [totalForOnePassenger, setValue, question])
 
   return (
     <motion.div
@@ -97,7 +101,7 @@ export default function JourneysInput({ question }: Props) {
             <th className="px-4 py-2 text-left text-sm">
               <Trans>Passagers</Trans>
             </th>
-            <th className="px-4 py-2 text-left text-sm"></th>
+            <th className="px-4 py-2 text-left text-sm opacity-0">Options</th>
           </tr>
           {journeys.map((journey, index) => (
             <JourneyItem

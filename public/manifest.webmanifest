@@ -3,7 +3,7 @@
   "description": "Calcule ton empreinte sur le climat",
   "display": "standalone",
   "lang": "fr",
-  "orientation": "portrait-primary",
+  "orientation": "portrait-primary-500",
   "theme_color": "#532fc5",
   "icons": [
     {

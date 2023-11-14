@@ -17,6 +17,8 @@ const { remove } = cli.getArgs(
   { remove: true }
 )
 
+const DEFAULT_VALUE = ''
+
 const printResult = (prefix, array, style) => {
   if (array.length > 0) {
     const entries = array.length > 10 ? array.slice(0, 10) : array
@@ -77,12 +79,12 @@ if (remove) {
   Object.entries(staticAnalysedFrResource)
     .map(([key, value]) => [
       key,
-      value === 'NO_TRANSLATION' && translationIsTheKey(key) ? key : value,
+      value === DEFAULT_VALUE && translationIsTheKey(key) ? key : value,
     ])
     .filter(([key, value]) => oldFrResource[key] !== value)
     .forEach(([key, value]) => {
-      if (!oldFrResource[key] || value !== 'NO_TRANSLATION') {
-        if (value === 'NO_TRANSLATION') {
+      if (!oldFrResource[key] || value !== DEFAULT_VALUE) {
+        if (value === DEFAULT_VALUE) {
           result.missingTranslations.push(key)
         } else if (oldFrResource[key]) {
           result.updatedTranslations.push(key)
