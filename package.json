@@ -41,7 +41,7 @@
     "chrome-aws-lambda": "^10.1.0",
     "core-js": "^3.33.2",
     "framer-motion": "^10.16.4",
-    "fuse.js": "7.0.0",
+    "fuse.js": "6.6.2",
     "gray-matter": "^4.0.3",
     "html-to-image": "^1.11.11",
     "html-webpack-plugin": "^5.5.3",
