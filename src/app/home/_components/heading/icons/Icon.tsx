@@ -11,9 +11,17 @@ type Props = {
   y: number
   rotation: number
   delay: number
+  size?: number
 }
 
-export default function Icon({ iconIndex, x, y, rotation, delay }: Props) {
+export default function Icon({
+  iconIndex,
+  x,
+  y,
+  rotation,
+  delay,
+  size,
+}: Props) {
   const isClient = useIsClient()
   const { windowWidth } = useWindowSize()
   const IconComponent = everyIcons[iconIndex]
@@ -38,6 +46,7 @@ export default function Icon({ iconIndex, x, y, rotation, delay }: Props) {
       style={{
         transform: `translate(${x}px, ${y}px) rotate(${rotation}deg)`,
         transitionDelay: `${delay}ms`,
+        width: size ?? 'auto',
       }}>
       <IconComponent />
     </div>
