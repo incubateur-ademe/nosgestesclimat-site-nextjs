@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: sleep
     container:
-      image: cypress/browsers:node18.12.0-chrome107
+      image: latest
       options: --user 1001
     strategy:
       fail-fast: false
