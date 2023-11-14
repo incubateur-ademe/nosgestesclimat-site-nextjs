@@ -15,10 +15,10 @@ type Props = {
 
 export const colorClassNames = {
   primary:
-    'transition-colors !text-white bg-primary-500 shadow-sm hover:text-white hover:bg-primary-700',
+    'transition-colors !text-white bg-primary-500 border-2 border-primary-500 shadow-sm hover:text-white hover:bg-primary-700',
   secondary:
     'border-solid border-primary-500 border-2 text-primary-500 bg-transparent shadow-sm hover:text-primary-700 hover:bg-primary-200 hover:border-primary-700',
-  text: 'text-primary-500 bg-transparent shadow-none hover:bg-primary-200 hover:text-primary-700 hover:border-primary-500',
+  text: 'text-primary-500 bg-transparent border-2 border-transparent shadow-none hover:bg-primary-200 hover:text-primary-700 hover:border-primary-200',
 }
 
 export const sizeClassNames = {
