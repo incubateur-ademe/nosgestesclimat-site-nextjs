@@ -1,3 +1,4 @@
+import importLocalRules from '@/helpers/importLocalRules'
 import { useUser } from '@/publicodes-state'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
@@ -39,24 +40,4 @@ export function useRules({ lang, region, isOptim = true }: Props) {
       refetchOnWindowFocus: process.env.NEXT_PUBLIC_LOCAL_DATA ? true : false,
     }
   )
-}
-
-async function importLocalRules({
-  regionCode,
-  locale,
-  isOptim,
-}: {
-  regionCode?: string
-  locale: string
-  isOptim: boolean
-}) {
-  try {
-    return (await import(
-      `../../../nosgestesclimat/public/co2-model.${regionCode}-lang.${locale}${
-        isOptim ? '-opti' : ''
-      }.json`
-    )) as unknown
-  } catch (e) {
-    console.log(e)
-  }
 }
