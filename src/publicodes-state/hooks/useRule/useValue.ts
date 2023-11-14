@@ -41,7 +41,7 @@ export default function useValue({
     if (type === 'boolean') {
       return value === true
         ? 'oui'
-        : value === false || value === null // `value`is null when the rule is unapplicable
+        : value === false || value === null // `value` is null when `ruleDisabledByItsParent` knowing that the parent becomes `null` according to this value.
         ? 'non'
         : 'none'
     }
