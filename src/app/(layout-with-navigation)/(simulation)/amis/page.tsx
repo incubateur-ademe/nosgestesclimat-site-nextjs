@@ -18,7 +18,7 @@ export default async function GroupesPage() {
   const { t } = await getServerTranslation()
 
   return (
-    <div className="p-4 md:p-8">
+    <>
       <AutoCanonicalTag />
 
       <Title
@@ -33,6 +33,6 @@ export default async function GroupesPage() {
       <Groups />
 
       <SondagesBlock />
-    </div>
+    </>
   )
 }
