@@ -7,14 +7,10 @@ import Emoji from '@/design-system/utils/Emoji'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
-import { Simulation } from '@/publicodes-state/types'
+import { useActions, useEngine, useForm, useUser } from '@/publicodes-state'
 import TutorialLink from './_components/TutorialLink'
 
-type Props = {
-  currentSimulation: Simulation
-}
-export default function SimulationStarted({ currentSimulation }: Props) {
+export default function SimulationStarted() {
   const { t } = useClientTranslation()
 
   const { getValue } = useEngine()
@@ -23,21 +19,7 @@ export default function SimulationStarted({ currentSimulation }: Props) {
 
   const { initSimulation } = useUser()
 
-  const { chosenActions, declinedActions } =
-    Object.keys(currentSimulation?.actionChoices)?.reduce(
-      (accActions, currentAction) => {
-        const actionChoice = currentSimulation?.actionChoices[currentAction]
-
-        if (actionChoice) {
-          accActions.chosenActions++
-        } else {
-          accActions.declinedActions++
-        }
-
-        return accActions
-      },
-      { chosenActions: 0, declinedActions: 0 }
-    ) || 0
+  const { chosenActions, declinedActions } = useActions()
 
   const isFinished = progression === 1
 
@@ -49,8 +31,8 @@ export default function SimulationStarted({ currentSimulation }: Props) {
             {t('publicodes.Profil.recap', {
               percentFinished: (progression * 100).toFixed(0),
               answeredQuestionsLength: relevantAnsweredQuestions.length,
-              chosenActions,
-              declinedActions,
+              chosenActions: chosenActions.length,
+              declinedActions: declinedActions.length,
             })}{' '}
           </p>
         </Card>
