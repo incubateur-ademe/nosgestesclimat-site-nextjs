@@ -1,5 +1,6 @@
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import Trans from '@/components/translation/Trans'
+import { noIndexObject } from '@/constants/metadata'
 import Separator from '@/design-system/layout/Separator'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
@@ -8,6 +9,7 @@ import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import GroupModePromotionBanner from './_components/GroupModePromotionBanner'
 import HowToAct from './_components/HowToAct'
+import RedirectionIfNoResult from './_components/RedirectionIfNoResult'
 import Results from './_components/Results'
 
 export async function generateMetadata() {
@@ -15,13 +17,20 @@ export async function generateMetadata() {
     title: "Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat",
     description:
       "Vos résultats de tests de notre simulateur d'empreinte carbone.",
+    robots: noIndexObject,
   })
 }
 
-export default function FinPage() {
+export default function FinPage({
+  searchParams,
+}: {
+  searchParams: { details?: string }
+}) {
   return (
     <FormProvider>
       <IframeDataShareModal />
+
+      <RedirectionIfNoResult details={searchParams?.details || ''} />
 
       <CongratulationsText />
 

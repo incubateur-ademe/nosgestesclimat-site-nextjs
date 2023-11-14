@@ -48,14 +48,14 @@ export default function Label({
         )}
         aria-label={label}
         htmlFor={htmlFor}>
-        {label}{' '}
+        <h1 className="mb-0 inline text-lg">{label}</h1>{' '}
         {description ? (
           <button
             onClick={() => {
               trackEvent(getMatomoEventClickHelp(question))
               setIsOpen((previsOpen) => !previsOpen)
             }}
-            className={`inline-block ${buttonSizeClassNames[size]} bg-primary-500 rounded-full border-none text-base font-bold text-white`}
+            className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary-500 text-base font-bold text-white`}
             title={t("Voir plus d'informations")}
             id={QUESTION_DESCRIPTION_BUTTON_ID}>
             <code>i</code>

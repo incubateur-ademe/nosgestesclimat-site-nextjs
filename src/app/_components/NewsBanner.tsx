@@ -5,7 +5,7 @@ export const localStorageKey = 'last-viewed-release'
 
 export default async function NewsBanner() {
   const locale = currentLocale()
-  const releases = await getPosts(`src/locales/nouveautes/${locale ?? 'fr'}/`)
+  const releases = await getPosts(`src/locales/nouveautes/${locale}/`)
 
   return <Banner releases={releases} />
 }
