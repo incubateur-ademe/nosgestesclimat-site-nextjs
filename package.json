@@ -7,9 +7,6 @@
     "type": "git",
     "url": "https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs.git"
   },
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
     "dev": "next dev",
     "dev:model": "NEXT_PUBLIC_LOCAL_DATA_SERVER=http://localhost:9000 next dev",
@@ -145,6 +142,9 @@
     "worker-loader": "^3.0.8",
     "yaml-loader": "^0.8.0",
     "yargs": "^17.7.2"
+  },
+  "engines": {
+    "node": "18.x"
   },
   "packageManager": "yarn@1.22.19"
 }
