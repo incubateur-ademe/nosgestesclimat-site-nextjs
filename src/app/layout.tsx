@@ -125,7 +125,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         )}
       </head>
 
-      <body className={marianne.className}>
+      <body className={`${marianne.className} text-default`}>
         <Script id="script-user-agent">{`
           const b = document.documentElement;
           b.setAttribute('data-useragent', navigator.userAgent);

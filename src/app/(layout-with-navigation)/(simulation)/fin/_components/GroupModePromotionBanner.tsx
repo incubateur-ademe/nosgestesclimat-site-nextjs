@@ -15,12 +15,12 @@ export default async function GroupModePromotionBanner({
   return (
     <Card
       className={twMerge(
-        'bg-primary-700 w-full flex-row justify-center gap-4 border-none pb-0 text-white md:gap-8',
+        'w-full flex-row justify-center gap-4 border-none bg-primary-700 pb-0 text-white md:gap-8',
         className
       )}>
       <div className="flex items-end justify-end md:items-center">
         <Image
-          src="/images/misc/challenge.png"
+          src="/images/misc/challenge-v2.png"
           width="150"
           height="150"
           alt={t('Une capture du mode Groupe Nos Gestes Climat.')}
