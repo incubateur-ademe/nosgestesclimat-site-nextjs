@@ -26,7 +26,7 @@ export default function Icon({ iconIndex, x, y, rotation, delay }: Props) {
     }
     return () => timer && clearTimeout(timer)
   })
-  if (y < -300 || y > 300) return null
+  if (y < -332 || y > 300) return null
   if (Math.abs(x) > windowWidth / 2 + 32) return null
   if (!isClient) return null
 
