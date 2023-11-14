@@ -2,7 +2,6 @@
 
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
-import ChevronRight from '@/design-system/icons/ChevronRight'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import BottomMenu from './headerMobile/BottomMenu'
 import FoldableMenu from './headerMobile/FoldableMenu'
@@ -20,8 +19,7 @@ export default function HeaderMobile({
 
       {shouldHideMostOfContent && (
         <ButtonLink href="/" size="sm" color="text">
-          <ChevronRight className="mr-2 inline-block rotate-180 transform" />{' '}
-          <Trans>Revenir à l'accueil</Trans>
+          ←&nbsp;<Trans>Revenir à l'accueil</Trans>
         </ButtonLink>
       )}
 
