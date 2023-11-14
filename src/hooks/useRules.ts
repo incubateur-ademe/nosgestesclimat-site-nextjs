@@ -1,6 +1,5 @@
-import importLocalRules from '@/helpers/importLocalRules'
 import { useUser } from '@/publicodes-state'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useDataServer } from './useDataServer'
 import { useLocale } from './useLocale'
@@ -23,21 +22,17 @@ export function useRules({ lang, region, isOptim = true }: Props) {
       ? user?.region?.code
       : region
 
-  return useQuery(
-    ['rules', dataServer, lang, region, isOptim],
-    () =>
-      process.env.NEXT_PUBLIC_LOCAL_DATA === 'nosgestesclimat'
-        ? importLocalRules({ regionCode, locale, isOptim })
-        : axios
-            .get(
-              `${dataServer}/co2-model.${regionCode}-lang.${locale}${
-                isOptim ? '-opti' : ''
-              }.json`
-            )
-            .then((res) => res.data as unknown),
-    {
-      keepPreviousData: true,
-      refetchOnWindowFocus: process.env.NEXT_PUBLIC_LOCAL_DATA ? true : false,
-    }
-  )
+  return useQuery({
+    queryKey: ['rules', dataServer, lang, region, isOptim],
+    queryFn: () =>
+      axios
+        .get(
+          `${dataServer}/co2-model.${regionCode}-lang.${locale}${
+            isOptim ? '-opti' : ''
+          }.json`
+        )
+        .then((res) => res.data as unknown),
+
+    placeholderData: keepPreviousData,
+  })
 }
