@@ -36,7 +36,7 @@ export default function TotalCard() {
           )}
           className="mt-2 text-sm text-white hover:text-primary-200"
           href="https://nosgestesclimat.fr/blog/budget">
-          Qu'est-ce que ça veut dire&nbsp;?
+          Qu'est-ce que ça veut dire&nbsp;?&nbsp;
           <ExternalLinkIcon className="stroke-white" />
         </Link>
       </div>
