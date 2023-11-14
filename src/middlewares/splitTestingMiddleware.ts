@@ -1,10 +1,8 @@
+import { splitTestingCookieName } from '@/constants/split-testing'
 import applySetCookie from '@/utils/applySetCookie'
 import { NextRequest, NextResponse } from 'next/server'
-import challenger from '../../split-testing'
 
-const redirectUrl = `https://nosgestesclimat-git-${challenger.branch}-nos-gestes-climat.vercel.app`
-
-const cookieName = `split-number-${challenger.branch}`
+const redirectUrl = `https://nosgestesclimat-git-${process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH}-nos-gestes-climat.vercel.app`
 
 function updateResponseHeaders({
   i18nRouterResponse,
@@ -32,20 +30,22 @@ const splitTestingMiddleware = (
   request: NextRequest,
   i18nRouterResponse: any
 ) => {
-  let splitNumber = request.cookies.get(cookieName)?.value
-
+  let splitNumber = request.cookies.get(splitTestingCookieName)?.value
+  console.log(splitNumber)
   if (!splitNumber) {
     const randomNumber = Math.random()
 
     splitNumber = String(randomNumber)
   }
 
-  const shouldRedirectToChallenger = Number(splitNumber) < challenger.share
+  const shouldRedirectToChallenger =
+    Number(splitNumber) <
+    Number(process.env.NEXT_PUBLIC_SPLIT_TESTING_PERCENTAGE ?? 0.5)
 
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
 
-    response.cookies.set(cookieName, splitNumber)
+    response.cookies.set(splitTestingCookieName, splitNumber)
 
     updateResponseHeaders({ i18nRouterResponse, response })
 
@@ -61,7 +61,7 @@ const splitTestingMiddleware = (
 
   const response = NextResponse.rewrite(rewriteTo)
 
-  response.cookies.set(cookieName, splitNumber)
+  response.cookies.set(splitTestingCookieName, splitNumber)
 
   updateResponseHeaders({ i18nRouterResponse, response })
 

@@ -7,5 +7,9 @@ export const config = {
 }
 
 export async function middleware(request: NextRequest) {
+  if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH) {
+    return i18nMiddleware(request)
+  }
+
   return splitTestingMiddleware(request, i18nMiddleware(request))
 }
