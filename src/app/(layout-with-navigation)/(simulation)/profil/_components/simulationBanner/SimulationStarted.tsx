@@ -3,6 +3,7 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
+import Emoji from '@/design-system/utils/Emoji'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useUser } from '@/publicodes-state'
@@ -19,7 +20,8 @@ export default function SimulationStarted({ currentSimulation }: Props) {
 
   const { initSimulation } = useUser()
 
-  const actionChoicesLength = currentSimulation?.actionChoices?.length || 0
+  const actionChoicesLength =
+    Object.keys(currentSimulation?.actionChoices)?.length || 0
 
   const isFinished = progression === 1
 
@@ -35,6 +37,7 @@ export default function SimulationStarted({ currentSimulation }: Props) {
             })}{' '}
           </p>
         </Card>
+
         <details className="mt-3 max-w-full text-sm">
           <Trans i18nKey={'publicodes.Profil.locationDonnées'}>
             <summary className="mb-2 cursor-pointer">
@@ -52,6 +55,14 @@ export default function SimulationStarted({ currentSimulation }: Props) {
       </div>
 
       <div className="my-4 flex w-full flex-col md:w-auto md:items-start">
+        {isFinished && (
+          <ButtonLink color="primary" href="/fin" className="w-full">
+            <Trans>
+              <Emoji className="mr-2">👀</Emoji> Voir mon résultat
+            </Trans>
+          </ButtonLink>
+        )}
+
         {!isFinished && (
           <ButtonLink
             color="primary"

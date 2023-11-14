@@ -5,7 +5,7 @@ on:
     branches:
       - 'main'
   pull_request:
-    types: 
+    types:
       - opened
       - reopened
       - synchronize
@@ -23,8 +23,8 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     needs: sleep
-    container: 
-      image: cypress/browsers:node18.12.0-chrome107
+    container:
+      image: cypress/browsers:latest
       options: --user 1001
     strategy:
       fail-fast: false
@@ -40,17 +40,17 @@ jobs:
         id: branch-name
         uses: tj-actions/branch-names@v7
 
-      - name: Setup baseUrl to deploy-preview 
+      - name: Setup baseUrl to deploy-preview
         if: ${{ success() && steps.branch-name.outputs.is_default == 'false' }}
         run: |
-            echo "CYPRESS_baseUrl=https://nosgestesclimat-git-${{ steps.branch-name.outputs.current_branch }}-nos-gestes-climat.vercel.app" >> "$GITHUB_ENV";
-            echo "MODE=preview" >> "$GITHUB_ENV";
-      
+          echo "CYPRESS_baseUrl=https://nosgestesclimat-git-${{ steps.branch-name.outputs.current_branch }}-nos-gestes-climat.vercel.app" >> "$GITHUB_ENV";
+          echo "MODE=preview" >> "$GITHUB_ENV";
+
       - name: Setup baseUrl to https://nosgestesclimat.vercel.app
         if: ${{ !success() || steps.branch-name.outputs.is_default == 'true' }}
         run: |
-            echo "CYPRESS_baseUrl=https://nosgestesclimat.vercel.app" >> "$GITHUB_ENV"
-            echo "MODE=production" >> "$GITHUB_ENV"
+          echo "CYPRESS_baseUrl=https://nosgestesclimat.vercel.app" >> "$GITHUB_ENV"
+          echo "MODE=production" >> "$GITHUB_ENV"
 
       - name: Test - e2e [${{ env.MODE }}]
         uses: cypress-io/github-action@v5.6.1
@@ -61,7 +61,7 @@ jobs:
           parallel: true
           record: true
           group: 'Test - e2e'
-          spec: cypress/e2e/**/*.cy.js
+          spec: cypress/e2e/integration/**/*.cy.js
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}

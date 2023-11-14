@@ -29,7 +29,7 @@ export default function RessourcesAllocationTable({
             <td className="w-[6rem] p-2 text-right">Total</td>
           </tr>
         </thead>
-        <tbody className="bg-primaryLight">
+        <tbody className="bg-primary-200">
           {categories.map((label: string) => (
             <tr key={label}>
               <td className="w-[6rem] p-2">{label}</td>
@@ -46,7 +46,7 @@ export default function RessourcesAllocationTable({
           ))}
         </tbody>
         <tfoot>
-          <tr className="bg-primary">
+          <tr className="bg-primary-500">
             <td className="w-[6rem] p-2 font-bold text-white">Total TTC</td>
             <td className="w-[6rem] p-2 text-right font-bold text-white">
               {formatValue(

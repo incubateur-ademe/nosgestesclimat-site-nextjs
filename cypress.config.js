@@ -10,11 +10,7 @@ export default defineConfig({
     personas_fr_url: 'https://data.nosgestesclimat.fr/personas-fr.json',
     localisation_param: 'FR',
     language_param: 'fr',
-    testLangURL: process.env.CYPRESS_testLangURL ?? 'en',
-    personas_fr_url: 'https://data.nosgestesclimat.fr/personas-fr.json',
-    localisation_param: 'FR',
-    language_param: 'fr',
-    testLangURL: process.env.CYPRESS_testLangURL ?? 'en',
+    testLangURL: process.env.CYPRESS_testLangURL ?? 'fr',
   },
   e2e: {
     baseUrl: process.env.CYPRESS_baseUrl ?? 'http://localhost:3000',
@@ -24,7 +20,6 @@ export default defineConfig({
     experimentalRunAllSpecs: true,
     specPattern: 'cypress/e2e/**/*.cy.js',
   },
-
   component: {
     devServer: {
       framework: 'next',

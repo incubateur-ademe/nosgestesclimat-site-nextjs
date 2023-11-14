@@ -73,7 +73,7 @@ export default function Form() {
   }
 
   return (
-    <div className="relative mb-4 overflow-hidden rounded-lg bg-primaryLight p-4 pl-6">
+    <div className="relative mb-4 overflow-hidden rounded-lg bg-grey-100 p-4 pl-6">
       <ColorIndicator question={currentQuestion} />
       {questions[currentQuestion] ? (
         questions[currentQuestion]
