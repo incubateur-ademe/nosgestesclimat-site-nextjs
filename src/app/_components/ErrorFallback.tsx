@@ -5,7 +5,7 @@ import Button from '@/design-system/inputs/Button'
 export const ErrorFallback = () => {
   return (
     <div className="text-center">
-      <Logo className="mb-4" size="sm" />
+      <Logo className="mb-4" />
       <h1>
         <Trans>Une erreur s'est produite</Trans>
       </h1>
@@ -18,8 +18,7 @@ export const ErrorFallback = () => {
       <Button
         onClick={() => {
           window.location.reload()
-        }}
-      >
+        }}>
         <Trans>Recharger la page</Trans>
       </Button>
     </div>
