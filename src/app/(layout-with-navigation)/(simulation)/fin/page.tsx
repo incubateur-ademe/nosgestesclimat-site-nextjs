@@ -9,6 +9,7 @@ import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import GroupModePromotionBanner from './_components/GroupModePromotionBanner'
 import HowToAct from './_components/HowToAct'
+import RedirectionIfNoResult from './_components/RedirectionIfNoResult'
 import Results from './_components/Results'
 
 export async function generateMetadata() {
@@ -20,10 +21,16 @@ export async function generateMetadata() {
   })
 }
 
-export default function FinPage() {
+export default function FinPage({
+  searchParams,
+}: {
+  searchParams: { details?: string }
+}) {
   return (
     <FormProvider>
       <IframeDataShareModal />
+
+      <RedirectionIfNoResult details={searchParams?.details || ''} />
 
       <CongratulationsText />
 
