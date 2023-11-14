@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  *:not(span, code) {
-    @apply text-default;
-  }
   input[type='number']::-webkit-outer-spin-button,
   input[type='number']::-webkit-inner-spin-button,
   input[type='number'] {
