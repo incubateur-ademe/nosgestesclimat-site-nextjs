@@ -11,7 +11,7 @@ type Props = {
   y: number
   rotation: number
   delay: number
-  size?: number
+  scale?: number
 }
 
 export default function Icon({
@@ -20,7 +20,7 @@ export default function Icon({
   y,
   rotation,
   delay,
-  size,
+  scale = 1,
 }: Props) {
   const isClient = useIsClient()
   const { windowWidth } = useWindowSize()
@@ -44,9 +44,8 @@ export default function Icon({
         isHidden ? 'opacity-0' : 'opacity-100'
       } motion-reduce:transition-none`}
       style={{
-        transform: `translate(${x}px, ${y}px) rotate(${rotation}deg)`,
+        transform: `translate(${x}px, ${y}px) rotate(${rotation}deg) scale(${scale})`,
         transitionDelay: `${delay}ms`,
-        width: size ?? 'auto',
       }}>
       <IconComponent />
     </div>
