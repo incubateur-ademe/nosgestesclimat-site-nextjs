@@ -35,32 +35,34 @@ export default function HeaderDesktop({
               }`}>
               <Logo />
             </div>
-            <nav className="h-full">
-              <ul className="flex h-full ">
-                <li className="px-4">
-                  <NavLink
-                    href="/simulateur/bilan"
-                    activeMatches={['/tutoriel', '/simulateur']}
-                    icon={BilanIcon}
-                    title={t('Le test')}>
-                    {!shouldHideMostOfContent && <Trans>Le test</Trans>}
-                  </NavLink>
-                </li>
-                <li className="px-4">
-                  <NavLink
-                    href="/actions"
-                    icon={ActionsIcon}
-                    title={t('Actions')}>
-                    {!shouldHideMostOfContent && <Trans>Actions</Trans>}
-                  </NavLink>
-                </li>
-                <li className="px-4">
-                  <NavLink href="/amis" icon={AmisIcon} title={t('Amis')}>
-                    {!shouldHideMostOfContent && <Trans>Amis</Trans>}
-                  </NavLink>
-                </li>
-              </ul>
-            </nav>
+            <Navigation>
+              <li className="px-4">
+                <NavLink
+                  href="/simulateur/bilan"
+                  activeMatches={['/tutoriel', '/simulateur']}
+                  icon={BilanIcon}
+                  title={t('Le test')}>
+                  {!shouldHideMostOfContent && <Trans>Le test</Trans>}
+                </NavLink>
+              </li>
+              <li className="px-4">
+                <NavLink
+                  href="/actions"
+                  icon={ActionsIcon}
+                  title={t('Actions')}>
+                  {!shouldHideMostOfContent && <Trans>Actions</Trans>}
+                </NavLink>
+              </li>
+              <li className="px-4">
+                <NavLink
+                  href="/amis"
+                  icon={AmisIcon}
+                  title={t('Amis')}
+                  data-cypress-id="amis-link">
+                  {!shouldHideMostOfContent && <Trans>Amis</Trans>}
+                </NavLink>
+              </li>
+            </Navigation>
           </div>
           <div className="flex items-center gap-4">
             <PRIndicator />
