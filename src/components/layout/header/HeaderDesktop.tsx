@@ -53,7 +53,11 @@ export default function HeaderDesktop({
                 </NavLink>
               </li>
               <li className="px-4">
-                <NavLink href="/amis" icon={AmisIcon} title={t('Amis')}>
+                <NavLink
+                  href="/amis"
+                  icon={AmisIcon}
+                  title={t('Amis')}
+                  data-cypress-id="amis-link">
                   {!shouldHideMostOfContent && <Trans>Amis</Trans>}
                 </NavLink>
               </li>
