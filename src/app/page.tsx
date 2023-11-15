@@ -5,7 +5,7 @@ import Amis from './_components/Amis'
 import Contributions from './_components/Contributions'
 import Explanations from './_components/Explanations'
 import Heading from './_components/Heading'
-import Organisations from './_components/Organisations'
+// import Organisations from './_components/Organisations'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -24,7 +24,7 @@ export default function Homepage() {
         <Amis />
         <Actions />
       </div>
-      <Organisations />
+      {/* <Organisations /> */}
       <Explanations />
       <Contributions />
     </Main>

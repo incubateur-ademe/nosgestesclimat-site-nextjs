@@ -33,7 +33,7 @@ export default async function Icons() {
               y={y}
               rotation={rotation}
               delay={delay}
-              scale={0.5}
+              scale={1}
             />
           ))
         )}
