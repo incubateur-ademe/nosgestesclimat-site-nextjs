@@ -130,7 +130,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <ErrorBoundary showDialog fallback={ErrorFallback}>
           <MainLayoutProviders region={region}>
             <Header />
-
             {children}
           </MainLayoutProviders>
         </ErrorBoundary>
