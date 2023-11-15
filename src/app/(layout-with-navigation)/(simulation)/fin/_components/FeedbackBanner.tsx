@@ -29,7 +29,7 @@ export default function FeedbackBanner({ text, type, className }: Props) {
 
   const {
     mutate: saveRating,
-    isLoading,
+    isPending,
     isSuccess,
   } = useMutation({
     mutationKey: ['northstar', 'post'],
@@ -82,7 +82,7 @@ export default function FeedbackBanner({ text, type, className }: Props) {
 
       <p className="font-light">{text}</p>
 
-      <SmileyGrading onClick={handleGrading} disabled={isLoading} />
+      <SmileyGrading onClick={handleGrading} disabled={isPending} />
     </Card>
   )
 }
