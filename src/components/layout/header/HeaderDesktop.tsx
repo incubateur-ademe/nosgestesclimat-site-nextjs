@@ -20,7 +20,7 @@ export default function HeaderDesktop({
 
   return (
     <header
-      className={`sticky top-0 z-50 hidden items-center lg:block ${
+      className={`sticky top-0 z-[500] hidden items-center lg:block ${
         shouldHideMostOfContent ? 'h-14' : 'h-20'
       }`}>
       <div
