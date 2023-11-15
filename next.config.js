@@ -17,6 +17,10 @@ const nextConfig = {
       test: /\.ya?ml$/,
       use: 'js-yaml-loader',
     })
+    config.module.rules.push({
+      test: /\.publicodes$/,
+      use: 'js-yaml-loader',
+    })
 
     config.resolve.fallback = {
       // if you miss it, all the other options in fallback, specified
