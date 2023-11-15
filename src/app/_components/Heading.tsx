@@ -13,16 +13,16 @@ export default function Heading() {
           <Icons />
         </Suspense>
         <div className="relative max-w-sm text-center md:max-w-xl">
-          <h1 className="font-medium md:text-5xl">
+          <h1 className="md:text-5xl">
             <Trans>Connaissez-vous votre empreinte sur le climat&#8239;?</Trans>
           </h1>
-          <p className="mb-10 md:text-2xl">
+          <p className="mb-6 md:mb-10 md:text-2xl">
             <Trans>
               En <span className="text-secondary">10 minutes</span>, obtenez une
               estimation de votre empreinte carbone de consommation.
             </Trans>
           </p>
-          <div className="flex flex-col items-center justify-center gap-8 md:flex-row md:gap-12">
+          <div className="flex flex-col items-center justify-center gap-6 md:flex-row md:gap-12 md:gap-8">
             <ButtonStart />
             <Link className="md:text-lg" href="/documentation">
               <Trans>Notre méthode</Trans>
