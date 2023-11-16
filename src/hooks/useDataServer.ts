@@ -7,5 +7,7 @@ export const useDataServer = () => {
     return `https://deploy-preview-${PRNumber}--ecolab-data.netlify.app`
   }
 
+  if (process.env.NEXT_PUBLIC_LOCAL_DATA) return
+
   return DATA_SERVER_URL
 }

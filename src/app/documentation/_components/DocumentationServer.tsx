@@ -83,14 +83,14 @@ export default async function DocumentationServer({
         </section>
       )}
 
-      <section className="mt-4">
-        <p>
+      <Card className="mt-4 bg-primary-200">
+        <p className="mb-0">
           <Trans>
             Pour en savoir plus sur cette règle de notre modèle, lancer le
             calcul en cliquant sur le bouton ci-dessous.
           </Trans>
         </p>
-      </section>
+      </Card>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import { fetchModel } from '@/helpers/data/fetch-model'
+import importLocalRules from '@/helpers/importLocalRules'
 import { useUser } from '@/publicodes-state'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useDataServer } from './useDataServer'
@@ -25,13 +26,14 @@ export function useRules({ lang, region, isOptim = true }: Props) {
   return useQuery({
     queryKey: ['rules', dataServer, lang, region, isOptim],
     queryFn: () =>
-      fetchModel({
-        dataServer,
-        regionCode: regionCode || 'FR',
-        locale,
-        isOptim,
-      }),
-
+      process.env.NEXT_PUBLIC_LOCAL_DATA === 'nosgestesclimat'
+        ? importLocalRules({ regionCode, locale, isOptim })
+        : fetchModel({
+            dataServer: dataServer || '',
+            regionCode: regionCode || 'FR',
+            locale,
+            isOptim,
+          }),
     placeholderData: keepPreviousData,
   })
 }
