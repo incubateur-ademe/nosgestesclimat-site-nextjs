@@ -11,8 +11,9 @@ type Props = {
   optIn: boolean
 }
 export function useSubscribeUser() {
-  return useMutation(
-    async ({ simulation, email, optIn }: Props): Promise<any> => {
+  return useMutation({
+    mutationKey: ['subscribe user'],
+    mutationFn: async ({ simulation, email, optIn }: Props): Promise<any> => {
       const idSimulationSaved: string = await saveSimulationInDB(
         simulation as unknown as Simulation
       )
@@ -31,8 +32,8 @@ export function useSubscribeUser() {
         // URL already contains the query param details
         shareURL: location.toString() + '&mtm_campaign=partage-email',
       })
-    }
-  )
+    },
+  })
 }
 
 const saveSimulationInDB = async (data: Simulation) => {
