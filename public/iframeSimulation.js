@@ -21,7 +21,11 @@ const optionFragments = possibleOptions.map(({ key, legacy }) => {
   return value != null ? `&${key === 'pr' ? 'PR' : key}=${value}` : ''
 })
 
-const src = `${hostname}/simulateur/bilan/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
+const lang = script.dataset.lang
+
+const src = `${hostname}/${
+  lang && lang + '/'
+}simulateur/bilan/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
   ''
 )}`
 
