@@ -1,6 +1,9 @@
+import Providers from '@/components/providers/Providers'
 import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import DocumentationContent from '../_components/DocumentationContent'
+import DocumentationClient from '../_components/DocumentationClient'
+import DocumentationRouter from '../_components/DocumentationRouter'
+import DocumentationServer from '../_components/DocumentationServer'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -20,9 +23,23 @@ export default async function DocumentationPage({ params }: Props) {
   const supportedRegions = await getSupportedRegions()
 
   return (
-    <DocumentationContent
-      supportedRegions={supportedRegions}
-      slugs={params.slug}
-    />
+    <>
+      <DocumentationRouter
+        serverDocumentation={
+          <DocumentationServer
+            supportedRegions={supportedRegions}
+            slugs={params.slug}
+          />
+        }
+        clientDocumentation={
+          <Providers supportedRegions={supportedRegions} isOptim={false}>
+            <DocumentationClient
+              supportedRegions={supportedRegions}
+              slugs={params.slug}
+            />
+          </Providers>
+        }
+      />
+    </>
   )
 }

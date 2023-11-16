@@ -10,6 +10,7 @@ import { utils } from 'publicodes'
 
 import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
+import Emoji from '@/design-system/utils/Emoji'
 import { NGCRules } from '@/publicodes-state/types'
 import editorialisedModels from '../_data/editorialisedModels.yaml'
 import SearchBar from './SearchBar'
@@ -77,10 +78,9 @@ export default function DocumentationLanding() {
                 tag={Link}
                 style={{ backgroundColor: getColor(dottedName) || '#5758BB' }}
                 href={'/documentation/' + utils.encodeRuleName(dottedName)}
-                className="relative !flex h-[12rem] flex-auto justify-center text-center text-base text-white no-underline"
-              >
+                className="relative !flex h-[12rem] flex-auto justify-center text-center text-base text-white no-underline">
                 <p className="-z-1 absolute bottom-0 left-0 right-0 top-0 text-center align-middle text-[8.5rem] opacity-20 grayscale">
-                  {EMOJIS[index]}
+                  <Emoji className="inline-block">{EMOJIS[index]}</Emoji>
                 </p>
                 {résumé && (
                   <h2 className="z-10 mb-0 text-base text-white">

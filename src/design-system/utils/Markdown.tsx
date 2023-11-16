@@ -16,18 +16,19 @@ export default function Markdown({
   ...otherProps
 }: MarkdownProps) {
   return (
-    <MarkdownToJsx
-      {...otherProps}
-      options={{
-        ...otherProps.options,
-        forceBlock: true,
-        overrides: {
-          a: Link,
-          ...components,
-        },
-      }}
-    >
-      {children}
-    </MarkdownToJsx>
+    <div className="markdown">
+      <MarkdownToJsx
+        {...otherProps}
+        options={{
+          ...otherProps.options,
+          forceBlock: true,
+          overrides: {
+            a: Link,
+            ...components,
+          },
+        }}>
+        {children}
+      </MarkdownToJsx>
+    </div>
   )
 }

@@ -378,3 +378,16 @@ blockquote {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+/*
+  Markdown
+*/
+.markdown ul,ol {
+  @apply pl-6;
+  /* bullet point list type */
+  list-style-type: '› ';
+  list-style-position: outside;
+}
+.markdown li {
+  @apply mb-2;
+}
