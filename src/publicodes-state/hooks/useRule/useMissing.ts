@@ -8,12 +8,14 @@ type Props = {
   dottedName: string
   questionsOfMosaic: string[]
   situation: Situation
+  foldedSteps: string[]
 }
 
 export default function useValue({
   dottedName,
   situation,
   questionsOfMosaic,
+  foldedSteps,
 }: Props) {
   const isMissing = useMemo(
     () =>
@@ -25,7 +27,13 @@ export default function useValue({
     [dottedName, situation, questionsOfMosaic]
   )
 
+  const isFolded = useMemo(
+    () => foldedSteps.indexOf(dottedName) >= 0,
+    [dottedName, foldedSteps]
+  )
+
   return {
     isMissing,
+    isFolded,
   }
 }
