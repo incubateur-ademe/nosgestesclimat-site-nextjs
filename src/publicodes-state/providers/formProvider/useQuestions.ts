@@ -205,8 +205,6 @@ export default function useQuestions({
     [relevantQuestions, categories]
   )
 
-  console.log(relevantAnsweredQuestions, remainingQuestions)
-
   return {
     missingVariables,
     remainingQuestions,
