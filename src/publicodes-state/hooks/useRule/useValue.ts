@@ -43,10 +43,10 @@ export default function useValue({
         ? 'oui'
         : value === false || value === null // `value` is null when `ruleDisabledByItsParent` knowing that the parent becomes `null` according to this value.
         ? 'non'
-        : 'none'
+        : ''
     }
     if (type === 'mosaic') {
-      return 'none'
+      return 'mosaic'
     }
     return Number(value)
   }, [value, type])
