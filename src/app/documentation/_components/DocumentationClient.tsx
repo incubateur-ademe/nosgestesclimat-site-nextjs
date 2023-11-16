@@ -6,16 +6,11 @@ import ServicesChart from '@/components/charts/ServicesChart'
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useLocale } from '@/hooks/useLocale'
-import { useRules } from '@/hooks/useRules'
-import { useUser } from '@/publicodes-state'
-import { safeGetSituation } from '@/publicodes-state/helpers/safeGetSituation'
-import { Rules, Situation } from '@/publicodes-state/types'
+import { useEngine } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
 import Head from 'next/head'
 import Engine from 'publicodes'
 import { RulePage } from 'publicodes-react'
-import { useEffect, useMemo } from 'react'
 import References from './References'
 
 type Props = {
@@ -27,31 +22,11 @@ export default function DocumentationClient({
   slugs,
 }: Props) {
   const { i18n } = useClientTranslation()
+
   const path = decodeURI(slugs.join('/'))
-  const { user, getCurrentSimulation } = useUser()
-  const lang = useLocale()
-  const { data: rules } = useRules({
-    lang: lang || 'fr',
-    region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
-    isOptim: false,
-  })
-  const currentSimulation = getCurrentSimulation()
-  const situation = currentSimulation?.situation
-  const engine = useMemo<Engine | null>(
-    () => (rules ? new Engine(rules as Rules) : null),
-    [rules]
-  )
-  //TODO: this is shit
-  useEffect(() => {
-    if (engine && situation) {
-      const rules = Object.keys(engine.getParsedRules())
-      const safeSituation: Situation = safeGetSituation({
-        situation,
-        everyRules: rules,
-      })
-      engine.setSituation(safeSituation as any)
-    }
-  }, [engine, situation])
+
+  const { engine } = useEngine()
+
   const documentationPath = '/documentation'
 
   return (

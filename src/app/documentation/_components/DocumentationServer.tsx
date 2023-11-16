@@ -5,7 +5,8 @@ import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import Markdown from '@/design-system/utils/Markdown'
-import { fetchModel } from '@/helpers/data/fetch-model'
+import { fetchModel } from '@/helpers/data/fetchModel'
+import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { Rules } from '@/publicodes-state/types'
 import { SuppportedRegions } from '@/types/international'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
@@ -39,6 +40,8 @@ export default async function DocumentationServer({
 
   const rule = rules[ruleName]
 
+  const title = getRuleTitle(rule)
+
   if (!rule) {
     redirect('/404')
     return null
@@ -48,7 +51,7 @@ export default async function DocumentationServer({
     <div className="mt-4">
       <LocalisationBanner supportedRegions={supportedRegions} />
 
-      <Title title={`${rule.icônes ?? ''} ${rule.titre ?? rule.title}`} />
+      <Title title={`${rule.icônes ?? ''} ${title}`} />
 
       {rule.question && (
         <>

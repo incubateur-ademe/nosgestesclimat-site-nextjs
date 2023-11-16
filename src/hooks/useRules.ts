@@ -1,4 +1,4 @@
-import { fetchModel } from '@/helpers/data/fetch-model'
+import { fetchModel } from '@/helpers/data/fetchModel'
 import importLocalRules from '@/helpers/importLocalRules'
 import { useUser } from '@/publicodes-state'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
