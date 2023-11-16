@@ -25,8 +25,8 @@ const redirects = [
     permanent: true,
   },
   {
-    source: '/nouveaut%C3%A9s/:path**',
-    destination: '/nouveautes/:path**',
+    source: '/nouveaut%C3%A9s/:path*',
+    destination: '/nouveautes/:path*',
     permanent: true,
   },
   {
