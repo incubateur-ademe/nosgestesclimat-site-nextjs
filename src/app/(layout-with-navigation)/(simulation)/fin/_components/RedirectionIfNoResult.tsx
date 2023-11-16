@@ -9,7 +9,7 @@ export default function RedirectionIfNoResult({
 }: {
   details: string
 }) {
-  const { categories } = useForm()
+  const { categories, progression } = useForm()
   const { getValue } = useEngine()
 
   const router = useRouter()
@@ -17,10 +17,10 @@ export default function RedirectionIfNoResult({
   const detailsParamString = formatResultToDetailParam({ categories, getValue })
 
   // The URL includes matching results, we assume the user has done the test
-  if (detailsParamString.includes(details)) {
+  if (detailsParamString.includes(details) || progression === 1) {
     return null
   }
 
   // Show the tutorial if the user has not done the test
-  router.push('/tutoriel')
+  router.push(progression > 0 ? '/simulateur/bilan' : '/tutoriel')
 }
