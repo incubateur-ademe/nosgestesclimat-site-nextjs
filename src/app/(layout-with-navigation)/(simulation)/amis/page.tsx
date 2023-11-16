@@ -3,7 +3,6 @@ import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Groups from './_components/Groups'
-import FeedbackBlock from './resultats/_components/FeedbackBlock'
 import SondagesBlock from './resultats/_components/SondagesBlock'
 
 export async function generateMetadata() {
@@ -27,8 +26,6 @@ export default async function GroupesPage() {
           'Comparez vos résultats avec votre famille ou un groupe d’ami·e·s'
         )}
       />
-
-      <FeedbackBlock />
 
       <Groups />
 
