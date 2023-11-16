@@ -25,8 +25,8 @@ const redirects = [
     permanent: true,
   },
   {
-    source: '/nouveaut%C3%A9s',
-    destination: '/nouveautes',
+    source: '/nouveaut%C3%A9s/:path*',
+    destination: '/nouveautes/:path*',
     permanent: true,
   },
   {
@@ -42,6 +42,21 @@ const redirects = [
   {
     source: '/blog/journée-mondial-environnement',
     destination: '/blog/journee-mondial-environnement',
+    permanent: true,
+  },
+  {
+    source: '/mod%C3%A8le',
+    destination: '/modele',
+    permanent: true,
+  },
+  {
+    source: '/à-propos',
+    destination: '/a-propos',
+    permanent: true,
+  },
+  {
+    source: '/groupe/:path*',
+    destination: 'https://sondages.nosgestesclimat.fr/',
     permanent: true,
   },
 ]
