@@ -68,7 +68,7 @@ export default function Question({ question, toggleQuestionList }: Props) {
           label
         )}
       </div>
-      {displayValue && displayValue !== 'mosaic' ? (
+      {!isMissing && displayValue !== 'mosaic' ? (
         <div className="align-center flex justify-end whitespace-nowrap md:text-lg">
           <div
             className={`rounded-lg bg-white px-4 py-2 ${

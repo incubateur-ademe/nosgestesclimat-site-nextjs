@@ -31,7 +31,7 @@ export default function useValue({
 }: Props) {
   const value = useMemo<NodeValue>(() => evaluation?.nodeValue, [evaluation])
 
-  const displayValue = useMemo<string | number>(() => {
+  const displayValue = useMemo<string>(() => {
     if (type === 'choices') {
       const stringValue = String(value)
       return stringValue.startsWith("'")
@@ -48,7 +48,10 @@ export default function useValue({
     if (type === 'mosaic') {
       return 'mosaic'
     }
-    return Number(value)
+    if (Number(value) === value) {
+      return String(value)
+    }
+    return ''
   }, [value, type])
 
   const numericValue = useMemo<number>(
