@@ -11,6 +11,7 @@ export const IframeOptionsContext = createContext<{
   isIframeShareData?: boolean
   iframeRegion?: string | null
   isIframeOnlySimulation?: boolean
+  iframeLang?: string | null
 }>({})
 
 const nullDecode = (string: string) =>
@@ -61,6 +62,8 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
 
   const isIframeOnlySimulation = Boolean(urlParams.get('onlySimulation'))
 
+  const iframeLang = urlParams.get('lang')
+
   if (isIframeOnlySimulation) {
     // Add class to body that hides the header and the footer
     document.body.classList.add('iframeOnlySimulation')
@@ -72,6 +75,7 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
     isIframeShareData,
     iframeRegion,
     isIframeOnlySimulation,
+    iframeLang,
   }
 
   return (
