@@ -12,11 +12,9 @@ export default function NumberValue({ displayValue, unit }: Props) {
 
   return (
     <>
-      {displayValue
-        .toLocaleString(locale, {
-          maximumFractionDigits: 2,
-        })
-        .replaceAll("'", '')}{' '}
+      {Number(displayValue).toLocaleString(locale, {
+        maximumFractionDigits: 2,
+      })}{' '}
       {t(unit ?? '')}
     </>
   )
