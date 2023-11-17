@@ -21,6 +21,12 @@ export function useRules({ lang, region, isOptim = true }: Props) {
       ? user?.region?.code
       : region
 
+  console.log(
+    `⚙️ requesting ${
+      isOptim ? 'optimized' : ''
+    } rules for ${regionCode} ${locale}`
+  )
+
   return useQuery({
     queryKey: ['rules', dataServer, lang, region, isOptim],
     queryFn: () =>
