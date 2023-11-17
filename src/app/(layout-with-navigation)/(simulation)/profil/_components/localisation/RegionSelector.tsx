@@ -35,14 +35,13 @@ export default function RegionSelector({
   const { isFetching } = useRules({
     lang: locale,
     region: region?.code ?? 'FR',
-    isOptim: false,
   })
 
   return (
     <>
       <details open={isOpen}>
         <summary
-          className={`middle bg-primary-100 w-auto cursor-pointer rounded-md p-4 ${
+          className={`middle w-auto cursor-pointer rounded-md bg-primary-100 p-4 ${
             isFetching ? 'pointer-events-none opacity-60' : ''
           }`}>
           <span>
