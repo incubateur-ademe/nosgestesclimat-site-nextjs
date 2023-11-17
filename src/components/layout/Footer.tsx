@@ -1,4 +1,5 @@
 import InlineLink from '@/design-system/inputs/InlineLink'
+import Emoji from '@/design-system/utils/Emoji'
 import Image from 'next/image'
 import Logo from '../misc/Logo'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
@@ -24,29 +25,44 @@ export default function Footer() {
               </strong>
             </InlineLink>
 
-            <InlineLink href="/documentation" className="no-underline">
+            <InlineLink href="/blog" className="no-underline">
               <strong>
-                <Trans>Documentation</Trans>
+                <Trans>Blog</Trans>
               </strong>
             </InlineLink>
 
-            <InlineLink href="/partenaires" className="no-underline">
+            <InlineLink href="/ambassadeurs" className="no-underline">
               <strong>
-                <Trans>Partagez le test !</Trans>
-              </strong>
-            </InlineLink>
-
-            <InlineLink href="/plan-du-site" className="no-underline">
-              <strong>
-                <Trans>Plan du site</Trans>
+                <Trans>Nos ambassadeurs</Trans>
               </strong>
             </InlineLink>
           </div>
 
-          <div className="mt-6 flex w-full">
+          <div className="mt-4 flex w-full flex-wrap gap-6">
             <InlineLink href="/accessibilite" className="no-underline">
               <Trans>Accessibilité : partiellement conforme</Trans>
             </InlineLink>
+
+            <InlineLink href="/plan-du-site" className="no-underline">
+              <Trans>Plan du site</Trans>
+            </InlineLink>
+          </div>
+
+          <div className="mt-6 flex w-full flex-wrap items-baseline">
+            <p className="mb-0 w-full text-xs text-primary-700">
+              <Trans>Diffuser le test :</Trans>
+            </p>
+            <div className="flex flex-wrap gap-6">
+              <InlineLink href="/diffuser" className="no-underline">
+                <Emoji className="mr-2">🏢</Emoji>
+                <Trans>Dans votre organisation</Trans>
+              </InlineLink>
+
+              <InlineLink href="/international" className="no-underline">
+                <Emoji className="mr-2">🌍</Emoji>
+                <Trans>À l'international</Trans>
+              </InlineLink>
+            </div>
           </div>
 
           <div className="mt-8 flex flex-wrap items-start justify-between gap-10">
