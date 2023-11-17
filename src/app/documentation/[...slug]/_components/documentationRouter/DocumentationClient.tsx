@@ -11,7 +11,7 @@ import { SuppportedRegions } from '@/types/international'
 import Head from 'next/head'
 import Engine from 'publicodes'
 import { RulePage } from 'publicodes-react'
-import References from './References'
+import References from '../../../_components/References'
 
 type Props = {
   supportedRegions: SuppportedRegions
@@ -30,7 +30,7 @@ export default function DocumentationClient({
   const documentationPath = '/documentation'
 
   return (
-    <>
+    <div className="py-4">
       <LocalisationBanner supportedRegions={supportedRegions} />
       <RulePage
         language={i18n.language as 'fr' | 'en'}
@@ -52,6 +52,6 @@ export default function DocumentationClient({
           References: References as any,
         }}
       />
-    </>
+    </div>
   )
 }

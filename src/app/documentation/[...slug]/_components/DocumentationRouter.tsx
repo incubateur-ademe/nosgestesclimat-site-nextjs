@@ -2,7 +2,7 @@
 
 import Button from '@/design-system/inputs/Button'
 import { JSX, useContext } from 'react'
-import { IsDocumentationClientContext } from '../_contexts/DocumentationStateContext'
+import { IsDocumentationClientContext } from '../../_contexts/DocumentationStateContext'
 
 type Props = {
   serverDocumentation: JSX.Element
@@ -17,18 +17,14 @@ export default function DocumentationRouter({
     IsDocumentationClientContext
   )
 
+  if (isDocumentationClient) return clientDocumentation
+
   return (
     <>
-      {!isDocumentationClient && (
-        <>
-          {serverDocumentation}
-          <Button onClick={() => setIsDocumentationClient(true)}>
-            Lancer le calcul
-          </Button>
-        </>
-      )}
-
-      {isDocumentationClient && clientDocumentation}
+      {serverDocumentation}
+      <Button onClick={() => setIsDocumentationClient(true)}>
+        Lancer le calcul
+      </Button>
     </>
   )
 }

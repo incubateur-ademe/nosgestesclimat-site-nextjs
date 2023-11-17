@@ -1,9 +1,4 @@
-import Providers from '@/components/providers/Providers'
-import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import DocumentationClient from '../_components/DocumentationClient'
-import DocumentationRouter from '../_components/DocumentationRouter'
-import DocumentationServer from '../_components/DocumentationServer'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -14,32 +9,8 @@ export async function generateMetadata() {
   })
 }
 
-type Props = {
-  params: {
-    slug: string[]
-  }
-}
-export default async function DocumentationPage({ params }: Props) {
-  const supportedRegions = await getSupportedRegions()
-
-  return (
-    <>
-      <DocumentationRouter
-        serverDocumentation={
-          <DocumentationServer
-            supportedRegions={supportedRegions}
-            slugs={params.slug}
-          />
-        }
-        clientDocumentation={
-          <Providers supportedRegions={supportedRegions} isOptim={false}>
-            <DocumentationClient
-              supportedRegions={supportedRegions}
-              slugs={params.slug}
-            />
-          </Providers>
-        }
-      />
-    </>
-  )
+// The page content is in layout.tsx in order to persist the state
+// between the server and the client
+export default async function DocumentationPage() {
+  return null
 }

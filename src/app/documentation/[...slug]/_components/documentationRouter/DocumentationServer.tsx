@@ -35,9 +35,9 @@ export default async function DocumentationServer({
     dataServer: DATA_SERVER_URL,
     regionCode: 'FR',
     locale: locale ?? 'fr',
-    isOptim: true,
+    isOptim: false,
   })
-
+  console.log(ruleName)
   const rule = rules[ruleName]
 
   const title = getRuleTitle(rule)
