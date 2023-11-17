@@ -25,6 +25,17 @@ export default function SimulationStarted({ currentSimulation }: Props) {
 
   const isFinished = progression === 1
 
+  const handleResetAideSaisie = () => {
+    localStorage.removeItem('transport . voiture . km')
+    localStorage.removeItem(
+      'transport . avion . court courrier . heures de vol'
+    )
+    localStorage.removeItem(
+      'transport . avion . moyen courrier . heures de vol'
+    )
+    localStorage.removeItem('transport . avion . long courrier . heures de vol')
+  }
+
   return (
     <div className="flex flex-wrap">
       <div className="sm:mt-4 sm:w-[30rem]">
@@ -78,6 +89,7 @@ export default function SimulationStarted({ currentSimulation }: Props) {
           color="secondary"
           className="my-2 w-full !text-base"
           onClick={() => {
+            handleResetAideSaisie()
             initSimulation()
           }}>
           <span
