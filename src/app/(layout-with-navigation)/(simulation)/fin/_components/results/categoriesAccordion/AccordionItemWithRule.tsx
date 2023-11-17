@@ -18,7 +18,7 @@ export default function AccordionItemWithRule({
   const percentageOfTotalValue =
     (1 - (maxValue - numericValue) / maxValue) * 0.9
 
-  const isReadOnly = dottedName === 'services sociétaux'
+  const isReadOnly = false // dottedName === 'services sociétaux'
 
   return (
     <AccordionItem
