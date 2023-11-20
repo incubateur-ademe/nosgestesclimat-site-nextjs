@@ -4,7 +4,7 @@ type LinkListProps = {
   entries: Record<string, string>
 }
 
-export default function ({ entries }: LinkListProps) {
+export default function LinkList({ entries }: LinkListProps) {
   return (
     <ul className="m-0 list-none p-0">
       {Object.entries(entries).map(([linkKey, linkUrl]) => (

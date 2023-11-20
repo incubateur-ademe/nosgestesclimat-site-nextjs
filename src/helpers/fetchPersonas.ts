@@ -3,7 +3,9 @@ import { NGC_MODEL_API_URL } from '@/constants/urls'
 import { Persona } from '@/publicodes-state/types'
 import { currentLocale } from 'next-i18n-router'
 
-export default async function (): Promise<Record<string, Persona>> {
+export default async function fetchPersonas(): Promise<
+  Record<string, Persona>
+> {
   const locale = currentLocale()
   // FIXME(@florianpanchout): endpoint should not be static (and should point
   // to local if available)

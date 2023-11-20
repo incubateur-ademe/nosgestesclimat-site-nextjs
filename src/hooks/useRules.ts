@@ -21,18 +21,22 @@ export function useRules({ lang, region, isOptim = true }: Props) {
       ? user?.region?.code
       : region
 
+  const urlToFetch = dataServer.startsWith(NGC_MODEL_API_URL)
+    ? `${dataServer}/${locale}/${regionCode}/${
+        isOptim ? 'optim-rules' : 'rules'
+      }`
+    : `${dataServer}/co2-model.${regionCode}-lang.${locale}${
+        isOptim ? '-opti' : ''
+      }.json`
+
+  console.debug('fetching', urlToFetch)
+
   return useQuery({
     queryKey: ['rules', dataServer, lang, region, isOptim],
     queryFn: () =>
       process.env.NEXT_PUBLIC_LOCAL_DATA === 'nosgestesclimat'
         ? importLocalRules({ regionCode, locale, isOptim })
-        : axios
-            .get(
-              `${dataServer}/co2-model.${regionCode}-lang.${locale}${
-                isOptim ? '-opti' : ''
-              }.json`
-            )
-            .then((res) => res.data as unknown),
+        : axios.get(urlToFetch).then((res) => res.data as unknown),
     placeholderData: keepPreviousData,
   })
 }

@@ -9,7 +9,7 @@ export function clearModelVersionFromStorage() {
   sessionStorage.removeItem(MODEL_VERSION_PARAM)
 }
 
-export default function (): string {
+function useModelVersion(): string {
   const isClient = useIsClient()
   const searchParams = useSearchParams()
 
@@ -27,3 +27,5 @@ export default function (): string {
 
   return savedModelVersion ?? DEFAULT_MODEL_VERSION
 }
+
+export default useModelVersion
