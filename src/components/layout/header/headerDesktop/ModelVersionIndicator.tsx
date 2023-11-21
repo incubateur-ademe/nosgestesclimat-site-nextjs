@@ -7,6 +7,7 @@ import { useIframe } from '@/hooks/useIframe'
 import useModelVersion, {
   clearModelVersionFromStorage,
 } from '@/hooks/useModelVersion'
+import { usePRNumber } from '@/hooks/usePRNumber'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
@@ -15,15 +16,17 @@ export default function ModelVersionIndicator() {
   const { iframeRegion } = useIframe()
   const modelVersion = useModelVersion()
 
-  if (modelVersion === DEFAULT_MODEL_VERSION || iframeRegion) {
+  const { PRNumber } = usePRNumber()
+
+  if (PRNumber || modelVersion === DEFAULT_MODEL_VERSION || iframeRegion) {
     return null
   }
 
   return (
-    <div className="mx-auto mb-4 hidden gap-2 rounded-lg bg-gray-100 px-4 py-2 text-center font-bold uppercase text-white lg:flex ">
+    <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-2 text-center font-bold uppercase text-white ">
       🏷️
       <Link
-        className="font-base text-xs text-primary-700 md:text-sm"
+        className="font-base text-sm text-primary-700"
         target="_blank"
         href={
           'https://github.com/incubateur-ademe/nosgestesclimat/' +
@@ -41,7 +44,7 @@ export default function ModelVersionIndicator() {
           router.refresh()
         }}>
         <Image
-          className="w-6"
+          className="w-4"
           src="/images/misc/close-plain.svg"
           alt=""
           width="1"
