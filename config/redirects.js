@@ -50,7 +50,7 @@ const redirects = [
     permanent: true,
   },
   {
-    source: '/à-propos',
+    source: '/%C3%A0-propos',
     destination: '/a-propos',
     permanent: true,
   },
