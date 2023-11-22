@@ -27,19 +27,19 @@ module.exports = {
           /**
            * Hover
            */
-          400: '#6D418F',
+          400: '#396866',
           /**
            * Main elements or text
            */
-          500: '#491273',
+          500: '#315452',
           /**
            * Darker text
            */
-          700: '#3A0E5B',
-          800: '#2A0A42',
+          700: '#2a4544',
+          800: '#263b3a',
         },
-        secondary: '#D40983',
-        default: '#1A1A1A',
+        secondary: '#8B2E9E',
+        default: '#122021',
         grey: {
           100: '#F8F8F7',
           200: '#E3E3DB',
