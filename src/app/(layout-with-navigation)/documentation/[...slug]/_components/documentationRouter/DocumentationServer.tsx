@@ -3,7 +3,6 @@ import Trans from '@/components/translation/Trans'
 import { DATA_SERVER_URL } from '@/constants/urls'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import Emoji from '@/design-system/utils/Emoji'
 import Markdown from '@/design-system/utils/Markdown'
 import { fetchModel } from '@/helpers/data/fetchModel'
 import { Rules } from '@/publicodes-state/types'
@@ -12,15 +11,20 @@ import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
 import { currentLocale } from 'next-i18n-router'
 import { redirect } from 'next/navigation'
+import { JSX } from 'react'
 import CalculDetail from './documentationServer/CalculDetail'
+import PagesProches from './documentationServer/PagesProches'
+import QuestionSection from './documentationServer/QuestionSection'
 
 type Props = {
   supportedRegions: SuppportedRegions
   slugs: string[]
+  ctaButtonElement: JSX.Element
 }
 export default async function DocumentationServer({
   supportedRegions,
   slugs,
+  ctaButtonElement,
 }: Props) {
   const ruleName = decodeRuleNameFromPath(slugs.join('/'))
 
@@ -43,7 +47,6 @@ export default async function DocumentationServer({
 
   if (!rule) {
     redirect('/404')
-    return null
   }
 
   return (
@@ -57,25 +60,7 @@ export default async function DocumentationServer({
         )}`}
       />
 
-      {rule.question && (
-        <>
-          <Card>
-            <h2>
-              <Emoji>💬</Emoji> <Trans>Question pour l'utilisateur</Trans>
-            </h2>
-            <p>{rule.question}</p>
-          </Card>
-
-          {rule.description && (
-            <section>
-              <h2>
-                <Emoji>ℹ️</Emoji> <Trans>Aide à la saisie</Trans>
-              </h2>
-              <Markdown>{rule.description}</Markdown>
-            </section>
-          )}
-        </>
-      )}
+      {rule.question && <QuestionSection rule={rule} />}
 
       {!rule.question && rule.description && (
         <section className="mt-4">
@@ -92,7 +77,7 @@ export default async function DocumentationServer({
 
       <CalculDetail rule={rule} ruleName={ruleName} rules={rules} />
 
-      <Card className="mt-4 bg-primary-200">
+      <Card className="mb-4 mt-4 bg-primary-200">
         <p className="mb-0">
           <Trans>
             Pour en savoir plus sur cette règle de notre modèle, lancer le
@@ -100,6 +85,9 @@ export default async function DocumentationServer({
           </Trans>
         </p>
       </Card>
+      {ctaButtonElement}
+
+      <PagesProches rules={rules} ruleName={ruleName} />
     </div>
   )
 }

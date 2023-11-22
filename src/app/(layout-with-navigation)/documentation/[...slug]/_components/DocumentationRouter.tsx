@@ -3,14 +3,17 @@
 import Button from '@/design-system/inputs/Button'
 import { JSX, useContext } from 'react'
 import { IsDocumentationClientContext } from '../../_contexts/DocumentationStateContext'
+import DocumentationServer from './documentationRouter/DocumentationServer'
 
 type Props = {
-  serverDocumentation: JSX.Element
+  supportedRegions: any
+  slug: string[]
   clientDocumentation: JSX.Element
 }
 
 export default function DocumentationRouter({
-  serverDocumentation,
+  supportedRegions,
+  slug,
   clientDocumentation,
 }: Props) {
   const { isDocumentationClient, setIsDocumentationClient } = useContext(
@@ -21,10 +24,15 @@ export default function DocumentationRouter({
 
   return (
     <>
-      {serverDocumentation}
-      <Button onClick={() => setIsDocumentationClient(true)}>
-        Lancer le calcul
-      </Button>
+      <DocumentationServer
+        supportedRegions={supportedRegions}
+        slugs={slug}
+        ctaButtonElement={
+          <Button onClick={() => setIsDocumentationClient(true)}>
+            Lancer le calcul
+          </Button>
+        }
+      />
     </>
   )
 }
