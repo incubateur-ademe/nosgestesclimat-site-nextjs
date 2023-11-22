@@ -12,7 +12,7 @@ import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
 import { currentLocale } from 'next-i18n-router'
 import { redirect } from 'next/navigation'
-import RuleDetail from './documentationServer/RuleDetail'
+import CalculDetail from './documentationServer/CalculDetail'
 
 type Props = {
   supportedRegions: SuppportedRegions
@@ -90,13 +90,7 @@ export default async function DocumentationServer({
         </section>
       )}
 
-      <h2>
-        <Trans>Comment cette donnée est-elle calculée ?</Trans>
-      </h2>
-
-      <div className="rounded-md border border-gray-600 p-8">
-        <RuleDetail ruleData={rule} context={{ dottedName: ruleName, rules }} />
-      </div>
+      <CalculDetail rule={rule} ruleName={ruleName} rules={rules} />
 
       <Card className="mt-4 bg-primary-200">
         <p className="mb-0">
