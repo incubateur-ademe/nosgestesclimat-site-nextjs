@@ -50,39 +50,39 @@ export default function Footer() {
             </InlineLink>
           </div>
 
-          <div className="mt-4 flex w-full flex-wrap gap-6">
-            <InlineLink
-              href="/accessibilite"
-              className="no-underline hover:underline">
-              <Trans>Accessibilité : partiellement conforme</Trans>
-            </InlineLink>
-          </div>
-
-          <Separator className="mt-4" />
-
-          <div className="mt-4 flex w-full flex-wrap items-baseline">
-            <p className="mb-1 w-full text-xs text-primary-700">
+          <div className="mt-4 flex w-full flex-wrap items-baseline gap-4">
+            <p className="mb-1 text-sm text-primary-700">
               <Trans>Diffuser le test :</Trans>
             </p>
             <div className="flex flex-wrap gap-6">
               <InlineLink
                 href="/diffuser"
-                className="no-underline hover:underline">
+                className="font-bold no-underline hover:underline">
                 <Emoji className="mr-2">🏢</Emoji>
                 <Trans>Dans votre organisation</Trans>
               </InlineLink>
 
               <InlineLink
                 href="/international"
-                className="no-underline hover:underline">
+                className="font-bold no-underline hover:underline">
                 <Emoji className="mr-2">🌍</Emoji>
                 <Trans>À l'international</Trans>
               </InlineLink>
             </div>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-start justify-between gap-10">
+          <Separator className="mt-4" />
+
+          <div className="mt-6 flex flex-wrap items-start justify-between gap-10">
             <LanguageSwitchButton />
+          </div>
+
+          <div className="mt-4 flex w-full flex-wrap gap-6 text-xs">
+            <InlineLink
+              href="/accessibilite"
+              className="no-underline hover:underline">
+              <Trans>Accessibilité : partiellement conforme</Trans>
+            </InlineLink>
           </div>
         </div>
       </div>
