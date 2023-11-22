@@ -6,12 +6,13 @@ import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import Markdown from '@/design-system/utils/Markdown'
 import { fetchModel } from '@/helpers/data/fetchModel'
-import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { Rules } from '@/publicodes-state/types'
 import { SuppportedRegions } from '@/types/international'
+import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
 import { currentLocale } from 'next-i18n-router'
 import { redirect } from 'next/navigation'
+import RuleDetail from './documentationServer/RuleDetail'
 
 type Props = {
   supportedRegions: SuppportedRegions
@@ -37,10 +38,8 @@ export default async function DocumentationServer({
     locale: locale ?? 'fr',
     isOptim: false,
   })
-  console.log(ruleName)
-  const rule = rules[ruleName]
 
-  const title = getRuleTitle(rule)
+  const rule = rules[ruleName]
 
   if (!rule) {
     redirect('/404')
@@ -51,7 +50,12 @@ export default async function DocumentationServer({
     <div className="mt-4">
       <LocalisationBanner supportedRegions={supportedRegions} />
 
-      <Title title={`${rule.icônes ?? ''} ${title}`} />
+      <Title
+        title={`${rule.icônes ?? ''} ${capitalizeString(
+          rule?.titre ??
+            ruleName?.split(' . ')[ruleName?.split(' . ').length - 1]
+        )}`}
+      />
 
       {rule.question && (
         <>
@@ -85,6 +89,14 @@ export default async function DocumentationServer({
           <Markdown>{rule.note}</Markdown>
         </section>
       )}
+
+      <h2>
+        <Trans>Comment cette donnée est-elle calculée ?</Trans>
+      </h2>
+
+      <div className="rounded-md border border-gray-600 p-8">
+        <RuleDetail ruleData={rule} context={{ dottedName: ruleName, rules }} />
+      </div>
 
       <Card className="mt-4 bg-primary-200">
         <p className="mb-0">
