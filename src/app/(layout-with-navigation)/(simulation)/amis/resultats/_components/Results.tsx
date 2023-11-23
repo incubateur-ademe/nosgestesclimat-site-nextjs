@@ -5,7 +5,6 @@ import GoBackLink from '@/design-system/inputs/GoBackLink'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { useRouter } from 'next/navigation'
 import EditableGroupTitle from './EditableGroupTitle'
-import FeedbackBlock from './FeedbackBlock'
 import Footer from './Footer'
 import GroupResults from './GroupResults'
 
@@ -23,8 +22,6 @@ export default function Results({ groupId }: { groupId: string }) {
         <AutoCanonicalTag />
 
         <EditableGroupTitle groupId={groupId} />
-
-        <FeedbackBlock />
 
         <div className="mt-4">
           <h2 className="m-0 text-lg font-bold">
