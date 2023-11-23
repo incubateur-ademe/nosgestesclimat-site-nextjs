@@ -1,10 +1,12 @@
+import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
+import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getCurrentLangInfos } from '@/locales/translation'
 import FAQListItem from './_components/FAQListItem'
-import GithubContributionCard from './_components/GithubContributionCard'
 import Scroller from './_components/Scroller'
 
 type FAQType = {
@@ -97,13 +99,20 @@ export default async function FAQPage() {
         })}
       </div>
 
-      <h2 className="text-3xl">
-        <span className="mr-2 inline-block">🙋‍♀️</span>
-        <Trans i18nKey={'publicodes.FAQ.titreQuestion'}>
-          J'ai une autre question
-        </Trans>
-      </h2>
-      <GithubContributionCard />
+      <Card className="bg-primary-100">
+        <h3>
+          <Trans>
+            Je ne trouve pas réponse à ma question{' '}
+            <Emoji className="mr-2 inline-block">🙋‍♀️</Emoji>
+          </Trans>
+        </h3>
+        <p className="mb-0">
+          <Trans>
+            Vous pouvez nous contacter via notre page de contact :{' '}
+            <Link href="/contact">accéder à notre page de contact</Link>.
+          </Trans>
+        </p>
+      </Card>
     </>
   )
 }
