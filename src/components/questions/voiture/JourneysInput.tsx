@@ -75,7 +75,7 @@ export default function JourneysInput({ question }: Props) {
 
   useEffect(() => {
     if (prevTotalForOnePassenger.current !== totalForOnePassenger) {
-      setValue(totalForOnePassenger, question)
+      setValue(totalForOnePassenger.toFixed(1), question)
     }
     prevTotalForOnePassenger.current = totalForOnePassenger
   }, [totalForOnePassenger, setValue, question])
