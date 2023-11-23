@@ -19,48 +19,45 @@ export default async function PlanDuSitePage() {
   const links = {
     'Nos outils': {
       bilan: {
-        title: t('Le test', 'publicodes.planDuSite.bilan'),
+        title: t('Le test'),
         href: '/simulateur/bilan',
       },
       profil: {
-        title: t('Votre profil', 'publicodes.planDuSite.profil'),
+        title: t('Votre profil'),
         href: '/profil',
       },
       personas: {
-        title: t('Nos utilisateurs types', 'publicodes.planDuSite.personas'),
+        title: t('Nos utilisateurs types'),
         href: '/personas',
       },
       actions: {
-        title: t(
-          'Nos actions pour réduire votre empreinte',
-          'publicodes.planDuSite.actions'
-        ),
+        title: t('Nos actions pour réduire votre empreinte'),
         href: '/actions',
       },
       actionsPlus: {
-        title: t('Les actions phares', 'publicodes.planDuSite.actionsPlus'),
+        title: t('Les actions phares'),
         href: '/actions-plus',
       },
     },
     Informations: {
       nouveautes: {
-        title: t('Nouveautés', 'publicodes.planDuSite.nouveautes'),
+        title: t('Nouveautés'),
         href: '/nouveautes',
       },
       aPropos: {
-        title: t('À propos', 'publicodes.planDuSite.aPropos'),
+        title: t('À propos'),
         href: '/a-propos',
       },
       contact: {
-        title: t('Contact', 'publicodes.planDuSite.contact'),
+        title: t('Contact'),
         href: '/contact',
       },
       viePrivee: {
-        title: t('Vie privée', 'publicodes.planDuSite.viePrivee'),
+        title: t('Vie privée'),
         href: '/vie-privee',
       },
       partenaires: {
-        title: t('Partenaires', 'publicodes.planDuSite.partenaires'),
+        title: t('Partenaires'),
         href: '/partenaires',
       },
       faq: {
@@ -68,25 +65,25 @@ export default async function PlanDuSitePage() {
         href: '/faq',
       },
       stats: {
-        title: t('Statistiques', 'publicodes.planDuSite.stats'),
+        title: t('Statistiques'),
         href: '/stats',
       },
       Blog: {
-        title: t('Blog', 'publicodes.planDuSite.blog'),
+        title: t('Blog'),
         href: '/blog',
       },
     },
     Documentations: {
       guide: {
-        title: t('Nos guides thématiques', 'publicodes.planDuSite.guide'),
+        title: t('Nos guides thématiques'),
         href: '/documentation/guide',
       },
       modele: {
-        title: t('Le modèle Nos Gestes Climat', 'publicodes.planDuSite.modele'),
+        title: t('Le modèle Nos Gestes Climat'),
         href: '/documentation/modele',
       },
       documentation: {
-        title: t('Documentation', 'publicodes.planDuSite.documentation'),
+        title: t('Documentation'),
         href: '/documentation',
       },
     },
