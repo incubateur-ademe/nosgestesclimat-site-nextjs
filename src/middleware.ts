@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import i18nMiddleware from './middlewares/i18nMiddleware'
 import splitTestingMiddleware from './middlewares/splitTestingMiddleware'
 
@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
       '/(((api|_next/static|_next/image|favicon.ico|images)).*)'
     )
   ) {
-    return null
+    return NextResponse.next()
   }
 
   if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH) {
