@@ -38,7 +38,7 @@ export default function useContent({ dottedName, rule }: Props) {
   const unit = useMemo<string | undefined>(() => rule?.rawNode['unité'], [rule])
 
   const color = useMemo<string | undefined>(() => {
-    const twConfig = resolveConfig(tailwindConfig)
+    const twConfig = resolveConfig(tailwindConfig) as Record<string, any>
     return twConfig.theme?.colors?.categories[`${category}`]
   }, [category])
 

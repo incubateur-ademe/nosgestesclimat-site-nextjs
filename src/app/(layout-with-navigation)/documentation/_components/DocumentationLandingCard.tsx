@@ -11,7 +11,7 @@ import { useRule } from '@/publicodes-state'
 
 export default function DocumentationLandingCard({ edito }: { edito: string }) {
   const { color, icons, resume } = useRule(edito)
-  const twConfig = resolveConfig(tailwindConfig)
+  const twConfig = resolveConfig(tailwindConfig) as Record<string, any>
   const defaultColor = twConfig?.theme?.colors?.primary['500']
 
   return (
