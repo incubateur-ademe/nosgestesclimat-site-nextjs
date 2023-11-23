@@ -51,7 +51,10 @@ export default function Button({
       title={title}
       id={id}
       className={twMerge(
-        `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
+        `${twMerge(
+          baseClassNames,
+          `${sizeClassNames[size]} ${colorClassNames[color]}`
+        )}`,
         className
       )}
       {...props}>
