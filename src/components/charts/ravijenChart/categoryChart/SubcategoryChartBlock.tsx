@@ -57,7 +57,7 @@ export default function SubcategoryChartBlock({
   ) {
     return (
       <EnigmaticMoreChartBlock
-        color={color ?? '#5758BB'}
+        color={color ?? '#491273'}
         percentageSquashed={sumSquashedSubcategoriesPercentage ?? 0}
       />
     )

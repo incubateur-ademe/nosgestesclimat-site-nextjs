@@ -85,7 +85,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <link rel="manifest" href="../manifest.webmanifest" />
 
-        <meta name="theme-color" content="#5758BB" />
+        <meta name="theme-color" content="#491273" />
 
         {process.env.NEXT_PUBLIC_MATOMO_ID === '1' ? (
           <Script id="matomo">
