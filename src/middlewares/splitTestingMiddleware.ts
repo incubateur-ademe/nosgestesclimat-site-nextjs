@@ -31,7 +31,7 @@ const splitTestingMiddleware = (
   i18nRouterResponse: any
 ) => {
   let splitNumber = request.cookies.get(splitTestingCookieName)?.value
-  console.log(splitNumber)
+
   if (!splitNumber) {
     const randomNumber = Math.random()
 
@@ -55,12 +55,12 @@ const splitTestingMiddleware = (
   }
 
   // If the request tries to access static files, we don't want to redirect
-  const rewriteTo = request.nextUrl.href.match('/((_next/static).*)')
+  const rewriteTo = /*request.nextUrl.href.match('/((_next/static).*)')
     ? request.nextUrl.href
-    : `${redirectUrl}${request.nextUrl.href.replace(
-        request.nextUrl.origin,
-        ''
-      )}`
+    : */ `${redirectUrl}${request.nextUrl.href.replace(
+    request.nextUrl.origin,
+    ''
+  )}`
 
   const response = NextResponse.rewrite(rewriteTo)
 
