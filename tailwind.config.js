@@ -44,6 +44,13 @@ module.exports = {
           100: '#F8F8F7',
           200: '#E3E3DB',
         },
+        categories: {
+          transport: '#bc0b69',
+          alimentation: '#e58e26',
+          logement: '#04a4ac',
+          divers: '#006ccb',
+          'services sociétaux': '#0c2461',
+        },
       },
       keyframes: {
         valuechange: {

@@ -1,6 +1,8 @@
 'use client'
 
 import { useMemo } from 'react'
+import resolveConfig from 'tailwindcss/resolveConfig'
+import tailwindConfig from '../../../../tailwind.config'
 import { NGCRuleNode, Suggestion } from '../../types'
 
 type Props = {
@@ -35,10 +37,12 @@ export default function useContent({ dottedName, rule, safeGetRule }: Props) {
     [rule]
   )
   const unit = useMemo<string | undefined>(() => rule?.rawNode['unité'], [rule])
-  const color = useMemo<string | undefined>(
-    () => safeGetRule(category)?.rawNode['couleur'],
-    [category, safeGetRule]
-  )
+
+  const color = useMemo<string | undefined>(() => {
+    const twConfig = resolveConfig(tailwindConfig)
+    return twConfig.theme?.colors?.categories[`${category}`]
+  }, [category])
+
   const assistance = useMemo<string | undefined>(
     () => rule?.rawNode['aide'],
     [rule]

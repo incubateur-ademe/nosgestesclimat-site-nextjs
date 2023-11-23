@@ -5,7 +5,7 @@ import {
 } from '@/constants/matomo'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm, useRule, useTempEngine, useUser } from '@/publicodes-state'
+import { useRule, useTempEngine, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Image from 'next/image'
@@ -30,8 +30,6 @@ export default function ActionCard({
   const { t } = useClientTranslation()
 
   const { rules } = useTempEngine()
-
-  const { categories } = useForm()
 
   const { getCurrentSimulation, toggleActionChoice, rejectAction } = useUser()
 
@@ -60,16 +58,7 @@ export default function ActionCard({
     }
   )
 
-  const foundCategory = categories?.find(
-    (cat: string) => cat === dottedName?.split(' . ')?.[0]
-  )
-
-  const categoryRuleObject = useRule(foundCategory || 'bilan')
-
-  const categoryColor =
-    categoryRuleObject?.color ||
-    rules[dottedName.split(' . ')[0]]?.couleur ||
-    'var(--color)'
+  const { color: categoryColor } = useRule(dottedName)
 
   const currentSimulation = getCurrentSimulation()
 
@@ -136,7 +125,7 @@ export default function ActionCard({
 
           {hasRemainingQuestions && (
             <button
-              className="text-primary-500 cursor-pointer"
+              className="cursor-pointer text-primary-500"
               onClick={() => setFocusedAction(dottedName)}>
               {remainingQuestionsText}
             </button>

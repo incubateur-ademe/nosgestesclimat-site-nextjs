@@ -137,7 +137,7 @@ export default function useRule(dottedName: string) {
      */
     unit,
     /**
-     * The color of the parent category ("rawNode.couleur" in Publicodes)
+     * The color of the parent category (defined in tailwind.config.js)
      */
     color,
     /**
