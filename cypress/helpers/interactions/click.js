@@ -1,3 +1,3 @@
-export function click(elementId) {
+export function click(elementId, options = {}) {
   cy.get(`[data-cypress-id="${elementId}"]`).click()
 }

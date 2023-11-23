@@ -54,5 +54,5 @@ export function clickDoTheTestLink() {
 }
 
 export function clickAmisLink() {
-  click(AMIS_LINK)
+  click(AMIS_LINK, { multiple: true })
 }
