@@ -25,12 +25,14 @@ export default function CreateOtherGroupsSection({
         <Trans>Vous pouvez créer un nouveau groupe avec d’autres amis.</Trans>
       </p>
 
-      <ButtonLink
-        href={'/amis/creer'}
-        color="secondary"
-        data-cypress-id="button-create-other-group">
-        <Trans>Créer un autre groupe</Trans>
-      </ButtonLink>
+      <div>
+        <ButtonLink
+          href={'/amis/creer'}
+          color="secondary"
+          data-cypress-id="button-create-other-group">
+          <Trans>Créer un autre groupe</Trans>
+        </ButtonLink>
+      </div>
     </>
   )
 }
