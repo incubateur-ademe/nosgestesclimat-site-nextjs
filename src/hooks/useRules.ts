@@ -7,7 +7,6 @@ import {
   keepPreviousData,
   useQuery,
 } from '@tanstack/react-query'
-import axios from 'axios'
 import { useDataServer } from './useDataServer'
 import { useLocale } from './useLocale'
 

@@ -6,13 +6,7 @@ export const safeEvaluateHelper = (
 ): NGCEvaluatedNode | null => {
   let evaluation = null
   try {
-    if (rule === 'bilan') {
-      console.time('eval bilan')
-    }
     evaluation = engineUsed.evaluate(rule)
-    if (rule === 'bilan') {
-      console.timeEnd('eval bilan')
-    }
   } catch (error) {
     // TODO: Sending error to Sentry breaks the app
     console.warn(error)
