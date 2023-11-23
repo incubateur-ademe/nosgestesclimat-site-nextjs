@@ -1,3 +1,4 @@
+import { NGC_MODEL_API_URL } from '@/constants/urls'
 import importLocalRules from '@/helpers/importLocalRules'
 import { useUser } from '@/publicodes-state'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
@@ -28,8 +29,6 @@ export function useRules({ lang, region, isOptim = true }: Props) {
     : `${dataServer}/co2-model.${regionCode}-lang.${locale}${
         isOptim ? '-opti' : ''
       }.json`
-
-  console.debug('fetching', urlToFetch)
 
   return useQuery({
     queryKey: ['rules', dataServer, lang, region, isOptim],

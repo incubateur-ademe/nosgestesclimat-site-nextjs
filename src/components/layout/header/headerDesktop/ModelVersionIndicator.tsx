@@ -3,6 +3,7 @@ import {
   DEFAULT_MODEL_VERSION,
   NIGHTLY_MODEL_VERSION,
 } from '@/constants/modelAPI'
+import Emoji from '@/design-system/utils/Emoji'
 import { useIframe } from '@/hooks/useIframe'
 import useModelVersion, {
   clearModelVersionFromStorage,
@@ -24,7 +25,7 @@ export default function ModelVersionIndicator() {
 
   return (
     <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-2 text-center font-bold uppercase text-white ">
-      🏷️
+      <Emoji>🏷️</Emoji>
       <Link
         className="font-base text-sm text-primary-700"
         target="_blank"

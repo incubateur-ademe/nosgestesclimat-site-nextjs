@@ -9,7 +9,7 @@ export default async function fetchPersonas(): Promise<
   const locale = currentLocale()
   // FIXME(@florianpanchout): endpoint should not be static (and should point
   // to local if available)
-  const serverURL = NGC_MODEL_API_URL // useDataServer()
+  const serverURL = NGC_MODEL_API_URL
   const isOldAPI = !serverURL.startsWith(NGC_MODEL_API_URL)
 
   return await fetch(
