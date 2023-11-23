@@ -8,10 +8,9 @@ import { NGCRuleNode, Suggestion } from '../../types'
 type Props = {
   dottedName: string
   rule: NGCRuleNode | null
-  safeGetRule: (rule: string) => NGCRuleNode | null
 }
 
-export default function useContent({ dottedName, rule, safeGetRule }: Props) {
+export default function useContent({ dottedName, rule }: Props) {
   const category = useMemo<string>(
     () => dottedName.split(' . ')[0],
     [dottedName]
@@ -63,6 +62,11 @@ export default function useContent({ dottedName, rule, safeGetRule }: Props) {
       : []
   }, [rule])
 
+  const resume = useMemo<string | undefined>(
+    () => rule?.rawNode['résumé'],
+    [rule]
+  )
+
   return {
     category,
     title,
@@ -75,5 +79,6 @@ export default function useContent({ dottedName, rule, safeGetRule }: Props) {
     assistance,
     isInactive,
     suggestions,
+    resume,
   }
 }

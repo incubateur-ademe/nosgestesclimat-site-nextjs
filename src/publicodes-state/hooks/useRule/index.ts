@@ -76,10 +76,10 @@ export default function useRule(dottedName: string) {
     assistance,
     isInactive,
     suggestions,
+    resume,
   } = useContent({
     dottedName,
     rule,
-    safeGetRule,
   })
 
   const choices = useChoices({ rule, type })
@@ -144,6 +144,10 @@ export default function useRule(dottedName: string) {
      * The question used to help answer  ("rawNode.aide" in Publicodes)
      */
     assistance,
+    /**
+     * Attribut use to briefly explain a rule
+     */
+    resume,
     /**
      * True if the rule is not yet active ("rawNode.inactif" in Publicodes)
      */
