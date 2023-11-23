@@ -14,26 +14,74 @@ export async function generateMetadata() {
 
 const links = {
   'Nos outils': {
-    'publicodes.planDuSite.bilan': '/simulateur/bilan',
-    'publicodes.planDuSite.profil': '/profil',
-    'publicodes.planDuSite.personas': '/personas',
-    'publicodes.planDuSite.actions': '/actions',
-    'publicodes.planDuSite.actionsPlus': '/actions/plus',
+    bilan: {
+      title: 'Le test',
+      href: '/simulateur/bilan',
+    },
+    profil: {
+      title: 'Votre profil',
+      href: '/profil',
+    },
+    personas: {
+      title: 'Nos utilisateurs types',
+      href: '/personas',
+    },
+    actions: {
+      title: 'Nos actions pour réduire votre empreinte',
+      href: '/actions',
+    },
+    actionsPlus: {
+      title: 'Les actions phares',
+      href: '/actions-plus',
+    },
   },
   Informations: {
-    'publicodes.planDuSite.nouveautes': '/nouveautes',
-    'publicodes.planDuSite.aPropos': '/a-propos',
-    'publicodes.planDuSite.contact': '/contact',
-    'publicodes.planDuSite.viePrivee': '/vie-privee',
-    'publicodes.planDuSite.partenaires': '/partenaires',
-    'publicodes.planDuSite.faq': '/questions-frequentes',
-    'publicodes.planDuSite.stats': '/stats',
-    Blog: '/blog',
+    nouveautes: {
+      title: 'Nouveautés',
+      href: '/nouveautes',
+    },
+    aPropos: {
+      title: 'À propos',
+      href: '/a-propos',
+    },
+    contact: {
+      title: 'Contact',
+      href: '/contact',
+    },
+    viePrivee: {
+      title: 'Vie privée',
+      href: '/vie-privee',
+    },
+    partenaires: {
+      title: 'Partenaires',
+      href: '/partenaires',
+    },
+    faq: {
+      title: 'FAQ',
+      href: '/faq',
+    },
+    stats: {
+      title: 'Statistiques',
+      href: '/stats',
+    },
+    Blog: {
+      title: 'Blog',
+      href: '/blog',
+    },
   },
   Documentations: {
-    'publicodes.planDuSite.guide': '/guide',
-    'publicodes.planDuSite.modele': '/modele',
-    'publicodes.planDuSite.documentation': '/documentation',
+    guide: {
+      title: 'Nos guides thématiques',
+      href: '/documentation/guide',
+    },
+    modele: {
+      title: 'Le modèle Nos Gestes Climat',
+      href: '/documentation/modele',
+    },
+    documentation: {
+      title: 'Documentation',
+      href: '/documentation',
+    },
   },
 }
 
