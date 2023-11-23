@@ -39,7 +39,7 @@ export default function NumberInput({
         className
       )}>
       <input
-        className={`rounded border border-primary bg-grey-100 p-2 text-right transition-colors focus:border-primary focus:ring-2 focus:ring-primary`}
+        className={`border-primary-500 focus:border-primary-500 rounded border bg-grey-100 p-2 text-right transition-colors focus:ring-2 focus:ring-primary`}
         type="number"
         min={min}
         value={isMissing ? '' : value}

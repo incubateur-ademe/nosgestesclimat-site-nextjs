@@ -15,10 +15,10 @@ type Props = {
 
 export const colorClassNames = {
   primary:
-    'transition-colors text-white bg-primary shadow-sm hover:text-white hover:bg-primaryDark',
+    'transition-colors !text-white bg-primary-500 border-2 border-primary-500 shadow-sm hover:text-white hover:bg-primary-700',
   secondary:
-    'bg-transparent border-solid border-primary border-2 text-primary shadow-sm hover:bg-primaryLight hover:border-primaryDark',
-  text: 'text-primary bg-transparent shadow-none hover:bg-primaryLight hover:text-primary hover:border-primary',
+    'border-solid border-primary-500 border-2 text-primary-500 bg-transparent shadow-sm hover:text-primary-700 hover:bg-primary-200 hover:border-primary-700',
+  text: 'text-primary-500 bg-transparent border-2 border-transparent shadow-none hover:bg-primary-200 hover:text-primary-700 hover:border-primary-200',
 }
 
 export const sizeClassNames = {
@@ -29,7 +29,7 @@ export const sizeClassNames = {
 }
 
 export const baseClassNames =
-  'inline-flex items-center whitespace-nowrap rounded-md font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-3 aria-disabled:opacity-50 transition-color '
+  'inline-flex items-center whitespace-nowrap rounded-md font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary-700 focus:ring-offset-3 aria-disabled:opacity-50 transition-color '
 
 export default function Button({
   onClick,
@@ -51,7 +51,10 @@ export default function Button({
       title={title}
       id={id}
       className={twMerge(
-        `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
+        `${twMerge(
+          baseClassNames,
+          `${sizeClassNames[size]} ${colorClassNames[color]}`
+        )}`,
         className
       )}
       {...props}>

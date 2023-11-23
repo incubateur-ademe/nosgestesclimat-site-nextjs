@@ -8,6 +8,19 @@ type Props = {
   params?: Record<string, string>
   searchParams?: Record<string, string>
   noImage?: boolean
+  robots?: {
+    index: boolean
+    follow: boolean
+    nocache: boolean
+    googleBot: {
+      index: boolean
+      follow: boolean
+      noimageindex: boolean
+      'max-video-preview': number
+      'max-image-preview': string
+      'max-snippet': number
+    }
+  }
 }
 
 const BASE_URL =
@@ -52,6 +65,7 @@ export function getMetadataObject({
   params,
   searchParams,
   noImage = false,
+  ...props
 }: Props) {
   const locale = currentLocale()
   const url = buildURL({
@@ -76,5 +90,6 @@ export function getMetadataObject({
           ? generateOGImageURL(url)
           : 'https://nosgestesclimat.vercel.app/images/misc/dessin-nosgestesclimat_thumbnail.png',
     },
+    ...props,
   }
 }

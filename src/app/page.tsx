@@ -1,5 +1,4 @@
 import Footer from '@/components/layout/Footer'
-import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
 import Main from '@/design-system/layout/Main'
 import Title from '@/design-system/layout/Title'
@@ -27,12 +26,8 @@ export default async function Landing() {
 
   return (
     <>
-      <header>
-        <Logo />
-      </header>
-
       <Main>
-        <div className="mx-auto flex flex-col justify-center gap-4 px-4 pb-8 text-center md:mx-auto md:mt-6 md:w-full md:max-w-6xl md:p-10 md:px-8 md:text-left">
+        <div className="mx-auto flex flex-col justify-center gap-4 px-4 pb-8 text-center md:mx-auto md:mt-6 md:w-full md:max-w-5xl md:p-0 md:pb-8 md:pt-12 md:text-left">
           <div className="gap-10 md:flex">
             <div className="my-12 flex flex-col md:my-0 md:flex-1">
               <Title

@@ -35,14 +35,6 @@ export async function POST(req: Request) {
   await axios.post(
     'https://api.brevo.com/v3/smtp/email',
     {
-      sender: {
-        name: 'Nos Gestes Climat',
-        email: 'contact@nosgestesclimat.fr',
-      },
-      replyTo: {
-        name: 'Nos Gestes Climat',
-        email: 'contact@nosgestesclimat.fr',
-      },
       to: [
         {
           name: email,
