@@ -11,30 +11,18 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import NavLink from './NavLink'
 import DebugIndicator from './headerDesktop/DebugIndicator'
 
-export default function HeaderDesktop({
-  shouldHideMostOfContent,
-}: {
-  shouldHideMostOfContent: boolean
-}) {
+export default function HeaderDesktop() {
   const { t } = useClientTranslation()
 
   return (
-    <header
-      className={`sticky top-0 z-[500] hidden items-center lg:block ${
-        shouldHideMostOfContent ? 'h-14' : 'h-20'
-      }`}>
-      <div
-        className={`${
-          shouldHideMostOfContent ? 'h-14' : 'h-20'
-        } absolute bottom-0 left-0 right-0 top-0 flex w-full items-center border-b bg-white shadow-sm transition-all delay-500 duration-200 ease-linear`}>
+    <header className="sticky top-0 z-[500] hidden h-20 items-center lg:block">
+      <div className="absolute bottom-0 left-0 right-0 top-0 flex h-20 w-full items-center border-b bg-white shadow-sm">
         <div className="mx-auto flex h-full w-full max-w-5xl justify-between gap-4 ">
           <div className="flex items-center gap-16">
-            <div
-              className={`flex origin-left items-center justify-center transition-transform delay-500 duration-200 ease-linear ${
-                shouldHideMostOfContent ? 'scale-75' : ''
-              }`}>
+            <div className="flex origin-left items-center justify-center">
               <Logo />
             </div>
+
             <nav className="h-full">
               <ul className="flex h-full ">
                 <li className="px-4">
@@ -43,24 +31,26 @@ export default function HeaderDesktop({
                     activeMatches={['/tutoriel', '/simulateur']}
                     icon={BilanIcon}
                     title={t('Le test')}>
-                    {!shouldHideMostOfContent && <Trans>Le test</Trans>}
+                    <Trans>Le test</Trans>
                   </NavLink>
                 </li>
+
                 <li className="px-4">
                   <NavLink
                     href="/actions"
                     icon={ActionsIcon}
                     title={t('Actions')}>
-                    {!shouldHideMostOfContent && <Trans>Actions</Trans>}
+                    <Trans>Actions</Trans>
                   </NavLink>
                 </li>
+
                 <li className="px-4">
                   <NavLink
                     href="/amis"
                     icon={AmisIcon}
                     title={t('Amis')}
                     data-cypress-id="amis-link">
-                    {!shouldHideMostOfContent && <Trans>Amis</Trans>}
+                    <Trans>Amis</Trans>
                   </NavLink>
                 </li>
               </ul>
@@ -68,9 +58,11 @@ export default function HeaderDesktop({
           </div>
           <div className="flex items-center gap-4">
             <PRIndicator />
+
             <DebugIndicator />
+
             <NavLink href="/profil" icon={ProfileIcon} title={t('Profil')}>
-              {!shouldHideMostOfContent && <Trans>Profil</Trans>}
+              <Trans>Profil</Trans>
             </NavLink>
             {/* TODO : uncomment when organisations are ready
             <div className="mb-2 h-3 w-[1px] bg-gray-300" />
