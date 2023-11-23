@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
 import i18nMiddleware from './middlewares/i18nMiddleware'
 import splitTestingMiddleware from './middlewares/splitTestingMiddleware'
 
@@ -12,9 +12,9 @@ export async function middleware(request: NextRequest) {
       '/(((api|_next/static|_next/image|favicon.ico|images)).*)'
     )
   ) {
-    return NextResponse.next()
+    return null
   }
-  console.log('request url', request.url)
+
   if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH) {
     // If we are on the main branch (production)
     return i18nMiddleware(request)
