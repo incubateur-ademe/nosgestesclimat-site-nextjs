@@ -54,10 +54,13 @@ const splitTestingMiddleware = (
     return response
   }
 
-  const rewriteTo = `${redirectUrl}${request.nextUrl.href.replace(
-    request.nextUrl.origin,
-    ''
-  )}`
+  // If the request tries to access static files, we don't want to redirect
+  const rewriteTo = request.nextUrl.href.match('/((_next/static).*)')
+    ? request.nextUrl.href
+    : `${redirectUrl}${request.nextUrl.href.replace(
+        request.nextUrl.origin,
+        ''
+      )}`
 
   const response = NextResponse.rewrite(rewriteTo)
 
