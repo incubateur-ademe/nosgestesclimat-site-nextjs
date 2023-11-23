@@ -1,6 +1,7 @@
 import { NGC_MODEL_API_URL, NGC_MODEL_API_URL_FALLBACK } from '@/constants/urls'
 import importLocalRules from '@/helpers/importLocalRules'
 import { useUser } from '@/publicodes-state'
+import { NGCRules } from '@/publicodes-state/types'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useDataServer } from './useDataServer'
@@ -47,7 +48,7 @@ export function useRules({ lang, region, isOptim = true }: Props) {
       }
       return axios
         .get(URLToFetch)
-        .then(({ data }) => data)
+        .then(({ data }) => data as NGCRules)
         .catch((err) => {
           console.warn(`Failed to fetch rules from: ${URLToFetch}`, err.message)
           const fallbackURL = getURLToFetch(
@@ -57,7 +58,7 @@ export function useRules({ lang, region, isOptim = true }: Props) {
             isOptim
           )
           console.warn(`Falling back to: ${fallbackURL}`)
-          return axios.get(fallbackURL).then(({ data }) => data)
+          return axios.get(fallbackURL).then(({ data }) => data as NGCRules)
         })
     },
 

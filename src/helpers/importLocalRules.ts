@@ -1,3 +1,5 @@
+import { NGCRules } from '@/publicodes-state/types'
+
 async function importLocalRules({
   regionCode,
   locale,
@@ -9,10 +11,10 @@ async function importLocalRules({
 }) {
   try {
     return (await import(
-      `../../../nosgestesclimat/public/co2-model.${regionCode}-lang.${locale}${
-        isOptim ? '-opti' : ''
-      }.json`
-    )) as unknown
+      `${
+        process.env.NGC_LOCAL_RULES_PATH
+      }/co2-model.${regionCode}-lang.${locale}${isOptim ? '-opti' : ''}.json`
+    )) as NGCRules
   } catch (e) {
     console.log(e)
   }
