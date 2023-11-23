@@ -1,8 +1,10 @@
-import GithubContributionForm from '@/components/misc/GithubContributionForm'
+import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import Emoji from '@/design-system/utils/Emoji'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import Script from 'next/script'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -14,51 +16,39 @@ export async function generateMetadata() {
 export default function Contact() {
   return (
     <div className="pb-4">
-      <Title title={<Trans>Contact</Trans>} />
-
-      <h2>
-        🙋‍♀️{' '}
-        <Trans i18nKey={'publicodes.Contact.titreQuestion'}>
-          J'ai une question
-        </Trans>
-      </h2>
+      <Title
+        title={
+          <>
+            <Trans>Contact</Trans>
+            <Emoji className="ml-2 inline-block">📨</Emoji>
+          </>
+        }
+      />
 
       <p>
-        <Trans i18nKey={'publicodes.Contact.description'}>
+        <Trans>
           N'hésitez pas à consulter notre{' '}
-          <a href="./questions-frequentes">FAQ</a> avant de nous écire, vous y
-          trouverez sans doute la réponse à votre question !
+          <Link href="/questions-frequentes">FAQ</Link> avant de nous écrire,
+          vous y trouverez sans doute la réponse à votre question !
         </Trans>
       </p>
 
       <p>
-        <Trans i18nKey={'publicodes.Contact.form'}>
-          Pour toute remarque ou question,{' '}
-          <strong>
-            nous vous recommandons{' '}
-            <a href="https://github.com/datagir/nosgestesclimat/issues/new?assignees=&labels=contribution&template=retour-utilisateur.md&title=">
-              d'ouvrir un ticket directement sur GitHub
-            </a>
-          </strong>{' '}
-          afin de suivre les échanges plus facilement. Vous pouvez également
-          nous envoyer un message via le formulaire de contact ci-dessous.
+        <Trans>
+          Pour toute autre remarque ou question, vous pouvez nous envoyer un
+          message via le formulaire de contact ci-dessous.
         </Trans>
       </p>
-
-      <Card className="my-4 flex-row py-4">
-        <GithubContributionForm />
+      <Card>
+        <iframe
+          data-tally-src="https://tally.so/embed/w59G1Z?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          loading="lazy"
+          width="100%"
+          height="1306"
+          title="Vous avez un retour sur Nos Gestes Climat ?"></iframe>
       </Card>
 
-      <p>
-        <Trans i18nKey={'publicodes.Contact.mail'}>
-          Enfin, vous avez la possibilité de nous envoyer un mail à l'adresse{' '}
-          <a href="mailto:contact@nosgestesclimat.fr">
-            contact@nosgestesclimat.fr
-          </a>
-          . Cependant, le délais de réponse sera plus long que les solutions
-          précédentes.
-        </Trans>
-      </p>
+      <Script id="tally">{`var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}`}</Script>
     </div>
   )
 }

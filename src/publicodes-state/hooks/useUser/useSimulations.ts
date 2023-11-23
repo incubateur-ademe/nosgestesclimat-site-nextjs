@@ -16,6 +16,17 @@ export default function useSimulations({
   currentSimulationId,
   setCurrentSimulationId,
 }: Props) {
+  const resetAideSaisie = () => {
+    localStorage.removeItem('transport . voiture . km')
+    localStorage.removeItem(
+      'transport . avion . court courrier . heures de vol'
+    )
+    localStorage.removeItem(
+      'transport . avion . moyen courrier . heures de vol'
+    )
+    localStorage.removeItem('transport . avion . long courrier . heures de vol')
+  }
+
   const initSimulation = ({
     situation = {},
     persona,
@@ -26,6 +37,8 @@ export default function useSimulations({
     foldedSteps?: string[]
   } = {}) => {
     const id = uuidv4()
+
+    resetAideSaisie()
 
     setSimulations((prevSimulations: Simulation[]) => [
       ...prevSimulations,

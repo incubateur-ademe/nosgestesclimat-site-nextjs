@@ -10,7 +10,7 @@ import AvantDeCommencer from './_components/AvantDeCommencer'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: "Tutoriel du simulateur d'empreinte climat - Nos Gestes Climat",
+    title: 'Calculer votre empreinte carbone individuelle - Nos Gestes Climat',
     description:
       'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.',
   })

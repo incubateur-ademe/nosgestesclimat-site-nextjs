@@ -14,17 +14,17 @@ export default function PRIndicator() {
   if (!PRNumber || iframeRegion) return null
 
   return (
-    <div className="mx-auto mb-4 hidden gap-2 rounded-lg bg-gray-100 px-4 py-2 text-center font-bold uppercase text-white lg:flex ">
+    <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-2 text-center font-bold uppercase text-white ">
       <Image
         src="/images/misc/E045.svg"
         alt=""
-        className="w-8"
+        className="w-6"
         aria-hidden="true"
         width="20"
         height="20"
       />
       <Link
-        className="font-base text-sm text-primaryDark md:text-lg"
+        className="font-base text-sm text-primary-700"
         target="_blank"
         href={'https://github.com/datagir/nosgestesclimat/pull/' + PRNumber}>
         #{PRNumber}
@@ -36,7 +36,7 @@ export default function PRIndicator() {
           router.refresh()
         }}>
         <Image
-          className="w-6"
+          className="w-4"
           src="/images/misc/close-plain.svg"
           alt=""
           width="1"

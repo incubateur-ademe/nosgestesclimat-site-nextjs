@@ -5,29 +5,34 @@ import NumberValue from '@/components/misc/NumberValue'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 
-type Props = { question: string }
+type Props = {
+  question: string
+  isMissing: boolean
+}
 
-export default function MosaicQuestion({ question }: Props) {
+export default function MosaicQuestion({ question, isMissing }: Props) {
   const { t } = useClientTranslation()
   const { value, displayValue, unit, type, parent } = useRule(question)
   const { title, icons } = useRule(parent)
 
   return (
-    <span className="relative flex justify-between rounded-lg bg-primaryLight p-4 text-sm">
+    <span className="relative flex justify-between rounded-lg bg-primary-100 p-4 text-sm">
       <span className="flex-1">
         {icons} {title}
       </span>
-      <strong>
-        {type === 'number' && (
-          <NumberValue displayValue={displayValue} unit={unit} />
-        )}
-        {type === 'boolean' && (
-          <span className="capitalize">{t(displayValue.toString())}</span>
-        )}
-        {type === 'choices' && (
-          <ChoicesValue value={value} question={question} />
-        )}
-      </strong>
+      {!isMissing ? (
+        <strong>
+          {type === 'number' && (
+            <NumberValue displayValue={displayValue} unit={unit} />
+          )}
+          {type === 'boolean' && (
+            <span className="capitalize">{t(displayValue.toString())}</span>
+          )}
+          {type === 'choices' && (
+            <ChoicesValue value={value} question={question} />
+          )}
+        </strong>
+      ) : null}
     </span>
   )
 }

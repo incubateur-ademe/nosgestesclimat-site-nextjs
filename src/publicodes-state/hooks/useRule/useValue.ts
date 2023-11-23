@@ -31,7 +31,7 @@ export default function useValue({
 }: Props) {
   const value = useMemo<NodeValue>(() => evaluation?.nodeValue, [evaluation])
 
-  const displayValue = useMemo<string | number>(() => {
+  const displayValue = useMemo<string>(() => {
     if (type === 'choices') {
       const stringValue = String(value)
       return stringValue.startsWith("'")
@@ -39,14 +39,19 @@ export default function useValue({
         : stringValue
     }
     if (type === 'boolean') {
-      return value === null || value === false || value === 'non' // Model shenanigans
+      return value === true
+        ? 'oui'
+        : value === false || value === null // `value` is null when `ruleDisabledByItsParent` knowing that the parent becomes `null` according to this value.
         ? 'non'
-        : 'oui'
+        : ''
     }
     if (type === 'mosaic') {
       return 'mosaic'
     }
-    return Number(value)
+    if (Number(value) === value) {
+      return String(value)
+    }
+    return ''
   }, [value, type])
 
   const numericValue = useMemo<number>(
@@ -116,9 +121,11 @@ const checkValueValidity = ({
       }
       return value.startsWith("'") ? value : `'${value}'`
     case 'boolean':
-      return value === null || value === false || value === 'non' // Model shenanigans
+      return value === 'oui'
+        ? 'oui'
+        : value === 'non' || value === null
         ? 'non'
-        : 'oui'
+        : undefined
     case 'mosaic':
       return 'mosaic'
     default:

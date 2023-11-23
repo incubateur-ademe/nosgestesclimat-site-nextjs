@@ -25,6 +25,7 @@ export default function useRule(dottedName: string) {
     situation,
     updateSituation,
     addFoldedStep,
+    foldedSteps,
     everyNotifications,
     everyMosaicChildWhoIsReallyInMosaic,
   } = useContext(simulationContext)
@@ -83,7 +84,12 @@ export default function useRule(dottedName: string) {
 
   const choices = useChoices({ rule, type })
 
-  const { isMissing } = useMissing({ dottedName, questionsOfMosaic, situation })
+  const { isMissing, isFolded } = useMissing({
+    dottedName,
+    questionsOfMosaic,
+    situation,
+    foldedSteps,
+  })
 
   const { value, displayValue, numericValue, setValue, setDefaultAsValue } =
     useValue({
@@ -182,6 +188,10 @@ export default function useRule(dottedName: string) {
      * True if the question is not answered
      */
     isMissing,
+    /**
+     * True if the question is in the folded steps (answered or not)
+     */
+    isFolded,
     /**
      * Setter for the value of the rule, with the possibility to add a dottedName in the foldedSteps
      */

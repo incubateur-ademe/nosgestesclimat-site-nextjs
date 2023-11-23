@@ -12,7 +12,7 @@ export default function TestCompleted() {
   const detailsParamString = formatResultToDetailParam({ categories, getValue })
 
   return (
-    <div className="mb-4 flex flex-col items-center rounded-lg bg-primaryLight p-4">
+    <div className="mb-4 flex flex-col items-center rounded-lg bg-grey-100 p-4">
       <Star />
       <p className="mb-4 text-lg">
         <Trans>Vous avez terminé le test</Trans>&nbsp;
@@ -20,9 +20,7 @@ export default function TestCompleted() {
       </p>
       <ButtonLink
         //TODO: there should be a helper for that
-        href={`/fin?diapo=bilan${
-          detailsParamString ? `&${detailsParamString}` : ''
-        }`}>
+        href={`/fin${detailsParamString ? `?${detailsParamString}` : ''}`}>
         <Trans>Voir mon résultat</Trans>
       </ButtonLink>
       <p className="mb-0 mt-4 text-lg">

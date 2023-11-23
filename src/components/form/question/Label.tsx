@@ -1,5 +1,6 @@
 import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
 import { getMatomoEventClickHelp } from '@/constants/matomo'
+import Button from '@/design-system/inputs/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import { QuestionSize } from '@/types/values'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -47,14 +48,14 @@ export default function Label({
         )}
         aria-label={label}
         htmlFor={htmlFor}>
-        {label}{' '}
+        <h1 className="mb-0 inline text-lg">{label}</h1>{' '}
         {description ? (
           <button
             onClick={() => {
               trackEvent(getMatomoEventClickHelp(question))
               setIsOpen((previsOpen) => !previsOpen)
             }}
-            className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary text-base font-bold text-white`}
+            className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary-500 text-base font-bold text-white`}
             title={t("Voir plus d'informations")}
             id={QUESTION_DESCRIPTION_BUTTON_ID}>
             <code>i</code>
@@ -66,14 +67,14 @@ export default function Label({
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2 }}
-          className="mb-3 origin-top">
+          className="mb-3 origin-top rounded-md bg-white p-2 text-sm">
           <Markdown>{description}</Markdown>{' '}
-          <button
+          <Button
+            size="sm"
             onClick={() => setIsOpen(false)}
-            className="block text-primary underline"
             title={t('Fermer')}>
             <Trans>Fermer</Trans>
-          </button>
+          </Button>
         </motion.div>
       ) : null}
     </>

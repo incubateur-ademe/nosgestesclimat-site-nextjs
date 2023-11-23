@@ -12,7 +12,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { MouseEvent, useCallback, useState } from 'react'
+import { MouseEvent, useCallback } from 'react'
 
 type Props = {
   question: string
@@ -32,9 +32,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
 
-  const { isMissing, setDefaultAsValue, numericValue } = useRule(question)
-
-  const [isSettingDefaultValue, setIsSettingDefaultValue] = useState(false)
+  const { isMissing, numericValue, addFoldedStep } = useRule(question)
 
   const nextDisabled =
     questionsThatCantBeZero.includes(question) && numericValue < 1
@@ -49,17 +47,14 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
         trackEvent(getMatomoEventClickNextQuestion(question))
       }
 
-      setIsSettingDefaultValue(true)
-
-      await setDefaultAsValue(question)
-
-      setIsSettingDefaultValue(false)
+      if (isMissing) {
+        addFoldedStep(question)
+      }
 
       handleMoveFocus()
 
       if (!noNextQuestion) {
         gotoNextQuestion()
-
         return
       }
 
@@ -70,8 +65,8 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
       gotoNextQuestion,
       noNextQuestion,
       isMissing,
-      setDefaultAsValue,
       onComplete,
+      addFoldedStep,
     ]
   )
 
@@ -104,7 +99,6 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
     <div className="flex justify-end  gap-4">
       {!noPrevQuestion ? (
         <Button
-          disabled={isSettingDefaultValue}
           onClick={() => {
             trackEvent(getMatomoEventClickPrevQuestion(question))
             if (!noPrevQuestion) {
@@ -112,17 +106,15 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
             }
             handleMoveFocus()
           }}
-          color="text"
-        >
+          color="text">
           {'← ' + t('Précédent')}
         </Button>
       ) : null}
       <Button
         color={isMissing ? 'secondary' : 'primary'}
-        disabled={isSettingDefaultValue || nextDisabled}
+        disabled={nextDisabled}
         data-cypress-id="next-question-button"
-        onClick={handleGoToNextQuestion}
-      >
+        onClick={handleGoToNextQuestion}>
         {noNextQuestion
           ? t('Terminer')
           : isMissing
