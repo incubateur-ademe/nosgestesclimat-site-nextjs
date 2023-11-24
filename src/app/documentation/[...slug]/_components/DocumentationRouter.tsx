@@ -1,7 +1,9 @@
 'use client'
 
 import Button from '@/design-system/inputs/Button'
-import { JSX, useContext } from 'react'
+import { useLocale } from '@/hooks/useLocale'
+import { useUser } from '@/publicodes-state'
+import { JSX, useContext, useEffect } from 'react'
 import { IsDocumentationClientContext } from '../../_contexts/DocumentationStateContext'
 import DocumentationServer from './documentationRouter/DocumentationServer'
 
@@ -20,6 +22,20 @@ export default function DocumentationRouter({
     IsDocumentationClientContext
   )
 
+  const locale = useLocale()
+
+  const { getCurrentSimulation } = useUser()
+
+  const currentSimulation = getCurrentSimulation()
+
+  useEffect(() => {
+    if (!currentSimulation?.foldedSteps) return
+
+    if (currentSimulation?.foldedSteps?.length > 0) {
+      setIsDocumentationClient(true)
+    }
+  }, [currentSimulation, setIsDocumentationClient])
+
   if (isDocumentationClient) return clientDocumentation
 
   return (
@@ -27,6 +43,7 @@ export default function DocumentationRouter({
       <DocumentationServer
         supportedRegions={supportedRegions}
         slugs={slug}
+        locale={locale}
         ctaButtonElement={
           <Button onClick={() => setIsDocumentationClient(true)}>
             Lancer le calcul
