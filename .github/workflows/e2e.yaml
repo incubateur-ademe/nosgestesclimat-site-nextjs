@@ -74,7 +74,6 @@ jobs:
           browser: chrome
           parallel: true
           record: true
-          group: 'Test - e2e'
           spec: cypress/e2e/integration/test-completion/**/*.cy.js
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
