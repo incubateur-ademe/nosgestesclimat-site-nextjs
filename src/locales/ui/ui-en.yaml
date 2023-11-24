@@ -182,8 +182,8 @@ entries:
   publicodes.Personas.description.lock: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du simulateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le simulateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
   publicodes.Profil.locationDonnées: <0>Where is my data stored? </0><1>Your data is stored in your browser, so you have complete control over it.</1>
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
-  publicodes.Profil.recap: You have completed the test at {{percentFinished}} % ({{answeredQuestionsLength}} questions) and chose {{actionChoicesLength}} actions.
-  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}} actions.
+  publicodes.Profil.recap: You have completed the test at {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
+  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
   publicodes.Profil.simulations: Every simulation you make is saved in your web browser. Only you have access to it.
   publicodes.Profil.simulations.lock: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
   publicodes.SimulationMissing.personnas: You can also continue with a <2>typical profile</2>.
@@ -483,8 +483,12 @@ entries:
   Documentations: Documentation
   Informations: Information
   Questions: Questions
-  Actions: Actions
+  ← Revenir au test: ← Back to test
   Test: Test
+  Actions: Actions
+  Question pour l'utilisateur: Question for the user
   Fermer le menu: Close menu
-  Revenir à l'accueil: Back to home page
   <0>👀</0> Voir mon résultat: 👀 <0>S</0> ee my result
+  Aide à la saisie: Input help
+  Revenir à l'accueil: Back to home page
+  Pour en savoir plus sur cette règle de notre modèle, lancer le calcul en cliquant sur le bouton ci-dessous.: To find out more about this rule in our model, run the calculation by clicking on the button below.
