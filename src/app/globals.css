@@ -384,8 +384,7 @@ blockquote {
 */
 .markdown ul {
   @apply pl-6;
-  list-style-type: '› ';
-  list-style-position: outside;
+  @apply list-disc;
   @apply mb-6;
 }
 
