@@ -5,7 +5,7 @@ import { clickNextButton } from '../elements/buttons'
 
 const LAST_QUESTION_ID = 'services sociétaux . question rhétorique-ok'
 
-const WAIT_DURATION = 500
+const WAIT_DURATION = 1000
 
 export async function recursivelyFillSimulation(persona = {}) {
   const isPersonaEmptyOrNotDefined =
