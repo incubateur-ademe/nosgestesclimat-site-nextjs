@@ -7,6 +7,8 @@ async function importLocalRules({
   locale: string
   isOptim: boolean
 }) {
+  if (!(process.env.NODE_ENV === 'development')) return Promise.resolve({})
+
   try {
     return (await import(
       `../../../nosgestesclimat/public/co2-model.${regionCode}-lang.${locale}${
