@@ -1,7 +1,7 @@
 import { fetchModel } from '@/helpers/data/fetchModel'
 import importLocalRules from '@/helpers/importLocalRules'
 import { useUser } from '@/publicodes-state'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useDataServer } from './useDataServer'
 import { useLocale } from './useLocale'
 
@@ -34,5 +34,6 @@ export function useRules({ lang, region, isOptim = true }: Props) {
             locale,
             isOptim,
           }),
+    placeholderData: keepPreviousData,
   })
 }
