@@ -424,3 +424,7 @@ blockquote {
 .markdown blockquote {
   @apply mb-6;
 }
+
+.markdown img {
+  @apply py-8;
+}
