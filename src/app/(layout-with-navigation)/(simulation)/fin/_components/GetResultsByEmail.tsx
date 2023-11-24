@@ -25,7 +25,7 @@ export default function GetResultsByEmail({
 
   const {
     mutate: subscribeUser,
-    isPending,
+    isLoading,
     isSuccess,
     isError,
     error,
@@ -34,7 +34,7 @@ export default function GetResultsByEmail({
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    if (isPending || !simulation) return
+    if (isLoading || !simulation) return
 
     trackEvent(matomoSaveSimulationByGivingEmail)
 
@@ -104,7 +104,7 @@ export default function GetResultsByEmail({
         <Button
           onClick={() => null}
           type="submit"
-          disabled={isPending}
+          disabled={isLoading}
           className="mt-4">
           <Trans>Envoyer</Trans>
         </Button>

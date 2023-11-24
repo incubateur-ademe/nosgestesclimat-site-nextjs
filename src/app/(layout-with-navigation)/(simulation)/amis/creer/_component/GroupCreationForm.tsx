@@ -48,7 +48,7 @@ export default function GroupCreationForm() {
 
   const router = useRouter()
 
-  const { mutateAsync: createGroup, isPending } = useCreateGroup()
+  const { mutateAsync: createGroup, isLoading } = useCreateGroup()
 
   const { mutateAsync: sendGroupEmail } = useSendGroupConfirmationEmail()
 
@@ -141,7 +141,7 @@ export default function GroupCreationForm() {
         type="submit"
         data-cypress-id="button-create-group"
         onClick={handleSubmit}
-        aria-disabled={!prenom && !isPending}>
+        aria-disabled={!prenom && !isLoading}>
         {hasCompletedTest ? (
           <Trans>Créer le groupe</Trans>
         ) : (
