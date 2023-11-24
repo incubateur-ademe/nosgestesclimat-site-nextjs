@@ -66,7 +66,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
 
       - name: Test - e2e - personas [${{ env.MODE }}]
-        # if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/preprod'
         uses: cypress-io/github-action@v5.6.1
         with:
           install: true

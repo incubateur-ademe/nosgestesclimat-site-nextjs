@@ -5,12 +5,9 @@ import { clickNextButton } from '../elements/buttons'
 
 const LAST_QUESTION_ID = 'services sociétaux . question rhétorique-ok'
 
-const WAIT_DURATION = 1
+const WAIT_DURATION = process.env.NODE_ENV === 'development' ? 1000 : 1
 
 export async function recursivelyFillSimulation(persona = {}) {
-  const isPersonaEmptyOrNotDefined =
-    !persona || Object.keys(persona).length <= 0
-
   return new Promise((resolve) => {
     function answerCurrentQuestion() {
       const inputPromise = cy.get('input')
