@@ -17,7 +17,7 @@ export default function SubCategory({ subcategory }: Props) {
 
   const formattedCarbonFootprint = formatCarbonFootprint(value)
 
-  //TODO: investigate why subcategory = repas and questions = plats
+  //TODO: Model shenanigans: investigate why subcategory = repas and questions = plats
   const answeredQuestionOfSubcategory = relevantAnsweredQuestions.filter(
     (question) =>
       question.includes(subcategory) ||
@@ -26,7 +26,7 @@ export default function SubCategory({ subcategory }: Props) {
 
   if (!answeredQuestionOfSubcategory.length) return null
   return (
-    <div className="bg-primary-100 relative mt-2 w-full overflow-hidden rounded-lg ">
+    <div className="relative mt-2 w-full overflow-hidden rounded-lg bg-primary-100 ">
       <div
         className="absolute bottom-0 left-0 top-0 w-2"
         style={{ backgroundColor: color }}

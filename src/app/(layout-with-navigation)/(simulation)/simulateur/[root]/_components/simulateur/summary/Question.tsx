@@ -2,6 +2,7 @@ import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
 import Trans from '@/components/translation/Trans'
 import { getMatomoEventClickQuestionsListLink } from '@/constants/matomo'
+import foldEveryQuestionsUntil from '@/helpers/foldEveryQuestionsUntil'
 import { useDebug } from '@/hooks/useDebug'
 import { useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -17,21 +18,37 @@ const statusClassNames = {
   default: 'bg-primary-200',
 }
 export default function Question({ question, toggleQuestionList }: Props) {
-  const { label, isMissing, value, displayValue, unit, type, color } =
-    useRule(question)
+  const {
+    label,
+    isMissing,
+    isFolded,
+    value,
+    displayValue,
+    unit,
+    type,
+    color,
+    addFoldedStep,
+  } = useRule(question)
 
-  const { currentQuestion, setCurrentQuestion } = useForm()
+  const { currentQuestion, setCurrentQuestion, relevantQuestions } = useForm()
 
   const isDebug = useDebug()
 
   const status =
-    currentQuestion === question ? 'current' : isMissing ? 'missing' : 'default'
+    currentQuestion === question ? 'current' : isFolded ? 'default' : 'missing'
 
   return (
     <button
-      disabled={!isDebug && isMissing}
+      disabled={!isDebug && !isFolded}
       className={`relative mb-2 flex w-full flex-col items-end justify-between gap-2 overflow-hidden rounded-lg p-4 pl-6 text-left font-bold md:flex-row md:items-center md:gap-4 ${statusClassNames[status]} `}
       onClick={() => {
+        if (isDebug) {
+          foldEveryQuestionsUntil({
+            question,
+            relevantQuestions,
+            addFoldedStep,
+          })
+        }
         setCurrentQuestion(question)
 
         trackEvent(getMatomoEventClickQuestionsListLink(question))
@@ -51,8 +68,8 @@ export default function Question({ question, toggleQuestionList }: Props) {
           label
         )}
       </div>
-      <div className="align-center flex justify-end whitespace-nowrap md:text-lg">
-        {displayValue !== 'mosaic' ? (
+      {!isMissing && displayValue !== 'mosaic' ? (
+        <div className="align-center flex justify-end whitespace-nowrap md:text-lg">
           <div
             className={`rounded-lg bg-white px-4 py-2 ${
               isMissing ? 'text-gray-300' : 'text-primary-700'
@@ -65,8 +82,8 @@ export default function Question({ question, toggleQuestionList }: Props) {
               <ChoicesValue value={value} question={question} />
             )}
           </div>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </button>
   )
 }

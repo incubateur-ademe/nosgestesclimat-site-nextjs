@@ -5,23 +5,21 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
+import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm, useUser } from '@/publicodes-state'
-import { Simulation } from '@/publicodes-state/types'
+import { useActions, useEngine, useForm, useUser } from '@/publicodes-state'
 import TutorialLink from './_components/TutorialLink'
 
-type Props = {
-  currentSimulation: Simulation
-}
-export default function SimulationStarted({ currentSimulation }: Props) {
+export default function SimulationStarted() {
   const { t } = useClientTranslation()
 
-  const { progression, relevantAnsweredQuestions } = useForm()
+  const { getValue } = useEngine()
+
+  const { progression, relevantAnsweredQuestions, categories } = useForm()
 
   const { initSimulation } = useUser()
 
-  const actionChoicesLength =
-    Object.keys(currentSimulation?.actionChoices)?.length || 0
+  const { chosenActions, declinedActions } = useActions()
 
   const isFinished = progression === 1
 
@@ -33,7 +31,8 @@ export default function SimulationStarted({ currentSimulation }: Props) {
             {t('publicodes.Profil.recap', {
               percentFinished: (progression * 100).toFixed(0),
               answeredQuestionsLength: relevantAnsweredQuestions.length,
-              actionChoicesLength,
+              chosenActions: chosenActions.length,
+              declinedActions: declinedActions.length,
             })}{' '}
           </p>
         </Card>
@@ -56,7 +55,13 @@ export default function SimulationStarted({ currentSimulation }: Props) {
 
       <div className="my-4 flex w-full flex-col md:w-auto md:items-start">
         {isFinished && (
-          <ButtonLink color="primary" href="/fin" className="w-full">
+          <ButtonLink
+            color="primary"
+            href={`/fin?${formatResultToDetailParam({
+              categories,
+              getValue,
+            })}`}
+            className="w-full">
             <Trans>
               <Emoji className="mr-2">👀</Emoji> Voir mon résultat
             </Trans>

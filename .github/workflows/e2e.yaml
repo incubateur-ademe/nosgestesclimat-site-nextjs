@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: sleep
     container:
-      image: cypress/browsers:node18.12.0-chrome107
+      image: cypress/browsers:latest
       options: --user 1001
     strategy:
       fail-fast: false
@@ -52,7 +52,21 @@ jobs:
           echo "CYPRESS_baseUrl=https://nosgestesclimat.vercel.app" >> "$GITHUB_ENV"
           echo "MODE=production" >> "$GITHUB_ENV"
 
-      - name: Test - e2e [${{ env.MODE }}]
+      - name: Test - e2e - pages [${{ env.MODE }}]
+        uses: cypress-io/github-action@v5.6.1
+        with:
+          install: true
+          browser: chrome
+          parallel: true
+          record: true
+          group: 'Test - e2e'
+          spec: cypress/e2e/integration/pages/**/*.cy.js
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+
+      - name: Test - e2e - personas [${{ env.MODE }}]
+        # if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/preprod'
         uses: cypress-io/github-action@v5.6.1
         with:
           install: true
@@ -60,8 +74,7 @@ jobs:
           browser: chrome
           parallel: true
           record: true
-          group: 'Test - e2e'
-          spec: cypress/e2e/integration/**/*.cy.js
+          spec: cypress/e2e/integration/test-completion/**/*.cy.js
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}

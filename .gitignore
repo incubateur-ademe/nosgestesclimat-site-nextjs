@@ -43,9 +43,6 @@ yarn-error.log
 node_modules/
 .env
 
-# Local Netlify folder
-.netlify
-
 /cypress/videos/*
 /cypress/screenshots/*
 /cypress/snapshots/__all/__diff_output__/**/*
@@ -55,3 +52,5 @@ dist
 
 # Sentry Config File
 .sentryclirc
+
+.vscode
