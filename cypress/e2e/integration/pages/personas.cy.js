@@ -3,7 +3,6 @@ import { visit } from '../../../helpers/interactions/visit'
 describe('check for personas page status', () => {
   beforeEach(() => {
     visit('/')
-    cy.wait(1000)
     visit('/personas')
   })
 
