@@ -12,9 +12,6 @@ export const GROUP_URL = SERVER_URL + '/group'
 
 export const SAVE_SIMULATION_URL = SERVER_URL + '/email-simulation'
 
-export const DATA_SERVER_URL =
-  process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER ?? NGC_MODEL_API_URL
-
 export const NGC_MODEL_API_URL =
   'https://nosgestesclimat-api.osc-fr1.scalingo.io'
 

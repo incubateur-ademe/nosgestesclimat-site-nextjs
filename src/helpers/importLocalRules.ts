@@ -11,9 +11,9 @@ async function importLocalRules({
 }) {
   try {
     return (await import(
-      `${
-        process.env.NGC_LOCAL_RULES_PATH
-      }/co2-model.${regionCode}-lang.${locale}${isOptim ? '-opti' : ''}.json`
+      `../../../nosgestesclimat/public/co2-model.${regionCode}-lang.${locale}${
+        isOptim ? '-opti' : ''
+      }.json`
     )) as NGCRules
   } catch (e) {
     console.log(e)
@@ -21,24 +21,3 @@ async function importLocalRules({
 }
 
 export default importLocalRules
-
-// // Code to use to import .publicodes directly
-// const yamlContext = await require.context(
-//   '../../../nosgestesclimat/data',
-//   true,
-//   /\.publicodes$/
-// )
-
-// let rules = {}
-// console.log(yamlContext.keys())
-// yamlContext.keys().forEach((file) => {
-//   const yaml = yamlContext(file)
-
-//   rules = { ...rules, ...yaml }
-// })
-
-// rules = Object.fromEntries(
-//   Object.entries(rules).filter(([key]) => !key.includes('importer'))
-// )
-// console.log(rules)
-// return rules
