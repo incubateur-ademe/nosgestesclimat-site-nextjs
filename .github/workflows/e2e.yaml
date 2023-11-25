@@ -14,7 +14,6 @@ on:
 jobs:
   install:
     runs-on: ubuntu-latest
-    needs: sleep
     steps:
       - name: Checkout
         uses: actions/checkout@v4
