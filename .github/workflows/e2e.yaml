@@ -22,7 +22,13 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           runTests: false
-          build: yarn run e2e:generate:personas && yarn build
+          build: yarn build
+
+      - name: Generate personas
+        uses: cypress-io/github-action@v6
+        with:
+          runTests: false
+          build: yarn run e2e:generate:personas
 
       - name: Save build
         uses: actions/upload-artifact@v3
