@@ -50,7 +50,29 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        containers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+        containers:
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+          ]
     name: Testing e2e in worker ${{ matrix.containers }}
     if: github.event.pull_request.draft == false
     steps:
