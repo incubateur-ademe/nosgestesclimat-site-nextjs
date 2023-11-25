@@ -1,4 +1,8 @@
-import { NGC_MODEL_API_URL, getModelPRUrl } from '@/constants/urls'
+import {
+  DATA_SERVER_URL,
+  NGC_MODEL_API_URL,
+  getModelPRUrl,
+} from '@/constants/urls'
 import useModelVersion from '@/hooks/useModelVersion'
 import { usePRNumber } from './usePRNumber'
 
@@ -13,4 +17,7 @@ export const useDataServer = () => {
   }
 
   return `${NGC_MODEL_API_URL}/${modelVersion}`
+  if (process.env.NEXT_PUBLIC_LOCAL_DATA) return
+
+  return DATA_SERVER_URL
 }

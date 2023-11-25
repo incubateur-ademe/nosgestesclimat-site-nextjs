@@ -1,9 +1,9 @@
 import { NGC_MODEL_API_URL, NGC_MODEL_API_URL_FALLBACK } from '@/constants/urls'
+import { fetchModel } from '@/helpers/data/fetchModel'
 import importLocalRules from '@/helpers/importLocalRules'
 import { useUser } from '@/publicodes-state'
 import { NGCRules } from '@/publicodes-state/types'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
-import axios from 'axios'
 import { useDataServer } from './useDataServer'
 import { useLocale } from './useLocale'
 
@@ -42,6 +42,15 @@ export function useRules({ lang, region, isOptim = true }: Props) {
 
   return useQuery({
     queryKey: ['rules', dataServer, lang, region, isOptim],
+    queryFn: () =>
+      process.env.NEXT_PUBLIC_LOCAL_DATA === 'nosgestesclimat'
+        ? importLocalRules({ regionCode, locale, isOptim })
+        : fetchModel({
+            dataServer: dataServer || '',
+            regionCode: regionCode || 'FR',
+            locale,
+            isOptim,
+          }),
     queryFn: async () => {
       if (process.env.NEXT_PUBLIC_LOCAL_DATA === 'nosgestesclimat') {
         return importLocalRules({ regionCode, locale, isOptim })

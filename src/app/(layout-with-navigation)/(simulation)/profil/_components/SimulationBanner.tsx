@@ -15,5 +15,5 @@ export default function SimulationBanner() {
     return <SimulationNotStarted />
   }
 
-  return <SimulationStarted currentSimulation={currentSimulation} />
+  return <SimulationStarted />
 }
