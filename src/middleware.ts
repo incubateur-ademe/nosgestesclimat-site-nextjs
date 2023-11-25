@@ -8,8 +8,19 @@ export const middlewares = [splitTestingMiddleware, i18nMiddleware]
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next()
+  let splitNumber = null
   for await (const middlewareFunction of middlewares) {
     const middlewareResponse = await middlewareFunction(request)
+
+    // Even if we don't redirect, we still need to keep the split cookie for the next response
+    if (!splitNumber) {
+      splitNumber = getSplitCookieFromResponse(middlewareResponse)
+    }
+    if (splitNumber) {
+      response.cookies.set(splitTestingCookieName, splitNumber)
+      middlewareResponse.cookies.set(splitTestingCookieName, splitNumber)
+    }
+
     if (isRedirecting(middlewareResponse)) {
       return middlewareResponse
     }
@@ -18,10 +29,6 @@ export async function middleware(request: NextRequest) {
     }
     if (isI18n(middlewareResponse)) {
       return middlewareResponse
-    }
-    const splitCookie = getSplitCookieFromResponse(middlewareResponse)
-    if (splitCookie) {
-      response.cookies.set(splitTestingCookieName, splitCookie)
     }
   }
   return response
