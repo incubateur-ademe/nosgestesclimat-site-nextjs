@@ -27,4 +27,6 @@ export type SupportedRegionType = {
   [currentLang: string]: { nom: string; authors: RegionAuthor[] }
 }
 
-export type SuppportedRegions = { [key: string]: SupportedRegionType }
+export type SuppportedRegions = { [key: string]: SupportedRegionType } & {
+  version: string
+}

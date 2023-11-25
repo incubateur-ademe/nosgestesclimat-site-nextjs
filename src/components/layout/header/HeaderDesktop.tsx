@@ -10,6 +10,7 @@ import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import NavLink from './NavLink'
 import DebugIndicator from './headerDesktop/DebugIndicator'
+import ModelVersionIndicator from './headerDesktop/ModelVersionIndicator'
 
 export default function HeaderDesktop({
   shouldHideMostOfContent,
@@ -68,6 +69,7 @@ export default function HeaderDesktop({
           </div>
           <div className="flex items-center gap-4">
             <PRIndicator />
+            <ModelVersionIndicator />
             <DebugIndicator />
             <NavLink href="/profil" icon={ProfileIcon} title={t('Profil')}>
               {!shouldHideMostOfContent && <Trans>Profil</Trans>}
