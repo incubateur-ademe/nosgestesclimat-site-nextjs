@@ -4,6 +4,7 @@ import Link from '@/components/Link'
 import SafeImage from '@/components/images/SafeImage'
 import { DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
+import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { removePercentageFromString } from '@/utils/removePercentageFromString'
@@ -28,7 +29,7 @@ export default function SubcategoryChartBlock({
   sumSquashedSubcategoriesPercentage,
   shouldAlwaysDisplayValue,
 }: Props) {
-  const { numericValue: categoryNumericvalue, color } = useRule(category)
+  const { numericValue: categoryNumericvalue } = useRule(category)
 
   const subcategoryObject = useRule(subcategory)
   const { title, abbreviatedTitle, numericValue } = subcategoryObject
@@ -57,7 +58,7 @@ export default function SubcategoryChartBlock({
   ) {
     return (
       <EnigmaticMoreChartBlock
-        color={color ?? '#491273'}
+        category={category}
         percentageSquashed={sumSquashedSubcategoriesPercentage ?? 0}
       />
     )
@@ -75,9 +76,8 @@ export default function SubcategoryChartBlock({
       href={`/documentation/${subcategory.replaceAll(' . ', '/')}`}
       className={`relative flex items-center py-2 !text-white !no-underline hover:!underline ${
         isSmall ? 'flex-row justify-center gap-1' : 'flex-col flex-wrap'
-      }`}
+      } ${getBackgroundColor(category)}`}
       style={{
-        backgroundColor: color ?? '#32337B',
         height: `${heightPercentage}%`,
       }}>
       <SafeImage
@@ -95,10 +95,9 @@ export default function SubcategoryChartBlock({
 
       {!isSmall && !shouldAlwaysDisplayValue && (
         <p
-          style={{
-            backgroundColor: color ?? '#32337B',
-          }}
-          className="absolute bottom-0 right-1 z-10 mb-0  pl-1 text-[0.65rem]">
+          className={`absolute bottom-0 right-1 z-10 mb-0  pl-1 text-[0.65rem] ${getBackgroundColor(
+            category
+          )}`}>
           <strong>
             {formattedValue} {unit}
           </strong>

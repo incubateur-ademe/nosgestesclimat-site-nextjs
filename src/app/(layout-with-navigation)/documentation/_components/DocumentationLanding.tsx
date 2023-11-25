@@ -7,7 +7,6 @@ import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
 
 import Link from '@/components/Link'
-import { NGCRules } from '@/publicodes-state/types'
 import DocumentationLandingCard from './DocumentationLandingCard'
 import SearchBar from './SearchBar'
 
@@ -18,18 +17,16 @@ export default function DocumentationLanding() {
     user: { region },
   } = useUser()
 
-  const { data } = useRules({
+  const { data: rules } = useRules({
     lang: locale,
     region: region?.code ?? 'FR',
   })
 
-  if (!data) return null
+  if (!rules) return null
 
-  const rules = data as NGCRules
-
-  const editoDottedNames = Object.entries(data)
-    .filter(([_, rule]) => Object.keys(rule).includes('résumé'))
-    .map((elt) => elt[0])
+  const editoDottedNames = Object.keys(rules).filter(
+    (dottedName) => rules[dottedName]['résumé']
+  )
 
   return (
     <div>
@@ -60,7 +57,7 @@ export default function DocumentationLanding() {
         {editoDottedNames.map((edito) => {
           return (
             <li key={edito}>
-              <DocumentationLandingCard edito={edito} />
+              <DocumentationLandingCard edito={edito} rule={rules[edito]} />
             </li>
           )
         })}

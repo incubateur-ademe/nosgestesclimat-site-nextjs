@@ -4,6 +4,10 @@ import {
   getMatomoEventActionRejected,
 } from '@/constants/matomo'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
+import {
+  getBackgroundColor,
+  getBorderColor,
+} from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule, useTempEngine, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -58,7 +62,7 @@ export default function ActionCard({
     }
   )
 
-  const { color: categoryColor } = useRule(dottedName)
+  const { category } = useRule(dottedName)
 
   const currentSimulation = getCurrentSimulation()
 
@@ -82,14 +86,15 @@ export default function ActionCard({
       id={dottedName}
       className={`relative flex h-[16rem] w-full flex-col items-center overflow-auto rounded-lg border-4 border-solid ${
         !hasFormula ? 'h-[13rem]' : ''
-      }`}
-      style={{
-        borderColor: isSelected ? 'rgb(45, 164, 78)' : categoryColor,
-        backgroundColor: isSelected ? 'rgba(45, 164, 78, 0.23)' : '',
-      }}>
+      } ${
+        isSelected
+          ? 'border-green-500 bg-green-500/[0.23]'
+          : getBorderColor(category)
+      }`}>
       <div
-        style={{ backgroundColor: categoryColor }}
-        className="flex h-[6rem] w-full items-center">
+        className={`flex h-[6rem] w-full items-center ${getBackgroundColor(
+          category
+        )}`}>
         <Link
           className="z-10 w-full no-underline"
           href={'/actions/' + encodeRuleName(dottedName)}>

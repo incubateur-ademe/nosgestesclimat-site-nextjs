@@ -72,11 +72,10 @@ export default function useRule(dottedName: string) {
     description,
     icons,
     unit,
-    color,
     assistance,
     isInactive,
     suggestions,
-    resume,
+    excerpt,
   } = useContent({
     dottedName,
     rule,
@@ -137,17 +136,13 @@ export default function useRule(dottedName: string) {
      */
     unit,
     /**
-     * The color of the parent category (defined in tailwind.config.js)
-     */
-    color,
-    /**
      * The question used to help answer  ("rawNode.aide" in Publicodes)
      */
     assistance,
     /**
      * Attribut use to briefly explain a rule
      */
-    resume,
+    excerpt,
     /**
      * True if the rule is not yet active ("rawNode.inactif" in Publicodes)
      */
