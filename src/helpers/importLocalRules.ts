@@ -14,7 +14,7 @@ async function importLocalRules({
       }.json`
     )) as unknown
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 }
 
