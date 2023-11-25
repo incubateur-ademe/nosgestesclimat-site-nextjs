@@ -53,9 +53,7 @@ export default function Total({ toggleQuestionList }: Props) {
         <Progress />
         <Planet />
         <Link
-          href={`/fin?diapo=bilan${
-            detailsParamString ? `&${detailsParamString}` : ''
-          }`}
+          href={`/fin${detailsParamString ? `?${detailsParamString}` : ''}`}
           className="z-10	text-white no-underline hover:text-white">
           <span className="block text-2xl font-bold md:text-3xl">
             {formatCarbonFootprint(carbonFootprintValue).formattedValue}{' '}

@@ -33,7 +33,8 @@ export default function BottomMenu() {
           className="flex-col p-2 px-4"
           activeClassName="bg-white border-l border-gray-200 text-primary-500 font-bold"
           href="/amis"
-          icon={AmisIcon}>
+          icon={AmisIcon}
+          data-cypress-id="amis-link">
           <Trans>Amis</Trans>
         </NavLink>
       </li>

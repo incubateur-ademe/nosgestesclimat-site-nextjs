@@ -93,7 +93,7 @@ export default function Form() {
             return
           }
           router.push(
-            `/fin?diapo=bilan&${formatResultToDetailParam({
+            `/fin?${formatResultToDetailParam({
               categories,
               getValue,
             })}`
