@@ -70,7 +70,7 @@ jobs:
       - name: Setup baseUrl to deploy-preview
         if: ${{ success() && steps.branch-name.outputs.is_default == 'false' }}
         run: |
-          echo "CYPRESS_baseUrl=${{steps.waitForVercel.outputs.url}}" >> "$GITHUB_ENV";
+          echo "CYPRESS_baseUrl=https://nosgestesclimat-git-${{ steps.branch-name.outputs.current_branch }}-nos-gestes-climat.vercel.app" >> "$GITHUB_ENV";
           echo "MODE=preview" >> "$GITHUB_ENV";
 
       - name: Setup baseUrl to https://nosgestesclimat.vercel.app
