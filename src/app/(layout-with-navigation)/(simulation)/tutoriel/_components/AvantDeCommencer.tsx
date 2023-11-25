@@ -9,7 +9,7 @@ export default function AvantDeCommencer() {
         className="absolute -top-8 inline-block rounded-full bg-grey-100 p-4 text-3xl">
         💡
       </div>
-      <h3>
+      <h3 className="z-10">
         <Trans>Avant de commencer</Trans>
       </h3>
       <div className="relative pl-8">

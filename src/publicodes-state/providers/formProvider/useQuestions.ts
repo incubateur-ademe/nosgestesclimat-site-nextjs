@@ -43,13 +43,15 @@ export default function useQuestions({
     () =>
       // We take every questions
       everyQuestions
-        // We remove all that are in mosaics
+        // We remove all that are in mosaics,
         .filter(
           (question) =>
             !everyMosaicChildWhoIsReallyInMosaic.find(
               (mosaic) => mosaic === question
             )
         )
+        // all that are in folded steps
+        .filter((question) => foldedSteps.indexOf(question) === -1)
         // and all that are not missing
         .filter((question) =>
           Object.keys(missingVariables).find((missingVariable) =>
@@ -127,6 +129,7 @@ export default function useQuestions({
           return missingVariables[b] - missingVariables[a]
         }),
     [
+      foldedSteps,
       categories,
       subcategories,
       missingVariables,

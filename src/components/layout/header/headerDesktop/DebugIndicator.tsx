@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 export default function DebugIndicator() {
   const isDebug = useDebug()
   const router = useRouter()
-  console.log(isDebug)
   if (!isDebug) return null
   return (
     <button
