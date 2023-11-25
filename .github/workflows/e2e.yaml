@@ -83,7 +83,7 @@ jobs:
         with:
           browser: chrome
           parallel: true
-          record: false
+          record: true
           group: 'Test - e2e'
           spec: cypress/e2e/integration/**/*.cy.js
         env:
