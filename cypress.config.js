@@ -13,8 +13,7 @@ export default defineConfig({
     testLangURL: process.env.CYPRESS_testLangURL ?? 'fr',
   },
   e2e: {
-    baseUrl:
-      process.env.CYPRESS_baseUrl ?? 'https://preprod.nosgestesclimat.fr',
+    baseUrl: process.env.CYPRESS_baseUrl ?? 'http://localhost:3000',
     setupNodeEvents(on) {
       addMatchImageSnapshotPlugin(on)
     },
