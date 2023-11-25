@@ -8,8 +8,6 @@ describe(
   'The Group creation page /amis/creer',
   { testIsolation: false },
   () => {
-    let groupURL = ''
-
     it('allows to create a new group and displays it afterwards', () => {
       cy.visit('/amis')
 
