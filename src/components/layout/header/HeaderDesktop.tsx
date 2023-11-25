@@ -28,7 +28,7 @@ export default function HeaderDesktop({
         className={`${
           shouldHideMostOfContent ? 'h-14' : 'h-20'
         } absolute bottom-0 left-0 right-0 top-0 flex w-full items-center border-b bg-white shadow-sm transition-all delay-500 duration-200 ease-linear`}>
-        <div className="mx-auto flex h-full w-full max-w-5xl justify-between gap-4 ">
+        <div className="mx-auto flex h-full w-full max-w-5xl justify-between gap-4 px-4">
           <div className="flex items-center gap-16">
             <div
               className={`flex origin-left items-center justify-center transition-transform delay-500 duration-200 ease-linear ${
