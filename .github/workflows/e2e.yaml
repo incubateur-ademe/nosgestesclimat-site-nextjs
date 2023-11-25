@@ -21,6 +21,7 @@ jobs:
         id: waitForVercel
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          max_timeout: 300
   install:
     runs-on: ubuntu-latest
     needs: sleep
