@@ -6,6 +6,7 @@ function i18nMiddleware(request: NextRequest) {
   if (!request.nextUrl.href.match('/((?!en).*)')) {
     return NextResponse.next()
   }
+
   return i18nRouter(request, i18nConfig)
 }
 

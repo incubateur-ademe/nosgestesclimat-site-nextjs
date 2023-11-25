@@ -17,7 +17,7 @@ export default function MainLayoutProviders({
 }: PropsWithChildren<{ region: { code: string; name: string } }>) {
   // Handles sending split testing data to Matomo
   useTrackSplitTesting()
-  console.log('TOTOTI')
+
   return (
     <QueryParamsProvider>
       <IframeOptionsProvider>
