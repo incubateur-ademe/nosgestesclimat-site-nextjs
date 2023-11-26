@@ -22,7 +22,7 @@ export default function Heading() {
               estimation de votre empreinte carbone de consommation.
             </Trans>
           </p>
-          <div className="flex flex-col items-center justify-center gap-6 md:flex-row md:gap-12 md:gap-8">
+          <div className="flex flex-col items-center justify-center gap-6 md:flex-row md:gap-12">
             <ButtonStart />
             <Link className="md:text-lg" href="/documentation">
               <Trans>Notre méthode</Trans>

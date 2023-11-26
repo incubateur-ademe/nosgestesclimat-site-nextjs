@@ -39,15 +39,27 @@ export default function ButtonStart() {
         )}
       </ButtonLink>
       {isSimulationStarted ? (
-        <Link
-          className="whitespace-nowrap md:absolute md:left-1/2 md:top-[125%] md:-translate-x-1/2 md:text-lg"
-          onClick={() => {
-            trackEvent(matomoEventParcoursTestNouveau)
-            initSimulation()
-          }}
-          href={tutorials.testIntro ? '/simulateur/bilan' : '/tutoriel'}>
-          Commencer un nouveau test
-        </Link>
+        <>
+          <Link
+            className="hidden whitespace-nowrap text-sm no-underline md:absolute md:left-1/2 md:top-[125%] md:block md:-translate-x-1/2"
+            onClick={() => {
+              trackEvent(matomoEventParcoursTestNouveau)
+              initSimulation()
+            }}
+            href={tutorials.testIntro ? '/simulateur/bilan' : '/tutoriel'}>
+            <Trans>Commencer un nouveau test</Trans>
+          </Link>
+          <ButtonLink
+            color="secondary"
+            className="md:hidden"
+            onClick={() => {
+              trackEvent(matomoEventParcoursTestNouveau)
+              initSimulation()
+            }}
+            href={tutorials.testIntro ? '/simulateur/bilan' : '/tutoriel'}>
+            <Trans>Commencer un nouveau test</Trans>
+          </ButtonLink>
+        </>
       ) : (
         ''
       )}
