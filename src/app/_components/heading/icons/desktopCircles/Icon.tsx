@@ -15,6 +15,9 @@ type Props = {
   delay: number
   scale?: number
   onClick?: MouseEventHandler<HTMLElement>
+  isSelected?: boolean
+  isWrong?: boolean
+  isValidated?: boolean
 }
 
 export default function Icon({
@@ -25,11 +28,14 @@ export default function Icon({
   delay,
   scale = 1,
   onClick = () => '',
+  isSelected = false,
+  isWrong = false,
+  isValidated = false,
 }: Props) {
   const isClient = useIsClient()
   const { windowWidth } = useWindowSize()
   const IconComponent = everyIcons[iconIndex]
-
+  console.log(isSelected)
   const [isHidden, setIsHidden] = useState(true)
   useEffect(() => {
     let timer: any = null
@@ -45,9 +51,11 @@ export default function Icon({
   return (
     <div
       onClick={onClick}
-      className={`absolute transition-opacity delay-500 duration-500 ${
-        isHidden ? 'opacity-0' : 'opacity-100'
-      } motion-reduce:transition-none`}
+      className={`absolute rounded-full border-green-500 transition-opacity delay-500 duration-500 motion-reduce:transition-none 
+        ${getBorderColor(isWrong, isValidated)} ${getBorderClass(
+          isSelected
+        )} ${getOpacityClass(isHidden)}
+      `}
       style={{
         transform: `translate(${x}px, ${y}px) rotate(${rotation}deg) scale(${scale})`,
         transitionDelay: `${delay}ms`,
@@ -56,3 +64,13 @@ export default function Icon({
     </div>
   )
 }
+
+const getOpacityClass = (isHidden: boolean) =>
+  isHidden ? 'opacity-0' : 'opacity-100'
+const getBorderClass = (isSelected: boolean) => (isSelected ? 'border-4' : '')
+const getBorderColor = (isWrong: boolean, isValidated: boolean) =>
+  isValidated
+    ? 'border-green-500'
+    : isWrong
+    ? 'border-red-500'
+    : 'border-primary-500'

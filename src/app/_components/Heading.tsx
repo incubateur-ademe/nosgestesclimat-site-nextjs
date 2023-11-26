@@ -1,17 +1,17 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import { Suspense } from 'react'
+// import { Suspense } from 'react'
 import ButtonStart from './heading/ButtonStart'
-import Icons from './heading/Icons'
+// import Icons from './heading/Icons'
 import Partners from './heading/Partners'
 
 export default function Heading() {
   return (
     <>
       <div className="relative flex h-[36rem] items-center justify-center overflow-hidden bg-grey-100 p-4">
-        <Suspense fallback={<div />}>
+        {/* <Suspense fallback={<div />}>
           <Icons />
-        </Suspense>
+        </Suspense> */}
         <div className="relative max-w-sm text-center md:max-w-xl">
           <h1 className="md:text-5xl">
             <Trans>Connaissez-vous votre empreinte sur le climat&#8239;?</Trans>
