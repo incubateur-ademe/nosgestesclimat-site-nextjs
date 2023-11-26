@@ -15,16 +15,11 @@ const desktopCircles = [
   generateCircleOfSvg({ numPieces: 75, radius: 1215, boundary: [-332, 300] }),
 ]
 
-const mobileCircles = [
-  generateCircleOfSvg({ numPieces: 20, radius: 275, boundary: [-332, 300] }),
-  generateCircleOfSvg({ numPieces: 30, radius: 350, boundary: [-332, 300] }),
-]
-
 export default async function Icons() {
   return (
     <>
       <DesktopCircles circles={desktopCircles} />
-      <MobileCircles circles={mobileCircles} />
+      <MobileCircles />
     </>
   )
 }

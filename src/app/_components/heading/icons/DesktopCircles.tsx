@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Icon from './desktopCircles/Icon'
+import DesktopIcon from './desktopCircles/DesktopIcon'
 
 type Props = {
   circles: {
@@ -21,11 +21,13 @@ export default function DesktopCircles({ circles }: Props) {
     <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
       {circles.map((circle) =>
         circle.map(({ iconIndex, x, y, rotation, delay }) => (
-          <Icon
+          <DesktopIcon
             onClick={() => {
-              console.log('click')
               if (!firstSelected) {
                 setFirstSelected({ iconIndex, x, y })
+                return
+              }
+              if (isMatch({ iconIndex, x, y }, firstSelected)) {
                 return
               }
               if (!secondSelected) {

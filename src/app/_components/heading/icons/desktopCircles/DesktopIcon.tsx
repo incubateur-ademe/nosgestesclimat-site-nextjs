@@ -20,7 +20,7 @@ type Props = {
   isValidated?: boolean
 }
 
-export default function Icon({
+export default function DesktopIcon({
   iconIndex,
   x,
   y,
