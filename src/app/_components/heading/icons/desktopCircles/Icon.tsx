@@ -51,7 +51,7 @@ export default function Icon({
   return (
     <div
       onClick={onClick}
-      className={`absolute rounded-full border-green-500 transition-opacity delay-500 duration-500 motion-reduce:transition-none 
+      className={`absolute rounded-full border-green-500 duration-500 motion-reduce:transition-none md:transition-opacity md:delay-500 
         ${getBorderColor(isWrong, isValidated)} ${getBorderClass(
           isSelected
         )} ${getOpacityClass(isHidden)}
@@ -66,7 +66,7 @@ export default function Icon({
 }
 
 const getOpacityClass = (isHidden: boolean) =>
-  isHidden ? 'opacity-0' : 'opacity-100'
+  isHidden ? 'md:opacity-0' : 'md:opacity-100'
 const getBorderClass = (isSelected: boolean) => (isSelected ? 'border-4' : '')
 const getBorderColor = (isWrong: boolean, isValidated: boolean) =>
   isValidated
