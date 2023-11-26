@@ -18,11 +18,12 @@ const generateCircleOfSvg = ({
   iconSize = 64,
 }: Props) => {
   const icons = []
+  const randomNumberToAddToAngle = Math.random() / 2
   for (let i = 0; i < numPieces; i++) {
     // Choose a random icon from the list
     const iconIndex = Math.floor(Math.random() * everyIcons.length)
 
-    const angle = (i / numPieces) * 2 * Math.PI
+    const angle = (i / numPieces) * 2 * Math.PI + randomNumberToAddToAngle
     const x = centerX + radius * Math.cos(angle) - iconSize / 2
     const y = centerY + radius * Math.sin(angle) - iconSize / 2
 
@@ -32,7 +33,7 @@ const generateCircleOfSvg = ({
       rotation += 180
     }
     // Add a random rotation between -10% and 10% of the initial rotation
-    const randomRotation = rotation * (Math.random() * 0.2 - 0.1)
+    const randomRotation = rotation * (Math.random() * 0.2 - 0.1) - rotation
     rotation += randomRotation
 
     // Add a random delay before displaying the icon
