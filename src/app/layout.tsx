@@ -1,4 +1,5 @@
 // Initialise react-i18next
+import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
 import getGeolocation from '@/helpers/getGeolocation'
 import '@/locales/initClient'
@@ -131,6 +132,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           <MainLayoutProviders region={region}>
             <Header />
             {children}
+            <Footer />
           </MainLayoutProviders>
         </ErrorBoundary>
       </body>
