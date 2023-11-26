@@ -12,7 +12,6 @@ const desktopCircles = [
   generateCircleOfSvg({ numPieces: 60, radius: 960, boundary: [-332, 300] }),
   generateCircleOfSvg({ numPieces: 65, radius: 1045, boundary: [-332, 300] }),
   generateCircleOfSvg({ numPieces: 70, radius: 1130, boundary: [-332, 300] }),
-  generateCircleOfSvg({ numPieces: 75, radius: 1215, boundary: [-332, 300] }),
 ]
 
 export default async function Icons() {

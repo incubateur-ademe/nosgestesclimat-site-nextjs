@@ -8,8 +8,8 @@ export default async function Partners() {
   const { t } = await getServerTranslation()
 
   return (
-    <div className="relative mb-4 flex justify-center md:-mt-10">
-      <div className="flex items-center justify-center gap-6 rounded-full bg-white py-10 md:gap-8 md:px-24">
+    <div className=" mb-4 flex justify-center md:-mt-10">
+      <div className="relative flex items-center justify-center gap-6 rounded-full bg-white py-10 md:gap-8 md:px-24">
         <Marianne />
         <Link href="https://ademe.fr" target="_blank">
           <Ademe />

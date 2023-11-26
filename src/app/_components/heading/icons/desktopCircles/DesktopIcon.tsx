@@ -5,6 +5,7 @@
 import { everyIcons } from '@/components/icons'
 import { useIsClient } from '@/hooks/useIsClient'
 import { useWindowSize } from '@/hooks/useWindowSize'
+import Image from 'next/image'
 import { MouseEventHandler, useEffect, useState } from 'react'
 
 type Props = {
@@ -50,27 +51,55 @@ export default function DesktopIcon({
 
   return (
     <div
-      onClick={onClick}
-      className={`absolute rounded-full border-green-500 duration-500 motion-reduce:transition-none md:transition-opacity md:delay-500 
-        ${getBorderColor(isWrong, isValidated)} ${getBorderClass(
-          isSelected
-        )} ${getOpacityClass(isHidden)}
+      onClick={isValidated ? () => '' : onClick}
+      className={`absolute transition-opacity delay-500 duration-500 motion-reduce:transition-none 
+         ${getOpacityClass(isHidden)}
       `}
       style={{
         transform: `translate(${x}px, ${y}px) rotate(${rotation}deg) scale(${scale})`,
         transitionDelay: `${delay}ms`,
       }}>
-      <IconComponent />
+      <div
+        className={`rounded-full transition-colors ${getBackgroundClass(
+          isSelected,
+          isWrong,
+          isValidated
+        )}`}>
+        <IconComponent
+          className={`transition-opacity delay-500 duration-500 ${getOpacityClass(
+            isValidated
+          )}`}
+        />
+        <Image
+          src="/images/misc/petit-logo@3x.png"
+          alt="Logo Nos Gestes Climat"
+          width="64"
+          height="64"
+          className={`absolute left-1/2 top-1/2 h-auto w-2/3 -translate-x-1/2 -translate-y-1/2 brightness-0 invert transition-opacity delay-500 duration-500 
+            ${getOpacityClass(!isValidated)}
+          `}
+        />
+      </div>
     </div>
   )
 }
 
 const getOpacityClass = (isHidden: boolean) =>
-  isHidden ? 'md:opacity-0' : 'md:opacity-100'
-const getBorderClass = (isSelected: boolean) => (isSelected ? 'border-4' : '')
-const getBorderColor = (isWrong: boolean, isValidated: boolean) =>
-  isValidated
-    ? 'border-green-500'
-    : isWrong
-    ? 'border-red-500'
-    : 'border-primary-500'
+  isHidden ? 'opacity-0' : 'opacity-100'
+
+const getBackgroundClass = (
+  isSelected: boolean,
+  isWrong: boolean,
+  isValidated: boolean
+) => {
+  if (isValidated) {
+    return 'bg-green-500'
+  }
+  if (!isSelected) {
+    return 'bg-transparent'
+  }
+  if (isWrong) {
+    return 'bg-red-500'
+  }
+  return 'bg-primary-200'
+}
