@@ -6,9 +6,7 @@ import Screenshot from './amis/Screenshot'
 export default function Amis() {
   return (
     <div className="flex-1">
-      <div className="mb-6 w-full justify-center overflow-hidden rounded-lg bg-grey-100 px-8 pt-8 md:px-12 md:pt-12">
-        <Screenshot />
-      </div>
+      <Screenshot />
       <Kicker>
         <Trans>Entre amis</Trans>
       </Kicker>
