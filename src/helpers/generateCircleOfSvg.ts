@@ -7,6 +7,7 @@ type Props = {
   centerY?: number
   maxDelay?: number
   iconSize?: number
+  boundary: number[]
 }
 
 const generateCircleOfSvg = ({
@@ -16,6 +17,7 @@ const generateCircleOfSvg = ({
   centerY = 0,
   maxDelay = 1000,
   iconSize = 64,
+  boundary,
 }: Props) => {
   const icons = []
   const randomNumberToAddToAngle = Math.random() / 2
@@ -39,13 +41,15 @@ const generateCircleOfSvg = ({
     // Add a random delay before displaying the icon
     const delay = Math.random() * maxDelay
 
-    icons.push({
-      iconIndex,
-      x,
-      y,
-      rotation,
-      delay,
-    })
+    if (y > boundary[0] && y < boundary[1]) {
+      icons.push({
+        iconIndex,
+        x,
+        y,
+        rotation,
+        delay,
+      })
+    }
   }
   return icons
 }

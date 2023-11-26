@@ -17,6 +17,7 @@ export default function DesktopCircles({ circles }: Props) {
   const [firstSelected, setFirstSelected] = useState<any | null>(null)
   const [secondSelected, setSecondSelected] = useState<any | null>(null)
 
+  console.log(JSON.stringify(circles))
   return (
     <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
       {circles.map((circle) =>

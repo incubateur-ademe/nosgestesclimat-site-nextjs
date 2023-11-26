@@ -3,22 +3,21 @@ import DesktopCircles from './icons/DesktopCircles'
 import MobileCircles from './icons/MobileCircles'
 
 const desktopCircles = [
-  generateCircleOfSvg({ numPieces: 30, radius: 450 }),
-  generateCircleOfSvg({ numPieces: 35, radius: 535 }),
-  generateCircleOfSvg({ numPieces: 40, radius: 620 }),
-  generateCircleOfSvg({ numPieces: 45, radius: 705 }),
-  generateCircleOfSvg({ numPieces: 50, radius: 790 }),
-  generateCircleOfSvg({ numPieces: 55, radius: 875 }),
-  generateCircleOfSvg({ numPieces: 60, radius: 960 }),
-  generateCircleOfSvg({ numPieces: 65, radius: 1045 }),
-  generateCircleOfSvg({ numPieces: 70, radius: 1130 }),
-  generateCircleOfSvg({ numPieces: 75, radius: 1215 }),
+  generateCircleOfSvg({ numPieces: 30, radius: 450, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 35, radius: 535, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 40, radius: 620, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 45, radius: 705, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 50, radius: 790, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 55, radius: 875, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 60, radius: 960, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 65, radius: 1045, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 70, radius: 1130, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 75, radius: 1215, boundary: [-332, 300] }),
 ]
 
 const mobileCircles = [
-  generateCircleOfSvg({ numPieces: 25, radius: 250 }),
-  generateCircleOfSvg({ numPieces: 35, radius: 300 }),
-  generateCircleOfSvg({ numPieces: 40, radius: 350 }),
+  generateCircleOfSvg({ numPieces: 20, radius: 275, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 30, radius: 350, boundary: [-332, 300] }),
 ]
 
 export default async function Icons() {

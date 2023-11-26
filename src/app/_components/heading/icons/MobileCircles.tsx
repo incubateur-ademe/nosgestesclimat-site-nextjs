@@ -22,7 +22,7 @@ export default function MobileCircles({ circles }: Props) {
             y={y}
             rotation={rotation}
             delay={delay}
-            scale={0.5}
+            scale={0.75}
           />
         ))
       )}

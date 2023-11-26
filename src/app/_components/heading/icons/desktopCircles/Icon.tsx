@@ -35,7 +35,7 @@ export default function Icon({
   const isClient = useIsClient()
   const { windowWidth } = useWindowSize()
   const IconComponent = everyIcons[iconIndex]
-  console.log(isSelected)
+
   const [isHidden, setIsHidden] = useState(true)
   useEffect(() => {
     let timer: any = null
@@ -44,7 +44,7 @@ export default function Icon({
     }
     return () => timer && clearTimeout(timer)
   })
-  if (y < -332 || y > 300) return null
+
   if (Math.abs(x) > windowWidth / 2 + 32) return null
   if (!isClient) return null
 
