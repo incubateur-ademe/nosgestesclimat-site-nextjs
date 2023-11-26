@@ -1,5 +1,6 @@
 import generateCircleOfSvg from '@/helpers/generateCircleOfSvg'
-import Icon from './icons/Icon'
+import DesktopCircles from './icons/DesktopCircles'
+import MobileCircles from './icons/MobileCircles'
 
 const desktopCircles = [
   generateCircleOfSvg({ numPieces: 30, radius: 450 }),
@@ -23,36 +24,8 @@ const mobileCircles = [
 export default async function Icons() {
   return (
     <>
-      <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
-        {desktopCircles.map((circle) =>
-          circle.map(({ iconIndex, x, y, rotation, delay }) => (
-            <Icon
-              key={String(x) + String(y)}
-              iconIndex={iconIndex}
-              x={x}
-              y={y}
-              rotation={rotation}
-              delay={delay}
-              scale={1}
-            />
-          ))
-        )}
-      </div>
-      <div className="absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 md:hidden">
-        {mobileCircles.map((circle) =>
-          circle.map(({ iconIndex, x, y, rotation, delay }) => (
-            <Icon
-              key={String(x) + String(y)}
-              iconIndex={iconIndex}
-              x={x}
-              y={y}
-              rotation={rotation}
-              delay={delay}
-              scale={0.5}
-            />
-          ))
-        )}
-      </div>
+      <DesktopCircles circles={desktopCircles} />
+      <MobileCircles circles={mobileCircles} />
     </>
   )
 }

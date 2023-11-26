@@ -1,9 +1,11 @@
+/* eslint-disable */
+
 'use client'
 
 import { everyIcons } from '@/components/icons'
 import { useIsClient } from '@/hooks/useIsClient'
 import { useWindowSize } from '@/hooks/useWindowSize'
-import { useEffect, useState } from 'react'
+import { MouseEventHandler, useEffect, useState } from 'react'
 
 type Props = {
   iconIndex: any
@@ -12,6 +14,7 @@ type Props = {
   rotation: number
   delay: number
   scale?: number
+  onClick?: MouseEventHandler<HTMLElement>
 }
 
 export default function Icon({
@@ -21,6 +24,7 @@ export default function Icon({
   rotation,
   delay,
   scale = 1,
+  onClick = () => '',
 }: Props) {
   const isClient = useIsClient()
   const { windowWidth } = useWindowSize()
@@ -40,6 +44,7 @@ export default function Icon({
 
   return (
     <div
+      onClick={onClick}
       className={`absolute transition-opacity delay-500 duration-500 ${
         isHidden ? 'opacity-0' : 'opacity-100'
       } motion-reduce:transition-none`}
