@@ -6,7 +6,7 @@ export default function Layout({ children }: PropsWithChildren) {
   return (
     <IsDocumentationClientProvider>
       <Main>
-        <div className="mx-auto flex flex-col items-center justify-center gap-4 px-4 pb-8 md:items-start md:px-8 md:pb-10 md:text-left">
+        <div className="mx-auto flex max-w-full flex-col items-center justify-center gap-4 px-4 pb-8 md:items-start md:px-8 md:pb-10 md:text-left">
           {children}
         </div>
       </Main>
