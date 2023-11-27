@@ -5,10 +5,14 @@ import NavLink from '../NavLink'
 export default function FoldableMenu() {
   return (
     <BurgerMenu>
-      {(closeMenu) => (
+      {({ closeMenu, onFocus }) => (
         <ul className="flex flex-col gap-4">
           <li>
-            <NavLink onClick={closeMenu} href="/profil" icon={ProfileIcon}>
+            <NavLink
+              onFocus={onFocus}
+              onClick={closeMenu}
+              href="/profil"
+              icon={ProfileIcon}>
               Profil
             </NavLink>
           </li>
@@ -30,19 +34,22 @@ export default function FoldableMenu() {
           </li>
 
           <li>
-            <NavLink onClick={closeMenu} href="/blog">
+            <NavLink onFocus={onFocus} onClick={closeMenu} href="/blog">
               Blog
             </NavLink>
           </li>
 
           <li>
-            <NavLink onClick={closeMenu} href="/questions-frequentes">
+            <NavLink
+              onFocus={onFocus}
+              onClick={closeMenu}
+              href="/questions-frequentes">
               FAQ
             </NavLink>
           </li>
 
           <li>
-            <NavLink onClick={closeMenu} href="/diffuser">
+            <NavLink onFocus={onFocus} onClick={closeMenu} href="/diffuser">
               Diffuser Nos Gestes Climat
             </NavLink>
           </li>
