@@ -36,6 +36,14 @@ export default function Footer() {
             </InlineLink>
 
             <InlineLink
+              href="/documentation"
+              className="no-underline hover:underline">
+              <strong>
+                <Trans>Documentation</Trans>
+              </strong>
+            </InlineLink>
+
+            <InlineLink
               href="/ambassadeurs"
               className="no-underline hover:underline">
               <strong>
