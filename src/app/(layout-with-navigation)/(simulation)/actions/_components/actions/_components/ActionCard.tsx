@@ -4,8 +4,12 @@ import {
   getMatomoEventActionRejected,
 } from '@/constants/matomo'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
+import {
+  getBackgroundColor,
+  getBorderColor,
+} from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm, useRule, useTempEngine, useUser } from '@/publicodes-state'
+import { useRule, useTempEngine, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Image from 'next/image'
@@ -30,8 +34,6 @@ export default function ActionCard({
   const { t } = useClientTranslation()
 
   const { rules } = useTempEngine()
-
-  const { categories } = useForm()
 
   const { getCurrentSimulation, toggleActionChoice, rejectAction } = useUser()
 
@@ -60,16 +62,7 @@ export default function ActionCard({
     }
   )
 
-  const foundCategory = categories?.find(
-    (cat: string) => cat === dottedName?.split(' . ')?.[0]
-  )
-
-  const categoryRuleObject = useRule(foundCategory || 'bilan')
-
-  const categoryColor =
-    categoryRuleObject?.color ||
-    rules[dottedName.split(' . ')[0]]?.couleur ||
-    'var(--color)'
+  const { category } = useRule(dottedName)
 
   const currentSimulation = getCurrentSimulation()
 
@@ -93,14 +86,15 @@ export default function ActionCard({
       id={dottedName}
       className={`relative flex h-[16rem] w-full flex-col items-center overflow-auto rounded-lg border-4 border-solid ${
         !hasFormula ? 'h-[13rem]' : ''
-      }`}
-      style={{
-        borderColor: isSelected ? 'rgb(45, 164, 78)' : categoryColor,
-        backgroundColor: isSelected ? 'rgba(45, 164, 78, 0.23)' : '',
-      }}>
+      } ${
+        isSelected
+          ? 'border-green-500 bg-green-500/[0.23]'
+          : getBorderColor(category)
+      }`}>
       <div
-        style={{ backgroundColor: categoryColor }}
-        className="flex h-[6rem] w-full items-center">
+        className={`flex h-[6rem] w-full items-center ${getBackgroundColor(
+          category
+        )}`}>
         <Link
           className="z-10 w-full no-underline"
           href={'/actions/' + encodeRuleName(dottedName)}>
@@ -136,7 +130,7 @@ export default function ActionCard({
 
           {hasRemainingQuestions && (
             <button
-              className="text-primary-500 cursor-pointer"
+              className="cursor-pointer text-primary-500"
               onClick={() => setFocusedAction(dottedName)}>
               {remainingQuestionsText}
             </button>

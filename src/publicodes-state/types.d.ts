@@ -106,10 +106,12 @@ type NGCRule = {
   icônes?: string
   sévérité?: 'avertissement' | 'information' | 'invalide'
   dottedName?: string
+  question?: string
   plus?: boolean
   formule?: Formule
   aide?: string
   inactif?: string
+  résumé?: string
 }
 
 export type NGCRules = Record<string, NGCRule>

@@ -53,6 +53,7 @@ export default function NavLink({
       {isActive && (
         <span className="absolute bottom-0 left-0 lg:h-[5px] lg:w-full lg:bg-primary-500"></span>
       )}
+
       {icon && (
         <Icon
           className={twMerge(
@@ -61,6 +62,7 @@ export default function NavLink({
           )}
         />
       )}
+
       {children}
     </Tag>
   )
