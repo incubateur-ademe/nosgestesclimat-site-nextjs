@@ -2,7 +2,7 @@
 
 import Providers from '@/components/providers/Providers'
 import { useUser } from '@/publicodes-state'
-import { useContext, useEffect } from 'react'
+import { JSX, useContext, useEffect } from 'react'
 import { IsDocumentationClientContext } from '../../_contexts/DocumentationStateContext'
 import DocumentationClient from './documentationRouter/DocumentationClient'
 
