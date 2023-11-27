@@ -5,9 +5,9 @@ import { NGC_MODEL_API_URL } from '@/constants/urls'
 import { SuppportedRegions } from '@/types/international'
 
 export const getSupportedRegions = async (): Promise<SuppportedRegions> => {
-  return fetch(`${NGC_MODEL_API_URL}/${DEFAULT_MODEL_VERSION}`).then(
-    (response) => {
+  return fetch(`${NGC_MODEL_API_URL}/${DEFAULT_MODEL_VERSION}`)
+    .then((response) => {
       return response.json()
-    }
-  )
+    })
+    .then((response) => response.regions)
 }

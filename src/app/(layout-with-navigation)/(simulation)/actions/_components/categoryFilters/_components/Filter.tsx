@@ -1,4 +1,5 @@
 'use client'
+import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
 import { useRouter, useSearchParams } from 'next/navigation'
 
@@ -8,7 +9,7 @@ type Props = {
 }
 
 export default function Filter({ dottedName, countByCategory }: Props) {
-  const rule = useRule(dottedName)
+  const { title } = useRule(dottedName)
 
   const router = useRouter()
 
@@ -16,16 +17,6 @@ export default function Filter({ dottedName, countByCategory }: Props) {
   const categorySelected = useSearchParams().get('catégorie') || ''
 
   const isSelected = categorySelected === dottedName
-
-  const getBackgroundColor = () => {
-    switch (true) {
-      case categorySelected && !isSelected:
-        return '#aaa'
-      case categorySelected === dottedName:
-      default:
-        return rule.color
-    }
-  }
 
   const buildURL = () => {
     const siteURL = `${window.location.origin}${window.location.pathname}`
@@ -43,7 +34,11 @@ export default function Filter({ dottedName, countByCategory }: Props) {
 
   return (
     <li
-      className="height-[1.8rem] rounded-md"
+      className={`height-[1.8rem] rounded-md ${
+        !categorySelected || categorySelected === dottedName
+          ? getBackgroundColor(dottedName)
+          : 'bg-gray-200'
+      }`}
       style={{
         backgroundColor: getBackgroundColor(),
       }}>
@@ -54,8 +49,8 @@ export default function Filter({ dottedName, countByCategory }: Props) {
             scroll: false,
           })
         }}>
-        {rule.title}{' '}
-        <span className="text-primary-700 ml-2 inline-block w-4 rounded-full bg-white">
+        {title}{' '}
+        <span className="ml-2 inline-block w-4 rounded-full bg-white text-primary-700">
           {countByCategory[dottedName] || 0}
         </span>
       </button>
