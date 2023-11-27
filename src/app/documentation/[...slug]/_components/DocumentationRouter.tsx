@@ -28,6 +28,7 @@ export default function DocumentationRouter({
 
   const currentSimulation = getCurrentSimulation()
 
+  // Switch to client side documentation if the simulation has been started
   useEffect(() => {
     if (!currentSimulation?.foldedSteps) return
 
