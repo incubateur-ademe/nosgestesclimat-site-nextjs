@@ -3,6 +3,7 @@ import NumberValue from '@/components/misc/NumberValue'
 import Trans from '@/components/translation/Trans'
 import { getMatomoEventClickQuestionsListLink } from '@/constants/matomo'
 import foldEveryQuestionsUntil from '@/helpers/foldEveryQuestionsUntil'
+import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useDebug } from '@/hooks/useDebug'
 import { useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -26,7 +27,7 @@ export default function Question({ question, toggleQuestionList }: Props) {
     displayValue,
     unit,
     type,
-    color,
+    category,
     addFoldedStep,
   } = useRule(question)
 
@@ -56,8 +57,9 @@ export default function Question({ question, toggleQuestionList }: Props) {
         toggleQuestionList()
       }}>
       <div
-        className="absolute bottom-0 left-0 top-0 w-2"
-        style={{ backgroundColor: color }}
+        className={`absolute bottom-0 left-0 top-0 w-2 ${getBackgroundColor(
+          category
+        )}`}
       />
       <div className="text-sm md:w-2/3 md:text-base">
         {isDebug ? (

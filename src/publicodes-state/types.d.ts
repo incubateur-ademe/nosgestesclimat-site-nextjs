@@ -96,7 +96,7 @@ type MosaicInfos = {
 
 type Formule = any
 
-type NGCRule = {
+type NGCRule = Rule & {
   abréviation?: string
   couleur?: Color
   mosaique?: MosaiqueNode
@@ -111,6 +111,7 @@ type NGCRule = {
   formule?: Formule
   aide?: string
   inactif?: string
+  résumé?: string
 }
 
 export type NGCRules = Record<string, NGCRule>
