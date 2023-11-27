@@ -16,7 +16,7 @@ export function useTrackSplitTesting() {
         Number(splitTestingPercentage) <
         Number(process.env.NEXT_PUBLIC_SPLIT_TESTING_PERCENTAGE ?? 0.5)
           ? process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH
-          : 'main',
+          : 'original',
       ])
     }
   }, [])
