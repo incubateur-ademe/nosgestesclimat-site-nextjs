@@ -6,16 +6,14 @@ import { useDataServer } from './useDataServer'
 import { useLocale } from './useLocale'
 
 type Props = {
-  lang?: string
-  region?: string
+  lang: string
+  region: string
   isOptim?: boolean
 }
 
 export function useRules({ lang, region, isOptim = true }: Props) {
   const dataServer = useDataServer()
-
   const locale = useLocale()
-
   const { user } = useUser()
 
   const regionCode =
