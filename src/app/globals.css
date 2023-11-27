@@ -403,7 +403,7 @@ blockquote {
   @apply text-4xl;
   @apply mb-6;
   @apply font-bold;
-  @apply leading-5;
+  @apply leading-10;
 }
 
 .markdown h1,
@@ -425,5 +425,7 @@ blockquote {
 }
 
 .markdown img {
-  @apply py-8;
+  @apply border;
+  @apply border-gray-200;
+  @apply rounded-md;
 }
