@@ -7,7 +7,7 @@ import Trans from '../translation/Trans'
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center gap-4 bg-primary-100 p-4 pb-32 sm:p-8 md:mb-0 md:pb-24">
+    <footer className="flex flex-col items-center gap-4 bg-grey-100 p-4 pb-32 sm:p-8 md:mb-0 md:pb-24">
       <div className="flex w-full items-start gap-12 md:max-w-5xl">
         <Logo className="hidden scale-75 lg:block" />
 
@@ -15,7 +15,7 @@ export default function Footer() {
           <div className="flex flex-col flex-wrap justify-start gap-6 pt-4 sm:flex-row md:items-center">
             <InlineLink
               href="/nouveautes"
-              className="no-underline hover:underline">
+              className="text-default no-underline hover:underline">
               <strong>
                 <Trans>Nouveautés</Trans>
               </strong>
@@ -23,13 +23,15 @@ export default function Footer() {
 
             <InlineLink
               href="/a-propos"
-              className="no-underline  hover:underline">
+              className="text-default no-underline hover:underline">
               <strong>
                 <Trans>Qui sommes-nous ?</Trans>
               </strong>
             </InlineLink>
 
-            <InlineLink href="/blog" className="no-underline hover:underline">
+            <InlineLink
+              href="/blog"
+              className="text-default no-underline hover:underline">
               <strong>
                 <Trans>Blog</Trans>
               </strong>
@@ -37,7 +39,7 @@ export default function Footer() {
 
             <InlineLink
               href="/documentation"
-              className="no-underline hover:underline">
+              className="text-default no-underline hover:underline">
               <strong>
                 <Trans>Documentation</Trans>
               </strong>
@@ -45,7 +47,7 @@ export default function Footer() {
 
             <InlineLink
               href="/ambassadeurs"
-              className="no-underline hover:underline">
+              className="text-default no-underline hover:underline">
               <strong>
                 <Trans>Nos ambassadeurs</Trans>
               </strong>
@@ -53,26 +55,26 @@ export default function Footer() {
 
             <InlineLink
               href="/plan-du-site"
-              className="font-bold no-underline hover:underline">
+              className="font-bold text-default no-underline hover:underline">
               <Trans>Plan du site</Trans>
             </InlineLink>
           </div>
 
-          <div className="mt-4 flex w-full flex-wrap items-baseline gap-4">
-            <p className="mb-1 text-sm text-primary-700">
+          <div className="mt-4 flex w-full flex-wrap items-baseline gap-4 text-default">
+            <p className="mb-1 text-sm">
               <Trans>Diffuser le test :</Trans>
             </p>
             <div className="flex flex-wrap gap-6">
               <InlineLink
                 href="/diffuser"
-                className="font-bold no-underline hover:underline">
+                className="font-bold text-default no-underline hover:underline">
                 <Emoji className="mr-2">🏢</Emoji>
                 <Trans>Dans votre organisation</Trans>
               </InlineLink>
 
               <InlineLink
                 href="/international"
-                className="font-bold no-underline hover:underline">
+                className="font-bold text-default no-underline hover:underline">
                 <Emoji className="mr-2">🌍</Emoji>
                 <Trans>À l'international</Trans>
               </InlineLink>
@@ -88,7 +90,7 @@ export default function Footer() {
           <div className="mt-4 flex w-full flex-wrap gap-6 text-xs">
             <InlineLink
               href="/accessibilite"
-              className="no-underline hover:underline">
+              className="text-default no-underline hover:underline">
               <Trans>Accessibilité : partiellement conforme</Trans>
             </InlineLink>
           </div>
