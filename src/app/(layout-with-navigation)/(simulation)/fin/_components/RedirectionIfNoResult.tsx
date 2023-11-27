@@ -3,6 +3,7 @@
 import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useEngine, useForm } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function RedirectionIfNoResult({
   details,
@@ -16,11 +17,10 @@ export default function RedirectionIfNoResult({
 
   const detailsParamString = formatResultToDetailParam({ categories, getValue })
 
-  // The URL includes matching results, we assume the user has done the test
-  if (detailsParamString.includes(details) || progression === 1) {
-    return null
-  }
-
-  // Show the tutorial if the user has not done the test
-  router.push(progression > 0 ? '/simulateur/bilan' : '/tutoriel')
+  useEffect(() => {
+    // The URL includes matching results, we assume the user has done the test
+    if (!detailsParamString.includes(details) && progression !== 1) {
+      router.push(progression > 0 ? '/simulateur/bilan' : '/tutoriel')
+    }
+  }, [details, progression, router, detailsParamString])
 }
