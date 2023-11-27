@@ -12,6 +12,15 @@ const KEYS_TO_OMIT = [
   'description',
   'résumé',
   'exposé',
+  'unité',
+  'question',
+  'note',
+  'références',
+  // specific to NGC actions
+  'effort',
+  'inactive',
+  // specific to NGC form generation, could be cool to visualize, but in a <details> tag, since it's big
+  'mosaique',
 ]
 
 const getRuleFormatted = (rule: Rule) => {

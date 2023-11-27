@@ -9,7 +9,7 @@ import { SuppportedRegions } from '@/types/international'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
 import { redirect } from 'next/navigation'
-import { JSX } from 'react'
+import ButtonLaunch from './documentationServer/ButtonLaunch'
 import CalculDetail from './documentationServer/CalculDetail'
 import PagesProches from './documentationServer/PagesProches'
 import QuestionSection from './documentationServer/QuestionSection'
@@ -17,12 +17,10 @@ import QuestionSection from './documentationServer/QuestionSection'
 type Props = {
   supportedRegions: SuppportedRegions
   slugs: string[]
-  ctaButtonElement: JSX.Element
   locale?: string
 }
 export default async function DocumentationServer({
   slugs,
-  ctaButtonElement,
   // This is a hack, we should be able to use currentLocale() from the i18n package
   // but it breaks the app when used in the server side
   locale,
@@ -81,7 +79,8 @@ export default async function DocumentationServer({
           </Trans>
         </p>
       </Card>
-      {ctaButtonElement}
+
+      <ButtonLaunch />
 
       <PagesProches rules={rules} ruleName={ruleName} />
     </div>

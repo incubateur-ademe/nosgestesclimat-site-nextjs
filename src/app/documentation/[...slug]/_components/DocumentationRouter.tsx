@@ -1,28 +1,25 @@
 'use client'
 
-import Button from '@/design-system/inputs/Button'
-import { useLocale } from '@/hooks/useLocale'
+import Providers from '@/components/providers/Providers'
 import { useUser } from '@/publicodes-state'
-import { JSX, useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { IsDocumentationClientContext } from '../../_contexts/DocumentationStateContext'
-import DocumentationServer from './documentationRouter/DocumentationServer'
+import DocumentationClient from './documentationRouter/DocumentationClient'
 
 type Props = {
   supportedRegions: any
   slug: string[]
-  clientDocumentation: JSX.Element
+  serverComponent: JSX.Element
 }
 
 export default function DocumentationRouter({
   supportedRegions,
   slug,
-  clientDocumentation,
+  serverComponent,
 }: Props) {
   const { isDocumentationClient, setIsDocumentationClient } = useContext(
     IsDocumentationClientContext
   )
-
-  const locale = useLocale()
 
   const { getCurrentSimulation } = useUser()
 
@@ -37,20 +34,12 @@ export default function DocumentationRouter({
     }
   }, [currentSimulation, setIsDocumentationClient])
 
-  if (isDocumentationClient) return clientDocumentation
+  if (isDocumentationClient)
+    return (
+      <Providers supportedRegions={supportedRegions} isOptim={false}>
+        <DocumentationClient supportedRegions={supportedRegions} slugs={slug} />
+      </Providers>
+    )
 
-  return (
-    <>
-      <DocumentationServer
-        supportedRegions={supportedRegions}
-        slugs={slug}
-        locale={locale}
-        ctaButtonElement={
-          <Button onClick={() => setIsDocumentationClient(true)}>
-            Lancer le calcul
-          </Button>
-        }
-      />
-    </>
-  )
+  return serverComponent
 }

@@ -113,7 +113,6 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
             className="ml-auto block"
             data-cypress-id="understood-localisation-button"
             onClick={() => {
-              console.log('prout')
               hideTutorial('localisationBanner')
 
               trackEvent(getMatomoEventChangeRegion(code))
