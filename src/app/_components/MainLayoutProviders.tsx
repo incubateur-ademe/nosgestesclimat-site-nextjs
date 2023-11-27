@@ -1,6 +1,7 @@
 'use client'
 
 import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
+import { useTrackSplitTesting } from '@/hooks/useTrackSplitTesting'
 import { UserProvider } from '@/publicodes-state'
 import { PropsWithChildren } from 'react'
 import CheckFixedRegion from './mainLayoutProviders/CheckFixedRegion'
@@ -14,6 +15,9 @@ export default function MainLayoutProviders({
   children,
   region,
 }: PropsWithChildren<{ region: { code: string; name: string } }>) {
+  // Handles sending split testing data to Matomo
+  useTrackSplitTesting()
+
   return (
     <QueryParamsProvider>
       <IframeOptionsProvider>

@@ -8,8 +8,6 @@ describe(
   'The Group creation page /amis/creer',
   { testIsolation: false },
   () => {
-    let groupURL = ''
-
     it('allows to create a new group and displays it afterwards', () => {
       cy.visit('/amis')
 
@@ -22,13 +20,9 @@ describe(
       )
       cy.get('[data-cypress-id="button-create-group"]').click()
 
-      cy.wait(2000)
-
       // Fill simulation
       clickSkipTutorialButton()
       recursivelyFillSimulation(null, 'group')
-
-      cy.wait(2000)
 
       cy.get('[data-cypress-id="group-name"]')
 
@@ -59,17 +53,11 @@ describe(
       cy.clearLocalStorage()
       cy.reload()
 
-      cy.wait(2000)
-
       cy.get('[data-cypress-id="member-name"]').type('Jean-Claude')
       cy.get('[data-cypress-id="button-join-group"]').click()
 
-      cy.wait(2000)
-
       clickSkipTutorialButton()
       recursivelyFillSimulation(null, 'group')
-
-      cy.wait(2000)
 
       cy.get('[data-cypress-id="group-name"]')
 

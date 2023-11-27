@@ -7,7 +7,7 @@ import JourneysInput from './voiture/JourneysInput'
 type Props = {
   question: string
 }
-export default function Voture({ question }: Props) {
+export default function Voiture({ question }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>

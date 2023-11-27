@@ -1,6 +1,4 @@
-import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import DocumentationContent from '../_components/DocumentationContent'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -11,18 +9,8 @@ export async function generateMetadata() {
   })
 }
 
-type Props = {
-  params: {
-    slug: string[]
-  }
-}
-export default async function DocumentationPage({ params }: Props) {
-  const supportedRegions = await getSupportedRegions()
-
-  return (
-    <DocumentationContent
-      supportedRegions={supportedRegions}
-      slugs={params.slug}
-    />
-  )
+// The page content is in layout.tsx in order to persist the state
+// between the server and the client
+export default async function DocumentationPage() {
+  return null
 }
