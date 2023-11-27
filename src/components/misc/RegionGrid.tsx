@@ -35,7 +35,7 @@ export default function RegionGrid({
       className={`region-grid mx-auto mt-4 grid max-w-[760px] gap-4 p-0 ${className}`}
       {...props}>
       {Object.entries(sortedSupportedRegions).map(([code, params]) => {
-        return (
+        return typeof params !== 'string' ? (
           <li className="my-2 flex list-none justify-center" key={code}>
             <CountryListItem
               code={code}
@@ -45,7 +45,7 @@ export default function RegionGrid({
               updateCurrentRegion={updateCurrentRegion}
             />
           </li>
-        )
+        ) : null
       })}
     </ul>
   )

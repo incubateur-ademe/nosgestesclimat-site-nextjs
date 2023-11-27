@@ -16,7 +16,7 @@ export default function Header() {
       <HeaderMobile shouldHideMostOfContent={shouldHideMostOfContent} />
 
       {/* Displayed only on desktop */}
-      <HeaderDesktop shouldHideMostOfContent={shouldHideMostOfContent} />
+      <HeaderDesktop />
     </>
   )
 }
