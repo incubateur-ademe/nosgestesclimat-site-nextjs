@@ -33,7 +33,7 @@ export default function visitDuration(props) {
           <XAxis dataKey="label" />
           <YAxis />
           <Tooltip content={<CustomTooltip label={duration} />} />
-          <Bar dataKey="nb_visits" fill="#5758BB" />
+          <Bar dataKey="nb_visits" fill="#491273" />
         </BarChart>
       </ResponsiveContainer>
     </div>

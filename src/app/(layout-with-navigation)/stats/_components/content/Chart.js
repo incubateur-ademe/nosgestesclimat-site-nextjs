@@ -93,7 +93,7 @@ export default function Chart(props) {
               type="monotone"
               dataKey={'Visiteurs'}
               stroke={props.color ?? '#32337B'}
-              fill={props.color ?? '#5758BB'}
+              fill={props.color ?? '#491273'}
               fillOpacity={1}
             />
           </AreaChart>
