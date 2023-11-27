@@ -15,10 +15,7 @@ export default function useCategories({
   order,
 }: Props) {
   const categories = useMemo<string[]>(
-    () =>
-      safeGetRule(root)?.rawNode?.formule?.somme.sort((a: string, b: string) =>
-        !order ? 0 : order.indexOf(a) > order.indexOf(b) ? 1 : -1
-      ),
+    () => order || safeGetRule(root)?.rawNode?.formule?.somme,
     [root, order, safeGetRule]
   )
 
