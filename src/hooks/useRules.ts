@@ -1,7 +1,12 @@
 import { fetchModel } from '@/helpers/data/fetchModel'
 import importLocalRules from '@/helpers/importLocalRules'
 import { useUser } from '@/publicodes-state'
-import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { NGCRules } from '@/publicodes-state/types'
+import {
+  UseQueryResult,
+  keepPreviousData,
+  useQuery,
+} from '@tanstack/react-query'
 import { useDataServer } from './useDataServer'
 import { useLocale } from './useLocale'
 
@@ -11,7 +16,11 @@ type Props = {
   isOptim?: boolean
 }
 
-export function useRules({ lang, region, isOptim = true }: Props) {
+export function useRules({
+  lang,
+  region,
+  isOptim = true,
+}: Props): UseQueryResult<NGCRules, Error> {
   const dataServer = useDataServer()
   const locale = useLocale()
   const { user } = useUser()
@@ -20,6 +29,12 @@ export function useRules({ lang, region, isOptim = true }: Props) {
     user?.region?.code != undefined && user?.region?.code !== ''
       ? user?.region?.code
       : region
+
+  console.log(
+    `⚙️ requesting ${
+      isOptim ? 'optimized' : ''
+    } rules for ${regionCode} ${locale}`
+  )
 
   return useQuery({
     queryKey: ['rules', dataServer, lang, region, isOptim],

@@ -18,7 +18,7 @@ export default function AccordionItem({
   dottedName,
   title,
   content,
-  isReadOnly,
+  isReadOnly = false,
 }: AccordionItemType) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -34,7 +34,7 @@ export default function AccordionItem({
         aria-disabled={isReadOnly}>
         <div className="flex flex-1 items-center gap-4">{title}</div>
 
-        <div className="text-primary-700 flex items-center gap-4">
+        <div className="flex items-center gap-4 text-primary-700">
           <span>
             <strong>
               {formatValue(numericValue / 1000, { precision: 1 })}

@@ -96,7 +96,7 @@ type MosaicInfos = {
 
 type Formule = any
 
-type NGCRule = {
+type NGCRule = Rule & {
   abréviation?: string
   couleur?: Color
   mosaique?: MosaiqueNode
