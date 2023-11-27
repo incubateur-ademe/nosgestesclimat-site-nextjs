@@ -49,6 +49,15 @@ export default function FoldableMenu() {
           </li>
 
           <li>
+            <NavLink
+              onFocus={onFocus}
+              onClick={closeMenu}
+              href="/documentation">
+              Documentation
+            </NavLink>
+          </li>
+
+          <li>
             <NavLink onFocus={onFocus} onClick={closeMenu} href="/diffuser">
               Diffuser Nos Gestes Climat
             </NavLink>
