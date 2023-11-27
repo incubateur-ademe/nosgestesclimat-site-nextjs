@@ -22,24 +22,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           max_timeout: 300
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Cypress install
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false
-          build: yarn run e2e:generate:personas
-
-      - name: Save personas test
-        uses: actions/upload-artifact@v3
-        with:
-          name: personas
-          if-no-files-found: error
-          path: cypress/e2e/integration/test-completion
 
   cypress-run:
     runs-on: ubuntu-latest
@@ -79,11 +61,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3.5.2
 
-      - name: Download the personas tests
-        uses: actions/download-artifact@v3
-        with:
-          name: personas
-
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v7
@@ -103,6 +80,7 @@ jobs:
       - name: Test - e2e [${{ env.MODE }}]
         uses: cypress-io/github-action@v5.6.1
         with:
+          build: yarn run e2e:generate:personas
           browser: chrome
           parallel: true
           record: true
