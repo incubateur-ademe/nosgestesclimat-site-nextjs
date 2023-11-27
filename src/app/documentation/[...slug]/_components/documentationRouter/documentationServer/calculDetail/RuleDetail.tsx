@@ -10,6 +10,17 @@ const KEYS_TO_OMIT = [
   'abréviation',
   'icônes',
   'description',
+  'résumé',
+  'exposé',
+  'unité',
+  'question',
+  'note',
+  'références',
+  // specific to NGC actions
+  'effort',
+  'inactive',
+  // specific to NGC form generation, could be cool to visualize, but in a <details> tag, since it's big
+  'mosaique',
 ]
 
 const getRuleFormatted = (rule: Rule) => {
@@ -68,25 +79,31 @@ export default function RuleDetail({
   if (isArray) {
     return (
       <ul className="list-disc pl-8">
-        {Object.entries(ruleFormatted).map(([key, value]) => (
-          <li key={key}>
-            <RuleDetail ruleData={value} context={context} />
-          </li>
-        ))}
+        {Object.entries(ruleFormatted).map(([key, value]) => {
+          return (
+            <li key={key}>
+              <RuleDetail ruleData={value} context={context} />
+            </li>
+          )
+        })}
       </ul>
     )
   }
 
   return (
     <ul className="mb-0 list-none">
-      {Object.entries(ruleFormatted).map(([key, value]) =>
-        typeof value === 'string' || typeof value === 'number' ? (
-          <li key={key} className="list-disc">
-            <span className="ml-4">
-              <RuleDetail ruleData={value} context={context} />
-            </span>
-          </li>
-        ) : (
+      {Object.entries(ruleFormatted).map(([key, value]) => {
+        if (typeof value === 'string' || typeof value === 'number') {
+          return (
+            <li key={key} className="list-disc">
+              <span className="ml-4">
+                <RuleDetail ruleData={value} context={context} />
+              </span>
+            </li>
+          )
+        }
+
+        return (
           <li key={key}>
             <div>{capitalizeString(key)}:</div>
             <div className="ml-4">
@@ -94,7 +111,7 @@ export default function RuleDetail({
             </div>
           </li>
         )
-      )}
+      })}
     </ul>
   )
 }

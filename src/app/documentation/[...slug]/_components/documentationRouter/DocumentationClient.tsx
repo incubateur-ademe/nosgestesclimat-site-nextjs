@@ -3,7 +3,6 @@
 import Link from '@/components/Link'
 import BilanChart from '@/components/charts/BilanChart'
 import ServicesChart from '@/components/charts/ServicesChart'
-import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine } from '@/publicodes-state'
@@ -17,10 +16,7 @@ type Props = {
   supportedRegions: SuppportedRegions
   slugs: string[]
 }
-export default function DocumentationClient({
-  supportedRegions,
-  slugs,
-}: Props) {
+export default function DocumentationClient({ slugs }: Props) {
   const { i18n } = useClientTranslation()
 
   const path = decodeURI(slugs.join('/'))
@@ -30,8 +26,7 @@ export default function DocumentationClient({
   const documentationPath = '/documentation'
 
   return (
-    <div className="py-4">
-      <LocalisationBanner supportedRegions={supportedRegions} />
+    <div className="p-8">
       <RulePage
         language={i18n.language as 'fr' | 'en'}
         rulePath={(path as string) ?? ''}

@@ -49,9 +49,10 @@ export default function RavijenChart({
           </li>
         ))}
       </ul>
-      <div className="px-4">
+      <div className="md:px-4">
         <Button
           size="sm"
+          color="secondary"
           onClick={() => {
             trackEvent(matomoDownloadRavijenChart)
 

@@ -13,7 +13,7 @@ export default function Emoji({
     <span
       aria-hidden
       alt=""
-      className={twMerge('inline', className)}
+      className={twMerge('inline-block', className)}
       {...props}>
       {emoji(children, {
         baseUrl: 'https://twemoji.maxcdn.com/2/svg',
