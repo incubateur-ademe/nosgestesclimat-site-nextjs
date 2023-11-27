@@ -16,7 +16,7 @@ async function importLocalRules({
       }.json`
     )) as NGCRules
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 }
 

@@ -13,23 +13,26 @@ on:
 
 jobs:
   sleep:
-    name: Wait 3 min for the Vercel preview to be deployed
+    name: Wait for the vercel build to complete
     runs-on: ubuntu-latest
     steps:
-      - name: Sleep for 90s
-        run: sleep 90s
-        shell: bash
+      - name: Waiting for Vercel Preview
+        uses: patrickedqvist/wait-for-vercel-preview@v1.3.1
+        id: waitForVercel
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          max_timeout: 300
 
-  e2e:
+  cypress-run:
     runs-on: ubuntu-latest
-    needs: sleep
+    needs: [sleep]
     container:
       image: cypress/browsers:latest
       options: --user 1001
     strategy:
       fail-fast: false
       matrix:
-        containers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+        containers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
     name: Testing e2e in worker ${{ matrix.containers }}
     if: github.event.pull_request.draft == false
     steps:
@@ -52,29 +55,15 @@ jobs:
           echo "CYPRESS_baseUrl=https://nosgestesclimat.vercel.app" >> "$GITHUB_ENV"
           echo "MODE=production" >> "$GITHUB_ENV"
 
-      - name: Test - e2e - pages [${{ env.MODE }}]
+      - name: Test - e2e [${{ env.MODE }}]
         uses: cypress-io/github-action@v5.6.1
         with:
-          install: true
-          browser: chrome
-          parallel: true
-          record: true
-          group: 'Test - e2e'
-          spec: cypress/e2e/integration/pages/**/*.cy.js
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
-
-      - name: Test - e2e - personas [${{ env.MODE }}]
-        # if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/preprod'
-        uses: cypress-io/github-action@v5.6.1
-        with:
-          install: true
           build: yarn run e2e:generate:personas
           browser: chrome
           parallel: true
           record: true
-          spec: cypress/e2e/integration/test-completion/**/*.cy.js
+          group: 'Test - e2e'
+          spec: cypress/e2e/integration/**/*.cy.js
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}

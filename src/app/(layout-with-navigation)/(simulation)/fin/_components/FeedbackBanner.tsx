@@ -22,7 +22,7 @@ type Props = {
 
 export default function FeedbackBanner({ text, type, className }: Props) {
   const { t } = useClientTranslation()
-  const { user, updateNorthStarRatings } = useUser()
+  const { user, updateNorthStarRatings, currentSimulationId } = useUser()
   const { getNumericValue } = useEngine()
   const { categories, progression } = useForm()
   const hasJustAnswered = useRef(false)
@@ -36,11 +36,16 @@ export default function FeedbackBanner({ text, type, className }: Props) {
     mutationFn: () =>
       axios
         .post(SIMULATION_URL, {
-          results: progression > 0 && {
-            categories: categories.map((category) => getNumericValue(category)),
-            total: getNumericValue('bilan'),
+          data: {
+            results: progression > 0 && {
+              categories: categories.map((category) =>
+                getNumericValue(category)
+              ),
+              total: getNumericValue('bilan'),
+            },
+            ratings: user.northStarRatings,
           },
-          ratings: user.northStarRatings,
+          id: currentSimulationId,
         })
         .then((response) => response.data)
         .catch((error) => captureException(error)),
