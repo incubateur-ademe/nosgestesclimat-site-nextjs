@@ -1,7 +1,7 @@
 'use client'
 
 import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
-import { useEngine, useForm } from '@/publicodes-state'
+import { useEngine, useForm, useSimulation } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
@@ -10,7 +10,8 @@ export default function RedirectionIfNoResult({
 }: {
   details: string
 }) {
-  const { categories, progression } = useForm()
+  const { categories } = useSimulation()
+  const { progression } = useForm()
   const { getValue } = useEngine()
 
   const router = useRouter()
@@ -22,5 +23,7 @@ export default function RedirectionIfNoResult({
     if (!detailsParamString.includes(details) && progression !== 1) {
       router.push(progression > 0 ? '/simulateur/bilan' : '/tutoriel')
     }
-  }, [details, progression, router, detailsParamString])
+  }, [categories, details, progression, router, detailsParamString])
+
+  return null
 }
