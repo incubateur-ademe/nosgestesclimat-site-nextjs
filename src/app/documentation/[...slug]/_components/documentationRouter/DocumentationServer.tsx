@@ -1,4 +1,3 @@
-import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import Trans from '@/components/translation/Trans'
 import { NGC_MODEL_API_URL } from '@/constants/urls'
 import Card from '@/design-system/layout/Card'
@@ -9,9 +8,8 @@ import { Rules } from '@/publicodes-state/types'
 import { SuppportedRegions } from '@/types/international'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
-import { currentLocale } from 'next-i18n-router'
 import { redirect } from 'next/navigation'
-import { JSX } from 'react'
+import ButtonLaunch from './documentationServer/ButtonLaunch'
 import CalculDetail from './documentationServer/CalculDetail'
 import PagesProches from './documentationServer/PagesProches'
 import QuestionSection from './documentationServer/QuestionSection'
@@ -19,20 +17,18 @@ import QuestionSection from './documentationServer/QuestionSection'
 type Props = {
   supportedRegions: SuppportedRegions
   slugs: string[]
-  ctaButtonElement: JSX.Element
+  locale?: string
 }
 export default async function DocumentationServer({
-  supportedRegions,
   slugs,
-  ctaButtonElement,
+  // This is a hack, we should be able to use currentLocale() from the i18n package
+  // but it breaks the app when used in the server side
+  locale,
 }: Props) {
   const ruleName = decodeRuleNameFromPath(slugs.join('/'))
 
-  const locale = currentLocale()
-
   if (!ruleName) {
     redirect('/404')
-    return null
   }
 
   // We load the default rules to render the server side documentation
@@ -50,9 +46,7 @@ export default async function DocumentationServer({
   }
 
   return (
-    <div className="mt-4">
-      <LocalisationBanner supportedRegions={supportedRegions} />
-
+    <div className="mt-4 w-full max-w-4xl p-4 md:mx-auto md:py-8">
       <Title
         title={`${rule.icônes ?? ''} ${capitalizeString(
           rule?.titre ??
@@ -85,7 +79,8 @@ export default async function DocumentationServer({
           </Trans>
         </p>
       </Card>
-      {ctaButtonElement}
+
+      <ButtonLaunch />
 
       <PagesProches rules={rules} ruleName={ruleName} />
     </div>

@@ -1,4 +1,5 @@
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import DocumentationLanding from './_components/DocumentationLanding'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -9,8 +10,10 @@ export async function generateMetadata() {
   })
 }
 
-// The page content is in layout.tsx in order to persist the state
-// between the server and the client
-export default async function DocumentationPage() {
-  return null
+export default function Documentation() {
+  return (
+    <div className="w-full max-w-4xl p-4 md:mx-auto md:py-8">
+      <DocumentationLanding />
+    </div>
+  )
 }
