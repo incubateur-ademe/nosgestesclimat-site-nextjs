@@ -72,14 +72,13 @@ export default function useRule(dottedName: string) {
     description,
     icons,
     unit,
-    color,
     assistance,
     isInactive,
     suggestions,
+    excerpt,
   } = useContent({
     dottedName,
     rule,
-    safeGetRule,
   })
 
   const choices = useChoices({ rule, type })
@@ -137,13 +136,13 @@ export default function useRule(dottedName: string) {
      */
     unit,
     /**
-     * The color of the parent category ("rawNode.couleur" in Publicodes)
-     */
-    color,
-    /**
      * The question used to help answer  ("rawNode.aide" in Publicodes)
      */
     assistance,
+    /**
+     * Attribut use to briefly explain a rule
+     */
+    excerpt,
     /**
      * True if the rule is not yet active ("rawNode.inactif" in Publicodes)
      */

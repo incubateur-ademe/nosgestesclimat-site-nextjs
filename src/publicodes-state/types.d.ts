@@ -111,6 +111,7 @@ type NGCRule = {
   formule?: Formule
   aide?: string
   inactif?: string
+  résumé?: string
 }
 
 export type NGCRules = Record<string, NGCRule>

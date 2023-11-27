@@ -1,3 +1,4 @@
+import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
 
 type Props = {
@@ -5,12 +6,13 @@ type Props = {
 }
 
 export default function ColorIndicator({ question }: Props) {
-  const { color } = useRule(question)
+  const { category } = useRule(question)
 
   return (
     <div
-      className="absolute bottom-0 left-0 top-0 w-2"
-      style={{ backgroundColor: color }}
+      className={`absolute bottom-0 left-0 top-0 w-2 ${getBackgroundColor(
+        category
+      )}`}
     />
   )
 }

@@ -5,17 +5,10 @@ import Title from '@/design-system/layout/Title'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
-import Markdown from 'markdown-to-jsx'
-import { utils } from 'publicodes'
 
 import Link from '@/components/Link'
-import Card from '@/design-system/layout/Card'
-import Emoji from '@/design-system/utils/Emoji'
-import { NGCRules } from '@/publicodes-state/types'
-import editorialisedModels from '../_data/editorialisedModels.yaml'
+import DocumentationLandingCard from './DocumentationLandingCard'
 import SearchBar from './SearchBar'
-
-const EMOJIS = ['👤', '🏛️', '🍽️', '🌡️', '🚗', '🗑️']
 
 export default function DocumentationLanding() {
   const locale = useLocale()
@@ -24,26 +17,16 @@ export default function DocumentationLanding() {
     user: { region },
   } = useUser()
 
-  const { data } = useRules({
+  const { data: rules } = useRules({
     lang: locale,
     region: region?.code ?? 'FR',
   })
 
-  if (!data) return null
+  if (!rules) return null
 
-  const rules = data as NGCRules & {
-    [key: string]: { couleur: string; résumé: string }
-  }
-
-  const editos = (editorialisedModels as unknown as string[]).map(
-    (dottedName: string) => ({
-      ...rules[dottedName],
-      dottedName,
-    })
+  const editoDottedNames = Object.keys(rules).filter(
+    (dottedName) => rules[dottedName]['résumé']
   )
-
-  const getColor = (dottedName: string) =>
-    rules[dottedName.split(' . ')[0]].couleur
 
   return (
     <div>
@@ -71,23 +54,10 @@ export default function DocumentationLanding() {
       </h2>
 
       <ul className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3">
-        {editos.map(({ dottedName, résumé }, index) => {
+        {editoDottedNames.map((edito) => {
           return (
-            <li key={dottedName}>
-              <Card
-                tag={Link}
-                style={{ backgroundColor: getColor(dottedName) || '#5758BB' }}
-                href={'/documentation/' + utils.encodeRuleName(dottedName)}
-                className="relative !flex h-[12rem] flex-auto justify-center text-center text-base text-white no-underline">
-                <p className="-z-1 absolute bottom-0 left-0 right-0 top-0 text-center align-middle text-[8.5rem] opacity-20 grayscale">
-                  <Emoji className="inline-block">{EMOJIS[index]}</Emoji>
-                </p>
-                {résumé && (
-                  <h2 className="z-10 mb-0 text-base text-white">
-                    {<Markdown>{résumé}</Markdown>}
-                  </h2>
-                )}
-              </Card>
+            <li key={edito}>
+              <DocumentationLandingCard edito={edito} rule={rules[edito]} />
             </li>
           )
         })}
