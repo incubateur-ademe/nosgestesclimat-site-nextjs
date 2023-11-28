@@ -25,7 +25,7 @@ export default function Contributions() {
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             className="flex-1 flex-row items-center gap-4 py-8 md:flex-col">
-            <Emoji className="text-3xl">💾</Emoji>
+            <Emoji className="text-3xl">🔍</Emoji>
             <p className="mb-0">
               <Trans>
                 Le code source est ouvert, le site est{' '}
@@ -37,7 +37,7 @@ export default function Contributions() {
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             className="flex-1 flex-row items-center gap-4 py-8 md:flex-col">
-            <Emoji className="text-3xl">🔎</Emoji>
+            <Emoji className="text-3xl">👀</Emoji>
             <p className="mb-0">
               <Trans>
                 L'intégralité du calcul est{' '}
