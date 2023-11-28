@@ -26,8 +26,8 @@ export default function ChoiceInput({
         <label
           className={`flex cursor-pointer items-center gap-2 rounded border border-gray-300 px-4 py-2 text-right md:text-xl ${
             active
-              ? 'border-primary-500 bg-primary-200 text-primary-500 border-2'
-              : 'text-default hover:bg-primary-100 bg-white'
+              ? 'border-2 border-primary-500 bg-primary-200 text-primary-500'
+              : 'bg-white text-default hover:bg-primary-100'
           } transition-colors`}
           data-cypress-id={`${props['data-cypress-id']}-label`}>
           <input
@@ -53,9 +53,9 @@ export default function ChoiceInput({
         ) : null}
       </div>
       {description && isOpen ? (
-        <Markdown className="mb-4 w-1/2 rounded-md bg-grey-100 p-2 text-sm">
-          {description}
-        </Markdown>
+        <div className="mb-4 w-1/2 rounded-md bg-white p-2 text-sm">
+          <Markdown className="mb-0">{description}</Markdown>
+        </div>
       ) : null}
     </>
   )
