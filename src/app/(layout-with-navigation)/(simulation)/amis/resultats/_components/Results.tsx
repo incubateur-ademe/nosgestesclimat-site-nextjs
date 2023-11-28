@@ -4,6 +4,7 @@ import Trans from '@/components/translation/Trans'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import EditableGroupTitle from './EditableGroupTitle'
 import Footer from './Footer'
 import GroupResults from './GroupResults'
@@ -11,9 +12,12 @@ import GroupResults from './GroupResults'
 export default function Results({ groupId }: { groupId: string }) {
   const router = useRouter()
 
-  if (!groupId) {
-    router.push('/amis')
-  }
+  useEffect(() => {
+    if (!groupId) {
+      router.push('/amis')
+    }
+  }, [groupId, router])
+
   return (
     <>
       <div className="p-4 pb-0">
