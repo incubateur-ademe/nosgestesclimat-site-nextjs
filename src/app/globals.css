@@ -360,7 +360,6 @@ blockquote {
 /*
   Iframe
   */
-.iframeOnlySimulation header,
 .iframeOnlySimulation footer {
   display: none;
 }
@@ -382,7 +381,8 @@ blockquote {
 /*
   Markdown
 */
-.markdown ul,ol {
+.markdown ul,
+ol {
   @apply pl-6;
   /* bullet point list type */
   list-style-type: '› ';
