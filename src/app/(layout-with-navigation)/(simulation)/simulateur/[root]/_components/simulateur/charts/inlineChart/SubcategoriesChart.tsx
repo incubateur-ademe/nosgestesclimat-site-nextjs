@@ -7,8 +7,8 @@ import Subcategory from './subcategoriesChart/Subcategory'
 export default function SubcategoriesChart() {
   const { subcategories, currentCategory } = useForm()
 
-  const { numericValue: total } = useRule(currentCategory || '')
-  const { title } = useRule(currentCategory || '')
+  const { title, numericValue: total } = useRule(currentCategory || '')
+
   const { checkIfValid } = useEngine()
 
   const filteredSubcategories = useMemo(
@@ -42,8 +42,8 @@ export default function SubcategoriesChart() {
               index === 0
                 ? 'first'
                 : index === filteredSubcategories.length - 1
-                ? 'last'
-                : 'middle'
+                  ? 'last'
+                  : 'middle'
             }
             total={total}
             subcategory={subcategory}
