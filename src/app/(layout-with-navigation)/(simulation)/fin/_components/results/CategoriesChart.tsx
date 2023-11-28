@@ -12,7 +12,7 @@ export default function CategoriesChart({ className }: { className?: string }) {
   const { getNumericValue } = useEngine()
 
   const sortedCategories = useMemo(() => {
-    return categories.sort((categoryA, categoryB) => {
+    return [...categories].sort((categoryA, categoryB) => {
       const valueA = getNumericValue(categoryA) ?? 0
       const valueB = getNumericValue(categoryB) ?? 0
 
