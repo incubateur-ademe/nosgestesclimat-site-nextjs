@@ -20,7 +20,7 @@ export default function GroupResults({ groupId }: { groupId: string }) {
 
   const { data: group, refetch } = useFetchGroup(groupId)
 
-  const { user } = useUser()
+  const { user, setGroupToRedirectToAfterTest } = useUser()
 
   const userId = user?.id
 
@@ -36,6 +36,10 @@ export default function GroupResults({ groupId }: { groupId: string }) {
     setIsSynced,
     groupId,
   })
+
+  useEffect(() => {
+    setGroupToRedirectToAfterTest(undefined)
+  }, [setGroupToRedirectToAfterTest])
 
   useEffect(() => {
     if (groupId && !group) {

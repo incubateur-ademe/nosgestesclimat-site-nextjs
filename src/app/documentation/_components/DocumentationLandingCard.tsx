@@ -2,6 +2,7 @@
 
 import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
+import Emoji from '@/design-system/utils/Emoji'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { NGCRule } from '@/publicodes-state/types'
 import Markdown from 'markdown-to-jsx'
@@ -22,7 +23,7 @@ export default function DocumentationLandingCard({ edito, rule }: Props) {
         category
       )}`}>
       <p className="-z-1 absolute bottom-0 left-0 right-0 top-0 text-center align-middle text-[8.5rem] opacity-20 grayscale">
-        {rule['icônes']}
+        <Emoji>{rule['icônes']}</Emoji>
       </p>
       <h2 className="z-10 mb-0 text-base text-white">
         {<Markdown>{rule['résumé'] || '...'}</Markdown>}
