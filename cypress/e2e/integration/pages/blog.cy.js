@@ -1,7 +1,7 @@
 import { visit } from '../../../helpers/interactions/visit'
 
 describe('The Blog page', { testIsolation: false }, () => {
-  it('has a title', () => {
+  it('should render without breaking the app', () => {
     visit('blog')
 
     cy.get('h1').contains('Blog').should('be.visible')

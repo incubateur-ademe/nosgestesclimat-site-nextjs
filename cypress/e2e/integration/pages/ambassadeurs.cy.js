@@ -1,7 +1,7 @@
 import { visit } from '../../../helpers/interactions/visit'
 
 describe('The Ambassadeurs page', () => {
-  it('has a title', () => {
+  it('should render without breaking the app', () => {
     visit('ambassadeurs')
 
     cy.get('h1')

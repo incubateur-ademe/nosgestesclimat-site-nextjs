@@ -1,7 +1,7 @@
 import { visit } from '../../../helpers/interactions/visit'
 
 describe('The Profil page', { testIsolation: false }, () => {
-  it('has a title', () => {
+  it('should render without breaking the app', () => {
     visit('profil')
 
     cy.get('h1')

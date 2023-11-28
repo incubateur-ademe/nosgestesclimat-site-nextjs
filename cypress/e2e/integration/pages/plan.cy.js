@@ -5,7 +5,7 @@ import {
 import { visit } from '../../../helpers/interactions/visit'
 
 describe('The Plan du site page', { testIsolation: false }, () => {
-  it('has a title', () => {
+  it('should render without breaking the app', () => {
     visit('plan-du-site')
 
     cy.get('h1')

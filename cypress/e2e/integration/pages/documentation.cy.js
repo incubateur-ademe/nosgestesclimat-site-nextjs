@@ -5,7 +5,7 @@ import {
 import { visit } from '../../../helpers/interactions/visit'
 
 describe('The Documentation page', { testIsolation: false }, () => {
-  it('has a title (server side rendered)', () => {
+  it('should render without breaking the app (server side rendered)', () => {
     visit('documentation/bilan')
 
     cy.get(`h1[data-cypress-id="${DOCUMENTATION_TITLE}"]`).should('be.visible')
