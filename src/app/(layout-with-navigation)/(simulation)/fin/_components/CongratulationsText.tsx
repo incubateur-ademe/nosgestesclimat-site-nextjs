@@ -5,7 +5,7 @@ import Emoji from '@/design-system/utils/Emoji'
 export default function CongratulationsText() {
   return (
     <>
-      <h1 className="mt-4">
+      <h1 className="mt-4" data-cypress-id="fin-title">
         <span className="inline-block">
           <Trans>Vous avez terminé le test !</Trans>&nbsp;
           <Emoji className="inline-block">👏</Emoji>
