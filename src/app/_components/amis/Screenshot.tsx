@@ -10,6 +10,7 @@ export default async function Screenshot() {
       viewBox="0 0 444 275"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
+      <title>{t('Une capture du mode Amis Nos Gestes Climat.')}</title>
       <path
         d="M0 16.6163C0 7.43938 8.95431 0 20 0H424C435.046 0 444 7.43938 444 16.6163V258.384C444 267.561 435.046 275 424 275H20C8.95429 275 0 267.561 0 258.384V16.6163Z"
         fill="#F7F8F8"
@@ -21,7 +22,7 @@ export default async function Screenshot() {
       <path
         d="M20 275H424C435.046 275 444 267.561 444 258.384V16.6163C444 7.43938 435.046 0 424 0H20C8.95431 0 0 7.43938 0 16.6163V258.384C0 267.561 8.95429 275 20 275Z"
         stroke="#EDE7F1"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M39 29.1429C39 21.332 45.7157 15 54 15H388C396.284 15 403 21.332 403 29.1429V165.857C403 173.668 396.284 180 388 180H54C45.7157 180 39 173.668 39 165.857V29.1429Z"
@@ -177,8 +178,8 @@ export default async function Screenshot() {
         x2="241.5"
         y2="50.5"
         stroke="white"
-        stroke-width="3"
-        stroke-linecap="round"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
       <line
         x1="111.5"
@@ -186,8 +187,8 @@ export default async function Screenshot() {
         x2="211.5"
         y2="99.5"
         stroke="white"
-        stroke-width="3"
-        stroke-linecap="round"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
       <line
         x1="111.5"
@@ -195,8 +196,8 @@ export default async function Screenshot() {
         x2="221.5"
         y2="149.5"
         stroke="white"
-        stroke-width="3"
-        stroke-linecap="round"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
       <path
         d="M80 228C77.7909 228 76 226.209 76 224L76 194C76 191.791 77.7909 190 80 190C82.2091 190 84 191.791 84 194L84 224C84 226.209 82.2091 228 80 228Z"

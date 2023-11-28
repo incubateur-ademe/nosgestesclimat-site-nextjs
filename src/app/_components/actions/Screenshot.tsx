@@ -20,8 +20,8 @@ export default function Screenshot() {
       <path
         d="M38.5 85.5H168.5M38.5 103.5H148.5"
         stroke="#D40983"
-        stroke-width="3"
-        stroke-linecap="round"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
       <rect x="37" y="130" width="46" height="27" rx="5" fill="#491273" />
       <path
@@ -38,7 +38,7 @@ export default function Screenshot() {
       <path
         d="M204 28H241V26H204V28ZM245 32V51H247V32H245ZM241 55H204V57H241V55ZM200 51V32H198V51H200ZM204 55C201.791 55 200 53.2091 200 51H198C198 54.3137 200.686 57 204 57V55ZM245 51C245 53.2091 243.209 55 241 55V57C244.314 57 247 54.3137 247 51H245ZM241 28C243.209 28 245 29.7909 245 32H247C247 28.6863 244.314 26 241 26V28ZM204 26C200.686 26 198 28.6863 198 32H200C200 29.7909 201.791 28 204 28V26Z"
         fill="#008E5B"
-        fill-opacity="0.1"
+        fillOpacity="0.1"
         mask="url(#path-6-inside-1_3963_21689)"
       />
       <path
@@ -97,13 +97,13 @@ export default function Screenshot() {
         height="154"
         rx="14.5"
         stroke="#491273"
-        stroke-opacity="0.1"
+        strokeOpacity="0.1"
       />
       <path
         d="M298.5 85.5H428.5M298.5 103.5H408.5"
         stroke="#D40983"
-        stroke-width="3"
-        stroke-linecap="round"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
       <rect x="297" y="130" width="46" height="27" rx="5" fill="#491273" />
       <path
@@ -150,13 +150,13 @@ export default function Screenshot() {
         height="154"
         rx="14.5"
         stroke="#491273"
-        stroke-opacity="0.1"
+        strokeOpacity="0.1"
       />
       <path
         d="M38.5 260.5H168.5M38.5 278.5H148.5"
         stroke="#D40983"
-        stroke-width="3"
-        stroke-linecap="round"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
       <mask id="path-19-inside-2_3963_21689" fill="white">
         <path d="M208 207C208 204.239 210.239 202 213 202H241C243.761 202 246 204.239 246 207V224C246 226.761 243.761 229 241 229H213C210.239 229 208 226.761 208 224V207Z" />
@@ -168,7 +168,7 @@ export default function Screenshot() {
       <path
         d="M213 203H241V201H213V203ZM245 207V224H247V207H245ZM241 228H213V230H241V228ZM209 224V207H207V224H209ZM213 228C210.791 228 209 226.209 209 224H207C207 227.314 209.686 230 213 230V228ZM245 224C245 226.209 243.209 228 241 228V230C244.314 230 247 227.314 247 224H245ZM241 203C243.209 203 245 204.791 245 207H247C247 203.686 244.314 201 241 201V203ZM213 201C209.686 201 207 203.686 207 207H209C209 204.791 210.791 203 213 203V201Z"
         fill="#008E5B"
-        fill-opacity="0.1"
+        fillOpacity="0.1"
         mask="url(#path-19-inside-2_3963_21689)"
       />
       <path
@@ -218,7 +218,7 @@ export default function Screenshot() {
       <path
         d="M280.5 205C280.5 196.992 286.992 190.5 295 190.5H505C513.008 190.5 519.5 196.992 519.5 205V330C519.5 338.008 513.008 344.5 505 344.5H295C286.992 344.5 280.5 338.008 280.5 330V205Z"
         stroke="#491273"
-        stroke-opacity="0.1"
+        strokeOpacity="0.1"
       />
       <path
         d="M325.078 224.047L311.953 213.109L298.828 224.047V237.172H325.078V224.047Z"
@@ -267,8 +267,8 @@ export default function Screenshot() {
       <path
         d="M298.5 260.5H428.5M298.5 278.5H408.5"
         stroke="#D40983"
-        stroke-width="3"
-        stroke-linecap="round"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
       <path
         d="M20 0.5H424C434.86 0.5 443.5 7.79827 443.5 16.6163V258.384C443.5 267.202 434.86 274.5 424 274.5H20C9.13968 274.5 0.5 267.202 0.5 258.384V16.6163C0.5 7.79827 9.13969 0.5 20 0.5Z"
