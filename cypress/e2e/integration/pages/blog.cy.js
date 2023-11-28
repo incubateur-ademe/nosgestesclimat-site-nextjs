@@ -1,6 +1,6 @@
 import { visit } from '../../../helpers/interactions/visit'
 
-describe('The Blog page', () => {
+describe('The Blog page', { testIsolation: false }, () => {
   it('has a title', () => {
     visit('blog')
 
@@ -8,8 +8,6 @@ describe('The Blog page', () => {
   })
 
   it('displays a list of articles, which are themselves displayed correctly', () => {
-    visit('blog')
-
     cy.get('ul[data-cypress-id="blog-list"]').should('be.visible')
 
     cy.get('ul[data-cypress-id="blog-list"] > a').first().click()

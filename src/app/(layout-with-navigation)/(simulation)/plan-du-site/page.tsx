@@ -98,7 +98,7 @@ export default async function PlanDuSitePage() {
       />
 
       <section className="mb-2">
-        <h2>
+        <h2 data-cypress-id="plan-outils-title">
           <Trans>Nos outils</Trans>
         </h2>
         <LinkList entries={links['Nos outils']} />
@@ -119,9 +119,6 @@ export default async function PlanDuSitePage() {
       </section>
 
       <section>
-        <h2>
-          <Trans i18nKey="publicodes.planDuSite.actionsPlus">Les actions</Trans>
-        </h2>
         <Actions />
       </section>
     </div>
