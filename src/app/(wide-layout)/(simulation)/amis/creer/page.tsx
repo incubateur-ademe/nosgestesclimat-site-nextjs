@@ -18,7 +18,7 @@ export default async function CreerGroupePage() {
   const { t } = await getServerTranslation()
 
   return (
-    <div className="md:p-8">
+    <>
       <AutoCanonicalTag />
 
       <GoBackLink className="mb-4 font-bold" />
@@ -31,6 +31,6 @@ export default async function CreerGroupePage() {
       />
 
       <GroupCreationForm />
-    </div>
+    </>
   )
 }
