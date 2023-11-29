@@ -34,7 +34,7 @@ export default function DocumentationLandingCard({
       </div>
 
       <h2 className="z-10 mb-0 text-base text-white">
-        {<Markdown>{summary || '...'}</Markdown>}
+        {<Markdown>{summary}</Markdown>}
       </h2>
     </Card>
   )
