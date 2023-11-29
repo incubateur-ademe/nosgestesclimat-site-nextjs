@@ -1,15 +1,14 @@
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import ButtonStart from './heading/ButtonStart'
+import Buttons from './heading/Buttons'
 import Icons from './heading/Icons'
 import Partners from './heading/Partners'
 
 export default function Heading() {
   return (
     <>
-      <div className="relative flex h-[36rem] items-center justify-center overflow-hidden bg-grey-100 p-4">
+      <div className="relative flex h-[34rem] items-center justify-center overflow-hidden bg-grey-100 p-4 md:h-[36rem]">
         <Icons />
-        <div className="relative max-w-sm text-center md:max-w-xl">
+        <div className="relative mt-6 max-w-sm text-center md:mt-0 md:max-w-xl">
           <h1 className="md:text-5xl">
             <Trans>Connaissez-vous votre empreinte sur le climat&#8239;?</Trans>
           </h1>
@@ -20,10 +19,7 @@ export default function Heading() {
             </Trans>
           </p>
           <div className="flex flex-col items-center justify-center gap-6 md:flex-row md:gap-12">
-            <ButtonStart />
-            <Link className="md:text-lg" href="/documentation">
-              <Trans>Notre méthode</Trans>
-            </Link>
+            <Buttons />
           </div>
         </div>
       </div>
