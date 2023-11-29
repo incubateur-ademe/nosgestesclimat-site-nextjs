@@ -54,7 +54,7 @@ export default function NumberInput({
           className="bg-transparent-100  w-10 text-center"
           type="number"
           value={isMissing ? '' : Number(value)}
-          placeholder={String(value)}
+          placeholder={'0'}
           onChange={(event) => setValue(Number(event.target.value))}
           data-cypress-id={`${question}---${parentMosaic}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}

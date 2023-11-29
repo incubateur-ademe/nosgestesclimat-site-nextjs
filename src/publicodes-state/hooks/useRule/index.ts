@@ -27,7 +27,7 @@ export default function useRule(dottedName: string) {
     addFoldedStep,
     foldedSteps,
     everyNotifications,
-    everyMosaicChildWhoIsReallyInMosaic,
+    everyMosaicChildren,
   } = useContext(simulationContext)
 
   const evaluation = useMemo<NGCEvaluatedNode | null>(
@@ -61,7 +61,7 @@ export default function useRule(dottedName: string) {
   })
   const { questionsOfMosaic, parent } = useMosaic({
     dottedName,
-    everyMosaicChildWhoIsReallyInMosaic,
+    everyMosaicChildren,
   })
 
   const {

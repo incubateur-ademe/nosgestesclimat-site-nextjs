@@ -73,15 +73,16 @@ export default function useValue({
     })
   }
 
-  const resetMosaicChildren = async (): Promise<void> => {
+  const resetMosaicChildren = async (childToOmit: string): Promise<void> => {
     const situationToUpdate = questionsOfMosaic.reduce(
       (accumulator, currentValue) => {
+        if (childToOmit === currentValue) return accumulator
+
         const isMissing = getIsMissing({
           dottedName: currentValue,
           questionsOfMosaic: [],
           situation,
         })
-        console.log(currentValue, isMissing)
         if (!isMissing) return accumulator
 
         const rule = safeGetRule(currentValue)

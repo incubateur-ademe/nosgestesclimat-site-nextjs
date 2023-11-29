@@ -29,7 +29,7 @@ export default function MosaicQuestion({
           description={description}
           setValue={async (value) => {
             await setValue(value, parentMosaic)
-            resetMosaicChildren()
+            resetMosaicChildren(question)
           }}
           parentMosaic={parentMosaic}
           index={index}
@@ -43,7 +43,7 @@ export default function MosaicQuestion({
           description={description}
           setValue={async (value) => {
             await setValue(value, parentMosaic)
-            resetMosaicChildren()
+            resetMosaicChildren(question)
           }}
           index={index}
         />

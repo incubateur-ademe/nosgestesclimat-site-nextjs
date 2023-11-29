@@ -1,3 +1,4 @@
+import { NGCRuleNode } from '@/publicodes-state/types'
 import Engine from 'publicodes'
 import { useMemo } from 'react'
 
@@ -48,40 +49,23 @@ export default function useRules({ engine }: Props) {
 
   const everyMosaicChildren = useMemo<string[]>(
     () =>
-      everyMosaic.reduce(
-        accumulator,
-        (mosaic) => {
-          const mosaicChildren = mosaic.rawNode.mosaique['options'].map(
-            (option) => everyQuestions.find((rule) => rule.includes(option))
-          )
-          return [...accumulator, ...mosaicChildren]
-        },
-        []
-      ),
-    [everyMosaic, everyQuestions]
+      everyMosaic.reduce<string[]>((accumulator, mosaic) => {
+        const mosaicRule = engine.getRule(mosaic) as NGCRuleNode
+        const mosaicChildren = mosaicRule.rawNode.mosaique['options'].map(
+          (option: string) =>
+            everyQuestions.find((rule) => rule.includes(option))
+        )
+        console.log('mosaicChildren', mosaicChildren)
+        return [...accumulator, ...mosaicChildren]
+      }, []),
+    [everyMosaic, everyQuestions, engine]
   )
-  const everyMosaicChildWhoIsReallyInMosaic = useMemo<string[]>(
-    () =>
-      everyQuestions.filter((currentValue: string) =>
-        everyMosaic.find((mosaic) => {
-          const mosaicRule = engine.getRule(mosaic) as any
-          console.log(mosaicRule, mosaicRule.rawNode.mosaique['options'])
-          const key = mosaicRule.rawNode.mosaique['options']
-          return currentValue.includes(key)
-        })
-      ),
-    [everyQuestions, everyMosaic, engine]
-  )
-  console.log(
-    'everyMosaicChildWhoIsReallyInMosaic',
-    everyMosaicChildWhoIsReallyInMosaic
-  )
+
   return {
     everyRules,
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
     everyMosaicChildren,
-    everyMosaicChildWhoIsReallyInMosaic,
   }
 }
