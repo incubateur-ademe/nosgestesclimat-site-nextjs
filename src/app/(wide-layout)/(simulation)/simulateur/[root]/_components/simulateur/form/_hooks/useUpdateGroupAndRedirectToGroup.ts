@@ -1,4 +1,4 @@
-import { getSimulationResults } from '@/app/(layout-with-navigation)/(simulation)/amis/_helpers/getSimulationResults'
+import { getSimulationResults } from '@/app/(wide-layout)/(simulation)/amis/_helpers/getSimulationResults'
 import { useEngine, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
 import { useRouter } from 'next/navigation'

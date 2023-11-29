@@ -16,7 +16,7 @@ export default function AvantDeCommencer() {
         <h4 className="overflow-visible font-bold before:absolute before:left-0 before:content-['🏡'] ">
           <Trans>C'est un test individuel !</Trans>
         </h4>
-        <p className="text-sm md:text-base">
+        <p className="max-w-3xl text-sm md:text-base">
           <Trans>
             Répondez aux questions en votre nom, pas pour votre foyer.
           </Trans>

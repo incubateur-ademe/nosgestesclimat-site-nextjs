@@ -12,7 +12,7 @@ export async function generateMetadata() {
 
 export default function Documentation() {
   return (
-    <div className="w-full max-w-4xl p-4 md:mx-auto md:py-8">
+    <div className="w-full max-w-5xl p-4 md:mx-auto md:py-8">
       <DocumentationLanding />
     </div>
   )
