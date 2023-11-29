@@ -3,6 +3,7 @@
 import HowToAct from '@/components/actions/HowToAct'
 import Trans from '@/components/translation/Trans'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
+import Separator from '@/design-system/layout/Separator'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { useRouter } from 'next/navigation'
 import EditableGroupTitle from './EditableGroupTitle'
@@ -31,6 +32,8 @@ export default function Results({ groupId }: { groupId: string }) {
 
         <GroupResults groupId={groupId} />
       </div>
+
+      <Separator className="my-6" />
 
       <HowToAct />
     </>
