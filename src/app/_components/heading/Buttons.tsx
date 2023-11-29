@@ -8,6 +8,7 @@ import {
   matomoEventParcoursTestStart,
 } from '@/constants/matomo'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { useIsClient } from '@/hooks/useIsClient'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
@@ -18,9 +19,13 @@ export default function Buttons() {
 
   const isSimulationStarted = currentSimulation?.foldedSteps?.length
 
+  const isClient = useIsClient()
   return (
     <>
       <ButtonLink
+        className={`transition-opacity duration-500 ${
+          isClient ? 'opacity-100' : 'opacity-0'
+        }`}
         href={tutorials.testIntro ? '/simulateur/bilan' : '/tutoriel'}
         data-cypress-id="do-the-test-link"
         onClick={() => {
@@ -40,7 +45,9 @@ export default function Buttons() {
       </ButtonLink>
       {isSimulationStarted ? (
         <Link
-          className="md:text-lg"
+          className={`transition-opacity delay-200 duration-1000 md:text-lg ${
+            isClient ? 'opacity-100' : 'opacity-0'
+          }`}
           onClick={() => {
             trackEvent(matomoEventParcoursTestNouveau)
             initSimulation()
@@ -49,7 +56,11 @@ export default function Buttons() {
           <Trans>Commencer un nouveau test</Trans>
         </Link>
       ) : (
-        <Link className="md:text-lg" href="/documentation">
+        <Link
+          className={`transition-opacity delay-200 duration-1000 md:text-lg ${
+            isClient ? 'opacity-100' : 'opacity-0'
+          }`}
+          href="/documentation">
           <Trans>Notre méthode</Trans>
         </Link>
       )}
