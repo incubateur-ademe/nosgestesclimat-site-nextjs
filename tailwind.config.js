@@ -72,6 +72,9 @@ module.exports = {
         valuechange: 'valuechange 3s ease-out infinite',
         iconsRotation: 'iconsRotation 1s ease-in-out',
       },
+      backgroundImage: {
+        'icons-mobile': "url('/images/misc/mobileIcons.svg')",
+      },
     },
   },
   safelist: [
