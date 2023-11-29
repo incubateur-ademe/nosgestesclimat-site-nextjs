@@ -1,7 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
-import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { Member } from '@/types/groups'
 import { captureException } from '@sentry/react'
@@ -15,6 +14,9 @@ export async function generateMetadata() {
     title: 'Supprimer mes données de groupe - Nos Gestes Climat',
     description:
       'Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.',
+    alternates: {
+      canonical: '/amis/supprimer',
+    },
   })
 }
 
@@ -69,8 +71,6 @@ export default function SupprimerGroupePage({
 
   return (
     <div className="p-4 md:p-8">
-      <AutoCanonicalTag />
-
       <Title title={t('Supprimer mes données')} />
 
       {isSuccess && <Trans>Données supprimées.</Trans>}

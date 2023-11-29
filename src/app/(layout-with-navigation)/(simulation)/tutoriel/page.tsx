@@ -13,6 +13,9 @@ export async function generateMetadata() {
     title: 'Calculer votre empreinte carbone individuelle - Nos Gestes Climat',
     description:
       'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.',
+    alternates: {
+      canonical: '/tutoriel',
+    },
   })
 }
 
