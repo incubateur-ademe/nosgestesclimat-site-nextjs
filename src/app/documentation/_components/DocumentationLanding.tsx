@@ -11,7 +11,7 @@ import DocumentationLandingCard from './DocumentationLandingCard'
 import SearchBar from './SearchBar'
 
 // We want to be able to define an order for the cards and their summary here
-const FIXED_CARD_SUMMARY = {
+const FIXED_CARD_SUMMARIES = {
   bilan: `Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels`,
   'services sociétaux': `Les constantes de **services publics et marchands** calculées à partir des travaux du SDES`,
   'alimentation . plats': ` **6 repas** représentatifs de notre consommation`,
@@ -60,12 +60,12 @@ export default function DocumentationLanding() {
       </h2>
 
       <ul className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3">
-        {Object.keys(FIXED_CARD_SUMMARY).map((dottedName) => {
+        {Object.keys(FIXED_CARD_SUMMARIES).map((dottedName) => {
           return (
             <li key={dottedName}>
               <DocumentationLandingCard
                 dottedName={dottedName}
-                summary={FIXED_CARD_SUMMARY[dottedName]}
+                summary={FIXED_CARD_SUMMARIES[dottedName]}
                 rule={rules[dottedName]}
               />
             </li>
