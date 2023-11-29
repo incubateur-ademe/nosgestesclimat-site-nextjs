@@ -4,8 +4,8 @@ import Trans from '@/components/translation/Trans'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { useRouter } from 'next/navigation'
+import HowToAct from '../../../fin/_components/HowToAct'
 import EditableGroupTitle from './EditableGroupTitle'
-import Footer from './Footer'
 import GroupResults from './GroupResults'
 
 export default function Results({ groupId }: { groupId: string }) {
@@ -32,7 +32,7 @@ export default function Results({ groupId }: { groupId: string }) {
         <GroupResults groupId={groupId} />
       </div>
 
-      <Footer />
+      <HowToAct />
     </>
   )
 }
