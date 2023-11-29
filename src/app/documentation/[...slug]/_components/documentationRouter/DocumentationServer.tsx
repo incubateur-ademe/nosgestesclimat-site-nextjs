@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { DEFAULT_MODEL_VERSION } from '@/constants/modelAPI'
 import { NGC_MODEL_API_URL } from '@/constants/urls'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
@@ -33,7 +34,7 @@ export default async function DocumentationServer({
 
   // We load the default rules to render the server side documentation
   const rules: Rules = await fetchModel({
-    dataServer: NGC_MODEL_API_URL,
+    dataServer: `${NGC_MODEL_API_URL}/${DEFAULT_MODEL_VERSION}`,
     regionCode: 'FR',
     locale: locale ?? 'fr',
     isOptim: false,
