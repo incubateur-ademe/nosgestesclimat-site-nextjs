@@ -1,20 +1,28 @@
+import { fetchModel } from '@/helpers/data/fetchModel'
+import importLocalRules from '@/helpers/importLocalRules'
 import { useUser } from '@/publicodes-state'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
+import { NGCRules } from '@/publicodes-state/types'
+import {
+  UseQueryResult,
+  keepPreviousData,
+  useQuery,
+} from '@tanstack/react-query'
 import { useDataServer } from './useDataServer'
 import { useLocale } from './useLocale'
 
 type Props = {
-  lang?: string
-  region?: string
+  lang: string
+  region: string
   isOptim?: boolean
 }
 
-export function useRules({ lang, region, isOptim = true }: Props) {
+export function useRules({
+  lang,
+  region,
+  isOptim = true,
+}: Props): UseQueryResult<NGCRules, Error> {
   const dataServer = useDataServer()
-
   const locale = useLocale()
-
   const { user } = useUser()
 
   const regionCode =
@@ -22,22 +30,23 @@ export function useRules({ lang, region, isOptim = true }: Props) {
       ? user?.region?.code
       : region
 
-  return useQuery(
-    ['rules', dataServer, lang, region, isOptim],
-    () =>
-      axios
-        .get(
-          `${dataServer}/co2-model.${regionCode}-lang.${locale}${
-            isOptim ? '-opti' : ''
-          }.json`
-        )
-        .then((res) => res.data as unknown),
-    {
-      keepPreviousData: true,
-      // When we work locally on the model we want the rules to be updated as much as possible (on window focus and every 3 seconds)
-      refetchOnWindowFocus: process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER
-        ? true
-        : false,
-    }
-  )
+  return useQuery({
+    queryKey: ['rules', dataServer, lang, region, isOptim],
+    queryFn: () => {
+      console.log(
+        `⚙️ requesting ${
+          isOptim ? 'optimized' : ''
+        } rules for ${regionCode} ${locale}`
+      )
+      return process.env.NEXT_PUBLIC_LOCAL_DATA === 'nosgestesclimat'
+        ? importLocalRules({ regionCode, locale, isOptim })
+        : fetchModel({
+            dataServer: dataServer || '',
+            regionCode: regionCode || 'FR',
+            locale,
+            isOptim,
+          })
+    },
+    placeholderData: keepPreviousData,
+  })
 }

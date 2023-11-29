@@ -28,6 +28,6 @@ Sentry.init({
     }),
   ],
 
-  // Disable sentry for development based on local data server
-  enabled: !process.env.NEXT_PUBLIC_LOCAL_DATA_SERVER,
+  // Disable sentry for development based on local data
+  enabled: !process.env.NEXT_PUBLIC_LOCAL_DATA,
 })

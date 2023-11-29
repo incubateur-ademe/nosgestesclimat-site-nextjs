@@ -1,4 +1,5 @@
 // Initialise react-i18next
+import Header from '@/components/layout/Header'
 import getGeolocation from '@/helpers/getGeolocation'
 import '@/locales/initClient'
 import '@/locales/initServer'
@@ -55,10 +56,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
       <head>
-        <meta charSet="utf-8" />
-
-        <meta name="viewport" content="initial-scale=1" />
-
         <link rel="icon" href="/images/misc/favicon.png" />
 
         <link
@@ -88,7 +85,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <link rel="manifest" href="../manifest.webmanifest" />
 
-        <meta name="theme-color" content="#5758BB" />
+        <meta name="theme-color" content="#491273" />
 
         {process.env.NEXT_PUBLIC_MATOMO_ID === '1' ? (
           <Script id="matomo">
@@ -128,7 +125,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         )}
       </head>
 
-      <body className={marianne.className}>
+      <body className={`${marianne.className} text-default`}>
         <Script id="script-user-agent">{`
           const b = document.documentElement;
           b.setAttribute('data-useragent', navigator.userAgent);
@@ -136,7 +133,11 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
         <ErrorBoundary showDialog fallback={ErrorFallback}>
-          <MainLayoutProviders region={region}>{children}</MainLayoutProviders>
+          <MainLayoutProviders region={region}>
+            <Header />
+
+            {children}
+          </MainLayoutProviders>
         </ErrorBoundary>
       </body>
     </html>

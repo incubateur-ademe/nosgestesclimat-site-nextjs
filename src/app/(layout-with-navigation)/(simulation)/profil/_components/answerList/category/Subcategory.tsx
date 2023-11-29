@@ -1,6 +1,7 @@
 'use client'
 
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
+import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useForm, useRule } from '@/publicodes-state'
 import { useState } from 'react'
 import Question from './subcategory/Question'
@@ -10,14 +11,14 @@ type Props = {
 }
 
 export default function SubCategory({ subcategory }: Props) {
-  const { title, value, icons, color } = useRule(subcategory)
+  const { title, value, icons, category } = useRule(subcategory)
   const { relevantAnsweredQuestions } = useForm()
 
   const [isOpen, setIsOpen] = useState(false)
 
   const formattedCarbonFootprint = formatCarbonFootprint(value)
 
-  //TODO: investigate why subcategory = repas and questions = plats
+  //TODO: Model shenanigans: investigate why subcategory = repas and questions = plats
   const answeredQuestionOfSubcategory = relevantAnsweredQuestions.filter(
     (question) =>
       question.includes(subcategory) ||
@@ -26,10 +27,11 @@ export default function SubCategory({ subcategory }: Props) {
 
   if (!answeredQuestionOfSubcategory.length) return null
   return (
-    <div className="relative mt-2 w-full overflow-hidden rounded-lg bg-primaryLight ">
+    <div className="relative mt-2 w-full overflow-hidden rounded-lg bg-primary-100 ">
       <div
-        className="absolute bottom-0 left-0 top-0 w-2"
-        style={{ backgroundColor: color }}
+        className={`absolute bottom-0 left-0 top-0 w-2 ${getBackgroundColor(
+          category
+        )}`}
       />
       <button
         onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}

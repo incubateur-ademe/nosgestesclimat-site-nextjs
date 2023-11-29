@@ -3,6 +3,6 @@ export type Journey = {
   label: string
   distance: number
   reccurrence: number
-  period: JourneyPeriod
+  period: string
   passengers: number
 }

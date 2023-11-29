@@ -14,7 +14,6 @@
 
   h1 {
     @apply text-2xl;
-    @apply md:text-3xl;
     @apply mb-6;
     @apply font-bold;
   }
@@ -77,25 +76,10 @@ html,
 body {
   margin: 0;
   padding: 0;
-  @apply text-primaryDark;
 }
 
 a {
-  @apply inline-block text-primary underline transition-colors hover:text-primaryDark;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-bold;
-  @apply text-primaryDark;
-}
-
-h1 {
-  @apply text-2xl;
+  @apply inline-block text-primary-500 underline transition-colors hover:text-primary-400;
 }
 
 img {
@@ -235,7 +219,7 @@ blockquote {
   @apply rounded-md;
   padding: 1rem 1rem 0.25rem;
   margin: 1rem 0;
-  @apply text-primaryDark;
+  @apply text-primary-700;
 }
 .news-page ul {
   padding-left: 1rem;
@@ -250,10 +234,10 @@ blockquote {
 	Gamecard
 */
 .game-card-1 {
-  @apply fill-primary;
+  @apply fill-primary-500;
   fill-opacity: 0.996078;
   fill-rule: 'evenodd';
-  @apply stroke-primaryDark;
+  @apply stroke-primary-700;
   stroke-width: 7.2062;
   stroke-linecap: 'round';
   stroke-linejoin: 'round';
@@ -263,10 +247,10 @@ blockquote {
 }
 
 .game-card-2 {
-  @apply fill-primary;
+  @apply fill-primary-500;
   fill-opacity: 0.996078;
   fill-rule: 'evenodd';
-  @apply stroke-primaryDark;
+  @apply stroke-primary-500;
   stroke-width: 7.2062;
   stroke-linecap: 'round';
   stroke-linejoin: 'round';
@@ -279,7 +263,7 @@ blockquote {
   fill: white;
   fill-opacity: 0.997404;
   fill-rule: 'evenodd';
-  @apply stroke-primaryDark;
+  @apply stroke-primary-700;
   stroke-width: 10.1932;
   stroke-linecap: 'round';
   stroke-linejoin: 'round';
@@ -376,7 +360,6 @@ blockquote {
 /*
   Iframe
   */
-.iframeOnlySimulation header,
 .iframeOnlySimulation footer {
   display: none;
 }
@@ -393,4 +376,55 @@ blockquote {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+
+/*
+  Markdown
+*/
+.markdown ul {
+  @apply pl-6;
+  @apply list-disc;
+  @apply mb-6;
+}
+
+.markdown ul > li {
+  @apply mb-2;
+}
+
+.markdown ol {
+  @apply pl-6;
+  list-style-type: decimal;
+  list-style-position: outside;
+  @apply mb-6;
+}
+
+.markdown h1 {
+  @apply text-4xl;
+  @apply mb-6;
+  @apply font-bold;
+  @apply leading-10;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  @apply mt-8;
+  @apply mb-6;
+}
+
+.markdown p {
+  @apply mb-6;
+}
+
+.markdown blockquote {
+  @apply mb-6;
+}
+
+.markdown img {
+  @apply border;
+  @apply border-gray-200;
+  @apply rounded-md;
 }

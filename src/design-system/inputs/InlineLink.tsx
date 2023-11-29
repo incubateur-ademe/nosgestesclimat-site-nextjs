@@ -1,5 +1,6 @@
 import Link from '@/components/Link'
 import { PropsWithChildren } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   href: string
@@ -17,8 +18,10 @@ export default function InlineLink({
     <Link
       href={href}
       title={title}
-      className={`inline-block text-primary underline transition-colors hover:!text-primaryDark ${className}`}
-    >
+      className={twMerge(
+        `inline-block text-primary-500 underline transition-colors hover:!text-primary-700`,
+        className
+      )}>
       {children}
     </Link>
   )

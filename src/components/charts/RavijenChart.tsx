@@ -35,7 +35,7 @@ export default function RavijenChart({
     <>
       <ul
         id="ravijen"
-        className="flex h-[40rem] w-[36rem] max-w-full items-end gap-1 bg-white p-4">
+        className="flex h-[40rem] max-w-full items-end gap-1 bg-white py-4 md:w-[36rem] md:px-4">
         {categories.map((category) => (
           <li key={category} className="h-full flex-1">
             <CategoryChart
@@ -49,9 +49,10 @@ export default function RavijenChart({
           </li>
         ))}
       </ul>
-      <div className="px-4">
+      <div className="md:px-4">
         <Button
           size="sm"
+          color="secondary"
           onClick={() => {
             trackEvent(matomoDownloadRavijenChart)
 

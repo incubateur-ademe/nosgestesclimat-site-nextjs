@@ -24,13 +24,12 @@ export default function ChoiceInput({
     <>
       <div className="mb-2 flex items-center gap-2">
         <label
-          className={`flex cursor-pointer items-center gap-2 rounded border border-primary px-4 py-2 text-right md:text-xl ${
+          className={`flex cursor-pointer items-center gap-2 rounded border border-gray-300 px-4 py-2 text-right md:text-xl ${
             active
-              ? 'bg-primary text-white'
-              : 'bg-grey-100 text-primary hover:bg-primaryLight'
+              ? 'border-2 border-primary-500 bg-primary-200 text-primary-500'
+              : 'bg-white text-default hover:bg-primary-100'
           } transition-colors`}
-          data-cypress-id={`${props['data-cypress-id']}-label`}
-        >
+          data-cypress-id={`${props['data-cypress-id']}-label`}>
           <input
             type="radio"
             className="hidden"
@@ -40,8 +39,10 @@ export default function ChoiceInput({
           />
           <span
             className={`${
-              active ? 'border-white' : 'border-primary'
-            } flex h-4 w-4 items-center justify-center rounded-full border-2 before:h-3 before:w-3 before:rounded-full before:bg-white md:h-5 md:w-5`}
+              active
+                ? 'border-primary-500 before:bg-primary-500'
+                : 'border-gray-300 before:bg-white'
+            } flex h-4 w-4 items-center justify-center rounded-full border-2 before:h-3 before:w-3 before:rounded-full  md:h-5 md:w-5`}
           />
           {label}
         </label>
@@ -52,9 +53,9 @@ export default function ChoiceInput({
         ) : null}
       </div>
       {description && isOpen ? (
-        <Markdown className="mb-4 w-1/2 rounded-md bg-grey-100 p-2 text-sm">
-          {description}
-        </Markdown>
+        <div className="mb-4 w-1/2 rounded-md bg-white p-2 text-sm">
+          <Markdown className="mb-0">{description}</Markdown>
+        </div>
       ) : null}
     </>
   )

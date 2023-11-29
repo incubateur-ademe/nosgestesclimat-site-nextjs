@@ -30,7 +30,7 @@ export default function Classement({ group }: { group: Group }) {
 
   return (
     <>
-      <ul className="mt-2 rounded-md bg-primary px-3 py-4 text-white">
+      <ul className="bg-primary-500 mt-2 rounded-md px-3 py-4 text-white">
         {topThreeMembers.map((member, index) => {
           let rank
           switch (index) {
@@ -114,7 +114,7 @@ export default function Classement({ group }: { group: Group }) {
       {group.members.length > 5 && !isExpanded && (
         <button
           onClick={() => setIsExpanded(true)}
-          className="bg-Transparent mt-4 w-full border-none text-center text-sm text-primary underline">
+          className="bg-Transparent text-primary-500 mt-4 w-full border-none text-center text-sm underline">
           <Trans>
             Voir les {String(group.members.length - 5)} autre{withS} participant
             {withS}

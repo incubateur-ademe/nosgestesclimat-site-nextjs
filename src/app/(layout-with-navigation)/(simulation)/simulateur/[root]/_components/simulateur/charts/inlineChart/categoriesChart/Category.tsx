@@ -1,6 +1,10 @@
 /* eslint-disable */
 
 import { getMatomoEventClickCategoryGraph } from '@/constants/matomo'
+import {
+  getBackgroundColor,
+  getFillColor,
+} from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
@@ -23,14 +27,16 @@ export default function Category({
   position,
   current,
 }: Props) {
-  const { title, color, numericValue } = useRule(category)
+  const { title, numericValue } = useRule(category)
 
   const percent = (numericValue / total) * 100
 
   return (
     <div
-      className={`relative flex h-full items-center justify-center border-l border-white transition-all ease-in-out ${positionClassNames[position]}`}
-      style={{ width: `${percent}%`, backgroundColor: color }}
+      className={`relative flex h-full items-center justify-center border-l border-white transition-all ease-in-out ${getBackgroundColor(
+        category
+      )} ${positionClassNames[position]}`}
+      style={{ width: `${percent}%` }}
       onClick={() => trackEvent(getMatomoEventClickCategoryGraph(category))}>
       {current ? (
         <svg
@@ -43,7 +49,7 @@ export default function Category({
           style={{ bottom: 'calc(100% + 0.25rem)' }}>
           <path
             d="M7 12L0.0717975 -1.30507e-06L13.9282 -9.36995e-08L7 12Z"
-            style={{ fill: color }}
+            className={getFillColor(category)}
           />
         </svg>
       ) : null}

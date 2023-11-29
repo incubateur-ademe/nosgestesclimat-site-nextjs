@@ -81,14 +81,13 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
 
   return (
     <>
-      <Card className="my-8 !bg-primaryLight">
+      <Card className="my-8 !bg-primary-100">
         <h2 className="text-xl">
           <span
             role="img"
             aria-label="emoji search"
             aria-hidden
-            className="mr-3 inline-block "
-          >
+            className="mr-3 inline-block ">
             🔍
           </span>
           <Trans>Explorez nos modèles</Trans>
@@ -96,13 +95,13 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
 
         <label
           title={t('Entrez des mots clefs')}
-          className="flex items-center py-2"
-        >
+          className="flex items-center py-2">
+          {' '}
           <input
             type="search"
             value={input}
             placeholder={t('Entrez des mots-clefs de recherche')}
-            className="w-full rounded-md border border-solid border-primaryLight p-4"
+            className="w-full rounded-md border border-solid border-primary-100 p-4"
             onChange={(e) => {
               const input = e.target.value
 

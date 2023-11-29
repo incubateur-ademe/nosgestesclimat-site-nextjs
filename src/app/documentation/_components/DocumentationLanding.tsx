@@ -5,16 +5,20 @@ import Title from '@/design-system/layout/Title'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
-import Markdown from 'markdown-to-jsx'
-import { utils } from 'publicodes'
 
 import Link from '@/components/Link'
-import Card from '@/design-system/layout/Card'
-import { NGCRules } from '@/publicodes-state/types'
-import editorialisedModels from '../_data/editorialisedModels.yaml'
+import DocumentationLandingCard from './DocumentationLandingCard'
 import SearchBar from './SearchBar'
 
-const EMOJIS = ['👤', '🏛️', '🍽️', '🌡️', '🚗', '🗑️']
+// We want to be able to define an order for the cards and their summary here
+const FIXED_CARD_SUMMARIES = {
+  bilan: `Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels`,
+  'services sociétaux': `Les constantes de **services publics et marchands** calculées à partir des travaux du SDES`,
+  'alimentation . plats': ` **6 repas** représentatifs de notre consommation`,
+  'alimentation . déchets': `Un modèle inédit d'empreinte des **déchets**`,
+  'logement . chauffage . empreinte par défaut': `Un calcul statistique du **chauffage** résidentiel français moyen`,
+  'transport . voiture': `Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**`,
+} as Record<string, string>
 
 export default function DocumentationLanding() {
   const locale = useLocale()
@@ -23,26 +27,12 @@ export default function DocumentationLanding() {
     user: { region },
   } = useUser()
 
-  const { data } = useRules({
+  const { data: rules } = useRules({
     lang: locale,
     region: region?.code ?? 'FR',
   })
 
-  if (!data) return null
-
-  const rules = data as NGCRules & {
-    [key: string]: { couleur: string; résumé: string }
-  }
-
-  const editos = (editorialisedModels as unknown as string[]).map(
-    (dottedName: string) => ({
-      ...rules[dottedName],
-      dottedName,
-    })
-  )
-
-  const getColor = (dottedName: string) =>
-    rules[dottedName.split(' . ')[0]].couleur
+  if (!rules) return null
 
   return (
     <div>
@@ -70,24 +60,14 @@ export default function DocumentationLanding() {
       </h2>
 
       <ul className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3">
-        {editos.map(({ dottedName, résumé }, index) => {
+        {Object.keys(FIXED_CARD_SUMMARIES).map((dottedName) => {
           return (
             <li key={dottedName}>
-              <Card
-                tag={Link}
-                style={{ backgroundColor: getColor(dottedName) || '#5758BB' }}
-                href={'/documentation/' + utils.encodeRuleName(dottedName)}
-                className="relative !flex h-[12rem] flex-auto justify-center text-center text-base text-white no-underline"
-              >
-                <p className="-z-1 absolute bottom-0 left-0 right-0 top-0 text-center align-middle text-[8.5rem] opacity-20 grayscale">
-                  {EMOJIS[index]}
-                </p>
-                {résumé && (
-                  <h2 className="z-10 mb-0 text-base text-white">
-                    {<Markdown>{résumé}</Markdown>}
-                  </h2>
-                )}
-              </Card>
+              <DocumentationLandingCard
+                dottedName={dottedName}
+                summary={FIXED_CARD_SUMMARIES[dottedName]}
+                rule={rules[dottedName]}
+              />
             </li>
           )
         })}

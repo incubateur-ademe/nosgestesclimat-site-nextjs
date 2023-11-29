@@ -2,14 +2,14 @@ import Trans from '@/components/translation/Trans'
 
 export default function AvantDeCommencer() {
   return (
-    <div className="relative mb-8 mt-6 flex flex-col bg-grey-100 p-7 md:mt-10">
+    <div className="relative mb-8 mt-6 flex flex-col rounded-md bg-grey-100 p-7 md:mt-10">
       <div
         role="presentation"
         aria-hidden
         className="absolute -top-8 inline-block rounded-full bg-grey-100 p-4 text-3xl">
         💡
       </div>
-      <h3>
+      <h3 className="z-10">
         <Trans>Avant de commencer</Trans>
       </h3>
       <div className="relative pl-8">

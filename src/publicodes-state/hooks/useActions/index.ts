@@ -1,7 +1,7 @@
 'use client'
 
 import { useContext, useMemo } from 'react'
-import { useEngine } from '../..'
+import { useEngine, useUser } from '../..'
 import simulationContext from '../../providers/simulationProvider/context'
 
 type ActionObject = {
@@ -18,6 +18,10 @@ export default function useActions() {
 
   const { getValue } = useEngine()
 
+  const { getCurrentSimulation } = useUser()
+
+  const currentSimulation = getCurrentSimulation()
+
   const orderedActions = useMemo<string[]>(
     () =>
       engine
@@ -33,10 +37,39 @@ export default function useActions() {
     [engine, getValue]
   )
 
+  const { chosenActions, declinedActions } =
+    Object.keys(currentSimulation?.actionChoices ?? {})?.reduce(
+      (accActions, currentAction) => {
+        const actionChoice = currentSimulation?.actionChoices[currentAction]
+
+        if (actionChoice) {
+          {
+            accActions.chosenActions = [
+              ...accActions.chosenActions,
+              currentAction,
+            ]
+          }
+        } else {
+          accActions.declinedActions = [
+            ...accActions.declinedActions,
+            currentAction,
+          ]
+        }
+
+        return accActions
+      },
+      { chosenActions: [], declinedActions: [] } as {
+        chosenActions: string[]
+        declinedActions: string[]
+      }
+    ) || 0
+
   return {
     /**
      * Every relevant actions, ordered by value
      */
     orderedActions,
+    chosenActions,
+    declinedActions,
   }
 }

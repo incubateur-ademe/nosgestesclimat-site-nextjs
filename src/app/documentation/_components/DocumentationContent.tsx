@@ -22,45 +22,36 @@ type Props = {
   supportedRegions: SuppportedRegions
   slugs: string[]
 }
-export default function DocumentationContent({
+export default function DocumentationClient({
   supportedRegions,
   slugs,
 }: Props) {
   const { i18n } = useClientTranslation()
   const path = decodeURI(slugs.join('/'))
-
   const { user, getCurrentSimulation } = useUser()
-
   const lang = useLocale()
-
   const { data: rules } = useRules({
     lang: lang || 'fr',
     region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
     isOptim: false,
   })
-
   const currentSimulation = getCurrentSimulation()
   const situation = currentSimulation?.situation
-
   const engine = useMemo<Engine | null>(
     () => (rules ? new Engine(rules as Rules) : null),
     [rules]
   )
-
   //TODO: this is shit
   useEffect(() => {
     if (engine && situation) {
       const rules = Object.keys(engine.getParsedRules())
-
       const safeSituation: Situation = safeGetSituation({
         situation,
         everyRules: rules,
       })
-
       engine.setSituation(safeSituation as any)
     }
   }, [engine, situation])
-
   const documentationPath = '/documentation'
 
   return (
