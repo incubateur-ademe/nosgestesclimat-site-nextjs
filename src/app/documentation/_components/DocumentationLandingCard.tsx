@@ -10,9 +10,14 @@ import { utils } from 'publicodes'
 
 type Props = {
   dottedName: string
+  summary: string
   rule: NGCRule
 }
-export default function DocumentationLandingCard({ dottedName, rule }: Props) {
+export default function DocumentationLandingCard({
+  dottedName,
+  summary,
+  rule,
+}: Props) {
   const category = dottedName.split(' . ')[0]
 
   return (
@@ -29,7 +34,7 @@ export default function DocumentationLandingCard({ dottedName, rule }: Props) {
       </div>
 
       <h2 className="z-10 mb-0 text-base text-white">
-        {<Markdown>{rule['résumé'] || '...'}</Markdown>}
+        {<Markdown>{summary}</Markdown>}
       </h2>
     </Card>
   )
