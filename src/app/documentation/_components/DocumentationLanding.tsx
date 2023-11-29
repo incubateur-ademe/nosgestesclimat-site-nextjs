@@ -10,15 +10,15 @@ import Link from '@/components/Link'
 import DocumentationLandingCard from './DocumentationLandingCard'
 import SearchBar from './SearchBar'
 
-// We want to be able to define an order for the cards
-const FIXED_CARD_DOTTEDNAMES = [
-  'bilan',
-  'services sociétaux',
-  'alimentation . plats',
-  'logement . chauffage . empreinte par défaut',
-  'transport . voiture',
-  'transport . mobilité douce',
-]
+// We want to be able to define an order for the cards and their summary here
+const FIXED_CARD_SUMMARY = {
+  bilan: `Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels`,
+  'services sociétaux': `Les constantes de **services publics et marchands** calculées à partir des travaux du SDES`,
+  'alimentation . plats': ` **6 repas** représentatifs de notre consommation`,
+  'alimentation . déchets': `Un modèle inédit d'empreinte des **déchets**`,
+  'logement . chauffage . empreinte par défaut': `Un calcul statistique du **chauffage** résidentiel français moyen`,
+  'transport . voiture': `Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**`,
+} as Record<string, string>
 
 export default function DocumentationLanding() {
   const locale = useLocale()
@@ -60,11 +60,12 @@ export default function DocumentationLanding() {
       </h2>
 
       <ul className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3">
-        {FIXED_CARD_DOTTEDNAMES.map((dottedName) => {
+        {Object.keys(FIXED_CARD_SUMMARY).map((dottedName) => {
           return (
             <li key={dottedName}>
               <DocumentationLandingCard
                 dottedName={dottedName}
+                summary={FIXED_CARD_SUMMARY[dottedName]}
                 rule={rules[dottedName]}
               />
             </li>
