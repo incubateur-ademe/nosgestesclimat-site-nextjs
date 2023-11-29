@@ -31,7 +31,12 @@ const redirects = [
   },
   {
     source: '/vie-priv%C3%A9e',
-    destination: '/vie-privee',
+    destination: '/politique-de-confidentialite',
+    permanent: true,
+  },
+  {
+    source: '/vie-privee',
+    destination: '/politique-de-confidentialite',
     permanent: true,
   },
   {
