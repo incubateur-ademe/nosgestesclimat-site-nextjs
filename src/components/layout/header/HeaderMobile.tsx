@@ -12,7 +12,7 @@ export default function HeaderMobile({
   shouldHideMostOfContent: boolean
 }) {
   return (
-    <header className="sticky top-0 z-50 flex justify-between bg-white p-4 shadow-sm lg:hidden">
+    <header className="sticky top-0 z-50 flex justify-between bg-white p-4 shadow-sm md:px-8 lg:hidden">
       <Logo />
 
       {!shouldHideMostOfContent && <FoldableMenu />}

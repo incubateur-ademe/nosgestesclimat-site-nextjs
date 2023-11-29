@@ -26,7 +26,7 @@ export default async function Release({ params: { slug } }: Props) {
   const content = await getPost(`src/locales/nouveautes/${locale}/`, slug)
 
   return (
-    <div className="m-auto w-full max-w-3xl">
+    <div className="max-w-3xl">
       <Link href="/nouveautes" className="text-sm">
         ← <Trans>Retour à la liste des nouveautes</Trans>
       </Link>

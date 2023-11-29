@@ -7,7 +7,7 @@ import Trans from '../translation/Trans'
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center gap-4 bg-grey-100 p-4 pb-32 sm:p-8 md:mb-0 md:pb-24">
+    <footer className="flex flex-col items-center gap-4 bg-grey-100 p-4 pb-32 sm:py-8 md:mb-0 md:px-8 md:pb-24">
       <div className="flex w-full items-start gap-12 md:max-w-5xl">
         <Logo className="hidden scale-75 lg:block" />
 

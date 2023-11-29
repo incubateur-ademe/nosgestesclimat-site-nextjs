@@ -12,7 +12,7 @@ export default function Organisations() {
   return (
     <div className="relative mb-16 py-12 md:py-24">
       <Background direction={isHover ? 'left' : 'right'} />
-      <div className="relative mx-auto flex w-full max-w-5xl flex-col px-4 md:flex-row md:gap-4 lg:gap-10 xl:gap-20">
+      <div className="relative mx-auto flex w-full max-w-5xl flex-col px-4 md:flex-row md:gap-4 md:px-8 lg:gap-10 xl:gap-20">
         <div className=" max-w-lg flex-1 basis-1/2">
           <Kicker>
             <Trans>Pour les organisations</Trans>

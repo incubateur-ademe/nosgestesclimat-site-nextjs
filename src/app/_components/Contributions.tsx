@@ -13,7 +13,7 @@ export default function Contributions() {
   return (
     <div className="relative mb-16 py-12 md:py-24">
       <Background direction={isHover ? 'right' : 'left'} />
-      <div className="relative mx-auto w-full max-w-5xl px-4">
+      <div className="relative mx-auto w-full max-w-5xl px-4 md:px-8">
         <Kicker>
           <Trans>Ouvert, documenté et contributif</Trans>
         </Kicker>
