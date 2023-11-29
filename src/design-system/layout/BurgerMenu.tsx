@@ -68,25 +68,23 @@ export default function BurgerMenu({
         />
       </Button>
 
-      <div
-        className={twMerge(
-          'fixed left-0 top-0 z-[51] h-screen w-screen opacity-0 transition-opacity duration-300 ease-in-out',
-          `${isOpen ? 'opacity-1' : ''}`
-        )}>
+      <div className="fixed left-0 top-0 z-[51]">
         <>
-          <div
-            className="absolute left-0 top-0 h-screen w-screen"
-            tabIndex={0}
-            onClick={handleClickMask as any}
-            onKeyDown={handleClickMask}
-            role="button"
-            aria-label={t('Fermer le menu')}
-          />
+          {isOpen && (
+            <div
+              className="fixed left-0 top-0 h-screen w-screen"
+              tabIndex={0}
+              onClick={handleClickMask as any}
+              onKeyDown={handleClickMask}
+              role="button"
+              aria-label={t('Fermer le menu')}
+            />
+          )}
 
           <div
             className={twMerge(
-              'absolute right-0 top-0 z-[51] h-screen w-[90vw] max-w-[20rem] translate-x-full bg-grey-100 p-4 pt-16 shadow-md transition-transform duration-300 ease-in-out',
-              `${isOpen ? 'translate-x-0' : ''}`
+              'fixed right-0 top-0 z-[51] h-screen w-[90vw] max-w-[20rem] translate-x-full bg-grey-100 p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out',
+              isOpen ? 'opacity-1  translate-x-0' : ''
             )}>
             {children({
               closeMenu: () => setIsOpen(false),
