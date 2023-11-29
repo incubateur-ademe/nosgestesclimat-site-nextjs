@@ -1,10 +1,10 @@
 'use client'
 
+import HowToAct from '@/components/actions/HowToAct'
 import Trans from '@/components/translation/Trans'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { useRouter } from 'next/navigation'
-import HowToAct from '../../../fin/_components/HowToAct'
 import EditableGroupTitle from './EditableGroupTitle'
 import GroupResults from './GroupResults'
 
