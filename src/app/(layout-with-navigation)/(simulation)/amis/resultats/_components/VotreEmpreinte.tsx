@@ -50,7 +50,7 @@ export default function VotreEmpreinte({
         </p>
       )}
 
-      <ul className="mb-16 mt-6 pl-0">
+      <ul className="mb-6 mt-6 pl-0">
         {Object.entries(categoriesFootprints ?? {}).reduce(
           (acc, [key, categoryObject]) => {
             if (!(EMOJI_TEXT_MAP as any)[key]) return acc
@@ -73,7 +73,7 @@ export default function VotreEmpreinte({
                   )}
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="bg-primary-100 text-primary-500 border-primary-800 rounded-[5px] border-[1px] border-solid p-1 text-sm">
+                  <div className="rounded-[5px] border-[1px] border-solid border-primary-800 bg-primary-100 p-1 text-sm text-primary-500">
                     <strong>
                       {formatValue(categoryObject.value / 1000, {
                         precision: 1,

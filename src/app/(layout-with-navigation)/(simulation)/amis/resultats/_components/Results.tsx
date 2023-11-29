@@ -16,26 +16,24 @@ export default function Results({ groupId }: { groupId: string }) {
     router.push('/amis')
   }
   return (
-    <>
-      <div className="p-4 pb-0">
-        <GoBackLink className="mb-4 font-bold" />
+    <div className="pb-8">
+      <GoBackLink className="mb-4 font-bold" />
 
-        <AutoCanonicalTag />
+      <AutoCanonicalTag />
 
-        <EditableGroupTitle groupId={groupId} />
+      <EditableGroupTitle groupId={groupId} />
 
-        <div className="mt-4">
-          <h2 className="m-0 text-lg font-bold">
-            <Trans>Le classement</Trans>
-          </h2>
-        </div>
-
-        <GroupResults groupId={groupId} />
+      <div className="mt-4">
+        <h2 className="m-0 text-lg font-bold">
+          <Trans>Le classement</Trans>
+        </h2>
       </div>
+
+      <GroupResults groupId={groupId} />
 
       <Separator className="my-6" />
 
       <HowToAct />
-    </>
+    </div>
   )
 }
