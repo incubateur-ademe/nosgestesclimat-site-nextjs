@@ -360,7 +360,6 @@ blockquote {
 /*
   Iframe
   */
-.iframeOnlySimulation header,
 .iframeOnlySimulation footer {
   display: none;
 }

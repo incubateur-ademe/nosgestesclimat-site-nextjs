@@ -10,6 +10,16 @@ import Link from '@/components/Link'
 import DocumentationLandingCard from './DocumentationLandingCard'
 import SearchBar from './SearchBar'
 
+// We want to be able to define an order for the cards
+const FIXED_CARD_DOTTEDNAMES = [
+  'bilan',
+  'services sociétaux',
+  'alimentation . plats',
+  'logement . chauffage . empreinte par défaut',
+  'transport . voiture',
+  'transport . mobilité douce',
+]
+
 export default function DocumentationLanding() {
   const locale = useLocale()
 
@@ -23,10 +33,6 @@ export default function DocumentationLanding() {
   })
 
   if (!rules) return null
-
-  const editoDottedNames = Object.keys(rules).filter(
-    (dottedName) => rules[dottedName]['résumé']
-  )
 
   return (
     <div>
@@ -54,10 +60,13 @@ export default function DocumentationLanding() {
       </h2>
 
       <ul className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3">
-        {editoDottedNames.map((edito) => {
+        {FIXED_CARD_DOTTEDNAMES.map((dottedName) => {
           return (
-            <li key={edito}>
-              <DocumentationLandingCard edito={edito} rule={rules[edito]} />
+            <li key={dottedName}>
+              <DocumentationLandingCard
+                dottedName={dottedName}
+                rule={rules[dottedName]}
+              />
             </li>
           )
         })}
