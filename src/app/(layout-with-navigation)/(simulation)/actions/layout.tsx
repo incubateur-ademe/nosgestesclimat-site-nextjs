@@ -1,6 +1,7 @@
 import NorthStarBanner from '@/components/northstar/NorthstarBanner'
 import Total from '@/components/total/Total'
 import Trans from '@/components/translation/Trans'
+import { noIndexObject } from '@/constants/metadata'
 import Title from '@/design-system/layout/Title'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
@@ -14,6 +15,7 @@ export async function generateMetadata() {
     alternates: {
       canonical: '/actions',
     },
+    robots: noIndexObject,
   })
 }
 
