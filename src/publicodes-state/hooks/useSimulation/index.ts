@@ -9,7 +9,7 @@ export default function useSimulation() {
     useContext(SimulationContext)
 
   return {
-    categories,
+    categories: [...categories],
     subcategories,
     everyQuestions,
   }
