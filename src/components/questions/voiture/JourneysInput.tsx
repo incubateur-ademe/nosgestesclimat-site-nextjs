@@ -87,21 +87,21 @@ export default function JourneysInput({ question }: Props) {
       transition={{ duration: 0.2 }}
       className="mb-2 w-full overflow-scroll rounded-lg bg-white p-2">
       <table className="block w-full border-collapse md:table">
-        <tbody className="block md:table">
-          <tr className="block">
-            <th className="block px-4 py-2 text-left text-sm md:table">
+        <tbody className="block w-full">
+          <tr className="block w-full md:table-row">
+            <th className="block px-4 py-2 text-left text-sm md:table-cell">
               <Trans>Label</Trans>
             </th>
-            <th className="block px-4 py-2 text-left text-sm md:table">
+            <th className="block px-4 py-2 text-left text-sm md:table-cell">
               <Trans>Distance</Trans>
             </th>
-            <th className="block px-4 py-2 text-left text-sm md:table">
+            <th className="block px-4 py-2 text-left text-sm md:table-cell">
               <Trans>Fréquence</Trans>
             </th>
-            <th className="block px-4 py-2 text-left text-sm md:table">
+            <th className="block px-4 py-2 text-left text-sm md:table-cell">
               <Trans>Passagers</Trans>
             </th>
-            <th className="block px-4 py-2 text-left text-sm opacity-0 md:table">
+            <th className="block px-4 py-2 text-left text-sm opacity-0 md:table-cell">
               Options
             </th>
           </tr>

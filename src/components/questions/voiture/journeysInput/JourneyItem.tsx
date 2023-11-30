@@ -31,29 +31,29 @@ export const labels: Record<string, string> = {
 export default function AddJourney({ journey, odd, setJourneys }: Props) {
   const { t } = useTranslation()
   return (
-    <tr className={`block ${odd ? 'bg-primary-100' : ''}`}>
+    <tr className={`block md:table-row ${odd ? 'bg-primary-100' : ''}`}>
       <td
-        className={`block md:table md:border-r ${
+        className={`block md:table-cell md:border-r ${
           odd ? 'border-white' : 'border-primary-200'
         } px-4 py-2 text-left text-sm`}>
         {t(labels[journey.label])}
       </td>
       <td
-        className={`block md:table md:border-x ${
+        className={`block md:table-cell md:border-x ${
           odd ? 'border-white' : 'border-primary-200'
         } px-4 py-2 text-left text-sm`}>
         {journey.distance || 0} km
       </td>
       <td
-        className={`block md:table md:border-x ${
+        className={`block md:table-cell md:border-x ${
           odd ? 'border-white' : 'border-primary-200'
         } px-4 py-2 text-left text-sm`}>
         {journey.reccurrence} x {t(periods[journey.period])}
       </td>
-      <td className={`block px-4 py-2 text-left text-sm md:table`}>
+      <td className={`block px-4 py-2 text-left text-sm md:table-cell`}>
         {journey.passengers}
       </td>
-      <td className={`block py-2 pl-4 pr-2 text-right text-sm md:table`}>
+      <td className={`block py-2 pl-4 pr-2 text-right text-sm md:table-cell`}>
         <Button
           color="text"
           size="sm"
