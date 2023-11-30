@@ -10,6 +10,9 @@ export async function generateMetadata() {
     title: "Nos personas d'utilisateurs types - Nos Gestes Climat",
     description:
       "Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.",
+    alternates: {
+      canonical: '/personas',
+    },
   })
 }
 

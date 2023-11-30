@@ -10,6 +10,9 @@ export async function generateMetadata() {
     title: 'Ambassadeurs - Nos Gestes Climat',
     description:
       'Découvrez les ambassadeurs de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.',
+    alternates: {
+      canonical: '/ambassadeurs',
+    },
   })
 }
 

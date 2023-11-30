@@ -7,6 +7,9 @@ export async function generateMetadata() {
       "Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat",
     description:
       'Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.',
+    alternates: {
+      canonical: '/documentation',
+    },
   })
 }
 

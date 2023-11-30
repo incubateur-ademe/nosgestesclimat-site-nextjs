@@ -9,6 +9,9 @@ export async function generateMetadata() {
   return getMetadataObject({
     title: 'Blog - Nos Gestes Climat',
     description: 'Découvrez les articles de blog du site Nos Gestes Climat.',
+    alternates: {
+      canonical: '/blog',
+    },
   })
 }
 
