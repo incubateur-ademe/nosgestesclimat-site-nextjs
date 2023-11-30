@@ -5,8 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useFetchUpdateGroupMember } from './useFetchUpdateGroupMember'
 
 export function useUpdateGroupAndRedirectToGroup() {
-  const { setGroupToRedirectToAfterTest, user, getCurrentSimulation } =
-    useUser()
+  const { user, getCurrentSimulation } = useUser()
 
   const { getValue } = useEngine()
 
@@ -21,8 +20,6 @@ export function useUpdateGroupAndRedirectToGroup() {
   }) {
     const groupId = group?._id
 
-    setGroupToRedirectToAfterTest(undefined)
-
     const results = getSimulationResults({
       getValue,
     })
@@ -35,8 +32,6 @@ export function useUpdateGroupAndRedirectToGroup() {
     })
 
     router.push(`/amis/resultats?groupId=${groupId}`)
-
-    return
   }
 
   return handleUpdateGroupAndRedirectToGroup
