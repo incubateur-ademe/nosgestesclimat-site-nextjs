@@ -7,20 +7,33 @@ import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
 
 import Link from '@/components/Link'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import DocumentationLandingCard from './DocumentationLandingCard'
 import SearchBar from './SearchBar'
 
-// We want to be able to define an order for the cards and their summary here
-const FIXED_CARD_SUMMARIES = {
-  bilan: `Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels`,
-  'services sociétaux': `Les constantes de **services publics et marchands** calculées à partir des travaux du SDES`,
-  'alimentation . plats': ` **6 repas** représentatifs de notre consommation`,
-  'alimentation . déchets': `Un modèle inédit d'empreinte des **déchets**`,
-  'logement . chauffage . empreinte par défaut': `Un calcul statistique du **chauffage** résidentiel français moyen`,
-  'transport . voiture': `Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**`,
-} as Record<string, string>
-
 export default function DocumentationLanding() {
+  const { t } = useClientTranslation()
+
+  // We want to be able to define an order for the cards and their summary here
+  const FIXED_CARD_SUMMARIES = {
+    bilan: t(
+      `Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels`
+    ),
+    'services sociétaux': t(
+      `Les constantes de **services publics et marchands** calculées à partir des travaux du SDES`
+    ),
+    'alimentation . plats': t(
+      `**6 repas** représentatifs de notre consommation`
+    ),
+    'alimentation . déchets': t(`Un modèle inédit d'empreinte des **déchets**`),
+    'logement . chauffage . empreinte par défaut': t(
+      `Un calcul statistique du **chauffage** résidentiel français moyen`
+    ),
+    'transport . voiture': t(
+      `Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**`
+    ),
+  } as Record<string, string>
+
   const locale = useLocale()
 
   const {
