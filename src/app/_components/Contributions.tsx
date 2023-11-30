@@ -22,31 +22,35 @@ export default function Contributions() {
         </h2>
         <div className="flex flex-col gap-4 md:flex-row md:gap-7">
           <Card
+            tag={Link}
+            href="/nouveautes"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             className="flex-1 flex-row items-center gap-4 py-8 md:flex-col">
             <Emoji className="text-3xl">🔍</Emoji>
             <p className="mb-0">
               <Trans>
-                Le code source est ouvert, le site est{' '}
-                <Link href="/nouveautes">amélioré régulièrement</Link>.
+                Le code source est ouvert, le site est amélioré régulièrement.
               </Trans>
             </p>
           </Card>
           <Card
+            tag={Link}
+            href="/documentation"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             className="flex-1 flex-row items-center gap-4 py-8 md:flex-col">
             <Emoji className="text-3xl">👀</Emoji>
             <p className="mb-0">
               <Trans>
-                L'intégralité du calcul est{' '}
-                <Link href="/documentation">documenté</Link> en ligne pour les
-                curieux et les experts.
+                L'intégralité du calcul est documenté en ligne pour les curieux
+                et les experts.
               </Trans>
             </p>
           </Card>
           <Card
+            tag={Link}
+            href="/contact"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             className="flex-1 flex-row items-center gap-4 py-8 md:flex-col">
@@ -54,8 +58,7 @@ export default function Contributions() {
             <p className="mb-0">
               <Trans>
                 Une idée&#8239;? Une correction&#8239;? Une remarque&#8239;?
-                Toute contribution{' '}
-                <Link href="/contact">est la bienvenue&#8239;!</Link>
+                Toute contribution est la bienvenue&#8239;!
               </Trans>
             </p>
           </Card>
