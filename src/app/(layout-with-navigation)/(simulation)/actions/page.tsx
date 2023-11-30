@@ -1,3 +1,4 @@
+import { noIndexObject } from '@/constants/metadata'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ActionPageContent from './_components/ActionPageContent'
 
@@ -6,6 +7,7 @@ export async function generateMetadata() {
     title:
       'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat',
     description: 'Quelles sont les actions les plus efficaces ?',
+    robots: noIndexObject,
   })
 }
 
