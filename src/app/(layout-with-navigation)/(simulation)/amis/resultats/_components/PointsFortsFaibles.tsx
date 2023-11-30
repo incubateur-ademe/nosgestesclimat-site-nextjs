@@ -11,7 +11,6 @@ export default function PointsFortsFaibles({
   pointsForts?: Points[]
   pointsFaibles?: Points[]
 }) {
-  console.log(pointsForts, pointsFaibles)
   return (
     <div>
       <h2 className="mt-0 text-lg" data-cypress-id="points-fort-faibles-title">
