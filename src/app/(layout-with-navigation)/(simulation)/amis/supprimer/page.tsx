@@ -1,24 +1,14 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { Member } from '@/types/groups'
 import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { useFetchGroup } from '../_hooks/useFetchGroup'
 import { useDeleteGroup } from './_hooks/useDeleteGroup'
-
-export async function generateMetadata() {
-  return getMetadataObject({
-    title: 'Supprimer mes données de groupe - Nos Gestes Climat',
-    description:
-      'Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.',
-    alternates: {
-      canonical: '/amis/supprimer',
-    },
-  })
-}
 
 export default function SupprimerGroupePage({
   searchParams,

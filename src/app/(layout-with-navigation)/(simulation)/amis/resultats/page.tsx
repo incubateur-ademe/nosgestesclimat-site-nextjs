@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import { useRouter } from 'next/router'

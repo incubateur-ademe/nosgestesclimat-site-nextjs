@@ -1,9 +1,11 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { Member } from '@/types/groups'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useFetchGroup } from '../_hooks/useFetchGroup'
 import InvitationForm from './_components/InvitationForm'
 import { getGroupURL } from './_helpers/getGroupURL'
