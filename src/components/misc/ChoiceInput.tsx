@@ -53,7 +53,7 @@ export default function ChoiceInput({
         ) : null}
       </div>
       {description && isOpen ? (
-        <div className="mb-4 w-1/2 rounded-md bg-white p-2 text-sm">
+        <div className="mb-4 w-full rounded-md bg-white p-2 text-sm sm:w-[30rem]">
           <Markdown className="mb-0">{description}</Markdown>
         </div>
       ) : null}
