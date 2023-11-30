@@ -52,7 +52,9 @@ export default function DesktopCircles({ circles }: Props) {
   }, [firstSelected, secondSelected])
 
   return (
-    <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
+    <div
+      className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block"
+      aria-hidden={true}>
       {circles.map((circle) =>
         circle.map(({ iconIndex, x, y, rotation, delay }) => (
           <DesktopIcon
