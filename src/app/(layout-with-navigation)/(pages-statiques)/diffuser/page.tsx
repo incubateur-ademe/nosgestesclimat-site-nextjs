@@ -7,6 +7,9 @@ export async function generateMetadata() {
   return getMetadataObject({
     title: "Diffuser notre simulateur d'empreinte climat - Nos Gestes Climat",
     description: 'Diffusez Nos Gestes Climat dans votre organisation.',
+    alternates: {
+      canonical: '/diffuser',
+    },
   })
 }
 

@@ -8,6 +8,9 @@ export async function generateMetadata() {
     title: 'Accessibilité - Nos Gestes Climat',
     description:
       "Informations relatives à l'accessibilité de Nos Gestes Climat.",
+    alternates: {
+      canonical: '/accessibilite',
+    },
   })
 }
 

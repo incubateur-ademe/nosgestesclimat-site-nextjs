@@ -1,22 +1,14 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
-import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { Member } from '@/types/groups'
 import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { useFetchGroup } from '../_hooks/useFetchGroup'
 import { useDeleteGroup } from './_hooks/useDeleteGroup'
-
-export async function generateMetadata() {
-  return getMetadataObject({
-    title: 'Supprimer mes données de groupe - Nos Gestes Climat',
-    description:
-      'Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.',
-  })
-}
 
 export default function SupprimerGroupePage({
   searchParams,
@@ -69,8 +61,6 @@ export default function SupprimerGroupePage({
 
   return (
     <div className="p-4 md:p-8">
-      <AutoCanonicalTag />
-
       <Title title={t('Supprimer mes données')} />
 
       {isSuccess && <Trans>Données supprimées.</Trans>}

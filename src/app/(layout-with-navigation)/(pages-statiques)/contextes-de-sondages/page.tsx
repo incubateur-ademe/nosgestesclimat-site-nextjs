@@ -8,6 +8,9 @@ export async function generateMetadata() {
     title: 'Documentation Contexte Sondage - Nos Gestes Climat',
     description:
       "Informations relatives à la création d'un contexte spécifique.",
+    alternates: {
+      canonical: '/contextes-de-sondages',
+    },
   })
 }
 

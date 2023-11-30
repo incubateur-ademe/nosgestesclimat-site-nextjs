@@ -19,11 +19,18 @@ const categories: Record<string, any> = {
   transport: guideTransport,
 }
 
-export async function generateMetadata() {
+export async function generateMetadata({
+  params: { category },
+}: {
+  params: { category: string }
+}) {
   return getMetadataObject({
     title: 'Le guide - Nos Gestes Climat',
     description:
       'Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.',
+    alternates: {
+      canonical: `/guide/${category}`,
+    },
   })
 }
 

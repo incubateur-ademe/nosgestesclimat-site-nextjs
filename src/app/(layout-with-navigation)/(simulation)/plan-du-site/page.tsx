@@ -10,6 +10,9 @@ export async function generateMetadata() {
     title: 'Plan du site - Nos Gestes Climat',
     description:
       'Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.',
+    alternates: {
+      canonical: '/plan-du-site',
+    },
   })
 }
 
