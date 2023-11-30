@@ -26,13 +26,14 @@ export default function Assistance({ question, assistance }: Props) {
   const [inputValue, setInputValue] = useState(0)
 
   return (
-    <div className="mb-4 w-[20rem] max-w-full rounded-lg bg-white p-4">
+    <div className="mb-4 w-[20rem] max-w-full rounded-lg bg-white p-4 sm:w-2/3">
       <Label
         question={question}
         size="sm"
         label={label}
         description={description}
-        titleClassName="text-sm md:text-base"
+        titleClassName="text-sm md:text-base font-normal"
+        className="mb-2"
       />
       {type === 'number' && (
         <NumberInput
