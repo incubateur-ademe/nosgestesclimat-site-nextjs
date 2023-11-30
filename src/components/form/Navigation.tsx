@@ -41,6 +41,8 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
     async (e: KeyboardEvent | MouseEvent) => {
       e.preventDefault()
 
+      window.scrollTo(0, 0)
+
       if (isMissing) {
         trackEvent(getMatomoEventClickDontKnow(question))
       } else {
@@ -100,10 +102,14 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
       {!noPrevQuestion ? (
         <Button
           onClick={() => {
+            window.scrollTo(0, 0)
+
             trackEvent(getMatomoEventClickPrevQuestion(question))
+
             if (!noPrevQuestion) {
               gotoPrevQuestion()
             }
+
             handleMoveFocus()
           }}
           color="text">
@@ -118,8 +124,8 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
         {noNextQuestion
           ? t('Terminer')
           : isMissing
-          ? t('Je ne sais pas') + ' →'
-          : t('Suivant') + ' →'}
+            ? t('Je ne sais pas') + ' →'
+            : t('Suivant') + ' →'}
       </Button>
     </div>
   )

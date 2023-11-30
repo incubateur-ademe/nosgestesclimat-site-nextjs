@@ -46,8 +46,6 @@ export default function useNavigation({
 
     setCurrentQuestion(newCurrentQuestion)
 
-    window.scrollTo(0, 0)
-
     return newCurrentQuestion
   }
   const gotoNextQuestion = (): string | undefined => {
@@ -56,8 +54,6 @@ export default function useNavigation({
     const newCurrentQuestion = relevantQuestions[currentQuestionIndex + 1]
 
     setCurrentQuestion(newCurrentQuestion)
-
-    window.scrollTo(0, 0)
 
     return newCurrentQuestion
   }
