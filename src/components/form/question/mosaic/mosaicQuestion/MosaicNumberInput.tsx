@@ -30,7 +30,7 @@ export default function NumberInput({
       }>
       <div>
         {title && icons ? (
-          <span className="font-semibold md:text-xl">
+          <span className="text-sm font-semibold md:text-xl">
             {title}&nbsp;{icons}
           </span>
         ) : null}
@@ -47,7 +47,8 @@ export default function NumberInput({
         <Button
           disabled={value === 0}
           onClick={() => setValue(Number(value) - 1)}
-          className="z-10 h-10 w-10  items-center justify-center">
+          size="sm"
+          className="z-10 h-8 w-8 items-center justify-center  md:h-10 md:w-10">
           -
         </Button>
         <input
@@ -61,7 +62,7 @@ export default function NumberInput({
         />
         <Button
           onClick={() => setValue(Number(value) + 1)}
-          className="z-10 h-10 w-10 items-center justify-center">
+          className="z-10 h-8 w-8 items-center justify-center  md:h-10 md:w-10">
           +
         </Button>
       </div>
