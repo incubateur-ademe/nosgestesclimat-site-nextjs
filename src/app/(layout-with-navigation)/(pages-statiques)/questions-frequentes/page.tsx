@@ -22,6 +22,9 @@ export async function generateMetadata() {
       "Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat",
     description:
       'Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.',
+    alternates: {
+      canonical: '/questions-frequentes',
+    },
   })
 }
 

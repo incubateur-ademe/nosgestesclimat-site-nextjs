@@ -7,6 +7,9 @@ export async function generateMetadata() {
   return getMetadataObject({
     title: 'À propos - Nos Gestes Climat',
     description: 'Informations relatives à Nos Gestes Climat.',
+    alternates: {
+      canonical: '/a-propos',
+    },
   })
 }
 

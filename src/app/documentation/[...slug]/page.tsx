@@ -3,12 +3,19 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import DocumentationRouter from './_components/DocumentationRouter'
 import DocumentationServer from './_components/documentationRouter/DocumentationServer'
 
-export async function generateMetadata() {
+export async function generateMetadata({
+  params: { slug },
+}: {
+  params: { slug: string[] }
+}) {
   return getMetadataObject({
     title:
       "Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat",
     description:
       'Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.',
+    alternates: {
+      canonical: `/documentation/${slug.join('/')}`,
+    },
   })
 }
 
