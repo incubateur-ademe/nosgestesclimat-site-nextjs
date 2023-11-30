@@ -1,6 +1,7 @@
 import { NGC_MODEL_API_URL } from '@/constants/urls'
 import { fetchModel } from '@/helpers/data/fetchModel'
 import getPosts from '@/helpers/markdown/getPosts'
+import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import { MetadataRoute } from 'next'
 import { utils } from 'publicodes'
 
@@ -58,7 +59,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const actionPosts = await getPosts(`src/locales/actions-plus/fr/`)
   const actionUrls = actionPosts.map((post) => ({
-    url: `https://nosgestesclimat.fr/actions/plus/${post.slug}`,
+    url: `https://nosgestesclimat.fr/actions/plus/${encodeRuleName(post.slug)}`,
     lastModified: new Date(),
     priority: 0.8,
   }))
