@@ -101,9 +101,11 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
         <Button
           onClick={() => {
             trackEvent(getMatomoEventClickPrevQuestion(question))
+
             if (!noPrevQuestion) {
               gotoPrevQuestion()
             }
+
             handleMoveFocus()
           }}
           color="text">
@@ -118,8 +120,8 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
         {noNextQuestion
           ? t('Terminer')
           : isMissing
-          ? t('Je ne sais pas') + ' →'
-          : t('Suivant') + ' →'}
+            ? t('Je ne sais pas') + ' →'
+            : t('Suivant') + ' →'}
       </Button>
     </div>
   )
