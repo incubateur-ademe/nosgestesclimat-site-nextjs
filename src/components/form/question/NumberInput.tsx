@@ -39,7 +39,7 @@ export default function NumberInput({
         className
       )}>
       <input
-        className={`border-primary-500 focus:border-primary-500 rounded border bg-grey-100 p-2 text-right transition-colors focus:ring-2 focus:ring-primary`}
+        className={`focus:ring-primary max-w-[10rem] rounded border border-primary-500 bg-grey-100 p-2 text-right transition-colors focus:border-primary-500 focus:ring-2 md:max-w-full`}
         type="number"
         min={min}
         value={isMissing ? '' : value}
@@ -53,10 +53,10 @@ export default function NumberInput({
         {...props}
       />
       {unit ? (
-        <>
+        <span className="whitespace-nowrap">
           &nbsp;
           <Trans>{unit}</Trans>
-        </>
+        </span>
       ) : null}
     </div>
   )
