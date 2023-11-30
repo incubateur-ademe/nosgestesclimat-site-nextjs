@@ -6,15 +6,19 @@ import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Separator from '@/design-system/layout/Separator'
 import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import EditableGroupTitle from './EditableGroupTitle'
 import GroupResults from './GroupResults'
 
 export default function Results({ groupId }: { groupId: string }) {
   const router = useRouter()
 
-  if (!groupId) {
-    router.push('/amis')
-  }
+  useEffect(() => {
+    if (!groupId) {
+      router.push('/amis')
+    }
+  }, [groupId, router])
+
   return (
     <div className="pb-8">
       <GoBackLink className="mb-4 font-bold" />
