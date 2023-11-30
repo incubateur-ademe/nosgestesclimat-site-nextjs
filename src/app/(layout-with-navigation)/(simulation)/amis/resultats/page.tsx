@@ -1,6 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import EditableGroupTitle from './_components/EditableGroupTitle'
 import Footer from './_components/Footer'
 import GroupResults from './_components/GroupResults'
@@ -14,9 +15,11 @@ export default function GroupResultsPage({
 
   const router = useRouter()
 
-  if (!groupId) {
-    router.push('/amis')
-  }
+  useEffect(() => {
+    if (!groupId) {
+      router.push('/amis')
+    }
+  }, [groupId, router])
 
   return (
     <>
