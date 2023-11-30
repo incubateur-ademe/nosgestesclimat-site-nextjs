@@ -2,6 +2,7 @@ import {
   EvaluatedNode,
   Evaluation,
   Engine as PublicodesEngine,
+  Rule,
   RuleNode,
 } from 'publicodes'
 

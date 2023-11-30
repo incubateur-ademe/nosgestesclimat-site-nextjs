@@ -7,6 +7,9 @@ export async function generateMetadata() {
   return getMetadataObject({
     title: 'CGU - Nos Gestes Climat',
     description: "Conditions générales d'utilisation du site.",
+    alternates: {
+      canonical: '/cgu',
+    },
   })
 }
 

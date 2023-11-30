@@ -1,7 +1,6 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import ModeleDemoBlock from './ModeleDemoBlock'
 import ModeleIssuePreviews from './ModeleIssuePreviews'
@@ -12,8 +11,6 @@ export default async function Modele() {
 
   return (
     <div>
-      <AutoCanonicalTag />
-
       <Title
         title={<Trans>Le modèle d'empreinte carbone de référence</Trans>}
       />

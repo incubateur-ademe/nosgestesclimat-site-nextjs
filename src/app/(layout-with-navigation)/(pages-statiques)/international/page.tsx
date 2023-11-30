@@ -15,6 +15,9 @@ export async function generateMetadata() {
     title: 'Le calculateur d’empreinte climat international',
     description:
       'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.',
+    alternates: {
+      canonical: '/international',
+    },
   })
 }
 
