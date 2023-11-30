@@ -1,15 +1,21 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ActionDetail from './_components/ActionDetail'
 
-export async function generateMetadata() {
+export async function generateMetadata({
+  params: { dottedName },
+}: {
+  params: { dottedName: string[] }
+}) {
   return getMetadataObject({
     title:
       "Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat",
     description:
       'Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.',
+    alternates: {
+      canonical: `/actions/${dottedName.join('/')}`,
+    },
   })
 }
 
@@ -20,8 +26,6 @@ export default function ActionDetailPage({
 }) {
   return (
     <div className="mx-auto max-w-[600px]">
-      <AutoCanonicalTag />
-
       <ButtonLink
         size="sm"
         color="text"

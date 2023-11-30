@@ -7,6 +7,9 @@ export async function generateMetadata() {
     title: "Nos Statistiques d'utilisation - Nos Gestes Climat",
     description:
       "Observez l'évolution de l'impact de Nos Gestes Climat en mesures chiffrées.",
+    alternates: {
+      canonical: '/stats',
+    },
   })
 }
 

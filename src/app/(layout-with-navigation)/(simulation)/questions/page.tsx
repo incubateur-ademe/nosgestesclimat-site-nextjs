@@ -8,6 +8,9 @@ export async function generateMetadata() {
     title: 'Liste des questions - Nos Gestes Climat',
     description:
       'Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.',
+    alternates: {
+      canonical: '/questions',
+    },
   })
 }
 

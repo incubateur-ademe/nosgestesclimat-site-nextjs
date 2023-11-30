@@ -18,6 +18,9 @@ export async function generateMetadata() {
     description:
       "Vos résultats de tests de notre simulateur d'empreinte carbone.",
     robots: noIndexObject,
+    alternates: {
+      canonical: '/fin',
+    },
   })
 }
 

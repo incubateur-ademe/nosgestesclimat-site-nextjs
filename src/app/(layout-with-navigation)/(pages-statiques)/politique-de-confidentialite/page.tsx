@@ -8,6 +8,9 @@ export async function generateMetadata() {
     title: 'Vie privée - Nos Gestes Climat',
     description:
       'Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.',
+    alternates: {
+      canonical: '/vie-privee',
+    },
   })
 }
 
