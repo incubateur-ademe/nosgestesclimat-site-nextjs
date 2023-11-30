@@ -8,7 +8,7 @@ export default function Actions() {
     <div className="flex-1">
       <Image
         src="/images/misc/actions-screenshot.svg"
-        alt="actions"
+        alt="Une capture d'écran de l'écran actions de Nos Gestes Climat."
         width="444"
         height="275"
         className="mb-6 block h-auto max-w-full "
