@@ -34,7 +34,7 @@ const translateTo = async (src, destPath, destLang) => {
 
 console.log(
   `Translating Markdown files from ${cli.yellow(
-    `source/locales/pages/${srcLang}/${fileGlob}`
+    `src/locales/pages/${srcLang}/${fileGlob}`
   )}...`
 )
 glob(`src/locales/pages/${srcLang}/${fileGlob}`, (err, files) => {
