@@ -39,7 +39,7 @@ export default function Assistance({ question, assistance }: Props) {
           value={inputValue}
           setValue={(value: number) => {
             setValueOfParent(
-              Math.round(12 * (value / Number(constantMultiplier)) * 10) / 10,
+              Math.round((value / Number(constantMultiplier)) * 10) / 10,
               question
             )
             setInputValue(value)
