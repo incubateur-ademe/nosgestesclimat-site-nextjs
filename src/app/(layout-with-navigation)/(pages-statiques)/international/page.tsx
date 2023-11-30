@@ -17,6 +17,9 @@ export async function generateMetadata() {
   return getMetadataObject({
     title: SHARED_TITLE,
     description: SHARED_DESCRIPTION,
+    alternates: {
+      canonical: '/international',
+    },
   })
 }
 
@@ -64,7 +67,7 @@ export default async function International() {
           />
         </div>
       </Container>
-      <div className="bg-primary-100 rounded-md">
+      <div className="rounded-md bg-primary-100">
         <Container maxWidth="3xl" className="px-4 pb-12 pt-8">
           <h2>
             <Trans i18nKey="international.pourquoi.titre">
@@ -124,14 +127,14 @@ export default async function International() {
               Explorez en détail les spécificités de chaque pays.
             </Trans>
             &nbsp;
-            <span className="bg-primary-100 ml-2 whitespace-nowrap rounded-sm px-2 py-1">
+            <span className="ml-2 whitespace-nowrap rounded-sm bg-primary-100 px-2 py-1">
               ⏳️ <Trans>À venir !</Trans>
             </span>
           </p>
         </p>
       </Container>
 
-      <div className="bg-primary-100 rounded-md">
+      <div className="rounded-md bg-primary-100">
         <Container maxWidth="3xl" className="pb-12 pt-8">
           <div className="mx-auto my-0">
             <RegionGrid

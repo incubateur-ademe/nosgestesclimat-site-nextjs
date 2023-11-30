@@ -8,6 +8,9 @@ export async function generateMetadata() {
     title: 'Nos statistiques "phares" - Nos Gestes Climat',
     description:
       "Observez nos l'évolution de nos deux mesures d'impact principales.",
+    alternates: {
+      canonical: '/northstar',
+    },
   })
 }
 

@@ -7,6 +7,9 @@ export async function generateMetadata() {
     title: 'Le guide - Nos Gestes Climat',
     description:
       'Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.',
+    alternates: {
+      canonical: '/guide',
+    },
   })
 }
 
