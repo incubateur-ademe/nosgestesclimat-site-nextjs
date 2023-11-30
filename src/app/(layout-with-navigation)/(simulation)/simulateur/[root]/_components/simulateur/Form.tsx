@@ -59,6 +59,10 @@ export default function Form() {
   ])
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [currentQuestion])
+
+  useEffect(() => {
     if (isInitialized && currentQuestion) {
       setQuestionInQueryParams(currentQuestion)
     }
