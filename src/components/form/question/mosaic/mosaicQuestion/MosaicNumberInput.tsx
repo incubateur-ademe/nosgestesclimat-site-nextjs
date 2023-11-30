@@ -45,7 +45,7 @@ export default function NumberInput({
       </div>
       <div className="flex items-center">
         <Button
-          disabled={value === 0}
+          disabled={value === 0 || isMissing}
           onClick={() => setValue(Number(value) - 1)}
           className="z-10 h-10 w-10">
           -
@@ -60,7 +60,7 @@ export default function NumberInput({
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
         />
         <Button
-          onClick={() => setValue(Number(value) + 1)}
+          onClick={() => setValue(isMissing ? 1 : Number(value) + 1)}
           className="z-10 h-10 w-10">
           +
         </Button>

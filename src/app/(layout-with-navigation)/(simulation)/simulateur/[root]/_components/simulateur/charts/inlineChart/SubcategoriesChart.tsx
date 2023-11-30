@@ -1,4 +1,3 @@
-import ValueChangeDisplay from '@/components/misc/ValueChangeDisplay'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useEngine, useForm, useRule } from '@/publicodes-state'
 import { useMemo } from 'react'
@@ -29,7 +28,6 @@ export default function SubcategoriesChart() {
           data-cypress-id="category-title">
           {title}
         </h4>
-        <ValueChangeDisplay />
       </div>
       <div
         className={`mb-4 flex h-8 md:h-12 ${getBackgroundColor(
@@ -42,8 +40,8 @@ export default function SubcategoriesChart() {
               index === 0
                 ? 'first'
                 : index === filteredSubcategories.length - 1
-                ? 'last'
-                : 'middle'
+                  ? 'last'
+                  : 'middle'
             }
             total={total}
             subcategory={subcategory}

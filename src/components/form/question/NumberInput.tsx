@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/Trans'
-import { useLocale } from '@/hooks/useLocale'
 import { QuestionSize } from '@/types/values'
 import { HTMLAttributes } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -30,8 +29,6 @@ export default function NumberInput({
   id,
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
-  const locale = useLocale()
-
   return (
     <div
       className={twMerge(
@@ -39,13 +36,11 @@ export default function NumberInput({
         className
       )}>
       <input
-        className={`border-primary-500 focus:border-primary-500 rounded border bg-grey-100 p-2 text-right transition-colors focus:ring-2 focus:ring-primary`}
+        className={`focus:ring-primary rounded border border-primary-500 bg-grey-100 p-2 text-right transition-colors focus:border-primary-500 focus:ring-2`}
         type="number"
         min={min}
         value={isMissing ? '' : value}
-        placeholder={value.toLocaleString(locale, {
-          maximumFractionDigits: 1,
-        })}
+        placeholder={''}
         onChange={(event) => {
           setValue(Number(event.target.value))
         }}
