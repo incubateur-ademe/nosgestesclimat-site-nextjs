@@ -21,7 +21,7 @@ export default function Buttons() {
 
   const isClient = useIsClient()
   return (
-    <>
+    <div className="relative">
       <ButtonLink
         className={`transition-opacity duration-500 ${
           isClient ? 'opacity-100' : 'opacity-0'
@@ -45,7 +45,7 @@ export default function Buttons() {
       </ButtonLink>
       {isSimulationStarted ? (
         <Link
-          className={`transition-opacity delay-200 duration-1000 md:text-lg ${
+          className={`absolute left-1/2 top-full -translate-x-1/2 translate-y-6 whitespace-nowrap transition-opacity delay-200 duration-1000 md:text-lg ${
             isClient ? 'opacity-100' : 'opacity-0'
           }`}
           onClick={() => {
@@ -55,15 +55,7 @@ export default function Buttons() {
           href={tutorials.testIntro ? '/simulateur/bilan' : '/tutoriel'}>
           <Trans>Commencer un nouveau test</Trans>
         </Link>
-      ) : (
-        <Link
-          className={`transition-opacity delay-200 duration-1000 md:text-lg ${
-            isClient ? 'opacity-100' : 'opacity-0'
-          }`}
-          href="/documentation">
-          <Trans>Notre méthode</Trans>
-        </Link>
-      )}
-    </>
+      ) : null}
+    </div>
   )
 }
