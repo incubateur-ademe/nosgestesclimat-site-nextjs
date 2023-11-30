@@ -9,7 +9,7 @@ export function getLocalisedURL({
 }) {
   // French is the default language, so it isn't included in the URL
   const activeLanguageOtherThanFrench = languages.find((language) =>
-    href.includes(language)
+    href.startsWith(language)
   )
 
   if (activeLanguageOtherThanFrench) {
