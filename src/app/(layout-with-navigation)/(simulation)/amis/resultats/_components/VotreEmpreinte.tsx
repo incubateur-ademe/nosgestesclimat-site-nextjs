@@ -41,7 +41,7 @@ export default function VotreEmpreinte({
 }) {
   return (
     <>
-      <h2 className="mb-1 mt-0 text-lg" data-cypress-id="votre-empreinte-title">
+      <h2 className="mb-4 mt-0 text-lg" data-cypress-id="votre-empreinte-title">
         <Trans>Votre empreinte</Trans>
       </h2>
       {membersLength > 1 && (
@@ -73,7 +73,7 @@ export default function VotreEmpreinte({
                   )}
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="bg-primary-100 text-primary-500 border-primary-800 rounded-[5px] border-[1px] border-solid p-1 text-sm">
+                  <div className="rounded-[5px] border-[1px] border-solid border-primary-800 bg-primary-100 p-1 text-sm text-primary-500">
                     <strong>
                       {formatValue(categoryObject.value / 1000, {
                         precision: 1,

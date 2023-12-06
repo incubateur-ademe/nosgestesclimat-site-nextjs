@@ -21,6 +21,7 @@ export default function Suggestions({ question }: Props) {
           key={suggestion.label}
           data-cypress-id="suggestion"
           size="sm"
+          className="text-xs font-normal md:text-sm"
           onClick={() => {
             trackEvent(
               getMatomoEventClickSuggestion(question, suggestion.label)
