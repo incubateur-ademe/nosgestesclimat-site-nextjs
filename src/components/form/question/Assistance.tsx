@@ -47,7 +47,6 @@ export default function Assistance({ question, assistance }: Props) {
             setInputValue(value)
           }}
           isMissing={inputValue ? false : true}
-          size="sm"
         />
       )}
     </div>
