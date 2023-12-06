@@ -56,6 +56,12 @@ export default function Total({ toggleQuestionList }: Props) {
           href={`/fin${detailsParamString ? `?${detailsParamString}` : ''}`}
           className="z-10	text-white no-underline hover:text-white">
           <span className="block text-2xl font-bold md:text-3xl">
+            {numericValue !== carbonFootprintValue && (
+              <span className="relative text-xl text-gray-300 md:text-2xl">
+                <span className="absolute right-0 top-1/2 h-[2px] w-full -rotate-45 transform bg-gray-300" />
+                {formatCarbonFootprint(numericValue).formattedValue}
+              </span>
+            )}{' '}
             {formatCarbonFootprint(carbonFootprintValue).formattedValue}{' '}
             {formatCarbonFootprint(carbonFootprintValue).unit}
           </span>
