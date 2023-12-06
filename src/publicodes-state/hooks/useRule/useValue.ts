@@ -102,7 +102,6 @@ export default function useValue({
       },
       {}
     )
-    console.log('situationToUpdate', situationToUpdate)
     return updateSituation(situationToUpdate)
   }
 

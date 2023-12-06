@@ -51,11 +51,11 @@ export default function useRules({ engine }: Props) {
     () =>
       everyMosaic.reduce<string[]>((accumulator, mosaic) => {
         const mosaicRule = engine.getRule(mosaic) as NGCRuleNode
-        const mosaicChildren = mosaicRule.rawNode.mosaique['options'].map(
+        if (!mosaicRule.rawNode.mosaique) return ['accumulator']
+        const mosaicChildren = mosaicRule.rawNode.mosaique['options']?.map(
           (option: string) =>
-            everyQuestions.find((rule) => rule.includes(option))
+            everyQuestions.find((rule) => rule.includes(option)) || ''
         )
-        console.log('mosaicChildren', mosaicChildren)
         return [...accumulator, ...mosaicChildren]
       }, []),
     [everyMosaic, everyQuestions, engine]
