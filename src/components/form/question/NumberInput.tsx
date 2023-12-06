@@ -1,6 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import { useLocale } from '@/hooks/useLocale'
 import { HTMLAttributes } from 'react'
+import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -26,8 +27,10 @@ export default function NumberInput({
   const locale = useLocale()
 
   return (
-    <div className={twMerge(`flex items-center justify-end gap-1`, className)}>
-      <input
+    <div
+      className={twMerge(`flex items-center justify-end gap-1`, className)}
+      <DebounceInput
+        debounceTimeout={300}
         className={`focus:ring-primary max-w-[8rem] rounded border border-primary-500 bg-grey-100 p-2 text-right transition-colors focus:border-primary-500 focus:ring-2 md:max-w-full`}
         type="number"
         min={min}
