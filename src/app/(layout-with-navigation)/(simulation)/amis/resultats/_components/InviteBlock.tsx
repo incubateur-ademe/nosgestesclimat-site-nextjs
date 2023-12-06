@@ -71,8 +71,8 @@ export default function InviteBlock({ group }: { group: Group }) {
 
   if (hasMoreThanOneMember) {
     return (
-      <div className="mt-4 flex items-center justify-between gap-1 rounded-md bg-grey-100 p-4">
-        <p className="mb-0">
+      <div className="mt-4 flex flex-col justify-between gap-4 rounded-md bg-grey-100 p-4 md:flex-row md:items-center">
+        <p className="mb-0 text-sm md:text-base">
           Invitez d'autres personnes à rejoindre votre groupe
         </p>
         <SubmitButton
@@ -87,10 +87,10 @@ export default function InviteBlock({ group }: { group: Group }) {
 
   return (
     <div className="mt-4 rounded-md bg-grey-100 p-4">
-      <h2 className="mt-0 text-lg">
+      <h2 className="mt-0 text-base md:text-lg">
         <Trans>Vous êtes le premier 🥳</Trans>
       </h2>
-      <p className="mb-4">
+      <p className="mb-4 text-sm md:text-base">
         <Trans>
           Partagez cette page à vos proches pour leur permettre de rejoindre
           votre groupe.

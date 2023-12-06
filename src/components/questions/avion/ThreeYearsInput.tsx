@@ -73,7 +73,6 @@ export default function ThreeYearsInput({ question }: Props) {
         value={currentYearValue}
         setValue={(value: number) => setCurrentYearValue(value)}
         isMissing={currentYearValue ? false : true}
-        size="sm"
         className="mb-2 justify-start"
       />
       <Label
@@ -86,7 +85,6 @@ export default function ThreeYearsInput({ question }: Props) {
         value={lastYearValue}
         setValue={(value: number) => setLastYearValue(value)}
         isMissing={lastYearValue ? false : true}
-        size="sm"
         className="mb-2 justify-start"
       />
       <Label
@@ -99,10 +97,9 @@ export default function ThreeYearsInput({ question }: Props) {
         value={yearBeforeLastValue}
         setValue={(value: number) => setYearBeforeLastValue(value)}
         isMissing={yearBeforeLastValue ? false : true}
-        size="sm"
         className="mb-2 justify-start"
       />
-      <p className="bg-primary-200 mb-0 rounded-lg p-4 font-bold">
+      <p className="mb-0 rounded-lg bg-primary-200 p-4 font-bold">
         {t('Total\u202f:')}{' '}
         {(
           currentYearValue +

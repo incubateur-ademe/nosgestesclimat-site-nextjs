@@ -56,6 +56,7 @@ export default function EditableGroupTitle({ groupId }: { groupId: string }) {
       ) : (
         <Title
           data-cypress-id="group-name"
+          className="text-xl md:text-2xl"
           title={
             <span className="flex items-center justify-between">
               <span>

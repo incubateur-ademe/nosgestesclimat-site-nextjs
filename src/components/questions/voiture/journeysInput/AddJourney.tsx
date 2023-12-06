@@ -24,8 +24,8 @@ export default function JourneyItem({ setJourneys }: Props) {
   const [passengers, setPassengers] = useState(1)
 
   return (
-    <tr className="">
-      <td className="border-primary-500 border-t py-4 pl-2 pr-2 text-sm md:pr-4">
+    <tr className="block md:table-row">
+      <td className="block border-t border-primary-500 py-4 pl-2 pr-2 text-sm md:table-cell md:pr-4">
         <Select
           className="p-2 text-sm"
           value={label}
@@ -39,7 +39,7 @@ export default function JourneyItem({ setJourneys }: Props) {
           })}
         </Select>
       </td>
-      <td className="border-primary-500 border-t px-2 py-4 text-sm md:px-4">
+      <td className="block border-t border-primary-500 px-2 py-4 text-sm md:table-cell md:px-4">
         <span className="flex items-center gap-4">
           <TextInputGroup
             className="w-12 p-2 text-sm md:w-16"
@@ -51,7 +51,7 @@ export default function JourneyItem({ setJourneys }: Props) {
           km
         </span>
       </td>
-      <td className="border-primary-500 border-t px-2 py-4 text-sm md:px-4">
+      <td className="block border-t border-primary-500 px-2 py-4 text-sm md:table-cell md:px-4">
         <span className="flex items-center gap-4">
           <TextInputGroup
             className="w-12 p-2 text-sm md:w-16"
@@ -75,7 +75,7 @@ export default function JourneyItem({ setJourneys }: Props) {
           </Select>
         </span>
       </td>
-      <td className="border-primary-500 border-t px-2 py-4 text-sm md:px-4">
+      <td className="block border-t border-primary-500 px-2 py-4 text-sm md:table-cell md:px-4">
         <Select
           className="p-2 text-sm"
           value={passengers}
@@ -89,7 +89,7 @@ export default function JourneyItem({ setJourneys }: Props) {
           })}
         </Select>
       </td>
-      <td className="border-primary-500 border-t py-4 pl-2 pr-2 text-right text-sm md:pl-4">
+      <td className="block border-t border-primary-500 py-4 pl-2 pr-2 text-right text-sm md:table-cell md:pl-4">
         <Button
           size="sm"
           onClick={() =>
