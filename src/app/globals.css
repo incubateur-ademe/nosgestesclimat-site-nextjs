@@ -365,7 +365,6 @@ blockquote {
 /*
   Iframe
   */
-.iframeOnlySimulation header,
 .iframeOnlySimulation footer {
   display: none;
 }
@@ -387,12 +386,50 @@ blockquote {
 /*
   Markdown
 */
-.markdown ul,ol {
+.markdown ul {
   @apply pl-6;
-  /* bullet point list type */
-  list-style-type: '› ';
-  list-style-position: outside;
+  @apply list-disc;
+  @apply mb-6;
 }
-.markdown li {
+
+.markdown ul > li {
   @apply mb-2;
+}
+
+.markdown ol {
+  @apply pl-6;
+  list-style-type: decimal;
+  list-style-position: outside;
+  @apply mb-6;
+}
+
+.markdown h1 {
+  @apply text-4xl;
+  @apply mb-6;
+  @apply font-bold;
+  @apply leading-10;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  @apply mt-8;
+  @apply mb-6;
+}
+
+.markdown p {
+  @apply mb-6;
+}
+
+.markdown blockquote {
+  @apply mb-6;
+}
+
+.markdown img {
+  @apply border;
+  @apply border-gray-200;
+  @apply rounded-md;
 }

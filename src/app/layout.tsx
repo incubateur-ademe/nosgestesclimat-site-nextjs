@@ -59,20 +59,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
       <head>
         <link rel="icon" href="/images/misc/favicon.png" />
 
-        <link
-          rel="alternate"
-          hrefLang="en"
-          href="https://nosgestesclimat.fr/en"
-        />
-
-        <link rel="alternate" hrefLang="fr" href="https://nosgestesclimat.fr" />
-
-        <link
-          rel="alternate"
-          hrefLang="x-default"
-          href="https://nosgestesclimat.fr"
-        />
-
         <meta
           name="google-site-verification"
           content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"

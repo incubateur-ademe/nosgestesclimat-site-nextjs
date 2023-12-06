@@ -17,6 +17,9 @@ export async function generateMetadata({ params: { slug } }: Props) {
     )}, article du blog - Nos Gestes Climat`,
     description: 'Découvrez les articles de blog du site Nos Gestes Climat.',
     params: { slug },
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
   })
 }
 

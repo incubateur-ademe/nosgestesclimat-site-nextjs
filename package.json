@@ -23,7 +23,8 @@
     "ui:translate": "node scripts/i18n/translate-ui.js",
     "faq:translate": "node scripts/i18n/translate-faq.js",
     "faq:check": "node scripts/i18n/check-faq.js",
-    "pages:translate": "node scripts/i18n/translate-pages.js",
+    "pages:translate": "node scripts/i18n/translate-pages.cjs",
+    "nouveautes:translate": "node scripts/i18n/translate-nouveautes.cjs",
     "releases:fetch": "node scripts/fetch-releases.js",
     "releases:translate": "node scripts/i18n/translate-release.js"
   },
@@ -63,6 +64,7 @@
     "ramda": "^0.29.1",
     "react": "18.2.0",
     "react-color": "^2.19.3",
+    "react-debounce-input": "^3.3.0",
     "react-dom": "18.2.0",
     "react-easy-emoji": "^1.8.1",
     "react-flip-toolkit": "^7.1.0",

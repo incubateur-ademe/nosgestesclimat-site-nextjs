@@ -21,6 +21,9 @@ type Props = {
       'max-snippet': number
     }
   }
+  alternates?: {
+    canonical: string
+  }
 }
 
 const BASE_URL =
@@ -65,6 +68,7 @@ export function getMetadataObject({
   params,
   searchParams,
   noImage = false,
+  alternates,
   ...props
 }: Props) {
   const locale = currentLocale()
@@ -90,6 +94,7 @@ export function getMetadataObject({
           ? generateOGImageURL(url)
           : 'https://nosgestesclimat-git-154-nos-gestes-climat.vercel.app/images/misc/dessin-nosgestesclimat_thumbnail.png',
     },
+    alternates,
     ...props,
   }
 }

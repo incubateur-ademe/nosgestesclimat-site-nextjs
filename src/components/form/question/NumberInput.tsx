@@ -2,6 +2,7 @@ import Trans from '@/components/translation/Trans'
 import { useLocale } from '@/hooks/useLocale'
 import { QuestionSize } from '@/types/values'
 import { HTMLAttributes } from 'react'
+import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -38,8 +39,9 @@ export default function NumberInput({
         `flex items-center justify-end gap-1 ${sizeClassNames[size]}`,
         className
       )}>
-      <input
-        className={`border-primary-500 focus:border-primary-500 rounded border bg-grey-100 p-2 text-right transition-colors focus:ring-2 focus:ring-primary`}
+      <DebounceInput
+        debounceTimeout={300}
+        className={`focus:ring-primary rounded border border-primary-500 bg-grey-100 p-2 text-right transition-colors focus:border-primary-500 focus:ring-2`}
         type="number"
         min={min}
         value={isMissing ? '' : value}
