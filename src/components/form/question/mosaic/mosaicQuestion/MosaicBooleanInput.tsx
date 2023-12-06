@@ -42,8 +42,8 @@ export default function MosaicBooleanInput({
   const status = isInactive
     ? 'inactive'
     : !isMissing && value
-    ? 'checked'
-    : 'unchecked'
+      ? 'checked'
+      : 'unchecked'
   return (
     <label
       className={`relative flex cursor-pointer items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}>
@@ -58,7 +58,7 @@ export default function MosaicBooleanInput({
         id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
       />
       <span
-        className={`${checkClassNames[status]} flex h-5 w-5 items-center items-center justify-center rounded-sm border-2 leading-4`}>
+        className={`${checkClassNames[status]} flex h-5 w-5 items-center justify-center rounded-sm border-2 leading-4`}>
         {status === 'checked' ? (
           <motion.div
             initial={{ opacity: 0 }}
@@ -73,7 +73,8 @@ export default function MosaicBooleanInput({
       </span>
       <div className="flex-1">
         {title && icons ? (
-          <span className={`font-medium md:text-xl ${labelClassNames[status]}`}>
+          <span
+            className={`text-sm font-medium md:text-xl ${labelClassNames[status]}`}>
             {title}&nbsp;{icons}
           </span>
         ) : null}

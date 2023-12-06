@@ -47,7 +47,7 @@ export default function FinPage({
 
       <Separator className="my-8" />
 
-      <HowToAct />
+      <HowToAct shouldLeadToTest={false} />
 
       <FeedbackBanner
         className="mb-8 mt-12"

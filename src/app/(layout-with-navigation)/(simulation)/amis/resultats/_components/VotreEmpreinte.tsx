@@ -41,7 +41,7 @@ export default function VotreEmpreinte({
 }) {
   return (
     <>
-      <h2 className="mb-1 mt-0 text-lg" data-cypress-id="votre-empreinte-title">
+      <h2 className="mb-4 mt-0 text-lg" data-cypress-id="votre-empreinte-title">
         <Trans>Votre empreinte</Trans>
       </h2>
       {membersLength > 1 && (

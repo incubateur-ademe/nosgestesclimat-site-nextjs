@@ -25,7 +25,7 @@ export default function GroupResultsPage({
 
   return (
     <>
-      <div className="p-4 pb-0">
+      <div>
         <GoBackLink className="mb-4 font-bold" />
 
         <EditableGroupTitle groupId={groupId} />
