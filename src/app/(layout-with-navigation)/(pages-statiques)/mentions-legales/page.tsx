@@ -1,7 +1,7 @@
 import MDXContent from '@/components/mdx/MDXContent'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import AboutEn from '@/locales/pages/en/about.mdx'
-import AboutFr from '@/locales/pages/fr/about.mdx'
+import MentionsLegalesEn from '@/locales/pages/en/mentions-legales.mdx'
+import MentionsLegaleFr from '@/locales/pages/fr/mentions-legales.mdx'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -11,5 +11,9 @@ export async function generateMetadata() {
 }
 
 export default function MentionsLegalesPage() {
-  return <MDXContent contentEn={AboutEn} contentFr={AboutFr} />
+  return (
+    <div className="markdown">
+      <MDXContent contentEn={MentionsLegalesEn} contentFr={MentionsLegaleFr} />
+    </div>
+  )
 }
