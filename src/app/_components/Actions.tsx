@@ -25,7 +25,10 @@ export default function Actions() {
           aujourd’hui pour le climat.
         </Trans>
       </p>
-      <ButtonLink color="secondary" href="/actions">
+      <ButtonLink
+        color="secondary"
+        href="/actions"
+        data-cypress-id="actions-link">
         <Trans>Toutes les actions</Trans>
       </ButtonLink>
     </div>

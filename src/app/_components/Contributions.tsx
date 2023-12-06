@@ -26,7 +26,8 @@ export default function Contributions() {
             href="/nouveautes"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
-            className="flex-1 flex-row items-center gap-4 py-8 md:flex-col">
+            className="flex-1 flex-row items-center gap-4 py-8 md:flex-col"
+            data-cypress-id="nouveautes-link">
             <Emoji className="text-3xl">🔍</Emoji>
             <p className="mb-0">
               <Trans>
@@ -39,7 +40,8 @@ export default function Contributions() {
             href="/documentation"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
-            className="flex-1 flex-row items-center gap-4 py-8 md:flex-col">
+            className="flex-1 flex-row items-center gap-4 py-8 md:flex-col"
+            data-cypress-id="documentation-link">
             <Emoji className="text-3xl">👀</Emoji>
             <p className="mb-0">
               <Trans>
@@ -53,7 +55,8 @@ export default function Contributions() {
             href="/contact"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
-            className="flex-1 flex-row items-center gap-4 py-8 md:flex-col">
+            className="flex-1 flex-row items-center gap-4 py-8 md:flex-col"
+            data-cypress-id="contact-link">
             <Emoji className="text-3xl">🖋️</Emoji>
             <p className="mb-0">
               <Trans>

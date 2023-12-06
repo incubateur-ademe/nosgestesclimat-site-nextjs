@@ -36,7 +36,10 @@ export default function Explanations() {
           trois infographies.
         </Trans>
       </p>
-      <ButtonLink color="secondary" href="/blog/budget">
+      <ButtonLink
+        color="secondary"
+        href="/blog/budget"
+        data-cypress-id="budget-link">
         <Trans>En savoir plus</Trans>
       </ButtonLink>
     </div>

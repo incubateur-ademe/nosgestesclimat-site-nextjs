@@ -28,7 +28,7 @@ export default function Amis() {
           vos résultats.
         </Trans>
       </p>
-      <ButtonLink href="/amis">
+      <ButtonLink href="/amis" data-cypress-id="amis-link">
         <Trans>Commencer</Trans>
       </ButtonLink>
     </div>

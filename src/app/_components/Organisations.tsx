@@ -36,7 +36,9 @@ export default function Organisations() {
             <Trans>Découvrir</Trans>
           </ButtonLink>
         </div>
-        <div className="relative hidden flex-1 md:block">
+        <div
+          className="relative hidden flex-1 md:block"
+          data-cypress-id="organisations-link">
           <Images isHover={isHover} />
         </div>
       </div>
