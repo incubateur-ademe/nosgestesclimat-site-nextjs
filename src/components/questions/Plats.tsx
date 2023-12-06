@@ -31,7 +31,9 @@ export default function Plats() {
             Vous avez fait {Math.abs(differenceToAverage)} choix en trop !
           </span>
         ) : null}
-        {differenceToAverage === 0 ? <>😋👍</> : null}
+        {differenceToAverage === 0 ? (
+          <div className="mb-2 text-center">😋👍</div>
+        ) : null}
       </div>
     </>
   )
