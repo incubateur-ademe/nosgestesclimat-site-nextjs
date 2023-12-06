@@ -157,11 +157,13 @@ const checkValueValidity = ({
       }
       return value.startsWith("'") ? value : `'${value}'`
     case 'boolean':
-      return value === 'oui'
-        ? 'oui'
-        : value === 'non' || value === null
-          ? 'non'
-          : undefined
+      if (value === 'oui') {
+        return 'oui'
+      }
+      if (value === 'non' || value === null) {
+        return 'non'
+      }
+      return undefined
     case 'mosaic':
       return 'mosaic'
     default:
