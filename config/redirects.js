@@ -30,6 +30,16 @@ const redirects = [
     permanent: true,
   },
   {
+    source: '/nouveaut%C3%A9s/Guadeloupe',
+    destination: '/nouveautes/guadeloupe',
+    permanent: true,
+  },
+  {
+    source: '/nouveaut%C3%A9s/Vatnajökull',
+    destination: '/nouveautes/vatnajokull',
+    permanent: true,
+  },
+  {
     source: '/vie-priv%C3%A9e',
     destination: '/vie-privee',
     permanent: true,
@@ -57,6 +67,17 @@ const redirects = [
   {
     source: '/groupe/:path*',
     destination: 'https://sondages.nosgestesclimat.fr/',
+    permanent: true,
+  },
+
+  {
+    source: '/guide/services-sociétaux',
+    destination: '/guide/services-societaux',
+    permanent: true,
+  },
+  {
+    source: '/guide/numérique',
+    destination: '/guide/numerique',
     permanent: true,
   },
 ]
