@@ -56,9 +56,9 @@ export default function Banner({ releases }: Props) {
   }
 
   return (
-    <Card className="relative min-w-[20rem] p-8 text-left">
+    <Card className="relative min-w-[20rem] p-4 text-left">
       <h2 className="m-0 flex items-center">
-        <span className="bg-primary-500 mr-2 inline-block h-3 w-3 rounded-2xl"></span>{' '}
+        <span className="mr-2 inline-block h-3 w-3 rounded-2xl bg-primary-500"></span>{' '}
         <Trans>Nouveautés</Trans>
       </h2>
       <div>
@@ -75,7 +75,7 @@ export default function Banner({ releases }: Props) {
       </div>
       <button
         onClick={handleUpdateViewedRelease}
-        className="text-primary-700 absolute right-2 top-2 h-8 w-8 border-none bg-transparent p-0 text-lg"
+        className="absolute right-0 top-0 h-8 w-8 border-none bg-transparent p-0 text-lg text-primary-700"
         title={t('Fermer la notification de nouveautés')}>
         &times;
       </button>

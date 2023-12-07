@@ -27,7 +27,7 @@ export default function useRule(dottedName: string) {
     addFoldedStep,
     foldedSteps,
     everyNotifications,
-    everyMosaicChildWhoIsReallyInMosaic,
+    everyMosaicChildren,
   } = useContext(simulationContext)
 
   const evaluation = useMemo<NGCEvaluatedNode | null>(
@@ -61,7 +61,7 @@ export default function useRule(dottedName: string) {
   })
   const { questionsOfMosaic, parent } = useMosaic({
     dottedName,
-    everyMosaicChildWhoIsReallyInMosaic,
+    everyMosaicChildren,
   })
 
   const {
@@ -90,17 +90,24 @@ export default function useRule(dottedName: string) {
     foldedSteps,
   })
 
-  const { value, displayValue, numericValue, setValue, setDefaultAsValue } =
-    useValue({
-      dottedName,
-      safeGetRule,
-      safeEvaluate,
-      evaluation,
-      type,
-      questionsOfMosaic,
-      updateSituation,
-      addFoldedStep,
-    })
+  const {
+    value,
+    displayValue,
+    numericValue,
+    setValue,
+    setDefaultAsValue,
+    resetMosaicChildren,
+  } = useValue({
+    dottedName,
+    safeGetRule,
+    safeEvaluate,
+    evaluation,
+    type,
+    questionsOfMosaic,
+    updateSituation,
+    addFoldedStep,
+    situation,
+  })
 
   return {
     /**
@@ -199,6 +206,10 @@ export default function useRule(dottedName: string) {
      * Set default value as value, with the possibility to add a dottedName in the foldedSteps
      */
     setDefaultAsValue,
+    /**
+     * Set every child of the mosaic without user answer to zero or "non"
+     */
+    resetMosaicChildren,
     /**
      * Add a dottedName in the foldedSteps
      */
