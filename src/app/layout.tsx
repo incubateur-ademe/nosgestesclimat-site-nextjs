@@ -73,6 +73,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           {`
             var _paq = window._paq = window._paq || [];
             /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+            _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+            _paq.push(["setCookieDomain", "*.nosgestesclimat.fr"]);
             _paq.push(['trackPageView']);
             _paq.push(['enableLinkTracking']);
             (function() {
