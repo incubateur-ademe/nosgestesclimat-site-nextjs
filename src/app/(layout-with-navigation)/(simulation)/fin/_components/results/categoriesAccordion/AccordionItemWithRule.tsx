@@ -15,8 +15,7 @@ export default function AccordionItemWithRule({
 }) {
   const { title, icons, numericValue } = useRule(dottedName)
 
-  const percentageOfTotalValue =
-    (1 - (maxValue - numericValue) / maxValue) * 0.9
+  const percentageOfTotalValue = numericValue / maxValue
 
   return (
     <AccordionItem
