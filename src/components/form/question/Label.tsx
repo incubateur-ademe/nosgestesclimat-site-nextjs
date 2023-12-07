@@ -16,6 +16,7 @@ type Props = {
   size?: QuestionSize
   htmlFor?: string
   className?: string
+  titleClassName?: string
 }
 
 const sizeClassNames = {
@@ -33,6 +34,7 @@ export default function Label({
   size = 'md',
   htmlFor,
   className,
+  titleClassName,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -48,7 +50,13 @@ export default function Label({
         )}
         aria-label={label}
         htmlFor={htmlFor}>
-        <h1 className="mb-0 inline text-lg">{label}</h1>{' '}
+        <h1
+          className={twMerge(
+            'mb-0 inline text-base md:text-lg',
+            titleClassName
+          )}>
+          {label}
+        </h1>{' '}
         {description ? (
           <button
             onClick={() => {
