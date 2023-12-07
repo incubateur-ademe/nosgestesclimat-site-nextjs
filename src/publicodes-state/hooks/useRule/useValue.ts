@@ -1,5 +1,6 @@
 'use client'
 
+import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
 import { useMemo } from 'react'
 import getType from '../../helpers/getType'
 import {
@@ -17,6 +18,7 @@ type Props = {
   questionsOfMosaic: string[]
   updateSituation: (situationToAdd: Situation) => Promise<void>
   addFoldedStep: (foldedStep: string) => void
+  situation: Situation
 }
 
 export default function useValue({
@@ -28,6 +30,7 @@ export default function useValue({
   questionsOfMosaic,
   updateSituation,
   addFoldedStep,
+  situation,
 }: Props) {
   const value = useMemo<NodeValue>(() => evaluation?.nodeValue, [evaluation])
 
@@ -42,8 +45,8 @@ export default function useValue({
       return value === true
         ? 'oui'
         : value === false || value === null // `value` is null when `ruleDisabledByItsParent` knowing that the parent becomes `null` according to this value.
-        ? 'non'
-        : ''
+          ? 'non'
+          : ''
     }
     if (type === 'mosaic') {
       return 'mosaic'
@@ -68,6 +71,38 @@ export default function useValue({
     return updateSituation({
       [dottedName]: checkValueValidity({ value, type }),
     })
+  }
+
+  const resetMosaicChildren = async (childToOmit: string): Promise<void> => {
+    const situationToUpdate = questionsOfMosaic.reduce(
+      (accumulator, currentValue) => {
+        if (childToOmit === currentValue) return accumulator
+
+        const isMissing = getIsMissing({
+          dottedName: currentValue,
+          questionsOfMosaic: [],
+          situation,
+        })
+        if (!isMissing) return accumulator
+
+        const rule = safeGetRule(currentValue)
+        const evaluation = safeEvaluate(currentValue)
+        const resetValue =
+          getType({ rule, evaluation, dottedName: currentValue }) === 'boolean'
+            ? 'non'
+            : 0
+
+        return {
+          ...accumulator,
+          [currentValue]: checkValueValidity({
+            value: resetValue,
+            type: getType({ rule, evaluation, dottedName: currentValue }),
+          }),
+        }
+      },
+      {}
+    )
+    return updateSituation(situationToUpdate)
   }
 
   const setDefaultAsValue = async (foldedStep?: string): Promise<void> => {
@@ -104,6 +139,7 @@ export default function useValue({
     numericValue,
     setValue,
     setDefaultAsValue,
+    resetMosaicChildren,
   }
 }
 
@@ -121,11 +157,13 @@ const checkValueValidity = ({
       }
       return value.startsWith("'") ? value : `'${value}'`
     case 'boolean':
-      return value === 'oui'
-        ? 'oui'
-        : value === 'non' || value === null
-        ? 'non'
-        : undefined
+      if (value === 'oui') {
+        return 'oui'
+      }
+      if (value === 'non' || value === null) {
+        return 'non'
+      }
+      return undefined
     case 'mosaic':
       return 'mosaic'
     default:
