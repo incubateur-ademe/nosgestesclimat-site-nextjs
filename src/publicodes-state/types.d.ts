@@ -2,6 +2,7 @@ import {
   EvaluatedNode,
   Evaluation,
   Engine as PublicodesEngine,
+  Rule,
   RuleNode,
 } from 'publicodes'
 
@@ -83,7 +84,7 @@ type SuggestionsNode = Record<
 
 type MosaiqueNode = {
   type: 'selection' | 'nombre'
-  clé: string
+  options: string[]
   total?: number
   suggestions?: SuggestionsNode
 }

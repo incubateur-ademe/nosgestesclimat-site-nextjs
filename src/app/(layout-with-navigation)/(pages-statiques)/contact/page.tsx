@@ -10,6 +10,9 @@ export async function generateMetadata() {
   return getMetadataObject({
     title: 'Contact - Nos Gestes Climat',
     description: "Contactez l'équipe de Nos Gestes Climat.",
+    alternates: {
+      canonical: '/contact',
+    },
   })
 }
 

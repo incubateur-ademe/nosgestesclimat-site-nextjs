@@ -1,3 +1,4 @@
+import HowToAct from '@/components/actions/HowToAct'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import Trans from '@/components/translation/Trans'
 import { noIndexObject } from '@/constants/metadata'
@@ -8,7 +9,6 @@ import CongratulationsText from './_components/CongratulationsText'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import GroupModePromotionBanner from './_components/GroupModePromotionBanner'
-import HowToAct from './_components/HowToAct'
 import RedirectionIfNoResult from './_components/RedirectionIfNoResult'
 import Results from './_components/Results'
 
@@ -18,6 +18,9 @@ export async function generateMetadata() {
     description:
       "Vos résultats de tests de notre simulateur d'empreinte carbone.",
     robots: noIndexObject,
+    alternates: {
+      canonical: '/fin',
+    },
   })
 }
 
@@ -44,7 +47,7 @@ export default function FinPage({
 
       <Separator className="my-8" />
 
-      <HowToAct />
+      <HowToAct shouldLeadToTest={false} />
 
       <FeedbackBanner
         className="mb-8 mt-12"

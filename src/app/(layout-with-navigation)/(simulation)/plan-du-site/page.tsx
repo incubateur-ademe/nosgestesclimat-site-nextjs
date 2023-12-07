@@ -10,6 +10,9 @@ export async function generateMetadata() {
     title: 'Plan du site - Nos Gestes Climat',
     description:
       'Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.',
+    alternates: {
+      canonical: '/plan-du-site',
+    },
   })
 }
 
@@ -98,7 +101,7 @@ export default async function PlanDuSitePage() {
       />
 
       <section className="mb-2">
-        <h2>
+        <h2 data-cypress-id="plan-outils-title">
           <Trans>Nos outils</Trans>
         </h2>
         <LinkList entries={links['Nos outils']} />
@@ -119,9 +122,6 @@ export default async function PlanDuSitePage() {
       </section>
 
       <section>
-        <h2>
-          <Trans i18nKey="publicodes.planDuSite.actionsPlus">Les actions</Trans>
-        </h2>
         <Actions />
       </section>
     </div>

@@ -29,9 +29,7 @@ export default function TakeTestLink() {
 
         trackEvent(matomoEventParcoursTestStart)
       }}
-      size="lg"
-      className="px-12 "
-    >
+      size="lg">
       <ProgressCircle progress={0} white className="mr-2" />
 
       {isSimulationStarted ? (
