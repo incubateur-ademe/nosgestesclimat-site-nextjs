@@ -24,7 +24,7 @@ export default function SubcategoriesChart() {
     <>
       <div className="flex items-center gap-4">
         <h4
-          className="relative text-xl uppercase md:text-2xl"
+          className="relative text-sm font-normal md:text-2xl"
           data-cypress-id="category-title">
           {title}
         </h4>

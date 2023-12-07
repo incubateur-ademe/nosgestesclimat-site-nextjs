@@ -14,12 +14,11 @@ export default function ProfileLink() {
   if (!Object.keys(getCurrentSimulation()?.situation || {}).length) return
   return (
     <Appear delay={1}>
-      <div className="md:flex md:justify-center">
+      <div className="flex justify-center">
         <InlineLink
           href="/profil"
           title={t('Page profil')}
-          className="flex w-[18rem] items-center rounded-sm"
-        >
+          className="flex w-[18rem] items-center justify-center rounded-sm text-sm md:text-base">
           <Image
             alt=""
             src="/images/misc/silhouette.svg"

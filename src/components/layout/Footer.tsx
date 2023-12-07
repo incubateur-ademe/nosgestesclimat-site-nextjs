@@ -60,7 +60,7 @@ export default function Footer() {
             </InlineLink>
           </div>
 
-          <div className="mt-4 flex w-full flex-wrap items-baseline gap-4 text-default">
+          <div className="mt-4 flex w-full flex-wrap items-baseline text-default sm:gap-4">
             <p className="mb-1 text-sm">
               <Trans>Diffuser le test :</Trans>
             </p>
