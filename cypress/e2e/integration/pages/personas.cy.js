@@ -1,13 +1,9 @@
 import { visit } from '../../../helpers/interactions/visit'
 
-describe('check for personas page status', () => {
-  beforeEach(() => {
-    visit('/')
-    cy.wait(1000)
-    visit('/personas')
-  })
-
+describe('The Personas page', () => {
   it('has a title', () => {
+    visit('personas')
+
     cy.get('[data-cypress-id="personas-title"]').should('be.visible')
   })
 })
