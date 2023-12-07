@@ -12,7 +12,7 @@ export default function BarChart({ type, percentage, maxWidth, index }: Props) {
 
   return (
     <motion.div
-      className={`${
+      className={`min-w-[2px] ${
         propertyAffected === 'width' ? 'h-[8px]' : 'w-[8px]'
       } rotate-180 rounded-lg bg-secondary`}
       initial={{ [propertyAffected]: 0, display: 'none' }}
