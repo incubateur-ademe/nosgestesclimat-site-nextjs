@@ -1,6 +1,6 @@
 import { visit } from '../../../helpers/interactions/visit'
 
-describe('check for homepage status', () => {
+describe('The Homepage', () => {
   beforeEach(() => {
     visit('/')
   })
