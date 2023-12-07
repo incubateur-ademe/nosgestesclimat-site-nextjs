@@ -5,20 +5,17 @@ import getQuestionsOfMosaic from '../../helpers/getQuestionsOfMosaic'
 
 type Props = {
   dottedName: string
-  everyMosaicChildWhoIsReallyInMosaic: string[]
+  everyMosaicChildren: string[]
 }
 
-export default function useMosaic({
-  dottedName,
-  everyMosaicChildWhoIsReallyInMosaic,
-}: Props) {
+export default function useMosaic({ dottedName, everyMosaicChildren }: Props) {
   const questionsOfMosaic = useMemo<string[]>(
     () =>
       getQuestionsOfMosaic({
         dottedName,
-        everyMosaicChildWhoIsReallyInMosaic,
+        everyMosaicChildren,
       }),
-    [dottedName, everyMosaicChildWhoIsReallyInMosaic]
+    [dottedName, everyMosaicChildren]
   )
 
   const parent = useMemo<string>(() => {

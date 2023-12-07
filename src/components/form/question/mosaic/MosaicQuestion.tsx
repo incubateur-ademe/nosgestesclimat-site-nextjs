@@ -17,6 +17,8 @@ export default function MosaicQuestion({
 
   const { title, icons, description } = useRule(parent)
 
+  const { resetMosaicChildren } = useRule(parentMosaic)
+
   return (
     <>
       {type === 'number' && (
@@ -25,7 +27,10 @@ export default function MosaicQuestion({
           title={title}
           icons={icons}
           description={description}
-          setValue={(value) => setValue(value, parentMosaic)}
+          setValue={async (value) => {
+            await setValue(value, parentMosaic)
+            resetMosaicChildren(question)
+          }}
           parentMosaic={parentMosaic}
           index={index}
         />
@@ -36,7 +41,10 @@ export default function MosaicQuestion({
           title={title}
           icons={icons}
           description={description}
-          setValue={(value) => setValue(value, parentMosaic)}
+          setValue={async (value) => {
+            await setValue(value, parentMosaic)
+            resetMosaicChildren(question)
+          }}
           index={index}
         />
       )}
