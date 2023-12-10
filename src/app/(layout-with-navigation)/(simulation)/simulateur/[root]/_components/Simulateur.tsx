@@ -5,8 +5,9 @@ import {
   matomoEventCloseQuestionsList,
   matomoEventOpenQuestionsList,
 } from '@/constants/matomo'
+import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useDebug } from '@/hooks/useDebug'
-import { useUser } from '@/publicodes-state'
+import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -22,6 +23,10 @@ export default function Simulateur() {
   const isDebug = useDebug()
 
   const { tutorials } = useUser()
+
+  const { currentQuestion, categories } = useForm()
+
+  const { getValue } = useEngine()
 
   const [isQuestionListOpen, setIsQuestionListOpen] = useState(false)
 
@@ -44,7 +49,22 @@ export default function Simulateur() {
     }
   }, [tutorials, router, isDebug])
 
+  // Redirect to results page if test is completed
+  useEffect(() => {
+    const detailsParamString = formatResultToDetailParam({
+      categories,
+      getValue,
+    })
+
+    if (!currentQuestion && !isDebug) {
+      router.replace(
+        `/fin${detailsParamString ? `?${detailsParamString}` : ''}`
+      )
+    }
+  }, [currentQuestion, router, isDebug, categories, getValue])
+
   if (!isInit) return null
+
   return (
     <>
       <Total toggleQuestionList={toggleQuestionList} />
