@@ -1,5 +1,6 @@
 'use client'
 
+import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Separator from '@/design-system/layout/Separator'
@@ -54,6 +55,12 @@ export default function Results() {
       </div>
 
       <CategoriesAccordion sortedCategories={sortedCategories} />
+
+      <div className="mt-2 text-right">
+        <Link href="/profil" className="text-sm md:mt-4">
+          <Trans>Modifier mes réponses</Trans>
+        </Link>
+      </div>
 
       <Separator className="mb-6 mt-8" />
     </>

@@ -70,7 +70,7 @@ export default function GetResultsByEmail({
         className
       )}>
       <form id="newsletter-form" onSubmit={handleSubmit}>
-        <h3 className="text-lg md:text-lg">
+        <h3 className="text-base sm:text-lg md:text-lg">
           <Trans>
             Vous souhaitez recevoir vos résultats d’empreinte carbone ?
           </Trans>
@@ -78,12 +78,12 @@ export default function GetResultsByEmail({
           <Emoji>💡</Emoji>
         </h3>
 
-        <p className="text-gray-600">
+        <p className="text-sm text-gray-600 sm:text-base">
           Pour cela, <strong>laissez-nous votre email</strong>, comme{' '}
           {formatValue(numberSubscribers) ?? ''} personnes.
         </p>
 
-        <p className="text-gray-600">
+        <p className="text-sm text-gray-600 sm:text-base">
           <Trans>
             Vous retrouverez votre résultat d’empreinte, ainsi que{' '}
             <strong>des conseils pour la réduire</strong> (1 fois par mois max.)

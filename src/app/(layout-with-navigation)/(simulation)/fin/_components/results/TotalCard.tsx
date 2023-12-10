@@ -34,7 +34,7 @@ export default function TotalCard() {
           aria-label={t(
             "Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet."
           )}
-          className="mt-2 text-sm text-white hover:text-primary-200"
+          className="mt-2 text-xs text-white hover:text-primary-200 md:text-sm"
           href="https://nosgestesclimat.fr/blog/budget">
           Qu'est-ce que ça veut dire&nbsp;?&nbsp;
           <ExternalLinkIcon className="stroke-white" />

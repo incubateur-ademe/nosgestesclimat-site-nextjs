@@ -1,4 +1,3 @@
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import Emoji from '@/design-system/utils/Emoji'
@@ -22,10 +21,6 @@ export default function CongratulationsText() {
             </Trans>
           </p>
         </div>
-
-        <Link href="/profil" className="text-sm md:mt-4">
-          <Trans>Modifier mes réponses</Trans>
-        </Link>
       </div>
 
       <Separator className="my-6" />
