@@ -64,12 +64,13 @@ export default function GetResultsByEmail({
 
   return (
     <Card
+      id="email-block"
       className={twMerge(
         'items-start border-none bg-grey-100 py-4',
         className
       )}>
       <form id="newsletter-form" onSubmit={handleSubmit}>
-        <h3 className="text-lg md:text-xl">
+        <h3 className="text-lg md:text-lg">
           <Trans>
             Vous souhaitez recevoir vos résultats d’empreinte carbone ?
           </Trans>

@@ -6,7 +6,7 @@ import Emoji from '@/design-system/utils/Emoji'
 export default function CongratulationsText() {
   return (
     <>
-      <div className="flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
+      <div className="flex flex-col gap-1 md:flex-row md:items-start md:justify-between">
         <div>
           <h1 className="mt-4 text-xl md:text-2xl" data-cypress-id="fin-title">
             <span className="inline-block">
@@ -23,7 +23,7 @@ export default function CongratulationsText() {
           </p>
         </div>
 
-        <Link href="/profil" className="text-sm">
+        <Link href="/profil" className="text-sm md:mt-4">
           <Trans>Modifier mes réponses</Trans>
         </Link>
       </div>
