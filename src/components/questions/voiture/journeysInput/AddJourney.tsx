@@ -39,7 +39,7 @@ export default function JourneyItem({ setJourneys }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-t border-primary-500 px-2 py-4 text-sm md:table-cell md:px-4">
+      <td className="block border-primary-500 py-4 text-sm md:table-cell md:border-t md:px-4">
         <span className="flex items-center gap-4">
           <TextInputGroup
             className="w-12 p-2 text-sm md:w-16"
@@ -51,7 +51,7 @@ export default function JourneyItem({ setJourneys }: Props) {
           km
         </span>
       </td>
-      <td className="block border-t border-primary-500 px-2 py-4 text-sm md:table-cell md:px-4">
+      <td className="block border-primary-500 py-4 text-sm md:table-cell md:border-t md:px-4">
         <span className="flex items-center gap-4">
           <TextInputGroup
             className="w-12 p-2 text-sm md:w-16"
@@ -75,7 +75,7 @@ export default function JourneyItem({ setJourneys }: Props) {
           </Select>
         </span>
       </td>
-      <td className="block border-t border-primary-500 px-2 py-4 text-sm md:table-cell md:px-4">
+      <td className="block border-primary-500 py-4 text-sm md:table-cell md:border-t md:px-4">
         <Select
           className="p-2 text-sm"
           value={passengers}
@@ -89,7 +89,7 @@ export default function JourneyItem({ setJourneys }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-t border-primary-500 py-4 pl-2 pr-2 text-right text-sm md:table-cell md:pl-4">
+      <td className="block border-primary-500 py-4 pl-2 text-right text-sm md:table-cell md:border-t md:pl-4 md:pr-2">
         <Button
           size="sm"
           onClick={() =>
