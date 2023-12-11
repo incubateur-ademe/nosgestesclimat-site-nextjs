@@ -1,7 +1,5 @@
 'use client'
 
-import Footer from '@/components/layout/Footer'
-import Trans from '@/components/translation/Trans'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
@@ -30,16 +28,8 @@ export default function GroupResultsPage({
 
         <EditableGroupTitle groupId={groupId} />
 
-        <div className="mt-4">
-          <h2 className="m-0 text-lg font-bold">
-            <Trans>Le classement</Trans>
-          </h2>
-        </div>
-
         <GroupResults groupId={groupId} />
       </div>
-
-      <Footer />
     </>
   )
 }

@@ -4,6 +4,7 @@ import { matomoEventUpdateGroupName } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import InlineTextInput from '@/design-system/inputs/InlineTextInput'
 import Title from '@/design-system/layout/Title'
+import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
@@ -60,8 +61,9 @@ export default function EditableGroupTitle({ groupId }: { groupId: string }) {
           title={
             <span className="flex items-center justify-between">
               <span>
-                <span>{group?.emoji}</span> <span>{group?.name}</span>
+                <Emoji>{group?.emoji}</Emoji> <span>{group?.name}</span>
               </span>
+
               <Button
                 className="!p-1"
                 onClick={() => setIsEditingTitle(true)}

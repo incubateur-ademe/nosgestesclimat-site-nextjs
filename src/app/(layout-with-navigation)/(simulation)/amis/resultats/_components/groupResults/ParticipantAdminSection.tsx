@@ -14,7 +14,7 @@ type Props = {
   group: Group
 }
 
-export default function OwnerAdminSection({ group }: Props) {
+export default function ParticipantAdminSection({ group }: Props) {
   const [isConfirming, setIsConfirming] = useState(false)
 
   const { mutateAsync: deleteUserOrGroupIfOwner, isSuccess } = useDeleteGroup()
@@ -35,16 +35,16 @@ export default function OwnerAdminSection({ group }: Props) {
   }
 
   return (
-    <section className="my-6" aria-live="polite">
-      <h2 className="md:text-lg">
-        <Trans>Supprimer</Trans> <Emoji>{group?.emoji}</Emoji> {group?.name}
+    <section>
+      <h2>
+        <Trans>Quitter</Trans> <Emoji>{group?.emoji}</Emoji> {group?.name}
       </h2>
 
       <p className="text-sm md:text-base">
         <Trans>
-          Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous.
-          Il sera supprimé définitivement pour tous ses autres membres puisque
-          vous en êtes l'administrateur.
+          Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le
+          groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas
+          l’administrateur.
         </Trans>
       </p>
 
@@ -52,10 +52,11 @@ export default function OwnerAdminSection({ group }: Props) {
         <Card className="bg-grey-100">
           <p className="text-sm md:text-base">
             <Trans>
-              Cette opération est définitive et supprimera le groupe pour tous
-              ses membres.
+              Cette opération est définitive et vous ne pourrez plus accéder aux
+              résultats du groupe.
             </Trans>
           </p>
+
           <div className="flex gap-4">
             <Button
               onClick={() => setIsConfirming(false)}
@@ -65,15 +66,15 @@ export default function OwnerAdminSection({ group }: Props) {
             </Button>
 
             <Button onClick={handleDelete} size="sm" color="primary">
-              Supprimer
+              Quitter
             </Button>
           </div>
         </Card>
       )}
 
       {!isConfirming && !isSuccess && (
-        <Button color="link" onClick={() => setIsConfirming(true)}>
-          Supprimer le groupe
+        <Button color="text" onClick={() => setIsConfirming(true)}>
+          Quitter le groupe
         </Button>
       )}
     </section>

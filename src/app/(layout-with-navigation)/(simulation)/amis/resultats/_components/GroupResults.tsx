@@ -1,5 +1,6 @@
 'use client'
 
+import HowToAct from '@/components/actions/HowToAct'
 import Separator from '@/design-system/layout/Separator'
 import { useUser } from '@/publicodes-state'
 import { Group, Results } from '@/types/groups'
@@ -12,6 +13,7 @@ import { useUpdateUserResults } from '../_hooks/useUpdateUserResults'
 import Classement from './groupResults/Classement'
 import InviteBlock from './groupResults/InviteBlock'
 import OwnerAdminSection from './groupResults/OwnerAdminSection'
+import ParticipantAdminSection from './groupResults/ParticipantAdminSection'
 import PointsFortsFaibles from './groupResults/PointsFortsFaibles'
 import VotreEmpreinte from './groupResults/VotreEmpreinte'
 
@@ -20,7 +22,11 @@ export default function GroupResults({ groupId }: { groupId: string }) {
 
   const router = useRouter()
 
-  const { data: group, refetch }: UseQueryResult<Group> = useFetchGroup(groupId)
+  const {
+    data: group,
+    refetch,
+    isPending,
+  }: UseQueryResult<Group> = useFetchGroup(groupId)
 
   const { user, setGroupToRedirectToAfterTest } = useUser()
 
@@ -59,7 +65,8 @@ export default function GroupResults({ groupId }: { groupId: string }) {
     }
   }, [])
 
-  if (!group) {
+  if (!group && !isPending) {
+    router.push('/amis')
     return null
   }
 
@@ -68,7 +75,7 @@ export default function GroupResults({ groupId }: { groupId: string }) {
       (member: { userId: string }) => member.userId === userId
     )
   ) {
-    router.push(`/amis/invitation?groupId=${group._id}`)
+    router.push(`/amis/invitation?groupId=${group?._id}`)
 
     return null
   }
@@ -101,9 +108,15 @@ export default function GroupResults({ groupId }: { groupId: string }) {
         membersLength={group?.members?.length}
       />
 
+      <Separator className="my-6" />
+
+      <HowToAct />
+
+      <Separator className="my-6" />
+
       {isOwner && <OwnerAdminSection group={group} />}
 
-      {!isOwner && <ParticipantAdminSection />}
+      {!isOwner && <ParticipantAdminSection group={group} />}
     </>
   )
 }

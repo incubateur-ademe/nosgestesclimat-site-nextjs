@@ -2,7 +2,7 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Groups from './_components/Groups'
-import SondagesBlock from './resultats/_components/SondagesBlock'
+import SondagesBlock from './_components/SondagesBlock'
 
 export async function generateMetadata() {
   return getMetadataObject({

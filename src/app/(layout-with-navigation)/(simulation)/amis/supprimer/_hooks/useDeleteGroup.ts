@@ -1,7 +1,8 @@
+'use client'
+
 import { GROUP_URL } from '@/constants/urls'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
-import { useQueryClient } from 'react-query'
 
 export const useDeleteGroup = () => {
   const queryClient = useQueryClient()

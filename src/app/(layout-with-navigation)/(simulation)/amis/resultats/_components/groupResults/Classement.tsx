@@ -5,10 +5,11 @@ import { formatValue } from 'publicodes'
 import { useState } from 'react'
 
 import Trans from '@/components/translation/Trans'
+import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { getTopThreeAndRestMembers } from '../../_utils/getTopThreeAndRestMembers'
-import ClassementMember from '../ClassementMember'
+import ClassementMember from './classement/ClassementMember'
 
 export default function Classement({ group }: { group: Group }) {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -30,18 +31,24 @@ export default function Classement({ group }: { group: Group }) {
 
   return (
     <>
+      <div className="mt-4">
+        <h2 className="m-0 text-lg font-bold">
+          <Trans>Le classement</Trans>
+        </h2>
+      </div>
+
       <ul className="mt-2 rounded-md bg-primary-500 px-3 py-4 text-white">
         {topThreeMembers.map((member, index) => {
           let rank
           switch (index) {
             case 0:
-              rank = '🥇'
+              rank = <Emoji>🥇</Emoji>
               break
             case 1:
-              rank = '🥈'
+              rank = <Emoji>🥈</Emoji>
               break
             case 2:
-              rank = '🥉'
+              rank = <Emoji>🥉</Emoji>
               break
             default:
           }
