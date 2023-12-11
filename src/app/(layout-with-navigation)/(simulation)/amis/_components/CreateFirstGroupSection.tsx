@@ -4,7 +4,7 @@ import Container from '@/design-system/layout/Container'
 
 export default function CreateFirstGroupSection() {
   return (
-    <Container className="mt-7 bg-gray-100 p-4">
+    <Container className="mt-7 rounded-md bg-gray-100 p-4">
       <h2 className="mb-2 mt-0 text-lg font-medium">
         <Trans>Créez votre premier groupe</Trans>
       </h2>

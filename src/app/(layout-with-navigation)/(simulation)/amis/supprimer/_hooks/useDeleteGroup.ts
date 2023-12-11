@@ -3,9 +3,18 @@
 import { GROUP_URL } from '@/constants/urls'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
+import { useEffect, useRef } from 'react'
 
-export const useDeleteGroup = () => {
+export function useDeleteGroup(skipInvalidate: boolean = false) {
   const queryClient = useQueryClient()
+
+  const timeoutRef = useRef<NodeJS.Timeout>()
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeoutRef?.current || '')
+    }
+  }, [])
 
   return useMutation({
     mutationFn: ({ groupId, userId }: { groupId: string; userId: string }) =>
@@ -14,7 +23,11 @@ export const useDeleteGroup = () => {
         userId,
       }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['group'] })
+      if (skipInvalidate) return
+
+      timeoutRef.current = setTimeout(() => {
+        queryClient.invalidateQueries({ queryKey: ['group'] })
+      }, 2000)
     },
   })
 }

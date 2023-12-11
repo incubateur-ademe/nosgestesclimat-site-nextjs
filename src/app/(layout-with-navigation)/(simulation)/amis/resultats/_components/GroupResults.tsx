@@ -25,7 +25,7 @@ export default function GroupResults({ groupId }: { groupId: string }) {
   const {
     data: group,
     refetch,
-    isPending,
+    isLoading,
   }: UseQueryResult<Group> = useFetchGroup(groupId)
 
   const { user, setGroupToRedirectToAfterTest } = useUser()
@@ -65,18 +65,27 @@ export default function GroupResults({ groupId }: { groupId: string }) {
     }
   }, [])
 
-  if (!group && !isPending) {
+  // Group is not found
+  if (!group && !isLoading) {
     router.push('/amis')
     return null
   }
 
+  // User is not part of the group
   if (
+    group &&
+    !isLoading &&
     !group?.members?.some(
       (member: { userId: string }) => member.userId === userId
     )
   ) {
     router.push(`/amis/invitation?groupId=${group?._id}`)
 
+    return null
+  }
+
+  // Group is loading
+  if (!group) {
     return null
   }
 

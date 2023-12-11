@@ -7,7 +7,8 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
 import { captureException } from '@sentry/react'
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 import { useDeleteGroup } from '../../../supprimer/_hooks/useDeleteGroup'
 
 type Props = {
@@ -17,9 +18,14 @@ type Props = {
 export default function ParticipantAdminSection({ group }: Props) {
   const [isConfirming, setIsConfirming] = useState(false)
 
-  const { mutateAsync: deleteUserOrGroupIfOwner, isSuccess } = useDeleteGroup()
+  const { mutateAsync: deleteUserOrGroupIfOwner, isSuccess } =
+    useDeleteGroup(true)
 
   const { user } = useUser()
+
+  const router = useRouter()
+
+  const timeoutRef = useRef<NodeJS.Timeout>()
 
   async function handleDelete() {
     if (!group) return
@@ -29,10 +35,20 @@ export default function ParticipantAdminSection({ group }: Props) {
         groupId: group?._id,
         userId: user?.id || '',
       })
+
+      timeoutRef.current = setTimeout(() => {
+        router.push('/amis')
+      }, 1750)
     } catch (error) {
       captureException(error)
     }
   }
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeoutRef.current)
+    }
+  }, [])
 
   return (
     <section>
@@ -49,7 +65,7 @@ export default function ParticipantAdminSection({ group }: Props) {
       </p>
 
       {isConfirming && !isSuccess && (
-        <Card className="bg-grey-100">
+        <Card className="border-none bg-grey-100">
           <p className="text-sm md:text-base">
             <Trans>
               Cette opération est définitive et vous ne pourrez plus accéder aux
@@ -66,16 +82,27 @@ export default function ParticipantAdminSection({ group }: Props) {
             </Button>
 
             <Button onClick={handleDelete} size="sm" color="primary">
-              Quitter
+              Quitter le groupe
             </Button>
           </div>
         </Card>
       )}
 
       {!isConfirming && !isSuccess && (
-        <Button color="text" onClick={() => setIsConfirming(true)}>
+        <Button color="link" onClick={() => setIsConfirming(true)}>
           Quitter le groupe
         </Button>
+      )}
+
+      {isSuccess && (
+        <Card className="border-none bg-grey-100">
+          <p className="text-sm md:text-base">
+            <Trans>
+              Vous avez quitté ce groupe. Vous allez être redirigé vers la page
+              d'accueil du mode groupe
+            </Trans>
+          </p>
+        </Card>
       )}
     </section>
   )
