@@ -7,8 +7,8 @@ import { useState } from 'react'
 import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { getTopThreeAndRestMembers } from '../_utils/getTopThreeAndRestMembers'
-import ClassementMember from './ClassementMember'
+import { getTopThreeAndRestMembers } from '../../_utils/getTopThreeAndRestMembers'
+import ClassementMember from '../ClassementMember'
 
 export default function Classement({ group }: { group: Group }) {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -30,7 +30,7 @@ export default function Classement({ group }: { group: Group }) {
 
   return (
     <>
-      <ul className="bg-primary-500 mt-2 rounded-md px-3 py-4 text-white">
+      <ul className="mt-2 rounded-md bg-primary-500 px-3 py-4 text-white">
         {topThreeMembers.map((member, index) => {
           let rank
           switch (index) {
@@ -114,7 +114,7 @@ export default function Classement({ group }: { group: Group }) {
       {group.members.length > 5 && !isExpanded && (
         <button
           onClick={() => setIsExpanded(true)}
-          className="bg-Transparent text-primary-500 mt-4 w-full border-none text-center text-sm underline">
+          className="bg-Transparent mt-4 w-full border-none text-center text-sm text-primary-500 underline">
           <Trans>
             Voir les {String(group.members.length - 5)} autre{withS} participant
             {withS}

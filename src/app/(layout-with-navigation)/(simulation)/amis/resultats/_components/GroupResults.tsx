@@ -2,27 +2,31 @@
 
 import Separator from '@/design-system/layout/Separator'
 import { useUser } from '@/publicodes-state'
-import { Results } from '@/types/groups'
+import { Group, Results } from '@/types/groups'
+import { UseQueryResult } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { useFetchGroup } from '../../_hooks/useFetchGroup'
 import { useGetGroupStats } from '../_hooks/useGetGroupStats'
 import { useUpdateUserResults } from '../_hooks/useUpdateUserResults'
-import Classement from './Classement'
-import InviteBlock from './InviteBlock'
-import PointsFortsFaibles from './PointsFortsFaibles'
-import VotreEmpreinte from './VotreEmpreinte'
+import Classement from './groupResults/Classement'
+import InviteBlock from './groupResults/InviteBlock'
+import OwnerAdminSection from './groupResults/OwnerAdminSection'
+import PointsFortsFaibles from './groupResults/PointsFortsFaibles'
+import VotreEmpreinte from './groupResults/VotreEmpreinte'
 
 export default function GroupResults({ groupId }: { groupId: string }) {
   const [isSynced, setIsSynced] = useState(false)
 
   const router = useRouter()
 
-  const { data: group, refetch } = useFetchGroup(groupId)
+  const { data: group, refetch }: UseQueryResult<Group> = useFetchGroup(groupId)
 
   const { user, setGroupToRedirectToAfterTest } = useUser()
 
   const userId = user?.id
+
+  const isOwner = group?.owner?.userId === userId
 
   const intervalRef = useRef<NodeJS.Timeout>()
 
@@ -96,6 +100,10 @@ export default function GroupResults({ groupId }: { groupId: string }) {
         }
         membersLength={group?.members?.length}
       />
+
+      {isOwner && <OwnerAdminSection group={group} />}
+
+      {!isOwner && <ParticipantAdminSection />}
     </>
   )
 }
