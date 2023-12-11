@@ -43,45 +43,48 @@ export default function EditableGroupTitle({ groupId }: { groupId: string }) {
   }
 
   return (
-    <div className="my-4">
-      {isEditingTitle ? (
-        <InlineTextInput
-          defaultValue={group?.name}
-          label={t('Modifier le nom du groupe')}
-          name="group-name-input"
-          onClose={() => setIsEditingTitle(false)}
-          onSubmit={handleSubmit}
-          isLoading={isSubmitting}
-          data-cypress-id="group-edit-input-name"
-        />
-      ) : (
-        <Title
-          data-cypress-id="group-name"
-          className="text-xl md:text-2xl"
-          title={
-            <span className="flex items-center justify-between">
-              <span>
-                <Emoji>{group?.emoji}</Emoji> <span>{group?.name}</span>
-              </span>
+    <>
+      <div className="my-4">
+        {isEditingTitle ? (
+          <InlineTextInput
+            defaultValue={group?.name}
+            label={t('Modifier le nom du groupe')}
+            name="group-name-input"
+            onClose={() => setIsEditingTitle(false)}
+            onSubmit={handleSubmit}
+            isLoading={isSubmitting}
+            data-cypress-id="group-edit-input-name"
+          />
+        ) : (
+          <Title
+            data-cypress-id="group-name"
+            className="text-xl md:text-2xl"
+            title={
+              <span className="flex items-center justify-between">
+                <span>
+                  <Emoji>{group?.emoji}</Emoji> <span>{group?.name}</span>
+                </span>
 
-              <Button
-                className="!p-1"
-                onClick={() => setIsEditingTitle(true)}
-                color="secondary"
-                data-cypress-id="group-name-edit-button">
-                <Image
-                  src="/images/misc/pencil.svg"
-                  alt={t(
-                    'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé'
-                  )}
-                  width={24}
-                  height={24}
-                />
-              </Button>
-            </span>
-          }
-        />
-      )}
-    </div>
+                <Button
+                  className="!p-1"
+                  onClick={() => setIsEditingTitle(true)}
+                  color="secondary"
+                  data-cypress-id="group-name-edit-button">
+                  <Image
+                    src="/images/misc/pencil.svg"
+                    alt={t(
+                      'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé'
+                    )}
+                    width={24}
+                    height={24}
+                  />
+                </Button>
+              </span>
+            }
+            subtitle={t('Créé par {{name}}', { name: group?.owner?.name })}
+          />
+        )}
+      </div>
+    </>
   )
 }
