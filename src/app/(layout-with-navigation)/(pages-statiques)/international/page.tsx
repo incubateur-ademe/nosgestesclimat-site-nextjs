@@ -10,13 +10,11 @@ import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 
-const SHARED_TITLE = 'Le calculateur d’empreinte climat international'
-const SHARED_DESCRIPTION = `Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.`
-
 export async function generateMetadata() {
   return getMetadataObject({
-    title: SHARED_TITLE,
-    description: SHARED_DESCRIPTION,
+    title: 'Le calculateur d’empreinte climat international',
+    description:
+      'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.',
     alternates: {
       canonical: '/international',
     },
@@ -26,9 +24,6 @@ export async function generateMetadata() {
 export default async function International() {
   const { t } = await getServerTranslation()
 
-  const title = t(SHARED_TITLE)
-  const description = t(SHARED_DESCRIPTION)
-
   const supportedRegions = await getSupportedRegions()
 
   // TODO: add back full width somehow
@@ -37,7 +32,9 @@ export default async function International() {
       <Container maxWidth="3xl" className="pb-12 pt-8">
         <div className="flex items-start justify-between gap-4">
           <div className="text-center md:text-left">
-            <Title title={t(title)} />
+            <Title
+              title={t('Le calculateur d’empreinte climat international')}
+            />
 
             <Image
               src="/images/misc/international-illustration.jpeg"
@@ -47,9 +44,13 @@ export default async function International() {
               height="100"
             />
 
-            <p className="mb-8">{description}</p>
+            <p className="mb-8">
+              {t(
+                'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.'
+              )}
+            </p>
             <div>
-              <ButtonLink href="/simulateur/bilan" size="xl" className="px-20">
+              <ButtonLink href="/simulateur/bilan" size="lg" className="px-20">
                 <span>
                   <Trans>Faire le test</Trans>
                 </span>
@@ -122,15 +123,15 @@ export default async function International() {
             partir de là, chaque pays décrit ses différences par rapport à la
             base.
           </Trans>
-          <p>
-            <Trans i18nKey="international.comment.2">
-              Explorez en détail les spécificités de chaque pays.
-            </Trans>
-            &nbsp;
-            <span className="ml-2 whitespace-nowrap rounded-sm bg-primary-100 px-2 py-1">
-              ⏳️ <Trans>À venir !</Trans>
-            </span>
-          </p>
+        </p>
+        <p>
+          <Trans i18nKey="international.comment.2">
+            Explorez en détail les spécificités de chaque pays.
+          </Trans>
+          &nbsp;
+          <span className="ml-2 whitespace-nowrap rounded-sm bg-primary-100 px-2 py-1">
+            ⏳️ <Trans>À venir !</Trans>
+          </span>
         </p>
       </Container>
 
