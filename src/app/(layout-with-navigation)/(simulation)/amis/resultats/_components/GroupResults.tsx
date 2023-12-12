@@ -7,7 +7,6 @@ import { Group, Results } from '@/types/groups'
 import { UseQueryResult } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import { useFetchGroup } from '../../_hooks/useFetchGroup'
 import { useGetGroupStats } from '../_hooks/useGetGroupStats'
 import { useUpdateUserResults } from '../_hooks/useUpdateUserResults'
 import Classement from './groupResults/Classement'
@@ -17,16 +16,18 @@ import ParticipantAdminSection from './groupResults/ParticipantAdminSection'
 import PointsFortsFaibles from './groupResults/PointsFortsFaibles'
 import VotreEmpreinte from './groupResults/VotreEmpreinte'
 
-export default function GroupResults({ groupId }: { groupId: string }) {
+export default function GroupResults({
+  group,
+  refetch,
+}: {
+  group: Group
+  refetch: UseQueryResult<Group>['refetch']
+}) {
   const [isSynced, setIsSynced] = useState(false)
 
-  const router = useRouter()
+  const groupId = group?._id
 
-  const {
-    data: group,
-    refetch,
-    isLoading,
-  }: UseQueryResult<Group> = useFetchGroup(groupId)
+  const router = useRouter()
 
   const { user, setGroupToRedirectToAfterTest } = useUser()
 
@@ -65,16 +66,9 @@ export default function GroupResults({ groupId }: { groupId: string }) {
     }
   }, [])
 
-  // Group is not found
-  if (!group && !isLoading) {
-    router.push('/amis')
-    return null
-  }
-
   // User is not part of the group
   if (
     group &&
-    !isLoading &&
     !group?.members?.some(
       (member: { userId: string }) => member.userId === userId
     )

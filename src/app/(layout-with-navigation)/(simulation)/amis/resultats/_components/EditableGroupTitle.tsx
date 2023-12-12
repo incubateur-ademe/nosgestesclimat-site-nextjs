@@ -7,15 +7,15 @@ import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
+import { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import Image from 'next/image'
 import { useState } from 'react'
-import { useFetchGroup } from '../../_hooks/useFetchGroup'
 import { useUpdateGroupName } from '../_hooks/useUpdateGroupName'
 
-export default function EditableGroupTitle({ groupId }: { groupId: string }) {
-  const formattedGroupId = groupId.replaceAll('/', '')
+export default function EditableGroupTitle({ group }: { group: Group }) {
+  const formattedGroupId = group?._id?.replaceAll('/', '')
 
   const [isEditingTitle, setIsEditingTitle] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -23,8 +23,6 @@ export default function EditableGroupTitle({ groupId }: { groupId: string }) {
   const { t } = useClientTranslation()
 
   const { user } = useUser()
-
-  const { data: group } = useFetchGroup(formattedGroupId as string)
 
   const { mutate: updateGroupName } = useUpdateGroupName()
 
