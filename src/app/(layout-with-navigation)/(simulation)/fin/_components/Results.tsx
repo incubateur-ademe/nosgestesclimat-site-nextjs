@@ -57,7 +57,7 @@ export default function Results() {
       <CategoriesAccordion sortedCategories={sortedCategories} />
 
       <div className="mt-2 text-right">
-        <Link href="/profil" className="text-sm md:mt-4">
+        <Link href="/profil#answers" className="text-sm md:mt-4">
           <Trans>Modifier mes réponses</Trans>
         </Link>
       </div>
