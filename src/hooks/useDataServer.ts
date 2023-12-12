@@ -1,9 +1,8 @@
 import { NGC_MODEL_API_URL, getModelPRUrl } from '@/constants/urls'
 import useModelVersion from '@/hooks/useModelVersion'
-import { usePRNumber } from './usePRNumber'
 
 export const useDataServer = () => {
-  const { PRNumber } = usePRNumber()
+  const PRNumber = 2108
   const modelVersion = useModelVersion()
 
   if (PRNumber) {
