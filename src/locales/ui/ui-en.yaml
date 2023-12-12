@@ -163,11 +163,9 @@ entries:
   publicodes.Contribution.commentaireAugmenté: |-
 
     > This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contact).
-
   publicodes.Contribution.commentaireAugmenté.lock: |-
 
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).
-    
   publicodes.FAQ.description: Welcome to Nos Gestes Climat FAQ! Here you'll find answers to the most frequently asked questions. If you still have questions or would like to suggest improvements, please go to the bottom of the page. Have a good read!
   publicodes.FAQ.description.lock: Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
   publicodes.Contribution.descriptionComplète: <0>A complete description of your problem</0><1><0>By indicating the browser you are using (e.g. Firefox version 93, Chrome version 95, Safari, etc.), and the platform (iPhone, Android, Windows computer, etc.), you will help us resolve the bug faster.</0></1>
@@ -522,5 +520,5 @@ entries:
   Les constantes de **services publics et marchands** calculées à partir des travaux du SDES: Public and commercial services** constants calculated on the basis of SDES work
   Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels: The heart of Nos Gestes Climat is **the personal climate footprint** assessment
   Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.: Wherever you live, calculate your personal carbon footprint, taking into account the particularities of your country.
-  Comment cette donnée est-elle calculée ?: How is this figure calculated?
   Le calculateur d’empreinte climat international: The international climate footprint calculator
+  Découvrez nos pistes pour agir dès aujourd’hui pour le climat.: Find out how you can take action for the climate today.
