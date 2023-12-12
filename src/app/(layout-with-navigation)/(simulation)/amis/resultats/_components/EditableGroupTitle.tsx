@@ -6,6 +6,7 @@ import InlineTextInput from '@/design-system/inputs/InlineTextInput'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import Image from 'next/image'
@@ -21,9 +22,13 @@ export default function EditableGroupTitle({ groupId }: { groupId: string }) {
 
   const { t } = useClientTranslation()
 
+  const { user } = useUser()
+
   const { data: group } = useFetchGroup(formattedGroupId as string)
 
   const { mutate: updateGroupName } = useUpdateGroupName()
+
+  const isOwner = group?.owner?.userId === user?.id
 
   const handleSubmit = async (groupNameUpdated: string) => {
     setIsSubmitting(true)
@@ -81,7 +86,9 @@ export default function EditableGroupTitle({ groupId }: { groupId: string }) {
                 </Button>
               </span>
             }
-            subtitle={t('Créé par {{name}}', { name: group?.owner?.name })}
+            subtitle={t('Créé par {{name}}', {
+              name: isOwner ? t('vous') : group?.owner?.name,
+            })}
           />
         )}
       </div>
