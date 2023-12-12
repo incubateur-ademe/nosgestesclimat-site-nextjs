@@ -53,6 +53,7 @@ export default async function DocumentationServer({
           rule?.titre ??
             ruleName?.split(' . ')[ruleName?.split(' . ').length - 1]
         )}`}
+        data-cypress-id="documentation-title"
       />
 
       {rule.question && <QuestionSection rule={rule} />}

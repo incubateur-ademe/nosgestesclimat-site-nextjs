@@ -17,8 +17,11 @@ export default function ClassementMember({
 }) {
   return (
     <li className="flex items-center justify-between">
-      <div className="mb-0 flex items-center">
-        <span className={`mr-2 ${isTopThree ? 'text-2xl' : 'ml-1 text-lg'}`}>
+      <div className="mb-0 flex items-center text-sm md:text-base">
+        <span
+          className={`mr-2 ${
+            isTopThree ? 'text-lg md:text-2xl' : 'ml-1 text-base md:text-lg'
+          }`}>
           {rank}
         </span>
         {name}
