@@ -80,7 +80,7 @@ export default function GetResultsByEmail({
 
         <p className="text-sm text-gray-600 sm:text-base">
           Pour cela, <strong>laissez-nous votre email</strong>, comme{' '}
-          {formatValue(numberSubscribers) ?? ''} personnes.
+          {formatValue(numberSubscribers) ?? '---'} personnes.
         </p>
 
         <p className="text-sm text-gray-600 sm:text-base">

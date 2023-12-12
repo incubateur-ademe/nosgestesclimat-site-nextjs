@@ -55,7 +55,7 @@ export default function FinPage({
 
       <div>
         <h2>
-          <Trans>Comment réalisons-nous ces calculs ?</Trans>
+          <Trans>Comment est calculée votre empreinte ?</Trans>
         </h2>
 
         <p>
