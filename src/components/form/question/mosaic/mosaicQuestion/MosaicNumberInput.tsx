@@ -45,7 +45,7 @@ export default function NumberInput({
       </div>
       <div className="flex items-center">
         <Button
-          disabled={value === 0}
+          disabled={value === 0 || isMissing}
           onClick={() => setValue(Number(value) - 1)}
           size="sm"
           className="z-10 h-8 w-8 items-center justify-center  md:h-10 md:w-10">
@@ -55,13 +55,13 @@ export default function NumberInput({
           className="bg-transparent-100  w-10 text-center"
           type="number"
           value={isMissing ? '' : Number(value)}
-          placeholder={String(value)}
+          placeholder={'0'}
           onChange={(event) => setValue(Number(event.target.value))}
           data-cypress-id={`${question}---${parentMosaic}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
         />
         <Button
-          onClick={() => setValue(Number(value) + 1)}
+          onClick={() => setValue(isMissing ? 1 : Number(value) + 1)}
           className="z-10 h-8 w-8 items-center justify-center  md:h-10 md:w-10">
           +
         </Button>

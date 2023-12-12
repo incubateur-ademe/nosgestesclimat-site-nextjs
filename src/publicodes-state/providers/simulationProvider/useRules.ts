@@ -1,3 +1,4 @@
+import { NGCRuleNode } from '@/publicodes-state/types'
 import Engine from 'publicodes'
 import { useMemo } from 'react'
 
@@ -46,20 +47,18 @@ export default function useRules({ engine }: Props) {
     [engine]
   )
 
-  const everyMosaicChildWhoIsReallyInMosaic = useMemo<string[]>(
+  const everyMosaicChildren = useMemo<string[]>(
     () =>
-      everyQuestions.filter((currentValue: string) =>
-        everyMosaic.find((mosaic) => {
-          const mosaicRule = engine.getRule(mosaic) as any
-          const key = mosaicRule.rawNode.mosaique['clé']
-          return (
-            currentValue !== mosaic &&
-            currentValue.includes(mosaic) &&
-            currentValue.includes(key)
-          )
-        })
-      ),
-    [everyQuestions, everyMosaic, engine]
+      everyMosaic.reduce<string[]>((accumulator, mosaic) => {
+        const mosaicRule = engine.getRule(mosaic) as NGCRuleNode
+        if (!mosaicRule.rawNode.mosaique) return ['accumulator']
+        const mosaicChildren = mosaicRule.rawNode.mosaique['options']?.map(
+          (option: string) =>
+            everyQuestions.find((rule) => rule.includes(option)) || ''
+        )
+        return [...accumulator, ...mosaicChildren]
+      }, []),
+    [everyMosaic, everyQuestions, engine]
   )
 
   return {
@@ -67,6 +66,6 @@ export default function useRules({ engine }: Props) {
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
-    everyMosaicChildWhoIsReallyInMosaic,
+    everyMosaicChildren,
   }
 }
