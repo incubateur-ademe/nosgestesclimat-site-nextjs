@@ -8,6 +8,7 @@ export default function HowToAct({ shouldLeadToTest = true }) {
       <h2>
         <Trans>Comment agir ?</Trans>
       </h2>
+
       <p className="text-gray-600">
         {shouldLeadToTest ? (
           <Trans>
@@ -20,7 +21,9 @@ export default function HowToAct({ shouldLeadToTest = true }) {
           </Trans>
         )}
       </p>
+
       <RecommendedActions />
+
       <div className="mt-4">
         <ButtonLink href="/actions" color="secondary">
           <Trans>Voir toutes les actions</Trans>

@@ -50,7 +50,7 @@ export default function VotreEmpreinte({
         </p>
       )}
 
-      <ul className="mb-16 mt-6 pl-0">
+      <ul className="mb-6 mt-6 pl-0">
         {Object.entries(categoriesFootprints ?? {}).reduce(
           (acc, [key, categoryObject]) => {
             if (!(EMOJI_TEXT_MAP as any)[key]) return acc

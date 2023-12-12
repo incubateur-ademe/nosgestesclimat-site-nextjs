@@ -128,6 +128,7 @@ entries:
   publicodes.Contribution.commentaireAugmenté: |-
 
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).
+
   publicodes.FAQ.description: Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
   publicodes.Contribution.descriptionComplète: <0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>
   publicodes.Contribution.liensVersGithub: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
@@ -440,3 +441,5 @@ entries:
   Les constantes de **services publics et marchands** calculées à partir des travaux du SDES: Les constantes de **services publics et marchands** calculées à partir des travaux du SDES
   Un calcul statistique du **chauffage** résidentiel français moyen: Un calcul statistique du **chauffage** résidentiel français moyen
   Un modèle inédit d'empreinte des **déchets**: Un modèle inédit d'empreinte des **déchets**
+  Le calculateur d’empreinte climat international: Le calculateur d’empreinte climat international
+  Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.: Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.

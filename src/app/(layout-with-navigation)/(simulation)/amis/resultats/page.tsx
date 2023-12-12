@@ -1,11 +1,11 @@
 'use client'
 
+import Footer from '@/components/layout/Footer'
 import Trans from '@/components/translation/Trans'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import EditableGroupTitle from './_components/EditableGroupTitle'
-import Footer from './_components/Footer'
 import GroupResults from './_components/GroupResults'
 
 export default function GroupResultsPage({
