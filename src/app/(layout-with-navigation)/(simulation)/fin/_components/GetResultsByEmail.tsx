@@ -57,7 +57,7 @@ export default function GetResultsByEmail({
         className
       )}>
       <form id="newsletter-form" onSubmit={handleSubmit}>
-        <h3 className="text-xl">
+        <h3 className="text-lg md:text-xl">
           <Trans>
             Recevez vos résultats{' '}
             <span className="text-secondary">par email</span>

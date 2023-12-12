@@ -12,7 +12,7 @@ type Props = {
   situation: Situation
   foldedSteps: string[]
   everyQuestions: string[]
-  everyMosaicChildWhoIsReallyInMosaic: string[]
+  everyMosaicChildren: string[]
 }
 
 /**
@@ -26,7 +26,7 @@ export default function useQuestions({
   situation,
   foldedSteps,
   everyQuestions,
-  everyMosaicChildWhoIsReallyInMosaic,
+  everyMosaicChildren,
 }: Props) {
   const missingVariables = useMemo<Record<string, number>>(
     () =>
@@ -46,9 +46,7 @@ export default function useQuestions({
         // We remove all that are in mosaics,
         .filter(
           (question) =>
-            !everyMosaicChildWhoIsReallyInMosaic.find(
-              (mosaic) => mosaic === question
-            )
+            !everyMosaicChildren.find((mosaic) => mosaic === question)
         )
         // all that are in folded steps
         .filter((question) => foldedSteps.indexOf(question) === -1)
@@ -134,7 +132,7 @@ export default function useQuestions({
       subcategories,
       missingVariables,
       everyQuestions,
-      everyMosaicChildWhoIsReallyInMosaic,
+      everyMosaicChildren,
     ]
   )
 
@@ -164,7 +162,7 @@ export default function useQuestions({
           situation,
           questionsOfMosaic: getQuestionsOfMosaic({
             dottedName,
-            everyMosaicChildWhoIsReallyInMosaic,
+            everyMosaicChildren,
           }),
         })
       ),
@@ -173,7 +171,7 @@ export default function useQuestions({
       relevantAnsweredQuestions,
       remainingQuestions,
       situation,
-      everyMosaicChildWhoIsReallyInMosaic,
+      everyMosaicChildren,
     ]
   )
 
