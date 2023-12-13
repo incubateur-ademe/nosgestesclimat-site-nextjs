@@ -11,7 +11,11 @@ import { SuppportedRegions } from '@/types/international'
 import RegionModelAuthors from './localisation/RegionModelAuthors'
 import RegionSelector from './localisation/RegionSelector'
 
-export default function Localisation(supportedRegions: SuppportedRegions) {
+type Props = {
+  supportedRegions: SuppportedRegions
+}
+
+export default function Localisation({ supportedRegions }: Props) {
   const { t } = useClientTranslation()
   const locale = useLocale()
 
