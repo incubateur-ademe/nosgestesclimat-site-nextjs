@@ -5,16 +5,18 @@ import Image from 'next/image'
 export default function AutresQuestions() {
   return (
     <div className="order-last mb-8 md:order-none">
-      <h5 className="mb-2 text-lg">D’autres questions ?</h5>
+      <h5 className="mb-2 text-lg">
+        <Trans>D'autres questions ?</Trans>
+      </h5>
       <ul className="mb-1 list-none p-0">
         <li className="mb-2" id={'empreinte'}>
           <details>
-            <summary className="text-primary-500 cursor-pointer text-sm font-bold md:text-lg">
+            <summary className="cursor-pointer text-sm font-bold text-primary-500 md:text-lg">
               <Trans>C’est quoi mon empreinte carbone ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
-              <Trans i18nKey={'publicodes.Tutoriel.slide1.p1'}>
-                <p>
+              <p>
+                <Trans i18nKey={'publicodes.Tutoriel.slide1.p1'}>
                   Le climat se réchauffe à cause des activités humaines, c'est
                   un fait. Tout ce que nous consommons, utilisons, puis jetons a
                   nécessité de la matière et de l'énergie. Que ce soit pour la
@@ -23,8 +25,8 @@ export default function AutresQuestions() {
                   émettre des gaz à effet de serre. Certaines énormément,
                   d'autres très peu. Mais quel est notre impact, à notre échelle
                   de citoyen ?
-                </p>
-              </Trans>
+                </Trans>
+              </p>
               <Image
                 src="/images/tutoriel/greenhouse-effect.svg"
                 alt="Effet de serre"
@@ -32,20 +34,20 @@ export default function AutresQuestions() {
                 width={100}
                 height={100}
               />
-              <Trans i18nKey={'publicodes.Tutoriel.slide1.p2'}>
-                <p>
+              <p>
+                <Trans i18nKey={'publicodes.Tutoriel.slide1.p2'}>
                   Pour estimer sa propre contribution au réchauffement de la
                   planète (son "impact climat"), il est d'usage de calculer ce
                   qu'on appelle l'empreinte carbone individuelle de
                   consommation.
-                </p>
-              </Trans>
+                </Trans>
+              </p>
             </div>
           </details>
         </li>
         <li className="mb-2" id={'mesure'}>
           <details>
-            <summary className="text-primary-500 cursor-pointer text-sm font-bold md:text-lg">
+            <summary className="cursor-pointer text-sm font-bold text-primary-500 md:text-lg">
               <Trans>Comment on la mesure ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
@@ -114,7 +116,7 @@ export default function AutresQuestions() {
         </li>
         <li className="mb-4" id={'categories'}>
           <details id={'categories'}>
-            <summary className="text-primary-500 cursor-pointer text-sm font-bold md:text-lg">
+            <summary className="cursor-pointer text-sm font-bold text-primary-500 md:text-lg">
               <Trans>D’où vient mon empreinte ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">

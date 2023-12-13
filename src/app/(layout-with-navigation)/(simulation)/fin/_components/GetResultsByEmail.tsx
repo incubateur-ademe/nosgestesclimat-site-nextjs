@@ -58,15 +58,17 @@ export default function GetResultsByEmail({
       )}>
       <form id="newsletter-form" onSubmit={handleSubmit}>
         <h3 className="text-lg md:text-xl">
-          <Trans>
-            Recevez vos résultats{' '}
-            <span className="text-secondary">par email</span>
-          </Trans>
+          <Trans>Recevez vos résultats</Trans>{' '}
+          <span className="text-secondary">
+            <Trans>par email</Trans>
+          </span>
         </h3>
 
         <p className="text-gray-600">
-          Et les conseils de Nos Gestes Climat pour réduire votre impact sur le
-          climat.
+          <Trans>
+            Et les conseils de Nos Gestes Climat pour réduire votre impact sur
+            le climat.
+          </Trans>
         </p>
 
         <div className="mb-4">

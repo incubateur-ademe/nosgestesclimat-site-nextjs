@@ -384,8 +384,8 @@ entries:
   Logo de l'Association pour la transition Bas Carbone: Logo of the Low Carbon Transition Association
   Il concerne votre vie personnelle, et non pas votre boulot.: It's about your personal life, not your job.
   Comparez vos résultats avec votre famille ou un groupe d’ami·e·s: Compare your results with your family or a group of friends
-  publicodes.Tutoriel.slide1.p1: <0>It's a fact that the climate is warming because of human activity. Everything we consume, use and then throw away requires materials and energy. Whether it's during the production, use or end-of-life phase of the good or service. So all our activities contribute to greenhouse gas emissions. Some a great deal, others very little. But what is our impact, as individual citizens?</0>
-  publicodes.Tutoriel.slide1.p1.lock: <0>Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?</0>
+  publicodes.Tutoriel.slide1.p1: It's a fact that the climate is warming because of human activity. Everything we consume, use and then throw away requires materials and energy. Whether it's during the production, use or end-of-life phase of the good or service. So all our activities contribute to greenhouse gas emissions. Some a great deal, others very little. But what is our impact, as individual citizens?
+  publicodes.Tutoriel.slide1.p1.lock: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
   L'intégralité du calcul est <2>documenté</2> en ligne pour les curieux et les experts.: The entire calculation is <2>documented</2> online for the curious and the experts.
   Voir plus d'informations: See more information
   revenir à l'accueil: return to home page
@@ -398,8 +398,8 @@ entries:
   publicodes.Tutoriel.slide2.p2: It's the machines that make our modern comforts and conveniences that emit massive amounts of it, so much so that we count it in thousands of kilos per year and per person, and therefore in <2>tonnes</2> of CO₂e!
   publicodes.Tutoriel.slide2.p2.lock: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
   Vous pouvez créer un nouveau groupe avec d’autres amis.: You can create a new group with other friends.
-  publicodes.Tutoriel.slide1.p2: <0>To estimate our own contribution to global warming (our "climate impact"), we usually calculate the carbon footprint of our individual consumption.</0>
-  publicodes.Tutoriel.slide1.p2.lock: <0>Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.</0>
+  publicodes.Tutoriel.slide1.p2: To estimate our own contribution to global warming (our "climate impact"), we usually calculate the carbon footprint of our individual consumption.
+  publicodes.Tutoriel.slide1.p2.lock: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
   Retrouvez les réponses aux questions courantes sur notre page <2>FAQ</2>.: Find answers to frequently asked questions on our <2>FAQ</2> page.
   Répondez aux questions en votre nom, pas pour votre foyer.: Answer the questions on your behalf, not for your household.
   Tout déplier: Unfold all
@@ -409,7 +409,7 @@ entries:
   ' Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': " Of course, some things are shared (in my home with my family, the car with my carpoolers): this will be taken into account when calculating your carbon footprint, so don't worry!"
   Plus d'information à ce sujet: More information
   Oups! Cette page n'existe pas ou n'existe plus: Oops! this page does not exist or no longer exists
-  Vous utilisez la version: You are using the
+  Vous utilisez la version: You are using the version
   du test: of the test
   Terminer: Finish
   SondagesBlock.description: <1>Surveys</1> and <3>conferences</3> allow you to compare your footprint live or in groups of more than 20 people
@@ -516,3 +516,15 @@ entries:
   Comment cette donnée est-elle calculée ?: How is this figure calculated?
   Le calculateur d’empreinte climat international: The international climate footprint calculator
   Découvrez nos pistes pour agir dès aujourd’hui pour le climat.: Find out how you can take action for the climate today.
+  par email: by email
+  de: from
+  Ma région de simulation: My simulation region
+  Vous avez fait: You made
+  chaque année: every year
+  D'autres questions ?: Any other questions?
+  "Qu'est-ce que ça veut dire ? ": 'What does this mean? '
+  choix en trop !: too many choices!
+  Il vous reste: You still have
+  choix à faire: choices to be made
+  Recevez vos résultats: Receive your results
+  Et les conseils de Nos Gestes Climat pour réduire votre impact sur le climat.: And advice from Nos Gestes Climat on how to reduce your impact on the climate.
