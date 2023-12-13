@@ -1,6 +1,6 @@
 'use client'
 
-import Footer from '@/components/layout/Footer'
+import HowToAct from '@/components/actions/HowToAct'
 import Trans from '@/components/translation/Trans'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import { useRouter } from 'next/navigation'
@@ -39,7 +39,7 @@ export default function GroupResultsPage({
         <GroupResults groupId={groupId} />
       </div>
 
-      <Footer />
+      <HowToAct />
     </>
   )
 }
