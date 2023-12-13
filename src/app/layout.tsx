@@ -69,8 +69,26 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <meta name="theme-color" content="#491273" />
 
-        <Script id="matomo">
-          {`
+        {process.env.NEXT_PUBLIC_MATOMO_ID !== '1' ? (
+          <Script id="matomo-preprod">
+            {`
+            var _paq = window._paq = window._paq || [];
+            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+            _paq.push(["setCookieDomain", "*.preprod.nosgestesclimat.fr"]);
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+              var u="https://stats.beta.gouv.fr/";
+              _paq.push(['setTrackerUrl', u+'matomo.php']);
+              _paq.push(['setSiteId', '79']);
+              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+              g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+            })();
+            `}
+          </Script>
+        ) : (
+          <Script id="matomo">
+            {`
             var _paq = window._paq = window._paq || [];
             /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
             _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
@@ -87,7 +105,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
               g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
             })();
           `}
-        </Script>
+          </Script>
+        )}
       </head>
 
       <body className={`${marianne.className} text-default`}>
