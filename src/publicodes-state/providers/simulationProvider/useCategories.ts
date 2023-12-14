@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
-import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
-import { Engine, NGCRuleNode } from '../../types'
+import { DottedName, Engine, NGCRuleNode } from '../../types'
 type Props = {
   engine: Engine
+  everyRules: DottedName[]
   root: string
   safeGetRule: (rule: string) => NGCRuleNode | null
   order: string[] | null
@@ -10,6 +10,7 @@ type Props = {
 
 export default function useCategories({
   engine,
+  everyRules,
   root,
   safeGetRule,
   order,
@@ -17,42 +18,30 @@ export default function useCategories({
   const categories = useMemo<string[]>(
     () =>
       safeGetRule(root)?.rawNode?.formule?.somme.sort((a: string, b: string) =>
-        !order ? 0 : order.indexOf(a) > order.indexOf(b) ? 1 : -1
+        !order ? 0 : order.indexOf(a) - order.indexOf(b)
       ),
     [root, order, safeGetRule]
   )
 
-  const subcategories = useMemo<Record<string, string[]>>(
-    () =>
-      categories.reduce(
-        (accumulator: object, currentValue: string) => ({
-          ...accumulator,
-          [currentValue]: (
-            safeGetRule(currentValue)?.rawNode?.formule?.somme?.map(
-              (rule: string) => {
-                // If the rule contains more than one name, it is not just the subcategory but the whole thing, so no need to preprend the category
-                // and exception for services sociétaux
-                if (
-                  rule.split(' . ').length > 1 ||
-                  currentValue === 'services sociétaux'
-                ) {
-                  return rule
-                } else {
-                  return currentValue + ' . ' + rule
-                }
-              }
-            ) || []
-          ).sort((a: string, b: string) =>
-            (safeEvaluateHelper(a, engine)?.nodeValue || 0) >
-            (safeEvaluateHelper(b, engine)?.nodeValue || 0)
-              ? -1
-              : 1
-          ),
-        }),
-        {}
-      ),
-    [categories, safeGetRule, engine]
-  )
+  const subcategories = useMemo<Record<string, string[]>>(() => {
+    return categories.reduce((accumulator: object, currentValue: string) => {
+      const subCat = []
+      const sum = safeGetRule(currentValue)?.rawNode?.formule?.somme
+      for (const idx in sum) {
+        const rule = sum[idx]
+        // The rule is a full rule, not a shorten one
+        if (everyRules.includes(rule)) {
+          subCat.push(rule)
+        } else {
+          subCat.push(currentValue + ' . ' + rule)
+        }
+      }
+      return {
+        ...accumulator,
+        [currentValue]: subCat,
+      }
+    }, {})
+  }, [categories, safeGetRule, engine, everyRules])
 
   return { categories, subcategories }
 }
