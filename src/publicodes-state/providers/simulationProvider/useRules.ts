@@ -7,9 +7,10 @@ type Props = {
 }
 
 export default function useRules({ engine }: Props) {
+  const parsedRules = engine.getParsedRules()
   const parsedRulesEntries = useMemo<[string, NGCRuleNode][]>(
-    () => Object.entries(engine.getParsedRules()),
-    [engine.getParsedRules()]
+    () => Object.entries(parsedRules),
+    [parsedRules]
   )
 
   const everyRules = useMemo<string[]>(
