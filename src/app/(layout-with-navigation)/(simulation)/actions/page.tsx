@@ -1,6 +1,7 @@
 'use client'
 
 import { useForm, useTempEngine, useUser } from '@/publicodes-state'
+import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { useState } from 'react'
 import ActionsTutorial from './_components/ActionsTutorial'
 import OptionBar from './_components/OptionBar'
@@ -40,7 +41,7 @@ export default function ActionsPage({
   })
 
   const actionsDisplayed = actions.filter((action: any) =>
-    category ? action.dottedName.split(' . ')[0] === category : true
+    category ? getNamespace(action.dottedName) === category : true
   )
 
   //TODO this is quite a bad design

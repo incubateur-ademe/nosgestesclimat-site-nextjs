@@ -1,3 +1,5 @@
+import getNamespace from '@/publicodes-state/helpers/getNamespace'
+
 // TODO : refactor this function which seems overly complex
 export const filterIrrelevantActions = ({ actions, actionChoices }: any) => {
   // pour chaque action choisie, on regarde ses frères et soeurs en récupérant la catégorie de l'action
@@ -5,14 +7,14 @@ export const filterIrrelevantActions = ({ actions, actionChoices }: any) => {
     (acc: any[], actionChoiceKey: any) => {
       if (!actionChoices[actionChoiceKey]) return acc
 
-      const category = actionChoiceKey.split(' . ')[0]
+      const category = getNamespace(actionChoiceKey)
 
       const actionObject = actions.find((action: any) => {
         return action.dottedName === actionChoiceKey
       })
 
       const sameCategoryActions = actions.filter((action: any) => {
-        return action.dottedName.split(' . ')[0] === category
+        return getNamespace(action.dottedName) === category
       })
 
       const actionsWithIrrelevant = sameCategoryActions.map((action: any) => {

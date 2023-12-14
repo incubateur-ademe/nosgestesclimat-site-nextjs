@@ -4,6 +4,7 @@ import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
+import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { NGCRule } from '@/publicodes-state/types'
 import Markdown from 'markdown-to-jsx'
 import { utils } from 'publicodes'
@@ -18,7 +19,7 @@ export default function DocumentationLandingCard({
   summary,
   rule,
 }: Props) {
-  const category = dottedName.split(' . ')[0]
+  const category = getNamespace(dottedName)
 
   return (
     <Card

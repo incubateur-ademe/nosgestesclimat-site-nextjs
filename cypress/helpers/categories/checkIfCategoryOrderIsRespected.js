@@ -7,7 +7,7 @@ const categoriesOrderArray = CATEGORIES.map((category) => ({
 
 export function checkIfCategoryOrderIsRespected(questionId) {
   const indexCurrentCategory = categoriesOrderArray.findIndex(
-    (category) => category.key === questionId.split(' . ')[0]
+    (category) => category.key === getNamespace(questionId)
   )
   cy.log(
     'indexCurrentCategory',

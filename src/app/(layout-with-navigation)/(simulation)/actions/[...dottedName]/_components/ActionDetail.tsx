@@ -12,6 +12,7 @@ import {
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
+import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { NGCRuleNode } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { utils } from 'publicodes'
@@ -60,7 +61,7 @@ export default function ActionDetail({
     .filter(
       (actionDottedName: string) =>
         actionDottedName !== dottedName &&
-        dottedName.split(' . ')[0] === actionDottedName.split(' . ')[0]
+        getNamespace(dottedName) === getNamespace(actionDottedName)
     )
     .map((name: string) => getRuleObject(name))
 
@@ -102,7 +103,7 @@ export default function ActionDetail({
           <FormProvider root={dottedName}>
             <ActionForm
               key={dottedName}
-              category={dottedName.split(' . ')[0]}
+              category={getNamespace(dottedName) ?? ''}
               onComplete={() => {
                 toggleActionChoice(dottedName)
 
