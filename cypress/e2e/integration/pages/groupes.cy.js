@@ -8,6 +8,7 @@ describe(
   'The Group creation page /amis/creer',
   { testIsolation: false },
   () => {
+    let ownerLocalStorage = ''
     it('allows to create a new group and displays it afterwards', () => {
       cy.visit('/amis')
 
@@ -25,6 +26,10 @@ describe(
       recursivelyFillSimulation(null, 'group')
 
       cy.get('[data-cypress-id="group-name"]')
+
+      // And that we can delete it
+      cy.get('[data-cypress-id="button-delete-group"]').click()
+      cy.get('[data-cypress-id="button-confirm-delete-group"]').click()
 
       // Check that we can create a second group
       clickAmisLink()
@@ -47,6 +52,9 @@ describe(
       cy.get('input[data-cypress-id="group-edit-input-name"]').type(newName)
       cy.get('[data-cypress-id="button-inline-input"]').click()
       cy.get('[data-cypress-id="group-name"]').contains(newName)
+
+      // Save the owner user id in order to be able to delete the group later on
+      const ownerLocalStorage = cy.getLocalStorage('nosgestesclimat::v3')
     })
 
     it('allows to join a group with the invitation link and display ', () => {
@@ -64,6 +72,14 @@ describe(
       // Check that the main sections are displayed
       cy.get('[data-cypress-id="points-fort-faibles-title"]')
       cy.get('[data-cypress-id="votre-empreinte-title"]')
+
+      cy.clearLocalStorage()
+      cy.setLocalStorage('nosgestesclimat::v3', ownerLocalStorage)
+      cy.reload()
+
+      // And then we can delete it
+      cy.get('[data-cypress-id="button-delete-group"]').click()
+      cy.get('[data-cypress-id="button-confirm-delete-group"]').click()
     })
   }
 )
