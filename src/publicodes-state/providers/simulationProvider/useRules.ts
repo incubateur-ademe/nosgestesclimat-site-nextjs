@@ -7,54 +7,61 @@ type Props = {
 }
 
 export default function useRules({ engine }: Props) {
+  const parsedRulesEntries = useMemo<[string, NGCRuleNode][]>(
+    () => Object.entries(engine.getParsedRules()),
+    [engine.getParsedRules()]
+  )
+
   const everyRules = useMemo<string[]>(
-    () =>
-      Object.entries(engine.getParsedRules()).map(
-        (rule: (string | any)[]) => rule[0]
-      ),
-    [engine]
+    () => parsedRulesEntries.map((rule: (string | any)[]) => rule[0]),
+    [parsedRulesEntries]
   )
 
   const everyInactiveRules = useMemo<string[]>(
     () =>
-      Object.entries(engine.getParsedRules())
+      parsedRulesEntries
         .filter((rule: (string | any)[]) => rule[1].rawNode.inactif === 'oui')
         .map((rule: (string | any)[]) => rule[0]),
-    [engine]
+    [parsedRulesEntries]
   )
 
   const everyQuestions = useMemo<string[]>(
     () =>
-      Object.entries(engine.getParsedRules())
+      parsedRulesEntries
         .filter((rule: (string | any)[]) => rule[1].rawNode.question)
         .map((question: (string | any)[]) => question[0]),
-    [engine]
+    [parsedRulesEntries]
   )
 
   const everyMosaic = useMemo<string[]>(
     () =>
-      Object.entries(engine.getParsedRules())
+      parsedRulesEntries
         .filter((rule: (string | any)[]) => rule[1].rawNode.mosaique)
         .map((question) => question[0]),
-    [engine]
+    [parsedRulesEntries]
   )
 
   const everyNotifications = useMemo<string[]>(
     () =>
-      Object.entries(engine.getParsedRules())
+      parsedRulesEntries
         .filter((rule: any) => rule[1].rawNode.type === 'notification') // Model shenanigans: type is only used for notifications
         .map((question) => question[0]),
-    [engine]
+    [parsedRulesEntries]
   )
 
   const everyMosaicChildren = useMemo<string[]>(
     () =>
       everyMosaic.reduce<string[]>((accumulator, mosaic) => {
         const mosaicRule = engine.getRule(mosaic) as NGCRuleNode
-        if (!mosaicRule.rawNode.mosaique) return ['accumulator']
+
+        if (!mosaicRule.rawNode.mosaique) {
+          return accumulator
+        }
+
         const mosaicChildren = mosaicRule.rawNode.mosaique['options']?.map(
-          (option: string) =>
-            everyQuestions.find((rule) => rule.includes(option)) || ''
+          (option: string) => {
+            return everyQuestions.find((rule) => rule.endsWith(option)) || ''
+          }
         )
         return [...accumulator, ...mosaicChildren]
       }, []),
