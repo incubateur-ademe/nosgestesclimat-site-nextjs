@@ -74,7 +74,6 @@ export default function SimulationProvider({
   })
 
   const { categories, subcategories } = useCategories({
-    engine: pristineEngine,
     everyRules,
     root,
     safeGetRule,

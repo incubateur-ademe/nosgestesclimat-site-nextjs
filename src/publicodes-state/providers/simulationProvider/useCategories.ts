@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
-import { DottedName, Engine, NGCRuleNode } from '../../types'
+import { DottedName, NGCRuleNode } from '../../types'
 type Props = {
-  engine: Engine
   everyRules: DottedName[]
   root: string
   safeGetRule: (rule: string) => NGCRuleNode | null
@@ -9,7 +8,6 @@ type Props = {
 }
 
 export default function useCategories({
-  engine,
   everyRules,
   root,
   safeGetRule,
@@ -41,7 +39,7 @@ export default function useCategories({
         [currentValue]: subCat,
       }
     }, {})
-  }, [categories, safeGetRule, engine, everyRules])
+  }, [categories, safeGetRule, everyRules])
 
   return { categories, subcategories }
 }
