@@ -5,6 +5,7 @@ import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Markdown from '@/design-system/utils/Markdown'
 import { fetchModel } from '@/helpers/data/fetchModel'
+import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { Rules } from '@/publicodes-state/types'
 import { SuppportedRegions } from '@/types/international'
 import { capitalizeString } from '@/utils/capitalizeString'
@@ -49,10 +50,7 @@ export default async function DocumentationServer({
   return (
     <div className="mt-4 w-full max-w-4xl p-4 md:mx-auto md:py-8">
       <Title
-        title={`${rule.icônes ?? ''} ${capitalizeString(
-          rule?.titre ??
-            ruleName?.split(' . ')[ruleName?.split(' . ').length - 1]
-        )}`}
+        title={`${rule.icônes ?? ''} ${capitalizeString(getRuleTitle(rule))}`}
         data-cypress-id="documentation-title"
       />
 
