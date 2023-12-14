@@ -1,4 +1,5 @@
 import { CATEGORIES } from '../../constants/categories'
+import getNamespace from '../../utils/getNamespace'
 
 const categoriesOrderArray = CATEGORIES.map((category) => ({
   key: category,
