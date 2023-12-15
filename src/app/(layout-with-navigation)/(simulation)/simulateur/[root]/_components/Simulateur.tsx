@@ -18,13 +18,16 @@ import Summary from './simulateur/Summary'
 export default function Simulateur() {
   const [isInit, setIsInit] = useState(false)
 
+  const urlParams = new URLSearchParams(window.location.search)
+  const questionFromUrl = urlParams.get('question')
+
   const router = useRouter()
 
   const isDebug = useDebug()
 
   const { tutorials } = useUser()
 
-  const { currentQuestion, categories } = useForm()
+  const { currentQuestion, categories, progression } = useForm()
 
   const { getValue } = useEngine()
 
@@ -48,10 +51,10 @@ export default function Simulateur() {
       setIsInit(true)
     }
   }, [tutorials, router, isDebug])
-
+  console.log(currentQuestion)
   // Redirect to results page if test is completed
   useEffect(() => {
-    if (!currentQuestion && !isDebug) {
+    if (progression === 1 && !isDebug && !questionFromUrl) {
       const detailsParamString = formatResultToDetailParam({
         categories,
         getValue,
@@ -61,7 +64,7 @@ export default function Simulateur() {
         `/fin${detailsParamString ? `?${detailsParamString}` : ''}`
       )
     }
-  }, [currentQuestion, router, isDebug, categories, getValue])
+  }, [progression, router, isDebug, categories, getValue, questionFromUrl])
 
   if (!isInit) return null
 

@@ -61,7 +61,8 @@ export default function FinPage({
         <p>
           <Trans>
             Notre simulateur repose sur un modèle de données, dont l'intégralité
-            des calculs est documentée :
+            des calculs est documentée ; les données affichées sont directement
+            associées à votre test.
           </Trans>
         </p>
 
