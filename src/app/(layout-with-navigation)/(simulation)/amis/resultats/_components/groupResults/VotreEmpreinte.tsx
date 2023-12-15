@@ -1,8 +1,9 @@
 import Trans from '@/components/translation/Trans'
+import Emoji from '@/design-system/utils/Emoji'
 import { SimulationResults, ValueObject } from '@/types/groups'
 import { formatValue } from 'publicodes'
 import { JSX } from 'react'
-import PercentageDiff from './pointsListItem/PercentageDiff'
+import PercentageDiff from './pointsFortsFaibles/pointsListItem/PercentageDiff'
 
 const EMOJI_TEXT_MAP: {
   [key in keyof Partial<SimulationResults>]: {
@@ -61,7 +62,7 @@ export default function VotreEmpreinte({
                 className="flex items-center justify-between border-0 border-b-[1px] border-solid border-gray-200 py-4 last:border-b-0">
                 <div className="flex items-center">
                   <div className="flex-shrink-0 text-2xl">
-                    <span>{(EMOJI_TEXT_MAP as any)[key].emoji}</span>
+                    <Emoji>{(EMOJI_TEXT_MAP as any)[key].emoji}</Emoji>
                   </div>
                   <div className="ml-4">
                     <div className="text-md font-bold text-gray-900">

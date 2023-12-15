@@ -19,14 +19,14 @@ export default function Title({
 }: PropsWithChildren<Props>) {
   const Tag = tag
   return (
-    <div className="relative mb-4 sm:pb-5">
+    <div className="relative mb-4 pb-4">
       <Tag className={`mb-1 ${className}`} {...props}>
         {title ?? children}
       </Tag>
 
-      {subtitle && <p className="text-slate-500">{subtitle}</p>}
+      {subtitle && <p className="mb-0 text-slate-500">{subtitle}</p>}
 
-      <Separator className="absolute bottom-0 left-0 m-0 hidden lg:block" />
+      <Separator className="absolute bottom-0 left-0 m-0" />
     </div>
   )
 }
