@@ -1,5 +1,6 @@
 'use client'
 
+import HowToAct from '@/components/actions/HowToAct'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
@@ -70,6 +71,8 @@ export default function GroupResultsPage({
 
         <GroupResults group={group as Group} refetch={refetch} />
       </div>
+
+      <HowToAct />
     </>
   )
 }

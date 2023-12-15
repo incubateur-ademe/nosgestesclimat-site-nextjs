@@ -23,8 +23,11 @@ export default function ActionsLayout({ children }: PropsWithChildren) {
   return (
     <FormProvider>
       <Title title={<Trans>Agir</Trans>} />
+
       <Total />
+
       <NorthStarBanner type="action" />
+
       <div>{children}</div>
     </FormProvider>
   )
