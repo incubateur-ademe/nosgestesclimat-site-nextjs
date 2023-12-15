@@ -2,7 +2,9 @@ import HowToAct from '@/components/actions/HowToAct'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import Trans from '@/components/translation/Trans'
 import { noIndexObject } from '@/constants/metadata'
+import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
+import Emoji from '@/design-system/utils/Emoji'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
 import CongratulationsText from './_components/CongratulationsText'
@@ -45,9 +47,30 @@ export default function FinPage({
         <GroupModePromotionBanner className="col-span-2" />
       </div>
 
-      <Separator className="my-8" />
+      <Separator />
 
       <HowToAct shouldLeadToTest={false} />
+
+      <Separator />
+
+      <div>
+        <h2>
+          <Trans>Comment est calculée votre empreinte ?</Trans>
+        </h2>
+
+        <p>
+          <Trans>
+            Notre simulateur repose sur un modèle de données, dont l'intégralité
+            des calculs est documentée ; les données affichées sont directement
+            associées à votre test.
+          </Trans>
+        </p>
+
+        <InlineLink href="/documentation/bilan">
+          <Emoji className="mr-1 inline-block">🧮</Emoji>
+          <Trans>Comprendre le calcul</Trans>
+        </InlineLink>
+      </div>
 
       <FeedbackBanner
         className="mb-8 mt-12"

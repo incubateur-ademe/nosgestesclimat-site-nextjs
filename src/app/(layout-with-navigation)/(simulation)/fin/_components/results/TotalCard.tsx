@@ -1,6 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
+import Trans from '@/components/translation/Trans'
 import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
@@ -24,8 +25,13 @@ export default function TotalCard() {
         </p>
 
         <p className="mb-0 md:text-lg">
-          <span className="text-primary-200">de </span>CO₂-e{' '}
-          <span className="text-primary-200">chaque année</span>
+          <span className="text-primary-200">
+            <Trans>de </Trans>
+          </span>{' '}
+          CO₂-e{' '}
+          <span className="text-primary-200">
+            <Trans>chaque année</Trans>
+          </span>
         </p>
 
         <Link
@@ -34,9 +40,9 @@ export default function TotalCard() {
           aria-label={t(
             "Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet."
           )}
-          className="mt-2 text-sm text-white hover:text-primary-200"
+          className="mt-2 text-xs text-white hover:text-primary-200 md:text-sm"
           href="https://nosgestesclimat.fr/blog/budget">
-          Qu'est-ce que ça veut dire&nbsp;?&nbsp;
+          <Trans>Qu'est-ce que ça veut dire&nbsp;?&nbsp;</Trans>
           <ExternalLinkIcon className="stroke-white" />
         </Link>
       </div>

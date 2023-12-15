@@ -26,7 +26,7 @@ export default function Title({
 
       {subtitle && <p className="text-slate-500">{subtitle}</p>}
 
-      <Separator className="absolute bottom-0 left-0 hidden lg:block" />
+      <Separator className="absolute bottom-0 left-0 m-0 hidden lg:block" />
     </div>
   )
 }

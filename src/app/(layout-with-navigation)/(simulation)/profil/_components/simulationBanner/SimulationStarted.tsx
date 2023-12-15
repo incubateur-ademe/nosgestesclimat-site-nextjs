@@ -53,15 +53,15 @@ export default function SimulationStarted() {
         </details>
       </div>
 
-      <div className="my-4 flex w-full flex-col md:w-auto md:items-start">
+      <div className="my-4 flex w-44 flex-col items-start md:w-auto">
         {isFinished && (
           <ButtonLink
+            className="w-full text-center leading-8"
             color="primary"
             href={`/fin?${formatResultToDetailParam({
               categories,
               getValue,
-            })}`}
-            className="w-full">
+            })}`}>
             <Trans>
               <Emoji className="mr-2">👀</Emoji> Voir mon résultat
             </Trans>
@@ -71,8 +71,8 @@ export default function SimulationStarted() {
         {!isFinished && (
           <ButtonLink
             color="primary"
-            href="/simulateur/bilan"
-            className="w-full">
+            className="w-full  text-center"
+            href="/simulateur/bilan">
             <Trans>
               <ProgressCircle white className="mr-2" /> Reprendre mon test
             </Trans>
@@ -81,7 +81,7 @@ export default function SimulationStarted() {
 
         <Button
           color="secondary"
-          className="my-2 w-full !text-base"
+          className="my-2 w-full text-center !text-base"
           onClick={() => {
             initSimulation()
           }}>
@@ -94,7 +94,7 @@ export default function SimulationStarted() {
           <Trans>Recommencer</Trans>
         </Button>
 
-        <TutorialLink className="w-full !text-base font-normal" />
+        <TutorialLink className=" !text-base font-normal" />
       </div>
     </div>
   )

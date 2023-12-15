@@ -77,17 +77,17 @@ export default function GroupResults({ groupId }: { groupId: string }) {
 
       {group?.members?.length > 1 ? (
         <>
-          <Separator className="my-8" />
+          <Separator />
 
           <PointsFortsFaibles
             pointsFaibles={results?.pointsFaibles}
             pointsForts={results?.pointsForts}
           />
 
-          <Separator className="mb-6 mt-10" />
+          <Separator />
         </>
       ) : (
-        <Separator className="mb-6 mt-8" />
+        <Separator />
       )}
 
       <VotreEmpreinte

@@ -3,6 +3,7 @@
 import HowToAct from '@/components/actions/HowToAct'
 import Trans from '@/components/translation/Trans'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
+import Separator from '@/design-system/layout/Separator'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import EditableGroupTitle from './_components/EditableGroupTitle'
@@ -38,6 +39,8 @@ export default function GroupResultsPage({
 
         <GroupResults groupId={groupId} />
       </div>
+
+      <Separator />
 
       <HowToAct />
     </>
