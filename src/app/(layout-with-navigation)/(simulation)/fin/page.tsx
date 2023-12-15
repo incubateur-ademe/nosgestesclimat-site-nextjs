@@ -47,11 +47,11 @@ export default function FinPage({
         <GroupModePromotionBanner className="col-span-2" />
       </div>
 
-      <Separator className="my-8" />
+      <Separator />
 
       <HowToAct shouldLeadToTest={false} />
 
-      <Separator className="my-8" />
+      <Separator />
 
       <div>
         <h2>

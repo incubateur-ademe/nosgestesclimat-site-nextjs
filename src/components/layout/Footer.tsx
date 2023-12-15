@@ -81,7 +81,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <Separator className="mt-6 md:mt-4" />
+          <Separator className="mb-0 mt-6 md:mt-4" />
 
           <div className="mt-6 flex flex-wrap items-start justify-between gap-10">
             <LanguageSwitchButton />

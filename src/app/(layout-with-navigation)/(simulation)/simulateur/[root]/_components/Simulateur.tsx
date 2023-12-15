@@ -51,12 +51,12 @@ export default function Simulateur() {
 
   // Redirect to results page if test is completed
   useEffect(() => {
-    const detailsParamString = formatResultToDetailParam({
-      categories,
-      getValue,
-    })
-
     if (!currentQuestion && !isDebug) {
+      const detailsParamString = formatResultToDetailParam({
+        categories,
+        getValue,
+      })
+
       router.replace(
         `/fin${detailsParamString ? `?${detailsParamString}` : ''}`
       )

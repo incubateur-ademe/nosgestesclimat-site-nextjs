@@ -23,7 +23,7 @@ export default function CongratulationsText() {
         </div>
       </div>
 
-      <Separator className="my-6" />
+      <Separator />
     </>
   )
 }

@@ -62,7 +62,7 @@ export default function Results() {
         </Link>
       </div>
 
-      <Separator className="mb-6 mt-8" />
+      <Separator />
     </>
   )
 }

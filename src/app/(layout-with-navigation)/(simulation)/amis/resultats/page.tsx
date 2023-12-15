@@ -40,7 +40,7 @@ export default function GroupResultsPage({
         <GroupResults groupId={groupId} />
       </div>
 
-      <Separator className="my-8" />
+      <Separator />
 
       <HowToAct />
     </>
