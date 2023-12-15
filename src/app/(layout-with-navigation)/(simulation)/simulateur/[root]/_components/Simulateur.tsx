@@ -27,7 +27,7 @@ export default function Simulateur() {
 
   const { tutorials } = useUser()
 
-  const { currentQuestion, categories, progression } = useForm()
+  const { categories, progression } = useForm()
 
   const { getValue } = useEngine()
 
@@ -51,7 +51,7 @@ export default function Simulateur() {
       setIsInit(true)
     }
   }, [tutorials, router, isDebug])
-  console.log(currentQuestion)
+
   // Redirect to results page if test is completed
   useEffect(() => {
     if (progression === 1 && !isDebug && !questionFromUrl) {
