@@ -26,10 +26,14 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
   const [passengers, setPassengers] = useState(1)
 
   return (
-    <tr className={twMerge('block p-2 md:table-row', className)}>
-      <td className="mb-4 mt-8 block border-t border-primary-500 pt-8 text-sm md:table-cell">
+    <tr
+      className={twMerge(
+        'block border-b border-primary-500  p-2 md:table-row',
+        className
+      )}>
+      <td className="mb-4 block text-sm md:table-cell">
         <Select
-          className="text-sm"
+          className="w-48 text-sm"
           value={label}
           name="label"
           label={t('Label')}
@@ -59,7 +63,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
       <td className="block border-primary-500 pb-4 text-sm md:table-cell md:border-t md:px-4">
         <span className="flex items-end gap-4">
           <TextInputGroup
-            className="max-w-[10rem] text-sm"
+            className="w-16 text-sm"
             name="frequence"
             type="number"
             label={t('Fréquence')}
@@ -85,7 +89,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
       </td>
       <td className="block border-primary-500 pb-4 text-sm md:table-cell md:border-t md:px-4">
         <Select
-          className="text-sm"
+          className="w-16 text-sm"
           name="passengers"
           value={passengers}
           label={t('Passagers')}

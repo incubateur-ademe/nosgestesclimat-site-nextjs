@@ -46,6 +46,7 @@ export function JourneysInputDesktop({
               Options
             </th>
           </tr>
+
           {journeys.map((journey, index) => (
             <JourneyItem
               key={journey.id}
@@ -54,9 +55,11 @@ export function JourneysInputDesktop({
               setJourneys={setJourneys}
             />
           ))}
+
           <AddJourneyDesktop key={journeys.length} setJourneys={setJourneys} />
         </tbody>
       </table>
+
       <Summary
         total={total}
         averagePassengers={averagePassengers}
