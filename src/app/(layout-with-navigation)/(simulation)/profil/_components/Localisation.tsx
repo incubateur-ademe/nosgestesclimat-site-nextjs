@@ -37,7 +37,7 @@ export default function Localisation({
 
   return (
     <div className="mb-8 mt-4 sm:mt-8">
-      <h2 className="text-lg" id="answers">
+      <h2 id="answers">
         <span
           role="img"
           aria-label="emoji pin"

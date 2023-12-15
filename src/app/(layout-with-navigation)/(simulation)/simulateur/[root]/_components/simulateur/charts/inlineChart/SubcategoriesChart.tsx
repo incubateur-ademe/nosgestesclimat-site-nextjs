@@ -23,11 +23,11 @@ export default function SubcategoriesChart() {
   return (
     <>
       <div className="flex items-center gap-4">
-        <h4
-          className="relative text-sm font-normal md:text-2xl"
+        <h2
+          className="relative text-lg md:text-2xl"
           data-cypress-id="category-title">
           {title}
-        </h4>
+        </h2>
       </div>
       <div
         className={`mb-4 flex h-8 md:h-12 ${getBackgroundColor(

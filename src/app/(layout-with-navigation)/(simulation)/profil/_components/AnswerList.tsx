@@ -10,12 +10,13 @@ export default function AnswerList() {
   const { getCategory } = useEngine()
   return (
     <div>
-      <h3 className="pt-8">
+      <h2>
         <span role="img" aria-label="emoji notepad" className="mr-4">
           📋
         </span>
         <Trans>Mes réponses</Trans>
-      </h3>
+      </h2>
+
       {categories.map((category) =>
         relevantAnsweredQuestions.find(
           (question) => getCategory(question) === category

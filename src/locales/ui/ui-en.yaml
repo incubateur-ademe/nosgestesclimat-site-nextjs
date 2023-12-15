@@ -521,3 +521,6 @@ entries:
   Comment est calculée votre empreinte ?: How is your footprint calculated?
   Vous retrouverez votre résultat d’empreinte, ainsi que <2>des conseils pour la réduire</2> (1 fois par mois max.): You will find your impression results, as well as <2>advice on how to reduce them</2> (max. 1 per month)
   "Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée :": 'Our simulator is based on a data model whose calculations are fully documented:'
+  'Vos trajets :': 'Your routes :'
+  passager(s): passenger(s)
+  Période: Period
