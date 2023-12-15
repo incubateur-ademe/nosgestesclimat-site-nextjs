@@ -2,27 +2,66 @@ import { ChangeEvent, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
-  value?: string | number
-  onChange?: (e: ChangeEvent<HTMLSelectElement>) => void
+  name: string
+  label?: string
+  error?: string
+  helperText?: string
   className?: string
+  onChange?: (e: ChangeEvent<HTMLSelectElement>) => void
+  value: string | number
+  required?: boolean
 }
 
 // TODO: This is a bit light
 export default function Select({
-  value,
-  onChange,
-  className,
   children,
+  name,
+  label,
+  error,
+  helperText,
+  className,
+  onChange,
+  value,
+  required = false,
+  ...props
 }: PropsWithChildren<Props>) {
   return (
-    <select
-      value={value}
-      onChange={onChange}
-      className={twMerge(
-        `border-grey-300  focus:border-primary-700 focus:ring-primary-700 max-w-[30rem] rounded-md border border-solid bg-grey-100 p-4 text-sm transition-colors focus:ring-2 `,
-        className
-      )}>
-      {children}
-    </select>
+    <div className={`flex flex-col ${className}`} aria-live="polite">
+      <label htmlFor={name}>
+        <span
+          className={`text-sm font-bold text-slate-900 ${
+            error ? '!text-red-700' : ''
+          }`}>
+          {label}
+        </span>
+      </label>
+
+      {helperText && (
+        <span className="mt-1 text-xs text-slate-500">{helperText}</span>
+      )}
+
+      <select
+        value={value}
+        onChange={onChange}
+        aria-describedby={`error-${name}`}
+        required={required}
+        className={twMerge(
+          `border-grey-300 ${
+            helperText || label ? ' mt-3' : ''
+          } max-w-[30rem] rounded-md border border-solid bg-grey-100 p-4 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500`,
+          `${className} ${
+            error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
+          }`
+        )}
+        {...props}>
+        {children}
+      </select>
+
+      {error && (
+        <span id={`error-${name}`} className="mt-2 text-xs text-red-700">
+          {error}
+        </span>
+      )}
+    </div>
   )
 }
