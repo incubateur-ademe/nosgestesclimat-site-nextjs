@@ -445,3 +445,8 @@ entries:
   passager(s): passager(s)
   Période: Période
   'Vos trajets :': 'Vos trajets :'
+  chaque année: chaque année
+  'de ': 'de '
+  Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.
+  Pour cela, <1>laissez-nous votre email</1>, comme {formatValue(numberSubscribers) ?? '---'} personnes.: Pour cela, <1>laissez-nous votre email</1>, comme {formatValue(numberSubscribers) ?? '---'} personnes.
+  "Qu'est-ce que ça veut dire ? ": "Qu'est-ce que ça veut dire ? "

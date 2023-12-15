@@ -524,3 +524,8 @@ entries:
   'Vos trajets :': 'Your routes :'
   passager(s): passenger(s)
   Période: Period
+  'de ': 'from '
+  chaque année: every year
+  "Qu'est-ce que ça veut dire ? ": 'What does this mean? '
+  Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Our simulator is based on a data model, with all the calculations documented; the data displayed is directly associated with your test.
+  Pour cela, <1>laissez-nous votre email</1>, comme {formatValue(numberSubscribers) ?? '---'} personnes.: To do this, <1>leave us your email address</1>, such as {formatValue(numberSubscribers) ?? '---'} people.
