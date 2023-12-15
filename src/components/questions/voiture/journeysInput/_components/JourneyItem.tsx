@@ -28,8 +28,9 @@ export const labels: Record<string, string> = {
   weekends: 'Week-end',
 }
 
-export default function AddJourney({ journey, odd, setJourneys }: Props) {
+export default function JourneyItem({ journey, odd, setJourneys }: Props) {
   const { t } = useTranslation()
+
   return (
     <tr className={`block md:table-row ${odd ? 'bg-primary-100' : ''}`}>
       <td

@@ -1,7 +1,7 @@
 import {
   labels,
   periods,
-} from '@/components/questions/voiture/journeysInput/JourneyItem'
+} from '@/components/questions/voiture/journeysInput/_components/JourneyItem'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
