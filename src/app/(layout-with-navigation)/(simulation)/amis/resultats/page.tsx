@@ -5,6 +5,7 @@ import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Loader from '@/design-system/layout/Loader'
+import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { Group } from '@/types/groups'
 import { UseQueryResult } from '@tanstack/react-query'
@@ -71,6 +72,8 @@ export default function GroupResultsPage({
 
         <GroupResults group={group as Group} refetch={refetch} />
       </div>
+
+      <Separator />
 
       <HowToAct />
     </>
