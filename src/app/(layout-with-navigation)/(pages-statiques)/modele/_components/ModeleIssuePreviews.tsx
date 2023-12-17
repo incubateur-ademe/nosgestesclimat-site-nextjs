@@ -2,7 +2,6 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
-import axios from 'axios'
 
 const labelString = ['🖼 exposé'].join(',')
 
@@ -14,11 +13,10 @@ type IssueType = {
 }
 
 export default async function ModeleIssuePreviews() {
-  const issues: IssueType[] = await axios
-    .get(
-      `https://api.github.com/repos/incubateur-ademe/nosgestesclimat/issues?labels=${labelString}`
-    )
-    .then((res) => res.data)
+  const issues: IssueType[] = await fetch(
+    `https://api.github.com/repos/incubateur-ademe/nosgestesclimat/issues?labels=${labelString}`
+  )
+    .then((res) => res.json())
     .catch(() => {
       return null
     })
@@ -34,9 +32,9 @@ export default async function ModeleIssuePreviews() {
         </Trans>
       </p>
 
-      <ul className="flex list-none flex-wrap justify-evenly">
+      <ul className="grid list-none grid-cols-1 gap-4 md:grid-cols-2">
         {issues?.map(({ body, id, html_url: url, title }) => (
-          <Card key={id} className="max-w-[20rem]">
+          <Card key={id}>
             <h3>{title}</h3>
 
             <div
