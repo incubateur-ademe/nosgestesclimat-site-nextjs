@@ -1,8 +1,6 @@
-'use client'
 import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
-import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 const labelString = ['🖼 exposé'].join(',')
@@ -14,25 +12,23 @@ type IssueType = {
   title: string
 }
 
-export default function ModeleIssuePreviews() {
-  const { data: issues } = useQuery({
-    queryKey: ['modele-issue-previews'],
-    queryFn: () =>
-      axios
-        .get(
-          `https://api.github.com/repos/incubateur-ademe/nosgestesclimat/issues?labels=${labelString}`
-        )
-        .then((res) => res.data)
-        .catch(() => {
-          return null
-        }),
-  })
+export default async function ModeleIssuePreviews() {
+  const issues: IssueType[] = await axios
+    .get(
+      `https://api.github.com/repos/incubateur-ademe/nosgestesclimat/issues?labels=${encodeURI(
+        labelString
+      )}`
+    )
+    .then((res) => res.data)
+    .catch(() => {
+      return null
+    })
 
   if (!issues) return null
 
   return (
     <ul className="grid list-none grid-cols-1 gap-4 md:grid-cols-2">
-      {(issues as IssueType[])?.map(({ body, id, html_url: url, title }) => (
+      {issues?.map(({ body, id, html_url: url, title }) => (
         <Card key={id}>
           <h3>{title}</h3>
 
