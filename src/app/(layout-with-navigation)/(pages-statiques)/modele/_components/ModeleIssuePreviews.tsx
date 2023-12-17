@@ -1,3 +1,4 @@
+'use client'
 import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
@@ -21,7 +22,7 @@ export default function ModeleIssuePreviews() {
         .get(
           `https://api.github.com/repos/incubateur-ademe/nosgestesclimat/issues?labels=${labelString}`
         )
-        .then((res) => res.data())
+        .then((res) => res.data)
         .catch(() => {
           return null
         }),
