@@ -5,7 +5,7 @@ describe(
   'The Group creation page /amis/creer',
   { testIsolation: false },
   () => {
-    let ownerLocalStorage = ''
+    let ownerUserId = ''
 
     it('allows to create a new group and displays it afterwards', () => {
       cy.visit('/amis')
@@ -64,25 +64,14 @@ describe(
       cy.get('[data-cypress-id="group-name"]').contains(newName)
 
       // Save the owner user id in order to be able to delete the group later on
-      const ownerLocalStorage = cy.getLocalStorage('nosgestesclimat::v3')
-
-      const ownerLocalStorageUserId = ownerLocalStorage?.user?.id
-
-      let currentUrl = ''
-
-      cy.url().then((url) => {
-        currentUrl = url
-
-        const groupId = currentUrl?.split('groupId=')?.[1]
-        cy.log('URL', groupId)
-
-        cy.request('POST', 'http://localhost:3001/group/delete', {
-          groupId,
-          userId: ownerLocalStorageUserId,
-        }).as('response')
+      cy.getAllLocalStorage().then((result) => {
+        ownerUserId =
+          result['http://localhost:3000']?.['nosgestesclimat::v3'] &&
+          JSON.parse(result['http://localhost:3000']?.['nosgestesclimat::v3'])
+            ?.user?.id
       })
     })
-    /*
+
     it('allows to join a group with the invitation link and display ', () => {
       cy.clearLocalStorage()
       cy.reload()
@@ -99,14 +88,20 @@ describe(
       cy.get('[data-cypress-id="points-fort-faibles-title"]')
       cy.get('[data-cypress-id="votre-empreinte-title"]')
 
-      cy.clearLocalStorage()
-      cy.setLocalStorage('nosgestesclimat::v3', ownerLocalStorage)
-      cy.reload()
+      let currentUrl = ''
 
-      // And then we can delete it
-      cy.get('[data-cypress-id="button-delete-group"]').click()
-      cy.get('[data-cypress-id="button-confirm-delete-group"]').click()
+      // Delete the group via the API
+      cy.url().then((url) => {
+        currentUrl = url
+
+        const groupId = currentUrl?.split('groupId=')?.[1]
+        cy.log('URL', groupId, currentUrl)
+
+        cy.request('POST', 'http://localhost:3001/group/delete', {
+          groupId,
+          userId: ownerUserId,
+        }).as('response')
+      })
     })
-      */
   }
 )
