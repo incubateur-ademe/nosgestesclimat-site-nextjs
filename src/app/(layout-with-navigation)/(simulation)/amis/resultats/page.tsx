@@ -24,7 +24,9 @@ export default function GroupResultsPage({
 
   useEffect(() => {
     if (!groupId) {
-      router.push('/amis')
+      router.push('/amis', {
+        scroll: false,
+      })
     }
   }, [groupId, router])
 
