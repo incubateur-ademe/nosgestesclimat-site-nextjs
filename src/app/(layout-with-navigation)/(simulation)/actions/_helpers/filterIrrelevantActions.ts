@@ -1,23 +1,23 @@
-import { useEngine } from '@/publicodes-state'
+import getNamespace from '@/publicodes-state/helpers/getNamespace'
 
 // TODO : refactor this function which seems overly complex
 export const filterIrrelevantActions = ({ actions, actionChoices }: any) => {
-  const { getCategory } = useEngine()
-
   // pour chaque action choisie, on regarde ses frères et soeurs en récupérant
   // la catégorie de l'action
   const testedActions = Object.keys(actionChoices || {})?.reduce(
     (acc: any[], actionChoiceKey: any) => {
       if (!actionChoices[actionChoiceKey]) return acc
 
-      const category = getCategory(actionChoiceKey)
+      // NOTE: we can't use the `getCategory` function from the `useEngine` hook
+      // here.
+      const category = getNamespace(actionChoiceKey)
 
       const actionObject = actions.find((action: any) => {
         return action.dottedName === actionChoiceKey
       })
 
       const sameCategoryActions = actions.filter((action: any) => {
-        return getCategory(action.dottedName) === category
+        return getNamespace(action.dottedName) === category
       })
 
       const actionsWithIrrelevant = sameCategoryActions.map((action: any) => {
