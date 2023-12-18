@@ -1,11 +1,10 @@
-import Trans from '@/components/translation/Trans'
 import { useRule } from '@/publicodes-state'
 import { Journey } from '@/types/journey'
-import { motion } from 'framer-motion'
+
 import { useEffect, useMemo, useRef, useState } from 'react'
-import AddJourney from './journeysInput/AddJourney'
-import JourneyItem from './journeysInput/JourneyItem'
-import Summary from './journeysInput/Summary'
+
+import { JourneysInputDesktop } from './journeysInput/JourneysInputDesktop'
+import JourneysInputMobile from './journeysInput/JourneysInputMobile'
 
 type Props = {
   question: string
@@ -81,46 +80,22 @@ export default function JourneysInput({ question }: Props) {
   }, [totalForOnePassenger, setValue, question])
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.2 }}
-      className="mb-2 w-full overflow-scroll rounded-lg bg-white p-2">
-      <table className="block w-full border-collapse md:table">
-        <tbody className="block w-full">
-          <tr className="block w-full md:table-row">
-            <th className="block px-4 py-2 text-left text-sm md:table-cell">
-              <Trans>Label</Trans>
-            </th>
-            <th className="block px-4 py-2 text-left text-sm md:table-cell">
-              <Trans>Distance</Trans>
-            </th>
-            <th className="block px-4 py-2 text-left text-sm md:table-cell">
-              <Trans>Fréquence</Trans>
-            </th>
-            <th className="block px-4 py-2 text-left text-sm md:table-cell">
-              <Trans>Passagers</Trans>
-            </th>
-            <th className="block px-4 py-2 text-left text-sm opacity-0 md:table-cell">
-              Options
-            </th>
-          </tr>
-          {journeys.map((journey, index) => (
-            <JourneyItem
-              key={journey.id}
-              journey={journey}
-              odd={index % 2 ? false : true}
-              setJourneys={setJourneys}
-            />
-          ))}
-          <AddJourney key={journeys.length} setJourneys={setJourneys} />
-        </tbody>
-      </table>
-      <Summary
-        total={total}
+    <>
+      <JourneysInputDesktop
+        journeys={journeys}
+        setJourneys={setJourneys}
         averagePassengers={averagePassengers}
+        total={total}
         totalForOnePassenger={totalForOnePassenger}
       />
-    </motion.div>
+
+      <JourneysInputMobile
+        journeys={journeys}
+        setJourneys={setJourneys}
+        averagePassengers={averagePassengers}
+        total={total}
+        totalForOnePassenger={totalForOnePassenger}
+      />
+    </>
   )
 }

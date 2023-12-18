@@ -47,7 +47,7 @@ node_modules/
 /cypress/screenshots/*
 /cypress/snapshots/__all/__diff_output__/**/*
 # They are automatically generated when running cypress in CI
-/cypress/e2e/test-completion/persona-*.cy.js
+/cypress/e2e/integration/test-completion/persona-*.cy.js
 dist
 
 # Sentry Config File

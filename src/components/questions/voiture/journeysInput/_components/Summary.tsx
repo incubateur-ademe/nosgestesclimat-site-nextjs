@@ -16,7 +16,7 @@ export default function Summary({
   const locale = useLocale()
 
   return (
-    <div className="px-2 text-right text-xs">
+    <div className="mt-4 px-2 text-right text-xs">
       {total.toLocaleString(locale)} km {t('avec en moyenne')}{' '}
       {averagePassengers.toLocaleString(locale)} {t('voyageurs')}. {t('Soit')}{' '}
       {totalForOnePassenger ? totalForOnePassenger.toLocaleString(locale) : 0}{' '}

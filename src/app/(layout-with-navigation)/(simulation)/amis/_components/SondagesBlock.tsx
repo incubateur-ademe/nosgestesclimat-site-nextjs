@@ -7,7 +7,7 @@ import Separator from '@/design-system/layout/Separator'
 export default function SondagesBlock() {
   return (
     <div>
-      <Separator className="mb-4 mt-8" />
+      <Separator />
       <h3 className="text-md mb-1 font-bold">
         <Trans>Entreprises, collectivités, écoles</Trans>
       </h3>

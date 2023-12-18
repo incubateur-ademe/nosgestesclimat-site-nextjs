@@ -1,3 +1,4 @@
+import ValueChangeDisplay from '@/components/misc/ValueChangeDisplay'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useEngine, useForm, useRule } from '@/publicodes-state'
 import { useMemo } from 'react'
@@ -22,12 +23,13 @@ export default function SubcategoriesChart() {
 
   return (
     <>
-      <div className="flex items-center gap-4">
-        <h4
-          className="relative text-sm font-normal md:text-2xl"
+      <div className="mb-4 flex items-center gap-4">
+        <h2
+          className="relative mb-0 text-lg md:text-2xl"
           data-cypress-id="category-title">
           {title}
-        </h4>
+        </h2>
+        <ValueChangeDisplay />
       </div>
       <div
         className={`mb-4 flex h-8 md:h-12 ${getBackgroundColor(

@@ -3,10 +3,10 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Member } from '@/types/groups'
 import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
-import { useTranslation } from 'react-i18next'
 import { useFetchGroup } from '../_hooks/useFetchGroup'
 import { useDeleteGroup } from './_hooks/useDeleteGroup'
 
@@ -23,7 +23,7 @@ export default function SupprimerGroupePage({
 
   const { mutateAsync: deleteUserOrGroupIfOwner, isSuccess } = useDeleteGroup()
 
-  const { t } = useTranslation()
+  const { t } = useClientTranslation()
 
   const handleDelete = async () => {
     if (!group) return
