@@ -139,8 +139,9 @@ export default function useQuestions({
   const relevantAnsweredQuestions = useMemo<string[]>(
     () =>
       /**
-       * First we check that there is still a question associated to the folded step. If not we cut it.
-       * Then we check if the folded step is nullable (it has been disabled by its parent or something). If it is we cut it.
+       * First we check that there is still a question associated to the folded
+       * step. If not we cut it. Then we check if the folded step is nullable
+       * (it has been disabled by its parent or something). If it is we cut it.
        */
       foldedSteps
         .filter((foldedStep) => everyQuestions.includes(foldedStep))
@@ -152,14 +153,18 @@ export default function useQuestions({
   const tempRelevantQuestions = useMemo<string[]>(
     () => [
       /**
-       * We add every answered questions to display and every not answered questions to display to get every relevant questions
+       * We add every answered questions to display and every not answered
+       * questions to display to get every relevant questions
        */
       ...relevantAnsweredQuestions,
       ...remainingQuestions.filter((dottedName: string) =>
-        // We check again if the question is missing or not to make sure mosaic are correctly assessed (this is less than ideal)
+        // We check again if the question is missing or not to make sure mosaic
+        // are correctly assessed (this is less than ideal)
         getIsMissing({
           dottedName,
           situation,
+          // FIXME: we might want to use `useMosaicQuestions` here but we need
+          // to have access to the corresponding 'options'
           questionsOfMosaic: getQuestionsOfMosaic({
             dottedName,
             everyMosaicChildren,
@@ -176,8 +181,9 @@ export default function useQuestions({
   )
 
   /**
-   * There is a small delay between adding a question to the answered questions and removing it from the missing questions.
-   * So we need to check for duplicates
+   * There is a small delay between adding a question to the answered questions
+   * and removing it from the missing questions. So we need to check for
+   * duplicates
    *
    * (yes, this is shit)
    */

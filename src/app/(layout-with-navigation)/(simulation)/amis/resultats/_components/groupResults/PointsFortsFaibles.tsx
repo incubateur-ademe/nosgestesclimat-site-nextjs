@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import { Points } from '@/types/groups'
-import PointsListItem from './PointsListItem'
+import PointsListItem from './pointsFortsFaibles/PointsListItem'
 
 export default function PointsFortsFaibles({
   pointsForts,
