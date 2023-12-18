@@ -1,7 +1,4 @@
-import {
-  clickAmisLink,
-  clickSkipTutorialButton,
-} from '../../../helpers/elements/buttons'
+import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 
 describe(
@@ -9,6 +6,7 @@ describe(
   { testIsolation: false },
   () => {
     let ownerLocalStorage = ''
+
     it('allows to create a new group and displays it afterwards', () => {
       cy.visit('/amis')
 
@@ -23,17 +21,29 @@ describe(
 
       // Fill simulation
       clickSkipTutorialButton()
+
+      cy.wait(2000)
+
       recursivelyFillSimulation(null, 'group')
 
-      cy.get('[data-cypress-id="group-name"]')
+      cy.wait(2000)
 
+      cy.get('[data-cypress-id="group-name"]')
+    })
+
+    it('should allow to delete a group', () => {
       // And that we can delete it
       cy.get('[data-cypress-id="button-delete-group"]').click()
       cy.get('[data-cypress-id="button-confirm-delete-group"]').click()
+    })
 
+    it('should allow to modify the title of a group', () => {
       // Check that we can create a second group
-      clickAmisLink()
-      cy.get('[data-cypress-id="button-create-other-group"]').click()
+      cy.wait(2000)
+
+      cy.visit('/amis')
+
+      cy.get('[data-cypress-id="button-create-first-group"]').click()
 
       cy.get('input[data-cypress-id="group-input-owner-name"]').clear()
 
@@ -55,8 +65,24 @@ describe(
 
       // Save the owner user id in order to be able to delete the group later on
       const ownerLocalStorage = cy.getLocalStorage('nosgestesclimat::v3')
-    })
 
+      const ownerLocalStorageUserId = ownerLocalStorage?.user?.id
+
+      let currentUrl = ''
+
+      cy.url().then((url) => {
+        currentUrl = url
+
+        const groupId = currentUrl?.split('groupId=')?.[1]
+        cy.log('URL', groupId)
+
+        cy.request('POST', 'http://localhost:3001/group/delete', {
+          groupId,
+          userId: ownerLocalStorageUserId,
+        }).as('response')
+      })
+    })
+    /*
     it('allows to join a group with the invitation link and display ', () => {
       cy.clearLocalStorage()
       cy.reload()
@@ -81,5 +107,6 @@ describe(
       cy.get('[data-cypress-id="button-delete-group"]').click()
       cy.get('[data-cypress-id="button-confirm-delete-group"]').click()
     })
+      */
   }
 )

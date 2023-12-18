@@ -3618,6 +3618,11 @@ csv-loader@^3.0.5:
     loader-utils "^2.0.0"
     papaparse "^5.2.0"
 
+cypress-localstorage-commands@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/cypress-localstorage-commands/-/cypress-localstorage-commands-2.2.5.tgz#81c8f53a06e2ed93c1e068c1101da85f80f27f61"
+  integrity sha512-07zpwzWdY+uPi1NEHFhWQNylIJqRxR78Ile05L6WT8h1Gz0OaxgBSZRuzp+pqUni/3Pk4d2ieq/cSh++ZmujEA==
+
 cypress-plugin-tab@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/cypress-plugin-tab/-/cypress-plugin-tab-1.0.5.tgz#a40714148104004bb05ed62b1bf46bb544f8eb4a"
