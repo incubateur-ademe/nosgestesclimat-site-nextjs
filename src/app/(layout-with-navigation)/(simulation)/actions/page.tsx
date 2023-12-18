@@ -14,6 +14,7 @@ export default function ActionsPage({
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
+  const { getCategory } = useEngine()
   const [radical, setRadical] = useState(true)
   const metric = (searchParams.métrique || '') as string
 
@@ -38,8 +39,6 @@ export default function ActionsPage({
     getRuleObject,
     actionChoices,
   })
-
-  const { getCategory } = useEngine()
 
   const actionsDisplayed = actions.filter((action: any) =>
     category ? getCategory(action.dottedName) === category : true
