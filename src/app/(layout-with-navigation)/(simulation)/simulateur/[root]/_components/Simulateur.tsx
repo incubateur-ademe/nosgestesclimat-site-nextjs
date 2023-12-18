@@ -5,8 +5,9 @@ import {
   matomoEventCloseQuestionsList,
   matomoEventOpenQuestionsList,
 } from '@/constants/matomo'
+import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useDebug } from '@/hooks/useDebug'
-import { useUser } from '@/publicodes-state'
+import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -17,11 +18,18 @@ import Summary from './simulateur/Summary'
 export default function Simulateur() {
   const [isInit, setIsInit] = useState(false)
 
+  const urlParams = new URLSearchParams(window.location.search)
+  const questionFromUrl = urlParams.get('question')
+
   const router = useRouter()
 
   const isDebug = useDebug()
 
   const { tutorials } = useUser()
+
+  const { categories, progression } = useForm()
+
+  const { getValue } = useEngine()
 
   const [isQuestionListOpen, setIsQuestionListOpen] = useState(false)
 
@@ -44,7 +52,22 @@ export default function Simulateur() {
     }
   }, [tutorials, router, isDebug])
 
+  // Redirect to results page if test is completed
+  useEffect(() => {
+    if (progression === 1 && !isDebug && !questionFromUrl) {
+      const detailsParamString = formatResultToDetailParam({
+        categories,
+        getValue,
+      })
+
+      router.replace(
+        `/fin${detailsParamString ? `?${detailsParamString}` : ''}`
+      )
+    }
+  }, [progression, router, isDebug, categories, getValue, questionFromUrl])
+
   if (!isInit) return null
+
   return (
     <>
       <Total toggleQuestionList={toggleQuestionList} />

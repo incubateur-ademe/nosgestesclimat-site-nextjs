@@ -10,7 +10,6 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import ColorIndicator from './form/ColorIndicator'
-import TestCompleted from './form/TestCompleted'
 import { useUpdateGroupAndRedirectToGroup } from './form/_hooks/useUpdateGroupAndRedirectToGroup'
 
 export default function Form() {
@@ -68,12 +67,8 @@ export default function Form() {
     }
   }, [setQuestionInQueryParams, currentQuestion, isInitialized])
 
-  if (!isInitialized) {
+  if (!isInitialized || !currentQuestion) {
     return
-  }
-
-  if (!currentQuestion) {
-    return <TestCompleted />
   }
 
   return (

@@ -26,10 +26,15 @@ export default async function Profil() {
   return (
     <FormProvider>
       <Title title={<Trans>Mon profil</Trans>} />
+
       <PersonaWarning />
+
       <SimulationBanner />
+
       <Localisation supportedRegions={supportedRegions} />
+
       <AnswerList />
+
       <SimulationList />
     </FormProvider>
   )

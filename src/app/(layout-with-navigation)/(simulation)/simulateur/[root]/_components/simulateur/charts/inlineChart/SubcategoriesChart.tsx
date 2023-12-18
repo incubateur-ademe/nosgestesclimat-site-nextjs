@@ -23,12 +23,12 @@ export default function SubcategoriesChart() {
 
   return (
     <>
-      <div className="flex items-center gap-4">
-        <h4
-          className="relative text-sm font-normal md:text-2xl"
+      <div className="mb-4 flex items-center gap-4">
+        <h2
+          className="relative mb-0 text-lg md:text-2xl"
           data-cypress-id="category-title">
           {title}
-        </h4>
+        </h2>
         <ValueChangeDisplay />
       </div>
       <div
