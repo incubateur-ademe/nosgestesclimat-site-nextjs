@@ -72,7 +72,7 @@ describe(
       })
     })
 
-    it('allows to join a group with the invitation link and display ', () => {
+    it('allows to join a group with the invitation link and display the group results', () => {
       cy.clearLocalStorage()
       cy.reload()
 
