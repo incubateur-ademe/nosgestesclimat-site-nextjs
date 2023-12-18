@@ -1,6 +1,5 @@
 import { getMatomoEventActionAccepted } from '@/constants/matomo'
-import { FormProvider, useUser } from '@/publicodes-state'
-import getNamespace from '@/publicodes-state/helpers/getNamespace'
+import { FormProvider, useEngine, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
@@ -20,6 +19,7 @@ export default function ActionList({
   focusedAction,
   setFocusedAction,
 }: Props) {
+  const { getCategory } = useEngine()
   const { toggleActionChoice, getCurrentSimulation } = useUser()
 
   const currentSimulation = getCurrentSimulation()
@@ -52,7 +52,7 @@ export default function ActionList({
                 <FormProvider root={action.dottedName}>
                   <ActionForm
                     key={action.dottedName}
-                    category={getNamespace(action.dottedName) ?? ''}
+                    category={getCategory(action.dottedName)}
                     onComplete={() => {
                       toggleActionChoice(action.dottedName)
 

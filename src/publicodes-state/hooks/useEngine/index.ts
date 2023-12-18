@@ -21,7 +21,7 @@ export default function useEngine() {
   }
 
   const getCategory = (dottedName: DottedName): string =>
-    getNamespace(dottedName) ?? ''
+    getNamespace(dottedName, 1) ?? ''
 
   const getSubcategories = (dottedName: string): string[] =>
     safeGetRule(dottedName)?.rawNode?.formule?.somme

@@ -12,8 +12,7 @@ import {
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
-import getNamespace from '@/publicodes-state/helpers/getNamespace'
-import { NGCRuleNode } from '@/publicodes-state/types'
+import { DottedName, NGCRuleNode } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { utils } from 'publicodes'
 import ActionForm from '../../_components/actions/_components/ActionForm'
@@ -26,6 +25,7 @@ export default function ActionDetail({
 }: {
   params: { dottedName: string[] }
 }) {
+  const { getCategory } = useEngine()
   const pathParamsDottedName = params?.dottedName
 
   const formattedDottedName = pathParamsDottedName
@@ -59,9 +59,8 @@ export default function ActionDetail({
 
   const relatedActions: NGCRuleNode[] = flatActions?.formule?.somme
     .filter(
-      (actionDottedName: string) =>
-        actionDottedName !== dottedName &&
-        getNamespace(dottedName) === getNamespace(actionDottedName)
+      (action: DottedName) =>
+        action !== dottedName && getCategory(dottedName) === getCategory(action)
     )
     .map((name: string) => getRuleObject(name))
 
@@ -103,7 +102,7 @@ export default function ActionDetail({
           <FormProvider root={dottedName}>
             <ActionForm
               key={dottedName}
-              category={getNamespace(dottedName) ?? ''}
+              category={getCategory(dottedName) ?? ''}
               onComplete={() => {
                 toggleActionChoice(dottedName)
 
