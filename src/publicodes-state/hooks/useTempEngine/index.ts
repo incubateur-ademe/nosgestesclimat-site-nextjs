@@ -9,7 +9,6 @@ export default function useTempEngine() {
     useContext(simulationContext) ?? {}
 
   const getRuleObject = (dottedName: string): any => {
-    console.log('useTempEngine', safeEvaluate(dottedName))
     return { ...safeEvaluate(dottedName), ...safeGetRule(dottedName) }
   }
 

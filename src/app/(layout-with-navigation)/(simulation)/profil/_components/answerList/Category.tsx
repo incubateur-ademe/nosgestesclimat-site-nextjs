@@ -26,7 +26,7 @@ export default function Category({ category }: Props) {
         disabled={!subcategories[category].length}
         className="block w-full"
         onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}>
-        <h2
+        <h3
           className={`mb-0 flex w-full items-center justify-between gap-4 rounded-lg p-4 text-white ${getBackgroundColor(
             category
           )}`}>
@@ -38,7 +38,7 @@ export default function Category({ category }: Props) {
             {formattedCarbonFootprint.formattedValue}{' '}
             {formattedCarbonFootprint.unit}
           </span>
-        </h2>
+        </h3>
       </button>
 
       {isOpen

@@ -515,3 +515,24 @@ entries:
   Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.: Wherever you live, calculate your personal carbon footprint, taking into account the particularities of your country.
   Comment cette donnée est-elle calculée ?: How is this figure calculated?
   Le calculateur d’empreinte climat international: The international climate footprint calculator
+  Quitter: Leave
+  Cette opération est définitive et vous ne pourrez plus accéder aux résultats du groupe.: This operation is definitive and you will no longer be able to access the group's results.
+  Découvrez nos pistes pour agir dès aujourd’hui pour le climat.: Find out how you can take action for the climate today.
+  Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.: You can delete the group by clicking on the button below. It will be permanently deleted for all its other members, as you are the administrator.
+  Votre groupe a été supprimé. Vous allez être redirigé vers la page d'accueil du mode groupe.: Your group has been deleted. You will be redirected to the group mode home page.
+  Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.: You can leave the group by clicking on the button below. However, the group will not be deleted as you are not the administrator.
+  Cette opération est définitive et supprimera le groupe pour tous ses membres.: This operation is definitive and will delete the group for all its members.
+  Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe: You have left this group. You will be redirected to the group mode home page
+  Vous souhaitez recevoir vos résultats d’empreinte carbone ?: Would you like to receive your carbon footprint results?
+  Sauvegarder: Save
+  Comment est calculée votre empreinte ?: How is your footprint calculated?
+  Vous retrouverez votre résultat d’empreinte, ainsi que <2>des conseils pour la réduire</2> (1 fois par mois max.): You will find your impression results, as well as <2>advice on how to reduce them</2> (max. 1 per month)
+  "Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée :": 'Our simulator is based on a data model whose calculations are fully documented:'
+  'Vos trajets :': 'Your routes :'
+  passager(s): passenger(s)
+  Période: Period
+  'de ': 'from '
+  chaque année: every year
+  "Qu'est-ce que ça veut dire ? ": 'What does this mean? '
+  Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Our simulator is based on a data model, with all the calculations documented; the data displayed is directly associated with your test.
+  Pour cela, <1>laissez-nous votre email</1>, comme {formatValue(numberSubscribers) ?? '---'} personnes.: To do this, <1>leave us your email address</1>, such as {formatValue(numberSubscribers) ?? '---'} people.

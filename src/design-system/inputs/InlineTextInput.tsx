@@ -67,7 +67,7 @@ export default function InlineTextInput({
           name={name}
           type={type}
           placeholder={placeholder}
-          className={`focus:border-primary-500 focus:ring-primary-500 max-w-[30rem] flex-1 rounded-s-md border border-solid border-grey-200 bg-grey-100 !p-4 text-sm transition-colors focus:ring-2 ${
+          className={`max-w-[30rem] flex-1 rounded-s-md border border-solid border-grey-200 bg-grey-100 !p-4 text-base transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500 ${
             error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
           }`}
           aria-describedby={`error-${name}`}
@@ -80,7 +80,7 @@ export default function InlineTextInput({
           {...props}
         />
         <Button
-          className="!border-primary-500 rounded-s-none !border-2"
+          className="rounded-s-none !border-2 !border-primary-500"
           id="inline-input-button"
           onClick={handleSubmit}
           aria-label={t('Ok, sauvegarder la modification')}
