@@ -26,8 +26,8 @@ export default function TotalCard() {
 
         <p className="mb-0 md:text-lg">
           <span className="text-primary-200">
-            <Trans>de </Trans>
-          </span>{' '}
+            <Trans>de</Trans>{' '}
+          </span>
           CO₂-e{' '}
           <span className="text-primary-200">
             <Trans>chaque année</Trans>

@@ -12,16 +12,11 @@ import RegionModelAuthors from './localisation/RegionModelAuthors'
 import RegionSelector from './localisation/RegionSelector'
 
 type Props = {
-  title?: string
   supportedRegions: SuppportedRegions
 }
 
-export default function Localisation({
-  title = 'Ma région de simulation',
-  supportedRegions,
-}: Props) {
+export default function Localisation({ supportedRegions }: Props) {
   const { t } = useClientTranslation()
-
   const locale = useLocale()
 
   const { user, updateRegion, tutorials, showTutorial } = useUser()
@@ -45,9 +40,10 @@ export default function Localisation({
           aria-hidden>
           📍
         </span>
-        <span>{t(title)}</span>
+        <span>
+          <Trans>Ma région de simulation</Trans>
+        </span>
       </h2>
-
       {region?.code && (
         <div className="my-4">
           <span>
