@@ -1,6 +1,5 @@
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
-import Trans from '@/components/translation/Trans'
 import { getMatomoEventClickQuestionsListLink } from '@/constants/matomo'
 import foldEveryQuestionsUntil from '@/helpers/foldEveryQuestionsUntil'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
@@ -79,7 +78,7 @@ export default function Question({ question, toggleQuestionList }: Props) {
             {type === 'number' && (
               <NumberValue displayValue={displayValue} unit={unit} />
             )}
-            {type === 'boolean' && <Trans>{displayValue}</Trans>}
+            {type === 'boolean' && displayValue}
             {type === 'choices' &&
               (value ? (
                 <ChoicesValue value={value} question={question} />
