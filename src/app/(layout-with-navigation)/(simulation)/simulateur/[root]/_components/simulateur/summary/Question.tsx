@@ -80,9 +80,10 @@ export default function Question({ question, toggleQuestionList }: Props) {
               <NumberValue displayValue={displayValue} unit={unit} />
             )}
             {type === 'boolean' && <Trans>{displayValue}</Trans>}
-            {type === 'choices' && (
-              <ChoicesValue value={value} question={question} />
-            )}
+            {type === 'choices' &&
+              (value ? (
+                <ChoicesValue value={value} question={question} />
+              ) : null)}
           </div>
         </div>
       ) : null}

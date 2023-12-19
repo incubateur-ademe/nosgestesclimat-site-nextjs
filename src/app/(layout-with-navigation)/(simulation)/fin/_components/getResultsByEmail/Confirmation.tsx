@@ -6,6 +6,7 @@ import { twMerge } from 'tailwind-merge'
 export default function Confirmation({ className }: { className?: string }) {
   return (
     <Card
+      id="email-block"
       className={twMerge(
         'mb-4 items-start border-none bg-grey-100 py-8',
         className
