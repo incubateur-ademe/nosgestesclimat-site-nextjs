@@ -1,5 +1,3 @@
-import 'cypress-localstorage-commands'
-
 import { addMatchImageSnapshotCommand } from '@simonsmith/cypress-image-snapshot/command'
 
 Cypress.on('test:before:run', () => {
