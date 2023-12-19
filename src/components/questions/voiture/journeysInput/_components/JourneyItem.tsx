@@ -17,8 +17,8 @@ export const periods: Record<string, string> = {
 }
 
 export const labels: Record<string, string> = {
-  holidays: 'Vacances',
   work: 'Domicile-Travail',
+  holidays: 'Vacances',
   family: 'Visite familiale',
   school: 'Mobilité académique',
   sport: 'Sport ou Loisir',

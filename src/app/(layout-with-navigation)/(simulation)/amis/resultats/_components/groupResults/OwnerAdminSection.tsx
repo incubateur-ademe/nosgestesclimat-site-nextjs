@@ -7,7 +7,8 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
 import { captureException } from '@sentry/react'
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 import { useDeleteGroup } from '../../../supprimer/_hooks/useDeleteGroup'
 
 type Props = {
@@ -21,6 +22,16 @@ export default function OwnerAdminSection({ group }: Props) {
 
   const { user } = useUser()
 
+  const router = useRouter()
+
+  const timeoutRef = useRef<NodeJS.Timeout>()
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeoutRef.current)
+    }
+  }, [])
+
   async function handleDelete() {
     if (!group) return
 
@@ -29,6 +40,10 @@ export default function OwnerAdminSection({ group }: Props) {
         groupId: group?._id,
         userId: user?.id || '',
       })
+
+      timeoutRef.current = setTimeout(() => {
+        router.push('/amis')
+      }, 2000)
     } catch (error) {
       captureException(error)
     }
