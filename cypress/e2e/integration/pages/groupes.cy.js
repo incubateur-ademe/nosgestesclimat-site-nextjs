@@ -29,15 +29,11 @@ describe(
       cy.wait(2000)
 
       cy.get('[data-cypress-id="group-name"]')
-    })
 
-    it('should allow to delete a group', () => {
       // And that we can delete it
       cy.get('[data-cypress-id="button-delete-group"]').click()
       cy.get('[data-cypress-id="button-confirm-delete-group"]').click()
-    })
 
-    it('should allow to modify the title of a group', () => {
       // Check that we can create a second group
       cy.wait(2000)
 
