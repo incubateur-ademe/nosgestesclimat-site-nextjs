@@ -1,8 +1,8 @@
 import { trackPageView } from '@/utils/matomo/trackEvent'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { PropsWithChildren, useEffect } from 'react'
+import { useEffect } from 'react'
 
-export default function PageViewTracker({ children }: PropsWithChildren) {
+export default function useTrackPageView() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   useEffect(() => {
@@ -11,6 +11,4 @@ export default function PageViewTracker({ children }: PropsWithChildren) {
     }`
     trackPageView(url)
   }, [pathname, searchParams])
-
-  return <>{children}</>
 }
