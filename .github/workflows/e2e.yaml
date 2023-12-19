@@ -55,6 +55,7 @@ jobs:
           echo "CYPRESS_baseUrl=https://nosgestesclimat.vercel.app" >> "$GITHUB_ENV"
           echo "MODE=production" >> "$GITHUB_ENV"
 
+
       - name: Test - e2e [${{ env.MODE }}]
         uses: cypress-io/github-action@v5.6.1
         with:
@@ -67,3 +68,4 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+          SERVER_URL: ${{ secrets.SERVER_URL }}
