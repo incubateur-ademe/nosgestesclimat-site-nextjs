@@ -68,4 +68,4 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
-          SERVER_URL: ${{ vars.SERVER_URL }}
+          SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
