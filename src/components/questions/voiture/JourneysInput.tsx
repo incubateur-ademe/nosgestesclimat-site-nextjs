@@ -20,6 +20,10 @@ const periods: Record<string, number> = {
 export default function JourneysInput({ question }: Props) {
   const { setValue } = useRule(question)
 
+  const { setValue: setNumPassengers } = useRule(
+    'transport . voiture . saisie voyageurs'
+  )
+
   const [isInitialized, setIsInitialized] = useState(false)
 
   const [journeys, setJourneys] = useState<Journey[]>([])
@@ -75,9 +79,16 @@ export default function JourneysInput({ question }: Props) {
   useEffect(() => {
     if (prevTotalForOnePassenger.current !== totalForOnePassenger) {
       setValue(totalForOnePassenger.toFixed(1), question)
+      setNumPassengers(averagePassengers.toFixed(1))
     }
     prevTotalForOnePassenger.current = totalForOnePassenger
-  }, [totalForOnePassenger, setValue, question])
+  }, [
+    totalForOnePassenger,
+    averagePassengers,
+    setValue,
+    setNumPassengers,
+    question,
+  ])
 
   return (
     <>
