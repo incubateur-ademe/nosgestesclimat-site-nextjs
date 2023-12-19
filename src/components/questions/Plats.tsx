@@ -1,6 +1,6 @@
 import Question from '@/components/form/Question'
+import Trans from '@/components/translation/Trans'
 import { useEngine } from '@/publicodes-state'
-import { Trans } from 'react-i18next'
 
 const plats = [
   'alimentation . plats . poisson 1 . nombre',

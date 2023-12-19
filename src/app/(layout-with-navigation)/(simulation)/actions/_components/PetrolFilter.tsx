@@ -1,8 +1,8 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Trans } from 'react-i18next'
 
 export default function PetrolFilter() {
   const searchParams = useSearchParams()
@@ -23,7 +23,7 @@ export default function PetrolFilter() {
 
   return (
     <Button
-      className="bg-primary-700 mx-auto mb-2 !inline-block w-64 rounded-md px-2 py-1 text-center font-bold text-white"
+      className="mx-auto mb-2 !inline-block w-64 rounded-md bg-primary-700 px-2 py-1 text-center font-bold text-white"
       onClick={handleClick}
       size="sm">
       <span>
