@@ -21,6 +21,8 @@ describe(
       )
       cy.get('[data-cypress-id="button-create-group"]').click()
 
+      cy.wait(2000)
+
       // Fill simulation
       clickSkipTutorialButton()
 
@@ -31,11 +33,15 @@ describe(
       cy.wait(2000)
 
       cy.get('[data-cypress-id="group-name"]')
+    })
 
+    it('should allow to delete a group', () => {
       // And that we can delete it
       cy.get('[data-cypress-id="button-delete-group"]').click()
       cy.get('[data-cypress-id="button-confirm-delete-group"]').click()
+    })
 
+    it('should allow to modify the title of a group', () => {
       // Check that we can create a second group
       cy.wait(2000)
 
@@ -74,11 +80,15 @@ describe(
       cy.clearLocalStorage()
       cy.reload()
 
+      cy.wait(3000)
+
       cy.get('[data-cypress-id="member-name"]').type('Jean-Claude')
       cy.get('[data-cypress-id="button-join-group"]').click()
 
       clickSkipTutorialButton()
       recursivelyFillSimulation(null, 'group')
+
+      cy.wait(3000)
 
       cy.get('[data-cypress-id="group-name"]')
 
@@ -93,12 +103,19 @@ describe(
         currentUrl = url
 
         const groupId = currentUrl?.split('groupId=')?.[1]
+
         cy.log('URL', groupId, currentUrl)
 
-        cy.request('POST', `${SERVER_URL}/group/delete`, {
-          groupId,
-          userId: ownerUserId,
-        }).as('response')
+        cy.request(
+          'POST',
+          `http${
+            SERVER_URL === 'localhost:3001' ? '' : 's'
+          }://${SERVER_URL}/group/delete`,
+          {
+            groupId,
+            userId: ownerUserId,
+          }
+        ).as('response')
       })
     })
   }

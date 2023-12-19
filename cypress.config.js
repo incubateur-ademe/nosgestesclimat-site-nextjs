@@ -1,5 +1,8 @@
 import { addMatchImageSnapshotPlugin } from '@simonsmith/cypress-image-snapshot/plugin'
 import { defineConfig } from 'cypress'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 export default defineConfig({
   projectId: 'bkkrae',
@@ -11,6 +14,7 @@ export default defineConfig({
     localisation_param: 'FR',
     language_param: 'fr',
     testLangURL: process.env.CYPRESS_testLangURL ?? 'fr',
+    ...process.env,
   },
   e2e: {
     baseUrl: process.env.CYPRESS_baseUrl ?? 'http://localhost:3000',
