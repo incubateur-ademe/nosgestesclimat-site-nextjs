@@ -13,7 +13,7 @@
   }
 
   h1 {
-    @apply text-2xl;
+    @apply text-3xl;
     @apply mb-6;
     @apply font-bold;
   }

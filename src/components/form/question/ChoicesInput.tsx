@@ -19,17 +19,19 @@ export default function ChoicesInput(props: Props) {
       <legend className="sr-only">{label}</legend>
 
       {choices &&
-        choices.map((choice: any) => (
-          <Choice
-            key={choice}
-            question={question}
-            choice={choice}
-            active={!isMissing && value === choice}
-            setValue={setValue}
-            data-cypress-id={`${props['data-cypress-id']}-${choice}`}
-            id={id}
-          />
-        ))}
+        choices.map((choice: any) =>
+          choice ? (
+            <Choice
+              key={choice}
+              question={question}
+              choice={choice}
+              active={!isMissing && value === choice}
+              setValue={setValue}
+              data-cypress-id={`${props['data-cypress-id']}-${choice}`}
+              id={id}
+            />
+          ) : null
+        )}
     </fieldset>
   )
 }

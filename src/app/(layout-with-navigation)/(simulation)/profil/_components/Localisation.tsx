@@ -32,7 +32,7 @@ export default function Localisation({ supportedRegions }: Props) {
 
   return (
     <div className="mb-8 mt-4 sm:mt-8">
-      <h2 className="text-lg">
+      <h2 id="answers">
         <span
           role="img"
           aria-label="emoji pin"

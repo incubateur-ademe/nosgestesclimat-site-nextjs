@@ -5,9 +5,13 @@ import { matomoSaveSimulationByGivingEmail } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Card from '@/design-system/layout/Card'
+import Emoji from '@/design-system/utils/Emoji'
 import { useSubscribeUser } from '@/hooks/useSubscribeUser'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { formatValue } from 'publicodes'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './getResultsByEmail/Confirmation'
@@ -22,6 +26,14 @@ export default function GetResultsByEmail({
   const { user, getCurrentSimulation, updateHasSavedSimulation } = useUser()
 
   const simulation = getCurrentSimulation()
+
+  const { data: numberSubscribers } = useQuery({
+    queryKey: ['numberSubscribers'],
+    queryFn: async () =>
+      axios
+        .get('/api/get-newsletter-subscribers-number')
+        .then((res) => res.data),
+  })
 
   const {
     mutate: subscribeUser,
@@ -52,22 +64,31 @@ export default function GetResultsByEmail({
 
   return (
     <Card
+      id="email-block"
       className={twMerge(
         'items-start border-none bg-grey-100 py-4',
         className
       )}>
       <form id="newsletter-form" onSubmit={handleSubmit}>
-        <h3 className="text-lg md:text-xl">
-          <Trans>Recevez vos résultats</Trans>{' '}
-          <span className="text-secondary">
-            <Trans>par email</Trans>
-          </span>
+        <h3 className="text-base sm:text-lg md:text-lg">
+          <Trans>
+            Vous souhaitez recevoir vos résultats d’empreinte carbone ?
+          </Trans>
+
+          <Emoji>💡</Emoji>
         </h3>
 
-        <p className="text-gray-600">
+        <p className="text-sm text-gray-600 sm:text-base">
           <Trans>
-            Et les conseils de Nos Gestes Climat pour réduire votre impact sur
-            le climat.
+            Pour cela, <strong>laissez-nous votre email</strong>, comme{' '}
+            {formatValue(numberSubscribers) ?? '---'} personnes.
+          </Trans>
+        </p>
+
+        <p className="text-sm text-gray-600 sm:text-base">
+          <Trans>
+            Vous retrouverez votre résultat d’empreinte, ainsi que{' '}
+            <strong>des conseils pour la réduire</strong> (1 fois par mois max.)
           </Trans>
         </p>
 

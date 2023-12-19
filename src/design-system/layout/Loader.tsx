@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge'
+
 type LoaderSizes = 'sm' | 'md' | 'lg'
 
 type Props = {
@@ -24,7 +26,10 @@ export default function Loader({
 }: Props) {
   return (
     <span
-      className={`inline-block animate-spin rounded-[50%] border-solid ${sizesClassNames[size]} ${colorsClassNames[color]} ${className}`}
+      className={twMerge(
+        `inline-block animate-spin rounded-[50%] border-solid ${sizesClassNames[size]} ${colorsClassNames[color]}`,
+        className
+      )}
     />
   )
 }

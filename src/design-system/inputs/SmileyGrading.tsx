@@ -36,7 +36,7 @@ export default function SmileyGrading({ onClick, disabled }: Props) {
           <Button
             onClick={() => !disabled && onClick(index as NorthStarValue)}
             color="text"
-            className="flex h-[48px] w-[48px] items-center justify-center p-2"
+            className="flex h-[48px] w-[48px] items-center justify-center !p-2"
             disabled={disabled}
             aria-label={label}
             title={label}>
