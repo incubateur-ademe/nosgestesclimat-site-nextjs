@@ -1,7 +1,8 @@
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { Journey } from '@/types/journey'
 import { Dispatch, SetStateAction } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   journey: Journey
