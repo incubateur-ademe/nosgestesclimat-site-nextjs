@@ -65,7 +65,7 @@ jobs:
           record: true
           group: 'Test - e2e'
           spec: cypress/e2e/integration/**/*.cy.js
-          with: SERVER_URL=${{ vars.SERVER_URL }}
+          with: SERVER_URL="${{ vars.SERVER_URL }}"
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
