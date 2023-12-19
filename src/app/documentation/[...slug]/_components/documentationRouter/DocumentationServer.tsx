@@ -50,7 +50,9 @@ export default async function DocumentationServer({
   return (
     <div className="mt-4 w-full max-w-4xl p-4 md:mx-auto md:py-8">
       <Title
-        title={`${rule.icônes ?? ''} ${capitalizeString(getRuleTitle(rule))}`}
+        title={`${rule.icônes ?? ''} ${capitalizeString(
+          getRuleTitle({ ...rule, dottedName: ruleName })
+        )}`}
         data-cypress-id="documentation-title"
       />
 
