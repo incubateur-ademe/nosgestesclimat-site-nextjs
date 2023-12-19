@@ -1,6 +1,6 @@
 'use client'
 
-import { useForm, useTempEngine, useUser } from '@/publicodes-state'
+import { useEngine, useForm, useTempEngine, useUser } from '@/publicodes-state'
 import { useState } from 'react'
 import ActionsTutorial from './_components/ActionsTutorial'
 import OptionBar from './_components/OptionBar'
@@ -14,6 +14,7 @@ export default function ActionsPage({
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
+  const { getCategory } = useEngine()
   const [radical, setRadical] = useState(true)
   const metric = (searchParams.métrique || '') as string
 
@@ -40,7 +41,7 @@ export default function ActionsPage({
   })
 
   const actionsDisplayed = actions.filter((action: any) =>
-    category ? action.dottedName.split(' . ')[0] === category : true
+    category ? getCategory(action.dottedName) === category : true
   )
 
   //TODO this is quite a bad design
