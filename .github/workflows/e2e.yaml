@@ -55,7 +55,6 @@ jobs:
           echo "CYPRESS_baseUrl=https://nosgestesclimat.vercel.app" >> "$GITHUB_ENV"
           echo "MODE=production" >> "$GITHUB_ENV"
 
-
       - name: Test - e2e [${{ env.MODE }}]
         uses: cypress-io/github-action@v5.6.1
         with:
@@ -65,8 +64,7 @@ jobs:
           record: true
           group: 'Test - e2e'
           spec: cypress/e2e/integration/**/*.cy.js
-          with: SERVER_URL="${{ vars.SERVER_URL }}"
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CYPRESS_SERVER_URL: ${{ secrets.SERVER_URL }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
-

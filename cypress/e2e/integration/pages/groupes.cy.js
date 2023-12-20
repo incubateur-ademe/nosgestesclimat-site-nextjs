@@ -1,7 +1,7 @@
 import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 
-const SERVER_URL = Cypress.env('SERVER_URL')
+const SERVER_URL = Cypress.env('CYPRESS_SERVER_URL')
 
 describe(
   'The Group creation page /amis/creer',
