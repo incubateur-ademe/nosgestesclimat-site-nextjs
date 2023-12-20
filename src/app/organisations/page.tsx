@@ -3,6 +3,7 @@ import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Main from '@/design-system/layout/Main'
 import Separator from '@/design-system/layout/Separator'
 import { headers } from 'next/headers'
+import CTAFooter from './_components/CTAFooter'
 import HeroSection from './_components/HeroSection'
 import IllustratedPoint from './_components/IllustratedPoint'
 import PartnersSection from './_components/PartnersSection'
@@ -96,6 +97,8 @@ export default function Page() {
 
           <PartnersSection />
         </div>
+
+        <CTAFooter />
       </section>
     </Main>
   )
