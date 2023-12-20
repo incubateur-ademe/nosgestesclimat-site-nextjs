@@ -5,6 +5,7 @@ import Separator from '@/design-system/layout/Separator'
 import { headers } from 'next/headers'
 import HeroSection from './_components/HeroSection'
 import IllustratedPoint from './_components/IllustratedPoint'
+import PartnersSection from './_components/PartnersSection'
 
 const illustratedPointsItems = [
   {
@@ -92,6 +93,8 @@ export default function Page() {
               )
             )}
           </ul>
+
+          <PartnersSection />
         </div>
       </section>
     </Main>
