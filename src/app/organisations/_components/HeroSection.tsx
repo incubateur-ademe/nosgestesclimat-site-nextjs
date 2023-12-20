@@ -9,7 +9,7 @@ export default function HeroSection() {
         <Trans>Nos Gestes Climat pour les organisations</Trans>
       </h1>
 
-      <p className="mb-12">
+      <p className="mb-12 text-lg">
         <Trans>Vous souhaitez mobiliser votre</Trans>{' '}
         <strong className="text-primary-500">
           <Trans>entreprise</Trans>
