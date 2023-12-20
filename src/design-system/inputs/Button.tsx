@@ -3,7 +3,7 @@ import { HtmlHTMLAttributes, MouseEventHandler, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
-  onClick: MouseEventHandler<HTMLButtonElement>
+  onClick?: MouseEventHandler<HTMLButtonElement>
   className?: string
   size?: ButtonSize
   color?: 'primary' | 'secondary' | 'text' | 'link'

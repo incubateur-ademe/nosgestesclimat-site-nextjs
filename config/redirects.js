@@ -85,6 +85,10 @@ const redirects = [
     destination: '/guide/numerique',
     permanent: true,
   },
+  {
+    source: '/o/:path*',
+    destination: '/organisations/:path*',
+  },
 ]
 
 module.exports = redirects

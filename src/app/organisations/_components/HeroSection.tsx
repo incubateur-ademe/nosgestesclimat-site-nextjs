@@ -30,7 +30,7 @@ export default function HeroSection() {
       </p>
 
       <div className="flex flex-wrap gap-8">
-        <ButtonLink href="/organisation/demarrer" size="lg">
+        <ButtonLink href="/organisations/commencer" size="lg">
           Commencez
         </ButtonLink>
 
