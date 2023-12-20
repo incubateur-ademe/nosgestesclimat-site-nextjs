@@ -3,6 +3,7 @@
 import ActionsIcon from '@/components/icons/ActionsIcon'
 import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
+import OrganisationIcon from '@/components/icons/OrganisationIcon'
 import ProfileIcon from '@/components/icons/ProfileIcon'
 import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
 import Logo from '@/components/misc/Logo'
@@ -65,16 +66,15 @@ export default function HeaderDesktop() {
             <NavLink href="/profil" icon={ProfileIcon} title={t('Profil')}>
               <Trans>Profil</Trans>
             </NavLink>
-            {/* TODO : uncomment when organisations are ready
+
             <div className="mb-2 h-3 w-[1px] bg-gray-300" />
 
             <NavLink
-              href="https://sondages.nosgestesclimat.fr"
+              href="/organisations"
               shouldUseDefaultLink
               icon={OrganisationIcon}>
               Organisations
             </NavLink>
-          */}
           </div>
         </div>
       </div>
