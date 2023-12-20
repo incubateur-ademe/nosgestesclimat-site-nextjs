@@ -34,8 +34,6 @@ describe('The Group creation page /amis/creer', () => {
     // Check that we can create a second group
     cy.wait(2000)
 
-    cy.visit('/amis')
-
     cy.get('[data-cypress-id="button-create-first-group"]').click()
 
     cy.get('input[data-cypress-id="group-input-owner-name"]').clear()
