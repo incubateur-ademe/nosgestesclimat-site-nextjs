@@ -4,7 +4,7 @@ import {
 } from '../../../constants/elements-ids'
 import { visit } from '../../../helpers/interactions/visit'
 
-describe('The Documentation page', () => {
+describe('The Documentation page', { testIsolation: false }, () => {
   it('should render without breaking the app (server side rendered)', () => {
     visit('documentation/bilan')
 
