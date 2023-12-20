@@ -7,7 +7,7 @@ type Props = {
 
 export default function Breadcrumbs({ items }: Props) {
   return (
-    <section className="sticky top-[82px] h-[75px] w-full bg-grey-100">
+    <section className="sticky top-[80px] h-[75px] w-full bg-grey-100">
       <nav className="mx-auto flex h-full max-w-5xl items-center gap-4 px-6 lg:px-0">
         {items.map(({ href, label, isActive }, index) => (
           <Fragment key={`breadcrumb-item-${index}`}>

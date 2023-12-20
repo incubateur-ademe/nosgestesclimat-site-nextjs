@@ -1,18 +1,17 @@
-import Image from 'next/image'
 import { ReactNode } from 'react'
 
 type Props = {
   title: ReactNode
   subTitle: ReactNode
   body: ReactNode
-  imageSrc: string
+  image: ReactNode
 }
 
 export default function IllustratedPoint({
   title,
   subTitle,
   body,
-  imageSrc,
+  image,
 }: Props) {
   return (
     <section className="flex items-center justify-between gap-8">
@@ -24,8 +23,8 @@ export default function IllustratedPoint({
         <p className="text-lg">{body}</p>
       </div>
 
-      <div className="rounded-lg bg-grey-100 p-6">
-        <Image width="413" height="400" src={imageSrc} alt="" />
+      <div className="flex min-w-[26rem] max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6">
+        {image}
       </div>
     </section>
   )

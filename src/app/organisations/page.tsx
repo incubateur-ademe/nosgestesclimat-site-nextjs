@@ -3,10 +3,12 @@ import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Main from '@/design-system/layout/Main'
 import Separator from '@/design-system/layout/Separator'
 import { headers } from 'next/headers'
+import Image from 'next/image'
 import CTAFooter from './_components/CTAFooter'
 import HeroSection from './_components/HeroSection'
 import IllustratedPoint from './_components/IllustratedPoint'
 import PartnersSection from './_components/PartnersSection'
+import VisuelIframe from './_components/VisuelIframe'
 
 const illustratedPointsItems = [
   {
@@ -21,7 +23,16 @@ const illustratedPointsItems = [
         aligner vos activités avec vos objectifs de durabilité.
       </Trans>
     ),
-    imageSrc: '/images/illustrations/illustration-1.svg',
+    image: (
+      <div className="mx-auto mt-4 flex items-end rounded-t-md bg-white p-4 pb-0 shadow-sm">
+        <Image
+          src="/images/organisations/orga-visuel-1.png"
+          width="300"
+          height="200"
+          alt=""
+        />
+      </div>
+    ),
   },
   {
     title: <Trans>Statistiques et exports</Trans>,
@@ -35,7 +46,16 @@ const illustratedPointsItems = [
         unifiée.
       </Trans>
     ),
-    imageSrc: '/images/illustrations/illustration-1.svg',
+    image: (
+      <div className="w-full">
+        <Image
+          src="/images/organisations/orga-visuel-2.png"
+          width="360"
+          height="500"
+          alt=""
+        />
+      </div>
+    ),
   },
   {
     title: <Trans>Lien personnalisé & iframes</Trans>,
@@ -48,7 +68,7 @@ const illustratedPointsItems = [
         d’intégration prêts à l’emploi.
       </Trans>
     ),
-    imageSrc: '/images/illustrations/illustration-1.svg',
+    image: <VisuelIframe />,
   },
 ]
 
@@ -82,13 +102,13 @@ export default function Page() {
 
           <ul className="flex flex-col gap-28">
             {illustratedPointsItems.map(
-              ({ title, subTitle, imageSrc, body }, index) => (
+              ({ title, subTitle, image, body }, index) => (
                 <li key={`illustrated-point-${index}`}>
                   <IllustratedPoint
                     title={title}
                     subTitle={subTitle}
                     body={body}
-                    imageSrc={imageSrc}
+                    image={image}
                   />
                 </li>
               )
