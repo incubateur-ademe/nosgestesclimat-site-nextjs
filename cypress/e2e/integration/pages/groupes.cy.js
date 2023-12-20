@@ -89,7 +89,7 @@ describe('The Group creation page /amis/creer', () => {
 
       const groupId = currentUrl?.split('groupId=')?.[1]
 
-      const SERVER_URL = 'nosgestesclimat.osc-fr1.scalingo.io'
+      const SERVER_URL = Cypress.env('server_url')
 
       cy.request(
         'POST',
