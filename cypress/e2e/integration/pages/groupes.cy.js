@@ -1,8 +1,6 @@
 import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 
-const SERVER_URL = Cypress.env('CYPRESS_SERVER_URL')
-
 describe(
   'The Group creation page /amis/creer',
   { testIsolation: false },
@@ -104,13 +102,11 @@ describe(
 
         const groupId = currentUrl?.split('groupId=')?.[1]
 
-        cy.log('URL', groupId, currentUrl)
-
         cy.request(
           'POST',
           `http${
-            SERVER_URL === 'localhost:3001' ? '' : 's'
-          }://${SERVER_URL}/group/delete`,
+            Cypress.env('server_url') === 'localhost:3001' ? '' : 's'
+          }://${Cypress.env('server_url')}/group/delete`,
           {
             groupId,
             userId: ownerUserId,
