@@ -59,8 +59,8 @@ describe('The Group creation page /amis/creer', () => {
     // Save the owner user id in order to be able to delete the group later on
     cy.getAllLocalStorage().then((result) => {
       ownerUserId =
-        result['http://localhost:3000']?.['nosgestesclimat::v3'] &&
-        JSON.parse(result['http://localhost:3000']?.['nosgestesclimat::v3'])
+        result[Cypress.config('baseUrl')]?.['nosgestesclimat::v3'] &&
+        JSON.parse(result[Cypress.config('baseUrl')]?.['nosgestesclimat::v3'])
           ?.user?.id
     })
 
