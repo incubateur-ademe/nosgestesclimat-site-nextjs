@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import InlineLink from '@/design-system/inputs/InlineLink'
 
 export default function HeroSection() {
   return (
@@ -33,13 +34,9 @@ export default function HeroSection() {
           Commencez
         </ButtonLink>
 
-        <ButtonLink
-          color="text"
-          size="lg"
-          className="underline"
-          href="/contact?motif=demo">
+        <InlineLink className="py-4" href="/contact?motif=demo">
           Demandez une démo
-        </ButtonLink>
+        </InlineLink>
       </div>
     </div>
   )
