@@ -88,6 +88,7 @@ const redirects = [
   {
     source: '/o/:path*',
     destination: '/organisations/:path*',
+    permanent: true,
   },
 ]
 
