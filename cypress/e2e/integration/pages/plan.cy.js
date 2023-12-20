@@ -4,7 +4,7 @@ import {
 } from '../../../constants/elements-ids'
 import { visit } from '../../../helpers/interactions/visit'
 
-describe('The Plan du site page', { testIsolation: false }, () => {
+describe('The Plan du site page', () => {
   it('should render without breaking the app', () => {
     visit('plan-du-site')
 

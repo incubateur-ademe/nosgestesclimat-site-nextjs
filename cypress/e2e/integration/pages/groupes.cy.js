@@ -102,8 +102,7 @@ describe(
 
         const groupId = currentUrl?.split('groupId=')?.[1]
 
-        const SERVER_URL =
-          Cypress.env('server_url') || 'nosgestesclimat.osc-fr1.scalingo.io'
+        const SERVER_URL = 'nosgestesclimat.osc-fr1.scalingo.io'
 
         cy.request(
           'POST',

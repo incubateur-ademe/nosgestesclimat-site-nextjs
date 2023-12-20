@@ -1,6 +1,6 @@
 import { visit } from '../../../helpers/interactions/visit'
 
-describe('The Blog page', { testIsolation: false }, () => {
+describe('The Blog page', () => {
   it('should render without breaking the app', () => {
     visit('blog')
 
