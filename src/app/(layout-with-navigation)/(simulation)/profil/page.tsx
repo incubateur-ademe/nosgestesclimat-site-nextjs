@@ -14,6 +14,9 @@ export async function generateMetadata() {
     title: 'Mon profil, voir mon empreinte carbone - Nos Gestes Climat',
     description:
       'Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.',
+    alternates: {
+      canonical: '/profil',
+    },
   })
 }
 
@@ -23,10 +26,15 @@ export default async function Profil() {
   return (
     <FormProvider>
       <Title title={<Trans>Mon profil</Trans>} />
+
       <PersonaWarning />
+
       <SimulationBanner />
+
       <Localisation supportedRegions={supportedRegions} />
+
       <AnswerList />
+
       <SimulationList />
     </FormProvider>
   )

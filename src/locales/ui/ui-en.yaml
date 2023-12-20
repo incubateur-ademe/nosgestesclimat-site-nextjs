@@ -94,10 +94,6 @@ entries:
   components.ScoreExplanation.text.p3.lock: '🤔 Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
   components.ScoreExplanation.text.p4: 💡 We improve the calculation and its default values <2>every month</2>!
   components.ScoreExplanation.text.p4.lock: 💡 Nous améliorons le calcul et ses valeurs par défaut <2>tous les mois</2>!
-  components.localisation.Localisation.warnMessage: For the moment, there is no calculation model for {{countryName}}, the French model is proposed by default.
-  components.localisation.Localisation.warnMessage.lock: Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français vous est proposé par défaut.
-  components.localisation.Localisation.warnMessage2: We could not detect your country of simulation, the French model is proposed by default.
-  components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
   components.localisation.LocalisationMessage.betaMsg: It is currently in <1>beta</1> version.
   components.localisation.LocalisationMessage.betaMsg.lock: Elle est actuellement en version <1>bêta</1>.
   components.localisation.LocalisationMessage.warnMessage: Your region is not yet supported, the French model is proposed by default
@@ -152,20 +148,14 @@ entries:
   publicodes.ActionTutorial.msgPrésentation.lock: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} remaining question{{pluralSuffix}}'
   publicodes.ActionVignette.questionsRestantesText.lock: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
-  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} shares available,'
-  publicodes.ActionsOptionsBar.actionsRecap.lock: '{{numberOfAvailableFinalActions}} actions disponibles,'
   publicodes.AllActions.allerPlusLoin: <0>Going further</0><1>Go beyond a simple figure and discover the issues behind each action.</1>
   publicodes.AllActions.allerPlusLoin.lock: <0>Aller plus loin</0><1>Au-delà d'un simple chiffre, découvrez les enjeux qui se cachent derrière chaque action.</1>
   publicodes.AllActions.msgPlusActions: <0>We don't have any more high-impact quantified actions to offer you 🤷</0><1>Discover below some tracks to act differently ⏬</1>
   publicodes.AllActions.msgPlusActions.lock: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 You have a bug that prevents you from using Nos Gestes Climat?
   publicodes.Contribution.bugQuestion.lock: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: |-
-
-    > This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contact).
-  publicodes.Contribution.commentaireAugmenté.lock: |-
-
-    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).
+  publicodes.Contribution.commentaireAugmenté: '&gt; This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contact).'
+  publicodes.Contribution.commentaireAugmenté.lock: '> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).'
   publicodes.FAQ.description: Welcome to Nos Gestes Climat FAQ! Here you'll find answers to the most frequently asked questions. If you still have questions or would like to suggest improvements, please go to the bottom of the page. Have a good read!
   publicodes.FAQ.description.lock: Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
   publicodes.Contribution.descriptionComplète: <0>A complete description of your problem</0><1><0>By indicating the browser you are using (e.g. Firefox version 93, Chrome version 95, Safari, etc.), and the platform (iPhone, Android, Windows computer, etc.), you will help us resolve the bug faster.</0></1>
@@ -384,8 +374,8 @@ entries:
   Logo de l'Association pour la transition Bas Carbone: Logo of the Low Carbon Transition Association
   Il concerne votre vie personnelle, et non pas votre boulot.: It's about your personal life, not your job.
   Comparez vos résultats avec votre famille ou un groupe d’ami·e·s: Compare your results with your family or a group of friends
-  publicodes.Tutoriel.slide1.p1: <0>It's a fact that the climate is warming because of human activity. Everything we consume, use and then throw away requires materials and energy. Whether it's during the production, use or end-of-life phase of the good or service. So all our activities contribute to greenhouse gas emissions. Some a great deal, others very little. But what is our impact, as individual citizens?</0>
-  publicodes.Tutoriel.slide1.p1.lock: <0>Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?</0>
+  publicodes.Tutoriel.slide1.p1: It's a fact that the climate is warming because of human activity. Everything we consume, use and then throw away requires materials and energy. Whether it's during the production, use or end-of-life phase of the good or service. So all our activities contribute to greenhouse gas emissions. Some a great deal, others very little. But what is our impact, as individual citizens?
+  publicodes.Tutoriel.slide1.p1.lock: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
   L'intégralité du calcul est <2>documenté</2> en ligne pour les curieux et les experts.: The entire calculation is <2>documented</2> online for the curious and the experts.
   Voir plus d'informations: See more information
   revenir à l'accueil: return to home page
@@ -398,8 +388,8 @@ entries:
   publicodes.Tutoriel.slide2.p2: It's the machines that make our modern comforts and conveniences that emit massive amounts of it, so much so that we count it in thousands of kilos per year and per person, and therefore in <2>tonnes</2> of CO₂e!
   publicodes.Tutoriel.slide2.p2.lock: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
   Vous pouvez créer un nouveau groupe avec d’autres amis.: You can create a new group with other friends.
-  publicodes.Tutoriel.slide1.p2: <0>To estimate our own contribution to global warming (our "climate impact"), we usually calculate the carbon footprint of our individual consumption.</0>
-  publicodes.Tutoriel.slide1.p2.lock: <0>Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.</0>
+  publicodes.Tutoriel.slide1.p2: To estimate our own contribution to global warming (our "climate impact"), we usually calculate the carbon footprint of our individual consumption.
+  publicodes.Tutoriel.slide1.p2.lock: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
   Retrouvez les réponses aux questions courantes sur notre page <2>FAQ</2>.: Find answers to frequently asked questions on our <2>FAQ</2> page.
   Répondez aux questions en votre nom, pas pour votre foyer.: Answer the questions on your behalf, not for your household.
   Tout déplier: Unfold all
@@ -409,7 +399,7 @@ entries:
   ' Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': " Of course, some things are shared (in my home with my family, the car with my carpoolers): this will be taken into account when calculating your carbon footprint, so don't worry!"
   Plus d'information à ce sujet: More information
   Oups! Cette page n'existe pas ou n'existe plus: Oops! this page does not exist or no longer exists
-  Vous utilisez la version: You are using the
+  Vous utilisez la version: You are using the version
   du test: of the test
   Terminer: Finish
   SondagesBlock.description: <1>Surveys</1> and <3>conferences</3> allow you to compare your footprint live or in groups of more than 20 people
@@ -512,3 +502,48 @@ entries:
   Aide à la saisie: Input help
   Revenir à l'accueil: Back to home page
   Pour en savoir plus sur cette règle de notre modèle, lancer le calcul en cliquant sur le bouton ci-dessous.: To find out more about this rule in our model, run the calculation by clicking on the button below.
+  Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.: Wherever you live, calculate your personal carbon footprint, taking into account the particularities of your country.
+  Comment cette donnée est-elle calculée ?: How is this figure calculated?
+  Le calculateur d’empreinte climat international: The international climate footprint calculator
+  Quitter: Leave
+  Cette opération est définitive et vous ne pourrez plus accéder aux résultats du groupe.: This operation is definitive and you will no longer be able to access the group's results.
+  Découvrez nos pistes pour agir dès aujourd’hui pour le climat.: Find out how you can take action for the climate today.
+  par email: by email
+  de: of
+  Ma région de simulation: My simulation region
+  Vous avez fait: You made
+  chaque année: every year
+  D'autres questions ?: Any other questions?
+  "Qu'est-ce que ça veut dire ? ": 'What does this mean? '
+  choix en trop !: too many choices!
+  Il vous reste: You still have
+  choix à faire: choices to be made
+  Recevez vos résultats: Receive your results
+  Et les conseils de Nos Gestes Climat pour réduire votre impact sur le climat.: And advice from Nos Gestes Climat on how to reduce your impact on the climate.
+  Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.: You can delete the group by clicking on the button below. It will be permanently deleted for all its other members, as you are the administrator.
+  Votre groupe a été supprimé. Vous allez être redirigé vers la page d'accueil du mode groupe.: Your group has been deleted. You will be redirected to the group mode home page.
+  Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.: You can leave the group by clicking on the button below. However, the group will not be deleted as you are not the administrator.
+  Cette opération est définitive et supprimera le groupe pour tous ses membres.: This operation is definitive and will delete the group for all its members.
+  Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe: You have left this group. You will be redirected to the group mode home page
+  Vous souhaitez recevoir vos résultats d’empreinte carbone ?: Would you like to receive your carbon footprint results?
+  Sauvegarder: Save
+  Comment est calculée votre empreinte ?: How is your footprint calculated?
+  Vous retrouverez votre résultat d’empreinte, ainsi que <2>des conseils pour la réduire</2> (1 fois par mois max.): You will find your impression results, as well as <2>advice on how to reduce them</2> (max. 1 per month)
+  "Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée :": 'Our simulator is based on a data model whose calculations are fully documented:'
+  'Vos trajets :': 'Your routes :'
+  passager(s): passenger(s)
+  Période: Period
+  'de ': 'from '
+  Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Our simulator is based on a data model, with all the calculations documented; the data displayed is directly associated with your test.
+  Pour cela, <1>laissez-nous votre email</1>, comme {formatValue(numberSubscribers) ?? '---'} personnes.: To do this, <1>leave us your email address</1>, such as {formatValue(numberSubscribers) ?? '---'} people.
+  Créé par {{name}}: Created by {{name}}
+  Vous êtes le premier: You are the first
+  Retour à la liste des groupes: Back to the list of groups
+  Ce groupe n'existe pas ou a été supprimé.: This group does not exist or has been deleted.
+  Oups ! Nous n'avons pas trouvé votre groupe: Oops! We couldn't find your group
+  components.localisation.Localisation.warnMessage2: We were unable to detect your simulation country, so the French model is proposed by default.
+  components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
+  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} shares available,'
+  publicodes.ActionsOptionsBar.actionsRecap.lock: '{{numberOfAvailableFinalActions}} actions disponibles,'
+  components.localisation.Localisation.warnMessage: For the moment, there is no calculation model for {{countryName}}, the French model is proposed by default.
+  components.localisation.Localisation.warnMessage.lock: Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français vous est proposé par défaut.

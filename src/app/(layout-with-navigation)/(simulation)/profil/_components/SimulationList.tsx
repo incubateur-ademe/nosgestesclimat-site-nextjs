@@ -15,7 +15,7 @@ export default function SimulationList() {
 
   return (
     <div className="my-6">
-      <h2 className="text-lg">
+      <h2>
         <span
           role="img"
           aria-label="emoji save"

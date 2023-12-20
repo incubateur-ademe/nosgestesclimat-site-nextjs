@@ -1,3 +1,4 @@
+import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { useMemo } from 'react'
 
 type Props = {
@@ -12,6 +13,11 @@ export default function useNavigation({
   currentQuestion,
   setCurrentQuestion,
 }: Props) {
+  const currentQuestionNamespace = useMemo<string | undefined>(
+    () => getNamespace(currentQuestion),
+    [currentQuestion]
+  )
+
   const currentQuestionIndex = useMemo<number>(
     () => (currentQuestion ? relevantQuestions?.indexOf(currentQuestion) : 0),
     [relevantQuestions, currentQuestion]
@@ -28,19 +34,22 @@ export default function useNavigation({
 
   const isLastQuestionOfCategory = useMemo<boolean>(
     () =>
-      relevantQuestions[currentQuestionIndex + 1]?.split(' . ')[0] !==
-      currentQuestion?.split(' . ')[0],
-    [currentQuestion, currentQuestionIndex, relevantQuestions]
+      getNamespace(relevantQuestions[currentQuestionIndex + 1]) !==
+      currentQuestionNamespace,
+    [currentQuestionNamespace, currentQuestionIndex, relevantQuestions]
   )
+
   const isFirstQuestionOfCategory = useMemo<boolean>(
     () =>
-      relevantQuestions[currentQuestionIndex - 1]?.split(' . ')[0] !==
-      currentQuestion?.split(' . ')[0],
-    [currentQuestion, currentQuestionIndex, relevantQuestions]
+      getNamespace(relevantQuestions[currentQuestionIndex - 1]) !==
+      currentQuestionNamespace,
+    [currentQuestionNamespace, currentQuestionIndex, relevantQuestions]
   )
 
   const gotoPrevQuestion = (): string | undefined => {
-    if (noPrevQuestion) return
+    if (noPrevQuestion) {
+      return undefined
+    }
 
     const newCurrentQuestion = relevantQuestions[currentQuestionIndex - 1]
 
@@ -49,7 +58,9 @@ export default function useNavigation({
     return newCurrentQuestion
   }
   const gotoNextQuestion = (): string | undefined => {
-    if (noNextQuestion) return
+    if (noNextQuestion) {
+      return undefined
+    }
 
     const newCurrentQuestion = relevantQuestions[currentQuestionIndex + 1]
 

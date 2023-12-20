@@ -1,14 +1,14 @@
 type Props = {
   dottedName: string
-  everyMosaicChildWhoIsReallyInMosaic: string[]
+  everyMosaicChildren: string[]
 }
 
 export default function getQuestionsOfMosaic({
   dottedName,
-  everyMosaicChildWhoIsReallyInMosaic,
+  everyMosaicChildren,
 }: Props): string[] {
   return (
-    everyMosaicChildWhoIsReallyInMosaic.filter((mosaicChild) =>
+    everyMosaicChildren.filter((mosaicChild) =>
       mosaicChild.includes(dottedName)
     ) || []
   )

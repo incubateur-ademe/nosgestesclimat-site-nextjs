@@ -11,6 +11,9 @@ export async function generateMetadata() {
     title: 'Les nouveautés - Nos Gestes Climat',
     description:
       'Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.',
+    alternates: {
+      canonical: '/nouveautes',
+    },
   })
 }
 

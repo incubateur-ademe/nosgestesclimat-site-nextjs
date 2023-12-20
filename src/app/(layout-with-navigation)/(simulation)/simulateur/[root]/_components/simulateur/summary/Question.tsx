@@ -1,6 +1,5 @@
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
-import Trans from '@/components/translation/Trans'
 import { getMatomoEventClickQuestionsListLink } from '@/constants/matomo'
 import foldEveryQuestionsUntil from '@/helpers/foldEveryQuestionsUntil'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
@@ -41,7 +40,7 @@ export default function Question({ question, toggleQuestionList }: Props) {
   return (
     <button
       disabled={!isDebug && !isFolded}
-      className={`relative mb-2 flex w-full flex-col items-end justify-between gap-2 overflow-hidden rounded-lg p-4 pl-6 text-left font-bold md:flex-row md:items-center md:gap-4 ${statusClassNames[status]} `}
+      className={`relative mb-2 flex w-full flex-col items-start justify-between gap-2 overflow-hidden rounded-lg p-4 pl-6 text-left font-bold md:flex-row md:items-center md:gap-4 ${statusClassNames[status]} `}
       onClick={() => {
         if (isDebug) {
           foldEveryQuestionsUntil({
@@ -79,10 +78,11 @@ export default function Question({ question, toggleQuestionList }: Props) {
             {type === 'number' && (
               <NumberValue displayValue={displayValue} unit={unit} />
             )}
-            {type === 'boolean' && <Trans>{displayValue}</Trans>}
-            {type === 'choices' && (
-              <ChoicesValue value={value} question={question} />
-            )}
+            {type === 'boolean' && displayValue}
+            {type === 'choices' &&
+              (value ? (
+                <ChoicesValue value={value} question={question} />
+              ) : null)}
           </div>
         </div>
       ) : null}

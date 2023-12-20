@@ -5,20 +5,25 @@ import Emoji from '@/design-system/utils/Emoji'
 export default function CongratulationsText() {
   return (
     <>
-      <h1 className="mt-4">
-        <span className="inline-block">
-          <Trans>Vous avez terminé le test !</Trans>&nbsp;
-          <Emoji className="inline-block">👏</Emoji>
-        </span>
-      </h1>
+      <div className="flex flex-col gap-1 md:flex-row md:items-start md:justify-between">
+        <div>
+          <h1 className="mt-4 text-xl md:text-2xl" data-cypress-id="fin-title">
+            <span className="inline-block">
+              <Trans>Vous avez terminé le test !</Trans>&nbsp;
+              <Emoji className="inline-block">👏</Emoji>
+            </span>
+          </h1>
 
-      <p className="mb-0">
-        <Trans>
-          Découvrez vos résultats, et nos idées d'actions pour vous améliorer.
-        </Trans>
-      </p>
+          <p className="mb-0">
+            <Trans>
+              Découvrez vos résultats, et nos idées d'actions pour vous
+              améliorer.
+            </Trans>
+          </p>
+        </div>
+      </div>
 
-      <Separator className="my-6" />
+      <Separator />
     </>
   )
 }

@@ -25,13 +25,28 @@ const redirects = [
     permanent: true,
   },
   {
+    source: '/nouveaut%C3%A9s/Guadeloupe',
+    destination: '/nouveautes/guadeloupe',
+    permanent: true,
+  },
+  {
+    source: '/nouveaut%C3%A9s/Vatnaj%C3%B6kull',
+    destination: '/nouveautes/vatnajokull',
+    permanent: true,
+  },
+  {
     source: '/nouveaut%C3%A9s/:path*',
     destination: '/nouveautes/:path*',
     permanent: true,
   },
   {
     source: '/vie-priv%C3%A9e',
-    destination: '/vie-privee',
+    destination: '/politique-de-confidentialite',
+    permanent: true,
+  },
+  {
+    source: '/vie-privee',
+    destination: '/politique-de-confidentialite',
     permanent: true,
   },
   {
@@ -57,6 +72,17 @@ const redirects = [
   {
     source: '/groupe/:path*',
     destination: 'https://sondages.nosgestesclimat.fr/',
+    permanent: true,
+  },
+
+  {
+    source: '/guide/services-soci%C3%A9taux',
+    destination: '/guide/services-societaux',
+    permanent: true,
+  },
+  {
+    source: '/guide/num%C3%A9rique',
+    destination: '/guide/numerique',
     permanent: true,
   },
 ]

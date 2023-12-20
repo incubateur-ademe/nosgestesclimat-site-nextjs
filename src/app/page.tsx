@@ -18,6 +18,9 @@ export async function generateMetadata() {
       "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat",
     description:
       'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.',
+    alternates: {
+      canonical: '/',
+    },
   })
 }
 
@@ -29,7 +32,7 @@ export default async function Landing() {
       <Main>
         <div className="mx-auto flex flex-col justify-center gap-4 px-4 pb-8 text-center md:mx-auto md:mt-6 md:w-full md:max-w-5xl md:p-0 md:pb-8 md:pt-12 md:text-left">
           <div className="gap-10 md:flex">
-            <div className="my-12 flex flex-col md:my-0 md:flex-1">
+            <div className="my-12 flex flex-col px-4 md:my-0 md:flex-1">
               <Title
                 title={
                   <Trans i18nKey="publicodes.Landing.question">

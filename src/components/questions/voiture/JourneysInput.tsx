@@ -1,11 +1,10 @@
-import Trans from '@/components/translation/Trans'
 import { useRule } from '@/publicodes-state'
 import { Journey } from '@/types/journey'
-import { motion } from 'framer-motion'
+
 import { useEffect, useMemo, useRef, useState } from 'react'
-import AddJourney from './journeysInput/AddJourney'
-import JourneyItem from './journeysInput/JourneyItem'
-import Summary from './journeysInput/Summary'
+
+import { JourneysInputDesktop } from './journeysInput/JourneysInputDesktop'
+import JourneysInputMobile from './journeysInput/JourneysInputMobile'
 
 type Props = {
   question: string
@@ -20,6 +19,10 @@ const periods: Record<string, number> = {
 
 export default function JourneysInput({ question }: Props) {
   const { setValue } = useRule(question)
+
+  const { setValue: setNumPassengers } = useRule(
+    'transport . voiture . saisie voyageurs'
+  )
 
   const [isInitialized, setIsInitialized] = useState(false)
 
@@ -76,49 +79,34 @@ export default function JourneysInput({ question }: Props) {
   useEffect(() => {
     if (prevTotalForOnePassenger.current !== totalForOnePassenger) {
       setValue(totalForOnePassenger.toFixed(1), question)
+      setNumPassengers(averagePassengers.toFixed(1))
     }
     prevTotalForOnePassenger.current = totalForOnePassenger
-  }, [totalForOnePassenger, setValue, question])
+  }, [
+    totalForOnePassenger,
+    averagePassengers,
+    setValue,
+    setNumPassengers,
+    question,
+  ])
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.2 }}
-      className="mb-2 w-full overflow-scroll rounded-lg bg-white p-2">
-      <table className="w-full border-collapse">
-        <tbody>
-          <tr>
-            <th className="px-4 py-2 text-left text-sm">
-              <Trans>Label</Trans>
-            </th>
-            <th className="px-4 py-2 text-left text-sm">
-              <Trans>Distance</Trans>
-            </th>
-            <th className="px-4 py-2 text-left text-sm">
-              <Trans>Fréquence</Trans>
-            </th>
-            <th className="px-4 py-2 text-left text-sm">
-              <Trans>Passagers</Trans>
-            </th>
-            <th className="px-4 py-2 text-left text-sm opacity-0">Options</th>
-          </tr>
-          {journeys.map((journey, index) => (
-            <JourneyItem
-              key={journey.id}
-              journey={journey}
-              odd={index % 2 ? false : true}
-              setJourneys={setJourneys}
-            />
-          ))}
-          <AddJourney key={journeys.length} setJourneys={setJourneys} />
-        </tbody>
-      </table>
-      <Summary
-        total={total}
+    <>
+      <JourneysInputDesktop
+        journeys={journeys}
+        setJourneys={setJourneys}
         averagePassengers={averagePassengers}
+        total={total}
         totalForOnePassenger={totalForOnePassenger}
       />
-    </motion.div>
+
+      <JourneysInputMobile
+        journeys={journeys}
+        setJourneys={setJourneys}
+        averagePassengers={averagePassengers}
+        total={total}
+        totalForOnePassenger={totalForOnePassenger}
+      />
+    </>
   )
 }

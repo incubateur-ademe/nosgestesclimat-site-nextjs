@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
 import { getMatomoEventClickHelp } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
@@ -6,7 +7,8 @@ import { QuestionSize } from '@/types/values'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+
+import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -16,6 +18,7 @@ type Props = {
   size?: QuestionSize
   htmlFor?: string
   className?: string
+  titleClassName?: string
 }
 
 const sizeClassNames = {
@@ -33,6 +36,7 @@ export default function Label({
   size = 'md',
   htmlFor,
   className,
+  titleClassName,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -48,7 +52,13 @@ export default function Label({
         )}
         aria-label={label}
         htmlFor={htmlFor}>
-        <h1 className="mb-0 inline text-lg">{label}</h1>{' '}
+        <h1
+          className={twMerge(
+            'mb-0 inline text-base md:text-lg',
+            titleClassName
+          )}>
+          {label}
+        </h1>{' '}
         {description ? (
           <button
             onClick={() => {

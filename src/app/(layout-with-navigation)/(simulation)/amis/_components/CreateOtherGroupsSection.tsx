@@ -13,9 +13,9 @@ export default function CreateOtherGroupsSection({
 }) {
   return (
     <>
-      <GroupList groups={groups} className="mt-8" />
+      <GroupList groups={groups} />
 
-      <Separator className="mb-4 mt-8" />
+      <Separator />
 
       <h3 className="text-md mb-1 font-bold">
         <Trans>Créez un autre groupe</Trans>

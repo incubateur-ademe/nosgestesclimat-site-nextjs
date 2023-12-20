@@ -1,5 +1,6 @@
 'use client'
 
+import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { useMemo } from 'react'
 import { NGCRuleNode, Suggestion } from '../../types'
 
@@ -10,7 +11,7 @@ type Props = {
 
 export default function useContent({ dottedName, rule }: Props) {
   const category = useMemo<string>(
-    () => dottedName.split(' . ')[0],
+    () => getNamespace(dottedName) ?? '',
     [dottedName]
   )
 

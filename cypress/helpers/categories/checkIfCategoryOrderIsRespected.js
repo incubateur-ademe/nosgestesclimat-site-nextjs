@@ -1,4 +1,5 @@
 import { CATEGORIES } from '../../constants/categories'
+import getNamespace from '../../utils/getNamespace'
 
 const categoriesOrderArray = CATEGORIES.map((category) => ({
   key: category,
@@ -7,7 +8,7 @@ const categoriesOrderArray = CATEGORIES.map((category) => ({
 
 export function checkIfCategoryOrderIsRespected(questionId) {
   const indexCurrentCategory = categoriesOrderArray.findIndex(
-    (category) => category.key === questionId.split(' . ')[0]
+    (category) => category.key === getNamespace(questionId)
   )
   cy.log(
     'indexCurrentCategory',

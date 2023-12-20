@@ -62,7 +62,7 @@ export default function SimulationProvider({
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
-    everyMosaicChildWhoIsReallyInMosaic,
+    everyMosaicChildren,
   } = useRules({ engine: pristineEngine })
 
   const { situation, updateSituation, initialized } = useSituation({
@@ -74,7 +74,7 @@ export default function SimulationProvider({
   })
 
   const { categories, subcategories } = useCategories({
-    engine: pristineEngine,
+    everyRules,
     root,
     safeGetRule,
     order: categoryOrder,
@@ -101,7 +101,7 @@ export default function SimulationProvider({
         everyInactiveRules,
         everyQuestions,
         everyNotifications,
-        everyMosaicChildWhoIsReallyInMosaic,
+        everyMosaicChildren,
         categories,
         subcategories,
       }}>

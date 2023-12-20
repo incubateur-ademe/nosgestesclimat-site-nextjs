@@ -60,7 +60,7 @@ export default function Footer() {
             </InlineLink>
           </div>
 
-          <div className="mt-4 flex w-full flex-wrap items-baseline gap-4 text-default">
+          <div className="mt-6 flex w-full flex-wrap items-baseline gap-2 text-default sm:gap-4 md:mt-4">
             <p className="mb-1 text-sm">
               <Trans>Diffuser le test :</Trans>
             </p>
@@ -81,7 +81,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <Separator className="mt-4" />
+          <Separator className="mb-0 mt-6 md:mt-4" />
 
           <div className="mt-6 flex flex-wrap items-start justify-between gap-10">
             <LanguageSwitchButton />

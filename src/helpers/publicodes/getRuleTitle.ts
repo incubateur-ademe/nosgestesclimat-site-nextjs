@@ -1,12 +1,8 @@
 import { NGCRule } from '@/publicodes-state/types'
+import { utils } from 'publicodes'
 
 export const getRuleTitle = (
-  rule: NGCRule & { dottedName: string; titre: string }
+  rule: NGCRule & { dottedName: string; titre?: string }
 ) => {
-  if (!rule) return ''
-
-  return (
-    rule?.titre ??
-    rule?.dottedName?.split(' . ')[rule?.dottedName.split(' . ').length - 1]
-  )
+  return rule?.titre ?? utils.nameLeaf(rule.dottedName)
 }

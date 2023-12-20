@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export function useFetchGroup(groupId: string) {
   return useQuery({
-    queryKey: ['group'],
+    queryKey: ['group', groupId],
     queryFn: () =>
       axios.get(`${GROUP_URL}/${groupId}`).then((response) => {
         return response.data

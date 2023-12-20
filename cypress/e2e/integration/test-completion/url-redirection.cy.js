@@ -1,7 +1,7 @@
 import { clickNextButton } from '../../../helpers/elements/buttons'
 import { setupSimulation } from '../../../helpers/simulation/setupSimulation'
 
-const thirdQuestion = 'transport.voiture.motorisation'
+const thirdQuestion = 'transport.avion.usager'
 
 describe('Simulation page', () => {
   it(`should redirect to the last question answered when the "bilan" root is defined`, () => {
