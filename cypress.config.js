@@ -14,7 +14,7 @@ export default defineConfig({
     localisation_param: 'FR',
     language_param: 'fr',
     testLangURL: process.env.CYPRESS_testLangURL ?? 'fr',
-    server_url: 'nosgestesclimat.osc-fr1.scalingo.io',
+    server_url: process.env.NEXT_PUBLIC_SERVER_URL || 'localhost:3001',
     ...process.env,
   },
   e2e: {

@@ -102,11 +102,14 @@ describe(
 
         const groupId = currentUrl?.split('groupId=')?.[1]
 
+        const SERVER_URL =
+          Cypress.env('server_url') || 'nosgestesclimat.osc-fr1.scalingo.io'
+
         cy.request(
           'POST',
           `http${
-            Cypress.env('server_url') === 'localhost:3001' ? '' : 's'
-          }://${Cypress.env('server_url')}/group/delete`,
+            SERVER_URL === 'localhost:3001' ? '' : 's'
+          }://${SERVER_URL}/group/delete`,
           {
             groupId,
             userId: ownerUserId,
