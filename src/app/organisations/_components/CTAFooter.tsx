@@ -21,7 +21,7 @@ export default function CTAFooter() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <ButtonLink href="/organisations/commencer">
+            <ButtonLink href="/organisations/connexion">
               Créer un compte
             </ButtonLink>
 
