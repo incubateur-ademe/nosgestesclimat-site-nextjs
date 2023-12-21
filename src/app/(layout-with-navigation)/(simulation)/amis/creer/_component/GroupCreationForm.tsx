@@ -76,6 +76,7 @@ export default function GroupCreationForm() {
       const groupNameObject = GROUP_NAMES[groups.length % GROUP_NAMES.length]
 
       if (!userId) {
+        setErrorPrenom('YOYOYO')
         throw new Error('Missing userId')
       }
 
