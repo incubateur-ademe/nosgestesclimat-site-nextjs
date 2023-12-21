@@ -75,6 +75,10 @@ export default function GroupCreationForm() {
 
       const groupNameObject = GROUP_NAMES[groups.length % GROUP_NAMES.length]
 
+      if (!userId) {
+        throw new Error('Missing userId')
+      }
+
       const group = await createGroup({
         groupInfo: {
           name: groupNameObject.name,
