@@ -3,6 +3,7 @@ import { SERVER_URL } from '@/constants/urls'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
+import { useUser } from '@/publicodes-state'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import Image from 'next/image'
@@ -20,6 +21,8 @@ export default function VerificationForm({
 
   const timeoutRef = useRef<NodeJS.Timeout>()
 
+  const { updateLoginExpirationDate } = useUser()
+
   const {
     mutateAsync: validateVerificationCode,
     isPending: isPendingValidate,
@@ -27,10 +30,16 @@ export default function VerificationForm({
   } = useMutation({
     mutationFn: ({ verificationCode }: { verificationCode: string }) =>
       axios
-        .post(`${SERVER_URL}/organizations/validate-verification-code`, {
-          ownerEmail,
-          verificationCode,
-        })
+        .post(
+          `${SERVER_URL}/organizations/validate-verification-code`,
+          {
+            ownerEmail,
+            verificationCode,
+          },
+          {
+            withCredentials: true,
+          }
+        )
         .then((response) => response.data),
   })
 
@@ -63,18 +72,26 @@ export default function VerificationForm({
       return
     }
 
-    const { organization } = await validateVerificationCode({
-      verificationCode,
-    })
+    try {
+      const { organization } = await validateVerificationCode({
+        verificationCode,
+      })
 
-    timeoutRef.current = setTimeout(() => {
-      if (!organization.name) {
-        router.push('/organisations/creation')
-        return
-      }
+      timeoutRef.current = setTimeout(() => {
+        // Reset the login expiration date
+        updateLoginExpirationDate(undefined)
 
-      router.push(`/organisations/${organization.name}`)
-    }, 1500)
+        if (!organization.name) {
+          router.push('/organisations/creation')
+          return
+        }
+
+        router.push(`/organisations/${organization.name}`)
+      }, 1500)
+    } catch (err) {
+      setInputError('Le code est invalide')
+      return
+    }
   }
 
   useEffect(() => {

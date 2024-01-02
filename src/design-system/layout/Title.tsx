@@ -4,7 +4,7 @@ import Separator from './Separator'
 
 type Props = {
   title?: string | JSX.Element
-  subtitle?: string
+  subtitle?: string | JSX.Element
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   className?: string
 }
