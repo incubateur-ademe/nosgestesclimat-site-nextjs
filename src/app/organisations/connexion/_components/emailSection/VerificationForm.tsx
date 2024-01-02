@@ -6,7 +6,8 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 
 export default function VerificationForm({
   ownerEmail,
@@ -14,6 +15,10 @@ export default function VerificationForm({
   ownerEmail: string
 }) {
   const [inputError, setInputError] = useState<string | undefined>()
+
+  const router = useRouter()
+
+  const timeoutRef = useRef<NodeJS.Timeout>()
 
   const {
     mutateAsync: validateVerificationCode,
@@ -58,10 +63,27 @@ export default function VerificationForm({
       return
     }
 
-    await validateVerificationCode({
+    const { organization } = await validateVerificationCode({
       verificationCode,
     })
+
+    timeoutRef.current = setTimeout(() => {
+      if (!organization.name) {
+        router.push('/organisations/creation')
+        return
+      }
+
+      router.push(`/organisations/${organization.name}`)
+    }, 1500)
   }
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
 
   async function handleResendVerificationCode() {
     if (
