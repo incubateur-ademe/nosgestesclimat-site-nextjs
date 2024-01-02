@@ -14,5 +14,8 @@ export default function useUserDetails({ setUser }: Props) {
   const updateRegion = (region: { code: string; name: string }) =>
     setUser((prevUser: User) => ({ ...prevUser, region }))
 
-  return { updateName, updateEmail, updateRegion }
+  const updateLoginExpirationDate = (loginExpirationDate: Date) =>
+    setUser((prevUser: User) => ({ ...prevUser, loginExpirationDate }))
+
+  return { updateName, updateEmail, updateRegion, updateLoginExpirationDate }
 }

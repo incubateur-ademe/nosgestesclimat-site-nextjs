@@ -45,6 +45,8 @@ export default function VerificationForm({
   async function handleValidateVerificationCode(
     event: React.FormEvent<HTMLInputElement>
   ) {
+    setInputError(undefined)
+
     const verificationCode = event.currentTarget.value
 
     if (isPendingValidate || isSuccessValidate) {

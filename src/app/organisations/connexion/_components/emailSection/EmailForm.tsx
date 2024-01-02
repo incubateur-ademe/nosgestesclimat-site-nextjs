@@ -11,7 +11,7 @@ import React from 'react'
 export default function EmailForm({ onComplete }: { onComplete: () => void }) {
   const [inputError, setInputError] = React.useState<string | undefined>()
 
-  const { updateEmail } = useUser()
+  const { user, updateEmail, updateLoginExpirationDate } = useUser()
 
   const { mutateAsync: loginOrganization } = useMutation({
     mutationFn: ({ ownerEmail }: { ownerEmail: string }) =>
@@ -48,25 +48,27 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
 
     // Try and login
     try {
-      const {
-        data: { expirationCode },
-      } = await loginOrganization({ ownerEmail: email })
-      console.log(expirationCode)
+      const { expirationDate } = await loginOrganization({ ownerEmail: email })
+
       // We update the email in the user state
       // along with the expiration date of the code
+      updateEmail(email)
+      updateLoginExpirationDate(expirationDate)
       onComplete()
     } catch (error: any) {
-      /*
       // If not possible, create the organization
       try {
-        await createOrganization({ ownerEmail: email })
+        const { expirationDate } = await createOrganization({
+          ownerEmail: email,
+        })
 
         updateEmail(email)
+        updateLoginExpirationDate(expirationDate)
+        onComplete()
       } catch (error: any) {
         setInputError(error.response.data.message)
         return
       }
-      */
     }
   }
 
@@ -78,6 +80,7 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
         placeholder="jeanmarc@nosgestesclimat.fr"
         required
         error={inputError}
+        defaultValue={user?.email}
       />
 
       <Button type="submit" className="mt-8">

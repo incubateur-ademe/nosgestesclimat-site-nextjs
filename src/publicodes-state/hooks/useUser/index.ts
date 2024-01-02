@@ -29,7 +29,8 @@ export default function useUser() {
     setGroupToRedirectToAfterTest,
   } = useContext(userContext)
 
-  const { updateName, updateEmail, updateRegion } = useUserDetails({ setUser })
+  const { updateName, updateEmail, updateRegion, updateLoginExpirationDate } =
+    useUserDetails({ setUser })
 
   const {
     initSimulation,
@@ -74,6 +75,10 @@ export default function useUser() {
      * A setter for updating the user current region
      */
     updateRegion,
+    /**
+     * A setter for updating the user login expiration date
+     */
+    updateLoginExpirationDate,
     /**
      * A list of all tutorials seen by the user (that we do not need to show)
      */
