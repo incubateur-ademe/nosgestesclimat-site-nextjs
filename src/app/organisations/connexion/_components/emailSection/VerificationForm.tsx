@@ -92,7 +92,7 @@ export default function VerificationForm({
         }
 
         router.push(`/organisations/mon-espace/${organization?.slug}`)
-      }, 1500)
+      }, 1000)
     } catch (err) {
       setInputError('Le code est invalide')
       return
@@ -160,7 +160,9 @@ export default function VerificationForm({
               container: 'container w-[20rem]',
               character: `border border-gray-300 rounded-lg w-[2rem] text-transparent font-medium ${
                 marianne.className
-              } ${inputError ? '!border-red-700 border-2' : ''}`,
+              } ${inputError ? '!border-red-700 border-2' : ''} ${
+                isSuccessValidate ? '!border-green-700 border-2' : ''
+              }`,
               characterInactive: 'text-transparent',
               characterSelected: 'character--selected',
               characterFilled: '!text-primary-500',
@@ -214,7 +216,7 @@ export default function VerificationForm({
           <Trans>Renvoyer le code</Trans>
         </button>
 
-        {timeLeft > 0 && (
+        {timeLeft > 0 && !isPendingValidate && !isSuccessValidate && (
           <p className="mt-2 text-sm text-gray-600">
             <Trans>Veuillez attendre</Trans> {timeLeft}{' '}
             <Trans>secondes avant de pouvoir recevoir un nouveau code</Trans>
