@@ -5,11 +5,11 @@ import PrivacyFr from '@/locales/pages/fr/privacy.mdx'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: 'Vie privée - Nos Gestes Climat',
+    title: 'Politique de confidentialité - Nos Gestes Climat',
     description:
       'Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.',
     alternates: {
-      canonical: '/vie-privee',
+      canonical: '/politique-de-confidentialite',
     },
   })
 }
