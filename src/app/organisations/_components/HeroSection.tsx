@@ -29,7 +29,7 @@ export default function HeroSection() {
         ? <Trans>Découvrez nos outils pour vous simplifier la vie !</Trans>
       </p>
 
-      <div className="flex flex-wrap gap-8">
+      <div className="flex flex-wrap items-baseline gap-8">
         <ButtonLink href="/organisations/connexion" size="lg">
           Commencez
         </ButtonLink>

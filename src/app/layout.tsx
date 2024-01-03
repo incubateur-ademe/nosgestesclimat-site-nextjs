@@ -13,7 +13,7 @@ import { ErrorFallback } from './_components/ErrorFallback'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 
-const marianne = localFont({
+export const marianne = localFont({
   src: [
     {
       path: '_fonts/Marianne-Thin.woff2',

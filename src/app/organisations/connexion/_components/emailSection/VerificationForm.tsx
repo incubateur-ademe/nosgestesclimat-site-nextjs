@@ -1,6 +1,6 @@
+import { marianne } from '@/app/layout'
 import Trans from '@/components/translation/Trans'
 import { SERVER_URL } from '@/constants/urls'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { useUser } from '@/publicodes-state'
@@ -9,6 +9,7 @@ import axios from 'axios'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
+import VerificationInput from 'react-verification-input'
 
 export default function VerificationForm({
   ownerEmail,
@@ -16,6 +17,15 @@ export default function VerificationForm({
   ownerEmail: string
 }) {
   const [inputError, setInputError] = useState<string | undefined>()
+  const [timeLeft, setTimeLeft] = useState(30)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft((prevTimeleft) => (prevTimeleft > 0 ? prevTimeleft - 1 : 0))
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [])
 
   const router = useRouter()
 
@@ -56,19 +66,14 @@ export default function VerificationForm({
         .then((response) => response.data),
   })
 
-  async function handleValidateVerificationCode(
-    event: React.FormEvent<HTMLInputElement>
-  ) {
+  async function handleValidateVerificationCode(verificationCode: string) {
     setInputError(undefined)
-
-    const verificationCode = event.currentTarget.value
 
     if (isPendingValidate || isSuccessValidate) {
       return
     }
 
     if (verificationCode.length !== 6) {
-      setInputError('Le code doit contenir 6 chiffres')
       return
     }
 
@@ -112,6 +117,10 @@ export default function VerificationForm({
       return
     }
 
+    if (timeLeft > 0) {
+      return
+    }
+
     await sendVerificationCode()
   }
 
@@ -141,17 +150,31 @@ export default function VerificationForm({
         </p>
 
         <form>
-          <TextInputGroup
-            name="code"
-            label={
-              <Trans>Entrez votre code de vérification pour continuer</Trans>
-            }
-            aria-disabled={isPendingValidate || isSuccessValidate}
-            className="bg-white text-2xl font-bold"
-            maxLength={6}
+          <label htmlFor="code" className="mb-4 block font-bold">
+            <Trans>Entrez votre code de vérification pour continuer</Trans>
+          </label>
+
+          <VerificationInput
+            length={6}
+            classNames={{
+              container: 'container w-[20rem]',
+              character: `border border-gray-300 rounded-lg w-[2rem] text-transparent font-medium ${
+                marianne.className
+              } ${inputError ? '!border-red-700 border-2' : ''}`,
+              characterInactive: 'text-transparent',
+              characterSelected: 'character--selected',
+              characterFilled: '!text-primary-500',
+            }}
             onChange={handleValidateVerificationCode}
-            error={inputError}
           />
+
+          {inputError && (
+            <div>
+              <p className="mt-2 text-sm text-red-700">
+                <Trans>Le code est invalide</Trans>
+              </p>
+            </div>
+          )}
 
           {isPendingValidate && (
             <div className="mt-2 flex items-baseline gap-2 pl-2 text-xs">
@@ -183,12 +206,20 @@ export default function VerificationForm({
             isPendingValidate ||
             isSuccessValidate ||
             isPendingResend ||
-            isSuccessResend
+            isSuccessResend ||
+            timeLeft > 0
           }
           onClick={handleResendVerificationCode}
           className="text-primary-700 underline">
           <Trans>Renvoyer le code</Trans>
         </button>
+
+        {timeLeft > 0 && (
+          <p className="mt-2 text-sm text-gray-600">
+            <Trans>Veuillez attendre</Trans> {timeLeft}{' '}
+            <Trans>secondes avant de pouvoir recevoir un nouveau code</Trans>
+          </p>
+        )}
       </div>
     </div>
   )

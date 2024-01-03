@@ -8,7 +8,7 @@ import VerificationForm from './emailSection/VerificationForm'
 
 export default function EmailSection() {
   const { user } = useUser()
-
+  console.log(user)
   const hasSavedValidLoginExpirationDate = user?.loginExpirationDate
     ? dayjs(user?.loginExpirationDate).isAfter(dayjs())
     : false
