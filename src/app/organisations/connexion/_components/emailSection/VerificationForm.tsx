@@ -86,7 +86,7 @@ export default function VerificationForm({
           return
         }
 
-        router.push(`/organisations/${organization?.slug}`)
+        router.push(`/organisations/mon-espace/${organization?.slug}`)
       }, 1500)
     } catch (err) {
       setInputError('Le code est invalide')

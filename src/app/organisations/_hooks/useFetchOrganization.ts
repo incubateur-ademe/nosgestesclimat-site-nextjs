@@ -2,11 +2,27 @@ import { SERVER_URL } from '@/constants/urls'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
-export default function useFetchOrganization(slug: string) {
+export default function useFetchOrganization({
+  slug,
+  ownerEmail,
+}: {
+  slug: string
+  ownerEmail: string
+}) {
   return useQuery({
-    queryKey: ['organization'],
+    queryKey: ['organization', slug, ownerEmail],
     queryFn: () =>
-      axios.get(`${SERVER_URL}/organizations/${slug}`).then((res) => res.data),
-    enabled: !!slug,
+      axios
+        .post(
+          `${SERVER_URL}/organizations/fetch-organization/${slug}`,
+          {
+            ownerEmail,
+          },
+          {
+            withCredentials: true,
+          }
+        )
+        .then((res) => res.data),
+    enabled: !!slug && !!ownerEmail,
   })
 }

@@ -92,7 +92,7 @@ export default function CreationPage() {
         hasOptedInForCommunications,
       })
 
-      router.push(`/organisations/dashboard/${organizationUpdated?.slug}`)
+      router.push(`/organisations/mon-espace/${organizationUpdated?.slug}`)
     } catch (error: any) {
       console.error(error)
     }
