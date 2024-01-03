@@ -26,11 +26,13 @@ export default function CreationPage() {
       axios.post(`${SERVER_URL}/organizations/validate-jwt`, {
         ownerEmail: user?.email,
       }),
+    enabled: !!user?.email,
   })
 
   const { mutateAsync: updateOrganization } = useMutation({
     mutationFn: ({
       name,
+      slug,
       ownerName,
       position,
       telephone,
@@ -38,20 +40,23 @@ export default function CreationPage() {
       hasOptedInForCommunications,
     }: {
       name: string
+      slug: string
       ownerName: string
       position: string
       telephone: string
       numberOfParticipants: string
-      hasOptedInForCommunications: string
+      hasOptedInForCommunications: boolean
     }) =>
       axios
         .post(`${SERVER_URL}/organizations/update-after-creation`, {
           name,
+          slug,
           ownerName,
           position,
           telephone,
           numberOfParticipants,
           hasOptedInForCommunications,
+          ownerEmail: user?.email,
         })
         .then((response) => response.data),
   })
@@ -70,24 +75,16 @@ export default function CreationPage() {
     const telephone = data.get('telephone') as string
     const numberOfParticipants = data.get('numberOfParticipants') as string
 
-    const hasOptedInForCommunications = data.get(
+    const hasOptedInForCommunications = (data.get(
       'hasOptedInForCommunications'
-    ) as string
-
-    console.log({
-      name,
-      ownerName,
-      position,
-      telephone,
-      numberOfParticipants,
-      hasOptedInForCommunications,
-    })
-
-    return
+    ) as string)
+      ? true
+      : false
 
     try {
-      await updateOrganization({
+      const organizationUpdated = await updateOrganization({
         name,
+        slug,
         ownerName,
         position,
         telephone,
@@ -95,7 +92,7 @@ export default function CreationPage() {
         hasOptedInForCommunications,
       })
 
-      router.push(`/organisations/${slug}`)
+      router.push(`/organisations/dashboard/${organizationUpdated?.slug}`)
     } catch (error: any) {
       console.error(error)
     }
@@ -122,7 +119,7 @@ export default function CreationPage() {
           },
         ]}
       />
-      <section className="w-full bg-[#fff] ">
+      <section className="mt-6 w-full bg-[#fff]">
         <div className="mx-auto max-w-5xl px-6 py-8 lg:px-0">
           <Title
             title={<Trans>Bienvenue sur votre espace !</Trans>}
@@ -134,33 +131,41 @@ export default function CreationPage() {
               name="name"
               label={<Trans>Votre organisation</Trans>}
               required
+              className="mb-4"
             />
 
             <TextInputGroup
               name="ownerName"
               label={<Trans>Votre prénom</Trans>}
               required
+              className="mb-4"
             />
 
             <Separator />
 
-            <TextInputGroup name="position" label={<Trans>Votre rôle</Trans>} />
+            <TextInputGroup
+              name="position"
+              label={<Trans>Votre rôle</Trans>}
+              className="mb-4"
+            />
 
             <TextInputGroup
               type="telephone"
               name="telephone"
               label={<Trans>Téléphone</Trans>}
+              className="mb-4"
             />
 
             <TextInputGroup
               name="numberOfParticipants"
               type="number"
               label={<Trans>Nombre de participants (estimé)</Trans>}
+              className="mb-4"
             />
 
             <Separator />
 
-            <div className="w-[40rem]">
+            <div className="w-[32rem]">
               <CheckboxInputGroup
                 name="hasOptedInForCommunications"
                 label={
@@ -171,7 +176,7 @@ export default function CreationPage() {
                         Nos Gestes Climat aux organisations
                       </Trans>
                     </strong>{' '}
-                    (une fois par mois max. !)
+                    (une fois par mois maximum !)
                   </span>
                 }
               />
