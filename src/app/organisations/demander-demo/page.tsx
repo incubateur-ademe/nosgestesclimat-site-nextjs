@@ -4,9 +4,11 @@ import Trans from '@/components/translation/Trans'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import { usePathname } from 'next/navigation'
 import Script from 'next/script'
 
 export default function DemanderDemoPage() {
+  const pathname = usePathname()
   return (
     <>
       <Breadcrumbs
@@ -14,14 +16,17 @@ export default function DemanderDemoPage() {
           {
             href: '/',
             label: 'Accueil',
+            isActive: pathname === '/',
           },
           {
             href: '/organisations',
             label: 'Organisations',
+            isActive: pathname === '/organisations',
           },
           {
             href: '/organisations/demander-demo',
             label: 'Demander une démo',
+            isActive: pathname === '/organisations/demander-demo',
           },
         ]}
       />
