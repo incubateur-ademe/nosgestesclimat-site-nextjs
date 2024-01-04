@@ -14,11 +14,9 @@ export default function OrganizationPage() {
 
   const { user } = useUser()
 
-  const { data, isError } = useFetchOrganization({
+  const { data: organization, isError } = useFetchOrganization({
     ownerEmail: user.email,
   })
-
-  const { organization } = data || {}
 
   return (
     <>
@@ -66,7 +64,7 @@ export default function OrganizationPage() {
               subtitle={
                 <span>
                   <Trans>Sur l'espace organisation de </Trans>{' '}
-                  <strong className="text-primary-600">
+                  <strong className="!text-primary-600">
                     {organization?.name}
                   </strong>
                 </span>

@@ -16,7 +16,7 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
   const { mutateAsync: loginOrganization } = useMutation({
     mutationFn: ({ ownerEmail }: { ownerEmail: string }) =>
       axios
-        .post(`${SERVER_URL}/organizations`, {
+        .post(`${SERVER_URL}/organizations/login`, {
           ownerEmail,
         })
         .then((response) => response.data),

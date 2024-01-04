@@ -1,15 +1,14 @@
-import { marianne } from '@/app/layout'
+import useTimeLeft from '@/app/organisations/_hooks/useTimeleft'
+import useValidateVerificationCode from '@/app/organisations/_hooks/useValidateVerificationCode'
 import Trans from '@/components/translation/Trans'
 import { SERVER_URL } from '@/constants/urls'
-import Loader from '@/design-system/layout/Loader'
-import Emoji from '@/design-system/utils/Emoji'
 import { useUser } from '@/publicodes-state'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import VerificationInput from 'react-verification-input'
+import VerificationCodeInput from './verificationForm/VerificationCodeInput'
 
 export default function VerificationForm({
   ownerEmail,
@@ -17,15 +16,8 @@ export default function VerificationForm({
   ownerEmail: string
 }) {
   const [inputError, setInputError] = useState<string | undefined>()
-  const [timeLeft, setTimeLeft] = useState(30)
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeLeft((prevTimeleft) => (prevTimeleft > 0 ? prevTimeleft - 1 : 0))
-    }, 1000)
-
-    return () => clearInterval(interval)
-  }, [])
+  const timeLeft = useTimeLeft()
 
   const router = useRouter()
 
@@ -37,20 +29,8 @@ export default function VerificationForm({
     mutateAsync: validateVerificationCode,
     isPending: isPendingValidate,
     isSuccess: isSuccessValidate,
-  } = useMutation({
-    mutationFn: ({ verificationCode }: { verificationCode: string }) =>
-      axios
-        .post(
-          `${SERVER_URL}/organizations/validate-verification-code`,
-          {
-            ownerEmail,
-            verificationCode,
-          },
-          {
-            withCredentials: true,
-          }
-        )
-        .then((response) => response.data),
+  } = useValidateVerificationCode({
+    ownerEmail,
   })
 
   const {
@@ -69,16 +49,16 @@ export default function VerificationForm({
   async function handleValidateVerificationCode(verificationCode: string) {
     setInputError(undefined)
 
-    if (isPendingValidate || isSuccessValidate) {
-      return
-    }
-
-    if (verificationCode.length !== 6) {
+    if (
+      isPendingValidate ||
+      isSuccessValidate ||
+      verificationCode.length !== 6
+    ) {
       return
     }
 
     try {
-      const { organization } = await validateVerificationCode({
+      const organization = await validateVerificationCode({
         verificationCode,
       })
 
@@ -112,12 +92,9 @@ export default function VerificationForm({
       isPendingValidate ||
       isSuccessValidate ||
       isPendingResend ||
-      isSuccessResend
+      isSuccessResend ||
+      timeLeft > 0
     ) {
-      return
-    }
-
-    if (timeLeft > 0) {
       return
     }
 
@@ -154,49 +131,12 @@ export default function VerificationForm({
             <Trans>Entrez votre code de vérification pour continuer</Trans>
           </label>
 
-          <VerificationInput
-            length={6}
-            classNames={{
-              container: 'container w-[20rem]',
-              character: `border border-gray-300 rounded-lg w-[2rem] text-transparent font-medium ${
-                marianne.className
-              } ${inputError ? '!border-red-700 border-2' : ''} ${
-                isSuccessValidate ? '!border-green-700 border-2' : ''
-              }`,
-              characterInactive: 'text-transparent',
-              characterSelected: 'character--selected',
-              characterFilled: '!text-primary-500',
-            }}
-            onChange={handleValidateVerificationCode}
+          <VerificationCodeInput
+            inputError={inputError}
+            isSuccessValidate={isSuccessValidate}
+            isPendingValidate={isPendingValidate}
+            handleValidateVerificationCode={handleValidateVerificationCode}
           />
-
-          {inputError && (
-            <div>
-              <p className="mt-2 text-sm text-red-700">
-                <Trans>Le code est invalide</Trans>
-              </p>
-            </div>
-          )}
-
-          {isPendingValidate && (
-            <div className="mt-2 flex items-baseline gap-2 pl-2 text-xs">
-              <Loader color="dark" size="sm" />
-
-              <span>
-                <Trans>Nous vérifions votre code...</Trans>
-              </span>
-            </div>
-          )}
-
-          {isSuccessValidate && (
-            <div className="mt-4 flex items-baseline gap-2 pl-2 text-sm">
-              <Emoji>✅</Emoji>
-
-              <span className="text-green-700">
-                <Trans>Votre code est valide !</Trans>
-              </span>
-            </div>
-          )}
         </form>
 
         <p className="mt-12">
