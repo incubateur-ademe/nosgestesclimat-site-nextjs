@@ -6,17 +6,15 @@ import Loader from '@/design-system/layout/Loader'
 import Title from '@/design-system/layout/Title'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
-import { useParams, usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import useFetchOrganization from '../../_hooks/useFetchOrganization'
 
 export default function OrganizationPage() {
-  const params = useParams()
   const pathname = usePathname()
 
   const { user } = useUser()
 
-  const { data } = useFetchOrganization({
-    slug: params.slug as string,
+  const { data, isError } = useFetchOrganization({
     ownerEmail: user.email,
   })
 
@@ -43,7 +41,18 @@ export default function OrganizationPage() {
           },
         ]}
       />
+
       {!organization && <Loader />}
+
+      {isError && (
+        <p>
+          <Trans>
+            Oups, une erreur s'est produite au moment de récupérer vos données
+            d'organisation.
+          </Trans>
+        </p>
+      )}
+
       {organization && (
         <section className="mt-6 w-full bg-[#fff]">
           <div className="mx-auto max-w-5xl px-6 py-8 lg:px-0">

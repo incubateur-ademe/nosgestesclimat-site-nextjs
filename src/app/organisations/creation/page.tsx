@@ -1,17 +1,14 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { SERVER_URL } from '@/constants/urls'
-import Button from '@/design-system/inputs/Button'
-import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
-import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { useUser } from '@/publicodes-state'
-import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { usePathname, useRouter } from 'next/navigation'
+import useFetchOrganization from '../_hooks/useFetchOrganization'
+import { useUpdateOrganization } from '../_hooks/useUpdateOrganization'
+import CreationForm from './_components/CreationForm'
 
 axios.defaults.withCredentials = true
 
@@ -20,45 +17,12 @@ export default function CreationPage() {
 
   const { user } = useUser()
 
-  const { isError } = useQuery({
-    queryKey: ['organization-validate-jwt'],
-    queryFn: () =>
-      axios.post(`${SERVER_URL}/organizations/validate-jwt`, {
-        ownerEmail: user?.email,
-      }),
-    enabled: !!user?.email,
+  const { isError } = useFetchOrganization({
+    ownerEmail: user?.email,
   })
 
-  const { mutateAsync: updateOrganization } = useMutation({
-    mutationFn: ({
-      name,
-      slug,
-      ownerName,
-      position,
-      telephone,
-      numberOfParticipants,
-      hasOptedInForCommunications,
-    }: {
-      name: string
-      slug: string
-      ownerName: string
-      position: string
-      telephone: string
-      numberOfParticipants: string
-      hasOptedInForCommunications: boolean
-    }) =>
-      axios
-        .post(`${SERVER_URL}/organizations/update-after-creation`, {
-          name,
-          slug,
-          ownerName,
-          position,
-          telephone,
-          numberOfParticipants,
-          hasOptedInForCommunications,
-          ownerEmail: user?.email,
-        })
-        .then((response) => response.data),
+  const { mutateAsync: updateOrganization } = useUpdateOrganization({
+    ownerEmail: user?.email,
   })
 
   const router = useRouter()
@@ -126,66 +90,7 @@ export default function CreationPage() {
             subtitle={<Trans>Plus que quelques petites questions</Trans>}
           />
 
-          <form onSubmit={handleSubmit}>
-            <TextInputGroup
-              name="name"
-              label={<Trans>Votre organisation</Trans>}
-              required
-              className="mb-4"
-            />
-
-            <TextInputGroup
-              name="ownerName"
-              label={<Trans>Votre prénom</Trans>}
-              required
-              className="mb-4"
-            />
-
-            <Separator />
-
-            <TextInputGroup
-              name="position"
-              label={<Trans>Votre rôle</Trans>}
-              className="mb-4"
-            />
-
-            <TextInputGroup
-              type="telephone"
-              name="telephone"
-              label={<Trans>Téléphone</Trans>}
-              className="mb-4"
-            />
-
-            <TextInputGroup
-              name="numberOfParticipants"
-              type="number"
-              label={<Trans>Nombre de participants (estimé)</Trans>}
-              className="mb-4"
-            />
-
-            <Separator />
-
-            <div className="w-[32rem]">
-              <CheckboxInputGroup
-                name="hasOptedInForCommunications"
-                label={
-                  <span>
-                    <strong>
-                      <Trans>
-                        Recevoir ponctuellement par email les nouveaux services
-                        Nos Gestes Climat aux organisations
-                      </Trans>
-                    </strong>{' '}
-                    (une fois par mois maximum !)
-                  </span>
-                }
-              />
-            </div>
-
-            <Button type="submit" className="mt-12">
-              <Trans>Accéder à mon espace</Trans>
-            </Button>
-          </form>
+          <CreationForm onSubmit={handleSubmit} />
         </div>
       </section>
     </>

@@ -1,15 +1,13 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { SERVER_URL } from '@/constants/urls'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Main from '@/design-system/layout/Main'
 import Separator from '@/design-system/layout/Separator'
 import { useUser } from '@/publicodes-state'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import useFetchOrganization from '../_hooks/useFetchOrganization'
 import EmailSection from './_components/EmailSection'
 
 export default function Page() {
@@ -25,21 +23,8 @@ export default function Page() {
     isSuccess,
     isError,
     data: organization,
-  } = useQuery({
-    queryKey: ['organization-validate-jwt'],
-    queryFn: () =>
-      axios
-        .post(
-          `${SERVER_URL}/organizations/validate-jwt`,
-          {
-            ownerEmail: user?.email,
-          },
-          {
-            withCredentials: true,
-          }
-        )
-        .then((response) => response.data),
-    enabled: !!user?.email,
+  } = useFetchOrganization({
+    ownerEmail: user?.email,
   })
 
   // Redirect to the organization page if the user

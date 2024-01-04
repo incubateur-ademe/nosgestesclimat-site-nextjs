@@ -3,18 +3,16 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 export default function useFetchOrganization({
-  slug,
   ownerEmail,
 }: {
-  slug: string
   ownerEmail: string
 }) {
   return useQuery({
-    queryKey: ['organization', slug, ownerEmail],
+    queryKey: ['organization-validate-jwt'],
     queryFn: () =>
       axios
         .post(
-          `${SERVER_URL}/organizations/fetch-organization/${slug}`,
+          `${SERVER_URL}/organizations/validate-jwt`,
           {
             ownerEmail,
           },
@@ -22,7 +20,7 @@ export default function useFetchOrganization({
             withCredentials: true,
           }
         )
-        .then((res) => res.data),
-    enabled: !!slug && !!ownerEmail,
+        .then((response) => response.data),
+    enabled: !!ownerEmail,
   })
 }
