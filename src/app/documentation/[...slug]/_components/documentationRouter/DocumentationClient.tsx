@@ -10,7 +10,6 @@ import { SuppportedRegions } from '@/types/international'
 import Head from 'next/head'
 import Engine from 'publicodes'
 import { RulePage } from 'publicodes-react'
-import References from '../../../_components/References'
 
 type Props = {
   supportedRegions: SuppportedRegions
@@ -44,7 +43,6 @@ export default function DocumentationClient({ slugs }: Props) {
               )}
             </>
           ),
-          References: References as any,
         }}
       />
     </div>

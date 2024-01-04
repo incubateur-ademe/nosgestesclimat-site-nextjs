@@ -16,7 +16,6 @@ import Head from 'next/head'
 import Engine from 'publicodes'
 import { RulePage } from 'publicodes-react'
 import { useEffect, useMemo } from 'react'
-import References from './References'
 
 type Props = {
   supportedRegions: SuppportedRegions
@@ -74,7 +73,6 @@ export default function DocumentationClient({
               )}
             </>
           ),
-          References: References as any,
         }}
       />
     </>
