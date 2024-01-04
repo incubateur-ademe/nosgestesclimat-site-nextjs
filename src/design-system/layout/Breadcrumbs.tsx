@@ -1,19 +1,24 @@
+'use client'
+
 import Link from '@/components/Link'
+import { usePathname } from 'next/navigation'
 import { Fragment } from 'react'
 
 type Props = {
-  items: { href: string; label: string; isActive: boolean }[]
+  items: { href: string; label: string }[]
 }
 
 export default function Breadcrumbs({ items }: Props) {
+  const pathname = usePathname()
+
   return (
     <section className="h-[75px] w-full bg-grey-100">
       <nav className="mx-auto flex h-full max-w-5xl items-center gap-4 px-6 lg:px-0">
-        {items.map(({ href, label, isActive }, index) => (
+        {items.map(({ href, label }, index) => (
           <Fragment key={`breadcrumb-item-${index}`}>
             <Link
               className={`text-default ${
-                isActive ? '' : 'no-underline'
+                pathname === href ? '' : 'no-underline'
               } hover:text-default hover:underline`}
               href={href}>
               {label}

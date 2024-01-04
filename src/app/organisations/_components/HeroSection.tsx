@@ -34,7 +34,7 @@ export default function HeroSection() {
           Commencez
         </ButtonLink>
 
-        <InlineLink className="py-4" href="/contact?motif=demo">
+        <InlineLink className="py-4" href="/organisations/demander-demo">
           Demandez une démo
         </InlineLink>
       </div>

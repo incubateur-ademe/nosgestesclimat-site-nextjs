@@ -19,8 +19,8 @@ const illustratedPointsItems = [
     body: (
       <Trans>
         Créez une campagne Nos Gestes Climat personnalisée au sein de votre
-        organisation et accédez à une multitude de services sur mesure pour
-        aligner vos activités avec vos objectifs de durabilité.
+        organisation et accédez à des services sur mesure pour sensibiliser vos
+        partenaires au sein de votre organisation.
       </Trans>
     ),
     image: (
