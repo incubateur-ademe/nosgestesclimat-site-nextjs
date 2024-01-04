@@ -1,3 +1,5 @@
+import { getIsValidEmail } from '@/utils/getIsValidEmail'
+
 type ValidateFormProps = {
   prenom: string
   setErrorPrenom: (error: string) => void
@@ -18,12 +20,7 @@ export const validateForm = ({
     setErrorPrenom(t('Veuillez renseigner un prénom ou un pseudonyme.'))
     return false
   }
-  if (
-    email &&
-    !email.match(
-      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-    )
-  ) {
+  if (email && !getIsValidEmail(email)) {
     setErrorEmail(t('Veuillez renseigner un email valide.'))
     return false
   }

@@ -16,18 +16,6 @@ export default function FoldableMenu() {
               Profil
             </NavLink>
           </li>
-          {/*
-          // TODO : uncomment when organisations are ready
-          <li>
-            <NavLink
-              onClick={closeMenu}
-              href="https://sondages.nogestesclimat.fr"
-              shouldUseDefaultLink
-              icon={OrganisationIcon}>
-              Organisations
-            </NavLink>
-          </li>
-        */}
 
           <li>
             <div className="ml-2 h-[1px] w-4 bg-gray-400" />

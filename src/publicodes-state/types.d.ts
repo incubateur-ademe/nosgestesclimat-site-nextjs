@@ -22,6 +22,7 @@ export type User = {
   northStarRatings?: any // TODO: should be NorthStartType or something
   id: string
   hasSavedSimulation?: boolean
+  loginExpirationDate?: Date
 }
 
 export type Rules = any

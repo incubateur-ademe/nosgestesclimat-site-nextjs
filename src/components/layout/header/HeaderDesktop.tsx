@@ -65,16 +65,6 @@ export default function HeaderDesktop() {
             <NavLink href="/profil" icon={ProfileIcon} title={t('Profil')}>
               <Trans>Profil</Trans>
             </NavLink>
-            {/* TODO : uncomment when organisations are ready
-            <div className="mb-2 h-3 w-[1px] bg-gray-300" />
-
-            <NavLink
-              href="https://sondages.nosgestesclimat.fr"
-              shouldUseDefaultLink
-              icon={OrganisationIcon}>
-              Organisations
-            </NavLink>
-          */}
           </div>
         </div>
       </div>

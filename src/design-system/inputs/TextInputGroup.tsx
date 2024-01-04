@@ -13,6 +13,7 @@ type Props = {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   value?: string | number
   required?: boolean
+  maxLength?: number
 }
 
 export default function TextInputGroup({
@@ -29,7 +30,7 @@ export default function TextInputGroup({
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
   return (
-    <div className={`flex flex-col ${className}`} aria-live="polite">
+    <div className="flex flex-col" aria-live="polite">
       <label htmlFor={name}>
         <span
           className={`text-sm font-bold text-slate-900 ${
