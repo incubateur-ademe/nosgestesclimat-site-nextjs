@@ -71,7 +71,7 @@ export default function Footer({ className = '' }) {
             </p>
             <div className="flex flex-wrap gap-6">
               <InlineLink
-                href="/diffuser"
+                href="/organisations"
                 className="font-bold text-default no-underline hover:underline">
                 <Emoji className="mr-2">🏢</Emoji>
                 <Trans>Dans votre organisation</Trans>

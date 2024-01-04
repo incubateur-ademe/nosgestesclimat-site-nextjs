@@ -189,7 +189,7 @@ export default function VerificationForm({
           )}
 
           {isSuccessValidate && (
-            <div className="mt-2 flex items-baseline gap-2 pl-2 text-xs">
+            <div className="mt-4 flex items-baseline gap-2 pl-2 text-sm">
               <Emoji>✅</Emoji>
 
               <span className="text-green-700">

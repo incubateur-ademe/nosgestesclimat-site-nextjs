@@ -33,6 +33,7 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    setInputError(undefined)
 
     const input = event.currentTarget.elements.namedItem(
       'email'
@@ -82,6 +83,8 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
         error={inputError}
         defaultValue={user?.email}
       />
+
+      {inputError && <p className="mt-2 text-sm text-red-600">{inputError}</p>}
 
       <Button type="submit" className="mt-8">
         <Trans>Accéder à mon espace</Trans>

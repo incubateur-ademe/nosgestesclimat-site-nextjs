@@ -1,14 +1,61 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
+import { SERVER_URL } from '@/constants/urls'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Main from '@/design-system/layout/Main'
 import Separator from '@/design-system/layout/Separator'
-import { headers } from 'next/headers'
+import { useUser } from '@/publicodes-state'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { usePathname, useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import EmailSection from './_components/EmailSection'
 
 export default function Page() {
-  const headersList = headers()
+  const pathname = usePathname()
 
-  const pathname = headersList.get('next-url')
+  const { user } = useUser()
+
+  const router = useRouter()
+
+  // This should fail if the user has not received a
+  // valid token to access the organization
+  const {
+    isSuccess,
+    isError,
+    data: organization,
+  } = useQuery({
+    queryKey: ['organization-validate-jwt'],
+    queryFn: () =>
+      axios
+        .post(
+          `${SERVER_URL}/organizations/validate-jwt`,
+          {
+            ownerEmail: user?.email,
+          },
+          {
+            withCredentials: true,
+          }
+        )
+        .then((response) => response.data),
+    enabled: !!user?.email,
+  })
+
+  // Redirect to the organization page if the user
+  // is already logged in (has a valid cookie stored)
+  useEffect(() => {
+    if (isSuccess && organization) {
+      router.push(`/organisations/mon-espace/${organization?.slug}`)
+    }
+  }, [isSuccess, organization, router])
+
+  // Cookie is inexistent or invalid, we delete it
+  useEffect(() => {
+    if (isError) {
+      document.cookie = 'ngcjwt' + '=; Max-Age=0'
+    }
+  }, [isError])
 
   return (
     <Main>
