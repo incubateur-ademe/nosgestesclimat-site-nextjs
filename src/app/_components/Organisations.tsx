@@ -30,7 +30,7 @@ export default function Organisations() {
             </Trans>
           </p>
           <ButtonLink
-            href="/actions"
+            href="https://sondages.nosgestesclimat.fr/"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}>
             <Trans>Découvrir</Trans>
