@@ -16,6 +16,7 @@ type SimulationContextType = {
   safeEvaluate: (rule: string) => NGCEvaluatedNode | null
   situation: Situation
   updateSituation: (situationToAdd: Situation) => Promise<void>
+  updateProgression: (progression: number) => void
   foldedSteps: string[]
   addFoldedStep: (foldedStep: string) => void
   everyRules: string[]
@@ -34,6 +35,7 @@ export default createContext<SimulationContextType>({
   safeEvaluate: () => null,
   situation: {},
   updateSituation: () => Promise.resolve(),
+  updateProgression: () => Promise.resolve(),
   foldedSteps: [],
   addFoldedStep: () => '',
   everyRules: [],

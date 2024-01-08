@@ -1,9 +1,10 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 
 type Props = {
   categories: string[]
   remainingQuestions: string[]
   relevantQuestions: string[]
+  updateProgression: (progression: number) => void
 }
 
 /**
@@ -15,6 +16,7 @@ export default function useProgression({
   categories,
   remainingQuestions,
   relevantQuestions,
+  updateProgression,
 }: Props) {
   const progression = useMemo(
     () =>
@@ -38,6 +40,11 @@ export default function useProgression({
       ),
     [remainingQuestions, categories]
   )
+
+  // Updates the progression stored in the user object / hook
+  useEffect(() => {
+    updateProgression(progression)
+  }, [progression, updateProgression])
 
   return {
     progression,

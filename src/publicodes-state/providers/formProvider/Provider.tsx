@@ -24,6 +24,7 @@ export default function FormProvider({
     foldedSteps,
     everyQuestions,
     everyMosaicChildren,
+    updateProgression,
   } = useContext(simulationContext)
 
   const {
@@ -47,6 +48,7 @@ export default function FormProvider({
     categories,
     remainingQuestions,
     relevantQuestions,
+    updateProgression,
   })
 
   const {

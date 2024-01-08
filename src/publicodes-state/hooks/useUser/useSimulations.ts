@@ -1,6 +1,6 @@
 'use client'
 
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useCallback } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { ActionChoices, Simulation, Situation } from '../../types'
 
@@ -141,12 +141,38 @@ export default function useSimulations({
       (simulation: Simulation) => simulation.id === currentSimulationId
     )
 
+  const updateProgressionOfCurrentSimulation = useCallback(
+    (progression: number) => {
+      if (currentSimulationId) {
+        setSimulations((prevSimulations: Simulation[]) => {
+          const simulationUpdated = prevSimulations.find(
+            (simulation: Simulation) => simulation.id === currentSimulationId
+          )
+
+          if (!simulationUpdated) return prevSimulations
+
+          return [
+            ...prevSimulations.filter(
+              (simulation: Simulation) => simulation.id !== currentSimulationId
+            ),
+            {
+              ...simulationUpdated,
+              progression,
+            },
+          ]
+        })
+      }
+    },
+    [currentSimulationId, setSimulations]
+  )
+
   return {
     simulations,
     currentSimulation: getCurrentSimulation(),
     getCurrentSimulation,
     currentSimulationId,
     updateSituationOfCurrentSimulation,
+    updateProgressionOfCurrentSimulation,
     updateFoldedStepsOfCurrentSimulation,
     updateCurrentSimulationActionChoices,
     initSimulation,

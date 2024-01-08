@@ -27,6 +27,10 @@ type Props = {
    */
   updateSituation: (situation: Situation) => void
   /**
+   * A function to update the progression of the current simulation of the user in the user object returned by the useUser hook
+   */
+  updateProgression: (progression: number) => void
+  /**
    * Every answered questions of the current simulation
    */
   foldedSteps: string[]
@@ -50,6 +54,7 @@ export default function SimulationProvider({
   defaultSituation,
   situation: externalSituation,
   updateSituation: updateExternalSituation,
+  updateProgression,
   foldedSteps,
   addFoldedStep,
   categoryOrder,
@@ -90,6 +95,7 @@ export default function SimulationProvider({
         safeEvaluate,
         situation,
         updateSituation,
+        updateProgression,
         foldedSteps,
         //TODO: should clean a bit
         addFoldedStep: (foldedStep) => {
