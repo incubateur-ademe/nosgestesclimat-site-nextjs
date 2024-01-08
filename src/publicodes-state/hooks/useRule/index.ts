@@ -1,7 +1,6 @@
 'use client'
 
 import useQuestionsOfMosaic from '@/publicodes-state/hooks/useRule/useQuestionsOfMosaic'
-import { captureException } from '@sentry/react'
 import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import simulationContext from '../../providers/simulationProvider/context'
@@ -41,12 +40,6 @@ export default function useRule(dottedName: string) {
     () => safeGetRule(dottedName),
     [dottedName, safeGetRule]
   )
-
-  if (!rule) {
-    captureException(
-      new Error(`Error in useRule while parsing rule: ${dottedName}`)
-    )
-  }
 
   const { type } = useType({
     dottedName,
