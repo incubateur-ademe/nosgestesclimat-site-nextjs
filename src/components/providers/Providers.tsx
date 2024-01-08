@@ -32,9 +32,9 @@ export default function Providers({
 
   const pathname = usePathname()
 
-  const { data: rules, isLoading } = useRules({
+  const { data: rules, isInitialLoading } = useRules({
     lang,
-    region: supportedRegions?.[user.region?.code] ? user.region.code : 'FR',
+    region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
     isOptim: isOptim,
   })
 
@@ -44,7 +44,7 @@ export default function Providers({
     }
   }, [currentSimulationId, initSimulation])
 
-  return currentSimulationId && !isLoading ? (
+  return currentSimulationId && !isInitialLoading ? (
     <SimulationProvider
       key={currentSimulationId}
       rules={rules}
@@ -53,12 +53,11 @@ export default function Providers({
       foldedSteps={getCurrentSimulation()?.foldedSteps || []}
       addFoldedStep={updateFoldedStepsOfCurrentSimulation}
       categoryOrder={orderedCategories}>
-      {pathname !== '/tutoriel' && (
-        <LocalisationBanner supportedRegions={supportedRegions} />
-      )}
-
+      <LocalisationBanner supportedRegions={supportedRegions} />
       {children}
     </SimulationProvider>
+  ) : pathname === '/tutoriel' ? (
+    children
   ) : (
     <div className="flex flex-1 items-center justify-center">
       <Loader color="dark" />
