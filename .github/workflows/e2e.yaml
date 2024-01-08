@@ -66,4 +66,5 @@ jobs:
           spec: cypress/e2e/integration/**/*.cy.js
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          SERVER_URL: ${{ secrets.SERVER_URL }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
