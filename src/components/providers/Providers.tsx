@@ -25,6 +25,7 @@ export default function Providers({
     currentSimulationId,
     initSimulation,
     updateSituationOfCurrentSimulation,
+    updateProgressionOfCurrentSimulation,
     updateFoldedStepsOfCurrentSimulation,
   } = useUser()
 
@@ -50,6 +51,7 @@ export default function Providers({
       rules={rules}
       situation={getCurrentSimulation()?.situation || {}}
       updateSituation={updateSituationOfCurrentSimulation}
+      updateProgression={updateProgressionOfCurrentSimulation}
       foldedSteps={getCurrentSimulation()?.foldedSteps || []}
       addFoldedStep={updateFoldedStepsOfCurrentSimulation}
       categoryOrder={orderedCategories}>
