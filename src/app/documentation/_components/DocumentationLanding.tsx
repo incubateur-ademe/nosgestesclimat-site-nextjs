@@ -7,8 +7,8 @@ import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
 
 import Link from '@/components/Link'
-import DocumentationLandingCard from './DocumentationLandingCard'
 import SearchBar from './SearchBar'
+import DocumentationLandingCard from './documentationLanding/DocumentationLandingCard'
 
 // We want to be able to define an order for the cards and their summary here
 const FIXED_CARD_SUMMARIES = {
