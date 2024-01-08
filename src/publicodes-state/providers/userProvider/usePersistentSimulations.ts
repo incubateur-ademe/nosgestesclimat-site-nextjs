@@ -5,9 +5,9 @@ import { Simulation } from '../../types'
 type Props = {
   storageKey: string
 }
+
 export default function usePersistentSimulations({ storageKey }: Props) {
   const [initialized, setInitialized] = useState<boolean>(false)
-
   const [simulations, setSimulations] = useState<Simulation[]>([])
   const [currentSimulationId, setCurrentSimulationId] = useState<string>('')
   const [groupToRedirectToAfterTest, setGroupToRedirectToAfterTest] =
@@ -22,7 +22,9 @@ export default function usePersistentSimulations({ storageKey }: Props) {
         .currentSimulationId || ''
 
     setSimulations(storedSimulations)
+
     setCurrentSimulationId(storedCurrentSimulation)
+
     setInitialized(true)
   }, [storageKey])
 
