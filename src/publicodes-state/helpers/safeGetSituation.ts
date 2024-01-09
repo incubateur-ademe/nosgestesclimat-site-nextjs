@@ -1,5 +1,5 @@
 import { Situation } from '../types'
-import { dottedNamesMigration } from './dottedNamesMigration'
+import { dottedNamesMigration } from '@/constants/dottedNamesMigration'
 
 export const safeGetSituation = ({
   situation,
