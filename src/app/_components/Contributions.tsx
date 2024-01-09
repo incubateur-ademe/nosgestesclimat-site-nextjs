@@ -26,12 +26,16 @@ export default function Contributions() {
             href="/nouveautes"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
-            className="flex-1 flex-row items-center gap-4 py-8 md:flex-col"
+            className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="nouveautes-link">
             <Emoji className="text-3xl">🔍</Emoji>
             <p className="mb-0">
               <Trans>
-                Le code source est ouvert, le site est amélioré régulièrement.
+                Le{' '}
+                <span className="text-primary-500 underline">
+                  code source est ouvert
+                </span>
+                , le site est amélioré régulièrement.
               </Trans>
             </p>
           </Card>
@@ -40,13 +44,16 @@ export default function Contributions() {
             href="/documentation"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
-            className="flex-1 flex-row items-center gap-4 py-8 md:flex-col"
+            className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="documentation-link">
             <Emoji className="text-3xl">👀</Emoji>
             <p className="mb-0">
               <Trans>
-                L'intégralité du calcul est documenté en ligne pour les curieux
-                et les experts.
+                L'intégralité du{' '}
+                <span className="text-primary-500 underline">
+                  calcul est documenté en ligne
+                </span>{' '}
+                pour les curieux et les experts.
               </Trans>
             </p>
           </Card>
@@ -55,13 +62,15 @@ export default function Contributions() {
             href="/contact"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
-            className="flex-1 flex-row items-center gap-4 py-8 md:flex-col"
+            className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="contact-link">
             <Emoji className="text-3xl">🖋️</Emoji>
             <p className="mb-0">
               <Trans>
-                Une idée&#8239;? Une correction&#8239;? Une remarque&#8239;?
-                Toute contribution est la bienvenue&#8239;!
+                Une idée&#8239;? Une correction&#8239;? Une remarque&#8239;?{' '}
+                <span className="text-primary-500 underline">
+                  Toute contribution est la bienvenue&#8239;!
+                </span>
               </Trans>
             </p>
           </Card>

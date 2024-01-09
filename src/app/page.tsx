@@ -1,3 +1,4 @@
+import Footer from '@/components/layout/Footer'
 import Main from '@/design-system/layout/Main'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Actions from './_components/Actions'
@@ -21,15 +22,19 @@ export async function generateMetadata() {
 
 export default function Homepage() {
   return (
-    <Main>
-      <Heading />
-      <div className="mx-auto mb-12 flex w-full max-w-5xl flex-col flex-wrap items-center gap-12 px-4 md:mb-20 md:flex-row md:items-start md:px-8 lg:gap-28">
-        <Amis />
-        <Actions />
-      </div>
-      <Organisations />
-      <Explanations />
-      <Contributions />
-    </Main>
+    <>
+      {' '}
+      <Main>
+        <Heading />
+        <div className="mx-auto mb-12 flex w-full max-w-5xl flex-col flex-wrap items-center gap-12 px-4 md:mb-20 md:flex-row md:items-start md:px-8 lg:gap-28">
+          <Amis />
+          <Actions />
+        </div>
+        <Organisations />
+        <Explanations />
+        <Contributions />
+      </Main>
+      <Footer />
+    </>
   )
 }
