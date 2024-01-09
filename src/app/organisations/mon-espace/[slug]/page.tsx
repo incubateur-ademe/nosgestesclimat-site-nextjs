@@ -4,11 +4,11 @@ import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Loader from '@/design-system/layout/Loader'
-import Title from '@/design-system/layout/Title'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { usePathname } from 'next/navigation'
 import useFetchOrganization from '../../_hooks/useFetchOrganization'
+import OrgaStatistics from './_components/OrgaStatistics'
 
 export default function OrganizationPage() {
   const pathname = usePathname()
@@ -59,24 +59,28 @@ export default function OrganizationPage() {
               </ButtonLink>
             </>
           )}
+
           {organization && (
             <>
-              <Title
-                title={
-                  <span>
-                    <Trans>Bienvenue</Trans>{' '}
-                    {capitalizeString(organization?.owner?.name)} ,
-                  </span>
-                }
-                subtitle={
-                  <span>
-                    <Trans>Sur l'espace organisation de </Trans>{' '}
-                    <strong className="!text-primary-600">
-                      {organization?.name}
-                    </strong>
-                  </span>
-                }
-              />
+              <h1>
+                <span>
+                  <Trans>Bienvenue</Trans>{' '}
+                  {capitalizeString(organization?.owner?.name)} ,
+                </span>
+              </h1>
+
+              <p>
+                <Trans>Sur l'espace organisation de </Trans>{' '}
+                <strong className="!text-primary-600">
+                  {organization?.name}
+                </strong>
+                .{' '}
+                <Trans>
+                  Partagez le test à votre réseau et suivez vos statistiques.
+                </Trans>
+              </p>
+
+              <OrgaStatistics />
             </>
           )}
         </div>
