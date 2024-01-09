@@ -148,28 +148,34 @@ export default function VerificationForm({
           />
         </form>
 
-        <p className="mt-12">
-          <Trans>Vous n'avez pas reçu d'e-mail ?</Trans>
-        </p>
+        {isSuccessValidate && (
+          <>
+            <p className="mt-12">
+              <Trans>Vous n'avez pas reçu d'e-mail ?</Trans>
+            </p>
 
-        <button
-          aria-disabled={isRetryButtonDisabled}
-          aria-label={
-            isRetryButtonDisabled
-              ? t('Renvoyer le code, désactivé pendant 30 secondes')
-              : ''
-          }
-          onClick={handleResendVerificationCode}
-          className="text-primary-700 underline">
-          {isRetryButtonDisabled && <Emoji>🔒</Emoji>}{' '}
-          <Trans>Renvoyer le code</Trans>
-        </button>
+            <button
+              aria-disabled={isRetryButtonDisabled}
+              aria-label={
+                isRetryButtonDisabled
+                  ? t('Renvoyer le code, désactivé pendant 30 secondes')
+                  : ''
+              }
+              onClick={handleResendVerificationCode}
+              className="text-primary-700 underline">
+              {isRetryButtonDisabled && <Emoji>🔒</Emoji>}{' '}
+              <Trans>Renvoyer le code</Trans>
+            </button>
 
-        {timeLeft > 0 && !isPendingValidate && !isSuccessValidate && (
-          <p className="mt-2 text-sm text-gray-600">
-            <Trans>Veuillez attendre</Trans> {timeLeft}{' '}
-            <Trans>secondes avant de pouvoir recevoir un nouveau code</Trans>
-          </p>
+            {timeLeft > 0 && !isPendingValidate && !isSuccessValidate && (
+              <p className="mt-2 text-sm text-gray-600">
+                <Trans>Veuillez attendre</Trans> {timeLeft}{' '}
+                <Trans>
+                  secondes avant de pouvoir recevoir un nouveau code
+                </Trans>
+              </p>
+            )}
+          </>
         )}
       </div>
     </div>

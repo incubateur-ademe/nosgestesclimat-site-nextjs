@@ -12,7 +12,7 @@ export default function useFetchOrganization({
     queryFn: () =>
       axios
         .post(
-          `${SERVER_URL}/organizations/validate-jwt`,
+          `${SERVER_URL}/organizations/fetch-organization`,
           {
             ownerEmail,
           },
