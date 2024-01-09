@@ -54,6 +54,7 @@ export default function Providers({
       updateProgression={updateProgressionOfCurrentSimulation}
       foldedSteps={getCurrentSimulation()?.foldedSteps || []}
       addFoldedStep={updateFoldedStepsOfCurrentSimulation}
+      shouldAlwaysDisplayChildren={pathname === '/tutoriel'}
       categoryOrder={orderedCategories}>
       <LocalisationBanner supportedRegions={supportedRegions} />
       {children}
