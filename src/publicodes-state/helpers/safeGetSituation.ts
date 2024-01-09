@@ -1,4 +1,5 @@
 import { dottedNamesMigration } from '@/constants/dottedNamesMigration'
+import { captureException } from '@sentry/react'
 import { Situation } from '../types'
 
 export const safeGetSituation = ({
@@ -12,6 +13,11 @@ export const safeGetSituation = ({
     (dottedName) => {
       // We check if the dotteName is a rule of the model
       if (!everyRules.includes(dottedName)) {
+        const error = new Error(
+          `Error trying to use ${dottedName} from the user situation: the rule doesn't exist in the model`
+        )
+        console.warn(error)
+        captureException(error)
         return true
       }
       // We check if the value from a mutliple choices question `dottedName`
@@ -23,6 +29,11 @@ export const safeGetSituation = ({
         situation[dottedName] !== 'non' &&
         !everyRules.includes(`${dottedName} . ${situation[dottedName]}`)
       ) {
+        const error = new Error(
+          `Error trying to use ${dottedName} answer from the user situation: ${situation[dottedName]} doesn't exist in the model`
+        )
+        console.warn(error)
+        captureException(error)
         return true
       }
     }
