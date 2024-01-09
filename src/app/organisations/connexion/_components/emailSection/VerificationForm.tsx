@@ -148,7 +148,7 @@ export default function VerificationForm({
           />
         </form>
 
-        {isSuccessValidate && (
+        {!isSuccessValidate && (
           <>
             <p className="mt-12">
               <Trans>Vous n'avez pas reçu d'e-mail ?</Trans>
