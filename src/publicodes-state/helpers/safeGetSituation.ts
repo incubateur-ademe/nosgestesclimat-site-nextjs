@@ -35,9 +35,8 @@ export const safeGetSituation = ({
     // We check if the non supported dottedName is a key to migrate.
     // Ex: "logement . chauffage . bois . type . bûche . consommation": "xxx" which is now ""logement . chauffage . bois . type . bûches . consommation": "xxx"
     if (Object.keys(dottedNamesMigration.key).includes(dottedName)) {
-      delete Object.assign(filteredSituation, {
-        [dottedNamesMigration.key[dottedName]]: situationValue,
-      })[dottedName]
+      filteredSituation[dottedNamesMigration.key[dottedName]] = situationValue
+      delete filteredSituation[dottedName]
     } else if (
       // We check if the value of the non supported dottedName value is a value to migrate.
       // Ex: answer "logement . chauffage . bois . type": "bûche" changed to "bûches"
