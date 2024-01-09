@@ -28,7 +28,7 @@ export const safeGetSituation = ({
     }
   )
 
-  const filteredSituation = situation
+  const filteredSituation = { ...situation }
 
   unsupportedDottedNamesFromSituation.map((dottedName: string) => {
     const situationValue = situation[dottedName] as string
