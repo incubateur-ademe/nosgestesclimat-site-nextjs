@@ -2,6 +2,8 @@ import useTimeLeft from '@/app/organisations/_hooks/useTimeleft'
 import useValidateVerificationCode from '@/app/organisations/_hooks/useValidateVerificationCode'
 import Trans from '@/components/translation/Trans'
 import { SERVER_URL } from '@/constants/urls'
+import Emoji from '@/design-system/utils/Emoji'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
@@ -17,7 +19,9 @@ export default function VerificationForm({
 }) {
   const [inputError, setInputError] = useState<string | undefined>()
 
-  const timeLeft = useTimeLeft()
+  const { t } = useClientTranslation()
+
+  const { timeLeft, setTimeLeft } = useTimeLeft()
 
   const router = useRouter()
 
@@ -99,7 +103,12 @@ export default function VerificationForm({
     }
 
     await sendVerificationCode()
+
+    setTimeLeft(30)
   }
+
+  const isRetryButtonDisabled =
+    isPendingValidate || isSuccessValidate || isPendingResend || timeLeft > 0
 
   return (
     <div className="flex gap-8 rounded-lg bg-grey-100 p-8">
@@ -144,15 +153,15 @@ export default function VerificationForm({
         </p>
 
         <button
-          aria-disabled={
-            isPendingValidate ||
-            isSuccessValidate ||
-            isPendingResend ||
-            isSuccessResend ||
-            timeLeft > 0
+          aria-disabled={isRetryButtonDisabled}
+          aria-label={
+            isRetryButtonDisabled
+              ? t('Renvoyer le code, désactivé pendant 30 secondes')
+              : ''
           }
           onClick={handleResendVerificationCode}
           className="text-primary-700 underline">
+          {isRetryButtonDisabled && <Emoji>🔒</Emoji>}{' '}
           <Trans>Renvoyer le code</Trans>
         </button>
 

@@ -11,5 +11,5 @@ export default function useTimeLeft() {
     return () => clearInterval(interval)
   }, [])
 
-  return timeLeft
+  return { timeLeft, setTimeLeft }
 }
