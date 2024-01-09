@@ -10,5 +10,6 @@ export const dottedNamesMigration: migrationType = {
   },
   value: {
     'logement . chauffage . bois . type': { "'bûche'": 'bûches' },
+    'transport . boulot . commun . type': { "'vélo'": '' },
   },
 }

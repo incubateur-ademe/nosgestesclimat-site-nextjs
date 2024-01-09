@@ -1,3 +1,4 @@
+import { Group } from '@/types/groups'
 import {
   EvaluatedNode,
   Evaluation,
@@ -76,6 +77,14 @@ export type Persona = {
   description?: string
   résumé: string
 }
+
+export type LocalStorage = {
+  user: User
+  tutorials: Tutorials
+  simulations: Simulation[]
+  currentSimulationId: string
+  groupToRedirectToAfterTest?: Group
+} | null
 
 type Color = `#${string}`
 

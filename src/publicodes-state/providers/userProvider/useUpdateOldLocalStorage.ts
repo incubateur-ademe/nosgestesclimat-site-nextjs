@@ -1,8 +1,12 @@
+import { dottedNamesMigration } from '@/constants/dottedNamesMigration'
+import { LocalStorage } from '@/publicodes-state/types'
+import { Simulation } from '@/types/simulation'
 import { useEffect } from 'react'
 
 type Props = {
   storageKey: string
 }
+
 export default function useUpdateOldLocalStorage({ storageKey }: Props) {
   useEffect(() => {
     const oldLocalStorage = localStorage.getItem(
@@ -17,5 +21,39 @@ export default function useUpdateOldLocalStorage({ storageKey }: Props) {
     ) {
       localStorage.setItem(storageKey, oldLocalStorage)
     }
+  }, [storageKey])
+
+  useEffect(() => {
+    const currentLocalStorage: LocalStorage = JSON.parse(
+      localStorage.getItem(storageKey) || '{}'
+    )
+    const filteredLocalStorage: LocalStorage = { ...currentLocalStorage }
+    const simulations = filteredLocalStorage?.simulations
+
+    simulations?.map((simulation: Simulation) => {
+      const situation = simulation.situation
+      Object.entries(situation).map(([dottedName, value]) => {
+        // We check if the non supported dottedName is a key to migrate.
+        // Ex: "logement . chauffage . bois . type . bûche . consommation": "xxx" which is now ""logement . chauffage . bois . type . bûches . consommation": "xxx"
+        if (Object.keys(dottedNamesMigration.key).includes(dottedName)) {
+          situation[dottedNamesMigration.key[dottedName]] = value
+          delete situation[dottedName]
+        }
+        if (
+          // We check if the value of the non supported dottedName value is a value to migrate.
+          // Ex: answer "logement . chauffage . bois . type": "bûche" changed to "bûches"
+          Object.keys(dottedNamesMigration.value).includes(dottedName) &&
+          Object.keys(dottedNamesMigration.value[dottedName]).includes(value)
+        ) {
+          if (dottedNamesMigration.value[dottedName][value] !== '') {
+            situation[dottedName] =
+              dottedNamesMigration.value[dottedName][value]
+          } else {
+            delete situation[dottedName]
+          }
+        }
+      })
+    })
+    localStorage.setItem(storageKey, JSON.stringify(filteredLocalStorage))
   }, [storageKey])
 }
