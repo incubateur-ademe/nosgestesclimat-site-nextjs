@@ -6,7 +6,7 @@ type Props = {
   onClick: MouseEventHandler<HTMLButtonElement>
   className?: string
   size?: ButtonSize
-  color?: 'primary' | 'secondary' | 'text'
+  color?: 'primary' | 'secondary' | 'text' | 'link'
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   id?: string
@@ -19,12 +19,13 @@ export const colorClassNames = {
   secondary:
     'border-solid border-primary-500 border-2 text-primary-500 bg-transparent shadow-sm hover:text-primary-700 hover:bg-primary-200 hover:border-primary-700',
   text: 'text-primary-500 bg-transparent border-2 border-transparent shadow-none hover:bg-primary-200 hover:text-primary-700 hover:border-primary-200',
+  link: 'text-primary-500 bg-transparent border-2 border-transparent shadow-none hover:text-primary-700 underline !px-0',
 }
 
 export const sizeClassNames = {
   sm: 'px-2 py-1 text-sm',
-  md: 'px-4 py-4 text-base',
-  lg: 'px-8 py-4 text-lg',
+  md: 'p-3 md:px-4 md:py-4 text-sm',
+  lg: 'px-6 py-4 md:px-8 md:py-4 text-base md:text-lg',
   xl: 'px-10 py-6 text-2xl',
 }
 

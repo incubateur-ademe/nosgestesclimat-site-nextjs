@@ -15,10 +15,7 @@ export default function AccordionItemWithRule({
 }) {
   const { title, icons, numericValue } = useRule(dottedName)
 
-  const percentageOfTotalValue =
-    (1 - (maxValue - numericValue) / maxValue) * 0.9
-
-  const isReadOnly = dottedName === 'services sociétaux'
+  const percentageOfTotalValue = numericValue / maxValue
 
   return (
     <AccordionItem
@@ -27,11 +24,7 @@ export default function AccordionItemWithRule({
           <div className="flex min-w-[11rem] items-center gap-2">
             <Emoji>{icons}</Emoji>{' '}
             <p
-              className={`mb-0 ${
-                isReadOnly
-                  ? ''
-                  : 'underline decoration-dotted underline-offset-4'
-              }`}>
+              className={`mb-0 underline decoration-dotted underline-offset-4`}>
               {title}
             </p>
           </div>
@@ -48,7 +41,6 @@ export default function AccordionItemWithRule({
       icons={icons || ''}
       dottedName={dottedName}
       content={<SubcategoriesList category={dottedName} />}
-      isReadOnly={isReadOnly}
     />
   )
 }

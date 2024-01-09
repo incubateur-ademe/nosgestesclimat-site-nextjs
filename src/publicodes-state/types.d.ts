@@ -2,8 +2,11 @@ import {
   EvaluatedNode,
   Evaluation,
   Engine as PublicodesEngine,
+  Rule,
   RuleNode,
 } from 'publicodes'
+
+export type DottedName = string
 
 export type User = {
   region: {
@@ -25,7 +28,7 @@ export type Rules = any
 
 export type Tutorials = Record<string, boolean>
 
-export type Situation = Record<string, NodeValue>
+export type Situation = Record<DottedName, NodeValue>
 
 export type Suggestion = {
   label: string
@@ -43,7 +46,7 @@ export type NGCRuleNode = RuleNode & {
   rawNode: NGCRule
 }
 
-export type NGCRulesNodes = Record<string, NGCRuleNode>
+export type NGCRulesNodes = Record<DottedName, NGCRuleNode>
 
 //TODO: complete explanation type
 export type NGCEvaluatedNode = EvaluatedNode & {
@@ -83,7 +86,7 @@ type SuggestionsNode = Record<
 
 type MosaiqueNode = {
   type: 'selection' | 'nombre'
-  clé: string
+  options: DottedName[]
   total?: number
   suggestions?: SuggestionsNode
 }
@@ -91,12 +94,12 @@ type MosaiqueNode = {
 type MosaicInfos = {
   mosaicRule: RuleNode
   mosaicParams: MosaiqueNode
-  mosaicDottedNames: [string, NGCRuleNode][]
+  mosaicDottedNames: [DottedName, NGCRuleNode][]
 }
 
 type Formule = any
 
-type NGCRule = {
+type NGCRule = Rule & {
   abréviation?: string
   couleur?: Color
   mosaique?: MosaiqueNode
@@ -105,11 +108,13 @@ type NGCRule = {
   action?: { dépasse: string[] }
   icônes?: string
   sévérité?: 'avertissement' | 'information' | 'invalide'
-  dottedName?: string
+  dottedName?: DottedName
+  question?: string
   plus?: boolean
   formule?: Formule
   aide?: string
   inactif?: string
+  résumé?: string
 }
 
-export type NGCRules = Record<string, NGCRule>
+export type NGCRules = Record<DottedName, NGCRule>

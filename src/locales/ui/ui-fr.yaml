@@ -125,9 +125,7 @@ entries:
   publicodes.AllActions.allerPlusLoin: <0>Aller plus loin</0><1>Au-delà d'un simple chiffre, découvrez les enjeux qui se cachent derrière chaque action.</1>
   publicodes.AllActions.msgPlusActions: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: |-
-
-    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).
+  publicodes.Contribution.commentaireAugmenté: '> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).'
   publicodes.FAQ.description: Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
   publicodes.Contribution.descriptionComplète: <0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>
   publicodes.Contribution.liensVersGithub: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
@@ -304,8 +302,8 @@ entries:
   Oups! Cette page n'existe pas ou n'existe plus: Oups! Cette page n'existe pas ou n'existe plus
   Passer en français: Passer en français
   Plus d'information à ce sujet: Plus d'information à ce sujet
-  publicodes.Tutoriel.slide1.p1: <0>Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?</0>
-  publicodes.Tutoriel.slide1.p2: <0>Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.</0>
+  publicodes.Tutoriel.slide1.p1: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
+  publicodes.Tutoriel.slide1.p2: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
   publicodes.Tutoriel.slide2.blockquote: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
   publicodes.Tutoriel.slide2.p1: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone <2></2>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
   publicodes.Tutoriel.slide2.p2: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
@@ -398,14 +396,75 @@ entries:
   Vacances: Vacances
   Visite familiale: Visite familiale
   Week-end: Week-end
-  '{displayValue}': '{displayValue}'
   Documentations: Documentations
   Informations: Informations
   Nos outils: Nos outils
   Questions: Questions
   '{periods[journey.period]}': '{periods[journey.period]}'
+  ← Revenir au test: ← Revenir au test
   <0>👀</0> Voir mon résultat: <0>👀</0> Voir mon résultat
   Actions: Actions
+  Aide à la saisie: Aide à la saisie
   Fermer le menu: Fermer le menu
+  Pour en savoir plus sur cette règle de notre modèle, lancer le calcul en cliquant sur le bouton ci-dessous.: Pour en savoir plus sur cette règle de notre modèle, lancer le calcul en cliquant sur le bouton ci-dessous.
+  Question pour l'utilisateur: Question pour l'utilisateur
   Revenir à l'accueil: Revenir à l'accueil
   Test: Test
+  À l'international: À l'international
+  Dans votre organisation: Dans votre organisation
+  'Diffuser le test :': 'Diffuser le test :'
+  Je ne trouve pas réponse à ma question <2>🙋‍♀️</2>: Je ne trouve pas réponse à ma question <2>🙋‍♀️</2>
+  N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écrire, vous y trouverez sans doute la réponse à votre question !: N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écrire, vous y trouverez sans doute la réponse à votre question !
+  Nos ambassadeurs: Nos ambassadeurs
+  Plan du site: Plan du site
+  Pour toute autre remarque ou question, vous pouvez nous envoyer un message via le formulaire de contact ci-dessous.: Pour toute autre remarque ou question, vous pouvez nous envoyer un message via le formulaire de contact ci-dessous.
+  Qui sommes-nous ?: Qui sommes-nous ?
+  'Vous pouvez nous contacter via notre page de contact : <2>accéder à notre page de contact</2>.': 'Vous pouvez nous contacter via notre page de contact : <2>accéder à notre page de contact</2>.'
+  FAQ: FAQ
+  Le modèle Nos Gestes Climat: Le modèle Nos Gestes Climat
+  Les actions phares: Les actions phares
+  Nos actions pour réduire votre empreinte: Nos actions pour réduire votre empreinte
+  Nos guides thématiques: Nos guides thématiques
+  Nos utilisateurs types: Nos utilisateurs types
+  Partenaires: Partenaires
+  Statistiques: Statistiques
+  Vie privée: Vie privée
+  Votre profil: Votre profil
+  Comment cette donnée est-elle calculée ?: Comment cette donnée est-elle calculée ?
+  Le calculateur d’empreinte climat international: Le calculateur d’empreinte climat international
+  Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.: Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.
+  Cette opération est définitive et supprimera le groupe pour tous ses membres.: Cette opération est définitive et supprimera le groupe pour tous ses membres.
+  Cette opération est définitive et vous ne pourrez plus accéder aux résultats du groupe.: Cette opération est définitive et vous ne pourrez plus accéder aux résultats du groupe.
+  Découvrez nos pistes pour agir dès aujourd’hui pour le climat.: Découvrez nos pistes pour agir dès aujourd’hui pour le climat.
+  chaque année: chaque année
+  choix à faire: choix à faire
+  choix en trop !: choix en trop !
+  D'autres questions ?: D'autres questions ?
+  de: de
+  Et les conseils de Nos Gestes Climat pour réduire votre impact sur le climat.: Et les conseils de Nos Gestes Climat pour réduire votre impact sur le climat.
+  Il vous reste: Il vous reste
+  Ma région de simulation: Ma région de simulation
+  par email: par email
+  "Qu'est-ce que ça veut dire ? ": "Qu'est-ce que ça veut dire ? "
+  Recevez vos résultats: Recevez vos résultats
+  Vous avez fait: Vous avez fait
+  Quitter: Quitter
+  Votre groupe a été supprimé. Vous allez être redirigé vers la page d'accueil du mode groupe.: Votre groupe a été supprimé. Vous allez être redirigé vers la page d'accueil du mode groupe.
+  Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe: Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe
+  Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.: Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.
+  Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.: Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.
+  Comment est calculée votre empreinte ?: Comment est calculée votre empreinte ?
+  "Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée :": "Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée :"
+  Sauvegarder: Sauvegarder
+  Vous retrouverez votre résultat d’empreinte, ainsi que <2>des conseils pour la réduire</2> (1 fois par mois max.): Vous retrouverez votre résultat d’empreinte, ainsi que <2>des conseils pour la réduire</2> (1 fois par mois max.)
+  Vous souhaitez recevoir vos résultats d’empreinte carbone ?: Vous souhaitez recevoir vos résultats d’empreinte carbone ?
+  passager(s): passager(s)
+  Période: Période
+  'Vos trajets :': 'Vos trajets :'
+  Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.
+  Pour cela, <1>laissez-nous votre email</1>, comme {formatValue(numberSubscribers) ?? '---'} personnes.: Pour cela, <1>laissez-nous votre email</1>, comme {formatValue(numberSubscribers) ?? '---'} personnes.
+  Ce groupe n'existe pas ou a été supprimé.: Ce groupe n'existe pas ou a été supprimé.
+  Créé par {{name}}: Créé par {{name}}
+  Oups ! Nous n'avons pas trouvé votre groupe: Oups ! Nous n'avons pas trouvé votre groupe
+  Retour à la liste des groupes: Retour à la liste des groupes
+  Vous êtes le premier: Vous êtes le premier

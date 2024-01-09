@@ -40,7 +40,7 @@ export default function useForm() {
     /**
      * Every relevant categories ordered as needed for the simulation root (default: bilan)
      */
-    categories,
+    categories: [...categories],
     /**
      * Every relevant subcategories sorted by category
      */

@@ -1,4 +1,5 @@
 import Question from '@/components/form/Question'
+import Trans from '@/components/translation/Trans'
 import { useEngine } from '@/publicodes-state'
 
 const plats = [
@@ -23,15 +24,19 @@ export default function Plats() {
       <div className="text-center text-sm">
         {differenceToAverage > 0 ? (
           <span className="text-red-700">
-            Il vous reste {differenceToAverage} choix à faire
+            <Trans>Il vous reste</Trans> {differenceToAverage}{' '}
+            <Trans>choix à faire</Trans>
           </span>
         ) : null}
         {differenceToAverage < 0 ? (
           <span className="text-red-700">
-            Vous avez fait {Math.abs(differenceToAverage)} choix en trop !
+            <Trans>Vous avez fait</Trans> {Math.abs(differenceToAverage)}{' '}
+            <Trans>choix en trop !</Trans>
           </span>
         ) : null}
-        {differenceToAverage === 0 ? <>😋👍</> : null}
+        {differenceToAverage === 0 ? (
+          <div className="mb-2 text-center">😋👍</div>
+        ) : null}
       </div>
     </>
   )

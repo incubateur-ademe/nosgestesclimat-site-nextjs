@@ -1,3 +1,4 @@
+import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { useCallback, useState } from 'react'
 
 /**
@@ -13,8 +14,10 @@ export default function useCurrent() {
   const exportedSetCurrentQuestion = useCallback(
     (newCurrentQuestion: string | null) => {
       setCurrentQuestion(newCurrentQuestion)
-      if (newCurrentQuestion)
-        setCurrentCategory(newCurrentQuestion.split(' . ')[0])
+      const newCurrentQuestionNamespace = getNamespace(newCurrentQuestion)
+      if (newCurrentQuestion && newCurrentQuestionNamespace) {
+        setCurrentCategory(newCurrentQuestionNamespace)
+      }
     },
     [setCurrentQuestion, setCurrentCategory]
   )

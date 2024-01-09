@@ -1,13 +1,14 @@
 'use client'
 
+import useQuestionsOfMosaic from '@/publicodes-state/hooks/useRule/useQuestionsOfMosaic'
 import { captureException } from '@sentry/react'
+import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import simulationContext from '../../providers/simulationProvider/context'
 import { NGCEvaluatedNode, NGCRuleNode } from '../../types'
 import useChoices from './useChoices'
 import useContent from './useContent'
 import useMissing from './useMissing'
-import useMosaic from './useMosaic'
 import useNotifications from './useNotifications'
 import useType from './useType'
 import useValue from './useValue'
@@ -27,7 +28,7 @@ export default function useRule(dottedName: string) {
     addFoldedStep,
     foldedSteps,
     everyNotifications,
-    everyMosaicChildWhoIsReallyInMosaic,
+    everyMosaicChildren,
   } = useContext(simulationContext)
 
   const evaluation = useMemo<NGCEvaluatedNode | null>(
@@ -59,10 +60,13 @@ export default function useRule(dottedName: string) {
     safeEvaluate,
     situation,
   })
-  const { questionsOfMosaic, parent } = useMosaic({
-    dottedName,
-    everyMosaicChildWhoIsReallyInMosaic,
+
+  const questionsOfMosaic = useQuestionsOfMosaic({
+    options: rule?.rawNode?.mosaique?.options,
+    everyMosaicChildren,
   })
+
+  const parent = utils.ruleParent(dottedName)
 
   const {
     category,
@@ -72,14 +76,13 @@ export default function useRule(dottedName: string) {
     description,
     icons,
     unit,
-    color,
     assistance,
     isInactive,
     suggestions,
+    excerpt,
   } = useContent({
     dottedName,
     rule,
-    safeGetRule,
   })
 
   const choices = useChoices({ rule, type })
@@ -91,17 +94,24 @@ export default function useRule(dottedName: string) {
     foldedSteps,
   })
 
-  const { value, displayValue, numericValue, setValue, setDefaultAsValue } =
-    useValue({
-      dottedName,
-      safeGetRule,
-      safeEvaluate,
-      evaluation,
-      type,
-      questionsOfMosaic,
-      updateSituation,
-      addFoldedStep,
-    })
+  const {
+    value,
+    displayValue,
+    numericValue,
+    setValue,
+    setDefaultAsValue,
+    resetMosaicChildren,
+  } = useValue({
+    dottedName,
+    safeGetRule,
+    safeEvaluate,
+    evaluation,
+    type,
+    questionsOfMosaic,
+    updateSituation,
+    addFoldedStep,
+    situation,
+  })
 
   return {
     /**
@@ -137,13 +147,13 @@ export default function useRule(dottedName: string) {
      */
     unit,
     /**
-     * The color of the parent category ("rawNode.couleur" in Publicodes)
-     */
-    color,
-    /**
      * The question used to help answer  ("rawNode.aide" in Publicodes)
      */
     assistance,
+    /**
+     * Attribut use to briefly explain a rule
+     */
+    excerpt,
     /**
      * True if the rule is not yet active ("rawNode.inactif" in Publicodes)
      */
@@ -200,6 +210,10 @@ export default function useRule(dottedName: string) {
      * Set default value as value, with the possibility to add a dottedName in the foldedSteps
      */
     setDefaultAsValue,
+    /**
+     * Set every child of the mosaic without user answer to zero or "non"
+     */
+    resetMosaicChildren,
     /**
      * Add a dottedName in the foldedSteps
      */

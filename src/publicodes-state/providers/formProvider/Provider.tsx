@@ -23,7 +23,7 @@ export default function FormProvider({
     situation,
     foldedSteps,
     everyQuestions,
-    everyMosaicChildWhoIsReallyInMosaic,
+    everyMosaicChildren,
   } = useContext(simulationContext)
 
   const {
@@ -40,7 +40,7 @@ export default function FormProvider({
     foldedSteps,
     situation,
     everyQuestions,
-    everyMosaicChildWhoIsReallyInMosaic,
+    everyMosaicChildren,
   })
 
   const { progression, remainingQuestionsByCategories } = useProgression({

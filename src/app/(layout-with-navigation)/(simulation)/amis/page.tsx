@@ -1,15 +1,17 @@
 import Title from '@/design-system/layout/Title'
-import AutoCanonicalTag from '@/design-system/utils/AutoCanonicalTag'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Groups from './_components/Groups'
-import SondagesBlock from './resultats/_components/SondagesBlock'
+import SondagesBlock from './_components/SondagesBlock'
 
 export async function generateMetadata() {
   return getMetadataObject({
     title: 'Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat',
     description:
       'Comparez vos résultats avec votre famille ou un groupe d’amis.',
+    alternates: {
+      canonical: '/amis',
+    },
   })
 }
 
@@ -18,8 +20,6 @@ export default async function GroupesPage() {
 
   return (
     <>
-      <AutoCanonicalTag />
-
       <Title
         title={t("Groupe d'amis")}
         subtitle={t(

@@ -58,24 +58,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
       <head>
         <link rel="icon" href="/images/misc/favicon.png" />
 
-        <link
-          rel="alternate"
-          hrefLang="en"
-          href="https://nosgestesclimat.fr/?lang=en"
-        />
-
-        <link
-          rel="alternate"
-          hrefLang="fr"
-          href="https://nosgestesclimat.fr/?lang=fr"
-        />
-
-        <link
-          rel="alternate"
-          hrefLang="x-default"
-          href="https://nosgestesclimat.fr"
-        />
-
         <meta
           name="google-site-verification"
           content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"
@@ -85,42 +67,28 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <link rel="manifest" href="../manifest.webmanifest" />
 
-        <meta name="theme-color" content="#5758BB" />
-
-        {process.env.NEXT_PUBLIC_MATOMO_ID === '1' ? (
+        <meta name="theme-color" content="#491273" />
+        {process.env.NEXT_PUBLIC_MATOMO_ID === '1' && (
           <Script id="matomo">
             {`
-            var _paq = window._paq = window._paq || [];
-             /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-            _paq.push(["setExcludedQueryParams", ["detail","diapo"]]);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-              var u="https://stats.data.gouv.fr/";
-              _paq.push(['setTrackerUrl', u+'matomo.php']);
-              _paq.push(['setSiteId', '153']);
-              // Adds the Matomo V2 tracker
-              _paq.push(['addTracker', 'https://matomo-incubateur-ademe.osc-fr1.scalingo.io/matomo.php', '1'])
-              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-              g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-            })();
-          `}
-          </Script>
-        ) : (
-          <Script id="matomo">
-            {`
-            var _paq = window._paq = window._paq || [];
-            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-            _paq.push(["setExcludedQueryParams", ["details"]]);
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-              var u="https://matomo-incubateur-ademe.osc-fr1.scalingo.io/";
-              _paq.push(['setTrackerUrl', u+'matomo.php']);
-              _paq.push(['setSiteId', '2']);
-              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-              g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-            })();
-          `}
+          var _paq = window._paq = window._paq || [];
+          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+          _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+          _paq.push(["setCookieDomain", "*.nosgestesclimat.fr"]);
+          _paq.push(['trackPageView']);
+          _paq.push(['enableLinkTracking']);
+          (function() {
+            // var u="https://stats.beta.gouv.fr/";
+            var u="https://stats.data.gouv.fr/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            // _paq.push(['setSiteId', '20']);
+            _paq.push(['setSiteId', '153']);
+            // Adds the Matomo V1 tracker for safe measure
+            // _paq.push(['addTracker', 'https://stats.data.gouv.fr/matomo.php', '153'])
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+          })();
+        `}
           </Script>
         )}
       </head>

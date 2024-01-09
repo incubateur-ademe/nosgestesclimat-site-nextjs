@@ -1,17 +1,21 @@
 'use client'
 
 import Accordion from '@/design-system/layout/Accordion'
-import { useForm, useRule } from '@/publicodes-state'
+import { useRule } from '@/publicodes-state'
 import AccordionItemWithRule from './categoriesAccordion/AccordionItemWithRule'
 
-export default function CategoriesAccordion() {
-  const { categories } = useForm()
+type Props = {
+  sortedCategories: string[]
+}
 
-  const { numericValue: maxCategoryValue } = useRule(categories?.[0] ?? '')
+export default function CategoriesAccordion({ sortedCategories }: Props) {
+  const { numericValue: maxCategoryValue } = useRule(
+    sortedCategories?.[0] ?? ''
+  )
 
   return (
     <Accordion className="mt-8">
-      {categories.map((categoryDottedName, index) => {
+      {sortedCategories.map((categoryDottedName, index) => {
         return (
           <AccordionItemWithRule
             key={categoryDottedName}

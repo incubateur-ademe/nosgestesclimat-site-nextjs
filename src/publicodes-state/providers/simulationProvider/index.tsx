@@ -42,6 +42,10 @@ type Props = {
    * The root rule of the simulation
    */
   root?: string
+  /**
+   * Whether we should wait for the simulation to be initialized before displaying children
+   */
+  shouldAlwaysDisplayChildren?: boolean
 }
 
 export default function SimulationProvider({
@@ -54,6 +58,7 @@ export default function SimulationProvider({
   addFoldedStep,
   categoryOrder,
   root = 'bilan',
+  shouldAlwaysDisplayChildren = false,
 }: PropsWithChildren<Props>) {
   const { engine, pristineEngine, safeEvaluate, safeGetRule } = useEngine(rules)
 
@@ -62,7 +67,7 @@ export default function SimulationProvider({
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
-    everyMosaicChildWhoIsReallyInMosaic,
+    everyMosaicChildren,
   } = useRules({ engine: pristineEngine })
 
   const { situation, updateSituation, initialized } = useSituation({
@@ -74,7 +79,7 @@ export default function SimulationProvider({
   })
 
   const { categories, subcategories } = useCategories({
-    engine: pristineEngine,
+    everyRules,
     root,
     safeGetRule,
     order: categoryOrder,
@@ -101,11 +106,11 @@ export default function SimulationProvider({
         everyInactiveRules,
         everyQuestions,
         everyNotifications,
-        everyMosaicChildWhoIsReallyInMosaic,
+        everyMosaicChildren,
         categories,
         subcategories,
       }}>
-      {initialized ? children : null}
+      {initialized || shouldAlwaysDisplayChildren ? children : null}
     </SimulationContext.Provider>
   )
 }

@@ -24,10 +24,10 @@ export default function ChoiceInput({
     <>
       <div className="mb-2 flex items-center gap-2">
         <label
-          className={`flex cursor-pointer items-center gap-2 rounded border border-gray-300 px-4 py-2 text-right md:text-xl ${
+          className={`flex cursor-pointer items-center gap-2 rounded border border-gray-300 px-4 py-2 text-right text-sm md:text-xl ${
             active
-              ? 'border-primary-500 bg-primary-200 text-primary-500 border-2'
-              : 'text-default hover:bg-primary-100 bg-white'
+              ? 'border-2 border-primary-500 bg-primary-200 text-primary-500'
+              : 'bg-white text-default hover:bg-primary-100'
           } transition-colors`}
           data-cypress-id={`${props['data-cypress-id']}-label`}>
           <input
@@ -42,7 +42,7 @@ export default function ChoiceInput({
               active
                 ? 'border-primary-500 before:bg-primary-500'
                 : 'border-gray-300 before:bg-white'
-            } flex h-4 w-4 items-center justify-center rounded-full border-2 before:h-3 before:w-3 before:rounded-full  md:h-5 md:w-5`}
+            } flex h-4 w-4 items-center justify-center rounded-full border-2 text-sm before:h-3 before:w-3 before:rounded-full md:h-5 md:w-5 md:text-base`}
           />
           {label}
         </label>
@@ -53,9 +53,9 @@ export default function ChoiceInput({
         ) : null}
       </div>
       {description && isOpen ? (
-        <Markdown className="mb-4 w-1/2 rounded-md bg-grey-100 p-2 text-sm">
-          {description}
-        </Markdown>
+        <div className="mb-4 w-auto rounded-md bg-white p-2 text-sm sm:max-w-[30rem] sm:text-right">
+          <Markdown className="!mb-0 !inline">{description}</Markdown>
+        </div>
       ) : null}
     </>
   )

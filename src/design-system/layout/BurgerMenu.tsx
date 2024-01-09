@@ -1,21 +1,18 @@
 'use client'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { KeyboardEvent, ReactNode, useEffect, useRef, useState } from 'react'
+import { KeyboardEvent, ReactNode, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Button from '../inputs/Button'
 
 export default function BurgerMenu({
   children,
 }: {
-  children: (closeMenu: () => void) => ReactNode
+  children: (args: { closeMenu: () => void; onFocus: () => void }) => ReactNode
 }) {
   const [isOpen, setIsOpen] = useState(false)
-  const [isAnimated, setIsAnimated] = useState(false)
 
   const { t } = useClientTranslation()
-
-  const timeoutRef = useRef<NodeJS.Timeout>()
 
   const genericHamburgerLine = `h-[2px] w-6 my-1 bg-default transition ease transform duration-300`
 
@@ -47,74 +44,55 @@ export default function BurgerMenu({
   }
 
   function handleToggleMenu() {
-    // Open the menu with the animation
-    if (!isOpen) {
-      setIsOpen(true)
-      timeoutRef.current = setTimeout(() => {
-        setIsAnimated(true)
-      }, 100)
-    }
-
-    // Close with animation
-    if (isOpen) {
-      setIsAnimated(false)
-      timeoutRef.current = setTimeout(() => {
-        setIsOpen(false)
-      }, 2000)
-    }
+    setIsOpen(!isOpen)
   }
-
-  useEffect(() => {
-    return () => clearTimeout(timeoutRef.current)
-  }, [])
 
   return (
     <div id="burger-menu">
       <Button
         color="text"
         onClick={handleToggleMenu}
-        className="absolute right-4 top-4 z-[52] flex h-[44px] w-[44px] flex-col items-center justify-center p-0">
+        className="absolute right-4 top-4 z-[52] flex h-[44px] w-[44px] flex-col items-center justify-center !p-0">
         <div
           className={`${genericHamburgerLine} ${
-            isAnimated ? 'translate-y-2 rotate-45 ' : ''
+            isOpen ? 'translate-y-2 rotate-45 ' : ''
           }`}
         />
         <div
-          className={`${genericHamburgerLine} ${isAnimated ? 'opacity-0' : ''}`}
+          className={`${genericHamburgerLine} ${isOpen ? 'opacity-0' : ''}`}
         />
         <div
           className={`${genericHamburgerLine} ${
-            isAnimated ? '-translate-y-3 -rotate-45 ' : ''
+            isOpen ? '-translate-y-3 -rotate-45 ' : ''
           }`}
         />
       </Button>
 
-      {isOpen && (
-        <div
-          className={twMerge(
-            'fixed left-0 top-0 z-[51] h-screen w-screen opacity-0 transition-opacity duration-300 ease-in-out',
-            `${isOpen ? 'opacity-1' : ''}`
-          )}>
-          <>
+      <div className="fixed left-0 top-0 z-[51]">
+        <>
+          {isOpen && (
             <div
-              className="absolute left-0 top-0 h-screen w-screen"
+              className="fixed left-0 top-0 h-screen w-screen"
               tabIndex={0}
               onClick={handleClickMask as any}
               onKeyDown={handleClickMask}
               role="button"
               aria-label={t('Fermer le menu')}
             />
+          )}
 
-            <div
-              className={twMerge(
-                'absolute right-0 top-0 z-[51] h-screen w-[90vw] max-w-[20rem] translate-x-full bg-grey-100 p-4 pt-16 shadow-md transition-transform duration-300 ease-in-out',
-                `${isAnimated ? 'translate-x-0' : ''}`
-              )}>
-              {children(() => setIsOpen(false))}
-            </div>
-          </>
-        </div>
-      )}
+          <div
+            className={twMerge(
+              'fixed right-0 top-0 z-[51] h-screen w-[90vw] max-w-[20rem] translate-x-full bg-grey-100 p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out',
+              isOpen ? 'opacity-1  translate-x-0' : ''
+            )}>
+            {children({
+              closeMenu: () => setIsOpen(false),
+              onFocus: () => setIsOpen(true),
+            })}
+          </div>
+        </>
+      </div>
     </div>
   )
 }

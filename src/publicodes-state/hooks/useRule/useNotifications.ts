@@ -1,5 +1,6 @@
 'use client'
 
+import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { useMemo } from 'react'
 import { NGCEvaluatedNode, Situation } from '../../types'
 
@@ -23,7 +24,7 @@ export default function useNotifications({
           const splitNotification = notification.split(' . ')
           // If notification dottedName has only two names (itself and its category), it should apply to the whole category.
           if (splitNotification.length <= 2) {
-            return splitNotification[0] === dottedName.split(' . ')[0]
+            return splitNotification[0] === getNamespace(dottedName)
           }
           // If not, it should apply to the subcategory
           return splitNotification[1] === dottedName.split(' . ')[1]

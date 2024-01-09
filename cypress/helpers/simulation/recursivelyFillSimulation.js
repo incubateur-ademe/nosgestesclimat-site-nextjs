@@ -30,16 +30,12 @@ export async function recursivelyFillSimulation(persona = {}) {
         function skipQuestion() {
           clickNextButton()
 
-          cy.wait(1000)
-
           answerCurrentQuestion()
         }
 
         // Is last question
         if (dottedName === LAST_QUESTION_ID) {
           clickNextButton()
-
-          cy.wait(1000)
 
           return resolve()
         }
@@ -54,8 +50,6 @@ export async function recursivelyFillSimulation(persona = {}) {
           const [dottedNameWithoutValueSuffix, value] = dottedName.split('-')
           if (persona?.situation?.[dottedNameWithoutValueSuffix] === value) {
             cy.get(`label[data-cypress-id="${dottedName}-label"]`).click()
-
-            cy.wait(1000)
           } else if (!dottedName === LAST_QUESTION_ID) {
             skipQuestion()
           }
@@ -72,8 +66,6 @@ export async function recursivelyFillSimulation(persona = {}) {
           cy.get(`input[data-cypress-id="${dottedName}"]`).type(
             persona.situation[dottedName]
           )
-
-          cy.wait(1000)
         }
 
         const mosaicChildren = Object.keys(persona?.situation ?? {}).filter(
@@ -86,16 +78,10 @@ export async function recursivelyFillSimulation(persona = {}) {
             cy.get(
               `input[data-cypress-id="${mosaicItemDottedName}---${mosaicDottedName}"]`
             ).type(persona.situation[mosaicItemDottedName])
-
-            cy.wait(1000)
           }
         }
 
-        cy.wait(1000)
-
         clickNextButton()
-
-        cy.wait(1000)
 
         // Call itself recursively to go to the next question
         answerCurrentQuestion()

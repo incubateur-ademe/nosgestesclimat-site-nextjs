@@ -22,7 +22,7 @@ type SimulationContextType = {
   everyInactiveRules: string[]
   everyQuestions: string[]
   everyNotifications: string[]
-  everyMosaicChildWhoIsReallyInMosaic: string[]
+  everyMosaicChildren: string[]
   categories: string[]
   subcategories: Record<string, string[]>
 }
@@ -40,7 +40,7 @@ export default createContext<SimulationContextType>({
   everyInactiveRules: [],
   everyQuestions: [],
   everyNotifications: [],
-  everyMosaicChildWhoIsReallyInMosaic: [],
+  everyMosaicChildren: [],
   categories: [],
   subcategories: {},
 })

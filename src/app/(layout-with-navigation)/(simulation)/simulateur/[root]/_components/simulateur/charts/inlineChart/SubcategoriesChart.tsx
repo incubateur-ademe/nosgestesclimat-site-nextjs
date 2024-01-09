@@ -1,4 +1,5 @@
 import ValueChangeDisplay from '@/components/misc/ValueChangeDisplay'
+import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useEngine, useForm, useRule } from '@/publicodes-state'
 import { useMemo } from 'react'
 import Subcategory from './subcategoriesChart/Subcategory'
@@ -6,8 +7,8 @@ import Subcategory from './subcategoriesChart/Subcategory'
 export default function SubcategoriesChart() {
   const { subcategories, currentCategory } = useForm()
 
-  const { numericValue: total } = useRule(currentCategory || '')
-  const { title, color } = useRule(currentCategory || '')
+  const { title, numericValue: total } = useRule(currentCategory || '')
+
   const { checkIfValid } = useEngine()
 
   const filteredSubcategories = useMemo(
@@ -22,15 +23,18 @@ export default function SubcategoriesChart() {
 
   return (
     <>
-      <div className="flex items-center gap-4">
-        <h4
-          className="relative text-xl uppercase md:text-2xl"
+      <div className="mb-4 flex items-center gap-4">
+        <h2
+          className="relative mb-0 text-lg md:text-2xl"
           data-cypress-id="category-title">
           {title}
-        </h4>
+        </h2>
         <ValueChangeDisplay />
       </div>
-      <div className="mb-4 flex h-8 md:h-12" style={{ backgroundColor: color }}>
+      <div
+        className={`mb-4 flex h-8 md:h-12 ${getBackgroundColor(
+          currentCategory
+        )}`}>
         {filteredSubcategories.map((subcategory: string, index: number) => (
           <Subcategory
             key={subcategory}
@@ -38,8 +42,8 @@ export default function SubcategoriesChart() {
               index === 0
                 ? 'first'
                 : index === filteredSubcategories.length - 1
-                ? 'last'
-                : 'middle'
+                  ? 'last'
+                  : 'middle'
             }
             total={total}
             subcategory={subcategory}

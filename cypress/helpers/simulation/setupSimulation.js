@@ -5,10 +5,5 @@ import {
 
 export function setupSimulation() {
   clickDoTheTestLink()
-
-  cy.wait(2000)
-
   clickSkipTutorialButton()
-
-  cy.wait(2000)
 }

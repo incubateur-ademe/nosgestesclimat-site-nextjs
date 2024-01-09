@@ -1,28 +1,39 @@
 'use client'
 
+import HowToAct from '@/components/actions/HowToAct'
 import Separator from '@/design-system/layout/Separator'
 import { useUser } from '@/publicodes-state'
-import { Results } from '@/types/groups'
+import { Group, Results } from '@/types/groups'
+import { UseQueryResult } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import { useFetchGroup } from '../../_hooks/useFetchGroup'
 import { useGetGroupStats } from '../_hooks/useGetGroupStats'
 import { useUpdateUserResults } from '../_hooks/useUpdateUserResults'
-import Classement from './Classement'
-import InviteBlock from './InviteBlock'
-import PointsFortsFaibles from './PointsFortsFaibles'
-import VotreEmpreinte from './VotreEmpreinte'
+import Classement from './groupResults/Classement'
+import InviteBlock from './groupResults/InviteBlock'
+import OwnerAdminSection from './groupResults/OwnerAdminSection'
+import ParticipantAdminSection from './groupResults/ParticipantAdminSection'
+import PointsFortsFaibles from './groupResults/PointsFortsFaibles'
+import VotreEmpreinte from './groupResults/VotreEmpreinte'
 
-export default function GroupResults({ groupId }: { groupId: string }) {
+export default function GroupResults({
+  group,
+  refetch,
+}: {
+  group: Group
+  refetch: UseQueryResult<Group>['refetch']
+}) {
   const [isSynced, setIsSynced] = useState(false)
+
+  const groupId = group?._id
 
   const router = useRouter()
 
-  const { data: group, refetch } = useFetchGroup(groupId)
-
-  const { user } = useUser()
+  const { user, setGroupToRedirectToAfterTest } = useUser()
 
   const userId = user?.id
+
+  const isOwner = group?.owner?.userId === userId
 
   const intervalRef = useRef<NodeJS.Timeout>()
 
@@ -38,6 +49,10 @@ export default function GroupResults({ groupId }: { groupId: string }) {
   })
 
   useEffect(() => {
+    setGroupToRedirectToAfterTest(undefined)
+  }, [setGroupToRedirectToAfterTest])
+
+  useEffect(() => {
     if (groupId && !group) {
       intervalRef.current = setInterval(() => refetch(), 60000)
     }
@@ -51,17 +66,20 @@ export default function GroupResults({ groupId }: { groupId: string }) {
     }
   }, [])
 
-  if (!group) {
-    return null
-  }
-
+  // User is not part of the group
   if (
+    group &&
     !group?.members?.some(
       (member: { userId: string }) => member.userId === userId
     )
   ) {
-    router.push(`/amis/invitation?groupId=${group._id}`)
+    router.push(`/amis/invitation?groupId=${group?._id}`)
 
+    return null
+  }
+
+  // Group is loading
+  if (!group) {
     return null
   }
 
@@ -73,17 +91,17 @@ export default function GroupResults({ groupId }: { groupId: string }) {
 
       {group?.members?.length > 1 ? (
         <>
-          <Separator className="my-8" />
+          <Separator />
 
           <PointsFortsFaibles
             pointsFaibles={results?.pointsFaibles}
             pointsForts={results?.pointsForts}
           />
 
-          <Separator className="mb-6 mt-10" />
+          <Separator />
         </>
       ) : (
-        <Separator className="mb-6 mt-8" />
+        <Separator />
       )}
 
       <VotreEmpreinte
@@ -92,6 +110,16 @@ export default function GroupResults({ groupId }: { groupId: string }) {
         }
         membersLength={group?.members?.length}
       />
+
+      <Separator className="my-6" />
+
+      <HowToAct />
+
+      <Separator className="my-6" />
+
+      {isOwner && <OwnerAdminSection group={group} />}
+
+      {!isOwner && <ParticipantAdminSection group={group} />}
     </>
   )
 }

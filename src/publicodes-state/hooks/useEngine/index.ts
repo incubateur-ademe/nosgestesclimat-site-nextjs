@@ -1,6 +1,7 @@
+import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { useContext } from 'react'
 import simulationContext from '../../providers/simulationProvider/context'
-import { NodeValue } from '../../types'
+import { DottedName, NodeValue } from '../../types'
 
 /**
  * A hook that make available some basic functions on the engine (and the engine itself).
@@ -19,7 +20,8 @@ export default function useEngine() {
     return Number(nodeValue) === nodeValue ? nodeValue : 0
   }
 
-  const getCategory = (dottedName: string): string => dottedName.split(' . ')[0]
+  const getCategory = (dottedName: DottedName): string =>
+    getNamespace(dottedName, 1) ?? ''
 
   const getSubcategories = (dottedName: string): string[] =>
     safeGetRule(dottedName)?.rawNode?.formule?.somme
