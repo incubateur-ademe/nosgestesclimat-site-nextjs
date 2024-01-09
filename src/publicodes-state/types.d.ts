@@ -67,6 +67,7 @@ export type Simulation = {
   foldedSteps: string[]
   actionChoices: ActionChoices
   persona?: string
+  progression?: number
 }
 
 export type Persona = {
