@@ -3,8 +3,6 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 
-const HIDE_CTA_PATHS = ['/fin', '/simulateur/bilan']
-
 export default function CTAButton({ progression }: { progression: number }) {
   let href = ''
   if (!progression) {
