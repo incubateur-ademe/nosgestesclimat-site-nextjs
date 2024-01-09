@@ -84,7 +84,7 @@ export type LocalStorage = {
   simulations: Simulation[]
   currentSimulationId: string
   groupToRedirectToAfterTest?: Group
-} | null
+}
 
 type Color = `#${string}`
 

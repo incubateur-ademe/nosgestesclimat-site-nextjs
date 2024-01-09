@@ -1,6 +1,5 @@
 import { dottedNamesMigration } from '@/constants/dottedNamesMigration'
-import { LocalStorage } from '@/publicodes-state/types'
-import { Simulation } from '@/types/simulation'
+import { LocalStorage, Simulation } from '@/publicodes-state/types'
 import { useEffect } from 'react'
 
 type Props = {
@@ -43,11 +42,13 @@ export default function useUpdateOldLocalStorage({ storageKey }: Props) {
           // We check if the value of the non supported dottedName value is a value to migrate.
           // Ex: answer "logement . chauffage . bois . type": "bûche" changed to "bûches"
           Object.keys(dottedNamesMigration.value).includes(dottedName) &&
-          Object.keys(dottedNamesMigration.value[dottedName]).includes(value)
+          Object.keys(dottedNamesMigration.value[dottedName]).includes(
+            value as string
+          )
         ) {
-          if (dottedNamesMigration.value[dottedName][value] !== '') {
+          if (dottedNamesMigration.value[dottedName][value as string] !== '') {
             situation[dottedName] =
-              dottedNamesMigration.value[dottedName][value]
+              dottedNamesMigration.value[dottedName][value as string]
           } else {
             delete situation[dottedName]
           }
