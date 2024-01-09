@@ -1,13 +1,14 @@
 import { dottedNamesMigration } from '@/constants/dottedNamesMigration'
 import { captureException } from '@sentry/react'
 import { Situation } from '../types'
+import { DottedName, Situation } from '../types'
 
 export const safeGetSituation = ({
   situation,
   everyRules,
 }: {
   situation: Situation
-  everyRules: string[]
+  everyRules: DottedName[]
 }): any => {
   const unsupportedDottedNamesFromSituation = Object.keys(situation).filter(
     (dottedName) => {

@@ -1,8 +1,8 @@
 import { captureException } from '@sentry/react'
-import { Engine, NGCRuleNode } from '../types'
+import { DottedName, Engine, NGCRuleNode } from '../types'
 
 export const safeGetRuleHelper = (
-  dottedName: string,
+  dottedName: DottedName,
   engineUsed: Engine
 ): NGCRuleNode | null => {
   let rule = null

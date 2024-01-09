@@ -1,8 +1,8 @@
 import { captureException } from '@sentry/react'
-import { Engine, NGCEvaluatedNode } from '../types'
+import { DottedName, Engine, NGCEvaluatedNode } from '../types'
 
 export const safeEvaluateHelper = (
-  dottedName: string,
+  dottedName: DottedName,
   engineUsed: Engine
 ): NGCEvaluatedNode | null => {
   let evaluation = null
