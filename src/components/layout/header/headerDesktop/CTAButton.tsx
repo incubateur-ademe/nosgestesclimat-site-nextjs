@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 
 export default function CTAButton({ progression }: { progression: number }) {
@@ -10,13 +11,13 @@ export default function CTAButton({ progression }: { progression: number }) {
     href = '/fin'
   }
 
-  let label = ''
+  let label
   if (!progression) {
-    label = 'Faire le test'
+    label = <Trans>Faire le test</Trans>
   } else if (progression < 1) {
-    label = 'Reprendre mon test'
+    label = <Trans>Reprendre mon test</Trans>
   } else {
-    label = 'Voir mes résultats'
+    label = <Trans>Voir mes résultats</Trans>
   }
 
   return <ButtonLink href={href}>{label}</ButtonLink>
