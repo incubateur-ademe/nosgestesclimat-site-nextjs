@@ -9,13 +9,18 @@ import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
+import { usePathname } from 'next/navigation'
 import NavLink from './NavLink'
 import CTAButton from './headerDesktop/CTAButton'
 import DebugIndicator from './headerDesktop/DebugIndicator'
 import ModelVersionIndicator from './headerDesktop/ModelVersionIndicator'
 
+const HIDE_CTA_PATHS = ['/fin', '/simulateur/bilan', '/tutoriel']
+
 export default function HeaderDesktop() {
   const { t } = useClientTranslation()
+
+  const pathname = usePathname()
 
   const { getCurrentSimulation } = useUser()
 
@@ -81,7 +86,9 @@ export default function HeaderDesktop() {
               <Trans>Profil</Trans>
             </NavLink>
 
-            <CTAButton progression={currentSimulation?.progression || 0} />
+            {!HIDE_CTA_PATHS.includes(pathname) && (
+              <CTAButton progression={currentSimulation?.progression || 0} />
+            )}
           </div>
         </div>
       </div>
