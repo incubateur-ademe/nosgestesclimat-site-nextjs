@@ -11,7 +11,9 @@ export default function useUpdateOldLocalStorage({ storageKey }: Props) {
     const oldLocalStorage = localStorage.getItem(
       'ecolab-climat::persisted-simulation::v2'
     )
-    const currentLocalStorage = localStorage.getItem(storageKey)
+    const currentLocalStorage: LocalStorage = JSON.parse(
+      localStorage.getItem(storageKey) || '{}'
+    )
     // We don't import the storage if you have a simulation with a persona because it's too buggy and no one cares
     if (
       oldLocalStorage &&
@@ -20,12 +22,8 @@ export default function useUpdateOldLocalStorage({ storageKey }: Props) {
     ) {
       localStorage.setItem(storageKey, oldLocalStorage)
     }
-  }, [storageKey])
 
-  useEffect(() => {
-    const currentLocalStorage: LocalStorage = JSON.parse(
-      localStorage.getItem(storageKey) || '{}'
-    )
+    // We migrate rules according to `dottedNamesMigration` table
     const filteredLocalStorage: LocalStorage = { ...currentLocalStorage }
     const simulations = filteredLocalStorage?.simulations
 
