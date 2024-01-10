@@ -3,7 +3,7 @@
 import { getMatomoEventVisitViaIframe } from '@/constants/matomo'
 import { useIsClient } from '@/hooks/useIsClient'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { PropsWithChildren, createContext } from 'react'
+import { PropsWithChildren, createContext, useEffect, useState } from 'react'
 import { getIsIframe } from '../utils/getIsIframe'
 
 export const IframeOptionsContext = createContext<{
@@ -22,64 +22,80 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
 
   const isIframe = isClient && getIsIframe()
 
-  if (!isIframe) return children
+  const [iframeIntegratorOptions, setIframeIntegratorOptions] = useState({
+    integratorLogo: null,
+    integratorName: null,
+    integratorActionUrl: null,
+    integratorYoutubeVideo: null,
+    integratorActionText: null,
+  })
+  const [isIframeShareData, setIsIframeShareData] = useState(false)
+  const [iframeRegion, setIframeRegion] = useState<string | null>(null)
+  const [isIframeOnlySimulation, setIsIframeOnlySimulation] = useState(false)
+  const [iframeLang, setIframeLang] = useState<string | null>(null)
 
-  const urlParams = new URLSearchParams(window.location.search)
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
 
-  const isIframeParameterDefined = urlParams.get('iframe') !== null
+    const isIframeParameterDefined = urlParams.get('iframe') !== null
 
-  // Si l'on détecte que l'on est dans un iframe sans paramètre iframe défini
-  // on essaie de récupérer l'URL du referrer
-  if (isIframe && !isIframeParameterDefined) {
-    urlParams.set('iframe', '')
-    urlParams.set('integratorUrl', document.referrer)
-  }
+    // Si l'on détecte que l'on est dans un iframe sans paramètre iframe défini
+    // on essaie de récupérer l'URL du referrer
+    if (isIframe && !isIframeParameterDefined) {
+      urlParams.set('iframe', '')
+      urlParams.set('integratorUrl', document.referrer)
+    }
 
-  if (isIframe) {
-    trackEvent(
-      getMatomoEventVisitViaIframe(
-        urlParams.get('integratorUrl') || "Pas d'URL d'intégration"
+    if (isIframe) {
+      trackEvent(
+        getMatomoEventVisitViaIframe(
+          urlParams.get('integratorUrl') || "Pas d'URL d'intégration"
+        )
       )
+    }
+
+    setIframeIntegratorOptions(
+      Object.fromEntries(
+        [
+          'integratorLogo',
+          'integratorName',
+          'integratorActionUrl',
+          'integratorYoutubeVideo',
+          'integratorActionText',
+        ].map((key) => [
+          key,
+          nullDecode(
+            new URLSearchParams(document.location.search).get(key) ?? ''
+          ),
+        ])
+      ) as any
     )
-  }
 
-  const iframeIntegratorOptions = Object.fromEntries(
-    [
-      'integratorLogo',
-      'integratorName',
-      'integratorActionUrl',
-      'integratorYoutubeVideo',
-      'integratorActionText',
-    ].map((key) => [
-      key,
-      nullDecode(new URLSearchParams(document.location.search).get(key) ?? ''),
-    ])
-  )
+    setIsIframeShareData(Boolean(urlParams.get('shareData')))
 
-  const isIframeShareData = Boolean(urlParams.get('shareData'))
+    setIframeRegion(urlParams.get('region'))
 
-  const iframeRegion = urlParams.get('region')
+    setIsIframeOnlySimulation(Boolean(urlParams.get('onlySimulation')))
 
-  const isIframeOnlySimulation = Boolean(urlParams.get('onlySimulation'))
+    setIframeLang(urlParams.get('lang'))
+  }, [isIframe])
 
-  const iframeLang = urlParams.get('lang')
-
-  if (isIframeOnlySimulation) {
-    // Add class to body that hides the header and the footer
-    document.body.classList.add('iframeOnlySimulation')
-  }
-
-  const finalValue = {
-    ...iframeIntegratorOptions,
-    isIframe,
-    isIframeShareData,
-    iframeRegion,
-    isIframeOnlySimulation,
-    iframeLang,
-  }
+  useEffect(() => {
+    if (isIframeOnlySimulation) {
+      // Add class to body that hides the header and the footer
+      document.body.classList.add('iframeOnlySimulation')
+    }
+  }, [isIframeOnlySimulation])
 
   return (
-    <IframeOptionsContext.Provider value={finalValue}>
+    <IframeOptionsContext.Provider
+      value={{
+        ...iframeIntegratorOptions,
+        isIframeShareData,
+        iframeRegion,
+        isIframeOnlySimulation,
+        iframeLang,
+      }}>
       {children}
     </IframeOptionsContext.Provider>
   )
