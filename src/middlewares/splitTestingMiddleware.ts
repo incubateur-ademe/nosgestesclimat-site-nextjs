@@ -21,7 +21,11 @@ export default function splitTestingMiddleware(request: NextRequest) {
 
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
-    response.cookies.set(splitTestingCookieName, splitNumber)
+    response.cookies.set(splitTestingCookieName, splitNumber, {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    })
     return response
   } else {
     const rewriteTo = `${redirectUrl}${request.nextUrl.href.replace(
@@ -29,7 +33,11 @@ export default function splitTestingMiddleware(request: NextRequest) {
       ''
     )}`
     const response = NextResponse.rewrite(rewriteTo)
-    response.cookies.set(splitTestingCookieName, splitNumber)
+    response.cookies.set(splitTestingCookieName, splitNumber, {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    })
     return response
   }
 }
