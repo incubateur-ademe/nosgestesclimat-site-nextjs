@@ -26,16 +26,16 @@ export default function HeroSection() {
         <strong className="text-primary-500">
           <Trans>salle de classe</Trans>
         </strong>{' '}
-        ? <Trans>Découvrez nos outils pour vous simplifier la vie !</Trans>
+        ? <Trans>Découvrez nos outils pour vous simplifier la vie&nbsp;!</Trans>
       </p>
 
       <div className="flex flex-wrap items-baseline gap-8">
         <ButtonLink href="/organisations/connexion" size="lg">
-          Commencez
+          <Trans>Commencez</Trans>
         </ButtonLink>
 
         <InlineLink className="py-4" href="/organisations/demander-demo">
-          Demandez une démo
+          <Trans>Demandez une démo</Trans>
         </InlineLink>
       </div>
     </div>

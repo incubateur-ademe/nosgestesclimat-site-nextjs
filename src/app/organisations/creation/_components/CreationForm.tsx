@@ -63,7 +63,7 @@ export default function CreationForm({
                   Gestes Climat aux organisations
                 </Trans>
               </strong>{' '}
-              (une fois par mois maximum !)
+              <Trans>(une fois par mois maximum !)</Trans>
             </span>
           }
         />
