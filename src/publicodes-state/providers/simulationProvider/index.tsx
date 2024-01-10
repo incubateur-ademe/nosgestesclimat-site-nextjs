@@ -2,7 +2,7 @@
 
 import { PropsWithChildren } from 'react'
 
-import { Rules, Situation } from '../../types'
+import { DottedName, Rules, Situation } from '../../types'
 import SimulationContext from './context'
 import useCategories from './useCategories'
 import useEngine from './useEngine'
@@ -29,7 +29,7 @@ type Props = {
   /**
    * Every answered questions of the current simulation
    */
-  foldedSteps: string[]
+  foldedSteps: DottedName[]
   /**
    * A function to add a question to the list of the answered questions of the current simulation
    */

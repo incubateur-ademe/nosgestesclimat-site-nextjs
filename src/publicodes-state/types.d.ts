@@ -65,7 +65,7 @@ export type Simulation = {
   id: string
   date: Date | string
   situation: Situation
-  foldedSteps: string[]
+  foldedSteps: DottedName[]
   actionChoices: ActionChoices
   persona?: string
 }
