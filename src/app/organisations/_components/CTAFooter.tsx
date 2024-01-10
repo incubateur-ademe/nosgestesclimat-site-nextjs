@@ -16,20 +16,20 @@ export default function CTAFooter() {
             </strong>{' '}
             <Trans>
               pour créer un compte, et vous pourrez retrouver tous nos services
-              gratuitement !
+              gratuitement&nbsp;!
             </Trans>
           </p>
 
           <div className="flex flex-wrap gap-4">
             <ButtonLink href="/organisations/connexion">
-              Créer un compte
+              <Trans>Créer un compte</Trans>
             </ButtonLink>
 
             <ButtonLink
               color="text"
               className="underline"
               href="/contact?motif=demo">
-              Demandez une démo
+              <Trans>Demandez une démo</Trans>
             </ButtonLink>
           </div>
         </div>

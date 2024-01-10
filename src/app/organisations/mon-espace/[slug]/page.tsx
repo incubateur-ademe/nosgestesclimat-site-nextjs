@@ -43,7 +43,7 @@ export default function OrganizationPage() {
 
       {!organization && <Loader />}
 
-      <section className="mt-6 w-full bg-[#fff]">
+      <section className="mt-6 w-full bg-white">
         <div className="mx-auto max-w-5xl px-6 py-8 lg:px-0">
           {isError && (
             <>

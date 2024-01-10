@@ -1,16 +1,14 @@
 import useTimeLeft from '@/app/organisations/_hooks/useTimeleft'
 import useValidateVerificationCode from '@/app/organisations/_hooks/useValidateVerificationCode'
-import Trans from '@/components/translation/Trans'
 import { SERVER_URL } from '@/constants/urls'
-import Emoji from '@/design-system/utils/Emoji'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import VerificationCodeInput from './verificationForm/VerificationCodeInput'
+import NotReceived from './verificationForm/NotReceived'
+import VerificationContent from './verificationForm/VerificationContent'
 
 export default function VerificationForm({
   ownerEmail,
@@ -18,8 +16,6 @@ export default function VerificationForm({
   ownerEmail: string
 }) {
   const [inputError, setInputError] = useState<string | undefined>()
-
-  const { t } = useClientTranslation()
 
   const { timeLeft, setTimeLeft } = useTimeLeft()
 
@@ -91,22 +87,6 @@ export default function VerificationForm({
     }
   }, [])
 
-  async function handleResendVerificationCode() {
-    if (
-      isPendingValidate ||
-      isSuccessValidate ||
-      isPendingResend ||
-      isSuccessResend ||
-      timeLeft > 0
-    ) {
-      return
-    }
-
-    await sendVerificationCode()
-
-    setTimeLeft(30)
-  }
-
   const isRetryButtonDisabled =
     isPendingValidate || isSuccessValidate || isPendingResend || timeLeft > 0
 
@@ -122,60 +102,23 @@ export default function VerificationForm({
       </div>
 
       <div>
-        <h2>
-          <Trans>Vérifiez votre boîte e-mail !</Trans>
-        </h2>
-
-        <p>
-          <Trans>Nous avons envoyé un</Trans>{' '}
-          <strong className="text-primary-700">
-            <Trans>code de vérification</Trans>
-          </strong>{' '}
-          <Trans>à </Trans>
-          {ownerEmail} .{' '}
-        </p>
-
-        <form>
-          <label htmlFor="code" className="mb-4 block font-bold">
-            <Trans>Entrez votre code de vérification pour continuer</Trans>
-          </label>
-
-          <VerificationCodeInput
-            inputError={inputError}
-            isSuccessValidate={isSuccessValidate}
-            isPendingValidate={isPendingValidate}
-            handleValidateVerificationCode={handleValidateVerificationCode}
-          />
-        </form>
+        <VerificationContent
+          ownerEmail={ownerEmail}
+          inputError={inputError}
+          isSuccessValidate={isSuccessValidate}
+          isPendingValidate={isPendingValidate}
+          handleValidateVerificationCode={handleValidateVerificationCode}
+        />
 
         {!isSuccessValidate && (
-          <>
-            <p className="mt-12">
-              <Trans>Vous n'avez pas reçu d'e-mail ?</Trans>
-            </p>
-
-            <button
-              aria-disabled={isRetryButtonDisabled}
-              aria-label={
-                isRetryButtonDisabled
-                  ? t('Renvoyer le code, désactivé pendant 30 secondes')
-                  : ''
-              }
-              onClick={handleResendVerificationCode}
-              className="text-primary-700 underline">
-              {isRetryButtonDisabled && <Emoji>🔒</Emoji>}{' '}
-              <Trans>Renvoyer le code</Trans>
-            </button>
-
-            {timeLeft > 0 && !isPendingValidate && !isSuccessValidate && (
-              <p className="mt-2 text-sm text-gray-600">
-                <Trans>Veuillez attendre</Trans> {timeLeft}{' '}
-                <Trans>
-                  secondes avant de pouvoir recevoir un nouveau code
-                </Trans>
-              </p>
-            )}
-          </>
+          <NotReceived
+            isRetryButtonDisabled={isRetryButtonDisabled}
+            isPendingValidate={isPendingValidate}
+            isSuccessResend={isSuccessResend}
+            sendVerificationCode={sendVerificationCode}
+            timeLeft={timeLeft}
+            setTimeLeft={setTimeLeft}
+          />
         )}
       </div>
     </div>
