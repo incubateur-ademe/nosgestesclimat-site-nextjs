@@ -548,4 +548,4 @@ entries:
   components.localisation.Localisation.warnMessage: For the moment, there is no calculation model for {{countryName}}, the French model is proposed by default.
   components.localisation.Localisation.warnMessage.lock: Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français vous est proposé par défaut.
   Voir mes résultats: See my results
-  Passer le test: Taking the test
+  Passer le test: Take the test
