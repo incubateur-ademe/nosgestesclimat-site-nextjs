@@ -27,6 +27,10 @@ type Props = {
    */
   updateSituation: (situation: Situation) => void
   /**
+   * A function to update the progression of the current simulation of the user in the user object returned by the useUser hook
+   */
+  updateProgression: (progression: number) => void
+  /**
    * Every answered questions of the current simulation
    */
   foldedSteps: DottedName[]
@@ -42,6 +46,10 @@ type Props = {
    * The root rule of the simulation
    */
   root?: string
+  /**
+   * Whether we should wait for the simulation to be initialized before displaying children
+   */
+  shouldAlwaysDisplayChildren?: boolean
 }
 
 export default function SimulationProvider({
@@ -50,10 +58,12 @@ export default function SimulationProvider({
   defaultSituation,
   situation: externalSituation,
   updateSituation: updateExternalSituation,
+  updateProgression,
   foldedSteps,
   addFoldedStep,
   categoryOrder,
   root = 'bilan',
+  shouldAlwaysDisplayChildren = false,
 }: PropsWithChildren<Props>) {
   const { engine, pristineEngine, safeEvaluate, safeGetRule } = useEngine(rules)
 
@@ -90,6 +100,7 @@ export default function SimulationProvider({
         safeEvaluate,
         situation,
         updateSituation,
+        updateProgression,
         foldedSteps,
         //TODO: should clean a bit
         addFoldedStep: (foldedStep) => {
@@ -105,7 +116,7 @@ export default function SimulationProvider({
         categories,
         subcategories,
       }}>
-      {initialized ? children : null}
+      {initialized || shouldAlwaysDisplayChildren ? children : null}
     </SimulationContext.Provider>
   )
 }
