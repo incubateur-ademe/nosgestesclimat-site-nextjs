@@ -2,10 +2,10 @@
 
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
-import { Situation } from '../../types'
+import { DottedName, Situation } from '../../types'
 
 type Props = {
-  dottedName: string
+  dottedName: DottedName
   questionsOfMosaic: string[]
   situation: Situation
   foldedSteps: string[]

@@ -1,3 +1,4 @@
+import { DottedName } from '@/publicodes-state/types'
 import { useContext } from 'react'
 import simulationContext from '../../providers/simulationProvider/context'
 
@@ -8,7 +9,7 @@ export default function useTempEngine() {
   const { safeEvaluate, rules, safeGetRule } =
     useContext(simulationContext) ?? {}
 
-  const getRuleObject = (dottedName: string): any => {
+  const getRuleObject = (dottedName: DottedName): any => {
     return { ...safeEvaluate(dottedName), ...safeGetRule(dottedName) }
   }
 

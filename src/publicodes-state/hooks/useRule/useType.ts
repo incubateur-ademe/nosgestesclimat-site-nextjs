@@ -2,10 +2,10 @@
 
 import { useMemo } from 'react'
 import getType from '../../helpers/getType'
-import { NGCEvaluatedNode, NGCRuleNode } from '../../types'
+import { DottedName, NGCEvaluatedNode, NGCRuleNode } from '../../types'
 
 type Props = {
-  dottedName: string
+  dottedName: DottedName
   rule: NGCRuleNode | null
   evaluation: NGCEvaluatedNode | null
 }

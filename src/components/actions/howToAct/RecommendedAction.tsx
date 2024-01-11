@@ -1,11 +1,12 @@
 import Link from '@/components/Link'
 import ActionCard from '@/design-system/actions/ActionCard'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 
 export default function RecommendedAction({
   actionDottedName,
 }: {
-  actionDottedName: string
+  actionDottedName: DottedName
 }) {
   const { icons, title, numericValue } = useRule(actionDottedName)
 
