@@ -80,7 +80,7 @@ export default function OrganizationPage() {
                 </Trans>
               </p>
 
-              <OrgaStatistics />
+              <OrgaStatistics organization={organization} />
             </>
           )}
         </div>

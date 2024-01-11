@@ -3,33 +3,32 @@
 import VerticalBarChartItem from '@/components/charts/verticalBarChart/VerticalBarChartItem'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
-import { formatValue } from 'publicodes'
 
 export default function CategoryChartItem({
   category,
   maxValue,
+  value,
   index,
 }: {
   category: string
+  value: number
   maxValue: number
   index: number
 }) {
   const { t } = useClientTranslation()
 
-  const { numericValue, icons, title } = useRule(category)
+  const { icons, title } = useRule(category)
 
-  const percentageOfMaxValue = 1 - (maxValue - numericValue) / maxValue
-
-  const formattedValue = formatValue(numericValue / 1000, { precision: 1 })
+  const percentageOfMaxValue = 1 - (maxValue - value) / maxValue
 
   return (
     <VerticalBarChartItem
-      value={formattedValue}
+      value={value}
       index={index}
       percentage={percentageOfMaxValue}
       ariaLabel={t(
         'La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.',
-        { formattedValue, title }
+        { value, title }
       )}
       title={title ?? ''}
       icons={icons}

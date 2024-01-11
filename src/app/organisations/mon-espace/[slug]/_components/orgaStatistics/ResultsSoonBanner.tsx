@@ -13,30 +13,34 @@ export default function ResultsSoonBanner() {
   }
 
   return (
-    <Card className="w-full flex-row flex-wrap items-center justify-between gap-4 p-8 md:flex-nowrap">
-      <div className="flex max-w-2xl gap-4">
-        <HourglassIcon />
-        <div>
-          <p className="mb-0">
-            <Trans>
-              Bientôt, vous verrez apparaître ici vos statistiques. Partagez le
-              test pour obtenir vos premiers résultats
-            </Trans>{' '}
-            -{' '}
-            <button
-              className="text-primary-500 underline"
-              onClick={() => handleScrollIntoView('orga-faq')}>
-              <Trans>En savoir plus</Trans>
-            </button>
-          </p>
-        </div>
-      </div>
+    <div className="absolute left-0 top-0 h-full w-full p-12">
+      <div className="absolute left-0 top-0 h-full w-full bg-white opacity-10" />
 
-      <button
-        className="whitespace-nowrap font-bold text-primary-500 underline"
-        onClick={() => handleScrollIntoView('orga-partage')}>
-        Partagez le test
-      </button>
-    </Card>
+      <Card className="w-full flex-row flex-wrap items-center justify-between gap-4 p-8 md:flex-nowrap">
+        <div className="flex max-w-2xl gap-4">
+          <HourglassIcon />
+          <div>
+            <p className="mb-0">
+              <Trans>
+                Bientôt, vous verrez apparaître ici vos statistiques. Partagez
+                le test pour obtenir vos premiers résultats
+              </Trans>{' '}
+              -{' '}
+              <button
+                className="text-primary-500 underline"
+                onClick={() => handleScrollIntoView('orga-faq')}>
+                <Trans>En savoir plus</Trans>
+              </button>
+            </p>
+          </div>
+        </div>
+
+        <button
+          className="whitespace-nowrap font-bold text-primary-500 underline"
+          onClick={() => handleScrollIntoView('orga-partage')}>
+          Partagez le test
+        </button>
+      </Card>
+    </div>
   )
 }
