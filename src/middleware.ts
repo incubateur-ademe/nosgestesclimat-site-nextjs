@@ -51,7 +51,6 @@ function getSplitCookieFromResponse(response: NextResponse) {
     .getSetCookie()
     .find((cookie) => cookie.includes(splitTestingCookieName))
 
-  console.log(cookie)
   if (!cookie) return null
 
   const cookieNumber = cookie
