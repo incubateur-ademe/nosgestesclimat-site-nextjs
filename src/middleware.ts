@@ -13,7 +13,6 @@ export async function middleware(request: NextRequest) {
   let splitNumber = null
   for await (const middlewareFunction of middlewares) {
     const middlewareResponse = await middlewareFunction(request)
-    console.log(middlewareResponse.headers)
     // Even if we don't redirect, we still need to keep the split cookie for the next response
     if (!splitNumber) {
       splitNumber = getSplitCookieFromResponse(middlewareResponse)

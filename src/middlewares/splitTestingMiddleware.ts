@@ -22,7 +22,6 @@ export default function splitTestingMiddleware(request: NextRequest) {
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
     if (cookie) {
-      console.log('should be setting cookie', cookie)
       response.headers.append('Set-Cookie', cookie)
     }
 
