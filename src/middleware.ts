@@ -2,7 +2,9 @@ import { splitTestingCookieName } from '@/constants/split-testing'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import i18nMiddleware from './middlewares/i18nMiddleware'
-import splitTestingMiddleware from './middlewares/splitTestingMiddleware'
+import splitTestingMiddleware, {
+  generateCookie,
+} from './middlewares/splitTestingMiddleware'
 
 export const middlewares = [splitTestingMiddleware, i18nMiddleware]
 
@@ -11,14 +13,15 @@ export async function middleware(request: NextRequest) {
   let splitNumber = null
   for await (const middlewareFunction of middlewares) {
     const middlewareResponse = await middlewareFunction(request)
-
     // Even if we don't redirect, we still need to keep the split cookie for the next response
     if (!splitNumber) {
       splitNumber = getSplitCookieFromResponse(middlewareResponse)
     }
+
     if (splitNumber) {
-      response.cookies.set(splitTestingCookieName, splitNumber)
-      middlewareResponse.cookies.set(splitTestingCookieName, splitNumber)
+      const cookie = generateCookie(splitTestingCookieName, splitNumber)
+      response.headers.append('Set-Cookie', cookie)
+      middlewareResponse.headers.append('Set-Cookie', cookie)
     }
 
     if (isRedirecting(middlewareResponse)) {
@@ -51,8 +54,8 @@ function getSplitCookieFromResponse(response: NextResponse) {
   if (!cookie) return null
 
   const cookieNumber = cookie
+    .split(';')[0]
     .replace(splitTestingCookieName, '')
     .replace('=', '')
-    .replace('; Path=/', '')
   return cookieNumber
 }
