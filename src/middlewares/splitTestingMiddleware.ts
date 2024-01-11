@@ -8,7 +8,7 @@ export default function splitTestingMiddleware(request: NextRequest) {
   if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH) {
     return NextResponse.next()
   }
-  let splitNumber = getSplitCookie(request)
+  let splitNumber = getSplitCookieFromRequest(request)
   let cookie = null
   if (!splitNumber) {
     const randomNumber = Math.random()
@@ -22,6 +22,7 @@ export default function splitTestingMiddleware(request: NextRequest) {
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
     if (cookie) {
+      console.log('should be setting cookie', cookie)
       response.headers.append('Set-Cookie', cookie)
     }
 
@@ -40,7 +41,7 @@ export default function splitTestingMiddleware(request: NextRequest) {
   }
 }
 
-export function getSplitCookie(request: NextRequest | NextResponse) {
+function getSplitCookieFromRequest(request: NextRequest) {
   const cookieString = request.headers
     .get('cookie')
     ?.split('; ')
