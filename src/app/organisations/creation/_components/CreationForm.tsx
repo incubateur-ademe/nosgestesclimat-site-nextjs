@@ -11,11 +11,15 @@ import React from 'react'
 export default function CreationForm({
   onSubmit,
   nameError,
+  setNameError,
   ownerNameError,
+  setOwnerNameError,
 }: {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
   nameError: string | null
+  setNameError: React.Dispatch<React.SetStateAction<string | null>>
   ownerNameError: string | null
+  setOwnerNameError: React.Dispatch<React.SetStateAction<string | null>>
 }) {
   return (
     <form onSubmit={onSubmit} className="items-auto flex flex-col gap-4">
@@ -23,12 +27,14 @@ export default function CreationForm({
         name="name"
         label={<Trans>Votre organisation</Trans>}
         error={nameError ?? ''}
+        onChange={() => setNameError('')}
       />
 
       <TextInputGroup
         name="ownerName"
         label={<Trans>Votre prénom</Trans>}
         error={ownerNameError ?? ''}
+        onChange={() => setOwnerNameError('')}
       />
 
       <Separator />

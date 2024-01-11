@@ -118,7 +118,9 @@ export default function CreationPage() {
           <CreationForm
             onSubmit={handleSubmit}
             nameError={nameError}
+            setNameError={setNameError}
             ownerNameError={ownerNameError}
+            setOwnerNameError={setOwnerNameError}
           />
         </div>
       </section>
