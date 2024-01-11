@@ -1,7 +1,7 @@
 'use client'
 
 import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
-import { useTrackSplitTesting } from '@/hooks/useTrackSplitTesting'
+import useTrackSplitTesting from '@/hooks/useTrackSplitTesting'
 import { UserProvider } from '@/publicodes-state'
 import { PropsWithChildren } from 'react'
 import CheckFixedRegion from './mainLayoutProviders/CheckFixedRegion'
