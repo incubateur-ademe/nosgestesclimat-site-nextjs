@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
+import Label from '@/design-system/inputs/Label'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Separator from '@/design-system/layout/Separator'
 import React from 'react'
@@ -32,21 +33,33 @@ export default function CreationForm({
 
       <TextInputGroup
         name="position"
-        label={<Trans>Votre rôle</Trans>}
+        label={
+          <Label isOptional>
+            <Trans>Rôle</Trans>
+          </Label>
+        }
         className="mb-4"
       />
 
       <TextInputGroup
         type="telephone"
         name="telephone"
-        label={<Trans>Téléphone</Trans>}
+        label={
+          <Label isOptional>
+            <Trans>Téléphone</Trans>
+          </Label>
+        }
         className="mb-4"
       />
 
       <TextInputGroup
         name="numberOfParticipants"
         type="number"
-        label={<Trans>Nombre de participants (estimé)</Trans>}
+        label={
+          <Label isOptional>
+            <Trans>Nombre de participants (estimé)</Trans>
+          </Label>
+        }
         className="mb-4"
       />
 
