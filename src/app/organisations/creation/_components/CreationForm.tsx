@@ -10,23 +10,25 @@ import React from 'react'
 
 export default function CreationForm({
   onSubmit,
+  nameError,
+  ownerNameError,
 }: {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
+  nameError: string | null
+  ownerNameError: string | null
 }) {
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="items-auto flex flex-col gap-4">
       <TextInputGroup
         name="name"
         label={<Trans>Votre organisation</Trans>}
-        required
-        className="mb-4"
+        error={nameError ?? ''}
       />
 
       <TextInputGroup
         name="ownerName"
         label={<Trans>Votre prénom</Trans>}
-        required
-        className="mb-4"
+        error={ownerNameError ?? ''}
       />
 
       <Separator />
@@ -82,7 +84,7 @@ export default function CreationForm({
         />
       </div>
 
-      <Button type="submit" className="mt-12">
+      <Button type="submit" className="mt-12 self-start">
         <Trans>Accéder à mon espace</Trans>
       </Button>
     </form>

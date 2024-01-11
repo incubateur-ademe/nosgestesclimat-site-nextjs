@@ -1,7 +1,10 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import { SERVER_URL } from '@/constants/urls'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { getIsValidEmail } from '@/utils/getIsValidEmail'
 import { useMutation } from '@tanstack/react-query'
@@ -10,6 +13,8 @@ import React from 'react'
 
 export default function EmailForm({ onComplete }: { onComplete: () => void }) {
   const [inputError, setInputError] = React.useState<string | undefined>()
+
+  const { t } = useClientTranslation()
 
   const { user, updateEmail, updateLoginExpirationDate } = useUser()
 
@@ -41,9 +46,15 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
 
     const email = input.value
 
-    // TODO : Vérifier si l'email est valide
+    // Validation
     if (!email || !getIsValidEmail(email)) {
-      setInputError('L’adresse e-mail est invalide')
+      if (!email) {
+        setInputError(t('Vous devez renseigner votre adresse e-mail'))
+      }
+      if (email && !getIsValidEmail(email)) {
+        setInputError(t('L’adresse e-mail est invalide'))
+      }
+
       return
     }
 
