@@ -15,7 +15,7 @@ export default function CategoriesChart({
   const { numericValue: firstCategoryValue } = useRule(sortedCategories[0])
 
   return (
-    <VerticalBarChart className={className}>
+    <VerticalBarChart className={`${className} md:hidden`}>
       {sortedCategories.map((category, index) => (
         <CategoryChartItem
           key={category}

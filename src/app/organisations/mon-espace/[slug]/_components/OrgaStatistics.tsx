@@ -16,7 +16,7 @@ export default function OrgaStatistics({
       <section className="relative flex gap-4">
         <StatisticsBlocks simulations={organization?.polls?.[0]?.simulations} />
 
-        {organization?.polls?.[0]?.simulations?.length > 0 && (
+        {organization?.polls?.[0]?.simulations?.length <= 0 && (
           <ResultsSoonBanner />
         )}
       </section>

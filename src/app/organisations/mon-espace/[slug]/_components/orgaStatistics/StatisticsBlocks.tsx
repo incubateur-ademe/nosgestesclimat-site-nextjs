@@ -31,7 +31,7 @@ export default function StatisticsBlocks({
   )
 
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="grid w-full grid-cols-3 gap-4">
       <div className="rounded-lg bg-grey-100 p-8">
         <p className="text-4xl font-bold text-primary-500">
           {simulations?.length}
@@ -54,7 +54,8 @@ export default function StatisticsBlocks({
       </div>
 
       <div className="rounded-lg bg-grey-100">
-        <VerticalBarChart>
+        <VerticalBarChart
+          className={simulations?.length <= 0 ? 'opacity-0' : ''}>
           {Object.entries(result).map(([key, value], index) => (
             <CategoryChartItem
               index={index}
