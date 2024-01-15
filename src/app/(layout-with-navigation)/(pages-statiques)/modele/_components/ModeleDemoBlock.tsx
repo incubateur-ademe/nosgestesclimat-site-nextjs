@@ -7,7 +7,7 @@ import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
 import { safeGetSituation } from '@/publicodes-state/helpers/safeGetSituation'
-import { Rules, Situation } from '@/publicodes-state/types'
+import { DottedName, Rules, Situation } from '@/publicodes-state/types'
 import { SuppportedRegions } from '@/types/international'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Engine, { Evaluation } from 'publicodes'
@@ -69,7 +69,7 @@ export default function ModeleDemoBlock({
     )
   }, [situation, engine])
 
-  const onChange = (dottedName: string, value: string) =>
+  const onChange = (dottedName: DottedName, value: string) =>
     setSituation({ ...situation, [dottedName]: value })
 
   const defaultValues = demoDottedNames.reduce(
@@ -84,7 +84,7 @@ export default function ModeleDemoBlock({
   )
 
   return (
-    <div className="bg-primary-100 my-4 rounded-md p-4">
+    <div className="my-4 rounded-md bg-primary-100 p-4">
       <ul>
         {demoDottedNames.map((el) => (
           <li key={el} className="mb-2">

@@ -1,5 +1,6 @@
 import { getMatomoEventActionAccepted } from '@/constants/matomo'
 import { FormProvider, useEngine, useUser } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
@@ -9,7 +10,7 @@ type Props = {
   rules: any
   bilan: any
   focusedAction: string
-  setFocusedAction: (dottedName: string) => void
+  setFocusedAction: (dottedName: DottedName) => void
 }
 
 export default function ActionList({

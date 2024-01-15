@@ -4,15 +4,16 @@ import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
 import { useMemo } from 'react'
 import getType from '../../helpers/getType'
 import {
+  DottedName,
   NGCEvaluatedNode,
   NGCRuleNode,
   NodeValue,
   Situation,
 } from '../../types'
 type Props = {
-  dottedName: string
-  safeGetRule: (rule: string) => NGCRuleNode | null
-  safeEvaluate: (rule: string) => NGCEvaluatedNode | null
+  dottedName: DottedName
+  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
   evaluation: NGCEvaluatedNode | null
   type: string | undefined
   questionsOfMosaic: string[]

@@ -1,5 +1,7 @@
+import { DottedName } from '@/publicodes-state/types'
+
 // Gathered from nosgestesclimat-site
-const filteredDottedNames = [
+const filteredDottedNames: DottedName[] = [
   'divers . publicité',
   'services sociétaux . pression locale',
   'services sociétaux . voter',
@@ -10,7 +12,7 @@ const filteredDottedNames = [
 ]
 
 export const filterRelevantMissingVariables = (missingVariables: any) => {
-  return missingVariables.filter((dottedName: string) => {
+  return missingVariables.filter((dottedName: DottedName) => {
     return !filteredDottedNames.includes(dottedName)
   })
 }

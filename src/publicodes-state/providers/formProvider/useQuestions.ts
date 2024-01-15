@@ -1,12 +1,17 @@
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
 import getQuestionsOfMosaic from '../../helpers/getQuestionsOfMosaic'
-import { NGCEvaluatedNode, NGCRuleNode, Situation } from '../../types'
+import {
+  DottedName,
+  NGCEvaluatedNode,
+  NGCRuleNode,
+  Situation,
+} from '../../types'
 
 type Props = {
   root: string
-  safeGetRule: (rule: string) => NGCRuleNode | null
-  safeEvaluate: (rule: string) => NGCEvaluatedNode | null
+  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
   categories: string[]
   subcategories: Record<string, string[]>
   situation: Situation
@@ -157,7 +162,7 @@ export default function useQuestions({
        * questions to display to get every relevant questions
        */
       ...relevantAnsweredQuestions,
-      ...remainingQuestions.filter((dottedName: string) =>
+      ...remainingQuestions.filter((dottedName: DottedName) =>
         // We check again if the question is missing or not to make sure mosaic
         // are correctly assessed (this is less than ideal)
         getIsMissing({

@@ -5,6 +5,7 @@ import {
   useEngine,
   useTempEngine,
 } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { Member } from '@/types/groups'
 
 export function getSubcategories({
@@ -14,7 +15,7 @@ export function getSubcategories({
 }: {
   rules: any
   category: string
-  getRuleObject: (dottedName: string) => any
+  getRuleObject: (dottedName: DottedName) => any
 }): string[] | undefined {
   const rule = getRuleObject(category)
 

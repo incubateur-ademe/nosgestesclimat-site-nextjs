@@ -1,6 +1,6 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
-import { NodeValue } from '@/publicodes-state/types'
+import { DottedName, NodeValue } from '@/publicodes-state/types'
 import { TranslationFunctionType } from '@/types/translation'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import { getCarbonFootprint } from '../../../_helpers/getCarbonFootprint'
@@ -37,7 +37,7 @@ export default function ActionValue({
   total: number
   isDisabled: boolean
   hasFormula: boolean
-  dottedName: string
+  dottedName: DottedName
   isBlurred?: boolean
 }) {
   const { t, i18n } = useClientTranslation()
@@ -66,7 +66,7 @@ export default function ActionValue({
 
   return (
     <div
-      className={`border-primary-500 bg-primary-500 mb-6 inline-block rounded-[0.25rem] border-2 border-solid pl-2 pr-[2px] text-white ${
+      className={`mb-6 inline-block rounded-[0.25rem] border-2 border-solid border-primary-500 bg-primary-500 pl-2 pr-[2px] text-white ${
         correctedValue != undefined && correctedValue < 0 ? 'bg-red-500' : ''
       }${isBlurred ? 'blur-[2px] grayscale' : ''}`}>
       <span>
@@ -76,7 +76,7 @@ export default function ActionValue({
       </span>
 
       {total && relativeValue > 0 && (
-        <span className="text-primary-700 bg-primary-100 ml-2 rounded-e-sm px-1">
+        <span className="ml-2 rounded-e-sm bg-primary-100 px-1 text-primary-700">
           {relativeValue}%
         </span>
       )}
