@@ -5,12 +5,12 @@ import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useEngine } from '@/publicodes-state'
-import { NGCRule } from '@/publicodes-state/types'
+import { DottedName, NGCRule } from '@/publicodes-state/types'
 import Markdown from 'markdown-to-jsx'
 import { utils } from 'publicodes'
 
 type Props = {
-  dottedName: string
+  dottedName: DottedName
   summary: string
   rule: NGCRule
 }

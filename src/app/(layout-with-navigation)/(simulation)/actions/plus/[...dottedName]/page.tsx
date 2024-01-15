@@ -4,6 +4,7 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Markdown from '@/design-system/utils/Markdown'
 import getPost from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { DottedName } from '@/publicodes-state/types'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -16,7 +17,7 @@ export async function generateMetadata() {
 
 type Props = {
   params: {
-    dottedName: string[]
+    dottedName: DottedName[]
   }
 }
 
