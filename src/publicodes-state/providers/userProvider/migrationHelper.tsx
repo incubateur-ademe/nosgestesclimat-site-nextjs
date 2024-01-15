@@ -1,5 +1,76 @@
 import { dottedNamesMigration } from '@/constants/dottedNamesMigration'
-import { DottedName, LocalStorage, Simulation } from '@/publicodes-state/types'
+import {
+  DottedName,
+  LocalStorage,
+  NodeValue,
+  Simulation,
+  Situation,
+} from '@/publicodes-state/types'
+
+function handleMigrationKey({
+  dottedName,
+  nodeValue,
+  situation,
+  foldedSteps,
+}: {
+  dottedName: DottedName
+  nodeValue: NodeValue
+  situation: Situation
+  foldedSteps: DottedName[]
+}) {
+  if (!dottedNamesMigration.keysToMigrate[dottedName]) {
+    return
+  }
+
+  // The key is not a key to migrate but a key to delete
+  if (dottedNamesMigration.keysToMigrate[dottedName] === '') {
+    delete situation[dottedName]
+    const index = foldedSteps.indexOf(dottedName)
+
+    if (index > -1) {
+      foldedSteps.splice(index, 1)
+    }
+  }
+
+  // The key is renamed and needs to be migrated
+  situation[dottedNamesMigration.keysToMigrate[dottedName]] = nodeValue
+
+  delete situation[dottedName]
+  const index = foldedSteps.indexOf(dottedName)
+
+  if (index >= 0) {
+    foldedSteps[index] = dottedNamesMigration.keysToMigrate[dottedName]
+  }
+}
+
+function handleMigrationValue({
+  dottedName,
+  nodeValue,
+  situation,
+  foldedSteps,
+}: {
+  dottedName: DottedName
+  nodeValue: NodeValue
+  situation: Situation
+  foldedSteps: DottedName[]
+}) {
+  if (!dottedNamesMigration.valuesToMigrate[dottedName]) {
+    return
+  }
+
+  if (
+    dottedNamesMigration.valuesToMigrate[dottedName][nodeValue as string] === ''
+  ) {
+    delete situation[dottedName]
+    const index = foldedSteps.indexOf(dottedName)
+    if (index > -1) {
+      foldedSteps.splice(index, 1)
+    }
+  }
+
+  situation[dottedName] =
+    dottedNamesMigration.valuesToMigrate[dottedName][nodeValue as string]
+}
 
 export default function migrationHelper(
   currentLocalStorage: LocalStorage
@@ -13,54 +84,49 @@ export default function migrationHelper(
   simulations?.map((simulation: Simulation): void => {
     const situation = simulation.situation
     const foldedSteps = simulation.foldedSteps
+
     Object.entries(situation).map(([dottedName, nodeValue]) => {
       // We check if the non supported dottedName is a key to migrate.
       // Ex: "logement . chauffage . bois . type . bûche . consommation": "xxx" which is now ""logement . chauffage . bois . type . bûches . consommation": "xxx"
-      if (Object.keys(dottedNamesMigration.key).includes(dottedName)) {
+      if (
+        Object.keys(dottedNamesMigration.keysToMigrate).includes(dottedName)
+      ) {
         unsupportedDottedNamesFromSituation.push(dottedName)
-        if (dottedNamesMigration.key[dottedName] !== '') {
-          situation[dottedNamesMigration.key[dottedName]] = nodeValue
-          delete situation[dottedName]
-          const index = foldedSteps.indexOf(dottedName)
-          if (index >= 0) {
-            foldedSteps[index] = dottedNamesMigration.key[dottedName]
-          }
-        } else {
-          delete situation[dottedName]
-          const index = foldedSteps.indexOf(dottedName)
-          if (index > -1) {
-            foldedSteps.splice(index, 1)
-          }
-        }
+
+        handleMigrationKey({
+          dottedName,
+          nodeValue,
+          situation,
+          foldedSteps,
+        })
       }
+
       if (
         // We check if the value of the non supported dottedName value is a value to migrate.
         // Ex: answer "logement . chauffage . bois . type": "bûche" changed to "bûches"
         // If a value is specified but empty, we consider it to be deleted (we need to ask the question again)
         // Ex: answer "transport . boulot . commun . type": "vélo"
-        Object.keys(dottedNamesMigration.value).includes(dottedName) &&
-        Object.keys(dottedNamesMigration.value[dottedName]).includes(
+        Object.keys(dottedNamesMigration.valuesToMigrate).includes(
+          dottedName
+        ) &&
+        Object.keys(dottedNamesMigration.valuesToMigrate[dottedName]).includes(
           nodeValue as string
         )
       ) {
         unsupportedDottedNamesFromSituation.push(dottedName)
-        if (
-          dottedNamesMigration.value[dottedName][nodeValue as string] !== ''
-        ) {
-          situation[dottedName] =
-            dottedNamesMigration.value[dottedName][nodeValue as string]
-        } else {
-          delete situation[dottedName]
-          const index = foldedSteps.indexOf(dottedName)
-          if (index > -1) {
-            foldedSteps.splice(index, 1)
-          }
-        }
+
+        handleMigrationValue({
+          dottedName,
+          nodeValue,
+          situation,
+          foldedSteps,
+        })
       }
     })
   })
-  const haveToMigrate: boolean =
+
+  const shouldMigrate: boolean =
     unsupportedDottedNamesFromSituation.length !== 0
 
-  return haveToMigrate ? filteredLocalStorage : undefined
+  return shouldMigrate ? filteredLocalStorage : undefined
 }

@@ -1,14 +1,16 @@
+import { DottedName, NodeValue } from '@/publicodes-state/types'
+
 type migrationType = {
-  key: Record<string, string>
-  value: Record<string, Record<string, string>>
+  keysToMigrate: Record<DottedName, DottedName>
+  valuesToMigrate: Record<DottedName, Record<string, NodeValue>>
 }
 
 export const dottedNamesMigration: migrationType = {
-  key: {
+  keysToMigrate: {
     'logement . chauffage . bois . type . bûche . consommation':
       'logement . chauffage . bois . type . bûches . consommation',
   },
-  value: {
+  valuesToMigrate: {
     'logement . chauffage . bois . type': { "'bûche'": 'bûches' },
     'transport . boulot . commun . type': { "'vélo'": '' },
   },

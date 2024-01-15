@@ -7,6 +7,23 @@ type Props = {
   storageKey: string
 }
 
+function handleLocalStorageMigration(
+  currentLocalStorage: any,
+  storageKey: string
+) {
+  try {
+    const filteredLocalStorage = migrationHelper(currentLocalStorage)
+
+    // Update only if migrations are detected
+    if (!filteredLocalStorage) return
+
+    localStorage.setItem(storageKey, JSON.stringify(filteredLocalStorage))
+  } catch (error) {
+    console.warn('Error trying to migrate LocalStorage:', error)
+    captureException(error)
+  }
+}
+
 export default function useUpdateOldLocalStorage({ storageKey }: Props) {
   useEffect(() => {
     const oldLocalStorage = localStorage.getItem(
@@ -35,18 +52,6 @@ export default function useUpdateOldLocalStorage({ storageKey }: Props) {
     }
 
     // We migrate rules according to `dottedNamesMigration` table
-    try {
-      const filteredLocalStorage = migrationHelper(currentLocalStorage)
-      if (filteredLocalStorage !== undefined) {
-        localStorage.setItem(
-          `${storageKey}-old`,
-          JSON.stringify(currentLocalStorage)
-        )
-        localStorage.setItem(storageKey, JSON.stringify(filteredLocalStorage))
-      }
-    } catch (error) {
-      console.warn('Error trying to migrate LocalStorage:', error)
-      captureException(error)
-    }
+    handleLocalStorageMigration(currentLocalStorage, storageKey)
   }, [storageKey])
 }
