@@ -8,23 +8,35 @@ export default function splitTestingMiddleware(request: NextRequest) {
   if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH) {
     return NextResponse.next()
   }
+
+  const host = request.headers.get('host')
+  const referrer = request.headers.get('referer')
+
   let splitNumber = getSplitCookieFromRequest(request)
-  let cookie = null
+
+  // If the host and referrer are differents, we may be inside an iframe
+  if ((!referrer || !host || !referrer.includes(host)) && !splitNumber) {
+    return NextResponse.next()
+  }
+
+  // If no cookie is set and we are allready fetching files, we may be inside an iframe
+  if (!splitNumber && request.nextUrl.href.includes('.')) {
+    return NextResponse.next()
+  }
+
+  // If no split cookie is set, we generate a random number
   if (!splitNumber) {
     const randomNumber = Math.random()
     splitNumber = String(randomNumber)
-    cookie = generateCookie(splitTestingCookieName, splitNumber)
   }
+
   const shouldRedirectToChallenger =
     Number(splitNumber) <
     Number(process.env.NEXT_PUBLIC_SPLIT_TESTING_PERCENTAGE ?? 0.5)
 
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
-    if (cookie) {
-      response.headers.append('Set-Cookie', cookie)
-    }
-
+    response.cookies.set(splitTestingCookieName, splitNumber)
     return response
   } else {
     const rewriteTo = `${redirectUrl}${request.nextUrl.href.replace(
@@ -32,10 +44,7 @@ export default function splitTestingMiddleware(request: NextRequest) {
       ''
     )}`
     const response = NextResponse.rewrite(rewriteTo)
-    if (cookie) {
-      response.headers.append('Set-Cookie', cookie)
-    }
-
+    response.cookies.set(splitTestingCookieName, splitNumber)
     return response
   }
 }
@@ -47,12 +56,6 @@ function getSplitCookieFromRequest(request: NextRequest) {
     .find((cookieString) => cookieString.includes(splitTestingCookieName))
 
   if (!cookieString) return null
-  return cookieString
-    .split(';')[0]
-    .replace(splitTestingCookieName, '')
-    .replace('=', '')
-}
 
-export function generateCookie(name: string, value: string) {
-  return `${name}=${value}; Path=/; SameSite=None; Secure`
+  return cookieString.replace(splitTestingCookieName, '').replace('=', '')
 }
