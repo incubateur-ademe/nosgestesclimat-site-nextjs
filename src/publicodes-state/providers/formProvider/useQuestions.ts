@@ -18,6 +18,7 @@ type Props = {
   foldedSteps: string[]
   everyQuestions: string[]
   everyMosaicChildren: string[]
+  currentQuestion: string | null
 }
 
 /**
@@ -32,6 +33,7 @@ export default function useQuestions({
   foldedSteps,
   everyQuestions,
   everyMosaicChildren,
+  currentQuestion,
 }: Props) {
   const missingVariables = useMemo<Record<string, number>>(
     () =>
@@ -150,7 +152,11 @@ export default function useQuestions({
        */
       foldedSteps
         .filter((foldedStep) => everyQuestions.includes(foldedStep))
-        .filter((foldedStep) => !safeEvaluate(foldedStep)?.isNullable),
+        .filter((foldedStep) => !safeEvaluate(foldedStep)?.isNullable)
+        .filter((foldedStep) => {
+          if (foldedStep === currentQuestion) return true
+          return !safeEvaluate(foldedStep)?.explanation?.ruleDisabledByItsParent
+        }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [situation, foldedSteps, safeEvaluate, everyQuestions]
   )
