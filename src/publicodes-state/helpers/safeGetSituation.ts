@@ -13,7 +13,7 @@ export const safeGetSituation = ({
       // We check if the dotteName is a rule of the model
       if (!everyRules.includes(dottedName)) {
         const error = new Error(
-          `Error trying to use ${dottedName} from the user situation: the rule doesn't exist in the model`
+          `error trying to use "${dottedName}" from the user situation: the rule doesn't exist in the model`
         )
         console.warn(error)
         captureException(error)
@@ -29,7 +29,7 @@ export const safeGetSituation = ({
         !everyRules.includes(`${dottedName} . ${situation[dottedName]}`)
       ) {
         const error = new Error(
-          `Error trying to use ${dottedName} answer from the user situation: ${situation[dottedName]} doesn't exist in the model`
+          `error trying to use "${dottedName}" answer from the user situation: "${situation[dottedName]}" doesn't exist in the model`
         )
         console.warn(error)
         captureException(error)

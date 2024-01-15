@@ -39,7 +39,7 @@ function handleMigrationKey({
   delete situation[dottedName]
   const index = foldedSteps.indexOf(dottedName)
 
-  if (index >= 0) {
+  if (index > -1) {
     foldedSteps[index] = dottedNamesMigration.keysToMigrate[dottedName]
   }
 }
@@ -59,6 +59,7 @@ function handleMigrationValue({
     return
   }
 
+  // The value is not a value to migrate and the key has to be deleted
   if (
     dottedNamesMigration.valuesToMigrate[dottedName][nodeValue as string] === ''
   ) {
@@ -70,6 +71,7 @@ function handleMigrationValue({
     return
   }
 
+  // The value is renamed and needs to be migrated
   situation[dottedName] =
     dottedNamesMigration.valuesToMigrate[dottedName][nodeValue as string]
 }
