@@ -147,8 +147,10 @@ export default function useQuestions({
     () =>
       /**
        * First we check that there is still a question associated to the folded
-       * step. If not we cut it. Then we check if the folded step is nullable
-       * (it has been disabled by its parent or something). If it is we cut it.
+       * step. If not we cut it. Then we check if the folded step is nullable. If it is we cut it.
+       * Finally, we check if the folded step is disabled by its parent AND if it's not the current question.
+       * The current question can be disabled by its parent and so deleted from foldedSteps, we don't want it.
+       * (This is the case for boolean question whose value is a condition for the parent).
        */
       foldedSteps
         .filter((foldedStep) => everyQuestions.includes(foldedStep))
