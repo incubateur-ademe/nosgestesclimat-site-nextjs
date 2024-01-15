@@ -30,6 +30,7 @@ function handleMigrationKey({
     if (index > -1) {
       foldedSteps.splice(index, 1)
     }
+    return
   }
 
   // The key is renamed and needs to be migrated
@@ -66,6 +67,7 @@ function handleMigrationValue({
     if (index > -1) {
       foldedSteps.splice(index, 1)
     }
+    return
   }
 
   situation[dottedName] =
