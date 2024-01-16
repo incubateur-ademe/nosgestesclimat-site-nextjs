@@ -1,7 +1,7 @@
 import { LocalStorage } from '@/publicodes-state/types'
 import { captureException } from '@sentry/react'
 import { useEffect } from 'react'
-import migrationHelper from './migrationHelper'
+import filterLocalStorage from './filterLocalStorage'
 
 type Props = {
   storageKey: string
@@ -12,10 +12,7 @@ function handleLocalStorageMigration(
   storageKey: string
 ) {
   try {
-    const filteredLocalStorage = migrationHelper(currentLocalStorage)
-
-    // Update only if migrations are detected
-    if (!filteredLocalStorage) return
+    const filteredLocalStorage = filterLocalStorage(currentLocalStorage)
 
     localStorage.setItem(storageKey, JSON.stringify(filteredLocalStorage))
   } catch (error) {

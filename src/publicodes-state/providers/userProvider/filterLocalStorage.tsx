@@ -76,9 +76,9 @@ function handleMigrationValue({
     dottedNamesMigration.valuesToMigrate[dottedName][nodeValue as string]
 }
 
-export default function migrationHelper(
+export default function filterLocalStorage(
   currentLocalStorage: LocalStorage
-): LocalStorage | undefined {
+): LocalStorage {
   // we can't use spread operator {... currentLocalStorage} as it doesn't deeply clone the object
   const filteredLocalStorage = JSON.parse(JSON.stringify(currentLocalStorage))
   const simulations = filteredLocalStorage?.simulations
@@ -129,8 +129,5 @@ export default function migrationHelper(
     })
   })
 
-  const shouldMigrate: boolean =
-    unsupportedDottedNamesFromSituation.length !== 0
-
-  return shouldMigrate ? filteredLocalStorage : undefined
+  return filteredLocalStorage
 }
