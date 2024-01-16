@@ -1,3 +1,4 @@
+import Engine from 'publicodes'
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
 import getQuestionsOfMosaic from '../../helpers/getQuestionsOfMosaic'
@@ -5,11 +6,13 @@ import {
   DottedName,
   NGCEvaluatedNode,
   NGCRuleNode,
+  Rules,
   Situation,
 } from '../../types'
 
 type Props = {
   root: string
+  rules: Rules
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
   categories: string[]
@@ -18,7 +21,6 @@ type Props = {
   foldedSteps: string[]
   everyQuestions: string[]
   everyMosaicChildren: string[]
-  currentQuestion: string | null
 }
 
 /**
@@ -26,6 +28,7 @@ type Props = {
  */
 export default function useQuestions({
   root,
+  rules,
   safeEvaluate,
   categories,
   subcategories,
@@ -33,7 +36,6 @@ export default function useQuestions({
   foldedSteps,
   everyQuestions,
   everyMosaicChildren,
-  currentQuestion,
 }: Props) {
   const missingVariables = useMemo<Record<string, number>>(
     () =>
@@ -44,6 +46,25 @@ export default function useQuestions({
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [safeEvaluate, root, situation]
+  )
+
+  const rawMissingVariables = useMemo<Record<string, number>>(
+    () => {
+      const engine = new Engine(rules, {
+        logger: {
+          log: console.log,
+          warn: () => null,
+          error: console.error,
+        },
+      })
+      return Object.fromEntries(
+        Object.entries(engine.evaluate(root)?.missingVariables || {}).filter(
+          (missingVariable) => everyQuestions.includes(missingVariable[0])
+        )
+      )
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [rules, root]
   )
 
   const remainingQuestions = useMemo<string[]>(
@@ -148,15 +169,16 @@ export default function useQuestions({
       /**
        * First we check that there is still a question associated to the folded
        * step. If not we cut it. Then we check if the folded step is nullable. If it is we cut it.
-       * Finally, we check if the folded step is disabled by its parent AND if it's not the current question.
-       * The current question can be disabled by its parent and so deleted from foldedSteps, we don't want it.
+       * Finally, we check if the folded step is disabled by its parent AND if it's not a rule of the first missing variables.
+       * The current question can be disabled by its parent and so deleted from foldedSteps, we don't want it BUT it should be displayed
+       * as it is a "fundamental" question.
        * (This is the case for boolean question whose value is a condition for the parent).
        */
       foldedSteps
         .filter((foldedStep) => everyQuestions.includes(foldedStep))
         .filter((foldedStep) => !safeEvaluate(foldedStep)?.isNullable)
         .filter((foldedStep) => {
-          if (foldedStep === currentQuestion) return true
+          if (Object.keys(rawMissingVariables).includes(foldedStep)) return true
           return !safeEvaluate(foldedStep)?.explanation?.ruleDisabledByItsParent
         }),
     // eslint-disable-next-line react-hooks/exhaustive-deps

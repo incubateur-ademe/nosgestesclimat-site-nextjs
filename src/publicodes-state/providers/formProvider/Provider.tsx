@@ -16,6 +16,7 @@ export default function FormProvider({
   children,
 }: PropsWithChildren<Props>) {
   const {
+    rules,
     categories,
     subcategories,
     safeGetRule,
@@ -41,6 +42,7 @@ export default function FormProvider({
     questionsByCategories,
   } = useQuestions({
     root,
+    rules,
     safeGetRule,
     safeEvaluate,
     categories,
@@ -49,7 +51,6 @@ export default function FormProvider({
     situation,
     everyQuestions,
     everyMosaicChildren,
-    currentQuestion,
   })
 
   const { progression, remainingQuestionsByCategories } = useProgression({
