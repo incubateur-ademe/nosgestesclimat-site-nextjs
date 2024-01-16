@@ -2,10 +2,10 @@
 
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { useMemo } from 'react'
-import { NGCRuleNode, Suggestion } from '../../types'
+import { DottedName, NGCRuleNode, Suggestion } from '../../types'
 
 type Props = {
-  dottedName: string
+  dottedName: DottedName
   rule: NGCRuleNode | null
 }
 

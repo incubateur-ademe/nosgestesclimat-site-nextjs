@@ -5,7 +5,7 @@ import { captureException } from '@sentry/react'
 import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import simulationContext from '../../providers/simulationProvider/context'
-import { NGCEvaluatedNode, NGCRuleNode } from '../../types'
+import { DottedName, NGCEvaluatedNode, NGCRuleNode } from '../../types'
 import useChoices from './useChoices'
 import useContent from './useContent'
 import useMissing from './useMissing'
@@ -18,7 +18,7 @@ import useValue from './useValue'
  *
  * It should ALWAYS be used to access a rule (unless we need to compare mutliples rules with useEngine)
  */
-export default function useRule(dottedName: string) {
+export default function useRule(dottedName: DottedName) {
   const {
     engine,
     safeGetRule,

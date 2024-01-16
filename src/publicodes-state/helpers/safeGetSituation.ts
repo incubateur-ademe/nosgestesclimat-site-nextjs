@@ -1,14 +1,14 @@
-import { NodeValue, Situation } from '../types'
+import { DottedName, NodeValue, Situation } from '../types'
 
 export const safeGetSituation = ({
   situation,
   everyRules,
 }: {
   situation: Situation
-  everyRules: string[]
+  everyRules: DottedName[]
 }): any =>
   everyRules
-    .filter((rule: string) => situation[rule] || situation[rule] === 0)
+    .filter((rule: DottedName) => situation[rule] || situation[rule] === 0)
     .reduce(
       (accumulator: Record<string, NodeValue>, currentValue: string) => ({
         ...accumulator,

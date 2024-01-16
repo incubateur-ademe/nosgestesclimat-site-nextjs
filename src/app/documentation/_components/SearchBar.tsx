@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
-import { NGCRules } from '@/publicodes-state/types'
+import { DottedName, NGCRules } from '@/publicodes-state/types'
 import Fuse from 'fuse.js'
 import { utils } from 'publicodes'
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -10,7 +10,7 @@ import RuleListItem from './RuleListIem'
 
 export type SearchItem = {
   title: string
-  dottedName: string
+  dottedName: DottedName
   espace: Array<string>
 }
 
