@@ -31,9 +31,9 @@ export default function TextInputGroup({
 }: HTMLAttributes<HTMLInputElement> & Props) {
   return (
     <div className="flex flex-col" aria-live="polite">
-      <label htmlFor={name}>
+      <label htmlFor={name} className="max-w-[30rem]">
         <span
-          className={`text-sm font-bold text-slate-900 ${
+          className={` text-sm font-bold text-slate-900 ${
             error ? '!text-red-700' : ''
           }`}>
           {label}

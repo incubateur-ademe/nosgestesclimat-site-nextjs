@@ -3,50 +3,71 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
+import Label from '@/design-system/inputs/Label'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Separator from '@/design-system/layout/Separator'
 import React from 'react'
 
 export default function CreationForm({
   onSubmit,
+  nameError,
+  setNameError,
+  ownerNameError,
+  setOwnerNameError,
 }: {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
+  nameError: string | null
+  setNameError: React.Dispatch<React.SetStateAction<string | null>>
+  ownerNameError: string | null
+  setOwnerNameError: React.Dispatch<React.SetStateAction<string | null>>
 }) {
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="items-auto flex flex-col gap-4">
       <TextInputGroup
         name="name"
         label={<Trans>Votre organisation</Trans>}
-        required
-        className="mb-4"
+        error={nameError ?? ''}
+        onChange={() => setNameError('')}
       />
 
       <TextInputGroup
         name="ownerName"
         label={<Trans>Votre prénom</Trans>}
-        required
-        className="mb-4"
+        error={ownerNameError ?? ''}
+        onChange={() => setOwnerNameError('')}
       />
 
       <Separator />
 
       <TextInputGroup
         name="position"
-        label={<Trans>Votre rôle</Trans>}
+        label={
+          <Label isOptional>
+            <Trans>Rôle</Trans>
+          </Label>
+        }
         className="mb-4"
       />
 
       <TextInputGroup
         type="telephone"
         name="telephone"
-        label={<Trans>Téléphone</Trans>}
+        label={
+          <Label isOptional>
+            <Trans>Téléphone</Trans>
+          </Label>
+        }
         className="mb-4"
       />
 
       <TextInputGroup
         name="numberOfParticipants"
         type="number"
-        label={<Trans>Nombre de participants (estimé)</Trans>}
+        label={
+          <Label isOptional>
+            <Trans>Nombre de participants (estimé)</Trans>
+          </Label>
+        }
         className="mb-4"
       />
 
@@ -69,7 +90,7 @@ export default function CreationForm({
         />
       </div>
 
-      <Button type="submit" className="mt-12">
+      <Button type="submit" className="mt-12 self-start">
         <Trans>Accéder à mon espace</Trans>
       </Button>
     </form>

@@ -3,9 +3,11 @@
 import Trans from '@/components/translation/Trans'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Title from '@/design-system/layout/Title'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import axios from 'axios'
 import { usePathname, useRouter } from 'next/navigation'
+import { useState } from 'react'
 import useFetchOrganization from '../_hooks/useFetchOrganization'
 import { useUpdateOrganization } from '../_hooks/useUpdateOrganization'
 import CreationForm from './_components/CreationForm'
@@ -13,6 +15,11 @@ import CreationForm from './_components/CreationForm'
 axios.defaults.withCredentials = true
 
 export default function CreationPage() {
+  const [nameError, setNameError] = useState<string | null>(null)
+  const [ownerNameError, setOwnerNameError] = useState<string | null>(null)
+
+  const { t } = useClientTranslation()
+
   const pathname = usePathname()
 
   const { user } = useUser()
@@ -38,6 +45,24 @@ export default function CreationPage() {
     const position = data.get('position') as string
     const telephone = data.get('telephone') as string
     const numberOfParticipants = data.get('numberOfParticipants') as string
+
+    // Validation
+    if (!name || !ownerName) {
+      if (!name) {
+        setNameError(t('Vous devez renseigner le nom de votre organisation'))
+      }
+      if (!ownerName) {
+        setOwnerNameError(t('Vous devez renseigner votre prénom'))
+      }
+
+      // Scroll to top of the page with an animation
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+
+      return
+    }
 
     const hasOptedInForCommunications = (data.get(
       'hasOptedInForCommunications'
@@ -90,7 +115,13 @@ export default function CreationPage() {
             subtitle={<Trans>Plus que quelques petites questions</Trans>}
           />
 
-          <CreationForm onSubmit={handleSubmit} />
+          <CreationForm
+            onSubmit={handleSubmit}
+            nameError={nameError}
+            setNameError={setNameError}
+            ownerNameError={ownerNameError}
+            setOwnerNameError={setOwnerNameError}
+          />
         </div>
       </section>
     </>
