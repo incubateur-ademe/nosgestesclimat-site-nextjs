@@ -21,7 +21,7 @@ export default function HeaderDesktop() {
   const { t } = useClientTranslation()
 
   const pathname = usePathname()
-
+  console.log('pathname', pathname)
   const { getCurrentSimulation } = useUser()
 
   const currentSimulation = getCurrentSimulation()
@@ -86,9 +86,9 @@ export default function HeaderDesktop() {
               <Trans>Profil</Trans>
             </NavLink>
 
-            {!HIDE_CTA_PATHS.includes(pathname) && (
+            {!HIDE_CTA_PATHS.find((path) => pathname.includes(path)) ? (
               <CTAButton progression={currentSimulation?.progression || 0} />
-            )}
+            ) : null}
           </div>
         </div>
       </div>
