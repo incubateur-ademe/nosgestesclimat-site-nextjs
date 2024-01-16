@@ -1,28 +1,20 @@
 import ChevronRight from '@/design-system/icons/ChevronRight'
-import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
-import { formatValue } from 'publicodes'
 import { ReactNode, useState } from 'react'
-import Card from '../Card'
 
 export type AccordionItemType = {
   title: ReactNode
   content: ReactNode
-  icons: string
   className?: string
-  dottedName: string
   isReadOnly?: boolean
 }
 
 export default function AccordionItem({
-  dottedName,
   title,
   content,
   isReadOnly = false,
 }: AccordionItemType) {
   const [isOpen, setIsOpen] = useState(false)
-
-  const { numericValue } = useRule(dottedName)
 
   return (
     <li>
@@ -34,14 +26,7 @@ export default function AccordionItem({
         aria-disabled={isReadOnly}>
         <div className="flex flex-1 items-center gap-4">{title}</div>
 
-        <div className="flex items-center gap-4 text-primary-700">
-          <span>
-            <strong>
-              {formatValue(numericValue / 1000, { precision: 1 })}
-            </strong>{' '}
-            tonnes
-          </span>
-
+        <div className="flex items-center gap-4 ">
           <ChevronRight
             className={`${isOpen ? 'rotate-90' : ''} ${
               isReadOnly ? 'opacity-20' : ''
@@ -55,13 +40,7 @@ export default function AccordionItem({
           initial={{ opacity: 0.6, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           className="z-0">
-          <Card
-            className="mb-4 border-x-0 bg-grey-100"
-            style={{
-              boxShadow: '0px 6px 6px -2px rgba(21, 3, 35, 0.05) inset',
-            }}>
-            {content}
-          </Card>
+          {content}
         </motion.div>
       )}
     </li>

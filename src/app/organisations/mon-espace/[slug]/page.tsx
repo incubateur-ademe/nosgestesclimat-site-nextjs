@@ -11,6 +11,7 @@ import { usePathname } from 'next/navigation'
 import useFetchOrganization from '../../_hooks/useFetchOrganization'
 import OrgaStatistics from './_components/OrgaStatistics'
 import OurTools from './_components/OurTools'
+import QuestionsFrequentes from './_components/QuestionsFrequentes'
 import ShareSection from './_components/ShareSection'
 
 export default function OrganizationPage() {
@@ -90,6 +91,8 @@ export default function OrganizationPage() {
           <ShareSection organization={organization} />
 
           <OurTools />
+
+          <QuestionsFrequentes />
         </>
       )}
     </>
