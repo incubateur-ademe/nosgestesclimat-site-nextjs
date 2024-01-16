@@ -3,11 +3,14 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useState } from 'react'
 import Background from './organisations/Background'
 import Images from './organisations/Images'
 
 export default function Organisations() {
+  const { t } = useClientTranslation()
+
   const [isHover, setIsHover] = useState(false)
   return (
     <div className="relative mb-16 py-12 md:py-24">
@@ -23,11 +26,9 @@ export default function Organisations() {
             </Trans>
           </h2>
           <p className="max-w-sm md:mb-8 md:text-lg">
-            <Trans>
-              Vous souhaitez diffuser Nos Gestes Climat auprès de votre
-              organisation, découvrez-nous outils pour vous simplifier la
-              vie&#8239;!
-            </Trans>
+            {t(
+              'Vous souhaitez diffuser Nos Gestes Climat auprès de votre organisation, découvrez-nous outils pour vous simplifier la vie\u202f!'
+            )}
           </p>
           <ButtonLink
             href="https://sondages.nosgestesclimat.fr/"

@@ -1,9 +1,12 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default function Actions() {
+export default async function Actions() {
+  const { t } = await getServerTranslation()
+
   return (
     <div className="flex-1">
       <Image
@@ -16,13 +19,11 @@ export default function Actions() {
       <Kicker>
         <Trans>Agir pour le climat</Trans>
       </Kicker>
-      <h2 className="font-medium md:text-3xl">
-        <Trans>Comment agir&#8239;?</Trans>
-      </h2>
+      <h2 className="font-medium md:text-3xl">{t('Comment agir\u202f?')}</h2>
       <p className="max-w-xs md:mb-8 md:max-w-sm md:text-lg">
         <Trans>
-          Découvrez nos <span>pistes personnalisées</span> pour agir dès
-          aujourd’hui pour le climat.
+          Découvrez nos pistes personnalisées pour agir dès aujourd’hui pour le
+          climat.
         </Trans>
       </p>
       <ButtonLink

@@ -20,13 +20,22 @@ export default function Amis() {
         <Trans>Comparez vos résultats</Trans>
       </h2>
       <p className="max-w-sm md:mb-8 md:text-lg">
-        <Trans>
-          Faites le test en{' '}
-          <strong className="text-primary-500">famille</strong>, entre{' '}
-          <strong className="text-primary-500">amis</strong> ou{' '}
-          <strong className="text-primary-500">collègues</strong> et comparez
-          vos résultats.
-        </Trans>
+        <Trans>Faites le test en</Trans>{' '}
+        <strong className="text-primary-500">
+          {' '}
+          <Trans>famille</Trans>
+        </strong>
+        , <Trans>entre</Trans>{' '}
+        <strong className="text-primary-500">
+          {' '}
+          <Trans>amis</Trans>
+        </strong>{' '}
+        <Trans>ou</Trans>{' '}
+        <strong className="text-primary-500">
+          {' '}
+          <Trans>collègues</Trans>
+        </strong>{' '}
+        <Trans>et comparez vos résultats.</Trans>
       </p>
       <ButtonLink href="/amis" data-cypress-id="amis-link">
         <Trans>Commencer</Trans>
