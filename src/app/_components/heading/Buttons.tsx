@@ -17,9 +17,18 @@ export default function Buttons() {
 
   const currentSimulation = getCurrentSimulation()
 
-  const isSimulationStarted = currentSimulation?.foldedSteps?.length
-
   const isClient = useIsClient()
+
+  const progression = currentSimulation?.progression || 0
+  let label
+  if (!progression) {
+    label = <Trans>Passer le test →</Trans>
+  } else if (progression < 1) {
+    label = <Trans>Reprendre mon test</Trans>
+  } else {
+    label = <Trans>Voir mes résultats</Trans>
+  }
+
   return (
     <div className="relative">
       <ButtonLink
@@ -29,7 +38,7 @@ export default function Buttons() {
         href={tutorials.testIntro ? '/simulateur/bilan' : '/tutoriel'}
         data-cypress-id="do-the-test-link"
         onClick={() => {
-          if (isSimulationStarted) {
+          if (progression) {
             trackEvent(matomoEventParcoursTestReprendre)
             return
           }
@@ -37,13 +46,9 @@ export default function Buttons() {
           trackEvent(matomoEventParcoursTestStart)
         }}
         size="lg">
-        {isSimulationStarted ? (
-          <Trans>Reprendre mon test</Trans>
-        ) : (
-          <Trans>Passer le test →</Trans>
-        )}
+        {label}
       </ButtonLink>
-      {isSimulationStarted ? (
+      {progression ? (
         <Link
           className={`absolute left-1/2 top-full -translate-x-1/2 translate-y-6 whitespace-nowrap transition-opacity delay-200 duration-1000 md:text-lg ${
             isClient ? 'opacity-100' : 'opacity-0'

@@ -23,7 +23,6 @@ export async function generateMetadata() {
 export default function Homepage() {
   return (
     <>
-      {' '}
       <Main>
         <Heading />
         <div className="mx-auto mb-12 flex w-full max-w-5xl flex-col flex-wrap items-center gap-12 px-4 md:mb-20 md:flex-row md:items-start md:px-8 lg:gap-28">
