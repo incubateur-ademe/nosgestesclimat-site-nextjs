@@ -1,11 +1,11 @@
 import { orderedCategories } from '@/constants/orderedCategories'
-import { NodeValue } from '@/publicodes-state/types'
+import { DottedName, NodeValue } from '@/publicodes-state/types'
 import { SimulationResults } from '@/types/groups'
 
 export const getSimulationResults = ({
   getValue,
 }: {
-  getValue: (dottedName: string) => NodeValue
+  getValue: (dottedName: DottedName) => NodeValue
 }): SimulationResults => {
   const resultsObject: any = {}
 

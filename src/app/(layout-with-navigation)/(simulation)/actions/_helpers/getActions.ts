@@ -1,3 +1,4 @@
+import { DottedName } from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import { sortBy } from '@/utils/sortBy'
 import { filterIrrelevantActions } from './filterIrrelevantActions'
@@ -7,7 +8,7 @@ type Props = {
   rules: any
   radical: boolean
   metric: string
-  getRuleObject: (dottedName: string) => any
+  getRuleObject: (dottedName: DottedName) => any
   actionChoices: any
 }
 

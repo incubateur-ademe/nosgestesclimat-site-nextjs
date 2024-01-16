@@ -10,6 +10,7 @@ import {
 } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule, useTempEngine, useUser } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Image from 'next/image'
@@ -21,7 +22,7 @@ type Props = {
   action: any
   total: number
   rule: any
-  setFocusedAction: (dottedName: string) => void
+  setFocusedAction: (dottedName: DottedName) => void
   isFocused: boolean
 }
 

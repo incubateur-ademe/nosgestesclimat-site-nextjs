@@ -1,5 +1,7 @@
+import { DottedName } from '../types'
+
 type Props = {
-  dottedName: string
+  dottedName: DottedName
   everyMosaicChildren: string[]
 }
 
