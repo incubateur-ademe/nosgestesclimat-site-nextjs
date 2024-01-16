@@ -5,6 +5,8 @@ import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Loader from '@/design-system/layout/Loader'
+import Emoji from '@/design-system/utils/Emoji'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { usePathname } from 'next/navigation'
@@ -16,6 +18,8 @@ import QuestionsFrequentes from './_components/QuestionsFrequentes'
 import ShareSection from './_components/ShareSection'
 
 export default function OrganizationPage() {
+  const { t } = useClientTranslation()
+
   const pathname = usePathname()
 
   const { user } = useUser()
@@ -30,12 +34,12 @@ export default function OrganizationPage() {
         items={[
           {
             href: '/',
-            label: 'Accueil',
+            label: t('Accueil'),
             isActive: pathname === '/',
           },
           {
             href: '/organisations',
-            label: 'Organisations',
+            label: t('Organisations'),
             isActive: pathname === '/organisations',
           },
           {
@@ -46,7 +50,7 @@ export default function OrganizationPage() {
         ]}
       />
 
-      {!organization && <Loader />}
+      {!organization && !isError && <Loader />}
 
       {isError && (
         <MaxWidthContent>
@@ -66,23 +70,37 @@ export default function OrganizationPage() {
       {organization && (
         <>
           <MaxWidthContent>
-            <h1>
-              <span>
-                <Trans>Bienvenue</Trans>{' '}
-                {capitalizeString(organization?.owner?.name)} ,
-              </span>
-            </h1>
+            <div className="flex flex-wrap justify-between md:flex-nowrap">
+              <div>
+                <h1>
+                  <span>
+                    <Trans>Bienvenue</Trans>{' '}
+                    <span className="text-primary-500">
+                      {capitalizeString(organization?.owner?.name)}
+                    </span>
+                    ,
+                  </span>
+                </h1>
 
-            <p>
-              <Trans>Sur l'espace organisation de </Trans>{' '}
-              <strong className="!text-primary-600">
-                {organization?.name}
-              </strong>
-              .{' '}
-              <Trans>
-                Partagez le test à votre réseau et suivez vos statistiques.
-              </Trans>
-            </p>
+                <p>
+                  <Trans>Sur l'espace organisation de </Trans>{' '}
+                  <strong className="!text-primary-600">
+                    {organization?.name}
+                  </strong>
+                  .{' '}
+                  <Trans>
+                    Partagez le test à votre réseau et suivez vos statistiques.
+                  </Trans>
+                </p>
+              </div>
+              <ButtonLink
+                href={`${pathname}/parametres`}
+                color="text"
+                className="self-start">
+                <Emoji className="mr-2">⚙️</Emoji>
+                <Trans>Voir les paramètres</Trans>
+              </ButtonLink>
+            </div>
           </MaxWidthContent>
 
           <MaxWidthContent className="pb-8">

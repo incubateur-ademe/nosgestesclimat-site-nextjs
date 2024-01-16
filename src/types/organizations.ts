@@ -16,6 +16,7 @@ export type OrganizationOwner = {
   email: string
   position?: string
   telephone?: string
+  hasOptedInForCommunications?: boolean
 }
 
 export type OrganizationPoll = {
