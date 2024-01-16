@@ -6,13 +6,12 @@ import {
   DottedName,
   NGCEvaluatedNode,
   NGCRuleNode,
-  Rules,
   Situation,
 } from '../../types'
 
 type Props = {
   root: string
-  rules: Rules
+  pristineEngine: Engine
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
   categories: string[]
@@ -28,7 +27,7 @@ type Props = {
  */
 export default function useQuestions({
   root,
-  rules,
+  pristineEngine,
   safeEvaluate,
   categories,
   subcategories,
@@ -50,21 +49,16 @@ export default function useQuestions({
 
   const rawMissingVariables = useMemo<Record<string, number>>(
     () => {
-      const engine = new Engine(rules, {
-        logger: {
-          log: console.log,
-          warn: () => null,
-          error: console.error,
-        },
-      })
       return Object.fromEntries(
-        Object.entries(engine.evaluate(root)?.missingVariables || {}).filter(
-          (missingVariable) => everyQuestions.includes(missingVariable[0])
+        Object.entries(
+          pristineEngine.evaluate(root)?.missingVariables || {}
+        ).filter((missingVariable) =>
+          everyQuestions.includes(missingVariable[0])
         )
       )
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [rules, root]
+    [root]
   )
 
   const remainingQuestions = useMemo<string[]>(

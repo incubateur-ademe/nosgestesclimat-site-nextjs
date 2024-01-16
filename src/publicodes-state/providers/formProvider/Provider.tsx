@@ -21,6 +21,7 @@ export default function FormProvider({
     subcategories,
     safeGetRule,
     safeEvaluate,
+    pristineEngine,
     situation,
     foldedSteps,
     everyQuestions,
@@ -42,7 +43,7 @@ export default function FormProvider({
     questionsByCategories,
   } = useQuestions({
     root,
-    rules,
+    pristineEngine,
     safeGetRule,
     safeEvaluate,
     categories,
