@@ -37,7 +37,7 @@ export default function Contributions() {
               <span className="text-primary-500 underline">
                 <Trans>code source est ouvert</Trans>
               </span>
-              <Trans>, le site est amélioré régulièrement.</Trans>
+              , <Trans>le site est amélioré régulièrement.</Trans>
             </p>
           </Card>
           <Card
