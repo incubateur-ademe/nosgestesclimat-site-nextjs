@@ -14,8 +14,17 @@ export default function splitTestingMiddleware(request: NextRequest) {
 
   let splitNumber = getSplitCookieFromRequest(request)
 
+  console.log('--------------')
+  console.log('splitNumber', splitNumber)
+  console.log('request.nextUrl.href', request.nextUrl.href)
+  console.log('request.nextUrl.origin', request.nextUrl.origin)
+  console.log('referrer', referrer)
+  console.log('host', host)
   // If the host and referrer are differents, we may be inside an iframe
-  if ((!referrer || !host || !referrer.includes(host)) && !splitNumber) {
+  if ((!host || !referrer || !referrer.includes(host)) && !splitNumber) {
+    console.log(
+      'splitTestingMiddleware: inside an iframe -------------------------------------------------'
+    )
     return NextResponse.next()
   }
 
