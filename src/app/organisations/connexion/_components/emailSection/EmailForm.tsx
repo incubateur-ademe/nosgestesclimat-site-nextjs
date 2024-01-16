@@ -28,10 +28,17 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
   })
 
   const { mutateAsync: createOrganization } = useMutation({
-    mutationFn: ({ ownerEmail }: { ownerEmail: string }) =>
+    mutationFn: ({
+      ownerEmail,
+      userId,
+    }: {
+      ownerEmail: string
+      userId: string
+    }) =>
       axios
         .post(`${SERVER_URL}/organizations/create`, {
           ownerEmail,
+          userId,
         })
         .then((response) => response.data),
   })
@@ -72,6 +79,7 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
       try {
         const { expirationDate } = await createOrganization({
           ownerEmail: email,
+          userId: user?.id,
         })
 
         updateEmail(email)
