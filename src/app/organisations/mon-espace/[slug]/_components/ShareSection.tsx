@@ -26,12 +26,6 @@ export default function ShareSection({
             <CopyInput
               textToCopy={`${window.location.origin}/o/${organization?.slug}`}
             />
-
-            <div className="mt-8">
-              <button className="text-primary-400 underline">
-                <Trans>Téléchargez un QRcode</Trans>
-              </button>
-            </div>
           </CTACard>
 
           <CTACard
