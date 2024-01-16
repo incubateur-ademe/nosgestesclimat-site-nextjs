@@ -9,6 +9,7 @@ import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { usePathname } from 'next/navigation'
 import useFetchOrganization from '../../_hooks/useFetchOrganization'
+import NousContacter from './_components/NousContacter'
 import OrgaStatistics from './_components/OrgaStatistics'
 import OurTools from './_components/OurTools'
 import QuestionsFrequentes from './_components/QuestionsFrequentes'
@@ -90,9 +91,13 @@ export default function OrganizationPage() {
 
           <ShareSection organization={organization} />
 
-          <OurTools />
+          <MaxWidthContent>
+            <OurTools />
 
-          <QuestionsFrequentes />
+            <QuestionsFrequentes />
+
+            <NousContacter />
+          </MaxWidthContent>
         </>
       )}
     </>
