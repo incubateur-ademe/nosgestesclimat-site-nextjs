@@ -14,27 +14,29 @@ export default function splitTestingMiddleware(request: NextRequest) {
 
   let splitNumber = getSplitCookieFromRequest(request)
 
-  console.log('--------------')
-  console.log('splitNumber', splitNumber)
-  console.log('request.nextUrl.href', request.nextUrl.href)
-  console.log('request.nextUrl.origin', request.nextUrl.origin)
-  console.log('referrer', referrer)
-  console.log('host', host)
+  console.log('splitTestingMiddleware: splitNumber', splitNumber)
+
   // If the host and referrer are differents, we may be inside an iframe
   if ((!host || !referrer || !referrer.includes(host)) && !splitNumber) {
     console.log(
-      'splitTestingMiddleware: inside an iframe -------------------------------------------------'
+      'splitTestingMiddleware: inside an iframe ------------------------------------------------'
     )
     return NextResponse.next()
   }
 
   // If no cookie is set and we are allready fetching files, we may be inside an iframe
-  if (!splitNumber && request.nextUrl.href.includes('.')) {
+  const regex =
+    /\.(?:png|jpg|jpeg|gif|bmp|svg|webp|woff|woff2|js|css|webmanifest|well-known)/i
+  if (!splitNumber && regex.test(request.nextUrl.href)) {
+    console.log(
+      'splitTestingMiddleware: inside an iframe (regex) ------------------------------ '
+    )
     return NextResponse.next()
   }
 
   // If no split cookie is set, we generate a random number
   if (!splitNumber) {
+    console.log('generate random number')
     const randomNumber = Math.random()
     splitNumber = String(randomNumber)
   }
@@ -44,10 +46,12 @@ export default function splitTestingMiddleware(request: NextRequest) {
     Number(process.env.NEXT_PUBLIC_SPLIT_TESTING_PERCENTAGE ?? 0.5)
 
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
+    console.log('splitTestingMiddleware: redirect to challenger')
     const response = NextResponse.next()
     response.cookies.set(splitTestingCookieName, splitNumber)
     return response
   } else {
+    console.log('splitTestingMiddleware: redirect to control')
     const rewriteTo = `${redirectUrl}${request.nextUrl.href.replace(
       request.nextUrl.origin,
       ''
