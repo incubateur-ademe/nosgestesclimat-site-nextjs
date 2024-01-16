@@ -7,13 +7,14 @@ type Props = {
   type?: string
   isInvalid?: boolean
   error?: string
-  helperText?: string
+  helperText?: string | ReactNode
   className?: string
   placeholder?: string
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   value?: string | number
   required?: boolean
   maxLength?: number
+  disabled?: boolean
 }
 
 export default function TextInputGroup({
@@ -27,6 +28,7 @@ export default function TextInputGroup({
   onChange,
   value,
   required = false,
+  disabled,
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
   return (
@@ -48,10 +50,11 @@ export default function TextInputGroup({
         name={name}
         type={type}
         placeholder={placeholder}
-        onChange={onChange}
+        onChange={!disabled ? onChange : undefined}
         aria-describedby={`error-${name}`}
         value={value}
         required={required}
+        aria-disabled={disabled}
         {...props}
         className={twMerge(
           `border-grey-300 ${
@@ -59,7 +62,7 @@ export default function TextInputGroup({
           } max-w-[30rem] rounded-md border border-solid bg-grey-100 p-4 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500`,
           `${className} ${
             error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
-          }`
+          } ${disabled ? 'cursor-not-allowed opacity-50' : ''}`
         )}
       />
 

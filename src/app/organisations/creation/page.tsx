@@ -9,7 +9,7 @@ import axios from 'axios'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import useFetchOrganization from '../_hooks/useFetchOrganization'
-import { useUpdateOrganization } from '../_hooks/useUpdateOrganization'
+import { useUpdateOrganizationAfterCreation } from '../_hooks/useUpdateOrganizationAfterCreation'
 import CreationForm from './_components/CreationForm'
 
 axios.defaults.withCredentials = true
@@ -28,9 +28,10 @@ export default function CreationPage() {
     ownerEmail: user?.email,
   })
 
-  const { mutateAsync: updateOrganization } = useUpdateOrganization({
-    ownerEmail: user?.email,
-  })
+  const { mutateAsync: updateOrganization } =
+    useUpdateOrganizationAfterCreation({
+      ownerEmail: user?.email,
+    })
 
   const router = useRouter()
 

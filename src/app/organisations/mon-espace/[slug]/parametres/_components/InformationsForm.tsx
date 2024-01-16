@@ -37,7 +37,8 @@ export default function InformationsForm({ organization }: Props) {
 
         <TextInputGroup
           name="email"
-          aria-disabled
+          disabled
+          helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
           label={<Trans>Votre e-mail</Trans>}
           defaultValue={organization?.owner?.email}
         />

@@ -6,31 +6,24 @@ export function useUpdateOrganization({ ownerEmail }: { ownerEmail: string }) {
   return useMutation({
     mutationFn: ({
       name,
-      slug,
       ownerName,
-      position,
-      telephone,
-      numberOfParticipants,
       hasOptedInForCommunications,
+      additionalQuestions,
     }: {
-      name: string
-      slug: string
-      ownerName: string
-      position: string
-      telephone: string
-      numberOfParticipants: string
-      hasOptedInForCommunications: boolean
+      name?: string
+      slug?: string
+      ownerName?: string
+      hasOptedInForCommunications?: boolean
+      additionalQuestions?: string[]
     }) =>
       axios
-        .post(`${SERVER_URL}/organizations/update-after-creation`, {
-          name,
-          slug,
-          ownerName,
-          position,
-          telephone,
-          numberOfParticipants,
-          hasOptedInForCommunications,
+        .post(`${SERVER_URL}/organizations/update`, {
+          // Only used to find the organization, shouldn't be modified
           ownerEmail,
+          name,
+          ownerName,
+          hasOptedInForCommunications,
+          additionalQuestions,
         })
         .then((response) => response.data),
   })

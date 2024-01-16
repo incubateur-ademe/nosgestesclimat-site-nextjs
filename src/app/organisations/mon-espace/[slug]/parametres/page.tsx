@@ -5,18 +5,24 @@ import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Loader from '@/design-system/layout/Loader'
+import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import useFetchOrganization from '../../../_hooks/useFetchOrganization'
 import InformationsForm from './_components/InformationsForm'
+import QuestionsComplementaires from './_components/QuestionsComplementaires'
 
 export default function ParametresPage() {
   const { t } = useClientTranslation()
 
   const { user } = useUser()
 
-  const { data: organization, isError } = useFetchOrganization({
+  const {
+    data: organization,
+    isError,
+    refetch,
+  } = useFetchOrganization({
     ownerEmail: user.email,
   })
 
@@ -65,6 +71,13 @@ export default function ParametresPage() {
         <>
           <MaxWidthContent>
             <Title title={<Trans>Paramètres</Trans>} />
+
+            <QuestionsComplementaires
+              organization={organization}
+              refetchOrganization={refetch}
+            />
+
+            <Separator />
 
             <InformationsForm organization={organization} />
           </MaxWidthContent>
