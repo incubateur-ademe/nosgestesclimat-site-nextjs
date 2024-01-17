@@ -24,7 +24,6 @@ export default function splitTestingMiddleware(request: NextRequest) {
     const response = NextResponse.next()
     return response
   } else {
-    console.log('splitTestingMiddleware: redirect to control')
     const rewriteTo = `${redirectUrl}${request.nextUrl.href.replace(
       request.nextUrl.origin,
       ''
