@@ -15,7 +15,7 @@ export default defineConfig({
     language_param: 'fr',
     testLangURL: process.env.CYPRESS_testLangURL ?? 'fr',
     server_url: process.env.CYPRESS_baseUrl
-      ? 'nosgestesclimat-api.osc-fr1.scalingo.io'
+      ? 'nosgestesclimat.osc-fr1.scalingo.io'
       : 'localhost:3001',
     ...process.env,
   },
