@@ -12,6 +12,7 @@ export default function Organisations() {
   const { t } = useClientTranslation()
 
   const [isHover, setIsHover] = useState(false)
+
   return (
     <div className="relative mb-16 py-12 md:py-24">
       <Background direction={isHover ? 'left' : 'right'} />

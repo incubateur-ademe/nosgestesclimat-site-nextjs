@@ -39,7 +39,7 @@ export default function DesktopIcon({
 
   const [isHidden, setIsHidden] = useState(true)
   useEffect(() => {
-    let timer: any = null
+    let timer: NodeJS.Timeout | undefined = undefined
     if (isClient) {
       timer = setTimeout(() => setIsHidden(false), 500)
     }

@@ -7,7 +7,7 @@ type Props = {
 export default function Images({ isHover }: Props) {
   const [isWaving, setIsWaving] = useState(false)
   useEffect(() => {
-    let timer: any = null
+    let timer: NodeJS.Timeout | undefined = undefined
     const interval = setInterval(() => {
       setIsWaving(true)
       timer = setTimeout(() => setIsWaving(false), 200)

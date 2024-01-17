@@ -13,11 +13,16 @@ type Props = {
   }[][]
 }
 
+type Icon = {
+  iconIndex: number
+  x: number
+  y: number
+}
 export default function DesktopCircles({ circles }: Props) {
-  const [firstSelected, setFirstSelected] = useState<any | null>(null)
-  const [secondSelected, setSecondSelected] = useState<any | null>(null)
+  const [firstSelected, setFirstSelected] = useState<Icon | null>(null)
+  const [secondSelected, setSecondSelected] = useState<Icon | null>(null)
 
-  const [validatedIcons, setValidatedIcons] = useState<any[]>([])
+  const [validatedIcons, setValidatedIcons] = useState<Icon[]>([])
 
   const [isWrong, setIsWrong] = useState(false)
 
@@ -27,7 +32,7 @@ export default function DesktopCircles({ circles }: Props) {
   }, [circles])
 
   useEffect(() => {
-    let timer: any = null
+    let timer: NodeJS.Timeout | undefined = undefined
     if (firstSelected && secondSelected) {
       if (firstSelected.iconIndex === secondSelected.iconIndex) {
         setValidatedIcons((prevValidatedIcons) => [
@@ -93,5 +98,5 @@ export default function DesktopCircles({ circles }: Props) {
   )
 }
 
-const isMatch = (icon1: any, icon2: any) =>
+const isMatch = (icon1: Icon, icon2: Icon | null) =>
   JSON.stringify(icon1) === JSON.stringify(icon2)
