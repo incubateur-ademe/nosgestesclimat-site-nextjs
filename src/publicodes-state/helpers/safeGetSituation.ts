@@ -25,21 +25,20 @@ export const safeGetSituation = ({
       if (
         typeof situation[ruleName] === 'string' &&
         situation[ruleName] !== 'oui' &&
-        situation[ruleName] !== 'non'
+        situation[ruleName] !== 'non' &&
+        !everyRules.includes(
+          `${ruleName} . ${(situation[ruleName] as string)?.replaceAll(
+            "'",
+            ''
+          )}`
+        )
       ) {
-        const stringNodeValue = situation[ruleName] as string
-        if (
-          !everyRules.includes(
-            `${ruleName} . ${stringNodeValue.replaceAll("'", '')}`
-          )
-        ) {
-          const error = new Error(
-            `error trying to use "${ruleName}" answer from the user situation: "${situation[ruleName]}" doesn't exist in the model`
-          )
-          console.warn(error)
-          captureException(error)
-          return true
-        }
+        const error = new Error(
+          `error trying to use "${ruleName}" answer from the user situation: "${situation[ruleName]}" doesn't exist in the model`
+        )
+        console.warn(error)
+        captureException(error)
+        return true
       }
     }
   )
