@@ -1,3 +1,4 @@
+import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
 import Engine from 'publicodes'
 import { useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
@@ -27,21 +28,15 @@ export default function useEngine(rules: Rules) {
 
   const pristineEngine = useMemo(() => engine.shallowCopy(), [engine])
 
-  const safeEvaluate = useMemo<(rule: DottedName) => NGCEvaluatedNode | null>(
-    () => (rule: DottedName) => safeEvaluateHelper(rule, engine),
+  const safeEvaluate = useMemo<
+    (ruleName: DottedName) => NGCEvaluatedNode | null
+  >(
+    () => (ruleName: DottedName) => safeEvaluateHelper(ruleName, engine),
     [engine]
   )
 
-  const safeGetRule = useMemo<(rule: DottedName) => NGCRuleNode | null>(
-    () => (rule: DottedName) => {
-      let evaluation = null
-      try {
-        evaluation = engine.getRule(rule)
-      } catch (error) {
-        console.error(error)
-      }
-      return evaluation
-    },
+  const safeGetRule = useMemo<(ruleName: DottedName) => NGCRuleNode | null>(
+    () => (ruleName: DottedName) => safeGetRuleHelper(ruleName, engine),
     [engine]
   )
 
