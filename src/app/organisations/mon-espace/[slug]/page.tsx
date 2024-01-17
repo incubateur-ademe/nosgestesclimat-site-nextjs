@@ -59,6 +59,7 @@ export default function OrganizationPage() {
               </ButtonLink>
             </>
           )}
+
           {organization && (
             <>
               <Title
