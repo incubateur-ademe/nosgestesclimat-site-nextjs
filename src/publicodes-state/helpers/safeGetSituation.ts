@@ -26,7 +26,12 @@ export const safeGetSituation = ({
         typeof situation[ruleName] === 'string' &&
         situation[ruleName] !== 'oui' &&
         situation[ruleName] !== 'non' &&
-        !everyRules.includes(`${ruleName} . ${situation[ruleName]}`)
+        !everyRules.includes(
+          `${ruleName} . ${(situation[ruleName] as string)?.replaceAll(
+            "'",
+            ''
+          )}`
+        )
       ) {
         const error = new Error(
           `error trying to use "${ruleName}" answer from the user situation: "${situation[ruleName]}" doesn't exist in the model`
