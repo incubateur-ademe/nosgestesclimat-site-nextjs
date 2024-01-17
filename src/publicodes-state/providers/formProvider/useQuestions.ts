@@ -212,10 +212,57 @@ export default function useQuestions({
    */
   const relevantQuestions = useMemo<string[]>(
     () =>
-      tempRelevantQuestions.filter(
-        (question, index) => tempRelevantQuestions.indexOf(question) === index
-      ),
-    [tempRelevantQuestions]
+      tempRelevantQuestions
+        .filter(
+          (question, index) => tempRelevantQuestions.indexOf(question) === index
+        )
+        .sort((a, b) => {
+          const aSplittedName = a.split(' . ')
+          const bSplittedName = b.split(' . ')
+
+          // We first sort by category
+          if (
+            categories.indexOf(aSplittedName[0]) >
+            categories.indexOf(bSplittedName[0])
+          ) {
+            return 1
+          }
+          if (
+            categories.indexOf(aSplittedName[0]) <
+            categories.indexOf(bSplittedName[0])
+          ) {
+            return -1
+          }
+
+          // then by subcategory
+          const categoryOfBothQuestions = aSplittedName[0]
+          const aCategoryAndSubcategory =
+            aSplittedName[0] + ' . ' + aSplittedName[1]
+          const bCategoryAndSubcategory =
+            bSplittedName[0] + ' . ' + bSplittedName[1]
+          if (
+            subcategories[categoryOfBothQuestions].indexOf(
+              aCategoryAndSubcategory
+            ) >
+            subcategories[categoryOfBothQuestions].indexOf(
+              bCategoryAndSubcategory
+            )
+          ) {
+            return 1
+          }
+          if (
+            subcategories[categoryOfBothQuestions].indexOf(
+              aCategoryAndSubcategory
+            ) <
+            subcategories[categoryOfBothQuestions].indexOf(
+              bCategoryAndSubcategory
+            )
+          ) {
+            return -1
+          }
+          return 0
+        }),
+    [categories, subcategories, tempRelevantQuestions]
   )
 
   const questionsByCategories = useMemo<Record<string, string[]>>(
