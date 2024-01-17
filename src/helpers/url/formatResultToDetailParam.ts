@@ -1,11 +1,11 @@
-import { NodeValue } from '@/publicodes-state/types'
+import { DottedName, NodeValue } from '@/publicodes-state/types'
 
 export function formatResultToDetailParam({
   categories,
   getValue,
 }: {
   categories: string[]
-  getValue: (dottedName: string) => NodeValue
+  getValue: (dottedName: DottedName) => NodeValue
 }): string {
   const fullDetailString = categories.reduce((detailString, category) => {
     const value = getValue(category) as number

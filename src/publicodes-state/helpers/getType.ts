@@ -1,7 +1,7 @@
-import { NGCEvaluatedNode, NGCRuleNode } from '../types'
+import { DottedName, NGCEvaluatedNode, NGCRuleNode } from '../types'
 
 type Props = {
-  dottedName: string
+  dottedName: DottedName
   rule: NGCRuleNode | null | any // Model shenanigans: question alimentation . local . consommation is missing "formule"
   evaluation: NGCEvaluatedNode | null
 }
