@@ -14,7 +14,7 @@ export default function Breadcrumbs({ items }: Props) {
             <Link
               className={`text-default ${
                 isActive ? '' : 'no-underline'
-              } hover:text-default hover:underline`}
+              } text-sm hover:text-default hover:underline`}
               href={href}>
               {label}
             </Link>
