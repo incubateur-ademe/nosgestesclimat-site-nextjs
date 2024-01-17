@@ -8,24 +8,24 @@ import {
 } from '@/publicodes-state/types'
 
 function handleMigrationKey({
-  dottedName,
+  ruleName,
   nodeValue,
   situation,
   foldedSteps,
 }: {
-  dottedName: DottedName
+  ruleName: DottedName
   nodeValue: NodeValue
   situation: Situation
   foldedSteps: DottedName[]
 }) {
-  if (!dottedNamesMigration.keysToMigrate[dottedName]) {
+  if (!dottedNamesMigration.keysToMigrate[ruleName]) {
     return
   }
 
   // The key is not a key to migrate but a key to delete
-  if (dottedNamesMigration.keysToMigrate[dottedName] === '') {
-    delete situation[dottedName]
-    const index = foldedSteps.indexOf(dottedName)
+  if (dottedNamesMigration.keysToMigrate[ruleName] === '') {
+    delete situation[ruleName]
+    const index = foldedSteps.indexOf(ruleName)
 
     if (index > -1) {
       foldedSteps.splice(index, 1)
@@ -34,37 +34,37 @@ function handleMigrationKey({
   }
 
   // The key is renamed and needs to be migrated
-  situation[dottedNamesMigration.keysToMigrate[dottedName]] = nodeValue
+  situation[dottedNamesMigration.keysToMigrate[ruleName]] = nodeValue
 
-  delete situation[dottedName]
-  const index = foldedSteps.indexOf(dottedName)
+  delete situation[ruleName]
+  const index = foldedSteps.indexOf(ruleName)
 
   if (index > -1) {
-    foldedSteps[index] = dottedNamesMigration.keysToMigrate[dottedName]
+    foldedSteps[index] = dottedNamesMigration.keysToMigrate[ruleName]
   }
 }
 
 function handleMigrationValue({
-  dottedName,
+  ruleName,
   nodeValue,
   situation,
   foldedSteps,
 }: {
-  dottedName: DottedName
+  ruleName: DottedName
   nodeValue: NodeValue
   situation: Situation
   foldedSteps: DottedName[]
 }) {
-  if (!dottedNamesMigration.valuesToMigrate[dottedName]) {
+  if (!dottedNamesMigration.valuesToMigrate[ruleName]) {
     return
   }
 
   // The value is not a value to migrate and the key has to be deleted
   if (
-    dottedNamesMigration.valuesToMigrate[dottedName][nodeValue as string] === ''
+    dottedNamesMigration.valuesToMigrate[ruleName][nodeValue as string] === ''
   ) {
-    delete situation[dottedName]
-    const index = foldedSteps.indexOf(dottedName)
+    delete situation[ruleName]
+    const index = foldedSteps.indexOf(ruleName)
     if (index > -1) {
       foldedSteps.splice(index, 1)
     }
@@ -72,8 +72,8 @@ function handleMigrationValue({
   }
 
   // The value is renamed and needs to be migrated
-  situation[dottedName] =
-    dottedNamesMigration.valuesToMigrate[dottedName][nodeValue as string]
+  situation[ruleName] =
+    dottedNamesMigration.valuesToMigrate[ruleName][nodeValue as string]
 }
 
 export default function filterLocalStorage(
@@ -89,16 +89,14 @@ export default function filterLocalStorage(
     const situation = simulation.situation
     const foldedSteps = simulation.foldedSteps
 
-    Object.entries(situation).map(([dottedName, nodeValue]) => {
-      // We check if the non supported dottedName is a key to migrate.
+    Object.entries(situation).map(([ruleName, nodeValue]) => {
+      // We check if the non supported ruleName is a key to migrate.
       // Ex: "logement . chauffage . bois . type . bûche . consommation": "xxx" which is now ""logement . chauffage . bois . type . bûches . consommation": "xxx"
-      if (
-        Object.keys(dottedNamesMigration.keysToMigrate).includes(dottedName)
-      ) {
-        unsupportedDottedNamesFromSituation.push(dottedName)
+      if (Object.keys(dottedNamesMigration.keysToMigrate).includes(ruleName)) {
+        unsupportedDottedNamesFromSituation.push(ruleName)
 
         handleMigrationKey({
-          dottedName,
+          ruleName,
           nodeValue,
           situation,
           foldedSteps,
@@ -106,21 +104,19 @@ export default function filterLocalStorage(
       }
 
       if (
-        // We check if the value of the non supported dottedName value is a value to migrate.
+        // We check if the value of the non supported ruleName value is a value to migrate.
         // Ex: answer "logement . chauffage . bois . type": "bûche" changed to "bûches"
         // If a value is specified but empty, we consider it to be deleted (we need to ask the question again)
         // Ex: answer "transport . boulot . commun . type": "vélo"
-        Object.keys(dottedNamesMigration.valuesToMigrate).includes(
-          dottedName
-        ) &&
-        Object.keys(dottedNamesMigration.valuesToMigrate[dottedName]).includes(
+        Object.keys(dottedNamesMigration.valuesToMigrate).includes(ruleName) &&
+        Object.keys(dottedNamesMigration.valuesToMigrate[ruleName]).includes(
           nodeValue as string
         )
       ) {
-        unsupportedDottedNamesFromSituation.push(dottedName)
+        unsupportedDottedNamesFromSituation.push(ruleName)
 
         handleMigrationValue({
-          dottedName,
+          ruleName,
           nodeValue,
           situation,
           foldedSteps,

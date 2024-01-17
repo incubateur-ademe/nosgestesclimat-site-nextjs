@@ -29,14 +29,14 @@ export default function useEngine(rules: Rules) {
   const pristineEngine = useMemo(() => engine.shallowCopy(), [engine])
 
   const safeEvaluate = useMemo<
-    (dottedName: DottedName) => NGCEvaluatedNode | null
+    (ruleName: DottedName) => NGCEvaluatedNode | null
   >(
-    () => (dottedName: DottedName) => safeEvaluateHelper(dottedName, engine),
+    () => (ruleName: DottedName) => safeEvaluateHelper(ruleName, engine),
     [engine]
   )
 
-  const safeGetRule = useMemo<(dottedName: DottedName) => NGCRuleNode | null>(
-    () => (dottedName: DottedName) => safeGetRuleHelper(dottedName, engine),
+  const safeGetRule = useMemo<(ruleName: DottedName) => NGCRuleNode | null>(
+    () => (ruleName: DottedName) => safeGetRuleHelper(ruleName, engine),
     [engine]
   )
 
