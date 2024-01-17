@@ -1,4 +1,4 @@
-import { fetchModel } from '@/helpers/data/fetchModel'
+import getRules from '@/helpers/getRules'
 import importLocalRules from '@/helpers/importLocalRules'
 import { useUser } from '@/publicodes-state'
 import { NGCRules } from '@/publicodes-state/types'
@@ -7,21 +7,16 @@ import {
   keepPreviousData,
   useQuery,
 } from '@tanstack/react-query'
-import { useDataServer } from './useDataServer'
 import { useLocale } from './useLocale'
 
 type Props = {
-  lang: string
-  region: string
   isOptim?: boolean
+  region?: string
 }
 
-export function useRules({
-  lang,
-  region,
-  isOptim = true,
-}: Props): UseQueryResult<NGCRules, Error> {
-  const dataServer = useDataServer()
+export function useRules(
+  { isOptim = true, region = 'FR' }: Props = { isOptim: true, region: 'FR' }
+): UseQueryResult<NGCRules, Error> {
   const locale = useLocale()
   const { user } = useUser()
 
@@ -31,7 +26,7 @@ export function useRules({
       : region
 
   return useQuery({
-    queryKey: ['rules', dataServer, lang, region, isOptim],
+    queryKey: ['rules', locale, regionCode, isOptim],
     queryFn: () => {
       console.log(
         `⚙️ requesting ${
@@ -39,13 +34,8 @@ export function useRules({
         } rules for ${regionCode} ${locale}`
       )
       return process.env.NEXT_PUBLIC_LOCAL_DATA === 'nosgestesclimat'
-        ? importLocalRules({ regionCode, locale, isOptim })
-        : fetchModel({
-            dataServer: dataServer || '',
-            regionCode: regionCode || 'FR',
-            locale,
-            isOptim,
-          })
+        ? importLocalRules({ locale, regionCode, isOptim })
+        : getRules({ locale, regionCode, isOptim })
     },
     placeholderData: keepPreviousData,
   })
