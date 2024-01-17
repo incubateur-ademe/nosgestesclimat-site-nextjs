@@ -49,7 +49,6 @@ export default function VerificationForm({
   const {
     mutateAsync: sendVerificationCode,
     isPending: isPendingResend,
-    isSuccess: isSuccessResend,
     isError: isErrorResend,
   } = useMutation({
     mutationFn: () =>
