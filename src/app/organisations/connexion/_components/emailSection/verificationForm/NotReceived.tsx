@@ -7,7 +7,6 @@ import React from 'react'
 
 type Props = {
   isRetryButtonDisabled: boolean
-  isPendingValidate: boolean
   isSuccessResend: boolean
   sendVerificationCode: () => Promise<void>
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>
@@ -16,7 +15,6 @@ type Props = {
 
 export default function NotReceived({
   isRetryButtonDisabled,
-  isPendingValidate,
   isSuccessResend,
   sendVerificationCode,
   setTimeLeft,
@@ -31,7 +29,9 @@ export default function NotReceived({
 
     await sendVerificationCode()
 
-    setTimeLeft(30)
+    setTimeout(() => {
+      setTimeLeft(30)
+    }, 1500)
   }
   return (
     <>
@@ -48,10 +48,17 @@ export default function NotReceived({
         }
         onClick={handleResendVerificationCode}
         className="text-primary-700 underline">
-        {isRetryButtonDisabled && <Emoji>🔒</Emoji>}
-        {isPendingValidate && <Emoji>⏳</Emoji>}
-        {isSuccessResend && <Emoji>✅</Emoji>}&nbsp;
-        <Trans>Renvoyer le code</Trans>
+        {isRetryButtonDisabled && (
+          <>
+            <Emoji>🔒</Emoji>&nbsp;
+          </>
+        )}
+        {isSuccessResend && !isRetryButtonDisabled && (
+          <>
+            <Emoji>✅</Emoji>&nbsp;<Trans>Code renvoyé</Trans>
+          </>
+        )}
+        {!isSuccessResend && <Trans>Renvoyer le code</Trans>}
       </button>
 
       {timeLeft > 0 && (

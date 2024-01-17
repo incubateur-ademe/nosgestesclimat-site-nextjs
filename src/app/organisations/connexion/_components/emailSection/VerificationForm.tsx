@@ -113,7 +113,6 @@ export default function VerificationForm({
         {!isSuccessValidate && (
           <NotReceived
             isRetryButtonDisabled={isRetryButtonDisabled}
-            isPendingValidate={isPendingValidate}
             isSuccessResend={isSuccessResend}
             sendVerificationCode={sendVerificationCode}
             timeLeft={timeLeft}
