@@ -50,6 +50,7 @@ export default function VerificationForm({
     mutateAsync: sendVerificationCode,
     isPending: isPendingResend,
     isSuccess: isSuccessResend,
+    isError: isErrorResend,
   } = useMutation({
     mutationFn: () =>
       axios
@@ -126,7 +127,7 @@ export default function VerificationForm({
         {!isSuccessValidate && (
           <NotReceived
             isRetryButtonDisabled={isRetryButtonDisabled}
-            isSuccessResend={isSuccessResend}
+            isErrorResend={isErrorResend}
             sendVerificationCode={sendVerificationCode}
             timeLeft={timeLeft}
             setTimeLeft={setTimeLeft}
