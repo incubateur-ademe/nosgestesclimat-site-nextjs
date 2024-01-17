@@ -1,5 +1,4 @@
 import getRules from '@/helpers/getRules'
-import importLocalRules from '@/helpers/importLocalRules'
 import { useUser } from '@/publicodes-state'
 import { NGCRules } from '@/publicodes-state/types'
 import {
@@ -33,9 +32,7 @@ export function useRules(
           isOptim ? 'optimized' : ''
         } rules for ${regionCode} ${locale}`
       )
-      return process.env.NEXT_PUBLIC_LOCAL_DATA === 'nosgestesclimat'
-        ? importLocalRules({ locale, regionCode, isOptim })
-        : getRules({ locale, regionCode, isOptim })
+      getRules({ locale, regionCode, isOptim })
     },
     placeholderData: keepPreviousData,
   })
