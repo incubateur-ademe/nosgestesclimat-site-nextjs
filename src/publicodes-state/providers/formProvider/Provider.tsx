@@ -16,7 +16,6 @@ export default function FormProvider({
   children,
 }: PropsWithChildren<Props>) {
   const {
-    rules,
     categories,
     subcategories,
     safeGetRule,

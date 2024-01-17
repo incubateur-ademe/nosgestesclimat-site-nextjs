@@ -44,22 +44,16 @@ export default function useQuestions({
         )
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [safeEvaluate, root, situation]
+    [safeEvaluate, root, everyQuestions, situation]
   )
 
-  const rawMissingVariables = useMemo<Record<string, number>>(
-    () => {
-      return Object.fromEntries(
-        Object.entries(
-          pristineEngine.evaluate(root)?.missingVariables || {}
-        ).filter((missingVariable) =>
-          everyQuestions.includes(missingVariable[0])
-        )
-      )
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [root]
-  )
+  const rawMissingVariables = useMemo<Record<string, number>>(() => {
+    return Object.fromEntries(
+      Object.entries(
+        pristineEngine.evaluate(root)?.missingVariables || {}
+      ).filter((missingVariable) => everyQuestions.includes(missingVariable[0]))
+    )
+  }, [everyQuestions, pristineEngine, root])
 
   const remainingQuestions = useMemo<string[]>(
     () =>
