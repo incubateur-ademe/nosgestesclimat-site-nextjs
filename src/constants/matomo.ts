@@ -138,11 +138,6 @@ export const matomoEventParcoursTestStart = [
   'NGC',
   'Clic CTA accueil',
 ]
-export const matomoEventParcoursTestNouveau = [
-  'trackEvent',
-  'NGC',
-  'Clic CTA accueil : Commencer un nouveau test',
-]
 export const matomoEventParcoursTestReprendre = [
   'trackEvent',
   'NGC',
