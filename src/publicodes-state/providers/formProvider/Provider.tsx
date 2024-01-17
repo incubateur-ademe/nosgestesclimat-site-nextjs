@@ -20,6 +20,7 @@ export default function FormProvider({
     subcategories,
     safeGetRule,
     safeEvaluate,
+    pristineEngine,
     situation,
     foldedSteps,
     everyQuestions,
@@ -28,12 +29,20 @@ export default function FormProvider({
   } = useContext(simulationContext)
 
   const {
+    currentQuestion,
+    currentCategory,
+    setCurrentQuestion,
+    setCurrentCategory,
+  } = useCurrent()
+
+  const {
     remainingQuestions,
     relevantAnsweredQuestions,
     relevantQuestions,
     questionsByCategories,
   } = useQuestions({
     root,
+    pristineEngine,
     safeGetRule,
     safeEvaluate,
     categories,
@@ -50,13 +59,6 @@ export default function FormProvider({
     relevantQuestions,
     updateProgression,
   })
-
-  const {
-    currentQuestion,
-    currentCategory,
-    setCurrentQuestion,
-    setCurrentCategory,
-  } = useCurrent()
 
   return (
     <FormContext.Provider
