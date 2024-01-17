@@ -39,24 +39,24 @@ export default function JourneysInput({ question }: Props) {
     }
   }, [journeys, isInitialized, question])
 
-  const total = useMemo(
-    () =>
-      journeys.reduce(
-        (accumulator, currentValue) =>
-          accumulator +
-          currentValue.distance *
-            currentValue.reccurrence *
-            periods[currentValue.period],
-        0
-      ),
-    [journeys]
-  )
+  const total = useMemo(() => {
+    const rawTotal = journeys.reduce(
+      (accumulator, currentValue) =>
+        accumulator +
+        currentValue.distance *
+          currentValue.reccurrence *
+          periods[currentValue.period],
+      0
+    )
+    const roundedTotal = Math.round(rawTotal * 10) / 10
+    return roundedTotal
+  }, [journeys])
 
   const averagePassengers = useMemo(() => {
     if (!total) {
       return 1
     } else {
-      return (
+      const rawAveragePassengers =
         journeys.reduce(
           (accumulator, currentValue) =>
             accumulator +
@@ -66,29 +66,27 @@ export default function JourneysInput({ question }: Props) {
               periods[currentValue.period],
           0
         ) / total
-      )
+      const roundedAveragePassengers =
+        Math.round(rawAveragePassengers * 10) / 10
+      return roundedAveragePassengers
     }
   }, [journeys, total])
 
   const totalForOnePassenger = useMemo(
-    () => (journeys.length ? total / averagePassengers : 0),
+    () =>
+      journeys.length ? Math.round((total * 10) / averagePassengers) / 10 : 0,
     [journeys, total, averagePassengers]
   )
-  const prevTotalForOnePassenger = useRef(totalForOnePassenger)
+
+  const prevTotal = useRef(total)
 
   useEffect(() => {
-    if (prevTotalForOnePassenger.current !== totalForOnePassenger) {
-      setValue(totalForOnePassenger.toFixed(1), question)
-      setNumPassengers(averagePassengers.toFixed(1))
+    if (prevTotal.current !== total) {
+      setValue(total, question)
+      setNumPassengers(averagePassengers)
     }
-    prevTotalForOnePassenger.current = totalForOnePassenger
-  }, [
-    totalForOnePassenger,
-    averagePassengers,
-    setValue,
-    setNumPassengers,
-    question,
-  ])
+    prevTotal.current = total
+  }, [total, averagePassengers, setValue, setNumPassengers, question])
 
   return (
     <>
