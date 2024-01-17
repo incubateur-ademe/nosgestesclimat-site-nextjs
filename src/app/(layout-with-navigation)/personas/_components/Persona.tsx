@@ -4,11 +4,11 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useUser } from '@/publicodes-state'
-import { Persona as PersonaType } from '@/publicodes-state/types'
+import { DottedName, Persona as PersonaType } from '@/publicodes-state/types'
 
 type Props = {
   persona: PersonaType
-  dottedName: string
+  dottedName: DottedName
 }
 
 export default function Persona({ persona, dottedName }: Props) {

@@ -17,13 +17,13 @@ export default function Item({ item, path }: Props) {
     <Card
       tag={Link}
       href={`${path}/${item.slug}`}
-      className="text-primary-700 h-full w-full justify-between p-4 no-underline">
+      className="h-full w-full justify-between p-4 text-primary-700 no-underline">
       <div>
         {item.data.image ? (
           <Image
             src={item.data?.image || ''}
-            width="100"
-            height="100"
+            width="400"
+            height="200"
             className="mx-auto mb-2 max-h-36 w-full object-cover"
             alt={`Illustration: ${item.data.title}`}
           />

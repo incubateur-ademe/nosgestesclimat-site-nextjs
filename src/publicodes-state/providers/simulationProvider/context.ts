@@ -1,6 +1,7 @@
 'use client'
 import { createContext } from 'react'
 import {
+  DottedName,
   Engine,
   NGCEvaluatedNode,
   NGCRuleNode,
@@ -12,19 +13,20 @@ type SimulationContextType = {
   rules: Rules
   engine: Engine
   pristineEngine: Engine
-  safeGetRule: (rule: string) => NGCRuleNode | null
-  safeEvaluate: (rule: string) => NGCEvaluatedNode | null
+  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
   situation: Situation
   updateSituation: (situationToAdd: Situation) => Promise<void>
-  foldedSteps: string[]
-  addFoldedStep: (foldedStep: string) => void
-  everyRules: string[]
-  everyInactiveRules: string[]
-  everyQuestions: string[]
-  everyNotifications: string[]
-  everyMosaicChildren: string[]
-  categories: string[]
-  subcategories: Record<string, string[]>
+  updateProgression: (progression: number) => void
+  foldedSteps: DottedName[]
+  addFoldedStep: (foldedStep: DottedName) => void
+  everyRules: DottedName[]
+  everyInactiveRules: DottedName[]
+  everyQuestions: DottedName[]
+  everyNotifications: DottedName[]
+  everyMosaicChildren: DottedName[]
+  categories: DottedName[]
+  subcategories: Record<DottedName, DottedName[]>
 }
 export default createContext<SimulationContextType>({
   rules: null,
@@ -34,6 +36,7 @@ export default createContext<SimulationContextType>({
   safeEvaluate: () => null,
   situation: {},
   updateSituation: () => Promise.resolve(),
+  updateProgression: () => Promise.resolve(),
   foldedSteps: [],
   addFoldedStep: () => '',
   everyRules: [],

@@ -8,12 +8,32 @@ import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useUser } from '@/publicodes-state'
+import { usePathname } from 'next/navigation'
 import NavLink from './NavLink'
+import CTAButton from './headerDesktop/CTAButton'
 import DebugIndicator from './headerDesktop/DebugIndicator'
 import ModelVersionIndicator from './headerDesktop/ModelVersionIndicator'
 
+const HIDE_CTA_PATHS = ['/fin', '/simulateur/bilan', '/tutoriel']
+
 export default function HeaderDesktop() {
   const { t } = useClientTranslation()
+
+  const pathname = usePathname()
+  console.log('pathname', pathname)
+  const { getCurrentSimulation } = useUser()
+
+  const currentSimulation = getCurrentSimulation()
+
+  let testHref = ''
+  if (!currentSimulation?.progression) {
+    testHref = '/tutoriel'
+  } else if (currentSimulation?.progression < 1) {
+    testHref = '/simulateur/bilan'
+  } else {
+    testHref = '/fin'
+  }
 
   return (
     <header className="sticky top-0 z-[500] hidden h-20 items-center lg:block">
@@ -28,8 +48,8 @@ export default function HeaderDesktop() {
               <ul className="flex h-full ">
                 <li className="px-4">
                   <NavLink
-                    href="/simulateur/bilan"
-                    activeMatches={['/tutoriel', '/simulateur']}
+                    href={testHref}
+                    activeMatches={['/tutoriel', '/simulateur', '/fin']}
                     icon={BilanIcon}
                     title={t('Le test')}>
                     <Trans>Le test</Trans>
@@ -57,7 +77,7 @@ export default function HeaderDesktop() {
               </ul>
             </nav>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-8">
             <PRIndicator />
             <ModelVersionIndicator />
             <DebugIndicator />
@@ -65,16 +85,10 @@ export default function HeaderDesktop() {
             <NavLink href="/profil" icon={ProfileIcon} title={t('Profil')}>
               <Trans>Profil</Trans>
             </NavLink>
-            {/* TODO : uncomment when organisations are ready
-            <div className="mb-2 h-3 w-[1px] bg-gray-300" />
 
-            <NavLink
-              href="https://sondages.nosgestesclimat.fr"
-              shouldUseDefaultLink
-              icon={OrganisationIcon}>
-              Organisations
-            </NavLink>
-          */}
+            {!HIDE_CTA_PATHS.find((path) => pathname.includes(path)) ? (
+              <CTAButton progression={currentSimulation?.progression || 0} />
+            ) : null}
           </div>
         </div>
       </div>

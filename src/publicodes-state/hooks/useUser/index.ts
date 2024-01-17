@@ -36,6 +36,7 @@ export default function useUser() {
     addSimulation,
     deleteSimulation,
     updateSituationOfCurrentSimulation,
+    updateProgressionOfCurrentSimulation,
     updateFoldedStepsOfCurrentSimulation,
     updateCurrentSimulationActionChoices,
     getCurrentSimulation,
@@ -114,6 +115,10 @@ export default function useUser() {
      * Update the situation of the current simulation (by adding the passed situation to the existing situation)
      */
     updateSituationOfCurrentSimulation,
+    /**
+     * Update the progression of the current simulation
+     */
+    updateProgressionOfCurrentSimulation,
     /**
      * Add a folded step to the list of folded step of the current simulation
      */

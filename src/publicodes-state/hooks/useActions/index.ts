@@ -1,11 +1,12 @@
 'use client'
 
+import { DottedName } from '@/publicodes-state/types'
 import { useContext, useMemo } from 'react'
 import { useEngine, useUser } from '../..'
 import simulationContext from '../../providers/simulationProvider/context'
 
 type ActionObject = {
-  dottedName: string
+  dottedName: DottedName
   value: number
 }
 /**
