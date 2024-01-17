@@ -52,10 +52,6 @@ module.exports = {
           servicessocietaux: '#0c2461',
         },
       },
-      fontSize: {
-        '3xl': '2rem',
-        '5xl': '2.75rem',
-      },
       keyframes: {
         valuechange: {
           '0%': { opacity: 0, transform: 'translateX(-10%)' },
@@ -63,17 +59,9 @@ module.exports = {
           '80%': { opacity: 1 },
           '100%': { opacity: 0, transform: 'translateX(10%)' },
         },
-        iconsRotation: {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
-        },
       },
       animation: {
         valuechange: 'valuechange 3s ease-out infinite',
-        iconsRotation: 'iconsRotation 1s ease-in-out',
-      },
-      backgroundImage: {
-        'icons-mobile': "url('/images/misc/mobileIcons.svg')",
       },
     },
   },

@@ -13,41 +13,36 @@
   }
 
   h1 {
-    @apply text-2xl;
+    @apply text-3xl;
     @apply mb-6;
-    @apply font-medium;
-    @apply leading-tight;
+    @apply font-bold;
   }
 
   h2 {
     @apply text-xl;
     @apply md:text-2xl;
     @apply mb-4;
-    @apply font-medium;
-    @apply leading-tight;
+    @apply font-bold;
   }
 
   h3 {
     @apply text-lg;
     @apply md:text-xl;
     @apply mb-4;
-    @apply font-medium;
-    @apply leading-tight;
+    @apply font-bold;
   }
 
   h3 {
     @apply text-base;
     @apply md:text-lg;
     @apply mb-4;
-    @apply font-medium;
-    @apply leading-tight;
+    @apply font-bold;
   }
 
   h4,
   h5,
   h6 {
-    @apply font-medium;
-    @apply leading-tight;
+    @apply font-bold;
   }
 
   p {
