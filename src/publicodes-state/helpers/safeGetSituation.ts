@@ -1,11 +1,11 @@
 import { captureException } from '@sentry/react'
-import { DottedName, Situation } from '../types'
+import { DottedName } from '../types'
 
 export const safeGetSituation = ({
   situation,
   everyRules,
 }: {
-  situation: Situation
+  situation: Record<DottedName, string>
   everyRules: DottedName[]
 }): any => {
   const unsupportedDottedNamesFromSituation = Object.keys(situation).filter(
@@ -26,7 +26,9 @@ export const safeGetSituation = ({
         typeof situation[ruleName] === 'string' &&
         situation[ruleName] !== 'oui' &&
         situation[ruleName] !== 'non' &&
-        !everyRules.includes(`${ruleName} . ${situation[ruleName]}`)
+        !everyRules.includes(
+          `${ruleName} . ${situation[ruleName]?.replaceAll("'", '')}`
+        )
       ) {
         const error = new Error(
           `error trying to use "${ruleName}" answer from the user situation: "${situation[ruleName]}" doesn't exist in the model`
