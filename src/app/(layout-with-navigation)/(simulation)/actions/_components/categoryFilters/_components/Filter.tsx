@@ -1,10 +1,11 @@
 'use client'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 type Props = {
-  dottedName: string
+  dottedName: DottedName
   countByCategory: any
 }
 

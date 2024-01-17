@@ -2,6 +2,7 @@ import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
 import BarChart from '@/design-system/utils/BarChart'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 
 export default function AccordionItemWithRule({
@@ -9,7 +10,7 @@ export default function AccordionItemWithRule({
   maxValue,
   index,
 }: {
-  dottedName: string
+  dottedName: DottedName
   maxValue: number
   index?: number
 }) {

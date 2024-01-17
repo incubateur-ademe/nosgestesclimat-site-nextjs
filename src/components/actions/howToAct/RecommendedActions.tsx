@@ -1,6 +1,7 @@
 'use client'
 
 import { useActions, useEngine } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { useMemo } from 'react'
 import RecommendedAction from './RecommendedAction'
 
@@ -12,7 +13,7 @@ export default function RecommendedActions() {
     () =>
       orderedActionDottedNames
         .reduce(
-          (accumulator: string[], currentActionDottedName: string) =>
+          (accumulator: string[], currentActionDottedName: DottedName) =>
             accumulator.find(
               (actionDottedName) =>
                 getCategory(actionDottedName) ===

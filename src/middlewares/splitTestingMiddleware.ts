@@ -1,4 +1,3 @@
-import { splitTestingCookieName } from '@/constants/split-testing'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
@@ -8,23 +7,21 @@ export default function splitTestingMiddleware(request: NextRequest) {
   if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH) {
     return NextResponse.next()
   }
-  let splitNumber = getSplitCookieFromRequest(request)
-  let cookie = null
-  if (!splitNumber) {
-    const randomNumber = Math.random()
-    splitNumber = String(randomNumber)
-    cookie = generateCookie(splitTestingCookieName, splitNumber)
+
+  const ip = request.ip
+
+  if (!ip || !isIPv4(ip)) {
+    return NextResponse.next()
   }
+
+  const lastNumber = Number(ip.split('.').pop())
+
   const shouldRedirectToChallenger =
-    Number(splitNumber) <
+    Number(lastNumber / 255) <
     Number(process.env.NEXT_PUBLIC_SPLIT_TESTING_PERCENTAGE ?? 0.5)
 
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
-    if (cookie) {
-      response.headers.append('Set-Cookie', cookie)
-    }
-
     return response
   } else {
     const rewriteTo = `${redirectUrl}${request.nextUrl.href.replace(
@@ -32,27 +29,11 @@ export default function splitTestingMiddleware(request: NextRequest) {
       ''
     )}`
     const response = NextResponse.rewrite(rewriteTo)
-    if (cookie) {
-      response.headers.append('Set-Cookie', cookie)
-    }
-
     return response
   }
 }
 
-function getSplitCookieFromRequest(request: NextRequest) {
-  const cookieString = request.headers
-    .get('cookie')
-    ?.split('; ')
-    .find((cookieString) => cookieString.includes(splitTestingCookieName))
-
-  if (!cookieString) return null
-  return cookieString
-    .split(';')[0]
-    .replace(splitTestingCookieName, '')
-    .replace('=', '')
-}
-
-export function generateCookie(name: string, value: string) {
-  return `${name}=${value}; Path=/; SameSite=None; Secure`
+function isIPv4(ip: string) {
+  const ipv4Pattern = /^(\d{1,3}\.){3}\d{1,3}$/
+  return ipv4Pattern.test(ip)
 }
