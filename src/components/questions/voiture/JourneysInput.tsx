@@ -17,7 +17,7 @@ const periods: Record<string, number> = {
   year: 1,
 }
 
-function roundValue(value: number, precision: number = 10): number {
+function roundFloat(value: number, precision: number = 10): number {
   return Math.round(value * precision) / precision
 }
 
@@ -52,7 +52,7 @@ export default function JourneysInput({ question }: Props) {
           periods[currentValue.period],
       0
     )
-    const roundedTotal = roundValue(rawTotal, 10)
+    const roundedTotal = roundFloat(rawTotal)
     return roundedTotal
   }, [journeys])
 
@@ -70,13 +70,13 @@ export default function JourneysInput({ question }: Props) {
               periods[currentValue.period],
           0
         ) / total
-      const roundedAveragePassengers = roundValue(rawAveragePassengers, 10)
+      const roundedAveragePassengers = roundFloat(rawAveragePassengers)
       return roundedAveragePassengers
     }
   }, [journeys, total])
 
   const totalForOnePassenger = useMemo(
-    () => (journeys.length ? roundValue(total / averagePassengers, 10) : 0),
+    () => (journeys.length ? roundFloat(total / averagePassengers) : 0),
     [journeys, total, averagePassengers]
   )
 
