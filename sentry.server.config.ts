@@ -12,6 +12,8 @@ Sentry.init({
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
   debug: false,
 
+  sampleRate: 0.1,
+
   // Disable sentry for development based on local data
   enabled: !process.env.NEXT_PUBLIC_LOCAL_DATA,
 })
