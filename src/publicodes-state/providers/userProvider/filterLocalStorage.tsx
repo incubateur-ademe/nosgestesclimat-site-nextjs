@@ -18,7 +18,7 @@ function handleMigrationKey({
   situation: Situation
   foldedSteps: DottedName[]
 }) {
-  if (!dottedNamesMigration.keysToMigrate[ruleName]) {
+  if (dottedNamesMigration.keysToMigrate[ruleName] === undefined) {
     return
   }
 
@@ -55,7 +55,7 @@ function handleMigrationValue({
   situation: Situation
   foldedSteps: DottedName[]
 }) {
-  if (!dottedNamesMigration.valuesToMigrate[ruleName]) {
+  if (!dottedNamesMigration.valuesToMigrate[ruleName] === undefined) {
     return
   }
 
