@@ -40,6 +40,7 @@ export const safeGetSituation = ({
         captureException(error)
         return false
       }
+      return false
     }
   )
 
