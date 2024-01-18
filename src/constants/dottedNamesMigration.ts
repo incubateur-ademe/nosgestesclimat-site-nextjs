@@ -32,7 +32,6 @@ export const dottedNamesMigration: migrationType = {
       "'négatif'": 'non',
       "'affirmatif'": 'oui',
     },
-    'alimentation . type de lait': { "'lait d'avoine'": 'lait avoine' },
     'transport . deux roues . usager': {
       "'négatif'": 'non',
       "'affirmatif'": 'oui',
