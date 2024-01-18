@@ -11,10 +11,12 @@ import { PropsWithChildren, useEffect } from 'react'
 
 type Props = {
   supportedRegions: SuppportedRegions
+  isOptim?: boolean
 }
 export default function Providers({
   children,
   supportedRegions,
+  isOptim = true,
 }: PropsWithChildren<Props>) {
   const {
     getCurrentSimulation,
@@ -27,8 +29,9 @@ export default function Providers({
 
   const pathname = usePathname()
 
-  const { data: rules, isLoading } = useRules()
+  const { data: rules, isLoading } = useRules({ isOptim })
 
+  console.log('isLoading', isLoading)
   console.log('rules', rules)
   useEffect(() => {
     if (!currentSimulationId) {

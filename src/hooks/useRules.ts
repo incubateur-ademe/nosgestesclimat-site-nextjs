@@ -32,7 +32,7 @@ export function useRules(
           isOptim ? 'optimized' : ''
         } rules for ${regionCode} ${locale}`
       )
-      getRules({ locale, regionCode, isOptim })
+      return getRules({ locale, regionCode, isOptim })
     },
     placeholderData: keepPreviousData,
   })

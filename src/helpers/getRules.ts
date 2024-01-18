@@ -20,19 +20,20 @@ export default async function getRules(
 
   console.log(
     'importing (but not really)',
-    `@incubateur-ademe/nosgestesclimat/${regionCode}/${locale}${
-      isOptim ? '/optim' : ''
-    }`
+    `@/incubateur-ademe/nosgestesclimat/co2-model.${regionCode}-lang.${locale}${
+      isOptim ? '-opti' : ''
+    }.json`
   )
-  const model = await import(`@incubateur-ademe/nosgestesclimat`)
 
-  return model.default
+  const model = await import(
+    `@/incubateur-ademe/nosgestesclimat/co2-model.${regionCode}-lang.${locale}${
+      isOptim ? '-opti' : ''
+    }.json`
+  )
 
-  // return import(
-  // `@incubateur-ademe/nosgestesclimat/${regionCode}/${locale}${
-  //   isOptim ? '/optim' : ''
-  // }`
-  // )
+  console.log('model', model)
+
+  return model
 }
 
 async function importLocalRules({

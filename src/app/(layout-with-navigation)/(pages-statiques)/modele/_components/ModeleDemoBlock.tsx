@@ -2,13 +2,10 @@
 
 import Link from '@/components/Link'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
-import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
-import { useUser } from '@/publicodes-state'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
 import { safeGetSituation } from '@/publicodes-state/helpers/safeGetSituation'
 import { Rules, Situation } from '@/publicodes-state/types'
-import { SuppportedRegions } from '@/types/international'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Engine, { Evaluation } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
@@ -21,25 +18,13 @@ const demoDottedNames = [
 
 const indicatorsKeys = ['bilan', 'transport', 'logement']
 
-export default function ModeleDemoBlock({
-  supportedRegions,
-}: {
-  supportedRegions: SuppportedRegions
-}) {
+export default function ModeleDemoBlock() {
   const [situation, setSituation] = useState<Situation>({})
   const [indicators, setIndicators] = useState<{
     [k: (typeof indicatorsKeys)[number]]: Evaluation | null
   }>(Object.fromEntries(indicatorsKeys.map((el) => [el, null])))
 
-  const locale = useLocale()
-
-  const { user } = useUser()
-
-  const { data: rules } = useRules({
-    lang: locale,
-    region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
-    isOptim: false,
-  })
+  const { data: rules } = useRules({ isOptim: false })
 
   const engine = useMemo<Engine | null>(
     () => (rules ? new Engine(rules as Rules) : null),
@@ -84,7 +69,7 @@ export default function ModeleDemoBlock({
   )
 
   return (
-    <div className="bg-primary-100 my-4 rounded-md p-4">
+    <div className="my-4 rounded-md bg-primary-100 p-4">
       <ul>
         {demoDottedNames.map((el) => (
           <li key={el} className="mb-2">
