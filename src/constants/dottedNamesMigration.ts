@@ -23,6 +23,16 @@ export const dottedNamesMigration: migrationType = {
     'transport . voiture . propriétaire': '',
     'transport . voiture . âge': '',
     'logement . gaz . biogaz . part': 'logement . chauffage . biogaz . part',
+    'divers . textile . t-shirt . nombre':
+      'divers . textile . t shirt . nombre',
+    'divers . électroménager . appareils . lave-linge . nombre':
+      'divers . électroménager . appareils . lave linge . nombre',
+    'divers . électroménager . appareils . sèche-linge . nombre':
+      'divers . électroménager . appareils . sèche linge . nombre',
+    'divers . électroménager . appareils . lave-vaisselle . nombre':
+      'divers . électroménager . appareils . lave vaisselle . nombre',
+    'divers . électroménager . appareils . micro-onde . nombre':
+      'divers . électroménager . appareils . micro onde . nombre',
   },
   valuesToMigrate: {
     'logement . chauffage . bois . type': { "'bûche'": 'bûches' },
