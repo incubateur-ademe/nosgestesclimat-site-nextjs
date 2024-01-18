@@ -19,7 +19,7 @@ export default async function getRules(
   }
 
   console.log(
-    'importing (but not really)',
+    'importing',
     `@/incubateur-ademe/nosgestesclimat/co2-model.${regionCode}-lang.${locale}${
       isOptim ? '-opti' : ''
     }.json`
@@ -30,8 +30,6 @@ export default async function getRules(
       isOptim ? '-opti' : ''
     }.json`
   )
-
-  console.log('model', model)
 
   return model
 }

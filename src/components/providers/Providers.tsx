@@ -31,8 +31,6 @@ export default function Providers({
 
   const { data: rules, isLoading } = useRules({ isOptim })
 
-  console.log('isLoading', isLoading)
-  console.log('rules', rules)
   useEffect(() => {
     if (!currentSimulationId) {
       initSimulation()

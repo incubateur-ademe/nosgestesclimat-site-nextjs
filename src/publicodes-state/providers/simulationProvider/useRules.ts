@@ -49,7 +49,6 @@ export default function useRules({ engine }: Props) {
         .map((question) => question[0]),
     [parsedRulesEntries]
   )
-  console.log('everyMosaic', everyMosaic)
   const everyMosaicChildren = useMemo<string[]>(
     () =>
       everyMosaic.reduce<string[]>((accumulator, mosaic) => {
@@ -58,7 +57,6 @@ export default function useRules({ engine }: Props) {
         if (!mosaicRule.rawNode.mosaique) {
           return accumulator
         }
-        console.log('mosaicRule.rawNode.mosaique', mosaicRule.rawNode.mosaique)
         const mosaicChildren = mosaicRule.rawNode.mosaique['options']?.map(
           (option: string) => {
             return everyQuestions.find((rule) => rule.endsWith(option)) || ''
