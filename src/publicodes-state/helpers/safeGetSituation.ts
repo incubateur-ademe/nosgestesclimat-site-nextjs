@@ -38,7 +38,7 @@ export const safeGetSituation = ({
         )
         console.warn(error)
         captureException(error)
-        return true
+        return false
       }
     }
   )
