@@ -17,6 +17,10 @@ const periods: Record<string, number> = {
   year: 1,
 }
 
+function roundFloat(value: number, precision: number = 10): number {
+  return Math.round(value * precision) / precision
+}
+
 export default function JourneysInput({ question }: Props) {
   const { setValue } = useRule(question)
 
@@ -39,24 +43,24 @@ export default function JourneysInput({ question }: Props) {
     }
   }, [journeys, isInitialized, question])
 
-  const total = useMemo(
-    () =>
-      journeys.reduce(
-        (accumulator, currentValue) =>
-          accumulator +
-          currentValue.distance *
-            currentValue.reccurrence *
-            periods[currentValue.period],
-        0
-      ),
-    [journeys]
-  )
+  const total = useMemo(() => {
+    const rawTotal = journeys.reduce(
+      (accumulator, currentValue) =>
+        accumulator +
+        currentValue.distance *
+          currentValue.reccurrence *
+          periods[currentValue.period],
+      0
+    )
+    const roundedTotal = roundFloat(rawTotal)
+    return roundedTotal
+  }, [journeys])
 
   const averagePassengers = useMemo(() => {
     if (!total) {
       return 1
     } else {
-      return (
+      const rawAveragePassengers =
         journeys.reduce(
           (accumulator, currentValue) =>
             accumulator +
@@ -66,29 +70,25 @@ export default function JourneysInput({ question }: Props) {
               periods[currentValue.period],
           0
         ) / total
-      )
+      const roundedAveragePassengers = roundFloat(rawAveragePassengers)
+      return roundedAveragePassengers
     }
   }, [journeys, total])
 
   const totalForOnePassenger = useMemo(
-    () => (journeys.length ? total / averagePassengers : 0),
+    () => (journeys.length ? roundFloat(total / averagePassengers) : 0),
     [journeys, total, averagePassengers]
   )
-  const prevTotalForOnePassenger = useRef(totalForOnePassenger)
+
+  const prevTotal = useRef(total)
 
   useEffect(() => {
-    if (prevTotalForOnePassenger.current !== totalForOnePassenger) {
-      setValue(totalForOnePassenger.toFixed(1), question)
-      setNumPassengers(averagePassengers.toFixed(1))
+    if (prevTotal.current !== total) {
+      setValue(total, question)
+      setNumPassengers(averagePassengers)
     }
-    prevTotalForOnePassenger.current = totalForOnePassenger
-  }, [
-    totalForOnePassenger,
-    averagePassengers,
-    setValue,
-    setNumPassengers,
-    question,
-  ])
+    prevTotal.current = total
+  }, [total, averagePassengers, setValue, setNumPassengers, question])
 
   return (
     <>
