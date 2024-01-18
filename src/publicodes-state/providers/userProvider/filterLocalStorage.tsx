@@ -73,7 +73,17 @@ function handleMigrationValue({
 
   // The value is renamed and needs to be migrated
   situation[ruleName] =
-    dottedNamesMigration.valuesToMigrate[ruleName][nodeValue as string]
+    typeof dottedNamesMigration.valuesToMigrate[ruleName][
+      nodeValue as string
+    ] === 'string' &&
+    dottedNamesMigration.valuesToMigrate[ruleName][nodeValue as string] !==
+      'oui' &&
+    dottedNamesMigration.valuesToMigrate[ruleName][nodeValue as string] !==
+      'non'
+      ? `'${
+          dottedNamesMigration.valuesToMigrate[ruleName][nodeValue as string]
+        }'`
+      : dottedNamesMigration.valuesToMigrate[ruleName][nodeValue as string]
 }
 
 export default function filterLocalStorage(
