@@ -8,6 +8,8 @@ import NumberInput from '@/components/form/question/NumberInput'
 import Suggestions from '@/components/form/question/Suggestions'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import { useRule } from '@/publicodes-state'
+import Trans from '../translation/Trans'
+import Avertissement from './question/Avertissement'
 
 type Props = {
   question: string
@@ -26,6 +28,10 @@ export default function Question({ question }: Props) {
     choices,
     assistance,
     activeNotifications,
+    plancher,
+    avertissement,
+    tempValue,
+    setTempValue,
   } = useRule(question)
 
   return (
@@ -43,6 +49,24 @@ export default function Question({ question }: Props) {
             unit={unit}
             value={numericValue}
             setValue={(value) => {
+              console.log('SETTING TEMP VALUE')
+
+              if (
+                plancher !== undefined &&
+                value !== undefined &&
+                value < plancher
+              ) {
+                console.log('TOTO')
+                setTimeout(() => {
+                  setTempValue(value)
+                }, 1000)
+
+                return
+              } else {
+                console.log('NOT TOTO')
+                setTempValue(undefined)
+              }
+
               const limit = 0
               setValue(value < limit ? limit : value, question)
             }}
@@ -82,6 +106,20 @@ export default function Question({ question }: Props) {
       {activeNotifications.map((notification) => (
         <Notification key={notification} notification={notification} />
       ))}
+      {plancher !== undefined &&
+        tempValue !== undefined &&
+        tempValue < plancher && (
+          <Avertissement
+            avertissement={
+              avertissement ?? (
+                <span>
+                  <Trans>La valeur minimum pour ce champ est de</Trans>{' '}
+                  {plancher}
+                </span>
+              )
+            }
+          />
+        )}
     </>
   )
 }

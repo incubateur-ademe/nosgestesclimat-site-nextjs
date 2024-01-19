@@ -2,13 +2,14 @@
 
 import useQuestionsOfMosaic from '@/publicodes-state/hooks/useRule/useQuestionsOfMosaic'
 import { utils } from 'publicodes'
-import { useContext, useMemo } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import simulationContext from '../../providers/simulationProvider/context'
 import { DottedName, NGCEvaluatedNode, NGCRuleNode } from '../../types'
 import useChoices from './useChoices'
 import useContent from './useContent'
 import useMissing from './useMissing'
 import useNotifications from './useNotifications'
+import usePlancher from './usePlancher'
 import useType from './useType'
 import useValue from './useValue'
 
@@ -18,6 +19,8 @@ import useValue from './useValue'
  * It should ALWAYS be used to access a rule (unless we need to compare mutliples rules with useEngine)
  */
 export default function useRule(dottedName: DottedName) {
+  const [tempValue, setTempValue] = useState<number | undefined>()
+
   const {
     engine,
     safeGetRule,
@@ -106,6 +109,10 @@ export default function useRule(dottedName: DottedName) {
     situation,
   })
 
+  const { plancher, avertissement } = usePlancher({
+    rule,
+  })
+  console.log('useRule', tempValue)
   return {
     /**
      * The type of the question (set to "notQuestion" if not a question)
@@ -211,5 +218,21 @@ export default function useRule(dottedName: DottedName) {
      * Add a dottedName in the foldedSteps
      */
     addFoldedStep,
+    /**
+     * The minimum value
+     */
+    plancher,
+    /**
+     * A specific message to display if the value is under the plancher
+     */
+    avertissement,
+    /**
+     * A temporary value to display in the input
+     */
+    tempValue,
+    /**
+     * Setter for the temporary value
+     */
+    setTempValue,
   }
 }

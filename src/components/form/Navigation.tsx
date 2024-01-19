@@ -19,23 +19,18 @@ type Props = {
   onComplete?: () => void
 }
 
-//TODO: It should maayyybe be described in the model...
-const questionsThatCantBeZero = [
-  'transport . voiture . saisie voyageurs',
-  'logement . saisie habitants',
-  'logement . surface',
-]
-
 export default function Navigation({ question, onComplete = () => '' }: Props) {
   const { t } = useClientTranslation()
 
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
 
-  const { isMissing, numericValue, addFoldedStep } = useRule(question)
-
-  const nextDisabled =
-    questionsThatCantBeZero.includes(question) && numericValue < 1
+  const { isMissing, addFoldedStep, plancher, tempValue } = useRule(question)
+  console.log('ici put', tempValue)
+  const isNextButtonDisabled =
+    plancher !== undefined && tempValue !== undefined
+      ? tempValue < plancher
+      : false
 
   const handleGoToNextQuestion = useCallback(
     async (e: KeyboardEvent | MouseEvent) => {
@@ -114,7 +109,7 @@ export default function Navigation({ question, onComplete = () => '' }: Props) {
       ) : null}
       <Button
         color={isMissing ? 'secondary' : 'primary'}
-        disabled={nextDisabled}
+        disabled={isNextButtonDisabled}
         data-cypress-id="next-question-button"
         onClick={handleGoToNextQuestion}>
         {noNextQuestion
