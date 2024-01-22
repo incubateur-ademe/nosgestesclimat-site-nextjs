@@ -7,6 +7,7 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 import { useLocale } from './useLocale'
+import { usePRNumber } from './usePRNumber'
 
 type Props = {
   isOptim?: boolean
@@ -19,21 +20,16 @@ export function useRules(
   const locale = useLocale()
   const { user } = useUser()
 
+  const { PRNumber } = usePRNumber()
+
   const regionCode =
     user?.region?.code != undefined && user?.region?.code !== ''
       ? user?.region?.code
       : region
 
   return useQuery({
-    queryKey: ['rules', locale, regionCode, isOptim],
-    queryFn: () => {
-      console.log(
-        `⚙️ requesting ${
-          isOptim ? 'optimized' : ''
-        } rules for ${regionCode} ${locale}`
-      )
-      return getRules({ locale, regionCode, isOptim })
-    },
+    queryKey: ['rules', locale, regionCode, isOptim, PRNumber],
+    queryFn: () => getRules({ locale, regionCode, isOptim, PRNumber }),
     placeholderData: keepPreviousData,
   })
 }
