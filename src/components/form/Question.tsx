@@ -13,9 +13,19 @@ import Avertissement from './question/Avertissement'
 
 type Props = {
   question: string
+  tempValue?: number
+  setTempValue: (value: number | undefined) => void
+  avertissement?: string | React.ReactNode
+  plancher?: number
 }
 
-export default function Question({ question }: Props) {
+export default function Question({
+  question,
+  tempValue,
+  setTempValue,
+  avertissement,
+  plancher,
+}: Props) {
   const {
     type,
     label,
@@ -28,10 +38,6 @@ export default function Question({ question }: Props) {
     choices,
     assistance,
     activeNotifications,
-    plancher,
-    avertissement,
-    tempValue,
-    setTempValue,
   } = useRule(question)
 
   return (
@@ -49,21 +55,15 @@ export default function Question({ question }: Props) {
             unit={unit}
             value={numericValue}
             setValue={(value) => {
-              console.log('SETTING TEMP VALUE')
-
               if (
                 plancher !== undefined &&
                 value !== undefined &&
                 value < plancher
               ) {
-                console.log('TOTO')
-                setTimeout(() => {
-                  setTempValue(value)
-                }, 1000)
+                setTempValue(value)
 
                 return
               } else {
-                console.log('NOT TOTO')
                 setTempValue(undefined)
               }
 

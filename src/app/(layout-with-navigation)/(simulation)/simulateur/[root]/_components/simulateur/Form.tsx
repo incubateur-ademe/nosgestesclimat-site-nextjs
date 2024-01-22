@@ -5,7 +5,7 @@ import { getMatomoEventParcoursTestOver } from '@/constants/matomo'
 import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
+import { useEngine, useForm, useRule, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -25,7 +25,11 @@ export default function Form() {
     currentQuestion,
     setCurrentQuestion,
     categories,
+    tempValue,
+    setTempValue,
   } = useForm()
+
+  const { plancher, avertissement } = useRule(currentQuestion as string)
 
   const { getValue, getNumericValue } = useEngine()
 
@@ -77,10 +81,22 @@ export default function Form() {
       {questions[currentQuestion] ? (
         questions[currentQuestion]
       ) : (
-        <Question question={currentQuestion} key={currentQuestion} />
+        <Question
+          question={currentQuestion}
+          key={currentQuestion}
+          avertissement={avertissement}
+          tempValue={tempValue}
+          setTempValue={setTempValue}
+          plancher={plancher}
+        />
       )}
       <Navigation
         question={currentQuestion}
+        isNextButtonDisabled={
+          plancher !== undefined && tempValue !== undefined
+            ? tempValue < plancher
+            : false
+        }
         onComplete={() => {
           trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
 

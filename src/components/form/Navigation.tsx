@@ -16,21 +16,21 @@ import { MouseEvent, useCallback } from 'react'
 
 type Props = {
   question: string
+  isNextButtonDisabled?: boolean
   onComplete?: () => void
 }
 
-export default function Navigation({ question, onComplete = () => '' }: Props) {
+export default function Navigation({
+  question,
+  isNextButtonDisabled,
+  onComplete = () => '',
+}: Props) {
   const { t } = useClientTranslation()
 
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
 
-  const { isMissing, addFoldedStep, plancher, tempValue } = useRule(question)
-  console.log('ici put', tempValue)
-  const isNextButtonDisabled =
-    plancher !== undefined && tempValue !== undefined
-      ? tempValue < plancher
-      : false
+  const { isMissing, addFoldedStep } = useRule(question)
 
   const handleGoToNextQuestion = useCallback(
     async (e: KeyboardEvent | MouseEvent) => {
