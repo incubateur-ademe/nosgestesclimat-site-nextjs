@@ -13,6 +13,8 @@ import ColorIndicator from './form/ColorIndicator'
 import { useUpdateGroupAndRedirectToGroup } from './form/_hooks/useUpdateGroupAndRedirectToGroup'
 
 export default function Form() {
+  const [tempValue, setTempValue] = useState<number | undefined>()
+
   const router = useRouter()
 
   const isDebug = useDebug()
@@ -25,8 +27,6 @@ export default function Form() {
     currentQuestion,
     setCurrentQuestion,
     categories,
-    tempValue,
-    setTempValue,
   } = useForm()
 
   const { plancher, avertissement } = useRule(currentQuestion as string)

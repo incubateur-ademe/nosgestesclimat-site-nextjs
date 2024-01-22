@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import formContext from '../../providers/formProvider/context'
 import useNavigation from './useNavigation'
 
@@ -8,8 +8,6 @@ import useNavigation from './useNavigation'
  * A hook to help display a form inside the simulation
  */
 export default function useForm() {
-  const [tempValue, setTempValue] = useState<number | undefined>()
-
   const {
     categories,
     subcategories,
@@ -107,13 +105,5 @@ export default function useForm() {
      * Every missing questions needed to complete the form sorted by category
      */
     remainingQuestionsByCategories,
-    /**
-     * The temporary value of the current question
-     */
-    tempValue,
-    /**
-     * Setter for the temporary value of the current question
-     */
-    setTempValue,
   }
 }
