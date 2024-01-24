@@ -1,5 +1,5 @@
 import Link from '@/components/Link'
-import { Rules } from '@/publicodes-state/types'
+import { DottedName, Rules } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import { Rule, utils } from 'publicodes'
@@ -41,7 +41,7 @@ export default function RuleDetail({
 }: {
   ruleData: Rule | string | number
   context: {
-    dottedName: string
+    dottedName: DottedName
     rules: Rules
   }
 }) {

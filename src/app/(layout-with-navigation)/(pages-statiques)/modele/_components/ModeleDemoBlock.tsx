@@ -5,7 +5,7 @@ import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { useRules } from '@/hooks/useRules'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
 import { safeGetSituation } from '@/publicodes-state/helpers/safeGetSituation'
-import { Rules, Situation } from '@/publicodes-state/types'
+import { DottedName, Rules, Situation } from '@/publicodes-state/types'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Engine, { Evaluation } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
@@ -54,7 +54,7 @@ export default function ModeleDemoBlock() {
     )
   }, [situation, engine])
 
-  const onChange = (dottedName: string, value: string) =>
+  const onChange = (dottedName: DottedName, value: string) =>
     setSituation({ ...situation, [dottedName]: value })
 
   const defaultValues = demoDottedNames.reduce(

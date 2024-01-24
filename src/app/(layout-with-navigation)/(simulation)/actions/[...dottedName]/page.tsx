@@ -1,12 +1,13 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { DottedName } from '@/publicodes-state/types'
 import ActionDetail from './_components/ActionDetail'
 
 export async function generateMetadata({
   params: { dottedName },
 }: {
-  params: { dottedName: string[] }
+  params: { dottedName: DottedName[] }
 }) {
   return getMetadataObject({
     title:
@@ -22,7 +23,7 @@ export async function generateMetadata({
 export default function ActionDetailPage({
   params,
 }: {
-  params: { dottedName: string[] }
+  params: { dottedName: DottedName[] }
 }) {
   return (
     <div className="mx-auto max-w-[600px]">

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { safeGetSituation } from '../../helpers/safeGetSituation'
-import { Engine, Situation } from '../../types'
+import { DottedName, Engine, Situation } from '../../types'
 
 type Props = {
   engine: Engine
-  everyRules: string[]
+  everyRules: DottedName[]
   defaultSituation?: Situation
   externalSituation: Situation
   updateExternalSituation: (situation: Situation) => void

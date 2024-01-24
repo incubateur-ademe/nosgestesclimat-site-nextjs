@@ -23,7 +23,7 @@ const { decodeRuleName, encodeRuleName } = utils
 export default function ActionDetail({
   params,
 }: {
-  params: { dottedName: string[] }
+  params: { dottedName: DottedName[] }
 }) {
   const { getCategory } = useEngine()
   const pathParamsDottedName = params?.dottedName
