@@ -55,6 +55,7 @@ export default function Question({
             unit={unit}
             value={numericValue}
             setValue={(value) => {
+              // Value is below the minimum
               if (
                 setTempValue !== undefined &&
                 plancher !== undefined &&
@@ -64,7 +65,10 @@ export default function Question({
                 setTempValue(value)
 
                 return
-              } else if (setTempValue !== undefined) {
+              }
+
+              // Value isn't below the minimum, if set we reset tempValue
+              if (tempValue !== undefined && setTempValue !== undefined) {
                 setTempValue(undefined)
               }
 
