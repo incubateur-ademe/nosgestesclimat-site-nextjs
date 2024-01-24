@@ -1,18 +1,23 @@
-import { LocalStorage } from '@/publicodes-state/types'
+import { LocalStorage, migrationType } from '@/publicodes-state/types'
 import { captureException } from '@sentry/react'
 import { useEffect } from 'react'
 import filterLocalStorage from './filterLocalStorage'
 
 type Props = {
   storageKey: string
+  migrationInstructions: migrationType
 }
 
 function handleLocalStorageMigration(
   currentLocalStorage: any,
-  storageKey: string
+  storageKey: string,
+  migrationInstructions: migrationType
 ) {
   try {
-    const filteredLocalStorage = filterLocalStorage(currentLocalStorage)
+    const filteredLocalStorage = filterLocalStorage({
+      localStorage: currentLocalStorage,
+      migrationInstructions,
+    })
 
     localStorage.setItem(storageKey, JSON.stringify(filteredLocalStorage))
   } catch (error) {
@@ -21,7 +26,10 @@ function handleLocalStorageMigration(
   }
 }
 
-export default function useUpdateOldLocalStorage({ storageKey }: Props) {
+export default function useUpdateOldLocalStorage({
+  storageKey,
+  migrationInstructions,
+}: Props) {
   useEffect(() => {
     const oldLocalStorage = localStorage.getItem(
       'ecolab-climat::persisted-simulation::v2'
@@ -49,6 +57,10 @@ export default function useUpdateOldLocalStorage({ storageKey }: Props) {
     }
 
     // We migrate rules according to `dottedNamesMigration` table
-    handleLocalStorageMigration(currentLocalStorage, storageKey)
-  }, [storageKey])
+    handleLocalStorageMigration(
+      currentLocalStorage,
+      storageKey,
+      migrationInstructions
+    )
+  }, [storageKey, migrationInstructions])
 }
