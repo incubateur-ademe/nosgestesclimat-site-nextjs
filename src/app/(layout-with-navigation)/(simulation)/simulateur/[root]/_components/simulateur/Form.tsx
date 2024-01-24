@@ -29,7 +29,7 @@ export default function Form() {
     categories,
   } = useForm()
 
-  const { plancher, avertissement } = useRule(currentQuestion as string)
+  const { plancher, avertissement } = useRule((currentQuestion as string) ?? '')
 
   const { getValue, getNumericValue } = useEngine()
 
