@@ -9,7 +9,7 @@ type Props = {
 
 export default function usePlancher({ rule }: Props) {
   const plancher = useMemo<number | undefined>(() => {
-    return rule?.rawNode?.plancher
+    return rule?.rawNode?.plancher ?? 0
   }, [rule?.rawNode?.plancher])
 
   const avertissement = useMemo<string | undefined>(() => {

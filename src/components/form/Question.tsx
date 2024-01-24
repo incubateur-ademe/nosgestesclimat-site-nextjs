@@ -49,12 +49,13 @@ export default function Question({
           description={description}
           htmlFor={DEFAULT_FOCUS_ELEMENT_ID}
         />
-        <Suggestions question={question} />
+        <Suggestions question={question} setTempValue={setTempValue} />
         {type === 'number' && (
           <NumberInput
             unit={unit}
             value={numericValue}
             setValue={(value) => {
+              console.log(value)
               // Value is below the minimum
               if (
                 setTempValue !== undefined &&
