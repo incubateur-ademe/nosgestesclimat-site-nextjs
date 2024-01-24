@@ -11,7 +11,7 @@ export default async function getPersonas(
     locale: 'fr',
   }
 ): Promise<Record<string, Persona>> {
-  const fileName = `/personas-${locale}.json`
+  const fileName = `personas-${locale}.json`
 
   return fetchFileFromModel({ fileName, PRNumber })
 }
