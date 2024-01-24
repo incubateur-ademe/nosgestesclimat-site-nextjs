@@ -1,5 +1,5 @@
-import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import getSupportedRegions from '@/helpers/modelFetching/getSupportedRegions'
 import DocumentationRouter from './_components/DocumentationRouter'
 import DocumentationServer from './_components/documentationRouter/DocumentationServer'
 

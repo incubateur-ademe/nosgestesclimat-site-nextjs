@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import fetchPersonas from '@/helpers/fetchPersonas'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import getPersonas from '@/helpers/modelFetching/getPersonas'
 import Persona from './_components/Persona'
 import PersonaExplanations from './_components/PersonaExplanations'
 
@@ -16,8 +16,13 @@ export async function generateMetadata() {
   })
 }
 
-export default async function Personas() {
-  const personas = await fetchPersonas()
+type Props = {
+  params: {
+    locale: string
+  }
+}
+export default async function Personas({ params: { locale } }: Props) {
+  const personas = await getPersonas({ locale })
   return (
     <>
       <Title title={<Trans>Personas</Trans>} data-cypress-id="personas-title" />

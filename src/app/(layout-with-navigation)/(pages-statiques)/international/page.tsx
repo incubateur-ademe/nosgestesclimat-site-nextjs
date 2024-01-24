@@ -6,8 +6,8 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Container from '@/design-system/layout/Container'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import getSupportedRegions from '@/helpers/modelFetching/getSupportedRegions'
 import Image from 'next/image'
 
 export async function generateMetadata() {

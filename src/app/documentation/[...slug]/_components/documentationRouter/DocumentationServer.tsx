@@ -1,10 +1,8 @@
 import Trans from '@/components/translation/Trans'
-import { DEFAULT_MODEL_VERSION } from '@/constants/modelAPI'
-import { NGC_MODEL_API_URL } from '@/constants/urls'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Markdown from '@/design-system/utils/Markdown'
-import { fetchModel } from '@/helpers/data/fetchModel'
+import getRules from '@/helpers/modelFetching/getRules'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { Rules } from '@/publicodes-state/types'
 import { SuppportedRegions } from '@/types/international'
@@ -21,12 +19,7 @@ type Props = {
   slugs: string[]
   locale?: string
 }
-export default async function DocumentationServer({
-  slugs,
-  // This is a hack, we should be able to use currentLocale() from the i18n package
-  // but it breaks the app when used in the server side
-  locale,
-}: Props) {
+export default async function DocumentationServer({ slugs }: Props) {
   const ruleName = decodeRuleNameFromPath(slugs.join('/'))
 
   if (!ruleName) {
@@ -34,10 +27,7 @@ export default async function DocumentationServer({
   }
 
   // We load the default rules to render the server side documentation
-  const rules: Rules = await fetchModel({
-    dataServer: `${NGC_MODEL_API_URL}/${DEFAULT_MODEL_VERSION}`,
-    regionCode: 'FR',
-    locale: locale ?? 'fr',
+  const rules: Rules = await getRules({
     isOptim: false,
   })
 
