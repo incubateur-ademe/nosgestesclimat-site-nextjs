@@ -14,7 +14,7 @@ import Avertissement from './question/Avertissement'
 type Props = {
   question: string
   tempValue?: number
-  setTempValue: (value: number | undefined) => void
+  setTempValue?: (value: number | undefined) => void
   avertissement?: string | React.ReactNode
   plancher?: number
 }
@@ -56,6 +56,7 @@ export default function Question({
             value={numericValue}
             setValue={(value) => {
               if (
+                setTempValue !== undefined &&
                 plancher !== undefined &&
                 value !== undefined &&
                 value < plancher
@@ -63,7 +64,7 @@ export default function Question({
                 setTempValue(value)
 
                 return
-              } else {
+              } else if (setTempValue !== undefined) {
                 setTempValue(undefined)
               }
 
