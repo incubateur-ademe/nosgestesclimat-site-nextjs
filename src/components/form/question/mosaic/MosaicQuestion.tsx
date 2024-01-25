@@ -28,7 +28,8 @@ export default function MosaicQuestion({
           icons={icons}
           description={description}
           setValue={async (value) => {
-            await setValue(value, parentMosaic)
+            const limit = 0
+            await setValue(value < limit ? limit : value, parentMosaic)
             resetMosaicChildren(question)
           }}
           parentMosaic={parentMosaic}

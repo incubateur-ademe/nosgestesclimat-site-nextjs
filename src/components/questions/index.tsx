@@ -8,7 +8,9 @@ type Props = {
 }
 
 const questions: Record<string, any> = {
-  'alimentation . plats': <Plats key="alimentation . plats" />,
+  'alimentation . plats': (props: Props) => (
+    <Plats key="alimentation . plats" {...props} />
+  ),
   'transport . avion . court courrier . heures de vol': (props: Props) => (
     <Avion
       key="transport . avion . court courrier . heures de vol"
