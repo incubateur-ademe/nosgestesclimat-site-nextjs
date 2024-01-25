@@ -2,7 +2,7 @@ import Trans from '@/components/translation/Trans'
 import VerificationCodeInput from './VerificationCodeInput'
 
 type Props = {
-  ownerEmail: string
+  email: string
   inputError: string | undefined
   isSuccessValidate: boolean
   isPendingValidate: boolean
@@ -10,7 +10,7 @@ type Props = {
 }
 
 export default function VerificationContent({
-  ownerEmail,
+  email,
   inputError,
   isSuccessValidate,
   isPendingValidate,
@@ -28,7 +28,7 @@ export default function VerificationContent({
           <Trans>code de vérification</Trans>
         </strong>{' '}
         <Trans>à </Trans>
-        {ownerEmail} .{' '}
+        {email} .{' '}
       </p>
 
       <form>

@@ -25,11 +25,11 @@ export default function CreationPage() {
   const { user } = useUser()
 
   const { isError } = useFetchOrganization({
-    ownerEmail: user?.email,
+    administratorEmail: user?.email,
   })
 
   const { mutateAsync: updateOrganization } = useUpdateOrganization({
-    ownerEmail: user?.email,
+    administratorEmail: user?.email,
   })
 
   const router = useRouter()
@@ -41,17 +41,17 @@ export default function CreationPage() {
 
     const name = data.get('name') as string
     const slug = name.toLowerCase().replace(/ /g, '-')
-    const ownerName = data.get('ownerName') as string
+    const administratorName = data.get('administratorName') as string
     const position = data.get('position') as string
     const telephone = data.get('telephone') as string
     const numberOfParticipants = data.get('numberOfParticipants') as string
 
     // Validation
-    if (!name || !ownerName) {
+    if (!name || !administratorName) {
       if (!name) {
         setNameError(t('Vous devez renseigner le nom de votre organisation'))
       }
-      if (!ownerName) {
+      if (!administratorName) {
         setOwnerNameError(t('Vous devez renseigner votre prénom'))
       }
 
@@ -74,7 +74,7 @@ export default function CreationPage() {
       const organizationUpdated = await updateOrganization({
         name,
         slug,
-        ownerName,
+        administratorName,
         position,
         telephone,
         numberOfParticipants,

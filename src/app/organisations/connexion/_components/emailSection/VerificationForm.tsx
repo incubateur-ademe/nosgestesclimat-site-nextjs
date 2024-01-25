@@ -12,9 +12,9 @@ import NotReceived from './verificationForm/NotReceived'
 import VerificationContent from './verificationForm/VerificationContent'
 
 export default function VerificationForm({
-  ownerEmail,
+  administratorEmail,
 }: {
-  ownerEmail: string
+  administratorEmail: string
 }) {
   const [inputError, setInputError] = useState<string | undefined>()
 
@@ -43,7 +43,7 @@ export default function VerificationForm({
     isPending: isPendingValidate,
     isSuccess: isSuccessValidate,
   } = useValidateVerificationCode({
-    ownerEmail,
+    administratorEmail,
   })
 
   const {
@@ -54,7 +54,7 @@ export default function VerificationForm({
     mutationFn: () =>
       axios
         .post(`${SERVER_URL}/organizations/send-verification-code`, {
-          ownerEmail,
+          administratorEmail,
         })
         .then((response) => response.data),
   })
@@ -116,7 +116,7 @@ export default function VerificationForm({
 
       <div>
         <VerificationContent
-          ownerEmail={ownerEmail}
+          email={administratorEmail}
           inputError={inputError}
           isSuccessValidate={isSuccessValidate}
           isPendingValidate={isPendingValidate}

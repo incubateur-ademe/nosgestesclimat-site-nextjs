@@ -2,12 +2,16 @@ import { SERVER_URL } from '@/constants/urls'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
-export function useUpdateOrganization({ ownerEmail }: { ownerEmail: string }) {
+export function useUpdateOrganization({
+  administratorEmail,
+}: {
+  administratorEmail: string
+}) {
   return useMutation({
     mutationFn: ({
       name,
       slug,
-      ownerName,
+      administratorName,
       position,
       telephone,
       numberOfParticipants,
@@ -15,7 +19,7 @@ export function useUpdateOrganization({ ownerEmail }: { ownerEmail: string }) {
     }: {
       name: string
       slug: string
-      ownerName: string
+      administratorName: string
       position: string
       telephone: string
       numberOfParticipants: string
@@ -25,12 +29,12 @@ export function useUpdateOrganization({ ownerEmail }: { ownerEmail: string }) {
         .post(`${SERVER_URL}/organizations/update-after-creation`, {
           name,
           slug,
-          ownerName,
+          administratorName,
           position,
           telephone,
           numberOfParticipants,
           hasOptedInForCommunications,
-          ownerEmail,
+          administratorEmail,
         })
         .then((response) => response.data),
   })
