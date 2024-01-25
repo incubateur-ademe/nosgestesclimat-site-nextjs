@@ -5,15 +5,15 @@ import axios from 'axios'
 // This is a specific hook, called only once and only after the organization is created
 // because we there set the slug which shouldn't be modified afterwards
 export function useUpdateOrganizationAfterCreation({
-  ownerEmail,
+  administratorEmail,
 }: {
-  ownerEmail: string
+  administratorEmail: string
 }) {
   return useMutation({
     mutationFn: ({
       name,
       slug,
-      ownerName,
+      administratorName,
       position,
       telephone,
       numberOfParticipants,
@@ -21,7 +21,7 @@ export function useUpdateOrganizationAfterCreation({
     }: {
       name: string
       slug: string
-      ownerName: string
+      administratorName: string
       position: string
       telephone: string
       numberOfParticipants: string
@@ -31,12 +31,12 @@ export function useUpdateOrganizationAfterCreation({
         .post(`${SERVER_URL}/organizations/update-after-creation`, {
           name,
           slug,
-          ownerName,
+          administratorName,
           position,
           telephone,
           numberOfParticipants,
           hasOptedInForCommunications,
-          ownerEmail,
+          administratorEmail,
         })
         .then((response) => response.data),
   })
