@@ -29,7 +29,7 @@ export default function Form() {
     categories,
   } = useForm()
 
-  const { plancher, avertissement } = useRule((currentQuestion as string) ?? '')
+  const { plancher } = useRule((currentQuestion as string) ?? '')
 
   const { getValue, getNumericValue } = useEngine()
 
@@ -75,19 +75,19 @@ export default function Form() {
     return
   }
 
+  const SpecificQuestion = questions[currentQuestion]
+
   return (
     <div className="relative mb-4 overflow-hidden rounded-lg bg-grey-100 p-4 pl-6">
       <ColorIndicator question={currentQuestion} />
-      {questions[currentQuestion] ? (
-        questions[currentQuestion]
+      {SpecificQuestion ? (
+        <SpecificQuestion setTempValue={setTempValue} tempValue={tempValue} />
       ) : (
         <Question
           question={currentQuestion}
           key={currentQuestion}
-          avertissement={avertissement}
           tempValue={tempValue}
           setTempValue={setTempValue}
-          plancher={plancher}
         />
       )}
       <Navigation

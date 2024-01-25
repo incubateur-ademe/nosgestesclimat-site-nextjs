@@ -15,17 +15,9 @@ type Props = {
   question: string
   tempValue?: number
   setTempValue?: (value: number | undefined) => void
-  avertissement?: string | React.ReactNode
-  plancher?: number
 }
 
-export default function Question({
-  question,
-  tempValue,
-  setTempValue,
-  avertissement,
-  plancher,
-}: Props) {
+export default function Question({ question, tempValue, setTempValue }: Props) {
   const {
     type,
     label,
@@ -38,6 +30,8 @@ export default function Question({
     choices,
     assistance,
     activeNotifications,
+    plancher,
+    avertissement,
   } = useRule(question)
 
   return (
@@ -55,7 +49,7 @@ export default function Question({
             unit={unit}
             value={numericValue}
             setValue={(value) => {
-              console.log(value)
+              console.log({ plancher, value, setTempValue, tempValue })
               // Value is below the minimum
               if (
                 setTempValue !== undefined &&
