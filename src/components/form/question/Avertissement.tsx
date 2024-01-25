@@ -12,7 +12,7 @@ export default function Avertissement({
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="mb-4 flex flex-col items-end rounded-md bg-white p-4 text-sm text-red-700">
+      className="mb-4 flex flex-col items-end rounded-md bg-white p-4 text-sm font-bold text-red-700">
       {typeof avertissement === 'string' ? (
         <Markdown>{avertissement}</Markdown>
       ) : (

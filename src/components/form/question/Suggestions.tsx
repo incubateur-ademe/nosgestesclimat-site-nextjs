@@ -7,10 +7,10 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
   question: string
-  setTempValue?: (value: number | undefined) => void
+  setInvalidValue?: (value: number | undefined) => void
 }
 
-export default function Suggestions({ question, setTempValue }: Props) {
+export default function Suggestions({ question, setInvalidValue }: Props) {
   const { suggestions, setValue, addFoldedStep } = useRule(question)
   const { updateSituation } = useEngine()
 
@@ -28,7 +28,9 @@ export default function Suggestions({ question, setTempValue }: Props) {
               getMatomoEventClickSuggestion(question, suggestion.label)
             )
 
-            setTempValue && setTempValue(undefined)
+            if (setInvalidValue) {
+              setInvalidValue(undefined)
+            }
 
             if (typeof suggestion.value === 'object') {
               updateSituation(

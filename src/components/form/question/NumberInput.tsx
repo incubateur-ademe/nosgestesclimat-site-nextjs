@@ -12,6 +12,7 @@ type Props = {
   min?: number
   id?: string
   className?: string
+  isError?: boolean
 }
 
 export default function NumberInput({
@@ -22,6 +23,7 @@ export default function NumberInput({
   min = 0,
   className,
   id,
+  isError,
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
   const locale = useLocale()
@@ -30,7 +32,10 @@ export default function NumberInput({
     <div className={twMerge(`flex items-center justify-end gap-1`, className)}>
       <DebounceInput
         debounceTimeout={300}
-        className={`focus:ring-primary max-w-[8rem] rounded border border-primary-500 bg-grey-100 p-2 text-right transition-colors focus:border-primary-500 focus:ring-2 md:max-w-full`}
+        className={twMerge(
+          'max-w-[8rem] rounded border border-primary-500 bg-grey-100 p-2 text-right transition-colors focus:border-primary-500 focus:ring-2 md:max-w-full',
+          isError ? 'border-red-700 ' : ''
+        )}
         type="number"
         min={min}
         value={isMissing ? '' : value}

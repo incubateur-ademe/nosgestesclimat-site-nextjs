@@ -5,7 +5,7 @@ import { getMatomoEventParcoursTestOver } from '@/constants/matomo'
 import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import { useEngine, useForm, useRule, useUser } from '@/publicodes-state'
+import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -13,7 +13,9 @@ import ColorIndicator from './form/ColorIndicator'
 import { useUpdateGroupAndRedirectToGroup } from './form/_hooks/useUpdateGroupAndRedirectToGroup'
 
 export default function Form() {
-  const [tempValue, setTempValue] = useState<number | undefined>()
+  // We store here a temporary value that will be used to display the error message
+  // for a question that has a minimum value
+  const [invalidValue, setInvalidValue] = useState<number | undefined>()
 
   const router = useRouter()
 
@@ -28,8 +30,6 @@ export default function Form() {
     setCurrentQuestion,
     categories,
   } = useForm()
-
-  const { plancher } = useRule((currentQuestion as string) ?? '')
 
   const { getValue, getNumericValue } = useEngine()
 
@@ -81,22 +81,21 @@ export default function Form() {
     <div className="relative mb-4 overflow-hidden rounded-lg bg-grey-100 p-4 pl-6">
       <ColorIndicator question={currentQuestion} />
       {SpecificQuestion ? (
-        <SpecificQuestion setTempValue={setTempValue} tempValue={tempValue} />
+        <SpecificQuestion
+          setInvalidValue={setInvalidValue}
+          invalidValue={invalidValue}
+        />
       ) : (
         <Question
           question={currentQuestion}
           key={currentQuestion}
-          tempValue={tempValue}
-          setTempValue={setTempValue}
+          invalidValue={invalidValue}
+          setInvalidValue={setInvalidValue}
         />
       )}
       <Navigation
         question={currentQuestion}
-        isNextButtonDisabled={
-          plancher !== undefined && tempValue !== undefined
-            ? tempValue < plancher
-            : false
-        }
+        isNextButtonDisabled={invalidValue !== undefined}
         onComplete={() => {
           trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
 

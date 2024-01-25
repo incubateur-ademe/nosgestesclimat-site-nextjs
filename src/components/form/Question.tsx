@@ -13,11 +13,15 @@ import Avertissement from './question/Avertissement'
 
 type Props = {
   question: string
-  tempValue?: number
-  setTempValue?: (value: number | undefined) => void
+  invalidValue?: number
+  setInvalidValue?: (value: number | undefined) => void
 }
 
-export default function Question({ question, tempValue, setTempValue }: Props) {
+export default function Question({
+  question,
+  invalidValue,
+  setInvalidValue,
+}: Props) {
   const {
     type,
     label,
@@ -43,28 +47,32 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
           description={description}
           htmlFor={DEFAULT_FOCUS_ELEMENT_ID}
         />
-        <Suggestions question={question} setTempValue={setTempValue} />
+
+        <Suggestions question={question} setInvalidValue={setInvalidValue} />
+
         {type === 'number' && (
           <NumberInput
             unit={unit}
             value={numericValue}
+            isError={invalidValue !== undefined}
             setValue={(value) => {
-              console.log({ plancher, value, setTempValue, tempValue })
-              // Value is below the minimum
+              console.log({ plancher, value, setInvalidValue, invalidValue })
+              // Value is below the minimum we want to show the error message
+              // and disable the "Suivant" button
               if (
-                setTempValue !== undefined &&
+                setInvalidValue !== undefined &&
                 plancher !== undefined &&
                 value !== undefined &&
                 value < plancher
               ) {
-                setTempValue(value)
+                setInvalidValue(value)
 
                 return
               }
 
-              // Value isn't below the minimum, if set we reset tempValue
-              if (tempValue !== undefined && setTempValue !== undefined) {
-                setTempValue(undefined)
+              // Value isn't below the minimum, if set we reset invalidValue
+              if (invalidValue !== undefined && setInvalidValue !== undefined) {
+                setInvalidValue(undefined)
               }
 
               const limit = 0
@@ -76,6 +84,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             id={DEFAULT_FOCUS_ELEMENT_ID}
           />
         )}
+
         {type === 'boolean' && (
           <BooleanInput
             value={value}
@@ -86,6 +95,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             id={DEFAULT_FOCUS_ELEMENT_ID}
           />
         )}
+
         {type === 'choices' && (
           <ChoicesInput
             question={question}
@@ -98,28 +108,29 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             id={DEFAULT_FOCUS_ELEMENT_ID}
           />
         )}
+
         {type === 'mosaic' && <Mosaic question={question} />}
       </div>
+
       {assistance ? (
         <Assistance question={question} assistance={assistance} />
       ) : null}
+
       {activeNotifications.map((notification) => (
         <Notification key={notification} notification={notification} />
       ))}
-      {plancher !== undefined &&
-        tempValue !== undefined &&
-        tempValue < plancher && (
-          <Avertissement
-            avertissement={
-              avertissement ?? (
-                <span>
-                  <Trans>La valeur minimum pour ce champ est de</Trans>{' '}
-                  {plancher}
-                </span>
-              )
-            }
-          />
-        )}
+
+      {plancher !== undefined && invalidValue !== undefined && (
+        <Avertissement
+          avertissement={
+            avertissement ?? (
+              <span>
+                <Trans>La valeur minimum pour ce champ est de</Trans> {plancher}
+              </span>
+            )
+          }
+        />
+      )}
     </>
   )
 }
