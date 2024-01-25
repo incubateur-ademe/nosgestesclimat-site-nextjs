@@ -1,14 +1,14 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import React from 'react'
 
 type Props = {
   isRetryButtonDisabled: boolean
-  isPendingValidate: boolean
-  isSuccessResend: boolean
+  isErrorResend: boolean
   sendVerificationCode: () => Promise<void>
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>
   timeLeft: number
@@ -16,12 +16,13 @@ type Props = {
 
 export default function NotReceived({
   isRetryButtonDisabled,
-  isPendingValidate,
-  isSuccessResend,
+  isErrorResend,
   sendVerificationCode,
   setTimeLeft,
   timeLeft,
 }: Props) {
+  const [shouldDisplayConfirmation, setShouldDisplayConfirmation] =
+    React.useState(false)
   const { t } = useClientTranslation()
 
   async function handleResendVerificationCode() {
@@ -30,8 +31,12 @@ export default function NotReceived({
     }
 
     await sendVerificationCode()
+    setShouldDisplayConfirmation(true)
 
-    setTimeLeft(30)
+    setTimeout(() => {
+      setTimeLeft(30)
+      setShouldDisplayConfirmation(false)
+    }, 1500)
   }
   return (
     <>
@@ -39,20 +44,56 @@ export default function NotReceived({
         <Trans>Vous n'avez pas reçu d'e-mail ?</Trans>
       </p>
 
-      <button
-        aria-disabled={isRetryButtonDisabled}
-        aria-label={
-          isRetryButtonDisabled
-            ? t('Renvoyer le code, désactivé pendant 30 secondes')
-            : ''
-        }
-        onClick={handleResendVerificationCode}
-        className="text-primary-700 underline">
-        {isRetryButtonDisabled && <Emoji>🔒</Emoji>}
-        {isPendingValidate && <Emoji>⏳</Emoji>}
-        {isSuccessResend && <Emoji>✅</Emoji>}&nbsp;
-        <Trans>Renvoyer le code</Trans>
-      </button>
+      {!isErrorResend && (
+        <button
+          aria-disabled={isRetryButtonDisabled}
+          aria-label={
+            isRetryButtonDisabled
+              ? t('Renvoyer le code, désactivé pendant 30 secondes')
+              : ''
+          }
+          onClick={handleResendVerificationCode}
+          className="text-primary-700 underline">
+          {isRetryButtonDisabled && timeLeft > 0 && (
+            <>
+              <Emoji>🔒</Emoji>&nbsp;<Trans>Renvoyer le code</Trans>
+            </>
+          )}
+
+          {shouldDisplayConfirmation && (
+            <>
+              <Emoji>✅</Emoji>&nbsp;<Trans>Code renvoyé</Trans>
+            </>
+          )}
+
+          {!shouldDisplayConfirmation && !isRetryButtonDisabled && (
+            <Trans>Renvoyer le code</Trans>
+          )}
+        </button>
+      )}
+
+      {isErrorResend && (
+        <div className="text-red-800">
+          <p>
+            <Trans>
+              Oups, une erreur s'est produite au moment de l'envoi de votre
+              code...
+            </Trans>
+          </p>
+
+          <div>
+            <Button
+              size="sm"
+              onClick={() => {
+                if (typeof window === 'undefined') return
+
+                window.location.reload()
+              }}>
+              Recharger la page
+            </Button>
+          </div>
+        </div>
+      )}
 
       {timeLeft > 0 && (
         <p className="mt-2 text-sm text-gray-600">

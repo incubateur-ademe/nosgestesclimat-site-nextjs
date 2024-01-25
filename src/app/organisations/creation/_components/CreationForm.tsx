@@ -31,7 +31,7 @@ export default function CreationForm({
       />
 
       <TextInputGroup
-        name="ownerName"
+        name="administratorName"
         label={<Trans>Votre prénom</Trans>}
         error={ownerNameError ?? ''}
         onChange={() => setOwnerNameError('')}

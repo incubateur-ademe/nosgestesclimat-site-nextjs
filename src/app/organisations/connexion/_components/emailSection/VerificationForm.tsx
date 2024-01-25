@@ -4,6 +4,7 @@ import { SERVER_URL } from '@/constants/urls'
 import { useUser } from '@/publicodes-state'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
+import dayjs from 'dayjs'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
@@ -11,9 +12,9 @@ import NotReceived from './verificationForm/NotReceived'
 import VerificationContent from './verificationForm/VerificationContent'
 
 export default function VerificationForm({
-  ownerEmail,
+  administratorEmail,
 }: {
-  ownerEmail: string
+  administratorEmail: string
 }) {
   const [inputError, setInputError] = useState<string | undefined>()
 
@@ -23,25 +24,37 @@ export default function VerificationForm({
 
   const timeoutRef = useRef<NodeJS.Timeout>()
 
-  const { updateLoginExpirationDate } = useUser()
+  const { updateLoginExpirationDate, user } = useUser()
+
+  // Reset the login expiration date if the user is logged in
+  // and the login expiration date is in the past
+  useEffect(() => {
+    if (user?.loginExpirationDate) {
+      return
+    }
+
+    if (dayjs(user.loginExpirationDate).isBefore(dayjs())) {
+      updateLoginExpirationDate(undefined)
+    }
+  }, [user?.loginExpirationDate, updateLoginExpirationDate])
 
   const {
     mutateAsync: validateVerificationCode,
     isPending: isPendingValidate,
     isSuccess: isSuccessValidate,
   } = useValidateVerificationCode({
-    ownerEmail,
+    administratorEmail,
   })
 
   const {
     mutateAsync: sendVerificationCode,
     isPending: isPendingResend,
-    isSuccess: isSuccessResend,
+    isError: isErrorResend,
   } = useMutation({
     mutationFn: () =>
       axios
         .post(`${SERVER_URL}/organizations/send-verification-code`, {
-          ownerEmail,
+          administratorEmail,
         })
         .then((response) => response.data),
   })
@@ -103,7 +116,7 @@ export default function VerificationForm({
 
       <div>
         <VerificationContent
-          ownerEmail={ownerEmail}
+          email={administratorEmail}
           inputError={inputError}
           isSuccessValidate={isSuccessValidate}
           isPendingValidate={isPendingValidate}
@@ -113,8 +126,7 @@ export default function VerificationForm({
         {!isSuccessValidate && (
           <NotReceived
             isRetryButtonDisabled={isRetryButtonDisabled}
-            isPendingValidate={isPendingValidate}
-            isSuccessResend={isSuccessResend}
+            isErrorResend={isErrorResend}
             sendVerificationCode={sendVerificationCode}
             timeLeft={timeLeft}
             setTimeLeft={setTimeLeft}

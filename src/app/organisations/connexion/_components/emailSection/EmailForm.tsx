@@ -19,26 +19,19 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
   const { user, updateEmail, updateLoginExpirationDate } = useUser()
 
   const { mutateAsync: loginOrganization } = useMutation({
-    mutationFn: ({ ownerEmail }: { ownerEmail: string }) =>
+    mutationFn: ({ administratorEmail }: { administratorEmail: string }) =>
       axios
         .post(`${SERVER_URL}/organizations/login`, {
-          ownerEmail,
+          administratorEmail,
         })
         .then((response) => response.data),
   })
 
   const { mutateAsync: createOrganization } = useMutation({
-    mutationFn: ({
-      ownerEmail,
-      userId,
-    }: {
-      ownerEmail: string
-      userId: string
-    }) =>
+    mutationFn: ({ administratorEmail }: { administratorEmail: string }) =>
       axios
         .post(`${SERVER_URL}/organizations/create`, {
-          ownerEmail,
-          userId,
+          administratorEmail,
         })
         .then((response) => response.data),
   })
@@ -67,7 +60,9 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
 
     // Try and login
     try {
-      const { expirationDate } = await loginOrganization({ ownerEmail: email })
+      const { expirationDate } = await loginOrganization({
+        administratorEmail: email,
+      })
 
       // We update the email in the user state
       // along with the expiration date of the code
@@ -78,12 +73,13 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
       // If not possible, create the organization
       try {
         const { expirationDate } = await createOrganization({
-          ownerEmail: email,
-          userId: user?.id,
+          administratorEmail: email,
         })
 
         updateEmail(email)
+
         updateLoginExpirationDate(expirationDate)
+
         onComplete()
       } catch (error: any) {
         setInputError(error.response.data.message)

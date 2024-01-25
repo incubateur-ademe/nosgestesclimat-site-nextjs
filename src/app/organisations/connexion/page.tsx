@@ -24,7 +24,7 @@ export default function Page() {
     isError,
     data: organization,
   } = useFetchOrganization({
-    ownerEmail: user?.email,
+    administratorEmail: user?.email,
   })
 
   // Redirect to the organization page if the user
