@@ -37,7 +37,7 @@ export default function ShareSection({
                 votre site ou application mobile{' '}
               </Trans>
             }>
-            <ButtonLink href="/diffuser">
+            <ButtonLink href="/diffuser" className="self-start">
               <Trans>Découvrez le guide</Trans>
             </ButtonLink>
           </CTACard>

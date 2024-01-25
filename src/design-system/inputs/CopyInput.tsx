@@ -21,14 +21,12 @@ export default function CopyInput({ textToCopy, className = '' }: Props) {
         readOnly
       />
       <Button
-        color="secondary"
         className="!min-w-[9rem] flex-shrink-0 justify-center rounded-s-none px-4 py-2 text-sm"
         onClick={() => {
           navigator.clipboard.writeText(textToCopy)
           setIsCopied(true)
           setTimeout(() => setIsCopied(false), 3000)
-        }}
-      >
+        }}>
         {isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>}
       </Button>
     </div>
