@@ -8,7 +8,7 @@ type MutationFnType = {
   prenom: string
   email: string
   userId?: string
-  results: SimulationResults
+  computedResults: SimulationResults
   simulation?: Simulation
 }
 
@@ -19,7 +19,7 @@ export const useAddUserToGroup = () => {
       prenom,
       email,
       userId,
-      results,
+      computedResults,
       simulation,
     }: MutationFnType) =>
       fetchAddUserToGroup({
@@ -28,7 +28,7 @@ export const useAddUserToGroup = () => {
         email,
         userId: userId ?? '',
         simulation,
-        results,
+        computedResults,
       }),
   })
 }

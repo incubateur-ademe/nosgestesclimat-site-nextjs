@@ -96,7 +96,7 @@ export default function InvitationForm({ group }: { group: Group }) {
 
     try {
       await addUserToGroup({
-        results,
+        computedResults: results,
         prenom,
         email,
         group,

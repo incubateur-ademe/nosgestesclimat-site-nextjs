@@ -29,7 +29,10 @@ export const useGetGroupStats = ({
     userId,
     isSynced,
   }) as any
-
+  console.log(
+    'groupFootprintByCategoriesAndSubcategories',
+    groupFootprintByCategoriesAndSubcategories
+  )
   if (!groupMembers || !userId || !isSynced) return null
 
   const results = {

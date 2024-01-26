@@ -26,12 +26,14 @@ export default function GroupItem({ group }: Props) {
             </div>
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
-                {group?.members?.length ?? 0} <Trans>participant</Trans>
-                {group?.members?.length > 1 ? 's' : ''}
+                {group?.participants?.length ?? 0} <Trans>participant</Trans>
+                {group?.participants?.length > 1 ? 's' : ''}
               </span>{' '}
               <span> - </span>{' '}
               <div className="inline w-24 overflow-hidden text-ellipsis whitespace-nowrap md:w-60">
-                {group?.members?.map((member) => member?.name).join(', ') ?? ''}
+                {group?.participants
+                  ?.map((participant) => participant?.name)
+                  .join(', ') ?? ''}
               </div>
             </div>
           </div>

@@ -8,7 +8,7 @@ type Props = {
   email?: string
   userId: string
   simulation?: Simulation
-  results?: SimulationResults
+  computedResults: SimulationResults
 }
 
 export const fetchAddUserToGroup = async ({
@@ -17,18 +17,18 @@ export const fetchAddUserToGroup = async ({
   email,
   userId,
   simulation,
-  results,
+  computedResults,
 }: Props) => {
-  const response = await fetch(`${GROUP_URL}/add-member`, {
+  const response = await fetch(`${GROUP_URL}/add-participant`, {
     method: 'POST',
     body: JSON.stringify({
       _id: group._id,
-      member: {
-        name,
-        email: email || '',
-        userId,
-        simulation,
-        results,
+      name,
+      email: email || '',
+      userId,
+      simulation: {
+        ...simulation,
+        computedResults,
       },
     }),
     headers: {

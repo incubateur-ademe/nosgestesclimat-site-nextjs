@@ -6,7 +6,7 @@ import {
   useTempEngine,
 } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
-import { Member } from '@/types/groups'
+import { Participant } from '@/types/groups'
 
 export function getSubcategories({
   rules,
@@ -27,7 +27,7 @@ export const useGetGroupAndUserFootprints = ({
   userId,
   isSynced,
 }: {
-  groupMembers: Member[] | undefined
+  groupMembers: Participant[] | undefined
   userId: string | null
   isSynced: boolean
 }) => {
@@ -49,7 +49,7 @@ export const useGetGroupAndUserFootprints = ({
         groupFootprintByCategoriesAndSubcategories,
         userFootprintByCategoriesAndSubcategories,
       },
-      groupMember: Member
+      groupMember: Participant
     ) => {
       const isCurrentMember = groupMember.userId === userId
 
@@ -61,6 +61,7 @@ export const useGetGroupAndUserFootprints = ({
       const updatedGroupFootprintByCategoriesAndSubcategories = {
         ...groupFootprintByCategoriesAndSubcategories,
       } as any
+
       const updatedUserFootprintByCategoriesAndSubcategories = {
         ...userFootprintByCategoriesAndSubcategories,
       } as any
