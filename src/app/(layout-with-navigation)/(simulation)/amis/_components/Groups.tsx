@@ -1,7 +1,7 @@
 'use client'
 
 import { useUser } from '@/publicodes-state'
-import { useFetchGroups } from '../_hooks/usFetchGroups'
+import { useFetchGroups } from '../_hooks/useFetchGroups'
 import CreateFirstGroupSection from './CreateFirstGroupSection'
 import CreateOtherGroupsSection from './CreateOtherGroupsSection'
 import ServerErrorSection from './ServerErrorSection'
@@ -11,7 +11,11 @@ export default function Groups() {
 
   const currentSimulation = getCurrentSimulation()
 
-  const { data: groups, isFetched } = useFetchGroups(user?.id)
+  const { data: groups, isFetched } = useFetchGroups({
+    userId: user?.id,
+    email: user?.email,
+  })
+
   return (
     <>
       {isFetched && !groups && <ServerErrorSection />}
