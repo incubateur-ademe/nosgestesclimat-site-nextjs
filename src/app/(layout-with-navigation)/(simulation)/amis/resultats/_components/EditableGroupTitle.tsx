@@ -26,7 +26,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
 
   const { mutate: updateGroupName } = useUpdateGroupName()
 
-  const isOwner = group?.owner?.userId === user?.id
+  const isOwner = group?.administrator?.userId === user?.id
 
   const handleSubmit = async (groupNameUpdated: string) => {
     setIsSubmitting(true)
@@ -85,7 +85,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
               </span>
             }
             subtitle={t('Créé par {{name}}', {
-              name: isOwner ? t('vous') : group?.owner?.name,
+              name: isOwner ? t('vous') : group?.administrator?.name,
             })}
           />
         )}

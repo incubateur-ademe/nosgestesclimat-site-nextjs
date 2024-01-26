@@ -6,9 +6,13 @@ export function useFetchGroup(groupId: string) {
   return useQuery({
     queryKey: ['group', groupId],
     queryFn: () =>
-      axios.get(`${GROUP_URL}/${groupId}`).then((response) => {
-        return response.data
-      }),
+      axios
+        .post(`${GROUP_URL}/fetch-group`, {
+          groupId,
+        })
+        .then((response) => {
+          return response.data
+        }),
     enabled: !!groupId,
   })
 }

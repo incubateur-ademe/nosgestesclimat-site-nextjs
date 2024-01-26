@@ -33,7 +33,7 @@ export const useUpdateUserResults = ({
     )
 
     if (group && currentMember && currentSimulation) {
-      if (resultsOfUser?.total !== currentMember?.results?.total) {
+      if (resultsOfUser?.bilan !== currentMember?.results?.bilan) {
         updateGroupMember({
           group,
           userId: user?.id ?? '',

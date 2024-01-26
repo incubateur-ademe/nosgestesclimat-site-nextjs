@@ -1,4 +1,4 @@
-import { Member, Points, Results, ValueObject } from '@/types/groups'
+import { Participant, Points, Results, ValueObject } from '@/types/groups'
 import { getUserCategoryFootprintsSortedByDifference } from './_helpers/getUserCategoryFootprintsSortedByDifference'
 import { useGetGroupAndUserFootprints } from './useGetGroupAndUserFootprints'
 
@@ -17,7 +17,7 @@ export const useGetGroupStats = ({
   userId,
   isSynced,
 }: {
-  groupMembers: Member[] | undefined
+  groupMembers: Participant[] | undefined
   userId: string | null
   isSynced: boolean
 }) => {
