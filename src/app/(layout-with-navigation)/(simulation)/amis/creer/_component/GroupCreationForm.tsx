@@ -87,7 +87,7 @@ export default function GroupCreationForm() {
           userId,
           simulation: currentSimulation,
         },
-        results,
+        computedResults: results,
       })
 
       updateName(prenom)

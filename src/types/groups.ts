@@ -24,10 +24,6 @@ export type Group = {
 
 export type SimulationResults = {
   total: string
-  transport: {
-    value: string
-    variation: string
-  }
   transports: {
     value: string
     variation: string

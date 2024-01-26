@@ -13,24 +13,26 @@ type MutateAsyncProps = {
     userId: string
     simulation?: Simulation
   }
-  results: SimulationResults
+  computedResults: SimulationResults
 }
 
 export default function useCreateGroup() {
   return useMutation({
     mutationFn: ({
       groupInfo: { name, emoji, email, prenom, userId, simulation },
-      results,
+      computedResults,
     }: MutateAsyncProps) =>
       axios
         .post(GROUP_URL + '/create', {
           name: name,
           emoji: emoji,
-          ownerEmail: email,
-          ownerName: prenom,
+          administratorEmail: email,
+          administratorName: prenom,
           userId,
-          simulation,
-          results,
+          simulation: {
+            ...simulation,
+            computedResults,
+          },
         })
         .then((res) => res.data),
   })
