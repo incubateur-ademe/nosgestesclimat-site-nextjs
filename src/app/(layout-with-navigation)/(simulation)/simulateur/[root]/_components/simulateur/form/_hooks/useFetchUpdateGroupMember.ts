@@ -8,19 +8,27 @@ type Props = {
   group: Group
   userId: string
   simulation?: Simulation
-  results: SimulationResults
+  computedResults: SimulationResults
+  email?: string
 }
 
 export const useFetchUpdateGroupMember = () => {
   return useMutation({
-    mutationFn: ({ group, userId, simulation, results }: Props) =>
+    mutationFn: ({
+      group,
+      userId,
+      simulation,
+      computedResults,
+      email,
+    }: Props) =>
       axios
-        .post(`${GROUP_URL}/update-member`, {
+        .post(`${GROUP_URL}/update-participant`, {
           _id: group._id,
-          memberUpdates: {
-            userId,
-            simulation,
-            results,
+          userId,
+          email,
+          simulation: {
+            ...simulation,
+            computedResults,
           },
         })
         .then((response) => response.data),

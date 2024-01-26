@@ -27,8 +27,9 @@ export function useUpdateGroupAndRedirectToGroup() {
     await updateGroupMember({
       group,
       userId: user?.id ?? '',
+      email: user?.email,
       simulation: getCurrentSimulation(),
-      results,
+      computedResults: results,
     })
 
     router.push(`/amis/resultats?groupId=${groupId}`)

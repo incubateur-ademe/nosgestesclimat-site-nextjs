@@ -1,6 +1,6 @@
 import { useEngine, useUser } from '@/publicodes-state'
 import { useEffect } from 'react'
-import { fetchUpdateGroupMember } from '../../_helpers/fetchUpdateGroupMember'
+import { useFetchUpdateGroupMember } from '../../../simulateur/[root]/_components/simulateur/form/_hooks/useFetchUpdateGroupMember'
 import { getSimulationResults } from '../../_helpers/getSimulationResults'
 import { useFetchGroup } from '../../_hooks/useFetchGroup'
 
@@ -19,6 +19,8 @@ export const useUpdateUserResults = ({
 
   const currentSimulation = getCurrentSimulation()
 
+  const { mutateAsync: updateGroupMember } = useFetchUpdateGroupMember()
+
   const resultsOfUser = getSimulationResults({
     getValue,
   })
@@ -32,15 +34,25 @@ export const useUpdateUserResults = ({
 
     if (group && currentMember && currentSimulation) {
       if (resultsOfUser?.total !== currentMember?.results?.total) {
-        fetchUpdateGroupMember({
+        updateGroupMember({
           group,
           userId: user?.id ?? '',
+          email: user?.email,
           simulation: currentSimulation,
-          results: resultsOfUser,
+          computedResults: resultsOfUser,
         }).then(() => refetch())
       } else {
         setIsSynced(true)
       }
     }
-  }, [group, user?.id, resultsOfUser, currentSimulation, refetch, setIsSynced])
+  }, [
+    group,
+    user?.id,
+    user?.email,
+    resultsOfUser,
+    currentSimulation,
+    refetch,
+    setIsSynced,
+    updateGroupMember,
+  ])
 }
