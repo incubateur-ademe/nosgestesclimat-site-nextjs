@@ -4,18 +4,42 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useUser } from '@/publicodes-state'
-import { DottedName, Persona as PersonaType } from '@/publicodes-state/types'
-
+import {
+  DottedName,
+  NGCEvaluatedNode,
+  NGCRuleNode,
+  Persona as PersonaType,
+} from '@/publicodes-state/types'
+import { fixSituationWithPartialMosaic } from '../_helpers/fixSituationWithPartialMosaic'
 type Props = {
   persona: PersonaType
-  dottedName: DottedName
+  personaDottedName: DottedName
+  everyMosaic: DottedName[]
+  everyMosaicChildren: DottedName[]
+  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
 }
 
-export default function Persona({ persona, dottedName }: Props) {
+export default function Persona({
+  persona,
+  personaDottedName,
+  everyMosaic,
+  everyMosaicChildren,
+  safeEvaluate,
+  safeGetRule,
+}: Props) {
   const { initSimulation, getCurrentSimulation } = useUser()
 
   const isCurrentPersonaSelected =
-    getCurrentSimulation()?.persona === dottedName
+    getCurrentSimulation()?.persona === personaDottedName
+
+  const personaSituation = fixSituationWithPartialMosaic(
+    persona.situation,
+    everyMosaic,
+    everyMosaicChildren,
+    safeEvaluate,
+    safeGetRule
+  )
 
   return (
     <Card
@@ -39,9 +63,9 @@ export default function Persona({ persona, dottedName }: Props) {
           disabled={isCurrentPersonaSelected}
           onClick={() =>
             initSimulation({
-              situation: persona.situation,
-              persona: dottedName,
-              foldedSteps: Object.keys(persona.situation) || [],
+              situation: personaSituation,
+              persona: personaDottedName,
+              foldedSteps: Object.keys(personaSituation) || [],
             })
           }>
           <Trans>Sélectionner</Trans>

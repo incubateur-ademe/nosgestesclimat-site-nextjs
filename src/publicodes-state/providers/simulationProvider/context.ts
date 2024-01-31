@@ -24,6 +24,7 @@ type SimulationContextType = {
   everyInactiveRules: DottedName[]
   everyQuestions: DottedName[]
   everyNotifications: DottedName[]
+  everyMosaic: DottedName[]
   everyMosaicChildren: DottedName[]
   categories: DottedName[]
   subcategories: Record<DottedName, DottedName[]>
@@ -43,6 +44,7 @@ export default createContext<SimulationContextType>({
   everyInactiveRules: [],
   everyQuestions: [],
   everyNotifications: [],
+  everyMosaic: [],
   everyMosaicChildren: [],
   categories: [],
   subcategories: {},

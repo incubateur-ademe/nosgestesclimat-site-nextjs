@@ -72,6 +72,7 @@ export default function SimulationProvider({
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
+    everyMosaic,
     everyMosaicChildren,
   } = useRules({ engine: pristineEngine })
 
@@ -112,6 +113,7 @@ export default function SimulationProvider({
         everyInactiveRules,
         everyQuestions,
         everyNotifications,
+        everyMosaic,
         everyMosaicChildren,
         categories,
         subcategories,

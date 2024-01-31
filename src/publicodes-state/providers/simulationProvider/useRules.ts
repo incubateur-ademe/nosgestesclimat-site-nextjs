@@ -74,6 +74,7 @@ export default function useRules({ engine }: Props) {
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
+    everyMosaic,
     everyMosaicChildren,
   }
 }
