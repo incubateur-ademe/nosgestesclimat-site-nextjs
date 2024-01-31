@@ -28,7 +28,7 @@ export default function Classement({ group }: { group: Group }) {
     getTopThreeAndRestMembers(group.participants) || {}
 
   const withS = group.participants.length - 5 > 1 ? 's' : ''
-  console.log(topThreeMembers)
+
   return (
     <>
       <div className="mt-4">

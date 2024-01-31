@@ -28,12 +28,15 @@ export const useUpdateUserResults = ({
   // If the user has a simulation we update the group accordingly
   // This is flaky and should incorporate a failsafe to ensure we do not update ad aeternam
   useEffect(() => {
-    const currentMember = group?.members.find(
+    const currentMember = group?.participants?.find(
       (groupMember: { userId: string }) => groupMember.userId === user?.id
     )
 
     if (group && currentMember && currentSimulation) {
-      if (resultsOfUser?.bilan !== currentMember?.results?.bilan) {
+      if (
+        resultsOfUser?.bilan !==
+        String(currentMember?.simulation?.computedResults?.bilan)
+      ) {
         updateGroupMember({
           group,
           userId: user?.id ?? '',

@@ -1,10 +1,6 @@
 import { orderedCategories } from '@/constants/orderedCategories'
 import { getRuleSumNodes } from '@/helpers/publicodes/getRuleSumNodes'
-import {
-  useDisposableEngine,
-  useEngine,
-  useTempEngine,
-} from '@/publicodes-state'
+import { useDisposableEngine, useTempEngine } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { Participant } from '@/types/groups'
 
@@ -33,13 +29,10 @@ export const useGetGroupAndUserFootprints = ({
 }) => {
   const { rules, getRuleObject } = useTempEngine()
 
-  const { getValue } = useEngine()
-
-  const { getValue: getDisposableEngineValue, updateSituation } =
-    useDisposableEngine({
-      rules,
-      situation: {},
-    })
+  const { getValue, updateSituation } = useDisposableEngine({
+    rules,
+    situation: {},
+  })
 
   if (!groupMembers || !userId || !isSynced) return {}
 
@@ -53,9 +46,7 @@ export const useGetGroupAndUserFootprints = ({
     ) => {
       const isCurrentMember = groupMember.userId === userId
 
-      if (!isCurrentMember) {
-        updateSituation(groupMember?.simulation?.situation || {})
-      }
+      updateSituation(groupMember?.simulation?.situation || {})
 
       // Create a copy of the accumulator
       const updatedGroupFootprintByCategoriesAndSubcategories = {
@@ -67,9 +58,7 @@ export const useGetGroupAndUserFootprints = ({
       } as any
 
       orderedCategories.forEach((category: any) => {
-        const categoryValue = isCurrentMember
-          ? getValue(category)
-          : getDisposableEngineValue(category)
+        const categoryValue = getValue(category)
 
         const defaultCategoryObject = {
           name: category,
@@ -101,9 +90,7 @@ export const useGetGroupAndUserFootprints = ({
           }) || []
 
         currentCategorySubcategories.forEach((subCategory: string) => {
-          const subCategoryValue = isCurrentMember
-            ? getValue(subCategory)
-            : getDisposableEngineValue(subCategory)
+          const subCategoryValue = getValue(subCategory)
 
           // Same here if the property doesn't exist in the accumulator, we add it
           // otherwise we add the value to the existing sum
@@ -117,6 +104,7 @@ export const useGetGroupAndUserFootprints = ({
               subCategory
             ].value += subCategoryValue
           }
+
           if (isCurrentMember) {
             // Add each category footprint for the current member
             updatedUserFootprintByCategoriesAndSubcategories[subCategory] = {
