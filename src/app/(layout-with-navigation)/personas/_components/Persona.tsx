@@ -43,6 +43,12 @@ export default function Persona({
     safeEvaluate
   )
 
+  const personaFoldedSteps = [
+    ...Object.keys(personaSituation),
+    ...Object.keys(rawMissingVariables),
+    ...everyMosaic,
+  ]
+
   return (
     <Card
       className={`${
@@ -67,11 +73,7 @@ export default function Persona({
             initSimulation({
               situation: personaSituation,
               persona: personaDottedName,
-              foldedSteps: [
-                ...Object.keys(personaSituation),
-                ...Object.keys(rawMissingVariables),
-                ...everyMosaic,
-              ],
+              foldedSteps: personaFoldedSteps,
             })
           }>
           <Trans>Sélectionner</Trans>
