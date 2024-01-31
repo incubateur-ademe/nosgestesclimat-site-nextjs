@@ -9,8 +9,13 @@ type Props = {
 }
 
 export default function PersonaList({ personas }: Props) {
-  const { everyMosaic, everyMosaicChildren, safeEvaluate, safeGetRule } =
-    useSimulation()
+  const {
+    everyMosaic,
+    everyMosaicChildren,
+    rawMissingVariables,
+    safeEvaluate,
+    safeGetRule,
+  } = useSimulation()
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
       {Object.keys(personas).map((key) => (
@@ -20,8 +25,9 @@ export default function PersonaList({ personas }: Props) {
           persona={personas[key]}
           everyMosaic={everyMosaic}
           everyMosaicChildren={everyMosaicChildren}
-          safeEvaluate={safeEvaluate}
           safeGetRule={safeGetRule}
+          safeEvaluate={safeEvaluate}
+          rawMissingVariables={rawMissingVariables}
         />
       ))}
     </div>

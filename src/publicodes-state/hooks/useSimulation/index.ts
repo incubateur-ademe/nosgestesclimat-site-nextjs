@@ -11,6 +11,7 @@ export default function useSimulation() {
     everyQuestions,
     everyMosaic,
     everyMosaicChildren,
+    rawMissingVariables,
     safeEvaluate,
     safeGetRule,
   } = useContext(simulationContext)
@@ -19,6 +20,7 @@ export default function useSimulation() {
     categories: [...categories],
     subcategories,
     everyQuestions,
+    rawMissingVariables,
     everyMosaic,
     everyMosaicChildren,
     safeEvaluate,

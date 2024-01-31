@@ -74,7 +74,8 @@ export default function SimulationProvider({
     everyNotifications,
     everyMosaic,
     everyMosaicChildren,
-  } = useRules({ engine: pristineEngine })
+    rawMissingVariables,
+  } = useRules({ engine: pristineEngine, root: 'bilan' })
 
   const { situation, updateSituation, initialized } = useSituation({
     engine,
@@ -97,8 +98,8 @@ export default function SimulationProvider({
         rules,
         engine,
         pristineEngine,
-        safeGetRule,
         safeEvaluate,
+        safeGetRule,
         situation,
         updateSituation,
         updateProgression,
@@ -115,6 +116,7 @@ export default function SimulationProvider({
         everyNotifications,
         everyMosaic,
         everyMosaicChildren,
+        rawMissingVariables,
         categories,
         subcategories,
       }}>

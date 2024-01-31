@@ -18,6 +18,7 @@ type Props = {
   everyMosaicChildren: DottedName[]
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
+  rawMissingVariables: DottedName[]
 }
 
 export default function Persona({
@@ -25,8 +26,9 @@ export default function Persona({
   personaDottedName,
   everyMosaic,
   everyMosaicChildren,
-  safeEvaluate,
   safeGetRule,
+  safeEvaluate,
+  rawMissingVariables,
 }: Props) {
   const { initSimulation, getCurrentSimulation } = useUser()
 
@@ -37,8 +39,8 @@ export default function Persona({
     persona.situation,
     everyMosaic,
     everyMosaicChildren,
-    safeEvaluate,
-    safeGetRule
+    safeGetRule,
+    safeEvaluate
   )
 
   return (
@@ -65,7 +67,11 @@ export default function Persona({
             initSimulation({
               situation: personaSituation,
               persona: personaDottedName,
-              foldedSteps: Object.keys(personaSituation) || [],
+              foldedSteps: [
+                ...Object.keys(personaSituation),
+                ...Object.keys(rawMissingVariables),
+                ...everyMosaic,
+              ],
             })
           }>
           <Trans>Sélectionner</Trans>
