@@ -56,7 +56,12 @@ export default function NumberInput({
           type="number"
           value={isMissing ? '' : Number(value)}
           placeholder={'0'}
-          onChange={(event) => setValue(Number(event.target.value))}
+          onChange={(event) => {
+            // The value should always be positive
+            setValue(
+              Number(event.target.value) > 0 ? Number(event.target.value) : 0
+            )
+          }}
           data-cypress-id={`${question}---${parentMosaic}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
         />
