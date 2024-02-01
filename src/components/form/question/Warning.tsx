@@ -18,7 +18,7 @@ export default function Warning({ plancher, warning, tempValue }: Props) {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="mb-4 flex flex-col items-end rounded-md bg-white p-4 text-sm font-bold text-red-700">
+      className="mb-4 flex flex-col items-end rounded-md bg-red-200 p-4 pb-0 text-sm">
       {typeof warning === 'string' ? <Markdown>{warning}</Markdown> : warning}
     </motion.div>
   )
