@@ -12,6 +12,7 @@ import {
 } from '@/publicodes-state/types'
 import { fixSituationWithPartialMosaic } from '../_helpers/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '../_helpers/getPersonaFoldedSteps'
+
 type Props = {
   persona: PersonaType
   personaDottedName: DottedName
@@ -31,7 +32,7 @@ export default function Persona({
   safeEvaluate,
   rawMissingVariables,
 }: Props) {
-  const { initSimulation, getCurrentSimulation } = useUser()
+  const { initSimulation, getCurrentSimulation, hideTutorial } = useUser()
 
   const isCurrentPersonaSelected =
     getCurrentSimulation()?.persona === personaDottedName
@@ -75,13 +76,14 @@ export default function Persona({
           size="sm"
           className="align-self-end mt-auto"
           disabled={isCurrentPersonaSelected}
-          onClick={() =>
+          onClick={() => {
             initSimulation({
               situation: personaSituation,
               persona: personaDottedName,
               foldedSteps: personaFoldedSteps,
             })
-          }>
+            hideTutorial('testIntro')
+          }}>
           <Trans>Sélectionner</Trans>
         </Button>
       )}
