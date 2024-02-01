@@ -44,11 +44,13 @@ export const getPersonaFoldedSteps = ({
 
   pristineEngine.setSituation(safeSituation)
 
-  const missingVariables = Object.keys(
-    pristineEngine.evaluate('bilan')?.missingVariables || {}
-  ).filter((missingVariable) => everyQuestions.includes(missingVariable))
-
-  const personaFoldedSteps = missingVariables
+  // The persona folded steps are obtained by getting the missing variable
+  const personaFoldedSteps = [
+    ...Object.keys(
+      pristineEngine.evaluate('bilan')?.missingVariables || {}
+    ).filter((missingVariable) => everyQuestions.includes(missingVariable)),
+    ...Object.keys(safeSituation),
+  ]
 
   everyMosaic.forEach((mosaic) => {
     const expectedMosaicGroup = getQuestionsOfMosaic({
