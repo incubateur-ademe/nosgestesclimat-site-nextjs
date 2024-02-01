@@ -6,6 +6,7 @@ import Card from '@/design-system/layout/Card'
 import { useUser } from '@/publicodes-state'
 import {
   DottedName,
+  Engine,
   NGCEvaluatedNode,
   NGCRuleNode,
   Persona as PersonaType,
@@ -18,9 +19,11 @@ type Props = {
   personaDottedName: DottedName
   everyMosaic: DottedName[]
   everyMosaicChildren: DottedName[]
+  everyQuestions: DottedName[]
+  everyRules: DottedName[]
+  pristineEngine: Engine
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
-  rawMissingVariables: Record<string, number>
 }
 
 export default function Persona({
@@ -28,33 +31,16 @@ export default function Persona({
   personaDottedName,
   everyMosaic,
   everyMosaicChildren,
+  everyQuestions,
+  everyRules,
+  pristineEngine,
   safeGetRule,
   safeEvaluate,
-  rawMissingVariables,
 }: Props) {
   const { initSimulation, getCurrentSimulation, hideTutorial } = useUser()
 
   const isCurrentPersonaSelected =
     getCurrentSimulation()?.persona === personaDottedName
-
-  const personaSituation = fixSituationWithPartialMosaic(
-    persona.situation,
-    everyMosaic,
-    everyMosaicChildren,
-    safeGetRule,
-    safeEvaluate
-  )
-
-  const personaFoldedSteps = getPersonaFoldedSteps(
-    personaSituation,
-    everyMosaic,
-    everyMosaicChildren,
-    rawMissingVariables
-  )
-
-  if (personaDottedName === 'personas . corentin') {
-    console.log(personaSituation, personaFoldedSteps)
-  }
 
   return (
     <Card
@@ -78,9 +64,24 @@ export default function Persona({
           disabled={isCurrentPersonaSelected}
           onClick={() => {
             initSimulation({
-              situation: personaSituation,
+              situation: fixSituationWithPartialMosaic(
+                persona.situation,
+                everyMosaic,
+                everyMosaicChildren,
+                safeGetRule,
+                safeEvaluate
+              ),
               persona: personaDottedName,
-              foldedSteps: personaFoldedSteps,
+              foldedSteps: getPersonaFoldedSteps(
+                persona.situation,
+                everyMosaic,
+                everyMosaicChildren,
+                everyQuestions,
+                everyRules,
+                pristineEngine,
+                safeGetRule,
+                safeEvaluate
+              ),
             })
             hideTutorial('testIntro')
           }}>

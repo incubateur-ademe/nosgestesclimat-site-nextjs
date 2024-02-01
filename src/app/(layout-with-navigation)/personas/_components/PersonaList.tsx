@@ -12,7 +12,9 @@ export default function PersonaList({ personas }: Props) {
   const {
     everyMosaic,
     everyMosaicChildren,
-    rawMissingVariables,
+    everyQuestions,
+    everyRules,
+    pristineEngine,
     safeEvaluate,
     safeGetRule,
   } = useSimulation()
@@ -25,9 +27,11 @@ export default function PersonaList({ personas }: Props) {
           persona={personas[key]}
           everyMosaic={everyMosaic}
           everyMosaicChildren={everyMosaicChildren}
+          everyQuestions={everyQuestions}
+          everyRules={everyRules}
+          pristineEngine={pristineEngine}
           safeGetRule={safeGetRule}
           safeEvaluate={safeEvaluate}
-          rawMissingVariables={rawMissingVariables}
         />
       ))}
     </div>
