@@ -40,4 +40,5 @@ export type Simulation = {
   eventsSent?: Record<string, boolean>
   actionChoices?: Record<string, boolean>
   storedTrajets?: StoredTrajets
+  poll: any
 }
