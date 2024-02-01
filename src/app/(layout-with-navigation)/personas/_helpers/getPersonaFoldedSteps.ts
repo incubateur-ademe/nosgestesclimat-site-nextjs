@@ -44,7 +44,7 @@ export const getPersonaFoldedSteps = ({
 
   pristineEngine.setSituation(safeSituation)
 
-  // The persona folded steps are obtained by getting the missing variable
+  // The persona folded steps are obtained by getting the missing variables and the situation variables.
   const personaFoldedSteps = [
     ...Object.keys(
       pristineEngine.evaluate('bilan')?.missingVariables || {}
@@ -52,12 +52,16 @@ export const getPersonaFoldedSteps = ({
     ...Object.keys(safeSituation),
   ]
 
+  // Then, for each mosaic in the model, we remove all mosaic children and replace it with the rule mosaic itself
+  // as we need the parent rule in the folded steps and not the children.
+  // If we don't find any mosaic children for a given mosaic, we don't do anything.
   everyMosaic.forEach((mosaic) => {
     const expectedMosaicGroup = getQuestionsOfMosaic({
       dottedName: mosaic,
       everyMosaicChildren,
     })
     let isMosaicInSituation = false
+
     expectedMosaicGroup.forEach((dottedName) => {
       const index = personaFoldedSteps.indexOf(dottedName)
       if (index > -1) {
@@ -65,6 +69,7 @@ export const getPersonaFoldedSteps = ({
         isMosaicInSituation = true
       }
     })
+
     if (isMosaicInSituation) {
       personaFoldedSteps.push(mosaic)
     }
