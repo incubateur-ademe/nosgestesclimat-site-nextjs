@@ -67,9 +67,7 @@ export default function Question({
             value={tempValue || numericValue}
             setValue={(value) => {
               setTempValue(value)
-
-              const limit = 0
-              setValue(value < limit ? limit : value, question)
+              setValue(value, question)
             }}
             isMissing={isMissing}
             min={0}

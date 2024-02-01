@@ -1,15 +1,14 @@
+import Trans from '@/components/translation/Trans'
 import Markdown from '@/design-system/utils/Markdown'
 import { motion } from 'framer-motion'
-import { ReactNode } from 'react'
 
 type Props = {
   plancher?: number
-  warning?: string | ReactNode
+  warning?: string
   tempValue?: number
 }
 export default function Warning({ plancher, warning, tempValue }: Props) {
-  console.log('Warning', { plancher, warning, tempValue })
-  if (!warning || plancher === undefined || tempValue === undefined) return null
+  if (plancher === undefined || tempValue === undefined) return null
 
   if (tempValue >= plancher) return null
 
@@ -19,7 +18,13 @@ export default function Warning({ plancher, warning, tempValue }: Props) {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
       className="mb-4 flex flex-col items-end rounded-md bg-red-200 p-4 pb-0 text-sm">
-      {typeof warning === 'string' ? <Markdown>{warning}</Markdown> : warning}
+      {warning ? (
+        <Markdown>{warning}</Markdown>
+      ) : (
+        <p>
+          <Trans>La valeur minimum pour ce champ est de</Trans> {plancher}
+        </p>
+      )}
     </motion.div>
   )
 }
