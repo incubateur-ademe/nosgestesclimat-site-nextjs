@@ -11,6 +11,7 @@ import {
   Persona as PersonaType,
 } from '@/publicodes-state/types'
 import { fixSituationWithPartialMosaic } from '../_helpers/fixSituationWithPartialMosaic'
+import { getPersonaFoldedSteps } from '../_helpers/getPersonaFoldedSteps'
 type Props = {
   persona: PersonaType
   personaDottedName: DottedName
@@ -43,11 +44,16 @@ export default function Persona({
     safeEvaluate
   )
 
-  const personaFoldedSteps = [
-    ...Object.keys(personaSituation),
-    ...Object.keys(rawMissingVariables),
-    ...everyMosaic,
-  ]
+  const personaFoldedSteps = getPersonaFoldedSteps(
+    personaSituation,
+    everyMosaic,
+    everyMosaicChildren,
+    rawMissingVariables
+  )
+
+  if (personaDottedName === 'personas . corentin') {
+    console.log(personaSituation, personaFoldedSteps)
+  }
 
   return (
     <Card
