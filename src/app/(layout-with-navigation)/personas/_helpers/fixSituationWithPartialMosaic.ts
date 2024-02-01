@@ -7,6 +7,14 @@ import {
 } from '@/publicodes-state/types'
 import { Situation } from '@/types/simulation'
 
+type Props = {
+  situation: Situation
+  everyMosaic: DottedName[]
+  everyMosaicChildren: DottedName[]
+  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
+}
+
 const getMosaicChildrenGroup = (
   situation: Situation,
   expectedMosaicGroup: DottedName[]
@@ -15,13 +23,14 @@ const getMosaicChildrenGroup = (
     expectedMosaicGroup.includes(key)
   )
 }
-export const fixSituationWithPartialMosaic = (
-  situation: Situation,
-  everyMosaic: DottedName[],
-  everyMosaicChildren: DottedName[],
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null,
-  safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
-) => {
+
+export const fixSituationWithPartialMosaic = ({
+  situation,
+  everyMosaic,
+  everyMosaicChildren,
+  safeGetRule,
+  safeEvaluate,
+}: Props) => {
   // We take every mosaic questions and check if all or part of their children are in the situation.
   // If not answers are set in situation, we consider all mosaic answers to be 'non' or 0.
   everyMosaic.forEach((mosaic) => {
@@ -42,9 +51,9 @@ export const fixSituationWithPartialMosaic = (
       if (!situationMosaicGroup.includes(dottedName)) {
         const rule = safeGetRule(dottedName)
         const evaluation = safeEvaluate(dottedName)
-        const resetValue =
+        const valueToReset =
           getType({ dottedName, rule, evaluation }) === 'boolean' ? 'non' : 0
-        situation[dottedName] = resetValue
+        situation[dottedName] = valueToReset
       }
     })
   })

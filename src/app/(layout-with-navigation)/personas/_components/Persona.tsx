@@ -3,41 +3,28 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
-import { useUser } from '@/publicodes-state'
-import {
-  DottedName,
-  Engine,
-  NGCEvaluatedNode,
-  NGCRuleNode,
-  Persona as PersonaType,
-} from '@/publicodes-state/types'
+import { useSimulation, useUser } from '@/publicodes-state'
+import { DottedName, Persona as PersonaType } from '@/publicodes-state/types'
 import { fixSituationWithPartialMosaic } from '../_helpers/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '../_helpers/getPersonaFoldedSteps'
 
 type Props = {
   persona: PersonaType
   personaDottedName: DottedName
-  everyMosaic: DottedName[]
-  everyMosaicChildren: DottedName[]
-  everyQuestions: DottedName[]
-  everyRules: DottedName[]
-  pristineEngine: Engine
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null
-  safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
 }
 
-export default function Persona({
-  persona,
-  personaDottedName,
-  everyMosaic,
-  everyMosaicChildren,
-  everyQuestions,
-  everyRules,
-  pristineEngine,
-  safeGetRule,
-  safeEvaluate,
-}: Props) {
+export default function Persona({ persona, personaDottedName }: Props) {
   const { initSimulation, getCurrentSimulation, hideTutorial } = useUser()
+
+  const {
+    everyMosaic,
+    everyMosaicChildren,
+    everyQuestions,
+    everyRules,
+    pristineEngine,
+    safeEvaluate,
+    safeGetRule,
+  } = useSimulation()
 
   const isCurrentPersonaSelected =
     getCurrentSimulation()?.persona === personaDottedName
@@ -64,24 +51,24 @@ export default function Persona({
           disabled={isCurrentPersonaSelected}
           onClick={() => {
             initSimulation({
-              situation: fixSituationWithPartialMosaic(
-                persona.situation,
+              situation: fixSituationWithPartialMosaic({
+                situation: persona.situation,
                 everyMosaic,
                 everyMosaicChildren,
                 safeGetRule,
-                safeEvaluate
-              ),
+                safeEvaluate,
+              }),
               persona: personaDottedName,
-              foldedSteps: getPersonaFoldedSteps(
-                persona.situation,
+              foldedSteps: getPersonaFoldedSteps({
+                situation: persona.situation,
                 everyMosaic,
                 everyMosaicChildren,
                 everyQuestions,
                 everyRules,
                 pristineEngine,
                 safeGetRule,
-                safeEvaluate
-              ),
+                safeEvaluate,
+              }),
             })
             hideTutorial('testIntro')
           }}>

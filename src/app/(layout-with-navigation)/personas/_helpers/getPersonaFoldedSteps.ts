@@ -9,24 +9,34 @@ import {
 import { Situation } from '@/types/simulation'
 import { fixSituationWithPartialMosaic } from './fixSituationWithPartialMosaic'
 
-export const getPersonaFoldedSteps = (
-  situation: Situation,
-  everyMosaic: DottedName[],
-  everyMosaicChildren: DottedName[],
-  everyQuestions: DottedName[],
-  everyRules: DottedName[],
-  pristineEngine: Engine,
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null,
+type Props = {
+  situation: Situation
+  everyMosaic: DottedName[]
+  everyMosaicChildren: DottedName[]
+  everyQuestions: DottedName[]
+  everyRules: DottedName[]
+  pristineEngine: Engine
+  safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
-) => {
-  const personaSituation = fixSituationWithPartialMosaic(
+}
+
+export const getPersonaFoldedSteps = ({
+  situation,
+  everyMosaic,
+  everyMosaicChildren,
+  everyQuestions,
+  everyRules,
+  pristineEngine,
+  safeGetRule,
+  safeEvaluate,
+}: Props) => {
+  const personaSituation = fixSituationWithPartialMosaic({
     situation,
     everyMosaic,
     everyMosaicChildren,
     safeGetRule,
-    safeEvaluate
-  )
-
+    safeEvaluate,
+  })
   const safeSituation = safeGetSituation({
     situation: personaSituation,
     everyRules,
