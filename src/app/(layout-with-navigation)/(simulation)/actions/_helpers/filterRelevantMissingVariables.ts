@@ -10,10 +10,10 @@ const filteredDottedNames: DottedName[] = [
 ]
 
 export const filterRelevantMissingVariables = (
-  missingVariables: DottedName[],
+  missingVariablesKeys: DottedName[],
   extendedFoldedSteps: DottedName[]
 ) => {
-  return missingVariables.filter((dottedName: DottedName) => {
+  return missingVariablesKeys.filter((dottedName: DottedName) => {
     const isFolded = extendedFoldedSteps.indexOf(dottedName) >= 0
     const isManuallyExcluded = !filteredDottedNames?.includes(dottedName)
     return isManuallyExcluded && !isFolded

@@ -18,7 +18,7 @@ type Props = {
   everyMosaicChildren: DottedName[]
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
-  rawMissingVariables: DottedName[]
+  rawMissingVariables: Record<string, number>
 }
 
 export default function Persona({
