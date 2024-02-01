@@ -8,12 +8,20 @@ import NumberInput from '@/components/form/question/NumberInput'
 import Suggestions from '@/components/form/question/Suggestions'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import { useRule } from '@/publicodes-state'
+import { useEffect } from 'react'
+import Warning from './question/Warning'
 
 type Props = {
   question: string
+  tempValue?: number
+  setTempValue?: (value: number) => void
 }
 
-export default function Question({ question }: Props) {
+export default function Question({
+  question,
+  tempValue,
+  setTempValue = () => null,
+}: Props) {
   const {
     type,
     label,
@@ -26,7 +34,14 @@ export default function Question({ question }: Props) {
     choices,
     assistance,
     activeNotifications,
+    plancher,
+    warning,
   } = useRule(question)
+
+  useEffect(() => {
+    if (type !== 'number') return
+    setTempValue(numericValue)
+  }, [type, numericValue, setTempValue])
 
   return (
     <>
@@ -37,12 +52,22 @@ export default function Question({ question }: Props) {
           description={description}
           htmlFor={DEFAULT_FOCUS_ELEMENT_ID}
         />
-        <Suggestions question={question} />
+        <Suggestions
+          question={question}
+          setValue={(value) => {
+            if (type === 'number') {
+              setTempValue(value)
+            }
+            setValue(value, question)
+          }}
+        />
         {type === 'number' && (
           <NumberInput
             unit={unit}
-            value={numericValue}
+            value={tempValue || numericValue}
             setValue={(value) => {
+              setTempValue(value)
+
               const limit = 0
               setValue(value < limit ? limit : value, question)
             }}
@@ -76,6 +101,7 @@ export default function Question({ question }: Props) {
         )}
         {type === 'mosaic' && <Mosaic question={question} />}
       </div>
+      <Warning plancher={plancher} warning={warning} tempValue={tempValue} />
       {assistance ? (
         <Assistance question={question} assistance={assistance} />
       ) : null}

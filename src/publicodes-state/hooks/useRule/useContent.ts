@@ -40,6 +40,16 @@ export default function useContent({ dottedName, rule }: Props) {
     () => rule?.rawNode['aide'],
     [rule]
   )
+
+  const plancher = useMemo<number | undefined>(
+    () => rule?.rawNode['plancher'],
+    [rule]
+  )
+  const warning = useMemo<string | undefined>(
+    () => rule?.rawNode['avertissement'],
+    [rule]
+  )
+
   const isInactive = useMemo<boolean>(
     () => rule?.rawNode['inactif'] === 'oui',
     [rule]
@@ -73,5 +83,7 @@ export default function useContent({ dottedName, rule }: Props) {
     isInactive,
     suggestions,
     excerpt,
+    plancher,
+    warning,
   }
 }

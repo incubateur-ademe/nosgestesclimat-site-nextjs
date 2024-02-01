@@ -125,6 +125,8 @@ type NGCRule = Rule & {
   aide?: string
   inactif?: string
   résumé?: string
+  plancher?: number
+  avertissement?: string
 }
 
 export type NGCRules = Record<DottedName, NGCRule>
