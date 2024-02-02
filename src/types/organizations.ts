@@ -40,7 +40,7 @@ export type Organization = {
   }
 }
 
-type SimulationRecap = {
+export type SimulationRecap = {
   bilan: number
   categories: {
     [key: string]: number
