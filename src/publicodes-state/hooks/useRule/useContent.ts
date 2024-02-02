@@ -41,10 +41,7 @@ export default function useContent({ dottedName, rule }: Props) {
     [rule]
   )
 
-  const plancher = useMemo<number | undefined>(
-    () => rule?.rawNode['plancher'],
-    [rule]
-  )
+  const plancher = useMemo<number>(() => rule?.rawNode['plancher'] ?? 0, [rule])
   const warning = useMemo<string | undefined>(
     () => rule?.rawNode['avertissement'],
     [rule]
