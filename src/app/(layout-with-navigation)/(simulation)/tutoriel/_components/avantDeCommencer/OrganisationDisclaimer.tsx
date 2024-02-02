@@ -1,17 +1,16 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { useUser } from '@/publicodes-state'
+import usePollId from '@/hooks/usePollId'
 
 export default function OrganisationDisclaimer() {
-  const { getCurrentSimulation } = useUser()
+  const { pollId } = usePollId()
 
-  const currentSimulation = getCurrentSimulation()
+  const { data: poll, isLoading } = usePoll(pollId)
+  if (!poll) {
+    return null
+  }
 
-  // if (!currentSimulation.organisation) {
-  //   return null
-  // }
-  console.log(currentSimulation)
   return (
     <div className="relative pl-8">
       <p className="overflow-visible before:absolute before:left-0 before:content-['🏢'] ">
