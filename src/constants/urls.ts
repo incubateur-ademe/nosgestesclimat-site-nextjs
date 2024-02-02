@@ -12,5 +12,5 @@ export const GROUP_URL = SERVER_URL + '/group'
 
 export const SAVE_SIMULATION_URL = SERVER_URL + '/email-simulation'
 
-export const getPreviewUrl = (branch: string | number) =>
-  `https://nosgestesclimat-modele-git-${branch}-nos-gestes-climat.vercel.app`
+export const getPreviewUrl = (PRNumber: string | number) =>
+  `https://deploy-preview-${PRNumber}--ecolab-data.netlify.app`
