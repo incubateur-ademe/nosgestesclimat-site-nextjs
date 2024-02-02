@@ -1,15 +1,15 @@
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/Trans'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
-import { OrganizationSimulation } from '@/types/organizations'
+import { PollData } from '@/types/organizations'
 import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
 
-export default function StatisticsBlocks({
-  simulations,
-}: {
-  simulations: OrganizationSimulation[]
-}) {
-  const result = simulations.reduce(
+export default function StatisticsBlocks({ pollData }: { pollData: PollData }) {
+  if (!pollData) {
+    return null
+  }
+
+  const result = pollData.simulationsRecap.reduce(
     (acc, simulation) => {
       return {
         bilan: acc.bilan + simulation.bilan,
@@ -34,7 +34,7 @@ export default function StatisticsBlocks({
     <div className="grid w-full grid-cols-3 gap-4">
       <div className="rounded-lg bg-grey-100 p-8">
         <p className="text-4xl font-bold text-primary-500">
-          {simulations?.length}
+          {pollData.simulationsRecap.length}
         </p>
         <p>
           <Trans>Simulations terminées</Trans>
@@ -55,16 +55,18 @@ export default function StatisticsBlocks({
 
       <div className="rounded-lg bg-grey-100">
         <VerticalBarChart
-          className={simulations?.length <= 0 ? 'opacity-0' : ''}>
-          {Object.entries(result).map(([key, value], index) => (
-            <CategoryChartItem
-              index={index}
-              key={key}
-              category={key}
-              maxValue={result.bilan}
-              value={value}
-            />
-          ))}
+          className={pollData.simulationsRecap.length <= 0 ? 'opacity-0' : ''}>
+          {Object.entries(result)
+            .filter(([key]) => key === 'bilan')
+            .map(([key, value], index) => (
+              <CategoryChartItem
+                index={index}
+                key={key}
+                category={key}
+                maxValue={result.bilan}
+                value={value}
+              />
+            ))}
         </VerticalBarChart>
       </div>
     </div>

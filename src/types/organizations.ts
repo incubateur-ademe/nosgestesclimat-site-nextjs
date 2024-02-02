@@ -39,3 +39,21 @@ export type Organization = {
     expirationDate: Date
   }
 }
+
+type SimulationRecap = {
+  bilan: number
+  categories: {
+    [key: string]: number
+  }
+  defaultAdditionalQuestions: Record<string, number | string>
+  progression: number
+}
+
+export type PollData = {
+  funFacts: {
+    percentageOfBicycleUsers: number
+    percentageOfVegetarians: number
+    percentageOfCarOwners: number
+  }
+  simulationsRecap: SimulationRecap[]
+}
