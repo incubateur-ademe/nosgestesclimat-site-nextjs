@@ -7,7 +7,7 @@ export type Props = {
   options: DottedName[] | undefined
   everyMosaicChildren: DottedName[]
 }
-export default function ({
+export default function useQuestionsOfMosaic({
   options,
   everyMosaicChildren,
 }: Props): DottedName[] {

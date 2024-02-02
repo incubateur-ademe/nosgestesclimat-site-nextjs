@@ -14,7 +14,6 @@ export default function Actions() {
     radical: true,
     getRuleObject,
     actionChoices: [] as any[],
-    metric: '',
   })
 
   if (!actions) return null
