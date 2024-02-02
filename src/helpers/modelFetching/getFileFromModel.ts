@@ -5,7 +5,9 @@ type Props = {
   fileName: string
   PRNumber?: string
 }
-
+/**
+ * Assess if we are in local dev mode, preview mode or production mode and fetch the file accordingly
+ */
 export default async function getFileFromModel({ fileName, PRNumber }: Props) {
   // If we are in local dev mode, we want to use the local data
   if (process.env.NEXT_PUBLIC_LOCAL_DATA === 'nosgestesclimat') {
