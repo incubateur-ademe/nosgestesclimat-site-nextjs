@@ -7,7 +7,7 @@ type Props = {
 /**
  * This function is used to get the supported regions. It can be called directly from a server component.
  */
-export default async function getSupportedRegions({
+export async function getSupportedRegions({
   PRNumber,
 }: Props = {}): Promise<SuppportedRegions> {
   const fileName = `supportedRegions.json`

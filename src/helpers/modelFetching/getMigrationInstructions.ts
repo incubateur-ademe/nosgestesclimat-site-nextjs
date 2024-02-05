@@ -1,4 +1,4 @@
-import { migrationType } from '@/publicodes-state/types'
+import { MigrationType } from '@/publicodes-state/types'
 import fetchFileFromModel from './getFileFromModel'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
  */
 export default async function getMigrationInstructions({
   PRNumber,
-}: Props = {}): Promise<migrationType> {
+}: Props = {}): Promise<MigrationType> {
   const fileName = `migration.json`
 
   return fetchFileFromModel({ fileName, PRNumber })

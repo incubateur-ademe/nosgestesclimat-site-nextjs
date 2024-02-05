@@ -1,10 +1,10 @@
 import {
   DottedName,
   LocalStorage,
+  MigrationType,
   NodeValue,
   Simulation,
   Situation,
-  migrationType,
 } from '@/publicodes-state/types'
 
 function handleMigrationKey({
@@ -18,7 +18,7 @@ function handleMigrationKey({
   nodeValue: NodeValue
   situation: Situation
   foldedSteps: DottedName[]
-  migrationInstructions: migrationType
+  migrationInstructions: MigrationType
 }) {
   if (!migrationInstructions.keysToMigrate[ruleName]) {
     return
@@ -57,7 +57,7 @@ function handleMigrationValue({
   nodeValue: NodeValue
   situation: Situation
   foldedSteps: DottedName[]
-  migrationInstructions: migrationType
+  migrationInstructions: MigrationType
 }) {
   if (!migrationInstructions.valuesToMigrate[ruleName]) {
     return
@@ -82,7 +82,7 @@ function handleMigrationValue({
 
 type Props = {
   localStorage: LocalStorage
-  migrationInstructions: migrationType
+  migrationInstructions: MigrationType
 }
 export default function filterLocalStorage({
   localStorage: currentLocalStorage,

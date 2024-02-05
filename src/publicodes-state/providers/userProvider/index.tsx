@@ -2,12 +2,12 @@
 
 import { PropsWithChildren } from 'react'
 
+import { MigrationType } from '@/publicodes-state/types'
 import UserContext from './context'
 import usePersistentSimulations from './usePersistentSimulations'
 import usePersistentTutorials from './usePersistentTutorials'
 import usePersistentUser from './usePersistentUser'
 import useUpdateOldLocalStorage from './useUpdateOldLocalStorage'
-import { migrationType } from '@/publicodes-state/types'
 
 type Props = {
   /**
@@ -21,7 +21,7 @@ type Props = {
   /**
    * The migration instructions for old localstorage
    */
-  migrationInstructions: migrationType
+  migrationInstructions: MigrationType
 }
 export default function UserProvider({
   children,

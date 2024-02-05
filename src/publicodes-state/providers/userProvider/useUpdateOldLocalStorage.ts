@@ -1,17 +1,17 @@
-import { LocalStorage, migrationType } from '@/publicodes-state/types'
+import { LocalStorage, MigrationType } from '@/publicodes-state/types'
 import { captureException } from '@sentry/react'
 import { useEffect } from 'react'
 import filterLocalStorage from './filterLocalStorage'
 
 type Props = {
   storageKey: string
-  migrationInstructions: migrationType
+  migrationInstructions: MigrationType
 }
 
 function handleLocalStorageMigration(
   currentLocalStorage: any,
   storageKey: string,
-  migrationInstructions: migrationType
+  migrationInstructions: MigrationType
 ) {
   try {
     const filteredLocalStorage = filterLocalStorage({

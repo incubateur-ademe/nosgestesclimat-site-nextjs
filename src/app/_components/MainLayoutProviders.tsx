@@ -4,17 +4,17 @@ import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
 import useTrackPageView from '@/hooks/useTrackPageView'
 import useTrackSplitTesting from '@/hooks/useTrackSplitTesting'
 import { UserProvider } from '@/publicodes-state'
+import { MigrationType } from '@/publicodes-state/types'
 import { PropsWithChildren } from 'react'
 import CheckFixedRegion from './mainLayoutProviders/CheckFixedRegion'
 import { IframeResizer } from './mainLayoutProviders/IframeResizer'
 import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProviderWrapper'
 import QueryParamsProvider from './mainLayoutProviders/QueryParamsProvider'
 import SimulationFromUrlLoader from './mainLayoutProviders/SimulationFromUrlLoader'
-import { migrationType } from '@/publicodes-state/types'
 
 type Props = {
   region: { code: string; name: string }
-  migrationInstructions: migrationType
+  migrationInstructions: MigrationType
 }
 export default function MainLayoutProviders({
   children,
