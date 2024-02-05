@@ -14,6 +14,9 @@ type Props = {
   supportedRegions: SuppportedRegions
   isOptim?: boolean
 }
+
+const NO_MODEL_PATHNAME_EXCEPTIONS = ['/tutoriel', '/organisations']
+
 export default function Providers({
   children,
   supportedRegions,
@@ -44,6 +47,10 @@ export default function Providers({
     }
   }, [currentSimulationId, initSimulation])
 
+  if (NO_MODEL_PATHNAME_EXCEPTIONS.includes(pathname)) {
+    return <>{children}</>
+  }
+
   return currentSimulationId && !isInitialLoading ? (
     <SimulationProvider
       key={currentSimulationId}
@@ -56,8 +63,6 @@ export default function Providers({
       <LocalisationBanner supportedRegions={supportedRegions} />
       {children}
     </SimulationProvider>
-  ) : pathname === '/tutoriel' ? (
-    children
   ) : (
     <div className="flex flex-1 items-center justify-center">
       <Loader color="dark" />

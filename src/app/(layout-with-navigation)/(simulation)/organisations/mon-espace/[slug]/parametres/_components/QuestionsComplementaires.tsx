@@ -1,4 +1,4 @@
-import { useUpdateOrganization } from '@/app/organisations/_hooks/useUpdateOrganization'
+import { useUpdateOrganization } from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useUpdateOrganization'
 import Trans from '@/components/translation/Trans'
 import { useUser } from '@/publicodes-state'
 import { Organization } from '@/types/organizations'

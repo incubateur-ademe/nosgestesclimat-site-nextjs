@@ -1,33 +1,13 @@
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
+import { PollData } from '@/types/organizations'
 import RepartitionChart from './detailedOrgaStatistics/RepartitionChart'
 
-export default function DetailedOrgaStatistics(/*{
+export default function DetailedOrgaStatistics({
   pollData,
 }: {
   pollData: PollData
-}*/) {
-  // Generate mock data for pollData
-  const mockPollData = {
-    simulationsRecap: [
-      {
-        bilan: 5,
-      },
-      {
-        bilan: 10,
-      },
-      {
-        bilan: 15,
-      },
-      {
-        bilan: 20,
-      },
-      {
-        bilan: 25,
-      },
-    ],
-  }
-
+}) {
   return (
     <section>
       <h2>
@@ -44,10 +24,11 @@ export default function DetailedOrgaStatistics(/*{
       <h3>
         <Trans>Empreinte carbone</Trans>
       </h3>
+
       <RepartitionChart
-        items={mockPollData.simulationsRecap.map(({ bilan }) => ({
+        items={pollData.simulationsRecap.map(({ bilan, isCurrentUser }) => ({
           value: bilan,
-          shouldBeHighlighted: false,
+          shouldBeHighlighted: isCurrentUser,
         }))}
       />
     </section>

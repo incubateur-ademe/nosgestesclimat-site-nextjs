@@ -3,6 +3,7 @@
 import Badge from '@/design-system/layout/Badge'
 import BarChart from '@/design-system/utils/BarChart'
 import Emoji from '@/design-system/utils/Emoji'
+import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 
 export default function VerticalBarChartItem({
   value,
@@ -19,20 +20,21 @@ export default function VerticalBarChartItem({
   value: number
   icons: React.ReactNode
 }) {
+  const { formattedValue, unit } = formatCarbonFootprint(value * 1000, {
+    maximumFractionDigits: 1,
+    shouldUseAbbreviation: true,
+  })
   return (
     <li
-      className="flex flex-col items-center justify-end gap-2"
+      className="flex h-full flex-1 flex-col items-center justify-end gap-2"
       aria-label={ariaLabel}>
-      <Badge>
-        <strong>{value}</strong> t
+      <Badge className="text-xs">
+        <strong>{formattedValue}</strong> {unit}
       </Badge>
-      <div
-        className="flex items-end"
-        style={{ height: `calc(${percentage} * 4rem)` }}>
+      <div className="flex flex-1 items-end">
         <BarChart
           type="vertical"
-          percentage={percentage}
-          maxWidth="4rem"
+          percentage={`${percentage * 100 * 3}%`}
           index={index}
         />
       </div>

@@ -1,5 +1,5 @@
-import useTimeLeft from '@/app/organisations/_hooks/useTimeleft'
-import useValidateVerificationCode from '@/app/organisations/_hooks/useValidateVerificationCode'
+import useTimeLeft from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useTimeleft'
+import useValidateVerificationCode from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useValidateVerificationCode'
 import { SERVER_URL } from '@/constants/urls'
 import { useUser } from '@/publicodes-state'
 import { useMutation } from '@tanstack/react-query'

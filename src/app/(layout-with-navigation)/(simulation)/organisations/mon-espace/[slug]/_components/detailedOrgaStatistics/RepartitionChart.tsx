@@ -5,20 +5,16 @@ type Props = {
   }[]
 }
 
-// Chaque simulation représente un point du graphique
-// la position d'un point est déterminée par sa valeur
-// 29 === 100% et 2 === 0%
-
 export default function RepartitionChart({ items }: Props) {
   return (
-    <div className="relative h-[48px] rounded-lg border border-gray-300 bg-white">
+    <div className="relative h-[48px] overflow-hidden rounded-lg border border-gray-300 bg-white px-2">
       {items.map(({ value, shouldBeHighlighted }, index) => (
-        // Calculer la position du point "item" sur l'axe horizontal
-        // avec 0% === 2 et 100% === 29
         <div
           key={`repartition-chart-item-${index}`}
-          className={`absolute h-2 w-2 rounded-full bg-primary-500 opacity-10 ${
-            shouldBeHighlighted ? 'bg-secondary opacity-100' : ''
+          className={`absolute h-8 w-2 bg-primary-500 opacity-20 ${
+            shouldBeHighlighted
+              ? '!z-10 border-x border-white !bg-secondary !opacity-100'
+              : ''
           }`}
           style={{
             left: `${(value / 29) * 100}%`,

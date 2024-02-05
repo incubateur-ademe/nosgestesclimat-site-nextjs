@@ -10,7 +10,7 @@ export default function MaxWidthContent({
 }) {
   return (
     <section className={twMerge('mt-6 w-full', className)}>
-      <div className="mx-auto max-w-5xl px-6 py-8 lg:px-0">{children}</div>
+      <div className="mx-auto max-w-5xl px-6 lg:px-0">{children}</div>
     </section>
   )
 }

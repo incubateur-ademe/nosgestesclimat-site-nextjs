@@ -69,7 +69,7 @@ export default function OrganizationPage() {
 
       {organization && (
         <>
-          <MaxWidthContent>
+          <MaxWidthContent className="mb-4">
             <div className="flex flex-wrap justify-between md:flex-nowrap">
               <div>
                 <h1>
@@ -105,7 +105,7 @@ export default function OrganizationPage() {
             </div>
           </MaxWidthContent>
 
-          <MaxWidthContent className="pb-8">
+          <MaxWidthContent className="mb-8 mt-0">
             <OrgaStatistics organization={organization} />
           </MaxWidthContent>
 
