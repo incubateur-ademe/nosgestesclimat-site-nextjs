@@ -31,10 +31,10 @@ export default function VerticalBarChartItem({
       <Badge className="text-xs">
         <strong>{formattedValue}</strong> {unit}
       </Badge>
-      <div className="flex flex-1 items-end">
+      <div className="flex items-end">
         <BarChart
           type="vertical"
-          percentage={`${percentage * 100 * 3}%`}
+          percentage={`calc(${percentage} * 16rem)`}
           index={index}
         />
       </div>
