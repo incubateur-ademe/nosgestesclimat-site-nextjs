@@ -1,9 +1,9 @@
 import { useSearchParams } from 'next/navigation'
 
-export default function usePollId() {
+export function usePollId() {
   const searchParams = useSearchParams()
 
-  const pollId = searchParams.get('poll')
+  const pollId = searchParams.get('sondage')
 
   return { pollId }
 }

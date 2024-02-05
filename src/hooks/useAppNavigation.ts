@@ -1,22 +1,9 @@
-import { useUser } from '@/publicodes-state'
-import { useRouter } from 'next/navigation'
+import { usePollId } from './organisations/usePollId'
 
 export default function useAppNavigation() {
-  const router = useRouter()
+  const { pollId } = usePollId()
 
-  const { user, getCurrentSimulation } = useUser()
+  const linkAfterTutorial = pollId ? `simulateur/infos` : `simulateur/bilan`
 
-  const currentSimulation = getCurrentSimulation()
-
-  const gotoTest = () => {
-    if (!currentSimulation) return
-
-    if (currentSimulation.poll) {
-      router.push(`simulateur/infos`)
-    } else {
-      router.push(`simulateur/bilan`)
-    }
-  }
-
-  return { gotoTest }
+  return { linkAfterTutorial }
 }

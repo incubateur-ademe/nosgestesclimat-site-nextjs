@@ -7,16 +7,13 @@ import { useUser } from '@/publicodes-state'
 
 export default function ButtonStart() {
   const { hideTutorial } = useUser()
-  const { gotoTest } = useAppNavigation()
+  const { linkAfterTutorial } = useAppNavigation()
 
   return (
     <ButtonLink
-      href="/simulateur/bilan"
+      href={linkAfterTutorial}
       data-cypress-id="skip-tutorial-button"
-      onClick={() => {
-        gotoTest()
-        hideTutorial('testIntro')
-      }}>
+      onClick={() => hideTutorial('testIntro')}>
       <Trans>C'est parti ! →</Trans>
     </ButtonLink>
   )

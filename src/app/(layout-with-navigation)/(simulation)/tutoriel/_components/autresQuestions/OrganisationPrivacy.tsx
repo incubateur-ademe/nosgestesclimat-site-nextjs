@@ -1,19 +1,18 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { usePollId } from '@/hooks/organisations/usePollId'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
 
 export default function OrganisationPrivacy() {
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
+  const { pollId } = usePollId()
 
   const { t } = useClientTranslation()
-  // if (!currentSimulation.organisation) {
-  //   return null
-  // }
-  console.log(currentSimulation)
+
+  // If there is no pollId, we don't display this section
+  if (!pollId) {
+    return null
+  }
 
   return (
     <li className="mb-2" id={'empreinte'}>
@@ -23,9 +22,7 @@ export default function OrganisationPrivacy() {
         </summary>
         <div className="my-2 ml-3.5">
           <p>
-            <Trans>
-              hum je sais pas ? je sais pas rép à cette question moi meme
-            </Trans>
+            <Trans>TO DO</Trans>
           </p>
         </div>
       </details>
