@@ -43,7 +43,7 @@ export default function VerificationForm({
     isPending: isPendingValidate,
     isSuccess: isSuccessValidate,
   } = useValidateVerificationCode({
-    administratorEmail,
+    email: administratorEmail,
   })
 
   const {
@@ -54,7 +54,7 @@ export default function VerificationForm({
     mutationFn: () =>
       axios
         .post(`${SERVER_URL}/organizations/send-verification-code`, {
-          administratorEmail,
+          email: administratorEmail,
         })
         .then((response) => response.data),
   })

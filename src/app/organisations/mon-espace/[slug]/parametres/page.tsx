@@ -23,7 +23,7 @@ export default function ParametresPage() {
     isError,
     refetch,
   } = useFetchOrganization({
-    ownerEmail: user.email,
+    email: user.email,
   })
 
   return (

@@ -25,7 +25,7 @@ export default function OrganizationPage() {
   const { user } = useUser()
 
   const { data: organization, isError } = useFetchOrganization({
-    administratorEmail: user.email,
+    email: user.email,
   })
 
   return (

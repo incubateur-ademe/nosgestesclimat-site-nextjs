@@ -3,9 +3,9 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
 export default function useValidateVerificationCode({
-  administratorEmail,
+  email,
 }: {
-  administratorEmail: string
+  email: string
 }) {
   return useMutation({
     mutationFn: ({ verificationCode }: { verificationCode: string }) =>
@@ -13,7 +13,7 @@ export default function useValidateVerificationCode({
         .post(
           `${SERVER_URL}/organizations/validate-verification-code`,
           {
-            administratorEmail,
+            email,
             verificationCode,
           },
           {

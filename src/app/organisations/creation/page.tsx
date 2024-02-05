@@ -25,7 +25,7 @@ export default function CreationPage() {
   const { user } = useUser()
 
   const { isError } = useFetchOrganization({
-    administratorEmail: user?.email,
+    email: user?.email,
   })
 
   const { mutateAsync: updateOrganization } =
