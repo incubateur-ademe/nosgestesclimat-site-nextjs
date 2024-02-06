@@ -3,6 +3,7 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import getPersonas from '@/helpers/modelFetching/getPersonas'
+import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import PersonaExplanations from './_components/PersonaExplanations'
 import PersonaList from './_components/PersonaList'
 

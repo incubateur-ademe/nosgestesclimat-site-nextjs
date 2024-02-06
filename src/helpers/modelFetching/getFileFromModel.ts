@@ -6,15 +6,9 @@ type Props = {
   PRNumber?: string
 }
 /**
- * Assess if we are in local dev mode, preview mode or production mode and fetch the file accordingly
+ * Assess if we are in preview mode or production mode and fetch the file accordingly
  */
 export default async function getFileFromModel({ fileName, PRNumber }: Props) {
-  // If we are in local dev mode, we want to use the local data
-  if (process.env.NEXT_PUBLIC_LOCAL_DATA === 'nosgestesclimat') {
-    const localFile = await importLocalFile({ fileName })
-    if (localFile) return localFile
-  }
-
   // If a PR Number is provided, we want to use the preview data
   if (PRNumber) {
     const previewFile = await importPreviewFile({
@@ -28,18 +22,6 @@ export default async function getFileFromModel({ fileName, PRNumber }: Props) {
   const file = await importFile({ fileName })
 
   return file
-}
-
-async function importLocalFile({ fileName }: { fileName: string }) {
-  console.log('importing local file', fileName)
-  try {
-    return await import(`../../../nosgestesclimat/public/${fileName}`).then(
-      (module) => module.default
-    )
-  } catch (e) {
-    console.error('importLocalFile error', e)
-    return null
-  }
 }
 
 async function importPreviewFile({
