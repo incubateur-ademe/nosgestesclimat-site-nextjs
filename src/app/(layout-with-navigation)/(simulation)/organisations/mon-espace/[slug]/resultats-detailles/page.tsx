@@ -1,10 +1,67 @@
+'use client'
+
+import ExportDataButton from '@/components/organizations/ExportDataButton'
 import OrgaStatistics from '@/components/organizations/OrgaStatistics'
 import Trans from '@/components/translation/Trans'
-import Button from '@/design-system/inputs/Button'
+import { useFetchPollData } from '@/hooks/organizations/useFetchPollData'
+import { useLocale } from '@/hooks/useLocale'
+import { useUser } from '@/publicodes-state'
+import { formatValue } from 'publicodes'
 import OrgaStatisticsCharts from './_components/OrgaStatisticsCharts'
 import OrgaStatisticsFilters from './_components/OrgaStatisticsFilters'
 
 export default function ResultatsDetaillesPage() {
+  const locale = useLocale()
+
+  const { user } = useUser()
+
+  const regionCode =
+    user?.region?.code != undefined && user?.region?.code !== ''
+      ? user?.region?.code
+      : 'FR'
+
+  const fileName = `co2-model.${regionCode}-lang.${locale}.json`
+
+  const { data: pollData } = useFetchPollData({
+    fileName,
+    userId: user?.id,
+    email: user?.email,
+  })
+
+  // Create a mock poll data with the same structure as the real one using the SimulationRecap type with 200 entries
+  // where bilan should be equal to the sum of the categories and the random values should be floats of 2 decimals
+  const mockPollData = {
+    funFacts: {
+      percentageOfBicycleUsers: 10,
+      percentageOfVegetarians: 23.299,
+      percentageOfCarOwners: 76.9,
+    },
+    simulationsRecap: Array.from({ length: 200 }, () => {
+      const categories = {
+        transport: parseFloat(
+          formatValue(Math.random() * 6 - 1, { precision: 1 })
+        ),
+        logement: parseFloat(
+          formatValue(Math.random() * 6 - 1, { precision: 1 })
+        ),
+        alimentation: parseFloat(
+          formatValue(Math.random() * 6 - 1, { precision: 1 })
+        ),
+        divers: parseFloat(
+          formatValue(Math.random() * 6 - 2, { precision: 1 })
+        ),
+        'services sociétaux': parseFloat(
+          formatValue(Math.random() * 6 - 2, { precision: 1 })
+        ),
+      }
+      return {
+        bilan: Object.values(categories).reduce((acc, value) => acc + value, 0),
+        categories,
+        defaultAdditionalQuestions: {},
+        progression: Math.random(),
+      }
+    }),
+  }
   return (
     <div className="pt-12">
       <div className="mb-10 flex flex-wrap items-center justify-between md:flex-nowrap">
@@ -12,9 +69,10 @@ export default function ResultatsDetaillesPage() {
           <Trans>Résultats détaillés</Trans>
         </h1>
 
-        <Button color="secondary">
-          <Trans>Exporter les données</Trans>
-        </Button>
+        <ExportDataButton
+          simulationsRecap={mockPollData?.simulationsRecap}
+          color="secondary"
+        />
       </div>
 
       <OrgaStatisticsFilters />
