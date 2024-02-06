@@ -2,23 +2,10 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
-import { useUser } from '@/publicodes-state'
-import { SuppportedRegions } from '@/types/international'
 
-export default function ModeleStatsBlock({
-  supportedRegions,
-}: {
-  supportedRegions: SuppportedRegions
-}) {
-  const locale = useLocale()
-
-  const { user } = useUser()
-
+export default function ModeleStatsBlock() {
   const { data: rules } = useRules({
-    lang: locale,
-    region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
     isOptim: false,
   })
 

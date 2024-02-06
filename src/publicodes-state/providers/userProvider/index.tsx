@@ -2,6 +2,7 @@
 
 import { PropsWithChildren } from 'react'
 
+import { MigrationType } from '@/publicodes-state/types'
 import UserContext from './context'
 import usePersistentSimulations from './usePersistentSimulations'
 import usePersistentTutorials from './usePersistentTutorials'
@@ -17,13 +18,18 @@ type Props = {
    * The inital region of the user
    */
   initialRegion: { code: string; name: string }
+  /**
+   * The migration instructions for old localstorage
+   */
+  migrationInstructions: MigrationType
 }
 export default function UserProvider({
   children,
   storageKey = 'ngc',
   initialRegion,
+  migrationInstructions,
 }: PropsWithChildren<Props>) {
-  useUpdateOldLocalStorage({ storageKey })
+  useUpdateOldLocalStorage({ storageKey, migrationInstructions })
 
   const { user, setUser } = usePersistentUser({ storageKey, initialRegion })
 
@@ -51,8 +57,7 @@ export default function UserProvider({
         setCurrentSimulationId,
         groupToRedirectToAfterTest,
         setGroupToRedirectToAfterTest,
-      }}
-    >
+      }}>
       {children}
     </UserContext.Provider>
   )
