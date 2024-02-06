@@ -1,6 +1,7 @@
 'use client'
 
 import MaxWidthContent from '@/components/layout/MaxWidthContent'
+import OrgaStatistics from '@/components/organizations/OrgaStatistics'
 import OrganizationFetchError from '@/components/organizations/OrganizationFetchError'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
@@ -10,7 +11,6 @@ import { capitalizeString } from '@/utils/capitalizeString'
 import { usePathname } from 'next/navigation'
 import useFetchOrganization from '../../_hooks/useFetchOrganization'
 import NousContacter from './_components/NousContacter'
-import OrgaStatistics from './_components/OrgaStatistics'
 import OurTools from './_components/OurTools'
 import ShareSection from './_components/ShareSection'
 
@@ -29,7 +29,7 @@ export default function OrganizationPage() {
 
       {organization && (
         <>
-          <MaxWidthContent className="mb-4">
+          <MaxWidthContent className="mb-10 mt-12">
             <div className="flex flex-wrap justify-between md:flex-nowrap">
               <div>
                 <h1>
@@ -44,7 +44,7 @@ export default function OrganizationPage() {
                   </span>
                 </h1>
 
-                <p>
+                <p className="max-w-sm">
                   <Trans>Sur l'espace organisation de </Trans>{' '}
                   <strong className="!text-primary-600">
                     {organization?.name}
@@ -71,7 +71,7 @@ export default function OrganizationPage() {
 
           <ShareSection organization={organization} />
 
-          <MaxWidthContent>
+          <MaxWidthContent className="mt-12">
             <OurTools />
 
             <NousContacter />

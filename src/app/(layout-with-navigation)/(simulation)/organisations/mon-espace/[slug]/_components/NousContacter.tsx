@@ -4,11 +4,11 @@ import Trans from '@/components/translation/Trans'
 
 export default function NousContacter() {
   return (
-    <section className="my-12">
+    <section className="mb-20 mt-12">
       <div className="flex gap-8">
         <SpeechBubbleIcon />
 
-        <div>
+        <div className="text-lg">
           <p className="mb-2">
             <Trans>Vous avez une question ?</Trans>
           </p>

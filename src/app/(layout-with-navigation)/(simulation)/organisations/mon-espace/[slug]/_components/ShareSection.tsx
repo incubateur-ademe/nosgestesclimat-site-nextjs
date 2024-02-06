@@ -11,8 +11,8 @@ export default function ShareSection({
   organization: Organization
 }) {
   return (
-    <section className="bg-grey-100 py-4">
-      <MaxWidthContent>
+    <section className="rounded-lg bg-grey-100 px-4 py-10">
+      <MaxWidthContent className="mt-0">
         <div className="flex flex-wrap items-start gap-8 md:flex-nowrap">
           <CTACard
             overLabel={<Trans>Via un lien de partage</Trans>}

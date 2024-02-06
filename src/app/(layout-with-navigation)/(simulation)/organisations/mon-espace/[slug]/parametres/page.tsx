@@ -42,20 +42,18 @@ export default function ParametresPage() {
       )}
 
       {organization && (
-        <>
-          <MaxWidthContent>
-            <Title title={<Trans>Paramètres</Trans>} />
+        <MaxWidthContent className="py-8">
+          <Title title={<Trans>Paramètres</Trans>} />
 
-            <QuestionsComplementaires
-              organization={organization}
-              refetchOrganization={refetch}
-            />
+          <QuestionsComplementaires
+            organization={organization}
+            refetchOrganization={refetch}
+          />
 
-            <Separator />
+          <Separator />
 
-            <InformationsForm organization={organization} />
-          </MaxWidthContent>
-        </>
+          <InformationsForm organization={organization} />
+        </MaxWidthContent>
       )}
     </>
   )

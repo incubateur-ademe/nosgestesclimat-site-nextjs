@@ -1,13 +1,20 @@
+import { twMerge } from 'tailwind-merge'
+
 type Props = {
   items: {
     value: number
     shouldBeHighlighted?: boolean
   }[]
+  className?: string
 }
 
-export default function RepartitionChart({ items }: Props) {
+export default function RepartitionChart({ items, className }: Props) {
   return (
-    <div className="relative h-[48px] overflow-hidden rounded-lg border border-gray-300 bg-white px-2">
+    <div
+      className={twMerge(
+        'relative h-[48px] overflow-hidden rounded-lg border border-gray-300 bg-white px-2',
+        className
+      )}>
       {items.map(({ value, shouldBeHighlighted }, index) => (
         <div
           key={`repartition-chart-item-${index}`}

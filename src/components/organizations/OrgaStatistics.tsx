@@ -1,22 +1,25 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import Title from '@/design-system/layout/Title'
+import Separator from '@/design-system/layout/Separator'
 import { useFetchPollData } from '@/hooks/organizations/useFetchPollData'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
-import { Organization } from '@/types/organizations'
+import { usePathname } from 'next/navigation'
 import { formatValue } from 'publicodes'
-import DetailedOrgaStatistics from './DetailedOrgaStatistics'
+import FunFacts from './orgaStatistics/FunFacts'
 import ResultsSoonBanner from './orgaStatistics/ResultsSoonBanner'
+import SeeDetailedReportAndExport from './orgaStatistics/SeeDetailedReportAndExport'
 import StatisticsBlocks from './orgaStatistics/StatisticsBlocks'
 
 export default function OrgaStatistics({
-  organization,
+  title,
 }: {
-  organization: Organization
+  title?: string | JSX.Element
 }) {
   const locale = useLocale()
+
+  const pathname = usePathname()
 
   const { user } = useUser()
 
@@ -33,18 +36,14 @@ export default function OrgaStatistics({
     email: user?.email,
   })
 
-  type SimulationRecap = {
-    bilan: number
-    categories: {
-      [key: string]: number
-    }
-    defaultAdditionalQuestions: Record<string, number | string>
-    progression: number
-    isCurrentUser?: boolean
-  }
   // Create a mock poll data with the same structure as the real one using the SimulationRecap type with 200 entries
   // where bilan should be equal to the sum of the categories and the random values should be floats of 2 decimals
   const mockPollData = {
+    funFacts: {
+      percentageOfBicycleUsers: 10,
+      percentageOfVegetarians: 23.299,
+      percentageOfCarOwners: 76.9,
+    },
     simulationsRecap: Array.from({ length: 200 }, () => {
       const categories = {
         transport: parseFloat(
@@ -74,7 +73,9 @@ export default function OrgaStatistics({
 
   return (
     <>
-      <Title tag="h2" title={<Trans>Chiffres clés</Trans>} />
+      <h2 className="mt-12">{title ?? <Trans>Statistiques</Trans>}</h2>
+
+      <Separator />
 
       <section className="relative mb-8 flex gap-4">
         <StatisticsBlocks pollData={mockPollData} />
@@ -82,7 +83,11 @@ export default function OrgaStatistics({
         {mockPollData?.simulationsRecap?.length <= 0 && <ResultsSoonBanner />}
       </section>
 
-      <DetailedOrgaStatistics pollData={mockPollData} />
+      <FunFacts funFacts={mockPollData?.funFacts} />
+
+      {!pathname.includes('resultats-detailles') && (
+        <SeeDetailedReportAndExport />
+      )}
     </>
   )
 }

@@ -35,6 +35,11 @@ export default function StatisticsBlocks({ pollData }: { pollData: PollData }) {
     result[key as keyof typeof result] =
       result[key as keyof typeof result] / pollData.simulationsRecap.length
   })
+
+  const { formattedValue, unit } = formatCarbonFootprint(result?.bilan * 1000, {
+    maximumFractionDigits: 1,
+  })
+
   return (
     <div className="grid w-full grid-cols-3 gap-4">
       <div className="rounded-lg bg-grey-100 p-8">
@@ -49,10 +54,8 @@ export default function StatisticsBlocks({ pollData }: { pollData: PollData }) {
 
       <div className="rounded-lg bg-grey-100 p-8">
         <p className="text-4xl font-bold text-primary-500">
-          {
-            formatCarbonFootprint(result?.bilan, { maximumFractionDigits: 1 })
-              ?.formattedValue
-          }
+          {formattedValue}{' '}
+          <span className="text-base font-normal">{unit} CO2 éq</span>
         </p>
         <p className="text-xl">
           <Trans>Empreinte moyenne</Trans>

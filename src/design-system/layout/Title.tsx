@@ -19,7 +19,7 @@ export default function Title({
 }: PropsWithChildren<Props>) {
   const Tag = tag
   return (
-    <div className="relative mb-4 pb-4">
+    <div className="relative mb-8 pb-4">
       <Tag className={`mb-1 ${className}`} {...props}>
         {title ?? children}
       </Tag>
