@@ -2,9 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
-import { useUser } from '@/publicodes-state'
 
 import Link from '@/components/Link'
 import SearchBar from './SearchBar'
@@ -21,16 +19,7 @@ const FIXED_CARD_SUMMARIES = {
 } as Record<string, string>
 
 export default function DocumentationLanding() {
-  const locale = useLocale()
-
-  const {
-    user: { region },
-  } = useUser()
-
-  const { data: rules } = useRules({
-    lang: locale,
-    region: region?.code ?? 'FR',
-  })
+  const { data: rules } = useRules({ isOptim: false })
 
   if (!rules) return null
 

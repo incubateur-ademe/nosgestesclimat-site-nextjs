@@ -1,9 +1,9 @@
 import Providers from '@/components/providers/Providers'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import fetchPersonas from '@/helpers/fetchPersonas'
-import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import getPersonas from '@/helpers/modelFetching/getPersonas'
+import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import PersonaExplanations from './_components/PersonaExplanations'
 import PersonaList from './_components/PersonaList'
 
@@ -18,9 +18,14 @@ export async function generateMetadata() {
   })
 }
 
-export default async function Personas() {
+type Props = {
+  params: {
+    locale: string
+  }
+}
+export default async function Personas({ params: { locale } }: Props) {
   const supportedRegions = await getSupportedRegions()
-  const personas = await fetchPersonas()
+  const personas = await getPersonas({ locale })
 
   return (
     <Providers supportedRegions={supportedRegions}>
