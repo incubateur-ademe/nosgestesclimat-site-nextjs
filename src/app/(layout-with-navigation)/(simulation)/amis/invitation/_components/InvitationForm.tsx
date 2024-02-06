@@ -135,8 +135,17 @@ export default function InvitationForm({ group }: { group: Group }) {
         <EmailInput
           email={email}
           setEmail={setEmail}
-          errorEmail={errorEmail}
-          setErrorEmail={setErrorEmail}
+          error={errorEmail}
+          setError={setErrorEmail}
+          label={
+            <span>
+              {t('Votre adresse email')}{' '}
+              <span className="italic text-secondary"> {t('facultatif')}</span>
+            </span>
+          }
+          helperText={t(
+            'Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données'
+          )}
         />
       </div>
 

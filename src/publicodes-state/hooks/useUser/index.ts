@@ -39,6 +39,7 @@ export default function useUser() {
     updateSituationOfCurrentSimulation,
     updateProgressionOfCurrentSimulation,
     updateFoldedStepsOfCurrentSimulation,
+    updateCurrentSimulation,
     updateCurrentSimulationActionChoices,
     getCurrentSimulation,
   } = useSimulations({
@@ -116,6 +117,10 @@ export default function useUser() {
      * Set the current simulation ID
      */
     setCurrentSimulationId,
+    /**
+     * Update the current simulation
+     */
+    updateCurrentSimulation,
     /**
      * Update the situation of the current simulation (by adding the passed situation to the existing situation)
      */

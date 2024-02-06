@@ -70,6 +70,9 @@ export type Simulation = {
   actionChoices: ActionChoices
   persona?: string
   progression?: number
+  additionalQuestions?: Record<string, string>
+  poll?: string
+  group?: string
 }
 
 export type Persona = {

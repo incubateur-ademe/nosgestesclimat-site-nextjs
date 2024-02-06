@@ -31,10 +31,12 @@ export default function useSimulations({
     situation = {},
     persona,
     foldedSteps = [],
+    additionalQuestions,
   }: {
     situation?: Situation
     persona?: string
     foldedSteps?: string[]
+    additionalQuestions?: Record<string, string>
   } = {}) => {
     const id = uuidv4()
 
@@ -49,12 +51,62 @@ export default function useSimulations({
         foldedSteps,
         actionChoices: {},
         persona,
+        additionalQuestions,
       },
     ])
 
     setCurrentSimulationId(id)
 
     return id
+  }
+
+  const updateCurrentSimulation = ({
+    situationToAdd,
+    foldedStepToAdd,
+    additionalQuestions,
+    actionChoices,
+  }: {
+    situationToAdd?: Situation
+    foldedStepToAdd?: string
+    additionalQuestions?: Record<string, string>
+    actionChoices?: ActionChoices
+  }) => {
+    if (!currentSimulationId) return
+
+    const simulationToUpdate = simulations.find(
+      (simulation: Simulation) => simulation.id === currentSimulationId
+    )
+
+    if (!simulationToUpdate) return
+
+    if (situationToAdd) {
+      simulationToUpdate.situation = {
+        ...simulationToUpdate.situation,
+        ...situationToAdd,
+      }
+    }
+
+    if (foldedStepToAdd) {
+      simulationToUpdate.foldedSteps = [
+        ...(simulationToUpdate.foldedSteps || []),
+        foldedStepToAdd,
+      ]
+    }
+
+    if (additionalQuestions) {
+      simulationToUpdate.additionalQuestions = additionalQuestions
+    }
+
+    if (actionChoices) {
+      simulationToUpdate.additionalQuestions = additionalQuestions
+    }
+
+    setSimulations((prevSimulations: Simulation[]) => [
+      ...prevSimulations.filter(
+        (simulation: Simulation) => simulation.id !== currentSimulationId
+      ),
+      simulationToUpdate,
+    ])
   }
 
   const updateSituationOfCurrentSimulation = (situationToAdd: Situation) => {
@@ -171,6 +223,7 @@ export default function useSimulations({
     currentSimulation: getCurrentSimulation(),
     getCurrentSimulation,
     currentSimulationId,
+    updateCurrentSimulation,
     updateSituationOfCurrentSimulation,
     updateProgressionOfCurrentSimulation,
     updateFoldedStepsOfCurrentSimulation,

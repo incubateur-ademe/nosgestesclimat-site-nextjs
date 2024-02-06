@@ -132,8 +132,14 @@ export default function GroupCreationForm() {
         <EmailInput
           email={email}
           setEmail={setEmail}
-          errorEmail={errorEmail}
-          setErrorEmail={setErrorEmail}
+          error={errorEmail}
+          setError={setErrorEmail}
+          label={
+            <span>
+              {t('Votre adresse email')}{' '}
+              <span className="italic text-secondary"> {t('facultatif')}</span>
+            </span>
+          }
         />
       </div>
 

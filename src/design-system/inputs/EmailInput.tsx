@@ -1,44 +1,42 @@
-import { ChangeEvent } from 'react'
+import { ChangeEvent, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import TextInputGroup from './TextInputGroup'
 
 type Props = {
   email: string
   setEmail: (email: string) => void
-  errorEmail: string
-  setErrorEmail: (errorEmail: string) => void
+  error: string
+  setError: (error: string) => void
+  label?: ReactNode | string
+  helperText?: string
 }
 
 export default function EmailInput({
   email,
   setEmail,
-  errorEmail,
-  setErrorEmail,
+  error,
+  setError,
+  label,
+  helperText,
   ...props
 }: Props) {
   const { t } = useTranslation()
 
   return (
     <TextInputGroup
-      label={
-        <span>
-          {t('Votre adresse email')}{' '}
-          <span className="italic text-secondary"> {t('facultatif')}</span>
-        </span>
-      }
-      helperText={t(
-        'Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données'
-      )}
-      name="prenom"
+      label={label}
+      helperText={helperText}
+      name="email"
+      type="email"
       placeholder="jean-marc@nosgestesclimat.fr"
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
-        if (errorEmail) {
-          setErrorEmail('')
+        if (error) {
+          setError('')
         }
       }}
       value={email}
-      error={errorEmail}
+      error={error}
       {...props}
     />
   )

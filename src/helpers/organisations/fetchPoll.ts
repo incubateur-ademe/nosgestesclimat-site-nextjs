@@ -11,7 +11,7 @@ type PollInfo = {
   endDate: string
   name: string
   slug: string
-  additionalQuestions: ['email' | 'postalcode' | 'birthdate']
+  additionalQuestions: ['postalcode' | 'birthdate']
   expectedNumberOfParticipants: number
   organisationInfo: OrganisationInfo
 }

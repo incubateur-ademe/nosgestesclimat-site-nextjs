@@ -6,7 +6,7 @@ export async function GET() {
     endDate: '01-03-2024',
     name: 'Sondage 2024',
     slug: 'sondage2024',
-    additionalQuestions: ['email', 'postalcode', 'birthdate'],
+    additionalQuestions: ['postalcode', 'birthdate'],
     expectedNumberOfParticipants: 50,
     organisationInfo: {
       name: 'SNCF',

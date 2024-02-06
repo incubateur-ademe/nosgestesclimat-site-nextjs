@@ -73,6 +73,7 @@
     "react-number-format": "^5.3.1",
     "react-query": "^3.39.3",
     "react-refresh": "^0.14.0",
+    "react-select": "^5.8.0",
     "react-signature-pad-wrapper": "^3.3.3",
     "react-slick": "^0.29.0",
     "react-verification-input": "^4.1.0",
