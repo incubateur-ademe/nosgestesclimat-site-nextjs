@@ -4,9 +4,10 @@ import { useMemo } from 'react'
 
 type Props = {
   engine: Engine
+  root: string
 }
 
-export default function useRules({ engine }: Props) {
+export default function useRules({ engine, root }: Props) {
   const parsedRules = engine.getParsedRules()
   const parsedRulesEntries = useMemo<[string, NGCRuleNode][]>(
     () => Object.entries(parsedRules),
@@ -67,11 +68,21 @@ export default function useRules({ engine }: Props) {
     [everyMosaic, everyQuestions, engine]
   )
 
+  const rawMissingVariables = useMemo<Record<string, number>>(() => {
+    return Object.fromEntries(
+      Object.entries(engine.evaluate(root)?.missingVariables || {}).filter(
+        (missingVariable) => everyQuestions.includes(missingVariable[0])
+      )
+    )
+  }, [engine, everyQuestions, root])
+
   return {
     everyRules,
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
+    everyMosaic,
     everyMosaicChildren,
+    rawMissingVariables,
   }
 }

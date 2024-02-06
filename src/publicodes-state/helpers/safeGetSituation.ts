@@ -28,7 +28,7 @@ export const safeGetSituation = ({
         situation[ruleName] !== 'non' &&
         !everyRules.includes(
           `${ruleName} . ${(situation[ruleName] as string)?.replaceAll(
-            "'",
+            /^'|'$/g,
             ''
           )}`
         )
@@ -38,8 +38,9 @@ export const safeGetSituation = ({
         )
         console.warn(error)
         captureException(error)
-        return true
+        return false
       }
+      return false
     }
   )
 

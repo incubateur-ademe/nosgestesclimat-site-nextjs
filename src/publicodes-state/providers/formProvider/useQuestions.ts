@@ -1,4 +1,3 @@
-import Engine from 'publicodes'
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
 import getQuestionsOfMosaic from '../../helpers/getQuestionsOfMosaic'
@@ -11,7 +10,6 @@ import {
 
 type Props = {
   root: string
-  pristineEngine: Engine
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
   categories: string[]
@@ -20,6 +18,7 @@ type Props = {
   foldedSteps: string[]
   everyQuestions: string[]
   everyMosaicChildren: string[]
+  rawMissingVariables: Record<string, number>
 }
 
 /**
@@ -27,7 +26,6 @@ type Props = {
  */
 export default function useQuestions({
   root,
-  pristineEngine,
   safeEvaluate,
   categories,
   subcategories,
@@ -35,6 +33,7 @@ export default function useQuestions({
   foldedSteps,
   everyQuestions,
   everyMosaicChildren,
+  rawMissingVariables,
 }: Props) {
   const missingVariables = useMemo<Record<string, number>>(
     () =>
@@ -46,14 +45,6 @@ export default function useQuestions({
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [safeEvaluate, root, everyQuestions, situation]
   )
-
-  const rawMissingVariables = useMemo<Record<string, number>>(() => {
-    return Object.fromEntries(
-      Object.entries(
-        pristineEngine.evaluate(root)?.missingVariables || {}
-      ).filter((missingVariable) => everyQuestions.includes(missingVariable[0]))
-    )
-  }, [everyQuestions, pristineEngine, root])
 
   const remainingQuestions = useMemo<string[]>(
     () =>

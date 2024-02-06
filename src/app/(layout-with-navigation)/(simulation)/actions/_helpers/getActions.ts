@@ -1,13 +1,12 @@
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName, NGCRules } from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import { sortBy } from '@/utils/sortBy'
 import { filterIrrelevantActions } from './filterIrrelevantActions'
 import { getIsActionDisabled } from './getIsActionDisabled'
 
 type Props = {
-  rules: any
+  rules: NGCRules
   radical: boolean
-  metric: string
   getRuleObject: (dottedName: DottedName) => any
   actionChoices: any
 }
@@ -15,21 +14,20 @@ type Props = {
 export default function getActions({
   rules,
   radical,
-  metric,
   getRuleObject,
   actionChoices,
 }: Props) {
-  // Each targeted metric has its own prefiltered actions
-  const actionsObject = metric ? rules[`actions ${metric}`] : rules.actions
+  const actionsObject = rules.actions
 
-  const actions: any[] = actionsObject?.formule?.somme?.map((o: any) => {
-    const ruleContent = getRuleObject(o)
-
-    return {
-      ...ruleContent,
-      dottedName: o,
+  const actions: any[] = actionsObject?.formule?.somme?.map(
+    (actionRuleName: DottedName) => {
+      const ruleContent = getRuleObject(actionRuleName)
+      return {
+        ...ruleContent,
+        dottedName: actionRuleName,
+      }
     }
-  })
+  )
 
   const relevantActions = filterIrrelevantActions({
     actions,

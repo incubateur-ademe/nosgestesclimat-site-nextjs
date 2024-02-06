@@ -16,7 +16,6 @@ export default function ActionsPage({
 }) {
   const { getCategory } = useEngine()
   const [radical, setRadical] = useState(true)
-  const metric = (searchParams.métrique || '') as string
 
   const category = searchParams.catégorie
 
@@ -33,7 +32,6 @@ export default function ActionsPage({
   const actionChoices = currentSimulation.actionChoices
 
   const actions = getActions({
-    metric,
     rules,
     radical,
     getRuleObject,
@@ -44,7 +42,7 @@ export default function ActionsPage({
     category ? getCategory(action.dottedName) === category : true
   )
 
-  //TODO this is quite a bad design
+  // TODO this is quite a bad design
   // we'd better check if the test is finished
   // but is it too restrictive ?
   const isSimulationWellStarted = progression > 0.5
