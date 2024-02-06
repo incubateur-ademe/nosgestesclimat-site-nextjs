@@ -62,7 +62,7 @@ export default function StatisticsBlocks({ pollData }: { pollData: PollData }) {
         </p>
       </div>
 
-      <div className="rounded-lg bg-grey-100">
+      <div className="rounded-lg bg-grey-100 py-2">
         <VerticalBarChart
           className={`${
             pollData.simulationsRecap.length <= 0 ? 'opacity-0' : ''
