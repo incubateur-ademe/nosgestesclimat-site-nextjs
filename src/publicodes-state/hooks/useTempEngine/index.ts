@@ -1,3 +1,5 @@
+import getQuestionsOfMosaic from '@/publicodes-state/helpers/getQuestionsOfMosaic'
+import { DottedName } from '@/publicodes-state/types'
 import { useContext } from 'react'
 import simulationContext from '../../providers/simulationProvider/context'
 
@@ -5,15 +7,26 @@ import simulationContext from '../../providers/simulationProvider/context'
  * This is temporary and should be put to death as soon as possible
  */
 export default function useTempEngine() {
-  const { safeEvaluate, rules, safeGetRule } =
+  const { safeEvaluate, rules, safeGetRule, foldedSteps, everyMosaicChildren } =
     useContext(simulationContext) ?? {}
 
-  const getRuleObject = (dottedName: string): any => {
+  const getRuleObject = (dottedName: DottedName): any => {
     return { ...safeEvaluate(dottedName), ...safeGetRule(dottedName) }
   }
+
+  const extendedFoldedSteps = foldedSteps
+    .map((foldedStep) => {
+      const questionsOfMosaic = getQuestionsOfMosaic({
+        dottedName: foldedStep,
+        everyMosaicChildren,
+      })
+      return questionsOfMosaic.length > 0 ? questionsOfMosaic : foldedStep
+    })
+    .flat()
 
   return {
     getRuleObject,
     rules,
+    extendedFoldedSteps,
   }
 }

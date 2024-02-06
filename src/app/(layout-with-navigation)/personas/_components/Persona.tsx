@@ -3,19 +3,31 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
-import { useUser } from '@/publicodes-state'
-import { Persona as PersonaType } from '@/publicodes-state/types'
+import { useSimulation, useUser } from '@/publicodes-state'
+import { DottedName, Persona as PersonaType } from '@/publicodes-state/types'
+import { fixSituationWithPartialMosaic } from '../_helpers/fixSituationWithPartialMosaic'
+import { getPersonaFoldedSteps } from '../_helpers/getPersonaFoldedSteps'
 
 type Props = {
   persona: PersonaType
-  dottedName: string
+  personaDottedName: DottedName
 }
 
-export default function Persona({ persona, dottedName }: Props) {
-  const { initSimulation, getCurrentSimulation } = useUser()
+export default function Persona({ persona, personaDottedName }: Props) {
+  const { initSimulation, getCurrentSimulation, hideTutorial } = useUser()
+
+  const {
+    everyMosaic,
+    everyMosaicChildren,
+    everyQuestions,
+    everyRules,
+    pristineEngine,
+    safeEvaluate,
+    safeGetRule,
+  } = useSimulation()
 
   const isCurrentPersonaSelected =
-    getCurrentSimulation()?.persona === dottedName
+    getCurrentSimulation()?.persona === personaDottedName
 
   return (
     <Card
@@ -37,13 +49,29 @@ export default function Persona({ persona, dottedName }: Props) {
           size="sm"
           className="align-self-end mt-auto"
           disabled={isCurrentPersonaSelected}
-          onClick={() =>
+          onClick={() => {
             initSimulation({
-              situation: persona.situation,
-              persona: dottedName,
-              foldedSteps: Object.keys(persona.situation) || [],
+              situation: fixSituationWithPartialMosaic({
+                situation: persona.situation,
+                everyMosaic,
+                everyMosaicChildren,
+                safeGetRule,
+                safeEvaluate,
+              }),
+              persona: personaDottedName,
+              foldedSteps: getPersonaFoldedSteps({
+                situation: persona.situation,
+                everyMosaic,
+                everyMosaicChildren,
+                everyQuestions,
+                everyRules,
+                pristineEngine,
+                safeGetRule,
+                safeEvaluate,
+              }),
             })
-          }>
+            hideTutorial('testIntro')
+          }}>
           <Trans>Sélectionner</Trans>
         </Button>
       )}
