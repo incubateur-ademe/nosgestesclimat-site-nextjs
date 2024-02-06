@@ -4,7 +4,7 @@ import Trans from '@/components/translation/Trans'
 
 export default function NousContacter() {
   return (
-    <section className="mt-12">
+    <section className="my-12">
       <div className="flex gap-8">
         <SpeechBubbleIcon />
 

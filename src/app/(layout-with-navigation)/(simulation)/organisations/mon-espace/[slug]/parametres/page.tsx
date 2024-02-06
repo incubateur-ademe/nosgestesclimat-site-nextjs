@@ -3,19 +3,15 @@
 import MaxWidthContent from '@/components/layout/MaxWidthContent'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Loader from '@/design-system/layout/Loader'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import useFetchOrganization from '../../../_hooks/useFetchOrganization'
 import InformationsForm from './_components/InformationsForm'
 import QuestionsComplementaires from './_components/QuestionsComplementaires'
 
 export default function ParametresPage() {
-  const { t } = useClientTranslation()
-
   const { user } = useUser()
 
   const {
@@ -28,28 +24,6 @@ export default function ParametresPage() {
 
   return (
     <>
-      <Breadcrumbs
-        items={[
-          {
-            href: '/',
-            label: t('Accueil'),
-          },
-          {
-            href: '/organisations',
-            label: t('Organisations'),
-          },
-          {
-            href: `/organisations/mon-espace/${organization?.slug}`,
-            label: organization?.name,
-          },
-          {
-            href: `/organisations/mon-espace/${organization?.slug}/parametres`,
-            label: t('Paramètres'),
-            isActive: true,
-          },
-        ]}
-      />
-
       {!organization && !isError && <Loader />}
 
       {isError && (

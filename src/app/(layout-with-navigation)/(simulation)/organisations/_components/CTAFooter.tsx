@@ -3,7 +3,7 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 
 export default function CTAFooter() {
   return (
-    <section className="bg-grey-100 pb-24 pt-16">
+    <section className="pb-24 pt-16">
       <div className="mx-auto max-w-5xl px-6 lg:px-0">
         <div className="w-[34rem] max-w-full">
           <h2>

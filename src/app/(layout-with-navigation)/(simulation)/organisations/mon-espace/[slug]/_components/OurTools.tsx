@@ -47,7 +47,7 @@ export default function OurTools() {
             aria-disabled
             aria-label={t('À venir, bouton désactivé.')}
             className="w-full justify-center">
-            <Trans>Télécharger le jeu (PDF 140mb)</Trans>
+            <Trans>Télécharger (PDF 140mb)</Trans>
           </Button>
 
           <div className="absolute -right-8 top-6 h-5 w-36 rotate-45 bg-secondary text-center text-sm text-white">

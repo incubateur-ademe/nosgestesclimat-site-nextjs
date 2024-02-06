@@ -18,7 +18,7 @@ export default function QuestionsComplementaires({
   const poll = organization.polls[0]
 
   const { mutateAsync: updateOrganization } = useUpdateOrganization({
-    ownerEmail: user?.email,
+    email: user?.email,
   })
 
   const handleChange = async ({
@@ -28,14 +28,22 @@ export default function QuestionsComplementaires({
     questionKey: string
     value: boolean
   }) => {
-    const additionalQuestions = poll.additionalQuestions.filter(
-      (question) => value ?? question !== questionKey
-    )
+    const defaultAdditionalQuestions = poll?.defaultAdditionalQuestions ?? {}
+
+    if (value && !defaultAdditionalQuestions.includes(questionKey)) {
+      defaultAdditionalQuestions.push(questionKey)
+    } else if (!value && defaultAdditionalQuestions.includes(questionKey)) {
+      defaultAdditionalQuestions.splice(
+        defaultAdditionalQuestions.indexOf(questionKey),
+        1
+      )
+    }
+
     await updateOrganization({
-      additionalQuestions,
+      defaultAdditionalQuestions,
     })
 
-    await refetchOrganization()
+    refetchOrganization()
   }
 
   return (
@@ -53,21 +61,21 @@ export default function QuestionsComplementaires({
       <div className="mb-4 rounded-md border border-grey-200">
         <ToggleField
           name="villeToggle"
-          value={poll.additionalQuestions.includes('city')}
-          onChange={(isEnabled: boolean) =>
-            handleChange({ questionKey: 'villeToggle', value: isEnabled })
-          }
+          value={poll.defaultAdditionalQuestions.includes('postalCode')}
+          onChange={(isEnabled: boolean) => {
+            handleChange({ questionKey: 'postalCode', value: isEnabled })
+          }}
           label={<Trans>Dans quelle ville habitez-vous ?</Trans>}
         />
       </div>
 
       <div className="rounded-md border border-grey-200">
         <ToggleField
-          name="birthYearToggle"
-          value={poll.additionalQuestions.includes('birthYear')}
-          onChange={(isEnabled: boolean) =>
-            handleChange({ questionKey: 'birthYear', value: isEnabled })
-          }
+          name="birthDateToggle"
+          value={poll.defaultAdditionalQuestions.includes('birthDate')}
+          onChange={(isEnabled: boolean) => {
+            handleChange({ questionKey: 'birthDate', value: isEnabled })
+          }}
           label={<Trans>Quelle est votre année de naissance ?</Trans>}
         />
       </div>

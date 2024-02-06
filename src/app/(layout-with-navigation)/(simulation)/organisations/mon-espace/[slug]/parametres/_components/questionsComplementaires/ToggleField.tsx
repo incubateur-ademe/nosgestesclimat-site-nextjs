@@ -1,4 +1,4 @@
-import { KeyboardEvent, ReactNode, useEffect, useState } from 'react'
+import { KeyboardEvent, ReactNode, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -11,19 +11,15 @@ type Props = {
 export default function ToggleField({ label, value, onChange, name }: Props) {
   const [isEnabled, setIsEnabled] = useState<boolean>(value)
 
-  useEffect(() => {
-    onChange(isEnabled)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isEnabled])
+  const handleMouseEvent = () => {
+    setIsEnabled((prev) => !prev)
+    onChange(!isEnabled)
+  }
 
   const handleKeyboardEvent = (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
-      setIsEnabled((prev) => !prev)
+      handleMouseEvent()
     }
-  }
-
-  const handleMouseEvent = () => {
-    setIsEnabled((prev) => !prev)
   }
 
   return (
@@ -42,7 +38,6 @@ export default function ToggleField({ label, value, onChange, name }: Props) {
             type="checkbox"
             className="peer sr-only"
             checked={isEnabled}
-            onChange={handleMouseEvent}
             readOnly
           />
 

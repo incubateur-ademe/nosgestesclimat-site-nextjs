@@ -24,6 +24,7 @@ export default function VerticalBarChartItem({
     maximumFractionDigits: 1,
     shouldUseAbbreviation: true,
   })
+
   return (
     <li
       className="flex h-full flex-1 flex-col items-center justify-end gap-2"

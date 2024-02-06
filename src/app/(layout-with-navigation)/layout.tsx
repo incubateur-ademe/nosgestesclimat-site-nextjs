@@ -7,7 +7,7 @@ export default async function PageLayout({ children }: PropsWithChildren) {
   return (
     <>
       <div className="m-auto flex max-w-7xl justify-start">
-        <Main className="w-full max-w-5xl">{children}</Main>
+        <Main className="mx-auto w-full max-w-5xl">{children}</Main>
       </div>
       <Footer />
     </>

@@ -1,12 +1,11 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import axios from 'axios'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import useFetchOrganization from '../_hooks/useFetchOrganization'
 import { useUpdateOrganizationAfterCreation } from '../_hooks/useUpdateOrganizationAfterCreation'
@@ -20,8 +19,6 @@ export default function CreationPage() {
 
   const { t } = useClientTranslation()
 
-  const pathname = usePathname()
-
   const { user } = useUser()
 
   const { isError } = useFetchOrganization({
@@ -30,7 +27,7 @@ export default function CreationPage() {
 
   const { mutateAsync: updateOrganization } =
     useUpdateOrganizationAfterCreation({
-      administratorEmail: user?.email,
+      email: user?.email,
     })
 
   const router = useRouter()
@@ -94,37 +91,21 @@ export default function CreationPage() {
   }
 
   return (
-    <>
-      <Breadcrumbs
-        items={[
-          {
-            href: '/',
-            label: 'Accueil',
-            isActive: pathname === '/',
-          },
-          {
-            href: '/organisations',
-            label: 'Organisations',
-            isActive: pathname === '/organisations',
-          },
-        ]}
-      />
-      <section className="mt-6 w-full bg-[#fff]">
-        <div className="mx-auto max-w-5xl px-6 py-8 lg:px-0">
-          <Title
-            title={<Trans>Bienvenue sur votre espace !</Trans>}
-            subtitle={<Trans>Plus que quelques petites questions</Trans>}
-          />
+    <section className="mt-6 w-full bg-[#fff]">
+      <div className="mx-auto max-w-5xl px-6 py-8 lg:px-0">
+        <Title
+          title={<Trans>Bienvenue sur votre espace !</Trans>}
+          subtitle={<Trans>Plus que quelques petites questions</Trans>}
+        />
 
-          <CreationForm
-            onSubmit={handleSubmit}
-            nameError={nameError}
-            setNameError={setNameError}
-            ownerNameError={ownerNameError}
-            setOwnerNameError={setOwnerNameError}
-          />
-        </div>
-      </section>
-    </>
+        <CreationForm
+          onSubmit={handleSubmit}
+          nameError={nameError}
+          setNameError={setNameError}
+          ownerNameError={ownerNameError}
+          setOwnerNameError={setOwnerNameError}
+        />
+      </div>
+    </section>
   )
 }

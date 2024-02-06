@@ -11,7 +11,7 @@ export type OrganizationSimulation = Simulation & {
   }
 }
 
-export type OrganizationOwner = {
+export type OrganizationAdministrator = {
   name?: string
   email: string
   position?: string
@@ -24,12 +24,12 @@ export type OrganizationPoll = {
   startDate: Date
   endDate: Date
   name: string
-  additionalQuestions: [string]
+  defaultAdditionalQuestions: [string]
   numberOfParticipants: number
 }
 
 export type Organization = {
-  owner: OrganizationOwner
+  administrators: OrganizationAdministrator[]
   polls: OrganizationPoll[]
   name: string
   slug: string
