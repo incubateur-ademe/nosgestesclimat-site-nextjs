@@ -1,15 +1,19 @@
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/Trans'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
-import { PollData } from '@/types/organizations'
+import { SimulationRecap } from '@/types/organizations'
 import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
 
-export default function StatisticsBlocks({ pollData }: { pollData: PollData }) {
-  if (!pollData) {
+export default function StatisticsBlocks({
+  simulationRecaps,
+}: {
+  simulationRecaps: SimulationRecap[]
+}) {
+  if (!simulationRecaps) {
     return null
   }
 
-  const result = pollData.simulationsRecap.reduce(
+  const result = simulationRecaps.reduce(
     (acc, simulation) => {
       return {
         bilan: acc.bilan + simulation.bilan,
@@ -33,7 +37,7 @@ export default function StatisticsBlocks({ pollData }: { pollData: PollData }) {
   )
   Object.keys(result).forEach((key: string) => {
     result[key as keyof typeof result] =
-      result[key as keyof typeof result] / pollData.simulationsRecap.length
+      result[key as keyof typeof result] / simulationRecaps.length
   })
 
   const { formattedValue, unit } = formatCarbonFootprint(result?.bilan * 1000, {
@@ -44,7 +48,7 @@ export default function StatisticsBlocks({ pollData }: { pollData: PollData }) {
     <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-3">
       <div className="rounded-lg bg-grey-100 p-8">
         <p className="text-4xl font-bold text-primary-500">
-          {pollData.simulationsRecap.length}
+          {simulationRecaps.length}
         </p>
 
         <p className="text-xl">
@@ -64,9 +68,7 @@ export default function StatisticsBlocks({ pollData }: { pollData: PollData }) {
 
       <div className="rounded-lg bg-grey-100 py-2">
         <VerticalBarChart
-          className={`${
-            pollData.simulationsRecap.length <= 0 ? 'opacity-0' : ''
-          } mt-0`}>
+          className={`${simulationRecaps.length <= 0 ? 'opacity-0' : ''} mt-0`}>
           {Object.entries(result)
             .filter(([key]) => key !== 'bilan')
             .map(([key, value], index) => (

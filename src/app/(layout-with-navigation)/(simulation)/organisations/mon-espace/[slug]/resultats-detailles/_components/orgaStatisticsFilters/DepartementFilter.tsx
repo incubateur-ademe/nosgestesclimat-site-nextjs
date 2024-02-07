@@ -1,8 +1,9 @@
 import Trans from '@/components/translation/Trans'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { SimulationRecap } from '@/types/organizations'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { MultiValue, SingleValue } from 'react-select'
+import { FiltersContext } from '../FiltersProvider'
 
 const STORAGE_KEY = 'ngc-organization-postalCode-filter'
 
@@ -30,6 +31,8 @@ export default function DepartementFilter({
     selectedOptions: MultiValue<string | number> | SingleValue<string | number>
   ) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedOptions))
+
+    setPostalCodeFilters(selectedOptions)
   }
 
   useEffect(() => {
@@ -40,6 +43,8 @@ export default function DepartementFilter({
       setSavedSelection(parsedSelection)
     }
   }, [])
+
+  const { setPostalCodeFilters } = useContext(FiltersContext)
 
   return (
     <ComplexSelect

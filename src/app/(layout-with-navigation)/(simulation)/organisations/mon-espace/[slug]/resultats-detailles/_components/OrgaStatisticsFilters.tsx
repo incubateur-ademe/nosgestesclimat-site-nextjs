@@ -5,8 +5,10 @@ import DepartementFilter from './orgaStatisticsFilters/DepartementFilter'
 
 export default function OrgaStatisticsFilters({
   simulationRecaps,
+  filteredSimulationRecaps,
 }: {
   simulationRecaps: SimulationRecap[]
+  filteredSimulationRecaps: SimulationRecap[]
 }) {
   return (
     <div className="flex items-center justify-between rounded-lg bg-grey-100 px-6 py-4">
@@ -17,7 +19,10 @@ export default function OrgaStatisticsFilters({
       </div>
 
       <div className="flex gap-6">
-        <AgeFilter simulationRecaps={simulationRecaps} />
+        <AgeFilter
+          simulationRecaps={simulationRecaps}
+          filteredSimulationRecaps={filteredSimulationRecaps}
+        />
 
         <DepartementFilter simulationRecaps={simulationRecaps} />
       </div>

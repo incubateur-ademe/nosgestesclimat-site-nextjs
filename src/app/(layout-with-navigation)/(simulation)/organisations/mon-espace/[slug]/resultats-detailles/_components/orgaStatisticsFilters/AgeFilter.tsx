@@ -2,24 +2,33 @@ import Trans from '@/components/translation/Trans'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { SimulationRecap } from '@/types/organizations'
 import dayjs from 'dayjs'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { MultiValue, SingleValue } from 'react-select'
+import { FiltersContext } from '../FiltersProvider'
 
 const STORAGE_KEY = 'ngc-organization-age-filter'
 
-function getAgeOptions(simulationsRecap: SimulationRecap[]) {
+function getAgeOptions({
+  simulationsRecap,
+  filteredSimulationRecaps,
+}: {
+  simulationsRecap: SimulationRecap[]
+  filteredSimulationRecaps: SimulationRecap[]
+}) {
   // Renvoie un tableau d'objets avec une valeur et un label
   // pour chaque tranche d'âge depuis "nés avant 1960" puis par dizaine : 1960-69 / 1970-1979...
   const currentYear = new Date().getFullYear()
   const firstYear = 1960
 
-  const simulationsRecapUnder1960 = simulationsRecap.filter((simulation) => {
-    const birthYear = dayjs(
-      simulation.defaultAdditionalQuestionsAnswers?.birthDate
-    ).year()
+  const simulationsRecapUnder1960 = filteredSimulationRecaps.filter(
+    (simulation) => {
+      const birthYear = dayjs(
+        simulation.defaultAdditionalQuestionsAnswers?.birthDate
+      ).year()
 
-    return birthYear < firstYear
-  })
+      return birthYear < firstYear
+    }
+  )
 
   const ageOptions = [
     {
@@ -30,7 +39,7 @@ function getAgeOptions(simulationsRecap: SimulationRecap[]) {
   ]
 
   for (let i = firstYear; i < currentYear; i += 10) {
-    const simulationsRecapMatchingAge = simulationsRecap.filter(
+    const simulationsRecapMatchingAge = filteredSimulationRecaps.filter(
       (simulation) => {
         const birthYear = dayjs(
           simulation.defaultAdditionalQuestionsAnswers?.birthDate
@@ -57,8 +66,10 @@ function getAgeOptions(simulationsRecap: SimulationRecap[]) {
 
 export default function AgeFilter({
   simulationRecaps,
+  filteredSimulationRecaps,
 }: {
   simulationRecaps: SimulationRecap[]
+  filteredSimulationRecaps: SimulationRecap[]
 }) {
   const [savedSelection, setSavedSelection] = useState<(string | number)[]>([])
 
@@ -66,6 +77,7 @@ export default function AgeFilter({
     selectedOptions: MultiValue<string | number> | SingleValue<string | number>
   ) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedOptions))
+    setAgeFilters(selectedOptions)
   }
 
   useEffect(() => {
@@ -77,12 +89,14 @@ export default function AgeFilter({
     }
   }, [])
 
+  const { setAgeFilters } = useContext(FiltersContext)
+
   return (
     <ComplexSelect
       className="w-56"
       name="age"
       isMulti
-      options={getAgeOptions(simulationRecaps)}
+      options={getAgeOptions({ simulationRecaps, filteredSimulationRecaps })}
       placeholder={<Trans>Tranche d'âge</Trans>}
       value={savedSelection as unknown as string | number}
       onChange={handleSaveSelectionToLocalStorage}

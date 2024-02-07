@@ -6,6 +6,8 @@ import Trans from '@/components/translation/Trans'
 import { useFetchPollData } from '@/hooks/organizations/useFetchPollData'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
+import { useContext, useRef } from 'react'
+import { FiltersContext } from './_components/FiltersProvider'
 import OrgaStatisticsCharts from './_components/OrgaStatisticsCharts'
 import OrgaStatisticsFilters from './_components/OrgaStatisticsFilters'
 
@@ -56,7 +58,7 @@ export default function ResultatsDetaillesPage() {
 
   // Create a mock poll data with the same structure as the real one using the SimulationRecap type with 200 entries
   // where bilan should be equal to the sum of the categories and the random values should be floats of 2 decimals
-  const mockPollData = {
+  const mockPollData = useRef({
     funFacts: {
       percentageOfBicycleUsers: 10,
       percentageOfVegetarians: 23.299,
@@ -86,7 +88,44 @@ export default function ResultatsDetaillesPage() {
         isCurrentUser: Math.random() > 0.99,
       }
     }),
-  }
+  }).current
+
+  const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
+
+  const filteredSimulationsRecap = mockPollData?.simulationsRecap.filter(
+    ({ defaultAdditionalQuestionsAnswers }) => {
+      const birthYear = new Date(
+        defaultAdditionalQuestionsAnswers.birthDate
+      ).getFullYear()
+      const postalCode = defaultAdditionalQuestionsAnswers.postalCode
+
+      return (
+        (ageFilters.length === 0 ||
+          ageFilters.some((ageFilter) => {
+            const [max, min] = ageFilter.value as [number, number]
+
+            const age = new Date().getFullYear() - birthYear
+            console.log(
+              'birthYear',
+              birthYear,
+              'age',
+              age,
+              'min',
+              min,
+              'max',
+              max
+            )
+            return age > min && age <= max
+          })) &&
+        (postalCodeFilters.length === 0 ||
+          postalCodeFilters.some(
+            (filterObject) => filterObject.value === postalCode
+          ))
+      )
+    }
+  )
+
+  console.log('filteredSimulationsRecap', filteredSimulationsRecap)
 
   return (
     <div className="pt-12">
@@ -106,11 +145,16 @@ export default function ResultatsDetaillesPage() {
 
       <OrgaStatisticsFilters
         simulationRecaps={mockPollData?.simulationsRecap}
+        filteredSimulationRecaps={filteredSimulationsRecap}
       />
 
-      <OrgaStatistics title={<Trans>Chiffres clés</Trans>} />
+      <OrgaStatistics
+        simulationRecaps={filteredSimulationsRecap}
+        funFacts={mockPollData?.funFacts}
+        title={<Trans>Chiffres clés</Trans>}
+      />
 
-      <OrgaStatisticsCharts />
+      <OrgaStatisticsCharts simulationRecaps={filteredSimulationsRecap} />
     </div>
   )
 }
