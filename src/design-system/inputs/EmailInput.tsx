@@ -1,5 +1,4 @@
 import { ChangeEvent, ReactNode } from 'react'
-import { useTranslation } from 'react-i18next'
 import TextInputGroup from './TextInputGroup'
 
 type Props = {
@@ -20,8 +19,6 @@ export default function EmailInput({
   helperText,
   ...props
 }: Props) {
-  const { t } = useTranslation()
-
   return (
     <TextInputGroup
       label={label}

@@ -4,14 +4,12 @@ import Trans from '@/components/translation/Trans'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
 import { useAppNavigation } from '@/hooks/navigation/useAppNavigation'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useCallback, useContext } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 import Navigation from '../_components/Navigation'
 
 export default function Birthdate() {
-  const { t } = useClientTranslation()
   const router = useRouter()
 
   const { getLinkToInfosPage } = useAppNavigation()
