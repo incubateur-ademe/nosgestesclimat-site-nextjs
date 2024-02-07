@@ -115,7 +115,7 @@ export default function ResultatsDetaillesPage() {
               'max',
               max
             )
-            return age > min && age <= max
+            return age >= min && age <= max
           })) &&
         (postalCodeFilters.length === 0 ||
           postalCodeFilters.some(

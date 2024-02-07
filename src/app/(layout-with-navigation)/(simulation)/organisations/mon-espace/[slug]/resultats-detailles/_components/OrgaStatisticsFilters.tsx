@@ -24,7 +24,10 @@ export default function OrgaStatisticsFilters({
           filteredSimulationRecaps={filteredSimulationRecaps}
         />
 
-        <DepartementFilter simulationRecaps={simulationRecaps} />
+        <DepartementFilter
+          simulationRecaps={simulationRecaps}
+          filteredSimulationRecaps={filteredSimulationRecaps}
+        />
       </div>
     </div>
   )

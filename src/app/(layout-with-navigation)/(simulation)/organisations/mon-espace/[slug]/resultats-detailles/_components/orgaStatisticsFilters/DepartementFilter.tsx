@@ -22,8 +22,10 @@ function extractPostalCodesFromSimulationRecaps(
 
 export default function DepartementFilter({
   simulationRecaps,
+  filteredSimulationRecaps,
 }: {
   simulationRecaps: SimulationRecap[]
+  filteredSimulationRecaps: SimulationRecap[]
 }) {
   const [savedSelection, setSavedSelection] = useState<(string | number)[]>([])
 
@@ -51,10 +53,16 @@ export default function DepartementFilter({
       className="w-56"
       name="age"
       isMulti
+      isSearchable
       options={extractPostalCodesFromSimulationRecaps(simulationRecaps).map(
         (postalCode) => ({
           value: postalCode,
           label: postalCode,
+          isDisabled: !filteredSimulationRecaps.some(
+            (simulationRecap) =>
+              simulationRecap.defaultAdditionalQuestionsAnswers.postalCode ===
+              postalCode
+          ),
         })
       )}
       placeholder={<Trans>Département</Trans>}
