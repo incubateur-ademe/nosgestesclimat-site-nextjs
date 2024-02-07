@@ -12,7 +12,7 @@ export default function OurTools() {
     <section>
       <Title tag="h2" title={<Trans>Nos outils</Trans>} />
 
-      <div className="col-span-1 mt-8 grid grid-cols-3 gap-8">
+      <div className="col-span-1 mt-8 grid  grid-cols-1 gap-8 md:grid-cols-3">
         <CTACard
           className="border border-grey-200 px-8"
           overLabel={<Trans>Partagez Nos Gestes Climat</Trans>}

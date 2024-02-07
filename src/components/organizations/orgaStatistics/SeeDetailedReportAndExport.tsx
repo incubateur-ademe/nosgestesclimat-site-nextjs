@@ -7,7 +7,7 @@ export default function SeeDetailedReportAndExport() {
   const pathname = usePathname()
 
   return (
-    <section className="mt-16 flex gap-4 pb-8">
+    <section className="mt-16 flex flex-wrap justify-center gap-4 pb-8 md:justify-normal">
       <ButtonLink size="lg" href={`${pathname}/resultats-detailles`}>
         <Trans>Voir le rapport détaillé</Trans>
       </ButtonLink>

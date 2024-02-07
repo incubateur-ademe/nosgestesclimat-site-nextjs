@@ -41,7 +41,7 @@ export default function StatisticsBlocks({ pollData }: { pollData: PollData }) {
   })
 
   return (
-    <div className="grid w-full grid-cols-3 gap-4">
+    <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-3">
       <div className="rounded-lg bg-grey-100 p-8">
         <p className="text-4xl font-bold text-primary-500">
           {pollData.simulationsRecap.length}
