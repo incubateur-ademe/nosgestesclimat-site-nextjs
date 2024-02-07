@@ -1,4 +1,4 @@
-import { Simulation } from '@/publicodes-state/types'
+import { Simulation, Situation } from '@/publicodes-state/types'
 
 type SimulationFormatted = {
   [key: string]: any
@@ -35,4 +35,14 @@ export const reformateDataFromDB = (
     acc[key.replaceAll('_', ' . ').replaceAll('-', ' ')] = value
     return acc
   }, {})
+}
+
+export const formatSituation = (situation?: Situation): SimulationFormatted => {
+  return Object.entries({ ...situation } as { [key: string]: any }).reduce(
+    (acc: { [key: string]: any }, [key, value]: [string, any]) => {
+      acc[key.replaceAll(' . ', '_').replaceAll(' ', '-')] = value
+      return acc
+    },
+    {}
+  )
 }

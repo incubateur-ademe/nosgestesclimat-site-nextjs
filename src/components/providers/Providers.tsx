@@ -24,6 +24,7 @@ export default function Providers({
     getCurrentSimulation,
     currentSimulationId,
     initSimulation,
+    updateCurrentSimulation,
     updateSituationOfCurrentSimulation,
     updateProgressionOfCurrentSimulation,
     updateFoldedStepsOfCurrentSimulation,
@@ -50,6 +51,7 @@ export default function Providers({
       key={currentSimulationId}
       rules={rules}
       situation={getCurrentSimulation()?.situation || {}}
+      updateSimulation={updateCurrentSimulation}
       updateSituation={updateSituationOfCurrentSimulation}
       updateProgression={updateProgressionOfCurrentSimulation}
       foldedSteps={getCurrentSimulation()?.foldedSteps || []}

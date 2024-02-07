@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Title from '@/design-system/layout/Title'
-import { useAppNavigation } from '@/hooks/useAppNavigation'
+import { useAppNavigation } from '@/hooks/navigation/useAppNavigation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'

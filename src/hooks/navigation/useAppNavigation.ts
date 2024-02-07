@@ -1,15 +1,24 @@
+import { useUser } from '@/publicodes-state'
 import { useSearchParams } from 'next/navigation'
-import { usePoll } from './organisations/usePoll'
-import { usePollId } from './organisations/usePollId'
+import { usePoll } from '../organisations/usePoll'
+import { usePollId } from '../organisations/usePollId'
 
+/**
+ * Really rought hook to provide adequate links to the user, depending on his current state
+ */
 export function useAppNavigation() {
   const searchParams = useSearchParams()
   const queryParamsString = searchParams.toString()
+
+  const { getCurrentSimulation } = useUser()
+  const currentSimulation = getCurrentSimulation()
 
   const { pollId } = usePollId()
   const { data: poll } = usePoll(pollId)
 
   const linkToTutorial = `/tutoriel?${queryParamsString}`
+
+  const linkToPollDashboard = `organisations/resultats-detailles/${currentSimulation?.poll}`
 
   const getLinkToInfosPage = (index: number) => {
     const infosPages = {
@@ -36,8 +45,12 @@ export function useAppNavigation() {
     return infosPages[poll.additionalQuestions[index - 1]]
   }
 
+  const linkToEndPage = `/fin`
+
   return {
     linkToTutorial,
+    linkToPollDashboard,
     getLinkToInfosPage,
+    linkToEndPage,
   }
 }

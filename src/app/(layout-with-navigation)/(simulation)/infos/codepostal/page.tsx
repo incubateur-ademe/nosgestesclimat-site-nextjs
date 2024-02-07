@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import PostalCodeInput from '@/design-system/inputs/PostalCodeInput'
 import Title from '@/design-system/layout/Title'
-import { useAppNavigation } from '@/hooks/useAppNavigation'
+import { useAppNavigation } from '@/hooks/navigation/useAppNavigation'
 import { useRouter } from 'next/navigation'
 import { FormEvent, useCallback, useContext } from 'react'
 import { InfosContext } from '../_components/InfosProvider'

@@ -21,7 +21,7 @@ export default function HeaderDesktop() {
   const { t } = useClientTranslation()
 
   const pathname = usePathname()
-  console.log('pathname', pathname)
+
   const { getCurrentSimulation } = useUser()
 
   const currentSimulation = getCurrentSimulation()

@@ -14,7 +14,7 @@ export default function OrganisationDisclaimer() {
     return null
   }
 
-  // If the poll is not loading and there is no poll, we don't display the disclaimer
+  // If the poll is not loading and there is still no poll, we don't display the disclaimer
   if (!isLoading && !poll) {
     return null
   }

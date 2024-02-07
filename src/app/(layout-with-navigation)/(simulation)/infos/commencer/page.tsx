@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
+import { usePollId } from '@/hooks/organisations/usePollId'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { useContext } from 'react'
@@ -29,6 +30,8 @@ export default function Commencer() {
   const { t } = useClientTranslation()
 
   const { postalCode, birthdate } = useContext(InfosContext)
+
+  const { pollId } = usePollId()
 
   const { getCurrentSimulation, initSimulation, updateCurrentSimulation } =
     useUser()
@@ -57,6 +60,7 @@ export default function Commencer() {
               postalCode,
               birthdate,
             },
+            poll: pollId || undefined,
           })
         }}>
         {buttonLabels[status]}
@@ -71,6 +75,7 @@ export default function Commencer() {
                 postalCode,
                 birthdate,
               },
+              poll: pollId || undefined,
             })
           }}>
           <Trans>Commencer un nouveau test</Trans>

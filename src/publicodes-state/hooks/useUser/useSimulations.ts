@@ -2,7 +2,12 @@
 
 import { Dispatch, SetStateAction, useCallback } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { ActionChoices, Simulation, Situation } from '../../types'
+import {
+  ActionChoices,
+  ComputedResults,
+  Simulation,
+  Situation,
+} from '../../types'
 
 type Props = {
   simulations: Simulation[]
@@ -32,11 +37,15 @@ export default function useSimulations({
     persona,
     foldedSteps = [],
     additionalQuestions,
+    poll,
+    group,
   }: {
     situation?: Situation
     persona?: string
     foldedSteps?: string[]
     additionalQuestions?: Record<string, string>
+    poll?: string
+    group?: string
   } = {}) => {
     const id = uuidv4()
 
@@ -52,6 +61,8 @@ export default function useSimulations({
         actionChoices: {},
         persona,
         additionalQuestions,
+        poll,
+        group,
       },
     ])
 
@@ -60,54 +71,81 @@ export default function useSimulations({
     return id
   }
 
-  const updateCurrentSimulation = ({
-    situationToAdd,
-    foldedStepToAdd,
-    additionalQuestions,
-    actionChoices,
-  }: {
-    situationToAdd?: Situation
-    foldedStepToAdd?: string
-    additionalQuestions?: Record<string, string>
-    actionChoices?: ActionChoices
-  }) => {
-    if (!currentSimulationId) return
+  const updateCurrentSimulation = useCallback(
+    ({
+      situationToAdd,
+      foldedStepToAdd,
+      actionChoices,
+      additionalQuestions,
+      computedResults,
+      progression,
+      poll,
+      group,
+    }: {
+      situationToAdd?: Situation
+      foldedStepToAdd?: string
+      additionalQuestions?: Record<string, string>
+      actionChoices?: ActionChoices
+      computedResults?: ComputedResults
+      progression?: number
+      poll?: string
+      group?: string
+    }) => {
+      if (!currentSimulationId) return
 
-    const simulationToUpdate = simulations.find(
-      (simulation: Simulation) => simulation.id === currentSimulationId
-    )
+      const simulationToUpdate = simulations.find(
+        (simulation: Simulation) => simulation.id === currentSimulationId
+      )
 
-    if (!simulationToUpdate) return
+      if (!simulationToUpdate) return
 
-    if (situationToAdd) {
-      simulationToUpdate.situation = {
-        ...simulationToUpdate.situation,
-        ...situationToAdd,
+      if (situationToAdd !== undefined) {
+        simulationToUpdate.situation = {
+          ...simulationToUpdate.situation,
+          ...situationToAdd,
+        }
       }
-    }
 
-    if (foldedStepToAdd) {
-      simulationToUpdate.foldedSteps = [
-        ...(simulationToUpdate.foldedSteps || []),
-        foldedStepToAdd,
-      ]
-    }
+      if (foldedStepToAdd !== undefined) {
+        simulationToUpdate.foldedSteps = [
+          ...(simulationToUpdate.foldedSteps || []),
+          foldedStepToAdd,
+        ]
+      }
 
-    if (additionalQuestions) {
-      simulationToUpdate.additionalQuestions = additionalQuestions
-    }
+      if (actionChoices !== undefined) {
+        simulationToUpdate.additionalQuestions = additionalQuestions
+      }
 
-    if (actionChoices) {
-      simulationToUpdate.additionalQuestions = additionalQuestions
-    }
+      if (additionalQuestions !== undefined) {
+        simulationToUpdate.additionalQuestions = additionalQuestions
+      }
 
-    setSimulations((prevSimulations: Simulation[]) => [
-      ...prevSimulations.filter(
-        (simulation: Simulation) => simulation.id !== currentSimulationId
-      ),
-      simulationToUpdate,
-    ])
-  }
+      if (computedResults !== undefined) {
+        simulationToUpdate.computedResults = computedResults
+      }
+
+      if (progression !== undefined) {
+        simulationToUpdate.progression = progression
+      }
+
+      if (poll !== undefined) {
+        simulationToUpdate.poll = poll
+      }
+
+      if (group !== undefined) {
+        simulationToUpdate.group = group
+      }
+
+      setSimulations((prevSimulations: Simulation[]) => [
+        ...prevSimulations.filter(
+          (simulation: Simulation) => simulation.id !== currentSimulationId
+        ),
+        simulationToUpdate,
+      ])
+    },
+    [currentSimulationId, setSimulations, simulations]
+  )
 
   const updateSituationOfCurrentSimulation = (situationToAdd: Situation) => {
     if (currentSimulationId) {
