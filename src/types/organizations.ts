@@ -45,7 +45,7 @@ export type SimulationRecap = {
   categories: {
     [key: string]: number
   }
-  defaultAdditionalQuestions: Record<string, number | string>
+  defaultAdditionalQuestionsAnswers: Record<string, number | string>
   progression: number
   isCurrentUser?: boolean
   date: string
