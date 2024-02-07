@@ -1,4 +1,5 @@
 // Initialise react-i18next
+import FilAriane from '@/components/layout/FilAriane'
 import Header from '@/components/layout/Header'
 import getGeolocation from '@/helpers/getGeolocation'
 import '@/locales/initClient'
@@ -103,6 +104,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <ErrorBoundary showDialog fallback={ErrorFallback}>
           <MainLayoutProviders region={region}>
             <Header />
+
+            <FilAriane />
 
             {children}
           </MainLayoutProviders>

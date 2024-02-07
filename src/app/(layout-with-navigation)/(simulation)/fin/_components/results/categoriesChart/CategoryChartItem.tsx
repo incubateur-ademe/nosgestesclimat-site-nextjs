@@ -1,8 +1,6 @@
 'use client'
 
-import Badge from '@/design-system/layout/Badge'
-import BarChart from '@/design-system/utils/BarChart'
-import Emoji from '@/design-system/utils/Emoji'
+import VerticalBarChartItem from '@/components/charts/verticalBarChart/VerticalBarChartItem'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import { formatValue } from 'publicodes'
@@ -25,29 +23,16 @@ export default function CategoryChartItem({
   const formattedValue = formatValue(numericValue / 1000, { precision: 1 })
 
   return (
-    <li
-      className="flex flex-col items-center justify-end gap-2"
-      aria-label={t(
+    <VerticalBarChartItem
+      value={formattedValue}
+      index={index}
+      percentage={percentageOfMaxValue}
+      ariaLabel={t(
         'La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.',
         { formattedValue, title }
-      )}>
-      <Badge>
-        <strong>{formattedValue}</strong> t
-      </Badge>
-      <div
-        className="flex items-end"
-        style={{ height: `calc(${percentageOfMaxValue} * 4rem)` }}>
-        <BarChart
-          type="vertical"
-          percentage={percentageOfMaxValue}
-          maxWidth="4rem"
-          index={index}
-        />
-      </div>
-
-      <Emoji className="mt-3 text-2xl" title={title}>
-        {icons}
-      </Emoji>
-    </li>
+      )}
+      title={title ?? ''}
+      icons={icons}
+    />
   )
 }

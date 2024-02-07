@@ -2,7 +2,7 @@ import Link from '@/components/Link'
 import { Fragment } from 'react'
 
 type Props = {
-  items: { href: string; label: string; isActive: boolean }[]
+  items: { href: string; label: string | JSX.Element; isActive?: boolean }[]
 }
 
 export default function Breadcrumbs({ items }: Props) {
