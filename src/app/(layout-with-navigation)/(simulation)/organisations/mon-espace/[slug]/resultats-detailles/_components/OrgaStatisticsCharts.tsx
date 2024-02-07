@@ -6,9 +6,43 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useFetchPollData } from '@/hooks/organizations/useFetchPollData'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
-import { formatValue } from 'publicodes'
 import CategoryListItem from './orgaStatisticsCharts/CategoryListItem'
 import RepartitionChart from './orgaStatisticsCharts/RepartitionChart'
+
+// Create a function than randomly returns a postal code from France among 20 possible values
+function getRandomPostalCode() {
+  const postalCodes = [
+    '75001',
+    '75002',
+    '75003',
+    '75004',
+    '75005',
+    '75006',
+    '75007',
+    '75008',
+    '75009',
+    '75010',
+    '75011',
+    '75012',
+    '75013',
+    '75014',
+    '75015',
+    '75016',
+    '75017',
+    '75018',
+    '75019',
+    '75020',
+  ]
+  return postalCodes[Math.floor(Math.random() * postalCodes.length)]
+}
+
+// Create a function that returns a random birth date between 1950 and 2000 in the format YYYY-MM-DD
+function getRandomBirthDate() {
+  const year = Math.floor(Math.random() * (2000 - 1950 + 1) + 1950)
+  const month = String(Math.floor(Math.random() * 12 + 1)).padStart(2, '0')
+  const day = String(Math.floor(Math.random() * 28 + 1)).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
 
 export default function DetailedOrgaStatistics() {
   const locale = useLocale()
@@ -36,27 +70,22 @@ export default function DetailedOrgaStatistics() {
     },
     simulationsRecap: Array.from({ length: 200 }, () => {
       const categories = {
-        transport: parseFloat(
-          formatValue(Math.random() * 6 - 1, { precision: 1 })
-        ),
-        logement: parseFloat(
-          formatValue(Math.random() * 6 - 1, { precision: 1 })
-        ),
-        alimentation: parseFloat(
-          formatValue(Math.random() * 6 - 1, { precision: 1 })
-        ),
-        divers: parseFloat(
-          formatValue(Math.random() * 6 - 2, { precision: 1 })
-        ),
-        'services sociétaux': parseFloat(
-          formatValue(Math.random() * 6 - 2, { precision: 1 })
-        ),
+        transport: parseFloat(String(Math.random() * 6).slice(0, 4)),
+        logement: parseFloat(String(Math.random() * 6).slice(0, 4)),
+        alimentation: parseFloat(String(Math.random() * 6).slice(0, 4)),
+        divers: parseFloat(String(Math.random() * 6).slice(0, 4)),
+        'services sociétaux': parseFloat(String(Math.random() * 6).slice(0, 4)),
       }
       return {
         bilan: Object.values(categories).reduce((acc, value) => acc + value, 0),
         categories,
         defaultAdditionalQuestions: {},
         progression: Math.random(),
+        isCurrentUser: Math.random() > 0.99,
+        defaultAdditionalQuestionsAnswers: {
+          postalCode: getRandomPostalCode(),
+          birthDate: getRandomBirthDate(),
+        },
       }
     }),
   }
@@ -74,7 +103,7 @@ export default function DetailedOrgaStatistics() {
       value: mean / mockPollData.simulationsRecap.length,
     }
   })
-  console.log(meanCategories)
+
   return (
     <section className="my-12 rounded-lg bg-grey-100 px-8 pb-4 pt-8">
       <h2>
@@ -95,6 +124,7 @@ export default function DetailedOrgaStatistics() {
 
         <div className="flex flex-col">
           <RepartitionChart
+            maxValue={29}
             items={mockPollData.simulationsRecap.map(
               ({ bilan, isCurrentUser }) => ({
                 value: bilan,
@@ -115,6 +145,7 @@ export default function DetailedOrgaStatistics() {
           </div>
         </div>
       </section>
+
       <section>
         <h3>Par catégorie</h3>
         <ul>

@@ -41,9 +41,11 @@ export default function CategoryListItem({
 
       <RepartitionChart
         className="ml-8 flex-1 rounded-lg"
+        maxValue={6}
         items={simulationsRecap.map((obj) => ({
           value: obj.categories[category],
-          shouldBeHighlighted: false,
+          // @ts-expect-error FIXME: isCurrentUser is not defined
+          shouldBeHighlighted: obj.isCurrentUser,
         }))}
       />
     </li>

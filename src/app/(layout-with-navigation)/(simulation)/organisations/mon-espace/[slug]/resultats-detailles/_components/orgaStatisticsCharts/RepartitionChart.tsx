@@ -6,9 +6,14 @@ type Props = {
     shouldBeHighlighted?: boolean
   }[]
   className?: string
+  maxValue: number
 }
 
-export default function RepartitionChart({ items, className }: Props) {
+export default function RepartitionChart({
+  items,
+  className,
+  maxValue,
+}: Props) {
   return (
     <div
       className={twMerge(
@@ -24,7 +29,7 @@ export default function RepartitionChart({ items, className }: Props) {
               : ''
           }`}
           style={{
-            left: `${(value / 29) * 100}%`,
+            left: `${(value / maxValue) * 100}%`,
             top: '50%',
             transform: 'translate(-50%, -50%)',
           }}

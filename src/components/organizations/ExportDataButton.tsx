@@ -1,28 +1,36 @@
 'use client'
 
-import Button from '@/design-system/inputs/Button'
-import { createCSVFileAndDownload } from '@/helpers/export/createCSVFileAndDownload'
+import Button, { ButtonProps } from '@/design-system/inputs/Button'
+import { createXLSXFileAndDownload } from '@/helpers/export/createXLSXFileAndDownload'
 import { SimulationRecap } from '@/types/organizations'
+import dayjs from 'dayjs'
 import { useState } from 'react'
 import Trans from '../translation/Trans'
 
 export default function ExportDataButton({
   simulationsRecap,
   ...props
-}: {
+}: ButtonProps & {
   simulationsRecap: SimulationRecap[]
 }) {
   const [isLoading, setIsLoading] = useState(false)
+
   function handleClick() {
     setIsLoading(true)
 
-    createCSVFileAndDownload({
-      csvHeaderRow:
-        'bilan,transport,alimentation,logement,divers,services sociétaux,',
-      csvDataRows: simulationsRecap.map(
-        (simulation) =>
-          `${simulation.bilan},${simulation.categories.transport},${simulation.categories.alimentation},${simulation.categories.logement},${simulation.categories.divers},${simulation.categories['services sociétaux']},`
-      ),
+    createXLSXFileAndDownload({
+      data: simulationsRecap.map((simulation) => ({
+        date: dayjs(simulation.date).format('DD/MM/YYYY'),
+        total: simulation.bilan,
+        transport: simulation.categories.transport,
+        alimentation: simulation.categories.alimentation,
+        logement: simulation.categories.logement,
+        divers: simulation.categories.divers,
+        'services sociétaux': simulation.categories['services sociétaux'],
+      })),
+      fileName: `export-donnees-nos-gestes-climat-${dayjs().format(
+        'DD-MM-YYYY_HH-MM'
+      )}.xlsx`,
       callback: () => setIsLoading(false),
     })
   }

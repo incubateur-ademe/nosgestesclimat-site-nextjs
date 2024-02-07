@@ -6,7 +6,6 @@ import Trans from '@/components/translation/Trans'
 import { useFetchPollData } from '@/hooks/organizations/useFetchPollData'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
-import { formatValue } from 'publicodes'
 import OrgaStatisticsCharts from './_components/OrgaStatisticsCharts'
 import OrgaStatisticsFilters from './_components/OrgaStatisticsFilters'
 
@@ -38,30 +37,23 @@ export default function ResultatsDetaillesPage() {
     },
     simulationsRecap: Array.from({ length: 200 }, () => {
       const categories = {
-        transport: parseFloat(
-          formatValue(Math.random() * 6 - 1, { precision: 1 })
-        ),
-        logement: parseFloat(
-          formatValue(Math.random() * 6 - 1, { precision: 1 })
-        ),
-        alimentation: parseFloat(
-          formatValue(Math.random() * 6 - 1, { precision: 1 })
-        ),
-        divers: parseFloat(
-          formatValue(Math.random() * 6 - 2, { precision: 1 })
-        ),
-        'services sociétaux': parseFloat(
-          formatValue(Math.random() * 6 - 2, { precision: 1 })
-        ),
+        transport: parseFloat(String(Math.random() * 6).slice(0, 4)),
+        logement: parseFloat(String(Math.random() * 6).slice(0, 4)),
+        alimentation: parseFloat(String(Math.random() * 6).slice(0, 4)),
+        divers: parseFloat(String(Math.random() * 6).slice(0, 4)),
+        'services sociétaux': parseFloat(String(Math.random() * 6).slice(0, 4)),
       }
       return {
         bilan: Object.values(categories).reduce((acc, value) => acc + value, 0),
         categories,
         defaultAdditionalQuestions: {},
-        progression: Math.random(),
+        progression: 1,
+        isCurrentUser: Math.random() > 0.99,
+        date: new Date().toISOString(),
       }
     }),
   }
+
   return (
     <div className="pt-12">
       <div className="mb-10 flex flex-wrap items-center justify-between md:flex-nowrap">
@@ -70,7 +62,10 @@ export default function ResultatsDetaillesPage() {
         </h1>
 
         <ExportDataButton
-          simulationsRecap={mockPollData?.simulationsRecap}
+          // We only want to export the complete simulations
+          simulationsRecap={mockPollData?.simulationsRecap.filter(
+            ({ progression }) => progression === 1
+          )}
           color="secondary"
         />
       </div>
