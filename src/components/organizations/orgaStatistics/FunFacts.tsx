@@ -11,7 +11,7 @@ export default function FunFacts({
   }
 }) {
   return (
-    <section className="flex justify-center">
+    <section className="mb-20 flex justify-center">
       <div className="flex flex-col gap-8 md:flex-row md:gap-16">
         <div className="text-lg">
           <Emoji className="mr-2 inline-block">🚴</Emoji>
