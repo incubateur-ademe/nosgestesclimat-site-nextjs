@@ -4,14 +4,11 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import useFetchOrganization from '../_hooks/useFetchOrganization'
 import { useUpdateOrganizationAfterCreation } from '../_hooks/useUpdateOrganizationAfterCreation'
 import CreationForm from './_components/CreationForm'
-
-axios.defaults.withCredentials = true
 
 export default function CreationPage() {
   const [nameError, setNameError] = useState<string | null>(null)
