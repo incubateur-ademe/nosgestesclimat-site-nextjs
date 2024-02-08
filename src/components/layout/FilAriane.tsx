@@ -36,9 +36,17 @@ function getOrganizationItems({
     },
   ]
 
-  if (!pathname.includes('mon-espace')) return baseItems
-
   const allItems = [...baseItems]
+
+  if (pathname.includes('demander-demo')) {
+    allItems.push({
+      href: '/organisations/demander-demo',
+      label: <Trans>Demander une démo</Trans>,
+      isActive: pathname === '/organisations/demander-demo',
+    })
+  }
+
+  if (!pathname.includes('mon-espace')) return allItems
 
   if (params.slug) {
     allItems.push({

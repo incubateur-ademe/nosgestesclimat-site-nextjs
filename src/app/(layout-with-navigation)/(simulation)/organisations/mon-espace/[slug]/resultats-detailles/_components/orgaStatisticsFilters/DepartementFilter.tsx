@@ -15,9 +15,13 @@ function extractPostalCodesFromSimulationRecaps(
       simulationRecap.defaultAdditionalQuestionsAnswers.postalCode
   )
 
-  const arrayUniquePostalCodes = Array.from(new Set(postalCodes)).sort()
-
-  return arrayUniquePostalCodes
+  return postalCodes.sort().reduce(
+    (acc, postalCode) => {
+      acc[postalCode] = (acc[postalCode] || 0) + 1
+      return acc
+    },
+    {} as Record<string, number>
+  )
 }
 
 export default function DepartementFilter({
@@ -50,6 +54,8 @@ export default function DepartementFilter({
 
   const { setPostalCodeFilters } = useContext(FiltersContext)
 
+  const options = extractPostalCodesFromSimulationRecaps(simulationRecaps)
+
   return (
     <ComplexSelect
       className="w-56"
@@ -57,17 +63,15 @@ export default function DepartementFilter({
       isMulti
       isSearchable
       // @ts-expect-error fix this
-      options={extractPostalCodesFromSimulationRecaps(simulationRecaps).map(
-        (postalCode) => ({
-          value: postalCode,
-          label: postalCode,
-          isDisabled: !filteredSimulationRecaps.some(
-            (simulationRecap) =>
-              simulationRecap.defaultAdditionalQuestionsAnswers.postalCode ===
-              postalCode
-          ),
-        })
-      )}
+      options={Object.keys(options).map((postalCode) => ({
+        value: postalCode,
+        label: `${postalCode} (${options[postalCode]})`,
+        isDisabled: !filteredSimulationRecaps.some(
+          (simulationRecap) =>
+            simulationRecap.defaultAdditionalQuestionsAnswers.postalCode ===
+            postalCode
+        ),
+      }))}
       placeholder={<Trans>Département</Trans>}
       value={savedSelection as unknown as string | number}
       onChange={handleSaveSelectionToLocalStorage}
