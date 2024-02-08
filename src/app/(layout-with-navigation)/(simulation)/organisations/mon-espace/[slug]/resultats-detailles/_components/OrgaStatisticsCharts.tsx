@@ -14,7 +14,7 @@ export default function OrgaStatisticsCharts({
 }) {
   // Calculate the mean for each category
   const meanCategories =
-    simulationRecaps?.[0] &&
+    simulationRecaps?.length > 0 ??
     Object.keys(simulationRecaps?.[0]?.categories).map((category) => {
       const mean = simulationRecaps?.reduce(
         (acc, obj) => acc + obj.categories[category],
@@ -79,16 +79,18 @@ export default function OrgaStatisticsCharts({
           <Trans>Par catégorie</Trans>
         </h3>
         <ul>
-          {Object.keys(simulationRecaps[0].categories).map(
-            (category, index) => (
-              <CategoryListItem
-                key={index}
-                category={category}
-                value={meanCategories[index].value}
-                simulationsRecap={simulationRecaps}
-              />
-            )
-          )}
+          {simulationRecaps?.length > 0 ??
+            Object.keys(simulationRecaps[0].categories).map(
+              (category, index) => (
+                <CategoryListItem
+                  key={index}
+                  category={category}
+                  // @ts-expect-error fix this
+                  value={meanCategories ? meanCategories[index].value : 0}
+                  simulationsRecap={simulationRecaps}
+                />
+              )
+            )}
         </ul>
         <div className="flex justify-between py-2">
           <div className="mr-10 w-64" />

@@ -48,7 +48,7 @@ export default function ResultatsDetaillesPage() {
   //     percentageOfVegetarians: 23.299,
   //     percentageOfCarOwners: 76.9,
   //   },
-  //   simulationsRecap: Array.from({ length: 200 }, () => {
+  //   simulationRecaps: Array.from({ length: 200 }, () => {
   //     const categories = {
   //       transport: parseFloat(String(Math.random() * 6).slice(0, 4)),
   //       logement: parseFloat(String(Math.random() * 6).slice(0, 4)),

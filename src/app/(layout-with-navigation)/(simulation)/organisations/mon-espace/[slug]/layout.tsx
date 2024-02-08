@@ -1,5 +1,6 @@
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { PropsWithChildren } from 'react'
+import { FiltersProvider } from './resultats-detailles/_components/FiltersProvider'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -13,5 +14,5 @@ export async function generateMetadata() {
 }
 
 export default function Layout({ children }: PropsWithChildren) {
-  return <>{children}</>
+  return <FiltersProvider>{children}</FiltersProvider>
 }

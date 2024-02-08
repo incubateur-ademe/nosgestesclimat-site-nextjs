@@ -2,11 +2,9 @@ import Trans from '@/components/translation/Trans'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { SimulationRecap } from '@/types/organizations'
 import dayjs from 'dayjs'
-import { SetStateAction, useContext, useEffect, useState } from 'react'
+import { SetStateAction, useContext } from 'react'
 import { MultiValue, SingleValue } from 'react-select'
 import { FiltersContext } from '../FiltersProvider'
-
-const STORAGE_KEY = 'ngc-organization-age-filter'
 
 function getAgeOptions({
   filteredSimulationRecaps,
@@ -67,29 +65,17 @@ export default function AgeFilter({
 }: {
   filteredSimulationRecaps: SimulationRecap[]
 }) {
-  const [savedSelection, setSavedSelection] = useState<(string | number)[]>([])
+  const { setAgeFilters } = useContext(FiltersContext)
 
-  function handleSaveSelectionToLocalStorage(
+  function handleChange(
     selectedOptions: MultiValue<string | number> | SingleValue<string | number>
   ) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedOptions))
     setAgeFilters(
       selectedOptions as unknown as SetStateAction<
         { value: [number, number] }[]
       >
     )
   }
-
-  useEffect(() => {
-    const savedSelection = localStorage.getItem(STORAGE_KEY)
-
-    if (savedSelection) {
-      const parsedSelection = JSON.parse(savedSelection)
-      setSavedSelection(parsedSelection)
-    }
-  }, [])
-
-  const { setAgeFilters } = useContext(FiltersContext)
 
   return (
     <ComplexSelect
@@ -107,8 +93,7 @@ export default function AgeFilter({
         }[]
       }
       placeholder={<Trans>Tranche d'âge</Trans>}
-      value={savedSelection as unknown as string | number}
-      onChange={handleSaveSelectionToLocalStorage}
+      onChange={handleChange}
     />
   )
 }
