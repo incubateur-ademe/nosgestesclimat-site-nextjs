@@ -19,10 +19,7 @@ export default function OrgaStatisticsFilters({
       </div>
 
       <div className="flex gap-6">
-        <AgeFilter
-          simulationRecaps={simulationRecaps}
-          filteredSimulationRecaps={filteredSimulationRecaps}
-        />
+        <AgeFilter filteredSimulationRecaps={filteredSimulationRecaps} />
 
         <DepartementFilter
           simulationRecaps={simulationRecaps}

@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { SimulationRecap } from '@/types/organizations'
-import { useContext, useEffect, useState } from 'react'
+import { SetStateAction, useContext, useEffect, useState } from 'react'
 import { MultiValue, SingleValue } from 'react-select'
 import { FiltersContext } from '../FiltersProvider'
 
@@ -34,7 +34,9 @@ export default function DepartementFilter({
   ) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedOptions))
 
-    setPostalCodeFilters(selectedOptions)
+    setPostalCodeFilters(
+      selectedOptions as unknown as SetStateAction<{ value: string }[]>
+    )
   }
 
   useEffect(() => {
@@ -54,6 +56,7 @@ export default function DepartementFilter({
       name="age"
       isMulti
       isSearchable
+      // @ts-expect-error fix this
       options={extractPostalCodesFromSimulationRecaps(simulationRecaps).map(
         (postalCode) => ({
           value: postalCode,

@@ -57,5 +57,5 @@ export type PollData = {
     percentageOfVegetarians: number
     percentageOfCarOwners: number
   }
-  simulationsRecap: SimulationRecap[]
+  simulationRecaps: SimulationRecap[]
 }
