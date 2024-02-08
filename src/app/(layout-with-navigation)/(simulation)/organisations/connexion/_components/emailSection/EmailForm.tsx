@@ -16,7 +16,7 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
 
   const { t } = useClientTranslation()
 
-  const { user, updateEmail, updateLoginExpirationDate } = useUser()
+  const { updateEmail, updateLoginExpirationDate } = useUser()
 
   const { mutateAsync: loginOrganization } = useMutation({
     mutationFn: ({ administratorEmail }: { administratorEmail: string }) =>
