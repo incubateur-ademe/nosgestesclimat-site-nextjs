@@ -18,5 +18,6 @@ export default function useFetchOrganization({ email }: { email: string }) {
         )
         .then((response) => response.data),
     enabled: !!email,
+    retry: false,
   })
 }
