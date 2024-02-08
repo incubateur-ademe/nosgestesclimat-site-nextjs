@@ -20,7 +20,7 @@ export default function CategoryChartItem({
   const { icons, title } = useRule(category)
 
   const percentageOfMaxValue = 1 - (maxValue - value) / maxValue
-  console.log(percentageOfMaxValue, maxValue, value)
+
   return (
     <VerticalBarChartItem
       value={value}

@@ -25,10 +25,6 @@ function extractPostalCodesFromSimulationRecaps({
   )
 
   return uniquePostalCodes.map((postalCode) => {
-    console.log(
-      postalCode,
-      filteredPostalCodes.filter((code) => code === postalCode).length
-    )
     return {
       value: postalCode,
       label: `${postalCode} (${

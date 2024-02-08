@@ -3,7 +3,7 @@ import * as XLSX from 'xlsx'
 export function createXLSXFileAndDownload({
   data,
   fileName,
-  callback,
+  callback = () => {},
 }: {
   data: { [key: string]: any }[]
   fileName: string

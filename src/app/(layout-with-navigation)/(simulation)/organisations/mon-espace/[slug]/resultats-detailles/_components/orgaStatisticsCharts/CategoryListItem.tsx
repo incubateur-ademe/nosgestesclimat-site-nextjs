@@ -2,15 +2,12 @@ import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
+import { SimulationRecap } from '@/types/organizations'
 import { capitalizeString } from '@/utils/capitalizeString'
 import RepartitionChart from './RepartitionChart'
 
 type Props = {
-  simulationsRecap: {
-    categories: {
-      [key: string]: number
-    }
-  }[]
+  simulationsRecap: SimulationRecap[]
   value: number
   category: string
 }
@@ -44,7 +41,6 @@ export default function CategoryListItem({
         maxValue={6}
         items={simulationsRecap.map((obj) => ({
           value: obj.categories[category],
-          // @ts-expect-error FIXME: isCurrentUser is not defined
           shouldBeHighlighted: obj.isCurrentUser,
         }))}
       />
