@@ -96,7 +96,6 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
         placeholder="jeanmarc@nosgestesclimat.fr"
         required
         error={inputError}
-        defaultValue={user?.email}
       />
 
       {inputError && <p className="mt-2 text-sm text-red-600">{inputError}</p>}
