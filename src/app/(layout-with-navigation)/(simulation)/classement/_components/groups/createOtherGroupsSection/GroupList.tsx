@@ -1,6 +1,6 @@
 'use client'
 
-import GroupItem from './GroupItem'
+import GroupItem from './groupList/GroupItem'
 
 type Props = {
   groups: any[]

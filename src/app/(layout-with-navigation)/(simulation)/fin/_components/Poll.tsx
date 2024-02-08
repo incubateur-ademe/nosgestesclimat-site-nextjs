@@ -3,7 +3,7 @@
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { useAppNavigation } from '@/hooks/navigation/useAppNavigation'
-import { usePoll } from '@/hooks/organisations/usePoll'
+import { usePoll } from '@/hooks/organizations/usePoll'
 import { useUser } from '@/publicodes-state'
 
 export default function Poll() {

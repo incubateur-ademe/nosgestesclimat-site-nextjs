@@ -1,16 +1,16 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { usePoll } from '@/hooks/organisations/usePoll'
-import { usePollId } from '@/hooks/organisations/usePollId'
+import { useOrganisationQueryParams } from '@/hooks/organizations/useOrganisationQueryParams'
+import { usePoll } from '@/hooks/organizations/usePoll'
 
 export default function OrganisationDisclaimer() {
-  const { pollId } = usePollId()
+  const { pollSlug } = useOrganisationQueryParams()
 
-  const { data: poll, isLoading } = usePoll(pollId)
+  const { data: poll, isLoading } = usePoll({ pollSlug })
 
-  // If there is no pollId, we don't display the disclaimer
-  if (!pollId) {
+  // If there is no pollSlug, we don't display the disclaimer
+  if (!pollSlug) {
     return null
   }
 
@@ -24,7 +24,7 @@ export default function OrganisationDisclaimer() {
       <p className="overflow-visible before:absolute before:left-0 before:content-['🏢'] ">
         <Trans>
           Ce test vous est proposé par{' '}
-          <b>{isLoading ? '... ' : poll?.organisationInfo.name}</b>. Vos
+          <b>{isLoading ? '... ' : poll?.organisationInfo?.name}</b>. Vos
           résultats seront partagés anonymement avec l’organisation
         </Trans>
       </p>

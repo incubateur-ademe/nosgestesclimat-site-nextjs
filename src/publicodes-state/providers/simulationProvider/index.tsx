@@ -35,7 +35,7 @@ type Props = {
   updateSimulation: (simulation: {
     situationToAdd?: Situation
     foldedStepToAdd?: string
-    additionalQuestions?: Record<string, string>
+    defaultAdditionalQuestions?: Record<string, string>
     actionChoices?: ActionChoices
     computedResults?: ComputedResults
     progression?: number

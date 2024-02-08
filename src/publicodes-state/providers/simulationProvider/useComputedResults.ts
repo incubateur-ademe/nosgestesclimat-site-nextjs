@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react'
 import {
-  ActionChoices,
   ComputedResults,
   DottedName,
   NGCEvaluatedNode,
@@ -11,16 +10,7 @@ type Props = {
   situation: Situation
   categories: string[]
   safeEvaluate: (ruleName: DottedName) => NGCEvaluatedNode | null
-  updateSimulation: (simulation: {
-    situationToAdd?: Situation
-    foldedStepToAdd?: string
-    additionalQuestions?: Record<string, string>
-    actionChoices?: ActionChoices
-    computedResults?: ComputedResults
-    progression?: number
-    poll?: string
-    group?: string
-  }) => void
+  updateSimulation: (simulation: { computedResults?: ComputedResults }) => void
 }
 export function useComputedResults({
   situation,

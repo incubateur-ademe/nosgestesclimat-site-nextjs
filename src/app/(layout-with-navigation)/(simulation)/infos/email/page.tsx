@@ -48,6 +48,8 @@ export default function Email() {
     [email, updateEmail, t, router, getLinkToInfosPage]
   )
 
+  console.log(getLinkToInfosPage(1))
+
   return (
     <form>
       <Title
@@ -64,7 +66,11 @@ export default function Email() {
         error={error}
         setError={setError}
       />
-      <Navigation linkToPrev={linkToTutorial} handleSubmit={handleSubmit} />
+      <Navigation
+        linkToPrev={linkToTutorial}
+        handleSubmit={handleSubmit}
+        submitDisabled={!getLinkToInfosPage(1)}
+      />
     </form>
   )
 }

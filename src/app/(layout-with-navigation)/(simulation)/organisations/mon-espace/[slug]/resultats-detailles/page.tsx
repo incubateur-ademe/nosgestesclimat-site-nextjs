@@ -77,7 +77,7 @@ export default function ResultatsDetaillesPage() {
         categories,
         defaultAdditionalQuestionsAnswers: {
           // Add a date property to the simulation recap, randomly set to a date between 1960 and 2024 included
-          birthDate: new Date(
+          birthdate: new Date(
             Math.floor(Math.random() * (2024 - 1960 + 1)) + 1960,
             Math.floor(Math.random() * 12),
             Math.floor(Math.random() * 31)
@@ -95,7 +95,7 @@ export default function ResultatsDetaillesPage() {
   const filteredSimulationsRecap = mockPollData?.simulationsRecap.filter(
     ({ defaultAdditionalQuestionsAnswers }) => {
       const birthYear = new Date(
-        defaultAdditionalQuestionsAnswers.birthDate
+        defaultAdditionalQuestionsAnswers.birthdate
       ).getFullYear()
       const postalCode = defaultAdditionalQuestionsAnswers.postalCode
 

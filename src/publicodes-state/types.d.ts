@@ -75,7 +75,7 @@ export type Simulation = {
   persona?: string
   computedResults?: ComputedResults
   progression?: number
-  additionalQuestions?: Record<string, string>
+  defaultAdditionalQuestions?: Record<string, string>
   poll?: string
   group?: string
 }

@@ -15,7 +15,7 @@ import CTAButton from './headerDesktop/CTAButton'
 import DebugIndicator from './headerDesktop/DebugIndicator'
 import ModelVersionIndicator from './headerDesktop/ModelVersionIndicator'
 
-const HIDE_CTA_PATHS = ['/fin', '/simulateur/bilan', '/tutoriel']
+const HIDE_CTA_PATHS = ['/fin', '/simulateur/bilan', '/tutoriel', '/infos']
 
 export default function HeaderDesktop() {
   const { t } = useClientTranslation()

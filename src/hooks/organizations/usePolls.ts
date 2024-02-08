@@ -1,7 +1,7 @@
-import { fetchPoll } from '@/helpers/organisations/fetchPoll'
+import { fetchPoll } from '@/helpers/organizations/fetchPoll'
 import { useQuery } from '@tanstack/react-query'
 
-export const usePoll = (id: string | null) => {
+export const usePolls = (id: string | null) => {
   return useQuery({
     queryKey: ['poll', id],
     queryFn: () => fetchPoll(id),

@@ -24,6 +24,7 @@ export type OrganizationPoll = {
   startDate: Date
   endDate: Date
   name: string
+  slug: string
   defaultAdditionalQuestions: [string]
   numberOfParticipants: number
 }

@@ -71,10 +71,10 @@ export default function QuestionsComplementaires({
 
       <div className="rounded-md border border-grey-200">
         <ToggleField
-          name="birthDateToggle"
-          value={poll.defaultAdditionalQuestions.includes('birthDate')}
+          name="birthdateToggle"
+          value={poll.defaultAdditionalQuestions.includes('birthdate')}
           onChange={(isEnabled: boolean) => {
-            handleChange({ questionKey: 'birthDate', value: isEnabled })
+            handleChange({ questionKey: 'birthdate', value: isEnabled })
           }}
           label={<Trans>Quelle est votre année de naissance ?</Trans>}
         />

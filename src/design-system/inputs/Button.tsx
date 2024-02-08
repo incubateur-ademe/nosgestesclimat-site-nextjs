@@ -49,6 +49,7 @@ export default function Button({
       onClick={disabled ? () => {} : onClick}
       type={type}
       aria-disabled={disabled}
+      disabled={disabled}
       title={title}
       id={id}
       className={twMerge(

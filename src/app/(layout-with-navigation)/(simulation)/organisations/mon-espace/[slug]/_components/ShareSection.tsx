@@ -24,7 +24,7 @@ export default function ShareSection({
               </Trans>
             }>
             <CopyInput
-              textToCopy={`${window.location.origin}/o/${organization?.slug}`}
+              textToCopy={`${window.location.origin}/o/${organization?.slug}/${organization?.polls[0].slug}`}
             />
           </CTACard>
 

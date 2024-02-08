@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
-import { usePollId } from '@/hooks/organisations/usePollId'
+import { useOrganisationQueryParams } from '@/hooks/organizations/useOrganisationQueryParams'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { useContext } from 'react'
@@ -31,7 +31,7 @@ export default function Commencer() {
 
   const { postalCode, birthdate } = useContext(InfosContext)
 
-  const { pollId } = usePollId()
+  const { pollSlug } = useOrganisationQueryParams()
 
   const { getCurrentSimulation, initSimulation, updateCurrentSimulation } =
     useUser()
@@ -56,11 +56,11 @@ export default function Commencer() {
         href="/simulateur/bilan"
         onClick={() => {
           updateCurrentSimulation({
-            additionalQuestions: {
+            defaultAdditionalQuestions: {
               postalCode,
               birthdate,
             },
-            poll: pollId || undefined,
+            poll: pollSlug || undefined,
           })
         }}>
         {buttonLabels[status]}
@@ -71,11 +71,11 @@ export default function Commencer() {
           href="/simulateur/bilan"
           onClick={() => {
             initSimulation({
-              additionalQuestions: {
+              defaultAdditionalQuestions: {
                 postalCode,
                 birthdate,
               },
-              poll: pollId || undefined,
+              poll: pollSlug || undefined,
             })
           }}>
           <Trans>Commencer un nouveau test</Trans>

@@ -36,14 +36,14 @@ export default function useSimulations({
     situation = {},
     persona,
     foldedSteps = [],
-    additionalQuestions,
+    defaultAdditionalQuestions,
     poll,
     group,
   }: {
     situation?: Situation
     persona?: string
     foldedSteps?: string[]
-    additionalQuestions?: Record<string, string>
+    defaultAdditionalQuestions?: Record<string, string>
     poll?: string
     group?: string
   } = {}) => {
@@ -60,7 +60,7 @@ export default function useSimulations({
         foldedSteps,
         actionChoices: {},
         persona,
-        additionalQuestions,
+        defaultAdditionalQuestions,
         poll,
         group,
       },
@@ -76,7 +76,7 @@ export default function useSimulations({
       situationToAdd,
       foldedStepToAdd,
       actionChoices,
-      additionalQuestions,
+      defaultAdditionalQuestions,
       computedResults,
       progression,
       poll,
@@ -84,7 +84,7 @@ export default function useSimulations({
     }: {
       situationToAdd?: Situation
       foldedStepToAdd?: string
-      additionalQuestions?: Record<string, string>
+      defaultAdditionalQuestions?: Record<string, string>
       actionChoices?: ActionChoices
       computedResults?: ComputedResults
       progression?: number
@@ -114,11 +114,13 @@ export default function useSimulations({
       }
 
       if (actionChoices !== undefined) {
-        simulationToUpdate.additionalQuestions = additionalQuestions
+        simulationToUpdate.defaultAdditionalQuestions =
+          defaultAdditionalQuestions
       }
 
-      if (additionalQuestions !== undefined) {
-        simulationToUpdate.additionalQuestions = additionalQuestions
+      if (defaultAdditionalQuestions !== undefined) {
+        simulationToUpdate.defaultAdditionalQuestions =
+          defaultAdditionalQuestions
       }
 
       if (computedResults !== undefined) {
