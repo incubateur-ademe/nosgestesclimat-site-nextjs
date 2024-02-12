@@ -137,3 +137,8 @@ type NGCRule = Rule & {
 }
 
 export type NGCRules = Record<DottedName, NGCRule>
+
+export type MigrationType = {
+  keysToMigrate: Record<DottedName, DottedName>
+  valuesToMigrate: Record<DottedName, Record<string, NodeValue>>
+}

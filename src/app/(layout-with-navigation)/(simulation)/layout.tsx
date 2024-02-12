@@ -1,5 +1,5 @@
 import Providers from '@/components/providers/Providers'
-import { getSupportedRegions } from '@/helpers/getSupportedRegions'
+import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { PropsWithChildren } from 'react'
 
 export default async function SimulateurLayout({

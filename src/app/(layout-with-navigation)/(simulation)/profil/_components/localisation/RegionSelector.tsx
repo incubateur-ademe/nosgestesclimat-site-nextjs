@@ -32,10 +32,7 @@ export default function RegionSelector({
   // NOTE(@EmileRolley): how could this be undefined? This doesn't match the type annotations
   const { region } = user ?? {}
 
-  const { isFetching } = useRules({
-    lang: locale,
-    region: region?.code ?? 'FR',
-  })
+  const { isFetching } = useRules()
 
   return (
     <>

@@ -1,6 +1,7 @@
 import FilAriane from '@/components/layout/FilAriane'
 import Header from '@/components/layout/Header'
 import getGeolocation from '@/helpers/getGeolocation'
+import getMigrationInstructions from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
 import '@/locales/initClient'
 import '@/locales/initServer'
@@ -53,6 +54,7 @@ export const marianne = localFont({
 export default async function RootLayout({ children }: PropsWithChildren) {
   const lang = currentLocale()
   const region = await getGeolocation()
+  const migrationInstructions = await getMigrationInstructions()
 
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
@@ -102,7 +104,9 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
         <ErrorBoundary showDialog fallback={ErrorFallback}>
-          <MainLayoutProviders region={region}>
+          <MainLayoutProviders
+            region={region}
+            migrationInstructions={migrationInstructions}>
             <Header />
 
             <FilAriane />

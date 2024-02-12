@@ -3,7 +3,6 @@
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import { orderedCategories } from '@/constants/orderedCategories'
 import Loader from '@/design-system/layout/Loader'
-import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
@@ -23,7 +22,6 @@ export default function Providers({
   isOptim = true,
 }: PropsWithChildren<Props>) {
   const {
-    user,
     getCurrentSimulation,
     currentSimulationId,
     initSimulation,
@@ -33,15 +31,9 @@ export default function Providers({
     updateFoldedStepsOfCurrentSimulation,
   } = useUser()
 
-  const lang = useLocale()
-
   const pathname = usePathname()
 
-  const { data: rules, isInitialLoading } = useRules({
-    lang,
-    region: supportedRegions[user.region?.code] ? user.region.code : 'FR',
-    isOptim: isOptim,
-  })
+  const { data: rules, isLoading } = useRules({ isOptim })
 
   useEffect(() => {
     if (!currentSimulationId) {
@@ -53,7 +45,7 @@ export default function Providers({
     return <>{children}</>
   }
 
-  return currentSimulationId && !isInitialLoading ? (
+  return currentSimulationId && !isLoading ? (
     <SimulationProvider
       key={currentSimulationId}
       rules={rules}
