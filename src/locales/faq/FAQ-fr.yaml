@@ -40,7 +40,7 @@
 
     Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier **l'empreinte du mix électrique** (en gCO₂ₑ/kWh), influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs. Vous vous demandez ce que donnerait votre empreinte dans un de ces pays ? Vous pouvez changer de région [sur cette page](https://nosgestesclimat.fr/profil).
 
-    Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
+    Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/incubateur-ademe/nosgestesclimat-site/issues/71).
 
 - question: L'empreinte calculée est-elle celle de mon foyer, ou seulement la mienne ?
   id: foyer
@@ -57,7 +57,7 @@
 
     Pour chacun d'entre eux, **nous avons donc arbitré entre personnel et partagé** (la télévision est partagée, l'ordinateur est personnel). Si pour vous la distinction n'est pas la même, ne vous inquiétez pas : ces postes représentent peu dans votre empreinte finale.
 
-    En parallèle, l’équipe travaille à développer un **parcours [« foyer »](https://github.com/datagir/nosgestesclimat/issues/113)** afin de pouvoir estimer l’empreinte carbone de sa famille.
+    En parallèle, l’équipe travaille à développer un **parcours [« foyer »](https://github.com/incubateur-ademe/nosgestesclimat/issues/113)** afin de pouvoir estimer l’empreinte carbone de sa famille.
 
 - question: Vous ne posez pas de questions sur les enfants ?
   id: enfants
