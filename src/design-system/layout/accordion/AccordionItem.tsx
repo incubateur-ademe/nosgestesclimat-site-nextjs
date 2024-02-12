@@ -1,5 +1,4 @@
 import ChevronRight from '@/design-system/icons/ChevronRight'
-import { DottedName } from '@/publicodes-state/types'
 import { motion } from 'framer-motion'
 import { ReactNode, useState } from 'react'
 
@@ -7,7 +6,6 @@ export type AccordionItemType = {
   title: ReactNode
   content: ReactNode
   className?: string
-  dottedName: DottedName
   isReadOnly?: boolean
 }
 
