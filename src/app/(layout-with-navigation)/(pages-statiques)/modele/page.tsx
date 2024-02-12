@@ -1,7 +1,6 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { Metadata } from 'next'
 import ModeleDemoBlock from './_components/ModeleDemoBlock'
 import ModeleIssuePreviews from './_components/ModeleIssuePreviews'
@@ -17,8 +16,6 @@ export const metadata: Metadata = {
 }
 
 export default async function ModelePage() {
-  const supportedRegions = await getSupportedRegions()
-
   return (
     <div>
       <Title
@@ -74,7 +71,7 @@ export default async function ModelePage() {
         </Trans>
       </p>
 
-      <ModeleDemoBlock supportedRegions={supportedRegions} />
+      <ModeleDemoBlock />
 
       <p>
         🕵️
@@ -94,7 +91,7 @@ export default async function ModelePage() {
         📚️ <Trans>Un modèle complet</Trans>
       </h2>
 
-      <ModeleStatsBlock supportedRegions={supportedRegions} />
+      <ModeleStatsBlock />
 
       <p>
         <Trans i18nKey={'model.stats2'}>

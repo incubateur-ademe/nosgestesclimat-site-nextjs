@@ -20,11 +20,11 @@ export default function FormProvider({
     subcategories,
     safeGetRule,
     safeEvaluate,
-    pristineEngine,
     situation,
     foldedSteps,
     everyQuestions,
     everyMosaicChildren,
+    rawMissingVariables,
     updateProgression,
   } = useContext(simulationContext)
 
@@ -42,7 +42,6 @@ export default function FormProvider({
     questionsByCategories,
   } = useQuestions({
     root,
-    pristineEngine,
     safeGetRule,
     safeEvaluate,
     categories,
@@ -51,6 +50,7 @@ export default function FormProvider({
     situation,
     everyQuestions,
     everyMosaicChildren,
+    rawMissingVariables,
   })
 
   const { progression, remainingQuestionsByCategories } = useProgression({

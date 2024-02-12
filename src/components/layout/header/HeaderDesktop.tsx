@@ -13,7 +13,6 @@ import { usePathname } from 'next/navigation'
 import NavLink from './NavLink'
 import CTAButton from './headerDesktop/CTAButton'
 import DebugIndicator from './headerDesktop/DebugIndicator'
-import ModelVersionIndicator from './headerDesktop/ModelVersionIndicator'
 
 const HIDE_CTA_PATHS = ['/fin', '/simulateur/bilan', '/tutoriel']
 
@@ -79,7 +78,6 @@ export default function HeaderDesktop() {
           </div>
           <div className="flex items-center gap-8">
             <PRIndicator />
-            <ModelVersionIndicator />
             <DebugIndicator />
 
             <NavLink href="/profil" icon={ProfileIcon} title={t('Profil')}>

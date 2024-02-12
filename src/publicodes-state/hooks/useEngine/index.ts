@@ -37,5 +37,7 @@ export default function useEngine() {
     getSubcategories,
     checkIfValid,
     updateSituation,
+    safeEvaluate,
+    safeGetRule,
   }
 }

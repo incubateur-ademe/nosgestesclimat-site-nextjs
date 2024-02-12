@@ -3,18 +3,23 @@
 import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
 import useTrackSplitTesting from '@/hooks/useTrackSplitTesting'
 import { UserProvider } from '@/publicodes-state'
+import { MigrationType } from '@/publicodes-state/types'
 import { PropsWithChildren } from 'react'
 import CheckFixedRegion from './mainLayoutProviders/CheckFixedRegion'
 import { IframeResizer } from './mainLayoutProviders/IframeResizer'
-import PageViewTracker from './mainLayoutProviders/PageViewTracker'
 import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProviderWrapper'
 import QueryParamsProvider from './mainLayoutProviders/QueryParamsProvider'
 import SimulationFromUrlLoader from './mainLayoutProviders/SimulationFromUrlLoader'
 
+type Props = {
+  region: { code: string; name: string }
+  migrationInstructions: MigrationType
+}
 export default function MainLayoutProviders({
   children,
   region,
-}: PropsWithChildren<{ region: { code: string; name: string } }>) {
+  migrationInstructions,
+}: PropsWithChildren<Props>) {
   // Handles sending split testing data to Matomo
   useTrackSplitTesting()
 
@@ -22,16 +27,15 @@ export default function MainLayoutProviders({
     <QueryParamsProvider>
       <IframeOptionsProvider>
         <QueryClientProviderWrapper>
-          <PageViewTracker>
-            <IframeResizer />
-            <UserProvider
-              initialRegion={region}
-              storageKey="nosgestesclimat::v3">
-              <SimulationFromUrlLoader />
-              <CheckFixedRegion />
-              {children}
-            </UserProvider>
-          </PageViewTracker>
+          <IframeResizer />
+          <UserProvider
+            initialRegion={region}
+            storageKey="nosgestesclimat::v3"
+            migrationInstructions={migrationInstructions}>
+            <SimulationFromUrlLoader />
+            <CheckFixedRegion />
+            {children}
+          </UserProvider>
         </QueryClientProviderWrapper>
       </IframeOptionsProvider>
     </QueryParamsProvider>

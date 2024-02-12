@@ -1,6 +1,5 @@
-import { NGC_MODEL_API_URL } from '@/constants/urls'
-import { fetchModel } from '@/helpers/data/fetchModel'
 import getPosts from '@/helpers/markdown/getPosts'
+import getRules from '@/helpers/modelFetching/getRules'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import { MetadataRoute } from 'next'
 import { utils } from 'publicodes'
@@ -29,10 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
-  const rules = await fetchModel({
-    dataServer: NGC_MODEL_API_URL,
-    regionCode: 'FR',
-    locale: 'fr',
+  const rules = await getRules({
     isOptim: false,
   })
   const documentationUrls = Object.keys(rules).map((dottedName) => ({
