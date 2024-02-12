@@ -12,7 +12,7 @@ import { useContext } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
 const titles = {
-  notStarted: `Vous n'avez pas encore calculé votre empreinte carbone\u202f!`,
+  notStarted: 'Vous n'avez pas encore calculé votre empreinte carbone\u202f!',
   started: 'Vous avez déjà commencé le test Nos Gestes Climat\u202f!',
   finished: 'Vous avez déjà réalisé le test Nos Gestes Climat\u202f!',
 }
