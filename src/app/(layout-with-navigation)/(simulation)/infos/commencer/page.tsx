@@ -12,12 +12,13 @@ import { useContext } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
 const titles = {
-  notStarted: 'Vous n'avez pas encore calculé votre empreinte carbone\u202f!',
+  notStarted: `Vous n'avez pas encore calculé votre empreinte carbone\u202f!`,
   started: 'Vous avez déjà commencé le test Nos Gestes Climat\u202f!',
   finished: 'Vous avez déjà réalisé le test Nos Gestes Climat\u202f!',
 }
 const texts = {
-  notStarted: 'Passez le test Nos Gestes Climat, vous aurez la réponse dans 10 minutes.',
+  notStarted:
+    'Passez le test Nos Gestes Climat, vous aurez la réponse dans 10 minutes.',
   started: 'Vous pouvez reprendre votre test en cours, ou en recommencer un.',
   finished:
     'Vous pouvez utiliser vos données existantes, ou recommencer le test.',
