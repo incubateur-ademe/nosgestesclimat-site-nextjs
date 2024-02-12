@@ -1,5 +1,6 @@
 'use client'
 
+import getSomme from '@/publicodes-state/helpers/getSomme'
 import { DottedName } from '@/publicodes-state/types'
 import { useContext, useMemo } from 'react'
 import { useEngine, useUser } from '../..'
@@ -23,20 +24,23 @@ export default function useActions() {
 
   const currentSimulation = getCurrentSimulation()
 
-  const orderedActions = useMemo<string[]>(
-    () =>
-      engine
-        .getRule('actions')
-        .rawNode.formule.somme.map((action: string) => ({
-          dottedName: action,
-          value: getValue(action),
-        }))
-        .sort((a: ActionObject, b: ActionObject) =>
-          a.value > b.value ? -1 : 1
-        )
-        .map((actionObject: ActionObject) => actionObject.dottedName),
-    [engine, getValue]
-  )
+  const orderedActions = useMemo<string[]>(() => {
+    const actionsRule = engine.getRule('actions')
+    const somme = getSomme(actionsRule.rawNode)
+
+    if (!somme) {
+      console.error('No actions found')
+      return []
+    }
+
+    return somme
+      .map((action: string) => ({
+        dottedName: action,
+        value: getValue(action) as number,
+      }))
+      .sort((a: ActionObject, b: ActionObject) => (a.value > b.value ? -1 : 1))
+      .map((actionObject: ActionObject) => actionObject.dottedName)
+  }, [engine, getValue])
 
   const { chosenActions, declinedActions } =
     Object.keys(currentSimulation?.actionChoices ?? {})?.reduce(

@@ -27,7 +27,7 @@ export default function ActionsPage({
 
   const { rules, getRuleObject } = useTempEngine()
 
-  if (!currentSimulation) return
+  if (!currentSimulation || !rules) return
 
   const actionChoices = currentSimulation.actionChoices
 

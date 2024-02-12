@@ -21,6 +21,7 @@ export default function useEngine(rules: Rules) {
         warn: () => null,
         error: console.error,
       },
+      allowOrphanRules: true,
     })
     console.timeEnd(`⚙️ Parsing ${nbRules}`)
     return engine

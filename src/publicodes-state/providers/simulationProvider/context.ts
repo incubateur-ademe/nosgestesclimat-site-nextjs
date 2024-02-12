@@ -5,12 +5,12 @@ import {
   Engine,
   NGCEvaluatedNode,
   NGCRuleNode,
-  Rules,
+  NGCRules,
   Situation,
 } from '../../types'
 
 type SimulationContextType = {
-  rules: Rules
+  rules: NGCRules | null
   engine: Engine
   pristineEngine: Engine
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
