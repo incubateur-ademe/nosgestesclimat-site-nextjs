@@ -1,6 +1,7 @@
 'use client'
 
 import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
+import useTrackPageView from '@/hooks/useTrackPageView'
 import useTrackSplitTesting from '@/hooks/useTrackSplitTesting'
 import { UserProvider } from '@/publicodes-state'
 import { MigrationType } from '@/publicodes-state/types'
@@ -22,6 +23,7 @@ export default function MainLayoutProviders({
 }: PropsWithChildren<Props>) {
   // Handles sending split testing data to Matomo
   useTrackSplitTesting()
+  useTrackPageView()
 
   return (
     <QueryParamsProvider>
