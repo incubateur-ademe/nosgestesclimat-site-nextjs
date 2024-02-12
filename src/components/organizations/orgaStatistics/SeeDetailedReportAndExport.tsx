@@ -1,10 +1,15 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
-import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { useFetchPollData } from '@/hooks/organizations/useFetchPollData'
 import { usePathname } from 'next/navigation'
+import ExportDataButton from '../ExportDataButton'
 
 export default function SeeDetailedReportAndExport() {
   const pathname = usePathname()
+
+  const { data: pollData } = useFetchPollData()
 
   return (
     <section className="mt-16 flex flex-wrap justify-center gap-4 pb-8 md:justify-normal">
@@ -12,9 +17,7 @@ export default function SeeDetailedReportAndExport() {
         <Trans>Voir le rapport détaillé</Trans>
       </ButtonLink>
 
-      <Button size="lg" color="text">
-        <Trans>Exporter les données</Trans>
-      </Button>
+      <ExportDataButton simulationRecaps={pollData?.simulationRecaps ?? []} />
     </section>
   )
 }

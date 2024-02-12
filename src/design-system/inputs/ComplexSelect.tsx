@@ -7,7 +7,7 @@ import Select, {
 } from 'react-select'
 
 type Props = {
-  options: readonly (string | number | GroupBase<string | number>)[]
+  options: (string | number | GroupBase<string | number>)[]
   name: string
   label?: string
   error?: string

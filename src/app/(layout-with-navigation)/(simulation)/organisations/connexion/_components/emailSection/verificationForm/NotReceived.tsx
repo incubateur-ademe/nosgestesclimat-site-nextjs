@@ -4,7 +4,7 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {
   isRetryButtonDisabled: boolean
@@ -22,8 +22,10 @@ export default function NotReceived({
   timeLeft,
 }: Props) {
   const [shouldDisplayConfirmation, setShouldDisplayConfirmation] =
-    React.useState(false)
+    useState(false)
   const { t } = useClientTranslation()
+
+  const timeoutRef = useRef<NodeJS.Timeout>()
 
   async function handleResendVerificationCode() {
     if (isRetryButtonDisabled) {
@@ -33,11 +35,20 @@ export default function NotReceived({
     await sendVerificationCode()
     setShouldDisplayConfirmation(true)
 
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setTimeLeft(30)
       setShouldDisplayConfirmation(false)
     }, 1500)
   }
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
+
   return (
     <>
       <p className="mt-12">

@@ -14,7 +14,7 @@ export default function OrgaStatisticsCharts({
 }) {
   // Calculate the mean for each category
   const meanCategories =
-    simulationRecaps?.[0] &&
+    simulationRecaps?.length > 0 ??
     Object.keys(simulationRecaps?.[0]?.categories).map((category) => {
       const mean = simulationRecaps?.reduce(
         (acc, obj) => acc + obj.categories[category],
@@ -33,8 +33,10 @@ export default function OrgaStatisticsCharts({
       </h2>
 
       <p>
-        Chaque participation est représentée par une barre verticale. Votre
-        score est affiché en rose.
+        <Trans>
+          Chaque participation est représentée par une barre verticale. Votre
+          score est affiché en rose.
+        </Trans>
       </p>
 
       <Separator />
@@ -56,40 +58,56 @@ export default function OrgaStatisticsCharts({
           <div className="mt-4 flex items-baseline justify-between">
             <span>
               <Emoji className="text-xl">🎯</Emoji>{' '}
-              <strong className="text-lg">2</strong> <span>tonnes</span>
+              <strong className="text-lg">2</strong>{' '}
+              <span>
+                <Trans>tonnes</Trans>
+              </span>
             </span>
 
             <span>
-              <strong className="text-lg">29</strong> <span>tonnes</span>
+              <strong className="text-lg">29</strong>{' '}
+              <span>
+                <Trans>tonnes</Trans>
+              </span>
             </span>
           </div>
         </div>
       </section>
 
       <section>
-        <h3>Par catégorie</h3>
+        <h3>
+          <Trans>Par catégorie</Trans>
+        </h3>
         <ul>
-          {Object.keys(simulationRecaps[0].categories).map(
-            (category, index) => (
-              <CategoryListItem
-                key={index}
-                category={category}
-                value={meanCategories[index].value}
-                simulationsRecap={simulationRecaps}
-              />
-            )
-          )}
+          {simulationRecaps?.length > 0 ??
+            Object.keys(simulationRecaps[0].categories).map(
+              (category, index) => (
+                <CategoryListItem
+                  key={index}
+                  category={category}
+                  // @ts-expect-error fix this
+                  value={meanCategories ? meanCategories[index].value : 0}
+                  simulationsRecap={simulationRecaps}
+                />
+              )
+            )}
         </ul>
         <div className="flex justify-between py-2">
           <div className="mr-10 w-64" />
 
           <div className="flex flex-1 justify-between">
             <div>
-              <strong className="text-lg">0</strong> <span>tonnes</span>
+              <strong className="text-lg">0</strong>{' '}
+              <span>
+                <Trans>tonnes</Trans>
+              </span>
             </div>
 
             <div>
-              <strong className="text-lg">6</strong> <span>tonnes</span>
+              <strong className="text-lg">6</strong>{' '}
+              <span>
+                <Trans>tonnes</Trans>
+              </span>
             </div>
           </div>
         </div>

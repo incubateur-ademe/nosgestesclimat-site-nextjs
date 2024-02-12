@@ -1,7 +1,7 @@
-// Initialise react-i18next
 import FilAriane from '@/components/layout/FilAriane'
 import Header from '@/components/layout/Header'
 import getGeolocation from '@/helpers/getGeolocation'
+// Initialise react-i18next
 import '@/locales/initClient'
 import '@/locales/initServer'
 import { ErrorBoundary } from '@sentry/nextjs'

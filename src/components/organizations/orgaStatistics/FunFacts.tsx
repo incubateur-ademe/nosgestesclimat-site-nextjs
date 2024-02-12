@@ -10,6 +10,8 @@ export default function FunFacts({
     percentageOfCarOwners: number
   }
 }) {
+  if (!funFacts) return null
+
   return (
     <section className="mb-20 flex justify-center">
       <div className="flex flex-col gap-8 md:flex-row md:gap-16">

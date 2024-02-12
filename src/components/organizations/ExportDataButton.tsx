@@ -8,10 +8,10 @@ import { useState } from 'react'
 import Trans from '../translation/Trans'
 
 export default function ExportDataButton({
-  simulationsRecap,
+  simulationRecaps,
   ...props
 }: ButtonProps & {
-  simulationsRecap: SimulationRecap[]
+  simulationRecaps: SimulationRecap[]
 }) {
   const [isLoading, setIsLoading] = useState(false)
 
@@ -19,7 +19,7 @@ export default function ExportDataButton({
     setIsLoading(true)
 
     createXLSXFileAndDownload({
-      data: simulationsRecap.map((simulation) => ({
+      data: simulationRecaps.map((simulation) => ({
         date: dayjs(simulation.date).format('DD/MM/YYYY'),
         total: simulation.bilan,
         transport: simulation.categories.transport,

@@ -2,17 +2,13 @@ import Trans from '@/components/translation/Trans'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { SimulationRecap } from '@/types/organizations'
 import dayjs from 'dayjs'
-import { useContext, useEffect, useState } from 'react'
+import { SetStateAction, useContext } from 'react'
 import { MultiValue, SingleValue } from 'react-select'
 import { FiltersContext } from '../FiltersProvider'
 
-const STORAGE_KEY = 'ngc-organization-age-filter'
-
 function getAgeOptions({
-  simulationsRecap,
   filteredSimulationRecaps,
 }: {
-  simulationsRecap: SimulationRecap[]
   filteredSimulationRecaps: SimulationRecap[]
 }) {
   // Renvoie un tableau d'objets avec une valeur et un label
@@ -65,41 +61,39 @@ function getAgeOptions({
 }
 
 export default function AgeFilter({
-  simulationRecaps,
   filteredSimulationRecaps,
 }: {
-  simulationRecaps: SimulationRecap[]
   filteredSimulationRecaps: SimulationRecap[]
 }) {
-  const [savedSelection, setSavedSelection] = useState<(string | number)[]>([])
+  const { setAgeFilters } = useContext(FiltersContext)
 
-  function handleSaveSelectionToLocalStorage(
+  function handleChange(
     selectedOptions: MultiValue<string | number> | SingleValue<string | number>
   ) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedOptions))
-    setAgeFilters(selectedOptions)
+    setAgeFilters(
+      selectedOptions as unknown as SetStateAction<
+        { value: [number, number] }[]
+      >
+    )
   }
-
-  useEffect(() => {
-    const savedSelection = localStorage.getItem(STORAGE_KEY)
-
-    if (savedSelection) {
-      const parsedSelection = JSON.parse(savedSelection)
-      setSavedSelection(parsedSelection)
-    }
-  }, [])
-
-  const { setAgeFilters } = useContext(FiltersContext)
 
   return (
     <ComplexSelect
       className="w-56"
       name="age"
       isMulti
-      options={getAgeOptions({ simulationRecaps, filteredSimulationRecaps })}
+      // @ts-expect-error fix this
+      options={
+        getAgeOptions({
+          filteredSimulationRecaps,
+        }) as unknown as {
+          value: string
+          label: string
+          isDisabled?: boolean
+        }[]
+      }
       placeholder={<Trans>Tranche d'âge</Trans>}
-      value={savedSelection as unknown as string | number}
-      onChange={handleSaveSelectionToLocalStorage}
+      onChange={handleChange}
     />
   )
 }

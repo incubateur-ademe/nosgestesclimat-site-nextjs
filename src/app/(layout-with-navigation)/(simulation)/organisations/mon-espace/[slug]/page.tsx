@@ -6,6 +6,7 @@ import OrganizationFetchError from '@/components/organizations/OrganizationFetch
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
+import { useFetchPollData } from '@/hooks/organizations/useFetchPollData'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { usePathname } from 'next/navigation'
@@ -21,6 +22,10 @@ export default function OrganizationPage() {
 
   const { data: organization, isError } = useFetchOrganization({
     email: user.email,
+  })
+
+  const { data: pollData } = useFetchPollData({
+    enabled: !!organization,
   })
 
   return (
@@ -66,7 +71,10 @@ export default function OrganizationPage() {
           </MaxWidthContent>
 
           <MaxWidthContent className="mb-8 mt-0">
-            <OrgaStatistics organization={organization} />
+            <OrgaStatistics
+              funFacts={pollData?.funFacts}
+              simulationRecaps={pollData?.simulationRecaps ?? []}
+            />
           </MaxWidthContent>
 
           <ShareSection organization={organization} />

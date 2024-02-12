@@ -4,15 +4,7 @@ import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { SimulationRecap } from '@/types/organizations'
 import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
 
-export default function StatisticsBlocks({
-  simulationRecaps,
-}: {
-  simulationRecaps: SimulationRecap[]
-}) {
-  if (!simulationRecaps) {
-    return null
-  }
-
+function formatSimulationRecaps(simulationRecaps: SimulationRecap[]) {
   const result = simulationRecaps.reduce(
     (acc, simulation) => {
       return {
@@ -40,6 +32,20 @@ export default function StatisticsBlocks({
       result[key as keyof typeof result] / simulationRecaps.length
   })
 
+  return result
+}
+
+export default function StatisticsBlocks({
+  simulationRecaps,
+}: {
+  simulationRecaps: SimulationRecap[]
+}) {
+  if (!simulationRecaps) {
+    return null
+  }
+
+  const result = formatSimulationRecaps(simulationRecaps)
+
   const { formattedValue, unit } = formatCarbonFootprint(result?.bilan * 1000, {
     maximumFractionDigits: 1,
   })
@@ -59,7 +65,7 @@ export default function StatisticsBlocks({
       <div className="rounded-lg bg-grey-100 p-8">
         <p className="text-4xl font-bold text-primary-500">
           {formattedValue}{' '}
-          <span className="text-base font-normal">{unit} CO2 éq</span>
+          <span className="text-base font-normal">{unit} CO2 eq</span>
         </p>
         <p className="text-xl">
           <Trans>Empreinte moyenne</Trans>

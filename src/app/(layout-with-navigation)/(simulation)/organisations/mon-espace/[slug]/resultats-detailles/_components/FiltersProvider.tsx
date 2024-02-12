@@ -3,10 +3,10 @@
 import { Dispatch, SetStateAction, createContext, useState } from 'react'
 
 export const FiltersContext = createContext<{
-  ageFilters: (string | number)[]
-  setAgeFilters: Dispatch<SetStateAction<(string | number)[]>>
-  postalCodeFilters: (string | number)[]
-  setPostalCodeFilters: Dispatch<SetStateAction<(string | number)[]>>
+  ageFilters: { value: [number, number] }[]
+  setAgeFilters: Dispatch<SetStateAction<{ value: [number, number] }[]>>
+  postalCodeFilters: { value: string }[]
+  setPostalCodeFilters: Dispatch<SetStateAction<{ value: string }[]>>
 }>({
   ageFilters: [],
   setAgeFilters: () => {},
@@ -15,9 +15,11 @@ export const FiltersContext = createContext<{
 })
 
 export function FiltersProvider({ children }: { children: React.ReactNode }) {
-  const [ageFilters, setAgeFilters] = useState<(string | number)[]>([])
+  const [ageFilters, setAgeFilters] = useState<{ value: [number, number] }[]>(
+    []
+  )
   const [postalCodeFilters, setPostalCodeFilters] = useState<
-    (string | number)[]
+    { value: string }[]
   >([])
 
   return (
