@@ -64,7 +64,7 @@ export default function Question({
         {type === 'number' && (
           <NumberInput
             unit={unit}
-            value={tempValue || numericValue}
+            value={tempValue ?? numericValue}
             setValue={(value) => {
               setTempValue(value)
               setValue(value, question)
