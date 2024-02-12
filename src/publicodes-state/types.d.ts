@@ -1,3 +1,4 @@
+import { Group } from '@/types/groups'
 import {
   EvaluatedNode,
   Evaluation,
@@ -65,9 +66,10 @@ export type Simulation = {
   id: string
   date: Date | string
   situation: Situation
-  foldedSteps: string[]
+  foldedSteps: DottedName[]
   actionChoices: ActionChoices
   persona?: string
+  progression?: number
 }
 
 export type Persona = {
@@ -76,6 +78,14 @@ export type Persona = {
   situation: Situation
   description?: string
   résumé: string
+}
+
+export type LocalStorage = {
+  user: User
+  tutorials: Tutorials
+  simulations: Simulation[]
+  currentSimulationId: string
+  groupToRedirectToAfterTest?: Group
 }
 
 type Color = `#${string}`
@@ -119,3 +129,8 @@ type NGCRule = Rule & {
 }
 
 export type NGCRules = Record<DottedName, NGCRule>
+
+export type MigrationType = {
+  keysToMigrate: Record<DottedName, DottedName>
+  valuesToMigrate: Record<DottedName, Record<string, NodeValue>>
+}

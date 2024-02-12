@@ -12,10 +12,10 @@ export default function useEngine() {
   const { engine, safeEvaluate, safeGetRule, updateSituation } =
     useContext(simulationContext)
 
-  const getValue = (dottedName: string): NodeValue =>
+  const getValue = (dottedName: DottedName): NodeValue =>
     safeEvaluate(dottedName)?.nodeValue
 
-  const getNumericValue = (dottedName: string): number => {
+  const getNumericValue = (dottedName: DottedName): number => {
     const nodeValue = safeEvaluate(dottedName)?.nodeValue
     return Number(nodeValue) === nodeValue ? nodeValue : 0
   }
@@ -23,10 +23,10 @@ export default function useEngine() {
   const getCategory = (dottedName: DottedName): string =>
     getNamespace(dottedName, 1) ?? ''
 
-  const getSubcategories = (dottedName: string): string[] =>
+  const getSubcategories = (dottedName: DottedName): string[] =>
     safeGetRule(dottedName)?.rawNode?.formule?.somme
 
-  const checkIfValid = (dottedName: string): boolean =>
+  const checkIfValid = (dottedName: DottedName): boolean =>
     safeGetRule(dottedName) ? true : false
 
   return {
@@ -37,5 +37,7 @@ export default function useEngine() {
     getSubcategories,
     checkIfValid,
     updateSituation,
+    safeEvaluate,
+    safeGetRule,
   }
 }

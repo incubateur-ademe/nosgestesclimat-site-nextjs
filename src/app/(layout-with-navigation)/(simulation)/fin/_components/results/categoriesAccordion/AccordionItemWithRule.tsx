@@ -3,6 +3,7 @@ import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
 import BarChart from '@/design-system/utils/BarChart'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { formatValue } from 'publicodes'
 import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 
@@ -11,7 +12,7 @@ export default function AccordionItemWithRule({
   maxValue,
   index,
 }: {
-  dottedName: string
+  dottedName: DottedName
   maxValue: number
   index?: number
 }) {
@@ -33,8 +34,7 @@ export default function AccordionItemWithRule({
           <div className="mr-4 hidden flex-1 md:block">
             <BarChart
               type="horizontal"
-              percentage={percentageOfTotalValue}
-              maxWidth="100%"
+              percentage={String(percentageOfTotalValue)}
               index={index}
             />
           </div>

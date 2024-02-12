@@ -1,9 +1,11 @@
+import Providers from '@/components/providers/Providers'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import fetchPersonas from '@/helpers/fetchPersonas'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import Persona from './_components/Persona'
+import getPersonas from '@/helpers/modelFetching/getPersonas'
+import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import PersonaExplanations from './_components/PersonaExplanations'
+import PersonaList from './_components/PersonaList'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -16,10 +18,17 @@ export async function generateMetadata() {
   })
 }
 
-export default async function Personas() {
-  const personas = await fetchPersonas()
+type Props = {
+  params: {
+    locale: string
+  }
+}
+export default async function Personas({ params: { locale } }: Props) {
+  const supportedRegions = await getSupportedRegions()
+  const personas = await getPersonas({ locale })
+
   return (
-    <>
+    <Providers supportedRegions={supportedRegions}>
       <Title title={<Trans>Personas</Trans>} data-cypress-id="personas-title" />
       <p>
         <Trans>
@@ -37,16 +46,8 @@ export default async function Personas() {
           comme si vous étiez l'un des profils types que nous avons listés.
         </Trans>
       </p>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
-        {Object.keys(personas).map((key) => (
-          <Persona
-            key={key}
-            dottedName={key}
-            persona={personas[key as keyof typeof personas]}
-          />
-        ))}
-      </div>
+      <PersonaList personas={personas} />
       <PersonaExplanations />
-    </>
+    </Providers>
   )
 }

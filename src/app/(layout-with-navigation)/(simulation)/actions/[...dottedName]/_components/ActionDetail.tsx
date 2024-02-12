@@ -23,7 +23,7 @@ const { decodeRuleName, encodeRuleName } = utils
 export default function ActionDetail({
   params,
 }: {
-  params: { dottedName: string[] }
+  params: { dottedName: DottedName[] }
 }) {
   const { getCategory } = useEngine()
   const pathParamsDottedName = params?.dottedName
@@ -33,16 +33,18 @@ export default function ActionDetail({
     ?.join(' . ')
 
   const { getValue } = useEngine()
-  const { rules, getRuleObject } = useTempEngine()
+  const { rules, getRuleObject, extendedFoldedSteps } = useTempEngine()
 
   const { getCurrentSimulation, toggleActionChoice } = useUser()
 
   const dottedName = decodeRuleName(formattedDottedName ?? '')
 
-  const nbRemainingQuestions = filterRelevantMissingVariables(
-    Object.keys(getRuleObject(dottedName).missingVariables || {})
-  )?.length
+  const remainingQuestions = filterRelevantMissingVariables(
+    Object.keys(getRuleObject(dottedName).missingVariables || {}),
+    extendedFoldedSteps
+  )
 
+  const nbRemainingQuestions = remainingQuestions?.length
   const rule = useRule(dottedName)
 
   const currentSimulation = getCurrentSimulation()

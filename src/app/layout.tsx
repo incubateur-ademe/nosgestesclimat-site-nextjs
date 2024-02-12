@@ -1,6 +1,7 @@
 import FilAriane from '@/components/layout/FilAriane'
 import Header from '@/components/layout/Header'
 import getGeolocation from '@/helpers/getGeolocation'
+import getMigrationInstructions from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
 import '@/locales/initClient'
 import '@/locales/initServer'
@@ -53,6 +54,7 @@ export const marianne = localFont({
 export default async function RootLayout({ children }: PropsWithChildren) {
   const lang = currentLocale()
   const region = await getGeolocation()
+  const migrationInstructions = await getMigrationInstructions()
 
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
@@ -69,43 +71,27 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <link rel="manifest" href="../manifest.webmanifest" />
 
         <meta name="theme-color" content="#491273" />
-
-        {process.env.NEXT_PUBLIC_MATOMO_ID !== '1' ? (
-          <Script id="matomo-preprod">
-            {`
-            var _paq = window._paq = window._paq || [];
-            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-            _paq.push(["setCookieDomain", "*.preprod.nosgestesclimat.fr"]);
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-              var u="https://stats.beta.gouv.fr/";
-              _paq.push(['setTrackerUrl', u+'matomo.php']);
-              _paq.push(['setSiteId', '79']);
-              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-              g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-            })();
-            `}
-          </Script>
-        ) : (
+        {process.env.NEXT_PUBLIC_MATOMO_ID === '1' && (
           <Script id="matomo">
             {`
-            var _paq = window._paq = window._paq || [];
-            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-            _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-            _paq.push(["setCookieDomain", "*.nosgestesclimat.fr"]);
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-              var u="https://stats.beta.gouv.fr/";
-              _paq.push(['setTrackerUrl', u+'matomo.php']);
-              _paq.push(['setSiteId', '20']);
-              // Adds the Matomo V1 tracker for safe measure
-              _paq.push(['addTracker', 'https://stats.data.gouv.fr/matomo.php', '153'])
-              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-              g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-            })();
-          `}
+          var _paq = window._paq = window._paq || [];
+          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+          _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+          _paq.push(["setCookieDomain", "*.nosgestesclimat.fr"]);
+          _paq.push(['trackPageView']);
+          _paq.push(['enableLinkTracking']);
+          (function() {
+            // var u="https://stats.beta.gouv.fr/";
+            var u="https://stats.data.gouv.fr/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            // _paq.push(['setSiteId', '20']);
+            _paq.push(['setSiteId', '153']);
+            // Adds the Matomo V1 tracker for safe measure
+            // _paq.push(['addTracker', 'https://stats.data.gouv.fr/matomo.php', '153'])
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+          })();
+        `}
           </Script>
         )}
       </head>
@@ -118,7 +104,9 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
         <ErrorBoundary showDialog fallback={ErrorFallback}>
-          <MainLayoutProviders region={region}>
+          <MainLayoutProviders
+            region={region}
+            migrationInstructions={migrationInstructions}>
             <Header />
 
             <FilAriane />

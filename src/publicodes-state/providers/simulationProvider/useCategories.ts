@@ -3,7 +3,7 @@ import { DottedName, NGCRuleNode } from '../../types'
 type Props = {
   everyRules: DottedName[]
   root: string
-  safeGetRule: (rule: string) => NGCRuleNode | null
+  safeGetRule: (rule: DottedName) => NGCRuleNode | null
   order: string[] | null
 }
 

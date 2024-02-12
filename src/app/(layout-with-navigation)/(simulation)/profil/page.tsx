@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { FormProvider } from '@/publicodes-state'
 import AnswerList from './_components/AnswerList'
 import Localisation from './_components/Localisation'

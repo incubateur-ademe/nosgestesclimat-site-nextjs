@@ -24,7 +24,16 @@ export default function FormProvider({
     foldedSteps,
     everyQuestions,
     everyMosaicChildren,
+    rawMissingVariables,
+    updateProgression,
   } = useContext(simulationContext)
+
+  const {
+    currentQuestion,
+    currentCategory,
+    setCurrentQuestion,
+    setCurrentCategory,
+  } = useCurrent()
 
   const {
     remainingQuestions,
@@ -41,20 +50,15 @@ export default function FormProvider({
     situation,
     everyQuestions,
     everyMosaicChildren,
+    rawMissingVariables,
   })
 
   const { progression, remainingQuestionsByCategories } = useProgression({
     categories,
     remainingQuestions,
     relevantQuestions,
+    updateProgression,
   })
-
-  const {
-    currentQuestion,
-    currentCategory,
-    setCurrentQuestion,
-    setCurrentCategory,
-  } = useCurrent()
 
   return (
     <FormContext.Provider

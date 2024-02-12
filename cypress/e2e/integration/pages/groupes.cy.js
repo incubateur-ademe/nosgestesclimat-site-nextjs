@@ -1,69 +1,106 @@
-import {
-  clickAmisLink,
-  clickSkipTutorialButton,
-} from '../../../helpers/elements/buttons'
+import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 
-describe(
-  'The Group creation page /amis/creer',
-  { testIsolation: false },
-  () => {
-    it('allows to create a new group and displays it afterwards', () => {
-      cy.visit('/amis')
+describe('The Group creation page /amis/creer', () => {
+  let ownerUserId = ''
 
-      cy.clearLocalStorage()
+  it('allows to create a new group and displays it afterwards', () => {
+    cy.visit('/amis')
 
-      // Check that we can create our first group
-      cy.get('[data-cypress-id="button-create-first-group"]').click()
-      cy.get('input[data-cypress-id="group-input-owner-name"]').type(
-        'Jean-Marc'
-      )
-      cy.get('[data-cypress-id="button-create-group"]').click()
+    cy.clearLocalStorage()
 
-      // Fill simulation
-      clickSkipTutorialButton()
-      recursivelyFillSimulation(null, 'group')
+    // Check that we can create our first group
+    cy.get('[data-cypress-id="button-create-first-group"]').click()
+    cy.get('input[data-cypress-id="group-input-owner-name"]').type('Jean-Marc')
+    cy.get('[data-cypress-id="button-create-group"]').click()
 
-      cy.get('[data-cypress-id="group-name"]')
+    cy.wait(2000)
 
-      // Check that we can create a second group
-      clickAmisLink()
-      cy.get('[data-cypress-id="button-create-other-group"]').click()
+    // Fill simulation
+    clickSkipTutorialButton()
 
-      cy.get('input[data-cypress-id="group-input-owner-name"]').clear()
+    cy.wait(2000)
 
-      cy.get('input[data-cypress-id="group-input-owner-name"]').type(
-        'Jean-Marc groupe 2'
-      )
-      cy.get('[data-cypress-id="button-create-group"]').click()
-      cy.get('[data-cypress-id="group-name"]')
+    recursivelyFillSimulation(null, 'group')
 
-      // And that we can update its name
-      cy.get('[data-cypress-id="group-name-edit-button"]').click()
+    cy.wait(4000)
 
-      const newName = 'Les amis de Jean-Marc'
+    cy.get('[data-cypress-id="group-name"]')
 
-      cy.get('input[data-cypress-id="group-edit-input-name"]').clear()
-      cy.get('input[data-cypress-id="group-edit-input-name"]').type(newName)
-      cy.get('[data-cypress-id="button-inline-input"]').click()
-      cy.get('[data-cypress-id="group-name"]').contains(newName)
+    // And that we can delete it
+    cy.get('[data-cypress-id="button-delete-group"]').click()
+    cy.get('[data-cypress-id="button-confirm-delete-group"]').click()
+
+    // Check that we can create a second group
+    cy.wait(2000)
+
+    cy.get('[data-cypress-id="button-create-first-group"]').click()
+
+    cy.get('input[data-cypress-id="group-input-owner-name"]').clear()
+
+    cy.get('input[data-cypress-id="group-input-owner-name"]').type(
+      'Jean-Marc groupe 2'
+    )
+    cy.get('[data-cypress-id="button-create-group"]').click()
+    cy.get('[data-cypress-id="group-name"]')
+
+    // And that we can update its name
+    cy.get('[data-cypress-id="group-name-edit-button"]').click()
+
+    const newName = 'Les amis de Jean-Marc'
+
+    cy.get('input[data-cypress-id="group-edit-input-name"]').clear()
+    cy.get('input[data-cypress-id="group-edit-input-name"]').type(newName)
+    cy.get('[data-cypress-id="button-inline-input"]').click()
+    cy.get('[data-cypress-id="group-name"]').contains(newName)
+
+    // Save the owner user id in order to be able to delete the group later on
+    cy.getAllLocalStorage().then((result) => {
+      ownerUserId =
+        result[Cypress.config('baseUrl')]?.['nosgestesclimat::v3'] &&
+        JSON.parse(result[Cypress.config('baseUrl')]?.['nosgestesclimat::v3'])
+          ?.user?.id
     })
 
-    it('allows to join a group with the invitation link and display ', () => {
-      cy.clearLocalStorage()
-      cy.reload()
+    cy.clearLocalStorage()
+    cy.reload()
 
-      cy.get('[data-cypress-id="member-name"]').type('Jean-Claude')
-      cy.get('[data-cypress-id="button-join-group"]').click()
+    cy.wait(3000)
 
-      clickSkipTutorialButton()
-      recursivelyFillSimulation(null, 'group')
+    cy.get('[data-cypress-id="member-name"]').type('Jean-Claude')
+    cy.get('[data-cypress-id="button-join-group"]').click()
 
-      cy.get('[data-cypress-id="group-name"]')
+    clickSkipTutorialButton()
+    recursivelyFillSimulation(null, 'group')
 
-      // Check that the main sections are displayed
-      cy.get('[data-cypress-id="points-fort-faibles-title"]')
-      cy.get('[data-cypress-id="votre-empreinte-title"]')
+    cy.wait(3000)
+
+    cy.get('[data-cypress-id="group-name"]')
+
+    // Check that the main sections are displayed
+    cy.get('[data-cypress-id="points-fort-faibles-title"]')
+    cy.get('[data-cypress-id="votre-empreinte-title"]')
+
+    let currentUrl = ''
+
+    // Delete the group via the API
+    cy.url().then((url) => {
+      currentUrl = url
+
+      const groupId = currentUrl?.split('groupId=')?.[1]
+
+      const SERVER_URL = Cypress.env('server_url')
+
+      cy.request(
+        'POST',
+        `http${
+          SERVER_URL === 'localhost:3001' ? '' : 's'
+        }://${SERVER_URL}/group/delete`,
+        {
+          groupId,
+          userId: ownerUserId,
+        }
+      ).as('response')
     })
-  }
-)
+  })
+})

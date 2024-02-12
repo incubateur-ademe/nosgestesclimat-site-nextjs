@@ -1,16 +1,21 @@
+import { DottedName } from '@/publicodes-state/types'
+
 // Gathered from nosgestesclimat-site
-const filteredDottedNames = [
+const filteredDottedNames: DottedName[] = [
   'divers . publicité',
   'services sociétaux . pression locale',
   'services sociétaux . voter',
   'divers . aider les autres',
   'divers . partage NGC',
-  'transport . voiture . aide km',
-  'divers . autres produits',
 ]
 
-export const filterRelevantMissingVariables = (missingVariables: any) => {
-  return missingVariables.filter((dottedName: string) => {
-    return !filteredDottedNames.includes(dottedName)
+export const filterRelevantMissingVariables = (
+  missingVariablesKeys: DottedName[],
+  extendedFoldedSteps: DottedName[]
+) => {
+  return missingVariablesKeys.filter((dottedName: DottedName) => {
+    const isFolded = extendedFoldedSteps.indexOf(dottedName) >= 0
+    const isManuallyExcluded = !filteredDottedNames?.includes(dottedName)
+    return isManuallyExcluded && !isFolded
   })
 }
