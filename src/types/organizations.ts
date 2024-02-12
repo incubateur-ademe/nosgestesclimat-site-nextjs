@@ -67,6 +67,7 @@ export type PollInfo = {
   name: string
   slug: string
   defaultAdditionalQuestions: ['postalCode' | 'birthdate']
+  numberOfParticipants: number
   expectedNumberOfParticipants: number
   organisationInfo?: OrganisationInfo
 }
