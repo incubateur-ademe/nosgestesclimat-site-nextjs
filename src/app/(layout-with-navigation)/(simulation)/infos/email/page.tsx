@@ -48,8 +48,6 @@ export default function Email() {
     [email, updateEmail, t, router, getLinkToInfosPage]
   )
 
-  console.log(getLinkToInfosPage(1))
-
   return (
     <form>
       <Title

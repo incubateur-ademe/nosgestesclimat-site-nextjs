@@ -33,7 +33,6 @@ export function useAppNavigation() {
       return ''
     }
 
-    console.log('coucou')
     if (index === 0) {
       return infosPages.email
     }
@@ -42,7 +41,6 @@ export function useAppNavigation() {
     if ((poll?.defaultAdditionalQuestions.length || 0) < index) {
       return `/infos/commencer?${queryParamsString}`
     }
-    console.log(poll.defaultAdditionalQuestions[index - 1])
 
     // if there is an additional question, go to the corresponding page
     return infosPages[poll.defaultAdditionalQuestions[index - 1]]
