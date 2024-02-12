@@ -12,5 +12,9 @@ export const GROUP_URL = SERVER_URL + '/group'
 
 export const SAVE_SIMULATION_URL = SERVER_URL + '/email-simulation'
 
-export const getPreviewUrl = (PRNumber: string | number) =>
-  `https://deploy-preview-${PRNumber}--ecolab-data.netlify.app`
+export const getPreviewUrl = (PRNumber: string | number) => {
+  if (PRNumber === 'nightly') {
+    return `https://preprod--ecolab-data.netlify.app`
+  }
+  return `https://deploy-preview-${PRNumber}--ecolab-data.netlify.app`
+}
