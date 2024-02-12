@@ -68,7 +68,7 @@ jobs:
 
           ${{ needs.compile.outputs.check-faq-result }}
 
-          > _You will find more information about the translation in the [dedicated file](https:/github.com/incubateur-ademe/nosgestesclimat-site/blob/master/docs/translating.md)._
+          > _You will find more information about the translation in the dedicated file._
           " > artifacts/result.md
       - name: Upload artifact
         uses: actions/upload-artifact@v1

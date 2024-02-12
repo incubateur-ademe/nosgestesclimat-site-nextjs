@@ -1,5 +1,0 @@
-additionalRepositories:
-  - url: https://github.com/incubateur-ademe/nosgestesclimat
-tasks:
-  - init: yarn
-    command: yarn start
