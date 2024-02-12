@@ -14,7 +14,7 @@ export default function PRIndicator() {
   if (!PRNumber || iframeRegion) return null
 
   return (
-    <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-2 text-center font-bold uppercase text-white ">
+    <div className="flex w-36 items-center gap-2 rounded-lg bg-gray-100 p-2 text-center font-bold uppercase text-white ">
       <Image
         src="/images/misc/E045.svg"
         alt=""
