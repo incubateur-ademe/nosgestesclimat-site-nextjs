@@ -60,3 +60,19 @@ export type PollData = {
   }
   simulationRecaps: SimulationRecap[]
 }
+
+export type PollInfo = {
+  startDate: string
+  endDate: string
+  name: string
+  slug: string
+  defaultAdditionalQuestions: ['postalCode' | 'birthdate']
+  numberOfParticipants: number
+  expectedNumberOfParticipants: number
+  organisationInfo?: OrganisationInfo
+}
+
+type OrganisationInfo = {
+  name: string
+  slug: string
+}
