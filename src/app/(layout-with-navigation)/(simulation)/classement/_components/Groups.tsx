@@ -25,6 +25,7 @@ export default function Groups() {
           </Trans>
         }
       />
+      
       {isFetched && !groups && <ServerErrorSection />}
 
       {groups && groups?.length === 0 && <CreateFirstGroupSection />}
