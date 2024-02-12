@@ -66,11 +66,11 @@ export default function HeaderDesktop() {
 
                 <li className="px-4">
                   <NavLink
-                    href="/amis"
+                    href="/classement"
                     icon={AmisIcon}
-                    title={t('Amis')}
+                    title={t('Classement')}
                     data-cypress-id="amis-link">
-                    <Trans>Amis</Trans>
+                    <Trans>Classement</Trans>
                   </NavLink>
                 </li>
               </ul>
