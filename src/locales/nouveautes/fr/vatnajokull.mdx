@@ -49,7 +49,7 @@ Notamment, le mix électrique, les spécificités régionales, les facteurs d’
 
 Merci à Electricity Map de nous permettre d’utiliser les données du mix de consommation des pays supportés sur NGC !
 
-[Plus d’infos techniques ici.](https://github.com/datagir/nosgestesclimat/pull/1732)
+[Plus d’infos techniques ici.](https://github.com/incubateur-ademe/nosgestesclimat/pull/1732)
 
 ## 🧮 Améliorations du modèle de calcul
 
@@ -75,7 +75,7 @@ Si vous avez un chien ou un chat, vous n’êtes pas sans savoir qu’il faut le
 
 ### Saisie des heures d’avion étalée sur 3 années
 
-Nous avions bien conscience du fait que l’avion [est pour la plupart des français (70%)](https://github.com/datagir/nosgestesclimat/issues/1804) un mode de déplacement qui n’est pas emprunté tous les ans.
+Nous avions bien conscience du fait que l’avion [est pour la plupart des français (70%)](https://github.com/incubateur-ademe/nosgestesclimat/issues/1804) un mode de déplacement qui n’est pas emprunté tous les ans.
 
 Aussi, beaucoup de personnes qui s’inquiète du réchauffement climatique décident d’abord de réduire leurs vols en les étalant dans le temps.
 
@@ -105,9 +105,9 @@ Nous avons également pensé aux foyers qui utilisent une citerne de gaz 👍️
 
 Côté transport, une analyse statistique nous a permis de constater que nombreux sont les citoyens à se déplacer dans leur vie personnelle avec un Véhicule Utilitaire Léger, aussi connu sous le nom de “camionnette”. C’est désormais un choix possible pour le gabarit de votre voiture.
 
-Pour vous aider, vous pouvez saisir vos consommations de **fioul** domestique en € plutôt qu’en kWh. Or, les prix évoluent ! [Nous les avons mis à jour.](https://github.com/datagir/nosgestesclimat/pull/1741)
+Pour vous aider, vous pouvez saisir vos consommations de **fioul** domestique en € plutôt qu’en kWh. Or, les prix évoluent ! [Nous les avons mis à jour.](https://github.com/incubateur-ademe/nosgestesclimat/pull/1741)
 
-De même, l’empreinte carbone du **gaz** a été [mise à jour](https://github.com/datagir/nosgestesclimat/pull/1792).
+De même, l’empreinte carbone du **gaz** a été [mise à jour](https://github.com/incubateur-ademe/nosgestesclimat/pull/1792).
 
 Si un utilisateur renseignait “zéro” aux questions “nombre d’habitants dans le logement” ou “nombre de covoitureurs”, cela faisait planter le site, avec la fameuse et redoutée **division par zéro** 😓 (même si ce sont des réponses non souhaitables). C’est désormais corrigé !
 
@@ -151,9 +151,9 @@ Le modèle de calcul de NGC est écrit dans le langage de programmation [Publico
 
 Nous avons donc pu ces dernières semain**es ajouter un nouveau mécanisme [moyenne](https://publi.codes/docs/api/m%C3%A9canismes#moyenne) dans Publicodes** afin de rendre plus compréhensible les calcul du sous-modèle [Ameublement](https://nosgestesclimat.fr/documentation/divers/ameublement/meubles), avec par exemple le [calcul de l’empreinte du lit](https://nosgestesclimat.fr/documentation/divers/ameublement/meubles/lit/empreinte).
 
-De plus, plusieurs modèles de calcul des gaz à effet de serre écrit en Publicodes existent en dehors de celui de NGC, avec par exemple [futur.eco](https://futur.eco/). [](https://github.com/datagir/nosgestesclimat/pull/1794)
+De plus, plusieurs modèles de calcul des gaz à effet de serre écrit en Publicodes existent en dehors de celui de NGC, avec par exemple [futur.eco](https://futur.eco/). [](https://github.com/incubateur-ademe/nosgestesclimat/pull/1794)
 
-[Des solutions techniques](https://github.com/datagir/nosgestesclimat/pull/1794) ont donc été mises en place afin de pouvoir les **réutiliser sans devoir dupliquer le code**. _Cela nous a permis d’intégrer sur Nos Gestes Climat [le modèle de calcul ferry de futureco](http://futur.eco/ferry) sans réinventer la roue !_
+[Des solutions techniques](https://github.com/incubateur-ademe/nosgestesclimat/pull/1794) ont donc été mises en place afin de pouvoir les **réutiliser sans devoir dupliquer le code**. _Cela nous a permis d’intégrer sur Nos Gestes Climat [le modèle de calcul ferry de futureco](http://futur.eco/ferry) sans réinventer la roue !_
 
 ### Améliorations diverses
 
@@ -170,14 +170,14 @@ La gestion de la traduction du site et du modèle ont été améliorées afin de
 
 ## 🪲 Bugs divers
 
-- https://github.com/datagir/nosgestesclimat-site/pull/781
-- https://github.com/datagir/nosgestesclimat-site/pull/903
-- https://github.com/datagir/nosgestesclimat-site/pull/905
-- https://github.com/datagir/nosgestesclimat/pull/1802
-- https://github.com/datagir/nosgestesclimat-site/pull/893
-- https://github.com/datagir/nosgestesclimat-site/pull/849
-- https://github.com/datagir/nosgestesclimat-site/pull/851
+- https://github.com/incubateur-ademe/nosgestesclimat-site/pull/781
+- https://github.com/incubateur-ademe/nosgestesclimat-site/pull/903
+- https://github.com/incubateur-ademe/nosgestesclimat-site/pull/905
+- https://github.com/incubateur-ademe/nosgestesclimat/pull/1802
+- https://github.com/incubateur-ademe/nosgestesclimat-site/pull/893
+- https://github.com/incubateur-ademe/nosgestesclimat-site/pull/849
+- https://github.com/incubateur-ademe/nosgestesclimat-site/pull/851
 
-💡 Pour rappel, tous les développements du service public Nos Gestes Climat sont fait en transparence sur la plateforme Github, [côté site](https://github.com/datagir/nosgestesclimat-site/) et [côté modèle de calcul](https://github.com/datagir/nosgestesclimat).
+💡 Pour rappel, tous les développements du service public Nos Gestes Climat sont fait en transparence sur la plateforme Github, [côté site](https://github.com/incubateur-ademe/nosgestesclimat-site/) et [côté modèle de calcul](https://github.com/incubateur-ademe/nosgestesclimat).
 
 À bientôt pour de grandes nouveautés !

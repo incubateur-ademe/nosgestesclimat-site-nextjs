@@ -63,7 +63,7 @@ We've greatly reduced the size of the calculation model loaded from the site: it
 
 > <details> <summary>More technical info on this reduction here</summary>
 &gt 
-> We have developed a <a href="https://github.com/datagir/publiopti">new</a> compression <a href="https://github.com/datagir/publiopti">tool</a> for our calculation model. 
+> We have developed a <a href="https://github.com/incubateur-ademe/publiopti">new</a> compression <a href="https://github.com/incubateur-ademe/publiopti">tool</a> for our calculation model. 
 &gt 
 > Indeed, in the interests of transparency and explicability, we try to be as precise and complete as possible when writing new models: this requires a breakdown into sub-rules and the creation of a (very thick) tree. This is the case for calculating<a href="https://nosgestesclimat.fr/documentation/alimentation/déchets/niveau-moyen">the footprint of waste</a>, for example. While this complexity is necessary to understand the calculation, it is not necessary to execute it. 
 &gt 
@@ -77,7 +77,7 @@ But why download the calculation to your browser rather than to our servers like
 
 ### Faster documentation pages & various site improvements
 
-In the same vein as reducing the weight of the calculation model, we've reduced the initial loading time of the <a href="https://nosgestesclimat.fr/documentation">model's documentation pages</a>, which allow anyone to explore the entire individual carbon footprint calculation. The calculation is now loaded in a "lazy" way, only at the click of a button, to display basic information more quickly. <a href="https://github.com/datagir/nosgestesclimat-site/pull/778">More info here</a>.
+In the same vein as reducing the weight of the calculation model, we've reduced the initial loading time of the <a href="https://nosgestesclimat.fr/documentation">model's documentation pages</a>, which allow anyone to explore the entire individual carbon footprint calculation. The calculation is now loaded in a "lazy" way, only at the click of a button, to display basic information more quickly. <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/778">More info here</a>.
 
 
 At the same time, we've reduced the weight of other pages, and added a loading indicator that evokes the new Nos Gestes Climat logo.
@@ -103,13 +103,13 @@ We've improved it, with a button to unfold all test responses. This also enables
 
 We've just released a more powerful version of our internationalization platform. It allows us to launch a beta version of a Swiss calculation model, but above all to facilitate the welcoming of new countries!
 
-As far as possible, the question titles are no longer specific to France, particularly for <a href="https://github.com/datagir/nosgestesclimat/pull/1665">the "Airplane" questions</a>. This allows us to make the test comprehensible to people from all over the world. On the other hand, the suggestions ("a metropolitan flight") remain linked to the test region for greater personalization. 
+As far as possible, the question titles are no longer specific to France, particularly for <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1665">the "Airplane" questions</a>. This allows us to make the test comprehensible to people from all over the world. On the other hand, the suggestions ("a metropolitan flight") remain linked to the test region for greater personalization. 
 
 Please note that these changes are only textual and do not affect emission factors.
 
 ## 🔠 Translation
 
-Translation scripts have been improved to better handle external contributions that would modify automatic translations <a href="https://github.com/datagir/nosgestesclimat/pull/1676">for model translations</a> for the time being). 
+Translation scripts have been improved to better handle external contributions that would modify automatic translations <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1676">for model translations</a> for the time being). 
 
 This will soon enable us to scale up to **translate Nos Gestes Climat into many languages**. 
 
@@ -117,19 +117,19 @@ This will soon enable us to scale up to **translate Nos Gestes Climat into many 
 
 ### 🏛️ More clarity on the societal services method
 
-<a href="https://github.com/datagir/nosgestesclimat/tree/master/scripts/services-societaux">The calculation scripts</a> that enabled us to release <a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/l'empreinte-climat%20des%20%22services%20soci%C3%A9taux%22">the latest version</a> have been improved, and a <a href="https://github.com/datagir/nosgestesclimat/wiki/Guide-technique-services-soci%C3%A9taux">methodological guide</a> has been added to the <a href="https://github.com/datagir/nosgestesclimat/wiki">wiki</a>. Bugs have been <a href="https://github.com/datagir/nosgestesclimat/pull/1638">corrected</a>.
+<a href="https://github.com/incubateur-ademe/nosgestesclimat/tree/master/scripts/services-societaux">The calculation scripts</a> that enabled us to release <a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/l'empreinte-climat%20des%20%22services%20soci%C3%A9taux%22">the latest version</a> have been improved, and a <a href="https://github.com/incubateur-ademe/nosgestesclimat/wiki/Guide-technique-services-soci%C3%A9taux">methodological guide</a> has been added to the <a href="https://github.com/incubateur-ademe/nosgestesclimat/wiki">wiki</a>. Bugs have been <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1638">corrected</a>.
 
 ### 📈€ Gas price update
 
-The input help for switching from € to kWh for the annual gas consumption question <a href="https://github.com/datagir/nosgestesclimat/pull/1733">is now up to date with the latest rates</a>! 
+The input help for switching from € to kWh for the annual gas consumption question <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1733">is now up to date with the latest rates</a>! 
 
 ### 🚗 Correction of "Car" model
 
-We have adjusted the scope of <a href="https://github.com/datagir/nosgestesclimat/pull/1704">the emission factor linked to car manufacturing</a>. Indeed, in the first version of this model, we had chosen to subtract "recycling credits" corresponding to emissions avoided via the use of recycled materials from the dismantling of a car, for the production of new manufactured products. On reflection, we assume that the reduced footprint benefits the purchaser of the recycled product, and not the purchaser of a product destined for recycling. It's an assumption we've already applied to all NGC models!
+We have adjusted the scope of <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1704">the emission factor linked to car manufacturing</a>. Indeed, in the first version of this model, we had chosen to subtract "recycling credits" corresponding to emissions avoided via the use of recycled materials from the dismantling of a car, for the production of new manufactured products. On reflection, we assume that the reduced footprint benefits the purchaser of the recycled product, and not the purchaser of a product destined for recycling. It's an assumption we've already applied to all NGC models!
 
 ## Bug corrections
 
-Simulation graphics were mistakenly frozen during testing; this has now been <a href="https://github.com/datagir/nosgestesclimat-site/pull/828">corrected</a>. 
+Simulation graphics were mistakenly frozen during testing; this has now been <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/828">corrected</a>. 
 
 We've also added a button that opens the detailed graph on click. 
 
@@ -138,9 +138,9 @@ We've also added a button that opens the detailed graph on click.
  ## 🥳 External contributions
 
 We're delighted with the increase in relevant external contributions. These include:
-- a <a href="https://github.com/datagir/nosgestesclimat-site/pull/835">bug fixed</a> by <a href="https://github.com/mlbiche">@mlbiche</a>,
+- a <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/835">bug fixed</a> by <a href="https://github.com/mlbiche">@mlbiche</a>,
 - many pertinent questions from <a href="https://github.com/marc-marc-marc">@marc-marc-marc</a> and the rest of the community 🙏,
-- a <a href="https://github.com/datagir/nosgestesclimat-site/issues/583">Portuguese-language version of</a> the site thanks to <a href="https://github.com/micaelbatista">@micaelbatista</a>. 
+- a <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/issues/583">Portuguese-language version of</a> the site thanks to <a href="https://github.com/micaelbatista">@micaelbatista</a>. 
 
 See you soon! 
 

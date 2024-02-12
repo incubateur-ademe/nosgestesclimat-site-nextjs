@@ -14,7 +14,7 @@ export default function PRIndicator() {
   if (!PRNumber || iframeRegion) return null
 
   return (
-    <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-2 text-center font-bold uppercase text-white ">
+    <div className="flex w-36 items-center gap-2 rounded-lg bg-gray-100 p-2 text-center font-bold uppercase text-white ">
       <Image
         src="/images/misc/E045.svg"
         alt=""
@@ -26,7 +26,9 @@ export default function PRIndicator() {
       <Link
         className="font-base text-sm text-primary-700"
         target="_blank"
-        href={'https://github.com/datagir/nosgestesclimat/pull/' + PRNumber}>
+        href={
+          'https://github.com/incubateur-ademe/nosgestesclimat/pull/' + PRNumber
+        }>
         #{PRNumber}
       </Link>
       <button
