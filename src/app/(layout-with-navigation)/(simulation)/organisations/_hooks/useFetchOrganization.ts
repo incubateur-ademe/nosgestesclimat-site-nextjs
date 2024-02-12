@@ -16,7 +16,7 @@ export default function useFetchOrganization({ email }: { email: string }) {
             withCredentials: true,
           }
         )
-        .then((response) => response.data),
+        .then((res) => res.data),
     enabled: !!email,
     retry: false,
   })

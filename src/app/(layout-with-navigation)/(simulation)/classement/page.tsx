@@ -1,7 +1,7 @@
 import Separator from '@/design-system/layout/Separator'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Groups from './_components/Groups'
-import Polls from './_components/Polls'
+import Organisations from './_components/Organisations'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -19,7 +19,7 @@ export default async function GroupesPage() {
     <>
       <Groups />
       <Separator />
-      <Polls />
+      <Organisations />
     </>
   )
 }
