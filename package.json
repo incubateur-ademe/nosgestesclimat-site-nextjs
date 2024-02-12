@@ -57,7 +57,7 @@
     "next-i18n-router": "^4.1.1",
     "postcss": "8.4.31",
     "process": "^0.11.10",
-    "publicodes": "^1.0.0-beta.77",
+    "publicodes": "^1.0.1",
     "publicodes-react": "^1.0.0-beta.76",
     "puppeteer-core": "^21.5.1",
     "qrcode.react": "^3.1.0",
