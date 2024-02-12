@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { useFetchPollData } from '@/hooks/organizations/useFetchPollData'
+import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { usePathname } from 'next/navigation'
 import ExportDataButton from '../ExportDataButton'
 

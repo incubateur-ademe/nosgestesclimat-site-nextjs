@@ -1,9 +1,11 @@
 'use client'
 
+import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import { useOrganisationQueryParams } from '@/hooks/organizations/useOrganisationQueryParams'
+import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { useContext } from 'react'
@@ -45,32 +47,18 @@ export default function Commencer() {
       : 'started'
 
   return (
-    <div>
+    <Card className={'items-start border-none bg-grey-100 pb-8'}>
       <Title
         data-cypress-id="commencer-title"
         className="text-lg md:text-2xl"
         title={t(titles[status])}
       />
       <p>{t(texts[status])}</p>
-      <ButtonLink
-        href="/simulateur/bilan"
-        onClick={() => {
-          updateCurrentSimulation({
-            defaultAdditionalQuestions: {
-              postalCode,
-              birthdate,
-            },
-            poll: pollSlug || undefined,
-          })
-        }}>
-        {buttonLabels[status]}
-      </ButtonLink>
-      {status !== 'notStarted' ? (
+      <div className="flex flex-col items-start gap-6">
         <ButtonLink
-          color="text"
           href="/simulateur/bilan"
           onClick={() => {
-            initSimulation({
+            updateCurrentSimulation({
               defaultAdditionalQuestions: {
                 postalCode,
                 birthdate,
@@ -78,9 +66,24 @@ export default function Commencer() {
               poll: pollSlug || undefined,
             })
           }}>
-          <Trans>Commencer un nouveau test</Trans>
+          {buttonLabels[status]}
         </ButtonLink>
-      ) : null}
-    </div>
+        {status !== 'notStarted' ? (
+          <Link
+            href="/simulateur/bilan"
+            onClick={() => {
+              initSimulation({
+                defaultAdditionalQuestions: {
+                  postalCode,
+                  birthdate,
+                },
+                poll: pollSlug || undefined,
+              })
+            }}>
+            <Trans>Commencer un nouveau test</Trans>
+          </Link>
+        ) : null}
+      </div>
+    </Card>
   )
 }

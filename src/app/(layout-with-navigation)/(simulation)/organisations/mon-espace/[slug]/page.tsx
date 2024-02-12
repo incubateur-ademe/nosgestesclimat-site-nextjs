@@ -6,7 +6,7 @@ import OrganizationFetchError from '@/components/organizations/OrganizationFetch
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
-import { useFetchPollData } from '@/hooks/organizations/useFetchPollData'
+import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { usePathname } from 'next/navigation'

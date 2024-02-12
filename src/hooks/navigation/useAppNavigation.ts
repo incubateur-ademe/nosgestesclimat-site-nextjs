@@ -1,24 +1,20 @@
-import { useUser } from '@/publicodes-state'
 import { useSearchParams } from 'next/navigation'
-import { useOrganisationQueryParams } from '../organizations/useOrganisationQueryParams'
-import { usePoll } from '../organizations/usePoll'
+import { useOrganisationQueryParams } from '../organisations/useOrganisationQueryParams'
+import { usePoll } from '../organisations/usePoll'
 
 /**
- * Really rought hook to provide adequate links to the user, depending on his current state
+ * Really rough hook to provide adequate links to the user, depending on his current state
  */
 export function useAppNavigation() {
   const searchParams = useSearchParams()
   const queryParamsString = searchParams.toString()
-
-  const { getCurrentSimulation } = useUser()
-  const currentSimulation = getCurrentSimulation()
 
   const { pollSlug } = useOrganisationQueryParams()
   const { data: poll } = usePoll({ pollSlug })
 
   const linkToTutorial = `/tutoriel?${queryParamsString}`
 
-  const linkToPollDashboard = `organisations/resultats-detailles/${currentSimulation?.poll}`
+  const linkToPollDashboard = `organisations/mon-espace/${poll?.organisationInfo?.slug}/resultats-detailles`
 
   const getLinkToInfosPage = (index: number) => {
     const infosPages = {

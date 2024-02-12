@@ -3,7 +3,7 @@
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { useAppNavigation } from '@/hooks/navigation/useAppNavigation'
-import { usePoll } from '@/hooks/organizations/usePoll'
+import { usePoll } from '@/hooks/organisations/usePoll'
 import { useUser } from '@/publicodes-state'
 
 export default function Poll() {
@@ -12,7 +12,9 @@ export default function Poll() {
 
   const { linkToPollDashboard } = useAppNavigation()
 
-  const { data: poll, isLoading } = usePoll(currentSimulation?.poll || null)
+  const { data: poll, isLoading } = usePoll({
+    pollSlug: currentSimulation?.poll,
+  })
 
   // If there is no poll attached to the simulation, we don't display the block
   if (!currentSimulation?.poll) {
@@ -28,7 +30,7 @@ export default function Poll() {
     <Card className="mb-4 w-[24rem] max-w-full flex-row items-center justify-between gap-4 border-none bg-primary-100">
       <p className="m-0 flex-1 ">
         Découvrez les résultats du groupe{' '}
-        <b>{isLoading ? '... ' : poll?.name}</b>
+        <b>{isLoading ? '... ' : poll?.organisationInfo?.name}</b>
       </p>
       <ButtonLink
         href={linkToPollDashboard}

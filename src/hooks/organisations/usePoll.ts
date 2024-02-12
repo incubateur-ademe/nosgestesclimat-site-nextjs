@@ -1,8 +1,8 @@
-import { fetchPoll } from '@/helpers/organizations/fetchPoll'
+import { fetchPoll } from '@/helpers/organisations/fetchPoll'
 import { useQuery } from '@tanstack/react-query'
 
 type Props = {
-  pollSlug: string | null
+  pollSlug?: string | null
 }
 export const usePoll = ({ pollSlug }: Props) => {
   return useQuery({

@@ -1,7 +1,7 @@
 import { SERVER_URL } from '@/constants/urls'
 
 type Props = {
-  pollSlug: string | null
+  pollSlug?: string | null
 }
 export const fetchPoll = async ({ pollSlug }: Props): Promise<PollInfo> => {
   const response = await fetch(

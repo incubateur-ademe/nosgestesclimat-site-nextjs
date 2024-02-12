@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { useOrganisationQueryParams } from '@/hooks/organizations/useOrganisationQueryParams'
+import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 
 export default function OrganisationPrivacy() {

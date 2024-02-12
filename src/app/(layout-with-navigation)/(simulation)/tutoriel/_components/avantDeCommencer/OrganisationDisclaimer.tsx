@@ -1,8 +1,8 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { useOrganisationQueryParams } from '@/hooks/organizations/useOrganisationQueryParams'
-import { usePoll } from '@/hooks/organizations/usePoll'
+import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
+import { usePoll } from '@/hooks/organisations/usePoll'
 
 export default function OrganisationDisclaimer() {
   const { pollSlug } = useOrganisationQueryParams()

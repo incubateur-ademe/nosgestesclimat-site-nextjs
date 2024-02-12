@@ -86,8 +86,8 @@ const redirects = [
     permanent: true,
   },
   {
-    source: '/o/:organisation/:organisation',
-    destination: '/tutoriel/?organisation=:organisation',
+    source: '/o/:organisation/:poll',
+    destination: '/tutoriel/?poll=:poll',
     permanent: true,
   },
 ]
