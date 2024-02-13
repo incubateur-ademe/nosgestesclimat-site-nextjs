@@ -10,8 +10,8 @@ type Props = {
   setValue: (value: number) => void
 }
 
-export default function Suggestions({ question }: Props) {
-  const { suggestions, setValue, addFoldedStep } = useRule(question)
+export default function Suggestions({ question, setValue }: Props) {
+  const { suggestions, addFoldedStep } = useRule(question)
   const { updateSituation } = useEngine()
 
   if (!suggestions?.length) return

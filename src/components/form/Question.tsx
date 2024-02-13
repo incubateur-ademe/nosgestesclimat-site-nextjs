@@ -8,20 +8,16 @@ import NumberInput from '@/components/form/question/NumberInput'
 import Suggestions from '@/components/form/question/Suggestions'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import { useRule } from '@/publicodes-state'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import Warning from './question/Warning'
 
 type Props = {
   question: string
-  tempValue?: number
-  setTempValue?: (value: number) => void
+  tempValue?: number | undefined
+  setTempValue?: (value: number | undefined) => void
 }
 
-export default function Question({
-  question,
-  tempValue,
-  setTempValue = () => null,
-}: Props) {
+export default function Question({ question, tempValue, setTempValue }: Props) {
   const {
     type,
     label,
@@ -38,10 +34,19 @@ export default function Question({
     warning,
   } = useRule(question)
 
+  // It should happen only on mount (the component remount every time the question changes)
+  const prevQuestion = useRef('')
   useEffect(() => {
-    if (type !== 'number') return
-    setTempValue(numericValue)
-  }, [type, numericValue, setTempValue])
+    if (type !== 'number') {
+      setTempValue && setTempValue(undefined)
+      return
+    }
+
+    if (prevQuestion.current !== question) {
+      setTempValue && setTempValue(numericValue)
+      prevQuestion.current = question
+    }
+  }, [type, numericValue, setTempValue, question])
 
   return (
     <>
@@ -56,7 +61,7 @@ export default function Question({
           question={question}
           setValue={(value) => {
             if (type === 'number') {
-              setTempValue(value)
+              setTempValue && setTempValue(value)
             }
             setValue(value, question)
           }}
@@ -64,9 +69,9 @@ export default function Question({
         {type === 'number' && (
           <NumberInput
             unit={unit}
-            value={tempValue ?? numericValue}
+            value={setTempValue ? tempValue : numericValue}
             setValue={(value) => {
-              setTempValue(value)
+              setTempValue && setTempValue(value)
               setValue(value, question)
             }}
             isMissing={isMissing}
