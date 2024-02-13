@@ -85,7 +85,7 @@ export default function JourneysInput({ question, setTempValue }: Props) {
 
   useEffect(() => {
     if (prevTotal.current !== total) {
-      setTempValue && setTempValue(total)
+      if (setTempValue) setTempValue(total)
       setValue(total, question)
       setNumPassengers(averagePassengers)
     }
