@@ -104,7 +104,12 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
         )}
         {type === 'mosaic' && <Mosaic question={question} />}
       </div>
-      <Warning plancher={plancher} warning={warning} tempValue={tempValue} />
+      <Warning
+        type={type}
+        plancher={plancher}
+        warning={warning}
+        tempValue={tempValue}
+      />
       {assistance ? (
         <Assistance question={question} assistance={assistance} />
       ) : null}

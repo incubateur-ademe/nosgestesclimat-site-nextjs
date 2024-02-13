@@ -3,14 +3,17 @@ import Markdown from '@/design-system/utils/Markdown'
 import { motion } from 'framer-motion'
 
 type Props = {
+  type?: string
   plancher?: number
   warning?: string
   tempValue?: number
 }
-export default function Warning({ plancher, warning, tempValue }: Props) {
-  if (plancher === undefined || tempValue === undefined) return null
+export default function Warning({ type, plancher, warning, tempValue }: Props) {
+  if (type !== 'number') return null
 
-  if (tempValue >= plancher) return null
+  if (plancher === undefined) return null
+
+  if ((tempValue ?? 0) >= plancher) return null
 
   return (
     <motion.div
