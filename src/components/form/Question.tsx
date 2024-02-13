@@ -11,12 +11,16 @@ import {
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
 import { useRule } from '@/publicodes-state'
+import { useEffect, useRef } from 'react'
+import Warning from './question/Warning'
 
 type Props = {
   question: string
+  tempValue?: number | undefined
+  setTempValue?: (value: number | undefined) => void
 }
 
-export default function Question({ question }: Props) {
+export default function Question({ question, tempValue, setTempValue }: Props) {
   const {
     type,
     label,
@@ -29,22 +33,45 @@ export default function Question({ question }: Props) {
     choices,
     assistance,
     activeNotifications,
+    plancher,
+    warning,
   } = useRule(question)
+
+  // It should happen only on mount (the component remount every time the question changes)
+  const prevQuestion = useRef('')
+  useEffect(() => {
+    if (type !== 'number') {
+      setTempValue && setTempValue(undefined)
+      return
+    }
+
+    if (prevQuestion.current !== question) {
+      setTempValue && setTempValue(numericValue)
+      prevQuestion.current = question
+    }
+  }, [type, numericValue, setTempValue, question])
 
   return (
     <>
       <div className="mb-4">
         <Label question={question} label={label} description={description} />
 
-        <Suggestions question={question} />
-
+        <Suggestions
+          question={question}
+          setValue={(value) => {
+            if (type === 'number') {
+              setTempValue && setTempValue(value)
+            }
+            setValue(value, question)
+          }}
+        />
         {type === 'number' && (
           <NumberInput
             unit={unit}
-            value={numericValue}
+            value={setTempValue ? tempValue : numericValue}
             setValue={(value) => {
-              const limit = 0
-              setValue(value < limit ? limit : value, question)
+              setTempValue && setTempValue(value)
+              setValue(value, question)
             }}
             isMissing={isMissing}
             min={0}
@@ -87,6 +114,12 @@ export default function Question({ question }: Props) {
           />
         )}
       </div>
+      <Warning
+        type={type}
+        plancher={plancher}
+        warning={warning}
+        tempValue={tempValue}
+      />
       {assistance ? (
         <Assistance question={question} assistance={assistance} />
       ) : null}

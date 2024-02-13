@@ -36,6 +36,8 @@ export default function Form() {
 
   const handleUpdateGroupAndRedirectToGroup = useUpdateGroupAndRedirectToGroup()
 
+  const [tempValue, setTempValue] = useState<number | undefined>(undefined)
+
   useEffect(() => {
     if (!isInitialized) {
       if (
@@ -71,16 +73,20 @@ export default function Form() {
     return
   }
 
+  const QuestionComponent = questions[currentQuestion] || Question
+
   return (
     <div className="relative mb-4 overflow-hidden rounded-lg bg-grey-100 p-4 pl-6">
       <ColorIndicator question={currentQuestion} />
-      {questions[currentQuestion] ? (
-        questions[currentQuestion]
-      ) : (
-        <Question question={currentQuestion} key={currentQuestion} />
-      )}
+      <QuestionComponent
+        question={currentQuestion}
+        key={currentQuestion}
+        tempValue={tempValue}
+        setTempValue={setTempValue}
+      />
       <Navigation
         question={currentQuestion}
+        tempValue={tempValue}
         onComplete={() => {
           trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
 

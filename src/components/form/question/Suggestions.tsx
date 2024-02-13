@@ -7,10 +7,11 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
   question: string
+  setValue: (value: number) => void
 }
 
-export default function Suggestions({ question }: Props) {
-  const { suggestions, setValue, addFoldedStep } = useRule(question)
+export default function Suggestions({ question, setValue }: Props) {
+  const { suggestions, addFoldedStep } = useRule(question)
   const { updateSituation } = useEngine()
 
   if (!suggestions?.length) return
@@ -39,7 +40,7 @@ export default function Suggestions({ question }: Props) {
               )
               addFoldedStep(question)
             } else {
-              setValue(suggestion.value, question)
+              setValue(suggestion.value)
             }
           }}>
           {capitalizeString(suggestion.label)}
