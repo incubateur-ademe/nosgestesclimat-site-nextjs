@@ -10,7 +10,7 @@ export const EMAIL_SIMULATION_URL = SERVER_URL + '/email-simulation/'
 
 export const GROUP_URL = SERVER_URL + '/group'
 
-export const SAVE_SIMULATION_URL = SERVER_URL + '/email-simulation'
+export const SAVE_SIMULATION_URL = SERVER_URL + '/simulations/create'
 
 export const getPreviewUrl = (PRNumber: string | number) => {
   if (PRNumber === 'nightly') {

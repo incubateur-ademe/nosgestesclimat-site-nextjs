@@ -5,7 +5,7 @@ describe('The Group creation page /amis/creer', () => {
   let ownerUserId = ''
 
   it('allows to create a new group and displays it afterwards', () => {
-    cy.visit('/amis')
+    cy.visit('/classement')
 
     cy.clearLocalStorage()
 

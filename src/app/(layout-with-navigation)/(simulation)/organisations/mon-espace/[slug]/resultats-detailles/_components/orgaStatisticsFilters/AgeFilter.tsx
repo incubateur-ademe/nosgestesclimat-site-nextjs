@@ -19,7 +19,7 @@ function getAgeOptions({
   const simulationsRecapUnder1960 = filteredSimulationRecaps.filter(
     (simulation) => {
       const birthYear = dayjs(
-        simulation.defaultAdditionalQuestionsAnswers?.birthDate
+        simulation.defaultAdditionalQuestionsAnswers?.birthdate
       ).year()
 
       return birthYear < firstYear
@@ -38,7 +38,7 @@ function getAgeOptions({
     const simulationsRecapMatchingAge = filteredSimulationRecaps.filter(
       (simulation) => {
         const birthYear = dayjs(
-          simulation.defaultAdditionalQuestionsAnswers?.birthDate
+          simulation.defaultAdditionalQuestionsAnswers?.birthdate
         ).year()
 
         return birthYear >= i - 10 && birthYear < i

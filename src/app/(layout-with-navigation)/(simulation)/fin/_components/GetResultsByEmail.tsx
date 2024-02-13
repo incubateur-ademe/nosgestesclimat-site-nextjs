@@ -12,7 +12,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { formatValue } from 'publicodes'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './getResultsByEmail/Confirmation'
 
@@ -21,9 +21,14 @@ export default function GetResultsByEmail({
 }: {
   className?: string
 }) {
+  const { user, updateEmail, getCurrentSimulation, updateHasSavedSimulation } =
+    useUser()
+
   const [email, setEmail] = useState('')
 
-  const { user, getCurrentSimulation, updateHasSavedSimulation } = useUser()
+  useEffect(() => {
+    setEmail(user?.email || '')
+  }, [user])
 
   const simulation = getCurrentSimulation()
 
@@ -55,6 +60,8 @@ export default function GetResultsByEmail({
       email,
       optIn: true,
     })
+
+    updateEmail(email)
 
     updateHasSavedSimulation(true)
   }

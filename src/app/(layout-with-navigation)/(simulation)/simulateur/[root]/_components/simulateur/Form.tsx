@@ -2,39 +2,32 @@ import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import questions from '@/components/questions'
 import { getMatomoEventParcoursTestOver } from '@/constants/matomo'
-import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
+import { useGoToEndPage } from '@/hooks/navigation/useGoToEndPage'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
+import { useEngine, useForm } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import ColorIndicator from './form/ColorIndicator'
-import { useUpdateGroupAndRedirectToGroup } from './form/_hooks/useUpdateGroupAndRedirectToGroup'
 
 export default function Form() {
-  const router = useRouter()
-
   const isDebug = useDebug()
-
-  const { groupToRedirectToAfterTest } = useUser()
 
   const {
     remainingQuestions,
     relevantAnsweredQuestions,
     currentQuestion,
     setCurrentQuestion,
-    categories,
   } = useForm()
 
-  const { getValue, getNumericValue } = useEngine()
+  const { getNumericValue } = useEngine()
 
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()
 
-  const [isInitialized, setIsInitialized] = useState(false)
+  const { goToEndPage } = useGoToEndPage()
 
-  const handleUpdateGroupAndRedirectToGroup = useUpdateGroupAndRedirectToGroup()
+  const [isInitialized, setIsInitialized] = useState(false)
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
 
@@ -90,19 +83,7 @@ export default function Form() {
         onComplete={() => {
           trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
 
-          // When a user joins a group without having his test passed
-          if (groupToRedirectToAfterTest) {
-            handleUpdateGroupAndRedirectToGroup({
-              group: groupToRedirectToAfterTest,
-            })
-            return
-          }
-          router.push(
-            `/fin?${formatResultToDetailParam({
-              categories,
-              getValue,
-            })}`
-          )
+          goToEndPage()
         }}
       />
     </div>

@@ -2,7 +2,12 @@
 
 import { Dispatch, SetStateAction, useCallback } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { ActionChoices, Simulation, Situation } from '../../types'
+import {
+  ActionChoices,
+  ComputedResults,
+  Simulation,
+  Situation,
+} from '../../types'
 
 type Props = {
   simulations: Simulation[]
@@ -31,10 +36,16 @@ export default function useSimulations({
     situation = {},
     persona,
     foldedSteps = [],
+    defaultAdditionalQuestions,
+    poll,
+    group,
   }: {
     situation?: Situation
     persona?: string
     foldedSteps?: string[]
+    defaultAdditionalQuestions?: Record<string, string>
+    poll?: string
+    group?: string
   } = {}) => {
     const id = uuidv4()
 
@@ -49,6 +60,9 @@ export default function useSimulations({
         foldedSteps,
         actionChoices: {},
         persona,
+        defaultAdditionalQuestions,
+        poll,
+        group,
       },
     ])
 
@@ -56,6 +70,84 @@ export default function useSimulations({
 
     return id
   }
+
+  const updateCurrentSimulation = useCallback(
+    ({
+      situationToAdd,
+      foldedStepToAdd,
+      actionChoices,
+      defaultAdditionalQuestions,
+      computedResults,
+      progression,
+      poll,
+      group,
+    }: {
+      situationToAdd?: Situation
+      foldedStepToAdd?: string
+      defaultAdditionalQuestions?: Record<string, string>
+      actionChoices?: ActionChoices
+      computedResults?: ComputedResults
+      progression?: number
+      poll?: string
+      group?: string
+    }) => {
+      if (!currentSimulationId) return
+
+      const simulationToUpdate = simulations.find(
+        (simulation: Simulation) => simulation.id === currentSimulationId
+      )
+
+      if (!simulationToUpdate) return
+
+      if (situationToAdd !== undefined) {
+        simulationToUpdate.situation = {
+          ...simulationToUpdate.situation,
+          ...situationToAdd,
+        }
+      }
+
+      if (foldedStepToAdd !== undefined) {
+        simulationToUpdate.foldedSteps = [
+          ...(simulationToUpdate.foldedSteps || []),
+          foldedStepToAdd,
+        ]
+      }
+
+      if (actionChoices !== undefined) {
+        simulationToUpdate.defaultAdditionalQuestions =
+          defaultAdditionalQuestions
+      }
+
+      if (defaultAdditionalQuestions !== undefined) {
+        simulationToUpdate.defaultAdditionalQuestions =
+          defaultAdditionalQuestions
+      }
+
+      if (computedResults !== undefined) {
+        simulationToUpdate.computedResults = computedResults
+      }
+
+      if (progression !== undefined) {
+        simulationToUpdate.progression = progression
+      }
+
+      if (poll !== undefined) {
+        simulationToUpdate.poll = poll
+      }
+
+      if (group !== undefined) {
+        simulationToUpdate.group = group
+      }
+
+      setSimulations((prevSimulations: Simulation[]) => [
+        ...prevSimulations.filter(
+          (simulation: Simulation) => simulation.id !== currentSimulationId
+        ),
+        simulationToUpdate,
+      ])
+    },
+    [currentSimulationId, setSimulations, simulations]
+  )
 
   const updateSituationOfCurrentSimulation = (situationToAdd: Situation) => {
     if (currentSimulationId) {
@@ -171,6 +263,7 @@ export default function useSimulations({
     currentSimulation: getCurrentSimulation(),
     getCurrentSimulation,
     currentSimulationId,
+    updateCurrentSimulation,
     updateSituationOfCurrentSimulation,
     updateProgressionOfCurrentSimulation,
     updateFoldedStepsOfCurrentSimulation,

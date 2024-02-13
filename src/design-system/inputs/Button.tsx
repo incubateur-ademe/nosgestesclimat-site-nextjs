@@ -46,7 +46,13 @@ export default function Button({
 }: PropsWithChildren<ButtonProps & HtmlHTMLAttributes<HTMLButtonElement>>) {
   return (
     <button
-      onClick={disabled ? () => {} : onClick}
+      onClick={
+        disabled
+          ? (e) => {
+              e.preventDefault
+            }
+          : onClick
+      }
       type={type}
       aria-disabled={disabled}
       title={title}

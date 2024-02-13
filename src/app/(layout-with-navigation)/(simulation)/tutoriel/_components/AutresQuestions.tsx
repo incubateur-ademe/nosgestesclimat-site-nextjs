@@ -1,6 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Image from 'next/image'
+import OrganisationPrivacy from './autresQuestions/OrganisationPrivacy'
 
 export default function AutresQuestions() {
   return (
@@ -9,6 +10,7 @@ export default function AutresQuestions() {
         <Trans>D'autres questions ?</Trans>
       </h5>
       <ul className="mb-1 list-none p-0">
+        <OrganisationPrivacy />
         <li className="mb-2" id={'empreinte'}>
           <details>
             <summary className="cursor-pointer text-sm font-bold text-primary-500 md:text-lg">

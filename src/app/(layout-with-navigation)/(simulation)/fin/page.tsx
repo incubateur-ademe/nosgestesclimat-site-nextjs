@@ -11,6 +11,7 @@ import CongratulationsText from './_components/CongratulationsText'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import GroupModePromotionBanner from './_components/GroupModePromotionBanner'
+import Poll from './_components/Poll'
 import RedirectionIfNoResult from './_components/RedirectionIfNoResult'
 import Results from './_components/Results'
 
@@ -39,6 +40,7 @@ export default function FinPage({
 
       <CongratulationsText />
 
+      <Poll />
       <Results />
 
       <div className="flex flex-col items-start gap-4 md:grid md:grid-cols-5 md:flex-row">

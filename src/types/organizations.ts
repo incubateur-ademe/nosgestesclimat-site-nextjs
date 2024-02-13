@@ -24,6 +24,7 @@ export type OrganizationPoll = {
   startDate: Date
   endDate: Date
   name: string
+  slug: string
   defaultAdditionalQuestions: [string]
   numberOfExpectedParticipants: number
 }
@@ -58,4 +59,20 @@ export type PollData = {
     percentageOfCarOwners: number
   }
   simulationRecaps: SimulationRecap[]
+}
+
+export type PollInfo = {
+  startDate: string
+  endDate: string
+  name: string
+  slug: string
+  defaultAdditionalQuestions: ['postalCode' | 'birthdate']
+  numberOfParticipants: number
+  expectedNumberOfParticipants: number
+  organisationInfo?: OrganisationInfo
+}
+
+type OrganisationInfo = {
+  name: string
+  slug: string
 }

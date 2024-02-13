@@ -1,8 +1,7 @@
-import Title from '@/design-system/layout/Title'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
+import Separator from '@/design-system/layout/Separator'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Groups from './_components/Groups'
-import SondagesBlock from './_components/SondagesBlock'
+import Organisations from './_components/Organisations'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -10,26 +9,17 @@ export async function generateMetadata() {
     description:
       'Comparez vos résultats avec votre famille ou un groupe d’amis.',
     alternates: {
-      canonical: '/amis',
+      canonical: '/classement',
     },
   })
 }
 
 export default async function GroupesPage() {
-  const { t } = await getServerTranslation()
-
   return (
     <>
-      <Title
-        title={t("Groupe d'amis")}
-        subtitle={t(
-          'Comparez vos résultats avec votre famille ou un groupe d’ami·e·s'
-        )}
-      />
-
       <Groups />
-
-      <SondagesBlock />
+      <Separator />
+      <Organisations />
     </>
   )
 }

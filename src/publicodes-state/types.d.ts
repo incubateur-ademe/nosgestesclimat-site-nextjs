@@ -62,6 +62,10 @@ export type ActionChoices = Record<string, boolean>
 
 export type NodeValue = Evaluation
 
+export type ComputedResults = {
+  bilan: number
+  categories: Record<string, number>
+}
 export type Simulation = {
   id: string
   date: Date | string
@@ -69,7 +73,11 @@ export type Simulation = {
   foldedSteps: DottedName[]
   actionChoices: ActionChoices
   persona?: string
+  computedResults?: ComputedResults
   progression?: number
+  defaultAdditionalQuestions?: Record<string, string>
+  poll?: string
+  group?: string
 }
 
 export type Persona = {
