@@ -8,14 +8,14 @@ import PollItem from './pollList/PollItem'
 export default function PollsList() {
   const { simulations } = useUser()
 
-  const pollsSlug = useMemo(
+  const pollSlugs = useMemo(
     () =>
       simulations
         .filter((simulation) => simulation.poll)
         .map((simulation) => simulation.poll),
     [simulations]
   )
-  const { data: polls } = usePolls({ pollsSlug })
+  const { data: polls } = usePolls({ pollSlugs })
 
   if (!polls) {
     return

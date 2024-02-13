@@ -2,12 +2,12 @@ import { fetchPolls } from '@/helpers/organisations/fetchPolls'
 import { useQuery } from '@tanstack/react-query'
 
 type Props = {
-  pollsSlug?: (string | undefined)[]
+  pollSlugs?: (string | undefined)[]
 }
-export const usePolls = ({ pollsSlug }: Props) => {
+export const usePolls = ({ pollSlugs }: Props) => {
   return useQuery({
-    queryKey: ['polls', pollsSlug],
-    queryFn: () => fetchPolls({ pollsSlug }),
-    enabled: pollsSlug ? true : false,
+    queryKey: ['polls', pollSlugs],
+    queryFn: () => fetchPolls({ pollSlugs }),
+    enabled: pollSlugs ? true : false,
   })
 }

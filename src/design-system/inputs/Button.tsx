@@ -46,10 +46,15 @@ export default function Button({
 }: PropsWithChildren<ButtonProps & HtmlHTMLAttributes<HTMLButtonElement>>) {
   return (
     <button
-      onClick={disabled ? () => {} : onClick}
+      onClick={
+        disabled
+          ? (e) => {
+              e.preventDefault
+            }
+          : onClick
+      }
       type={type}
       aria-disabled={disabled}
-      disabled={disabled}
       title={title}
       id={id}
       className={twMerge(
