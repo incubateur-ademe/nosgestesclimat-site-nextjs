@@ -30,7 +30,7 @@ export default function RejoindreGroupePage({
   const groupURL = getGroupURL(group)
 
   if (!groupId) {
-    router.push('/amis')
+    router.push('/classement')
     return
   }
 

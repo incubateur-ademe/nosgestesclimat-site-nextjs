@@ -37,7 +37,7 @@ export default function ParticipantAdminSection({ group }: Props) {
       })
 
       timeoutRef.current = setTimeout(() => {
-        router.push('/amis')
+        router.push('/classement')
       }, 1750)
     } catch (error) {
       captureException(error)

@@ -9,7 +9,7 @@ export async function generateMetadata() {
     description:
       'Comparez vos résultats avec votre famille ou un groupe d’amis.',
     alternates: {
-      canonical: '/amis',
+      canonical: '/classement',
     },
   })
 }
