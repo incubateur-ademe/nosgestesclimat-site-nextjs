@@ -37,7 +37,7 @@ export default function FinPage({
 
       {
         // Do not redirect if the user is not coming from his/her save simulation email
-        searchParams?.sid && (
+        !searchParams?.sid && (
           <RedirectionIfNoResult details={searchParams?.details || ''} />
         )
       }
