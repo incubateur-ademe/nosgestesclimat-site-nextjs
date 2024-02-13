@@ -33,7 +33,7 @@ export default function Poll() {
         <b>{isLoading ? '... ' : poll?.organisationInfo?.name}</b>
       </p>
       <ButtonLink
-        href={linkToPollDashboard()}
+        href={linkToPollDashboard({ orgaSlug: poll?.organisationInfo?.slug })}
         className="flex h-10 w-10 items-center justify-center rounded-full p-0 leading-none">
         →
       </ButtonLink>

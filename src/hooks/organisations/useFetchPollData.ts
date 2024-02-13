@@ -7,12 +7,13 @@ import { useLocale } from '../useLocale'
 
 type Props = {
   enabled?: boolean
+  orgaSlug?: string
 }
 
 export function useFetchPollData(
   props?: Props
 ): UseQueryResult<PollData | null, Error> {
-  const { enabled = true } = props ?? {}
+  const { enabled = true, orgaSlug } = props ?? {}
 
   const locale = useLocale()
 
@@ -29,7 +30,8 @@ export function useFetchPollData(
     queryKey: ['pollData', fileName],
     queryFn: () =>
       axios
-        .post(SERVER_URL + '/organisations/fetch-processed-poll-data', {
+        .post(SERVER_URL + '/organisations/fetch-poll-processed-data', {
+          orgaSlug,
           email: user?.email,
           fileName,
           userId: user?.id,

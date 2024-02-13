@@ -10,13 +10,14 @@ export function useAppNavigation() {
   const queryParamsString = searchParams.toString()
 
   const { pollSlug } = useOrganisationQueryParams()
+
   const { data: poll } = usePoll({ pollSlug })
 
   const linkToTutorial = `/tutoriel?${queryParamsString}`
 
-  const linkToPollDashboard = ({ pollSlug }: { pollSlug?: string } = {}) =>
+  const linkToPollDashboard = ({ orgaSlug }: { orgaSlug?: string } = {}) =>
     `organisations/${
-      pollSlug ?? poll?.organisationInfo?.slug
+      orgaSlug ?? poll?.organisationInfo?.slug
     }/resultats-detailles`
 
   const getLinkToInfosPage = (index: number) => {

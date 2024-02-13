@@ -5,6 +5,7 @@ import OrgaStatistics from '@/components/organisations/OrgaStatistics'
 import Trans from '@/components/translation/Trans'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
+import { useParams } from 'next/navigation'
 import { useContext } from 'react'
 import { FiltersContext } from './_components/FiltersProvider'
 import OrgaStatisticsCharts from './_components/OrgaStatisticsCharts'
@@ -38,7 +39,8 @@ import OrgaStatisticsFilters from './_components/OrgaStatisticsFilters'
 // }
 
 export default function ResultatsDetaillesPage() {
-  const { data: pollData } = useFetchPollData()
+  const params = useParams()
+  const { data: pollData } = useFetchPollData({ orgaSlug: String(params.slug) })
 
   // // Create a mock poll data with the same structure as the real one using the SimulationRecap type with 200 entries
   // // where bilan should be equal to the sum of the categories and the random values should be floats of 2 decimals
