@@ -26,7 +26,9 @@ export default function PRIndicator() {
       <Link
         className="font-base text-sm text-primary-700"
         target="_blank"
-        href={'https://github.com/datagir/nosgestesclimat/pull/' + PRNumber}>
+        href={
+          'https://github.com/incubateur-ademe/nosgestesclimat/pull/' + PRNumber
+        }>
         #{PRNumber}
       </Link>
       <button

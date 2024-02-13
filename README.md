@@ -2,13 +2,13 @@
 
 ## C'est quoi ?
 
-Un simulateur d'empreinte climat individuelle de consommation à l'année, utilisant le modèle [nosgestesclimat](https://github.com/datagir/nosgestesclimat).
+Un simulateur d'empreinte climat individuelle de consommation à l'année, utilisant le modèle [nosgestesclimat](https://github.com/incubateur-ademe/nosgestesclimat).
 
-Pour contribuer au modèle, données sous-jacentes et textes du questionnaire (calculs, facteurs d'émission, textes, questions, réponses, suggestions de saisie), [suivez le guide de contribution](https://github.com/datagir/nosgestesclimat/blob/master/CONTRIBUTING.md).
+Pour contribuer au modèle, données sous-jacentes et textes du questionnaire (calculs, facteurs d'émission, textes, questions, réponses, suggestions de saisie), [suivez le guide de contribution](https://github.com/incubateur-ademe/nosgestesclimat/blob/master/CONTRIBUTING.md).
 
-Pour tout ce qui touche à l'interface (style d'un bouton, graphique de résultat, code javascript, etc.) c'est ici [sur le dépôt du _site_](https://github.com/datagir/nosgestesclimat-site/issues).
+Pour tout ce qui touche à l'interface (style d'un bouton, graphique de résultat, code javascript, etc.) c'est ici [sur le dépôt du _site_](https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/issues).
 
-> 🇬🇧 Most of the documentation (including issues and the wiki) is written in french, please raise an [issue](https://github.com/datagir/nosgestesclimat-site/issues/new) if you are interested and do not speak French.
+> 🇬🇧 Most of the documentation (including issues and the wiki) is written in french, please raise an [issue](https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/issues/new) if you are interested and do not speak French.
 
 ## Et techniquement ?
 
@@ -18,13 +18,13 @@ Le code est en NextJS / Typescript / React / TailwindCSS, entre autres.
 
 ### 🇬🇧 Installation
 
-The footprint model is stored in the [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) `nosgestesclimat/` pointing to the corresponding GitHub [repository](https://github.com/datagir/nosgestesclimat).
+The footprint model is stored in the [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) `nosgestesclimat/` pointing to the corresponding GitHub [repository](https://github.com/incubateur-ademe/nosgestesclimat).
 
 Consequently, to fetch all the data you need to provide the `--recursive` flag when cloning this repository or if it's already cloned you need to run `git submodule update --init --recursive`.
 
 The model YAML files will then be loaded locally (no installation needed, they are loaded by webpack), and your changes to these files will refresh the UI instantly.
 
-> The production version fetches the JSON compiled YAML rules deployed by datagir/nosgestesclimat.
+> The production version fetches the JSON compiled YAML rules deployed by incubateur-ademe/nosgestesclimat.
 
 Then run this command from this repo:
 
@@ -42,8 +42,8 @@ If you want to run the automatic localisation, which depends on a Netlify Edge f
 You can run e2e tests (Cypress) by firt starting a local server with `yarn run
 serve`, then, run cypress tests with `yarn run test` (or `yarn run e2e` to open
 the Cypress GUI) -- it will generate [personas spec
-files](https://github.com/datagir/nosgestesclimat-site/wiki/Contributing#tests).
+files](https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/wiki/Contributing#tests).
 
 ## Réutilisations de ce code
 
-Attention, même si la licence MIT vous permet de réutiliser ce code à votre guise, en citant clairement le fait que vous reprenez nos travaux, vous ne pouvez pas réutiliser la marque Nos Gestes Climat. [Veuillez lire notre guide de personnalisation](https://github.com/datagir/nosgestesclimat-site/blob/master/PERSONNALISATION.md)
+Attention, même si la licence MIT vous permet de réutiliser ce code à votre guise, en citant clairement le fait que vous reprenez nos travaux, vous ne pouvez pas réutiliser la marque Nos Gestes Climat. [Veuillez lire notre guide de personnalisation](https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/blob/master/PERSONNALISATION.md)

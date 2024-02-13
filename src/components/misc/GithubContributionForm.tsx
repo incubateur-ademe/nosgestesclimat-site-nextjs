@@ -31,7 +31,7 @@ export const createIssue = ({
   fetch(
     '/.netlify/functions/create-issue?' +
       Object.entries({
-        repo: 'datagir/nosgestesclimat',
+        repo: 'incubateur-ademe/nosgestesclimat',
         title,
         body,
         labels,
