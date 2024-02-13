@@ -12,6 +12,7 @@ export default function MosaicQuestion({
   question,
   parentMosaic,
   index,
+  ...props
 }: Props) {
   const { type, parent, setValue } = useRule(question)
 
@@ -33,6 +34,7 @@ export default function MosaicQuestion({
           }}
           parentMosaic={parentMosaic}
           index={index}
+          {...props}
         />
       )}
       {type === 'boolean' && (
@@ -46,6 +48,7 @@ export default function MosaicQuestion({
             resetMosaicChildren(question)
           }}
           index={index}
+          {...props}
         />
       )}
     </>
