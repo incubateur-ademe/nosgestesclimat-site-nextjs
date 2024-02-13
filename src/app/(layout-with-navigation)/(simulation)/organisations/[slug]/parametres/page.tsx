@@ -7,7 +7,7 @@ import Loader from '@/design-system/layout/Loader'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { useUser } from '@/publicodes-state'
-import useFetchOrganisation from '../../../_hooks/useFetchOrganisation'
+import useFetchOrganisation from '../../_hooks/useFetchOrganisation'
 import InformationsForm from './_components/InformationsForm'
 import QuestionsComplementaires from './_components/QuestionsComplementaires'
 

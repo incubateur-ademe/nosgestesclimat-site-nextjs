@@ -26,27 +26,25 @@ function getOrganisationEspaceItems({
   const items = []
   if (params.slug) {
     items.push({
-      href: `/organisations/mon-espace/${params.slug}`,
+      href: `/organisations/${params.slug}`,
       label: <span>{capitalizeString(String(params.slug))}</span>,
       isActive: pathname === `/organisations/${params.slug}`,
     })
 
     if (pathname.includes('resultats-detailles')) {
       items.push({
-        href: `/organisations/mon-espace/${params.slug}/resultats-detailles`,
+        href: `/organisations/${params.slug}/resultats-detailles`,
         label: <Trans>Résultats détaillés</Trans>,
         isActive:
-          pathname ===
-          `/organisations/mon-espace/${params.slug}/resultats-detailles`,
+          pathname === `/organisations/${params.slug}/resultats-detailles`,
       })
     }
 
     if (pathname.includes('parametres')) {
       items.push({
-        href: `/organisations/mon-espace/${params.slug}/parametres`,
+        href: `/organisations/${params.slug}/parametres`,
         label: <Trans>Paramètres</Trans>,
-        isActive:
-          pathname === `/organisations/mon-espace/${params.slug}/parametres`,
+        isActive: pathname === `/organisations/${params.slug}/parametres`,
       })
     }
   }
@@ -80,9 +78,8 @@ export function getOrganisationItems({
     return items
   }
 
-  if (pathname.includes('mon-espace')) {
-    items.push(...getOrganisationEspaceItems({ pathname, params }))
-  }
+  // These are the items for the organisation page
+  items.push(...getOrganisationEspaceItems({ pathname, params }))
 
   return items
 }

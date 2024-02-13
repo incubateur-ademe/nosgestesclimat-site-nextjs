@@ -80,7 +80,7 @@ export default function CreationPage() {
         throw new Error('No slug found')
       }
 
-      router.push(`/organisations/mon-espace/${organisationUpdated?.slug}`)
+      router.push(`/organisation/${organisationUpdated?.slug}`)
     } catch (error: any) {
       captureException(error)
     }

@@ -7,7 +7,7 @@ import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
 import { FormEventHandler } from 'react'
-import { useUpdateOrganisation } from '../../../../_hooks/useUpdateOrganisation'
+import { useUpdateOrganisation } from '../../../_hooks/useUpdateOrganisation'
 
 type Props = {
   organisation: Organisation

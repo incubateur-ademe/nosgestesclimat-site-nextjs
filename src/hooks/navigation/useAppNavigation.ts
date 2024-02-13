@@ -15,7 +15,7 @@ export function useAppNavigation() {
   const linkToTutorial = `/tutoriel?${queryParamsString}`
 
   const linkToPollDashboard = ({ pollSlug }: { pollSlug?: string } = {}) =>
-    `organisations/mon-espace/${
+    `organisations/${
       pollSlug ?? poll?.organisationInfo?.slug
     }/resultats-detailles`
 

@@ -27,7 +27,7 @@ export default function Page() {
   // is already logged in (has a valid cookie stored)
   useEffect(() => {
     if (isSuccess && organisation) {
-      router.push(`/organisations/mon-espace/${organisation?.slug}`)
+      router.push(`/organisations/${organisation?.slug}`)
     }
   }, [isSuccess, organisation, router])
 
