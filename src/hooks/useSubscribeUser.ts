@@ -26,7 +26,9 @@ export function useSubscribeUser() {
         optIn,
         simulationURL:
           location +
-          `&sid=${encodeURIComponent(
+          `${
+            location.toString().includes('?') ? '&' : '?'
+          }sid=${encodeURIComponent(
             idSimulationSaved
           )}&mtm_campaign=retrouver-ma-simulation`,
         // URL already contains the query param details
