@@ -1,82 +1,10 @@
 'use client'
 
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
-import { capitalizeString } from '@/utils/capitalizeString'
+import { getOrganizationItems } from '@/helpers/filAriane/getOrganisationItems'
 import { useParams, usePathname } from 'next/navigation'
-import Trans from '../translation/Trans'
 
 const TARGETED_PATHS = ['organisations']
-
-function getOrganizationItems({
-  pathname,
-  params,
-}: {
-  pathname: string
-  params: any
-}): {
-  href: string
-  label: string | JSX.Element
-  isActive: boolean
-}[] {
-  if (!pathname.includes('organisations')) {
-    return []
-  }
-
-  // These are the items for the organization page, the connexion and the creation page
-  const baseItems = [
-    {
-      href: '/',
-      label: <Trans>Accueil</Trans>,
-      isActive: pathname === '/',
-    },
-    {
-      href: '/organisations',
-      label: <Trans>Organisations</Trans>,
-      isActive: pathname === '/organisations',
-    },
-  ]
-
-  const allItems = [...baseItems]
-
-  if (pathname.includes('demander-demo')) {
-    allItems.push({
-      href: '/organisations/demander-demo',
-      label: <Trans>Demander une démo</Trans>,
-      isActive: pathname === '/organisations/demander-demo',
-    })
-  }
-
-  if (!pathname.includes('mon-espace')) return allItems
-
-  if (params.slug) {
-    allItems.push({
-      href: `/organisations/mon-espace/${params.slug}`,
-      label: <span>{capitalizeString(String(params.slug))}</span>,
-      isActive: pathname === `/organisations/${params.slug}`,
-    })
-  }
-
-  if (pathname.includes('resultats-detailles')) {
-    allItems.push({
-      href: `/organisations/mon-espace/${params.slug}/resultats-detailles`,
-      label: <Trans>Résultats détaillés</Trans>,
-      isActive:
-        pathname ===
-        `/organisations/mon-espace/${params.slug}/resultats-detailles`,
-    })
-  }
-
-  if (pathname.includes('parametres')) {
-    allItems.push({
-      href: `/organisations/mon-espace/${params.slug}/parametres`,
-      label: <Trans>Paramètres</Trans>,
-      isActive:
-        pathname === `/organisations/mon-espace/${params.slug}/parametres`,
-    })
-  }
-
-  return allItems
-}
 
 export default function FilAriane() {
   const pathname = usePathname()
@@ -93,6 +21,7 @@ export default function FilAriane() {
     if (pathname.includes('organisations')) {
       return getOrganizationItems({ pathname, params })
     }
+
     return []
   }
 

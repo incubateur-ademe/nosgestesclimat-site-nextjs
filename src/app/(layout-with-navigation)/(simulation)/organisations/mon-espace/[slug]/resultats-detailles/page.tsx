@@ -93,12 +93,7 @@ export default function ResultatsDetaillesPage() {
         </h1>
 
         <ExportDataButton
-          // We only want to export the complete simulations
-          simulationRecaps={
-            pollData?.simulationRecaps.filter(
-              ({ progression }) => progression === 1
-            ) ?? []
-          }
+          simulationRecaps={pollData?.simulationRecaps ?? []}
           color="secondary"
         />
       </div>
