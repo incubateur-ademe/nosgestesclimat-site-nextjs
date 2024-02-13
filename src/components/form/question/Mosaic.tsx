@@ -5,7 +5,7 @@ type Props = {
   question: string
 }
 
-export default function Mosaic({ question }: Props) {
+export default function Mosaic({ question, ...props }: Props) {
   const { questionsOfMosaic } = useRule(question)
 
   return (
@@ -17,6 +17,7 @@ export default function Mosaic({ question }: Props) {
               parentMosaic={question}
               question={questionOfMosaic}
               index={index}
+              {...props}
             />
           ))
         : 'Cette mosaique n a pas d enfants.'}

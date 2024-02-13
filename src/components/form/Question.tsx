@@ -6,7 +6,10 @@ import Mosaic from '@/components/form/question/Mosaic'
 import Notification from '@/components/form/question/Notification'
 import NumberInput from '@/components/form/question/NumberInput'
 import Suggestions from '@/components/form/question/Suggestions'
-import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
+import {
+  DEFAULT_FOCUS_ELEMENT_ID,
+  QUESTION_DESCRIPTION_BUTTON_ID,
+} from '@/constants/accessibility'
 import { useRule } from '@/publicodes-state'
 import { useEffect, useRef } from 'react'
 import Warning from './question/Warning'
@@ -51,12 +54,8 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
   return (
     <>
       <div className="mb-4">
-        <Label
-          question={question}
-          label={label}
-          description={description}
-          htmlFor={DEFAULT_FOCUS_ELEMENT_ID}
-        />
+        <Label question={question} label={label} description={description} />
+
         <Suggestions
           question={question}
           setValue={(value) => {
@@ -78,8 +77,10 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             min={0}
             data-cypress-id={question}
             id={DEFAULT_FOCUS_ELEMENT_ID}
+            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
           />
         )}
+
         {type === 'boolean' && (
           <BooleanInput
             value={value}
@@ -88,8 +89,10 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             data-cypress-id={question}
             label={label || ''}
             id={DEFAULT_FOCUS_ELEMENT_ID}
+            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
           />
         )}
+
         {type === 'choices' && (
           <ChoicesInput
             question={question}
@@ -100,9 +103,16 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             data-cypress-id={question}
             label={label || ''}
             id={DEFAULT_FOCUS_ELEMENT_ID}
+            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
           />
         )}
-        {type === 'mosaic' && <Mosaic question={question} />}
+
+        {type === 'mosaic' && (
+          <Mosaic
+            question={question}
+            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+          />
+        )}
       </div>
       <Warning
         type={type}
