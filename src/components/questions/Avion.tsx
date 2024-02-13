@@ -24,7 +24,7 @@ export default function Avion({ question, ...props }: Props) {
             <Trans>📅 Répondre sur les 3 dernières années</Trans>
           )}
         </Button>
-        {isOpen ? <ThreeYearsInput question={question} /> : null}
+        {isOpen ? <ThreeYearsInput question={question} {...props} /> : null}
       </div>
     </>
   )

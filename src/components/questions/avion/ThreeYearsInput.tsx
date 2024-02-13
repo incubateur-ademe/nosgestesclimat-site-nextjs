@@ -8,9 +8,10 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 
 type Props = {
   question: string
+  setTempValue?: (value: number | undefined) => void
 }
 
-export default function ThreeYearsInput({ question }: Props) {
+export default function ThreeYearsInput({ question, setTempValue }: Props) {
   const { t } = useClientTranslation()
 
   const locale = useLocale()
@@ -56,6 +57,7 @@ export default function ThreeYearsInput({ question }: Props) {
   const prevTotalValue = useRef(totalValue)
   useEffect(() => {
     if (totalValue !== prevTotalValue.current) {
+      setTempValue && setTempValue(total)
       setValue(totalValue, question)
     }
     prevTotalValue.current = totalValue
