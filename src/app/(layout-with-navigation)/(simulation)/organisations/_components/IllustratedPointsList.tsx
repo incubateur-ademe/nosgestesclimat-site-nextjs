@@ -12,13 +12,13 @@ export default function IllustratedPointsList() {
               <Trans>Sensibilisez votre organisation</Trans>
             </h2>
 
-            <h3 className="text-3xl">
+            <h3 className="text-2xl md:text-3xl">
               <Trans>
                 Partagez une version personnalisée de Nos Gestes Climat
               </Trans>
             </h3>
 
-            <p className="text-lg">
+            <p className="text-base md:text-lg">
               <Trans>
                 Créez une campagne Nos Gestes Climat personnalisée au sein de
                 votre organisation et accédez à des services sur mesure pour
@@ -27,7 +27,7 @@ export default function IllustratedPointsList() {
             </p>
           </div>
 
-          <div className="flex w-[26rem] max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6">
+          <div className="mx-auto flex w-[26rem] max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6">
             <div className="mx-auto mt-4 flex items-end rounded-t-md bg-white p-4 pb-0 shadow-sm">
               <Image
                 src="/images/organisations/orga-visuel-1.png"
@@ -47,11 +47,11 @@ export default function IllustratedPointsList() {
               <Trans>Statistiques et exports</Trans>
             </h2>
 
-            <h3 className="text-3xl">
+            <h3 className="text-2xl md:text-3xl">
               <Trans>Explorez, comparez et analysez vos données</Trans>
             </h3>
 
-            <p className="text-lg">
+            <p className="text-base md:text-lg">
               <Trans>
                 Permettez à vos collaborateurs, employés, partenaires ou élèves
                 de calculer et réduire leur empreinte carbone directement depuis
@@ -61,7 +61,7 @@ export default function IllustratedPointsList() {
             </p>
           </div>
 
-          <div className="flex w-[26rem] max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6">
+          <div className="mx-auto flex w-[26rem] max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6">
             <div className="w-full">
               <Image
                 src="/images/organisations/orga-visuel-2.png"
@@ -81,11 +81,11 @@ export default function IllustratedPointsList() {
               <Trans>Lien personnalisé & iframes</Trans>
             </h2>
 
-            <h3 className="text-3xl">
+            <h3 className="text-2xl md:text-3xl">
               <Trans>Intégrez Nos Gestes Climat à vos services</Trans>
             </h3>
 
-            <p className="text-lg">
+            <p className="text-base md:text-lg">
               <Trans>
                 Explorez, analysez et téléchargez des données pour faire des
                 choix éclairés et pour améliorer continuellement votre démarche
@@ -96,7 +96,7 @@ export default function IllustratedPointsList() {
             </p>
           </div>
 
-          <div className="flex w-[26rem] max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6">
+          <div className="mx-auto flex w-[26rem] max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6">
             <VisuelIframe />
           </div>
         </section>

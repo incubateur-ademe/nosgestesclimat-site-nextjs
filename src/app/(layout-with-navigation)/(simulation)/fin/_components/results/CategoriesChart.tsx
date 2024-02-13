@@ -2,6 +2,7 @@
 
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import { useRule } from '@/publicodes-state'
+import { twMerge } from 'tailwind-merge'
 import CategoryChartItem from './categoriesChart/CategoryChartItem'
 
 type Props = {
@@ -15,7 +16,7 @@ export default function CategoriesChart({
   const { numericValue: firstCategoryValue } = useRule(sortedCategories[0])
 
   return (
-    <VerticalBarChart className={`${className} md:hidden`}>
+    <VerticalBarChart className={twMerge('md:hidden', className)}>
       {sortedCategories.map((category, index) => (
         <CategoryChartItem
           key={category}
