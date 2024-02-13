@@ -62,7 +62,7 @@
 
     Why is internationalization important? Certain parameters of the model, in particular **the footprint of the electricity mix** (in gCO₂ₑ/kWh), particularly influence the final result, which will therefore not be valid in Belgium, Congo, Quebec, Algeria or elsewhere. Wondering what your footprint would look like in one of these countries? You can change region <a href="https://nosgestesclimat.fr/profil">on this page</a>.
 
-    If you're familiar with the subject in your country or region, come and <a href="https://github.com/datagir/nosgestesclimat-site/issues/71">discuss it</a>.
+    If you're familiar with the subject in your country or region, come and <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/issues/71">discuss it</a>.
   question.lock: Le calculateur est-il destiné uniquement aux Français ?
   catégorie.lock: général
   réponse.lock: |
@@ -73,7 +73,7 @@
 
     Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier **l'empreinte du mix électrique** (en gCO₂ₑ/kWh), influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs. Vous vous demandez ce que donnerait votre empreinte dans un de ces pays ? Vous pouvez changer de région [sur cette page](https://nosgestesclimat.fr/profil).
 
-    Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
+    Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/incubateur-ademe/nosgestesclimat-site/issues/71).
 - id: foyer
   question: Is the footprint calculated for my home, or just mine?
   catégorie: general
@@ -89,7 +89,7 @@
 
     For each of them, **we have therefore arbitrated between personal and shared** (the television is shared, the computer is personal). If the distinction isn't the same for you, don't worry: these items represent very little in your final footprint.
 
-    At the same time, the team is working on developing a <a href="https://github.com/datagir/nosgestesclimat/issues/113">**household</a> course** so that you can estimate your family's carbon footprint.
+    At the same time, the team is working on developing a <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/113">**household</a> course** so that you can estimate your family's carbon footprint.
   question.lock: L'empreinte calculée est-elle celle de mon foyer, ou seulement la mienne ?
   catégorie.lock: général
   réponse.lock: |
@@ -104,7 +104,7 @@
 
     Pour chacun d'entre eux, **nous avons donc arbitré entre personnel et partagé** (la télévision est partagée, l'ordinateur est personnel). Si pour vous la distinction n'est pas la même, ne vous inquiétez pas : ces postes représentent peu dans votre empreinte finale.
 
-    En parallèle, l’équipe travaille à développer un **parcours [« foyer »](https://github.com/datagir/nosgestesclimat/issues/113)** afin de pouvoir estimer l’empreinte carbone de sa famille.
+    En parallèle, l’équipe travaille à développer un **parcours [« foyer »](https://github.com/incubateur-ademe/nosgestesclimat/issues/113)** afin de pouvoir estimer l’empreinte carbone de sa famille.
 - id: enfants
   question: Aren't you going to ask about having children?
   catégorie: general

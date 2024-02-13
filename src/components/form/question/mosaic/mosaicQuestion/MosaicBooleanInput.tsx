@@ -36,6 +36,7 @@ export default function MosaicBooleanInput({
   description,
   setValue,
   index,
+  ...props
 }: Props) {
   const { value, isMissing, isInactive } = useRule(question)
 
@@ -46,17 +47,20 @@ export default function MosaicBooleanInput({
       : 'unchecked'
   return (
     <label
-      className={`relative flex cursor-pointer items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}>
+      className={`relative flex cursor-pointer items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
+      htmlFor={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}>
       <input
         type="checkbox"
         disabled={isInactive}
-        className="hidden"
+        className="absolute h-[1px] w-[1px] opacity-0"
         onClick={() => {
           setValue(value ? 'non' : 'oui')
         }}
         data-cypress-id={`${question}-${value}`}
         id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
+        {...props}
       />
+
       <span
         className={`${checkClassNames[status]} flex h-5 w-5 items-center justify-center rounded-sm border-2 leading-4`}>
         {status === 'checked' ? (
@@ -71,6 +75,7 @@ export default function MosaicBooleanInput({
           ''
         )}
       </span>
+
       <div className="flex-1">
         {title && icons ? (
           <span

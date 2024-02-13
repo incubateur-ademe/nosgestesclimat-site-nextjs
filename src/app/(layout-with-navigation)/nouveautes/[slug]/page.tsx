@@ -18,9 +18,6 @@ export async function generateMetadata({ params: { slug } }: Props) {
     )}, nouveautés - Nos Gestes Climat`,
     description: 'Découvrez les nouveautés du site Nos Gestes Climat.',
     params: { slug },
-    alternates: {
-      canonical: `/nouveautes/${slug}`,
-    },
   })
 }
 
