@@ -26,7 +26,7 @@ export default function Voiture({ question, ...props }: Props) {
             </>
           )}
         </Button>
-        {isOpen ? <JourneysInput question={question} /> : null}
+        {isOpen ? <JourneysInput question={question} {...props} /> : null}
       </div>
     </>
   )
