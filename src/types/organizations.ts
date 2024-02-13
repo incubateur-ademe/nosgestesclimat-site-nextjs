@@ -25,7 +25,7 @@ export type OrganizationPoll = {
   endDate: Date
   name: string
   defaultAdditionalQuestions: [string]
-  numberOfParticipants: number
+  numberOfExpectedParticipants: number
 }
 
 export type Organization = {

@@ -7,7 +7,7 @@ import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import useFetchOrganization from '../_hooks/useFetchOrganization'
-import { useUpdateOrganizationAfterCreation } from '../_hooks/useUpdateOrganizationAfterCreation'
+import { useUpdateOrganization } from '../_hooks/useUpdateOrganization'
 import CreationForm from './_components/CreationForm'
 
 export default function CreationPage() {
@@ -22,10 +22,9 @@ export default function CreationPage() {
     email: user?.email,
   })
 
-  const { mutateAsync: updateOrganization } =
-    useUpdateOrganizationAfterCreation({
-      email: user?.email,
-    })
+  const { mutateAsync: updateOrganization } = useUpdateOrganization({
+    email: user?.email,
+  })
 
   const router = useRouter()
 
@@ -39,7 +38,9 @@ export default function CreationPage() {
     const administratorName = data.get('administratorName') as string
     const position = data.get('position') as string
     const telephone = data.get('telephone') as string
-    const numberOfParticipants = data.get('numberOfParticipants') as string
+    const numberOfExpectedParticipants = data.get(
+      'numberOfExpectedParticipants'
+    ) as string
 
     // Validation
     if (!name || !administratorName) {
@@ -72,7 +73,7 @@ export default function CreationPage() {
         administratorName,
         position,
         telephone,
-        numberOfParticipants,
+        numberOfExpectedParticipants,
         hasOptedInForCommunications,
       })
 

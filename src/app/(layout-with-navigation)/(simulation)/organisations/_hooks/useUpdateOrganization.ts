@@ -5,15 +5,23 @@ import axios from 'axios'
 export function useUpdateOrganization({ email }: { email: string }) {
   return useMutation({
     mutationFn: ({
+      slug,
       name,
+      position,
       administratorName,
       hasOptedInForCommunications,
       defaultAdditionalQuestions,
+      telephone,
+      numberOfExpectedParticipants,
     }: {
+      slug?: string
       name?: string
+      position?: string
       administratorName?: string
       hasOptedInForCommunications?: boolean
       defaultAdditionalQuestions?: string[]
+      telephone?: string
+      numberOfExpectedParticipants?: string
     }) =>
       axios
         .post(
@@ -24,6 +32,10 @@ export function useUpdateOrganization({ email }: { email: string }) {
             hasOptedInForCommunications,
             email,
             defaultAdditionalQuestions,
+            position,
+            slug,
+            telephone,
+            numberOfExpectedParticipants,
           },
           {
             withCredentials: true,
