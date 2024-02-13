@@ -41,11 +41,21 @@ export default function Providers({
     }
   }, [currentSimulationId, initSimulation])
 
+  // We don't want to display the loader when the user is on the tutorial page
+  // or the landing page for organisations
   if (NO_MODEL_PATHNAME_EXCEPTIONS.includes(pathname)) {
     return <>{children}</>
   }
 
-  return currentSimulationId && !isLoading ? (
+  if (!currentSimulationId || isLoading) {
+    return (
+      <div className="flex flex-1 items-center justify-center">
+        <Loader color="dark" />
+      </div>
+    )
+  }
+
+  return (
     <SimulationProvider
       key={currentSimulationId}
       rules={rules}
@@ -58,11 +68,8 @@ export default function Providers({
       shouldAlwaysDisplayChildren={pathname === '/tutoriel'}
       categoryOrder={orderedCategories}>
       <LocalisationBanner supportedRegions={supportedRegions} />
+
       {children}
     </SimulationProvider>
-  ) : (
-    <div className="flex flex-1 items-center justify-center">
-      <Loader color="dark" />
-    </div>
   )
 }

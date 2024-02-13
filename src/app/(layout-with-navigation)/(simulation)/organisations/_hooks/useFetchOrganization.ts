@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export default function useFetchOrganization({ email }: { email: string }) {
   return useQuery({
-    queryKey: ['organization-validate-jwt'],
+    queryKey: ['organization-validate-jwt', email],
     queryFn: () =>
       axios
         .post(
