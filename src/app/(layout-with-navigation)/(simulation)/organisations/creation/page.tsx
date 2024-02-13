@@ -35,7 +35,6 @@ export default function CreationPage() {
     const data = new FormData(document.querySelector('form') ?? undefined)
 
     const name = data.get('name') as string
-    const slug = name.toLowerCase().replace(/ /g, '-')
     const administratorName = data.get('administratorName') as string
     const position = data.get('position') as string
     const telephone = data.get('telephone') as string
@@ -70,7 +69,6 @@ export default function CreationPage() {
     try {
       const organisationUpdated = await updateOrganisation({
         name,
-        slug,
         administratorName,
         position,
         telephone,

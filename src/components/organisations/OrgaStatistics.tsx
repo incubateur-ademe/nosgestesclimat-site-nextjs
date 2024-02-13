@@ -34,9 +34,10 @@ export default function OrgaStatistics({
 
       <FunFacts funFacts={funFacts} />
 
-      {!pathname.includes('resultats-detailles') && (
-        <SeeDetailedReportAndExport />
-      )}
+      {simulationRecaps?.length > 0 &&
+        !pathname.includes('resultats-detailles') && (
+          <SeeDetailedReportAndExport />
+        )}
     </>
   )
 }

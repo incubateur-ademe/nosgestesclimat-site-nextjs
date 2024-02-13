@@ -5,7 +5,6 @@ import axios from 'axios'
 export function useUpdateOrganisation({ email }: { email: string }) {
   return useMutation({
     mutationFn: ({
-      slug,
       name,
       position,
       administratorName,
@@ -14,7 +13,6 @@ export function useUpdateOrganisation({ email }: { email: string }) {
       telephone,
       numberOfExpectedParticipants,
     }: {
-      slug?: string
       name?: string
       position?: string
       administratorName?: string
@@ -33,7 +31,6 @@ export function useUpdateOrganisation({ email }: { email: string }) {
             email,
             defaultAdditionalQuestions,
             position,
-            slug,
             telephone,
             numberOfExpectedParticipants,
           },

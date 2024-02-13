@@ -8,7 +8,7 @@ export default function ResultsSoonBanner() {
 
     faqElement?.scrollIntoView({
       behavior: 'smooth',
-      block: 'start',
+      block: 'end',
     })
   }
 
@@ -25,12 +25,6 @@ export default function ResultsSoonBanner() {
                 Bientôt, vous verrez apparaître ici vos statistiques. Partagez
                 le test pour obtenir vos premiers résultats
               </Trans>{' '}
-              -{' '}
-              <button
-                className="text-primary-500 underline"
-                onClick={() => handleScrollIntoView('orga-faq')}>
-                <Trans>En savoir plus</Trans>
-              </button>
             </p>
           </div>
         </div>
