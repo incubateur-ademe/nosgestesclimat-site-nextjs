@@ -15,7 +15,7 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
 
   const { t } = useClientTranslation()
 
-  const { updateEmail, updateLoginExpirationDate } = useUser()
+  const { updateLoginExpirationDate } = useUser()
 
   const { mutateAsync: loginOrganization } = useLoginOrganisation()
 
@@ -49,9 +49,7 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
         email,
       })
 
-      // We update the email in the user state
-      // along with the expiration date of the code
-      updateEmail(email)
+      // We update the expiration date of the code
       updateLoginExpirationDate(expirationDate)
       onComplete()
     } catch (error: any) {
@@ -60,8 +58,6 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
         const { expirationDate } = await createOrganization({
           administratorEmail: email,
         })
-
-        updateEmail(email)
 
         updateLoginExpirationDate(expirationDate)
 
