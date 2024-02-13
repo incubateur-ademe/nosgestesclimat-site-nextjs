@@ -1,14 +1,13 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { SERVER_URL } from '@/constants/urls'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import { useCreateOrganisation } from '@/hooks/organizations/useCreateOrganisation'
+import { useLoginOrganisation } from '@/hooks/organizations/useLoginOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { getIsValidEmail } from '@/utils/getIsValidEmail'
-import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
 import React from 'react'
 
 export default function EmailForm({ onComplete }: { onComplete: () => void }) {
@@ -18,23 +17,9 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
 
   const { updateEmail, updateLoginExpirationDate } = useUser()
 
-  const { mutateAsync: loginOrganization } = useMutation({
-    mutationFn: ({ administratorEmail }: { administratorEmail: string }) =>
-      axios
-        .post(`${SERVER_URL}/organizations/login`, {
-          administratorEmail,
-        })
-        .then((response) => response.data),
-  })
+  const { mutateAsync: loginOrganization } = useLoginOrganisation()
 
-  const { mutateAsync: createOrganization } = useMutation({
-    mutationFn: ({ administratorEmail }: { administratorEmail: string }) =>
-      axios
-        .post(`${SERVER_URL}/organizations/create`, {
-          administratorEmail,
-        })
-        .then((response) => response.data),
-  })
+  const { mutateAsync: createOrganization } = useCreateOrganisation()
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -61,7 +46,7 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
     // Try and login
     try {
       const { expirationDate } = await loginOrganization({
-        administratorEmail: email,
+        email,
       })
 
       // We update the email in the user state
