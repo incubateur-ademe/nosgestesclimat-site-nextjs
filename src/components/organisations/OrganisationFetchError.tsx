@@ -1,21 +1,21 @@
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
-import { Organization } from '@/types/organizations'
+import { Organisation } from '@/types/organisations'
 import MaxWidthContent from '../layout/MaxWidthContent'
 import Trans from '../translation/Trans'
 
 type Props = {
-  organization: Organization
+  organisation: Organisation
   isError: boolean
 }
 
-export default function OrganizationFetchError({
-  organization,
+export default function OrganisationFetchError({
+  organisation,
   isError,
 }: Props) {
   return (
     <>
-      {!organization && !isError && <Loader />}
+      {!organisation && !isError && <Loader />}
 
       {isError && (
         <MaxWidthContent>

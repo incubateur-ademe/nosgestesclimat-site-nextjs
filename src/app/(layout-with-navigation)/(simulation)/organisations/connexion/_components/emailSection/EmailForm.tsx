@@ -3,8 +3,8 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
-import { useCreateOrganisation } from '@/hooks/organizations/useCreateOrganisation'
-import { useLoginOrganisation } from '@/hooks/organizations/useLoginOrganisation'
+import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisation'
+import { useLoginOrganisation } from '@/hooks/organisations/useLoginOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { getIsValidEmail } from '@/utils/getIsValidEmail'
@@ -17,9 +17,9 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
 
   const { updateLoginExpirationDate } = useUser()
 
-  const { mutateAsync: loginOrganization } = useLoginOrganisation()
+  const { mutateAsync: loginOrganisation } = useLoginOrganisation()
 
-  const { mutateAsync: createOrganization } = useCreateOrganisation()
+  const { mutateAsync: createOrganisation } = useCreateOrganisation()
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -45,7 +45,7 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
 
     // Try and login
     try {
-      const { expirationDate } = await loginOrganization({
+      const { expirationDate } = await loginOrganisation({
         email,
       })
 
@@ -53,9 +53,9 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
       updateLoginExpirationDate(expirationDate)
       onComplete()
     } catch (error: any) {
-      // If not possible, create the organization
+      // If not possible, create the organisation
       try {
-        const { expirationDate } = await createOrganization({
+        const { expirationDate } = await createOrganisation({
           administratorEmail: email,
         })
 

@@ -53,7 +53,7 @@ export default function VerificationForm({
   } = useMutation({
     mutationFn: () =>
       axios
-        .post(`${SERVER_URL}/organizations/send-verification-code`, {
+        .post(`${SERVER_URL}/organisations/send-verification-code`, {
           email: administratorEmail,
         })
         .then((response) => response.data),
@@ -71,7 +71,7 @@ export default function VerificationForm({
     }
 
     try {
-      const organization = await validateVerificationCode({
+      const organisation = await validateVerificationCode({
         verificationCode,
       })
 
@@ -79,12 +79,12 @@ export default function VerificationForm({
         // Reset the login expiration date
         updateLoginExpirationDate(undefined)
 
-        if (!organization.name) {
+        if (!organisation.name) {
           router.push('/organisations/creation')
           return
         }
 
-        router.push(`/organisations/mon-espace/${organization?.slug}`)
+        router.push(`/organisations/mon-espace/${organisation?.slug}`)
       }, 1000)
     } catch (err) {
       setInputError('Le code est invalide')

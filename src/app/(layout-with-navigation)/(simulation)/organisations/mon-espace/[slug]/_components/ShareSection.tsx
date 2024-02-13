@@ -2,13 +2,13 @@ import MaxWidthContent from '@/components/layout/MaxWidthContent'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import CopyInput from '@/design-system/inputs/CopyInput'
-import { Organization } from '@/types/organizations'
+import { Organisation } from '@/types/organisations'
 import CTACard from './CTACard'
 
 export default function ShareSection({
-  organization,
+  organisation,
 }: {
-  organization: Organization
+  organisation: Organisation
 }) {
   return (
     <section className="rounded-lg bg-grey-100 px-4 py-10">
@@ -24,7 +24,7 @@ export default function ShareSection({
               </Trans>
             }>
             <CopyInput
-              textToCopy={`${window.location.origin}/o/${organization?.slug}/${organization?.polls[0].slug}`}
+              textToCopy={`${window.location.origin}/o/${organisation?.slug}/${organisation?.polls[0].slug}`}
             />
           </CTACard>
 

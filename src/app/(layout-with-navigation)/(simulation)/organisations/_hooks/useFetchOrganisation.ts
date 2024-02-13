@@ -2,13 +2,13 @@ import { SERVER_URL } from '@/constants/urls'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
-export default function useFetchOrganization({ email }: { email: string }) {
+export default function useFetchOrganisation({ email }: { email: string }) {
   return useQuery({
-    queryKey: ['organization-validate-jwt', email],
+    queryKey: ['organisation-validate-jwt', email],
     queryFn: () =>
       axios
         .post(
-          `${SERVER_URL}/organizations/fetch-organization`,
+          `${SERVER_URL}/organisations/fetch-organisation`,
           {
             email,
           },

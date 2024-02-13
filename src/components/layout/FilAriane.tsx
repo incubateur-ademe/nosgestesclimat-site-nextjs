@@ -1,7 +1,7 @@
 'use client'
 
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
-import { getOrganizationItems } from '@/helpers/filAriane/getOrganisationItems'
+import { getOrganisationItems } from '@/helpers/filAriane/getOrganisationItems'
 import { useParams, usePathname } from 'next/navigation'
 
 const TARGETED_PATHS = ['organisations']
@@ -17,9 +17,9 @@ export default function FilAriane() {
     label: string | JSX.Element
     isActive: boolean
   }[] => {
-    // Organization path
+    // Organisation path
     if (pathname.includes('organisations')) {
-      return getOrganizationItems({ pathname, params })
+      return getOrganisationItems({ pathname, params })
     }
 
     return []

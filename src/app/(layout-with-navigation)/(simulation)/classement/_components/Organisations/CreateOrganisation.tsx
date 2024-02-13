@@ -2,7 +2,7 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default async function CreateOrganization() {
+export default async function CreateOrganisation() {
   const { t } = await getServerTranslation()
   return (
     <>

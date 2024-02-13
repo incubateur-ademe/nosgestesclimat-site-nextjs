@@ -2,7 +2,7 @@
 
 import Button, { ButtonProps } from '@/design-system/inputs/Button'
 import { createXLSXFileAndDownload } from '@/helpers/export/createXLSXFileAndDownload'
-import { SimulationRecap } from '@/types/organizations'
+import { SimulationRecap } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useState } from 'react'
 import Trans from '../translation/Trans'

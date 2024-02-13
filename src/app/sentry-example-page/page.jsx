@@ -72,7 +72,7 @@ export default function Page() {
 
         <p>
           Next, look for the error on the{' '}
-          <a href="https://sentry.incubateur.net/organizations/betagouv/issues/?project=118">
+          <a href="https://sentry.incubateur.net/organisations/betagouv/issues/?project=118">
             Issues Page
           </a>
           .

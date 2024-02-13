@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import { SimulationRecap } from '@/types/organizations'
+import { SimulationRecap } from '@/types/organisations'
 import AgeFilter from './orgaStatisticsFilters/AgeFilter'
 import DepartementFilter from './orgaStatisticsFilters/DepartementFilter'
 

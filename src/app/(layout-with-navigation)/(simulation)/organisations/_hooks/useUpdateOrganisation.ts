@@ -2,7 +2,7 @@ import { SERVER_URL } from '@/constants/urls'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
-export function useUpdateOrganization({ email }: { email: string }) {
+export function useUpdateOrganisation({ email }: { email: string }) {
   return useMutation({
     mutationFn: ({
       slug,
@@ -25,7 +25,7 @@ export function useUpdateOrganization({ email }: { email: string }) {
     }) =>
       axios
         .post(
-          `${SERVER_URL}/organizations/update`,
+          `${SERVER_URL}/organisations/update`,
           {
             name,
             administratorName,

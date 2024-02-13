@@ -1,7 +1,7 @@
 'use client'
 
-import ExportDataButton from '@/components/organizations/ExportDataButton'
-import OrgaStatistics from '@/components/organizations/OrgaStatistics'
+import ExportDataButton from '@/components/organisations/ExportDataButton'
+import OrgaStatistics from '@/components/organisations/OrgaStatistics'
 import Trans from '@/components/translation/Trans'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'

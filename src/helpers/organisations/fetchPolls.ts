@@ -1,5 +1,5 @@
 import { SERVER_URL } from '@/constants/urls'
-import { PollInfo } from '@/types/organizations'
+import { PollInfo } from '@/types/organisations'
 import axios from 'axios'
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 }
 export const fetchPolls = async ({ pollSlugs }: Props): Promise<PollInfo[]> =>
   axios
-    .post(`${SERVER_URL}/organizations/fetch-polls`, {
+    .post(`${SERVER_URL}/organisations/fetch-polls`, {
       polls: pollSlugs,
     })
     .then((res) => res.data)

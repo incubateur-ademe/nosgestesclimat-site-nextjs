@@ -2,12 +2,12 @@ import { SERVER_URL } from '@/constants/urls'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
-export function useCreateOrganisation() {
+export function useLoginOrganisation() {
   return useMutation({
-    mutationFn: ({ administratorEmail }: { administratorEmail: string }) =>
+    mutationFn: ({ email }: { email: string }) =>
       axios
-        .post(`${SERVER_URL}/organizations/create`, {
-          administratorEmail,
+        .post(`${SERVER_URL}/organisations/login`, {
+          email,
         })
         .then((response) => response.data),
   })

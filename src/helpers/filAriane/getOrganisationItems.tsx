@@ -53,7 +53,7 @@ function getOrganisationEspaceItems({
   return items
 }
 
-export function getOrganizationItems({
+export function getOrganisationItems({
   pathname,
   params,
 }: {
@@ -68,7 +68,7 @@ export function getOrganizationItems({
     return []
   }
 
-  // These are the items for the organization page, the connexion and the creation page
+  // These are the items for the organisation page, the connexion and the creation page
   const items = [...getBaseItems({ pathname })]
 
   if (pathname.includes('demander-demo')) {

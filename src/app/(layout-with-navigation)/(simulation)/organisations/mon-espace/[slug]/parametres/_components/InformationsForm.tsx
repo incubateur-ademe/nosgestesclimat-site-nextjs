@@ -5,18 +5,18 @@ import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useUser } from '@/publicodes-state'
-import { Organization } from '@/types/organizations'
+import { Organisation } from '@/types/organisations'
 import { FormEventHandler } from 'react'
-import { useUpdateOrganization } from '../../../../_hooks/useUpdateOrganization'
+import { useUpdateOrganisation } from '../../../../_hooks/useUpdateOrganisation'
 
 type Props = {
-  organization: Organization
+  organisation: Organisation
 }
 
-export default function InformationsForm({ organization }: Props) {
+export default function InformationsForm({ organisation }: Props) {
   const { user } = useUser()
 
-  const { mutateAsync: updateOrganization } = useUpdateOrganization({
+  const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
     email: user?.email,
   })
 
@@ -36,22 +36,22 @@ export default function InformationsForm({ organization }: Props) {
       hasOptedInForCommunications?: boolean
     } = {}
 
-    if (name !== organization?.name) {
+    if (name !== organisation?.name) {
       modifications.name = name
     }
 
-    if (administratorName !== organization?.administrators?.[0]?.name) {
+    if (administratorName !== organisation?.administrators?.[0]?.name) {
       modifications.administratorName = administratorName
     }
 
     if (
       hasOptedInForCommunications !==
-      organization?.administrators?.[0]?.hasOptedInForCommunications
+      organisation?.administrators?.[0]?.hasOptedInForCommunications
     ) {
       modifications.hasOptedInForCommunications = hasOptedInForCommunications
     }
 
-    await updateOrganization({
+    await updateOrganisation({
       ...modifications,
     })
   }
@@ -73,13 +73,13 @@ export default function InformationsForm({ organization }: Props) {
         <TextInputGroup
           name="name"
           label={<Trans>Votre organisation</Trans>}
-          defaultValue={organization?.name}
+          defaultValue={organisation?.name}
         />
 
         <TextInputGroup
           name="administratorName"
           label={<Trans>Votre prénom</Trans>}
-          defaultValue={organization?.administrators?.[0]?.name}
+          defaultValue={organisation?.administrators?.[0]?.name}
         />
 
         <TextInputGroup
@@ -87,14 +87,14 @@ export default function InformationsForm({ organization }: Props) {
           disabled
           helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
           label={<Trans>Votre e-mail</Trans>}
-          defaultValue={organization?.administrators?.[0]?.email}
+          defaultValue={organisation?.administrators?.[0]?.email}
         />
 
         <div className="w-[32rem]">
           <CheckboxInputGroup
             name="hasOptedInForCommunications"
             defaultChecked={
-              organization?.administrators?.[0]?.hasOptedInForCommunications
+              organisation?.administrators?.[0]?.hasOptedInForCommunications
             }
             label={
               <span>

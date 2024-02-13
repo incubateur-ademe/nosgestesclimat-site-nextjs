@@ -5,7 +5,7 @@ import Separator from '@/design-system/layout/Separator'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import useFetchOrganization from '../_hooks/useFetchOrganization'
+import useFetchOrganisation from '../_hooks/useFetchOrganisation'
 import EmailSection from './_components/EmailSection'
 
 export default function Page() {
@@ -14,22 +14,22 @@ export default function Page() {
   const router = useRouter()
 
   // This should fail if the user has not received a
-  // valid token to access the organization
+  // valid token to access the organisation
   const {
     isSuccess,
     isError,
-    data: organization,
-  } = useFetchOrganization({
+    data: organisation,
+  } = useFetchOrganisation({
     email: user?.email,
   })
 
-  // Redirect to the organization page if the user
+  // Redirect to the organisation page if the user
   // is already logged in (has a valid cookie stored)
   useEffect(() => {
-    if (isSuccess && organization) {
-      router.push(`/organisations/mon-espace/${organization?.slug}`)
+    if (isSuccess && organisation) {
+      router.push(`/organisations/mon-espace/${organisation?.slug}`)
     }
-  }, [isSuccess, organization, router])
+  }, [isSuccess, organisation, router])
 
   // Cookie is inexistent or invalid, we delete it
   useEffect(() => {

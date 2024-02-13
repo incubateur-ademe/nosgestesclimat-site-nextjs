@@ -1,5 +1,5 @@
 import { SERVER_URL } from '@/constants/urls'
-import { PollInfo } from '@/types/organizations'
+import { PollInfo } from '@/types/organisations'
 import axios from 'axios'
 
 type Props = {
@@ -7,6 +7,6 @@ type Props = {
 }
 export const fetchPoll = async ({ pollSlug }: Props): Promise<PollInfo> =>
   axios
-    .get(`${SERVER_URL}/organizations/fetch-poll/${pollSlug}`)
+    .get(`${SERVER_URL}/organisations/fetch-poll/${pollSlug}`)
     .then((res) => res.data)
     .catch(() => console.error('Failed to fetch poll'))

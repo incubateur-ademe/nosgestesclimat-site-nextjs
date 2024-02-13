@@ -1,7 +1,7 @@
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/Trans'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
-import { SimulationRecap } from '@/types/organizations'
+import { SimulationRecap } from '@/types/organisations'
 import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
 
 function formatSimulationRecaps(simulationRecaps: SimulationRecap[]) {

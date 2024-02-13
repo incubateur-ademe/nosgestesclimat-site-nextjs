@@ -7,7 +7,7 @@ import Loader from '@/design-system/layout/Loader'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { useUser } from '@/publicodes-state'
-import useFetchOrganization from '../../../_hooks/useFetchOrganization'
+import useFetchOrganisation from '../../../_hooks/useFetchOrganisation'
 import InformationsForm from './_components/InformationsForm'
 import QuestionsComplementaires from './_components/QuestionsComplementaires'
 
@@ -15,16 +15,16 @@ export default function ParametresPage() {
   const { user } = useUser()
 
   const {
-    data: organization,
+    data: organisation,
     isError,
     refetch,
-  } = useFetchOrganization({
+  } = useFetchOrganisation({
     email: user.email,
   })
 
   return (
     <>
-      {!organization && !isError && <Loader />}
+      {!organisation && !isError && <Loader />}
 
       {isError && (
         <MaxWidthContent>
@@ -41,18 +41,18 @@ export default function ParametresPage() {
         </MaxWidthContent>
       )}
 
-      {organization && (
+      {organisation && (
         <MaxWidthContent className="py-8">
           <Title title={<Trans>Paramètres</Trans>} />
 
           <QuestionsComplementaires
-            organization={organization}
-            refetchOrganization={refetch}
+            organisation={organisation}
+            refetchOrganisation={refetch}
           />
 
           <Separator />
 
-          <InformationsForm organization={organization} />
+          <InformationsForm organisation={organisation} />
         </MaxWidthContent>
       )}
     </>

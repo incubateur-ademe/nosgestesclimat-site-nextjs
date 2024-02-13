@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
-import { SimulationRecap } from '@/types/organizations'
+import { SimulationRecap } from '@/types/organisations'
 import { usePathname } from 'next/navigation'
 import FunFacts from './orgaStatistics/FunFacts'
 import ResultsSoonBanner from './orgaStatistics/ResultsSoonBanner'

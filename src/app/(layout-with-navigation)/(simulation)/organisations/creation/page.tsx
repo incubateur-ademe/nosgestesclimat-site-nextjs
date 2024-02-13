@@ -4,10 +4,11 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
+import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import useFetchOrganization from '../_hooks/useFetchOrganization'
-import { useUpdateOrganization } from '../_hooks/useUpdateOrganization'
+import useFetchOrganisation from '../_hooks/useFetchOrganisation'
+import { useUpdateOrganisation } from '../_hooks/useUpdateOrganisation'
 import CreationForm from './_components/CreationForm'
 
 export default function CreationPage() {
@@ -18,11 +19,11 @@ export default function CreationPage() {
 
   const { user } = useUser()
 
-  const { isError } = useFetchOrganization({
+  const { isError } = useFetchOrganisation({
     email: user?.email,
   })
 
-  const { mutateAsync: updateOrganization } = useUpdateOrganization({
+  const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
     email: user?.email,
   })
 
@@ -67,7 +68,7 @@ export default function CreationPage() {
       : false
 
     try {
-      const organizationUpdated = await updateOrganization({
+      const organisationUpdated = await updateOrganisation({
         name,
         slug,
         administratorName,
@@ -77,9 +78,13 @@ export default function CreationPage() {
         hasOptedInForCommunications,
       })
 
-      router.push(`/organisations/mon-espace/${organizationUpdated?.slug}`)
+      if (!organisationUpdated?.slug) {
+        throw new Error('No slug found')
+      }
+
+      router.push(`/organisations/mon-espace/${organisationUpdated?.slug}`)
     } catch (error: any) {
-      console.error(error)
+      captureException(error)
     }
   }
 

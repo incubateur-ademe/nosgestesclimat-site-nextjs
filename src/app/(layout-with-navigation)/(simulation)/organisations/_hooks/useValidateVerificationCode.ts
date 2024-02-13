@@ -11,7 +11,7 @@ export default function useValidateVerificationCode({
     mutationFn: ({ verificationCode }: { verificationCode: string }) =>
       axios
         .post(
-          `${SERVER_URL}/organizations/validate-verification-code`,
+          `${SERVER_URL}/organisations/validate-verification-code`,
           {
             email,
             verificationCode,

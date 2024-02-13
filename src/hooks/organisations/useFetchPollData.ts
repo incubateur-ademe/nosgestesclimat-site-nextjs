@@ -1,6 +1,6 @@
 import { SERVER_URL } from '@/constants/urls'
 import { useUser } from '@/publicodes-state'
-import { PollData } from '@/types/organizations'
+import { PollData } from '@/types/organisations'
 import { UseQueryResult, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useLocale } from '../useLocale'
@@ -29,7 +29,7 @@ export function useFetchPollData(
     queryKey: ['pollData', fileName],
     queryFn: () =>
       axios
-        .post(SERVER_URL + '/organizations/fetch-processed-poll-data', {
+        .post(SERVER_URL + '/organisations/fetch-processed-poll-data', {
           email: user?.email,
           fileName,
           userId: user?.id,

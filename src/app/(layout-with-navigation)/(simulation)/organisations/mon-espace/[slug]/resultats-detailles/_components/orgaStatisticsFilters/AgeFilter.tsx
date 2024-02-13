@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
-import { SimulationRecap } from '@/types/organizations'
+import { SimulationRecap } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { SetStateAction, useContext } from 'react'
 import { MultiValue, SingleValue } from 'react-select'

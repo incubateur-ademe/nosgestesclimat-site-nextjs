@@ -2,7 +2,7 @@ import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
-import { SimulationRecap } from '@/types/organizations'
+import { SimulationRecap } from '@/types/organisations'
 import { capitalizeString } from '@/utils/capitalizeString'
 import RepartitionChart from './RepartitionChart'
 

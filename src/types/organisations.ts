@@ -1,6 +1,6 @@
 import { Simulation } from '@/publicodes-state/types'
 
-export type OrganizationSimulation = Simulation & {
+export type OrganisationSimulation = Simulation & {
   bilan: number
   categories: {
     transports: number
@@ -11,7 +11,7 @@ export type OrganizationSimulation = Simulation & {
   }
 }
 
-export type OrganizationAdministrator = {
+export type OrganisationAdministrator = {
   name?: string
   email: string
   position?: string
@@ -19,8 +19,8 @@ export type OrganizationAdministrator = {
   hasOptedInForCommunications?: boolean
 }
 
-export type OrganizationPoll = {
-  simulations: [OrganizationSimulation]
+export type OrganisationPoll = {
+  simulations: [OrganisationSimulation]
   startDate: Date
   endDate: Date
   name: string
@@ -29,9 +29,9 @@ export type OrganizationPoll = {
   numberOfExpectedParticipants: number
 }
 
-export type Organization = {
-  administrators: OrganizationAdministrator[]
-  polls: OrganizationPoll[]
+export type Organisation = {
+  administrators: OrganisationAdministrator[]
+  polls: OrganisationPoll[]
   name: string
   slug: string
   lastModifiedDate: Date

@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import Emoji from '@/design-system/utils/Emoji'
-import { SimulationRecap } from '@/types/organizations'
+import { SimulationRecap } from '@/types/organisations'
 import CategoryListItem from './orgaStatisticsCharts/CategoryListItem'
 import RepartitionChart from './orgaStatisticsCharts/RepartitionChart'
 

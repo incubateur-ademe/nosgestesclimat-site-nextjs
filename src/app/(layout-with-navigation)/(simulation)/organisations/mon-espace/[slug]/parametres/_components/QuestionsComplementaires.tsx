@@ -1,23 +1,23 @@
-import { useUpdateOrganization } from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useUpdateOrganization'
+import { useUpdateOrganisation } from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useUpdateOrganisation'
 import Trans from '@/components/translation/Trans'
 import { useUser } from '@/publicodes-state'
-import { Organization } from '@/types/organizations'
+import { Organisation } from '@/types/organisations'
 import ToggleField from './questionsComplementaires/ToggleField'
 
 type Props = {
-  organization: Organization
-  refetchOrganization: () => void
+  organisation: Organisation
+  refetchOrganisation: () => void
 }
 
 export default function QuestionsComplementaires({
-  organization,
-  refetchOrganization,
+  organisation,
+  refetchOrganisation,
 }: Props) {
   const { user } = useUser()
 
-  const poll = organization.polls[0]
+  const poll = organisation.polls[0]
 
-  const { mutateAsync: updateOrganization } = useUpdateOrganization({
+  const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
     email: user?.email,
   })
 
@@ -39,11 +39,11 @@ export default function QuestionsComplementaires({
       )
     }
 
-    await updateOrganization({
+    await updateOrganisation({
       defaultAdditionalQuestions,
     })
 
-    refetchOrganization()
+    refetchOrganisation()
   }
 
   return (
