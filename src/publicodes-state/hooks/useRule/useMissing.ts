@@ -11,7 +11,7 @@ type Props = {
   foldedSteps: string[]
 }
 
-export default function useValue({
+export default function useMissing({
   dottedName,
   situation,
   questionsOfMosaic,

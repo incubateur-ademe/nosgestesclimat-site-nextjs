@@ -1,7 +1,6 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { getSupportedRegions } from '@/helpers/getSupportedRegions'
 import { Metadata } from 'next'
 import ModeleDemoBlock from './_components/ModeleDemoBlock'
 import ModeleIssuePreviews from './_components/ModeleIssuePreviews'
@@ -17,8 +16,6 @@ export const metadata: Metadata = {
 }
 
 export default async function ModelePage() {
-  const supportedRegions = await getSupportedRegions()
-
   return (
     <div>
       <Title
@@ -37,7 +34,7 @@ export default async function ModelePage() {
           Entièrement ouvert (open source) et contributif, chacun peut l'
           <Link href="/documentation">explorer</Link>,{' '}
           <Link href="/contribuer">donner son avis</Link>,{' '}
-          <Link href="https://github.com/datagir/nosgestesclimat">
+          <Link href="https://github.com/incubateur-ademe/nosgestesclimat">
             l'améliorer
           </Link>
           .
@@ -60,7 +57,7 @@ export default async function ModelePage() {
         <Trans i18nKey="model.modern2">
           Entièrement paramétrable, depuis les questions posées à l'utilisateur
           jusqu'aux hypothèses du modèle de calcul, il peut être réutilisé{' '}
-          <Link href="https://github.com/datagir/nosgestesclimat/blob/master/LICENSE">
+          <Link href="https://github.com/incubateur-ademe/nosgestesclimat/blob/master/LICENSE">
             librement
           </Link>{' '}
           par tout type d'acteur.
@@ -74,7 +71,7 @@ export default async function ModelePage() {
         </Trans>
       </p>
 
-      <ModeleDemoBlock supportedRegions={supportedRegions} />
+      <ModeleDemoBlock />
 
       <p>
         🕵️
@@ -83,7 +80,7 @@ export default async function ModelePage() {
           a lieu là dans votre navigateur, pas sur nos serveurs. Les données
           collectées sont si descriptives de la vie des utilisateurs, donc
           sensibles en termes de vie privée, que faire les calculs côté serveur{' '}
-          <a href="https://github.com/datagir/nosgestesclimat-site/issues/400">
+          <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/issues/400">
             et les stocker
           </a>{' '}
           poserait un risque trop élevé.
@@ -94,7 +91,7 @@ export default async function ModelePage() {
         📚️ <Trans>Un modèle complet</Trans>
       </h2>
 
-      <ModeleStatsBlock supportedRegions={supportedRegions} />
+      <ModeleStatsBlock />
 
       <p>
         <Trans i18nKey={'model.stats2'}>
@@ -103,7 +100,7 @@ export default async function ModelePage() {
           et d'un modèle "top-down" dérivé des travaux du SDES pour estimer
           l'empreinte par personne des services dits sociétaux (services publics
           et services de base tels les télécom).{' '}
-          <a href="https://github.com/datagir/nosgestesclimat/releases/tag/2.5.0">
+          <a href="https://github.com/incubateur-ademe/nosgestesclimat/releases/tag/2.5.0">
             En savoir plus sur cette hybridation
           </a>
           .
@@ -118,7 +115,7 @@ export default async function ModelePage() {
         <Trans i18nKey={'model.active.documented'}>
           La construction du modèle (pistes de travail, réflexions en cours,
           feuille de route, etc.) est amplement{' '}
-          <a href="https://github.com/datagir/nosgestesclimat/issues">
+          <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues">
             documentée publiquement
           </a>
           .

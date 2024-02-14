@@ -7,11 +7,11 @@ import JourneysInput from './voiture/JourneysInput'
 type Props = {
   question: string
 }
-export default function Voiture({ question }: Props) {
+export default function Voiture({ question, ...props }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Question question={question} />
+      <Question question={question} {...props} />
       <div className="mb-4 flex flex-col items-end">
         <Button
           color="secondary"
@@ -26,7 +26,7 @@ export default function Voiture({ question }: Props) {
             </>
           )}
         </Button>
-        {isOpen ? <JourneysInput question={question} /> : null}
+        {isOpen ? <JourneysInput question={question} {...props} /> : null}
       </div>
     </>
   )

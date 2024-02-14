@@ -17,7 +17,7 @@ export default function Main({
 
   return (
     <main
-      className={`flex flex-col ${maxWidthClass} ${className} ${
+      className={`flex flex-col overflow-hidden ${maxWidthClass} ${className} ${
         isIframe ? '' : 'min-h-[calc(100vh-2rem)]'
       }`}>
       {children}

@@ -125,6 +125,13 @@ type NGCRule = Rule & {
   aide?: string
   inactif?: string
   résumé?: string
+  plancher?: number
+  avertissement?: string
 }
 
 export type NGCRules = Record<DottedName, NGCRule>
+
+export type MigrationType = {
+  keysToMigrate: Record<DottedName, DottedName>
+  valuesToMigrate: Record<DottedName, Record<string, NodeValue>>
+}

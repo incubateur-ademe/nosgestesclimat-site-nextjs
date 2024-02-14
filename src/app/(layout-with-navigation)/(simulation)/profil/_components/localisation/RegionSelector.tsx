@@ -32,10 +32,7 @@ export default function RegionSelector({
   // NOTE(@EmileRolley): how could this be undefined? This doesn't match the type annotations
   const { region } = user ?? {}
 
-  const { isFetching } = useRules({
-    lang: locale,
-    region: region?.code ?? 'FR',
-  })
+  const { isFetching } = useRules()
 
   return (
     <>
@@ -84,7 +81,7 @@ export default function RegionSelector({
               target="_blank"
               rel="noopener noreferrer"
               className="align-top"
-              href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md">
+              href="https://github.com/incubateur-ademe/nosgestesclimat/blob/master/INTERNATIONAL.md">
               <Trans>Suivez le guide !</Trans>
               <NewTabSvg className="!-mt-1" />
             </a>

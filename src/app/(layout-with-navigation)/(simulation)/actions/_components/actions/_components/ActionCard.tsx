@@ -34,7 +34,7 @@ export default function ActionCard({
 }: Props) {
   const { t } = useClientTranslation()
 
-  const { rules } = useTempEngine()
+  const { rules, extendedFoldedSteps } = useTempEngine()
 
   const { getCurrentSimulation, toggleActionChoice, rejectAction } = useUser()
 
@@ -47,9 +47,12 @@ export default function ActionCard({
 
   const hasFormula = flatRule.formule
 
-  const nbRemainingQuestions = filterRelevantMissingVariables(
-    Object.keys(missingVariables || {})
-  )?.length
+  const remainingQuestions = filterRelevantMissingVariables(
+    Object.keys(missingVariables || {}),
+    extendedFoldedSteps
+  )
+
+  const nbRemainingQuestions = remainingQuestions?.length
 
   const hasRemainingQuestions = nbRemainingQuestions > 0
 

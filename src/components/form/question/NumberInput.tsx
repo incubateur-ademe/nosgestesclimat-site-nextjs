@@ -6,9 +6,9 @@ import { twMerge } from 'tailwind-merge'
 
 type Props = {
   unit?: string
-  value: number
+  value?: number | string
   isMissing: boolean
-  setValue: (value: number) => void
+  setValue: (value: number | undefined) => void
   min?: number
   id?: string
   className?: string
@@ -16,7 +16,7 @@ type Props = {
 
 export default function NumberInput({
   unit,
-  value,
+  value = '',
   isMissing,
   setValue,
   min = 0,
@@ -34,11 +34,20 @@ export default function NumberInput({
         type="number"
         min={min}
         value={isMissing ? '' : value}
-        placeholder={value.toLocaleString(locale, {
-          maximumFractionDigits: 1,
-        })}
+        placeholder={
+          isMissing
+            ? value?.toLocaleString(locale, {
+                maximumFractionDigits: 1,
+              }) ?? '0'
+            : '0'
+        }
         onChange={(event) => {
-          setValue(Number((event.target as HTMLInputElement).value))
+          const inputValue = (event.target as HTMLInputElement).value
+          if (inputValue === '') {
+            setValue(undefined)
+          } else {
+            setValue(Number(inputValue))
+          }
         }}
         id={id}
         {...props}

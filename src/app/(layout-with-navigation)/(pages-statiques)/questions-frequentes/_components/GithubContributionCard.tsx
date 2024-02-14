@@ -10,7 +10,7 @@ export default function GithubContributionCard() {
       <p className="mt-0">
         <Trans i18nKey={'publicodes.Contribution.liensVersGithub'}>
           Pour toute remarque ou question, nous vous invitons à{' '}
-          <a href="https://github.com/datagir/nosgestesclimat/issues/new?assignees=&labels=contribution&template=retour-utilisateur.md&title=">
+          <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/new?assignees=&labels=contribution&template=retour-utilisateur.md&title=">
             ouvrir un ticket directement sur GitHub
           </a>
           .

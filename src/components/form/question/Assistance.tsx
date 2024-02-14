@@ -39,7 +39,7 @@ export default function Assistance({ question, assistance }: Props) {
         <NumberInput
           unit={unit ? unit.split('/')[0] : ''}
           value={inputValue}
-          setValue={(value: number) => {
+          setValue={(value: number = 0) => {
             setValueOfParent(
               Math.round(12 * (value / Number(constantMultiplier)) * 10) / 10,
               question
