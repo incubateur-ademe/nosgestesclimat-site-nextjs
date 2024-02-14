@@ -29,6 +29,7 @@ export default function BooleanInput({
         label={t('Oui')}
         active={!isMissing && value ? true : false}
         onClick={() => setValue('oui')}
+        {...props}
         data-cypress-id={`${props['data-cypress-id']}-oui`}
         id={id}
       />
@@ -37,6 +38,7 @@ export default function BooleanInput({
         label={t('Non')}
         active={!isMissing && !value ? true : false}
         onClick={() => setValue('non')}
+        {...props}
         data-cypress-id={`${props['data-cypress-id']}-non`}
       />
     </fieldset>

@@ -8,9 +8,10 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 
 type Props = {
   question: string
+  setTempValue?: (value: number | undefined) => void
 }
 
-export default function ThreeYearsInput({ question }: Props) {
+export default function ThreeYearsInput({ question, setTempValue }: Props) {
   const { t } = useClientTranslation()
 
   const locale = useLocale()
@@ -56,10 +57,11 @@ export default function ThreeYearsInput({ question }: Props) {
   const prevTotalValue = useRef(totalValue)
   useEffect(() => {
     if (totalValue !== prevTotalValue.current) {
+      if (setTempValue) setTempValue(totalValue)
       setValue(totalValue, question)
     }
     prevTotalValue.current = totalValue
-  }, [totalValue, setValue, question])
+  }, [totalValue, setValue, question, setTempValue])
 
   return (
     <motion.div
@@ -71,7 +73,7 @@ export default function ThreeYearsInput({ question }: Props) {
       <NumberInput
         unit={unit}
         value={currentYearValue}
-        setValue={(value: number) => setCurrentYearValue(value)}
+        setValue={(value: number = 0) => setCurrentYearValue(value)}
         isMissing={currentYearValue ? false : true}
         className="mb-2 justify-start"
       />
@@ -83,7 +85,7 @@ export default function ThreeYearsInput({ question }: Props) {
       <NumberInput
         unit={unit}
         value={lastYearValue}
-        setValue={(value: number) => setLastYearValue(value)}
+        setValue={(value: number = 0) => setLastYearValue(value)}
         isMissing={lastYearValue ? false : true}
         className="mb-2 justify-start"
       />
@@ -95,7 +97,7 @@ export default function ThreeYearsInput({ question }: Props) {
       <NumberInput
         unit={unit}
         value={yearBeforeLastValue}
-        setValue={(value: number) => setYearBeforeLastValue(value)}
+        setValue={(value: number = 0) => setYearBeforeLastValue(value)}
         isMissing={yearBeforeLastValue ? false : true}
         className="mb-2 justify-start"
       />

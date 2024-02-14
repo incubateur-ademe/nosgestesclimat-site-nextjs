@@ -6,14 +6,21 @@ import Mosaic from '@/components/form/question/Mosaic'
 import Notification from '@/components/form/question/Notification'
 import NumberInput from '@/components/form/question/NumberInput'
 import Suggestions from '@/components/form/question/Suggestions'
-import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
+import {
+  DEFAULT_FOCUS_ELEMENT_ID,
+  QUESTION_DESCRIPTION_BUTTON_ID,
+} from '@/constants/accessibility'
 import { useRule } from '@/publicodes-state'
+import { useEffect, useRef } from 'react'
+import Warning from './question/Warning'
 
 type Props = {
   question: string
+  tempValue?: number | undefined
+  setTempValue?: (value: number | undefined) => void
 }
 
-export default function Question({ question }: Props) {
+export default function Question({ question, tempValue, setTempValue }: Props) {
   const {
     type,
     label,
@@ -26,32 +33,54 @@ export default function Question({ question }: Props) {
     choices,
     assistance,
     activeNotifications,
+    plancher,
+    warning,
   } = useRule(question)
+
+  // It should happen only on mount (the component remount every time the question changes)
+  const prevQuestion = useRef('')
+  useEffect(() => {
+    if (type !== 'number') {
+      if (setTempValue) setTempValue(undefined)
+      return
+    }
+
+    if (prevQuestion.current !== question) {
+      if (setTempValue) setTempValue(numericValue)
+      prevQuestion.current = question
+    }
+  }, [type, numericValue, setTempValue, question])
 
   return (
     <>
       <div className="mb-4">
-        <Label
+        <Label question={question} label={label} description={description} />
+
+        <Suggestions
           question={question}
-          label={label}
-          description={description}
-          htmlFor={DEFAULT_FOCUS_ELEMENT_ID}
+          setValue={(value) => {
+            if (type === 'number') {
+              if (setTempValue) setTempValue(value)
+            }
+            setValue(value, question)
+          }}
         />
-        <Suggestions question={question} />
         {type === 'number' && (
           <NumberInput
             unit={unit}
-            value={numericValue}
+            value={setTempValue ? tempValue : numericValue}
             setValue={(value) => {
-              const limit = 0
-              setValue(value < limit ? limit : value, question)
+              if (setTempValue) setTempValue(value)
+              setValue(value, question)
             }}
             isMissing={isMissing}
             min={0}
             data-cypress-id={question}
             id={DEFAULT_FOCUS_ELEMENT_ID}
+            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
           />
         )}
+
         {type === 'boolean' && (
           <BooleanInput
             value={value}
@@ -60,8 +89,10 @@ export default function Question({ question }: Props) {
             data-cypress-id={question}
             label={label || ''}
             id={DEFAULT_FOCUS_ELEMENT_ID}
+            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
           />
         )}
+
         {type === 'choices' && (
           <ChoicesInput
             question={question}
@@ -72,10 +103,23 @@ export default function Question({ question }: Props) {
             data-cypress-id={question}
             label={label || ''}
             id={DEFAULT_FOCUS_ELEMENT_ID}
+            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
           />
         )}
-        {type === 'mosaic' && <Mosaic question={question} />}
+
+        {type === 'mosaic' && (
+          <Mosaic
+            question={question}
+            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+          />
+        )}
       </div>
+      <Warning
+        type={type}
+        plancher={plancher}
+        warning={warning}
+        tempValue={tempValue}
+      />
       {assistance ? (
         <Assistance question={question} assistance={assistance} />
       ) : null}
