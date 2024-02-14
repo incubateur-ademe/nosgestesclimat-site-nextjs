@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { useAppNavigation } from '@/hooks/navigation/useAppNavigation'
+import { useAppNavigation } from '@/hooks/useNavigation'
 import { useUser } from '@/publicodes-state'
 
 export default function ButtonStart() {

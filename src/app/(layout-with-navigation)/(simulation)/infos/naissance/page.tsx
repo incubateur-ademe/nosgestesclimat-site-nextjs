@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
-import { useAppNavigation } from '@/hooks/navigation/useAppNavigation'
+import { useAppNavigation } from '@/hooks/useNavigation'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useCallback, useContext } from 'react'
 import { InfosContext } from '../_components/InfosProvider'

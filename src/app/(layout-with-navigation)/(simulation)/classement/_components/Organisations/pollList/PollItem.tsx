@@ -1,7 +1,7 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import ChevronRight from '@/design-system/icons/ChevronRight'
-import { useAppNavigation } from '@/hooks/navigation/useAppNavigation'
+import { useAppNavigation } from '@/hooks/useNavigation'
 import { PollInfo } from '@/types/organisations'
 
 type Props = {
