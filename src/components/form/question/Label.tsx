@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 
 import Trans from '@/components/translation/Trans'
@@ -18,7 +20,6 @@ type Props = {
   label?: string
   description?: string
   size?: QuestionSize
-  htmlFor?: string
   className?: string
   titleClassName?: string
 }
@@ -36,7 +37,6 @@ export default function Label({
   label,
   description,
   size = 'md',
-  htmlFor,
   className,
   titleClassName,
 }: Props) {
@@ -53,7 +53,9 @@ export default function Label({
           className
         )}
         aria-label={label}
-        htmlFor={htmlFor}>
+        // This is a hack to avoid the default <label> element behavior
+        // of triggering the first input (here the button) it
+        onClick={(e) => e.preventDefault()}>
         <h1
           className={twMerge(
             'mb-0 inline text-base md:text-lg',
@@ -65,6 +67,7 @@ export default function Label({
         </h1>{' '}
         {description ? (
           <button
+            type="button"
             onClick={() => {
               trackEvent(getMatomoEventClickHelp(question))
               setIsOpen((previsOpen) => !previsOpen)
@@ -75,6 +78,7 @@ export default function Label({
           </button>
         ) : null}
       </label>
+
       {isOpen && description ? (
         <motion.div
           initial={{ opacity: 0, scale: 0 }}

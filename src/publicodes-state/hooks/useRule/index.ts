@@ -70,6 +70,8 @@ export default function useRule(dottedName: DottedName) {
     icons,
     unit,
     assistance,
+    plancher,
+    warning,
     isInactive,
     suggestions,
     excerpt,
@@ -143,6 +145,14 @@ export default function useRule(dottedName: DottedName) {
      * The question used to help answer  ("rawNode.aide" in Publicodes)
      */
     assistance,
+    /**
+     * The minimum value
+     */
+    plancher,
+    /**
+     * A specific message to display if the value is under plancher
+     */
+    warning,
     /**
      * Attribut use to briefly explain a rule
      */

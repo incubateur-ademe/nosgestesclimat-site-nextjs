@@ -71,7 +71,7 @@ export default function ThreeYearsInput({ question }: Props) {
       <NumberInput
         unit={unit}
         value={currentYearValue}
-        setValue={(value: number) => setCurrentYearValue(value)}
+        setValue={(value: number = 0) => setCurrentYearValue(value)}
         isMissing={currentYearValue ? false : true}
         className="mb-2 justify-start"
       />
@@ -83,7 +83,7 @@ export default function ThreeYearsInput({ question }: Props) {
       <NumberInput
         unit={unit}
         value={lastYearValue}
-        setValue={(value: number) => setLastYearValue(value)}
+        setValue={(value: number = 0) => setLastYearValue(value)}
         isMissing={lastYearValue ? false : true}
         className="mb-2 justify-start"
       />
@@ -95,7 +95,7 @@ export default function ThreeYearsInput({ question }: Props) {
       <NumberInput
         unit={unit}
         value={yearBeforeLastValue}
-        setValue={(value: number) => setYearBeforeLastValue(value)}
+        setValue={(value: number = 0) => setYearBeforeLastValue(value)}
         isMissing={yearBeforeLastValue ? false : true}
         className="mb-2 justify-start"
       />
