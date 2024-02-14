@@ -41,12 +41,12 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
   const prevQuestion = useRef('')
   useEffect(() => {
     if (type !== 'number') {
-      setTempValue && setTempValue(undefined)
+      if (setTempValue) setTempValue(undefined)
       return
     }
 
     if (prevQuestion.current !== question) {
-      setTempValue && setTempValue(numericValue)
+      if (setTempValue) setTempValue(numericValue)
       prevQuestion.current = question
     }
   }, [type, numericValue, setTempValue, question])
@@ -60,7 +60,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
           question={question}
           setValue={(value) => {
             if (type === 'number') {
-              setTempValue && setTempValue(value)
+              if (setTempValue) setTempValue(value)
             }
             setValue(value, question)
           }}
@@ -70,7 +70,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             unit={unit}
             value={setTempValue ? tempValue : numericValue}
             setValue={(value) => {
-              setTempValue && setTempValue(value)
+              if (setTempValue) setTempValue(value)
               setValue(value, question)
             }}
             isMissing={isMissing}

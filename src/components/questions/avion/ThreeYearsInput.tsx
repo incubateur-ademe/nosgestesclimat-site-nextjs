@@ -8,9 +8,10 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 
 type Props = {
   question: string
+  setTempValue?: (value: number | undefined) => void
 }
 
-export default function ThreeYearsInput({ question }: Props) {
+export default function ThreeYearsInput({ question, setTempValue }: Props) {
   const { t } = useClientTranslation()
 
   const locale = useLocale()
@@ -56,10 +57,11 @@ export default function ThreeYearsInput({ question }: Props) {
   const prevTotalValue = useRef(totalValue)
   useEffect(() => {
     if (totalValue !== prevTotalValue.current) {
+      if (setTempValue) setTempValue(totalValue)
       setValue(totalValue, question)
     }
     prevTotalValue.current = totalValue
-  }, [totalValue, setValue, question])
+  }, [totalValue, setValue, question, setTempValue])
 
   return (
     <motion.div

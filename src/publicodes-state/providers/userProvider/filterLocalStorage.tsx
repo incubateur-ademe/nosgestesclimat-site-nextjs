@@ -77,7 +77,17 @@ function handleMigrationValue({
 
   // The value is renamed and needs to be migrated
   situation[ruleName] =
-    migrationInstructions.valuesToMigrate[ruleName][nodeValue as string]
+    typeof migrationInstructions.valuesToMigrate[ruleName][
+      nodeValue as string
+    ] === 'string' &&
+    migrationInstructions.valuesToMigrate[ruleName][nodeValue as string] !==
+      'oui' &&
+    migrationInstructions.valuesToMigrate[ruleName][nodeValue as string] !==
+      'non'
+      ? `'${
+          migrationInstructions.valuesToMigrate[ruleName][nodeValue as string]
+        }'`
+      : migrationInstructions.valuesToMigrate[ruleName][nodeValue as string]
 }
 
 type Props = {
