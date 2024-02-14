@@ -37,7 +37,7 @@ export default function Providers({
     }
   }, [currentSimulationId, initSimulation])
 
-  return currentSimulationId && !isLoading ? (
+  return currentSimulationId && rules && !isLoading ? (
     <SimulationProvider
       key={currentSimulationId}
       rules={rules}

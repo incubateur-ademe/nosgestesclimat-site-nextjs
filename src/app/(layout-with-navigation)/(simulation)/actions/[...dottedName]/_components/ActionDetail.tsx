@@ -49,7 +49,9 @@ export default function ActionDetail({
 
   const currentSimulation = getCurrentSimulation()
 
-  if (!currentSimulation) return
+  if (!currentSimulation || !rules) {
+    return null
+  }
 
   const actionChoices = currentSimulation.actionChoices
 
