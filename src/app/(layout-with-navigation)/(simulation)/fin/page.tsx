@@ -29,13 +29,18 @@ export async function generateMetadata() {
 export default function FinPage({
   searchParams,
 }: {
-  searchParams: { details?: string }
+  searchParams: { details?: string; sid?: string }
 }) {
   return (
     <FormProvider>
       <IframeDataShareModal />
 
-      <RedirectionIfNoResult details={searchParams?.details || ''} />
+      {
+        // Do not redirect if the user is not coming from his/her save simulation email
+        !searchParams?.sid && (
+          <RedirectionIfNoResult details={searchParams?.details || ''} />
+        )
+      }
 
       <CongratulationsText />
 
