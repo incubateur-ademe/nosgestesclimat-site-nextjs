@@ -33,7 +33,7 @@ const translateTo = async (srcJSON, tradJSON, destPath, destLang) => {
           destLang.toUpperCase()
         )
         console.log(
-          `🌍 Translated release ${cli.magenta(release.name)} to ${cli.yellow(
+          `🌍 Translated release ${c.magenta(release.name)} to ${c.yellow(
             destLang
           )}`
         )
@@ -60,7 +60,7 @@ destLangs.forEach((destLang) => {
   const numberOfMissingTranslation = srcJSON.length - tradJSON.length
 
   if (numberOfMissingTranslation === 0) {
-    console.log(`🌍 ${cli.yellow(destLang)} is already up to date`)
+    console.log(`🌍 ${c.yellow(destLang)} is already up to date`)
   } else {
     translateTo(srcJSON, tradJSON, destPath, destLang)
   }
