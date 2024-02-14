@@ -97,7 +97,7 @@
   ],
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.3",
-    "@incubateur-ademe/nosgestesclimat-scripts": "^0.2.2",
+    "@incubateur-ademe/nosgestesclimat-scripts": "^0.3.6",
     "@simonsmith/cypress-image-snapshot": "^9.0.1",
     "@svgr/cli": "^8.1.0",
     "@types/cheerio": "^0.22.34",
@@ -112,6 +112,7 @@
     "@types/webpack": "^5.28.5",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
+    "ansi-colors": "^4.1.3",
     "autoprefixer": "^10.4.16",
     "cli-progress": "^3.12.0",
     "csv-loader": "^3.0.5",
