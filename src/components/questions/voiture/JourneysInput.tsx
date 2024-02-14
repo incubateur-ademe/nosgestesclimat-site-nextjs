@@ -8,6 +8,7 @@ import JourneysInputMobile from './journeysInput/JourneysInputMobile'
 
 type Props = {
   question: string
+  setTempValue?: (value: number | undefined) => void
 }
 
 const periods: Record<string, number> = {
@@ -21,7 +22,7 @@ function roundFloat(value: number, precision: number = 10): number {
   return Math.round(value * precision) / precision
 }
 
-export default function JourneysInput({ question }: Props) {
+export default function JourneysInput({ question, setTempValue }: Props) {
   const { setValue } = useRule(question)
 
   const { setValue: setNumPassengers } = useRule(
@@ -84,11 +85,19 @@ export default function JourneysInput({ question }: Props) {
 
   useEffect(() => {
     if (prevTotal.current !== total) {
+      if (setTempValue) setTempValue(total)
       setValue(total, question)
       setNumPassengers(averagePassengers)
     }
     prevTotal.current = total
-  }, [total, averagePassengers, setValue, setNumPassengers, question])
+  }, [
+    total,
+    averagePassengers,
+    setValue,
+    setNumPassengers,
+    setTempValue,
+    question,
+  ])
 
   return (
     <>
