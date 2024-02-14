@@ -6,15 +6,19 @@ import axios from 'axios'
 
 type Props = {
   simulation: Simulation
+  email?: string
+  userId: string
 }
 export function useSaveSimulation() {
   const { mutateAsync: saveSimulation, isPending } = useMutation({
-    mutationFn: ({ simulation }: Props) => {
+    mutationFn: ({ simulation, email, userId }: Props) => {
       simulation.situation = formatSituation(simulation.situation)
 
       return axios
         .post(SAVE_SIMULATION_URL, {
           simulation,
+          email,
+          userId,
         })
         .then((response) => response.data)
     },

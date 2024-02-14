@@ -13,7 +13,7 @@ export function filterSimulationRecaps({
 }: Props) {
   return simulationRecaps.filter(({ defaultAdditionalQuestionsAnswers }) => {
     const birthYear = new Date(
-      defaultAdditionalQuestionsAnswers.birthDate
+      defaultAdditionalQuestionsAnswers.birthdate
     ).getFullYear()
 
     const postalCode = defaultAdditionalQuestionsAnswers.postalCode

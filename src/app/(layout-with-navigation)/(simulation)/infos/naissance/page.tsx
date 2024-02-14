@@ -22,7 +22,7 @@ export default function Birthdate() {
       event?.preventDefault()
 
       // Go to next page
-      router.push(getLinkToInfosPage(3))
+      router.push(getLinkToInfosPage(2))
     },
     [router, getLinkToInfosPage]
   )
@@ -44,7 +44,7 @@ export default function Birthdate() {
         }}
       />
       <Navigation
-        linkToPrev={getLinkToInfosPage(1)}
+        linkToPrev={getLinkToInfosPage(0)}
         handleSubmit={handleSubmit}
       />
     </form>

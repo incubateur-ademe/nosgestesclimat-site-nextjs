@@ -40,7 +40,7 @@ export function useAppNavigation() {
     if (index === 0) {
       return infosPages.email
     }
-
+    console.log(poll.defaultAdditionalQuestions.length, index)
     // if there is no poll or no additional question, go to the test
     if ((poll?.defaultAdditionalQuestions.length || 0) < index) {
       return `/infos/commencer?${queryParamsString}`

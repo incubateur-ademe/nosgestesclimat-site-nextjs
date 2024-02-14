@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 export function useGoToEndPage() {
   const router = useRouter()
 
-  const { groupToRedirectToAfterTest, getCurrentSimulation } = useUser()
+  const { groupToRedirectToAfterTest, getCurrentSimulation, user } = useUser()
   const currentSimulation = getCurrentSimulation()
 
   const progression = currentSimulation?.progression
@@ -44,7 +44,11 @@ export function useGoToEndPage() {
 
     // If the simulation is in a poll, we save it
     if (currentSimulation.poll) {
-      await saveSimulation({ simulation: currentSimulation })
+      await saveSimulation({
+        simulation: currentSimulation,
+        email: user?.email,
+        userId: user?.id,
+      })
     }
 
     router.push(

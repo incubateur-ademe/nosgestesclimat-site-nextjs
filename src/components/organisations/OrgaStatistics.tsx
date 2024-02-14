@@ -22,7 +22,7 @@ export default function OrgaStatistics({
 
   return (
     <>
-      <h2 className="mt-12">{title ?? <Trans>Statistiques</Trans>}</h2>
+      <h2>{title ?? <Trans>Statistiques</Trans>}</h2>
 
       <Separator />
 

@@ -25,7 +25,7 @@ export default function OrganisationPage() {
   })
 
   const { data: pollData } = useFetchPollData({
-    enabled: !!organisation,
+    orgaSlug: organisation?.slug,
   })
 
   return (
