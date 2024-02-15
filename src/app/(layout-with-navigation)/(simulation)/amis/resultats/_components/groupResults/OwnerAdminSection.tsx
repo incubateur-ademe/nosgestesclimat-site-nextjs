@@ -42,7 +42,7 @@ export default function OwnerAdminSection({ group }: Props) {
       })
 
       timeoutRef.current = setTimeout(() => {
-        router.push('/classement')
+        router.push('/classements')
       }, 2000)
     } catch (error) {
       captureException(error)

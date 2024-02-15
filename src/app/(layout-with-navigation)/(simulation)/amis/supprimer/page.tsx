@@ -55,7 +55,7 @@ export default function SupprimerGroupePage({
   }
 
   if (!groupId) {
-    router.push('/classement')
+    router.push('/classements')
     return
   }
 

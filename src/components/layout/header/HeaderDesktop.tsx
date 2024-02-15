@@ -66,7 +66,7 @@ export default function HeaderDesktop() {
 
                 <li className="px-4">
                   <NavLink
-                    href="/classement"
+                    href="/classements"
                     icon={AmisIcon}
                     title={t('Classement')}
                     data-cypress-id="amis-link">

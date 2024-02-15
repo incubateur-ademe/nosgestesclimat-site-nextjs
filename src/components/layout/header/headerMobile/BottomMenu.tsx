@@ -32,7 +32,7 @@ export default function BottomMenu() {
         <NavLink
           className="flex-col p-2 px-4"
           activeClassName="bg-white border-l border-gray-200 text-primary-500 font-bold"
-          href="/classement"
+          href="/classements"
           icon={AmisIcon}
           data-cypress-id="amis-link">
           <Trans>Classement</Trans>

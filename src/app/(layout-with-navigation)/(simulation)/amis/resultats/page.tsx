@@ -24,7 +24,7 @@ export default function GroupResultsPage({
 
   useEffect(() => {
     if (!groupId) {
-      router.push('/classement', {
+      router.push('/classements', {
         scroll: false,
       })
     }
