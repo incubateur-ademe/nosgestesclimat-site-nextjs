@@ -12,10 +12,12 @@ function extractPostalCodesFromSimulationRecaps({
   simulationRecaps: SimulationRecap[]
   filteredSimulationRecaps: SimulationRecap[]
 }) {
-  const postalCodes = simulationRecaps.map(
-    (simulationRecap) =>
-      simulationRecap.defaultAdditionalQuestionsAnswers.postalCode
-  )
+  const postalCodes = simulationRecaps
+    .map(
+      (simulationRecap) =>
+        simulationRecap.defaultAdditionalQuestionsAnswers.postalCode
+    )
+    .filter((code) => !!code)
 
   const uniquePostalCodes = Array.from(new Set(postalCodes)).sort()
 
@@ -30,7 +32,9 @@ function extractPostalCodesFromSimulationRecaps({
       label: `${postalCode} (${
         filteredPostalCodes.filter((code) => code === postalCode).length
       })`,
-      isDisabled: !filteredPostalCodes.includes(postalCode),
+      isDisabled:
+        !filteredPostalCodes.includes(postalCode) ||
+        filteredPostalCodes.filter((code) => code === postalCode).length <= 1,
     }
   })
 }

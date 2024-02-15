@@ -18,6 +18,8 @@ function getAgeOptions({
 
   const simulationsRecapUnder1960 = filteredSimulationRecaps.filter(
     (simulation) => {
+      if (!simulation.defaultAdditionalQuestionsAnswers?.birthdate) return false
+
       const birthYear = dayjs(
         simulation.defaultAdditionalQuestionsAnswers?.birthdate
       ).year()
@@ -26,13 +28,15 @@ function getAgeOptions({
     }
   )
 
-  const ageOptions = [
-    {
+  const ageOptions = []
+
+  if (simulationsRecapUnder1960.length > 0) {
+    ageOptions.push({
       value: ['', currentYear - firstYear],
       label: `Nés avant 1960 (${simulationsRecapUnder1960?.length})`,
       isDisabled: simulationsRecapUnder1960.length === 0,
-    },
-  ]
+    })
+  }
 
   for (let i = firstYear; i < currentYear; i += 10) {
     const simulationsRecapMatchingAge = filteredSimulationRecaps.filter(
@@ -45,6 +49,8 @@ function getAgeOptions({
       }
     )
 
+    if (simulationsRecapMatchingAge.length === 0) continue
+
     ageOptions.push({
       value: [
         currentYear - i,
@@ -53,7 +59,7 @@ function getAgeOptions({
       label: `Nés entre ${i} et ${i + 9 > currentYear ? currentYear : i + 9} (${
         simulationsRecapMatchingAge.length
       })`,
-      isDisabled: simulationsRecapMatchingAge.length === 0,
+      isDisabled: simulationsRecapMatchingAge.length <= 1,
     })
   }
 
@@ -77,20 +83,23 @@ export default function AgeFilter({
     )
   }
 
+  const options = getAgeOptions({
+    filteredSimulationRecaps,
+  }) as unknown as {
+    value: string
+    label: string
+    isDisabled?: boolean
+  }[]
+
   return (
     <ComplexSelect
-      className="w-56"
+      className={`w-56 ${options.length <= 1 ? 'cursor-not-allowed' : ''}`}
       name="age"
       isMulti
       // @ts-expect-error fix this
-      options={
-        getAgeOptions({
-          filteredSimulationRecaps,
-        }) as unknown as {
-          value: string
-          label: string
-          isDisabled?: boolean
-        }[]
+      options={options}
+      onClick={
+        options.length <= 1 ? (e: MouseEvent) => e.stopPropagation() : undefined
       }
       placeholder={<Trans>Tranche d'âge</Trans>}
       onChange={handleChange}
