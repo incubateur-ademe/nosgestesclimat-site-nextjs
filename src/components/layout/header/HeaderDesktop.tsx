@@ -14,7 +14,13 @@ import NavLink from './NavLink'
 import CTAButton from './headerDesktop/CTAButton'
 import DebugIndicator from './headerDesktop/DebugIndicator'
 
-const HIDE_CTA_PATHS = ['/fin', '/simulateur/bilan', '/tutoriel', '/infos']
+const HIDE_CTA_PATHS = [
+  '/fin',
+  '/simulateur/bilan',
+  '/tutoriel',
+  '/infos',
+  '/organisations',
+]
 
 export default function HeaderDesktop() {
   const { t } = useClientTranslation()

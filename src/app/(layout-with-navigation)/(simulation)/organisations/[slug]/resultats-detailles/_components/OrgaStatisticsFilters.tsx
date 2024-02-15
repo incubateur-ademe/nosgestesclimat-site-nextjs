@@ -11,7 +11,7 @@ export default function OrgaStatisticsFilters({
   filteredSimulationRecaps: SimulationRecap[]
 }) {
   return (
-    <div className="flex items-center justify-between rounded-lg bg-grey-100 px-6 py-4">
+    <div className="mb-8 flex items-center justify-between rounded-lg bg-grey-100 px-6 py-4">
       <div>
         <p className="mb-0 text-xl">
           <Trans>Filtrer par</Trans>
