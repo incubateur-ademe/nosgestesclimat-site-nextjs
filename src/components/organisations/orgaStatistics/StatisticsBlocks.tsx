@@ -74,7 +74,9 @@ export default function StatisticsBlocks({
 
       <div className="rounded-lg bg-grey-100 py-2">
         <VerticalBarChart
-          className={`${simulationRecaps.length <= 0 ? 'opacity-0' : ''} mt-0`}>
+          className={`${
+            simulationRecaps.length <= 0 ? 'opacity-0' : ''
+          } mt-0 h-auto`}>
           {Object.entries(result)
             .filter(([key]) => key !== 'bilan')
             .map(([key, value], index) => (

@@ -9,9 +9,11 @@ import Trans from '../translation/Trans'
 
 export default function ExportDataButton({
   simulationRecaps,
+  color = 'secondary',
   ...props
 }: ButtonProps & {
   simulationRecaps: SimulationRecap[]
+  color?: 'primary' | 'secondary'
 }) {
   const [isLoading, setIsLoading] = useState(false)
 
@@ -35,7 +37,7 @@ export default function ExportDataButton({
     })
   }
   return (
-    <Button disabled={isLoading} onClick={handleClick} {...props}>
+    <Button color={color} disabled={isLoading} onClick={handleClick} {...props}>
       <Trans>Exporter les données</Trans>
     </Button>
   )

@@ -20,21 +20,25 @@ export default function OrgaStatistics({
 }) {
   const pathname = usePathname()
 
+  const hasAtLeastTwoParticipants = simulationRecaps?.length > 1
+
   return (
     <>
       <h2>{title ?? <Trans>Statistiques</Trans>}</h2>
 
-      <Separator />
+      <Separator className="mt-1" />
 
       <section className="relative mb-8 flex gap-4">
         <StatisticsBlocks simulationRecaps={simulationRecaps} />
 
-        {simulationRecaps?.length <= 0 && <ResultsSoonBanner />}
+        {!hasAtLeastTwoParticipants && <ResultsSoonBanner />}
       </section>
 
-      <FunFacts funFacts={funFacts} />
+      {hasAtLeastTwoParticipants && (
+        <FunFacts funFacts={funFacts} className="mb-12" />
+      )}
 
-      {simulationRecaps?.length > 0 &&
+      {hasAtLeastTwoParticipants &&
         !pathname.includes('resultats-detailles') && (
           <SeeDetailedReportAndExport />
         )}
