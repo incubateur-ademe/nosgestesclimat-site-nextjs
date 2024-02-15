@@ -19,7 +19,7 @@ export default function CategoryListItem({
 }: Props) {
   const { icons } = useRule(category)
 
-  const { formattedValue, unit } = formatCarbonFootprint(value * 1000, {
+  const { formattedValue, unit } = formatCarbonFootprint(value, {
     shouldUseAbbreviation: true,
   })
 
@@ -40,7 +40,7 @@ export default function CategoryListItem({
         className="ml-8 flex-1 rounded-lg"
         maxValue={6}
         items={simulationsRecap.map((obj) => ({
-          value: obj.categories[category],
+          value: obj.categories[category] / 1000,
           shouldBeHighlighted: obj.isCurrentUser,
         }))}
       />

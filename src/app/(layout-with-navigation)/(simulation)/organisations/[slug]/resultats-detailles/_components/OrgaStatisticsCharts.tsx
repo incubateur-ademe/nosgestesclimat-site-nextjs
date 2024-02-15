@@ -12,19 +12,21 @@ export default function OrgaStatisticsCharts({
 }: {
   simulationRecaps: SimulationRecap[]
 }) {
+  if (!simulationRecaps || simulationRecaps?.length <= 0) return null
+
   // Calculate the mean for each category
-  const meanCategories =
-    simulationRecaps?.length > 0 ??
-    Object.keys(simulationRecaps?.[0]?.categories).map((category) => {
+  const meanCategories = Object.keys(simulationRecaps?.[0]?.categories).map(
+    (category) => {
       const mean = simulationRecaps?.reduce(
         (acc, obj) => acc + obj.categories[category],
         0
       )
       return {
         category,
-        value: mean / simulationRecaps?.length,
+        value: mean / 1000 / simulationRecaps?.length,
       }
-    })
+    }
+  )
 
   return (
     <section className="my-12 rounded-lg bg-grey-100 px-8 pb-4 pt-8">
@@ -50,7 +52,7 @@ export default function OrgaStatisticsCharts({
           <RepartitionChart
             maxValue={29}
             items={simulationRecaps.map(({ bilan, isCurrentUser }) => ({
-              value: bilan,
+              value: bilan / 1000,
               shouldBeHighlighted: isCurrentUser,
             }))}
           />
@@ -79,13 +81,12 @@ export default function OrgaStatisticsCharts({
           <Trans>Par catégorie</Trans>
         </h3>
         <ul>
-          {simulationRecaps?.length > 0 ??
+          {simulationRecaps?.length > 0 &&
             Object.keys(simulationRecaps[0].categories).map(
               (category, index) => (
                 <CategoryListItem
                   key={index}
                   category={category}
-                  // @ts-expect-error fix this
                   value={meanCategories ? meanCategories[index].value : 0}
                   simulationsRecap={simulationRecaps}
                 />
