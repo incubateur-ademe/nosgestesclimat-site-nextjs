@@ -5,10 +5,12 @@ import PollsList from './Organisations/PollsList'
 
 export default function Organisations() {
   return (
-    <>
+    <div className="mt-12">
       <Title tag="h2" title={<Trans>Entreprises et collectivités</Trans>} />
+
       <PollsList />
+
       <CreateOrganisation />
-    </>
+    </div>
   )
 }

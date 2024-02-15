@@ -51,7 +51,7 @@ export default function HeaderDesktop() {
                     activeMatches={['/tutoriel', '/simulateur', '/fin']}
                     icon={BilanIcon}
                     title={t('Le test')}>
-                    <Trans>Le test</Trans>
+                    {t('Le\u202ftest')}
                   </NavLink>
                 </li>
 
@@ -70,7 +70,7 @@ export default function HeaderDesktop() {
                     icon={AmisIcon}
                     title={t('Classement')}
                     data-cypress-id="amis-link">
-                    <Trans>Classement</Trans>
+                    <Trans>Classements</Trans>
                   </NavLink>
                 </li>
               </ul>

@@ -14,18 +14,22 @@ export default function Groups() {
   const currentSimulation = getCurrentSimulation()
 
   const { data: groups, isFetched } = useFetchGroups(user?.id)
-  
+
   return (
     <>
       <Title
-        title={<Trans>Groupe d'amis</Trans>}
+        title={
+          <span className="text-xl md:text-2xl">
+            <Trans>Groupe d'amis</Trans>
+          </span>
+        }
         subtitle={
           <Trans>
             Comparez vos résultats avec votre famille ou un groupe d’ami·e·s
           </Trans>
         }
       />
-      
+
       {isFetched && !groups && <ServerErrorSection />}
 
       {groups && groups?.length === 0 && <CreateFirstGroupSection />}

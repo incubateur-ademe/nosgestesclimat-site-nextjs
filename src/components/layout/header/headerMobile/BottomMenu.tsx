@@ -35,7 +35,7 @@ export default function BottomMenu() {
           href="/classements"
           icon={AmisIcon}
           data-cypress-id="amis-link">
-          <Trans>Classement</Trans>
+          <Trans>Classements</Trans>
         </NavLink>
       </li>
     </ul>

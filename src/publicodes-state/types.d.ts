@@ -67,7 +67,7 @@ export type ComputedResults = {
   categories: Record<string, number>
 }
 export type Simulation = {
-  id: string
+  id?: string
   date: Date | string
   situation: Situation
   foldedSteps: DottedName[]
@@ -75,9 +75,10 @@ export type Simulation = {
   persona?: string
   computedResults?: ComputedResults
   progression?: number
-  defaultAdditionalQuestions?: Record<string, string>
+  defaultAdditionalQuestionsAnswers?: Record<string, string>
   poll?: string
   group?: string
+  userId?: string
 }
 
 export type Persona = {

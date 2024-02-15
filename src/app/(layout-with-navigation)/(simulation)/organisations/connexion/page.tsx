@@ -39,7 +39,7 @@ export default function Page() {
   }, [isError])
 
   return (
-    <section className="w-full bg-[#fff] pt-16">
+    <section className="w-full bg-[#fff]">
       <div className="mx-auto max-w-5xl px-6 lg:px-0">
         <h1>
           <Trans>Accédez à votre espace organisation</Trans>
