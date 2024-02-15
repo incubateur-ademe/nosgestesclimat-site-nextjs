@@ -16,7 +16,7 @@ export default function BarChart({ type, percentage, index }: Props) {
       } rotate-180 rounded-lg bg-secondary`}
       initial={{ [propertyAffected]: 0, display: 'none' }}
       animate={{
-        [propertyAffected]: `calc(${percentage} * 4rem)`,
+        [propertyAffected]: `calc(${percentage} * 6rem)`,
         display: 'block',
       }}
       transition={{
