@@ -2,6 +2,7 @@
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import axios from 'axios'
+import { useState } from 'react'
 import ComplexSelect from './ComplexSelect'
 
 type Props = {
@@ -22,6 +23,7 @@ type City = {
 
 export default function PostalCodeInput({ postalCode, setPostalCode }: Props) {
   const { t } = useClientTranslation()
+  const [searchValue, setSearchValue] = useState('')
 
   return (
     <ComplexSelect
@@ -45,6 +47,12 @@ export default function PostalCodeInput({ postalCode, setPostalCode }: Props) {
             }
           : undefined
       }
+      styles={{
+        menu: (baseStyles: any) => ({
+          ...baseStyles,
+          display: searchValue ? 'block' : 'none',
+        }),
+      }}
       placeholder={t('Veuillez entrer votre code postal')}
       // @ts-expect-error fix me
       onChange={(choice: Suggestion | null) =>
@@ -54,6 +62,9 @@ export default function PostalCodeInput({ postalCode, setPostalCode }: Props) {
         if (search.length < 2) {
           return Promise.resolve([])
         }
+
+        setSearchValue(search)
+
         return axios
           .get(
             `https://geo.api.gouv.fr/departements/${search.substring(
@@ -83,7 +94,7 @@ export default function PostalCodeInput({ postalCode, setPostalCode }: Props) {
       components={{
         NoOptionsMessage: () => (
           <span className="text-grey-700 p-1 pl-2 text-xs">
-            Aucune option disponible
+            Oups, nous n'avons pas trouvé de correspondances
           </span>
         ),
       }}

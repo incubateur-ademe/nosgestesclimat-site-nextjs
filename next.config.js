@@ -65,6 +65,7 @@ const nextConfig = {
   },
   experimental: {
     mdxRs: true,
+    optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
   },
 }
 

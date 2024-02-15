@@ -24,6 +24,7 @@ type Props = {
   isClearable?: boolean
   isSearchable?: boolean
   isAsync?: boolean
+  styles?: any
 }
 
 export default function ComplexSelect({
@@ -40,6 +41,7 @@ export default function ComplexSelect({
   value,
   required = false,
   isAsync = false,
+  styles,
   ...props
 }: PropsWithChildren<Props>) {
   const SelectTag = isAsync ? AsyncSelect : Select
@@ -85,6 +87,7 @@ export default function ComplexSelect({
             fontSize: '0.875rem',
             cursor: 'pointer',
           }),
+          ...styles,
         }}
         components={{
           NoOptionsMessage: () => (

@@ -22,7 +22,7 @@ export default function PostalCode() {
       event?.preventDefault()
 
       // Go to next page
-      router.push(getLinkToInfosPage(3))
+      router.push(getLinkToInfosPage(2))
     },
     [router, getLinkToInfosPage]
   )
