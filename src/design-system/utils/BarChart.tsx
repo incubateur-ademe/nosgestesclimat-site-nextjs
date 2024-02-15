@@ -8,7 +8,7 @@ type Props = {
 
 export default function BarChart({ type, percentage, index }: Props) {
   const propertyAffected = type === 'vertical' ? 'height' : 'width'
-  console.log({ percentage, str: `calc(${percentage}% * 4rem)` })
+
   return (
     <motion.div
       className={`min-w-[2px] max-w-full ${

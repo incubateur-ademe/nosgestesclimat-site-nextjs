@@ -20,7 +20,6 @@ export default function VerticalBarChartItem({
   value: string
   icons: React.ReactNode
 }) {
-  console.log({ value, percentage })
   const { formattedValue, unit } = formatCarbonFootprint(
     parseFloat(value) * 1000,
     {
