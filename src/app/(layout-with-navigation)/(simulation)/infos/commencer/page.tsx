@@ -123,7 +123,7 @@ export default function Commencer() {
             }
 
             updateCurrentSimulation({
-              defaultAdditionalQuestions: {
+              defaultAdditionalQuestionsAnswers: {
                 postalCode,
                 birthdate,
               },
@@ -144,7 +144,7 @@ export default function Commencer() {
             href="/simulateur/bilan"
             onClick={() => {
               initSimulation({
-                defaultAdditionalQuestions: {
+                defaultAdditionalQuestionsAnswers: {
                   postalCode,
                   birthdate,
                 },

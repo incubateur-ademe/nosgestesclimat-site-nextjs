@@ -45,7 +45,14 @@ export function useGoToEndPage() {
     // If the simulation is in a poll, we save it
     if (currentSimulation.poll) {
       await saveSimulation({
-        simulation: currentSimulation,
+        simulation: {
+          ...currentSimulation,
+          situation: currentSimulation?.situation ?? {},
+          foldedSteps: currentSimulation?.foldedSteps ?? [],
+          actionChoices: currentSimulation?.actionChoices ?? {},
+          date: new Date(),
+          userId: user?.id,
+        },
         email: user?.email,
         userId: user?.id,
       })
