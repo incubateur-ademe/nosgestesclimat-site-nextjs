@@ -1429,18 +1429,18 @@
     prompt-sync "^4.2.0"
     yargs "^17.7.2"
 
-"@incubateur-ademe/nosgestesclimat@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-1.5.0.tgz#e54f9c4a2d1f966363b32b1bfcb1924b4e28f4e3"
-  integrity sha512-Sz60mIzks7hvEE3MU01BVBysorSJQ9CKrcNwL1l2a74mTdB59JMNbX+Us6KCw1TnEmkwuZI2BJR2dlEi7Mgkyg==
+"@incubateur-ademe/nosgestesclimat@^1.5.5":
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-1.5.5.tgz#a12d8fa5c0a003e194ea9a5fc1928734f50fa2f4"
+  integrity sha512-UbTVwLwwIaukYSeMIVNq3ynRy3mlyuleERBvvtp3Tpr5iDi5HK9F3KGUAXlZF9kmlvJ1/MF67GSolXO9e40bTg==
   dependencies:
     csv-parser "^3.0.0"
-    futureco-data "^0.0.1-beta.7"
+    futureco-data "^0.1.0"
     glob "^8.0.3"
     http-server "^14.1.1"
     nodemon "^3.0.1"
     prettier "^3.1.0"
-    publicodes "^1.0.0-beta.77"
+    publicodes "1.0.0-beta.77"
     yaml "^2.2.2"
 
 "@jest/expect-utils@^29.7.0":
@@ -5172,10 +5172,10 @@ fuse.js@6.6.2:
   resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-6.6.2.tgz#fe463fed4b98c0226ac3da2856a415576dc9a111"
   integrity sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==
 
-futureco-data@^0.0.1-beta.7:
-  version "0.0.1-beta.9"
-  resolved "https://registry.yarnpkg.com/futureco-data/-/futureco-data-0.0.1-beta.9.tgz#6e57a4c7948b41845155adad5c5714a496a836e4"
-  integrity sha512-dPtKvFKiVjeiC1OVAtbT/NrFObiaMnbJmz2PpVFlpkhGs3mn/MqH5XYn0fz3/Iav9zntnKpv0XjThq7TDPMM2A==
+futureco-data@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/futureco-data/-/futureco-data-0.1.0.tgz#90724b23699d3cb9689480318ae084005effb90d"
+  integrity sha512-TCy9ghUnDr044XgppOqXfyRJHxxpSqiILOQj/gO3HELAIh1CRQqVCgSjjJnQkPBaMUq4GY84d7STVyKIgkCKJw==
   dependencies:
     csv-parser "^2.3.1"
     glob "^7.2.0"
@@ -8108,7 +8108,7 @@ publicodes-react@^1.0.0-beta.76:
   dependencies:
     styled-components "^6.0.8"
 
-publicodes@^1.0.0-beta.77:
+publicodes@1.0.0-beta.77, publicodes@^1.0.0-beta.77:
   version "1.0.0-beta.77"
   resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.77.tgz#45e3c4d2a46bfadcc932e1405ea037e659c28134"
   integrity sha512-F8U3WGUWMo3/rxhWYS1gWIiG20g1Yy/+PpXdHM99d6ZHKWnnyh/4txVEuyVE75glgDs+mTjwZPnmoKWsTMXluA==

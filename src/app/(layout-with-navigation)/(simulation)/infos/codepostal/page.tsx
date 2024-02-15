@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import PostalCodeInput from '@/design-system/inputs/PostalCodeInput'
 import Title from '@/design-system/layout/Title'
-import { useAppNavigation } from '@/hooks/useNavigation'
+import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useRouter } from 'next/navigation'
 import { FormEvent, useCallback, useContext } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
@@ -12,7 +12,7 @@ import Navigation from '../_components/Navigation'
 export default function PostalCode() {
   const router = useRouter()
 
-  const { getLinkToInfosPage } = useAppNavigation()
+  const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
   const { postalCode, setPostalCode } = useContext(InfosContext)
 
@@ -22,9 +22,9 @@ export default function PostalCode() {
       event?.preventDefault()
 
       // Go to next page
-      router.push(getLinkToInfosPage(2))
+      router.push(getLinkToNextInfosPage({ curPage: 'postalCode' }))
     },
-    [router, getLinkToInfosPage]
+    [router, getLinkToNextInfosPage]
   )
 
   return (
@@ -37,7 +37,8 @@ export default function PostalCode() {
       />
       <PostalCodeInput postalCode={postalCode} setPostalCode={setPostalCode} />
       <Navigation
-        linkToPrev={getLinkToInfosPage(0)}
+        linkToPrev={getLinkToPrevInfosPage({ curPage: 'postalCode' })}
+        submitDisabled={!getLinkToNextInfosPage({ curPage: 'postalCode' })}
         handleSubmit={handleSubmit}
       />
     </form>

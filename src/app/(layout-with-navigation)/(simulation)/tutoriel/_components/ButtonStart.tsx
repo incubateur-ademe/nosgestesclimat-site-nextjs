@@ -2,16 +2,16 @@
 
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { useAppNavigation } from '@/hooks/useNavigation'
+import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useUser } from '@/publicodes-state'
 
 export default function ButtonStart() {
   const { hideTutorial } = useUser()
-  const { getLinkToInfosPage } = useAppNavigation()
+  const { getLinkToNextInfosPage } = useInfosPage()
 
   return (
     <ButtonLink
-      href={getLinkToInfosPage(0)}
+      href={getLinkToNextInfosPage({ curPage: 'tutoriel' })}
       data-cypress-id="skip-tutorial-button"
       onClick={() => hideTutorial('testIntro')}>
       <Trans>C'est parti ! →</Trans>

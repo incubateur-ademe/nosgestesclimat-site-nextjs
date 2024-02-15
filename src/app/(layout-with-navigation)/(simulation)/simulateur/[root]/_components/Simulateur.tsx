@@ -5,34 +5,21 @@ import {
   matomoEventCloseQuestionsList,
   matomoEventOpenQuestionsList,
 } from '@/constants/matomo'
-import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
+import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
 import { useDebug } from '@/hooks/useDebug'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Charts from './simulateur/Charts'
 import Form from './simulateur/Form'
 import Summary from './simulateur/Summary'
 
 export default function Simulateur() {
-  const [isInit, setIsInit] = useState(false)
-
-  const urlParams = new URLSearchParams(window.location.search)
-  const questionFromUrl = urlParams.get('question')
-
-  const router = useRouter()
+  // Guarding the route and redirecting if necessary
+  const { isInit } = useSimulateurGuard()
 
   const isDebug = useDebug()
 
-  const { tutorials } = useUser()
-
-  const { categories, progression } = useForm()
-
-  const { getValue } = useEngine()
-
   const [isQuestionListOpen, setIsQuestionListOpen] = useState(false)
-
   const toggleQuestionList = () => {
     setIsQuestionListOpen((prevIsQuestionListOpen) => {
       trackEvent(
@@ -43,28 +30,6 @@ export default function Simulateur() {
       return !prevIsQuestionListOpen
     })
   }
-
-  useEffect(() => {
-    if (!tutorials.testIntro && !isDebug) {
-      router.replace('/tutoriel')
-    } else {
-      setIsInit(true)
-    }
-  }, [tutorials, router, isDebug])
-
-  // Redirect to results page if test is completed
-  useEffect(() => {
-    if (progression === 1 && !isDebug && !questionFromUrl) {
-      const detailsParamString = formatResultToDetailParam({
-        categories,
-        getValue,
-      })
-
-      router.replace(
-        `/fin${detailsParamString ? `?${detailsParamString}` : ''}`
-      )
-    }
-  }, [progression, router, isDebug, categories, getValue, questionFromUrl])
 
   if (!isInit) return null
 

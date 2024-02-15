@@ -8,6 +8,7 @@ import { useIframe } from '@/hooks/useIframe'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import Trans from '../translation/Trans'
 
+// TODO: STOP USING DETAILS FROM QUERY PARAMS
 // We let iframe integrators ask the user if he wants to share its simulation data to the parent window
 const shareDataPopupTimeout = 3500
 
