@@ -23,7 +23,7 @@ export default function CategoryChartItem({
 
   return (
     <VerticalBarChartItem
-      value={value}
+      value={String(value)}
       index={index}
       percentage={percentageOfMaxValue}
       ariaLabel={t(

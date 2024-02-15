@@ -46,7 +46,7 @@ export default function StatisticsBlocks({
 
   const result = formatSimulationRecaps(simulationRecaps)
 
-  const { formattedValue, unit } = formatCarbonFootprint(result?.bilan * 1000, {
+  const { formattedValue, unit } = formatCarbonFootprint(result?.bilan, {
     maximumFractionDigits: 1,
   })
 
@@ -82,8 +82,8 @@ export default function StatisticsBlocks({
                 index={index}
                 key={key}
                 category={key}
-                maxValue={result.bilan}
-                value={value}
+                maxValue={result.bilan / 1000}
+                value={value / 1000}
               />
             ))}
         </VerticalBarChart>

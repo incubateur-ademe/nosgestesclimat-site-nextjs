@@ -39,6 +39,13 @@ export default function QuestionsComplementaires({
       )
     }
 
+    // Always return an array with the same order, postalCode first if it is present, then birthdate
+    defaultAdditionalQuestions.sort((a, b) => {
+      if (a === 'postalCode') return -1
+      if (b === 'postalCode') return 1
+      return 0
+    })
+
     await updateOrganisation({
       defaultAdditionalQuestions,
     })

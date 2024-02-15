@@ -17,13 +17,17 @@ export default function VerticalBarChartItem({
   index: number
   percentage: number
   title: string
-  value: number
+  value: string
   icons: React.ReactNode
 }) {
-  const { formattedValue, unit } = formatCarbonFootprint(value * 1000, {
-    maximumFractionDigits: 1,
-    shouldUseAbbreviation: true,
-  })
+  console.log({ value, percentage })
+  const { formattedValue, unit } = formatCarbonFootprint(
+    parseFloat(value) * 1000,
+    {
+      maximumFractionDigits: 1,
+      shouldUseAbbreviation: true,
+    }
+  )
 
   return (
     <li
@@ -35,7 +39,7 @@ export default function VerticalBarChartItem({
       <div className="flex items-end">
         <BarChart
           type="vertical"
-          percentage={`calc(${percentage} * 16rem)`}
+          percentage={String(percentage)}
           index={index}
         />
       </div>

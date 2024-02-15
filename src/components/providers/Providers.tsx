@@ -46,7 +46,7 @@ export default function Providers({
   if (NO_MODEL_PATHNAME_EXCEPTIONS.includes(pathname)) {
     return <>{children}</>
   }
-
+  console.log('currentSimulationId', currentSimulationId, isLoading)
   if (!currentSimulationId || isLoading) {
     return (
       <div className="flex flex-1 items-center justify-center">
