@@ -8,26 +8,25 @@ import {
   matomoEventParcoursTestStart,
 } from '@/constants/matomo'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useIsClient } from '@/hooks/useIsClient'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function Buttons() {
-  const { tutorials, getCurrentSimulation, initSimulation } = useUser()
+  const { getCurrentSimulation } = useUser()
 
   const currentSimulation = getCurrentSimulation()
 
   const isClient = useIsClient()
 
+  const {
+    goToSimulateurPage,
+    getLinkToSimulateurPage,
+    linkToSimulateurPageLabel,
+  } = useSimulateurPage()
+
   const progression = currentSimulation?.progression || 0
-  let label
-  if (!progression) {
-    label = <Trans>Passer le test →</Trans>
-  } else if (progression < 1) {
-    label = <Trans>Reprendre mon test</Trans>
-  } else {
-    label = <Trans>Voir mes résultats</Trans>
-  }
 
   return (
     <div className="relative">
@@ -35,7 +34,7 @@ export default function Buttons() {
         className={`transition-opacity duration-500 ${
           isClient ? 'opacity-100' : 'opacity-0'
         }`}
-        href={tutorials.testIntro ? '/simulateur/bilan' : '/tutoriel'}
+        href={getLinkToSimulateurPage()}
         data-cypress-id="do-the-test-link"
         onClick={() => {
           if (progression) {
@@ -46,7 +45,7 @@ export default function Buttons() {
           trackEvent(matomoEventParcoursTestStart)
         }}
         size="lg">
-        {label}
+        <Trans>{linkToSimulateurPageLabel}</Trans>
       </ButtonLink>
       {progression ? (
         <Link
@@ -55,9 +54,9 @@ export default function Buttons() {
           }`}
           onClick={() => {
             trackEvent(matomoEventParcoursTestNouveau)
-            initSimulation()
+            goToSimulateurPage({ noNavigation: true, newSimulation: true })
           }}
-          href={tutorials.testIntro ? '/simulateur/bilan' : '/tutoriel'}>
+          href={getLinkToSimulateurPage({ newSimulation: true })}>
           <Trans>Commencer un nouveau test</Trans>
         </Link>
       ) : null}

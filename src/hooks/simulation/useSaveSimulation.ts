@@ -23,6 +23,7 @@ export function useSaveSimulation() {
           user: userWithUserId,
         })
         .then((response) => response.data)
+        .catch(() => console.error('Failed to save simulation'))
     },
   })
   return {

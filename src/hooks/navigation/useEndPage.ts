@@ -1,4 +1,4 @@
-import { useSaveSimulation } from '@/hooks/useSaveSimulation'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'

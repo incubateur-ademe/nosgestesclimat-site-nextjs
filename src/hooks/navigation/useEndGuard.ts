@@ -1,6 +1,7 @@
 import { useUser } from '@/publicodes-state'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQueryParams'
 import { useDebug } from '../useDebug'
 
 export function useEndGuard() {
@@ -10,6 +11,8 @@ export function useEndGuard() {
   const currentSimulation = getCurrentSimulation()
 
   const isDebug = useDebug()
+
+  const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
 
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
@@ -29,6 +32,11 @@ export function useEndGuard() {
       return
     }
 
+    // if there is a simulation id in the query params we do nothing
+    if (simulationIdInQueryParams) {
+      return
+    }
+
     // if the simulation is finished we do nothing
     if (currentSimulation.progression === 1) {
       return
@@ -44,7 +52,14 @@ export function useEndGuard() {
     // we redirect the user to the test page
     router.push('/simulateur/bilan')
     setIsGuardRedirecting(true)
-  }, [isGuardInit, currentSimulation, router, tutorials, isDebug])
+  }, [
+    isGuardInit,
+    simulationIdInQueryParams,
+    currentSimulation,
+    router,
+    tutorials,
+    isDebug,
+  ])
 
   return { isGuardInit, isGuardRedirecting }
 }

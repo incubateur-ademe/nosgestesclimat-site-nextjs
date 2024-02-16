@@ -2,8 +2,8 @@ import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import questions from '@/components/questions'
 import { getMatomoEventParcoursTestOver } from '@/constants/matomo'
+import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useDebug } from '@/hooks/useDebug'
-import { useGoToEndPage } from '@/hooks/useNavigation/useGoToEndPage'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useEngine, useForm } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -25,7 +25,7 @@ export default function Form() {
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()
 
-  const { goToEndPage } = useGoToEndPage()
+  const { goToEndPage } = useEndPage()
 
   const [isInitialized, setIsInitialized] = useState(false)
 

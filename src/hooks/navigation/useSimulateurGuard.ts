@@ -1,5 +1,5 @@
 import { useUser } from '@/publicodes-state'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useDebug } from '../useDebug'
 import { useQuestionInQueryParams } from '../useQuestionInQueryParams'

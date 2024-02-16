@@ -1,28 +1,23 @@
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { FormProvider } from '@/publicodes-state'
+'use client'
+
+import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
+import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur'
 import Faq from './_components/Faq'
 import Simulateur from './_components/Simulateur'
-import Tracking from './_components/Tracking'
 
-type Props = { params: { root: string } }
+export default function SimulateurPage() {
+  // Guarding the route and redirecting if necessary
+  const { isGuardInit, isGuardRedirecting } = useSimulateurGuard()
 
-export async function generateMetadata({ params }: Props) {
-  return getMetadataObject({
-    title: 'Simulateur d’empreinte climat - Nos Gestes Climat',
-    description:
-      'Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.',
-    alternates: {
-      canonical: `/simulateur/${params.root}`,
-    },
-  })
-}
+  // We track the progression of the user in the simulation
+  useTrackSimulateur()
 
-export default function SimulateurPage({ params }: Props) {
+  if (!isGuardInit || isGuardRedirecting) return null
+
   return (
-    <FormProvider root={params.root}>
+    <>
       <Simulateur />
       <Faq />
-      <Tracking />
-    </FormProvider>
+    </>
   )
 }
