@@ -30,10 +30,11 @@ export default function AccordionItemWithRule({
               {title}
             </p>
           </div>
+
           <div className="mr-4 hidden flex-1 md:block">
             <BarChart
               type="horizontal"
-              percentage={String(percentageOfTotalValue * 100)}
+              value={`${percentageOfTotalValue * 100}%`}
               index={index}
             />
           </div>
