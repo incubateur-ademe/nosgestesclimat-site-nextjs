@@ -31,7 +31,7 @@ export default function GroupResults({
 
   const { user, setGroupToRedirectToAfterTest } = useUser()
 
-  const userId = user?.id
+  const userId = user?.userId
 
   const isOwner = group?.owner?.userId === userId
 

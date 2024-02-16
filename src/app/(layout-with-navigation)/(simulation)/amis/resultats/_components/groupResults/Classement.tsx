@@ -15,7 +15,7 @@ export default function Classement({ group }: { group: Group }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   const {
-    user: { id: userId },
+    user: { userId },
   } = useUser()
 
   const language = useClientTranslation().i18n.language

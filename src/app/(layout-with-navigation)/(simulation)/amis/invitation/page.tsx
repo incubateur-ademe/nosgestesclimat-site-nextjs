@@ -23,7 +23,7 @@ export default function RejoindreGroupePage({
 
   const { user } = useUser()
 
-  const userId = user?.id
+  const userId = user?.userId
 
   const { data: group } = useFetchGroup(groupId)
 

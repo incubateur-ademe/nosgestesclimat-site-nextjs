@@ -27,14 +27,14 @@ export const useUpdateUserResults = ({
   // This is flaky and should incorporate a failsafe to ensure we do not update ad aeternam
   useEffect(() => {
     const currentMember = group?.members.find(
-      (groupMember: { userId: string }) => groupMember.userId === user?.id
+      (groupMember: { userId: string }) => groupMember.userId === user?.userId
     )
 
     if (group && currentMember && currentSimulation) {
       if (resultsOfUser?.total !== currentMember?.results?.total) {
         fetchUpdateGroupMember({
           group,
-          userId: user?.id ?? '',
+          userId: user?.userId ?? '',
           simulation: currentSimulation,
           results: resultsOfUser,
         }).then(() => refetch())
@@ -42,5 +42,12 @@ export const useUpdateUserResults = ({
         setIsSynced(true)
       }
     }
-  }, [group, user?.id, resultsOfUser, currentSimulation, refetch, setIsSynced])
+  }, [
+    group,
+    user?.userId,
+    resultsOfUser,
+    currentSimulation,
+    refetch,
+    setIsSynced,
+  ])
 }

@@ -33,7 +33,7 @@ export default function ParticipantAdminSection({ group }: Props) {
     try {
       await deleteUserOrGroupIfOwner({
         groupId: group?._id,
-        userId: user?.id || '',
+        userId: user?.userId || '',
       })
 
       timeoutRef.current = setTimeout(() => {

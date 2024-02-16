@@ -45,7 +45,7 @@ export function useUpdateGroup() {
 
     await updateGroupMember({
       group,
-      userId: user?.id ?? '',
+      userId: user?.userId ?? '',
       simulation: currentSimulation,
       results,
     })

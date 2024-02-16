@@ -27,7 +27,7 @@ export default function GroupCreationForm() {
     setGroupToRedirectToAfterTest,
   } = useUser()
 
-  const { name, id: userId, email: emailFromUserObject } = user
+  const { name, userId, email: emailFromUserObject } = user
 
   const [prenom, setPrenom] = useState(name || '')
   const [errorPrenom, setErrorPrenom] = useState('')
@@ -44,7 +44,7 @@ export default function GroupCreationForm() {
 
   const { getValue } = useEngine()
 
-  const { data: groups } = useFetchGroups(user?.id)
+  const { data: groups } = useFetchGroups(user?.userId)
 
   const router = useRouter()
 

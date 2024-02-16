@@ -13,7 +13,7 @@ export default function Groups() {
 
   const currentSimulation = getCurrentSimulation()
 
-  const { data: groups, isFetched } = useFetchGroups(user?.id)
+  const { data: groups, isFetched } = useFetchGroups(user?.userId)
 
   return (
     <>

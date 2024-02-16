@@ -59,7 +59,7 @@ export default function InvitationForm({ group }: { group: Group }) {
         groupName: group.name,
         groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
         shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
-        deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${user?.id}&mtm_campaign=invitation-groupe-email`,
+        deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${user?.userId}&mtm_campaign=invitation-groupe-email`,
       }),
     })
   }
@@ -100,7 +100,7 @@ export default function InvitationForm({ group }: { group: Group }) {
         prenom,
         email,
         group,
-        userId: user?.id,
+        userId: user?.userId,
         simulation: currentSimulation,
       })
 

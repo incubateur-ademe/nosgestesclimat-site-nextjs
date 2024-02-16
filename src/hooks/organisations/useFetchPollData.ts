@@ -34,13 +34,13 @@ export function useFetchPollData(
           orgaSlug,
           email: user?.email,
           fileName,
-          userId: user?.id,
+          userId: user?.userId,
         })
         .then((res) => res.data)
         .catch((err) => {
           console.error(err)
           return null
         }),
-    enabled: !!fileName && !!user?.email && !!user?.id && enabled,
+    enabled: !!fileName && !!user?.email && !!user?.userId && enabled,
   })
 }
