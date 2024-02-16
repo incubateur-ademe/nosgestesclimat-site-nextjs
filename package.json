@@ -14,6 +14,7 @@
     "dev": "next dev",
     "dev:model": "NEXT_PUBLIC_LOCAL_DATA=nosgestesclimat next dev",
     "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
     "start": "next start",
     "lint": "next lint",
     "e2e": "cypress open --e2e",
@@ -30,6 +31,7 @@
   },
   "dependencies": {
     "@incubateur-ademe/nosgestesclimat": "^1.5.0",
+    "@next/bundle-analyzer": "^14.1.0",
     "@next/mdx": "^14.0.2",
     "@sentry/nextjs": "^7.80.0",
     "@sentry/react": "^7.80.0",

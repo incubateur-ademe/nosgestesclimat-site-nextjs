@@ -45,6 +45,8 @@ function getAgeOptions({
           simulation.defaultAdditionalQuestionsAnswers?.birthdate
         ).year()
 
+        if (!birthYear || isNaN(birthYear)) return false
+
         return birthYear >= i - 10 && birthYear < i
       }
     )
@@ -53,10 +55,11 @@ function getAgeOptions({
 
     ageOptions.push({
       value: [
-        currentYear - i,
-        currentYear - (i + 9) > 0 ? currentYear - (i + 9) : 0,
+        // We subtract 1 to the current year to exclude the max value
+        currentYear - (i + 1),
+        currentYear - (i - 10) > 0 ? currentYear - (i - 10) : 0,
       ],
-      label: `Nés entre ${i} et ${i + 9 > currentYear ? currentYear : i + 9} (${
+      label: `Nés entre ${i - 10} et ${i > currentYear ? currentYear : i} (${
         simulationsRecapMatchingAge.length
       })`,
       isDisabled: simulationsRecapMatchingAge.length <= 1,
