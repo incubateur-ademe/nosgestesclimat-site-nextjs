@@ -11,4 +11,3 @@ export const fetchPolls = async ({ pollSlugs }: Props): Promise<PollInfo[]> =>
       polls: pollSlugs,
     })
     .then((res) => res.data)
-    .catch(() => console.error('Failed to fetch polls'))

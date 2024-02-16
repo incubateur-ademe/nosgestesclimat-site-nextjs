@@ -9,6 +9,7 @@ export const fetchSimulation = async ({
   simulationId,
 }: Props): Promise<Simulation> =>
   axios
-    .get(`${SERVER_URL}/simulation/${simulationId}`)
+    .post(`${SERVER_URL}/simulations/fetch-simulation`, {
+      simulationId,
+    })
     .then((res) => res.data)
-    .catch(() => console.error('Failed to fetch simulation'))
