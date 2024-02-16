@@ -19,6 +19,7 @@ export function useSimulateurGuard() {
 
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
+
   useEffect(() => {
     // we only run the guard at mount
     if (isGuardInit) return
