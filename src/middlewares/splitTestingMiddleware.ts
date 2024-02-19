@@ -6,6 +6,7 @@ import userTriggeredFetchers from './excludedIPs/user-triggered-fetchers.json'
 
 const redirectUrl = `https://nosgestesclimat-git-${process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH}-nos-gestes-climat.vercel.app`
 
+// https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot?hl=fr
 function isGoogleBot(ip: string) {
   const googleBotIPv4s = googleBots.prefixes.reduce((acc, prefixObject) => {
     const isV4 = prefixObject['ipv4Prefix']
