@@ -1,4 +1,5 @@
 'use client'
+import { PublicodesExpression } from 'publicodes'
 import { createContext } from 'react'
 import {
   DottedName,
@@ -14,7 +15,7 @@ type SimulationContextType = {
   engine: Engine
   pristineEngine: Engine
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
-  safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
+  safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   situation: Situation
   updateSituation: (situationToAdd: Situation) => Promise<void>
   updateProgression: (progression: number) => void
