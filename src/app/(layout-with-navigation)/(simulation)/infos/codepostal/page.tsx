@@ -1,6 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { POSTAL_CODE_PAGE } from '@/constants/infosPages'
 import PostalCodeInput from '@/design-system/inputs/PostalCodeInput'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
@@ -22,7 +23,7 @@ export default function PostalCode() {
       event?.preventDefault()
 
       // Go to next page
-      router.push(getLinkToNextInfosPage({ curPage: 'postalCode' }))
+      router.push(getLinkToNextInfosPage({ curPage: POSTAL_CODE_PAGE }))
     },
     [router, getLinkToNextInfosPage]
   )
@@ -37,8 +38,8 @@ export default function PostalCode() {
       />
       <PostalCodeInput postalCode={postalCode} setPostalCode={setPostalCode} />
       <Navigation
-        linkToPrev={getLinkToPrevInfosPage({ curPage: 'postalCode' })}
-        submitDisabled={!getLinkToNextInfosPage({ curPage: 'postalCode' })}
+        linkToPrev={getLinkToPrevInfosPage({ curPage: POSTAL_CODE_PAGE })}
+        submitDisabled={!getLinkToNextInfosPage({ curPage: POSTAL_CODE_PAGE })}
         handleSubmit={handleSubmit}
       />
     </form>

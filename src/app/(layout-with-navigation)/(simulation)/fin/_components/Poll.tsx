@@ -2,7 +2,7 @@
 
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
-import { usePollPages } from '@/hooks/navigation/usePollPages'
+import { usePollPages } from '@/helpers/navigation/pollPages'
 import { usePoll } from '@/hooks/organisations/usePoll'
 import { useUser } from '@/publicodes-state'
 
@@ -10,7 +10,7 @@ export default function Poll() {
   const { getCurrentSimulation } = useUser()
   const currentSimulation = getCurrentSimulation()
 
-  const { linkToPollDashboard } = usePollPages()
+  const { getLinkToPollDashboard } = usePollPages()
 
   const { data: poll, isLoading } = usePoll({
     pollSlug: currentSimulation?.poll,
@@ -33,7 +33,7 @@ export default function Poll() {
         <b>{isLoading ? '... ' : poll?.organisationInfo?.name}</b>
       </p>
       <ButtonLink
-        href={linkToPollDashboard({
+        href={getLinkToPollDashboard({
           orgaSlug: poll?.organisationInfo.slug || '', // TODO: handle this better
         })}
         className="flex h-10 w-10 items-center justify-center rounded-full p-0 leading-none">

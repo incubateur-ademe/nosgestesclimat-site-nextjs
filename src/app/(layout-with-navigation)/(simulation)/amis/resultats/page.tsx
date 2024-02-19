@@ -5,6 +5,7 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Loader from '@/design-system/layout/Loader'
 import Title from '@/design-system/layout/Title'
+import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { Group } from '@/types/groups'
 import { UseQueryResult } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
@@ -56,7 +57,7 @@ export default function GroupResultsPage({
           <Trans>Ce groupe n'existe pas ou a été supprimé.</Trans>
         </p>
 
-        <ButtonLink href="/amis">
+        <ButtonLink href={linkToClassement}>
           <Trans>Retour à la liste des groupes</Trans>
         </ButtonLink>
       </div>

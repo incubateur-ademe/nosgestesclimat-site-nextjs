@@ -1,6 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { BIRTHDATE_PAGE } from '@/constants/infosPages'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
@@ -22,7 +23,7 @@ export default function Birthdate() {
       event?.preventDefault()
 
       // Go to next page
-      router.push(getLinkToNextInfosPage({ curPage: 'birthdate' }))
+      router.push(getLinkToNextInfosPage({ curPage: BIRTHDATE_PAGE }))
     },
     [router, getLinkToNextInfosPage]
   )
@@ -44,8 +45,8 @@ export default function Birthdate() {
         }}
       />
       <Navigation
-        linkToPrev={getLinkToPrevInfosPage({ curPage: 'birthdate' })}
-        submitDisabled={!getLinkToNextInfosPage({ curPage: 'birthdate' })}
+        linkToPrev={getLinkToPrevInfosPage({ curPage: BIRTHDATE_PAGE })}
+        submitDisabled={!getLinkToNextInfosPage({ curPage: BIRTHDATE_PAGE })}
         handleSubmit={handleSubmit}
       />
     </form>

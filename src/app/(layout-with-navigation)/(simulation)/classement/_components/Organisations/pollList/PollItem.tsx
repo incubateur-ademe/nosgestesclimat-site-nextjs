@@ -1,7 +1,7 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import ChevronRight from '@/design-system/icons/ChevronRight'
-import { usePollPages } from '@/hooks/navigation/usePollPages'
+import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
 import { PollInfo } from '@/types/organisations'
 
 type Props = {
@@ -9,11 +9,9 @@ type Props = {
 }
 
 export default function PollItem({ poll }: Props) {
-  const { linkToPollDashboard } = usePollPages()
-
   return (
     <Link
-      href={linkToPollDashboard({ orgaSlug: poll.organisationInfo.slug })}
+      href={getLinkToPollDashboard({ orgaSlug: poll.organisationInfo.slug })}
       className="rounded-sm border-[1px] border-solid border-gray-200 bg-gray-100 px-5 py-2 no-underline decoration-auto">
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center">

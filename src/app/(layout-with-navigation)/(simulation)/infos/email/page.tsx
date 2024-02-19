@@ -1,6 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { EMAIL_PAGE } from '@/constants/infosPages'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
@@ -43,7 +44,7 @@ export default function Email() {
       updateEmail(email)
 
       // Go to next page
-      router.push(getLinkToNextInfosPage({ curPage: 'email' }))
+      router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
     },
     [email, updateEmail, t, router, getLinkToNextInfosPage]
   )
@@ -65,9 +66,9 @@ export default function Email() {
         setError={setError}
       />
       <Navigation
-        linkToPrev={getLinkToPrevInfosPage({ curPage: 'email' })}
+        linkToPrev={getLinkToPrevInfosPage({ curPage: EMAIL_PAGE })}
         handleSubmit={handleSubmit}
-        submitDisabled={!getLinkToNextInfosPage({ curPage: 'email' })}
+        submitDisabled={!getLinkToNextInfosPage({ curPage: EMAIL_PAGE })}
       />
     </form>
   )

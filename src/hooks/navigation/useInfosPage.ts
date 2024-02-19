@@ -1,3 +1,10 @@
+import {
+  BIRTHDATE_PAGE,
+  EMAIL_PAGE,
+  POSTAL_CODE_PAGE,
+  START_PAGE,
+  TUTORIEL_PAGE,
+} from '@/constants/infosPages'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useSearchParams } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
@@ -9,7 +16,12 @@ import { usePoll } from '../organisations/usePoll'
  */
 
 type Props = {
-  curPage: 'tutoriel' | 'email' | 'postalCode' | 'birthdate' | 'start'
+  curPage:
+    | typeof BIRTHDATE_PAGE
+    | typeof EMAIL_PAGE
+    | typeof POSTAL_CODE_PAGE
+    | typeof START_PAGE
+    | typeof TUTORIEL_PAGE
 }
 export function useInfosPage() {
   const searchParams = useSearchParams()
@@ -21,11 +33,11 @@ export function useInfosPage() {
 
   const urlsInfosPages = useMemo(
     () => ({
-      tutoriel: `/tutoriel?${queryParamsString}`,
-      email: `/infos/email?${queryParamsString}`,
-      postalCode: `/infos/codepostal?${queryParamsString}`,
-      birthdate: `/infos/naissance?${queryParamsString}`,
-      start: `/infos/commencer?${queryParamsString}`,
+      [TUTORIEL_PAGE]: `/tutoriel?${queryParamsString}`,
+      [EMAIL_PAGE]: `/infos/email?${queryParamsString}`,
+      [POSTAL_CODE_PAGE]: `/infos/codepostal?${queryParamsString}`,
+      [BIRTHDATE_PAGE]: `/infos/naissance?${queryParamsString}`,
+      [START_PAGE]: `/infos/commencer?${queryParamsString}`,
     }),
     [queryParamsString]
   )
@@ -48,28 +60,28 @@ export function useInfosPage() {
       }
 
       // if we are on the tutoriel, we return the email page
-      if (curPage === 'tutoriel') {
+      if (curPage === TUTORIEL_PAGE) {
         return urlsInfosPages.email
       }
 
       // if we are on the email page and the poll has the postalCode question, we return the postalCode page link
       if (
-        curPage === 'email' &&
-        poll.defaultAdditionalQuestions.includes('postalCode')
+        curPage === EMAIL_PAGE &&
+        poll.defaultAdditionalQuestions.includes(POSTAL_CODE_PAGE)
       ) {
         return urlsInfosPages.postalCode
       }
 
       // if we are on the email or postalCode page and the poll has the birthdate question, we return the birthdate page link
       if (
-        (curPage === 'postalCode' || curPage === 'email') &&
-        poll.defaultAdditionalQuestions.includes('birthdate')
+        (curPage === POSTAL_CODE_PAGE || curPage === EMAIL_PAGE) &&
+        poll.defaultAdditionalQuestions.includes(BIRTHDATE_PAGE)
       ) {
         return urlsInfosPages.birthdate
       }
 
       // if we are on the start page, we return the test link
-      if (curPage === 'start') {
+      if (curPage === START_PAGE) {
         return '/simulateur/bilan'
       }
 
@@ -97,32 +109,32 @@ export function useInfosPage() {
       }
 
       // if we are on the tutoriel, we return the homepage link
-      if (curPage === 'tutoriel') {
+      if (curPage === TUTORIEL_PAGE) {
         return '/'
       }
 
       // if we are on the email page, we return the tutoriel page link
-      if (curPage === 'email') {
+      if (curPage === EMAIL_PAGE) {
         return urlsInfosPages.tutoriel
       }
 
       // if we are on the postalCode page, we return the email page link
-      if (curPage === 'postalCode') {
+      if (curPage === POSTAL_CODE_PAGE) {
         return urlsInfosPages.email
       }
 
       // if we are on the start page and the poll has the birthdate question, we return the birthdate page link
       if (
-        curPage === 'start' &&
-        poll.defaultAdditionalQuestions.includes('birthdate')
+        curPage === START_PAGE &&
+        poll.defaultAdditionalQuestions.includes(BIRTHDATE_PAGE)
       ) {
         return urlsInfosPages.birthdate
       }
 
       // if we are on the start page or the birthdate page and the poll has the postalCode question, we return the postalCode page link
       if (
-        (curPage === 'birthdate' || curPage === 'start') &&
-        poll.defaultAdditionalQuestions.includes('postalCode')
+        (curPage === BIRTHDATE_PAGE || curPage === START_PAGE) &&
+        poll.defaultAdditionalQuestions.includes(POSTAL_CODE_PAGE)
       ) {
         return urlsInfosPages.postalCode
       }
