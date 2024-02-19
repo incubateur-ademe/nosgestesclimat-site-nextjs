@@ -1,5 +1,4 @@
 type DottedName = string
-type Persona = string
 
 export type Situation = Record<DottedName, any>
 
@@ -24,21 +23,3 @@ export type SimulationConfig = {
 }
 
 export type StoredTrajets = Record<DottedName, any>
-
-export type Simulation = {
-  config: SimulationConfig
-  url: string
-  hiddenNotifications: Array<string>
-  situation: Situation
-  hiddenControls?: Array<string>
-  targetUnit?: string
-  foldedSteps?: Array<DottedName>
-  unfoldedStep?: DottedName | null
-  persona?: Persona
-  date?: Date
-  id: string
-  eventsSent?: Record<string, boolean>
-  actionChoices?: Record<string, boolean>
-  storedTrajets?: StoredTrajets
-  poll: any
-}

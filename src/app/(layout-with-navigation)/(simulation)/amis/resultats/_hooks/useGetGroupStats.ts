@@ -1,4 +1,4 @@
-import { Member, Points, Results, ValueObject } from '@/types/groups'
+import { Participant, Points, Results, ValueObject } from '@/types/groups'
 import { getUserCategoryFootprintsSortedByDifference } from './_helpers/getUserCategoryFootprintsSortedByDifference'
 import { useGetGroupAndUserFootprints } from './useGetGroupAndUserFootprints'
 
@@ -17,7 +17,7 @@ export const useGetGroupStats = ({
   userId,
   isSynced,
 }: {
-  groupMembers: Member[] | undefined
+  groupMembers: Participant[] | undefined
   userId: string | null
   isSynced: boolean
 }) => {
@@ -62,16 +62,14 @@ export const useGetGroupStats = ({
 
   // Calculate the current user variation between its value and the group mean for each category
   // and subcategory
-  Object.keys(results.userFootprintByCategoriesAndSubcategories).forEach(
-    (key) => {
-      results.userFootprintByCategoriesAndSubcategories[key].difference =
-        getDifferenceInPercent({
-          value: results.userFootprintByCategoriesAndSubcategories[key].value,
-          mean:
-            results.groupFootprintByCategoriesAndSubcategories[key]?.mean || 0,
-        })
-    }
-  )
+  Object.keys(userFootprintByCategoriesAndSubcategories).forEach((key) => {
+    results.userFootprintByCategoriesAndSubcategories[key].difference =
+      getDifferenceInPercent({
+        value: results.userFootprintByCategoriesAndSubcategories[key].value,
+        mean:
+          results.groupFootprintByCategoriesAndSubcategories[key]?.mean || 0,
+      })
+  })
 
   const {
     positiveDifferenceCategoriesSorted,

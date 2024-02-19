@@ -1,6 +1,6 @@
 import { useEngine, useUser } from '@/publicodes-state'
 import { useEffect } from 'react'
-import { fetchUpdateGroupMember } from '../../_helpers/fetchUpdateGroupMember'
+import { useFetchUpdateGroupMember } from '../../../simulateur/[root]/_components/simulateur/form/_hooks/useFetchUpdateGroupMember'
 import { getSimulationResults } from '../../_helpers/getSimulationResults'
 import { useFetchGroup } from '../../_hooks/useFetchGroup'
 
@@ -19,6 +19,8 @@ export const useUpdateUserResults = ({
 
   const currentSimulation = getCurrentSimulation()
 
+  const { mutateAsync: updateGroupMember } = useFetchUpdateGroupMember()
+
   const resultsOfUser = getSimulationResults({
     getValue,
   })
@@ -26,17 +28,21 @@ export const useUpdateUserResults = ({
   // If the user has a simulation we update the group accordingly
   // This is flaky and should incorporate a failsafe to ensure we do not update ad aeternam
   useEffect(() => {
-    const currentMember = group?.members.find(
+    const currentMember = group?.participants?.find(
       (groupMember: { userId: string }) => groupMember.userId === user?.userId
     )
 
     if (group && currentMember && currentSimulation) {
-      if (resultsOfUser?.total !== currentMember?.results?.total) {
-        fetchUpdateGroupMember({
+      if (
+        resultsOfUser?.bilan !==
+        String(currentMember?.simulation?.computedResults?.bilan)
+      ) {
+        updateGroupMember({
           group,
           userId: user?.userId ?? '',
+          email: user?.email,
           simulation: currentSimulation,
-          results: resultsOfUser,
+          computedResults: resultsOfUser,
         }).then(() => refetch())
       } else {
         setIsSynced(true)
@@ -45,9 +51,11 @@ export const useUpdateUserResults = ({
   }, [
     group,
     user?.userId,
+    user?.email,
     resultsOfUser,
     currentSimulation,
     refetch,
     setIsSynced,
+    updateGroupMember,
   ])
 }

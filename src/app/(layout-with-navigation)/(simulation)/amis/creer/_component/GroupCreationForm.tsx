@@ -13,7 +13,7 @@ import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 import { FormEvent, FormEventHandler, useState } from 'react'
 import { getSimulationResults } from '../../_helpers/getSimulationResults'
-import { useFetchGroups } from '../../_hooks/usFetchGroups'
+import { useFetchGroups } from '../../_hooks/useFetchGroups'
 import { validateForm } from '../_helpers/validateForm'
 import useCreateGroup from '../_hooks/useCreateGroup'
 import { useSendGroupConfirmationEmail } from '../_hooks/useSendGroupConfirmationEmail'
@@ -44,7 +44,10 @@ export default function GroupCreationForm() {
 
   const { getValue } = useEngine()
 
-  const { data: groups } = useFetchGroups(user?.userId)
+  const { data: groups } = useFetchGroups({
+    userId: user?.userId,
+    email: user?.email,
+  })
 
   const router = useRouter()
 
@@ -84,7 +87,7 @@ export default function GroupCreationForm() {
           userId,
           simulation: currentSimulation,
         },
-        results,
+        computedResults: results,
       })
 
       updateName(prenom)

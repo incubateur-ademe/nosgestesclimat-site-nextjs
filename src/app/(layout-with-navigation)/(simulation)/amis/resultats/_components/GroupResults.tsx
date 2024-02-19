@@ -33,12 +33,12 @@ export default function GroupResults({
 
   const userId = user?.userId
 
-  const isOwner = group?.owner?.userId === userId
+  const isOwner = group?.administrator?.userId === userId
 
   const intervalRef = useRef<NodeJS.Timeout>()
 
   const results: Results | null = useGetGroupStats({
-    groupMembers: group?.members,
+    groupMembers: group?.participants,
     userId: userId || '',
     isSynced,
   })
@@ -69,8 +69,8 @@ export default function GroupResults({
   // User is not part of the group
   if (
     group &&
-    !group?.members?.some(
-      (member: { userId: string }) => member.userId === userId
+    !group?.participants?.some(
+      (participant: { userId: string }) => participant.userId === userId
     )
   ) {
     router.push(`/amis/invitation?groupId=${group?._id}`)
@@ -89,7 +89,7 @@ export default function GroupResults({
 
       <InviteBlock group={group} />
 
-      {group?.members?.length > 1 ? (
+      {group?.participants?.length > 1 ? (
         <>
           <Separator />
 
@@ -108,7 +108,7 @@ export default function GroupResults({
         categoriesFootprints={
           results?.userFootprintByCategoriesAndSubcategories
         }
-        membersLength={group?.members?.length}
+        membersLength={group?.participants?.length}
       />
 
       <Separator className="my-6" />

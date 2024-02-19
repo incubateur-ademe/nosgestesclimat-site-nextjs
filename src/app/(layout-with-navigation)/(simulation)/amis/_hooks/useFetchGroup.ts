@@ -1,14 +1,19 @@
 import { GROUP_URL } from '@/constants/urls'
-import { useQuery } from '@tanstack/react-query'
+import { Group } from '@/types/groups'
+import { UseQueryResult, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
-export function useFetchGroup(groupId: string) {
+export function useFetchGroup(groupId: string): UseQueryResult<Group, Error> {
   return useQuery({
     queryKey: ['group', groupId],
     queryFn: () =>
-      axios.get(`${GROUP_URL}/${groupId}`).then((response) => {
-        return response.data
-      }),
+      axios
+        .post(`${GROUP_URL}/fetch-group`, {
+          groupId,
+        })
+        .then((response) => {
+          return response.data
+        }),
     enabled: !!groupId,
   })
 }

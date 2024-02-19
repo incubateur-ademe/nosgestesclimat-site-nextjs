@@ -6,7 +6,7 @@ import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { Member } from '@/types/groups'
+import { Participant } from '@/types/groups'
 import { useRouter } from 'next/navigation'
 import { useFetchGroup } from '../_hooks/useFetchGroup'
 import InvitationForm from './_components/InvitationForm'
@@ -41,7 +41,11 @@ export default function RejoindreGroupePage({
   }
 
   // If user is already in the group, redirect to group page
-  if (group?.members?.find((member: Member) => member.userId === userId)) {
+  if (
+    group?.participants?.find(
+      (participant: Participant) => participant.userId === userId
+    )
+  ) {
     router.push(groupURL)
     return
   }
@@ -51,7 +55,7 @@ export default function RejoindreGroupePage({
       <Title
         title={
           <Trans>
-            {group?.owner?.name} vous a invité à rejoindre le groupe{' '}
+            {group?.administrator?.name} vous a invité à rejoindre le groupe{' '}
             <span className="text-violet-900">{group?.name}</span>
           </Trans>
         }

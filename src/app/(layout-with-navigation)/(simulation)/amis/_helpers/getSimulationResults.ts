@@ -7,17 +7,20 @@ export const getSimulationResults = ({
 }: {
   getValue: (dottedName: DottedName) => NodeValue
 }): SimulationResults => {
-  const resultsObject: any = {}
+  const resultsObject: any = {
+    categories: {},
+  }
 
   orderedCategories.forEach((category: any) => {
-    resultsObject[category] = (
+    // Which util should be used here to avoid using toFixed(2) ?
+    resultsObject.categories[category] = (
       Math.round(((category.nodeValue as number) ?? 0) / 10) / 100
     ).toFixed(2)
   })
 
   const valueBilan = getValue('bilan')
 
-  resultsObject.total = ((valueBilan as number) / 10 / 100).toFixed(2)
+  resultsObject.bilan = ((valueBilan as number) / 10 / 100).toFixed(2)
 
   return resultsObject
 }
