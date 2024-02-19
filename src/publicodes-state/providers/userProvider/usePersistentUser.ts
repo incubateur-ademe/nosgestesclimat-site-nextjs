@@ -27,15 +27,12 @@ export default function usePersistentUser({
   })
 
   useEffect(() => {
-    setUser(
-      formatUser(
-        JSON.parse(localStorage.getItem(storageKey) || '{}').user || {
-          region: initialRegion,
-          initialRegion,
-          userId: uuid(),
-        }
-      )
-    )
+    const user = JSON.parse(localStorage.getItem(storageKey) || '{}').user ?? {
+      region: initialRegion,
+      initialRegion,
+      userId: uuid(),
+    }
+    setUser(formatUser({ user }))
     setInitialized(true)
   }, [storageKey, initialRegion])
 
@@ -58,6 +55,7 @@ type NotFormattedUser = Omit<User, 'userId'> & {
 }
 // Convert the user id to userId (and remove id if it exists)
 function formatUser({ user }: { user: NotFormattedUser }): User {
+  console.log(user)
   if (!user.id) return user as User
 
   const formattedUser = {
