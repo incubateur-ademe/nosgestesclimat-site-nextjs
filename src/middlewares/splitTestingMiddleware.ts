@@ -1,7 +1,52 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
+import googleBots from './excludedIPs/googlebot.json'
+import specialCrawlers from './excludedIPs/special-crawlers.json'
+import userTriggeredFetchers from './excludedIPs/user-triggered-fetchers.json'
 
 const redirectUrl = `https://nosgestesclimat-git-${process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH}-nos-gestes-climat.vercel.app`
+
+function isGoogleBot(ip: string) {
+  const googleBotIPv4s = googleBots.prefixes.reduce((acc, prefixObject) => {
+    const isV4 = prefixObject['ipv4Prefix']
+
+    if (isV4) {
+      acc.push(prefixObject['ipv4Prefix'])
+    }
+    return acc
+  }, [] as string[])
+
+  const specialCrawlersIPv4s = specialCrawlers.prefixes.reduce(
+    (acc, prefixObject) => {
+      const isV4 = prefixObject['ipv4Prefix']
+
+      if (isV4) {
+        acc.push(prefixObject['ipv4Prefix'])
+      }
+      return acc
+    },
+    [] as string[]
+  )
+
+  const userTriggeredFetchersIPv4s = userTriggeredFetchers.prefixes.reduce(
+    (acc, prefixObject) => {
+      const isV4 = prefixObject['ipv4Prefix']
+
+      if (isV4) {
+        acc.push(prefixObject['ipv4Prefix'])
+      }
+
+      return acc
+    },
+    [] as string[]
+  )
+
+  return [
+    ...googleBotIPv4s,
+    ...specialCrawlersIPv4s,
+    ...userTriggeredFetchersIPv4s,
+  ].includes(ip)
+}
 
 export default function splitTestingMiddleware(request: NextRequest) {
   if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH) {
@@ -10,7 +55,7 @@ export default function splitTestingMiddleware(request: NextRequest) {
 
   const ip = request.ip
 
-  if (!ip || !isIPv4(ip)) {
+  if (!ip || !isIPv4(ip) || isGoogleBot(ip)) {
     return NextResponse.next()
   }
 
