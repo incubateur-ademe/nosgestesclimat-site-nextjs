@@ -2,15 +2,13 @@
 
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
-import { usePollPages } from '@/helpers/navigation/pollPages'
+import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
 import { usePoll } from '@/hooks/organisations/usePoll'
 import { useUser } from '@/publicodes-state'
 
 export default function Poll() {
   const { getCurrentSimulation } = useUser()
   const currentSimulation = getCurrentSimulation()
-
-  const { getLinkToPollDashboard } = usePollPages()
 
   const { data: poll, isLoading } = usePoll({
     pollSlug: currentSimulation?.poll,

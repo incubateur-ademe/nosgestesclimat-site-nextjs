@@ -3,7 +3,7 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import ChevronRight from '@/design-system/icons/ChevronRight'
-import { useGroupPages } from '@/hooks/navigation/useGroupPages'
+import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { Group } from '@/types/groups'
 
 type Props = {
@@ -12,8 +12,6 @@ type Props = {
 }
 
 export default function GroupItem({ group }: Props) {
-  const { getLinkToGroupDashboard } = useGroupPages()
-
   return (
     <Link
       href={getLinkToGroupDashboard({ groupId: group?._id })}

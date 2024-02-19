@@ -5,6 +5,7 @@ import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
+import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { Group, SimulationResults } from '@/types/groups'
@@ -13,7 +14,6 @@ import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 import { getSimulationResults } from '../../_helpers/getSimulationResults'
-import { getGroupURL } from '../_helpers/getGroupURL'
 import { useAddUserToGroup } from '../_hooks/useAddUserToGroup'
 
 export default function InvitationForm({ group }: { group: Group }) {
@@ -22,7 +22,7 @@ export default function InvitationForm({ group }: { group: Group }) {
   const [email, setEmail] = useState('')
   const [errorEmail, setErrorEmail] = useState('')
 
-  const groupURL = getGroupURL(group)
+  const groupURL = getLinkToGroupDashboard({ groupId: group?._id })
 
   const { t } = useClientTranslation()
 

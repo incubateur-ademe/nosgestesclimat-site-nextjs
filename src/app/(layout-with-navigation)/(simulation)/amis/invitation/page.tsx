@@ -2,13 +2,14 @@
 
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
+import { linkToClassement } from '@/helpers/navigation/classementPages'
+import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { Member } from '@/types/groups'
 import { useRouter } from 'next/navigation'
 import { useFetchGroup } from '../_hooks/useFetchGroup'
 import InvitationForm from './_components/InvitationForm'
-import { getGroupURL } from './_helpers/getGroupURL'
 
 export default function RejoindreGroupePage({
   searchParams,
@@ -27,10 +28,10 @@ export default function RejoindreGroupePage({
 
   const { data: group } = useFetchGroup(groupId)
 
-  const groupURL = getGroupURL(group)
+  const groupURL = getLinkToGroupDashboard({ groupId })
 
   if (!groupId) {
-    router.push('/classement')
+    router.push(linkToClassement)
     return
   }
 
