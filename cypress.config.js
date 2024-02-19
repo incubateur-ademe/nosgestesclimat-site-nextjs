@@ -9,8 +9,6 @@ export default defineConfig({
   viewportWidth: 1920,
   viewportHeight: 960,
   env: {
-    // This is the URL of the local server that will be used for testing
-    personas_fr_url: 'https://data.nosgestesclimat.fr/personas-fr.json',
     localisation_param: 'FR',
     language_param: 'fr',
     testLangURL: process.env.CYPRESS_testLangURL ?? 'fr',

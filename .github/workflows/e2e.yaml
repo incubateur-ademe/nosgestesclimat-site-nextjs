@@ -21,7 +21,7 @@ jobs:
         id: waitForVercel
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          max_timeout: 300
+          max_timeout: 3000
 
   cypress-run:
     runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
       - name: Test - e2e [${{ env.MODE }}]
         uses: cypress-io/github-action@v5.6.1
         with:
-          build: yarn run e2e:generate:personas
+          build: yarn run e2e:generate
           browser: chrome
           parallel: true
           record: true
