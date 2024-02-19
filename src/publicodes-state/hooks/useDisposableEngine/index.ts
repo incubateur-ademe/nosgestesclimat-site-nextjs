@@ -14,13 +14,11 @@ type Props = {
  * Very ressource intensive. Use with caution
  */
 export default function useDisposableEngine({ rules, situation }: Props) {
-  const engine = useMemo(
-    () =>
-      new Engine(rules).setSituation(
-        safeGetSituation({ situation, everyRules: Object.keys(rules) })
-      ),
-    [rules, situation]
-  )
+  const engine = useMemo(() => {
+    return new Engine(rules, { allowOrphanRules: true }).setSituation(
+      safeGetSituation({ situation, everyRules: Object.keys(rules) })
+    )
+  }, [rules, situation])
 
   const safeEvaluate = useMemo(
     () =>
