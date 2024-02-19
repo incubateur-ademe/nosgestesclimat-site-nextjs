@@ -22,7 +22,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           max_timeout: 600
-          check_interval: 10
+          check_interval: 30
 
   cypress-run:
     runs-on: ubuntu-latest
