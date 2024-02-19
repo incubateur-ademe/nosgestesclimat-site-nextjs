@@ -5,6 +5,7 @@ import Button from '@/design-system/inputs/Button'
 import InlineTextInput from '@/design-system/inputs/InlineTextInput'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
+import { useUpdateGroupName } from '@/hooks/groups/useUpdateGroupName'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
@@ -12,7 +13,6 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import Image from 'next/image'
 import { useState } from 'react'
-import { useUpdateGroupName } from '../_hooks/useUpdateGroupName'
 
 export default function EditableGroupTitle({ group }: { group: Group }) {
   const formattedGroupId = group?._id?.replaceAll('/', '')

@@ -4,11 +4,11 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
+import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { Participant } from '@/types/groups'
 import { useRouter } from 'next/navigation'
-import { useFetchGroup } from '../_hooks/useFetchGroup'
 import InvitationForm from './_components/InvitationForm'
 
 export default function RejoindreGroupePage({

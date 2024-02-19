@@ -5,16 +5,17 @@ import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
+import { getSimulationResults } from '@/helpers/groups/getSimulationResults'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
+import { useAddUserToGroup } from '@/hooks/groups/useAddUserToGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useForm, useUser } from '@/publicodes-state'
-import { Group, SimulationResults } from '@/types/groups'
+import { ComputedResults } from '@/publicodes-state/types'
+import { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
-import { getSimulationResults } from '../../_helpers/getSimulationResults'
-import { useAddUserToGroup } from '../_hooks/useAddUserToGroup'
 
 export default function InvitationForm({ group }: { group: Group }) {
   const [prenom, setPrenom] = useState('')
@@ -33,7 +34,7 @@ export default function InvitationForm({ group }: { group: Group }) {
 
   const groupBaseURL = `${window.location.origin}/amis`
 
-  const { getValue } = useEngine()
+  const { getNumericValue } = useEngine()
 
   const { progression } = useForm()
 
@@ -90,8 +91,8 @@ export default function InvitationForm({ group }: { group: Group }) {
       return
     }
 
-    const results: SimulationResults = getSimulationResults({
-      getValue,
+    const results: ComputedResults = getSimulationResults({
+      getNumericValue,
     })
 
     try {

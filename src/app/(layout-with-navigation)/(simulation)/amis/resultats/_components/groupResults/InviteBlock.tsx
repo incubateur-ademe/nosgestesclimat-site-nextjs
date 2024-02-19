@@ -68,7 +68,7 @@ export default function InviteBlock({ group }: { group: Group }) {
     timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
   }
 
-  const hasMoreThanOneMember = group?.members?.length > 1
+  const hasMoreThanOneMember = group?.participants?.length > 1
 
   if (hasMoreThanOneMember) {
     return (

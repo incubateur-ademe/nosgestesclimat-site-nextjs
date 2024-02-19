@@ -2,8 +2,8 @@
 
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
+import { useFetchGroups } from '@/hooks/groups/useFetchGroups'
 import { useUser } from '@/publicodes-state'
-import { useFetchGroups } from '../../amis/_hooks/usFetchGroups'
 import CreateFirstGroupSection from './groups/CreateFirstGroupSection'
 import CreateOtherGroupsSection from './groups/CreateOtherGroupsSection'
 import ServerErrorSection from './groups/ServerErrorSection'
@@ -13,7 +13,10 @@ export default function Groups() {
 
   const currentSimulation = getCurrentSimulation()
 
-  const { data: groups, isFetched } = useFetchGroups(user?.userId)
+  const { data: groups, isFetched } = useFetchGroups({
+    userId: user?.userId,
+    email: user?.email,
+  })
 
   return (
     <>

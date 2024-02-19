@@ -1,5 +1,5 @@
+import { getUserCategoryFootprintsSortedByDifference } from '@/helpers/groups/getUserCategoryFootprintsSortedByDifference'
 import { Participant, Points, Results, ValueObject } from '@/types/groups'
-import { getUserCategoryFootprintsSortedByDifference } from './_helpers/getUserCategoryFootprintsSortedByDifference'
 import { useGetGroupAndUserFootprints } from './useGetGroupAndUserFootprints'
 
 const getDifferenceInPercent = ({

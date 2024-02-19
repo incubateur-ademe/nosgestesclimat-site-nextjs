@@ -1,4 +1,4 @@
-import { Simulation } from './simulation'
+import { Simulation } from '@/publicodes-state/types'
 
 export type Participant = {
   _id: string

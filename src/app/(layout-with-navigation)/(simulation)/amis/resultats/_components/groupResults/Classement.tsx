@@ -6,9 +6,9 @@ import { useState } from 'react'
 
 import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
+import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { getTopThreeAndRestMembers } from '../../_utils/getTopThreeAndRestMembers'
 import ClassementMember from './classement/ClassementMember'
 
 export default function Classement({ group }: { group: Group }) {

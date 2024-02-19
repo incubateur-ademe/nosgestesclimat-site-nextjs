@@ -1,8 +1,8 @@
+import { getSimulationResults } from '@/helpers/groups/getSimulationResults'
+import { useFetchUpdateGroupMember } from '@/hooks/groups/useFetchUpdateGroupMember'
 import { useEngine, useUser } from '@/publicodes-state'
 import { useEffect } from 'react'
-import { useFetchUpdateGroupMember } from '../../../simulateur/[root]/_components/simulateur/form/_hooks/useFetchUpdateGroupMember'
-import { getSimulationResults } from '../../_helpers/getSimulationResults'
-import { useFetchGroup } from '../../_hooks/useFetchGroup'
+import { useFetchGroup } from './useFetchGroup'
 
 export const useUpdateUserResults = ({
   setIsSynced,

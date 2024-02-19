@@ -1,7 +1,7 @@
+import { fetchAddUserToGroup } from '@/helpers/groups/fetchAddUserToGroup'
 import { Simulation } from '@/publicodes-state/types'
 import { Group, SimulationResults } from '@/types/groups'
 import { useMutation } from '@tanstack/react-query'
-import { fetchAddUserToGroup } from '../../_helpers/fetchAddUserToGroup'
 
 type MutationFnType = {
   group: Group

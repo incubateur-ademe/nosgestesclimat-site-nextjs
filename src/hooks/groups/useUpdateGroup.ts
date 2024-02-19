@@ -1,5 +1,5 @@
-import { getSimulationResults } from '@/app/(layout-with-navigation)/(simulation)/amis/_helpers/getSimulationResults'
 import { GROUP_URL } from '@/constants/urls'
+import { getSimulationResults } from '@/helpers/groups/getSimulationResults'
 import { useEngine, useUser } from '@/publicodes-state'
 import { Simulation } from '@/publicodes-state/types'
 import { Group, SimulationResults } from '@/types/groups'
