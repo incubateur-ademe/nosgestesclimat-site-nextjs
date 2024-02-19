@@ -8,45 +8,20 @@ const redirectUrl = `https://nosgestesclimat-git-${process.env.NEXT_PUBLIC_SPLIT
 
 // https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot?hl=fr
 function isGoogleBot(ip: string) {
-  const googleBotIPv4s = googleBots.prefixes.reduce((acc, prefixObject) => {
-    const isV4 = prefixObject['ipv4Prefix']
-
-    if (isV4) {
-      acc.push(prefixObject['ipv4Prefix'])
-    }
-    return acc
-  }, [] as string[])
-
-  const specialCrawlersIPv4s = specialCrawlers.prefixes.reduce(
-    (acc, prefixObject) => {
+  return {
+    ...googleBots.prefixes,
+    ...specialCrawlers.prefixes,
+    ...userTriggeredFetchers.prefixes,
+  }
+    .reduce((acc, prefixObject) => {
       const isV4 = prefixObject['ipv4Prefix']
 
       if (isV4) {
         acc.push(prefixObject['ipv4Prefix'])
       }
       return acc
-    },
-    [] as string[]
-  )
-
-  const userTriggeredFetchersIPv4s = userTriggeredFetchers.prefixes.reduce(
-    (acc, prefixObject) => {
-      const isV4 = prefixObject['ipv4Prefix']
-
-      if (isV4) {
-        acc.push(prefixObject['ipv4Prefix'])
-      }
-
-      return acc
-    },
-    [] as string[]
-  )
-
-  return [
-    ...googleBotIPv4s,
-    ...specialCrawlersIPv4s,
-    ...userTriggeredFetchersIPv4s,
-  ].includes(ip)
+    }, [] as string[])
+    ?.includes(ip)
 }
 
 export default function splitTestingMiddleware(request: NextRequest) {
