@@ -1,37 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import Emoji from '@/design-system/utils/Emoji'
-import { SimulationResults, ValueObject } from '@/types/groups'
-import { formatValue } from 'publicodes'
-import { JSX } from 'react'
-import PercentageDiff from './pointsFortsFaibles/pointsListItem/PercentageDiff'
-
-const EMOJI_TEXT_MAP: {
-  [key in keyof Partial<SimulationResults>]: {
-    emoji: string
-    text: string
-  }
-} = {
-  transport: {
-    emoji: '🚗',
-    text: 'Transports',
-  },
-  alimentation: {
-    emoji: '🍽',
-    text: 'Alimentation',
-  },
-  logement: {
-    emoji: '🏠',
-    text: 'Logement',
-  },
-  divers: {
-    emoji: '📦',
-    text: 'Divers',
-  },
-  'services sociétaux': {
-    emoji: '🏥',
-    text: 'Services publics',
-  },
-}
+import { ValueObject } from '@/types/groups'
 
 export default function VotreEmpreinte({
   categoriesFootprints,
@@ -40,6 +8,7 @@ export default function VotreEmpreinte({
   categoriesFootprints?: Record<string, ValueObject> | undefined
   membersLength: number
 }) {
+  console.log(categoriesFootprints)
   return (
     <>
       <h2 className="mb-4 mt-0 text-lg" data-cypress-id="votre-empreinte-title">
@@ -50,7 +19,7 @@ export default function VotreEmpreinte({
           <Trans>Par rapport à la moyenne du groupe.</Trans>
         </p>
       )}
-
+      {/*}
       <ul className="mb-6 mt-6 pl-0">
         {Object.entries(categoriesFootprints ?? {}).reduce(
           (acc, [key, categoryObject]) => {
@@ -89,6 +58,7 @@ export default function VotreEmpreinte({
           [] as JSX.Element[]
         )}
       </ul>
+        */}
     </>
   )
 }

@@ -1,18 +1,16 @@
 import { GROUP_URL } from '@/constants/urls'
-import { Group, SimulationResults } from '@/types/groups'
+import { Group } from '@/types/groups'
 
 type Props = {
   group: Group
   userId: string
   simulation: any
-  results: SimulationResults
 }
 
 export const fetchUpdateGroupMember = async ({
   group,
   userId,
   simulation,
-  results,
 }: Props) => {
   const response = await fetch(`${GROUP_URL}/update-member`, {
     method: 'POST',
@@ -21,7 +19,6 @@ export const fetchUpdateGroupMember = async ({
       memberUpdates: {
         userId,
         simulation,
-        results,
       },
     }),
     headers: {

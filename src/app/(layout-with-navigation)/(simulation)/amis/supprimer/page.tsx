@@ -6,7 +6,7 @@ import Title from '@/design-system/layout/Title'
 import { useDeleteGroup } from '@/hooks/groups/useDeleteGroup'
 import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { Member } from '@/types/groups'
+import { Participant } from '@/types/groups'
 import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 
@@ -41,14 +41,15 @@ export default function SupprimerGroupePage({
     }
   }
 
-  const isOwner = group?.owner?.userId === userId
+  const isOwner = group?.administrator?.userId === userId
 
   if (
     !groupId ||
     !userId ||
     (group &&
-      group?.members.findIndex((member: Member) => member.userId === userId) <
-        0)
+      group?.participants.findIndex(
+        (member: Participant) => member.userId === userId
+      ) < 0)
   ) {
     router.push('/')
     return

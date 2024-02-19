@@ -5,12 +5,10 @@ import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
-import { getSimulationResults } from '@/helpers/groups/getSimulationResults'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useAddUserToGroup } from '@/hooks/groups/useAddUserToGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
-import { ComputedResults } from '@/publicodes-state/types'
+import { useForm, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
@@ -33,8 +31,6 @@ export default function InvitationForm({ group }: { group: Group }) {
     useUser()
 
   const groupBaseURL = `${window.location.origin}/amis`
-
-  const { getNumericValue } = useEngine()
 
   const { progression } = useForm()
 
@@ -91,13 +87,8 @@ export default function InvitationForm({ group }: { group: Group }) {
       return
     }
 
-    const results: ComputedResults = getSimulationResults({
-      getNumericValue,
-    })
-
     try {
       await addUserToGroup({
-        computedResults: results,
         prenom,
         email,
         group,

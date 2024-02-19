@@ -1,6 +1,6 @@
 import { GROUP_URL } from '@/constants/urls'
 import { Simulation } from '@/publicodes-state/types'
-import { Group, SimulationResults } from '@/types/groups'
+import { Group } from '@/types/groups'
 
 type Props = {
   group: Group
@@ -8,7 +8,6 @@ type Props = {
   email?: string
   userId: string
   simulation?: Simulation
-  computedResults: SimulationResults
 }
 
 export const fetchAddUserToGroup = async ({
@@ -17,7 +16,6 @@ export const fetchAddUserToGroup = async ({
   email,
   userId,
   simulation,
-  computedResults,
 }: Props) => {
   const response = await fetch(`${GROUP_URL}/add-participant`, {
     method: 'POST',
@@ -26,10 +24,7 @@ export const fetchAddUserToGroup = async ({
       name,
       email: email || '',
       userId,
-      simulation: {
-        ...simulation,
-        computedResults,
-      },
+      simulation,
     }),
     headers: {
       Accept: 'application/json',

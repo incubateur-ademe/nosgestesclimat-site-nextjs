@@ -6,13 +6,12 @@ import { matomoEventCreationGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
-import { getSimulationResults } from '@/helpers/groups/getSimulationResults'
 import { validateForm } from '@/helpers/groups/validateCreationForm'
 import useCreateGroup from '@/hooks/groups/useCreateGroup'
 import { useFetchGroups } from '@/hooks/groups/useFetchGroups'
 import { useSendGroupConfirmationEmail } from '@/hooks/groups/useSendGroupConfirmationEmail'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
+import { useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
@@ -42,8 +41,6 @@ export default function GroupCreationForm() {
 
   const hasCompletedTest = progression === 1
 
-  const { getValue } = useEngine()
-
   const { data: groups } = useFetchGroups({
     userId: user?.userId,
     email: user?.email,
@@ -72,10 +69,6 @@ export default function GroupCreationForm() {
     if (!isValid) return
 
     try {
-      const results = getSimulationResults({
-        getValue,
-      })
-
       const groupNameObject = GROUP_NAMES[groups.length % GROUP_NAMES.length]
 
       const group = await createGroup({
@@ -87,7 +80,6 @@ export default function GroupCreationForm() {
           userId,
           simulation: currentSimulation,
         },
-        computedResults: results,
       })
 
       updateName(prenom)

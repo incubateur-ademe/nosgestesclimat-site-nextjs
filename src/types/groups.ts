@@ -21,17 +21,6 @@ export type Group = {
   }
 }
 
-export type SimulationResults = {
-  bilan: string
-  categories: {
-    transports: string
-    alimentation: string
-    logement: string
-    divers: string
-    'services sociétaux': string
-  }
-}
-
 export type ValueObject = {
   name: string
   value: number

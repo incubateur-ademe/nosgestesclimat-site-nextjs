@@ -2,12 +2,10 @@ import { Participant } from '@/types/groups'
 
 export const getTopThreeAndRestMembers = (members: Participant[] = []) => {
   const sortedMembers = members.sort((memberA, memberB) => {
-    const totalA = memberA?.simulation?.computedResults?.bilan
+    const totalA = memberA?.simulation.computedResults?.bilan
     const totalB = memberB?.simulation.computedResults?.bilan
 
-    return totalA !== undefined && totalA !== undefined
-      ? parseFloat(totalA) - parseFloat(totalB)
-      : -1
+    return totalA !== undefined && totalB !== undefined ? totalA - totalB : -1
   })
 
   return sortedMembers.reduce(

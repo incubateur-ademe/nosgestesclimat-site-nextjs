@@ -1,6 +1,6 @@
 import { fetchAddUserToGroup } from '@/helpers/groups/fetchAddUserToGroup'
 import { Simulation } from '@/publicodes-state/types'
-import { Group, SimulationResults } from '@/types/groups'
+import { Group } from '@/types/groups'
 import { useMutation } from '@tanstack/react-query'
 
 type MutationFnType = {
@@ -8,7 +8,6 @@ type MutationFnType = {
   prenom: string
   email: string
   userId?: string
-  computedResults: SimulationResults
   simulation?: Simulation
 }
 
@@ -19,7 +18,6 @@ export const useAddUserToGroup = () => {
       prenom,
       email,
       userId,
-      computedResults,
       simulation,
     }: MutationFnType) =>
       fetchAddUserToGroup({
@@ -28,7 +26,6 @@ export const useAddUserToGroup = () => {
         email,
         userId: userId ?? '',
         simulation,
-        computedResults,
       }),
   })
 }
