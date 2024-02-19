@@ -17,7 +17,8 @@ export function useSaveSimulation() {
       return axios
         .post(SAVE_SIMULATION_URL, {
           simulation,
-          user,
+          userId: user.userId,
+          email: user.email,
         })
         .then((response) => response.data)
         .catch(() => console.error('Failed to save simulation'))
