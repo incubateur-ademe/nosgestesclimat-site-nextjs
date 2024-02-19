@@ -29,8 +29,13 @@ export default function useUser() {
     setGroupToRedirectToAfterTest,
   } = useContext(userContext)
 
-  const { updateName, updateEmail, updateRegion, updateLoginExpirationDate } =
-    useUserDetails({ setUser })
+  const {
+    updateName,
+    updateEmail,
+    updateRegion,
+    updateLoginExpirationDate,
+    updateAdministratorEmail,
+  } = useUserDetails({ setUser })
 
   const {
     initSimulation,
@@ -73,6 +78,10 @@ export default function useUser() {
      * A setter for updating the user email
      */
     updateEmail,
+    /**
+     * A setter for updating the administrator email
+     */
+    updateAdministratorEmail,
     /**
      * A setter for updating the user current region
      */

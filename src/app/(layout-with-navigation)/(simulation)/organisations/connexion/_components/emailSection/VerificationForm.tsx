@@ -11,11 +11,7 @@ import { useEffect, useRef, useState } from 'react'
 import NotReceived from './verificationForm/NotReceived'
 import VerificationContent from './verificationForm/VerificationContent'
 
-export default function VerificationForm({
-  administratorEmail,
-}: {
-  administratorEmail: string
-}) {
+export default function VerificationForm() {
   const [inputError, setInputError] = useState<string | undefined>()
 
   const { timeLeft, setTimeLeft } = useTimeLeft()
@@ -43,7 +39,7 @@ export default function VerificationForm({
     isPending: isPendingValidate,
     isSuccess: isSuccessValidate,
   } = useValidateVerificationCode({
-    email: administratorEmail,
+    email: user?.administratorEmail ?? '',
   })
 
   const {
@@ -54,7 +50,7 @@ export default function VerificationForm({
     mutationFn: () =>
       axios
         .post(`${SERVER_URL}/organisations/send-verification-code`, {
-          email: administratorEmail,
+          email: user?.administratorEmail ?? '',
         })
         .then((response) => response.data),
   })
@@ -116,7 +112,7 @@ export default function VerificationForm({
 
       <div>
         <VerificationContent
-          email={administratorEmail}
+          email={user?.administratorEmail ?? ''}
           inputError={inputError}
           isSuccessValidate={isSuccessValidate}
           isPendingValidate={isPendingValidate}

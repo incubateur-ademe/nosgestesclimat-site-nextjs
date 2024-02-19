@@ -26,7 +26,7 @@ export default function EmailSection() {
   if (!user) return null
 
   if (hasEmailBeenSent) {
-    return <VerificationForm administratorEmail={user?.email} />
+    return <VerificationForm />
   }
 
   return <EmailForm onComplete={() => setHasEmailBeenSent(true)} />

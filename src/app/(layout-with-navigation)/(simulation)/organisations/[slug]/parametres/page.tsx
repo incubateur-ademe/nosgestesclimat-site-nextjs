@@ -19,7 +19,7 @@ export default function ParametresPage() {
     isError,
     refetch,
   } = useFetchOrganisation({
-    email: user.email,
+    email: user?.administratorEmail ?? '',
   })
 
   return (

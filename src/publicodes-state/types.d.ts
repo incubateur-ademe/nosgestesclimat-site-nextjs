@@ -24,6 +24,7 @@ export type User = {
   id: string
   hasSavedSimulation?: boolean
   loginExpirationDate?: Date
+  administratorEmail?: string
 }
 
 export type Rules = any

@@ -20,7 +20,7 @@ export default function OrganisationPage() {
   const { user } = useUser()
 
   const { data: organisation, isError } = useFetchOrganisation({
-    email: user.email,
+    email: user?.administratorEmail ?? '',
   })
 
   const { data: pollData } = useFetchPollData({

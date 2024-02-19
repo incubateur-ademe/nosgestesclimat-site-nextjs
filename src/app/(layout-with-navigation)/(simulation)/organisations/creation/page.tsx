@@ -20,11 +20,11 @@ export default function CreationPage() {
   const { user } = useUser()
 
   const { isError } = useFetchOrganisation({
-    email: user?.email,
+    email: user?.administratorEmail ?? '',
   })
 
   const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
-    email: user?.email,
+    email: user?.administratorEmail ?? '',
   })
 
   const router = useRouter()
