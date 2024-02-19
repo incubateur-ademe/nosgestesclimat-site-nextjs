@@ -10,11 +10,11 @@ import { validateForm } from '@/helpers/groups/validateCreationForm'
 import useCreateGroup from '@/hooks/groups/useCreateGroup'
 import { useFetchGroups } from '@/hooks/groups/useFetchGroups'
 import { useSendGroupConfirmationEmail } from '@/hooks/groups/useSendGroupConfirmationEmail'
+import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm, useUser } from '@/publicodes-state'
+import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
-import { useRouter } from 'next/navigation'
 import { FormEvent, FormEventHandler, useState } from 'react'
 
 export default function GroupCreationForm() {
@@ -23,7 +23,7 @@ export default function GroupCreationForm() {
     updateName,
     updateEmail,
     getCurrentSimulation,
-    setGroupToRedirectToAfterTest,
+    updateCurrentSimulation,
   } = useUser()
 
   const { name, userId, email: emailFromUserObject } = user
@@ -37,16 +37,14 @@ export default function GroupCreationForm() {
 
   const currentSimulation = getCurrentSimulation()
 
-  const { progression } = useForm()
-
-  const hasCompletedTest = progression === 1
+  const hasCompletedTest = currentSimulation?.progression === 1
 
   const { data: groups } = useFetchGroups({
     userId: user?.userId,
     email: user?.email,
   })
 
-  const router = useRouter()
+  const { goToSimulateurPage } = useSimulateurPage()
 
   const { mutateAsync: createGroup, isPending } = useCreateGroup()
 
@@ -69,12 +67,14 @@ export default function GroupCreationForm() {
     if (!isValid) return
 
     try {
-      const groupNameObject = GROUP_NAMES[groups.length % GROUP_NAMES.length]
+      trackEvent(matomoEventCreationGroupe)
+
+      const { name, emoji } = GROUP_NAMES[groups.length % GROUP_NAMES.length]
 
       const group = await createGroup({
         groupInfo: {
-          name: groupNameObject.name,
-          emoji: groupNameObject.emoji,
+          name,
+          emoji,
           email,
           prenom,
           userId,
@@ -82,18 +82,14 @@ export default function GroupCreationForm() {
         },
       })
 
+      // Update user info (if available)
       updateName(prenom)
       updateEmail(email)
 
-      // The user will be redirected to the test in order to take it
-      if (!hasCompletedTest) {
-        setGroupToRedirectToAfterTest(group)
-
-        router.push('/simulateur/bilan')
-        return
-      }
-
-      trackEvent(matomoEventCreationGroupe)
+      // Update current simulation with group id (to redirect after test completion)
+      updateCurrentSimulation({
+        group: group._id,
+      })
 
       // Send email to owner
       if (email) {
@@ -105,7 +101,8 @@ export default function GroupCreationForm() {
         })
       }
 
-      router.push(`/amis/resultats?groupId=${group._id}`)
+      // Redirect to simulateur page or end page
+      goToSimulateurPage()
     } catch (e) {
       captureException(e)
     }

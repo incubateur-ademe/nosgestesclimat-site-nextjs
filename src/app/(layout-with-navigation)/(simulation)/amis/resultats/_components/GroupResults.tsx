@@ -29,7 +29,7 @@ export default function GroupResults({
 
   const router = useRouter()
 
-  const { user, setGroupToRedirectToAfterTest } = useUser()
+  const { user } = useUser()
 
   const userId = user?.userId
 
@@ -47,10 +47,6 @@ export default function GroupResults({
     setIsSynced,
     groupId,
   })
-
-  useEffect(() => {
-    setGroupToRedirectToAfterTest(undefined)
-  }, [setGroupToRedirectToAfterTest])
 
   useEffect(() => {
     if (groupId && !group) {

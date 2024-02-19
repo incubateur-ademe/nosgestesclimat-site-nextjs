@@ -1,6 +1,7 @@
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
+import { useEndPage } from './useEndPage'
 
 type GoToSimulateurPageProps = {
   noNavigation?: boolean
@@ -13,6 +14,8 @@ export function useSimulateurPage() {
   const router = useRouter()
 
   const { getCurrentSimulation, tutorials, initSimulation } = useUser()
+
+  const { goToEndPage } = useEndPage()
 
   const tutorielSeen = tutorials.testIntro
 
@@ -39,7 +42,7 @@ export function useSimulateurPage() {
 
       // If the user has completed the test we redirect him to the results page
       if (progression === 1) {
-        router.push('/fin')
+        goToEndPage()
         return
       }
 
@@ -52,7 +55,14 @@ export function useSimulateurPage() {
       // else we redirect him to the tutoriel page
       router.push('/tutoriel')
     },
-    [currentSimulation, tutorielSeen, router, initSimulation, progression]
+    [
+      currentSimulation,
+      tutorielSeen,
+      router,
+      initSimulation,
+      progression,
+      goToEndPage,
+    ]
   )
 
   const getLinkToSimulateurPage = useCallback(

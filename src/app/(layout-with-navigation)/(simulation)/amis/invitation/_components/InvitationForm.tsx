@@ -5,14 +5,13 @@ import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
-import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useAddUserToGroup } from '@/hooks/groups/useAddUserToGroup'
+import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
-import { useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 
 export default function InvitationForm({ group }: { group: Group }) {
@@ -21,14 +20,9 @@ export default function InvitationForm({ group }: { group: Group }) {
   const [email, setEmail] = useState('')
   const [errorEmail, setErrorEmail] = useState('')
 
-  const groupURL = getLinkToGroupDashboard({ groupId: group?._id })
-
   const { t } = useClientTranslation()
 
-  const router = useRouter()
-
-  const { getCurrentSimulation, setGroupToRedirectToAfterTest, user } =
-    useUser()
+  const { user, getCurrentSimulation, updateCurrentSimulation } = useUser()
 
   const groupBaseURL = `${window.location.origin}/amis`
 
@@ -39,6 +33,8 @@ export default function InvitationForm({ group }: { group: Group }) {
   const currentSimulation = getCurrentSimulation()
 
   const { mutateAsync: addUserToGroup } = useAddUserToGroup()
+
+  const { goToSimulateurPage } = useSimulateurPage()
 
   const sendEmailToInvited = async () => {
     if (!email) {
@@ -96,18 +92,18 @@ export default function InvitationForm({ group }: { group: Group }) {
         simulation: currentSimulation,
       })
 
+      // Update current simulation with group id (to redirect after test completion)
+      updateCurrentSimulation({
+        group: group._id,
+      })
+
       // Send email to invited friend confirming the adding to the group
       sendEmailToInvited()
 
-      // Si l'utilisateur a déjà une simulation de complétée, on le redirige vers le dashboard
-      if (hasCompletedTest) {
-        trackEvent(getMatomoEventJoinedGroupe(group?._id))
-        router.push(groupURL)
-      } else {
-        // sinon on le redirige vers le simulateur
-        setGroupToRedirectToAfterTest(group)
-        router.push('/simulateur/bilan')
-      }
+      trackEvent(getMatomoEventJoinedGroupe(group?._id))
+
+      // Redirect to simulateur page or end page
+      goToSimulateurPage()
     } catch (error) {
       captureException(error)
     }
