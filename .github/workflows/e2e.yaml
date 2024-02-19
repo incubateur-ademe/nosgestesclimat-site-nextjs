@@ -21,7 +21,8 @@ jobs:
         id: waitForVercel
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          max_timeout: 3000
+          max_timeout: 600
+          check_interval: 10
 
   cypress-run:
     runs-on: ubuntu-latest
