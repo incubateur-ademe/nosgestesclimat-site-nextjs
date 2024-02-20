@@ -1,8 +1,8 @@
 'use client'
 
 import MaxWidthContent from '@/components/layout/MaxWidthContent'
+import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
@@ -27,18 +27,7 @@ export default function ParametresPage() {
       {!organisation && !isError && <Loader />}
 
       {isError && (
-        <MaxWidthContent>
-          <p>
-            <Trans>
-              Oups, une erreur s'est produite au moment de récupérer vos données
-              d'organisation.
-            </Trans>
-          </p>
-
-          <ButtonLink href="/organisations" className="mt-8">
-            <Trans>Revenir à l'accueil</Trans>
-          </ButtonLink>
-        </MaxWidthContent>
+        <OrganisationFetchError organisation={organisation} isError={isError} />
       )}
 
       {organisation && (
