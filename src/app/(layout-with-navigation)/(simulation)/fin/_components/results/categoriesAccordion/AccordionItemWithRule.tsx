@@ -1,7 +1,7 @@
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
 import BarChart from '@/design-system/utils/BarChart'
 import Emoji from '@/design-system/utils/Emoji'
-import { useForm, useRule } from '@/publicodes-state'
+import { useRule, useSimulation } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 
@@ -18,7 +18,7 @@ export default function AccordionItemWithRule({
 
   const percentageOfTotalValue = numericValue / maxValue
 
-  const { subcategories } = useForm()
+  const { subcategories } = useSimulation()
   const isReadOnly = subcategories[dottedName]?.length === 0
 
   return (
