@@ -1,26 +1,28 @@
 import { getIsValidEmail } from '@/utils/getIsValidEmail'
 
 type ValidateFormProps = {
-  prenom: string
-  setErrorPrenom: (error: string) => void
-  email: string
+  administratorName: string
+  setErrorAdministratorName: (error: string) => void
+  administratorEmail: string
   setErrorEmail: (error: string) => void
   t: (key: string) => string
 }
 
-export const validateForm = ({
-  prenom,
-  setErrorPrenom,
-  email,
+export const validateCreationForm = ({
+  administratorName,
+  setErrorAdministratorName,
+  administratorEmail,
   setErrorEmail,
   t,
 }: ValidateFormProps) => {
   // Inputs validation
-  if (!prenom) {
-    setErrorPrenom(t('Veuillez renseigner un prénom ou un pseudonyme.'))
+  if (!administratorName) {
+    setErrorAdministratorName(
+      t('Veuillez renseigner un prénom ou un pseudonyme.')
+    )
     return false
   }
-  if (email && !getIsValidEmail(email)) {
+  if (!getIsValidEmail(administratorEmail)) {
     setErrorEmail(t('Veuillez renseigner un email valide.'))
     return false
   }

@@ -6,7 +6,11 @@ import PollsList from './Organisations/PollsList'
 export default function Organisations() {
   return (
     <>
-      <Title tag="h2" title={<Trans>Entreprises et collectivités</Trans>} />
+      <Title
+        tag="h2"
+        title={<Trans>Entreprises et collectivités</Trans>}
+        hasSeparator={false}
+      />
       <PollsList />
       <CreateOrganisation />
     </>

@@ -6,7 +6,7 @@ import { matomoEventCreationGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
-import { validateForm } from '@/helpers/groups/validateCreationForm'
+import { validateCreationForm } from '@/helpers/groups/validateCreationForm'
 import useCreateGroup from '@/hooks/groups/useCreateGroup'
 import { useFetchGroups } from '@/hooks/groups/useFetchGroups'
 import { useSendGroupConfirmationEmail } from '@/hooks/groups/useSendGroupConfirmationEmail'
@@ -26,11 +26,12 @@ export default function GroupCreationForm() {
     updateCurrentSimulation,
   } = useUser()
 
-  const { name, userId, email: emailFromUserObject } = user
+  const { name, userId, email } = user
 
-  const [prenom, setPrenom] = useState(name || '')
-  const [errorPrenom, setErrorPrenom] = useState('')
-  const [email, setEmail] = useState(emailFromUserObject || '')
+  const [administratorName, setAdministratorName] = useState(name || '')
+  const [errorAdministratorName, setErrorAdministratorName] = useState('')
+
+  const [administratorEmail, setAdministratorEmail] = useState(email || '')
   const [errorEmail, setErrorEmail] = useState('')
 
   const { t } = useClientTranslation()
@@ -40,13 +41,13 @@ export default function GroupCreationForm() {
   const hasCompletedTest = currentSimulation?.progression === 1
 
   const { data: groups } = useFetchGroups({
-    userId: user?.userId,
-    email: user?.email,
+    userId,
+    email,
   })
 
   const { goToSimulateurPage } = useSimulateurPage()
 
-  const { mutateAsync: createGroup, isPending } = useCreateGroup()
+  const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
 
   const { mutateAsync: sendGroupEmail } = useSendGroupConfirmationEmail()
 
@@ -56,10 +57,10 @@ export default function GroupCreationForm() {
       event.preventDefault()
     }
 
-    const isValid = validateForm({
-      prenom,
-      email,
-      setErrorPrenom,
+    const isValid = validateCreationForm({
+      administratorName,
+      administratorEmail,
+      setErrorAdministratorName,
       setErrorEmail,
       t,
     })
@@ -75,16 +76,16 @@ export default function GroupCreationForm() {
         groupInfo: {
           name,
           emoji,
-          email,
-          prenom,
+          administratorEmail,
+          administratorName,
           userId,
           simulation: currentSimulation,
         },
       })
 
-      // Update user info (if available)
-      updateName(prenom)
-      updateEmail(email)
+      // Update user info
+      updateName(administratorName)
+      updateEmail(administratorEmail)
 
       // Update current simulation with group id (to redirect after test completion)
       updateCurrentSimulation({
@@ -92,10 +93,10 @@ export default function GroupCreationForm() {
       })
 
       // Send email to owner
-      if (email) {
+      if (administratorEmail) {
         await sendGroupEmail({
-          email,
-          prenom,
+          email: administratorEmail,
+          prenom: administratorName,
           group,
           userId,
         })
@@ -113,25 +114,20 @@ export default function GroupCreationForm() {
       onSubmit={handleSubmit as FormEventHandler<HTMLFormElement>}
       autoComplete="off">
       <PrenomInput
-        prenom={prenom}
-        setPrenom={setPrenom}
-        errorPrenom={errorPrenom}
-        setErrorPrenom={setErrorPrenom}
+        prenom={administratorName}
+        setPrenom={setAdministratorName}
+        errorPrenom={errorAdministratorName}
+        setErrorPrenom={setErrorAdministratorName}
         data-cypress-id="group-input-owner-name"
       />
 
       <div className="my-4">
         <EmailInput
-          email={email}
-          setEmail={setEmail}
+          email={administratorEmail}
+          setEmail={setAdministratorEmail}
           error={errorEmail}
           setError={setErrorEmail}
-          label={
-            <span>
-              {t('Votre adresse email')}{' '}
-              <span className="italic text-secondary"> {t('facultatif')}</span>
-            </span>
-          }
+          label={t('Votre adresse email')}
         />
       </div>
 
@@ -139,7 +135,9 @@ export default function GroupCreationForm() {
         type="submit"
         data-cypress-id="button-create-group"
         onClick={handleSubmit}
-        aria-disabled={!prenom && !isPending}>
+        aria-disabled={
+          !administratorName || !administratorEmail || isPending || isSuccess
+        }>
         {hasCompletedTest ? (
           <Trans>Créer le groupe</Trans>
         ) : (

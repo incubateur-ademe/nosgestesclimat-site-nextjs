@@ -25,6 +25,7 @@ export function useSimulateurGuard() {
     if (isGuardInit) return
     setIsGuardInit(true)
 
+    // it should not happen because a new simulation is set in Providers.tsx
     if (!currentSimulation) {
       router.push('/404') // TODO: should throw an error
       setIsGuardRedirecting(true)
