@@ -86,6 +86,7 @@ export default function SimulationProvider({
   })
 
   const { categories, subcategories } = useCategories({
+    parsedRules: engine.getParsedRules(),
     everyRules,
     root,
     safeGetRule,

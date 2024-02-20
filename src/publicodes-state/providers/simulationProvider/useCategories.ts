@@ -2,9 +2,10 @@ import getSomme from '@/publicodes-state/helpers/getSomme'
 import * as Sentry from '@sentry/react'
 import { utils } from 'publicodes'
 import { useMemo } from 'react'
-import { DottedName, NGCRuleNode } from '../../types'
+import { DottedName, NGCRuleNode, NGCRulesNodes } from '../../types'
 
 type Props = {
+  parsedRules: NGCRulesNodes
   everyRules: DottedName[]
   root: string
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
@@ -12,6 +13,7 @@ type Props = {
 }
 
 export default function useCategories({
+  parsedRules,
   everyRules,
   root,
   safeGetRule,
@@ -72,11 +74,9 @@ export default function useCategories({
         if (everyRules.includes(rule)) {
           subCat.push(rule)
         } else {
-          const potentialFullRule = currentValue + ' . ' + rule
-          utils.disambiguateReference
-          if (everyRules.includes(potentialFullRule)) {
-            subCat.push(potentialFullRule)
-          }
+          subCat.push(
+            utils.disambiguateReference(parsedRules, currentValue, rule)
+          )
         }
       }
       return {
@@ -84,7 +84,7 @@ export default function useCategories({
         [currentValue]: subCat,
       }
     }, {})
-  }, [categories, safeGetRule, everyRules])
+  }, [parsedRules, categories, safeGetRule, everyRules])
 
   return { categories, subcategories }
 }
