@@ -100,8 +100,8 @@ export default function VerificationForm() {
     isPendingValidate || isSuccessValidate || isPendingResend || timeLeft > 0
 
   return (
-    <div className="flex gap-8 rounded-lg bg-grey-100 p-8">
-      <div className="w-24">
+    <div className="flex gap-8 rounded-lg bg-grey-100 p-4 md:p-8">
+      <div className="hidden w-12 md:block md:w-24">
         <Image
           src="/images/organisations/envelop.svg"
           width="47"

@@ -51,7 +51,7 @@ export default function Page() {
 
         <Separator />
 
-        <div className="w-[40rem] max-w-full">
+        <div className="max-w-full md:w-[40rem]">
           <EmailSection />
         </div>
       </div>

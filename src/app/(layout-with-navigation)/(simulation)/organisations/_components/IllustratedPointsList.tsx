@@ -7,7 +7,7 @@ export default function IllustratedPointsList() {
     <ul className="flex flex-col gap-28">
       <li>
         <section className="flex flex-wrap items-center justify-between gap-8">
-          <div className="w-[34rem] max-w-full">
+          <div className="max-w-full md:w-[34rem]">
             <h2 className="mb-2 text-base text-pink-600">
               <Trans>Sensibilisez votre organisation</Trans>
             </h2>
@@ -27,7 +27,7 @@ export default function IllustratedPointsList() {
             </p>
           </div>
 
-          <div className="mx-auto flex w-[26rem] max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6">
+          <div className="mx-auto flex max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6 md:w-[26rem]">
             <div className="mx-auto mt-4 flex items-end rounded-t-md bg-white p-4 pb-0 shadow-sm">
               <Image
                 src="/images/organisations/orga-visuel-1.png"
@@ -42,7 +42,7 @@ export default function IllustratedPointsList() {
 
       <li>
         <section className="flex flex-wrap items-center justify-between gap-8">
-          <div className="w-[34rem] max-w-full">
+          <div className="max-w-full md:w-[34rem]">
             <h2 className="mb-2 text-base text-pink-600">
               <Trans>Statistiques et exports</Trans>
             </h2>
@@ -61,7 +61,7 @@ export default function IllustratedPointsList() {
             </p>
           </div>
 
-          <div className="mx-auto flex w-[26rem] max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6">
+          <div className="mx-auto flex max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6 md:w-[26rem]">
             <div className="w-full">
               <Image
                 src="/images/organisations/orga-visuel-2.png"
@@ -76,7 +76,7 @@ export default function IllustratedPointsList() {
 
       <li>
         <section className="flex flex-wrap items-center justify-between gap-8">
-          <div className="w-[34rem] max-w-full">
+          <div className="max-w-full md:w-[34rem]">
             <h2 className="mb-2 text-base text-pink-600">
               <Trans>Lien personnalisé & iframes</Trans>
             </h2>
@@ -96,7 +96,7 @@ export default function IllustratedPointsList() {
             </p>
           </div>
 
-          <div className="mx-auto flex w-[26rem] max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6">
+          <div className="mx-auto flex max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6 md:w-[26rem]">
             <VisuelIframe />
           </div>
         </section>

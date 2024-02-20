@@ -1,9 +1,21 @@
+'use client'
+
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { Organisation } from '@/types/organisations'
 
-export default async function CreateOrganisation() {
-  const { t } = await getServerTranslation()
+type Props = {
+  organisation?: Organisation
+}
+
+export default function CreateOrganisation({ organisation }: Props) {
+  const { t } = useClientTranslation()
+
+  if (organisation) {
+    return null
+  }
+
   return (
     <>
       <p className="max-w-3xl">

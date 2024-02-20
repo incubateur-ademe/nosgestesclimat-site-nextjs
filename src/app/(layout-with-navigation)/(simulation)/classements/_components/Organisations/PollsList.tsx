@@ -1,11 +1,18 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import { usePolls } from '@/hooks/organisations/usePolls'
 import { useUser } from '@/publicodes-state'
+import { Organisation } from '@/types/organisations'
 import { useMemo } from 'react'
+import OrganisationItem from './pollList/OrganisationItem'
 import PollItem from './pollList/PollItem'
 
-export default function PollsList() {
+type Props = {
+  organisation?: Organisation
+}
+
+export default function PollsList({ organisation }: Props) {
   const { simulations } = useUser()
 
   const pollSlugs = useMemo(
@@ -17,15 +24,18 @@ export default function PollsList() {
   )
   const { data: polls } = usePolls({ pollSlugs })
 
-  if (!polls) {
-    return
-  }
-
   return (
     <div className="mb-8 flex flex-col gap-3">
-      {polls.map((poll) => (
-        <PollItem key={poll.slug} poll={poll} />
-      ))}
+      {organisation && (
+        <>
+          <h3>
+            <Trans>Mon organisation</Trans>
+          </h3>
+          <OrganisationItem organisation={organisation} />
+        </>
+      )}
+
+      {polls?.map((poll) => <PollItem key={poll.slug} poll={poll} />)}
     </div>
   )
 }
