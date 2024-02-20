@@ -1,0 +1,99 @@
+---
+title: Le Svalbard
+date: 2024-02-19T16:50:31Z
+image: https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/assets/144152881/db0bec84-5cc2-4123-b990-d434f1234545
+---
+
+#Le Svalbard
+
+Les nouveautés des mois de janvier et février 2024
+
+![Le Svalbard](https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/assets/144152881/db0bec84-5cc2-4123-b990-d434f1234545)
+
+> Le Svalbard, un archipel norvégien proche du Groënland, au coeur de l'Océan Arctique, est un lieu particulièrement apprécié des glaciologues notamment Heïdi Sevestre, glaciologue française.
+> Dans [cet épisode](https://www.radiofrance.fr/franceculture/podcasts/le-biais-d-heidi-sevestre/voyage-a-l-interieur-d-un-glacier-4570455) de sa chronique hebdomadaire sur France Culture, Heïdi Sevestre nous décrit ses expéditions au coeur de l'un des glaciers de l'archipel : à la fois superbes et terrifiantes, car témoins directs du changement climatique dont les glaciers sont au rang des premières victimes.
+> - La chronique hebdo d'Heidi Sevestre sur [le site de France Culture](https://www.radiofrance.fr/franceculture/podcasts/le-biais-d-heidi-sevestre)
+
+
+### Les derniers changements en bref
+
+- ✨ Une page d'accueil toute neuve
+- 🤓 De nouveaux articles sur le blog
+- 🧱 Des perfectionnements techniques
+- 🧮 Des ajouts au modèle de calcul
+- ✊ Une refonte des actions proposées en fin de test
+- 🪲 Et toujours : des bugs réparés
+
+### ✨ Une nouvelle page d’accueil
+
+On l’aimait bien notre petit paysage citadin, mais l’heure est à la nouveauté : plus de clarté, un message simple, et toujours didactique, voilà notre nouvelle page d’accueil ! 
+
+En bonus de petites améliorations d’interaction se sont glissées : 
+
+- accédez toujours à la simulation (nouvelle ou en cours) depuis la barre de menu grâce au nouveau bouton qui est fixé dans le menu
+- les icônes de menu passent en gras quand on les sélectionne, on aime l’uniformité visuelle ici 😀
+- et, comme chez Nos Gestes Climat on aime apprendre en s’amusant … un petit easter egg s’est glissé dans notre page d’accueil pour les plus joueurs·ses d’entre vous
+
+<img width="1288" alt="page d'accueil v2 - easter egg" src="https://github.com/incubateur-ademe/nosgestesclimat-site/assets/144152881/71316ff6-4b90-4bab-a7f0-ab26a5d64694">
+
+### 🤓 On continue de vous informer sur le climat
+
+Deux articles de blog ont paru ces dernières semaines, n’hésitez pas à aller y jeter un coup d’oeil : 
+
+- [Les alternatives à la voiture individuelle](https://nosgestesclimat.fr/blog/alternatives-voiture-individuelle)
+- [Challengez vos amis sur leur empreinte carbone](https://nosgestesclimat.fr/blog/challenge-tes-amis)
+
+Ah ! et on a aussi mis à jour la liste de nos ambassadeurs sur la [page dédiée](https://nosgestesclimat.fr/ambassadeurs).
+
+### 🧱 On solidifie la technique
+
+- Sans rentrer dans trop de détails techniques, nous utilisions auparavant une API pour charger le modèle à de nombreux endroits du site. Nous avons remplacé de fonctionnement par un mécanisme plus adapté, capable de tenir la charge et d’éviter les *crash* 💥 du site en cas de pic de fréquentation (comme nous avons connu en décembre lors de la journée Carbone de France Inter).
+- On a amélioré la façon de gérer les migrations de modèle
+- Et également amélioré nos tests E2E
+
+### 🧮 Le modèle a été encore complété et peaufiné
+
+Les ajouts de ces dernières semaines au calcul carbone sont : 
+
+- le carburant GPL (suite à de noooombreuses demandes par notre [page contact](https://nosgestesclimat.fr/contact))
+- vos accessoires de jardin pour les heureux·ses habitant·e·s de maisons
+- des ajouts sur les boissons : chicorées pour les boissons chaudes notamment
+- des précisions de calculs ont été ajoutées pour les facteurs d’émission qui concernent les piscines, et le chauffage en granulés
+
+Nous avons également amélioré un comportement: les inputs sont bornés : on ne peut plus mettre de valeurs extravagantes dans les champs de saisie
+
+### ✊ On a revu toutes les actions proposées
+
+Tout d’abord, la page actions re-fonctionne, et notamment la fonctionnalité “questions supplémentaire” qui faisait des siennes
+
+Ensuite, nous avons complété les actions proposées suite au [passage du test](https://nosgestesclimat.fr/simulateur/bilan?mtm_campaign=nouveautes-simu) sur l’ensemble des catégories 
+
+- alimentation :
+    - des ajouts d’actions ont été faits
+    - et au sein de cette catégorie, nous avons surtout :
+        - revu les conditions d’affichage de chaque action d’alimentation
+        - renommé les actions correctement
+        - réparé un bug qui rendait l’action “devenir végétarien” négative
+        - ajouté quelques précisions concernant l’incitation au régime végétalien en nuançant son bénéfice : excellent pour l’impact carbone, il peut cependant s’avérer dangereux pour la santé sans suivi suffisant, et selon votre situation
+- logement, les ajouts contiennent : thermostat, passage au bois, chauffe-eau solaire, mutualisation du logement, PAC…
+- transport, les ajouts contiennent : autopartage, faire durer son véhicule, choisir une voiture plus petite…
+- divers, les ajouts contiennent : acheter deux fois moins de vêtements, réduire sa consommation de produits d'hygiène, privilégiez les achats d'occasion plutôt que du neuf
+
+### 🪲 On a réparé *PAS MAL* de bugs qui ont la fâcheuse manie de se glisser
+
+- dans le simulateur :
+    - si vous changez votre réponse à une question précédemment répondue, les questions suivantes s’adapteront correctement
+    - la zone de clic pour répondre aux questions a été rétrécie, car elle créait des erreurs
+    - le calcul de nombre de voyageurs moyens dans une voiture est réparé
+- dans le site en général :
+    - le chargement des pages et notamment du tutoriel ne se fait plus en deux fois : fini le clignotement !
+    - on a réparé l’accès de nos partenaires suisses à certaines fonctionnalités (pour leur site https://geneve.nosgestesclimat.ch/)
+
+
+<div className="text-center">
+  <a
+    href="https://nosgestesclimat.fr/simulateur/bilan?mtm_campaign=nouveautes-simu"
+    className="focus:ring-offset-3 transition-color mx-auto inline-flex items-center whitespace-nowrap rounded-md border-2 border-primary-500 bg-primary-500 !p-4 font-bold !text-white no-underline shadow-sm transition-colors transition-colors hover:bg-primary-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-700 aria-disabled:opacity-50">
+    Et vous, c'est quoi votre empreinte ? 
+  </a>
+</div>
