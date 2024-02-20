@@ -12,7 +12,7 @@ export default function OurTools() {
     <section>
       <Title tag="h2" title={<Trans>Nos outils</Trans>} />
 
-      <div className="col-span-1 mt-8 grid  grid-cols-1 gap-8 md:grid-cols-3">
+      <div className="col-span-1 mt-8 grid  grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         <CTACard
           className="border border-grey-200 px-8"
           overLabel={<Trans>Partagez Nos Gestes Climat</Trans>}
@@ -27,7 +27,26 @@ export default function OurTools() {
             className="mt-auto w-full justify-center align-bottom"
             color="secondary"
             href="https://nosgestesclimat.fr/NGC_Kit.diffusion.zip">
-            <Trans> Télécharger le kit (23mb)</Trans>
+            <Trans>Télécharger le kit (23mb)</Trans>
+          </ButtonLink>
+        </CTACard>
+
+        <CTACard
+          className="border border-grey-200 px-8"
+          overLabel={<Trans>Allez encore plus loin</Trans>}
+          title={<Trans>Impact CO2</Trans>}
+          description={
+            <Trans>
+              Vous recherchez des ressources ludiques et personnalisables pour
+              illustrer vos contenus sur l’empreinte carbone ? Impact CO2 est la
+              boîte à outils de l’ADEME qu’il vous faut !
+            </Trans>
+          }>
+          <ButtonLink
+            className="mt-auto w-full justify-center align-bottom"
+            color="secondary"
+            href="https://impactco2.fr?mtm_campaign=ngc-orga">
+            <Trans>Découvrez Impact CO2</Trans>
           </ButtonLink>
         </CTACard>
 

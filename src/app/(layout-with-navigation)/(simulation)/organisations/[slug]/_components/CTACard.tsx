@@ -31,7 +31,7 @@ export default function CTACard({
 
       <Tag>{title}</Tag>
 
-      <p>{description}</p>
+      <p className="mb-12">{description}</p>
 
       {children}
     </div>
