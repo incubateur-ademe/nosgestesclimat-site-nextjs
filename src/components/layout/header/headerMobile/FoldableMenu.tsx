@@ -1,8 +1,15 @@
+import OrganisationIcon from '@/components/icons/OrganisationIcon'
 import ProfileIcon from '@/components/icons/ProfileIcon'
+import Trans from '@/components/translation/Trans'
 import BurgerMenu from '@/design-system/layout/BurgerMenu'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useUser } from '@/publicodes-state'
 import NavLink from '../NavLink'
 
 export default function FoldableMenu() {
+  const { user } = useUser()
+  const { t } = useClientTranslation()
+
   return (
     <BurgerMenu>
       {({ closeMenu, onFocus }) => (
@@ -16,6 +23,15 @@ export default function FoldableMenu() {
               Profil
             </NavLink>
           </li>
+          {user?.administratorEmail && (
+            <NavLink
+              href={'/organisations/connexion'}
+              icon={OrganisationIcon}
+              onClick={closeMenu}
+              title={t('Organisation')}>
+              <Trans>Organisation</Trans>
+            </NavLink>
+          )}
 
           <li>
             <div className="ml-2 h-[1px] w-4 bg-gray-400" />

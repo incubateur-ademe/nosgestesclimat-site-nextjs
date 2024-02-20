@@ -1,15 +1,30 @@
+'use client'
+
 import HourglassIcon from '@/components/icons/HourglassIcon'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
+import { usePathname } from 'next/navigation'
 
 export default function ResultsSoonBanner() {
-  function handleScrollIntoView(id: string) {
-    const faqElement = document.getElementById(id)
+  const pathname = usePathname()
 
-    faqElement?.scrollIntoView({
+  const isResultatsDetailles = pathname.includes('resultats-detailles')
+
+  function handleScrollIntoView(id: string) {
+    const shareSection = document.getElementById(id)
+
+    shareSection?.scrollIntoView({
       behavior: 'smooth',
-      block: 'end',
+      block: 'center',
     })
+
+    if (!shareSection) return
+
+    shareSection.style.backgroundColor = '#E8DFEE'
+
+    setTimeout(() => {
+      shareSection.style.backgroundColor = '#FFFFFF'
+    }, 700)
   }
 
   return (
@@ -19,21 +34,30 @@ export default function ResultsSoonBanner() {
       <Card className="w-full flex-row flex-wrap items-center justify-between gap-4 p-8 md:flex-nowrap">
         <div className="flex max-w-2xl gap-4">
           <HourglassIcon />
-          <div>
+          <div className="flex items-center">
             <p className="mb-0">
-              <Trans>
-                Bientôt, vous verrez apparaître ici vos statistiques. Partagez
-                le test pour obtenir vos premiers résultats
-              </Trans>{' '}
+              <span>
+                <Trans>
+                  Bientôt, vous verrez apparaître ici vos statistiques.
+                </Trans>
+              </span>
+              {!isResultatsDetailles && (
+                <span>
+                  <Trans>
+                    Partagez le test pour obtenir vos premiers résultats
+                  </Trans>
+                </span>
+              )}
             </p>
           </div>
         </div>
-
-        <button
-          className="whitespace-nowrap font-bold text-primary-500 underline"
-          onClick={() => handleScrollIntoView('orga-partage')}>
-          Partagez le test
-        </button>
+        {!isResultatsDetailles && (
+          <button
+            className="whitespace-nowrap font-bold text-primary-500 underline"
+            onClick={() => handleScrollIntoView('orga-partage')}>
+            Partagez le test
+          </button>
+        )}
       </Card>
     </div>
   )

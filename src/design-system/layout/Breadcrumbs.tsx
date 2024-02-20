@@ -2,19 +2,25 @@ import Link from '@/components/Link'
 import { Fragment } from 'react'
 
 type Props = {
-  items: { href: string; label: string | JSX.Element; isActive?: boolean }[]
+  items: {
+    href: string
+    label: string | JSX.Element
+    isActive?: boolean
+    isDisabled?: boolean
+  }[]
 }
 
 export default function Breadcrumbs({ items }: Props) {
   return (
     <section className="h-[75px] w-full bg-grey-100">
       <nav className="mx-auto flex h-full max-w-5xl items-center gap-4 px-6 lg:px-0">
-        {items.map(({ href, label, isActive }, index) => (
+        {items.map(({ href, label, isActive, isDisabled }, index) => (
           <Fragment key={`breadcrumb-item-${index}`}>
             <Link
+              onClick={isDisabled ? (e) => e.preventDefault() : undefined}
               className={`text-default ${
                 isActive ? '' : 'no-underline'
-              } text-sm hover:text-default hover:underline`}
+              } text-sm hover:text-default hover:underline ${isDisabled ? 'cursor-none' : ''}`}
               href={href}>
               {label}
             </Link>

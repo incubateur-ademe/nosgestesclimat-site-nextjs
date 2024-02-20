@@ -59,6 +59,7 @@ export type PollData = {
     percentageOfCarOwners: number
   }
   simulationRecaps: SimulationRecap[]
+  organisationName: string
 }
 
 export type PollInfo = {

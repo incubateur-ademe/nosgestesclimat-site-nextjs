@@ -6,18 +6,23 @@ import Button from './Button'
 
 type Props = {
   textToCopy: string
+  textToDisplay?: string
   className?: string
 }
 
-export default function CopyInput({ textToCopy, className = '' }: Props) {
+export default function CopyInput({
+  textToCopy,
+  textToDisplay,
+  className = '',
+}: Props) {
   const [isCopied, setIsCopied] = useState(false)
 
   return (
     <div className={`flex ${className}`}>
       <input
         type="text"
-        className="block w-full min-w-0 flex-1 rounded-none rounded-l-md border border-r-0 border-solid border-grey-200 bg-grey-100 py-3 pl-4 sm:text-sm"
-        value={textToCopy}
+        className="block w-full min-w-0 flex-1 rounded-none rounded-l-md border border-r-0 border-solid border-grey-200 bg-grey-100 py-3 pl-4 pr-2 text-gray-600 sm:text-sm"
+        value={textToDisplay ?? textToCopy}
         readOnly
       />
       <Button

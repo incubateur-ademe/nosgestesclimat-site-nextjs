@@ -12,7 +12,7 @@ export default function OrgaStatisticsCharts({
 }: {
   simulationRecaps: SimulationRecap[]
 }) {
-  if (!simulationRecaps || simulationRecaps?.length <= 0) return null
+  if (!simulationRecaps || simulationRecaps?.length <= 1) return null
 
   // Calculate the mean for each category
   const meanCategories = Object.keys(simulationRecaps?.[0]?.categories).map(

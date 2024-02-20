@@ -15,12 +15,12 @@ export default function ShareSection({
   return (
     <section
       className={twMerge('rounded-lg bg-grey-100 px-4 py-10', className)}>
-      <div
-        className="flex flex-wrap items-start gap-8 md:flex-nowrap"
-        id="orga-partage">
+      <div className="flex flex-wrap items-center justify-center gap-8 lg:flex-nowrap lg:items-start">
         <CTACard
+          id="orga-partage"
+          className="transition-colors duration-500 lg:w-2/3"
           overLabel={<Trans>Via un lien de partage</Trans>}
-          title={<Trans>Partager le test</Trans>}
+          title={<Trans>Partagez le test</Trans>}
           description={
             <Trans>
               Partagez simplement cette page à vos employés, utilisateurs,
@@ -28,11 +28,13 @@ export default function ShareSection({
             </Trans>
           }>
           <CopyInput
+            textToDisplay={`${window.location.host}/o/${organisation?.slug}/${organisation?.polls[0].slug}`}
             textToCopy={`${window.location.origin}/o/${organisation?.slug}/${organisation?.polls[0].slug}`}
           />
         </CTACard>
 
         <CTACard
+          className="lg:w-1/3"
           overLabel={<Trans>Services web et mobiles</Trans>}
           title={<Trans>Intégration en iframe</Trans>}
           description={

@@ -7,6 +7,7 @@ type Props = {
   description: string | React.ReactNode
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   className?: string
+  id?: string
 }
 
 export default function CTACard({
@@ -16,6 +17,7 @@ export default function CTACard({
   children,
   tag,
   className,
+  id,
 }: PropsWithChildren<Props>) {
   const Tag = tag ?? 'h2'
   return (
@@ -23,7 +25,8 @@ export default function CTACard({
       className={twMerge(
         'flex flex-col rounded-lg bg-white px-8 py-6',
         className
-      )}>
+      )}
+      id={id}>
       <p className="font-medium text-secondary">{overLabel}</p>
 
       <Tag>{title}</Tag>

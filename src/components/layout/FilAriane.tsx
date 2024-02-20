@@ -2,6 +2,7 @@
 
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import { getOrganisationItems } from '@/helpers/filAriane/getOrganisationItems'
+import { useUser } from '@/publicodes-state'
 import { useParams, usePathname } from 'next/navigation'
 
 const TARGETED_PATHS = ['organisations']
@@ -9,6 +10,8 @@ const TARGETED_PATHS = ['organisations']
 export default function FilAriane() {
   const pathname = usePathname()
   const params = useParams()
+
+  const { user } = useUser()
 
   if (!TARGETED_PATHS.some((path) => pathname.includes(path))) return null
 
@@ -19,7 +22,7 @@ export default function FilAriane() {
   }[] => {
     // Organisation path
     if (pathname.includes('organisations')) {
-      return getOrganisationItems({ pathname, params })
+      return getOrganisationItems({ pathname, params, user })
     }
 
     return []

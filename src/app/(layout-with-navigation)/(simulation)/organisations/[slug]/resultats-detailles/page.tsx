@@ -13,6 +13,7 @@ import OrgaStatisticsFilters from './_components/OrgaStatisticsFilters'
 
 export default function ResultatsDetaillesPage() {
   const params = useParams()
+
   const { data: pollData } = useFetchPollData({ orgaSlug: String(params.slug) })
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
@@ -28,8 +29,11 @@ export default function ResultatsDetaillesPage() {
   return (
     <div className="pt-12">
       <div className="mb-10 flex flex-wrap items-center justify-between md:flex-nowrap">
-        <h1>
-          <Trans>Résultats détaillés</Trans>
+        <h1 className="text-xl md:text-2xl">
+          <Trans>Résultats détaillés</Trans>,{' '}
+          <span className="text-primary-500">
+            {pollData?.organisationName ?? ''}
+          </span>
         </h1>
 
         <ExportDataButton
