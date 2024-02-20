@@ -9,6 +9,7 @@ const ramda = require('ramda')
 const child_process = require('child_process')
 const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
 const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
+const c = require('ansi-colors')
 
 const paths = require('./paths')
 
@@ -69,7 +70,7 @@ if (remove) {
   )
   const unusedKeys = ramda.difference(oldKeys, currentKeys)
   oldFrResource = ramda.omit(unusedKeys, oldFrResource)
-  printResult(cli.green('-') + ' Removed', unusedKeys, cli.green)
+  printResult(c.green('-') + ' Removed', unusedKeys, c.green)
 } else {
   let result = {
     addedTranslations: [],
@@ -94,13 +95,9 @@ if (remove) {
         oldFrResource[key] = value
       }
     })
-  printResult(cli.green('+') + ' Added', result.addedTranslations, cli.green)
-  printResult(
-    cli.yellow('~') + ' Updated',
-    result.updatedTranslations,
-    cli.yellow
-  )
-  printResult(cli.red('-') + ' Missing', result.missingTranslations, cli.red)
+  printResult(c.green('+') + ' Added', result.addedTranslations, c.green)
+  printResult(c.yellow('~') + ' Updated', result.updatedTranslations, c.yellow)
+  printResult(c.red('-') + ' Missing', result.missingTranslations, c.red)
 }
 
 console.log(`Writting resources in ${paths.UI.fr.withLock}...`)

@@ -1,13 +1,14 @@
 'use client'
 
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
+import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import { DottedName, NGCEvaluatedNode, Situation } from '../../types'
 
 type Props = {
   dottedName: DottedName
   everyNotifications: string[]
-  safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
+  safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   situation: Situation
 }
 

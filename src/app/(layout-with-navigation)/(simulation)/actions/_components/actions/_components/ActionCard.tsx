@@ -43,10 +43,6 @@ export default function ActionCard({
 
   const { icônes: icons } = rule
 
-  const flatRule = rules[dottedName]
-
-  const hasFormula = flatRule.formule
-
   const remainingQuestions = filterRelevantMissingVariables(
     Object.keys(missingVariables || {}),
     extendedFoldedSteps
@@ -70,7 +66,9 @@ export default function ActionCard({
 
   const currentSimulation = getCurrentSimulation()
 
-  if (!currentSimulation) return
+  if (!currentSimulation || !rules) {
+    return null
+  }
 
   const actionChoices = currentSimulation.actionChoices
 
@@ -78,6 +76,9 @@ export default function ActionCard({
     return key === dottedName && actionChoices[key]
   })
 
+  const flatRule = rules[dottedName]
+
+  const hasFormula = flatRule.formule
   const isDisabled =
     (getIsActionDisabled(flatRule) &&
       Object.keys(actionChoices || {}).some((key) => {

@@ -1,5 +1,5 @@
 import { orderedCategories } from '@/constants/orderedCategories'
-import { getRuleSumNodes } from '@/helpers/publicodes/getRuleSumNodes'
+import { getRuleSumRules } from '@/helpers/publicodes/getRuleSumRules'
 import {
   useDisposableEngine,
   useEngine,
@@ -9,17 +9,14 @@ import { DottedName } from '@/publicodes-state/types'
 import { Member } from '@/types/groups'
 
 export function getSubcategories({
-  rules,
   category,
   getRuleObject,
 }: {
-  rules: any
   category: string
   getRuleObject: (dottedName: DottedName) => any
-}): string[] | undefined {
+}): DottedName[] | undefined {
   const rule = getRuleObject(category)
-
-  return getRuleSumNodes(rules, rule)
+  return getRuleSumRules(rule)
 }
 
 export const useGetGroupAndUserFootprints = ({
@@ -93,11 +90,7 @@ export const useGetGroupAndUserFootprints = ({
         }
 
         const currentCategorySubcategories =
-          getSubcategories({
-            rules,
-            category,
-            getRuleObject,
-          }) || []
+          getSubcategories({ category, getRuleObject }) || []
 
         currentCategorySubcategories.forEach((subCategory: string) => {
           const subCategoryValue = isCurrentMember

@@ -1,3 +1,4 @@
+import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
 import getQuestionsOfMosaic from '../../helpers/getQuestionsOfMosaic'
@@ -11,7 +12,7 @@ import {
 type Props = {
   root: string
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
-  safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
+  safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   categories: string[]
   subcategories: Record<string, string[]>
   situation: Situation
@@ -145,23 +146,25 @@ export default function useQuestions({
 
   const relevantAnsweredQuestions = useMemo<string[]>(
     () =>
-      /**
-       * First we check that there is still a question associated to the folded
-       * step. If not we cut it. Then we check if the folded step is nullable. If it is we cut it.
-       * Finally, we check if the folded step is disabled by its parent AND if it's not a rule of the first missing variables.
-       * The current question can be disabled by its parent and so deleted from foldedSteps, we don't want it BUT it should be displayed
-       * as it is a "fundamental" question.
-       * (This is the case for boolean question whose value is a condition for the parent).
-       */
-      foldedSteps
-        .filter((foldedStep) => everyQuestions.includes(foldedStep))
-        .filter((foldedStep) => !safeEvaluate(foldedStep)?.isNullable)
-        .filter((foldedStep) => {
-          if (Object.keys(rawMissingVariables).includes(foldedStep)) return true
-          return !safeEvaluate(foldedStep)?.explanation?.ruleDisabledByItsParent
-        }),
+      foldedSteps.filter((foldedStep) => {
+        // checks that there is still a question associated to the folded step
+        if (!everyQuestions.includes(foldedStep)) {
+          return false
+        }
+
+        const isApplicable =
+          safeEvaluate({ 'est applicable': foldedStep })?.nodeValue === true
+
+        const isInMissingVariables =
+          Object.keys(rawMissingVariables).includes(foldedStep)
+
+        // even if the question is disabled, we want to display it if it's a missing variable
+        // (this is the case for boolean question whose value is a condition for the parent).
+        return isInMissingVariables || isApplicable
+      }),
+    // We want to recompute this every time the situation changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [situation, foldedSteps, safeEvaluate, everyQuestions]
+    [situation, foldedSteps, safeEvaluate, everyQuestions, rawMissingVariables]
   )
 
   const tempRelevantQuestions = useMemo<string[]>(
