@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
@@ -51,6 +52,7 @@ export default function OurTools() {
               'Découvrez Impact CO2, ouvrir dans un nouvel onglet'
             )}>
             <Trans>Découvrez Impact CO2</Trans>
+            <ExternalLinkIcon className="ml-2 stroke-primary-700" />
           </ButtonLink>
         </CTACard>
 

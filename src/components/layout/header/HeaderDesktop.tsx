@@ -3,7 +3,6 @@
 import ActionsIcon from '@/components/icons/ActionsIcon'
 import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
-import OrganisationIcon from '@/components/icons/OrganisationIcon'
 import ProfileIcon from '@/components/icons/ProfileIcon'
 import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
 import Logo from '@/components/misc/Logo'
@@ -12,6 +11,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { usePathname } from 'next/navigation'
 import NavLink from './NavLink'
+import OrganisationLink from './_components/OrganisationLink'
 import CTAButton from './headerDesktop/CTAButton'
 import DebugIndicator from './headerDesktop/DebugIndicator'
 
@@ -94,12 +94,7 @@ export default function HeaderDesktop() {
             {user?.administratorEmail && (
               <>
                 <div className="my-auto h-8 w-[1px] bg-grey-200" />
-                <NavLink
-                  href={'/organisations/connexion'}
-                  icon={OrganisationIcon}
-                  title={t('Organisation')}>
-                  <Trans>Organisation</Trans>
-                </NavLink>
+                <OrganisationLink />
               </>
             )}
 
