@@ -45,7 +45,11 @@ export default function OurTools() {
           <ButtonLink
             className="mt-auto w-full justify-center align-bottom"
             color="secondary"
-            href="https://impactco2.fr?mtm_campaign=ngc-orga">
+            href="https://impactco2.fr?mtm_campaign=ngc-orga"
+            target="_blank"
+            aria-label={t(
+              'Découvrez Impact CO2, ouvrir dans un nouvel onglet'
+            )}>
             <Trans>Découvrez Impact CO2</Trans>
           </ButtonLink>
         </CTACard>

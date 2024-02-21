@@ -1,6 +1,8 @@
 import useTimeLeft from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useTimeleft'
 import useValidateVerificationCode from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useValidateVerificationCode'
+import Trans from '@/components/translation/Trans'
 import { SERVER_URL } from '@/constants/urls'
+import Button from '@/design-system/inputs/Button'
 import { useUser } from '@/publicodes-state'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
@@ -88,6 +90,13 @@ export default function VerificationForm() {
     }
   }
 
+  function handleGoBackToForm() {
+    // Reset the login expiration date
+    updateLoginExpirationDate(undefined)
+
+    router.push('/organisations/connexion')
+  }
+
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
@@ -127,6 +136,11 @@ export default function VerificationForm() {
             timeLeft={timeLeft}
             setTimeLeft={setTimeLeft}
           />
+        )}
+        {!isSuccessValidate && (
+          <Button onClick={handleGoBackToForm} color="text" className="mt-12">
+            <Trans>Revenir au formulaire de connexion</Trans>
+          </Button>
         )}
       </div>
     </div>

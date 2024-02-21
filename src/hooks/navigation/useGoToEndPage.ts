@@ -3,6 +3,7 @@ import { useUpdateGroup } from '@/hooks/groups/useUpdateGroup'
 import { useSaveSimulation } from '@/hooks/useSaveSimulation'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
+import { useCallback } from 'react'
 
 export function useGoToEndPage() {
   const router = useRouter()
@@ -16,7 +17,7 @@ export function useGoToEndPage() {
 
   const { handleUpdateGroup } = useUpdateGroup()
 
-  const goToEndPage = async () => {
+  const goToEndPage = useCallback(async () => {
     if (!currentSimulation) {
       return '/404' // TODO: should throw an error
     }
@@ -61,7 +62,16 @@ export function useGoToEndPage() {
     router.push(
       `/fin?${formatResultToDetailParam_NEW({ simulation: currentSimulation })}`
     )
-  }
+  }, [
+    currentSimulation,
+    progression,
+    groupToRedirectToAfterTest,
+    router,
+    handleUpdateGroup,
+    saveSimulation,
+    user?.id,
+    user?.email,
+  ])
 
   return { goToEndPage }
 }
