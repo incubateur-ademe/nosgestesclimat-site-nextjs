@@ -24,7 +24,7 @@ export default function OrganisationPrivacy() {
           <p>
             <Trans>
               Vos données seront stockées de manière sécurisée et anonyme. Elles
-              seront agrégées à des fins statistiques ; les dites-statistiques
+              seront agrégées à des fins statistiques ; lesdites statistiques
               seront consultables sur la page "Rapport détaillé" de votre
               sondage en fin de parcours. Cette page restera exclusivement
               accessible aux participant·es ainsi qu'aux organisateur·ices.
