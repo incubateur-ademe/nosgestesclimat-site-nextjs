@@ -19,6 +19,7 @@ export function useSaveSimulation() {
           simulation,
           userId: user.userId,
           email: user.email,
+          name: user.name,
         })
         .then((response) => response.data)
         .catch(() => console.error('Failed to save simulation'))

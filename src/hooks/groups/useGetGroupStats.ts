@@ -2,35 +2,18 @@ import { getUserCategoryFootprintsSortedByDifference } from '@/helpers/groups/ge
 import { Participant, Points, Results, ValueObject } from '@/types/groups'
 import { useGetGroupAndUserFootprints } from './useGetGroupAndUserFootprints'
 
-const getDifferenceInPercent = ({
-  value,
-  mean,
-}: {
-  value: number
-  mean: number
-}) => {
-  return ((value - mean) / mean) * 100
+type Props = {
+  groupMembers: Participant[]
+  userId: string
 }
-
-export const useGetGroupStats = ({
-  groupMembers,
-  userId,
-  isSynced,
-}: {
-  groupMembers: Participant[] | undefined
-  userId: string | null
-  isSynced: boolean
-}) => {
+export const useGetGroupStats = ({ groupMembers, userId }: Props) => {
   const {
     groupFootprintByCategoriesAndSubcategories,
     userFootprintByCategoriesAndSubcategories,
   } = useGetGroupAndUserFootprints({
     groupMembers,
     userId,
-    isSynced,
-  }) as any
-
-  if (!groupMembers || !userId || !isSynced) return null
+  })
 
   const results = {
     userFootprintByCategoriesAndSubcategories: {} as Record<
@@ -83,4 +66,14 @@ export const useGetGroupStats = ({
   results.pointsFaibles = negativeDifferenceCategoriesSorted.slice(0, 3)
 
   return results as Results
+}
+
+const getDifferenceInPercent = ({
+  value,
+  mean,
+}: {
+  value: number
+  mean: number
+}) => {
+  return ((value - mean) / mean) * 100
 }

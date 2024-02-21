@@ -8,6 +8,6 @@ export const usePolls = ({ pollSlugs }: Props) => {
   return useQuery({
     queryKey: ['polls', pollSlugs],
     queryFn: () => fetchPolls({ pollSlugs }),
-    enabled: pollSlugs ? true : false,
+    enabled: pollSlugs?.length ? true : false,
   })
 }

@@ -32,7 +32,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
     setIsSubmitting(true)
     try {
       updateGroupName({
-        groupId: formattedGroupId as string,
+        groupId: formattedGroupId,
         groupName: groupNameUpdated,
       })
 

@@ -3,12 +3,8 @@
 import HowToAct from '@/components/actions/HowToAct'
 import Separator from '@/design-system/layout/Separator'
 import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
-import { useUpdateUserResults } from '@/hooks/groups/useUpdateUserResults'
 import { useUser } from '@/publicodes-state'
 import { Group, Results } from '@/types/groups'
-import { UseQueryResult } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
 import Classement from './groupResults/Classement'
 import InviteBlock from './groupResults/InviteBlock'
 import OwnerAdminSection from './groupResults/OwnerAdminSection'
@@ -16,68 +12,18 @@ import ParticipantAdminSection from './groupResults/ParticipantAdminSection'
 import PointsFortsFaibles from './groupResults/PointsFortsFaibles'
 import VotreEmpreinte from './groupResults/VotreEmpreinte'
 
-export default function GroupResults({
-  group,
-  refetch,
-}: {
+type Props = {
   group: Group
-  refetch: UseQueryResult<Group>['refetch']
-}) {
-  const [isSynced, setIsSynced] = useState(false)
-
-  const groupId = group?._id
-
-  const router = useRouter()
-
+}
+export default function GroupResults({ group }: Props) {
   const { user } = useUser()
 
-  const userId = user?.userId
-
-  const isOwner = group?.administrator?.userId === userId
-
-  const intervalRef = useRef<NodeJS.Timeout>()
+  const isOwner = group?.administrator?.userId === user.userId
 
   const results: Results | null = useGetGroupStats({
-    groupMembers: group?.participants,
-    userId: userId || '',
-    isSynced,
+    groupMembers: group.participants,
+    userId: user.userId,
   })
-
-  useUpdateUserResults({
-    setIsSynced,
-    groupId,
-  })
-
-  useEffect(() => {
-    if (groupId && !group) {
-      intervalRef.current = setInterval(() => refetch(), 60000)
-    }
-  }, [groupId, group, userId, refetch])
-
-  useEffect(() => {
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
-      }
-    }
-  }, [])
-
-  // User is not part of the group
-  if (
-    group &&
-    !group?.participants?.some(
-      (participant: { userId: string }) => participant.userId === userId
-    )
-  ) {
-    router.push(`/amis/invitation?groupId=${group?._id}`)
-
-    return null
-  }
-
-  // Group is loading
-  if (!group) {
-    return null
-  }
 
   return (
     <>

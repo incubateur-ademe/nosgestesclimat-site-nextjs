@@ -4,37 +4,20 @@ import { useDisposableEngine, useTempEngine } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { Participant } from '@/types/groups'
 
-export function getSubcategories({
-  rules,
-  category,
-  getRuleObject,
-}: {
-  rules: any
-  category: string
-  getRuleObject: (dottedName: DottedName) => any
-}): string[] | undefined {
-  const rule = getRuleObject(category)
-
-  return getRuleSumNodes(rules, rule)
+type Props = {
+  groupMembers: Participant[]
+  userId: string | null
 }
-
 export const useGetGroupAndUserFootprints = ({
   groupMembers,
   userId,
-  isSynced,
-}: {
-  groupMembers: Participant[] | undefined
-  userId: string | null
-  isSynced: boolean
-}) => {
+}: Props) => {
   const { rules, getRuleObject } = useTempEngine()
 
   const { getValue, updateSituation } = useDisposableEngine({
     rules,
     situation: {},
   })
-
-  if (!groupMembers || !userId || !isSynced) return {}
 
   return groupMembers.reduce(
     (
@@ -127,4 +110,18 @@ export const useGetGroupAndUserFootprints = ({
       userFootprintByCategoriesAndSubcategories: {},
     }
   )
+}
+
+export function getSubcategories({
+  rules,
+  category,
+  getRuleObject,
+}: {
+  rules: any
+  category: string
+  getRuleObject: (dottedName: DottedName) => any
+}): string[] | undefined {
+  const rule = getRuleObject(category)
+
+  return getRuleSumNodes(rules, rule)
 }

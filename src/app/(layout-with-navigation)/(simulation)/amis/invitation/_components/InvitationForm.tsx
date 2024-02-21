@@ -5,7 +5,6 @@ import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
-import { useAddUserToGroup } from '@/hooks/groups/useAddUserToGroup'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useUser } from '@/publicodes-state'
@@ -31,8 +30,6 @@ export default function InvitationForm({ group }: { group: Group }) {
   const hasCompletedTest = progression === 1
 
   const currentSimulation = getCurrentSimulation()
-
-  const { mutateAsync: addUserToGroup } = useAddUserToGroup()
 
   const { goToSimulateurPage } = useSimulateurPage()
 
@@ -84,14 +81,6 @@ export default function InvitationForm({ group }: { group: Group }) {
     }
 
     try {
-      await addUserToGroup({
-        prenom,
-        email,
-        group,
-        userId: user?.userId,
-        simulation: currentSimulation,
-      })
-
       // Update current simulation with group id (to redirect after test completion)
       updateCurrentSimulation({
         group: group._id,

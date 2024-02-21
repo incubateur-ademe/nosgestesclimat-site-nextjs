@@ -3,7 +3,9 @@ import { Group } from '@/types/groups'
 import { UseQueryResult, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
-export function useFetchGroup(groupId: string): UseQueryResult<Group, Error> {
+export function useFetchGroup(
+  groupId?: string | null
+): UseQueryResult<Group, Error> {
   return useQuery({
     queryKey: ['group', groupId],
     queryFn: () =>
@@ -14,6 +16,7 @@ export function useFetchGroup(groupId: string): UseQueryResult<Group, Error> {
         .then((response) => {
           return response.data
         }),
+    refetchInterval: 60000,
     enabled: !!groupId,
   })
 }

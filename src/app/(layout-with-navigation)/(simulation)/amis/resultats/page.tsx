@@ -7,37 +7,20 @@ import Loader from '@/design-system/layout/Loader'
 import Title from '@/design-system/layout/Title'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
-import { Group } from '@/types/groups'
-import { UseQueryResult } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useGroupIdInQueryParams } from '@/hooks/groups/useGroupIdInQueryParams'
+import { useGroupDashboardGuard } from '@/hooks/navigation/useGroupDashboardGuard'
 import EditableGroupTitle from './_components/EditableGroupTitle'
 import GroupResults from './_components/GroupResults'
 
-export default function GroupResultsPage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
-  const groupId = String(searchParams.groupId)
+export default function GroupResultsPage() {
+  // Guarding the route and redirecting if necessary
+  const { isGuardInit, isGuardRedirecting } = useGroupDashboardGuard()
 
-  const router = useRouter()
+  const { groupIdInQueryParams } = useGroupIdInQueryParams()
+  const { data: group, isFetching } = useFetchGroup(groupIdInQueryParams)
 
-  useEffect(() => {
-    if (!groupId) {
-      router.push('/classement', {
-        scroll: false,
-      })
-    }
-  }, [groupId, router])
-
-  const {
-    data: group,
-    refetch,
-    isFetched,
-  }: UseQueryResult<Group> = useFetchGroup(groupId)
-
-  if (!group && !isFetched) {
+  // If we are still fetching the group (or we are redirecting the user), we display a loader
+  if (!isGuardInit || isGuardRedirecting || isFetching) {
     return (
       <div className="flex h-full w-full items-center justify-center">
         <Loader className="border-gray-600 border-b-transparent" />
@@ -46,7 +29,7 @@ export default function GroupResultsPage({
   }
 
   // Group doesn't exist
-  if (!group && isFetched) {
+  if (!group) {
     return (
       <div className="flex flex-col items-start">
         <Title
@@ -65,14 +48,12 @@ export default function GroupResultsPage({
   }
 
   return (
-    <>
-      <div>
-        <GoBackLink className="mb-4 font-bold" />
+    <div>
+      <GoBackLink className="mb-4 font-bold" />
 
-        <EditableGroupTitle group={group as Group} />
+      <EditableGroupTitle group={group} />
 
-        <GroupResults group={group as Group} refetch={refetch} />
-      </div>
-    </>
+      <GroupResults group={group} />
+    </div>
   )
 }
