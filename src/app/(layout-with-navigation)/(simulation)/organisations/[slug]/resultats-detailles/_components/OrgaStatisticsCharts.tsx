@@ -14,6 +14,16 @@ export default function OrgaStatisticsCharts({
 }) {
   if (!simulationRecaps || simulationRecaps?.length <= 1) return null
 
+  const maxValueOfAllCategories = simulationRecaps?.reduce((acc, obj) => {
+    Object.keys(obj.categories).forEach((category) => {
+      const roundedValue = Math.round(obj.categories[category] / 1000)
+      if (roundedValue > acc) {
+        acc = roundedValue
+      }
+    })
+    return acc
+  }, 0)
+
   // Calculate the mean for each category
   const meanCategories = Object.keys(simulationRecaps?.[0]?.categories).map(
     (category) => {
@@ -97,6 +107,7 @@ export default function OrgaStatisticsCharts({
                   category={category}
                   value={meanCategories ? meanCategories[index].value : 0}
                   simulationsRecap={simulationRecaps}
+                  maxValue={maxValueOfAllCategories}
                 />
               )
             )}
@@ -120,7 +131,7 @@ export default function OrgaStatisticsCharts({
             </div>
 
             <div>
-              <strong className="text-lg">6</strong>{' '}
+              <strong className="text-lg">{maxValueOfAllCategories}</strong>{' '}
               <span>
                 <Trans>tonnes</Trans>
               </span>

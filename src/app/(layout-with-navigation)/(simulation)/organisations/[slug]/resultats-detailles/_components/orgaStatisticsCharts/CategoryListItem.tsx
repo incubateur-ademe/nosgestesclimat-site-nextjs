@@ -10,12 +10,14 @@ type Props = {
   simulationsRecap: SimulationRecap[]
   value: number
   category: string
+  maxValue: number
 }
 
 export default function CategoryListItem({
   simulationsRecap,
   value,
   category,
+  maxValue,
 }: Props) {
   const { icons } = useRule(category)
 
@@ -38,7 +40,7 @@ export default function CategoryListItem({
 
       <RepartitionChart
         className="ml-8 flex-1 rounded-lg"
-        maxValue={6}
+        maxValue={maxValue}
         items={simulationsRecap.map((obj) => ({
           value: obj.categories[category] / 1000,
           shouldBeHighlighted: obj.isCurrentUser,
