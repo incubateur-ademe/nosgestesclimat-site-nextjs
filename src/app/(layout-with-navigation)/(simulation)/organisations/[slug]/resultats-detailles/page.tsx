@@ -6,7 +6,7 @@ import Trans from '@/components/translation/Trans'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useParams } from 'next/navigation'
-import { useContext } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { FiltersContext } from './_components/FiltersProvider'
 import OrgaStatisticsCharts from './_components/OrgaStatisticsCharts'
 import OrgaStatisticsFilters from './_components/OrgaStatisticsFilters'
@@ -14,9 +14,13 @@ import OrgaStatisticsFilters from './_components/OrgaStatisticsFilters'
 export default function ResultatsDetaillesPage() {
   const params = useParams()
 
-  const { data: pollData } = useFetchPollData({ orgaSlug: String(params.slug) })
+  const { data: pollData, refetch } = useFetchPollData({
+    orgaSlug: String(params.slug),
+  })
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
+
+  const intervalRef = useRef<NodeJS.Timeout>()
 
   const filteredSimulationRecaps =
     pollData &&
@@ -25,6 +29,23 @@ export default function ResultatsDetaillesPage() {
       ageFilters,
       postalCodeFilters,
     })
+
+  useEffect(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current)
+    }
+
+    intervalRef.current = setInterval(() => {
+      refetch()
+    }, 30000)
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="pt-12">
