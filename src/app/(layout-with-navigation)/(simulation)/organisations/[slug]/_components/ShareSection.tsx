@@ -43,7 +43,10 @@ export default function ShareSection({
               votre site ou application mobile{' '}
             </Trans>
           }>
-          <ButtonLink href="/diffuser" className="self-start">
+          <ButtonLink
+            target="_blank"
+            href="https://accelerateur-transition-ecologique-ademe.notion.site/Int-grer-Nos-Gestes-Climat-en-iframe-abdeb175baf84143922006964d80348c?pvs=25"
+            className="self-start">
             <Trans>Découvrez le guide</Trans>
           </ButtonLink>
         </CTACard>
