@@ -27,7 +27,7 @@ export default function OrganisationLink() {
       title={t('Organisation')}>
       {organisation?.name ? (
         <span className="whitespace-nowrap">
-          {organisation?.name?.length > 10
+          {organisation?.name?.length > 14
             ? `${organisation?.name.substring(0, 14).trim()}…`
             : organisation?.name}
         </span>
