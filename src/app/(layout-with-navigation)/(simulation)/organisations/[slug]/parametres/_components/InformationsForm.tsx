@@ -1,12 +1,13 @@
 'use client'
 
+import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
-import { FormEventHandler } from 'react'
+import { FormEventHandler, useEffect, useRef, useState } from 'react'
 import { useUpdateOrganisation } from '../../../_hooks/useUpdateOrganisation'
 
 type Props = {
@@ -14,11 +15,15 @@ type Props = {
 }
 
 export default function InformationsForm({ organisation }: Props) {
+  const [isConfirmingUpdate, setIsConfirmingUpdate] = useState(false)
+
   const { user } = useUser()
 
   const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
-    email: user?.email,
+    email: user?.administratorEmail ?? '',
   })
+
+  const timeoutRef = useRef<NodeJS.Timeout>()
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault()
@@ -54,7 +59,22 @@ export default function InformationsForm({ organisation }: Props) {
     await updateOrganisation({
       ...modifications,
     })
+
+    setIsConfirmingUpdate(true)
+
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+
+    timeoutRef.current = setTimeout(() => {
+      setIsConfirmingUpdate(false)
+      timeoutRef.current = undefined
+    }, 2000)
   }
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
+  }, [])
 
   return (
     <section className="mb-12 mt-8">
@@ -113,6 +133,8 @@ export default function InformationsForm({ organisation }: Props) {
         <Button type="submit" className="mt-12 self-start">
           <Trans>Modifier mes informations</Trans>
         </Button>
+
+        <ModificationSaved shouldShowMessage={isConfirmingUpdate} />
       </form>
     </section>
   )
