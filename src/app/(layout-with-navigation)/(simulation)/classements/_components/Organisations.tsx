@@ -13,6 +13,7 @@ export default function Organisations() {
   const { data: organisation } = useFetchOrganisation({
     email: user?.administratorEmail ?? '',
   })
+
   return (
     <div className="mt-12">
       <Title tag="h2" title={<Trans>Entreprises et collectivités</Trans>} />

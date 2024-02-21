@@ -25,24 +25,34 @@ function getOrganisationEspaceItems({
   pathname,
   params,
   user,
+  isAdmin,
 }: {
   pathname: string
   params: any
   user: User
+  isAdmin: boolean
 }) {
   const items = []
+
   if (params.slug) {
-    items.push({
-      href: `/organisations/${params.slug}`,
-      label: <span>{formatSlugToName(params.slug)}</span>,
-      isActive: pathname === `/organisations/${params.slug}`,
-      isDisabled: !user?.administratorEmail,
-    })
+    if (isAdmin) {
+      items.push({
+        href: `/organisations/${params.slug}`,
+        label: <span>{formatSlugToName(params.slug)}</span>,
+        isActive: pathname === `/organisations/${params.slug}`,
+        isDisabled: !user?.administratorEmail,
+      })
+    }
 
     if (pathname.includes('resultats-detailles')) {
       items.push({
         href: `/organisations/${params.slug}/resultats-detailles`,
-        label: <Trans>Résultats détaillés</Trans>,
+        label: (
+          <>
+            <Trans>Résultats détaillés</Trans>
+            {!isAdmin ? ` -  ${formatSlugToName(params.slug)}` : ''}
+          </>
+        ),
         isActive:
           pathname === `/organisations/${params.slug}/resultats-detailles`,
       })
@@ -63,10 +73,12 @@ export function getOrganisationItems({
   pathname,
   params,
   user,
+  isAdmin,
 }: {
   pathname: string
   params: any
   user: User
+  isAdmin: boolean
 }): {
   href: string
   label: string | JSX.Element
@@ -89,7 +101,7 @@ export function getOrganisationItems({
   }
 
   // These are the items for the organisation page
-  items.push(...getOrganisationEspaceItems({ pathname, params, user }))
+  items.push(...getOrganisationEspaceItems({ pathname, params, user, isAdmin }))
 
   return items
 }

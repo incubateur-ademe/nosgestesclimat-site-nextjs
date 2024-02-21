@@ -60,6 +60,8 @@ export type PollData = {
   }
   simulationRecaps: SimulationRecap[]
   organisationName: string
+  isAdmin: boolean
+  defaultAdditionalQuestions: ('postalCode' | 'birthdate')[]
 }
 
 export type PollInfo = {
@@ -67,7 +69,7 @@ export type PollInfo = {
   endDate: string
   name: string
   slug: string
-  defaultAdditionalQuestions: ['postalCode' | 'birthdate']
+  defaultAdditionalQuestions: ('postalCode' | 'birthdate')[]
   numberOfParticipants: number
   expectedNumberOfParticipants: number
   organisationInfo?: OrganisationInfo

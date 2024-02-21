@@ -15,7 +15,8 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
 
   const { t } = useClientTranslation()
 
-  const { updateLoginExpirationDate, updateAdministratorEmail } = useUser()
+  const { updateLoginExpirationDate, updateAdministratorEmail, user } =
+    useUser()
 
   const { mutateAsync: loginOrganisation } = useLoginOrganisation()
 
@@ -58,6 +59,7 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
       try {
         const { expirationDate } = await createOrganisation({
           email,
+          userId: user?.id,
         })
 
         updateLoginExpirationDate(expirationDate)

@@ -30,21 +30,24 @@ export default function ResultatsDetaillesPage() {
     <div className="pt-12">
       <div className="mb-10 flex flex-wrap items-center justify-between md:flex-nowrap">
         <h1 className="text-xl md:text-2xl">
-          <Trans>Résultats détaillés</Trans>,{' '}
+          <Trans>Résultats détaillés de</Trans>{' '}
           <span className="text-primary-500">
             {pollData?.organisationName ?? ''}
           </span>
         </h1>
 
-        <ExportDataButton
-          simulationRecaps={pollData?.simulationRecaps ?? []}
-          color="secondary"
-        />
+        {pollData?.isAdmin && (
+          <ExportDataButton
+            simulationRecaps={pollData?.simulationRecaps ?? []}
+            color="secondary"
+          />
+        )}
       </div>
 
       <OrgaStatisticsFilters
         simulationRecaps={pollData?.simulationRecaps ?? []}
         filteredSimulationRecaps={filteredSimulationRecaps ?? []}
+        defaultAdditionalQuestions={pollData?.defaultAdditionalQuestions ?? []}
       />
 
       <OrgaStatistics

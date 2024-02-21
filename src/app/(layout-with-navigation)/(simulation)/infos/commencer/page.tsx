@@ -17,10 +17,8 @@ import { InfosContext } from '../_components/InfosProvider'
 const titles = {
   notStarted: (
     <>
-      <Trans>
-        Oups&nbsp;! Vous n'avez pas encore calculé votre empreinte carbone
-      </Trans>
-      <Emoji>🤔</Emoji>
+      <Trans>Envie de connaître votre empreinte carbone ?</Trans>{' '}
+      <Emoji>🤓</Emoji>
     </>
   ),
   started: (
@@ -39,11 +37,11 @@ const titles = {
 const texts = {
   notStarted: (
     <>
-      <Trans>Passez le test Nos Gestes Climat, vous aurez la réponse en</Trans>{' '}
+      <Trans>Calculez votre empreinte en</Trans>{' '}
       <span className="font-bold text-primary-700">
         <Trans>10 minutes</Trans>
-      </span>
-      .
+      </span>{' '}
+      <Trans>puis comparez vos résultats à ceux des autres participants.</Trans>{' '}
     </>
   ),
   started: (
