@@ -1,3 +1,4 @@
+import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import questions from '@/components/questions'
@@ -7,7 +8,7 @@ import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useEngine, useForm } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import ColorIndicator from './form/ColorIndicator'
 
 export default function Form() {
@@ -62,6 +63,8 @@ export default function Form() {
     }
   }, [setQuestionInQueryParams, currentQuestion, isInitialized])
 
+  const { setShouldPreventNavigation } = useContext(PreventNavigationContext)
+
   if (!isInitialized || !currentQuestion) {
     return
   }
@@ -82,6 +85,8 @@ export default function Form() {
         tempValue={tempValue}
         onComplete={() => {
           trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
+
+          setShouldPreventNavigation(false)
 
           goToEndPage()
         }}

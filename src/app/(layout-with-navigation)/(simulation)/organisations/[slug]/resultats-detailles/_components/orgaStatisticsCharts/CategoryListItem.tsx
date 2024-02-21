@@ -19,7 +19,7 @@ export default function CategoryListItem({
 }: Props) {
   const { icons } = useRule(category)
 
-  const { formattedValue, unit } = formatCarbonFootprint(value, {
+  const { formattedValue, unit } = formatCarbonFootprint(value * 1000, {
     shouldUseAbbreviation: true,
   })
 
@@ -43,6 +43,7 @@ export default function CategoryListItem({
           value: obj.categories[category] / 1000,
           shouldBeHighlighted: obj.isCurrentUser,
         }))}
+        id={category}
       />
     </li>
   )

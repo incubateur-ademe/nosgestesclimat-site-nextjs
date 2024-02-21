@@ -55,6 +55,7 @@ export default function OrgaStatisticsCharts({
               value: bilan / 1000,
               shouldBeHighlighted: isCurrentUser,
             }))}
+            id="bilan"
           />
 
           <div className="mt-4 flex items-baseline justify-between">
@@ -65,6 +66,13 @@ export default function OrgaStatisticsCharts({
                 <Trans>tonnes</Trans>
               </span>
             </span>
+
+            <div className="flex items-center gap-3">
+              <div className="h-4 w-1 bg-secondary" />
+              <p className="mb-0 text-sm text-gray-600">
+                <Trans>Votre résultat</Trans>
+              </p>
+            </div>
 
             <span>
               <strong className="text-lg">29</strong>{' '}
@@ -102,6 +110,13 @@ export default function OrgaStatisticsCharts({
               <span>
                 <Trans>tonnes</Trans>
               </span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="h-4 w-1 bg-secondary" />
+              <p className="mb-0 text-sm text-gray-600">
+                <Trans>Votre résultat</Trans>
+              </p>
             </div>
 
             <div>

@@ -8,6 +8,7 @@ import { MigrationType } from '@/publicodes-state/types'
 import { PropsWithChildren } from 'react'
 import CheckFixedRegion from './mainLayoutProviders/CheckFixedRegion'
 import { IframeResizer } from './mainLayoutProviders/IframeResizer'
+import { PreventNavigationProvider } from './mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProviderWrapper'
 import QueryParamsProvider from './mainLayoutProviders/QueryParamsProvider'
 import SimulationFromUrlLoader from './mainLayoutProviders/SimulationFromUrlLoader'
@@ -36,7 +37,7 @@ export default function MainLayoutProviders({
             migrationInstructions={migrationInstructions}>
             <SimulationFromUrlLoader />
             <CheckFixedRegion />
-            {children}
+            <PreventNavigationProvider>{children}</PreventNavigationProvider>
           </UserProvider>
         </QueryClientProviderWrapper>
       </IframeOptionsProvider>

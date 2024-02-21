@@ -1,5 +1,6 @@
 'use client'
 
+import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import Total from '@/components/total/Total'
 import {
   matomoEventCloseQuestionsList,
@@ -10,7 +11,7 @@ import { useDebug } from '@/hooks/useDebug'
 import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Charts from './simulateur/Charts'
 import Form from './simulateur/Form'
 import Summary from './simulateur/Summary'
@@ -65,6 +66,12 @@ export default function Simulateur() {
       )
     }
   }, [progression, router, isDebug, categories, getValue, questionFromUrl])
+
+  const { setShouldPreventNavigation } = useContext(PreventNavigationContext)
+
+  useEffect(() => {
+    setShouldPreventNavigation(true)
+  }, [setShouldPreventNavigation])
 
   if (!isInit) return null
 
