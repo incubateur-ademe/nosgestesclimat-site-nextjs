@@ -12,6 +12,7 @@ export default function VerticalBarChartItem({
   ariaLabel,
   title,
   icons,
+  ...props
 }: {
   ariaLabel: string
   index: number
@@ -31,7 +32,8 @@ export default function VerticalBarChartItem({
   return (
     <li
       className="flex h-full flex-1 flex-col items-center justify-end gap-2"
-      aria-label={ariaLabel}>
+      aria-label={ariaLabel}
+      {...props}>
       <Badge className="text-xs">
         <strong>{formattedValue}</strong> {unit}
       </Badge>

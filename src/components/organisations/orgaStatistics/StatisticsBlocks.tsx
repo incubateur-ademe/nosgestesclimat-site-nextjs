@@ -51,7 +51,7 @@ export default function StatisticsBlocks({
   })
 
   return (
-    <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-3">
+    <div className="items grid w-full grid-cols-1 gap-4 md:grid-cols-3">
       <div className="rounded-lg bg-grey-100 p-8">
         <p className="text-4xl font-bold text-primary-500">
           {simulationRecaps.length}
@@ -72,11 +72,9 @@ export default function StatisticsBlocks({
         </p>
       </div>
 
-      <div className="rounded-lg bg-grey-100 py-2">
+      <div className="min-h-[200px] rounded-lg bg-grey-100 py-2">
         <VerticalBarChart
-          className={`${
-            simulationRecaps.length <= 0 ? 'opacity-0' : ''
-          } mt-0 h-auto`}>
+          className={`${simulationRecaps.length <= 0 ? 'opacity-0' : ''} mt-0 h-[calc(100%-48px)]`}>
           {Object.entries(result)
             .filter(([key]) => key !== 'bilan')
             .map(([key, value], index) => (
@@ -89,6 +87,9 @@ export default function StatisticsBlocks({
               />
             ))}
         </VerticalBarChart>
+        <h3 className="mb-4 ml-6 mt-4 text-sm">
+          <Trans>Moyenne du groupe par catégorie</Trans>
+        </h3>
       </div>
     </div>
   )
