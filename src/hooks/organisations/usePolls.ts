@@ -2,7 +2,7 @@ import { fetchPolls } from '@/helpers/organisations/fetchPolls'
 import { useQuery } from '@tanstack/react-query'
 
 type Props = {
-  pollSlugs?: (string | undefined)[]
+  pollSlugs?: (string | null | undefined)[]
 }
 export const usePolls = ({ pollSlugs }: Props) => {
   return useQuery({

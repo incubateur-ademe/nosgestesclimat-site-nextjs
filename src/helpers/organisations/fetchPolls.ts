@@ -3,7 +3,7 @@ import { PollInfo } from '@/types/organisations'
 import axios from 'axios'
 
 type Props = {
-  pollSlugs?: (string | undefined)[]
+  pollSlugs?: (string | null | undefined)[]
 }
 export const fetchPolls = async ({ pollSlugs }: Props): Promise<PollInfo[]> =>
   axios
