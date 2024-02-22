@@ -1,7 +1,10 @@
 'use client'
 
 import HowToAct from '@/components/actions/HowToAct'
+import CategoriesAccordion from '@/components/results/CategoriesAccordion'
+import CategoriesChart from '@/components/results/CategoriesChart'
 import Separator from '@/design-system/layout/Separator'
+import Title from '@/design-system/layout/Title'
 import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
 import { useUser } from '@/publicodes-state'
 import { Group, Results } from '@/types/groups'
@@ -10,7 +13,6 @@ import InviteBlock from './groupResults/InviteBlock'
 import OwnerAdminSection from './groupResults/OwnerAdminSection'
 import ParticipantAdminSection from './groupResults/ParticipantAdminSection'
 import PointsFortsFaibles from './groupResults/PointsFortsFaibles'
-import VotreEmpreinte from './groupResults/VotreEmpreinte'
 
 type Props = {
   group: Group
@@ -45,13 +47,9 @@ export default function GroupResults({ group }: Props) {
       ) : (
         <Separator />
       )}
-
-      <VotreEmpreinte
-        categoriesFootprints={
-          results?.userFootprintByCategoriesAndSubcategories
-        }
-        membersLength={group?.participants?.length}
-      />
+      <Title tag="h2">Votre empreinte</Title>
+      <CategoriesChart />
+      <CategoriesAccordion />
 
       <Separator className="my-6" />
 

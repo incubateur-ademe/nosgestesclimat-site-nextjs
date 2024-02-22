@@ -1,18 +1,17 @@
 'use client'
 
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
+import { useSortedCategoriesByFootprint } from '@/hooks/useSortedCategoriesByFootprint'
 import { useRule } from '@/publicodes-state'
 import { twMerge } from 'tailwind-merge'
 import CategoryChartItem from './categoriesChart/CategoryChartItem'
 
 type Props = {
-  sortedCategories: string[]
   className?: string
 }
-export default function CategoriesChart({
-  sortedCategories,
-  className,
-}: Props) {
+export default function CategoriesChart({ className }: Props) {
+  const { sortedCategories } = useSortedCategoriesByFootprint()
+
   const { numericValue: firstCategoryValue } = useRule(sortedCategories[0])
 
   return (

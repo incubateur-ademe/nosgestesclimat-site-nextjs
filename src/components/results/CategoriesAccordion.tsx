@@ -1,14 +1,13 @@
 'use client'
 
 import Accordion from '@/design-system/layout/Accordion'
+import { useSortedCategoriesByFootprint } from '@/hooks/useSortedCategoriesByFootprint'
 import { useRule } from '@/publicodes-state'
 import AccordionItemWithRule from './categoriesAccordion/AccordionItemWithRule'
 
-type Props = {
-  sortedCategories: string[]
-}
+export default function CategoriesAccordion() {
+  const { sortedCategories } = useSortedCategoriesByFootprint()
 
-export default function CategoriesAccordion({ sortedCategories }: Props) {
   const { numericValue: maxCategoryValue } = useRule(
     sortedCategories?.[0] ?? ''
   )
