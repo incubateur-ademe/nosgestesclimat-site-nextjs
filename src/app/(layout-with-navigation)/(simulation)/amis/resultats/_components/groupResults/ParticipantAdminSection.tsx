@@ -4,7 +4,7 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
-import { useDeleteGroup } from '@/hooks/groups/useDeleteGroup'
+import { useRemoveParticipant } from '@/hooks/groups/useRemoveParticipant'
 import { useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
 import { captureException } from '@sentry/react'
@@ -18,8 +18,7 @@ type Props = {
 export default function ParticipantAdminSection({ group }: Props) {
   const [isConfirming, setIsConfirming] = useState(false)
 
-  const { mutateAsync: deleteUserOrGroupIfOwner, isSuccess } =
-    useDeleteGroup(true)
+  const { mutateAsync: removePartipant, isSuccess } = useRemoveParticipant()
 
   const { user } = useUser()
 
@@ -31,7 +30,7 @@ export default function ParticipantAdminSection({ group }: Props) {
     if (!group) return
 
     try {
-      await deleteUserOrGroupIfOwner({
+      await removePartipant({
         groupId: group?._id,
         userId: user?.userId || '',
       })

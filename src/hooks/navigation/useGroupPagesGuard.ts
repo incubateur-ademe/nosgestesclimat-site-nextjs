@@ -1,12 +1,21 @@
 import { linkToClassement } from '@/helpers/navigation/classementPages'
+import {
+  getLinkToGroupDashboard,
+  getLinkToGroupInvitation,
+} from '@/helpers/navigation/groupPages'
+import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
+import { useGroupIdInQueryParams } from '@/hooks/groups/useGroupIdInQueryParams'
+import { useDebug } from '@/hooks/useDebug'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useFetchGroup } from '../groups/useFetchGroup'
-import { useGroupIdInQueryParams } from '../groups/useGroupIdInQueryParams'
-import { useDebug } from '../useDebug'
 
-export function useGroupDashboardGuard() {
+type Props = {
+  isDashboard?: boolean
+}
+export function useGroupPagesGuard(
+  { isDashboard }: Props = { isDashboard: false }
+) {
   const router = useRouter()
 
   const { user, getCurrentSimulation } = useUser()
@@ -30,30 +39,45 @@ export function useGroupDashboardGuard() {
     setIsGuardInit(true)
 
     if (!currentSimulation) {
-      router.push('/404') // TODO: should throw an error
+      router.replace('/404') // TODO: should throw an error
       setIsGuardRedirecting(true)
       return
     }
 
     // If there is no groupId in the query params, we redirect to the classement page
     if (!groupIdInQueryParams) {
-      router.push(linkToClassement)
+      router.replace(linkToClassement)
       setIsGuardRedirecting(true)
       return
     }
 
-    // If there is a group but the user is not part of it, we redirect to the invitation page
+    // If we are on the dashboard and the user is not a part of the group, we redirect to the invitation page
     if (
+      isDashboard &&
       group &&
       !group?.participants?.some(
         (participant: { userId: string }) => participant.userId === user.userId
       )
     ) {
-      router.push(`/amis/invitation?groupId=${group?._id}`)
+      router.replace(getLinkToGroupInvitation({ group }))
+      setIsGuardRedirecting(true)
+      return
+    }
+
+    // If we are not on the dashboard and the user is a part of the group, we redirect to the dashboard
+    if (
+      !isDashboard &&
+      group &&
+      group?.participants?.some(
+        (participant: { userId: string }) => participant.userId === user.userId
+      )
+    ) {
+      router.replace(getLinkToGroupDashboard({ group }))
       setIsGuardRedirecting(true)
       return
     }
   }, [
+    isDashboard,
     isGuardInit,
     groupIdInQueryParams,
     currentSimulation,

@@ -1,53 +1,32 @@
 'use client'
 
+import GroupLoader from '@/components/groups/GroupLoader'
+import GroupNotFound from '@/components/groups/GroupNotFound'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { linkToClassement } from '@/helpers/navigation/classementPages'
-import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
+import { useGroupIdInQueryParams } from '@/hooks/groups/useGroupIdInQueryParams'
+import { useGroupPagesGuard } from '@/hooks/navigation/useGroupPagesGuard'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
-import { Participant } from '@/types/groups'
-import { useRouter } from 'next/navigation'
 import InvitationForm from './_components/InvitationForm'
 
-export default function RejoindreGroupePage({
-  searchParams,
-}: {
-  searchParams: { groupId: string }
-}) {
-  const { groupId } = searchParams
-
-  const router = useRouter()
+export default function RejoindreGroupePage() {
+  // Guarding the route and redirecting if necessary
+  const { isGuardInit, isGuardRedirecting } = useGroupPagesGuard()
 
   const { t } = useClientTranslation()
 
-  const { user } = useUser()
+  const { groupIdInQueryParams } = useGroupIdInQueryParams()
+  const { data: group, isFetching } = useFetchGroup(groupIdInQueryParams)
 
-  const userId = user?.userId
-
-  const { data: group } = useFetchGroup(groupId)
-
-  const groupURL = getLinkToGroupDashboard({ groupId })
-
-  if (!groupId) {
-    router.push(linkToClassement)
-    return
+  // If we are still fetching the group (or we are redirecting the user), we display a loader
+  if (!isGuardInit || isGuardRedirecting || isFetching) {
+    return <GroupLoader />
   }
 
-  // Show nothing if group is not fetched yet
+  // If the group doesn't exist, we display a 404 page
   if (!group) {
-    return null
-  }
-
-  // If user is already in the group, redirect to group page
-  if (
-    group?.participants?.find(
-      (participant: Participant) => participant.userId === userId
-    )
-  ) {
-    router.push(groupURL)
-    return
+    return <GroupNotFound />
   }
 
   return (

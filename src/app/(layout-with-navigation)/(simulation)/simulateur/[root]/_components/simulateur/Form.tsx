@@ -14,6 +14,7 @@ export default function Form() {
   const isDebug = useDebug()
 
   const {
+    progression,
     remainingQuestions,
     relevantAnsweredQuestions,
     currentQuestion,
@@ -28,6 +29,15 @@ export default function Form() {
   const { goToEndPage } = useEndPage()
 
   const [isInitialized, setIsInitialized] = useState(false)
+
+  // When we reach the end of the test (by clicking on the last navigation button),
+  // we wait for the progression to be updated before redirecting to the end page
+  const [shouldGoToEndPage, setShouldGoToEndPage] = useState(false)
+  useEffect(() => {
+    if (shouldGoToEndPage && progression === 1) {
+      goToEndPage()
+    }
+  }, [shouldGoToEndPage, progression, goToEndPage])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
 
@@ -83,7 +93,7 @@ export default function Form() {
         onComplete={() => {
           trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
 
-          goToEndPage()
+          setShouldGoToEndPage(true)
         }}
       />
     </div>

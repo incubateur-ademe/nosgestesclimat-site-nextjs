@@ -10,7 +10,7 @@ export function useFetchGroup(
     queryKey: ['group', groupId],
     queryFn: () =>
       axios
-        .post(`${GROUP_URL}/fetch-group`, {
+        .post(`${GROUP_URL}/fetch`, {
           groupId,
         })
         .then((response) => {

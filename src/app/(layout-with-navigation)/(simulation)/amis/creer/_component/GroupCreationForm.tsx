@@ -8,7 +8,7 @@ import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import { validateCreationForm } from '@/helpers/groups/validateCreationForm'
 import useCreateGroup from '@/hooks/groups/useCreateGroup'
-import { useFetchGroups } from '@/hooks/groups/useFetchGroups'
+import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
 import { useSendGroupConfirmationEmail } from '@/hooks/groups/useSendGroupConfirmationEmail'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -40,10 +40,7 @@ export default function GroupCreationForm() {
 
   const hasCompletedTest = currentSimulation?.progression === 1
 
-  const { data: groups } = useFetchGroups({
-    userId,
-    email,
-  })
+  const { data: groups } = useFetchGroupsOfUser()
 
   const { goToSimulateurPage } = useSimulateurPage()
 

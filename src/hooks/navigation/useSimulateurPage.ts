@@ -48,12 +48,12 @@ export function useSimulateurPage() {
 
       // If the user has seen the tutoriel we redirect him to the test
       if (tutorielSeen) {
-        router.push('/simulateur/bilan')
+        router.replace('/simulateur/bilan')
         return
       }
 
       // else we redirect him to the tutoriel page
-      router.push('/tutoriel')
+      router.replace('/tutoriel')
     },
     [
       currentSimulation,

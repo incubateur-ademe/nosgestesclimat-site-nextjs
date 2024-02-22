@@ -1,46 +1,26 @@
 import { GROUP_URL } from '@/constants/urls'
 import { useUser } from '@/publicodes-state'
-import { Simulation } from '@/publicodes-state/types'
-import { Group } from '@/types/groups'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 
-export function useUpdateGroup() {
-  const { user, getCurrentSimulation } = useUser()
-  const currentSimulation = getCurrentSimulation()
+type MutationFnType = {
+  groupId: string
+  name: string
+}
+export const useUpdateGroup = () => {
+  const queryClient = useQueryClient()
 
-  const { mutateAsync: updateGroupMember } = useMutation({
-    mutationFn: ({
-      group,
-      userId,
-      simulation,
-    }: {
-      group: Group
-      userId: string
-      simulation?: Simulation
-    }) =>
-      axios
-        .post(`${GROUP_URL}/update-member`, {
-          _id: group._id,
-          memberUpdates: {
-            userId,
-            simulation,
-          },
-        })
-        .then((response) => response.data),
+  const { user } = useUser()
+
+  return useMutation({
+    mutationFn: ({ groupId, name }: MutationFnType) =>
+      axios.post(GROUP_URL + '/update', {
+        groupId,
+        userId: user?.userId,
+        name,
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['group'] })
+    },
   })
-
-  async function handleUpdateGroup({ group }: { group: Group }) {
-    const groupId = group?._id
-
-    await updateGroupMember({
-      group,
-      userId: user?.userId ?? '',
-      simulation: currentSimulation,
-    })
-
-    return { groupId }
-  }
-
-  return { handleUpdateGroup }
 }

@@ -2,15 +2,12 @@ import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQueryParams'
-import { useDebug } from '../useDebug'
 
 export function useEndGuard() {
   const router = useRouter()
 
   const { getCurrentSimulation, tutorials } = useUser()
   const currentSimulation = getCurrentSimulation()
-
-  const isDebug = useDebug()
 
   const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
 
@@ -28,13 +25,14 @@ export function useEndGuard() {
       return
     }
 
-    // if we are in debug mode we do nothing
-    if (isDebug) {
+    // if there is a simulation id in the query params we do nothing
+    if (simulationIdInQueryParams) {
       return
     }
 
-    // if there is a simulation id in the query params we do nothing
-    if (simulationIdInQueryParams) {
+    // if the simulation is in a group, we redirect to the group results page
+    if (currentSimulation.group) {
+      router.replace(`/amis/resultats?groupId=${currentSimulation.group}`)
       return
     }
 
@@ -51,7 +49,7 @@ export function useEndGuard() {
     }
 
     // we redirect the user to the test page
-    router.push('/simulateur/bilan')
+    router.replace('/simulateur/bilan')
     setIsGuardRedirecting(true)
   }, [
     isGuardInit,
@@ -59,7 +57,6 @@ export function useEndGuard() {
     currentSimulation,
     router,
     tutorials,
-    isDebug,
   ])
 
   return { isGuardInit, isGuardRedirecting }

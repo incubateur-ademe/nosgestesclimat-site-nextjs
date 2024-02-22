@@ -14,14 +14,12 @@ import { captureException } from '@sentry/react'
 import { FormEvent, useState } from 'react'
 
 export default function InvitationForm({ group }: { group: Group }) {
-  const [prenom, setPrenom] = useState('')
   const [errorPrenom, setErrorPrenom] = useState('')
-  const [email, setEmail] = useState('')
   const [errorEmail, setErrorEmail] = useState('')
 
   const { t } = useClientTranslation()
 
-  const { user, getCurrentSimulation, updateCurrentSimulation } = useUser()
+  const { user, updateEmail, updateName, updateCurrentSimulation } = useUser()
 
   const groupBaseURL = `${window.location.origin}/amis`
 
@@ -29,12 +27,10 @@ export default function InvitationForm({ group }: { group: Group }) {
 
   const hasCompletedTest = progression === 1
 
-  const currentSimulation = getCurrentSimulation()
-
   const { goToSimulateurPage } = useSimulateurPage()
 
   const sendEmailToInvited = async () => {
-    if (!email) {
+    if (!user.email) {
       return
     }
 
@@ -44,8 +40,8 @@ export default function InvitationForm({ group }: { group: Group }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email,
-        name: prenom,
+        email: user.email,
+        name: user.name,
         groupName: group.name,
         groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
         shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
@@ -66,13 +62,13 @@ export default function InvitationForm({ group }: { group: Group }) {
     }
 
     // Inputs validation
-    if (!prenom) {
+    if (!user.name) {
       setErrorPrenom(t('Veuillez renseigner un prénom ou un pseudonyme.'))
       return
     }
     if (
-      email &&
-      !email.match(
+      user.email &&
+      !user.email.match(
         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
       )
     ) {
@@ -101,8 +97,8 @@ export default function InvitationForm({ group }: { group: Group }) {
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       <PrenomInput
-        prenom={prenom}
-        setPrenom={setPrenom}
+        prenom={user.name ?? ''}
+        setPrenom={updateName}
         errorPrenom={errorPrenom}
         setErrorPrenom={setErrorPrenom}
         data-cypress-id="member-name"
@@ -110,8 +106,8 @@ export default function InvitationForm({ group }: { group: Group }) {
 
       <div className="my-4">
         <EmailInput
-          email={email}
-          setEmail={setEmail}
+          email={user.email ?? ''}
+          setEmail={updateEmail}
           error={errorEmail}
           setError={setErrorEmail}
           label={
@@ -135,7 +131,7 @@ export default function InvitationForm({ group }: { group: Group }) {
       <Button
         type="submit"
         onClick={handleSubmit}
-        aria-disabled={!prenom}
+        aria-disabled={!user.name}
         data-cypress-id="button-join-group">
         {hasCompletedTest ? (
           <Trans>Rejoindre</Trans>
