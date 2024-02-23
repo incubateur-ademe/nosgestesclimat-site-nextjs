@@ -1,3 +1,4 @@
+import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
@@ -20,7 +21,7 @@ export function useEndPage() {
         router.push('/404') // TODO: should throw an error
         return
       }
-      console.log('goToEndPage', currentSimulation, progression, save)
+
       // If the simulation is finished and is in a poll or a group, we save it (unless save is false)
       if (
         progression === 1 &&
@@ -32,7 +33,9 @@ export function useEndPage() {
 
       // if the simulation is in a group, we redirect to the group results page
       if (currentSimulation.group) {
-        router.replace(`/amis/resultats?groupId=${currentSimulation.group}`)
+        router.replace(
+          getLinkToGroupDashboard({ groupId: currentSimulation.group })
+        )
         return
       }
 
@@ -49,7 +52,7 @@ export function useEndPage() {
 
     // if the simulation is in a group, we return the group results page
     if (currentSimulation.group) {
-      return `/amis/resultats?groupId=${currentSimulation.group}`
+      return getLinkToGroupDashboard({ groupId: currentSimulation.group })
     }
 
     // else we return the results page

@@ -4,6 +4,7 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
+import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useRemoveParticipant } from '@/hooks/groups/useRemoveParticipant'
 import { useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
@@ -36,7 +37,7 @@ export default function ParticipantAdminSection({ group }: Props) {
       })
 
       timeoutRef.current = setTimeout(() => {
-        router.push('/classement')
+        router.push(linkToClassement)
       }, 1750)
     } catch (error) {
       captureException(error)

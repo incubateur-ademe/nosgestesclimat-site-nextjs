@@ -1,3 +1,4 @@
+import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -32,7 +33,9 @@ export function useEndGuard() {
 
     // if the simulation is in a group, we redirect to the group results page
     if (currentSimulation.group) {
-      router.replace(`/amis/resultats?groupId=${currentSimulation.group}`)
+      router.replace(
+        getLinkToGroupDashboard({ groupId: currentSimulation.group })
+      )
       return
     }
 
