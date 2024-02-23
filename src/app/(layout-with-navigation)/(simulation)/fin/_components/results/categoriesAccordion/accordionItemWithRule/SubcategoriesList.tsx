@@ -1,10 +1,15 @@
-import { useEngine, useForm, useRule } from '@/publicodes-state'
+import { useEngine, useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import SubcategoryListItem from './subcategoriesList/SubcategoryListItem'
 
-export default function SubcategoriesList({ category }: { category: string }) {
+export default function SubcategoriesList({
+  category,
+  subcategories,
+}: {
+  category: DottedName
+  subcategories: Record<DottedName, DottedName[]>
+}) {
   const { getNumericValue, checkIfValid } = useEngine()
-
-  const { subcategories } = useForm()
 
   const sortedSubcategories = subcategories[category]
     ?.filter((subcategory: string) => checkIfValid(subcategory))

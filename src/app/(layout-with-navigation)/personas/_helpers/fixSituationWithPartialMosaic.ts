@@ -6,13 +6,14 @@ import {
   NGCRuleNode,
 } from '@/publicodes-state/types'
 import { Situation } from '@/types/simulation'
+import { PublicodesExpression } from 'publicodes'
 
 type Props = {
   situation: Situation
   everyMosaic: DottedName[]
   everyMosaicChildren: DottedName[]
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
-  safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
+  safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
 }
 
 const getMosaicChildrenGroup = (
