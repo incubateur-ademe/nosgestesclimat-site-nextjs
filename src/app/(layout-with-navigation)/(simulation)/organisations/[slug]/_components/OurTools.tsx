@@ -33,7 +33,7 @@ export default function OurTools() {
 
         <CTACard
           className="border border-grey-200 px-8"
-          overLabel={<Trans>Comparez vos données carbone</Trans>}
+          overLabel={<Trans>Valorisez vos données carbone</Trans>}
           title={<Trans>Impact CO2</Trans>}
           description={
             <Trans>
@@ -76,10 +76,6 @@ export default function OurTools() {
             )}>
             <Trans>Accéder au kit</Trans>
           </ButtonLink>
-
-          <div className="absolute -right-8 top-6 h-5 w-36 rotate-45 bg-secondary text-center text-sm text-white">
-            À venir
-          </div>
         </CTACard>
       </div>
     </section>
