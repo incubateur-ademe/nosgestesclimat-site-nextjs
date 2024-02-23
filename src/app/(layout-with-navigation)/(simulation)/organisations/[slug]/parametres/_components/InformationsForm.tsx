@@ -20,7 +20,7 @@ export default function InformationsForm({ organisation }: Props) {
   const { user } = useUser()
 
   const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
-    email: user?.administratorEmail ?? '',
+    email: user?.organisation?.administratorEmail ?? '',
   })
 
   const timeoutRef = useRef<NodeJS.Timeout>()

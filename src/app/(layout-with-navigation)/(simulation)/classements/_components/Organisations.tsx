@@ -11,7 +11,7 @@ export default function Organisations() {
   const { user } = useUser()
 
   const { data: organisation } = useFetchOrganisation({
-    email: user?.administratorEmail ?? '',
+    email: user?.organisation?.administratorEmail ?? '',
   })
 
   return (

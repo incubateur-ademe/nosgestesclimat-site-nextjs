@@ -17,14 +17,14 @@ export default function CreationPage() {
 
   const { t } = useClientTranslation()
 
-  const { user } = useUser()
+  const { user, updateUserOrganisation } = useUser()
 
   const { isError } = useFetchOrganisation({
-    email: user?.administratorEmail ?? '',
+    email: user?.organisation?.administratorEmail ?? '',
   })
 
   const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
-    email: user?.administratorEmail ?? '',
+    email: user?.organisation?.administratorEmail ?? '',
   })
 
   const router = useRouter()
@@ -79,6 +79,11 @@ export default function CreationPage() {
       if (!organisationUpdated?.slug) {
         throw new Error('No slug found')
       }
+
+      updateUserOrganisation({
+        name,
+        slug: organisationUpdated?.slug,
+      })
 
       router.push(`/organisations/${organisationUpdated?.slug}`)
     } catch (error: any) {

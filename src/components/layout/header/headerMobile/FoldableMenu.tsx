@@ -20,7 +20,7 @@ export default function FoldableMenu() {
               Profil
             </NavLink>
           </li>
-          {user?.administratorEmail && <OrganisationLink />}
+          {user?.organisation?.administratorEmail && <OrganisationLink />}
 
           <li>
             <div className="ml-2 h-[1px] w-4 bg-gray-400" />

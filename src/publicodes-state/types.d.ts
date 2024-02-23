@@ -9,6 +9,12 @@ import {
 
 export type DottedName = string
 
+export type UserOrganisationInfo = {
+  administratorEmail?: string
+  slug?: string
+  name?: string
+}
+
 export type User = {
   region: {
     code: string
@@ -24,7 +30,7 @@ export type User = {
   id: string
   hasSavedSimulation?: boolean
   loginExpirationDate?: Date
-  administratorEmail?: string
+  organisation?: UserOrganisationInfo
 }
 
 export type Rules = any

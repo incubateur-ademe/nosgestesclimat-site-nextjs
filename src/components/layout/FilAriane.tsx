@@ -15,7 +15,7 @@ export default function FilAriane() {
   const { user } = useUser()
 
   const { data: organisation } = useFetchOrganisation({
-    email: user?.administratorEmail ?? '',
+    email: user?.organisation?.administratorEmail ?? '',
   })
 
   if (!TARGETED_PATHS.some((path) => pathname.includes(path))) return null

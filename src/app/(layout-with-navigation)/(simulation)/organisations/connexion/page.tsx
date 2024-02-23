@@ -20,7 +20,7 @@ export default function Page() {
     isError,
     data: organisation,
   } = useFetchOrganisation({
-    email: user?.administratorEmail ?? '',
+    email: user?.organisation?.administratorEmail ?? '',
   })
 
   // Redirect to the organisation page if the user

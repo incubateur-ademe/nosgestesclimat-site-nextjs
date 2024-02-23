@@ -26,7 +26,7 @@ export default function ParametresPage() {
     isError,
     refetch,
   } = useFetchOrganisation({
-    email: user?.administratorEmail ?? '',
+    email: user?.organisation?.administratorEmail ?? '',
   })
 
   const { mutate: logoutOrganisation } = useLogoutOrganisation({

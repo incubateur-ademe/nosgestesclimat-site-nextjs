@@ -13,8 +13,15 @@ export default function OrganisationLink() {
   const { user } = useUser()
 
   const { data: organisation } = useFetchOrganisation({
-    email: user?.administratorEmail ?? '',
+    email: user?.organisation?.administratorEmail ?? '',
   })
+
+  const organisationName = organisation?.name ?? user?.organisation?.name
+
+  const formattedOrganisationName =
+    organisation?.name?.length > 14
+      ? `${organisation?.name.substring(0, 14).trim()}…`
+      : organisation?.name
 
   return (
     <NavLink
@@ -25,12 +32,8 @@ export default function OrganisationLink() {
       }
       icon={OrganisationIcon}
       title={t('Organisation')}>
-      {organisation?.name ? (
-        <span className="whitespace-nowrap">
-          {organisation?.name?.length > 14
-            ? `${organisation?.name.substring(0, 14).trim()}…`
-            : organisation?.name}
-        </span>
+      {organisationName ? (
+        <span className="whitespace-nowrap">{formattedOrganisationName}</span>
       ) : (
         <Trans>Organisation</Trans>
       )}

@@ -40,7 +40,7 @@ function getOrganisationEspaceItems({
         href: `/organisations/${params.slug}`,
         label: <span>{formatSlugToName(params.slug)}</span>,
         isActive: pathname === `/organisations/${params.slug}`,
-        isDisabled: !user?.administratorEmail,
+        isDisabled: !user?.organisation?.administratorEmail,
       })
     }
 

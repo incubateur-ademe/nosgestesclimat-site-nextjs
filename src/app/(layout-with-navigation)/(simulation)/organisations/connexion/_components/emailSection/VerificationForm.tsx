@@ -22,7 +22,7 @@ export default function VerificationForm() {
 
   const timeoutRef = useRef<NodeJS.Timeout>()
 
-  const { updateLoginExpirationDate, user } = useUser()
+  const { updateLoginExpirationDate, user, updateUserOrganisation } = useUser()
 
   // Reset the login expiration date if the user is logged in
   // and the login expiration date is in the past
@@ -41,7 +41,7 @@ export default function VerificationForm() {
     isPending: isPendingValidate,
     isSuccess: isSuccessValidate,
   } = useValidateVerificationCode({
-    email: user?.administratorEmail ?? '',
+    email: user?.organisation?.administratorEmail ?? '',
   })
 
   const {
@@ -52,7 +52,7 @@ export default function VerificationForm() {
     mutationFn: () =>
       axios
         .post(`${SERVER_URL}/organisations/send-verification-code`, {
-          email: user?.administratorEmail ?? '',
+          email: user?.organisation?.administratorEmail ?? '',
         })
         .then((response) => response.data),
   })
@@ -81,6 +81,11 @@ export default function VerificationForm() {
           router.push('/organisations/creation')
           return
         }
+
+        updateUserOrganisation({
+          name: organisation.name,
+          slug: organisation.slug,
+        })
 
         router.push(`/organisations/${organisation?.slug}`)
       }, 1000)
@@ -121,7 +126,7 @@ export default function VerificationForm() {
 
       <div>
         <VerificationContent
-          email={user?.administratorEmail ?? ''}
+          email={user?.organisation?.administratorEmail ?? ''}
           inputError={inputError}
           isSuccessValidate={isSuccessValidate}
           isPendingValidate={isPendingValidate}

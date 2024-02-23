@@ -22,7 +22,7 @@ export default function QuestionsComplementaires({
   const poll = organisation.polls[0]
 
   const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
-    email: user?.administratorEmail ?? '',
+    email: user?.organisation?.administratorEmail ?? '',
   })
 
   const timeoutRef = useRef<NodeJS.Timeout>()
