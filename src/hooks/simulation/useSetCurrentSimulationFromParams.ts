@@ -18,7 +18,6 @@ export function useSetCurrentSimulationFromParams() {
   const [isCorrectSimulationSet, setIsCorrectSimulationSet] = useState(false)
 
   useEffect(() => {
-    console.log('isCorrectSimulationSet', isCorrectSimulationSet)
     // If the simulation is already set from the query params, we do nothing
     if (isCorrectSimulationSet) return
 

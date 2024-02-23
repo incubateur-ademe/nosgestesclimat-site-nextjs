@@ -1,5 +1,6 @@
 import Separator from '@/design-system/layout/Separator'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { linkToClassement } from '@/helpers/navigation/classementPages'
 import Groups from './_components/Groups'
 import Organisations from './_components/Organisations'
 
@@ -9,7 +10,7 @@ export async function generateMetadata() {
     description:
       'Comparez vos résultats avec votre famille ou un groupe d’amis.',
     alternates: {
-      canonical: '/classement',
+      canonical: linkToClassement,
     },
   })
 }
