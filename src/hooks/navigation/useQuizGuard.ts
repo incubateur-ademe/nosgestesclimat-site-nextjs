@@ -1,3 +1,4 @@
+import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -24,7 +25,7 @@ export function useQuizGuard() {
     }
 
     if (progression !== 1) {
-      router.replace('/simulateur/bilan')
+      router.replace(getLinkToSimulateur())
       setIsGuardRedirecting(true)
       return
     }

@@ -5,6 +5,7 @@ import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
@@ -57,7 +58,7 @@ export default function Commencer() {
       <p>{t(texts[status])}</p>
       <div className="flex flex-col items-start gap-6">
         <ButtonLink
-          href="/simulateur/bilan"
+          href={getLinkToSimulateur()}
           onClick={() => {
             updateCurrentSimulation({
               defaultAdditionalQuestions: {
@@ -71,7 +72,7 @@ export default function Commencer() {
         </ButtonLink>
         {status !== 'notStarted' ? (
           <Link
-            href="/simulateur/bilan"
+            href={getLinkToSimulateur()}
             onClick={() => {
               initSimulation({
                 defaultAdditionalQuestions: {

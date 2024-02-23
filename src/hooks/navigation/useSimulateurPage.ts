@@ -1,3 +1,4 @@
+import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
@@ -48,7 +49,7 @@ export function useSimulateurPage() {
 
       // If the user has seen the tutoriel we redirect him to the test
       if (tutorielSeen) {
-        router.replace('/simulateur/bilan')
+        router.replace(getLinkToSimulateur())
         return
       }
 
@@ -76,7 +77,7 @@ export function useSimulateurPage() {
 
       // If the user has seen the tutoriel we return the test page link
       if (tutorielSeen) {
-        return '/simulateur/bilan'
+        return getLinkToSimulateur()
       }
 
       // else we return the tutoriel page link
