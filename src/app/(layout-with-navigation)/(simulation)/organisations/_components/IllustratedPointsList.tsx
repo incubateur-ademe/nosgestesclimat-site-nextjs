@@ -12,7 +12,7 @@ export default function IllustratedPointsList() {
               <Trans>Sensibilisez votre organisation</Trans>
             </h2>
 
-            <h3 className="text-2xl md:text-3xl">
+            <h3 className="text-2xl leading-10 md:text-3xl">
               <Trans>
                 Partagez une version personnalisée de Nos Gestes Climat
               </Trans>
@@ -47,7 +47,7 @@ export default function IllustratedPointsList() {
               <Trans>Statistiques et exports</Trans>
             </h2>
 
-            <h3 className="text-2xl md:text-3xl">
+            <h3 className="text-2xl leading-10 md:text-3xl">
               <Trans>Explorez, comparez et analysez vos données</Trans>
             </h3>
 
@@ -81,7 +81,7 @@ export default function IllustratedPointsList() {
               <Trans>Lien personnalisé & iframes</Trans>
             </h2>
 
-            <h3 className="text-2xl md:text-3xl">
+            <h3 className="text-2xl leading-10 md:text-3xl">
               <Trans>Intégrez Nos Gestes Climat à vos services</Trans>
             </h3>
 

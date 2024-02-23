@@ -75,6 +75,7 @@ export default function OurTools() {
               'Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet'
             )}>
             <Trans>Accéder au kit</Trans>
+            <ExternalLinkIcon className="ml-2 stroke-primary-700" />
           </ButtonLink>
         </CTACard>
       </div>

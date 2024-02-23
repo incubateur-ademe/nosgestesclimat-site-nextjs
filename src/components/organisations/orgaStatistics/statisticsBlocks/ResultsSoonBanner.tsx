@@ -40,7 +40,7 @@ export default function ResultsSoonBanner() {
                 <Trans>
                   Bientôt, vous verrez apparaître ici vos statistiques.
                 </Trans>
-              </span>
+              </span>{' '}
               {!isResultatsDetailles && (
                 <span>
                   <Trans>
