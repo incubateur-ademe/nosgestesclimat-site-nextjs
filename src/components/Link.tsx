@@ -33,7 +33,8 @@ export default function Link({
   const locale = useCurrentLocale(i18nConfig)
   const { t } = useClientTranslation()
 
-  const { shouldPreventNavigation } = useContext(PreventNavigationContext)
+  const { shouldPreventNavigation, handleUpdateShouldPreventNavigation } =
+    useContext(PreventNavigationContext)
 
   // If href includes ":" it must be an external link
   const localisedHref = href.includes(':')
@@ -45,12 +46,14 @@ export default function Link({
       if (
         !window.confirm(
           t(
-            'êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.'
+            'Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.'
           )
         )
       ) {
         e.preventDefault()
         e.stopPropagation()
+      } else {
+        handleUpdateShouldPreventNavigation(false)
       }
     }
   }

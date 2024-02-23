@@ -67,11 +67,14 @@ export default function Simulateur() {
     }
   }, [progression, router, isDebug, categories, getValue, questionFromUrl])
 
-  const { setShouldPreventNavigation } = useContext(PreventNavigationContext)
+  const { handleUpdateShouldPreventNavigation } = useContext(
+    PreventNavigationContext
+  )
 
   useEffect(() => {
-    setShouldPreventNavigation(true)
-  }, [setShouldPreventNavigation])
+    handleUpdateShouldPreventNavigation(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   if (!isInit) return null
 

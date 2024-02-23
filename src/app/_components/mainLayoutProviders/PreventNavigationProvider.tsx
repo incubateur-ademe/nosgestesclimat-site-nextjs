@@ -4,10 +4,10 @@ import { createContext, useEffect, useState } from 'react'
 
 export const PreventNavigationContext = createContext<{
   shouldPreventNavigation: boolean
-  setShouldPreventNavigation: (value: boolean) => void
+  handleUpdateShouldPreventNavigation: (value: boolean) => void
 }>({
   shouldPreventNavigation: false,
-  setShouldPreventNavigation: () => {},
+  handleUpdateShouldPreventNavigation: () => {},
 })
 
 export function PreventNavigationProvider({
@@ -31,9 +31,15 @@ export function PreventNavigationProvider({
     }
   }, [])
 
+  function handleUpdateShouldPreventNavigation(shouldPrevent: boolean) {
+    setShouldPreventNavigation(shouldPrevent)
+
+    window.onbeforeunload = shouldPrevent ? () => true : null
+  }
+
   return (
     <PreventNavigationContext.Provider
-      value={{ shouldPreventNavigation, setShouldPreventNavigation }}>
+      value={{ shouldPreventNavigation, handleUpdateShouldPreventNavigation }}>
       {children}
     </PreventNavigationContext.Provider>
   )
