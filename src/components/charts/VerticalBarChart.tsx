@@ -14,7 +14,7 @@ export default function VerticalBarChart({
   return (
     <Card
       className={twMerge(
-        'mt-4 h-[171px] w-full rounded-lg border-none bg-grey-100 p-3 shadow-none',
+        'mt-4 flex w-full justify-end rounded-lg border-none bg-grey-100 p-3 shadow-none',
         className
       )}>
       <ul className="flex h-full items-end justify-between gap-2">

@@ -3,8 +3,8 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
-import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 
 export default function GroupModePromotionBanner({
@@ -12,7 +12,7 @@ export default function GroupModePromotionBanner({
 }: {
   className?: string
 }) {
-  const { t } = useTranslation()
+  const { t } = useClientTranslation()
 
   return (
     <Card

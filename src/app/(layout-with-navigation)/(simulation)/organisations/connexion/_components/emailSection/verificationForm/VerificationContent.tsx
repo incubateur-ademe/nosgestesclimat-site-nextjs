@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import Image from 'next/image'
 import VerificationCodeInput from './VerificationCodeInput'
 
 type Props = {
@@ -20,6 +21,13 @@ export default function VerificationContent({
     <>
       <h2>
         <Trans>Vérifiez votre boîte e-mail !</Trans>
+        <Image
+          src="/images/organisations/envelop.svg"
+          width="24"
+          height="100"
+          alt=""
+          className="ml-2 inline-block align-baseline md:hidden"
+        />
       </h2>
 
       <p>

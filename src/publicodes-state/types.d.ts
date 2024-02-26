@@ -9,6 +9,12 @@ import {
 
 export type DottedName = string
 
+export type UserOrganisationInfo = {
+  administratorEmail?: string
+  slug?: string
+  name?: string
+}
+
 export type User = {
   region: {
     code: string
@@ -24,6 +30,8 @@ export type User = {
   userId: string
   hasSavedSimulation?: boolean
   loginExpirationDate?: Date
+  organisation?: UserOrganisationInfo
+  administratorEmail?: string
 }
 
 export type Rules = any
@@ -75,9 +83,10 @@ export type Simulation = {
   persona?: string
   computedResults?: ComputedResults
   progression?: number
-  defaultAdditionalQuestions?: Record<string, string>
+  defaultAdditionalQuestionsAnswers?: Record<string, string>
   poll?: string | null
   group?: string | null
+  userId?: string
 }
 
 export type Persona = {

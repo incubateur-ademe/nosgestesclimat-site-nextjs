@@ -24,8 +24,9 @@ export default function OrganisationDisclaimer() {
       <p className="overflow-visible before:absolute before:left-0 before:content-['🏢'] ">
         <Trans>
           Ce test vous est proposé par{' '}
-          <b>{isLoading ? '... ' : poll?.organisationInfo?.name}</b>. Vos
-          résultats seront partagés anonymement avec l’organisation
+          <b>{isLoading ? '... ' : poll?.organisationInfo?.name}</b>. En
+          participant vous acceptez que vos résultats sont partagés anonymement
+          avec cette organisation.
         </Trans>
       </p>
     </div>

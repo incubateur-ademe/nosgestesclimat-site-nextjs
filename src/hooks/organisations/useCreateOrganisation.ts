@@ -4,10 +4,11 @@ import axios from 'axios'
 
 export function useCreateOrganisation() {
   return useMutation({
-    mutationFn: ({ administratorEmail }: { administratorEmail: string }) =>
+    mutationFn: ({ email, userId }: { email: string; userId: string }) =>
       axios
         .post(`${SERVER_URL}/organisations/create`, {
-          administratorEmail,
+          email,
+          userId,
         })
         .then((response) => response.data),
   })

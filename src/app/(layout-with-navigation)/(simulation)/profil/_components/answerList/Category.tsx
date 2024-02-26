@@ -18,7 +18,7 @@ export default function Category({ category }: Props) {
   const { subcategories } = useForm()
 
   const [isOpen, setIsOpen] = useState(false)
-  const formattedCarbonFootprint = formatCarbonFootprint(value)
+  const formattedCarbonFootprint = formatCarbonFootprint(value as string)
 
   return (
     <div className="relative mb-4 w-full">

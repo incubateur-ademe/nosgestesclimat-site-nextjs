@@ -1,5 +1,10 @@
 import Trans from '@/components/translation/Trans'
-import { capitalizeString } from '@/utils/capitalizeString'
+import { User } from '@/publicodes-state/types'
+import { capitalizeEachWordInString } from '@/utils/capitalizeEachWordInString'
+
+function formatSlugToName(slug: string) {
+  return capitalizeEachWordInString(slug.replaceAll('-', ' '))
+}
 
 function getBaseItems({ pathname }: { pathname: string }) {
   return [
@@ -19,22 +24,35 @@ function getBaseItems({ pathname }: { pathname: string }) {
 function getOrganisationEspaceItems({
   pathname,
   params,
+  user,
+  isAdmin,
 }: {
   pathname: string
   params: any
+  user: User
+  isAdmin: boolean
 }) {
   const items = []
+
   if (params.slug) {
-    items.push({
-      href: `/organisations/${params.slug}`,
-      label: <span>{capitalizeString(String(params.slug))}</span>,
-      isActive: pathname === `/organisations/${params.slug}`,
-    })
+    if (isAdmin) {
+      items.push({
+        href: `/organisations/${params.slug}`,
+        label: <span>{formatSlugToName(params.slug)}</span>,
+        isActive: pathname === `/organisations/${params.slug}`,
+        isDisabled: !user?.organisation?.administratorEmail,
+      })
+    }
 
     if (pathname.includes('resultats-detailles')) {
       items.push({
         href: `/organisations/${params.slug}/resultats-detailles`,
-        label: <Trans>Résultats détaillés</Trans>,
+        label: (
+          <>
+            <Trans>Résultats détaillés</Trans>
+            {!isAdmin ? ` -  ${formatSlugToName(params.slug)}` : ''}
+          </>
+        ),
         isActive:
           pathname === `/organisations/${params.slug}/resultats-detailles`,
       })
@@ -54,9 +72,13 @@ function getOrganisationEspaceItems({
 export function getOrganisationItems({
   pathname,
   params,
+  user,
+  isAdmin,
 }: {
   pathname: string
   params: any
+  user: User
+  isAdmin: boolean
 }): {
   href: string
   label: string | JSX.Element
@@ -79,7 +101,7 @@ export function getOrganisationItems({
   }
 
   // These are the items for the organisation page
-  items.push(...getOrganisationEspaceItems({ pathname, params }))
+  items.push(...getOrganisationEspaceItems({ pathname, params, user, isAdmin }))
 
   return items
 }

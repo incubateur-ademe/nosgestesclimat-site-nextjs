@@ -1,8 +1,12 @@
 import ProfileIcon from '@/components/icons/ProfileIcon'
 import BurgerMenu from '@/design-system/layout/BurgerMenu'
+import { useUser } from '@/publicodes-state'
 import NavLink from '../NavLink'
+import OrganisationLink from '../_components/OrganisationLink'
 
 export default function FoldableMenu() {
+  const { user } = useUser()
+
   return (
     <BurgerMenu>
       {({ closeMenu, onFocus }) => (
@@ -16,6 +20,7 @@ export default function FoldableMenu() {
               Profil
             </NavLink>
           </li>
+          {user?.organisation?.administratorEmail && <OrganisationLink />}
 
           <li>
             <div className="ml-2 h-[1px] w-4 bg-gray-400" />

@@ -82,7 +82,7 @@ export default function RuleDetail({
         {Object.entries(ruleFormatted).map(([key, value]) => {
           return (
             <li key={key}>
-              <RuleDetail ruleData={value} context={context} />
+              <RuleDetail ruleData={value as any} context={context} />
             </li>
           )
         })}
@@ -107,7 +107,7 @@ export default function RuleDetail({
           <li key={key}>
             <div>{capitalizeString(key)}:</div>
             <div className="ml-4">
-              <RuleDetail ruleData={value} context={context} />
+              <RuleDetail ruleData={value as any} context={context} />
             </div>
           </li>
         )

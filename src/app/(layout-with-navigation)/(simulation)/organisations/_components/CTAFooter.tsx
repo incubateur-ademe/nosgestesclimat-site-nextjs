@@ -7,7 +7,7 @@ export default async function CTAFooter() {
   return (
     <section className="pb-24 pt-16">
       <div className="mx-auto max-w-5xl">
-        <div className="w-[34rem] max-w-full">
+        <div className="max-w-full md:w-[34rem]">
           <h2>
             <Trans>Créez votre compte organisation</Trans>
           </h2>
@@ -21,14 +21,14 @@ export default async function CTAFooter() {
             )}
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-col flex-wrap items-center gap-4 sm:flex-row">
             <ButtonLink href="/organisations/connexion">
               <Trans>Créer un compte</Trans>
             </ButtonLink>
 
             <ButtonLink
               color="text"
-              className="underline"
+              className="font-normal underline"
               href="/contact?motif=demo">
               <Trans>Demandez une démo</Trans>
             </ButtonLink>

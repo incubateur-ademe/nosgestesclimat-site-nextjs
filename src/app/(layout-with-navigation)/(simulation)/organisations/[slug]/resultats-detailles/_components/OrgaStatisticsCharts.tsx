@@ -12,19 +12,31 @@ export default function OrgaStatisticsCharts({
 }: {
   simulationRecaps: SimulationRecap[]
 }) {
+  if (!simulationRecaps || simulationRecaps?.length <= 1) return null
+
+  const maxValueOfAllCategories = simulationRecaps?.reduce((acc, obj) => {
+    Object.keys(obj.categories).forEach((category) => {
+      const roundedValue = Math.round(obj.categories[category] / 1000)
+      if (roundedValue > acc) {
+        acc = roundedValue
+      }
+    })
+    return acc
+  }, 0)
+
   // Calculate the mean for each category
-  const meanCategories =
-    simulationRecaps?.length > 0 ??
-    Object.keys(simulationRecaps?.[0]?.categories).map((category) => {
+  const meanCategories = Object.keys(simulationRecaps?.[0]?.categories).map(
+    (category) => {
       const mean = simulationRecaps?.reduce(
         (acc, obj) => acc + obj.categories[category],
         0
       )
       return {
         category,
-        value: mean / simulationRecaps?.length,
+        value: mean / 1000 / simulationRecaps?.length,
       }
-    })
+    }
+  )
 
   return (
     <section className="my-12 rounded-lg bg-grey-100 px-8 pb-4 pt-8">
@@ -50,9 +62,10 @@ export default function OrgaStatisticsCharts({
           <RepartitionChart
             maxValue={29}
             items={simulationRecaps.map(({ bilan, isCurrentUser }) => ({
-              value: bilan,
+              value: bilan / 1000,
               shouldBeHighlighted: isCurrentUser,
             }))}
+            id="bilan"
           />
 
           <div className="mt-4 flex items-baseline justify-between">
@@ -63,6 +76,13 @@ export default function OrgaStatisticsCharts({
                 <Trans>tonnes</Trans>
               </span>
             </span>
+
+            <div className="flex items-center gap-3">
+              <div className="h-4 w-1 bg-secondary" />
+              <p className="mb-0 text-sm text-gray-600">
+                <Trans>Votre résultat</Trans>
+              </p>
+            </div>
 
             <span>
               <strong className="text-lg">29</strong>{' '}
@@ -79,15 +99,15 @@ export default function OrgaStatisticsCharts({
           <Trans>Par catégorie</Trans>
         </h3>
         <ul>
-          {simulationRecaps?.length > 0 ??
+          {simulationRecaps?.length > 0 &&
             Object.keys(simulationRecaps[0].categories).map(
               (category, index) => (
                 <CategoryListItem
                   key={index}
                   category={category}
-                  // @ts-expect-error fix this
                   value={meanCategories ? meanCategories[index].value : 0}
                   simulationsRecap={simulationRecaps}
+                  maxValue={maxValueOfAllCategories}
                 />
               )
             )}
@@ -103,8 +123,15 @@ export default function OrgaStatisticsCharts({
               </span>
             </div>
 
+            <div className="flex items-center gap-3">
+              <div className="h-4 w-1 bg-secondary" />
+              <p className="mb-0 text-sm text-gray-600">
+                <Trans>Votre résultat</Trans>
+              </p>
+            </div>
+
             <div>
-              <strong className="text-lg">6</strong>{' '}
+              <strong className="text-lg">{maxValueOfAllCategories}</strong>{' '}
               <span>
                 <Trans>tonnes</Trans>
               </span>

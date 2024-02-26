@@ -9,9 +9,11 @@ import Trans from '../translation/Trans'
 
 export default function ExportDataButton({
   simulationRecaps,
+  color = 'secondary',
   ...props
 }: ButtonProps & {
   simulationRecaps: SimulationRecap[]
+  color?: 'primary' | 'secondary'
 }) {
   const [isLoading, setIsLoading] = useState(false)
 
@@ -21,12 +23,14 @@ export default function ExportDataButton({
     createXLSXFileAndDownload({
       data: simulationRecaps.map((simulation) => ({
         date: dayjs(simulation.date).format('DD/MM/YYYY'),
-        total: simulation.bilan,
-        transport: simulation.categories.transport,
-        alimentation: simulation.categories.alimentation,
-        logement: simulation.categories.logement,
-        divers: simulation.categories.divers,
-        'services sociétaux': simulation.categories['services sociétaux'],
+        total: Math.round(simulation.bilan),
+        transport: Math.round(simulation.categories.transport),
+        alimentation: Math.round(simulation.categories.alimentation),
+        logement: Math.round(simulation.categories.logement),
+        divers: Math.round(simulation.categories.divers),
+        'services sociétaux': Math.round(
+          simulation.categories['services sociétaux']
+        ),
       })),
       fileName: `export-donnees-nos-gestes-climat-${dayjs().format(
         'DD-MM-YYYY_HH-MM'
@@ -35,7 +39,7 @@ export default function ExportDataButton({
     })
   }
   return (
-    <Button disabled={isLoading} onClick={handleClick} {...props}>
+    <Button color={color} disabled={isLoading} onClick={handleClick} {...props}>
       <Trans>Exporter les données</Trans>
     </Button>
   )

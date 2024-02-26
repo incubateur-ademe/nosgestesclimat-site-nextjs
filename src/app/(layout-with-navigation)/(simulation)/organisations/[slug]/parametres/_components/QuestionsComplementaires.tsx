@@ -1,7 +1,9 @@
 import { useUpdateOrganisation } from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useUpdateOrganisation'
+import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
+import { useEffect, useRef, useState } from 'react'
 import ToggleField from './questionsComplementaires/ToggleField'
 
 type Props = {
@@ -13,13 +15,17 @@ export default function QuestionsComplementaires({
   organisation,
   refetchOrganisation,
 }: Props) {
+  const [isConfirmingUpdate, setIsConfirmingUpdate] = useState(false)
+
   const { user } = useUser()
 
   const poll = organisation.polls[0]
 
   const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
-    email: user?.email,
+    email: user?.organisation?.administratorEmail ?? '',
   })
+
+  const timeoutRef = useRef<NodeJS.Timeout>()
 
   const handleChange = async ({
     questionKey,
@@ -39,22 +45,51 @@ export default function QuestionsComplementaires({
       )
     }
 
+    // Always return an array with the same order, postalCode first if it is present, then birthdate
+    defaultAdditionalQuestions.sort((a, b) => {
+      if (a === 'postalCode') return -1
+      if (b === 'postalCode') return 1
+      return 0
+    })
+
     await updateOrganisation({
       defaultAdditionalQuestions,
     })
 
     refetchOrganisation()
+
+    setIsConfirmingUpdate(true)
+
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+
+    timeoutRef.current = setTimeout(() => {
+      setIsConfirmingUpdate(false)
+      timeoutRef.current = undefined
+    }, 2000)
   }
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
+  }, [])
 
   return (
     <section className="mb-12 mt-8">
       <h2>
         <Trans>Question complémentaires</Trans>
       </h2>
-      <p className="mb-8">
+      <p>
         <Trans>
           Vous avez la possibilité d’ajouter des questions complémentaires au
-          test pour vos statistiques
+          test pour vos statistiques.
+        </Trans>
+      </p>
+      <p className="mb-8 text-sm text-gray-500">
+        <Trans>
+          Vos questions additionnelles activées seront posées à chaque
+          participant en amont du test Nos Gestes Climat. Leur réponse sera
+          facultative.
         </Trans>
       </p>
 
@@ -79,6 +114,11 @@ export default function QuestionsComplementaires({
           label={<Trans>Quelle est votre année de naissance ?</Trans>}
         />
       </div>
+
+      <ModificationSaved
+        shouldShowMessage={isConfirmingUpdate}
+        label={<Trans>Modification sauvegardée</Trans>}
+      />
     </section>
   )
 }

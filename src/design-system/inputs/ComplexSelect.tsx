@@ -5,6 +5,7 @@ import Select, {
   MultiValue,
   SingleValue,
 } from 'react-select'
+import AsyncSelect from 'react-select/async'
 
 type Props = {
   options: (string | number | GroupBase<string | number>)[]
@@ -17,11 +18,13 @@ type Props = {
     newValue: MultiValue<string | number> | SingleValue<string | number>,
     actionMeta: ActionMeta<string | number>
   ) => void
-  value: string | number
+  value?: string | number | GroupBase<string | number>
   required?: boolean
   isMulti?: boolean
   isClearable?: boolean
   isSearchable?: boolean
+  isAsync?: boolean
+  styles?: any
 }
 
 export default function ComplexSelect({
@@ -37,8 +40,12 @@ export default function ComplexSelect({
   onChange,
   value,
   required = false,
+  isAsync = false,
+  styles,
   ...props
 }: PropsWithChildren<Props>) {
+  const SelectTag = isAsync ? AsyncSelect : Select
+
   return (
     <div className={`flex flex-col ${className}`} aria-live="polite">
       <label htmlFor={name}>
@@ -54,7 +61,8 @@ export default function ComplexSelect({
         <span className="mt-1 text-xs text-slate-500">{helperText}</span>
       )}
 
-      <Select
+      <SelectTag
+        // @ts-expect-error fix me
         defaultValue={value}
         options={options}
         isMulti={isMulti}
@@ -79,6 +87,12 @@ export default function ComplexSelect({
             fontSize: '0.875rem',
             cursor: 'pointer',
           }),
+          ...styles,
+        }}
+        components={{
+          NoOptionsMessage: () => (
+            <span className="p-1 pl-2 text-sm">Aucune option disponible</span>
+          ),
         }}
         {...props}
       />

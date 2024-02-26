@@ -1,5 +1,9 @@
+'use client'
+
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import axios from 'axios'
-import AsyncSelect from 'react-select/async'
+import { useState } from 'react'
+import ComplexSelect from './ComplexSelect'
 
 type Props = {
   postalCode?: string
@@ -18,31 +22,49 @@ type City = {
 }
 
 export default function PostalCodeInput({ postalCode, setPostalCode }: Props) {
+  const { t } = useClientTranslation()
+  const [searchValue, setSearchValue] = useState('')
+
   return (
-    <AsyncSelect
+    <ComplexSelect
       className="max-w-[30rem]"
       classNames={{
         control: () =>
           `p-0 border-grey-300 rounded-md border border-solid !bg-grey-100  text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500`,
+
         valueContainer: () => `!p-4`,
         input: () => `!p-0 !m-0 border-none`,
       }}
+      isAsync
+      isSearchable
       cacheOptions
       value={
         postalCode
           ? {
+              // @ts-expect-error fix me
               value: postalCode,
               label: postalCode,
             }
-          : null
+          : undefined
       }
+      styles={{
+        menu: (baseStyles: any) => ({
+          ...baseStyles,
+          display: searchValue ? 'block' : 'none',
+        }),
+      }}
+      placeholder={t('Veuillez entrer votre code postal')}
+      // @ts-expect-error fix me
       onChange={(choice: Suggestion | null) =>
         setPostalCode(choice?.value || '')
       }
-      loadOptions={(search) => {
+      loadOptions={(search: string) => {
         if (search.length < 2) {
           return Promise.resolve([])
         }
+
+        setSearchValue(search)
+
         return axios
           .get(
             `https://geo.api.gouv.fr/departements/${search.substring(
@@ -68,6 +90,13 @@ export default function PostalCodeInput({ postalCode, setPostalCode }: Props) {
               []
             )
           )
+      }}
+      components={{
+        NoOptionsMessage: () => (
+          <span className="text-grey-700 p-1 pl-2 text-xs">
+            Oups, nous n'avons pas trouvé de correspondances
+          </span>
+        ),
       }}
     />
   )

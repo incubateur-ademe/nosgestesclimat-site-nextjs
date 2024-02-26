@@ -6,6 +6,7 @@ import CategoriesChart from '@/components/results/CategoriesChart'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
+import { useIsGroupOwner } from '@/hooks/groups/useIsGroupOwner'
 import { useUser } from '@/publicodes-state'
 import { Group, Results } from '@/types/groups'
 import Classement from './groupResults/Classement'
@@ -20,7 +21,7 @@ type Props = {
 export default function GroupResults({ group }: Props) {
   const { user } = useUser()
 
-  const isOwner = group?.administrator?.userId === user.userId
+  const { isGroupOwner } = useIsGroupOwner({ group })
 
   const results: Results | null = useGetGroupStats({
     groupMembers: group.participants,
@@ -57,9 +58,11 @@ export default function GroupResults({ group }: Props) {
 
       <Separator className="my-6" />
 
-      {isOwner && <OwnerAdminSection group={group} />}
-
-      {!isOwner && <ParticipantAdminSection group={group} />}
+      {isGroupOwner ? (
+        <OwnerAdminSection group={group} />
+      ) : (
+        <ParticipantAdminSection group={group} />
+      )}
     </>
   )
 }

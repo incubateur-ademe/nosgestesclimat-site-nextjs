@@ -56,7 +56,7 @@ export default function Email() {
         className="text-lg md:text-2xl"
         title={<Trans>Votre adresse email</Trans>}
         subtitle={t(
-          'Pour conserver vos résultats et les retrouver à l’avenir - facultatif'
+          'Pour conserver vos résultats et les retrouver à l’avenir (facultatif)'
         )}
       />
       <EmailInput

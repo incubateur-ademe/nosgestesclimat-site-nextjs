@@ -67,7 +67,8 @@ export default function GroupCreationForm() {
     try {
       trackEvent(matomoEventCreationGroupe)
 
-      const { name, emoji } = GROUP_NAMES[groups.length % GROUP_NAMES.length]
+      const { name, emoji } =
+        GROUP_NAMES[groups.length % GROUP_NAMES.length] ?? GROUP_NAMES[0]
 
       const group = await createGroup({
         groupInfo: {
@@ -124,7 +125,12 @@ export default function GroupCreationForm() {
           setEmail={setAdministratorEmail}
           error={errorEmail}
           setError={setErrorEmail}
-          label={t('Votre adresse email')}
+          label={
+            <span>
+              {t('Votre adresse email')}{' '}
+              <span className="italic text-secondary"> {t('facultatif')}</span>
+            </span>
+          }
         />
       </div>
 

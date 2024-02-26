@@ -22,7 +22,7 @@ export default function VerificationCodeInput({
       <VerificationInput
         length={6}
         classNames={{
-          container: 'container w-[20rem]',
+          container: 'container w-[16rem] md:w-[20rem]',
           character: `border border-gray-300 rounded-lg w-[2rem] text-transparent font-medium ${
             marianne.className
           } ${inputError ? '!border-red-700 border-2' : ''} ${

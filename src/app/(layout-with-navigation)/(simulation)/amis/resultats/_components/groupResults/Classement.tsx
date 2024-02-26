@@ -1,6 +1,6 @@
 'use client'
 
-import { Group } from '@/types/groups'
+import { Group, Participant } from '@/types/groups'
 import { formatValue } from 'publicodes'
 import { useState } from 'react'
 
@@ -38,7 +38,7 @@ export default function Classement({ group }: { group: Group }) {
       </div>
 
       <ul className="mt-2 rounded-md bg-primary-500 px-3 py-4 text-white">
-        {topThreeMembers.map((participant: any, index: number) => {
+        {topThreeMembers.map((participant: Participant, index: number) => {
           let rank
           switch (index) {
             case 0:
@@ -56,12 +56,9 @@ export default function Classement({ group }: { group: Group }) {
           const quantity = participant?.simulation?.computedResults?.bilan ? (
             <span className="m-none leading-[160%]">
               <strong>
-                {formatValue(
-                  parseFloat(participant?.simulation?.computedResults?.bilan),
-                  {
-                    language,
-                  }
-                )}
+                {formatValue(participant?.simulation?.computedResults?.bilan, {
+                  language,
+                })}
               </strong>{' '}
               <span className="text-sm font-light">
                 <Trans>tonnes</Trans>
@@ -89,21 +86,18 @@ export default function Classement({ group }: { group: Group }) {
           {restOfMembers.length > 0 &&
             restOfMembers
               .filter(
-                (member: any, index: number) =>
+                (member: Participant, index: number) =>
                   isExpanded || index + topThreeMembers?.length < 5
               )
-              .map((member: any, index: number) => {
+              .map((member: Participant, index: number) => {
                 const rank = `${index + 1 + topThreeMembers?.length}.`
 
-                const quantity = member?.simulation?.computedResults?.total ? (
+                const quantity = member?.simulation?.computedResults?.bilan ? (
                   <span className="leading-[160%]">
                     <strong>
-                      {formatValue(
-                        parseFloat(member?.simulation?.computedResults?.total),
-                        {
-                          language,
-                        }
-                      )}
+                      {formatValue(member?.simulation?.computedResults?.bilan, {
+                        language,
+                      })}
                     </strong>{' '}
                     <span className="text-sm font-light">
                       <Trans>tonnes</Trans>

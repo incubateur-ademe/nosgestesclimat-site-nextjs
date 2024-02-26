@@ -12,30 +12,35 @@ export default function VerticalBarChartItem({
   ariaLabel,
   title,
   icons,
+  ...props
 }: {
   ariaLabel: string
   index: number
   percentage: number
   title: string
-  value: number
+  value: string
   icons: React.ReactNode
 }) {
-  const { formattedValue, unit } = formatCarbonFootprint(value * 1000, {
-    maximumFractionDigits: 1,
-    shouldUseAbbreviation: true,
-  })
+  const { formattedValue, unit } = formatCarbonFootprint(
+    parseFloat(value) * 1000,
+    {
+      maximumFractionDigits: 1,
+      shouldUseAbbreviation: true,
+    }
+  )
 
   return (
     <li
       className="flex h-full flex-1 flex-col items-center justify-end gap-2"
-      aria-label={ariaLabel}>
+      aria-label={ariaLabel}
+      {...props}>
       <Badge className="text-xs">
         <strong>{formattedValue}</strong> {unit}
       </Badge>
       <div className="flex items-end">
         <BarChart
           type="vertical"
-          percentage={`calc(${percentage} * 16rem)`}
+          value={`calc(${percentage} * 6rem)`}
           index={index}
         />
       </div>

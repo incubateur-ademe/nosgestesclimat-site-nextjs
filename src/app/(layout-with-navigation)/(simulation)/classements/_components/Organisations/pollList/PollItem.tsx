@@ -19,6 +19,7 @@ export default function PollItem({ poll }: Props) {
             <div className="text-md font-bold text-gray-900">
               {poll.organisationInfo?.name}
             </div>
+
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
                 {poll.numberOfParticipants ?? 0} <Trans>participant</Trans>
@@ -27,6 +28,7 @@ export default function PollItem({ poll }: Props) {
             </div>
           </div>
         </div>
+
         <div className="flex items-center">
           <div className="flex-shrink-0">
             <ChevronRight />

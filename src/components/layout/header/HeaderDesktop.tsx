@@ -9,17 +9,27 @@ import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useUser } from '@/publicodes-state'
 import { usePathname } from 'next/navigation'
 import NavLink from './NavLink'
+import OrganisationLink from './_components/OrganisationLink'
 import CTAButton from './headerDesktop/CTAButton'
 import DebugIndicator from './headerDesktop/DebugIndicator'
 
-const HIDE_CTA_PATHS = ['/fin', '/simulateur/bilan', '/tutoriel', '/infos']
+const HIDE_CTA_PATHS = [
+  '/fin',
+  '/simulateur/bilan',
+  '/tutoriel',
+  '/infos',
+  '/organisations',
+]
 
 export default function HeaderDesktop() {
   const { t } = useClientTranslation()
 
   const pathname = usePathname()
+
+  const { user } = useUser()
 
   const { getLinkToSimulateurPage } = useSimulateurPage()
 
@@ -40,7 +50,7 @@ export default function HeaderDesktop() {
                     activeMatches={['/tutoriel', '/simulateur', '/fin']}
                     icon={BilanIcon}
                     title={t('Le test')}>
-                    <Trans>Le test</Trans>
+                    {t('Le\u202ftest')}
                   </NavLink>
                 </li>
 
@@ -55,11 +65,11 @@ export default function HeaderDesktop() {
 
                 <li className="px-4">
                   <NavLink
-                    href="/classement"
+                    href="/classements"
                     icon={AmisIcon}
                     title={t('Classement')}
                     data-cypress-id="amis-link">
-                    <Trans>Classement</Trans>
+                    <Trans>Classements</Trans>
                   </NavLink>
                 </li>
               </ul>
@@ -73,7 +83,12 @@ export default function HeaderDesktop() {
               <Trans>Profil</Trans>
             </NavLink>
 
-            {!HIDE_CTA_PATHS.find((path) => pathname.includes(path)) ? (
+            {user?.organisation?.administratorEmail ? (
+              <>
+                <div className="my-auto h-8 w-[1px] bg-grey-200" />
+                <OrganisationLink />
+              </>
+            ) : !HIDE_CTA_PATHS.find((path) => pathname.includes(path)) ? (
               <CTAButton />
             ) : null}
           </div>

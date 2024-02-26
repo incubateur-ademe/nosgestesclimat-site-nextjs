@@ -2,27 +2,58 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import Emoji from '@/design-system/utils/Emoji'
+import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useUser } from '@/publicodes-state'
 import { useContext } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
 const titles = {
-  notStarted: `Vous n'avez pas encore calculé votre empreinte carbone\u202f!`,
-  started: 'Vous avez déjà commencé le test Nos Gestes Climat\u202f!',
-  finished: 'Vous avez déjà réalisé le test Nos Gestes Climat\u202f!',
+  notStarted: (
+    <>
+      <Trans>Envie de connaître votre empreinte carbone ?</Trans>{' '}
+      <Emoji>🤓</Emoji>
+    </>
+  ),
+  started: (
+    <>
+      <Trans>Vous avez déjà commencé le test Nos Gestes Climat&nbsp;!</Trans>{' '}
+      <Emoji>💪</Emoji>
+    </>
+  ),
+  finished: (
+    <>
+      <Trans>Vous avez déjà réalisé le test Nos Gestes Climat&nbsp;!</Trans>{' '}
+      <Emoji>👏</Emoji>
+    </>
+  ),
 }
 const texts = {
-  notStarted:
-    'Passez le test Nos Gestes Climat, vous aurez la réponse dans 10 minutes.',
-  started: 'Vous pouvez reprendre votre test en cours, ou en recommencer un.',
-  finished:
-    'Vous pouvez utiliser vos données existantes, ou recommencer le test.',
+  notStarted: (
+    <>
+      <Trans>Calculez votre empreinte en</Trans>{' '}
+      <span className="font-bold text-primary-700">
+        <Trans>10 minutes</Trans>
+      </span>{' '}
+      <Trans>puis comparez vos résultats à ceux des autres participants.</Trans>{' '}
+    </>
+  ),
+  started: (
+    <Trans>
+      Vous pouvez reprendre votre test en cours, ou en recommencer un.
+    </Trans>
+  ),
+  finished: (
+    <Trans>
+      Vous pouvez utiliser vos données existantes, ou recommencer le test.
+    </Trans>
+  ),
 }
 const buttonLabels = {
   notStarted: 'Commencer le test',
@@ -31,14 +62,19 @@ const buttonLabels = {
 }
 
 export default function Commencer() {
-  const { t } = useClientTranslation()
-
   const { postalCode, birthdate } = useContext(InfosContext)
 
   const { pollSlug } = useOrganisationQueryParams()
 
-  const { getCurrentSimulation, initSimulation, updateCurrentSimulation } =
-    useUser()
+  const {
+    getCurrentSimulation,
+    initSimulation,
+    updateCurrentSimulation,
+    user,
+  } = useUser()
+
+
+  const { saveSimulation } = useSaveSimulation()
 
   const currentSimulation = getCurrentSimulation()
 
@@ -49,33 +85,38 @@ export default function Commencer() {
       : 'started'
 
   return (
-    <Card className={'items-start border-none bg-grey-100 pb-8'}>
+    <Card className={'items-start border-none bg-grey-100 p-8'}>
       <Title
         data-cypress-id="commencer-title"
-        className="text-lg md:text-2xl"
-        title={t(titles[status])}
+        className="text-lg md:text-xl"
+        title={titles[status]}
       />
-      <p>{t(texts[status])}</p>
+
+      <p className="mb-8">{texts[status]}</p>
+
       <div className="flex flex-col items-start gap-6">
         <ButtonLink
-          href={getLinkToSimulateur()}
+          href="/simulateur/bilan"
           onClick={() => {
             updateCurrentSimulation({
-              defaultAdditionalQuestions: {
+              defaultAdditionalQuestionsAnswers: {
                 postalCode,
                 birthdate,
               },
               poll: pollSlug || undefined,
             })
+            // We try to go to the simulateur page. If the test is finished we will save the simulation and then go to the end page
+            goToSimulateurPage()
           }}>
           {buttonLabels[status]}
-        </ButtonLink>
+        </Button>
+
         {status !== 'notStarted' ? (
           <Link
             href={getLinkToSimulateur()}
             onClick={() => {
               initSimulation({
-                defaultAdditionalQuestions: {
+                defaultAdditionalQuestionsAnswers: {
                   postalCode,
                   birthdate,
                 },

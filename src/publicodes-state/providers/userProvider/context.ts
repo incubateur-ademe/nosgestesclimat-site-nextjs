@@ -29,6 +29,7 @@ export default createContext<UserContextType>({
     email: '',
     userId: uuid(),
     hasSavedSimulation: false,
+    administratorEmail: '',
   },
   setUser: () => {},
   tutorials: {},

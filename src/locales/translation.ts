@@ -2,7 +2,12 @@
 	This module contains all types and functions related to the translation.
 */
 
+import { Lang, LangInfos, YamlEntry } from '@/types/translation'
 import { i18n } from 'i18next'
+import faqEnYaml from './faq/FAQ-en.yaml'
+import faqFrYaml from './faq/FAQ-fr.yaml'
+import uiEnYaml from './ui/ui-en.yaml'
+import uiFrYaml from './ui/ui-fr.yaml'
 import unitsYaml from './units.yaml'
 
 const parseYaml = (yaml: YamlEntry) => {
@@ -20,28 +25,11 @@ const parseYaml = (yaml: YamlEntry) => {
       }
 }
 
-import uiEnYaml from './ui/ui-en.yaml'
-import uiFrYaml from './ui/ui-fr.yaml'
-// Commented until validation by a native speaker
-// import uiEs from './ui/ui-es.yaml'
-// import uiIt from './ui/ui-it.yaml'
-
 const uiFr = parseYaml(uiFrYaml as unknown as YamlEntry)
 const uiEn = parseYaml(uiEnYaml as unknown as YamlEntry)
 
-import faqEnYaml from './faq/FAQ-en.yaml'
-import faqFrYaml from './faq/FAQ-fr.yaml'
-// Commented until validation by a native speaker
-// import faqEs from './faq/FAQ-es.yaml'
-// import faqIt from './faq/FAQ-it.yaml'
-
 const faqFr = parseYaml(faqFrYaml as unknown as YamlEntry)
 const faqEn = parseYaml(faqEnYaml as unknown as YamlEntry)
-
-import { Lang, LangInfos, YamlEntry } from '@/types/translation'
-// Commented until validation by a native speaker
-// import releasesEs from './releases/releases-es.json'
-// import releasesIt from './releases/releases-it.json'
 
 export const defaultLang = Lang.Fr
 
@@ -56,27 +44,6 @@ export function getLangInfos(lang: Lang): LangInfos {
         uiTrad: uiEn.entries,
       }
     }
-    // Commented until validation by a native speaker
-    // case Lang.Es: {
-    // 	return {
-    // 		name: 'Español',
-    // 		abrv: 'es',
-    // 		abrvLocale: 'es-ES',
-    // 		faqContent: faqEs,
-    // 		releases: releasesEs,
-    // 		uiTrad: uiEs.entries,
-    // 	}
-    // }
-    // case Lang.It: {
-    // 	return {
-    // 		name: 'Italiano',
-    // 		abrv: 'it',
-    // 		abrvLocale: 'it-IT',
-    // 		faqContent: faqIt,
-    // 		releases: releasesIt,
-    // 		uiTrad: uiIt.entries,
-    // 	}
-    // }
     case Lang.Fr:
     default: {
       return {
@@ -95,11 +62,6 @@ export function getLangFromAbreviation(abrv: string): Lang {
     case 'en':
       return Lang.En
 
-    // Commented until validation by a native speaker
-    // case 'es':
-    // 	return Lang.Es
-    // case 'it':
-    // 	return Lang.It
     case 'fr':
     default:
       return Lang.Default

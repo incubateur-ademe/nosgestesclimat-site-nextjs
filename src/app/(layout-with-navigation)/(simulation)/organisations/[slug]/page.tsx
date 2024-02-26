@@ -1,6 +1,5 @@
 'use client'
 
-import MaxWidthContent from '@/components/layout/MaxWidthContent'
 import OrgaStatistics from '@/components/organisations/OrgaStatistics'
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import Trans from '@/components/translation/Trans'
@@ -21,11 +20,11 @@ export default function OrganisationPage() {
   const { user } = useUser()
 
   const { data: organisation, isError } = useFetchOrganisation({
-    email: user.email,
+    email: user?.organisation?.administratorEmail ?? '',
   })
 
   const { data: pollData } = useFetchPollData({
-    enabled: !!organisation,
+    orgaSlug: organisation?.slug,
   })
 
   return (
@@ -34,56 +33,48 @@ export default function OrganisationPage() {
 
       {organisation && (
         <>
-          <MaxWidthContent className="mb-10 mt-12">
-            <div className="flex flex-wrap justify-between md:flex-nowrap">
-              <div>
-                <h1>
-                  <span>
-                    <Trans>Bienvenue</Trans>{' '}
-                    <span className="text-primary-500">
-                      {capitalizeString(
-                        organisation?.administrators?.[0]?.name
-                      )}
-                    </span>
-                    ,
+          <div className="mb-4 flex flex-wrap justify-between md:flex-nowrap">
+            <div>
+              <h1>
+                <span>
+                  <Trans>Bienvenue</Trans>{' '}
+                  <span className="text-primary-500">
+                    {capitalizeString(organisation?.administrators?.[0]?.name)}
                   </span>
-                </h1>
+                  ,
+                </span>
+              </h1>
 
-                <p className="max-w-sm">
-                  <Trans>Sur l'espace organisation de </Trans>{' '}
-                  <strong className="!text-primary-600">
-                    {organisation?.name}
-                  </strong>
-                  .{' '}
-                  <Trans>
-                    Partagez le test à votre réseau et suivez vos statistiques.
-                  </Trans>
-                </p>
-              </div>
-              <ButtonLink
-                href={`${pathname}/parametres`}
-                color="text"
-                className="self-start">
-                <Emoji className="mr-2">⚙️</Emoji>
-                <Trans>Voir les paramètres</Trans>
-              </ButtonLink>
+              <p className="max-w-sm">
+                <Trans>Sur l'espace organisation de </Trans>{' '}
+                <strong className="!text-primary-600">
+                  {organisation?.name}
+                </strong>
+                .{' '}
+                <Trans>
+                  Partagez le test à votre réseau et suivez vos statistiques.
+                </Trans>
+              </p>
             </div>
-          </MaxWidthContent>
+            <ButtonLink
+              href={`${pathname}/parametres`}
+              color="text"
+              className="self-start">
+              <Emoji className="mr-2">⚙️</Emoji>
+              <Trans>Voir les paramètres</Trans>
+            </ButtonLink>
+          </div>
 
-          <MaxWidthContent className="mb-8 mt-0">
-            <OrgaStatistics
-              funFacts={pollData?.funFacts}
-              simulationRecaps={pollData?.simulationRecaps ?? []}
-            />
-          </MaxWidthContent>
+          <OrgaStatistics
+            funFacts={pollData?.funFacts}
+            simulationRecaps={pollData?.simulationRecaps ?? []}
+          />
 
-          <ShareSection organisation={organisation} />
+          <ShareSection organisation={organisation} className="mb-8" />
 
-          <MaxWidthContent className="mt-12">
-            <OurTools />
+          <OurTools />
 
-            <NousContacter />
-          </MaxWidthContent>
+          <NousContacter />
         </>
       )}
     </>
