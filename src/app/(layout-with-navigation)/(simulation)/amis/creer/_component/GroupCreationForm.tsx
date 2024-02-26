@@ -67,7 +67,8 @@ export default function GroupCreationForm() {
     try {
       trackEvent(matomoEventCreationGroupe)
 
-      const { name, emoji } = GROUP_NAMES[groups.length % GROUP_NAMES.length]
+      const { name, emoji } =
+        GROUP_NAMES[groups.length % GROUP_NAMES.length] ?? GROUP_NAMES[0]
 
       const group = await createGroup({
         groupInfo: {
