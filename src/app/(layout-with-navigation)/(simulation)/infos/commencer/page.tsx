@@ -1,5 +1,6 @@
 'use client'
 
+import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
@@ -8,9 +9,8 @@ import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
-import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useUser } from '@/publicodes-state'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
 const titles = {
@@ -65,16 +65,10 @@ export default function Commencer() {
 
   const { pollSlug } = useOrganisationQueryParams()
 
-  const {
-    getCurrentSimulation,
-    initSimulation,
-    updateCurrentSimulation,
-    user,
-  } = useUser()
+  const { getCurrentSimulation, initSimulation, updateCurrentSimulation } =
+    useUser()
 
   const { goToSimulateurPage } = useSimulateurPage()
-
-  const { saveSimulation } = useSaveSimulation()
 
   const currentSimulation = getCurrentSimulation()
 
@@ -83,6 +77,15 @@ export default function Commencer() {
     : currentSimulation?.progression === 1
       ? 'finished'
       : 'started'
+
+  const { handleUpdateShouldPreventNavigation } = useContext(
+    PreventNavigationContext
+  )
+
+  useEffect(() => {
+    handleUpdateShouldPreventNavigation(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Card className={'items-start border-none bg-grey-100 p-8'}>

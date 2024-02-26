@@ -73,9 +73,8 @@ export default function Form() {
     }
   }, [setQuestionInQueryParams, currentQuestion, isInitialized])
 
-  const { handleUpdateShouldPreventNavigation } = useContext(
-    PreventNavigationContext
-  )
+  const { handleUpdateShouldPreventNavigation, shouldPreventNavigation } =
+    useContext(PreventNavigationContext)
 
   if (!isInitialized || !currentQuestion) {
     return
@@ -98,7 +97,9 @@ export default function Form() {
         onComplete={() => {
           trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
 
-          handleUpdateShouldPreventNavigation(false)
+          if (shouldPreventNavigation) {
+            handleUpdateShouldPreventNavigation(false)
+          }
 
           setShouldGoToEndPage(true)
         }}
