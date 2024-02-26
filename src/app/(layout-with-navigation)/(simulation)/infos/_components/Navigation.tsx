@@ -1,17 +1,21 @@
+import { getParticipantInscriptionPageVisitedEvent } from '@/constants/matomo/organisations'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
   linkToPrev: string
   handleSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void
   submitDisabled?: boolean
+  currentPage: string
 }
 
 export default function Navigation({
   linkToPrev,
   handleSubmit,
   submitDisabled,
+  currentPage,
 }: Props) {
   const { t } = useClientTranslation()
   return (
@@ -22,7 +26,11 @@ export default function Navigation({
 
       <Button
         data-cypress-id="next-button"
-        onClick={handleSubmit}
+        onClick={(event) => {
+          trackEvent(getParticipantInscriptionPageVisitedEvent(currentPage))
+
+          handleSubmit(event)
+        }}
         disabled={submitDisabled}>
         {t('Suivant') + ' →'}
       </Button>

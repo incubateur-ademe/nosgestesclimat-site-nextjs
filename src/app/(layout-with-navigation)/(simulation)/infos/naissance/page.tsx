@@ -48,6 +48,7 @@ export default function Birthdate() {
         linkToPrev={getLinkToPrevInfosPage({ curPage: BIRTHDATE_PAGE })}
         submitDisabled={!getLinkToNextInfosPage({ curPage: BIRTHDATE_PAGE })}
         handleSubmit={handleSubmit}
+        currentPage={BIRTHDATE_PAGE}
       />
     </form>
   )

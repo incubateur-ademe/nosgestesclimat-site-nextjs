@@ -3,6 +3,7 @@
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
+import { getParticipantInscriptionPageVisitedEvent } from '@/constants/matomo/organisations'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
@@ -10,6 +11,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useContext, useEffect } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
@@ -108,6 +110,9 @@ export default function Commencer() {
               },
               poll: pollSlug || undefined,
             })
+
+            trackEvent(getParticipantInscriptionPageVisitedEvent('commencer'))
+
             // We try to go to the simulateur page. If the test is finished we will save the simulation and then go to the end page
             goToSimulateurPage()
           }}>
