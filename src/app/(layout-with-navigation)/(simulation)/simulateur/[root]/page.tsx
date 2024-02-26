@@ -16,11 +16,8 @@ export default function SimulateurPage() {
 
   return (
     <div className="mx-auto w-full max-w-3xl">
-      <FormProvider root={params.root}>
-        <Simulateur />
-        <Faq />
-        <Tracking />
-      </FormProvider>
+      <Simulateur />
+      <Faq />
     </div>
   )
 }

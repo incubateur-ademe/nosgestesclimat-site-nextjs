@@ -83,16 +83,13 @@ export default function HeaderDesktop() {
               <Trans>Profil</Trans>
             </NavLink>
 
-            {user?.organisation?.administratorEmail && (
+            {user?.organisation?.administratorEmail ? (
               <>
                 <div className="my-auto h-8 w-[1px] bg-grey-200" />
                 <OrganisationLink />
               </>
-            )}
-
-            {!HIDE_CTA_PATHS.find((path) => pathname.includes(path)) &&
-            !user?.organisation?.administratorEmail ? (
-              <CTAButton progression={currentSimulation?.progression || 0} />
+            ) : !HIDE_CTA_PATHS.find((path) => pathname.includes(path)) ? (
+              <CTAButton />
             ) : null}
           </div>
         </div>

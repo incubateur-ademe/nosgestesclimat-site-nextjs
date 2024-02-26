@@ -21,7 +21,6 @@ export function useFetchPollData({ orgaSlug }: Props = {}): UseQueryResult<
         .post(SERVER_URL + '/organisations/fetch-poll-processed-data', {
           orgaSlug,
           email: user?.email,
-          fileName,
           userId: user?.userId,
         })
         .then((res) => res.data)
