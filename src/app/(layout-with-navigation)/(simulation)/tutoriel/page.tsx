@@ -31,7 +31,7 @@ export default async function Tutoriel() {
         className="text-lg md:text-2xl"
         title={
           <>
-            <span className="inline text-secondary">
+            <span className="text-secondary-500 inline">
               <Trans>10 minutes</Trans>
             </span>{' '}
             <Trans>chrono pour calculer votre empreinte sur le climat</Trans>

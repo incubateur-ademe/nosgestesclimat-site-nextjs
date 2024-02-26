@@ -78,7 +78,7 @@ export default function OrgaStatisticsCharts({
             </span>
 
             <div className="flex items-center gap-3">
-              <div className="h-4 w-1 bg-secondary" />
+              <div className="bg-secondary-500 h-4 w-1" />
               <p className="mb-0 text-sm text-gray-600">
                 <Trans>Votre résultat</Trans>
               </p>
@@ -124,7 +124,7 @@ export default function OrgaStatisticsCharts({
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="h-4 w-1 bg-secondary" />
+              <div className="bg-secondary-500 h-4 w-1" />
               <p className="mb-0 text-sm text-gray-600">
                 <Trans>Votre résultat</Trans>
               </p>

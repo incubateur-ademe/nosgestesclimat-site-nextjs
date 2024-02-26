@@ -1,27 +1,19 @@
-import Button from '@/design-system/inputs/Button'
+import ChoiceInput from '@/components/misc/ChoiceInput'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 
 type Props = {
+  answer: string | null
   choice: string
-  isHeaviest: boolean
-  isAnswerValidated: boolean
   setAnswer: (value: string) => void
 }
 
-export default function Choice({
-  choice,
-  isHeaviest,
-  isAnswerValidated,
-  setAnswer,
-}: Props) {
+export default function Choice({ answer, choice, setAnswer }: Props) {
   const { title, icons } = useRule(choice)
 
   return (
-    <Button
-      onClick={() => setAnswer(choice)}
-      className={isHeaviest && isAnswerValidated ? 'bg-red-500' : ''}>
-      <Emoji>{icons}</Emoji> {title}
-    </Button>
+    <ChoiceInput onClick={() => setAnswer(choice)} active={choice === answer}>
+      <Emoji>{icons?.slice(0, 2)}</Emoji> {title}
+    </ChoiceInput>
   )
 }

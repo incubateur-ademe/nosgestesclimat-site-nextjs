@@ -7,6 +7,7 @@ import { useMemo, useState } from 'react'
 import Choices from './_components/Choices'
 import Label from './_components/Label'
 import Navigation from './_components/Navigation'
+import Results from './_components/Results'
 
 export default function QuizPage() {
   // Guarding the route and redirecting if necessary
@@ -38,7 +39,6 @@ export default function QuizPage() {
   // Is the answer validated?
   const [isAnswerValidated, setIsAnswerValidated] = useState(false)
 
-  console.log('answer', answer)
   if (!isGuardInit || isGuardRedirecting) return null
 
   return (
@@ -48,11 +48,11 @@ export default function QuizPage() {
         isAnswerCorrect={isAnswerCorrect}
         isAnswerValidated={isAnswerValidated}
       />
-      <Choices
-        choices={choices}
-        isAnswerValidated={isAnswerValidated}
-        setAnswer={setAnswer}
-      />
+      {isAnswerValidated ? (
+        <Results choices={choices} />
+      ) : (
+        <Choices answer={answer} choices={choices} setAnswer={setAnswer} />
+      )}
       <Navigation
         answer={answer}
         isAnswerValidated={isAnswerValidated}

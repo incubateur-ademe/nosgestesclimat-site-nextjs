@@ -2,28 +2,23 @@ import { useMemo } from 'react'
 import Choice from './choices/Choice'
 
 type Props = {
+  answer: string | null
   choices: string[]
-  isAnswerValidated: boolean
   setAnswer: (value: string) => void
 }
 
-export default function Choices({
-  choices,
-  isAnswerValidated,
-  setAnswer,
-}: Props) {
+export default function Choices({ answer, choices, setAnswer }: Props) {
   const shuffledChoices = useMemo(() => {
-    return choices.sort(() => Math.random() - 0.5)
+    return [...choices].sort(() => Math.random() - 0.5)
   }, [choices])
 
   return (
-    <div>
+    <div className="mb-4">
       {shuffledChoices.map((choice) => (
         <Choice
           key={choice}
+          answer={answer}
           choice={choice}
-          isHeaviest={choice === choices[0]}
-          isAnswerValidated={isAnswerValidated}
           setAnswer={setAnswer}
         />
       ))}

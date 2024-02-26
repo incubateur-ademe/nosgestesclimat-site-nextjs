@@ -30,51 +30,75 @@ export default function Label({
   // If the answer is not yet validated, we display the question
   if (!isAnswerValidated) {
     return (
-      <Title>
-        Une devinette pour finir ! D’après vous, quel est{' '}
-        <span className="text-secondary">votre</span> poste le plus important ?
-      </Title>
+      <div className="mb-2">
+        <Title className="text-lg md:text-2xl">
+          {t('Une devinette pour finir\u202f!')}
+          <br className="hidden md:inline" />
+          <Trans>D’après vous, quel est</Trans>{' '}
+          <span className="text-secondary-500">
+            <Trans>votre</Trans>
+          </span>{' '}
+          {t('poste le plus important\u202f?')}
+        </Title>
+      </div>
     )
   }
 
-  // If the answer is right, we display a congratulation message
-  if (isAnswerCorrect === 'correct') {
-    return (
-      <div className="bg-primary-500 text-white">
-        <h1>{t('Bien vu\u202f!')}&nbsp;👌</h1>
+  const WrongComponent = () => (
+    <>
+      <h1 className="mb-4 text-lg md:text-2xl">{t('Loupé\u202f!')}&nbsp;😓</h1>
+      <p className="md:text-lg">
+        <Trans>Avec</Trans>{' '}
+        <span className="text-secondary-200">
+          {formattedValue} <Trans>{unit}</Trans>
+        </span>
+        , {title?.toLowerCase()} {t('est votre poste le plus important\u202f!')}{' '}
+        <Link href={linkToEndPage}>
+          <Trans>Découvrez vos résultats détaillés</Trans>
+        </Link>
+      </p>
+    </>
+  )
+
+  const AlmostComponent = () => (
+    <>
+      <h1 className="mb-4 text-lg md:text-2xl">
+        {t('Presque\u202f!')}&nbsp;🙃
+      </h1>
+      <p className="md:text-lg">
+        <Trans>Avec</Trans>{' '}
+        <span className="text-secondary-200">
+          {formattedValue} <Trans>{unit}</Trans>
+        </span>
+        , {title?.toLowerCase()} {t('est votre poste le plus important\u202f!')}{' '}
+        <Link href={linkToEndPage}>
+          <Trans>Découvrez vos résultats détaillés</Trans>
+        </Link>
+      </p>
+    </>
+  )
+
+  const CorrectComponent = () => (
+    <>
+      <h1 className="mb-4 text-lg md:text-2xl">
+        {t('Bien vu\u202f!')}&nbsp;👌
+      </h1>
+      <p className="md:text-lg">
         <Trans>Effectivement, avec</Trans> {formattedValue}{' '}
-        <Trans>{unit}</Trans>, {title}
+        <Trans>{unit}</Trans>, {title}{' '}
         {t('est votre poste le plus important\u202f!')}{' '}
         <Link href={linkToEndPage}>
           <Trans>Découvrez vos résultats détaillés</Trans>
         </Link>
-      </div>
-    )
-  }
+      </p>
+    </>
+  )
 
-  // If the answer is almost right, we display a less congratulating message
-  if (isAnswerCorrect === 'almost') {
-    return (
-      <div className="bg-primary-500 text-white">
-        <h1>{t('Presque\u202f!')}&nbsp;🙃</h1>
-        <Trans>Avec</Trans> {formattedValue} <Trans>{unit}</Trans>, {title}
-        {t('est votre poste le plus important\u202f!')}{' '}
-        <Link href={linkToEndPage}>
-          <Trans>Découvrez vos résultats détaillés</Trans>
-        </Link>
-      </div>
-    )
-  }
-
-  // Else, the answer is wrong and we display a message to inform the user
   return (
-    <div className="bg-primary-500 text-white">
-      <h1>{t('Loupé\u202f!')}&nbsp;😓</h1>
-      <Trans>Avec</Trans> {formattedValue} <Trans>{unit}</Trans>, {title}
-      {t('est votre poste le plus important\u202f!')}{' '}
-      <Link href={linkToEndPage}>
-        <Trans>Découvrez vos résultats détaillés</Trans>
-      </Link>
+    <div className="relative mb-4 overflow-hidden rounded-lg bg-primary-500 p-4 text-white">
+      {isAnswerCorrect === 'correct' ? <CorrectComponent /> : null}
+      {isAnswerCorrect === 'almost' ? <AlmostComponent /> : null}
+      {isAnswerCorrect === 'wrong' ? <WrongComponent /> : null}
     </div>
   )
 }
