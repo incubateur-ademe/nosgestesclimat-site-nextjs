@@ -1,16 +1,32 @@
+import { useMemo } from 'react'
+import Choice from './choices/Choice'
+
 type Props = {
-  answer: string | null
   choices: string[]
   isAnswerValidated: boolean
   setAnswer: (value: string) => void
 }
 
 export default function Choices({
-  answer,
   choices,
   isAnswerValidated,
   setAnswer,
 }: Props) {
-  return null
-  //return <div>{choices.map(choice => <Choice choice={choice} answer={answer} isAnswerValidated={isAnswerValidated})}</div>
+  const shuffledChoices = useMemo(() => {
+    return choices.sort(() => Math.random() - 0.5)
+  }, [choices])
+
+  return (
+    <div>
+      {shuffledChoices.map((choice) => (
+        <Choice
+          key={choice}
+          choice={choice}
+          isHeaviest={choice === choices[0]}
+          isAnswerValidated={isAnswerValidated}
+          setAnswer={setAnswer}
+        />
+      ))}
+    </div>
+  )
 }

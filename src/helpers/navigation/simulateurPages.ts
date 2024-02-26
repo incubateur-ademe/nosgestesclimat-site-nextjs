@@ -9,7 +9,7 @@ export const getLinkToSimulateur = ({ question }: Props = {}) => {
     return '/simulateur/bilan'
   }
   //
-  return `/simulateur/?question=${question
+  return `/simulateur/bilan?question=${question
     .replaceAll(' . ', '.')
     .replaceAll(' ', '_')}`
 }

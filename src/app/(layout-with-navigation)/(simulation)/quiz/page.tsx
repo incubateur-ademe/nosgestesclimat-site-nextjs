@@ -4,6 +4,7 @@ import { useQuizGuard } from '@/hooks/navigation/useQuizGuard'
 import { useSortedSubcategoriesByFootprint } from '@/hooks/useSortedSubcategoriesByFootprint'
 import { AnswerType } from '@/types/quiz'
 import { useMemo, useState } from 'react'
+import Choices from './_components/Choices'
 import Label from './_components/Label'
 import Navigation from './_components/Navigation'
 
@@ -31,12 +32,13 @@ export default function QuizPage() {
   const isAnswerCorrect = useMemo<AnswerType>(() => {
     if (answer === sortedSubcategories[0]) return 'correct'
     if (answer === sortedSubcategories[1]) return 'almost'
-    return 'false'
+    return 'wrong'
   }, [answer, sortedSubcategories])
 
   // Is the answer validated?
   const [isAnswerValidated, setIsAnswerValidated] = useState(false)
 
+  console.log('answer', answer)
   if (!isGuardInit || isGuardRedirecting) return null
 
   return (
@@ -47,7 +49,6 @@ export default function QuizPage() {
         isAnswerValidated={isAnswerValidated}
       />
       <Choices
-        answer={answer}
         choices={choices}
         isAnswerValidated={isAnswerValidated}
         setAnswer={setAnswer}

@@ -6,10 +6,9 @@ import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
-import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
+import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
-import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useUser } from '@/publicodes-state'
 import { useContext } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
@@ -66,15 +65,10 @@ export default function Commencer() {
 
   const { pollSlug } = useOrganisationQueryParams()
 
-  const {
-    getCurrentSimulation,
-    initSimulation,
-    updateCurrentSimulation,
-    user,
-  } = useUser()
+  const { getCurrentSimulation, initSimulation, updateCurrentSimulation } =
+    useUser()
 
-
-  const { saveSimulation } = useSaveSimulation()
+  const { goToSimulateurPage } = useSimulateurPage()
 
   const currentSimulation = getCurrentSimulation()
 
@@ -95,8 +89,7 @@ export default function Commencer() {
       <p className="mb-8">{texts[status]}</p>
 
       <div className="flex flex-col items-start gap-6">
-        <ButtonLink
-          href="/simulateur/bilan"
+        <Button
           onClick={() => {
             updateCurrentSimulation({
               defaultAdditionalQuestionsAnswers: {

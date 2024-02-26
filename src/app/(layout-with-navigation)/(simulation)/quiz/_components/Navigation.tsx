@@ -34,16 +34,14 @@ export default function Navigation({
         <ButtonLink color="secondary" href={linkToEndPage}>
           <Trans>Passer la question →</Trans>
         </ButtonLink>
-      ) : null}
-
-      {isAnswerValidated ? (
-        <Button onClick={() => setIsAnswerValidated(true)}>
-          <Trans>Valider</Trans>
-        </Button>
-      ) : (
+      ) : isAnswerValidated ? (
         <ButtonLink href={linkToEndPage}>
           <Trans>Voir mes résultats →</Trans>
         </ButtonLink>
+      ) : (
+        <Button onClick={() => setIsAnswerValidated(true)}>
+          <Trans>Valider</Trans>
+        </Button>
       )}
     </div>
   )

@@ -6,13 +6,12 @@ export function useSortedSubcategoriesByFootprint() {
   const { subcategories } = useSimulation()
   const { getNumericValue } = useEngine()
 
-  console.log(subcategories)
-
-  const everySubcategories = Object.keys(subcategories).reduce(
-    (acc, category) => {
-      return acc.concat(subcategories[category])
-    },
-    [] as DottedName[]
+  const everySubcategories = useMemo(
+    () =>
+      Object.keys(subcategories).reduce((acc, category) => {
+        return acc.concat(subcategories[category])
+      }, [] as DottedName[]),
+    [subcategories]
   )
 
   const sortedSubcategories = useMemo(() => {
