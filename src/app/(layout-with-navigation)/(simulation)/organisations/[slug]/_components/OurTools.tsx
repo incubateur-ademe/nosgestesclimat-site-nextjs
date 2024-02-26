@@ -1,8 +1,10 @@
 import Trans from '@/components/translation/Trans'
+import { getClickCtaToolsEvent } from '@/constants/matomo/organisations'
 import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import CTACard from './CTACard'
 
 export default function OurTools() {
@@ -24,6 +26,9 @@ export default function OurTools() {
             </Trans>
           }>
           <ButtonLink
+            onClick={() => {
+              trackEvent(getClickCtaToolsEvent('kit_diffusion'))
+            }}
             className="mt-auto w-full justify-center align-bottom"
             color="secondary"
             href="https://nosgestesclimat.fr/NGC_Kit.diffusion.zip">
@@ -47,6 +52,9 @@ export default function OurTools() {
             color="secondary"
             href="https://impactco2.fr/comparateur?mtm_campaign=ngc-orga"
             target="_blank"
+            onClick={() => {
+              trackEvent(getClickCtaToolsEvent('impactco2'))
+            }}
             aria-label={t(
               'Découvrez le simulateur, ouvrir dans un nouvel onglet'
             )}>
@@ -68,6 +76,9 @@ export default function OurTools() {
           }>
           <ButtonLink
             color="secondary"
+            onClick={() => {
+              trackEvent(getClickCtaToolsEvent('ateliers_abc'))
+            }}
             className="w-full justify-center"
             href="https://drive.google.com/drive/folders/1dORmBbDLDG31PLLOblP8Wg5CrrksAfjV"
             target="_blank"

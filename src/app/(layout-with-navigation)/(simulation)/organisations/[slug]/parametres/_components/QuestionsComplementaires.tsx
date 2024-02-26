@@ -1,8 +1,10 @@
 import { useUpdateOrganisation } from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useUpdateOrganisation'
 import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
+import { getClickAdditionalQuestionEvent } from '@/constants/matomo/organisations'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
 import ToggleField from './questionsComplementaires/ToggleField'
 
@@ -34,6 +36,8 @@ export default function QuestionsComplementaires({
     questionKey: string
     value: boolean
   }) => {
+    trackEvent(getClickAdditionalQuestionEvent(questionKey, value))
+
     const defaultAdditionalQuestions = poll?.defaultAdditionalQuestions ?? {}
 
     if (value && !defaultAdditionalQuestions.includes(questionKey)) {

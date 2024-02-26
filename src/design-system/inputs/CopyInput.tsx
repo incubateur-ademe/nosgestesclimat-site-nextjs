@@ -8,12 +8,14 @@ type Props = {
   textToCopy: string
   textToDisplay?: string
   className?: string
+  onClick?: () => void
 }
 
 export default function CopyInput({
   textToCopy,
   textToDisplay,
   className = '',
+  onClick,
 }: Props) {
   const [isCopied, setIsCopied] = useState(false)
 
@@ -31,6 +33,8 @@ export default function CopyInput({
           navigator.clipboard.writeText(textToCopy)
           setIsCopied(true)
           setTimeout(() => setIsCopied(false), 3000)
+
+          if (onClick) onClick()
         }}>
         {isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>}
       </Button>

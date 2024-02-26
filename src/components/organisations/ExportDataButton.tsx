@@ -7,17 +7,25 @@ import dayjs from 'dayjs'
 import { useState } from 'react'
 import Trans from '../translation/Trans'
 
+type Props = {
+  simulationRecaps: SimulationRecap[]
+  color?: 'primary' | 'secondary'
+  onClick?: () => void
+}
+
 export default function ExportDataButton({
   simulationRecaps,
   color = 'secondary',
+  onClick,
   ...props
-}: ButtonProps & {
-  simulationRecaps: SimulationRecap[]
-  color?: 'primary' | 'secondary'
-}) {
+}: ButtonProps & Props) {
   const [isLoading, setIsLoading] = useState(false)
 
   function handleClick() {
+    if (onClick) {
+      onClick()
+    }
+
     setIsLoading(true)
 
     createXLSXFileAndDownload({
