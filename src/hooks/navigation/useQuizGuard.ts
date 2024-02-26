@@ -1,6 +1,6 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useUser } from '@/publicodes-state'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export function useQuizGuard() {

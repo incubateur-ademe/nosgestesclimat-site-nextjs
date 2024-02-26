@@ -19,7 +19,11 @@ export default function formatCarbonFootprint(
     maximumFractionDigits: 1,
     shouldUseAbbreviation: false,
   }
-) {
+): {
+  formattedValue: string | number
+  unit: string | null
+  negative: boolean
+} {
   let numberValue = Number(value)
 
   const negative = numberValue < 0

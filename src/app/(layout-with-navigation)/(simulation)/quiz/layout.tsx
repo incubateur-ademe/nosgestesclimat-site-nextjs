@@ -5,13 +5,13 @@ import { PropsWithChildren } from 'react'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: "Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat",
+    title: 'Simulateur d’empreinte climat - Nos Gestes Climat',
     description:
-      "Vos résultats de tests de notre simulateur d'empreinte carbone.",
-    robots: noIndexObject,
+      'Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.',
     alternates: {
-      canonical: '/fin',
+      canonical: `/quiz`,
     },
+    robots: noIndexObject,
   })
 }
 
