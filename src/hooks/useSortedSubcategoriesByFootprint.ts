@@ -22,7 +22,7 @@ export function useSortedSubcategoriesByFootprint(
     [subcategories, noServiceSocietaux]
   )
 
-  const sortedSubcategories = useMemo(() => {
+  const sortedSubcategories = useMemo<DottedName[]>(() => {
     return everySubcategories.sort(
       (categoryA: DottedName, categoryB: DottedName) => {
         const valueA = getNumericValue(categoryA) ?? 0

@@ -1,10 +1,11 @@
+import { DottedName } from '@/publicodes-state/types'
 import { useMemo } from 'react'
 import Choice from './choices/Choice'
 
 type Props = {
-  answer: string | null
-  choices: string[]
-  setAnswer: (value: string) => void
+  answer: DottedName | null
+  choices: DottedName[]
+  setAnswer: (value: DottedName) => void
 }
 
 export default function Choices({ answer, choices, setAnswer }: Props) {

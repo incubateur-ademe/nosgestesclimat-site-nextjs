@@ -1,7 +1,9 @@
 'use client'
 
 import { useQuizGuard } from '@/hooks/navigation/useQuizGuard'
+import { useSaveQuizAnswer } from '@/hooks/quiz/useSaveQuizAnswer'
 import { useSortedSubcategoriesByFootprint } from '@/hooks/useSortedSubcategoriesByFootprint'
+import { DottedName } from '@/publicodes-state/types'
 import { AnswerType } from '@/types/quiz'
 import { useMemo, useState } from 'react'
 import Choices from './_components/Choices'
@@ -13,9 +15,12 @@ export default function QuizPage() {
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useQuizGuard()
 
+  const { saveQuizAnswer } = useSaveQuizAnswer()
+
   // The categories to choose from (we take the first, second, tenth, twelfth and twentieth subcategories by footprint)
   const { sortedSubcategories } = useSortedSubcategoriesByFootprint()
-  const choices = useMemo(
+
+  const choices = useMemo<DottedName[]>(
     () => [
       sortedSubcategories[0],
       sortedSubcategories[1],
@@ -27,7 +32,7 @@ export default function QuizPage() {
   )
 
   // The chosen answer
-  const [answer, setAnswer] = useState<null | string>(null)
+  const [answer, setAnswer] = useState<null | DottedName>(null)
 
   // Is the answer correct / almost correct / false?
   const isAnswerCorrect = useMemo<AnswerType>(() => {
@@ -56,7 +61,12 @@ export default function QuizPage() {
       <Navigation
         answer={answer}
         isAnswerValidated={isAnswerValidated}
-        setIsAnswerValidated={setIsAnswerValidated}
+        handleAnswerValidation={() => {
+          if (!answer) return
+
+          setIsAnswerValidated(true)
+          saveQuizAnswer({ answer, isAnswerCorrect })
+        }}
       />
     </>
   )

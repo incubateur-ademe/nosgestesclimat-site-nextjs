@@ -1,11 +1,12 @@
 import ChoiceInput from '@/components/misc/ChoiceInput'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 
 type Props = {
-  answer: string | null
-  choice: string
-  setAnswer: (value: string) => void
+  answer: DottedName | null
+  choice: DottedName
+  setAnswer: (value: DottedName) => void
 }
 
 export default function Choice({ answer, choice, setAnswer }: Props) {

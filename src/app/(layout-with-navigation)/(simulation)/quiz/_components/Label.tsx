@@ -32,7 +32,7 @@ export default function Label({
     return (
       <div className="mb-2">
         <Title className="text-lg md:text-2xl">
-          {t('Une devinette pour finir\u202f!')}
+          {t('Une devinette pour finir\u202f!')}{' '}
           <br className="hidden md:inline" />
           <Trans>D’après vous, quel est</Trans>{' '}
           <span className="text-secondary-500">
@@ -49,11 +49,14 @@ export default function Label({
       <h1 className="mb-4 text-lg md:text-2xl">{t('Loupé\u202f!')}&nbsp;😓</h1>
       <p className="md:text-lg">
         <Trans>Avec</Trans>{' '}
-        <span className="text-secondary-200">
+        <strong className="text-secondary-200">
           {formattedValue} <Trans>{unit}</Trans>
-        </span>
+        </strong>
         , {title?.toLowerCase()} {t('est votre poste le plus important\u202f!')}{' '}
-        <Link href={linkToEndPage}>
+        <br className="hidden md:inline" />
+        <Link
+          className="hover:text-secondary-200 focus:text-secondary-200 text-white"
+          href={linkToEndPage}>
           <Trans>Découvrez vos résultats détaillés</Trans>
         </Link>
       </p>
@@ -67,11 +70,14 @@ export default function Label({
       </h1>
       <p className="md:text-lg">
         <Trans>Avec</Trans>{' '}
-        <span className="text-secondary-200">
+        <strong className="text-secondary-200">
           {formattedValue} <Trans>{unit}</Trans>
-        </span>
+        </strong>
         , {title?.toLowerCase()} {t('est votre poste le plus important\u202f!')}{' '}
-        <Link href={linkToEndPage}>
+        <br className="hidden md:inline" />
+        <Link
+          className="hover:text-secondary-200 focus:text-secondary-200 text-white"
+          href={linkToEndPage}>
           <Trans>Découvrez vos résultats détaillés</Trans>
         </Link>
       </p>
@@ -84,10 +90,15 @@ export default function Label({
         {t('Bien vu\u202f!')}&nbsp;👌
       </h1>
       <p className="md:text-lg">
-        <Trans>Effectivement, avec</Trans> {formattedValue}{' '}
-        <Trans>{unit}</Trans>, {title}{' '}
-        {t('est votre poste le plus important\u202f!')}{' '}
-        <Link href={linkToEndPage}>
+        <Trans>Effectivement, avec</Trans>{' '}
+        <strong className="text-secondary-200">
+          {formattedValue} <Trans>{unit}</Trans>
+        </strong>
+        , {title} {t('est votre poste le plus important\u202f!')}{' '}
+        <br className="hidden md:inline" />
+        <Link
+          className="hover:text-secondary-200 focus:text-secondary-200 text-white"
+          href={linkToEndPage}>
           <Trans>Découvrez vos résultats détaillés</Trans>
         </Link>
       </p>

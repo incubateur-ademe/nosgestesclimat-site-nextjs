@@ -20,9 +20,9 @@ export default function HorizontalBarChartItem({
   index,
 }: Props) {
   return (
-    <div className="flex w-full items-center gap-8">
+    <div className="flex w-full items-center justify-between gap-8">
       <div
-        className="flex items-center gap-2 sm:min-w-full"
+        className="flex !min-w-0 flex-1 items-center gap-2 md:min-w-full"
         style={{
           minWidth: (minTitleWidth ?? 11) + 'rem',
         }}>

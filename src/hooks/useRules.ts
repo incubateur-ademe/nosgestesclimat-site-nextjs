@@ -31,5 +31,6 @@ export function useRules(
     queryKey: ['rules', locale, regionCode, isOptim, PRNumber],
     queryFn: () => getRules({ locale, regionCode, isOptim, PRNumber }),
     placeholderData: keepPreviousData,
+    staleTime: 5000000000, // We don't want to import the rule multiple times
   })
 }

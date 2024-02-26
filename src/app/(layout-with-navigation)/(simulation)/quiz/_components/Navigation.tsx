@@ -8,12 +8,12 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 type Props = {
   answer: string | null
   isAnswerValidated: boolean
-  setIsAnswerValidated: (value: boolean) => void
+  handleAnswerValidation: () => void
 }
 export default function Navigation({
   answer,
   isAnswerValidated,
-  setIsAnswerValidated,
+  handleAnswerValidation,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -39,7 +39,7 @@ export default function Navigation({
           <Trans>Voir mes résultats →</Trans>
         </ButtonLink>
       ) : (
-        <Button onClick={() => setIsAnswerValidated(true)}>
+        <Button onClick={handleAnswerValidation}>
           <Trans>Valider</Trans>
         </Button>
       )}
