@@ -18,3 +18,14 @@ export const getPreviewUrl = (PRNumber: string | number) => {
   }
   return `https://deploy-preview-${PRNumber}--ecolab-data.netlify.app`
 }
+
+export const HIDE_CTA_PATHS = [
+  '/fin',
+  '/simulateur/bilan',
+  '/tutoriel',
+  '/infos',
+  '/organisations/infos',
+  '/organisations/connexion',
+  '/organisations/creation',
+  '/organisations/demander-demo',
+]

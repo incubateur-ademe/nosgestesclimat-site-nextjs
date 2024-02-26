@@ -1,11 +1,18 @@
 import ProfileIcon from '@/components/icons/ProfileIcon'
+import { HIDE_CTA_PATHS } from '@/constants/urls'
 import BurgerMenu from '@/design-system/layout/BurgerMenu'
 import { useUser } from '@/publicodes-state'
+import { usePathname } from 'next/navigation'
 import NavLink from '../NavLink'
 import OrganisationLink from '../_components/OrganisationLink'
+import CTAButton from '../headerDesktop/CTAButton'
 
 export default function FoldableMenu() {
-  const { user } = useUser()
+  const { user, getCurrentSimulation } = useUser()
+
+  const currentSimulation = getCurrentSimulation()
+
+  const pathname = usePathname()
 
   return (
     <BurgerMenu>
@@ -21,6 +28,11 @@ export default function FoldableMenu() {
             </NavLink>
           </li>
           {user?.organisation?.administratorEmail && <OrganisationLink />}
+
+          {!HIDE_CTA_PATHS.find((path) => pathname.includes(path)) &&
+          !user?.organisation?.administratorEmail ? (
+            <CTAButton progression={currentSimulation?.progression || 0} />
+          ) : null}
 
           <li>
             <div className="ml-2 h-[1px] w-4 bg-gray-400" />
