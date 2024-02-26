@@ -3,8 +3,8 @@
 import QuestionButton from '@/components/misc/QuestionButton'
 import Trans from '@/components/translation/Trans'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useRule, useUser } from '@/publicodes-state'
-import { useTranslation } from 'react-i18next'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
 import Planet from './_components/Planet'
@@ -14,7 +14,7 @@ type Props = {
   toggleQuestionList?: () => void
 }
 export default function Total({ toggleQuestionList }: Props) {
-  const { t } = useTranslation()
+  const { t } = useClientTranslation()
 
   const { numericValue } = useRule('bilan')
 

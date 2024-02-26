@@ -3,7 +3,7 @@ import { getIsValidEmail } from '@/utils/getIsValidEmail'
 type ValidateFormProps = {
   administratorName: string
   setErrorAdministratorName: (error: string) => void
-  administratorEmail: string
+  administratorEmail?: string
   setErrorEmail: (error: string) => void
   t: (key: string) => string
 }
@@ -22,7 +22,7 @@ export const validateCreationForm = ({
     )
     return false
   }
-  if (!getIsValidEmail(administratorEmail)) {
+  if (administratorEmail && !getIsValidEmail(administratorEmail)) {
     setErrorEmail(t('Veuillez renseigner un email valide.'))
     return false
   }

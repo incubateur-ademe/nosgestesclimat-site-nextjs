@@ -1,5 +1,5 @@
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import { useTranslation } from 'react-i18next'
 
 type Props = {
   total: number
@@ -12,7 +12,7 @@ export default function Summary({
   averagePassengers,
   totalForOnePassenger,
 }: Props) {
-  const { t } = useTranslation()
+  const { t } = useClientTranslation()
   const locale = useLocale()
 
   return (

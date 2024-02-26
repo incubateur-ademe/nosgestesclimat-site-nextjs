@@ -1,8 +1,8 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Journey } from '@/types/journey'
 import { Dispatch, SetStateAction } from 'react'
-import { useTranslation } from 'react-i18next'
 
 type Props = {
   journey: Journey
@@ -30,7 +30,7 @@ export const labels: Record<string, string> = {
 }
 
 export default function JourneyItem({ journey, odd, setJourneys }: Props) {
-  const { t } = useTranslation()
+  const { t } = useClientTranslation()
 
   return (
     <tr
