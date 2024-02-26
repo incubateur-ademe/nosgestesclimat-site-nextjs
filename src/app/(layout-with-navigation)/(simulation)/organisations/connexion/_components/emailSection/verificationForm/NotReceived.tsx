@@ -4,6 +4,7 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useUser } from '@/publicodes-state'
 import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {
@@ -24,6 +25,8 @@ export default function NotReceived({
   const [shouldDisplayConfirmation, setShouldDisplayConfirmation] =
     useState(false)
   const { t } = useClientTranslation()
+
+  const { updateLoginExpirationDate } = useUser()
 
   const timeoutRef = useRef<NodeJS.Timeout>()
 
@@ -97,7 +100,7 @@ export default function NotReceived({
               size="sm"
               onClick={() => {
                 if (typeof window === 'undefined') return
-
+                updateLoginExpirationDate(undefined)
                 window.location.reload()
               }}>
               Recharger la page

@@ -5,8 +5,8 @@ import Image from 'next/image'
 
 export default function HeroSection() {
   return (
-    <div className="flex flex-wrap gap-12 pt-14 lg:flex-nowrap lg:gap-8">
-      <div className="w-[34rem] max-w-full">
+    <div className="flex flex-wrap justify-center gap-12 pt-14 lg:flex-nowrap lg:justify-start lg:gap-8">
+      <div className="max-w-full md:w-[34rem]">
         <h1>
           <Trans>Nos Gestes Climat pour les organisations</Trans>
         </h1>
@@ -32,7 +32,7 @@ export default function HeroSection() {
           <Trans>Découvrez nos outils pour vous simplifier la vie&nbsp;!</Trans>
         </p>
 
-        <div className="flex flex-wrap items-baseline justify-center gap-8 lg:justify-start">
+        <div className="flex flex-col flex-wrap items-center gap-8 md:flex-row md:items-baseline md:justify-center lg:justify-start">
           <ButtonLink href="/organisations/connexion" size="lg">
             <Trans>Commencez</Trans>
           </ButtonLink>
@@ -48,7 +48,7 @@ export default function HeroSection() {
           alt=""
           width="400"
           height="400"
-          className="mx-auto max-w-xs md:max-w-lg"
+          className="max-w-xs md:mx-auto md:max-w-lg"
         />
       </div>
     </div>

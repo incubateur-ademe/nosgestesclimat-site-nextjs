@@ -15,9 +15,12 @@ export default function SimulateurPage() {
   if (!isGuardInit || isGuardRedirecting) return null
 
   return (
-    <>
-      <Simulateur />
-      <Faq />
-    </>
+    <div className="mx-auto w-full max-w-3xl">
+      <FormProvider root={params.root}>
+        <Simulateur />
+        <Faq />
+        <Tracking />
+      </FormProvider>
+    </div>
   )
 }

@@ -27,8 +27,13 @@ export default function useUser() {
     setCurrentSimulationId,
   } = useContext(userContext)
 
-  const { updateName, updateEmail, updateRegion, updateLoginExpirationDate } =
-    useUserDetails({ setUser })
+  const {
+    updateName,
+    updateEmail,
+    updateRegion,
+    updateLoginExpirationDate,
+    updateUserOrganisation,
+  } = useUserDetails({ setUser })
 
   const {
     initSimulation,
@@ -71,6 +76,10 @@ export default function useUser() {
      * A setter for updating the user email
      */
     updateEmail,
+    /**
+     * A setter for updating the user's organisation information
+     */
+    updateUserOrganisation,
     /**
      * A setter for updating the user current region
      */

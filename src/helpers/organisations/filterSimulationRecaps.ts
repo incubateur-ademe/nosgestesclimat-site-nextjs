@@ -13,15 +13,14 @@ export function filterSimulationRecaps({
 }: Props) {
   return simulationRecaps.filter(({ defaultAdditionalQuestionsAnswers }) => {
     const birthYear = new Date(
-      defaultAdditionalQuestionsAnswers.birthDate
+      defaultAdditionalQuestionsAnswers.birthdate
     ).getFullYear()
 
     const postalCode = defaultAdditionalQuestionsAnswers.postalCode
-
     const isPassingAgeFilter =
       ageFilters.length === 0 ||
       ageFilters.some((ageFilter) => {
-        const [max, min] = ageFilter.value as [number, number]
+        const [min, max] = ageFilter.value as [number, number]
 
         const age = new Date().getFullYear() - birthYear
 
@@ -33,7 +32,6 @@ export function filterSimulationRecaps({
       postalCodeFilters.some(
         (filterObject) => filterObject.value === postalCode
       )
-
     return isPassingAgeFilter && isPassingPostalCodeFilter
   })
 }

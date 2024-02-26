@@ -1,4 +1,3 @@
-import { NodeValue } from '@/publicodes-state/types'
 type Options = {
   localize?: boolean
   locale?: string
@@ -7,7 +6,7 @@ type Options = {
 }
 
 export default function formatCarbonFootprint(
-  value: NodeValue,
+  value: string | number,
   {
     localize = true,
     locale = 'fr-FR',
@@ -20,7 +19,7 @@ export default function formatCarbonFootprint(
     shouldUseAbbreviation: false,
   }
 ) {
-  let numberValue = Number(value)
+  let numberValue = typeof value === 'number' ? value : parseFloat(value)
 
   const negative = numberValue < 0
 
@@ -49,7 +48,7 @@ export default function formatCarbonFootprint(
       ? tempValue.toLocaleString(locale, {
           maximumFractionDigits,
         })
-      : tempValue,
+      : tempValue.toFixed(maximumFractionDigits),
     unit,
     negative,
   }

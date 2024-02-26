@@ -36,14 +36,14 @@ export default function useSimulations({
     situation = {},
     persona,
     foldedSteps = [],
-    defaultAdditionalQuestions,
+    defaultAdditionalQuestionsAnswers,
     poll,
     group,
   }: {
     situation?: Situation
     persona?: string
     foldedSteps?: string[]
-    defaultAdditionalQuestions?: Record<string, string>
+    defaultAdditionalQuestionsAnswers?: Record<string, string>
     poll?: string
     group?: string
   } = {}) => {
@@ -60,7 +60,7 @@ export default function useSimulations({
         foldedSteps,
         actionChoices: {},
         persona,
-        defaultAdditionalQuestions,
+        defaultAdditionalQuestionsAnswers,
         poll,
         group,
       },
@@ -76,7 +76,7 @@ export default function useSimulations({
       situationToAdd,
       foldedStepToAdd,
       actionChoices,
-      defaultAdditionalQuestions,
+      defaultAdditionalQuestionsAnswers,
       computedResults,
       progression,
       poll,
@@ -84,7 +84,7 @@ export default function useSimulations({
     }: {
       situationToAdd?: Situation
       foldedStepToAdd?: string
-      defaultAdditionalQuestions?: Record<string, string>
+      defaultAdditionalQuestionsAnswers?: Record<string, string>
       actionChoices?: ActionChoices
       computedResults?: ComputedResults
       progression?: number
@@ -114,13 +114,12 @@ export default function useSimulations({
       }
 
       if (actionChoices !== undefined) {
-        simulationToUpdate.defaultAdditionalQuestions =
-          defaultAdditionalQuestions
+        simulationToUpdate.actionChoices = actionChoices
       }
 
-      if (defaultAdditionalQuestions !== undefined) {
-        simulationToUpdate.defaultAdditionalQuestions =
-          defaultAdditionalQuestions
+      if (defaultAdditionalQuestionsAnswers !== undefined) {
+        simulationToUpdate.defaultAdditionalQuestionsAnswers =
+          defaultAdditionalQuestionsAnswers
       }
 
       if (computedResults !== undefined) {
@@ -217,7 +216,7 @@ export default function useSimulations({
       ...prevSimulations,
       simulation,
     ])
-    setCurrentSimulationId(simulation.id)
+    setCurrentSimulationId(simulation.id ?? '')
   }
 
   const deleteSimulation = (deletedSimulationId: string) => {

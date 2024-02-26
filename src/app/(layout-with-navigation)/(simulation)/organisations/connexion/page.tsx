@@ -20,7 +20,7 @@ export default function Page() {
     isError,
     data: organisation,
   } = useFetchOrganisation({
-    email: user?.email,
+    email: user?.organisation?.administratorEmail ?? '',
   })
 
   // Redirect to the organisation page if the user
@@ -39,7 +39,7 @@ export default function Page() {
   }, [isError])
 
   return (
-    <section className="w-full bg-[#fff] pt-16">
+    <section className="w-full bg-[#fff]">
       <div className="mx-auto max-w-5xl px-6 lg:px-0">
         <h1>
           <Trans>Accédez à votre espace organisation</Trans>
@@ -51,7 +51,7 @@ export default function Page() {
 
         <Separator />
 
-        <div className="w-[40rem] max-w-full">
+        <div className="max-w-full md:w-[40rem]">
           <EmailSection />
         </div>
       </div>

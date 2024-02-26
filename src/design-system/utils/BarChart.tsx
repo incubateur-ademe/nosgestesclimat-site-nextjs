@@ -2,11 +2,11 @@ import { motion } from 'framer-motion'
 
 type Props = {
   type: 'vertical' | 'horizontal'
-  percentage: string
+  value: string
   index?: number
 }
 
-export default function BarChart({ type, percentage, index }: Props) {
+export default function BarChart({ type, value, index }: Props) {
   const propertyAffected = type === 'vertical' ? 'height' : 'width'
 
   return (
@@ -16,7 +16,7 @@ export default function BarChart({ type, percentage, index }: Props) {
       } rotate-180 rounded-lg bg-secondary`}
       initial={{ [propertyAffected]: 0, display: 'none' }}
       animate={{
-        [propertyAffected]: percentage,
+        [propertyAffected]: value,
         display: 'block',
       }}
       transition={{

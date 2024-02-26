@@ -106,6 +106,7 @@ export default function GetResultsByEmail({
             aria-label="Entrez votre adresse email"
             placeholder="jeanmarc@nosgestesclimat.fr"
             value={email}
+            defaultValue={user?.email ?? ''}
             onChange={(e) => setEmail(e.currentTarget.value)}
             required
             className="bg-white"

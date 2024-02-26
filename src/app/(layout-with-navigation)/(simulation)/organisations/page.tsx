@@ -6,8 +6,8 @@ import PartnersSection from './_components/PartnersSection'
 
 export default function Page() {
   return (
-    <section className="mx-auto w-full bg-[#fff] px-6 lg:px-0">
-      <div className="">
+    <section className="mx-none w-full bg-[#fff] md:mx-auto">
+      <div>
         <HeroSection />
 
         <Separator className="my-12" />

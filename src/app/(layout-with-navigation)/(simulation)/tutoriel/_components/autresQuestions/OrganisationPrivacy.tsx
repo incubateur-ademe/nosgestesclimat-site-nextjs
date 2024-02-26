@@ -22,7 +22,13 @@ export default function OrganisationPrivacy() {
         </summary>
         <div className="my-2 ml-3.5">
           <p>
-            <Trans>TO DO</Trans>
+            <Trans>
+              Vos données seront stockées de manière sécurisée et anonyme. Elles
+              seront agrégées à des fins statistiques ; lesdites statistiques
+              seront consultables sur la page "Rapport détaillé" de votre
+              sondage en fin de parcours. Cette page restera exclusivement
+              accessible aux participant·es ainsi qu'aux organisateur·ices.
+            </Trans>
           </p>
         </div>
       </details>
