@@ -1,11 +1,11 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { DottedName, NGCRules } from '@/publicodes-state/types'
 import Fuse from 'fuse.js'
 import { utils } from 'publicodes'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import RuleListItem from './RuleListIem'
 
 export type SearchItem = {
@@ -77,7 +77,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
     setResults(results)
   }, [searchIndex, input])
 
-  const { t } = useTranslation()
+  const { t } = useClientTranslation()
 
   return (
     <>

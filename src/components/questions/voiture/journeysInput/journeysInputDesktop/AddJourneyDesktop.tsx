@@ -6,9 +6,9 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Journey } from '@/types/journey'
 import { Dispatch, SetStateAction, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 import { v4 as uuid } from 'uuid'
 
@@ -18,7 +18,7 @@ type Props = {
 }
 
 export default function AddJourneyDesktop({ setJourneys, className }: Props) {
-  const { t } = useTranslation()
+  const { t } = useClientTranslation()
   const [label, setLabel] = useState('holidays')
   const [distance, setDistance] = useState('10')
   const [reccurrence, setReccurrence] = useState(1)

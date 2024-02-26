@@ -5,46 +5,32 @@ import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
+import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
-import { Group, SimulationResults } from '@/types/groups'
+import { useForm, useUser } from '@/publicodes-state'
+import { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
-import { useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
-import { getSimulationResults } from '../../_helpers/getSimulationResults'
-import { getGroupURL } from '../_helpers/getGroupURL'
-import { useAddUserToGroup } from '../_hooks/useAddUserToGroup'
 
 export default function InvitationForm({ group }: { group: Group }) {
-  const [prenom, setPrenom] = useState('')
   const [errorPrenom, setErrorPrenom] = useState('')
-  const [email, setEmail] = useState('')
   const [errorEmail, setErrorEmail] = useState('')
-
-  const groupURL = getGroupURL(group)
 
   const { t } = useClientTranslation()
 
-  const router = useRouter()
-
-  const { getCurrentSimulation, setGroupToRedirectToAfterTest, user } =
-    useUser()
+  const { user, updateEmail, updateName, updateCurrentSimulation } = useUser()
 
   const groupBaseURL = `${window.location.origin}/amis`
-
-  const { getValue } = useEngine()
 
   const { progression } = useForm()
 
   const hasCompletedTest = progression === 1
 
-  const currentSimulation = getCurrentSimulation()
-
-  const { mutateAsync: addUserToGroup } = useAddUserToGroup()
+  const { goToSimulateurPage } = useSimulateurPage()
 
   const sendEmailToInvited = async () => {
-    if (!email) {
+    if (!user.email) {
       return
     }
 
@@ -54,12 +40,12 @@ export default function InvitationForm({ group }: { group: Group }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email,
-        name: prenom,
+        email: user.email,
+        name: user.name,
         groupName: group.name,
         groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
         shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
-        deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${user?.id}&mtm_campaign=invitation-groupe-email`,
+        deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${user?.userId}&mtm_campaign=invitation-groupe-email`,
       }),
     })
   }
@@ -76,13 +62,13 @@ export default function InvitationForm({ group }: { group: Group }) {
     }
 
     // Inputs validation
-    if (!prenom) {
+    if (!user.name) {
       setErrorPrenom(t('Veuillez renseigner un prénom ou un pseudonyme.'))
       return
     }
     if (
-      email &&
-      !email.match(
+      user.email &&
+      !user.email.match(
         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
       )
     ) {
@@ -90,32 +76,19 @@ export default function InvitationForm({ group }: { group: Group }) {
       return
     }
 
-    const results: SimulationResults = getSimulationResults({
-      getValue,
-    })
-
     try {
-      await addUserToGroup({
-        results,
-        prenom,
-        email,
-        group,
-        userId: user?.id,
-        simulation: currentSimulation,
+      // Update current simulation with group id (to redirect after test completion)
+      updateCurrentSimulation({
+        group: group._id,
       })
 
       // Send email to invited friend confirming the adding to the group
       sendEmailToInvited()
 
-      // Si l'utilisateur a déjà une simulation de complétée, on le redirige vers le dashboard
-      if (hasCompletedTest) {
-        trackEvent(getMatomoEventJoinedGroupe(group?._id))
-        router.push(groupURL)
-      } else {
-        // sinon on le redirige vers le simulateur
-        setGroupToRedirectToAfterTest(group)
-        router.push('/simulateur/bilan')
-      }
+      trackEvent(getMatomoEventJoinedGroupe(group?._id))
+
+      // Redirect to simulateur page or end page
+      goToSimulateurPage()
     } catch (error) {
       captureException(error)
     }
@@ -124,8 +97,8 @@ export default function InvitationForm({ group }: { group: Group }) {
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       <PrenomInput
-        prenom={prenom}
-        setPrenom={setPrenom}
+        prenom={user.name ?? ''}
+        setPrenom={updateName}
         errorPrenom={errorPrenom}
         setErrorPrenom={setErrorPrenom}
         data-cypress-id="member-name"
@@ -133,8 +106,8 @@ export default function InvitationForm({ group }: { group: Group }) {
 
       <div className="my-4">
         <EmailInput
-          email={email}
-          setEmail={setEmail}
+          email={user.email ?? ''}
+          setEmail={updateEmail}
           error={errorEmail}
           setError={setErrorEmail}
           label={
@@ -158,7 +131,7 @@ export default function InvitationForm({ group }: { group: Group }) {
       <Button
         type="submit"
         onClick={handleSubmit}
-        aria-disabled={!prenom}
+        aria-disabled={!user.name}
         data-cypress-id="button-join-group">
         {hasCompletedTest ? (
           <Trans>Rejoindre</Trans>

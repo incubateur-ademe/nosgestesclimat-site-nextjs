@@ -27,10 +27,11 @@ export type User = {
   name: string
   email: string
   northStarRatings?: any // TODO: should be NorthStartType or something
-  id: string
+  userId: string
   hasSavedSimulation?: boolean
   loginExpirationDate?: Date
   organisation?: UserOrganisationInfo
+  administratorEmail?: string
 }
 
 export type Rules = any
@@ -74,7 +75,7 @@ export type ComputedResults = {
   categories: Record<string, number>
 }
 export type Simulation = {
-  id?: string
+  id: string
   date: Date | string
   situation: Situation
   foldedSteps: DottedName[]
@@ -83,8 +84,8 @@ export type Simulation = {
   computedResults?: ComputedResults
   progression?: number
   defaultAdditionalQuestionsAnswers?: Record<string, string>
-  poll?: string
-  group?: string
+  poll?: string | null
+  group?: string | null
   userId?: string
 }
 

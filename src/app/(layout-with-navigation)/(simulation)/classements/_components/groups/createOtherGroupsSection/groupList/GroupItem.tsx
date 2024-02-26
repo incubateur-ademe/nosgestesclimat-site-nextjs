@@ -3,6 +3,7 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import ChevronRight from '@/design-system/icons/ChevronRight'
+import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { Group } from '@/types/groups'
 
 type Props = {
@@ -13,7 +14,7 @@ type Props = {
 export default function GroupItem({ group }: Props) {
   return (
     <Link
-      href={`/amis/resultats?groupId=${group?._id}`}
+      href={getLinkToGroupDashboard({ groupId: group?._id })}
       className="mb-3 rounded-sm border-[1px] border-solid border-gray-200 bg-gray-100 px-5 py-2 no-underline decoration-auto">
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center">
@@ -26,12 +27,14 @@ export default function GroupItem({ group }: Props) {
             </div>
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
-                {group?.members?.length ?? 0} <Trans>participant</Trans>
-                {group?.members?.length > 1 ? 's' : ''}
+                {group?.participants?.length ?? 0} <Trans>participant</Trans>
+                {group?.participants?.length > 1 ? 's' : ''}
               </span>{' '}
               <span> - </span>{' '}
               <div className="inline w-24 overflow-hidden text-ellipsis whitespace-nowrap md:w-60">
-                {group?.members?.map((member) => member?.name).join(', ') ?? ''}
+                {group?.participants
+                  ?.map((participant) => participant?.name)
+                  .join(', ') ?? ''}
               </div>
             </div>
           </div>

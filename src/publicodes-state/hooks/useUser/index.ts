@@ -25,8 +25,6 @@ export default function useUser() {
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
-    groupToRedirectToAfterTest,
-    setGroupToRedirectToAfterTest,
   } = useContext(userContext)
 
   const {
@@ -162,13 +160,6 @@ export default function useUser() {
      * Reject the action choice of the current simulation
      */
     rejectAction,
-    /*
-     * When a user creates or joins a group without having a simulation, we lead him to the simulation page,
-     * and once completed we redirect him to the group page.
-     */
-    groupToRedirectToAfterTest,
-    setGroupToRedirectToAfterTest,
-
     /*
      * Update the hasSavedSimulation property of the user
      */

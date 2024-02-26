@@ -1,9 +1,10 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { BIRTHDATE_PAGE } from '@/constants/infosPages'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
-import { useAppNavigation } from '@/hooks/navigation/useAppNavigation'
+import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useCallback, useContext } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
@@ -12,7 +13,7 @@ import Navigation from '../_components/Navigation'
 export default function Birthdate() {
   const router = useRouter()
 
-  const { getLinkToInfosPage } = useAppNavigation()
+  const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
   const { birthdate, setBirthdate } = useContext(InfosContext)
 
@@ -22,9 +23,9 @@ export default function Birthdate() {
       event?.preventDefault()
 
       // Go to next page
-      router.push(getLinkToInfosPage(3))
+      router.push(getLinkToNextInfosPage({ curPage: BIRTHDATE_PAGE }))
     },
-    [router, getLinkToInfosPage]
+    [router, getLinkToNextInfosPage]
   )
 
   return (
@@ -44,7 +45,8 @@ export default function Birthdate() {
         }}
       />
       <Navigation
-        linkToPrev={getLinkToInfosPage(2)}
+        linkToPrev={getLinkToPrevInfosPage({ curPage: BIRTHDATE_PAGE })}
+        submitDisabled={!getLinkToNextInfosPage({ curPage: BIRTHDATE_PAGE })}
         handleSubmit={handleSubmit}
       />
     </form>

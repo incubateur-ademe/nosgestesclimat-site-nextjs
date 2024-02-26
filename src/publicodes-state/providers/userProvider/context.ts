@@ -1,6 +1,5 @@
 'use client'
 
-import { Group } from '@/types/groups'
 import { Dispatch, SetStateAction, createContext } from 'react'
 import { v4 as uuid } from 'uuid'
 import { Simulation, Tutorials, User } from '../../types'
@@ -14,8 +13,6 @@ type UserContextType = {
   setSimulations: Dispatch<SetStateAction<Simulation[]>>
   currentSimulationId: string
   setCurrentSimulationId: Dispatch<SetStateAction<string>>
-  groupToRedirectToAfterTest?: Group
-  setGroupToRedirectToAfterTest: Dispatch<SetStateAction<Group | undefined>>
 }
 
 export default createContext<UserContextType>({
@@ -30,7 +27,7 @@ export default createContext<UserContextType>({
     },
     name: '',
     email: '',
-    id: uuid(),
+    userId: uuid(),
     hasSavedSimulation: false,
     administratorEmail: '',
   },
@@ -41,6 +38,4 @@ export default createContext<UserContextType>({
   setSimulations: () => {},
   currentSimulationId: '',
   setCurrentSimulationId: () => {},
-  groupToRedirectToAfterTest: undefined,
-  setGroupToRedirectToAfterTest: () => {},
 })

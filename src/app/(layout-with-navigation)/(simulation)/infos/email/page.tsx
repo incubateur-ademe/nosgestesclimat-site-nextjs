@@ -1,9 +1,10 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { EMAIL_PAGE } from '@/constants/infosPages'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Title from '@/design-system/layout/Title'
-import { useAppNavigation } from '@/hooks/navigation/useAppNavigation'
+import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
@@ -16,7 +17,7 @@ export default function Email() {
 
   const router = useRouter()
 
-  const { linkToTutorial, getLinkToInfosPage } = useAppNavigation()
+  const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
   const { user, updateEmail } = useUser()
 
@@ -43,9 +44,9 @@ export default function Email() {
       updateEmail(email)
 
       // Go to next page
-      router.push(getLinkToInfosPage(1))
+      router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
     },
-    [email, updateEmail, t, router, getLinkToInfosPage]
+    [email, updateEmail, t, router, getLinkToNextInfosPage]
   )
 
   return (
@@ -65,9 +66,9 @@ export default function Email() {
         setError={setError}
       />
       <Navigation
-        linkToPrev={linkToTutorial}
+        linkToPrev={getLinkToPrevInfosPage({ curPage: EMAIL_PAGE })}
         handleSubmit={handleSubmit}
-        submitDisabled={!getLinkToInfosPage(1)}
+        submitDisabled={!getLinkToNextInfosPage({ curPage: EMAIL_PAGE })}
       />
     </form>
   )

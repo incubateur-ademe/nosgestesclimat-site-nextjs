@@ -3,7 +3,7 @@ import { PollInfo } from '@/types/organisations'
 import axios from 'axios'
 
 type Props = {
-  pollSlugs?: (string | undefined)[]
+  pollSlugs?: (string | null | undefined)[]
 }
 export const fetchPolls = async ({ pollSlugs }: Props): Promise<PollInfo[]> =>
   axios
@@ -11,4 +11,3 @@ export const fetchPolls = async ({ pollSlugs }: Props): Promise<PollInfo[]> =>
       polls: pollSlugs,
     })
     .then((res) => res.data)
-    .catch(() => console.error('Failed to fetch polls'))
