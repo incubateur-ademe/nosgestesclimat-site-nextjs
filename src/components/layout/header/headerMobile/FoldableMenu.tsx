@@ -8,9 +8,7 @@ import OrganisationLink from '../_components/OrganisationLink'
 import CTAButton from '../headerDesktop/CTAButton'
 
 export default function FoldableMenu() {
-  const { user, getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
+  const { user } = useUser()
 
   const pathname = usePathname()
 
@@ -31,7 +29,7 @@ export default function FoldableMenu() {
 
           {!HIDE_CTA_PATHS.find((path) => pathname.includes(path)) &&
           !user?.organisation?.administratorEmail ? (
-            <CTAButton progression={currentSimulation?.progression || 0} />
+            <CTAButton />
           ) : null}
 
           <li>
