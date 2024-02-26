@@ -68,8 +68,10 @@ export default function HeaderDesktop() {
               </ul>
             </nav>
           </div>
+
           <div className="flex items-center gap-8">
             <PRIndicator />
+
             <DebugIndicator />
 
             <NavLink href="/profil" icon={ProfileIcon} title={t('Profil')}>
@@ -79,6 +81,7 @@ export default function HeaderDesktop() {
             {user?.organisation?.administratorEmail ? (
               <>
                 <div className="my-auto h-8 w-[1px] bg-grey-200" />
+
                 <OrganisationLink />
               </>
             ) : !HIDE_CTA_PATHS.find((path) => pathname.includes(path)) ? (
