@@ -72,7 +72,7 @@ export type PollInfo = {
   defaultAdditionalQuestions: ('postalCode' | 'birthdate')[]
   numberOfParticipants: number
   expectedNumberOfParticipants: number
-  organisationInfo?: OrganisationInfo
+  organisationInfo: OrganisationInfo
 }
 
 type OrganisationInfo = {

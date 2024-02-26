@@ -6,11 +6,10 @@ import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
+import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
-import { usePoll } from '@/hooks/organisations/usePoll'
-import { useSaveSimulation } from '@/hooks/useSaveSimulation'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useUser } from '@/publicodes-state'
-import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
@@ -66,8 +65,6 @@ export default function Commencer() {
 
   const { pollSlug } = useOrganisationQueryParams()
 
-  const { data: poll } = usePoll({ pollSlug })
-
   const {
     getCurrentSimulation,
     initSimulation,
@@ -75,7 +72,7 @@ export default function Commencer() {
     user,
   } = useUser()
 
-  const router = useRouter()
+  const { goToSimulateurPage } = useSimulateurPage()
 
   const { saveSimulation } = useSaveSimulation()
 
@@ -100,26 +97,7 @@ export default function Commencer() {
       <div className="flex flex-col items-start gap-6">
         <Button
           onClick={async () => {
-            if (status === 'finished') {
-              await saveSimulation({
-                simulation: {
-                  ...currentSimulation,
-                  situation: currentSimulation?.situation ?? {},
-                  foldedSteps: currentSimulation?.foldedSteps ?? [],
-                  actionChoices: currentSimulation?.actionChoices ?? {},
-                  defaultAdditionalQuestionsAnswers: {
-                    postalCode,
-                    birthdate,
-                  },
-                  date: new Date(),
-                  poll: pollSlug || undefined,
-                  userId: user?.id,
-                },
-                userId: user?.id,
-                email: user?.email,
-              })
-            }
-
+            // We update the simulation with the postal code, birthdate and pollSlug
             updateCurrentSimulation({
               defaultAdditionalQuestionsAnswers: {
                 postalCode,
@@ -127,19 +105,15 @@ export default function Commencer() {
               },
               poll: pollSlug || undefined,
             })
-
-            router.push(
-              status === 'finished'
-                ? `/organisations/${poll?.organisationInfo?.slug}/resultats-detailles`
-                : '/simulateur/bilan'
-            )
+            // We try to go to the simulateur page. If the test is finished we will save the simulation and then go to the end page
+            goToSimulateurPage()
           }}>
           {buttonLabels[status]}
         </Button>
 
         {status !== 'notStarted' ? (
           <Link
-            href="/simulateur/bilan"
+            href={'/simulateur/bilan'}
             onClick={() => {
               initSimulation({
                 defaultAdditionalQuestionsAnswers: {

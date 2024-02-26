@@ -9,4 +9,3 @@ export const fetchPoll = async ({ pollSlug }: Props): Promise<PollInfo> =>
   axios
     .get(`${SERVER_URL}/organisations/fetch-poll/${pollSlug}`)
     .then((res) => res.data)
-    .catch(() => console.error('Failed to fetch poll'))

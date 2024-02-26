@@ -3,7 +3,7 @@ import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import questions from '@/components/questions'
 import { getMatomoEventParcoursTestOver } from '@/constants/matomo'
-import { useGoToEndPage } from '@/hooks/navigation/useGoToEndPage'
+import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useEngine, useForm } from '@/publicodes-state'
@@ -15,6 +15,7 @@ export default function Form() {
   const isDebug = useDebug()
 
   const {
+    progression,
     remainingQuestions,
     relevantAnsweredQuestions,
     currentQuestion,
@@ -26,9 +27,18 @@ export default function Form() {
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()
 
-  const { goToEndPage } = useGoToEndPage()
+  const { goToEndPage } = useEndPage()
 
   const [isInitialized, setIsInitialized] = useState(false)
+
+  // When we reach the end of the test (by clicking on the last navigation button),
+  // we wait for the progression to be updated before redirecting to the end page
+  const [shouldGoToEndPage, setShouldGoToEndPage] = useState(false)
+  useEffect(() => {
+    if (shouldGoToEndPage && progression === 1) {
+      goToEndPage()
+    }
+  }, [shouldGoToEndPage, progression, goToEndPage])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
 
@@ -90,7 +100,7 @@ export default function Form() {
 
           handleUpdateShouldPreventNavigation(false)
 
-          goToEndPage()
+          setShouldGoToEndPage(true)
         }}
       />
     </div>

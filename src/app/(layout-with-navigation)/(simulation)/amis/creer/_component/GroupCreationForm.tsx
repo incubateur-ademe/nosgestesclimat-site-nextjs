@@ -6,17 +6,16 @@ import { matomoEventCreationGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
+import { validateCreationForm } from '@/helpers/groups/validateCreationForm'
+import useCreateGroup from '@/hooks/groups/useCreateGroup'
+import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
+import { useSendGroupConfirmationEmail } from '@/hooks/groups/useSendGroupConfirmationEmail'
+import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
+import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
-import { useRouter } from 'next/navigation'
 import { FormEvent, FormEventHandler, useState } from 'react'
-import { getSimulationResults } from '../../_helpers/getSimulationResults'
-import { useFetchGroups } from '../../_hooks/usFetchGroups'
-import { validateForm } from '../_helpers/validateForm'
-import useCreateGroup from '../_hooks/useCreateGroup'
-import { useSendGroupConfirmationEmail } from '../_hooks/useSendGroupConfirmationEmail'
 
 export default function GroupCreationForm() {
   const {
@@ -24,31 +23,28 @@ export default function GroupCreationForm() {
     updateName,
     updateEmail,
     getCurrentSimulation,
-    setGroupToRedirectToAfterTest,
+    updateCurrentSimulation,
   } = useUser()
 
-  const { name, id: userId, email: emailFromUserObject } = user
+  const { name, userId, email } = user
 
-  const [prenom, setPrenom] = useState(name || '')
-  const [errorPrenom, setErrorPrenom] = useState('')
-  const [email, setEmail] = useState(emailFromUserObject || '')
+  const [administratorName, setAdministratorName] = useState(name || '')
+  const [errorAdministratorName, setErrorAdministratorName] = useState('')
+
+  const [administratorEmail, setAdministratorEmail] = useState(email || '')
   const [errorEmail, setErrorEmail] = useState('')
 
   const { t } = useClientTranslation()
 
   const currentSimulation = getCurrentSimulation()
 
-  const { progression } = useForm()
+  const hasCompletedTest = currentSimulation?.progression === 1
 
-  const hasCompletedTest = progression === 1
+  const { data: groups } = useFetchGroupsOfUser()
 
-  const { getValue } = useEngine()
+  const { goToSimulateurPage } = useSimulateurPage()
 
-  const { data: groups } = useFetchGroups(user?.id)
-
-  const router = useRouter()
-
-  const { mutateAsync: createGroup, isPending } = useCreateGroup()
+  const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
 
   const { mutateAsync: sendGroupEmail } = useSendGroupConfirmationEmail()
 
@@ -58,10 +54,10 @@ export default function GroupCreationForm() {
       event.preventDefault()
     }
 
-    const isValid = validateForm({
-      prenom,
-      email,
-      setErrorPrenom,
+    const isValid = validateCreationForm({
+      administratorName,
+      administratorEmail,
+      setErrorAdministratorName,
       setErrorEmail,
       t,
     })
@@ -69,48 +65,43 @@ export default function GroupCreationForm() {
     if (!isValid) return
 
     try {
-      const results = getSimulationResults({
-        getValue,
-      })
+      trackEvent(matomoEventCreationGroupe)
 
-      const groupNameObject = GROUP_NAMES[groups.length % GROUP_NAMES.length]
+      const { name, emoji } =
+        GROUP_NAMES[groups.length % GROUP_NAMES.length] ?? GROUP_NAMES[0]
 
       const group = await createGroup({
         groupInfo: {
-          name: groupNameObject.name,
-          emoji: groupNameObject.emoji,
-          email,
-          prenom,
+          name,
+          emoji,
+          administratorEmail,
+          administratorName,
           userId,
           simulation: currentSimulation,
         },
-        results,
       })
 
-      updateName(prenom)
-      updateEmail(email)
+      // Update user info
+      updateName(administratorName)
+      updateEmail(administratorEmail)
 
-      // The user will be redirected to the test in order to take it
-      if (!hasCompletedTest) {
-        setGroupToRedirectToAfterTest(group)
-
-        router.push('/simulateur/bilan')
-        return
-      }
-
-      trackEvent(matomoEventCreationGroupe)
+      // Update current simulation with group id (to redirect after test completion)
+      updateCurrentSimulation({
+        group: group._id,
+      })
 
       // Send email to owner
-      if (email) {
+      if (administratorEmail) {
         await sendGroupEmail({
-          email,
-          prenom,
+          email: administratorEmail,
+          prenom: administratorName,
           group,
           userId,
         })
       }
 
-      router.push(`/amis/resultats?groupId=${group._id}`)
+      // Redirect to simulateur page or end page
+      goToSimulateurPage()
     } catch (e) {
       captureException(e)
     }
@@ -121,17 +112,17 @@ export default function GroupCreationForm() {
       onSubmit={handleSubmit as FormEventHandler<HTMLFormElement>}
       autoComplete="off">
       <PrenomInput
-        prenom={prenom}
-        setPrenom={setPrenom}
-        errorPrenom={errorPrenom}
-        setErrorPrenom={setErrorPrenom}
+        prenom={administratorName}
+        setPrenom={setAdministratorName}
+        errorPrenom={errorAdministratorName}
+        setErrorPrenom={setErrorAdministratorName}
         data-cypress-id="group-input-owner-name"
       />
 
       <div className="my-4">
         <EmailInput
-          email={email}
-          setEmail={setEmail}
+          email={administratorEmail}
+          setEmail={setAdministratorEmail}
           error={errorEmail}
           setError={setErrorEmail}
           label={
@@ -147,7 +138,9 @@ export default function GroupCreationForm() {
         type="submit"
         data-cypress-id="button-create-group"
         onClick={handleSubmit}
-        aria-disabled={!prenom && !isPending}>
+        aria-disabled={
+          !administratorName || !administratorEmail || isPending || isSuccess
+        }>
         {hasCompletedTest ? (
           <Trans>Créer le groupe</Trans>
         ) : (

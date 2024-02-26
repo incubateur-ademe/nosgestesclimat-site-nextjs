@@ -24,13 +24,16 @@ export default function ClassementMember({
           }`}>
           {rank}
         </span>
+
         {name}
+
         {isCurrentMember && (
           <Badge className="ml-2 inline rounded-sm border-pink-100 bg-pink-200 text-xs font-bold text-secondary">
             <Trans>Vous</Trans>
           </Badge>
         )}
       </div>
+
       <div>{quantity}</div>
     </li>
   )

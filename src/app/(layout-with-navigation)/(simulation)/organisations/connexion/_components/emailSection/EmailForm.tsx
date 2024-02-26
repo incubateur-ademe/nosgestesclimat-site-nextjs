@@ -59,7 +59,7 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
       try {
         const { expirationDate } = await createOrganisation({
           email,
-          userId: user?.id,
+          userId: user.userId,
         })
 
         updateLoginExpirationDate(expirationDate)

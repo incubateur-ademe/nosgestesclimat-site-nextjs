@@ -5,8 +5,8 @@ import {
   Engine,
   NGCEvaluatedNode,
   NGCRuleNode,
+  Situation,
 } from '@/publicodes-state/types'
-import { Situation } from '@/types/simulation'
 import { fixSituationWithPartialMosaic } from './fixSituationWithPartialMosaic'
 
 type Props = {

@@ -20,7 +20,8 @@ export function useFetchPollData({ orgaSlug }: Props = {}): UseQueryResult<
       axios
         .post(SERVER_URL + '/organisations/fetch-poll-processed-data', {
           orgaSlug,
-          userId: user?.id,
+          email: user?.email,
+          userId: user?.userId,
         })
         .then((res) => res.data)
         .catch((err) => {

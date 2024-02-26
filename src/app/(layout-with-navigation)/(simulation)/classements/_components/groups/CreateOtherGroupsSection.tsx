@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Separator from '@/design-system/layout/Separator'
+import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
 import { Group } from '@/types/groups'
 import GroupList from './createOtherGroupsSection/GroupList'
 
@@ -27,7 +28,7 @@ export default function CreateOtherGroupsSection({
 
       <div>
         <ButtonLink
-          href={'/amis/creer'}
+          href={linkToGroupCreation}
           color="secondary"
           data-cypress-id="button-create-other-group">
           <Trans>Créer un autre groupe</Trans>

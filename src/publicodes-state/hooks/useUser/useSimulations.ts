@@ -88,8 +88,8 @@ export default function useSimulations({
       actionChoices?: ActionChoices
       computedResults?: ComputedResults
       progression?: number
-      poll?: string
-      group?: string
+      poll?: string | null
+      group?: string | null
     }) => {
       if (!currentSimulationId) return
 
