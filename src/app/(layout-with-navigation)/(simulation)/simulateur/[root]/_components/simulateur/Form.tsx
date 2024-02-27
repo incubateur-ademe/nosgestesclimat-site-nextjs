@@ -37,7 +37,7 @@ export default function Form() {
   useEffect(() => {
     if (shouldGoToEndPage && progression === 1) {
       goToEndPage({
-        shouldShowQuiz: true,
+        shouldShowQuiz: false,
       })
     }
   }, [shouldGoToEndPage, progression, goToEndPage])
