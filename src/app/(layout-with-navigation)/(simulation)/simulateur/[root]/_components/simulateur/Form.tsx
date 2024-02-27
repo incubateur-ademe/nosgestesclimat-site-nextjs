@@ -38,6 +38,7 @@ export default function Form() {
     if (shouldGoToEndPage && progression === 1) {
       goToEndPage({
         shouldShowQuiz: false,
+        isAllowedToSave: true,
       })
     }
   }, [shouldGoToEndPage, progression, goToEndPage])
