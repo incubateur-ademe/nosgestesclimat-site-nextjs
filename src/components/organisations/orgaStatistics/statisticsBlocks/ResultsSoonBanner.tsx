@@ -2,7 +2,9 @@
 
 import HourglassIcon from '@/components/icons/HourglassIcon'
 import Trans from '@/components/translation/Trans'
+import { clickButtonScrollToShareSectionEvent } from '@/constants/matomo/organisations'
 import Card from '@/design-system/layout/Card'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { usePathname } from 'next/navigation'
 
 export default function ResultsSoonBanner() {
@@ -54,7 +56,10 @@ export default function ResultsSoonBanner() {
         {!isResultatsDetailles && (
           <button
             className="whitespace-nowrap font-bold text-primary-500 underline"
-            onClick={() => handleScrollIntoView('orga-partage')}>
+            onClick={() => {
+              handleScrollIntoView('orga-partage')
+              trackEvent(clickButtonScrollToShareSectionEvent)
+            }}>
             Partagez le test
           </button>
         )}

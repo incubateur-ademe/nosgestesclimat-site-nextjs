@@ -3,11 +3,13 @@
 import OrgaStatistics from '@/components/organisations/OrgaStatistics'
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import Trans from '@/components/translation/Trans'
+import { clickSettingsLinkEvent } from '@/constants/matomo/organisations'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { usePathname } from 'next/navigation'
 import useFetchOrganisation from '../_hooks/useFetchOrganisation'
 import NousContacter from './_components/NousContacter'
@@ -58,6 +60,9 @@ export default function OrganisationPage() {
             </div>
             <ButtonLink
               href={`${pathname}/parametres`}
+              onClick={() => {
+                trackEvent(clickSettingsLinkEvent)
+              }}
               color="text"
               className="self-start">
               <Emoji className="mr-2">⚙️</Emoji>

@@ -69,6 +69,7 @@ export default function Email() {
         linkToPrev={getLinkToPrevInfosPage({ curPage: EMAIL_PAGE })}
         handleSubmit={handleSubmit}
         submitDisabled={!getLinkToNextInfosPage({ curPage: EMAIL_PAGE })}
+        currentPage={EMAIL_PAGE}
       />
     </form>
   )

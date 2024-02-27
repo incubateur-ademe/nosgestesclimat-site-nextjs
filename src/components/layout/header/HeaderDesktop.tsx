@@ -7,6 +7,7 @@ import ProfileIcon from '@/components/icons/ProfileIcon'
 import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
+import { HIDE_CTA_PATHS } from '@/constants/urls'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
@@ -15,14 +16,6 @@ import NavLink from './NavLink'
 import OrganisationLink from './_components/OrganisationLink'
 import CTAButton from './headerDesktop/CTAButton'
 import DebugIndicator from './headerDesktop/DebugIndicator'
-
-const HIDE_CTA_PATHS = [
-  '/fin',
-  '/simulateur/bilan',
-  '/tutoriel',
-  '/infos',
-  '/organisations',
-]
 
 export default function HeaderDesktop() {
   const { t } = useClientTranslation()
@@ -75,8 +68,10 @@ export default function HeaderDesktop() {
               </ul>
             </nav>
           </div>
+
           <div className="flex items-center gap-8">
             <PRIndicator />
+
             <DebugIndicator />
 
             <NavLink href="/profil" icon={ProfileIcon} title={t('Profil')}>
@@ -86,6 +81,7 @@ export default function HeaderDesktop() {
             {user?.organisation?.administratorEmail ? (
               <>
                 <div className="my-auto h-8 w-[1px] bg-grey-200" />
+
                 <OrganisationLink />
               </>
             ) : !HIDE_CTA_PATHS.find((path) => pathname.includes(path)) ? (

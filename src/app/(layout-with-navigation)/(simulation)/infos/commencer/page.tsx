@@ -1,7 +1,9 @@
 'use client'
 
+import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
+import { getParticipantInscriptionPageVisitedEvent } from '@/constants/matomo/organisations'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
@@ -10,7 +12,8 @@ import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useUser } from '@/publicodes-state'
-import { useContext } from 'react'
+import { trackEvent } from '@/utils/matomo/trackEvent'
+import { useContext, useEffect } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
 const titles = {
@@ -78,6 +81,15 @@ export default function Commencer() {
       ? 'finished'
       : 'started'
 
+  const { handleUpdateShouldPreventNavigation } = useContext(
+    PreventNavigationContext
+  )
+
+  useEffect(() => {
+    handleUpdateShouldPreventNavigation(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <Card className={'items-start border-none bg-grey-100 p-8'}>
       <Title
@@ -98,6 +110,9 @@ export default function Commencer() {
               },
               poll: pollSlug || undefined,
             })
+
+            trackEvent(getParticipantInscriptionPageVisitedEvent('commencer'))
+
             // We try to go to the simulateur page. If the test is finished we will save the simulation and then go to the end page
             goToSimulateurPage()
           }}>
