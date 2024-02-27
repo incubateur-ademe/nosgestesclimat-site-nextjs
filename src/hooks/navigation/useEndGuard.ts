@@ -1,4 +1,5 @@
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
+import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -52,7 +53,7 @@ export function useEndGuard() {
     }
 
     // we redirect the user to the test page
-    router.replace('/simulateur/bilan')
+    router.replace(getLinkToSimulateur())
     setIsGuardRedirecting(true)
   }, [
     isGuardInit,

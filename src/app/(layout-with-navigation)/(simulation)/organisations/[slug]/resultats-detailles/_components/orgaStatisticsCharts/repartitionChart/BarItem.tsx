@@ -26,7 +26,7 @@ export default function BarItem({
       })}
       className={`absolute h-8 w-2 bg-primary-500 opacity-20 hover:scale-[10%] ${
         shouldBeHighlighted
-          ? '!z-10 border-x border-white !bg-secondary !opacity-100'
+          ? '!bg-secondary-500 !z-10 border-x border-white !opacity-100'
           : ''
       }`}
       style={{

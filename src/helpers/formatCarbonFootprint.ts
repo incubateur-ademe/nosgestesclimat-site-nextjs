@@ -18,8 +18,12 @@ export default function formatCarbonFootprint(
     maximumFractionDigits: 1,
     shouldUseAbbreviation: false,
   }
-) {
-  let numberValue = typeof value === 'number' ? value : parseFloat(value)
+): {
+  formattedValue: string | number
+  unit: string | null
+  negative: boolean
+} {
+  let numberValue = Number(value)
 
   const negative = numberValue < 0
 

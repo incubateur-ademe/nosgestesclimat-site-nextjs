@@ -23,7 +23,7 @@ export default function OrganisationItem({
           </div>
 
           <div className="flex gap-1 text-sm text-violet-900">
-            <Badge className="ml-2 inline border-pink-100 bg-pink-200 text-xs font-bold text-secondary">
+            <Badge className="text-secondary-500 ml-2 inline border-pink-100 bg-pink-200 text-xs font-bold">
               <Trans>Administrateur·ice</Trans>
             </Badge>
           </div>
