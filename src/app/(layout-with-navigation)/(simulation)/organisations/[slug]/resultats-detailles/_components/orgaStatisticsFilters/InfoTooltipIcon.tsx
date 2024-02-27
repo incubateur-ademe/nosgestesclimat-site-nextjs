@@ -6,11 +6,11 @@ import 'react-tooltip/dist/react-tooltip.css'
 
 const id = 'tooltip-info-filters'
 
-export default function InfoTooltipIcon() {
+export default function InfoTooltipIcon({ className = '' }) {
   return (
-    <>
+    <div className={className}>
       <span
-        className="ml-1 cursor-pointer text-2xl font-bold"
+        className="ml-1 cursor-pointer text-2xl font-bold text-primary-700"
         data-tooltip-id={id}>
         &#9432;
       </span>
@@ -23,6 +23,6 @@ export default function InfoTooltipIcon() {
           </Trans>
         </div>
       </Tooltip>
-    </>
+    </div>
   )
 }

@@ -34,7 +34,11 @@ export default function Birthdate() {
         data-cypress-id="birthdate-title"
         className="text-lg md:text-2xl"
         title={<Trans>Votre date de naissance</Trans>}
-        subtitle={<Trans>Facultatif</Trans>}
+        subtitle={
+          <span className="text-secondary-500 font-bold italic">
+            <Trans>Facultatif</Trans>
+          </span>
+        }
       />
       <TextInputGroup
         name="birthdate"

@@ -17,7 +17,7 @@ export async function generateMetadata() {
 
 export default async function Infos({ children }: PropsWithChildren) {
   return (
-    <div className="flex flex-col">
+    <div className="mx-auto w-full max-w-3xl">
       <InfosProvider>{children}</InfosProvider>
     </div>
   )

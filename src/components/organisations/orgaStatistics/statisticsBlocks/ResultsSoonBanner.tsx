@@ -8,12 +8,10 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { usePathname } from 'next/navigation'
 
 type Props = {
-  hasLeastThan3Participants: boolean
+  hasLessThan3Participants: boolean
 }
 
-export default function ResultsSoonBanner({
-  hasLeastThan3Participants,
-}: Props) {
+export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
   const pathname = usePathname()
 
   const isResultatsDetailles = pathname.includes('resultats-detailles')
@@ -57,7 +55,7 @@ export default function ResultsSoonBanner({
                   </Trans>
                 </span>
               )}
-              {!hasLeastThan3Participants && (
+              {hasLessThan3Participants && (
                 <span>
                   <Trans>
                     (Données consultables à partir de 3 participants, dans un

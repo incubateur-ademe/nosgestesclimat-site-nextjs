@@ -101,11 +101,11 @@ export default function OrgaStatisticsCharts({
       </section>
 
       <section>
-        <div className="flex">
+        <div className="flex items-baseline justify-between md:max-w-[16rem]">
           <h3>
             <Trans>Par catégorie</Trans>
           </h3>
-          <p className="mb-1 text-[0.75rem] text-gray-600">
+          <p className="mb-0 text-[0.75rem]">
             <Trans>Moyenne :</Trans>
           </p>
         </div>

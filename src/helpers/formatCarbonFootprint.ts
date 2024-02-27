@@ -38,7 +38,7 @@ export default function formatCarbonFootprint(
   }
 
   if (numberValue >= 1 && numberValue < 1000) {
-    tempValue = numberValue
+    tempValue = Math.round(numberValue)
     unit = 'kg'
   }
 
