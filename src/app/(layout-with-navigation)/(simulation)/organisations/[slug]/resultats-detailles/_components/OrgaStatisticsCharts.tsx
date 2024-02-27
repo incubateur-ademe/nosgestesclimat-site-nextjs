@@ -38,6 +38,10 @@ export default function OrgaStatisticsCharts({
     }
   )
 
+  const hasCurrentUser = simulationRecaps.some(
+    (simulation) => simulation.isCurrentUser
+  )
+
   return (
     <section className="my-12 rounded-lg bg-grey-100 px-8 pb-4 pt-8">
       <h2>
@@ -77,12 +81,14 @@ export default function OrgaStatisticsCharts({
               </span>
             </span>
 
-            <div className="flex items-center gap-3">
-              <div className="bg-secondary-500 h-4 w-1" />
-              <p className="mb-0 text-sm text-gray-600">
-                <Trans>Votre résultat</Trans>
-              </p>
-            </div>
+            {hasCurrentUser && (
+              <div className="flex items-center gap-3">
+                <div className="bg-secondary-500 h-4 w-1" />
+                <p className="mb-0 text-sm text-gray-600">
+                  <Trans>Votre résultat</Trans>
+                </p>
+              </div>
+            )}
 
             <span>
               <strong className="text-lg">29</strong>{' '}
@@ -123,12 +129,14 @@ export default function OrgaStatisticsCharts({
               </span>
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="bg-secondary-500 h-4 w-1" />
-              <p className="mb-0 text-sm text-gray-600">
-                <Trans>Votre résultat</Trans>
-              </p>
-            </div>
+            {hasCurrentUser && (
+              <div className="flex items-center gap-3">
+                <div className="bg-secondary-500 h-4 w-1" />
+                <p className="mb-0 text-sm text-gray-600">
+                  <Trans>Votre résultat</Trans>
+                </p>
+              </div>
+            )}
 
             <div>
               <strong className="text-lg">{maxValueOfAllCategories}</strong>{' '}
