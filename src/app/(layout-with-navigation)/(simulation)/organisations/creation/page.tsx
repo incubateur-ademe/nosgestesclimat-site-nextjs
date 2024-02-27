@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
+import { useSendOrganisationCreationEmail } from '@/hooks/organisations/useSendOrganisationCreationEmail'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
@@ -26,6 +27,9 @@ export default function CreationPage() {
   const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
   })
+
+  const { mutate: sendCreationConfirmationEmail } =
+    useSendOrganisationCreationEmail()
 
   const router = useRouter()
 
@@ -74,6 +78,13 @@ export default function CreationPage() {
         telephone,
         numberOfExpectedParticipants,
         hasOptedInForCommunications,
+      })
+
+      // Send email
+      sendCreationConfirmationEmail({
+        organisation: organisationUpdated,
+        administratorName,
+        email: user?.organisation?.administratorEmail ?? '',
       })
 
       if (!organisationUpdated?.slug) {
