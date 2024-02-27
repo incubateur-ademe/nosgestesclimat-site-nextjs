@@ -26,7 +26,7 @@ export default function JourneysInput({ question, setTempValue }: Props) {
   const { setValue } = useRule(question)
 
   const { setValue: setNumPassengers } = useRule(
-    'transport . voiture . saisie voyageurs'
+    'transport . voiture . voyageurs'
   )
 
   const [isInitialized, setIsInitialized] = useState(false)
