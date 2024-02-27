@@ -69,7 +69,7 @@ export default function StatisticsBlocks({
 
   return (
     <div className="items grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-      <div className="col-span-2 rounded-lg bg-grey-100 p-8">
+      <div className="col-span-2 rounded-lg bg-grey-100 p-8 md:col-span-1">
         <p className="text-4xl font-bold text-primary-500">
           {simulationRecaps.length}
         </p>
