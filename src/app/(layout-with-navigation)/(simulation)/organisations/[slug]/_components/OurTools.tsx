@@ -31,34 +31,8 @@ export default function OurTools() {
             }}
             className="mt-auto w-full justify-center align-bottom"
             color="secondary"
-            href="https://nosgestesclimat.fr/NGC_Kit.diffusion.zip">
-            <Trans>Télécharger le kit (23mb)</Trans>
-          </ButtonLink>
-        </CTACard>
-
-        <CTACard
-          className="border border-grey-200 px-8"
-          overLabel={<Trans>Valorisez vos données carbone</Trans>}
-          title={<Trans>Impact CO2</Trans>}
-          description={
-            <Trans>
-              Vous souhaitez illustrer une quantité de CO2e et diffuser les bons
-              ordres de grandeur à votre communauté ? Le Comparateur carbone de
-              l’ADEME est l’outil qu’il vous faut !
-            </Trans>
-          }>
-          <ButtonLink
-            className="mt-auto w-full justify-center align-bottom"
-            color="secondary"
-            href="https://impactco2.fr/comparateur?mtm_campaign=ngc-orga"
-            target="_blank"
-            onClick={() => {
-              trackEvent(getClickCtaToolsEvent('impactco2'))
-            }}
-            aria-label={t(
-              'Découvrez le simulateur, ouvrir dans un nouvel onglet'
-            )}>
-            <Trans>Découvrez le simulateur</Trans>
+            href="https://drive.google.com/drive/folders/1ppvieBBNCSSkvREGIAAK44PmPNy9CRz9?usp=drive_link">
+            <Trans>Télécharger le kit</Trans>
             <ExternalLinkIcon className="ml-2 stroke-primary-700" />
           </ButtonLink>
         </CTACard>
@@ -86,6 +60,33 @@ export default function OurTools() {
               'Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet'
             )}>
             <Trans>Accéder au kit</Trans>
+            <ExternalLinkIcon className="ml-2 stroke-primary-700" />
+          </ButtonLink>
+        </CTACard>
+
+        <CTACard
+          className="border border-grey-200 px-8"
+          overLabel={<Trans>Valorisez vos données carbone</Trans>}
+          title={<Trans>Impact CO2</Trans>}
+          description={
+            <Trans>
+              Vous souhaitez illustrer une quantité de CO2e et diffuser les bons
+              ordres de grandeur à votre communauté ? Le Comparateur carbone de
+              l’ADEME est l’outil qu’il vous faut !
+            </Trans>
+          }>
+          <ButtonLink
+            className="mt-auto w-full justify-center align-bottom"
+            color="secondary"
+            href="https://impactco2.fr/comparateur?mtm_campaign=ngc-orga"
+            target="_blank"
+            onClick={() => {
+              trackEvent(getClickCtaToolsEvent('impactco2'))
+            }}
+            aria-label={t(
+              'Découvrez le simulateur, ouvrir dans un nouvel onglet'
+            )}>
+            <Trans>Découvrez le simulateur</Trans>
             <ExternalLinkIcon className="ml-2 stroke-primary-700" />
           </ButtonLink>
         </CTACard>

@@ -55,9 +55,16 @@ export default function Email() {
         data-cypress-id="tutoriel-title"
         className="text-lg md:text-2xl"
         title={<Trans>Votre adresse email</Trans>}
-        subtitle={t(
-          'Pour conserver vos résultats et les retrouver à l’avenir (facultatif)'
-        )}
+        subtitle={
+          <>
+            <Trans>
+              Pour conserver vos résultats et les retrouver à l’avenir
+            </Trans>
+            <span className="bold italic text-secondary">
+              <Trans>facultatif</Trans>
+            </span>
+          </>
+        }
       />
       <EmailInput
         email={email}

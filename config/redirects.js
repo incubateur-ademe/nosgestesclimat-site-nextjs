@@ -4,9 +4,15 @@ const redirects = [
     destination: '/actions',
     permanent: true,
   },
+  // Mode Groupe / amis / classement
   {
     source: '/groupes/:path*',
     destination: '/amis/:path*',
+    permanent: true,
+  },
+  {
+    source: '/amis',
+    destination: '/classements',
     permanent: true,
   },
   {
