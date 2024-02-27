@@ -9,7 +9,6 @@ export function createXLSXFileAndDownload({
   fileName: string
   callback: () => void
 }) {
-  console.log(data)
   const worksheet = XLSX.utils.json_to_sheet(data)
 
   const workbook = XLSX.utils.book_new()

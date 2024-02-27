@@ -28,6 +28,7 @@ export const getParticipantInscriptionPageVisitedEvent = (
   'trackEvent',
   'Organisations',
   'participant_inscription_page_visited',
+  null,
   pageVisited,
 ]
 
@@ -44,6 +45,7 @@ export const getClickAdditionalQuestionEvent = (
   'trackEvent',
   'Organisations',
   `click_${isActivating ? 'activate' : 'deactivate'}_additional_question`,
+  null,
   questionLabel,
 ]
 
@@ -64,6 +66,7 @@ export const getClickCtaToolsEvent = (toolName: string) => [
   'trackEvent',
   'Organisations',
   'click_cta_tools',
+  null,
   toolName,
 ]
 
