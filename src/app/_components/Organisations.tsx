@@ -39,12 +39,13 @@ export default function Organisations() {
           </ButtonLink>
         </div>
         <div
-          className="relative hidden flex-1 items-center md:flex"
+          className="relative hidden flex-1 md:block"
           data-cypress-id="organisations-link">
           <Image
+            className="absolute"
             src="/images/organisations/crowd.png"
-            width={500}
-            height={400}
+            width="603"
+            height="332"
             alt=""
           />
         </div>
