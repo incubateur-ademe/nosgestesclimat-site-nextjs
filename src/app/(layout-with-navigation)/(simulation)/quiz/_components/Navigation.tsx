@@ -1,9 +1,11 @@
 import Trans from '@/components/translation/Trans'
+import { matomoEventQuizPass, matomoEventQuizReturn } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
   answer: string | null
@@ -22,6 +24,10 @@ export default function Navigation({
   return (
     <div className="mb-8 flex justify-between border-b border-gray-200 pb-8">
       <ButtonLink
+        onClick={() => {
+          console.log('track')
+          trackEvent(matomoEventQuizReturn)
+        }}
         href={getLinkToSimulateur({
           question: 'services sociétaux . question rhétorique', //TODO: should be dynamic
         })}
@@ -31,7 +37,10 @@ export default function Navigation({
       </ButtonLink>
 
       {!answer ? (
-        <ButtonLink color="secondary" href={linkToEndPage}>
+        <ButtonLink
+          color="secondary"
+          href={linkToEndPage}
+          onClick={() => trackEvent(matomoEventQuizPass)}>
           <Trans>Passer la question →</Trans>
         </ButtonLink>
       ) : isAnswerValidated ? (

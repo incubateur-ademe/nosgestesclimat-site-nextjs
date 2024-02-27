@@ -1,10 +1,12 @@
 'use client'
 
+import { getMatomoEventQuizValidateAnswer } from '@/constants/matomo'
 import { useQuizGuard } from '@/hooks/navigation/useQuizGuard'
 import { useSaveQuizAnswer } from '@/hooks/quiz/useSaveQuizAnswer'
 import { useSortedSubcategoriesByFootprint } from '@/hooks/useSortedSubcategoriesByFootprint'
 import { DottedName } from '@/publicodes-state/types'
 import { AnswerType } from '@/types/quiz'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useMemo, useState } from 'react'
 import Choices from './_components/Choices'
 import Label from './_components/Label'
@@ -63,7 +65,7 @@ export default function QuizPage() {
         isAnswerValidated={isAnswerValidated}
         handleAnswerValidation={() => {
           if (!answer) return
-
+          trackEvent(getMatomoEventQuizValidateAnswer(answer, isAnswerCorrect))
           setIsAnswerValidated(true)
           saveQuizAnswer({ answer, isAnswerCorrect })
         }}
