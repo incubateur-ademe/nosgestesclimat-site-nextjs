@@ -28,6 +28,7 @@ export function useEndPage() {
         save &&
         (currentSimulation.poll || currentSimulation.group)
       ) {
+        console.log('saving simulation', { currentSimulation, user })
         await saveSimulation({ simulation: currentSimulation, user })
       }
 

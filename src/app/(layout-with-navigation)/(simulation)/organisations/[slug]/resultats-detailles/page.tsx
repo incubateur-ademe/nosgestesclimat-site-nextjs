@@ -19,7 +19,7 @@ export default function ResultatsDetaillesPage() {
   const { data: pollData, refetch } = useFetchPollData({
     orgaSlug: String(params.slug),
   })
-
+  console.log(pollData)
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
 
   const intervalRef = useRef<NodeJS.Timeout>()

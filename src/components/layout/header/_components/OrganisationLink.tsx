@@ -19,9 +19,9 @@ export default function OrganisationLink() {
   const organisationName = organisation?.name ?? user?.organisation?.name
 
   const formattedOrganisationName =
-    organisation?.name?.length > 14
-      ? `${organisation?.name.substring(0, 14).trim()}…`
-      : organisation?.name
+    organisationName?.length > 14
+      ? `${organisationName.substring(0, 14).trim()}…`
+      : organisationName
 
   return (
     <NavLink

@@ -1,43 +1,10 @@
 import Trans from '@/components/translation/Trans'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
+import { extractPostalCodesFromSimulationRecaps } from '@/helpers/organisations/extractPostalCodesFromSimulationRecaps'
 import { SimulationRecap } from '@/types/organisations'
 import { SetStateAction, useContext } from 'react'
 import { MultiValue, SingleValue } from 'react-select'
 import { FiltersContext } from '../FiltersProvider'
-
-function extractPostalCodesFromSimulationRecaps({
-  simulationRecaps,
-  filteredSimulationRecaps,
-}: {
-  simulationRecaps: SimulationRecap[]
-  filteredSimulationRecaps: SimulationRecap[]
-}) {
-  const postalCodes = simulationRecaps
-    .map(
-      (simulationRecap) =>
-        simulationRecap.defaultAdditionalQuestionsAnswers.postalCode
-    )
-    .filter((code) => !!code)
-
-  const uniquePostalCodes = Array.from(new Set(postalCodes)).sort()
-
-  const filteredPostalCodes = filteredSimulationRecaps.map(
-    (simulationRecap) =>
-      simulationRecap.defaultAdditionalQuestionsAnswers.postalCode
-  )
-
-  return uniquePostalCodes.map((postalCode) => {
-    return {
-      value: postalCode,
-      label: `${postalCode} (${
-        filteredPostalCodes.filter((code) => code === postalCode).length
-      })`,
-      isDisabled:
-        !filteredPostalCodes.includes(postalCode) ||
-        filteredPostalCodes.filter((code) => code === postalCode).length <= 1,
-    }
-  })
-}
 
 export default function DepartementFilter({
   simulationRecaps,
