@@ -19,14 +19,14 @@ export const matomoEventQuizReturn = ['trackEvent', 'Quiz', 'Retour test']
 export const getMatomoEventQuizClickAnswer = (answer: DottedName) => [
   'trackEvent',
   'Quiz',
-  'Clic réponse',
+  'answer_click',
   null,
   answer,
 ]
 export const getMatomoEventQuizValidateAnswer = (
   answer: DottedName,
   isAnswerCorrect: AnswerType
-) => ['trackEvent', 'Quiz', 'Validation réponse', isAnswerCorrect, answer]
+) => ['trackEvent', 'Quiz', 'answer_validation', isAnswerCorrect, answer]
 
 // Partage
 export const getMatomoEventShareMobile = (score: number) => [

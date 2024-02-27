@@ -25,7 +25,6 @@ export default function Navigation({
     <div className="mb-8 flex justify-between border-b border-gray-200 pb-8">
       <ButtonLink
         onClick={() => {
-          console.log('track')
           trackEvent(matomoEventQuizReturn)
         }}
         href={getLinkToSimulateur({
