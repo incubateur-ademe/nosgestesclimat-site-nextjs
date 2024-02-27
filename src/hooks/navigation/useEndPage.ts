@@ -58,7 +58,7 @@ export function useEndPage() {
       // else we redirect to the results page
       router.push('/fin')
     },
-    [currentSimulation, progression, router, saveSimulation, user]
+    [currentSimulation, progression, router, saveSimulation]
   )
 
   const linkToEndPage = useMemo(() => {
