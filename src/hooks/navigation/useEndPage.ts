@@ -12,7 +12,7 @@ type GoToEndPageProps = {
 export function useEndPage() {
   const router = useRouter()
 
-  const { user, getCurrentSimulation } = useUser()
+  const { getCurrentSimulation } = useUser()
 
   const currentSimulation = getCurrentSimulation()
 
