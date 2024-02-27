@@ -1,9 +1,14 @@
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
+import { linkToQuiz } from '@/helpers/navigation/quizPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
 
+type GoToEndPageProps = {
+  isAllowedToSave?: boolean
+  shouldShowQuiz?: boolean
+}
 export function useEndPage() {
   const router = useRouter()
 
@@ -16,7 +21,12 @@ export function useEndPage() {
   const { saveSimulation } = useSaveSimulation()
 
   const goToEndPage = useCallback(
-    async ({ save }: { save: boolean } = { save: true }) => {
+    async (
+      { isAllowedToSave, shouldShowQuiz }: GoToEndPageProps = {
+        isAllowedToSave: true,
+        shouldShowQuiz: false,
+      }
+    ) => {
       if (!currentSimulation) {
         router.push('/404') // TODO: should throw an error
         return
@@ -25,25 +35,30 @@ export function useEndPage() {
       // If the simulation is finished and is in a poll or a group, we save it (unless save is false)
       if (
         progression === 1 &&
-        save &&
+        isAllowedToSave &&
         (currentSimulation.poll || currentSimulation.group)
       ) {
-        console.log('saving simulation', { currentSimulation, user })
-        await saveSimulation({ simulation: currentSimulation, user })
+        await saveSimulation({ simulation: currentSimulation })
+      }
+
+      // If we should show the quiz, we redirect to the quiz page
+      if (shouldShowQuiz) {
+        router.push(linkToQuiz)
+        return
       }
 
       // if the simulation is in a group, we redirect to the group results page
       if (currentSimulation.group) {
-        router.replace(
+        router.push(
           getLinkToGroupDashboard({ groupId: currentSimulation.group })
         )
         return
       }
 
       // else we redirect to the results page
-      router.replace('/fin')
+      router.push('/fin')
     },
-    [currentSimulation, progression, router, saveSimulation, user]
+    [currentSimulation, progression, router, saveSimulation]
   )
 
   const linkToEndPage = useMemo(() => {

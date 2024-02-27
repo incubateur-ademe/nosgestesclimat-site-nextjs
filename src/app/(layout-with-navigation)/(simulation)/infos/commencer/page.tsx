@@ -8,6 +8,7 @@ import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
+import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useUser } from '@/publicodes-state'
@@ -101,8 +102,7 @@ export default function Commencer() {
 
       <div className="flex flex-col items-start gap-6">
         <Button
-          onClick={async () => {
-            // We update the simulation with the postal code, birthdate and pollSlug
+          onClick={() => {
             updateCurrentSimulation({
               defaultAdditionalQuestionsAnswers: {
                 postalCode,
@@ -121,7 +121,7 @@ export default function Commencer() {
 
         {status !== 'notStarted' ? (
           <Link
-            href={'/simulateur/bilan'}
+            href={getLinkToSimulateur()}
             onClick={() => {
               initSimulation({
                 defaultAdditionalQuestionsAnswers: {

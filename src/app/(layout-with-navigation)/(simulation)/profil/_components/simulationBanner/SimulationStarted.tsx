@@ -5,6 +5,7 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
+import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useActions, useForm, useUser } from '@/publicodes-state'
@@ -69,7 +70,7 @@ export default function SimulationStarted() {
           <ButtonLink
             color="primary"
             className="w-full  text-center"
-            href="/simulateur/bilan">
+            href={getLinkToSimulateur()}>
             <Trans>
               <ProgressCircle white className="mr-2" /> Reprendre mon test
             </Trans>
