@@ -7,6 +7,7 @@ type Params = {
   ADMINISTRATOR_NAME: string
   ORGANISATION_NAME: string
   SHARE_URL: string
+  DASHBOARD_URL: string
 }
 
 type MutationFnProps = {
@@ -15,22 +16,31 @@ type MutationFnProps = {
   email: string
 }
 
+type SendEmailOptions = {
+  email: string
+  templateId: number
+  params: Params
+}
+
 export function useSendOrganisationCreationEmail() {
   return useMutation({
     mutationKey: ['sendOrganisationCreationEmail'],
-    mutationFn: ({ organisation, email, administratorName }: MutationFnProps) =>
-      axios.post(`${SERVER_URL}/send-email`, {
+    mutationFn: ({
+      organisation,
+      email,
+      administratorName,
+    }: MutationFnProps) => {
+      const options: SendEmailOptions = {
         email,
         templateId: 70,
         params: {
           ADMINISTRATOR_NAME: administratorName,
           ORGANISATION_NAME: organisation?.name,
           SHARE_URL: `${window.location.origin}/o/${organisation?.slug}/${organisation?.polls[0].slug}`,
+          DASHBOARD_URL: `${window.location.origin}/organisations/${organisation?.slug}`,
         },
-      } as {
-        email: string
-        templateId: number
-        params: Params
-      }),
+      }
+      return axios.post(`${SERVER_URL}/send-email`, options)
+    },
   })
 }
