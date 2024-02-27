@@ -10,6 +10,7 @@ const fs = require('fs')
 const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
 const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
 const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
+const c = require('ansi-colors')
 
 const paths = require('./paths')
 
@@ -52,13 +53,9 @@ const translateTo = async (targetLang, targetPath) => {
   )
 
   console.log(
-    `Found ${cli.withStyle(
-      cli.colors.fgGreen,
+    `Found ${c.green(
       missingTranslations.length
-    )} missing translations for the language ${cli.withStyle(
-      cli.colors.fgYellow,
-      targetLang
-    )}.`
+    )} missing translations for the language ${c.yellow(targetLang)}.`
   )
 
   let translatedEntries = utils.readYAML(targetPath).entries
@@ -120,7 +117,7 @@ const translateTo = async (targetLang, targetPath) => {
 
     if (nbEntriesToRemove > 0) {
       console.log(
-        `Removed ${cli.yellow(nbEntriesToRemove)} translations for ${cli.yellow(
+        `Removed ${c.yellow(nbEntriesToRemove)} translations for ${c.yellow(
           targetLang
         )}`
       )

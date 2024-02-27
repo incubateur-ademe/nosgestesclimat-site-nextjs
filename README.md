@@ -39,10 +39,15 @@ If you want to run the automatic localisation, which depends on a Netlify Edge f
 
 ### 🇬🇧 Tests
 
-You can run e2e tests (Cypress) by firt starting a local server with `yarn run
-serve`, then, run cypress tests with `yarn run test` (or `yarn run e2e` to open
-the Cypress GUI) -- it will generate [personas spec
-files](https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/wiki/Contributing#tests).
+#### End-to-end tests
+
+We use [Cypress](https://www.cypress.io/) for end-to-end tests.
+
+To run the tests:
+
+1. you need to start a local server with `yarn run dev`
+2. you need to generate the personas spec files with `yarn run e2e:generate` 
+3. then run the tests with `yarn run e2e` to open the Cypress GUI.
 
 ## Réutilisations de ce code
 

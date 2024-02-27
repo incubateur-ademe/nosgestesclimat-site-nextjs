@@ -7,9 +7,9 @@ import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
+import { RulePage } from '@publicodes/react-ui'
 import Head from 'next/head'
 import Engine from 'publicodes'
-import { RulePage } from 'publicodes-react'
 
 type Props = {
   supportedRegions: SuppportedRegions

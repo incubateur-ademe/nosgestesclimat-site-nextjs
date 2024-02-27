@@ -1,3 +1,4 @@
+import getSomme from '@/publicodes-state/helpers/getSomme'
 import { DottedName, NGCRules } from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import { sortBy } from '@/utils/sortBy'
@@ -18,16 +19,15 @@ export default function getActions({
   actionChoices,
 }: Props) {
   const actionsObject = rules.actions
+  const somme = getSomme(actionsObject) ?? []
 
-  const actions: any[] = actionsObject?.formule?.somme?.map(
-    (actionRuleName: DottedName) => {
-      const ruleContent = getRuleObject(actionRuleName)
-      return {
-        ...ruleContent,
-        dottedName: actionRuleName,
-      }
+  const actions: any[] = somme.map((actionRuleName: DottedName) => {
+    const ruleContent = getRuleObject(actionRuleName)
+    return {
+      ...ruleContent,
+      dottedName: actionRuleName,
     }
-  )
+  })
 
   const relevantActions = filterIrrelevantActions({
     actions,

@@ -9,6 +9,10 @@ import getActions from '../../actions/_helpers/getActions'
 export default function Actions() {
   const { rules, getRuleObject } = useTempEngine()
 
+  if (!rules) {
+    return null
+  }
+
   const actions = getActions({
     rules,
     radical: true,
@@ -16,7 +20,9 @@ export default function Actions() {
     actionChoices: [] as any[],
   })
 
-  if (!actions) return null
+  if (!actions) {
+    return null
+  }
 
   return (
     <>
