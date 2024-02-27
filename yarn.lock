@@ -1549,10 +1549,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@publicodes/react-ui@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@publicodes/react-ui/-/react-ui-1.0.1.tgz#6f86e5960a094bc4311e44b7f77a0e929cfa0f19"
-  integrity sha512-+fByE6jAnnn2tvhTMWjwzJRl6BUdj6YnrDCfeSvQTL3UGcaFniNf9zfMOrmlcFae5g4949Ew8MH1rB7To7YTtA==
+"@publicodes/react-ui@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@publicodes/react-ui/-/react-ui-1.0.5.tgz#55fb8c59e8111a1ab890ee5a97dac846412fffe9"
+  integrity sha512-6RCohAf+SQCD46JkS6fIU+nUq4Q9Ycok02L87FhGbK562v2OjjFJmmItJ/bh355m6V9WCeHYPa08tiYY17Ai7g==
   dependencies:
     styled-components "^6.1.1"
 
@@ -7925,6 +7925,11 @@ publicodes@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.1.tgz#07c1e5d94b3609a2fe09b531490969c9f4960086"
   integrity sha512-vrgnLCKeu3orxmBhyjll8/rxnL3k2EYtIYa7D7GiJVYWmOE08J5S6c/1j15LnC3cQkYqYgOJR5JnX5gxooQGLA==
+
+publicodes@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.5.tgz#6caf9ba73e69a3964ad09e622bc86eb9c6f4b127"
+  integrity sha512-aisK6gdIzdpqTxq6LA74oXzc4bAwE4bQa20xQuSJUGr1Z4KZrATaClv4AIjSG6PXluCQsNSFePbc2zTsnCLO4A==
 
 pump@^3.0.0:
   version "3.0.0"
