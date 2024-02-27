@@ -65,7 +65,7 @@ export default function StatisticsBlocks({
     maximumFractionDigits: 1,
   })
 
-  const optionalSString = simulationRecaps.length > 1 ? 's' : ''
+  const optionalSString = simulationRecaps.length === 1 ? 's' : ''
 
   return (
     <div className="items grid w-full grid-cols-1 gap-4 md:grid-cols-3">
@@ -81,7 +81,11 @@ export default function StatisticsBlocks({
         </p>
       </div>
       <div className="relative col-span-2 grid grid-cols-1 gap-4 md:grid-cols-2">
-        {hasLeastThan3Participants && <ResultsSoonBanner />}
+        {hasLeastThan3Participants && (
+          <ResultsSoonBanner
+            hasLeastThan3Participants={hasLeastThan3Participants}
+          />
+        )}
         <div className="relative rounded-lg bg-grey-100 p-8">
           <p className="text-4xl font-bold text-primary-500">
             {formattedValue}{' '}
