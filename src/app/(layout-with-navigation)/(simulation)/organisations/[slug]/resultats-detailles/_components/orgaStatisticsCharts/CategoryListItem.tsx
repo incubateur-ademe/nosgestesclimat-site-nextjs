@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
@@ -26,20 +27,25 @@ export default function CategoryListItem({
   })
 
   return (
-    <li className="flex justify-between border-t border-solid border-gray-300 py-2 last:border-b">
-      <div className="flex w-64 items-center justify-between gap-4">
+    <li className="flex flex-col justify-between gap-2 border-t border-solid border-gray-300 py-2 last:border-b md:flex-row md:gap-8">
+      <div className="flex items-center justify-between gap-4 md:w-64">
         <div className="flex items-baseline gap-1">
           <Emoji className="mr-2">{icons}</Emoji>{' '}
           <span>{capitalizeString(category)}</span>
         </div>
 
-        <Badge>
-          <strong>{formattedValue}</strong> {unit}
-        </Badge>
+        <div className="flex flex-col items-end">
+          <p className="mb-1 text-[0.75rem] text-gray-600">
+            <Trans>Moyenne :</Trans>
+          </p>
+          <Badge>
+            <strong>{formattedValue}</strong> {unit}
+          </Badge>
+        </div>
       </div>
 
       <RepartitionChart
-        className="ml-8 flex-1 rounded-lg"
+        className="min-h-[2.5rem] flex-1 rounded-lg"
         maxValue={maxValue}
         items={simulationsRecap.map((obj) => ({
           value: obj.categories[category] / 1000,
