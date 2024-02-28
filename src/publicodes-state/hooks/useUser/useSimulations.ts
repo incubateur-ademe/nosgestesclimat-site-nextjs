@@ -227,11 +227,24 @@ export default function useSimulations({
     )
   }
 
-  const getCurrentSimulation = (): Simulation | undefined =>
-    simulations.find(
+  type GetCurrentSimulationProps = {
+    deepCopy: boolean
+  }
+  const getCurrentSimulationPropsDefault = {
+    deepCopy: false,
+  }
+  const getCurrentSimulation = ({
+    deepCopy = false,
+  }: GetCurrentSimulationProps = getCurrentSimulationPropsDefault):
+    | Simulation
+    | undefined => {
+    const simulation = simulations.find(
       (simulation: Simulation) => simulation.id === currentSimulationId
     )
+    if (!simulation) return undefined
 
+    return deepCopy ? JSON.parse(JSON.stringify(simulation)) : simulation
+  }
   const updateProgressionOfCurrentSimulation = useCallback(
     (progression: number) => {
       if (currentSimulationId) {
