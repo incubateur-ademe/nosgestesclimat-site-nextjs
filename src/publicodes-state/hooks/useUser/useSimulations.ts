@@ -231,7 +231,7 @@ export default function useSimulations({
     const simulation = simulations.find(
       (simulation: Simulation) => simulation.id === currentSimulationId
     )
-    return simulation ? { ...simulation } : undefined
+    return simulation ? JSON.parse(JSON.stringify(simulation)) : undefined
   }
   const updateProgressionOfCurrentSimulation = useCallback(
     (progression: number) => {
