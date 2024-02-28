@@ -12,7 +12,10 @@ export function useSaveSimulation() {
   const { user } = useUser()
 
   const { mutateAsync: saveSimulation, isPending } = useMutation({
-    mutationFn: ({ simulation }: Props) => {
+    mutationFn: ({ simulation: originalSimulation }: Props) => {
+      // We duplicate the simulation to avoid modifying the original object
+      const simulation = { ...originalSimulation }
+
       // We need to format the situation to be saved in the database
       simulation.situation = formatSituation(simulation.situation)
 
