@@ -31,7 +31,9 @@ export default function OurTools() {
             }}
             className="mt-auto w-full justify-center align-bottom"
             color="secondary"
-            href="https://drive.google.com/drive/folders/1ppvieBBNCSSkvREGIAAK44PmPNy9CRz9?usp=drive_link">
+            href="https://drive.google.com/drive/folders/1ppvieBBNCSSkvREGIAAK44PmPNy9CRz9?usp=drive_link"
+            target="_blank"
+            aria-label={t('Télécharger le kit, ouvrir dans un nouvel onglet')}>
             <Trans>Télécharger le kit</Trans>
             <ExternalLinkIcon className="ml-2 stroke-primary-700" />
           </ButtonLink>
