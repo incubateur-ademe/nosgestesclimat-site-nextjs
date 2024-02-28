@@ -8,6 +8,7 @@ import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
 import { HIDE_CTA_PATHS } from '@/constants/urls'
+import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
@@ -58,7 +59,7 @@ export default function HeaderDesktop() {
 
                 <li className="px-4">
                   <NavLink
-                    href="/classements"
+                    href={linkToClassement}
                     icon={AmisIcon}
                     title={t('Classement')}
                     data-cypress-id="amis-link">
