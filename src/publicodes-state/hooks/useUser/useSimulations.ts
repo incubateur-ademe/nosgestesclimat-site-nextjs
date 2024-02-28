@@ -227,11 +227,12 @@ export default function useSimulations({
     )
   }
 
-  const getCurrentSimulation = (): Simulation | undefined =>
-    simulations.find(
+  const getCurrentSimulation = (): Simulation | undefined => {
+    const simulation = simulations.find(
       (simulation: Simulation) => simulation.id === currentSimulationId
     )
-
+    return simulation ? { ...simulation } : undefined
+  }
   const updateProgressionOfCurrentSimulation = useCallback(
     (progression: number) => {
       if (currentSimulationId) {
