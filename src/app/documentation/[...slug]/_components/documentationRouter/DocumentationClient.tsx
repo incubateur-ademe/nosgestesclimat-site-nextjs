@@ -31,6 +31,7 @@ export default function DocumentationClient({ slugs }: Props) {
         rulePath={(path as string) ?? ''}
         engine={engine as Engine}
         documentationPath={documentationPath}
+        searchBar={true}
         renderers={{
           Head,
           Link: ({ children, to }) => <Link href={to || ''}>{children}</Link>,
