@@ -85,7 +85,7 @@ export type Simulation = {
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   poll?: string | null
   group?: string | null
-  userId?: string
+  savedViaEmail?: boolean
 }
 
 export type Persona = {

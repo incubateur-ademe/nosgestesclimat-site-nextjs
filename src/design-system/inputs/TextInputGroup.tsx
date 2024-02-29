@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from 'react'
+import { ChangeEventHandler, HTMLAttributes, ReactNode } from 'react'
 import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
 
@@ -11,7 +11,7 @@ type Props = {
   helperText?: string | ReactNode
   className?: string
   placeholder?: string
-  onChange?: any
+  onChange?: ChangeEventHandler<HTMLInputElement>
   value?: string | number
   required?: boolean
   maxLength?: number
@@ -56,7 +56,7 @@ export default function TextInputGroup({
         name={name}
         type={type}
         placeholder={placeholder}
-        onChange={!disabled ? onChange : undefined}
+        onChange={onChange ?? (() => null)}
         aria-describedby={`error-${name}`}
         value={value}
         required={required}

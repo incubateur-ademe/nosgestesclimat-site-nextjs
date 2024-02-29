@@ -7,10 +7,9 @@ import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
 import { formatValue } from 'publicodes'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './getResultsByEmail/Confirmation'
@@ -20,22 +19,17 @@ export default function GetResultsByEmail({
 }: {
   className?: string
 }) {
-  const { user, updateEmail, getCurrentSimulation } = useUser()
+  const { user, updateEmail, getCurrentSimulation, updateCurrentSimulation } =
+    useUser()
 
   const currentSimulation = getCurrentSimulation()
 
   const { saveSimulation, isPending, isSuccess, isError, error } =
     useSaveSimulation()
 
-  const { data: numberSubscribers } = useQuery({
-    queryKey: ['numberSubscribers'],
-    queryFn: async () =>
-      axios
-        .get('/api/get-newsletter-subscribers-number')
-        .then((res) => res.data),
-  })
+  const { data: numberSubscribers } = useNumberSubscribers()
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     if (!currentSimulation) {
@@ -49,10 +43,23 @@ export default function GetResultsByEmail({
 
     trackEvent(matomoSaveSimulationByGivingEmail)
 
-    await saveSimulation({ simulation: currentSimulation })
+    await saveSimulation({
+      simulation: {
+        ...currentSimulation,
+        savedViaEmail: true,
+      },
+    })
+
+    updateCurrentSimulation({ savedViaEmail: true })
   }
 
+  // If we successfully saved the simulation, we display the confirmation message
   if (isSuccess) return <Confirmation className={className} />
+
+  // If the simulation is already saved, we don't display the form
+  if (currentSimulation?.savedViaEmail) {
+    return null
+  }
 
   return (
     <Card

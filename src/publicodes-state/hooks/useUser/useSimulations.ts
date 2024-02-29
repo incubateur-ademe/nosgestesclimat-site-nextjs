@@ -81,6 +81,7 @@ export default function useSimulations({
       progression,
       poll,
       group,
+      savedViaEmail,
     }: {
       situationToAdd?: Situation
       foldedStepToAdd?: string
@@ -90,6 +91,7 @@ export default function useSimulations({
       progression?: number
       poll?: string | null
       group?: string | null
+      savedViaEmail?: boolean
     }) => {
       if (!currentSimulationId) return
 
@@ -136,6 +138,10 @@ export default function useSimulations({
 
       if (group !== undefined) {
         simulationToUpdate.group = group
+      }
+
+      if (savedViaEmail !== undefined) {
+        simulationToUpdate.savedViaEmail = savedViaEmail
       }
 
       setSimulations((prevSimulations: Simulation[]) => [
