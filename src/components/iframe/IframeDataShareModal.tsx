@@ -5,6 +5,7 @@ import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useGetResultsFromDetailParam } from '@/hooks/useGetResultsFromDetailParam'
 import { useIframe } from '@/hooks/useIframe'
+import { getIsIframe } from '@/utils/getIsIframe'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import Trans from '../translation/Trans'
 
@@ -20,7 +21,8 @@ export default function IframeDataShareModal() {
 
   //To delay the dialog show in to let the animation play
   const timeoutRef = useRef<NodeJS.Timeout>()
-  const iframeOptions = useIframe()
+  const isIframe = getIsIframe()
+  const { isIframeShareData } = useIframe()
 
   useEffect(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
@@ -54,11 +56,7 @@ export default function IframeDataShareModal() {
     setIsOpen(false)
   }
 
-  if (
-    !iframeOptions.isIframe ||
-    !document.referrer ||
-    !iframeOptions?.isIframeShareData
-  ) {
+  if (!isIframe || !document.referrer || !isIframeShareData) {
     return null
   }
 
