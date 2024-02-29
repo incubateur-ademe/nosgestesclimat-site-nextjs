@@ -7,7 +7,13 @@ import { useCallback, useMemo } from 'react'
 
 type GoToEndPageProps = {
   isAllowedToSave?: boolean
+  allowedToGoToGroupDashboard?: boolean
   shouldShowQuiz?: boolean
+}
+const goToEndPagePropsDefault = {
+  isAllowedToSave: true,
+  allowedToGoToGroupDashboard: false,
+  shouldShowQuiz: false,
 }
 export function useEndPage() {
   const router = useRouter()
@@ -21,12 +27,11 @@ export function useEndPage() {
   const { saveSimulation } = useSaveSimulation()
 
   const goToEndPage = useCallback(
-    async (
-      { isAllowedToSave = true, shouldShowQuiz = false }: GoToEndPageProps = {
-        isAllowedToSave: true,
-        shouldShowQuiz: false,
-      }
-    ) => {
+    async ({
+      isAllowedToSave = true,
+      allowedToGoToGroupDashboard = false,
+      shouldShowQuiz = false,
+    }: GoToEndPageProps = goToEndPagePropsDefault) => {
       if (!currentSimulation) {
         router.push('/404') // TODO: should throw an error
         return
@@ -47,8 +52,8 @@ export function useEndPage() {
         return
       }
 
-      // if the simulation is in a group, we redirect to the group results page
-      if (currentSimulation.group) {
+      // if the simulation is in a group and we are allowed to, we redirect to the group results page
+      if (currentSimulation.group && allowedToGoToGroupDashboard) {
         router.push(
           getLinkToGroupDashboard({ groupId: currentSimulation.group })
         )
