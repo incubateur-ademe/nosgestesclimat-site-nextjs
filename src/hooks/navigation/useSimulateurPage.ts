@@ -8,8 +8,15 @@ type GoToSimulateurPageProps = {
   noNavigation?: boolean
   newSimulation?: boolean
 }
+const goToSimulateurPagePropsDefault = {
+  noNavigation: false,
+  newSimulation: false,
+}
 type GetLinkToSimulateurPageProps = {
   newSimulation?: boolean
+}
+const getLinkToSimulateurPagePropsDefault = {
+  newSimulation: false,
 }
 export function useSimulateurPage() {
   const router = useRouter()
@@ -25,13 +32,11 @@ export function useSimulateurPage() {
   const progression = currentSimulation?.progression
 
   const goToSimulateurPage = useCallback(
-    async (
-      { noNavigation, newSimulation }: GoToSimulateurPageProps = {
-        noNavigation: false,
-        newSimulation: false,
-      }
-    ) => {
-      // If there is no current simulation (or we wante to force a new one), we init a new simulation
+    async ({
+      noNavigation = false,
+      newSimulation = false,
+    }: GoToSimulateurPageProps = goToSimulateurPagePropsDefault) => {
+      // If there is no current simulation (or we want to force a new one), we init a new simulation
       if (!currentSimulation || newSimulation) {
         initSimulation()
       }
@@ -67,9 +72,9 @@ export function useSimulateurPage() {
   )
 
   const getLinkToSimulateurPage = useCallback(
-    (
-      { newSimulation }: GetLinkToSimulateurPageProps = { newSimulation: false }
-    ) => {
+    ({
+      newSimulation,
+    }: GetLinkToSimulateurPageProps = getLinkToSimulateurPagePropsDefault) => {
       // If the user has completed the test (and we are not initializing a new one) we return the results page link
       if (progression === 1 && !newSimulation) {
         return '/fin'
