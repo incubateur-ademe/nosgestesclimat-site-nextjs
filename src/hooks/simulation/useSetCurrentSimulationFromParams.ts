@@ -15,8 +15,6 @@ export function useSetCurrentSimulationFromParams() {
     simulationId: simulationIdInQueryParams,
   })
 
-  console.log('simulation', simulation)
-
   const [isCorrectSimulationSet, setIsCorrectSimulationSet] = useState(false)
 
   useEffect(() => {

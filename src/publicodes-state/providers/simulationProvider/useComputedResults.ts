@@ -30,7 +30,6 @@ export function useComputedResults({
   // Set the computed results object
   const computedResults: ComputedResults = useMemo(
     () => {
-      console.log('situation', situation)
       return categories.reduce(
         (acc, category) => {
           acc.categories[category] = getNumericValue(category)

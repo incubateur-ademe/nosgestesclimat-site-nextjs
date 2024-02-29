@@ -94,7 +94,7 @@ export default function useSimulations({
       savedViaEmail?: boolean
     }) => {
       if (!currentSimulationId) return
-      console.log('update simulation ?', computedResults)
+
       const simulationToUpdateFound = simulations.find(
         (simulation: Simulation) => simulation.id === currentSimulationId
       )
@@ -219,7 +219,7 @@ export default function useSimulations({
   const addSimulation = (simulation: Simulation) => {
     // Avoid duplicating simulations
     if (simulations.find((s) => s.id === simulation.id)) return
-    console.log(simulation)
+
     setSimulations((prevSimulations: Simulation[]) => [
       ...prevSimulations,
       simulation,
