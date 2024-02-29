@@ -128,9 +128,7 @@ export default function GroupCreationForm() {
         type="submit"
         data-cypress-id="button-create-group"
         onClick={handleSubmit}
-        aria-disabled={
-          !administratorName || !administratorEmail || isPending || isSuccess
-        }>
+        disabled={!administratorName || isPending || isSuccess}>
         {hasCompletedTest ? (
           <Trans>Créer le groupe</Trans>
         ) : (
