@@ -44,19 +44,12 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
             <p className="mb-0">
               <span>
                 <Trans>
-                  Bientôt, vous verrez apparaître ici vos statistiques.
+                  Partagez le test pour obtenir vos premiers résultats.
                 </Trans>
-              </span>{' '}
-              {}
-              {!isResultatsDetailles && (
-                <span>
-                  <Trans>
-                    Partagez le test pour obtenir vos premiers résultats.
-                  </Trans>
-                </span>
-              )}
+              </span>
               {hasLessThan3Participants && (
                 <span>
+                  {' '}
                   <Trans>
                     (Données consultables à partir de 3 participants, dans un
                     souci d'anonymat.)
