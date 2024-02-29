@@ -9,7 +9,6 @@ import PrenomInput from '@/design-system/inputs/PrenomInput'
 import { validateCreationForm } from '@/helpers/groups/validateCreationForm'
 import useCreateGroup from '@/hooks/groups/useCreateGroup'
 import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
-import { useSendGroupConfirmationEmail } from '@/hooks/groups/useSendGroupConfirmationEmail'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
@@ -45,8 +44,6 @@ export default function GroupCreationForm() {
   const { goToSimulateurPage } = useSimulateurPage()
 
   const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
-
-  const { mutateAsync: sendGroupEmail } = useSendGroupConfirmationEmail()
 
   const handleSubmit = async (event: FormEvent) => {
     // Avoid reloading page
@@ -89,16 +86,6 @@ export default function GroupCreationForm() {
       updateCurrentSimulation({
         group: group._id,
       })
-
-      // Send email to owner
-      if (administratorEmail) {
-        await sendGroupEmail({
-          email: administratorEmail,
-          prenom: administratorName,
-          group,
-          userId,
-        })
-      }
 
       // Redirect to simulateur page or end page
       goToSimulateurPage()
