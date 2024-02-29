@@ -11,7 +11,13 @@ type Props = {
 export function useSaveSimulation() {
   const { user } = useUser()
 
-  const { mutateAsync: saveSimulation, isPending } = useMutation({
+  const {
+    mutateAsync: saveSimulation,
+    isPending,
+    isSuccess,
+    isError,
+    error,
+  } = useMutation({
     mutationFn: ({ simulation }: Props) => {
       // We need to format the situation to be saved in the database
       simulation.situation = formatSituation(simulation.situation)
@@ -30,5 +36,8 @@ export function useSaveSimulation() {
   return {
     saveSimulation,
     isPending,
+    isSuccess,
+    isError,
+    error,
   }
 }

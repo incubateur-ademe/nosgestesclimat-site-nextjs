@@ -28,7 +28,6 @@ export type User = {
   email: string
   northStarRatings?: any // TODO: should be NorthStartType or something
   userId: string
-  hasSavedSimulation?: boolean
   loginExpirationDate?: Date
   organisation?: UserOrganisationInfo
   administratorEmail?: string
