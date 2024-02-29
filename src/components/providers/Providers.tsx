@@ -47,7 +47,7 @@ export default function Providers({
     return <>{children}</>
   }
 
-  if (!currentSimulationId || isLoading) {
+  if (!currentSimulationId || !rules || isLoading) {
     return (
       <div className="flex flex-1 items-center justify-center">
         <Loader color="dark" />

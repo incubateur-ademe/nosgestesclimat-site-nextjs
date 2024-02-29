@@ -1,6 +1,7 @@
 'use client'
 
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
+import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import getType from '../../helpers/getType'
 import {
@@ -10,10 +11,11 @@ import {
   NodeValue,
   Situation,
 } from '../../types'
+
 type Props = {
   dottedName: DottedName
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
-  safeEvaluate: (rule: DottedName) => NGCEvaluatedNode | null
+  safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   evaluation: NGCEvaluatedNode | null
   type: string | undefined
   questionsOfMosaic: string[]

@@ -23,7 +23,7 @@ const KEYS_TO_OMIT = [
   'mosaique',
 ]
 
-const getRuleFormatted = (rule: Rule) => {
+const getRuleFormatted = (rule: Rule): Rule => {
   const ruleFormatted = { ...rule }
 
   for (const key in ruleFormatted) {
@@ -74,12 +74,14 @@ export default function RuleDetail({
     }
   }
 
-  if (typeof ruleFormatted === 'number') return <span>{ruleFormatted}</span>
+  if (typeof ruleFormatted === 'number') {
+    return <span>{ruleFormatted}</span>
+  }
 
   if (isArray) {
     return (
       <ul className="list-disc pl-8">
-        {Object.entries(ruleFormatted).map(([key, value]) => {
+        {Object.entries(ruleFormatted).map(([key, value]: [string, any]) => {
           return (
             <li key={key}>
               <RuleDetail ruleData={value as any} context={context} />
@@ -92,7 +94,7 @@ export default function RuleDetail({
 
   return (
     <ul className="mb-0 list-none">
-      {Object.entries(ruleFormatted).map(([key, value]) => {
+      {Object.entries(ruleFormatted).map(([key, value]: [string, any]) => {
         if (typeof value === 'string' || typeof value === 'number') {
           return (
             <li key={key} className="list-disc">

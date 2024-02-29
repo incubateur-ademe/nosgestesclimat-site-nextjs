@@ -58,14 +58,7 @@ export type NGCRuleNode = RuleNode & {
 
 export type NGCRulesNodes = Record<DottedName, NGCRuleNode>
 
-//TODO: complete explanation type
-export type NGCEvaluatedNode = EvaluatedNode & {
-  explanation: {
-    ruleDisabledByItsParent: boolean
-  }
-  isNullable: boolean
-}
-
+export type NGCEvaluatedNode = EvaluatedNode
 export type ActionChoices = Record<string, boolean>
 
 export type NodeValue = Evaluation

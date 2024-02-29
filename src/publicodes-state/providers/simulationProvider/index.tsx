@@ -6,7 +6,7 @@ import {
   ActionChoices,
   ComputedResults,
   DottedName,
-  Rules,
+  NGCRules,
   Situation,
 } from '../../types'
 import SimulationContext from './context'
@@ -20,7 +20,7 @@ type Props = {
   /**
    * A publicodes rules object
    */
-  rules: Rules
+  rules: NGCRules
   /**
    * The starting situation of engine
    */
@@ -107,6 +107,7 @@ export default function SimulationProvider({
   })
 
   const { categories, subcategories } = useCategories({
+    parsedRules: engine.getParsedRules(),
     everyRules,
     root,
     safeGetRule,
