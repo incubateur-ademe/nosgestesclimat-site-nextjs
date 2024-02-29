@@ -47,6 +47,7 @@ export function useEndPage() {
       }
 
       // If we should show the quiz, we redirect to the quiz page
+      // TODO: This is maybe in the wrong place. Should check it later
       if (shouldShowQuiz) {
         router.push(linkToQuiz)
         return

@@ -81,6 +81,7 @@ export default function useSimulations({
       progression,
       poll,
       group,
+      savedViaEmail,
     }: {
       situationToAdd?: Situation
       foldedStepToAdd?: string
@@ -90,14 +91,17 @@ export default function useSimulations({
       progression?: number
       poll?: string | null
       group?: string | null
+      savedViaEmail?: boolean
     }) => {
       if (!currentSimulationId) return
 
-      const simulationToUpdate = simulations.find(
+      const simulationToUpdateFound = simulations.find(
         (simulation: Simulation) => simulation.id === currentSimulationId
       )
 
-      if (!simulationToUpdate) return
+      if (!simulationToUpdateFound) return
+
+      const simulationToUpdate = { ...simulationToUpdateFound }
 
       if (situationToAdd !== undefined) {
         simulationToUpdate.situation = {
@@ -136,6 +140,10 @@ export default function useSimulations({
 
       if (group !== undefined) {
         simulationToUpdate.group = group
+      }
+
+      if (savedViaEmail !== undefined) {
+        simulationToUpdate.savedViaEmail = savedViaEmail
       }
 
       setSimulations((prevSimulations: Simulation[]) => [
@@ -216,7 +224,7 @@ export default function useSimulations({
       ...prevSimulations,
       simulation,
     ])
-    setCurrentSimulationId(simulation.id ?? '')
+    setCurrentSimulationId(simulation.id)
   }
 
   const deleteSimulation = (deletedSimulationId: string) => {
@@ -243,7 +251,7 @@ export default function useSimulations({
     )
     if (!simulation) return undefined
 
-    return deepCopy ? JSON.parse(JSON.stringify(simulation)) : simulation
+    return deepCopy ? JSON.parse(JSON.stringify(simulation)) : { ...simulation }
   }
   const updateProgressionOfCurrentSimulation = useCallback(
     (progression: number) => {
