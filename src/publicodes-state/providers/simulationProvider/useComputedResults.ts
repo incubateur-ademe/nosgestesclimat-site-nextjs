@@ -29,14 +29,16 @@ export function useComputedResults({
 
   // Set the computed results object
   const computedResults: ComputedResults = useMemo(
-    () =>
-      categories.reduce(
+    () => {
+      console.log('situation', situation)
+      return categories.reduce(
         (acc, category) => {
           acc.categories[category] = getNumericValue(category)
           return acc
         },
         { categories: {}, bilan: getNumericValue('bilan') } as ComputedResults
-      ),
+      )
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [categories, getNumericValue, situation]
   )

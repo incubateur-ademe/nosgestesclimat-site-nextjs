@@ -43,22 +43,27 @@ export default function GetResultsByEmail({
 
     trackEvent(matomoSaveSimulationByGivingEmail)
 
+    // We save the simulation (and signify the backend to send the email)
     await saveSimulation({
       simulation: {
         ...currentSimulation,
         savedViaEmail: true,
       },
+      shouldSendSimulationEmail: true,
     })
 
+    // We update the simulation to signify that it has been saved (and not show the form anymore)
     updateCurrentSimulation({ savedViaEmail: true })
   }
 
   // If we successfully saved the simulation, we display the confirmation message
-  if (isSuccess) return <Confirmation className={className} />
+  if (isSuccess) {
+    return <Confirmation className={className} />
+  }
 
-  // If the simulation is already saved, we don't display the form
+  // If the simulation is already saved, we display the confirmation message
   if (currentSimulation?.savedViaEmail) {
-    return null
+    return <Confirmation className={className} />
   }
 
   return (
@@ -98,7 +103,9 @@ export default function GetResultsByEmail({
             aria-label="Entrez votre adresse email"
             placeholder="jeanmarc@nosgestesclimat.fr"
             value={user?.email}
-            onChange={(e) => updateEmail(e.currentTarget.value)}
+            onChange={(event) => {
+              updateEmail((event.target as HTMLInputElement).value)
+            }}
             required
             className="bg-white"
           />

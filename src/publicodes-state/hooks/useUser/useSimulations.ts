@@ -94,12 +94,14 @@ export default function useSimulations({
       savedViaEmail?: boolean
     }) => {
       if (!currentSimulationId) return
-
-      const simulationToUpdate = simulations.find(
+      console.log('update simulation ?', computedResults)
+      const simulationToUpdateFound = simulations.find(
         (simulation: Simulation) => simulation.id === currentSimulationId
       )
 
-      if (!simulationToUpdate) return
+      if (!simulationToUpdateFound) return
+
+      const simulationToUpdate = { ...simulationToUpdateFound }
 
       if (situationToAdd !== undefined) {
         simulationToUpdate.situation = {
@@ -217,12 +219,12 @@ export default function useSimulations({
   const addSimulation = (simulation: Simulation) => {
     // Avoid duplicating simulations
     if (simulations.find((s) => s.id === simulation.id)) return
-
+    console.log(simulation)
     setSimulations((prevSimulations: Simulation[]) => [
       ...prevSimulations,
       simulation,
     ])
-    setCurrentSimulationId(simulation.id ?? '')
+    setCurrentSimulationId(simulation.id)
   }
 
   const deleteSimulation = (deletedSimulationId: string) => {
@@ -249,7 +251,7 @@ export default function useSimulations({
     )
     if (!simulation) return undefined
 
-    return deepCopy ? JSON.parse(JSON.stringify(simulation)) : simulation
+    return deepCopy ? JSON.parse(JSON.stringify(simulation)) : { ...simulation }
   }
   const updateProgressionOfCurrentSimulation = useCallback(
     (progression: number) => {

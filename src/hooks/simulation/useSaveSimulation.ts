@@ -5,15 +5,9 @@ import { formatSituation } from '@/utils/formatDataForDB'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
-type EmailParams = {
-  optIn: boolean
-  shouldSendReminder: boolean
-}
-
 type Props = {
   simulation: Simulation
   shouldSendSimulationEmail?: boolean
-  emailParams?: EmailParams
 }
 export function useSaveSimulation() {
   const { user } = useUser()
@@ -28,7 +22,6 @@ export function useSaveSimulation() {
     mutationFn: ({
       simulation: originalSimulation,
       shouldSendSimulationEmail = false,
-      emailParams,
     }: Props) => {
       // We duplicate the simulation to avoid modifying the original object
       const simulation = { ...originalSimulation }
@@ -43,7 +36,6 @@ export function useSaveSimulation() {
           email: user.email,
           name: user.name,
           shouldSendSimulationEmail,
-          emailParams,
         })
         .then((response) => response.data)
         .catch(() => console.error('Failed to save simulation'))
