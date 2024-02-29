@@ -2,6 +2,7 @@ import ActionsIcon from '@/components/icons/ActionsIcon'
 import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
 import Trans from '@/components/translation/Trans'
+import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import NavLink from '../NavLink'
 
@@ -35,7 +36,7 @@ export default function BottomMenu() {
         <NavLink
           className="flex-col p-2 px-4"
           activeClassName="bg-white border-l border-gray-200 text-primary-500 font-bold"
-          href="/classements"
+          href={linkToClassement}
           icon={AmisIcon}
           data-cypress-id="amis-link">
           <Trans>Classements</Trans>
