@@ -21,34 +21,11 @@ export default function InvitationForm({ group }: { group: Group }) {
 
   const { user, updateEmail, updateName, updateCurrentSimulation } = useUser()
 
-  const groupBaseURL = `${window.location.origin}/amis`
-
   const { progression } = useForm()
 
   const hasCompletedTest = progression === 1
 
   const { goToSimulateurPage } = useSimulateurPage()
-
-  const sendEmailToInvited = async () => {
-    if (!user.email) {
-      return
-    }
-
-    await fetch('/api/sendGroupConfirmationEmails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: user.email,
-        name: user.name,
-        groupName: group.name,
-        groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
-        shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
-        deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${user?.userId}&mtm_campaign=invitation-groupe-email`,
-      }),
-    })
-  }
 
   const handleSubmit = async (event: MouseEvent | FormEvent) => {
     // Avoid reloading page
@@ -81,9 +58,6 @@ export default function InvitationForm({ group }: { group: Group }) {
       updateCurrentSimulation({
         group: group._id,
       })
-
-      // Send email to invited friend confirming the adding to the group
-      sendEmailToInvited()
 
       trackEvent(getMatomoEventJoinedGroupe(group?._id))
 
