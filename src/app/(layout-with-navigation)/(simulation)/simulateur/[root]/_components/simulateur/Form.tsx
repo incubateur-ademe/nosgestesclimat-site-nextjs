@@ -39,6 +39,7 @@ export default function Form() {
       goToEndPage({
         shouldShowQuiz: false,
         isAllowedToSave: true,
+        allowedToGoToGroupDashboard: true,
       })
     }
   }, [shouldGoToEndPage, progression, goToEndPage])

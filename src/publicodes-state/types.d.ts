@@ -28,7 +28,6 @@ export type User = {
   email: string
   northStarRatings?: any // TODO: should be NorthStartType or something
   userId: string
-  hasSavedSimulation?: boolean
   loginExpirationDate?: Date
   organisation?: UserOrganisationInfo
   administratorEmail?: string
@@ -79,7 +78,7 @@ export type Simulation = {
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   poll?: string | null
   group?: string | null
-  userId?: string
+  savedViaEmail?: boolean
 }
 
 export type Persona = {

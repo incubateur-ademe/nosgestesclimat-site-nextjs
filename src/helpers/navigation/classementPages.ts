@@ -1,1 +1,1 @@
-export const linkToClassement = '/classement'
+export const linkToClassement = '/classements'

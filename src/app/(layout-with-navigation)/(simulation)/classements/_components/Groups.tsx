@@ -26,9 +26,9 @@ export default function Groups() {
         }
       />
 
-      {isError ? <ServerErrorSection /> : null}
-
-      {!groups || groups?.length === 0 ? (
+      {isError ? (
+        <ServerErrorSection />
+      ) : !groups || groups?.length === 0 ? (
         <CreateFirstGroupSection />
       ) : (
         <CreateOtherGroupsSection groups={groups} />
