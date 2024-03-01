@@ -57,7 +57,7 @@ const translateTo = async (srcYAML, destPath, destLang) => {
 
   if (0 < missingEntries.length) {
     console.log(
-      `Found ${cli.yellow(missingEntries.length)} missing translations...`
+      `Found ${c.yellow(missingEntries.length)} missing translations...`
     )
     await Promise.all(
       missingEntries.map(async (refEntry) => {
@@ -88,7 +88,7 @@ const translateTo = async (srcYAML, destPath, destLang) => {
 
     utils.writeYAML(destPath, targetEntries)
     console.log(
-      `All missing translations succefully written in ${cli.yellow(destPath)}`
+      `All missing translations succefully written in ${c.yellow(destPath)}`
     )
   } else {
     console.log('Nothing to be done, all translations are up to date!')
@@ -100,7 +100,7 @@ const srcYAML = utils.readYAML(srcPath)
 const run = async () => {
   for (let destLang of destLangs) {
     console.log(
-      `Translating the FAQ files from ${cli.yellow(srcLang)} to ${cli.yellow(
+      `Translating the FAQ files from ${c.yellow(srcLang)} to ${c.yellow(
         destLang
       )}...`
     )

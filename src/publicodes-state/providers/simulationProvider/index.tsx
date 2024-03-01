@@ -2,7 +2,7 @@
 
 import { PropsWithChildren } from 'react'
 
-import { DottedName, Rules, Situation } from '../../types'
+import { DottedName, NGCRules, Situation } from '../../types'
 import SimulationContext from './context'
 import useCategories from './useCategories'
 import useEngine from './useEngine'
@@ -13,7 +13,7 @@ type Props = {
   /**
    * A publicodes rules object
    */
-  rules: Rules
+  rules: NGCRules
   /**
    * The starting situation of engine
    */
@@ -86,6 +86,7 @@ export default function SimulationProvider({
   })
 
   const { categories, subcategories } = useCategories({
+    parsedRules: engine.getParsedRules(),
     everyRules,
     root,
     safeGetRule,
