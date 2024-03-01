@@ -6,7 +6,7 @@ import { getMatomoEventParcoursTestOver } from '@/constants/matomo'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import { useEngine, useForm } from '@/publicodes-state'
+import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useContext, useEffect, useState } from 'react'
 import ColorIndicator from './form/ColorIndicator'
@@ -14,8 +14,11 @@ import ColorIndicator from './form/ColorIndicator'
 export default function Form() {
   const isDebug = useDebug()
 
+  const { getCurrentSimulation } = useUser()
+  const currentSimulation = getCurrentSimulation()
+  const progression = currentSimulation?.progression ?? 0
+
   const {
-    progression,
     remainingQuestions,
     relevantAnsweredQuestions,
     currentQuestion,
@@ -38,7 +41,6 @@ export default function Form() {
     if (shouldGoToEndPage && progression === 1) {
       goToEndPage({
         shouldShowQuiz: false,
-        isAllowedToSave: true,
         allowedToGoToGroupDashboard: true,
       })
     }

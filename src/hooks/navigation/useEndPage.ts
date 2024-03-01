@@ -3,7 +3,7 @@ import { linkToQuiz } from '@/helpers/navigation/quizPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 type GoToEndPageProps = {
   isAllowedToSave?: boolean
@@ -26,6 +26,8 @@ export function useEndPage() {
 
   const { saveSimulation } = useSaveSimulation()
 
+  const [isNavigating, setIsNavigating] = useState(false)
+
   const goToEndPage = useCallback(
     async ({
       isAllowedToSave = true,
@@ -36,6 +38,12 @@ export function useEndPage() {
         router.push('/404') // TODO: should throw an error
         return
       }
+
+      // If we are already navigating, we don't do anything
+      if (isNavigating) {
+        return
+      }
+      setIsNavigating(true)
 
       // If the simulation is finished and is in a poll or a group, we save it (unless save is false)
       if (
@@ -64,7 +72,7 @@ export function useEndPage() {
       // else we redirect to the results page
       router.push('/fin')
     },
-    [currentSimulation, progression, router, saveSimulation]
+    [currentSimulation, progression, router, saveSimulation, isNavigating]
   )
 
   const linkToEndPage = useMemo(() => {
