@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
@@ -35,9 +34,6 @@ export default function CategoryListItem({
         </div>
 
         <div className="flex flex-col items-end">
-          <p className="mb-1 text-[0.75rem] text-gray-600">
-            <Trans>Moyenne :</Trans>
-          </p>
           <Badge>
             <strong>{formattedValue}</strong> {unit}
           </Badge>

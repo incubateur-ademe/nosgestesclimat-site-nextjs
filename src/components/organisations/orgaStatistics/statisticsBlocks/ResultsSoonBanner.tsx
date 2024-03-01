@@ -7,7 +7,11 @@ import Card from '@/design-system/layout/Card'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { usePathname } from 'next/navigation'
 
-export default function ResultsSoonBanner() {
+type Props = {
+  hasLessThan3Participants: boolean
+}
+
+export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
   const pathname = usePathname()
 
   const isResultatsDetailles = pathname.includes('resultats-detailles')
@@ -43,10 +47,19 @@ export default function ResultsSoonBanner() {
                   Bientôt, vous verrez apparaître ici vos statistiques.
                 </Trans>
               </span>{' '}
+              {}
               {!isResultatsDetailles && (
                 <span>
                   <Trans>
-                    Partagez le test pour obtenir vos premiers résultats
+                    Partagez le test pour obtenir vos premiers résultats.
+                  </Trans>
+                </span>
+              )}
+              {hasLessThan3Participants && (
+                <span>
+                  <Trans>
+                    (Données consultables à partir de 3 participants, dans un
+                    souci d'anonymat.)
                   </Trans>
                 </span>
               )}

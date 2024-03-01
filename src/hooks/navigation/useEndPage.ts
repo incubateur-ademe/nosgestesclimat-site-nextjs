@@ -22,7 +22,7 @@ export function useEndPage() {
 
   const goToEndPage = useCallback(
     async (
-      { isAllowedToSave, shouldShowQuiz }: GoToEndPageProps = {
+      { isAllowedToSave = true, shouldShowQuiz = false }: GoToEndPageProps = {
         isAllowedToSave: true,
         shouldShowQuiz: false,
       }

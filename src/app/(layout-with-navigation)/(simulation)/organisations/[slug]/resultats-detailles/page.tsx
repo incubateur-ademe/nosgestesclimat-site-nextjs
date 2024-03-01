@@ -50,9 +50,9 @@ export default function ResultatsDetaillesPage() {
   }, [])
 
   return (
-    <div className="pt-12">
-      <div className="mb-10 flex flex-wrap items-center justify-between md:flex-nowrap">
-        <h1 className="text-xl md:text-2xl">
+    <div>
+      <div className="mb-8 flex flex-wrap items-center justify-between gap-4 md:flex-nowrap md:gap-0">
+        <h1 className="mb-0">
           <Trans>Résultats détaillés de</Trans>{' '}
           <span className="text-primary-500">
             {pollData?.organisationName ?? ''}

@@ -12,7 +12,7 @@ export default function OrgaStatisticsCharts({
 }: {
   simulationRecaps: SimulationRecap[]
 }) {
-  if (!simulationRecaps || simulationRecaps?.length <= 1) return null
+  if (!simulationRecaps || simulationRecaps?.length < 3) return null
 
   const maxValueOfAllCategories = simulationRecaps?.reduce((acc, obj) => {
     Object.keys(obj.categories).forEach((category) => {
@@ -101,9 +101,14 @@ export default function OrgaStatisticsCharts({
       </section>
 
       <section>
-        <h3>
-          <Trans>Par catégorie</Trans>
-        </h3>
+        <div className="flex items-baseline justify-between md:max-w-[16rem]">
+          <h3>
+            <Trans>Par catégorie</Trans>
+          </h3>
+          <p className="mb-0 text-[0.75rem]">
+            <Trans>Moyenne :</Trans>
+          </p>
+        </div>
         <ul>
           {simulationRecaps?.length > 0 &&
             Object.keys(simulationRecaps[0].categories).map(
@@ -119,7 +124,7 @@ export default function OrgaStatisticsCharts({
             )}
         </ul>
         <div className="flex justify-between py-2">
-          <div className="mr-10 w-64" />
+          <div className="sm:mr-10 sm:w-64" />
 
           <div className="flex flex-1 justify-between">
             <div>

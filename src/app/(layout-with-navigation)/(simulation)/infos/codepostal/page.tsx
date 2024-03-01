@@ -34,7 +34,11 @@ export default function PostalCode() {
         data-cypress-id="postal-code-title"
         className="text-lg md:text-2xl"
         title={<Trans>Votre code postal</Trans>}
-        subtitle={<Trans>Facultatif</Trans>}
+        subtitle={
+          <span className="text-secondary-500 font-bold italic">
+            <Trans>Facultatif</Trans>
+          </span>
+        }
       />
       <PostalCodeInput postalCode={postalCode} setPostalCode={setPostalCode} />
       <Navigation
