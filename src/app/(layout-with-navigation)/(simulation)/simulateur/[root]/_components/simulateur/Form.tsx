@@ -37,7 +37,9 @@ export default function Form() {
   useEffect(() => {
     if (shouldGoToEndPage && progression === 1) {
       goToEndPage({
-        shouldShowQuiz: true,
+        shouldShowQuiz: false,
+        isAllowedToSave: true,
+        allowedToGoToGroupDashboard: true,
       })
     }
   }, [shouldGoToEndPage, progression, goToEndPage])

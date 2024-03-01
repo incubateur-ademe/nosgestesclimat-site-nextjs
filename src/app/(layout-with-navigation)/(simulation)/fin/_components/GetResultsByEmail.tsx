@@ -6,13 +6,11 @@ import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
-import { useSubscribeUser } from '@/hooks/useSubscribeUser'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
 import { formatValue } from 'publicodes'
-import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './getResultsByEmail/Confirmation'
 
@@ -21,53 +19,52 @@ export default function GetResultsByEmail({
 }: {
   className?: string
 }) {
-  const { user, updateEmail, getCurrentSimulation, updateHasSavedSimulation } =
+  const { user, updateEmail, getCurrentSimulation, updateCurrentSimulation } =
     useUser()
 
-  const [email, setEmail] = useState('')
+  const currentSimulation = getCurrentSimulation()
 
-  useEffect(() => {
-    setEmail(user?.email || '')
-  }, [user])
+  const { saveSimulation, isPending, isSuccess, isError, error } =
+    useSaveSimulation()
 
-  const simulation = getCurrentSimulation()
+  const { data: numberSubscribers } = useNumberSubscribers()
 
-  const { data: numberSubscribers } = useQuery({
-    queryKey: ['numberSubscribers'],
-    queryFn: async () =>
-      axios
-        .get('/api/get-newsletter-subscribers-number')
-        .then((res) => res.data),
-  })
-
-  const {
-    mutate: subscribeUser,
-    isPending,
-    isSuccess,
-    isError,
-    error,
-  } = useSubscribeUser()
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (isPending || !simulation) return
+    if (!currentSimulation) {
+      return // TODO: should throw an error
+    }
+
+    // If the mutation is pending, we do nothing
+    if (isPending) {
+      return
+    }
 
     trackEvent(matomoSaveSimulationByGivingEmail)
 
-    subscribeUser({
-      simulation,
-      email,
-      optIn: true,
+    // We save the simulation (and signify the backend to send the email)
+    await saveSimulation({
+      simulation: {
+        ...currentSimulation,
+        savedViaEmail: true,
+      },
+      shouldSendSimulationEmail: true,
     })
 
-    updateEmail(email)
-
-    updateHasSavedSimulation(true)
+    // We update the simulation to signify that it has been saved (and not show the form anymore)
+    updateCurrentSimulation({ savedViaEmail: true })
   }
 
-  if (isSuccess || user.hasSavedSimulation)
+  // If we successfully saved the simulation, we display the confirmation message
+  if (isSuccess) {
     return <Confirmation className={className} />
+  }
+
+  // If the simulation is already saved, we display the confirmation message
+  if (currentSimulation?.savedViaEmail) {
+    return <Confirmation className={className} />
+  }
 
   return (
     <Card
@@ -105,9 +102,10 @@ export default function GetResultsByEmail({
             type="email"
             aria-label="Entrez votre adresse email"
             placeholder="jeanmarc@nosgestesclimat.fr"
-            value={email}
-            defaultValue={user?.email ?? ''}
-            onChange={(e) => setEmail(e.currentTarget.value)}
+            value={user?.email}
+            onChange={(event) => {
+              updateEmail((event.target as HTMLInputElement).value)
+            }}
             required
             className="bg-white"
           />

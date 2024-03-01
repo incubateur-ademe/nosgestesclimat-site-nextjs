@@ -1,4 +1,5 @@
-import { ChangeEvent, HTMLAttributes, ReactNode } from 'react'
+import { ChangeEventHandler, HTMLAttributes, ReactNode } from 'react'
+import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -10,11 +11,12 @@ type Props = {
   helperText?: string | ReactNode
   className?: string
   placeholder?: string
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+  onChange?: ChangeEventHandler<HTMLInputElement>
   value?: string | number
   required?: boolean
   maxLength?: number
   disabled?: boolean
+  debounceTimeout?: number
 }
 
 export default function TextInputGroup({
@@ -29,6 +31,7 @@ export default function TextInputGroup({
   value,
   required = false,
   disabled,
+  debounceTimeout = 100,
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
   return (
@@ -48,11 +51,12 @@ export default function TextInputGroup({
         <span className="mt-1 text-xs text-slate-500">{helperText}</span>
       ) : null}
 
-      <input
+      <DebounceInput
+        debounceTimeout={debounceTimeout}
         name={name}
         type={type}
         placeholder={placeholder}
-        onChange={!disabled ? onChange : undefined}
+        onChange={onChange ?? (() => null)}
         aria-describedby={`error-${name}`}
         value={value}
         required={required}
