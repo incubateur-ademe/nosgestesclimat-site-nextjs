@@ -5,6 +5,7 @@ import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
+import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useUser } from '@/publicodes-state'
@@ -26,6 +27,7 @@ export default function InvitationForm({ group }: { group: Group }) {
   const hasCompletedTest = progression === 1
 
   const { goToSimulateurPage } = useSimulateurPage()
+  const { goToEndPage } = useEndPage()
 
   const handleSubmit = async (event: MouseEvent | FormEvent) => {
     // Avoid reloading page
@@ -62,7 +64,11 @@ export default function InvitationForm({ group }: { group: Group }) {
       trackEvent(getMatomoEventJoinedGroupe(group?._id))
 
       // Redirect to simulateur page or end page
-      goToSimulateurPage()
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
     } catch (error) {
       captureException(error)
     }
@@ -87,7 +93,7 @@ export default function InvitationForm({ group }: { group: Group }) {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="text-secondary-500 italic">
+              <span className="italic text-secondary-500">
                 {' '}
                 {t('facultatif')}
               </span>

@@ -9,6 +9,7 @@ import PrenomInput from '@/design-system/inputs/PrenomInput'
 import { validateCreationForm } from '@/helpers/groups/validateCreationForm'
 import useCreateGroup from '@/hooks/groups/useCreateGroup'
 import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
+import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
@@ -42,6 +43,7 @@ export default function GroupCreationForm() {
   const { data: groups } = useFetchGroupsOfUser()
 
   const { goToSimulateurPage } = useSimulateurPage()
+  const { goToEndPage } = useEndPage()
 
   const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
 
@@ -88,7 +90,11 @@ export default function GroupCreationForm() {
       })
 
       // Redirect to simulateur page or end page
-      goToSimulateurPage()
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
     } catch (e) {
       captureException(e)
     }
@@ -115,7 +121,7 @@ export default function GroupCreationForm() {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="text-secondary-500 italic">
+              <span className="italic text-secondary-500">
                 {' '}
                 {t('facultatif')}
               </span>
