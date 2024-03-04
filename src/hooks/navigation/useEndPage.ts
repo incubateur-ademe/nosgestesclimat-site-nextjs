@@ -89,7 +89,7 @@ export function useEndPage() {
     ({
       allowedToGoToGroupDashboard = false,
       shouldShowQuiz = false,
-    }: GetLinkToEndPageProps = GetLinkToEndPagePropsDefault) => {
+    }: GetLinkToEndPageProps = GetLinkToEndPagePropsDefault): string => {
       if (!currentSimulation) {
         return '/404' // TODO: should throw an error
       }

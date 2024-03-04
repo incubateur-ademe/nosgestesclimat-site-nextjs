@@ -23,7 +23,7 @@ export function useSimulateurPage() {
 
   const { getCurrentSimulation, tutorials, initSimulation } = useUser()
 
-  const { goToEndPage } = useEndPage()
+  const { goToEndPage, getLinkToEndPage } = useEndPage()
 
   const tutorielSeen = tutorials.testIntro
 
@@ -74,10 +74,10 @@ export function useSimulateurPage() {
   const getLinkToSimulateurPage = useCallback(
     ({
       newSimulation,
-    }: GetLinkToSimulateurPageProps = getLinkToSimulateurPagePropsDefault) => {
+    }: GetLinkToSimulateurPageProps = getLinkToSimulateurPagePropsDefault): string => {
       // If the user has completed the test (and we are not initializing a new one) we return the results page link
       if (progression === 1 && !newSimulation) {
-        return '/fin'
+        return getLinkToEndPage()
       }
 
       // If the user has seen the tutoriel we return the test page link
@@ -88,7 +88,7 @@ export function useSimulateurPage() {
       // else we return the tutoriel page link
       return '/tutoriel'
     },
-    [tutorielSeen, progression]
+    [tutorielSeen, progression, getLinkToEndPage]
   )
 
   const linkToSimulateurPageLabel = useMemo(() => {
