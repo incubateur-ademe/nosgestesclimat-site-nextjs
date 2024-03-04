@@ -21,7 +21,7 @@ export default function Label({
 }: Props) {
   const { t } = useClientTranslation()
 
-  const { linkToEndPage } = useEndPage()
+  const { getLinkToEndPage } = useEndPage()
 
   const { title, numericValue } = useRule(choices[0])
 
@@ -55,8 +55,8 @@ export default function Label({
         , {title?.toLowerCase()} {t('est votre poste le plus important\u202f!')}{' '}
         <br className="hidden md:inline" />
         <Link
-          className="hover:text-secondary-200 focus:text-secondary-200 text-white"
-          href={linkToEndPage}>
+          className="text-white hover:text-secondary-200 focus:text-secondary-200"
+          href={getLinkToEndPage()}>
           <Trans>Découvrez vos résultats détaillés</Trans>
         </Link>
       </p>
@@ -76,8 +76,8 @@ export default function Label({
         , {title?.toLowerCase()} {t('est votre poste le plus important\u202f!')}{' '}
         <br className="hidden md:inline" />
         <Link
-          className="hover:text-secondary-200 focus:text-secondary-200 text-white"
-          href={linkToEndPage}>
+          className="text-white hover:text-secondary-200 focus:text-secondary-200"
+          href={getLinkToEndPage()}>
           <Trans>Découvrez vos résultats détaillés</Trans>
         </Link>
       </p>
@@ -97,8 +97,8 @@ export default function Label({
         , {title} {t('est votre poste le plus important\u202f!')}{' '}
         <br className="hidden md:inline" />
         <Link
-          className="hover:text-secondary-200 focus:text-secondary-200 text-white"
-          href={linkToEndPage}>
+          className="text-white hover:text-secondary-200 focus:text-secondary-200"
+          href={getLinkToEndPage()}>
           <Trans>Découvrez vos résultats détaillés</Trans>
         </Link>
       </p>

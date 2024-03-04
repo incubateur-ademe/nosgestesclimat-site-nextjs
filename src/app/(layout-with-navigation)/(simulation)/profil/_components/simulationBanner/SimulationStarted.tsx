@@ -14,7 +14,7 @@ import TutorialLink from './_components/TutorialLink'
 export default function SimulationStarted() {
   const { t } = useClientTranslation()
 
-  const { linkToEndPage } = useEndPage()
+  const { getLinkToEndPage } = useEndPage()
 
   const { progression, relevantAnsweredQuestions } = useForm()
 
@@ -59,7 +59,7 @@ export default function SimulationStarted() {
           <ButtonLink
             className="w-full text-center leading-8"
             color="primary"
-            href={linkToEndPage}>
+            href={getLinkToEndPage()}>
             <Trans>
               <Emoji className="mr-2">👀</Emoji> Voir mon résultat
             </Trans>
