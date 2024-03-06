@@ -60,11 +60,21 @@ export default function useQuestions({
         .filter((question) => foldedSteps.indexOf(question) === -1)
         // and all that are not missing
         .filter((question) =>
-          Object.keys(missingVariables).find((missingVariable) =>
-            missingVariable.includes(question)
+          Object.keys(missingVariables).find(
+            (missingVariable) =>
+              missingVariable.includes(question) ||
+              question.includes('transport . liste') // The fake mosaic will not be missing obviously
           )
         )
         .sort((a, b) => {
+          // The fake transport mosaic is always first (this is temporary for split testing)
+          if (a === 'transport . liste') {
+            return -1
+          }
+          if (b === 'transport . liste') {
+            return 1
+          }
+
           const aSplittedName = a.split(' . ')
           const bSplittedName = b.split(' . ')
 

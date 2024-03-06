@@ -145,3 +145,16 @@ export type MigrationType = {
   keysToMigrate: Record<DottedName, DottedName>
   valuesToMigrate: Record<DottedName, Record<string, NodeValue>>
 }
+
+export type UpdateSimulationProps = {
+  situationToAdd?: Situation
+  situationKeysToRemove?: DottedName[]
+  foldedStepToAdd?: string
+  actionChoices?: ActionChoices
+  defaultAdditionalQuestionsAnswers?: Record<string, string>
+  computedResults?: ComputedResults
+  progression?: number
+  poll?: string | null
+  group?: string | null
+  savedViaEmail?: boolean
+}

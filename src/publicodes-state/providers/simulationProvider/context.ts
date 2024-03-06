@@ -19,6 +19,7 @@ type SimulationContextType = {
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   situation: Situation
   updateSituation: (situationToAdd: Situation) => Promise<void>
+  deleteSituation: (situationKeysToRemove: DottedName[]) => Promise<void>
   updateProgression: (progression: number) => void
   foldedSteps: DottedName[]
   addFoldedStep: (foldedStep: DottedName) => void
@@ -41,6 +42,7 @@ export default createContext<SimulationContextType>({
   safeEvaluate: () => null,
   situation: {},
   updateSituation: () => Promise.resolve(),
+  deleteSituation: () => Promise.resolve(),
   updateProgression: () => Promise.resolve(),
   foldedSteps: [],
   addFoldedStep: () => '',

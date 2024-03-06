@@ -1,6 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { safeGetSituation } from '../../helpers/safeGetSituation'
-import { DottedName, Engine, Situation } from '../../types'
+import {
+  DottedName,
+  Engine,
+  Situation,
+  UpdateSimulationProps,
+} from '../../types'
 
 type Props = {
   engine: Engine
@@ -8,6 +13,7 @@ type Props = {
   defaultSituation?: Situation
   externalSituation: Situation
   updateExternalSituation: (situation: Situation) => void
+  updateSimulation: (simulation: UpdateSimulationProps) => void
 }
 /**
  * update situation lifecycle:
@@ -22,24 +28,42 @@ export default function useSituation({
   defaultSituation = {},
   externalSituation,
   updateExternalSituation,
+  updateSimulation,
 }: Props) {
   const [initialized, setInitialized] = useState(false)
   const [situation, setSituation] = useState(defaultSituation)
 
-  const updateSituation = (situationToAdd: Situation): Promise<void> => {
-    const safeSitationToAdd = safeGetSituation({
-      situation: situationToAdd,
-      everyRules,
-    })
-    updateExternalSituation(safeSitationToAdd)
-
-    // TODO: this is shit
-    return new Promise((resolve) => {
-      requestAnimationFrame(() => {
-        resolve()
+  const updateSituation = useCallback(
+    (situationToAdd: Situation): Promise<void> => {
+      const safeSitationToAdd = safeGetSituation({
+        situation: situationToAdd,
+        everyRules,
       })
-    })
-  }
+      updateExternalSituation(safeSitationToAdd)
+
+      // TODO: this is shit
+      return new Promise((resolve) => {
+        requestAnimationFrame(() => {
+          resolve()
+        })
+      })
+    },
+    [everyRules, updateExternalSituation]
+  )
+
+  const deleteSituation = useCallback(
+    (situationKeysToRemove: DottedName[]): Promise<void> => {
+      updateSimulation({ situationKeysToRemove: situationKeysToRemove })
+
+      // TODO: this is shit
+      return new Promise((resolve) => {
+        requestAnimationFrame(() => {
+          resolve()
+        })
+      })
+    },
+    [updateSimulation]
+  )
 
   useEffect(() => {
     const safeSituation = safeGetSituation({
@@ -54,6 +78,7 @@ export default function useSituation({
   return {
     situation,
     updateSituation,
+    deleteSituation,
     initialized,
   }
 }

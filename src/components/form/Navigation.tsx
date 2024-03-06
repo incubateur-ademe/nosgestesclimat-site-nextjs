@@ -12,7 +12,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { MouseEvent, useCallback } from 'react'
+import { MouseEvent, useCallback, useState } from 'react'
 
 type Props = {
   question: string
@@ -31,6 +31,21 @@ export default function Navigation({
     useForm()
 
   const { isMissing, addFoldedStep, plancher } = useRule(question)
+
+  // We listen for localstorage changes for a response to the question transport . liste
+  // This is temporary for split testing
+  const [isListAnswered, setIsListAnswered] = useState(false)
+  // useEffect(() => {
+  //   const listener = () => {
+  //     if (localStorage.getItem('transport . liste')) {
+  //       setIsListAnswered(true)
+  //     }
+  //   }
+  //   if (question === 'transport . liste') {
+  //     window.addEventListener('storage', listener)
+  //   }
+  //   return () => window.removeEventListener('storage', listener)
+  // }, [question])
 
   const isNextDisabled =
     tempValue !== undefined && plancher !== undefined && tempValue < plancher
@@ -111,7 +126,7 @@ export default function Navigation({
         </Button>
       ) : null}
       <Button
-        color={isMissing ? 'secondary' : 'primary'}
+        color={isMissing && !isListAnswered ? 'secondary' : 'primary'}
         disabled={isNextDisabled}
         data-cypress-id="next-question-button"
         onClick={handleGoToNextQuestion}>

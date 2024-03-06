@@ -4,11 +4,18 @@ import { useContext } from 'react'
 import simulationContext from '../../providers/simulationProvider/context'
 
 /**
- * This is temporary and should be put to death as soon as possible
+ * This is temporary and should be put to death as soon as possible.
+ * It is only used in the actions pages.
  */
 export default function useTempEngine() {
-  const { safeEvaluate, rules, safeGetRule, foldedSteps, everyMosaicChildren } =
-    useContext(simulationContext) ?? {}
+  const {
+    safeEvaluate,
+    deleteSituation,
+    rules,
+    safeGetRule,
+    foldedSteps,
+    everyMosaicChildren,
+  } = useContext(simulationContext) ?? {}
 
   const getRuleObject = (dottedName: DottedName): any => {
     return { ...safeEvaluate(dottedName), ...safeGetRule(dottedName) }
@@ -25,6 +32,7 @@ export default function useTempEngine() {
     .flat()
 
   return {
+    deleteSituation,
     getRuleObject,
     rules,
     extendedFoldedSteps,
