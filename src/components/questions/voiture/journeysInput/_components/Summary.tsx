@@ -20,7 +20,7 @@ export default function Summary({
       <Trans>km sont parcourus par an, avec en moyenne</Trans>{' '}
       {averagePassengers.toLocaleString(locale)}{' '}
       <Trans>voyageurs, soit</Trans>{' '}
-      {(totalForOnePassenger ?? 0).toLocaleString(locale)} <Trans>km</Trans>.{' '}
+      {(totalForOnePassenger ?? 0).toLocaleString(locale)} <Trans>km par personne</Trans>.{' '}
       <br className="hidden md:inline" />
       <Trans>
         C’est bien cette distance qui sera comptabilisée en fin de test.
