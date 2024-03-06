@@ -19,7 +19,7 @@ export default function Summary({
       <Trans>Au total</Trans> {total.toLocaleString(locale)}{' '}
       <Trans>km sont parcourus par an, avec en moyenne</Trans>{' '}
       {averagePassengers.toLocaleString(locale)}{' '}
-      <Trans>voyageurs. La distance individuelle parcourue est donc de</Trans>{' '}
+      <Trans>voyageurs, soit</Trans>{' '}
       {(totalForOnePassenger ?? 0).toLocaleString(locale)} <Trans>km</Trans>.{' '}
       <br className="hidden md:inline" />
       <Trans>
