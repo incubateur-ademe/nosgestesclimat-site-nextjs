@@ -5,7 +5,6 @@ import {
 import {
   getMatomoEventClickDontKnow,
   getMatomoEventClickNextQuestion,
-  getMatomoEventClickPrevQuestion,
 } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -16,56 +15,33 @@ import { MouseEvent, useCallback } from 'react'
 
 type Props = {
   question: string
-  tempValue?: number
-  onComplete?: () => void
+  isPristine: boolean
 }
 
-export default function Navigation({
-  question,
-  tempValue,
-  onComplete = () => '',
-}: Props) {
+export default function Navigation({ question, isPristine }: Props) {
   const { t } = useClientTranslation()
 
-  const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
-    useForm()
+  const { gotoNextQuestion } = useForm()
 
-  const { isMissing, addFoldedStep, plancher } = useRule(question)
-
-  const isNextDisabled =
-    tempValue !== undefined && plancher !== undefined && tempValue < plancher
+  const { addFoldedStep } = useRule(question)
 
   const handleGoToNextQuestion = useCallback(
     async (e: KeyboardEvent | MouseEvent) => {
       e.preventDefault()
 
-      if (isMissing) {
+      if (isPristine) {
         trackEvent(getMatomoEventClickDontKnow(question))
       } else {
         trackEvent(getMatomoEventClickNextQuestion(question))
       }
 
-      if (isMissing) {
-        addFoldedStep(question)
-      }
+      addFoldedStep(question)
 
       handleMoveFocus()
 
-      if (!noNextQuestion) {
-        gotoNextQuestion()
-        return
-      }
-
-      onComplete()
+      gotoNextQuestion()
     },
-    [
-      question,
-      gotoNextQuestion,
-      noNextQuestion,
-      isMissing,
-      onComplete,
-      addFoldedStep,
-    ]
+    [question, gotoNextQuestion, isPristine, addFoldedStep]
   )
 
   useMagicKey({
@@ -95,31 +71,11 @@ export default function Navigation({
 
   return (
     <div className="flex justify-end  gap-4">
-      {!noPrevQuestion ? (
-        <Button
-          onClick={() => {
-            trackEvent(getMatomoEventClickPrevQuestion(question))
-
-            if (!noPrevQuestion) {
-              gotoPrevQuestion()
-            }
-
-            handleMoveFocus()
-          }}
-          color="text">
-          {'← ' + t('Précédent')}
-        </Button>
-      ) : null}
       <Button
-        color={isMissing ? 'secondary' : 'primary'}
-        disabled={isNextDisabled}
+        color={isPristine ? 'secondary' : 'primary'}
         data-cypress-id="next-question-button"
         onClick={handleGoToNextQuestion}>
-        {noNextQuestion
-          ? t('Terminer')
-          : isMissing
-            ? t('Je ne sais pas') + ' →'
-            : t('Suivant') + ' →'}
+        {isPristine ? t('Je ne sais pas') + ' →' : t('Suivant') + ' →'}
       </Button>
     </div>
   )

@@ -2,6 +2,7 @@ import { useRule, useTempEngine } from '@/publicodes-state'
 import { useEffect, useState } from 'react'
 import Label from '../form/question/Label'
 import MosaicBooleanInput from './transport/MosaicBooleanInput'
+import Navigation from './transport/Navigation'
 import { useAvion } from './transport/hooks/useAvion'
 import { useBus } from './transport/hooks/useBus'
 import { useCampingCar } from './transport/hooks/useCampingCar'
@@ -17,12 +18,13 @@ import { useVelo } from './transport/hooks/useVelo'
 import { useVoiture } from './transport/hooks/useVoiture'
 import { transports } from './transport/transports'
 
+const QUESTION_DOTTED_NAME = 'transport . liste'
 /**
  * This component displays a mosaic of transport at the beginning of the simulation
  * It is temporary for split testing. It should not serve as a reference for future components.
  */
 export default function Transport() {
-  const { label } = useRule('transport . liste')
+  const { label } = useRule(QUESTION_DOTTED_NAME)
 
   // An object to store the answers of the user for each transport
   const [answers, setAnswers] = useState<Record<string, boolean>>({})
@@ -30,12 +32,12 @@ export default function Transport() {
   // We use localStorage to store the answers of the user
   const [isInitialized, setIsInitialized] = useState(false)
   useEffect(() => {
-    setAnswers(JSON.parse(localStorage.getItem('transport . liste') || '{}'))
+    setAnswers(JSON.parse(localStorage.getItem(QUESTION_DOTTED_NAME) || '{}'))
     setIsInitialized(true)
   }, [])
   useEffect(() => {
     if (isInitialized) {
-      localStorage.setItem('transport . liste', JSON.stringify(answers))
+      localStorage.setItem(QUESTION_DOTTED_NAME, JSON.stringify(answers))
     }
   }, [answers, isInitialized])
 
@@ -68,7 +70,7 @@ export default function Transport() {
 
   return (
     <div className="mb-4">
-      <Label question="transport . liste" label={label} />
+      <Label question={QUESTION_DOTTED_NAME} label={label} />
 
       <fieldset className="grid gap-4 md:grid-cols-2">
         {transports.map((transport, index) => (
@@ -87,6 +89,7 @@ export default function Transport() {
           />
         ))}
       </fieldset>
+      <Navigation question={QUESTION_DOTTED_NAME} isPristine={isPristine} />
     </div>
   )
 }

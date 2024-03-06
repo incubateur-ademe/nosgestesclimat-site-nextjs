@@ -97,19 +97,21 @@ export default function Form() {
         tempValue={tempValue}
         setTempValue={setTempValue}
       />
-      <Navigation
-        question={currentQuestion}
-        tempValue={tempValue}
-        onComplete={() => {
-          trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
+      {currentQuestion !== 'transport . liste' ? (
+        <Navigation
+          question={currentQuestion}
+          tempValue={tempValue}
+          onComplete={() => {
+            trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
 
-          if (shouldPreventNavigation) {
-            handleUpdateShouldPreventNavigation(false)
-          }
+            if (shouldPreventNavigation) {
+              handleUpdateShouldPreventNavigation(false)
+            }
 
-          setShouldGoToEndPage(true)
-        }}
-      />
+            setShouldGoToEndPage(true)
+          }}
+        />
+      ) : null}
     </div>
   )
 }
