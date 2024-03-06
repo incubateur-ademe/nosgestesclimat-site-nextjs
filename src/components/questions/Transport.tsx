@@ -69,27 +69,29 @@ export default function Transport() {
   useVoiture({ answers, isPristine, deleteSituation })
 
   return (
-    <div className="mb-4">
-      <Label question={QUESTION_DOTTED_NAME} label={label} />
+    <>
+      <div className="mb-4">
+        <Label question={QUESTION_DOTTED_NAME} label={label} />
 
-      <fieldset className="grid gap-4 md:grid-cols-2">
-        {transports.map((transport, index) => (
-          <MosaicBooleanInput
-            key={transport.key}
-            title={transport.title}
-            icons={transport.icons}
-            value={answers[transport.key]}
-            setValue={(value) =>
-              setAnswers((prevAnswers) => ({
-                ...prevAnswers,
-                [transport.key]: value,
-              }))
-            }
-            index={index}
-          />
-        ))}
-      </fieldset>
+        <fieldset className="grid gap-4 md:grid-cols-2">
+          {transports.map((transport, index) => (
+            <MosaicBooleanInput
+              key={transport.key}
+              title={transport.title}
+              icons={transport.icons}
+              value={answers[transport.key]}
+              setValue={(value) =>
+                setAnswers((prevAnswers) => ({
+                  ...prevAnswers,
+                  [transport.key]: value,
+                }))
+              }
+              index={index}
+            />
+          ))}
+        </fieldset>
+      </div>
       <Navigation question={QUESTION_DOTTED_NAME} isPristine={isPristine} />
-    </div>
+    </>
   )
 }
