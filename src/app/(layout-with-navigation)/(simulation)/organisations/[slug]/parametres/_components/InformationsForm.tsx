@@ -72,7 +72,7 @@ export default function InformationsForm({ organisation }: Props) {
 
   useEffect(() => {
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+      clearTimeout(timeoutRef.current)
     }
   }, [])
 
@@ -93,13 +93,13 @@ export default function InformationsForm({ organisation }: Props) {
         <TextInputGroup
           name="name"
           label={<Trans>Votre organisation</Trans>}
-          defaultValue={organisation?.name}
+          value={organisation?.name}
         />
 
         <TextInputGroup
           name="administratorName"
           label={<Trans>Votre prénom</Trans>}
-          defaultValue={organisation?.administrators?.[0]?.name}
+          value={organisation?.administrators?.[0]?.name}
         />
 
         <TextInputGroup
@@ -107,7 +107,7 @@ export default function InformationsForm({ organisation }: Props) {
           disabled
           helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
           label={<Trans>Votre e-mail</Trans>}
-          defaultValue={organisation?.administrators?.[0]?.email}
+          value={organisation?.administrators?.[0]?.email}
         />
 
         <div className="w-[32rem]">
