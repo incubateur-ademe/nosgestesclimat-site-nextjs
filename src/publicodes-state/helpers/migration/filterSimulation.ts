@@ -1,6 +1,5 @@
 import {
   DottedName,
-  LocalStorage,
   MigrationType,
   NodeValue,
   Simulation,
@@ -91,60 +90,48 @@ function handleMigrationValue({
 }
 
 type Props = {
-  localStorage: LocalStorage
+  simulation: Simulation
   migrationInstructions: MigrationType
 }
-export default function filterLocalStorage({
-  localStorage: currentLocalStorage,
+export default function filterSimulationSituation({
+  simulation,
   migrationInstructions,
-}: Props): LocalStorage {
-  // we can't use spread operator {... currentLocalStorage} as it doesn't deeply clone the object
-  const filteredLocalStorage = JSON.parse(JSON.stringify(currentLocalStorage))
-  const simulations = filteredLocalStorage?.simulations
+}: Props): Simulation {
+  const situation = simulation.situation
+  const foldedSteps = simulation.foldedSteps
 
-  const unsupportedDottedNamesFromSituation: DottedName[] = []
+  Object.entries(situation).map(([ruleName, nodeValue]) => {
+    // We check if the non supported ruleName is a key to migrate.
+    // Ex: "logement . chauffage . bois . type . bûche . consommation": "xxx" which is now ""logement . chauffage . bois . type . bûches . consommation": "xxx"
+    if (Object.keys(migrationInstructions.keysToMigrate).includes(ruleName)) {
+      handleMigrationKey({
+        ruleName,
+        nodeValue,
+        situation,
+        foldedSteps,
+        migrationInstructions,
+      })
+    }
 
-  simulations?.map((simulation: Simulation): void => {
-    const situation = simulation.situation
-    const foldedSteps = simulation.foldedSteps
-
-    Object.entries(situation).map(([ruleName, nodeValue]) => {
-      // We check if the non supported ruleName is a key to migrate.
-      // Ex: "logement . chauffage . bois . type . bûche . consommation": "xxx" which is now ""logement . chauffage . bois . type . bûches . consommation": "xxx"
-      if (Object.keys(migrationInstructions.keysToMigrate).includes(ruleName)) {
-        unsupportedDottedNamesFromSituation.push(ruleName)
-
-        handleMigrationKey({
-          ruleName,
-          nodeValue,
-          situation,
-          foldedSteps,
-          migrationInstructions,
-        })
-      }
-
-      if (
-        // We check if the value of the non supported ruleName value is a value to migrate.
-        // Ex: answer "logement . chauffage . bois . type": "bûche" changed to "bûches"
-        // If a value is specified but empty, we consider it to be deleted (we need to ask the question again)
-        // Ex: answer "transport . boulot . commun . type": "vélo"
-        Object.keys(migrationInstructions.valuesToMigrate).includes(ruleName) &&
-        Object.keys(migrationInstructions.valuesToMigrate[ruleName]).includes(
-          nodeValue as string
-        )
-      ) {
-        unsupportedDottedNamesFromSituation.push(ruleName)
-
-        handleMigrationValue({
-          ruleName,
-          nodeValue,
-          situation,
-          foldedSteps,
-          migrationInstructions,
-        })
-      }
-    })
+    if (
+      // We check if the value of the non supported ruleName value is a value to migrate.
+      // Ex: answer "logement . chauffage . bois . type": "bûche" changed to "bûches"
+      // If a value is specified but empty, we consider it to be deleted (we need to ask the question again)
+      // Ex: answer "transport . boulot . commun . type": "vélo"
+      Object.keys(migrationInstructions.valuesToMigrate).includes(ruleName) &&
+      Object.keys(migrationInstructions.valuesToMigrate[ruleName]).includes(
+        nodeValue as string
+      )
+    ) {
+      handleMigrationValue({
+        ruleName,
+        nodeValue,
+        situation,
+        foldedSteps,
+        migrationInstructions,
+      })
+    }
   })
 
-  return filteredLocalStorage
+  return simulation
 }

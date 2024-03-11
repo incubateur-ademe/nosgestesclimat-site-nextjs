@@ -27,6 +27,7 @@ export default function useUser() {
     setCurrentSimulationId,
     groupToRedirectToAfterTest,
     setGroupToRedirectToAfterTest,
+    migrationInstructions,
   } = useContext(userContext)
 
   const { updateName, updateEmail, updateRegion } = useUserDetails({ setUser })
@@ -45,6 +46,7 @@ export default function useUser() {
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
+    migrationInstructions,
   })
 
   const { toggleActionChoice, rejectAction } = useActions({

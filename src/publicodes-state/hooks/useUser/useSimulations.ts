@@ -1,20 +1,28 @@
 'use client'
 
+import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
 import { Dispatch, SetStateAction, useCallback } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { ActionChoices, Simulation, Situation } from '../../types'
+import {
+  ActionChoices,
+  MigrationType,
+  Simulation,
+  Situation,
+} from '../../types'
 
 type Props = {
   simulations: Simulation[]
   setSimulations: Dispatch<SetStateAction<Simulation[]>>
   currentSimulationId: string
   setCurrentSimulationId: Dispatch<SetStateAction<string>>
+  migrationInstructions: MigrationType
 }
 export default function useSimulations({
   simulations,
   setSimulations,
   currentSimulationId,
   setCurrentSimulationId,
+  migrationInstructions,
 }: Props) {
   const resetAideSaisie = () => {
     localStorage.removeItem('transport . voiture . km')
@@ -119,12 +127,21 @@ export default function useSimulations({
 
   const addSimulation = (simulation: Simulation) => {
     // Avoid duplicating simulations
-    if (simulations.find((s) => s.id === simulation.id)) return
+    if (simulations.find((s) => s.id === simulation.id)) {
+      setCurrentSimulationId(simulation.id)
+      return
+    }
+
+    const migratedSimulation = migrateSimulation({
+      simulation,
+      migrationInstructions,
+    })
 
     setSimulations((prevSimulations: Simulation[]) => [
       ...prevSimulations,
-      simulation,
+      migratedSimulation,
     ])
+
     setCurrentSimulationId(simulation.id)
   }
 
