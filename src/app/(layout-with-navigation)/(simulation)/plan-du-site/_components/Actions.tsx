@@ -2,11 +2,13 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import { useTempEngine } from '@/publicodes-state'
+import { useSimulation, useTempEngine } from '@/publicodes-state'
 import { utils } from 'publicodes'
 import getActions from '../../actions/_helpers/getActions'
 
 export default function Actions() {
+  const { safeEvaluate } = useSimulation()
+
   const { rules, getRuleObject } = useTempEngine()
 
   if (!rules) {
@@ -16,6 +18,7 @@ export default function Actions() {
   const actions = getActions({
     rules,
     radical: true,
+    safeEvaluate,
     getRuleObject,
     actionChoices: [] as any[],
   })

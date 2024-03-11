@@ -53,6 +53,7 @@ export default function UserProvider({
         setSimulations,
         currentSimulationId,
         setCurrentSimulationId,
+        migrationInstructions,
       }}>
       {children}
     </UserContext.Provider>

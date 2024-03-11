@@ -92,7 +92,10 @@ export default function Footer({ className = '' }) {
             <LanguageSwitchButton />
           </div>
 
-          <div className="mt-4 flex w-full flex-wrap gap-6 text-xs">
+          <div className="mt-4 text-xs">
+            ▲&nbsp;<Trans>Propulsé par Vercel</Trans>
+            <span className="hidden sm:inline"> | </span>
+            <br className="md:hidden" />
             <InlineLink
               href="/accessibilite"
               className="text-default no-underline hover:underline">
