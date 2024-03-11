@@ -1,13 +1,12 @@
 'use client'
 
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, useCallback } from 'react'
 
 import {
-  ActionChoices,
-  ComputedResults,
   DottedName,
   NGCRules,
   Situation,
+  UpdateSimulationProps,
 } from '../../types'
 import SimulationContext from './context'
 import useCategories from './useCategories'
@@ -32,16 +31,7 @@ type Props = {
   /**
    * A function to update the simulation of the user
    */
-  updateSimulation: (simulation: {
-    situationToAdd?: Situation
-    foldedStepToAdd?: string
-    defaultAdditionalQuestions?: Record<string, string>
-    actionChoices?: ActionChoices
-    computedResults?: ComputedResults
-    progression?: number
-    poll?: string
-    group?: string
-  }) => void
+  updateSimulation: (simulation: UpdateSimulationProps) => void
   /**
    * A function to update the situation of the current simulation of the user (the passed situation is added to the current situation)
    */
@@ -98,13 +88,15 @@ export default function SimulationProvider({
     rawMissingVariables,
   } = useRules({ engine: pristineEngine, root: 'bilan' })
 
-  const { situation, updateSituation, initialized } = useSituation({
-    engine,
-    everyRules,
-    defaultSituation,
-    externalSituation,
-    updateExternalSituation,
-  })
+  const { situation, updateSituation, deleteSituation, initialized } =
+    useSituation({
+      engine,
+      everyRules,
+      defaultSituation,
+      externalSituation,
+      updateExternalSituation,
+      updateSimulation,
+    })
 
   const { categories, subcategories } = useCategories({
     parsedRules: engine.getParsedRules(),
@@ -121,6 +113,15 @@ export default function SimulationProvider({
     updateSimulation,
   })
 
+  const addFoldedStepFixed = useCallback(
+    (foldedStep: string) => {
+      if (!foldedSteps.includes(foldedStep)) {
+        addFoldedStep(foldedStep)
+      }
+    },
+    [addFoldedStep, foldedSteps]
+  )
+
   return (
     <SimulationContext.Provider
       value={{
@@ -131,14 +132,11 @@ export default function SimulationProvider({
         safeGetRule,
         situation,
         updateSituation,
+        deleteSituation,
         updateProgression,
         foldedSteps,
         //TODO: should clean a bit
-        addFoldedStep: (foldedStep) => {
-          if (!foldedSteps.includes(foldedStep)) {
-            addFoldedStep(foldedStep)
-          }
-        },
+        addFoldedStep: addFoldedStepFixed,
         everyRules,
         everyInactiveRules,
         everyQuestions,

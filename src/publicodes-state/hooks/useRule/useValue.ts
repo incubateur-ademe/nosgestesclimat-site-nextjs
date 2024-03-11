@@ -2,7 +2,7 @@
 
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
 import { PublicodesExpression } from 'publicodes'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import getType from '../../helpers/getType'
 import {
   DottedName,
@@ -65,16 +65,16 @@ export default function useValue({
     [value]
   )
 
-  const setValue = async (
-    value: NodeValue,
-    foldedStep?: string
-  ): Promise<void> => {
-    if (foldedStep) addFoldedStep(foldedStep)
+  const setValue = useCallback(
+    async (value: NodeValue, foldedStep?: string): Promise<void> => {
+      if (foldedStep) addFoldedStep(foldedStep)
 
-    return updateSituation({
-      [dottedName]: checkValueValidity({ value, type }),
-    })
-  }
+      return updateSituation({
+        [dottedName]: checkValueValidity({ value, type }),
+      })
+    },
+    [addFoldedStep, dottedName, type, updateSituation]
+  )
 
   const resetMosaicChildren = async (childToOmit: string): Promise<void> => {
     const situationToUpdate = questionsOfMosaic.reduce(

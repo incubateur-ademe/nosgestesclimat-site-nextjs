@@ -1,5 +1,6 @@
 import Avion from './Avion'
 import Plats from './Plats'
+import Transport from './Transport'
 import Voiture from './Voiture'
 
 type Props = {
@@ -10,6 +11,9 @@ type Props = {
 const questions: Record<string, any> = {
   'alimentation . plats': (props: Props) => (
     <Plats key="alimentation . plats" {...props} />
+  ),
+  'transport . liste': (props: Props) => (
+    <Transport key="transport . liste" {...props} />
   ),
   'transport . avion . court courrier . heures de vol': (props: Props) => (
     <Avion
