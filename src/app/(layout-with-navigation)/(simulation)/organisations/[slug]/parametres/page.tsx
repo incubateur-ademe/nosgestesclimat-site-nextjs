@@ -18,35 +18,36 @@ export default function ParametresPage() {
   const {
     data: organisation,
     isError,
+    isLoading,
     refetch,
   } = useFetchOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
   })
 
+  if (isLoading) {
+    return <Loader />
+  }
+
+  if (isError && !isLoading && !organisation) {
+    return (
+      <OrganisationFetchError organisation={organisation} isError={isError} />
+    )
+  }
+
   return (
-    <>
-      {!organisation && !isError && <Loader />}
+    <MaxWidthContent className="py-8">
+      <Title title={<Trans>Paramètres</Trans>} />
 
-      {isError && (
-        <OrganisationFetchError organisation={organisation} isError={isError} />
-      )}
+      <QuestionsComplementaires
+        organisation={organisation}
+        refetchOrganisation={refetch}
+      />
 
-      {organisation && (
-        <MaxWidthContent className="py-8">
-          <Title title={<Trans>Paramètres</Trans>} />
+      <Separator />
 
-          <QuestionsComplementaires
-            organisation={organisation}
-            refetchOrganisation={refetch}
-          />
+      <InformationsForm organisation={organisation} />
 
-          <Separator />
-
-          <InformationsForm organisation={organisation} />
-
-          <DeconnexionButton organisation={organisation} />
-        </MaxWidthContent>
-      )}
-    </>
+      <DeconnexionButton organisation={organisation} />
+    </MaxWidthContent>
   )
 }

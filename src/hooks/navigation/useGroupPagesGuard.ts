@@ -85,7 +85,7 @@ export function useGroupPagesGuard(
     isDebug,
     group,
     user,
-    isFetching,
+    isLoading,
   ])
 
   return { isGuardInit, isGuardRedirecting }

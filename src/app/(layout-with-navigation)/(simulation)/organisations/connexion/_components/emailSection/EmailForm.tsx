@@ -7,7 +7,7 @@ import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisati
 import { useLoginOrganisation } from '@/hooks/organisations/useLoginOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { getIsValidEmail } from '@/utils/getIsValidEmail'
+import { isEmailValid } from '@/utils/isEmailValid'
 import React from 'react'
 
 export default function EmailForm({ onComplete }: { onComplete: () => void }) {
@@ -32,11 +32,11 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
     const email = input.value
 
     // Validation
-    if (!email || !getIsValidEmail(email)) {
+    if (!email || !isEmailValid(email)) {
       if (!email) {
         setInputError(t('Vous devez renseigner votre adresse e-mail'))
       }
-      if (email && !getIsValidEmail(email)) {
+      if (email && !isEmailValid(email)) {
         setInputError(t('L’adresse e-mail est invalide'))
       }
 

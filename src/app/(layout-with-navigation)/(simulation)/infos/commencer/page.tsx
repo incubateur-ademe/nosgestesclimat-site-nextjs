@@ -19,19 +19,19 @@ import { InfosContext } from '../_components/InfosProvider'
 const titles = {
   notStarted: (
     <>
-      <Trans>Envie de connaître votre empreinte carbone ?</Trans>{' '}
+      <Trans>Envie de connaître votre empreinte carbone ?</Trans>{' '}
       <Emoji>🤓</Emoji>
     </>
   ),
   started: (
     <>
-      <Trans>Vous avez déjà commencé le test Nos Gestes Climat&nbsp;!</Trans>{' '}
+      <Trans>Vous avez déjà commencé le test Nos Gestes Climat !</Trans>{' '}
       <Emoji>💪</Emoji>
     </>
   ),
   finished: (
     <>
-      <Trans>Vous avez déjà réalisé le test Nos Gestes Climat&nbsp;!</Trans>{' '}
+      <Trans>Vous avez déjà réalisé le test Nos Gestes Climat !</Trans>{' '}
       <Emoji>👏</Emoji>
     </>
   ),
