@@ -19,7 +19,7 @@ export default function Navigation({
 }: Props) {
   const { t } = useClientTranslation()
 
-  const { linkToEndPage } = useEndPage()
+  const { getLinkToEndPage } = useEndPage()
 
   return (
     <div className="mb-8 flex justify-between border-b border-gray-200 pb-8">
@@ -38,12 +38,14 @@ export default function Navigation({
       {!answer ? (
         <ButtonLink
           color="secondary"
-          href={linkToEndPage}
+          href={getLinkToEndPage({
+            allowedToGoToGroupDashboard: true,
+          })}
           onClick={() => trackEvent(matomoEventQuizPass)}>
           <Trans>Passer la question →</Trans>
         </ButtonLink>
       ) : isAnswerValidated ? (
-        <ButtonLink href={linkToEndPage}>
+        <ButtonLink href={getLinkToEndPage()}>
           <Trans>Voir mes résultats →</Trans>
         </ButtonLink>
       ) : (

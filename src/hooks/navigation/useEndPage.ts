@@ -3,7 +3,7 @@ import { linkToQuiz } from '@/helpers/navigation/quizPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 type GoToEndPageProps = {
   isAllowedToSave?: boolean
@@ -15,6 +15,16 @@ const goToEndPagePropsDefault = {
   allowedToGoToGroupDashboard: false,
   shouldShowQuiz: false,
 }
+
+type GetLinkToEndPageProps = {
+  allowedToGoToGroupDashboard?: boolean
+  shouldShowQuiz?: boolean
+}
+const GetLinkToEndPagePropsDefault = {
+  allowedToGoToGroupDashboard: false,
+  shouldShowQuiz: false,
+}
+
 export function useEndPage() {
   const router = useRouter()
 
@@ -75,19 +85,31 @@ export function useEndPage() {
     [currentSimulation, progression, router, saveSimulation, isNavigating]
   )
 
-  const linkToEndPage = useMemo(() => {
-    if (!currentSimulation) {
-      return '/404' // TODO: should throw an error
-    }
+  const getLinkToEndPage = useCallback(
+    ({
+      allowedToGoToGroupDashboard = false,
+      shouldShowQuiz = false,
+    }: GetLinkToEndPageProps = GetLinkToEndPagePropsDefault): string => {
+      if (!currentSimulation) {
+        return '/404' // TODO: should throw an error
+      }
 
-    // if the simulation is in a group, we return the group results page
-    if (currentSimulation.group) {
-      return getLinkToGroupDashboard({ groupId: currentSimulation.group })
-    }
+      // If we should show the quiz, we redirect to the quiz page
+      // TODO: This is maybe in the wrong place. Should check it later
+      if (shouldShowQuiz) {
+        return linkToQuiz
+      }
 
-    // else we return the results page
-    return '/fin'
-  }, [currentSimulation])
+      // if the simulation is in a group and we are allowed to, we redirect to the group results page
+      if (currentSimulation.group && allowedToGoToGroupDashboard) {
+        return getLinkToGroupDashboard({ groupId: currentSimulation.group })
+      }
 
-  return { goToEndPage, linkToEndPage }
+      // else we return the results page
+      return '/fin'
+    },
+    [currentSimulation]
+  )
+
+  return { goToEndPage, getLinkToEndPage, isNavigating }
 }
