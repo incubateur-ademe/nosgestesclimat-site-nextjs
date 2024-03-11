@@ -57,6 +57,7 @@ export default function UserProvider({
         setCurrentSimulationId,
         groupToRedirectToAfterTest,
         setGroupToRedirectToAfterTest,
+        migrationInstructions,
       }}>
       {children}
     </UserContext.Provider>
