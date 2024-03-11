@@ -118,15 +118,7 @@ export default function GroupCreationForm() {
           setEmail={setAdministratorEmail}
           error={errorEmail}
           setError={setErrorEmail}
-          label={
-            <span>
-              {t('Votre adresse email')}{' '}
-              <span className="italic text-secondary-500">
-                {' '}
-                {t('facultatif')}
-              </span>
-            </span>
-          }
+          label={t('Votre adresse email')}
         />
       </div>
 
@@ -134,7 +126,9 @@ export default function GroupCreationForm() {
         type="submit"
         data-cypress-id="button-create-group"
         onClick={handleSubmit}
-        disabled={!administratorName || isPending || isSuccess}>
+        disabled={
+          !administratorName || !administratorEmail || isPending || isSuccess
+        }>
         {hasCompletedTest ? (
           <Trans>Créer le groupe</Trans>
         ) : (
