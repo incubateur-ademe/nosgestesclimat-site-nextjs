@@ -49,6 +49,7 @@ export default function useUser() {
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
+    migrationInstructions,
   })
 
   const { toggleActionChoice, rejectAction } = useActions({
