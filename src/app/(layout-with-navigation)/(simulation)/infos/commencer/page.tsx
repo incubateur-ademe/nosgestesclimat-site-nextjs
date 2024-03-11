@@ -1,14 +1,12 @@
 'use client'
 
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { getParticipantInscriptionPageVisitedEvent } from '@/constants/matomo/organisations'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useUser } from '@/publicodes-state'
@@ -120,8 +118,9 @@ export default function Commencer() {
         </Button>
 
         {status !== 'notStarted' ? (
-          <Link
-            href={getLinkToSimulateur()}
+          <Button
+            color="text"
+            className="underline"
             onClick={() => {
               initSimulation({
                 defaultAdditionalQuestionsAnswers: {
@@ -130,9 +129,11 @@ export default function Commencer() {
                 },
                 poll: pollSlug || undefined,
               })
+
+              goToSimulateurPage()
             }}>
             <Trans>Commencer un nouveau test</Trans>
-          </Link>
+          </Button>
         ) : null}
       </div>
     </Card>

@@ -16,7 +16,7 @@ export default function OrgaStatisticsCharts({
   const maxValueOfAllCategories = useMemo(
     () =>
       simulationRecaps?.reduce((acc, obj) => {
-        Object.keys(obj.categories).forEach((category) => {
+        Object.keys(obj.categories ?? {}).forEach((category) => {
           const roundedValue = Math.round(obj.categories[category] / 1000)
           if (roundedValue > acc) {
             acc = roundedValue
@@ -30,7 +30,7 @@ export default function OrgaStatisticsCharts({
   // Calculate the mean for each category
   const meanCategories = useMemo(
     () =>
-      Object.keys(simulationRecaps?.[0]?.categories).map((category) => {
+      Object.keys(simulationRecaps?.[0]?.categories ?? {}).map((category) => {
         const mean = simulationRecaps?.reduce(
           (acc, obj) => acc + obj.categories[category],
           0
