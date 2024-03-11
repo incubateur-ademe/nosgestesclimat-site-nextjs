@@ -9,9 +9,9 @@ import CreateOtherGroupsSection from './groups/CreateOtherGroupsSection'
 import ServerErrorSection from './groups/ServerErrorSection'
 
 export default function Groups() {
-  const { data: groups, isFetching, isError } = useFetchGroupsOfUser()
+  const { data: groups, isLoading, isError } = useFetchGroupsOfUser()
 
-  if (isFetching) {
+  if (isLoading) {
     return <GroupLoader />
   }
 
