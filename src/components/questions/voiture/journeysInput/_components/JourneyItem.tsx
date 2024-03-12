@@ -36,21 +36,21 @@ export default function JourneyItem({ journey, odd, setJourneys }: Props) {
     <tr
       className={`relative block sm:table-row ${odd ? 'bg-primary-100' : ''}`}>
       <td
-        className={`block sm:table-cell md:border-r ${
+        className={`block sm:table-cell lg:border-r ${
           odd ? 'border-white' : 'border-primary-200'
         } px-4 py-2 text-left text-sm`}>
         {t(labels[journey.label])}
       </td>
 
       <td
-        className={`block sm:table-cell md:border-x ${
+        className={`block sm:table-cell lg:border-x ${
           odd ? 'border-white' : 'border-primary-200'
         } px-4 py-2 text-left text-sm`}>
         {journey.distance || 0} km
       </td>
 
       <td
-        className={`block sm:table-cell md:border-x ${
+        className={`block sm:table-cell lg:border-x ${
           odd ? 'border-white' : 'border-primary-200'
         } px-4 py-2 text-left text-sm`}>
         {journey.reccurrence} x {t(periods[journey.period])}
