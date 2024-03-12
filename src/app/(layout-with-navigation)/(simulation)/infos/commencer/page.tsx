@@ -82,9 +82,11 @@ export default function Commencer() {
     }
     if (!currentSimulation?.progression) {
       setStatus('notStarted')
+      return
     }
     if (currentSimulation?.progression === 1) {
       setStatus('finished')
+      return
     }
     setStatus('started')
   }, [currentSimulation, status])
@@ -114,8 +116,8 @@ export default function Commencer() {
 
       <div className="flex flex-col items-start gap-6">
         <Button
-          onClick={() => {
-            updateCurrentSimulation({
+          onClick={async () => {
+            await updateCurrentSimulation({
               defaultAdditionalQuestionsAnswers: {
                 postalCode,
                 birthdate,
