@@ -2,7 +2,7 @@ import Trans from '@/components/translation/Trans'
 import { User } from '@/publicodes-state/types'
 
 function formatSlugToName(slug: string) {
-  return slug.replaceAll('-', ' ')
+  return decodeURIComponent(slug).replaceAll('-', ' ')
 }
 
 function getBaseItems({ pathname }: { pathname: string }) {

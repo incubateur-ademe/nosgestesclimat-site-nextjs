@@ -15,9 +15,8 @@ import OrgaStatisticsFilters from './_components/OrgaStatisticsFilters'
 
 export default function ResultatsDetaillesPage() {
   const params = useParams()
-
   const { data: pollData } = useFetchPollData({
-    orgaSlug: String(params.slug),
+    orgaSlug: decodeURIComponent(params.slug as string),
   })
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
