@@ -54,7 +54,7 @@ export default function Buttons() {
           }`}
           onClick={() => {
             trackEvent(matomoEventParcoursTestNouveau)
-            goToSimulateurPage({ noNavigation: true, newSimulation: true })
+            goToSimulateurPage({ noNavigation: true, newSimulation: {} })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>
           <Trans>Commencer un nouveau test</Trans>
