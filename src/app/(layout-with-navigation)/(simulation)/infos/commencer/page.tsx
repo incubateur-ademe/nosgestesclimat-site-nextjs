@@ -133,8 +133,7 @@ export default function Commencer() {
 
         {status !== 'notStarted' ? (
           <Button
-            color="text"
-            className="underline"
+            color="secondary"
             onClick={() => {
               goToSimulateurPage({
                 newSimulation: {

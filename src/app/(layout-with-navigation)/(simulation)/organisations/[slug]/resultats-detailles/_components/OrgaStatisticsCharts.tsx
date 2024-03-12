@@ -23,7 +23,7 @@ export default function OrgaStatisticsCharts({
           }
         })
         return acc
-      }, 0),
+      }, 0) + 1,
     [simulationRecaps]
   )
 

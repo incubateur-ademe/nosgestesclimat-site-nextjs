@@ -1,6 +1,5 @@
 'use client'
 
-import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 
 type Props = {
@@ -18,13 +17,13 @@ export default function BarItem({
 }: Props) {
   const { t } = useClientTranslation()
 
-  const { formattedValue } = formatCarbonFootprint(value)
+  const valueToDisplay = value / 1000
 
   return (
     <div
       data-tooltip-id={id}
       data-tooltip-content={t('{{value}} tonnes', {
-        value: formattedValue,
+        value: valueToDisplay.toFixed(2),
       })}
       className={`absolute h-8 w-2 bg-primary-500 opacity-20 hover:scale-[10%] ${
         shouldBeHighlighted
@@ -32,7 +31,7 @@ export default function BarItem({
           : ''
       }`}
       style={{
-        left: `${(parseFloat(formattedValue as string) / maxValue) * 100}%`,
+        left: `${(valueToDisplay / maxValue) * 100}%`,
         top: '50%',
         transform: 'translate(-50%, -50%)',
       }}
