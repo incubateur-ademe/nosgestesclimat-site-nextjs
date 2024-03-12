@@ -85,7 +85,7 @@ export default function GroupCreationForm() {
       updateEmail(administratorEmail)
 
       // Update current simulation with group id (to redirect after test completion)
-      await updateCurrentSimulation({
+      updateCurrentSimulation({
         group: group._id,
       })
 
