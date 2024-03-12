@@ -11,7 +11,7 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
 const titles = {
@@ -66,18 +66,28 @@ export default function Commencer() {
 
   const { pollSlug } = useOrganisationQueryParams()
 
-  const { getCurrentSimulation, initSimulation, updateCurrentSimulation } =
-    useUser()
+  const { getCurrentSimulation, updateCurrentSimulation } = useUser()
 
   const { goToSimulateurPage } = useSimulateurPage()
 
   const currentSimulation = getCurrentSimulation()
 
-  const status = !currentSimulation?.progression
-    ? 'notStarted'
-    : currentSimulation?.progression === 1
-      ? 'finished'
-      : 'started'
+  const [status, setStatus] = useState<
+    'notStarted' | 'started' | 'finished' | undefined
+  >()
+
+  useEffect(() => {
+    if (status) {
+      return
+    }
+    if (!currentSimulation?.progression) {
+      setStatus('notStarted')
+    }
+    if (currentSimulation?.progression === 1) {
+      setStatus('finished')
+    }
+    setStatus('started')
+  }, [currentSimulation, status])
 
   const { handleUpdateShouldPreventNavigation } = useContext(
     PreventNavigationContext
@@ -87,6 +97,10 @@ export default function Commencer() {
     handleUpdateShouldPreventNavigation(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  if (!status) {
+    return null
+  }
 
   return (
     <Card className={'items-start border-none bg-grey-100 p-8'}>
@@ -122,15 +136,15 @@ export default function Commencer() {
             color="text"
             className="underline"
             onClick={() => {
-              initSimulation({
-                defaultAdditionalQuestionsAnswers: {
-                  postalCode,
-                  birthdate,
+              goToSimulateurPage({
+                newSimulation: {
+                  defaultAdditionalQuestionsAnswers: {
+                    postalCode,
+                    birthdate,
+                  },
+                  poll: pollSlug || undefined,
                 },
-                poll: pollSlug || undefined,
               })
-
-              goToSimulateurPage()
             }}>
             <Trans>Commencer un nouveau test</Trans>
           </Button>
