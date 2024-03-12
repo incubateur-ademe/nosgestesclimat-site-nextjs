@@ -71,6 +71,9 @@ describe('The Group creation page /amis/creer', () => {
     cy.wait(3000)
 
     cy.get('[data-cypress-id="member-name"]').type('Jean-Claude')
+
+    cy.wait(2000)
+
     cy.get('[data-cypress-id="button-join-group"]').click()
 
     clickSkipTutorialButton()
