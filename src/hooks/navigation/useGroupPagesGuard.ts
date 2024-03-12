@@ -25,14 +25,14 @@ export function useGroupPagesGuard(
 
   const { groupIdInQueryParams } = useGroupIdInQueryParams()
 
-  const { data: group, isLoading } = useFetchGroup(groupIdInQueryParams)
+  const { data: group, isFetching } = useFetchGroup(groupIdInQueryParams)
 
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
 
   useEffect(() => {
     // we only run the guard when the group is fetched (or failed fetching)
-    if (isLoading) return
+    if (isFetching) return
 
     // we only run the guard once
     if (isGuardInit) return
@@ -50,7 +50,9 @@ export function useGroupPagesGuard(
       setIsGuardRedirecting(true)
       return
     }
-
+    console.log('group', group)
+    console.log('user', user)
+    console.log('isDashboard', isDashboard)
     // If we are on the dashboard and the user is not a part of the group, we redirect to the invitation page
     if (
       isDashboard &&
@@ -85,7 +87,7 @@ export function useGroupPagesGuard(
     isDebug,
     group,
     user,
-    isLoading,
+    isFetching,
   ])
 
   return { isGuardInit, isGuardRedirecting }
