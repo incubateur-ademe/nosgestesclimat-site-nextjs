@@ -3,7 +3,7 @@
 import { Group } from '@/types/groups'
 import { Dispatch, SetStateAction, createContext } from 'react'
 import { v4 as uuid } from 'uuid'
-import { Simulation, Tutorials, User } from '../../types'
+import { MigrationType, Simulation, Tutorials, User } from '../../types'
 
 type UserContextType = {
   user: User
@@ -16,6 +16,7 @@ type UserContextType = {
   setCurrentSimulationId: Dispatch<SetStateAction<string>>
   groupToRedirectToAfterTest?: Group
   setGroupToRedirectToAfterTest: Dispatch<SetStateAction<Group | undefined>>
+  migrationInstructions: MigrationType
 }
 
 export default createContext<UserContextType>({
@@ -42,4 +43,8 @@ export default createContext<UserContextType>({
   setCurrentSimulationId: () => {},
   groupToRedirectToAfterTest: undefined,
   setGroupToRedirectToAfterTest: () => {},
+  migrationInstructions: {
+    keysToMigrate: {},
+    valuesToMigrate: {},
+  },
 })
