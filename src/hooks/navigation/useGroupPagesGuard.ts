@@ -25,14 +25,14 @@ export function useGroupPagesGuard(
 
   const { groupIdInQueryParams } = useGroupIdInQueryParams()
 
-  const { data: group, isFetching } = useFetchGroup(groupIdInQueryParams)
+  const { data: group, isLoading } = useFetchGroup(groupIdInQueryParams)
 
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
 
   useEffect(() => {
     // we only run the guard when the group is fetched (or failed fetching)
-    if (isFetching) return
+    if (isLoading) return
 
     // we only run the guard once
     if (isGuardInit) return
@@ -85,7 +85,7 @@ export function useGroupPagesGuard(
     isDebug,
     group,
     user,
-    isFetching,
+    isLoading,
   ])
 
   return { isGuardInit, isGuardRedirecting }

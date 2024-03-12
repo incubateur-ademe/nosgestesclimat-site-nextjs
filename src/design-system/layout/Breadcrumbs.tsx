@@ -20,7 +20,7 @@ export default function Breadcrumbs({ items }: Props) {
               onClick={isDisabled ? (e) => e.preventDefault() : undefined}
               className={`text-default ${
                 isActive ? '' : 'no-underline'
-              } text-sm hover:text-default hover:underline ${isDisabled ? 'cursor-none' : ''}`}
+              } text-sm capitalize hover:text-default hover:underline ${isDisabled ? 'cursor-none' : ''}`}
               href={href}>
               {label}
             </Link>

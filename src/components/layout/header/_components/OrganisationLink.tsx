@@ -27,7 +27,7 @@ export default function OrganisationLink() {
     <NavLink
       href={
         organisation
-          ? `organisations/${organisation?.slug}`
+          ? `/organisations/${organisation?.slug}`
           : '/organisations/connexion'
       }
       icon={OrganisationIcon}

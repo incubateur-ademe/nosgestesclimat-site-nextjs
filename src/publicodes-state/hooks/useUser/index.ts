@@ -24,6 +24,7 @@ export default function useUser() {
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
+    migrationInstructions,
   } = useContext(userContext)
 
   const {
@@ -49,6 +50,7 @@ export default function useUser() {
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
+    migrationInstructions,
   })
 
   const { toggleActionChoice, rejectAction } = useActions({

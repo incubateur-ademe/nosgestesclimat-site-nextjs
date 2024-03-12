@@ -14,7 +14,11 @@ export const FiltersContext = createContext<{
   setPostalCodeFilters: () => {},
 })
 
-export function FiltersProvider({ children }: { children: React.ReactNode }) {
+export default function FiltersProvider({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   const [ageFilters, setAgeFilters] = useState<{ value: [number, number] }[]>(
     []
   )

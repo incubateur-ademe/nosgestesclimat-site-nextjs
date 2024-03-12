@@ -4,6 +4,7 @@ import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import Emoji from '@/design-system/utils/Emoji'
 import { SimulationRecap } from '@/types/organisations'
+import { useMemo } from 'react'
 import CategoryListItem from './orgaStatisticsCharts/CategoryListItem'
 import RepartitionChart from './orgaStatisticsCharts/RepartitionChart'
 
@@ -12,35 +13,42 @@ export default function OrgaStatisticsCharts({
 }: {
   simulationRecaps: SimulationRecap[]
 }) {
-  if (!simulationRecaps || simulationRecaps?.length < 3) return null
-
-  const maxValueOfAllCategories = simulationRecaps?.reduce((acc, obj) => {
-    Object.keys(obj.categories).forEach((category) => {
-      const roundedValue = Math.round(obj.categories[category] / 1000)
-      if (roundedValue > acc) {
-        acc = roundedValue
-      }
-    })
-    return acc
-  }, 0)
+  const maxValueOfAllCategories = useMemo(
+    () =>
+      simulationRecaps?.reduce((acc, obj) => {
+        Object.keys(obj.categories).forEach((category) => {
+          const roundedValue = Math.round(obj.categories[category] / 1000)
+          if (roundedValue > acc) {
+            acc = roundedValue
+          }
+        })
+        return acc
+      }, 0),
+    [simulationRecaps]
+  )
 
   // Calculate the mean for each category
-  const meanCategories = Object.keys(simulationRecaps?.[0]?.categories).map(
-    (category) => {
-      const mean = simulationRecaps?.reduce(
-        (acc, obj) => acc + obj.categories[category],
-        0
-      )
-      return {
-        category,
-        value: mean / 1000 / simulationRecaps?.length,
-      }
-    }
+  const meanCategories = useMemo(
+    () =>
+      Object.keys(simulationRecaps?.[0]?.categories).map((category) => {
+        const mean = simulationRecaps?.reduce(
+          (acc, obj) => acc + obj.categories[category],
+          0
+        )
+        return {
+          category,
+          value: mean / simulationRecaps?.length,
+        }
+      }),
+    [simulationRecaps]
   )
 
-  const hasCurrentUser = simulationRecaps.some(
-    (simulation) => simulation.isCurrentUser
+  const hasCurrentUser = useMemo(
+    () => simulationRecaps.some((simulation) => simulation.isCurrentUser),
+    [simulationRecaps]
   )
+
+  if (!simulationRecaps || simulationRecaps?.length < 3) return null
 
   return (
     <section className="my-12 rounded-lg bg-grey-100 px-8 pb-4 pt-8">
@@ -66,7 +74,7 @@ export default function OrgaStatisticsCharts({
           <RepartitionChart
             maxValue={29}
             items={simulationRecaps.map(({ bilan, isCurrentUser }) => ({
-              value: bilan / 1000,
+              value: bilan,
               shouldBeHighlighted: isCurrentUser,
             }))}
             id="bilan"
@@ -83,7 +91,7 @@ export default function OrgaStatisticsCharts({
 
             {hasCurrentUser && (
               <div className="flex items-center gap-3">
-                <div className="bg-secondary-500 h-4 w-1" />
+                <div className="h-4 w-1 bg-secondary-500" />
                 <p className="mb-0 text-sm text-gray-600">
                   <Trans>Votre résultat</Trans>
                 </p>
@@ -136,7 +144,7 @@ export default function OrgaStatisticsCharts({
 
             {hasCurrentUser && (
               <div className="flex items-center gap-3">
-                <div className="bg-secondary-500 h-4 w-1" />
+                <div className="h-4 w-1 bg-secondary-500" />
                 <p className="mb-0 text-sm text-gray-600">
                   <Trans>Votre résultat</Trans>
                 </p>
