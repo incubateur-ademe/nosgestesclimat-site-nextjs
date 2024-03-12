@@ -22,7 +22,7 @@ export const validateCreationForm = ({
     )
     return false
   }
-  if (!isEmailValid(administratorEmail)) {
+  if (!administratorEmail || !isEmailValid(administratorEmail)) {
     setErrorEmail(t('Veuillez renseigner un email valide.'))
     return false
   }
