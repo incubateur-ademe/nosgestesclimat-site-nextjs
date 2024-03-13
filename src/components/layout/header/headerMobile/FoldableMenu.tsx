@@ -1,8 +1,17 @@
 import ProfileIcon from '@/components/icons/ProfileIcon'
+import { HIDE_CTA_PATHS } from '@/constants/urls'
 import BurgerMenu from '@/design-system/layout/BurgerMenu'
+import { useUser } from '@/publicodes-state'
+import { usePathname } from 'next/navigation'
 import NavLink from '../NavLink'
+import OrganisationLink from '../_components/OrganisationLink'
+import CTAButton from '../headerDesktop/CTAButton'
 
 export default function FoldableMenu() {
+  const { user } = useUser()
+
+  const pathname = usePathname()
+
   return (
     <BurgerMenu>
       {({ closeMenu, onFocus }) => (
@@ -16,18 +25,12 @@ export default function FoldableMenu() {
               Profil
             </NavLink>
           </li>
-          {/*
-          // TODO : uncomment when organisations are ready
-          <li>
-            <NavLink
-              onClick={closeMenu}
-              href="https://sondages.nogestesclimat.fr"
-              shouldUseDefaultLink
-              icon={OrganisationIcon}>
-              Organisations
-            </NavLink>
-          </li>
-        */}
+
+          {user?.organisation?.administratorEmail && (
+            <li>
+              <OrganisationLink />
+            </li>
+          )}
 
           <li>
             <div className="ml-2 h-[1px] w-4 bg-gray-400" />
@@ -62,6 +65,13 @@ export default function FoldableMenu() {
               Diffuser Nos Gestes Climat
             </NavLink>
           </li>
+
+          {!HIDE_CTA_PATHS.find((path) => pathname.includes(path)) &&
+          !user?.organisation?.administratorEmail ? (
+            <li>
+              <CTAButton />
+            </li>
+          ) : null}
         </ul>
       )}
     </BurgerMenu>

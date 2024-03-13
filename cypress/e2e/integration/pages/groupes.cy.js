@@ -5,13 +5,16 @@ describe('The Group creation page /amis/creer', () => {
   let ownerUserId = ''
 
   it('allows to create a new group and displays it afterwards', () => {
-    cy.visit('/amis')
+    cy.visit('/classements')
 
     cy.clearLocalStorage()
 
     // Check that we can create our first group
     cy.get('[data-cypress-id="button-create-first-group"]').click()
     cy.get('input[data-cypress-id="group-input-owner-name"]').type('Jean-Marc')
+
+    cy.wait(2000)
+
     cy.get('[data-cypress-id="button-create-group"]').click()
 
     cy.wait(2000)
@@ -68,6 +71,9 @@ describe('The Group creation page /amis/creer', () => {
     cy.wait(3000)
 
     cy.get('[data-cypress-id="member-name"]').type('Jean-Claude')
+
+    cy.wait(2000)
+
     cy.get('[data-cypress-id="button-join-group"]').click()
 
     clickSkipTutorialButton()

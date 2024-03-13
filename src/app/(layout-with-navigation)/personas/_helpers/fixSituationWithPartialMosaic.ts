@@ -4,8 +4,8 @@ import {
   DottedName,
   NGCEvaluatedNode,
   NGCRuleNode,
+  Situation,
 } from '@/publicodes-state/types'
-import { Situation } from '@/types/simulation'
 import { PublicodesExpression } from 'publicodes'
 
 type Props = {

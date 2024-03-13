@@ -4,6 +4,10 @@ const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
 })
 
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 const redirects = require('./config/redirects.js')
 
 /** @type {import('next').NextConfig} */
@@ -54,6 +58,12 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'github.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'cdn.jsdelivr.net',
         port: '',
         pathname: '/**',
@@ -65,17 +75,16 @@ const nextConfig = {
   },
   experimental: {
     mdxRs: true,
+    optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
   },
 }
-
-module.exports = withMDX(nextConfig)
 
 // Injected content via Sentry wizard below
 
 const { withSentryConfig } = require('@sentry/nextjs')
 
 module.exports = withSentryConfig(
-  module.exports,
+  withBundleAnalyzer(withMDX(nextConfig)),
   {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options

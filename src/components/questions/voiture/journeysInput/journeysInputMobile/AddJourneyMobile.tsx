@@ -6,9 +6,9 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Journey } from '@/types/journey'
 import { Dispatch, SetStateAction, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 import { v4 as uuid } from 'uuid'
 
@@ -18,7 +18,7 @@ type Props = {
 }
 
 export default function AddJourneyMobile({ setJourneys, className }: Props) {
-  const { t } = useTranslation()
+  const { t } = useClientTranslation()
   const [label, setLabel] = useState('holidays')
   const [distance, setDistance] = useState('10')
   const [reccurrence, setReccurrence] = useState(1)
@@ -27,11 +27,8 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
 
   return (
     <tr
-      className={twMerge(
-        'block border-b border-primary-500  p-2 md:table-row',
-        className
-      )}>
-      <td className="mb-4 block text-sm md:table-cell">
+      className={twMerge('block border-b border-primary-500  p-2', className)}>
+      <td className="mb-4 block text-sm ">
         <Select
           className="w-48 text-sm"
           value={label}
@@ -47,7 +44,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-primary-500 pb-4 text-sm md:table-cell md:border-t md:px-4">
+      <td className="block border-primary-500 pb-4 text-sm ">
         <span className="flex items-end gap-4">
           <TextInputGroup
             className="w-12 text-sm md:w-16"
@@ -60,7 +57,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           <span className="mb-4 inline-block">km</span>
         </span>
       </td>
-      <td className="block border-primary-500 pb-4 text-sm md:table-cell md:border-t md:px-4">
+      <td className="block border-primary-500 pb-4 text-sm">
         <span className="flex items-end gap-4">
           <TextInputGroup
             className="w-16 text-sm"
@@ -87,7 +84,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           </Select>
         </span>
       </td>
-      <td className="block border-primary-500 pb-4 text-sm md:table-cell md:border-t md:px-4">
+      <td className="block border-primary-500 pb-4 text-sm">
         <Select
           className="w-16 text-sm"
           name="passengers"
@@ -103,7 +100,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-primary-500 pl-2 text-right text-sm md:table-cell md:border-t md:pl-4 md:pr-2">
+      <td className="block border-primary-500 pl-2 text-right text-sm">
         <Button
           size="sm"
           onClick={() =>

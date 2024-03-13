@@ -5,64 +5,29 @@ import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
+import { useEndPage } from '@/hooks/navigation/useEndPage'
+import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
-import { Group, SimulationResults } from '@/types/groups'
+import { useForm, useUser } from '@/publicodes-state'
+import { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
-import { useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
-import { getSimulationResults } from '../../_helpers/getSimulationResults'
-import { getGroupURL } from '../_helpers/getGroupURL'
-import { useAddUserToGroup } from '../_hooks/useAddUserToGroup'
 
 export default function InvitationForm({ group }: { group: Group }) {
-  const [prenom, setPrenom] = useState('')
   const [errorPrenom, setErrorPrenom] = useState('')
-  const [email, setEmail] = useState('')
   const [errorEmail, setErrorEmail] = useState('')
-
-  const groupURL = getGroupURL(group)
 
   const { t } = useClientTranslation()
 
-  const router = useRouter()
-
-  const { getCurrentSimulation, setGroupToRedirectToAfterTest, user } =
-    useUser()
-
-  const groupBaseURL = `${window.location.origin}/amis`
-
-  const { getValue } = useEngine()
+  const { user, updateEmail, updateName, updateCurrentSimulation } = useUser()
 
   const { progression } = useForm()
 
   const hasCompletedTest = progression === 1
 
-  const currentSimulation = getCurrentSimulation()
-
-  const { mutateAsync: addUserToGroup } = useAddUserToGroup()
-
-  const sendEmailToInvited = async () => {
-    if (!email) {
-      return
-    }
-
-    await fetch('/api/sendGroupConfirmationEmails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        name: prenom,
-        groupName: group.name,
-        groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
-        shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
-        deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${user?.id}&mtm_campaign=invitation-groupe-email`,
-      }),
-    })
-  }
+  const { goToSimulateurPage } = useSimulateurPage()
+  const { goToEndPage } = useEndPage()
 
   const handleSubmit = async (event: MouseEvent | FormEvent) => {
     // Avoid reloading page
@@ -76,13 +41,13 @@ export default function InvitationForm({ group }: { group: Group }) {
     }
 
     // Inputs validation
-    if (!prenom) {
+    if (!user.name) {
       setErrorPrenom(t('Veuillez renseigner un prénom ou un pseudonyme.'))
       return
     }
     if (
-      email &&
-      !email.match(
+      user.email &&
+      !user.email.match(
         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
       )
     ) {
@@ -90,31 +55,19 @@ export default function InvitationForm({ group }: { group: Group }) {
       return
     }
 
-    const results: SimulationResults = getSimulationResults({
-      getValue,
-    })
-
     try {
-      await addUserToGroup({
-        results,
-        prenom,
-        email,
-        group,
-        userId: user?.id,
-        simulation: currentSimulation,
+      // Update current simulation with group id (to redirect after test completion)
+      updateCurrentSimulation({
+        group: group._id,
       })
 
-      // Send email to invited friend confirming the adding to the group
-      sendEmailToInvited()
+      trackEvent(getMatomoEventJoinedGroupe(group?._id))
 
-      // Si l'utilisateur a déjà une simulation de complétée, on le redirige vers le dashboard
+      // Redirect to simulateur page or end page
       if (hasCompletedTest) {
-        trackEvent(getMatomoEventJoinedGroupe(group?._id))
-        router.push(groupURL)
+        goToEndPage({ allowedToGoToGroupDashboard: true })
       } else {
-        // sinon on le redirige vers le simulateur
-        setGroupToRedirectToAfterTest(group)
-        router.push('/simulateur/bilan')
+        goToSimulateurPage()
       }
     } catch (error) {
       captureException(error)
@@ -124,8 +77,8 @@ export default function InvitationForm({ group }: { group: Group }) {
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       <PrenomInput
-        prenom={prenom}
-        setPrenom={setPrenom}
+        prenom={user.name ?? ''}
+        setPrenom={updateName}
         errorPrenom={errorPrenom}
         setErrorPrenom={setErrorPrenom}
         data-cypress-id="member-name"
@@ -133,10 +86,22 @@ export default function InvitationForm({ group }: { group: Group }) {
 
       <div className="my-4">
         <EmailInput
-          email={email}
-          setEmail={setEmail}
-          errorEmail={errorEmail}
-          setErrorEmail={setErrorEmail}
+          email={user.email ?? ''}
+          setEmail={updateEmail}
+          error={errorEmail}
+          setError={setErrorEmail}
+          label={
+            <span>
+              {t('Votre adresse email')}{' '}
+              <span className="italic text-secondary-500">
+                {' '}
+                {t('facultatif')}
+              </span>
+            </span>
+          }
+          helperText={t(
+            'Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données'
+          )}
         />
       </div>
 
@@ -149,7 +114,7 @@ export default function InvitationForm({ group }: { group: Group }) {
       <Button
         type="submit"
         onClick={handleSubmit}
-        aria-disabled={!prenom}
+        aria-disabled={!user.name}
         data-cypress-id="button-join-group">
         {hasCompletedTest ? (
           <Trans>Rejoindre</Trans>

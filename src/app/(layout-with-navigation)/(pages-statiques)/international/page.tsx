@@ -8,6 +8,7 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
+import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import Image from 'next/image'
 
 export async function generateMetadata() {
@@ -50,7 +51,10 @@ export default async function International() {
               )}
             </p>
             <div>
-              <ButtonLink href="/simulateur/bilan" size="lg" className="px-20">
+              <ButtonLink
+                href={getLinkToSimulateur()}
+                size="lg"
+                className="px-20">
                 <span>
                   <Trans>Faire le test</Trans>
                 </span>

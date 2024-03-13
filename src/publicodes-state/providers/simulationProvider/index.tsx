@@ -2,9 +2,16 @@
 
 import { PropsWithChildren } from 'react'
 
-import { DottedName, NGCRules, Situation } from '../../types'
+import {
+  ActionChoices,
+  ComputedResults,
+  DottedName,
+  NGCRules,
+  Situation,
+} from '../../types'
 import SimulationContext from './context'
 import useCategories from './useCategories'
+import { useComputedResults } from './useComputedResults'
 import useEngine from './useEngine'
 import useRules from './useRules'
 import useSituation from './useSituation'
@@ -22,6 +29,19 @@ type Props = {
    * The situation object of the current simulation of the user
    */
   situation: Situation
+  /**
+   * A function to update the simulation of the user
+   */
+  updateSimulation: (simulation: {
+    situationToAdd?: Situation
+    foldedStepToAdd?: string
+    defaultAdditionalQuestions?: Record<string, string>
+    actionChoices?: ActionChoices
+    computedResults?: ComputedResults
+    progression?: number
+    poll?: string
+    group?: string
+  }) => void
   /**
    * A function to update the situation of the current simulation of the user (the passed situation is added to the current situation)
    */
@@ -57,6 +77,7 @@ export default function SimulationProvider({
   rules,
   defaultSituation,
   situation: externalSituation,
+  updateSimulation,
   updateSituation: updateExternalSituation,
   updateProgression,
   foldedSteps,
@@ -93,6 +114,13 @@ export default function SimulationProvider({
     order: categoryOrder,
   })
 
+  const { computedResults } = useComputedResults({
+    situation,
+    categories,
+    safeEvaluate,
+    updateSimulation,
+  })
+
   return (
     <SimulationContext.Provider
       value={{
@@ -120,6 +148,7 @@ export default function SimulationProvider({
         rawMissingVariables,
         categories,
         subcategories,
+        computedResults,
       }}>
       {initialized || shouldAlwaysDisplayChildren ? children : null}
     </SimulationContext.Provider>

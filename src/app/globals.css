@@ -14,6 +14,7 @@
 
   h1 {
     @apply text-2xl;
+    @apply md:text-3xl;
     @apply mb-6;
     @apply font-medium;
     @apply leading-tight;
@@ -52,6 +53,26 @@
 
   p {
     @apply mb-4;
+  }
+
+  blockquote {
+    @apply bg-gray-100;
+    @apply rounded-md;
+    padding: 1rem 1rem 0.25rem;
+    margin: 1rem 0;
+    @apply text-primary-700;
+  }
+
+  code {
+    @apply inline-flex;
+    @apply text-left;
+    @apply items-center;
+    @apply space-x-4;
+    @apply w-full;
+    @apply rounded-lg;
+    @apply bg-gray-800;
+    @apply text-white;
+    @apply p-4;
   }
 }
 
@@ -219,13 +240,6 @@ html[data-useragent*='Trident'] #js {
   }
 }
 
-blockquote {
-  @apply bg-gray-100;
-  @apply rounded-md;
-  padding: 1rem 1rem 0.25rem;
-  margin: 1rem 0;
-  @apply text-primary-700;
-}
 .news-page ul {
   padding-left: 1rem;
   list-style: '› ';
@@ -425,6 +439,10 @@ blockquote {
 }
 
 .markdown blockquote {
+  @apply mb-6;
+}
+
+.markdown code {
   @apply mb-6;
 }
 

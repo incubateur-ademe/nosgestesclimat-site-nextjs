@@ -25,13 +25,13 @@ export default async function Tutoriel() {
   const { t } = await getServerTranslation()
 
   return (
-    <div className="flex flex-col">
+    <div className="mx-auto flex max-w-3xl flex-col">
       <Title
         data-cypress-id="tutoriel-title"
         className="text-lg md:text-2xl"
         title={
           <>
-            <span className="inline text-secondary">
+            <span className="text-secondary-500 inline">
               <Trans>10 minutes</Trans>
             </span>{' '}
             <Trans>chrono pour calculer votre empreinte sur le climat</Trans>
