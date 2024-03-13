@@ -1,13 +1,18 @@
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
 import Emoji from '@/design-system/utils/Emoji'
+import { twMerge } from 'tailwind-merge'
 import Logo from '../misc/Logo'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
 import Trans from '../translation/Trans'
 
-export default function Footer() {
+export default function Footer({ className = '' }) {
   return (
-    <footer className="flex flex-col items-center gap-4 bg-grey-100 p-4 pb-32 sm:p-8 md:mb-0 md:pb-24">
+    <footer
+      className={twMerge(
+        'flex flex-col items-center gap-4 bg-grey-100 p-4 pb-32 sm:p-8 md:mb-0 md:pb-24',
+        className
+      )}>
       <div className="flex w-full items-start gap-12 md:max-w-5xl">
         <Logo className="hidden scale-75 lg:block" />
 
@@ -66,7 +71,7 @@ export default function Footer() {
             </p>
             <div className="flex flex-wrap gap-6">
               <InlineLink
-                href="/diffuser"
+                href="/organisations"
                 className="font-bold text-default no-underline hover:underline">
                 <Emoji className="mr-2">🏢</Emoji>
                 <Trans>Dans votre organisation</Trans>

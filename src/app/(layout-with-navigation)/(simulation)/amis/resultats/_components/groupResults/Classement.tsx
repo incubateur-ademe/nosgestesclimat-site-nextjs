@@ -1,21 +1,21 @@
 'use client'
 
-import { Group } from '@/types/groups'
+import { Group, Participant } from '@/types/groups'
 import { formatValue } from 'publicodes'
 import { useState } from 'react'
 
 import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
+import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { getTopThreeAndRestMembers } from '../../_utils/getTopThreeAndRestMembers'
 import ClassementMember from './classement/ClassementMember'
 
 export default function Classement({ group }: { group: Group }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   const {
-    user: { id: userId },
+    user: { userId },
   } = useUser()
 
   const language = useClientTranslation().i18n.language
@@ -25,9 +25,9 @@ export default function Classement({ group }: { group: Group }) {
   }
 
   const { topThreeMembers, restOfMembers } =
-    getTopThreeAndRestMembers(group.members) || {}
+    getTopThreeAndRestMembers(group.participants) || {}
 
-  const withS = group.members.length - 5 > 1 ? 's' : ''
+  const withS = group.participants.length - 5 > 1 ? 's' : ''
 
   return (
     <>
@@ -38,7 +38,7 @@ export default function Classement({ group }: { group: Group }) {
       </div>
 
       <ul className="mt-2 rounded-md bg-primary-500 px-3 py-4 text-white">
-        {topThreeMembers.map((member, index) => {
+        {topThreeMembers.map((participant: Participant, index: number) => {
           let rank
           switch (index) {
             case 0:
@@ -53,12 +53,15 @@ export default function Classement({ group }: { group: Group }) {
             default:
           }
 
-          const quantity = member?.results?.total ? (
+          const quantity = participant?.simulation?.computedResults?.bilan ? (
             <span className="m-none leading-[160%]">
               <strong>
-                {formatValue(parseFloat(member?.results?.total), {
-                  language,
-                })}
+                {formatValue(
+                  participant?.simulation?.computedResults?.bilan / 1000,
+                  {
+                    language,
+                  }
+                )}
               </strong>{' '}
               <span className="text-sm font-light">
                 <Trans>tonnes</Trans>
@@ -70,31 +73,32 @@ export default function Classement({ group }: { group: Group }) {
 
           return (
             <ClassementMember
-              key={member._id}
-              name={member.name}
+              key={participant._id}
+              name={participant.name}
               rank={rank || ''}
               quantity={quantity}
               isTopThree
-              isCurrentMember={member.userId === userId}
+              isCurrentMember={participant.userId === userId}
             />
           )
         })}
       </ul>
+
       {restOfMembers.length > 0 && (
         <ul className="px-4 py-4">
           {restOfMembers.length > 0 &&
             restOfMembers
               .filter(
-                (member, index) =>
+                (member: Participant, index: number) =>
                   isExpanded || index + topThreeMembers?.length < 5
               )
-              .map((member, index) => {
+              .map((member: Participant, index: number) => {
                 const rank = `${index + 1 + topThreeMembers?.length}.`
 
-                const quantity = member?.results?.total ? (
+                const quantity = member?.simulation?.computedResults?.bilan ? (
                   <span className="leading-[160%]">
                     <strong>
-                      {formatValue(parseFloat(member?.results?.total), {
+                      {formatValue(member?.simulation?.computedResults?.bilan, {
                         language,
                       })}
                     </strong>{' '}
@@ -118,12 +122,13 @@ export default function Classement({ group }: { group: Group }) {
         </ul>
       )}
 
-      {group.members.length > 5 && !isExpanded && (
+      {group.participants.length > 5 && !isExpanded && (
         <button
           onClick={() => setIsExpanded(true)}
           className="bg-Transparent mt-4 w-full border-none text-center text-sm text-primary-500 underline">
           <Trans>
-            Voir les {String(group.members.length - 5)} autre{withS} participant
+            Voir les {String(group.participants.length - 5)} autre{withS}{' '}
+            participant
             {withS}
           </Trans>
         </button>

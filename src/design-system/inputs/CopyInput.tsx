@@ -6,29 +6,36 @@ import Button from './Button'
 
 type Props = {
   textToCopy: string
+  textToDisplay?: string
   className?: string
+  onClick?: () => void
 }
 
-export default function CopyInput({ textToCopy, className = '' }: Props) {
+export default function CopyInput({
+  textToCopy,
+  textToDisplay,
+  className = '',
+  onClick,
+}: Props) {
   const [isCopied, setIsCopied] = useState(false)
 
   return (
     <div className={`flex ${className}`}>
       <input
         type="text"
-        className="block w-full min-w-0 flex-1 rounded-none rounded-l-md border border-r-0 border-solid border-grey-200 bg-grey-100 py-3 pl-4 sm:text-sm"
-        value={textToCopy}
+        className="block w-full min-w-0 flex-1 rounded-none rounded-l-md border border-r-0 border-solid border-grey-200 bg-grey-100 py-3 pl-4 pr-2 text-gray-600 sm:text-sm"
+        value={textToDisplay ?? textToCopy}
         readOnly
       />
       <Button
-        color="secondary"
-        className="!min-w-[9rem] flex-shrink-0 justify-center rounded-s-none px-4 py-2 text-sm"
+        className="!min-w-[9rem] flex-shrink-0 justify-center rounded-l-none px-4 py-2 text-sm"
         onClick={() => {
           navigator.clipboard.writeText(textToCopy)
           setIsCopied(true)
           setTimeout(() => setIsCopied(false), 3000)
-        }}
-      >
+
+          if (onClick) onClick()
+        }}>
         {isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>}
       </Button>
     </div>

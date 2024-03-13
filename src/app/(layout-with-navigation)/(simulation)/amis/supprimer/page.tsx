@@ -3,12 +3,13 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
+import { linkToClassement } from '@/helpers/navigation/classementPages'
+import { useDeleteGroup } from '@/hooks/groups/useDeleteGroup'
+import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { Member } from '@/types/groups'
+import { Participant } from '@/types/groups'
 import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
-import { useFetchGroup } from '../_hooks/useFetchGroup'
-import { useDeleteGroup } from './_hooks/useDeleteGroup'
 
 export default function SupprimerGroupePage({
   searchParams,
@@ -41,21 +42,22 @@ export default function SupprimerGroupePage({
     }
   }
 
-  const isOwner = group?.owner?.userId === userId
+  const isOwner = group?.administrator?.userId === userId
 
   if (
     !groupId ||
     !userId ||
     (group &&
-      group?.members.findIndex((member: Member) => member.userId === userId) <
-        0)
+      group?.participants.findIndex(
+        (member: Participant) => member.userId === userId
+      ) < 0)
   ) {
     router.push('/')
     return
   }
 
   if (!groupId) {
-    router.push('/amis')
+    router.push(linkToClassement)
     return
   }
 

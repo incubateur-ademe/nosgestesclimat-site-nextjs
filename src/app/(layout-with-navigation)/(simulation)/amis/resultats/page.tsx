@@ -1,77 +1,40 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import GroupLoader from '@/components/groups/GroupLoader'
+import GroupNotFound from '@/components/groups/GroupNotFound'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
-import Loader from '@/design-system/layout/Loader'
-import Title from '@/design-system/layout/Title'
-import { Group } from '@/types/groups'
-import { UseQueryResult } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
-import { useFetchGroup } from '../_hooks/useFetchGroup'
+import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
+import { useGroupIdInQueryParams } from '@/hooks/groups/useGroupIdInQueryParams'
+import { useGroupPagesGuard } from '@/hooks/navigation/useGroupPagesGuard'
 import EditableGroupTitle from './_components/EditableGroupTitle'
 import GroupResults from './_components/GroupResults'
 
-export default function GroupResultsPage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
-  const groupId = String(searchParams.groupId)
+export default function GroupResultsPage() {
+  // Guarding the route and redirecting if necessary
+  const { isGuardInit, isGuardRedirecting } = useGroupPagesGuard({
+    isDashboard: true,
+  })
 
-  const router = useRouter()
+  const { groupIdInQueryParams } = useGroupIdInQueryParams()
+  const { data: group, isLoading } = useFetchGroup(groupIdInQueryParams)
 
-  useEffect(() => {
-    if (!groupId) {
-      router.push('/amis', {
-        scroll: false,
-      })
-    }
-  }, [groupId, router])
-
-  const {
-    data: group,
-    refetch,
-    isFetched,
-  }: UseQueryResult<Group> = useFetchGroup(groupId)
-
-  if (!group && !isFetched) {
-    return (
-      <div className="flex h-full w-full items-center justify-center">
-        <Loader className="border-gray-600 border-b-transparent" />
-      </div>
-    )
+  // If we are still fetching the group (or we are redirecting the user), we display a loader
+  if (!isGuardInit || isGuardRedirecting || isLoading) {
+    return <GroupLoader />
   }
 
-  // Group doesn't exist
-  if (!group && isFetched) {
-    return (
-      <div className="flex flex-col items-start">
-        <Title
-          title={<Trans>Oups ! Nous n'avons pas trouvé votre groupe</Trans>}
-        />
-
-        <p className="mb-8 mt-2">
-          <Trans>Ce groupe n'existe pas ou a été supprimé.</Trans>
-        </p>
-
-        <ButtonLink href="/amis">
-          <Trans>Retour à la liste des groupes</Trans>
-        </ButtonLink>
-      </div>
-    )
+  // If the group doesn't exist, we display a 404 page
+  if (!group) {
+    return <GroupNotFound />
   }
 
   return (
-    <>
-      <div>
-        <GoBackLink className="mb-4 font-bold" />
+    <div>
+      <GoBackLink className="mb-4 font-bold" />
 
-        <EditableGroupTitle group={group as Group} />
+      <EditableGroupTitle group={group} />
 
-        <GroupResults group={group as Group} refetch={refetch} />
-      </div>
-    </>
+      <GroupResults group={group} />
+    </div>
   )
 }

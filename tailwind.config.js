@@ -38,7 +38,11 @@ module.exports = {
           700: '#3A0E5B',
           800: '#2A0A42',
         },
-        secondary: '#D40983',
+        secondary: {
+          100: '#FEF3F6',
+          200: '#FFB8CE',
+          500: '#D40983',
+        },
         default: '#1A1A1A',
         grey: {
           100: '#F8F8F7',
@@ -74,6 +78,9 @@ module.exports = {
       },
       backgroundImage: {
         'icons-mobile': "url('/images/misc/mobileIcons.svg')",
+      },
+      screens: {
+        xs: '320px',
       },
     },
   },

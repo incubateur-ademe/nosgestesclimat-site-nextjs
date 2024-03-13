@@ -547,6 +547,121 @@ entries:
   publicodes.ActionsOptionsBar.actionsRecap.lock: '{{numberOfAvailableFinalActions}} actions disponibles,'
   components.localisation.Localisation.warnMessage: For the moment, there is no calculation model for {{countryName}}, the French model is proposed by default.
   components.localisation.Localisation.warnMessage.lock: Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français vous est proposé par défaut.
+  Lien personnalisé & iframes: Custom links & iframes
+  Nombre de participants (estimé): Number of participants (estimated)
+  Plus que quelques petites questions: Just a few more questions
+  Nous vérifions votre code...: We check your code...
+  Demander une démo: Request a demo
+  secondes avant de pouvoir recevoir un nouveau code: seconds before you can receive a new code
+  "Sur l'espace organisation de ": 'On the '
+  Renvoyer le code: Resend code
+  Le code est invalide: The code is invalid
+  Bienvenue sur votre espace !: Welcome to your space!
+  Votre rôle: Your role
+  code de vérification: verification code
+  association: association
+  2 petites minutes: 2 minutes
+  entreprise: company
+  Commencez: Start
+  Créer un compte: Create an account
+  'à ': 'à '
+  Veuillez attendre: Please wait
+  salle de classe: classroom
+  Intégrez Nos Gestes Climat à vos services: Integrate Nos Gestes Climat into your services
+  Découvrez nos outils pour vous simplifier la vie !: Discover our tools to make your life easier!
+  organisation: organisation
+  Statistiques et exports: Statistics and exports
+  Téléphone: Telephone
+  Rejoignez nos partenaires: Join our partners
+  Votre organisation: Your organisation
+  Votre adresse e-mail: Your e-mail address
+  Bienvenue: Welcome
+  Demandez une démo: Request a demo
+  Accédez à votre espace organisation: Access your organisation area
+  Entrez votre code de vérification pour continuer: Enter your verification code to continue
+  (une fois par mois maximum !): (once a month maximum!)
+  Votre prénom: Your first name
+  Accéder à mon espace: Access my space
+  ', votre': your
+  Créez votre compte organisation: Create your organisation account
+  Explorez, comparez et analysez vos données: Explore, compare and analyse your data
+  pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: to create an account, and you'll be able to access all our services for free!
+  Vous n'avez pas reçu d'e-mail ?: Didn't you receive an e-mail?
+  C'est gratuit, et ça prend une minute !: It's free, and only takes a minute!
+  Explorez, analysez et téléchargez des données pour faire des choix éclairés et pour améliorer continuellement votre démarche écologique. Avec nos exports sur mesure, partagez vos réussites et vos challenges avec vos équipes et parties prenantes pour une stratégie de durabilité unifiée.: Explore, analyse and download data to make informed choices and continually improve your ecological approach. With our tailored exports, share your successes and challenges with your teams and stakeholders for a unified sustainability strategy.
+  Oups, une erreur s'est produite au moment de récupérer vos données d'organisation.: Oops, there was an error retrieving your organisation data.
+  Contactez nous afin de convenir d'un temps de démonstration de notre outil pour les organisations.: Contact us to arrange a demonstration of our tool for organisations.
+  Créez une campagne Nos Gestes Climat personnalisée au sein de votre organisation et accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Create a customised Nos Gestes Climat campaign within your organisation and access tailored services to raise awareness among your partners.
+  Sensibilisez votre organisation: Raise your organisation's awareness
+  Vérifiez votre boîte e-mail !: Check your e-mail inbox!
+  Vous souhaitez mobiliser votre: You want to mobilise your
+  Nous avons envoyé un: We sent a
+  Nos Gestes Climat pour les organisations: Nos Gestes Climat for organisations
+  Votre code est valide !: Your code is valid!
+  Renvoyer le code, désactivé pendant 30 secondes: Resend code, deactivated for 30 seconds
+  Recevoir ponctuellement par email les nouveaux services Nos Gestes Climat aux organisations: Receive occasional emails about new Nos Gestes Climat services for organisations
+  Partagez une version personnalisée de Nos Gestes Climat: Share a personalised version of Nos Gestes Climat
+  Permettez à vos collaborateurs, employés, partenaires ou élèves de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d’autres modes d’intégration prêts à l’emploi.: Allow your staff, employees, partners or students to calculate and reduce their carbon footprint directly from your web and mobile platforms, with a dedicated link or other ready-to-use integration methods.
+  'ou ': 'or '
+  Rôle: Role
+  Code renvoyé: Code returned
+  L’adresse e-mail est invalide: The e-mail address is invalid
+  Vous devez renseigner le nom de votre organisation: You must enter the name of your organisation
+  Vous devez renseigner votre prénom: You must enter your first name
+  Vous devez renseigner votre adresse e-mail: You must enter your e-mail address
+  Filtrer par: Filter by
+  Ce champ n'est pas modifiable: This field cannot be modified
+  Accueil: Home
+  ' Télécharger le kit (23mb)': ' Download the kit (23mb)'
+  À venir, bouton désactivé.: Coming soon, button disabled.
+  Intégration en iframe: Iframe integration
+  Exporter les données: Exporting data
+  Qui peut consulter les résultats de mon organisation ?: Who can view my organisation's results?
+  Département: Department
+  Organisations: Organisations
+  Empreinte moyenne: Average footprint
+  Jeu de cartes: Card game
+  Mes informations: My information
+  Chiffres clés: Key figures
+  Découvrez le guide: Discover the guide
+  La catégorie {{title}} représente {{value}} tonnes de CO2 equivalent.: The category {{title}} représente {{value}} tonnes of CO2 equivalent.
+  Télécharger (PDF 140mb): Download (PDF 140mb)
+  Dans quelle ville habitez-vous ?: Where do you live?
+  Empreinte carbone: Carbon footprint
+  Simulations terminées: Completed simulations
+  Bientôt, vous verrez apparaître ici vos statistiques. Partagez le test pour obtenir vos premiers résultats: Your statistics will soon appear here. Share the test to get your first results
+  Services web et mobiles: Web and mobile services
+  Partagez simplement cette page à vos employés, utilisateurs, élèves, et suivez leurs résultats: Simply share this page with your employees, users and students and track their results
+  Paramètres: Parameters
+  se déplacent à vélo: travel by bike
+  sont végétariens: are vegetarians
+  Voir le rapport détaillé: See the detailed report
+  roulent en voiture: drive a car
+  Votre e-mail: Your e-mail
+  Voir les paramètres: See the parameters
+  Question complémentaires: Additional questions
+  Partager le test: Share the test
+  Résultats du groupe: Group results
+  Kit de diffusion: Broadcast kit
+  Résultats détaillés: Detailed results
+  'Intégrez le test sur un article de blog, ou une page dédiée de votre site ou application mobile ': 'Integrate the test into a blog article or a dedicated page on your website or mobile application '
+  Vous avez une question ?: Do you have a question?
+  Tranche d'âge: Age range
+  Via un lien de partage: Via a share link
+  Quelle est votre année de naissance ?: What year were you born?
+  Animez un atelier: Run a workshop
+  Comment regrouper les résultats par région, ville, établissement... ?: How can I group results by region, town, school, etc? ?
+  Les résultats du test sont-ils anonymes ?: Are the test results anonymous?
+  Partagez Nos Gestes Climat: Share Our Gestes Climat
+  Modifier mes informations: Modify my information
+  Vous pouvez modifier vos informations personnelles. Le lien du sondage de votre organisation ne changera pas.: You can change your personal details. Your organisation's survey link will not change.
+  Quoi de mieux que le jeu pour sensibiliser ? Apprenez les ordres de grandeur à vos équipes ou vos élèves avec ce jeu de carte Nos Gestes Climat (sur une idée originale de Sabine Lagorce): What better way to raise awareness than with a game? Teach your teams or pupils about orders of magnitude with this Nos Gestes Climat card game (based on an original idea by Sabine Lagorce)
+  Oups, une erreur s'est produite au moment de l'envoi de votre code...: Oops, there was an error sending your code...
+  'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, posters and presentations: find all the tools you need to share Nos Gestes Climat in this kit.'
+  Puis-je utiliser le logo Nos Gestes Climat dans mes communications ?: Can I use the Nos Gestes Climat logo in my communications?
+  Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques: You can add additional questions to the test for your statistics
+  Est-il possible de personnaliser l’affichage du test ?: Is it possible to customise the test display?
+  Partagez le test à votre réseau et suivez vos statistiques.: Share the test with your network and track your statistics.
   Voir mes résultats: See my results
   Passer le test: Take the test
   Agir pour le climat: Taking action for the climate
@@ -584,7 +699,88 @@ entries:
   Le climat se réchauffe à cause des activités humaines, c'est un fait. Mais quel est notre impact, à notre échelle de citoyen Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer l'empreinte carbone individuelle de consommation.: It's a fact that the climate is warming because of human activity. But what is our impact, as individual citizens? To estimate our own contribution to global warming (our "climate impact"), it is common practice to calculate the individual carbon footprint of our consumption.
   Au fil des questions portant sur tous les aspects de nos modes de vie, découpés en grands postes comme l’alimentation, le logement, ou le transport, le poids de chacune de vos consommations est ajouté pour constituer votre total, le bilan carbone personnel, à visualiser sur trois infographies.: As you answer questions on every aspect of our lifestyles, broken down into major areas such as food, housing and transport, the weight of each of your consumption items is added to make up your total, your personal carbon footprint, which can be viewed on three graphics.
   le site est amélioré régulièrement.: the site is regularly improved.
+  Par catégorie: By category
   La valeur minimum pour ce champ est de: The minimum value for this field is
+  Chaque participation est représentée par une barre verticale. Votre score est affiché en rose.: Each entry is represented by a vertical bar. Your score is shown in pink.
+  pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: to create an account, and you'll be able to access all our services free of charge!
+  votre: your
+  Avec: With
+  Créer mon organisation: Create my organisation
+  Votre résultat: Your result
+  précédent: previous
+  Administrateur·ice: Administrator
+  Loupé !: Missed!
+  Valorisez vos données carbone: Add value to your carbon data
+  Découvrez nos outils pour vous simplifier la vie !: Discover our tools to make your life easier!
+  Envie de connaître votre empreinte carbone ?: Want to know your carbon footprint?
+  (Données consultables à partir de 3 participants, dans un souci d'anonymat.): (Data can be consulted from 3 participants onwards, in the interests of anonymity)
+  Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.: Your data will be stored securely and anonymously. They will be aggregated for statistical purposes; these statistics will be available on the "Detailed report" page of your survey at the end of the course. This page will remain accessible exclusively to participants and organisers.
+  Découvrez vos résultats détaillés: Discover your detailed results
+  Modification sauvegardée: Modification saved
+  Votre date de naissance: Your date of birth
+  "Ce test vous est proposé par <2>{isLoading ? '... ' : poll?.organisationInfo?.name}</2>. En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.": "This test is brought to you by <2>{isLoading ? '... ' : poll?.organisationInfo?.name}</2>. By taking part, you agree to your results being shared anonymously with this organisation."
+  Organisation: Organisation
+  Valider: Confirm
+  Partagez le test: Share the test
+  revenir au test: back to test
+  Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Discover the ABC workshops, open in a new tab
+  Une devinette pour finir !: Let's finish with a riddle!
+  Revenir au formulaire de connexion: Back to the login form
+  Moyenne du groupe par catégorie: Group average by category
+  Effectivement, avec: Indeed, with
+  Mes données restent-elles privées ?: Will my data remain private?
+  D’après vous, quel est: What do you think
+  Facultatif: Optional
+  Entreprises et collectivités: Companies and local authorities
+  Impact CO2: CO2 impact
+  '{{value}} tonnes': '{{value}} tonnes'
+  Mon organisation: My organisation
+  Le test: The test
+  Classement: Ranking
+  '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} has invited you to join the <3>{group?.name}</3> group'
+  'Moyenne :': 'Average :'
+  Bien vu !: Good point!
+  Simulation{optionalSString} terminée{optionalSString}: Simulation{optionalSString} completed{optionalSString}
+  Votre code postal: Your postcode
+  Modifications sauvegardées: Changes saved
+  Presque !: Almost!
+  Résultats détaillés de: Detailed results of
+  Calculez votre empreinte en: Calculate your footprint by
+  Les ateliers de l'ABC: ABC workshops
+  Voir mes résultats →: See my results →
+  Pour conserver vos résultats et les retrouver à l’avenir: To keep your results and find them again in the future
+  Se déconnecter de votre espace organisation: Logging out of your organisation space
+  Veuillez entrer votre code postal: Please enter your postcode
+  Groupes d'amis: Groups of friends
+  Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: Are you sure you want to leave this page? Your changes will be lost.
+  Accéder au kit: Access the kit
+  Vous avez déjà réalisé le test Nos Gestes Climat !: You've already taken the Nos Gestes Climat test!
+  puis comparez vos résultats à ceux des autres participants.: then compare your results with those of the other participants.
+  est votre poste le plus important !: is your most important job!
+  Partagez le test pour obtenir vos premiers résultats.: Share the test to get your first results.
+  Passer la question →: Skip question →
+  Découvrez le simulateur: Discover the simulator
+  ', vous avez été déconnecté·e de votre espace organisation, reconnectez vous en cliquant sur le bouton ci-dessous.': if you have been disconnected from your organisation space, please reconnect by clicking on the button below.
+  poste le plus important ?: most important position?
+  Vous pouvez reprendre votre test en cours, ou en recommencer un.: You can resume your current test, or start a new one.
+  Télécharger le kit, ouvrir dans un nouvel onglet: Download the kit, open in a new tab
+  Me connecter: Connect me
+  Découvrez le simulateur, ouvrir dans un nouvel onglet: Discover the simulator, open in a new tab
+  Vous avez déjà commencé le test Nos Gestes Climat !: You've already started the Nos Gestes Climat test!
+  Vous pouvez utiliser vos données existantes, ou recommencer le test.: You can use your existing data, or start the test again.
+  Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques.: You can add additional questions to the test for your statistics.
+  Vous souhaitez illustrer une quantité de CO2e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: Would you like to illustrate a quantity of CO2e and disseminate the right orders of magnitude to your community? ADEME's Carbon Comparator is the tool for you!
+  Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: Your additional activated questions will be asked to each participant before the Nos Gestes Climat test. Answering them is optional.
+  Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.: Organise events and physical exchanges around Nos Gestes Climat to bring people together and reinforce their understanding.
+  Télécharger le kit: Download the kit
+  Classements: Rankings
+  Oups: Oops
+  Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}: See {String(group.participants.length - 5)} other{withS} participant{withS}
+  Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}.lock: Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}
+  Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.: Only options with more than 3 participants are accessible, in order to preserve the anonymity of the participants.
+  Envie de connaître votre empreinte carbone ?: Want to know your carbon footprint?
+  Vous avez déjà commencé le test Nos Gestes Climat !: You've already started the Nos Gestes Climat test!
+  Vous avez déjà réalisé le test Nos Gestes Climat !: You've already taken the Nos Gestes Climat test!
   Propulsé par Vercel: Powered by Vercel
   km: km
   Au total: In total

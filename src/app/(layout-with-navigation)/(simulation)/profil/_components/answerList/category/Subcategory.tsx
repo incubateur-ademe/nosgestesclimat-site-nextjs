@@ -16,7 +16,7 @@ export default function SubCategory({ subcategory }: Props) {
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const formattedCarbonFootprint = formatCarbonFootprint(value)
+  const formattedCarbonFootprint = formatCarbonFootprint(value as string)
 
   //TODO: Model shenanigans: investigate why subcategory = repas and questions = plats
   const answeredQuestionOfSubcategory = relevantAnsweredQuestions.filter(
