@@ -54,6 +54,3 @@ dist
 .sentryclirc
 
 .vscode
-
-# Build analysis
-/analyze

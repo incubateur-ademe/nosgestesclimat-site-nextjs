@@ -1,9 +1,9 @@
 import { visit } from '../../../helpers/interactions/visit'
 
 describe('The Fin page', () => {
-  it('should redirect to the tutorial when no simulation exists', () => {
+  it('should render without breaking the app', () => {
     visit('fin')
 
-    cy.get('h1[data-cypress-id="tutoriel-title"]').should('be.visible')
+    cy.get('h1[data-cypress-id="fin-title"]').should('be.visible')
   })
 })

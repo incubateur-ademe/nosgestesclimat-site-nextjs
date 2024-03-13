@@ -1,32 +1,48 @@
 'use client'
 
-import GroupLoader from '@/components/groups/GroupLoader'
-import GroupNotFound from '@/components/groups/GroupNotFound'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
-import { useGroupIdInQueryParams } from '@/hooks/groups/useGroupIdInQueryParams'
-import { useGroupPagesGuard } from '@/hooks/navigation/useGroupPagesGuard'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useUser } from '@/publicodes-state'
+import { Member } from '@/types/groups'
+import { useRouter } from 'next/navigation'
+import { useFetchGroup } from '../_hooks/useFetchGroup'
 import InvitationForm from './_components/InvitationForm'
+import { getGroupURL } from './_helpers/getGroupURL'
 
-export default function RejoindreGroupePage() {
-  // Guarding the route and redirecting if necessary
-  const { isGuardInit, isGuardRedirecting } = useGroupPagesGuard()
+export default function RejoindreGroupePage({
+  searchParams,
+}: {
+  searchParams: { groupId: string }
+}) {
+  const { groupId } = searchParams
+
+  const router = useRouter()
 
   const { t } = useClientTranslation()
 
-  const { groupIdInQueryParams } = useGroupIdInQueryParams()
-  const { data: group, isLoading } = useFetchGroup(groupIdInQueryParams)
+  const { user } = useUser()
 
-  // If we are still fetching the group (or we are redirecting the user), we display a loader
-  if (!isGuardInit || isGuardRedirecting || isLoading) {
-    return <GroupLoader />
+  const userId = user?.id
+
+  const { data: group } = useFetchGroup(groupId)
+
+  const groupURL = getGroupURL(group)
+
+  if (!groupId) {
+    router.push('/amis')
+    return
   }
 
-  // If the group doesn't exist, we display a 404 page
+  // Show nothing if group is not fetched yet
   if (!group) {
-    return <GroupNotFound />
+    return null
+  }
+
+  // If user is already in the group, redirect to group page
+  if (group?.members?.find((member: Member) => member.userId === userId)) {
+    router.push(groupURL)
+    return
   }
 
   return (
@@ -34,7 +50,7 @@ export default function RejoindreGroupePage() {
       <Title
         title={
           <Trans>
-            {group?.administrator?.name} vous a invité à rejoindre le groupe{' '}
+            {group?.owner?.name} vous a invité à rejoindre le groupe{' '}
             <span className="text-violet-900">{group?.name}</span>
           </Trans>
         }

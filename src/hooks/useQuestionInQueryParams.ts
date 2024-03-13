@@ -1,4 +1,3 @@
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 
@@ -14,8 +13,8 @@ export const useQuestionInQueryParams = () => {
   const setQuestionInQueryParams = useCallback(
     (question: string) =>
       router.replace(
-        getLinkToSimulateur({ question }),
-
+        '/simulateur/bilan?question=' +
+          question.replaceAll(' . ', '.').replaceAll(' ', '_'),
         { scroll: false }
       ),
     [router]

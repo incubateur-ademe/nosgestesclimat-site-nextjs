@@ -2,7 +2,6 @@ import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
 import GroupCreationForm from './_component/GroupCreationForm'
 
 export async function generateMetadata() {
@@ -12,7 +11,7 @@ export async function generateMetadata() {
     description:
       "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.",
     alternates: {
-      canonical: linkToGroupCreation,
+      canonical: '/amis/creer',
     },
   })
 }

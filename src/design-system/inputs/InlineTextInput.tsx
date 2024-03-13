@@ -1,5 +1,5 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { FocusEvent, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import Button from './Button'
 
 type Props = {
@@ -28,7 +28,7 @@ export default function InlineTextInput({
 
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const { t } = useClientTranslation()
+  const { t } = useTranslation()
 
   const handleSubmit = async () => {
     const inputValue = inputRef.current?.value

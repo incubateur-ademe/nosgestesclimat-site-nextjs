@@ -13,9 +13,6 @@ type Props = {
   supportedRegions: SuppportedRegions
   isOptim?: boolean
 }
-
-const NO_MODEL_PATHNAME_EXCEPTIONS = ['/tutoriel', '/organisations']
-
 export default function Providers({
   children,
   supportedRegions,
@@ -25,7 +22,6 @@ export default function Providers({
     getCurrentSimulation,
     currentSimulationId,
     initSimulation,
-    updateCurrentSimulation,
     updateSituationOfCurrentSimulation,
     updateProgressionOfCurrentSimulation,
     updateFoldedStepsOfCurrentSimulation,
@@ -41,26 +37,11 @@ export default function Providers({
     }
   }, [currentSimulationId, initSimulation])
 
-  // We don't want to display the loader when the user is on the tutorial page
-  // or the landing page for organisations
-  if (NO_MODEL_PATHNAME_EXCEPTIONS.includes(pathname)) {
-    return <>{children}</>
-  }
-
-  if (!currentSimulationId || !rules || isLoading) {
-    return (
-      <div className="flex flex-1 items-center justify-center">
-        <Loader color="dark" />
-      </div>
-    )
-  }
-
-  return (
+  return currentSimulationId && rules && !isLoading ? (
     <SimulationProvider
       key={currentSimulationId}
       rules={rules}
       situation={getCurrentSimulation()?.situation || {}}
-      updateSimulation={updateCurrentSimulation}
       updateSituation={updateSituationOfCurrentSimulation}
       updateProgression={updateProgressionOfCurrentSimulation}
       foldedSteps={getCurrentSimulation()?.foldedSteps || []}
@@ -68,8 +49,13 @@ export default function Providers({
       shouldAlwaysDisplayChildren={pathname === '/tutoriel'}
       categoryOrder={orderedCategories}>
       <LocalisationBanner supportedRegions={supportedRegions} />
-
       {children}
     </SimulationProvider>
+  ) : pathname === '/tutoriel' ? (
+    children
+  ) : (
+    <div className="flex flex-1 items-center justify-center">
+      <Loader color="dark" />
+    </div>
   )
 }

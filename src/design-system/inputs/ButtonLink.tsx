@@ -11,7 +11,6 @@ type Props = {
   size?: ButtonSize
   title?: string
   onClick?: () => void
-  target?: string
 }
 
 export default function ButtonLink({
@@ -22,7 +21,6 @@ export default function ButtonLink({
   size = 'md',
   title,
   onClick,
-  target = '_self',
   ...props
 }: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLAnchorElement>>) {
   return (
@@ -34,8 +32,8 @@ export default function ButtonLink({
         `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
         className
       )}
-      target={target}
-      {...props}>
+      {...props}
+    >
       {children}
     </Link>
   )

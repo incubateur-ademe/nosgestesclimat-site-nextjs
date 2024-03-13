@@ -10,7 +10,7 @@ export default function GroupIcon({ className }: { className?: string }) {
       <g
         id="line-3"
         transform="matrix(0.63135518,0,0,0.63135518,26.687336,7.6493331)"
-        className="fill-secondary-500 stroke-secondary-500">
+        className="fill-secondary stroke-secondary">
         <path
           fill="none"
           stroke="#000000"
@@ -19,7 +19,7 @@ export default function GroupIcon({ className }: { className?: string }) {
           strokeWidth="2.27522"
           d="m 59.146963,67.259747 c 0,0 1.710487,-3.75115 0.572876,-8.301594 C 58.342307,53.445633 55.061154,48.487086 48.23549,48.487086 H 23.208056 c -6.825664,0 -9.890331,4.958547 -11.267863,10.471067 -1.137611,4.550444 0.102219,8.253 0.102219,8.253 0,0 10.755322,3.261749 23.400772,3.239117 13.744885,0.05443 23.703779,-3.190523 23.703779,-3.190523 z"
           id="path214-3-6"
-          className="fill-secondary-500 stroke-secondary-500"
+          className="fill-secondary stroke-secondary"
         />
         <path
           fill="none"
@@ -28,7 +28,7 @@ export default function GroupIcon({ className }: { className?: string }) {
           strokeWidth="2.27522"
           d="m 24.145981,24.669844 c 0,4.237145 0.613285,8.883147 2.27522,11.376107 2.117435,3.177346 5.708076,4.550443 9.100886,4.550443 3.521701,0 6.981175,-1.373097 9.100885,-4.550443 1.660911,-2.49296 2.275221,-7.138962 2.275221,-11.376107 0,-3.177914 -1.137611,-13.651327 -11.376106,-13.651327 -10.238496,0 -11.376106,8.35484 -11.376106,13.651327 z"
           id="path216-5"
-          className="fill-secondary-500 stroke-secondary-500"
+          className="fill-secondary stroke-secondary"
         />
       </g>
       <g

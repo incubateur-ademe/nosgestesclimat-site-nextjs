@@ -1,50 +1,40 @@
-import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import questions from '@/components/questions'
 import { getMatomoEventParcoursTestOver } from '@/constants/matomo'
-import { useEndPage } from '@/hooks/navigation/useEndPage'
+import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import ColorIndicator from './form/ColorIndicator'
+import { useUpdateGroupAndRedirectToGroup } from './form/_hooks/useUpdateGroupAndRedirectToGroup'
 
 export default function Form() {
+  const router = useRouter()
+
   const isDebug = useDebug()
 
-  const { getCurrentSimulation } = useUser()
-  const currentSimulation = getCurrentSimulation()
-  const progression = currentSimulation?.progression ?? 0
+  const { groupToRedirectToAfterTest } = useUser()
 
   const {
     remainingQuestions,
     relevantAnsweredQuestions,
     currentQuestion,
     setCurrentQuestion,
+    categories,
   } = useForm()
 
-  const { getNumericValue } = useEngine()
+  const { getValue, getNumericValue } = useEngine()
 
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()
 
-  const { goToEndPage } = useEndPage()
-
   const [isInitialized, setIsInitialized] = useState(false)
 
-  // When we reach the end of the test (by clicking on the last navigation button),
-  // we wait for the progression to be updated before redirecting to the end page
-  const [shouldGoToEndPage, setShouldGoToEndPage] = useState(false)
-  useEffect(() => {
-    if (shouldGoToEndPage && progression === 1) {
-      goToEndPage({
-        shouldShowQuiz: false,
-        allowedToGoToGroupDashboard: true,
-      })
-    }
-  }, [shouldGoToEndPage, progression, goToEndPage])
+  const handleUpdateGroupAndRedirectToGroup = useUpdateGroupAndRedirectToGroup()
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
 
@@ -79,9 +69,6 @@ export default function Form() {
     }
   }, [setQuestionInQueryParams, currentQuestion, isInitialized])
 
-  const { handleUpdateShouldPreventNavigation, shouldPreventNavigation } =
-    useContext(PreventNavigationContext)
-
   if (!isInitialized || !currentQuestion) {
     return
   }
@@ -103,11 +90,19 @@ export default function Form() {
         onComplete={() => {
           trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
 
-          if (shouldPreventNavigation) {
-            handleUpdateShouldPreventNavigation(false)
+          // When a user joins a group without having his test passed
+          if (groupToRedirectToAfterTest) {
+            handleUpdateGroupAndRedirectToGroup({
+              group: groupToRedirectToAfterTest,
+            })
+            return
           }
-
-          setShouldGoToEndPage(true)
+          router.push(
+            `/fin?${formatResultToDetailParam({
+              categories,
+              getValue,
+            })}`
+          )
         }}
       />
     </div>

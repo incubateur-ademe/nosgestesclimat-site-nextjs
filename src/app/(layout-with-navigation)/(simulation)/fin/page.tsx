@@ -1,38 +1,49 @@
-'use client'
-
 import HowToAct from '@/components/actions/HowToAct'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import Trans from '@/components/translation/Trans'
+import { noIndexObject } from '@/constants/metadata'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
 import Emoji from '@/design-system/utils/Emoji'
-import { useEndGuard } from '@/hooks/navigation/useEndGuard'
-import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { FormProvider } from '@/publicodes-state'
 import CongratulationsText from './_components/CongratulationsText'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import GroupModePromotionBanner from './_components/GroupModePromotionBanner'
-import Poll from './_components/Poll'
+import RedirectionIfNoResult from './_components/RedirectionIfNoResult'
 import Results from './_components/Results'
 
-export default function FinPage() {
-  // Guarding the route and redirecting if necessary
-  const { isGuardInit, isGuardRedirecting } = useEndGuard()
+export async function generateMetadata() {
+  return getMetadataObject({
+    title: "Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat",
+    description:
+      "Vos résultats de tests de notre simulateur d'empreinte carbone.",
+    robots: noIndexObject,
+    alternates: {
+      canonical: '/fin',
+    },
+  })
+}
 
-  // Set the current simulation from the URL params (if applicable)
-  const { isCorrectSimulationSet } = useSetCurrentSimulationFromParams()
-
-  if (!isGuardInit || isGuardRedirecting) return null
-
-  if (!isCorrectSimulationSet) return null
-
+export default function FinPage({
+  searchParams,
+}: {
+  searchParams: { details?: string; sid?: string }
+}) {
   return (
-    <>
+    <FormProvider>
       <IframeDataShareModal />
+
+      {
+        // Do not redirect if the user is not coming from his/her save simulation email
+        !searchParams?.sid && (
+          <RedirectionIfNoResult details={searchParams?.details || ''} />
+        )
+      }
 
       <CongratulationsText />
 
-      <Poll />
       <Results />
 
       <div className="flex flex-col items-start gap-4 md:grid md:grid-cols-5 md:flex-row">
@@ -76,6 +87,6 @@ export default function FinPage() {
         }
         type="learned"
       />
-    </>
+    </FormProvider>
   )
 }

@@ -8,7 +8,6 @@ type Props = {
   className?: string
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   value?: boolean
-  defaultChecked?: boolean
   required?: boolean
   size?: 'sm' | 'lg'
 }
@@ -25,7 +24,6 @@ export default function CheckboxInputGroup({
   className,
   onChange,
   value,
-  defaultChecked,
   required = false,
   size = 'sm',
   ...props
@@ -37,13 +35,12 @@ export default function CheckboxInputGroup({
           name={name}
           id={name}
           type="checkbox"
-          className={`mr-2 max-w-[30rem] cursor-pointer rounded-md border-solid border-grey-200 bg-grey-100 !p-4 text-2xl transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500 ${
+          className={`focus:border-primary-500 focus:ring-primary-500 mr-2 max-w-[30rem] rounded-md border-solid border-grey-200 bg-grey-100 !p-4 text-2xl transition-colors focus:ring-2 ${
             sizesClassNames[size]
           } ${error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''}`}
           onChange={onChange}
           aria-describedby={`error-${name}`}
           checked={value}
-          defaultChecked={defaultChecked}
           required={required}
           {...props}
         />

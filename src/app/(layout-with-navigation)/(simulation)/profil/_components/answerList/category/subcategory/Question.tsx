@@ -3,7 +3,6 @@
 import Link from '@/components/Link'
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import MosaicQuestion from './question/MosaicQuestion'
@@ -26,7 +25,10 @@ export default function Question({ question }: Props) {
 
   return (
     <Link
-      href={getLinkToSimulateur({ question })}
+      href={
+        '/simulateur/bilan?question=' +
+        question.replaceAll(' . ', '.').replaceAll(' ', '_')
+      }
       className={`mb-2 block rounded-lg bg-white p-4 no-underline hover:underline`}>
       <span
         className={`flex w-full items-center justify-between gap-8  text-sm`}>

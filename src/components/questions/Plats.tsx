@@ -17,28 +17,25 @@ export default function Plats() {
     (accumulator, currentValue) => accumulator + getNumericValue(currentValue),
     0
   )
-
+  const differenceToAverage = 14 - totalNumberOfPlats
   return (
     <>
       <Question question={'alimentation . plats'} />
       <div className="text-center text-sm">
-        {totalNumberOfPlats < 10 ? (
+        {differenceToAverage > 0 ? (
           <span className="text-red-700">
-            <Trans>
-              Moins de 10 repas par semaine, quel appétit de moineau
-            </Trans>{' '}
-            🐦
+            <Trans>Il vous reste</Trans> {differenceToAverage}{' '}
+            <Trans>choix à faire</Trans>
           </span>
         ) : null}
-        {totalNumberOfPlats > 18 ? (
+        {differenceToAverage < 0 ? (
           <span className="text-red-700">
-            <Trans>Plus de 18 repas par semaine, quel appétit</Trans> 💪
+            <Trans>Vous avez fait</Trans> {Math.abs(differenceToAverage)}{' '}
+            <Trans>choix en trop !</Trans>
           </span>
         ) : null}
-        {totalNumberOfPlats >= 10 && totalNumberOfPlats <= 18 ? (
-          <div className="mb-2 text-center">
-            <Trans>Miam</Trans> 😋
-          </div>
+        {differenceToAverage === 0 ? (
+          <div className="mb-2 text-center">😋👍</div>
         ) : null}
       </div>
     </>

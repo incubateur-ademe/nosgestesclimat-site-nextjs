@@ -6,16 +6,17 @@ import { matomoEventCreationGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
-import { validateCreationForm } from '@/helpers/groups/validateCreationForm'
-import useCreateGroup from '@/hooks/groups/useCreateGroup'
-import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
-import { useEndPage } from '@/hooks/navigation/useEndPage'
-import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
+import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
-import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { FormEvent, FormEventHandler, useState } from 'react'
+import { getSimulationResults } from '../../_helpers/getSimulationResults'
+import { useFetchGroups } from '../../_hooks/usFetchGroups'
+import { validateForm } from '../_helpers/validateForm'
+import useCreateGroup from '../_hooks/useCreateGroup'
+import { useSendGroupConfirmationEmail } from '../_hooks/useSendGroupConfirmationEmail'
 
 export default function GroupCreationForm() {
   const {
@@ -23,29 +24,33 @@ export default function GroupCreationForm() {
     updateName,
     updateEmail,
     getCurrentSimulation,
-    updateCurrentSimulation,
+    setGroupToRedirectToAfterTest,
   } = useUser()
 
-  const { name, userId, email } = user
+  const { name, id: userId, email: emailFromUserObject } = user
 
-  const [administratorName, setAdministratorName] = useState(name || '')
-  const [errorAdministratorName, setErrorAdministratorName] = useState('')
-
-  const [administratorEmail, setAdministratorEmail] = useState(email || '')
+  const [prenom, setPrenom] = useState(name || '')
+  const [errorPrenom, setErrorPrenom] = useState('')
+  const [email, setEmail] = useState(emailFromUserObject || '')
   const [errorEmail, setErrorEmail] = useState('')
 
   const { t } = useClientTranslation()
 
   const currentSimulation = getCurrentSimulation()
 
-  const hasCompletedTest = currentSimulation?.progression === 1
+  const { progression } = useForm()
 
-  const { data: groups } = useFetchGroupsOfUser()
+  const hasCompletedTest = progression === 1
 
-  const { goToSimulateurPage } = useSimulateurPage()
-  const { goToEndPage } = useEndPage()
+  const { getValue } = useEngine()
 
-  const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
+  const { data: groups } = useFetchGroups(user?.id)
+
+  const router = useRouter()
+
+  const { mutateAsync: createGroup, isPending } = useCreateGroup()
+
+  const { mutateAsync: sendGroupEmail } = useSendGroupConfirmationEmail()
 
   const handleSubmit = async (event: FormEvent) => {
     // Avoid reloading page
@@ -53,10 +58,10 @@ export default function GroupCreationForm() {
       event.preventDefault()
     }
 
-    const isValid = validateCreationForm({
-      administratorName,
-      administratorEmail,
-      setErrorAdministratorName,
+    const isValid = validateForm({
+      prenom,
+      email,
+      setErrorPrenom,
       setErrorEmail,
       t,
     })
@@ -64,83 +69,71 @@ export default function GroupCreationForm() {
     if (!isValid) return
 
     try {
-      trackEvent(matomoEventCreationGroupe)
+      const results = getSimulationResults({
+        getValue,
+      })
 
-      const { name, emoji } =
-        GROUP_NAMES[groups.length % GROUP_NAMES.length] ?? GROUP_NAMES[0]
+      const groupNameObject = GROUP_NAMES[groups.length % GROUP_NAMES.length]
 
       const group = await createGroup({
         groupInfo: {
-          name,
-          emoji,
-          administratorEmail,
-          administratorName,
+          name: groupNameObject.name,
+          emoji: groupNameObject.emoji,
+          email,
+          prenom,
           userId,
           simulation: currentSimulation,
         },
+        results,
       })
 
-      // Update user info
-      updateName(administratorName)
-      updateEmail(administratorEmail)
+      updateName(prenom)
+      updateEmail(email)
 
-      // Update current simulation with group id (to redirect after test completion)
-      updateCurrentSimulation({
-        group: group._id,
-      })
+      // The user will be redirected to the test in order to take it
+      if (!hasCompletedTest) {
+        setGroupToRedirectToAfterTest(group)
 
-      // We signal that the form has been submitted. When the currentSimulation is updated, we redirect
-      setIsSubmitted(true)
+        router.push('/simulateur/bilan')
+        return
+      }
+
+      trackEvent(matomoEventCreationGroupe)
+
+      // Send email to owner
+      if (email) {
+        await sendGroupEmail({
+          email,
+          prenom,
+          group,
+          userId,
+        })
+      }
+
+      router.push(`/amis/resultats?groupId=${group._id}`)
     } catch (e) {
       captureException(e)
     }
   }
-
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  useEffect(() => {
-    if (isSubmitted && currentSimulation?.group) {
-      // Redirect to simulateur page or end page
-      if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
-      } else {
-        goToSimulateurPage()
-      }
-    }
-  }, [
-    currentSimulation,
-    goToEndPage,
-    goToSimulateurPage,
-    hasCompletedTest,
-    isSubmitted,
-  ])
 
   return (
     <form
       onSubmit={handleSubmit as FormEventHandler<HTMLFormElement>}
       autoComplete="off">
       <PrenomInput
-        prenom={administratorName}
-        setPrenom={setAdministratorName}
-        errorPrenom={errorAdministratorName}
-        setErrorPrenom={setErrorAdministratorName}
+        prenom={prenom}
+        setPrenom={setPrenom}
+        errorPrenom={errorPrenom}
+        setErrorPrenom={setErrorPrenom}
         data-cypress-id="group-input-owner-name"
       />
 
       <div className="my-4">
         <EmailInput
-          email={administratorEmail}
-          setEmail={setAdministratorEmail}
-          error={errorEmail}
-          setError={setErrorEmail}
-          label={
-            <span>
-              {t('Votre adresse email')}{' '}
-              <span className="italic text-secondary-500">
-                {' '}
-                {t('facultatif')}
-              </span>
-            </span>
-          }
+          email={email}
+          setEmail={setEmail}
+          errorEmail={errorEmail}
+          setErrorEmail={setErrorEmail}
         />
       </div>
 
@@ -148,7 +141,7 @@ export default function GroupCreationForm() {
         type="submit"
         data-cypress-id="button-create-group"
         onClick={handleSubmit}
-        disabled={!administratorName || isPending || isSuccess}>
+        aria-disabled={!prenom && !isPending}>
         {hasCompletedTest ? (
           <Trans>Créer le groupe</Trans>
         ) : (

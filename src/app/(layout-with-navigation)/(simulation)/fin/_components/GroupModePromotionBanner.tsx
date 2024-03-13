@@ -1,18 +1,16 @@
-'use client'
-
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
-export default function GroupModePromotionBanner({
+export default async function GroupModePromotionBanner({
   className,
 }: {
   className?: string
 }) {
-  const { t } = useClientTranslation()
+  const { t } = await getServerTranslation()
 
   return (
     <Card

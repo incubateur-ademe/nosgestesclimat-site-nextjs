@@ -37,8 +37,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
-    "react-hooks/exhaustive-deps": "error",
-    "no-irregular-whitespace": "off"
+    "react-hooks/exhaustive-deps": "error"
   },
   "overrides": [
     {
