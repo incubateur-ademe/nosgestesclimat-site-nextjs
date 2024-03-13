@@ -1,3 +1,4 @@
+import { Group } from '@/types/groups'
 import { useEffect, useState } from 'react'
 import { Simulation } from '../../types'
 
@@ -9,6 +10,8 @@ export default function usePersistentSimulations({ storageKey }: Props) {
   const [initialized, setInitialized] = useState<boolean>(false)
   const [simulations, setSimulations] = useState<Simulation[]>([])
   const [currentSimulationId, setCurrentSimulationId] = useState<string>('')
+  const [groupToRedirectToAfterTest, setGroupToRedirectToAfterTest] =
+    useState<Group>()
 
   useEffect(() => {
     const storedSimulations: Simulation[] =
@@ -50,5 +53,7 @@ export default function usePersistentSimulations({ storageKey }: Props) {
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
+    groupToRedirectToAfterTest,
+    setGroupToRedirectToAfterTest,
   }
 }

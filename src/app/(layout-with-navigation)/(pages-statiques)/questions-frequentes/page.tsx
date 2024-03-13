@@ -5,7 +5,6 @@ import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { getCurrentLangInfos } from '@/locales/translation'
 import FAQListItem from './_components/FAQListItem'
 import Scroller from './_components/Scroller'
@@ -65,7 +64,7 @@ export default async function FAQPage() {
           <Trans i18nKey={'publicodes.FAQ.faireletest'}>
             Vous n'avez pas encore débuté votre test,{' '}
             <strong>
-              <a href={getLinkToSimulateur()}>lancez-vous !</a>
+              <a href="./simulateur/bilan">lancez-vous !</a>
             </strong>
           </Trans>
         </p>

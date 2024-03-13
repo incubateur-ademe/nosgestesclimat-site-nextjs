@@ -57,7 +57,7 @@ export default function SimulationList() {
                           className="mx-2"
                           size="sm"
                           onClick={() => {
-                            setCurrentSimulationId(simulation.id as string)
+                            setCurrentSimulationId(simulation.id)
                           }}>
                           <Trans>Charger</Trans>
                         </Button>
@@ -65,7 +65,7 @@ export default function SimulationList() {
                           className="mx-2"
                           size="sm"
                           onClick={() => {
-                            deleteSimulation(simulation.id as string)
+                            deleteSimulation(simulation.id)
                           }}>
                           <Trans>Supprimer</Trans>
                         </Button>

@@ -5,18 +5,17 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
-import { useEndPage } from '@/hooks/navigation/useEndPage'
+import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useActions, useForm, useUser } from '@/publicodes-state'
+import { useActions, useEngine, useForm, useUser } from '@/publicodes-state'
 import TutorialLink from './_components/TutorialLink'
 
 export default function SimulationStarted() {
   const { t } = useClientTranslation()
 
-  const { getLinkToEndPage } = useEndPage()
+  const { getValue } = useEngine()
 
-  const { progression, relevantAnsweredQuestions } = useForm()
+  const { progression, relevantAnsweredQuestions, categories } = useForm()
 
   const { initSimulation } = useUser()
 
@@ -59,7 +58,10 @@ export default function SimulationStarted() {
           <ButtonLink
             className="w-full text-center leading-8"
             color="primary"
-            href={getLinkToEndPage()}>
+            href={`/fin?${formatResultToDetailParam({
+              categories,
+              getValue,
+            })}`}>
             <Trans>
               <Emoji className="mr-2">👀</Emoji> Voir mon résultat
             </Trans>
@@ -70,7 +72,7 @@ export default function SimulationStarted() {
           <ButtonLink
             color="primary"
             className="w-full  text-center"
-            href={getLinkToSimulateur()}>
+            href="/simulateur/bilan">
             <Trans>
               <ProgressCircle white className="mr-2" /> Reprendre mon test
             </Trans>

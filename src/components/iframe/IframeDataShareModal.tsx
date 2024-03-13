@@ -3,13 +3,12 @@
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useGetResultsFromDetailParam } from '@/hooks/useGetResultsFromDetailParam'
 import { useIframe } from '@/hooks/useIframe'
-import { useUser } from '@/publicodes-state'
 import { getIsIframe } from '@/utils/getIsIframe'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import Trans from '../translation/Trans'
 
-// TODO: WE NEED TO TEST THIS
 // We let iframe integrators ask the user if he wants to share its simulation data to the parent window
 const shareDataPopupTimeout = 3500
 
@@ -18,9 +17,7 @@ export default function IframeDataShareModal() {
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const { getCurrentSimulation } = useUser()
-  const currentSimulation = getCurrentSimulation()
-  const data = currentSimulation?.computedResults?.categories
+  const data = useGetResultsFromDetailParam()
 
   //To delay the dialog show in to let the animation play
   const timeoutRef = useRef<NodeJS.Timeout>()
@@ -52,6 +49,8 @@ export default function IframeDataShareModal() {
   }
 
   const onAccept = () => {
+    delete data?.bilan
+
     window.parent.postMessage({ messageType: 'ngc-iframe-share', data }, '*')
 
     setIsOpen(false)

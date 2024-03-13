@@ -26,23 +26,23 @@ export function JourneysInputDesktop({
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="mb-2 hidden w-full overflow-scroll rounded-lg bg-white p-2 text-xs lg:block">
-      <table className="table w-full border-collapse">
+      className="mb-2 hidden w-full overflow-scroll rounded-lg bg-white p-2 md:block">
+      <table className="block w-full border-collapse md:table">
         <tbody className="block w-full">
-          <tr className="table-row w-full">
-            <th className="table-cell p-2 text-left text-xs">
+          <tr className="block w-full md:table-row">
+            <th className="block px-4 py-2 text-left text-sm md:table-cell">
               <Trans>Label</Trans>
             </th>
-            <th className="table-cell p-2 text-left text-xs">
+            <th className="block px-4 py-2 text-left text-sm md:table-cell">
               <Trans>Distance</Trans>
             </th>
-            <th className="table-cell p-2 text-left text-xs">
+            <th className="block px-4 py-2 text-left text-sm md:table-cell">
               <Trans>Fréquence</Trans>
             </th>
-            <th className="table-cell p-2 text-left text-xs">
+            <th className="block px-4 py-2 text-left text-sm md:table-cell">
               <Trans>Passagers</Trans>
             </th>
-            <th className="table-cell p-2 text-left text-xs opacity-0">
+            <th className="block px-4 py-2 text-left text-sm opacity-0 md:table-cell">
               Options
             </th>
           </tr>

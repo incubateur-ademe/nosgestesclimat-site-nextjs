@@ -40,6 +40,8 @@ export default function UserProvider({
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
+    groupToRedirectToAfterTest,
+    setGroupToRedirectToAfterTest,
   } = usePersistentSimulations({ storageKey })
 
   return (
@@ -53,7 +55,8 @@ export default function UserProvider({
         setSimulations,
         currentSimulationId,
         setCurrentSimulationId,
-        migrationInstructions,
+        groupToRedirectToAfterTest,
+        setGroupToRedirectToAfterTest,
       }}>
       {children}
     </UserContext.Provider>

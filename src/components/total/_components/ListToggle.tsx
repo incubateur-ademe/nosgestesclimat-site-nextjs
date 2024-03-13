@@ -1,21 +1,23 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   toggleQuestionList: () => void
 }
 
 export default function ListToggle({ toggleQuestionList }: Props) {
-  const { t } = useClientTranslation()
+  const { t } = useTranslation()
 
   return (
     <button
       onClick={toggleQuestionList}
       className="absolute right-4 h-8 w-8 md:right-6"
-      title={t('Voir la liste des questions')}>
+      title={t('Voir la liste des questions')}
+    >
       <svg
         className="fill-white"
         viewBox="0 0 32 32"
-        xmlns="http://www.w3.org/2000/svg">
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path d="m30 8.178c0-1.65-1.35-3-3-3h-12.04c-1.65 0-3 1.35-3 3s1.35 3 3 3h12.04c1.65 0 3-1.35 3-3z"></path>
         <path d="m22.04 13.178h-17.04c-1.65 0-3 1.35-3 3s1.35 3 3 3h17.04c1.65 0 3-1.35 3-3s-1.35-3-3-3z"></path>
         <path d="m22.04 21.178h-17.04c-1.65 0-3 1.35-3 3s1.35 3 3 3h17.04c1.65 0 3-1.35 3-3s-1.35-3-3-3z"></path>

@@ -1,9 +1,9 @@
 import Markdown from '@/design-system/utils/Markdown'
-import { HTMLAttributes, JSX, PropsWithChildren, useState } from 'react'
+import { HTMLAttributes, JSX, useState } from 'react'
 import QuestionButton from './QuestionButton'
 
 type Props = {
-  label?: string | JSX.Element
+  label: string | JSX.Element
   description?: string
   active: boolean
   onClick: any
@@ -17,9 +17,8 @@ export default function ChoiceInput({
   active,
   onClick,
   id,
-  children,
   ...props
-}: HTMLAttributes<HTMLInputElement> & PropsWithChildren<Props>) {
+}: HTMLAttributes<HTMLInputElement> & Props) {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
@@ -45,7 +44,7 @@ export default function ChoiceInput({
                 : 'border-gray-300 before:bg-white'
             } flex h-4 w-4 items-center justify-center rounded-full border-2 text-sm before:h-3 before:w-3 before:rounded-full md:h-5 md:w-5 md:text-base`}
           />
-          {label ?? children}
+          {label}
         </label>
         {description ? (
           <QuestionButton

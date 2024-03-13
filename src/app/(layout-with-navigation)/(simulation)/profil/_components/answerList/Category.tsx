@@ -14,11 +14,11 @@ type Props = {
 }
 
 export default function Category({ category }: Props) {
-  const { title, numericValue, icons } = useRule(category)
+  const { title, value, icons } = useRule(category)
   const { subcategories } = useForm()
 
   const [isOpen, setIsOpen] = useState(false)
-  const formattedCarbonFootprint = formatCarbonFootprint(numericValue)
+  const formattedCarbonFootprint = formatCarbonFootprint(value)
 
   return (
     <div className="relative mb-4 w-full">

@@ -4,7 +4,6 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 
 type Props = {
   progression: number
@@ -24,7 +23,7 @@ export default function SimulationMissing({ progression }: Props) {
         </p>
 
         <div>
-          <ButtonLink href={getLinkToSimulateur()}>
+          <ButtonLink href="/simulateur/bilan">
             <Trans>
               {progression > 0 ? 'Reprendre mon test' : 'Faire le test'}
             </Trans>

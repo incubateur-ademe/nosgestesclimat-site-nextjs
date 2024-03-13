@@ -46,11 +46,9 @@ We use [Cypress](https://www.cypress.io/) for end-to-end tests.
 To run the tests:
 
 1. you need to start a local server with `yarn run dev`
-2. you need to generate the personas spec files with `yarn run e2e:generate`
+2. you need to generate the personas spec files with `yarn run e2e:generate` 
 3. then run the tests with `yarn run e2e` to open the Cypress GUI.
 
 ## Réutilisations de ce code
 
 Attention, même si la licence MIT vous permet de réutiliser ce code à votre guise, en citant clairement le fait que vous reprenez nos travaux, vous ne pouvez pas réutiliser la marque Nos Gestes Climat. [Veuillez lire notre guide de personnalisation](https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/blob/master/PERSONNALISATION.md)
-
-<a href="https://vercel.com/?utm_source=ademe&utm_campaign=oss" alt="Url Vercel"><image src="https://user-images.githubusercontent.com/37937348/161967395-a5064a6a-b4d3-4ede-a940-ad81fa773916.svg" alt="Vercel" width="100" /></a>

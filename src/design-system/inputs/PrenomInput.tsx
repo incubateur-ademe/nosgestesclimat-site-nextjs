@@ -1,5 +1,5 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { ChangeEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import TextInputGroup from './TextInputGroup'
 
 type Props = {
@@ -16,7 +16,7 @@ export default function PrenomInput({
   setErrorPrenom,
   ...props
 }: Props) {
-  const { t } = useClientTranslation()
+  const { t } = useTranslation()
 
   return (
     <TextInputGroup

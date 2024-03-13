@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/Trans'
-import OrganisationDisclaimer from './avantDeCommencer/OrganisationDisclaimer'
 
 export default function AvantDeCommencer() {
   return (
@@ -13,7 +12,6 @@ export default function AvantDeCommencer() {
       <h3 className="z-10">
         <Trans>Avant de commencer</Trans>
       </h3>
-      <OrganisationDisclaimer />
       <div className="relative pl-8">
         <h4 className="overflow-visible font-bold before:absolute before:left-0 before:content-['🏡'] ">
           <Trans>C'est un test individuel !</Trans>

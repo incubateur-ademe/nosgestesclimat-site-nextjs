@@ -1,5 +1,4 @@
 import { SIMULATION_URL } from '@/constants/urls'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import {
   NorthStarRatings,
@@ -8,6 +7,7 @@ import {
 } from '@/types/northstar'
 import { captureException } from '@sentry/browser'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import EmojiButton from './EmojiButton'
 
 const setRating = (
@@ -28,7 +28,7 @@ export default function NorthStarInput({
   isAnimationCompleted: boolean
   text: string
 }) {
-  const { t } = useClientTranslation()
+  const { t } = useTranslation()
 
   const [hasSelectedRating, setHasSelectedRating] = useState(false)
 

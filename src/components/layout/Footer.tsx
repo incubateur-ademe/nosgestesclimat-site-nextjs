@@ -1,18 +1,13 @@
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
 import Emoji from '@/design-system/utils/Emoji'
-import { twMerge } from 'tailwind-merge'
 import Logo from '../misc/Logo'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
 import Trans from '../translation/Trans'
 
-export default function Footer({ className = '' }) {
+export default function Footer() {
   return (
-    <footer
-      className={twMerge(
-        'flex flex-col items-center gap-4 bg-grey-100 p-4 pb-32 sm:p-8 md:mb-0 md:pb-24',
-        className
-      )}>
+    <footer className="flex flex-col items-center gap-4 bg-grey-100 p-4 pb-32 sm:p-8 md:mb-0 md:pb-24">
       <div className="flex w-full items-start gap-12 md:max-w-5xl">
         <Logo className="hidden scale-75 lg:block" />
 
@@ -71,7 +66,7 @@ export default function Footer({ className = '' }) {
             </p>
             <div className="flex flex-wrap gap-6">
               <InlineLink
-                href="/organisations"
+                href="/diffuser"
                 className="font-bold text-default no-underline hover:underline">
                 <Emoji className="mr-2">🏢</Emoji>
                 <Trans>Dans votre organisation</Trans>
@@ -92,10 +87,7 @@ export default function Footer({ className = '' }) {
             <LanguageSwitchButton />
           </div>
 
-          <div className="mt-4 text-xs">
-            ▲&nbsp;<Trans>Propulsé par Vercel</Trans>
-            <span className="hidden sm:inline"> | </span>
-            <br className="md:hidden" />
+          <div className="mt-4 flex w-full flex-wrap gap-6 text-xs">
             <InlineLink
               href="/accessibilite"
               className="text-default no-underline hover:underline">

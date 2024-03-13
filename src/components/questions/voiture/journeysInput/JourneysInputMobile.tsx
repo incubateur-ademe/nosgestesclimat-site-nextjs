@@ -26,17 +26,17 @@ export default function JourneysInputMobile({
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="mb-2 block w-full overflow-scroll rounded-lg bg-white p-2 lg:hidden">
-      <table className="block w-full border-collapse">
+      className="mb-2 block w-full overflow-scroll rounded-lg bg-white p-2 md:hidden">
+      <table className="block w-full border-collapse md:table">
         <tbody className="block w-full">
           <AddJourneyMobile
-            className="block"
+            className="block md:hidden"
             key={`${journeys.length}-mobile`}
             setJourneys={setJourneys}
           />
 
           {journeys.length > 0 && (
-            <tr className="mt-4 block w-full text-left">
+            <tr className="mt-4 block w-full text-left md:hidden">
               <th className="mb-2 block">
                 <Trans>Vos trajets :</Trans>
               </th>
@@ -53,6 +53,7 @@ export default function JourneysInputMobile({
           ))}
         </tbody>
       </table>
+
       <Summary
         total={total}
         averagePassengers={averagePassengers}

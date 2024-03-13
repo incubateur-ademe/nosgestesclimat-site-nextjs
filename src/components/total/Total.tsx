@@ -1,10 +1,13 @@
 'use client'
 
+import Link from 'next/link'
+
 import QuestionButton from '@/components/misc/QuestionButton'
 import Trans from '@/components/translation/Trans'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useRule, useUser } from '@/publicodes-state'
+import { formatResultToDetailParam } from '@/helpers/url/formatResultToDetailParam'
+import { useEngine, useForm, useRule, useUser } from '@/publicodes-state'
+import { useTranslation } from 'react-i18next'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
 import Planet from './_components/Planet'
@@ -14,11 +17,15 @@ type Props = {
   toggleQuestionList?: () => void
 }
 export default function Total({ toggleQuestionList }: Props) {
-  const { t } = useClientTranslation()
+  const { t } = useTranslation()
 
   const { numericValue } = useRule('bilan')
 
-  const { getNumericValue } = useEngine()
+  const { getNumericValue, getValue } = useEngine()
+
+  const { categories } = useForm()
+
+  const detailsParamString = formatResultToDetailParam({ categories, getValue })
 
   const { tutorials, hideTutorial, showTutorial, getCurrentSimulation } =
     useUser()
@@ -45,7 +52,9 @@ export default function Total({ toggleQuestionList }: Props) {
       <div className="relative mb-2 flex items-center gap-4 overflow-hidden rounded-lg bg-primary-400 px-4 py-2 text-white md:justify-center md:text-center ">
         <Progress />
         <Planet />
-        <div className="z-10">
+        <Link
+          href={`/fin${detailsParamString ? `?${detailsParamString}` : ''}`}
+          className="z-10	text-white no-underline hover:text-white">
           <span className="block text-2xl font-bold md:text-3xl">
             {numericValue !== carbonFootprintValue && (
               <span className="relative text-xl text-gray-300 md:text-2xl">
@@ -61,7 +70,7 @@ export default function Total({ toggleQuestionList }: Props) {
               de CO<sub className="text-white">2</sub>e / an
             </Trans>
           </span>
-        </div>
+        </Link>
         <QuestionButton
           onClick={toggleOpen}
           color="white"

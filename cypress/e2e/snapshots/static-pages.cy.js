@@ -50,7 +50,7 @@ describe('Visual regression tests of static pages', () => {
     cy.matchImageSnapshot()
   })
   it('Should match previous screenshot "Amis"', () => {
-    cy.visit('/classements')
+    cy.visit('/amis')
     cy.wait(3000)
     cy.matchImageSnapshot()
   })

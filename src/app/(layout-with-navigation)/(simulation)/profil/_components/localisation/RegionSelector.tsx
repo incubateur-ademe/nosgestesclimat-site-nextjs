@@ -32,14 +32,14 @@ export default function RegionSelector({
   // NOTE(@EmileRolley): how could this be undefined? This doesn't match the type annotations
   const { region } = user ?? {}
 
-  const { isLoading } = useRules()
+  const { isFetching } = useRules()
 
   return (
     <>
       <details open={isOpen}>
         <summary
           className={`middle w-auto cursor-pointer rounded-md bg-primary-100 p-4 ${
-            isLoading ? 'pointer-events-none opacity-60' : ''
+            isFetching ? 'pointer-events-none opacity-60' : ''
           }`}>
           <span>
             🗺️ <Trans>Choisir une autre région</Trans>{' '}
@@ -47,7 +47,7 @@ export default function RegionSelector({
               ({numberOfRegions} <Trans>disponibles</Trans>)
             </small>
           </span>
-          {isLoading && (
+          {isFetching && (
             <Loader size="sm" color="dark" className="ml-4 text-right" />
           )}
         </summary>
@@ -64,8 +64,8 @@ export default function RegionSelector({
             }
           }}
           selectedRegionCode={region?.code}
-          className={isLoading ? 'pointer-events-none opacity-60' : ''}
-          aria-disabled={isLoading || undefined}
+          className={isFetching ? 'pointer-events-none opacity-60' : ''}
+          aria-disabled={isFetching || undefined}
         />
         <Card className="mt-4 flex-row items-center">
           <span

@@ -3,23 +3,23 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm } from '@/publicodes-state'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 type Props = { toggleOpen: any }
 
 export default function Explanation({ toggleOpen }: Props) {
   const { progression } = useForm()
 
-  const { t } = useClientTranslation()
+  const { t } = useTranslation()
 
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="relative mb-2 mt-6 rounded-lg border-4 border-primary-500 p-4 pt-2">
+      className="border-primary-500 relative mb-2 mt-6 rounded-lg border-4 p-4 pt-2">
       <svg
         width="28"
         height="24"
