@@ -4,9 +4,15 @@ const redirects = [
     destination: '/actions',
     permanent: true,
   },
+  // Mode Groupe / amis / classement
   {
     source: '/groupes/:path*',
     destination: '/amis/:path*',
+    permanent: true,
+  },
+  {
+    source: '/amis',
+    destination: '/classements',
     permanent: true,
   },
   {
@@ -83,6 +89,11 @@ const redirects = [
   {
     source: '/guide/num%C3%A9rique',
     destination: '/guide/numerique',
+    permanent: true,
+  },
+  {
+    source: '/o/:organisation/:poll',
+    destination: '/tutoriel/?poll=:poll',
     permanent: true,
   },
 ]

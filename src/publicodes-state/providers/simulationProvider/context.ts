@@ -2,6 +2,7 @@
 import { PublicodesExpression } from 'publicodes'
 import { createContext } from 'react'
 import {
+  ComputedResults,
   DottedName,
   Engine,
   NGCEvaluatedNode,
@@ -30,6 +31,7 @@ type SimulationContextType = {
   rawMissingVariables: Record<string, number>
   categories: DottedName[]
   subcategories: Record<DottedName, DottedName[]>
+  computedResults: ComputedResults
 }
 export default createContext<SimulationContextType>({
   rules: null,
@@ -51,4 +53,8 @@ export default createContext<SimulationContextType>({
   rawMissingVariables: {},
   categories: [],
   subcategories: {},
+  computedResults: {
+    bilan: 0,
+    categories: {},
+  },
 })

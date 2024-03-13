@@ -12,6 +12,8 @@ import { DottedName, NGCEvaluatedNode, NGCRuleNode, Rules } from '../../types'
  * And a pristine engine wich can be used to assess rules without any situation (for exemple, we can reliably sort the subcategories this way)
  */
 export default function useEngine(rules: Rules) {
+  if (!rules) throw new Error('Missing rules')
+
   const engine = useMemo<Engine>(() => {
     const nbRules = Object.keys(rules).length
     console.time(`⚙️ Parsing ${nbRules}`)

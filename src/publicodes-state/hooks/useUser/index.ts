@@ -4,7 +4,6 @@ import { useContext } from 'react'
 
 import userContext from '../../providers/userProvider/context'
 import useActions from './useActions'
-import useHasSavedSimulation from './useHasSavedSimulation'
 import useNorthStar from './useNorthStar'
 import useSimulations from './useSimulations'
 import useTutorials from './useTutorials'
@@ -25,11 +24,16 @@ export default function useUser() {
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
-    groupToRedirectToAfterTest,
-    setGroupToRedirectToAfterTest,
+    migrationInstructions,
   } = useContext(userContext)
 
-  const { updateName, updateEmail, updateRegion } = useUserDetails({ setUser })
+  const {
+    updateName,
+    updateEmail,
+    updateRegion,
+    updateLoginExpirationDate,
+    updateUserOrganisation,
+  } = useUserDetails({ setUser })
 
   const {
     initSimulation,
@@ -38,6 +42,7 @@ export default function useUser() {
     updateSituationOfCurrentSimulation,
     updateProgressionOfCurrentSimulation,
     updateFoldedStepsOfCurrentSimulation,
+    updateCurrentSimulation,
     updateCurrentSimulationActionChoices,
     getCurrentSimulation,
   } = useSimulations({
@@ -45,6 +50,7 @@ export default function useUser() {
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
+    migrationInstructions,
   })
 
   const { toggleActionChoice, rejectAction } = useActions({
@@ -55,8 +61,6 @@ export default function useUser() {
   const { hideTutorial, showTutorial } = useTutorials({ setTutorials })
 
   const { updateNorthStarRatings } = useNorthStar({ setUser })
-
-  const { updateHasSavedSimulation } = useHasSavedSimulation({ setUser })
 
   return {
     /**
@@ -72,9 +76,17 @@ export default function useUser() {
      */
     updateEmail,
     /**
+     * A setter for updating the user's organisation information
+     */
+    updateUserOrganisation,
+    /**
      * A setter for updating the user current region
      */
     updateRegion,
+    /**
+     * A setter for updating the user login expiration date
+     */
+    updateLoginExpirationDate,
     /**
      * A list of all tutorials seen by the user (that we do not need to show)
      */
@@ -112,6 +124,10 @@ export default function useUser() {
      */
     setCurrentSimulationId,
     /**
+     * Update the current simulation
+     */
+    updateCurrentSimulation,
+    /**
      * Update the situation of the current simulation (by adding the passed situation to the existing situation)
      */
     updateSituationOfCurrentSimulation,
@@ -143,16 +159,5 @@ export default function useUser() {
      * Reject the action choice of the current simulation
      */
     rejectAction,
-    /*
-     * When a user creates or joins a group without having a simulation, we lead him to the simulation page,
-     * and once completed we redirect him to the group page.
-     */
-    groupToRedirectToAfterTest,
-    setGroupToRedirectToAfterTest,
-
-    /*
-     * Update the hasSavedSimulation property of the user
-     */
-    updateHasSavedSimulation,
   }
 }

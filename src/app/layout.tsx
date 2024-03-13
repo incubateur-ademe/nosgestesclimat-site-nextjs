@@ -1,7 +1,8 @@
-// Initialise react-i18next
+import FilAriane from '@/components/layout/FilAriane'
 import Header from '@/components/layout/Header'
 import getGeolocation from '@/helpers/getGeolocation'
 import getMigrationInstructions from '@/helpers/modelFetching/getMigrationInstructions'
+// Initialise react-i18next
 import '@/locales/initClient'
 import '@/locales/initServer'
 import { ErrorBoundary } from '@sentry/nextjs'
@@ -14,7 +15,7 @@ import { ErrorFallback } from './_components/ErrorFallback'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 
-const marianne = localFont({
+export const marianne = localFont({
   src: [
     {
       path: '_fonts/Marianne-Thin.woff2',
@@ -107,6 +108,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
             region={region}
             migrationInstructions={migrationInstructions}>
             <Header />
+
+            <FilAriane />
 
             {children}
           </MainLayoutProviders>

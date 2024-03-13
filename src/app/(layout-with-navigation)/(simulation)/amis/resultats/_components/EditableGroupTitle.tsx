@@ -5,14 +5,14 @@ import Button from '@/design-system/inputs/Button'
 import InlineTextInput from '@/design-system/inputs/InlineTextInput'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
+import { useIsGroupOwner } from '@/hooks/groups/useIsGroupOwner'
+import { useUpdateGroup } from '@/hooks/groups/useUpdateGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import Image from 'next/image'
 import { useState } from 'react'
-import { useUpdateGroupName } from '../_hooks/useUpdateGroupName'
 
 export default function EditableGroupTitle({ group }: { group: Group }) {
   const formattedGroupId = group?._id?.replaceAll('/', '')
@@ -22,18 +22,16 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
 
   const { t } = useClientTranslation()
 
-  const { user } = useUser()
+  const { mutate: updateGroup } = useUpdateGroup()
 
-  const { mutate: updateGroupName } = useUpdateGroupName()
-
-  const isOwner = group?.owner?.userId === user?.id
+  const { isGroupOwner } = useIsGroupOwner({ group })
 
   const handleSubmit = async (groupNameUpdated: string) => {
     setIsSubmitting(true)
     try {
-      updateGroupName({
-        groupId: formattedGroupId as string,
-        groupName: groupNameUpdated,
+      updateGroup({
+        groupId: formattedGroupId,
+        name: groupNameUpdated,
       })
 
       setIsSubmitting(false)
@@ -68,24 +66,26 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
                   <Emoji>{group?.emoji}</Emoji> <span>{group?.name}</span>
                 </span>
 
-                <Button
-                  className="!p-1"
-                  onClick={() => setIsEditingTitle(true)}
-                  color="secondary"
-                  data-cypress-id="group-name-edit-button">
-                  <Image
-                    src="/images/misc/pencil.svg"
-                    alt={t(
-                      'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé'
-                    )}
-                    width={24}
-                    height={24}
-                  />
-                </Button>
+                {isGroupOwner ? (
+                  <Button
+                    className="!p-1"
+                    onClick={() => setIsEditingTitle(true)}
+                    color="secondary"
+                    data-cypress-id="group-name-edit-button">
+                    <Image
+                      src="/images/misc/pencil.svg"
+                      alt={t(
+                        'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé'
+                      )}
+                      width={24}
+                      height={24}
+                    />
+                  </Button>
+                ) : null}
               </span>
             }
             subtitle={t('Créé par {{name}}', {
-              name: isOwner ? t('vous') : group?.owner?.name,
+              name: isGroupOwner ? t('vous') : group?.administrator?.name,
             })}
           />
         )}

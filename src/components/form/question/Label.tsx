@@ -7,12 +7,12 @@ import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
 import { getMatomoEventClickHelp } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import Markdown from '@/design-system/utils/Markdown'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { QuestionSize } from '@/types/values'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
-import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -42,7 +42,7 @@ export default function Label({
 }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const { t } = useTranslation()
+  const { t } = useClientTranslation()
 
   if (!label) return
   return (
@@ -72,9 +72,9 @@ export default function Label({
               trackEvent(getMatomoEventClickHelp(question))
               setIsOpen((previsOpen) => !previsOpen)
             }}
-            className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary-500 text-base font-bold text-white`}
+            className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary-500 font-mono text-base font-bold text-white`}
             title={t("Voir plus d'informations")}>
-            <code>i</code>
+            i
           </button>
         ) : null}
       </label>

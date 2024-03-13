@@ -9,6 +9,12 @@ import {
 
 export type DottedName = string
 
+export type UserOrganisationInfo = {
+  administratorEmail?: string
+  slug?: string
+  name?: string
+}
+
 export type User = {
   region: {
     code: string
@@ -21,8 +27,10 @@ export type User = {
   name: string
   email: string
   northStarRatings?: any // TODO: should be NorthStartType or something
-  id: string
-  hasSavedSimulation?: boolean
+  userId: string
+  loginExpirationDate?: Date
+  organisation?: UserOrganisationInfo
+  administratorEmail?: string
 }
 
 export type Rules = any
@@ -54,6 +62,10 @@ export type ActionChoices = Record<string, boolean>
 
 export type NodeValue = Evaluation
 
+export type ComputedResults = {
+  bilan: number
+  categories: Record<string, number>
+}
 export type Simulation = {
   id: string
   date: Date | string
@@ -61,7 +73,12 @@ export type Simulation = {
   foldedSteps: DottedName[]
   actionChoices: ActionChoices
   persona?: string
+  computedResults?: ComputedResults
   progression?: number
+  defaultAdditionalQuestionsAnswers?: Record<string, string>
+  poll?: string | null
+  group?: string | null
+  savedViaEmail?: boolean
 }
 
 export type Persona = {

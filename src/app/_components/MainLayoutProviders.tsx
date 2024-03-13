@@ -1,16 +1,16 @@
 'use client'
 
 import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
-import useTrackPageView from '@/hooks/useTrackPageView'
-import useTrackSplitTesting from '@/hooks/useTrackSplitTesting'
+import useTrackPageView from '@/hooks/tracking/useTrackPageView'
+import useTrackSplitTesting from '@/hooks/tracking/useTrackSplitTesting'
 import { UserProvider } from '@/publicodes-state'
 import { MigrationType } from '@/publicodes-state/types'
 import { PropsWithChildren } from 'react'
 import CheckFixedRegion from './mainLayoutProviders/CheckFixedRegion'
 import { IframeResizer } from './mainLayoutProviders/IframeResizer'
+import { PreventNavigationProvider } from './mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProviderWrapper'
 import QueryParamsProvider from './mainLayoutProviders/QueryParamsProvider'
-import SimulationFromUrlLoader from './mainLayoutProviders/SimulationFromUrlLoader'
 
 type Props = {
   region: { code: string; name: string }
@@ -34,9 +34,8 @@ export default function MainLayoutProviders({
             initialRegion={region}
             storageKey="nosgestesclimat::v3"
             migrationInstructions={migrationInstructions}>
-            <SimulationFromUrlLoader />
             <CheckFixedRegion />
-            {children}
+            <PreventNavigationProvider>{children}</PreventNavigationProvider>
           </UserProvider>
         </QueryClientProviderWrapper>
       </IframeOptionsProvider>
