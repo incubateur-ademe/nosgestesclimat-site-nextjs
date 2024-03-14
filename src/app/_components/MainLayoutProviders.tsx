@@ -1,8 +1,8 @@
 'use client'
 
 import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
-import useTrackPageView from '@/hooks/tracking/useTrackPageView'
-import useTrackSplitTesting from '@/hooks/tracking/useTrackSplitTesting'
+import { useTrackPageView } from '@/hooks/tracking/useTrackPageView'
+import { useTrackSplitTesting } from '@/hooks/tracking/useTrackSplitTesting'
 import { UserProvider } from '@/publicodes-state'
 import { MigrationType } from '@/publicodes-state/types'
 import { PropsWithChildren } from 'react'
