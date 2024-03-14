@@ -1,6 +1,6 @@
 'use client'
 
-import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import {
   getBackgroundColor,
   getTextColor,

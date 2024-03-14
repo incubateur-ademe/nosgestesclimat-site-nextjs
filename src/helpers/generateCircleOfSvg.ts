@@ -10,7 +10,7 @@ type Props = {
   boundary: number[]
 }
 
-const generateCircleOfSvg = ({
+export const generateCircleOfSvg = ({
   numPieces,
   radius,
   centerX = 0,
@@ -53,5 +53,3 @@ const generateCircleOfSvg = ({
   }
   return icons
 }
-
-export default generateCircleOfSvg

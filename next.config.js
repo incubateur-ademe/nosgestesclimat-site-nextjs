@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
 })
@@ -30,8 +28,6 @@ const nextConfig = {
       // if you miss it, all the other options in fallback, specified
       // by next.js will be dropped.
       ...config.resolve.fallback,
-
-      fs: false, // the solution
     }
 
     return config
@@ -76,9 +72,6 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
-    outputFileTracingExcludes: {
-      '*': ['.next/**/*', '.git/**/*', 'cypress/**/*'],
-    },
   },
 }
 
@@ -103,7 +96,7 @@ module.exports = withSentryConfig(
     // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
     // Upload a larger set of source maps for prettier stack traces (increases build time)
-    widenClientFileUpload: true,
+    widenClientFileUpload: false,
 
     // Transpiles SDK to be compatible with IE11 (increases bundle size)
     transpileClientSDK: false,

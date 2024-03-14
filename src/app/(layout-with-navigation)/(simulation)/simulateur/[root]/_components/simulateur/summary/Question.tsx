@@ -1,7 +1,7 @@
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
 import { getMatomoEventClickQuestionsListLink } from '@/constants/matomo'
-import foldEveryQuestionsUntil from '@/helpers/foldEveryQuestionsUntil'
+import { foldEveryQuestionsUntil } from '@/helpers/foldEveryQuestionsUntil'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useDebug } from '@/hooks/useDebug'
 import { useForm, useRule } from '@/publicodes-state'
