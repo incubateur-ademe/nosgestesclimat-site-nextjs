@@ -71,17 +71,13 @@ export default function IframeDataShareModal() {
       <div>
         <p>
           {t(
-            `En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à
-            récupérer le bilan de votre empreinte climat.`,
+            `En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.`,
             { parent }
           )}
         </p>
         <p>
           {t(
-            `Il s'agit de vos résultats sur les grandes catégories (transport,
-            alimentation...), mais <em>pas</em> le détail question par question
-            (vos km en voiture, les m² de votre logement...).`,
-            { parent }
+            `Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).`
           )}
         </p>
         <p>
