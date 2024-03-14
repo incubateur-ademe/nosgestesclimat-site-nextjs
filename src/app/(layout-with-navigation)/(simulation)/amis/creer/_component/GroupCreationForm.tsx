@@ -9,13 +9,13 @@ import PrenomInput from '@/design-system/inputs/PrenomInput'
 import { validateCreationForm } from '@/helpers/groups/validateCreationForm'
 import useCreateGroup from '@/hooks/groups/useCreateGroup'
 import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
-import { useSendGroupConfirmationEmail } from '@/hooks/groups/useSendGroupConfirmationEmail'
+import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
-import { FormEvent, FormEventHandler, useState } from 'react'
+import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
 
 export default function GroupCreationForm() {
   const {
@@ -43,10 +43,9 @@ export default function GroupCreationForm() {
   const { data: groups } = useFetchGroupsOfUser()
 
   const { goToSimulateurPage } = useSimulateurPage()
+  const { goToEndPage } = useEndPage()
 
   const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
-
-  const { mutateAsync: sendGroupEmail } = useSendGroupConfirmationEmail()
 
   const handleSubmit = async (event: FormEvent) => {
     // Avoid reloading page
@@ -90,22 +89,30 @@ export default function GroupCreationForm() {
         group: group._id,
       })
 
-      // Send email to owner
-      if (administratorEmail) {
-        await sendGroupEmail({
-          email: administratorEmail,
-          prenom: administratorName,
-          group,
-          userId,
-        })
-      }
-
-      // Redirect to simulateur page or end page
-      goToSimulateurPage()
+      // We signal that the form has been submitted. When the currentSimulation is updated, we redirect
+      setIsSubmitted(true)
     } catch (e) {
       captureException(e)
     }
   }
+
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  useEffect(() => {
+    if (isSubmitted && currentSimulation?.group) {
+      // Redirect to simulateur page or end page
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
+    }
+  }, [
+    currentSimulation,
+    goToEndPage,
+    goToSimulateurPage,
+    hasCompletedTest,
+    isSubmitted,
+  ])
 
   return (
     <form
@@ -128,7 +135,7 @@ export default function GroupCreationForm() {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="text-secondary-500 italic">
+              <span className="italic text-secondary-500">
                 {' '}
                 {t('facultatif')}
               </span>
@@ -141,9 +148,7 @@ export default function GroupCreationForm() {
         type="submit"
         data-cypress-id="button-create-group"
         onClick={handleSubmit}
-        aria-disabled={
-          !administratorName || !administratorEmail || isPending || isSuccess
-        }>
+        disabled={!administratorName || isPending || isSuccess}>
         {hasCompletedTest ? (
           <Trans>Créer le groupe</Trans>
         ) : (

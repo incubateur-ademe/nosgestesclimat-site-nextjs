@@ -2,7 +2,7 @@ import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
-import { useRule } from '@/publicodes-state'
+import { useRule, useSimulation } from '@/publicodes-state'
 import { formatValue } from 'publicodes'
 import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 
@@ -16,6 +16,8 @@ export default function AccordionItemWithRule({
   index?: number
 }) {
   const { title, icons, numericValue } = useRule(dottedName)
+
+  const { subcategories } = useSimulation()
 
   const percentageOfTotalValue = (numericValue / maxValue) * 100
 
@@ -43,7 +45,10 @@ export default function AccordionItemWithRule({
           style={{
             boxShadow: '0px 6px 6px -2px rgba(21, 3, 35, 0.05) inset',
           }}>
-          <SubcategoriesList category={dottedName} />
+          <SubcategoriesList
+            category={dottedName}
+            subcategories={subcategories}
+          />
         </Card>
       }
     />

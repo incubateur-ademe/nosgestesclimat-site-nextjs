@@ -1,6 +1,12 @@
 'use client'
 
-import { useEngine, useForm, useTempEngine, useUser } from '@/publicodes-state'
+import {
+  useEngine,
+  useForm,
+  useSimulation,
+  useTempEngine,
+  useUser,
+} from '@/publicodes-state'
 import { useState } from 'react'
 import ActionsTutorial from './_components/ActionsTutorial'
 import OptionBar from './_components/OptionBar'
@@ -27,13 +33,18 @@ export default function ActionsPage({
 
   const { rules, getRuleObject } = useTempEngine()
 
-  if (!currentSimulation) return
+  const { safeEvaluate } = useSimulation()
+
+  if (!currentSimulation || !rules) {
+    return null
+  }
 
   const actionChoices = currentSimulation.actionChoices
 
   const actions = getActions({
     rules,
     radical,
+    safeEvaluate,
     getRuleObject,
     actionChoices,
   })

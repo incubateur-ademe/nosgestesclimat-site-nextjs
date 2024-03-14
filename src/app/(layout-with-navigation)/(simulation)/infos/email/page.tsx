@@ -60,7 +60,7 @@ export default function Email() {
             <Trans>
               Pour conserver vos résultats et les retrouver à l’avenir
             </Trans>
-            <span className="ml-2 inline-block font-bold italic text-secondary">
+            <span className="text-secondary-500 ml-2 inline-block font-bold italic">
               <Trans>facultatif</Trans>
             </span>
           </>

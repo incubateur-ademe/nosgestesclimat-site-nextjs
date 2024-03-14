@@ -1,12 +1,19 @@
-import { DottedName, NGCRules } from '@/publicodes-state/types'
+import getSomme from '@/publicodes-state/helpers/getSomme'
+import {
+  DottedName,
+  NGCEvaluatedNode,
+  NGCRules,
+} from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import { sortBy } from '@/utils/sortBy'
+import { PublicodesExpression } from 'publicodes'
 import { filterIrrelevantActions } from './filterIrrelevantActions'
 import { getIsActionDisabled } from './getIsActionDisabled'
 
 type Props = {
   rules: NGCRules
   radical: boolean
+  safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   getRuleObject: (dottedName: DottedName) => any
   actionChoices: any
 }
@@ -14,20 +21,25 @@ type Props = {
 export default function getActions({
   rules,
   radical,
+  safeEvaluate,
   getRuleObject,
   actionChoices,
 }: Props) {
   const actionsObject = rules.actions
+  const somme = getSomme(actionsObject) ?? []
 
-  const actions: any[] = actionsObject?.formule?.somme?.map(
-    (actionRuleName: DottedName) => {
+  const actions: any[] = somme
+    .filter(
+      (actionRuleName: DottedName) =>
+        safeEvaluate({ 'est applicable': actionRuleName })?.nodeValue === true
+    )
+    .map((actionRuleName: DottedName) => {
       const ruleContent = getRuleObject(actionRuleName)
       return {
         ...ruleContent,
         dottedName: actionRuleName,
       }
-    }
-  )
+    })
 
   const relevantActions = filterIrrelevantActions({
     actions,

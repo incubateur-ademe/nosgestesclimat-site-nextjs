@@ -27,9 +27,9 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
 
   return (
     <tr className={twMerge('block md:table-row', className)}>
-      <td className="block border-t border-primary-500 py-4 pl-2 pr-2 text-sm md:table-cell md:pr-4">
+      <td className="block border-t border-primary-500 py-2 pr-2 text-xs md:table-cell md:pr-2">
         <Select
-          className="p-2 text-sm"
+          className="p-2 text-xs"
           value={label}
           name="label"
           onChange={(e) => setLabel(e.currentTarget.value)}>
@@ -42,10 +42,10 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-primary-500 py-4 text-sm md:table-cell md:border-t md:px-4">
+      <td className="block border-primary-500 py-2 text-xs md:table-cell md:border-t md:px-2">
         <span className="flex items-center gap-4">
           <TextInputGroup
-            className="w-12 p-2 text-sm md:w-16"
+            className="w-12 p-2 text-xs md:w-16"
             name="distance"
             type="number"
             value={distance}
@@ -54,10 +54,10 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           km
         </span>
       </td>
-      <td className="block border-primary-500 py-4 text-sm md:table-cell md:border-t md:px-4">
+      <td className="block border-primary-500 py-2 text-xs md:table-cell md:border-t md:px-2">
         <span className="flex items-center gap-4">
           <TextInputGroup
-            className="w-12 p-2 text-sm md:w-16"
+            className="w-12 p-2 text-xs md:w-16"
             name="distance"
             type="number"
             value={reccurrence}
@@ -65,7 +65,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           />{' '}
           x
           <Select
-            className="p-2 text-sm"
+            className="p-2 text-xs"
             value={period}
             name="period"
             onChange={(e) => setPeriod(e.currentTarget.value)}>
@@ -79,10 +79,10 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           </Select>
         </span>
       </td>
-      <td className="block border-primary-500 py-4 text-sm md:table-cell md:border-t md:px-4">
+      <td className="block border-primary-500 py-2 text-xs md:table-cell md:border-t md:px-2">
         <Select
           name="passengers"
-          className="p-2 text-sm"
+          className="p-2 text-xs"
           value={passengers}
           onChange={(e) => setPassengers(Number(e.currentTarget.value))}>
           {new Array(5).fill(0).map((_, i) => {
@@ -94,7 +94,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-primary-500 py-4 pl-2 text-right text-sm md:table-cell md:border-t md:pl-4 md:pr-2">
+      <td className="block border-primary-500 py-2 pl-2 text-right text-xs md:table-cell md:border-t">
         <Button
           size="sm"
           onClick={() =>

@@ -22,10 +22,16 @@ export default function HorizontalBarChartItem({
   return (
     <div className="flex w-full items-center justify-between gap-8">
       <div
-        className="flex !min-w-0 flex-1 items-center gap-2 md:min-w-full"
+        className="hidden items-center gap-2 md:flex"
         style={{
           minWidth: (minTitleWidth ?? 11) + 'rem',
         }}>
+        <Emoji>{icons}</Emoji>{' '}
+        <p className={`mb-0 underline decoration-dotted underline-offset-4`}>
+          {title}
+        </p>
+      </div>
+      <div className="flex items-center gap-2 md:hidden">
         <Emoji>{icons}</Emoji>{' '}
         <p className={`mb-0 underline decoration-dotted underline-offset-4`}>
           {title}

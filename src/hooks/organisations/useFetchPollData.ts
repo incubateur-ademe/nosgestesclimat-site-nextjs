@@ -29,5 +29,6 @@ export function useFetchPollData({ orgaSlug }: Props = {}): UseQueryResult<
           return null
         }),
     enabled: !!orgaSlug,
+    refetchInterval: 30000,
   })
 }

@@ -5,6 +5,7 @@ import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
+import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useUser } from '@/publicodes-state'
@@ -21,34 +22,12 @@ export default function InvitationForm({ group }: { group: Group }) {
 
   const { user, updateEmail, updateName, updateCurrentSimulation } = useUser()
 
-  const groupBaseURL = `${window.location.origin}/amis`
-
   const { progression } = useForm()
 
   const hasCompletedTest = progression === 1
 
   const { goToSimulateurPage } = useSimulateurPage()
-
-  const sendEmailToInvited = async () => {
-    if (!user.email) {
-      return
-    }
-
-    await fetch('/api/sendGroupConfirmationEmails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: user.email,
-        name: user.name,
-        groupName: group.name,
-        groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
-        shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
-        deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${user?.userId}&mtm_campaign=invitation-groupe-email`,
-      }),
-    })
-  }
+  const { goToEndPage } = useEndPage()
 
   const handleSubmit = async (event: MouseEvent | FormEvent) => {
     // Avoid reloading page
@@ -82,13 +61,14 @@ export default function InvitationForm({ group }: { group: Group }) {
         group: group._id,
       })
 
-      // Send email to invited friend confirming the adding to the group
-      sendEmailToInvited()
-
       trackEvent(getMatomoEventJoinedGroupe(group?._id))
 
       // Redirect to simulateur page or end page
-      goToSimulateurPage()
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
     } catch (error) {
       captureException(error)
     }
@@ -113,7 +93,7 @@ export default function InvitationForm({ group }: { group: Group }) {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="text-secondary-500 italic">
+              <span className="italic text-secondary-500">
                 {' '}
                 {t('facultatif')}
               </span>

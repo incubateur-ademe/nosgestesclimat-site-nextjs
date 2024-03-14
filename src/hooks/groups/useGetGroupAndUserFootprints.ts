@@ -1,5 +1,5 @@
 import { orderedCategories } from '@/constants/orderedCategories'
-import { getRuleSumNodes } from '@/helpers/publicodes/getRuleSumNodes'
+import { getRuleSumRules } from '@/helpers/publicodes/getRuleSumRules'
 import { useDisposableEngine, useTempEngine } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { Participant } from '@/types/groups'
@@ -7,6 +7,17 @@ import { Participant } from '@/types/groups'
 type Props = {
   groupMembers: Participant[]
   userId: string | null
+}
+
+export function getSubcategories({
+  category,
+  getRuleObject,
+}: {
+  category: string
+  getRuleObject: (dottedName: DottedName) => any
+}): DottedName[] | undefined {
+  const rule = getRuleObject(category)
+  return getRuleSumRules(rule)
 }
 export const useGetGroupAndUserFootprints = ({
   groupMembers,
@@ -66,11 +77,7 @@ export const useGetGroupAndUserFootprints = ({
         }
 
         const currentCategorySubcategories =
-          getSubcategories({
-            rules,
-            category,
-            getRuleObject,
-          }) || []
+          getSubcategories({ category, getRuleObject }) || []
 
         currentCategorySubcategories.forEach((subCategory: string) => {
           const subCategoryValue = getValue(subCategory)
@@ -110,18 +117,4 @@ export const useGetGroupAndUserFootprints = ({
       userFootprintByCategoriesAndSubcategories: {},
     }
   )
-}
-
-export function getSubcategories({
-  rules,
-  category,
-  getRuleObject,
-}: {
-  rules: any
-  category: string
-  getRuleObject: (dottedName: DottedName) => any
-}): string[] | undefined {
-  const rule = getRuleObject(category)
-
-  return getRuleSumNodes(rules, rule)
 }

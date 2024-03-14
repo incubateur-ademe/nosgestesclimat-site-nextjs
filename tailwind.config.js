@@ -79,6 +79,9 @@ module.exports = {
       backgroundImage: {
         'icons-mobile': "url('/images/misc/mobileIcons.svg')",
       },
+      screens: {
+        xs: '320px',
+      },
     },
   },
   safelist: [

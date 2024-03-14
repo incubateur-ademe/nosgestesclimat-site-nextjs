@@ -28,7 +28,6 @@ export type User = {
   email: string
   northStarRatings?: any // TODO: should be NorthStartType or something
   userId: string
-  hasSavedSimulation?: boolean
   loginExpirationDate?: Date
   organisation?: UserOrganisationInfo
   administratorEmail?: string
@@ -58,14 +57,7 @@ export type NGCRuleNode = RuleNode & {
 
 export type NGCRulesNodes = Record<DottedName, NGCRuleNode>
 
-//TODO: complete explanation type
-export type NGCEvaluatedNode = EvaluatedNode & {
-  explanation: {
-    ruleDisabledByItsParent: boolean
-  }
-  isNullable: boolean
-}
-
+export type NGCEvaluatedNode = EvaluatedNode
 export type ActionChoices = Record<string, boolean>
 
 export type NodeValue = Evaluation
@@ -86,7 +78,7 @@ export type Simulation = {
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   poll?: string | null
   group?: string | null
-  userId?: string
+  savedViaEmail?: boolean
 }
 
 export type Persona = {

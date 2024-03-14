@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
 import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
@@ -22,7 +21,7 @@ export default function CategoryListItem({
 }: Props) {
   const { icons } = useRule(category)
 
-  const { formattedValue, unit } = formatCarbonFootprint(value * 1000, {
+  const { formattedValue, unit } = formatCarbonFootprint(value, {
     shouldUseAbbreviation: true,
   })
 
@@ -35,9 +34,6 @@ export default function CategoryListItem({
         </div>
 
         <div className="flex flex-col items-end">
-          <p className="mb-1 text-[0.75rem] text-gray-600">
-            <Trans>Moyenne :</Trans>
-          </p>
           <Badge>
             <strong>{formattedValue}</strong> {unit}
           </Badge>
@@ -48,7 +44,7 @@ export default function CategoryListItem({
         className="min-h-[2.5rem] flex-1 rounded-lg"
         maxValue={maxValue}
         items={simulationsRecap.map((obj) => ({
-          value: obj.categories[category] / 1000,
+          value: obj.categories[category],
           shouldBeHighlighted: obj.isCurrentUser,
         }))}
         id={category}

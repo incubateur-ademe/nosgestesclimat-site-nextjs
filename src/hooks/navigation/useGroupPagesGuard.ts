@@ -50,7 +50,9 @@ export function useGroupPagesGuard(
       setIsGuardRedirecting(true)
       return
     }
-
+    console.log('group', group)
+    console.log('user', user)
+    console.log('isDashboard', isDashboard)
     // If we are on the dashboard and the user is not a part of the group, we redirect to the invitation page
     if (
       isDashboard &&

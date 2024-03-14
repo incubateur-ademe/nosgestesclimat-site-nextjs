@@ -624,3 +624,93 @@ entries:
   La valeur minimum pour ce champ est de: La valeur minimum pour ce champ est de
   Par catégorie: Par catégorie
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !
+  ', vous avez été déconnecté·e de votre espace organisation, reconnectez vous en cliquant sur le bouton ci-dessous.': ', vous avez été déconnecté·e de votre espace organisation, reconnectez vous en cliquant sur le bouton ci-dessous.'
+  (Données consultables à partir de 3 participants, dans un souci d'anonymat.): (Données consultables à partir de 3 participants, dans un souci d'anonymat.)
+  '{{category}}': '{{category}}'
+  '{{value}} tonnes': '{{value}} tonnes'
+  '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>'
+  '{linkToSimulateurPageLabel}': '{linkToSimulateurPageLabel}'
+  Accéder au kit: Accéder au kit
+  Administrateur·ice: Administrateur·ice
+  Avec: Avec
+  Bien vu !: Bien vu !
+  Calculez votre empreinte en: Calculez votre empreinte en
+  "Ce test vous est proposé par <2>{isLoading ? '... ' : poll?.organisationInfo?.name}</2>. En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.": "Ce test vous est proposé par <2>{isLoading ? '... ' : poll?.organisationInfo?.name}</2>. En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation."
+  Classement: Classement
+  Classements: Classements
+  Créer mon organisation: Créer mon organisation
+  D’après vous, quel est: D’après vous, quel est
+  Découvrez le simulateur: Découvrez le simulateur
+  Découvrez le simulateur, ouvrir dans un nouvel onglet: Découvrez le simulateur, ouvrir dans un nouvel onglet
+  Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet
+  Découvrez nos outils pour vous simplifier la vie !: Découvrez nos outils pour vous simplifier la vie !
+  Découvrez vos résultats détaillés: Découvrez vos résultats détaillés
+  Effectivement, avec: Effectivement, avec
+  Entreprises et collectivités: Entreprises et collectivités
+  Envie de connaître votre empreinte carbone ?: Envie de connaître votre empreinte carbone ?
+  est votre poste le plus important !: est votre poste le plus important !
+  Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.
+  Facultatif: Facultatif
+  Groupes d'amis: Groupes d'amis
+  Impact CO2: Impact CO2
+  Le test: Le test
+  Les ateliers de l'ABC: Les ateliers de l'ABC
+  Loupé !: Loupé !
+  Me connecter: Me connecter
+  Mes données restent-elles privées ?: Mes données restent-elles privées ?
+  Modification sauvegardée: Modification sauvegardée
+  Modifications sauvegardées: Modifications sauvegardées
+  Mon organisation: Mon organisation
+  'Moyenne :': 'Moyenne :'
+  Moyenne du groupe par catégorie: Moyenne du groupe par catégorie
+  Organisation: Organisation
+  Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.: Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.
+  Oups: Oups
+  Partagez le test: Partagez le test
+  Partagez le test pour obtenir vos premiers résultats.: Partagez le test pour obtenir vos premiers résultats.
+  Passer la question →: Passer la question →
+  poste le plus important ?: poste le plus important ?
+  Pour conserver vos résultats et les retrouver à l’avenir: Pour conserver vos résultats et les retrouver à l’avenir
+  précédent: précédent
+  Presque !: Presque !
+  puis comparez vos résultats à ceux des autres participants.: puis comparez vos résultats à ceux des autres participants.
+  Résultats détaillés de: Résultats détaillés de
+  Revenir au formulaire de connexion: Revenir au formulaire de connexion
+  revenir au test: revenir au test
+  Se déconnecter de votre espace organisation: Se déconnecter de votre espace organisation
+  Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.: Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.
+  Simulation{optionalSString} terminée{optionalSString}: Simulation{optionalSString} terminée{optionalSString}
+  Télécharger le kit: Télécharger le kit
+  Télécharger le kit, ouvrir dans un nouvel onglet: Télécharger le kit, ouvrir dans un nouvel onglet
+  Une devinette pour finir !: Une devinette pour finir !
+  Valider: Valider
+  Valorisez vos données carbone: Valorisez vos données carbone
+  Veuillez entrer votre code postal: Veuillez entrer votre code postal
+  Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}: Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}
+  Voir mes résultats →: Voir mes résultats →
+  Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.: Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.
+  Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.
+  votre: votre
+  Votre code postal: Votre code postal
+  Votre date de naissance: Votre date de naissance
+  Votre résultat: Votre résultat
+  Vous avez déjà commencé le test Nos Gestes Climat !: Vous avez déjà commencé le test Nos Gestes Climat !
+  Vous avez déjà réalisé le test Nos Gestes Climat !: Vous avez déjà réalisé le test Nos Gestes Climat !
+  Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques.: Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques.
+  Vous pouvez reprendre votre test en cours, ou en recommencer un.: Vous pouvez reprendre votre test en cours, ou en recommencer un.
+  Vous pouvez utiliser vos données existantes, ou recommencer le test.: Vous pouvez utiliser vos données existantes, ou recommencer le test.
+  Vous souhaitez illustrer une quantité de CO2e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: Vous souhaitez illustrer une quantité de CO2e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !
+  Envie de connaître votre empreinte carbone ?: Envie de connaître votre empreinte carbone ?
+  Vous avez déjà commencé le test Nos Gestes Climat !: Vous avez déjà commencé le test Nos Gestes Climat !
+  Vous avez déjà réalisé le test Nos Gestes Climat !: Vous avez déjà réalisé le test Nos Gestes Climat !
+  Propulsé par Vercel: Propulsé par Vercel
+  Au total: Au total
+  C’est bien cette distance qui sera comptabilisée en fin de test.: C’est bien cette distance qui sera comptabilisée en fin de test.
+  km: km
+  km sont parcourus par an, avec en moyenne: km sont parcourus par an, avec en moyenne
+  voyageurs. La distance individuelle parcourue est donc de: voyageurs. La distance individuelle parcourue est donc de
+  km par personne: km par personne
+  voyageurs, soit: voyageurs, soit
+  Miam: Miam
+  Moins de 10 repas par semaine, quel appétit de moineau: Moins de 10 repas par semaine, quel appétit de moineau
+  Plus de 18 repas par semaine, quel appétit: Plus de 18 repas par semaine, quel appétit

@@ -25,12 +25,12 @@ export default function FoldableMenu() {
               Profil
             </NavLink>
           </li>
-          {user?.organisation?.administratorEmail && <OrganisationLink />}
 
-          {!HIDE_CTA_PATHS.find((path) => pathname.includes(path)) &&
-          !user?.organisation?.administratorEmail ? (
-            <CTAButton />
-          ) : null}
+          {user?.organisation?.administratorEmail && (
+            <li>
+              <OrganisationLink />
+            </li>
+          )}
 
           <li>
             <div className="ml-2 h-[1px] w-4 bg-gray-400" />
@@ -65,6 +65,13 @@ export default function FoldableMenu() {
               Diffuser Nos Gestes Climat
             </NavLink>
           </li>
+
+          {!HIDE_CTA_PATHS.find((path) => pathname.includes(path)) &&
+          !user?.organisation?.administratorEmail ? (
+            <li>
+              <CTAButton />
+            </li>
+          ) : null}
         </ul>
       )}
     </BurgerMenu>

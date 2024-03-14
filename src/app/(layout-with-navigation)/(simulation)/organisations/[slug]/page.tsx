@@ -10,15 +10,12 @@ import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { usePathname } from 'next/navigation'
 import useFetchOrganisation from '../_hooks/useFetchOrganisation'
 import NousContacter from './_components/NousContacter'
 import OurTools from './_components/OurTools'
 import ShareSection from './_components/ShareSection'
 
 export default function OrganisationPage() {
-  const pathname = usePathname()
-
   const { user } = useUser()
 
   const { data: organisation, isError } = useFetchOrganisation({
@@ -59,7 +56,7 @@ export default function OrganisationPage() {
               </p>
             </div>
             <ButtonLink
-              href={`${pathname}/parametres`}
+              href={`/organisations/${organisation?.slug}/parametres`}
               onClick={() => {
                 trackEvent(clickSettingsLinkEvent)
               }}

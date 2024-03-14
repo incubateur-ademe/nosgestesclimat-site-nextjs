@@ -9,6 +9,7 @@ const glob = require('glob')
 
 const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
 const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
+const c = require('ansi-colors')
 
 const { srcLang, destLangs, srcFile, force } = cli.getArgs(
   'Calls the DeepL API to translate the Markdown files.',
@@ -23,7 +24,7 @@ const { srcLang, destLangs, srcFile, force } = cli.getArgs(
 const fileGlob = srcFile ?? '*.{md,mdx}'
 
 const translateTo = async (src, destPath, destLang) => {
-  console.log(`Translating to ${cli.yellow(destPath)}...`)
+  console.log(`Translating to ${c.yellow(destPath)}...`)
   const translation = await deepl.fetchTranslationMarkdown(
     src,
     srcLang.toUpperCase(),
@@ -33,18 +34,13 @@ const translateTo = async (src, destPath, destLang) => {
 }
 
 console.log(
-  `Translating Markdown files from ${cli.yellow(
+  `Translating Markdown files from ${c.yellow(
     `src/locales/pages/${srcLang}/${fileGlob}`
   )}...`
 )
 glob(`src/locales/pages/${srcLang}/${fileGlob}`, (err, files) => {
   cli.exitIfError(err, 'ERROR: an error occured while fetching the files:')
-  console.log(
-    `Found ${cli.withStyle(
-      cli.colors.fgGreen,
-      files.length
-    )} files to translate.`
-  )
+  console.log(`Found ${c.green(files.length)} files to translate.`)
 
   console.log('files', files)
   files.forEach((file) => {
@@ -55,7 +51,7 @@ glob(`src/locales/pages/${srcLang}/${fileGlob}`, (err, files) => {
         translateTo(src, destPath, destLang)
       } else {
         console.log(
-          `The file ${cli.yellow(destPath)} already exists, ${cli.yellow(
+          `The file ${c.yellow(destPath)} already exists, ${c.yellow(
             'skipping'
           )}... (use the -f to force the translation)`
         )

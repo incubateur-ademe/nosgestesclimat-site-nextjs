@@ -4,7 +4,6 @@ import { useContext } from 'react'
 
 import userContext from '../../providers/userProvider/context'
 import useActions from './useActions'
-import useHasSavedSimulation from './useHasSavedSimulation'
 import useNorthStar from './useNorthStar'
 import useSimulations from './useSimulations'
 import useTutorials from './useTutorials'
@@ -25,6 +24,7 @@ export default function useUser() {
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
+    migrationInstructions,
   } = useContext(userContext)
 
   const {
@@ -50,6 +50,7 @@ export default function useUser() {
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
+    migrationInstructions,
   })
 
   const { toggleActionChoice, rejectAction } = useActions({
@@ -60,8 +61,6 @@ export default function useUser() {
   const { hideTutorial, showTutorial } = useTutorials({ setTutorials })
 
   const { updateNorthStarRatings } = useNorthStar({ setUser })
-
-  const { updateHasSavedSimulation } = useHasSavedSimulation({ setUser })
 
   return {
     /**
@@ -160,9 +159,5 @@ export default function useUser() {
      * Reject the action choice of the current simulation
      */
     rejectAction,
-    /*
-     * Update the hasSavedSimulation property of the user
-     */
-    updateHasSavedSimulation,
   }
 }

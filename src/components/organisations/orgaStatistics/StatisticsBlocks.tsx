@@ -55,9 +55,9 @@ export default function StatisticsBlocks({
     return null
   }
 
-  const hasLeastThan3Participants = simulationRecaps.length < 3
+  const hasLessThan3Participants = simulationRecaps.length < 3
 
-  const result = hasLeastThan3Participants
+  const result = hasLessThan3Participants
     ? mockResults
     : formatSimulationRecaps(simulationRecaps)
 
@@ -65,11 +65,11 @@ export default function StatisticsBlocks({
     maximumFractionDigits: 1,
   })
 
-  const optionalSString = simulationRecaps.length > 1 ? 's' : ''
+  const optionalSString = simulationRecaps.length !== 1 ? 's' : ''
 
   return (
-    <div className="items grid w-full grid-cols-1 gap-4 md:grid-cols-3">
-      <div className="rounded-lg bg-grey-100 p-8 md:col-span-1">
+    <div className="items grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <div className="rounded-lg bg-grey-100 p-8 sm:col-span-2 md:col-span-1">
         <p className="text-4xl font-bold text-primary-500">
           {simulationRecaps.length}
         </p>
@@ -80,19 +80,24 @@ export default function StatisticsBlocks({
           </Trans>
         </p>
       </div>
-      <div className="relative col-span-2 grid grid-cols-1 gap-4 md:grid-cols-2">
-        {hasLeastThan3Participants && <ResultsSoonBanner />}
-        <div className="relative rounded-lg bg-grey-100 p-8">
+
+      <div className="relative col-span-1 grid grid-cols-1 gap-4 sm:col-span-2 sm:grid-cols-2">
+        {hasLessThan3Participants && (
+          <ResultsSoonBanner
+            hasLessThan3Participants={hasLessThan3Participants}
+          />
+        )}
+        <div className="col-span-1 rounded-lg bg-grey-100 p-8">
           <p className="text-4xl font-bold text-primary-500">
             {formattedValue}{' '}
-            <span className="text-base font-normal">{unit} CO2 eq</span>
+            <span className="text-base font-normal">{unit} CO2 eq</span>
           </p>
           <p className="text-xl">
             <Trans>Empreinte moyenne</Trans>
           </p>
         </div>
 
-        <div className="relative min-h-[200px] rounded-lg bg-grey-100 py-2">
+        <div className="col-span-1 min-h-[212px] rounded-lg bg-grey-100 py-4">
           <VerticalBarChart className={`mt-0 h-[calc(100%-48px)]`}>
             {Object.entries(result)
               .filter(([key]) => key !== 'bilan')

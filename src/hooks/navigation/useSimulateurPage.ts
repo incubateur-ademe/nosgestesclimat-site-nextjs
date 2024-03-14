@@ -1,22 +1,37 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useUser } from '@/publicodes-state'
+import { Situation } from '@/publicodes-state/types'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
 import { useEndPage } from './useEndPage'
 
 type GoToSimulateurPageProps = {
   noNavigation?: boolean
-  newSimulation?: boolean
+  newSimulation?: {
+    situation?: Situation
+    persona?: string
+    foldedSteps?: string[]
+    defaultAdditionalQuestionsAnswers?: Record<string, string>
+    poll?: string
+    group?: string
+  }
+}
+const goToSimulateurPagePropsDefault = {
+  noNavigation: false,
+  newSimulation: undefined,
 }
 type GetLinkToSimulateurPageProps = {
   newSimulation?: boolean
+}
+const getLinkToSimulateurPagePropsDefault = {
+  newSimulation: false,
 }
 export function useSimulateurPage() {
   const router = useRouter()
 
   const { getCurrentSimulation, tutorials, initSimulation } = useUser()
 
-  const { goToEndPage } = useEndPage()
+  const { goToEndPage, getLinkToEndPage } = useEndPage()
 
   const tutorielSeen = tutorials.testIntro
 
@@ -25,15 +40,13 @@ export function useSimulateurPage() {
   const progression = currentSimulation?.progression
 
   const goToSimulateurPage = useCallback(
-    async (
-      { noNavigation, newSimulation }: GoToSimulateurPageProps = {
-        noNavigation: false,
-        newSimulation: false,
-      }
-    ) => {
-      // If there is no current simulation (or we wante to force a new one), we init a new simulation
+    async ({
+      noNavigation = false,
+      newSimulation = undefined,
+    }: GoToSimulateurPageProps = goToSimulateurPagePropsDefault) => {
+      // If there is no current simulation (or we want to force a new one), we init a new simulation
       if (!currentSimulation || newSimulation) {
-        initSimulation()
+        initSimulation(newSimulation)
       }
 
       // If we don't want to navigate, we do nothing
@@ -67,12 +80,12 @@ export function useSimulateurPage() {
   )
 
   const getLinkToSimulateurPage = useCallback(
-    (
-      { newSimulation }: GetLinkToSimulateurPageProps = { newSimulation: false }
-    ) => {
+    ({
+      newSimulation,
+    }: GetLinkToSimulateurPageProps = getLinkToSimulateurPagePropsDefault): string => {
       // If the user has completed the test (and we are not initializing a new one) we return the results page link
       if (progression === 1 && !newSimulation) {
-        return '/fin'
+        return getLinkToEndPage()
       }
 
       // If the user has seen the tutoriel we return the test page link
@@ -83,7 +96,7 @@ export function useSimulateurPage() {
       // else we return the tutoriel page link
       return '/tutoriel'
     },
-    [tutorielSeen, progression]
+    [tutorielSeen, progression, getLinkToEndPage]
   )
 
   const linkToSimulateurPageLabel = useMemo(() => {

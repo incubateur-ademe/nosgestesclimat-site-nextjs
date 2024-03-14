@@ -1,4 +1,3 @@
-import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
@@ -29,14 +28,6 @@ export function useEndGuard() {
 
     // if there is a simulation id in the query params we do nothing
     if (simulationIdInQueryParams) {
-      return
-    }
-
-    // if the simulation is in a group, we redirect to the group results page
-    if (currentSimulation.group) {
-      router.replace(
-        getLinkToGroupDashboard({ groupId: currentSimulation.group })
-      )
       return
     }
 
