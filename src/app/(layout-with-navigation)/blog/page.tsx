@@ -1,5 +1,7 @@
+import List from '@/components/posts/List'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
+import getPosts from '@/helpers/markdown/getPosts'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 
@@ -14,7 +16,7 @@ export async function generateMetadata() {
 }
 
 export default async function Blog() {
-  // const posts = await getPosts('src/locales/blog/fr/')
+  const posts = await getPosts('src/locales/blog/fr/')
 
   return (
     <>
@@ -31,7 +33,7 @@ export default async function Blog() {
           <Trans>Découvrez nos articles de blog&nbsp;:</Trans>
         </p>
       </div>
-      {/* <List items={posts} path="/blog" /> */}
+      <List items={posts} path="/blog" />
     </>
   )
 }

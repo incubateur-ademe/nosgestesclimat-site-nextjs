@@ -1,7 +1,10 @@
+import List from '@/components/posts/List'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import getPosts from '@/helpers/markdown/getPosts'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { currentLocale } from 'next-i18n-router'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -15,10 +18,10 @@ export async function generateMetadata() {
 }
 
 export default async function Releases() {
-  // const locale = currentLocale()
+  const locale = currentLocale()
   const { t } = await getServerTranslation()
 
-  // const releases = await getPosts(`src/locales/nouveautes/${locale}/`)
+  const releases = await getPosts(`src/locales/nouveautes/${locale}/`)
 
   return (
     <>
@@ -29,7 +32,7 @@ export default async function Releases() {
           ici les dernières nouveautés.
         </Trans>
       </p>
-      {/* <List items={releases} path="/nouveautes" /> */}
+      <List items={releases} path="/nouveautes" />
     </>
   )
 }
