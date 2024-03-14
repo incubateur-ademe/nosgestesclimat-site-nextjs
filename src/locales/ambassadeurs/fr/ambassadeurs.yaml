@@ -17,6 +17,24 @@ Médias:
   - title: 'Viande, avion, téléphone, banque : j’ai calculé mon empreinte carbone'
     image: wedemain.png
     link: https://www.wedemain.fr/ralentir/j-ai-calcule-mon-empreinte-carbone-viande-avion-telephone-banque/
+  - title: 'Viande, avion, téléphone, banque : j’ai calculé mon empreinte carbone'
+    image: chaleur-humaine.jpg
+    link: https://podcasts.lemonde.fr/chaleur-humaine/202210250501-comment-parler-du-climat-avec-valerie-masson-delmotte
+  - title: 'Comment parler du climat ?'
+    image: chaleur-humaine.jpg
+    link: https://podcasts.lemonde.fr/chaleur-humaine/202210250501-comment-parler-du-climat-avec-valerie-masson-delmotte
+  - title: 'Rendez-vous en environnement inconnu'
+    image: chiche.jpg
+    link: https://chiche.makesense.org/media/environnement
+  - title: 'Empreinte carbone : définition, calcul et bilan'
+    image: capital.jpg
+    link: https://www.capital.fr/conso/empreinte-carbone-definition-calcul-et-bilan-1492273
+  - title: 'AU-DELÀ DES CALCULS : ASTUCES PRATIQUES POUR UN QUOTIDIEN ÉCORESPONSABLE'
+    image: challenges.png
+    link: https://www.challenges.fr/vie-pratique/au-dela-des-calculs-astuces-pratiques-pour-un-quotidien-ecoresponsable_885743
+  - title: 'Super Green me'
+    image: rtl.png
+    link: https://shows.acast.com/super-green-me
 Personnalités et influenceurs:
   - title: 'Cyril Dion'
     image: cyril.jpg
@@ -41,6 +59,21 @@ Entreprises:
   - title: 'Greenly'
     image: greenly.png
     link: https://greenly.earth/fr-fr/blog/guide-entreprise/empreinte-carbone-definition-methode-calcul
+  - title: 'Citiz'
+    image: citiz.png
+    link: https://citiz.coop/
+  - title: 'Code Climat'
+    image: code-climat.jfif
+    link: https://www.code-climat.com/
+  - title: 'Ecofrugal'
+    image: ecofrugal.png
+    link: https://www.monatelier-ecofrugal.fr/survey/calculator/
+  - title: 'YAMI'
+    image: yami.jfif
+    link: https://youractionmakeimpact.fr/
+  - title: 'Steply'
+    image: steply.jfif
+    link: https://steply-app.com/
 Collectivités:
   - title: 'Ville de Grenoble'
     image: Grenoble.png
@@ -57,6 +90,12 @@ Collectivités:
   - title: 'Grand Poitiers'
     image: Grandpoitiers.png
     link: https://www.grandpoitiers.fr/grands-projets/actions-pour-le-climat/plan-climat
+  - title: 'Nantes métropole'
+    image: nantes metropole.jfif
+    link: https://metropole.nantes.fr/participer/agir-pour-le-climat/les-defis-climat
+  - title: 'Je Veux Aider'
+    image: je veux aider.png
+    link: https://www.jeveuxaider.gouv.fr/
 Associations:
   - title: 'Avenir Climatique'
     image: ac.png
