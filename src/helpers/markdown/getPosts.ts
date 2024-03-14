@@ -6,6 +6,7 @@ import path from 'path'
 async function getPosts(folderPath: string): Promise<Post[]> {
   const realFolderPath = path.join(process.cwd(), folderPath)
   const files = fs.readdirSync(realFolderPath)
+  console.log('get posts', folderPath)
   return files.map((file) => {
     const source = fs.readFileSync(realFolderPath + file, 'utf-8')
     const matterResult = matter(source)
