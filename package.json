@@ -106,6 +106,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "json-stable-stringify": "^1.1.0",
+    "next-plugin-yaml": "^1.0.1",
     "postcss-loader": "^8.1.0",
     "prettier": "^3.1.0",
     "prettier-plugin-organize-imports": "^3.2.4",

@@ -5651,6 +5651,13 @@ next-i18n-router@^4.1.1:
     "@formatjs/intl-localematcher" "^0.2.32"
     negotiator "^0.6.3"
 
+next-plugin-yaml@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/next-plugin-yaml/-/next-plugin-yaml-1.0.1.tgz#90e96637dfa445806fc44d1df3506c0f1446246a"
+  integrity sha512-k13wbpN33wTgrgWUBiXPtObXO94JOEiwvYKJ3X0JrBz2yaW24EfNaVqHwA0dwhsn9PyPIKhPhgsu3bhJsNs+cQ==
+  dependencies:
+    js-yaml-loader "^1.2.2"
+
 next@14.1.3:
   version "14.1.3"
   resolved "https://registry.yarnpkg.com/next/-/next-14.1.3.tgz#465bb21a1a6e703e776ca53ea71d05642867fdb5"

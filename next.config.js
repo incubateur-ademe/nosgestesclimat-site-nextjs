@@ -2,6 +2,8 @@ const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
 })
 
+const withYaml = require('next-plugin-yaml')
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -14,24 +16,6 @@ const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   // Optionally, add any other Next.js config below
   reactStrictMode: true,
-  webpack: function (config) {
-    config.module.rules.push({
-      test: /\.ya?ml$/,
-      use: 'js-yaml-loader',
-    })
-    config.module.rules.push({
-      test: /\.publicodes$/,
-      use: 'js-yaml-loader',
-    })
-
-    config.resolve.fallback = {
-      // if you miss it, all the other options in fallback, specified
-      // by next.js will be dropped.
-      ...config.resolve.fallback,
-    }
-
-    return config
-  },
   images: {
     remotePatterns: [
       {
@@ -80,7 +64,7 @@ const nextConfig = {
 const { withSentryConfig } = require('@sentry/nextjs')
 
 module.exports = withSentryConfig(
-  withBundleAnalyzer(withMDX(nextConfig)),
+  withBundleAnalyzer(withMDX(withYaml(nextConfig))),
   {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options
