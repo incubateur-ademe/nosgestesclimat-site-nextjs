@@ -8,47 +8,18 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
+const { withSentryConfig } = require('@sentry/nextjs')
+
 const redirects = require('./config/redirects.js')
+
+const remoteImagesPatterns = require('./config/remoteImagesPatterns.js')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configure pageExtensions to include md and mdx
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-  // Optionally, add any other Next.js config below
   reactStrictMode: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'abc-transitionbascarbone.fr',
-        port: '',
-        pathname: '/wp-content/uploads/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'upload.wikimedia.org',
-        port: '',
-        pathname: '/wikipedia/commons/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'user-images.githubusercontent.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'github.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.jsdelivr.net',
-        port: '',
-        pathname: '/**',
-      },
-    ],
+    remotePatterns: remoteImagesPatterns,
   },
   async redirects() {
     return redirects
@@ -62,12 +33,7 @@ const nextConfig = {
   },
 }
 
-// Injected content via Sentry wizard below
-
-const { withSentryConfig } = require('@sentry/nextjs')
-
-module.exports = withSentryConfig(
-  withBundleAnalyzer(withMDX(withYaml(nextConfig))),
+const sentryConfig = [
   {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options
@@ -96,5 +62,10 @@ module.exports = withSentryConfig(
 
     // Automatically tree-shake Sentry logger statements to reduce bundle size
     disableLogger: true,
-  }
+  },
+]
+
+module.exports = withSentryConfig(
+  withBundleAnalyzer(withMDX(withYaml(nextConfig))),
+  ...sentryConfig
 )
