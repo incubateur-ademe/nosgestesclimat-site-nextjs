@@ -15,7 +15,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
-import { FormEvent, FormEventHandler, useState } from 'react'
+import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
 
 export default function GroupCreationForm() {
   const {
@@ -89,16 +89,30 @@ export default function GroupCreationForm() {
         group: group._id,
       })
 
+      // We signal that the form has been submitted. When the currentSimulation is updated, we redirect
+      setIsSubmitted(true)
+    } catch (e) {
+      captureException(e)
+    }
+  }
+
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  useEffect(() => {
+    if (isSubmitted && currentSimulation?.group) {
       // Redirect to simulateur page or end page
       if (hasCompletedTest) {
         goToEndPage({ allowedToGoToGroupDashboard: true })
       } else {
         goToSimulateurPage()
       }
-    } catch (e) {
-      captureException(e)
     }
-  }
+  }, [
+    currentSimulation,
+    goToEndPage,
+    goToSimulateurPage,
+    hasCompletedTest,
+    isSubmitted,
+  ])
 
   return (
     <form

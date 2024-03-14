@@ -36,31 +36,31 @@ export default function JourneyItem({ journey, odd, setJourneys }: Props) {
     <tr
       className={`relative block sm:table-row ${odd ? 'bg-primary-100' : ''}`}>
       <td
-        className={`block sm:table-cell md:border-r ${
+        className={`block sm:table-cell lg:border-r ${
           odd ? 'border-white' : 'border-primary-200'
-        } px-4 py-2 text-left text-sm`}>
+        } px-2 text-left text-xs`}>
         {t(labels[journey.label])}
       </td>
 
       <td
-        className={`block sm:table-cell md:border-x ${
+        className={`block sm:table-cell lg:border-x ${
           odd ? 'border-white' : 'border-primary-200'
-        } px-4 py-2 text-left text-sm`}>
+        } p-2 text-left text-xs`}>
         {journey.distance || 0} km
       </td>
 
       <td
-        className={`block sm:table-cell md:border-x ${
+        className={`block sm:table-cell lg:border-x ${
           odd ? 'border-white' : 'border-primary-200'
-        } px-4 py-2 text-left text-sm`}>
+        } p-2 text-left text-xs`}>
         {journey.reccurrence} x {t(periods[journey.period])}
       </td>
 
-      <td className="block px-4 py-2 text-left text-sm sm:table-cell">
+      <td className="block p-2 text-left text-xs sm:table-cell">
         {journey.passengers} <Trans>passager(s)</Trans>
       </td>
 
-      <td className="absolute -right-1 -top-2 block py-2 pl-4 pr-2 text-right text-sm sm:static sm:table-cell">
+      <td className="absolute -right-1 -top-2 block py-2 pl-2 text-right text-xs sm:static sm:table-cell">
         <Button
           color="text"
           size="sm"

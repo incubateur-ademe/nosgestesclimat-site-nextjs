@@ -1,16 +1,24 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useUser } from '@/publicodes-state'
+import { Situation } from '@/publicodes-state/types'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
 import { useEndPage } from './useEndPage'
 
 type GoToSimulateurPageProps = {
   noNavigation?: boolean
-  newSimulation?: boolean
+  newSimulation?: {
+    situation?: Situation
+    persona?: string
+    foldedSteps?: string[]
+    defaultAdditionalQuestionsAnswers?: Record<string, string>
+    poll?: string
+    group?: string
+  }
 }
 const goToSimulateurPagePropsDefault = {
   noNavigation: false,
-  newSimulation: false,
+  newSimulation: undefined,
 }
 type GetLinkToSimulateurPageProps = {
   newSimulation?: boolean
@@ -34,11 +42,11 @@ export function useSimulateurPage() {
   const goToSimulateurPage = useCallback(
     async ({
       noNavigation = false,
-      newSimulation = false,
+      newSimulation = undefined,
     }: GoToSimulateurPageProps = goToSimulateurPagePropsDefault) => {
       // If there is no current simulation (or we want to force a new one), we init a new simulation
       if (!currentSimulation || newSimulation) {
-        initSimulation()
+        initSimulation(newSimulation)
       }
 
       // If we don't want to navigate, we do nothing

@@ -97,7 +97,7 @@ export default function StatisticsBlocks({
           </p>
         </div>
 
-        <div className="col-span-1 min-h-[200px] rounded-lg bg-grey-100 py-4">
+        <div className="col-span-1 min-h-[212px] rounded-lg bg-grey-100 py-4">
           <VerticalBarChart className={`mt-0 h-[calc(100%-48px)]`}>
             {Object.entries(result)
               .filter(([key]) => key !== 'bilan')

@@ -52,7 +52,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
                   {' '}
                   <Trans>
                     (Données consultables à partir de 3 participants, dans un
-                    souci d'anonymat.)
+                    souci d'anonymat)
                   </Trans>
                 </span>
               )}

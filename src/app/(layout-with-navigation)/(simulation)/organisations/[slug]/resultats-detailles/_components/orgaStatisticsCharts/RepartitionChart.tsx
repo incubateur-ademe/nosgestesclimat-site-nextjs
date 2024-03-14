@@ -34,7 +34,7 @@ export default function RepartitionChart({
           id={`tooltip-repartition-chart-${id}`}
         />
       ))}
-      <Tooltip id={`tooltip-repartition-chart-${id}`} />
+      <Tooltip className="z-20" id={`tooltip-repartition-chart-${id}`} />
     </div>
   )
 }

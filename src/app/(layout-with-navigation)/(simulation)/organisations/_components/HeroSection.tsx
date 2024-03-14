@@ -35,7 +35,7 @@ export default function HeroSection() {
           <strong className="text-primary-500">
             <Trans>salle de classe</Trans>
           </strong>
-          &nbsp; ?{' '}
+          &nbsp;?{' '}
           <Trans>Découvrez nos outils pour vous simplifier la vie&nbsp;!</Trans>
         </p>
 

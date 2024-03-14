@@ -8,21 +8,18 @@ import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulation
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useParams } from 'next/navigation'
-import { useContext, useEffect, useRef } from 'react'
+import { useContext } from 'react'
 import { FiltersContext } from './_components/FiltersProvider'
 import OrgaStatisticsCharts from './_components/OrgaStatisticsCharts'
 import OrgaStatisticsFilters from './_components/OrgaStatisticsFilters'
 
 export default function ResultatsDetaillesPage() {
   const params = useParams()
-
-  const { data: pollData, refetch } = useFetchPollData({
-    orgaSlug: String(params.slug),
+  const { data: pollData } = useFetchPollData({
+    orgaSlug: decodeURIComponent(params.slug as string),
   })
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
-
-  const intervalRef = useRef<NodeJS.Timeout>()
 
   const filteredSimulationRecaps =
     pollData &&
@@ -31,23 +28,6 @@ export default function ResultatsDetaillesPage() {
       ageFilters,
       postalCodeFilters,
     })
-
-  useEffect(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
-
-    intervalRef.current = setInterval(() => {
-      refetch()
-    }, 30000)
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <div>
