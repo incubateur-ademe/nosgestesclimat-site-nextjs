@@ -1,10 +1,12 @@
 'use client'
 
+import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
 import { usePoll } from '@/hooks/organisations/usePoll'
 import { useUser } from '@/publicodes-state'
+import { useContext, useEffect } from 'react'
 
 export default function Poll() {
   const { getCurrentSimulation } = useUser()
@@ -13,6 +15,15 @@ export default function Poll() {
   const { data: poll, isLoading } = usePoll({
     pollSlug: currentSimulation?.poll,
   })
+
+  const { shouldPreventNavigation, handleUpdateShouldPreventNavigation } =
+    useContext(PreventNavigationContext)
+
+  useEffect(() => {
+    if (shouldPreventNavigation) {
+      handleUpdateShouldPreventNavigation(false)
+    }
+  }, [shouldPreventNavigation, handleUpdateShouldPreventNavigation])
 
   // If there is no poll attached to the simulation, we don't display the block
   if (!currentSimulation?.poll) {

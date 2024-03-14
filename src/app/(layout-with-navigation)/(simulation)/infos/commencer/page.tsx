@@ -1,19 +1,17 @@
 'use client'
 
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { getParticipantInscriptionPageVisitedEvent } from '@/constants/matomo/organisations'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
 const titles = {
@@ -68,18 +66,30 @@ export default function Commencer() {
 
   const { pollSlug } = useOrganisationQueryParams()
 
-  const { getCurrentSimulation, initSimulation, updateCurrentSimulation } =
-    useUser()
+  const { getCurrentSimulation, updateCurrentSimulation } = useUser()
 
   const { goToSimulateurPage } = useSimulateurPage()
 
   const currentSimulation = getCurrentSimulation()
 
-  const status = !currentSimulation?.progression
-    ? 'notStarted'
-    : currentSimulation?.progression === 1
-      ? 'finished'
-      : 'started'
+  const [status, setStatus] = useState<
+    'notStarted' | 'started' | 'finished' | undefined
+  >()
+
+  useEffect(() => {
+    if (status) {
+      return
+    }
+    if (!currentSimulation?.progression) {
+      setStatus('notStarted')
+      return
+    }
+    if (currentSimulation?.progression === 1) {
+      setStatus('finished')
+      return
+    }
+    setStatus('started')
+  }, [currentSimulation, status])
 
   const { handleUpdateShouldPreventNavigation } = useContext(
     PreventNavigationContext
@@ -89,6 +99,10 @@ export default function Commencer() {
     handleUpdateShouldPreventNavigation(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  if (!status) {
+    return null
+  }
 
   return (
     <Card className={'items-start border-none bg-grey-100 p-8'}>
@@ -102,8 +116,8 @@ export default function Commencer() {
 
       <div className="flex flex-col items-start gap-6">
         <Button
-          onClick={() => {
-            updateCurrentSimulation({
+          onClick={async () => {
+            await updateCurrentSimulation({
               defaultAdditionalQuestionsAnswers: {
                 postalCode,
                 birthdate,
@@ -120,19 +134,21 @@ export default function Commencer() {
         </Button>
 
         {status !== 'notStarted' ? (
-          <Link
-            href={getLinkToSimulateur()}
+          <Button
+            color="secondary"
             onClick={() => {
-              initSimulation({
-                defaultAdditionalQuestionsAnswers: {
-                  postalCode,
-                  birthdate,
+              goToSimulateurPage({
+                newSimulation: {
+                  defaultAdditionalQuestionsAnswers: {
+                    postalCode,
+                    birthdate,
+                  },
+                  poll: pollSlug || undefined,
                 },
-                poll: pollSlug || undefined,
               })
             }}>
             <Trans>Commencer un nouveau test</Trans>
-          </Link>
+          </Button>
         ) : null}
       </div>
     </Card>

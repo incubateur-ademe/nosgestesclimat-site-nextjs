@@ -13,7 +13,7 @@ export default function DeconnexionButton({
 }: {
   organisation: Organisation
 }) {
-  const { mutate: logoutOrganisation } = useLogoutOrganisation({
+  const { mutateAsync: logoutOrganisation } = useLogoutOrganisation({
     orgaSlug: organisation?.slug,
   })
 
@@ -21,7 +21,7 @@ export default function DeconnexionButton({
   const queryClient = useQueryClient()
 
   async function handleDisconnect() {
-    logoutOrganisation()
+    await logoutOrganisation()
 
     queryClient.clear()
 

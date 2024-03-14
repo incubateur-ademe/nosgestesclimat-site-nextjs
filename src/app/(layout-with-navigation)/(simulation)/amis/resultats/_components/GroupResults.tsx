@@ -48,7 +48,9 @@ export default function GroupResults({ group }: Props) {
       ) : (
         <Separator />
       )}
-      <Title tag="h2">Votre empreinte</Title>
+      <Title tag="h2" data-cypress-id="votre-empreinte-title">
+        Votre empreinte
+      </Title>
       <CategoriesChart />
       <CategoriesAccordion />
 
