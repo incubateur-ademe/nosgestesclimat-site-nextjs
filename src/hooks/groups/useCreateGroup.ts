@@ -14,7 +14,7 @@ type MutateAsyncProps = {
   }
 }
 
-export default function useCreateGroup() {
+export function useCreateGroup() {
   return useMutation({
     mutationFn: ({
       groupInfo: {

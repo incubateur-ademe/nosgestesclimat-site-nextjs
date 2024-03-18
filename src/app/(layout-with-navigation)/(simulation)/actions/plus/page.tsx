@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import getPosts from '@/helpers/markdown/getPosts'
+import { getPosts } from '@/helpers/markdown/getPosts'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 import ActionPlusList from './_components/ActionPlusList'
