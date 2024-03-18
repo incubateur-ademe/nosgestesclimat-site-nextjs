@@ -9,6 +9,7 @@ import {
 } from '@/publicodes-state'
 import { useState } from 'react'
 import ActionsTutorial from './_components/ActionsTutorial'
+import AllerPlusLoin from './_components/AllerPlusLoin'
 import OptionBar from './_components/OptionBar'
 import SimulationMissing from './_components/SimulationMissing'
 import Actions from './_components/actions/Actions'
@@ -88,6 +89,8 @@ export default function ActionsPage({
           rules={rules}
           radical={radical}
         />
+
+        <AllerPlusLoin />
       </div>
     </div>
   )
