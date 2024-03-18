@@ -17,9 +17,6 @@ Médias:
   - title: 'Viande, avion, téléphone, banque : j’ai calculé mon empreinte carbone'
     image: wedemain.png
     link: https://www.wedemain.fr/ralentir/j-ai-calcule-mon-empreinte-carbone-viande-avion-telephone-banque/
-  - title: 'Viande, avion, téléphone, banque : j’ai calculé mon empreinte carbone'
-    image: chaleur-humaine.jpg
-    link: https://podcasts.lemonde.fr/chaleur-humaine/202210250501-comment-parler-du-climat-avec-valerie-masson-delmotte
   - title: 'Comment parler du climat ?'
     image: chaleur-humaine.jpg
     link: https://podcasts.lemonde.fr/chaleur-humaine/202210250501-comment-parler-du-climat-avec-valerie-masson-delmotte
@@ -74,7 +71,7 @@ Entreprises:
   - title: 'Steply'
     image: steply.jfif
     link: https://steply-app.com/
-Collectivités:
+Collectivités et acteurs publics:
   - title: 'Ville de Grenoble'
     image: Grenoble.png
     link: https://www.grenoble.fr/2294-nos-gestes-climat.htm
