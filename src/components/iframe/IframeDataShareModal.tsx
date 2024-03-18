@@ -20,7 +20,15 @@ export default function IframeDataShareModal() {
 
   const { getCurrentSimulation } = useUser()
   const currentSimulation = getCurrentSimulation()
-  const data = currentSimulation?.computedResults?.categories
+  const categories = currentSimulation?.computedResults?.categories ?? {}
+
+  const data = Object.keys(categories).reduce(
+    (accumulator, categoryName) => ({
+      ...accumulator,
+      [categoryName.charAt(0)]: Math.round(categories[categoryName]),
+    }),
+    {}
+  )
 
   //To delay the dialog show in to let the animation play
   const timeoutRef = useRef<NodeJS.Timeout>()
