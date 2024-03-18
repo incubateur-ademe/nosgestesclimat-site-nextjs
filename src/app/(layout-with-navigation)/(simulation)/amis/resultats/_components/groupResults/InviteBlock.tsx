@@ -44,7 +44,6 @@ export default function InviteBlock({ group }: { group: Group }) {
     }
   }, [])
 
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const isShareDefined =
     typeof navigator !== 'undefined' && navigator.share !== undefined
 
@@ -54,11 +53,13 @@ export default function InviteBlock({ group }: { group: Group }) {
     // TODO: replace with new tracking event
     // trackEvent(getMatomoEventShareMobile(score))
     if (navigator.share) {
-      await navigator.share({
-        text: sharedURL,
-        url: sharedURL,
-        title: 'Rejoindre mon groupe',
-      })
+      await navigator
+        .share({
+          text: sharedURL,
+          url: sharedURL,
+          title: 'Rejoindre mon groupe',
+        })
+        .catch(handleCopy)
     }
   }
 
