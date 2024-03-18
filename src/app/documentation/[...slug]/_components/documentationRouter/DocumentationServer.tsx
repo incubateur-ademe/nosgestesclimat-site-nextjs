@@ -1,3 +1,4 @@
+import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
@@ -45,6 +46,8 @@ export default async function DocumentationServer({ slugs }: Props) {
         )}`}
         data-cypress-id="documentation-title"
       />
+
+      <PasserTestBanner />
 
       {rule.question && <QuestionSection rule={rule} />}
 
