@@ -4,6 +4,8 @@ import ExportDataButton from '@/components/organisations/ExportDataButton'
 import OrgaStatistics from '@/components/organisations/OrgaStatistics'
 import Trans from '@/components/translation/Trans'
 import { clickExportDataDetailledResultsPageEvent } from '@/constants/matomo/organisations'
+import ButtonLink from '@/design-system/inputs/ButtonLink'
+import Emoji from '@/design-system/utils/Emoji'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -15,7 +17,7 @@ import OrgaStatisticsFilters from './_components/OrgaStatisticsFilters'
 
 export default function ResultatsDetaillesPage() {
   const params = useParams()
-  const { data: pollData } = useFetchPollData({
+  const { data: pollData, isFetched } = useFetchPollData({
     orgaSlug: decodeURIComponent(params.slug as string),
   })
 
@@ -28,6 +30,28 @@ export default function ResultatsDetaillesPage() {
       ageFilters,
       postalCodeFilters,
     })
+
+  if (isFetched && !pollData) {
+    return (
+      <>
+        <h1 className="text-xl">
+          <Trans>
+            Oups, nous n'avons pas trouvé les résultats de cette organisation
+          </Trans>{' '}
+          <Emoji>😕</Emoji>
+        </h1>
+
+        <p>
+          Il semblerait que cette organisation n'ait pas encore de résultats ou
+          bien qu'une erreur soit survenue.
+        </p>
+
+        <ButtonLink href="/organisations">
+          Revenir à l'écran d'accueil
+        </ButtonLink>
+      </>
+    )
+  }
 
   return (
     <div>
