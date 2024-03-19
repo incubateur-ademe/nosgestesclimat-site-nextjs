@@ -5,7 +5,7 @@
  */
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-export default function useQueryParams<T>() {
+export function useQueryParams<T>() {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()

@@ -3,7 +3,7 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 
-async function getPosts(folderPath: string): Promise<Post[]> {
+export async function getPosts(folderPath: string): Promise<Post[]> {
   const realFolderPath = path.join(process.cwd(), folderPath)
   const files = fs.readdirSync(realFolderPath)
   return files.map((file) => {
@@ -16,5 +16,3 @@ async function getPosts(folderPath: string): Promise<Post[]> {
     }
   })
 }
-
-export default getPosts

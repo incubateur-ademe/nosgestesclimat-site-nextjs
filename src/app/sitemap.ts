@@ -1,5 +1,5 @@
-import getPosts from '@/helpers/markdown/getPosts'
-import getRules from '@/helpers/modelFetching/getRules'
+import { getPosts } from '@/helpers/markdown/getPosts'
+import { getRules } from '@/helpers/modelFetching/getRules'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import { MetadataRoute } from 'next'
 import { utils } from 'publicodes'

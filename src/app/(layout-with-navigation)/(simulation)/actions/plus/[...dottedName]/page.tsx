@@ -2,7 +2,7 @@ import Route404 from '@/components/layout/404'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Markdown from '@/design-system/utils/Markdown'
-import getPost from '@/helpers/markdown/getPost'
+import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { DottedName } from '@/publicodes-state/types'
 
