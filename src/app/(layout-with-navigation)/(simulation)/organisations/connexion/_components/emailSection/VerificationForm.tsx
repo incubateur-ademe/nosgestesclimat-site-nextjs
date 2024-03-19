@@ -142,6 +142,7 @@ export default function VerificationForm() {
             setTimeLeft={setTimeLeft}
           />
         )}
+
         {!isSuccessValidate && (
           <Button onClick={handleGoBackToForm} color="text" className="mt-12">
             <Trans>Revenir au formulaire de connexion</Trans>

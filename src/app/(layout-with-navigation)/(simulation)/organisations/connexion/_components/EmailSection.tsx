@@ -2,7 +2,6 @@
 
 import { useUser } from '@/publicodes-state'
 import dayjs from 'dayjs'
-import { useEffect, useState } from 'react'
 import EmailForm from './emailSection/EmailForm'
 import VerificationForm from './emailSection/VerificationForm'
 
@@ -13,21 +12,11 @@ export default function EmailSection() {
     ? dayjs(user?.loginExpirationDate).isAfter(dayjs())
     : false
 
-  const [hasEmailBeenSent, setHasEmailBeenSent] = useState(
-    hasSavedValidLoginExpirationDate
-  )
-
-  useEffect(() => {
-    if (hasSavedValidLoginExpirationDate && !hasEmailBeenSent) {
-      setHasEmailBeenSent(true)
-    }
-  }, [hasSavedValidLoginExpirationDate, hasEmailBeenSent])
-
   if (!user) return null
 
-  if (hasEmailBeenSent) {
+  if (hasSavedValidLoginExpirationDate) {
     return <VerificationForm />
   }
 
-  return <EmailForm onComplete={() => setHasEmailBeenSent(true)} />
+  return <EmailForm />
 }
