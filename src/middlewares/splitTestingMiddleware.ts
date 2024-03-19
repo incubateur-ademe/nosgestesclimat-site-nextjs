@@ -8,11 +8,11 @@ const redirectUrl = `https://nosgestesclimat-git-${process.env.NEXT_PUBLIC_SPLIT
 
 // https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot?hl=fr
 function isGoogleBot(ip: string) {
-  return {
+  return [
     ...googleBots.prefixes,
     ...specialCrawlers.prefixes,
     ...userTriggeredFetchers.prefixes,
-  }
+  ]
     .reduce((acc, prefixObject) => {
       const isV4 = prefixObject['ipv4Prefix']
 
@@ -25,10 +25,13 @@ function isGoogleBot(ip: string) {
 }
 
 export default function splitTestingMiddleware(request: NextRequest) {
+  console.log(
+    'process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH',
+    process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH
+  )
   if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH) {
     return NextResponse.next()
   }
-
   const ip = request.ip
 
   if (!ip || !isIPv4(ip) || isGoogleBot(ip)) {
