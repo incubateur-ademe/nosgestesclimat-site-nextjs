@@ -32,7 +32,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           className="p-2 text-xs"
           value={label}
           name="label"
-          onChange={(e) => setLabel(e.currentTarget.value)}>
+          onChange={(e) => setLabel(e.target.value)}>
           {Object.entries(labels).map(([key, label], i) => {
             return (
               <option key={i} value={key}>
@@ -49,7 +49,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
             name="distance"
             type="number"
             value={distance}
-            onChange={(e) => setDistance(e.currentTarget.value)}
+            onChange={(e) => setDistance((e.target as HTMLInputElement).value)}
           />{' '}
           km
         </span>
@@ -61,14 +61,16 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
             name="distance"
             type="number"
             value={reccurrence}
-            onChange={(e) => setReccurrence(Number(e.currentTarget.value))}
+            onChange={(e) =>
+              setReccurrence(Number((e.target as HTMLInputElement).value))
+            }
           />{' '}
           x
           <Select
             className="p-2 text-xs"
             value={period}
             name="period"
-            onChange={(e) => setPeriod(e.currentTarget.value)}>
+            onChange={(e) => setPeriod(e.target.value)}>
             {Object.entries(periods).map(([key, period], i) => {
               return (
                 <option key={i} value={key}>
@@ -84,7 +86,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           name="passengers"
           className="p-2 text-xs"
           value={passengers}
-          onChange={(e) => setPassengers(Number(e.currentTarget.value))}>
+          onChange={(e) => setPassengers(Number(e.target.value))}>
           {new Array(5).fill(0).map((_, i) => {
             return (
               <option key={i + 1} value={i + 1}>

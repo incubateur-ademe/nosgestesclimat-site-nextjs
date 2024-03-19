@@ -7,9 +7,7 @@ import { useIframe } from '@/hooks/useIframe'
 import { useUser } from '@/publicodes-state'
 import { getIsIframe } from '@/utils/getIsIframe'
 import { ReactNode, useEffect, useRef, useState } from 'react'
-import Trans from '../translation/Trans'
 
-// TODO: WE NEED TO TEST THIS
 // We let iframe integrators ask the user if he wants to share its simulation data to the parent window
 const shareDataPopupTimeout = 3500
 
@@ -20,7 +18,15 @@ export default function IframeDataShareModal() {
 
   const { getCurrentSimulation } = useUser()
   const currentSimulation = getCurrentSimulation()
-  const data = currentSimulation?.computedResults?.categories
+  const categories = currentSimulation?.computedResults?.categories ?? {}
+
+  const data = Object.keys(categories).reduce(
+    (accumulator, categoryName) => ({
+      ...accumulator,
+      [categoryName.charAt(0)]: Math.round(categories[categoryName]),
+    }),
+    {}
+  )
 
   //To delay the dialog show in to let the animation play
   const timeoutRef = useRef<NodeJS.Timeout>()
@@ -69,29 +75,23 @@ export default function IframeDataShareModal() {
 
   return (
     <Card className="absolute z-10 bg-white">
-      <h2>
-        <Trans i18nKey={'publicodes.fin.IframeDataShareModal.partageResultats'}>
-          Partage de vos résultats à {{ parent }} ?
-        </Trans>
-      </h2>
+      <h2>{t(`Partage de vos résultats à {{ parent }} ?`, { parent })}</h2>
       <div>
         <p>
-          <Trans i18nKey="IframeDataShareModal.text1">
-            En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à
-            récupérer le bilan de votre empreinte climat.
-          </Trans>
+          {t(
+            `En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.`,
+            { parent }
+          )}
         </p>
         <p>
-          <Trans i18nKey="IframeDataShareModal.text2">
-            Il s'agit de vos résultats sur les grandes catégories (transport,
-            alimentation...), mais <em>pas</em> le détail question par question
-            (vos km en voiture, les m² de votre logement...).
-          </Trans>
+          {t(
+            `Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).`
+          )}
         </p>
         <p>
-          <Trans i18nKey="IframeDataShareModal.text3">
-            Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
-          </Trans>
+          {t(`Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.`, {
+            parent,
+          })}
         </p>
       </div>
       <div className="flex gap-4">

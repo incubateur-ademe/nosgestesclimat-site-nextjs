@@ -4,7 +4,7 @@ type Props = {
   addFoldedStep: (question: string) => void
 }
 
-function foldEveryQuestionsUntil({
+export function foldEveryQuestionsUntil({
   question,
   relevantQuestions,
   addFoldedStep,
@@ -13,5 +13,3 @@ function foldEveryQuestionsUntil({
   const questionsToAnswer = relevantQuestions.slice(0, indexOfQuestion)
   questionsToAnswer.map((question) => addFoldedStep(question))
 }
-
-export default foldEveryQuestionsUntil

@@ -1,5 +1,5 @@
 import { Persona } from '@/publicodes-state/types'
-import fetchFileFromModel from './getFileFromModel'
+import { getFileFromModel } from './getFileFromModel'
 
 type Props = {
   locale?: string
@@ -8,12 +8,12 @@ type Props = {
 /*
  * This function is used to get the personas. It can be called directly from a server component.
  */
-export default async function getPersonas(
+export async function getPersonas(
   { locale = 'fr', PRNumber }: Props = {
     locale: 'fr',
   }
 ): Promise<Record<string, Persona>> {
   const fileName = `personas-${locale}.json`
 
-  return fetchFileFromModel({ fileName, PRNumber })
+  return getFileFromModel({ fileName, PRNumber })
 }
