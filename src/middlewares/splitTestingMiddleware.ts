@@ -25,10 +25,6 @@ function isGoogleBot(ip: string) {
 }
 
 export default function splitTestingMiddleware(request: NextRequest) {
-  console.log(
-    'process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH',
-    process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH
-  )
   if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH) {
     return NextResponse.next()
   }
