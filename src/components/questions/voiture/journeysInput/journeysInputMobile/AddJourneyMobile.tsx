@@ -34,7 +34,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           value={label}
           name="label"
           label={t('Label')}
-          onChange={(e) => setLabel(e.currentTarget.value)}>
+          onChange={(e) => setLabel(e.target.value)}>
           {Object.entries(labels).map(([key, label], i) => {
             return (
               <option key={i} value={key}>
@@ -52,7 +52,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
             type="number"
             label={t('Distance')}
             value={distance}
-            onChange={(e) => setDistance(e.currentTarget.value)}
+            onChange={(e) => setDistance(e.target.value)}
           />{' '}
           <span className="mb-4 inline-block">km</span>
         </span>
@@ -65,7 +65,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
             type="number"
             label={t('Fréquence')}
             value={reccurrence}
-            onChange={(e) => setReccurrence(Number(e.currentTarget.value))}
+            onChange={(e) => setReccurrence(Number(e.target.value))}
           />{' '}
           <span className="mb-4 inline-block">x</span>
           <Select
@@ -73,7 +73,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
             value={period}
             name="period"
             label={t('Période')}
-            onChange={(e) => setPeriod(e.currentTarget.value)}>
+            onChange={(e) => setPeriod(e.target.value)}>
             {Object.entries(periods).map(([key, period], i) => {
               return (
                 <option key={i} value={key}>
@@ -90,7 +90,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           name="passengers"
           value={passengers}
           label={t('Passagers')}
-          onChange={(e) => setPassengers(Number(e.currentTarget.value))}>
+          onChange={(e) => setPassengers(Number(e.target.value))}>
           {new Array(5).fill(0).map((_, i) => {
             return (
               <option key={i + 1} value={i + 1}>
