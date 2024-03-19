@@ -52,7 +52,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
             type="number"
             label={t('Distance')}
             value={distance}
-            onChange={(e) => setDistance(e.target.value)}
+            onChange={(e) => setDistance((e.target as HTMLInputElement).value)}
           />{' '}
           <span className="mb-4 inline-block">km</span>
         </span>
@@ -65,7 +65,9 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
             type="number"
             label={t('Fréquence')}
             value={reccurrence}
-            onChange={(e) => setReccurrence(Number(e.target.value))}
+            onChange={(e) =>
+              setReccurrence(Number((e.target as HTMLInputElement).value))
+            }
           />{' '}
           <span className="mb-4 inline-block">x</span>
           <Select
