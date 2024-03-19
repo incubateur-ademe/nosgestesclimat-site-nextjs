@@ -34,7 +34,7 @@ export default function GroupResults({ group }: Props) {
 
       <InviteBlock group={group} />
 
-      {group?.participants?.length > 1 ? (
+      {group?.participants?.length > 1 && (
         <>
           <Separator />
 
@@ -42,12 +42,9 @@ export default function GroupResults({ group }: Props) {
             pointsFaibles={results?.pointsFaibles}
             pointsForts={results?.pointsForts}
           />
-
-          <Separator />
         </>
-      ) : (
-        <Separator />
       )}
+
       <Title tag="h2" data-cypress-id="votre-empreinte-title">
         Votre empreinte
       </Title>

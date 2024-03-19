@@ -98,9 +98,12 @@ export default function Classement({ group }: { group: Group }) {
                 const quantity = member?.simulation?.computedResults?.bilan ? (
                   <span className="leading-[160%]">
                     <strong>
-                      {formatValue(member?.simulation?.computedResults?.bilan, {
-                        language,
-                      })}
+                      {formatValue(
+                        member?.simulation?.computedResults?.bilan / 1000,
+                        {
+                          language,
+                        }
+                      )}
                     </strong>{' '}
                     <span className="text-sm font-light">
                       <Trans>tonnes</Trans>
