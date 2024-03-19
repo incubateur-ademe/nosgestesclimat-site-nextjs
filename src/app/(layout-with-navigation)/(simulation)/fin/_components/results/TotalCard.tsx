@@ -5,7 +5,7 @@ import Trans from '@/components/translation/Trans'
 import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
-import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 

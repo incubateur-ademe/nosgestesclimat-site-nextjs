@@ -5,7 +5,7 @@ type Options = {
   shouldUseAbbreviation?: boolean
 }
 
-export default function formatCarbonFootprint(
+export function formatCarbonFootprint(
   value: string | number,
   {
     localize = true,
