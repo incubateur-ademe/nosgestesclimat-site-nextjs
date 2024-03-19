@@ -7,6 +7,7 @@ import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
+import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
 import { RulePage } from '@publicodes/react-ui'
 import Head from 'next/head'
 import Engine from 'publicodes'
@@ -18,7 +19,7 @@ type Props = {
 export default function DocumentationClient({ slugs }: Props) {
   const { i18n } = useClientTranslation()
 
-  const path = decodeURI(slugs.join('/'))
+  const path = decodeRuleNameFromPath(slugs.join('/'))
 
   const { engine } = useEngine()
 
