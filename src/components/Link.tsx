@@ -3,6 +3,7 @@
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import { getLocalisedURL } from '@/helpers/localisation/getLocalisedURL'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useIsClient } from '@/hooks/useIsClient'
 import i18nConfig from '@/i18nConfig'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import NextLink from 'next/link'
@@ -58,6 +59,8 @@ export default function Link({
     }
   }
 
+  const isClient = useIsClient()
+
   return (
     <NextLink
       href={localisedHref}
@@ -67,7 +70,7 @@ export default function Link({
       target={target}
       prefetch={true}
       {...props}>
-      {children}
+      {isClient ? children : null}
     </NextLink>
   )
 }
