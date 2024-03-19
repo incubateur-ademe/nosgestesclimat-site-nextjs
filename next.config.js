@@ -28,12 +28,7 @@ const nextConfig = {
     mdxRs: true,
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     outputFileTracingExcludes: {
-      '*': [
-        '.next/cache/webpack',
-        '.git/**/*',
-        'cypress/**/*',
-        'node_modules/**/*',
-      ],
+      '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
     },
   },
 }
