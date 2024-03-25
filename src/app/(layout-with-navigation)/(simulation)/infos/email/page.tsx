@@ -11,15 +11,21 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useRouter } from 'next/navigation'
-import { FormEvent, useCallback, useEffect, useState } from 'react'
+import { FormEvent, useCallback, useState } from 'react'
 import Navigation from '../_components/Navigation'
 
 export default function Email() {
+  const { user, updateEmail } = useUser()
+
+  const [email, setEmail] = useState(user?.email ?? '')
+  const [error, setError] = useState('')
+
   const { t } = useClientTranslation()
 
   const router = useRouter()
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
+
 
   const { user, updateEmail } = useUser()
 
