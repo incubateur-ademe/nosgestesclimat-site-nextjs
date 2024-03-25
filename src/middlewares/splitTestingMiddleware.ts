@@ -4,7 +4,7 @@ import googleBots from './excludedIPs/googlebot.json'
 import specialCrawlers from './excludedIPs/special-crawlers.json'
 import userTriggeredFetchers from './excludedIPs/user-triggered-fetchers.json'
 
-const redirectUrl = `https://nosgestesclimat-git-${process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH}-nos-gestes-climat.vercel.app`
+const redirectUrl = `https://nosgestesclimat-git-${process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH}-ademe.vercel.app`
 
 // https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot?hl=fr
 function isGoogleBot(ip: string) {
