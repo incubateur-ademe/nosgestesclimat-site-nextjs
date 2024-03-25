@@ -1,3 +1,4 @@
+import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import MDXContent from '@/components/mdx/MDXContent'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import AboutEn from '@/locales/pages/en/about.mdx'
@@ -14,5 +15,11 @@ export async function generateMetadata() {
 }
 
 export default function AProposPage() {
-  return <MDXContent contentEn={AboutEn} contentFr={AboutFr} />
+  return (
+    <>
+      <PasserTestBanner />
+
+      <MDXContent contentEn={AboutEn} contentFr={AboutFr} />
+    </>
+  )
 }

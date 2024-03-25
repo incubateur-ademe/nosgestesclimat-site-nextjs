@@ -3,6 +3,7 @@
 import Link from '@/components/Link'
 import BilanChart from '@/components/charts/BilanChart'
 import ServicesChart from '@/components/charts/ServicesChart'
+import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine } from '@/publicodes-state'
@@ -26,6 +27,8 @@ export default function DocumentationClient({ slugs }: Props) {
 
   return (
     <div className="p-8">
+      <PasserTestBanner />
+
       <RulePage
         language={i18n.language as 'fr' | 'en'}
         rulePath={(path as string) ?? ''}
