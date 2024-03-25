@@ -1,8 +1,9 @@
+import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import List from '@/components/posts/List'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import getPosts from '@/helpers/markdown/getPosts'
+import { getPosts } from '@/helpers/markdown/getPosts'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { currentLocale } from 'next-i18n-router'
 
@@ -26,6 +27,9 @@ export default async function Releases() {
   return (
     <>
       <Title data-cypress-id="news-title" title={t('Les nouveautés ✨')} />
+
+      <PasserTestBanner />
+
       <p>
         <Trans i18nKey={'pages.News.premierParagraphe'}>
           Nous améliorons le site en continu à partir de vos retours. Découvrez

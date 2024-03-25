@@ -10,7 +10,7 @@ export default function BottomMenu() {
   const { getLinkToSimulateurPage } = useSimulateurPage()
 
   return (
-    <ul className="fixed bottom-0 left-0 z-50 flex w-screen justify-around border-t border-gray-200 border-t-gray-200 bg-grey-100 shadow-md">
+    <ul className="fixed bottom-0 left-0 z-[201] flex w-screen justify-around border-t border-gray-200 border-t-gray-200 bg-grey-100 shadow-md">
       <li className="h-full w-full">
         <NavLink
           href={getLinkToSimulateurPage()}

@@ -8,7 +8,7 @@ type Props = {
 /**
  * Assess if we are in preview mode or production mode and fetch the file accordingly
  */
-export default async function getFileFromModel({ fileName, PRNumber }: Props) {
+export async function getFileFromModel({ fileName, PRNumber }: Props) {
   // If a PR Number is provided, we want to use the preview data
   if (PRNumber) {
     const previewFile = await importPreviewFile({

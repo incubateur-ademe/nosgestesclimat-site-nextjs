@@ -1,7 +1,7 @@
 import FilAriane from '@/components/layout/FilAriane'
 import Header from '@/components/layout/Header'
-import getGeolocation from '@/helpers/getGeolocation'
-import getMigrationInstructions from '@/helpers/modelFetching/getMigrationInstructions'
+import { getGeolocation } from '@/helpers/getGeolocation'
+import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
 import '@/locales/initClient'
 import '@/locales/initServer'
