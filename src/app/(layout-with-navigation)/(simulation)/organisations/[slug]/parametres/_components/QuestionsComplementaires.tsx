@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react'
 import ToggleField from './questionsComplementaires/ToggleField'
 
 type Props = {
-  organisation: Organisation
+  organisation: Organisation | undefined
   refetchOrganisation: () => void
 }
 
@@ -21,7 +21,7 @@ export default function QuestionsComplementaires({
 
   const { user } = useUser()
 
-  const poll = organisation.polls[0]
+  const poll = organisation?.polls[0]
 
   const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
@@ -38,7 +38,8 @@ export default function QuestionsComplementaires({
   }) => {
     trackEvent(getClickAdditionalQuestionEvent(questionKey, value))
 
-    const defaultAdditionalQuestions = poll?.defaultAdditionalQuestions ?? {}
+    const defaultAdditionalQuestions =
+      poll?.defaultAdditionalQuestions ?? ([] as string[])
 
     if (value && !defaultAdditionalQuestions.includes(questionKey)) {
       defaultAdditionalQuestions.push(questionKey)
@@ -100,7 +101,9 @@ export default function QuestionsComplementaires({
       <div className="mb-4 rounded-md border border-grey-200">
         <ToggleField
           name="villeToggle"
-          value={poll.defaultAdditionalQuestions.includes('postalCode')}
+          value={
+            poll?.defaultAdditionalQuestions.includes('postalCode') ?? false
+          }
           onChange={(isEnabled: boolean) => {
             handleChange({ questionKey: 'postalCode', value: isEnabled })
           }}
@@ -111,7 +114,9 @@ export default function QuestionsComplementaires({
       <div className="rounded-md border border-grey-200">
         <ToggleField
           name="birthdateToggle"
-          value={poll.defaultAdditionalQuestions.includes('birthdate')}
+          value={
+            poll?.defaultAdditionalQuestions.includes('birthdate') ?? false
+          }
           onChange={(isEnabled: boolean) => {
             handleChange({ questionKey: 'birthdate', value: isEnabled })
           }}
