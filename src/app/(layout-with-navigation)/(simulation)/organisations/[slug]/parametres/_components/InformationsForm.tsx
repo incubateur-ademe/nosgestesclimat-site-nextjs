@@ -11,7 +11,7 @@ import { FormEventHandler, useEffect, useRef, useState } from 'react'
 import { useUpdateOrganisation } from '../../../_hooks/useUpdateOrganisation'
 
 type Props = {
-  organisation: Organisation
+  organisation: Organisation | undefined
 }
 
 export default function InformationsForm({ organisation }: Props) {

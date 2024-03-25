@@ -14,9 +14,12 @@ export default function FilAriane() {
 
   const { user } = useUser()
 
+  // Handles fetching the organisation data if the user is an administrator
   const { data: organisation } = useFetchOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
   })
+
+  const isAdmin = organisation?.slug === params.slug
 
   if (!TARGETED_PATHS.some((path) => pathname.includes(path))) return null
 
@@ -31,7 +34,7 @@ export default function FilAriane() {
         pathname,
         params,
         user,
-        isAdmin: !!organisation,
+        isAdmin,
       })
     }
 

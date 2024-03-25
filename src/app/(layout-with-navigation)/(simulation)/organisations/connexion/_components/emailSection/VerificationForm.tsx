@@ -143,7 +143,11 @@ export default function VerificationForm() {
           />
         )}
         {!isSuccessValidate && (
-          <Button onClick={handleGoBackToForm} color="text" className="mt-12">
+          <Button
+            onClick={handleGoBackToForm}
+            color="secondary"
+            size="sm"
+            className="mt-12 block">
             <Trans>Revenir au formulaire de connexion</Trans>
           </Button>
         )}
