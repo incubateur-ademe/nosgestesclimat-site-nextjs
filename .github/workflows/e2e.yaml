@@ -5,10 +5,13 @@ on:
     branches:
       - 'main'
   pull_request:
+    branches:
+      - 'main'
+      - 'preprod'
+      - 'release/*'
 
 jobs:
   sleep:
-    if: contains(github.ref, 'release') || github.ref == 'main' || github.ref == 'preprod'
     name: Wait for the vercel build to complete
     runs-on: ubuntu-latest
     steps:
@@ -31,7 +34,7 @@ jobs:
       matrix:
         containers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
     name: Testing e2e in worker ${{ matrix.containers }}
-    if: (contains(github.ref, 'release') || github.ref == 'main' || github.ref == 'preprod') && github.event.pull_request.draft == false
+    if: github.event.pull_request.draft == false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3.5.2
@@ -53,7 +56,6 @@ jobs:
           echo "MODE=production" >> "$GITHUB_ENV"
 
       - name: Test - e2e [${{ env.MODE }}]
-        if: contains(github.ref, 'release') || github.ref == 'main' || github.ref == 'preprod'
         uses: cypress-io/github-action@v5.6.1
         with:
           build: yarn run e2e:generate
