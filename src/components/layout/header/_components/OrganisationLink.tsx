@@ -19,7 +19,7 @@ export default function OrganisationLink() {
   const organisationName = organisation?.name ?? user?.organisation?.name
 
   const formattedOrganisationName =
-    organisationName ?? organisationName?.length > 14
+    organisationName && organisationName?.length > 14
       ? `${organisationName?.substring(0, 14).trim()}…`
       : organisationName
 
