@@ -13,7 +13,7 @@ export default function OrganisationItem({
   return (
     <Link
       href={getLinkToPollDashboard({ orgaSlug: organisation?.slug })}
-      className="rounded-sm border-[1px] border-solid border-gray-200 bg-gray-100 px-5 py-2 no-underline decoration-auto">
+      className="mb-6 rounded-sm border-[1px] border-solid border-gray-200 bg-gray-100 px-5 py-2 no-underline decoration-auto">
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center gap-4">
           <div>
@@ -23,7 +23,7 @@ export default function OrganisationItem({
           </div>
 
           <div className="flex gap-1 text-sm text-violet-900">
-            <Badge className="text-secondary-500 ml-2 inline border-pink-100 bg-pink-200 text-xs font-bold">
+            <Badge className="ml-2 inline border-pink-100 bg-pink-200 text-xs font-bold text-secondary-500">
               <Trans>Administrateur·ice</Trans>
             </Badge>
           </div>
