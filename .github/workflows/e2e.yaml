@@ -8,11 +8,6 @@ on:
     # Target on the branches that contain the string "release"
     branches:
       - 'release/*'
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - ready_for_review
 
 jobs:
   sleep:

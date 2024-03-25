@@ -5,7 +5,7 @@ import { usePreventNavigation } from './usePreventNavigation'
 
 type Props = {
   isError: boolean
-  organisation: Organisation
+  organisation: Organisation | undefined
 }
 
 export function useOrgaCreationGuard({ isError, organisation }: Props) {
