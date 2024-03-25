@@ -4,7 +4,9 @@ import Trans from '@/components/translation/Trans'
 import { EMAIL_PAGE } from '@/constants/infosPages'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Title from '@/design-system/layout/Title'
+import { fetchHasUserAlreadyParticipated } from '@/helpers/organisations/fetchHasUserAlreadyParticipated'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
+import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
@@ -24,6 +26,19 @@ export default function Email() {
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
+
+  const { user, updateEmail } = useUser()
+
+  const [email, setEmail] = useState('')
+
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    setEmail(user?.email || '')
+  }, [user])
+
+  const { pollSlug } = useOrganisationQueryParams()
+
   const handleSubmit = useCallback(
     async (event: MouseEvent | FormEvent) => {
       // Avoid reloading page
@@ -35,13 +50,32 @@ export default function Email() {
         return
       }
 
+      const result = await fetchHasUserAlreadyParticipated({
+        pollSlug: pollSlug ?? '',
+        userId: user?.userId,
+        email,
+      })
+
+      if (result?.hasUserAlreadyParticipated) {
+        setError(t('Vous avez déjà participé à ce sondage.'))
+        return
+      }
+
       // If email is valid
       updateEmail(email)
 
       // Go to next page
       router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
     },
-    [email, updateEmail, t, router, getLinkToNextInfosPage]
+    [
+      email,
+      pollSlug,
+      user?.userId,
+      updateEmail,
+      router,
+      getLinkToNextInfosPage,
+      t,
+    ]
   )
 
   return (
