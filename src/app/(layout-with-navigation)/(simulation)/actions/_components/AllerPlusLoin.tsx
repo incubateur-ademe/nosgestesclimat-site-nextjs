@@ -35,7 +35,7 @@ export default function AllerPlusLoin() {
           <li className="mb-1">
             <Link
               className="block text-white underline hover:text-primary-200"
-              href="/actions-plus">
+              href="/actions/plus">
               <Trans>Explorez le détail de nos actions clés</Trans>
             </Link>
           </li>
