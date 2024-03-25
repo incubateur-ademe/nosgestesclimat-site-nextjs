@@ -9,25 +9,20 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useRouter } from 'next/navigation'
-import { FormEvent, useCallback, useEffect, useState } from 'react'
+import { FormEvent, useCallback, useState } from 'react'
 import Navigation from '../_components/Navigation'
 
 export default function Email() {
+  const { user, updateEmail } = useUser()
+
+  const [email, setEmail] = useState(user?.email ?? '')
+  const [error, setError] = useState('')
+
   const { t } = useClientTranslation()
 
   const router = useRouter()
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
-
-  const { user, updateEmail } = useUser()
-
-  const [email, setEmail] = useState('')
-
-  const [error, setError] = useState('')
-
-  useEffect(() => {
-    setEmail(user?.email || '')
-  }, [user])
 
   const handleSubmit = useCallback(
     async (event: MouseEvent | FormEvent) => {
@@ -60,7 +55,7 @@ export default function Email() {
             <Trans>
               Pour conserver vos résultats et les retrouver à l’avenir
             </Trans>
-            <span className="text-secondary-500 ml-2 inline-block font-bold italic">
+            <span className="ml-2 inline-block font-bold italic text-secondary-500">
               <Trans>facultatif</Trans>
             </span>
           </>
