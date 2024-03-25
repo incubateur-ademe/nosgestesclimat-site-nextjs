@@ -83,8 +83,10 @@ export default function useSimulations({
       defaultAdditionalQuestionsAnswers,
       computedResults,
       progression,
-      poll,
-      group,
+      pollToAdd,
+      pollToDelete,
+      groupToAdd,
+      groupToDelete,
       savedViaEmail,
     }: {
       situationToAdd?: Situation
@@ -93,8 +95,10 @@ export default function useSimulations({
       actionChoices?: ActionChoices
       computedResults?: ComputedResults
       progression?: number
-      poll?: string | null
-      group?: string | null
+      pollToAdd?: string | null
+      pollToDelete?: string | null
+      groupToAdd?: string | null
+      groupToDelete?: string | null
       savedViaEmail?: boolean
     }) => {
       if (!currentSimulationId) return
@@ -138,12 +142,30 @@ export default function useSimulations({
         simulationToUpdate.progression = progression
       }
 
-      if (poll !== undefined) {
-        simulationToUpdate.poll = poll
+      if (pollToAdd) {
+        simulationToUpdate.polls = [
+          ...(simulationToUpdate.polls ?? []),
+          pollToAdd,
+        ]
       }
 
-      if (group !== undefined) {
-        simulationToUpdate.group = group
+      if (pollToDelete && simulationToUpdate.polls) {
+        simulationToUpdate.polls = simulationToUpdate.polls.filter(
+          (poll) => poll !== pollToDelete
+        )
+      }
+
+      if (groupToAdd) {
+        simulationToUpdate.groups = [
+          ...(simulationToUpdate.groups ?? []),
+          groupToAdd,
+        ]
+      }
+
+      if (groupToDelete && simulationToUpdate.groups) {
+        simulationToUpdate.groups = simulationToUpdate.groups.filter(
+          (group) => group !== groupToDelete
+        )
       }
 
       if (savedViaEmail !== undefined) {
