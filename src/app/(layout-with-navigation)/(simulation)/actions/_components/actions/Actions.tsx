@@ -1,7 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useUser } from '@/publicodes-state'
@@ -172,27 +171,6 @@ export default function Actions({
           />
         </div>
       )}
-
-      <ButtonLink
-        href="/actions/plus"
-        className="mt-4 flex !w-full !whitespace-normal !text-left">
-        <span
-          className="mr-4 inline-block text-4xl"
-          role="img"
-          aria-label="emoji books"
-          aria-hidden>
-          📚
-        </span>
-        <div>
-          <Trans i18nKey={'publicodes.AllActions.allerPlusLoin'}>
-            <h2 className="text-white">Aller plus loin</h2>
-            <p className="mb-0">
-              Au-delà d'un simple chiffre, découvrez les enjeux qui se cachent
-              derrière chaque action.
-            </p>
-          </Trans>
-        </div>
-      </ButtonLink>
     </>
   )
 }
