@@ -2,7 +2,7 @@ import Link from '@/components/Link'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import Trans from '@/components/translation/Trans'
 import Markdown from '@/design-system/utils/Markdown'
-import getPost from '@/helpers/markdown/getPost'
+import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { capitalizeString } from '@/utils/capitalizeString'
 

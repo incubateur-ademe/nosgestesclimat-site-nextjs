@@ -2,7 +2,7 @@ import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import List from '@/components/posts/List'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import getPosts from '@/helpers/markdown/getPosts'
+import { getPosts } from '@/helpers/markdown/getPosts'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 

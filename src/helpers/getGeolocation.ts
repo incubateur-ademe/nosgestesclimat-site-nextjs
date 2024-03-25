@@ -1,4 +1,4 @@
-export default async function useGeolocation() {
+export async function getGeolocation() {
   const region = await fetch(
     `${
       process.env.VERCEL_ENV === 'preview' ||
