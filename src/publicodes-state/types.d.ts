@@ -68,6 +68,11 @@ export type ComputedResults = {
 }
 export type Simulation = {
   id: string
+  user?: {
+    email: string
+    name: string
+    userId: string
+  }
   date: Date | string
   situation: Situation
   foldedSteps: DottedName[]

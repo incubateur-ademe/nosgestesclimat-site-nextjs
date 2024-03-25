@@ -3,11 +3,24 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
+import { useCheckIfUserHasAlreadyParticipated } from '@/hooks/organisations/useCheckIfUserHasAlreadyParticipated'
+import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useUser } from '@/publicodes-state'
 
 export default function ButtonStart() {
-  const { hideTutorial } = useUser()
+  const { hideTutorial, user } = useUser()
   const { getLinkToNextInfosPage } = useInfosPage()
+
+  const { pollSlug } = useOrganisationQueryParams()
+
+  const {
+    data: { hasUserAlreadyParticipated },
+  } = useCheckIfUserHasAlreadyParticipated({
+    pollSlug: pollSlug ?? '',
+    userId: user?.userId,
+  })
+
+  if (hasUserAlreadyParticipated) return null
 
   return (
     <ButtonLink

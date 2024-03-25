@@ -8,6 +8,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import AutresQuestions from './_components/AutresQuestions'
 import AvantDeCommencer from './_components/AvantDeCommencer'
+import OrganisationMessage from './_components/OrganisationMessage'
 
 export async function generateMetadata() {
   return getMetadataObject({
@@ -31,7 +32,7 @@ export default async function Tutoriel() {
         className="text-lg md:text-2xl"
         title={
           <>
-            <span className="text-secondary-500 inline">
+            <span className="inline text-secondary-500">
               <Trans>10 minutes</Trans>
             </span>{' '}
             <Trans>chrono pour calculer votre empreinte sur le climat</Trans>
@@ -44,6 +45,8 @@ export default async function Tutoriel() {
         <ButtonLink href="/" color="secondary" title={t("revenir à l'accueil")}>
           ←
         </ButtonLink>
+
+        <OrganisationMessage />
 
         <ButtonStart />
       </div>
