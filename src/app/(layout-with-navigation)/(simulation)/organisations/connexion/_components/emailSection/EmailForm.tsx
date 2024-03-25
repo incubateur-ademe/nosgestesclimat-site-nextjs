@@ -77,6 +77,7 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
     <form onSubmit={handleSubmit}>
       <TextInputGroup
         name="email"
+        value={user?.organisation?.administratorEmail ?? ''}
         label={<Trans>Votre adresse e-mail</Trans>}
         placeholder="jeanmarc@nosgestesclimat.fr"
         required
