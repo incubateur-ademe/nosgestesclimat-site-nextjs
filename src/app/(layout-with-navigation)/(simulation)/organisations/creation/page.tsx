@@ -30,6 +30,11 @@ export default function CreationPage() {
     email: user?.organisation?.administratorEmail ?? '',
   })
 
+  const { isGuardInit, isGuardRedirecting } = useOrgaCreationGuard({
+    isError,
+    organisation,
+  })
+
   const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
   })
@@ -107,11 +112,6 @@ export default function CreationPage() {
       captureException(error)
     }
   }
-  console.log({ isError, organisation })
-  const { isGuardInit, isGuardRedirecting } = useOrgaCreationGuard({
-    isError,
-    organisation,
-  })
 
   if (!isGuardInit || isGuardRedirecting) return null
 
