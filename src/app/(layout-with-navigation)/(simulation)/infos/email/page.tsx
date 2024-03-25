@@ -26,17 +26,6 @@ export default function Email() {
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
-
-  const { user, updateEmail } = useUser()
-
-  const [email, setEmail] = useState('')
-
-  const [error, setError] = useState('')
-
-  useEffect(() => {
-    setEmail(user?.email || '')
-  }, [user])
-
   const { pollSlug } = useOrganisationQueryParams()
 
   const handleSubmit = useCallback(
