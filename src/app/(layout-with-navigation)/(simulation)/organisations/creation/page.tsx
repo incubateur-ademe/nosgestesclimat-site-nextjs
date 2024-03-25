@@ -42,8 +42,8 @@ export default function CreationPage() {
     const administratorName = data.get('administratorName') as string
     const position = data.get('position') as string
     const telephone = data.get('telephone') as string
-    const numberOfExpectedParticipants = data.get(
-      'numberOfExpectedParticipants'
+    const expectedNumberOfParticipants = data.get(
+      'expectedNumberOfParticipants'
     ) as string
 
     // Validation
@@ -76,7 +76,7 @@ export default function CreationPage() {
         administratorName,
         position,
         telephone,
-        numberOfExpectedParticipants,
+        expectedNumberOfParticipants,
         hasOptedInForCommunications,
       })
 

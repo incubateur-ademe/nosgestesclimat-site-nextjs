@@ -13,12 +13,12 @@ export default function ButtonStart() {
 
   const { pollSlug } = useOrganisationQueryParams()
 
-  const {
-    data: { hasUserAlreadyParticipated },
-  } = useCheckIfUserHasAlreadyParticipated({
+  const { data } = useCheckIfUserHasAlreadyParticipated({
     pollSlug: pollSlug ?? '',
     userId: user?.userId,
   })
+
+  const { hasUserAlreadyParticipated } = data ?? {}
 
   if (hasUserAlreadyParticipated) return null
 
