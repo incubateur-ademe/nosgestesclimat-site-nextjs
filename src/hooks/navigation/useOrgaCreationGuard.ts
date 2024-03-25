@@ -18,8 +18,7 @@ export function useOrgaCreationGuard({ isError, organisation }: Props) {
 
   useEffect(() => {
     handleUpdateShouldPreventNavigation(true)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [handleUpdateShouldPreventNavigation])
 
   useEffect(() => {
     // we only run the guard at mount
