@@ -49,7 +49,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
             name="distance"
             type="number"
             value={distance}
-            onChange={(e) => setDistance(e.target.value)}
+            onChange={(e) => setDistance((e.target as HTMLInputElement).value)}
           />{' '}
           km
         </span>
@@ -61,7 +61,9 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
             name="distance"
             type="number"
             value={reccurrence}
-            onChange={(e) => setReccurrence(Number(e.target.value))}
+            onChange={(e) =>
+              setReccurrence(Number((e.target as HTMLInputElement).value))
+            }
           />{' '}
           x
           <Select

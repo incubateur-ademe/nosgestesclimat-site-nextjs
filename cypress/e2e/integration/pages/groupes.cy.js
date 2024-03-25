@@ -90,23 +90,23 @@ describe('The Group creation page /amis/creer', () => {
     let currentUrl = ''
 
     // Delete the group via the API
-    cy.url().then((url) => {
-      currentUrl = url
+    // cy.url().then((url) => {
+    //   currentUrl = url
 
-      const groupId = currentUrl?.split('groupId=')?.[1]
+    //   const groupId = currentUrl?.split('groupId=')?.[1]
 
-      const SERVER_URL = Cypress.env('server_url')
+    //   const SERVER_URL = Cypress.env('server_url')
 
-      cy.request(
-        'POST',
-        `http${
-          SERVER_URL === 'localhost:3001' ? '' : 's'
-        }://${SERVER_URL}/group/delete`,
-        {
-          groupId,
-          userId: ownerUserId,
-        }
-      ).as('response')
-    })
+    //   cy.request(
+    //     'POST',
+    //     `http${
+    //       SERVER_URL === 'localhost:3001' ? '' : 's'
+    //     }://${SERVER_URL}/group/delete`,
+    //     {
+    //       groupId,
+    //       userId: ownerUserId,
+    //     }
+    //   ).as('response')
+    // })
   })
 })
