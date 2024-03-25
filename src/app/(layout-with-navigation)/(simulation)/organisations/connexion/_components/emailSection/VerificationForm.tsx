@@ -142,6 +142,7 @@ export default function VerificationForm() {
             setTimeLeft={setTimeLeft}
           />
         )}
+
         {!isSuccessValidate && (
           <Button
             onClick={handleGoBackToForm}
