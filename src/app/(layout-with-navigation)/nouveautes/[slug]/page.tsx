@@ -1,4 +1,5 @@
 import Link from '@/components/Link'
+import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import Trans from '@/components/translation/Trans'
 import Markdown from '@/design-system/utils/Markdown'
 import { getPost } from '@/helpers/markdown/getPost'
@@ -27,11 +28,12 @@ export default async function Release({ params: { slug } }: Props) {
 
   return (
     <div>
-      <Link href="/nouveautes" className="text-sm">
+      <Link href="/nouveautes" className="mb-8 block text-sm">
         ← <Trans>Retour à la liste des nouveautes</Trans>
       </Link>
-      <br />
-      <br />
+
+      <PasserTestBanner />
+
       {content ? (
         <Markdown>{content}</Markdown>
       ) : (

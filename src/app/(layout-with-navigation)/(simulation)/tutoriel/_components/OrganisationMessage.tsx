@@ -2,15 +2,12 @@
 
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useCheckIfUserHasAlreadyParticipated } from '@/hooks/organisations/useCheckIfUserHasAlreadyParticipated'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useUser } from '@/publicodes-state'
 
-export default function ButtonStart() {
-  const { hideTutorial, user } = useUser()
-  const { getLinkToNextInfosPage } = useInfosPage()
-
+export default function OrganisationMessage() {
+  const { user } = useUser()
   const { pollSlug } = useOrganisationQueryParams()
 
   const { data } = useCheckIfUserHasAlreadyParticipated({
@@ -18,16 +15,20 @@ export default function ButtonStart() {
     userId: user?.userId,
   })
 
-  const { hasUserAlreadyParticipated } = data ?? {}
+  const { hasUserAlreadyParticipated, organisationSlug } = data ?? {}
 
-  if (hasUserAlreadyParticipated) return null
+  if (!hasUserAlreadyParticipated) return null
 
   return (
-    <ButtonLink
-      href={getLinkToNextInfosPage({ curPage: 'tutoriel' })}
-      data-cypress-id="skip-tutorial-button"
-      onClick={() => hideTutorial('testIntro')}>
-      <Trans>C'est parti ! →</Trans>
-    </ButtonLink>
+    <div className="flex flex-col items-end gap-2">
+      <p className="mb-0 text-sm text-gray-500">
+        <Trans>Vous avez déja participé à ce sondage.</Trans>
+      </p>
+
+      <ButtonLink
+        href={`/organisations/${organisationSlug}/resultats-detailles`}>
+        <Trans>Voir mes résultats</Trans>
+      </ButtonLink>
+    </div>
   )
 }

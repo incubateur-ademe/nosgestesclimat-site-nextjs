@@ -6,7 +6,7 @@ import MaxWidthContent from '../layout/MaxWidthContent'
 import Trans from '../translation/Trans'
 
 type Props = {
-  organisation: Organisation
+  organisation: Organisation | undefined
   isError: boolean
 }
 

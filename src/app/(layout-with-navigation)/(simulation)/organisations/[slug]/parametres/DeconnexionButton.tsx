@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation'
 export default function DeconnexionButton({
   organisation,
 }: {
-  organisation: Organisation
+  organisation: Organisation | undefined
 }) {
   const { mutateAsync: logoutOrganisation } = useLogoutOrganisation({
     orgaSlug: organisation?.slug,

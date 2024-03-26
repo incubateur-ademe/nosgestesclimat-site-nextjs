@@ -12,10 +12,11 @@ import { useContext } from 'react'
 import { FiltersContext } from './_components/FiltersProvider'
 import OrgaStatisticsCharts from './_components/OrgaStatisticsCharts'
 import OrgaStatisticsFilters from './_components/OrgaStatisticsFilters'
+import PollNotFound from './_components/PollNotFound'
 
 export default function ResultatsDetaillesPage() {
   const params = useParams()
-  const { data: pollData } = useFetchPollData({
+  const { data: pollData, isFetched } = useFetchPollData({
     orgaSlug: decodeURIComponent(params.slug as string),
   })
 
@@ -28,6 +29,10 @@ export default function ResultatsDetaillesPage() {
       ageFilters,
       postalCodeFilters,
     })
+
+  if (isFetched && !pollData) {
+    return <PollNotFound />
+  }
 
   return (
     <div>

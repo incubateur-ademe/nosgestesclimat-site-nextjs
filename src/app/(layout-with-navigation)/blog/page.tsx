@@ -1,3 +1,4 @@
+import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import List from '@/components/posts/List'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
@@ -20,7 +21,10 @@ export default async function Blog() {
 
   return (
     <>
+      <PasserTestBanner />
+
       <Title title={<Trans>Le Blog</Trans>} data-cypress-id="blog-title" />
+
       <div className="flex flex-col gap-4">
         <Image
           alt=""
