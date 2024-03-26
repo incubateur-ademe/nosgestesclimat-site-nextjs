@@ -6,7 +6,7 @@ import { getOrganisationItems } from '@/helpers/filAriane/getOrganisationItems'
 import { useUser } from '@/publicodes-state'
 import { useParams, usePathname } from 'next/navigation'
 
-const TARGETED_PATHS = ['organisations']
+const TARGETED_PATHS = ['/organisations']
 
 export default function FilAriane() {
   const pathname = usePathname()
@@ -29,7 +29,7 @@ export default function FilAriane() {
     isActive: boolean
   }[] => {
     // Organisation path
-    if (pathname.includes('organisations')) {
+    if (pathname.includes('/organisations')) {
       return getOrganisationItems({
         pathname,
         params,
