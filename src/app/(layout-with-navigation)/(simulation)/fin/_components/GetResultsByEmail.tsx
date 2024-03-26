@@ -54,6 +54,8 @@ export default function GetResultsByEmail({
 
     // We update the simulation to signify that it has been saved (and not show the form anymore)
     updateCurrentSimulation({ savedViaEmail: true })
+
+    updateEmail((event.target as HTMLInputElement).value)
   }
 
   // If we successfully saved the simulation, we display the confirmation message
@@ -103,9 +105,6 @@ export default function GetResultsByEmail({
             aria-label="Entrez votre adresse email"
             placeholder="jeanmarc@nosgestesclimat.fr"
             value={user?.email}
-            onChange={(event) => {
-              updateEmail((event.target as HTMLInputElement).value)
-            }}
             required
             className="bg-white"
           />
@@ -130,11 +129,7 @@ export default function GetResultsByEmail({
 
         */}
 
-        <Button
-          onClick={() => null}
-          type="submit"
-          disabled={isPending}
-          className="mt-4">
+        <Button type="submit" disabled={isPending} className="mt-4">
           <Trans>Envoyer</Trans>
         </Button>
 

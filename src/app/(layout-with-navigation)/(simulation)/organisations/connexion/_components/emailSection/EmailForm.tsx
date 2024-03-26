@@ -76,7 +76,7 @@ export default function EmailForm() {
       <TextInputGroup
         name="email"
         type="email"
-        value={user?.organisation?.administratorEmail ?? ''}
+        value={user?.email || user?.organisation?.administratorEmail || ''}
         label={<Trans>Votre adresse e-mail</Trans>}
         placeholder="jeanmarc@nosgestesclimat.fr"
         required
