@@ -1,3 +1,4 @@
+import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import DocumentationLanding from './_components/DocumentationLanding'
 
@@ -16,6 +17,8 @@ export async function generateMetadata() {
 export default function Documentation() {
   return (
     <div className="w-full max-w-4xl p-4 md:mx-auto md:py-8">
+      <PasserTestBanner />
+
       <DocumentationLanding />
     </div>
   )
