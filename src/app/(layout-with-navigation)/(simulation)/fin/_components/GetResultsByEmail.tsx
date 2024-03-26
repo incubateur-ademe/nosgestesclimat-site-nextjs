@@ -130,11 +130,7 @@ export default function GetResultsByEmail({
 
         */}
 
-        <Button
-          onClick={() => null}
-          type="submit"
-          disabled={isPending}
-          className="mt-4">
+        <Button type="submit" disabled={isPending} className="mt-4">
           <Trans>Envoyer</Trans>
         </Button>
 
