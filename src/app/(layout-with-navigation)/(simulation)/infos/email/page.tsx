@@ -17,7 +17,9 @@ import Navigation from '../_components/Navigation'
 export default function Email() {
   const { user, updateEmail } = useUser()
 
-  const [email, setEmail] = useState(user?.email ?? '')
+  const [email, setEmail] = useState(
+    user?.email || user?.organisation?.administratorEmail || ''
+  )
   const [error, setError] = useState('')
 
   const { t } = useClientTranslation()
