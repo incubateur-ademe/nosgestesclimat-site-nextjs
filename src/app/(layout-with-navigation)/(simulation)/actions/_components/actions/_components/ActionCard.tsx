@@ -1,3 +1,5 @@
+'use client'
+
 import Link from '@/components/Link'
 import {
   getMatomoEventActionAccepted,
@@ -8,6 +10,8 @@ import {
   getBackgroundColor,
   getBorderColor,
 } from '@/helpers/getCategoryColorClass'
+import { useFetchSimulation } from '@/hooks/simulation/useFetchSimulation'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule, useTempEngine, useUser } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
@@ -66,6 +70,12 @@ export default function ActionCard({
 
   const currentSimulation = getCurrentSimulation()
 
+  const { simulation: simulationSaved } = useFetchSimulation({
+    simulationId: currentSimulation?.id ?? '',
+  })
+
+  const { saveSimulationNotAsync } = useSaveSimulation()
+
   if (!currentSimulation || !rules) {
     return null
   }
@@ -85,6 +95,27 @@ export default function ActionCard({
         return traversedVariables.includes(key)
       })) ||
     action.isIrrelevant
+
+  async function handleChooseAction() {
+    if (isDisabled) return
+    if (hasRemainingQuestions) {
+      setFocusedAction(dottedName)
+      return null
+    }
+
+    toggleActionChoice(dottedName)
+
+    if (currentSimulation && !!simulationSaved) {
+      saveSimulationNotAsync({
+        simulation: currentSimulation,
+        shouldSendSimulationEmail: false,
+      })
+    }
+
+    if (!isSelected) {
+      trackEvent(getMatomoEventActionAccepted(dottedName, nodeValue))
+    }
+  }
 
   return (
     <div
@@ -147,19 +178,7 @@ export default function ActionCard({
             type="button"
             aria-pressed={actionChoices?.[dottedName]}
             className={hasRemainingQuestions ? 'grayscale' : ''}
-            onClick={() => {
-              if (isDisabled) return
-              if (hasRemainingQuestions) {
-                setFocusedAction(dottedName)
-                return null
-              }
-
-              toggleActionChoice(dottedName)
-
-              if (!isSelected) {
-                trackEvent(getMatomoEventActionAccepted(dottedName, nodeValue))
-              }
-            }}>
+            onClick={handleChooseAction}>
             <Image
               src="/images/misc/2714.svg"
               width={100}
