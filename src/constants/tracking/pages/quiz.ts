@@ -3,10 +3,13 @@
 
 import { DottedName } from '@/publicodes-state/types'
 
+// Figma comment #120
 export const quizClickPass = ['trackEvent', 'Quiz', 'Click Pass']
 
+// Figma comment #119
 export const quizClickPrevious = ['trackEvent', 'Quiz', 'Click Previous']
 
+// Figma comment #118
 export const quizClickAnswer = (answer: DottedName) => [
   'trackEvent',
   'Quiz',
@@ -14,6 +17,7 @@ export const quizClickAnswer = (answer: DottedName) => [
   answer,
 ]
 
+// Figma comment #120
 export const quizValidateCorrectAnswer = (answer: DottedName) => [
   'trackEvent',
   'Quiz',
@@ -21,6 +25,7 @@ export const quizValidateCorrectAnswer = (answer: DottedName) => [
   answer,
 ]
 
+// Figma comment #120
 export const quizValidateAlmostCorrectAnswer = (answer: DottedName) => [
   'trackEvent',
   'Quiz',
@@ -28,6 +33,7 @@ export const quizValidateAlmostCorrectAnswer = (answer: DottedName) => [
   answer,
 ]
 
+// Figma comment #120
 export const quizValidateWrongAnswer = (answer: DottedName) => [
   'trackEvent',
   'Quiz',

@@ -1,15 +1,21 @@
+// Return tracking data in format
+// [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
+
+// Figma comment #39
 export const simulateurOpenSommaire = [
   'trackEvent',
   'Simulateur',
   'Open Sommaire',
 ]
 
+// Figma comment #39
 export const simulateurCloseSommaire = [
   'trackEvent',
   'Simulateur',
   'Close Sommaire',
 ]
 
+// Figma comment #44
 export const simulateurClickSommaireQuestion = [
   'trackEvent',
   'Simulateur',
@@ -17,6 +23,7 @@ export const simulateurClickSommaireQuestion = [
   'Active',
 ]
 
+// Figma comment #44
 export const simulateurClickDisabledSommaireQuestion = [
   'trackEvent',
   'Simulateur',
@@ -24,12 +31,14 @@ export const simulateurClickDisabledSommaireQuestion = [
   'Disabled',
 ]
 
+// Figma comment #42
 export const simulateurOpenScoreInfo = [
   'trackEvent',
   'Simulateur',
   'Open Score Info',
 ]
 
+// Figma comment #40 & #41
 export const simulateurCloseScoreInfo = [
   'trackEvent',
   'Simulateur',
