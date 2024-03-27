@@ -10,7 +10,7 @@ import { useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import React from 'react'
 
-export default function EmailForm({ onComplete }: { onComplete: () => void }) {
+export default function EmailForm() {
   const [inputError, setInputError] = React.useState<string | undefined>()
 
   const { t } = useClientTranslation()
@@ -51,7 +51,6 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
 
       // We update the expiration date of the code
       updateLoginExpirationDate(expirationDate)
-      onComplete()
 
       updateUserOrganisation({ administratorEmail: email })
     } catch (error: any) {
@@ -65,7 +64,6 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
         updateLoginExpirationDate(expirationDate)
 
         updateUserOrganisation({ administratorEmail: email })
-        onComplete()
       } catch (error: any) {
         setInputError(error.response.data.message)
         return
@@ -77,6 +75,8 @@ export default function EmailForm({ onComplete }: { onComplete: () => void }) {
     <form onSubmit={handleSubmit}>
       <TextInputGroup
         name="email"
+        type="email"
+        value={user?.email || user?.organisation?.administratorEmail || ''}
         label={<Trans>Votre adresse e-mail</Trans>}
         placeholder="jeanmarc@nosgestesclimat.fr"
         required

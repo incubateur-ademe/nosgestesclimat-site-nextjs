@@ -2,12 +2,14 @@
 
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
+import { useOrgaCreationGuard } from '@/hooks/navigation/useOrgaCreationGuard'
+import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useSendOrganisationCreationEmail } from '@/hooks/organisations/useSendOrganisationCreationEmail'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import useFetchOrganisation from '../_hooks/useFetchOrganisation'
 import { useUpdateOrganisation } from '../_hooks/useUpdateOrganisation'
 import CreationForm from './_components/CreationForm'
@@ -16,12 +18,21 @@ export default function CreationPage() {
   const [nameError, setNameError] = useState<string | null>(null)
   const [ownerNameError, setOwnerNameError] = useState<string | null>(null)
 
+  const router = useRouter()
+
   const { t } = useClientTranslation()
 
   const { user, updateUserOrganisation } = useUser()
 
-  const { isError } = useFetchOrganisation({
+  const { handleUpdateShouldPreventNavigation } = usePreventNavigation()
+
+  const { isError, data: organisation } = useFetchOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
+  })
+
+  const { isGuardInit, isGuardRedirecting } = useOrgaCreationGuard({
+    isError,
+    organisation,
   })
 
   const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
@@ -30,8 +41,6 @@ export default function CreationPage() {
 
   const { mutate: sendCreationConfirmationEmail } =
     useSendOrganisationCreationEmail()
-
-  const router = useRouter()
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -42,8 +51,8 @@ export default function CreationPage() {
     const administratorName = data.get('administratorName') as string
     const position = data.get('position') as string
     const telephone = data.get('telephone') as string
-    const numberOfExpectedParticipants = data.get(
-      'numberOfExpectedParticipants'
+    const expectedNumberOfParticipants = data.get(
+      'expectedNumberOfParticipants'
     ) as string
 
     // Validation
@@ -76,7 +85,7 @@ export default function CreationPage() {
         administratorName,
         position,
         telephone,
-        numberOfExpectedParticipants,
+        expectedNumberOfParticipants,
         hasOptedInForCommunications,
       })
 
@@ -91,6 +100,8 @@ export default function CreationPage() {
         throw new Error('No slug found')
       }
 
+      handleUpdateShouldPreventNavigation(false)
+
       updateUserOrganisation({
         name,
         slug: organisationUpdated?.slug,
@@ -102,11 +113,7 @@ export default function CreationPage() {
     }
   }
 
-  useEffect(() => {
-    if (isError) {
-      router.push('/organisations/connexion')
-    }
-  }, [isError, router])
+  if (!isGuardInit || isGuardRedirecting) return null
 
   return (
     <section className="mt-6 w-full bg-[#fff]">

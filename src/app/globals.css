@@ -418,7 +418,6 @@ html[data-useragent*='Trident'] #js {
 }
 
 .markdown h1 {
-  @apply text-4xl;
   @apply mb-6;
   @apply font-bold;
   @apply leading-10;

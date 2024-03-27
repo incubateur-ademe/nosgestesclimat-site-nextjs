@@ -26,9 +26,9 @@ export default async function Releases() {
 
   return (
     <>
-      <Title data-cypress-id="news-title" title={t('Les nouveautés ✨')} />
-
       <PasserTestBanner />
+
+      <Title data-cypress-id="news-title" title={t('Les nouveautés ✨')} />
 
       <p>
         <Trans i18nKey={'pages.News.premierParagraphe'}>

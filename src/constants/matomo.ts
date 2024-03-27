@@ -20,7 +20,6 @@ export const getMatomoEventQuizClickAnswer = (answer: DottedName) => [
   'trackEvent',
   'Quiz',
   'answer_click',
-  null,
   answer,
 ]
 export const getMatomoEventQuizValidateAnswer = (

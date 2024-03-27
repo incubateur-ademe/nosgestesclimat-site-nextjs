@@ -28,14 +28,22 @@ export default function PollsList({ organisation }: Props) {
     <div className="mb-8 flex flex-col gap-3">
       {organisation && (
         <>
-          <h3>
+          <h3 className="mb-0 text-base">
             <Trans>Mon organisation</Trans>
           </h3>
           <OrganisationItem organisation={organisation} />
         </>
       )}
 
-      {polls?.map((poll) => <PollItem key={poll.slug} poll={poll} />)}
+      {polls && polls.length > 0 && (
+        <>
+          <h3 className="mb-0 text-base">
+            <Trans>Mes sondages</Trans>
+          </h3>
+
+          {polls?.map((poll) => <PollItem key={poll.slug} poll={poll} />)}
+        </>
+      )}
     </div>
   )
 }
