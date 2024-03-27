@@ -1,17 +1,24 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-export const trackingInteraction = ['trackEvent', 'misc', 'Clicked somewhere']
+export const trackingInteraction = ['trackEvent', 'Misc', 'Clicked somewhere']
 
 export const trackingIframe = (url: string) => [
   'trackEvent',
-  'misc',
+  'Misc',
   'Iframe visit',
   url,
 ]
 
 export const trackingDownloadRavijenChart = [
   'trackEvent',
-  'misc',
+  'Misc',
   'Download Ravijen chart',
+]
+
+export const trackingSplitTesting = (branch: string) => [
+  'trackEvent',
+  'Misc',
+  'Split testing',
+  branch,
 ]
