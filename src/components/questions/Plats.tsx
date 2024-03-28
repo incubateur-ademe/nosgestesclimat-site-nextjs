@@ -2,21 +2,10 @@ import Question from '@/components/form/Question'
 import Trans from '@/components/translation/Trans'
 import { useEngine } from '@/publicodes-state'
 
-const plats = [
-  'alimentation . plats . poisson 1 . nombre',
-  'alimentation . plats . poisson 2 . nombre',
-  'alimentation . plats . viande 1 . nombre',
-  'alimentation . plats . viande 2 . nombre',
-  'alimentation . plats . végétalien . nombre',
-  'alimentation . plats . végétarien . nombre',
-]
 export default function Plats() {
   const { getNumericValue } = useEngine()
 
-  const totalNumberOfPlats = plats.reduce(
-    (accumulator, currentValue) => accumulator + getNumericValue(currentValue),
-    0
-  )
+  const totalNumberOfPlats = getNumericValue('ui . nombre de repas par semaine')
 
   return (
     <>
