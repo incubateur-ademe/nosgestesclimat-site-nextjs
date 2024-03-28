@@ -14,6 +14,7 @@ export function useSaveSimulation() {
 
   const {
     mutateAsync: saveSimulation,
+    mutate: saveSimulationNotAsync,
     isPending,
     isSuccess,
     isError,
@@ -43,6 +44,7 @@ export function useSaveSimulation() {
   })
   return {
     saveSimulation,
+    saveSimulationNotAsync,
     isPending,
     isSuccess,
     isError,
