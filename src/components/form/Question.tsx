@@ -10,7 +10,6 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
-import { useUpdateSimulationSavedIfChanged } from '@/hooks/simulation/useUpdateSimulationSavedIfChanged'
 import { useRule } from '@/publicodes-state'
 import { useEffect, useRef } from 'react'
 import Warning from './question/Warning'
@@ -52,8 +51,6 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
       prevQuestion.current = question
     }
   }, [type, numericValue, setTempValue, question])
-
-  useUpdateSimulationSavedIfChanged()
 
   return (
     <>
