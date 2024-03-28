@@ -1,5 +1,7 @@
 import Trans from '@/components/translation/Trans'
+import { endClickActions } from '@/constants/tracking/pages/end'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import RecommendedActions from './howToAct/RecommendedActions'
 
 export default function HowToAct({ shouldLeadToTest = true }) {
@@ -25,7 +27,10 @@ export default function HowToAct({ shouldLeadToTest = true }) {
       <RecommendedActions />
 
       <div className="mt-4">
-        <ButtonLink href="/actions" color="secondary">
+        <ButtonLink
+          href="/actions"
+          color="secondary"
+          onClick={() => trackEvent(endClickActions)}>
           <Trans>Voir toutes les actions</Trans>
         </ButtonLink>
       </div>

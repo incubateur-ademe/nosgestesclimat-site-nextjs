@@ -2,7 +2,7 @@
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
 import { DottedName } from '@/publicodes-state/types'
-import { NorthStarRatings, NorthStarType } from '@/types/northstar'
+import { NorthStarType, NorthStarValue } from '@/types/northstar'
 
 // Figma comment #57
 export const endClickPoll = ['trackEvent', 'Fin', 'Click Poll']
@@ -59,12 +59,12 @@ export const endClickDocumentation = [
 // Figma comment #66
 type NorthstarProps = {
   type: NorthStarType
-  value: NorthStarRatings
+  value: NorthStarValue
 }
 export const endClickNorthstar = ({ type, value }: NorthstarProps) => [
   'trackEvent',
   'Fin',
   'Click Northstar',
   type,
-  value,
+  String(value),
 ]
