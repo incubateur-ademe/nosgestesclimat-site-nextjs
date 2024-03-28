@@ -25,7 +25,7 @@ export const classementClickGroup = ({
   'Profil',
   'Click Group',
   isAdministator ? 'Administrator' : 'Participant',
-  numParticipants,
+  String(numParticipants),
 ]
 
 // Figma comment #86

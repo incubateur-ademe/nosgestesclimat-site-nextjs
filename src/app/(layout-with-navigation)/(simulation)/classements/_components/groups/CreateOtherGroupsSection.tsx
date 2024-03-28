@@ -1,10 +1,12 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { classementCreateGroup } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Separator from '@/design-system/layout/Separator'
 import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
 import { Group } from '@/types/groups'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import GroupList from './createOtherGroupsSection/GroupList'
 
 export default function CreateOtherGroupsSection({
@@ -29,6 +31,7 @@ export default function CreateOtherGroupsSection({
       <div>
         <ButtonLink
           href={linkToGroupCreation}
+          onClick={() => trackEvent(classementCreateGroup)}
           color="secondary"
           data-cypress-id="button-create-other-group">
           <Trans>Créer un autre groupe</Trans>

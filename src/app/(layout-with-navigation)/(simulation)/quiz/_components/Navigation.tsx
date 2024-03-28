@@ -1,9 +1,9 @@
 import Trans from '@/components/translation/Trans'
-import { getMatomoEventParcoursTestOver } from '@/constants/matomo'
 import {
   quizClickPass,
   quizClickPrevious,
 } from '@/constants/tracking/pages/quiz'
+import { simulationSimulationCompleted } from '@/constants/tracking/simulation'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
@@ -49,7 +49,9 @@ export default function Navigation({
             allowedToGoToGroupDashboard: true,
           })}
           onClick={() => {
-            trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
+            trackEvent(
+              simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
+            )
             trackEvent(quizClickPass)
           }}>
           <Trans>Passer la question →</Trans>
@@ -58,7 +60,9 @@ export default function Navigation({
         <ButtonLink
           href={getLinkToEndPage()}
           onClick={() =>
-            trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
+            trackEvent(
+              simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
+            )
           }>
           <Trans>Voir mes résultats →</Trans>
         </ButtonLink>
