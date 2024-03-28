@@ -2,12 +2,10 @@ import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import questions from '@/components/questions'
-import { getMatomoEventParcoursTestOver } from '@/constants/matomo'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { useForm, useUser } from '@/publicodes-state'
 import { useContext, useEffect, useState } from 'react'
 import ColorIndicator from './form/ColorIndicator'
 
@@ -25,8 +23,6 @@ export default function Form() {
     setCurrentQuestion,
   } = useForm()
 
-  const { getNumericValue } = useEngine()
-
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()
 
@@ -40,7 +36,7 @@ export default function Form() {
   useEffect(() => {
     if (shouldGoToEndPage && progression === 1) {
       goToEndPage({
-        shouldShowQuiz: false,
+        shouldShowQuiz: true,
         allowedToGoToGroupDashboard: true,
       })
     }
@@ -101,8 +97,6 @@ export default function Form() {
         question={currentQuestion}
         tempValue={tempValue}
         onComplete={() => {
-          trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
-
           if (shouldPreventNavigation) {
             handleUpdateShouldPreventNavigation(false)
           }

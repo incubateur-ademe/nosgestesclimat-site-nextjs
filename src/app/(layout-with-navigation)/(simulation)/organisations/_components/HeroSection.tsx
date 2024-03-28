@@ -14,11 +14,11 @@ export default function HeroSection() {
   return (
     <div className="flex flex-wrap justify-center gap-12 pt-14 lg:flex-nowrap lg:justify-start lg:gap-8">
       <div className="max-w-full md:w-[34rem]">
-        <h1>
+        <h1 className="text-center md:text-left">
           <Trans>Nos Gestes Climat pour les organisations</Trans>
         </h1>
 
-        <p className="mb-12 text-sm md:text-lg">
+        <p className="mb-12 text-center text-sm md:text-left md:text-lg">
           <Trans>Vous souhaitez mobiliser votre</Trans>{' '}
           <strong className="text-primary-500">
             <Trans>entreprise</Trans>
@@ -39,7 +39,7 @@ export default function HeroSection() {
           <Trans>Découvrez nos outils pour vous simplifier la vie&nbsp;!</Trans>
         </p>
 
-        <div className="flex flex-col flex-wrap items-center gap-8 md:flex-row md:items-baseline md:justify-center lg:justify-start">
+        <div className="flex flex-col flex-wrap items-center gap-8 sm:flex-row sm:justify-center md:items-baseline lg:justify-start">
           <ButtonLink
             href="/organisations/connexion"
             onClick={() => {
@@ -65,7 +65,7 @@ export default function HeroSection() {
           alt=""
           width="400"
           height="400"
-          className="max-w-xs md:mx-auto md:max-w-lg"
+          className="mx-auto block max-w-xs md:mx-0 md:max-w-lg"
         />
       </div>
     </div>

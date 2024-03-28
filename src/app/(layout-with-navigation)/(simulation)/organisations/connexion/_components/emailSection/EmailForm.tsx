@@ -75,7 +75,8 @@ export default function EmailForm() {
     <form onSubmit={handleSubmit}>
       <TextInputGroup
         name="email"
-        value={user?.organisation?.administratorEmail ?? ''}
+        type="email"
+        value={user?.email || user?.organisation?.administratorEmail || ''}
         label={<Trans>Votre adresse e-mail</Trans>}
         placeholder="jeanmarc@nosgestesclimat.fr"
         required
