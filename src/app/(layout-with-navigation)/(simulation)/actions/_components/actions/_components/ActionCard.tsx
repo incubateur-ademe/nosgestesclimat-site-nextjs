@@ -18,6 +18,7 @@ import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Image from 'next/image'
+import { useCallback } from 'react'
 import { filterRelevantMissingVariables } from '../../../_helpers/filterRelevantMissingVariables'
 import { getIsActionDisabled } from '../../../_helpers/getIsActionDisabled'
 import ActionValue from './ActionValue'
@@ -70,33 +71,30 @@ export default function ActionCard({
 
   const currentSimulation = getCurrentSimulation()
 
+  const actionChoices = currentSimulation?.actionChoices
+
+  const isSelected = Object.keys(actionChoices || {}).some((key) => {
+    return key === dottedName && actionChoices?.[key]
+  })
+
+  const flatRule = rules?.[dottedName]
+
+  const hasFormula = flatRule?.formule
+  const isDisabled =
+    (flatRule &&
+      getIsActionDisabled(flatRule) &&
+      Object.keys(actionChoices || {}).some((key) => {
+        return traversedVariables.includes(key)
+      })) ||
+    action.isIrrelevant
+
   const { simulation: simulationSaved } = useFetchSimulation({
     simulationId: currentSimulation?.id ?? '',
   })
 
   const { saveSimulationNotAsync } = useSaveSimulation()
 
-  if (!currentSimulation || !rules) {
-    return null
-  }
-
-  const actionChoices = currentSimulation.actionChoices
-
-  const isSelected = Object.keys(actionChoices || {}).some((key) => {
-    return key === dottedName && actionChoices[key]
-  })
-
-  const flatRule = rules[dottedName]
-
-  const hasFormula = flatRule.formule
-  const isDisabled =
-    (getIsActionDisabled(flatRule) &&
-      Object.keys(actionChoices || {}).some((key) => {
-        return traversedVariables.includes(key)
-      })) ||
-    action.isIrrelevant
-
-  async function handleChooseAction() {
+  const handleChooseAction = useCallback(async () => {
     if (isDisabled) return
     if (hasRemainingQuestions) {
       setFocusedAction(dottedName)
@@ -107,7 +105,13 @@ export default function ActionCard({
 
     if (currentSimulation && !!simulationSaved) {
       saveSimulationNotAsync({
-        simulation: currentSimulation,
+        simulation: {
+          ...(currentSimulation ?? {}),
+          actionChoices: {
+            ...currentSimulation?.actionChoices,
+            [dottedName]: true,
+          },
+        },
         shouldSendSimulationEmail: false,
       })
     }
@@ -115,6 +119,21 @@ export default function ActionCard({
     if (!isSelected) {
       trackEvent(getMatomoEventActionAccepted(dottedName, nodeValue))
     }
+  }, [
+    currentSimulation,
+    dottedName,
+    hasRemainingQuestions,
+    isDisabled,
+    isSelected,
+    nodeValue,
+    saveSimulationNotAsync,
+    setFocusedAction,
+    simulationSaved,
+    toggleActionChoice,
+  ])
+
+  if (!currentSimulation || !rules) {
+    return null
   }
 
   return (
@@ -188,23 +207,27 @@ export default function ActionCard({
             />
           </button>
 
-          <button
-            title={t("Rejeter l'action")}
-            onClick={(e) => {
-              if (isDisabled) return
-              rejectAction(dottedName)
-              trackEvent(getMatomoEventActionRejected(dottedName, nodeValue))
-              e.stopPropagation()
-              e.preventDefault()
-            }}>
-            <Image
-              src="/images/misc/274C.svg"
-              width={100}
-              height={100}
-              className={`w-8 ${isDisabled ? 'grayscale' : ''}`}
-              alt=""
-            />
-          </button>
+          {!Object.keys(actionChoices || {}).some((key) => {
+            return key === dottedName && actionChoices?.[key]
+          }) && (
+            <button
+              title={t("Rejeter l'action")}
+              onClick={(e) => {
+                if (isDisabled) return
+                rejectAction(dottedName)
+                trackEvent(getMatomoEventActionRejected(dottedName, nodeValue))
+                e.stopPropagation()
+                e.preventDefault()
+              }}>
+              <Image
+                src="/images/misc/274C.svg"
+                width={100}
+                height={100}
+                className={`w-8 ${isDisabled ? 'grayscale' : ''}`}
+                alt=""
+              />
+            </button>
+          )}
         </div>
       </div>
     </div>

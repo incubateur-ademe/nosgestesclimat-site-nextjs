@@ -10,9 +10,8 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
-import { useFetchSimulation } from '@/hooks/simulation/useFetchSimulation'
-import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
-import { useRule, useUser } from '@/publicodes-state'
+import { useUpdateSimulationSavedIfChanged } from '@/hooks/simulation/useUpdateSimulationSavedIfChanged'
+import { useRule } from '@/publicodes-state'
 import { useEffect, useRef } from 'react'
 import Warning from './question/Warning'
 
@@ -39,16 +38,6 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
     warning,
   } = useRule(question)
 
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
-
-  const { simulation: simulationSaved } = useFetchSimulation({
-    simulationId: currentSimulation?.id ?? '',
-  })
-
-  const { saveSimulationNotAsync } = useSaveSimulation()
-
   // It should happen only on mount (the component remount every time the question changes)
   const prevQuestion = useRef('')
 
@@ -64,18 +53,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
     }
   }, [type, numericValue, setTempValue, question])
 
-  function handleUpdateSavedSimulation() {
-    if (
-      currentSimulation &&
-      currentSimulation?.progression === 1 &&
-      !!simulationSaved
-    ) {
-      saveSimulationNotAsync({
-        simulation: currentSimulation,
-        shouldSendSimulationEmail: false,
-      })
-    }
-  }
+  useUpdateSimulationSavedIfChanged()
 
   return (
     <>
@@ -89,7 +67,6 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
               if (setTempValue) setTempValue(value)
             }
             setValue(value, question)
-            handleUpdateSavedSimulation()
           }}
         />
         {type === 'number' && (
@@ -99,7 +76,6 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             setValue={(value) => {
               if (setTempValue) setTempValue(value)
               setValue(value, question)
-              handleUpdateSavedSimulation()
             }}
             isMissing={isMissing}
             min={0}
@@ -114,7 +90,6 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             value={value}
             setValue={(value) => {
               setValue(value, question)
-              handleUpdateSavedSimulation()
             }}
             isMissing={isMissing}
             data-cypress-id={question}
@@ -131,7 +106,6 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             value={String(value)}
             setValue={(value) => {
               setValue(value, question)
-              handleUpdateSavedSimulation()
             }}
             isMissing={isMissing}
             data-cypress-id={question}
