@@ -107,7 +107,7 @@ export const footerClickInternational = [
 ]
 
 // Figma comment #17
-export const footerClickLanguage = (locale: 'fr' | 'en') => [
+export const footerClickLanguage = (locale: string) => [
   'trackEvent',
   'Footer',
   'Click Langage',
@@ -119,5 +119,5 @@ export const breadcrumbClickLink = (level: number) => [
   'trackEvent',
   'Breadcrumb',
   'Click link',
-  level,
+  String(level),
 ]

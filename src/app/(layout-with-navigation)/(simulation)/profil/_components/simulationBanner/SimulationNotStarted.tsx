@@ -1,8 +1,10 @@
 import Trans from '@/components/translation/Trans'
+import { profilClickCtaCommencer } from '@/constants/tracking/pages/profil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import TutorialLink from './_components/TutorialLink'
 
 export default function SimulationNotStarted() {
@@ -19,7 +21,9 @@ export default function SimulationNotStarted() {
       </p>
 
       <div className="md: flex w-full flex-wrap items-center justify-start gap-4">
-        <ButtonLink href={getLinkToSimulateur()}>
+        <ButtonLink
+          href={getLinkToSimulateur()}
+          onClick={() => trackEvent(profilClickCtaCommencer)}>
           <ProgressCircle className="mr-2" white />
           <Trans>Faire le test</Trans>
         </ButtonLink>
