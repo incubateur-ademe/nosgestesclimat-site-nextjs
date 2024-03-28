@@ -1,5 +1,6 @@
 import Question from '@/components/form/Question'
 import Trans from '@/components/translation/Trans'
+import Emoji from '@/design-system/utils/Emoji'
 import { useEngine } from '@/publicodes-state'
 
 export default function Plats() {
@@ -10,24 +11,33 @@ export default function Plats() {
   return (
     <>
       <Question question={'alimentation . plats'} />
-      <div className="text-center text-sm">
-        {totalNumberOfPlats < 10 ? (
+      <div className="mb-2 text-center text-sm">
+        {totalNumberOfPlats < 12 ? (
           <span className="text-red-700">
+            <b>{totalNumberOfPlats} </b>
             <Trans>
-              Moins de 10 repas par semaine, quel appétit de moineau
+              <b>repas </b>par semaine, quel appétit de moineau
             </Trans>{' '}
-            🐦
+            <Emoji>🐦</Emoji>
           </span>
         ) : null}
-        {totalNumberOfPlats > 18 ? (
+        {totalNumberOfPlats > 16 ? (
           <span className="text-red-700">
-            <Trans>Plus de 18 repas par semaine, quel appétit</Trans> 💪
+            <b>{totalNumberOfPlats} </b>
+            <Trans>
+              <b>repas</b> par semaine, quel appétit
+            </Trans>{' '}
+            <Emoji>💪</Emoji>
           </span>
         ) : null}
-        {totalNumberOfPlats >= 10 && totalNumberOfPlats <= 18 ? (
-          <div className="mb-2 text-center">
-            <Trans>Miam</Trans> 😋
-          </div>
+        {totalNumberOfPlats >= 12 && totalNumberOfPlats <= 16 ? (
+          <span>
+            <b>{totalNumberOfPlats} </b>
+            <Trans>
+              <b>repas </b>par semaine, miam
+            </Trans>{' '}
+            <Emoji>😋</Emoji>
+          </span>
         ) : null}
       </div>
     </>
