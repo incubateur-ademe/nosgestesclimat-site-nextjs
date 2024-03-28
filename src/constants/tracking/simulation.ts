@@ -20,7 +20,7 @@ export const simulationCategoryCompleted = (category: DottedName) => [
 export const simulationSimulationStarted = [
   'trackEvent',
   'Simulation',
-  'Simulation Started',
+  'Simulation First answer',
 ]
 
 export const simulationSimulationHalfCompleted = [

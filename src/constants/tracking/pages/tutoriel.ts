@@ -14,7 +14,7 @@ export const tutorielClickSuivant = (timeSpentOnPage: number) => [
   'Tutoriel',
   'Click Suivant',
   null,
-  timeSpentOnPage,
+  String(timeSpentOnPage),
 ]
 
 // Figma comment #29
@@ -25,5 +25,5 @@ export const tutorielClickQuestion = (question: string) => [
   question,
 ]
 
-// Figma comment #30
+//
 export const tutorielClickFaq = ['trackEvent', 'Tutoriel', 'Click FAQ']

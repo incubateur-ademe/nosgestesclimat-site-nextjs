@@ -44,3 +44,6 @@ export const simulateurCloseScoreInfo = [
   'Simulateur',
   'Close Score Info',
 ]
+
+// Figma comment #121
+export const simulateurClickFaq = ['trackEvent', 'Simulateur', 'Click FAQ']

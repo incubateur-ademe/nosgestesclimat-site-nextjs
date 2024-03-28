@@ -2,9 +2,14 @@
 
 import QuestionButton from '@/components/misc/QuestionButton'
 import Trans from '@/components/translation/Trans'
+import {
+  simulateurCloseScoreInfo,
+  simulateurOpenScoreInfo,
+} from '@/constants/tracking/pages/simulateur'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useRule, useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
 import Planet from './_components/Planet'
@@ -33,12 +38,16 @@ export default function Total({ toggleQuestionList }: Props) {
     )
   }, 0)
 
+  const toggleOpen = () => {
+    if (tutorials.scoreExplanation) {
+      trackEvent(simulateurOpenScoreInfo)
+      showTutorial('scoreExplanation')
+    } else {
+      trackEvent(simulateurCloseScoreInfo)
+      hideTutorial('scoreExplanation')
+    }
+  }
   const carbonFootprintValue = numericValue - actionChoicesSumValue
-
-  const toggleOpen = () =>
-    tutorials.scoreExplanation
-      ? showTutorial('scoreExplanation')
-      : hideTutorial('scoreExplanation')
 
   return (
     <div className="md:mb-2">
