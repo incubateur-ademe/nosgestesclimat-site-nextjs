@@ -16,6 +16,12 @@ export const trackingDownloadRavijenChart = [
   'Download Ravijen chart',
 ]
 
+export const trackingClickRegionBanner = [
+  'trackEvent',
+  'Misc',
+  'Click Region Banner',
+]
+
 export const trackingSplitTesting = (branch: string) => [
   'trackEvent',
   'Misc',

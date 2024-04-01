@@ -3,7 +3,7 @@
 import OrgaStatistics from '@/components/organisations/OrgaStatistics'
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import Trans from '@/components/translation/Trans'
-import { clickSettingsLinkEvent } from '@/constants/matomo/organisations'
+import { organisationsDashboardClickParameters } from '@/constants/tracking/pages/organisationsDashboard'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
@@ -68,7 +68,7 @@ export default function OrganisationPage() {
             <ButtonLink
               href={`/organisations/${organisation?.slug}/parametres`}
               onClick={() => {
-                trackEvent(clickSettingsLinkEvent)
+                trackEvent(organisationsDashboardClickParameters)
               }}
               color="text"
               className="self-start">

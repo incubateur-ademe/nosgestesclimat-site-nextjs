@@ -1,12 +1,12 @@
-import { getMatomoEventClickSuggestion } from '@/constants/matomo'
+import { questionClickSuggestion } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
 import { useEngine, useRule } from '@/publicodes-state'
-import { Situation } from '@/publicodes-state/types'
+import { DottedName, Situation } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
-  question: string
+  question: DottedName
   setValue: (value: number) => void
 }
 
@@ -25,7 +25,7 @@ export default function Suggestions({ question, setValue }: Props) {
           className="text-xs font-normal md:text-sm"
           onClick={() => {
             trackEvent(
-              getMatomoEventClickSuggestion(question, suggestion.label)
+              questionClickSuggestion({ question, answer: suggestion.label })
             )
             if (typeof suggestion.value === 'object') {
               updateSituation(

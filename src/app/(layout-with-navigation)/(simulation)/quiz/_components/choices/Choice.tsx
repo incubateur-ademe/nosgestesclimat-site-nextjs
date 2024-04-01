@@ -1,5 +1,5 @@
 import ChoiceInput from '@/components/misc/ChoiceInput'
-import { getMatomoEventQuizClickAnswer } from '@/constants/matomo'
+import { quizClickAnswer } from '@/constants/tracking/pages/quiz'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
@@ -17,7 +17,7 @@ export default function Choice({ answer, choice, setAnswer }: Props) {
   return (
     <ChoiceInput
       onClick={() => {
-        trackEvent(getMatomoEventQuizClickAnswer(choice))
+        trackEvent(quizClickAnswer(choice))
         setAnswer(choice)
       }}
       active={choice === answer}>

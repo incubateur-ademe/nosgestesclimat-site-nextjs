@@ -1,12 +1,12 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { DottedName, NodeValue } from '@/publicodes-state/types'
 
 type Props = {
   question: DottedName
-  answer?: DottedName | number | string
-  numPreviousAnswer?: number
+  answer?: DottedName | NodeValue | string
+  mosaicValue?: NodeValue | string
   timeSpentOnQuestion?: number
 }
 // Figma comment #45
@@ -32,21 +32,17 @@ export const questionClickSuivant = ({
   'trackEvent',
   question,
   'Click Suivant',
-  answer,
-  timeSpentOnQuestion,
+  String(answer),
+  String(timeSpentOnQuestion),
 ]
 
 // Figma comment #49
-export const questionClickPass = ({
-  question,
-  answer,
-  timeSpentOnQuestion,
-}: Props) => [
+export const questionClickPass = ({ question, timeSpentOnQuestion }: Props) => [
   'trackEvent',
   question,
   'Click Je ne sais pas',
-  answer,
-  timeSpentOnQuestion,
+  null,
+  String(timeSpentOnQuestion),
 ]
 
 // Figma comment #48
@@ -68,21 +64,26 @@ export const questionToggleAnswerInfo = ({ question, answer }: Props) => [
 export const questionChooseAnswer = ({
   question,
   answer,
-  numPreviousAnswer,
+  mosaicValue,
 }: Props) => [
   'trackEvent',
   question,
   'Choose Answer',
-  answer,
-  numPreviousAnswer,
+  String(answer),
+  String(mosaicValue),
 ]
 
 // Figma comment #51
-export const questionTypeAnswer = ({ question, answer }: Props) => [
+export const questionTypeAnswer = ({
+  question,
+  answer,
+  mosaicValue,
+}: Props) => [
   'trackEvent',
   question,
   'Type Answer',
-  answer,
+  String(answer),
+  String(mosaicValue),
 ]
 
 // Figma comment #50
@@ -90,7 +91,7 @@ export const questionClickSuggestion = ({ question, answer }: Props) => [
   'trackEvent',
   question,
   'Click Suggestion',
-  answer,
+  String(answer),
 ]
 
 // Figma comment #52

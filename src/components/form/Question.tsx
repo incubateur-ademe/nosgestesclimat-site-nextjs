@@ -10,7 +10,12 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
+import {
+  questionChooseAnswer,
+  questionTypeAnswer,
+} from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef } from 'react'
 import Warning from './question/Warning'
 
@@ -70,8 +75,11 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             unit={unit}
             value={setTempValue ? tempValue : numericValue}
             setValue={(value) => {
-              if (setTempValue) setTempValue(value)
+              if (setTempValue) {
+                setTempValue(value)
+              }
               setValue(value, question)
+              trackEvent(questionTypeAnswer({ question, answer: value }))
             }}
             isMissing={isMissing}
             min={0}
@@ -84,7 +92,10 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
         {type === 'boolean' && (
           <BooleanInput
             value={value}
-            setValue={(value) => setValue(value, question)}
+            setValue={(value) => {
+              setValue(value, question)
+              trackEvent(questionChooseAnswer({ question, answer: value }))
+            }}
             isMissing={isMissing}
             data-cypress-id={question}
             label={label || ''}
@@ -98,7 +109,10 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             question={question}
             choices={choices}
             value={String(value)}
-            setValue={(value) => setValue(value, question)}
+            setValue={(value) => {
+              setValue(value, question)
+              trackEvent(questionChooseAnswer({ question, answer: value }))
+            }}
             isMissing={isMissing}
             data-cypress-id={question}
             label={label || ''}
