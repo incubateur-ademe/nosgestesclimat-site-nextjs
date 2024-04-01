@@ -1,7 +1,9 @@
 'use client'
 
 import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
+import { useTrackLocale } from '@/hooks/tracking/useTrackLocale'
 import { useTrackPageView } from '@/hooks/tracking/useTrackPageView'
+import { useTrackRegion } from '@/hooks/tracking/useTrackRegion'
 import { useTrackSplitTesting } from '@/hooks/tracking/useTrackSplitTesting'
 import { UserProvider } from '@/publicodes-state'
 import { MigrationType } from '@/publicodes-state/types'
@@ -24,6 +26,8 @@ export default function MainLayoutProviders({
   // Handles sending split testing data to Matomo
   useTrackSplitTesting()
   useTrackPageView()
+  useTrackLocale()
+  useTrackRegion()
 
   return (
     <QueryParamsProvider>

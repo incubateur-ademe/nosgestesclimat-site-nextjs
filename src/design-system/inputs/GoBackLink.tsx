@@ -1,3 +1,5 @@
+'use client'
+
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { amisCreationClickRetour } from '@/constants/tracking/pages/amisCreation'

@@ -10,6 +10,19 @@ export const trackingIframe = (url: string) => [
   url,
 ]
 
+export const trackingLocale = (locale: string) => [
+  'trackEvent',
+  'Misc',
+  'Language',
+  locale,
+]
+export const trackingRegion = (region: string) => [
+  'trackEvent',
+  'Misc',
+  'Region',
+  region,
+]
+
 export const trackingDownloadRavijenChart = [
   'trackEvent',
   'Misc',

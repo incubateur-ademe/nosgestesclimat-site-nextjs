@@ -32,7 +32,6 @@ export default function ActionDetail({
     ?.map(decodeURIComponent)
     ?.join(' . ')
 
-  const { getValue } = useEngine()
   const { rules, getRuleObject, extendedFoldedSteps } = useTempEngine()
 
   const { getCurrentSimulation, toggleActionChoice } = useUser()
