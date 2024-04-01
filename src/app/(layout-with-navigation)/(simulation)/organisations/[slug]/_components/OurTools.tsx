@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import {
   organisationsDashboardClickAteliers,
@@ -56,9 +58,7 @@ export default function OurTools() {
           }>
           <ButtonLink
             color="secondary"
-            onClick={() => {
-              trackEvent(organisationsDashboardClickAteliers)
-            }}
+            trackingEvent={organisationsDashboardClickAteliers}
             className="w-full justify-center"
             href="https://drive.google.com/drive/folders/1dORmBbDLDG31PLLOblP8Wg5CrrksAfjV"
             target="_blank"
@@ -86,9 +86,7 @@ export default function OurTools() {
             color="secondary"
             href="https://impactco2.fr/comparateur?mtm_campaign=ngc-orga"
             target="_blank"
-            onClick={() => {
-              trackEvent(organisationsDashboardClickImpactCo2)
-            }}
+            trackingEvent={organisationsDashboardClickImpactCo2}
             aria-label={t(
               'Découvrez le simulateur, ouvrir dans un nouvel onglet'
             )}>

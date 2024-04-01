@@ -1,3 +1,5 @@
+'use client'
+
 import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,

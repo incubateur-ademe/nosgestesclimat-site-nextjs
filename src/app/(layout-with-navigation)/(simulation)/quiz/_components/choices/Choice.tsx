@@ -1,3 +1,5 @@
+'use client'
+
 import ChoiceInput from '@/components/misc/ChoiceInput'
 import { quizClickAnswer } from '@/constants/tracking/pages/quiz'
 import Emoji from '@/design-system/utils/Emoji'

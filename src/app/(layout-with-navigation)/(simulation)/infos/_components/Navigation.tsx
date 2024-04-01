@@ -1,3 +1,5 @@
+'use client'
+
 import {
   BIRTHDATE_PAGE,
   EMAIL_PAGE,

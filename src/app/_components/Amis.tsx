@@ -1,10 +1,7 @@
-'use client'
-
 import Trans from '@/components/translation/Trans'
 import { homeClickClassements } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
 
 export default function Amis() {
@@ -44,7 +41,7 @@ export default function Amis() {
       <ButtonLink
         href="/amis"
         data-cypress-id="amis-link"
-        onClick={() => trackEvent(homeClickClassements)}>
+        trackingEvent={homeClickClassements}>
         <Trans>Commencer</Trans>
       </ButtonLink>
     </div>

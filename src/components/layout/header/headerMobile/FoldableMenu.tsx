@@ -1,3 +1,5 @@
+'use client'
+
 import ProfileIcon from '@/components/icons/ProfileIcon'
 import {
   footerClickDocumentation,

@@ -1,3 +1,5 @@
+'use client'
+
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { classementClickOrganisation } from '@/constants/tracking/pages/classements'

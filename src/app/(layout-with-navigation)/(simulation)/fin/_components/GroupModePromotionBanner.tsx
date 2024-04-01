@@ -5,7 +5,6 @@ import { endClickCreateGroup } from '@/constants/tracking/pages/end'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
@@ -44,7 +43,7 @@ export default function GroupModePromotionBanner({
           color="secondary"
           href="/amis"
           className="bg-white"
-          onClick={() => trackEvent(endClickCreateGroup)}>
+          trackingEvent={endClickCreateGroup}>
           <Trans>Créer un groupe</Trans>
         </ButtonLink>
       </div>

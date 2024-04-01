@@ -3,7 +3,6 @@ import { homeClickActions } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
 
 export default async function Actions() {
@@ -31,7 +30,7 @@ export default async function Actions() {
       <ButtonLink
         color="secondary"
         href="/actions"
-        onClick={() => trackEvent(homeClickActions)}
+        trackingEvent={homeClickActions}
         data-cypress-id="actions-link">
         <Trans>Toutes les actions</Trans>
       </ButtonLink>

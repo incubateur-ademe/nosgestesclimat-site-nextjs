@@ -1,3 +1,5 @@
+'use client'
+
 import { quizClickAnswer } from '@/constants/tracking/pages/quiz'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'

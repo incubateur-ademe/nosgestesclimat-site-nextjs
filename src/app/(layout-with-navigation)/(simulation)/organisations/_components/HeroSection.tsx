@@ -42,9 +42,7 @@ export default function HeroSection() {
         <div className="flex flex-col flex-wrap items-center gap-8 sm:flex-row sm:justify-center md:items-baseline lg:justify-start">
           <ButtonLink
             href="/organisations/connexion"
-            onClick={() => {
-              trackEvent(organisationsAccueilClickCommencer)
-            }}
+            trackingEvent={organisationsAccueilClickCommencer}
             size="lg">
             <Trans>Commencez</Trans>
           </ButtonLink>

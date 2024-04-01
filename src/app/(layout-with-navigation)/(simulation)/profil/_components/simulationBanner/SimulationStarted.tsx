@@ -14,7 +14,6 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useActions, useForm } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import TutorialLink from './_components/TutorialLink'
 
 export default function SimulationStarted() {
@@ -66,7 +65,7 @@ export default function SimulationStarted() {
             className="w-full text-center leading-8"
             color="primary"
             href={getLinkToEndPage()}
-            onClick={() => trackEvent(profilClickCtaResultats)}>
+            trackingEvent={profilClickCtaResultats}>
             <Trans>
               <Emoji className="mr-2">👀</Emoji> Voir mon résultat
             </Trans>
@@ -78,7 +77,7 @@ export default function SimulationStarted() {
             color="primary"
             className="w-full  text-center"
             href={getLinkToSimulateur()}
-            onClick={() => trackEvent(profilClickCtaReprendre)}>
+            trackingEvent={profilClickCtaReprendre}>
             <Trans>
               <ProgressCircle white className="mr-2" /> Reprendre mon test
             </Trans>
@@ -88,8 +87,8 @@ export default function SimulationStarted() {
         <ButtonLink
           color="secondary"
           className="my-2 w-full text-center !text-base"
+          trackingEvent={profilClickRecommencer}
           onClick={() => {
-            trackEvent(profilClickRecommencer)
             goToSimulateurPage({ noNavigation: true, newSimulation: {} })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>

@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import {
   tutorielClickFaq,
@@ -168,7 +170,7 @@ export default function AutresQuestions() {
         href="/questions-frequentes"
         size="sm"
         color="secondary"
-        onClick={() => trackEvent(tutorielClickFaq)}>
+        trackingEvent={tutorielClickFaq}>
         ☝️ <Trans>Consultez la FAQ</Trans>
       </ButtonLink>
     </div>

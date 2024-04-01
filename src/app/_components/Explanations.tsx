@@ -3,7 +3,6 @@ import { homeClickEnSavoirPlus } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default async function Explanations() {
   const { t } = await getServerTranslation()
@@ -45,7 +44,7 @@ export default async function Explanations() {
         color="secondary"
         href="/blog/budget"
         data-cypress-id="budget-link"
-        onClick={() => trackEvent(homeClickEnSavoirPlus)}>
+        trackingEvent={homeClickEnSavoirPlus}>
         <Trans>En savoir plus</Trans>
       </ButtonLink>
     </div>

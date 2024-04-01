@@ -3,7 +3,6 @@ import { classementCreateGroup } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Container from '@/design-system/layout/Container'
 import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function CreateFirstGroupSection() {
   return (
@@ -17,7 +16,7 @@ export default function CreateFirstGroupSection() {
       </p>
       <ButtonLink
         href={linkToGroupCreation}
-        onClick={() => trackEvent(classementCreateGroup)}
+        trackingEvent={classementCreateGroup}
         data-cypress-id="button-create-first-group">
         <Trans>Commencer</Trans>
       </ButtonLink>

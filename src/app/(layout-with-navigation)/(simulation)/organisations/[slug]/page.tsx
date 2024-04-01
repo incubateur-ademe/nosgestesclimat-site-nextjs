@@ -9,7 +9,6 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import useFetchOrganisation from '../_hooks/useFetchOrganisation'
@@ -67,9 +66,7 @@ export default function OrganisationPage() {
             </div>
             <ButtonLink
               href={`/organisations/${organisation?.slug}/parametres`}
-              onClick={() => {
-                trackEvent(organisationsDashboardClickParameters)
-              }}
+              trackingEvent={organisationsDashboardClickParameters}
               color="text"
               className="self-start">
               <Emoji className="mr-2">⚙️</Emoji>

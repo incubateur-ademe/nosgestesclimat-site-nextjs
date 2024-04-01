@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import {
   organisationsDashboardClickIframe,
@@ -55,9 +57,7 @@ export default function ShareSection({
             target="_blank"
             href="https://accelerateur-transition-ecologique-ademe.notion.site/Int-grer-Nos-Gestes-Climat-en-iframe-abdeb175baf84143922006964d80348c?pvs=25"
             className="self-start"
-            onClick={() => {
-              trackEvent(organisationsDashboardClickIframe)
-            }}>
+            trackingEvent={organisationsDashboardClickIframe}>
             <Trans>Découvrez le guide</Trans>
           </ButtonLink>
         </CTACard>

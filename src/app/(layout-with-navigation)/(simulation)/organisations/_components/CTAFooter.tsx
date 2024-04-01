@@ -7,7 +7,6 @@ import {
 } from '@/constants/tracking/pages/organisationsAccueil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function CTAFooter() {
   const { t } = useClientTranslation()
@@ -31,9 +30,7 @@ export default function CTAFooter() {
 
           <div className="flex flex-col flex-wrap items-center gap-4 sm:flex-row">
             <ButtonLink
-              onClick={() => {
-                trackEvent(organisationsAccueilClickCommencerBottom)
-              }}
+              trackingEvent={organisationsAccueilClickCommencerBottom}
               href="/organisations/connexion">
               <Trans>Créer un compte</Trans>
             </ButtonLink>
@@ -42,9 +39,7 @@ export default function CTAFooter() {
               color="text"
               className="font-normal underline"
               href="/contact?motif=demo"
-              onClick={() => {
-                trackEvent(organisationsAccueilClickDemoBottom)
-              }}>
+              trackingEvent={organisationsAccueilClickDemoBottom}>
               <Trans>Demandez une démo</Trans>
             </ButtonLink>
           </div>

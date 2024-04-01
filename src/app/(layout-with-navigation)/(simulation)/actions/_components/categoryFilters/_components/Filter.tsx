@@ -1,4 +1,5 @@
 'use client'
+
 import { actionsClickFilter } from '@/constants/tracking/pages/actions'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'

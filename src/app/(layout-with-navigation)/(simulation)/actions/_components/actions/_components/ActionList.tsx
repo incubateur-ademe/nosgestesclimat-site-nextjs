@@ -1,3 +1,5 @@
+'use client'
+
 import { actionsClickYes } from '@/constants/tracking/pages/actions'
 import { FormProvider, useEngine, useUser } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'

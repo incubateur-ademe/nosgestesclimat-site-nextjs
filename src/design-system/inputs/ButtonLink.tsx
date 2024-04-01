@@ -1,3 +1,5 @@
+'use client'
+
 import Link from '@/components/Link'
 import { ButtonSize } from '@/types/values'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -12,7 +14,7 @@ type Props = {
   size?: ButtonSize
   title?: string
   onClick?: () => void
-  trackingEvent?: (string | number)[]
+  trackingEvent?: (string | null)[]
   target?: string
 }
 

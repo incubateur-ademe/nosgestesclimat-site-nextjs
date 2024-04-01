@@ -5,7 +5,6 @@ import { homeClickOrganisations } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
 import { useState } from 'react'
 import Background from './organisations/Background'
@@ -35,7 +34,7 @@ export default function Organisations() {
           </p>
           <ButtonLink
             href="/organisations"
-            onClick={() => trackEvent(homeClickOrganisations)}
+            trackingEvent={homeClickOrganisations}
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}>
             <Trans>Découvrir</Trans>

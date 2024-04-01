@@ -1,3 +1,5 @@
+'use client'
+
 import Link from '@/components/Link'
 import { breadcrumbClickLink } from '@/constants/tracking/layout'
 import { trackEvent } from '@/utils/matomo/trackEvent'

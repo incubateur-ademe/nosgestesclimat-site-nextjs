@@ -1,3 +1,5 @@
+'use client'
+
 import Link from '@/components/Link'
 import { endClickAction } from '@/constants/tracking/pages/end'
 import ActionCard from '@/design-system/actions/ActionCard'

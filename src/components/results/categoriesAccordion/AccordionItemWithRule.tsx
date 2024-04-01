@@ -1,3 +1,5 @@
+'use client'
+
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
 import Trans from '@/components/translation/Trans'
 import { endClickCategory } from '@/constants/tracking/pages/end'
