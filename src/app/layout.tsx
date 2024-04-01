@@ -73,8 +73,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <meta name="theme-color" content="#491273" />
         <Script id="matomo">
           {`
-        <!-- Matomo -->
-        <script>
           var _paq = window._paq = window._paq || [];
           /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
           _paq.push(['trackPageView']);
@@ -86,9 +84,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
             var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
             g.async=true; g.src='https://cdn.matomo.cloud/preprod-nosgestesclimat.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
           })();
-        </script>
-        <!-- End Matomo Code -->
-        
         `}
         </Script>
       </head>
