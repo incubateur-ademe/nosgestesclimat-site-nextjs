@@ -14,27 +14,27 @@ export default function Plats() {
       <div aria-live="polite" className="mb-2 text-center text-sm">
         {totalNumberOfPlats < 12 ? (
           <span className="text-red-700">
-            <b>{totalNumberOfPlats} </b>
+            <strong>{totalNumberOfPlats} </strong>
             <Trans>
-              <b>repas </b>par semaine, quel appétit de moineau
+              <strong>repas </strong>par semaine, quel appétit de moineau
             </Trans>{' '}
             <Emoji>🐦</Emoji>
           </span>
         ) : null}
         {totalNumberOfPlats > 16 ? (
           <span className="text-red-700">
-            <b>{totalNumberOfPlats} </b>
+            <strong>{totalNumberOfPlats} </strong>
             <Trans>
-              <b>repas</b> par semaine, quel appétit
+              <strong>repas </strong>par semaine, quel appétit !
             </Trans>{' '}
             <Emoji>💪</Emoji>
           </span>
         ) : null}
         {totalNumberOfPlats >= 12 && totalNumberOfPlats <= 16 ? (
           <span>
-            <b>{totalNumberOfPlats} </b>
+            <strong>{totalNumberOfPlats} </strong>
             <Trans>
-              <b>repas </b>par semaine, miam
+              <strong>repas </strong>par semaine, miam
             </Trans>{' '}
             <Emoji>😋</Emoji>
           </span>
