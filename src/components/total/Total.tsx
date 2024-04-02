@@ -2,7 +2,7 @@
 
 import QuestionButton from '@/components/misc/QuestionButton'
 import Trans from '@/components/translation/Trans'
-import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useRule, useUser } from '@/publicodes-state'
 import Explanation from './_components/Explanation'

@@ -61,7 +61,7 @@ export default function CreationForm({
       />
 
       <TextInputGroup
-        name="numberOfExpectedParticipants"
+        name="expectedNumberOfParticipants"
         type="number"
         label={
           <Label isOptional>

@@ -1,7 +1,7 @@
 import FilAriane from '@/components/layout/FilAriane'
 import Header from '@/components/layout/Header'
-import getGeolocation from '@/helpers/getGeolocation'
-import getMigrationInstructions from '@/helpers/modelFetching/getMigrationInstructions'
+import { getGeolocation } from '@/helpers/getGeolocation'
+import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
 import '@/locales/initClient'
 import '@/locales/initServer'
@@ -96,7 +96,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         )}
       </head>
 
-      <body className={`${marianne.className} text-default`}>
+      <body className={`${marianne.className} text-default bg-white`}>
         <Script id="script-user-agent">{`
           const b = document.documentElement;
           b.setAttribute('data-useragent', navigator.userAgent);

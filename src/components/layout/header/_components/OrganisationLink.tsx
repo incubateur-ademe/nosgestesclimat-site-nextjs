@@ -19,20 +19,22 @@ export default function OrganisationLink() {
   const organisationName = organisation?.name ?? user?.organisation?.name
 
   const formattedOrganisationName =
-    organisationName?.length > 14
-      ? `${organisationName.substring(0, 14).trim()}…`
+    organisationName && organisationName?.length > 14
+      ? `${organisationName?.substring(0, 14).trim()}…`
       : organisationName
+
+  const isOrganisationFullyCreated = !!organisation?.slug
 
   return (
     <NavLink
       href={
-        organisation
+        isOrganisationFullyCreated
           ? `/organisations/${organisation?.slug}`
           : '/organisations/connexion'
       }
       icon={OrganisationIcon}
       title={t('Organisation')}>
-      {organisationName ? (
+      {isOrganisationFullyCreated ? (
         <span className="whitespace-nowrap">{formattedOrganisationName}</span>
       ) : (
         <Trans>Organisation</Trans>

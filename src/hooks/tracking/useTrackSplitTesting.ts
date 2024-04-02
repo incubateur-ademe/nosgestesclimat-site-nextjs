@@ -1,7 +1,7 @@
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect } from 'react'
 
-export default function useTrackSplitTesting() {
+export function useTrackSplitTesting() {
   useEffect(() => {
     trackEvent([
       'trackEvent',

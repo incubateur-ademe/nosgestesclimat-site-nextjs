@@ -11,7 +11,7 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
 const titles = {
@@ -100,6 +100,19 @@ export default function Commencer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const currentSimulationRef = useRef(currentSimulation)
+  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
+    useState(false)
+  useEffect(() => {
+    if (!shouldGoToSimulateurPage) {
+      return
+    }
+    if (currentSimulationRef.current?.poll !== currentSimulation?.poll) {
+      goToSimulateurPage()
+    }
+    currentSimulationRef.current = currentSimulation
+  }, [goToSimulateurPage, shouldGoToSimulateurPage, currentSimulation])
+
   if (!status) {
     return null
   }
@@ -128,7 +141,7 @@ export default function Commencer() {
             trackEvent(getParticipantInscriptionPageVisitedEvent('commencer'))
 
             // We try to go to the simulateur page. If the test is finished we will save the simulation and then go to the end page
-            goToSimulateurPage()
+            setShouldGoToSimulateurPage(true)
           }}>
           {buttonLabels[status]}
         </Button>

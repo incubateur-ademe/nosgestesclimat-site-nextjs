@@ -1,8 +1,9 @@
+import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Markdown from '@/design-system/utils/Markdown'
-import getRules from '@/helpers/modelFetching/getRules'
+import { getRules } from '@/helpers/modelFetching/getRules'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { Rules } from '@/publicodes-state/types'
 import { SuppportedRegions } from '@/types/international'
@@ -39,6 +40,8 @@ export default async function DocumentationServer({ slugs }: Props) {
 
   return (
     <div className="mt-4 w-full max-w-4xl p-4 md:mx-auto md:py-8">
+      <PasserTestBanner />
+
       <Title
         title={`${rule.icônes ?? ''} ${capitalizeString(
           getRuleTitle({ ...rule, dottedName: ruleName })

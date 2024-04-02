@@ -6,7 +6,7 @@ import { getOrganisationItems } from '@/helpers/filAriane/getOrganisationItems'
 import { useUser } from '@/publicodes-state'
 import { useParams, usePathname } from 'next/navigation'
 
-const TARGETED_PATHS = ['organisations']
+const TARGETED_PATHS = ['/organisations']
 
 export default function FilAriane() {
   const pathname = usePathname()
@@ -14,9 +14,12 @@ export default function FilAriane() {
 
   const { user } = useUser()
 
+  // Handles fetching the organisation data if the user is an administrator
   const { data: organisation } = useFetchOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
   })
+
+  const isAdmin = organisation?.slug === params.slug
 
   if (!TARGETED_PATHS.some((path) => pathname.includes(path))) return null
 
@@ -26,12 +29,12 @@ export default function FilAriane() {
     isActive: boolean
   }[] => {
     // Organisation path
-    if (pathname.includes('organisations')) {
+    if (pathname.includes('/organisations')) {
       return getOrganisationItems({
         pathname,
         params,
         user,
-        isAdmin: !!organisation,
+        isAdmin,
       })
     }
 

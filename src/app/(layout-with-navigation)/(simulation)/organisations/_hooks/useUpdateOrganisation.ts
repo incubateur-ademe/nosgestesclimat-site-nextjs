@@ -11,7 +11,7 @@ export function useUpdateOrganisation({ email }: { email: string }) {
       hasOptedInForCommunications,
       defaultAdditionalQuestions,
       telephone,
-      numberOfExpectedParticipants,
+      expectedNumberOfParticipants,
     }: {
       name?: string
       position?: string
@@ -19,7 +19,7 @@ export function useUpdateOrganisation({ email }: { email: string }) {
       hasOptedInForCommunications?: boolean
       defaultAdditionalQuestions?: string[]
       telephone?: string
-      numberOfExpectedParticipants?: string
+      expectedNumberOfParticipants?: string
     }) =>
       axios
         .post(
@@ -32,7 +32,7 @@ export function useUpdateOrganisation({ email }: { email: string }) {
             defaultAdditionalQuestions,
             position,
             telephone,
-            numberOfExpectedParticipants,
+            expectedNumberOfParticipants,
           },
           {
             withCredentials: true,
