@@ -13,6 +13,15 @@ export function useTrackPageView() {
       url = pathname.slice(3)
     }
 
+    // If there is an organisation name in the pathname, we change it to "organisation-name"
+    const pathNameSegment = url.split('/')
+    if (
+      pathNameSegment[0] === 'organisation' &&
+      !['connexion', 'creation', 'demander-demo'].includes(pathNameSegment[1])
+    ) {
+      url = url.replace(pathNameSegment[1], 'organisation-name')
+    }
+
     // We convert the question searchParams to a real url
     const questionParams = searchParams.get('question')
     if (questionParams) {
