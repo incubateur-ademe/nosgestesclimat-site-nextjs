@@ -2,6 +2,7 @@ import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import questions from '@/components/questions'
+import { uuidToNumber } from '@/helpers/uuidToNumber'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
@@ -34,13 +35,15 @@ export default function Form() {
   // we wait for the progression to be updated before redirecting to the end page
   const [shouldGoToEndPage, setShouldGoToEndPage] = useState(false)
   useEffect(() => {
+    // We show the quiz for 10% of our users
+    const shouldShowQuiz = uuidToNumber(currentSimulation?.id ?? '') === 0
     if (shouldGoToEndPage && progression === 1) {
       goToEndPage({
-        shouldShowQuiz: true,
+        shouldShowQuiz,
         allowedToGoToGroupDashboard: true,
       })
     }
-  }, [shouldGoToEndPage, progression, goToEndPage])
+  }, [shouldGoToEndPage, progression, goToEndPage, currentSimulation])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
 
