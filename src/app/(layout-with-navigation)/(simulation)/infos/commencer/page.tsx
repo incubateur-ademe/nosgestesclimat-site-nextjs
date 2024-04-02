@@ -11,7 +11,7 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
 const titles = {
@@ -94,37 +94,25 @@ export default function Commencer() {
   const { handleUpdateShouldPreventNavigation } = useContext(
     PreventNavigationContext
   )
-
-  const currentSimulationRef = useRef(currentSimulation)
-  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
-    useState(false)
-  useEffect(() => {
-    if (!shouldGoToSimulateurPage) {
-      return
-    }
-    if (currentSimulationRef.current?.polls !== currentSimulation?.polls) {
-      goToSimulateurPage()
-    }
-    currentSimulationRef.current = currentSimulation
-  }, [goToSimulateurPage, shouldGoToSimulateurPage, currentSimulation])
-
   useEffect(() => {
     handleUpdateShouldPreventNavigation(true)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [handleUpdateShouldPreventNavigation])
 
-  const currentSimulationRef = useRef(currentSimulation)
   const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
     useState(false)
   useEffect(() => {
     if (!shouldGoToSimulateurPage) {
       return
     }
-    if (currentSimulationRef.current?.poll !== currentSimulation?.poll) {
+    if (currentSimulation?.polls?.includes(pollSlug || '')) {
       goToSimulateurPage()
     }
-    currentSimulationRef.current = currentSimulation
-  }, [goToSimulateurPage, shouldGoToSimulateurPage, currentSimulation])
+  }, [
+    goToSimulateurPage,
+    shouldGoToSimulateurPage,
+    currentSimulation,
+    pollSlug,
+  ])
 
   if (!status) {
     return null
