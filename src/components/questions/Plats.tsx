@@ -11,7 +11,7 @@ export default function Plats() {
   return (
     <>
       <Question question={'alimentation . plats'} />
-      <div className="mb-2 text-center text-sm">
+      <div aria-live="polite" className="mb-2 text-center text-sm">
         {totalNumberOfPlats < 12 ? (
           <span className="text-red-700">
             <b>{totalNumberOfPlats} </b>
