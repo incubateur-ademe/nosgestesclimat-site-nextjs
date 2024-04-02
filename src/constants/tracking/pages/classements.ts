@@ -4,14 +4,14 @@
 // Figma comment #83
 export const classementCreateGroup = [
   'trackEvent',
-  'Classement',
+  'Classements',
   'Create Group',
 ]
 
 // Figma comment #84
 export const classementCreateOrganisation = [
   'trackEvent',
-  'Classement',
+  'Classements',
   'Create Organisation',
 ]
 
@@ -26,7 +26,7 @@ export const classementClickGroup = ({
   numParticipants,
 }: ClassementClickItem) => [
   'trackEvent',
-  'Classement',
+  'Classements',
   'Click Group',
   isAdministator ? 'Administrator' : 'Participant',
   String(numParticipants),
@@ -37,7 +37,7 @@ export const classementClickOrganisation = ({
   isAdministator,
 }: ClassementClickItem) => [
   'trackEvent',
-  'Classement',
+  'Classements',
   'Click Organisation',
   isAdministator ? 'Administrator' : 'Participant',
 ]
