@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { User, UserOrganisationInfo } from '../../types'
+import { RegionFromGeolocation, User, UserOrganisationInfo } from '../../types'
 
 type Props = {
   setUser: Dispatch<SetStateAction<User>>
@@ -11,7 +11,7 @@ export default function useUserDetails({ setUser }: Props) {
   const updateEmail = (email: string) =>
     setUser((prevUser: User) => ({ ...prevUser, email }))
 
-  const updateRegion = (region: { code: string; name: string }) =>
+  const updateRegion = (region: RegionFromGeolocation) =>
     setUser((prevUser: User) => ({ ...prevUser, region }))
 
   const updateLoginExpirationDate = (loginExpirationDate: Date | undefined) =>
