@@ -7,6 +7,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
+import { RegionFromGeolocation } from '@/publicodes-state/types'
 import { SuppportedRegions } from '@/types/international'
 import RegionModelAuthors from './localisation/RegionModelAuthors'
 import RegionSelector from './localisation/RegionSelector'
@@ -66,9 +67,7 @@ export default function Localisation({ supportedRegions }: Props) {
                   color="text"
                   size="sm"
                   onClick={() => {
-                    updateRegion(
-                      initialRegion as { code: string; name: string }
-                    )
+                    updateRegion(initialRegion as RegionFromGeolocation)
                     if (tutorials.localisationBanner) {
                       showTutorial('localisationBanner')
                     }
