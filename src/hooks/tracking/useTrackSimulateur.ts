@@ -21,11 +21,9 @@ export function useTrackSimulateur() {
   useEffect(() => {
     if (prevProgression.current === 0 && progression > 0) {
       trackEvent(simulationSimulationStarted)
-      return
     }
     if (prevProgression.current < 0.5 && progression >= 0.5) {
       trackEvent(simulationSimulationHalfCompleted)
-      return
     }
     prevProgression.current = progression
   }, [progression])

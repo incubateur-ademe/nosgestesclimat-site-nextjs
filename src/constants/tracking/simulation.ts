@@ -55,7 +55,7 @@ export const simulationSimulationCompletedTime = ({
 }: SimulationCompletedProps) => [
   'trackEvent',
   'Simulation',
-  'Simulation Completed',
+  'Simulation Time',
   null,
   String(Math.round((timeSpentOnSimulation ?? 0) / 1000)),
 ]
