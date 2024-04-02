@@ -10,6 +10,8 @@ import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import useFetchOrganisation from '../_hooks/useFetchOrganisation'
 import NousContacter from './_components/NousContacter'
 import OurTools from './_components/OurTools'
@@ -18,6 +20,8 @@ import ShareSection from './_components/ShareSection'
 export default function OrganisationPage() {
   const { user } = useUser()
 
+  const router = useRouter()
+
   const { data: organisation, isError } = useFetchOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
   })
@@ -25,6 +29,12 @@ export default function OrganisationPage() {
   const { data: pollData } = useFetchPollData({
     orgaSlug: organisation?.slug,
   })
+
+  useEffect(() => {
+    if (organisation && !organisation.slug) {
+      router.push('/organisations/creation')
+    }
+  }, [organisation, router])
 
   return (
     <>

@@ -1,14 +1,17 @@
 'use client'
 
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useEffect, useState } from 'react'
 
-export const PreventNavigationContext = createContext<{
+export type PreventNavigationContextType = {
   shouldPreventNavigation: boolean
   handleUpdateShouldPreventNavigation: (value: boolean) => void
-}>({
-  shouldPreventNavigation: false,
-  handleUpdateShouldPreventNavigation: () => {},
-})
+}
+
+export const PreventNavigationContext =
+  createContext<PreventNavigationContextType>({
+    shouldPreventNavigation: false,
+    handleUpdateShouldPreventNavigation: () => {},
+  })
 
 export function PreventNavigationProvider({
   children,
@@ -31,11 +34,14 @@ export function PreventNavigationProvider({
     }
   }, [])
 
-  function handleUpdateShouldPreventNavigation(shouldPrevent: boolean) {
-    setShouldPreventNavigation(shouldPrevent)
+  const handleUpdateShouldPreventNavigation = useCallback(
+    (shouldPrevent: boolean) => {
+      setShouldPreventNavigation(shouldPrevent)
 
-    window.onbeforeunload = shouldPrevent ? () => true : null
-  }
+      window.onbeforeunload = shouldPrevent ? () => true : null
+    },
+    []
+  )
 
   return (
     <PreventNavigationContext.Provider

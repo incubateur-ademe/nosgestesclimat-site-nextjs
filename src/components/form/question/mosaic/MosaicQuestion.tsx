@@ -1,4 +1,6 @@
-import { useRule } from '@/publicodes-state'
+import { useFetchSimulation } from '@/hooks/simulation/useFetchSimulation'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useRule, useUser } from '@/publicodes-state'
 import MosaicBooleanInput from './mosaicQuestion/MosaicBooleanInput'
 import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
 
@@ -20,6 +22,29 @@ export default function MosaicQuestion({
 
   const { resetMosaicChildren } = useRule(parentMosaic)
 
+  const { getCurrentSimulation } = useUser()
+
+  const currentSimulation = getCurrentSimulation()
+
+  const { simulation: simulationSaved } = useFetchSimulation({
+    simulationId: currentSimulation?.id ?? '',
+  })
+
+  const { saveSimulationNotAsync } = useSaveSimulation()
+
+  function handleUpdateSavedSimulation() {
+    if (
+      currentSimulation &&
+      currentSimulation?.progression === 1 &&
+      !!simulationSaved
+    ) {
+      saveSimulationNotAsync({
+        simulation: currentSimulation,
+        shouldSendSimulationEmail: false,
+      })
+    }
+  }
+
   return (
     <>
       {type === 'number' && (
@@ -31,6 +56,7 @@ export default function MosaicQuestion({
           setValue={async (value) => {
             await setValue(value < 0 ? 0 : value, parentMosaic)
             resetMosaicChildren(question)
+            handleUpdateSavedSimulation()
           }}
           parentMosaic={parentMosaic}
           index={index}
@@ -46,6 +72,7 @@ export default function MosaicQuestion({
           setValue={async (value) => {
             await setValue(value, parentMosaic)
             resetMosaicChildren(question)
+            handleUpdateSavedSimulation()
           }}
           index={index}
           {...props}

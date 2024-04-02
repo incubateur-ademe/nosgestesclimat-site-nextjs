@@ -16,7 +16,7 @@ export default function Emoji({
       className={twMerge('inline-block', className)}
       {...props}>
       {emoji(children, {
-        baseUrl: 'https://twemoji.maxcdn.com/2/svg',
+        baseUrl: 'https://cdnjs.cloudflare.com/ajax/libs/twemoji/15.1.0/svg',
         ext: '.svg',
         size: '',
       })}

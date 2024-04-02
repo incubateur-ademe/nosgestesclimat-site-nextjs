@@ -113,6 +113,19 @@ export default function Commencer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const currentSimulationRef = useRef(currentSimulation)
+  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
+    useState(false)
+  useEffect(() => {
+    if (!shouldGoToSimulateurPage) {
+      return
+    }
+    if (currentSimulationRef.current?.poll !== currentSimulation?.poll) {
+      goToSimulateurPage()
+    }
+    currentSimulationRef.current = currentSimulation
+  }, [goToSimulateurPage, shouldGoToSimulateurPage, currentSimulation])
+
   if (!status) {
     return null
   }

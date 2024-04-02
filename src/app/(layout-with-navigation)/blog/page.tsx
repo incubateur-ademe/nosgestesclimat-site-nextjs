@@ -21,9 +21,9 @@ export default async function Blog() {
 
   return (
     <>
-      <Title title={<Trans>Le Blog</Trans>} data-cypress-id="blog-title" />
-
       <PasserTestBanner />
+
+      <Title title={<Trans>Le Blog</Trans>} data-cypress-id="blog-title" />
 
       <div className="flex flex-col gap-4">
         <Image

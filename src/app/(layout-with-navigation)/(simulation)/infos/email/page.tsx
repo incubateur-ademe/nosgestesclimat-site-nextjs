@@ -4,30 +4,31 @@ import Trans from '@/components/translation/Trans'
 import { EMAIL_PAGE } from '@/constants/infosPages'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Title from '@/design-system/layout/Title'
+import { fetchHasUserAlreadyParticipated } from '@/helpers/organisations/fetchHasUserAlreadyParticipated'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
+import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useRouter } from 'next/navigation'
-import { FormEvent, useCallback, useEffect, useState } from 'react'
+import { FormEvent, useCallback, useState } from 'react'
 import Navigation from '../_components/Navigation'
 
 export default function Email() {
+  const { user, updateEmail } = useUser()
+
+  const [email, setEmail] = useState(
+    user?.email || user?.organisation?.administratorEmail || ''
+  )
+  const [error, setError] = useState('')
+
   const { t } = useClientTranslation()
 
   const router = useRouter()
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
-  const { user, updateEmail } = useUser()
-
-  const [email, setEmail] = useState('')
-
-  const [error, setError] = useState('')
-
-  useEffect(() => {
-    setEmail(user?.email || '')
-  }, [user])
+  const { pollSlug } = useOrganisationQueryParams()
 
   const handleSubmit = useCallback(
     async (event: MouseEvent | FormEvent) => {
@@ -40,13 +41,32 @@ export default function Email() {
         return
       }
 
+      const result = await fetchHasUserAlreadyParticipated({
+        pollSlug: pollSlug ?? '',
+        userId: user?.userId,
+        email,
+      })
+
+      if (result?.hasUserAlreadyParticipated) {
+        setError(t('Vous avez déjà participé à ce sondage.'))
+        return
+      }
+
       // If email is valid
       updateEmail(email)
 
       // Go to next page
       router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
     },
-    [email, updateEmail, t, router, getLinkToNextInfosPage]
+    [
+      email,
+      pollSlug,
+      user?.userId,
+      updateEmail,
+      router,
+      getLinkToNextInfosPage,
+      t,
+    ]
   )
 
   return (
@@ -60,7 +80,7 @@ export default function Email() {
             <Trans>
               Pour conserver vos résultats et les retrouver à l’avenir
             </Trans>
-            <span className="text-secondary-500 ml-2 inline-block font-bold italic">
+            <span className="ml-2 inline-block font-bold italic text-secondary-500">
               <Trans>facultatif</Trans>
             </span>
           </>

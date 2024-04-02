@@ -40,14 +40,14 @@ export default async function DocumentationServer({ slugs }: Props) {
 
   return (
     <div className="mt-4 w-full max-w-4xl p-4 md:mx-auto md:py-8">
+      <PasserTestBanner />
+
       <Title
         title={`${rule.icônes ?? ''} ${capitalizeString(
           getRuleTitle({ ...rule, dottedName: ruleName })
         )}`}
         data-cypress-id="documentation-title"
       />
-
-      <PasserTestBanner />
 
       {rule.question && <QuestionSection rule={rule} />}
 
