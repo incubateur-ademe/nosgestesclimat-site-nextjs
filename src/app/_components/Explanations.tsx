@@ -39,7 +39,7 @@ export default async function Explanations() {
       </p>
       <ButtonLink
         color="secondary"
-        href="/blog/budget"
+        href="/empreinte-climat"
         data-cypress-id="budget-link">
         <Trans>En savoir plus</Trans>
       </ButtonLink>
