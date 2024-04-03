@@ -58,7 +58,7 @@ export default function InvitationForm({ group }: { group: Group }) {
     try {
       // Update current simulation with group id (to redirect after test completion)
       updateCurrentSimulation({
-        group: group._id,
+        groupToAdd: group._id,
       })
 
       trackEvent(getMatomoEventJoinedGroupe(group?._id))

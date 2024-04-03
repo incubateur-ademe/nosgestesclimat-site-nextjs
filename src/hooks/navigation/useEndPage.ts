@@ -59,7 +59,7 @@ export function useEndPage() {
       if (
         progression === 1 &&
         isAllowedToSave &&
-        (currentSimulation.poll || currentSimulation.group)
+        (currentSimulation.polls || currentSimulation.groups)
       ) {
         await saveSimulation({ simulation: currentSimulation })
       }
@@ -72,10 +72,11 @@ export function useEndPage() {
       }
 
       // if the simulation is in a group and we are allowed to, we redirect to the group results page
-      if (currentSimulation.group && allowedToGoToGroupDashboard) {
-        router.push(
-          getLinkToGroupDashboard({ groupId: currentSimulation.group })
-        )
+      if (currentSimulation.groups && allowedToGoToGroupDashboard) {
+        const lastGroupId =
+          currentSimulation.groups[currentSimulation.groups.length - 1]
+
+        router.push(getLinkToGroupDashboard({ groupId: lastGroupId }))
         return
       }
 
@@ -101,8 +102,11 @@ export function useEndPage() {
       }
 
       // if the simulation is in a group and we are allowed to, we redirect to the group results page
-      if (currentSimulation.group && allowedToGoToGroupDashboard) {
-        return getLinkToGroupDashboard({ groupId: currentSimulation.group })
+      if (currentSimulation.groups && allowedToGoToGroupDashboard) {
+        const lastGroupId =
+          currentSimulation.groups[currentSimulation.groups.length - 1]
+
+        return getLinkToGroupDashboard({ groupId: lastGroupId })
       }
 
       // else we return the results page

@@ -94,11 +94,25 @@ export default function Commencer() {
   const { handleUpdateShouldPreventNavigation } = useContext(
     PreventNavigationContext
   )
-
   useEffect(() => {
     handleUpdateShouldPreventNavigation(true)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [handleUpdateShouldPreventNavigation])
+
+  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
+    useState(false)
+  useEffect(() => {
+    if (!shouldGoToSimulateurPage) {
+      return
+    }
+    if (currentSimulation?.polls?.includes(pollSlug || '')) {
+      goToSimulateurPage()
+    }
+  }, [
+    goToSimulateurPage,
+    shouldGoToSimulateurPage,
+    currentSimulation,
+    pollSlug,
+  ])
 
   const currentSimulationRef = useRef(currentSimulation)
   const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
@@ -130,12 +144,12 @@ export default function Commencer() {
       <div className="flex flex-col items-start gap-6">
         <Button
           onClick={async () => {
-            await updateCurrentSimulation({
+            updateCurrentSimulation({
               defaultAdditionalQuestionsAnswers: {
                 postalCode,
                 birthdate,
               },
-              poll: pollSlug || undefined,
+              pollToAdd: pollSlug || undefined,
             })
 
             trackEvent(getParticipantInscriptionPageVisitedEvent('commencer'))

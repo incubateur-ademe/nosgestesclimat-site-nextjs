@@ -1,10 +1,15 @@
 import Trans from '@/components/translation/Trans'
-import { matomoEventQuizPass, matomoEventQuizReturn } from '@/constants/matomo'
+import {
+  getMatomoEventParcoursTestOver,
+  matomoEventQuizPass,
+  matomoEventQuizReturn,
+} from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useEngine } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
@@ -18,6 +23,8 @@ export default function Navigation({
   handleAnswerValidation,
 }: Props) {
   const { t } = useClientTranslation()
+
+  const { getNumericValue } = useEngine()
 
   const { getLinkToEndPage } = useEndPage()
 
@@ -41,11 +48,18 @@ export default function Navigation({
           href={getLinkToEndPage({
             allowedToGoToGroupDashboard: true,
           })}
-          onClick={() => trackEvent(matomoEventQuizPass)}>
+          onClick={() => {
+            trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
+            trackEvent(matomoEventQuizPass)
+          }}>
           <Trans>Passer la question →</Trans>
         </ButtonLink>
       ) : isAnswerValidated ? (
-        <ButtonLink href={getLinkToEndPage()}>
+        <ButtonLink
+          href={getLinkToEndPage()}
+          onClick={() =>
+            trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
+          }>
           <Trans>Voir mes résultats →</Trans>
         </ButtonLink>
       ) : (
