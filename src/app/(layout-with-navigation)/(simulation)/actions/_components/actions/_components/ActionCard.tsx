@@ -99,6 +99,7 @@ export default function ActionCard({
 
   const handleChooseAction = useCallback(async () => {
     if (isDisabled) return
+
     if (hasRemainingQuestions) {
       setFocusedAction(dottedName)
       return null
