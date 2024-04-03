@@ -1,4 +1,4 @@
-import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
+import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json' assert { type: 'json' }
 import { NextRequest, NextResponse } from 'next/server'
 import countries from './countries.json'
 import ue_country_codes from './ue_country_codes.json'
@@ -8,12 +8,15 @@ export const runtime = 'edge'
 export async function GET(request: NextRequest) {
   const detectedCountryCode = request.geo?.country
 
-  if (!detectedCountryCode) {
-    return undefined
+  if (detectedCountryCode === null || detectedCountryCode === undefined) {
+    return NextResponse.json({ undefined })
   }
 
-  if (await isNotSupportedUECountry(detectedCountryCode)) {
-    return NextResponse.json({ name: 'Europe', code: 'EU' })
+  const isNotSupportedUECountry =
+    await getIsNotSupportedUECountry(detectedCountryCode)
+
+  if (isNotSupportedUECountry) {
+    return NextResponse.json({ country: { name: 'Europe', code: 'EU' } })
   }
 
   const country = countries.find(
@@ -23,11 +26,10 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({ country })
 }
 
-async function isNotSupportedUECountry(countryCode: string): Promise<boolean> {
-  const supportedRegions = await getSupportedRegions()
-
+function getIsNotSupportedUECountry(countryCode: string): boolean {
+  // Type assertion should be fixed. The type of supportedRegions is not inferred correctly but should be dealed with when importing the file.
   const nonSupportedUECountryCodes = ue_country_codes.filter(
-    (code) => !supportedRegions[code]
+    (code) => !supportedRegions[code as keyof typeof supportedRegions]
   )
   return nonSupportedUECountryCodes.includes(countryCode)
 }
