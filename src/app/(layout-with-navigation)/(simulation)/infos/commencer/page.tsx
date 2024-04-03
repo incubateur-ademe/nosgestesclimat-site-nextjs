@@ -11,7 +11,7 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
 const titles = {
@@ -113,19 +113,6 @@ export default function Commencer() {
     currentSimulation,
     pollSlug,
   ])
-
-  const currentSimulationRef = useRef(currentSimulation)
-  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
-    useState(false)
-  useEffect(() => {
-    if (!shouldGoToSimulateurPage) {
-      return
-    }
-    if (currentSimulationRef.current?.poll !== currentSimulation?.poll) {
-      goToSimulateurPage()
-    }
-    currentSimulationRef.current = currentSimulation
-  }, [goToSimulateurPage, shouldGoToSimulateurPage, currentSimulation])
 
   if (!status) {
     return null
