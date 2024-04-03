@@ -1,6 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { endClickNorthstar } from '@/constants/tracking/pages/end'
 import { SIMULATION_URL } from '@/constants/urls'
 import SmileyGrading from '@/design-system/inputs/SmileyGrading'
 import Card from '@/design-system/layout/Card'
@@ -8,6 +9,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useForm, useUser } from '@/publicodes-state'
 import { NorthStarType, NorthStarValue } from '@/types/northstar'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
@@ -55,6 +57,7 @@ export default function FeedbackBanner({ text, type, className }: Props) {
     hasJustAnswered.current = true
     updateNorthStarRatings({ type, value: grade })
     saveRating()
+    trackEvent(endClickNorthstar({ type, value: grade }))
   }
 
   const cardClassName = twMerge(
