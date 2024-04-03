@@ -1,5 +1,7 @@
 'use client'
 
+'use client'
+
 import Link from '@/components/Link'
 import {
   actionsClickAdditionalQuestion,
@@ -118,7 +120,7 @@ export default function ActionCard({
     }
 
     if (!isSelected) {
-      trackEvent(getMatomoEventActionAccepted(dottedName, nodeValue))
+      trackEvent(actionsClickYes(dottedName))
     }
   }, [
     currentSimulation,
@@ -126,7 +128,6 @@ export default function ActionCard({
     hasRemainingQuestions,
     isDisabled,
     isSelected,
-    nodeValue,
     saveSimulationNotAsync,
     setFocusedAction,
     simulationSaved,
@@ -202,23 +203,7 @@ export default function ActionCard({
             type="button"
             aria-pressed={actionChoices?.[dottedName]}
             className={hasRemainingQuestions ? 'grayscale' : ''}
-<<<<<<< HEAD
-            onClick={() => {
-              if (isDisabled) return
-              if (hasRemainingQuestions) {
-                setFocusedAction(dottedName)
-                return null
-              }
-
-              toggleActionChoice(dottedName)
-
-              if (!isSelected) {
-                trackEvent(actionsClickYes(dottedName))
-              }
-            }}>
-=======
             onClick={handleChooseAction}>
->>>>>>> origin/preprod
             <Image
               src="/images/misc/2714.svg"
               width={100}
@@ -228,25 +213,6 @@ export default function ActionCard({
             />
           </button>
 
-<<<<<<< HEAD
-          <button
-            title={t("Rejeter l'action")}
-            onClick={(e) => {
-              if (isDisabled) return
-              rejectAction(dottedName)
-              trackEvent(actionsClickNo(dottedName))
-              e.stopPropagation()
-              e.preventDefault()
-            }}>
-            <Image
-              src="/images/misc/274C.svg"
-              width={100}
-              height={100}
-              className={`w-8 ${isDisabled ? 'grayscale' : ''}`}
-              alt=""
-            />
-          </button>
-=======
           {!Object.keys(actionChoices || {}).some((key) => {
             return key === dottedName && actionChoices?.[key]
           }) && (
@@ -255,7 +221,9 @@ export default function ActionCard({
               onClick={(e) => {
                 if (isDisabled) return
                 rejectAction(dottedName)
-                trackEvent(getMatomoEventActionRejected(dottedName, nodeValue))
+                if (!isSelected) {
+                  trackEvent(actionsClickNo(dottedName))
+                }
                 e.stopPropagation()
                 e.preventDefault()
               }}>
@@ -268,7 +236,6 @@ export default function ActionCard({
               />
             </button>
           )}
->>>>>>> origin/preprod
         </div>
       </div>
     </div>
