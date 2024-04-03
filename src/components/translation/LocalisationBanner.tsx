@@ -9,13 +9,13 @@ import Card from '@/design-system/layout/Card'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
-import { SuppportedRegions } from '@/types/international'
+import { SupportedRegions } from '@/types/international'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import Trans from './Trans'
 
 type Props = {
-  supportedRegions: SuppportedRegions
+  supportedRegions: SupportedRegions
 }
 export default function LocalisationBanner({ supportedRegions }: Props) {
   const { user, tutorials, hideTutorial } = useUser()

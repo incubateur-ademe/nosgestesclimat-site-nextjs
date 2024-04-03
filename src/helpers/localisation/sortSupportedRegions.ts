@@ -1,10 +1,10 @@
-import { SupportedRegionType, SuppportedRegions } from '@/types/international'
+import { SupportedRegionType, SupportedRegions } from '@/types/international'
 
 export const sortSupportedRegions = ({
   supportedRegions,
   currentLocale,
 }: {
-  supportedRegions: SuppportedRegions
+  supportedRegions: SupportedRegions
   currentLocale: string
 }) => {
   if (!supportedRegions) {

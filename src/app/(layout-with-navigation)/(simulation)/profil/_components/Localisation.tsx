@@ -8,12 +8,12 @@ import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import { RegionFromGeolocation } from '@/publicodes-state/types'
-import { SuppportedRegions } from '@/types/international'
+import { SupportedRegions } from '@/types/international'
 import RegionModelAuthors from './localisation/RegionModelAuthors'
 import RegionSelector from './localisation/RegionSelector'
 
 type Props = {
-  supportedRegions: SuppportedRegions
+  supportedRegions: SupportedRegions
 }
 
 export default function Localisation({ supportedRegions }: Props) {

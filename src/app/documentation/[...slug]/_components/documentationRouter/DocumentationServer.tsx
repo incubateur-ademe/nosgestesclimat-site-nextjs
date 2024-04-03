@@ -6,7 +6,7 @@ import Markdown from '@/design-system/utils/Markdown'
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { Rules } from '@/publicodes-state/types'
-import { SuppportedRegions } from '@/types/international'
+import { SupportedRegions } from '@/types/international'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
 import { redirect } from 'next/navigation'
@@ -16,7 +16,7 @@ import PagesProches from './documentationServer/PagesProches'
 import QuestionSection from './documentationServer/QuestionSection'
 
 type Props = {
-  supportedRegions: SuppportedRegions
+  supportedRegions: SupportedRegions
   slugs: string[]
   locale?: string
 }
