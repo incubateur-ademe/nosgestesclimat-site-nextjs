@@ -1,14 +1,10 @@
 'use client'
 
-'use client'
-
 import Link from '@/components/Link'
 import {
-  actionsClickAdditionalQuestion,
-  actionsClickNo,
-  actionsClickYes,
-  actionsOpenAction,
-} from '@/constants/tracking/pages/actions'
+  getMatomoEventActionAccepted,
+  getMatomoEventActionRejected,
+} from '@/constants/matomo'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import {
   getBackgroundColor,
@@ -47,7 +43,8 @@ export default function ActionCard({
 
   const { getCurrentSimulation, toggleActionChoice, rejectAction } = useUser()
 
-  const { dottedName, title, missingVariables, traversedVariables } = action
+  const { nodeValue, dottedName, title, missingVariables, traversedVariables } =
+    action
 
   const { icônes: icons } = rule
 
@@ -120,7 +117,7 @@ export default function ActionCard({
     }
 
     if (!isSelected) {
-      trackEvent(actionsClickYes(dottedName))
+      trackEvent(getMatomoEventActionAccepted(dottedName, nodeValue))
     }
   }, [
     currentSimulation,
@@ -128,6 +125,7 @@ export default function ActionCard({
     hasRemainingQuestions,
     isDisabled,
     isSelected,
+    nodeValue,
     saveSimulationNotAsync,
     setFocusedAction,
     simulationSaved,
@@ -154,7 +152,6 @@ export default function ActionCard({
         )}`}>
         <Link
           className="z-10 w-full no-underline"
-          onClick={() => trackEvent(actionsOpenAction(dottedName))}
           href={'/actions/' + encodeRuleName(dottedName)}>
           <h2 className="inline-block w-full text-center text-base font-bold text-white">
             {title}
@@ -189,10 +186,7 @@ export default function ActionCard({
           {hasRemainingQuestions && (
             <button
               className="cursor-pointer text-primary-500"
-              onClick={() => {
-                trackEvent(actionsClickAdditionalQuestion(dottedName))
-                setFocusedAction(dottedName)
-              }}>
+              onClick={() => setFocusedAction(dottedName)}>
               {remainingQuestionsText}
             </button>
           )}
@@ -221,9 +215,7 @@ export default function ActionCard({
               onClick={(e) => {
                 if (isDisabled) return
                 rejectAction(dottedName)
-                if (!isSelected) {
-                  trackEvent(actionsClickNo(dottedName))
-                }
+                trackEvent(getMatomoEventActionRejected(dottedName, nodeValue))
                 e.stopPropagation()
                 e.preventDefault()
               }}>

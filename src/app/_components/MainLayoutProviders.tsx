@@ -1,12 +1,13 @@
 'use client'
 
 import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
+import { useTrackPageView } from '@/hooks/tracking/useTrackPageView'
+import { useTrackSplitTesting } from '@/hooks/tracking/useTrackSplitTesting'
 import { UserProvider } from '@/publicodes-state'
 import { MigrationType } from '@/publicodes-state/types'
 import { PropsWithChildren } from 'react'
 import CheckFixedRegion from './mainLayoutProviders/CheckFixedRegion'
 import { IframeResizer } from './mainLayoutProviders/IframeResizer'
-import MainHooks from './mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from './mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProviderWrapper'
 import QueryParamsProvider from './mainLayoutProviders/QueryParamsProvider'
@@ -20,6 +21,10 @@ export default function MainLayoutProviders({
   region,
   migrationInstructions,
 }: PropsWithChildren<Props>) {
+  // Handles sending split testing data to Matomo
+  useTrackSplitTesting()
+  useTrackPageView()
+
   return (
     <QueryParamsProvider>
       <IframeOptionsProvider>
@@ -30,9 +35,7 @@ export default function MainLayoutProviders({
             storageKey="nosgestesclimat::v3"
             migrationInstructions={migrationInstructions}>
             <CheckFixedRegion />
-            <PreventNavigationProvider>
-              <MainHooks>{children}</MainHooks>
-            </PreventNavigationProvider>
+            <PreventNavigationProvider>{children}</PreventNavigationProvider>
           </UserProvider>
         </QueryClientProviderWrapper>
       </IframeOptionsProvider>

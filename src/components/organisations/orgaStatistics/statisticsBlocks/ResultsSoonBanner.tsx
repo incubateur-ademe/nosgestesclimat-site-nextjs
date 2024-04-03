@@ -2,7 +2,7 @@
 
 import HourglassIcon from '@/components/icons/HourglassIcon'
 import Trans from '@/components/translation/Trans'
-import { organisationsDashboardClickShortcutShare } from '@/constants/tracking/pages/organisationsDashboard'
+import { clickButtonScrollToShareSectionEvent } from '@/constants/matomo/organisations'
 import Card from '@/design-system/layout/Card'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { usePathname } from 'next/navigation'
@@ -64,7 +64,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
             className="whitespace-nowrap font-bold text-primary-500 underline"
             onClick={() => {
               handleScrollIntoView('orga-partage')
-              trackEvent(organisationsDashboardClickShortcutShare)
+              trackEvent(clickButtonScrollToShareSectionEvent)
             }}>
             Partagez le test
           </button>

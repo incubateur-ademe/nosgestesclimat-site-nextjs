@@ -10,9 +10,8 @@ import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisatio
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
-import { trackPageView } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
-import { FormEvent, useCallback, useEffect, useState } from 'react'
+import { FormEvent, useCallback, useState } from 'react'
 import Navigation from '../_components/Navigation'
 
 export default function Email() {
@@ -29,14 +28,7 @@ export default function Email() {
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
-  const { pollSlug, organisationSlug } = useOrganisationQueryParams()
-
-  // We track a page view with the format of the shared link (/o/organisation/poll)
-  useEffect(() => {
-    if (pollSlug && organisationSlug) {
-      trackPageView(`/o/${organisationSlug}/${pollSlug}/`)
-    }
-  }, [pollSlug, organisationSlug])
+  const { pollSlug } = useOrganisationQueryParams()
 
   const handleSubmit = useCallback(
     async (event: MouseEvent | FormEvent) => {

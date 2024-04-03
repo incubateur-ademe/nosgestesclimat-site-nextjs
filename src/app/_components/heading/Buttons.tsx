@@ -3,11 +3,10 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import {
-  homeClickCtaCommencer,
-  homeClickCtaReprendre,
-  homeClickCtaResultats,
-  homeClickNewTest,
-} from '@/constants/tracking/pages/home'
+  matomoEventParcoursTestNouveau,
+  matomoEventParcoursTestReprendre,
+  matomoEventParcoursTestStart,
+} from '@/constants/matomo'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useIsClient } from '@/hooks/useIsClient'
@@ -38,17 +37,12 @@ export default function Buttons() {
         href={getLinkToSimulateurPage()}
         data-cypress-id="do-the-test-link"
         onClick={() => {
-          if (progression === 1) {
-            trackEvent(homeClickCtaResultats)
+          if (progression) {
+            trackEvent(matomoEventParcoursTestReprendre)
             return
           }
 
-          if (progression > 0) {
-            trackEvent(homeClickCtaReprendre)
-            return
-          }
-
-          trackEvent(homeClickCtaCommencer)
+          trackEvent(matomoEventParcoursTestStart)
         }}
         size="lg">
         <Trans>{linkToSimulateurPageLabel}</Trans>
@@ -59,7 +53,7 @@ export default function Buttons() {
             isClient ? 'opacity-100' : 'opacity-0'
           }`}
           onClick={() => {
-            trackEvent(homeClickNewTest)
+            trackEvent(matomoEventParcoursTestNouveau)
             goToSimulateurPage({ noNavigation: true, newSimulation: {} })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>

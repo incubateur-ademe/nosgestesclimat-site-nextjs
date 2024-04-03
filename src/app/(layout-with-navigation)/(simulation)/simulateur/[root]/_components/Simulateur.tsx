@@ -2,9 +2,9 @@
 
 import Total from '@/components/total/Total'
 import {
-  simulateurCloseSommaire,
-  simulateurOpenSommaire,
-} from '@/constants/tracking/pages/simulateur'
+  matomoEventCloseQuestionsList,
+  matomoEventOpenQuestionsList,
+} from '@/constants/matomo'
 import { useDebug } from '@/hooks/useDebug'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
@@ -20,8 +20,8 @@ export default function Simulateur() {
     setIsQuestionListOpen((prevIsQuestionListOpen) => {
       trackEvent(
         prevIsQuestionListOpen
-          ? simulateurCloseSommaire
-          : simulateurOpenSommaire
+          ? matomoEventCloseQuestionsList
+          : matomoEventOpenQuestionsList
       )
       return !prevIsQuestionListOpen
     })

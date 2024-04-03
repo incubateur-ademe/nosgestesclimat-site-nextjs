@@ -2,9 +2,9 @@
 
 import Trans from '@/components/translation/Trans'
 import {
-  organisationsAccueilClickCommencer,
-  organisationsAccueilClickDemo,
-} from '@/constants/tracking/pages/organisationsAccueil'
+  clickAskDemoLandingPageEvent,
+  clickStartButtonLandingPageEvent,
+} from '@/constants/matomo/organisations'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -42,7 +42,9 @@ export default function HeroSection() {
         <div className="flex flex-col flex-wrap items-center gap-8 sm:flex-row sm:justify-center md:items-baseline lg:justify-start">
           <ButtonLink
             href="/organisations/connexion"
-            trackingEvent={organisationsAccueilClickCommencer}
+            onClick={() => {
+              trackEvent(clickStartButtonLandingPageEvent)
+            }}
             size="lg">
             <Trans>Commencez</Trans>
           </ButtonLink>
@@ -51,7 +53,7 @@ export default function HeroSection() {
             className="py-4"
             href="/organisations/demander-demo"
             onClick={() => {
-              trackEvent(organisationsAccueilClickDemo)
+              trackEvent(clickAskDemoLandingPageEvent)
             }}>
             <Trans>Demandez une démo</Trans>
           </InlineLink>

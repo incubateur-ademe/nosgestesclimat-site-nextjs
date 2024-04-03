@@ -2,11 +2,12 @@
 
 import Trans from '@/components/translation/Trans'
 import {
-  organisationsAccueilClickCommencerBottom,
-  organisationsAccueilClickDemoBottom,
-} from '@/constants/tracking/pages/organisationsAccueil'
+  clickAskDemoFooterLandingPageEvent,
+  clickStartButtonFooterLandingPageEvent,
+} from '@/constants/matomo/organisations'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function CTAFooter() {
   const { t } = useClientTranslation()
@@ -30,7 +31,9 @@ export default function CTAFooter() {
 
           <div className="flex flex-col flex-wrap items-center gap-4 sm:flex-row">
             <ButtonLink
-              trackingEvent={organisationsAccueilClickCommencerBottom}
+              onClick={() => {
+                trackEvent(clickStartButtonFooterLandingPageEvent)
+              }}
               href="/organisations/connexion">
               <Trans>Créer un compte</Trans>
             </ButtonLink>
@@ -39,7 +42,9 @@ export default function CTAFooter() {
               color="text"
               className="font-normal underline"
               href="/contact?motif=demo"
-              trackingEvent={organisationsAccueilClickDemoBottom}>
+              onClick={() => {
+                trackEvent(clickAskDemoFooterLandingPageEvent)
+              }}>
               <Trans>Demandez une démo</Trans>
             </ButtonLink>
           </div>

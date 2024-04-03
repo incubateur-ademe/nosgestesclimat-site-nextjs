@@ -1,12 +1,10 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { actionsClickStart } from '@/constants/tracking/pages/actions'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
 import { getCarbonFootprint } from '../_helpers/getCarbonFootprint'
 
@@ -22,7 +20,7 @@ export default function ActionsTutorial() {
   const [value, unit] = getCarbonFootprint({ t, i18n }, bilan.nodeValue)
 
   return (
-    <Card className="my-6 items-start !bg-primary-100">
+    <Card className="!bg-primary-100 my-6 items-start">
       <h2 className="flex items-center">
         <Image src="/images/misc/E10C.svg" alt="" width={32} height={32} />
 
@@ -63,11 +61,7 @@ export default function ActionsTutorial() {
         </Trans>
       </p>
 
-      <Button
-        onClick={() => {
-          hideTutorial('actions')
-          trackEvent(actionsClickStart)
-        }}>
+      <Button onClick={() => hideTutorial('actions')}>
         <Trans>Démarrer</Trans>
       </Button>
     </Card>

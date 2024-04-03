@@ -4,7 +4,6 @@ import Question from '@/components/form/Question'
 import questions from '@/components/questions'
 import { uuidToNumber } from '@/helpers/uuidToNumber'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
-import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useForm, useUser } from '@/publicodes-state'
@@ -32,8 +31,6 @@ export default function Form() {
 
   const [isInitialized, setIsInitialized] = useState(false)
 
-  const { trackTimeOnSimulation } = useTrackTimeOnSimulation()
-
   // When we reach the end of the test (by clicking on the last navigation button),
   // we wait for the progression to be updated before redirecting to the end page
   const [shouldGoToEndPage, setShouldGoToEndPage] = useState(false)
@@ -41,19 +38,12 @@ export default function Form() {
     // We show the quiz for 10% of our users
     const shouldShowQuiz = uuidToNumber(currentSimulation?.id ?? '') === 0
     if (shouldGoToEndPage && progression === 1) {
-      trackTimeOnSimulation()
       goToEndPage({
         shouldShowQuiz,
         allowedToGoToGroupDashboard: true,
       })
     }
-  }, [
-    shouldGoToEndPage,
-    progression,
-    goToEndPage,
-    currentSimulation,
-    trackTimeOnSimulation,
-  ])
+  }, [shouldGoToEndPage, progression, goToEndPage, currentSimulation])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
 

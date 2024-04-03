@@ -3,10 +3,8 @@
 import useFetchOrganisation from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useFetchOrganisation'
 import OrganisationIcon from '@/components/icons/OrganisationIcon'
 import Trans from '@/components/translation/Trans'
-import { headerClickOrganisation } from '@/constants/tracking/layout'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import NavLink from '../NavLink'
 
 export default function OrganisationLink() {
@@ -34,7 +32,6 @@ export default function OrganisationLink() {
           ? `/organisations/${organisation?.slug}`
           : '/organisations/connexion'
       }
-      onClick={() => trackEvent(headerClickOrganisation)}
       icon={OrganisationIcon}
       title={t('Organisation')}>
       {isOrganisationFullyCreated ? (

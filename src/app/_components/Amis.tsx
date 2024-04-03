@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/Trans'
-import { homeClickClassements } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
 import Image from 'next/image'
@@ -38,10 +37,7 @@ export default function Amis() {
         </strong>{' '}
         <Trans>et comparez vos résultats.</Trans>
       </p>
-      <ButtonLink
-        href="/amis"
-        data-cypress-id="amis-link"
-        trackingEvent={homeClickClassements}>
+      <ButtonLink href="/amis" data-cypress-id="amis-link">
         <Trans>Commencer</Trans>
       </ButtonLink>
     </div>

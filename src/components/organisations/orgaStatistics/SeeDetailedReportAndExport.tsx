@@ -2,9 +2,9 @@
 
 import Trans from '@/components/translation/Trans'
 import {
-  organisationsDashboardClickRapportDetaille,
-  organisationsDashboardExportData,
-} from '@/constants/tracking/pages/organisationsDashboard'
+  clickExportDataDashboardEvent,
+  clickSeeDetailedReportEvent,
+} from '@/constants/matomo/organisations'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
@@ -24,7 +24,7 @@ export default function SeeDetailedReportAndExport() {
         href={`/organisations/${params.slug}/resultats-detailles`}
         className="!text-sm"
         onClick={() => {
-          trackEvent(organisationsDashboardClickRapportDetaille)
+          trackEvent(clickSeeDetailedReportEvent)
         }}>
         <Emoji className="mr-2">📊</Emoji>
         <Trans>Voir le rapport détaillé</Trans>
@@ -32,7 +32,7 @@ export default function SeeDetailedReportAndExport() {
 
       <ExportDataButton
         onClick={() => {
-          trackEvent(organisationsDashboardExportData)
+          trackEvent(clickExportDataDashboardEvent)
         }}
         simulationRecaps={pollData?.simulationRecaps ?? []}
       />

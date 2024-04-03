@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
+import { matomoSaveSimulationByGivingEmail } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Card from '@/design-system/layout/Card'
@@ -41,7 +41,7 @@ export default function GetResultsByEmail({
       return
     }
 
-    trackEvent(endClickSaveSimulation)
+    trackEvent(matomoSaveSimulationByGivingEmail)
 
     // We save the simulation (and signify the backend to send the email)
     await saveSimulation({

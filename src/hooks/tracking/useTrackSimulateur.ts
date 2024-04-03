@@ -1,39 +1,37 @@
 import {
-  simulationCategoryCompleted,
-  simulationCategoryStarted,
-  simulationSimulationHalfCompleted,
-  simulationSimulationStarted,
-} from '@/constants/tracking/simulation'
+  getMatomoEventParcoursTestCategoryStarted,
+  matomoEvent50PercentProgress,
+  matomoEvent90PercentProgress,
+  matomoEventFirstAnswer,
+} from '@/constants/matomo'
 import { useForm } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef } from 'react'
 
 export function useTrackSimulateur() {
-  const {
-    progression,
-    isFirstQuestionOfCategory,
-    isLastQuestionOfCategory,
-    currentCategory,
-  } = useForm()
+  const { progression, isFirstQuestionOfCategory, currentCategory } = useForm()
 
   const prevProgression = useRef(progression)
 
   useEffect(() => {
     if (prevProgression.current === 0 && progression > 0) {
-      trackEvent(simulationSimulationStarted)
+      trackEvent(matomoEventFirstAnswer)
+      return
     }
     if (prevProgression.current < 0.5 && progression >= 0.5) {
-      trackEvent(simulationSimulationHalfCompleted)
+      trackEvent(matomoEvent50PercentProgress)
+      return
+    }
+    if (prevProgression.current < 0.9 && progression >= 0.9) {
+      trackEvent(matomoEvent90PercentProgress)
+      return
     }
     prevProgression.current = progression
   }, [progression])
 
   useEffect(() => {
     if (isFirstQuestionOfCategory) {
-      trackEvent(simulationCategoryStarted(currentCategory || ''))
+      trackEvent(getMatomoEventParcoursTestCategoryStarted(currentCategory))
     }
-    if (isLastQuestionOfCategory) {
-      trackEvent(simulationCategoryCompleted(currentCategory || ''))
-    }
-  }, [currentCategory, isFirstQuestionOfCategory, isLastQuestionOfCategory])
+  }, [currentCategory, isFirstQuestionOfCategory])
 }

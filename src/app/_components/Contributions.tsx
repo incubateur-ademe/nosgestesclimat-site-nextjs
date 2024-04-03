@@ -2,16 +2,10 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import {
-  homeClickCodeSource,
-  homeClickContribution,
-  homeClickDocumentation,
-} from '@/constants/tracking/pages/home'
 import Card from '@/design-system/layout/Card'
 import Kicker from '@/design-system/layout/Kicker'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
 import Background from './organisations/Background'
 
@@ -35,7 +29,6 @@ export default function Contributions() {
             href="/nouveautes"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
-            onClick={() => trackEvent(homeClickCodeSource)}
             className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="nouveautes-link">
             <Emoji className="text-3xl">🔍</Emoji>
@@ -52,7 +45,6 @@ export default function Contributions() {
             href="/documentation"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
-            onClick={() => trackEvent(homeClickDocumentation)}
             className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="documentation-link">
             <Emoji className="text-3xl">👀</Emoji>
@@ -69,7 +61,6 @@ export default function Contributions() {
             href="/contact"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
-            onClick={() => trackEvent(homeClickContribution)}
             className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="contact-link">
             <Emoji className="text-3xl">🖋️</Emoji>

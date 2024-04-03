@@ -1,16 +1,13 @@
 'use client'
 
-import { profilClickSubCategory } from '@/constants/tracking/pages/profil'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useForm, useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
 import Question from './subcategory/Question'
 
 type Props = {
-  subcategory: DottedName
+  subcategory: string
 }
 
 export default function SubCategory({ subcategory }: Props) {
@@ -37,10 +34,7 @@ export default function SubCategory({ subcategory }: Props) {
         )}`}
       />
       <button
-        onClick={() => {
-          trackEvent(profilClickSubCategory(subcategory))
-          setIsOpen((prevIsOpen) => !prevIsOpen)
-        }}
+        onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
         className="flex w-full items-center justify-between gap-4 p-4 pl-6 text-lg font-bold">
         {icons} {title}{' '}
         <span className="block rounded-lg bg-white px-4 py-2 text-base">

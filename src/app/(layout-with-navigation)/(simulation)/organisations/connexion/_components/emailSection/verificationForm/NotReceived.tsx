@@ -1,12 +1,10 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { organisationsConnexionClickCode } from '@/constants/tracking/pages/organisationsConnexion'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {
@@ -36,8 +34,6 @@ export default function NotReceived({
     if (isRetryButtonDisabled) {
       return
     }
-
-    trackEvent(organisationsConnexionClickCode)
 
     await sendVerificationCode()
     setShouldDisplayConfirmation(true)

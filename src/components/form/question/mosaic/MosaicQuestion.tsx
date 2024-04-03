@@ -1,18 +1,10 @@
-'use client'
-
-import {
-  questionChooseAnswer,
-  questionTypeAnswer,
-} from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import MosaicBooleanInput from './mosaicQuestion/MosaicBooleanInput'
 import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
 
 type Props = {
-  question: DottedName
-  parentMosaic: DottedName
+  question: string
+  parentMosaic: string
   index: number
 }
 
@@ -39,13 +31,6 @@ export default function MosaicQuestion({
           setValue={async (value) => {
             await setValue(value < 0 ? 0 : value, parentMosaic)
             resetMosaicChildren(question)
-            trackEvent(
-              questionTypeAnswer({
-                question: parentMosaic,
-                answer: parent,
-                mosaicValue: value,
-              })
-            )
           }}
           parentMosaic={parentMosaic}
           index={index}
@@ -61,13 +46,6 @@ export default function MosaicQuestion({
           setValue={async (value) => {
             await setValue(value, parentMosaic)
             resetMosaicChildren(question)
-            trackEvent(
-              questionChooseAnswer({
-                question: parentMosaic,
-                answer: parent,
-                mosaicValue: value,
-              })
-            )
           }}
           index={index}
           {...props}
