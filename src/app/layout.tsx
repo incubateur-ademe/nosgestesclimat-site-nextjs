@@ -3,7 +3,6 @@ import Header from '@/components/layout/Header'
 import { getGeolocation } from '@/helpers/getGeolocation'
 import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
-import getGeolocationWithUEFilter from '@/helpers/localisation/getGeolocationWithUEFilter'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import { ErrorBoundary } from '@sentry/nextjs'
@@ -54,8 +53,7 @@ export const marianne = localFont({
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   const lang = currentLocale()
-  const regionFromGeolocation = await getGeolocation()
-  const region = await getGeolocationWithUEFilter(regionFromGeolocation)
+  const region = await getGeolocation()
   const migrationInstructions = await getMigrationInstructions()
 
   return (
