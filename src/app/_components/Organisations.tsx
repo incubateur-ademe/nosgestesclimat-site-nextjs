@@ -1,7 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { homeClickOrganisations } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -34,7 +33,6 @@ export default function Organisations() {
           </p>
           <ButtonLink
             href="/organisations"
-            trackingEvent={homeClickOrganisations}
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}>
             <Trans>Découvrir</Trans>

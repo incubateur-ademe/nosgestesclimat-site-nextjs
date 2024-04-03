@@ -1,5 +1,3 @@
-'use client'
-
 import Assistance from '@/components/form/question/Assistance'
 import BooleanInput from '@/components/form/question/BooleanInput'
 import ChoicesInput from '@/components/form/question/ChoicesInput'
@@ -12,12 +10,7 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
-import {
-  questionChooseAnswer,
-  questionTypeAnswer,
-} from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef } from 'react'
 import Warning from './question/Warning'
 
@@ -78,11 +71,8 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             unit={unit}
             value={setTempValue ? tempValue : numericValue}
             setValue={(value) => {
-              if (setTempValue) {
-                setTempValue(value)
-              }
+              if (setTempValue) setTempValue(value)
               setValue(value, question)
-              trackEvent(questionTypeAnswer({ question, answer: value }))
             }}
             isMissing={isMissing}
             min={0}
@@ -96,10 +86,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
           <BooleanInput
             value={value}
             setValue={(value) => {
-              {
-                setValue(value, question)
-                trackEvent(questionChooseAnswer({ question, answer: value }))
-              }
+              setValue(value, question)
             }}
             isMissing={isMissing}
             data-cypress-id={question}
@@ -115,10 +102,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             choices={choices}
             value={String(value)}
             setValue={(value) => {
-              {
-                setValue(value, question)
-                trackEvent(questionChooseAnswer({ question, answer: value }))
-              }
+              setValue(value, question)
             }}
             isMissing={isMissing}
             data-cypress-id={question}

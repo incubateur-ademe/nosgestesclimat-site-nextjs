@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { actionsClickYes } from '@/constants/tracking/pages/actions'
+import { getMatomoEventActionAccepted } from '@/constants/matomo'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
@@ -32,6 +32,7 @@ export default function ActionDetail({
     ?.map(decodeURIComponent)
     ?.join(' . ')
 
+  const { getValue } = useEngine()
   const { rules, getRuleObject, extendedFoldedSteps } = useTempEngine()
 
   const { getCurrentSimulation, toggleActionChoice } = useUser()
@@ -110,7 +111,12 @@ export default function ActionDetail({
                 toggleActionChoice(dottedName)
 
                 if (!actionChoices[dottedName]) {
-                  trackEvent(actionsClickYes(dottedName))
+                  trackEvent(
+                    getMatomoEventActionAccepted(
+                      dottedName,
+                      String(getValue(dottedName))
+                    )
+                  )
                 }
               }}
             />

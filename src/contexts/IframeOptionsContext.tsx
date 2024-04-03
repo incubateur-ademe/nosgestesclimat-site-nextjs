@@ -1,6 +1,6 @@
 'use client'
 
-import { trackingIframe } from '@/constants/tracking/misc'
+import { getMatomoEventVisitViaIframe } from '@/constants/matomo'
 import { useIsClient } from '@/hooks/useIsClient'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { PropsWithChildren, createContext, useEffect, useState } from 'react'
@@ -48,7 +48,7 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
 
     if (isIframe) {
       trackEvent(
-        trackingIframe(
+        getMatomoEventVisitViaIframe(
           urlParams.get('integratorUrl') || "Pas d'URL d'intégration"
         )
       )

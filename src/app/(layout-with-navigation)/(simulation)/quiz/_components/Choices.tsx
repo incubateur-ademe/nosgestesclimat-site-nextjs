@@ -1,8 +1,4 @@
-'use client'
-
-import { quizClickAnswer } from '@/constants/tracking/pages/quiz'
 import { DottedName } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useMemo } from 'react'
 import Choice from './choices/Choice'
 
@@ -24,10 +20,7 @@ export default function Choices({ answer, choices, setAnswer }: Props) {
           key={choice}
           answer={answer}
           choice={choice}
-          setAnswer={(answer) => {
-            trackEvent(quizClickAnswer(answer))
-            setAnswer(answer)
-          }}
+          setAnswer={setAnswer}
         />
       ))}
     </div>

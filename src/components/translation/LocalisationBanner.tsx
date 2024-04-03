@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import CountryFlag from '@/components/misc/CountryFlag'
-import { trackingClickRegionBanner } from '@/constants/tracking/misc'
+import { getMatomoEventChangeRegion } from '@/constants/matomo'
 import { defaultModelRegionCode } from '@/constants/translation'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
@@ -115,7 +115,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
             onClick={() => {
               hideTutorial('localisationBanner')
 
-              trackEvent(trackingClickRegionBanner)
+              trackEvent(getMatomoEventChangeRegion(code))
             }}>
             <Trans>J'ai compris</Trans>
           </Button>

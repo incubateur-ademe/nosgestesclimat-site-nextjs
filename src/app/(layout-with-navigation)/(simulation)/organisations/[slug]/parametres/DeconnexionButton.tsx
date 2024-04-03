@@ -1,12 +1,10 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { organisationsParametersLogout } from '@/constants/tracking/pages/organisationsParameters'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useLogoutOrganisation } from '@/hooks/organisations/useLogout'
 import { Organisation } from '@/types/organisations'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 
@@ -23,7 +21,6 @@ export default function DeconnexionButton({
   const queryClient = useQueryClient()
 
   async function handleDisconnect() {
-    trackEvent(organisationsParametersLogout)
     await logoutOrganisation()
 
     queryClient.clear()

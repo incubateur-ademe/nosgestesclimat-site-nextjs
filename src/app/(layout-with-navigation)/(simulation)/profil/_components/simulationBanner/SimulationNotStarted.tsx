@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/Trans'
-import { profilClickCtaCommencer } from '@/constants/tracking/pages/profil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
@@ -20,9 +19,7 @@ export default function SimulationNotStarted() {
       </p>
 
       <div className="md: flex w-full flex-wrap items-center justify-start gap-4">
-        <ButtonLink
-          href={getLinkToSimulateur()}
-          trackingEvent={profilClickCtaCommencer}>
+        <ButtonLink href={getLinkToSimulateur()}>
           <ProgressCircle className="mr-2" white />
           <Trans>Faire le test</Trans>
         </ButtonLink>

@@ -1,24 +1,21 @@
-'use client'
-
 import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
 import {
-  questionClickPass,
-  questionClickPrevious,
-  questionClickSuivant,
-} from '@/constants/tracking/question'
+  getMatomoEventClickDontKnow,
+  getMatomoEventClickNextQuestion,
+  getMatomoEventClickPrevQuestion,
+} from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useForm, useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { MouseEvent, useCallback, useMemo } from 'react'
+import { MouseEvent, useCallback } from 'react'
 
 type Props = {
-  question: DottedName
+  question: string
   tempValue?: number
   onComplete?: () => void
 }
@@ -33,33 +30,19 @@ export default function Navigation({
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
 
-  const { isMissing, addFoldedStep, plancher, value } = useRule(question)
+  const { isMissing, addFoldedStep, plancher } = useRule(question)
 
   const isNextDisabled =
     tempValue !== undefined && plancher !== undefined && tempValue < plancher
-
-  // Start time of the question
-  //(we need to use question to update the start time when the question changes, but it is not exactly usefull as a dependency)
-  const startTime = useMemo(() => {
-    if (question) {
-      return Date.now()
-    }
-    return Date.now()
-  }, [question])
 
   const handleGoToNextQuestion = useCallback(
     async (e: KeyboardEvent | MouseEvent) => {
       e.preventDefault()
 
-      const endTime = Date.now()
-      const timeSpentOnQuestion = endTime - startTime
-
       if (isMissing) {
-        trackEvent(questionClickPass({ question, timeSpentOnQuestion }))
+        trackEvent(getMatomoEventClickDontKnow(question))
       } else {
-        trackEvent(
-          questionClickSuivant({ question, answer: value, timeSpentOnQuestion })
-        )
+        trackEvent(getMatomoEventClickNextQuestion(question))
       }
 
       if (isMissing) {
@@ -80,10 +63,8 @@ export default function Navigation({
       gotoNextQuestion,
       noNextQuestion,
       isMissing,
-      value,
       onComplete,
       addFoldedStep,
-      startTime,
     ]
   )
 
@@ -117,7 +98,7 @@ export default function Navigation({
       {!noPrevQuestion ? (
         <Button
           onClick={() => {
-            trackEvent(questionClickPrevious({ question }))
+            trackEvent(getMatomoEventClickPrevQuestion(question))
 
             if (!noPrevQuestion) {
               gotoPrevQuestion()

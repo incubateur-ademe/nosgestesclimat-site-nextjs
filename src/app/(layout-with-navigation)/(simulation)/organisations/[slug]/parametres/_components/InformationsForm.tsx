@@ -2,13 +2,11 @@
 
 import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
-import { organisationsParametersUpdateInformations } from '@/constants/tracking/pages/organisationsParameters'
 import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { FormEventHandler, useEffect, useRef, useState } from 'react'
 import { useUpdateOrganisation } from '../../../_hooks/useUpdateOrganisation'
 
@@ -29,8 +27,6 @@ export default function InformationsForm({ organisation }: Props) {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault()
-
-    trackEvent(organisationsParametersUpdateInformations)
 
     const data = new FormData(document.querySelector('form') ?? undefined)
 

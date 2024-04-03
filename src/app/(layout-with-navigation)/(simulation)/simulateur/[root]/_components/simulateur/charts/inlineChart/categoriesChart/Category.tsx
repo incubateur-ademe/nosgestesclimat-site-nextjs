@@ -1,8 +1,12 @@
+/* eslint-disable */
+
+import { getMatomoEventClickCategoryGraph } from '@/constants/matomo'
 import {
   getBackgroundColor,
   getFillColor,
 } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
 
 type Props = {
@@ -32,7 +36,8 @@ export default function Category({
       className={`relative flex h-full items-center justify-center border-l border-white transition-all ease-in-out ${getBackgroundColor(
         category
       )} ${positionClassNames[position]}`}
-      style={{ width: `${percent}%` }}>
+      style={{ width: `${percent}%` }}
+      onClick={() => trackEvent(getMatomoEventClickCategoryGraph(category))}>
       {current ? (
         <svg
           width="14"

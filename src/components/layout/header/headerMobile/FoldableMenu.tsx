@@ -1,14 +1,7 @@
-'use client'
-
 import ProfileIcon from '@/components/icons/ProfileIcon'
-import {
-  footerClickDocumentation,
-  headerClickProfil,
-} from '@/constants/tracking/layout'
 import { HIDE_CTA_PATHS } from '@/constants/urls'
 import BurgerMenu from '@/design-system/layout/BurgerMenu'
 import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { usePathname } from 'next/navigation'
 import NavLink from '../NavLink'
 import OrganisationLink from '../_components/OrganisationLink'
@@ -26,10 +19,7 @@ export default function FoldableMenu() {
           <li>
             <NavLink
               onFocus={onFocus}
-              onClick={() => {
-                closeMenu()
-                trackEvent(headerClickProfil)
-              }}
+              onClick={closeMenu}
               href="/profil"
               icon={ProfileIcon}>
               Profil
@@ -64,10 +54,7 @@ export default function FoldableMenu() {
           <li>
             <NavLink
               onFocus={onFocus}
-              onClick={() => {
-                closeMenu()
-                trackEvent(footerClickDocumentation)
-              }}
+              onClick={closeMenu}
               href="/documentation">
               Documentation
             </NavLink>

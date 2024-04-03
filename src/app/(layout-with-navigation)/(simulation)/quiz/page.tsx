@@ -1,10 +1,6 @@
 'use client'
 
-import {
-  quizValidateAlmostCorrectAnswer,
-  quizValidateCorrectAnswer,
-  quizValidateWrongAnswer,
-} from '@/constants/tracking/pages/quiz'
+import { getMatomoEventQuizValidateAnswer } from '@/constants/matomo'
 import { useQuizGuard } from '@/hooks/navigation/useQuizGuard'
 import { useSaveQuizAnswer } from '@/hooks/quiz/useSaveQuizAnswer'
 import { useSortedSubcategoriesByFootprint } from '@/hooks/useSortedSubcategoriesByFootprint'
@@ -69,15 +65,7 @@ export default function QuizPage() {
         isAnswerValidated={isAnswerValidated}
         handleAnswerValidation={() => {
           if (!answer) return
-          if (isAnswerCorrect === 'correct') {
-            trackEvent(quizValidateCorrectAnswer(answer))
-          }
-          if (isAnswerCorrect === 'almost') {
-            trackEvent(quizValidateAlmostCorrectAnswer(answer))
-          }
-          if (isAnswerCorrect === 'wrong') {
-            trackEvent(quizValidateWrongAnswer(answer))
-          }
+          trackEvent(getMatomoEventQuizValidateAnswer(answer, isAnswerCorrect))
           setIsAnswerValidated(true)
           saveQuizAnswer({ answer, isAnswerCorrect })
         }}

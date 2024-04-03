@@ -4,17 +4,20 @@ import Link from '@/components/Link'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import CategoriesChart from '@/components/results/CategoriesChart'
 import Trans from '@/components/translation/Trans'
-import {
-  endClickChangeAnswers,
-  endClickSaveShortcut,
-} from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
 import Separator from '@/design-system/layout/Separator'
 import Emoji from '@/design-system/utils/Emoji'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import TotalCard from './results/TotalCard'
 
 export default function Results() {
+  function handleScrollToEmailBlock() {
+    const emailBlock = document.getElementById('email-block')
+
+    if (emailBlock) {
+      emailBlock.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }
+
   return (
     <>
       <div className="mb-4 flex items-center justify-between">
@@ -25,12 +28,7 @@ export default function Results() {
         <Button
           color="text"
           className="text-base underline"
-          onClick={() => {
-            trackEvent(endClickSaveShortcut)
-
-            const emailBlock = document.getElementById('email-block')
-            emailBlock?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-          }}>
+          onClick={handleScrollToEmailBlock}>
           <Emoji className="mr-2 inline-block">📩</Emoji>
           <Trans>Sauvegarder</Trans>
         </Button>
@@ -45,10 +43,7 @@ export default function Results() {
       <CategoriesAccordion />
 
       <div className="mt-2 text-right">
-        <Link
-          href="/profil#answers"
-          onClick={() => trackEvent(endClickChangeAnswers)}
-          className="text-sm md:mt-4">
+        <Link href="/profil#answers" className="text-sm md:mt-4">
           <Trans>Modifier mes réponses</Trans>
         </Link>
       </div>

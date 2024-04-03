@@ -1,11 +1,9 @@
-'use client'
-
 import Trans from '@/components/translation/Trans'
 import {
-  quizClickPass,
-  quizClickPrevious,
-} from '@/constants/tracking/pages/quiz'
-import { simulationSimulationCompleted } from '@/constants/tracking/simulation'
+  getMatomoEventParcoursTestOver,
+  matomoEventQuizPass,
+  matomoEventQuizReturn,
+} from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
@@ -34,7 +32,7 @@ export default function Navigation({
     <div className="mb-8 flex justify-between border-b border-gray-200 pb-8">
       <ButtonLink
         onClick={() => {
-          trackEvent(quizClickPrevious)
+          trackEvent(matomoEventQuizReturn)
         }}
         href={getLinkToSimulateur({
           question: 'services sociétaux . question rhétorique', //TODO: should be dynamic
@@ -51,10 +49,8 @@ export default function Navigation({
             allowedToGoToGroupDashboard: true,
           })}
           onClick={() => {
-            trackEvent(
-              simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
-            )
-            trackEvent(quizClickPass)
+            trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
+            trackEvent(matomoEventQuizPass)
           }}>
           <Trans>Passer la question →</Trans>
         </ButtonLink>
@@ -62,9 +58,7 @@ export default function Navigation({
         <ButtonLink
           href={getLinkToEndPage()}
           onClick={() =>
-            trackEvent(
-              simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
-            )
+            trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
           }>
           <Trans>Voir mes résultats →</Trans>
         </ButtonLink>
