@@ -82,9 +82,11 @@ export default function Localisation({ supportedRegions }: Props) {
                 </Button>
               </div>
             )}
-            <RegionModelAuthors
-              authors={supportedRegions[region.code][locale].authors}
-            />
+            {isRegionSupported && (
+              <RegionModelAuthors
+                authors={supportedRegions[region.code][locale].authors}
+              />
+            )}
           </div>
         </div>
       )}
