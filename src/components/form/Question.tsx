@@ -46,6 +46,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
 
   // It should happen only on mount (the component remount every time the question changes)
   const prevQuestion = useRef('')
+
   useEffect(() => {
     if (type !== 'number') {
       if (setTempValue) setTempValue(undefined)
@@ -95,8 +96,10 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
           <BooleanInput
             value={value}
             setValue={(value) => {
-              setValue(value, question)
-              trackEvent(questionChooseAnswer({ question, answer: value }))
+              {
+                setValue(value, question)
+                trackEvent(questionChooseAnswer({ question, answer: value }))
+              }
             }}
             isMissing={isMissing}
             data-cypress-id={question}
@@ -112,8 +115,10 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             choices={choices}
             value={String(value)}
             setValue={(value) => {
-              setValue(value, question)
-              trackEvent(questionChooseAnswer({ question, answer: value }))
+              {
+                setValue(value, question)
+                trackEvent(questionChooseAnswer({ question, answer: value }))
+              }
             }}
             isMissing={isMissing}
             data-cypress-id={question}
@@ -130,15 +135,18 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
           />
         )}
       </div>
+
       <Warning
         type={type}
         plancher={plancher}
         warning={warning}
         tempValue={tempValue}
       />
+
       {assistance ? (
         <Assistance question={question} assistance={assistance} />
       ) : null}
+
       {activeNotifications.map((notification) => (
         <Notification key={notification} notification={notification} />
       ))}

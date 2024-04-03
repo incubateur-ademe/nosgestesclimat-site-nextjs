@@ -44,6 +44,7 @@ export function useComputedResults({
 
   // Update the simulation with the computed results (only if the computed results have changed)
   const prevComputedResults = useRef<ComputedResults>(computedResults)
+
   useEffect(() => {
     if (prevComputedResults.current === computedResults) return
 

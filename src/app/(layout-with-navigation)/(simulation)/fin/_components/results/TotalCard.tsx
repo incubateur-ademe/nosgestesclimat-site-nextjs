@@ -43,7 +43,7 @@ export default function TotalCard() {
             "Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet."
           )}
           className="mt-2 text-xs text-white hover:text-primary-200 md:text-sm"
-          href="https://nosgestesclimat.fr/blog/budget"
+          href="/empreinte-climat"
           onClick={() => trackEvent(endClickEmpreinte)}>
           <Trans>Qu'est-ce que ça veut dire&nbsp;?&nbsp;</Trans>
           <ExternalLinkIcon className="stroke-white" />

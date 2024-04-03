@@ -14,12 +14,12 @@ type Props = {
 }
 
 export default function SubCategory({ subcategory }: Props) {
-  const { title, value, icons, category } = useRule(subcategory)
+  const { title, numericValue, icons, category } = useRule(subcategory)
   const { relevantAnsweredQuestions } = useForm()
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const formattedCarbonFootprint = formatCarbonFootprint(value as string)
+  const formattedCarbonFootprint = formatCarbonFootprint(numericValue)
 
   //TODO: Model shenanigans: investigate why subcategory = repas and questions = plats
   const answeredQuestionOfSubcategory = relevantAnsweredQuestions.filter(

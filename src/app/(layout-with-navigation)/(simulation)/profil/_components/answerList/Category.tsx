@@ -10,6 +10,7 @@ import { useRule, useSimulation } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
+import QuestionsWithoutSubcategory from './category/QuestionsWithoutSubcategory'
 import Subcategory from './category/Subcategory'
 
 type Props = {
@@ -47,11 +48,14 @@ export default function Category({ category }: Props) {
         </h3>
       </button>
 
-      {isOpen
-        ? subcategories[category].map((subcategory) => (
+      {isOpen ? (
+        <>
+          {subcategories[category].map((subcategory) => (
             <Subcategory key={subcategory} subcategory={subcategory} />
-          ))
-        : null}
+          ))}
+          <QuestionsWithoutSubcategory category={category} />
+        </>
+      ) : null}
     </div>
   )
 }

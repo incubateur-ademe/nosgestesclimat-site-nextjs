@@ -82,7 +82,7 @@ export default function GroupCreationForm() {
 
       // Update current simulation with group id (to redirect after test completion)
       updateCurrentSimulation({
-        group: group._id,
+        groupToAdd: group._id,
       })
 
       // We signal that the form has been submitted. When the currentSimulation is updated, we redirect
@@ -94,7 +94,7 @@ export default function GroupCreationForm() {
 
   const [isSubmitted, setIsSubmitted] = useState(false)
   useEffect(() => {
-    if (isSubmitted && currentSimulation?.group) {
+    if (isSubmitted && currentSimulation?.groups) {
       // Redirect to simulateur page or end page
       if (hasCompletedTest) {
         goToEndPage({ allowedToGoToGroupDashboard: true })

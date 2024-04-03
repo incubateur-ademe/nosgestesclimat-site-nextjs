@@ -4,9 +4,10 @@ import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 
 type Props = {
-  question: string
+  question: DottedName
   isMissing: boolean
 }
 

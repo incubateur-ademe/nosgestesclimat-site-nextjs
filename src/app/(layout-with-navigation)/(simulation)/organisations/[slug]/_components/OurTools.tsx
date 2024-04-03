@@ -90,7 +90,7 @@ export default function OurTools() {
             aria-label={t(
               'Découvrez le simulateur, ouvrir dans un nouvel onglet'
             )}>
-            <Trans>Découvrez le simulateur</Trans>
+            <Trans>Découvrir le simulateur</Trans>
             <ExternalLinkIcon className="ml-2 stroke-primary-700" />
           </ButtonLink>
         </CTACard>

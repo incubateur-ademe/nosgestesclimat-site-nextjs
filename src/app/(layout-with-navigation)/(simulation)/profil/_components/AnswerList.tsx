@@ -1,11 +1,12 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { useEngine, useForm } from '@/publicodes-state'
+import { useEngine, useForm, useSimulation } from '@/publicodes-state'
 import Category from './answerList/Category'
 
 export default function AnswerList() {
-  const { categories, relevantAnsweredQuestions } = useForm()
+  const { categories } = useSimulation()
+  const { relevantAnsweredQuestions } = useForm()
 
   const { getCategory } = useEngine()
   return (
