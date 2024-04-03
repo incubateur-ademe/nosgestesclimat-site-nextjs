@@ -7,7 +7,7 @@ import { sortSupportedRegions } from '@/helpers/localisation/sortSupportedRegion
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
-import { SupportedRegions } from '@/types/international'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   isOpen?: boolean
