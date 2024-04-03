@@ -12,8 +12,11 @@ export default function Poll() {
   const { getCurrentSimulation } = useUser()
   const currentSimulation = getCurrentSimulation()
 
+  const lastPollSlug =
+    currentSimulation?.polls?.[currentSimulation?.polls?.length - 1]
+
   const { data: poll, isLoading } = usePoll({
-    pollSlug: currentSimulation?.poll,
+    pollSlug: lastPollSlug,
   })
 
   const { shouldPreventNavigation, handleUpdateShouldPreventNavigation } =
@@ -26,7 +29,7 @@ export default function Poll() {
   }, [shouldPreventNavigation, handleUpdateShouldPreventNavigation])
 
   // If there is no poll attached to the simulation, we don't display the block
-  if (!currentSimulation?.poll) {
+  if (!lastPollSlug) {
     return null
   }
 
