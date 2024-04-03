@@ -6,10 +6,11 @@ import NumberValue from '@/components/misc/NumberValue'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import MosaicQuestion from './question/MosaicQuestion'
 
 type Props = {
-  question: string
+  question: DottedName
 }
 
 export default function Question({ question }: Props) {

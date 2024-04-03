@@ -5,17 +5,19 @@ import {
   getBackgroundColor,
   getTextColor,
 } from '@/helpers/getCategoryColorClass'
-import { useForm, useRule } from '@/publicodes-state'
+import { useRule, useSimulation } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { useState } from 'react'
+import QuestionsWithoutSubcategory from './category/QuestionsWithoutSubcategory'
 import Subcategory from './category/Subcategory'
 
 type Props = {
-  category: string
+  category: DottedName
 }
 
 export default function Category({ category }: Props) {
   const { title, numericValue, icons } = useRule(category)
-  const { subcategories } = useForm()
+  const { subcategories } = useSimulation()
 
   const [isOpen, setIsOpen] = useState(false)
   const formattedCarbonFootprint = formatCarbonFootprint(numericValue)
@@ -41,11 +43,14 @@ export default function Category({ category }: Props) {
         </h3>
       </button>
 
-      {isOpen
-        ? subcategories[category].map((subcategory) => (
+      {isOpen ? (
+        <>
+          {subcategories[category].map((subcategory) => (
             <Subcategory key={subcategory} subcategory={subcategory} />
-          ))
-        : null}
+          ))}
+          <QuestionsWithoutSubcategory category={category} />
+        </>
+      ) : null}
     </div>
   )
 }
