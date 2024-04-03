@@ -9,6 +9,7 @@ import { useTrackLocale } from '@/hooks/tracking/useTrackLocale'
 import { useTrackPageView } from '@/hooks/tracking/useTrackPageView'
 import { useTrackRegion } from '@/hooks/tracking/useTrackRegion'
 import { useTrackSplitTesting } from '@/hooks/tracking/useTrackSplitTesting'
+import { useUserInfosParams } from '@/hooks/useUserInfosParams'
 import { PropsWithChildren } from 'react'
 
 export default function MainHooks({ children }: PropsWithChildren) {
@@ -16,6 +17,7 @@ export default function MainHooks({ children }: PropsWithChildren) {
   useTrackPageView()
   useTrackLocale()
   useTrackRegion()
+  useUserInfosParams()
 
   return children
 }
