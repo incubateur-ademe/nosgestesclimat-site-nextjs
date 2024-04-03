@@ -1,4 +1,4 @@
-import { SupportedRegions } from '@/types/international'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { getFileFromModel } from './getFileFromModel'
 
 type Props = {

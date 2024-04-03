@@ -5,7 +5,7 @@ import { orderedCategories } from '@/constants/orderedCategories'
 import Loader from '@/design-system/layout/Loader'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useUser } from '@/publicodes-state'
-import { SupportedRegions } from '@/types/international'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
 import { PropsWithChildren, useEffect } from 'react'
 

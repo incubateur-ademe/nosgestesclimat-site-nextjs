@@ -1,4 +1,7 @@
-import { SupportedRegionType, SupportedRegions } from '@/types/international'
+import {
+  SupportedRegionType,
+  SupportedRegions,
+} from '@incubateur-ademe/nosgestesclimat'
 
 export const sortSupportedRegions = ({
   supportedRegions,

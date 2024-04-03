@@ -1,3 +1,4 @@
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json' assert { type: 'json' }
 import { NextRequest, NextResponse } from 'next/server'
 import countries from './countries.json'
@@ -29,7 +30,7 @@ export async function GET(request: NextRequest) {
 function getIsNotSupportedUECountry(countryCode: string): boolean {
   // Type assertion should be fixed. The type of supportedRegions is not inferred correctly but should be dealed with when importing the file.
   const nonSupportedUECountryCodes = ue_country_codes.filter(
-    (code) => !supportedRegions[code as keyof typeof supportedRegions]
+    (code) => !(supportedRegions as SupportedRegions)[code]
   )
   return nonSupportedUECountryCodes.includes(countryCode)
 }
