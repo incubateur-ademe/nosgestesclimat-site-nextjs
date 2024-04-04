@@ -189,7 +189,9 @@ entries:
   sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
   sélectionnées: selected
   tonne: tonne
+  tonne.lock: ton
   tonnes: tonnes
+  tonnes.lock: tons
   trajets saisis en moyenne: trips entered on average
   visites: visits
   À propos: About us
@@ -818,3 +820,20 @@ entries:
   'Le consensus scientifique est formel, cette augmentation est directement liée aux activités humaines : l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. Il est grand temps de réduire ou remplacer ces activités émettrices de gaz à effet de serre, à toutes les échelles !': "The scientific consensus is clear: this increase is directly linked to human activities: the extraction, consumption and combustion of resources exceed our planet's capacity to absorb them. It's high time we reduced or replaced these greenhouse gas-emitting activities, on every scale!"
   Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: The individual carbon footprint simulator helps you to understand which of our uses contribute most to climate change, and to understand which actions would have the greatest impact in reducing it.
   'Depuis le siècle dernier, la concentration du carbone dans l’atmosphère augmente tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': "Since the last century, the concentration of carbon in the atmosphere has increased to such an extent that the planet's climate is undergoing upheaval with far-reaching consequences: rising sea levels, destruction of living organisms, and an explosion of climatic disasters."
+  Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: You will receive an email from us shortly, enabling you to find it
+  (1 fois par mois max.): (max. once a month)
+  Annuler: Cancel
+  Supprimer le groupe: Delete group
+  1 minute: 1 minute
+  Voir les résultats: See the results
+  Votre simulation est sauvegardée !: Your simulation is saved!
+  à tout moment: at any time
+  des conseils pour la réduire: advice on how to reduce it
+  Invitez d'autres personnes à rejoindre votre groupe: Invite other people to join your group
+  vous: you
+  Vous retrouverez votre résultat d’empreinte, ainsi que: You will find your impression results, as well as
+  Qu'est-ce que ça veut dire ?: What does this mean?
+  Invitez vos proches pour comparer vos résultats. Cela prend: Invite friends and family to compare your results. It takes
+  Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.: Just <strong>leave us your email address</strong>, like {{numberSubscribers}}.
+  l’équipe de nosgestesclimat.fr: the nosgestesclimat.fr team
+  l’équipe de nosgestesclimat.fr.lock: l’équipe de nosgestesclimat.fr
