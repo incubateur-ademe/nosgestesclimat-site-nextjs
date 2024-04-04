@@ -1,13 +1,13 @@
 'use client'
 
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
-import { orderedCategories } from '@/constants/orderedCategories'
 import Loader from '@/design-system/layout/Loader'
 import { useRules } from '@/hooks/useRules'
-import { SimulationProvider, useUser } from '@/publicodes-state'
+import { SimulationProvider } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
 import { usePathname } from 'next/navigation'
-import { PropsWithChildren, useEffect } from 'react'
+import { PropsWithChildren } from 'react'
+import Error500 from '../layout/500'
 
 type Props = {
   supportedRegions: SuppportedRegions
@@ -21,33 +21,19 @@ export default function Providers({
   supportedRegions,
   isOptim = true,
 }: PropsWithChildren<Props>) {
-  const {
-    getCurrentSimulation,
-    currentSimulationId,
-    initSimulation,
-    updateCurrentSimulation,
-    updateSituationOfCurrentSimulation,
-    updateProgressionOfCurrentSimulation,
-    updateFoldedStepsOfCurrentSimulation,
-  } = useUser()
-
   const pathname = usePathname()
 
   const { data: rules, isLoading } = useRules({ isOptim })
 
-  useEffect(() => {
-    if (!currentSimulationId) {
-      initSimulation()
-    }
-  }, [currentSimulationId, initSimulation])
-
   // We don't want to display the loader when the user is on the tutorial page
   // or the landing page for organisations
-  if (NO_MODEL_PATHNAME_EXCEPTIONS.includes(pathname)) {
-    return <>{children}</>
+  const shouldAlwaysDisplayChildren =
+    NO_MODEL_PATHNAME_EXCEPTIONS.includes(pathname)
+  if (shouldAlwaysDisplayChildren && isLoading) {
+    return children
   }
 
-  if (!currentSimulationId || !rules || isLoading) {
+  if (isLoading) {
     return (
       <div className="flex flex-1 items-center justify-center">
         <Loader color="dark" />
@@ -55,20 +41,15 @@ export default function Providers({
     )
   }
 
+  if (!rules) {
+    return <Error500 />
+  }
+
   return (
     <SimulationProvider
-      key={currentSimulationId}
       rules={rules}
-      situation={getCurrentSimulation()?.situation || {}}
-      updateSimulation={updateCurrentSimulation}
-      updateSituation={updateSituationOfCurrentSimulation}
-      updateProgression={updateProgressionOfCurrentSimulation}
-      foldedSteps={getCurrentSimulation()?.foldedSteps || []}
-      addFoldedStep={updateFoldedStepsOfCurrentSimulation}
-      shouldAlwaysDisplayChildren={pathname === '/tutoriel'}
-      categoryOrder={orderedCategories}>
+      shouldAlwaysDisplayChildren={shouldAlwaysDisplayChildren}>
       <LocalisationBanner supportedRegions={supportedRegions} />
-
       {children}
     </SimulationProvider>
   )

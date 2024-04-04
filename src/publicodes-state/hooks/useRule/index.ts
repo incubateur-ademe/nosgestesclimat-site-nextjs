@@ -3,8 +3,9 @@
 import useQuestionsOfMosaic from '@/publicodes-state/hooks/useRule/useQuestionsOfMosaic'
 import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
-import simulationContext from '../../providers/simulationProvider/context'
+import { SimulationContext } from '../../providers/simulationProvider/context'
 import { DottedName, NGCEvaluatedNode, NGCRuleNode } from '../../types'
+import useCurrentSimulation from '../useCurrentSimulation'
 import useChoices from './useChoices'
 import useContent from './useContent'
 import useMissing from './useMissing'
@@ -22,13 +23,12 @@ export default function useRule(dottedName: DottedName) {
     engine,
     safeGetRule,
     safeEvaluate,
-    situation,
-    updateSituation,
-    addFoldedStep,
-    foldedSteps,
     everyNotifications,
     everyMosaicChildren,
-  } = useContext(simulationContext)
+  } = useContext(SimulationContext)
+
+  const { situation, foldedSteps, updateCurrentSimulation } =
+    useCurrentSimulation()
 
   const evaluation = useMemo<NGCEvaluatedNode | null>(
     () => safeEvaluate(dottedName),
@@ -103,8 +103,7 @@ export default function useRule(dottedName: DottedName) {
     evaluation,
     type,
     questionsOfMosaic,
-    updateSituation,
-    addFoldedStep,
+    updateCurrentSimulation,
     situation,
   })
 
@@ -217,9 +216,5 @@ export default function useRule(dottedName: DottedName) {
      * Set every child of the mosaic without user answer to zero or "non"
      */
     resetMosaicChildren,
-    /**
-     * Add a dottedName in the foldedSteps
-     */
-    addFoldedStep,
   }
 }

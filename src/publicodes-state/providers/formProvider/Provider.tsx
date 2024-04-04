@@ -1,7 +1,8 @@
 'use client'
 
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { PropsWithChildren, useContext } from 'react'
-import simulationContext from '../simulationProvider/context'
+import { SimulationContext } from '../simulationProvider/context'
 import FormContext from './context'
 import useCurrent from './useCurrent'
 import useProgression from './useProgression'
@@ -20,13 +21,13 @@ export default function FormProvider({
     subcategories,
     safeGetRule,
     safeEvaluate,
-    situation,
-    foldedSteps,
     everyQuestions,
     everyMosaicChildren,
     rawMissingVariables,
-    updateProgression,
-  } = useContext(simulationContext)
+  } = useContext(SimulationContext)
+
+  const { situation, foldedSteps, updateCurrentSimulation } =
+    useCurrentSimulation()
 
   const {
     currentQuestion,
@@ -53,24 +54,20 @@ export default function FormProvider({
     rawMissingVariables,
   })
 
-  const { progression, remainingQuestionsByCategories } = useProgression({
+  const { remainingQuestionsByCategories } = useProgression({
     categories,
     remainingQuestions,
     relevantQuestions,
-    updateProgression,
+    updateCurrentSimulation,
   })
 
   return (
     <FormContext.Provider
       value={{
-        // TODO: Categories shouldn't be returned by this provider
-        categories,
-        subcategories,
         relevantQuestions,
         questionsByCategories,
         remainingQuestions,
         relevantAnsweredQuestions,
-        progression,
         remainingQuestionsByCategories,
         currentQuestion,
         currentCategory,

@@ -1,5 +1,5 @@
 import { SERVER_URL } from '@/constants/urls'
-import { useUser } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { DottedName } from '@/publicodes-state/types'
 import { AnswerType } from '@/types/quiz'
 import { useMutation } from '@tanstack/react-query'
@@ -10,8 +10,7 @@ type Props = {
   isAnswerCorrect: AnswerType
 }
 export function useSaveQuizAnswer() {
-  const { getCurrentSimulation } = useUser()
-  const currentSimulation = getCurrentSimulation()
+  const { id } = useCurrentSimulation()
 
   const { mutateAsync: saveQuizAnswer } = useMutation({
     mutationFn: ({ answer, isAnswerCorrect }: Props) => {
@@ -19,7 +18,7 @@ export function useSaveQuizAnswer() {
         .post(SERVER_URL + '/quiz/answers/create', {
           answer,
           isAnswerCorrect,
-          simulationId: currentSimulation?.id,
+          simulationId: id,
         })
         .then((response) => response.data)
         .catch(() => console.error('Failed to save quiz answer'))

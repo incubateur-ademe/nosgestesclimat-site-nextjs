@@ -1,3 +1,4 @@
+import { orderedCategories } from '@/constants/orderedCategories'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import * as Sentry from '@sentry/react'
 import { utils } from 'publicodes'
@@ -9,15 +10,13 @@ type Props = {
   everyRules: DottedName[]
   root: string
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
-  order: string[] | null
 }
 
-export default function useCategories({
+export function useCategories({
   parsedRules,
   everyRules,
   root,
   safeGetRule,
-  order,
 }: Props) {
   const categories = useMemo<DottedName[]>(() => {
     const rootRule = safeGetRule(root)
@@ -40,9 +39,11 @@ export default function useCategories({
     }
 
     return sum.sort((a: DottedName, b: DottedName) =>
-      !order ? 0 : order.indexOf(a) - order.indexOf(b)
+      !orderedCategories
+        ? 0
+        : orderedCategories.indexOf(a) - orderedCategories.indexOf(b)
     )
-  }, [root, order, safeGetRule])
+  }, [root, safeGetRule])
 
   const subcategories = useMemo<Record<string, string[]>>(() => {
     return categories.reduce((accumulator: object, currentValue: string) => {

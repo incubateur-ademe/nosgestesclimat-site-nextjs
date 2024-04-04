@@ -1,5 +1,6 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useUser } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQueryParams'
@@ -7,8 +8,8 @@ import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQue
 export function useEndGuard() {
   const router = useRouter()
 
-  const { getCurrentSimulation, tutorials } = useUser()
-  const currentSimulation = getCurrentSimulation()
+  const { tutorials } = useUser()
+  const { progression } = useCurrentSimulation()
 
   const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
 
@@ -20,19 +21,13 @@ export function useEndGuard() {
     if (isGuardInit) return
     setIsGuardInit(true)
 
-    if (!currentSimulation) {
-      router.push('/404') // TODO: should throw an error
-      setIsGuardRedirecting(true)
-      return
-    }
-
     // if there is a simulation id in the query params we do nothing
     if (simulationIdInQueryParams) {
       return
     }
 
     // if the simulation is finished we do nothing
-    if (currentSimulation.progression === 1) {
+    if (progression === 1) {
       return
     }
 
@@ -46,13 +41,7 @@ export function useEndGuard() {
     // we redirect the user to the test page
     router.replace(getLinkToSimulateur())
     setIsGuardRedirecting(true)
-  }, [
-    isGuardInit,
-    simulationIdInQueryParams,
-    currentSimulation,
-    router,
-    tutorials,
-  ])
+  }, [isGuardInit, simulationIdInQueryParams, progression, router, tutorials])
 
   return { isGuardInit, isGuardRedirecting }
 }

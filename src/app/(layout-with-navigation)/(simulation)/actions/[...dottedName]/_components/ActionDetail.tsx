@@ -12,6 +12,7 @@ import {
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { DottedName, NGCRuleNode } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { utils } from 'publicodes'
@@ -34,7 +35,9 @@ export default function ActionDetail({
 
   const { rules, getRuleObject, extendedFoldedSteps } = useTempEngine()
 
-  const { getCurrentSimulation, toggleActionChoice } = useUser()
+  const { toggleActionChoice } = useUser()
+
+  const { actionChoices } = useCurrentSimulation()
 
   const dottedName = decodeRuleName(formattedDottedName ?? '')
 
@@ -46,13 +49,9 @@ export default function ActionDetail({
   const nbRemainingQuestions = remainingQuestions?.length
   const rule = useRule(dottedName)
 
-  const currentSimulation = getCurrentSimulation()
-
-  if (!currentSimulation || !rules) {
+  if (!rules) {
     return null
   }
-
-  const actionChoices = currentSimulation.actionChoices
 
   const { title } = rule
 

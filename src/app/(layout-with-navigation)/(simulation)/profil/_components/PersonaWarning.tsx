@@ -1,13 +1,11 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { useUser } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { capitalizeString } from '@/utils/capitalizeString'
 
 export default function PersonaWarning() {
-  const { getCurrentSimulation } = useUser()
-
-  const persona = getCurrentSimulation()?.persona
+  const { persona } = useCurrentSimulation()
 
   if (!persona) return null
   return (

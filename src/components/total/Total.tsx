@@ -9,6 +9,7 @@ import {
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useRule, useUser } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
@@ -25,18 +26,16 @@ export default function Total({ toggleQuestionList }: Props) {
 
   const { getNumericValue } = useEngine()
 
-  const { tutorials, hideTutorial, showTutorial, getCurrentSimulation } =
-    useUser()
+  const { tutorials, hideTutorial, showTutorial } = useUser()
 
-  const currentSimulation = getCurrentSimulation()
+  const { actionChoices } = useCurrentSimulation()
 
-  const actionChoicesSumValue = Object.keys(
-    currentSimulation?.actionChoices || {}
-  ).reduce((acc, key) => {
-    return (
-      acc + (currentSimulation?.actionChoices[key] ? getNumericValue(key) : 0)
-    )
-  }, 0)
+  const actionChoicesSumValue = Object.keys(actionChoices || {}).reduce(
+    (acc, key) => {
+      return acc + (actionChoices[key] ? getNumericValue(key) : 0)
+    },
+    0
+  )
 
   const toggleOpen = () => {
     if (tutorials.scoreExplanation) {

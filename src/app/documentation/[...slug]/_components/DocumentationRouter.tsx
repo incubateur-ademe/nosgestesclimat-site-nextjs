@@ -1,7 +1,7 @@
 'use client'
 
 import Providers from '@/components/providers/Providers'
-import { useUser } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { JSX, useContext, useEffect } from 'react'
 import { IsDocumentationClientContext } from '../../_contexts/DocumentationStateContext'
 import DocumentationClient from './documentationRouter/DocumentationClient'
@@ -21,18 +21,16 @@ export default function DocumentationRouter({
     IsDocumentationClientContext
   )
 
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
+  const { foldedSteps } = useCurrentSimulation()
 
   // Switch to client side documentation if the simulation has been started
   useEffect(() => {
-    if (!currentSimulation?.foldedSteps) return
+    if (!foldedSteps) return
 
-    if (currentSimulation?.foldedSteps?.length > 0) {
+    if (foldedSteps?.length > 0) {
       setIsDocumentationClient(true)
     }
-  }, [currentSimulation, setIsDocumentationClient])
+  }, [foldedSteps, setIsDocumentationClient])
 
   if (isDocumentationClient)
     return (

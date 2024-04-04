@@ -2,6 +2,7 @@
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useUser } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { NorthStarType } from '@/types/northstar'
 import { motion } from 'framer-motion'
 import { JSX, useEffect, useRef, useState } from 'react'
@@ -19,11 +20,7 @@ export default function NorthStarBanner({
 
   const { progression } = useForm()
 
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
-
-  const actionChoices = currentSimulation?.actionChoices
+  const { actionChoices } = useCurrentSimulation()
 
   const actionChoicesLength = Object.values(actionChoices || {}).filter(
     (value) => value

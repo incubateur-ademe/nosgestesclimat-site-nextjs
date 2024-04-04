@@ -11,8 +11,6 @@ import useUserDetails from './useUserDetails'
 
 /**
  * A hook to get and set every info about a user
- *
- * Maybe it shouldn't be in publicodes-state
  */
 export default function useUser() {
   const {
@@ -37,14 +35,9 @@ export default function useUser() {
 
   const {
     initSimulation,
-    addSimulation,
     deleteSimulation,
-    updateSituationOfCurrentSimulation,
-    updateProgressionOfCurrentSimulation,
-    updateFoldedStepsOfCurrentSimulation,
+    currentSimulation,
     updateCurrentSimulation,
-    updateCurrentSimulationActionChoices,
-    getCurrentSimulation,
   } = useSimulations({
     simulations,
     setSimulations,
@@ -54,8 +47,8 @@ export default function useUser() {
   })
 
   const { toggleActionChoice, rejectAction } = useActions({
-    getCurrentSimulation,
-    updateCurrentSimulationActionChoices,
+    currentSimulation,
+    updateCurrentSimulation,
   })
 
   const { hideTutorial, showTutorial } = useTutorials({ setTutorials })
@@ -108,10 +101,6 @@ export default function useUser() {
      */
     simulations,
     /**
-     * Add a simulation to the list of simulations
-     */
-    addSimulation,
-    /**
      * Delete a the specified simulation
      */
     deleteSimulation,
@@ -128,25 +117,9 @@ export default function useUser() {
      */
     updateCurrentSimulation,
     /**
-     * Update the situation of the current simulation (by adding the passed situation to the existing situation)
+     * The current simulation (or the first one of the list)
      */
-    updateSituationOfCurrentSimulation,
-    /**
-     * Update the progression of the current simulation
-     */
-    updateProgressionOfCurrentSimulation,
-    /**
-     * Add a folded step to the list of folded step of the current simulation
-     */
-    updateFoldedStepsOfCurrentSimulation,
-    /**
-     * Replace the actions choices of the current simulation by the one passed
-     */
-    updateCurrentSimulationActionChoices,
-    /**
-     * Return the current simulation object
-     */
-    getCurrentSimulation,
+    currentSimulation,
     /**
      * Create a new simulation (with the situation and the persona passed if applicable), set it as current and return its ID
      */

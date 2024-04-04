@@ -1,10 +1,13 @@
+import { UpdateCurrentSimulationProps } from '@/publicodes-state/types'
 import { useEffect, useMemo } from 'react'
 
 type Props = {
   categories: string[]
   remainingQuestions: string[]
   relevantQuestions: string[]
-  updateProgression: (progression: number) => void
+  updateCurrentSimulation: (
+    simulation: UpdateCurrentSimulationProps
+  ) => Promise<undefined>
 }
 
 /**
@@ -16,7 +19,7 @@ export default function useProgression({
   categories,
   remainingQuestions,
   relevantQuestions,
-  updateProgression,
+  updateCurrentSimulation,
 }: Props) {
   const progression = useMemo(
     () =>
@@ -43,11 +46,10 @@ export default function useProgression({
 
   // Updates the progression stored in the user object / hook
   useEffect(() => {
-    updateProgression(progression)
-  }, [progression, updateProgression])
+    updateCurrentSimulation({ progression })
+  }, [progression, updateCurrentSimulation])
 
   return {
-    progression,
     remainingQuestionsByCategories,
   }
 }

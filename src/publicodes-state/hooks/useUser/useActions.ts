@@ -1,18 +1,20 @@
-import { ActionChoices, DottedName, Simulation } from '../../types'
+import {
+  DottedName,
+  Simulation,
+  UpdateCurrentSimulationProps,
+} from '../../types'
 
 type Props = {
-  getCurrentSimulation: () => Simulation | undefined
-  updateCurrentSimulationActionChoices: (actionChoices: ActionChoices) => void
+  currentSimulation: Simulation
+  updateCurrentSimulation: (
+    simulation: UpdateCurrentSimulationProps
+  ) => Promise<undefined>
 }
 export default function useActions({
-  getCurrentSimulation,
-  updateCurrentSimulationActionChoices,
+  currentSimulation,
+  updateCurrentSimulation,
 }: Props) {
   const toggleActionChoice = (actionChoiceDottedName: DottedName) => {
-    const currentSimulation = getCurrentSimulation()
-
-    if (!currentSimulation) return
-
     const isActionSelected = Object.keys(
       currentSimulation.actionChoices || {}
     ).some(
@@ -23,21 +25,23 @@ export default function useActions({
       const actionChoicesUpdated = { ...currentSimulation.actionChoices }
       delete actionChoicesUpdated[actionChoiceDottedName]
 
-      updateCurrentSimulationActionChoices(actionChoicesUpdated)
+      updateCurrentSimulation({ actionChoices: actionChoicesUpdated })
     } else {
-      updateCurrentSimulationActionChoices({
-        ...currentSimulation.actionChoices,
-        [actionChoiceDottedName]: true,
+      updateCurrentSimulation({
+        actionChoices: {
+          ...currentSimulation.actionChoices,
+          [actionChoiceDottedName]: true,
+        },
       })
     }
   }
 
   const rejectAction = (actionChoiceDottedName: DottedName) => {
-    const currentSimulation = getCurrentSimulation()
-
-    updateCurrentSimulationActionChoices({
-      ...currentSimulation?.actionChoices,
-      [actionChoiceDottedName]: false,
+    updateCurrentSimulation({
+      actionChoices: {
+        ...currentSimulation?.actionChoices,
+        [actionChoiceDottedName]: false,
+      },
     })
   }
   return { toggleActionChoice, rejectAction }

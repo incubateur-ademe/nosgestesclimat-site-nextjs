@@ -1,7 +1,7 @@
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { linkToQuiz } from '@/helpers/navigation/quizPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
-import { useUser } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
@@ -28,9 +28,7 @@ const GetLinkToEndPagePropsDefault = {
 export function useEndPage() {
   const router = useRouter()
 
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
+  const currentSimulation = useCurrentSimulation()
 
   const progression = currentSimulation?.progression
 
@@ -44,11 +42,6 @@ export function useEndPage() {
       allowedToGoToGroupDashboard = false,
       shouldShowQuiz = false,
     }: GoToEndPageProps = goToEndPagePropsDefault) => {
-      if (!currentSimulation) {
-        router.push('/404') // TODO: should throw an error
-        return
-      }
-
       // If we are already navigating, we don't do anything
       if (isNavigating) {
         return
@@ -91,10 +84,6 @@ export function useEndPage() {
       allowedToGoToGroupDashboard = false,
       shouldShowQuiz = false,
     }: GetLinkToEndPageProps = GetLinkToEndPagePropsDefault): string => {
-      if (!currentSimulation) {
-        return '/404' // TODO: should throw an error
-      }
-
       // If we should show the quiz, we redirect to the quiz page
       // TODO: This is maybe in the wrong place. Should check it later
       if (shouldShowQuiz) {

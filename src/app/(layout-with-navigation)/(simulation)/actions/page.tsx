@@ -7,6 +7,7 @@ import {
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { useState } from 'react'
 import ActionsTutorial from './_components/ActionsTutorial'
 import AllerPlusLoin from './_components/AllerPlusLoin'
@@ -28,19 +29,17 @@ export default function ActionsPage({
 
   const { progression } = useForm()
 
-  const { tutorials, getCurrentSimulation } = useUser()
+  const { tutorials } = useUser()
 
-  const currentSimulation = getCurrentSimulation()
+  const { actionChoices } = useCurrentSimulation()
 
   const { rules, getRuleObject } = useTempEngine()
 
   const { safeEvaluate } = useSimulation()
 
-  if (!currentSimulation || !rules) {
+  if (!rules) {
     return null
   }
-
-  const actionChoices = currentSimulation.actionChoices
 
   const actions = getActions({
     rules,

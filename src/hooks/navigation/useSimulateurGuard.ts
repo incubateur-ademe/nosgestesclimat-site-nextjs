@@ -1,4 +1,5 @@
 import { useUser } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useDebug } from '../useDebug'
@@ -10,8 +11,8 @@ export function useSimulateurGuard() {
 
   const { goToEndPage } = useEndPage()
 
-  const { tutorials, getCurrentSimulation } = useUser()
-  const currentSimulation = getCurrentSimulation()
+  const { tutorials } = useUser()
+  const { progression } = useCurrentSimulation()
 
   const isDebug = useDebug()
 
@@ -25,20 +26,13 @@ export function useSimulateurGuard() {
     if (isGuardInit) return
     setIsGuardInit(true)
 
-    // it should not happen because a new simulation is set in Providers.tsx
-    if (!currentSimulation) {
-      router.replace('/404') // TODO: should throw an error
-      setIsGuardRedirecting(true)
-      return
-    }
-
     // if we are in debug mode we do nothing
     if (isDebug) {
       return
     }
 
     // if the user has completed the test, we redirect him to the results page
-    if (currentSimulation.progression === 1 && !questionInQueryParams) {
+    if (progression === 1 && !questionInQueryParams) {
       goToEndPage()
       setIsGuardRedirecting(true)
       return
@@ -53,7 +47,7 @@ export function useSimulateurGuard() {
     isGuardInit,
     tutorials,
     router,
-    currentSimulation,
+    progression,
     goToEndPage,
     isDebug,
     questionInQueryParams,

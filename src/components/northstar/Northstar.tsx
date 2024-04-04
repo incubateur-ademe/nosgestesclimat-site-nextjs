@@ -1,6 +1,7 @@
 import { SIMULATION_URL } from '@/constants/urls'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import {
   NorthStarRatings,
   NorthStarType,
@@ -32,12 +33,9 @@ export default function NorthStarInput({
 
   const [hasSelectedRating, setHasSelectedRating] = useState(false)
 
-  const {
-    user,
-    updateNorthStarRatings,
-    currentSimulationId,
-    getCurrentSimulation,
-  } = useUser()
+  const { user, updateNorthStarRatings, currentSimulationId } = useUser()
+
+  const currentSimulation = useCurrentSimulation()
 
   const ratings = user?.northStarRatings
 
@@ -51,7 +49,7 @@ export default function NorthStarInput({
 
       const newRatings = setRating(ratings, type, rating, text)
 
-      postData(getCurrentSimulation(), currentSimulationId, newRatings)
+      postData(currentSimulation, currentSimulationId, newRatings)
     }, 1000)
   }
 
@@ -69,7 +67,7 @@ export default function NorthStarInput({
       [0, 1, 2, 3].includes(ratings.action)
     ) {
       // cas ou l'utilisateur a déjà envoyé une note, pour ne pas écraser les résultats en base
-      postData(getCurrentSimulation(), currentSimulationId, newRatings)
+      postData(currentSimulation, currentSimulationId, newRatings)
     } else {
       postData(null, currentSimulationId, newRatings)
     }
@@ -79,7 +77,7 @@ export default function NorthStarInput({
     currentSimulationId,
     isAnimationCompleted,
     text,
-    getCurrentSimulation,
+    currentSimulation,
     updateNorthStarRatings,
   ])
 

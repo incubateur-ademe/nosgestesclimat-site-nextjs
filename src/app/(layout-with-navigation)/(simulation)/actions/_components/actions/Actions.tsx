@@ -3,7 +3,8 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useUser } from '@/publicodes-state'
+import { useEngine } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -36,13 +37,7 @@ export default function Actions({
     [1, t("plus d'1 kg")],
   ]
 
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
-
-  if (!currentSimulation) return
-
-  const actionChoices = currentSimulation.actionChoices
+  const { actionChoices } = useCurrentSimulation()
 
   const actions = rawActions.map((a: any) => ({
     ...a,

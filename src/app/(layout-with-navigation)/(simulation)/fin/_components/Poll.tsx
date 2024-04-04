@@ -6,15 +6,13 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
 import { usePoll } from '@/hooks/organisations/usePoll'
-import { useUser } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { useContext, useEffect } from 'react'
 
 export default function Poll() {
-  const { getCurrentSimulation } = useUser()
-  const currentSimulation = getCurrentSimulation()
+  const { polls } = useCurrentSimulation()
 
-  const lastPollSlug =
-    currentSimulation?.polls?.[currentSimulation?.polls?.length - 1]
+  const lastPollSlug = polls?.[polls?.length - 1]
 
   const { data: poll, isLoading } = usePoll({
     pollSlug: lastPollSlug,

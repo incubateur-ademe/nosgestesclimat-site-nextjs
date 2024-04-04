@@ -12,7 +12,7 @@ import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
-import { useUser } from '@/publicodes-state'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useContext, useEffect, useState } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
@@ -69,11 +69,9 @@ export default function Commencer() {
 
   const { pollSlug } = useOrganisationQueryParams()
 
-  const { getCurrentSimulation, updateCurrentSimulation } = useUser()
-
   const { goToSimulateurPage } = useSimulateurPage()
 
-  const currentSimulation = getCurrentSimulation()
+  const { polls, progression, updateCurrentSimulation } = useCurrentSimulation()
 
   const [status, setStatus] = useState<
     'notStarted' | 'started' | 'finished' | undefined
@@ -83,16 +81,16 @@ export default function Commencer() {
     if (status) {
       return
     }
-    if (!currentSimulation?.progression) {
+    if (!progression) {
       setStatus('notStarted')
       return
     }
-    if (currentSimulation?.progression === 1) {
+    if (progression === 1) {
       setStatus('finished')
       return
     }
     setStatus('started')
-  }, [currentSimulation, status])
+  }, [progression, status])
 
   const { handleUpdateShouldPreventNavigation } = useContext(
     PreventNavigationContext
@@ -107,15 +105,10 @@ export default function Commencer() {
     if (!shouldGoToSimulateurPage) {
       return
     }
-    if (currentSimulation?.polls?.includes(pollSlug || '')) {
+    if (polls?.includes(pollSlug || '')) {
       goToSimulateurPage()
     }
-  }, [
-    goToSimulateurPage,
-    shouldGoToSimulateurPage,
-    currentSimulation,
-    pollSlug,
-  ])
+  }, [goToSimulateurPage, shouldGoToSimulateurPage, polls, pollSlug])
 
   if (!status) {
     return null
