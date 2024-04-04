@@ -22,7 +22,7 @@ export default function CreateOrganisation({ organisation }: Props) {
         <Trans>Vous souhaitez mobiliser votre</Trans>{' '}
         <strong className="text-primary-500">
           <Trans>entreprise</Trans>
-        </strong>
+        </strong>{' '}
         <Trans>, votre</Trans>{' '}
         <strong className="text-primary-500">
           <Trans>organisation</Trans>
