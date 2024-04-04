@@ -3,8 +3,11 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
-import { useSimulation, useUser } from '@/publicodes-state'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import {
+  useCurrentSimulation,
+  useSimulation,
+  useUser,
+} from '@/publicodes-state'
 import { DottedName, Persona as PersonaType } from '@/publicodes-state/types'
 import { fixSituationWithPartialMosaic } from '../_helpers/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '../_helpers/getPersonaFoldedSteps'

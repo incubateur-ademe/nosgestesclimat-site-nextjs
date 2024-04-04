@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import { useCurrentSimulation } from '@/publicodes-state'
 
 export default function ActionsChosenIndicator() {
   const { t } = useClientTranslation()

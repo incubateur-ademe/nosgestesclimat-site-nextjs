@@ -7,7 +7,7 @@ import PrenomInput from '@/design-system/inputs/PrenomInput'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
 import { captureException } from '@sentry/react'
 import { FormEvent, useState } from 'react'
@@ -20,7 +20,7 @@ export default function InvitationForm({ group }: { group: Group }) {
 
   const { user, updateEmail, updateName, updateCurrentSimulation } = useUser()
 
-  const { progression } = useForm()
+  const { progression } = useCurrentSimulation()
 
   const hasCompletedTest = progression === 1
 

@@ -4,7 +4,7 @@ import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { getIsIframe } from '@/utils/getIsIframe'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 

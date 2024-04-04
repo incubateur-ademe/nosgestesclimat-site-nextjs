@@ -1,6 +1,5 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
-import { useUser } from '@/publicodes-state'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { Situation } from '@/publicodes-state/types'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'

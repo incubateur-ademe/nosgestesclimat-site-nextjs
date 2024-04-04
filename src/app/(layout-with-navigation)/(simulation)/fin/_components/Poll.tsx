@@ -6,7 +6,7 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
 import { usePoll } from '@/hooks/organisations/usePoll'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { useContext, useEffect } from 'react'
 
 export default function Poll() {

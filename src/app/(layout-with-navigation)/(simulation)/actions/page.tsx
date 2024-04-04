@@ -1,13 +1,12 @@
 'use client'
 
 import {
+  useCurrentSimulation,
   useEngine,
-  useForm,
   useSimulation,
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { useState } from 'react'
 import ActionsTutorial from './_components/ActionsTutorial'
 import AllerPlusLoin from './_components/AllerPlusLoin'
@@ -27,11 +26,9 @@ export default function ActionsPage({
 
   const category = searchParams.catégorie
 
-  const { progression } = useForm()
-
   const { tutorials } = useUser()
 
-  const { actionChoices } = useCurrentSimulation()
+  const { actionChoices, progression } = useCurrentSimulation()
 
   const { rules, getRuleObject } = useTempEngine()
 

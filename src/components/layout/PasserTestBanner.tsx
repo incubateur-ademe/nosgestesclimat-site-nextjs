@@ -3,7 +3,7 @@
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import Trans from '../translation/Trans'
 
 export default function PasserTestBanner() {

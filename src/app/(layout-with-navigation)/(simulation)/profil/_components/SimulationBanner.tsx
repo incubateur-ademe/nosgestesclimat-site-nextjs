@@ -1,6 +1,6 @@
 'use client'
 
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import SimulationNotStarted from './simulationBanner/SimulationNotStarted'
 import SimulationStarted from './simulationBanner/SimulationStarted'
 

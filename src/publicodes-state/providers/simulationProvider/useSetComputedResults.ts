@@ -1,4 +1,4 @@
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { useEffect, useMemo, useRef } from 'react'
 import { ComputedResults, DottedName, NGCEvaluatedNode } from '../../types'
 

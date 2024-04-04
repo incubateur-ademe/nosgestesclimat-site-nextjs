@@ -17,8 +17,12 @@ import {
 import { useFetchSimulation } from '@/hooks/simulation/useFetchSimulation'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useRule, useTempEngine, useUser } from '@/publicodes-state'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import {
+  useCurrentSimulation,
+  useRule,
+  useTempEngine,
+  useUser,
+} from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'

@@ -1,5 +1,5 @@
 import { SERVER_URL } from '@/constants/urls'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { AnswerType } from '@/types/quiz'
 import { useMutation } from '@tanstack/react-query'

@@ -8,8 +8,12 @@ import {
 } from '@/constants/tracking/pages/simulateur'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useRule, useUser } from '@/publicodes-state'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import {
+  useCurrentSimulation,
+  useEngine,
+  useRule,
+  useUser,
+} from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'

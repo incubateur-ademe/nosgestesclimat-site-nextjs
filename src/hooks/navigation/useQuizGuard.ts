@@ -1,5 +1,5 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 

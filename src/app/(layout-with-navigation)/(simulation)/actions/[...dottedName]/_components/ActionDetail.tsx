@@ -7,12 +7,12 @@ import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
 import {
   FormProvider,
+  useCurrentSimulation,
   useEngine,
   useRule,
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
 import { DottedName, NGCRuleNode } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { utils } from 'publicodes'

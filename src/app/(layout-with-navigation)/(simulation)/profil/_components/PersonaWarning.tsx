@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 
 export default function PersonaWarning() {

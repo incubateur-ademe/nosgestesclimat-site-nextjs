@@ -1,4 +1,4 @@
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { useEffect, useState } from 'react'
 import { safeGetSituation } from '../../helpers/safeGetSituation'
 import { DottedName, Engine } from '../../types'

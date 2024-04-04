@@ -1,6 +1,6 @@
 'use client'
 
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { PropsWithChildren, useContext } from 'react'
 import { SimulationContext } from '../simulationProvider/context'
 import FormContext from './context'

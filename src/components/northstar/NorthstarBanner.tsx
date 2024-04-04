@@ -1,8 +1,7 @@
 'use client'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm, useUser } from '@/publicodes-state'
-import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { NorthStarType } from '@/types/northstar'
 import { motion } from 'framer-motion'
 import { JSX, useEffect, useRef, useState } from 'react'
@@ -18,7 +17,7 @@ export default function NorthStarBanner({
 
   const { t } = useClientTranslation()
 
-  const { progression } = useForm()
+  const { progression } = useCurrentSimulation()
 
   const { actionChoices } = useCurrentSimulation()
 
