@@ -7,6 +7,7 @@ import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -19,6 +20,8 @@ export default function GetResultsByEmail({
 }: {
   className?: string
 }) {
+  const { t } = useClientTranslation()
+
   const { user, updateEmail, getCurrentSimulation, updateCurrentSimulation } =
     useUser()
 
@@ -83,17 +86,20 @@ export default function GetResultsByEmail({
         </h3>
 
         <p className="text-sm text-gray-600 sm:text-base">
-          <Trans>
-            Pour cela, <strong>laissez-nous votre email</strong>, comme{' '}
-            {formatValue(numberSubscribers) ?? '---'} personnes.
-          </Trans>
+          {t(
+            'Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.',
+            {
+              numberSubscribers: formatValue(numberSubscribers) ?? '---',
+            }
+          )}
         </p>
 
         <p className="text-sm text-gray-600 sm:text-base">
-          <Trans>
-            Vous retrouverez votre résultat d’empreinte, ainsi que{' '}
-            <strong>des conseils pour la réduire</strong> (1 fois par mois max.)
-          </Trans>
+          <Trans>Vous retrouverez votre résultat d’empreinte, ainsi que</Trans>{' '}
+          <strong>
+            <Trans>des conseils pour la réduire</Trans>
+          </strong>{' '}
+          <Trans>(1 fois par mois max.)</Trans>
         </p>
 
         <div className="mb-4">
