@@ -5,6 +5,7 @@
  */
 'use client'
 
+import { useBackgroundSaveSimulation } from '@/hooks/simulation/useBackgroundSaveSimulation'
 import { useTrackLocale } from '@/hooks/tracking/useTrackLocale'
 import { useTrackPageView } from '@/hooks/tracking/useTrackPageView'
 import { useTrackRegion } from '@/hooks/tracking/useTrackRegion'
@@ -16,6 +17,7 @@ export default function MainHooks({ children }: PropsWithChildren) {
   useTrackPageView()
   useTrackLocale()
   useTrackRegion()
+  useBackgroundSaveSimulation()
 
   return children
 }
