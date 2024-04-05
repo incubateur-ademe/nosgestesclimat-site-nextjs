@@ -2,7 +2,7 @@
 
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
 import { PublicodesExpression } from 'publicodes'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import getType from '../../helpers/getType'
 import {
   DottedName,
@@ -23,7 +23,7 @@ type Props = {
   situation: Situation
   updateCurrentSimulation: (
     simulation: UpdateCurrentSimulationProps
-  ) => Promise<undefined>
+  ) => Promise<void>
 }
 
 export default function useValue({
@@ -66,18 +66,36 @@ export default function useValue({
     [value]
   )
 
-  const setValue = async (
-    value: NodeValue,
-    foldedStep?: string
-  ): Promise<void> => {
-    const situationToAdd = {
-      [dottedName]: checkValueValidity({ value, type }),
-    }
+  const setValue = useCallback(
+    async (
+      value: NodeValue | { [dottedName: DottedName]: NodeValue },
+      foldedStep?: string
+    ): Promise<void> => {
+      let situationToAdd = {}
 
-    const foldedStepToAdd = foldedStep
+      if (typeof value === 'object') {
+        situationToAdd = Object.keys(
+          value as { [dottedName: DottedName]: NodeValue }
+        ).reduce(
+          (accumulator: Situation, currentValue: DottedName) => ({
+            ...accumulator,
+            [dottedName + ' . ' + currentValue]:
+              value && (value[currentValue] as NodeValue),
+          }),
+          {} as Situation
+        )
+      } else {
+        situationToAdd = {
+          [dottedName]: checkValueValidity({ value, type }),
+        }
+      }
 
-    return updateCurrentSimulation({ situationToAdd, foldedStepToAdd })
-  }
+      const foldedStepToAdd = foldedStep
+
+      return updateCurrentSimulation({ situationToAdd, foldedStepToAdd })
+    },
+    [dottedName, type, updateCurrentSimulation]
+  )
 
   const resetMosaicChildren = async (childToOmit: string): Promise<void> => {
     const situationToAdd = questionsOfMosaic.reduce(

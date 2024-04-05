@@ -47,11 +47,13 @@ export default function useSimulations({
       foldedSteps = [],
       actionChoices = {},
       persona,
+      computedResults,
+      progression = 0,
       defaultAdditionalQuestionsAnswers,
       polls,
       groups,
       savedViaEmail,
-    }: Partial<Simulation> = {}): Promise<undefined> => {
+    }: Partial<Simulation> = {}): Promise<void> => {
       return new Promise((resolve) => {
         resolveFunction.current = resolve
 
@@ -71,6 +73,8 @@ export default function useSimulations({
               foldedSteps,
               actionChoices,
               persona,
+              computedResults,
+              progression,
               defaultAdditionalQuestionsAnswers,
               polls,
               groups,
@@ -116,7 +120,7 @@ export default function useSimulations({
       groupToAdd,
       groupToDelete,
       savedViaEmail,
-    }: UpdateCurrentSimulationProps): Promise<undefined> => {
+    }: UpdateCurrentSimulationProps): Promise<void> => {
       return new Promise((resolve) => {
         resolveFunction.current = resolve
         setSimulations((prevSimulations: Simulation[]) =>

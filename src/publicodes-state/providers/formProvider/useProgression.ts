@@ -7,7 +7,7 @@ type Props = {
   relevantQuestions: string[]
   updateCurrentSimulation: (
     simulation: UpdateCurrentSimulationProps
-  ) => Promise<undefined>
+  ) => Promise<void>
 }
 
 /**

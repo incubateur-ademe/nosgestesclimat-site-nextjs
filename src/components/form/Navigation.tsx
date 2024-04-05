@@ -12,7 +12,7 @@ import {
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
-import { useForm, useRule } from '@/publicodes-state'
+import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { MouseEvent, useCallback, useMemo } from 'react'
@@ -33,7 +33,9 @@ export default function Navigation({
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
 
-  const { isMissing, addFoldedStep, plancher, value } = useRule(question)
+  const { isMissing, plancher, value } = useRule(question)
+
+  const { updateCurrentSimulation } = useCurrentSimulation()
 
   const isNextDisabled =
     tempValue !== undefined && plancher !== undefined && tempValue < plancher
@@ -63,7 +65,7 @@ export default function Navigation({
       }
 
       if (isMissing) {
-        addFoldedStep(question)
+        updateCurrentSimulation({ foldedStepToAdd: question })
       }
 
       handleMoveFocus()
@@ -82,7 +84,7 @@ export default function Navigation({
       isMissing,
       value,
       onComplete,
-      addFoldedStep,
+      updateCurrentSimulation,
       startTime,
     ]
   )

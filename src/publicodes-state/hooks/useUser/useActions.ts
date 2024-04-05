@@ -8,7 +8,7 @@ type Props = {
   currentSimulation: Simulation
   updateCurrentSimulation: (
     simulation: UpdateCurrentSimulationProps
-  ) => Promise<undefined>
+  ) => Promise<void>
 }
 export default function useActions({
   currentSimulation,
