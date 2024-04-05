@@ -17,16 +17,19 @@ export const colorClassNames = {
   primary:
     '!text-white bg-primary-700 border-2 border-primary-700 shadow-sm hover:text-white hover:bg-primary-800',
   secondary:
-    'border-solid border-primary-700 border-2 text-primary-700 bg-transparent shadow-sm hover:text-primary-700 hover:bg-primary-200 hover:border-primary-700',
+    'border-solid border-primary-700 border-2 text-primary-700 bg-transparent shadow-sm hover:text-primary-700 hover:bg-primary-100 hover:border-primary-700',
+  emerald:
+    '!text-emerald-default bg-emerald-light border-2 border-emerald-dark shadow-sm hover:text-white hover:bg-emerald-default hover:text-emerald-dark hover:border-emerald-dark',
+  blue: '!text-blue-default bg-blue-light border-2 border-blue-dark shadow-sm hover:text-white hover:bg-blue-default hover:text-blue-dark hover:border-blue-dark',
   text: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:bg-primary-200 hover:text-primary-700 hover:border-primary-200',
   link: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:text-primary-700 underline !px-0',
 }
 
 export const sizeClassNames = {
-  sm: 'px-2 py-1 text-sm',
-  md: 'p-3 md:px-6 md:py-4 text-sm',
-  lg: 'px-6 py-4 md:px-8 md:py-4 text-base md:text-lg',
-  xl: 'px-10 py-6 text-2xl',
+  sm: 'px-3 py-0.5 text-sm',
+  md: 'px-5 py-1 text-lg',
+  lg: 'px-5 py-1 text-xl ',
+  xl: 'px-10 py-4 text-2xl',
 }
 
 export const baseClassNames =

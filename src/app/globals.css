@@ -450,3 +450,14 @@ html[data-useragent*='Trident'] #js {
   @apply border-gray-200;
   @apply rounded-md;
 }
+
+.rainbow {
+  background: linear-gradient(
+    90deg,
+    #3682DF,
+    #8DCC96,
+    #D5C054,
+    #E58E71,
+    #C363A7
+  );
+}

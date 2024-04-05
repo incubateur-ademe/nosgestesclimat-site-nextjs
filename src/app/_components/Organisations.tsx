@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
+import Rainbow from '@/design-system/layout/Rainbow'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -50,6 +51,13 @@ export default function Organisations() {
           />
         </div>
       </div>
+
+      <Rainbow
+        className="absolute bottom-0 left-0 h-[3px] w-[100%] transition-all"
+        style={{
+          transform: `rotate(${isHover ? -1.5 : 1.5}deg)`,
+        }}
+      />
     </div>
   )
 }

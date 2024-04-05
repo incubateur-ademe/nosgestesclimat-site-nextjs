@@ -33,7 +33,7 @@ export default function Homepage() {
         <Explanations />
         <Contributions />
       </Main>
-      <Footer />
+      <Footer className="bg-white" />
     </>
   )
 }

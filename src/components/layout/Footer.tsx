@@ -1,4 +1,5 @@
 import InlineLink from '@/design-system/inputs/InlineLink'
+import Rainbow from '@/design-system/layout/Rainbow'
 import Separator from '@/design-system/layout/Separator'
 import Emoji from '@/design-system/utils/Emoji'
 import { twMerge } from 'tailwind-merge'
@@ -10,7 +11,7 @@ export default function Footer({ className = '' }) {
   return (
     <footer
       className={twMerge(
-        'flex flex-col items-center gap-4 bg-grey-100 p-4 pb-32 sm:p-8 md:mb-0 md:pb-24',
+        'relative flex flex-col items-center gap-4 bg-grey-100 p-4 pb-32 sm:p-8 md:mb-0 md:pb-24',
         className
       )}>
       <div className="flex w-full items-start gap-12 md:max-w-5xl">
@@ -104,6 +105,8 @@ export default function Footer({ className = '' }) {
           </div>
         </div>
       </div>
+
+      <Rainbow className="absolute bottom-0 left-0 h-[6px] w-full" />
     </footer>
   )
 }

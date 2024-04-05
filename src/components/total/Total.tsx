@@ -42,7 +42,7 @@ export default function Total({ toggleQuestionList }: Props) {
 
   return (
     <div className="md:mb-2">
-      <div className="relative mb-2 flex items-center gap-4 overflow-hidden rounded-lg bg-primary-400 px-4 py-2 text-white md:justify-center md:text-center ">
+      <div className="relative mb-2 flex items-center gap-4 overflow-hidden rounded-lg bg-primary-700 px-4 py-2 text-white md:justify-center md:text-center ">
         <Progress />
         <Planet />
         <div className="z-10">

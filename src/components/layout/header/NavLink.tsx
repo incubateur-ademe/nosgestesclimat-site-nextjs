@@ -1,6 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
+import Rainbow from '@/design-system/layout/Rainbow'
 import DefaultLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { HTMLAttributes, JSX, PropsWithChildren } from 'react'
@@ -42,23 +43,23 @@ export default function NavLink({
       href={href}
       onClick={onClick}
       className={twMerge(
-        'group relative flex h-full items-center gap-2 px-4 text-sm text-default no-underline transition-colors hover:text-primary-700 md:text-base',
+        'hover:text-primary-900 group relative flex h-full items-center gap-2 px-4 text-sm text-default no-underline transition-colors md:text-base',
         `${
           isActive
-            ? activeClassName || 'stroke-primary-700 font-bold text-primary-700'
+            ? activeClassName || 'stroke-primary-800 font-bold text-primary-800'
             : ''
         } ${className}`
       )}
       {...props}>
       {isActive && (
-        <span className="absolute bottom-0 left-0 lg:h-[5px] lg:w-full lg:bg-primary-700"></span>
+        <Rainbow className="absolute bottom-0 left-0 lg:h-[4px] lg:w-full " />
       )}
 
       {icon && (
         <Icon
           className={twMerge(
-            'h-5 w-5 group-hover:stroke-primary-700',
-            `${isActive ? 'stroke-primary-700 stroke-2' : ''}`
+            'group-hover:stroke-primary-900 h-5 w-5',
+            `${isActive ? 'stroke-primary-800 stroke-2' : ''}`
           )}
         />
       )}
