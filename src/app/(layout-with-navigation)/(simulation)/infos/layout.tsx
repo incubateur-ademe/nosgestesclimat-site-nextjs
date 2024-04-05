@@ -1,13 +1,17 @@
 import { noIndexObject } from '@/constants/metadata'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { PropsWithChildren } from 'react'
 import InfosProvider from './_components/InfosProvider'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: 'Calculer votre empreinte carbone individuelle - Nos Gestes Climat',
-    description:
-      'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.',
+    title: t(
+      'Calculer votre empreinte carbone individuelle - Nos Gestes Climat'
+    ),
+    description: t(
+      'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.'
+    ),
     alternates: {
       canonical: '/infos',
     },

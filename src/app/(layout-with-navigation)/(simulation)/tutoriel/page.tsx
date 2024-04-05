@@ -5,6 +5,7 @@ import ButtonStart from './_components/ButtonStart'
 
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import AutresQuestions from './_components/AutresQuestions'
 import AvantDeCommencer from './_components/AvantDeCommencer'
@@ -12,9 +13,12 @@ import OrganisationMessage from './_components/OrganisationMessage'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: 'Calculer votre empreinte carbone individuelle - Nos Gestes Climat',
-    description:
-      'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.',
+    title: t(
+      'Calculer votre empreinte carbone individuelle - Nos Gestes Climat'
+    ),
+    description: t(
+      'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.'
+    ),
     alternates: {
       canonical: '/tutoriel',
     },

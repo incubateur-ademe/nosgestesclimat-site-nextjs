@@ -3,15 +3,17 @@ import Total from '@/components/total/Total'
 import Trans from '@/components/translation/Trans'
 import { noIndexObject } from '@/constants/metadata'
 import Title from '@/design-system/layout/Title'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
 import { PropsWithChildren } from 'react'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title:
-      'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat',
-    description: 'Quelles sont les actions les plus efficaces ?',
+    title: t(
+      'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat'
+    ),
+    description: t('Quelles sont les actions les plus efficaces ?'),
     alternates: {
       canonical: '/actions',
     },

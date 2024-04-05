@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { FormProvider } from '@/publicodes-state'
@@ -11,9 +12,10 @@ import SimulationList from './_components/SimulationList'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: 'Mon profil, voir mon empreinte carbone - Nos Gestes Climat',
-    description:
-      'Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.',
+    title: t('Mon profil, voir mon empreinte carbone - Nos Gestes Climat'),
+    description: t(
+      'Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.'
+    ),
     alternates: {
       canonical: '/profil',
     },

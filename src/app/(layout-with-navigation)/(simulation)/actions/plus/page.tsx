@@ -1,14 +1,16 @@
 import Trans from '@/components/translation/Trans'
 import { getPosts } from '@/helpers/markdown/getPosts'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 import ActionPlusList from './_components/ActionPlusList'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: 'Actions, la liste - Nos Gestes Climat',
-    description:
-      'Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.',
+    title: t('Actions, la liste - Nos Gestes Climat'),
+    description: t(
+      'Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.'
+    ),
   })
 }
 

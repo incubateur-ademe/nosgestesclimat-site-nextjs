@@ -3,13 +3,14 @@ import List from '@/components/posts/List'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getPosts } from '@/helpers/markdown/getPosts'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: 'Blog - Nos Gestes Climat',
-    description: 'Découvrez les articles de blog du site Nos Gestes Climat.',
+    title: t('Blog - Nos Gestes Climat'),
+    description: t('Découvrez les articles de blog du site Nos Gestes Climat.'),
     alternates: {
       canonical: '/blog',
     },

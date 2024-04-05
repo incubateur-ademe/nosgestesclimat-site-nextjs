@@ -6,6 +6,7 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Container from '@/design-system/layout/Container'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
@@ -13,9 +14,10 @@ import Image from 'next/image'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: 'Le calculateur d’empreinte climat international',
-    description:
-      'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.',
+    title: t('Le calculateur d’empreinte climat international'),
+    description: t(
+      'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.'
+    ),
     alternates: {
       canonical: '/international',
     },
@@ -40,7 +42,7 @@ export default async function International() {
             <Image
               src="/images/misc/international-illustration.jpeg"
               alt=""
-              className="max-w-12 mx-auto py-8 md:hidden"
+              className="mx-auto max-w-12 py-8 md:hidden"
               width="100"
               height="100"
             />

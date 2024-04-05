@@ -4,14 +4,16 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPosts } from '@/helpers/markdown/getPosts'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { currentLocale } from 'next-i18n-router'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: 'Les nouveautés - Nos Gestes Climat',
-    description:
-      'Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.',
+    title: t('Les nouveautés - Nos Gestes Climat'),
+    description: t(
+      'Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.'
+    ),
     alternates: {
       canonical: '/nouveautes',
     },

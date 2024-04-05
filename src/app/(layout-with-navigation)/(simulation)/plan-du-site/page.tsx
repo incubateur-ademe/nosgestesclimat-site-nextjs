@@ -1,15 +1,17 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Actions from './_components/Actions'
 import LinkList from './_components/LinkList'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: 'Plan du site - Nos Gestes Climat',
-    description:
-      'Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.',
+    title: t('Plan du site - Nos Gestes Climat'),
+    description: t(
+      'Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.'
+    ),
     alternates: {
       canonical: '/plan-du-site',
     },

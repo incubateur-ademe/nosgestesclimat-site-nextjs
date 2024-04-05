@@ -1,13 +1,15 @@
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import NorthStarIframe from './_components/NorthStarIframe'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: 'Nos statistiques "phares" - Nos Gestes Climat',
-    description:
-      "Observez nos l'évolution de nos deux mesures d'impact principales.",
+    title: t('Nos statistiques "phares" - Nos Gestes Climat'),
+    description: t(
+      "Observez nos l'évolution de nos deux mesures d'impact principales."
+    ),
     alternates: {
       canonical: '/northstar',
     },

@@ -3,6 +3,7 @@ import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import Trans from '@/components/translation/Trans'
 import Markdown from '@/design-system/utils/Markdown'
 import { getPost } from '@/helpers/markdown/getPost'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { capitalizeString } from '@/utils/capitalizeString'
 
@@ -15,8 +16,8 @@ export async function generateMetadata({ params: { slug } }: Props) {
     title: `${capitalizeString(decodeURI(slug))?.replaceAll(
       '-',
       ' '
-    )}, article du blog - Nos Gestes Climat`,
-    description: 'Découvrez les articles de blog du site Nos Gestes Climat.',
+    )}, ${t('article du blog - Nos Gestes Climat')}`,
+    description: t('Découvrez les articles de blog du site Nos Gestes Climat.'),
     params: { slug },
     alternates: {
       canonical: `/blog/${slug}`,

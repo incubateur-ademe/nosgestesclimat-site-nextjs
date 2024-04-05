@@ -4,6 +4,7 @@ import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { getCurrentLangInfos } from '@/locales/translation'
@@ -19,10 +20,12 @@ type FAQType = {
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title:
-      "Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat",
-    description:
-      'Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.',
+    title: t(
+      "Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat"
+    ),
+    description: t(
+      'Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.'
+    ),
     alternates: {
       canonical: '/questions-frequentes',
     },

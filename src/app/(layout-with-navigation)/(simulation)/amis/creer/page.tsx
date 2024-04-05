@@ -1,16 +1,19 @@
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
 import GroupCreationForm from './_component/GroupCreationForm'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title:
-      'Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat',
-    description:
-      "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.",
+    title: t(
+      'Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat'
+    ),
+    description: t(
+      "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
+    ),
     alternates: {
       canonical: linkToGroupCreation,
     },
