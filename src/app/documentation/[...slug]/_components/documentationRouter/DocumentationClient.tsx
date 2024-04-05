@@ -5,7 +5,7 @@ import BilanChart from '@/components/charts/BilanChart'
 import ServicesChart from '@/components/charts/ServicesChart'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import Markdown from '@/design-system/utils/Markdown'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useLocale } from '@/hooks/useLocale'
 import { useEngine } from '@/publicodes-state'
 import { SuppportedRegions } from '@/types/international'
 import { RulePage } from '@publicodes/react-ui'
@@ -17,7 +17,7 @@ type Props = {
   slugs: string[]
 }
 export default function DocumentationClient({ slugs }: Props) {
-  const { i18n } = useClientTranslation()
+  const locale = useLocale()
 
   const path = decodeURI(slugs.join('/'))
 
@@ -30,7 +30,7 @@ export default function DocumentationClient({ slugs }: Props) {
       <PasserTestBanner />
 
       <RulePage
-        language={i18n.language as 'fr' | 'en'}
+        language={locale as 'fr' | 'en'}
         rulePath={(path as string) ?? ''}
         engine={engine as Engine}
         documentationPath={documentationPath}

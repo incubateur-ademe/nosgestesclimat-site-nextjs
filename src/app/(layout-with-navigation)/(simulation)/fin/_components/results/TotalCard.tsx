@@ -44,7 +44,7 @@ export default function TotalCard() {
           )}
           className="mt-2 text-xs text-white hover:text-primary-200 md:text-sm"
           href="/empreinte-climat">
-          <Trans>Qu'est-ce que ça veut dire ? </Trans>
+          <Trans>Qu'est-ce que ça veut dire</Trans> ? 
           <ExternalLinkIcon className="stroke-white" />
         </Link>
       </div>
