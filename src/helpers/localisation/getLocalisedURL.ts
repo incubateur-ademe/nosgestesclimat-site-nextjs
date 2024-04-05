@@ -2,7 +2,7 @@ import { languages } from '@/constants/translation'
 
 export function getLocalisedURL({
   locale,
-  href,
+  href = '',
 }: {
   locale: string
   href: string
