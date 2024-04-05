@@ -2,12 +2,14 @@ import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import List from '@/components/posts/List'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPosts } from '@/helpers/markdown/getPosts'
-import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t('Blog - Nos Gestes Climat'),
     description: t('Découvrez les articles de blog du site Nos Gestes Climat.'),

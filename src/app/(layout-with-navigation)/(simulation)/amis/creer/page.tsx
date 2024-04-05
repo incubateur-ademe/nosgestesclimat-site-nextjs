@@ -1,12 +1,13 @@
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
 import GroupCreationForm from './_component/GroupCreationForm'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t(
       'Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat'

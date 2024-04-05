@@ -1,9 +1,11 @@
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
-import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import DocumentationLanding from './_components/DocumentationLanding'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t(
       "Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat"

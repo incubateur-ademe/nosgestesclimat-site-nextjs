@@ -1,10 +1,11 @@
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import NorthStarIframe from './_components/NorthStarIframe'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t('Nos statistiques "phares" - Nos Gestes Climat'),
     description: t(

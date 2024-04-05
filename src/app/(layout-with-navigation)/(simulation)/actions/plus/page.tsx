@@ -1,11 +1,13 @@
 import Trans from '@/components/translation/Trans'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPosts } from '@/helpers/markdown/getPosts'
-import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 import ActionPlusList from './_components/ActionPlusList'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t('Actions, la liste - Nos Gestes Climat'),
     description: t(

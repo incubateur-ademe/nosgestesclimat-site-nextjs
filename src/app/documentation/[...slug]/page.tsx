@@ -1,4 +1,4 @@
-import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import DocumentationRouter from './_components/DocumentationRouter'
@@ -9,6 +9,8 @@ export async function generateMetadata({
 }: {
   params: { slug: string[] }
 }) {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t(
       "Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat"

@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { FormProvider } from '@/publicodes-state'
@@ -11,6 +11,8 @@ import SimulationBanner from './_components/SimulationBanner'
 import SimulationList from './_components/SimulationList'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t('Mon profil, voir mon empreinte carbone - Nos Gestes Climat'),
     description: t(

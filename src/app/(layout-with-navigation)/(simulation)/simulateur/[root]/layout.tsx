@@ -1,4 +1,4 @@
-import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
 import { PropsWithChildren } from 'react'
@@ -6,6 +6,8 @@ import { PropsWithChildren } from 'react'
 type Props = { params: { root: string } }
 
 export async function generateMetadata({ params }: Props) {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t('Simulateur d’empreinte climat - Nos Gestes Climat'),
     description: t(

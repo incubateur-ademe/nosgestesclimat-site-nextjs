@@ -1,8 +1,10 @@
-import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { PropsWithChildren } from 'react'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t('Organisations, accéder à mon espace - Nos Gestes Climat'),
     description: t(

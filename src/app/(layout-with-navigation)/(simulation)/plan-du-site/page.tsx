@@ -1,12 +1,13 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Actions from './_components/Actions'
 import LinkList from './_components/LinkList'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t('Plan du site - Nos Gestes Climat'),
     description: t(

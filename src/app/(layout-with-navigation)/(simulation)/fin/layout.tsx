@@ -1,10 +1,12 @@
 import { noIndexObject } from '@/constants/metadata'
-import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
 import { PropsWithChildren } from 'react'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t(
       "Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat"

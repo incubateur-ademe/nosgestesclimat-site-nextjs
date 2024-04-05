@@ -5,13 +5,14 @@ import ButtonStart from './_components/ButtonStart'
 
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import AutresQuestions from './_components/AutresQuestions'
 import AvantDeCommencer from './_components/AvantDeCommencer'
 import OrganisationMessage from './_components/OrganisationMessage'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t(
       'Calculer votre empreinte carbone individuelle - Nos Gestes Climat'

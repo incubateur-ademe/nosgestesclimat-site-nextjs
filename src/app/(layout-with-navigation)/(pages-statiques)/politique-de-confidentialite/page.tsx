@@ -1,10 +1,12 @@
 import MDXContent from '@/components/mdx/MDXContent'
-import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import PrivacyEn from '@/locales/pages/en/privacy.mdx'
 import PrivacyFr from '@/locales/pages/fr/privacy.mdx'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t('Politique de confidentialité - Nos Gestes Climat'),
     description: t(

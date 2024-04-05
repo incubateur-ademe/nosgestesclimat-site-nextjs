@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { DottedName } from '@/publicodes-state/types'
 import ActionDetail from './_components/ActionDetail'
@@ -10,6 +10,8 @@ export async function generateMetadata({
 }: {
   params: { dottedName: DottedName[] }
 }) {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t(
       "Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat"

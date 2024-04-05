@@ -1,9 +1,11 @@
 import MDXContent from '@/components/mdx/MDXContent'
-import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import GuideFr from '@/locales/guide-mode-groupe/fr/guide.mdx'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t('Le guide - Nos Gestes Climat'),
     description: t(

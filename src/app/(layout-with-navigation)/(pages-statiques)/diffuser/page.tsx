@@ -1,10 +1,12 @@
 import MDXContent from '@/components/mdx/MDXContent'
-import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import DiffuserEn from '@/locales/pages/en/diffuser.mdx'
 import DiffuserFr from '@/locales/pages/fr/diffuser.mdx'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t(
       "Diffuser notre simulateur d'empreinte climat - Nos Gestes Climat"
