@@ -28,7 +28,7 @@ export default function ClassementMember({
         {name}
 
         {isCurrentMember && (
-          <Badge className="text-secondary-500 ml-2 inline rounded-sm border-pink-100 bg-pink-200 text-xs font-bold">
+          <Badge className="text-secondary-700 ml-2 inline rounded-sm border-pink-100 bg-pink-200 text-xs font-bold">
             <Trans>Vous</Trans>
           </Badge>
         )}

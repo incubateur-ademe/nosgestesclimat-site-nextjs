@@ -30,7 +30,7 @@ export default function VerificationCodeInput({
           }`,
           characterInactive: 'text-transparent',
           characterSelected: 'character--selected',
-          characterFilled: '!text-primary-500',
+          characterFilled: '!text-primary-700',
         }}
         onChange={handleValidateVerificationCode}
       />

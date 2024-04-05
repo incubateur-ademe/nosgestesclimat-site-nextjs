@@ -20,19 +20,19 @@ export default function HeroSection() {
 
         <p className="mb-12 text-center text-sm md:text-left md:text-lg">
           <Trans>Vous souhaitez mobiliser votre</Trans>{' '}
-          <strong className="text-primary-500">
+          <strong className="text-primary-700">
             <Trans>entreprise</Trans>
           </strong>
           <Trans>, votre</Trans>{' '}
-          <strong className="text-primary-500">
+          <strong className="text-primary-700">
             <Trans>organisation</Trans>
           </strong>
           ,{' '}
-          <strong className="text-primary-500">
+          <strong className="text-primary-700">
             <Trans>association</Trans>
           </strong>
           , <Trans>ou </Trans>{' '}
-          <strong className="text-primary-500">
+          <strong className="text-primary-700">
             <Trans>salle de classe</Trans>
           </strong>
           &nbsp;?{' '}

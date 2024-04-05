@@ -48,7 +48,7 @@ export default function TotalCard() {
       </div>
 
       <div>
-        <Emoji className="text-5xl md:text-8xl">🌍</Emoji>
+        <Emoji className="animate-pulse text-5xl md:text-8xl">🌍</Emoji>
       </div>
     </Card>
   )

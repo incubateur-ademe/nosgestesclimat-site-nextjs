@@ -11,7 +11,7 @@ export default function CreateFirstGroupSection() {
       </h2>
       <p className="mb-6 text-sm">
         Invitez vos proches pour comparer vos résultats. Cela prend{' '}
-        <strong className="text-secondary-500">1 minute</strong> !
+        <strong className="text-secondary-700">1 minute</strong> !
       </p>
       <ButtonLink
         href={linkToGroupCreation}

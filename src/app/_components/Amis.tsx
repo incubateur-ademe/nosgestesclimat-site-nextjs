@@ -21,17 +21,17 @@ export default function Amis() {
       </h2>
       <p className="max-w-sm md:mb-8 md:text-lg">
         <Trans>Faites le test en</Trans>{' '}
-        <strong className="text-primary-500">
+        <strong className="text-primary-700">
           {' '}
           <Trans>famille</Trans>
         </strong>
         , <Trans>entre</Trans>{' '}
-        <strong className="text-primary-500">
+        <strong className="text-primary-700">
           {' '}
           <Trans>amis</Trans>
         </strong>{' '}
         <Trans>ou</Trans>{' '}
-        <strong className="text-primary-500">
+        <strong className="text-primary-700">
           {' '}
           <Trans>collègues</Trans>
         </strong>{' '}

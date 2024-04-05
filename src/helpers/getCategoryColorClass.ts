@@ -11,7 +11,7 @@ export function getTextColor(category?: string | null) {
     case 'services sociétaux':
       return `text-categories-servicessocietaux`
     default:
-      return 'text-primary-500'
+      return 'text-primary-700'
   }
 }
 export function getBackgroundColor(category?: string | null) {
@@ -27,7 +27,7 @@ export function getBackgroundColor(category?: string | null) {
     case 'services sociétaux':
       return `bg-categories-servicessocietaux`
     default:
-      return 'bg-primary-500'
+      return 'bg-primary-700'
   }
 }
 export function getBorderColor(category?: string | null) {
@@ -43,7 +43,7 @@ export function getBorderColor(category?: string | null) {
     case 'services sociétaux':
       return `border-categories-servicessocietaux`
     default:
-      return 'border-primary-500'
+      return 'border-primary-700'
   }
 }
 export function getFillColor(category?: string | null) {
@@ -59,6 +59,6 @@ export function getFillColor(category?: string | null) {
     case 'services sociétaux':
       return `fill-categories-servicessocietaux`
     default:
-      return 'fill-primary-500'
+      return 'fill-primary-700'
   }
 }

@@ -27,7 +27,7 @@ export default function ChoiceInput({
         <label
           className={`flex cursor-pointer items-center gap-2 rounded border border-gray-300 px-4 py-2 text-right text-sm md:text-xl ${
             active
-              ? 'border-2 border-primary-500 bg-primary-200 text-primary-500'
+              ? 'border-2 border-primary-700 bg-primary-200 text-primary-700'
               : 'bg-white text-default hover:bg-primary-100'
           } transition-colors`}
           data-cypress-id={`${props['data-cypress-id']}-label`}>
@@ -41,7 +41,7 @@ export default function ChoiceInput({
           <span
             className={`${
               active
-                ? 'border-primary-500 before:bg-primary-500'
+                ? 'border-primary-700 before:bg-primary-700'
                 : 'border-gray-300 before:bg-white'
             } flex h-4 w-4 items-center justify-center rounded-full border-2 text-sm before:h-3 before:w-3 before:rounded-full md:h-5 md:w-5 md:text-base`}
           />

@@ -7,7 +7,7 @@ type Props = {
 }
 
 const colorClassNames = {
-  default: 'text-primary-500 bg-primary-200 border-primary-300 ',
+  default: 'text-primary-700 bg-primary-200 border-primary-300 ',
   green: 'text-green-800 bg-green-100 border-green-200 ',
   red: 'text-red-800 bg-red-100 border-red-200 ',
 }

@@ -34,7 +34,7 @@ export default function Contributions() {
             <Emoji className="text-3xl">🔍</Emoji>
             <p className="mb-0">
               <Trans>Le</Trans>{' '}
-              <span className="text-primary-500 underline">
+              <span className="text-primary-700 underline">
                 <Trans>code source est ouvert</Trans>
               </span>
               , <Trans>le site est amélioré régulièrement.</Trans>
@@ -50,7 +50,7 @@ export default function Contributions() {
             <Emoji className="text-3xl">👀</Emoji>
             <p className="mb-0">
               <Trans>L'intégralité du</Trans>{' '}
-              <span className="text-primary-500 underline">
+              <span className="text-primary-700 underline">
                 <Trans>calcul est documenté en ligne</Trans>
               </span>{' '}
               <Trans>pour les curieux et les experts.</Trans>
@@ -66,7 +66,7 @@ export default function Contributions() {
             <Emoji className="text-3xl">🖋️</Emoji>
             <p className="mb-0">
               {t('Une idée\u202f? Une correction\u202f? Une remarque\u202f?')}{' '}
-              <span className="text-primary-500 underline">
+              <span className="text-primary-700 underline">
                 {t('Toute contribution est la bienvenue\u202f!')}
               </span>
             </p>

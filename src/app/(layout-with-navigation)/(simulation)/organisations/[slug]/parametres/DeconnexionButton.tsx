@@ -31,7 +31,7 @@ export default function DeconnexionButton({
   return (
     <Button
       color="text"
-      className="flex items-center gap-2 text-primary-500 underline"
+      className="flex items-center gap-2 text-primary-700 underline"
       onClick={handleDisconnect}>
       <Emoji>⬅️</Emoji>{' '}
       <Trans>Se déconnecter de votre espace organisation</Trans>

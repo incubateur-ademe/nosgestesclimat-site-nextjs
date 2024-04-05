@@ -22,7 +22,7 @@ export default function InlineLink({
       title={title}
       onClick={onClick}
       className={twMerge(
-        `inline-block text-primary-500 underline transition-colors hover:!text-primary-700`,
+        `inline-block text-primary-700 underline transition-colors hover:!text-primary-700`,
         className
       )}>
       {children}

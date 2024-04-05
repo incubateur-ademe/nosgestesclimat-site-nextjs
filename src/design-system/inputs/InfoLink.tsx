@@ -16,7 +16,7 @@ export default function InfoLink({
   return (
     <Link
       href={href}
-      className="bg-primary-500 rounded-full text-white"
+      className="rounded-full bg-primary-700 text-white"
       {...props}>
       <Image
         src="/images/misc/info.svg"

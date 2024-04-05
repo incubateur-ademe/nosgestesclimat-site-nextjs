@@ -10,7 +10,7 @@ export default function AllerPlusLoin() {
   const { t } = useClientTranslation()
 
   return (
-    <Card className="mt-4 flex !w-full !whitespace-normal rounded-2xl bg-primary-500 p-8 !text-left">
+    <Card className="mt-4 flex !w-full !whitespace-normal rounded-2xl bg-primary-700 p-8 !text-left">
       <div className="flex gap-2">
         <span
           className="inline-block text-4xl"

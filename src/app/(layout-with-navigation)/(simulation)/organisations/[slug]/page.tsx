@@ -47,7 +47,7 @@ export default function OrganisationPage() {
               <h1>
                 <span>
                   <Trans>Bienvenue</Trans>{' '}
-                  <span className="text-primary-500">
+                  <span className="text-primary-700">
                     {capitalizeString(organisation?.administrators?.[0]?.name)}
                   </span>
                   ,

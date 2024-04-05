@@ -72,7 +72,7 @@ export default function ComplexSelect({
         required={required}
         classNames={{
           control: () =>
-            'min-h-none md:min-h-[38px] !p-2 !py-3 border-grey-300 rounded-md border border-solid !bg-grey-100  text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500',
+            'min-h-none md:min-h-[38px] !p-2 !py-3 border-grey-300 rounded-md border border-solid !bg-grey-100  text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700',
           valueContainer: () => 'p-0 pl-2',
           input: () => `!p-0 !m-0 border-none`,
           option: () => 'text-xs cursor-pointer',

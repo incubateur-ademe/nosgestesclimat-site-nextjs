@@ -61,7 +61,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
         </div>
         {!isResultatsDetailles && (
           <button
-            className="whitespace-nowrap font-bold text-primary-500 underline"
+            className="whitespace-nowrap font-bold text-primary-700 underline"
             onClick={() => {
               handleScrollIntoView('orga-partage')
               trackEvent(clickButtonScrollToShareSectionEvent)

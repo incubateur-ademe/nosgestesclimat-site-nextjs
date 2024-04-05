@@ -13,7 +13,7 @@ export default function BarChart({ type, value, index = 0 }: Props) {
     <motion.div
       className={`min-w-[2px] max-w-full ${
         propertyAffected === 'width' ? 'h-[8px]' : 'w-[8px]'
-      } bg-secondary-500 rotate-180 rounded-lg`}
+      } bg-orange-default rotate-180 rounded-lg`}
       initial={{ [propertyAffected]: 0, display: 'none' }}
       animate={{
         [propertyAffected]: value,

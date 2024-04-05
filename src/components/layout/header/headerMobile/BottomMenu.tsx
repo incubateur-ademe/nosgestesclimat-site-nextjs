@@ -17,7 +17,7 @@ export default function BottomMenu() {
           activeMatches={['/tutoriel', '/simulateur']}
           icon={BilanIcon}
           className="flex-col  p-2 px-4"
-          activeClassName="bg-white border-r border-gray-200 text-primary-500 font-bold">
+          activeClassName="bg-white border-r border-gray-200 text-primary-700 font-bold">
           <Trans>Test</Trans>
         </NavLink>
       </li>
@@ -25,7 +25,7 @@ export default function BottomMenu() {
       <li className="h-full w-full">
         <NavLink
           className="flex-col  p-2 px-4"
-          activeClassName="bg-white border-x border-gray-200 text-primary-500 font-bold"
+          activeClassName="bg-white border-x border-gray-200 text-primary-700 font-bold"
           href="/actions"
           icon={ActionsIcon}>
           <Trans>Actions</Trans>
@@ -35,7 +35,7 @@ export default function BottomMenu() {
       <li className="h-full w-full">
         <NavLink
           className="flex-col p-2 px-4"
-          activeClassName="bg-white border-l border-gray-200 text-primary-500 font-bold"
+          activeClassName="bg-white border-l border-gray-200 text-primary-700 font-bold"
           href={linkToClassement}
           icon={AmisIcon}
           data-cypress-id="amis-link">

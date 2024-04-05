@@ -19,7 +19,7 @@ export default function Explanation({ toggleOpen }: Props) {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="relative mb-2 mt-6 rounded-lg border-4 border-primary-500 p-4 pt-2">
+      className="relative mb-2 mt-6 rounded-lg border-4 border-primary-700 p-4 pt-2">
       <svg
         width="28"
         height="24"
@@ -29,7 +29,7 @@ export default function Explanation({ toggleOpen }: Props) {
         className="absolute bottom-full left-8 md:left-1/2 md:-translate-x-1/2 ">
         <path
           d="M14 0L27.8564 24H0.143594L14 0Z"
-          className=" fill-primary-500"
+          className=" fill-primary-700"
         />
       </svg>
       <div className="flex justify-end">

@@ -31,7 +31,7 @@ export default function Buttons() {
   return (
     <div className="relative">
       <ButtonLink
-        className={`transition-opacity duration-500 ${
+        className={`transition-all duration-300 ${
           isClient ? 'opacity-100' : 'opacity-0'
         }`}
         href={getLinkToSimulateurPage()}
@@ -49,7 +49,7 @@ export default function Buttons() {
       </ButtonLink>
       {progression ? (
         <Link
-          className={`absolute left-1/2 top-full -translate-x-1/2 translate-y-6 whitespace-nowrap transition-opacity delay-200 duration-1000 md:text-lg ${
+          className={`absolute left-1/2 top-full -translate-x-1/2 translate-y-6 whitespace-nowrap transition-all delay-200 duration-300 md:text-lg ${
             isClient ? 'opacity-100' : 'opacity-0'
           }`}
           onClick={() => {

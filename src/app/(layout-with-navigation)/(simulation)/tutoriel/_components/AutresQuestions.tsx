@@ -13,7 +13,7 @@ export default function AutresQuestions() {
         <OrganisationPrivacy />
         <li className="mb-2" id={'empreinte'}>
           <details>
-            <summary className="cursor-pointer text-sm font-bold text-primary-500 md:text-lg">
+            <summary className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg">
               <Trans>C’est quoi mon empreinte carbone ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
@@ -49,7 +49,7 @@ export default function AutresQuestions() {
         </li>
         <li className="mb-2" id={'mesure'}>
           <details>
-            <summary className="cursor-pointer text-sm font-bold text-primary-500 md:text-lg">
+            <summary className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg">
               <Trans>Comment on la mesure ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
@@ -118,7 +118,7 @@ export default function AutresQuestions() {
         </li>
         <li className="mb-4" id={'categories'}>
           <details id={'categories'}>
-            <summary className="cursor-pointer text-sm font-bold text-primary-500 md:text-lg">
+            <summary className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg">
               <Trans>D’où vient mon empreinte ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">

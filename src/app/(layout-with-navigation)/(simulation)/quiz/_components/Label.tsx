@@ -35,7 +35,7 @@ export default function Label({
           {t('Une devinette pour finir\u202f!')}{' '}
           <br className="hidden md:inline" />
           <Trans>D’après vous, quel est</Trans>{' '}
-          <span className="text-secondary-500">
+          <span className="text-secondary-700">
             <Trans>votre</Trans>
           </span>{' '}
           {t('poste le plus important\u202f?')}
@@ -106,7 +106,7 @@ export default function Label({
   )
 
   return (
-    <div className="relative mb-4 overflow-hidden rounded-lg bg-primary-500 p-4 text-white">
+    <div className="relative mb-4 overflow-hidden rounded-lg bg-primary-700 p-4 text-white">
       {isAnswerCorrect === 'correct' ? <CorrectComponent /> : null}
       {isAnswerCorrect === 'almost' ? <AlmostComponent /> : null}
       {isAnswerCorrect === 'wrong' ? <WrongComponent /> : null}

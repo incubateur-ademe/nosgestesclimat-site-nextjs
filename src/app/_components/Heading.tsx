@@ -17,7 +17,7 @@ export default async function Heading() {
           </h1>
           <p className="mb-6 md:mb-10 md:text-2xl">
             <Trans>En</Trans>{' '}
-            <span className="text-secondary-500">
+            <span className="text-secondary-700">
               <Trans>10 minutes</Trans>
             </span>
             ,{' '}

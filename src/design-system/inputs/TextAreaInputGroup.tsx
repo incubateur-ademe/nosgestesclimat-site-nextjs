@@ -41,7 +41,7 @@ export default function TextAreaInputGroup({
       <textarea
         name={name}
         placeholder={placeholder}
-        className={`focus:border-primary-500 focus:ring-primary-500 mt-3 max-w-[30rem] rounded-md border-solid border-grey-200 bg-grey-100 !p-4 text-sm transition-colors focus:ring-2 ${
+        className={`mt-3 max-w-[30rem] rounded-md border-solid border-grey-200 bg-grey-100 !p-4 text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700 ${
           error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
         }`}
         onChange={onChange}

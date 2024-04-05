@@ -12,7 +12,7 @@ type Props = {
 }
 
 const backgroundClasses = {
-  isHeaviest: 'bg-secondary-100 border-secondary-500 border rounded-lg',
+  isHeaviest: 'bg-secondary-100 border-secondary-700 border rounded-lg',
   isNotHeaviest: 'bg-white border-grey-300 border-b',
 }
 

@@ -28,7 +28,7 @@ export default function Logo({ className }: { className?: string }) {
 
         <div
           className={
-            'ml-2 origin-left text-lg font-extrabold uppercase !leading-[0.85] text-primary-800 transition-all duration-500 lg:block'
+            'ml-2 origin-left text-lg font-extrabold uppercase !leading-[0.85] text-default transition-all duration-500 lg:block'
           }>
           <span className="block w-full !leading-[0.85]">Nos</span>
           <span className="block w-full !leading-[0.85]">Gestes</span>

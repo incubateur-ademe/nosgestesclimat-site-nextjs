@@ -27,7 +27,7 @@ export default function CTACard({
         className
       )}
       id={id}>
-      <p className="text-secondary-500 font-medium">{overLabel}</p>
+      <p className="text-secondary-700 font-medium">{overLabel}</p>
 
       <Tag>{title}</Tag>
 

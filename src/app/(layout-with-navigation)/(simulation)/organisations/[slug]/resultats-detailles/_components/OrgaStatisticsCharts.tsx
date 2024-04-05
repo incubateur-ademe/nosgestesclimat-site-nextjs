@@ -91,7 +91,7 @@ export default function OrgaStatisticsCharts({
 
             {hasCurrentUser && (
               <div className="flex items-center gap-3">
-                <div className="h-4 w-1 bg-secondary-500" />
+                <div className="bg-secondary-700 h-4 w-1" />
                 <p className="mb-0 text-sm text-gray-600">
                   <Trans>Votre résultat</Trans>
                 </p>
@@ -144,7 +144,7 @@ export default function OrgaStatisticsCharts({
 
             {hasCurrentUser && (
               <div className="flex items-center gap-3">
-                <div className="h-4 w-1 bg-secondary-500" />
+                <div className="bg-secondary-700 h-4 w-1" />
                 <p className="mb-0 text-sm text-gray-600">
                   <Trans>Votre résultat</Trans>
                 </p>

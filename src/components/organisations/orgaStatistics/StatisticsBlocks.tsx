@@ -70,7 +70,7 @@ export default function StatisticsBlocks({
   return (
     <div className="items grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
       <div className="rounded-lg bg-grey-100 p-8 sm:col-span-2 md:col-span-1">
-        <p className="text-4xl font-bold text-primary-500">
+        <p className="text-4xl font-bold text-primary-700">
           {simulationRecaps.length}
         </p>
 
@@ -88,7 +88,7 @@ export default function StatisticsBlocks({
           />
         )}
         <div className="col-span-1 rounded-lg bg-grey-100 p-8">
-          <p className="text-4xl font-bold text-primary-500">
+          <p className="text-4xl font-bold text-primary-700">
             {formattedValue}{' '}
             <span className="text-base font-normal">{unit} CO2 eq</span>
           </p>

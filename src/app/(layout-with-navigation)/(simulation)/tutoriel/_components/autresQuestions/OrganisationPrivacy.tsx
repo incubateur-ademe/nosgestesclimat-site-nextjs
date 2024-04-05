@@ -17,7 +17,7 @@ export default function OrganisationPrivacy() {
   return (
     <li className="mb-2" id={'empreinte'}>
       <details>
-        <summary className="cursor-pointer text-sm font-bold text-primary-500 md:text-lg">
+        <summary className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg">
           {t('Mes données restent-elles privées\u202f?')}
         </summary>
         <div className="my-2 ml-3.5">

@@ -15,7 +15,7 @@ export default function GroupItem({ group }: Props) {
   return (
     <Link
       href={getLinkToGroupDashboard({ groupId: group?._id })}
-      className="mb-3 rounded-sm border-[1px] border-solid border-gray-200 bg-gray-100 px-5 py-2 no-underline decoration-auto">
+      className="mb-3 rounded-lg border-[1px] border-solid border-gray-200 bg-gray-100 px-5 py-2 no-underline decoration-auto">
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center">
           <div className="flex-shrink-0 text-2xl">

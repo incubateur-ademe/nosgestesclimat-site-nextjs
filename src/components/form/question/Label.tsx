@@ -72,7 +72,7 @@ export default function Label({
               trackEvent(getMatomoEventClickHelp(question))
               setIsOpen((previsOpen) => !previsOpen)
             }}
-            className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary-500 font-mono text-base font-bold text-white`}
+            className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary-700 font-mono text-base font-bold text-white`}
             title={t("Voir plus d'informations")}>
             i
           </button>

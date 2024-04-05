@@ -42,23 +42,23 @@ export default function NavLink({
       href={href}
       onClick={onClick}
       className={twMerge(
-        'group relative flex h-full items-center gap-2 px-4 text-sm text-default no-underline transition-colors hover:text-primary-500 md:text-base',
+        'group relative flex h-full items-center gap-2 px-4 text-sm text-default no-underline transition-colors hover:text-primary-700 md:text-base',
         `${
           isActive
-            ? activeClassName || 'stroke-primary-500 font-bold text-primary-500'
+            ? activeClassName || 'stroke-primary-700 font-bold text-primary-700'
             : ''
         } ${className}`
       )}
       {...props}>
       {isActive && (
-        <span className="absolute bottom-0 left-0 lg:h-[5px] lg:w-full lg:bg-primary-500"></span>
+        <span className="absolute bottom-0 left-0 lg:h-[5px] lg:w-full lg:bg-primary-700"></span>
       )}
 
       {icon && (
         <Icon
           className={twMerge(
-            'h-5 w-5 group-hover:stroke-primary-500',
-            `${isActive ? 'stroke-primary-500 stroke-2' : ''}`
+            'h-5 w-5 group-hover:stroke-primary-700',
+            `${isActive ? 'stroke-primary-700 stroke-2' : ''}`
           )}
         />
       )}

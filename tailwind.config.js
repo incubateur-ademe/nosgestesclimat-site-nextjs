@@ -12,40 +12,59 @@ module.exports = {
       },
       colors: {
         primary: {
-          /**
-           * Background neutral
-           */
-          100: '#F6F3F8',
-          /**
-           * Background element point of interest
-           */
-          200: '#E8DFEE',
-          /**
-           * Background element point of interest darker
-           */
-          300: '#AA90BF',
-          /**
-           * Hover
-           */
-          400: '#6D418F',
-          /**
-           * Main elements or text
-           */
-          500: '#491273',
-          /**
-           * Darker text
-           */
-          700: '#3A0E5B',
-          800: '#2A0A42',
+          50: '#f0f4fd',
+          100: '#e3ebfc',
+          200: '#cdd9f8',
+          300: '#afbff2',
+          400: '#8e9eeb',
+          500: '#737de1',
+          600: '#585ad3',
+          700: '#4949ba',
+          800: '#3d3f96',
+          900: '#373978',
+          950: '#202046',
         },
         secondary: {
-          100: '#FEF3F6',
-          200: '#FFB8CE',
-          500: '#D40983',
+          50: '#fef1fa',
+          100: '#fde6f7',
+          200: '#feccf1',
+          300: '#ffa2e4',
+          400: '#fd69d0',
+          500: '#f73dba',
+          600: '#e81a9b',
+          700: '#d40d83',
+          800: '#a60e66',
+          900: '#8b1058',
+          950: '#550232',
+        },
+        emerald: {
+          light: '#CEF1D5',
+          default: '#6BC47B',
+          dark: '#147826',
+        },
+        yellow: {
+          light: '#FFEFBC',
+          default: '#F9CD49',
+          dark: '#79621D',
+        },
+        orange: {
+          light: '#FFDBBC',
+          default: '#FDA354',
+          dark: '#A04B00',
+        },
+        blue: {
+          light: '#E0EFFD',
+          default: '#A2D2FD',
+          dark: '#326FA3',
+        },
+        lavender: {
+          light: '#E9E6FE',
+          default: '#9E8EF5',
+          dark: '#685CB9',
         },
         default: '#1A1A1A',
         grey: {
-          100: '#F8F8F7',
+          100: '#F7FBFF',
           200: '#E3E3DB',
         },
         categories: {

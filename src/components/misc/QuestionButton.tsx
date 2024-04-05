@@ -5,7 +5,7 @@ type Props = {
 }
 
 export const colorClassNames = {
-  primary: 'border-primary-500 text-primary',
+  primary: 'border-primary-700 text-primary',
   white: 'border-white text-white',
 }
 export default function QuestionButton({
