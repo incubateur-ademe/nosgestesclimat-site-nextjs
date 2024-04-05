@@ -33,7 +33,7 @@ export default function useSimulations({
   // This is a hack to return a promise when updating the simulations
   const resolveFunction: any = useRef(null)
   useEffect(() => {
-    if (resolveFunction) {
+    if (resolveFunction.current) {
       resolveFunction.current()
       resolveFunction.current = null
     }

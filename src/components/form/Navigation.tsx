@@ -65,17 +65,17 @@ export default function Navigation({
       }
 
       if (isMissing) {
-        updateCurrentSimulation({ foldedStepToAdd: question })
+        await updateCurrentSimulation({ foldedStepToAdd: question })
       }
 
       handleMoveFocus()
 
-      if (!noNextQuestion) {
-        gotoNextQuestion()
+      if (noNextQuestion) {
+        onComplete()
         return
       }
 
-      onComplete()
+      gotoNextQuestion()
     },
     [
       question,

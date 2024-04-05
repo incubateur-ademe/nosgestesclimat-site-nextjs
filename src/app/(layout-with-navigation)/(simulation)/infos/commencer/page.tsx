@@ -71,7 +71,7 @@ export default function Commencer() {
 
   const { goToSimulateurPage } = useSimulateurPage()
 
-  const { polls, progression, updateCurrentSimulation } = useCurrentSimulation()
+  const { progression, updateCurrentSimulation } = useCurrentSimulation()
 
   const [status, setStatus] = useState<
     'notStarted' | 'started' | 'finished' | undefined
@@ -99,17 +99,6 @@ export default function Commencer() {
     handleUpdateShouldPreventNavigation(true)
   }, [handleUpdateShouldPreventNavigation])
 
-  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
-    useState(false)
-  useEffect(() => {
-    if (!shouldGoToSimulateurPage) {
-      return
-    }
-    if (polls?.includes(pollSlug || '')) {
-      goToSimulateurPage()
-    }
-  }, [goToSimulateurPage, shouldGoToSimulateurPage, polls, pollSlug])
-
   if (!status) {
     return null
   }
@@ -126,15 +115,7 @@ export default function Commencer() {
 
       <div className="flex flex-col items-start gap-6">
         <Button
-          onClick={() => {
-            updateCurrentSimulation({
-              defaultAdditionalQuestionsAnswers: {
-                postalCode,
-                birthdate,
-              },
-              pollToAdd: pollSlug || undefined,
-            })
-
+          onClick={async () => {
             if (status === 'notStarted') {
               trackEvent(infosCommencerClickCtaCommencer)
             }
@@ -145,8 +126,16 @@ export default function Commencer() {
               trackEvent(infosCommencerClickCtaCommencer)
             }
 
+            await updateCurrentSimulation({
+              defaultAdditionalQuestionsAnswers: {
+                postalCode,
+                birthdate,
+              },
+              pollToAdd: pollSlug || undefined,
+            })
+
             // We try to go to the simulateur page. If the test is finished we will save the simulation and then go to the end page
-            setShouldGoToSimulateurPage(true)
+            goToSimulateurPage()
           }}>
           {buttonLabels[status]}
         </Button>

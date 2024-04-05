@@ -9,7 +9,6 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
-import { captureException } from '@sentry/react'
 import { FormEvent, useState } from 'react'
 
 export default function InvitationForm({ group }: { group: Group }) {
@@ -53,20 +52,16 @@ export default function InvitationForm({ group }: { group: Group }) {
       return
     }
 
-    try {
-      // Update current simulation with group id (to redirect after test completion)
-      updateCurrentSimulation({
-        groupToAdd: group._id,
-      })
+    // Update current simulation with group id (to redirect after test completion)
+    await updateCurrentSimulation({
+      groupToAdd: group._id,
+    })
 
-      // Redirect to simulateur page or end page
-      if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
-      } else {
-        goToSimulateurPage()
-      }
-    } catch (error) {
-      captureException(error)
+    // Redirect to simulateur page or end page
+    if (hasCompletedTest) {
+      goToEndPage({ allowedToGoToGroupDashboard: true })
+    } else {
+      goToSimulateurPage()
     }
   }
 

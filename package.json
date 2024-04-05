@@ -8,7 +8,7 @@
     "url": "https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs.git"
   },
   "engines": {
-    "node": "<20"
+    "node": "20"
   },
   "scripts": {
     "dev": "next dev",
@@ -79,6 +79,7 @@
     "@incubateur-ademe/nosgestesclimat-scripts": "^0.4.0",
     "@simonsmith/cypress-image-snapshot": "^9.0.1",
     "@types/mdx": "^2.0.10",
+    "@types/mocha": "^10.0.6",
     "@types/node": "^20.9.0",
     "@types/react": "^18.2.59",
     "@types/react-dom": "^18.2.15",
