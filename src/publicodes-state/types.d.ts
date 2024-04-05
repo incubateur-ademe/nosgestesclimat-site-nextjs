@@ -16,16 +16,16 @@ export type UserOrganisationInfo = {
 }
 
 export type User = {
-  region: {
+  region?: {
     code: string
     name: string
   }
-  initialRegion: {
+  initialRegion?: {
     code: string
     name: string
   }
-  name: string
-  email: string
+  name?: string
+  email?: string
   northStarRatings?: any // TODO: should be NorthStarType or something
   userId: string
   loginExpirationDate?: Date

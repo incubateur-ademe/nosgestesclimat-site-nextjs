@@ -1,26 +1,33 @@
+import { getIsLocalStorageAvailable } from '@/utils/getIsLocalStorageAvailable'
 import { useEffect, useState } from 'react'
 import { Simulation } from '../../types'
+
+const isLocalStorageAvailable = getIsLocalStorageAvailable()
 
 type Props = {
   storageKey: string
 }
-
 export default function usePersistentSimulations({ storageKey }: Props) {
   const [initialized, setInitialized] = useState<boolean>(false)
   const [simulations, setSimulations] = useState<Simulation[]>([])
   const [currentSimulationId, setCurrentSimulationId] = useState<string>('')
 
   useEffect(() => {
-    const storedSimulations: Simulation[] =
-      JSON.parse(localStorage.getItem(storageKey) || '{}').simulations || []
+    if (isLocalStorageAvailable) {
+      const storedSimulations: Simulation[] =
+        JSON.parse(localStorage.getItem(storageKey) || '{}').simulations || []
 
-    const storedCurrentSimulation: string =
-      JSON.parse(localStorage.getItem(storageKey) || '{}')
-        .currentSimulationId || ''
+      const storedCurrentSimulation: string =
+        JSON.parse(localStorage.getItem(storageKey) || '{}')
+          .currentSimulationId || ''
 
-    setSimulations(storedSimulations)
+      setSimulations(storedSimulations)
 
-    setCurrentSimulationId(storedCurrentSimulation)
+      setCurrentSimulationId(storedCurrentSimulation)
+    } else {
+      setSimulations([])
+      setCurrentSimulationId('')
+    }
 
     setInitialized(true)
   }, [storageKey])

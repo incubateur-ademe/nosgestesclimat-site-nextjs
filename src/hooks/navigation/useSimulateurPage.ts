@@ -97,13 +97,13 @@ export function useSimulateurPage() {
     }
 
     // If the user has seen the tutoriel we return the test page label
-    if (tutorielSeen) {
+    if (progression > 0) {
       return 'Reprendre mon test'
     }
 
     // else we return the tutoriel page label
     return 'Passer le test →'
-  }, [tutorielSeen, progression])
+  }, [progression])
 
   return {
     goToSimulateurPage,
