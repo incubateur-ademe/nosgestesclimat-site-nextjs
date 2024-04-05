@@ -37,6 +37,29 @@ export default function InvitationForm({ group }: { group: Group }) {
   const { goToSimulateurPage } = useSimulateurPage()
   const { goToEndPage } = useEndPage()
 
+  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
+    useState(false)
+  useEffect(() => {
+    if (!shouldGoToSimulateurPage) {
+      return
+    }
+
+    if (currentSimulation?.groups?.includes(group?._id || '')) {
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
+    }
+  }, [
+    goToSimulateurPage,
+    goToEndPage,
+    shouldGoToSimulateurPage,
+    currentSimulation,
+    group,
+    hasCompletedTest,
+  ])
+
   const handleSubmit = async (event: MouseEvent | FormEvent) => {
     // Avoid reloading page
     if (event) {
@@ -77,29 +100,6 @@ export default function InvitationForm({ group }: { group: Group }) {
       captureException(error)
     }
   }
-
-  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
-    useState(false)
-  useEffect(() => {
-    if (!shouldGoToSimulateurPage) {
-      return
-    }
-
-    if (currentSimulation?.groups?.includes(group?._id || '')) {
-      if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
-      } else {
-        goToSimulateurPage()
-      }
-    }
-  }, [
-    goToSimulateurPage,
-    goToEndPage,
-    shouldGoToSimulateurPage,
-    currentSimulation,
-    group,
-    hasCompletedTest,
-  ])
 
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
