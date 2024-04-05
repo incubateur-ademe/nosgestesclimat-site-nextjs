@@ -84,7 +84,8 @@ export default function InvitationForm({ group }: { group: Group }) {
     if (!shouldGoToSimulateurPage) {
       return
     }
-    if (currentSimulation?.polls?.includes(group?._id || '')) {
+
+    if (currentSimulation?.groups?.includes(group?._id || '')) {
       if (hasCompletedTest) {
         goToEndPage({ allowedToGoToGroupDashboard: true })
       } else {
