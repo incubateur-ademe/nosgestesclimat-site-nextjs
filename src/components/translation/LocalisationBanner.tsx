@@ -22,7 +22,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
   const currentLocale = useLocale() as string
 
-  const code = user?.region?.code
+  const code = user?.region?.code ?? 'FR'
 
   const { iframeRegion } = useIframe()
 
