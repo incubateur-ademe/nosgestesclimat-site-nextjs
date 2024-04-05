@@ -82,6 +82,7 @@ export type Simulation = {
 }
 
 type UpdateCurrentSimulationProps = {
+  situation?: Situation
   situationToAdd?: Situation
   foldedStepToAdd?: string
   actionChoices?: ActionChoices

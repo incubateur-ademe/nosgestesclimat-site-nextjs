@@ -21,6 +21,7 @@ type Props = {
   type: string | undefined
   questionsOfMosaic: string[]
   situation: Situation
+  addToEngineSituation: (situationToAdd: Situation) => Promise<void>
   updateCurrentSimulation: (
     simulation: UpdateCurrentSimulationProps
   ) => Promise<void>
@@ -34,6 +35,7 @@ export default function useValue({
   type,
   questionsOfMosaic,
   situation,
+  addToEngineSituation,
   updateCurrentSimulation,
 }: Props) {
   const value = useMemo<NodeValue>(() => evaluation?.nodeValue, [evaluation])
@@ -90,69 +92,93 @@ export default function useValue({
         }
       }
 
-      const foldedStepToAdd = foldedStep
+      await addToEngineSituation(situationToAdd)
 
-      return updateCurrentSimulation({ situationToAdd, foldedStepToAdd })
+      return updateCurrentSimulation({ foldedStepToAdd: foldedStep })
     },
-    [dottedName, type, updateCurrentSimulation]
+    [dottedName, type, addToEngineSituation, updateCurrentSimulation]
   )
 
-  const resetMosaicChildren = async (childToOmit: string): Promise<void> => {
-    const situationToAdd = questionsOfMosaic.reduce(
-      (accumulator, currentValue) => {
-        if (childToOmit === currentValue) return accumulator
+  const resetMosaicChildren = useCallback(
+    async (childToOmit: string): Promise<void> => {
+      const situationToAdd = questionsOfMosaic.reduce(
+        (accumulator, currentValue) => {
+          if (childToOmit === currentValue) return accumulator
 
-        const isMissing = getIsMissing({
-          dottedName: currentValue,
-          questionsOfMosaic: [],
-          situation,
-        })
-        if (!isMissing) return accumulator
+          const isMissing = getIsMissing({
+            dottedName: currentValue,
+            questionsOfMosaic: [],
+            situation,
+          })
+          if (!isMissing) return accumulator
 
-        const rule = safeGetRule(currentValue)
-        const evaluation = safeEvaluate(currentValue)
-        const resetValue =
-          getType({ rule, evaluation, dottedName: currentValue }) === 'boolean'
-            ? 'non'
-            : 0
+          const rule = safeGetRule(currentValue)
+          const evaluation = safeEvaluate(currentValue)
+          const resetValue =
+            getType({ rule, evaluation, dottedName: currentValue }) ===
+            'boolean'
+              ? 'non'
+              : 0
 
-        return {
-          ...accumulator,
-          [currentValue]: checkValueValidity({
-            value: resetValue,
-            type: getType({ rule, evaluation, dottedName: currentValue }),
-          }),
+          return {
+            ...accumulator,
+            [currentValue]: checkValueValidity({
+              value: resetValue,
+              type: getType({ rule, evaluation, dottedName: currentValue }),
+            }),
+          }
+        },
+        {}
+      )
+      return addToEngineSituation(situationToAdd)
+    },
+    [
+      questionsOfMosaic,
+      situation,
+      addToEngineSituation,
+      safeEvaluate,
+      safeGetRule,
+    ]
+  )
+
+  const setDefaultAsValue = useCallback(
+    async (foldedStep?: string): Promise<void> => {
+      let situationToAdd = {}
+      if (type?.includes('mosaic')) {
+        situationToAdd = questionsOfMosaic.reduce(
+          (accumulator, currentValue) => {
+            const rule = safeGetRule(currentValue)
+            const evaluation = safeEvaluate(currentValue)
+            return {
+              ...accumulator,
+              [currentValue]: checkValueValidity({
+                value: evaluation?.nodeValue,
+                type: getType({ rule, evaluation, dottedName: currentValue }),
+              }),
+            }
+          },
+          {}
+        )
+      } else {
+        situationToAdd = {
+          [dottedName]: checkValueValidity({ value, type }),
         }
-      },
-      {}
-    )
-    return updateCurrentSimulation({ situationToAdd })
-  }
-
-  const setDefaultAsValue = async (foldedStep?: string): Promise<void> => {
-    const foldedStepToAdd = foldedStep
-
-    let situationToAdd = {}
-    if (type?.includes('mosaic')) {
-      situationToAdd = questionsOfMosaic.reduce((accumulator, currentValue) => {
-        const rule = safeGetRule(currentValue)
-        const evaluation = safeEvaluate(currentValue)
-        return {
-          ...accumulator,
-          [currentValue]: checkValueValidity({
-            value: evaluation?.nodeValue,
-            type: getType({ rule, evaluation, dottedName: currentValue }),
-          }),
-        }
-      }, {})
-    } else {
-      situationToAdd = {
-        [dottedName]: checkValueValidity({ value, type }),
       }
-    }
+      await addToEngineSituation(situationToAdd)
 
-    return updateCurrentSimulation({ situationToAdd, foldedStepToAdd })
-  }
+      return updateCurrentSimulation({ foldedStepToAdd: foldedStep })
+    },
+    [
+      dottedName,
+      type,
+      value,
+      questionsOfMosaic,
+      safeEvaluate,
+      safeGetRule,
+      addToEngineSituation,
+      updateCurrentSimulation,
+    ]
+  )
 
   return {
     value,

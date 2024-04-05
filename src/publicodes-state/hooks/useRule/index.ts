@@ -25,6 +25,7 @@ export default function useRule(dottedName: DottedName) {
     safeEvaluate,
     everyNotifications,
     everyMosaicChildren,
+    addToEngineSituation,
   } = useContext(SimulationContext)
 
   const { situation, foldedSteps, updateCurrentSimulation } =
@@ -103,6 +104,7 @@ export default function useRule(dottedName: DottedName) {
     evaluation,
     type,
     questionsOfMosaic,
+    addToEngineSituation,
     updateCurrentSimulation,
     situation,
   })

@@ -6,9 +6,9 @@ import { DottedName, NGCRules } from '../../types'
 import { SimulationContext } from './context'
 import { useCategories } from './useCategories'
 import { useEngine } from './useEngine'
+import { useEngineSituation } from './useEngineSituation'
 import { useRules } from './useRules'
 import { useSetComputedResults } from './useSetComputedResults'
-import { useSetSituation } from './useSetSituation'
 
 type Props = {
   rules: NGCRules
@@ -40,7 +40,7 @@ export default function SimulationProvider({
     safeGetRule,
   })
 
-  const { isInitialized } = useSetSituation({
+  const { isInitialized, addToEngineSituation } = useEngineSituation({
     engine,
     everyRules,
   })
@@ -67,6 +67,7 @@ export default function SimulationProvider({
         rawMissingVariables,
         categories,
         subcategories,
+        addToEngineSituation,
       }}>
       {isInitialized || shouldAlwaysDisplayChildren ? children : null}
     </SimulationContext.Provider>

@@ -109,6 +109,7 @@ export default function useSimulations({
 
   const updateCurrentSimulation = useCallback(
     ({
+      situation,
       situationToAdd,
       foldedStepToAdd,
       actionChoices,
@@ -128,6 +129,10 @@ export default function useSimulations({
             if (simulation.id !== currentSimulationId) return simulation
 
             const simulationToUpdate = { ...simulation }
+
+            if (situation !== undefined) {
+              simulationToUpdate.situation = situation
+            }
 
             if (situationToAdd !== undefined) {
               simulationToUpdate.situation = {

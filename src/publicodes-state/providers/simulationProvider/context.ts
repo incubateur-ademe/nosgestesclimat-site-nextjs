@@ -7,6 +7,7 @@ import {
   NGCEvaluatedNode,
   NGCRuleNode,
   NGCRules,
+  Situation,
 } from '../../types'
 
 type SimulationContextType = {
@@ -24,6 +25,7 @@ type SimulationContextType = {
   rawMissingVariables: Record<string, number>
   categories: DottedName[]
   subcategories: Record<DottedName, DottedName[]>
+  addToEngineSituation: (situationToAdd: Situation) => Promise<void>
 }
 export const SimulationContext = createContext<SimulationContextType>({
   rules: null,
@@ -40,4 +42,5 @@ export const SimulationContext = createContext<SimulationContextType>({
   rawMissingVariables: {},
   categories: [],
   subcategories: {},
+  addToEngineSituation: () => Promise.resolve(),
 })
