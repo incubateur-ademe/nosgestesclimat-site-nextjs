@@ -6,18 +6,22 @@ import { matomoEventCreationGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
+import { getGroupName } from '@/helpers/groups/getGroupName'
 import { validateCreationForm } from '@/helpers/groups/validateCreationForm'
 import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
 
 export default function GroupCreationForm() {
+  const locale = useLocale()
+
   const {
     user,
     updateName,
@@ -66,8 +70,8 @@ export default function GroupCreationForm() {
     try {
       trackEvent(matomoEventCreationGroupe)
 
-      const { name, emoji } =
-        GROUP_NAMES[groups.length % GROUP_NAMES.length] ?? GROUP_NAMES[0]
+      const { name, emoji } = getGroupName(groups ?? [], locale ?? 'fr')
+      GROUP_NAMES[groups.length % GROUP_NAMES.length] ?? GROUP_NAMES[0]
 
       const group = await createGroup({
         groupInfo: {
