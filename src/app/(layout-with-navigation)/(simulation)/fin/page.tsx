@@ -3,11 +3,13 @@
 import HowToAct from '@/components/actions/HowToAct'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import Trans from '@/components/translation/Trans'
+import { endClickDocumentation } from '@/constants/tracking/pages/end'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
 import Emoji from '@/design-system/utils/Emoji'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import CongratulationsText from './_components/CongratulationsText'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
@@ -60,7 +62,9 @@ export default function FinPage() {
           </Trans>
         </p>
 
-        <InlineLink href="/documentation/bilan">
+        <InlineLink
+          href="/documentation/bilan"
+          onClick={() => trackEvent(endClickDocumentation)}>
           <Emoji className="mr-1 inline-block">🧮</Emoji>
           <Trans>Comprendre le calcul</Trans>
         </InlineLink>

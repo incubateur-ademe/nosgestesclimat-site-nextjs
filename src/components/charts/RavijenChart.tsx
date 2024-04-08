@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { matomoDownloadRavijenChart } from '@/constants/matomo'
+import { trackingDownloadRavijenChart } from '@/constants/tracking/misc'
 import Button from '@/design-system/inputs/Button'
 import { useEngine } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -54,7 +54,7 @@ export default function RavijenChart({
           size="sm"
           color="secondary"
           onClick={() => {
-            trackEvent(matomoDownloadRavijenChart)
+            trackEvent(trackingDownloadRavijenChart)
 
             const ravijen = document.getElementById('ravijen') as HTMLElement
 

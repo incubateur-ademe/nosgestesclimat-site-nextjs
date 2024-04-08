@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { homeClickActions } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -29,6 +30,7 @@ export default async function Actions() {
       <ButtonLink
         color="secondary"
         href="/actions"
+        trackingEvent={homeClickActions}
         data-cypress-id="actions-link">
         <Trans>Toutes les actions</Trans>
       </ButtonLink>

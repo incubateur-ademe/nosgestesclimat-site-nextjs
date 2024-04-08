@@ -15,6 +15,7 @@ export const trackEvent = (args: (string | null)[]) => {
     console.debug(args.join(' => '))
     return
   }
+  console.debug(args.join(' => '))
   // Pass a copy of the array to avoid mutation
   window?._paq?.push([...args])
 }
@@ -26,6 +27,8 @@ export const trackPageView = (url: string) => {
     console.debug('trackPageView => ' + url)
     return
   }
+
+  console.debug('trackPageView => ' + url)
 
   window?._paq?.push(['setCustomUrl', url])
   window?._paq?.push(['setDocumentTitle', document?.title])
