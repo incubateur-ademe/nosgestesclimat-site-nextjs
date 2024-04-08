@@ -1,5 +1,6 @@
 'use client'
 
+import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
@@ -44,7 +45,9 @@ export default function ActionsTutorial() {
 
       <ul className="list-none">
         <li>
-          <Trans>✅ sélectionnez celles qui vous intéressent</Trans>
+          <CheckCircleIcon className="mr-2" />
+
+          <Trans>sélectionnez celles qui vous intéressent</Trans>
         </li>
 
         <li>

@@ -1,5 +1,7 @@
 'use client'
 
+import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import SavesIcon from '@/components/icons/SavesIcon'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useUser } from '@/publicodes-state'
@@ -15,14 +17,9 @@ export default function SimulationList() {
 
   return (
     <div className="my-6">
-      <h2>
-        <span
-          role="img"
-          aria-label="emoji save"
-          aria-hidden
-          className="mr-4 inline-block">
-          💾
-        </span>
+      <h2 className="flex items-center">
+        <SavesIcon className="mr-3 fill-yellow-dark" />
+
         <Trans>Mon historique des simulations</Trans>
       </h2>
       <p>
@@ -48,22 +45,24 @@ export default function SimulationList() {
                       - {simulation.id}
                     </span>
                     {currentSimulationId === simulation.id ? (
-                      <span className="mx-2">
-                        ✅ <Trans>Chargée</Trans>
+                      <span className="mx-2 flex items-center">
+                        <CheckCircleIcon className="mr-1 h-4 w-4 fill-emerald-dark" />{' '}
+                        <Trans>Chargée</Trans>
                       </span>
                     ) : (
                       <span>
                         <Button
                           className="mx-2"
-                          size="sm"
+                          size="xs"
                           onClick={() => {
                             setCurrentSimulationId(simulation.id as string)
                           }}>
                           <Trans>Charger</Trans>
                         </Button>
+
                         <Button
                           className="mx-2"
-                          size="sm"
+                          size="xs"
                           onClick={() => {
                             deleteSimulation(simulation.id as string)
                           }}>

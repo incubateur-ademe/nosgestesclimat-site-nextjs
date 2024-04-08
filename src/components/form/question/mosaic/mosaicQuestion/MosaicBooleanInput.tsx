@@ -47,7 +47,7 @@ export default function MosaicBooleanInput({
       : 'unchecked'
   return (
     <label
-      className={`relative flex cursor-pointer items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
+      className={`relative flex cursor-pointer items-center gap-2 rounded-lg border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
       htmlFor={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}>
       <input
         type="checkbox"
@@ -93,7 +93,7 @@ export default function MosaicBooleanInput({
         ) : null}
       </div>
       {isInactive ? (
-        <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded border-2 border-black bg-white p-2 text-xs font-semibold text-black">
+        <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded-lg border-2 border-black bg-white p-2 text-xs font-semibold text-black">
           <Trans>Bientôt disponible</Trans>
         </div>
       ) : null}

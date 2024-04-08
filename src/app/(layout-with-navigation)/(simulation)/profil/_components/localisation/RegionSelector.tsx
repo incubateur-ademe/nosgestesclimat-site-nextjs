@@ -42,7 +42,7 @@ export default function RegionSelector({
             isLoading ? 'pointer-events-none opacity-60' : ''
           }`}>
           <span>
-            🗺️ <Trans>Choisir une autre région</Trans>{' '}
+            <Trans>Choisir une autre région</Trans>{' '}
             <small title={`${numberOfRegions} régions`}>
               ({numberOfRegions} <Trans>disponibles</Trans>)
             </small>

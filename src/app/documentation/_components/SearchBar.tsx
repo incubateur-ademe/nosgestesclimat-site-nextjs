@@ -101,7 +101,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
             type="search"
             value={input}
             placeholder={t('Entrez des mots-clefs de recherche')}
-            className="w-full rounded-md border border-solid border-primary-100 p-4"
+            className="w-full rounded-lg border border-solid border-primary-100 p-4"
             onChange={(e) => {
               const input = e.target.value
 

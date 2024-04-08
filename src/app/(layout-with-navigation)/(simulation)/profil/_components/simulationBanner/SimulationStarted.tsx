@@ -57,7 +57,7 @@ export default function SimulationStarted() {
       <div className="my-4 flex w-44 flex-col items-start md:w-auto">
         {isFinished && (
           <ButtonLink
-            className="w-full text-center leading-8"
+            className="w-full justify-center text-center leading-8"
             color="primary"
             href={getLinkToEndPage()}>
             <Trans>Voir mon résultat</Trans>
@@ -67,7 +67,7 @@ export default function SimulationStarted() {
         {!isFinished && (
           <ButtonLink
             color="primary"
-            className="w-full text-center"
+            className="w-full !justify-center"
             href={getLinkToSimulateur()}>
             <PlaySignIcon className="mr-2 fill-white" />
 

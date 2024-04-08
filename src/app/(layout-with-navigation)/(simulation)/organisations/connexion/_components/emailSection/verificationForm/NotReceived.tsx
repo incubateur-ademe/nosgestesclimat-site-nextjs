@@ -1,5 +1,6 @@
 'use client'
 
+import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
@@ -76,7 +77,8 @@ export default function NotReceived({
 
           {shouldDisplayConfirmation && (
             <>
-              <Emoji>✅</Emoji>&nbsp;<Trans>Code renvoyé</Trans>
+              <CheckCircleIcon className="mr-2 fill-emerald-dark" />
+              &nbsp;<Trans>Code renvoyé</Trans>
             </>
           )}
 
