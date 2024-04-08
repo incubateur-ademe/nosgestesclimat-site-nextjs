@@ -2,12 +2,11 @@ import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import questions from '@/components/questions'
-import { getMatomoEventParcoursTestOver } from '@/constants/matomo'
+import { uuidToNumber } from '@/helpers/uuidToNumber'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { useForm, useUser } from '@/publicodes-state'
 import { useContext, useEffect, useState } from 'react'
 import ColorIndicator from './form/ColorIndicator'
 
@@ -25,8 +24,6 @@ export default function Form() {
     setCurrentQuestion,
   } = useForm()
 
-  const { getNumericValue } = useEngine()
-
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()
 
@@ -38,13 +35,15 @@ export default function Form() {
   // we wait for the progression to be updated before redirecting to the end page
   const [shouldGoToEndPage, setShouldGoToEndPage] = useState(false)
   useEffect(() => {
+    // We show the quiz for 10% of our users
+    const shouldShowQuiz = uuidToNumber(currentSimulation?.id ?? '') === 0
     if (shouldGoToEndPage && progression === 1) {
       goToEndPage({
-        shouldShowQuiz: false,
+        shouldShowQuiz,
         allowedToGoToGroupDashboard: true,
       })
     }
-  }, [shouldGoToEndPage, progression, goToEndPage])
+  }, [shouldGoToEndPage, progression, goToEndPage, currentSimulation])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
 
@@ -101,8 +100,6 @@ export default function Form() {
         question={currentQuestion}
         tempValue={tempValue}
         onComplete={() => {
-          trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
-
           if (shouldPreventNavigation) {
             handleUpdateShouldPreventNavigation(false)
           }

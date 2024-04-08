@@ -30,7 +30,7 @@ export default function IllustratedPointsList() {
           <div className="mx-auto flex max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6 md:w-[26rem]">
             <div className="mx-auto mt-4 flex items-end rounded-t-md bg-white p-4 pb-0 shadow-sm">
               <Image
-                src="/images/organisations/orga-visuel-1.png"
+                src="/images/organisations/tutoriel.png"
                 width="300"
                 height="200"
                 alt=""

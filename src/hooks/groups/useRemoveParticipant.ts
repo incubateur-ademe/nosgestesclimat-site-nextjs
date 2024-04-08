@@ -13,8 +13,8 @@ export function useRemoveParticipant() {
         groupId,
         userId,
       }),
-    onSuccess: () => {
-      updateCurrentSimulation({ group: null })
+    onSuccess: (data, variables) => {
+      updateCurrentSimulation({ groupToDelete: variables.groupId })
     },
   })
 }

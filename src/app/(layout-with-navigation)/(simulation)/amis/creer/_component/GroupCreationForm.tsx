@@ -47,6 +47,29 @@ export default function GroupCreationForm() {
 
   const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
 
+  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] = useState<
+    string | null
+  >(null)
+  useEffect(() => {
+    if (!shouldGoToSimulateurPage) {
+      return
+    }
+
+    if (currentSimulation?.groups?.includes(shouldGoToSimulateurPage)) {
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
+    }
+  }, [
+    goToSimulateurPage,
+    goToEndPage,
+    shouldGoToSimulateurPage,
+    currentSimulation,
+    hasCompletedTest,
+  ])
+
   const handleSubmit = async (event: FormEvent) => {
     // Avoid reloading page
     if (event) {
@@ -86,33 +109,15 @@ export default function GroupCreationForm() {
 
       // Update current simulation with group id (to redirect after test completion)
       updateCurrentSimulation({
-        group: group._id,
+        groupToAdd: group._id,
       })
 
       // We signal that the form has been submitted. When the currentSimulation is updated, we redirect
-      setIsSubmitted(true)
+      setShouldGoToSimulateurPage(group._id)
     } catch (e) {
       captureException(e)
     }
   }
-
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  useEffect(() => {
-    if (isSubmitted && currentSimulation?.group) {
-      // Redirect to simulateur page or end page
-      if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
-      } else {
-        goToSimulateurPage()
-      }
-    }
-  }, [
-    currentSimulation,
-    goToEndPage,
-    goToSimulateurPage,
-    hasCompletedTest,
-    isSubmitted,
-  ])
 
   return (
     <form

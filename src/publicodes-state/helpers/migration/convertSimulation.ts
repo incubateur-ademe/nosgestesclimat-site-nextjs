@@ -13,5 +13,15 @@ export function convertSimulation({ simulation }: Props): Return {
     }
   })
 
+  // If group or poll is defined, we convert it to groups or polls and delete it
+  if (simulation.group) {
+    simulation.groups = [simulation.group]
+    delete simulation.group
+  }
+  if (simulation.poll) {
+    simulation.polls = [simulation.poll]
+    delete simulation.poll
+  }
+
   return simulation
 }
