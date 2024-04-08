@@ -1,43 +1,77 @@
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react'
 import { User, UserOrganisationInfo } from '../../types'
 
 type Props = {
+  user: User
   setUser: Dispatch<SetStateAction<User>>
 }
-export default function useUserDetails({ setUser }: Props) {
-  const updateName = (name: string) =>
-    setUser((prevUser: User) => ({ ...prevUser, name }))
-
-  const updateEmail = (email: string) =>
-    setUser((prevUser: User) => ({ ...prevUser, email }))
-
-  const updateRegion = (region: { code: string; name: string }) =>
-    setUser((prevUser: User) => ({ ...prevUser, region }))
-
-  const updateLoginExpirationDate = (loginExpirationDate: Date | undefined) =>
-    setUser((prevUser: User) => ({ ...prevUser, loginExpirationDate }))
-
-  const updateUserOrganisation = (organisation: UserOrganisationInfo) => {
-    const organisationModifications: UserOrganisationInfo = {}
-
-    if (organisation.administratorEmail) {
-      organisationModifications.administratorEmail =
-        organisation.administratorEmail
+export default function useUserDetails({ user, setUser }: Props) {
+  // This is a hack to return a promise when updating the simulations
+  const resolveFunction: any = useRef(null)
+  useEffect(() => {
+    if (resolveFunction.current) {
+      resolveFunction.current()
+      resolveFunction.current = null
     }
+  }, [user])
 
-    if (organisation.slug) {
-      organisationModifications.slug = organisation.slug
-    }
+  const updateName = (name: string): Promise<void> =>
+    new Promise((resolve) => {
+      resolveFunction.current = resolve
+      setUser((prevUser: User) => ({ ...prevUser, name }))
+    })
 
-    if (organisation.name) {
-      organisationModifications.name = organisation.name
-    }
+  const updateEmail = (email: string): Promise<void> =>
+    new Promise((resolve) => {
+      resolveFunction.current = resolve
+      setUser((prevUser: User) => ({ ...prevUser, email }))
+    })
 
-    setUser((prevUser: User) => ({
-      ...prevUser,
-      organisation: { ...prevUser.organisation, ...organisationModifications },
-    }))
-  }
+  const updateRegion = (region: {
+    code: string
+    name: string
+  }): Promise<void> =>
+    new Promise((resolve) => {
+      resolveFunction.current = resolve
+      setUser((prevUser: User) => ({ ...prevUser, region }))
+    })
+
+  const updateLoginExpirationDate = (
+    loginExpirationDate: Date | undefined
+  ): Promise<void> =>
+    new Promise((resolve) => {
+      resolveFunction.current = resolve
+      setUser((prevUser: User) => ({ ...prevUser, loginExpirationDate }))
+    })
+
+  const updateUserOrganisation = (
+    organisation: UserOrganisationInfo
+  ): Promise<void> =>
+    new Promise((resolve) => {
+      resolveFunction.current = resolve
+      const organisationModifications: UserOrganisationInfo = {}
+
+      if (organisation.administratorEmail) {
+        organisationModifications.administratorEmail =
+          organisation.administratorEmail
+      }
+
+      if (organisation.slug) {
+        organisationModifications.slug = organisation.slug
+      }
+
+      if (organisation.name) {
+        organisationModifications.name = organisation.name
+      }
+
+      setUser((prevUser: User) => ({
+        ...prevUser,
+        organisation: {
+          ...prevUser.organisation,
+          ...organisationModifications,
+        },
+      }))
+    })
 
   return {
     updateName,

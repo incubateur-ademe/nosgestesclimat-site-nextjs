@@ -31,7 +31,7 @@ export default function useUser() {
     updateRegion,
     updateLoginExpirationDate,
     updateUserOrganisation,
-  } = useUserDetails({ setUser })
+  } = useUserDetails({ user, setUser })
 
   const {
     initSimulation,

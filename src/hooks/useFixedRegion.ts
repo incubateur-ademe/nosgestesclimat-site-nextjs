@@ -2,7 +2,8 @@ import countries from '@/app/api/geolocation/countries.json'
 import { useUser } from '@/publicodes-state'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
-export default function CheckFixedRegion() {
+
+export function useFixedRegion() {
   const fixedRegionCode = useSearchParams().get('region')
 
   const { user, updateRegion } = useUser()
@@ -15,6 +16,4 @@ export default function CheckFixedRegion() {
       updateRegion(region)
     }
   }, [user, fixedRegionCode, updateRegion])
-
-  return null
 }

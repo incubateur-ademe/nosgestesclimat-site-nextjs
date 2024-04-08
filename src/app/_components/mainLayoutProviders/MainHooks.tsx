@@ -5,11 +5,14 @@
  */
 'use client'
 
-import { useBackgroundSaveSimulation } from '@/hooks/simulation/useBackgroundSaveSimulation'
 import { useTrackLocale } from '@/hooks/tracking/useTrackLocale'
 import { useTrackPageView } from '@/hooks/tracking/useTrackPageView'
 import { useTrackRegion } from '@/hooks/tracking/useTrackRegion'
 import { useTrackSplitTesting } from '@/hooks/tracking/useTrackSplitTesting'
+import { useDebug } from '@/hooks/useDebug'
+import { useFixedRegion } from '@/hooks/useFixedRegion'
+import { useIframeResizer } from '@/hooks/useIframeResizer'
+import { usePRNumber } from '@/hooks/usePRNumber'
 import { PropsWithChildren } from 'react'
 
 export default function MainHooks({ children }: PropsWithChildren) {
@@ -17,7 +20,12 @@ export default function MainHooks({ children }: PropsWithChildren) {
   useTrackPageView()
   useTrackLocale()
   useTrackRegion()
-  useBackgroundSaveSimulation()
+
+  useFixedRegion()
+  useDebug()
+  usePRNumber()
+
+  useIframeResizer()
 
   return children
 }
