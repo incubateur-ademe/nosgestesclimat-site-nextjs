@@ -5,7 +5,10 @@ import Marianne from '@/app/_components/heading/partners/Marianne'
 import {
   footerClickAmbassadeurs,
   footerClickBlog,
+  footerClickContact,
+  footerClickDiffusion,
   footerClickDocumentation,
+  footerClickFAQ,
   footerClickInternational,
   footerClickLogo,
   footerClickNouveautes,
@@ -15,7 +18,6 @@ import {
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
-import Emoji from '@/design-system/utils/Emoji'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { twMerge } from 'tailwind-merge'
 import Link from '../Link'
@@ -37,22 +39,13 @@ export default function Footer({ className = '' }) {
         />
 
         <div className="w-full">
-          <div className="flex flex-col flex-wrap justify-start gap-6 pt-4 sm:flex-row md:items-center">
-            <InlineLink
-              href="/nouveautes"
-              onClick={() => trackEvent(footerClickNouveautes)}
-              className="text-default no-underline hover:underline">
-              <strong>
-                <Trans>Nouveautés</Trans>
-              </strong>
-            </InlineLink>
-
+          <div className="flex flex-col flex-wrap justify-start gap-x-5 gap-y-2 pt-4 sm:flex-row md:items-center">
             <InlineLink
               href="/a-propos"
               onClick={() => trackEvent(footerClickQuiSommesNous)}
               className="text-default no-underline hover:underline">
               <strong>
-                <Trans>Qui sommes-nous ?</Trans>
+                <Trans>À propos</Trans>
               </strong>
             </InlineLink>
 
@@ -66,6 +59,15 @@ export default function Footer({ className = '' }) {
             </InlineLink>
 
             <InlineLink
+              href="/nouveautes"
+              onClick={() => trackEvent(footerClickNouveautes)}
+              className="text-default no-underline hover:underline">
+              <strong>
+                <Trans>Nouveautés</Trans>
+              </strong>
+            </InlineLink>
+
+            <InlineLink
               href="/documentation"
               onClick={() => trackEvent(footerClickDocumentation)}
               className="text-default no-underline hover:underline">
@@ -75,11 +77,20 @@ export default function Footer({ className = '' }) {
             </InlineLink>
 
             <InlineLink
-              href="/ambassadeurs"
-              onClick={() => trackEvent(footerClickAmbassadeurs)}
+              href="/questions-frequentes"
+              onClick={() => trackEvent(footerClickFAQ)}
               className="text-default no-underline hover:underline">
               <strong>
-                <Trans>Nos ambassadeurs</Trans>
+                <Trans>FAQ</Trans>
+              </strong>
+            </InlineLink>
+
+            <InlineLink
+              href="/contact"
+              onClick={() => trackEvent(footerClickContact)}
+              className="text-default no-underline hover:underline">
+              <strong>
+                <Trans>Contact</Trans>
               </strong>
             </InlineLink>
 
@@ -89,29 +100,39 @@ export default function Footer({ className = '' }) {
               className="font-bold text-default no-underline hover:underline">
               <Trans>Plan du site</Trans>
             </InlineLink>
-          </div>
 
-          <div className="mt-6 flex w-full flex-wrap items-baseline gap-2 text-default sm:gap-4 md:mt-4">
-            <p className="mb-1 text-sm">
-              <Trans>Diffuser le test :</Trans>
-            </p>
-            <div className="flex flex-wrap gap-6">
-              <InlineLink
-                href="/organisations"
-                onClick={() => trackEvent(footerClickOrganisations)}
-                className="font-bold text-default no-underline hover:underline">
-                <Emoji className="mr-2">🏢</Emoji>
-                <Trans>Dans votre organisation</Trans>
-              </InlineLink>
+            {/* Hack in order to force Diffusion to be on a new line on desktop */}
+            <div className="hidden w-full lg:block" />
 
-              <InlineLink
-                href="/international"
-                onClick={() => trackEvent(footerClickInternational)}
-                className="font-bold text-default no-underline hover:underline">
-                <Emoji className="mr-2">🌍</Emoji>
-                <Trans>À l'international</Trans>
-              </InlineLink>
-            </div>
+            <InlineLink
+              href="/diffuser"
+              onClick={() => trackEvent(footerClickDiffusion)}
+              className="font-bold text-default no-underline hover:underline">
+              <Trans>Diffusion</Trans>
+            </InlineLink>
+
+            <InlineLink
+              href="/organisations"
+              onClick={() => trackEvent(footerClickOrganisations)}
+              className="font-bold text-default no-underline hover:underline">
+              <Trans>Organisations</Trans>
+            </InlineLink>
+
+            <InlineLink
+              href="/ambassadeurs"
+              onClick={() => trackEvent(footerClickAmbassadeurs)}
+              className="text-default no-underline hover:underline">
+              <strong>
+                <Trans>Ambassadeurs</Trans>
+              </strong>
+            </InlineLink>
+
+            <InlineLink
+              href="/international"
+              onClick={() => trackEvent(footerClickInternational)}
+              className="font-bold text-default no-underline hover:underline">
+              <Trans>International</Trans>
+            </InlineLink>
           </div>
 
           <Separator className="mb-0 mt-6 md:mt-4" />
