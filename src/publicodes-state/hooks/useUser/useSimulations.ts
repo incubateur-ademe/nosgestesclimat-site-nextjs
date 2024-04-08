@@ -1,6 +1,6 @@
 'use client'
 
-import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
+import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import {
   Dispatch,
   SetStateAction,
@@ -9,7 +9,6 @@ import {
   useMemo,
   useRef,
 } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import {
   MigrationType,
   Simulation,
@@ -41,14 +40,14 @@ export default function useSimulations({
 
   const initSimulation = useCallback(
     ({
-      id = uuidv4(),
-      date = new Date().toISOString(),
-      situation = {},
-      foldedSteps = [],
-      actionChoices = {},
+      id,
+      date,
+      situation,
+      foldedSteps,
+      actionChoices,
       persona,
       computedResults,
-      progression = 0,
+      progression,
       defaultAdditionalQuestionsAnswers,
       polls,
       groups,
@@ -59,34 +58,36 @@ export default function useSimulations({
 
         resetAideSaisie()
 
+        let newCurrentId = id
+
         setSimulations((prevSimulations: Simulation[]) => {
           if (prevSimulations.find((simulation) => simulation.id === id)) {
-            setCurrentSimulationId(id)
+            setCurrentSimulationId(id ?? '')
             return prevSimulations
           }
 
-          const migratedSimulation = migrateSimulation({
-            simulation: {
-              id,
-              date,
-              situation,
-              foldedSteps,
-              actionChoices,
-              persona,
-              computedResults,
-              progression,
-              defaultAdditionalQuestionsAnswers,
-              polls,
-              groups,
-              savedViaEmail,
-            },
+          const migratedSimulation = generateSimulation({
+            id,
+            date,
+            situation,
+            foldedSteps,
+            actionChoices,
+            persona,
+            computedResults,
+            progression,
+            defaultAdditionalQuestionsAnswers,
+            polls,
+            groups,
+            savedViaEmail,
             migrationInstructions,
           })
+
+          newCurrentId = migratedSimulation.id
 
           return [...prevSimulations, migratedSimulation]
         })
 
-        setCurrentSimulationId(id)
+        setCurrentSimulationId(newCurrentId ?? '')
       })
     },
     [migrationInstructions, setSimulations, setCurrentSimulationId]
