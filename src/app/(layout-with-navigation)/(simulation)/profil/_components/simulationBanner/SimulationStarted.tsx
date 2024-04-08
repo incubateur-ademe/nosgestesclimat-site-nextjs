@@ -1,10 +1,10 @@
 import Link from '@/components/Link'
+import PlaySignIcon from '@/components/icons/PlaySignIcon'
+import RestartIcon from '@/components/icons/RestartIcon'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
-import Emoji from '@/design-system/utils/Emoji'
-import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -60,39 +60,32 @@ export default function SimulationStarted() {
             className="w-full text-center leading-8"
             color="primary"
             href={getLinkToEndPage()}>
-            <Trans>
-              <Emoji className="mr-2">👀</Emoji> Voir mon résultat
-            </Trans>
+            <Trans>Voir mon résultat</Trans>
           </ButtonLink>
         )}
 
         {!isFinished && (
           <ButtonLink
             color="primary"
-            className="w-full  text-center"
+            className="w-full text-center"
             href={getLinkToSimulateur()}>
-            <Trans>
-              <ProgressCircle white className="mr-2" /> Reprendre mon test
-            </Trans>
+            <PlaySignIcon className="mr-2 fill-white" />
+
+            <Trans>Reprendre mon test</Trans>
           </ButtonLink>
         )}
 
         <Button
           color="secondary"
-          className="my-2 w-full text-center !text-base"
+          className="my-2 w-full text-center"
           onClick={() => {
             initSimulation()
           }}>
-          <span
-            role="img"
-            aria-label="recycle emoji"
-            className="mr-2 inline-block text-xl">
-            ♻️
-          </span>{' '}
+          <RestartIcon className="mr-2 fill-primary-700" />
           <Trans>Recommencer</Trans>
         </Button>
 
-        <TutorialLink className=" !text-base font-normal" />
+        <TutorialLink />
       </div>
     </div>
   )

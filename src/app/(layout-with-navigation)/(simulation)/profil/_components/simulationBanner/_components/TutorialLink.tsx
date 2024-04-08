@@ -1,18 +1,18 @@
 'use client'
 
+import Link from '@/components/Link'
+import GlassesIcon from '@/components/icons/GlassesIcon'
 import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 
-export default function TutorialLink({ className = '' }) {
+export default function TutorialLink() {
   return (
-    <ButtonLink color="text" href="/tutoriel" className={className}>
-      <span role="img" aria-label="nerd emoji" className="mr-2 inline-block">
-        🤓
-      </span>
+    <Link
+      href="/tutoriel"
+      className="flex py-2 align-baseline font-bold no-underline hover:underline">
+      <GlassesIcon className="mr-2 fill-primary-700" />
       <span>
-        {' '}
         <Trans>Revoir le tutoriel</Trans>
       </span>
-    </ButtonLink>
+    </Link>
   )
 }

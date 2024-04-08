@@ -1,7 +1,6 @@
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Rainbow from '@/design-system/layout/Rainbow'
 import Separator from '@/design-system/layout/Separator'
-import Emoji from '@/design-system/utils/Emoji'
 import { twMerge } from 'tailwind-merge'
 import Logo from '../misc/Logo'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
@@ -74,14 +73,12 @@ export default function Footer({ className = '' }) {
               <InlineLink
                 href="/organisations"
                 className="font-bold text-default no-underline hover:underline">
-                <Emoji className="mr-2">🏢</Emoji>
                 <Trans>Dans votre organisation</Trans>
               </InlineLink>
 
               <InlineLink
                 href="/international"
                 className="font-bold text-default no-underline hover:underline">
-                <Emoji className="mr-2">🌍</Emoji>
                 <Trans>À l'international</Trans>
               </InlineLink>
             </div>
