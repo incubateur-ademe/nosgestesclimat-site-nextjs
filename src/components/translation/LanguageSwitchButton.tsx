@@ -1,6 +1,7 @@
 'use client'
 
 import Button from '@/design-system/inputs/Button'
+import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import i18nConfig from '@/i18nConfig'
@@ -63,9 +64,9 @@ export default function LanguageSwitchButton() {
         onClick={() => handleChange('fr')}
         size="sm"
         aria-label={t('Passer en français')}
-        className="flex gap-2 px-4 py-3"
+        className="flex items-center gap-2 px-4 py-3"
         data-cypress-id="language-switch-button-fr">
-        <span>FR</span> <span aria-hidden>🇫🇷</span>
+        <span>FR</span> <Emoji aria-hidden>🇫🇷</Emoji>
       </Button>
       <Button
         lang="en"
@@ -73,9 +74,9 @@ export default function LanguageSwitchButton() {
         onClick={() => handleChange('en')}
         size="sm"
         aria-label={t('Switch to english')}
-        className="flex gap-2 px-4 py-3"
+        className="flex items-center gap-2 px-4 py-3"
         data-cypress-id="language-switch-button-en">
-        <span>EN</span> <span aria-hidden>🇬🇧</span>
+        <span>EN</span> <Emoji aria-hidden>🇬🇧</Emoji>
       </Button>
     </div>
   )

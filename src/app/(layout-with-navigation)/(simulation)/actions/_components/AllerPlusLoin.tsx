@@ -1,9 +1,9 @@
 'use client'
 
 import Link from '@/components/Link'
+import BookClosedIcon from '@/components/icons/BookClosedIcon'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
-import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 
 export default function AllerPlusLoin() {
@@ -12,15 +12,9 @@ export default function AllerPlusLoin() {
   return (
     <Card className="mt-4 flex !w-full !whitespace-normal rounded-2xl bg-primary-700 p-8 !text-left">
       <div className="flex gap-2">
-        <span
-          className="inline-block text-4xl"
-          role="img"
-          aria-label="emoji books"
-          aria-hidden>
-          <Emoji>📚</Emoji>
-        </span>
+        <h2 className="flex items-center text-white">
+          <BookClosedIcon aria-hidden className="mr-3 fill-white" />
 
-        <h2 className="text-white">
           <Trans>Aller plus loin</Trans>
         </h2>
       </div>

@@ -1,8 +1,8 @@
 import Link from '@/components/Link'
+import HelpCircleIcon from '@/components/icons/HelpCircleIcon'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
@@ -75,7 +75,7 @@ export default async function FAQPage() {
         {categories.map((category) => {
           return (
             <li key={category} className="list-none">
-              <h2 className="capitalize">{category}</h2>
+              <h2 className="mt-8 capitalize">{category}</h2>
               <ul className="pl-2">
                 {FAQContent.filter((el) => el.catégorie === category).map(
                   ({
@@ -103,12 +103,11 @@ export default async function FAQPage() {
         })}
       </div>
 
-      <Card className="bg-primary-100">
-        <h3>
-          <Trans>
-            Je ne trouve pas réponse à ma question{' '}
-            <Emoji className="mr-2 inline-block">🙋‍♀️</Emoji>
-          </Trans>
+      <Card className="bg-grey-100">
+        <h3 className="flex items-center text-yellow-dark">
+          <Trans>Je ne trouve pas réponse à ma question </Trans>
+
+          <HelpCircleIcon className="ml-2 fill-yellow-dark" />
         </h3>
         <p className="mb-0">
           <Trans>
