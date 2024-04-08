@@ -1,8 +1,8 @@
 'use client'
 
+import RocketIcon from '@/components/icons/RocketIcon'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import Emoji from '@/design-system/utils/Emoji'
 import { Group } from '@/types/groups'
 import { useEffect, useRef, useState } from 'react'
 
@@ -21,7 +21,7 @@ const SubmitButton = ({
 }: SubmitButtonProps) => {
   return (
     <Button
-      className="flex w-[8rem] justify-center whitespace-nowrap"
+      className="flex justify-center whitespace-nowrap"
       onClick={isShareDefined ? handleShare : handleCopy}
       data-cypress-id="invite-button">
       {isShareDefined && <Trans>Partager</Trans>}
@@ -89,8 +89,9 @@ export default function InviteBlock({ group }: { group: Group }) {
 
   return (
     <div className="mt-4 rounded-md bg-grey-100 p-4">
-      <h2 className="mt-0 text-base md:text-lg">
-        <Trans>Vous êtes le premier</Trans> <Emoji>🥳</Emoji>
+      <h2 className="mt-0 flex items-center text-base md:text-lg">
+        <Trans>Vous êtes le premier</Trans>{' '}
+        <RocketIcon className="ml-2 fill-secondary-700" />
       </h2>
       <p className="mb-4 text-sm md:text-base">
         <Trans>
