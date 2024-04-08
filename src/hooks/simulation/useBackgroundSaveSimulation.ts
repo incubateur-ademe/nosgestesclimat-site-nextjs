@@ -2,6 +2,9 @@ import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { useEffect, useRef } from 'react'
 import { useSaveSimulation } from './useSaveSimulation'
 
+// The max rate at which we save the simulation (in ms)
+const SAVE_DELAY = 5000
+
 export function useBackgroundSaveSimulation() {
   const { user } = useUser()
 
@@ -25,9 +28,13 @@ export function useBackgroundSaveSimulation() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
+    // If the simulation is not in a group, poll, or we don't have an email, we do not save it
     const shouldBeSaved = user.email || groups?.length || polls?.length
-
     if (!shouldBeSaved) {
+      return
+    }
+    // If we are already waiting for a save, we do not start another one
+    if (timeoutRef.current) {
       return
     }
 
@@ -49,7 +56,7 @@ export function useBackgroundSaveSimulation() {
             savedViaEmail,
           },
         }),
-      5000
+      SAVE_DELAY
     )
   }, [
     user,
