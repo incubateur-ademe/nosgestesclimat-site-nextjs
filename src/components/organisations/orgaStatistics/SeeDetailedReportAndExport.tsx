@@ -1,12 +1,12 @@
 'use client'
 
+import PresentationChartIcon from '@/components/icons/PresentationChartIcon'
 import Trans from '@/components/translation/Trans'
 import {
   clickExportDataDashboardEvent,
   clickSeeDetailedReportEvent,
 } from '@/constants/matomo/organisations'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import Emoji from '@/design-system/utils/Emoji'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useParams } from 'next/navigation'
@@ -26,7 +26,8 @@ export default function SeeDetailedReportAndExport() {
         onClick={() => {
           trackEvent(clickSeeDetailedReportEvent)
         }}>
-        <Emoji className="mr-2">📊</Emoji>
+        <PresentationChartIcon className="mr-2 fill-primary-700" />
+
         <Trans>Voir le rapport détaillé</Trans>
       </ButtonLink>
 

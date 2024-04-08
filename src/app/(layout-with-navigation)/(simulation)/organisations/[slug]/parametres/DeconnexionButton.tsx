@@ -1,8 +1,8 @@
 'use client'
 
+import LogOutIcon from '@/components/icons/LogOutIcon'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import Emoji from '@/design-system/utils/Emoji'
 import { useLogoutOrganisation } from '@/hooks/organisations/useLogout'
 import { Organisation } from '@/types/organisations'
 import { useQueryClient } from '@tanstack/react-query'
@@ -33,7 +33,7 @@ export default function DeconnexionButton({
       color="text"
       className="flex items-center gap-2 text-primary-700 underline"
       onClick={handleDisconnect}>
-      <Emoji>⬅️</Emoji>{' '}
+      <LogOutIcon className="mr-2 fill-primary-700" />
       <Trans>Se déconnecter de votre espace organisation</Trans>
     </Button>
   )

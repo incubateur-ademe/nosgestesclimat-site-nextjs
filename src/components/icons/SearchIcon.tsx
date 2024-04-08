@@ -1,11 +1,12 @@
 import { twMerge } from 'tailwind-merge'
 
-export default function SearchIcon({
-  className,
-  ...props
-}: {
+type Props = {
   className?: string
-}) {
+  width?: string
+  height?: string
+}
+
+export default function SearchIcon({ className, ...props }: Props) {
   return (
     <svg
       width="24"

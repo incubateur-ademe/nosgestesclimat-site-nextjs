@@ -1,10 +1,12 @@
 'use client'
 
 import Link from '@/components/Link'
+import GlassesIcon from '@/components/icons/GlassesIcon'
+import PencilIcon from '@/components/icons/PencilIcon'
+import SearchIcon from '@/components/icons/SearchIcon'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Kicker from '@/design-system/layout/Kicker'
-import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useState } from 'react'
 import Background from './organisations/Background'
@@ -31,7 +33,11 @@ export default function Contributions() {
             onMouseLeave={() => setIsHover(false)}
             className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="nouveautes-link">
-            <Emoji className="text-3xl">🔍</Emoji>
+            <SearchIcon
+              className="inline-block fill-blue-dark"
+              width="40"
+              height="40"
+            />
             <p className="mb-0">
               <Trans>Le</Trans>{' '}
               <span className="text-primary-700 underline">
@@ -47,7 +53,11 @@ export default function Contributions() {
             onMouseLeave={() => setIsHover(false)}
             className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="documentation-link">
-            <Emoji className="text-3xl">👀</Emoji>
+            <GlassesIcon
+              className="inline-block fill-orange-default"
+              width="50"
+              height="50"
+            />
             <p className="mb-0">
               <Trans>L'intégralité du</Trans>{' '}
               <span className="text-primary-700 underline">
@@ -63,7 +73,11 @@ export default function Contributions() {
             onMouseLeave={() => setIsHover(false)}
             className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="contact-link">
-            <Emoji className="text-3xl">🖋️</Emoji>
+            <PencilIcon
+              className="inline-block stroke-emerald-default"
+              width="50"
+              height="50"
+            />
             <p className="mb-0">
               {t('Une idée\u202f? Une correction\u202f? Une remarque\u202f?')}{' '}
               <span className="text-primary-700 underline">
