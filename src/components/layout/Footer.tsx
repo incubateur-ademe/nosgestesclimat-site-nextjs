@@ -1,6 +1,20 @@
+'use client'
+
+import {
+  footerClickAmbassadeurs,
+  footerClickBlog,
+  footerClickDocumentation,
+  footerClickInternational,
+  footerClickLogo,
+  footerClickNouveautes,
+  footerClickOrganisations,
+  footerClickPlanSite,
+  footerClickQuiSommesNous,
+} from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
 import Emoji from '@/design-system/utils/Emoji'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { twMerge } from 'tailwind-merge'
 import Logo from '../misc/Logo'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
@@ -14,12 +28,16 @@ export default function Footer({ className = '' }) {
         className
       )}>
       <div className="flex w-full items-start gap-12 md:max-w-5xl">
-        <Logo className="hidden scale-75 lg:block" />
+        <Logo
+          className="hidden scale-75 lg:block"
+          onClick={() => trackEvent(footerClickLogo)}
+        />
 
         <div className="w-full">
           <div className="flex flex-col flex-wrap justify-start gap-6 pt-4 sm:flex-row md:items-center">
             <InlineLink
               href="/nouveautes"
+              onClick={() => trackEvent(footerClickNouveautes)}
               className="text-default no-underline hover:underline">
               <strong>
                 <Trans>Nouveautés</Trans>
@@ -28,6 +46,7 @@ export default function Footer({ className = '' }) {
 
             <InlineLink
               href="/a-propos"
+              onClick={() => trackEvent(footerClickQuiSommesNous)}
               className="text-default no-underline hover:underline">
               <strong>
                 <Trans>Qui sommes-nous ?</Trans>
@@ -36,6 +55,7 @@ export default function Footer({ className = '' }) {
 
             <InlineLink
               href="/blog"
+              onClick={() => trackEvent(footerClickBlog)}
               className="text-default no-underline hover:underline">
               <strong>
                 <Trans>Blog</Trans>
@@ -44,6 +64,7 @@ export default function Footer({ className = '' }) {
 
             <InlineLink
               href="/documentation"
+              onClick={() => trackEvent(footerClickDocumentation)}
               className="text-default no-underline hover:underline">
               <strong>
                 <Trans>Documentation</Trans>
@@ -52,6 +73,7 @@ export default function Footer({ className = '' }) {
 
             <InlineLink
               href="/ambassadeurs"
+              onClick={() => trackEvent(footerClickAmbassadeurs)}
               className="text-default no-underline hover:underline">
               <strong>
                 <Trans>Nos ambassadeurs</Trans>
@@ -60,6 +82,7 @@ export default function Footer({ className = '' }) {
 
             <InlineLink
               href="/plan-du-site"
+              onClick={() => trackEvent(footerClickPlanSite)}
               className="font-bold text-default no-underline hover:underline">
               <Trans>Plan du site</Trans>
             </InlineLink>
@@ -72,6 +95,7 @@ export default function Footer({ className = '' }) {
             <div className="flex flex-wrap gap-6">
               <InlineLink
                 href="/organisations"
+                onClick={() => trackEvent(footerClickOrganisations)}
                 className="font-bold text-default no-underline hover:underline">
                 <Emoji className="mr-2">🏢</Emoji>
                 <Trans>Dans votre organisation</Trans>
@@ -79,6 +103,7 @@ export default function Footer({ className = '' }) {
 
               <InlineLink
                 href="/international"
+                onClick={() => trackEvent(footerClickInternational)}
                 className="font-bold text-default no-underline hover:underline">
                 <Emoji className="mr-2">🌍</Emoji>
                 <Trans>À l'international</Trans>

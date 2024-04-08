@@ -1,9 +1,11 @@
 'use client'
 
+import { footerClickLanguage } from '@/constants/tracking/layout'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import i18nConfig from '@/i18nConfig'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
@@ -21,6 +23,7 @@ export default function LanguageSwitchButton() {
 
   const handleChange = useCallback(
     (newLocale: string) => {
+      trackEvent(footerClickLanguage(newLocale))
       // set cookie for next-i18n-router
       const days = 30
       const date = new Date()
