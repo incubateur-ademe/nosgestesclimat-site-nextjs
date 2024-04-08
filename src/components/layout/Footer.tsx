@@ -1,5 +1,7 @@
 'use client'
 
+import Ademe from '@/app/_components/heading/partners/Ademe'
+import Marianne from '@/app/_components/heading/partners/Marianne'
 import {
   footerClickAmbassadeurs,
   footerClickBlog,
@@ -16,6 +18,7 @@ import Separator from '@/design-system/layout/Separator'
 import Emoji from '@/design-system/utils/Emoji'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { twMerge } from 'tailwind-merge'
+import Link from '../Link'
 import Logo from '../misc/Logo'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
 import Trans from '../translation/Trans'
@@ -24,7 +27,7 @@ export default function Footer({ className = '' }) {
   return (
     <footer
       className={twMerge(
-        'flex flex-col items-center gap-4 bg-grey-100 p-4 pb-32 sm:p-8 md:mb-0 md:pb-24',
+        'flex flex-col items-center gap-4 bg-grey-100 p-4 !pb-32 sm:p-8 md:mb-0 lg:pb-24',
         className
       )}>
       <div className="flex w-full items-start gap-12 md:max-w-5xl">
@@ -113,19 +116,31 @@ export default function Footer({ className = '' }) {
 
           <Separator className="mb-0 mt-6 md:mt-4" />
 
-          <div className="mt-6 flex flex-wrap items-start justify-between gap-10">
-            <LanguageSwitchButton />
-          </div>
+          <div className="flex flex-wrap justify-between gap-8 md:flex-row md:flex-nowrap">
+            <div>
+              <div className="mt-6 flex flex-wrap items-start justify-between gap-10">
+                <LanguageSwitchButton />
+              </div>
 
-          <div className="mt-4 text-xs">
-            ▲&nbsp;<Trans>Propulsé par Vercel</Trans>
-            <span className="hidden sm:inline"> | </span>
-            <br className="md:hidden" />
-            <InlineLink
-              href="/accessibilite"
-              className="text-default no-underline hover:underline">
-              <Trans>Accessibilité : partiellement conforme</Trans>
-            </InlineLink>
+              <div className="mt-4 text-xs">
+                ▲&nbsp;<Trans>Propulsé par Vercel</Trans>
+                <span className="hidden sm:inline"> | </span>
+                <br className="md:hidden" />
+                <InlineLink
+                  href="/accessibilite"
+                  className="text-default no-underline hover:underline">
+                  <Trans>Accessibilité : partiellement conforme</Trans>
+                </InlineLink>
+              </div>
+            </div>
+
+            <div className="flex gap-4 self-end pb-1">
+              <Marianne className="h-auto w-12 md:w-auto" />
+
+              <Link href="https://ademe.fr" target="_blank">
+                <Ademe className="h-auto w-10 md:w-auto" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
