@@ -1,11 +1,11 @@
 'use client'
 
+import LightBulbIcon from '@/components/icons/LightBulbIcon'
 import Trans from '@/components/translation/Trans'
 import { matomoSaveSimulationByGivingEmail } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Card from '@/design-system/layout/Card'
-import Emoji from '@/design-system/utils/Emoji'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useUser } from '@/publicodes-state'
@@ -74,12 +74,12 @@ export default function GetResultsByEmail({
         className
       )}>
       <form id="newsletter-form" onSubmit={handleSubmit}>
-        <h3 className="text-base sm:text-lg md:text-lg">
+        <h3 className="flex items-center text-base sm:text-lg md:text-lg">
           <Trans>
             Vous souhaitez recevoir vos résultats d’empreinte carbone ?
           </Trans>
 
-          <Emoji>💡</Emoji>
+          <LightBulbIcon className="ml-2 fill-yellow-default" />
         </h3>
 
         <p className="text-sm text-gray-600 sm:text-base">

@@ -25,11 +25,11 @@ export default function TotalCard() {
         </p>
 
         <p className="mb-0 md:text-lg">
-          <span className="text-primary-200">
+          <span className="text-primary-50">
             <Trans>de</Trans>{' '}
           </span>
           CO₂-e{' '}
-          <span className="text-primary-200">
+          <span className="text-primary-50">
             <Trans>chaque année</Trans>
           </span>
         </p>
@@ -40,7 +40,7 @@ export default function TotalCard() {
           aria-label={t(
             "Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet."
           )}
-          className="mt-2 text-xs text-white hover:text-primary-200 md:text-sm"
+          className="mt-2 flex items-center text-xs text-white hover:text-primary-200 md:text-sm"
           href="/empreinte-climat">
           <Trans>Qu'est-ce que ça veut dire&nbsp;?&nbsp;</Trans>
           <ExternalLinkIcon className="stroke-white" />
