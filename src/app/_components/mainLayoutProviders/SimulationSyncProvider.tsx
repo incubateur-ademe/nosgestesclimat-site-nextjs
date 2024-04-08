@@ -41,7 +41,7 @@ export default function SimulationSyncProvider({
     savedViaEmail,
   } = useCurrentSimulation()
 
-  const { saveSimulation } = useSaveSimulation()
+  const { saveSimulation, isPending } = useSaveSimulation()
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -50,7 +50,7 @@ export default function SimulationSyncProvider({
     return user.email || groups?.length || polls?.length ? true : false
   }, [user.email, groups, polls])
 
-  const isSyncedWithBackend = timeoutRef.current ? false : true
+  const isSyncedWithBackend = timeoutRef.current || isPending ? false : true
 
   const resetSyncTimer = useCallback(() => {
     console.log('Resetting sync timer')
