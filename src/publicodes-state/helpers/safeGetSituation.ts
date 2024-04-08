@@ -7,7 +7,10 @@ export const safeGetSituation = ({
 }: {
   situation: Situation
   everyRules: DottedName[]
-}): any => {
+}): Situation => {
+  if (!situation) {
+    return {}
+  }
   const unsupportedDottedNamesFromSituation = Object.keys(situation).filter(
     (ruleName) => {
       // We check if the dotteName is a rule of the model
