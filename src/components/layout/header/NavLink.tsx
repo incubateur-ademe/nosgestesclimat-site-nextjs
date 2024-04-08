@@ -43,11 +43,9 @@ export default function NavLink({
       href={href}
       onClick={onClick}
       className={twMerge(
-        'hover:text-primary-900 group relative flex h-full items-center gap-2 px-4 text-sm text-default no-underline transition-colors md:text-base',
+        'group relative flex h-full items-center gap-2 px-4 text-sm text-default no-underline transition-colors hover:text-primary-900 md:text-base',
         `${
-          isActive
-            ? activeClassName || 'stroke-primary-800 font-bold text-primary-800'
-            : ''
+          isActive ? activeClassName || 'font-bold text-primary-800' : ''
         } ${className}`
       )}
       {...props}>
@@ -58,8 +56,8 @@ export default function NavLink({
       {icon && (
         <Icon
           className={twMerge(
-            'group-hover:stroke-primary-900 h-5 w-5',
-            `${isActive ? 'stroke-primary-800 stroke-2' : ''}`
+            'h-5 w-5 group-hover:fill-primary-800 group-hover:!stroke-primary-800',
+            `${isActive ? 'fill-primary-800 stroke-primary-800' : ''}`
           )}
         />
       )}
