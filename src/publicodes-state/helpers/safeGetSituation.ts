@@ -7,7 +7,7 @@ export const safeGetSituation = ({
 }: {
   situation: Situation
   everyRules: DottedName[]
-}): Situation => {
+}): any => {
   if (!situation) {
     return {}
   }
