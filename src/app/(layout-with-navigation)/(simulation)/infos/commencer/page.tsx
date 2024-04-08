@@ -1,12 +1,14 @@
 'use client'
 
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
+import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import FaceHappyIcon from '@/components/icons/FaceHappyIcon'
+import LightBulbIcon from '@/components/icons/LightBulbIcon'
 import Trans from '@/components/translation/Trans'
 import { getParticipantInscriptionPageVisitedEvent } from '@/constants/matomo/organisations'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import Emoji from '@/design-system/utils/Emoji'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useUser } from '@/publicodes-state'
@@ -16,22 +18,22 @@ import { InfosContext } from '../_components/InfosProvider'
 
 const titles = {
   notStarted: (
-    <>
+    <span className="flex items-center">
       <Trans>Envie de connaître votre empreinte carbone ?</Trans>{' '}
-      <Emoji>🤓</Emoji>
-    </>
+      <LightBulbIcon className="ml-2 fill-yellow-default" />
+    </span>
   ),
   started: (
-    <>
+    <span className="flex items-center">
       <Trans>Vous avez déjà commencé le test Nos Gestes Climat !</Trans>{' '}
-      <Emoji>💪</Emoji>
-    </>
+      <FaceHappyIcon className="ml-2 fill-yellow-default" />
+    </span>
   ),
   finished: (
-    <>
+    <span className="flex items-center">
       <Trans>Vous avez déjà réalisé le test Nos Gestes Climat !</Trans>{' '}
-      <Emoji>👏</Emoji>
-    </>
+      <CheckCircleIcon className="ml-2 fill-emerald-default" />
+    </span>
   ),
 }
 const texts = {

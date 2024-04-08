@@ -1,4 +1,10 @@
-export default function Planet() {
+import { twMerge } from 'tailwind-merge'
+
+type Props = {
+  className?: string
+}
+
+export default function Planet({ className }: Props) {
   return (
     <svg
       width="630"
@@ -6,7 +12,7 @@ export default function Planet() {
       viewBox="0 0 630 630"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="z-10 hidden h-auto w-10 md:block">
+      className={twMerge('z-10 hidden h-auto w-10 md:block', className)}>
       <path
         d="M314.6 617.032C481.343 617.032 616.516 481.86 616.516 315.117C616.516 148.374 481.343 13.2016 314.6 13.2016C147.856 13.2016 12.6835 148.374 12.6835 315.117C12.6835 481.86 147.856 617.032 314.6 617.032Z"
         fill="#A2D2FD"
