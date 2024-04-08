@@ -1,3 +1,4 @@
+import SearchIcon from '@/components/icons/SearchIcon'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
@@ -82,14 +83,9 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
   return (
     <>
       <Card className="my-8 !bg-primary-100">
-        <h2 className="text-xl">
-          <span
-            role="img"
-            aria-label="emoji search"
-            aria-hidden
-            className="mr-3 inline-block ">
-            🔍
-          </span>
+        <h2 className="flex items-center text-xl">
+          <SearchIcon className="mr-2" />
+
           <Trans>Explorez nos modèles</Trans>
         </h2>
 

@@ -1,7 +1,7 @@
 import { marianne } from '@/app/layout'
+import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import Trans from '@/components/translation/Trans'
 import Loader from '@/design-system/layout/Loader'
-import Emoji from '@/design-system/utils/Emoji'
 import VerificationInput from 'react-verification-input'
 
 type Props = {
@@ -55,9 +55,9 @@ export default function VerificationCodeInput({
 
       {isSuccessValidate && (
         <div className="mt-4 flex items-baseline gap-2 pl-2 text-sm">
-          <Emoji>✅</Emoji>
+          <CheckCircleIcon className="h-4 w-4 fill-emerald-dark" />
 
-          <span className="text-green-700">
+          <span className="text-emerald-dark">
             <Trans>Votre code est valide !</Trans>
           </span>
         </div>
