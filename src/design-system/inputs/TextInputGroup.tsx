@@ -61,6 +61,7 @@ export default function TextInputGroup({
         value={value}
         required={required}
         aria-disabled={disabled}
+        readOnly={disabled}
         {...props}
         className={twMerge(
           `border-grey-300 ${
