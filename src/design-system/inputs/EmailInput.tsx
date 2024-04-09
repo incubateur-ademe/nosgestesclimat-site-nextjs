@@ -8,6 +8,7 @@ type Props = {
   setError: (error: string) => void
   label?: ReactNode | string
   helperText?: string
+  readOnly?: boolean
 }
 
 export default function EmailInput({
@@ -17,6 +18,7 @@ export default function EmailInput({
   setError,
   label,
   helperText,
+  readOnly = false,
   ...props
 }: Props) {
   return (
@@ -34,6 +36,7 @@ export default function EmailInput({
       }}
       value={email}
       error={error}
+      readOnly={readOnly}
       {...props}
     />
   )
