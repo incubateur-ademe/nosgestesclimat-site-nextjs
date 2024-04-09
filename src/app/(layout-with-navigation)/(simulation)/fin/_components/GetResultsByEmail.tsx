@@ -74,7 +74,7 @@ export default function GetResultsByEmail({
         className
       )}>
       <form id="newsletter-form" onSubmit={handleSubmit}>
-        <h3 className="text-base sm:text-lg md:text-lg">
+        <h3 className="flex items-center text-base sm:text-lg md:text-lg">
           <Trans>
             Vous souhaitez recevoir vos résultats d’empreinte carbone ?
           </Trans>

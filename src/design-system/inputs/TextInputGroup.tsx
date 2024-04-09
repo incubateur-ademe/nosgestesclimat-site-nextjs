@@ -65,7 +65,7 @@ export default function TextInputGroup({
         className={twMerge(
           `border-grey-300 ${
             helperText || label ? ' !mt-3' : ''
-          } max-w-[30rem] rounded-md border border-solid bg-grey-100 p-4 text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700`,
+          } max-w-[30rem] rounded-lg border border-solid bg-grey-100 p-4 text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700`,
           `${className} ${
             error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
           } ${disabled ? 'cursor-not-allowed opacity-50' : ''}`

@@ -5,6 +5,7 @@ import Title from '@/design-system/layout/Title'
 import { useRules } from '@/hooks/useRules'
 
 import Link from '@/components/Link'
+import LightBulbIcon from '@/components/icons/LightBulbIcon'
 import SearchBar from './SearchBar'
 import DocumentationLandingCard from './documentationLanding/DocumentationLandingCard'
 
@@ -37,8 +38,9 @@ export default function DocumentationLanding() {
       </p>
 
       <div>
-        <Link href="/modele">
-          💡 <Trans> En savoir plus sur notre modèle</Trans>
+        <Link href="/modele" className="flex items-center">
+          <LightBulbIcon className="mr-1 h-4 w-4 fill-primary-700" />
+          <Trans> En savoir plus sur notre modèle</Trans>
         </Link>
       </div>
 

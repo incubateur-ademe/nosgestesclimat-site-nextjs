@@ -1,6 +1,6 @@
+import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
-import Emoji from '@/design-system/utils/Emoji'
 import { twMerge } from 'tailwind-merge'
 
 export default function Confirmation({ className }: { className?: string }) {
@@ -15,7 +15,7 @@ export default function Confirmation({ className }: { className?: string }) {
         <p>
           <Trans>Votre simulation est sauvegardée&#8239;!</Trans>
           &#8239;
-          <Emoji className="inline-block">✅</Emoji>
+          <CheckCircleIcon className="fill-emerald-default" />
         </p>
       </div>
       <p className="mt-4 max-w-lg text-left">

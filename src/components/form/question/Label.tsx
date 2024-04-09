@@ -33,10 +33,7 @@ const sizeClassNames = {
   sm: 'mb-1 text-sm',
   md: 'mb-3 text-lg md:text-xl',
 }
-const buttonSizeClassNames = {
-  sm: 'h-6 w-6 text-sm',
-  md: 'h-6 w-6 text-sm md:h-8 md:w-8 md:text-base',
-}
+
 export default function Label({
   question,
   label,
@@ -71,7 +68,7 @@ export default function Label({
           {label}
         </h1>{' '}
         {description ? (
-          <button
+          <Button
             type="button"
             onClick={() => {
               if (isOpen) {
@@ -81,10 +78,12 @@ export default function Label({
               }
               setIsOpen((previsOpen) => !previsOpen)
             }}
-            className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary-700 font-mono text-base font-bold text-white`}
+            color="secondary"
+            size="sm"
+            className={`inline-flex h-8 w-8 items-center justify-center rounded-full font-mono`}
             title={t("Voir plus d'informations")}>
             i
-          </button>
+          </Button>
         ) : null}
       </label>
 

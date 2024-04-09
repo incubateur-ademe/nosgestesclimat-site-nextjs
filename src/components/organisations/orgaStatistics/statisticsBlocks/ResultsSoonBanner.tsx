@@ -39,7 +39,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
 
       <Card className="w-full flex-row flex-wrap items-center justify-between gap-4 p-4 md:flex-nowrap">
         <div className="flex max-w-2xl gap-4">
-          <HourglassIcon />
+          <HourglassIcon className="fill-primary-700" width="80" height="60" />
           <div className="flex items-center">
             <p className="mb-0">
               <span>

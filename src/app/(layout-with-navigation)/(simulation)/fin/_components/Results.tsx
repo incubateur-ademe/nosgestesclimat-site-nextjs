@@ -1,6 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
+import SaveIcon from '@/components/icons/SaveIcon'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import CategoriesChart from '@/components/results/CategoriesChart'
 import Trans from '@/components/translation/Trans'
@@ -10,7 +11,6 @@ import {
 } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
 import Separator from '@/design-system/layout/Separator'
-import Emoji from '@/design-system/utils/Emoji'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import TotalCard from './results/TotalCard'
 
@@ -31,7 +31,8 @@ export default function Results() {
             const emailBlock = document.getElementById('email-block')
             emailBlock?.scrollIntoView({ behavior: 'smooth', block: 'center' })
           }}>
-          <Emoji className="mr-2 inline-block">📩</Emoji>
+          <SaveIcon className="mr-2 w-4 fill-primary-700" />
+
           <Trans>Sauvegarder</Trans>
         </Button>
       </div>

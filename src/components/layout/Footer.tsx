@@ -12,9 +12,8 @@ import {
   footerClickQuiSommesNous,
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
-import Rainbow from '@/design-system/layout/Rainbow'
+import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
-import Emoji from '@/design-system/utils/Emoji'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { twMerge } from 'tailwind-merge'
 import Logo from '../misc/Logo'
@@ -98,7 +97,6 @@ export default function Footer({ className = '' }) {
                 href="/organisations"
                 onClick={() => trackEvent(footerClickOrganisations)}
                 className="font-bold text-default no-underline hover:underline">
-                <Emoji className="mr-2">🏢</Emoji>
                 <Trans>Dans votre organisation</Trans>
               </InlineLink>
 
@@ -106,7 +104,6 @@ export default function Footer({ className = '' }) {
                 href="/international"
                 onClick={() => trackEvent(footerClickInternational)}
                 className="font-bold text-default no-underline hover:underline">
-                <Emoji className="mr-2">🌍</Emoji>
                 <Trans>À l'international</Trans>
               </InlineLink>
             </div>
@@ -131,7 +128,7 @@ export default function Footer({ className = '' }) {
         </div>
       </div>
 
-      <Rainbow className="absolute bottom-0 left-0 h-[6px] w-full" />
+      <ColorLine className="bg-blue-default absolute bottom-0 left-0 h-1 w-full" />
     </footer>
   )
 }

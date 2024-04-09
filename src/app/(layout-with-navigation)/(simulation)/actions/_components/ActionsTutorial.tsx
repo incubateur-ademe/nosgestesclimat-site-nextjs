@@ -4,6 +4,7 @@ import Trans from '@/components/translation/Trans'
 import { actionsClickStart } from '@/constants/tracking/pages/actions'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
+import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -46,20 +47,26 @@ export default function ActionsTutorial() {
 
       <ul className="list-none">
         <li>
-          <Trans>✅ sélectionnez celles qui vous intéressent</Trans>
+          <Emoji>✅</Emoji>
+
+          <Trans>sélectionnez celles qui vous intéressent</Trans>
         </li>
 
         <li>
+          <Emoji>❌</Emoji>
+
           <Trans>
-            ❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.
+            écartez celles qui vous semblent trop ambitieuses ou déplacées.
           </Trans>
         </li>
       </ul>
 
       <p>
+        <Emoji>💡</Emoji>
+
         <Trans i18nKey={'publicodes.ActionTutorial.msgPrécision'}>
-          💡 Pour améliorer la précision, certaines actions vous poseront
-          quelques questions en plus.
+          Pour améliorer la précision, certaines actions vous poseront quelques
+          questions en plus.
         </Trans>
       </p>
 

@@ -52,7 +52,7 @@ export default function RegionSelector({
           }`}
           onClick={() => trackEvent(profilOpenRegions)}>
           <span>
-            🗺️ <Trans>Choisir une autre région</Trans>{' '}
+            <Trans>Choisir une autre région</Trans>{' '}
             <small title={`${numberOfRegions} régions`}>
               ({numberOfRegions} <Trans>disponibles</Trans>)
             </small>

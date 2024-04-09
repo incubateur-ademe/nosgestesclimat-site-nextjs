@@ -28,7 +28,8 @@ export default function CopyInput({
         readOnly
       />
       <Button
-        className="!min-w-[9rem] flex-shrink-0 justify-center rounded-l-none px-4 py-2 text-sm"
+        size="sm"
+        className="!min-w-[9rem] flex-shrink-0 justify-center rounded-l-none px-4 py-2"
         onClick={() => {
           navigator.clipboard.writeText(textToCopy)
           setIsCopied(true)

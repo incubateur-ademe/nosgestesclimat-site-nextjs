@@ -1,6 +1,9 @@
 'use client'
 
 import Link from '@/components/Link'
+import GlassesIcon from '@/components/icons/GlassesIcon'
+import PencilIcon from '@/components/icons/PencilIcon'
+import SearchIcon from '@/components/icons/SearchIcon'
 import Trans from '@/components/translation/Trans'
 import {
   homeClickCodeSource,
@@ -8,8 +11,8 @@ import {
   homeClickDocumentation,
 } from '@/constants/tracking/pages/home'
 import Card from '@/design-system/layout/Card'
+import ColorLine from '@/design-system/layout/ColorLine'
 import Kicker from '@/design-system/layout/Kicker'
-import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
@@ -21,7 +24,9 @@ export default function Contributions() {
   const [isHover, setIsHover] = useState(false)
   return (
     <div className="relative mb-16 py-12 md:py-24">
-      <Background direction={isHover ? 'right' : 'left'} />
+      <Background direction={isHover ? 'right' : 'left'}>
+        <ColorLine className="absolute bottom-0 left-0 h-[3px] w-[100%] transition-all" />
+      </Background>
       <div className="relative mx-auto w-full max-w-5xl px-4 md:px-8">
         <Kicker>
           <Trans>Ouvert, documenté et contributif</Trans>
@@ -38,7 +43,11 @@ export default function Contributions() {
             onClick={() => trackEvent(homeClickCodeSource)}
             className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="nouveautes-link">
-            <Emoji className="text-3xl">🔍</Emoji>
+            <SearchIcon
+              className="fill-blue-dark inline-block"
+              width="40"
+              height="40"
+            />
             <p className="mb-0">
               <Trans>Le</Trans>{' '}
               <span className="text-primary-700 underline">
@@ -55,7 +64,11 @@ export default function Contributions() {
             onClick={() => trackEvent(homeClickDocumentation)}
             className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="documentation-link">
-            <Emoji className="text-3xl">👀</Emoji>
+            <GlassesIcon
+              className="fill-orange-default inline-block"
+              width="50"
+              height="50"
+            />
             <p className="mb-0">
               <Trans>L'intégralité du</Trans>{' '}
               <span className="text-primary-700 underline">
@@ -72,7 +85,11 @@ export default function Contributions() {
             onClick={() => trackEvent(homeClickContribution)}
             className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="contact-link">
-            <Emoji className="text-3xl">🖋️</Emoji>
+            <PencilIcon
+              className="stroke-emerald-default inline-block"
+              width="50"
+              height="50"
+            />
             <p className="mb-0">
               {t('Une idée\u202f? Une correction\u202f? Une remarque\u202f?')}{' '}
               <span className="text-primary-700 underline">

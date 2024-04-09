@@ -20,7 +20,7 @@ export default function Badge({
   return (
     <div
       className={twMerge(
-        `whitespace-nowrap rounded-md border-[1px] border-solid px-1 py-0.5 text-sm ${colorClassNames[color]}`,
+        `whitespace-nowrap rounded-full border-[1px] border-solid px-1 py-0.5 text-sm ${colorClassNames[color]}`,
         className
       )}>
       {children}

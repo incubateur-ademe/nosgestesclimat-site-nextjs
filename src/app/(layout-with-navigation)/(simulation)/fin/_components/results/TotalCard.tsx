@@ -1,11 +1,11 @@
 'use client'
 
 import Link from '@/components/Link'
+import Planet from '@/components/total/_components/Planet'
 import Trans from '@/components/translation/Trans'
 import { endClickEmpreinte } from '@/constants/tracking/pages/end'
 import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Card from '@/design-system/layout/Card'
-import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
@@ -27,11 +27,11 @@ export default function TotalCard() {
         </p>
 
         <p className="mb-0 md:text-lg">
-          <span className="text-primary-200">
+          <span className="text-primary-50">
             <Trans>de</Trans>{' '}
           </span>
           CO₂-e{' '}
-          <span className="text-primary-200">
+          <span className="text-primary-50">
             <Trans>chaque année</Trans>
           </span>
         </p>
@@ -42,7 +42,7 @@ export default function TotalCard() {
           aria-label={t(
             "Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet."
           )}
-          className="mt-2 text-xs text-white hover:text-primary-200 md:text-sm"
+          className="mt-2 flex items-center text-xs text-white hover:text-primary-200 md:text-sm"
           href="/empreinte-climat"
           onClick={() => trackEvent(endClickEmpreinte)}>
           <Trans>Qu'est-ce que ça veut dire&nbsp;?&nbsp;</Trans>
@@ -51,7 +51,7 @@ export default function TotalCard() {
       </div>
 
       <div>
-        <Emoji className="animate-pulse text-5xl md:text-8xl">🌍</Emoji>
+        <Planet aria-hidden width="100" height="100" />
       </div>
     </Card>
   )

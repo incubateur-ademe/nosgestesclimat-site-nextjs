@@ -1,12 +1,12 @@
 'use client'
 
 import HowToAct from '@/components/actions/HowToAct'
+import BookClosedIcon from '@/components/icons/BookClosedIcon'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import Trans from '@/components/translation/Trans'
 import { endClickDocumentation } from '@/constants/tracking/pages/end'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
-import Emoji from '@/design-system/utils/Emoji'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -35,6 +35,7 @@ export default function FinPage() {
       <CongratulationsText />
 
       <Poll />
+
       <Results />
 
       <div className="flex flex-col items-start gap-4 md:grid md:grid-cols-5 md:flex-row">
@@ -64,8 +65,10 @@ export default function FinPage() {
 
         <InlineLink
           href="/documentation/bilan"
+          className="flex items-center"
           onClick={() => trackEvent(endClickDocumentation)}>
-          <Emoji className="mr-1 inline-block">🧮</Emoji>
+          <BookClosedIcon className="mr-2 w-4 fill-primary-700" />
+
           <Trans>Comprendre le calcul</Trans>
         </InlineLink>
       </div>
