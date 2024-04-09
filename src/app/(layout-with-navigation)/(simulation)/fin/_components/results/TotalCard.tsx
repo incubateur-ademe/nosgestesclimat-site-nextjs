@@ -48,12 +48,7 @@ export default function TotalCard() {
       </div>
 
       <div>
-        <Planet
-          aria-hidden
-          className="animate-pulse"
-          width="100"
-          height="100"
-        />
+        <Planet aria-hidden width="100" height="100" />
       </div>
     </Card>
   )

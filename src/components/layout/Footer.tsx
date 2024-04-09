@@ -1,5 +1,5 @@
 import InlineLink from '@/design-system/inputs/InlineLink'
-import Rainbow from '@/design-system/layout/Rainbow'
+import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
 import { twMerge } from 'tailwind-merge'
 import Logo from '../misc/Logo'
@@ -103,7 +103,7 @@ export default function Footer({ className = '' }) {
         </div>
       </div>
 
-      <Rainbow className="absolute bottom-0 left-0 h-[6px] w-full" />
+      <ColorLine className="bg-blue-default absolute bottom-0 left-0 h-1 w-full" />
     </footer>
   )
 }

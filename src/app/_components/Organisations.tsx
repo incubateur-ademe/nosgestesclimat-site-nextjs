@@ -2,8 +2,8 @@
 
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ColorLine from '@/design-system/layout/ColorLine'
 import Kicker from '@/design-system/layout/Kicker'
-import Rainbow from '@/design-system/layout/Rainbow'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -17,7 +17,7 @@ export default function Organisations() {
   return (
     <div className="relative mb-16 py-12 md:py-24">
       <Background direction={isHover ? 'left' : 'right'}>
-        <Rainbow className="absolute bottom-0 left-0 h-[3px] w-[100%] transition-all" />
+        <ColorLine className="bg-emerald-light absolute bottom-0 left-0 h-[3px] w-[100%] transition-all" />
       </Background>
 
       <div className="relative mx-auto flex w-full max-w-5xl flex-col px-4 md:flex-row md:gap-4 md:px-8">
