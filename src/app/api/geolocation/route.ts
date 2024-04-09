@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
   }
 
   const isNotSupportedUECountry =
-    await getIsNotSupportedUECountry(detectedCountryCode)
+    getIsNotSupportedUECountry(detectedCountryCode)
 
   if (isNotSupportedUECountry) {
     return NextResponse.json({ country: { name: 'Europe', code: 'EU' } })
