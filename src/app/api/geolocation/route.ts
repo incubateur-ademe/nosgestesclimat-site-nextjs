@@ -1,5 +1,5 @@
 import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
-import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json' assert { type: 'json' }
+import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
 import { NextRequest, NextResponse } from 'next/server'
 import countries from './countries.json'
 import ue_country_codes from './ue_country_codes.json'
