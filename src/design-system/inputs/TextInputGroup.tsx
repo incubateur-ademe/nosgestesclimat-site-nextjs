@@ -67,10 +67,12 @@ export default function TextInputGroup({
         {...props}
         className={twMerge(
           helperText || label ? ' !mt-3' : '',
-          `border-grey-300 max-w-[30rem] rounded-md border border-solid bg-grey-100 p-4 text-sm transition-colors focus:border-primary-500 focus:bg-gray-500 focus:ring-2 focus:ring-primary-500`,
+          `border-grey-300 max-w-[30rem] rounded-md border border-solid bg-grey-100 p-4 text-sm transition-colors read-only:bg-grey-200`,
           error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : '',
           disabled ? 'cursor-not-allowed opacity-50' : '',
-          readOnly ? 'cursor-not-allowed' : '',
+          readOnly
+            ? 'cursor-not-allowed'
+            : 'focus:border-primary-500 focus:ring-2 focus:ring-primary-500',
           className
         )}
       />
