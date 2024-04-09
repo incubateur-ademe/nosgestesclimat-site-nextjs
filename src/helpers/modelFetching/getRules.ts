@@ -1,5 +1,6 @@
 import { NGCRules } from '@/publicodes-state/types'
 import { getFileFromModel } from './getFileFromModel'
+import { getSupportedRegions } from './getSupportedRegions'
 
 type Props = {
   isOptim?: boolean
@@ -17,9 +18,19 @@ export async function getRules(
     isOptim: true,
   }
 ): Promise<NGCRules> {
-  const fileName = `co2-model.${regionCode}-lang.${locale}${
-    isOptim ? '-opti' : ''
-  }.json`
+  const supportedRegions = await getSupportedRegions()
+
+  // We provide the FR version of the model if the region is not supported
+  const regionCodeToProvide = supportedRegions[regionCode] ? regionCode : 'FR'
+
+  let fileName = ''
+
+  // We provide optimized version of the model only for the FR region
+  if (regionCodeToProvide === 'FR') {
+    fileName = `co2-model.FR-lang.${locale}${isOptim ? '-opti' : ''}.json`
+  } else {
+    fileName = `co2-model.${regionCodeToProvide}-lang.${locale}.json`
+  }
 
   return getFileFromModel({ fileName, PRNumber })
 }

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useCallback } from 'react'
-import { User, UserOrganisationInfo } from '../../types'
+import { RegionFromGeolocation, User, UserOrganisationInfo } from '../../types'
 
 type Props = {
   setUser: Dispatch<SetStateAction<User>>
@@ -16,7 +16,7 @@ export default function useUserDetails({ setUser }: Props) {
   )
 
   const updateRegion = useCallback(
-    (region: { code: string; name: string }) =>
+    (region: RegionFromGeolocation) =>
       setUser((prevUser: User) => ({ ...prevUser, region })),
     [setUser]
   )
