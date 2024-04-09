@@ -93,7 +93,7 @@ const redirects = [
   },
   {
     source: '/o/:organisation/:poll',
-    destination: '/tutoriel/?poll=:poll',
+    destination: '/tutoriel/?poll=:poll&organisation=:organisation',
     permanent: true,
   },
 ]

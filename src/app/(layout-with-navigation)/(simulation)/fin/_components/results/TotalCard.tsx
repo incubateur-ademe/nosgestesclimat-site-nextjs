@@ -2,12 +2,14 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
+import { endClickEmpreinte } from '@/constants/tracking/pages/end'
 import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function TotalCard() {
   const { t } = useClientTranslation()
@@ -41,7 +43,8 @@ export default function TotalCard() {
             "Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet."
           )}
           className="mt-2 text-xs text-white hover:text-primary-200 md:text-sm"
-          href="/empreinte-climat">
+          href="/empreinte-climat"
+          onClick={() => trackEvent(endClickEmpreinte)}>
           <Trans>Qu'est-ce que ça veut dire&nbsp;?&nbsp;</Trans>
           <ExternalLinkIcon className="stroke-white" />
         </Link>

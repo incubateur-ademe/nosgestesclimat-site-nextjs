@@ -1,4 +1,6 @@
-import { getMatomoEventActionAccepted } from '@/constants/matomo'
+'use client'
+
+import { actionsClickYes } from '@/constants/tracking/pages/actions'
 import { FormProvider, useEngine, useUser } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -58,12 +60,7 @@ export default function ActionList({
                       toggleActionChoice(action.dottedName)
 
                       if (!actionChoices[action.dottedName]) {
-                        trackEvent(
-                          getMatomoEventActionAccepted(
-                            action.dottedName,
-                            action.nodeValue
-                          )
-                        )
+                        trackEvent(actionsClickYes(action.dottedName))
                       }
                       setFocusedAction('')
 

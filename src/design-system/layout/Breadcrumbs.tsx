@@ -1,4 +1,8 @@
+'use client'
+
 import Link from '@/components/Link'
+import { breadcrumbClickLink } from '@/constants/tracking/layout'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { Fragment } from 'react'
 
 type Props = {
@@ -13,14 +17,19 @@ type Props = {
 export default function Breadcrumbs({ items }: Props) {
   return (
     <section className="h-[75px] w-full bg-grey-100">
-      <nav className="mx-auto flex h-full max-w-5xl items-center gap-4 px-6 lg:px-0">
+      <nav className="mx-auto flex h-full max-w-5xl items-center gap-4 overflow-x-scroll px-6 lg:px-0">
         {items.map(({ href, label, isActive, isDisabled }, index) => (
           <Fragment key={`breadcrumb-item-${index}`}>
             <Link
-              onClick={isDisabled ? (e) => e.preventDefault() : undefined}
+              onClick={(e) => {
+                if (isDisabled) {
+                  e.preventDefault()
+                }
+                trackEvent(breadcrumbClickLink(index))
+              }}
               className={`text-default ${
                 isActive ? '' : 'no-underline'
-              } text-sm capitalize hover:text-default hover:underline ${isDisabled ? 'cursor-none' : ''}`}
+              } max-w-full text-ellipsis whitespace-nowrap text-sm capitalize hover:text-default hover:underline ${isDisabled ? 'cursor-none' : ''}`}
               href={href}>
               {label}
             </Link>

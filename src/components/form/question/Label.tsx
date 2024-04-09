@@ -2,9 +2,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
-import { getMatomoEventClickHelp } from '@/constants/matomo'
+import {
+  questionCloseInfo,
+  questionOpenInfo,
+} from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -69,7 +74,11 @@ export default function Label({
           <button
             type="button"
             onClick={() => {
-              trackEvent(getMatomoEventClickHelp(question))
+              if (isOpen) {
+                trackEvent(questionCloseInfo({ question }))
+              } else {
+                trackEvent(questionOpenInfo({ question }))
+              }
               setIsOpen((previsOpen) => !previsOpen)
             }}
             className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary-700 font-mono text-base font-bold text-white`}
@@ -88,7 +97,10 @@ export default function Label({
           <Markdown>{description}</Markdown>{' '}
           <Button
             size="sm"
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              trackEvent(questionCloseInfo({ question }))
+              setIsOpen(false)
+            }}
             title={t('Fermer')}>
             <Trans>Fermer</Trans>
           </Button>

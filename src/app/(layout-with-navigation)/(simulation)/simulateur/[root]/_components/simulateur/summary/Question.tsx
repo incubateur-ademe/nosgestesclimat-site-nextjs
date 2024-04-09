@@ -1,6 +1,8 @@
+'use client'
+
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
-import { getMatomoEventClickQuestionsListLink } from '@/constants/matomo'
+import { simulateurClickSommaireQuestion } from '@/constants/tracking/pages/simulateur'
 import { foldEveryQuestionsUntil } from '@/helpers/foldEveryQuestionsUntil'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useDebug } from '@/hooks/useDebug'
@@ -51,7 +53,7 @@ export default function Question({ question, toggleQuestionList }: Props) {
         }
         setCurrentQuestion(question)
 
-        trackEvent(getMatomoEventClickQuestionsListLink(question))
+        trackEvent(simulateurClickSommaireQuestion)
 
         toggleQuestionList()
       }}>
