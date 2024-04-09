@@ -30,7 +30,7 @@ export default function DocumentationClient({ slugs }: Props) {
       <PasserTestBanner />
 
       <RulePage
-        language={i18n.language as 'fr' | 'en' | 'es'}
+        language={i18n.language as 'fr' | 'en'}
         rulePath={(path as string) ?? ''}
         engine={engine as Engine}
         documentationPath={documentationPath}
