@@ -10,7 +10,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
 import { captureException } from '@sentry/react'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 
 export default function InvitationForm({ group }: { group: Group }) {
   const [errorPrenom, setErrorPrenom] = useState('')
@@ -18,7 +18,15 @@ export default function InvitationForm({ group }: { group: Group }) {
 
   const { t } = useClientTranslation()
 
-  const { user, updateEmail, updateName, updateCurrentSimulation } = useUser()
+  const {
+    user,
+    updateEmail,
+    updateName,
+    updateCurrentSimulation,
+    getCurrentSimulation,
+  } = useUser()
+
+  const currentSimulation = getCurrentSimulation()
 
   const { progression } = useForm()
 
@@ -26,6 +34,29 @@ export default function InvitationForm({ group }: { group: Group }) {
 
   const { goToSimulateurPage } = useSimulateurPage()
   const { goToEndPage } = useEndPage()
+
+  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
+    useState(false)
+  useEffect(() => {
+    if (!shouldGoToSimulateurPage) {
+      return
+    }
+
+    if (currentSimulation?.groups?.includes(group?._id || '')) {
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
+    }
+  }, [
+    goToSimulateurPage,
+    goToEndPage,
+    shouldGoToSimulateurPage,
+    currentSimulation,
+    group,
+    hasCompletedTest,
+  ])
 
   const handleSubmit = async (event: MouseEvent | FormEvent) => {
     // Avoid reloading page
@@ -60,11 +91,7 @@ export default function InvitationForm({ group }: { group: Group }) {
       })
 
       // Redirect to simulateur page or end page
-      if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
-      } else {
-        goToSimulateurPage()
-      }
+      setShouldGoToSimulateurPage(true)
     } catch (error) {
       captureException(error)
     }
