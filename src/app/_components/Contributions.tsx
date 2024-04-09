@@ -41,14 +41,17 @@ export default function Contributions() {
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             onClick={() => trackEvent(homeClickCodeSource)}
-            className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
+            className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-orange-default py-8 text-inherit no-underline"
             data-cypress-id="nouveautes-link">
-            <SearchIcon
-              className="inline-block fill-blue-dark"
-              width="40"
-              height="40"
-            />
-            <p className="mb-0">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-light">
+              <SearchIcon
+                className="inline-block fill-orange-dark"
+                width="20"
+                height="20"
+              />
+            </div>
+
+            <p className="mb-0 text-center">
               <Trans>Le</Trans>{' '}
               <span className="text-primary-700 underline">
                 <Trans>code source est ouvert</Trans>
@@ -56,20 +59,24 @@ export default function Contributions() {
               , <Trans>le site est amélioré régulièrement.</Trans>
             </p>
           </Card>
+
           <Card
             tag={Link}
             href="/documentation"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             onClick={() => trackEvent(homeClickDocumentation)}
-            className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
+            className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-yellow-default py-8 text-inherit no-underline"
             data-cypress-id="documentation-link">
-            <GlassesIcon
-              className="inline-block fill-orange-default"
-              width="50"
-              height="50"
-            />
-            <p className="mb-0">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-yellow-light">
+              <GlassesIcon
+                className="inline-block fill-yellow-dark"
+                width="20"
+                height="20"
+              />
+            </div>
+
+            <p className="mb-0 text-center">
               <Trans>L'intégralité du</Trans>{' '}
               <span className="text-primary-700 underline">
                 <Trans>calcul est documenté en ligne</Trans>
@@ -77,20 +84,24 @@ export default function Contributions() {
               <Trans>pour les curieux et les experts.</Trans>
             </p>
           </Card>
+
           <Card
             tag={Link}
             href="/contact"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             onClick={() => trackEvent(homeClickContribution)}
-            className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
+            className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-emerald-default py-8 text-inherit no-underline"
             data-cypress-id="contact-link">
-            <PencilIcon
-              className="inline-block stroke-emerald-default"
-              width="50"
-              height="50"
-            />
-            <p className="mb-0">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-light">
+              <PencilIcon
+                className="inline-block stroke-emerald-dark"
+                width="20"
+                height="20"
+              />
+            </div>
+
+            <p className="mb-0 text-center">
               {t('Une idée\u202f? Une correction\u202f? Une remarque\u202f?')}{' '}
               <span className="text-primary-700 underline">
                 {t('Toute contribution est la bienvenue\u202f!')}

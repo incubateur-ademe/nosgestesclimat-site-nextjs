@@ -68,11 +68,11 @@ module.exports = {
           200: '#E3E3DB',
         },
         categories: {
-          transport: '#bc0b69',
-          alimentation: '#e58e26',
-          logement: '#04a4ac',
-          divers: '#006ccb',
-          servicessocietaux: '#0c2461',
+          transport: '#A2D2FD',
+          alimentation: '#FDA354',
+          logement: '#6BC47B',
+          divers: '#F9CD49',
+          servicessocietaux: '#9E8EF5',
         },
       },
       fontSize: {

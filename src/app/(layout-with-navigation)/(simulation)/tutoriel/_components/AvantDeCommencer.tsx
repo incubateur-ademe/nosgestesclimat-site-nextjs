@@ -1,21 +1,23 @@
 import Trans from '@/components/translation/Trans'
+import Emoji from '@/design-system/utils/Emoji'
 import OrganisationDisclaimer from './avantDeCommencer/OrganisationDisclaimer'
 
 export default function AvantDeCommencer() {
   return (
-    <div className="relative mb-8 mt-6 flex flex-col rounded-md bg-grey-100 p-7 md:mt-10">
+    <div className="border-rainbow relative mb-8 mt-6 flex flex-col rounded-lg bg-grey-100 p-7 md:mt-10">
       <div
         role="presentation"
         aria-hidden
         className="absolute -top-8 inline-block rounded-full bg-grey-100 p-4 text-3xl">
-        💡
+        <Emoji>💡</Emoji>
       </div>
       <h3 className="z-10">
         <Trans>Avant de commencer</Trans>
       </h3>
       <OrganisationDisclaimer />
       <div className="relative pl-8">
-        <h4 className="overflow-visible font-bold before:absolute before:left-0 before:content-['🏡'] ">
+        <h4 className="relative overflow-visible font-bold">
+          <Emoji className="absolute -left-8 top-0">🏡</Emoji>
           <Trans>C'est un test individuel !</Trans>
         </h4>
         <p className="text-sm md:text-base">
@@ -34,7 +36,8 @@ export default function AvantDeCommencer() {
         </p>
       </div>
       <div className="relative pl-8">
-        <h4 className="overflow-visible font-bold before:absolute before:left-0 before:content-['👤'] ">
+        <h4 className="relative overflow-visible font-bold">
+          <Emoji className="absolute -left-8 top-0">👤</Emoji>
           <Trans>
             Il concerne votre vie personnelle, et non pas votre boulot.
           </Trans>

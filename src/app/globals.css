@@ -454,21 +454,21 @@ html[data-useragent*='Trident'] #js {
 .rainbow {
   background: linear-gradient(
     90deg,
-    #3682DF,
-    #8DCC96,
-    #D5C054,
-    #E58E71,
-    #C363A7
+    #3682df,
+    #8dcc96,
+    #d5c054,
+    #e58e71,
+    #c363a7
   );
 }
 
 .rainbow-animation {
   background: linear-gradient(
     90deg,
-    #A2D2FD,
-    #CEF1D5,
-    #FFEFBC,
-    #FFDBBC,
+    #a2d2fd,
+    #cef1d5,
+    #ffefbc,
+    #ffdbbc,
     #fd69d0
   );
   background-size: 400% 400%;

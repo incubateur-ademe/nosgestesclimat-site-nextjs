@@ -9,7 +9,7 @@ export default function CategoriesChart() {
 
   return (
     <>
-      <div className="flex h-8 md:h-12">
+      <div className="flex h-8 overflow-hidden rounded-md md:h-12 md:rounded-lg">
         {categories.map((category: string, index: number) => (
           <Category
             key={category}
@@ -17,8 +17,8 @@ export default function CategoriesChart() {
               index === 0
                 ? 'first'
                 : index === categories.length - 1
-                ? 'last'
-                : 'middle'
+                  ? 'last'
+                  : 'middle'
             }
             category={category}
             current={currentCategory === category}
