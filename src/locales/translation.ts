@@ -5,8 +5,10 @@
 import { Lang, LangInfos, YamlEntry } from '@/types/translation'
 import { i18n } from 'i18next'
 import faqEnYaml from './faq/FAQ-en.yaml'
+import faqEsYaml from './faq/FAQ-es.yaml'
 import faqFrYaml from './faq/FAQ-fr.yaml'
 import uiEnYaml from './ui/ui-en.yaml'
+import uiEsYaml from './ui/ui-es.yaml'
 import uiFrYaml from './ui/ui-fr.yaml'
 import unitsYaml from './units.yaml'
 
@@ -27,9 +29,11 @@ const parseYaml = (yaml: YamlEntry) => {
 
 const uiFr = parseYaml(uiFrYaml as unknown as YamlEntry)
 const uiEn = parseYaml(uiEnYaml as unknown as YamlEntry)
+const uiEs = parseYaml(uiEsYaml as unknown as YamlEntry)
 
 const faqFr = parseYaml(faqFrYaml as unknown as YamlEntry)
 const faqEn = parseYaml(faqEnYaml as unknown as YamlEntry)
+const faqEs = parseYaml(faqEsYaml as unknown as YamlEntry)
 
 export const defaultLang = Lang.Fr
 
@@ -49,8 +53,8 @@ export function getLangInfos(lang: Lang): LangInfos {
         name: 'Español',
         abrv: 'es',
         abrvLocale: 'es',
-        faqContent: faqEn as unknown as string,
-        uiTrad: uiEn.entries,
+        faqContent: faqEs as unknown as string,
+        uiTrad: uiEs.entries,
       }
     }
     case Lang.Fr:
@@ -112,7 +116,7 @@ const enTranslation = {
   ...(unitsYaml as any)['en'],
 }
 const esTranslation = {
-  ...(uiEnYaml as unknown as YamlEntry).entries,
+  ...(uiEsYaml as unknown as YamlEntry).entries,
   ...(unitsYaml as any)['en'],
 }
 const frTranslation = {
