@@ -1,5 +1,11 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
-import { getClickCtaToolsEvent } from '@/constants/matomo/organisations'
+import {
+  organisationsDashboardClickAteliers,
+  organisationsDashboardClickImpactCo2,
+  organisationsDashboardDownloadKit,
+} from '@/constants/tracking/pages/organisationsDashboard'
 import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
@@ -27,7 +33,7 @@ export default function OurTools() {
           }>
           <ButtonLink
             onClick={() => {
-              trackEvent(getClickCtaToolsEvent('kit_diffusion'))
+              trackEvent(organisationsDashboardDownloadKit)
             }}
             className="mt-auto w-full justify-center align-bottom"
             color="secondary"
@@ -52,9 +58,7 @@ export default function OurTools() {
           }>
           <ButtonLink
             color="secondary"
-            onClick={() => {
-              trackEvent(getClickCtaToolsEvent('ateliers_abc'))
-            }}
+            trackingEvent={organisationsDashboardClickAteliers}
             className="w-full justify-center"
             href="https://drive.google.com/drive/folders/1dORmBbDLDG31PLLOblP8Wg5CrrksAfjV"
             target="_blank"
@@ -82,9 +86,7 @@ export default function OurTools() {
             color="secondary"
             href="https://impactco2.fr/comparateur?mtm_campaign=ngc-orga"
             target="_blank"
-            onClick={() => {
-              trackEvent(getClickCtaToolsEvent('impactco2'))
-            }}
+            trackingEvent={organisationsDashboardClickImpactCo2}
             aria-label={t(
               'Découvrez le simulateur, ouvrir dans un nouvel onglet'
             )}>

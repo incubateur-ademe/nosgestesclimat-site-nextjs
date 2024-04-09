@@ -1,8 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { GROUP_NAMES } from '@/constants/groupNames'
-import { matomoEventCreationGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
@@ -15,7 +13,6 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
 
@@ -51,6 +48,29 @@ export default function GroupCreationForm() {
 
   const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
 
+  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] = useState<
+    string | null
+  >(null)
+  useEffect(() => {
+    if (!shouldGoToSimulateurPage) {
+      return
+    }
+
+    if (currentSimulation?.groups?.includes(shouldGoToSimulateurPage)) {
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
+    }
+  }, [
+    goToSimulateurPage,
+    goToEndPage,
+    shouldGoToSimulateurPage,
+    currentSimulation,
+    hasCompletedTest,
+  ])
+
   const handleSubmit = async (event: FormEvent) => {
     // Avoid reloading page
     if (event) {
@@ -68,10 +88,7 @@ export default function GroupCreationForm() {
     if (!isValid) return
 
     try {
-      trackEvent(matomoEventCreationGroupe)
-
       const { name, emoji } = getGroupName(groups ?? [], locale ?? 'fr')
-      GROUP_NAMES[groups.length % GROUP_NAMES.length] ?? GROUP_NAMES[0]
 
       const group = await createGroup({
         groupInfo: {
@@ -94,29 +111,11 @@ export default function GroupCreationForm() {
       })
 
       // We signal that the form has been submitted. When the currentSimulation is updated, we redirect
-      setIsSubmitted(true)
+      setShouldGoToSimulateurPage(group._id)
     } catch (e) {
       captureException(e)
     }
   }
-
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  useEffect(() => {
-    if (isSubmitted && currentSimulation?.groups) {
-      // Redirect to simulateur page or end page
-      if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
-      } else {
-        goToSimulateurPage()
-      }
-    }
-  }, [
-    currentSimulation,
-    goToEndPage,
-    goToSimulateurPage,
-    hasCompletedTest,
-    isSubmitted,
-  ])
 
   return (
     <form
