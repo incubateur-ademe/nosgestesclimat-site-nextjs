@@ -17,6 +17,7 @@ type Props = {
   maxLength?: number
   disabled?: boolean
   debounceTimeout?: number
+  readOnly?: boolean
 }
 
 export default function TextInputGroup({
@@ -32,6 +33,7 @@ export default function TextInputGroup({
   required = false,
   disabled,
   debounceTimeout = 100,
+  readOnly = false,
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
   return (
@@ -52,6 +54,7 @@ export default function TextInputGroup({
       ) : null}
 
       <DebounceInput
+        readOnly={readOnly}
         debounceTimeout={debounceTimeout}
         name={name}
         type={type}
