@@ -1,4 +1,6 @@
 import countries from '@/app/api/geolocation/countries.json'
+import { useInitSimulationParam } from '@/hooks/useInitSimulationParam'
+import { useUserInfosParams } from '@/hooks/useUserInfosParams'
 import { useUser } from '@/publicodes-state'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
@@ -15,6 +17,10 @@ export default function CheckFixedRegion() {
       updateRegion(region)
     }
   }, [user, fixedRegionCode, updateRegion])
+
+  // Those hooks should not be here. It will be changed with https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/pull/476
+  useUserInfosParams()
+  useInitSimulationParam()
 
   return null
 }
