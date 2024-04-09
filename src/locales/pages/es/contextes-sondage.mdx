@@ -1,0 +1,51 @@
+# Contextualizar una encuesta
+
+## ¿Para qué?
+
+Contextualizar una encuesta permite almacenar información adicional
+información adicional a la simulación clásica: a cada encuestado se le hacen algunas
+preguntas antes de acceder a su prueba.
+
+De este modo, una organización puede enviar un único enlace de encuesta y recoger información que
+información que diferencie a los usuarios (preguntas que no estén relacionadas con el
+test Nos Gestes Climat: por ejemplo, su edad, profesión, etc. o un subgrupo)
+un subgrupo).
+
+Por el momento, los elementos de contexto están disponibles en el CSV descargado
+(no es posible filtrarlos en la pantalla de visualización).
+
+> ⚠️ ¡Las preguntas no deben permitir identificar a los usuarios! En
+> ¡no pedirá la identidad de las personas, ni siquiera su dirección de correo electrónico! Debe
+> También es importante recordar que las respuestas son accesibles a cualquiera que
+> con el enlace de la encuesta, por lo que hay que tener cuidado de cumplir las
+> normas del RGPD.
+
+ejemplo de contexto](/images/example-context.png)
+
+## ¿Cómo añado esta funcionalidad a mi encuesta?
+
+Los "contextos" de las encuestas se publican en el servidor de Nos Gestes Climat, en la carpeta
+la carpeta
+<a href="https://github.com/incubateur-ademe/nosgestesclimat-server/tree/master/contextes-sondage">/contextos-encuesta</a>.
+
+Las preguntas se escriben en los <a href="https://publi.codes/">publicodes</a>
+en formato 'yaml'.
+
+**Hemos optado por mantener el control de los contextos de encuesta publicados, por lo que el equipo de Nosgestesclimat desempeña el papel de administrador y te ayuda a crear tu contexto y publicarlo para tu encuesta**
+
+A
+<a href="https://github.com/incubateur-ademe/nosgestesclimat-server/tree/master/contextes-sondage/template%20de%20contexte.yaml">plantilla</a>
+le permite escribir su propio formulario de contexto. También puede
+utilizar el <a href="https://vu.fr/szYP">sandbox de publicodes</a>. No dude en
+ponerse en contacto con nosotros con un primer borrador para contextualizar su encuesta
+Tenga en cuenta que **el nombre del fichero creado debe ser diferente del nombre previsto para la encuesta** (véase el punto siguiente).
+
+## ¿Y desde el punto de vista técnico?
+
+Las reglas de la encuesta se cargan desde el servidor cuando
+el usuario accede a una encuesta con un contexto. Para evitar
+hacer públicas todas las URL de encuestas con contexto, el nombre del archivo de contexto
+del archivo de contexto es diferente del nombre de la encuesta. El nombre del archivo se asigna a través de
+la administración de la base de datos directamente. Sólo las encuestas con
+tienen un contexto adjunto ofrecen preguntas adicionales, nada cambia para otras
+cambia para otras encuestas.
