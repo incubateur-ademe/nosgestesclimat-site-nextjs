@@ -44,6 +44,15 @@ export function getLangInfos(lang: Lang): LangInfos {
         uiTrad: uiEn.entries,
       }
     }
+    case Lang.Es: {
+      return {
+        name: 'Español',
+        abrv: 'es',
+        abrvLocale: 'es',
+        faqContent: faqEn as unknown as string,
+        uiTrad: uiEn.entries,
+      }
+    }
     case Lang.Fr:
     default: {
       return {
@@ -61,6 +70,9 @@ export function getLangFromAbreviation(abrv: string): Lang {
   switch (abrv?.slice(0, 2) ?? '') {
     case 'en':
       return Lang.En
+
+    case 'es':
+      return Lang.Es
 
     case 'fr':
     default:
@@ -99,11 +111,16 @@ const enTranslation = {
   ...(uiEnYaml as unknown as YamlEntry).entries,
   ...(unitsYaml as any)['en'],
 }
+const esTranslation = {
+  ...(uiEnYaml as unknown as YamlEntry).entries,
+  ...(unitsYaml as any)['en'],
+}
 const frTranslation = {
   ...(uiFrYaml as unknown as YamlEntry).entries,
   ...(unitsYaml as any)['fr'],
 }
 export const translations: Record<string, any> = {
   en: enTranslation,
+  es: esTranslation,
   fr: frTranslation,
 }
