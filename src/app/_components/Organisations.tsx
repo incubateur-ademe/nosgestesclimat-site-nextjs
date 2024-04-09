@@ -16,7 +16,10 @@ export default function Organisations() {
 
   return (
     <div className="relative mb-16 py-12 md:py-24">
-      <Background direction={isHover ? 'left' : 'right'} />
+      <Background direction={isHover ? 'left' : 'right'}>
+        <Rainbow className="absolute bottom-0 left-0 h-[3px] w-[100%] transition-all" />
+      </Background>
+
       <div className="relative mx-auto flex w-full max-w-5xl flex-col px-4 md:flex-row md:gap-4 md:px-8">
         <div className="w-full flex-1 basis-1/2 md:max-w-lg">
           <Kicker>
@@ -51,13 +54,6 @@ export default function Organisations() {
           />
         </div>
       </div>
-
-      <Rainbow
-        className="absolute bottom-0 left-0 h-[3px] w-[100%] transition-all"
-        style={{
-          transform: `rotate(${isHover ? -1.5 : 1.5}deg)`,
-        }}
-      />
     </div>
   )
 }

@@ -7,6 +7,7 @@ import SearchIcon from '@/components/icons/SearchIcon'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Kicker from '@/design-system/layout/Kicker'
+import Rainbow from '@/design-system/layout/Rainbow'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useState } from 'react'
 import Background from './organisations/Background'
@@ -17,7 +18,9 @@ export default function Contributions() {
   const [isHover, setIsHover] = useState(false)
   return (
     <div className="relative mb-16 py-12 md:py-24">
-      <Background direction={isHover ? 'right' : 'left'} />
+      <Background direction={isHover ? 'right' : 'left'}>
+        <Rainbow className="absolute bottom-0 left-0 h-[3px] w-[100%] transition-all" />
+      </Background>
       <div className="relative mx-auto w-full max-w-5xl px-4 md:px-8">
         <Kicker>
           <Trans>Ouvert, documenté et contributif</Trans>
@@ -34,7 +37,7 @@ export default function Contributions() {
             className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="nouveautes-link">
             <SearchIcon
-              className="inline-block fill-blue-dark"
+              className="fill-blue-dark inline-block"
               width="40"
               height="40"
             />
@@ -54,7 +57,7 @@ export default function Contributions() {
             className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="documentation-link">
             <GlassesIcon
-              className="inline-block fill-orange-default"
+              className="fill-orange-default inline-block"
               width="50"
               height="50"
             />
@@ -74,7 +77,7 @@ export default function Contributions() {
             className="flex-1 flex-row items-center gap-4 py-8 text-inherit no-underline md:flex-col"
             data-cypress-id="contact-link">
             <PencilIcon
-              className="inline-block stroke-emerald-default"
+              className="stroke-emerald-default inline-block"
               width="50"
               height="50"
             />
