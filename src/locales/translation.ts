@@ -117,7 +117,7 @@ const enTranslation = {
 }
 const esTranslation = {
   ...(uiEsYaml as unknown as YamlEntry).entries,
-  ...(unitsYaml as any)['en'],
+  ...(unitsYaml as any)['es'],
 }
 const frTranslation = {
   ...(uiFrYaml as unknown as YamlEntry).entries,
