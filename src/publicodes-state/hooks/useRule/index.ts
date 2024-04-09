@@ -90,24 +90,18 @@ export default function useRule(dottedName: DottedName) {
     foldedSteps,
   })
 
-  const {
-    value,
-    displayValue,
-    numericValue,
-    setValue,
-    setDefaultAsValue,
-    resetMosaicChildren,
-  } = useValue({
-    dottedName,
-    safeGetRule,
-    safeEvaluate,
-    evaluation,
-    type,
-    questionsOfMosaic,
-    addToEngineSituation,
-    updateCurrentSimulation,
-    situation,
-  })
+  const { value, displayValue, numericValue, setValue, setDefaultAsValue } =
+    useValue({
+      dottedName,
+      safeGetRule,
+      safeEvaluate,
+      evaluation,
+      type,
+      questionsOfMosaic,
+      addToEngineSituation,
+      updateCurrentSimulation,
+      situation,
+    })
 
   return {
     /**
@@ -211,12 +205,8 @@ export default function useRule(dottedName: DottedName) {
      */
     setValue,
     /**
-     * Set default value as value, with the possibility to add a dottedName in the foldedSteps
+     * Set default value as value, with the possibility to add a dottedName in the foldedSteps and the mosaic parent
      */
     setDefaultAsValue,
-    /**
-     * Set every child of the mosaic without user answer to zero or "non"
-     */
-    resetMosaicChildren,
   }
 }

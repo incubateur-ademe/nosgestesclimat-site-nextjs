@@ -53,7 +53,6 @@ export default function SimulationSyncProvider({
   const isSyncedWithBackend = timeoutRef.current || isPending ? false : true
 
   const resetSyncTimer = useCallback(() => {
-    console.log('Resetting sync timer')
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
       timeoutRef.current = null

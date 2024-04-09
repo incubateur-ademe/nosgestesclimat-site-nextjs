@@ -68,39 +68,8 @@ export default function useValue({
     [value]
   )
 
-  const setValue = useCallback(
-    async (
-      value: NodeValue | { [dottedName: DottedName]: NodeValue },
-      foldedStep?: string
-    ): Promise<void> => {
-      let situationToAdd = {}
-
-      if (typeof value === 'object') {
-        situationToAdd = Object.keys(
-          value as { [dottedName: DottedName]: NodeValue }
-        ).reduce(
-          (accumulator: Situation, currentValue: DottedName) => ({
-            ...accumulator,
-            [dottedName + ' . ' + currentValue]:
-              value && (value[currentValue] as NodeValue),
-          }),
-          {} as Situation
-        )
-      } else {
-        situationToAdd = {
-          [dottedName]: checkValueValidity({ value, type }),
-        }
-      }
-
-      await addToEngineSituation(situationToAdd)
-
-      return updateCurrentSimulation({ foldedStepToAdd: foldedStep })
-    },
-    [dottedName, type, addToEngineSituation, updateCurrentSimulation]
-  )
-
-  const resetMosaicChildren = useCallback(
-    async (childToOmit: string): Promise<void> => {
+  const getMosaicReset = useCallback(
+    (childToOmit: string): Situation => {
       const situationToAdd = questionsOfMosaic.reduce(
         (accumulator, currentValue) => {
           if (childToOmit === currentValue) return accumulator
@@ -130,14 +99,53 @@ export default function useValue({
         },
         {}
       )
-      return addToEngineSituation(situationToAdd)
+      return situationToAdd
+    },
+    [questionsOfMosaic, situation, safeEvaluate, safeGetRule]
+  )
+
+  const setValue = useCallback(
+    async (
+      value: NodeValue | { [dottedName: DottedName]: NodeValue },
+      foldedStep?: DottedName,
+      mosaic?: DottedName
+    ): Promise<void> => {
+      let situationToAdd = {}
+
+      if (typeof value === 'object') {
+        situationToAdd = Object.keys(
+          value as { [dottedName: DottedName]: NodeValue }
+        ).reduce(
+          (accumulator: Situation, currentValue: DottedName) => ({
+            ...accumulator,
+            [dottedName + ' . ' + currentValue]:
+              value && (value[currentValue] as NodeValue),
+          }),
+          {} as Situation
+        )
+      } else {
+        situationToAdd = {
+          [dottedName]: checkValueValidity({ value, type }),
+        }
+      }
+
+      if (mosaic) {
+        situationToAdd = {
+          ...situationToAdd,
+          ...getMosaicReset(mosaic),
+        }
+      }
+
+      await addToEngineSituation(situationToAdd)
+
+      return updateCurrentSimulation({ foldedStepToAdd: foldedStep })
     },
     [
-      questionsOfMosaic,
-      situation,
+      dottedName,
+      type,
       addToEngineSituation,
-      safeEvaluate,
-      safeGetRule,
+      updateCurrentSimulation,
+      getMosaicReset,
     ]
   )
 
@@ -186,7 +194,6 @@ export default function useValue({
     numericValue,
     setValue,
     setDefaultAsValue,
-    resetMosaicChildren,
   }
 }
 
