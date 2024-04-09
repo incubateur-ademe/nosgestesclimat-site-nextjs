@@ -7,5 +7,5 @@ export default function ColorLine({
   className?: string
   style?: React.CSSProperties
 }) {
-  return <div className={twMerge('bg-yellow-light', className)} {...props} />
+  return <div className={twMerge('bg-secondary-700', className)} {...props} />
 }

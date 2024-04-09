@@ -128,7 +128,7 @@ export default function Footer({ className = '' }) {
         </div>
       </div>
 
-      <ColorLine className="bg-blue-default absolute bottom-0 left-0 h-1 w-full" />
+      <ColorLine className="rainbow-animation absolute bottom-0 left-0 h-[6px] w-full " />
     </footer>
   )
 }

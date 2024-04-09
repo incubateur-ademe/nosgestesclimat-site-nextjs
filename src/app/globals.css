@@ -461,3 +461,28 @@ html[data-useragent*='Trident'] #js {
     #C363A7
   );
 }
+
+.rainbow-animation {
+  background: linear-gradient(
+    90deg,
+    #A2D2FD,
+    #CEF1D5,
+    #FFEFBC,
+    #FFDBBC,
+    #fd69d0
+  );
+  background-size: 400% 400%;
+  animation: rainbow 60s linear infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
