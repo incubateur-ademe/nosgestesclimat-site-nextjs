@@ -4,9 +4,11 @@ import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import LockIcon from '@/components/icons/LockIcon'
 import SendIcon from '@/components/icons/SendIcon'
 import Trans from '@/components/translation/Trans'
+import { organisationsConnexionClickCode } from '@/constants/tracking/pages/organisationsConnexion'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {
@@ -36,6 +38,8 @@ export default function NotReceived({
     if (isRetryButtonDisabled) {
       return
     }
+
+    trackEvent(organisationsConnexionClickCode)
 
     await sendVerificationCode()
     setShouldDisplayConfirmation(true)

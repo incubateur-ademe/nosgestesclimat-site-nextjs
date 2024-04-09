@@ -4,10 +4,12 @@ import HowToAct from '@/components/actions/HowToAct'
 import BookClosedIcon from '@/components/icons/BookClosedIcon'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import Trans from '@/components/translation/Trans'
+import { endClickDocumentation } from '@/constants/tracking/pages/end'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import CongratulationsText from './_components/CongratulationsText'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
@@ -61,7 +63,10 @@ export default function FinPage() {
           </Trans>
         </p>
 
-        <InlineLink href="/documentation/bilan" className="flex items-center">
+        <InlineLink
+          href="/documentation/bilan"
+          className="flex items-center"
+          onClick={() => trackEvent(endClickDocumentation)}>
           <BookClosedIcon className="mr-2 w-4 fill-primary-700" />
 
           <Trans>Comprendre le calcul</Trans>

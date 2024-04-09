@@ -4,12 +4,11 @@ import SettingsIcon from '@/components/icons/SettingsIcon'
 import OrgaStatistics from '@/components/organisations/OrgaStatistics'
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import Trans from '@/components/translation/Trans'
-import { clickSettingsLinkEvent } from '@/constants/matomo/organisations'
+import { organisationsDashboardClickParameters } from '@/constants/tracking/pages/organisationsDashboard'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import useFetchOrganisation from '../_hooks/useFetchOrganisation'
@@ -67,9 +66,7 @@ export default function OrganisationPage() {
             </div>
             <ButtonLink
               href={`/organisations/${organisation?.slug}/parametres`}
-              onClick={() => {
-                trackEvent(clickSettingsLinkEvent)
-              }}
+              trackingEvent={organisationsDashboardClickParameters}
               color="text"
               className="flex items-center self-start">
               <SettingsIcon className="mr-2 fill-primary-700" />

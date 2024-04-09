@@ -3,9 +3,14 @@
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import SavesIcon from '@/components/icons/SavesIcon'
 import Trans from '@/components/translation/Trans'
+import {
+  profilDeleteSimulation,
+  profilLoadSimulation,
+} from '@/constants/tracking/pages/profil'
 import Button from '@/design-system/inputs/Button'
 import { useUser } from '@/publicodes-state'
 import { Simulation } from '@/publicodes-state/types'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function SimulationList() {
   const {
@@ -55,6 +60,7 @@ export default function SimulationList() {
                           className="mx-2"
                           size="xs"
                           onClick={() => {
+                            trackEvent(profilLoadSimulation)
                             setCurrentSimulationId(simulation.id as string)
                           }}>
                           <Trans>Charger</Trans>
@@ -64,6 +70,7 @@ export default function SimulationList() {
                           className="mx-2"
                           size="xs"
                           onClick={() => {
+                            trackEvent(profilDeleteSimulation)
                             deleteSimulation(simulation.id as string)
                           }}>
                           <Trans>Supprimer</Trans>

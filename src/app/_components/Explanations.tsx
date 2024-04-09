@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { homeClickEnSavoirPlus } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -40,7 +41,8 @@ export default async function Explanations() {
       <ButtonLink
         color="secondary"
         href="/empreinte-climat"
-        data-cypress-id="budget-link">
+        data-cypress-id="budget-link"
+        trackingEvent={homeClickEnSavoirPlus}>
         <Trans>En savoir plus</Trans>
       </ButtonLink>
     </div>

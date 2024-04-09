@@ -3,9 +3,9 @@
 import PresentationChartIcon from '@/components/icons/PresentationChartIcon'
 import Trans from '@/components/translation/Trans'
 import {
-  clickExportDataDashboardEvent,
-  clickSeeDetailedReportEvent,
-} from '@/constants/matomo/organisations'
+  organisationsDashboardClickRapportDetaille,
+  organisationsDashboardExportData,
+} from '@/constants/tracking/pages/organisationsDashboard'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -22,7 +22,7 @@ export default function SeeDetailedReportAndExport() {
       <ButtonLink
         href={`/organisations/${params.slug}/resultats-detailles`}
         onClick={() => {
-          trackEvent(clickSeeDetailedReportEvent)
+          trackEvent(organisationsDashboardClickRapportDetaille)
         }}>
         <PresentationChartIcon className="mr-2 fill-white" />
 
@@ -31,7 +31,7 @@ export default function SeeDetailedReportAndExport() {
 
       <ExportDataButton
         onClick={() => {
-          trackEvent(clickExportDataDashboardEvent)
+          trackEvent(organisationsDashboardExportData)
         }}
         simulationRecaps={pollData?.simulationRecaps ?? []}
       />
