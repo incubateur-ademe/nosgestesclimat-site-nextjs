@@ -9,7 +9,7 @@ export const runtime = 'edge'
 export async function GET(request: NextRequest) {
   const detectedCountryCode = request.geo?.country
 
-  if (detectedCountryCode === null || detectedCountryCode === undefined) {
+  if (!detectedCountryCode) {
     return NextResponse.json({ undefined })
   }
 
