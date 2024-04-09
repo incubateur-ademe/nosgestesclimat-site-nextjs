@@ -1,8 +1,8 @@
 import Link from '@/components/Link'
-import HelpCircleIcon from '@/components/icons/HelpCircleIcon'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
@@ -104,10 +104,10 @@ export default async function FAQPage() {
       </div>
 
       <Card className="bg-grey-100">
-        <h3 className="flex items-center text-yellow-dark">
+        <h3 className="text-yellow-dark flex items-center">
           <Trans>Je ne trouve pas réponse à ma question </Trans>
 
-          <HelpCircleIcon className="ml-2 fill-yellow-dark" />
+          <Emoji className="ml-2 inline-block">🙋‍♀️</Emoji>
         </h3>
         <p className="mb-0">
           <Trans>

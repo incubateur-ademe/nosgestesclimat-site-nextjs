@@ -1,8 +1,8 @@
 'use client'
 
-import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
+import Emoji from '@/design-system/utils/Emoji'
 
 export default function CongratulationsText() {
   return (
@@ -12,7 +12,7 @@ export default function CongratulationsText() {
           <h1 className="mt-4 text-xl md:text-2xl" data-cypress-id="fin-title">
             <span className="flex items-center">
               <Trans>Vous avez terminé le test !</Trans>&nbsp;
-              <CheckCircleIcon className="fill-emerald-default stroke-2" />
+              <Emoji className="inline-block">👏</Emoji>
             </span>
           </h1>
 
