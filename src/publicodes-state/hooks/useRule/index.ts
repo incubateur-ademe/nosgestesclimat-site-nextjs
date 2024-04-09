@@ -10,6 +10,7 @@ import useChoices from './useChoices'
 import useContent from './useContent'
 import useMissing from './useMissing'
 import useNotifications from './useNotifications'
+import useSetValue from './useSetValue'
 import useType from './useType'
 import useValue from './useValue'
 
@@ -90,18 +91,23 @@ export default function useRule(dottedName: DottedName) {
     foldedSteps,
   })
 
-  const { value, displayValue, numericValue, setValue, setDefaultAsValue } =
-    useValue({
-      dottedName,
-      safeGetRule,
-      safeEvaluate,
-      evaluation,
-      type,
-      questionsOfMosaic,
-      addToEngineSituation,
-      updateCurrentSimulation,
-      situation,
-    })
+  const { value, displayValue, numericValue } = useValue({
+    evaluation,
+    type,
+  })
+
+  const { setValue, setDefaultAsValue } = useSetValue({
+    dottedName,
+    safeGetRule,
+    safeEvaluate,
+    evaluation,
+    value,
+    type,
+    questionsOfMosaic,
+    addToEngineSituation,
+    updateCurrentSimulation,
+    situation,
+  })
 
   return {
     /**
