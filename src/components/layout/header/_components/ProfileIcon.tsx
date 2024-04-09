@@ -18,9 +18,11 @@ export default function ProfileIcon({ className }: { className?: string }) {
   }, [isSyncedWithBackend])
 
   useEffect(() => {
+    let timeout: NodeJS.Timeout
     if (initAnimation) {
-      setInitAnimation(false)
+      timeout = setTimeout(() => setInitAnimation(false), 500)
     }
+    return () => timeout && clearTimeout(timeout)
   }, [initAnimation])
 
   return (
@@ -52,7 +54,7 @@ export default function ProfileIcon({ className }: { className?: string }) {
           style={{
             strokeDasharray: PATH_LENGTH,
             strokeDashoffset: initAnimation ? PATH_LENGTH : 0,
-            transition: `stroke-dashoffset ${initAnimation ? 0 : saveDelay + 500}ms`,
+            transition: `stroke-dashoffset ${initAnimation ? 0 : saveDelay}ms`,
           }}
         />
       </g>
