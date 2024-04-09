@@ -5,9 +5,14 @@ import { useEffect } from 'react'
 export const useUserInfosParams = () => {
   const searchParams = useSearchParams()
 
-  const { updateName, updateEmail } = useUser()
+  const { user, updateName, updateEmail } = useUser()
+
+  const isUserInitialized = user.userId ? true : false
 
   useEffect(() => {
+    if (!isUserInitialized) {
+      return
+    }
     const emailInQueryParams = searchParams.get('email')
     const nameInQueryParams = searchParams.get('name')
 
@@ -17,5 +22,5 @@ export const useUserInfosParams = () => {
     if (nameInQueryParams) {
       updateName(nameInQueryParams)
     }
-  }, [searchParams, updateEmail, updateName])
+  }, [searchParams, updateEmail, updateName, isUserInitialized])
 }
