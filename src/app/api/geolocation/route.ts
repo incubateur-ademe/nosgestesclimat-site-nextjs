@@ -27,10 +27,10 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({ country })
 }
 
+const nonSupportedUECountryCodes = ue_country_codes.filter(
+  (code) => !(supportedRegions as SupportedRegions)[code]
+)
+
 function getIsNotSupportedUECountry(countryCode: string): boolean {
-  // Type assertion should be fixed. The type of supportedRegions is not inferred correctly but should be dealed with when importing the file.
-  const nonSupportedUECountryCodes = ue_country_codes.filter(
-    (code) => !(supportedRegions as SupportedRegions)[code]
-  )
   return nonSupportedUECountryCodes.includes(countryCode)
 }
