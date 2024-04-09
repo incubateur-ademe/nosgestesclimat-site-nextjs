@@ -1,10 +1,10 @@
 'use client'
 
 import Link from '@/components/Link'
+import Planet from '@/components/total/_components/Planet'
 import Trans from '@/components/translation/Trans'
 import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Card from '@/design-system/layout/Card'
-import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
@@ -48,7 +48,12 @@ export default function TotalCard() {
       </div>
 
       <div>
-        <Emoji className="animate-pulse text-5xl md:text-8xl">🌍</Emoji>
+        <Planet
+          aria-hidden
+          className="animate-pulse"
+          width="100"
+          height="100"
+        />
       </div>
     </Card>
   )

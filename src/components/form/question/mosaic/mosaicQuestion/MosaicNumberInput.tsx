@@ -49,7 +49,7 @@ export default function NumberInput({
           disabled={value === 0 || isMissing}
           onClick={() => setValue(Number(value) - 1)}
           size="sm"
-          className="z-10 h-8 w-8 items-center justify-center  md:h-10 md:w-10">
+          className="z-10 h-8 w-8 items-center justify-center p-0  md:h-10 md:w-10">
           -
         </Button>
         <input
@@ -64,7 +64,8 @@ export default function NumberInput({
         />
         <Button
           onClick={() => setValue(isMissing ? 1 : Number(value) + 1)}
-          className="z-10 h-8 w-8 items-center justify-center  md:h-10 md:w-10">
+          size="sm"
+          className="z-10 h-8 w-8 items-center justify-center p-0 md:h-10 md:w-10">
           +
         </Button>
       </div>

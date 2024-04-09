@@ -20,13 +20,11 @@ export default function SeeDetailedReportAndExport() {
   return (
     <section className="flex flex-wrap justify-center gap-4 pb-8 md:justify-start">
       <ButtonLink
-        size="lg"
         href={`/organisations/${params.slug}/resultats-detailles`}
-        className="!text-sm"
         onClick={() => {
           trackEvent(clickSeeDetailedReportEvent)
         }}>
-        <PresentationChartIcon className="mr-2 fill-primary-700" />
+        <PresentationChartIcon className="mr-2 fill-white" />
 
         <Trans>Voir le rapport détaillé</Trans>
       </ButtonLink>

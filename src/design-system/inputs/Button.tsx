@@ -27,9 +27,9 @@ export const colorClassNames = {
 
 export const sizeClassNames = {
   xs: 'px-2 text-xs',
-  sm: 'px-3 py-0.5 text-base',
-  md: 'px-5 py-2 text-lg',
-  lg: 'px-5 py-2 text-xl ',
+  sm: 'px-3 py-1 text-base',
+  md: 'px-5 py-3 text-lg',
+  lg: 'px-5 py-3 text-xl ',
   xl: 'px-10 py-4 text-2xl',
 }
 

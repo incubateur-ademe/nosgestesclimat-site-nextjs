@@ -1,12 +1,12 @@
 import Link from '@/components/Link'
-import SpeechBubbleIcon from '@/components/icons/SpeechBubbleIcon'
+import MessageIcon from '@/components/icons/MessageIcon'
 import Trans from '@/components/translation/Trans'
 
 export default function NousContacter() {
   return (
     <section className="mb-20 mt-12">
       <div className="flex gap-8">
-        <SpeechBubbleIcon />
+        <MessageIcon width="50" height="50" className="fill-primary-700" />
 
         <div className="text-lg">
           <p className="mb-2">

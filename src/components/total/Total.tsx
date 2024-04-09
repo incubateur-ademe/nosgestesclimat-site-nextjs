@@ -44,7 +44,9 @@ export default function Total({ toggleQuestionList }: Props) {
     <div className="md:mb-2">
       <div className="relative mb-2 flex items-center gap-4 overflow-hidden rounded-lg bg-primary-700 px-4 py-2 text-white md:justify-center md:text-center ">
         <Progress />
+
         <Planet />
+
         <div className="z-10">
           <span className="block text-2xl font-bold md:text-3xl">
             {numericValue !== carbonFootprintValue && (

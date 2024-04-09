@@ -4,6 +4,7 @@ type Props = {
   className?: string
   width?: string
   height?: string
+  viewBox?: string
 }
 
 export default function MessageIcon({ className, ...props }: Props) {
