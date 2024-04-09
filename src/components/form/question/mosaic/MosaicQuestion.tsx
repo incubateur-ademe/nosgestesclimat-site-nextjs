@@ -37,8 +37,8 @@ export default function MosaicQuestion({
           icons={icons}
           description={description}
           setValue={async (value) => {
+            await resetMosaicChildren(question)
             await setValue(value < 0 ? 0 : value, parentMosaic)
-            resetMosaicChildren(question)
             trackEvent(
               questionTypeAnswer({
                 question: parentMosaic,
@@ -59,8 +59,8 @@ export default function MosaicQuestion({
           icons={icons}
           description={description}
           setValue={async (value) => {
+            await resetMosaicChildren(question)
             await setValue(value, parentMosaic)
-            resetMosaicChildren(question)
             trackEvent(
               questionChooseAnswer({
                 question: parentMosaic,

@@ -8,7 +8,7 @@ type Props = {
   everyRules: DottedName[]
 }
 /**
- * Use an internal state to
+ * Use an internal state to update the engine situation and the simulation situation
  */
 export function useEngineSituation({ engine, everyRules }: Props) {
   const { situation, updateCurrentSimulation } = useCurrentSimulation()
