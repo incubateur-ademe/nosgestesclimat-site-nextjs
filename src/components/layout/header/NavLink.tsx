@@ -50,7 +50,7 @@ export default function NavLink({
       )}
       {...props}>
       {isActive && (
-        <ColorLine className="absolute bottom-0 left-0 rounded-full lg:h-[4px] lg:w-full" />
+        <ColorLine className="absolute bottom-0 left-0 rounded-full bg-primary-700 lg:h-[4px] lg:w-full" />
       )}
 
       {icon && (

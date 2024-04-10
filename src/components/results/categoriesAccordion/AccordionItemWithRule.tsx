@@ -5,6 +5,7 @@ import Trans from '@/components/translation/Trans'
 import { endClickCategory } from '@/constants/tracking/pages/end'
 import Card from '@/design-system/layout/Card'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
+import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule, useSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { formatValue } from 'publicodes'
@@ -34,6 +35,7 @@ export default function AccordionItemWithRule({
           index={index}
           title={title}
           icons={icons}
+          barColor={getBackgroundColor(dottedName)}
           displayValue={
             <span>
               <strong>

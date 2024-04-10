@@ -24,7 +24,8 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
       <div className="absolute right-0 top-1 text-right">
         <button
           title={t('Ouvrir les options de tri')}
-          onClick={() => setIsOpen(true)}>
+          onClick={() => setIsOpen(true)}
+          className="text-orange-dark">
           <span role="img" aria-label={t('Ouvrir les options de tri')}>
             ⚙️
           </span>

@@ -13,7 +13,6 @@ import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import {
   getBackgroundLightColor,
   getBorderColor,
-  getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useFetchSimulation } from '@/hooks/simulation/useFetchSimulation'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
@@ -159,7 +158,7 @@ export default function ActionCard({
           onClick={() => trackEvent(actionsOpenAction(dottedName))}
           href={'/actions/' + encodeRuleName(dottedName)}>
           <h2
-            className={`inline-block w-full text-center text-base font-bold  ${getTextDarkColor(category)}`}>
+            className={`inline-block w-full text-center text-sm text-gray-700 `}>
             {title}
           </h2>
         </Link>

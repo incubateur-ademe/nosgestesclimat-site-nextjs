@@ -4,6 +4,7 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { classementClickGroup } from '@/constants/tracking/pages/classements'
 import ChevronRight from '@/design-system/icons/ChevronRight'
+import Emoji from '@/design-system/utils/Emoji'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
@@ -20,7 +21,7 @@ export default function GroupItem({ group }: Props) {
 
   return (
     <Link
-      className="mb-3 rounded-lg border-[1px] border-solid border-gray-200 bg-grey-100 px-5 py-2 no-underline decoration-auto"
+      className="mb-3 rounded-xl border-2 border-solid border-blue-light bg-white px-5 py-2 no-underline decoration-auto transition-colors hover:bg-blue-light"
       href={getLinkToGroupDashboard({ groupId: group._id })}
       onClick={() =>
         trackEvent(
@@ -33,7 +34,7 @@ export default function GroupItem({ group }: Props) {
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center">
           <div className="flex-shrink-0 text-2xl">
-            <span>{group.emoji}</span>
+            <Emoji>{group.emoji}</Emoji>
           </div>
           <div className="ml-4">
             <div className="text-md font-bold text-gray-900">

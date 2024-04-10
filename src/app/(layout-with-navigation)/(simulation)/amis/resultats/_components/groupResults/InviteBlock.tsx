@@ -95,7 +95,7 @@ export default function InviteBlock({ group }: { group: Group }) {
   }
 
   return (
-    <div className="mt-4 rounded-md bg-grey-100 p-4">
+    <div className="mt-4 rounded-xl border-2 border-emerald-default bg-emerald-light p-4">
       <h2 className="mt-0 flex items-center text-base md:text-lg">
         <Trans>Vous êtes le premier</Trans> <Emoji>🥳</Emoji>
       </h2>
