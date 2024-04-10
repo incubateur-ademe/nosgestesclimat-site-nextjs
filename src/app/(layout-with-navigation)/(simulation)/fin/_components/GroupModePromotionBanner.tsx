@@ -18,14 +18,14 @@ export default function GroupModePromotionBanner({
   return (
     <Card
       className={twMerge(
-        'w-full flex-row justify-center gap-4 border-none bg-primary-700 pb-0 text-white md:gap-8',
+        'w-full flex-row justify-center gap-4 border-none bg-primary-700 text-white md:gap-8',
         className
       )}>
-      <div className="flex items-end justify-end md:items-center">
+      <div className="flex min-w-24 items-center justify-end">
         <Image
-          src="/images/misc/challenge-v2.png"
-          width="150"
-          height="150"
+          src="/images/misc/amis-screenshot.svg"
+          width="200"
+          height="300"
           alt={t('Une capture du mode Groupe Nos Gestes Climat.')}
           className="md:rounded-md"
         />
