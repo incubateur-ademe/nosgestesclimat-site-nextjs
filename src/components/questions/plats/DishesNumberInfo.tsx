@@ -1,11 +1,11 @@
 import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
-import { useEngine } from '@/publicodes-state'
+import { useRule } from '@/publicodes-state'
 
 export default function DishesNumberInfo() {
-  const { getNumericValue } = useEngine()
-
-  const totalNumberOfPlats = getNumericValue('ui . nombre de repas par semaine')
+  const { numericValue: totalNumberOfPlats } = useRule(
+    'ui . nombre de repas par semaine'
+  )
 
   return (
     <>
