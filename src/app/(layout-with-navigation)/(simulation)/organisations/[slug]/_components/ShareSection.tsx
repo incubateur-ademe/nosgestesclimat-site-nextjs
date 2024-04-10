@@ -25,7 +25,7 @@ export default function ShareSection({
       <div className="flex flex-wrap items-center justify-center gap-8 lg:flex-nowrap lg:items-start">
         <CTACard
           id="orga-partage"
-          className="transition-colors duration-500 lg:w-2/3"
+          className="rainbow-border lg:w-2/3"
           overLabel={<Trans>Via un lien de partage</Trans>}
           title={<Trans>Partagez le test</Trans>}
           description={
@@ -56,7 +56,7 @@ export default function ShareSection({
           <ButtonLink
             target="_blank"
             href="https://accelerateur-transition-ecologique-ademe.notion.site/Int-grer-Nos-Gestes-Climat-en-iframe-abdeb175baf84143922006964d80348c?pvs=25"
-            className="self-start"
+            className="-mt-5 self-start py-2 text-base"
             size="sm"
             trackingEvent={organisationsDashboardClickIframe}>
             <Trans>Découvrez le guide</Trans>

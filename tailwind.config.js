@@ -74,6 +74,7 @@ module.exports = {
           // Add an extra light color to the lavender palette
           extraLight: '#F4F1FE',
           light: '#E9E6FE',
+          medium: '#C4C1F9',
           default: '#9E8EF5',
           dark: '#685CB9',
           extraDark: '#3F2F6C',
