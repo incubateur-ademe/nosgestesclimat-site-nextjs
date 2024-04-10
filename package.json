@@ -76,7 +76,7 @@
     "@babel/core": "^7.24.0",
     "@babel/eslint-parser": "^7.23.10",
     "@babel/runtime": "^7.23.1",
-    "@incubateur-ademe/nosgestesclimat-scripts": "^0.4.0",
+    "@incubateur-ademe/nosgestesclimat-scripts": "^0.6.0",
     "@simonsmith/cypress-image-snapshot": "^9.0.1",
     "@types/mdx": "^2.0.10",
     "@types/node": "^20.9.0",
