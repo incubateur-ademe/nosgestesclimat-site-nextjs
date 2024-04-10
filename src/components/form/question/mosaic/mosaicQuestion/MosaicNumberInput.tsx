@@ -50,7 +50,7 @@ export default function NumberInput({
           onClick={() => setValue(Number(value) - 1)}
           size="sm"
           className="z-10 h-8 w-8 items-center justify-center p-0  md:h-10 md:w-10">
-          -
+          <span className="mb-[1px] block">-</span>
         </Button>
         <input
           className="bg-transparent-100  w-10 text-center"
@@ -66,7 +66,7 @@ export default function NumberInput({
           onClick={() => setValue(isMissing ? 1 : Number(value) + 1)}
           size="sm"
           className="z-10 h-8 w-8 items-center justify-center p-0 md:h-10 md:w-10">
-          +
+          <span className="mb-[1px] block">+</span>
         </Button>
       </div>
     </div>
