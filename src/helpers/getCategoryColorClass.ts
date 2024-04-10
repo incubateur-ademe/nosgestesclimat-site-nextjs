@@ -1,19 +1,37 @@
 export function getTextColor(category?: string | null) {
   switch (category) {
     case 'transport':
-      return `text-categories-transport`
+      return `text-categories-text-transport`
     case 'alimentation':
-      return `text-categories-alimentation`
+      return `text-categories-text-alimentation`
     case 'logement':
-      return `text-categories-logement`
+      return `text-categories-text-logement`
     case 'divers':
-      return `text-categories-divers`
+      return `text-categories-text-divers`
     case 'services sociétaux':
-      return `text-categories-servicessocietaux`
+      return `text-categories-text-servicessocietaux`
     default:
       return 'text-primary-700'
   }
 }
+
+export function getTextDarkColor(category?: string | null) {
+  switch (category) {
+    case 'transport':
+      return `text-blue-dark`
+    case 'alimentation':
+      return `text-orange-dark`
+    case 'logement':
+      return `text-emerald-dark`
+    case 'divers':
+      return `text-yellow-dark`
+    case 'services sociétaux':
+      return `text-lavender-dark`
+    default:
+      return 'text-primary-700'
+  }
+}
+
 export function getBackgroundColor(category?: string | null) {
   switch (category) {
     case 'transport':
@@ -30,6 +48,24 @@ export function getBackgroundColor(category?: string | null) {
       return 'bg-primary-700'
   }
 }
+
+export function getBackgroundLightColor(category?: string | null) {
+  switch (category) {
+    case 'transport':
+      return `bg-blue-light`
+    case 'alimentation':
+      return `bg-orange-light`
+    case 'logement':
+      return `bg-emerald-light`
+    case 'divers':
+      return `bg-yellow-light`
+    case 'services sociétaux':
+      return `bg-lavender-light`
+    default:
+      return 'bg-primary-100'
+  }
+}
+
 export function getBorderColor(category?: string | null) {
   switch (category) {
     case 'transport':

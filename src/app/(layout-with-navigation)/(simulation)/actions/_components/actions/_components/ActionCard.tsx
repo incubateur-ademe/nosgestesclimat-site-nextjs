@@ -11,8 +11,9 @@ import {
 } from '@/constants/tracking/pages/actions'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import {
-  getBackgroundColor,
+  getBackgroundLightColor,
   getBorderColor,
+  getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useFetchSimulation } from '@/hooks/simulation/useFetchSimulation'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
@@ -138,11 +139,11 @@ export default function ActionCard({
   if (!currentSimulation || !rules) {
     return null
   }
-
+  console.log(category)
   return (
     <div
       id={dottedName}
-      className={`relative flex h-[16rem] w-full flex-col items-center overflow-auto rounded-lg border-4 border-solid ${
+      className={`relative flex h-[16rem] w-full flex-col items-center overflow-auto rounded-xl border-2 border-solid ${
         !hasFormula ? 'h-[13rem]' : ''
       } ${
         isSelected
@@ -150,14 +151,15 @@ export default function ActionCard({
           : getBorderColor(category)
       }`}>
       <div
-        className={`flex h-[6rem] w-full items-center ${getBackgroundColor(
+        className={`flex h-[6rem] w-full items-center ${getBackgroundLightColor(
           category
         )}`}>
         <Link
           className="z-10 w-full no-underline"
           onClick={() => trackEvent(actionsOpenAction(dottedName))}
           href={'/actions/' + encodeRuleName(dottedName)}>
-          <h2 className="inline-block w-full text-center text-base font-bold text-white">
+          <h2
+            className={`inline-block w-full text-center text-base font-bold  ${getTextDarkColor(category)}`}>
             {title}
           </h2>
         </Link>
