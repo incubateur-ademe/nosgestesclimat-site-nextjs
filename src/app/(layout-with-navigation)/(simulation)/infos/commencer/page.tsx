@@ -2,7 +2,10 @@
 
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import Trans from '@/components/translation/Trans'
-import { getParticipantInscriptionPageVisitedEvent } from '@/constants/matomo/organisations'
+import {
+  infosCommencerClickCtaCommencer,
+  infosCommencerClickNewTest,
+} from '@/constants/tracking/pages/infos'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
@@ -131,7 +134,7 @@ export default function Commencer() {
       <div className="flex flex-col items-start gap-6">
         <Button
           onClick={async () => {
-            updateCurrentSimulation({
+            await updateCurrentSimulation({
               defaultAdditionalQuestionsAnswers: {
                 postalCode,
                 birthdate,
@@ -139,7 +142,15 @@ export default function Commencer() {
               pollToAdd: pollSlug || undefined,
             })
 
-            trackEvent(getParticipantInscriptionPageVisitedEvent('commencer'))
+            if (status === 'notStarted') {
+              trackEvent(infosCommencerClickCtaCommencer)
+            }
+            if (status === 'started') {
+              trackEvent(infosCommencerClickCtaCommencer)
+            }
+            if (status === 'finished') {
+              trackEvent(infosCommencerClickCtaCommencer)
+            }
 
             // We try to go to the simulateur page. If the test is finished we will save the simulation and then go to the end page
             setShouldGoToSimulateurPage(true)
@@ -151,6 +162,8 @@ export default function Commencer() {
           <Button
             color="secondary"
             onClick={() => {
+              trackEvent(infosCommencerClickNewTest)
+
               goToSimulateurPage({
                 newSimulation: {
                   defaultAdditionalQuestionsAnswers: {

@@ -2,7 +2,6 @@
 
 import Trans from '@/components/translation/Trans'
 import { GROUP_NAMES } from '@/constants/groupNames'
-import { matomoEventCreationGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
@@ -13,7 +12,6 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
 
@@ -87,8 +85,6 @@ export default function GroupCreationForm() {
     if (!isValid) return
 
     try {
-      trackEvent(matomoEventCreationGroupe)
-
       const { name, emoji } =
         GROUP_NAMES[groups.length % GROUP_NAMES.length] ?? GROUP_NAMES[0]
 

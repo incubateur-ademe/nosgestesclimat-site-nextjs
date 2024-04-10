@@ -1,7 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
@@ -10,7 +9,6 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useForm, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { FormEvent, useEffect, useState } from 'react'
 
@@ -91,8 +89,6 @@ export default function InvitationForm({ group }: { group: Group }) {
       updateCurrentSimulation({
         groupToAdd: group._id,
       })
-
-      trackEvent(getMatomoEventJoinedGroupe(group?._id))
 
       // Redirect to simulateur page or end page
       setShouldGoToSimulateurPage(true)

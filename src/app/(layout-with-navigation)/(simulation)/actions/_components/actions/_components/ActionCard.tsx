@@ -2,9 +2,10 @@
 
 import Link from '@/components/Link'
 import {
-  getMatomoEventActionAccepted,
-  getMatomoEventActionRejected,
-} from '@/constants/matomo'
+  actionsClickAdditionalQuestion,
+  actionsClickNo,
+  actionsOpenAction,
+} from '@/constants/tracking/pages/actions'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import {
   getBackgroundColor,
@@ -43,8 +44,7 @@ export default function ActionCard({
 
   const { getCurrentSimulation, toggleActionChoice, rejectAction } = useUser()
 
-  const { nodeValue, dottedName, title, missingVariables, traversedVariables } =
-    action
+  const { dottedName, title, missingVariables, traversedVariables } = action
 
   const { icônes: icons } = rule
 
@@ -152,6 +152,7 @@ export default function ActionCard({
         )}`}>
         <Link
           className="z-10 w-full no-underline"
+          onClick={() => trackEvent(actionsOpenAction(dottedName))}
           href={'/actions/' + encodeRuleName(dottedName)}>
           <h2 className="inline-block w-full text-center text-base font-bold text-white">
             {title}
@@ -186,7 +187,10 @@ export default function ActionCard({
           {hasRemainingQuestions && (
             <button
               className="cursor-pointer text-primary-500"
-              onClick={() => setFocusedAction(dottedName)}>
+              onClick={() => {
+                trackEvent(actionsClickAdditionalQuestion(dottedName))
+                setFocusedAction(dottedName)
+              }}>
               {remainingQuestionsText}
             </button>
           )}
@@ -215,7 +219,9 @@ export default function ActionCard({
               onClick={(e) => {
                 if (isDisabled) return
                 rejectAction(dottedName)
-                trackEvent(getMatomoEventActionRejected(dottedName, nodeValue))
+                if (!isSelected) {
+                  trackEvent(actionsClickNo(dottedName))
+                }
                 e.stopPropagation()
                 e.preventDefault()
               }}>

@@ -5,13 +5,18 @@ import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 import Link from '../Link'
 
-export default function Logo({ className }: { className?: string }) {
+type Props = {
+  onClick?: () => void
+  className?: string
+}
+export default function Logo({ onClick = () => null, className }: Props) {
   const { isIframeOnlySimulation } = useIframe()
 
   return (
     <div className={twMerge('flex items-center', className)}>
       <Link
         href="/"
+        onClick={onClick}
         data-cypress-id="home-logo-link"
         className={`flex items-center justify-center no-underline ${
           // @bjlaa : this is a hack to prevent the logo from being clickable in the iframe

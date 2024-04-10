@@ -19,6 +19,7 @@ export default function HorizontalBarChartItem({
   minTitleWidth,
   index,
 }: Props) {
+  console.log(title)
   return (
     <div className="flex w-full items-center justify-between gap-8">
       <div
@@ -31,10 +32,11 @@ export default function HorizontalBarChartItem({
           {title}
         </p>
       </div>
+
       <div className="flex items-center gap-2 md:hidden">
         <Emoji>{icons}</Emoji>{' '}
         <p className={`mb-0 underline decoration-dotted underline-offset-4`}>
-          {title}
+          {(title?.length ?? 0) > 14 ? title?.split(' ')[0] : title}
         </p>
       </div>
 

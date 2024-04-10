@@ -1,8 +1,13 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { tutorielClickQuestion } from '@/constants/tracking/pages/tutoriel'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function OrganisationPrivacy() {
   const { pollSlug } = useOrganisationQueryParams()
@@ -17,7 +22,13 @@ export default function OrganisationPrivacy() {
   return (
     <li className="mb-2" id={'empreinte'}>
       <details>
-        <summary className="cursor-pointer text-sm font-bold text-primary-500 md:text-lg">
+        <summary
+          className="cursor-pointer text-sm font-bold text-primary-500 md:text-lg"
+          onClick={() =>
+            trackEvent(
+              tutorielClickQuestion('Mes données restent-elles privées ?')
+            )
+          }>
           {t('Mes données restent-elles privées\u202f?')}
         </summary>
         <div className="my-2 ml-3.5">
