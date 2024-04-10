@@ -49,6 +49,23 @@ export function getBackgroundColor(category?: string | null) {
   }
 }
 
+export function getHoverBackgroundColor(category?: string | null) {
+  switch (category) {
+    case 'transport':
+      return `hover:bg-categories-transport`
+    case 'alimentation':
+      return `hover:bg-categories-alimentation`
+    case 'logement':
+      return `hover:bg-categories-logement`
+    case 'divers':
+      return `hover:bg-categories-divers`
+    case 'services sociétaux':
+      return `hover:bg-categories-servicessocietaux`
+    default:
+      return 'hover:bg-primary-700'
+  }
+}
+
 export function getBackgroundLightColor(category?: string | null) {
   switch (category) {
     case 'transport':
@@ -96,5 +113,17 @@ export function getFillColor(category?: string | null) {
       return `fill-categories-servicessocietaux`
     default:
       return 'fill-primary-700'
+  }
+}
+
+export function getCategoryColorClasses(category?: string | null) {
+  return {
+    text: getTextColor(category),
+    textDark: getTextDarkColor(category),
+    background: getBackgroundColor(category),
+    hoverBackground: getHoverBackgroundColor(category),
+    backgroundLight: getBackgroundLightColor(category),
+    border: getBorderColor(category),
+    fill: getFillColor(category),
   }
 }

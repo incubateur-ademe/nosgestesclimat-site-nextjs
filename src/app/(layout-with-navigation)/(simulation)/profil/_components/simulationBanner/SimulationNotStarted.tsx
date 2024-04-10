@@ -8,7 +8,7 @@ import TutorialLink from './_components/TutorialLink'
 
 export default function SimulationNotStarted() {
   return (
-    <Card className="my-4 flex !w-[35rem] max-w-full items-start gap-2 !shadow-none md:p-8">
+    <Card className="my-4 flex !w-[35rem] max-w-full items-start gap-2 border-2 border-blue-light bg-white !shadow-none md:p-8">
       <p>
         <span
           role="img"

@@ -47,7 +47,7 @@ export default function RegionSelector({
     <>
       <details open={isOpen}>
         <summary
-          className={`middle w-auto cursor-pointer rounded-md bg-primary-100 p-4 ${
+          className={`middle w-auto cursor-pointer rounded-md border-2 border-lavender-light bg-white p-4 ${
             isLoading ? 'pointer-events-none opacity-60' : ''
           }`}
           onClick={() => trackEvent(profilOpenRegions)}>
@@ -79,7 +79,7 @@ export default function RegionSelector({
           className={isLoading ? 'pointer-events-none opacity-60' : ''}
           aria-disabled={isLoading || undefined}
         />
-        <Card className="mt-4 flex-row items-center">
+        <Card className="mt-4 flex-row items-center border-2 border-yellow-light shadow-none">
           <span
             role="img"
             aria-label="emoji world"
