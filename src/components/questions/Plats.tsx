@@ -9,7 +9,7 @@ export default function Plats() {
   return (
     <>
       <Question question={questionRuleName} />
-      {!isMissing && <DishesNumberInfo />}
+      {!isMissing ? <DishesNumberInfo /> : null}
     </>
   )
 }
