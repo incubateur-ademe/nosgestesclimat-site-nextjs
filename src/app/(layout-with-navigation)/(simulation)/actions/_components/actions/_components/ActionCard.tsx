@@ -4,6 +4,7 @@ import Link from '@/components/Link'
 import {
   actionsClickAdditionalQuestion,
   actionsClickNo,
+  actionsClickYes,
   actionsOpenAction,
 } from '@/constants/tracking/pages/actions'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
@@ -117,7 +118,7 @@ export default function ActionCard({
     }
 
     if (!isSelected) {
-      trackEvent(getMatomoEventActionAccepted(dottedName, nodeValue))
+      trackEvent(actionsClickYes(dottedName))
     }
   }, [
     currentSimulation,
@@ -125,7 +126,6 @@ export default function ActionCard({
     hasRemainingQuestions,
     isDisabled,
     isSelected,
-    nodeValue,
     saveSimulationNotAsync,
     setFocusedAction,
     simulationSaved,
