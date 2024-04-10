@@ -52,7 +52,9 @@ export default function Label({
         <strong className="text-secondary-200">
           {formattedValue} <Trans>{unit}</Trans>
         </strong>
-        , {title?.toLowerCase()} {t('est votre poste le plus important\u202f!')}{' '}
+        , {t('le poste')}{' '}
+        <span className="text-secondary-200">{title?.toLowerCase()}</span>{' '}
+        {t('est votre poste le plus important\u202f!')}{' '}
         <br className="hidden md:inline" />
         <Link
           className="text-white hover:text-secondary-200 focus:text-secondary-200"
@@ -73,7 +75,9 @@ export default function Label({
         <strong className="text-secondary-200">
           {formattedValue} <Trans>{unit}</Trans>
         </strong>
-        , {title?.toLowerCase()} {t('est votre poste le plus important\u202f!')}{' '}
+        , {t('le poste')}{' '}
+        <span className="text-secondary-200">{title?.toLowerCase()}</span>{' '}
+        {t('est votre poste le plus important\u202f!')}{' '}
         <br className="hidden md:inline" />
         <Link
           className="text-white hover:text-secondary-200 focus:text-secondary-200"
@@ -94,7 +98,9 @@ export default function Label({
         <strong className="text-secondary-200">
           {formattedValue} <Trans>{unit}</Trans>
         </strong>
-        , {title} {t('est votre poste le plus important\u202f!')}{' '}
+        , {t('le poste')}{' '}
+        <span className="text-secondary-200">{title?.toLowerCase()}</span>{' '}
+        {t('est votre poste le plus important\u202f!')}{' '}
         <br className="hidden md:inline" />
         <Link
           className="text-white hover:text-secondary-200 focus:text-secondary-200"

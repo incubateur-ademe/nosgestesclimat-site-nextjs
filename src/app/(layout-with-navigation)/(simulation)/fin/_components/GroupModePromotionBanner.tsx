@@ -18,7 +18,7 @@ export default function GroupModePromotionBanner({
   return (
     <Card
       className={twMerge(
-        'w-full flex-row justify-center gap-4 border-none bg-primary-700 text-white md:gap-8',
+        'w-full flex-row justify-center gap-4 border-2 border-blue-default bg-blue-light md:gap-8',
         className
       )}>
       <div className="flex min-w-24 items-center justify-end">
@@ -35,14 +35,13 @@ export default function GroupModePromotionBanner({
         <p className="max-w-sm font-bold">
           <Trans>
             Comparez vos résultats{' '}
-            <span className="text-pink-200">avec vos proches</span>
+            <span className="text-blue-dark">avec vos proches</span>
           </Trans>
         </p>
 
         <ButtonLink
           color="secondary"
           href="/amis"
-          className="bg-white"
           trackingEvent={endClickCreateGroup}>
           <Trans>Créer un groupe</Trans>
         </ButtonLink>
