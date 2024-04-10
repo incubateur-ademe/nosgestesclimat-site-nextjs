@@ -10,11 +10,14 @@ import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisatio
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { FormEvent, useCallback, useState } from 'react'
 import Navigation from '../_components/Navigation'
 
 export default function Email() {
+  const searchParams = useSearchParams()
+  const fixedEmail = searchParams.get('fixedemail') ? true : false
+
   const { user, updateEmail } = useUser()
 
   const [email, setEmail] = useState(
@@ -80,9 +83,11 @@ export default function Email() {
             <Trans>
               Pour conserver vos résultats et les retrouver à l’avenir
             </Trans>
-            <span className="ml-2 inline-block font-bold italic text-secondary-500">
-              <Trans>facultatif</Trans>
-            </span>
+            {!fixedEmail ? (
+              <span className="ml-2 inline-block font-bold italic text-secondary-500">
+                <Trans>facultatif</Trans>
+              </span>
+            ) : null}
           </>
         }
       />
@@ -91,6 +96,7 @@ export default function Email() {
         setEmail={setEmail}
         error={error}
         setError={setError}
+        readOnly={fixedEmail}
       />
       <Navigation
         linkToPrev={getLinkToPrevInfosPage({ curPage: EMAIL_PAGE })}
