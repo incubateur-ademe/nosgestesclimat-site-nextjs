@@ -3,7 +3,11 @@
 import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
-import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
+import {
+  getBackgroundLightColor,
+  getBorderColor,
+  getTextDarkColor,
+} from '@/helpers/getCategoryColorClass'
 import { useEngine } from '@/publicodes-state'
 import { DottedName, NGCRule } from '@/publicodes-state/types'
 import Markdown from 'markdown-to-jsx'
@@ -14,6 +18,7 @@ type Props = {
   summary: string
   rule: NGCRule
 }
+
 export default function DocumentationLandingCard({
   dottedName,
   summary,
@@ -26,7 +31,7 @@ export default function DocumentationLandingCard({
     <Card
       tag={Link}
       href={'/documentation/' + utils.encodeRuleName(dottedName)}
-      className={`relative h-[12rem] flex-auto justify-center rounded-lg text-center text-base text-white no-underline ${getBackgroundColor(
+      className={`relative h-[12rem] flex-auto justify-center rounded-lg border-2 text-center text-base shadow-none ${getBorderColor(category)} ${getTextDarkColor(category)} no-underline ${getBackgroundLightColor(
         category
       )}`}>
       <div className="-z-1 absolute left-0 top-0 mb-0 flex h-full w-full items-center justify-center p-4 text-[8.5rem]  opacity-20 grayscale">
@@ -35,9 +40,7 @@ export default function DocumentationLandingCard({
         </Emoji>
       </div>
 
-      <h2 className="z-10 mb-0 text-base text-white">
-        {<Markdown>{summary}</Markdown>}
-      </h2>
+      <h2 className="z-10 mb-0 text-base ">{<Markdown>{summary}</Markdown>}</h2>
     </Card>
   )
 }

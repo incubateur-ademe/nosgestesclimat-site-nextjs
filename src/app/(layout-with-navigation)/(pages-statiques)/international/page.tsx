@@ -143,6 +143,7 @@ export default async function International() {
         <Container maxWidth="3xl" className="pb-12 pt-8">
           <div className="mx-auto my-0">
             <RegionGrid
+              className="mx-auto"
               shouldShowButton={false}
               supportedRegions={supportedRegions}
             />

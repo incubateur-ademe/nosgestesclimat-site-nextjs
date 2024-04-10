@@ -70,7 +70,7 @@ export default function GetResultsByEmail({
     <Card
       id="email-block"
       className={twMerge(
-        'items-start border-2 border-yellow-default  bg-yellow-light py-4',
+        'rainbow-border items-start rounded-xl p-6 shadow-none',
         className
       )}>
       <form id="newsletter-form" onSubmit={handleSubmit}>

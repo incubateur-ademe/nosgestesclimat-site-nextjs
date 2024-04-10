@@ -19,7 +19,7 @@ export default function TotalCard() {
   const { formattedValue, unit } = formatCarbonFootprint(numericValue)
 
   return (
-    <Card className="w-full flex-row items-center rounded-lg bg-primary-700 p-6 text-white shadow-none md:px-10">
+    <Card className="w-full flex-row items-center rounded-xl bg-primary-700 p-6 text-white shadow-none md:px-10">
       <div className="flex-1">
         <p className="mb-0 text-3xl md:text-4xl">
           <strong>{formattedValue}</strong>{' '}

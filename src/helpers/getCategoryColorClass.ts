@@ -11,7 +11,7 @@ export function getTextColor(category?: string | null) {
     case 'services sociétaux':
       return `text-categories-text-servicessocietaux`
     default:
-      return 'text-primary-700'
+      return 'text-default'
   }
 }
 
@@ -28,7 +28,7 @@ export function getTextDarkColor(category?: string | null) {
     case 'services sociétaux':
       return `text-lavender-evenDarker`
     default:
-      return 'text-primary-700'
+      return 'text-default'
   }
 }
 
@@ -77,9 +77,9 @@ export function getBackgroundLightColor(category?: string | null) {
     case 'divers':
       return `bg-yellow-light`
     case 'services sociétaux':
-      return `bg-lavender-light`
+      return `bg-lavender-medium`
     default:
-      return 'bg-primary-100'
+      return 'bg-primary-200'
   }
 }
 

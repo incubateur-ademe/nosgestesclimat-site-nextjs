@@ -10,7 +10,6 @@ import {
   endClickSaveShortcut,
 } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
-import Separator from '@/design-system/layout/Separator'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import TotalCard from './results/TotalCard'
 
@@ -45,7 +44,7 @@ export default function Results() {
 
       <CategoriesAccordion />
 
-      <div className="mt-2 text-right">
+      <div className="mb-8 mt-2 text-right">
         <Link
           href="/profil#answers"
           onClick={() => trackEvent(endClickChangeAnswers)}
@@ -53,8 +52,6 @@ export default function Results() {
           <Trans>Modifier mes réponses</Trans>
         </Link>
       </div>
-
-      <Separator />
     </>
   )
 }

@@ -71,6 +71,8 @@ module.exports = {
           megaDark: '#071019',
         },
         lavender: {
+          // Add an extra light color to the lavender palette
+          extraLight: '#F4F1FE',
           light: '#E9E6FE',
           default: '#9E8EF5',
           dark: '#685CB9',

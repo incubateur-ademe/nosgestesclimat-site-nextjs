@@ -61,7 +61,7 @@ export default function FeedbackBanner({ text, type, className }: Props) {
   }
 
   const cardClassName = twMerge(
-    'border-2 bg-lavender-light border-lavender-default w-[24rem] max-w-full',
+    'border-none shadow-none bg-primary-50 w-[24rem] rounded-xl max-w-full',
     className
   )
 

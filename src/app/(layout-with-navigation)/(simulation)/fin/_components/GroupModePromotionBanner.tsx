@@ -18,13 +18,13 @@ export default function GroupModePromotionBanner({
   return (
     <Card
       className={twMerge(
-        'w-full flex-row justify-center gap-4 border-2 border-blue-default bg-blue-light md:gap-8',
+        'w-full flex-col justify-center gap-4 rounded-xl border-none bg-primary-50 shadow-none md:gap-8',
         className
       )}>
-      <div className="flex min-w-24 items-center justify-end">
+      <div className="flex w-full items-center justify-center">
         <Image
           src="/images/misc/amis-screenshot.svg"
-          width="200"
+          width="300"
           height="300"
           alt={t('Une capture du mode Groupe Nos Gestes Climat.')}
           className="md:rounded-md"
@@ -41,6 +41,7 @@ export default function GroupModePromotionBanner({
 
         <ButtonLink
           color="secondary"
+          size="sm"
           href="/amis"
           trackingEvent={endClickCreateGroup}>
           <Trans>Créer un groupe</Trans>

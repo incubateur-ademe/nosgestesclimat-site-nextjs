@@ -469,10 +469,16 @@ html[data-useragent*='Trident'] #js {
     #cef1d5,
     #ffefbc,
     #ffdbbc,
-    #fd69d0
+    #fd69d0,
+    #a2d2fd,
+    #cef1d5,
+    #ffefbc,
+    #ffdbbc,
+    #fd69d0,
+    #a2d2fd
   );
-  background-size: 400% 400%;
-  animation: rainbow 60s linear infinite;
+  background-size: 200% 200%;
+  animation: rainbow 15s linear infinite;
 }
 
 @keyframes rainbow {
@@ -480,9 +486,21 @@ html[data-useragent*='Trident'] #js {
     background-position: 0% 50%;
   }
   50% {
-    background-position: 100% 50%;
+    background-position: 50% 50%;
   }
   100% {
-    background-position: 0% 50%;
+    background-position: 100% 50%;
   }
+}
+
+/*
+  Create a rainbow-border class to apply a rainbow border to an element
+*/
+.rainbow-border {
+  background:
+    linear-gradient(#fff 0 0) padding-box,
+    /*this is your grey background*/
+      linear-gradient(90deg, #a2d2fd, #cef1d5, #ffefbc, #ffdbbc, #fd69d0)
+      border-box;
+  border: 4px solid transparent;
 }
