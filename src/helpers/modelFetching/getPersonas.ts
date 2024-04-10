@@ -1,4 +1,4 @@
-import { Personas, personas } from '@incubateur-ademe/nosgestesclimat'
+import { personas } from '@incubateur-ademe/nosgestesclimat'
 import { getFileFromModel } from './getFileFromModel'
 
 type Props = {
@@ -12,7 +12,7 @@ export async function getPersonas(
   { locale = 'fr', PRNumber }: Props = {
     locale: 'fr',
   }
-): Promise<Personas> {
+): Promise<any> {
   const fileName = `personas-${locale}.json`
 
   if (PRNumber) {
