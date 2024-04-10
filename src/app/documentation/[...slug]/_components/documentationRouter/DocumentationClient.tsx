@@ -7,13 +7,13 @@ import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine } from '@/publicodes-state'
-import { SuppportedRegions } from '@/types/international'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { RulePage } from '@publicodes/react-ui'
 import Head from 'next/head'
 import Engine from 'publicodes'
 
 type Props = {
-  supportedRegions: SuppportedRegions
+  supportedRegions: SupportedRegions
   slugs: string[]
 }
 export default function DocumentationClient({ slugs }: Props) {
