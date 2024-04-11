@@ -1,13 +1,15 @@
 import MDXContent from '@/components/mdx/MDXContent'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ContentEn from '@/locales/pages/en/contextes-sondage.mdx'
 import ContentFr from '@/locales/pages/fr/contextes-sondage.mdx'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: 'Documentation Contexte Sondage - Nos Gestes Climat',
-    description:
-      "Informations relatives à la création d'un contexte spécifique.",
+    title: t('Documentation Contexte Sondage - Nos Gestes Climat'),
+    description: t(
+      "Informations relatives à la création d'un contexte spécifique."
+    ),
     alternates: {
       canonical: '/contextes-de-sondages',
     },

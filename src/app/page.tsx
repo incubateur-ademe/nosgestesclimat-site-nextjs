@@ -1,6 +1,7 @@
 import Footer from '@/components/layout/Footer'
 import Main from '@/design-system/layout/Main'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { t } from 'i18next'
 import Actions from './_components/Actions'
 import Amis from './_components/Amis'
 import Contributions from './_components/Contributions'
@@ -10,10 +11,12 @@ import Organisations from './_components/Organisations'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title:
-      "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat",
-    description:
-      'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.',
+    title: t(
+      "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat"
+    ),
+    description: t(
+      'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.'
+    ),
     alternates: {
       canonical: '/',
     },

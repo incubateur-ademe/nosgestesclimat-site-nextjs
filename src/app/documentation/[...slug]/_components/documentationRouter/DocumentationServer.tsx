@@ -3,12 +3,14 @@ import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Markdown from '@/design-system/utils/Markdown'
+import { getGeolocation } from '@/helpers/getGeolocation'
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { Rules } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
 import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import { currentLocale } from 'next-i18n-router'
 import { redirect } from 'next/navigation'
 import ButtonLaunch from './documentationServer/ButtonLaunch'
 import CalculDetail from './documentationServer/CalculDetail'
@@ -23,6 +25,10 @@ type Props = {
 export default async function DocumentationServer({ slugs }: Props) {
   const ruleName = decodeRuleNameFromPath(slugs.join('/'))
 
+  const region = await getGeolocation()
+
+  const locale = currentLocale()
+
   if (!ruleName) {
     redirect('/404')
   }
@@ -30,6 +36,8 @@ export default async function DocumentationServer({ slugs }: Props) {
   // We load the default rules to render the server side documentation
   const rules: Rules = await getRules({
     isOptim: false,
+    locale,
+    regionCode: region?.code,
   })
 
   const rule = rules[ruleName]
@@ -59,7 +67,9 @@ export default async function DocumentationServer({ slugs }: Props) {
 
       {rule.note && (
         <section className="mt-4">
-          <h2>Notes</h2>
+          <h2>
+            <Trans>Notes</Trans>
+          </h2>
           <Markdown>{rule.note}</Markdown>
         </section>
       )}

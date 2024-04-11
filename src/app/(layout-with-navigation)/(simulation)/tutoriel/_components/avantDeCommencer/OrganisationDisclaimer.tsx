@@ -22,11 +22,11 @@ export default function OrganisationDisclaimer() {
   return (
     <div className="relative pl-8">
       <p className="overflow-visible before:absolute before:left-0 before:content-['🏢'] ">
+        <Trans>Ce test vous est proposé par</Trans>{' '}
+        <strong>{isLoading ? '... ' : poll?.organisationInfo?.name}</strong>.{' '}
         <Trans>
-          Ce test vous est proposé par{' '}
-          <b>{isLoading ? '... ' : poll?.organisationInfo?.name}</b>. En
-          participant vous acceptez que vos résultats sont partagés anonymement
-          avec cette organisation.
+          En participant vous acceptez que vos résultats sont partagés
+          anonymement avec cette organisation.
         </Trans>
       </p>
     </div>

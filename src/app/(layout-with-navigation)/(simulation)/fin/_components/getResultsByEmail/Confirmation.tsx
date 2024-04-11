@@ -13,16 +13,19 @@ export default function Confirmation({ className }: { className?: string }) {
       )}>
       <div className="text-left; bg-transparent text-left text-2xl font-bold">
         <p>
-          <Trans>Votre simulation est sauvegardée&#8239;!</Trans>
-          &#8239;
+          <Trans>Votre simulation est sauvegardée !</Trans> 
           <Emoji className="inline-block">✅</Emoji>
         </p>
       </div>
       <p className="mt-4 max-w-lg text-left">
         <Trans>
           Vous allez recevoir un email de notre part sous peu, qui vous
-          permettra de la retrouver <strong>à tout moment</strong>.
+          permettra de la retrouver
         </Trans>
+        <strong>
+          <Trans>à tout moment</Trans>
+        </strong>
+        .
       </p>
     </Card>
   )
