@@ -1,6 +1,6 @@
 'use client'
 
-import { Persona as PersonaType } from '@/publicodes-state/types'
+import { Persona as PersonaType } from '@incubateur-ademe/nosgestesclimat'
 import Persona from './Persona'
 
 type Props = {

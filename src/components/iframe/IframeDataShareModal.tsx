@@ -4,9 +4,9 @@ import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { getIsIframe } from '@/utils/getIsIframe'
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // We let iframe integrators ask the user if he wants to share its simulation data to the parent window
 const shareDataPopupTimeout = 3500
@@ -16,9 +16,9 @@ export default function IframeDataShareModal() {
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const { getCurrentSimulation } = useUser()
-  const currentSimulation = getCurrentSimulation()
-  const categories = currentSimulation?.computedResults?.categories ?? {}
+  const { computedResults } = useCurrentSimulation()
+
+  const categories = computedResults?.categories ?? {}
 
   const data = Object.keys(categories).reduce(
     (accumulator, categoryName) => ({
@@ -63,13 +63,13 @@ export default function IframeDataShareModal() {
     setIsOpen(false)
   }
 
-  if (!isIframe || !document.referrer || !isIframeShareData) {
+  if (!isIframe || !isIframeShareData) {
     return null
   }
 
-  const parent = (document.referrer
+  const parent = document.referrer
     ? String(new URL(document.referrer).hostname)
-    : 'parent') as unknown as ReactNode
+    : 'site parent inconnu'
 
   if (!isOpen) return null
 

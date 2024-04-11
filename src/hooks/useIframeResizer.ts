@@ -1,7 +1,7 @@
 import { getIsIframe } from '@/utils/getIsIframe'
 import { useEffect } from 'react'
 
-export function IframeResizer() {
+export function useIframeResizer() {
   const isIframe = getIsIframe()
 
   useEffect(() => {
@@ -25,6 +25,4 @@ export function IframeResizer() {
 
     return () => observer.disconnect()
   }, [isIframe])
-
-  return null
 }

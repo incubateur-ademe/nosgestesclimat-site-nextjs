@@ -18,8 +18,7 @@ export function useGroupPagesGuard(
 ) {
   const router = useRouter()
 
-  const { user, getCurrentSimulation } = useUser()
-  const currentSimulation = getCurrentSimulation()
+  const { user } = useUser()
 
   const isDebug = useDebug()
 
@@ -38,21 +37,13 @@ export function useGroupPagesGuard(
     if (isGuardInit) return
     setIsGuardInit(true)
 
-    if (!currentSimulation) {
-      router.replace('/404') // TODO: should throw an error
-      setIsGuardRedirecting(true)
-      return
-    }
-
     // If there is no groupId in the query params, we redirect to the classement page
     if (!groupIdInQueryParams) {
       router.replace(linkToClassement)
       setIsGuardRedirecting(true)
       return
     }
-    console.log('group', group)
-    console.log('user', user)
-    console.log('isDashboard', isDashboard)
+
     // If we are on the dashboard and the user is not a part of the group, we redirect to the invitation page
     if (
       isDashboard &&
@@ -82,7 +73,6 @@ export function useGroupPagesGuard(
     isDashboard,
     isGuardInit,
     groupIdInQueryParams,
-    currentSimulation,
     router,
     isDebug,
     group,

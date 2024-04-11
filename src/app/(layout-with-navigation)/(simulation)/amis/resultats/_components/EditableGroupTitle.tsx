@@ -43,6 +43,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
       captureException(e)
     }
   }
+  const vousWord = t('vous')
 
   return (
     <>
@@ -92,7 +93,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
               </span>
             }
             subtitle={t('Créé par {{name}}', {
-              name: isGroupOwner ? t('vous') : group?.administrator?.name,
+              name: isGroupOwner ? vousWord : group?.administrator?.name,
             })}
           />
         )}

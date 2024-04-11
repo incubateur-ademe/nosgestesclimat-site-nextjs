@@ -1,5 +1,8 @@
+import { getIsLocalStorageAvailable } from '@/utils/getIsLocalStorageAvailable'
 import { useEffect, useState } from 'react'
 import { Tutorials } from '../../types'
+
+const isLocalStorageAvailable = getIsLocalStorageAvailable()
 
 type Props = {
   storageKey: string
@@ -10,9 +13,13 @@ export default function usePersistentTutorials({ storageKey }: Props) {
   const [tutorials, setTutorials] = useState<Tutorials>({})
 
   useEffect(() => {
-    setTutorials(
-      JSON.parse(localStorage.getItem(storageKey) || '{}').tutorials || {}
-    )
+    if (isLocalStorageAvailable) {
+      setTutorials(
+        JSON.parse(localStorage.getItem(storageKey) || '{}').tutorials || {}
+      )
+    } else {
+      setTutorials({})
+    }
     setInitialized(true)
   }, [storageKey])
 

@@ -3,6 +3,7 @@ type Options = {
   locale?: string
   maximumFractionDigits?: number
   shouldUseAbbreviation?: boolean
+  t?: (key: string) => string
 }
 
 export function formatCarbonFootprint(
@@ -12,6 +13,7 @@ export function formatCarbonFootprint(
     locale = 'fr-FR',
     maximumFractionDigits = 1,
     shouldUseAbbreviation = false,
+    t = (key) => key,
   }: Options = {
     localize: true,
     locale: 'fr-FR',
@@ -44,7 +46,11 @@ export function formatCarbonFootprint(
 
   if (numberValue >= 1000) {
     tempValue = numberValue / 1000
-    unit = shouldUseAbbreviation ? 't' : `tonne${numberValue < 2000 ? '' : 's'}`
+    unit = shouldUseAbbreviation
+      ? 't'
+      : numberValue < 2000
+        ? t('tonne')
+        : t('tonnes')
   }
 
   return {

@@ -1,6 +1,5 @@
 'use client'
 
-import ProfileIcon from '@/components/icons/ProfileIcon'
 import {
   footerClickDocumentation,
   headerClickProfil,
@@ -12,6 +11,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { usePathname } from 'next/navigation'
 import NavLink from '../NavLink'
 import OrganisationLink from '../_components/OrganisationLink'
+import ProfileIcon from '../_components/ProfileIcon'
 import CTAButton from '../headerDesktop/CTAButton'
 
 export default function FoldableMenu() {
