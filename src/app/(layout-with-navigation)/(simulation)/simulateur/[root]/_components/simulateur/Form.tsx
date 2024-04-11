@@ -50,7 +50,13 @@ export default function Form() {
         allowedToGoToGroupDashboard: true,
       })
     }
-  }, [shouldGoToEndPage, progression, goToEndPage, currentSimulation])
+  }, [
+    shouldGoToEndPage,
+    progression,
+    goToEndPage,
+    currentSimulation,
+    getNumericValue,
+  ])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
 
