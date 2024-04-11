@@ -1,13 +1,13 @@
 import { getIsLocalStorageAvailable } from '@/utils/getIsLocalStorageAvailable'
 import { useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
-import { User } from '../../types'
+import { RegionFromGeolocation, User } from '../../types'
 
 const isLocalStorageAvailable = getIsLocalStorageAvailable()
 
 type Props = {
   storageKey: string
-  initialRegion: { code: string; name: string }
+  initialRegion: RegionFromGeolocation
 }
 export default function usePersistentUser({
   storageKey,

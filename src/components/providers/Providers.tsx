@@ -4,13 +4,13 @@ import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import Loader from '@/design-system/layout/Loader'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider } from '@/publicodes-state'
-import { SuppportedRegions } from '@/types/international'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
 import { PropsWithChildren } from 'react'
 import Error500 from '../layout/500'
 
 type Props = {
-  supportedRegions: SuppportedRegions
+  supportedRegions: SupportedRegions
   isOptim?: boolean
 }
 

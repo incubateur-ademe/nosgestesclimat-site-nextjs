@@ -61,38 +61,37 @@ en:
   oui: yes
   non: no
   Non applicable: inapplicable
-# es:
-#   € / an: € / año
-#   an: año
-#   année: año
-#   années: años
-#   ans: años
-#   climatiseur: aire acondicionado
-#   h / an: h / año
-#   heure: hora
-#   heures: horas
-#   h / semaine: h / semana
-#   jour: día
-#   jours: días
-#   km / an: km / año
-#   km: km
-#   litre: litro
-#   litres: litros
-#   l / semaine: l / semana
-#   mois: mes
-#   personne: persona
-#   personnes: personas
-#   point: punto
-#   points: puntos
-#   semaine: semana
-#   semaines: semanas
-#   voyageurs: viajeros
-#   voyageur: viajero
-#   l / centkm: l / cien km
-#   oui: sí
-#   non: no
-#   Non applicable: no se aplica
 
+es:
+  €/an: € / año
+  an: año
+  h: hora
+  heure: hora
+  h/jour: h/día
+  h/semaine: h/semana
+  h/an: h/año
+  jour: día
+  km/an: km/año
+  km: km
+  litre: liter
+  l/semaine: l/semana
+  mois: mes
+  personne: persona
+  semaine: semana
+  voyageur: viajero
+  l/centkm: l/100km
+  stère: metro cúbico
+  nuit: noche
+  tasse: taza
+  tasse/semaine: taza/semana
+  bouteille: botella
+  climatiseur: aire acondicionado
+  paquet/semaine: paquete/semana
+  m2: m²
+  # NOTE: following entries should be moved in a separated file?
+  oui: sí
+  non: no
+  Non applicable: inaplicable
 # it:
 #   € / an: € / anno
 #   an: anno

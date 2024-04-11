@@ -50,6 +50,6 @@ async function importFile({ fileName }: { fileName: string }) {
     ).then((module) => module.default)
   } catch (e) {
     console.error('importFile error', e)
-    return {}
+    return null
   }
 }
