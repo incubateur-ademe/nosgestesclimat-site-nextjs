@@ -35,7 +35,7 @@ export default function SaveViaEmail() {
         </Trans>
       </p>
       {isSuccess ? (
-        <p>Bravo champion</p>
+        <p><Trans>Bravo champion·ne !</Trans></p>
       ) : (
         <form
           onSubmit={async (e) => {
