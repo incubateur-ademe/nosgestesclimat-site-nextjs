@@ -1,4 +1,4 @@
-import { SuppportedRegions } from '@/types/international'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { getFileFromModel } from './getFileFromModel'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
  */
 export async function getSupportedRegions({
   PRNumber,
-}: Props = {}): Promise<SuppportedRegions> {
+}: Props = {}): Promise<SupportedRegions> {
   const fileName = `supportedRegions.json`
 
   return getFileFromModel({ fileName, PRNumber })

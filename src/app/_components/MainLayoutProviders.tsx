@@ -2,7 +2,7 @@
 
 import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
 import { UserProvider } from '@/publicodes-state'
-import { MigrationType } from '@/publicodes-state/types'
+import { MigrationType, RegionFromGeolocation } from '@/publicodes-state/types'
 import { PropsWithChildren } from 'react'
 import CheckFixedRegion from './mainLayoutProviders/CheckFixedRegion'
 import { IframeResizer } from './mainLayoutProviders/IframeResizer'
@@ -12,7 +12,7 @@ import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProvide
 import QueryParamsProvider from './mainLayoutProviders/QueryParamsProvider'
 
 type Props = {
-  region: { code: string; name: string }
+  region: RegionFromGeolocation
   migrationInstructions: MigrationType
 }
 export default function MainLayoutProviders({

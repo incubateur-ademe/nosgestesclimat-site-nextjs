@@ -1,0 +1,57 @@
+---
+título: Guadeloupe
+fecha: 2022-10-04T08:17:41Z
+imagen: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Guadeloupe_from_ISS.jpg/640px-Guadeloupe_from_ISS.jpg?uselang=fr
+---
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Guadeloupe_from_ISS.jpg/640px-Guadeloupe_from_ISS.jpg?uselang=fr)
+
+> La isla de <a href="https://fr.wikipedia.org/wiki/Guadeloupe">Guadalupe</a>
+
+> En resumen :
+&gt
+> - la primera iniciativa regional que se extiende más allá de Francia continental
+> Una plataforma de internacionalización contributiva
+> Cada vez más mejoras del modelo: valores por defecto para calefacción, aire acondicionado, biogás, etc
+
+## NGC internacional 🗺️
+
+Lanzamos la internacionalización y la regionalización con nuestro <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/626">primer nuevo territorio: ¡Guadalupe</a>!
+
+Este trabajo esencial, que habíamos dejado de lado por el momento, fue motivado por la iniciativa de <a href="https://molokoi.com/">MOLOKOÏ</a>, empresa comprometida en la lucha contra el cambio climático en su región, y de <a href="https://gp.linkedin.com/in/samuel-charvet-830773223">Samuel Charvet</a>, estudiante de la Universidad de las Antillas en Point-à-Pitre.
+
+<p align="center"><img width="800" alt="screenshot" src="https://nosgestesclimat.fr/images/releases/user-screenshot.png" /></p>
+
+Las principales características de la versión guadalupeña son la personalización del factor de mezcla de electricidad, las sugerencias localizadas para el transporte aéreo y la incorporación del servicio de transbordadores entre islas, todo lo cual, obviamente, seguirá evolucionando.
+
+El objetivo es crear una comunidad de colaboradores, primero en Francia y después en Europa y el resto del mundo.
+
+## Aire acondicionado añadido ❄️
+
+La diferenciación del modelo para Guadalupe nos ha permitido darnos cuenta de la importancia del aire acondicionado y de la importancia relativa de la calefacción (para el agua caliente) en esta región tropical donde ningún mes es significativamente más frío que otro.
+
+Inicialmente reservado a Guadalupe, hemos extendido <a href="https://nosgestesclimat.fr/documentation/logement/climatisation">este modelo</a> de climatización a la Francia continental (de hecho, el modelo estándar en esta fase, porque es histórico), dada la extensión de los equipos de climatización en 2020: se prevé que el 25% de los hogares dispongan de ellos.
+
+Su huella es doble: su consumo de electricidad (especialmente intensivo en carbono en Guadalupe) _y_ su fuga de gases de efecto invernadero, que es significativa (varios cientos de kg de CO2e por aparato de aire acondicionado al año) incluso en una Francia con un mix eléctrico bajo en carbono.
+
+El tema es complejo (como suele serlo), por lo que este modelo no es más que una <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1488">primera iteración</a> que habrá que perfeccionar.
+
+## Biogás 🔥🌱
+
+Es una pregunta que se ha hecho muchas veces: ¿qué pasa con el "gas verde", también conocido como biogás y, más concretamente, biometano?
+
+Investigamos<a href="https://nosgestesclimat.fr/documentation/logement/gaz/biogaz">el impacto del</a> biogás y validamos la posibilidad de añadirlo a nuestro cálculo, y ahora ya está hecho.
+
+> ⚠️ Tenga en cuenta que no se trata en absoluto de una solución perfecta, y que no debe sustituir a una reducción más sostenible del consumo de gas mediante la electrificación, la sobriedad y la eficiencia energética.
+
+## Calefacción: valores medios 🌡️
+
+Se ha realizado un <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1433">estudio de los valores medios de simulación de</a> calefacción analizando detenidamente las estadísticas del <a href="https://nosgestesclimat.fr/documentation/parc-français">parque de viviendas francés</a>.
+
+## Tecnología ⚙️
+
+Como ya sabrá, la particularidad de ourgestesclimat es que se trata de un formulario generado a partir de un <a href="https://nosgestesclimat.fr/documentation">modelo de cálculo abierto</a>. Esto es lo que lo hace especialmente robusto a los cambios, porque no ordenamos minuciosamente las preguntas a mano, ni recodificamos enredos del tipo "si el usuario dice que vive en un piso, no preguntes por el cortacésped": todo se gestiona por nosotros.
+
+La gestión de las preguntas "mosaico" (como las casillas de "calefacción" o la elección de los menús de comida y cena) se ha mejorado, y ahora reside directamente en <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/blob/master/docs/mosaic.md">el modelo, ¡junto</a> a las demás preguntas!
+
+¿Qué hay para usted? Esto permite a los colaboradores que no quieren molestarse con Javascript (y otras consideraciones de codificación) modificar las preguntas en un lenguaje muy fácil de usar.
