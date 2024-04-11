@@ -9,7 +9,7 @@ import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { Rules } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
-import { SuppportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { currentLocale } from 'next-i18n-router'
 import { redirect } from 'next/navigation'
 import ButtonLaunch from './documentationServer/ButtonLaunch'
@@ -18,7 +18,7 @@ import PagesProches from './documentationServer/PagesProches'
 import QuestionSection from './documentationServer/QuestionSection'
 
 type Props = {
-  supportedRegions: SuppportedRegions
+  supportedRegions: SupportedRegions
   slugs: string[]
   locale?: string
 }
