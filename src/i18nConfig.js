@@ -1,5 +1,5 @@
 const i18nConfig = {
-  locales: ['fr', 'en'],
+  locales: ['fr', 'en', 'es'],
   defaultLocale: 'fr',
   localeDetector: (request) => {
     const acceptedLanguages = request.headers
@@ -9,7 +9,7 @@ const i18nConfig = {
       return 'fr'
     }
     const preferedLanguage = acceptedLanguages.find((acceptedLanguage) =>
-      ['fr', 'en'].includes(acceptedLanguage.split('-'))
+      ['fr', 'en', 'es'].includes(acceptedLanguage.split('-'))
     )
     return preferedLanguage || 'fr'
   },

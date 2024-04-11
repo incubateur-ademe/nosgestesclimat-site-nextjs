@@ -1,0 +1,183 @@
+---
+título: Vatnajökull
+fecha: 2023-04-26T16:43:04Z
+imagen: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Breidamerkurjoekull.jpg/640px-Breidamerkurjoekull.jpg
+---
+
+el glaciar Vatnajökull](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Breidamerkurjoekull.jpg/640px-Breidamerkurjoekull.jpg)
+
+> <a href="https://fr.wikipedia.org/wiki/Vatnaj%C3%B6kull">Vatnajökull</a> es <a href="https://fr.wikipedia.org/wiki/Islande">el</a> mayor <a href="https://fr.wikipedia.org/wiki/Calotte_glaciaire">casquete glaciar</a> de Islandia. Es el segundo <a href="https://fr.wikipedia.org/wiki/Glacier">glaciar</a> más grande de <a href="https://fr.wikipedia.org/wiki/Europe">Europa</a>.
+
+**En resumen** :
+
+- ✨ Nuevo reclutamiento
+- 🌍 El test se adapta ahora a una quincena de nuevas regiones y países
+- 🧮 Mejoras en el modelo de cálculo: mascotas, ferry, avión, electrodomésticos, muebles, redes de calor, etc.
+- 👥 Nuevas mejoras en el modo de grupo
+- 📱 Mejora de la visualización para pantallas pequeñas
+- 🪲 Corrección de errores
+
+## ✨ Contratación
+
+Estamos encantados de dar la bienvenida a 5 nuevas personas al equipo de Nos Gestes Climat, con el objetivo de escalar en términos de difusión y mejora de la herramienta:
+
+- Denis, desarrollador
+- Margaux, responsable de despliegue
+- Jérémie, diseñador
+- Benjamin, desarrollador web
+- Julie, experta en modelos de carbono
+
+## 🌍 Internacionalización del modelo de cálculo
+
+### Una nueva página de inicio internacional
+
+Descubre nuestra nueva página de inicio: *La<a href="https://nosgestesclimat.fr/international">calculadora internacional de la huella climática</a>.**
+
+![Page d'accueil internationale](https://user-images.githubusercontent.com/1177762/234643345-39f53d27-e0f4-4a0a-881b-38a3985721e1.png)
+
+### Una quincena de nuevos países y regiones añadidos
+
+Se han añadido muchos países nuevos a Nos Gestes Climat. Portugal, Reino Unido, Bélgica, Italia, etc.
+
+![Mosaïque des pays](https://user-images.githubusercontent.com/1177762/234643447-50e4387d-e122-49a6-b7c0-c84399d08ccc.png)
+
+¿Te sientes cómodo con el tema del carbono o estás motivado para contribuir? Aquí tienes todo lo que necesitas para añadir un nuevo país o región. El principio es sencillo: escriba una diferencia entre la huella de carbono de Francia, base del modelo, y la de otra región.
+
+Como ejemplo, un colaborador externo propuso él mismo una ampliación para Túnez, que pusimos en línea una semana después. Lo mismo ocurrió con Guadalupe, uno de los primeros modelos que se añadieron.
+
+En particular, el mix eléctrico, las especificidades regionales, los factores de emisión personalizados si existen, las recomendaciones de vuelos (por ejemplo, París→Atenas podría sustituirse por Roma → Túnez), etc. ¡Tú decides!
+
+Gracias a Electricity Map por permitirnos utilizar los datos del mix de consumo de los países compatibles con NGC
+
+<a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1732">Más información técnica aquí.</a>
+
+## 🧮 Mejoras en el modelo de cálculo
+
+Nuestro modelo de cálculo está en constante mejora. Esta primavera nos hemos esforzado al máximo, con una serie de nuevas funciones muy solicitadas.
+
+### Más opciones de muebles y electrodomésticos
+
+El modelo de cálculo de la huella de los muebles se ha completado, con más opciones y huellas actualizadas.
+
+![Nouvel écran meubles](https://user-images.githubusercontent.com/1177762/234643519-9b9589b0-1bcd-49ba-b3d1-320ff377fbc9.png)
+
+Lo mismo ocurre con los electrodomésticos. Por ejemplo, si te acabas de mudar de casa o has reformado la cocina, puede ser una buena ocasión para reevaluar tu huella.
+
+![Electroménager](https://user-images.githubusercontent.com/1177762/234643708-4d3ff9ef-dafd-422f-981d-2eac7e782b67.png)
+
+### Mascotas
+
+¡Nuestros pequeños (y no tan pequeños) amigos peludos se han unido a Nuestros Gestos Climáticos con una nueva pregunta dedicada!
+
+![Nouvelle question animaux domestiques](https://user-images.githubusercontent.com/1177762/234643987-533d60de-5c3b-4cdb-a687-0e432b17ff3f.png)
+
+Si tienes un perro o un gato, sabes que tienes que alimentarlos. Y la comida es una parte importante de nuestra huella climática. Esta es una oportunidad de oro para <a href="http://nosgestesclimat.fr/simulateur/bilan">volver a hacer el test</a> y descubrir el impacto de este elemento de la huella.
+
+### Registro de horas de vuelo durante 3 años
+
+Sabíamos muy bien que <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/1804">para la mayoría de los franceses (70%)</a>, el avión es un medio de transporte que no se utiliza todos los años.
+
+Además, muchas personas preocupadas por el calentamiento global deciden primero reducir sus vuelos repartiéndolos en el tiempo.
+
+Hemos flexibilizado la cuestión con una minicalculadora de amortización ✨.
+
+![Écran d'amortissement des heures d'avion](https://user-images.githubusercontent.com/1177762/234644247-67056d75-ff76-474f-b125-621e9126fdc3.png)
+
+### El transbordador
+
+Muchos de ustedes nos han preguntado por qué no se han incluido en la prueba los viajes en transbordador, sobre todo a las numerosas islas que bordean Francia y sus territorios de ultramar.
+
+Finalmente es así: de aquí a 2023, los transbordadores seguirán siendo casi exclusivamente transportes alimentados por combustibles fósiles. La dificultad que tuvimos al añadir esta pregunta fue atribuir la huella del buque. Y es que un transbordador presta muchos servicios de transporte distintos: en camarote, en asiento; con coche, con caravana; transporte de mercancías, para abastecer a la isla o al continente; servicios a bordo, como restaurantes y bares; travesías de distintas velocidades, etc.
+
+![Question ferry](https://user-images.githubusercontent.com/1177762/234644330-b0f1633f-648f-460c-92ce-6990465d6cda.png)
+
+Para no ahogarle a preguntas, hemos elegido un perfil medio de pasajero. A continuación, le explicaremos los detalles de un billete real, ya que la elección de su billete puede cambiar por completo el trazado de la travesía, <a href="http://futur.eco/ferry">como podrá comprobar en este minisimulador específico</a>.
+
+### Más opciones de calefacción
+
+Para los afortunados que ya disponen de una, se ha añadido la opción "red de calefacción urbana", un método de calefacción que va a generalizarse cada vez más, gracias sobre todo al trabajo de nuestros amigos de <a href="http://france-chaleur-urbaine.beta.gouv.fr/">France Chaleur Urbaine</a>.
+
+![Réseaux de chaleur](https://user-images.githubusercontent.com/1177762/234644422-20a6c82d-1b3e-44fa-9ca8-b009bab1bbab.png)
+
+También hemos pensado en los hogares que utilizan un depósito de gas 👍️.
+
+### Diversas mejoras del modelo
+
+En cuanto al transporte, un análisis estadístico ha demostrado que muchas personas utilizan un vehículo comercial ligero (VCL), también conocido como "furgoneta", para desplazarse en su vida personal. Esto es ahora una opción para el tamaño de tu coche.
+
+Para ayudarte, puedes introducir tu consumo de gasóleo de calefacción en euros en lugar de en kWh. ¡Pero los precios están cambiando! <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1741">Los hemos actualizado.</a>
+
+Del mismo modo, se ha <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1792">actualizado</a> la huella de carbono del **gas**.
+
+Si un usuario introducía "cero" en las preguntas "número de habitantes de la vivienda" o "número de personas que comparten coche", el sitio se bloqueaba, con la temida **división por cero** 😓 (aunque se trate de respuestas indeseables). Esto ya se ha corregido
+
+## Mejoras en el modo de grupo
+
+El modo <a href="http://nosgestesclimat.fr/groupe">grupo</a> de Nos Gestes Climat te permite hacer pruebas con otras personas, ya sea en un pequeño grupo de amigos, en una empresa o incluso en una conferencia con una experiencia interactiva.
+
+Estas son las mejoras de este modo:
+
+- un nuevo elemento de menú le permite descubrir y acceder al modo de grupo desde cualquier lugar de la aplicación
+- es más fácil orientarse en el menú: la pestaña activa se muestra de forma más destacada
+- cuando te unes a una sesión de grupo, aparece una barra de sesión de grupo claramente visible en la parte superior de la página, tanto en el móvil como en el escritorio, que te permite volver a la página de la sesión de grupo con un solo clic
+- después de unirse a una sesión de grupo, si cierra la pestaña y la vuelve a abrir, la sesión sigue activa: la almacenamos en la memoria del navegador
+- la posibilidad de ver únicamente las pruebas finalizadas en la pantalla del modo de grupo
+- toda una serie de discretas mejoras **en este modo cada vez más popular**
+- 🔭 próximamente: un nuevo modo de grupo para realizar encuestas, más profesional y menos interactivo.
+
+## 📱 Mejor gestión de las pantallas pequeñas
+
+Se sigue prestando especial atención a que la experiencia del usuario sea fluida en pantallas pequeñas.
+
+Esto incluye **simplificar la barra de menús** :
+
+![Screen_Shot_2023-04-06_at_15 54 50](https://user-images.githubusercontent.com/1177762/234644562-f48479e1-d6b3-422b-afae-09039b402e0c.png)
+
+Y el **destacado de los botones de la página de inicio**:
+
+![Screen_Shot_2023-04-06_at_16 10 02](https://user-images.githubusercontent.com/1177762/234644593-50e57c58-96bb-4220-ae8c-9abc8a7a9415.png)
+
+**La visualización de las preguntas en forma de _mosaicos_ también se ha modificado en este sentido**. Esto se aplica tanto a las preguntas _numéricas_ como a las _comprobables_:
+
+![Screen_Shot_2023-04-06_at_16 26 50](https://user-images.githubusercontent.com/1177762/234644637-6e350aed-2a39-48b1-afc4-d374379a90a4.png)
+
+![Screen_Shot_2023-04-06_at_16 34 22](https://user-images.githubusercontent.com/1177762/234644659-517987a7-8775-4aa3-b49c-726b65629cec.png)
+
+## 🔧 Tech
+
+### Lenguaje de programación Publicodes mejorado
+
+El modelo de cálculo de NGC está escrito en el lenguaje de programación <a href="https://publi.codes/">Publicodes</a>. El modelo tiene ya varios miles de líneas de código, por lo que es importante que sigamos y participemos en el desarrollo del proyecto Publicodes para que podamos hacer que el lenguaje evolucione en la dirección correcta para NGC.
+
+Así, en las últimas semanas** hemos podido añadir un nuevo mecanismo de <a href="https://publi.codes/docs/api/m%C3%A9canismes#moyenne">promedio</a> a Publicodes** para hacer más comprensibles los cálculos del submodelo <a href="https://nosgestesclimat.fr/documentation/divers/ameublement/meubles">Mobiliario</a>, con el <a href="https://nosgestesclimat.fr/documentation/divers/ameublement/meubles/lit/empreinte">cálculo de la huella de</a> la cama, por ejemplo.
+
+Además, existen varios modelos de cálculo de gases de efecto invernadero escritos en Publicodes fuera del modelo NGC, como <a href="https://futur.eco/">futur.eco</a>. <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1794"></a>
+
+Por ello, se pusieron en marcha<a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1794">soluciones técnicas</a> para poder **reutilizarlos sin tener que duplicar el código**. esto nos ha permitido integrar <a href="http://futur.eco/ferry">el modelo de cálculo de transbordadores de</a> futureco en Nos Gestes Climat ¡sin reinventar la rueda!
+
+### Mejoras varias
+
+Ahora gestionamos el almacenamiento de **varias simulaciones** en el perfil del usuario en Nos Gestes Climat. Por el momento, no hace mucho. Pero es un elemento básico para el futuro..
+
+Cada vez que se modifica el modelo de cálculo, ahora rastreamos los cambios en la huella de cada una de las <a href="http://nosgestesclimat.fr/personas">personas típicas</a> codificadas en NGC. De este modo, si se produce un aumento significativo e inesperado, podemos comprobar si se trata de un posible error.
+
+Para reforzar la fiabilidad del sitio, hemos puesto en marcha :
+
+- pruebas automatizadas (Cypress) que simulan a un usuario recorriendo decenas de caminos: ¡se acabaron las páginas en blanco!
+- seguimiento automático de errores (Sentry), porque ninguna prueba es infalible: sabremos más fácilmente cuándo se producen errores y cuáles hay que corregir primero
+
+Se ha mejorado la gestión de las traducciones del sitio y de la plantilla para que la experiencia sea más fluida y menos restrictiva para los colaboradores lingüísticos, con el objetivo de facilitar la incorporación de nuevos idiomas en el futuro.
+
+## Errores varios
+
+- https://github.com/incubateur-ademe/nosgestesclimat-site/pull/781
+- https://github.com/incubateur-ademe/nosgestesclimat-site/pull/903
+- https://github.com/incubateur-ademe/nosgestesclimat-site/pull/905
+- https://github.com/incubateur-ademe/nosgestesclimat/pull/1802
+- https://github.com/incubateur-ademe/nosgestesclimat-site/pull/893
+- https://github.com/incubateur-ademe/nosgestesclimat-site/pull/849
+- https://github.com/incubateur-ademe/nosgestesclimat-site/pull/851
+
+💡 Como recordatorio, todos los desarrollos del servicio público Nos Gestes Climat se realizan de forma transparente en la plataforma Github, tanto <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/">del lado del sitio</a> como <a href="https://github.com/incubateur-ademe/nosgestesclimat">del modelo de cálculo</a>.
+
+¡Esperamos verle pronto!

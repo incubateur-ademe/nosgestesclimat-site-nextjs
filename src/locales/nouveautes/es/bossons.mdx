@@ -1,0 +1,35 @@
+---
+título: Bossons
+fecha: 2020-09-01T15:10:55Z
+imagen: https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Absolute_MtBlanc_01.jpg/400px-Absolute_MtBlanc_01.jpg
+---
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Absolute_MtBlanc_01.jpg/400px-Absolute_MtBlanc_01.jpg)
+
+> En resumen: Potencia, huella media y algunos fallos
+
+Para esta 2ª versión de Nos Gestes Climat, hemos escuchado los comentarios que ya hemos recibido y hemos realizado estos cambios principales.
+
+## Alimentación
+
+Introducimos una opción de desayuno :
+
+![image](https://user-images.githubusercontent.com/1177762/91868807-6ea72d00-ec75-11ea-81bb-982cac0ea55a.png)
+
+Así como un nuevo selector de dieta, mucho menos rígido que una dieta única.
+
+![image](https://user-images.githubusercontent.com/1177762/91868962-9c8c7180-ec75-11ea-86fc-2f12f26baf35.png)
+
+## Valores por defecto más representativos
+
+Ahora, el simulador propone por defecto 11,7 toneladas, una cifra más cercana a la huella media de un francés (antes estábamos en 10).
+
+## Supresión del elemento "finanzas
+
+Como se explicó en el #24, asignar una huella al dinero que se tiene en el banco suponía una doble contabilización. Lo hemos suprimido.
+
+## 🐛 bug del coche compartido
+
+En resumen, la huella del coche compartido estaba muy sobreestimada.
+
+Ahora atribuimos una parte de la construcción del vehículo a cada persona que alquila un coche para desplazarse. Cometíamos el error de atribuirles _toda_ la construcción.

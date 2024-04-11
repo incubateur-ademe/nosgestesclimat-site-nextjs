@@ -9,6 +9,6 @@ export function useTrackRegion() {
   const { region } = user
 
   useEffect(() => {
-    trackEvent(trackingRegion(region?.code ?? 'FR'))
+    trackEvent(trackingRegion(region?.code || 'FR'))
   }, [region])
 }

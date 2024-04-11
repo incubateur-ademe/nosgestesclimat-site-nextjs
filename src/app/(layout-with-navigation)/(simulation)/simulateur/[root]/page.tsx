@@ -17,6 +17,7 @@ export default function SimulateurPage() {
   return (
     <div className="mx-auto w-full max-w-3xl">
       <Simulateur />
+
       <Faq />
     </div>
   )

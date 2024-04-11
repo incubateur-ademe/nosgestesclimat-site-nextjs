@@ -12,20 +12,16 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
 import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
 
 export default function GroupCreationForm() {
   const locale = useLocale()
 
-  const {
-    user,
-    updateName,
-    updateEmail,
-    getCurrentSimulation,
-    updateCurrentSimulation,
-  } = useUser()
+  const { user, updateName, updateEmail } = useUser()
+
+  const currentSimulation = useCurrentSimulation()
 
   const { name, userId, email } = user
 
@@ -36,8 +32,6 @@ export default function GroupCreationForm() {
   const [errorEmail, setErrorEmail] = useState('')
 
   const { t } = useClientTranslation()
-
-  const currentSimulation = getCurrentSimulation()
 
   const hasCompletedTest = currentSimulation?.progression === 1
 
@@ -106,7 +100,7 @@ export default function GroupCreationForm() {
       updateEmail(administratorEmail)
 
       // Update current simulation with group id (to redirect after test completion)
-      updateCurrentSimulation({
+      currentSimulation.update({
         groupToAdd: group._id,
       })
 

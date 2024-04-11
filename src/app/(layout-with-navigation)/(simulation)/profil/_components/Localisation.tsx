@@ -7,12 +7,13 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
-import { SuppportedRegions } from '@/types/international'
+import { RegionFromGeolocation } from '@/publicodes-state/types'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import RegionModelAuthors from './localisation/RegionModelAuthors'
 import RegionSelector from './localisation/RegionSelector'
 
 type Props = {
-  supportedRegions: SuppportedRegions
+  supportedRegions: SupportedRegions
 }
 
 export default function Localisation({ supportedRegions }: Props) {
@@ -66,9 +67,7 @@ export default function Localisation({ supportedRegions }: Props) {
                   color="text"
                   size="sm"
                   onClick={() => {
-                    updateRegion(
-                      initialRegion as { code: string; name: string }
-                    )
+                    updateRegion(initialRegion as RegionFromGeolocation)
                     if (tutorials.localisationBanner) {
                       showTutorial('localisationBanner')
                     }
@@ -83,9 +82,11 @@ export default function Localisation({ supportedRegions }: Props) {
                 </Button>
               </div>
             )}
-            <RegionModelAuthors
-              authors={supportedRegions[region.code][locale].authors}
-            />
+            {isRegionSupported && (
+              <RegionModelAuthors
+                authors={supportedRegions[region.code][locale].authors}
+              />
+            )}
           </div>
         </div>
       )}

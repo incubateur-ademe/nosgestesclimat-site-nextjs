@@ -9,7 +9,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { formatValue } from 'publicodes'
 import { twMerge } from 'tailwind-merge'
@@ -22,10 +22,9 @@ export default function GetResultsByEmail({
 }) {
   const { t } = useClientTranslation()
 
-  const { user, updateEmail, getCurrentSimulation, updateCurrentSimulation } =
-    useUser()
+  const { user, updateEmail } = useUser()
 
-  const currentSimulation = getCurrentSimulation()
+  const currentSimulation = useCurrentSimulation()
 
   const { saveSimulation, isPending, isSuccess, isError, error } =
     useSaveSimulation()
@@ -34,10 +33,6 @@ export default function GetResultsByEmail({
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
-    if (!currentSimulation) {
-      return // TODO: should throw an error
-    }
 
     // If the mutation is pending, we do nothing
     if (isPending) {
@@ -56,7 +51,7 @@ export default function GetResultsByEmail({
     })
 
     // We update the simulation to signify that it has been saved (and not show the form anymore)
-    updateCurrentSimulation({ savedViaEmail: true })
+    currentSimulation.update({ savedViaEmail: true })
   }
 
   // If we successfully saved the simulation, we display the confirmation message
