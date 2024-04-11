@@ -1,6 +1,6 @@
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { useContext } from 'react'
-import simulationContext from '../../providers/simulationProvider/context'
+import { SimulationContext } from '../../providers/simulationProvider/context'
 import { DottedName, NodeValue } from '../../types'
 
 /**
@@ -9,8 +9,7 @@ import { DottedName, NodeValue } from '../../types'
  * It should only be used when it is needed to compare rules between them. If not, useRule should be used
  */
 export default function useEngine() {
-  const { engine, safeEvaluate, safeGetRule, updateSituation } =
-    useContext(simulationContext)
+  const { engine, safeEvaluate, safeGetRule } = useContext(SimulationContext)
 
   const getValue = (dottedName: DottedName): NodeValue =>
     safeEvaluate(dottedName)?.nodeValue
@@ -36,7 +35,6 @@ export default function useEngine() {
     getCategory,
     getSubcategories,
     checkIfValid,
-    updateSituation,
     safeEvaluate,
     safeGetRule,
   }

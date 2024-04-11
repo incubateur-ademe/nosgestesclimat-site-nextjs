@@ -1,9 +1,11 @@
-import { useForm, useRule } from '@/publicodes-state'
+import { useForm, useRule, useSimulation } from '@/publicodes-state'
 
 import Category from './categoriesChart/Category'
 
 export default function CategoriesChart() {
-  const { categories, currentCategory } = useForm()
+  const { currentCategory } = useForm()
+
+  const { categories } = useSimulation()
 
   const { numericValue: total } = useRule('bilan')
 
@@ -17,8 +19,8 @@ export default function CategoriesChart() {
               index === 0
                 ? 'first'
                 : index === categories.length - 1
-                ? 'last'
-                : 'middle'
+                  ? 'last'
+                  : 'middle'
             }
             category={category}
             current={currentCategory === category}

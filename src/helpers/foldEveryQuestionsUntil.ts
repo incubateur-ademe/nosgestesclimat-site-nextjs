@@ -1,15 +1,21 @@
+import { UpdateCurrentSimulationProps } from '@/publicodes-state/types'
+
 type Props = {
   question: string
   relevantQuestions: string[]
-  addFoldedStep: (question: string) => void
+  updateCurrentSimulation: (
+    simulation: UpdateCurrentSimulationProps
+  ) => Promise<void>
 }
 
 export function foldEveryQuestionsUntil({
   question,
   relevantQuestions,
-  addFoldedStep,
+  updateCurrentSimulation,
 }: Props) {
   const indexOfQuestion = relevantQuestions.indexOf(question)
   const questionsToAnswer = relevantQuestions.slice(0, indexOfQuestion)
-  questionsToAnswer.map((question) => addFoldedStep(question))
+  questionsToAnswer.map((question) =>
+    updateCurrentSimulation({ foldedStepToAdd: question })
+  )
 }

@@ -4,7 +4,7 @@ import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { getIsIframe } from '@/utils/getIsIframe'
 import { useEffect, useRef, useState } from 'react'
 
@@ -16,9 +16,9 @@ export default function IframeDataShareModal() {
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const { getCurrentSimulation } = useUser()
-  const currentSimulation = getCurrentSimulation()
-  const categories = currentSimulation?.computedResults?.categories ?? {}
+  const { computedResults } = useCurrentSimulation()
+
+  const categories = computedResults?.categories ?? {}
 
   const data = Object.keys(categories).reduce(
     (accumulator, categoryName) => ({

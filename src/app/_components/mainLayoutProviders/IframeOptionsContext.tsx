@@ -2,9 +2,9 @@
 
 import { trackingIframe } from '@/constants/tracking/misc'
 import { useIsClient } from '@/hooks/useIsClient'
+import { getIsIframe } from '@/utils/getIsIframe'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { PropsWithChildren, createContext, useEffect, useState } from 'react'
-import { getIsIframe } from '../utils/getIsIframe'
 
 export const IframeOptionsContext = createContext<{
   isIframe?: boolean

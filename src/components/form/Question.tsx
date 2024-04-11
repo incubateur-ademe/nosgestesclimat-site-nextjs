@@ -70,7 +70,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             if (type === 'number') {
               if (setTempValue) setTempValue(value)
             }
-            setValue(value, question)
+            setValue(value, { foldedStep: question })
           }}
         />
         {type === 'number' && (
@@ -81,7 +81,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
               if (setTempValue) {
                 setTempValue(value)
               }
-              setValue(value, question)
+              setValue(value, { foldedStep: question })
               trackEvent(questionTypeAnswer({ question, answer: value }))
             }}
             isMissing={isMissing}
@@ -97,7 +97,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             value={value}
             setValue={(value) => {
               {
-                setValue(value, question)
+                setValue(value, { foldedStep: question })
                 trackEvent(questionChooseAnswer({ question, answer: value }))
               }
             }}
@@ -116,7 +116,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             value={String(value)}
             setValue={(value) => {
               {
-                setValue(value, question)
+                setValue(value, { foldedStep: question })
                 trackEvent(questionChooseAnswer({ question, answer: value }))
               }
             }}

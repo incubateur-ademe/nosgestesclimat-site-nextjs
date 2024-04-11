@@ -8,7 +8,7 @@
     "url": "https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs.git"
   },
   "engines": {
-    "node": "<20"
+    "node": "20"
   },
   "scripts": {
     "dev": "next dev",
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1",
-    "@incubateur-ademe/nosgestesclimat": "^2.2.0",
+    "@incubateur-ademe/nosgestesclimat": "2.3.0-rc.1",
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
     "@next/bundle-analyzer": "^14.1.0",
@@ -70,6 +70,7 @@
     "tailwindcss": "3.4.1",
     "uuid": "^9.0.1",
     "xlsx": "^0.18.5",
+    "yargs": "^17.7.2",
     "yarn": "^1.22.21"
   },
   "devDependencies": {
@@ -79,6 +80,7 @@
     "@incubateur-ademe/nosgestesclimat-scripts": "^0.6.0",
     "@simonsmith/cypress-image-snapshot": "^9.0.1",
     "@types/mdx": "^2.0.10",
+    "@types/mocha": "^10.0.6",
     "@types/node": "^20.9.0",
     "@types/react": "^18.2.59",
     "@types/react-dom": "^18.2.15",

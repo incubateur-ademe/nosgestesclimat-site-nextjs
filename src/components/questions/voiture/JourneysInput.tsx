@@ -86,7 +86,7 @@ export default function JourneysInput({ question, setTempValue }: Props) {
   useEffect(() => {
     if (prevTotal.current !== total) {
       if (setTempValue) setTempValue(total)
-      setValue(total, question)
+      setValue(total, { foldedStep: question })
       setNumPassengers(averagePassengers)
     }
     prevTotal.current = total

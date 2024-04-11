@@ -1,5 +1,5 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { Situation } from '@/publicodes-state/types'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
@@ -29,15 +29,13 @@ const getLinkToSimulateurPagePropsDefault = {
 export function useSimulateurPage() {
   const router = useRouter()
 
-  const { getCurrentSimulation, tutorials, initSimulation } = useUser()
+  const { tutorials, initSimulation } = useUser()
 
   const { goToEndPage, getLinkToEndPage } = useEndPage()
 
   const tutorielSeen = tutorials.testIntro
 
-  const currentSimulation = getCurrentSimulation()
-
-  const progression = currentSimulation?.progression
+  const { progression } = useCurrentSimulation()
 
   const goToSimulateurPage = useCallback(
     async ({
@@ -45,8 +43,8 @@ export function useSimulateurPage() {
       newSimulation = undefined,
     }: GoToSimulateurPageProps = goToSimulateurPagePropsDefault) => {
       // If there is no current simulation (or we want to force a new one), we init a new simulation
-      if (!currentSimulation || newSimulation) {
-        initSimulation(newSimulation)
+      if (newSimulation) {
+        await initSimulation(newSimulation)
       }
 
       // If we don't want to navigate, we do nothing
@@ -69,14 +67,7 @@ export function useSimulateurPage() {
       // else we redirect him to the tutoriel page
       router.replace('/tutoriel')
     },
-    [
-      currentSimulation,
-      tutorielSeen,
-      router,
-      initSimulation,
-      progression,
-      goToEndPage,
-    ]
+    [tutorielSeen, router, initSimulation, progression, goToEndPage]
   )
 
   const getLinkToSimulateurPage = useCallback(
@@ -106,13 +97,13 @@ export function useSimulateurPage() {
     }
 
     // If the user has seen the tutoriel we return the test page label
-    if (tutorielSeen) {
+    if (progression > 0) {
       return 'Reprendre mon test'
     }
 
     // else we return the tutoriel page label
     return 'Passer le test →'
-  }, [tutorielSeen, progression])
+  }, [progression])
 
   return {
     goToSimulateurPage,
