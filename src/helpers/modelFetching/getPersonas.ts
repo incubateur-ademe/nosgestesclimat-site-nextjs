@@ -18,5 +18,5 @@ export async function getPersonas(
     return getFileFromModel({ fileName, PRNumber })
   }
 
-  return Promise.resolve(personas['fr'])
+  return Promise.resolve(personas[locale])
 }
