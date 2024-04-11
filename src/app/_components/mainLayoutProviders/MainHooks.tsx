@@ -9,10 +9,8 @@ import { useTrackLocale } from '@/hooks/tracking/useTrackLocale'
 import { useTrackPageView } from '@/hooks/tracking/useTrackPageView'
 import { useTrackRegion } from '@/hooks/tracking/useTrackRegion'
 import { useTrackSplitTesting } from '@/hooks/tracking/useTrackSplitTesting'
-import { useDebug } from '@/hooks/useDebug'
-import { useFixedRegion } from '@/hooks/useFixedRegion'
-import { useIframeResizer } from '@/hooks/useIframeResizer'
-import { usePRNumber } from '@/hooks/usePRNumber'
+import { useInitSimulationParam } from '@/hooks/useInitSimulationParam'
+import { useUserInfosParams } from '@/hooks/useUserInfosParams'
 import { PropsWithChildren } from 'react'
 
 export default function MainHooks({ children }: PropsWithChildren) {
@@ -20,12 +18,8 @@ export default function MainHooks({ children }: PropsWithChildren) {
   useTrackPageView()
   useTrackLocale()
   useTrackRegion()
-
-  useFixedRegion()
-  useDebug()
-  usePRNumber()
-
-  useIframeResizer()
+  useUserInfosParams()
+  useInitSimulationParam()
 
   return children
 }

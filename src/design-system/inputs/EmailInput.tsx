@@ -9,6 +9,7 @@ type Props = {
   label?: ReactNode | string
   helperText?: string
   className?: string
+  readOnly?: boolean
 }
 
 export default function EmailInput({
@@ -19,6 +20,7 @@ export default function EmailInput({
   label,
   helperText,
   className,
+  readOnly = false,
   ...props
 }: Props) {
   return (
@@ -37,6 +39,7 @@ export default function EmailInput({
       value={email}
       error={error}
       className={className}
+      readOnly={readOnly}
       {...props}
     />
   )

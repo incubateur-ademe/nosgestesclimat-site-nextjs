@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react'
-import { User, UserOrganisationInfo } from '../../types'
+import { RegionFromGeolocation, User, UserOrganisationInfo } from '../../types'
 
 type Props = {
   user: User
@@ -27,10 +27,7 @@ export default function useUserDetails({ user, setUser }: Props) {
       setUser((prevUser: User) => ({ ...prevUser, email }))
     })
 
-  const updateRegion = (region: {
-    code: string
-    name: string
-  }): Promise<void> =>
+  const updateRegion = (region: RegionFromGeolocation): Promise<void> =>
     new Promise((resolve) => {
       resolveFunction.current = resolve
       setUser((prevUser: User) => ({ ...prevUser, region }))

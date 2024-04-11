@@ -1,0 +1,84 @@
+---
+título: Gébroulaz
+fecha: 2022-06-08T16:30:50Z
+imagen: https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Glacier_de_Gébroulaz2.jpg/640px-Glacier_de_Gébroulaz2.jpg
+---
+
+glaciar de Gébroulaz](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Glacier_de_Gébroulaz2.jpg/640px-Glacier_de_Gébroulaz2.jpg)
+
+> En resumen :
+&gt
+> - Llegada del modo encuesta
+> Una nueva métrica: el petróleo
+> - Mejoras en el modelo de cálculo: caravana, camping car, combustible para coches, digital ...
+> Mejoras en las acciones: comprar un coche eléctrico, subvencionar la compra de una bicicleta, etc
+> Nuevos recursos didácticos
+
+## ¡Ya está disponible el modo encuesta! 💾
+
+- **¿Qué es?
+  El modo "encuesta" de Nos Gestes Climat permite que varias personas realicen el test guardando los datos de forma permanente (huella de carbono total y por categorías). Este modo puede ser particularmente útil como parte de un taller o evento, ¡y hay una <a href="https://nosgestesclimat.fr/groupe/guide">guía del moderador</a> disponible para ayudarte!
+
+![image](https://user-images.githubusercontent.com/55186402/171632300-dba6d437-a9bd-44b3-afc3-874c1e7307d6.png)
+
+- **Personalización de la encuesta
+  La llegada de este nuevo modo viene acompañada de una función adicional que permite añadir algunas preguntas para recabar información adicional a modo de introducción a la prueba. Por ejemplo, esto podría ser útil para organizar una encuesta a nivel de toda la organización, permitiendo al mismo tiempo filtrar los resultados por tipo de encuestado (estatus, etc.), edad o lugar de residencia (teniendo cuidado, por supuesto, de no comprometer las normas del RGPD). También hemos estado trabajando en la seguridad de las encuestas para evitar que se introduzcan vulnerabilidades en nuestra base de datos a través de esta función. Encontrará todos los detalles en nuestra <a href="https://nosgestesclimat.fr/groupe/documentation-contexte">documentación</a> 
+
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/55186402/171632420-ada9f5c5-b1ab-45a5-b0f7-05d95df2b3bc.png">
+
+- **Mejor filtrado de la página de visualización del modo de grupo*** En la versión anterior, cualquier usuario que hubiera iniciado sesión en la encuesta aparecía en la página de visualización del modo de grupo
+  En la versión anterior, cualquier usuario que hubiera iniciado sesión en la encuesta aparecía en el gráfico de visualización. Algunas personas contaban como 1 participante sin ni siquiera haber realizado la prueba (con una puntuación correspondiente a los valores por defecto) y las visitas fantasma distorsionaban los resultados (¡sobre todo el valor medio!). Este ya no es el caso en esta versión, ya que los datos mostrados se filtran para excluir a los usuarios que han completado menos del 10% de las preguntas del test. Si se personaliza la encuesta (véase más arriba), se aplica un filtro adicional para mostrar sólo a los participantes que han completado las preguntas contextuales.
+
+## Una nueva métrica: ¡aceite! 🛢
+
+Para visualizar mejor la cantidad de petróleo que consumimos en nuestras vidas, hemos decidido añadir a Nos Gestes Climat el número correspondiente de depósitos llenos, además del CO₂e. Por el momento, esta métrica sólo se refiere a las emisiones directas relacionadas con el petróleo (desplazamientos, calefacción de gasóleo, etc.).
+Es una forma de poner de relieve nuestra dependencia de estos combustibles fósiles, pero también de visualizar mejor el impacto de las acciones que podemos llevar a cabo: el número de veces que repostamos en el surtidor habla más alto que las toneladas de CO₂e, así que pasa el dedo por la pantalla al final para ver tu impacto petrolero
+
+<img width="577" alt="image" src="https://user-images.githubusercontent.com/55186402/171646402-b2d769d1-0626-4a0d-8903-90b7727383e0.png">
+
+## Mejoras en el modelo de cálculo 🧮
+
+- **Agregación de caravana y autocaravana**
+  ¡Ahora hay más opciones en Nuestros Gestos Climáticos para ir de vacaciones! Las caravanas y autocaravanas han encontrado su sitio. Tenga en cuenta que, en el caso de las caravanas, el número de kilómetros recorridos debe incluirse en el número de kilómetros recorridos en coche. Más información sobre la metodología en el número 1317.
+  ![image](https://user-images.githubusercontent.com/1177762/160854704-aa5b1010-e8f9-43cb-966b-ba80e6a8f731.png)
+
+- **Cambio en el ratio de pasajeros
+  Con la llegada de la ayuda para la introducción de los kilómetros en la <a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/las-n%C3%A9ous">última versión</a>, se planteó la cuestión de la elección del coeficiente de ocupación del vehículo aplicado para asignar las amortizaciones a los distintos usuarios del automóvil. Finalmente decidimos cambiar el ratio elegido inicialmente. Los detalles están disponibles en el número 1337 y en la <a href="https://github.com/incubateur-ademe/nosgestesclimat/blob/8fe4b633502fe52dda7eccdc0e9db01b9f677e57/data/transport/transport%20.%20voiture.yaml#L53">nota sobre la variable "ratio</a>de pasajeros".
+
+- **Más elección de combustible
+  Diesel (B7 o B10), gasolina (E5 o E10) o gasolina E85 (biocarburantes), ¡tú eliges! Cuidado, sin embargo, con el mensaje que se envía a los usuarios cuando seleccionan los biocarburantes. Es cierto que el impacto del carbono es menor, pero el factor de emisión es especialmente incierto: ¡no se tienen en cuenta, en particular, las cuestiones relacionadas con el uso de la tierra! Por ello, ¡aparece un aviso para explicar esta cuestión! Toda la información y las discusiones se encuentran en el correspondiente número 1396
+
+- **Mejoras en el mosaico digital
+  Se han añadido nuevos objetos al mosaico digital de objetos #1359:
+
+  - 🎵 altavoz bluetooth
+  - 🔊 altavoz de voz
+  - ⌚️ reloj conectado
+  - 🕹 consola doméstica
+  - 🎮 consola portátil
+
+- **Nuevos modos de calefacción**
+  ¡Ahora es posible elegir una bomba de calor (#1360)! Estamos pensando en añadir también redes de calor.
+
+## Mejoras en las acciones 💪
+
+- **Se ha añadido una nueva acción "Comprar un coche eléctrico "**
+  Ofrecida si ya tienes coche, esta acción permite a los usuarios ver el impacto (positivo o negativo) de comprar un coche eléctrico nuevo o de segunda mano en función de los kilómetros recorridos al año.
+
+ <img width="601" alt="image" src="https://user-images.githubusercontent.com/55186402/171641150-ec39e53c-2565-43ae-8379-1b97691c8f03.png">
+
+- **Mesaidesvelo.fr se añade a la lista de acciones
+  Se ha añadido un enlace a <a href="https://mesaidesvelo.fr/">mesaidesvelo</a>.fr a las acciones correspondientes. La herramienta ha sido desarrollada por @mquandalle, que es desarrollador en mon-entreprise.fr, y mesaidesvelo.fr ya está integrada en el sitio web oficial <a href="https://www.1jeune1solution.gouv.fr/">https://www.1jeune1solution.gouv.fr/.</a>
+ <img width="789" alt="image" src="https://user-images.githubusercontent.com/55186402/171675160-9cd5c968-d2ba-473a-8ca1-8e316ec041f2.png">
+
+## Una nueva forma de contribuir 👥
+
+Contribuir es más fácil para los que no son desarrolladores Los repositorios se han configurado para que puedas modificar o añadir nuevas características en tiempo real a través de un entorno de desarrollo directamente en tu navegador. ¡Te lo explicamos todo en el <a href="https://github.com/incubateur-ademe/nosgestesclimat/blob/master/CONTRIBUTING.md#vous-voulez-contribuer-comme-un-pro">tutorial de Gitpod</a>!
+
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/55186402/171634543-25c6a773-849c-4931-9aef-a96df5506334.png">
+
+## Nuevos recursos 📚
+
+Para ayudarte con tus eventos, pero también para que puedas cuestionar tus propios resultados, <a href="https://nosgestesclimat.fr/groupe/guide">¡hay hojas guía en línea</a>!
+
+**Lista completa de cambios**: https://github.com/incubateur-ademe/nosgestesclimat/compare/1.5.0...1.6.0
