@@ -18,15 +18,12 @@ export type UserOrganisationInfo = {
 export type RegionFromGeolocation = { code: string; name: string }
 
 export type User = {
-  region?: {
-    code: string
-    name: string
-  }
-  initialRegion: RegionFromGeolocation
-  name: string
-  email: string
-  northStarRatings?: any // TODO: should be NorthStartType or something
   userId: string
+  name?: string
+  email?: string
+  region?: RegionFromGeolocation
+  initialRegion: RegionFromGeolocation
+  northStarRatings?: any // TODO: should be NorthStartType or something
   loginExpirationDate?: Date
   organisation?: UserOrganisationInfo
   administratorEmail?: string

@@ -24,8 +24,6 @@ export default function usePersistentUser({
       code: '',
       name: '',
     },
-    name: '',
-    email: '',
     userId: '',
   })
 

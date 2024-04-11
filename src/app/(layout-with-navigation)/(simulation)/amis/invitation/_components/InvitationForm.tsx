@@ -17,13 +17,7 @@ export default function InvitationForm({ group }: { group: Group }) {
 
   const { t } = useClientTranslation()
 
-  const {
-    user,
-    updateEmail,
-    updateName,
-    updateCurrentSimulation,
-  } = useUser(
-
+  const { user, updateEmail, updateName, updateCurrentSimulation } = useUser()
 
   const { progression } = useCurrentSimulation()
 
@@ -32,7 +26,6 @@ export default function InvitationForm({ group }: { group: Group }) {
   const { goToSimulateurPage } = useSimulateurPage()
   const { goToEndPage } = useEndPage()
 
-  
   const handleSubmit = async (event: MouseEvent | FormEvent) => {
     // Avoid reloading page
     if (event) {
