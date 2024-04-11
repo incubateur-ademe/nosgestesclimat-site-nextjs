@@ -15,7 +15,12 @@ import {
 import { useFetchSimulation } from '@/hooks/simulation/useFetchSimulation'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useRule, useTempEngine, useUser } from '@/publicodes-state'
+import {
+  useCurrentSimulation,
+  useRule,
+  useTempEngine,
+  useUser,
+} from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
@@ -43,7 +48,9 @@ export default function ActionCard({
 
   const { rules, extendedFoldedSteps } = useTempEngine()
 
-  const { getCurrentSimulation, toggleActionChoice, rejectAction } = useUser()
+  const { toggleActionChoice, rejectAction } = useUser()
+
+  const currentSimulation = useCurrentSimulation()
 
   const { dottedName, title, missingVariables, traversedVariables } = action
 
@@ -69,8 +76,6 @@ export default function ActionCard({
   )
 
   const { category } = useRule(dottedName)
-
-  const currentSimulation = getCurrentSimulation()
 
   const actionChoices = currentSimulation?.actionChoices
 

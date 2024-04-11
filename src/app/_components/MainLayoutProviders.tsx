@@ -1,15 +1,13 @@
 'use client'
 
-import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
+import { IframeOptionsProvider } from '@/app/_components/mainLayoutProviders/IframeOptionsContext'
 import { UserProvider } from '@/publicodes-state'
 import { MigrationType, RegionFromGeolocation } from '@/publicodes-state/types'
 import { PropsWithChildren } from 'react'
-import CheckFixedRegion from './mainLayoutProviders/CheckFixedRegion'
-import { IframeResizer } from './mainLayoutProviders/IframeResizer'
 import MainHooks from './mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from './mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProviderWrapper'
-import QueryParamsProvider from './mainLayoutProviders/QueryParamsProvider'
+import SimulationSyncProvider from './mainLayoutProviders/SimulationSyncProvider'
 
 type Props = {
   region: RegionFromGeolocation
@@ -21,21 +19,19 @@ export default function MainLayoutProviders({
   migrationInstructions,
 }: PropsWithChildren<Props>) {
   return (
-    <QueryParamsProvider>
-      <IframeOptionsProvider>
-        <QueryClientProviderWrapper>
-          <IframeResizer />
-          <UserProvider
-            initialRegion={region}
-            storageKey="nosgestesclimat::v3"
-            migrationInstructions={migrationInstructions}>
-            <CheckFixedRegion />
-            <PreventNavigationProvider>
+    <IframeOptionsProvider>
+      <QueryClientProviderWrapper>
+        <UserProvider
+          initialRegion={region}
+          storageKey="nosgestesclimat::v3"
+          migrationInstructions={migrationInstructions}>
+          <PreventNavigationProvider>
+            <SimulationSyncProvider>
               <MainHooks>{children}</MainHooks>
-            </PreventNavigationProvider>
-          </UserProvider>
-        </QueryClientProviderWrapper>
-      </IframeOptionsProvider>
-    </QueryParamsProvider>
+            </SimulationSyncProvider>
+          </PreventNavigationProvider>
+        </UserProvider>
+      </QueryClientProviderWrapper>
+    </IframeOptionsProvider>
   )
 }
