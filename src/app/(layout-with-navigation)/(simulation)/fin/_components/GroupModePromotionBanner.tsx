@@ -32,16 +32,15 @@ export default function GroupModePromotionBanner({
       </div>
 
       <div className="flex flex-1 flex-col items-start justify-center pb-4">
-        <p className="max-w-sm font-bold">
+        <p className="max-w-sm">
           <Trans>
             Comparez vos résultats{' '}
-            <span className="text-blue-dark">avec vos proches</span>
+            <span className="text-primary-700">avec vos proches</span>
           </Trans>
         </p>
 
         <ButtonLink
           color="secondary"
-          size="sm"
           href="/amis"
           trackingEvent={endClickCreateGroup}>
           <Trans>Créer un groupe</Trans>

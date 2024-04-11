@@ -51,7 +51,7 @@ export default function SimulationList() {
                     </span>
                     {currentSimulationId === simulation.id ? (
                       <span className="mx-2 flex items-center">
-                        <CheckCircleIcon className="mr-1 h-4 w-4 fill-emerald-dark" />{' '}
+                        <CheckCircleIcon className="mr-1 h-4 w-4 fill-green-500" />{' '}
                         <Trans>Chargée</Trans>
                       </span>
                     ) : (

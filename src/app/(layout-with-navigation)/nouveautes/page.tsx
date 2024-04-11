@@ -32,7 +32,7 @@ export default async function Releases() {
         title={
           <span className="flex items-center">
             <Trans>Les nouveautés</Trans>
-            <SparklesIcon className="ml-2 fill-yellow-default" />
+            <SparklesIcon className="fill-divers-300 ml-2" />
           </span>
         }
       />

@@ -6,6 +6,7 @@ import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import {
   getBackgroundLightColor,
   getBorderColor,
+  getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useRule, useSimulation } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
@@ -18,23 +19,6 @@ type Props = {
   category: DottedName
 }
 
-function getTextDarkColor(category?: string | null) {
-  switch (category) {
-    case 'transport':
-      return `text-blue-dark`
-    case 'alimentation':
-      return `text-orange-dark`
-    case 'logement':
-      return `text-emerald-dark`
-    case 'divers':
-      return `text-yellow-dark`
-    case 'services sociétaux':
-      return `text-lavender-dark`
-    default:
-      return 'text-primary-700'
-  }
-}
-
 export default function Category({ category }: Props) {
   const { title, numericValue, icons } = useRule(category)
   const { subcategories } = useSimulation()
@@ -44,7 +28,6 @@ export default function Category({ category }: Props) {
 
   return (
     <div className="relative mb-4 w-full">
-      <div className="text-blue-default text-emerald-default text-lavender-default text-orange-default text-yellow-default opacity-0" />
       <button
         disabled={!subcategories[category].length}
         className="block w-full"

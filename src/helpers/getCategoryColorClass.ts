@@ -18,17 +18,17 @@ export function getTextColor(category?: string | null) {
 export function getTextDarkColor(category?: string | null) {
   switch (category) {
     case 'transport':
-      return `text-blue-evenDarker`
+      return `text-transport-950`
     case 'alimentation':
-      return `text-orange-evenDarker`
+      return `text-alimentation-950`
     case 'logement':
-      return `text-emerald-evenDarker`
+      return `text-logement-950`
     case 'divers':
-      return `text-yellow-evenDarker`
+      return `text-divers-950`
     case 'services sociétaux':
-      return `text-lavender-evenDarker`
+      return `text-servicessocietaux-950`
     default:
-      return 'text-default'
+      return 'text-primary-950'
   }
 }
 
@@ -69,17 +69,17 @@ export function getHoverBackgroundColor(category?: string | null) {
 export function getBackgroundLightColor(category?: string | null) {
   switch (category) {
     case 'transport':
-      return `bg-blue-light`
+      return `bg-transport-100`
     case 'alimentation':
-      return `bg-orange-light`
+      return `bg-alimentation-100`
     case 'logement':
-      return `bg-emerald-light`
+      return `bg-logement-100`
     case 'divers':
-      return `bg-yellow-light`
+      return `bg-divers-100`
     case 'services sociétaux':
-      return `bg-lavender-medium`
+      return `bg-servicessocietaux-100`
     default:
-      return 'bg-primary-200'
+      return 'bg-primary-100'
   }
 }
 

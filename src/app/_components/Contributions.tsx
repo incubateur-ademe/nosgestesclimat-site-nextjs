@@ -41,11 +41,11 @@ export default function Contributions() {
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             onClick={() => trackEvent(homeClickCodeSource)}
-            className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-orange-default py-8 text-inherit no-underline"
+            className="border-alimentation-400 min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 py-8 text-inherit no-underline"
             data-cypress-id="nouveautes-link">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-light">
+            <div className="bg-alimentation-100 flex h-12 w-12 items-center justify-center rounded-xl">
               <SearchIcon
-                className="inline-block fill-orange-dark"
+                className="fill-alimentation-900 inline-block"
                 width="20"
                 height="20"
               />
@@ -66,11 +66,11 @@ export default function Contributions() {
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             onClick={() => trackEvent(homeClickDocumentation)}
-            className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-yellow-default py-8 text-inherit no-underline"
+            className="border-divers-300 min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 py-8 text-inherit no-underline"
             data-cypress-id="documentation-link">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-yellow-light">
+            <div className="bg-divers-100 flex h-12 w-12 items-center justify-center rounded-xl">
               <GlassesIcon
-                className="inline-block fill-yellow-dark"
+                className="fill-divers-90 inline-block"
                 width="20"
                 height="20"
               />
@@ -91,11 +91,11 @@ export default function Contributions() {
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             onClick={() => trackEvent(homeClickContribution)}
-            className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-emerald-default py-8 text-inherit no-underline"
+            className="border-logement-400 min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 py-8 text-inherit no-underline"
             data-cypress-id="contact-link">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-light">
+            <div className="bg-logement-100 flex h-12 w-12 items-center justify-center rounded-xl">
               <PencilIcon
-                className="inline-block stroke-emerald-dark"
+                className="stroke-logement-800 inline-block"
                 width="20"
                 height="20"
               />

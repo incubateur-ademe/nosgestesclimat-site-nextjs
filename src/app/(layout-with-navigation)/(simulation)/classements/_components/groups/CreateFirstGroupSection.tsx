@@ -6,7 +6,7 @@ import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
 
 export default function CreateFirstGroupSection() {
   return (
-    <Container className="rounded-xl border-2 border-blue-light bg-white p-4">
+    <Container className="rounded-xl bg-grey-100 p-4">
       <h2 className="mb-2 mt-0 text-lg font-medium">
         <Trans>Créez votre premier groupe</Trans>
       </h2>

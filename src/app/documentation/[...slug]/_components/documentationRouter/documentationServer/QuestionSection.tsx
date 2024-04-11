@@ -10,7 +10,7 @@ export default function QuestionSection({ rule }: { rule: Rule }) {
     <>
       <Card className="mb-6">
         <h2 className="flex items-center">
-          <MessageIcon className="mr-2 fill-blue-dark" />{' '}
+          <MessageIcon className="mr-2 fill-primary-700" />{' '}
           <Trans>Question pour l'utilisateur</Trans>
         </h2>
 

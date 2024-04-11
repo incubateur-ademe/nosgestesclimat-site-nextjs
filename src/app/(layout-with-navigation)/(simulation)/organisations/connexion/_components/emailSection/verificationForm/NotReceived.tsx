@@ -82,8 +82,8 @@ export default function NotReceived({
           )}
 
           {shouldDisplayConfirmation && (
-            <span className="flex items-center text-emerald-dark no-underline">
-              <CheckCircleIcon className="h-4 w-4 fill-emerald-dark" />
+            <span className="flex items-center text-green-500 no-underline">
+              <CheckCircleIcon className="h-4 w-4 fill-green-500" />
               &nbsp;<Trans>Code renvoyé</Trans>
             </span>
           )}

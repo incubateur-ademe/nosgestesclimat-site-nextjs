@@ -7,5 +7,5 @@ export default function Rainbow({
   className?: string
   style?: React.CSSProperties
 }) {
-  return <div className={twMerge('bg-yellow-default', className)} {...props} />
+  return <div className={twMerge('bg-divers-300', className)} {...props} />
 }

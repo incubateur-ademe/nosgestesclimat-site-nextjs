@@ -24,7 +24,7 @@ export default function Contact() {
           <span className="flex items-center">
             <Trans>Contact</Trans>
 
-            <MailIcon className="ml-3 fill-blue-dark" />
+            <MailIcon className="ml-3 fill-primary-500" />
           </span>
         }
       />

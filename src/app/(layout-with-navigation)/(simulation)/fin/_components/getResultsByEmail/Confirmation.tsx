@@ -15,7 +15,7 @@ export default function Confirmation({ className }: { className?: string }) {
         <p>
           <Trans>Votre simulation est sauvegardée&#8239;!</Trans>
           &#8239;
-          <CheckCircleIcon className="fill-emerald-default" />
+          <CheckCircleIcon className="fill-logement-400" />
         </p>
       </div>
       <p className="mt-4 max-w-lg text-left">
