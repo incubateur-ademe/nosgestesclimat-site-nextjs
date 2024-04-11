@@ -8,7 +8,8 @@ import {
   useSimulation,
   useUser,
 } from '@/publicodes-state'
-import { DottedName, Persona as PersonaType } from '@/publicodes-state/types'
+import { DottedName } from '@/publicodes-state/types'
+import { Persona as PersonaType } from '@incubateur-ademe/nosgestesclimat'
 import { fixSituationWithPartialMosaic } from '../_helpers/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '../_helpers/getPersonaFoldedSteps'
 
