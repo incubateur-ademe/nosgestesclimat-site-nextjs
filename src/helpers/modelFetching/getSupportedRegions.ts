@@ -12,10 +12,10 @@ type Props = {
 export async function getSupportedRegions({
   PRNumber,
 }: Props = {}): Promise<SupportedRegions> {
-  const fileName = `supportedRegions.json`
-
   if (PRNumber) {
+    const fileName = `supportedRegions.json`
     return getFileFromModel({ fileName, PRNumber })
   }
-  return Promise.resolve(supportedRegions as unknown as SuppportedRegions)
+
+  return Promise.resolve(supportedRegions)
 }

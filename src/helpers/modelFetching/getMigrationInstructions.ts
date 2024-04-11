@@ -11,9 +11,8 @@ type Props = {
 export async function getMigrationInstructions({
   PRNumber,
 }: Props = {}): Promise<MigrationType> {
-  const fileName = `migration.json`
-
   if (PRNumber) {
+    const fileName = `migration.json`
     return getFileFromModel({ fileName, PRNumber })
   }
 

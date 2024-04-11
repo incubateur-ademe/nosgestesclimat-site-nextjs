@@ -13,9 +13,8 @@ export async function getPersonas(
     locale: 'fr',
   }
 ): Promise<any> {
-  const fileName = `personas-${locale}.json`
-
   if (PRNumber) {
+    const fileName = `personas-${locale}.json`
     return getFileFromModel({ fileName, PRNumber })
   }
 
