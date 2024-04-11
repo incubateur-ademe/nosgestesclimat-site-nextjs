@@ -35,10 +35,12 @@ export function useTrackPageView() {
     if (groupId) {
       url += `/${groupId}`
     }
-
+    console.log('url', url)
     // We add a trailing slash
     if (!url.endsWith('/')) {
       url += '/'
+
+      console.log('url with slash', url)
     }
 
     // We add the searchParams to the url
@@ -46,7 +48,7 @@ export function useTrackPageView() {
     if (search) {
       url += `?${search}`
     }
-
+    console.log('url with search', url)
     trackPageView(url)
   }, [pathname, searchParams])
 }
