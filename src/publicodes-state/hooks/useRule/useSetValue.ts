@@ -75,6 +75,11 @@ export default function useSetValue({
     [questionsOfMosaic, situation, safeEvaluate, safeGetRule]
   )
 
+  /**
+   * @param value - The value to set
+   * @param options.foldedStep - The dottedName of the foldedStep
+   * @param options.mosaic - The dottedName of the mosaic to reset
+   */
   const setValue = useCallback(
     async (
       value: NodeValue | { [dottedName: DottedName]: NodeValue },

@@ -35,7 +35,7 @@ export default function SaveViaEmail() {
         </Trans>
       </p>
       {isSuccess ? (
-        <p>Bravo champion</p>
+        <p><Trans>Bravo champion·ne !</Trans></p>
       ) : (
         <form
           onSubmit={async (e) => {
@@ -67,7 +67,7 @@ export default function SaveViaEmail() {
             setError={setError}
             className="bg-white"
           />
-          <Button disabled={isPending}>Valider</Button>
+          <Button disabled={isPending}><Trans>Valider</Trans></Button>
           {isSuccess && 'success'}
           {isError && 'error'}
         </form>
