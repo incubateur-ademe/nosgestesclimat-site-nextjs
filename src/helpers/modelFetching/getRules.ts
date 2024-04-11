@@ -26,7 +26,9 @@ export async function getRules(
   let fileName = ''
 
   // We provide optimized version of the model only for the FR region
-  fileName = `co2-model.${regionCodeToProvide}-lang.${locale}${isOptim && regionCodeToProvide === 'FR' ? '-opti' : ''}.json`
+  const optim = isOptim && regionCodeToProvide === 'FR' ? '-opti' : ''
+
+  fileName = `co2-model.${regionCodeToProvide}-lang.${locale}${optim}.json`
 
   return getFileFromModel({ fileName, PRNumber })
 }
