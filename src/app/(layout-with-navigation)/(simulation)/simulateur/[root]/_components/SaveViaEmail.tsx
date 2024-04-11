@@ -67,7 +67,7 @@ export default function SaveViaEmail() {
             setError={setError}
             className="bg-white"
           />
-          <Button disabled={isPending}>Valider</Button>
+          <Button disabled={isPending}><Trans>Valider</Trans></Button>
           {isSuccess && 'success'}
           {isError && 'error'}
         </form>
