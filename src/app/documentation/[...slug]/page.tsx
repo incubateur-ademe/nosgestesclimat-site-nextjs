@@ -1,3 +1,4 @@
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import DocumentationRouter from './_components/DocumentationRouter'
@@ -8,11 +9,15 @@ export async function generateMetadata({
 }: {
   params: { slug: string[] }
 }) {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
-    title:
-      "Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat",
-    description:
-      'Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.',
+    title: t(
+      "Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat"
+    ),
+    description: t(
+      'Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.'
+    ),
     alternates: {
       canonical: `/documentation/${slug.join('/')}`,
     },

@@ -68,9 +68,7 @@ export default function SimulationStarted() {
             color="primary"
             href={getLinkToEndPage()}
             trackingEvent={profilClickCtaResultats}>
-            <Trans>
-              <Emoji className="mr-2">👀</Emoji> Voir mon résultat
-            </Trans>
+            <Emoji className="mr-2">👀</Emoji> <Trans>Voir mon résultat</Trans>
           </ButtonLink>
         )}
 
@@ -80,9 +78,8 @@ export default function SimulationStarted() {
             className="w-full  text-center"
             href={getLinkToSimulateur()}
             trackingEvent={profilClickCtaReprendre}>
-            <Trans>
-              <ProgressCircle white className="mr-2" /> Reprendre mon test
-            </Trans>
+            <ProgressCircle white className="mr-2" />{' '}
+            <Trans>Reprendre mon test</Trans>
           </ButtonLink>
         )}
 

@@ -1,4 +1,5 @@
 import MDXContent from '@/components/mdx/MDXContent'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import contentEnBottom from '@/locales/pages/en/budgetBottom.mdx'
 import contentEnTop from '@/locales/pages/en/budgetTop.mdx'
@@ -8,8 +9,8 @@ import SelectYear from './_components/SelectYear'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: 'Budget - Nos Gestes Climat',
-    description: 'Informations relatives au budget de Nos Gestes Climat.',
+    title: t('Budget - Nos Gestes Climat'),
+    description: t('Informations relatives au budget de Nos Gestes Climat.'),
     alternates: {
       canonical: '/budget',
     },

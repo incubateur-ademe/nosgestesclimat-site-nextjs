@@ -6,11 +6,15 @@ import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
 import GroupCreationForm from './_component/GroupCreationForm'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
-    title:
-      'Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat',
-    description:
-      "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.",
+    title: t(
+      'Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat'
+    ),
+    description: t(
+      "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
+    ),
     alternates: {
       canonical: linkToGroupCreation,
     },
