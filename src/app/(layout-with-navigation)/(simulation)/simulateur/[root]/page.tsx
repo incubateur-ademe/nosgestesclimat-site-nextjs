@@ -3,7 +3,6 @@
 import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
 import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur'
 import Faq from './_components/Faq'
-import SaveViaEmail from './_components/SaveViaEmail'
 import Simulateur from './_components/Simulateur'
 
 export default function SimulateurPage() {
@@ -18,7 +17,7 @@ export default function SimulateurPage() {
   return (
     <div className="mx-auto w-full max-w-3xl">
       <Simulateur />
-      <SaveViaEmail />
+
       <Faq />
     </div>
   )

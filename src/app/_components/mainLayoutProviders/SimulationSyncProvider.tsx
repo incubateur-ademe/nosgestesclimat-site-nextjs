@@ -47,8 +47,11 @@ export default function SimulationSyncProvider({
 
   // If the simulation is not in a group, poll, or we don't have an email, we do not save it
   const shouldSyncWithBackend = useMemo<boolean>(() => {
+    // We do not saved unfinished simulations
+    if (progression !== 1) return false
+
     return user.email || groups?.length || polls?.length ? true : false
-  }, [user.email, groups, polls])
+  }, [progression, user.email, groups, polls])
 
   const isSyncedWithBackend = timeoutRef.current || isPending ? false : true
 

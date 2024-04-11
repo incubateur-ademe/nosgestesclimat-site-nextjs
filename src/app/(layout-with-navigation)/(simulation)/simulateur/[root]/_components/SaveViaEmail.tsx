@@ -1,3 +1,5 @@
+// NOT USED FOR NOW
+
 'use client'
 
 import Trans from '@/components/translation/Trans'
