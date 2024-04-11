@@ -19,7 +19,7 @@ export default function Explanation({ toggleOpen }: Props) {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="relative mb-2 mt-6 rounded-lg border-4 border-primary-700 p-4 pt-2">
+      className="relative mb-2 mt-6 rounded-xl border-4 border-primary-700 p-4 pt-2">
       <svg
         width="28"
         height="24"

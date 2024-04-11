@@ -21,7 +21,7 @@ export default function ShareSection({
 }) {
   return (
     <section
-      className={twMerge('rounded-lg bg-grey-100 px-4 py-10', className)}>
+      className={twMerge('rounded-xl bg-gray-100 px-4 py-10', className)}>
       <div className="flex flex-wrap items-center justify-center gap-8 lg:flex-nowrap lg:items-start">
         <CTACard
           id="orga-partage"

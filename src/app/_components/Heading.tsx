@@ -9,7 +9,7 @@ export default async function Heading() {
 
   return (
     <>
-      <div className="relative flex h-[34rem] items-center justify-center overflow-hidden bg-grey-100 p-4 md:h-[36rem]">
+      <div className="relative flex h-[34rem] items-center justify-center overflow-hidden bg-gray-100 p-4 md:h-[36rem]">
         <Icons />
         <div className="relative mb-2 max-w-sm text-center md:mb-0 md:max-w-xl">
           <h1 className="md:text-5xl">

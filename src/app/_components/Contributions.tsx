@@ -43,7 +43,7 @@ export default function Contributions() {
             onClick={() => trackEvent(homeClickCodeSource)}
             className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-orange-default py-8 text-inherit no-underline"
             data-cypress-id="nouveautes-link">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-light">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-light">
               <SearchIcon
                 className="inline-block fill-orange-dark"
                 width="20"
@@ -68,7 +68,7 @@ export default function Contributions() {
             onClick={() => trackEvent(homeClickDocumentation)}
             className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-yellow-default py-8 text-inherit no-underline"
             data-cypress-id="documentation-link">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-yellow-light">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-yellow-light">
               <GlassesIcon
                 className="inline-block fill-yellow-dark"
                 width="20"
@@ -93,7 +93,7 @@ export default function Contributions() {
             onClick={() => trackEvent(homeClickContribution)}
             className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-emerald-default py-8 text-inherit no-underline"
             data-cypress-id="contact-link">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-light">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-light">
               <PencilIcon
                 className="inline-block stroke-emerald-dark"
                 width="20"

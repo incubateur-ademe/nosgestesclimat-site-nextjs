@@ -25,7 +25,7 @@ export default function ChoiceInput({
     <>
       <div className="mb-2 flex items-center gap-2">
         <label
-          className={`flex cursor-pointer items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-right text-sm md:text-xl ${
+          className={`flex cursor-pointer items-center gap-2 rounded-xl border border-gray-300 px-4 py-2 text-right text-sm md:text-xl ${
             active
               ? 'border-2 border-primary-700 bg-primary-200 text-primary-700'
               : 'bg-white text-default hover:bg-primary-100'

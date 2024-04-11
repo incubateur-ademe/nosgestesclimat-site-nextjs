@@ -8,7 +8,7 @@ export default function Confirmation({ className }: { className?: string }) {
     <Card
       id="email-block"
       className={twMerge(
-        'mb-4 items-start border-none bg-grey-100 py-8',
+        'mb-4 items-start border-none bg-gray-100 py-8',
         className
       )}>
       <div className="text-left; bg-transparent text-left text-2xl font-bold">

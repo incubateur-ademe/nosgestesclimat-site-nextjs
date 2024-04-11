@@ -30,7 +30,7 @@ export default function PostalCodeInput({ postalCode, setPostalCode }: Props) {
       className="max-w-[30rem]"
       classNames={{
         control: () =>
-          `p-0 border-grey-300 rounded-full border border-solid !bg-grey-100  text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700`,
+          `p-0 border-gray-300 rounded-full border border-solid !bg-gray-100  text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700`,
 
         valueContainer: () => `!p-4`,
         input: () => `!p-0 !m-0 border-none`,
@@ -93,7 +93,7 @@ export default function PostalCodeInput({ postalCode, setPostalCode }: Props) {
       }}
       components={{
         NoOptionsMessage: () => (
-          <span className="text-grey-700 p-1 pl-2 text-xs">
+          <span className="p-1 pl-2 text-xs text-gray-700">
             Oups, nous n'avons pas trouvé de correspondances
           </span>
         ),

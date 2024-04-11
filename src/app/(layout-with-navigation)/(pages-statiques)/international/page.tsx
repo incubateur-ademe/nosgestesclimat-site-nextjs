@@ -72,7 +72,7 @@ export default async function International() {
           />
         </div>
       </Container>
-      <div className="rounded-lg bg-grey-100">
+      <div className="rounded-xl bg-gray-100">
         <Container maxWidth="3xl" className="px-4 pb-12 pt-8">
           <h2>
             <Trans i18nKey="international.pourquoi.titre">
@@ -139,7 +139,7 @@ export default async function International() {
         </p>
       </Container>
 
-      <div className="rounded-lg bg-grey-100">
+      <div className="rounded-xl bg-gray-100">
         <Container maxWidth="3xl" className="pb-12 pt-8">
           <div className="mx-auto my-0">
             <RegionGrid

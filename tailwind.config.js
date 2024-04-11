@@ -82,7 +82,7 @@ module.exports = {
           megaDark: '#0F0B1B',
         },
         default: '#1A1A1A',
-        grey: {
+        gray: {
           100: '#F7FBFF',
           200: '#E3E3DB',
         },

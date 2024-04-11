@@ -69,7 +69,7 @@
     @apply items-center;
     @apply space-x-4;
     @apply w-full;
-    @apply rounded-lg;
+    @apply rounded-xl;
     @apply bg-gray-800;
     @apply text-white;
     @apply p-4;
@@ -478,7 +478,7 @@ html[data-useragent*='Trident'] #js {
     #a2d2fd
   );
   background-size: 200% 200%;
-  animation: rainbow 15s linear infinite;
+  animation: rainbow 30s linear infinite;
 }
 
 @keyframes rainbow {

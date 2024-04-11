@@ -30,7 +30,7 @@ export default function NumberInput({
     <div className={twMerge(`flex items-center justify-end gap-1`, className)}>
       <DebounceInput
         debounceTimeout={300}
-        className={`focus:ring-primary max-w-[8rem] rounded-lg border border-primary-700 bg-grey-100 p-2 text-right transition-colors focus:border-primary-700 focus:ring-2 md:max-w-full`}
+        className={`focus:ring-primary max-w-[8rem] rounded-xl border border-primary-700 bg-gray-100 p-2 text-right transition-colors focus:border-primary-700 focus:ring-2 md:max-w-full`}
         type="number"
         min={min}
         value={isMissing ? '' : value}

@@ -80,7 +80,7 @@ export default function InviteBlock({ group }: { group: Group }) {
 
   if (hasMoreThanOneMember) {
     return (
-      <div className="mt-4 flex flex-col justify-between gap-4 rounded-md bg-grey-100 p-4 md:flex-row md:items-center">
+      <div className="mt-4 flex flex-col justify-between gap-4 rounded-md bg-gray-100 p-4 md:flex-row md:items-center">
         <p className="mb-0 text-sm md:text-base">
           Invitez d'autres personnes à rejoindre votre groupe
         </p>

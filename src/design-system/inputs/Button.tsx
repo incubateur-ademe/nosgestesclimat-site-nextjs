@@ -27,10 +27,10 @@ export const colorClassNames = {
 
 export const sizeClassNames = {
   xs: 'px-2 text-xs',
-  sm: 'px-3 py-1 text-base',
-  md: 'px-5 py-3 text-lg',
-  lg: 'px-5 py-3 text-xl ',
-  xl: 'px-10 py-4 text-2xl',
+  sm: 'px-4 py-1 text-base',
+  md: 'px-7 py-3 text-lg',
+  lg: 'px-7 py-3 text-2xl',
+  xl: 'px-10 py-4 text-3xl',
 }
 
 export const baseClassNames =

@@ -112,7 +112,7 @@ export default function Label({
   )
 
   return (
-    <div className="relative mb-4 overflow-hidden rounded-lg bg-primary-700 p-4 text-white">
+    <div className="relative mb-4 overflow-hidden rounded-xl bg-primary-700 p-4 text-white">
       {isAnswerCorrect === 'correct' ? <CorrectComponent /> : null}
       {isAnswerCorrect === 'almost' ? <AlmostComponent /> : null}
       {isAnswerCorrect === 'wrong' ? <WrongComponent /> : null}

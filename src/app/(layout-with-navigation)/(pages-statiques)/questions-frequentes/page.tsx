@@ -103,8 +103,8 @@ export default async function FAQPage() {
         })}
       </div>
 
-      <Card className="bg-grey-100">
-        <h3 className="text-yellow-dark flex items-center">
+      <Card className="bg-gray-100">
+        <h3 className="flex items-center text-yellow-dark">
           <Trans>Je ne trouve pas réponse à ma question </Trans>
 
           <Emoji className="ml-2 inline-block">🙋‍♀️</Emoji>

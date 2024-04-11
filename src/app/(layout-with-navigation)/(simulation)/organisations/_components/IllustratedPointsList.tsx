@@ -27,7 +27,7 @@ export default function IllustratedPointsList() {
             </p>
           </div>
 
-          <div className="mx-auto flex max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6 md:w-[26rem]">
+          <div className="mx-auto flex max-w-full items-end overflow-hidden rounded-xl bg-gray-100 px-6 pt-6 md:w-[26rem]">
             <div className="mx-auto mt-4 flex items-end rounded-t-md bg-white p-4 pb-0 shadow-sm">
               <Image
                 src="/images/organisations/tutoriel.png"
@@ -61,7 +61,7 @@ export default function IllustratedPointsList() {
             </p>
           </div>
 
-          <div className="mx-auto flex max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6 md:w-[26rem]">
+          <div className="mx-auto flex max-w-full items-end overflow-hidden rounded-xl bg-gray-100 px-6 pt-6 md:w-[26rem]">
             <div className="w-full">
               <Image
                 src="/images/organisations/orga-visuel-2.png"
@@ -96,7 +96,7 @@ export default function IllustratedPointsList() {
             </p>
           </div>
 
-          <div className="mx-auto flex w-[26rem] max-w-full items-end overflow-hidden rounded-lg bg-grey-100 px-6 pt-6 md:w-[26rem]">
+          <div className="mx-auto flex w-[26rem] max-w-full items-end overflow-hidden rounded-xl bg-gray-100 px-6 pt-6 md:w-[26rem]">
             <VisuelIframe />
           </div>
         </section>

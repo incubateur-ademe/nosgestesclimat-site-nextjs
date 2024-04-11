@@ -96,7 +96,7 @@ export default function HeaderDesktop() {
 
             {user?.organisation?.administratorEmail ? (
               <>
-                <div className="my-auto h-8 w-[1px] bg-grey-200" />
+                <div className="my-auto h-8 w-[1px] bg-gray-200" />
 
                 <OrganisationLink />
               </>

@@ -116,6 +116,7 @@ export default function Navigation({
     <div className="flex justify-end  gap-4">
       {!noPrevQuestion ? (
         <Button
+          className="p-0"
           onClick={() => {
             trackEvent(questionClickPrevious({ question }))
 

@@ -53,6 +53,7 @@ export default function Buttons() {
         size="lg">
         <Trans>{linkToSimulateurPageLabel}</Trans>
       </ButtonLink>
+
       {progression ? (
         <Link
           className={`absolute left-1/2 top-full -translate-x-1/2 translate-y-6 whitespace-nowrap transition-all delay-200 duration-300 md:text-lg ${

@@ -12,8 +12,8 @@ type Props = {
 }
 
 const backgroundClasses = {
-  isHeaviest: 'bg-secondary-100 border-secondary-700 border rounded-lg',
-  isNotHeaviest: 'bg-white border-grey-300 border-b',
+  isHeaviest: 'bg-secondary-100 border-secondary-700 border rounded-xl',
+  isNotHeaviest: 'bg-white border-gray-300 border-b',
 }
 
 export default function Category({

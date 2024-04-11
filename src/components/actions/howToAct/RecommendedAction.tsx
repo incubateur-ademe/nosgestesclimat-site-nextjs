@@ -23,7 +23,7 @@ export default function RecommendedAction({
         tag={Link}
         href={`/actions/${actionDottedName}`}
         onClick={() => trackEvent(endClickAction(actionDottedName))}
-        className="transition-colors hover:bg-grey-100"
+        className="transition-colors hover:bg-gray-100"
       />
     </li>
   )

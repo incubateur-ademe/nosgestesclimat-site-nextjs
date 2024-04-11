@@ -68,7 +68,7 @@ export default function ThreeYearsInput({ question, setTempValue }: Props) {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="mb-2 rounded-lg bg-white p-4">
+      className="mb-2 rounded-xl bg-white p-4">
       <Label question={question} size="sm" label={String(currentYear)} />
       <NumberInput
         unit={unit}
@@ -101,7 +101,7 @@ export default function ThreeYearsInput({ question, setTempValue }: Props) {
         isMissing={yearBeforeLastValue ? false : true}
         className="mb-2 justify-start"
       />
-      <p className="mb-0 rounded-lg bg-primary-200 p-4 font-bold">
+      <p className="mb-0 rounded-xl bg-primary-200 p-4 font-bold">
         {t('Total\u202f:')}{' '}
         {(
           currentYearValue +

@@ -122,7 +122,7 @@ export default function Commencer() {
   }
 
   return (
-    <Card className={'items-start border-none bg-grey-100 p-8'}>
+    <Card className={'items-start border-none bg-gray-100 p-8'}>
       <Title
         data-cypress-id="commencer-title"
         className="text-lg md:text-xl"

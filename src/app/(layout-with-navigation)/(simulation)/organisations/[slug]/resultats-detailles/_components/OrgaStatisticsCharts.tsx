@@ -51,7 +51,7 @@ export default function OrgaStatisticsCharts({
   if (!simulationRecaps || simulationRecaps?.length < 3) return null
 
   return (
-    <section className="my-12 rounded-lg bg-grey-100 px-8 pb-4 pt-8">
+    <section className="my-12 rounded-xl bg-gray-100 px-8 pb-4 pt-8">
       <h2>
         <Trans>Résultats du groupe</Trans>
       </h2>

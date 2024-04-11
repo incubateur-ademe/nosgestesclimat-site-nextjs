@@ -71,7 +71,7 @@ export default function OwnerAdminSection({ group }: Props) {
       </p>
 
       {isConfirming && !isSuccess && (
-        <Card className="border-none bg-grey-100">
+        <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
             <Trans>
               Cette opération est définitive et supprimera le groupe pour tous
@@ -112,7 +112,7 @@ export default function OwnerAdminSection({ group }: Props) {
       )}
 
       {isSuccess && (
-        <Card className="border-none bg-grey-100">
+        <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
             <Trans>
               Votre groupe a été supprimé. Vous allez être redirigé vers la page

@@ -22,7 +22,7 @@ export default function OurTools() {
 
       <div className="col-span-1 mt-8 grid  grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         <CTACard
-          className="border-2 border-grey-200 px-8"
+          className="border-2 border-gray-200 px-8"
           overLabel={<Trans>Partagez Nos Gestes Climat</Trans>}
           title={<Trans>Kit de diffusion</Trans>}
           description={
@@ -46,7 +46,7 @@ export default function OurTools() {
         </CTACard>
 
         <CTACard
-          className="relative overflow-hidden border-2 border-grey-200 px-8"
+          className="relative overflow-hidden border-2 border-gray-200 px-8"
           overLabel={<Trans>Animez un atelier</Trans>}
           title={<Trans>Les ateliers de l'ABC</Trans>}
           description={
@@ -71,7 +71,7 @@ export default function OurTools() {
         </CTACard>
 
         <CTACard
-          className="border-2 border-grey-200 px-8"
+          className="border-2 border-gray-200 px-8"
           overLabel={<Trans>Valorisez vos données carbone</Trans>}
           title={<Trans>Impact CO2</Trans>}
           description={

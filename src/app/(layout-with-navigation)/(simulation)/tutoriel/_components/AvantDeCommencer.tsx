@@ -4,11 +4,11 @@ import OrganisationDisclaimer from './avantDeCommencer/OrganisationDisclaimer'
 
 export default function AvantDeCommencer() {
   return (
-    <div className="border-rainbow relative mb-8 mt-6 flex flex-col rounded-lg bg-grey-100 p-7 md:mt-10">
+    <div className="border-rainbow relative mb-8 mt-6 flex flex-col rounded-xl bg-gray-100 p-7 md:mt-10">
       <div
         role="presentation"
         aria-hidden
-        className="absolute -top-8 inline-block rounded-full bg-grey-100 p-4 text-3xl">
+        className="absolute -top-8 inline-block rounded-full bg-gray-100 p-4 text-3xl">
         <Emoji>💡</Emoji>
       </div>
       <h3 className="z-10">

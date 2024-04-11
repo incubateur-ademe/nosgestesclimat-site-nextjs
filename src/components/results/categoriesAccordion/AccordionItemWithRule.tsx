@@ -48,7 +48,7 @@ export default function AccordionItemWithRule({
       }
       content={
         <Card
-          className="mb-4 border-x-0 bg-grey-100"
+          className="mb-4 border-x-0 bg-gray-100"
           style={{
             boxShadow: '0px 6px 6px -2px rgba(21, 3, 35, 0.05) inset',
           }}>
