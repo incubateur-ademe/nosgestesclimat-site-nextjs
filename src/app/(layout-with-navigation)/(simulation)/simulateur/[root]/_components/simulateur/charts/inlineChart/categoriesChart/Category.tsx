@@ -48,7 +48,11 @@ export default function Category({
           />
         </svg>
       ) : null}
-      {percent > 5 ? <Emoji>{icons}</Emoji> : null}
+      {percent > 7 ? (
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-xl">
+          <Emoji>{icons}</Emoji>
+        </div>
+      ) : null}
     </div>
   )
 }

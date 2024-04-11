@@ -17,13 +17,15 @@ export default function Subcategory({ subcategory, total, position }: Props) {
 
   const percent = (numericValue / total) * 100
 
-  if (percent < 5) return
+  if (percent < 7) return
 
   return (
     <div
       className={`flex h-full items-center justify-center border-l border-white transition-all ${positionClassNames[position]} ease-in-out`}
       style={{ width: `${percent}%` }}>
-      <Emoji>{icons}</Emoji>
+      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-xl">
+        <Emoji>{icons?.slice(0, 2)}</Emoji>
+      </div>
     </div>
   )
 }
