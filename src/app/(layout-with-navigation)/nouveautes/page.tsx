@@ -3,6 +3,7 @@ import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import List from '@/components/posts/List'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPosts } from '@/helpers/markdown/getPosts'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { currentLocale } from 'next-i18n-router'
@@ -35,7 +36,7 @@ export default async function Releases() {
         title={
           <span className="flex items-center">
             <Trans>Les nouveautés</Trans>
-            <SparklesIcon className="fill-divers-300 ml-2" />
+            <SparklesIcon className="ml-2 fill-divers-300" />
           </span>
         }
       />
