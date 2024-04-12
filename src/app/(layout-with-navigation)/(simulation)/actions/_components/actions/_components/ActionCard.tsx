@@ -193,7 +193,7 @@ export default function ActionCard({
 
           {hasRemainingQuestions && (
             <button
-              className="cursor-pointer text-primary-700"
+              className="cursor-pointer text-sm text-primary-700"
               onClick={() => {
                 trackEvent(actionsClickAdditionalQuestion(dottedName))
                 setFocusedAction(dottedName)
