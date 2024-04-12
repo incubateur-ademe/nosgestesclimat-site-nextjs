@@ -31,13 +31,12 @@ export default function Card({
     <Tag
       onClick={onClick}
       className={twMerge(
-        `flex list-none flex-col rounded-md border-[1px] border-solid border-gray-200 bg-white p-4 shadow-sm`,
+        `flex list-none flex-col rounded-md bg-white p-4`,
         className
       )}
       href={href}
       style={style}
-      {...props}
-    >
+      {...props}>
       {children}
     </Tag>
   )

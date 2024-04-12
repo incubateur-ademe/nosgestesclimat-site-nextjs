@@ -10,7 +10,6 @@ import Separator from '@/design-system/layout/Separator'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import CongratulationsText from './_components/CongratulationsText'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import GroupModePromotionBanner from './_components/GroupModePromotionBanner'
@@ -31,8 +30,6 @@ export default function FinPage() {
   return (
     <>
       <IframeDataShareModal />
-
-      <CongratulationsText />
 
       <Poll />
 

@@ -46,14 +46,14 @@ export default function ActionsTutorial() {
       </p>
 
       <ul className="list-none">
-        <li>
-          <Emoji>✅</Emoji>
+        <li className="flex items-center">
+          <Emoji className="mr-2">✅</Emoji>
 
           <Trans>sélectionnez celles qui vous intéressent</Trans>
         </li>
 
-        <li>
-          <Emoji>❌</Emoji>
+        <li className="flex items-center">
+          <Emoji className="mr-2">❌</Emoji>
 
           <Trans>
             écartez celles qui vous semblent trop ambitieuses ou déplacées.
@@ -61,8 +61,8 @@ export default function ActionsTutorial() {
         </li>
       </ul>
 
-      <p>
-        <Emoji>💡</Emoji>
+      <p className="mt-6">
+        <Emoji className="mr-2">💡</Emoji>
 
         <Trans i18nKey={'publicodes.ActionTutorial.msgPrécision'}>
           Pour améliorer la précision, certaines actions vous poseront quelques

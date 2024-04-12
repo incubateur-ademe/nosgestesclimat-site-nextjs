@@ -34,8 +34,8 @@ export default function DocumentationLandingCard({
       className={`relative h-[12rem] flex-auto justify-center rounded-xl border-2 text-center text-base shadow-none ${getBorderColor(category)} ${getTextDarkColor(category)} no-underline ${getBackgroundLightColor(
         category
       )}`}>
-      <div className="-z-1 absolute left-0 top-0 mb-0 flex h-full w-full items-center justify-center p-4 text-[8.5rem]  opacity-20 grayscale">
-        <Emoji className="inline-block h-full align-middle">
+      <div>
+        <Emoji className="mb-4 flex w-full justify-center text-2xl">
           {rule['icônes']}
         </Emoji>
       </div>

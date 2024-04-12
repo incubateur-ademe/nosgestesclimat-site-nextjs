@@ -59,7 +59,8 @@ export default function Filter({ dottedName, countByCategory }: Props) {
           })
         }}>
         {title}{' '}
-        <span className="ml-2 inline-block w-4 rounded-full bg-white text-primary-700">
+        <span
+          className={`ml-2 inline-block w-4 rounded-full bg-white ${getTextDarkColor(dottedName)}`}>
           {countByCategory[dottedName] || 0}
         </span>
       </button>

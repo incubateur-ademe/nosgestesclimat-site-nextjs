@@ -82,7 +82,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
 
   return (
     <>
-      <Card className="my-8 !bg-primary-100">
+      <Card className="my-8 bg-primary-100">
         <h2 className="flex items-center text-xl">
           <SearchIcon className="mr-2" />
 

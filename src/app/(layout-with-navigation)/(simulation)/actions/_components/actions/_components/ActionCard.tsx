@@ -3,6 +3,8 @@
 'use client'
 
 import Link from '@/components/Link'
+import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import CloseIcon from '@/components/icons/Close'
 import {
   actionsClickAdditionalQuestion,
   actionsClickNo,
@@ -10,9 +12,11 @@ import {
   actionsOpenAction,
 } from '@/constants/tracking/pages/actions'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
+import Emoji from '@/design-system/utils/Emoji'
 import {
   getBackgroundLightColor,
   getBorderColor,
+  getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useFetchSimulation } from '@/hooks/simulation/useFetchSimulation'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
@@ -21,7 +25,6 @@ import { useRule, useTempEngine, useUser } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
-import Image from 'next/image'
 import { useCallback } from 'react'
 import { filterRelevantMissingVariables } from '../../../_helpers/filterRelevantMissingVariables'
 import { getIsActionDisabled } from '../../../_helpers/getIsActionDisabled'
@@ -138,11 +141,11 @@ export default function ActionCard({
   if (!currentSimulation || !rules) {
     return null
   }
-  console.log(category)
+
   return (
     <div
       id={dottedName}
-      className={`relative flex h-[16rem] w-full flex-col items-center overflow-auto rounded-xl border-2 border-solid ${
+      className={`relative flex h-[18rem] w-full flex-col items-center justify-center overflow-auto rounded-xl border-2 border-solid p-4 ${
         !hasFormula ? 'h-[13rem]' : ''
       } ${
         isSelected
@@ -150,27 +153,25 @@ export default function ActionCard({
           : getBorderColor(category)
       }`}>
       <div
-        className={`flex h-[6rem] w-full items-center ${getBackgroundLightColor(
+        className={`flex h-[6rem] w-full items-center rounded-xl p-2 ${getBackgroundLightColor(
           category
         )}`}>
         <Link
           className="z-10 w-full no-underline"
           onClick={() => trackEvent(actionsOpenAction(dottedName))}
           href={'/actions/' + encodeRuleName(dottedName)}>
+          {icons && (
+            <Emoji className="inline-flex justify-center">{icons}</Emoji>
+          )}
+
           <h2
-            className={`inline-block w-full text-center text-sm text-gray-700 `}>
+            className={`mb-0 inline-block w-full text-center text-sm font-bold ${getTextDarkColor(category)}`}>
             {title}
           </h2>
         </Link>
-
-        {icons && (
-          <span className="absolute left-1/2 top-0 flex -translate-x-1/2 gap-8 whitespace-nowrap text-[4rem] opacity-20 grayscale ">
-            {icons}
-          </span>
-        )}
       </div>
 
-      <div className="mt-2 flex flex-1 flex-col justify-between">
+      <div className="mt-3 flex w-full flex-1 flex-col justify-between">
         <div className="relative">
           <ActionValue
             dottedName={dottedName}
@@ -199,19 +200,17 @@ export default function ActionCard({
             </button>
           )}
         </div>
-        <div className="mb-4 flex justify-evenly gap-4">
+        <div className="self-bottom flex w-full justify-between px-2">
           <button
             title={t("Choisir l'action")}
             type="button"
             aria-pressed={actionChoices?.[dottedName]}
             className={hasRemainingQuestions ? 'grayscale' : ''}
             onClick={handleChooseAction}>
-            <Image
-              src="/images/misc/2714.svg"
-              width={100}
-              height={100}
-              className={`w-10 ${isDisabled ? 'grayscale' : ''}`}
-              alt=""
+            <CheckCircleIcon
+              className="fill-green-500"
+              width="40"
+              height="40"
             />
           </button>
 
@@ -229,13 +228,7 @@ export default function ActionCard({
                 e.stopPropagation()
                 e.preventDefault()
               }}>
-              <Image
-                src="/images/misc/274C.svg"
-                width={100}
-                height={100}
-                className={`w-8 ${isDisabled ? 'grayscale' : ''}`}
-                alt=""
-              />
+              <CloseIcon width="40" height="40" className="fill-gray-600" />
             </button>
           )}
         </div>
