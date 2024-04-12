@@ -2,16 +2,21 @@ import Route404 from '@/components/layout/404'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Markdown from '@/design-system/utils/Markdown'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { DottedName } from '@/publicodes-state/types'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
-    title:
-      "Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat",
-    description:
-      'Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.',
+    title: t(
+      "Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat"
+    ),
+    description: t(
+      'Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.'
+    ),
   })
 }
 

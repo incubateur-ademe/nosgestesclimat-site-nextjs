@@ -8,17 +8,17 @@ export type RegionAuthor = {
   url?: string
 }
 
-export const DEFAULT_REGION_MODEL_AUTHOR: RegionAuthor = {
-  nom: 'l’équipe de nosgestesclimat.fr',
-  url: '/a-propos',
-}
-
 export default function RegionModelAuthors({
   authors = [],
 }: {
   authors?: RegionAuthor[]
 }) {
   const { t } = useClientTranslation()
+
+  const DEFAULT_REGION_MODEL_AUTHOR: RegionAuthor = {
+    nom: t('l’équipe de nosgestesclimat.fr'),
+    url: '/a-propos',
+  }
 
   return (
     <small>

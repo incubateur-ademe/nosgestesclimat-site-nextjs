@@ -1,0 +1,63 @@
+---
+título: Taconnaz
+fecha: 2021-11-02T11:01:01Z
+imagen: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Taconnaz.JPG/576px-Taconnaz.JPG
+---
+
+glaciar de Taconnaz](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Taconnaz.JPG/576px-Taconnaz.JPG)
+
+> En resumen :
+&gt
+> - revisión del itinerario de acciones 🎯: añade acciones a tu cesta para reducir tu huella.
+> - el menú pescado 🐟️ ¡por fin ha llegado!
+> Un nuevo menú permanente facilita la navegación
+> - ahora puede compartir los enlaces de sus conferencias con un código QR
+
+## Un nuevo camino hacia la acción 🎯
+
+Muchos usuarios se quejaban de la sencillez de nuestra ruta de llamada a la acción. La hemos rediseñado por completo, acercándola a un minijuego en el que el objetivo es reducir tu huella.
+
+![ngc-action-2](https://user-images.githubusercontent.com/1177762/139829768-5759d428-1e0d-4c7d-9fd3-682dbebb1b90.gif)
+
+Esto es solo el principio: ya hemos planeado los <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/issues/359">próximos pasos</a> para que participar sea aún más fácil.
+
+También vamos a introducir _personas_: perfiles típicos que puedes seleccionar para vivir la ruta de la acción como un ciudadano determinado.
+
+## El menú 🐟️
+
+Hemos recibido decenas de peticiones para incluir un menú de pescado en la pantalla de elección de dieta. ¡Ahora hay 2!
+
+![Capture d’écran du 2021-11-02 11-29-03](https://user-images.githubusercontent.com/1177762/139830102-bd7cee54-c1fd-454c-8eb0-7ce2a750ffa8.png)
+
+Estos nuevos platos se han creado utilizando la base de datos <a href="https://agribalyse.fr/">Agribalyse</a>, y el cálculo es, por supuesto, _abierto_. A continuación se irán añadiendo numerosas novedades relacionadas con la alimentación.
+
+## Un nuevo menú para la aplicación
+
+Nosgestesclimat está diseñada para utilizarse tanto en dispositivos móviles como de sobremesa. La versión móvil cuenta ahora con un menú permanente en la parte inferior de la pantalla, y la versión de escritorio tiene un nuevo diseño a dos columnas, con un menú también a la izquierda.
+
+![Capture d’écran du 2021-11-02 11-31-33](https://user-images.githubusercontent.com/1177762/139830463-203c8896-0eda-49ad-ba45-be1a19e180de.png)
+
+Este nuevo menú hace que la aplicación sea más accesible, y es sólo una de las muchas mejoras de accesibilidad que tenemos <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/issues/350">previstas</a>.
+
+## ¡La media francesa ha subido a 9 toneladas!
+
+Desgraciadamente, esto no refleja ningún esfuerzo inesperado, sino una mejora en el método de cálculo del Ministerio de Medio Ambiente.
+
+La buena noticia es que la administración francesa se está tomando el asunto en serio, mejorando sus cálculos y explicando científicamente las diferencias.
+
+Explicaciones detalladas <a href="https://twitter.com/maeool/status/1453282887583866885">aquí</a>.
+
+Entonces, ¿por qué mostramos una media de 9,8 toneladas en el simulador? Porque nuestros cálculos se basan en un método diferente y complementario al utilizado por la administración. Más información <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/issues/365#issuecomment-957321261">aquí</a>.
+
+## Mejoras en el modo conferencia 🏟️
+
+Este modo colectivo para utilizar nuestrasclimategias se utiliza cada vez más. Para que sea más fácil compartir el enlace al inicio de la conferencia, estamos generando un super QRCode que sólo tienes que proyectar o enviar por e-mail
+![Capture d’écran du 2021-11-02 11-32-27](https://user-images.githubusercontent.com/1177762/139830597-63fe1856-5622-4c52-b7f4-23ccbfaa6bd9.png).
+
+Otra mejora es que estamos excluyendo de los resultados del grupo las simulaciones que han dado lugar a una huella demasiado grande, superior a 100 toneladas. Este límite será pronto configurable.
+
+## Mejoras técnicas 🐇
+
+Seguimos aligerando el sitio, eliminando una biblioteca de animación gráfica (react-spring) y separando mejor el modo conferencia del resto de la aplicación.
+
+Por supuesto, también se han corregido muchos de los errores que se habían reportado.

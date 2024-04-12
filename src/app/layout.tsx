@@ -94,7 +94,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           b.setAttribute('data-useragent', navigator.userAgent);
         `}</Script>
 
-        <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
         <ErrorBoundary showDialog fallback={ErrorFallback}>
           <MainLayoutProviders
             region={region}
