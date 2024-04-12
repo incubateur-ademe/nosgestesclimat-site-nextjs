@@ -1,11 +1,11 @@
 'use client'
 
 import Link from '@/components/Link'
-import Planet from '@/components/total/_components/Planet'
 import Trans from '@/components/translation/Trans'
 import { endClickEmpreinte } from '@/constants/tracking/pages/end'
 import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Card from '@/design-system/layout/Card'
+import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
@@ -51,7 +51,7 @@ export default function TotalCard() {
       </div>
 
       <div>
-        <Planet aria-hidden width="100" height="100" />
+        <Emoji className="z-10 mr-4 text-8xl">🌍</Emoji>
       </div>
     </Card>
   )

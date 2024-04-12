@@ -39,9 +39,9 @@ export default function FinPage() {
       <Results />
 
       <div className="flex flex-col items-stretch gap-4 lg:grid lg:grid-cols-8">
-        <GetResultsByEmail className="col-span-6 h-full" />
+        <GetResultsByEmail className="col-span-5 h-full" />
 
-        <GroupModePromotionBanner className="col-span-2" />
+        <GroupModePromotionBanner className="col-span-3" />
       </div>
 
       <Separator />

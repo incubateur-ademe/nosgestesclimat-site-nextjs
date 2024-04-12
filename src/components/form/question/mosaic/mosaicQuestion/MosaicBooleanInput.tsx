@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
+import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
 
@@ -79,17 +80,15 @@ export default function MosaicBooleanInput({
       <div className="flex-1">
         {title && icons ? (
           <span
-            className={`text-sm font-medium md:text-xl ${labelClassNames[status]}`}>
-            {title}&nbsp;{icons}
+            className={`inline align-middle text-sm font-medium md:text-xl ${labelClassNames[status]}`}>
+            <Emoji>{title}</Emoji>{' '}
+            <Emoji className="inline-flex items-center">{icons}</Emoji>
           </span>
         ) : null}
         {description ? (
-          <>
-            <br />
-            <p className="mb-0 text-xs italic md:text-sm">
-              {description.split('\n')[0]}
-            </p>
-          </>
+          <p className="mb-0 text-xs italic md:text-sm">
+            {description.split('\n')[0]}
+          </p>
         ) : null}
       </div>
       {isInactive ? (

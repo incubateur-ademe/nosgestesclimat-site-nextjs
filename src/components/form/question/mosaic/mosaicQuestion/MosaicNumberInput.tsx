@@ -1,5 +1,6 @@
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Button from '@/design-system/inputs/Button'
+import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 type Props = {
   question: string
@@ -32,12 +33,13 @@ export default function NumberInput({
       <div>
         {title && icons ? (
           <span className="text-sm font-semibold md:text-xl">
-            {title}&nbsp;{icons}
+            <Emoji className="inline-flex items-center">
+              {title}&nbsp;{icons}
+            </Emoji>
           </span>
         ) : null}
         {description ? (
           <>
-            <br />
             <p className="mb-0 text-xs italic md:text-sm">
               {description.split('\n')[0]}
             </p>

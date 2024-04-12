@@ -24,15 +24,15 @@ export default function GroupModePromotionBanner({
       <div className="flex w-full items-center justify-center">
         <Image
           src="/images/misc/amis-screenshot.svg"
-          width="300"
+          width="280"
           height="300"
           alt={t('Une capture du mode Groupe Nos Gestes Climat.')}
           className="md:rounded-md"
         />
       </div>
 
-      <div className="flex flex-1 flex-col items-start justify-center pb-4">
-        <p className="max-w-sm">
+      <div className="flex flex-1 flex-col items-center justify-center">
+        <p className="max-w-sm text-base">
           <Trans>
             Comparez vos résultats{' '}
             <span className="text-primary-700">avec vos proches</span>
@@ -42,6 +42,7 @@ export default function GroupModePromotionBanner({
         <ButtonLink
           color="secondary"
           href="/amis"
+          className="self-bottom"
           trackingEvent={endClickCreateGroup}>
           <Trans>Créer un groupe</Trans>
         </ButtonLink>

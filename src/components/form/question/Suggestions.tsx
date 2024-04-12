@@ -2,6 +2,7 @@
 
 import { questionClickSuggestion } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
+import Emoji from '@/design-system/utils/Emoji'
 import { useEngine, useRule } from '@/publicodes-state'
 import { DottedName, Situation } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
@@ -45,7 +46,9 @@ export default function Suggestions({ question, setValue }: Props) {
               setValue(suggestion.value)
             }
           }}>
-          {capitalizeString(suggestion.label)}
+          <Emoji className="flex items-center gap-1">
+            {capitalizeString(suggestion.label)}
+          </Emoji>
         </Button>
       ))}
     </div>
