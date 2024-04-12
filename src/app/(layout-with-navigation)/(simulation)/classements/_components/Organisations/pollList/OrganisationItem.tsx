@@ -17,7 +17,7 @@ export default function OrganisationItem({
   return (
     <Link
       href={getLinkToPollDashboard({ orgaSlug: organisation?.slug })}
-      className="mb-6 rounded-xl bg-grey-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-grey-200"
+      className="mb-6 rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-gray-200"
       onClick={() =>
         trackEvent(
           classementClickOrganisation({

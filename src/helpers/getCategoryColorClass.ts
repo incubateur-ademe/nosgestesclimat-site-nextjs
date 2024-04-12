@@ -18,17 +18,17 @@ export function getTextColor(category?: string | null) {
 export function getTextDarkColor(category?: string | null) {
   switch (category) {
     case 'transport':
-      return `text-transport-950`
+      return `text-transport-800`
     case 'alimentation':
-      return `text-alimentation-950`
+      return `text-alimentation-800`
     case 'logement':
-      return `text-logement-950`
+      return `text-logement-800`
     case 'divers':
-      return `text-divers-950`
+      return `text-divers-800`
     case 'services sociétaux':
-      return `text-servicessocietaux-950`
+      return `text-servicessocietaux-800`
     default:
-      return 'text-primary-950'
+      return 'text-primary-800'
   }
 }
 

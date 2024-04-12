@@ -18,7 +18,7 @@ export default function GroupModePromotionBanner({
   return (
     <Card
       className={twMerge(
-        'w-full flex-col justify-center gap-4 rounded-xl border-none bg-primary-50 shadow-none md:gap-8',
+        'w-full flex-col justify-center gap-4 rounded-xl border-none bg-gray-100 shadow-none md:gap-8',
         className
       )}>
       <div className="flex w-full items-center justify-center">

@@ -38,7 +38,7 @@ export default function HeaderDesktop() {
   return (
     <header className="sticky top-0 z-[500] hidden h-20 items-center lg:block">
       <div className="absolute bottom-0 left-0 right-0 top-0 flex h-20 w-full items-center border-b bg-white shadow-sm">
-        <div className="mx-auto flex h-full w-full max-w-6xl justify-between gap-4 ">
+        <div className="mx-auto flex h-full w-full max-w-6xl justify-between gap-6">
           <div className="flex items-center justify-between gap-20">
             <div className="flex origin-left items-center justify-center">
               <Logo onClick={() => trackEvent(headerClickLogo)} />
@@ -53,7 +53,7 @@ export default function HeaderDesktop() {
                     activeMatches={['/tutoriel', '/simulateur', '/fin']}
                     icon={BilanIcon}
                     title={t('Mon empreinte')}>
-                    {t('Mon empreinte')}
+                    <Trans>Mon empreinte</Trans>
                   </NavLink>
                 </li>
 

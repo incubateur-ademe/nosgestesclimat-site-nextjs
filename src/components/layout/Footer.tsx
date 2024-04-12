@@ -12,7 +12,6 @@ import {
   footerClickQuiSommesNous,
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
-import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { twMerge } from 'tailwind-merge'
@@ -127,8 +126,6 @@ export default function Footer({ className = '' }) {
           </div>
         </div>
       </div>
-
-      <ColorLine className="absolute bottom-0 left-0 h-[5px] w-full bg-primary-300 " />
     </footer>
   )
 }

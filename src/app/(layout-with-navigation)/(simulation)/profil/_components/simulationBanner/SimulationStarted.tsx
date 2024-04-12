@@ -32,7 +32,7 @@ export default function SimulationStarted() {
   return (
     <div className="flex flex-wrap">
       <div className="sm:mt-4 sm:w-[30rem]">
-        <Card className="mr-8 border-2 border-lavender-light bg-white">
+        <Card className="mr-8 bg-gray-100">
           <p className="text-base md:text-lg">
             {t('publicodes.Profil.recap', {
               percentFinished: (progression * 100).toFixed(0),

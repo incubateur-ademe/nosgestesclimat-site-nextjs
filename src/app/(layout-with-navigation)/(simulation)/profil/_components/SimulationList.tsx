@@ -23,7 +23,7 @@ export default function SimulationList() {
   return (
     <div className="my-6">
       <h2 className="flex items-center">
-        <SavesIcon className="mr-3 fill-yellow-dark" />
+        <SavesIcon className="mr-3 fill-primary-700" />
 
         <Trans>Mon historique des simulations</Trans>
       </h2>
