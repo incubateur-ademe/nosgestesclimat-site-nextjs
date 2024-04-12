@@ -12,10 +12,13 @@ import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import Image from 'next/image'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
-    title: 'Le calculateur d’empreinte climat international',
-    description:
-      'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.',
+    title: t('Le calculateur d’empreinte climat international'),
+    description: t(
+      'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.'
+    ),
     alternates: {
       canonical: '/international',
     },

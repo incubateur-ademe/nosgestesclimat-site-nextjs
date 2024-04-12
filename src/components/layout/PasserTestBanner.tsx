@@ -3,16 +3,14 @@
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import Trans from '../translation/Trans'
 
 export default function PasserTestBanner() {
-  const { getCurrentSimulation } = useUser()
+  const { progression } = useCurrentSimulation()
 
   const { getLinkToSimulateurPage, linkToSimulateurPageLabel } =
     useSimulateurPage()
-
-  const progression = getCurrentSimulation()?.progression
 
   // Do not show the banner if the user has completed his/her test
   if (progression === 1) return null

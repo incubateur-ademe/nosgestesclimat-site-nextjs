@@ -3,8 +3,9 @@
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import { DottedName } from '@/publicodes-state/types'
 import { useContext, useMemo } from 'react'
-import { useEngine, useUser } from '../..'
-import simulationContext from '../../providers/simulationProvider/context'
+import { useEngine } from '../..'
+import { SimulationContext } from '../../providers/simulationProvider/context'
+import useCurrentSimulation from '../useCurrentSimulation'
 
 type ActionObject = {
   dottedName: DottedName
@@ -16,13 +17,11 @@ type ActionObject = {
  * Not really used for now but will be essential when we redo the actions page
  */
 export default function useActions() {
-  const { engine } = useContext(simulationContext)
+  const { engine } = useContext(SimulationContext)
 
   const { getValue } = useEngine()
 
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
+  const { actionChoices } = useCurrentSimulation()
 
   const orderedActions = useMemo<string[]>(() => {
     const actionsRule = engine.getRule('actions')
@@ -43,9 +42,9 @@ export default function useActions() {
   }, [engine, getValue])
 
   const { chosenActions, declinedActions } =
-    Object.keys(currentSimulation?.actionChoices ?? {})?.reduce(
+    Object.keys(actionChoices ?? {})?.reduce(
       (accActions, currentAction) => {
-        const actionChoice = currentSimulation?.actionChoices[currentAction]
+        const actionChoice = actionChoices[currentAction]
 
         if (actionChoice) {
           {

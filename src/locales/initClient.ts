@@ -15,6 +15,9 @@ i18next
     ...getOptions(),
     lng: undefined, // let detect the language on client side
     resources: {
+      es: {
+        translation: translations['es'],
+      },
       en: {
         translation: translations['en'],
       },

@@ -11,8 +11,13 @@ export default function CreateFirstGroupSection() {
         <Trans>Créez votre premier groupe</Trans>
       </h2>
       <p className="mb-6 text-sm">
-        Invitez vos proches pour comparer vos résultats. Cela prend{' '}
-        <strong className="text-secondary-700">1 minute</strong> !
+        <Trans>
+          Invitez vos proches pour comparer vos résultats. Cela prend
+        </Trans>{' '}
+        <strong className="text-secondary-700">
+          <Trans>1 minute</Trans>
+        </strong>{' '}
+        !
       </p>
       <ButtonLink
         href={linkToGroupCreation}

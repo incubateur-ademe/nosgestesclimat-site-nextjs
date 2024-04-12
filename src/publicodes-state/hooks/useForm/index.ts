@@ -9,8 +9,6 @@ import useNavigation from './useNavigation'
  */
 export default function useForm() {
   const {
-    categories,
-    subcategories,
     relevantQuestions,
     currentQuestion,
     currentCategory,
@@ -18,7 +16,6 @@ export default function useForm() {
     setCurrentCategory,
     remainingQuestions,
     relevantAnsweredQuestions,
-    progression,
     remainingQuestionsByCategories,
   } = useContext(formContext)
 
@@ -37,14 +34,6 @@ export default function useForm() {
   })
 
   return {
-    /**
-     * Every relevant categories ordered as needed for the simulation root (default: bilan)
-     */
-    categories: [...categories],
-    /**
-     * Every relevant subcategories sorted by category
-     */
-    subcategories,
     /**
      * Every questions (answered and missing) that should be displayed in the form
      */
@@ -97,10 +86,6 @@ export default function useForm() {
      * Every answered questions that are still relevant and should be displayed in the form (foldedsteps minus questions that are disabled by parents and can't enable themselves)
      */
     relevantAnsweredQuestions,
-    /**
-     * Progression in the test (betweeen 0 and 1)
-     */
-    progression,
     /**
      * Every missing questions needed to complete the form sorted by category
      */

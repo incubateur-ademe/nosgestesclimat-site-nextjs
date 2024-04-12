@@ -7,7 +7,6 @@ entries:
   'Actions écartées :': 'Actions écartées :'
   Agir: Agir
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": "Cette contribution sera publique : n'y mettez pas d'informations sensibles"
-  Cette fiche détaillée n'existe pas encore: Cette fiche détaillée n'existe pas encore
   Charger: Charger
   Chargée: Chargée
   Choisir l'action: Choisir l'action
@@ -15,17 +14,14 @@ entries:
   Choisir une autre région: Choisir une autre région
   Choisissez une région parmi celles disponibles !: Choisissez une région parmi celles disponibles !
   Commencer: Commencer
-  Comment réduire mon empreinte ?: Comment réduire mon empreinte ?
   Comprendre le calcul: Comprendre le calcul
   Copier le lien: Copier le lien
   Depuis la page: Depuis la page
-  Diffuser: Diffuser
   Documentation: Documentation
   Découvrez la FAQ !: Découvrez la FAQ !
   Découvrez les enjeux qui se cachent derrière chaque action.: Découvrez les enjeux qui se cachent derrière chaque action.
   Démarrer: Démarrer
   En développement actif: En développement actif
-  En groupe: En groupe
   En savoir +: En savoir +
   En savoir plus: En savoir plus
   Entre: Entre
@@ -35,14 +31,12 @@ entries:
   Explorez nos modèles: Explorez nos modèles
   Faire le test: Faire le test
   Fermer: Fermer
-  Fermer la notification de nouveautés: Fermer la notification de nouveautés
   Fermer les options de tri: Fermer les options de tri
   J'ai compris: J'ai compris
   Je ne sais pas: Je ne sais pas
   Le modèle d'empreinte carbone de référence: Le modèle d'empreinte carbone de référence
   Le test: Le test
   Le titre bref de votre problème: Le titre bref de votre problème
-  'Les 3 actions au plus fort impact pour vous :': 'Les 3 actions au plus fort impact pour vous :'
   Les nouveautés ✨: Les nouveautés ✨
   Mon historique des simulations: Mon historique des simulations
   Mon profil: Mon profil
@@ -54,17 +48,13 @@ entries:
   Oui: Oui
   Ouvert, documenté et contributif: Ouvert, documenté et contributif
   Ouvrir les options de tri: Ouvrir les options de tri
-  Page profil: Page profil
-  Partager mes résultats: Partager mes résultats
   Passer à l'action !: Passer à l'action !
   Personnalisez cette estimation: Personnalisez cette estimation
-  Pour aller plus loin: Pour aller plus loin
   Profil: Profil
   Précédent: Précédent
   'Quelques suggestions ': 'Quelques suggestions '
   Questions fréquentes: Questions fréquentes
   Rejeter l'action: Rejeter l'action
-  Réduire ma conso de pétrole: Réduire ma conso de pétrole
   Réseaux Sociaux: Réseaux Sociaux
   Sites Web: Sites Web
   Suivant: Suivant
@@ -75,11 +65,8 @@ entries:
   Un modèle complet: Un modèle complet
   Une question, un problème ?: Une question, un problème ?
   Une technologie moderne: Une technologie moderne
-  Voir mon résultat: Voir mon résultat
-  Vous avez terminé le test 👏: Vous avez terminé le test 👏
   Vous n'avez pas encore fait le test.: Vous n'avez pas encore fait le test.
   actions choisies: actions choisies
-  components.NewsBanner.miseAJourDate: Dernière mise à jour {{date}}
   components.ScoreExplanation.text.p1: 🧮 Voici votre score de départ, calculé à partir de réponses attribuées à l'avance à chaque question ! Il évoluera à chaque nouvelle réponse.
   components.ScoreExplanation.text.p2: 🧮 Voici votre score provisoire, il évolue à chaque nouvelle réponse !
   components.ScoreExplanation.text.p3: '🤔 Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
@@ -96,7 +83,6 @@ entries:
   le - d'impact climat: le - d'impact climat
   meta.publicodes.pages.Documentation.intro: Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.
   minutes: minutes
-  model.active: Voici à titre d'exemple quelques <1>issues</1> importantes du moment parmi la centaine de sujets documentés.
   model.active.documented: La construction du modèle (pistes de travail, réflexions en cours, feuille de route, etc.) est amplement <2>documentée publiquement</2>.
   model.intro: Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.
   model.intro2: Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>.
@@ -122,7 +108,6 @@ entries:
   publicodes.ActionTutorial.msgPrésentation: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
   publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} actions disponibles,'
-  publicodes.AllActions.allerPlusLoin: <0>Aller plus loin</0><1>Au-delà d'un simple chiffre, découvrez les enjeux qui se cachent derrière chaque action.</1>
   publicodes.AllActions.msgPlusActions: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
   publicodes.Contribution.commentaireAugmenté: '> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).'
@@ -130,15 +115,12 @@ entries:
   publicodes.Contribution.descriptionComplète: <0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>
   publicodes.Contribution.liensVersGithub: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
   publicodes.Contribution.remerciements: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <2>ce lien</2>.
-  publicodes.Contact.titreQuestion: J'ai une question
-  publicodes.Landing.question: Connaissez-vous votre empreinte sur le climat ?
   publicodes.Personas.description: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du simulateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le simulateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
   publicodes.Profil.locationDonnées: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
   publicodes.Profil.recap: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
   publicodes.Profil.simulations: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
   publicodes.SimulationMissing.personnas: Vous pouvez aussi continuer avec un <2>profil type</2>.
   publicodes.SimulationMissing.simulationManquante: Pour débloquer ce parcours, vous devez d'abord terminer le test.
-  publicodes.fin.IframeDataShareModal.partageResultats: Partage de vos résultats à {{parent}} ?
   publicodes.northstar.title: Petite question entre nous...
   publicodes.northstar.action: Nos Gestes Climat vous donne envie d'agir pour réduire votre empreinte carbone ?
   Pas vraiment, envoyer cette réponse: Pas vraiment, envoyer cette réponse
@@ -148,7 +130,6 @@ entries:
   publicodes.planDuSite.title: Plan du site
   publicodes.planDuSite.actionsPlus: Les actions
   semaines: semaines
-  sites.publicodes.Landing.description: Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.
   sites.publicodes.Tutorial.questionE: 💡 Mais que veut dire ce petit <1>e</1> ?
   sélectionnées: sélectionnées
   tonne: tonne
@@ -173,45 +154,22 @@ entries:
   international.pourquoi.1: Les modes de vies ne sont pas les mêmes en fonction du pays dans lequel on vit. Certains pays ont un réseau ferré très développé, d'autres sont insulaires et donc reposent davantage sur le ferry et l'avion.
   international.pourquoi.2: Au fur et à mesure que l'électricité prend une place très importante grâce à la transition énergétique, l'empreinte carbone du mix électrique influence fortement le calcul d'empreinte climat.
   international.pourquoi.titre: Adapté à votre pays
-  International: International
   international.pourquoi.3: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.
   Ce modèle a été conçu par: Ce modèle a été conçu par
   Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.: Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.
   Recharger la page: Recharger la page
   Une erreur s'est produite: Une erreur s'est produite
-  Reprendre mon test: Reprendre mon test
-  Voir le détail de ma simulation: Voir le détail de ma simulation
   model.questions: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
   Oups, nous n'avons pas d'article correspondant: Oups, nous n'avons pas d'article correspondant
   Retour à la liste des articles: Retour à la liste des articles
-  Merci pour votre inscription !: Merci pour votre inscription !
-  Sauvegarder mes résultats: Sauvegarder mes résultats
-  Vous allez recevoir un email de notre part sous peu.: Vous allez recevoir un email de notre part sous peu.
-  Vous pourrez choisir de ne plus recevoir nos emails à tout moment: Vous pourrez choisir de ne plus recevoir nos emails à tout moment
-  Vous souhaitez recevoir vos résultats ?: Vous souhaitez recevoir vos résultats ?
   Blog: Blog
   simulations terminées: simulations terminées
-  '{categoryTitle}': '{categoryTitle}'
-  '{linkKey}': '{linkKey}'
   Statistiques Northstar: Statistiques Northstar
   Le chargement prend parfois plusieurs minutes, visualiser ce dashboard demande un peu de patience ! 🕙: Le chargement prend parfois plusieurs minutes, visualiser ce dashboard demande un peu de patience ! 🕙
   Nombre de: Nombre de
   'pour les ': 'pour les '
-  publicodes.FAQ.titreQuestion: J'ai une autre question
   Contact: Contact
-  publicodes.Contact.description: N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écire, vous y trouverez sans doute la réponse à votre question !
-  publicodes.Contact.form: Pour toute remarque ou question, <2>nous vous recommandons <2>d'ouvrir un ticket directement sur GitHub</2></2> afin de suivre les échanges plus facilement. Vous pouvez également nous envoyer un message via le formulaire de contact ci-dessous.
-  publicodes.Contact.mail: Enfin, vous avez la possibilité de nous envoyer un mail à l'adresse <2>contact@nosgestesclimat.fr</2>. Cependant, le délais de réponse sera plus long que les solutions précédentes.
   publicodes.FAQ.faireletest: Vous n'avez pas encore débuté votre test, <2><0>lancez-vous !</0></2>
-  ', comme déjà ': ', comme déjà '
-  'autres utilisateurs, ': 'autres utilisateurs, '
-  des conseils: des conseils
-  'et ': 'et '
-  Laissez-nous votre email: Laissez-nous votre email
-  ' pour recevoir ': ' pour recevoir '
-  'pour réduire votre empreinte carbone (1 fois par mois max.). ': 'pour réduire votre empreinte carbone (1 fois par mois max.). '
-  votre résultat: votre résultat
-  '{group?.owner?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.owner?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>'
   Comparez vos résultats avec votre famille ou un groupe d'amis.: Comparez vos résultats avec votre famille ou un groupe d'amis.
   Comparez vos résultats avec votre famille ou un groupe d’amis: Comparez vos résultats avec votre famille ou un groupe d’amis
   Copié !: Copié !
@@ -221,19 +179,16 @@ entries:
   Créez un autre groupe: Créez un autre groupe
   Créez votre premier groupe: Créez votre premier groupe
   facultatif: facultatif
-  Groupe d'amis: Groupe d'amis
   Il sera visible uniquement par les participants du groupe: Il sera visible uniquement par les participants du groupe
   Partager: Partager
   Rejoindre: Rejoindre
   Retour: Retour
   Votre prénom (ou pseudo): Votre prénom (ou pseudo)
-  Comment agir: Comment agir
   Le classement: Le classement
   Par rapport à la moyenne du groupe.: Par rapport à la moyenne du groupe.
   Toutes les actions: Toutes les actions
   Vos points faibles: Vos points faibles
   Vos points forts: Vos points forts
-  Votre empreinte: Votre empreinte
   Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.: Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.
   Données supprimées.: Données supprimées.
   Modifier le nom du groupe: Modifier le nom du groupe
@@ -246,30 +201,23 @@ entries:
   Veuillez renseigner un email valide.: Veuillez renseigner un email valide.
   Veuillez renseigner un nom.: Veuillez renseigner un nom.
   Veuillez renseigner un prénom ou un pseudonyme.: Veuillez renseigner un prénom ou un pseudonyme.
-  Voir les {String(group.members.length - 5)} autre{withS} participant{withS}: Voir les {String(group.members.length - 5)} autre{withS} participant{withS}
-  Vous êtes le premier 🥳: Vous êtes le premier 🥳
   Créer et passer mon test: Créer et passer mon test
   Rejoindre et passer mon test: Rejoindre et passer mon test
   Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.: Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.
   Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.: Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.
   Votre adresse email: Votre adresse email
   Personas: Personas
-  Votre bilan climat personnel: Votre bilan climat personnel
   Qui sont-ils ?: Qui sont-ils ?
   Comment les mettons-nous à jour ?: Comment les mettons-nous à jour ?
   publicodes.Personas.maj: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du simulateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le simulateur).</1></1>
   Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.: Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.
-  Cette nouvelle fonctionnalité est en expérimentation ! Vous rencontrez un bug ou avez une idée d’amélioration ?: Cette nouvelle fonctionnalité est en expérimentation ! Vous rencontrez un bug ou avez une idée d’amélioration ?
-  Donnez votre avis !: Donnez votre avis !
   Oups ! Désolé, une erreur est survenue.: Oups ! Désolé, une erreur est survenue.
   Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.: Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.
-  ' Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': ' Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !'
   ' Retour à la liste': ' Retour à la liste'
   '{children}': '{children}'
   "{progression > 0 ? 'Reprendre mon test' : 'Faire le test'}": "{progression > 0 ? 'Reprendre mon test' : 'Faire le test'}"
   <0></0> Reprendre mon test: <0></0> Reprendre mon test
   10 minutes: 10 minutes
-  Amis: Amis
   Avant de commencer: Avant de commencer
   Bientôt disponible: Bientôt disponible
   C'est parti ! →: C'est parti ! →
@@ -284,21 +232,16 @@ entries:
   D’où vient mon empreinte ?: D’où vient mon empreinte ?
   'Date complète :': 'Date complète :'
   'Découvrez nos articles de blog :': 'Découvrez nos articles de blog :'
-  Des questions ?: Des questions ?
   disponibles: disponibles
-  Entreprises, collectivités, écoles: Entreprises, collectivités, écoles
   Entrez des mots-clefs de recherche: Entrez des mots-clefs de recherche
   Fermer le bandeau de feedback: Fermer le bandeau de feedback
   'Identifiant :': 'Identifiant :'
   Il concerne votre vie personnelle, et non pas votre boulot.: Il concerne votre vie personnelle, et non pas votre boulot.
   international.comment.2: Explorez en détail les spécificités de chaque pays.
-  L'intégralité du calcul est <2>documenté</2> en ligne pour les curieux et les experts.: L'intégralité du calcul est <2>documenté</2> en ligne pour les curieux et les experts.
   Le Blog: Le Blog
-  Le code source est ouvert, le site est <2>amélioré régulièrement</2>.: Le code source est ouvert, le site est <2>amélioré régulièrement</2>.
   Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.
   Logo de l'Association pour la transition Bas Carbone: Logo de l'Association pour la transition Bas Carbone
   Mes réponses: Mes réponses
-  Mon objectif annuel: Mon objectif annuel
   Oups! Cette page n'existe pas ou n'existe plus: Oups! Cette page n'existe pas ou n'existe plus
   Passer en français: Passer en français
   Plus d'information à ce sujet: Plus d'information à ce sujet
@@ -310,7 +253,6 @@ entries:
   publicodes.Tutoriel.slide6: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne. </1>
   Recommencer: Recommencer
   Répondez aux questions en votre nom, pas pour votre foyer.: Répondez aux questions en votre nom, pas pour votre foyer.
-  Retrouvez les réponses aux questions courantes sur notre page <2>FAQ</2>.: Retrouvez les réponses aux questions courantes sur notre page <2>FAQ</2>.
   revenir à l'accueil: revenir à l'accueil
   'Revenir à ma région par défaut ': 'Revenir à ma région par défaut '
   Revoir le tutoriel: Revoir le tutoriel
@@ -318,9 +260,6 @@ entries:
   Sélectionner: Sélectionner
   Supprimer: Supprimer
   Switch to english: Switch to english
-  Tout déplier: Tout déplier
-  Tout replier: Tout replier
-  Une idée ? Une correction ? Une remarque ? Toute contribution <2>est la bienvenue</2>!: Une idée ? Une correction ? Une remarque ? Toute contribution <2>est la bienvenue</2>!
   Voir la liste des questions: Voir la liste des questions
   Voir plus d'informations: Voir plus d'informations
   Vous: Vous
@@ -329,38 +268,20 @@ entries:
   du test: du test
   Vous utilisez la version: Vous utilisez la version
   Terminer: Terminer
-  SondagesBlock.description: Les <1>sondages</1> et <3>conférences</3> vous permettent de comparer votre empreinte en direct ou en groupes de plus de 20 personnes
   Ambassadeurs: Ambassadeurs
-  IframeDataShareModal.text2: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <1>pas</1> le détail question par question (vos km en voiture, les m² de votre logement...).
-  IframeDataShareModal.text3: Nosgestesclimat.fr n'est pas affilié au site {{parent}}.
-  IframeDataShareModal.text1: En cliquant sur le bouton Accepter, vous autorisez {{parent}} à récupérer le bilan de votre empreinte climat.
-  Copié !: Copié !
-  De quoi est faite mon empreinte ?: De quoi est faite mon empreinte ?
-  Comment réduire mon empreinte ?: Comment réduire mon empreinte ?
-  'Les 3 actions au plus fort impact pour vous :': 'Les 3 actions au plus fort impact pour vous :'
-  Entrez votre adresse email: Entrez votre adresse email
-  NewsletterForm.confirmation: J'accepte de recevoir des informations de la part de Nos Gestes Climat et sa <2>politique de confidentialité</2>
-  newsLetter.Text.p2: pour recevoir <1>votre résultat</1> et <4>des conseils</4> pour réduire votre empreinte carbone (1 fois par mois max).
   Voir toutes les actions: Voir toutes les actions
-  Mon empreinte carbone: Mon empreinte carbone
   Total.unit: de CO<1>2</1>e / an
-  Vous utilisez actuellement le persona: Vous utilisez actuellement le persona
   📅 Répondre sur les 3 dernières années: 📅 Répondre sur les 3 dernières années
   Comparez vos résultats <2>avec vos proches</2>: Comparez vos résultats <2>avec vos proches</2>
   Créer un groupe: Créer un groupe
-  Découvre nos pistes pour agir dès aujourd’hui pour le climat, ou passe le test pour obtenir des recommandations personnalisées.: Découvre nos pistes pour agir dès aujourd’hui pour le climat, ou passe le test pour obtenir des recommandations personnalisées.
   Découvrez vos résultats, et nos idées d'actions pour vous améliorer.: Découvrez vos résultats, et nos idées d'actions pour vous améliorer.
   Distance: Distance
-  Entrer mes trajets: Entrer mes trajets
   Fréquence: Fréquence
   La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.: La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.
   Label: Label
-  northstar.thankyou: Merci pour votre retour !
   Passagers: Passagers
   Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet.: Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet.
-  Recevez vos résultats <2>par email</2>: Recevez vos résultats <2>par email</2>
   Télécharger l'image: Télécharger l'image
-  'Total :': 'Total :'
   'Total par an :': 'Total par an :'
   Une capture du mode Groupe Nos Gestes Climat.: Une capture du mode Groupe Nos Gestes Climat.
   Votre bilan: Votre bilan
@@ -369,39 +290,18 @@ entries:
   Vous avez terminé le test !: Vous avez terminé le test !
   Merci pour votre retour !: Merci pour votre retour !
   'Total :': 'Total :'
-  Vous avez terminé le test !: Vous avez terminé le test !
-  Vous avez terminé le test\u202f!: Vous avez terminé le test\\u202f!
-  Vous avez terminé le test: Vous avez terminé le test
   Modifier mes réponses: Modifier mes réponses
   ou: ou
   Comment agir ?: Comment agir ?
   publicodes.northstar.learned: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?
   Ajouter: Ajouter
-  an: an
-  avec en moyenne: avec en moyenne
-  jour: jour
-  pour une personne: pour une personne
-  semaine: semaine
-  Soit: Soit
-  voyageurs: voyageurs
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !'
-  Courses: Courses
   Détailler mes trajets: Détailler mes trajets
-  Domicile-Travail: Domicile-Travail
-  Mobilité académique: Mobilité académique
-  RDV médicaux: RDV médicaux
   Retour à la liste des nouveautes: Retour à la liste des nouveautes
-  Sorties ponctuelles: Sorties ponctuelles
-  Sport ou Loisir: Sport ou Loisir
-  Vacances: Vacances
-  Visite familiale: Visite familiale
-  Week-end: Week-end
   Documentations: Documentations
   Informations: Informations
   Nos outils: Nos outils
   Questions: Questions
-  '{periods[journey.period]}': '{periods[journey.period]}'
-  ← Revenir au test: ← Revenir au test
   <0>👀</0> Voir mon résultat: <0>👀</0> Voir mon résultat
   Actions: Actions
   Aide à la saisie: Aide à la saisie
@@ -437,24 +337,16 @@ entries:
   Cette opération est définitive et vous ne pourrez plus accéder aux résultats du groupe.: Cette opération est définitive et vous ne pourrez plus accéder aux résultats du groupe.
   Découvrez nos pistes pour agir dès aujourd’hui pour le climat.: Découvrez nos pistes pour agir dès aujourd’hui pour le climat.
   chaque année: chaque année
-  choix à faire: choix à faire
-  choix en trop !: choix en trop !
   D'autres questions ?: D'autres questions ?
   de: de
-  Et les conseils de Nos Gestes Climat pour réduire votre impact sur le climat.: Et les conseils de Nos Gestes Climat pour réduire votre impact sur le climat.
-  Il vous reste: Il vous reste
   Ma région de simulation: Ma région de simulation
-  par email: par email
   "Qu'est-ce que ça veut dire ? ": "Qu'est-ce que ça veut dire ? "
-  Recevez vos résultats: Recevez vos résultats
-  Vous avez fait: Vous avez fait
   Quitter: Quitter
   Votre groupe a été supprimé. Vous allez être redirigé vers la page d'accueil du mode groupe.: Votre groupe a été supprimé. Vous allez être redirigé vers la page d'accueil du mode groupe.
   Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe: Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe
   Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.: Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.
   Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.: Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.
   Comment est calculée votre empreinte ?: Comment est calculée votre empreinte ?
-  "Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée :": "Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée :"
   Sauvegarder: Sauvegarder
   Vous retrouverez votre résultat d’empreinte, ainsi que <2>des conseils pour la réduire</2> (1 fois par mois max.): Vous retrouverez votre résultat d’empreinte, ainsi que <2>des conseils pour la réduire</2> (1 fois par mois max.)
   Vous souhaitez recevoir vos résultats d’empreinte carbone ?: Vous souhaitez recevoir vos résultats d’empreinte carbone ?
@@ -500,11 +392,9 @@ entries:
   Nous vérifions votre code...: Nous vérifions votre code...
   organisation: organisation
   'ou ': 'ou '
-  Oups, une erreur s'est produite au moment de récupérer vos données d'organisation.: Oups, une erreur s'est produite au moment de récupérer vos données d'organisation.
   Partagez une version personnalisée de Nos Gestes Climat: Partagez une version personnalisée de Nos Gestes Climat
   Permettez à vos collaborateurs, employés, partenaires ou élèves de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d’autres modes d’intégration prêts à l’emploi.: Permettez à vos collaborateurs, employés, partenaires ou élèves de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d’autres modes d’intégration prêts à l’emploi.
   Plus que quelques petites questions: Plus que quelques petites questions
-  pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !
   Recevoir ponctuellement par email les nouveaux services Nos Gestes Climat aux organisations: Recevoir ponctuellement par email les nouveaux services Nos Gestes Climat aux organisations
   Rejoignez nos partenaires: Rejoignez nos partenaires
   Renvoyer le code: Renvoyer le code
@@ -521,7 +411,6 @@ entries:
   Votre code est valide !: Votre code est valide !
   Votre organisation: Votre organisation
   Votre prénom: Votre prénom
-  Votre rôle: Votre rôle
   Vous n'avez pas reçu d'e-mail ?: Vous n'avez pas reçu d'e-mail ?
   Vous souhaitez mobiliser votre: Vous souhaitez mobiliser votre
   Code renvoyé: Code renvoyé
@@ -530,11 +419,8 @@ entries:
   Vous devez renseigner le nom de votre organisation: Vous devez renseigner le nom de votre organisation
   Vous devez renseigner votre adresse e-mail: Vous devez renseigner votre adresse e-mail
   Vous devez renseigner votre prénom: Vous devez renseigner votre prénom
-  ' Télécharger le kit (23mb)': ' Télécharger le kit (23mb)'
-  À venir, bouton désactivé.: À venir, bouton désactivé.
   Accueil: Accueil
   Animez un atelier: Animez un atelier
-  Bientôt, vous verrez apparaître ici vos statistiques. Partagez le test pour obtenir vos premiers résultats: Bientôt, vous verrez apparaître ici vos statistiques. Partagez le test pour obtenir vos premiers résultats
   Ce champ n'est pas modifiable: Ce champ n'est pas modifiable
   Chiffres clés: Chiffres clés
   Comment regrouper les résultats par région, ville, établissement... ?: Comment regrouper les résultats par région, ville, établissement... ?
@@ -548,7 +434,6 @@ entries:
   Filtrer par: Filtrer par
   Intégration en iframe: Intégration en iframe
   'Intégrez le test sur un article de blog, ou une page dédiée de votre site ou application mobile ': 'Intégrez le test sur un article de blog, ou une page dédiée de votre site ou application mobile '
-  Jeu de cartes: Jeu de cartes
   Kit de diffusion: Kit de diffusion
   La catégorie {{title}} représente {{value}} tonnes de CO2 equivalent.: La catégorie {{title}} représente {{value}} tonnes de CO2 equivalent.
   Les résultats du test sont-ils anonymes ?: Les résultats du test sont-ils anonymes ?
@@ -558,7 +443,6 @@ entries:
   Organisations: Organisations
   Oups, une erreur s'est produite au moment de l'envoi de votre code...: Oups, une erreur s'est produite au moment de l'envoi de votre code...
   Paramètres: Paramètres
-  Partager le test: Partager le test
   Partagez le test à votre réseau et suivez vos statistiques.: Partagez le test à votre réseau et suivez vos statistiques.
   Partagez Nos Gestes Climat: Partagez Nos Gestes Climat
   Partagez simplement cette page à vos employés, utilisateurs, élèves, et suivez leurs résultats: Partagez simplement cette page à vos employés, utilisateurs, élèves, et suivez leurs résultats
@@ -566,30 +450,23 @@ entries:
   Quelle est votre année de naissance ?: Quelle est votre année de naissance ?
   Question complémentaires: Question complémentaires
   Qui peut consulter les résultats de mon organisation ?: Qui peut consulter les résultats de mon organisation ?
-  Quoi de mieux que le jeu pour sensibiliser ? Apprenez les ordres de grandeur à vos équipes ou vos élèves avec ce jeu de carte Nos Gestes Climat (sur une idée originale de Sabine Lagorce): Quoi de mieux que le jeu pour sensibiliser ? Apprenez les ordres de grandeur à vos équipes ou vos élèves avec ce jeu de carte Nos Gestes Climat (sur une idée originale de Sabine Lagorce)
   Résultats détaillés: Résultats détaillés
   Résultats du groupe: Résultats du groupe
   roulent en voiture: roulent en voiture
   se déplacent à vélo: se déplacent à vélo
   Services web et mobiles: Services web et mobiles
-  Simulations terminées: Simulations terminées
   sont végétariens: sont végétariens
-  Télécharger (PDF 140mb): Télécharger (PDF 140mb)
   Tranche d'âge: Tranche d'âge
   Via un lien de partage: Via un lien de partage
   Voir le rapport détaillé: Voir le rapport détaillé
   Voir les paramètres: Voir les paramètres
   Votre e-mail: Votre e-mail
-  Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques: Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques
   Vous avez une question ?: Vous avez une question ?
   Vous pouvez modifier vos informations personnelles. Le lien du sondage de votre organisation ne changera pas.: Vous pouvez modifier vos informations personnelles. Le lien du sondage de votre organisation ne changera pas.
   Voir mes résultats: Voir mes résultats
-  Passer le test: Passer le test
-  ', le site est amélioré régulièrement.': ', le site est amélioré régulièrement.'
   Agir pour le climat: Agir pour le climat
   amis: amis
   Apportez votre pierre au simulateur de référence: Apportez votre pierre au simulateur de référence
-  Au fil des questions portant sur tous les aspects de nos modes de vie, découpés en grands postes comme l’alimentation, le logement, ou le transport, le poids de chacune de vos consommations est ajouté pour constituer votre total, le bilan carbone personnel, à visualiser sur trois infographies.: Au fil des questions portant sur tous les aspects de nos modes de vie, découpés en grands postes comme l’alimentation, le logement, ou le transport, le poids de chacune de vos consommations est ajouté pour constituer votre total, le bilan carbone personnel, à visualiser sur trois infographies.
   calcul est documenté en ligne: calcul est documenté en ligne
   code source est ouvert: code source est ouvert
   collègues: collègues
@@ -608,11 +485,8 @@ entries:
   L'empreinte climat, qu'est-ce que c'est ?: L'empreinte climat, qu'est-ce que c'est ?
   L'intégralité du: L'intégralité du
   Le: Le
-  Le climat se réchauffe à cause des activités humaines, c'est un fait. Mais quel est notre impact, à notre échelle de citoyen Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer l'empreinte carbone individuelle de consommation.: Le climat se réchauffe à cause des activités humaines, c'est un fait. Mais quel est notre impact, à notre échelle de citoyen Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer l'empreinte carbone individuelle de consommation.
-  'Le principe est simple : pour chaque consommation (prendre sa voiture pour 10km, manger un steak, chauffer sa maison au gaz...), on décompte les émissions de gaz à effet de serre (les différents gaz qui réchauffent le climat terrestre) sur son cycle de vie. Par exemple, un bien acheté est fabriqué, puis utilisé, puis jeté et peut-être recyclé.': 'Le principe est simple : pour chaque consommation (prendre sa voiture pour 10km, manger un steak, chauffer sa maison au gaz...), on décompte les émissions de gaz à effet de serre (les différents gaz qui réchauffent le climat terrestre) sur son cycle de vie. Par exemple, un bien acheté est fabriqué, puis utilisé, puis jeté et peut-être recyclé.'
   Nos Gestes Climat dans votre entreprise, association, école...: Nos Gestes Climat dans votre entreprise, association, école...
   obtenez une estimation de votre empreinte carbone de consommation.: obtenez une estimation de votre empreinte carbone de consommation.
-  Passer le test →: Passer le test →
   pour les curieux et les experts.: pour les curieux et les experts.
   Pour les organisations: Pour les organisations
   Toute contribution est la bienvenue !: Toute contribution est la bienvenue !
@@ -625,7 +499,6 @@ entries:
   Par catégorie: Par catégorie
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !
   ', vous avez été déconnecté·e de votre espace organisation, reconnectez vous en cliquant sur le bouton ci-dessous.': ', vous avez été déconnecté·e de votre espace organisation, reconnectez vous en cliquant sur le bouton ci-dessous.'
-  (Données consultables à partir de 3 participants, dans un souci d'anonymat.): (Données consultables à partir de 3 participants, dans un souci d'anonymat.)
   '{{category}}': '{{category}}'
   '{{value}} tonnes': '{{value}} tonnes'
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>'
@@ -640,14 +513,12 @@ entries:
   Classements: Classements
   Créer mon organisation: Créer mon organisation
   D’après vous, quel est: D’après vous, quel est
-  Découvrez le simulateur: Découvrez le simulateur
   Découvrez le simulateur, ouvrir dans un nouvel onglet: Découvrez le simulateur, ouvrir dans un nouvel onglet
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet
   Découvrez nos outils pour vous simplifier la vie !: Découvrez nos outils pour vous simplifier la vie !
   Découvrez vos résultats détaillés: Découvrez vos résultats détaillés
   Effectivement, avec: Effectivement, avec
   Entreprises et collectivités: Entreprises et collectivités
-  Envie de connaître votre empreinte carbone ?: Envie de connaître votre empreinte carbone ?
   est votre poste le plus important !: est votre poste le plus important !
   Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.
   Facultatif: Facultatif
@@ -694,8 +565,6 @@ entries:
   Votre code postal: Votre code postal
   Votre date de naissance: Votre date de naissance
   Votre résultat: Votre résultat
-  Vous avez déjà commencé le test Nos Gestes Climat !: Vous avez déjà commencé le test Nos Gestes Climat !
-  Vous avez déjà réalisé le test Nos Gestes Climat !: Vous avez déjà réalisé le test Nos Gestes Climat !
   Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques.: Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques.
   Vous pouvez reprendre votre test en cours, ou en recommencer un.: Vous pouvez reprendre votre test en cours, ou en recommencer un.
   Vous pouvez utiliser vos données existantes, ou recommencer le test.: Vous pouvez utiliser vos données existantes, ou recommencer le test.
@@ -706,14 +575,9 @@ entries:
   Propulsé par Vercel: Propulsé par Vercel
   Au total: Au total
   C’est bien cette distance qui sera comptabilisée en fin de test.: C’est bien cette distance qui sera comptabilisée en fin de test.
-  km: km
   km sont parcourus par an, avec en moyenne: km sont parcourus par an, avec en moyenne
-  voyageurs. La distance individuelle parcourue est donc de: voyageurs. La distance individuelle parcourue est donc de
   km par personne: km par personne
   voyageurs, soit: voyageurs, soit
-  Miam: Miam
-  Moins de 10 repas par semaine, quel appétit de moineau: Moins de 10 repas par semaine, quel appétit de moineau
-  Plus de 18 repas par semaine, quel appétit: Plus de 18 repas par semaine, quel appétit
   (Données consultables à partir de 3 participants, dans un souci d'anonymat): (Données consultables à partir de 3 participants, dans un souci d'anonymat)
   En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.: En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.
   Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).
@@ -750,3 +614,118 @@ entries:
   Mon empreinte: Mon empreinte
   Oups ! Une erreur est survenue.: Oups ! Une erreur est survenue.
   sélectionnez celles qui vous intéressent: sélectionnez celles qui vous intéressent
+  (1 fois par mois max.): (1 fois par mois max.)
+  1 minute: 1 minute
+  à tout moment: à tout moment
+  Annuler: Annuler
+  des conseils pour la réduire: des conseils pour la réduire
+  Invitez d'autres personnes à rejoindre votre groupe: Invitez d'autres personnes à rejoindre votre groupe
+  Invitez vos proches pour comparer vos résultats. Cela prend: Invitez vos proches pour comparer vos résultats. Cela prend
+  l’équipe de nosgestesclimat.fr: l’équipe de nosgestesclimat.fr
+  Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.: Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.
+  Supprimer le groupe: Supprimer le groupe
+  Voir les résultats: Voir les résultats
+  Votre simulation est sauvegardée !: Votre simulation est sauvegardée !
+  vous: vous
+  Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver
+  Vous retrouverez votre résultat d’empreinte, ainsi que: Vous retrouverez votre résultat d’empreinte, ainsi que
+  Découvrez nos outils pour vous simplifier la vie !: Découvrez nos outils pour vous simplifier la vie !
+  Vous souhaitez mobiliser votre <2>entreprise</2>, votre <5>organisation</5>, votre<7>association</7> ou <10>salle de classe</10>: Vous souhaitez mobiliser votre <2>entreprise</2>, votre <5>organisation</5>, votre<7>association</7> ou <10>salle de classe</10>
+  '**6 repas** représentatifs de notre consommation': '**6 repas** représentatifs de notre consommation'
+  Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels: Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels
+  Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**: Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**
+  Les constantes de **services publics et marchands** calculées à partir des travaux du SDES: Les constantes de **services publics et marchands** calculées à partir des travaux du SDES
+  Un calcul statistique du **chauffage** résidentiel français moyen: Un calcul statistique du **chauffage** résidentiel français moyen
+  Un modèle inédit d'empreinte des **déchets**: Un modèle inédit d'empreinte des **déchets**
+  Lancer le calcul: Lancer le calcul
+  Notes: Notes
+  Qu'est-ce que ça veut dire: Qu'est-ce que ça veut dire
+  À propos - Nos Gestes Climat: À propos - Nos Gestes Climat
+  Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.: Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.
+  Informations relatives à Nos Gestes Climat.: Informations relatives à Nos Gestes Climat.
+  Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat: Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat
+  404 - Nos Gestes Climat: 404 - Nos Gestes Climat
+  Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.
+  Accessibilité - Nos Gestes Climat: Accessibilité - Nos Gestes Climat
+  'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat': 'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat'
+  Actions, la liste - Nos Gestes Climat: Actions, la liste - Nos Gestes Climat
+  Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat
+  Ambassadeurs - Nos Gestes Climat: Ambassadeurs - Nos Gestes Climat
+  article du blog - Nos Gestes Climat: article du blog - Nos Gestes Climat
+  Blog - Nos Gestes Climat: Blog - Nos Gestes Climat
+  Budget - Nos Gestes Climat: Budget - Nos Gestes Climat
+  Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat: Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat
+  Calculer votre empreinte carbone individuelle - Nos Gestes Climat: Calculer votre empreinte carbone individuelle - Nos Gestes Climat
+  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.
+  Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.: Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.
+  CGU - Nos Gestes Climat: CGU - Nos Gestes Climat
+  Comparez vos résultats avec votre famille ou un groupe d’amis.: Comparez vos résultats avec votre famille ou un groupe d’amis.
+  Comprenez comment calculer votre empreinte sur le climat en 10min chrono.: Comprenez comment calculer votre empreinte sur le climat en 10min chrono.
+  Conditions générales d'utilisation du site.: Conditions générales d'utilisation du site.
+  Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.: Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.
+  Contact - Nos Gestes Climat: Contact - Nos Gestes Climat
+  Contactez l'équipe de Nos Gestes Climat.: Contactez l'équipe de Nos Gestes Climat.
+  Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat: Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat
+  Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.: Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.
+  Découvrez le modèle de données de notre simulateur d'empreinte climat: Découvrez le modèle de données de notre simulateur d'empreinte climat
+  Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.
+  'Découvrez les ambassadeurs de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.': 'Découvrez les ambassadeurs de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
+  Découvrez les articles de blog du site Nos Gestes Climat.: Découvrez les articles de blog du site Nos Gestes Climat.
+  Découvrez les nouveautés du site Nos Gestes Climat.: Découvrez les nouveautés du site Nos Gestes Climat.
+  Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.: Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.
+  Diffuser notre simulateur d'empreinte climat - Nos Gestes Climat: Diffuser notre simulateur d'empreinte climat - Nos Gestes Climat
+  Diffusez Nos Gestes Climat dans votre organisation.: Diffusez Nos Gestes Climat dans votre organisation.
+  Documentation Contexte Sondage - Nos Gestes Climat: Documentation Contexte Sondage - Nos Gestes Climat
+  Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat: Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat
+  Empreinte Climat - Nos Gestes Climat: Empreinte Climat - Nos Gestes Climat
+  Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.
+  Informations relatives à l'accessibilité de Nos Gestes Climat.: Informations relatives à l'accessibilité de Nos Gestes Climat.
+  Informations relatives à la création d'un contexte spécifique.: Informations relatives à la création d'un contexte spécifique.
+  Informations relatives au budget de Nos Gestes Climat.: Informations relatives au budget de Nos Gestes Climat.
+  L'empreinte climat, qu'est-ce que c'est ?: L'empreinte climat, qu'est-ce que c'est ?
+  Le guide - Nos Gestes Climat: Le guide - Nos Gestes Climat
+  Les nouveautés - Nos Gestes Climat: Les nouveautés - Nos Gestes Climat
+  Liste des questions - Nos Gestes Climat: Liste des questions - Nos Gestes Climat
+  Mentions légales - Nos Gestes Climat: Mentions légales - Nos Gestes Climat
+  Mentions légales du site Nos Gestes Climat.: Mentions légales du site Nos Gestes Climat.
+  Mon groupe, nos bilans carbone personnels - Nos Gestes Climat: Mon groupe, nos bilans carbone personnels - Nos Gestes Climat
+  Mon profil, voir mon empreinte carbone - Nos Gestes Climat: Mon profil, voir mon empreinte carbone - Nos Gestes Climat
+  Nos personas d'utilisateurs types - Nos Gestes Climat: Nos personas d'utilisateurs types - Nos Gestes Climat
+  Nos statistiques "phares" - Nos Gestes Climat: Nos statistiques "phares" - Nos Gestes Climat
+  Nos Statistiques d'utilisation - Nos Gestes Climat: Nos Statistiques d'utilisation - Nos Gestes Climat
+  Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.: Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.
+  Notre modèle de données - Nos Gestes Climat: Notre modèle de données - Nos Gestes Climat
+  nouveautés - Nos Gestes Climat: nouveautés - Nos Gestes Climat
+  Observez l'évolution de l'impact de Nos Gestes Climat en mesures chiffrées.: Observez l'évolution de l'impact de Nos Gestes Climat en mesures chiffrées.
+  Observez nos l'évolution de nos deux mesures d'impact principales.: Observez nos l'évolution de nos deux mesures d'impact principales.
+  Organisations, accéder à mon espace - Nos Gestes Climat: Organisations, accéder à mon espace - Nos Gestes Climat
+  Organisations, calculer votre empreinte carbone - Nos Gestes Climat: Organisations, calculer votre empreinte carbone - Nos Gestes Climat
+  Organisations, demander une démo - Nos Gestes Climat: Organisations, demander une démo - Nos Gestes Climat
+  Organisations, mon espace - Nos Gestes Climat: Organisations, mon espace - Nos Gestes Climat
+  Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas.: Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas.
+  Plan du site - Nos Gestes Climat: Plan du site - Nos Gestes Climat
+  Politique de confidentialité - Nos Gestes Climat: Politique de confidentialité - Nos Gestes Climat
+  Quelles sont les actions les plus efficaces ?: Quelles sont les actions les plus efficaces ?
+  Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat: Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat
+  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.
+  Rejoindre un groupe - Nos Gestes Climat: Rejoindre un groupe - Nos Gestes Climat
+  Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.: Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.
+  Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.: Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.
+  Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.: etrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.
+  Simulateur d’empreinte climat - Nos Gestes Climat: Simulateur d’empreinte climat - Nos Gestes Climat
+  Supprimer mes données de groupe - Nos Gestes Climat: Supprimer mes données de groupe - Nos Gestes Climat
+  Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.: Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.
+  Vos résultats de tests de notre simulateur d'empreinte carbone.: Vos résultats de tests de notre simulateur d'empreinte carbone.
+  Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat: Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat
+  Ce test vous est proposé par: Ce test vous est proposé par
+  En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.: En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.
+  par semaine, miam: par semaine, miam
+  par semaine, quel appétit !: par semaine, quel appétit !
+  par semaine, quel appétit de moineau: par semaine, quel appétit de moineau
+  repas: repas
+  Cambiar a español: Cambiar a español
+  Bravo champion·ne !: Bravo champion·ne !
+  Passer le test →: Passer le test →
+  Recevez un email avec un lien pour terminer votre test plus tard: Recevez un email avec un lien pour terminer votre test plus tard
+  Reprendre mon test: Reprendre mon test
+  Voir mon résultat: Voir mon résultat

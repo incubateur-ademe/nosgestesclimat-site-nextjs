@@ -3,8 +3,8 @@
 import { questionClickSuggestion } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
-import { useEngine, useRule } from '@/publicodes-state'
-import { DottedName, Situation } from '@/publicodes-state/types'
+import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
@@ -14,8 +14,7 @@ type Props = {
 }
 
 export default function Suggestions({ question, setValue }: Props) {
-  const { suggestions, addFoldedStep } = useRule(question)
-  const { updateSituation } = useEngine()
+  const { suggestions } = useRule(question)
 
   if (!suggestions?.length) return
   return (
@@ -30,21 +29,7 @@ export default function Suggestions({ question, setValue }: Props) {
             trackEvent(
               questionClickSuggestion({ question, answer: suggestion.label })
             )
-            if (typeof suggestion.value === 'object') {
-              updateSituation(
-                Object.keys(suggestion.value).reduce(
-                  (accumulator: Situation, currentValue: string) => ({
-                    ...accumulator,
-                    [question + ' . ' + currentValue]:
-                      suggestion.value && suggestion.value[currentValue],
-                  }),
-                  {}
-                )
-              )
-              addFoldedStep(question)
-            } else {
-              setValue(suggestion.value)
-            }
+            setValue(suggestion.value)
           }}>
           <Emoji className="flex items-center gap-1">
             {capitalizeString(suggestion.label)}

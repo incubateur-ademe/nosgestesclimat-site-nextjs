@@ -11,13 +11,11 @@ import {
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useIsClient } from '@/hooks/useIsClient'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function Buttons() {
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
+  const { progression } = useCurrentSimulation()
 
   const isClient = useIsClient()
 
@@ -26,8 +24,6 @@ export default function Buttons() {
     getLinkToSimulateurPage,
     linkToSimulateurPageLabel,
   } = useSimulateurPage()
-
-  const progression = currentSimulation?.progression || 0
 
   return (
     <div className="relative">

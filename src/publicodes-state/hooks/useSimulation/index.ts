@@ -1,4 +1,4 @@
-import simulationContext from '@/publicodes-state/providers/simulationProvider/context'
+import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
 import { useContext } from 'react'
 
 /**
@@ -15,7 +15,7 @@ export default function useSimulation() {
     pristineEngine,
     safeEvaluate,
     safeGetRule,
-  } = useContext(simulationContext)
+  } = useContext(SimulationContext)
 
   return {
     categories: [...categories],

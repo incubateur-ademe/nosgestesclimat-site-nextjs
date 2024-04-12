@@ -1,7 +1,12 @@
 'use client'
 
 import { actionsClickYes } from '@/constants/tracking/pages/actions'
-import { FormProvider, useEngine, useUser } from '@/publicodes-state'
+import {
+  FormProvider,
+  useCurrentSimulation,
+  useEngine,
+  useUser,
+} from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import ActionCard from './ActionCard'
@@ -23,13 +28,9 @@ export default function ActionList({
   setFocusedAction,
 }: Props) {
   const { getCategory } = useEngine()
-  const { toggleActionChoice, getCurrentSimulation } = useUser()
+  const { toggleActionChoice } = useUser()
 
-  const currentSimulation = getCurrentSimulation()
-
-  if (!currentSimulation) return
-
-  const actionChoices = currentSimulation.actionChoices
+  const { actionChoices } = useCurrentSimulation()
 
   return (
     <ul className="mt-4 flex list-none flex-wrap items-center justify-center p-0">

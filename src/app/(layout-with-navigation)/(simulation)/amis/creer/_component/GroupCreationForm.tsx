@@ -1,28 +1,27 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { GROUP_NAMES } from '@/constants/groupNames'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
+import { getGroupName } from '@/helpers/groups/getGroupName'
 import { validateCreationForm } from '@/helpers/groups/validateCreationForm'
 import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
+import { useLocale } from '@/hooks/useLocale'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
 import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
 
 export default function GroupCreationForm() {
-  const {
-    user,
-    updateName,
-    updateEmail,
-    getCurrentSimulation,
-    updateCurrentSimulation,
-  } = useUser()
+  const locale = useLocale()
+
+  const { user, updateName, updateEmail } = useUser()
+
+  const currentSimulation = useCurrentSimulation()
 
   const { name, userId, email } = user
 
@@ -33,8 +32,6 @@ export default function GroupCreationForm() {
   const [errorEmail, setErrorEmail] = useState('')
 
   const { t } = useClientTranslation()
-
-  const currentSimulation = getCurrentSimulation()
 
   const hasCompletedTest = currentSimulation?.progression === 1
 
@@ -85,8 +82,7 @@ export default function GroupCreationForm() {
     if (!isValid) return
 
     try {
-      const { name, emoji } =
-        GROUP_NAMES[groups.length % GROUP_NAMES.length] ?? GROUP_NAMES[0]
+      const { name, emoji } = getGroupName(groups ?? [], locale ?? 'fr')
 
       const group = await createGroup({
         groupInfo: {
@@ -104,7 +100,7 @@ export default function GroupCreationForm() {
       updateEmail(administratorEmail)
 
       // Update current simulation with group id (to redirect after test completion)
-      updateCurrentSimulation({
+      currentSimulation.update({
         groupToAdd: group._id,
       })
 

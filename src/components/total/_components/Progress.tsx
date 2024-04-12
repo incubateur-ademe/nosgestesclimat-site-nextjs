@@ -1,7 +1,7 @@
-import { useForm } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 
 export default function Progress() {
-  const { progression } = useForm()
+  const { progression } = useCurrentSimulation()
 
   return (
     <div

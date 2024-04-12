@@ -69,7 +69,7 @@ export default function LanguageSwitchButton() {
         aria-label={t('Passer en français')}
         className="flex items-center gap-2 px-4 py-3"
         data-cypress-id="language-switch-button-fr">
-        <span>FR</span> <Emoji aria-hidden>🇫🇷</Emoji>
+        <span>FR</span> <Emoji>🇫🇷</Emoji>
       </Button>
       <Button
         lang="en"
@@ -79,7 +79,18 @@ export default function LanguageSwitchButton() {
         aria-label={t('Switch to english')}
         className="flex items-center gap-2 px-4 py-3"
         data-cypress-id="language-switch-button-en">
-        <span>EN</span> <Emoji aria-hidden>🇬🇧</Emoji>
+        <span>EN</span> <Emoji>🇬🇧</Emoji>
+      </Button>
+
+      <Button
+        lang="es"
+        color={currentLocale === 'es' ? 'primary' : 'secondary'}
+        onClick={() => handleChange('es')}
+        size="sm"
+        aria-label={t('Cambiar a español')}
+        className="flex gap-2 px-4 py-3"
+        data-cypress-id="language-switch-button-es">
+        <span>ES</span> <Emoji>🇪🇸</Emoji>
       </Button>
     </div>
   )

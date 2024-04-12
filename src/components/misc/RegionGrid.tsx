@@ -3,12 +3,12 @@
 import CountryListItem from '@/components/misc/CountryListItem'
 import { sortSupportedRegions } from '@/helpers/localisation/sortSupportedRegions'
 import { useLocale } from '@/hooks/useLocale'
-import { SuppportedRegions } from '@/types/international'
 import { capitalizeString } from '@/utils/capitalizeString'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { HTMLAttributes } from 'react'
 
 type Props = {
-  supportedRegions: SuppportedRegions
+  supportedRegions: SupportedRegions
   shouldShowButton?: boolean
   selectedRegionCode?: string
   updateCurrentRegion?: (code: string) => void

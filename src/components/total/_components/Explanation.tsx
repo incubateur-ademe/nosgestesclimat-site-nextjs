@@ -4,13 +4,13 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { motion } from 'framer-motion'
 
 type Props = { toggleOpen: any }
 
 export default function Explanation({ toggleOpen }: Props) {
-  const { progression } = useForm()
+  const { progression } = useCurrentSimulation()
 
   const { t } = useClientTranslation()
 

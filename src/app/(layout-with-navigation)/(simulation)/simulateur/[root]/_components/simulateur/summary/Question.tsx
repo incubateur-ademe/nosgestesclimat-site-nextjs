@@ -6,7 +6,7 @@ import { simulateurClickSommaireQuestion } from '@/constants/tracking/pages/simu
 import { foldEveryQuestionsUntil } from '@/helpers/foldEveryQuestionsUntil'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useDebug } from '@/hooks/useDebug'
-import { useForm, useRule } from '@/publicodes-state'
+import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
@@ -29,8 +29,9 @@ export default function Question({ question, toggleQuestionList }: Props) {
     unit,
     type,
     category,
-    addFoldedStep,
   } = useRule(question)
+
+  const { updateCurrentSimulation } = useCurrentSimulation()
 
   const { currentQuestion, setCurrentQuestion, relevantQuestions } = useForm()
 
@@ -48,7 +49,7 @@ export default function Question({ question, toggleQuestionList }: Props) {
           foldEveryQuestionsUntil({
             question,
             relevantQuestions,
-            addFoldedStep,
+            updateCurrentSimulation,
           })
         }
         setCurrentQuestion(question)

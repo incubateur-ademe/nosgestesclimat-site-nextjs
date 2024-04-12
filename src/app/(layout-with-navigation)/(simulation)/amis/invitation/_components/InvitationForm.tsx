@@ -7,10 +7,9 @@ import PrenomInput from '@/design-system/inputs/PrenomInput'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
-import { captureException } from '@sentry/react'
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useState } from 'react'
 
 export default function InvitationForm({ group }: { group: Group }) {
   const [errorPrenom, setErrorPrenom] = useState('')
@@ -18,45 +17,14 @@ export default function InvitationForm({ group }: { group: Group }) {
 
   const { t } = useClientTranslation()
 
-  const {
-    user,
-    updateEmail,
-    updateName,
-    updateCurrentSimulation,
-    getCurrentSimulation,
-  } = useUser()
+  const { user, updateEmail, updateName, updateCurrentSimulation } = useUser()
 
-  const currentSimulation = getCurrentSimulation()
-
-  const { progression } = useForm()
+  const { progression } = useCurrentSimulation()
 
   const hasCompletedTest = progression === 1
 
   const { goToSimulateurPage } = useSimulateurPage()
   const { goToEndPage } = useEndPage()
-
-  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
-    useState(false)
-  useEffect(() => {
-    if (!shouldGoToSimulateurPage) {
-      return
-    }
-
-    if (currentSimulation?.groups?.includes(group?._id || '')) {
-      if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
-      } else {
-        goToSimulateurPage()
-      }
-    }
-  }, [
-    goToSimulateurPage,
-    goToEndPage,
-    shouldGoToSimulateurPage,
-    currentSimulation,
-    group,
-    hasCompletedTest,
-  ])
 
   const handleSubmit = async (event: MouseEvent | FormEvent) => {
     // Avoid reloading page
@@ -84,16 +52,16 @@ export default function InvitationForm({ group }: { group: Group }) {
       return
     }
 
-    try {
-      // Update current simulation with group id (to redirect after test completion)
-      updateCurrentSimulation({
-        groupToAdd: group._id,
-      })
+    // Update current simulation with group id (to redirect after test completion)
+    await updateCurrentSimulation({
+      groupToAdd: group._id,
+    })
 
-      // Redirect to simulateur page or end page
-      setShouldGoToSimulateurPage(true)
-    } catch (error) {
-      captureException(error)
+    // Redirect to simulateur page or end page
+    if (hasCompletedTest) {
+      goToEndPage({ allowedToGoToGroupDashboard: true })
+    } else {
+      goToSimulateurPage()
     }
   }
 

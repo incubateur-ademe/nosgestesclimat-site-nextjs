@@ -16,7 +16,9 @@ export default function TotalCard() {
 
   const { numericValue } = useRule('bilan')
 
-  const { formattedValue, unit } = formatCarbonFootprint(numericValue)
+  const { formattedValue, unit } = formatCarbonFootprint(numericValue, {
+    t,
+  })
 
   return (
     <Card className="w-full flex-row items-center rounded-xl bg-primary-700 p-6 text-white shadow-none md:px-10">
@@ -45,7 +47,7 @@ export default function TotalCard() {
           className="mt-2 flex items-center text-xs text-white hover:text-primary-200 md:text-sm"
           href="/empreinte-climat"
           onClick={() => trackEvent(endClickEmpreinte)}>
-          <Trans>Qu'est-ce que ça veut dire&nbsp;?&nbsp;</Trans>
+          <Trans>Qu'est-ce que ça veut dire</Trans> ? 
           <ExternalLinkIcon className="stroke-white" />
         </Link>
       </div>
