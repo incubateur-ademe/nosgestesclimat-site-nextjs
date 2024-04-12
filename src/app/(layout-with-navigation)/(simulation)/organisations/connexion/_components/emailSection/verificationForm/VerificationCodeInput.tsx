@@ -55,9 +55,9 @@ export default function VerificationCodeInput({
 
       {isSuccessValidate && (
         <div className="mt-4 flex items-baseline gap-2 pl-2 text-sm">
-          <CheckCircleIcon className="h-4 w-4 fill-green-500" />
+          <CheckCircleIcon className="h-4 w-4 fill-green-700" />
 
-          <span className="text-green-500">
+          <span className="text-green-700">
             <Trans>Votre code est valide !</Trans>
           </span>
         </div>

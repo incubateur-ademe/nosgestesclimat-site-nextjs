@@ -55,7 +55,7 @@ export default function OrganisationPage() {
 
               <p className="max-w-sm">
                 <Trans>Sur l'espace organisation de </Trans>{' '}
-                <strong className="!text-primary-600">
+                <strong className="text-secondary-700">
                   {organisation?.name}
                 </strong>
                 .{' '}

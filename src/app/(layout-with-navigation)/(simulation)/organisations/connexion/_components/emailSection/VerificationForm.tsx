@@ -30,7 +30,6 @@ export default function VerificationForm() {
     if (user?.loginExpirationDate) {
       return
     }
-
     if (dayjs(user.loginExpirationDate).isBefore(dayjs())) {
       updateLoginExpirationDate(undefined)
     }
@@ -74,10 +73,9 @@ export default function VerificationForm() {
       })
 
       timeoutRef.current = setTimeout(() => {
-        // Reset the login expiration date
-        updateLoginExpirationDate(undefined)
-
         if (!organisation.name) {
+          // Reset the login expiration date
+          updateLoginExpirationDate(undefined)
           router.push('/organisations/creation')
           return
         }
@@ -88,6 +86,9 @@ export default function VerificationForm() {
         })
 
         router.push(`/organisations/${organisation?.slug}`)
+
+        // Reset the login expiration date
+        updateLoginExpirationDate(undefined)
       }, 1000)
     } catch (err) {
       setInputError('Le code est invalide')
