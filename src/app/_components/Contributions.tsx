@@ -11,7 +11,6 @@ import {
   homeClickDocumentation,
 } from '@/constants/tracking/pages/home'
 import Card from '@/design-system/layout/Card'
-import ColorLine from '@/design-system/layout/ColorLine'
 import Kicker from '@/design-system/layout/Kicker'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -24,9 +23,7 @@ export default function Contributions() {
   const [isHover, setIsHover] = useState(false)
   return (
     <div className="relative mb-16 py-12 md:py-24">
-      <Background direction={isHover ? 'right' : 'left'}>
-        <ColorLine className="rainbow-animation absolute bottom-0 left-0 h-[3px] w-[100%] transition-all" />
-      </Background>
+      <Background direction={isHover ? 'right' : 'left'} withColorLine />
       <div className="relative mx-auto w-full max-w-5xl px-4 md:px-8">
         <Kicker>
           <Trans>Ouvert, documenté et contributif</Trans>
@@ -45,7 +42,7 @@ export default function Contributions() {
             data-cypress-id="nouveautes-link">
             <div className="bg-alimentation-100 flex h-12 w-12 items-center justify-center rounded-xl">
               <SearchIcon
-                className="fill-alimentation-900 inline-block"
+                className="fill-alimentation-700 inline-block"
                 width="20"
                 height="20"
               />
@@ -70,7 +67,7 @@ export default function Contributions() {
             data-cypress-id="documentation-link">
             <div className="bg-divers-100 flex h-12 w-12 items-center justify-center rounded-xl">
               <GlassesIcon
-                className="fill-divers-90 inline-block"
+                className="fill-divers-700 inline-block"
                 width="20"
                 height="20"
               />
@@ -95,7 +92,7 @@ export default function Contributions() {
             data-cypress-id="contact-link">
             <div className="bg-logement-100 flex h-12 w-12 items-center justify-center rounded-xl">
               <PencilIcon
-                className="stroke-logement-800 inline-block"
+                className="stroke-logement-700 inline-block"
                 width="20"
                 height="20"
               />

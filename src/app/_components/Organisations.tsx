@@ -3,7 +3,6 @@
 import Trans from '@/components/translation/Trans'
 import { homeClickOrganisations } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import ColorLine from '@/design-system/layout/ColorLine'
 import Kicker from '@/design-system/layout/Kicker'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
@@ -17,9 +16,7 @@ export default function Organisations() {
 
   return (
     <div className="relative mb-16 py-12 md:py-24">
-      <Background direction={isHover ? 'left' : 'right'}>
-        <ColorLine className="rainbow-animation absolute bottom-0 left-0 h-[3px] w-[100%] transition-all" />
-      </Background>
+      <Background direction={isHover ? 'left' : 'right'} withColorLine />
 
       <div className="relative mx-auto flex w-full max-w-5xl flex-col px-4 md:flex-row md:gap-4 md:px-8">
         <div className="w-full flex-1 basis-1/2 md:max-w-lg">

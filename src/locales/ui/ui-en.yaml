@@ -142,8 +142,8 @@ entries:
   publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation, 👏 bravo !
   publicodes.ActionTutorial.msgEstimation: You now know your footprint, estimated at {{value}} {{unit}}, and you probably already have ideas for reducing it...
   publicodes.ActionTutorial.msgEstimation.lock: Vous connaissez maintenant votre empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des idées pour la réduire...
-  publicodes.ActionTutorial.msgPrécision: 💡 To improve accuracy, some actions will ask you a few more questions.
-  publicodes.ActionTutorial.msgPrécision.lock: 💡 Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.
+  publicodes.ActionTutorial.msgPrécision: To improve accuracy, some actions will ask you a few extra questions.
+  publicodes.ActionTutorial.msgPrécision.lock: Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.
   publicodes.ActionTutorial.msgPrésentation: 'To help you, we will present you with <2>a list of actions</2>:'
   publicodes.ActionTutorial.msgPrésentation.lock: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} remaining question{{pluralSuffix}}'
@@ -818,3 +818,12 @@ entries:
   'Le consensus scientifique est formel, cette augmentation est directement liée aux activités humaines : l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. Il est grand temps de réduire ou remplacer ces activités émettrices de gaz à effet de serre, à toutes les échelles !': "The scientific consensus is clear: this increase is directly linked to human activities: the extraction, consumption and combustion of resources exceed our planet's capacity to absorb them. It's high time we reduced or replaced these greenhouse gas-emitting activities, on every scale!"
   Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: The individual carbon footprint simulator helps you to understand which of our uses contribute most to climate change, and to understand which actions would have the greatest impact in reducing it.
   'Depuis le siècle dernier, la concentration du carbone dans l’atmosphère augmente tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': "Since the last century, the concentration of carbon in the atmosphere has increased to such an extent that the planet's climate is undergoing upheaval with far-reaching consequences: rising sea levels, destruction of living organisms, and an explosion of climatic disasters."
+  'Je ne trouve pas réponse à ma question ': "I can't find the answer to my question "
+  Les nouveautés: What's new?
+  sélectionnez celles qui vous intéressent: select those that interest you
+  Oups ! Une erreur est survenue.: Oops! An error has occurred.
+  le poste: the position
+  Mes classements: My rankings
+  Mes gestes: My actions
+  Empreinte: Footprint
+  Gestes: Gestures

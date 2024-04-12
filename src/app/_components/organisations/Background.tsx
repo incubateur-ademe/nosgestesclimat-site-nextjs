@@ -1,9 +1,15 @@
+import ColorLine from '@/design-system/layout/ColorLine'
+
 type Props = {
   direction?: 'left' | 'right'
   children?: React.ReactNode
+  withColorLine?: boolean
 }
 
-export default function Background({ direction = 'right', children }: Props) {
+export default function Background({
+  direction = 'right',
+  withColorLine = false,
+}: Props) {
   return (
     <div
       className="absolute -left-1/2 top-0 h-full w-[200%] bg-gray-100 transition-transform"
@@ -12,7 +18,9 @@ export default function Background({ direction = 'right', children }: Props) {
           direction === 'right' ? -2 : 2
         }deg)`,
       }}>
-      {children}
+      {withColorLine && (
+        <ColorLine className="rainbow-animation absolute bottom-0 left-0 h-[5px] w-[100%] transition-all" />
+      )}
     </div>
   )
 }

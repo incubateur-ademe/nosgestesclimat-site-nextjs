@@ -118,7 +118,7 @@ entries:
   plus de 100 kg: plus de 100 kg
   publicodes.ActionTutorial.félicitation: Vous avez terminé votre simulation, 👏 bravo !
   publicodes.ActionTutorial.msgEstimation: Vous connaissez maintenant votre empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des idées pour la réduire...
-  publicodes.ActionTutorial.msgPrécision: 💡 Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.
+  publicodes.ActionTutorial.msgPrécision: Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.
   publicodes.ActionTutorial.msgPrésentation: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
   publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} actions disponibles,'
@@ -739,3 +739,14 @@ entries:
   'Depuis le siècle dernier, la concentration du carbone dans l’atmosphère augmente tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': 'Depuis le siècle dernier, la concentration du carbone dans l’atmosphère augmente tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.'
   'Le consensus scientifique est formel, cette augmentation est directement liée aux activités humaines : l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. Il est grand temps de réduire ou remplacer ces activités émettrices de gaz à effet de serre, à toutes les échelles !': 'Le consensus scientifique est formel, cette augmentation est directement liée aux activités humaines : l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. Il est grand temps de réduire ou remplacer ces activités émettrices de gaz à effet de serre, à toutes les échelles !'
   Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.
+  écartez celles qui vous semblent trop ambitieuses ou déplacées.: écartez celles qui vous semblent trop ambitieuses ou déplacées.
+  Empreinte: Empreinte
+  Gestes: Gestes
+  'Je ne trouve pas réponse à ma question ': 'Je ne trouve pas réponse à ma question '
+  le poste: le poste
+  Les nouveautés: Les nouveautés
+  Mes classements: Mes classements
+  Mes gestes: Mes gestes
+  Mon empreinte: Mon empreinte
+  Oups ! Une erreur est survenue.: Oups ! Une erreur est survenue.
+  sélectionnez celles qui vous intéressent: sélectionnez celles qui vous intéressent

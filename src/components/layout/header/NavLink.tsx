@@ -43,7 +43,7 @@ export default function NavLink({
       href={href}
       onClick={onClick}
       className={twMerge(
-        'group relative -mb-[1px] flex h-full items-center gap-2 px-4 text-sm text-default no-underline transition-colors hover:text-primary-900 md:text-base',
+        'group relative -mb-[1px] flex h-full items-center gap-2 px-3 text-sm text-default no-underline transition-colors hover:text-primary-900 md:text-base',
         `${
           isActive ? activeClassName || 'font-bold text-primary-800' : ''
         } ${className}`
