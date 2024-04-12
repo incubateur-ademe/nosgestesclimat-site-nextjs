@@ -1,7 +1,7 @@
 'use client'
 
-import Ademe from '@/app/_components/heading/partners/Ademe'
-import Marianne from '@/app/_components/heading/partners/Marianne'
+import Ademe from '@/components/images/partners/Ademe'
+import Marianne from '@/components/images/partners/Marianne'
 import {
   footerClickAmbassadeurs,
   footerClickBlog,
@@ -9,6 +9,7 @@ import {
   footerClickDiffusion,
   footerClickDocumentation,
   footerClickFAQ,
+  footerClickImpactco2,
   footerClickInternational,
   footerClickLogo,
   footerClickNouveautes,
@@ -29,7 +30,7 @@ export default function Footer({ className = '' }) {
   return (
     <footer
       className={twMerge(
-        'flex flex-col items-center gap-4 bg-grey-100 p-4 !pb-32 sm:p-8 md:mb-0 lg:pb-24',
+        'bg-grey-100 flex flex-col items-center gap-4 p-4 pb-32 sm:p-8 md:mb-0',
         className
       )}>
       <div className="flex w-full items-start gap-12 md:max-w-5xl">
@@ -132,6 +133,14 @@ export default function Footer({ className = '' }) {
               onClick={() => trackEvent(footerClickInternational)}
               className="font-bold text-default no-underline hover:underline">
               <Trans>International</Trans>
+            </InlineLink>
+
+            <InlineLink
+              href="https://impactco2.fr"
+              target="_blank"
+              className="font-bold text-default no-underline hover:underline"
+              onClick={() => trackEvent(footerClickImpactco2)}>
+              Impact CO2
             </InlineLink>
           </div>
 

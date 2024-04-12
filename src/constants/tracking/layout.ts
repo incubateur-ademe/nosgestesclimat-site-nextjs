@@ -112,6 +112,8 @@ export const footerClickInternational = [
   'Click International',
 ]
 
+export const footerClickImpactco2 = ['trackEvent', 'Footer', 'Click Impact CO2']
+
 // Figma comment #17
 export const footerClickLanguage = (locale: string) => [
   'trackEvent',

@@ -7,6 +7,7 @@ type Props = {
   className?: string
   title?: string
   onClick?: () => void
+  target?: string
 } & PropsWithChildren
 
 export default function InlineLink({
@@ -15,6 +16,7 @@ export default function InlineLink({
   className,
   title,
   onClick,
+  ...props
 }: Props) {
   return (
     <Link
@@ -24,7 +26,8 @@ export default function InlineLink({
       className={twMerge(
         `inline-block text-primary-500 underline transition-colors hover:!text-primary-700`,
         className
-      )}>
+      )}
+      {...props}>
       {children}
     </Link>
   )
