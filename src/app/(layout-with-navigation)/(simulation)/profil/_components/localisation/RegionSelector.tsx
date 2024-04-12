@@ -46,7 +46,7 @@ export default function RegionSelector({
 
   return (
     <>
-      <details open={isOpen} className="rounded-xl bg-gray-100">
+      <details open={isOpen} className="rounded-xl bg-gray-100 p-2">
         <summary
           className={`middle w-auto cursor-pointer   p-4 ${
             isLoading ? 'pointer-events-none opacity-60' : ''
