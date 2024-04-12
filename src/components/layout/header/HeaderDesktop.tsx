@@ -3,18 +3,26 @@
 import ActionsIcon from '@/components/icons/ActionsIcon'
 import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
-import ProfileIcon from '@/components/icons/ProfileIcon'
 import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
+import {
+  headerClickActions,
+  headerClickClassements,
+  headerClickLogo,
+  headerClickProfil,
+  headerClickTest,
+} from '@/constants/tracking/layout'
 import { HIDE_CTA_PATHS } from '@/constants/urls'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { usePathname } from 'next/navigation'
 import NavLink from './NavLink'
 import OrganisationLink from './_components/OrganisationLink'
+import ProfileIcon from './_components/ProfileIcon'
 import CTAButton from './headerDesktop/CTAButton'
 import DebugIndicator from './headerDesktop/DebugIndicator'
 
@@ -33,7 +41,7 @@ export default function HeaderDesktop() {
         <div className="mx-auto flex h-full w-full max-w-5xl justify-between gap-4 ">
           <div className="flex items-center gap-16">
             <div className="flex origin-left items-center justify-center">
-              <Logo />
+              <Logo onClick={() => trackEvent(headerClickLogo)} />
             </div>
 
             <nav className="h-full">
@@ -41,6 +49,7 @@ export default function HeaderDesktop() {
                 <li className="px-4">
                   <NavLink
                     href={getLinkToSimulateurPage()}
+                    onClick={() => trackEvent(headerClickTest)}
                     activeMatches={['/tutoriel', '/simulateur', '/fin']}
                     icon={BilanIcon}
                     title={t('Le test')}>
@@ -51,6 +60,7 @@ export default function HeaderDesktop() {
                 <li className="px-4">
                   <NavLink
                     href="/actions"
+                    onClick={() => trackEvent(headerClickActions)}
                     icon={ActionsIcon}
                     title={t('Actions')}>
                     <Trans>Actions</Trans>
@@ -60,6 +70,7 @@ export default function HeaderDesktop() {
                 <li className="px-4">
                   <NavLink
                     href={linkToClassement}
+                    onClick={() => trackEvent(headerClickClassements)}
                     icon={AmisIcon}
                     title={t('Classement')}
                     data-cypress-id="amis-link">
@@ -75,7 +86,11 @@ export default function HeaderDesktop() {
 
             <DebugIndicator />
 
-            <NavLink href="/profil" icon={ProfileIcon} title={t('Profil')}>
+            <NavLink
+              href="/profil"
+              icon={ProfileIcon}
+              title={t('Profil')}
+              onClick={() => trackEvent(headerClickProfil)}>
               <Trans>Profil</Trans>
             </NavLink>
 

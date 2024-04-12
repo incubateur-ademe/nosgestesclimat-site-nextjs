@@ -1,14 +1,15 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { matomoSaveSimulationByGivingEmail } from '@/constants/matomo'
+import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { formatValue } from 'publicodes'
 import { twMerge } from 'tailwind-merge'
@@ -19,10 +20,11 @@ export default function GetResultsByEmail({
 }: {
   className?: string
 }) {
-  const { user, updateEmail, getCurrentSimulation, updateCurrentSimulation } =
-    useUser()
+  const { t } = useClientTranslation()
 
-  const currentSimulation = getCurrentSimulation()
+  const { user, updateEmail } = useUser()
+
+  const currentSimulation = useCurrentSimulation()
 
   const { saveSimulation, isPending, isSuccess, isError, error } =
     useSaveSimulation()
@@ -32,16 +34,12 @@ export default function GetResultsByEmail({
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (!currentSimulation) {
-      return // TODO: should throw an error
-    }
-
     // If the mutation is pending, we do nothing
     if (isPending) {
       return
     }
 
-    trackEvent(matomoSaveSimulationByGivingEmail)
+    trackEvent(endClickSaveSimulation)
 
     // We save the simulation (and signify the backend to send the email)
     await saveSimulation({
@@ -53,7 +51,7 @@ export default function GetResultsByEmail({
     })
 
     // We update the simulation to signify that it has been saved (and not show the form anymore)
-    updateCurrentSimulation({ savedViaEmail: true })
+    currentSimulation.update({ savedViaEmail: true })
   }
 
   // If we successfully saved the simulation, we display the confirmation message
@@ -83,17 +81,20 @@ export default function GetResultsByEmail({
         </h3>
 
         <p className="text-sm text-gray-600 sm:text-base">
-          <Trans>
-            Pour cela, <strong>laissez-nous votre email</strong>, comme{' '}
-            {formatValue(numberSubscribers) ?? '---'} personnes.
-          </Trans>
+          {t(
+            'Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.',
+            {
+              numberSubscribers: formatValue(numberSubscribers) ?? '---',
+            }
+          )}
         </p>
 
         <p className="text-sm text-gray-600 sm:text-base">
-          <Trans>
-            Vous retrouverez votre résultat d’empreinte, ainsi que{' '}
-            <strong>des conseils pour la réduire</strong> (1 fois par mois max.)
-          </Trans>
+          <Trans>Vous retrouverez votre résultat d’empreinte, ainsi que</Trans>{' '}
+          <strong>
+            <Trans>des conseils pour la réduire</Trans>
+          </strong>{' '}
+          <Trans>(1 fois par mois max.)</Trans>
         </p>
 
         <div className="mb-4">

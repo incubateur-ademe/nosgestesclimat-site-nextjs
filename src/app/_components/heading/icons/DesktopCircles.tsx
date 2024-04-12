@@ -1,5 +1,10 @@
 'use client'
 
+import {
+  homeClickEmoji,
+  homeMemorySuccess,
+} from '@/constants/tracking/pages/home'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useState } from 'react'
 import DesktopIcon from './desktopCircles/DesktopIcon'
 
@@ -35,6 +40,7 @@ export default function DesktopCircles({ circles }: Props) {
     let timer: NodeJS.Timeout | undefined = undefined
     if (firstSelected && secondSelected) {
       if (firstSelected.iconIndex === secondSelected.iconIndex) {
+        trackEvent(homeMemorySuccess)
         setValidatedIcons((prevValidatedIcons) => [
           ...prevValidatedIcons,
           firstSelected,
@@ -64,6 +70,7 @@ export default function DesktopCircles({ circles }: Props) {
         circle.map(({ iconIndex, x, y, rotation, delay }) => (
           <DesktopIcon
             onClick={() => {
+              trackEvent(homeClickEmoji)
               if (!firstSelected) {
                 setFirstSelected({ iconIndex, x, y })
                 return

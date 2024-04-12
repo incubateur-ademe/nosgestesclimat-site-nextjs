@@ -2,27 +2,27 @@
 
 import Link from '@/components/Link'
 import CountryFlag from '@/components/misc/CountryFlag'
-import { getMatomoEventChangeRegion } from '@/constants/matomo'
+import { trackingClickRegionBanner } from '@/constants/tracking/misc'
 import { defaultModelRegionCode } from '@/constants/translation'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
-import { SuppportedRegions } from '@/types/international'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import Trans from './Trans'
 
 type Props = {
-  supportedRegions: SuppportedRegions
+  supportedRegions: SupportedRegions
 }
 export default function LocalisationBanner({ supportedRegions }: Props) {
   const { user, tutorials, hideTutorial } = useUser()
 
   const currentLocale = useLocale() as string
 
-  const code = user?.region?.code
+  const code = user?.region?.code ?? 'FR'
 
   const { iframeRegion } = useIframe()
 
@@ -115,7 +115,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
             onClick={() => {
               hideTutorial('localisationBanner')
 
-              trackEvent(getMatomoEventChangeRegion(code))
+              trackEvent(trackingClickRegionBanner)
             }}>
             <Trans>J'ai compris</Trans>
           </Button>

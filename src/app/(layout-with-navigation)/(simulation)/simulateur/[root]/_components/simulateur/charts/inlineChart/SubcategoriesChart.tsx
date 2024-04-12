@@ -1,11 +1,13 @@
 import ValueChangeDisplay from '@/components/misc/ValueChangeDisplay'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
-import { useEngine, useForm, useRule } from '@/publicodes-state'
+import { useEngine, useForm, useRule, useSimulation } from '@/publicodes-state'
 import { useMemo } from 'react'
 import Subcategory from './subcategoriesChart/Subcategory'
 
 export default function SubcategoriesChart() {
-  const { subcategories, currentCategory } = useForm()
+  const { subcategories } = useSimulation()
+
+  const { currentCategory } = useForm()
 
   const { title, numericValue: total } = useRule(currentCategory || '')
 

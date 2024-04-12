@@ -4,18 +4,17 @@ import Question from '@/components/form/Question'
 import questions from '@/components/questions'
 import { uuidToNumber } from '@/helpers/uuidToNumber'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
+import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import { useForm, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useForm } from '@/publicodes-state'
 import { useContext, useEffect, useState } from 'react'
 import ColorIndicator from './form/ColorIndicator'
 
 export default function Form() {
   const isDebug = useDebug()
 
-  const { getCurrentSimulation } = useUser()
-  const currentSimulation = getCurrentSimulation()
-  const progression = currentSimulation?.progression ?? 0
+  const { progression, id } = useCurrentSimulation()
 
   const {
     remainingQuestions,
@@ -31,19 +30,22 @@ export default function Form() {
 
   const [isInitialized, setIsInitialized] = useState(false)
 
+  const { trackTimeOnSimulation } = useTrackTimeOnSimulation()
+
   // When we reach the end of the test (by clicking on the last navigation button),
   // we wait for the progression to be updated before redirecting to the end page
   const [shouldGoToEndPage, setShouldGoToEndPage] = useState(false)
   useEffect(() => {
     // We show the quiz for 10% of our users
-    const shouldShowQuiz = uuidToNumber(currentSimulation?.id ?? '') === 0
+    const shouldShowQuiz = uuidToNumber(id ?? '') === 0
     if (shouldGoToEndPage && progression === 1) {
+      trackTimeOnSimulation()
       goToEndPage({
         shouldShowQuiz,
         allowedToGoToGroupDashboard: true,
       })
     }
-  }, [shouldGoToEndPage, progression, goToEndPage, currentSimulation])
+  }, [shouldGoToEndPage, progression, goToEndPage, id, trackTimeOnSimulation])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
 

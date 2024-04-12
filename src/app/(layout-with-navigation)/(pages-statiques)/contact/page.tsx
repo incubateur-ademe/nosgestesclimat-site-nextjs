@@ -3,13 +3,14 @@ import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Script from 'next/script'
 
 export async function generateMetadata() {
   return getMetadataObject({
-    title: 'Contact - Nos Gestes Climat',
-    description: "Contactez l'équipe de Nos Gestes Climat.",
+    title: t('Contact - Nos Gestes Climat'),
+    description: t("Contactez l'équipe de Nos Gestes Climat."),
     alternates: {
       canonical: '/contact',
     },

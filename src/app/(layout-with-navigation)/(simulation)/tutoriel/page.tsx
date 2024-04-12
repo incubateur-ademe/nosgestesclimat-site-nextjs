@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import ButtonStart from './_components/ButtonStart'
 
@@ -8,13 +7,19 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import AutresQuestions from './_components/AutresQuestions'
 import AvantDeCommencer from './_components/AvantDeCommencer'
+import ButtonBack from './_components/ButtonBack'
 import OrganisationMessage from './_components/OrganisationMessage'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
-    title: 'Calculer votre empreinte carbone individuelle - Nos Gestes Climat',
-    description:
-      'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.',
+    title: t(
+      'Calculer votre empreinte carbone individuelle - Nos Gestes Climat'
+    ),
+    description: t(
+      'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.'
+    ),
     alternates: {
       canonical: '/tutoriel',
     },
@@ -23,8 +28,6 @@ export async function generateMetadata() {
 }
 
 export default async function Tutoriel() {
-  const { t } = await getServerTranslation()
-
   return (
     <div className="mx-auto flex max-w-3xl flex-col">
       <Title
@@ -42,9 +45,7 @@ export default async function Tutoriel() {
 
       <AvantDeCommencer />
       <div className="mb-8 flex justify-between border-b border-gray-200 pb-8">
-        <ButtonLink href="/" color="secondary" title={t("revenir à l'accueil")}>
-          ←
-        </ButtonLink>
+        <ButtonBack />
 
         <OrganisationMessage />
 

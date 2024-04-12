@@ -2,14 +2,17 @@
 
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import Trans from '@/components/translation/Trans'
-import { getParticipantInscriptionPageVisitedEvent } from '@/constants/matomo/organisations'
+import {
+  infosCommencerClickCtaCommencer,
+  infosCommencerClickNewTest,
+} from '@/constants/tracking/pages/infos'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useContext, useEffect, useState } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
@@ -66,11 +69,9 @@ export default function Commencer() {
 
   const { pollSlug } = useOrganisationQueryParams()
 
-  const { getCurrentSimulation, updateCurrentSimulation } = useUser()
-
   const { goToSimulateurPage } = useSimulateurPage()
 
-  const currentSimulation = getCurrentSimulation()
+  const { progression, updateCurrentSimulation } = useCurrentSimulation()
 
   const [status, setStatus] = useState<
     'notStarted' | 'started' | 'finished' | undefined
@@ -80,16 +81,16 @@ export default function Commencer() {
     if (status) {
       return
     }
-    if (!currentSimulation?.progression) {
+    if (!progression) {
       setStatus('notStarted')
       return
     }
-    if (currentSimulation?.progression === 1) {
+    if (progression === 1) {
       setStatus('finished')
       return
     }
     setStatus('started')
-  }, [currentSimulation, status])
+  }, [progression, status])
 
   const { handleUpdateShouldPreventNavigation } = useContext(
     PreventNavigationContext
@@ -97,22 +98,6 @@ export default function Commencer() {
   useEffect(() => {
     handleUpdateShouldPreventNavigation(true)
   }, [handleUpdateShouldPreventNavigation])
-
-  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
-    useState(false)
-  useEffect(() => {
-    if (!shouldGoToSimulateurPage) {
-      return
-    }
-    if (currentSimulation?.polls?.includes(pollSlug || '')) {
-      goToSimulateurPage()
-    }
-  }, [
-    goToSimulateurPage,
-    shouldGoToSimulateurPage,
-    currentSimulation,
-    pollSlug,
-  ])
 
   if (!status) {
     return null
@@ -131,7 +116,17 @@ export default function Commencer() {
       <div className="flex flex-col items-start gap-6">
         <Button
           onClick={async () => {
-            updateCurrentSimulation({
+            if (status === 'notStarted') {
+              trackEvent(infosCommencerClickCtaCommencer)
+            }
+            if (status === 'started') {
+              trackEvent(infosCommencerClickCtaCommencer)
+            }
+            if (status === 'finished') {
+              trackEvent(infosCommencerClickCtaCommencer)
+            }
+
+            await updateCurrentSimulation({
               defaultAdditionalQuestionsAnswers: {
                 postalCode,
                 birthdate,
@@ -139,10 +134,8 @@ export default function Commencer() {
               pollToAdd: pollSlug || undefined,
             })
 
-            trackEvent(getParticipantInscriptionPageVisitedEvent('commencer'))
-
             // We try to go to the simulateur page. If the test is finished we will save the simulation and then go to the end page
-            setShouldGoToSimulateurPage(true)
+            goToSimulateurPage()
           }}>
           {buttonLabels[status]}
         </Button>
@@ -151,6 +144,8 @@ export default function Commencer() {
           <Button
             color="secondary"
             onClick={() => {
+              trackEvent(infosCommencerClickNewTest)
+
               goToSimulateurPage({
                 newSimulation: {
                   defaultAdditionalQuestionsAnswers: {

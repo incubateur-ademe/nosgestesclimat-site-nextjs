@@ -2,9 +2,11 @@
 
 import Link from '@/components/Link'
 import {
-  getMatomoEventActionAccepted,
-  getMatomoEventActionRejected,
-} from '@/constants/matomo'
+  actionsClickAdditionalQuestion,
+  actionsClickNo,
+  actionsClickYes,
+  actionsOpenAction,
+} from '@/constants/tracking/pages/actions'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import {
   getBackgroundColor,
@@ -13,7 +15,12 @@ import {
 import { useFetchSimulation } from '@/hooks/simulation/useFetchSimulation'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useRule, useTempEngine, useUser } from '@/publicodes-state'
+import {
+  useCurrentSimulation,
+  useRule,
+  useTempEngine,
+  useUser,
+} from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
@@ -41,10 +48,11 @@ export default function ActionCard({
 
   const { rules, extendedFoldedSteps } = useTempEngine()
 
-  const { getCurrentSimulation, toggleActionChoice, rejectAction } = useUser()
+  const { toggleActionChoice, rejectAction } = useUser()
 
-  const { nodeValue, dottedName, title, missingVariables, traversedVariables } =
-    action
+  const currentSimulation = useCurrentSimulation()
+
+  const { dottedName, title, missingVariables, traversedVariables } = action
 
   const { icônes: icons } = rule
 
@@ -68,8 +76,6 @@ export default function ActionCard({
   )
 
   const { category } = useRule(dottedName)
-
-  const currentSimulation = getCurrentSimulation()
 
   const actionChoices = currentSimulation?.actionChoices
 
@@ -117,7 +123,7 @@ export default function ActionCard({
     }
 
     if (!isSelected) {
-      trackEvent(getMatomoEventActionAccepted(dottedName, nodeValue))
+      trackEvent(actionsClickYes(dottedName))
     }
   }, [
     currentSimulation,
@@ -125,7 +131,6 @@ export default function ActionCard({
     hasRemainingQuestions,
     isDisabled,
     isSelected,
-    nodeValue,
     saveSimulationNotAsync,
     setFocusedAction,
     simulationSaved,
@@ -152,6 +157,7 @@ export default function ActionCard({
         )}`}>
         <Link
           className="z-10 w-full no-underline"
+          onClick={() => trackEvent(actionsOpenAction(dottedName))}
           href={'/actions/' + encodeRuleName(dottedName)}>
           <h2 className="inline-block w-full text-center text-base font-bold text-white">
             {title}
@@ -186,7 +192,10 @@ export default function ActionCard({
           {hasRemainingQuestions && (
             <button
               className="cursor-pointer text-primary-500"
-              onClick={() => setFocusedAction(dottedName)}>
+              onClick={() => {
+                trackEvent(actionsClickAdditionalQuestion(dottedName))
+                setFocusedAction(dottedName)
+              }}>
               {remainingQuestionsText}
             </button>
           )}
@@ -215,7 +224,9 @@ export default function ActionCard({
               onClick={(e) => {
                 if (isDisabled) return
                 rejectAction(dottedName)
-                trackEvent(getMatomoEventActionRejected(dottedName, nodeValue))
+                if (!isSelected) {
+                  trackEvent(actionsClickNo(dottedName))
+                }
                 e.stopPropagation()
                 e.preventDefault()
               }}>

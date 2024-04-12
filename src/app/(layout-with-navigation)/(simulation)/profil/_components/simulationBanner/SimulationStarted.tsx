@@ -1,14 +1,19 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import Button from '@/design-system/inputs/Button'
+import {
+  profilClickCtaReprendre,
+  profilClickCtaResultats,
+  profilClickRecommencer,
+} from '@/constants/tracking/pages/profil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
+import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useActions, useForm, useUser } from '@/publicodes-state'
+import { useActions, useCurrentSimulation, useForm } from '@/publicodes-state'
 import TutorialLink from './_components/TutorialLink'
 
 export default function SimulationStarted() {
@@ -16,11 +21,13 @@ export default function SimulationStarted() {
 
   const { getLinkToEndPage } = useEndPage()
 
-  const { progression, relevantAnsweredQuestions } = useForm()
+  const { relevantAnsweredQuestions } = useForm()
 
-  const { initSimulation } = useUser()
+  const { progression } = useCurrentSimulation()
 
   const { chosenActions, declinedActions } = useActions()
+
+  const { goToSimulateurPage, getLinkToSimulateurPage } = useSimulateurPage()
 
   const isFinished = progression === 1
 
@@ -59,10 +66,9 @@ export default function SimulationStarted() {
           <ButtonLink
             className="w-full text-center leading-8"
             color="primary"
-            href={getLinkToEndPage()}>
-            <Trans>
-              <Emoji className="mr-2">👀</Emoji> Voir mon résultat
-            </Trans>
+            href={getLinkToEndPage()}
+            trackingEvent={profilClickCtaResultats}>
+            <Emoji className="mr-2">👀</Emoji> <Trans>Voir mon résultat</Trans>
           </ButtonLink>
         )}
 
@@ -70,19 +76,21 @@ export default function SimulationStarted() {
           <ButtonLink
             color="primary"
             className="w-full  text-center"
-            href={getLinkToSimulateur()}>
-            <Trans>
-              <ProgressCircle white className="mr-2" /> Reprendre mon test
-            </Trans>
+            href={getLinkToSimulateur()}
+            trackingEvent={profilClickCtaReprendre}>
+            <ProgressCircle white className="mr-2" />{' '}
+            <Trans>Reprendre mon test</Trans>
           </ButtonLink>
         )}
 
-        <Button
+        <ButtonLink
           color="secondary"
           className="my-2 w-full text-center !text-base"
+          trackingEvent={profilClickRecommencer}
           onClick={() => {
-            initSimulation()
-          }}>
+            goToSimulateurPage({ noNavigation: true, newSimulation: {} })
+          }}
+          href={getLinkToSimulateurPage({ newSimulation: true })}>
           <span
             role="img"
             aria-label="recycle emoji"
@@ -90,7 +98,7 @@ export default function SimulationStarted() {
             ♻️
           </span>{' '}
           <Trans>Recommencer</Trans>
-        </Button>
+        </ButtonLink>
 
         <TutorialLink className=" !text-base font-normal" />
       </div>

@@ -1,18 +1,23 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { Metadata } from 'next'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import ModeleDemoBlock from './_components/ModeleDemoBlock'
 import ModeleIssuePreviews from './_components/ModeleIssuePreviews'
 import ModeleStatsBlock from './_components/ModeleStatsBlock'
 
-export const metadata: Metadata = {
-  title: 'Notre modèle de données - Nos Gestes Climat',
-  description:
-    "Découvrez le modèle de données de notre simulateur d'empreinte climat",
-  alternates: {
-    canonical: '/modele',
-  },
+export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
+  return {
+    title: t('Notre modèle de données - Nos Gestes Climat'),
+    description: t(
+      "Découvrez le modèle de données de notre simulateur d'empreinte climat"
+    ),
+    alternates: {
+      canonical: '/modele',
+    },
+  }
 }
 
 export default async function ModelePage() {

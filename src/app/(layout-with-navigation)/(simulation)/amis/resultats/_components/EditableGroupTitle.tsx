@@ -1,6 +1,9 @@
 'use client'
 
-import { matomoEventUpdateGroupName } from '@/constants/matomo'
+import {
+  amisDashboardOpenEditName,
+  amisDashboardValidateEditName,
+} from '@/constants/tracking/pages/amisDashboard'
 import Button from '@/design-system/inputs/Button'
 import InlineTextInput from '@/design-system/inputs/InlineTextInput'
 import Title from '@/design-system/layout/Title'
@@ -36,12 +39,11 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
 
       setIsSubmitting(false)
       setIsEditingTitle(false)
-
-      trackEvent(matomoEventUpdateGroupName)
     } catch (e) {
       captureException(e)
     }
   }
+  const vousWord = t('vous')
 
   return (
     <>
@@ -51,7 +53,10 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
             defaultValue={group?.name}
             label={t('Modifier le nom du groupe')}
             name="group-name-input"
-            onClose={() => setIsEditingTitle(false)}
+            onClose={() => {
+              setIsEditingTitle(false)
+              trackEvent(amisDashboardValidateEditName)
+            }}
             onSubmit={handleSubmit}
             isLoading={isSubmitting}
             data-cypress-id="group-edit-input-name"
@@ -69,7 +74,10 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
                 {isGroupOwner ? (
                   <Button
                     className="!p-1"
-                    onClick={() => setIsEditingTitle(true)}
+                    onClick={() => {
+                      setIsEditingTitle(true)
+                      trackEvent(amisDashboardOpenEditName)
+                    }}
                     color="secondary"
                     data-cypress-id="group-name-edit-button">
                     <Image
@@ -85,7 +93,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
               </span>
             }
             subtitle={t('Créé par {{name}}', {
-              name: isGroupOwner ? t('vous') : group?.administrator?.name,
+              name: isGroupOwner ? vousWord : group?.administrator?.name,
             })}
           />
         )}

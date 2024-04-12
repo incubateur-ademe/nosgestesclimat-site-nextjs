@@ -1,19 +1,18 @@
 'use client'
 
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
+import { endClickPoll } from '@/constants/tracking/pages/end'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
 import { usePoll } from '@/hooks/organisations/usePoll'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { useContext, useEffect } from 'react'
 
 export default function Poll() {
-  const { getCurrentSimulation } = useUser()
-  const currentSimulation = getCurrentSimulation()
+  const { polls } = useCurrentSimulation()
 
-  const lastPollSlug =
-    currentSimulation?.polls?.[currentSimulation?.polls?.length - 1]
+  const lastPollSlug = polls?.[polls?.length - 1]
 
   const { data: poll, isLoading } = usePoll({
     pollSlug: lastPollSlug,
@@ -48,6 +47,7 @@ export default function Poll() {
         href={getLinkToPollDashboard({
           orgaSlug: poll?.organisationInfo.slug || '', // TODO: handle this better
         })}
+        trackingEvent={endClickPoll}
         className="flex h-10 w-10 items-center justify-center rounded-full p-0 leading-none">
         →
       </ButtonLink>

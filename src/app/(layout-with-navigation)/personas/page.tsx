@@ -1,6 +1,7 @@
 import Providers from '@/components/providers/Providers'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getPersonas } from '@/helpers/modelFetching/getPersonas'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
@@ -8,10 +9,13 @@ import PersonaExplanations from './_components/PersonaExplanations'
 import PersonaList from './_components/PersonaList'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
-    title: "Nos personas d'utilisateurs types - Nos Gestes Climat",
-    description:
-      "Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.",
+    title: t("Nos personas d'utilisateurs types - Nos Gestes Climat"),
+    description: t(
+      "Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures."
+    ),
     alternates: {
       canonical: '/personas',
     },

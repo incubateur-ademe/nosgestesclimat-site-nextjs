@@ -58,7 +58,7 @@ export default function ThreeYearsInput({ question, setTempValue }: Props) {
   useEffect(() => {
     if (totalValue !== prevTotalValue.current) {
       if (setTempValue) setTempValue(totalValue)
-      setValue(totalValue, question)
+      setValue(totalValue, { foldedStep: question })
     }
     prevTotalValue.current = totalValue
   }, [totalValue, setValue, question, setTempValue])

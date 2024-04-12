@@ -3,20 +3,19 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import {
-  matomoEventParcoursTestNouveau,
-  matomoEventParcoursTestReprendre,
-  matomoEventParcoursTestStart,
-} from '@/constants/matomo'
+  homeClickCtaCommencer,
+  homeClickCtaReprendre,
+  homeClickCtaResultats,
+  homeClickNewTest,
+} from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useIsClient } from '@/hooks/useIsClient'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function Buttons() {
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
+  const { progression } = useCurrentSimulation()
 
   const isClient = useIsClient()
 
@@ -25,8 +24,6 @@ export default function Buttons() {
     getLinkToSimulateurPage,
     linkToSimulateurPageLabel,
   } = useSimulateurPage()
-
-  const progression = currentSimulation?.progression || 0
 
   return (
     <div className="relative">
@@ -37,12 +34,17 @@ export default function Buttons() {
         href={getLinkToSimulateurPage()}
         data-cypress-id="do-the-test-link"
         onClick={() => {
-          if (progression) {
-            trackEvent(matomoEventParcoursTestReprendre)
+          if (progression === 1) {
+            trackEvent(homeClickCtaResultats)
             return
           }
 
-          trackEvent(matomoEventParcoursTestStart)
+          if (progression > 0) {
+            trackEvent(homeClickCtaReprendre)
+            return
+          }
+
+          trackEvent(homeClickCtaCommencer)
         }}
         size="lg">
         <Trans>{linkToSimulateurPageLabel}</Trans>
@@ -53,7 +55,7 @@ export default function Buttons() {
             isClient ? 'opacity-100' : 'opacity-0'
           }`}
           onClick={() => {
-            trackEvent(matomoEventParcoursTestNouveau)
+            trackEvent(homeClickNewTest)
             goToSimulateurPage({ noNavigation: true, newSimulation: {} })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>

@@ -1,10 +1,12 @@
+'use client'
+
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
-import { getMatomoEventClickQuestionsListLink } from '@/constants/matomo'
+import { simulateurClickSommaireQuestion } from '@/constants/tracking/pages/simulateur'
 import { foldEveryQuestionsUntil } from '@/helpers/foldEveryQuestionsUntil'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useDebug } from '@/hooks/useDebug'
-import { useForm, useRule } from '@/publicodes-state'
+import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
@@ -27,8 +29,9 @@ export default function Question({ question, toggleQuestionList }: Props) {
     unit,
     type,
     category,
-    addFoldedStep,
   } = useRule(question)
+
+  const { updateCurrentSimulation } = useCurrentSimulation()
 
   const { currentQuestion, setCurrentQuestion, relevantQuestions } = useForm()
 
@@ -46,12 +49,12 @@ export default function Question({ question, toggleQuestionList }: Props) {
           foldEveryQuestionsUntil({
             question,
             relevantQuestions,
-            addFoldedStep,
+            updateCurrentSimulation,
           })
         }
         setCurrentQuestion(question)
 
-        trackEvent(getMatomoEventClickQuestionsListLink(question))
+        trackEvent(simulateurClickSommaireQuestion)
 
         toggleQuestionList()
       }}>

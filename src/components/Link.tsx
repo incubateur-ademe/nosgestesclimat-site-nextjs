@@ -1,7 +1,7 @@
 'use client'
 
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
-import { getLocalisedURL } from '@/helpers/localisation/getLocalisedURL'
+import { languages } from '@/constants/translation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import i18nConfig from '@/i18nConfig'
 import { useCurrentLocale } from 'next-i18n-router/client'
@@ -11,6 +11,7 @@ import {
   MouseEventHandler,
   PropsWithChildren,
   useContext,
+  useMemo,
 } from 'react'
 
 type Props = {
@@ -37,9 +38,13 @@ export default function Link({
     useContext(PreventNavigationContext)
 
   // If href includes ":" it must be an external link
-  const localisedHref = href.includes(':')
-    ? href
-    : getLocalisedURL({ href, locale: locale || 'fr' })
+  const localisedHref = useMemo(() => {
+    // We check if it is an external link (it has a protocol)
+    if (href?.includes(':')) {
+      return href
+    }
+    return `${locale !== languages[0] ? `/${locale}` : ''}${href}`
+  }, [href, locale])
 
   function preventNavigation(e: React.MouseEvent<HTMLAnchorElement>) {
     if (shouldPreventNavigation) {
@@ -54,6 +59,9 @@ export default function Link({
         e.stopPropagation()
       } else {
         handleUpdateShouldPreventNavigation(false)
+        if (onClick) {
+          onClick(e)
+        }
       }
     }
   }

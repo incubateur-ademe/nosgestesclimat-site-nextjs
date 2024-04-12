@@ -1,17 +1,14 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
-import { trackEvent } from '@/utils/matomo/trackEvent'
-import { captureException } from '@sentry/react'
 import { FormEvent, useState } from 'react'
 
 export default function InvitationForm({ group }: { group: Group }) {
@@ -22,7 +19,7 @@ export default function InvitationForm({ group }: { group: Group }) {
 
   const { user, updateEmail, updateName, updateCurrentSimulation } = useUser()
 
-  const { progression } = useForm()
+  const { progression } = useCurrentSimulation()
 
   const hasCompletedTest = progression === 1
 
@@ -55,22 +52,16 @@ export default function InvitationForm({ group }: { group: Group }) {
       return
     }
 
-    try {
-      // Update current simulation with group id (to redirect after test completion)
-      updateCurrentSimulation({
-        groupToAdd: group._id,
-      })
+    // Update current simulation with group id (to redirect after test completion)
+    await updateCurrentSimulation({
+      groupToAdd: group._id,
+    })
 
-      trackEvent(getMatomoEventJoinedGroupe(group?._id))
-
-      // Redirect to simulateur page or end page
-      if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
-      } else {
-        goToSimulateurPage()
-      }
-    } catch (error) {
-      captureException(error)
+    // Redirect to simulateur page or end page
+    if (hasCompletedTest) {
+      goToEndPage({ allowedToGoToGroupDashboard: true })
+    } else {
+      goToSimulateurPage()
     }
   }
 

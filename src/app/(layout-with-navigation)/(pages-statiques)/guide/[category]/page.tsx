@@ -2,6 +2,7 @@ import Route404 from '@/components/layout/404'
 import MDXContent from '@/components/mdx/MDXContent'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import guideAlimentation from '@/locales/guide-mode-groupe/fr/guide-alimentation.mdx'
 import guideDivers from '@/locales/guide-mode-groupe/fr/guide-divers.mdx'
@@ -24,10 +25,13 @@ export async function generateMetadata({
 }: {
   params: { category: string }
 }) {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
-    title: 'Le guide - Nos Gestes Climat',
-    description:
-      'Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.',
+    title: t('Le guide - Nos Gestes Climat'),
+    description: t(
+      'Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.'
+    ),
     alternates: {
       canonical: `/guide/${category}`,
     },
