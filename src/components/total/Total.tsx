@@ -16,6 +16,7 @@ import {
   useUser,
 } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { useEffect, useState } from 'react'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
 import Progress from './_components/Progress'
@@ -32,7 +33,7 @@ export default function Total({ toggleQuestionList }: Props) {
 
   const { tutorials, hideTutorial, showTutorial } = useUser()
 
-  const { actionChoices } = useCurrentSimulation()
+  const { actionChoices, progression } = useCurrentSimulation()
 
   const actionChoicesSumValue = Object.keys(actionChoices || {}).reduce(
     (acc, key) => {
@@ -41,9 +42,13 @@ export default function Total({ toggleQuestionList }: Props) {
     0
   )
 
-  const toggleOpen = () => {
+  const [hasManuallyOpenedTutorial, setHasManuallyOpenedTutorial] =
+    useState(false)
+
+  function toggleOpen() {
     if (tutorials.scoreExplanation) {
       trackEvent(simulateurOpenScoreInfo)
+      setHasManuallyOpenedTutorial(true)
       showTutorial('scoreExplanation')
     } else {
       trackEvent(simulateurCloseScoreInfo)
@@ -51,6 +56,21 @@ export default function Total({ toggleQuestionList }: Props) {
     }
   }
   const carbonFootprintValue = numericValue - actionChoicesSumValue
+
+  useEffect(() => {
+    if (
+      progression > 0.05 &&
+      !tutorials.scoreExplanation &&
+      !hasManuallyOpenedTutorial
+    ) {
+      hideTutorial('scoreExplanation')
+    }
+  }, [
+    hideTutorial,
+    progression,
+    tutorials.scoreExplanation,
+    hasManuallyOpenedTutorial,
+  ])
 
   return (
     <div className="md:mb-2">

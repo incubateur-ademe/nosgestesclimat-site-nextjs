@@ -1,8 +1,8 @@
 import Link from '@/components/Link'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
-import Ademe from './partners/Ademe'
-import Marianne from './partners/Marianne'
+import Ademe from '../../../components/images/partners/Ademe'
+import Marianne from '../../../components/images/partners/Marianne'
 
 export default async function Partners() {
   const { t } = await getServerTranslation()
