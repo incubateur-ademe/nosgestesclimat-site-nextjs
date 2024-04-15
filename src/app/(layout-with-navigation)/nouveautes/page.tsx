@@ -36,7 +36,7 @@ export default async function Releases() {
         title={
           <span className="flex items-center">
             <Trans>Les nouveautés</Trans>
-            <SparklesIcon className="ml-2 fill-divers-300" />
+            <SparklesIcon className="fill-divers-300 ml-2" />
           </span>
         }
       />
@@ -47,6 +47,7 @@ export default async function Releases() {
           ici les dernières nouveautés.
         </Trans>
       </p>
+
       <List items={releases} path="/nouveautes" />
     </>
   )

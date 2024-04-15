@@ -61,7 +61,7 @@ export default function SimulationStarted() {
         </details>
       </div>
 
-      <div className="my-4 flex w-44 flex-col items-start md:w-auto">
+      <div className="my-4 flex flex-col items-start md:w-auto">
         {isFinished && (
           <ButtonLink
             className="w-full justify-center text-center leading-8"

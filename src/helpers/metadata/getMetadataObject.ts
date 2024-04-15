@@ -92,7 +92,7 @@ export function getMetadataObject({
           url.includes(urlPart)
         ) && !noImage
           ? generateOGImageURL(url)
-          : 'https://nosgestesclimat.vercel.app/images/misc/dessin-nosgestesclimat_thumbnail.png',
+          : 'https://nosgestesclimat.vercel.app/images/misc/metadata.png',
     },
     alternates,
     ...props,

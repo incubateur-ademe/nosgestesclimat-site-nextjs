@@ -25,10 +25,10 @@ export default function ChoiceInput({
     <>
       <div className="mb-2 flex items-center gap-2">
         <label
-          className={`flex cursor-pointer items-center gap-2 rounded-xl border border-gray-300 px-4 py-2 text-right text-sm md:text-xl ${
+          className={`flex cursor-pointer items-center gap-2 rounded-xl border border-gray-200 px-4 py-2 text-right text-sm md:text-xl ${
             active
-              ? 'border-2 border-primary-700 bg-primary-200 text-primary-700'
-              : 'bg-white text-default hover:bg-primary-100'
+              ? 'border-2 border-primary-700 bg-white'
+              : 'hover:bg-primary-50 bg-white text-default'
           } transition-colors`}
           data-cypress-id={`${props['data-cypress-id']}-label`}>
           <input
@@ -41,9 +41,9 @@ export default function ChoiceInput({
           <span
             className={`${
               active
-                ? 'border-primary-700 before:bg-primary-700'
+                ? 'border-primary-700 before:bg-primary-700 '
                 : 'border-gray-300 before:bg-white'
-            } flex h-4 w-4 items-center justify-center rounded-full border-2 text-sm before:h-3 before:w-3 before:rounded-full md:h-5 md:w-5 md:text-base`}
+            } relative flex h-4 w-4 items-center justify-center rounded-full border-2 text-sm before:absolute before:left-0.5 before:top-0.5 before:h-2 before:w-2 before:rounded-full before:p-1 md:h-5 md:w-5 md:text-base`}
           />
           {label ?? children}
         </label>

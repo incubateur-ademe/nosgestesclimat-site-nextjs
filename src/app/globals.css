@@ -451,15 +451,16 @@ html[data-useragent*='Trident'] #js {
   @apply rounded-md;
 }
 
-.rainbow {
-  background: linear-gradient(
-    90deg,
-    #3682df,
-    #8dcc96,
-    #d5c054,
-    #e58e71,
-    #c363a7
-  );
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 .rainbow-animation {
@@ -479,18 +480,7 @@ html[data-useragent*='Trident'] #js {
   );
   background-size: 200% 200%;
   animation: rainbow 30s linear infinite;
-}
-
-@keyframes rainbow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 50% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
+  -webkit-animation: rainbow 30s linear infinite;
 }
 
 /*

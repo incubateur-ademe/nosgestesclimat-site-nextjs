@@ -14,14 +14,14 @@ type Props = {
 }
 
 const buttonClassNames = {
-  inactive: 'border-gray-500 bg-gray-100 text-gray-400 cursor-default',
-  checked: 'border-primary-700 bg-primary-200 text-primary-700 border-2',
-  unchecked: 'border-gray-300 bg-white text-primary-700 hover:bg-primary-100',
+  inactive: 'border-gray-200 bg-gray-100 text-gray-400 cursor-default',
+  checked: 'border-primary-700 text-primary-700 border-2',
+  unchecked: 'border-gray-200 bg-white hover:bg-primary-50',
 }
 const checkClassNames = {
-  inactive: 'border-gray-300',
+  inactive: 'border-gray-200',
   checked: 'border-primary-700',
-  unchecked: 'border-gray-300',
+  unchecked: 'border-gray-200',
 }
 
 const labelClassNames = {
@@ -81,7 +81,7 @@ export default function MosaicBooleanInput({
         {title && icons ? (
           <span
             className={`inline align-middle text-sm font-medium md:text-xl ${labelClassNames[status]}`}>
-            <Emoji>{title}</Emoji>{' '}
+            <Emoji className="inline-flex">{title}</Emoji>{' '}
             <Emoji className="inline-flex items-center">{icons}</Emoji>
           </span>
         ) : null}

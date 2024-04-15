@@ -23,8 +23,8 @@ export default function Subcategory({ subcategory, total, position }: Props) {
     <div
       className={`flex h-full items-center justify-center border-l border-white transition-all ${positionClassNames[position]} ease-in-out`}
       style={{ width: `${percent}%` }}>
-      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-xl">
-        <Emoji>{icons?.slice(0, 2)}</Emoji>
+      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-xl md:h-8 md:w-8">
+        <Emoji className="text-sm md:text-base">{icons?.slice(0, 2)}</Emoji>
       </div>
     </div>
   )

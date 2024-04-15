@@ -10,16 +10,15 @@ import {
   endClickSaveShortcut,
 } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
+import Title from '@/design-system/layout/Title'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import TotalCard from './results/TotalCard'
 
 export default function Results() {
   return (
     <>
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="mb-0 text-lg">
-          <Trans>Votre bilan</Trans>
-        </h2>
+      <div className="mb-4 flex items-start justify-between">
+        <Title title={<Trans>Votre empreinte carbone</Trans>} />
 
         <Button
           color="text"

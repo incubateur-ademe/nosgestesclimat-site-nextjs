@@ -18,10 +18,17 @@ export default function GroupModePromotionBanner({
   return (
     <Card
       className={twMerge(
-        'w-full flex-col justify-center gap-4 rounded-xl border-none bg-gray-100 shadow-none md:gap-8',
+        'w-full flex-col justify-start gap-4 rounded-xl border-none bg-gray-100 p-6 shadow-none',
         className
       )}>
-      <div className="flex w-full items-center justify-center">
+      <h3 className="mb-0 max-w-sm text-base sm:text-lg">
+        <Trans>
+          Comparez vos résultats{' '}
+          <span className="text-primary-700">avec vos proches</span>
+        </Trans>
+      </h3>
+
+      <div className="flex w-full items-center justify-start">
         <Image
           src="/images/misc/amis-screenshot.svg"
           width="280"
@@ -31,14 +38,7 @@ export default function GroupModePromotionBanner({
         />
       </div>
 
-      <div className="flex flex-1 flex-col items-center justify-center">
-        <p className="max-w-sm text-base">
-          <Trans>
-            Comparez vos résultats{' '}
-            <span className="text-primary-700">avec vos proches</span>
-          </Trans>
-        </p>
-
+      <div className="flex flex-1 flex-col items-start">
         <ButtonLink
           color="secondary"
           href="/amis"

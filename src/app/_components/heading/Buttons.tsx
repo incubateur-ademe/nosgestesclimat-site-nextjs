@@ -45,8 +45,7 @@ export default function Buttons() {
           }
 
           trackEvent(homeClickCtaCommencer)
-        }}
-        size="lg">
+        }}>
         <Trans>{linkToSimulateurPageLabel}</Trans>
       </ButtonLink>
 

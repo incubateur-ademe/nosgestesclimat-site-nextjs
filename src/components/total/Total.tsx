@@ -77,7 +77,7 @@ export default function Total({ toggleQuestionList }: Props) {
       <div className="relative mb-2 flex items-center gap-4 overflow-hidden rounded-xl bg-primary-800 px-4 py-2 text-white md:justify-center md:text-center ">
         <Progress />
 
-        <Emoji className="z-10 mr-4 text-6xl">🌍</Emoji>
+        <Emoji className="z-10 text-4xl md:text-6xl">🌍</Emoji>
 
         <div className="z-10">
           <span className="block text-2xl font-bold md:text-3xl">
