@@ -43,7 +43,7 @@ export default function ChoiceInput({
               active
                 ? 'border-primary-700 before:bg-primary-700 '
                 : 'border-gray-300 before:bg-white'
-            } relative flex h-4 w-4 items-center justify-center rounded-full border-2 text-sm before:absolute before:left-0.5 before:top-0.5 before:h-2 before:w-2 before:rounded-full before:p-1 md:h-5 md:w-5 md:text-base`}
+            } relative flex h-4 w-4 items-center justify-center rounded-full border-2 text-sm before:absolute before:left-0.5 before:top-0.5 before:h-2 before:w-2 before:rounded-full before:p-1 md:h-5 md:w-5 md:text-base md:before:h-3 md:before:w-3`}
           />
           {label ?? children}
         </label>
