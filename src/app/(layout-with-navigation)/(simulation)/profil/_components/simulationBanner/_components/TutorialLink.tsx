@@ -10,7 +10,7 @@ export default function TutorialLink() {
     <ButtonLink
       color="text"
       href="/tutoriel"
-      className="flex justify-center"
+      className="flex w-full justify-center"
       trackingEvent={profilClickTutoriel}>
       <GlassesIcon className="mr-2 fill-primary-700" />
 
