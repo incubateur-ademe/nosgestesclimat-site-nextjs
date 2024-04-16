@@ -114,9 +114,8 @@ entries:
   publicodes.Contribution.commentaireAugmenté.lock: '> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).'
   publicodes.AllActions.msgPlusActions: <0>Ya no tenemos acciones cuantificadas de alto impacto que ofrecerte 🤷</0><1>Vea a continuación algunas ideas sobre cómo actuar de otra manera ⏬</1>
   publicodes.AllActions.msgPlusActions.lock: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
-  publicodes.ActionTutorial.félicitation: Has completado tu simulación
+  publicodes.ActionTutorial.félicitation: Ha completado su simulación
   bravo !: ¡bien hecho!
-  publicodes.ActionTutorial.félicitation.lock: Has completado tu simulación
   bravo !.lock: ¡bien hecho!
   model.intro: Detrás de la web nosgestesclimat.fr se esconde el modelo de huella climática individual del consumo de referencia.
   model.intro.lock: Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.
@@ -174,8 +173,8 @@ entries:
   international.ensuite.titre: ¿No encuentra su país?
   international.ensuite.titre.lock: Vous ne trouvez pas votre pays ?
   👤 Vous utilisez actuellement le persona: estás utilizando la persona
-  publicodes.Profil.recap: Ha completado la prueba en {{percentFinished}} % ({{answeredQuestionsLength}} questions), elegido {{chosenActions}} acción(es) y rechazado {{declinedActions}} acción(es).
-  publicodes.Profil.recap.lock: Ha completado la prueba en {{percentFinished}} % ({{answeredQuestionsLength}} questions), elegido {{chosenActions}} acción(es) y rechazado {{declinedActions}} acción(es).
+  publicodes.Profil.recap: Ha completado la prueba en {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} acción(es).
+  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
   À propos: Quiénes somos
   publicodes.planDuSite.title: Mapa del sitio
   publicodes.planDuSite.title.lock: Plan du site
@@ -374,7 +373,6 @@ entries:
   Sauvegarder: Guardar
   Statistiques: Estadísticas
   Plan du site: Mapa del sitio
-  Actions: Acciones
   D'autres questions ?: ¿Alguna otra pregunta?
   Comment est calculée votre empreinte ?: ¿Cómo se calcula su huella?
   Revenir à l'accueil: Volver a la página de inicio
@@ -530,7 +528,6 @@ entries:
   Créer mon organisation: Crear mi organización
   Une idée ? Une correction ? Une remarque ?: ¿Alguna idea? ¿Una corrección? ¿Un comentario?
   Le: Le
-  Classement: Clasificación
   Pour les organisations: Para las organizaciones
   Une capture du mode Amis Nos Gestes Climat.: Una captura del modo "Friends Our Gestes Climat".
   ', vous avez été déconnecté·e de votre espace organisation, reconnectez vous en cliquant sur le bouton ci-dessous.': si se ha desconectado del espacio de su organización, vuelva a conectarse haciendo clic en el botón siguiente.
@@ -639,7 +636,6 @@ entries:
   Les nouveautés: ¿Qué hay de nuevo?
   Annuler: Cancelar
   Supprimer le groupe: Borrar grupo
-  vous: usted
   à tout moment: en cualquier momento
   1 minute: 1 minuto
   repas: comida
@@ -651,7 +647,6 @@ entries:
   des conseils pour la réduire: consejos para reducirlo
   sélectionnez celles qui vous intéressent: seleccione los que le interesen
   Les nouveautés - Nos Gestes Climat: Novedades - Nos Gestes Climat
-  Qu'est-ce que ça veut dire: ¿Qué significa esto?
   404 - Nos Gestes Climat: 404 - Nos Gestes Climat
   Gestes: Gestos
   Budget - Nos Gestes Climat: Presupuesto - Nos Gestes Climat
@@ -754,5 +749,14 @@ entries:
   Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone..lock: etrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.
   Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Únete a tu grupo para calcular tu huella de carbono y compararla con la de tus amigos y familiares mediante el simulador personal de huella de carbono Nos Gestes Climat.
   Mes classements: Mi clasificación
-  Mes gestes: Mis acciones
   Mon empreinte: Mi huella
+  Votre empreinte carbone: Su huella de carbono
+  comme {{numberSubscribers}} personnes.: como {{numberSubscribers}}.
+  ', votre': su
+  Votre empreinte: Tu huella
+  entreprise: empresa
+  Vous souhaitez mobiliser votre: Quiere movilizar a sus
+  salle de classe: aula
+  laissez-nous votre email,: déjanos tu email,
+  association: asociación
+  Pour cela,: Por eso,
