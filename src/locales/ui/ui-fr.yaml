@@ -272,6 +272,7 @@ entries:
   Label: Label
   Passagers: Passagers
   Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet.: Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet.
+  Qu'est-ce que ça veut dire ?: Qu'est-ce que ça veut dire ?
   Télécharger l'image: Télécharger l'image
   'Total par an :': 'Total par an :'
   Une capture du mode Groupe Nos Gestes Climat.: Une capture du mode Groupe Nos Gestes Climat.
@@ -587,7 +588,6 @@ entries:
   Supprimer le groupe: Supprimer le groupe
   Voir les résultats: Voir les résultats
   Votre simulation est sauvegardée !: Votre simulation est sauvegardée !
-  vous: vous
   Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver
   Vous retrouverez votre résultat d’empreinte, ainsi que: Vous retrouverez votre résultat d’empreinte, ainsi que
   Découvrez nos outils pour vous simplifier la vie !: Découvrez nos outils pour vous simplifier la vie !
@@ -599,7 +599,6 @@ entries:
   Un modèle inédit d'empreinte des **déchets**: Un modèle inédit d'empreinte des **déchets**
   Lancer le calcul: Lancer le calcul
   Notes: Notes
-  Qu'est-ce que ça veut dire: Qu'est-ce que ça veut dire
   À propos - Nos Gestes Climat: À propos - Nos Gestes Climat
   Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.: Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.
   Informations relatives à Nos Gestes Climat.: Informations relatives à Nos Gestes Climat.
@@ -689,3 +688,14 @@ entries:
   Recevez un email avec un lien pour terminer votre test plus tard: Recevez un email avec un lien pour terminer votre test plus tard
   Reprendre mon test: Reprendre mon test
   Voir mon résultat: Voir mon résultat
+  Pour cela,: Pour cela,
+  laissez-nous votre email,: laissez-nous votre email,
+  comme {{numberSubscribers}} personnes.: comme {{numberSubscribers}} personnes.
+  Vous souhaitez mobiliser votre: Vous souhaitez mobiliser votre
+  entreprise: entreprise
+  association: association
+  ', votre': ', votre'
+  salle de classe: salle de classe
+  Mes&#160;gestes: Mes&#160;gestes
+  Votre empreinte carbone: Votre empreinte carbone
+  Votre empreinte: Votre empreinte

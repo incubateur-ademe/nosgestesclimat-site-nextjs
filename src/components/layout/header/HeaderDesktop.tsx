@@ -63,7 +63,7 @@ export default function HeaderDesktop() {
                     onClick={() => trackEvent(headerClickActions)}
                     icon={ActionsIcon}
                     title={t('Mes gestes')}>
-                    <Trans>Mes gestes</Trans>
+                    <Trans>Mes&#160;gestes</Trans>
                   </NavLink>
                 </li>
 
