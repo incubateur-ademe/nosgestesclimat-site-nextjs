@@ -389,7 +389,8 @@ entries:
   Période: Period
   Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Our simulator is based on a data model, with all the calculations documented; the data displayed is directly associated with your test.
   Créé par {{name}}: Created by {{name}}
-  Vous êtes le premier: You are the first
+  Vous êtes le premier: You're the first
+  mais vous êtes seul·e…: but you are alone…
   Retour à la liste des groupes: Back to the list of groups
   Ce groupe n'existe pas ou a été supprimé.: This group does not exist or has been deleted.
   Oups ! Nous n'avons pas trouvé votre groupe: Oops! We couldn't find your group

@@ -172,7 +172,6 @@ entries:
   international.ensuite.titre: ¿No encuentra su país?
   international.ensuite.titre.lock: Vous ne trouvez pas votre pays ?
   👤 Vous utilisez actuellement le persona: estás utilizando la persona
-  ✅ sélectionnez celles qui vous intéressent: ✅ selecciona las que te interesan
   publicodes.Profil.recap: Ha completado la prueba en {{percentFinished}} % ({{answeredQuestionsLength}} questions), elegido {{chosenActions}} acción(es) y rechazado {{declinedActions}} acción(es).
   publicodes.Profil.recap.lock: Ha completado la prueba en {{percentFinished}} % ({{answeredQuestionsLength}} questions), elegido {{chosenActions}} acción(es) y rechazado {{declinedActions}} acción(es).
   À propos: Quiénes somos
@@ -415,6 +414,7 @@ entries:
   Explorez, comparez et analysez vos données: Explore, compare y analice sus datos
   Sensibilisez votre organisation: Aumente la concienciación de su organización
   Vous êtes le premier: Usted es el primer
+  mais vous êtes seul·e…: pero está solo…
   Nous vérifions votre code...: Comprobamos su código...
   Vous n'avez pas reçu d'e-mail ?: ¿No has recibido un correo electrónico?
   Votre code est valide !: ¡Tu código es válido!
@@ -630,16 +630,13 @@ entries:
   Voir les résultats: Ver los resultados
   Bravo champion·ne !: ¡Bien hecho, campeón!
   CGU - Nos Gestes Climat: CGU - Nos Gestes Climat
-  Mon empreinte: Mi huella
   par semaine, miam: por semana, yum
   le poste: la posición
   Les nouveautés: ¿Qué hay de nuevo?
-  Mes classements: Mi clasificación
   Annuler: Cancelar
   Supprimer le groupe: Borrar grupo
   vous: usted
   à tout moment: en cualquier momento
-  Mes gestes: Mis acciones
   1 minute: 1 minuto
   repas: comida
   Lancer le calcul: Ejecutar el cálculo
@@ -752,3 +749,6 @@ entries:
   Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.: nd todas las páginas del sitio web nosgestesclimat.fr para calcular su huella de carbono.
   Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone..lock: etrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.
   Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Únete a tu grupo para calcular tu huella de carbono y compararla con la de tus amigos y familiares mediante el simulador personal de huella de carbono Nos Gestes Climat.
+  Mes classements: Mi clasificación
+  Mes gestes: Mis acciones
+  Mon empreinte: Mi huella
