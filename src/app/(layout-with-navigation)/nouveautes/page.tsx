@@ -1,3 +1,4 @@
+import SparklesIcon from '@/components/icons/SparklesIcon'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import List from '@/components/posts/List'
 import Trans from '@/components/translation/Trans'
@@ -23,7 +24,6 @@ export async function generateMetadata() {
 
 export default async function Releases() {
   const locale = currentLocale()
-  const { t } = await getServerTranslation()
 
   const releases = await getPosts(`src/locales/nouveautes/${locale}/`)
 
@@ -31,7 +31,15 @@ export default async function Releases() {
     <>
       <PasserTestBanner />
 
-      <Title data-cypress-id="news-title" title={t('Les nouveautés ✨')} />
+      <Title
+        data-cypress-id="news-title"
+        title={
+          <span className="flex items-center">
+            <Trans>Les nouveautés</Trans>
+            <SparklesIcon className="fill-divers-300 ml-2" />
+          </span>
+        }
+      />
 
       <p>
         <Trans i18nKey={'pages.News.premierParagraphe'}>
@@ -39,6 +47,7 @@ export default async function Releases() {
           ici les dernières nouveautés.
         </Trans>
       </p>
+
       <List items={releases} path="/nouveautes" />
     </>
   )

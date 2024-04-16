@@ -118,6 +118,7 @@ export default function Navigation({
     <div className="flex justify-end  gap-4">
       {!noPrevQuestion ? (
         <Button
+          className="px-4 py-1 text-base md:px-7 md:py-3 md:text-lg"
           onClick={() => {
             trackEvent(questionClickPrevious({ question }))
 
@@ -134,6 +135,7 @@ export default function Navigation({
       <Button
         color={isMissing ? 'secondary' : 'primary'}
         disabled={isNextDisabled}
+        className="px-4 py-1 text-base md:px-7 md:py-3 md:text-lg"
         data-cypress-id="next-question-button"
         onClick={handleGoToNextQuestion}>
         {noNextQuestion

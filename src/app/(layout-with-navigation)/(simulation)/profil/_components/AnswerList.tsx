@@ -1,5 +1,6 @@
 'use client'
 
+import AnswersIcon from '@/components/icons/AnswersIcon'
 import Trans from '@/components/translation/Trans'
 import { useEngine, useForm, useSimulation } from '@/publicodes-state'
 import Category from './answerList/Category'
@@ -11,10 +12,9 @@ export default function AnswerList() {
   const { getCategory } = useEngine()
   return (
     <div>
-      <h2>
-        <span role="img" aria-label="emoji notepad" className="mr-4">
-          📋
-        </span>
+      <h2 className="flex items-center">
+        <AnswersIcon className="mr-3 fill-primary-700" />
+
         <Trans>Mes réponses</Trans>
       </h2>
 

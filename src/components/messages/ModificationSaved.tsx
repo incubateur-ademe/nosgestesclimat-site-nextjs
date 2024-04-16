@@ -1,5 +1,5 @@
-import Emoji from '@/design-system/utils/Emoji'
 import { ReactNode } from 'react'
+import CheckCircleIcon from '../icons/CheckCircleIcon'
 import Trans from '../translation/Trans'
 
 type Props = {
@@ -12,9 +12,9 @@ export default function ModificationSaved({ shouldShowMessage, label }: Props) {
     <div
       aria-hidden={!shouldShowMessage}
       className={`mt-2 text-xs transition-opacity ${!shouldShowMessage ? 'opacity-0' : 'opacity-100'}`}>
-      <Emoji className="mr-2">✅</Emoji>
+      <CheckCircleIcon className="h-4 w-4 fill-emerald-dark" />
 
-      <span className="text-green-700">
+      <span className="text-emerald-dark">
         {label ?? <Trans>Modifications sauvegardées</Trans>}
       </span>
     </div>

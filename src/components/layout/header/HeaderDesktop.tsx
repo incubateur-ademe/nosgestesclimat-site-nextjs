@@ -38,50 +38,51 @@ export default function HeaderDesktop() {
   return (
     <header className="sticky top-0 z-[500] hidden h-20 items-center lg:block">
       <div className="absolute bottom-0 left-0 right-0 top-0 flex h-20 w-full items-center border-b bg-white shadow-sm">
-        <div className="mx-auto flex h-full w-full max-w-5xl justify-between gap-4 ">
-          <div className="flex items-center gap-16">
+        <div className="mx-auto flex h-full w-full max-w-6xl justify-between gap-6">
+          <div className="flex items-center justify-between gap-20">
             <div className="flex origin-left items-center justify-center">
               <Logo onClick={() => trackEvent(headerClickLogo)} />
             </div>
 
             <nav className="h-full">
-              <ul className="flex h-full ">
-                <li className="px-4">
+              <ul className="flex h-full flex-1 justify-start gap-4">
+                <li>
                   <NavLink
                     href={getLinkToSimulateurPage()}
                     onClick={() => trackEvent(headerClickTest)}
                     activeMatches={['/tutoriel', '/simulateur', '/fin']}
                     icon={BilanIcon}
-                    title={t('Le test')}>
-                    {t('Le\u202ftest')}
+                    title={t('Mon empreinte')}>
+                    <Trans>Mon empreinte</Trans>
                   </NavLink>
                 </li>
 
-                <li className="px-4">
+                <li>
                   <NavLink
                     href="/actions"
                     onClick={() => trackEvent(headerClickActions)}
                     icon={ActionsIcon}
-                    title={t('Actions')}>
-                    <Trans>Actions</Trans>
+                    title={t('Mes gestes')}>
+                    <Trans>Mes gestes</Trans>
                   </NavLink>
                 </li>
 
-                <li className="px-4">
+                <li>
                   <NavLink
                     href={linkToClassement}
                     onClick={() => trackEvent(headerClickClassements)}
                     icon={AmisIcon}
-                    title={t('Classement')}
+                    activeMatches={['/classement', '/amis']}
+                    title={t('Mes classements')}
                     data-cypress-id="amis-link">
-                    <Trans>Classements</Trans>
+                    <Trans>Mes classements</Trans>
                   </NavLink>
                 </li>
               </ul>
             </nav>
           </div>
 
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-3">
             <PRIndicator />
 
             <DebugIndicator />
@@ -90,13 +91,14 @@ export default function HeaderDesktop() {
               href="/profil"
               icon={ProfileIcon}
               title={t('Profil')}
+              className="px-4"
               onClick={() => trackEvent(headerClickProfil)}>
               <Trans>Profil</Trans>
             </NavLink>
 
             {user?.organisation?.administratorEmail ? (
               <>
-                <div className="my-auto h-8 w-[1px] bg-grey-200" />
+                <div className="my-auto h-8 w-[1px] bg-gray-200" />
 
                 <OrganisationLink />
               </>

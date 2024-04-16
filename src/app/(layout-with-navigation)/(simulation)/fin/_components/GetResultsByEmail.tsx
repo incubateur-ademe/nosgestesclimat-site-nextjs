@@ -68,11 +68,14 @@ export default function GetResultsByEmail({
     <Card
       id="email-block"
       className={twMerge(
-        'items-start border-none bg-grey-100 py-4',
+        'rainbow-border items-start rounded-xl p-6 shadow-none',
         className
       )}>
-      <form id="newsletter-form" onSubmit={handleSubmit}>
-        <h3 className="text-base sm:text-lg md:text-lg">
+      <form
+        id="newsletter-form"
+        className="flex h-full flex-col items-start"
+        onSubmit={handleSubmit}>
+        <h3 className="flex items-center text-base sm:text-lg">
           <Trans>
             Vous souhaitez recevoir vos résultats d’empreinte carbone ?
           </Trans>
@@ -81,12 +84,13 @@ export default function GetResultsByEmail({
         </h3>
 
         <p className="text-sm text-gray-600 sm:text-base">
-          {t(
-            'Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.',
-            {
-              numberSubscribers: formatValue(numberSubscribers) ?? '---',
-            }
-          )}
+          <Trans>Pour cela, </Trans>
+          <strong>
+            <Trans>laissez-nous votre email, </Trans>
+          </strong>
+          {t('comme {{numberSubscribers}} personnes.', {
+            numberSubscribers: formatValue(numberSubscribers) ?? '---',
+          })}
         </p>
 
         <p className="text-sm text-gray-600 sm:text-base">
@@ -97,7 +101,7 @@ export default function GetResultsByEmail({
           <Trans>(1 fois par mois max.)</Trans>
         </p>
 
-        <div className="mb-4">
+        <div className="mb-4 w-full">
           <TextInputGroup
             name="EMAIL"
             type="email"
@@ -112,26 +116,10 @@ export default function GetResultsByEmail({
           />
         </div>
 
-        {/*
-        // Commented until further work on the reminder feature
-        <CheckboxInputGroup
-          name="SEND_REMINDER"
-          value={shouldSendReminder}
-          onChange={() => setShouldSendReminder((prevValue) => !prevValue)}
-          required
-          size="lg"
-          label={
-            <span>
-              Recevoir une <strong>alerte</strong> par email{' '}
-              <strong>dans 6 mois</strong> pour comparer mes résultats
-            </span>
-          }
-          className="mb-4"
-        />
-
-        */}
-
-        <Button type="submit" disabled={isPending} className="mt-4">
+        <Button
+          type="submit"
+          disabled={isPending}
+          className="mt-auto items-start">
           <Trans>Envoyer</Trans>
         </Button>
 

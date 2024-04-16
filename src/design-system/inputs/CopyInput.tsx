@@ -23,12 +23,13 @@ export default function CopyInput({
     <div className={`flex ${className}`}>
       <input
         type="text"
-        className="block w-full min-w-0 flex-1 rounded-none rounded-l-md border border-r-0 border-solid border-grey-200 bg-grey-100 py-3 pl-4 pr-2 text-gray-600 sm:text-sm"
+        className="block w-full min-w-0 flex-1 rounded-none rounded-l-md border border-r-0 border-solid border-gray-200 bg-gray-100 py-3 pl-4 pr-2 text-gray-600 sm:text-sm"
         value={textToDisplay ?? textToCopy}
         readOnly
       />
       <Button
-        className="!min-w-[9rem] flex-shrink-0 justify-center rounded-l-none px-4 py-2 text-sm"
+        size="sm"
+        className="!min-w-[9rem] flex-shrink-0 justify-center rounded-l-none px-4 py-2"
         onClick={() => {
           navigator.clipboard.writeText(textToCopy)
           setIsCopied(true)

@@ -16,14 +16,14 @@ export default function PollItem({ poll }: Props) {
   return (
     <Link
       href={getLinkToPollDashboard({ orgaSlug: poll.organisationInfo.slug })}
+      className="rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-primary-100"
       onClick={() =>
         trackEvent(
           classementClickOrganisation({
             isAdministator: false,
           })
         )
-      }
-      className="rounded-sm border-[1px] border-solid border-gray-200 bg-gray-100 px-5 py-2 no-underline decoration-auto">
+      }>
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center">
           <div>

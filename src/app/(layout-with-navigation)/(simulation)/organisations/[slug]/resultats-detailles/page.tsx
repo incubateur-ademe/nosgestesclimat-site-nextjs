@@ -39,7 +39,7 @@ export default function ResultatsDetaillesPage() {
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4 md:flex-nowrap md:gap-0">
         <h1 className="mb-0">
           <Trans>Résultats détaillés de</Trans>{' '}
-          <span className="text-primary-500">
+          <span className="text-primary-700">
             {pollData?.organisationName ?? ''}
           </span>
         </h1>
