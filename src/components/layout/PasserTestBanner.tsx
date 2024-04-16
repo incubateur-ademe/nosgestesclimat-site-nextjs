@@ -16,10 +16,10 @@ export default function PasserTestBanner() {
   if (progression === 1) return null
 
   return (
-    <Card className="mb-4 flex-row flex-wrap items-baseline justify-between gap-4 border-none bg-grey-100 p-4 sm:flex-nowrap sm:p-6">
+    <Card className="mb-4 flex-row flex-wrap items-baseline justify-between gap-4 border-none bg-gray-100 p-4 sm:flex-nowrap sm:p-6">
       <p className="mb-0">
         <Trans>Calculez votre empreinte sur le climat</Trans>{' '}
-        <span className="font-bold text-secondary-500">
+        <span className="font-bold text-secondary-700">
           <Trans>en 10 minutes</Trans>
         </span>{' '}
         <Trans>top chrono.</Trans>

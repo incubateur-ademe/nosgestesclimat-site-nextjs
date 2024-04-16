@@ -1,9 +1,9 @@
+import Emoji from '@/design-system/utils/Emoji'
 import {
   getBackgroundColor,
   getFillColor,
 } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
-import Image from 'next/image'
 
 type Props = {
   category: string
@@ -23,7 +23,7 @@ export default function Category({
   position,
   current,
 }: Props) {
-  const { title, numericValue } = useRule(category)
+  const { numericValue, icons } = useRule(category)
 
   const percent = (numericValue / total) * 100
 
@@ -48,15 +48,10 @@ export default function Category({
           />
         </svg>
       ) : null}
-      {percent > 5 ? (
-        <Image
-          style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}
-          src={`/images/model/${category}.svg`}
-          alt={title || category}
-          width={32}
-          height={32}
-          className="h-6 w-6 md:h-8 md:w-8"
-        />
+      {percent > 7 ? (
+        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-xl md:h-8 md:w-8">
+          <Emoji className="text-sm md:text-base">{icons?.slice(0, 2)}</Emoji>
+        </div>
       ) : null}
     </div>
   )

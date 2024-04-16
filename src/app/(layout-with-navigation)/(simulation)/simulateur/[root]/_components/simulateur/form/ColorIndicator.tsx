@@ -10,7 +10,7 @@ export default function ColorIndicator({ question }: Props) {
 
   return (
     <div
-      className={`absolute bottom-0 left-0 top-0 w-2 ${getBackgroundColor(
+      className={`absolute bottom-0 left-0 top-0 w-[6px] ${getBackgroundColor(
         category
       )}`}
     />

@@ -4,6 +4,7 @@ import Trans from '@/components/translation/Trans'
 import { actionsClickStart } from '@/constants/tracking/pages/actions'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
+import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -22,7 +23,7 @@ export default function ActionsTutorial() {
   const [value, unit] = getCarbonFootprint({ t, i18n }, bilan.nodeValue)
 
   return (
-    <Card className="my-6 items-start !bg-primary-100">
+    <Card className="my-6 items-start !bg-gray-100">
       <h2 className="flex items-center">
         <Image src="/images/misc/E10C.svg" alt="" width={32} height={32} />
 
@@ -45,21 +46,27 @@ export default function ActionsTutorial() {
       </p>
 
       <ul className="list-none">
-        <li>
-          <Trans>✅ sélectionnez celles qui vous intéressent</Trans>
+        <li className="flex items-center">
+          <Emoji className="mr-2">✅</Emoji>
+
+          <Trans>sélectionnez celles qui vous intéressent</Trans>
         </li>
 
-        <li>
+        <li className="flex items-center">
+          <Emoji className="mr-2">❌</Emoji>
+
           <Trans>
-            ❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.
+            écartez celles qui vous semblent trop ambitieuses ou déplacées.
           </Trans>
         </li>
       </ul>
 
-      <p>
+      <p className="mt-6">
+        <Emoji className="mr-2">💡</Emoji>
+
         <Trans i18nKey={'publicodes.ActionTutorial.msgPrécision'}>
-          💡 Pour améliorer la précision, certaines actions vous poseront
-          quelques questions en plus.
+          Pour améliorer la précision, certaines actions vous poseront quelques
+          questions en plus.
         </Trans>
       </p>
 

@@ -23,7 +23,7 @@ const SubmitButton = ({
 }: SubmitButtonProps) => {
   return (
     <Button
-      className="flex w-[8rem] justify-center whitespace-nowrap"
+      className="flex justify-center whitespace-nowrap"
       onClick={() => {
         trackEvent(amisDashboardCopyLink)
         if (isShareDefined) {
@@ -80,7 +80,7 @@ export default function InviteBlock({ group }: { group: Group }) {
 
   if (hasMoreThanOneMember) {
     return (
-      <div className="mt-4 flex flex-col justify-between gap-4 rounded-md bg-grey-100 p-4 md:flex-row md:items-center">
+      <div className="mt-4 flex flex-col justify-between gap-4 rounded-md bg-gray-100 p-4 md:flex-row md:items-center">
         <p className="mb-0 text-sm md:text-base">
           <Trans>Invitez d'autres personnes à rejoindre votre groupe</Trans>
         </p>
@@ -95,9 +95,9 @@ export default function InviteBlock({ group }: { group: Group }) {
   }
 
   return (
-    <div className="mt-4 rounded-md bg-grey-100 p-4">
-      <h2 className="mt-0 text-base md:text-lg">
-        <Trans>Vous êtes le premier</Trans> <Emoji>🥳</Emoji>
+    <div className="rainbow-border mt-4 rounded-xl p-4">
+      <h2 className="mt-0 flex items-center text-base md:text-lg">
+        <Trans>Vous êtes le premier</Trans> <Emoji>🥳</Emoji>
       </h2>
       <p className="mb-4 text-sm md:text-base">
         <Trans>

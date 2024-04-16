@@ -92,7 +92,7 @@ export default function Email() {
               Pour conserver vos résultats et les retrouver à l’avenir
             </Trans>
             {!fixedEmail ? (
-              <span className="ml-2 inline-block font-bold italic text-secondary-500">
+              <span className="ml-2 inline-block font-bold italic text-secondary-700">
                 <Trans>facultatif</Trans>
               </span>
             ) : null}

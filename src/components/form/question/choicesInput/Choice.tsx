@@ -1,4 +1,5 @@
 import ChoiceInput from '@/components/misc/ChoiceInput'
+import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 
 type Props = {
@@ -22,10 +23,10 @@ export default function Choice({
   return (
     <ChoiceInput
       label={
-        <>
-          {title}
-          {icons ? <span className="whitespace-nowrap">{icons}</span> : null}
-        </>
+        <Emoji className="inline-flex items-center">
+          <span className="mr-2">{title}</span>
+          {icons}
+        </Emoji>
       }
       description={description}
       active={active}
