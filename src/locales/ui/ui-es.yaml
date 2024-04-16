@@ -175,8 +175,8 @@ entries:
   international.ensuite.titre.lock: Vous ne trouvez pas votre pays ?
   👤 Vous utilisez actuellement le persona: estás utilizando la persona
   ✅ sélectionnez celles qui vous intéressent: ✅ selecciona las que te interesan
-  publicodes.Profil.recap: Ha completado la prueba en {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} acción(es).
-  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
+  publicodes.Profil.recap: Ha completado la prueba en {{percentFinished}} % ({{answeredQuestionsLength}} questions), elegido {{chosenActions}} acción(es) y rechazado {{declinedActions}} acción(es).
+  publicodes.Profil.recap.lock: Ha completado la prueba en {{percentFinished}} % ({{answeredQuestionsLength}} questions), elegido {{chosenActions}} acción(es) y rechazado {{declinedActions}} acción(es).
   À propos: Quiénes somos
   publicodes.planDuSite.title: Mapa del sitio
   publicodes.planDuSite.title.lock: Plan du site
