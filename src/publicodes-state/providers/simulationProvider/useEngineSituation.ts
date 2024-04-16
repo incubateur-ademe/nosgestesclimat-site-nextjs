@@ -26,7 +26,7 @@ export function useEngineSituation({ engine, everyRules }: Props) {
         ...situation,
         ...safeSituation,
       }
-      console.log('newSituations', newSituations)
+
       engine.setSituation(newSituations)
 
       setIsInitialized(true)
