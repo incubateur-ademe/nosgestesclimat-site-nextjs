@@ -41,6 +41,7 @@ export default async function Tutoriel() {
       />
 
       <AvantDeCommencer />
+
       <div className="mb-8 flex justify-between border-b border-gray-200 pb-8">
         <ButtonLink href="/" color="secondary" title={t("revenir à l'accueil")}>
           ←
