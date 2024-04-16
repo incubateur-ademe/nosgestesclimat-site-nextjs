@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { t } from '@/helpers/metadata/fakeMetadataT'
@@ -24,7 +25,7 @@ export default function page() {
   return (
     <div>
       <Title>
-        <NGCTrans>Ambassadeurs</NGCTrans>
+        <Trans>Ambassadeurs</Trans>
       </Title>
 
       {categories.map((category: any) => (

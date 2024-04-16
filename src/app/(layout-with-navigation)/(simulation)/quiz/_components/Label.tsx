@@ -1,4 +1,5 @@
 import Link from '@/components/Link'
+import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
@@ -33,9 +34,9 @@ export default function Label({
         <Title className="text-lg md:text-2xl">
           {t('Une devinette pour finir\u202f!')}{' '}
           <br className="hidden md:inline" />
-          <NGCTrans>D’après vous, quel est</NGCTrans>{' '}
+          <Trans>D’après vous, quel est</Trans>{' '}
           <span className="text-secondary-700">
-            <NGCTrans>votre</NGCTrans>
+            <Trans>votre</Trans>
           </span>{' '}
           {t('poste le plus important\u202f?')}
         </Title>
@@ -47,9 +48,9 @@ export default function Label({
     <>
       <h1 className="mb-4 text-lg md:text-2xl">{t('Loupé\u202f!')}&nbsp;😓</h1>
       <p className="md:text-lg">
-        <NGCTrans>Avec</NGCTrans>{' '}
+        <Trans>Avec</Trans>{' '}
         <strong className="text-secondary-200">
-          {formattedValue} <NGCTrans>{unit}</NGCTrans>
+          {formattedValue} <Trans>{unit}</Trans>
         </strong>
         , {t('le poste')}{' '}
         <span className="text-secondary-200">{title?.toLowerCase()}</span>{' '}
@@ -58,7 +59,7 @@ export default function Label({
         <Link
           className="text-white hover:text-secondary-200 focus:text-secondary-200"
           href={getLinkToEndPage()}>
-          <NGCTrans>Découvrez vos résultats détaillés</NGCTrans>
+          <Trans>Découvrez vos résultats détaillés</Trans>
         </Link>
       </p>
     </>
@@ -70,9 +71,9 @@ export default function Label({
         {t('Presque\u202f!')}&nbsp;🙃
       </h1>
       <p className="md:text-lg">
-        <NGCTrans>Avec</NGCTrans>{' '}
+        <Trans>Avec</Trans>{' '}
         <strong className="text-secondary-200">
-          {formattedValue} <NGCTrans>{unit}</NGCTrans>
+          {formattedValue} <Trans>{unit}</Trans>
         </strong>
         , {t('le poste')}{' '}
         <span className="text-secondary-200">{title?.toLowerCase()}</span>{' '}
@@ -81,7 +82,7 @@ export default function Label({
         <Link
           className="text-white hover:text-secondary-200 focus:text-secondary-200"
           href={getLinkToEndPage()}>
-          <NGCTrans>Découvrez vos résultats détaillés</NGCTrans>
+          <Trans>Découvrez vos résultats détaillés</Trans>
         </Link>
       </p>
     </>
@@ -93,9 +94,9 @@ export default function Label({
         {t('Bien vu\u202f!')}&nbsp;👌
       </h1>
       <p className="md:text-lg">
-        <NGCTrans>Effectivement, avec</NGCTrans>{' '}
+        <Trans>Effectivement, avec</Trans>{' '}
         <strong className="text-secondary-200">
-          {formattedValue} <NGCTrans>{unit}</NGCTrans>
+          {formattedValue} <Trans>{unit}</Trans>
         </strong>
         , {t('le poste')}{' '}
         <span className="text-secondary-200">{title?.toLowerCase()}</span>{' '}
@@ -104,7 +105,7 @@ export default function Label({
         <Link
           className="text-white hover:text-secondary-200 focus:text-secondary-200"
           href={getLinkToEndPage()}>
-          <NGCTrans>Découvrez vos résultats détaillés</NGCTrans>
+          <Trans>Découvrez vos résultats détaillés</Trans>
         </Link>
       </p>
     </>

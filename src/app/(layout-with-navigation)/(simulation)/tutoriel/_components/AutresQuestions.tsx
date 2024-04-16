@@ -3,6 +3,7 @@
 
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import {
   tutorielClickFaq,
   tutorielClickQuestion,
@@ -16,7 +17,7 @@ export default function AutresQuestions() {
   return (
     <div className="order-last mb-8 md:order-none">
       <h5 className="mb-2 text-lg">
-        <NGCTrans>D'autres questions ?</NGCTrans>
+        <Trans>D'autres questions ?</Trans>
       </h5>
       <ul className="mb-1 list-none p-0">
         <OrganisationPrivacy />
@@ -29,11 +30,11 @@ export default function AutresQuestions() {
                   tutorielClickQuestion('C’est quoi mon empreinte carbone ?')
                 )
               }>
-              <NGCTrans>C’est quoi mon empreinte carbone ?</NGCTrans>
+              <Trans>C’est quoi mon empreinte carbone ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
               <p>
-                <NGCTrans i18nKey={'publicodes.Tutoriel.slide1.p1'}>
+                <Trans i18nKey={'publicodes.Tutoriel.slide1.p1'}>
                   Le climat se réchauffe à cause des activités humaines, c'est
                   un fait. Tout ce que nous consommons, utilisons, puis jetons a
                   nécessité de la matière et de l'énergie. Que ce soit pour la
@@ -42,7 +43,7 @@ export default function AutresQuestions() {
                   émettre des gaz à effet de serre. Certaines énormément,
                   d'autres très peu. Mais quel est notre impact, à notre échelle
                   de citoyen ?
-                </NGCTrans>
+                </Trans>
               </p>
               <Image
                 src="/images/tutoriel/greenhouse-effect.svg"
@@ -52,12 +53,12 @@ export default function AutresQuestions() {
                 height={100}
               />
               <p>
-                <NGCTrans i18nKey={'publicodes.Tutoriel.slide1.p2'}>
+                <Trans i18nKey={'publicodes.Tutoriel.slide1.p2'}>
                   Pour estimer sa propre contribution au réchauffement de la
                   planète (son "impact climat"), il est d'usage de calculer ce
                   qu'on appelle l'empreinte carbone individuelle de
                   consommation.
-                </NGCTrans>
+                </Trans>
               </p>
             </div>
           </details>
@@ -69,11 +70,11 @@ export default function AutresQuestions() {
               onClick={() =>
                 trackEvent(tutorielClickQuestion('Comment on la mesure ?'))
               }>
-              <NGCTrans>Comment on la mesure ?</NGCTrans>
+              <Trans>Comment on la mesure ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
               <p>
-                <NGCTrans i18nKey={'publicodes.Tutoriel.slide2.p1'}>
+                <Trans i18nKey={'publicodes.Tutoriel.slide2.p1'}>
                   Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde
                   de carbone{' '}
                   <Image
@@ -85,7 +86,7 @@ export default function AutresQuestions() {
                   />
                   , vous le connaissez : on l'expire toute la journée, mais sans
                   influence sur le climat.
-                </NGCTrans>
+                </Trans>
               </p>
               <Image
                 src="/images/tutoriel/co2e.svg"
@@ -95,12 +96,12 @@ export default function AutresQuestions() {
                 height={100}
               />
               <p>
-                <NGCTrans i18nKey={'publicodes.Tutoriel.slide2.p2'}>
+                <Trans i18nKey={'publicodes.Tutoriel.slide2.p2'}>
                   Ce sont les machines qui font notre confort moderne qui en
                   rejettent massivement, à tel point qu'on le compte en milliers
                   de kilos par an et par personne, donc en{' '}
                   <strong>tonnes</strong> de CO₂e !
-                </NGCTrans>
+                </Trans>
               </p>
               <blockquote>
                 <details>
@@ -110,11 +111,11 @@ export default function AutresQuestions() {
                         tutorielClickQuestion('Mais que veut dire ce petit e ?')
                       )
                     }>
-                    <NGCTrans i18nKey={'sites.publicodes.Tutorial.questionE'}>
+                    <Trans i18nKey={'sites.publicodes.Tutorial.questionE'}>
                       💡 Mais que veut dire ce petit <em>e</em> ?
-                    </NGCTrans>
+                    </Trans>
                   </summary>{' '}
-                  <NGCTrans i18nKey={'publicodes.Tutoriel.slide2.blockquote'}>
+                  <Trans i18nKey={'publicodes.Tutoriel.slide2.blockquote'}>
                     D'autres gaz, surtout le méthane{' '}
                     <Image
                       src="/images/tutoriel/methane.svg"
@@ -134,7 +135,7 @@ export default function AutresQuestions() {
                     réchauffent aussi la planète : on convertit leur potentiel
                     de réchauffement en équivalent CO₂ pour simplifier la
                     mesure.{' '}
-                  </NGCTrans>
+                  </Trans>
                 </details>
               </blockquote>
             </div>
@@ -147,10 +148,10 @@ export default function AutresQuestions() {
               onClick={() =>
                 trackEvent(tutorielClickQuestion('D’où vient mon empreinte ?'))
               }>
-              <NGCTrans>D’où vient mon empreinte ?</NGCTrans>
+              <Trans>D’où vient mon empreinte ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
-              <NGCTrans i18nKey={'publicodes.Tutoriel.slide6'}>
+              <Trans i18nKey={'publicodes.Tutoriel.slide6'}>
                 <p>
                   Prendre la voiture, manger un steak, chauffer sa maison, se
                   faire soigner, acheter une TV...
@@ -160,7 +161,7 @@ export default function AutresQuestions() {
                   L'empreinte de notre consommation individuelle, c'est la somme
                   de toutes ces activités qui font notre vie moderne.{' '}
                 </p>
-              </NGCTrans>
+              </Trans>
             </div>
           </details>
         </li>
@@ -170,7 +171,7 @@ export default function AutresQuestions() {
         size="sm"
         color="secondary"
         trackingEvent={tutorielClickFaq}>
-        ☝️ <NGCTrans>Consultez la FAQ</NGCTrans>
+        ☝️ <Trans>Consultez la FAQ</Trans>
       </ButtonLink>
     </div>
   )

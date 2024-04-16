@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { usePoll } from '@/hooks/organisations/usePoll'
 
@@ -21,12 +22,12 @@ export default function OrganisationDisclaimer() {
   return (
     <div className="relative pl-8">
       <p className="overflow-visible before:absolute before:left-0 before:content-['🏢'] ">
-        <NGCTrans>Ce test vous est proposé par</NGCTrans>{' '}
+        <Trans>Ce test vous est proposé par</Trans>{' '}
         <strong>{isLoading ? '... ' : poll?.organisationInfo?.name}</strong>.{' '}
-        <NGCTrans>
+        <Trans>
           En participant vous acceptez que vos résultats sont partagés
           anonymement avec cette organisation.
-        </NGCTrans>
+        </Trans>
       </p>
     </div>
   )

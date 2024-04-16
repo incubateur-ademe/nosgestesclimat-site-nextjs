@@ -1,6 +1,7 @@
 import SparklesIcon from '@/components/icons/SparklesIcon'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import List from '@/components/posts/List'
+import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPosts } from '@/helpers/markdown/getPosts'
@@ -34,17 +35,17 @@ export default async function Releases() {
         data-cypress-id="news-title"
         title={
           <span className="flex items-center">
-            <NGCTrans>Les nouveautés</NGCTrans>
-            <SparklesIcon className="ml-2 fill-divers-300" />
+            <Trans>Les nouveautés</Trans>
+            <SparklesIcon className="fill-divers-300 ml-2" />
           </span>
         }
       />
 
       <p>
-        <NGCTrans i18nKey={'pages.News.premierParagraphe'}>
+        <Trans i18nKey={'pages.News.premierParagraphe'}>
           Nous améliorons le site en continu à partir de vos retours. Découvrez
           ici les dernières nouveautés.
-        </NGCTrans>
+        </Trans>
       </p>
 
       <List items={releases} path="/nouveautes" />

@@ -1,10 +1,11 @@
+import Trans from '@/components/translation/Trans'
 import Image from 'next/image'
 
 export default function PartnersSection() {
   return (
     <section className="-mx-8 mb-8 mt-28 rounded-xl bg-gray-100 px-8 py-16">
       <h3 className="mb-16 text-center">
-        <NGCTrans>Rejoignez nos partenaires</NGCTrans>
+        <Trans>Rejoignez nos partenaires</Trans>
       </h3>
 
       <div className="mx-auto flex flex-wrap items-center justify-center gap-12">

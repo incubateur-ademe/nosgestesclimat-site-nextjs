@@ -2,6 +2,7 @@
 
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
@@ -29,14 +30,12 @@ export default function SaveViaEmail() {
   return (
     <div className="mx-auto mb-4 rounded-lg bg-primary-100 p-4 text-center">
       <p>
-        <NGCTrans>
+        <Trans>
           Recevez un email avec un lien pour terminer votre test plus tard
-        </NGCTrans>
+        </Trans>
       </p>
       {isSuccess ? (
-        <p>
-          <NGCTrans>Bravo champion·ne !</NGCTrans>
-        </p>
+        <p><Trans>Bravo champion·ne !</Trans></p>
       ) : (
         <form
           onSubmit={async (e) => {
@@ -68,9 +67,7 @@ export default function SaveViaEmail() {
             setError={setError}
             className="bg-white"
           />
-          <Button disabled={isPending}>
-            <NGCTrans>Valider</NGCTrans>
-          </Button>
+          <Button disabled={isPending}><Trans>Valider</Trans></Button>
           {isSuccess && 'success'}
           {isError && 'error'}
         </form>

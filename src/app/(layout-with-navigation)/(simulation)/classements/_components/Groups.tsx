@@ -1,6 +1,7 @@
 'use client'
 
 import GroupLoader from '@/components/groups/GroupLoader'
+import Trans from '@/components/translation/Trans'
 import { classementCreateGroup } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
@@ -20,11 +21,11 @@ export default function Groups() {
       <div className="flex items-baseline justify-between">
         <Title
           tag="h2"
-          title={<NGCTrans>Groupes d'amis</NGCTrans>}
+          title={<Trans>Groupes d'amis</Trans>}
           subtitle={
-            <NGCTrans>
+            <Trans>
               Comparez vos résultats avec votre famille ou un groupe d’ami·e·s
-            </NGCTrans>
+            </Trans>
           }
         />
 
@@ -35,7 +36,7 @@ export default function Groups() {
             color="secondary"
             size="sm"
             data-cypress-id="button-create-other-group">
-            <NGCTrans>Créer un autre groupe</NGCTrans>
+            <Trans>Créer un autre groupe</Trans>
           </ButtonLink>
         )}
       </div>

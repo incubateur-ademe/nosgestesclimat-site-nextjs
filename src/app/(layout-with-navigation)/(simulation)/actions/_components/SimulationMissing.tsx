@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import NGCTrans from '@/components/translation/NGCTrans'
+import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
@@ -14,30 +14,29 @@ export default function SimulationMissing({ progression }: Props) {
     <div className="mb-8">
       <Card className="border-none !bg-gray-100">
         <h2>
-          <NGCTrans>Calcul d'empreinte carbone manquant</NGCTrans>
+          <Trans>Calcul d'empreinte carbone manquant</Trans>
         </h2>
         <p>
           🔒{' '}
-          <NGCTrans
-            i18nKey={'publicodes.SimulationMissing.simulationManquante'}>
+          <Trans i18nKey={'publicodes.SimulationMissing.simulationManquante'}>
             Pour débloquer ce parcours, vous devez d'abord terminer le test.
-          </NGCTrans>
+          </Trans>
         </p>
 
         <div>
           <ButtonLink href={getLinkToSimulateur()}>
-            <NGCTrans>
+            <Trans>
               {progression > 0 ? 'Reprendre mon test' : 'Faire le test'}
-            </NGCTrans>
+            </Trans>
           </ButtonLink>
         </div>
 
         <p className="mb-0 mt-4">
           <small>
-            <NGCTrans i18nKey={'publicodes.SimulationMissing.personnas'}>
+            <Trans i18nKey={'publicodes.SimulationMissing.personnas'}>
               Vous pouvez aussi continuer avec un{' '}
               <Link href={'/personas'}>profil type</Link>.
-            </NGCTrans>
+            </Trans>
           </small>
         </p>
       </Card>

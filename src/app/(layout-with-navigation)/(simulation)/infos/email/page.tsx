@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import { EMAIL_PAGE } from '@/constants/infosPages'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Title from '@/design-system/layout/Title'
@@ -84,15 +85,15 @@ export default function Email() {
       <Title
         data-cypress-id="tutoriel-title"
         className="text-lg md:text-2xl"
-        title={<NGCTrans>Votre adresse email</NGCTrans>}
+        title={<Trans>Votre adresse email</Trans>}
         subtitle={
           <>
-            <NGCTrans>
+            <Trans>
               Pour conserver vos résultats et les retrouver à l’avenir
-            </NGCTrans>
+            </Trans>
             {!fixedEmail ? (
               <span className="ml-2 inline-block font-bold italic text-secondary-700">
-                <NGCTrans>facultatif</NGCTrans>
+                <Trans>facultatif</Trans>
               </span>
             ) : null}
           </>

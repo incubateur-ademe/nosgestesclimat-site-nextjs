@@ -1,5 +1,6 @@
 import Link from '@/components/Link'
 import MailIcon from '@/components/icons/MailIcon'
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { t } from '@/helpers/metadata/fakeMetadataT'
@@ -22,7 +23,7 @@ export default function Contact() {
       <Title
         title={
           <span className="flex items-center">
-            <NGCTrans>Contact</NGCTrans>
+            <Trans>Contact</Trans>
 
             <MailIcon className="ml-3 fill-primary-500" />
           </span>
@@ -30,18 +31,18 @@ export default function Contact() {
       />
 
       <p>
-        <NGCTrans>
+        <Trans>
           N'hésitez pas à consulter notre{' '}
           <Link href="/questions-frequentes">FAQ</Link> avant de nous écrire,
           vous y trouverez sans doute la réponse à votre question !
-        </NGCTrans>
+        </Trans>
       </p>
 
       <p>
-        <NGCTrans>
+        <Trans>
           Pour toute autre remarque ou question, vous pouvez nous envoyer un
           message via le formulaire de contact ci-dessous.
-        </NGCTrans>
+        </Trans>
       </p>
       <Card>
         <iframe

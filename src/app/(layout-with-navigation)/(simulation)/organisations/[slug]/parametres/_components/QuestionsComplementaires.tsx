@@ -2,6 +2,7 @@
 
 import { useUpdateOrganisation } from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useUpdateOrganisation'
 import ModificationSaved from '@/components/messages/ModificationSaved'
+import Trans from '@/components/translation/Trans'
 import { organisationsParametersToggleAdditionnalQuestionsPostCode } from '@/constants/tracking/pages/organisationsParameters'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
@@ -92,20 +93,20 @@ export default function QuestionsComplementaires({
   return (
     <section className="mb-12 mt-8">
       <h2>
-        <NGCTrans>Question complémentaires</NGCTrans>
+        <Trans>Question complémentaires</Trans>
       </h2>
       <p>
-        <NGCTrans>
+        <Trans>
           Vous avez la possibilité d’ajouter des questions complémentaires au
           test pour vos statistiques.
-        </NGCTrans>
+        </Trans>
       </p>
       <p className="mb-8 text-sm text-gray-500">
-        <NGCTrans>
+        <Trans>
           Vos questions additionnelles activées seront posées à chaque
           participant en amont du test Nos Gestes Climat. Leur réponse sera
           facultative.
-        </NGCTrans>
+        </Trans>
       </p>
 
       <div className="mb-4 rounded-md border border-gray-200">
@@ -117,7 +118,7 @@ export default function QuestionsComplementaires({
           onChange={(isEnabled: boolean) => {
             handleChange({ questionKey: 'postalCode', value: isEnabled })
           }}
-          label={<NGCTrans>Dans quelle ville habitez-vous ?</NGCTrans>}
+          label={<Trans>Dans quelle ville habitez-vous ?</Trans>}
         />
       </div>
 
@@ -130,13 +131,13 @@ export default function QuestionsComplementaires({
           onChange={(isEnabled: boolean) => {
             handleChange({ questionKey: 'birthdate', value: isEnabled })
           }}
-          label={<NGCTrans>Quelle est votre année de naissance ?</NGCTrans>}
+          label={<Trans>Quelle est votre année de naissance ?</Trans>}
         />
       </div>
 
       <ModificationSaved
         shouldShowMessage={isConfirmingUpdate}
-        label={<NGCTrans>Modification sauvegardée</NGCTrans>}
+        label={<Trans>Modification sauvegardée</Trans>}
       />
     </section>
   )

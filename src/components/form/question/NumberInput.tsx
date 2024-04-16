@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { useLocale } from '@/hooks/useLocale'
 import { HTMLAttributes } from 'react'
 import { DebounceInput } from 'react-debounce-input'
@@ -54,7 +55,7 @@ export default function NumberInput({
       {unit ? (
         <span className="whitespace-nowrap">
           &nbsp;
-          <NGCTrans>{unit}</NGCTrans>
+          <Trans>{unit}</Trans>
         </span>
       ) : null}
     </div>

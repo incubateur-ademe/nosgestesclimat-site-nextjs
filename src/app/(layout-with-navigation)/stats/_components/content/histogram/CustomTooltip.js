@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 
@@ -11,7 +12,7 @@ export default function CustomTooltip(props) {
     <div className="border border-[#f0f0f0] bg-white p-4">
       {label === '30+ min' ? (
         <div className="text-[#6a6a6a]">
-          <NGCTrans>Plus de 30 minutes</NGCTrans>
+          <Trans>Plus de 30 minutes</Trans>
         </div>
       ) : (
         <div className="text-[#6a6a6a]">

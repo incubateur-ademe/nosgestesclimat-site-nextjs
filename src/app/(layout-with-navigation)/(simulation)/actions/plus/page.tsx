@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPosts } from '@/helpers/markdown/getPosts'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -21,7 +22,7 @@ export default async function ActionList() {
   return (
     <div className="mt-8">
       <h2>
-        <NGCTrans>Nos explications complètes</NGCTrans>{' '}
+        <Trans>Nos explications complètes</Trans>{' '}
         <Image
           src="/images/misc/beta.svg"
           width={36}
@@ -33,9 +34,9 @@ export default async function ActionList() {
 
       <p>
         <em>
-          <NGCTrans>
+          <Trans>
             Découvrez les enjeux qui se cachent derrière chaque action.
-          </NGCTrans>
+          </Trans>
         </em>
       </p>
 

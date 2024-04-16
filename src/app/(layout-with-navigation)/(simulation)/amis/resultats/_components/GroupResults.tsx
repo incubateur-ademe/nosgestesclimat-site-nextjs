@@ -3,7 +3,7 @@
 import HowToAct from '@/components/actions/HowToAct'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import CategoriesChart from '@/components/results/CategoriesChart'
-import NGCTrans from '@/components/translation/NGCTrans'
+import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
 import { useIsGroupOwner } from '@/hooks/groups/useIsGroupOwner'
@@ -48,7 +48,7 @@ export default function GroupResults({ group }: Props) {
       <Separator />
 
       <h2 data-cypress-id="votre-empreinte-title" className="mt-8">
-        <NGCTrans>Votre empreinte</NGCTrans>
+        <Trans>Votre empreinte</Trans>
       </h2>
 
       <CategoriesChart />

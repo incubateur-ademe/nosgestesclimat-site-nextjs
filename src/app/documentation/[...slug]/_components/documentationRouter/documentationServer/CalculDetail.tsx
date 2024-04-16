@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { Rules } from '@/publicodes-state/types'
 import { Rule } from 'publicodes'
@@ -15,7 +16,7 @@ export default function CalculDetail({
   return (
     <>
       <h2>
-        <NGCTrans>Comment cette donnée est-elle calculée ?</NGCTrans>
+        <Trans>Comment cette donnée est-elle calculée ?</Trans>
       </h2>
 
       <Card className="p-8">

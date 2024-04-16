@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 
@@ -21,7 +22,7 @@ export default function ActionsChosenIndicator() {
         <div>{count}</div>
         <div title={t('actions choisies')}>&#10004;</div>
       </span>
-      <NGCTrans>sélectionnées</NGCTrans>.
+      <Trans>sélectionnées</Trans>.
     </span>
   )
 }

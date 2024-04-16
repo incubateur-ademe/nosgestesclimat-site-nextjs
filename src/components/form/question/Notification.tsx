@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import { useRule } from '@/publicodes-state'
@@ -18,7 +19,7 @@ export default function Notification({ notification }: Props) {
       className="mb-4 flex flex-col items-end rounded-md bg-white p-4 text-sm">
       <Markdown className="notification">{description}</Markdown>
       <Button size="sm" onClick={() => setValue(false)}>
-        <NGCTrans>J'ai compris</NGCTrans>
+        <Trans>J'ai compris</Trans>
       </Button>
     </motion.div>
   )

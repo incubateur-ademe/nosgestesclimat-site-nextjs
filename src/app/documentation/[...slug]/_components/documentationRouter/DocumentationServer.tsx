@@ -1,4 +1,5 @@
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Markdown from '@/design-system/utils/Markdown'
@@ -67,7 +68,7 @@ export default async function DocumentationServer({ slugs }: Props) {
       {rule.note && (
         <section className="mt-4">
           <h2>
-            <NGCTrans>Notes</NGCTrans>
+            <Trans>Notes</Trans>
           </h2>
           <Markdown>{rule.note}</Markdown>
         </section>
@@ -77,10 +78,10 @@ export default async function DocumentationServer({ slugs }: Props) {
 
       <Card className="mb-4 mt-4 border-none bg-primary-100">
         <p className="mb-0">
-          <NGCTrans>
+          <Trans>
             Pour en savoir plus sur cette règle de notre modèle, lancer le
             calcul en cliquant sur le bouton ci-dessous.
-          </NGCTrans>
+          </Trans>
         </p>
       </Card>
 

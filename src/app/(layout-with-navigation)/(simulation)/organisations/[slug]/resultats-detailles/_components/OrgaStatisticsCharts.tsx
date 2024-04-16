@@ -1,6 +1,7 @@
 'use client'
 
 import ActionsIcon from '@/components/icons/ActionsIcon'
+import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import { SimulationRecap } from '@/types/organisations'
 import { useMemo } from 'react'
@@ -52,21 +53,21 @@ export default function OrgaStatisticsCharts({
   return (
     <section className="my-12 rounded-xl bg-gray-100 px-8 pb-4 pt-8">
       <h2>
-        <NGCTrans>Résultats du groupe</NGCTrans>
+        <Trans>Résultats du groupe</Trans>
       </h2>
 
       <p>
-        <NGCTrans>
+        <Trans>
           Chaque participation est représentée par une barre verticale. Votre
           score est affiché en rose.
-        </NGCTrans>
+        </Trans>
       </p>
 
       <Separator />
 
       <section className="mb-12">
         <h3>
-          <NGCTrans>Empreinte carbone</NGCTrans>
+          <Trans>Empreinte carbone</Trans>
         </h3>
 
         <div className="flex flex-col">
@@ -84,7 +85,7 @@ export default function OrgaStatisticsCharts({
               <ActionsIcon className="w-4" />
               <strong className="text-lg">2</strong>{' '}
               <span>
-                <NGCTrans>tonnes</NGCTrans>
+                <Trans>tonnes</Trans>
               </span>
             </span>
 
@@ -92,7 +93,7 @@ export default function OrgaStatisticsCharts({
               <div className="flex items-center gap-3">
                 <div className="h-4 w-1 bg-secondary-700" />
                 <p className="mb-0 text-sm text-gray-600">
-                  <NGCTrans>Votre résultat</NGCTrans>
+                  <Trans>Votre résultat</Trans>
                 </p>
               </div>
             )}
@@ -100,7 +101,7 @@ export default function OrgaStatisticsCharts({
             <span>
               <strong className="text-lg">29</strong>{' '}
               <span>
-                <NGCTrans>tonnes</NGCTrans>
+                <Trans>tonnes</Trans>
               </span>
             </span>
           </div>
@@ -110,10 +111,10 @@ export default function OrgaStatisticsCharts({
       <section>
         <div className="flex items-baseline justify-between md:max-w-[16rem]">
           <h3>
-            <NGCTrans>Par catégorie</NGCTrans>
+            <Trans>Par catégorie</Trans>
           </h3>
           <p className="mb-0 text-[0.75rem]">
-            <NGCTrans>Moyenne :</NGCTrans>
+            <Trans>Moyenne :</Trans>
           </p>
         </div>
         <ul>
@@ -137,7 +138,7 @@ export default function OrgaStatisticsCharts({
             <div>
               <strong className="text-lg">0</strong>{' '}
               <span>
-                <NGCTrans>tonnes</NGCTrans>
+                <Trans>tonnes</Trans>
               </span>
             </div>
 
@@ -145,7 +146,7 @@ export default function OrgaStatisticsCharts({
               <div className="flex items-center gap-3">
                 <div className="h-4 w-1 bg-secondary-700" />
                 <p className="mb-0 text-sm text-gray-600">
-                  <NGCTrans>Votre résultat</NGCTrans>
+                  <Trans>Votre résultat</Trans>
                 </p>
               </div>
             )}
@@ -153,7 +154,7 @@ export default function OrgaStatisticsCharts({
             <div>
               <strong className="text-lg">{maxValueOfAllCategories}</strong>{' '}
               <span>
-                <NGCTrans>tonnes</NGCTrans>
+                <Trans>tonnes</Trans>
               </span>
             </div>
           </div>

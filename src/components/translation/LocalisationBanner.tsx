@@ -12,6 +12,7 @@ import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import Trans from './Trans'
 
 type Props = {
   supportedRegions: SupportedRegions
@@ -52,15 +53,15 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
         <div className="flex-1">
           {regionParams && (
             <p className="mb-0 flex-1 items-baseline gap-1">
-              <NGCTrans>Vous utilisez la version</NGCTrans>{' '}
-              <strong>{versionName}</strong> <NGCTrans>du test</NGCTrans>
+              <Trans>Vous utilisez la version</Trans>{' '}
+              <strong>{versionName}</strong> <Trans>du test</Trans>
               <CountryFlag code={code} />
               {code !== defaultModelRegionCode && (
                 <span>
                   {' '}
-                  <NGCTrans i18nKey="components.localisation.LocalisationMessage.betaMsg">
+                  <Trans i18nKey="components.localisation.LocalisationMessage.betaMsg">
                     Elle est actuellement en version <strong>bêta</strong>.
-                  </NGCTrans>
+                  </Trans>
                 </span>
               )}{' '}
             </p>
@@ -69,18 +70,18 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
           {!regionParams && code && (
             <section>
               <p>
-                <NGCTrans>
+                <Trans>
                   Nous avons détecté que vous faites cette simulation depuis
-                </NGCTrans>{' '}
+                </Trans>{' '}
                 {countryName} <CountryFlag code={code} className="inline" />.
               </p>
 
               <p className="mt-2">
                 <b>
-                  <NGCTrans i18nKey="components.localisation.LocalisationMessage.warnMessage">
+                  <Trans i18nKey="components.localisation.LocalisationMessage.warnMessage">
                     Votre région n'est pas encore supportée, le modèle Français
                     vous est proposé par défaut
-                  </NGCTrans>
+                  </Trans>
                 </b>{' '}
                 <CountryFlag code={defaultModelRegionCode} className="inline" />
                 <b>.</b>
@@ -90,10 +91,10 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
           {!regionParams && !code && (
             <p className="mb-0">
-              <NGCTrans i18nKey="components.localisation.LocalisationMessage.warnMessage2">
+              <Trans i18nKey="components.localisation.LocalisationMessage.warnMessage2">
                 Nous n'avons pas pu détecter votre pays de simulation, le modèle
                 Français vous est proposé par défaut
-              </NGCTrans>{' '}
+              </Trans>{' '}
               <CountryFlag code={defaultModelRegionCode} className="inline" />.
             </p>
           )}
@@ -101,9 +102,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
           <p>
             <small>
               <Link href="/profil">
-                <NGCTrans>
-                  Choisissez une région parmi celles disponibles !
-                </NGCTrans>
+                <Trans>Choisissez une région parmi celles disponibles !</Trans>
               </Link>
             </small>
           </p>
@@ -117,7 +116,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
               trackEvent(trackingClickRegionBanner)
             }}>
-            <NGCTrans>J'ai compris</NGCTrans>
+            <Trans>J'ai compris</Trans>
           </Button>
         </div>
       </div>

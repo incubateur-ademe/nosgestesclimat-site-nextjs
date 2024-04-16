@@ -3,6 +3,7 @@
 import SettingsIcon from '@/components/icons/SettingsIcon'
 import OrgaStatistics from '@/components/organisations/OrgaStatistics'
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
+import Trans from '@/components/translation/Trans'
 import { organisationsDashboardClickParameters } from '@/constants/tracking/pages/organisationsDashboard'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
@@ -44,7 +45,7 @@ export default function OrganisationPage() {
             <div>
               <h1>
                 <span>
-                  <NGCTrans>Bienvenue</NGCTrans>{' '}
+                  <Trans>Bienvenue</Trans>{' '}
                   <span className="text-primary-700">
                     {capitalizeString(organisation?.administrators?.[0]?.name)}
                   </span>
@@ -53,14 +54,14 @@ export default function OrganisationPage() {
               </h1>
 
               <p className="max-w-sm">
-                <NGCTrans>Sur l'espace organisation de </NGCTrans>{' '}
+                <Trans>Sur l'espace organisation de </Trans>{' '}
                 <strong className="text-secondary-700">
                   {organisation?.name}
                 </strong>
                 .{' '}
-                <NGCTrans>
+                <Trans>
                   Partagez le test à votre réseau et suivez vos statistiques.
-                </NGCTrans>
+                </Trans>
               </p>
             </div>
             <ButtonLink
@@ -70,7 +71,7 @@ export default function OrganisationPage() {
               className="flex items-center self-start">
               <SettingsIcon className="mr-2 fill-primary-700" />
 
-              <NGCTrans>Voir les paramètres</NGCTrans>
+              <Trans>Voir les paramètres</Trans>
             </ButtonLink>
           </div>
 

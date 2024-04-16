@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { extractPostalCodesFromSimulationRecaps } from '@/helpers/organisations/extractPostalCodesFromSimulationRecaps'
 import { SimulationRecap } from '@/types/organisations'
@@ -35,7 +36,7 @@ export default function DepartementFilter({
       isSearchable
       // @ts-expect-error fix this
       options={options}
-      placeholder={<NGCTrans>Département</NGCTrans>}
+      placeholder={<Trans>Département</Trans>}
       onChange={handleSaveSelectionToLocalStorage}
     />
   )

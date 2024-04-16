@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Image from 'next/image'
 import VisuelIframe from './VisuelIframe'
 
@@ -8,21 +9,21 @@ export default function IllustratedPointsList() {
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="max-w-full md:mx-auto md:w-[34rem]">
             <h2 className="mb-2 text-base text-pink-600">
-              <NGCTrans>Sensibilisez votre organisation</NGCTrans>
+              <Trans>Sensibilisez votre organisation</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <NGCTrans>
+              <Trans>
                 Partagez une version personnalisée de Nos Gestes Climat
-              </NGCTrans>
+              </Trans>
             </h3>
 
             <p className="text-base md:text-lg">
-              <NGCTrans>
+              <Trans>
                 Créez une campagne Nos Gestes Climat personnalisée au sein de
                 votre organisation et accédez à des services sur mesure pour
                 sensibiliser vos partenaires au sein de votre organisation.
-              </NGCTrans>
+              </Trans>
             </p>
           </div>
 
@@ -43,20 +44,20 @@ export default function IllustratedPointsList() {
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="max-w-full md:mx-auto md:w-[34rem]">
             <h2 className="mb-2 text-base text-pink-600">
-              <NGCTrans>Statistiques et exports</NGCTrans>
+              <Trans>Statistiques et exports</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <NGCTrans>Explorez, comparez et analysez vos données</NGCTrans>
+              <Trans>Explorez, comparez et analysez vos données</Trans>
             </h3>
 
             <p className="text-base md:text-lg">
-              <NGCTrans>
+              <Trans>
                 Permettez à vos collaborateurs, employés, partenaires ou élèves
                 de calculer et réduire leur empreinte carbone directement depuis
                 vos plateformes web et mobile, avec un lien dédié ou d’autres
                 modes d’intégration prêts à l’emploi.
-              </NGCTrans>
+              </Trans>
             </p>
           </div>
 
@@ -77,21 +78,21 @@ export default function IllustratedPointsList() {
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="max-w-full md:mx-auto md:w-[34rem]">
             <h2 className="mb-2 text-base text-pink-600">
-              <NGCTrans>Lien personnalisé & iframes</NGCTrans>
+              <Trans>Lien personnalisé & iframes</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <NGCTrans>Intégrez Nos Gestes Climat à vos services</NGCTrans>
+              <Trans>Intégrez Nos Gestes Climat à vos services</Trans>
             </h3>
 
             <p className="text-base md:text-lg">
-              <NGCTrans>
+              <Trans>
                 Explorez, analysez et téléchargez des données pour faire des
                 choix éclairés et pour améliorer continuellement votre démarche
                 écologique. Avec nos exports sur mesure, partagez vos réussites
                 et vos challenges avec vos équipes et parties prenantes pour une
                 stratégie de durabilité unifiée.
-              </NGCTrans>
+              </Trans>
             </p>
           </div>
 

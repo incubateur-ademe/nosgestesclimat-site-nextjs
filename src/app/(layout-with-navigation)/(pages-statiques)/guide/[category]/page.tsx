@@ -1,5 +1,6 @@
 import Route404 from '@/components/layout/404'
 import MDXContent from '@/components/mdx/MDXContent'
+import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -46,7 +47,7 @@ export default function CategoryGuidePage({
     <div className="mx-auto my-4 flex flex-col items-start justify-center">
       <ButtonLink color="text" href="/guide">
         <span className="mr-2 inline-block">◀</span>
-        <NGCTrans>Retour</NGCTrans>
+        <Trans>Retour</Trans>
       </ButtonLink>
       {categories[category] ? (
         <MDXContent contentFr={categories[category]} />

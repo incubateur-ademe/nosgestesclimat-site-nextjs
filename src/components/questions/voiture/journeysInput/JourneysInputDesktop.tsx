@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { Journey } from '@/types/journey'
 import { motion } from 'framer-motion'
 import { Dispatch, SetStateAction } from 'react'
@@ -30,16 +31,16 @@ export function JourneysInputDesktop({
         <tbody className="block w-full">
           <tr className="table-row w-full">
             <th className="table-cell p-2 text-left text-xs">
-              <NGCTrans>Label</NGCTrans>
+              <Trans>Label</Trans>
             </th>
             <th className="table-cell p-2 text-left text-xs">
-              <NGCTrans>Distance</NGCTrans>
+              <Trans>Distance</Trans>
             </th>
             <th className="table-cell p-2 text-left text-xs">
-              <NGCTrans>Fréquence</NGCTrans>
+              <Trans>Fréquence</Trans>
             </th>
             <th className="table-cell p-2 text-left text-xs">
-              <NGCTrans>Passagers</NGCTrans>
+              <Trans>Passagers</Trans>
             </th>
             <th className="table-cell p-2 text-left text-xs opacity-0">
               Options

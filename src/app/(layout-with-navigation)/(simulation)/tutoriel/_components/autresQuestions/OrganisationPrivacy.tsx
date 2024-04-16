@@ -3,6 +3,7 @@
 
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import { tutorielClickQuestion } from '@/constants/tracking/pages/tutoriel'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -32,13 +33,13 @@ export default function OrganisationPrivacy() {
         </summary>
         <div className="my-2 ml-3.5">
           <p>
-            <NGCTrans>
+            <Trans>
               Vos données seront stockées de manière sécurisée et anonyme. Elles
               seront agrégées à des fins statistiques ; lesdites statistiques
               seront consultables sur la page "Rapport détaillé" de votre
               sondage en fin de parcours. Cette page restera exclusivement
               accessible aux participant·es ainsi qu'aux organisateur·ices.
-            </NGCTrans>
+            </Trans>
           </p>
         </div>
       </details>

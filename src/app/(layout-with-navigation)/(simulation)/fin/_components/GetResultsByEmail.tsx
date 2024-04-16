@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -71,17 +72,17 @@ export default function GetResultsByEmail({
         className="flex h-full flex-col items-start"
         onSubmit={handleSubmit}>
         <h3 className="flex items-center text-base sm:text-lg">
-          <NGCTrans>
+          <Trans>
             Vous souhaitez recevoir vos résultats d’empreinte carbone ?
-          </NGCTrans>
+          </Trans>
 
           <Emoji>💡</Emoji>
         </h3>
 
         <p className="text-sm text-gray-600 sm:text-base">
-          <NGCTrans>Pour cela,</NGCTrans>{' '}
+          <Trans>Pour cela,</Trans>{' '}
           <strong>
-            <NGCTrans>laissez-nous votre email,</NGCTrans>{' '}
+            <Trans>laissez-nous votre email,</Trans>{' '}
           </strong>
           {t('comme {{numberSubscribers}} personnes.', {
             numberSubscribers: formatValue(numberSubscribers) ?? '---',
@@ -89,13 +90,11 @@ export default function GetResultsByEmail({
         </p>
 
         <p className="text-sm text-gray-600 sm:text-base">
-          <NGCTrans>
-            Vous retrouverez votre résultat d’empreinte, ainsi que
-          </NGCTrans>{' '}
+          <Trans>Vous retrouverez votre résultat d’empreinte, ainsi que</Trans>{' '}
           <strong>
-            <NGCTrans>des conseils pour la réduire</NGCTrans>
+            <Trans>des conseils pour la réduire</Trans>
           </strong>{' '}
-          <NGCTrans>(1 fois par mois max.)</NGCTrans>
+          <Trans>(1 fois par mois max.)</Trans>
         </p>
 
         <div className="mb-4 w-full">
@@ -117,7 +116,7 @@ export default function GetResultsByEmail({
           type="submit"
           disabled={isPending}
           className="mt-auto items-start">
-          <NGCTrans>Envoyer</NGCTrans>
+          <Trans>Envoyer</Trans>
         </Button>
 
         {isError && (

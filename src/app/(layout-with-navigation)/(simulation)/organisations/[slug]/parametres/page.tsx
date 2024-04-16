@@ -2,6 +2,7 @@
 
 import MaxWidthContent from '@/components/layout/MaxWidthContent'
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
+import Trans from '@/components/translation/Trans'
 import Loader from '@/design-system/layout/Loader'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
@@ -35,7 +36,7 @@ export default function ParametresPage() {
 
   return (
     <MaxWidthContent className="py-8">
-      <Title title={<NGCTrans>Paramètres</NGCTrans>} />
+      <Title title={<Trans>Paramètres</Trans>} />
 
       <QuestionsComplementaires
         organisation={organisation}

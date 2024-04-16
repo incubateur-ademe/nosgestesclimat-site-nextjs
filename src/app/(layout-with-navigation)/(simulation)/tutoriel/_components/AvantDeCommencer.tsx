@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
 import OrganisationDisclaimer from './avantDeCommencer/OrganisationDisclaimer'
 
@@ -11,35 +12,35 @@ export default function AvantDeCommencer() {
         <Emoji>💡</Emoji>
       </div>
       <h3 className="z-10">
-        <NGCTrans>Avant de commencer</NGCTrans>
+        <Trans>Avant de commencer</Trans>
       </h3>
       <OrganisationDisclaimer />
       <div className="relative pl-8">
         <h4 className="relative overflow-visible font-bold">
           <Emoji className="absolute -left-8 top-0">🏡</Emoji>
-          <NGCTrans>C'est un test individuel !</NGCTrans>
+          <Trans>C'est un test individuel !</Trans>
         </h4>
         <p className="text-sm md:text-base">
-          <NGCTrans>
+          <Trans>
             Répondez aux questions en votre nom, pas pour votre foyer.
-          </NGCTrans>
+          </Trans>
           <span className="hidden md:inline">
             {' '}
-            <NGCTrans>
+            <Trans>
               Bien sûr, certaines choses sont partagées (au sein de mon logement
               avec ma famille, la voiture avec les covoitureurs) : cela sera
               bien pris en compte dans le calcul de votre empreinte carbone, ne
               vous inquiétez pas !
-            </NGCTrans>
+            </Trans>
           </span>
         </p>
       </div>
       <div className="relative pl-8">
         <h4 className="relative overflow-visible font-bold">
           <Emoji className="absolute -left-8 top-0">👤</Emoji>
-          <NGCTrans>
+          <Trans>
             Il concerne votre vie personnelle, et non pas votre boulot.
-          </NGCTrans>
+          </Trans>
         </h4>
       </div>
     </div>

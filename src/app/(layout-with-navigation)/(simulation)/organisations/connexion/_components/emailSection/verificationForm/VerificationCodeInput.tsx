@@ -1,5 +1,6 @@
 import { marianne } from '@/app/layout'
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import Trans from '@/components/translation/Trans'
 import Loader from '@/design-system/layout/Loader'
 import VerificationInput from 'react-verification-input'
 
@@ -37,7 +38,7 @@ export default function VerificationCodeInput({
       {inputError && (
         <div>
           <p className="mt-2 text-sm text-red-700">
-            <NGCTrans>Le code est invalide</NGCTrans>
+            <Trans>Le code est invalide</Trans>
           </p>
         </div>
       )}
@@ -47,7 +48,7 @@ export default function VerificationCodeInput({
           <Loader color="dark" size="sm" />
 
           <span>
-            <NGCTrans>Nous vérifions votre code...</NGCTrans>
+            <Trans>Nous vérifions votre code...</Trans>
           </span>
         </div>
       )}
@@ -57,7 +58,7 @@ export default function VerificationCodeInput({
           <CheckCircleIcon className="h-4 w-4 fill-green-700" />
 
           <span className="text-green-700">
-            <NGCTrans>Votre code est valide !</NGCTrans>
+            <Trans>Votre code est valide !</Trans>
           </span>
         </div>
       )}

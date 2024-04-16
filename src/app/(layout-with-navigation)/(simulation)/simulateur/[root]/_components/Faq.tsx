@@ -1,6 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
+import Trans from '@/components/translation/Trans'
 import { simulateurClickFaq } from '@/constants/tracking/pages/simulateur'
 
 import { useIframe } from '@/hooks/useIframe'
@@ -14,12 +15,12 @@ export default function Faq() {
   return (
     <div className="mx-auto mb-4 rounded-xl bg-gray-100 p-4 text-center">
       <p>
-        <NGCTrans>Une question, un problème ?</NGCTrans>
+        <Trans>Une question, un problème ?</Trans>
       </p>
       <Link
         href="/questions-frequentes"
         onClick={() => trackEvent(simulateurClickFaq)}>
-        <NGCTrans>Découvrez la FAQ !</NGCTrans>
+        <Trans>Découvrez la FAQ !</Trans>
       </Link>
     </div>
   )

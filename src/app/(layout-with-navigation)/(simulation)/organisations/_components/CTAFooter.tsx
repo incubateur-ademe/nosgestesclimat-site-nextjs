@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import {
   organisationsAccueilClickCommencerBottom,
   organisationsAccueilClickDemoBottom,
@@ -15,12 +16,12 @@ export default function CTAFooter() {
       <div className="mx-auto max-w-5xl">
         <div className="max-w-full md:w-[34rem]">
           <h2>
-            <NGCTrans>Créez votre compte organisation</NGCTrans>
+            <Trans>Créez votre compte organisation</Trans>
           </h2>
 
           <p className="mb-8">
             <strong className="text-primary-700">
-              <NGCTrans>2 petites minutes</NGCTrans>
+              <Trans>2 petites minutes</Trans>
             </strong>{' '}
             {t(
               'pour créer un compte, et vous pourrez retrouver tous nos services gratuitement\u202f!'
@@ -31,7 +32,7 @@ export default function CTAFooter() {
             <ButtonLink
               trackingEvent={organisationsAccueilClickCommencerBottom}
               href="/organisations/connexion">
-              <NGCTrans>Créer un compte</NGCTrans>
+              <Trans>Créer un compte</Trans>
             </ButtonLink>
 
             <ButtonLink
@@ -39,7 +40,7 @@ export default function CTAFooter() {
               className="font-normal underline"
               href="/contact?motif=demo"
               trackingEvent={organisationsAccueilClickDemoBottom}>
-              <NGCTrans>Demandez une démo</NGCTrans>
+              <Trans>Demandez une démo</Trans>
             </ButtonLink>
           </div>
         </div>

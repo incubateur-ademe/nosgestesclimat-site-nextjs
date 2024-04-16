@@ -1,6 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
+import Trans from '@/components/translation/Trans'
 import { endClickEmpreinte } from '@/constants/tracking/pages/end'
 import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Card from '@/design-system/layout/Card'
@@ -29,11 +30,11 @@ export default function TotalCard() {
 
         <p className="mb-0 md:text-lg">
           <span className="text-primary-50">
-            <NGCTrans>de</NGCTrans>{' '}
+            <Trans>de</Trans>{' '}
           </span>
           CO₂-e{' '}
           <span className="text-primary-50">
-            <NGCTrans>chaque année</NGCTrans>
+            <Trans>chaque année</Trans>
           </span>
         </p>
 
@@ -46,7 +47,7 @@ export default function TotalCard() {
           className="mt-2 flex items-center text-xs text-white hover:text-primary-200 md:text-sm"
           href="/empreinte-climat"
           onClick={() => trackEvent(endClickEmpreinte)}>
-          <NGCTrans>Qu'est-ce que ça veut dire ?</NGCTrans> 
+          <Trans>Qu'est-ce que ça veut dire ?</Trans> 
           <ExternalLinkIcon className="stroke-white" />
         </Link>
       </div>

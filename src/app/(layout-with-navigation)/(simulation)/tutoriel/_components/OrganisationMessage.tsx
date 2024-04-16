@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useCheckIfUserHasAlreadyParticipated } from '@/hooks/organisations/useCheckIfUserHasAlreadyParticipated'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
@@ -21,12 +22,12 @@ export default function OrganisationMessage() {
   return (
     <div className="flex flex-col items-end gap-2">
       <p className="mb-0 text-sm text-gray-500">
-        <NGCTrans>Vous avez déja participé à ce sondage.</NGCTrans>
+        <Trans>Vous avez déja participé à ce sondage.</Trans>
       </p>
 
       <ButtonLink
         href={`/organisations/${organisationSlug}/resultats-detailles`}>
-        <NGCTrans>Voir mes résultats</NGCTrans>
+        <Trans>Voir mes résultats</Trans>
       </ButtonLink>
     </div>
   )

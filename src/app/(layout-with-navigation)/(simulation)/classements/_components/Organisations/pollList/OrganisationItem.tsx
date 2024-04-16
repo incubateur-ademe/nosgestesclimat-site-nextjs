@@ -1,6 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
+import Trans from '@/components/translation/Trans'
 import { classementClickOrganisation } from '@/constants/tracking/pages/classements'
 import ChevronRight from '@/design-system/icons/ChevronRight'
 import Badge from '@/design-system/layout/Badge'
@@ -34,7 +35,7 @@ export default function OrganisationItem({
 
           <div className="flex gap-1 text-sm text-violet-900">
             <Badge className="ml-2 inline border-pink-100 bg-pink-200 text-xs font-bold text-secondary-700">
-              <NGCTrans>Administrateur·ice</NGCTrans>
+              <Trans>Administrateur·ice</Trans>
             </Badge>
           </div>
         </div>

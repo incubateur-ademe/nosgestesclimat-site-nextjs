@@ -3,6 +3,7 @@
 import HowToAct from '@/components/actions/HowToAct'
 import BookClosedIcon from '@/components/icons/BookClosedIcon'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
+import Trans from '@/components/translation/Trans'
 import { endClickDocumentation } from '@/constants/tracking/pages/end'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
@@ -48,15 +49,15 @@ export default function FinPage() {
 
       <div>
         <h2>
-          <NGCTrans>Comment est calculée votre empreinte ?</NGCTrans>
+          <Trans>Comment est calculée votre empreinte ?</Trans>
         </h2>
 
         <p>
-          <NGCTrans>
+          <Trans>
             Notre simulateur repose sur un modèle de données, dont l'intégralité
             des calculs est documentée ; les données affichées sont directement
             associées à votre test.
-          </NGCTrans>
+          </Trans>
         </p>
 
         <InlineLink
@@ -65,17 +66,17 @@ export default function FinPage() {
           onClick={() => trackEvent(endClickDocumentation)}>
           <BookClosedIcon className="mr-2 w-4 fill-primary-700" />
 
-          <NGCTrans>Comprendre le calcul</NGCTrans>
+          <Trans>Comprendre le calcul</Trans>
         </InlineLink>
       </div>
 
       <FeedbackBanner
         className="mb-8 mt-12"
         text={
-          <NGCTrans i18nKey="publicodes.northstar.learned">
+          <Trans i18nKey="publicodes.northstar.learned">
             Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque
             chose ?
-          </NGCTrans>
+          </Trans>
         }
         type="learned"
       />

@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { useUser } from '@/publicodes-state'
 
@@ -22,7 +23,7 @@ export default function IframeFigures(props) {
             <small>&nbsp;%</small>
           </p>
           <p className="text-sm">
-            <NGCTrans>des visites affichées en iframe</NGCTrans>
+            <Trans>des visites affichées en iframe</Trans>
           </p>
         </Card>
         <Card>
@@ -33,7 +34,7 @@ export default function IframeFigures(props) {
             <small>&nbsp;%</small>
           </p>
           <p className="text-sm">
-            <NGCTrans>des visites en iframe sont actives</NGCTrans>
+            <Trans>des visites en iframe sont actives</Trans>
           </p>
         </Card>
       </div>
@@ -42,10 +43,10 @@ export default function IframeFigures(props) {
         <tbody>
           <tr>
             <th>
-              <NGCTrans>Intégrateurs identifiés</NGCTrans>
+              <Trans>Intégrateurs identifiés</Trans>
             </th>
             <th>
-              <NGCTrans>Visites</NGCTrans>
+              <Trans>Visites</Trans>
             </th>
             <th>%</th>
           </tr>
@@ -73,7 +74,7 @@ export default function IframeFigures(props) {
         </tbody>
       </table>
       <p className="text-right text-sm font-light">
-        <NGCTrans>Données valables pour les 30 derniers jours</NGCTrans>
+        <Trans>Données valables pour les 30 derniers jours</Trans>
       </p>
     </div>
   )

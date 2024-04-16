@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import { actionsClickYes } from '@/constants/tracking/pages/actions'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
@@ -88,7 +89,7 @@ export default function ActionDetail({
                 className="mr-3 text-xl">
                 📚
               </span>
-              <NGCTrans>Comprendre le calcul</NGCTrans>
+              <Trans>Comprendre le calcul</Trans>
             </ButtonLink>
           </div>
         </div>
@@ -97,7 +98,7 @@ export default function ActionDetail({
       {nbRemainingQuestions > 0 && (
         <>
           <h3 className="mt-4">
-            <NGCTrans>Personnalisez cette estimation</NGCTrans>
+            <Trans>Personnalisez cette estimation</Trans>
           </h3>
 
           <FormProvider root={dottedName}>
@@ -119,7 +120,7 @@ export default function ActionDetail({
       {relatedActions && (
         <div className="mt-8">
           <h3>
-            <NGCTrans>Sur le même sujet</NGCTrans>
+            <Trans>Sur le même sujet</Trans>
           </h3>
           <div className="flex flex-wrap gap-2">
             {relatedActions.map((action, index) => (

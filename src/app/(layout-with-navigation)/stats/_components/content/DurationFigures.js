@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { useUser } from '@/publicodes-state'
 
@@ -16,7 +17,7 @@ export default function DurationFigures(props) {
             <small className="text-lg">&nbsp;min</small>
           </p>
           <p className="mb-0 text-sm">
-            <NGCTrans>en moyenne sur le site</NGCTrans>
+            <Trans>en moyenne sur le site</Trans>
           </p>
         </Card>
       </div>

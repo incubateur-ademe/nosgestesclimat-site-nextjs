@@ -1,6 +1,7 @@
 'use client'
 
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
+import Trans from '@/components/translation/Trans'
 import {
   infosCommencerClickCtaCommencer,
   infosCommencerClickNewTest,
@@ -19,19 +20,19 @@ import { InfosContext } from '../_components/InfosProvider'
 const titles = {
   notStarted: (
     <span className="flex items-center">
-      <NGCTrans>Envie de connaître votre empreinte carbone ?</NGCTrans>{' '}
+      <Trans>Envie de connaître votre empreinte carbone ?</Trans>{' '}
       <Emoji>🤓</Emoji>
     </span>
   ),
   started: (
     <span className="flex items-center">
-      <NGCTrans>Vous avez déjà commencé le test Nos Gestes Climat !</NGCTrans>{' '}
+      <Trans>Vous avez déjà commencé le test Nos Gestes Climat !</Trans>{' '}
       <Emoji>💪</Emoji>
     </span>
   ),
   finished: (
     <span className="flex items-center">
-      <NGCTrans>Vous avez déjà réalisé le test Nos Gestes Climat !</NGCTrans>{' '}
+      <Trans>Vous avez déjà réalisé le test Nos Gestes Climat !</Trans>{' '}
       <Emoji>👏</Emoji>
     </span>
   ),
@@ -39,24 +40,22 @@ const titles = {
 const texts = {
   notStarted: (
     <>
-      <NGCTrans>Calculez votre empreinte en</NGCTrans>{' '}
+      <Trans>Calculez votre empreinte en</Trans>{' '}
       <span className="font-bold text-primary-700">
-        <NGCTrans>10 minutes</NGCTrans>
+        <Trans>10 minutes</Trans>
       </span>{' '}
-      <NGCTrans>
-        puis comparez vos résultats à ceux des autres participants.
-      </NGCTrans>{' '}
+      <Trans>puis comparez vos résultats à ceux des autres participants.</Trans>{' '}
     </>
   ),
   started: (
-    <NGCTrans>
+    <Trans>
       Vous pouvez reprendre votre test en cours, ou en recommencer un.
-    </NGCTrans>
+    </Trans>
   ),
   finished: (
-    <NGCTrans>
+    <Trans>
       Vous pouvez utiliser vos données existantes, ou recommencer le test.
-    </NGCTrans>
+    </Trans>
   ),
 }
 const buttonLabels = {
@@ -157,7 +156,7 @@ export default function Commencer() {
                 },
               })
             }}>
-            <NGCTrans>Commencer un nouveau test</NGCTrans>
+            <Trans>Commencer un nouveau test</Trans>
           </Button>
         ) : null}
       </div>

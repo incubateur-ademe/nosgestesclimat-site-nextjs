@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -21,7 +22,7 @@ export default function QuestionsPage() {
   return (
     <>
       <Title>
-        <NGCTrans>Questions</NGCTrans>
+        <Trans>Questions</Trans>
       </Title>
       <Questions />
     </>

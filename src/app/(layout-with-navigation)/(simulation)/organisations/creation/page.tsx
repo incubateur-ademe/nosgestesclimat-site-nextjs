@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useOrgaCreationGuard } from '@/hooks/navigation/useOrgaCreationGuard'
 import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
@@ -118,8 +119,8 @@ export default function CreationPage() {
     <section className="mt-6 w-full bg-[#fff]">
       <div className="mx-auto max-w-5xl px-6 py-8 lg:px-0">
         <Title
-          title={<NGCTrans>Bienvenue sur votre espace !</NGCTrans>}
-          subtitle={<NGCTrans>Plus que quelques petites questions</NGCTrans>}
+          title={<Trans>Bienvenue sur votre espace !</Trans>}
+          subtitle={<Trans>Plus que quelques petites questions</Trans>}
         />
 
         <CreationForm

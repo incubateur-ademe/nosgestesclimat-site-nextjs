@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import { Points } from '@/types/groups'
 import PointsListItem from './pointsFortsFaibles/PointsListItem'
 
@@ -13,10 +14,10 @@ export default function PointsFortsFaibles({
   return (
     <div>
       <h2 className="mt-0 text-lg" data-cypress-id="points-fort-faibles-title">
-        <NGCTrans>Vos points forts</NGCTrans>
+        <Trans>Vos points forts</Trans>
       </h2>
       <p className="mb-4 text-gray-500">
-        <NGCTrans>Par rapport à la moyenne du groupe.</NGCTrans>
+        <Trans>Par rapport à la moyenne du groupe.</Trans>
       </p>
       <ul className="pl-0">
         {pointsForts?.map((point, index) => {
@@ -34,7 +35,7 @@ export default function PointsFortsFaibles({
       </ul>
 
       <h2 className="mt-6 text-lg">
-        <NGCTrans>Vos points faibles</NGCTrans>
+        <Trans>Vos points faibles</Trans>
       </h2>
       <ul className="pl-0">
         {pointsFaibles?.map((point, index) => {

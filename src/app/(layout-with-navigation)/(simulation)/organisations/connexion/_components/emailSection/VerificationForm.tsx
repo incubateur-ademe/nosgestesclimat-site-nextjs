@@ -1,5 +1,6 @@
 import useTimeLeft from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useTimeleft'
 import useValidateVerificationCode from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useValidateVerificationCode'
+import Trans from '@/components/translation/Trans'
 import { SERVER_URL } from '@/constants/urls'
 import Button from '@/design-system/inputs/Button'
 import { useUser } from '@/publicodes-state'
@@ -149,7 +150,7 @@ export default function VerificationForm() {
             color="secondary"
             size="sm"
             className="mt-12 block">
-            <NGCTrans>Revenir au formulaire de connexion</NGCTrans>
+            <Trans>Revenir au formulaire de connexion</Trans>
           </Button>
         )}
       </div>

@@ -5,6 +5,7 @@ import { createXLSXFileAndDownload } from '@/helpers/export/createXLSXFileAndDow
 import { SimulationRecap } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useState } from 'react'
+import Trans from '../translation/Trans'
 
 type Props = {
   simulationRecaps: SimulationRecap[]
@@ -47,7 +48,7 @@ export default function ExportDataButton({
   }
   return (
     <Button color={color} disabled={isLoading} onClick={handleClick} {...props}>
-      <NGCTrans>Exporter les données</NGCTrans>
+      <Trans>Exporter les données</Trans>
     </Button>
   )
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import Logo from '@/components/misc/Logo'
+import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useIframe } from '@/hooks/useIframe'
 import BottomMenu from './headerMobile/BottomMenu'
@@ -21,7 +22,7 @@ export default function HeaderMobile({
 
       {shouldHideMostOfContent && !isIframeOnlySimulation ? (
         <ButtonLink href="/" size="sm" color="text">
-          ←&nbsp;<NGCTrans>Revenir à l'accueil</NGCTrans>
+          ←&nbsp;<Trans>Revenir à l'accueil</Trans>
         </ButtonLink>
       ) : null}
 

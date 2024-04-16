@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Badge from '@/design-system/layout/Badge'
 import { JSX } from 'react'
 
@@ -28,7 +29,7 @@ export default function ClassementMember({
 
         {isCurrentMember && (
           <Badge className="ml-2 inline rounded-xl border-pink-100 bg-pink-200 text-xs font-bold text-secondary-700">
-            <NGCTrans>Vous</NGCTrans>
+            <Trans>Vous</Trans>
           </Badge>
         )}
       </div>

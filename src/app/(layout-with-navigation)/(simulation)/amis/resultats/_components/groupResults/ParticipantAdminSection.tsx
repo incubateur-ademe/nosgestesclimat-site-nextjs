@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
@@ -52,24 +53,24 @@ export default function ParticipantAdminSection({ group }: Props) {
   return (
     <section>
       <h2>
-        <NGCTrans>Quitter</NGCTrans> <Emoji>{group?.emoji}</Emoji> {group?.name}
+        <Trans>Quitter</Trans> <Emoji>{group?.emoji}</Emoji> {group?.name}
       </h2>
 
       <p className="text-sm md:text-base">
-        <NGCTrans>
+        <Trans>
           Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le
           groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas
           l’administrateur.
-        </NGCTrans>
+        </Trans>
       </p>
 
       {isConfirming && !isSuccess && (
         <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
-            <NGCTrans>
+            <Trans>
               Cette opération est définitive et vous ne pourrez plus accéder aux
               résultats du groupe.
-            </NGCTrans>
+            </Trans>
           </p>
 
           <div className="flex gap-4">
@@ -96,10 +97,10 @@ export default function ParticipantAdminSection({ group }: Props) {
       {isSuccess && (
         <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
-            <NGCTrans>
+            <Trans>
               Vous avez quitté ce groupe. Vous allez être redirigé vers la page
               d'accueil du mode groupe
-            </NGCTrans>
+            </Trans>
           </p>
         </Card>
       )}

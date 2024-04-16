@@ -1,6 +1,7 @@
 'use client'
 
 import PresentationChartIcon from '@/components/icons/PresentationChartIcon'
+import Trans from '@/components/translation/Trans'
 import {
   organisationsDashboardClickRapportDetaille,
   organisationsDashboardExportData,
@@ -25,7 +26,7 @@ export default function SeeDetailedReportAndExport() {
         }}>
         <PresentationChartIcon className="mr-2 fill-white" />
 
-        <NGCTrans>Voir le rapport détaillé</NGCTrans>
+        <Trans>Voir le rapport détaillé</Trans>
       </ButtonLink>
 
       <ExportDataButton

@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
 import { twMerge } from 'tailwind-merge'
 
@@ -24,7 +25,7 @@ export default function FunFacts({
           </span>{' '}
           <span>%</span>{' '}
           <span>
-            <NGCTrans>se déplacent à vélo</NGCTrans>
+            <Trans>se déplacent à vélo</Trans>
           </span>
         </div>
 
@@ -35,7 +36,7 @@ export default function FunFacts({
           </span>{' '}
           <span>%</span>{' '}
           <span>
-            <NGCTrans>sont végétariens</NGCTrans>
+            <Trans>sont végétariens</Trans>
           </span>
         </div>
 
@@ -46,7 +47,7 @@ export default function FunFacts({
           </span>{' '}
           <span>%</span>{' '}
           <span>
-            <NGCTrans>roulent en voiture</NGCTrans>
+            <Trans>roulent en voiture</Trans>
           </span>
         </div>
       </div>

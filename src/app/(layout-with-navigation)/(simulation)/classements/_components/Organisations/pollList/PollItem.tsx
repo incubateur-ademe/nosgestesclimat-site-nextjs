@@ -1,6 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
+import Trans from '@/components/translation/Trans'
 import { classementClickOrganisation } from '@/constants/tracking/pages/classements'
 import ChevronRight from '@/design-system/icons/ChevronRight'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
@@ -32,8 +33,7 @@ export default function PollItem({ poll }: Props) {
 
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
-                {poll.numberOfParticipants ?? 0}{' '}
-                <NGCTrans>participant</NGCTrans>
+                {poll.numberOfParticipants ?? 0} <Trans>participant</Trans>
                 {poll.numberOfParticipants > 1 ? 's' : ''}
               </span>
             </div>

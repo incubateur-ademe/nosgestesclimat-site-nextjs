@@ -2,6 +2,7 @@
 
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import SavesIcon from '@/components/icons/SavesIcon'
+import Trans from '@/components/translation/Trans'
 import {
   profilDeleteSimulation,
   profilLoadSimulation,
@@ -24,13 +25,13 @@ export default function SimulationList() {
       <h2 className="flex items-center">
         <SavesIcon className="mr-3 fill-primary-700" />
 
-        <NGCTrans>Mon historique des simulations</NGCTrans>
+        <Trans>Mon historique des simulations</Trans>
       </h2>
       <p>
-        <NGCTrans i18nKey={'publicodes.Profil.simulations'}>
+        <Trans i18nKey={'publicodes.Profil.simulations'}>
           Chaque simulation que vous faite est sauvegardée dans votre navigateur
           Web. Vous êtes le seul à y avoir accès.
-        </NGCTrans>
+        </Trans>
       </p>
       <ul>
         {simulations.map((simulation: Simulation) => {
@@ -51,7 +52,7 @@ export default function SimulationList() {
                     {currentSimulationId === simulation.id ? (
                       <span className="mx-2 flex items-center">
                         <CheckCircleIcon className="mr-1 h-4 w-4 fill-green-500" />{' '}
-                        <NGCTrans>Chargée</NGCTrans>
+                        <Trans>Chargée</Trans>
                       </span>
                     ) : (
                       <span>
@@ -62,7 +63,7 @@ export default function SimulationList() {
                             trackEvent(profilLoadSimulation)
                             setCurrentSimulationId(simulation.id as string)
                           }}>
-                          <NGCTrans>Charger</NGCTrans>
+                          <Trans>Charger</Trans>
                         </Button>
 
                         <Button
@@ -72,7 +73,7 @@ export default function SimulationList() {
                             trackEvent(profilDeleteSimulation)
                             deleteSimulation(simulation.id as string)
                           }}>
-                          <NGCTrans>Supprimer</NGCTrans>
+                          <Trans>Supprimer</Trans>
                         </Button>
                       </span>
                     )}
@@ -80,12 +81,12 @@ export default function SimulationList() {
                 </summary>
                 <ul>
                   <li>
-                    <NGCTrans>Date complète :</NGCTrans>
+                    <Trans>Date complète :</Trans>
                     {simulationDate.toLocaleDateString()}{' '}
                     {simulationDate.toLocaleTimeString()}.
                   </li>
                   <li>
-                    <NGCTrans>Identifiant :</NGCTrans> {simulation.id}.
+                    <Trans>Identifiant :</Trans> {simulation.id}.
                   </li>
                 </ul>
               </details>

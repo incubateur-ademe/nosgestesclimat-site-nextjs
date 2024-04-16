@@ -4,6 +4,7 @@
 
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
 import {
   questionCloseInfo,
@@ -100,7 +101,7 @@ export default function Label({
               setIsOpen(false)
             }}
             title={t('Fermer')}>
-            <NGCTrans>Fermer</NGCTrans>
+            <Trans>Fermer</Trans>
           </Button>
         </motion.div>
       ) : null}

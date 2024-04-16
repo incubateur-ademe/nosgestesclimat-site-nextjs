@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -47,9 +48,9 @@ const UseQueryResultHandler = ({ requestResults, toRenderWithRequestData }) => {
           if (isError) {
             return (
               <p key={`${JSON.stringify(error)}-${index}`}>
-                <NGCTrans>
+                <Trans>
                   Une erreur est survenue lors de la récupération des données
-                </NGCTrans>{' '}
+                </Trans>{' '}
                 : {error.message}
               </p>
             )
@@ -57,7 +58,7 @@ const UseQueryResultHandler = ({ requestResults, toRenderWithRequestData }) => {
           if (isLoading) {
             return (
               <p key={`${JSON.stringify(error)}-${index}`}>
-                <NGCTrans>Récupération des données</NGCTrans>...
+                <Trans>Récupération des données</Trans>...
               </p>
             )
           }
@@ -94,10 +95,10 @@ export default function StatsContent() {
 
   return (
     <div>
-      <Title title={<NGCTrans>Statistiques</NGCTrans>} />
+      <Title title={<Trans>Statistiques</Trans>} />
       <div className="mt-8">
         <h2>
-          <NGCTrans>Générales</NGCTrans>
+          <Trans>Générales</Trans>
         </h2>
         <UseQueryResultHandler
           requestResults={[period, reference, allTime, simulations]}
@@ -131,7 +132,7 @@ export default function StatsContent() {
                 </strong>{' '}
               </p>
               <p className="text-sm">
-                <NGCTrans>visites sur la page d'accueil</NGCTrans>
+                <Trans>visites sur la page d'accueil</Trans>
               </p>
             </Card>
 
@@ -144,7 +145,7 @@ export default function StatsContent() {
                 )}
               </strong>{' '}
               <p className="mb-0 text-sm">
-                <NGCTrans>partages du site</NGCTrans>
+                <Trans>partages du site</Trans>
               </p>
             </Card>
           </div>
@@ -178,11 +179,10 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h3>
-          <NGCTrans>Intégrations et Iframes</NGCTrans>
+          <Trans>Intégrations et Iframes</Trans>
         </h3>
         <details>
-          <NGCTrans
-            i18nKey={'components.stats.StatsContent.integrationEtIframes'}>
+          <Trans i18nKey={'components.stats.StatsContent.integrationEtIframes'}>
             <summary className="mb-4">En savoir plus</summary>
             <p className="mb-4">
               Les intégrations en iframe sont détéctées via le paramètre
@@ -194,7 +194,7 @@ export default function StatsContent() {
               potentiellement sous-estimé par rapport à la réalité.{' '}
               <i>(Données valables pour les 30 derniers jours)</i>
             </p>
-          </NGCTrans>
+          </Trans>
         </details>
         <UseQueryResultHandler
           requestResults={[entryPages, activeEntryPages]}
@@ -210,9 +210,9 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h3>
-          <NGCTrans>Northstar: les statistiques "étoile du nord"</NGCTrans>
+          <Trans>Northstar: les statistiques "étoile du nord"</Trans>
         </h3>
-        <NGCTrans i18nKey={'components.stats.StatsContent.infosNorthstar'}>
+        <Trans i18nKey={'components.stats.StatsContent.infosNorthstar'}>
           <p>
             En fin de simulation, une bannière apparaît afin de recueillir le
             sentiment de nos utilisateurs sur le rôle de Nos Gestes Climat dans
@@ -222,14 +222,14 @@ export default function StatsContent() {
             <a href="./northstar">page dédiée "Northstar"</a>, ont été générées
             via Metabase.
           </p>
-        </NGCTrans>
+        </Trans>
       </div>
       <div className="mt-8">
         <h3>
-          <NGCTrans>Durée des visites</NGCTrans>
+          <Trans>Durée des visites</Trans>
         </h3>
         <details>
-          <NGCTrans i18nKey={'components.stats.StatsContent.dureeDesVisites'}>
+          <Trans i18nKey={'components.stats.StatsContent.dureeDesVisites'}>
             <summary className="mb-4">En savoir plus</summary>
             <p>
               Cette section est générée à partir des visites des 60 derniers
@@ -239,7 +239,7 @@ export default function StatsContent() {
               temps moyen sur le site a été calculé à partir des visites actives
               (l'utilisateur a cliqué sur "Faire le test").
             </p>
-          </NGCTrans>
+          </Trans>
         </details>
         <UseQueryResultHandler
           requestResults={[avgduration]}
@@ -253,10 +253,10 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h3>
-          <NGCTrans>Score de nos utilisateurs</NGCTrans>
+          <Trans>Score de nos utilisateurs</Trans>
         </h3>
         <details>
-          <NGCTrans i18nKey={'components.stats.StatsContent.scoreUtilisateurs'}>
+          <Trans i18nKey={'components.stats.StatsContent.scoreUtilisateurs'}>
             <summary className="mb-4">En savoir plus</summary>
             <p>
               Bien sûr, nous ne collectons pas{' '}
@@ -275,7 +275,7 @@ export default function StatsContent() {
               reprises sur la page de fin, en changeant ses réponses au test (ce
               qui crée de nouveaux url de fin).
             </p>
-          </NGCTrans>
+          </Trans>
         </details>
         <UseQueryResultHandler
           requestResults={[pages]}
@@ -288,7 +288,7 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h3>
-          <NGCTrans>La voiture en chiffres</NGCTrans>
+          <Trans>La voiture en chiffres</Trans>
         </h3>
         <UseQueryResultHandler
           requestResults={[kmhelp, simulationsfromhelp, ridesnumber]}

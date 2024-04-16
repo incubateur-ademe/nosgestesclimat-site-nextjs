@@ -1,6 +1,7 @@
 import Link from '@/components/Link'
 import PlaySignIcon from '@/components/icons/PlaySignIcon'
 import RestartIcon from '@/components/icons/RestartIcon'
+import Trans from '@/components/translation/Trans'
 import {
   profilClickCtaReprendre,
   profilClickCtaResultats,
@@ -45,7 +46,7 @@ export default function SimulationStarted() {
         </Card>
 
         <details className="mt-3 max-w-full text-sm">
-          <NGCTrans i18nKey={'publicodes.Profil.locationDonnées'}>
+          <Trans i18nKey={'publicodes.Profil.locationDonnées'}>
             <summary className="mb-2 cursor-pointer">
               Où sont mes données ?{' '}
             </summary>
@@ -53,9 +54,9 @@ export default function SimulationStarted() {
               Vos données sont stockées dans votre navigateur, vous avez donc le
               contrôle total sur elles.
             </span>
-          </NGCTrans>{' '}
+          </Trans>{' '}
           <Link href="/vie-privee" className="!text-xs">
-            <NGCTrans>En savoir plus</NGCTrans>
+            <Trans>En savoir plus</Trans>
           </Link>
         </details>
       </div>
@@ -67,7 +68,7 @@ export default function SimulationStarted() {
             color="primary"
             href={getLinkToEndPage()}
             trackingEvent={profilClickCtaResultats}>
-            <NGCTrans>Voir mon résultat</NGCTrans>
+            <Trans>Voir mon résultat</Trans>
           </ButtonLink>
         )}
 
@@ -79,7 +80,7 @@ export default function SimulationStarted() {
             trackingEvent={profilClickCtaReprendre}>
             <PlaySignIcon className="mr-2 fill-white" />
 
-            <NGCTrans>Reprendre mon test</NGCTrans>
+            <Trans>Reprendre mon test</Trans>
           </ButtonLink>
         )}
 
@@ -93,7 +94,7 @@ export default function SimulationStarted() {
           href={getLinkToSimulateurPage({ newSimulation: true })}>
           <RestartIcon className="mr-2 fill-primary-700" />
 
-          <NGCTrans>Recommencer</NGCTrans>
+          <Trans>Recommencer</Trans>
         </ButtonLink>
 
         <TutorialLink />

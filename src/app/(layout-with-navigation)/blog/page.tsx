@@ -1,5 +1,6 @@
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import List from '@/components/posts/List'
+import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPosts } from '@/helpers/markdown/getPosts'
@@ -24,13 +25,10 @@ export default async function Blog() {
     <>
       <PasserTestBanner />
 
-      <Title
-        title={<NGCTrans>Le Blog</NGCTrans>}
-        data-cypress-id="blog-title"
-      />
+      <Title title={<Trans>Le Blog</Trans>} data-cypress-id="blog-title" />
 
       <p>
-        <NGCTrans>Découvrez nos articles de blog&nbsp;:</NGCTrans>
+        <Trans>Découvrez nos articles de blog&nbsp;:</Trans>
       </p>
 
       <List items={posts} path="/blog" />

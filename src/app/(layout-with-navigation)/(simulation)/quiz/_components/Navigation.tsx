@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import {
   quizClickPass,
   quizClickPrevious,
@@ -55,7 +56,7 @@ export default function Navigation({
             )
             trackEvent(quizClickPass)
           }}>
-          <NGCTrans>Passer la question →</NGCTrans>
+          <Trans>Passer la question →</Trans>
         </ButtonLink>
       ) : isAnswerValidated ? (
         <ButtonLink
@@ -65,11 +66,11 @@ export default function Navigation({
               simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
             )
           }>
-          <NGCTrans>Voir mes résultats →</NGCTrans>
+          <Trans>Voir mes résultats →</Trans>
         </ButtonLink>
       ) : (
         <Button onClick={handleAnswerValidation}>
-          <NGCTrans>Valider</NGCTrans>
+          <Trans>Valider</Trans>
         </Button>
       )}
     </div>

@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import {
   organisationsDashboardClickIframe,
   organisationsDashboardCopyLink,
@@ -25,13 +26,13 @@ export default function ShareSection({
         <CTACard
           id="orga-partage"
           className="rainbow-border lg:w-2/3"
-          overLabel={<NGCTrans>Via un lien de partage</NGCTrans>}
-          title={<NGCTrans>Partagez le test</NGCTrans>}
+          overLabel={<Trans>Via un lien de partage</Trans>}
+          title={<Trans>Partagez le test</Trans>}
           description={
-            <NGCTrans>
+            <Trans>
               Partagez simplement cette page à vos employés, utilisateurs,
               élèves, et suivez leurs résultats
-            </NGCTrans>
+            </Trans>
           }>
           <CopyInput
             textToDisplay={`${window.location.host}/o/${organisation?.slug}/${organisation?.polls[0].slug}`}
@@ -44,13 +45,13 @@ export default function ShareSection({
 
         <CTACard
           className="lg:w-1/3"
-          overLabel={<NGCTrans>Services web et mobiles</NGCTrans>}
-          title={<NGCTrans>Intégration en iframe</NGCTrans>}
+          overLabel={<Trans>Services web et mobiles</Trans>}
+          title={<Trans>Intégration en iframe</Trans>}
           description={
-            <NGCTrans>
+            <Trans>
               Intégrez le test sur un article de blog, ou une page dédiée de
               votre site ou application mobile{' '}
-            </NGCTrans>
+            </Trans>
           }>
           <ButtonLink
             target="_blank"
@@ -58,7 +59,7 @@ export default function ShareSection({
             className="-mt-5 self-start py-2 text-base"
             size="sm"
             trackingEvent={organisationsDashboardClickIframe}>
-            <NGCTrans>Découvrez le guide</NGCTrans>
+            <Trans>Découvrez le guide</Trans>
           </ButtonLink>
         </CTACard>
       </div>

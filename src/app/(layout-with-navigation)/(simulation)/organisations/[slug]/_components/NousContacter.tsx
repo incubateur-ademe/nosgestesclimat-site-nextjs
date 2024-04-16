@@ -1,5 +1,6 @@
 import Link from '@/components/Link'
 import MessageIcon from '@/components/icons/MessageIcon'
+import Trans from '@/components/translation/Trans'
 
 export default function NousContacter() {
   return (
@@ -9,7 +10,7 @@ export default function NousContacter() {
 
         <div className="text-lg">
           <p className="mb-2">
-            <NGCTrans>Vous avez une question ?</NGCTrans>
+            <Trans>Vous avez une question ?</Trans>
           </p>
           <Link href="/contact">Contactez-nous</Link>
         </div>

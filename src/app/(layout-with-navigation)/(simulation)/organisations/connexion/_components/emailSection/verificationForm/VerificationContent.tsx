@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Image from 'next/image'
 import VerificationCodeInput from './VerificationCodeInput'
 
@@ -19,7 +20,7 @@ export default function VerificationContent({
   return (
     <>
       <h2>
-        <NGCTrans>Vérifiez votre boîte e-mail !</NGCTrans>
+        <Trans>Vérifiez votre boîte e-mail !</Trans>
         <Image
           src="/images/organisations/envelop.svg"
           width="24"
@@ -30,17 +31,17 @@ export default function VerificationContent({
       </h2>
 
       <p>
-        <NGCTrans>Nous avons envoyé un</NGCTrans>{' '}
+        <Trans>Nous avons envoyé un</Trans>{' '}
         <strong className="text-primary-700">
-          <NGCTrans>code de vérification</NGCTrans>
+          <Trans>code de vérification</Trans>
         </strong>{' '}
-        <NGCTrans>à </NGCTrans>
+        <Trans>à </Trans>
         {email} .{' '}
       </p>
 
       <form>
         <label htmlFor="code" className="mb-4 block font-bold">
-          <NGCTrans>Entrez votre code de vérification pour continuer</NGCTrans>
+          <Trans>Entrez votre code de vérification pour continuer</Trans>
         </label>
 
         <VerificationCodeInput

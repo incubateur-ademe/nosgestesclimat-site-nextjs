@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import { SimulationRecap } from '@/types/organisations'
 import { usePathname } from 'next/navigation'
@@ -22,7 +23,7 @@ export default function OrgaStatistics({
 
   return (
     <>
-      <h2>{title ?? <NGCTrans>Statistiques</NGCTrans>}</h2>
+      <h2>{title ?? <Trans>Statistiques</Trans>}</h2>
 
       <Separator className="mt-1" />
 

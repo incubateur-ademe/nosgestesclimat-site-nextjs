@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
@@ -83,7 +84,7 @@ export default function InvitationForm({ group }: { group: Group }) {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="italic text-secondary-700">
+              <span className="text-secondary-700 italic">
                 {' '}
                 {t('facultatif')}
               </span>
@@ -107,9 +108,9 @@ export default function InvitationForm({ group }: { group: Group }) {
         aria-disabled={!user.name}
         data-cypress-id="button-join-group">
         {hasCompletedTest ? (
-          <NGCTrans>Rejoindre</NGCTrans>
+          <Trans>Rejoindre</Trans>
         ) : (
-          <NGCTrans>Rejoindre et passer mon test</NGCTrans>
+          <Trans>Rejoindre et passer mon test</Trans>
         )}
       </Button>
     </form>

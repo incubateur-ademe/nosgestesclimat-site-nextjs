@@ -3,6 +3,7 @@
 import { Group, Participant } from '@/types/groups'
 import { useState } from 'react'
 
+import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
@@ -31,7 +32,7 @@ export default function Classement({ group }: { group: Group }) {
     <>
       <div className="mt-4">
         <h2 className="m-0 text-lg font-bold">
-          <NGCTrans>Le classement</NGCTrans>
+          <Trans>Le classement</Trans>
         </h2>
       </div>
 
@@ -118,11 +119,11 @@ export default function Classement({ group }: { group: Group }) {
         <button
           onClick={() => setIsExpanded(true)}
           className="bg-Transparent mt-4 w-full border-none text-center text-sm text-primary-700 underline">
-          <NGCTrans>
+          <Trans>
             Voir les {String(group.participants.length - 5)} autre{withS}{' '}
             participant
             {withS}
-          </NGCTrans>
+          </Trans>
         </button>
       )}
     </>

@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { getAgeFilterOptions } from '@/helpers/organisations/getAgeFilterOptions'
 import { SimulationRecap } from '@/types/organisations'
@@ -40,7 +41,7 @@ export default function AgeFilter({
       onClick={
         options.length <= 1 ? (e: MouseEvent) => e.stopPropagation() : undefined
       }
-      placeholder={<NGCTrans>Tranche d'âge</NGCTrans>}
+      placeholder={<Trans>Tranche d'âge</Trans>}
       onChange={handleChange}
     />
   )

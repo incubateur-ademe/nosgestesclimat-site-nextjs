@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useRules } from '@/hooks/useRules'
 
@@ -39,28 +40,28 @@ export default function DocumentationLanding() {
 
   return (
     <div>
-      <Title title={<NGCTrans>Documentation</NGCTrans>} />
+      <Title title={<Trans>Documentation</Trans>} />
 
       <p>
-        <NGCTrans i18nKey={'meta.publicodes.pages.Documentation.intro'}>
+        <Trans i18nKey={'meta.publicodes.pages.Documentation.intro'}>
           Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du
           même nom, composé d'un ensemble de briques. Sur cette documentation,
           vous avez accès en toute transparence à l'ensemble des variables du
           calcul.
-        </NGCTrans>
+        </Trans>
       </p>
 
       <div>
         <Link href="/modele" className="flex items-center">
           <LightBulbIcon className="mr-1 h-4 w-4 fill-primary-700" />
-          <NGCTrans> En savoir plus sur notre modèle</NGCTrans>
+          <Trans> En savoir plus sur notre modèle</Trans>
         </Link>
       </div>
 
       <SearchBar rules={rules} />
 
       <h2 className="mt-4 text-xl">
-        <NGCTrans>Quelques suggestions </NGCTrans>
+        <Trans>Quelques suggestions </Trans>
       </h2>
 
       <ul className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3">

@@ -1,4 +1,5 @@
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
+import Trans from '@/components/translation/Trans'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { SimulationRecap } from '@/types/organisations'
 import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
@@ -74,9 +75,9 @@ export default function StatisticsBlocks({
         </p>
 
         <p className="text-xl">
-          <NGCTrans>
+          <Trans>
             Simulation{optionalSString} terminée{optionalSString}
-          </NGCTrans>
+          </Trans>
         </p>
       </div>
 
@@ -92,7 +93,7 @@ export default function StatisticsBlocks({
             <span className="text-base font-normal">{unit} CO2 eq</span>
           </p>
           <p className="text-xl">
-            <NGCTrans>Empreinte moyenne</NGCTrans>
+            <Trans>Empreinte moyenne</Trans>
           </p>
         </div>
 
@@ -111,7 +112,7 @@ export default function StatisticsBlocks({
               ))}
           </VerticalBarChart>
           <h3 className="mb-4 ml-6 mt-4 text-sm">
-            <NGCTrans>Moyenne du groupe par catégorie</NGCTrans>
+            <Trans>Moyenne du groupe par catégorie</Trans>
           </h3>
         </div>
       </div>

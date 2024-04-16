@@ -1,25 +1,27 @@
+import Trans from '../translation/Trans'
+
 export default function Baseline() {
   return (
     <>
       <>
-        <NGCTrans>Vous souhaitez mobiliser votre</NGCTrans>{' '}
+        <Trans>Vous souhaitez mobiliser votre</Trans>{' '}
         <strong className="text-secondary-700">
-          <NGCTrans>entreprise</NGCTrans>
+          <Trans>entreprise</Trans>
         </strong>
-        <NGCTrans>, votre</NGCTrans>{' '}
+        <Trans>, votre</Trans>{' '}
         <strong className="text-secondary-700">
-          <NGCTrans>organisation</NGCTrans>
+          <Trans>organisation</Trans>
         </strong>
-        <NGCTrans>, votre</NGCTrans>{' '}
+        <Trans>, votre</Trans>{' '}
         <strong className="text-secondary-700">
-          <NGCTrans>association</NGCTrans>
+          <Trans>association</Trans>
         </strong>{' '}
-        <NGCTrans>ou</NGCTrans>{' '}
+        <Trans>ou</Trans>{' '}
         <strong className="text-secondary-700">
-          <NGCTrans>salle de classe</NGCTrans>
+          <Trans>salle de classe</Trans>
         </strong>
       </>
-       ? <NGCTrans>Découvrez nos outils pour vous simplifier la vie !</NGCTrans>
+       ? <Trans>Découvrez nos outils pour vous simplifier la vie !</Trans>
     </>
   )
 }

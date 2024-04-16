@@ -1,12 +1,13 @@
+import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 
 export default function PollNotFound() {
   return (
     <>
       <h1 className="text-xl">
-        <NGCTrans>
+        <Trans>
           Oups, nous n'avons pas trouvé les résultats de cette organisation
-        </NGCTrans>
+        </Trans>
       </h1>
 
       <p>

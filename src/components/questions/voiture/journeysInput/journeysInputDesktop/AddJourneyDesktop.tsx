@@ -2,6 +2,7 @@ import {
   labels,
   periods,
 } from '@/components/questions/voiture/journeysInput/_components/JourneyItem'
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -111,7 +112,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
               },
             ])
           }>
-          <NGCTrans>Ajouter</NGCTrans>
+          <Trans>Ajouter</Trans>
         </Button>
       </td>
     </tr>

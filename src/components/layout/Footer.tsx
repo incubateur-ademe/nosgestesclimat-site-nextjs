@@ -24,6 +24,7 @@ import { twMerge } from 'tailwind-merge'
 import Link from '../Link'
 import Logo from '../misc/Logo'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
+import Trans from '../translation/Trans'
 
 export default function Footer({ className = '' }) {
   return (
@@ -45,7 +46,7 @@ export default function Footer({ className = '' }) {
               onClick={() => trackEvent(footerClickQuiSommesNous)}
               className="text-default no-underline hover:underline">
               <strong>
-                <NGCTrans>À propos</NGCTrans>
+                <Trans>À propos</Trans>
               </strong>
             </InlineLink>
 
@@ -54,7 +55,7 @@ export default function Footer({ className = '' }) {
               onClick={() => trackEvent(footerClickBlog)}
               className="text-default no-underline hover:underline">
               <strong>
-                <NGCTrans>Blog</NGCTrans>
+                <Trans>Blog</Trans>
               </strong>
             </InlineLink>
 
@@ -63,7 +64,7 @@ export default function Footer({ className = '' }) {
               onClick={() => trackEvent(footerClickNouveautes)}
               className="text-default no-underline hover:underline">
               <strong>
-                <NGCTrans>Nouveautés</NGCTrans>
+                <Trans>Nouveautés</Trans>
               </strong>
             </InlineLink>
 
@@ -72,7 +73,7 @@ export default function Footer({ className = '' }) {
               onClick={() => trackEvent(footerClickDocumentation)}
               className="text-default no-underline hover:underline">
               <strong>
-                <NGCTrans>Documentation</NGCTrans>
+                <Trans>Documentation</Trans>
               </strong>
             </InlineLink>
 
@@ -81,7 +82,7 @@ export default function Footer({ className = '' }) {
               onClick={() => trackEvent(footerClickFAQ)}
               className="text-default no-underline hover:underline">
               <strong>
-                <NGCTrans>FAQ</NGCTrans>
+                <Trans>FAQ</Trans>
               </strong>
             </InlineLink>
 
@@ -90,7 +91,7 @@ export default function Footer({ className = '' }) {
               onClick={() => trackEvent(footerClickContact)}
               className="text-default no-underline hover:underline">
               <strong>
-                <NGCTrans>Contact</NGCTrans>
+                <Trans>Contact</Trans>
               </strong>
             </InlineLink>
 
@@ -98,7 +99,7 @@ export default function Footer({ className = '' }) {
               href="/plan-du-site"
               onClick={() => trackEvent(footerClickPlanSite)}
               className="font-bold text-default no-underline hover:underline">
-              <NGCTrans>Plan du site</NGCTrans>
+              <Trans>Plan du site</Trans>
             </InlineLink>
 
             {/* Hack in order to force Diffusion to be on a new line on desktop */}
@@ -108,14 +109,14 @@ export default function Footer({ className = '' }) {
               href="/diffuser"
               onClick={() => trackEvent(footerClickDiffusion)}
               className="font-bold text-default no-underline hover:underline">
-              <NGCTrans>Diffusion</NGCTrans>
+              <Trans>Diffusion</Trans>
             </InlineLink>
 
             <InlineLink
               href="/organisations"
               onClick={() => trackEvent(footerClickOrganisations)}
               className="font-bold text-default no-underline hover:underline">
-              <NGCTrans>Organisations</NGCTrans>
+              <Trans>Organisations</Trans>
             </InlineLink>
 
             <InlineLink
@@ -123,7 +124,7 @@ export default function Footer({ className = '' }) {
               onClick={() => trackEvent(footerClickAmbassadeurs)}
               className="text-default no-underline hover:underline">
               <strong>
-                <NGCTrans>Ambassadeurs</NGCTrans>
+                <Trans>Ambassadeurs</Trans>
               </strong>
             </InlineLink>
 
@@ -131,7 +132,7 @@ export default function Footer({ className = '' }) {
               href="/international"
               onClick={() => trackEvent(footerClickInternational)}
               className="font-bold text-default no-underline hover:underline">
-              <NGCTrans>International</NGCTrans>
+              <Trans>International</Trans>
             </InlineLink>
 
             <InlineLink
@@ -152,13 +153,13 @@ export default function Footer({ className = '' }) {
               </div>
 
               <div className="mt-4 text-xs">
-                ▲&nbsp;<NGCTrans>Propulsé par Vercel</NGCTrans>
+                ▲&nbsp;<Trans>Propulsé par Vercel</Trans>
                 <span className="hidden sm:inline"> | </span>
                 <br className="md:hidden" />
                 <InlineLink
                   href="/accessibilite"
                   className="text-default no-underline hover:underline">
-                  <NGCTrans>Accessibilité : partiellement conforme</NGCTrans>
+                  <Trans>Accessibilité : partiellement conforme</Trans>
                 </InlineLink>
               </div>
             </div>

@@ -1,7 +1,7 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { TransPropsWithInterpolation } from '@/types/translation'
 import { ReactElement } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans } from 'react-i18next/TransWithoutContext'
 
 export default async function TransServer({
   children,

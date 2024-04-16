@@ -2,6 +2,7 @@
 
 import FlagIcon from '@/components/icons/FlagIcon'
 import CountryFlag from '@/components/misc/CountryFlag'
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
@@ -37,13 +38,13 @@ export default function Localisation({ supportedRegions }: Props) {
         <FlagIcon className="mr-3 fill-primary-700" aria-hidden />
 
         <span>
-          <NGCTrans>Ma région de simulation</NGCTrans>
+          <Trans>Ma région de simulation</Trans>
         </span>
       </h2>
       {region?.code && (
         <div className="my-4">
           <span>
-            <NGCTrans>Vous faites cette simulation depuis :</NGCTrans>{' '}
+            <Trans>Vous faites cette simulation depuis :</Trans>{' '}
             <strong>{region.name}</strong>
             <CountryFlag code={region.code} className="ml-2 inline-block" />.
           </span>
@@ -67,7 +68,7 @@ export default function Localisation({ supportedRegions }: Props) {
                       showTutorial('localisationBanner')
                     }
                   }}>
-                  <NGCTrans>Revenir à ma région par défaut </NGCTrans>{' '}
+                  <Trans>Revenir à ma région par défaut </Trans>{' '}
                   <span aria-label={initialRegion.name}>
                     <CountryFlag
                       code={initialRegion.code}
@@ -88,10 +89,10 @@ export default function Localisation({ supportedRegions }: Props) {
 
       {!region && (
         <p>
-          <NGCTrans i18nKey="components.localisation.Localisation.warnMessage2">
+          <Trans i18nKey="components.localisation.Localisation.warnMessage2">
             Nous n'avons pas pu détecter votre pays de simulation, le modèle
             Français vous est proposé par défaut.
-          </NGCTrans>
+          </Trans>
         </p>
       )}
       <RegionSelector supportedRegions={supportedRegions} />

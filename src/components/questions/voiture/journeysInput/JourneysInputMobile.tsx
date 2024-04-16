@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { Journey } from '@/types/journey'
 import { motion } from 'framer-motion'
 import { Dispatch, SetStateAction } from 'react'
@@ -37,7 +38,7 @@ export default function JourneysInputMobile({
           {journeys.length > 0 && (
             <tr className="mt-4 block w-full text-left">
               <th className="mb-2 block">
-                <NGCTrans>Vos trajets :</NGCTrans>
+                <Trans>Vos trajets :</Trans>
               </th>
             </tr>
           )}

@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Markdown from '@/design-system/utils/Markdown'
 import { motion } from 'framer-motion'
 
@@ -24,7 +25,7 @@ export default function Warning({ type, plancher, warning, tempValue }: Props) {
         <Markdown>{warning}</Markdown>
       ) : (
         <p>
-          <NGCTrans>La valeur minimum pour ce champ est de</NGCTrans> {plancher}
+          <Trans>La valeur minimum pour ce champ est de</Trans> {plancher}
         </p>
       )}
     </motion.div>

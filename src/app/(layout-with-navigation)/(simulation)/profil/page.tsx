@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -28,7 +29,7 @@ export default async function Profil() {
 
   return (
     <FormProvider>
-      <Title title={<NGCTrans>Mon profil</NGCTrans>} />
+      <Title title={<Trans>Mon profil</Trans>} />
 
       <PersonaWarning />
 

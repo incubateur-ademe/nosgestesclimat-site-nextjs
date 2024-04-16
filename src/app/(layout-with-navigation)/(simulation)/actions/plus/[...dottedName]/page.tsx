@@ -1,4 +1,5 @@
 import Route404 from '@/components/layout/404'
+import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Markdown from '@/design-system/utils/Markdown'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -37,11 +38,11 @@ export default async function ActionPlus({
     <div>
       <div className="mb-8 mt-4 flex flex-wrap gap-4">
         <ButtonLink size="sm" color="text" href={'/actions/plus'}>
-          <NGCTrans>◀ Retour à la liste des fiches</NGCTrans>
+          <Trans>◀ Retour à la liste des fiches</Trans>
         </ButtonLink>
         {action ? (
           <ButtonLink size="sm" href={'/actions/' + dottedNameArray.join('/')}>
-            <NGCTrans>🧮 Voir le geste climat correspondant</NGCTrans>
+            <Trans>🧮 Voir le geste climat correspondant</Trans>
           </ButtonLink>
         ) : null}
       </div>

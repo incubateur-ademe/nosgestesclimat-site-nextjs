@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import Label from '@/design-system/inputs/Label'
@@ -24,14 +25,14 @@ export default function CreationForm({
     <form onSubmit={onSubmit} className="items-auto flex flex-col gap-4">
       <TextInputGroup
         name="name"
-        label={<NGCTrans>Votre organisation</NGCTrans>}
+        label={<Trans>Votre organisation</Trans>}
         error={nameError ?? ''}
         onChange={() => setNameError('')}
       />
 
       <TextInputGroup
         name="administratorName"
-        label={<NGCTrans>Votre prénom</NGCTrans>}
+        label={<Trans>Votre prénom</Trans>}
         error={ownerNameError ?? ''}
         onChange={() => setOwnerNameError('')}
       />
@@ -42,7 +43,7 @@ export default function CreationForm({
         name="position"
         label={
           <Label isOptional>
-            <NGCTrans>Rôle</NGCTrans>
+            <Trans>Rôle</Trans>
           </Label>
         }
         className="mb-4"
@@ -53,7 +54,7 @@ export default function CreationForm({
         name="telephone"
         label={
           <Label isOptional>
-            <NGCTrans>Téléphone</NGCTrans>
+            <Trans>Téléphone</Trans>
           </Label>
         }
         className="mb-4"
@@ -64,7 +65,7 @@ export default function CreationForm({
         type="number"
         label={
           <Label isOptional>
-            <NGCTrans>Nombre de participants (estimé)</NGCTrans>
+            <Trans>Nombre de participants (estimé)</Trans>
           </Label>
         }
         className="mb-4"
@@ -78,19 +79,19 @@ export default function CreationForm({
           label={
             <span>
               <strong>
-                <NGCTrans>
+                <Trans>
                   Recevoir ponctuellement par email les nouveaux services Nos
                   Gestes Climat aux organisations
-                </NGCTrans>
+                </Trans>
               </strong>{' '}
-              <NGCTrans>(une fois par mois maximum !)</NGCTrans>
+              <Trans>(une fois par mois maximum !)</Trans>
             </span>
           }
         />
       </div>
 
       <Button type="submit" className="mt-12 self-start">
-        <NGCTrans>Accéder à mon espace</NGCTrans>
+        <Trans>Accéder à mon espace</Trans>
       </Button>
     </form>
   )

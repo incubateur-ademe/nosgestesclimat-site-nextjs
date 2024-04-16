@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { endClickActions } from '@/constants/tracking/pages/end'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import RecommendedActions from './howToAct/RecommendedActions'
@@ -6,19 +7,19 @@ export default function HowToAct({ shouldLeadToTest = true }) {
   return (
     <>
       <h2>
-        <NGCTrans>Comment agir ?</NGCTrans>
+        <Trans>Comment agir ?</Trans>
       </h2>
 
       <p className="text-gray-600">
         {shouldLeadToTest ? (
-          <NGCTrans>
+          <Trans>
             Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou
             passez le test pour obtenir des recommandations personnalisées.
-          </NGCTrans>
+          </Trans>
         ) : (
-          <NGCTrans>
+          <Trans>
             Découvrez nos pistes pour agir dès aujourd’hui pour le climat.
-          </NGCTrans>
+          </Trans>
         )}
       </p>
 
@@ -29,7 +30,7 @@ export default function HowToAct({ shouldLeadToTest = true }) {
           href="/actions"
           color="secondary"
           trackingEvent={endClickActions}>
-          <NGCTrans>Voir toutes les actions</NGCTrans>
+          <Trans>Voir toutes les actions</Trans>
         </ButtonLink>
       </div>
     </>

@@ -1,6 +1,7 @@
 'use client'
 
 import HourglassIcon from '@/components/icons/HourglassIcon'
+import Trans from '@/components/translation/Trans'
 import { organisationsDashboardClickShortcutShare } from '@/constants/tracking/pages/organisationsDashboard'
 import Card from '@/design-system/layout/Card'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -42,17 +43,17 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
           <div className="flex items-center">
             <p className="mb-0">
               <span>
-                <NGCTrans>
+                <Trans>
                   Partagez le test pour obtenir vos premiers résultats.
-                </NGCTrans>
+                </Trans>
               </span>
               {hasLessThan3Participants && (
                 <span>
                   {' '}
-                  <NGCTrans>
+                  <Trans>
                     (Données consultables à partir de 3 participants, dans un
                     souci d'anonymat)
-                  </NGCTrans>
+                  </Trans>
                 </span>
               )}
             </p>

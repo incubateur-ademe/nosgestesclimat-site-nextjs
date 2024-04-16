@@ -1,6 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
+import Trans from '@/components/translation/Trans'
 import { useSimulation, useTempEngine } from '@/publicodes-state'
 import { utils } from 'publicodes'
 import getActions from '../../actions/_helpers/getActions'
@@ -29,9 +30,7 @@ export default function Actions() {
   return (
     <>
       <h2 data-cypress-id="plan-actions-title">
-        <NGCTrans i18nKey="publicodes.planDuSite.actionsPlus">
-          Les actions
-        </NGCTrans>
+        <Trans i18nKey="publicodes.planDuSite.actionsPlus">Les actions</Trans>
       </h2>
 
       <ul className="m-0 list-none p-0">

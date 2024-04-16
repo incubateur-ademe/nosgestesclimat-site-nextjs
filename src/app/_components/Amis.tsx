@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { homeClickClassements } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
@@ -14,34 +15,34 @@ export default function Amis() {
         className="mb-6 block h-auto max-w-full "
       />
       <Kicker>
-        <NGCTrans>Entre amis</NGCTrans>
+        <Trans>Entre amis</Trans>
       </Kicker>
       <h2 className="font-medium md:text-3xl">
-        <NGCTrans>Comparez vos résultats</NGCTrans>
+        <Trans>Comparez vos résultats</Trans>
       </h2>
       <p className="max-w-sm md:mb-8 md:text-lg">
-        <NGCTrans>Faites le test en</NGCTrans>{' '}
+        <Trans>Faites le test en</Trans>{' '}
         <strong className="text-primary-700">
           {' '}
-          <NGCTrans>famille</NGCTrans>
+          <Trans>famille</Trans>
         </strong>
-        , <NGCTrans>entre</NGCTrans>{' '}
+        , <Trans>entre</Trans>{' '}
         <strong className="text-primary-700">
           {' '}
-          <NGCTrans>amis</NGCTrans>
+          <Trans>amis</Trans>
         </strong>{' '}
-        <NGCTrans>ou</NGCTrans>{' '}
+        <Trans>ou</Trans>{' '}
         <strong className="text-primary-700">
           {' '}
-          <NGCTrans>collègues</NGCTrans>
+          <Trans>collègues</Trans>
         </strong>{' '}
-        <NGCTrans>et comparez vos résultats.</NGCTrans>
+        <Trans>et comparez vos résultats.</Trans>
       </p>
       <ButtonLink
         href="/amis"
         data-cypress-id="amis-link"
         trackingEvent={homeClickClassements}>
-        <NGCTrans>Commencer</NGCTrans>
+        <Trans>Commencer</Trans>
       </ButtonLink>
     </div>
   )

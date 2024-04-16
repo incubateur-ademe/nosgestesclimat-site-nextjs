@@ -1,4 +1,5 @@
 import SearchIcon from '@/components/icons/SearchIcon'
+import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -85,7 +86,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
         <h2 className="flex items-center text-xl">
           <SearchIcon className="mr-2" />
 
-          <NGCTrans>Explorez nos modèles</NGCTrans>
+          <Trans>Explorez nos modèles</Trans>
         </h2>
 
         <label
@@ -107,9 +108,9 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
 
         {input.length > 2 && !results.length && (
           <div role="status" className="mt-2 rounded-sm p-2">
-            <NGCTrans i18nKey="noresults">
+            <Trans i18nKey="noresults">
               Aucun résultat ne correspond à cette recherche
-            </NGCTrans>
+            </Trans>
           </div>
         )}
       </Card>
