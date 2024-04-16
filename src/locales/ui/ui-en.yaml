@@ -638,7 +638,6 @@ entries:
   Oups ! Une erreur est survenue.: Oops! An error has occurred.
   le poste: the position
   Mes classements: My rankings
-  Mes gestes: My actions
   Empreinte: Footprint
   Gestes: Gestures
   Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: You will receive an email from us shortly, enabling you to find it
@@ -664,7 +663,8 @@ entries:
   Les constantes de **services publics et marchands** calculées à partir des travaux du SDES: Public and commercial service constants** calculated on the basis of SDES work
   Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels: The heart of Nos Gestes Climat is **the personal climate footprint** assessment
   Lancer le calcul: Run the calculation
-  Qu'est-ce que ça veut dire: What does this mean?
+  Qu'est-ce que ça veut dire ?: What does this mean?
+  Qu'est-ce que ça veut dire ?.lock: What does this mean?
   Notes: Notes
   Informations relatives à la création d'un contexte spécifique.: Information relating to the creation of a specific context.
   404 - Nos Gestes Climat: 404 - Nos Gestes Climat
@@ -757,3 +757,16 @@ entries:
   Recevez un email avec un lien pour terminer votre test plus tard: Receive an email with a link to complete your test later
   Mon empreinte: My footprint
   écartez celles qui vous semblent trop ambitieuses ou déplacées.: discard those that seem too ambitious or inappropriate.
+  Pour cela,: To this end,
+  laissez-nous votre email,: leave us your e-mail,
+  comme {{numberSubscribers}} personnes.: like {{numberSubscribers}} people.
+  Vous souhaitez mobiliser votre: You want to mobilise your
+  entreprise: company
+  organisation: organisation
+  association: association
+  ', votre': ', your'
+  salle de classe: classroom
+  Mes&#160;gestes: My&#160;gestures
+  Votre empreinte carbone: Your carbon footprint
+  Votre empreinte: Your footprint
+  Mes gestes: My gestures

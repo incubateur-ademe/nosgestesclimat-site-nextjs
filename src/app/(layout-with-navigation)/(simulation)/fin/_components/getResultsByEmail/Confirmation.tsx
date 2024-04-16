@@ -8,11 +8,11 @@ export default function Confirmation({ className }: { className?: string }) {
     <Card
       id="email-block"
       className={twMerge(
-        'mb-4 items-start border-none bg-gray-100 py-8',
+        'mb-4 items-start border-none bg-gray-100 p-8',
         className
       )}>
       <div className="text-left; bg-transparent text-left text-2xl font-bold">
-        <p>
+        <p className="flex items-center gap-1">
           <Trans>Votre simulation est sauvegardée !</Trans> 
           <CheckCircleIcon className="fill-logement-400" />
         </p>
@@ -21,7 +21,7 @@ export default function Confirmation({ className }: { className?: string }) {
         <Trans>
           Vous allez recevoir un email de notre part sous peu, qui vous
           permettra de la retrouver
-        </Trans>
+        </Trans>{' '}
         <strong>
           <Trans>à tout moment</Trans>
         </strong>
