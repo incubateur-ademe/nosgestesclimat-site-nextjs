@@ -578,10 +578,10 @@
     prompt-sync "^4.2.0"
     yargs "^17.7.2"
 
-"@incubateur-ademe/nosgestesclimat@2.3.0-rc.1":
-  version "2.3.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-2.3.0-rc.1.tgz#ee5f30b41eef0a2c9f02a3348a1263ddfb9de071"
-  integrity sha512-JmBkCVdodi987+z+axm2x65nAEAIuVdlQQ0WTjpobXey5mGbwDRb0Xkx6bUilc4lo9C6xrPrmnSDi7EQV9Nouw==
+"@incubateur-ademe/nosgestesclimat@2.3.0-rc.2":
+  version "2.3.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-2.3.0-rc.2.tgz#5dafd00d59aea01ba2a0ac7a912d2a9a73baa862"
+  integrity sha512-BSvIsOF8XBHulU5SHjk7+RVHp/vyBGbzdsI1v4HC1+706/BimOWk2i0Kf8la8iSUQQUGIJkhk3LLk9cyHBBQcw==
 
 "@jest/expect-utils@^29.7.0":
   version "29.7.0"
