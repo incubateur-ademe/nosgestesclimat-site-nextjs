@@ -101,7 +101,7 @@ export default function GetResultsByEmail({
           <Trans>(1 fois par mois max.)</Trans>
         </p>
 
-        <div className="mb-4">
+        <div className="mb-4 w-full">
           <TextInputGroup
             name="EMAIL"
             type="email"

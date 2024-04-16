@@ -72,6 +72,7 @@ export default function HeaderDesktop() {
                     href={linkToClassement}
                     onClick={() => trackEvent(headerClickClassements)}
                     icon={AmisIcon}
+                    activeMatches={['/classement', '/amis']}
                     title={t('Mes classements')}
                     data-cypress-id="amis-link">
                     <Trans>Mes classements</Trans>

@@ -17,12 +17,15 @@ import TotalCard from './results/TotalCard'
 export default function Results() {
   return (
     <>
-      <div className="mb-4 flex items-start justify-between">
-        <Title title={<Trans>Votre empreinte carbone</Trans>} />
+      <div className="mb-4 flex flex-wrap items-start justify-between">
+        <Title
+          className="text-lg md:text-2xl"
+          title={<Trans>Votre empreinte carbone</Trans>}
+        />
 
         <Button
           color="text"
-          className="text-base underline"
+          className="ml-auto text-base underline"
           onClick={() => {
             trackEvent(endClickSaveShortcut)
 
