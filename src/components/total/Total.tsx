@@ -6,6 +6,7 @@ import {
   simulateurCloseScoreInfo,
   simulateurOpenScoreInfo,
 } from '@/constants/tracking/pages/simulateur'
+import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
@@ -18,7 +19,6 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useState } from 'react'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
-import Planet from './_components/Planet'
 import Progress from './_components/Progress'
 
 type Props = {
@@ -74,9 +74,11 @@ export default function Total({ toggleQuestionList }: Props) {
 
   return (
     <div className="md:mb-2">
-      <div className="relative mb-2 flex items-center gap-4 overflow-hidden rounded-lg bg-primary-400 px-4 py-2 text-white md:justify-center md:text-center ">
+      <div className="relative mb-2 flex items-center gap-4 overflow-hidden rounded-xl bg-primary-800 px-4 py-2 text-white md:justify-center md:text-center ">
         <Progress />
-        <Planet />
+
+        <Emoji className="z-10 text-4xl md:text-6xl">🌍</Emoji>
+
         <div className="z-10">
           <span className="block text-2xl font-bold md:text-3xl">
             {numericValue !== carbonFootprintValue && (

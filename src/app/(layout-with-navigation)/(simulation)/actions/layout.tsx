@@ -26,7 +26,7 @@ export async function generateMetadata() {
 export default function ActionsLayout({ children }: PropsWithChildren) {
   return (
     <FormProvider>
-      <Title title={<Trans>Agir</Trans>} />
+      <Title title={<Trans>Mes gestes</Trans>} />
 
       <Total />
 

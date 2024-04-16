@@ -1,5 +1,6 @@
 'use client'
 
+import FlagIcon from '@/components/icons/FlagIcon'
 import CountryFlag from '@/components/misc/CountryFlag'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
@@ -33,14 +34,9 @@ export default function Localisation({ supportedRegions }: Props) {
 
   return (
     <div className="mb-8 mt-4 sm:mt-8">
-      <h2 id="answers">
-        <span
-          role="img"
-          aria-label="emoji pin"
-          className="inline-blocl mr-3"
-          aria-hidden>
-          📍
-        </span>
+      <h2 id="answers" className="flex items-center">
+        <FlagIcon className="mr-3 fill-primary-700" aria-hidden />
+
         <span>
           <Trans>Ma région de simulation</Trans>
         </span>

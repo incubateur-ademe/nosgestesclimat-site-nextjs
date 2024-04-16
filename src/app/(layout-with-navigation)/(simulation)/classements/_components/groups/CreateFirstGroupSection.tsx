@@ -6,7 +6,7 @@ import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
 
 export default function CreateFirstGroupSection() {
   return (
-    <Container className="mt-7 rounded-md bg-gray-100 p-4">
+    <Container className="rounded-xl bg-gray-100 p-4">
       <h2 className="mb-2 mt-0 text-lg font-medium">
         <Trans>Créez votre premier groupe</Trans>
       </h2>
@@ -14,7 +14,7 @@ export default function CreateFirstGroupSection() {
         <Trans>
           Invitez vos proches pour comparer vos résultats. Cela prend
         </Trans>{' '}
-        <strong className="text-secondary-500">
+        <strong className="text-secondary-700">
           <Trans>1 minute</Trans>
         </strong>{' '}
         !

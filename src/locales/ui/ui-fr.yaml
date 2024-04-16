@@ -5,7 +5,6 @@ entries:
   Actions d'engagement: Actions d'engagement
   Actions négatives: Actions négatives
   'Actions écartées :': 'Actions écartées :'
-  Agir: Agir
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": "Cette contribution sera publique : n'y mettez pas d'informations sensibles"
   Charger: Charger
   Chargée: Chargée
@@ -37,7 +36,6 @@ entries:
   Le modèle d'empreinte carbone de référence: Le modèle d'empreinte carbone de référence
   Le test: Le test
   Le titre bref de votre problème: Le titre bref de votre problème
-  Les nouveautés ✨: Les nouveautés ✨
   Mon historique des simulations: Mon historique des simulations
   Mon profil: Mon profil
   Non: Non
@@ -102,9 +100,10 @@ entries:
   plus de 10 kg: plus de 10 kg
   plus de 10 tonnes: plus de 10 tonnes
   plus de 100 kg: plus de 100 kg
-  publicodes.ActionTutorial.félicitation: Vous avez terminé votre simulation, 👏 bravo !
+  publicodes.ActionTutorial.félicitation: Vous avez terminé votre simulation
+  bravo !: bravo !
   publicodes.ActionTutorial.msgEstimation: Vous connaissez maintenant votre empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des idées pour la réduire...
-  publicodes.ActionTutorial.msgPrécision: 💡 Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.
+  publicodes.ActionTutorial.msgPrécision: Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.
   publicodes.ActionTutorial.msgPrésentation: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
   publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} actions disponibles,'
@@ -139,8 +138,6 @@ entries:
   '{unit}': '{unit}'
   À propos: À propos
   ◀ Retour à la liste des fiches: ◀ Retour à la liste des fiches
-  ✅ sélectionnez celles qui vous intéressent: ✅ sélectionnez celles qui vous intéressent
-  ❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.: ❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.
   👍 Accepter: 👍 Accepter
   👎 Refuser: 👎 Refuser
   👤 Vous utilisez actuellement le persona: 👤 Vous utilisez actuellement le persona
@@ -176,7 +173,6 @@ entries:
   Créer le groupe: Créer le groupe
   Créer un autre groupe: Créer un autre groupe
   Créer un groupe d'amis: Créer un groupe d'amis
-  Créez un autre groupe: Créez un autre groupe
   Créez votre premier groupe: Créez votre premier groupe
   facultatif: facultatif
   Il sera visible uniquement par les participants du groupe: Il sera visible uniquement par les participants du groupe
@@ -192,7 +188,6 @@ entries:
   Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.: Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.
   Données supprimées.: Données supprimées.
   Modifier le nom du groupe: Modifier le nom du groupe
-  Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé: Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé
   Ok, sauvegarder la modification: Ok, sauvegarder la modification
   Oups, une erreur s'est produite au moment de récupérer les données du groupe.: Oups, une erreur s'est produite au moment de récupérer les données du groupe.
   Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.
@@ -211,7 +206,6 @@ entries:
   Comment les mettons-nous à jour ?: Comment les mettons-nous à jour ?
   publicodes.Personas.maj: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du simulateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le simulateur).</1></1>
   Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.: Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.
-  Oups ! Désolé, une erreur est survenue.: Oups ! Désolé, une erreur est survenue.
   Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.: Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.
   ' Retour à la liste': ' Retour à la liste'
   '{children}': '{children}'
@@ -263,14 +257,12 @@ entries:
   Voir plus d'informations: Voir plus d'informations
   Vous: Vous
   'Vous faites cette simulation depuis :': 'Vous faites cette simulation depuis :'
-  Vous pouvez créer un nouveau groupe avec d’autres amis.: Vous pouvez créer un nouveau groupe avec d’autres amis.
   du test: du test
   Vous utilisez la version: Vous utilisez la version
   Terminer: Terminer
   Ambassadeurs: Ambassadeurs
   Voir toutes les actions: Voir toutes les actions
   Total.unit: de CO<1>2</1>e / an
-  📅 Répondre sur les 3 dernières années: 📅 Répondre sur les 3 dernières années
   Comparez vos résultats <2>avec vos proches</2>: Comparez vos résultats <2>avec vos proches</2>
   Créer un groupe: Créer un groupe
   Découvrez vos résultats, et nos idées d'actions pour vous améliorer.: Découvrez vos résultats, et nos idées d'actions pour vous améliorer.
@@ -283,7 +275,6 @@ entries:
   Télécharger l'image: Télécharger l'image
   'Total par an :': 'Total par an :'
   Une capture du mode Groupe Nos Gestes Climat.: Une capture du mode Groupe Nos Gestes Climat.
-  Votre bilan: Votre bilan
   Vous avez terminé le test !: Vous avez terminé le test !
   Merci pour votre retour !: Merci pour votre retour !
   'Total :': 'Total :'
@@ -299,14 +290,11 @@ entries:
   Informations: Informations
   Nos outils: Nos outils
   Questions: Questions
-  Actions: Actions
   Aide à la saisie: Aide à la saisie
   Fermer le menu: Fermer le menu
   Pour en savoir plus sur cette règle de notre modèle, lancer le calcul en cliquant sur le bouton ci-dessous.: Pour en savoir plus sur cette règle de notre modèle, lancer le calcul en cliquant sur le bouton ci-dessous.
   Question pour l'utilisateur: Question pour l'utilisateur
   Revenir à l'accueil: Revenir à l'accueil
-  Test: Test
-  Je ne trouve pas réponse à ma question <2>🙋‍♀️</2>: Je ne trouve pas réponse à ma question <2>🙋‍♀️</2>
   N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écrire, vous y trouverez sans doute la réponse à votre question !: N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écrire, vous y trouverez sans doute la réponse à votre question !
   Plan du site: Plan du site
   Pour toute autre remarque ou question, vous pouvez nous envoyer un message via le formulaire de contact ci-dessous.: Pour toute autre remarque ou question, vous pouvez nous envoyer un message via le formulaire de contact ci-dessous.
@@ -348,6 +336,7 @@ entries:
   Oups ! Nous n'avons pas trouvé votre groupe: Oups ! Nous n'avons pas trouvé votre groupe
   Retour à la liste des groupes: Retour à la liste des groupes
   Vous êtes le premier: Vous êtes le premier
+  mais vous êtes seul·e…: mais vous êtes seul·e…
   (une fois par mois maximum !): (une fois par mois maximum !)
   2 petites minutes: 2 petites minutes
   'à ': 'à '
@@ -488,7 +477,6 @@ entries:
   Avec: Avec
   Bien vu !: Bien vu !
   Calculez votre empreinte en: Calculez votre empreinte en
-  Classement: Classement
   Classements: Classements
   Créer mon organisation: Créer mon organisation
   D’après vous, quel est: D’après vous, quel est
@@ -502,7 +490,6 @@ entries:
   Facultatif: Facultatif
   Groupes d'amis: Groupes d'amis
   Impact CO2: Impact CO2
-  Le test: Le test
   Les ateliers de l'ABC: Les ateliers de l'ABC
   Loupé !: Loupé !
   Me connecter: Me connecter
@@ -578,6 +565,17 @@ entries:
   'Depuis le siècle dernier, la concentration du carbone dans l’atmosphère augmente tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': 'Depuis le siècle dernier, la concentration du carbone dans l’atmosphère augmente tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.'
   'Le consensus scientifique est formel, cette augmentation est directement liée aux activités humaines : l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. Il est grand temps de réduire ou remplacer ces activités émettrices de gaz à effet de serre, à toutes les échelles !': 'Le consensus scientifique est formel, cette augmentation est directement liée aux activités humaines : l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. Il est grand temps de réduire ou remplacer ces activités émettrices de gaz à effet de serre, à toutes les échelles !'
   Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.
+  écartez celles qui vous semblent trop ambitieuses ou déplacées.: écartez celles qui vous semblent trop ambitieuses ou déplacées.
+  Empreinte: Empreinte
+  Gestes: Gestes
+  'Je ne trouve pas réponse à ma question ': 'Je ne trouve pas réponse à ma question '
+  le poste: le poste
+  Les nouveautés: Les nouveautés
+  Mes classements: Mes classements
+  Mes gestes: Mes gestes
+  Mon empreinte: Mon empreinte
+  Oups ! Une erreur est survenue.: Oups ! Une erreur est survenue.
+  sélectionnez celles qui vous intéressent: sélectionnez celles qui vous intéressent
   (1 fois par mois max.): (1 fois par mois max.)
   1 minute: 1 minute
   à tout moment: à tout moment
@@ -586,7 +584,6 @@ entries:
   Invitez d'autres personnes à rejoindre votre groupe: Invitez d'autres personnes à rejoindre votre groupe
   Invitez vos proches pour comparer vos résultats. Cela prend: Invitez vos proches pour comparer vos résultats. Cela prend
   l’équipe de nosgestesclimat.fr: l’équipe de nosgestesclimat.fr
-  Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.: Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.
   Supprimer le groupe: Supprimer le groupe
   Voir les résultats: Voir les résultats
   Votre simulation est sauvegardée !: Votre simulation est sauvegardée !
@@ -594,7 +591,6 @@ entries:
   Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver
   Vous retrouverez votre résultat d’empreinte, ainsi que: Vous retrouverez votre résultat d’empreinte, ainsi que
   Découvrez nos outils pour vous simplifier la vie !: Découvrez nos outils pour vous simplifier la vie !
-  Vous souhaitez mobiliser votre <2>entreprise</2>, votre <5>organisation</5>, votre<7>association</7> ou <10>salle de classe</10>: Vous souhaitez mobiliser votre <2>entreprise</2>, votre <5>organisation</5>, votre<7>association</7> ou <10>salle de classe</10>
   '**6 repas** représentatifs de notre consommation': '**6 repas** représentatifs de notre consommation'
   Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels: Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels
   Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**: Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**

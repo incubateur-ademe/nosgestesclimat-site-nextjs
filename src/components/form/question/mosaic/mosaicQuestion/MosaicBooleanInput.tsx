@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
+import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
 
@@ -13,14 +14,14 @@ type Props = {
 }
 
 const buttonClassNames = {
-  inactive: 'border-grey-500 bg-gray-100 text-gray-400 cursor-default',
-  checked: 'border-primary-500 bg-primary-200 text-primary-500 border-2',
-  unchecked: 'border-gray-300 bg-white text-primary-500 hover:bg-primary-100',
+  inactive: 'border-gray-200 bg-gray-100 text-gray-400 cursor-default',
+  checked: 'border-primary-700 text-primary-700 border-2',
+  unchecked: 'border-gray-200 bg-white hover:bg-primary-50',
 }
 const checkClassNames = {
-  inactive: 'border-gray-300',
-  checked: 'border-primary-500',
-  unchecked: 'border-gray-300',
+  inactive: 'border-gray-200',
+  checked: 'border-primary-700',
+  unchecked: 'border-gray-200',
 }
 
 const labelClassNames = {
@@ -47,7 +48,7 @@ export default function MosaicBooleanInput({
       : 'unchecked'
   return (
     <label
-      className={`relative flex cursor-pointer items-center gap-2 rounded border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
+      className={`relative flex cursor-pointer items-center gap-2 rounded-xl border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
       htmlFor={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}>
       <input
         type="checkbox"
@@ -79,21 +80,19 @@ export default function MosaicBooleanInput({
       <div className="flex-1">
         {title && icons ? (
           <span
-            className={`text-sm font-medium md:text-xl ${labelClassNames[status]}`}>
-            {title}&nbsp;{icons}
+            className={`inline align-middle text-sm font-medium md:text-xl ${labelClassNames[status]}`}>
+            <Emoji className="inline-flex">{title}</Emoji>{' '}
+            <Emoji className="inline-flex items-center">{icons}</Emoji>
           </span>
         ) : null}
         {description ? (
-          <>
-            <br />
-            <p className="mb-0 text-xs italic md:text-sm">
-              {description.split('\n')[0]}
-            </p>
-          </>
+          <p className="mb-0 text-xs italic md:text-sm">
+            {description.split('\n')[0]}
+          </p>
         ) : null}
       </div>
       {isInactive ? (
-        <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded border-2 border-black bg-white p-2 text-xs font-semibold text-black">
+        <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded-xl border-2 border-black bg-white p-2 text-xs font-semibold text-black">
           <Trans>Bientôt disponible</Trans>
         </div>
       ) : null}

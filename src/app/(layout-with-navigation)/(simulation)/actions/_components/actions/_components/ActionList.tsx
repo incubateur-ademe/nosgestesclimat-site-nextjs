@@ -33,7 +33,7 @@ export default function ActionList({
   const { actionChoices } = useCurrentSimulation()
 
   return (
-    <ul className="flex list-none flex-wrap items-center justify-center p-0">
+    <ul className="mt-4 flex list-none flex-wrap items-center justify-center p-0">
       {actions.map((action) => {
         const cardComponent = (
           <li key={action.dottedName} className="m-2 w-[12rem]">

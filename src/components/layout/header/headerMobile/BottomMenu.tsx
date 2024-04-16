@@ -18,7 +18,7 @@ export default function BottomMenu() {
   const { getLinkToSimulateurPage } = useSimulateurPage()
 
   return (
-    <ul className="fixed bottom-0 left-0 z-[201] flex w-screen justify-around border-t border-gray-200 border-t-gray-200 bg-grey-100 shadow-md">
+    <ul className="fixed bottom-0 left-0 z-[201] flex w-screen justify-around border-t border-gray-200 border-t-gray-200 bg-white shadow-md">
       <li className="h-full w-full">
         <NavLink
           href={getLinkToSimulateurPage()}
@@ -26,26 +26,26 @@ export default function BottomMenu() {
           activeMatches={['/tutoriel', '/simulateur']}
           icon={BilanIcon}
           className="flex-col  p-2 px-4"
-          activeClassName="bg-white border-r border-gray-200 text-primary-500 font-bold">
-          <Trans>Test</Trans>
+          activeClassName="bg-primary-50 border-r border-gray-200 text-primary-700 font-bold">
+          <Trans>Empreinte</Trans>
         </NavLink>
       </li>
 
       <li className="h-full w-full">
         <NavLink
           className="flex-col  p-2 px-4"
-          activeClassName="bg-white border-x border-gray-200 text-primary-500 font-bold"
+          activeClassName="bg-white border-x border-gray-200 text-primary-700 font-bold"
           href="/actions"
           onClick={() => trackEvent(headerClickActions)}
           icon={ActionsIcon}>
-          <Trans>Actions</Trans>
+          <Trans>Gestes</Trans>
         </NavLink>
       </li>
 
       <li className="h-full w-full">
         <NavLink
           className="flex-col p-2 px-4"
-          activeClassName="bg-white border-l border-gray-200 text-primary-500 font-bold"
+          activeClassName="bg-white border-l border-gray-200 text-primary-700 font-bold"
           href={linkToClassement}
           onClick={() => trackEvent(headerClickClassements)}
           icon={AmisIcon}

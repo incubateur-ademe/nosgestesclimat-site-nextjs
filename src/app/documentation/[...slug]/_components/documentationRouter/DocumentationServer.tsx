@@ -40,7 +40,7 @@ export default async function DocumentationServer({ slugs }: Props) {
     regionCode: region?.code,
   })
 
-  const rule = rules[ruleName]
+  const rule = rules?.[ruleName]
 
   if (!rule) {
     redirect('/404')
@@ -76,7 +76,7 @@ export default async function DocumentationServer({ slugs }: Props) {
 
       <CalculDetail rule={rule} ruleName={ruleName} rules={rules} />
 
-      <Card className="mb-4 mt-4 bg-primary-200">
+      <Card className="mb-4 mt-4 border-none bg-primary-100">
         <p className="mb-0">
           <Trans>
             Pour en savoir plus sur cette règle de notre modèle, lancer le

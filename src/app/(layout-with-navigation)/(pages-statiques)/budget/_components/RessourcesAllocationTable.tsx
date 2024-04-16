@@ -46,7 +46,7 @@ export default function RessourcesAllocationTable({
           ))}
         </tbody>
         <tfoot>
-          <tr className="bg-primary-500">
+          <tr className="bg-primary-700">
             <td className="w-[6rem] p-2 font-bold text-white">Total TTC</td>
             <td className="w-[6rem] p-2 text-right font-bold text-white">
               {formatValue(

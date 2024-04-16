@@ -30,7 +30,7 @@ export default function Footer({ className = '' }) {
   return (
     <footer
       className={twMerge(
-        'bg-grey-100 flex flex-col items-center gap-4 p-4 pb-32 sm:p-8 md:mb-0',
+        'relative flex flex-col items-center gap-4 bg-gray-100 p-4 !pb-32 sm:p-8 md:mb-0',
         className
       )}>
       <div className="flex w-full items-start gap-12 md:max-w-5xl">
