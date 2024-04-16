@@ -13,6 +13,7 @@ export async function getMigrationInstructions({
 }: Props = {}): Promise<MigrationType> {
   if (PRNumber) {
     const fileName = `migration.json`
+    
     return getFileFromModel({ fileName, PRNumber })
   }
 
