@@ -830,7 +830,6 @@ entries:
   Invitez d'autres personnes à rejoindre votre groupe: Invite other people to join your group
   vous: you
   Vous retrouverez votre résultat d’empreinte, ainsi que: You will find your impression results, as well as
-  Qu'est-ce que ça veut dire ?: What does this mean?
   Invitez vos proches pour comparer vos résultats. Cela prend: Invite friends and family to compare your results. It takes
   Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.: Just <strong>leave us your email address</strong>, like {{numberSubscribers}}.
   l’équipe de nosgestesclimat.fr: the nosgestesclimat.fr team
@@ -844,7 +843,8 @@ entries:
   Les constantes de **services publics et marchands** calculées à partir des travaux du SDES: Public and commercial service constants** calculated on the basis of SDES work
   Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels: The heart of Nos Gestes Climat is **the personal climate footprint** assessment
   Lancer le calcul: Run the calculation
-  Qu'est-ce que ça veut dire: What does this mean?
+  Qu'est-ce que ça veut dire ?: What does this mean?
+  Qu'est-ce que ça veut dire ?.lock: What does this mean?
   Notes: Notes
   Informations relatives à la création d'un contexte spécifique.: Information relating to the creation of a specific context.
   404 - Nos Gestes Climat: 404 - Nos Gestes Climat
@@ -933,3 +933,10 @@ entries:
   Cambiar a español: Cambiar a español
   Bravo champion·ne !: Well done champion-ne!
   Recevez un email avec un lien pour terminer votre test plus tard: Receive an email with a link to complete your test later
+  Mon empreinte: My footprint
+  écartez celles qui vous semblent trop ambitieuses ou déplacées.: discard those that seem too ambitious or inappropriate.
+  Pour cela,: To this end,
+  laissez-nous votre email,: leave us your e-mail,
+  comme {{numberSubscribers}} personnes.: like {{numberSubscribers}} people.
+  Mes&#160;gestes: My&#160;gestures
+  Votre empreinte carbone: Your carbon footprint

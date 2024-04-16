@@ -47,9 +47,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
   if (code === defaultModelRegionCode) return null
 
   return (
-    <Card
-      className="mx-auto mb-8 w-[32rem] max-w-full flex-row"
-      style={{ backgroundColor: '#fff8d3' }}>
+    <Card className="mx-auto mb-8 w-[32rem] max-w-full flex-row border-none bg-[#fff8d3]">
       <div className="flex gap-8">
         <div className="flex w-8 items-center text-4xl">📍</div>
         <div className="flex-1">

@@ -7,6 +7,7 @@ import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -19,6 +20,7 @@ export default function GetResultsByEmail({
 }: {
   className?: string
 }) {
+  const { t } = useClientTranslation()
   const { user, updateEmail, getCurrentSimulation, updateCurrentSimulation } =
     useUser()
 
@@ -57,12 +59,8 @@ export default function GetResultsByEmail({
   }
 
   // If we successfully saved the simulation, we display the confirmation message
-  if (isSuccess) {
-    return <Confirmation className={className} />
-  }
-
-  // If the simulation is already saved, we display the confirmation message
-  if (currentSimulation?.savedViaEmail) {
+  // or if the simulation is already saved
+  if (isSuccess || currentSimulation?.savedViaEmail) {
     return <Confirmation className={className} />
   }
 
@@ -83,10 +81,13 @@ export default function GetResultsByEmail({
         </h3>
 
         <p className="text-sm text-gray-600 sm:text-base">
-          <Trans>
-            Pour cela, <strong>laissez-nous votre email</strong>, comme{' '}
-            {formatValue(numberSubscribers) ?? '---'} personnes.
-          </Trans>
+          <Trans>Pour cela,</Trans>{' '}
+          <strong>
+            <Trans>laissez-nous votre email,</Trans>{' '}
+          </strong>
+          {t('comme {{numberSubscribers}} personnes.', {
+            numberSubscribers: formatValue(numberSubscribers) ?? '---',
+          })}
         </p>
 
         <p className="text-sm text-gray-600 sm:text-base">

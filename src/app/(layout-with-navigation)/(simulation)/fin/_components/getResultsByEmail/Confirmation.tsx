@@ -21,8 +21,12 @@ export default function Confirmation({ className }: { className?: string }) {
       <p className="mt-4 max-w-lg text-left">
         <Trans>
           Vous allez recevoir un email de notre part sous peu, qui vous
-          permettra de la retrouver <strong>à tout moment</strong>.
-        </Trans>
+          permettra de la retrouver
+        </Trans>{' '}
+        <strong>
+          <Trans>à tout moment</Trans>
+        </strong>
+        .
       </p>
     </Card>
   )

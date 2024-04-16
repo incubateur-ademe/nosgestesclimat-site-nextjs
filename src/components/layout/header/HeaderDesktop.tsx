@@ -52,8 +52,8 @@ export default function HeaderDesktop() {
                   <NavLink
                     href="/actions"
                     icon={ActionsIcon}
-                    title={t('Actions')}>
-                    <Trans>Actions</Trans>
+                    title={t('Mes gestes')}>
+                    <Trans>Mes&#160;gestes</Trans>
                   </NavLink>
                 </li>
 

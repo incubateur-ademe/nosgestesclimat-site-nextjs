@@ -1,5 +1,6 @@
 'use client'
 
+import Baseline from '@/components/organisations/Baseline'
 import Trans from '@/components/translation/Trans'
 import {
   clickAskDemoLandingPageEvent,
@@ -18,26 +19,7 @@ export default function HeroSection() {
           <Trans>Nos Gestes Climat pour les organisations</Trans>
         </h1>
 
-        <p className="mb-12 text-center text-sm md:text-left md:text-lg">
-          <Trans>Vous souhaitez mobiliser votre</Trans>{' '}
-          <strong className="text-primary-500">
-            <Trans>entreprise</Trans>
-          </strong>
-          <Trans>, votre</Trans>{' '}
-          <strong className="text-primary-500">
-            <Trans>organisation</Trans>
-          </strong>
-          ,{' '}
-          <strong className="text-primary-500">
-            <Trans>association</Trans>
-          </strong>
-          , <Trans>ou </Trans>{' '}
-          <strong className="text-primary-500">
-            <Trans>salle de classe</Trans>
-          </strong>
-          &nbsp;?{' '}
-          <Trans>Découvrez nos outils pour vous simplifier la vie&nbsp;!</Trans>
-        </p>
+        <Baseline />
 
         <div className="flex flex-col flex-wrap items-center gap-8 sm:flex-row sm:justify-center md:items-baseline lg:justify-start">
           <ButtonLink
