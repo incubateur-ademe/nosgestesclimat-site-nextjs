@@ -17,7 +17,7 @@ export default function Item({ item, path }: Props) {
     <Card
       tag={Link}
       href={`${path}/${item.slug}`}
-      className="hover:bg-primary-50 h-full w-full justify-between p-4 text-primary-700 no-underline">
+      className="h-full w-full justify-between border-0 bg-primary-50 p-4 text-default no-underline">
       <div>
         {item.data.image ? (
           <Image
