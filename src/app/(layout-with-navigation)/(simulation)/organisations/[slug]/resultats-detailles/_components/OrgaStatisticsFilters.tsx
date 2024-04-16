@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import { PollData, SimulationRecap } from '@/types/organisations'
 import AgeFilter from './orgaStatisticsFilters/AgeFilter'
 import DepartementFilter from './orgaStatisticsFilters/DepartementFilter'
@@ -27,7 +26,7 @@ export default function OrgaStatisticsFilters({
     <div className="mb-8 flex flex-col justify-between gap-4 rounded-lg bg-gray-100 px-4 py-4 sm:flex-row sm:items-center md:px-6">
       <div className="flex items-center gap-2">
         <p className="mb-0 md:text-xl">
-          <Trans>Filtrer par</Trans>
+          <NGCTrans>Filtrer par</NGCTrans>
         </p>
         <InfoTooltipIcon className="z-10 inline-block md:hidden" />
       </div>

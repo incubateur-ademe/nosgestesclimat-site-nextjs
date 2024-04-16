@@ -3,7 +3,6 @@
 import ActionsIcon from '@/components/icons/ActionsIcon'
 import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
-import Trans from '@/components/translation/Trans'
 import {
   headerClickActions,
   headerClickClassements,
@@ -27,7 +26,7 @@ export default function BottomMenu() {
           icon={BilanIcon}
           className="flex-col  p-2 px-4"
           activeClassName="bg-primary-50 border-r border-gray-200 text-primary-700 font-bold">
-          <Trans>Empreinte</Trans>
+          <NGCTrans>Empreinte</NGCTrans>
         </NavLink>
       </li>
 
@@ -38,7 +37,7 @@ export default function BottomMenu() {
           href="/actions"
           onClick={() => trackEvent(headerClickActions)}
           icon={ActionsIcon}>
-          <Trans>Gestes</Trans>
+          <NGCTrans>Gestes</NGCTrans>
         </NavLink>
       </li>
 
@@ -50,7 +49,7 @@ export default function BottomMenu() {
           onClick={() => trackEvent(headerClickClassements)}
           icon={AmisIcon}
           data-cypress-id="amis-link">
-          <Trans>Classements</Trans>
+          <NGCTrans>Classements</NGCTrans>
         </NavLink>
       </li>
     </ul>

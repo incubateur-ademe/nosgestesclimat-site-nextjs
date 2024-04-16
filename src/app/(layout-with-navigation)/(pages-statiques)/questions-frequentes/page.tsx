@@ -1,5 +1,4 @@
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
@@ -56,22 +55,22 @@ export default async function FAQPage() {
       <Scroller />
 
       <p>
-        <Trans i18nKey={'publicodes.FAQ.description'}>
+        <NGCTrans i18nKey={'publicodes.FAQ.description'}>
           Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les
           réponses aux questions les plus fréquentes. S’il vous reste des
           interrogations ou si vous souhaitez nous proposer des améliorations,
           rendez-vous tout en bas. Bonne lecture !
-        </Trans>
+        </NGCTrans>
       </p>
 
       {!hasData && (
         <p>
-          <Trans i18nKey={'publicodes.FAQ.faireletest'}>
+          <NGCTrans i18nKey={'publicodes.FAQ.faireletest'}>
             Vous n'avez pas encore débuté votre test,{' '}
             <strong>
               <a href={getLinkToSimulateur()}>lancez-vous !</a>
             </strong>
-          </Trans>
+          </NGCTrans>
         </p>
       )}
 
@@ -108,16 +107,16 @@ export default async function FAQPage() {
       </div>
 
       <Card className="bg-gray-100">
-        <h3 className="flex items-center text-yellow-dark">
-          <Trans>Je ne trouve pas réponse à ma question </Trans>
+        <h3 className="text-yellow-dark flex items-center">
+          <NGCTrans>Je ne trouve pas réponse à ma question </NGCTrans>
 
           <Emoji className="ml-2 inline-block">🙋‍♀️</Emoji>
         </h3>
         <p className="mb-0">
-          <Trans>
+          <NGCTrans>
             Vous pouvez nous contacter via notre page de contact :{' '}
             <Link href="/contact">accéder à notre page de contact</Link>.
-          </Trans>
+          </NGCTrans>
         </p>
       </Card>
     </>

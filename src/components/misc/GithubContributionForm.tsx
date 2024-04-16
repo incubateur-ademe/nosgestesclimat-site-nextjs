@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import TextAreaInputGroup from '@/design-system/inputs/TextAreaInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -64,7 +63,7 @@ export default function GithubContributionForm() {
   return !issueURL ? (
     <form className="mt-8">
       <TextInputGroup
-        label={<Trans>Le titre bref de votre problème</Trans>}
+        label={<NGCTrans>Le titre bref de votre problème</NGCTrans>}
         name="sujet"
         required
         value={sujet}
@@ -75,7 +74,7 @@ export default function GithubContributionForm() {
 
       <TextAreaInputGroup
         label={
-          <Trans i18nKey={'publicodes.Contribution.descriptionComplète'}>
+          <NGCTrans i18nKey={'publicodes.Contribution.descriptionComplète'}>
             <p>La description complète de votre problème</p>
             <p>
               <small>
@@ -85,7 +84,7 @@ export default function GithubContributionForm() {
                 nous aiderez à résoudre le bug plus rapidement.
               </small>
             </p>
-          </Trans>
+          </NGCTrans>
         }
         aria-describedby="messageAttention"
         value={comment}
@@ -95,10 +94,10 @@ export default function GithubContributionForm() {
       />
       <p id="messageAttention">
         <em>
-          <Trans>
+          <NGCTrans>
             Cette contribution sera publique : n'y mettez pas d'informations
             sensibles
-          </Trans>
+          </NGCTrans>
         </em>
       </p>
 
@@ -126,15 +125,15 @@ export default function GithubContributionForm() {
             labels: ['❓ FAQ', '💁 contribution externe'],
           })
         }}>
-        <Trans>Envoyer</Trans>
+        <NGCTrans>Envoyer</NGCTrans>
       </Button>
     </form>
   ) : (
     <p role="status">
-      <Trans i18nKey={'publicodes.Contribution.remerciements'}>
+      <NGCTrans i18nKey={'publicodes.Contribution.remerciements'}>
         Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur{' '}
         <Link href={issueURL ?? ''}>ce lien</Link>.
-      </Trans>
+      </NGCTrans>
     </p>
   )
 }

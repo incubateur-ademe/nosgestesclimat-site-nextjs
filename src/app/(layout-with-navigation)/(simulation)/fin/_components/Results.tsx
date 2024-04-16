@@ -4,7 +4,6 @@ import Link from '@/components/Link'
 import SaveIcon from '@/components/icons/SaveIcon'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import CategoriesChart from '@/components/results/CategoriesChart'
-import Trans from '@/components/translation/Trans'
 import {
   endClickChangeAnswers,
   endClickSaveShortcut,
@@ -20,7 +19,7 @@ export default function Results() {
       <div className="mb-4 flex flex-wrap items-start justify-between">
         <Title
           className="text-lg md:text-2xl"
-          title={<Trans>Votre empreinte carbone</Trans>}
+          title={<NGCTrans>Votre empreinte carbone</NGCTrans>}
         />
 
         <Button
@@ -34,7 +33,7 @@ export default function Results() {
           }}>
           <SaveIcon className="mr-2 w-4 fill-primary-700" />
 
-          <Trans>Sauvegarder</Trans>
+          <NGCTrans>Sauvegarder</NGCTrans>
         </Button>
       </div>
 
@@ -51,7 +50,7 @@ export default function Results() {
           href="/profil#answers"
           onClick={() => trackEvent(endClickChangeAnswers)}
           className="text-sm md:mt-4">
-          <Trans>Modifier mes réponses</Trans>
+          <NGCTrans>Modifier mes réponses</NGCTrans>
         </Link>
       </div>
     </>

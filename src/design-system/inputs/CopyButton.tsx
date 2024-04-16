@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import { PropsWithChildren, ReactNode, useState } from 'react'
 import Button from './Button'
 
@@ -26,11 +25,10 @@ export default function CopyButton({
         navigator.clipboard.writeText(textToCopy)
         setIsCopied(true)
         setTimeout(() => setIsCopied(false), 3000)
-      }}
-    >
+      }}>
       {isCopied
-        ? copiedStateText ?? <Trans>Copié !</Trans>
-        : children ?? <Trans>Copier le lien</Trans>}
+        ? copiedStateText ?? <NGCTrans>Copié !</NGCTrans>
+        : children ?? <NGCTrans>Copier le lien</NGCTrans>}
     </Button>
   )
 }

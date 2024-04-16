@@ -2,7 +2,6 @@
 
 import useFetchOrganisation from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useFetchOrganisation'
 import OrganisationIcon from '@/components/icons/OrganisationIcon'
-import Trans from '@/components/translation/Trans'
 import { headerClickOrganisation } from '@/constants/tracking/layout'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
@@ -40,7 +39,7 @@ export default function OrganisationLink() {
       {isOrganisationFullyCreated ? (
         <span className="whitespace-nowrap">{formattedOrganisationName}</span>
       ) : (
-        <Trans>Organisation</Trans>
+        <NGCTrans>Organisation</NGCTrans>
       )}
     </NavLink>
   )

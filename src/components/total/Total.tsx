@@ -1,7 +1,6 @@
 'use client'
 
 import QuestionButton from '@/components/misc/QuestionButton'
-import Trans from '@/components/translation/Trans'
 import {
   simulateurCloseScoreInfo,
   simulateurOpenScoreInfo,
@@ -91,9 +90,9 @@ export default function Total({ toggleQuestionList }: Props) {
             {formatCarbonFootprint(carbonFootprintValue).unit}
           </span>
           <span className="block text-sm md:text-base">
-            <Trans i18nKey="Total.unit">
+            <NGCTrans i18nKey="Total.unit">
               de CO<sub className="text-white">2</sub>e / an
-            </Trans>
+            </NGCTrans>
           </span>
         </div>
         <QuestionButton

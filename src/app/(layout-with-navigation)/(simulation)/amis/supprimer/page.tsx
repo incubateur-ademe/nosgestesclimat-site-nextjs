@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
@@ -65,38 +64,38 @@ export default function SupprimerGroupePage({
     <div className="p-4 md:p-8">
       <Title title={t('Supprimer mes données')} />
 
-      {isSuccess && <Trans>Données supprimées.</Trans>}
+      {isSuccess && <NGCTrans>Données supprimées.</NGCTrans>}
 
       {!isSuccess && (
         <p className="my-4">
           {isOwner ? (
-            <Trans>
+            <NGCTrans>
               Supprimer votre groupe <strong>{group?.name}</strong> ? Les
               données sauvegardées seront supprimées pour tous les membres du
               groupe. Cette action est irréversible.
-            </Trans>
+            </NGCTrans>
           ) : (
-            <Trans>
+            <NGCTrans>
               Supprimer vos données de groupe enregistrées ? Seules vos données
               de membre seront supprimées. Cette action est irréversible.
-            </Trans>
+            </NGCTrans>
           )}
         </p>
       )}
 
       {isError && (
         <p className="mt-4 text-red-600">
-          <Trans>
+          <NGCTrans>
             Oups, une erreur s'est produite au moment de récupérer les données
             du groupe.
-          </Trans>
+          </NGCTrans>
         </p>
       )}
 
       <Button
         disabled={!!isError || !group || isSuccess}
         onClick={handleDelete}>
-        <Trans>Supprimer mes données</Trans>
+        <NGCTrans>Supprimer mes données</NGCTrans>
       </Button>
     </div>
   )

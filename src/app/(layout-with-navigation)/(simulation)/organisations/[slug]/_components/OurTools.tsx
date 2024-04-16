@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import {
   organisationsDashboardClickAteliers,
   organisationsDashboardClickImpactCo2,
@@ -18,18 +17,18 @@ export default function OurTools() {
 
   return (
     <section>
-      <Title tag="h2" title={<Trans>Nos outils</Trans>} />
+      <Title tag="h2" title={<NGCTrans>Nos outils</NGCTrans>} />
 
       <div className="col-span-1 mt-8 grid  grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         <CTACard
           className="border-2 border-gray-200 px-8"
-          overLabel={<Trans>Partagez Nos Gestes Climat</Trans>}
-          title={<Trans>Kit de diffusion</Trans>}
+          overLabel={<NGCTrans>Partagez Nos Gestes Climat</NGCTrans>}
+          title={<NGCTrans>Kit de diffusion</NGCTrans>}
           description={
-            <Trans>
+            <NGCTrans>
               Logo, affiches et présentations : retrouvez tous les outils pour
               partager Nos Gestes Climat dans ce kit.
-            </Trans>
+            </NGCTrans>
           }>
           <ButtonLink
             onClick={() => {
@@ -40,21 +39,21 @@ export default function OurTools() {
             href="https://drive.google.com/drive/folders/1ppvieBBNCSSkvREGIAAK44PmPNy9CRz9?usp=drive_link"
             target="_blank"
             aria-label={t('Télécharger le kit, ouvrir dans un nouvel onglet')}>
-            <Trans>Télécharger le kit</Trans>
+            <NGCTrans>Télécharger le kit</NGCTrans>
             <ExternalLinkIcon className="ml-2 stroke-primary-700" />
           </ButtonLink>
         </CTACard>
 
         <CTACard
           className="relative overflow-hidden border-2 border-gray-200 px-8"
-          overLabel={<Trans>Animez un atelier</Trans>}
-          title={<Trans>Les ateliers de l'ABC</Trans>}
+          overLabel={<NGCTrans>Animez un atelier</NGCTrans>}
+          title={<NGCTrans>Les ateliers de l'ABC</NGCTrans>}
           description={
-            <Trans>
+            <NGCTrans>
               Organisez des temps d’animation et d’échanges physiques autour de
               Nos Gestes Climat pour fédérer et renforcer la compréhension des
               participants.
-            </Trans>
+            </NGCTrans>
           }>
           <ButtonLink
             color="secondary"
@@ -65,21 +64,21 @@ export default function OurTools() {
             aria-label={t(
               'Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet'
             )}>
-            <Trans>Accéder au kit</Trans>
+            <NGCTrans>Accéder au kit</NGCTrans>
             <ExternalLinkIcon className="ml-2 stroke-primary-700" />
           </ButtonLink>
         </CTACard>
 
         <CTACard
           className="border-2 border-gray-200 px-8"
-          overLabel={<Trans>Valorisez vos données carbone</Trans>}
-          title={<Trans>Impact CO2</Trans>}
+          overLabel={<NGCTrans>Valorisez vos données carbone</NGCTrans>}
+          title={<NGCTrans>Impact CO2</NGCTrans>}
           description={
-            <Trans>
+            <NGCTrans>
               Vous souhaitez illustrer une quantité de CO2e et diffuser les bons
               ordres de grandeur à votre communauté ? Le Comparateur carbone de
               l’ADEME est l’outil qu’il vous faut !
-            </Trans>
+            </NGCTrans>
           }>
           <ButtonLink
             className="mt-auto w-full justify-center align-bottom"
@@ -90,7 +89,7 @@ export default function OurTools() {
             aria-label={t(
               'Découvrez le simulateur, ouvrir dans un nouvel onglet'
             )}>
-            <Trans>Découvrir le simulateur</Trans>
+            <NGCTrans>Découvrir le simulateur</NGCTrans>
             <ExternalLinkIcon className="ml-2 stroke-primary-700" />
           </ButtonLink>
         </CTACard>

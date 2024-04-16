@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import {
@@ -79,13 +78,13 @@ export default function Persona({ persona, personaDottedName }: Props) {
             })
             hideTutorial('testIntro')
           }}>
-          <Trans>Sélectionner</Trans>
+          <NGCTrans>Sélectionner</NGCTrans>
         </Button>
       )}
 
       {isCurrentPersonaSelected && (
         <p className="align-self-end mb-0 mt-auto p-1 text-sm font-bold">
-          <Trans>Sélectionné·e</Trans>
+          <NGCTrans>Sélectionné·e</NGCTrans>
         </p>
       )}
     </Card>

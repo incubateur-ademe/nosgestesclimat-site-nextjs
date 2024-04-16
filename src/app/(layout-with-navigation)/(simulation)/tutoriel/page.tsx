@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import ButtonStart from './_components/ButtonStart'
 
@@ -35,10 +34,12 @@ export default async function Tutoriel() {
         className="text-lg md:text-2xl"
         title={
           <>
-            <span className="text-secondary-700 inline">
-              <Trans>10 minutes</Trans>
+            <span className="inline text-secondary-700">
+              <NGCTrans>10 minutes</NGCTrans>
             </span>{' '}
-            <Trans>chrono pour calculer votre empreinte sur le climat</Trans>
+            <NGCTrans>
+              chrono pour calculer votre empreinte sur le climat
+            </NGCTrans>
           </>
         }
       />

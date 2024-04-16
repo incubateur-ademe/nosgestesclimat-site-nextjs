@@ -5,7 +5,7 @@ import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
 import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
 import Logo from '@/components/misc/Logo'
-import Trans from '@/components/translation/Trans'
+import NGCTrans from '@/components/translation/NGCTrans'
 import {
   headerClickActions,
   headerClickClassements,
@@ -53,7 +53,7 @@ export default function HeaderDesktop() {
                     activeMatches={['/tutoriel', '/simulateur', '/fin']}
                     icon={BilanIcon}
                     title={t('Mon empreinte')}>
-                    <Trans>Mon empreinte</Trans>
+                    <NGCTrans>Mon empreinte</NGCTrans>
                   </NavLink>
                 </li>
 
@@ -63,7 +63,7 @@ export default function HeaderDesktop() {
                     onClick={() => trackEvent(headerClickActions)}
                     icon={ActionsIcon}
                     title={t('Mes gestes')}>
-                    <Trans>Mes&#160;gestes</Trans>
+                    <NGCTrans>Mes&#160;gestes</NGCTrans>
                   </NavLink>
                 </li>
 
@@ -75,7 +75,7 @@ export default function HeaderDesktop() {
                     activeMatches={['/classement', '/amis']}
                     title={t('Mes classements')}
                     data-cypress-id="amis-link">
-                    <Trans>Mes classements</Trans>
+                    <NGCTrans>Mes classements</NGCTrans>
                   </NavLink>
                 </li>
               </ul>
@@ -93,7 +93,7 @@ export default function HeaderDesktop() {
               title={t('Profil')}
               className="px-4"
               onClick={() => trackEvent(headerClickProfil)}>
-              <Trans>Profil</Trans>
+              <NGCTrans>Profil</NGCTrans>
             </NavLink>
 
             {user?.organisation?.administratorEmail ? (

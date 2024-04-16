@@ -1,7 +1,6 @@
 'use client'
 
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
@@ -42,37 +41,37 @@ export default function Explanation({ toggleOpen }: Props) {
       </div>
       {progression === 0 ? (
         <p className="mb-2 md:mb-4">
-          <Trans i18nKey={'components.ScoreExplanation.text.p1'}>
+          <NGCTrans i18nKey={'components.ScoreExplanation.text.p1'}>
             🧮 Voici votre score de départ, calculé à partir de réponses
             attribuées à l'avance à chaque question ! Il évoluera à chaque
             nouvelle réponse.
-          </Trans>
+          </NGCTrans>
         </p>
       ) : (
         <p className="mb-2 md:mb-4">
-          <Trans i18nKey={'components.ScoreExplanation.text.p2'}>
+          <NGCTrans i18nKey={'components.ScoreExplanation.text.p2'}>
             🧮 Voici votre score provisoire, il évolue à chaque nouvelle réponse
             !
-          </Trans>
+          </NGCTrans>
         </p>
       )}
       <p className="mb-2 md:mb-4">
-        <Trans i18nKey={'components.ScoreExplanation.text.p3'}>
+        <NGCTrans i18nKey={'components.ScoreExplanation.text.p3'}>
           🤔 Si vous répondez "je ne sais pas" à une question, le score ne
           changera pas : une valeur par défaut vous est attribuée.
-        </Trans>
+        </NGCTrans>
       </p>
       <p className="mb-2 md:mb-4">
-        <Trans i18nKey={'components.ScoreExplanation.text.p4'}>
+        <NGCTrans i18nKey={'components.ScoreExplanation.text.p4'}>
           💡 Nous améliorons le calcul et ses valeurs par défaut{' '}
           <Link href="/nouveautes">tous les mois</Link>!
-        </Trans>
+        </NGCTrans>
       </p>
       <div className="flex justify-end">
         <Button
           data-cypress-id="understood-explanation-button"
           onClick={toggleOpen}>
-          <Trans>J'ai compris</Trans>
+          <NGCTrans>J'ai compris</NGCTrans>
         </Button>
       </div>
     </motion.div>

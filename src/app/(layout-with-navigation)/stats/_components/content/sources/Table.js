@@ -1,5 +1,3 @@
-import Trans from '@/components/translation/Trans'
-
 export default function Table(props) {
   return (
     <div>
@@ -48,7 +46,7 @@ export default function Table(props) {
           </tbody>
         </table>
         <p className="text-right text-sm font-light">
-          <Trans>Données valables pour les 30 derniers jours</Trans>
+          <NGCTrans>Données valables pour les 30 derniers jours</NGCTrans>
         </p>
       </div>
     </div>

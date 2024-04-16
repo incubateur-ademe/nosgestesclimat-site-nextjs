@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisation'
@@ -77,13 +76,13 @@ export default function EmailForm() {
         name="email"
         type="email"
         value={user?.email || user?.organisation?.administratorEmail || ''}
-        label={<Trans>Votre adresse e-mail</Trans>}
+        label={<NGCTrans>Votre adresse e-mail</NGCTrans>}
         placeholder="jeanmarc@nosgestesclimat.fr"
         helperText={
-          <Trans>
+          <NGCTrans>
             Nous pourrons vous contacter en cas de problème lors de votre
             inscription
-          </Trans>
+          </NGCTrans>
         }
         required
         error={inputError}
@@ -92,7 +91,7 @@ export default function EmailForm() {
       {inputError && <p className="mt-2 text-sm text-red-600">{inputError}</p>}
 
       <Button type="submit" className="mt-8">
-        <Trans>Accéder à mon espace</Trans>
+        <NGCTrans>Accéder à mon espace</NGCTrans>
       </Button>
     </form>
   )

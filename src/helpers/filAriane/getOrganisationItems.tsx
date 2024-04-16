@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import { User } from '@/publicodes-state/types'
 
 function formatSlugToName(slug: string) {
@@ -9,12 +8,12 @@ function getBaseItems({ pathname }: { pathname: string }) {
   return [
     {
       href: '/',
-      label: <Trans>Accueil</Trans>,
+      label: <NGCTrans>Accueil</NGCTrans>,
       isActive: pathname === '/',
     },
     {
       href: '/organisations',
-      label: <Trans>Organisations</Trans>,
+      label: <NGCTrans>Organisations</NGCTrans>,
       isActive: pathname === '/organisations',
     },
   ]
@@ -48,7 +47,7 @@ function getOrganisationEspaceItems({
         href: `/organisations/${params.slug}/resultats-detailles`,
         label: (
           <>
-            <Trans>Résultats détaillés</Trans>
+            <NGCTrans>Résultats détaillés</NGCTrans>
             {!isAdmin ? ` -  ${formatSlugToName(params.slug)}` : ''}
           </>
         ),
@@ -60,7 +59,7 @@ function getOrganisationEspaceItems({
     if (pathname.includes('parametres')) {
       items.push({
         href: `/organisations/${params.slug}/parametres`,
-        label: <Trans>Paramètres</Trans>,
+        label: <NGCTrans>Paramètres</NGCTrans>,
         isActive: pathname === `/organisations/${params.slug}/parametres`,
       })
     }
@@ -93,7 +92,7 @@ export function getOrganisationItems({
   if (pathname.includes('demander-demo')) {
     items.push({
       href: '/organisations/demander-demo',
-      label: <Trans>Demander une démo</Trans>,
+      label: <NGCTrans>Demander une démo</NGCTrans>,
       isActive: pathname === '/organisations/demander-demo',
     })
     return items

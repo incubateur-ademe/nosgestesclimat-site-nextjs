@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useUser } from '@/publicodes-state'
 import useFetchOrganisation from '../../organisations/_hooks/useFetchOrganisation'
@@ -19,7 +18,7 @@ export default function Organisations() {
       <Title
         tag="h2"
         className="mt-8"
-        title={<Trans>Entreprises et collectivités</Trans>}
+        title={<NGCTrans>Entreprises et collectivités</NGCTrans>}
       />
 
       <PollsList organisation={organisation} />

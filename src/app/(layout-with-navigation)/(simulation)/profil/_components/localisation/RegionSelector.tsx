@@ -5,7 +5,6 @@
 
 import NewTabSvg from '@/components/icons/NewTabSvg'
 import RegionGrid from '@/components/misc/RegionGrid'
-import Trans from '@/components/translation/Trans'
 import {
   profilClickRegion,
   profilOpenRegions,
@@ -53,9 +52,9 @@ export default function RegionSelector({
           }`}
           onClick={() => trackEvent(profilOpenRegions)}>
           <span>
-            <Trans>Choisir une autre région</Trans>{' '}
+            <NGCTrans>Choisir une autre région</NGCTrans>{' '}
             <small title={`${numberOfRegions} régions`}>
-              ({numberOfRegions} <Trans>disponibles</Trans>)
+              ({numberOfRegions} <NGCTrans>disponibles</NGCTrans>)
             </small>
           </span>
           {isLoading && (
@@ -83,13 +82,15 @@ export default function RegionSelector({
         <Card className="mt-4 flex-row items-center border-none bg-transparent shadow-none">
           <Emoji className="mr-2">🌐</Emoji>
           <p className="mb-0">
-            <Trans>Envie de contribuer à une version pour votre région ?</Trans>{' '}
+            <NGCTrans>
+              Envie de contribuer à une version pour votre région ?
+            </NGCTrans>{' '}
             <a
               target="_blank"
               rel="noopener noreferrer"
               className="align-top"
               href="https://github.com/incubateur-ademe/nosgestesclimat/blob/master/INTERNATIONAL.md">
-              <Trans>Suivez le guide !</Trans>
+              <NGCTrans>Suivez le guide !</NGCTrans>
               <NewTabSvg className="!-mt-1" />
             </a>
           </p>

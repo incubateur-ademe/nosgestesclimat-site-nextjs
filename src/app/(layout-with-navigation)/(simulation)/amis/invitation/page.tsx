@@ -2,7 +2,6 @@
 
 import GroupLoader from '@/components/groups/GroupLoader'
 import GroupNotFound from '@/components/groups/GroupNotFound'
-import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
 import { useGroupIdInQueryParams } from '@/hooks/groups/useGroupIdInQueryParams'
@@ -33,10 +32,10 @@ export default function RejoindreGroupePage() {
     <div className="p-4 md:p-8">
       <Title
         title={
-          <Trans>
+          <NGCTrans>
             {group?.administrator?.name} vous a invité à rejoindre le groupe{' '}
             <span className="text-violet-900">{group?.name}</span>
-          </Trans>
+          </NGCTrans>
         }
         subtitle={t(
           "Comparez vos résultats avec votre famille ou un groupe d'amis."

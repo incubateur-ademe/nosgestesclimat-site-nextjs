@@ -2,7 +2,6 @@
 
 import ExportDataButton from '@/components/organisations/ExportDataButton'
 import OrgaStatistics from '@/components/organisations/OrgaStatistics'
-import Trans from '@/components/translation/Trans'
 import { organisationsDashboardExportData } from '@/constants/tracking/pages/organisationsDashboard'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
@@ -38,7 +37,7 @@ export default function ResultatsDetaillesPage() {
     <div>
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4 md:flex-nowrap md:gap-0">
         <h1 className="mb-0">
-          <Trans>Résultats détaillés de</Trans>{' '}
+          <NGCTrans>Résultats détaillés de</NGCTrans>{' '}
           <span className="text-primary-700">
             {pollData?.organisationName ?? ''}
           </span>
@@ -64,7 +63,7 @@ export default function ResultatsDetaillesPage() {
       <OrgaStatistics
         simulationRecaps={filteredSimulationRecaps ?? []}
         funFacts={pollData?.funFacts}
-        title={<Trans>Chiffres clés</Trans>}
+        title={<NGCTrans>Chiffres clés</NGCTrans>}
       />
 
       <OrgaStatisticsCharts simulationRecaps={filteredSimulationRecaps ?? []} />

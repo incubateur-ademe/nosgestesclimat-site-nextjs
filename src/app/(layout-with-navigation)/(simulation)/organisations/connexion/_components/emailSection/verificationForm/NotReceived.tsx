@@ -3,7 +3,6 @@
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import LockIcon from '@/components/icons/LockIcon'
 import SendIcon from '@/components/icons/SendIcon'
-import Trans from '@/components/translation/Trans'
 import { organisationsConnexionClickCode } from '@/constants/tracking/pages/organisationsConnexion'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -61,7 +60,7 @@ export default function NotReceived({
   return (
     <>
       <p className="mt-12">
-        <Trans>Vous n'avez pas reçu d'e-mail ?</Trans>
+        <NGCTrans>Vous n'avez pas reçu d'e-mail ?</NGCTrans>
       </p>
 
       {!isErrorResend && (
@@ -77,21 +76,21 @@ export default function NotReceived({
           {isRetryButtonDisabled && timeLeft > 0 && (
             <span className="flex items-center no-underline">
               <LockIcon className="h-4 w-4 fill-primary-700" />
-              &nbsp;<Trans>Renvoyer le code</Trans>
+              &nbsp;<NGCTrans>Renvoyer le code</NGCTrans>
             </span>
           )}
 
           {shouldDisplayConfirmation && (
             <span className="flex items-center text-green-500 no-underline">
               <CheckCircleIcon className="h-4 w-4 fill-green-500" />
-              &nbsp;<Trans>Code renvoyé</Trans>
+              &nbsp;<NGCTrans>Code renvoyé</NGCTrans>
             </span>
           )}
 
           {!shouldDisplayConfirmation && !isRetryButtonDisabled && (
             <span className="flex items-center underline">
               <SendIcon className="h-4 w-4 fill-primary-700" />
-              &nbsp;<Trans>Renvoyer le code</Trans>
+              &nbsp;<NGCTrans>Renvoyer le code</NGCTrans>
             </span>
           )}
         </button>
@@ -100,10 +99,10 @@ export default function NotReceived({
       {isErrorResend && (
         <div className="text-red-800">
           <p>
-            <Trans>
+            <NGCTrans>
               Oups, une erreur s'est produite au moment de l'envoi de votre
               code...
-            </Trans>
+            </NGCTrans>
           </p>
 
           <div>
@@ -122,8 +121,10 @@ export default function NotReceived({
 
       {timeLeft > 0 && (
         <p className="mt-2 text-sm text-gray-600">
-          <Trans>Veuillez attendre</Trans> {timeLeft}{' '}
-          <Trans>secondes avant de pouvoir recevoir un nouveau code</Trans>
+          <NGCTrans>Veuillez attendre</NGCTrans> {timeLeft}{' '}
+          <NGCTrans>
+            secondes avant de pouvoir recevoir un nouveau code
+          </NGCTrans>
         </p>
       )}
     </>

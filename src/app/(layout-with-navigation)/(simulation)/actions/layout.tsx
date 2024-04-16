@@ -1,6 +1,6 @@
 import NorthStarBanner from '@/components/northstar/NorthstarBanner'
 import Total from '@/components/total/Total'
-import Trans from '@/components/translation/Trans'
+import NGCTrans from '@/components/translation/NGCTrans'
 import { noIndexObject } from '@/constants/metadata'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -26,7 +26,7 @@ export async function generateMetadata() {
 export default function ActionsLayout({ children }: PropsWithChildren) {
   return (
     <FormProvider>
-      <Title title={<Trans>Mes&#160;gestes</Trans>} />
+      <Title title={<NGCTrans>Mes&#160;gestes</NGCTrans>} />
 
       <Total />
 

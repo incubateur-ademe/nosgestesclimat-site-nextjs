@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import { PropsWithChildren } from 'react'
 
 export default function Label({
@@ -9,8 +8,8 @@ export default function Label({
     <div className="flex justify-between">
       <span>{children}</span>{' '}
       {isOptional && (
-        <span className="text-secondary-700 italic">
-          <Trans>facultatif</Trans>
+        <span className="italic text-secondary-700">
+          <NGCTrans>facultatif</NGCTrans>
         </span>
       )}
     </div>

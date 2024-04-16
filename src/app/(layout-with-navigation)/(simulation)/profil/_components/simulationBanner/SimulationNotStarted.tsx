@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import { profilClickCtaCommencer } from '@/constants/tracking/pages/profil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
@@ -16,7 +15,7 @@ export default function SimulationNotStarted() {
           className="mb-2 mr-4 block text-center text-3xl md:mb-0 md:inline-block">
           🕳️
         </span>
-        <Trans>Vous n'avez pas encore fait le test.</Trans>
+        <NGCTrans>Vous n'avez pas encore fait le test.</NGCTrans>
       </p>
 
       <div className="flex w-full flex-col items-start justify-start gap-4 md:flex-row md:items-center">
@@ -24,7 +23,7 @@ export default function SimulationNotStarted() {
           href={getLinkToSimulateur()}
           trackingEvent={profilClickCtaCommencer}>
           <ProgressCircle className="mr-2" white />
-          <Trans>Faire le test</Trans>
+          <NGCTrans>Faire le test</NGCTrans>
         </ButtonLink>
 
         <TutorialLink className="w-auto" />

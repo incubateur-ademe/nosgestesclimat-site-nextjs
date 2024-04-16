@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import {
   headerClickCtaCommencer,
   headerClickCtaReprendre,
@@ -34,7 +33,7 @@ export default function CTAButton() {
 
         trackEvent(headerClickCtaCommencer)
       }}>
-      <Trans>{linkToSimulateurPageLabel}</Trans>
+      <NGCTrans>{linkToSimulateurPageLabel}</NGCTrans>
     </ButtonLink>
   )
 }

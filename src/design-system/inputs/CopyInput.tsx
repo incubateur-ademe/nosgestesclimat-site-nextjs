@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import { useState } from 'react'
 import Button from './Button'
 
@@ -37,7 +36,11 @@ export default function CopyInput({
 
           if (onClick) onClick()
         }}>
-        {isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>}
+        {isCopied ? (
+          <NGCTrans>Copié !</NGCTrans>
+        ) : (
+          <NGCTrans>Copier le lien</NGCTrans>
+        )}
       </Button>
     </div>
   )

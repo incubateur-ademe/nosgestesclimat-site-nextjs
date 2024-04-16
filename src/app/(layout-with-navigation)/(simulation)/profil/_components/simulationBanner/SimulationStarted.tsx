@@ -1,7 +1,6 @@
 import Link from '@/components/Link'
 import PlaySignIcon from '@/components/icons/PlaySignIcon'
 import RestartIcon from '@/components/icons/RestartIcon'
-import Trans from '@/components/translation/Trans'
 import {
   profilClickCtaReprendre,
   profilClickCtaResultats,
@@ -46,7 +45,7 @@ export default function SimulationStarted() {
         </Card>
 
         <details className="mt-3 max-w-full text-sm">
-          <Trans i18nKey={'publicodes.Profil.locationDonnées'}>
+          <NGCTrans i18nKey={'publicodes.Profil.locationDonnées'}>
             <summary className="mb-2 cursor-pointer">
               Où sont mes données ?{' '}
             </summary>
@@ -54,9 +53,9 @@ export default function SimulationStarted() {
               Vos données sont stockées dans votre navigateur, vous avez donc le
               contrôle total sur elles.
             </span>
-          </Trans>{' '}
+          </NGCTrans>{' '}
           <Link href="/vie-privee" className="!text-xs">
-            <Trans>En savoir plus</Trans>
+            <NGCTrans>En savoir plus</NGCTrans>
           </Link>
         </details>
       </div>
@@ -68,7 +67,7 @@ export default function SimulationStarted() {
             color="primary"
             href={getLinkToEndPage()}
             trackingEvent={profilClickCtaResultats}>
-            <Trans>Voir mon résultat</Trans>
+            <NGCTrans>Voir mon résultat</NGCTrans>
           </ButtonLink>
         )}
 
@@ -80,7 +79,7 @@ export default function SimulationStarted() {
             trackingEvent={profilClickCtaReprendre}>
             <PlaySignIcon className="mr-2 fill-white" />
 
-            <Trans>Reprendre mon test</Trans>
+            <NGCTrans>Reprendre mon test</NGCTrans>
           </ButtonLink>
         )}
 
@@ -94,7 +93,7 @@ export default function SimulationStarted() {
           href={getLinkToSimulateurPage({ newSimulation: true })}>
           <RestartIcon className="mr-2 fill-primary-700" />
 
-          <Trans>Recommencer</Trans>
+          <NGCTrans>Recommencer</NGCTrans>
         </ButtonLink>
 
         <TutorialLink />

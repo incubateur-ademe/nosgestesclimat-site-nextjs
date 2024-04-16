@@ -1,7 +1,6 @@
 'use client'
 
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
-import Trans from '@/components/translation/Trans'
 import { endClickCategory } from '@/constants/tracking/pages/end'
 import Card from '@/design-system/layout/Card'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
@@ -41,7 +40,7 @@ export default function AccordionItemWithRule({
               <strong>
                 {formatValue(numericValue / 1000, { precision: 1 })}
               </strong>{' '}
-              <Trans>tonnes</Trans>
+              <NGCTrans>tonnes</NGCTrans>
             </span>
           }
         />

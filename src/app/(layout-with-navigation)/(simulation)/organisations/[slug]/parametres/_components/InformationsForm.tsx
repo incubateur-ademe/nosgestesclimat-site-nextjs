@@ -1,7 +1,6 @@
 'use client'
 
 import ModificationSaved from '@/components/messages/ModificationSaved'
-import Trans from '@/components/translation/Trans'
 import { organisationsParametersUpdateInformations } from '@/constants/tracking/pages/organisationsParameters'
 import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
@@ -83,34 +82,34 @@ export default function InformationsForm({ organisation }: Props) {
   return (
     <section className="mb-12 mt-8">
       <h2>
-        <Trans>Mes informations</Trans>
+        <NGCTrans>Mes informations</NGCTrans>
       </h2>
 
       <p>
-        <Trans>
+        <NGCTrans>
           Vous pouvez modifier vos informations personnelles. Le lien du sondage
           de votre organisation ne changera pas.
-        </Trans>
+        </NGCTrans>
       </p>
 
       <form className="mt-8 flex flex-col gap-4" onSubmit={handleSubmit}>
         <TextInputGroup
           name="name"
-          label={<Trans>Votre organisation</Trans>}
+          label={<NGCTrans>Votre organisation</NGCTrans>}
           value={organisation?.name}
         />
 
         <TextInputGroup
           name="administratorName"
-          label={<Trans>Votre prénom</Trans>}
+          label={<NGCTrans>Votre prénom</NGCTrans>}
           value={organisation?.administrators?.[0]?.name}
         />
 
         <TextInputGroup
           name="email"
           disabled
-          helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
-          label={<Trans>Votre e-mail</Trans>}
+          helperText={<NGCTrans>Ce champ n'est pas modifiable</NGCTrans>}
+          label={<NGCTrans>Votre e-mail</NGCTrans>}
           value={organisation?.administrators?.[0]?.email}
         />
 
@@ -123,19 +122,19 @@ export default function InformationsForm({ organisation }: Props) {
             label={
               <span>
                 <strong>
-                  <Trans>
+                  <NGCTrans>
                     Recevoir ponctuellement par email les nouveaux services Nos
                     Gestes Climat aux organisations
-                  </Trans>
+                  </NGCTrans>
                 </strong>{' '}
-                <Trans>(une fois par mois maximum !)</Trans>
+                <NGCTrans>(une fois par mois maximum !)</NGCTrans>
               </span>
             }
           />
         </div>
 
         <Button type="submit" className="mt-12 self-start">
-          <Trans>Modifier mes informations</Trans>
+          <NGCTrans>Modifier mes informations</NGCTrans>
         </Button>
 
         <ModificationSaved shouldShowMessage={isConfirmingUpdate} />

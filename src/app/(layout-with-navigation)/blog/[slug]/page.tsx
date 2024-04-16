@@ -1,6 +1,5 @@
 import Link from '@/components/Link'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
-import Trans from '@/components/translation/Trans'
 import Markdown from '@/design-system/utils/Markdown'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
@@ -33,7 +32,7 @@ export default async function BlogPost({ params: { slug } }: Props) {
   return (
     <div>
       <Link href="/blog" className="mb-8 block text-sm">
-        ← <Trans>Retour à la liste des articles</Trans>
+        ← <NGCTrans>Retour à la liste des articles</NGCTrans>
       </Link>
 
       <PasserTestBanner />
@@ -41,7 +40,7 @@ export default async function BlogPost({ params: { slug } }: Props) {
       {content ? (
         <Markdown>{content}</Markdown>
       ) : (
-        <Trans>Oups, nous n'avons pas d'article correspondant</Trans>
+        <NGCTrans>Oups, nous n'avons pas d'article correspondant</NGCTrans>
       )}
     </div>
   )

@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import { homeClickActions } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
@@ -18,21 +17,21 @@ export default async function Actions() {
         className="mb-6 block h-auto max-w-full "
       />
       <Kicker>
-        <Trans>Agir pour le climat</Trans>
+        <NGCTrans>Agir pour le climat</NGCTrans>
       </Kicker>
       <h2 className="font-medium md:text-3xl">{t('Comment agir\u202f?')}</h2>
       <p className="max-w-xs md:mb-8 md:max-w-sm md:text-lg">
-        <Trans>
+        <NGCTrans>
           Découvrez nos pistes personnalisées pour agir dès aujourd’hui pour le
           climat.
-        </Trans>
+        </NGCTrans>
       </p>
       <ButtonLink
         color="secondary"
         href="/actions"
         trackingEvent={homeClickActions}
         data-cypress-id="actions-link">
-        <Trans>Toutes les actions</Trans>
+        <NGCTrans>Toutes les actions</NGCTrans>
       </ButtonLink>
     </div>
   )

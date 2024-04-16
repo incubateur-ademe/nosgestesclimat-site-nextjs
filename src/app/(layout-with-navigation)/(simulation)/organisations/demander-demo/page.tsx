@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Script from 'next/script'
@@ -10,12 +9,12 @@ export default function DemanderDemoPage() {
     <section className="w-full bg-[#fff] ">
       <div className="mx-auto max-w-5xl px-6 py-10 lg:px-0">
         <Title
-          title={<Trans>Demander une démo</Trans>}
+          title={<NGCTrans>Demander une démo</NGCTrans>}
           subtitle={
-            <Trans>
+            <NGCTrans>
               Contactez nous afin de convenir d'un temps de démonstration de
               notre outil pour les organisations.
-            </Trans>
+            </NGCTrans>
           }
         />
         <Card>

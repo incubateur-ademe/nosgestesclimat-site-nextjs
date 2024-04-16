@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import { amisDashboardCopyLink } from '@/constants/tracking/pages/amisDashboard'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
@@ -33,9 +32,13 @@ const SubmitButton = ({
         }
       }}
       data-cypress-id="invite-button">
-      {isShareDefined && <Trans>Partager</Trans>}
+      {isShareDefined && <NGCTrans>Partager</NGCTrans>}
       {!isShareDefined &&
-        (isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>)}
+        (isCopied ? (
+          <NGCTrans>Copié !</NGCTrans>
+        ) : (
+          <NGCTrans>Copier le lien</NGCTrans>
+        ))}
     </Button>
   )
 }
@@ -82,7 +85,9 @@ export default function InviteBlock({ group }: { group: Group }) {
     return (
       <div className="mt-4 flex flex-col justify-between gap-4 rounded-md bg-gray-100 p-4 md:flex-row md:items-center">
         <p className="mb-0 text-sm md:text-base">
-          <Trans>Invitez d'autres personnes à rejoindre votre groupe</Trans>
+          <NGCTrans>
+            Invitez d'autres personnes à rejoindre votre groupe
+          </NGCTrans>
         </p>
         <SubmitButton
           isShareDefined={isShareDefined}
@@ -97,14 +102,14 @@ export default function InviteBlock({ group }: { group: Group }) {
   return (
     <div className="rainbow-border mt-4 rounded-xl p-4">
       <h2 className="mt-0 flex items-center text-base md:text-lg">
-        <Trans>Vous êtes le premier</Trans> <Emoji>🥳</Emoji> 
-        <Trans>mais vous êtes seul·e…</Trans> <Emoji>🥲</Emoji>
+        <NGCTrans>Vous êtes le premier</NGCTrans> <Emoji>🥳</Emoji> 
+        <NGCTrans>mais vous êtes seul·e…</NGCTrans> <Emoji>🥲</Emoji>
       </h2>
       <p className="mb-4 text-sm md:text-base">
-        <Trans>
+        <NGCTrans>
           Partagez cette page à vos proches pour leur permettre de rejoindre
           votre groupe.
-        </Trans>
+        </NGCTrans>
       </p>
       <SubmitButton
         isShareDefined={isShareDefined}

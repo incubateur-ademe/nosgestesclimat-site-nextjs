@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -45,10 +44,10 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
         <ActionsChosenIndicator />
       </small>{' '}
       <small className="hidden md:block">
-        <Trans>Triées par :</Trans>
+        <NGCTrans>Triées par :</NGCTrans>
       </small>{' '}
       <small className="block md:hidden">
-        <Trans>Tri :</Trans>
+        <NGCTrans>Tri :</NGCTrans>
       </small>{' '}
       <Button
         size="sm"
@@ -58,11 +57,11 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
         title={t('Choisir le type de tri des actions')}>
         {radical ? (
           <span>
-            <Trans>le + d'impact climat</Trans>
+            <NGCTrans>le + d'impact climat</NGCTrans>
           </span>
         ) : (
           <span>
-            <Trans>le - d'impact climat</Trans>
+            <NGCTrans>le - d'impact climat</NGCTrans>
           </span>
         )}
       </Button>

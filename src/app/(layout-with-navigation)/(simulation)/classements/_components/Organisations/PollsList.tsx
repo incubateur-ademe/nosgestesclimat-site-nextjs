@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import { usePolls } from '@/hooks/organisations/usePolls'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
@@ -30,7 +29,7 @@ export default function PollsList({ organisation }: Props) {
       {organisation && (
         <>
           <h3 className="mb-0 text-base">
-            <Trans>Mon organisation</Trans>
+            <NGCTrans>Mon organisation</NGCTrans>
           </h3>
           <OrganisationItem organisation={organisation} />
         </>
@@ -39,7 +38,7 @@ export default function PollsList({ organisation }: Props) {
       {polls && polls.length > 0 && (
         <>
           <h3 className="mb-0 text-base">
-            <Trans>Mes sondages</Trans>
+            <NGCTrans>Mes sondages</NGCTrans>
           </h3>
 
           {polls?.map((poll) => <PollItem key={poll.slug} poll={poll} />)}

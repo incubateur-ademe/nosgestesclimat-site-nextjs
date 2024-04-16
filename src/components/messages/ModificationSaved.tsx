@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
 import CheckCircleIcon from '../icons/CheckCircleIcon'
-import Trans from '../translation/Trans'
 
 type Props = {
   shouldShowMessage: boolean
@@ -12,10 +11,10 @@ export default function ModificationSaved({ shouldShowMessage, label }: Props) {
     <div
       aria-hidden={!shouldShowMessage}
       className={`mt-2 text-xs transition-opacity ${!shouldShowMessage ? 'opacity-0' : 'opacity-100'}`}>
-      <CheckCircleIcon className="h-4 w-4 fill-emerald-dark" />
+      <CheckCircleIcon className="fill-emerald-dark h-4 w-4" />
 
       <span className="text-emerald-dark">
-        {label ?? <Trans>Modifications sauvegardées</Trans>}
+        {label ?? <NGCTrans>Modifications sauvegardées</NGCTrans>}
       </span>
     </div>
   )

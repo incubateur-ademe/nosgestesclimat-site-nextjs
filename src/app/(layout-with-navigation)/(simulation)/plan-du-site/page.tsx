@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -99,27 +98,29 @@ export default async function PlanDuSitePage() {
     <div data-cypress-id="plan-links">
       <Title
         title={
-          <Trans i18nKey="publicodes.planDuSite.title">Plan du site</Trans>
+          <NGCTrans i18nKey="publicodes.planDuSite.title">
+            Plan du site
+          </NGCTrans>
         }
       />
 
       <section className="mb-2">
         <h2 data-cypress-id="plan-outils-title">
-          <Trans>Nos outils</Trans>
+          <NGCTrans>Nos outils</NGCTrans>
         </h2>
         <LinkList entries={links['Nos outils']} />
       </section>
 
       <section className="mb-2">
         <h2>
-          <Trans>Informations</Trans>
+          <NGCTrans>Informations</NGCTrans>
         </h2>
         <LinkList entries={links['Informations']} />
       </section>
 
       <section className="mb-2">
         <h2>
-          <Trans>Documentations</Trans>
+          <NGCTrans>Documentations</NGCTrans>
         </h2>
         <LinkList entries={links['Documentations']} />
       </section>

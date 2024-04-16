@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -43,7 +42,7 @@ export default function ActionDetailPage({
           aria-label="arrow pointing left">
           ◀
         </span>{' '}
-        <Trans> Retour à la liste</Trans>
+        <NGCTrans> Retour à la liste</NGCTrans>
       </ButtonLink>
 
       <ActionDetail params={params} />

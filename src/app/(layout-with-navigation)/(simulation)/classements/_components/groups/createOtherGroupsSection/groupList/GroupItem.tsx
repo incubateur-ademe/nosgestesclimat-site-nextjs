@@ -1,7 +1,6 @@
 'use client'
 
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
 import { classementClickGroup } from '@/constants/tracking/pages/classements'
 import ChevronRight from '@/design-system/icons/ChevronRight'
 import Emoji from '@/design-system/utils/Emoji'
@@ -42,7 +41,8 @@ export default function GroupItem({ group }: Props) {
             </div>
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
-                {group.participants.length ?? 0} <Trans>participant</Trans>
+                {group.participants.length ?? 0}{' '}
+                <NGCTrans>participant</NGCTrans>
                 {group.participants.length > 1 ? 's' : ''}
               </span>{' '}
               <span> - </span>{' '}

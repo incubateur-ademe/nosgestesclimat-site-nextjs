@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import { tutorielClickSuivant } from '@/constants/tracking/pages/tutoriel'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
@@ -38,7 +37,7 @@ export default function ButtonStart() {
         const timeSpentOnPage = endTime - startTime
         trackEvent(tutorielClickSuivant(timeSpentOnPage))
       }}>
-      <Trans>C'est parti ! →</Trans>
+      <NGCTrans>C'est parti ! →</NGCTrans>
     </ButtonLink>
   )
 }

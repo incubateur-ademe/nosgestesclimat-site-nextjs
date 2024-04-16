@@ -1,5 +1,4 @@
 import Question from '@/components/form/Question'
-import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useState } from 'react'
 import PencilIcon from '../icons/PencilIcon'
@@ -20,11 +19,11 @@ export default function Avion({ question, ...props }: Props) {
           onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
           className="mb-2">
           {isOpen ? (
-            <Trans>Fermer</Trans>
+            <NGCTrans>Fermer</NGCTrans>
           ) : (
             <>
               <PencilIcon className="mr-2 stroke-primary-700" width="16" />
-              <Trans>Répondre sur les 3 dernières années</Trans>
+              <NGCTrans>Répondre sur les 3 dernières années</NGCTrans>
             </>
           )}
         </Button>

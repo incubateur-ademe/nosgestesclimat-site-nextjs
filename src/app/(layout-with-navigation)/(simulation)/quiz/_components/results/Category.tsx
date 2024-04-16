@@ -1,5 +1,4 @@
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
-import Trans from '@/components/translation/Trans'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
 import { twMerge } from 'tailwind-merge'
@@ -40,7 +39,7 @@ export default function Category({
         icons={icons?.slice(0, 2)} // No idea why we need to remove the last character on some icons
         displayValue={
           <span>
-            <strong>{formattedValue}</strong> <Trans>{unit}</Trans>
+            <strong>{formattedValue}</strong> <NGCTrans>{unit}</NGCTrans>
           </span>
         }
       />

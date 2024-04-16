@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { useEffect, useState } from 'react'
 export default function Evolution(props) {
@@ -23,7 +22,7 @@ export default function Evolution(props) {
               .replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
           </p>{' '}
           <p className="mb-0 text-sm">
-            <Trans>visites depuis le lancement</Trans>
+            <NGCTrans>visites depuis le lancement</NGCTrans>
           </p>
         </div>
       </Card>
@@ -34,10 +33,10 @@ export default function Evolution(props) {
             {Math.round(percent * 10) / 10}%
           </p>{' '}
           <p>
-            <Trans>
+            <NGCTrans>
               de visites ce mois ci
               <small>&nbsp;(par rapport au mois d'avant)</small>
-            </Trans>
+            </NGCTrans>
           </p>
         </div>
 
@@ -48,7 +47,7 @@ export default function Evolution(props) {
               .replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
           </p>{' '}
           <p className="mb-0 text-sm">
-            <Trans>simulations terminées depuis le lancement</Trans>
+            <NGCTrans>simulations terminées depuis le lancement</NGCTrans>
           </p>
         </div>
       </Card>

@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 
@@ -14,9 +13,9 @@ export default function DishesNumberInfo() {
           <span className="text-red-700">
             <strong>{totalNumberOfPlats}</strong>{' '}
             <strong>
-              <Trans>repas</Trans>
+              <NGCTrans>repas</NGCTrans>
             </strong>{' '}
-            <Trans>par semaine, quel appétit de moineau</Trans>
+            <NGCTrans>par semaine, quel appétit de moineau</NGCTrans>
             <Emoji>🐦</Emoji>
           </span>
         ) : null}
@@ -24,18 +23,18 @@ export default function DishesNumberInfo() {
           <span className="text-red-700">
             <strong>{totalNumberOfPlats}</strong>{' '}
             <strong>
-              <Trans>repas</Trans>
+              <NGCTrans>repas</NGCTrans>
             </strong>{' '}
-            <Trans>par semaine, quel appétit !</Trans> <Emoji>💪</Emoji>
+            <NGCTrans>par semaine, quel appétit !</NGCTrans> <Emoji>💪</Emoji>
           </span>
         ) : null}
         {totalNumberOfPlats >= 12 && totalNumberOfPlats <= 16 ? (
           <span>
             <strong>{totalNumberOfPlats}</strong>{' '}
             <strong>
-              <Trans>repas</Trans>
+              <NGCTrans>repas</NGCTrans>
             </strong>{' '}
-            <Trans>par semaine, miam</Trans> <Emoji>😋</Emoji>
+            <NGCTrans>par semaine, miam</NGCTrans> <Emoji>😋</Emoji>
           </span>
         ) : null}
       </div>

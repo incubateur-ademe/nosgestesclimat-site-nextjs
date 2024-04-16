@@ -2,7 +2,6 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
 import { Organisation } from '@/types/organisations'
 import MaxWidthContent from '../layout/MaxWidthContent'
-import Trans from '../translation/Trans'
 
 type Props = {
   organisation: Organisation | undefined
@@ -20,15 +19,15 @@ export default function OrganisationFetchError({
       {isError && (
         <MaxWidthContent>
           <p>
-            <Trans>Oups</Trans>
-            <Trans>
+            <NGCTrans>Oups</NGCTrans>
+            <NGCTrans>
               , vous avez été déconnecté·e de votre espace organisation,
               reconnectez vous en cliquant sur le bouton ci-dessous.
-            </Trans>
+            </NGCTrans>
           </p>
 
           <ButtonLink href="/organisations/connexion" className="mt-8">
-            <Trans>Me connecter</Trans>
+            <NGCTrans>Me connecter</NGCTrans>
           </ButtonLink>
         </MaxWidthContent>
       )}

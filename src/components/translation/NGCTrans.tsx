@@ -2,7 +2,7 @@ import { TransPropsWithInterpolation } from '@/types/translation'
 import TransClient from './trans/TransClient'
 import TransServer from './trans/TransServer'
 
-export default function Trans({
+export default function NGCTrans({
   children,
   i18nKey,
 }: TransPropsWithInterpolation): JSX.Element {

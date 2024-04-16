@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
@@ -93,7 +92,7 @@ export default function MosaicBooleanInput({
       </div>
       {isInactive ? (
         <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded-xl border-2 border-black bg-white p-2 text-xs font-semibold text-black">
-          <Trans>Bientôt disponible</Trans>
+          <NGCTrans>Bientôt disponible</NGCTrans>
         </div>
       ) : null}
     </label>

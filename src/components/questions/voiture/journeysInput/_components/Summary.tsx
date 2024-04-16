@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import { useLocale } from '@/hooks/useLocale'
 
 type Props = {
@@ -16,14 +15,15 @@ export default function Summary({
 
   return (
     <div className="mt-4 px-2 text-right text-xs">
-      <Trans>Au total</Trans> {total.toLocaleString(locale)}{' '}
-      <Trans>km sont parcourus par an, avec en moyenne</Trans>{' '}
-      {averagePassengers.toLocaleString(locale)} <Trans>voyageurs, soit</Trans>{' '}
+      <NGCTrans>Au total</NGCTrans> {total.toLocaleString(locale)}{' '}
+      <NGCTrans>km sont parcourus par an, avec en moyenne</NGCTrans>{' '}
+      {averagePassengers.toLocaleString(locale)}{' '}
+      <NGCTrans>voyageurs, soit</NGCTrans>{' '}
       {(totalForOnePassenger ?? 0).toLocaleString(locale)}{' '}
-      <Trans>km par personne</Trans>. <br className="hidden md:inline" />
-      <Trans>
+      <NGCTrans>km par personne</NGCTrans>. <br className="hidden md:inline" />
+      <NGCTrans>
         C’est bien cette distance qui sera comptabilisée en fin de test.
-      </Trans>
+      </NGCTrans>
     </div>
   )
 }

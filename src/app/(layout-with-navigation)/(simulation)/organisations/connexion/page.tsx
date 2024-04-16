@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
@@ -42,11 +41,11 @@ export default function Page() {
     <section className="w-full bg-[#fff]">
       <div className="mx-auto max-w-5xl px-6 lg:px-0">
         <h1>
-          <Trans>Accédez à votre espace organisation</Trans>
+          <NGCTrans>Accédez à votre espace organisation</NGCTrans>
         </h1>
 
         <p>
-          <Trans>C'est gratuit, et ça prend une minute !</Trans>
+          <NGCTrans>C'est gratuit, et ça prend une minute !</NGCTrans>
         </p>
 
         <Separator />

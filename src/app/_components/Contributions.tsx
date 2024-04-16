@@ -4,7 +4,6 @@ import Link from '@/components/Link'
 import GlassesIcon from '@/components/icons/GlassesIcon'
 import PencilIcon from '@/components/icons/PencilIcon'
 import SearchIcon from '@/components/icons/SearchIcon'
-import Trans from '@/components/translation/Trans'
 import {
   homeClickCodeSource,
   homeClickContribution,
@@ -26,10 +25,10 @@ export default function Contributions() {
       <Background direction={isHover ? 'right' : 'left'} withColorLine />
       <div className="relative mx-auto w-full max-w-5xl px-4 md:px-8">
         <Kicker>
-          <Trans>Ouvert, documenté et contributif</Trans>
+          <NGCTrans>Ouvert, documenté et contributif</NGCTrans>
         </Kicker>
         <h2 className="mb-8 font-medium md:text-3xl">
-          <Trans>Apportez votre pierre au simulateur de référence</Trans>
+          <NGCTrans>Apportez votre pierre au simulateur de référence</NGCTrans>
         </h2>
         <div className="flex flex-col gap-4 md:flex-row md:gap-7">
           <Card
@@ -38,22 +37,22 @@ export default function Contributions() {
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             onClick={() => trackEvent(homeClickCodeSource)}
-            className="border-alimentation-400 min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 py-8 text-inherit no-underline"
+            className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-alimentation-400 py-8 text-inherit no-underline"
             data-cypress-id="nouveautes-link">
-            <div className="bg-alimentation-100 flex h-12 w-12 items-center justify-center rounded-xl">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-alimentation-100">
               <SearchIcon
-                className="fill-alimentation-700 inline-block"
+                className="inline-block fill-alimentation-700"
                 width="20"
                 height="20"
               />
             </div>
 
             <p className="mb-0 text-center">
-              <Trans>Le</Trans>{' '}
+              <NGCTrans>Le</NGCTrans>{' '}
               <span className="text-primary-700 underline">
-                <Trans>code source est ouvert</Trans>
+                <NGCTrans>code source est ouvert</NGCTrans>
               </span>
-              , <Trans>le site est amélioré régulièrement.</Trans>
+              , <NGCTrans>le site est amélioré régulièrement.</NGCTrans>
             </p>
           </Card>
 
@@ -63,22 +62,22 @@ export default function Contributions() {
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             onClick={() => trackEvent(homeClickDocumentation)}
-            className="border-divers-300 min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 py-8 text-inherit no-underline"
+            className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-divers-300 py-8 text-inherit no-underline"
             data-cypress-id="documentation-link">
-            <div className="bg-divers-100 flex h-12 w-12 items-center justify-center rounded-xl">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-divers-100">
               <GlassesIcon
-                className="fill-divers-700 inline-block"
+                className="inline-block fill-divers-700"
                 width="20"
                 height="20"
               />
             </div>
 
             <p className="mb-0 text-center">
-              <Trans>L'intégralité du</Trans>{' '}
+              <NGCTrans>L'intégralité du</NGCTrans>{' '}
               <span className="text-primary-700 underline">
-                <Trans>calcul est documenté en ligne</Trans>
+                <NGCTrans>calcul est documenté en ligne</NGCTrans>
               </span>{' '}
-              <Trans>pour les curieux et les experts.</Trans>
+              <NGCTrans>pour les curieux et les experts.</NGCTrans>
             </p>
           </Card>
 
@@ -88,11 +87,11 @@ export default function Contributions() {
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             onClick={() => trackEvent(homeClickContribution)}
-            className="border-logement-400 min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 py-8 text-inherit no-underline"
+            className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-logement-400 py-8 text-inherit no-underline"
             data-cypress-id="contact-link">
-            <div className="bg-logement-100 flex h-12 w-12 items-center justify-center rounded-xl">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-logement-100">
               <PencilIcon
-                className="stroke-logement-700 inline-block"
+                className="inline-block stroke-logement-700"
                 width="20"
                 height="20"
               />

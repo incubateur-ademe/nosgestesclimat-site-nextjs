@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import { homeClickOrganisations } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
@@ -21,12 +20,12 @@ export default function Organisations() {
       <div className="relative mx-auto flex w-full max-w-5xl flex-col px-4 md:flex-row md:gap-4 md:px-8">
         <div className="w-full flex-1 basis-1/2 md:max-w-lg">
           <Kicker>
-            <Trans>Pour les organisations</Trans>
+            <NGCTrans>Pour les organisations</NGCTrans>
           </Kicker>
           <h2 className="font-medium md:text-3xl">
-            <Trans>
+            <NGCTrans>
               Nos Gestes Climat dans votre entreprise, association, école...
-            </Trans>
+            </NGCTrans>
           </h2>
           <p className="max-w-lg md:mb-8 md:max-w-sm md:text-lg">
             {t(
@@ -38,7 +37,7 @@ export default function Organisations() {
             trackingEvent={homeClickOrganisations}
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}>
-            <Trans>Découvrir</Trans>
+            <NGCTrans>Découvrir</NGCTrans>
           </ButtonLink>
         </div>
         <div

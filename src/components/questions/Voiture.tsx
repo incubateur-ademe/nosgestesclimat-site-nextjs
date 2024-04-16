@@ -1,5 +1,4 @@
 import Question from '@/components/form/Question'
-import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useState } from 'react'
 import PencilIcon from '../icons/PencilIcon'
@@ -20,12 +19,12 @@ export default function Voiture({ question, ...props }: Props) {
           onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
           className="mb-2">
           {isOpen ? (
-            <Trans>Fermer</Trans>
+            <NGCTrans>Fermer</NGCTrans>
           ) : (
             <span className="flex items-center">
               <PencilIcon className="mr-2 stroke-primary-700" width="16" />
 
-              <Trans>Détailler mes trajets</Trans>
+              <NGCTrans>Détailler mes trajets</NGCTrans>
             </span>
           )}
         </Button>

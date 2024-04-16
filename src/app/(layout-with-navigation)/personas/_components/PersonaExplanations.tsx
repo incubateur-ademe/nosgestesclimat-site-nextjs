@@ -1,17 +1,15 @@
-import Trans from '@/components/translation/Trans'
-
 export default function PersonaExplanations() {
   return (
     <div className="mt-8">
       <details className="pb-4">
         <summary>
           <h2 className="inline">
-            <Trans>Qui sont-ils ?</Trans>
+            <NGCTrans>Qui sont-ils ?</NGCTrans>
           </h2>
         </summary>
 
         <div className="mt-4">
-          <Trans i18nKey={'publicodes.Personas.description'}>
+          <NGCTrans i18nKey={'publicodes.Personas.description'}>
             Nous les avons définis pour qu’ils représentent la diversité des cas
             d’usage du simulateur.
             <i>
@@ -71,19 +69,19 @@ export default function PersonaExplanations() {
 
               <li>Leurs loisirs : de la culture, du sport, du bien-être…</li>
             </ul>
-          </Trans>
+          </NGCTrans>
         </div>
       </details>
 
       <details>
         <summary>
           <h2 className="inline">
-            <Trans>Comment les mettons-nous à jour ?</Trans>
+            <NGCTrans>Comment les mettons-nous à jour ?</NGCTrans>
           </h2>
         </summary>
 
         <div className="mt-4">
-          <Trans i18nKey={'publicodes.Personas.maj'}>
+          <NGCTrans i18nKey={'publicodes.Personas.maj'}>
             Pour qu’ils ou elles continuent de représenter la diversité des cas
             d’usage du simulateur d’empreinte carbone, nous les éditons à chaque
             ajout ou modification de ce dernier, en respectant les règles
@@ -98,7 +96,7 @@ export default function PersonaExplanations() {
                 donc attribué la valeur par défaut donnée dans le simulateur).
               </li>
             </ul>
-          </Trans>
+          </NGCTrans>
         </div>
       </details>
     </div>

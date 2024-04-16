@@ -1,7 +1,6 @@
 'use client'
 
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
 import {
   homeClickCtaCommencer,
   homeClickCtaReprendre,
@@ -46,7 +45,7 @@ export default function Buttons() {
 
           trackEvent(homeClickCtaCommencer)
         }}>
-        <Trans>{linkToSimulateurPageLabel}</Trans>
+        <NGCTrans>{linkToSimulateurPageLabel}</NGCTrans>
       </ButtonLink>
 
       {progression ? (
@@ -59,7 +58,7 @@ export default function Buttons() {
             goToSimulateurPage({ noNavigation: true, newSimulation: {} })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>
-          <Trans>Commencer un nouveau test</Trans>
+          <NGCTrans>Commencer un nouveau test</NGCTrans>
         </Link>
       ) : null}
     </div>

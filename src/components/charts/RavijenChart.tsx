@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import { trackingDownloadRavijenChart } from '@/constants/tracking/misc'
 import Button from '@/design-system/inputs/Button'
 import { useEngine } from '@/publicodes-state'
@@ -66,7 +65,7 @@ export default function RavijenChart({
               link.remove()
             })
           }}>
-          <Trans>Télécharger l'image</Trans>
+          <NGCTrans>Télécharger l'image</NGCTrans>
         </Button>
       </div>
     </>

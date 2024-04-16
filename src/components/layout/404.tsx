@@ -1,12 +1,11 @@
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Image from 'next/image'
-import Trans from '../translation/Trans'
 
 export default async function Route404() {
   return (
-    <div className="text-primary-700 mx-auto my-16 text-center">
+    <div className="mx-auto my-16 text-center text-primary-700">
       <h1 className="flex items-center justify-center">
-        <Trans>Oups! Cette page n'existe pas ou n'existe plus</Trans>{' '}
+        <NGCTrans>Oups! Cette page n'existe pas ou n'existe plus</NGCTrans>{' '}
         <span role="img" aria-label="Emoji no" aria-hidden>
           🙅
         </span>
@@ -22,7 +21,7 @@ export default async function Route404() {
           height={100}
         />
         <em>
-          <Trans i18nKey="404.action">Revenir en lieu sûr</Trans>
+          <NGCTrans i18nKey="404.action">Revenir en lieu sûr</NGCTrans>
         </em>
       </InlineLink>
     </div>

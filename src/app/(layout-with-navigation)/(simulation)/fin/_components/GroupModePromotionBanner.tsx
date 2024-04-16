@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import { endClickCreateGroup } from '@/constants/tracking/pages/end'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
@@ -22,10 +21,10 @@ export default function GroupModePromotionBanner({
         className
       )}>
       <h3 className="mb-0 max-w-sm text-base sm:text-lg">
-        <Trans>
+        <NGCTrans>
           Comparez vos résultats{' '}
           <span className="text-primary-700">avec vos proches</span>
-        </Trans>
+        </NGCTrans>
       </h3>
 
       <div className="flex w-full items-center justify-start">
@@ -44,7 +43,7 @@ export default function GroupModePromotionBanner({
           href="/amis"
           className="self-bottom"
           trackingEvent={endClickCreateGroup}>
-          <Trans>Créer un groupe</Trans>
+          <NGCTrans>Créer un groupe</NGCTrans>
         </ButtonLink>
       </div>
     </Card>

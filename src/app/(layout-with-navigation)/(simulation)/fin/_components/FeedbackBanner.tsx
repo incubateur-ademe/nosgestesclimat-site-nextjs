@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import { endClickNorthstar } from '@/constants/tracking/pages/end'
 import { SIMULATION_URL } from '@/constants/urls'
 import SmileyGrading from '@/design-system/inputs/SmileyGrading'
@@ -88,9 +87,9 @@ export default function FeedbackBanner({ text, type, className }: Props) {
     <Card className={`${cardClassName} mt-8 pb-2`}>
       <p>
         <strong>
-          <Trans i18nKey="publicodes.northstar.title">
+          <NGCTrans i18nKey="publicodes.northstar.title">
             Petite question entre nous...
-          </Trans>
+          </NGCTrans>
         </strong>
       </p>
 

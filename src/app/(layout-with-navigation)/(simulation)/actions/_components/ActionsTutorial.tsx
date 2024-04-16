@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import { actionsClickStart } from '@/constants/tracking/pages/actions'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
@@ -24,48 +23,48 @@ export default function ActionsTutorial() {
   return (
     <Card className="my-6 items-start border-none bg-gray-100">
       <h2 className="flex items-center">
-        <Trans>Passer à l'action !</Trans>
+        <NGCTrans>Passer à l'action !</NGCTrans>
       </h2>
 
       <p>
-        <Trans i18nKey={'publicodes.ActionTutorial.félicitation'}>
+        <NGCTrans i18nKey={'publicodes.ActionTutorial.félicitation'}>
           Vous avez terminé votre simulation
-        </Trans>
-        , <Emoji>👏</Emoji> <Trans>bravo !</Trans>
+        </NGCTrans>
+        , <Emoji>👏</Emoji> <NGCTrans>bravo !</NGCTrans>
       </p>
 
       <p>{t('publicodes.ActionTutorial.msgEstimation', { value, unit })}</p>
 
       <p>
-        <Trans i18nKey={'publicodes.ActionTutorial.msgPrésentation'}>
+        <NGCTrans i18nKey={'publicodes.ActionTutorial.msgPrésentation'}>
           Pour vous aider, nous vous présenterons{' '}
           <strong>une liste d'actions</strong> :
-        </Trans>
+        </NGCTrans>
       </p>
 
       <ul className="list-none">
         <li className="flex items-center">
           <Emoji className="mr-2">✅</Emoji>
 
-          <Trans>sélectionnez celles qui vous intéressent</Trans>
+          <NGCTrans>sélectionnez celles qui vous intéressent</NGCTrans>
         </li>
 
         <li className="flex items-center">
           <Emoji className="mr-2">❌</Emoji>
 
-          <Trans>
+          <NGCTrans>
             écartez celles qui vous semblent trop ambitieuses ou déplacées.
-          </Trans>
+          </NGCTrans>
         </li>
       </ul>
 
       <p className="mt-6">
         <Emoji className="mr-2">💡</Emoji>
 
-        <Trans i18nKey={'publicodes.ActionTutorial.msgPrécision'}>
+        <NGCTrans i18nKey={'publicodes.ActionTutorial.msgPrécision'}>
           Pour améliorer la précision, certaines actions vous poseront quelques
           questions en plus.
-        </Trans>
+        </NGCTrans>
       </p>
 
       <Button
@@ -73,7 +72,7 @@ export default function ActionsTutorial() {
           hideTutorial('actions')
           trackEvent(actionsClickStart)
         }}>
-        <Trans>Démarrer</Trans>
+        <NGCTrans>Démarrer</NGCTrans>
       </Button>
     </Card>
   )

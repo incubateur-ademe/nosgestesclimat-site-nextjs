@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import Accordion from '@/design-system/layout/Accordion'
 import Title from '@/design-system/layout/Title'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
@@ -6,48 +5,48 @@ import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
 export default function QuestionsFrequentes() {
   return (
     <section className="mt-12">
-      <Title tag="h2" title={<Trans>Questions fréquentes</Trans>} />
+      <Title tag="h2" title={<NGCTrans>Questions fréquentes</NGCTrans>} />
 
       <Accordion className="mt-8">
         <AccordionItem
           title={
-            <Trans>
+            <NGCTrans>
               Puis-je utiliser le logo Nos Gestes Climat dans mes communications
               ?
-            </Trans>
+            </NGCTrans>
           }
           content="blablabla"
         />
         <AccordionItem
           title={
-            <Trans>
+            <NGCTrans>
               Comment regrouper les résultats par région, ville,
               établissement... ?
-            </Trans>
+            </NGCTrans>
           }
           content="blablabla"
         />
 
         <AccordionItem
           title={
-            <Trans>
+            <NGCTrans>
               Est-il possible de personnaliser l’affichage du test ?
-            </Trans>
+            </NGCTrans>
           }
           content="blablabla"
         />
 
         <AccordionItem
           title={
-            <Trans>
+            <NGCTrans>
               Qui peut consulter les résultats de mon organisation ?
-            </Trans>
+            </NGCTrans>
           }
           content="blablabla"
         />
 
         <AccordionItem
-          title={<Trans>Les résultats du test sont-ils anonymes ?</Trans>}
+          title={<NGCTrans>Les résultats du test sont-ils anonymes ?</NGCTrans>}
           content="blablabla"
         />
       </Accordion>

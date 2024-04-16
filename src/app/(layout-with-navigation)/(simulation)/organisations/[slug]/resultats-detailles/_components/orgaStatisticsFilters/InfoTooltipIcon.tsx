@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import { Tooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
 
@@ -16,11 +15,11 @@ export default function InfoTooltipIcon({ className = '' }) {
       </span>
       <Tooltip id={id}>
         <div className="max-w-sm">
-          <Trans>
+          <NGCTrans>
             Seules les options incluant plus de 3 participants sont accessibles,
             et ce, dans un objectif de préservation de l’anonymat des
             participants.
-          </Trans>
+          </NGCTrans>
         </div>
       </Tooltip>
     </div>

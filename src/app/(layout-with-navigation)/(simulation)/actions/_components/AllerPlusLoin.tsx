@@ -2,7 +2,6 @@
 
 import Link from '@/components/Link'
 import BookClosedIcon from '@/components/icons/BookClosedIcon'
-import Trans from '@/components/translation/Trans'
 import {
   actionsClickActionsPlus,
   actionsClickAdeme,
@@ -20,7 +19,7 @@ export default function AllerPlusLoin() {
         <h2 className="flex items-center text-white">
           <BookClosedIcon aria-hidden className="mr-3 fill-white" />
 
-          <Trans>Aller plus loin</Trans>
+          <NGCTrans>Aller plus loin</NGCTrans>
         </h2>
       </div>
 
@@ -36,7 +35,7 @@ export default function AllerPlusLoin() {
               className="block text-white underline hover:text-primary-200"
               href="/actions/plus"
               onClick={() => trackEvent(actionsClickActionsPlus)}>
-              <Trans>Explorez le détail de nos actions clés</Trans>
+              <NGCTrans>Explorez le détail de nos actions clés</NGCTrans>
             </Link>
           </li>
 
@@ -48,7 +47,7 @@ export default function AllerPlusLoin() {
               aria-label={t(
                 "Découvrez les conseils de l'ADEME, ouvrir dans un nouvel onglet"
               )}>
-              <Trans>Découvrez les conseils de l'ADEME</Trans>
+              <NGCTrans>Découvrez les conseils de l'ADEME</NGCTrans>
             </Link>
           </li>
         </ul>

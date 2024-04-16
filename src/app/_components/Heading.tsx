@@ -1,4 +1,3 @@
-import Trans from '@/components/translation/Trans'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Buttons from './heading/Buttons'
 import Icons from './heading/Icons'
@@ -16,14 +15,14 @@ export default async function Heading() {
             {t('Connaissez-vous votre empreinte sur le climat\u202f?')}
           </h1>
           <p className="mb-6 md:mb-10 md:text-2xl">
-            <Trans>En</Trans>{' '}
+            <NGCTrans>En</NGCTrans>{' '}
             <span className="text-secondary-700">
-              <Trans>10 minutes</Trans>
+              <NGCTrans>10 minutes</NGCTrans>
             </span>
             ,{' '}
-            <Trans>
+            <NGCTrans>
               obtenez une estimation de votre empreinte carbone de consommation.
-            </Trans>
+            </NGCTrans>
           </p>
           <Buttons />
         </div>

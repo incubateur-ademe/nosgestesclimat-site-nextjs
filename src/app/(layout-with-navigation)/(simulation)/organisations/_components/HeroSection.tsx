@@ -1,7 +1,6 @@
 'use client'
 
 import Baseline from '@/components/organisations/Baseline'
-import Trans from '@/components/translation/Trans'
 import {
   organisationsAccueilClickCommencer,
   organisationsAccueilClickDemo,
@@ -16,7 +15,7 @@ export default function HeroSection() {
     <div className="flex flex-wrap justify-center gap-12 pt-14 lg:flex-nowrap lg:justify-start lg:gap-8">
       <div className="max-w-full md:w-[34rem]">
         <h1>
-          <Trans>Nos Gestes Climat pour les organisations</Trans>
+          <NGCTrans>Nos Gestes Climat pour les organisations</NGCTrans>
         </h1>
 
         <p className="mb-12 text-sm md:text-lg">
@@ -27,7 +26,7 @@ export default function HeroSection() {
           <ButtonLink
             href="/organisations/connexion"
             trackingEvent={organisationsAccueilClickCommencer}>
-            <Trans>Commencez</Trans>
+            <NGCTrans>Commencez</NGCTrans>
           </ButtonLink>
 
           <InlineLink
@@ -36,7 +35,7 @@ export default function HeroSection() {
             onClick={() => {
               trackEvent(organisationsAccueilClickDemo)
             }}>
-            <Trans>Demandez une démo</Trans>
+            <NGCTrans>Demandez une démo</NGCTrans>
           </InlineLink>
         </div>
       </div>

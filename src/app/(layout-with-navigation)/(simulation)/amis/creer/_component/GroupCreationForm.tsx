@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
@@ -132,7 +131,7 @@ export default function GroupCreationForm() {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="text-secondary-700 italic">
+              <span className="italic text-secondary-700">
                 {' '}
                 {t('facultatif')}
               </span>
@@ -147,9 +146,9 @@ export default function GroupCreationForm() {
         onClick={handleSubmit}
         disabled={!administratorName || isPending || isSuccess}>
         {hasCompletedTest ? (
-          <Trans>Créer le groupe</Trans>
+          <NGCTrans>Créer le groupe</NGCTrans>
         ) : (
-          <Trans>Créer et passer mon test</Trans>
+          <NGCTrans>Créer et passer mon test</NGCTrans>
         )}
       </Button>
     </form>

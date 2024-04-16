@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import {
   amisDashboardOpenDeleteGroup,
   amisDashboardValidateDeleteGroup,
@@ -59,24 +58,25 @@ export default function OwnerAdminSection({ group }: Props) {
   return (
     <section className="my-6" aria-live="polite">
       <h2 className="md:text-lg">
-        <Trans>Supprimer</Trans> <Emoji>{group?.emoji}</Emoji> {group?.name}
+        <NGCTrans>Supprimer</NGCTrans> <Emoji>{group?.emoji}</Emoji>{' '}
+        {group?.name}
       </h2>
 
       <p className="text-sm md:text-base">
-        <Trans>
+        <NGCTrans>
           Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous.
           Il sera supprimé définitivement pour tous ses autres membres puisque
           vous en êtes l'administrateur.
-        </Trans>
+        </NGCTrans>
       </p>
 
       {isConfirming && !isSuccess && (
         <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
-            <Trans>
+            <NGCTrans>
               Cette opération est définitive et supprimera le groupe pour tous
               ses membres.
-            </Trans>
+            </NGCTrans>
           </p>
           <div className="flex gap-4">
             <Button
@@ -85,7 +85,7 @@ export default function OwnerAdminSection({ group }: Props) {
               }}
               size="sm"
               color="secondary">
-              <Trans>Annuler</Trans>
+              <NGCTrans>Annuler</NGCTrans>
             </Button>
 
             <Button
@@ -93,7 +93,7 @@ export default function OwnerAdminSection({ group }: Props) {
               size="sm"
               color="primary"
               data-cypress-id="button-confirm-delete-group">
-              <Trans>Supprimer</Trans>
+              <NGCTrans>Supprimer</NGCTrans>
             </Button>
           </div>
         </Card>
@@ -107,17 +107,17 @@ export default function OwnerAdminSection({ group }: Props) {
             setIsConfirming(true)
           }}
           data-cypress-id="button-delete-group">
-          <Trans>Supprimer le groupe</Trans>
+          <NGCTrans>Supprimer le groupe</NGCTrans>
         </Button>
       )}
 
       {isSuccess && (
         <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
-            <Trans>
+            <NGCTrans>
               Votre groupe a été supprimé. Vous allez être redirigé vers la page
               d'accueil du mode groupe.
-            </Trans>
+            </NGCTrans>
           </p>
         </Card>
       )}
