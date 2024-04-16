@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import Card from '@/design-system/layout/Card'
 import { Rules } from '@/publicodes-state/types'
 import { Rule } from 'publicodes'
 import RuleDetail from './calculDetail/RuleDetail'
@@ -18,9 +19,9 @@ export default function CalculDetail({
         <Trans>Comment cette donnée est-elle calculée ?</Trans>
       </h2>
 
-      <div className="rounded-md border border-gray-600 p-8">
+      <Card className="p-8">
         <RuleDetail ruleData={rule} context={{ dottedName: ruleName, rules }} />
-      </div>
+      </Card>
     </>
   )
 }
