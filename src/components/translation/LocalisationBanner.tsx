@@ -22,6 +22,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
   const currentLocale = useLocale() as string
 
+  const region = user?.region
   const code = user?.region?.code ?? 'FR'
 
   const { iframeRegion } = useIframe()
@@ -32,9 +33,9 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
   const regionParams: any = supportedRegions?.[code]
 
-  const countryName = capitalizeString(
-    regionParams?.[currentLocale]?.nom as string
-  )
+  const countryName =
+    capitalizeString(regionParams?.[currentLocale]?.nom as string) ||
+    region?.name
 
   const versionName: string = regionParams
     ? regionParams?.[currentLocale]?.['gentilé'] ??

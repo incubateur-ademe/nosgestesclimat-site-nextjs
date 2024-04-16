@@ -1,51 +1,35 @@
-import { Dispatch, SetStateAction, useEffect, useRef } from 'react'
+import { Dispatch, SetStateAction, useCallback } from 'react'
 import { RegionFromGeolocation, User, UserOrganisationInfo } from '../../types'
 
 type Props = {
   user: User
   setUser: Dispatch<SetStateAction<User>>
 }
-export default function useUserDetails({ user, setUser }: Props) {
-  // This is a hack to return a promise when updating the simulations
-  const resolveFunction: any = useRef(null)
-  useEffect(() => {
-    if (resolveFunction.current) {
-      resolveFunction.current()
-      resolveFunction.current = null
-    }
-  }, [user])
+export default function useUserDetails({ setUser }: Props) {
+  const updateName = useCallback(
+    (name: string) => setUser((prevUser: User) => ({ ...prevUser, name })),
+    [setUser]
+  )
 
-  const updateName = (name: string): Promise<void> =>
-    new Promise((resolve) => {
-      resolveFunction.current = resolve
-      setUser((prevUser: User) => ({ ...prevUser, name }))
-    })
+  const updateEmail = useCallback(
+    (email: string) => setUser((prevUser: User) => ({ ...prevUser, email })),
+    [setUser]
+  )
 
-  const updateEmail = (email: string): Promise<void> =>
-    new Promise((resolve) => {
-      resolveFunction.current = resolve
-      setUser((prevUser: User) => ({ ...prevUser, email }))
-    })
+  const updateRegion = useCallback(
+    (region: RegionFromGeolocation) =>
+      setUser((prevUser: User) => ({ ...prevUser, region })),
+    [setUser]
+  )
 
-  const updateRegion = (region: RegionFromGeolocation): Promise<void> =>
-    new Promise((resolve) => {
-      resolveFunction.current = resolve
-      setUser((prevUser: User) => ({ ...prevUser, region }))
-    })
+  const updateLoginExpirationDate = useCallback(
+    (loginExpirationDate: Date | undefined) =>
+      setUser((prevUser: User) => ({ ...prevUser, loginExpirationDate })),
+    [setUser]
+  )
 
-  const updateLoginExpirationDate = (
-    loginExpirationDate: Date | undefined
-  ): Promise<void> =>
-    new Promise((resolve) => {
-      resolveFunction.current = resolve
-      setUser((prevUser: User) => ({ ...prevUser, loginExpirationDate }))
-    })
-
-  const updateUserOrganisation = (
-    organisation: UserOrganisationInfo
-  ): Promise<void> =>
-    new Promise((resolve) => {
-      resolveFunction.current = resolve
+  const updateUserOrganisation = useCallback(
+    (organisation: UserOrganisationInfo) => {
       const organisationModifications: UserOrganisationInfo = {}
 
       if (organisation.administratorEmail) {
@@ -68,7 +52,9 @@ export default function useUserDetails({ user, setUser }: Props) {
           ...organisationModifications,
         },
       }))
-    })
+    },
+    [setUser]
+  )
 
   return {
     updateName,
