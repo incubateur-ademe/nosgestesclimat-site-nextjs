@@ -40,7 +40,7 @@ export default async function DocumentationServer({ slugs }: Props) {
     regionCode: region?.code,
   })
 
-  const rule = rules[ruleName]
+  const rule = rules?.[ruleName]
 
   if (!rule) {
     redirect('/404')
