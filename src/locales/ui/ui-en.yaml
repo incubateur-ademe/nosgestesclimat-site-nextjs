@@ -120,8 +120,10 @@ entries:
   plus de 10 kg: more than 10 kg
   plus de 10 tonnes: more than 10 tonnes
   plus de 100 kg: over 100 kg
-  publicodes.ActionTutorial.félicitation: You have completed your simulation, 👏 well done!
-  publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation, 👏 bravo !
+  publicodes.ActionTutorial.félicitation: You have completed your simulation
+  bravo !: well done!
+  publicodes.ActionTutorial.félicitation.lock: You have completed your simulation
+  bravo !.lock: well done!
   publicodes.ActionTutorial.msgEstimation: You now know your footprint, estimated at {{value}} {{unit}}, and you probably already have ideas for reducing it...
   publicodes.ActionTutorial.msgEstimation.lock: Vous connaissez maintenant votre empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des idées pour la réduire...
   publicodes.ActionTutorial.msgPrécision: To improve accuracy, some actions will ask you a few extra questions.

@@ -8,7 +8,6 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import Image from 'next/image'
 import { getCarbonFootprint } from '../_helpers/getCarbonFootprint'
 
 export default function ActionsTutorial() {
@@ -25,15 +24,14 @@ export default function ActionsTutorial() {
   return (
     <Card className="my-6 items-start border-none bg-gray-100">
       <h2 className="flex items-center">
-        <Image src="/images/misc/E10C.svg" alt="" width={32} height={32} />
-
         <Trans>Passer à l'action !</Trans>
       </h2>
 
       <p>
         <Trans i18nKey={'publicodes.ActionTutorial.félicitation'}>
-          Vous avez terminé votre simulation, 👏 bravo !
+          Vous avez terminé votre simulation
         </Trans>
+        , <Emoji>👏</Emoji> <Trans>bravo !</Trans>
       </p>
 
       <p>{t('publicodes.ActionTutorial.msgEstimation', { value, unit })}</p>

@@ -100,7 +100,8 @@ entries:
   plus de 10 kg: plus de 10 kg
   plus de 10 tonnes: plus de 10 tonnes
   plus de 100 kg: plus de 100 kg
-  publicodes.ActionTutorial.félicitation: Vous avez terminé votre simulation, 👏 bravo !
+  publicodes.ActionTutorial.félicitation: Vous avez terminé votre simulation
+  bravo !: bravo !
   publicodes.ActionTutorial.msgEstimation: Vous connaissez maintenant votre empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des idées pour la réduire...
   publicodes.ActionTutorial.msgPrécision: Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.
   publicodes.ActionTutorial.msgPrésentation: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"

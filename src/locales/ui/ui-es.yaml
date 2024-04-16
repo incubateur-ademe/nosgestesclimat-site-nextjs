@@ -114,8 +114,10 @@ entries:
   publicodes.Contribution.commentaireAugmenté.lock: '> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).'
   publicodes.AllActions.msgPlusActions: <0>Ya no tenemos acciones cuantificadas de alto impacto que ofrecerte 🤷</0><1>Vea a continuación algunas ideas sobre cómo actuar de otra manera ⏬</1>
   publicodes.AllActions.msgPlusActions.lock: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
-  publicodes.ActionTutorial.félicitation: Has completado tu simulación 👏 ¡bien hecho!
-  publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation, 👏 bravo !
+  publicodes.ActionTutorial.félicitation: Has completado tu simulación
+  bravo !: ¡bien hecho!
+  publicodes.ActionTutorial.félicitation.lock: Has completado tu simulación
+  bravo !.lock: ¡bien hecho!
   model.intro: Detrás de la web nosgestesclimat.fr se esconde el modelo de huella climática individual del consumo de referencia.
   model.intro.lock: Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.
   publicodes.ActionTutorial.msgPrécision: Para mejorar la precisión, algunas acciones le harán algunas preguntas adicionales.
