@@ -16,7 +16,7 @@ export default function PollItem({ poll }: Props) {
   return (
     <Link
       href={getLinkToPollDashboard({ orgaSlug: poll.organisationInfo.slug })}
-      className="rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-gray-200"
+      className="rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-primary-100"
       onClick={() =>
         trackEvent(
           classementClickOrganisation({

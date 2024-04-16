@@ -74,7 +74,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
 
                 {isGroupOwner ? (
                   <Button
-                    className="w-12 !p-1"
+                    className="h-12 w-12 !p-1"
                     onClick={() => {
                       setIsEditingTitle(true)
                       trackEvent(amisDashboardOpenEditName)
