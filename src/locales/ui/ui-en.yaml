@@ -326,7 +326,6 @@ entries:
   Total.unit: of CO<1>2</1>e / year
   Total.unit.lock: de CO<1>2</1>e / an
   Passagers: Passengers
-  Votre bilan: Your report
   Télécharger l'image: Download image
   La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.: The category {{title}} représente {{formattedValue}} tonnes of CO2 equivalent.
   Comparez vos résultats <2>avec vos proches</2>: Compare your results <2>with those around you</2>
@@ -635,8 +634,8 @@ entries:
   sélectionnez celles qui vous intéressent: select those that interest you
   Oups ! Une erreur est survenue.: Oops! An error has occurred.
   le poste: the position
-  Mes classements: My rankings
-  Mes gestes: My actions
+  Mes classements: My rankings
+  Mes gestes: My actions
   Empreinte: Footprint
   Gestes: Gestures
   Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: You will receive an email from us shortly, enabling you to find it
@@ -652,7 +651,6 @@ entries:
   vous: you
   Vous retrouverez votre résultat d’empreinte, ainsi que: You will find your impression results, as well as
   Invitez vos proches pour comparer vos résultats. Cela prend: Invite friends and family to compare your results. It takes
-  Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.: Just <strong>leave us your email address</strong>, like {{numberSubscribers}}.
   l’équipe de nosgestesclimat.fr: the nosgestesclimat.fr team
   l’équipe de nosgestesclimat.fr.lock: l’équipe de nosgestesclimat.fr
   Découvrez nos outils pour vous simplifier la vie !: Discover our tools to make your life easier!
@@ -754,5 +752,5 @@ entries:
   Voir mon résultat: See my result
   Bravo champion·ne !: Well done champion-ne!
   Recevez un email avec un lien pour terminer votre test plus tard: Receive an email with a link to complete your test later
-  Mon empreinte: My footprint
+  Mon empreinte: My footprint
   écartez celles qui vous semblent trop ambitieuses ou déplacées.: discard those that seem too ambitious or inappropriate.

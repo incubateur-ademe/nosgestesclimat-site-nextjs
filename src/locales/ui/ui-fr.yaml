@@ -274,7 +274,6 @@ entries:
   Télécharger l'image: Télécharger l'image
   'Total par an :': 'Total par an :'
   Une capture du mode Groupe Nos Gestes Climat.: Une capture du mode Groupe Nos Gestes Climat.
-  Votre bilan: Votre bilan
   Vous avez terminé le test !: Vous avez terminé le test !
   Merci pour votre retour !: Merci pour votre retour !
   'Total :': 'Total :'
@@ -570,9 +569,9 @@ entries:
   'Je ne trouve pas réponse à ma question ': 'Je ne trouve pas réponse à ma question '
   le poste: le poste
   Les nouveautés: Les nouveautés
-  Mes classements: Mes classements
-  Mes gestes: Mes gestes
-  Mon empreinte: Mon empreinte
+  Mes classements: Mes classements
+  Mes gestes: Mes gestes
+  Mon empreinte: Mon empreinte
   Oups ! Une erreur est survenue.: Oups ! Une erreur est survenue.
   sélectionnez celles qui vous intéressent: sélectionnez celles qui vous intéressent
   (1 fois par mois max.): (1 fois par mois max.)
@@ -583,7 +582,6 @@ entries:
   Invitez d'autres personnes à rejoindre votre groupe: Invitez d'autres personnes à rejoindre votre groupe
   Invitez vos proches pour comparer vos résultats. Cela prend: Invitez vos proches pour comparer vos résultats. Cela prend
   l’équipe de nosgestesclimat.fr: l’équipe de nosgestesclimat.fr
-  Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.: Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.
   Supprimer le groupe: Supprimer le groupe
   Voir les résultats: Voir les résultats
   Votre simulation est sauvegardée !: Votre simulation est sauvegardée !
