@@ -20,7 +20,7 @@ export default async function Partners() {
             alt={t("Logo de l'Association pour la transition Bas Carbone")}
             width="90"
             height="30"
-            className="h-auto w-20 md:w-auto"
+            className="h-auto w-20"
           />
         </Link>
       </div>
