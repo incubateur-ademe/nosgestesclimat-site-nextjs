@@ -13,8 +13,7 @@ export default function Confirmation({ className }: { className?: string }) {
       )}>
       <div className="text-left; bg-transparent text-left text-2xl font-bold">
         <p>
-          <Trans>Votre simulation est sauvegardée&#8239;!</Trans>
-          &#8239;
+          <Trans>Votre simulation est sauvegardée !</Trans>{' '}
           <Emoji className="inline-block">✅</Emoji>
         </p>
       </div>
