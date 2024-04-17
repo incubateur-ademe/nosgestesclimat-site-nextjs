@@ -8,10 +8,13 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { currentLocale } from 'next-i18n-router'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
-    title: 'Les nouveautés - Nos Gestes Climat',
-    description:
-      'Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.',
+    title: t('Les nouveautés - Nos Gestes Climat'),
+    description: t(
+      'Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.'
+    ),
     alternates: {
       canonical: '/nouveautes',
     },
