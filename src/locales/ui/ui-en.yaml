@@ -10,7 +10,8 @@ entries:
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": 'This contribution will be public: do not put sensitive information in it'
   Cette fiche détaillée n'existe pas encore: This detailed sheet does not exist yet
   Charger: Load
-  Chargée: In charge
+  Chargée: Loaded
+  Chargée.lock: Loaded
   Choisir l'action: Choose the action
   Choisir le type de tri des actions: Choose the type of stock sorting
   Choisir une autre région: Choose another region
@@ -44,7 +45,7 @@ entries:
   Je ne sais pas: I don't know
   Label: Label
   Le modèle d'empreinte carbone de référence: The reference carbon footprint model
-  Le test: The test
+  Le test: The test
   Le titre bref de votre problème: The short title of your problem
   'Les 3 actions au plus fort impact pour vous :': 'The 3 actions with the highest impact for you:'
   Les nouveautés ✨: What's new ✨
@@ -709,7 +710,8 @@ entries:
   Votre résultat: Your result
   précédent: previous
   Administrateur·ice: Administrator
-  Loupé !: Missed!
+  Loupé !: Woops!
+  Loupé !.lock: Woops!
   Valorisez vos données carbone: Add value to your carbon data
   Découvrez nos outils pour vous simplifier la vie !: Discover our tools to make your life easier!
   Envie de connaître votre empreinte carbone ?: Want to know your carbon footprint?
@@ -949,3 +951,5 @@ entries:
   Mes&#160;gestes: My&#160;gestures
   Votre empreinte carbone: Your carbon footprint
   Mes gestes: My gestures
+  Mes gestes: My actions
+  Qu'est-ce que ça veut dire ?: What does this mean?

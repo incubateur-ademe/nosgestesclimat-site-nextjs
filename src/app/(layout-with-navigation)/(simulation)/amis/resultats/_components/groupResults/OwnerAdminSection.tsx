@@ -77,7 +77,7 @@ export default function OwnerAdminSection({ group }: Props) {
               onClick={() => setIsConfirming(false)}
               size="sm"
               color="secondary">
-              Annuler
+              <Trans>Annuler</Trans>
             </Button>
 
             <Button
@@ -85,7 +85,7 @@ export default function OwnerAdminSection({ group }: Props) {
               size="sm"
               color="primary"
               data-cypress-id="button-confirm-delete-group">
-              Supprimer
+              <Trans>Supprimer</Trans>
             </Button>
           </div>
         </Card>
@@ -96,7 +96,7 @@ export default function OwnerAdminSection({ group }: Props) {
           color="link"
           onClick={() => setIsConfirming(true)}
           data-cypress-id="button-delete-group">
-          Supprimer le groupe
+          <Trans>Supprimer le groupe</Trans>
         </Button>
       )}
 

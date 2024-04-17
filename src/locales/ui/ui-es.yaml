@@ -795,3 +795,159 @@ entries:
   Votre empreinte: Tu huella
   laissez-nous votre email,: déjanos tu email,
   Pour cela,: Por eso,
+  Groupe d'amis: Grupo de amigos
+  Entrer mes trajets: Introducir mis rutas
+  par email: por correo electrónico
+  Partager mes résultats: Compartir mis resultados
+  Visite familiale: Visita familiar
+  ', comme déjà ': 'como ya '
+  Merci pour votre inscription !: Gracias por inscribirse
+  Pour aller plus loin: Más información
+  Votre bilan climat personnel: Su informe climático personal
+  Donnez votre avis !: Diga lo que piensa
+  Entreprises, collectivités, écoles: Empresas, autoridades locales, escuelas
+  publicodes.fin.IframeDataShareModal.partageResultats: 'Comparta sus resultados en {{parent}} '
+  publicodes.fin.IframeDataShareModal.partageResultats.lock: Partage de vos résultats à {{parent}} ?
+  Vous souhaitez recevoir vos résultats ?: ¿Desea recibir sus resultados?
+  Comment agir: Cómo actuar
+  des conseils: consejo
+  Sport ou Loisir: Deporte u ocio
+  jour: día
+  votre résultat: tu resultado
+  International: Internacional
+  Sauvegarder mes résultats: Guardar mis resultados
+  Amis: Amigos
+  Télécharger (PDF 140mb): Descargar (PDF 140mb)
+  Réduire ma conso de pétrole: Reducir mi consumo de aceite
+  Tout déplier: Desplegar todo
+  choix à faire: opciones a elegir
+  voyageurs: viajeros
+  Recevez vos résultats <2>par email</2>: Reciba sus resultados <2>por correo electrónico</2>
+  publicodes.FAQ.titreQuestion: Tengo otra pregunta
+  publicodes.FAQ.titreQuestion.lock: J'ai une autre question
+  Vous avez terminé le test: Ha completado la prueba
+  Découvrez le simulateur: Descubra el simulador
+  Sorties ponctuelles: Salidas puntuales
+  Domicile-Travail: Trabajo a domicilio
+  Cette fiche détaillée n'existe pas encore: Esta ficha detallada aún no existe
+  ' Télécharger le kit (23mb)': ' Descargar el kit (23mb)'
+  Diffuser: Difusión
+  Week-end: Fin de semana
+  Le code source est ouvert, le site est <2>amélioré régulièrement</2>.: El código fuente es abierto y el sitio se <2>mejora regularmente</2>.
+  Partager le test: Compartir la prueba
+  Soit: O
+  Il vous reste: Aún tienes
+  Votre rôle: Su papel
+  ' pour recevoir ': ' recibir '
+  Passer le test: Haz la prueba
+  Des questions ?: ¿Alguna pregunta?
+  Vous avez fait: Hiciste
+  'autres utilisateurs, ': 'otros usuarios, '
+  '{group?.owner?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{nombre?.propietario?.grupo} te ha invitado a unirte al grupo <3>{nombre?.grupo}</3>'
+  IframeDataShareModal.text1: Al hacer clic en el botón Aceptar, autoriza a {{parent}} a recuperar su huella climática.
+  IframeDataShareModal.text1.lock: En cliquant sur le bouton Accepter, vous autorisez {{parent}} à récupérer le bilan de votre empreinte climat.
+  'et ': 'y '
+  pour une personne: para una persona
+  Le test: La prueba
+  Jeu de cartes: Juego de cartas
+  Mes&#160;gestes: Mis acciones
+  Copié !: ¡Copiado!
+  Mes gestes: Mis acciones
+  En groupe: En grupo
+  Recevez vos résultats: Reciba sus resultados
+  RDV médicaux: Citas médicas
+  Mon objectif annuel: Mi objetivo anual
+  semaine: semana
+  an: un
+  components.NewsBanner.miseAJourDate: Última actualización {{date}}
+  components.NewsBanner.miseAJourDate.lock: Dernière mise à jour {{date}}
+  Mobilité académique: Movilidad académica
+  'Total :': 'Total :'
+  km: km
+  Comment réduire mon empreinte ?: ¿Cómo puedo reducir mi huella?
+  Courses: Carreras
+  Simulations terminées: Simulaciones completadas
+  Qu'est-ce que ça veut dire ?: ¿Qué significa esto?
+  Qu'est-ce que ça veut dire ?: ¿Qué significa esto?
+  sites.publicodes.Landing.description: ¿Conoces tu huella climática? Haz la prueba y descubre cómo puedes reducir tu huella de carbono sobre el clima.
+  sites.publicodes.Landing.description.lock: Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.
+  Voir le détail de ma simulation: Vea los detalles de mi simulación
+  model.active: He aquí algunos de los <1>temas</1> más importantes del momento, de entre el centenar de temas documentados.
+  model.active.lock: Voici à titre d'exemple quelques <1>issues</1> importantes du moment parmi la centaine de sujets documentés.
+  Laissez-nous votre email: Déjanos tu email
+  Vacances: Vacaciones
+  Vous utilisez actuellement le persona: Actualmente está utilizando la persona
+  Entrez votre adresse email: Introduzca su dirección de correo electrónico
+  À venir, bouton désactivé.: Próximamente, botón desactivado.
+  Tout replier: Doblar todo
+  Miam: Yum
+  ', le site est amélioré régulièrement.': el sitio se mejora regularmente.
+  Vous êtes le premier 🥳: Eres el primero 🥳
+  voyageurs. La distance individuelle parcourue est donc de: pasajeros. Por lo tanto, la distancia individual recorrida es
+  Une idée ? Une correction ? Une remarque ? Toute contribution <2>est la bienvenue</2>!: ¿Alguna idea? ¿Una corrección? ¿Un comentario? ¡Todas las contribuciones son <2>bienvenidas</2>!
+  avec en moyenne: con una media
+  'Les 3 actions au plus fort impact pour vous :': 'Las 3 acciones con mayor impacto para ti :'
+  Vous souhaitez mobiliser votre <2>entreprise</2>, votre <5>organisation</5>, votre<7>association</7> ou <10>salle de classe</10>: Quiere movilizar a su <2>empresa</2>, <5>organización</5>, <7>asociación</7> o <10>aula</10>
+  Envie de connaître votre empreinte carbone ?: ¿Quiere conocer su huella de carbono?
+  Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques: Puede añadir preguntas adicionales a la prueba para sus estadísticas
+  Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.: Sólo tienes que <strong>dejarnos tu dirección de correo electrónico</strong>, como {{numberSubscribers}}.
+  Moins de 10 repas par semaine, quel appétit de moineau: Menos de 10 comidas a la semana, ¡qué apetito de gorrión!
+  Cette nouvelle fonctionnalité est en expérimentation ! Vous rencontrez un bug ou avez une idée d’amélioration ?: Esta nueva función está en fase de pruebas ¿Ha encontrado algún error o tiene alguna idea para mejorarla?
+  'Les 3 actions au plus fort impact pour vous :': 'Las 3 acciones con mayor impacto para ti :'
+  Comment réduire mon empreinte ?: ¿Cómo puedo reducir mi huella?
+  choix en trop !: ¡demasiadas opciones!
+  Bientôt, vous verrez apparaître ici vos statistiques. Partagez le test pour obtenir vos premiers résultats: Tus estadísticas aparecerán pronto aquí. Comparte la prueba para obtener tus primeros resultados
+  publicodes.Contact.titreQuestion: Tengo una pregunta
+  publicodes.Contact.titreQuestion.lock: J'ai une question
+  Vous avez terminé le test !: Has completado la prueba
+  Mon empreinte carbone: Mi huella de carbono
+  Page profil: Página de perfil
+  Mes gestes: Mis acciones
+  Fermer la notification de nouveautés: Cerrar notificación de noticias
+  publicodes.AllActions.allerPlusLoin: <0>Ir más allá</0><1>Vaya más allá de una simple cifra y descubra lo que hay detrás de cada acción.</1>
+  publicodes.AllActions.allerPlusLoin.lock: <0>Aller plus loin</0><1>Au-delà d'un simple chiffre, découvrez les enjeux qui se cachent derrière chaque action.</1>
+  newsLetter.Text.p2: para recibir <1>tus resultados</1> y <4>consejos</4> sobre cómo reducir tu huella de carbono (una vez al mes como máximo).
+  newsLetter.Text.p2.lock: pour recevoir <1>votre résultat</1> et <4>des conseils</4> pour réduire votre empreinte carbone (1 fois par mois max).
+  SondagesBlock.description: Las <1>encuestas</1> y <3>conferencias</3> le permiten comparar su huella en directo o en grupos de más de 20 personas
+  SondagesBlock.description.lock: Les <1>sondages</1> et <3>conférences</3> vous permettent de comparer votre empreinte en direct ou en groupes de plus de 20 personnes
+  pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: para crear una cuenta y podrá acceder gratuitamente a todos nuestros servicios
+  Vous avez terminé le test 👏: Has completado la prueba 👏
+  publicodes.Contact.mail: También puede enviarnos un correo electrónico a <2>contact@nosgestesclimat.fr.</2> Sin embargo, el tiempo de respuesta será mayor que con las soluciones anteriores.
+  publicodes.Contact.mail.lock: Enfin, vous avez la possibilité de nous envoyer un mail à l'adresse <2>contact@nosgestesclimat.fr</2>. Cependant, le délais de réponse sera plus long que les solutions précédentes.
+  ← Revenir au test: ← Volver a la prueba
+  Vous avez terminé le test\u202f!: Has completado la prueba
+  Vous avez déjà réalisé le test Nos Gestes Climat !: ¡Ya has realizado el test Nos Gestes Climat!
+  IframeDataShareModal.text3: Nosgestesclimat.fr no está afiliado al sitio web {{parent}}.
+  IframeDataShareModal.text3.lock: Nosgestesclimat.fr n'est pas affilié au site {{parent}}.
+  northstar.thankyou: Gracias por sus comentarios
+  northstar.thankyou.lock: Merci pour votre retour !
+  publicodes.Landing.question: ¿Conoce su huella climática?
+  publicodes.Landing.question.lock: Connaissez-vous votre empreinte sur le climat ?
+  Vous allez recevoir un email de notre part sous peu.: En breve recibirá un correo electrónico nuestro.
+  Vous pourrez choisir de ne plus recevoir nos emails à tout moment: Puede dejar de recibir nuestros correos electrónicos en cualquier momento
+  Et les conseils de Nos Gestes Climat pour réduire votre impact sur le climat.: Y consejos de Nos Gestes Climat para reducir su impacto sobre el clima.
+  'pour réduire votre empreinte carbone (1 fois par mois max.). ': 'para reducir su huella de carbono (una vez al mes como máximo). '
+  L'intégralité du calcul est <2>documenté</2> en ligne pour les curieux et les experts.: Todo el cálculo está <2>documentado</2> en línea para curiosos y expertos.
+  Vous avez déjà commencé le test Nos Gestes Climat !: ¡Ya has empezado el test Nos Gestes Climat!
+  Retrouvez les réponses aux questions courantes sur notre page <2>FAQ</2>.: Encuentre respuestas a las preguntas más frecuentes en nuestra página <2>de FAQ</2>.
+  Plus de 18 repas par semaine, quel appétit: Más de 18 comidas a la semana, ¡qué apetito!
+  ' Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': ' Por supuesto, algunas cosas son compartidas (en mi casa con mi familia, el coche con mis compañeros de viaje): esto se tendrá en cuenta a la hora de calcular tu huella de carbono, ¡así que no te preocupes!'
+  IframeDataShareModal.text2: Estos son sus resultados para las categorías principales (transporte, alimentación, etc.), pero <1>no</1> los detalles pregunta por pregunta (el kilometraje de su coche, los metros cuadrados de su vivienda, etc.).
+  IframeDataShareModal.text2.lock: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <1>pas</1> le détail question par question (vos km en voiture, les m² de votre logement...).
+  Le climat se réchauffe à cause des activités humaines, c'est un fait. Mais quel est notre impact, à notre échelle de citoyen Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer l'empreinte carbone individuelle de consommation.: Es un hecho que el clima se está calentando como consecuencia de la actividad humana. Pero ¿cuál es nuestro impacto, como ciudadanos individuales? Para estimar nuestra propia contribución al calentamiento global (nuestro "impacto climático"), es práctica habitual calcular la huella de carbono individual de nuestro consumo.
+  'Le principe est simple : pour chaque consommation (prendre sa voiture pour 10km, manger un steak, chauffer sa maison au gaz...), on décompte les émissions de gaz à effet de serre (les différents gaz qui réchauffent le climat terrestre) sur son cycle de vie. Par exemple, un bien acheté est fabriqué, puis utilisé, puis jeté et peut-être recyclé.': 'El principio es sencillo: por cada artículo de consumo (coger el coche 10 km, comerse un filete, calentar la casa con gas, etc.), contamos las emisiones de gases de efecto invernadero (los distintos gases que calientan el clima de la Tierra) a lo largo de su ciclo de vida. Por ejemplo, un bien comprado se fabrica, luego se utiliza, después se tira y tal vez se recicla.'
+  Au fil des questions portant sur tous les aspects de nos modes de vie, découpés en grands postes comme l’alimentation, le logement, ou le transport, le poids de chacune de vos consommations est ajouté pour constituer votre total, le bilan carbone personnel, à visualiser sur trois infographies.: Al responder a las preguntas sobre cada aspecto de nuestro estilo de vida, desglosado en grandes categorías como alimentación, vivienda y transporte, se suma el peso de cada uno de los elementos de consumo para componer el total, la huella de carbono personal, que puede visualizarse en tres infografías.
+  De quoi est faite mon empreinte ?: ¿De qué está hecha mi huella dactilar?
+  Oups, une erreur s'est produite au moment de récupérer vos données d'organisation.: Se ha producido un error al recuperar los datos de su organización.
+  "Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée :": 'Nuestro simulador se basa en un modelo de datos cuyos cálculos están totalmente documentados:'
+  NewsletterForm.confirmation: Acepto recibir información de Nos Gestes Climat y su <2>política de privacidad</2>
+  NewsletterForm.confirmation.lock: J'accepte de recevoir des informations de la part de Nos Gestes Climat et sa <2>politique de confidentialité</2>
+  Découvre nos pistes pour agir dès aujourd’hui pour le climat, ou passe le test pour obtenir des recommandations personnalisées.: Averigua cómo puedes actuar por el clima hoy mismo, o haz la prueba para obtener recomendaciones personalizadas.
+  Quoi de mieux que le jeu pour sensibiliser ? Apprenez les ordres de grandeur à vos équipes ou vos élèves avec ce jeu de carte Nos Gestes Climat (sur une idée originale de Sabine Lagorce): ¿Qué mejor manera de sensibilizar que con un juego? Enseña a tus equipos o alumnos los órdenes de magnitud con este juego de cartas Nos Gestes Climat (basado en una idea original de Sabine Lagorce)
+  (Données consultables à partir de 3 participants, dans un souci d'anonymat.): (Los datos pueden consultarse a partir de 3 participantes, en aras del anonimato)
+  publicodes.Contact.description: 'No dude en consultar nuestras <2>FAQ</2> antes de escribirnos: ¡seguro que encuentra allí la respuesta a su pregunta!'
+  publicodes.Contact.description.lock: N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écire, vous y trouverez sans doute la réponse à votre question !
+  publicodes.Contact.form: Si tiene algún comentario o pregunta, <2>le recomendamos que <2>abra un ticket directamente en GitHub</2></2> para poder seguir los intercambios más fácilmente. También puedes enviarnos un mensaje mediante el formulario de contacto que encontrarás a continuación.
+  publicodes.Contact.form.lock: Pour toute remarque ou question, <2>nous vous recommandons <2>d'ouvrir un ticket directement sur GitHub</2></2> afin de suivre les échanges plus facilement. Vous pouvez également nous envoyer un message via le formulaire de contact ci-dessous.
+  Voir les {String(group.members.length - 5)} autre{withS} participant{withS}: Ver {String(group.members.length - 5)} otro{conS} participante{conS}
+  Voir les {String(group.members.length - 5)} autre{withS} participant{withS}.lock: Voir les {String(group.members.length - 5)} autre{withS} participant{withS}

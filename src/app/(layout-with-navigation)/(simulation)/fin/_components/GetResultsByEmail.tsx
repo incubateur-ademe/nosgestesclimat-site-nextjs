@@ -91,10 +91,11 @@ export default function GetResultsByEmail({
         </p>
 
         <p className="text-sm text-gray-600 sm:text-base">
-          <Trans>
-            Vous retrouverez votre résultat d’empreinte, ainsi que{' '}
-            <strong>des conseils pour la réduire</strong> (1 fois par mois max.)
-          </Trans>
+          <Trans>Vous retrouverez votre résultat d’empreinte, ainsi que</Trans>{' '}
+          <strong>
+            <Trans>des conseils pour la réduire</Trans>
+          </strong>{' '}
+          <Trans>(1 fois par mois max.)</Trans>
         </p>
 
         <div className="mb-4">

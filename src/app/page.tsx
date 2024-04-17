@@ -20,7 +20,7 @@ export async function generateMetadata() {
   })
 }
 
-export default function Homepage() {
+export default async function Homepage() {
   return (
     <>
       <Main>
