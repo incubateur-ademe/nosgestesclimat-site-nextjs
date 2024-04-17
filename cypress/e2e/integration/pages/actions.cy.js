@@ -5,7 +5,9 @@ describe('The Action page', { testIsolation: false }, () => {
     visit('actions')
 
     cy.get('h1')
-      .contains(Cypress.env('testLangURL') === 'en' ? 'Act' : 'Agir')
+      .contains(
+        Cypress.env('testLangURL') === 'en' ? 'My gestures' : 'Mes gestes'
+      )
       .should('be.visible')
   })
 })
