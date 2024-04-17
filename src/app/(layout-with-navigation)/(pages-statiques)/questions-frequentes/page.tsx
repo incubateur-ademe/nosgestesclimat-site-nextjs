@@ -18,11 +18,15 @@ type FAQType = {
 }
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
-    title:
-      "Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat",
-    description:
-      'Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.',
+    title: t(
+      "Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat"
+    ),
+    description: t(
+      'Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.'
+    ),
     alternates: {
       canonical: '/questions-frequentes',
     },

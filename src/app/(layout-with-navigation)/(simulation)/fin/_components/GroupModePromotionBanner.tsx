@@ -38,7 +38,7 @@ export default function GroupModePromotionBanner({
           </Trans>
         </p>
 
-        <ButtonLink color="secondary" href="/amis" className="bg-white">
+        <ButtonLink color="secondary" href="/amis/creer" className="bg-white">
           <Trans>Créer un groupe</Trans>
         </ButtonLink>
       </div>

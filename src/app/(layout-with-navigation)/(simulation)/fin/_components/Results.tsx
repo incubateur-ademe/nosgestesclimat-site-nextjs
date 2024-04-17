@@ -6,6 +6,7 @@ import CategoriesChart from '@/components/results/CategoriesChart'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Separator from '@/design-system/layout/Separator'
+import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import TotalCard from './results/TotalCard'
 
@@ -21,9 +22,10 @@ export default function Results() {
   return (
     <>
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="mb-0 text-lg">
-          <Trans>Votre bilan</Trans>
-        </h2>
+        <Title
+          className="mb-0 text-lg md:text-xl"
+          title={<Trans>Votre bilan</Trans>}
+        />
 
         <Button
           color="text"

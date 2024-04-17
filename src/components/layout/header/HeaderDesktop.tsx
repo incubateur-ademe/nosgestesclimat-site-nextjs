@@ -43,8 +43,8 @@ export default function HeaderDesktop() {
                     href={getLinkToSimulateurPage()}
                     activeMatches={['/tutoriel', '/simulateur', '/fin']}
                     icon={BilanIcon}
-                    title={t('Le test')}>
-                    {t('Le\u202ftest')}
+                    title={t('Le test')}>
+                    {t('Le test')}
                   </NavLink>
                 </li>
 
@@ -52,8 +52,8 @@ export default function HeaderDesktop() {
                   <NavLink
                     href="/actions"
                     icon={ActionsIcon}
-                    title={t('Actions')}>
-                    <Trans>Actions</Trans>
+                    title={t('Mes gestes')}>
+                    <Trans>Mes gestes</Trans>
                   </NavLink>
                 </li>
 

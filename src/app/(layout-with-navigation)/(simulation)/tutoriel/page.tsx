@@ -11,10 +11,15 @@ import AvantDeCommencer from './_components/AvantDeCommencer'
 import OrganisationMessage from './_components/OrganisationMessage'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
-    title: 'Calculer votre empreinte carbone individuelle - Nos Gestes Climat',
-    description:
-      'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.',
+    title: t(
+      'Calculer votre empreinte carbone individuelle - Nos Gestes Climat'
+    ),
+    description: t(
+      'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.'
+    ),
     alternates: {
       canonical: '/tutoriel',
     },
@@ -41,6 +46,7 @@ export default async function Tutoriel() {
       />
 
       <AvantDeCommencer />
+
       <div className="mb-8 flex justify-between border-b border-gray-200 pb-8">
         <ButtonLink href="/" color="secondary" title={t("revenir à l'accueil")}>
           ←

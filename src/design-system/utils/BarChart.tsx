@@ -13,11 +13,11 @@ export default function BarChart({ type, value, index = 0 }: Props) {
     <motion.div
       className={`min-w-[2px] max-w-full ${
         propertyAffected === 'width' ? 'h-[8px]' : 'w-[8px]'
-      } bg-secondary-500 rotate-180 rounded-lg`}
-      initial={{ [propertyAffected]: 0, display: 'none' }}
+      } rotate-180 rounded-lg bg-secondary-500`}
+      initial={{ [propertyAffected]: 0, opacity: '0' }}
       animate={{
         [propertyAffected]: value,
-        display: 'block',
+        opacity: '1',
       }}
       transition={{
         delay: 0.3 + index * 0.1,
