@@ -4,7 +4,7 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ContentEn from '@/locales/pages/en/contextes-sondage.mdx'
 import ContentFr from '@/locales/pages/fr/contextes-sondage.mdx'
 
-export async function () {
+export async function generateMetadata() {
   const { t } = await getServerTranslation()
 
   return getMetadataObject({
