@@ -24,8 +24,14 @@ export default function OrganisationFetchError({
             <Trans>Oups</Trans>
             <Emoji>🤷🏻‍♀️</Emoji>
             <Trans>
-              , vous avez été déconnecté·e de votre espace organisation,
-              reconnectez vous en cliquant sur le bouton ci-dessous.
+              , vous avez été déconnecté·e de votre espace organisation, ou vous
+              cherchez à y accéder depuis un nouvel navigateur.
+            </Trans>
+          </p>
+
+          <p>
+            <Trans>
+              Reconnectez vous en cliquant sur le bouton ci-dessous.
             </Trans>
           </p>
 

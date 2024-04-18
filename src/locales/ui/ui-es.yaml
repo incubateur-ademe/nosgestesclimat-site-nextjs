@@ -951,3 +951,5 @@ entries:
   publicodes.Contact.form.lock: Pour toute remarque ou question, <2>nous vous recommandons <2>d'ouvrir un ticket directement sur GitHub</2></2> afin de suivre les échanges plus facilement. Vous pouvez également nous envoyer un message via le formulaire de contact ci-dessous.
   Voir les {String(group.members.length - 5)} autre{withS} participant{withS}: Ver {String(group.members.length - 5)} otro{conS} participante{conS}
   Voir les {String(group.members.length - 5)} autre{withS} participant{withS}.lock: Voir les {String(group.members.length - 5)} autre{withS} participant{withS}
+  ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouvel navigateur.': se ha desconectado de su espacio de organización o está intentando acceder desde un nuevo navegador.
+  Reconnectez vous en cliquant sur le bouton ci-dessous.: Vuelva a conectarse haciendo clic en el botón de abajo.
