@@ -25,7 +25,6 @@ export default function useFetchOrganisation({
           }
         )
         .then((res) => res.data),
-    enabled: !!email,
     retry: false,
   })
 }
