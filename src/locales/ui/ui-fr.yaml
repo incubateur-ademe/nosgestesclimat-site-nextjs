@@ -116,7 +116,7 @@ entries:
   plus de 10 kg: plus de 10 kg
   plus de 10 tonnes: plus de 10 tonnes
   plus de 100 kg: plus de 100 kg
-  publicodes.ActionTutorial.félicitation: Vous avez terminé votre simulation, 👏 bravo !
+  publicodes.ActionTutorial.félicitation: Vous avez terminé votre simulation,
   publicodes.ActionTutorial.msgEstimation: Vous connaissez maintenant votre empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des idées pour la réduire...
   publicodes.ActionTutorial.msgPrécision: 💡 Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.
   publicodes.ActionTutorial.msgPrésentation: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
@@ -859,3 +859,6 @@ entries:
   Mes gestes: Mes gestes
   Qu'est-ce que ça veut dire ?: Qu'est-ce que ça veut dire ?
   Reconnectez vous en cliquant sur le bouton ci-dessous.: Reconnectez vous en cliquant sur le bouton ci-dessous.
+  ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.'
+  'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.'
+  bravo !: bravo !

@@ -21,7 +21,7 @@ export default function OurTools() {
           title={<Trans>Kit de diffusion</Trans>}
           description={
             <Trans>
-              Logo, affiches et présentations : retrouvez tous les outils pour
+              Logo, affiches et présentations : retrouvez tous les outils pour
               partager Nos Gestes Climat dans ce kit.
             </Trans>
           }>

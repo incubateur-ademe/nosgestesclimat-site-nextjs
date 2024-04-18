@@ -116,8 +116,8 @@ entries:
   publicodes.Contribution.commentaireAugmenté.lock: '> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).'
   publicodes.AllActions.msgPlusActions: <0>Ya no tenemos acciones cuantificadas de alto impacto que ofrecerte 🤷</0><1>Vea a continuación algunas ideas sobre cómo actuar de otra manera ⏬</1>
   publicodes.AllActions.msgPlusActions.lock: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
-  publicodes.ActionTutorial.félicitation.lock: Ha completado su simulación
-  publicodes.ActionTutorial.félicitation: Ha completado su simulación
+  publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation,
+  publicodes.ActionTutorial.félicitation: Ha completado la simulación,
   bravo !: ¡bien hecho!
   bravo !.lock: ¡bien hecho!
   model.intro: Detrás de la web nosgestesclimat.fr se esconde el modelo de huella climática individual del consumo de referencia.
@@ -952,3 +952,5 @@ entries:
   Voir les {String(group.members.length - 5)} autre{withS} participant{withS}: Ver {String(group.members.length - 5)} otro{conS} participante{conS}
   Voir les {String(group.members.length - 5)} autre{withS} participant{withS}.lock: Voir les {String(group.members.length - 5)} autre{withS} participant{withS}
   Reconnectez vous en cliquant sur le bouton ci-dessous.: Vuelva a conectarse haciendo clic en el botón de abajo.
+  'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logotipos, carteles y presentaciones: en este kit encontrarás todas las herramientas que necesitas para compartir Nos Gestes Climat.'
+  ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': se ha desconectado de su espacio de organización o está intentando acceder desde un nuevo navegador.

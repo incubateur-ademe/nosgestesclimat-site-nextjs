@@ -139,8 +139,8 @@ entries:
   plus de 10 kg: more than 10 kg
   plus de 10 tonnes: more than 10 tonnes
   plus de 100 kg: over 100 kg
-  publicodes.ActionTutorial.félicitation: You have completed your simulation, 👏 well done!
-  publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation, 👏 bravo !
+  publicodes.ActionTutorial.félicitation: You have now completed your simulation,
+  publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation,
   publicodes.ActionTutorial.msgEstimation: You now know your footprint, estimated at {{value}} {{unit}}, and you probably already have ideas for reducing it...
   publicodes.ActionTutorial.msgEstimation.lock: Vous connaissez maintenant votre empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des idées pour la réduire...
   publicodes.ActionTutorial.msgPrécision: 💡 To improve accuracy, some actions will ask you a few more questions.
@@ -955,3 +955,6 @@ entries:
   Mes gestes: My actions
   Qu'est-ce que ça veut dire ?: What does this mean?
   Reconnectez vous en cliquant sur le bouton ci-dessous.: Reconnect by clicking on the button below.
+  ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': you have been logged out of your organisation space, or you are trying to access it from a new browser.
+  'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, posters and presentations: find all the tools you need to share Nos Gestes Climat in this kit.'
+  bravo !: well done!
