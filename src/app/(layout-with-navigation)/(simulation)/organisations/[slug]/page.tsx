@@ -22,7 +22,11 @@ export default function OrganisationPage() {
 
   const router = useRouter()
 
-  const { data: organisation, isError } = useFetchOrganisation({
+  const {
+    data: organisation,
+    isError,
+    isLoading,
+  } = useFetchOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
   })
 
@@ -36,59 +40,60 @@ export default function OrganisationPage() {
     }
   }, [organisation, router])
 
+  if (isError && !isLoading && !organisation) {
+    return (
+      <OrganisationFetchError organisation={organisation} isError={isError} />
+    )
+  }
+
+  if (!organisation) {
+    return null
+  }
+
   return (
     <>
-      <OrganisationFetchError organisation={organisation} isError={isError} />
+      <div className="mb-4 flex flex-wrap justify-between md:flex-nowrap">
+        <div>
+          <h1>
+            <span>
+              <Trans>Bienvenue</Trans>{' '}
+              <span className="text-primary-500">
+                {capitalizeString(organisation?.administrators?.[0]?.name)}
+              </span>
+              ,
+            </span>
+          </h1>
 
-      {organisation && (
-        <>
-          <div className="mb-4 flex flex-wrap justify-between md:flex-nowrap">
-            <div>
-              <h1>
-                <span>
-                  <Trans>Bienvenue</Trans>{' '}
-                  <span className="text-primary-500">
-                    {capitalizeString(organisation?.administrators?.[0]?.name)}
-                  </span>
-                  ,
-                </span>
-              </h1>
+          <p className="max-w-sm">
+            <Trans>Sur l'espace organisation de </Trans>{' '}
+            <strong className="!text-primary-600">{organisation?.name}</strong>.{' '}
+            <Trans>
+              Partagez le test à votre réseau et suivez vos statistiques.
+            </Trans>
+          </p>
+        </div>
+        <ButtonLink
+          href={`/organisations/${organisation?.slug}/parametres`}
+          onClick={() => {
+            trackEvent(clickSettingsLinkEvent)
+          }}
+          color="text"
+          className="self-start">
+          <Emoji className="mr-2">⚙️</Emoji>
+          <Trans>Voir les paramètres</Trans>
+        </ButtonLink>
+      </div>
 
-              <p className="max-w-sm">
-                <Trans>Sur l'espace organisation de </Trans>{' '}
-                <strong className="!text-primary-600">
-                  {organisation?.name}
-                </strong>
-                .{' '}
-                <Trans>
-                  Partagez le test à votre réseau et suivez vos statistiques.
-                </Trans>
-              </p>
-            </div>
-            <ButtonLink
-              href={`/organisations/${organisation?.slug}/parametres`}
-              onClick={() => {
-                trackEvent(clickSettingsLinkEvent)
-              }}
-              color="text"
-              className="self-start">
-              <Emoji className="mr-2">⚙️</Emoji>
-              <Trans>Voir les paramètres</Trans>
-            </ButtonLink>
-          </div>
+      <OrgaStatistics
+        funFacts={pollData?.funFacts}
+        simulationRecaps={pollData?.simulationRecaps ?? []}
+      />
 
-          <OrgaStatistics
-            funFacts={pollData?.funFacts}
-            simulationRecaps={pollData?.simulationRecaps ?? []}
-          />
+      <ShareSection organisation={organisation} className="mb-8" />
 
-          <ShareSection organisation={organisation} className="mb-8" />
+      <OurTools />
 
-          <OurTools />
-
-          <NousContacter />
-        </>
-      )}
+      <NousContacter />
     </>
   )
 }
