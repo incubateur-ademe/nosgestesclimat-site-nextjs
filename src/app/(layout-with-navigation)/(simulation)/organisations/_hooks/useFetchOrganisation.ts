@@ -19,6 +19,7 @@ export default function useFetchOrganisation({
           `${SERVER_URL}/organisations/fetch-organisation`,
           {
             email,
+            slug,
           },
           {
             withCredentials: true,
