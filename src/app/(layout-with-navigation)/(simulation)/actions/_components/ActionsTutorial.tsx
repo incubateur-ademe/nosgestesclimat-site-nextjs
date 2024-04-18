@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
+import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useUser } from '@/publicodes-state'
 import Image from 'next/image'
@@ -20,7 +21,7 @@ export default function ActionsTutorial() {
   const [value, unit] = getCarbonFootprint({ t, i18n }, bilan.nodeValue)
 
   return (
-    <Card className="!bg-primary-100 my-6 items-start">
+    <Card className="my-6 items-start !bg-primary-100">
       <h2 className="flex items-center">
         <Image src="/images/misc/E10C.svg" alt="" width={32} height={32} />
 
@@ -29,8 +30,9 @@ export default function ActionsTutorial() {
 
       <p>
         <Trans i18nKey={'publicodes.ActionTutorial.félicitation'}>
-          Vous avez terminé votre simulation, 👏 bravo !
-        </Trans>
+          Vous avez terminé votre simulation,
+        </Trans>{' '}
+        <Emoji>👏</Emoji> <Trans>bravo !</Trans>
       </p>
 
       <p>{t('publicodes.ActionTutorial.msgEstimation', { value, unit })}</p>
