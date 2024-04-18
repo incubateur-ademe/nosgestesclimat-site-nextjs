@@ -65,7 +65,7 @@ const sentryConfig = [
   },
 ]
 
-module.exports = //withSentryConfig(
-  withBundleAnalyzer(withMDX(withYaml(nextConfig))) //,
-//...sentryConfig
-//)
+module.exports = withSentryConfig(
+  withBundleAnalyzer(withMDX(withYaml(nextConfig))),
+  ...sentryConfig
+)
