@@ -3,11 +3,12 @@ import MailIcon from '@/components/icons/MailIcon'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Script from 'next/script'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
   return getMetadataObject({
     title: t('Contact - Nos Gestes Climat'),
     description: t("Contactez l'équipe de Nos Gestes Climat."),

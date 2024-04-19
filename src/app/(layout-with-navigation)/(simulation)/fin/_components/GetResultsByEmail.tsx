@@ -21,7 +21,6 @@ export default function GetResultsByEmail({
   className?: string
 }) {
   const { t } = useClientTranslation()
-
   const { user, updateEmail } = useUser()
 
   const currentSimulation = useCurrentSimulation()

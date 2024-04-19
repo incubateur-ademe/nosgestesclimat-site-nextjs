@@ -25,7 +25,7 @@ export default async function PlanDuSitePage() {
   const links = {
     'Nos outils': {
       bilan: {
-        title: t('Le test'),
+        title: t('Le test'),
         href: '/simulateur/bilan',
       },
       profil: {

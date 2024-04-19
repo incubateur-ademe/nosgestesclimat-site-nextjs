@@ -10,6 +10,7 @@ const TARGETED_PATHS = ['/organisations']
 
 export default function FilAriane() {
   const pathname = usePathname()
+
   const params = useParams()
 
   const { user } = useUser()

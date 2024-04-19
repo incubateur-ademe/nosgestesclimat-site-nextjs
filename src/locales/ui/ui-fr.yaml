@@ -34,7 +34,7 @@ entries:
   J'ai compris: J'ai compris
   Je ne sais pas: Je ne sais pas
   Le modèle d'empreinte carbone de référence: Le modèle d'empreinte carbone de référence
-  Le test: Le test
+  Le test: Le test
   Le titre bref de votre problème: Le titre bref de votre problème
   Mon historique des simulations: Mon historique des simulations
   Mon profil: Mon profil
@@ -272,6 +272,7 @@ entries:
   Label: Label
   Passagers: Passagers
   Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet.: Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet.
+  Recevez vos résultats <2>par email</2>: Recevez vos résultats <2>par email</2>
   Qu'est-ce que ça veut dire ?: Qu'est-ce que ça veut dire ?
   Télécharger l'image: Télécharger l'image
   'Total par an :': 'Total par an :'
@@ -585,12 +586,14 @@ entries:
   Invitez d'autres personnes à rejoindre votre groupe: Invitez d'autres personnes à rejoindre votre groupe
   Invitez vos proches pour comparer vos résultats. Cela prend: Invitez vos proches pour comparer vos résultats. Cela prend
   l’équipe de nosgestesclimat.fr: l’équipe de nosgestesclimat.fr
+  Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.: Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.
   Supprimer le groupe: Supprimer le groupe
   Voir les résultats: Voir les résultats
   Votre simulation est sauvegardée !: Votre simulation est sauvegardée !
   Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver
   Vous retrouverez votre résultat d’empreinte, ainsi que: Vous retrouverez votre résultat d’empreinte, ainsi que
   Découvrez nos outils pour vous simplifier la vie !: Découvrez nos outils pour vous simplifier la vie !
+  Vous souhaitez mobiliser votre <2>entreprise</2>, votre <5>organisation</5>, votre<7>association</7> ou <10>salle de classe</10>: Vous souhaitez mobiliser votre <2>entreprise</2>, votre <5>organisation</5>, votre<7>association</7> ou <10>salle de classe</10>
   '**6 repas** représentatifs de notre consommation': '**6 repas** représentatifs de notre consommation'
   Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels: Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels
   Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**: Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**
@@ -699,3 +702,8 @@ entries:
   Mes&#160;gestes: Mes&#160;gestes
   Votre empreinte carbone: Votre empreinte carbone
   Votre empreinte: Votre empreinte
+  Mes gestes: Mes gestes
+  Qu'est-ce que ça veut dire ?: Qu'est-ce que ça veut dire ?
+  Reconnectez vous en cliquant sur le bouton ci-dessous.: Reconnectez vous en cliquant sur le bouton ci-dessous.
+  ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.'
+  'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.'
