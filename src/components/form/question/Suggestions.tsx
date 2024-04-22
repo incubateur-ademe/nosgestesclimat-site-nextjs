@@ -24,7 +24,7 @@ export default function Suggestions({ question, setValue }: Props) {
           key={suggestion.label}
           data-cypress-id="suggestion"
           size="sm"
-          className="ext-xs font-normal md:text-sm"
+          className="text-xs font-normal md:text-sm"
           onClick={() => {
             trackEvent(
               questionClickSuggestion({ question, answer: suggestion.label })
