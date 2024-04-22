@@ -15,7 +15,7 @@ export default function Avion({ question, ...props }: Props) {
       <Question question={question} {...props} />
       <div className="mb-4 flex flex-col items-end">
         <Button
-          color="secondary"
+          color="link"
           size="xs"
           onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
           className="mb-2">
