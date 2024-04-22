@@ -23,8 +23,8 @@ export default function Suggestions({ question, setValue }: Props) {
         <Button
           key={suggestion.label}
           data-cypress-id="suggestion"
-          size="xs"
-          className="ext-xs font-normal md:text-sm"
+          size="sm"
+          className="text-xs font-normal md:text-sm"
           onClick={() => {
             trackEvent(
               questionClickSuggestion({ question, answer: suggestion.label })
