@@ -482,6 +482,25 @@ html[data-useragent*='Trident'] #js {
   animation: rainbow 30s linear infinite;
   -webkit-animation: rainbow 30s linear infinite;
 }
+.rainbow-animation-fast {
+  background: linear-gradient(
+    90deg,
+    #a2d2fd,
+    #cef1d5,
+    #ffefbc,
+    #ffdbbc,
+    #fd69d0,
+    #a2d2fd,
+    #cef1d5,
+    #ffefbc,
+    #ffdbbc,
+    #fd69d0,
+    #a2d2fd
+  );
+  background-size: 200% 200%;
+  animation: rainbow 5s linear infinite;
+  -webkit-animation: rainbow 5s linear infinite;
+}
 
 /*
   Create a rainbow-border class to apply a rainbow border to an element
