@@ -23,7 +23,7 @@ export default function Suggestions({ question, setValue }: Props) {
         <Button
           key={suggestion.label}
           data-cypress-id="suggestion"
-          size="sm"
+          size="xs"
           className="text-xs font-normal md:text-sm"
           onClick={() => {
             trackEvent(
@@ -31,7 +31,7 @@ export default function Suggestions({ question, setValue }: Props) {
             )
             setValue(suggestion.value)
           }}>
-          <Emoji className="flex items-center gap-1">
+          <Emoji className="flex items-center gap-1 leading-none">
             {capitalizeString(suggestion.label)}
           </Emoji>
         </Button>

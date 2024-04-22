@@ -15,7 +15,7 @@ export default function Voiture({ question, ...props }: Props) {
       <Question question={question} {...props} />
       <div className="mb-4 flex flex-col items-end">
         <Button
-          color="secondary"
+          color="link"
           size="xs"
           onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
           className="mb-2">
@@ -23,7 +23,11 @@ export default function Voiture({ question, ...props }: Props) {
             <Trans>Fermer</Trans>
           ) : (
             <span className="flex items-center">
-              <PencilIcon className="mr-2 stroke-primary-700" width="16" />
+              <PencilIcon
+                className="mr-2 stroke-primary-700"
+                width="16"
+                height="16"
+              />
 
               <Trans>Détailler mes trajets</Trans>
             </span>
