@@ -21,7 +21,7 @@ export const colorClassNames = {
   emerald:
     '!text-logement-400 bg-emerald-light border-2 border-emerald-dark shadow-sm hover:text-white hover:bg-logement-400 hover:text-emerald-dark hover:border-emerald-dark',
   text: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:bg-primary-200 hover:text-primary-700 hover:border-primary-200',
-  link: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:text-primary-700 underline !px-0',
+  link: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:text-primary-700 underline !px-1',
 }
 
 export const sizeClassNames = {
