@@ -14,11 +14,11 @@ export default async function Explanations() {
       </Title>
 
       <p className="md:text-lg">
-        <Trans>Depuis le siècle dernier,</Trans>{' '}
-        <strong className="text-primary-700">
-          <Trans>la concentration du carbone dans l’atmosphère augmente</Trans>
-        </strong>{' '}
         <Trans>
+          Depuis le siècle dernier,{' '}
+          <strong className="text-primary-700">
+            la concentration du carbone dans l’atmosphère augmente
+          </strong>{' '}
           tant et si bien que le climat de la planète subit des bouleversements
           aux lourdes conséquences : montée des eaux, destruction du vivant,
           explosion des catastrophes climatiques.
@@ -27,19 +27,15 @@ export default async function Explanations() {
 
       <p className="md:text-lg">
         <Trans>
-          Le consensus scientifique est formel, cette augmentation est
-        </Trans>{' '}
-        <strong className="text-primary-700">
-          <Trans>directement liée aux activités humaines :</Trans>
-        </strong>{' '}
-        <Trans>
+          Le consensus scientifique est formel, cette augmentation est{' '}
+          <strong className="text-primary-700">
+            directement liée aux activités humaines :
+          </strong>{' '}
           l’extraction, la consommation et la combustion de ressources dépassent
-          les capacités d’absorption de notre planète.
-        </Trans>{' '}
-        <strong className="text-primary-700">
-          <Trans>Il est grand temps de réduire ou remplacer</Trans>
-        </strong>{' '}
-        <Trans>
+          les capacités d’absorption de notre planète.{' '}
+          <strong className="text-primary-700">
+            Il est grand temps de réduire ou remplacer
+          </strong>{' '}
           ces activités émettrices de gaz à effet de serre, à toutes les
           échelles !
         </Trans>
