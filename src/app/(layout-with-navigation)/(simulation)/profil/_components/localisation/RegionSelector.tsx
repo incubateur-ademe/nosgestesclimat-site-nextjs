@@ -12,16 +12,17 @@ import {
 } from '@/constants/tracking/pages/profil'
 import Card from '@/design-system/layout/Card'
 import Loader from '@/design-system/layout/Loader'
+import Emoji from '@/design-system/utils/Emoji'
 import { sortSupportedRegions } from '@/helpers/localisation/sortSupportedRegions'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
-import { SuppportedRegions } from '@/types/international'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   isOpen?: boolean
-  supportedRegions: SuppportedRegions
+  supportedRegions: SupportedRegions
 }
 
 export default function RegionSelector({
@@ -45,14 +46,14 @@ export default function RegionSelector({
 
   return (
     <>
-      <details open={isOpen}>
+      <details open={isOpen} className="rounded-xl bg-gray-100 p-2">
         <summary
-          className={`middle w-auto cursor-pointer rounded-md bg-primary-100 p-4 ${
+          className={`middle w-auto cursor-pointer   p-4 ${
             isLoading ? 'pointer-events-none opacity-60' : ''
           }`}
           onClick={() => trackEvent(profilOpenRegions)}>
           <span>
-            🗺️ <Trans>Choisir une autre région</Trans>{' '}
+            <Trans>Choisir une autre région</Trans>{' '}
             <small title={`${numberOfRegions} régions`}>
               ({numberOfRegions} <Trans>disponibles</Trans>)
             </small>
@@ -79,14 +80,8 @@ export default function RegionSelector({
           className={isLoading ? 'pointer-events-none opacity-60' : ''}
           aria-disabled={isLoading || undefined}
         />
-        <Card className="mt-4 flex-row items-center">
-          <span
-            role="img"
-            aria-label="emoji world"
-            aria-hidden
-            className="mr-2">
-            🌐
-          </span>
+        <Card className="mt-4 flex-row items-center border-none bg-transparent shadow-none">
+          <Emoji className="mr-2">🌐</Emoji>
           <p className="mb-0">
             <Trans>Envie de contribuer à une version pour votre région ?</Trans>{' '}
             <a

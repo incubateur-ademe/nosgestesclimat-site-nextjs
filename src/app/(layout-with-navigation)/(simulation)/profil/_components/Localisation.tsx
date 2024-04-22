@@ -1,5 +1,6 @@
 'use client'
 
+import FlagIcon from '@/components/icons/FlagIcon'
 import CountryFlag from '@/components/misc/CountryFlag'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
@@ -7,12 +8,13 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
-import { SuppportedRegions } from '@/types/international'
+import { RegionFromGeolocation } from '@/publicodes-state/types'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import RegionModelAuthors from './localisation/RegionModelAuthors'
 import RegionSelector from './localisation/RegionSelector'
 
 type Props = {
-  supportedRegions: SuppportedRegions
+  supportedRegions: SupportedRegions
 }
 
 export default function Localisation({ supportedRegions }: Props) {
@@ -32,14 +34,9 @@ export default function Localisation({ supportedRegions }: Props) {
 
   return (
     <div className="mb-8 mt-4 sm:mt-8">
-      <h2 id="answers">
-        <span
-          role="img"
-          aria-label="emoji pin"
-          className="inline-blocl mr-3"
-          aria-hidden>
-          📍
-        </span>
+      <h2 id="answers" className="flex items-center">
+        <FlagIcon className="mr-3 fill-primary-700" aria-hidden />
+
         <span>
           <Trans>Ma région de simulation</Trans>
         </span>
@@ -66,9 +63,7 @@ export default function Localisation({ supportedRegions }: Props) {
                   color="text"
                   size="sm"
                   onClick={() => {
-                    updateRegion(
-                      initialRegion as { code: string; name: string }
-                    )
+                    updateRegion(initialRegion as RegionFromGeolocation)
                     if (tutorials.localisationBanner) {
                       showTutorial('localisationBanner')
                     }
@@ -83,9 +78,11 @@ export default function Localisation({ supportedRegions }: Props) {
                 </Button>
               </div>
             )}
-            <RegionModelAuthors
-              authors={supportedRegions[region.code][locale].authors}
-            />
+            {isRegionSupported && (
+              <RegionModelAuthors
+                authors={supportedRegions[region.code][locale].authors}
+              />
+            )}
           </div>
         </div>
       )}

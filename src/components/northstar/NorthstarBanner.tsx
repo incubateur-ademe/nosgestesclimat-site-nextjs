@@ -1,7 +1,7 @@
 'use client'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { NorthStarType } from '@/types/northstar'
 import { motion } from 'framer-motion'
 import { JSX, useEffect, useRef, useState } from 'react'
@@ -17,13 +17,9 @@ export default function NorthStarBanner({
 
   const { t } = useClientTranslation()
 
-  const { progression } = useForm()
+  const { progression } = useCurrentSimulation()
 
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
-
-  const actionChoices = currentSimulation?.actionChoices
+  const { actionChoices } = useCurrentSimulation()
 
   const actionChoicesLength = Object.values(actionChoices || {}).filter(
     (value) => value
@@ -85,7 +81,7 @@ export default function NorthStarBanner({
         setIsAnimationCompleted(true)
       }}
       id="northstarBanner"
-      className="relative m-0 h-auto w-auto rounded-lg bg-green-50 shadow-md sm:m-2">
+      className="relative m-0 h-auto w-auto rounded-xl bg-green-50 shadow-md sm:m-2">
       <button
         className="bold absolute right-0 top-0 h-10 w-10 text-center text-lg"
         onClick={closeFeedback}

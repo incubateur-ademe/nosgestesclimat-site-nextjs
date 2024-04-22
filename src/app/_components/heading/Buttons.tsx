@@ -11,13 +11,11 @@ import {
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useIsClient } from '@/hooks/useIsClient'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function Buttons() {
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
+  const { progression } = useCurrentSimulation()
 
   const isClient = useIsClient()
 
@@ -27,12 +25,10 @@ export default function Buttons() {
     linkToSimulateurPageLabel,
   } = useSimulateurPage()
 
-  const progression = currentSimulation?.progression || 0
-
   return (
     <div className="relative">
       <ButtonLink
-        className={`transition-opacity duration-500 ${
+        className={`transition-all duration-300 ${
           isClient ? 'opacity-100' : 'opacity-0'
         }`}
         href={getLinkToSimulateurPage()}
@@ -49,13 +45,13 @@ export default function Buttons() {
           }
 
           trackEvent(homeClickCtaCommencer)
-        }}
-        size="lg">
+        }}>
         <Trans>{linkToSimulateurPageLabel}</Trans>
       </ButtonLink>
+
       {progression ? (
         <Link
-          className={`absolute left-1/2 top-full -translate-x-1/2 translate-y-6 whitespace-nowrap transition-opacity delay-200 duration-1000 md:text-lg ${
+          className={`absolute left-1/2 top-full -translate-x-1/2 translate-y-6 whitespace-nowrap transition-all delay-200 duration-300 md:text-lg ${
             isClient ? 'opacity-100' : 'opacity-0'
           }`}
           onClick={() => {

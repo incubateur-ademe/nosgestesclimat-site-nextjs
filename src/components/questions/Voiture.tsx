@@ -2,6 +2,7 @@ import Question from '@/components/form/Question'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useState } from 'react'
+import PencilIcon from '../icons/PencilIcon'
 import JourneysInput from './voiture/JourneysInput'
 
 type Props = {
@@ -21,9 +22,11 @@ export default function Voiture({ question, ...props }: Props) {
           {isOpen ? (
             <Trans>Fermer</Trans>
           ) : (
-            <>
-              <Trans>Détailler mes trajets</Trans> 🚗
-            </>
+            <span className="flex items-center">
+              <PencilIcon className="mr-2 stroke-primary-700" width="16" />
+
+              <Trans>Détailler mes trajets</Trans>
+            </span>
           )}
         </Button>
         {isOpen ? <JourneysInput question={question} {...props} /> : null}

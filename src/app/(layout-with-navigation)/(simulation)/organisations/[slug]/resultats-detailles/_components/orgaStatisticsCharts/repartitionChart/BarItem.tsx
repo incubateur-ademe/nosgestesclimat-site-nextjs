@@ -25,9 +25,9 @@ export default function BarItem({
       data-tooltip-content={t('{{value}} tonnes', {
         value: valueToDisplay.toFixed(2),
       })}
-      className={`absolute h-8 w-2 bg-primary-500 opacity-20 hover:scale-[10%] ${
+      className={`absolute h-8 w-2 bg-primary-700 opacity-20 hover:scale-[10%] ${
         shouldBeHighlighted
-          ? '!z-10 border-x border-white !bg-secondary-500 !opacity-100'
+          ? '!z-10 border-x border-white !bg-secondary-700 !opacity-100'
           : ''
       }`}
       style={{

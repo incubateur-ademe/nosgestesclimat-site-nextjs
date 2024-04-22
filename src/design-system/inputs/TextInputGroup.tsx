@@ -17,6 +17,7 @@ type Props = {
   maxLength?: number
   disabled?: boolean
   debounceTimeout?: number
+  readOnly?: boolean
 }
 
 export default function TextInputGroup({
@@ -32,6 +33,7 @@ export default function TextInputGroup({
   required = false,
   disabled,
   debounceTimeout = 100,
+  readOnly = false,
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
   return (
@@ -52,6 +54,7 @@ export default function TextInputGroup({
       ) : null}
 
       <DebounceInput
+        readOnly={readOnly}
         debounceTimeout={debounceTimeout}
         name={name}
         type={type}
@@ -64,12 +67,14 @@ export default function TextInputGroup({
         readOnly={disabled}
         {...props}
         className={twMerge(
-          `border-grey-300 ${
-            helperText || label ? ' !mt-3' : ''
-          } max-w-[30rem] rounded-md border border-solid bg-grey-100 p-4 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500`,
-          `${className} ${
-            error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
-          } ${disabled ? 'cursor-not-allowed opacity-50' : ''}`
+          helperText || label ? ' !mt-3' : '',
+          `border-grey-300 max-w-[30rem] rounded-xl border border-solid bg-white p-4 text-sm transition-colors read-only:bg-gray-200`,
+          error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : '',
+          disabled ? 'cursor-not-allowed opacity-50' : '',
+          readOnly
+            ? 'cursor-not-allowed'
+            : 'focus:border-primary-700 focus:ring-2 focus:ring-primary-700',
+          className
         )}
       />
 

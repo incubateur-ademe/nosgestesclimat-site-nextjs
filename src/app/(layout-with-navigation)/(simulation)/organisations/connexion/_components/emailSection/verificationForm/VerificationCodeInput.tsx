@@ -1,7 +1,7 @@
 import { marianne } from '@/app/layout'
+import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import Trans from '@/components/translation/Trans'
 import Loader from '@/design-system/layout/Loader'
-import Emoji from '@/design-system/utils/Emoji'
 import VerificationInput from 'react-verification-input'
 
 type Props = {
@@ -23,14 +23,14 @@ export default function VerificationCodeInput({
         length={6}
         classNames={{
           container: 'container w-[16rem] md:w-[20rem]',
-          character: `border border-gray-300 rounded-lg w-[2rem] text-transparent font-medium ${
+          character: `border border-gray-300 rounded-xl w-[2rem] text-transparent font-medium ${
             marianne.className
           } ${inputError ? '!border-red-700 border-2' : ''} ${
             isSuccessValidate ? '!border-green-700 border-2' : ''
           }`,
           characterInactive: 'text-transparent',
           characterSelected: 'character--selected',
-          characterFilled: '!text-primary-500',
+          characterFilled: '!text-primary-700',
         }}
         onChange={handleValidateVerificationCode}
       />
@@ -55,7 +55,7 @@ export default function VerificationCodeInput({
 
       {isSuccessValidate && (
         <div className="mt-4 flex items-baseline gap-2 pl-2 text-sm">
-          <Emoji>✅</Emoji>
+          <CheckCircleIcon className="h-4 w-4 fill-green-700" />
 
           <span className="text-green-700">
             <Trans>Votre code est valide !</Trans>

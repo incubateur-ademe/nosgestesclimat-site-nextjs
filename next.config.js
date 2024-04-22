@@ -1,3 +1,4 @@
+//@ts-check
 const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
 })
@@ -24,11 +25,29 @@ const nextConfig = {
   async redirects() {
     return redirects
   },
+  webpack: (config, { dev }) => {
+    if (config.cache && !dev) {
+      config.cache = Object.freeze({
+        type: 'memory',
+      })
+      config.cache.maxMemoryGenerations = 0
+    }
+    // Important: return the modified config
+    return config
+  },
   experimental: {
     mdxRs: true,
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     outputFileTracingExcludes: {
       '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
+    },
+    webpackBuildWorker: true,
+    turbo: {
+      rules: {
+        '*.yaml': {
+          loaders: ['yaml-loader'],
+        },
+      },
     },
   },
 }

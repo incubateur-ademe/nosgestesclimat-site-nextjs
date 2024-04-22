@@ -7,6 +7,7 @@ import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
 import {
   FormProvider,
+  useCurrentSimulation,
   useEngine,
   useRule,
   useTempEngine,
@@ -34,7 +35,9 @@ export default function ActionDetail({
 
   const { rules, getRuleObject, extendedFoldedSteps } = useTempEngine()
 
-  const { getCurrentSimulation, toggleActionChoice } = useUser()
+  const { toggleActionChoice } = useUser()
+
+  const { actionChoices } = useCurrentSimulation()
 
   const dottedName = decodeRuleName(formattedDottedName ?? '')
 
@@ -46,13 +49,9 @@ export default function ActionDetail({
   const nbRemainingQuestions = remainingQuestions?.length
   const rule = useRule(dottedName)
 
-  const currentSimulation = getCurrentSimulation()
-
-  if (!currentSimulation || !rules) {
+  if (!rules) {
     return null
   }
-
-  const actionChoices = currentSimulation.actionChoices
 
   const { title } = rule
 

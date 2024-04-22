@@ -71,7 +71,7 @@ export default function OwnerAdminSection({ group }: Props) {
       </p>
 
       {isConfirming && !isSuccess && (
-        <Card className="border-none bg-grey-100">
+        <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
             <Trans>
               Cette opération est définitive et supprimera le groupe pour tous
@@ -85,7 +85,7 @@ export default function OwnerAdminSection({ group }: Props) {
               }}
               size="sm"
               color="secondary">
-              Annuler
+              <Trans>Annuler</Trans>
             </Button>
 
             <Button
@@ -93,7 +93,7 @@ export default function OwnerAdminSection({ group }: Props) {
               size="sm"
               color="primary"
               data-cypress-id="button-confirm-delete-group">
-              Supprimer
+              <Trans>Supprimer</Trans>
             </Button>
           </div>
         </Card>
@@ -107,12 +107,12 @@ export default function OwnerAdminSection({ group }: Props) {
             setIsConfirming(true)
           }}
           data-cypress-id="button-delete-group">
-          Supprimer le groupe
+          <Trans>Supprimer le groupe</Trans>
         </Button>
       )}
 
       {isSuccess && (
-        <Card className="border-none bg-grey-100">
+        <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
             <Trans>
               Votre groupe a été supprimé. Vous allez être redirigé vers la page

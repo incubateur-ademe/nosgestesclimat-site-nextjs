@@ -1,6 +1,7 @@
 'use client'
 
 import VerticalBarChartItem from '@/components/charts/verticalBarChart/VerticalBarChartItem'
+import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import { formatValue } from 'publicodes'
@@ -31,6 +32,7 @@ export default function CategoryChartItem({
         'La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.',
         { formattedValue, title }
       )}
+      barColor={getBackgroundColor(category)}
       title={title ?? ''}
       icons={icons}
     />

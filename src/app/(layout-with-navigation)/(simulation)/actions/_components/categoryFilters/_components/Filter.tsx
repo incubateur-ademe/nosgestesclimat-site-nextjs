@@ -1,7 +1,11 @@
 'use client'
 
 import { actionsClickFilter } from '@/constants/tracking/pages/actions'
-import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
+import {
+  getBackgroundColor,
+  getBackgroundLightColor,
+  getTextDarkColor,
+} from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -40,14 +44,14 @@ export default function Filter({ dottedName, countByCategory }: Props) {
     <li
       className={`height-[1.8rem] rounded-md ${
         !categorySelected || categorySelected === dottedName
-          ? getBackgroundColor(dottedName)
+          ? getBackgroundLightColor(dottedName)
           : 'bg-gray-200'
       }`}
       style={{
         backgroundColor: getBackgroundColor(),
       }}>
       <button
-        className="p-2 text-xs font-bold text-white"
+        className={`p-2 text-xs font-bold ${getTextDarkColor(dottedName)}`}
         onClick={() => {
           trackEvent(actionsClickFilter(dottedName))
           router.replace(buildURL(), {
@@ -55,7 +59,8 @@ export default function Filter({ dottedName, countByCategory }: Props) {
           })
         }}>
         {title}{' '}
-        <span className="ml-2 inline-block w-4 rounded-full bg-white text-primary-700">
+        <span
+          className={`ml-2 inline-block w-4 rounded-full bg-white ${getTextDarkColor(dottedName)}`}>
           {countByCategory[dottedName] || 0}
         </span>
       </button>

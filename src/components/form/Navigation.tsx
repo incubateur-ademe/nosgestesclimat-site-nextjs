@@ -12,7 +12,7 @@ import {
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
-import { useForm, useRule } from '@/publicodes-state'
+import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { MouseEvent, useCallback, useMemo } from 'react'
@@ -33,7 +33,9 @@ export default function Navigation({
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
 
-  const { isMissing, addFoldedStep, plancher, value } = useRule(question)
+  const { isMissing, plancher, value } = useRule(question)
+
+  const { updateCurrentSimulation } = useCurrentSimulation()
 
   const isNextDisabled =
     tempValue !== undefined && plancher !== undefined && tempValue < plancher
@@ -63,17 +65,17 @@ export default function Navigation({
       }
 
       if (isMissing) {
-        addFoldedStep(question)
+        await updateCurrentSimulation({ foldedStepToAdd: question })
       }
 
       handleMoveFocus()
 
-      if (!noNextQuestion) {
-        gotoNextQuestion()
+      if (noNextQuestion) {
+        onComplete()
         return
       }
 
-      onComplete()
+      gotoNextQuestion()
     },
     [
       question,
@@ -82,7 +84,7 @@ export default function Navigation({
       isMissing,
       value,
       onComplete,
-      addFoldedStep,
+      updateCurrentSimulation,
       startTime,
     ]
   )
@@ -116,6 +118,7 @@ export default function Navigation({
     <div className="flex justify-end  gap-4">
       {!noPrevQuestion ? (
         <Button
+          className="px-4 py-1 text-base md:px-7 md:py-3 md:text-lg"
           onClick={() => {
             trackEvent(questionClickPrevious({ question }))
 
@@ -132,6 +135,7 @@ export default function Navigation({
       <Button
         color={isMissing ? 'secondary' : 'primary'}
         disabled={isNextDisabled}
+        className="px-4 py-1 text-base md:px-7 md:py-3 md:text-lg"
         data-cypress-id="next-question-button"
         onClick={handleGoToNextQuestion}>
         {noNextQuestion

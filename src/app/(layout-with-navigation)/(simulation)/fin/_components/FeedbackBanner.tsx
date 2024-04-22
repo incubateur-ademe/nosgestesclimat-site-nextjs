@@ -7,7 +7,12 @@ import SmileyGrading from '@/design-system/inputs/SmileyGrading'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
+import {
+  useCurrentSimulation,
+  useEngine,
+  useSimulation,
+  useUser,
+} from '@/publicodes-state'
 import { NorthStarType, NorthStarValue } from '@/types/northstar'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
@@ -26,7 +31,8 @@ export default function FeedbackBanner({ text, type, className }: Props) {
   const { t } = useClientTranslation()
   const { user, updateNorthStarRatings, currentSimulationId } = useUser()
   const { getNumericValue } = useEngine()
-  const { categories, progression } = useForm()
+  const { categories } = useSimulation()
+  const { progression } = useCurrentSimulation()
   const hasJustAnswered = useRef(false)
 
   const {
@@ -61,7 +67,7 @@ export default function FeedbackBanner({ text, type, className }: Props) {
   }
 
   const cardClassName = twMerge(
-    'border-none bg-grey-100 w-[24rem] max-w-full',
+    'border-none shadow-none bg-primary-50 w-[24rem] rounded-xl max-w-full',
     className
   )
 

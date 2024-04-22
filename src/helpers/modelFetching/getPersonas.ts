@@ -1,4 +1,4 @@
-import { Persona } from '@/publicodes-state/types'
+import { personas } from '@incubateur-ademe/nosgestesclimat'
 import { getFileFromModel } from './getFileFromModel'
 
 type Props = {
@@ -12,8 +12,11 @@ export async function getPersonas(
   { locale = 'fr', PRNumber }: Props = {
     locale: 'fr',
   }
-): Promise<Record<string, Persona>> {
-  const fileName = `personas-${locale}.json`
+): Promise<any> {
+  if (PRNumber) {
+    const fileName = `personas-${locale}.json`
+    return getFileFromModel({ fileName, PRNumber })
+  }
 
-  return getFileFromModel({ fileName, PRNumber })
+  return Promise.resolve(personas[locale])
 }

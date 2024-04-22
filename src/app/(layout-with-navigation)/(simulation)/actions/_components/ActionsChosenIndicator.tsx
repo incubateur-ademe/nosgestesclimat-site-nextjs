@@ -2,18 +2,12 @@
 
 import Trans from '@/components/translation/Trans'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 
 export default function ActionsChosenIndicator() {
   const { t } = useClientTranslation()
 
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
-
-  if (!currentSimulation) return
-
-  const actionChoices = currentSimulation.actionChoices
+  const { actionChoices } = useCurrentSimulation()
 
   const count = Object.values(actionChoices).filter((a) => a === true).length
 

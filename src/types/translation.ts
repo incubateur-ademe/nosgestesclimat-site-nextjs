@@ -7,8 +7,8 @@ export enum Lang {
   // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   Fr = 'Fr',
   En = 'En',
+  Es = 'Es',
   // Commented until validation by a native speaker
-  // Es = 'Es',
   // It = 'It',
 }
 

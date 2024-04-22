@@ -4,17 +4,18 @@ import {
   simulationSimulationHalfCompleted,
   simulationSimulationStarted,
 } from '@/constants/tracking/simulation'
-import { useForm } from '@/publicodes-state'
+import { useCurrentSimulation, useForm } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef } from 'react'
 
 export function useTrackSimulateur() {
   const {
-    progression,
     isFirstQuestionOfCategory,
     isLastQuestionOfCategory,
     currentCategory,
   } = useForm()
+
+  const { progression } = useCurrentSimulation()
 
   const prevProgression = useRef(progression)
 

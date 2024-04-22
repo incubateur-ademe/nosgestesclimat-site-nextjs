@@ -17,7 +17,7 @@ export default function MosaicQuestion({ question, isMissing }: Props) {
   const { title, icons } = useRule(parent)
 
   return (
-    <span className="relative flex justify-between rounded-lg bg-primary-100 p-4 text-sm">
+    <span className="relative flex justify-between rounded-xl bg-primary-100 p-4 text-sm">
       <span className="flex-1">
         {icons} {title}
       </span>

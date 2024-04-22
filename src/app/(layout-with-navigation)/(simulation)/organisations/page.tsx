@@ -10,7 +10,7 @@ export default function Page() {
       <div>
         <HeroSection />
 
-        <Separator className="my-12" />
+        <Separator className="my-12 opacity-0 lg:opacity-100" />
 
         <IllustratedPointsList />
 

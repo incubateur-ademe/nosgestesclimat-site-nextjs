@@ -6,7 +6,7 @@ import { simulateurClickSommaireQuestion } from '@/constants/tracking/pages/simu
 import { foldEveryQuestionsUntil } from '@/helpers/foldEveryQuestionsUntil'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useDebug } from '@/hooks/useDebug'
-import { useForm, useRule } from '@/publicodes-state'
+import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
 
 const statusClassNames = {
   missing: 'bg-gray-100 text-gray-500',
-  current: 'border-2 border-primary-500 bg-primary-300',
+  current: 'border-2 border-primary-700 bg-primary-300',
   default: 'bg-primary-200',
 }
 export default function Question({ question, toggleQuestionList }: Props) {
@@ -29,8 +29,9 @@ export default function Question({ question, toggleQuestionList }: Props) {
     unit,
     type,
     category,
-    addFoldedStep,
   } = useRule(question)
+
+  const { updateCurrentSimulation } = useCurrentSimulation()
 
   const { currentQuestion, setCurrentQuestion, relevantQuestions } = useForm()
 
@@ -42,13 +43,13 @@ export default function Question({ question, toggleQuestionList }: Props) {
   return (
     <button
       disabled={!isDebug && !isFolded}
-      className={`relative mb-2 flex w-full flex-col items-start justify-between gap-2 overflow-hidden rounded-lg p-4 pl-6 text-left font-bold md:flex-row md:items-center md:gap-4 ${statusClassNames[status]} `}
+      className={`relative mb-2 flex w-full flex-col items-start justify-between gap-2 overflow-hidden rounded-xl p-4 pl-6 text-left font-bold md:flex-row md:items-center md:gap-4 ${statusClassNames[status]} `}
       onClick={() => {
         if (isDebug) {
           foldEveryQuestionsUntil({
             question,
             relevantQuestions,
-            addFoldedStep,
+            updateCurrentSimulation,
           })
         }
         setCurrentQuestion(question)
@@ -74,7 +75,7 @@ export default function Question({ question, toggleQuestionList }: Props) {
       {!isMissing && displayValue !== 'mosaic' ? (
         <div className="align-center flex justify-end whitespace-nowrap md:text-lg">
           <div
-            className={`rounded-lg bg-white px-4 py-2 ${
+            className={`rounded-xl bg-white px-4 py-2 ${
               isMissing ? 'text-gray-300' : 'text-primary-700'
             } first-letter:uppercase`}>
             {type === 'number' && (
