@@ -12,24 +12,39 @@ export default async function Explanations() {
       <Title tag="h2" className="font-medium md:text-3xl">
         {t(`L'empreinte climat, qu'est-ce que c'est\u202f?`)}
       </Title>
+
       <p className="md:text-lg">
+        <Trans>Depuis le siècle dernier,</Trans>{' '}
+        <strong className="text-primary-700">
+          <Trans>la concentration du carbone dans l’atmosphère augmente</Trans>
+        </strong>{' '}
         <Trans>
-          Depuis le siècle dernier, la concentration du carbone dans
-          l’atmosphère augmente tant et si bien que le climat de la planète
-          subit des bouleversements aux lourdes conséquences : montée des eaux,
-          destruction du vivant, explosion des catastrophes climatiques.
+          tant et si bien que le climat de la planète subit des bouleversements
+          aux lourdes conséquences : montée des eaux, destruction du vivant,
+          explosion des catastrophes climatiques.
         </Trans>
       </p>
+
       <p className="md:text-lg">
         <Trans>
           Le consensus scientifique est formel, cette augmentation est
-          directement liée aux activités humaines : l’extraction, la
-          consommation et la combustion de ressources dépassent les capacités
-          d’absorption de notre planète. Il est grand temps de réduire ou
-          remplacer ces activités émettrices de gaz à effet de serre, à toutes
-          les échelles !
+        </Trans>{' '}
+        <strong className="text-primary-700">
+          <Trans>directement liée aux activités humaines :</Trans>
+        </strong>{' '}
+        <Trans>
+          l’extraction, la consommation et la combustion de ressources dépassent
+          les capacités d’absorption de notre planète.
+        </Trans>{' '}
+        <strong className="text-primary-700">
+          <Trans>Il est grand temps de réduire ou remplacer</Trans>
+        </strong>{' '}
+        <Trans>
+          ces activités émettrices de gaz à effet de serre, à toutes les
+          échelles !
         </Trans>
       </p>
+
       <p className="md:mb-8 md:text-lg">
         <Trans>
           Le simulateur d’empreinte carbone individuelle permet de comprendre
@@ -38,6 +53,7 @@ export default async function Explanations() {
           pour le réduire.
         </Trans>
       </p>
+
       <ButtonLink
         color="secondary"
         href="/empreinte-climat"

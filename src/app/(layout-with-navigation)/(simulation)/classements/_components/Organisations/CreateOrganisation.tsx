@@ -26,7 +26,7 @@ export default function CreateOrganisation({ organisation }: Props) {
         className="font-bold"
         href="/organisations/connexion"
         onClick={() => trackEvent(classementCreateOrganisation)}>
-        <Trans>Créer mon organisation</Trans>
+        <Trans>Créer ou accéder à mon organisation</Trans>
       </Link>
     </>
   )

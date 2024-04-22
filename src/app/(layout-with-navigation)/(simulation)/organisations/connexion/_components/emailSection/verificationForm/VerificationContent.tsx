@@ -1,5 +1,5 @@
+import MailIcon from '@/components/icons/MailIcon'
 import Trans from '@/components/translation/Trans'
-import Image from 'next/image'
 import VerificationCodeInput from './VerificationCodeInput'
 
 type Props = {
@@ -19,15 +19,9 @@ export default function VerificationContent({
 }: Props) {
   return (
     <>
-      <h2>
+      <h2 className="flex items-center gap-2">
         <Trans>Vérifiez votre boîte e-mail !</Trans>
-        <Image
-          src="/images/organisations/envelop.svg"
-          width="24"
-          height="100"
-          alt=""
-          className="ml-2 inline-block align-baseline md:hidden"
-        />
+        <MailIcon className="h-8 w-8 fill-primary-700" />
       </h2>
 
       <p>
@@ -36,7 +30,7 @@ export default function VerificationContent({
           <Trans>code de vérification</Trans>
         </strong>{' '}
         <Trans>à </Trans>
-        {email} .{' '}
+        {email}.{' '}
       </p>
 
       <form>
