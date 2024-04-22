@@ -31,7 +31,7 @@ export default function Suggestions({ question, setValue }: Props) {
             )
             setValue(suggestion.value)
           }}>
-          <Emoji className="flex items-center gap-1">
+          <Emoji className="flex items-center gap-1 leading-none">
             {capitalizeString(suggestion.label)}
           </Emoji>
         </Button>
