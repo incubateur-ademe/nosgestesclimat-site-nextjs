@@ -16,7 +16,7 @@ export default function Voiture({ question, ...props }: Props) {
       <div className="mb-4 flex flex-col items-end">
         <Button
           color="secondary"
-          size="sm"
+          size="xs"
           onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
           className="mb-2">
           {isOpen ? (
