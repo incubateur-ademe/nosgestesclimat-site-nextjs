@@ -2,23 +2,15 @@
 
 import Trans from '@/components/translation/Trans'
 import { endClickNorthstar } from '@/constants/tracking/pages/end'
-import { SIMULATION_URL } from '@/constants/urls'
 import SmileyGrading from '@/design-system/inputs/SmileyGrading'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
+import { useSaveNorthstarRating } from '@/hooks/northstar/useSaveNorthstarRating'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import {
-  useCurrentSimulation,
-  useEngine,
-  useSimulation,
-  useUser,
-} from '@/publicodes-state'
+import { useUser } from '@/publicodes-state'
 import { NorthStarType, NorthStarValue } from '@/types/northstar'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { captureException } from '@sentry/react'
-import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
-import { ReactNode, useRef } from 'react'
+import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -29,41 +21,17 @@ type Props = {
 
 export default function FeedbackBanner({ text, type, className }: Props) {
   const { t } = useClientTranslation()
-  const { user, updateNorthStarRatings, currentSimulationId } = useUser()
-  const { getNumericValue } = useEngine()
-  const { categories } = useSimulation()
-  const { progression } = useCurrentSimulation()
-  const hasJustAnswered = useRef(false)
+  const { user, updateNorthStarRatings } = useUser()
 
-  const {
-    mutate: saveRating,
-    isPending,
-    isSuccess,
-  } = useMutation({
-    mutationKey: ['northstar', 'post'],
-    mutationFn: () =>
-      axios
-        .post(SIMULATION_URL, {
-          data: {
-            results: progression > 0 && {
-              categories: categories.map((category) =>
-                getNumericValue(category)
-              ),
-              total: getNumericValue('bilan'),
-            },
-            ratings: user.northStarRatings,
-          },
-          id: currentSimulationId,
-        })
-        .then((response) => response.data)
-        .catch((error) => captureException(error)),
-  })
+  const { isPending, isSuccess, isError, saveNorthstarRating } =
+    useSaveNorthstarRating()
 
-  const handleGrading = (grade: NorthStarValue) => {
-    hasJustAnswered.current = true
-    updateNorthStarRatings({ type, value: grade })
-    saveRating()
-    trackEvent(endClickNorthstar({ type, value: grade }))
+  const handleGrading = async (value: NorthStarValue) => {
+    await saveNorthstarRating({ type, value })
+
+    updateNorthStarRatings({ type, value })
+
+    trackEvent(endClickNorthstar({ type, value }))
   }
 
   const cardClassName = twMerge(
@@ -71,18 +39,28 @@ export default function FeedbackBanner({ text, type, className }: Props) {
     className
   )
 
-  // Display nothing the next time the user visits this page
-  if (!hasJustAnswered?.current && user.northStarRatings?.[type]) return null
-
   // Display the thank you message if the user has just answered
-  if (hasJustAnswered?.current && (isSuccess || user.northStarRatings?.[type]))
+  if (isSuccess)
     return (
       <Card
-        className={`${cardClassName} h-[200px] flex-row items-center justify-center gap-3`}>
+        className={`${cardClassName} flex-row items-center justify-center gap-3`}>
         {t('Merci pour votre retour\u202f!')}
         <Emoji className="text-2xl">😊</Emoji>
       </Card>
     )
+
+  // Display the error message in case of error
+  if (isError)
+    return (
+      <Card
+        className={`${cardClassName} flex-row items-center justify-center gap-3`}>
+        {t('Une erreur est survenue\u202f!')}
+        <Emoji className="text-2xl">😕</Emoji>
+      </Card>
+    )
+
+  // Display nothing the next time the user visits this page
+  if (user.northStarRatings?.[type]) return null
 
   return (
     <Card className={`${cardClassName} mt-8 pb-2`}>
