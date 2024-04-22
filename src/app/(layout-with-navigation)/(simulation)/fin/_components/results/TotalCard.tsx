@@ -16,10 +16,12 @@ export default function TotalCard() {
 
   const { numericValue } = useRule('bilan')
 
-  const { formattedValue, unit } = formatCarbonFootprint(numericValue)
+  const { formattedValue, unit } = formatCarbonFootprint(numericValue, {
+    t,
+  })
 
   return (
-    <Card className="w-full flex-row items-center rounded-lg bg-primary-700 p-6 text-white shadow-none md:px-10">
+    <Card className="w-full flex-row items-center rounded-xl bg-primary-700 p-6 text-white shadow-none md:px-10">
       <div className="flex-1">
         <p className="mb-0 text-3xl md:text-4xl">
           <strong>{formattedValue}</strong>{' '}
@@ -27,11 +29,11 @@ export default function TotalCard() {
         </p>
 
         <p className="mb-0 md:text-lg">
-          <span className="text-primary-200">
+          <span className="text-primary-50">
             <Trans>de</Trans>{' '}
           </span>
           CO₂-e{' '}
-          <span className="text-primary-200">
+          <span className="text-primary-50">
             <Trans>chaque année</Trans>
           </span>
         </p>
@@ -42,16 +44,16 @@ export default function TotalCard() {
           aria-label={t(
             "Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet."
           )}
-          className="mt-2 text-xs text-white hover:text-primary-200 md:text-sm"
+          className="mt-2 flex items-center text-xs text-white hover:text-primary-200 md:text-sm"
           href="/empreinte-climat"
           onClick={() => trackEvent(endClickEmpreinte)}>
-          <Trans>Qu'est-ce que ça veut dire&nbsp;?&nbsp;</Trans>
+          <Trans>Qu'est-ce que ça veut dire ?</Trans> 
           <ExternalLinkIcon className="stroke-white" />
         </Link>
       </div>
 
       <div>
-        <Emoji className="text-5xl md:text-8xl">🌍</Emoji>
+        <Emoji className="z-10 mr-4 text-8xl">🌍</Emoji>
       </div>
     </Card>
   )

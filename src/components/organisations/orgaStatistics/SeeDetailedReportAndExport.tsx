@@ -1,12 +1,12 @@
 'use client'
 
+import PresentationChartIcon from '@/components/icons/PresentationChartIcon'
 import Trans from '@/components/translation/Trans'
 import {
   organisationsDashboardClickRapportDetaille,
   organisationsDashboardExportData,
 } from '@/constants/tracking/pages/organisationsDashboard'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import Emoji from '@/design-system/utils/Emoji'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useParams } from 'next/navigation'
@@ -20,13 +20,12 @@ export default function SeeDetailedReportAndExport() {
   return (
     <section className="flex flex-wrap justify-center gap-4 pb-8 md:justify-start">
       <ButtonLink
-        size="lg"
         href={`/organisations/${params.slug}/resultats-detailles`}
-        className="!text-sm"
         onClick={() => {
           trackEvent(organisationsDashboardClickRapportDetaille)
         }}>
-        <Emoji className="mr-2">📊</Emoji>
+        <PresentationChartIcon className="mr-2 fill-white" />
+
         <Trans>Voir le rapport détaillé</Trans>
       </ButtonLink>
 

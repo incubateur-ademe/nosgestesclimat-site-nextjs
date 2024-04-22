@@ -1,5 +1,6 @@
 'use client'
 
+import Baseline from '@/components/organisations/Baseline'
 import Trans from '@/components/translation/Trans'
 import {
   organisationsAccueilClickCommencer,
@@ -19,31 +20,13 @@ export default function HeroSection() {
         </h1>
 
         <p className="mb-12 text-sm md:text-lg">
-          <Trans>Vous souhaitez mobiliser votre</Trans>{' '}
-          <strong className="text-primary-500">
-            <Trans>entreprise</Trans>
-          </strong>
-          <Trans>, votre</Trans>{' '}
-          <strong className="text-primary-500">
-            <Trans>organisation</Trans>
-          </strong>
-          ,{' '}
-          <strong className="text-primary-500">
-            <Trans>association</Trans>
-          </strong>
-          , <Trans>ou </Trans>{' '}
-          <strong className="text-primary-500">
-            <Trans>salle de classe</Trans>
-          </strong>
-          &nbsp;?{' '}
-          <Trans>Découvrez nos outils pour vous simplifier la vie&nbsp;!</Trans>
+          <Baseline />
         </p>
 
         <div className="flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-start md:items-baseline md:gap-8 lg:justify-start">
           <ButtonLink
             href="/organisations/connexion"
-            trackingEvent={organisationsAccueilClickCommencer}
-            size="lg">
+            trackingEvent={organisationsAccueilClickCommencer}>
             <Trans>Commencez</Trans>
           </ButtonLink>
 

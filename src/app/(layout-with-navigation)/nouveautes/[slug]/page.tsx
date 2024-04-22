@@ -2,6 +2,7 @@ import Link from '@/components/Link'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import Trans from '@/components/translation/Trans'
 import Markdown from '@/design-system/utils/Markdown'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { capitalizeString } from '@/utils/capitalizeString'
@@ -12,12 +13,14 @@ type Props = {
 }
 
 export async function generateMetadata({ params: { slug } }: Props) {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: `${capitalizeString(decodeURI(slug))?.replaceAll(
       '-',
       ' '
-    )}, nouveautés - Nos Gestes Climat`,
-    description: 'Découvrez les nouveautés du site Nos Gestes Climat.',
+    )}, ${t('nouveautés - Nos Gestes Climat')}`,
+    description: t('Découvrez les nouveautés du site Nos Gestes Climat.'),
     params: { slug },
   })
 }

@@ -6,10 +6,10 @@ entries:
   Actions d'engagement: Commitment actions
   Actions négatives: Negative actions
   'Actions écartées :': 'Discarded actions:'
-  Agir: Act
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": 'This contribution will be public: do not put sensitive information in it'
   Charger: Load
-  Chargée: In charge
+  Chargée: Loaded
+  Chargée.lock: Loaded
   Choisir l'action: Choose the action
   Choisir le type de tri des actions: Choose the type of stock sorting
   Choisir une autre région: Choose another region
@@ -39,9 +39,8 @@ entries:
   Je ne sais pas: I don't know
   Label: Label
   Le modèle d'empreinte carbone de référence: The reference carbon footprint model
-  Le test: The test
+  Le test: The test
   Le titre bref de votre problème: The short title of your problem
-  Les nouveautés ✨: What's new ✨
   Mon historique des simulations: My simulation history
   Mon profil: My profile
   Non: No
@@ -122,12 +121,14 @@ entries:
   plus de 10 kg: more than 10 kg
   plus de 10 tonnes: more than 10 tonnes
   plus de 100 kg: over 100 kg
-  publicodes.ActionTutorial.félicitation: You have completed your simulation, 👏 well done!
-  publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation, 👏 bravo !
+  publicodes.ActionTutorial.félicitation: You have completed your simulation
+  bravo !: well done!
+  publicodes.ActionTutorial.félicitation.lock: You have completed your simulation
+  bravo !.lock: well done!
   publicodes.ActionTutorial.msgEstimation: You now know your footprint, estimated at {{value}} {{unit}}, and you probably already have ideas for reducing it...
   publicodes.ActionTutorial.msgEstimation.lock: Vous connaissez maintenant votre empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des idées pour la réduire...
-  publicodes.ActionTutorial.msgPrécision: 💡 To improve accuracy, some actions will ask you a few more questions.
-  publicodes.ActionTutorial.msgPrécision.lock: 💡 Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.
+  publicodes.ActionTutorial.msgPrécision: To improve accuracy, some actions will ask you a few extra questions.
+  publicodes.ActionTutorial.msgPrécision.lock: Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.
   publicodes.ActionTutorial.msgPrésentation: 'To help you, we will present you with <2>a list of actions</2>:'
   publicodes.ActionTutorial.msgPrésentation.lock: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} remaining question{{pluralSuffix}}'
@@ -150,8 +151,8 @@ entries:
   publicodes.Personas.description.lock: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du simulateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le simulateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
   publicodes.Profil.locationDonnées: <0>Where is my data stored? </0><1>Your data is stored in your browser, so you have complete control over it.</1>
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
-  publicodes.Profil.recap: You have completed the test at {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
-  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
+  publicodes.Profil.recap: You have completed the test at {{percentFinished}} % ({{answeredQuestionsLength}} questions), selected {{chosenActions}} action(s) and declined {{declinedActions}} action(s).
+  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), selected {{chosenActions}} action(s) and declined {{declinedActions}} action(s).
   publicodes.Profil.simulations: Every simulation you make is saved in your web browser. Only you have access to it.
   publicodes.Profil.simulations.lock: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
   publicodes.SimulationMissing.personnas: You can also continue with a <2>typical profile</2>.
@@ -163,13 +164,13 @@ entries:
   sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
   sélectionnées: selected
   tonne: tonne
+  tonne.lock: ton
   tonnes: tonnes
+  tonnes.lock: tons
   trajets saisis en moyenne: trips entered on average
   visites: visits
   À propos: About us
   ◀ Retour à la liste des fiches: ◀ Back to the list of cards
-  ✅ sélectionnez celles qui vous intéressent: ✅ select the ones that interest you
-  ❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.: ❌ discard those that seem too ambitious or out of place.
   👍 Accepter: 👍 Accept
   👎 Refuser: 👎 Refuse
   👤 Vous utilisez actuellement le persona: 👤 You are currently using the persona
@@ -235,7 +236,6 @@ entries:
   Comparez vos résultats avec votre famille ou un groupe d'amis.: Compare your results with your family or a group of friends.
   Comparez vos résultats avec votre famille ou un groupe d’amis: Compare your results with your family or a group of friends
   Créer un autre groupe: Create another group
-  Créez un autre groupe: Create another group
   Il sera visible uniquement par les participants du groupe: It will be visible only to group participants
   Créez votre premier groupe: Create your first group
   Le classement: The ranking
@@ -247,7 +247,6 @@ entries:
   Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Share this page with your friends and family to let them join your group.
   Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données: Only to allow you to find your group or delete your data
   Oups, une erreur s'est produite au moment de récupérer les données du groupe.: Oops, an error occurred while retrieving the group data.
-  Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé: Edit group name, opens an automatically focused input field
   Veuillez renseigner un prénom ou un pseudonyme.: Please enter a first name or pseudonym.
   Ok, sauvegarder la modification: Ok, save the modification
   Veuillez renseigner un nom.: Please enter a name.
@@ -267,9 +266,7 @@ entries:
   publicodes.Personas.maj.lock: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du simulateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le simulateur).</1></1>
   Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.: This page lets you navigate through the Nos Gestes Climat paths as if you were one of the profiles we've listed.
   Créer un groupe: Create a group
-  Oups ! Désolé, une erreur est survenue.: Oops! Sorry, an error has occurred.
   Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.: Our teams have been notified; please try to access this page again later.
-  <0></0> Reprendre mon test: <0></0> Resume my test
   10 minutes: 10 minutes
   Bientôt disponible: Available soon
   C’est quoi mon empreinte carbone ?: What's my carbon footprint?
@@ -318,7 +315,6 @@ entries:
   publicodes.Tutoriel.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
   publicodes.Tutoriel.slide2.p2: It's the machines that make our modern comforts and conveniences that emit massive amounts of it, so much so that we count it in thousands of kilos per year and per person, and therefore in <2>tonnes</2> of CO₂e!
   publicodes.Tutoriel.slide2.p2.lock: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
-  Vous pouvez créer un nouveau groupe avec d’autres amis.: You can create a new group with other friends.
   publicodes.Tutoriel.slide1.p2: To estimate our own contribution to global warming (our "climate impact"), we usually calculate the carbon footprint of our individual consumption.
   publicodes.Tutoriel.slide1.p2.lock: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
   Répondez aux questions en votre nom, pas pour votre foyer.: Answer the questions on your behalf, not for your household.
@@ -333,18 +329,14 @@ entries:
   Total.unit: of CO<1>2</1>e / year
   Total.unit.lock: de CO<1>2</1>e / an
   Passagers: Passengers
-  Votre bilan: Your report
   Télécharger l'image: Download image
   La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.: The category {{title}} représente {{formattedValue}} tonnes of CO2 equivalent.
   Comparez vos résultats <2>avec vos proches</2>: Compare your results <2>with those around you</2>
   'Total par an :': 'Total per year :'
-  Votre simulation est sauvegardée&#8239;!: Your simulation is saved!
   Vous avez terminé le test !: You've completed the test!
   Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet.: What does this mean? This page will open in a new tab.
   Découvrez vos résultats, et nos idées d'actions pour vous améliorer.: Find out about your results, and what we can do to help you improve.
   Une capture du mode Groupe Nos Gestes Climat.: A capture from the Nos Gestes Climat Group.
-  📅 Répondre sur les 3 dernières années: 📅 Answer over the last 3 years
-  Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver <1>à tout moment</1>.: You will receive an email from us shortly, enabling you to find it at <1>any</1> time.
   Merci pour votre retour !: Thanks for your feedback!
   'Total :': 'Total :'
   Modifier mes réponses: Modify my answers
@@ -358,21 +350,12 @@ entries:
   Documentations: Documentation
   Informations: Information
   Questions: Questions
-  Test: Test
-  Actions: Actions
   Question pour l'utilisateur: Question for the user
   Fermer le menu: Close menu
-  <0>👀</0> Voir mon résultat: 👀 <0>S</0> ee my result
-  Qui sommes-nous ?: Who are we?
   Plan du site: Site map
-  Nos ambassadeurs: Our ambassadors
-  À l'international: Internationally
-  'Diffuser le test :': 'Distribute the test:'
-  Je ne trouve pas réponse à ma question <2>🙋‍♀️</2>: I can't find the answer to my question <2>🙋‍‍♀️</2>
   'Vous pouvez nous contacter via notre page de contact : <2>accéder à notre page de contact</2>.': 'You can contact us via our contact page: <2>go to our contact page</2>.'
   Pour toute autre remarque ou question, vous pouvez nous envoyer un message via le formulaire de contact ci-dessous.: If you have any other comments or questions, please send us a message using the contact form below.
   N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écrire, vous y trouverez sans doute la réponse à votre question !: Don't hesitate to consult our <2>FAQ</2> before writing to us - you're sure to find the answer to your question there!
-  Dans votre organisation: In your organisation
   Nos guides thématiques: Our theme guides
   Le modèle Nos Gestes Climat: The Nos Gestes Climat model
   Les actions phares: Key actions
@@ -396,7 +379,6 @@ entries:
   Ma région de simulation: My simulation region
   chaque année: every year
   D'autres questions ?: Any other questions?
-  "Qu'est-ce que ça veut dire ? ": 'What does this mean? '
   Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.: You can delete the group by clicking on the button below. It will be permanently deleted for all its other members, as you are the administrator.
   Votre groupe a été supprimé. Vous allez être redirigé vers la page d'accueil du mode groupe.: Your group has been deleted. You will be redirected to the group mode home page.
   Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.: You can leave the group by clicking on the button below. However, the group will not be deleted as you are not the administrator.
@@ -405,14 +387,13 @@ entries:
   Vous souhaitez recevoir vos résultats d’empreinte carbone ?: Would you like to receive your carbon footprint results?
   Sauvegarder: Save
   Comment est calculée votre empreinte ?: How is your footprint calculated?
-  Vous retrouverez votre résultat d’empreinte, ainsi que <2>des conseils pour la réduire</2> (1 fois par mois max.): You will find your impression results, as well as <2>advice on how to reduce them</2> (max. 1 per month)
   'Vos trajets :': 'Your routes :'
   passager(s): passenger(s)
   Période: Period
   Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Our simulator is based on a data model, with all the calculations documented; the data displayed is directly associated with your test.
-  Pour cela, <1>laissez-nous votre email</1>, comme {formatValue(numberSubscribers) ?? '---'} personnes.: To do this, <1>leave us your email address</1>, such as {formatValue(numberSubscribers) ?? '---'} people.
   Créé par {{name}}: Created by {{name}}
-  Vous êtes le premier: You are the first
+  Vous êtes le premier: You're the first
+  mais vous êtes seul·e…: but you are alone…
   Retour à la liste des groupes: Back to the list of groups
   Ce groupe n'existe pas ou a été supprimé.: This group does not exist or has been deleted.
   Oups ! Nous n'avons pas trouvé votre groupe: Oops! We couldn't find your group
@@ -433,17 +414,12 @@ entries:
   Le code est invalide: The code is invalid
   Bienvenue sur votre espace !: Welcome to your space!
   code de vérification: verification code
-  association: association
   2 petites minutes: 2 minutes
-  entreprise: company
   Commencez: Start
   Créer un compte: Create an account
   'à ': 'à '
   Veuillez attendre: Please wait
-  salle de classe: classroom
   Intégrez Nos Gestes Climat à vos services: Integrate Nos Gestes Climat into your services
-  Découvrez nos outils pour vous simplifier la vie !: Discover our tools to make your life easier!
-  organisation: organisation
   Statistiques et exports: Statistics and exports
   Téléphone: Telephone
   Rejoignez nos partenaires: Join our partners
@@ -455,7 +431,8 @@ entries:
   Entrez votre code de vérification pour continuer: Enter your verification code to continue
   (une fois par mois maximum !): (once a month maximum!)
   Votre prénom: Your first name
-  Accéder à mon espace: Access my space
+  Accéder à mon espace: Go to my dashboard
+  Accéder à mon espace.lock: Go to my dashboard
   ', votre': your
   Créez votre compte organisation: Create your organisation account
   Explorez, comparez et analysez vos données: Explore, compare and analyse your data
@@ -466,7 +443,6 @@ entries:
   Créez une campagne Nos Gestes Climat personnalisée au sein de votre organisation et accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Create a customised Nos Gestes Climat campaign within your organisation and access tailored services to raise awareness among your partners.
   Sensibilisez votre organisation: Raise your organisation's awareness
   Vérifiez votre boîte e-mail !: Check your e-mail inbox!
-  Vous souhaitez mobiliser votre: You want to mobilise your
   Nous avons envoyé un: We sent a
   Nos Gestes Climat pour les organisations: Nos Gestes Climat for organisations
   Votre code est valide !: Your code is valid!
@@ -474,7 +450,6 @@ entries:
   Recevoir ponctuellement par email les nouveaux services Nos Gestes Climat aux organisations: Receive occasional emails about new Nos Gestes Climat services for organisations
   Partagez une version personnalisée de Nos Gestes Climat: Share a personalised version of Nos Gestes Climat
   Permettez à vos collaborateurs, employés, partenaires ou élèves de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d’autres modes d’intégration prêts à l’emploi.: Allow your staff, employees, partners or students to calculate and reduce their carbon footprint directly from your web and mobile platforms, with a dedicated link or other ready-to-use integration methods.
-  'ou ': 'or '
   Rôle: Role
   Code renvoyé: Code returned
   L’adresse e-mail est invalide: The e-mail address is invalid
@@ -549,6 +524,8 @@ entries:
   code source est ouvert: source code is open
   Une capture du mode Amis Nos Gestes Climat.: A capture of the Nos Gestes Climat Friends mode.
   Toute contribution est la bienvenue !: All contributions are welcome!
+  Passer le test →: Take the test →
+  Passer le test →.lock: Take the test →
   L'intégralité du: The entire
   Nos Gestes Climat dans votre entreprise, association, école...: Nos Gestes Climat in your company, association, school...
   pour les curieux et les experts.: for the curious and the experts.
@@ -566,14 +543,13 @@ entries:
   Votre résultat: Your result
   précédent: previous
   Administrateur·ice: Administrator
-  Loupé !: Missed!
+  Loupé !: Woops!
+  Loupé !.lock: Woops!
   Valorisez vos données carbone: Add value to your carbon data
-  Découvrez nos outils pour vous simplifier la vie !: Discover our tools to make your life easier!
   Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.: Your data will be stored securely and anonymously. They will be aggregated for statistical purposes; these statistics will be available on the "Detailed report" page of your survey at the end of the course. This page will remain accessible exclusively to participants and organisers.
   Découvrez vos résultats détaillés: Discover your detailed results
   Modification sauvegardée: Modification saved
   Votre date de naissance: Your date of birth
-  "Ce test vous est proposé par <2>{isLoading ? '... ' : poll?.organisationInfo?.name}</2>. En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.": "This test is brought to you by <2>{isLoading ? '... ' : poll?.organisationInfo?.name}</2>. By taking part, you agree to your results being shared anonymously with this organisation."
   Organisation: Organisation
   Valider: Confirm
   Partagez le test: Share the test
@@ -590,8 +566,6 @@ entries:
   Impact CO2: CO2 impact
   '{{value}} tonnes': '{{value}} tonnes'
   Mon organisation: My organisation
-  Le test: The test
-  Classement: Ranking
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} has invited you to join the <3>{group?.name}</3> group'
   'Moyenne :': 'Average :'
   Bien vu !: Good point!
@@ -648,9 +622,6 @@ entries:
   Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).: These are your results for the main categories (transport, food, etc.), but <em>not</em> the details question by question (your car mileage, the square metres of your home, etc.).
   Oups, nous n'avons pas trouvé les résultats de cette organisation: Oops, we couldn't find the results of this organisation
   Mes sondages: My polls
-  <0>repas </0>par semaine, quel appétit de moineau: <0>meals </0>a week, what a sparrow's appetite!
-  <0>repas </0>par semaine, miam: <0>meals </0>a week, yum
-  <0>repas </0>par semaine, quel appétit !: <0>meals </0>a week, what an appetite!
   Aller plus loin: Going further
   en 10 minutes: in 10 minutes
   Vous avez déjà participé à ce sondage.: You have already taken part in this survey.
@@ -665,4 +636,148 @@ entries:
   'Le consensus scientifique est formel, cette augmentation est directement liée aux activités humaines : l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. Il est grand temps de réduire ou remplacer ces activités émettrices de gaz à effet de serre, à toutes les échelles !': "The scientific consensus is clear: this increase is directly linked to human activities: the extraction, consumption and combustion of resources exceed our planet's capacity to absorb them. It's high time we reduced or replaced these greenhouse gas-emitting activities, on every scale!"
   Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: The individual carbon footprint simulator helps you to understand which of our uses contribute most to climate change, and to understand which actions would have the greatest impact in reducing it.
   'Depuis le siècle dernier, la concentration du carbone dans l’atmosphère augmente tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': "Since the last century, the concentration of carbon in the atmosphere has increased to such an extent that the planet's climate is undergoing upheaval with far-reaching consequences: rising sea levels, destruction of living organisms, and an explosion of climatic disasters."
+  'Je ne trouve pas réponse à ma question ': "I can't find the answer to my question "
+  Les nouveautés: What's new?
+  sélectionnez celles qui vous intéressent: select those that interest you
+  Oups ! Une erreur est survenue.: Oops! An error has occurred.
+  le poste: the position
+  Mes classements: My rankings
+  Empreinte: Footprint
+  Gestes: Gestures
+  Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: You will receive an email from us shortly, enabling you to find it
+  (1 fois par mois max.): (max. once a month)
+  Annuler: Cancel
+  Supprimer le groupe: Delete group
+  1 minute: 1 minute
+  Voir les résultats: See the results
+  Votre simulation est sauvegardée !: Your simulation is saved!
+  à tout moment: at any time
+  des conseils pour la réduire: advice on how to reduce it
+  Invitez d'autres personnes à rejoindre votre groupe: Invite other people to join your group
+  vous: you
+  Vous retrouverez votre résultat d’empreinte, ainsi que: You will find your impression results, as well as
+  Invitez vos proches pour comparer vos résultats. Cela prend: Invite friends and family to compare your results. It takes
+  Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.: Just <strong>leave us your email address</strong>, like {{numberSubscribers}}.
+  l’équipe de nosgestesclimat.fr: the nosgestesclimat.fr team
+  l’équipe de nosgestesclimat.fr.lock: l’équipe de nosgestesclimat.fr
+  Découvrez nos outils pour vous simplifier la vie !: Discover our tools to make your life easier!
+  Vous souhaitez mobiliser votre <2>entreprise</2>, votre <5>organisation</5>, votre<7>association</7> ou <10>salle de classe</10>: You want to mobilise your <2>company</2>, <5>organisation</5>, <7>association</7> or <10>classroom</10>
+  Un calcul statistique du **chauffage** résidentiel français moyen: A statistical calculation of the average French residential heating bill
+  Un modèle inédit d'empreinte des **déchets**: An innovative waste footprint model
+  '**6 repas** représentatifs de notre consommation': '**6 meals** representative of our consumption'
+  Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**: The largest average footprint, the unavoidable **individual car**
+  Les constantes de **services publics et marchands** calculées à partir des travaux du SDES: Public and commercial service constants** calculated on the basis of SDES work
+  Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels: The heart of Nos Gestes Climat is **the personal climate footprint** assessment
+  Lancer le calcul: Run the calculation
+  Qu'est-ce que ça veut dire ?: What does this mean?
+  Qu'est-ce que ça veut dire ?.lock: What does this mean?
+  Notes: Notes
+  Informations relatives à la création d'un contexte spécifique.: Information relating to the creation of a specific context.
+  404 - Nos Gestes Climat: 404 - Nos Gestes Climat
+  Comprenez comment calculer votre empreinte sur le climat en 10min chrono.: Find out how to calculate your climate footprint in 10 minutes.
+  Ambassadeurs - Nos Gestes Climat: Ambassadors - Nos Gestes Climat
+  'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat': 'Actions: how can you reduce your climate footprint? - Nos Gestes Climat'
+  Observez nos l'évolution de nos deux mesures d'impact principales.: Take a look at our two main impact measurements.
+  Informations relatives au budget de Nos Gestes Climat.: Budget information for Nos Gestes Climat.
+  À propos - Nos Gestes Climat: About us - Nos Gestes Climat
+  Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.: Check out the new features and latest news from Nos Gestes Climat.
+  Liste des questions - Nos Gestes Climat: List of questions - Nos Gestes Climat
+  Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat: Create a group and calculate our carbon footprint - Nos Gestes Climat
+  Nos Statistiques d'utilisation - Nos Gestes Climat: Our usage statistics - Nos Gestes Climat
+  Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat: Documentation, your carbon footprint simulator - Nos Gestes Climat
+  Quelles sont les actions les plus efficaces ?: What are the most effective actions?
+  Rejoindre un groupe - Nos Gestes Climat: Join a group - Nos Gestes Climat
+  CGU - Nos Gestes Climat: Terms and conditions - Nos Gestes Climat
+  Vos résultats de tests de notre simulateur d'empreinte carbone.: Your test results for our carbon footprint simulator.
+  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Join your group to calculate your carbon footprint and compare it with the footprint of others using the Nos Gestes Climat personal carbon footprint simulator.
+  Simulateur d’empreinte climat - Nos Gestes Climat: Climate footprint simulator - Nos Gestes Climat
+  Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat: Your results, climate footprint simulator - Nos Gestes Climat
+  Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.: Delete your group data saved in the Nos Gestes Climat simulator.
+  Le guide - Nos Gestes Climat: The guide - Nos Gestes Climat
+  Mentions légales - Nos Gestes Climat: Legal information - Nos Gestes Climat
+  Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.: Find the answers to the most frequently asked questions about Nos Gestes Climat.
+  Découvrez le modèle de données de notre simulateur d'empreinte climat: Discover the data model of our climate footprint simulator
+  Calculer votre empreinte carbone individuelle - Nos Gestes Climat: Calculate your individual carbon footprint - Nos Gestes Climat
+  Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas.: Oops, you are on Nos Gestes Climat, but this page does not exist.
+  Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.: Discover the typical user personas we use to test the simulator from every angle.
+  Observez l'évolution de l'impact de Nos Gestes Climat en mesures chiffrées.: See the evolution of the impact of Nos Gestes Climat in figures.
+  'Découvrez les ambassadeurs de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.': 'Discover the ambassadors of Nos Gestes Climat: organisations, local authorities, media, influencers, etc.'
+  Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explore and modify the information you have entered in the nosgestesclimat pathway.
+  Conditions générales d'utilisation du site.: Terms and conditions of use of the site.
+  Accessibilité - Nos Gestes Climat: Accessibility - Nos Gestes Climat
+  Budget - Nos Gestes Climat: Budget - Nos Gestes Climat
+  Contact - Nos Gestes Climat: Contact - Nos Gestes Climat
+  Blog - Nos Gestes Climat: Blog - Nos Gestes Climat
+  nouveautés - Nos Gestes Climat: news - Nos Gestes Climat
+  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calculate your carbon footprint as a group and compare it with the footprint of your friends and family using the Nos Gestes Climat personal carbon footprint simulator.
+  Les nouveautés - Nos Gestes Climat: What's new - Nos Gestes Climat
+  Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.: This guide contains all the information you need about Nos Gestes Climat.
+  Organisations, accéder à mon espace - Nos Gestes Climat: Organisations, go to my dashboard - Nos Gestes Climat
+  Organisations, accéder à mon espace - Nos Gestes Climat.lock: Organisations, go to my dashboard - Nos Gestes Climat
+  Diffusez Nos Gestes Climat dans votre organisation.: Spread Nos Gestes Climat throughout your organisation.
+  Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.: Find out how we use your personal data to offer you a personal carbon footprint simulator.
+  Découvrez les nouveautés du site Nos Gestes Climat.: Find out what's new on the Nos Gestes Climat website.
+  Contactez l'équipe de Nos Gestes Climat.: Contact the Nos Gestes Climat team.
+  Actions, la liste - Nos Gestes Climat: Actions, the list - Nos Gestes Climat
+  Découvrez les articles de blog du site Nos Gestes Climat.: Discover the blog articles on the Nos Gestes Climat website.
+  article du blog - Nos Gestes Climat: blog post - Nos Gestes Climat
+  Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Access tailor-made services to raise awareness among your partners within your organisation.
+  Informations relatives à l'accessibilité de Nos Gestes Climat.: Information on the accessibility of Nos Gestes Climat.
+  Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Find out what you can do to reduce your carbon footprint.
+  Diffuser notre simulateur d'empreinte climat - Nos Gestes Climat: Distribute our climate footprint simulator - Nos Gestes Climat
+  Politique de confidentialité - Nos Gestes Climat: Privacy policy - Nos Gestes Climat
+  Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat: Frequently asked questions about our climate footprint calculation - Nos Gestes Climat
+  Mentions légales du site Nos Gestes Climat.: Legal information about Nos Gestes Climat.
+  Mon groupe, nos bilans carbone personnels - Nos Gestes Climat: My group, our personal carbon footprints - Nos Gestes Climat
+  Documentation Contexte Sondage - Nos Gestes Climat: Documentation Context Survey - Nos Gestes Climat
+  Organisations, demander une démo - Nos Gestes Climat: Organisations, request a demo - Nos Gestes Climat
+  Nos statistiques "phares" - Nos Gestes Climat: Our key statistics - Nos Gestes Climat
+  Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat: Your personal carbon footprint calculator - Nos Gestes Climat
+  Empreinte Climat - Nos Gestes Climat: Climate Footprint - Nos Gestes Climat
+  Organisations, mon espace - Nos Gestes Climat: Organisations, my space - Nos Gestes Climat
+  L'empreinte climat, qu'est-ce que c'est ?: What is the climate footprint?
+  Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.: Our documentation details the calculations we used to calculate your personal carbon footprint.
+  Notre modèle de données - Nos Gestes Climat: Our data model - Nos Gestes Climat
+  Informations relatives à Nos Gestes Climat.: Information about Nos Gestes Climat.
+  Nos personas d'utilisateurs types - Nos Gestes Climat: Our typical user personas - Nos Gestes Climat
+  Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Actions following your climate footprint simulation - Nos Gestes Climat
+  Comparez vos résultats avec votre famille ou un groupe d’amis.: Compare your results with your family or a group of friends.
+  Supprimer mes données de groupe - Nos Gestes Climat: Delete my group data - Nos Gestes Climat
+  Mon profil, voir mon empreinte carbone - Nos Gestes Climat: My profile, see my carbon footprint - Nos Gestes Climat
+  Organisations, calculer votre empreinte carbone - Nos Gestes Climat: Organisations, calculate your carbon footprint - Nos Gestes Climat
+  Plan du site - Nos Gestes Climat: Site map - Nos Gestes Climat
+  Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.: Do you know your climate footprint? Take the test and find out how you can reduce your carbon footprint on the climate.
+  Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.: Calculate your climate footprint in just 10 minutes. Discover the actions that really matter for the climate.
+  Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat: Calculate your carbon footprint with your friends - Nos Gestes Climat
+  Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.: nd all the pages of the nosgestesclimat.fr website to calculate your carbon footprint.
+  Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone..lock: etrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.
+  par semaine, miam: per week, yum
+  repas: meal
+  Ce test vous est proposé par: This test is brought to you by
+  par semaine, quel appétit !: per week, what an appetite!
+  par semaine, quel appétit de moineau: per week, what a sparrow's appetite!
+  En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.: By taking part you agree to your results being shared anonymously with this organisation.
   Cambiar a español: Cambiar a español
+  Reprendre mon test: Resume my test
+  Voir mon résultat: See my result
+  Bravo champion·ne !: Well done champion-ne!
+  Recevez un email avec un lien pour terminer votre test plus tard: Receive an email with a link to complete your test later
+  Mon empreinte: My footprint
+  écartez celles qui vous semblent trop ambitieuses ou déplacées.: discard those that seem too ambitious or inappropriate.
+  Pour cela,: To this end,
+  laissez-nous votre email,: leave us your e-mail,
+  comme {{numberSubscribers}} personnes.: like {{numberSubscribers}} people.
+  Vous souhaitez mobiliser votre: You want to mobilise your
+  entreprise: company
+  organisation: organisation
+  association: association
+  salle de classe: classroom
+  Mes&#160;gestes: My&#160;gestures
+  Votre empreinte carbone: Your carbon footprint
+  Votre empreinte: Your footprint
+  Mes gestes: My gestures
+  Mes gestes: My actions
+  Qu'est-ce que ça veut dire ?: What does this mean?
+  Reconnectez vous en cliquant sur le bouton ci-dessous.: Reconnect by clicking on the button below.
+  ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': you have been logged out of your organisation space, or you are trying to access it from a new browser.
+  'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, posters and presentations: find all the tools you need to share Nos Gestes Climat in this kit.'

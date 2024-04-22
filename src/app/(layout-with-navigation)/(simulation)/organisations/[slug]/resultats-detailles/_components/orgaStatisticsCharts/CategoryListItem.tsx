@@ -41,7 +41,7 @@ export default function CategoryListItem({
       </div>
 
       <RepartitionChart
-        className="min-h-[2.5rem] flex-1 rounded-lg"
+        className="min-h-[2.5rem] flex-1 rounded-xl"
         maxValue={maxValue}
         items={simulationsRecap.map((obj) => ({
           value: obj.categories[category],

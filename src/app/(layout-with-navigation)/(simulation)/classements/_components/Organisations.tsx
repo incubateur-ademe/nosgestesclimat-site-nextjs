@@ -15,12 +15,16 @@ export default function Organisations() {
   })
 
   return (
-    <div className="mt-12">
-      <Title tag="h2" title={<Trans>Entreprises et collectivités</Trans>} />
+    <>
+      <Title
+        tag="h2"
+        className="mt-8"
+        title={<Trans>Entreprises et collectivités</Trans>}
+      />
 
       <PollsList organisation={organisation} />
 
       <CreateOrganisation organisation={organisation} />
-    </div>
+    </>
   )
 }

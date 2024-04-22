@@ -3,6 +3,7 @@ import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { Situation } from '@/publicodes-state/types'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
+import { useClientTranslation } from '../useClientTranslation'
 import { useEndPage } from './useEndPage'
 
 type GoToSimulateurPageProps = {
@@ -28,6 +29,8 @@ const getLinkToSimulateurPagePropsDefault = {
 }
 export function useSimulateurPage() {
   const router = useRouter()
+
+  const { t } = useClientTranslation()
 
   const { tutorials, initSimulation } = useUser()
 
@@ -93,17 +96,17 @@ export function useSimulateurPage() {
   const linkToSimulateurPageLabel = useMemo(() => {
     // If the user has completed the test we return the results page label
     if (progression === 1) {
-      return 'Voir les résultats'
+      return t('Voir les résultats')
     }
 
     // If the user has seen the tutoriel we return the test page label
     if (progression > 0) {
-      return 'Reprendre mon test'
+      return t('Reprendre mon test')
     }
 
     // else we return the tutoriel page label
-    return 'Passer le test →'
-  }, [progression])
+    return t('Passer le test →')
+  }, [progression, t])
 
   return {
     goToSimulateurPage,

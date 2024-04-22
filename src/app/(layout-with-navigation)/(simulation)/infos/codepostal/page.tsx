@@ -35,7 +35,7 @@ export default function PostalCode() {
         className="text-lg md:text-2xl"
         title={<Trans>Votre code postal</Trans>}
         subtitle={
-          <span className="font-bold italic text-secondary-500">
+          <span className="text-secondary-700 font-bold italic">
             <Trans>Facultatif</Trans>
           </span>
         }

@@ -30,7 +30,7 @@ export default function SubCategory({ subcategory }: Props) {
 
   if (!answeredQuestionOfSubcategory.length) return null
   return (
-    <div className="relative mt-2 w-full overflow-hidden rounded-lg bg-primary-100 ">
+    <div className="relative mt-2 w-full overflow-hidden rounded-xl bg-primary-100 ">
       <div
         className={`absolute bottom-0 left-0 top-0 w-2 ${getBackgroundColor(
           category
@@ -43,7 +43,7 @@ export default function SubCategory({ subcategory }: Props) {
         }}
         className="flex w-full items-center justify-between gap-4 p-4 pl-6 text-lg font-bold">
         {icons} {title}{' '}
-        <span className="block rounded-lg bg-white px-4 py-2 text-base">
+        <span className="block rounded-xl bg-white px-4 py-2 text-base">
           {formattedCarbonFootprint.formattedValue}{' '}
           {formattedCarbonFootprint.unit}
         </span>

@@ -13,7 +13,8 @@ export default function ButtonBack() {
       href="/"
       color="secondary"
       title={t("revenir à l'accueil")}
-      onClick={() => trackEvent(tutorielClickPrecedent)}>
+      onClick={() => trackEvent(tutorielClickPrecedent)}
+      className="h-12 w-12">
       ←
     </ButtonLink>
   )
