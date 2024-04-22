@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode } from 'react'
+import { ChangeEvent, ForwardedRef, ReactNode, forwardRef } from 'react'
 
 type Props = {
   name: string
@@ -18,22 +18,26 @@ const sizesClassNames = {
   lg: 'w-8 h-8',
 }
 
-export default function CheckboxInputGroup({
-  name,
-  label,
-  error,
-  className,
-  onChange,
-  value,
-  defaultChecked,
-  required = false,
-  size = 'sm',
-  ...props
-}: Props) {
+export default forwardRef(function CheckboxInputGroup(
+  {
+    name,
+    label,
+    error,
+    className,
+    onChange,
+    value,
+    defaultChecked,
+    required = false,
+    size = 'sm',
+    ...props
+  }: Props,
+  ref: ForwardedRef<HTMLInputElement>
+) {
   return (
     <div className={`flex flex-col ${className}`} aria-live="polite">
       <label htmlFor={name} className="flex cursor-pointer items-center gap-2">
         <input
+          ref={ref}
           name={name}
           id={name}
           type="checkbox"
@@ -60,4 +64,4 @@ export default function CheckboxInputGroup({
       )}
     </div>
   )
-}
+})
