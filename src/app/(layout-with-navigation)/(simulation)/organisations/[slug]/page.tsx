@@ -1,10 +1,12 @@
 'use client'
 
 import SettingsIcon from '@/components/icons/SettingsIcon'
+import OrgaStatistics from '@/components/organisations/OrgaStatistics'
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import Trans from '@/components/translation/Trans'
 import { organisationsDashboardClickParameters } from '@/constants/tracking/pages/organisationsDashboard'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { useRouter } from 'next/navigation'
@@ -25,6 +27,10 @@ export default function OrganisationPage() {
     isLoading,
   } = useFetchOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
+  })
+
+  const { data: pollData } = useFetchPollData({
+    orgaSlug: organisation?.slug,
   })
 
   useEffect(() => {
@@ -76,6 +82,11 @@ export default function OrganisationPage() {
           <Trans>Voir les paramètres</Trans>
         </ButtonLink>
       </div>
+
+      <OrgaStatistics
+        funFacts={pollData?.funFacts}
+        simulationRecaps={pollData?.simulationRecaps ?? []}
+      />
 
       <ShareSection organisation={organisation} className="mb-8" />
 
