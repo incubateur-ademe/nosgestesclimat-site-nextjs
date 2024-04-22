@@ -9,6 +9,7 @@ import { useBackgroundSyncSimulation } from './useBackgroundSyncSimulation'
 type Props = {
   simulation: Simulation
   shouldSendSimulationEmail?: boolean
+  listIds?: number[]
 }
 export function useSaveSimulation() {
   const { user } = useUser()
@@ -26,6 +27,7 @@ export function useSaveSimulation() {
     mutationFn: ({
       simulation: originalSimulation,
       shouldSendSimulationEmail = false,
+      listIds,
     }: Props) => {
       // We reset the sync timer to avoid saving the simulation in the background
       resetSyncTimer()
@@ -43,6 +45,7 @@ export function useSaveSimulation() {
           email: user.email,
           name: user.name,
           shouldSendSimulationEmail,
+          listIds,
         })
         .then((response) => response.data)
         .catch(() => console.error('Failed to save simulation'))

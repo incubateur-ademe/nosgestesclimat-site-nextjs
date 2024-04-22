@@ -41,7 +41,7 @@ export default forwardRef(function CheckboxInputGroup(
           name={name}
           id={name}
           type="checkbox"
-          className={`mr-2 max-w-[30rem] cursor-pointer rounded-xl border-solid border-gray-200 bg-gray-100 !p-4 text-2xl transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700 ${
+          className={`mr-1 max-w-[30rem] cursor-pointer rounded-xl border-solid border-gray-200 bg-gray-100 !p-4 text-2xl transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700 ${
             sizesClassNames[size]
           } ${error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''}`}
           onChange={onChange}

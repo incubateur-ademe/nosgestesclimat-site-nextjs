@@ -1,19 +1,33 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import {
+  LIST_MAIN_NEWSLETTER,
+  LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
+} from '@/constants/brevo'
 import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
+import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
+import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { formatValue } from 'publicodes'
+import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './getResultsByEmail/Confirmation'
+
+type Inputs = {
+  name: string
+  email?: string
+  'newsletter-saisonniere': boolean
+  'newsletter-transports': boolean
+}
 
 export default function GetResultsByEmail({
   className,
@@ -25,14 +39,28 @@ export default function GetResultsByEmail({
 
   const currentSimulation = useCurrentSimulation()
 
+  const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
+    user?.email ?? ''
+  )
+
+  const isSubscribedMainNewsletter =
+    !newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER)
+  const isSubscribedTransportNewsletter = !newsletterSubscriptions?.includes(
+    LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
+  )
+
+  const { register, handleSubmit } = useReactHookForm<Inputs>({
+    defaultValues: {
+      name: user?.name,
+    },
+  })
+
   const { saveSimulation, isPending, isSuccess, isError, error } =
     useSaveSimulation()
 
   const { data: numberSubscribers } = useNumberSubscribers()
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     // If the mutation is pending, we do nothing
     if (isPending) {
       return
@@ -47,6 +75,12 @@ export default function GetResultsByEmail({
         savedViaEmail: true,
       },
       shouldSendSimulationEmail: true,
+      listIds: [
+        ...(data['newsletter-saisonniere'] ? [LIST_MAIN_NEWSLETTER] : []),
+        ...(data['newsletter-transports']
+          ? [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]
+          : []),
+      ],
     })
 
     // We update the simulation to signify that it has been saved (and not show the form anymore)
@@ -69,7 +103,7 @@ export default function GetResultsByEmail({
       <form
         id="newsletter-form"
         className="flex h-full flex-col items-start"
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit(onSubmit)}>
         <h3 className="flex items-center text-base sm:text-lg">
           <Trans>
             Vous souhaitez recevoir vos résultats d’empreinte carbone ?
@@ -78,9 +112,9 @@ export default function GetResultsByEmail({
           <Emoji>💡</Emoji>
         </h3>
 
-        <p className="text-sm text-gray-600 sm:text-base">
+        <p className="text-sm sm:text-base">
           <Trans>Pour cela,</Trans>{' '}
-          <strong>
+          <strong className="text-primary-700">
             <Trans>laissez-nous votre email,</Trans>{' '}
           </strong>
           {t('comme {{numberSubscribers}} personnes.', {
@@ -88,15 +122,7 @@ export default function GetResultsByEmail({
           })}
         </p>
 
-        <p className="text-sm text-gray-600 sm:text-base">
-          <Trans>Vous retrouverez votre résultat d’empreinte, ainsi que</Trans>{' '}
-          <strong>
-            <Trans>des conseils pour la réduire</Trans>
-          </strong>{' '}
-          <Trans>(1 fois par mois max.)</Trans>
-        </p>
-
-        <div className="mb-4 w-full">
+        <div className="mb-4 flex w-full flex-col gap-4">
           <TextInputGroup
             name="EMAIL"
             type="email"
@@ -109,6 +135,45 @@ export default function GetResultsByEmail({
             required
             className="bg-white"
           />
+
+          {newsletterSubscriptions &&
+            (!isSubscribedMainNewsletter ||
+              !isSubscribedTransportNewsletter) && (
+              <p className="mb-0">
+                <Trans>
+                  Recevez des conseils pour réduire votre empreinte :
+                </Trans>
+              </p>
+            )}
+
+          {newsletterSubscriptions && !isSubscribedMainNewsletter && (
+            <CheckboxInputGroup
+              label={
+                <span>
+                  <Emoji>☀️</Emoji>{' '}
+                  <Trans>
+                    <strong>Infolettre saisonnière de Nos Gestes Climat</strong>
+                  </Trans>
+                </span>
+              }
+              {...register('newsletter-saisonniere')}
+            />
+          )}
+
+          {newsletterSubscriptions && !isSubscribedTransportNewsletter && (
+            <CheckboxInputGroup
+              label={
+                <span>
+                  <Emoji>🚗</Emoji>{' '}
+                  <Trans>
+                    <strong>Nos Gestes Transports</strong> : maîtrisez l'impact
+                    carbone de vos transports avec nos 4 infolettres
+                  </Trans>
+                </span>
+              }
+              {...register('newsletter-transports')}
+            />
+          )}
         </div>
 
         <Button

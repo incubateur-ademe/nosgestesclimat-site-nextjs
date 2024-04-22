@@ -43,7 +43,7 @@ export default forwardRef(function TextInputGroup(
     readOnly = false,
     ...props
   }: HTMLAttributes<HTMLInputElement> & Props,
-  ref: ForwardedRef<DebounceInput<HTMLInputElement>>
+  ref: ForwardedRef<HTMLInputElement>
 ) {
   return (
     <div className="flex flex-col" aria-live="polite">
@@ -63,7 +63,7 @@ export default forwardRef(function TextInputGroup(
       ) : null}
 
       <DebounceInput
-        ref={ref}
+        inputRef={ref}
         readOnly={readOnly}
         debounceTimeout={debounceTimeout}
         name={name}

@@ -77,7 +77,6 @@ export default function MesInformations() {
       [LIST_MAIN_NEWSLETTER]: data['newsletter-saisonniere'],
       [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: data['newsletter-transports'],
     }
-
     try {
       await updateUserSettings({
         name: data.name,
@@ -123,7 +122,7 @@ export default function MesInformations() {
           helperText={<Trans>Non modifiable</Trans>}
           label={t('Votre adresse email')}
           value={user?.email}
-          disabled
+          readOnly
         />
 
         <h3 className="mb-0 mt-6">
