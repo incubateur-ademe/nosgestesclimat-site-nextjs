@@ -27,8 +27,6 @@ type Inputs = {
 
 export default function MesInformations() {
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isError, setIsError] = useState(false)
 
   const { t } = useClientTranslation()
 
@@ -64,15 +62,16 @@ export default function MesInformations() {
     )
   }, [newsletterSubscriptions, setValue])
 
-  const { mutateAsync: updateUserSettings } = useUpdateUserSettings({
+  const {
+    mutateAsync: updateUserSettings,
+    isPending,
+    isError,
+  } = useUpdateUserSettings({
     email: user?.email ?? '',
     userId: user?.userId,
   })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    setIsError(false)
-    setIsSubmitting(true)
-
     const newsletterIds = {
       [LIST_MAIN_NEWSLETTER]: data['newsletter-saisonniere'],
       [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: data['newsletter-transports'],
@@ -89,9 +88,7 @@ export default function MesInformations() {
         setIsSubmitted(false)
       }, 2500)
     } catch (error) {
-      setIsError(true)
-    } finally {
-      setIsSubmitting(false)
+      console.error(error)
     }
   }
 
@@ -165,8 +162,8 @@ export default function MesInformations() {
           <Button
             type="submit"
             className="mt-6 gap-2 self-start"
-            disabled={isSubmitting || isSubmitted}>
-            {isSubmitting && <Loader size="sm" color="light" />}
+            disabled={isPending || isSubmitted}>
+            {isPending && <Loader size="sm" color="light" />}
 
             <Trans>Mettre à jour mes informations</Trans>
           </Button>
