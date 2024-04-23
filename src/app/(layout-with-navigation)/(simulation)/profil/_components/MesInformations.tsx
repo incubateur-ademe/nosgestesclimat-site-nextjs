@@ -110,13 +110,15 @@ export default function MesInformations() {
         <TextInputGroup
           value={user?.name}
           label={t('Votre nom')}
-          {...register('name', { required: t('Ce champ est requis.') })}
+          {...register('name', {
+            required: user?.name ? t('Ce champ est requis.') : false,
+          })}
           error={errors.name?.message}
         />
 
         <TextInputGroup
           name="email"
-          helperText={<Trans>Non modifiable</Trans>}
+          helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
           label={t('Votre adresse email')}
           value={user?.email}
           readOnly
