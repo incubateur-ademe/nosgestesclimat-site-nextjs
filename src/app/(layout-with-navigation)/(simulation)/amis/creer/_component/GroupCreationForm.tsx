@@ -14,56 +14,30 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
-import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
+import { FormEvent, FormEventHandler, useState } from 'react'
 
 export default function GroupCreationForm() {
+  const { t } = useClientTranslation()
+
   const locale = useLocale()
 
   const { user, updateName, updateEmail } = useUser()
 
   const currentSimulation = useCurrentSimulation()
-
-  const { name, userId, email } = user
-
-  const [administratorName, setAdministratorName] = useState(name || '')
-  const [errorAdministratorName, setErrorAdministratorName] = useState('')
-
-  const [administratorEmail, setAdministratorEmail] = useState(email || '')
-  const [errorEmail, setErrorEmail] = useState('')
-
-  const { t } = useClientTranslation()
-
-  const hasCompletedTest = currentSimulation?.progression === 1
-
-  const { data: groups } = useFetchGroupsOfUser()
+  const hasCompletedTest = currentSimulation.progression === 1
 
   const { goToSimulateurPage } = useSimulateurPage()
   const { goToEndPage } = useEndPage()
 
+  const [administratorName, setAdministratorName] = useState(user.name || '')
+  const [errorAdministratorName, setErrorAdministratorName] = useState('')
+
+  const [administratorEmail, setAdministratorEmail] = useState(user.email || '')
+  const [errorEmail, setErrorEmail] = useState('')
+
+  const { data: groups } = useFetchGroupsOfUser()
+
   const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
-
-  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] = useState<
-    string | null
-  >(null)
-  useEffect(() => {
-    if (!shouldGoToSimulateurPage) {
-      return
-    }
-
-    if (currentSimulation?.groups?.includes(shouldGoToSimulateurPage)) {
-      if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
-      } else {
-        goToSimulateurPage()
-      }
-    }
-  }, [
-    goToSimulateurPage,
-    goToEndPage,
-    shouldGoToSimulateurPage,
-    currentSimulation,
-    hasCompletedTest,
-  ])
 
   const handleSubmit = async (event: FormEvent) => {
     // Avoid reloading page
@@ -90,7 +64,7 @@ export default function GroupCreationForm() {
           emoji,
           administratorEmail,
           administratorName,
-          userId,
+          userId: user.userId,
           simulation: currentSimulation,
         },
       })
@@ -104,8 +78,12 @@ export default function GroupCreationForm() {
         groupToAdd: group._id,
       })
 
-      // We signal that the form has been submitted. When the currentSimulation is updated, we redirect
-      setShouldGoToSimulateurPage(group._id)
+      // Redirect to simulateur page or end page
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
     } catch (e) {
       captureException(e)
     }

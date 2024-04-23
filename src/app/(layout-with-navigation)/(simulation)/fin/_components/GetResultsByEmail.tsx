@@ -8,7 +8,7 @@ import {
 import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import EmailInput from '@/design-system/inputs/EmailInput'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { getSaveSimulationListIds } from '@/helpers/brevo/getSaveSimulationListIds'
@@ -18,7 +18,9 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { isEmailValid } from '@/utils/isEmailValid'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './getResultsByEmail/Confirmation'
@@ -36,7 +38,7 @@ export default function GetResultsByEmail({
   className?: string
 }) {
   const { t } = useClientTranslation()
-  const { user } = useUser()
+  const { user, updateEmail } = useUser()
 
   const locale = useLocale()
 
@@ -63,15 +65,26 @@ export default function GetResultsByEmail({
 
   const { data: numberSubscribers } = useNumberSubscribers()
 
+  const [formEmail, setFormEmail] = useState(user.email || '')
+  const [errorEmail, setErrorEmail] = useState('')
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     // If the mutation is pending, we do nothing
     if (isPending) {
       return
     }
 
+    // Inputs validation
+    if (!formEmail || !isEmailValid(formEmail)) {
+      setErrorEmail(t('Veuillez renseigner un email valide.'))
+      return
+    }
+
     trackEvent(endClickSaveSimulation)
 
     const listIds = getSaveSimulationListIds(data)
+
+    updateEmail(formEmail)
 
     // We save the simulation (and signify the backend to send the email)
     await saveSimulation({
@@ -125,15 +138,14 @@ export default function GetResultsByEmail({
           })}
         </p>
 
-        <div className="mb-4 flex w-full flex-col gap-4">
-          <TextInputGroup
-            name="EMAIL"
-            type="email"
+        <div className="mb-4 flex w-full flex-col gap-2">
+          <EmailInput
+            email={formEmail}
+            setEmail={setFormEmail}
             aria-label="Entrez votre adresse email"
-            placeholder="jeanmarc@nosgestesclimat.fr"
-            value={user?.email}
-            required
-            className="bg-white"
+            error={errorEmail}
+            setError={setErrorEmail}
+            className="mb-2"
           />
 
           {newsletterSubscriptions &&

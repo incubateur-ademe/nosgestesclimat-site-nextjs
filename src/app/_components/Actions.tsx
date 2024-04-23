@@ -22,10 +22,11 @@ export default async function Actions() {
       </Kicker>
       <h2 className="font-medium md:text-3xl">{t('Comment agir\u202f?')}</h2>
       <p className="max-w-xs md:mb-8 md:max-w-sm md:text-lg">
-        <Trans>
-          Découvrez nos pistes personnalisées pour agir dès aujourd’hui pour le
-          climat.
-        </Trans>
+        <Trans>Découvrez nos</Trans>{' '}
+        <strong className="text-primary-700">
+          <Trans>pistes personnalisées</Trans>
+        </strong>{' '}
+        <Trans>pour agir dès aujourd'hui pour le climat.</Trans>
       </p>
       <ButtonLink
         color="secondary"

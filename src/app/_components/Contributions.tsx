@@ -38,11 +38,11 @@ export default function Contributions() {
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             onClick={() => trackEvent(homeClickCodeSource)}
-            className="border-alimentation-400 min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 py-8 text-inherit no-underline"
+            className="no-underlin min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-alimentation-400 py-8 text-inherit transition-colors hover:border-alimentation-600 hover:text-default"
             data-cypress-id="nouveautes-link">
-            <div className="bg-alimentation-100 flex h-12 w-12 items-center justify-center rounded-xl">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-alimentation-100">
               <SearchIcon
-                className="fill-alimentation-700 inline-block"
+                className="inline-block fill-alimentation-700"
                 width="20"
                 height="20"
               />
@@ -63,11 +63,11 @@ export default function Contributions() {
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             onClick={() => trackEvent(homeClickDocumentation)}
-            className="border-divers-300 min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 py-8 text-inherit no-underline"
+            className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-divers-300 py-8 text-inherit no-underline transition-colors hover:border-divers-500 hover:text-default"
             data-cypress-id="documentation-link">
-            <div className="bg-divers-100 flex h-12 w-12 items-center justify-center rounded-xl">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-divers-100">
               <GlassesIcon
-                className="fill-divers-700 inline-block"
+                className="inline-block fill-divers-700"
                 width="20"
                 height="20"
               />
@@ -88,11 +88,11 @@ export default function Contributions() {
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             onClick={() => trackEvent(homeClickContribution)}
-            className="border-logement-400 min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 py-8 text-inherit no-underline"
+            className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-logement-400 py-8 text-inherit no-underline transition-colors hover:border-logement-600 hover:text-default"
             data-cypress-id="contact-link">
-            <div className="bg-logement-100 flex h-12 w-12 items-center justify-center rounded-xl">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-logement-100">
               <PencilIcon
-                className="stroke-logement-700 inline-block"
+                className="inline-block stroke-logement-700"
                 width="20"
                 height="20"
               />

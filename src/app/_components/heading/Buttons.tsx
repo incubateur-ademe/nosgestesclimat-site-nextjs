@@ -28,6 +28,7 @@ export default function Buttons() {
   return (
     <div className="relative">
       <ButtonLink
+        size="xl"
         className={`transition-all duration-300 ${
           isClient ? 'opacity-100' : 'opacity-0'
         }`}
