@@ -11,7 +11,7 @@ export const actionsClickFilter = (category: DottedName) => [
   'trackEvent',
   'Actions',
   'Click Filter',
-  category,
+  `Click Filter ${category}`,
 ]
 
 // Figma comment #69
@@ -19,7 +19,7 @@ export const actionsClickYes = (action: DottedName) => [
   'trackEvent',
   'Actions',
   'Click Yes',
-  action,
+  `Click Yes ${action}`,
 ]
 
 // Figma comment #70
@@ -27,7 +27,7 @@ export const actionsClickNo = (action: DottedName) => [
   'trackEvent',
   'Actions',
   'Click No',
-  action,
+  `Click No ${action}`,
 ]
 
 // Figma comment #71
@@ -35,7 +35,7 @@ export const actionsClickAdditionalQuestion = (action: DottedName) => [
   'trackEvent',
   'Actions',
   'Click Additional Question',
-  action,
+  `Click Additional Question ${action}`,
 ]
 
 // Figma comment #112
@@ -43,7 +43,7 @@ export const actionsOpenAction = (action: DottedName) => [
   'trackEvent',
   'Actions',
   'Open Action',
-  action,
+  `Open Action ${action}`,
 ]
 
 // Figma comment #114
@@ -51,7 +51,7 @@ export const actionsClickActionsPlus = [
   'trackEvent',
   'Actions',
   'Click More infos',
-  'Actions Plus',
+  'Click Actions Plus',
 ]
 
 // Figma comment #114
@@ -59,5 +59,5 @@ export const actionsClickAdeme = [
   'trackEvent',
   'Actions',
   'Click More infos',
-  'ADEME',
+  'Click Agir ADEME',
 ]

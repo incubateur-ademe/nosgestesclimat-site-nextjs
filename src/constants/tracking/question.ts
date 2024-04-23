@@ -5,134 +5,132 @@ import { DottedName, NodeValue } from '@/publicodes-state/types'
 
 type Props = {
   question: DottedName
-  answer?: DottedName | NodeValue | string
   mosaicValue?: NodeValue | string
   timeSpentOnQuestion?: number
 }
 // Figma comment #45
 export const questionOpenInfo = ({ question }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Open Info',
+  question,
 ]
 
 // Figma comment #45
 export const questionCloseInfo = ({ question }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Close Info',
+  question,
 ]
 
 // Figma comment #49
 export const questionClickSuivant = ({
   question,
-  answer,
   timeSpentOnQuestion,
 }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Click Suivant',
-  String(answer),
+  question,
   String(timeSpentOnQuestion),
 ]
 
 // Figma comment #49
 export const questionClickPass = ({ question, timeSpentOnQuestion }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Click Je ne sais pas',
-  null,
+  question,
   String(timeSpentOnQuestion),
 ]
 
 // Figma comment #48
 export const questionClickPrevious = ({ question }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Click Précédent',
+  question,
 ]
 
 // Figma comment #47
-export const questionToggleAnswerInfo = ({ question, answer }: Props) => [
+export const questionToggleAnswerInfo = ({ question }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Toggle Answer info',
-  answer,
+  question,
 ]
 
 // Figma comment #46
-export const questionChooseAnswer = ({
-  question,
-  answer,
-  mosaicValue,
-}: Props) => [
+export const questionChooseAnswer = ({ question, mosaicValue }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Choose Answer',
-  String(answer),
+  question,
   String(mosaicValue),
 ]
 
 // Figma comment #51
-export const questionTypeAnswer = ({
-  question,
-  answer,
-  mosaicValue,
-}: Props) => [
+export const questionTypeAnswer = ({ question, mosaicValue }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Type Answer',
-  String(answer),
+  question,
   String(mosaicValue),
 ]
 
 // Figma comment #50
-export const questionClickSuggestion = ({ question, answer }: Props) => [
+export const questionClickSuggestion = ({ question }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Click Suggestion',
-  String(answer),
+  question,
 ]
 
 // Figma comment #52
 export const questionOpenHelp = ({ question }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Open Help',
+  question,
 ]
 
 // Figma comment #52
 export const questionCloseHelp = ({ question }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Close Help',
+  question,
 ]
 
 // Figma comment #53
 export const questionAddHelp = ({ question }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Add Help',
+  question,
 ]
 
 // Figma comment #54
 export const questionDeleteHelp = ({ question }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Delete Help',
+  question,
 ]
 
 // Figma comment #55
 export const questionTypeHelp = ({ question }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Type Help',
+  question,
 ]
 
 // Figma comment #56
-export const questionUpdateAltQuestion = ({ question, answer }: Props) => [
+export const questionUpdateAltQuestion = ({ question }: Props) => [
   'trackEvent',
-  question,
+  'Simulateur',
   'Update Alt Question',
-  answer,
+  question,
 ]

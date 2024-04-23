@@ -7,20 +7,20 @@ export const trackingIframe = (url: string) => [
   'trackEvent',
   'Misc',
   'Iframe visit',
-  url,
+  `Iframe visit from ${url}`,
 ]
 
 export const trackingLocale = (locale: string) => [
   'trackEvent',
   'Misc',
   'Language',
-  locale,
+  `Locale used ${locale}`,
 ]
 export const trackingRegion = (region: string) => [
   'trackEvent',
   'Misc',
   'Region',
-  region,
+  `Region used: ${region}`,
 ]
 
 export const trackingDownloadRavijenChart = [
@@ -39,5 +39,5 @@ export const trackingSplitTesting = (branch: string) => [
   'trackEvent',
   'Misc',
   'Split testing',
-  branch,
+  `User on branch ${branch}`,
 ]

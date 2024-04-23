@@ -20,7 +20,6 @@ export const simulateurClickSommaireQuestion = [
   'trackEvent',
   'Simulateur',
   'Click Sommaire question',
-  'Active',
 ]
 
 // Figma comment #44
@@ -28,7 +27,6 @@ export const simulateurClickDisabledSommaireQuestion = [
   'trackEvent',
   'Simulateur',
   'Click Sommaire question',
-  'Disabled',
 ]
 
 // Figma comment #42
