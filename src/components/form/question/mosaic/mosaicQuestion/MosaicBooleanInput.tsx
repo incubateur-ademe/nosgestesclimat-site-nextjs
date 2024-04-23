@@ -15,7 +15,7 @@ type Props = {
 
 const buttonClassNames = {
   inactive: 'border-gray-200 bg-gray-100 text-gray-400 cursor-default',
-  checked: 'border-primary-700 text-primary-700 border-2',
+  checked: 'border-primary-700 text-primary-700',
   unchecked: 'border-gray-200 bg-white hover:bg-primary-50',
 }
 const checkClassNames = {
