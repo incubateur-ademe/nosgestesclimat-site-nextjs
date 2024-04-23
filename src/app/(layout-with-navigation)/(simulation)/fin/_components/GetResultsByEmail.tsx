@@ -3,15 +3,17 @@
 import Trans from '@/components/translation/Trans'
 import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import EmailInput from '@/design-system/inputs/EmailInput'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { isEmailValid } from '@/utils/isEmailValid'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { formatValue } from 'publicodes'
+import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './getResultsByEmail/Confirmation'
 
@@ -30,6 +32,9 @@ export default function GetResultsByEmail({
 
   const { data: numberSubscribers } = useNumberSubscribers()
 
+  const [formEmail, setFormEmail] = useState(user.email || '')
+  const [errorEmail, setErrorEmail] = useState('')
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
@@ -38,7 +43,15 @@ export default function GetResultsByEmail({
       return
     }
 
+    // Inputs validation
+    if (!formEmail || !isEmailValid(formEmail)) {
+      setErrorEmail(t('Veuillez renseigner un email valide.'))
+      return
+    }
+
     trackEvent(endClickSaveSimulation)
+
+    updateEmail(formEmail)
 
     // We save the simulation (and signify the backend to send the email)
     await saveSimulation({
@@ -97,17 +110,11 @@ export default function GetResultsByEmail({
         </p>
 
         <div className="mb-4 w-full">
-          <TextInputGroup
-            name="EMAIL"
-            type="email"
-            aria-label="Entrez votre adresse email"
-            placeholder="jeanmarc@nosgestesclimat.fr"
-            value={user?.email}
-            onChange={(event) => {
-              updateEmail((event.target as HTMLInputElement).value)
-            }}
-            required
-            className="bg-white"
+          <EmailInput
+            email={formEmail}
+            setEmail={setFormEmail}
+            error={errorEmail}
+            setError={setErrorEmail}
           />
         </div>
 
