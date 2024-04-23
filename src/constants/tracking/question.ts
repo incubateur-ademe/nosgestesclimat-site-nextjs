@@ -5,6 +5,7 @@ import { DottedName, NodeValue } from '@/publicodes-state/types'
 
 type Props = {
   question: DottedName
+  answer?: DottedName | NodeValue | string
   mosaicValue?: NodeValue | string
   timeSpentOnQuestion?: number
 }
