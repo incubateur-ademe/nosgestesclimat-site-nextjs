@@ -16,8 +16,6 @@ import {
   getBorderColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
-import { useFetchSimulation } from '@/hooks/simulation/useFetchSimulation'
-import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
   useCurrentSimulation,
@@ -97,12 +95,6 @@ export default function ActionCard({
       })) ||
     action.isIrrelevant
 
-  const { simulation: simulationSaved } = useFetchSimulation({
-    simulationId: currentSimulation?.id ?? '',
-  })
-
-  const { saveSimulationNotAsync } = useSaveSimulation()
-
   const handleChooseAction = useCallback(async () => {
     if (isDisabled) return
     if (hasRemainingQuestions) {
@@ -112,31 +104,15 @@ export default function ActionCard({
 
     toggleActionChoice(dottedName)
 
-    if (currentSimulation && !!simulationSaved) {
-      saveSimulationNotAsync({
-        simulation: {
-          ...(currentSimulation ?? {}),
-          actionChoices: {
-            ...currentSimulation?.actionChoices,
-            [dottedName]: true,
-          },
-        },
-        shouldSendSimulationEmail: false,
-      })
-    }
-
     if (!isSelected) {
       trackEvent(actionsClickYes(dottedName))
     }
   }, [
-    currentSimulation,
     dottedName,
     hasRemainingQuestions,
     isDisabled,
     isSelected,
-    saveSimulationNotAsync,
     setFocusedAction,
-    simulationSaved,
     toggleActionChoice,
   ])
 
