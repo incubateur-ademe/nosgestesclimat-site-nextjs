@@ -21,7 +21,6 @@ export default function HorizontalBarChartItem({
   index,
   barColor,
 }: Props) {
-  console.log(title)
   return (
     <div className="flex w-full items-center justify-between gap-8">
       <div
