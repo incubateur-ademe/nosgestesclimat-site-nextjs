@@ -130,10 +130,23 @@ module.exports = {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
         },
+        rainbow: {
+          '0%': {
+            'background-position': '100% 50%',
+          },
+          '50%': {
+            'background-position': '50% 50%',
+          },
+          '100%': {
+            'background-position': '0% 50%',
+          },
+        },
       },
       animation: {
         valuechange: 'valuechange 3s ease-out infinite',
         iconsRotation: 'iconsRotation 1s ease-in-out',
+        'rainbow-slow': 'rainbow 30s linear infinite',
+        'rainbow-fast': 'rainbow 5s linear infinite',
       },
       backgroundImage: {
         'icons-mobile': "url('/images/misc/mobileIcons.svg')",
