@@ -7,7 +7,6 @@ import { useUser } from '@/publicodes-state'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import dayjs from 'dayjs'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import NotReceived from './verificationForm/NotReceived'
@@ -115,16 +114,7 @@ export default function VerificationForm() {
     isPendingValidate || isSuccessValidate || isPendingResend || timeLeft > 0
 
   return (
-    <div className="flex gap-8 rounded-xl bg-gray-100 p-4 md:p-8">
-      <div className="hidden w-12 md:block md:w-24">
-        <Image
-          src="/images/organisations/envelop.svg"
-          width="47"
-          height="100"
-          alt=""
-        />
-      </div>
-
+    <div className="rounded-xl bg-gray-100 p-4 md:p-8">
       <div>
         <VerificationContent
           email={user?.organisation?.administratorEmail ?? ''}
