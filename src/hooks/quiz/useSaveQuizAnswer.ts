@@ -21,7 +21,6 @@ export function useSaveQuizAnswer() {
           simulationId: id,
         })
         .then((response) => response.data)
-        .catch(() => console.error('Failed to save quiz answer'))
     },
   })
   return {
