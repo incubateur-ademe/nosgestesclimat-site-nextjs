@@ -1,66 +1,43 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { GROUP_NAMES } from '@/constants/groupNames'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
+import { getGroupName } from '@/helpers/groups/getGroupName'
 import { validateCreationForm } from '@/helpers/groups/validateCreationForm'
 import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useLocale } from '@/hooks/useLocale'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
-import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
+import { FormEvent, FormEventHandler, useState } from 'react'
 
 export default function GroupCreationForm() {
+  const { t } = useClientTranslation()
+
+  const locale = useLocale()
+
   const { user, updateName, updateEmail } = useUser()
 
   const currentSimulation = useCurrentSimulation()
-
-  const { name, userId, email } = user
-
-  const [administratorName, setAdministratorName] = useState(name || '')
-  const [errorAdministratorName, setErrorAdministratorName] = useState('')
-
-  const [administratorEmail, setAdministratorEmail] = useState(email || '')
-  const [errorEmail, setErrorEmail] = useState('')
-
-  const { t } = useClientTranslation()
-
-  const hasCompletedTest = currentSimulation?.progression === 1
-
-  const { data: groups } = useFetchGroupsOfUser()
+  const hasCompletedTest = currentSimulation.progression === 1
 
   const { goToSimulateurPage } = useSimulateurPage()
   const { goToEndPage } = useEndPage()
 
+  const [administratorName, setAdministratorName] = useState(user.name || '')
+  const [errorAdministratorName, setErrorAdministratorName] = useState('')
+
+  const [administratorEmail, setAdministratorEmail] = useState(user.email || '')
+  const [errorEmail, setErrorEmail] = useState('')
+
+  const { data: groups } = useFetchGroupsOfUser()
+
   const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
-
-  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] = useState<
-    string | null
-  >(null)
-  useEffect(() => {
-    if (!shouldGoToSimulateurPage) {
-      return
-    }
-
-    if (currentSimulation?.groups?.includes(shouldGoToSimulateurPage)) {
-      if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
-      } else {
-        goToSimulateurPage()
-      }
-    }
-  }, [
-    goToSimulateurPage,
-    goToEndPage,
-    shouldGoToSimulateurPage,
-    currentSimulation,
-    hasCompletedTest,
-  ])
 
   const handleSubmit = async (event: FormEvent) => {
     // Avoid reloading page
@@ -79,8 +56,7 @@ export default function GroupCreationForm() {
     if (!isValid) return
 
     try {
-      const { name, emoji } =
-        GROUP_NAMES[groups.length % GROUP_NAMES.length] ?? GROUP_NAMES[0]
+      const { name, emoji } = getGroupName(groups ?? [], locale ?? 'fr')
 
       const group = await createGroup({
         groupInfo: {
@@ -88,7 +64,7 @@ export default function GroupCreationForm() {
           emoji,
           administratorEmail,
           administratorName,
-          userId,
+          userId: user.userId,
           simulation: currentSimulation,
         },
       })
@@ -102,8 +78,12 @@ export default function GroupCreationForm() {
         groupToAdd: group._id,
       })
 
-      // We signal that the form has been submitted. When the currentSimulation is updated, we redirect
-      setShouldGoToSimulateurPage(group._id)
+      // Redirect to simulateur page or end page
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
     } catch (e) {
       captureException(e)
     }
@@ -130,7 +110,7 @@ export default function GroupCreationForm() {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="italic text-secondary-500">
+              <span className="text-secondary-700 italic">
                 {' '}
                 {t('facultatif')}
               </span>

@@ -1,9 +1,11 @@
 'use client'
 
+import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import LockIcon from '@/components/icons/LockIcon'
+import SendIcon from '@/components/icons/SendIcon'
 import Trans from '@/components/translation/Trans'
 import { organisationsConnexionClickCode } from '@/constants/tracking/pages/organisationsConnexion'
 import Button from '@/design-system/inputs/Button'
-import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -71,21 +73,26 @@ export default function NotReceived({
               : ''
           }
           onClick={handleResendVerificationCode}
-          className="text-primary-700 underline">
+          className="text-primary-700">
           {isRetryButtonDisabled && timeLeft > 0 && (
-            <>
-              <Emoji>🔒</Emoji>&nbsp;<Trans>Renvoyer le code</Trans>
-            </>
+            <span className="flex items-center no-underline">
+              <LockIcon className="h-4 w-4 fill-primary-700" />
+              &nbsp;<Trans>Renvoyer le code</Trans>
+            </span>
           )}
 
           {shouldDisplayConfirmation && (
-            <>
-              <Emoji>✅</Emoji>&nbsp;<Trans>Code renvoyé</Trans>
-            </>
+            <span className="flex items-center text-green-500 no-underline">
+              <CheckCircleIcon className="h-4 w-4 fill-green-500" />
+              &nbsp;<Trans>Code renvoyé</Trans>
+            </span>
           )}
 
           {!shouldDisplayConfirmation && !isRetryButtonDisabled && (
-            <Trans>Renvoyer le code</Trans>
+            <span className="flex items-center underline">
+              <SendIcon className="h-4 w-4 fill-primary-700" />
+              &nbsp;<Trans>Renvoyer le code</Trans>
+            </span>
           )}
         </button>
       )}

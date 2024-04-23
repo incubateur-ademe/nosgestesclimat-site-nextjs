@@ -58,11 +58,12 @@ export default function Navigation({
         onClick={(event) => {
           if (currentPage === EMAIL_PAGE) {
             trackEvent(infosEmailClickSuivant)
-            return
           }
+
           if (currentPage === POSTAL_CODE_PAGE) {
             trackEvent(infosPostalCodeClickSuivant)
           }
+
           if (currentPage === BIRTHDATE_PAGE) {
             trackEvent(infosBirthdateClickSuivant)
           }

@@ -9,6 +9,7 @@ type Props = {
   percentageOfTotalValue: number
   minTitleWidth?: number
   index?: number
+  barColor?: string
 }
 
 export default function HorizontalBarChartItem({
@@ -18,8 +19,8 @@ export default function HorizontalBarChartItem({
   percentageOfTotalValue,
   minTitleWidth,
   index,
+  barColor,
 }: Props) {
-  console.log(title)
   return (
     <div className="flex w-full items-center justify-between gap-8">
       <div
@@ -45,6 +46,7 @@ export default function HorizontalBarChartItem({
           type="horizontal"
           value={`${percentageOfTotalValue}%`}
           index={index}
+          color={barColor}
         />
       </div>
 

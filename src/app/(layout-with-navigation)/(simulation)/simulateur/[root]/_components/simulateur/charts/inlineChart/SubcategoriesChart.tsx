@@ -34,7 +34,7 @@ export default function SubcategoriesChart() {
         <ValueChangeDisplay />
       </div>
       <div
-        className={`mb-4 flex h-8 md:h-12 ${getBackgroundColor(
+        className={`mb-4 flex h-8 rounded-md md:h-12 md:rounded-xl ${getBackgroundColor(
           currentCategory
         )}`}>
         {filteredSubcategories.map((subcategory: string, index: number) => (

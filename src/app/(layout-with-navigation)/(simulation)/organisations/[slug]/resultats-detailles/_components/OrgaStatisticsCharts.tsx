@@ -1,8 +1,8 @@
 'use client'
 
+import ActionsIcon from '@/components/icons/ActionsIcon'
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
-import Emoji from '@/design-system/utils/Emoji'
 import { SimulationRecap } from '@/types/organisations'
 import { useMemo } from 'react'
 import CategoryListItem from './orgaStatisticsCharts/CategoryListItem'
@@ -51,7 +51,7 @@ export default function OrgaStatisticsCharts({
   if (!simulationRecaps || simulationRecaps?.length < 3) return null
 
   return (
-    <section className="my-12 rounded-lg bg-grey-100 px-8 pb-4 pt-8">
+    <section className="my-12 rounded-xl bg-gray-100 px-8 pb-4 pt-8">
       <h2>
         <Trans>Résultats du groupe</Trans>
       </h2>
@@ -82,7 +82,7 @@ export default function OrgaStatisticsCharts({
 
           <div className="mt-4 flex items-baseline justify-between">
             <span>
-              <Emoji className="text-xl">🎯</Emoji>{' '}
+              <ActionsIcon className="w-4" />
               <strong className="text-lg">2</strong>{' '}
               <span>
                 <Trans>tonnes</Trans>
@@ -91,7 +91,7 @@ export default function OrgaStatisticsCharts({
 
             {hasCurrentUser && (
               <div className="flex items-center gap-3">
-                <div className="h-4 w-1 bg-secondary-500" />
+                <div className="h-4 w-1 bg-secondary-700" />
                 <p className="mb-0 text-sm text-gray-600">
                   <Trans>Votre résultat</Trans>
                 </p>
@@ -144,7 +144,7 @@ export default function OrgaStatisticsCharts({
 
             {hasCurrentUser && (
               <div className="flex items-center gap-3">
-                <div className="h-4 w-1 bg-secondary-500" />
+                <div className="h-4 w-1 bg-secondary-700" />
                 <p className="mb-0 text-sm text-gray-600">
                   <Trans>Votre résultat</Trans>
                 </p>

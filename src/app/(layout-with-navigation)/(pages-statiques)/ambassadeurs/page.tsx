@@ -1,15 +1,18 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
 import Image from 'next/image'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
   return getMetadataObject({
-    title: 'Ambassadeurs - Nos Gestes Climat',
-    description:
-      'Découvrez les ambassadeurs de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.',
+    title: t('Ambassadeurs - Nos Gestes Climat'),
+    description: t(
+      'Découvrez les ambassadeurs de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
+    ),
     alternates: {
       canonical: '/ambassadeurs',
     },
@@ -35,7 +38,7 @@ export default function page() {
                 key={ambassadeur.title}
                 href={ambassadeur.link}
                 tag="a"
-                className="no-underline"
+                className="border-none bg-primary-50 no-underline"
                 target="_blank">
                 <Image
                   src={'/images/ambassadeurs/' + ambassadeur.image}

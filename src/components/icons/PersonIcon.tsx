@@ -11,7 +11,7 @@ export default function PersonIcon({ className }: { className?: string }) {
       <g
         id="line"
         transform="matrix(1.1584183,0,0,1.1584183,-3.8887895,-6.8295539)"
-        className="stroke-primary-500">
+        className="stroke-primary-700">
         <path
           fill="none"
           stroke="#000000"
@@ -34,7 +34,7 @@ export default function PersonIcon({ className }: { className?: string }) {
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="2.27522"
-          className="stroke-primary-500"
+          className="stroke-primary-700"
           d="m 60.549521,63.348606 c 0,0 0,-2.27522 -1.137611,-6.825664 -1.377532,-5.51252 -4.550442,-9.100884 -11.376106,-9.100884 -5.688053,0 -17.06416,0 -25.027434,0 -6.825664,0 -9.998574,3.588364 -11.376106,9.100884 -1.137611,4.550444 -1.137611,6.825664 -1.137611,6.825664"
           id="path214"
         />
@@ -45,7 +45,7 @@ export default function PersonIcon({ className }: { className?: string }) {
           strokeWidth="2.27522"
           d="m 24.145981,24.669844 c 0,4.237145 0.613285,8.883147 2.27522,11.376107 2.117435,3.177346 5.708076,4.550443 9.100886,4.550443 3.521701,0 6.981175,-1.373097 9.100885,-4.550443 1.660911,-2.49296 2.275221,-7.138962 2.275221,-11.376107 0,-3.177914 -1.137611,-13.651327 -11.376106,-13.651327 -10.238496,0 -11.376106,8.35484 -11.376106,13.651327 z"
           id="path216"
-          className="fill-primary-200 stroke-primary-500"
+          className="fill-primary-200 stroke-primary-700"
         />
       </g>
     </svg>

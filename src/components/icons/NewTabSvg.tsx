@@ -1,7 +1,7 @@
 export default function NewTabSvg({ className = '' }) {
   return (
     <svg
-      className={`fill-primary-500 ml-2 inline-block h-auto w-3 ${className}`}
+      className={`ml-2 inline-block h-auto w-3 fill-primary-700 ${className}`}
       x="0px"
       y="0px"
       viewBox="0 0 283.178 283.178">

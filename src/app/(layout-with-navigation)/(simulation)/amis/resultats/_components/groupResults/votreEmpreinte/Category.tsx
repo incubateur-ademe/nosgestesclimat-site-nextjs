@@ -33,7 +33,7 @@ export default function Category({
         )}
       </div>
       <div className="flex items-center gap-4">
-        <div className="rounded-[5px] border-[1px] border-solid border-primary-800 bg-primary-100 p-1 text-sm text-primary-500">
+        <div className="rounded-[5px] border-[1px] border-solid border-primary-800 bg-primary-100 p-1 text-sm text-primary-700">
           <strong>
             {formatValue(categoryFootprint.value / 1000, {
               precision: 1,

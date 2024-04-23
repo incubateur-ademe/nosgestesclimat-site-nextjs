@@ -1,4 +1,3 @@
-import AirplaneTakeOff from './AirplaneTakeOff'
 import AnimauxDomestiques from './AnimauxDomestiques'
 import Autobus from './Autobus'
 import Baguette from './Baguette'
@@ -63,7 +62,6 @@ export const everyIcons = [
   Salad,
   Soleil,
   OatMilk,
-  AirplaneTakeOff,
   SmartphoneTablet,
   Rocket,
   Taxi,

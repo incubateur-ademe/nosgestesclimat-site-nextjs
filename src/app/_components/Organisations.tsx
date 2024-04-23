@@ -4,19 +4,17 @@ import Trans from '@/components/translation/Trans'
 import { homeClickOrganisations } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import { useState } from 'react'
 import Background from './organisations/Background'
 
 export default function Organisations() {
-  const { t } = useClientTranslation()
-
   const [isHover, setIsHover] = useState(false)
 
   return (
     <div className="relative mb-16 py-12 md:py-24">
-      <Background direction={isHover ? 'left' : 'right'} />
+      <Background direction={isHover ? 'left' : 'right'} withColorLine />
+
       <div className="relative mx-auto flex w-full max-w-5xl flex-col px-4 md:flex-row md:gap-4 md:px-8">
         <div className="w-full flex-1 basis-1/2 md:max-w-lg">
           <Kicker>
@@ -28,9 +26,14 @@ export default function Organisations() {
             </Trans>
           </h2>
           <p className="max-w-lg md:mb-8 md:max-w-sm md:text-lg">
-            {t(
-              'Vous souhaitez diffuser Nos Gestes Climat auprès de votre organisation, découvrez-nous outils pour vous simplifier la vie\u202f!'
-            )}
+            <Trans>Vous souhaitez</Trans>{' '}
+            <strong className="text-primary-700">
+              <Trans>diffuser Nos Gestes Climat</Trans>
+            </strong>{' '}
+            <Trans>
+              auprès de votre organisation, découvrez-nous outils pour vous
+              simplifier la vie !
+            </Trans>
           </p>
           <ButtonLink
             href="/organisations"

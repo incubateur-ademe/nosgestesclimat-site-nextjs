@@ -24,7 +24,7 @@ export default function OrgaStatisticsFilters({
   }
 
   return (
-    <div className="mb-8 flex flex-col justify-between gap-4 rounded-lg bg-grey-100 px-4 py-4 sm:flex-row sm:items-center md:px-6">
+    <div className="mb-8 flex flex-col justify-between gap-4 rounded-lg bg-gray-100 px-4 py-4 sm:flex-row sm:items-center md:px-6">
       <div className="flex items-center gap-2">
         <p className="mb-0 md:text-xl">
           <Trans>Filtrer par</Trans>
@@ -32,7 +32,7 @@ export default function OrgaStatisticsFilters({
         <InfoTooltipIcon className="z-10 inline-block md:hidden" />
       </div>
 
-      <div className="xs:flex-row xs:items-center flex flex-col gap-2 md:gap-4">
+      <div className="flex flex-col gap-2 xs:flex-row xs:items-center md:gap-4">
         {defaultAdditionalQuestions.includes('birthdate') && (
           <AgeFilter filteredSimulationRecaps={filteredSimulationRecaps} />
         )}

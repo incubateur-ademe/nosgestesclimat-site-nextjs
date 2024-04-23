@@ -31,7 +31,7 @@ export default function Question({ question }: Props) {
     <Link
       href={getLinkToSimulateur({ question })}
       onClick={() => trackEvent(profilClickQuestion(question))}
-      className={`mb-2 block rounded-lg bg-white p-4 no-underline hover:underline`}>
+      className={`mb-2 block rounded-xl bg-white p-4 no-underline hover:underline`}>
       <span
         className={`flex w-full items-center justify-between gap-8  text-sm`}>
         <span className="flex-1">{label}</span>

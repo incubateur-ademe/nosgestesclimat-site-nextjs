@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
+import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useState } from 'react'
 import ActionsChosenIndicator from './ActionsChosenIndicator'
@@ -24,10 +25,11 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
       <div className="absolute right-0 top-1 text-right">
         <button
           title={t('Ouvrir les options de tri')}
-          onClick={() => setIsOpen(true)}>
-          <span role="img" aria-label={t('Ouvrir les options de tri')}>
+          onClick={() => setIsOpen(true)}
+          className="text-orange-dark">
+          <Emoji role="img" aria-label={t('Ouvrir les options de tri')}>
             ⚙️
-          </span>
+          </Emoji>
         </button>
       </div>
     )

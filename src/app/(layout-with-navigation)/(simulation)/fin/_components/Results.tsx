@@ -1,6 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
+import SaveIcon from '@/components/icons/SaveIcon'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import CategoriesChart from '@/components/results/CategoriesChart'
 import Trans from '@/components/translation/Trans'
@@ -9,29 +10,30 @@ import {
   endClickSaveShortcut,
 } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
-import Separator from '@/design-system/layout/Separator'
-import Emoji from '@/design-system/utils/Emoji'
+import Title from '@/design-system/layout/Title'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import TotalCard from './results/TotalCard'
 
 export default function Results() {
   return (
     <>
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="mb-0 text-lg">
-          <Trans>Votre bilan</Trans>
-        </h2>
+      <div className="mb-4 flex flex-wrap items-start justify-between">
+        <Title
+          className="text-lg md:text-2xl"
+          title={<Trans>Votre empreinte carbone</Trans>}
+        />
 
         <Button
           color="text"
-          className="text-base underline"
+          className="ml-auto text-base underline"
           onClick={() => {
             trackEvent(endClickSaveShortcut)
 
             const emailBlock = document.getElementById('email-block')
             emailBlock?.scrollIntoView({ behavior: 'smooth', block: 'center' })
           }}>
-          <Emoji className="mr-2 inline-block">📩</Emoji>
+          <SaveIcon className="mr-2 w-4 fill-primary-700" />
+
           <Trans>Sauvegarder</Trans>
         </Button>
       </div>
@@ -44,7 +46,7 @@ export default function Results() {
 
       <CategoriesAccordion />
 
-      <div className="mt-2 text-right">
+      <div className="mb-8 mt-2 text-right">
         <Link
           href="/profil#answers"
           onClick={() => trackEvent(endClickChangeAnswers)}
@@ -52,8 +54,6 @@ export default function Results() {
           <Trans>Modifier mes réponses</Trans>
         </Link>
       </div>
-
-      <Separator />
     </>
   )
 }

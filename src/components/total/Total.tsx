@@ -6,6 +6,7 @@ import {
   simulateurCloseScoreInfo,
   simulateurOpenScoreInfo,
 } from '@/constants/tracking/pages/simulateur'
+import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
@@ -15,9 +16,9 @@ import {
   useUser,
 } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { useEffect, useState } from 'react'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
-import Planet from './_components/Planet'
 import Progress from './_components/Progress'
 
 type Props = {
@@ -32,7 +33,7 @@ export default function Total({ toggleQuestionList }: Props) {
 
   const { tutorials, hideTutorial, showTutorial } = useUser()
 
-  const { actionChoices } = useCurrentSimulation()
+  const { actionChoices, progression } = useCurrentSimulation()
 
   const actionChoicesSumValue = Object.keys(actionChoices || {}).reduce(
     (acc, key) => {
@@ -41,9 +42,13 @@ export default function Total({ toggleQuestionList }: Props) {
     0
   )
 
-  const toggleOpen = () => {
+  const [hasManuallyOpenedTutorial, setHasManuallyOpenedTutorial] =
+    useState(false)
+
+  function toggleOpen() {
     if (tutorials.scoreExplanation) {
       trackEvent(simulateurOpenScoreInfo)
+      setHasManuallyOpenedTutorial(true)
       showTutorial('scoreExplanation')
     } else {
       trackEvent(simulateurCloseScoreInfo)
@@ -52,11 +57,28 @@ export default function Total({ toggleQuestionList }: Props) {
   }
   const carbonFootprintValue = numericValue - actionChoicesSumValue
 
+  useEffect(() => {
+    if (
+      progression > 0.05 &&
+      !tutorials.scoreExplanation &&
+      !hasManuallyOpenedTutorial
+    ) {
+      hideTutorial('scoreExplanation')
+    }
+  }, [
+    hideTutorial,
+    progression,
+    tutorials.scoreExplanation,
+    hasManuallyOpenedTutorial,
+  ])
+
   return (
     <div className="md:mb-2">
-      <div className="relative mb-2 flex items-center gap-4 overflow-hidden rounded-lg bg-primary-400 px-4 py-2 text-white md:justify-center md:text-center ">
+      <div className="relative mb-2 flex items-center gap-4 overflow-hidden rounded-xl bg-primary-800 px-4 py-2 text-white md:justify-center md:text-center ">
         <Progress />
-        <Planet />
+
+        <Emoji className="z-10 text-4xl md:text-6xl">🌍</Emoji>
+
         <div className="z-10">
           <span className="block text-2xl font-bold md:text-3xl">
             {numericValue !== carbonFootprintValue && (

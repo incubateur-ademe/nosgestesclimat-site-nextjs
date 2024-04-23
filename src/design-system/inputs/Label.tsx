@@ -9,7 +9,7 @@ export default function Label({
     <div className="flex justify-between">
       <span>{children}</span>{' '}
       {isOptional && (
-        <span className="text-secondary-500 italic">
+        <span className="text-secondary-700 italic">
           <Trans>facultatif</Trans>
         </span>
       )}

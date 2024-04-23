@@ -5,21 +5,36 @@ import Title from '@/design-system/layout/Title'
 import { useRules } from '@/hooks/useRules'
 
 import Link from '@/components/Link'
+import LightBulbIcon from '@/components/icons/LightBulbIcon'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useRef } from 'react'
 import SearchBar from './SearchBar'
 import DocumentationLandingCard from './documentationLanding/DocumentationLandingCard'
 
-// We want to be able to define an order for the cards and their summary here
-const FIXED_CARD_SUMMARIES = {
-  bilan: `Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels`,
-  'services sociétaux': `Les constantes de **services publics et marchands** calculées à partir des travaux du SDES`,
-  'alimentation . plats': ` **6 repas** représentatifs de notre consommation`,
-  'alimentation . déchets': `Un modèle inédit d'empreinte des **déchets**`,
-  'logement . chauffage . empreinte par défaut': `Un calcul statistique du **chauffage** résidentiel français moyen`,
-  'transport . voiture': `Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**`,
-} as Record<string, string>
-
 export default function DocumentationLanding() {
   const { data: rules } = useRules({ isOptim: false })
+
+  const { t } = useClientTranslation()
+
+  // We want to be able to define an order for the cards and their summary here
+  const fixedCardSummaries = useRef({
+    bilan: t(
+      `Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels`
+    ),
+    'services sociétaux': t(
+      `Les constantes de **services publics et marchands** calculées à partir des travaux du SDES`
+    ),
+    'alimentation . plats': t(
+      `**6 repas** représentatifs de notre consommation`
+    ),
+    'alimentation . déchets': t(`Un modèle inédit d'empreinte des **déchets**`),
+    'logement . chauffage . empreinte par défaut': t(
+      `Un calcul statistique du **chauffage** résidentiel français moyen`
+    ),
+    'transport . voiture': t(
+      `Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**`
+    ),
+  } as Record<string, string>)
 
   if (!rules) return null
 
@@ -37,8 +52,9 @@ export default function DocumentationLanding() {
       </p>
 
       <div>
-        <Link href="/modele">
-          💡 <Trans> En savoir plus sur notre modèle</Trans>
+        <Link href="/modele" className="flex items-center">
+          <LightBulbIcon className="mr-1 h-4 w-4 fill-primary-700" />
+          <Trans> En savoir plus sur notre modèle</Trans>
         </Link>
       </div>
 
@@ -49,12 +65,12 @@ export default function DocumentationLanding() {
       </h2>
 
       <ul className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3">
-        {Object.keys(FIXED_CARD_SUMMARIES).map((dottedName) => {
+        {Object.keys(fixedCardSummaries.current).map((dottedName) => {
           return (
             <li key={dottedName}>
               <DocumentationLandingCard
                 dottedName={dottedName}
-                summary={FIXED_CARD_SUMMARIES[dottedName]}
+                summary={fixedCardSummaries.current[dottedName]}
                 rule={rules[dottedName]}
               />
             </li>

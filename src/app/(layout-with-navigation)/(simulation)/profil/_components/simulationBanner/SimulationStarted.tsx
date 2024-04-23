@@ -1,4 +1,6 @@
 import Link from '@/components/Link'
+import PlaySignIcon from '@/components/icons/PlaySignIcon'
+import RestartIcon from '@/components/icons/RestartIcon'
 import Trans from '@/components/translation/Trans'
 import {
   profilClickCtaReprendre,
@@ -7,8 +9,6 @@ import {
 } from '@/constants/tracking/pages/profil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
-import Emoji from '@/design-system/utils/Emoji'
-import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
@@ -34,7 +34,7 @@ export default function SimulationStarted() {
   return (
     <div className="flex flex-wrap">
       <div className="sm:mt-4 sm:w-[30rem]">
-        <Card className="mr-8">
+        <Card className="mr-8 border-none bg-gray-100">
           <p className="text-base md:text-lg">
             {t('publicodes.Profil.recap', {
               percentFinished: (progression * 100).toFixed(0),
@@ -61,49 +61,43 @@ export default function SimulationStarted() {
         </details>
       </div>
 
-      <div className="my-4 flex w-44 flex-col items-start md:w-auto">
+      <div className="my-4 flex flex-col items-start md:w-auto">
         {isFinished && (
           <ButtonLink
-            className="w-full text-center leading-8"
+            className="w-full justify-center text-center leading-8"
             color="primary"
             href={getLinkToEndPage()}
             trackingEvent={profilClickCtaResultats}>
-            <Trans>
-              <Emoji className="mr-2">👀</Emoji> Voir mon résultat
-            </Trans>
+            <Trans>Voir mon résultat</Trans>
           </ButtonLink>
         )}
 
         {!isFinished && (
           <ButtonLink
             color="primary"
-            className="w-full  text-center"
+            className="w-full !justify-center"
             href={getLinkToSimulateur()}
             trackingEvent={profilClickCtaReprendre}>
-            <Trans>
-              <ProgressCircle white className="mr-2" /> Reprendre mon test
-            </Trans>
+            <PlaySignIcon className="mr-2 fill-white" />
+
+            <Trans>Reprendre mon test</Trans>
           </ButtonLink>
         )}
 
         <ButtonLink
           color="secondary"
-          className="my-2 w-full text-center !text-base"
+          className="my-2 w-full text-center"
           trackingEvent={profilClickRecommencer}
           onClick={() => {
             goToSimulateurPage({ noNavigation: true, newSimulation: {} })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>
-          <span
-            role="img"
-            aria-label="recycle emoji"
-            className="mr-2 inline-block text-xl">
-            ♻️
-          </span>{' '}
+          <RestartIcon className="mr-2 fill-primary-700" />
+
           <Trans>Recommencer</Trans>
         </ButtonLink>
 
-        <TutorialLink className=" !text-base font-normal" />
+        <TutorialLink />
       </div>
     </div>
   )

@@ -2,6 +2,7 @@
 
 import { questionClickSuggestion } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
+import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
@@ -22,7 +23,7 @@ export default function Suggestions({ question, setValue }: Props) {
         <Button
           key={suggestion.label}
           data-cypress-id="suggestion"
-          size="sm"
+          size="xs"
           className="text-xs font-normal md:text-sm"
           onClick={() => {
             trackEvent(
@@ -30,7 +31,9 @@ export default function Suggestions({ question, setValue }: Props) {
             )
             setValue(suggestion.value)
           }}>
-          {capitalizeString(suggestion.label)}
+          <Emoji className="flex items-center gap-1 leading-none">
+            {capitalizeString(suggestion.label)}
+          </Emoji>
         </Button>
       ))}
     </div>

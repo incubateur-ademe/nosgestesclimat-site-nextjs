@@ -34,7 +34,7 @@ export default function ActionCard({
       <div className="flex justify-between">
         <Emoji className="flex gap-1">{icons}</Emoji>
 
-        <Badge color="green">
+        <Badge>
           <strong>
             - {formatValue(roundValue(footprintAvoided), { precision: 0 })}
           </strong>{' '}

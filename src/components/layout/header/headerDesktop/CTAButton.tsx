@@ -19,6 +19,7 @@ export default function CTAButton() {
 
   return (
     <ButtonLink
+      size="sm"
       href={getLinkToSimulateurPage()}
       onClick={() => {
         if (progression === 1) {

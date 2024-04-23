@@ -1,6 +1,5 @@
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
-import Emoji from '@/design-system/utils/Emoji'
 import { Organisation } from '@/types/organisations'
 import MaxWidthContent from '../layout/MaxWidthContent'
 import Trans from '../translation/Trans'
@@ -22,10 +21,15 @@ export default function OrganisationFetchError({
         <MaxWidthContent>
           <p>
             <Trans>Oups</Trans>
-            <Emoji>🤷🏻‍♀️</Emoji>
             <Trans>
-              , vous avez été déconnecté·e de votre espace organisation,
-              reconnectez vous en cliquant sur le bouton ci-dessous.
+              , vous avez été déconnecté·e de votre espace organisation, ou vous
+              cherchez à y accéder depuis un nouveau navigateur.
+            </Trans>
+          </p>
+
+          <p>
+            <Trans>
+              Reconnectez vous en cliquant sur le bouton ci-dessous.
             </Trans>
           </p>
 
