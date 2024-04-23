@@ -91,7 +91,7 @@ export default function SimulationStarted() {
           className="my-2 w-full text-center"
           onClick={() => {
             trackEvent(profilClickRecommencer)
-            goToSimulateurPage({ noNavigation: true, newSimulation: {} })
+            goToSimulateurPage({ newSimulation: {} })
           }}>
           <RestartIcon className="mr-2 fill-primary-700" />
 
