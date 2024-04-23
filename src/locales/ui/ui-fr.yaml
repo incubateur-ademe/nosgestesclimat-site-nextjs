@@ -272,8 +272,6 @@ entries:
   Label: Label
   Passagers: Passagers
   Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet.: Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet.
-  Recevez vos résultats <2>par email</2>: Recevez vos résultats <2>par email</2>
-  Qu'est-ce que ça veut dire ?: Qu'est-ce que ça veut dire ?
   Télécharger l'image: Télécharger l'image
   'Total par an :': 'Total par an :'
   Une capture du mode Groupe Nos Gestes Climat.: Une capture du mode Groupe Nos Gestes Climat.
@@ -408,7 +406,6 @@ entries:
   Kit de diffusion: Kit de diffusion
   La catégorie {{title}} représente {{value}} tonnes de CO2 equivalent.: La catégorie {{title}} représente {{value}} tonnes de CO2 equivalent.
   Les résultats du test sont-ils anonymes ?: Les résultats du test sont-ils anonymes ?
-  'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.'
   Mes informations: Mes informations
   Modifier mes informations: Modifier mes informations
   Organisations: Organisations
@@ -445,7 +442,6 @@ entries:
   Comment agir ?: Comment agir ?
   Comparez vos résultats: Comparez vos résultats
   Connaissez-vous votre empreinte sur le climat ?: Connaissez-vous votre empreinte sur le climat ?
-  Découvrez nos pistes personnalisées pour agir dès aujourd’hui pour le climat.: Découvrez nos pistes personnalisées pour agir dès aujourd’hui pour le climat.
   Découvrir: Découvrir
   En: En
   entre: entre
@@ -463,13 +459,11 @@ entries:
   Toute contribution est la bienvenue !: Toute contribution est la bienvenue !
   Une capture du mode Amis Nos Gestes Climat.: Une capture du mode Amis Nos Gestes Climat.
   Une idée ? Une correction ? Une remarque ?: Une idée ? Une correction ? Une remarque ?
-  Vous souhaitez diffuser Nos Gestes Climat auprès de votre organisation, découvrez-nous outils pour vous simplifier la vie !: Vous souhaitez diffuser Nos Gestes Climat auprès de votre organisation, découvrez-nous outils pour vous simplifier la vie !
   le site est amélioré régulièrement.: le site est amélioré régulièrement.
   Chaque participation est représentée par une barre verticale. Votre score est affiché en rose.: Chaque participation est représentée par une barre verticale. Votre score est affiché en rose.
   La valeur minimum pour ce champ est de: La valeur minimum pour ce champ est de
   Par catégorie: Par catégorie
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !
-  ', vous avez été déconnecté·e de votre espace organisation, reconnectez vous en cliquant sur le bouton ci-dessous.': ', vous avez été déconnecté·e de votre espace organisation, reconnectez vous en cliquant sur le bouton ci-dessous.'
   '{{category}}': '{{category}}'
   '{{value}} tonnes': '{{value}} tonnes'
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>'
@@ -480,7 +474,6 @@ entries:
   Bien vu !: Bien vu !
   Calculez votre empreinte en: Calculez votre empreinte en
   Classements: Classements
-  Créer mon organisation: Créer mon organisation
   D’après vous, quel est: D’après vous, quel est
   Découvrez le simulateur, ouvrir dans un nouvel onglet: Découvrez le simulateur, ouvrir dans un nouvel onglet
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet
@@ -564,8 +557,6 @@ entries:
   Vous avez déja participé à ce sondage.: Vous avez déja participé à ce sondage.
   Vous avez déjà participé à ce sondage.: Vous avez déjà participé à ce sondage.
   Découvrir le simulateur: Découvrir le simulateur
-  'Depuis le siècle dernier, la concentration du carbone dans l’atmosphère augmente tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': 'Depuis le siècle dernier, la concentration du carbone dans l’atmosphère augmente tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.'
-  'Le consensus scientifique est formel, cette augmentation est directement liée aux activités humaines : l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. Il est grand temps de réduire ou remplacer ces activités émettrices de gaz à effet de serre, à toutes les échelles !': 'Le consensus scientifique est formel, cette augmentation est directement liée aux activités humaines : l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. Il est grand temps de réduire ou remplacer ces activités émettrices de gaz à effet de serre, à toutes les échelles !'
   Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.
   écartez celles qui vous semblent trop ambitieuses ou déplacées.: écartez celles qui vous semblent trop ambitieuses ou déplacées.
   Empreinte: Empreinte
@@ -586,14 +577,12 @@ entries:
   Invitez d'autres personnes à rejoindre votre groupe: Invitez d'autres personnes à rejoindre votre groupe
   Invitez vos proches pour comparer vos résultats. Cela prend: Invitez vos proches pour comparer vos résultats. Cela prend
   l’équipe de nosgestesclimat.fr: l’équipe de nosgestesclimat.fr
-  Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.: Pour cela, <strong>laissez-nous votre email</strong>, comme {{numberSubscribers}} personnes.
   Supprimer le groupe: Supprimer le groupe
   Voir les résultats: Voir les résultats
   Votre simulation est sauvegardée !: Votre simulation est sauvegardée !
   Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver
   Vous retrouverez votre résultat d’empreinte, ainsi que: Vous retrouverez votre résultat d’empreinte, ainsi que
   Découvrez nos outils pour vous simplifier la vie !: Découvrez nos outils pour vous simplifier la vie !
-  Vous souhaitez mobiliser votre <2>entreprise</2>, votre <5>organisation</5>, votre<7>association</7> ou <10>salle de classe</10>: Vous souhaitez mobiliser votre <2>entreprise</2>, votre <5>organisation</5>, votre<7>association</7> ou <10>salle de classe</10>
   '**6 repas** représentatifs de notre consommation': '**6 repas** représentatifs de notre consommation'
   Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels: Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels
   Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**: Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**
@@ -699,7 +688,6 @@ entries:
   association: association
   ', votre': ', votre'
   salle de classe: salle de classe
-  Mes&#160;gestes: Mes&#160;gestes
   Votre empreinte carbone: Votre empreinte carbone
   Votre empreinte: Votre empreinte
   Mes gestes: Mes gestes
@@ -707,3 +695,19 @@ entries:
   Reconnectez vous en cliquant sur le bouton ci-dessous.: Reconnectez vous en cliquant sur le bouton ci-dessous.
   ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.'
   'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.'
+  auprès de votre organisation, découvrez-nous outils pour vous simplifier la vie !: auprès de votre organisation, découvrez-nous outils pour vous simplifier la vie !
+  Créer ou accéder à mon organisation: Créer ou accéder à mon organisation
+  Découvrez nos: Découvrez nos
+  diffuser Nos Gestes Climat: diffuser Nos Gestes Climat
+  Diffusion: Diffusion
+  International: International
+  Mes classements: Mes classements
+  Mon empreinte: Mon empreinte
+  organisation: organisation
+  pistes personnalisées: pistes personnalisées
+  pour agir dès aujourd'hui pour le climat.: pour agir dès aujourd'hui pour le climat.
+  Répondre sur les 3 dernières années: Répondre sur les 3 dernières années
+  Vous souhaitez: Vous souhaitez
+  'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2> tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': 'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2> tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.'
+  Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !: Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !
+  Créer mon organisation: Créer mon organisation

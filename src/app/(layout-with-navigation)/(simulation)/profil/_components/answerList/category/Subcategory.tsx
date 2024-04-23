@@ -2,7 +2,11 @@
 
 import { profilClickSubCategory } from '@/constants/tracking/pages/profil'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
-import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
+import {
+  getBackgroundColor,
+  getBorderColor,
+  getTextDarkColor,
+} from '@/helpers/getCategoryColorClass'
 import { useForm, useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -43,7 +47,8 @@ export default function SubCategory({ subcategory }: Props) {
         }}
         className="flex w-full items-center justify-between gap-4 p-4 pl-6 text-lg font-bold">
         {icons} {title}{' '}
-        <span className="block rounded-xl bg-white px-4 py-2 text-base">
+        <span
+          className={`block rounded-xl border-2 ${getBorderColor(category)} bg-white px-4 py-2 text-sm ${getTextDarkColor(category)}`}>
           {formattedCarbonFootprint.formattedValue}{' '}
           {formattedCarbonFootprint.unit}
         </span>

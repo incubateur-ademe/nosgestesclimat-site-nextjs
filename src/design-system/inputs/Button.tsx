@@ -21,19 +21,19 @@ export const colorClassNames = {
   emerald:
     '!text-logement-400 bg-emerald-light border-2 border-emerald-dark shadow-sm hover:text-white hover:bg-logement-400 hover:text-emerald-dark hover:border-emerald-dark',
   text: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:bg-primary-200 hover:text-primary-700 hover:border-primary-200',
-  link: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:text-primary-700 underline !px-0',
+  link: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:text-primary-700 underline !px-1',
 }
 
 export const sizeClassNames = {
-  xs: 'px-2 text-xs',
-  sm: 'px-4 py-1 text-base',
-  md: 'px-7 py-3 text-lg',
-  lg: 'px-7 py-3 text-2xl',
-  xl: 'px-10 py-4 text-3xl',
+  xs: 'px-5 py-2 text-xs',
+  sm: 'px-6 py-2.5 text-sm',
+  md: 'px-7 py-3 text-base',
+  lg: 'px-8 py-3.5 text-lg',
+  xl: 'px-9 py-4 text-xl',
 }
 
 export const baseClassNames =
-  'inline-flex items-center justify-center whitespace-nowrap rounded-full font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary-700 focus:ring-offset-3 aria-disabled:opacity-50'
+  'inline-flex items-center justify-center whitespace-nowrap rounded-full font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary-700 focus:ring-offset-3 aria-disabled:opacity-50 !leading-none'
 
 export default function Button({
   onClick,
