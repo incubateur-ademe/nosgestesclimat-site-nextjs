@@ -11,6 +11,6 @@ export function useTrackRegion() {
   useEffect(() => {
     if (!region) return
 
-    trackEvent(trackingRegion(region.code))
+    trackEvent(trackingRegion(region.code ?? 'FR'))
   }, [region])
 }

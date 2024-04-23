@@ -11,13 +11,14 @@ import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
+import { getSaveSimulationListIds } from '@/helpers/brevo/getSaveSimulationListIds'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useLocale } from '@/hooks/useLocale'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { formatValue } from 'publicodes'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './getResultsByEmail/Confirmation'
@@ -35,7 +36,9 @@ export default function GetResultsByEmail({
   className?: string
 }) {
   const { t } = useClientTranslation()
-  const { user, updateEmail } = useUser()
+  const { user } = useUser()
+
+  const locale = useLocale()
 
   const currentSimulation = useCurrentSimulation()
 
@@ -44,8 +47,8 @@ export default function GetResultsByEmail({
   )
 
   const isSubscribedMainNewsletter =
-    !newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER)
-  const isSubscribedTransportNewsletter = !newsletterSubscriptions?.includes(
+    newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER)
+  const isSubscribedTransportNewsletter = newsletterSubscriptions?.includes(
     LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
   )
 
@@ -68,6 +71,8 @@ export default function GetResultsByEmail({
 
     trackEvent(endClickSaveSimulation)
 
+    const listIds = getSaveSimulationListIds(data)
+
     // We save the simulation (and signify the backend to send the email)
     await saveSimulation({
       simulation: {
@@ -75,12 +80,7 @@ export default function GetResultsByEmail({
         savedViaEmail: true,
       },
       shouldSendSimulationEmail: true,
-      listIds: [
-        ...(data['newsletter-saisonniere'] ? [LIST_MAIN_NEWSLETTER] : []),
-        ...(data['newsletter-transports']
-          ? [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]
-          : []),
-      ],
+      listIds,
     })
 
     // We update the simulation to signify that it has been saved (and not show the form anymore)
@@ -118,7 +118,10 @@ export default function GetResultsByEmail({
             <Trans>laissez-nous votre email,</Trans>{' '}
           </strong>
           {t('comme {{numberSubscribers}} personnes.', {
-            numberSubscribers: formatValue(numberSubscribers) ?? '---',
+            numberSubscribers:
+              numberSubscribers?.toLocaleString(locale, {
+                maximumFractionDigits: 0,
+              }) ?? '---',
           })}
         </p>
 
@@ -129,9 +132,6 @@ export default function GetResultsByEmail({
             aria-label="Entrez votre adresse email"
             placeholder="jeanmarc@nosgestesclimat.fr"
             value={user?.email}
-            onChange={(event) => {
-              updateEmail((event.target as HTMLInputElement).value)
-            }}
             required
             className="bg-white"
           />
