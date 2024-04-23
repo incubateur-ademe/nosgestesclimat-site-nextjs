@@ -32,5 +32,6 @@ export default function useFetchOrganisation({
         )
         .then((res) => res.data),
     retry: false,
+    enabled: !!email,
   })
 }
