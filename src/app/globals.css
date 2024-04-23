@@ -453,17 +453,17 @@ html[data-useragent*='Trident'] #js {
 
 @keyframes rainbow {
   0% {
-    background-position: 0% 50%;
+    background-position: 100% 50%;
   }
   50% {
     background-position: 50% 50%;
   }
   100% {
-    background-position: 100% 50%;
+    background-position: 0% 50%;
   }
 }
 
-.rainbow-animation {
+.bg-rainbow {
   background: linear-gradient(
     90deg,
     #a2d2fd,
@@ -479,8 +479,6 @@ html[data-useragent*='Trident'] #js {
     #a2d2fd
   );
   background-size: 200% 200%;
-  animation: rainbow 30s linear infinite;
-  -webkit-animation: rainbow 30s linear infinite;
 }
 
 /*

@@ -19,7 +19,7 @@ export default function Background({
         }deg)`,
       }}>
       {withColorLine && (
-        <ColorLine className="rainbow-animation absolute bottom-0 left-0 h-[5px] w-[100%] transition-all" />
+        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[5px] w-[100%] transition-all" />
       )}
     </div>
   )

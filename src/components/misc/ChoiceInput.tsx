@@ -25,10 +25,10 @@ export default function ChoiceInput({
     <>
       <div className="mb-2 flex items-center gap-2">
         <label
-          className={`flex cursor-pointer items-center gap-2 rounded-xl border border-gray-200 px-4 py-2 text-right text-sm md:text-xl ${
+          className={`flex cursor-pointer items-center gap-2 rounded-xl border-2 border-gray-200 px-4 py-2 text-right text-sm md:text-xl ${
             active
               ? 'border-2 border-primary-700 bg-white'
-              : 'hover:bg-primary-50 bg-white text-default'
+              : 'bg-white text-default hover:bg-primary-50'
           } transition-colors`}
           data-cypress-id={`${props['data-cypress-id']}-label`}>
           <input
