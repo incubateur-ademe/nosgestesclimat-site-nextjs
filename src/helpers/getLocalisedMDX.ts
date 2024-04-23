@@ -13,9 +13,9 @@ type Props = {
 export const getLocalisedMDX = ({ dictionnaries, locale }: Props) => {
   switch (locale) {
     case 'en':
-      return dictionnaries['en']
+      return dictionnaries.en
     case 'es':
-      return dictionnaries['es']
+      return dictionnaries.es
     case 'fr':
     default:
       return dictionnaries.fr
