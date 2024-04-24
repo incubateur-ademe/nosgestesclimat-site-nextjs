@@ -1,6 +1,6 @@
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/Trans'
-import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { SimulationRecap } from '@/types/organisations'
 import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
 import ResultsSoonBanner from './statisticsBlocks/ResultsSoonBanner'
@@ -69,8 +69,8 @@ export default function StatisticsBlocks({
 
   return (
     <div className="items grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-      <div className="rounded-lg bg-grey-100 p-8 sm:col-span-2 md:col-span-1">
-        <p className="text-4xl font-bold text-primary-500">
+      <div className="rounded-xl bg-gray-100 p-8 sm:col-span-2 md:col-span-1">
+        <p className="text-4xl font-bold text-primary-700">
           {simulationRecaps.length}
         </p>
 
@@ -87,8 +87,8 @@ export default function StatisticsBlocks({
             hasLessThan3Participants={hasLessThan3Participants}
           />
         )}
-        <div className="col-span-1 rounded-lg bg-grey-100 p-8">
-          <p className="text-4xl font-bold text-primary-500">
+        <div className="col-span-1 rounded-xl bg-gray-100 p-8">
+          <p className="text-4xl font-bold text-primary-700">
             {formattedValue}{' '}
             <span className="text-base font-normal">{unit} CO2 eq</span>
           </p>
@@ -97,7 +97,7 @@ export default function StatisticsBlocks({
           </p>
         </div>
 
-        <div className="col-span-1 min-h-[200px] rounded-lg bg-grey-100 py-4">
+        <div className="col-span-1 min-h-[212px] rounded-xl bg-gray-100 py-4">
           <VerticalBarChart className={`mt-0 h-[calc(100%-48px)]`}>
             {Object.entries(result)
               .filter(([key]) => key !== 'bilan')

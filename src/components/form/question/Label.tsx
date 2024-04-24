@@ -2,9 +2,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
-import { getMatomoEventClickHelp } from '@/constants/matomo'
+import {
+  questionCloseInfo,
+  questionOpenInfo,
+} from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -28,10 +33,7 @@ const sizeClassNames = {
   sm: 'mb-1 text-sm',
   md: 'mb-3 text-lg md:text-xl',
 }
-const buttonSizeClassNames = {
-  sm: 'h-6 w-6 text-sm',
-  md: 'h-6 w-6 text-sm md:h-8 md:w-8 md:text-base',
-}
+
 export default function Label({
   question,
   label,
@@ -66,16 +68,22 @@ export default function Label({
           {label}
         </h1>{' '}
         {description ? (
-          <button
+          <Button
             type="button"
             onClick={() => {
-              trackEvent(getMatomoEventClickHelp(question))
+              if (isOpen) {
+                trackEvent(questionCloseInfo({ question }))
+              } else {
+                trackEvent(questionOpenInfo({ question }))
+              }
               setIsOpen((previsOpen) => !previsOpen)
             }}
-            className={`inline-block ${buttonSizeClassNames[size]} rounded-full border-none bg-primary-500 text-base font-bold text-white`}
+            color="secondary"
+            size="sm"
+            className={`inline-flex h-8 w-8 items-center justify-center rounded-full p-0 font-mono`}
             title={t("Voir plus d'informations")}>
-            <code>i</code>
-          </button>
+            i
+          </Button>
         ) : null}
       </label>
 
@@ -88,7 +96,10 @@ export default function Label({
           <Markdown>{description}</Markdown>{' '}
           <Button
             size="sm"
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              trackEvent(questionCloseInfo({ question }))
+              setIsOpen(false)
+            }}
             title={t('Fermer')}>
             <Trans>Fermer</Trans>
           </Button>

@@ -9,7 +9,7 @@ export default function DebugIndicator() {
   if (!isDebug) return null
   return (
     <button
-      className="flex items-center gap-2 rounded-lg bg-red-600 p-2 text-center text-sm font-bold uppercase text-white "
+      className="flex items-center gap-2 rounded-xl bg-red-600 p-2 text-center text-sm font-bold uppercase text-white "
       onClick={() => {
         sessionStorage.removeItem('debug')
         router.refresh()

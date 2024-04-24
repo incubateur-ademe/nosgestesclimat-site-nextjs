@@ -12,6 +12,9 @@ describe('The Group creation page /amis/creer', () => {
     // Check that we can create our first group
     cy.get('[data-cypress-id="button-create-first-group"]').click()
     cy.get('input[data-cypress-id="group-input-owner-name"]').type('Jean-Marc')
+
+    cy.wait(2000)
+
     cy.get('[data-cypress-id="button-create-group"]').click()
 
     cy.wait(2000)
@@ -68,6 +71,9 @@ describe('The Group creation page /amis/creer', () => {
     cy.wait(3000)
 
     cy.get('[data-cypress-id="member-name"]').type('Jean-Claude')
+
+    cy.wait(2000)
+
     cy.get('[data-cypress-id="button-join-group"]').click()
 
     clickSkipTutorialButton()
@@ -84,23 +90,23 @@ describe('The Group creation page /amis/creer', () => {
     let currentUrl = ''
 
     // Delete the group via the API
-    cy.url().then((url) => {
-      currentUrl = url
+    // cy.url().then((url) => {
+    //   currentUrl = url
 
-      const groupId = currentUrl?.split('groupId=')?.[1]
+    //   const groupId = currentUrl?.split('groupId=')?.[1]
 
-      const SERVER_URL = Cypress.env('server_url')
+    //   const SERVER_URL = Cypress.env('server_url')
 
-      cy.request(
-        'POST',
-        `http${
-          SERVER_URL === 'localhost:3001' ? '' : 's'
-        }://${SERVER_URL}/group/delete`,
-        {
-          groupId,
-          userId: ownerUserId,
-        }
-      ).as('response')
-    })
+    //   cy.request(
+    //     'POST',
+    //     `http${
+    //       SERVER_URL === 'localhost:3001' ? '' : 's'
+    //     }://${SERVER_URL}/group/delete`,
+    //     {
+    //       groupId,
+    //       userId: ownerUserId,
+    //     }
+    //   ).as('response')
+    // })
   })
 })

@@ -5,7 +5,7 @@
 */
 
 const fs = require('fs')
-const glob = require('glob')
+const { glob } = require('glob')
 
 const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
 const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
@@ -38,24 +38,28 @@ console.log(
     `src/locales/pages/${srcLang}/${fileGlob}`
   )}...`
 )
-glob(`src/locales/pages/${srcLang}/${fileGlob}`, (err, files) => {
-  cli.exitIfError(err, 'ERROR: an error occured while fetching the files:')
-  console.log(`Found ${c.green(files.length)} files to translate.`)
 
-  console.log('files', files)
-  files.forEach((file) => {
-    const src = fs.readFileSync(file, 'utf8')
-    destLangs.forEach((destLang) => {
-      const destPath = file.replace(srcLang, destLang)
-      if (!fs.existsSync(destPath) || force) {
-        translateTo(src, destPath, destLang)
-      } else {
-        console.log(
-          `The file ${c.yellow(destPath)} already exists, ${c.yellow(
-            'skipping'
-          )}... (use the -f to force the translation)`
-        )
-      }
+glob(`src/locales/pages/${srcLang}/${fileGlob}`)
+  .then((files) => {
+    console.log(`Found ${c.green(files.length)} files to translate.`)
+
+    console.log('files', files)
+    files.forEach((file) => {
+      const src = fs.readFileSync(file, 'utf8')
+      destLangs.forEach((destLang) => {
+        const destPath = file.replace(srcLang, destLang)
+        if (!fs.existsSync(destPath) || force) {
+          translateTo(src, destPath, destLang)
+        } else {
+          console.log(
+            `The file ${c.yellow(destPath)} already exists, ${c.yellow(
+              'skipping'
+            )}... (use the -f to force the translation)`
+          )
+        }
+      })
     })
   })
-})
+  .catch((err) => {
+    cli.exitIfError(err, 'ERROR: an error occured while fetching the files:')
+  })

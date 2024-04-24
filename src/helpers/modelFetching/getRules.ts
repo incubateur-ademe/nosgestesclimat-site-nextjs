@@ -1,5 +1,6 @@
 import { NGCRules } from '@/publicodes-state/types'
-import fetchFileFromModel from './getFileFromModel'
+import { getFileFromModel } from './getFileFromModel'
+import { getSupportedRegions } from './getSupportedRegions'
 
 type Props = {
   isOptim?: boolean
@@ -10,16 +11,26 @@ type Props = {
 /*
  * This function is used to get the rules. It is used in the useRules hook and can also be called directly from a server component.
  */
-export default async function getRules(
+export async function getRules(
   { locale = 'fr', regionCode = 'FR', isOptim = true, PRNumber }: Props = {
     locale: 'fr',
     regionCode: 'FR',
     isOptim: true,
   }
 ): Promise<NGCRules> {
-  const fileName = `co2-model.${regionCode}-lang.${locale}${
-    isOptim ? '-opti' : ''
-  }.json`
+  const supportedRegions = await getSupportedRegions()
 
-  return fetchFileFromModel({ fileName, PRNumber })
+  // We provide the FR version of the model if the region is not supported
+  const regionCodeToProvide = supportedRegions[regionCode] ? regionCode : 'FR'
+
+  let fileName = ''
+
+  // We provide optimized version of the model only for the FR region
+  if (regionCodeToProvide === 'FR') {
+    fileName = `co2-model.FR-lang.${locale}${isOptim ? '-opti' : ''}.json`
+  } else {
+    fileName = `co2-model.${regionCodeToProvide}-lang.${locale}.json`
+  }
+
+  return getFileFromModel({ fileName, PRNumber })
 }

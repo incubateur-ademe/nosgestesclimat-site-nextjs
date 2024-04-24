@@ -6,10 +6,13 @@ import Actions from './_components/Actions'
 import LinkList from './_components/LinkList'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
   return getMetadataObject({
-    title: 'Plan du site - Nos Gestes Climat',
-    description:
-      'Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.',
+    title: t('Plan du site - Nos Gestes Climat'),
+    description: t(
+      'Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.'
+    ),
     alternates: {
       canonical: '/plan-du-site',
     },
@@ -22,7 +25,7 @@ export default async function PlanDuSitePage() {
   const links = {
     'Nos outils': {
       bilan: {
-        title: t('Le test'),
+        title: t('Le test'),
         href: '/simulateur/bilan',
       },
       profil: {

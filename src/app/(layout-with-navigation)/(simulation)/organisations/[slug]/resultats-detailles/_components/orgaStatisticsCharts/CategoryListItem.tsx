@@ -1,6 +1,6 @@
 import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
-import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
 import { SimulationRecap } from '@/types/organisations'
 import { capitalizeString } from '@/utils/capitalizeString'
@@ -21,7 +21,7 @@ export default function CategoryListItem({
 }: Props) {
   const { icons } = useRule(category)
 
-  const { formattedValue, unit } = formatCarbonFootprint(value * 1000, {
+  const { formattedValue, unit } = formatCarbonFootprint(value, {
     shouldUseAbbreviation: true,
   })
 
@@ -41,10 +41,10 @@ export default function CategoryListItem({
       </div>
 
       <RepartitionChart
-        className="min-h-[2.5rem] flex-1 rounded-lg"
+        className="min-h-[2.5rem] flex-1 rounded-xl"
         maxValue={maxValue}
         items={simulationsRecap.map((obj) => ({
-          value: obj.categories[category] / 1000,
+          value: obj.categories[category],
           shouldBeHighlighted: obj.isCurrentUser,
         }))}
         id={category}

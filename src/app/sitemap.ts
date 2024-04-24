@@ -1,6 +1,6 @@
-import getPosts from '@/helpers/markdown/getPosts'
-import getRules from '@/helpers/modelFetching/getRules'
+import { getPosts } from '@/helpers/markdown/getPosts'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
+import rules from '@incubateur-ademe/nosgestesclimat'
 import { MetadataRoute } from 'next'
 import { utils } from 'publicodes'
 
@@ -28,9 +28,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
-  const rules = await getRules({
-    isOptim: false,
-  })
   const documentationUrls = Object.keys(rules).map((dottedName) => ({
     url: `https://nosgestesclimat.fr/documentation/${utils.encodeRuleName(
       dottedName

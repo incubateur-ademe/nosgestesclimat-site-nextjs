@@ -1,15 +1,14 @@
 import { TOptions } from 'i18next'
-import { HTMLProps, JSX } from 'react'
+import { JSX } from 'react'
 import { TransProps } from 'react-i18next'
-import { TransChild } from 'react-i18next/TransWithoutContext'
 
 export enum Lang {
   Default = 'Fr',
   // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   Fr = 'Fr',
   En = 'En',
+  Es = 'Es',
   // Commented until validation by a native speaker
-  // Es = 'Es',
   // It = 'It',
 }
 
@@ -38,5 +37,5 @@ export type TransPropsWithInterpolation = TransProps<
   undefined,
   // NOTE(@EmileRolley): hack to be able to use string interpolation in Trans components.
   // However, TransProps<string> should be sufficient.
-  HTMLProps<HTMLDivElement> | TransChild
+  any
 >

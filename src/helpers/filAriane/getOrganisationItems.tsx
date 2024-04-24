@@ -1,9 +1,8 @@
 import Trans from '@/components/translation/Trans'
 import { User } from '@/publicodes-state/types'
-import { capitalizeEachWordInString } from '@/utils/capitalizeEachWordInString'
 
 function formatSlugToName(slug: string) {
-  return capitalizeEachWordInString(slug.replaceAll('-', ' '))
+  return decodeURIComponent(slug).replaceAll('-', ' ')
 }
 
 function getBaseItems({ pathname }: { pathname: string }) {

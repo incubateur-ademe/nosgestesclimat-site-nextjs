@@ -3,8 +3,8 @@
 import HowToAct from '@/components/actions/HowToAct'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import CategoriesChart from '@/components/results/CategoriesChart'
+import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
-import Title from '@/design-system/layout/Title'
 import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
 import { useIsGroupOwner } from '@/hooks/groups/useIsGroupOwner'
 import { useUser } from '@/publicodes-state'
@@ -42,14 +42,17 @@ export default function GroupResults({ group }: Props) {
             pointsFaibles={results?.pointsFaibles}
             pointsForts={results?.pointsForts}
           />
-
-          <Separator />
         </>
-      ) : (
-        <Separator />
-      )}
-      <Title tag="h2">Votre empreinte</Title>
+      ) : null}
+
+      <Separator />
+
+      <h2 data-cypress-id="votre-empreinte-title" className="mt-8">
+        <Trans>Votre empreinte</Trans>
+      </h2>
+
       <CategoriesChart />
+
       <CategoriesAccordion />
 
       <Separator className="my-6" />

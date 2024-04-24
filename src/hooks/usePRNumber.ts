@@ -10,7 +10,7 @@ function clearPRNumberFromStorage() {
 }
 
 export function usePRNumber(): {
-  PRNumber?: string
+  PRNumber: string
   clearPRNumber: () => void
 } {
   const isClient = useIsClient()
@@ -19,6 +19,7 @@ export function usePRNumber(): {
   // Don't use sessionStorage on the server
   if (!isClient) {
     return {
+      PRNumber: '',
       clearPRNumber: clearPRNumberFromStorage,
     }
   }
@@ -39,7 +40,7 @@ export function usePRNumber(): {
   }
 
   return {
-    PRNumber: PRNumberFromURL ?? '',
+    PRNumber: PRNumberFromURL || '',
     clearPRNumber: clearPRNumberFromStorage,
   }
 }

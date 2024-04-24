@@ -16,10 +16,10 @@ export default function GroupResultsPage() {
   })
 
   const { groupIdInQueryParams } = useGroupIdInQueryParams()
-  const { data: group, isFetching } = useFetchGroup(groupIdInQueryParams)
+  const { data: group, isLoading } = useFetchGroup(groupIdInQueryParams)
 
   // If we are still fetching the group (or we are redirecting the user), we display a loader
-  if (!isGuardInit || isGuardRedirecting || isFetching) {
+  if (!isGuardInit || isGuardRedirecting || isLoading) {
     return <GroupLoader />
   }
 

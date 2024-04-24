@@ -1,8 +1,15 @@
 'use client'
 
-import { useEngine, useForm, useTempEngine, useUser } from '@/publicodes-state'
+import {
+  useCurrentSimulation,
+  useEngine,
+  useSimulation,
+  useTempEngine,
+  useUser,
+} from '@/publicodes-state'
 import { useState } from 'react'
 import ActionsTutorial from './_components/ActionsTutorial'
+import AllerPlusLoin from './_components/AllerPlusLoin'
 import OptionBar from './_components/OptionBar'
 import SimulationMissing from './_components/SimulationMissing'
 import Actions from './_components/actions/Actions'
@@ -19,23 +26,22 @@ export default function ActionsPage({
 
   const category = searchParams.catégorie
 
-  const { progression } = useForm()
+  const { tutorials } = useUser()
 
-  const { tutorials, getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
+  const { actionChoices, progression } = useCurrentSimulation()
 
   const { rules, getRuleObject } = useTempEngine()
 
-  if (!currentSimulation || !rules) {
+  const { safeEvaluate } = useSimulation()
+
+  if (!rules) {
     return null
   }
-
-  const actionChoices = currentSimulation.actionChoices
 
   const actions = getActions({
     rules,
     radical,
+    safeEvaluate,
     getRuleObject,
     actionChoices,
   })
@@ -79,6 +85,8 @@ export default function ActionsPage({
           rules={rules}
           radical={radical}
         />
+
+        <AllerPlusLoin />
       </div>
     </div>
   )

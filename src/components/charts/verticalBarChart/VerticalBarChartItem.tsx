@@ -3,7 +3,17 @@
 import Badge from '@/design-system/layout/Badge'
 import BarChart from '@/design-system/utils/BarChart'
 import Emoji from '@/design-system/utils/Emoji'
-import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+
+type Props = {
+  value: string
+  index: number
+  percentage: number
+  ariaLabel: string
+  title: string
+  icons: React.ReactNode
+  barColor?: string
+}
 
 export default function VerticalBarChartItem({
   value,
@@ -12,15 +22,9 @@ export default function VerticalBarChartItem({
   ariaLabel,
   title,
   icons,
+  barColor,
   ...props
-}: {
-  ariaLabel: string
-  index: number
-  percentage: number
-  title: string
-  value: string
-  icons: React.ReactNode
-}) {
+}: Props) {
   const { formattedValue, unit } = formatCarbonFootprint(
     parseFloat(value) * 1000,
     {
@@ -42,6 +46,7 @@ export default function VerticalBarChartItem({
           type="vertical"
           value={`calc(${percentage} * 6rem)`}
           index={index}
+          color={barColor}
         />
       </div>
 

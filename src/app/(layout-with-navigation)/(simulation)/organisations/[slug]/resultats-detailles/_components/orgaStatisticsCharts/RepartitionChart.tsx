@@ -22,7 +22,7 @@ export default function RepartitionChart({
   return (
     <div
       className={twMerge(
-        'relative h-[48px] overflow-hidden rounded-lg border border-gray-300 bg-white px-2',
+        'relative h-[48px] overflow-hidden rounded-xl border border-gray-300 bg-white px-2',
         className
       )}>
       {items.map(({ value, shouldBeHighlighted }, index) => (
@@ -34,7 +34,7 @@ export default function RepartitionChart({
           id={`tooltip-repartition-chart-${id}`}
         />
       ))}
-      <Tooltip id={`tooltip-repartition-chart-${id}`} />
+      <Tooltip className="z-20" id={`tooltip-repartition-chart-${id}`} />
     </div>
   )
 }

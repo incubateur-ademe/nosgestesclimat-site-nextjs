@@ -1,3 +1,5 @@
+'use client'
+
 import Assistance from '@/components/form/question/Assistance'
 import BooleanInput from '@/components/form/question/BooleanInput'
 import ChoicesInput from '@/components/form/question/ChoicesInput'
@@ -10,7 +12,12 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
+import {
+  questionChooseAnswer,
+  questionTypeAnswer,
+} from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef } from 'react'
 import Warning from './question/Warning'
 
@@ -39,6 +46,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
 
   // It should happen only on mount (the component remount every time the question changes)
   const prevQuestion = useRef('')
+
   useEffect(() => {
     if (type !== 'number') {
       if (setTempValue) setTempValue(undefined)
@@ -62,7 +70,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             if (type === 'number') {
               if (setTempValue) setTempValue(value)
             }
-            setValue(value, question)
+            setValue(value, { foldedStep: question })
           }}
         />
         {type === 'number' && (
@@ -70,8 +78,11 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             unit={unit}
             value={setTempValue ? tempValue : numericValue}
             setValue={(value) => {
-              if (setTempValue) setTempValue(value)
-              setValue(value, question)
+              if (setTempValue) {
+                setTempValue(value)
+              }
+              setValue(value, { foldedStep: question })
+              trackEvent(questionTypeAnswer({ question, answer: value }))
             }}
             isMissing={isMissing}
             min={0}
@@ -84,7 +95,12 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
         {type === 'boolean' && (
           <BooleanInput
             value={value}
-            setValue={(value) => setValue(value, question)}
+            setValue={(value) => {
+              {
+                setValue(value, { foldedStep: question })
+                trackEvent(questionChooseAnswer({ question, answer: value }))
+              }
+            }}
             isMissing={isMissing}
             data-cypress-id={question}
             label={label || ''}
@@ -98,7 +114,12 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             question={question}
             choices={choices}
             value={String(value)}
-            setValue={(value) => setValue(value, question)}
+            setValue={(value) => {
+              {
+                setValue(value, { foldedStep: question })
+                trackEvent(questionChooseAnswer({ question, answer: value }))
+              }
+            }}
             isMissing={isMissing}
             data-cypress-id={question}
             label={label || ''}
@@ -114,15 +135,18 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
           />
         )}
       </div>
+
       <Warning
         type={type}
         plancher={plancher}
         warning={warning}
         tempValue={tempValue}
       />
+
       {assistance ? (
         <Assistance question={question} assistance={assistance} />
       ) : null}
+
       {activeNotifications.map((notification) => (
         <Notification key={notification} notification={notification} />
       ))}

@@ -1,39 +1,40 @@
 'use client'
 
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import { getParticipantInscriptionPageVisitedEvent } from '@/constants/matomo/organisations'
+import {
+  infosCommencerClickCtaCommencer,
+  infosCommencerClickNewTest,
+} from '@/constants/tracking/pages/infos'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
 const titles = {
   notStarted: (
-    <>
-      <Trans>Envie de connaître votre empreinte carbone ?</Trans>{' '}
+    <span className="flex items-center">
+      <Trans>Envie de connaître votre empreinte carbone ?</Trans>{' '}
       <Emoji>🤓</Emoji>
-    </>
+    </span>
   ),
   started: (
-    <>
-      <Trans>Vous avez déjà commencé le test Nos Gestes Climat&nbsp;!</Trans>{' '}
+    <span className="flex items-center">
+      <Trans>Vous avez déjà commencé le test Nos Gestes Climat !</Trans>{' '}
       <Emoji>💪</Emoji>
-    </>
+    </span>
   ),
   finished: (
-    <>
-      <Trans>Vous avez déjà réalisé le test Nos Gestes Climat&nbsp;!</Trans>{' '}
+    <span className="flex items-center">
+      <Trans>Vous avez déjà réalisé le test Nos Gestes Climat !</Trans>{' '}
       <Emoji>👏</Emoji>
-    </>
+    </span>
   ),
 }
 const texts = {
@@ -68,30 +69,42 @@ export default function Commencer() {
 
   const { pollSlug } = useOrganisationQueryParams()
 
-  const { getCurrentSimulation, initSimulation, updateCurrentSimulation } =
-    useUser()
-
   const { goToSimulateurPage } = useSimulateurPage()
 
-  const currentSimulation = getCurrentSimulation()
+  const { progression, updateCurrentSimulation } = useCurrentSimulation()
 
-  const status = !currentSimulation?.progression
-    ? 'notStarted'
-    : currentSimulation?.progression === 1
-      ? 'finished'
-      : 'started'
+  const [status, setStatus] = useState<
+    'notStarted' | 'started' | 'finished' | undefined
+  >()
+
+  useEffect(() => {
+    if (status) {
+      return
+    }
+    if (!progression) {
+      setStatus('notStarted')
+      return
+    }
+    if (progression === 1) {
+      setStatus('finished')
+      return
+    }
+    setStatus('started')
+  }, [progression, status])
 
   const { handleUpdateShouldPreventNavigation } = useContext(
     PreventNavigationContext
   )
-
   useEffect(() => {
     handleUpdateShouldPreventNavigation(true)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [handleUpdateShouldPreventNavigation])
+
+  if (!status) {
+    return null
+  }
 
   return (
-    <Card className={'items-start border-none bg-grey-100 p-8'}>
+    <Card className={'items-start border-none bg-gray-100 p-8'}>
       <Title
         data-cypress-id="commencer-title"
         className="text-lg md:text-xl"
@@ -102,16 +115,24 @@ export default function Commencer() {
 
       <div className="flex flex-col items-start gap-6">
         <Button
-          onClick={() => {
-            updateCurrentSimulation({
+          onClick={async () => {
+            if (status === 'notStarted') {
+              trackEvent(infosCommencerClickCtaCommencer)
+            }
+            if (status === 'started') {
+              trackEvent(infosCommencerClickCtaCommencer)
+            }
+            if (status === 'finished') {
+              trackEvent(infosCommencerClickCtaCommencer)
+            }
+
+            await updateCurrentSimulation({
               defaultAdditionalQuestionsAnswers: {
                 postalCode,
                 birthdate,
               },
-              poll: pollSlug || undefined,
+              pollToAdd: pollSlug || undefined,
             })
-
-            trackEvent(getParticipantInscriptionPageVisitedEvent('commencer'))
 
             // We try to go to the simulateur page. If the test is finished we will save the simulation and then go to the end page
             goToSimulateurPage()
@@ -120,19 +141,23 @@ export default function Commencer() {
         </Button>
 
         {status !== 'notStarted' ? (
-          <Link
-            href={getLinkToSimulateur()}
+          <Button
+            color="secondary"
             onClick={() => {
-              initSimulation({
-                defaultAdditionalQuestionsAnswers: {
-                  postalCode,
-                  birthdate,
+              trackEvent(infosCommencerClickNewTest)
+
+              goToSimulateurPage({
+                newSimulation: {
+                  defaultAdditionalQuestionsAnswers: {
+                    postalCode,
+                    birthdate,
+                  },
+                  poll: pollSlug || undefined,
                 },
-                poll: pollSlug || undefined,
               })
             }}>
             <Trans>Commencer un nouveau test</Trans>
-          </Link>
+          </Button>
         ) : null}
       </div>
     </Card>

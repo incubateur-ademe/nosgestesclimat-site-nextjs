@@ -1,10 +1,17 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
-import { matomoEventQuizPass, matomoEventQuizReturn } from '@/constants/matomo'
+import {
+  quizClickPass,
+  quizClickPrevious,
+} from '@/constants/tracking/pages/quiz'
+import { simulationSimulationCompleted } from '@/constants/tracking/simulation'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useEngine } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
@@ -19,13 +26,15 @@ export default function Navigation({
 }: Props) {
   const { t } = useClientTranslation()
 
-  const { linkToEndPage } = useEndPage()
+  const { getNumericValue } = useEngine()
+
+  const { getLinkToEndPage } = useEndPage()
 
   return (
     <div className="mb-8 flex justify-between border-b border-gray-200 pb-8">
       <ButtonLink
         onClick={() => {
-          trackEvent(matomoEventQuizReturn)
+          trackEvent(quizClickPrevious)
         }}
         href={getLinkToSimulateur({
           question: 'services sociétaux . question rhétorique', //TODO: should be dynamic
@@ -38,12 +47,25 @@ export default function Navigation({
       {!answer ? (
         <ButtonLink
           color="secondary"
-          href={linkToEndPage}
-          onClick={() => trackEvent(matomoEventQuizPass)}>
+          href={getLinkToEndPage({
+            allowedToGoToGroupDashboard: true,
+          })}
+          onClick={() => {
+            trackEvent(
+              simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
+            )
+            trackEvent(quizClickPass)
+          }}>
           <Trans>Passer la question →</Trans>
         </ButtonLink>
       ) : isAnswerValidated ? (
-        <ButtonLink href={linkToEndPage}>
+        <ButtonLink
+          href={getLinkToEndPage()}
+          onClick={() =>
+            trackEvent(
+              simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
+            )
+          }>
           <Trans>Voir mes résultats →</Trans>
         </ButtonLink>
       ) : (

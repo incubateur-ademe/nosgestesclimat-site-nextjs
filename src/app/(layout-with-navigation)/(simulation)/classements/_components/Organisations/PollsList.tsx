@@ -18,8 +18,9 @@ export default function PollsList({ organisation }: Props) {
   const pollSlugs = useMemo(
     () =>
       simulations
-        .filter((simulation) => simulation.poll)
-        .map((simulation) => simulation.poll),
+        .filter((simulation) => simulation.polls)
+        .map((simulation) => simulation.polls)
+        .flat(),
     [simulations]
   )
   const { data: polls } = usePolls({ pollSlugs })
@@ -28,14 +29,22 @@ export default function PollsList({ organisation }: Props) {
     <div className="mb-8 flex flex-col gap-3">
       {organisation && (
         <>
-          <h3>
+          <h3 className="mb-0 text-base">
             <Trans>Mon organisation</Trans>
           </h3>
           <OrganisationItem organisation={organisation} />
         </>
       )}
 
-      {polls?.map((poll) => <PollItem key={poll.slug} poll={poll} />)}
+      {polls && polls.length > 0 && (
+        <>
+          <h3 className="mb-0 text-base">
+            <Trans>Mes sondages</Trans>
+          </h3>
+
+          {polls?.map((poll) => <PollItem key={poll.slug} poll={poll} />)}
+        </>
+      )}
     </div>
   )
 }

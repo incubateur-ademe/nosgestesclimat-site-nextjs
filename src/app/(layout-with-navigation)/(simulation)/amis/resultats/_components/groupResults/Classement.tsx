@@ -1,13 +1,12 @@
 'use client'
 
 import { Group, Participant } from '@/types/groups'
-import { formatValue } from 'publicodes'
 import { useState } from 'react'
 
 import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
+import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import ClassementMember from './classement/ClassementMember'
 
@@ -18,8 +17,6 @@ export default function Classement({ group }: { group: Group }) {
     user: { userId },
   } = useUser()
 
-  const language = useClientTranslation().i18n.language
-
   if (!group) {
     return null
   }
@@ -29,6 +26,8 @@ export default function Classement({ group }: { group: Group }) {
 
   const withS = group.participants.length - 5 > 1 ? 's' : ''
 
+  const hasOneParticipant = group.participants.length === 1
+
   return (
     <>
       <div className="mt-4">
@@ -37,7 +36,8 @@ export default function Classement({ group }: { group: Group }) {
         </h2>
       </div>
 
-      <ul className="mt-2 rounded-md bg-primary-500 px-3 py-4 text-white">
+      <ul
+        className={`mt-2 rounded-xl  px-3 py-4  ${hasOneParticipant ? 'bg-primary-50 text-primary-700' : 'bg-primary-700 text-white'}`}>
         {topThreeMembers.map((participant: Participant, index: number) => {
           let rank
           switch (index) {
@@ -53,19 +53,14 @@ export default function Classement({ group }: { group: Group }) {
             default:
           }
 
+          const { formattedValue, unit } = formatCarbonFootprint(
+            participant?.simulation?.computedResults?.bilan ?? ''
+          )
+
           const quantity = participant?.simulation?.computedResults?.bilan ? (
             <span className="m-none leading-[160%]">
-              <strong>
-                {formatValue(
-                  participant?.simulation?.computedResults?.bilan / 1000,
-                  {
-                    language,
-                  }
-                )}
-              </strong>{' '}
-              <span className="text-sm font-light">
-                <Trans>tonnes</Trans>
-              </span>
+              <strong>{formattedValue}</strong>{' '}
+              <span className="text-sm font-light">{unit}</span>
             </span>
           ) : (
             '...'
@@ -95,16 +90,14 @@ export default function Classement({ group }: { group: Group }) {
               .map((member: Participant, index: number) => {
                 const rank = `${index + 1 + topThreeMembers?.length}.`
 
+                const { formattedValue, unit } = formatCarbonFootprint(
+                  member?.simulation?.computedResults?.bilan ?? ''
+                )
+
                 const quantity = member?.simulation?.computedResults?.bilan ? (
                   <span className="leading-[160%]">
-                    <strong>
-                      {formatValue(member?.simulation?.computedResults?.bilan, {
-                        language,
-                      })}
-                    </strong>{' '}
-                    <span className="text-sm font-light">
-                      <Trans>tonnes</Trans>
-                    </span>
+                    <strong>{formattedValue}</strong>{' '}
+                    <span className="text-sm font-light">{unit}</span>
                   </span>
                 ) : (
                   '...'
@@ -125,7 +118,7 @@ export default function Classement({ group }: { group: Group }) {
       {group.participants.length > 5 && !isExpanded && (
         <button
           onClick={() => setIsExpanded(true)}
-          className="bg-Transparent mt-4 w-full border-none text-center text-sm text-primary-500 underline">
+          className="bg-Transparent mt-4 w-full border-none text-center text-sm text-primary-700 underline">
           <Trans>
             Voir les {String(group.participants.length - 5)} autre{withS}{' '}
             participant

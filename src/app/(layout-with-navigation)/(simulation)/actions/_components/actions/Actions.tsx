@@ -1,10 +1,9 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -37,13 +36,7 @@ export default function Actions({
     [1, t("plus d'1 kg")],
   ]
 
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
-
-  if (!currentSimulation) return
-
-  const actionChoices = currentSimulation.actionChoices
+  const { actionChoices } = useCurrentSimulation()
 
   const actions = rawActions.map((a: any) => ({
     ...a,
@@ -172,27 +165,6 @@ export default function Actions({
           />
         </div>
       )}
-
-      <ButtonLink
-        href="/actions/plus"
-        className="mt-4 flex !w-full !whitespace-normal !text-left">
-        <span
-          className="mr-4 inline-block text-4xl"
-          role="img"
-          aria-label="emoji books"
-          aria-hidden>
-          📚
-        </span>
-        <div>
-          <Trans i18nKey={'publicodes.AllActions.allerPlusLoin'}>
-            <h2 className="text-white">Aller plus loin</h2>
-            <p className="mb-0">
-              Au-delà d'un simple chiffre, découvrez les enjeux qui se cachent
-              derrière chaque action.
-            </p>
-          </Trans>
-        </div>
-      </ButtonLink>
     </>
   )
 }

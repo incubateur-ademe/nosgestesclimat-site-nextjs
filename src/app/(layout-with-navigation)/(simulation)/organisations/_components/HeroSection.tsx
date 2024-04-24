@@ -1,10 +1,11 @@
 'use client'
 
+import Baseline from '@/components/organisations/Baseline'
 import Trans from '@/components/translation/Trans'
 import {
-  clickAskDemoLandingPageEvent,
-  clickStartButtonLandingPageEvent,
-} from '@/constants/matomo/organisations'
+  organisationsAccueilClickCommencer,
+  organisationsAccueilClickDemo,
+} from '@/constants/tracking/pages/organisationsAccueil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -19,33 +20,13 @@ export default function HeroSection() {
         </h1>
 
         <p className="mb-12 text-sm md:text-lg">
-          <Trans>Vous souhaitez mobiliser votre</Trans>{' '}
-          <strong className="text-primary-500">
-            <Trans>entreprise</Trans>
-          </strong>
-          <Trans>, votre</Trans>{' '}
-          <strong className="text-primary-500">
-            <Trans>organisation</Trans>
-          </strong>
-          ,{' '}
-          <strong className="text-primary-500">
-            <Trans>association</Trans>
-          </strong>
-          , <Trans>ou </Trans>{' '}
-          <strong className="text-primary-500">
-            <Trans>salle de classe</Trans>
-          </strong>
-          &nbsp; ?{' '}
-          <Trans>Découvrez nos outils pour vous simplifier la vie&nbsp;!</Trans>
+          <Baseline />
         </p>
 
-        <div className="flex flex-col flex-wrap items-center gap-8 md:flex-row md:items-baseline md:justify-center lg:justify-start">
+        <div className="flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-start md:items-baseline md:gap-8 lg:justify-start">
           <ButtonLink
             href="/organisations/connexion"
-            onClick={() => {
-              trackEvent(clickStartButtonLandingPageEvent)
-            }}
-            size="lg">
+            trackingEvent={organisationsAccueilClickCommencer}>
             <Trans>Commencez</Trans>
           </ButtonLink>
 
@@ -53,19 +34,20 @@ export default function HeroSection() {
             className="py-4"
             href="/organisations/demander-demo"
             onClick={() => {
-              trackEvent(clickAskDemoLandingPageEvent)
+              trackEvent(organisationsAccueilClickDemo)
             }}>
             <Trans>Demandez une démo</Trans>
           </InlineLink>
         </div>
       </div>
-      <div className="w-full lg:w-1/2">
+
+      <div className="w-full md:w-1/2">
         <Image
           src="/images/organisations/group.svg"
           alt=""
           width="400"
           height="400"
-          className="max-w-xs md:mx-auto md:max-w-lg"
+          className="mx-auto block max-w-full md:mx-0 md:max-w-lg"
         />
       </div>
     </div>

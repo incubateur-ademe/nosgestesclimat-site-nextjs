@@ -1,17 +1,13 @@
 'use client'
 
-import { useForm, useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import SimulationNotStarted from './simulationBanner/SimulationNotStarted'
 import SimulationStarted from './simulationBanner/SimulationStarted'
 
 export default function SimulationBanner() {
-  const { progression } = useForm()
+  const { progression } = useCurrentSimulation()
 
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
-
-  if (progression === 0 || !currentSimulation) {
+  if (progression === 0) {
     return <SimulationNotStarted />
   }
 

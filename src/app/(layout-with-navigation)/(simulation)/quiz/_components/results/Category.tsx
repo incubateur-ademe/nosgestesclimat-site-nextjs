@@ -1,6 +1,6 @@
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
 import Trans from '@/components/translation/Trans'
-import formatCarbonFootprint from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
 import { twMerge } from 'tailwind-merge'
 
@@ -12,8 +12,8 @@ type Props = {
 }
 
 const backgroundClasses = {
-  isHeaviest: 'bg-secondary-100 border-secondary-500 border rounded-lg',
-  isNotHeaviest: 'bg-white border-grey-300 border-b',
+  isHeaviest: 'bg-secondary-100 border-secondary-700 border rounded-xl',
+  isNotHeaviest: 'bg-white border-gray-300 border-b',
 }
 
 export default function Category({

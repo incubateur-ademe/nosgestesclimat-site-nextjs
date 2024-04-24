@@ -1,4 +1,4 @@
-import generateCircleOfSvg from '@/helpers/generateCircleOfSvg'
+import { generateCircleOfSvg } from '@/helpers/generateCircleOfSvg'
 import DesktopCircles from './icons/DesktopCircles'
 import MobileCircles from './icons/MobileCircles'
 

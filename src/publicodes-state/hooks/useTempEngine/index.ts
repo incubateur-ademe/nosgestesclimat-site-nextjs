@@ -1,21 +1,18 @@
 import getQuestionsOfMosaic from '@/publicodes-state/helpers/getQuestionsOfMosaic'
 import { DottedName } from '@/publicodes-state/types'
 import { useContext } from 'react'
-import simulationContext from '../../providers/simulationProvider/context'
+import { SimulationContext } from '../../providers/simulationProvider/context'
+import useCurrentSimulation from '../useCurrentSimulation'
 
 /**
  * This is temporary and should be put to death as soon as possible.
  * It is only used in the actions pages.
  */
 export default function useTempEngine() {
-  const {
-    safeEvaluate,
-    deleteSituation,
-    rules,
-    safeGetRule,
-    foldedSteps,
-    everyMosaicChildren,
-  } = useContext(simulationContext) ?? {}
+  const { safeEvaluate, rules, safeGetRule, everyMosaicChildren } =
+    useContext(SimulationContext)
+
+  const { foldedSteps } = useCurrentSimulation()
 
   const getRuleObject = (dottedName: DottedName): any => {
     return { ...safeEvaluate(dottedName), ...safeGetRule(dottedName) }

@@ -1,49 +1,41 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { GROUP_NAMES } from '@/constants/groupNames'
-import { matomoEventCreationGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
+import { getGroupName } from '@/helpers/groups/getGroupName'
 import { validateCreationForm } from '@/helpers/groups/validateCreationForm'
-import useCreateGroup from '@/hooks/groups/useCreateGroup'
+import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { useLocale } from '@/hooks/useLocale'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
 import { FormEvent, FormEventHandler, useState } from 'react'
 
 export default function GroupCreationForm() {
-  const {
-    user,
-    updateName,
-    updateEmail,
-    getCurrentSimulation,
-    updateCurrentSimulation,
-  } = useUser()
-
-  const { name, userId, email } = user
-
-  const [administratorName, setAdministratorName] = useState(name || '')
-  const [errorAdministratorName, setErrorAdministratorName] = useState('')
-
-  const [administratorEmail, setAdministratorEmail] = useState(email || '')
-  const [errorEmail, setErrorEmail] = useState('')
-
   const { t } = useClientTranslation()
 
-  const currentSimulation = getCurrentSimulation()
+  const locale = useLocale()
 
-  const hasCompletedTest = currentSimulation?.progression === 1
+  const { user, updateName, updateEmail } = useUser()
 
-  const { data: groups } = useFetchGroupsOfUser()
+  const currentSimulation = useCurrentSimulation()
+  const hasCompletedTest = currentSimulation.progression === 1
 
   const { goToSimulateurPage } = useSimulateurPage()
   const { goToEndPage } = useEndPage()
+
+  const [administratorName, setAdministratorName] = useState(user.name || '')
+  const [errorAdministratorName, setErrorAdministratorName] = useState('')
+
+  const [administratorEmail, setAdministratorEmail] = useState(user.email || '')
+  const [errorEmail, setErrorEmail] = useState('')
+
+  const { data: groups } = useFetchGroupsOfUser()
 
   const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
 
@@ -64,10 +56,7 @@ export default function GroupCreationForm() {
     if (!isValid) return
 
     try {
-      trackEvent(matomoEventCreationGroupe)
-
-      const { name, emoji } =
-        GROUP_NAMES[groups.length % GROUP_NAMES.length] ?? GROUP_NAMES[0]
+      const { name, emoji } = getGroupName(groups ?? [], locale ?? 'fr')
 
       const group = await createGroup({
         groupInfo: {
@@ -75,7 +64,7 @@ export default function GroupCreationForm() {
           emoji,
           administratorEmail,
           administratorName,
-          userId,
+          userId: user.userId,
           simulation: currentSimulation,
         },
       })
@@ -85,8 +74,8 @@ export default function GroupCreationForm() {
       updateEmail(administratorEmail)
 
       // Update current simulation with group id (to redirect after test completion)
-      updateCurrentSimulation({
-        group: group._id,
+      currentSimulation.update({
+        groupToAdd: group._id,
       })
 
       // Redirect to simulateur page or end page
@@ -121,7 +110,7 @@ export default function GroupCreationForm() {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="italic text-secondary-500">
+              <span className="text-secondary-700 italic">
                 {' '}
                 {t('facultatif')}
               </span>

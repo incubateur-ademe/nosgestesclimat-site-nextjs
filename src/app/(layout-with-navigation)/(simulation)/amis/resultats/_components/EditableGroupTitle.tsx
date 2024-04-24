@@ -1,6 +1,11 @@
 'use client'
 
-import { matomoEventUpdateGroupName } from '@/constants/matomo'
+import PencilIcon from '@/components/icons/PencilIcon'
+
+import {
+  amisDashboardOpenEditName,
+  amisDashboardValidateEditName,
+} from '@/constants/tracking/pages/amisDashboard'
 import Button from '@/design-system/inputs/Button'
 import InlineTextInput from '@/design-system/inputs/InlineTextInput'
 import Title from '@/design-system/layout/Title'
@@ -11,7 +16,6 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
-import Image from 'next/image'
 import { useState } from 'react'
 
 export default function EditableGroupTitle({ group }: { group: Group }) {
@@ -36,12 +40,11 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
 
       setIsSubmitting(false)
       setIsEditingTitle(false)
-
-      trackEvent(matomoEventUpdateGroupName)
     } catch (e) {
       captureException(e)
     }
   }
+  const vousWord = t('Vous')
 
   return (
     <>
@@ -51,7 +54,10 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
             defaultValue={group?.name}
             label={t('Modifier le nom du groupe')}
             name="group-name-input"
-            onClose={() => setIsEditingTitle(false)}
+            onClose={() => {
+              setIsEditingTitle(false)
+              trackEvent(amisDashboardValidateEditName)
+            }}
             onSubmit={handleSubmit}
             isLoading={isSubmitting}
             data-cypress-id="group-edit-input-name"
@@ -68,24 +74,20 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
 
                 {isGroupOwner ? (
                   <Button
-                    className="!p-1"
-                    onClick={() => setIsEditingTitle(true)}
+                    className="h-12 w-12 !p-1"
+                    onClick={() => {
+                      setIsEditingTitle(true)
+                      trackEvent(amisDashboardOpenEditName)
+                    }}
                     color="secondary"
                     data-cypress-id="group-name-edit-button">
-                    <Image
-                      src="/images/misc/pencil.svg"
-                      alt={t(
-                        'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé'
-                      )}
-                      width={24}
-                      height={24}
-                    />
+                    <PencilIcon className="w-4 stroke-primary-700" />
                   </Button>
                 ) : null}
               </span>
             }
             subtitle={t('Créé par {{name}}', {
-              name: isGroupOwner ? t('vous') : group?.administrator?.name,
+              name: isGroupOwner ? vousWord : group?.administrator?.name,
             })}
           />
         )}

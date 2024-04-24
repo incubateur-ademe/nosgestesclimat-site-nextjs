@@ -1,16 +1,25 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { Situation } from '@/publicodes-state/types'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
+import { useClientTranslation } from '../useClientTranslation'
 import { useEndPage } from './useEndPage'
 
 type GoToSimulateurPageProps = {
   noNavigation?: boolean
-  newSimulation?: boolean
+  newSimulation?: {
+    situation?: Situation
+    persona?: string
+    foldedSteps?: string[]
+    defaultAdditionalQuestionsAnswers?: Record<string, string>
+    poll?: string
+    group?: string
+  }
 }
 const goToSimulateurPagePropsDefault = {
   noNavigation: false,
-  newSimulation: false,
+  newSimulation: undefined,
 }
 type GetLinkToSimulateurPageProps = {
   newSimulation?: boolean
@@ -21,24 +30,24 @@ const getLinkToSimulateurPagePropsDefault = {
 export function useSimulateurPage() {
   const router = useRouter()
 
-  const { getCurrentSimulation, tutorials, initSimulation } = useUser()
+  const { t } = useClientTranslation()
 
-  const { goToEndPage } = useEndPage()
+  const { tutorials, initSimulation } = useUser()
+
+  const { goToEndPage, getLinkToEndPage } = useEndPage()
 
   const tutorielSeen = tutorials.testIntro
 
-  const currentSimulation = getCurrentSimulation()
-
-  const progression = currentSimulation?.progression
+  const { progression } = useCurrentSimulation()
 
   const goToSimulateurPage = useCallback(
     async ({
       noNavigation = false,
-      newSimulation = false,
+      newSimulation = undefined,
     }: GoToSimulateurPageProps = goToSimulateurPagePropsDefault) => {
       // If there is no current simulation (or we want to force a new one), we init a new simulation
-      if (!currentSimulation || newSimulation) {
-        initSimulation()
+      if (newSimulation) {
+        await initSimulation(newSimulation)
       }
 
       // If we don't want to navigate, we do nothing
@@ -61,23 +70,16 @@ export function useSimulateurPage() {
       // else we redirect him to the tutoriel page
       router.replace('/tutoriel')
     },
-    [
-      currentSimulation,
-      tutorielSeen,
-      router,
-      initSimulation,
-      progression,
-      goToEndPage,
-    ]
+    [tutorielSeen, router, initSimulation, progression, goToEndPage]
   )
 
   const getLinkToSimulateurPage = useCallback(
     ({
       newSimulation,
-    }: GetLinkToSimulateurPageProps = getLinkToSimulateurPagePropsDefault) => {
+    }: GetLinkToSimulateurPageProps = getLinkToSimulateurPagePropsDefault): string => {
       // If the user has completed the test (and we are not initializing a new one) we return the results page link
       if (progression === 1 && !newSimulation) {
-        return '/fin'
+        return getLinkToEndPage()
       }
 
       // If the user has seen the tutoriel we return the test page link
@@ -88,23 +90,23 @@ export function useSimulateurPage() {
       // else we return the tutoriel page link
       return '/tutoriel'
     },
-    [tutorielSeen, progression]
+    [tutorielSeen, progression, getLinkToEndPage]
   )
 
   const linkToSimulateurPageLabel = useMemo(() => {
     // If the user has completed the test we return the results page label
     if (progression === 1) {
-      return 'Voir les résultats'
+      return t('Voir les résultats')
     }
 
     // If the user has seen the tutoriel we return the test page label
-    if (tutorielSeen) {
-      return 'Reprendre mon test'
+    if (progression > 0) {
+      return t('Reprendre mon test')
     }
 
     // else we return the tutoriel page label
-    return 'Passer le test →'
-  }, [tutorielSeen, progression])
+    return t('Passer le test →')
+  }, [progression, t])
 
   return {
     goToSimulateurPage,

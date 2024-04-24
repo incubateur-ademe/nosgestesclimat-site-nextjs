@@ -1,9 +1,9 @@
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { linkToQuiz } from '@/helpers/navigation/quizPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 type GoToEndPageProps = {
   isAllowedToSave?: boolean
@@ -15,12 +15,20 @@ const goToEndPagePropsDefault = {
   allowedToGoToGroupDashboard: false,
   shouldShowQuiz: false,
 }
+
+type GetLinkToEndPageProps = {
+  allowedToGoToGroupDashboard?: boolean
+  shouldShowQuiz?: boolean
+}
+const GetLinkToEndPagePropsDefault = {
+  allowedToGoToGroupDashboard: false,
+  shouldShowQuiz: false,
+}
+
 export function useEndPage() {
   const router = useRouter()
 
-  const { getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
+  const currentSimulation = useCurrentSimulation()
 
   const progression = currentSimulation?.progression
 
@@ -34,11 +42,6 @@ export function useEndPage() {
       allowedToGoToGroupDashboard = false,
       shouldShowQuiz = false,
     }: GoToEndPageProps = goToEndPagePropsDefault) => {
-      if (!currentSimulation) {
-        router.push('/404') // TODO: should throw an error
-        return
-      }
-
       // If we are already navigating, we don't do anything
       if (isNavigating) {
         return
@@ -49,7 +52,7 @@ export function useEndPage() {
       if (
         progression === 1 &&
         isAllowedToSave &&
-        (currentSimulation.poll || currentSimulation.group)
+        (currentSimulation.polls || currentSimulation.groups)
       ) {
         await saveSimulation({ simulation: currentSimulation })
       }
@@ -62,10 +65,11 @@ export function useEndPage() {
       }
 
       // if the simulation is in a group and we are allowed to, we redirect to the group results page
-      if (currentSimulation.group && allowedToGoToGroupDashboard) {
-        router.push(
-          getLinkToGroupDashboard({ groupId: currentSimulation.group })
-        )
+      if (currentSimulation.groups && allowedToGoToGroupDashboard) {
+        const lastGroupId =
+          currentSimulation.groups[currentSimulation.groups.length - 1]
+
+        router.push(getLinkToGroupDashboard({ groupId: lastGroupId }))
         return
       }
 
@@ -75,19 +79,30 @@ export function useEndPage() {
     [currentSimulation, progression, router, saveSimulation, isNavigating]
   )
 
-  const linkToEndPage = useMemo(() => {
-    if (!currentSimulation) {
-      return '/404' // TODO: should throw an error
-    }
+  const getLinkToEndPage = useCallback(
+    ({
+      allowedToGoToGroupDashboard = false,
+      shouldShowQuiz = false,
+    }: GetLinkToEndPageProps = GetLinkToEndPagePropsDefault): string => {
+      // If we should show the quiz, we redirect to the quiz page
+      // TODO: This is maybe in the wrong place. Should check it later
+      if (shouldShowQuiz) {
+        return linkToQuiz
+      }
 
-    // if the simulation is in a group, we return the group results page
-    if (currentSimulation.group) {
-      return getLinkToGroupDashboard({ groupId: currentSimulation.group })
-    }
+      // if the simulation is in a group and we are allowed to, we redirect to the group results page
+      if (currentSimulation.groups && allowedToGoToGroupDashboard) {
+        const lastGroupId =
+          currentSimulation.groups[currentSimulation.groups.length - 1]
 
-    // else we return the results page
-    return '/fin'
-  }, [currentSimulation])
+        return getLinkToGroupDashboard({ groupId: lastGroupId })
+      }
 
-  return { goToEndPage, linkToEndPage }
+      // else we return the results page
+      return '/fin'
+    },
+    [currentSimulation]
+  )
+
+  return { goToEndPage, getLinkToEndPage, isNavigating }
 }

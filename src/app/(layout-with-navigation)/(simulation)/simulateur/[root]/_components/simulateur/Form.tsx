@@ -2,11 +2,13 @@ import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import questions from '@/components/questions'
-import { getMatomoEventParcoursTestOver } from '@/constants/matomo'
+import { simulationSimulationCompleted } from '@/constants/tracking/simulation'
+import { uuidToNumber } from '@/helpers/uuidToNumber'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
+import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import { useEngine, useForm, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useEngine, useForm } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useContext, useEffect, useState } from 'react'
 import ColorIndicator from './form/ColorIndicator'
@@ -14,9 +16,7 @@ import ColorIndicator from './form/ColorIndicator'
 export default function Form() {
   const isDebug = useDebug()
 
-  const { getCurrentSimulation } = useUser()
-  const currentSimulation = getCurrentSimulation()
-  const progression = currentSimulation?.progression ?? 0
+  const { progression, id } = useCurrentSimulation()
 
   const {
     remainingQuestions,
@@ -25,8 +25,6 @@ export default function Form() {
     setCurrentQuestion,
   } = useForm()
 
-  const { getNumericValue } = useEngine()
-
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()
 
@@ -34,17 +32,38 @@ export default function Form() {
 
   const [isInitialized, setIsInitialized] = useState(false)
 
+  const { trackTimeOnSimulation } = useTrackTimeOnSimulation()
+  const { getNumericValue } = useEngine()
+
   // When we reach the end of the test (by clicking on the last navigation button),
   // we wait for the progression to be updated before redirecting to the end page
   const [shouldGoToEndPage, setShouldGoToEndPage] = useState(false)
+
   useEffect(() => {
+    // We show the quiz for 10% of our users
+    const shouldShowQuiz = uuidToNumber(id ?? '') === 0
+
     if (shouldGoToEndPage && progression === 1) {
+      trackTimeOnSimulation()
+
+      if (!shouldShowQuiz) {
+        trackEvent(
+          simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
+        )
+      }
       goToEndPage({
-        shouldShowQuiz: false,
+        shouldShowQuiz,
         allowedToGoToGroupDashboard: true,
       })
     }
-  }, [shouldGoToEndPage, progression, goToEndPage])
+  }, [
+    shouldGoToEndPage,
+    progression,
+    goToEndPage,
+    getNumericValue,
+    id,
+    trackTimeOnSimulation,
+  ])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
 
@@ -89,7 +108,7 @@ export default function Form() {
   const QuestionComponent = questions[currentQuestion] || Question
 
   return (
-    <div className="relative mb-4 overflow-hidden rounded-lg bg-grey-100 p-4 pl-6">
+    <div className="relative mb-4 overflow-hidden rounded-xl bg-gray-100 p-4 pl-6">
       <ColorIndicator question={currentQuestion} />
       <QuestionComponent
         question={currentQuestion}
@@ -102,8 +121,6 @@ export default function Form() {
           question={currentQuestion}
           tempValue={tempValue}
           onComplete={() => {
-            trackEvent(getMatomoEventParcoursTestOver(getNumericValue('bilan')))
-
             if (shouldPreventNavigation) {
               handleUpdateShouldPreventNavigation(false)
             }

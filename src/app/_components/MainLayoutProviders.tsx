@@ -1,19 +1,16 @@
 'use client'
 
-import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
-import useTrackPageView from '@/hooks/tracking/useTrackPageView'
-import useTrackSplitTesting from '@/hooks/tracking/useTrackSplitTesting'
+import { IframeOptionsProvider } from '@/app/_components/mainLayoutProviders/IframeOptionsContext'
 import { UserProvider } from '@/publicodes-state'
-import { MigrationType } from '@/publicodes-state/types'
+import { MigrationType, RegionFromGeolocation } from '@/publicodes-state/types'
 import { PropsWithChildren } from 'react'
-import CheckFixedRegion from './mainLayoutProviders/CheckFixedRegion'
-import { IframeResizer } from './mainLayoutProviders/IframeResizer'
+import MainHooks from './mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from './mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProviderWrapper'
-import QueryParamsProvider from './mainLayoutProviders/QueryParamsProvider'
+import SimulationSyncProvider from './mainLayoutProviders/SimulationSyncProvider'
 
 type Props = {
-  region: { code: string; name: string }
+  region: RegionFromGeolocation
   migrationInstructions: MigrationType
 }
 export default function MainLayoutProviders({
@@ -21,24 +18,20 @@ export default function MainLayoutProviders({
   region,
   migrationInstructions,
 }: PropsWithChildren<Props>) {
-  // Handles sending split testing data to Matomo
-  useTrackSplitTesting()
-  useTrackPageView()
-
   return (
-    <QueryParamsProvider>
-      <IframeOptionsProvider>
-        <QueryClientProviderWrapper>
-          <IframeResizer />
-          <UserProvider
-            initialRegion={region}
-            storageKey="nosgestesclimat::v3"
-            migrationInstructions={migrationInstructions}>
-            <CheckFixedRegion />
-            <PreventNavigationProvider>{children}</PreventNavigationProvider>
-          </UserProvider>
-        </QueryClientProviderWrapper>
-      </IframeOptionsProvider>
-    </QueryParamsProvider>
+    <IframeOptionsProvider>
+      <QueryClientProviderWrapper>
+        <UserProvider
+          initialRegion={region}
+          storageKey="nosgestesclimat::v3"
+          migrationInstructions={migrationInstructions}>
+          <PreventNavigationProvider>
+            <SimulationSyncProvider>
+              <MainHooks>{children}</MainHooks>
+            </SimulationSyncProvider>
+          </PreventNavigationProvider>
+        </UserProvider>
+      </QueryClientProviderWrapper>
+    </IframeOptionsProvider>
   )
 }

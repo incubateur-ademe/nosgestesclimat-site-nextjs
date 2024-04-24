@@ -2,27 +2,28 @@
 
 import Link from '@/components/Link'
 import CountryFlag from '@/components/misc/CountryFlag'
-import { getMatomoEventChangeRegion } from '@/constants/matomo'
+import { trackingClickRegionBanner } from '@/constants/tracking/misc'
 import { defaultModelRegionCode } from '@/constants/translation'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
-import { SuppportedRegions } from '@/types/international'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import Trans from './Trans'
 
 type Props = {
-  supportedRegions: SuppportedRegions
+  supportedRegions: SupportedRegions
 }
 export default function LocalisationBanner({ supportedRegions }: Props) {
   const { user, tutorials, hideTutorial } = useUser()
 
   const currentLocale = useLocale() as string
 
-  const code = user?.region?.code
+  const region = user?.region
+  const code = user?.region?.code ?? 'FR'
 
   const { iframeRegion } = useIframe()
 
@@ -32,9 +33,9 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
   const regionParams: any = supportedRegions?.[code]
 
-  const countryName = capitalizeString(
-    regionParams?.[currentLocale]?.nom as string
-  )
+  const countryName =
+    capitalizeString(regionParams?.[currentLocale]?.nom as string) ||
+    region?.name
 
   const versionName: string = regionParams
     ? regionParams?.[currentLocale]?.['gentilé'] ??
@@ -46,9 +47,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
   if (code === defaultModelRegionCode) return null
 
   return (
-    <Card
-      className="mx-auto mb-8 w-[32rem] max-w-full flex-row"
-      style={{ backgroundColor: '#fff8d3' }}>
+    <Card className="mx-auto mb-8 w-[32rem] max-w-full flex-row border-none bg-[#fff8d3]">
       <div className="flex gap-8">
         <div className="flex w-8 items-center text-4xl">📍</div>
         <div className="flex-1">
@@ -115,7 +114,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
             onClick={() => {
               hideTutorial('localisationBanner')
 
-              trackEvent(getMatomoEventChangeRegion(code))
+              trackEvent(trackingClickRegionBanner)
             }}>
             <Trans>J'ai compris</Trans>
           </Button>

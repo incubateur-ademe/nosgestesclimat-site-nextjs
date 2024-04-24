@@ -2,16 +2,18 @@
 
 import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
+import { organisationsParametersUpdateInformations } from '@/constants/tracking/pages/organisationsParameters'
 import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { FormEventHandler, useEffect, useRef, useState } from 'react'
 import { useUpdateOrganisation } from '../../../_hooks/useUpdateOrganisation'
 
 type Props = {
-  organisation: Organisation
+  organisation: Organisation | undefined
 }
 
 export default function InformationsForm({ organisation }: Props) {
@@ -27,6 +29,8 @@ export default function InformationsForm({ organisation }: Props) {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault()
+
+    trackEvent(organisationsParametersUpdateInformations)
 
     const data = new FormData(document.querySelector('form') ?? undefined)
 
@@ -72,7 +76,7 @@ export default function InformationsForm({ organisation }: Props) {
 
   useEffect(() => {
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+      clearTimeout(timeoutRef.current)
     }
   }, [])
 
@@ -93,13 +97,13 @@ export default function InformationsForm({ organisation }: Props) {
         <TextInputGroup
           name="name"
           label={<Trans>Votre organisation</Trans>}
-          defaultValue={organisation?.name}
+          value={organisation?.name}
         />
 
         <TextInputGroup
           name="administratorName"
           label={<Trans>Votre prénom</Trans>}
-          defaultValue={organisation?.administrators?.[0]?.name}
+          value={organisation?.administrators?.[0]?.name}
         />
 
         <TextInputGroup
@@ -107,7 +111,7 @@ export default function InformationsForm({ organisation }: Props) {
           disabled
           helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
           label={<Trans>Votre e-mail</Trans>}
-          defaultValue={organisation?.administrators?.[0]?.email}
+          value={organisation?.administrators?.[0]?.email}
         />
 
         <div className="w-[32rem]">

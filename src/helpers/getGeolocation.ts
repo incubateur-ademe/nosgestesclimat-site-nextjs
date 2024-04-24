@@ -1,4 +1,6 @@
-export default async function useGeolocation() {
+import { RegionFromGeolocation } from '@/publicodes-state/types'
+
+export async function getGeolocation(): Promise<RegionFromGeolocation> {
   const region = await fetch(
     `${
       process.env.VERCEL_ENV === 'preview' ||
@@ -16,5 +18,6 @@ export default async function useGeolocation() {
         }
       }) => res.country
     )
+
   return region
 }

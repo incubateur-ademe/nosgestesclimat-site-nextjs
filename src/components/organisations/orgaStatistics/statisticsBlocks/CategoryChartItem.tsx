@@ -1,6 +1,7 @@
 'use client'
 
 import VerticalBarChartItem from '@/components/charts/verticalBarChart/VerticalBarChartItem'
+import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
@@ -34,6 +35,7 @@ export default function CategoryChartItem({
         value={String(value)}
         index={index}
         percentage={percentageOfMaxValue}
+        barColor={getBackgroundColor(category)}
         ariaLabel={t(
           'La catégorie {{title}} représente {{value}} tonnes de CO2 equivalent.',
           { value, title }

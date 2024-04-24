@@ -4,9 +4,10 @@ import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 
 type Props = {
-  question: string
+  question: DottedName
   isMissing: boolean
 }
 
@@ -16,7 +17,7 @@ export default function MosaicQuestion({ question, isMissing }: Props) {
   const { title, icons } = useRule(parent)
 
   return (
-    <span className="relative flex justify-between rounded-lg bg-primary-100 p-4 text-sm">
+    <span className="relative flex justify-between rounded-xl bg-primary-100 p-4 text-sm">
       <span className="flex-1">
         {icons} {title}
       </span>
