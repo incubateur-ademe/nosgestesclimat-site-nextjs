@@ -10,7 +10,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
 import { isEmailValid } from '@/utils/isEmailValid'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 
 export default function InvitationForm({ group }: { group: Group }) {
   const { t } = useClientTranslation()
@@ -28,6 +28,25 @@ export default function InvitationForm({ group }: { group: Group }) {
 
   const [guestEmail, setGuestEmail] = useState(user.email || '')
   const [errorGuestEmail, setErrorGuestEmail] = useState('')
+
+  const [shouldNavigate, setShouldNavigate] = useState(false)
+  useEffect(() => {
+    if (shouldNavigate && currentSimulation.groups?.includes(group._id)) {
+      setShouldNavigate(false)
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
+    }
+  }, [
+    currentSimulation.groups,
+    group._id,
+    hasCompletedTest,
+    goToEndPage,
+    goToSimulateurPage,
+    shouldNavigate,
+  ])
 
   const handleSubmit = async (event: MouseEvent | FormEvent) => {
     // Avoid reloading page
@@ -55,16 +74,12 @@ export default function InvitationForm({ group }: { group: Group }) {
     updateEmail(guestEmail)
 
     // Update current simulation with group id (to redirect after test completion)
-    await currentSimulation.update({
+    currentSimulation.update({
       groupToAdd: group._id,
     })
 
     // Redirect to simulateur page or end page
-    if (hasCompletedTest) {
-      goToEndPage({ allowedToGoToGroupDashboard: true })
-    } else {
-      goToSimulateurPage()
-    }
+    setShouldNavigate(true)
   }
 
   return (
@@ -86,7 +101,7 @@ export default function InvitationForm({ group }: { group: Group }) {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="text-secondary-700 italic">
+              <span className="italic text-secondary-700">
                 {' '}
                 {t('facultatif')}
               </span>

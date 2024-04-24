@@ -71,7 +71,7 @@ export default function Commencer() {
 
   const { goToSimulateurPage } = useSimulateurPage()
 
-  const { progression, updateCurrentSimulation } = useCurrentSimulation()
+  const { progression, updateCurrentSimulation, polls } = useCurrentSimulation()
 
   const [status, setStatus] = useState<
     'notStarted' | 'started' | 'finished' | undefined
@@ -98,6 +98,14 @@ export default function Commencer() {
   useEffect(() => {
     handleUpdateShouldPreventNavigation(true)
   }, [handleUpdateShouldPreventNavigation])
+
+  const [shouldNavigate, setShouldNavigate] = useState(false)
+  useEffect(() => {
+    if (shouldNavigate && polls?.includes(pollSlug || '')) {
+      setShouldNavigate(false)
+      goToSimulateurPage()
+    }
+  }, [goToSimulateurPage, polls, pollSlug, shouldNavigate])
 
   if (!status) {
     return null
@@ -126,7 +134,7 @@ export default function Commencer() {
               trackEvent(infosCommencerClickCtaCommencer)
             }
 
-            await updateCurrentSimulation({
+            updateCurrentSimulation({
               defaultAdditionalQuestionsAnswers: {
                 postalCode,
                 birthdate,
@@ -135,7 +143,7 @@ export default function Commencer() {
             })
 
             // We try to go to the simulateur page. If the test is finished we will save the simulation and then go to the end page
-            goToSimulateurPage()
+            setShouldNavigate(true)
           }}>
           {buttonLabels[status]}
         </Button>
