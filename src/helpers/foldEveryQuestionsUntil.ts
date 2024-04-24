@@ -3,9 +3,7 @@ import { UpdateCurrentSimulationProps } from '@/publicodes-state/types'
 type Props = {
   question: string
   relevantQuestions: string[]
-  updateCurrentSimulation: (
-    simulation: UpdateCurrentSimulationProps
-  ) => Promise<void>
+  updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
 }
 
 export function foldEveryQuestionsUntil({

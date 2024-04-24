@@ -5,9 +5,7 @@ type Props = {
   categories: string[]
   remainingQuestions: string[]
   relevantQuestions: string[]
-  updateCurrentSimulation: (
-    simulation: UpdateCurrentSimulationProps
-  ) => Promise<void>
+  updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
 }
 
 /**

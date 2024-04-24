@@ -23,9 +23,7 @@ type Props = {
   questionsOfMosaic: string[]
   situation: Situation
   addToEngineSituation: (situationToAdd: Situation) => Promise<void>
-  updateCurrentSimulation: (
-    simulation: UpdateCurrentSimulationProps
-  ) => Promise<void>
+  updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
 }
 
 export default function useSetValue({
