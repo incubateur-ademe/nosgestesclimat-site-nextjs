@@ -107,7 +107,7 @@ export default function QuestionsComplementaires({
         </Trans>
       </p>
 
-      <div className="mb-4 rounded-md border border-gray-200">
+      <div className="mb-4 rounded-md border-2 border-gray-200">
         <ToggleField
           name="villeToggle"
           value={
@@ -120,7 +120,7 @@ export default function QuestionsComplementaires({
         />
       </div>
 
-      <div className="rounded-md border border-gray-200">
+      <div className="rounded-md border-2 border-gray-200">
         <ToggleField
           name="birthdateToggle"
           value={
