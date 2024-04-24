@@ -11,7 +11,8 @@
     "node": "20"
   },
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
+    "dev:turbo": "next dev --turbo",
     "build": "next build",
     "build:analyze": "ANALYZE=true next build",
     "build:debug-memory": "next build --experimental-debug-memory-usage",

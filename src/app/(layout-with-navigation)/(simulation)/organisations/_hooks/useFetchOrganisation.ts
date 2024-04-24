@@ -14,19 +14,17 @@ export default function useFetchOrganisation({
 
   const { user } = useUser()
 
+  const orgaSlug = slug ?? user?.organisation?.slug
+
   return useQuery({
-    queryKey: [
-      'organisation-validate-jwt',
-      email,
-      slug ?? user?.organisation?.slug,
-    ],
+    queryKey: ['organisation-validate-jwt', email, orgaSlug],
     queryFn: () =>
       axios
         .post(
           `${SERVER_URL}/organisations/fetch-organisation`,
           {
             email,
-            slug,
+            slug: orgaSlug,
           },
           {
             withCredentials: true,
@@ -34,5 +32,6 @@ export default function useFetchOrganisation({
         )
         .then((res) => res.data),
     retry: false,
+    enabled: !!email,
   })
 }
