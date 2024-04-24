@@ -39,8 +39,8 @@ export default function Amis() {
         <Trans>et comparez vos résultats.</Trans>
       </p>
       <ButtonLink
-        href="/amis"
-        data-cypress-id="amis-link"
+        href="/classements"
+        data-cypress-id="classements-link"
         trackingEvent={homeClickClassements}>
         <Trans>Commencer</Trans>
       </ButtonLink>

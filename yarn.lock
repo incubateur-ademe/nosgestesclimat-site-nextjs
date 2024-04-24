@@ -578,10 +578,10 @@
     prompt-sync "^4.2.0"
     yargs "^17.7.2"
 
-"@incubateur-ademe/nosgestesclimat@2.3.0-rc.2":
-  version "2.3.0-rc.2"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-2.3.0-rc.2.tgz#5dafd00d59aea01ba2a0ac7a912d2a9a73baa862"
-  integrity sha512-BSvIsOF8XBHulU5SHjk7+RVHp/vyBGbzdsI1v4HC1+706/BimOWk2i0Kf8la8iSUQQUGIJkhk3LLk9cyHBBQcw==
+"@incubateur-ademe/nosgestesclimat@^2.3.0-rc.3":
+  version "2.3.0-rc.3"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-2.3.0-rc.3.tgz#a205d7ac1c519c3d5df67bd51c4bc9c75b1c7744"
+  integrity sha512-wXXS+YsoDD29eKJOzkKf5Jyo5T3UO+cqPz89zUexyUDwwV+YhgmaiUhcSVW3S1IhnVOYxfqQzbV7LxLj26HREg==
 
 "@jest/expect-utils@^29.7.0":
   version "29.7.0"
@@ -1231,13 +1231,6 @@
   version "20.12.7"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-20.12.7.tgz#04080362fa3dd6c5822061aa3124f5c152cff384"
   integrity sha512-wq0cICSkRLVaf3UGLMGItu/PtdY7oaXaI/RVU+xliKVOtRna3PRY57ZDfztpDL0n11vfymMUnXv8QwYCO7L1wg==
-  dependencies:
-    undici-types "~5.26.4"
-
-"@types/node@^18.11.18":
-  version "18.19.31"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.31.tgz#b7d4a00f7cb826b60a543cebdbda5d189aaecdcd"
-  integrity sha512-ArgCD39YpyyrtFKIqMDvjz79jto5fcI/SVUs2HwB+f0dAzq68yqOdyaSivLiLugSziTpNXLQrVb7RZFmdZzbhA==
   dependencies:
     undici-types "~5.26.4"
 
