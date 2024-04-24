@@ -40,6 +40,7 @@ const nextConfig = {
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     outputFileTracingExcludes: {
       '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
+      '/blog': ['public/NGC_Kit.diffusion.zip'],
     },
     webpackBuildWorker: true,
     turbo: {
