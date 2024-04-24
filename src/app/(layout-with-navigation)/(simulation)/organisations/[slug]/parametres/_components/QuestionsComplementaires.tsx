@@ -73,10 +73,9 @@ export default function QuestionsComplementaires({
     })
 
     refetchOrganisation()
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
     setIsConfirmingUpdate(true)
-
-    if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
     timeoutRef.current = setTimeout(() => {
       setIsConfirmingUpdate(false)
@@ -89,7 +88,6 @@ export default function QuestionsComplementaires({
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
   }, [])
-
   return (
     <section className="mb-12 mt-8">
       <h2>
