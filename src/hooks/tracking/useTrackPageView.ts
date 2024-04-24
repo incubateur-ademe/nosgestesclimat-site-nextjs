@@ -1,3 +1,4 @@
+import { locales } from '@/i18nConfig'
 import { trackPageView } from '@/utils/matomo/trackEvent'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
@@ -8,10 +9,12 @@ export function useTrackPageView() {
   useEffect(() => {
     let url = pathname
 
-    // We remove the /en/ or /fr/ prefix from the pathname
-    if (pathname.startsWith('/en') || pathname.startsWith('/fr')) {
-      url = pathname.slice(3)
-    }
+    // We remove the lang prefix from the pathname
+    locales.map((locale) => {
+      if (pathname.startsWith(`/${locale}`)) {
+        url = pathname.slice(3)
+      }
+    })
 
     // If there is an organisation name in the pathname, we change it to "organisation-name"
     const pathNameSegment = url.split('/')
