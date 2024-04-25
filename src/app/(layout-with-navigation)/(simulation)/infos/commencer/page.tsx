@@ -56,9 +56,9 @@ const texts = {
   ),
 }
 const buttonLabels = {
-  notStarted: 'Commencer le test',
-  started: 'Reprendre le test',
-  finished: 'Utiliser mes données existantes',
+  notStarted: <Trans>Commencer le test</Trans>,
+  started: <Trans>Reprendre le test</Trans>,
+  finished: <Trans>Utiliser mes données existantes</Trans>,
 }
 
 export default function Commencer() {
@@ -119,7 +119,7 @@ export default function Commencer() {
   }
 
   return (
-    <Card className={'items-start border-none bg-grey-100 p-8'}>
+    <Card className={'bg-grey-100 items-start border-none p-8'}>
       <Title
         data-cypress-id="commencer-title"
         className="text-lg md:text-xl"
