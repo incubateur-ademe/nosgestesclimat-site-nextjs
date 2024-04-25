@@ -1,12 +1,13 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
 import Image from 'next/image'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
   return getMetadataObject({
     title: t('Ambassadeurs - Nos Gestes Climat'),
     description: t(

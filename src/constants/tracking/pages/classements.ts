@@ -22,22 +22,18 @@ type ClassementClickItem = {
 
 // Figma comment #85
 export const classementClickGroup = ({
-  isAdministator,
   numParticipants,
 }: ClassementClickItem) => [
   'trackEvent',
   'Classements',
   'Click Group',
-  isAdministator ? 'Administrator' : 'Participant',
+  null,
   String(numParticipants),
 ]
 
 // Figma comment #86
-export const classementClickOrganisation = ({
-  isAdministator,
-}: ClassementClickItem) => [
+export const classementClickOrganisation = [
   'trackEvent',
   'Classements',
   'Click Organisation',
-  isAdministator ? 'Administrator' : 'Participant',
 ]

@@ -9,22 +9,44 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
-import { FormEvent, useState } from 'react'
+import { isEmailValid } from '@/utils/isEmailValid'
+import { FormEvent, useEffect, useState } from 'react'
 
 export default function InvitationForm({ group }: { group: Group }) {
-  const [errorPrenom, setErrorPrenom] = useState('')
-  const [errorEmail, setErrorEmail] = useState('')
-
   const { t } = useClientTranslation()
 
-  const { user, updateEmail, updateName, updateCurrentSimulation } = useUser()
+  const { user, updateName, updateEmail } = useUser()
 
-  const { progression } = useCurrentSimulation()
-
-  const hasCompletedTest = progression === 1
+  const currentSimulation = useCurrentSimulation()
+  const hasCompletedTest = currentSimulation.progression === 1
 
   const { goToSimulateurPage } = useSimulateurPage()
   const { goToEndPage } = useEndPage()
+
+  const [guestName, setGuestName] = useState(user.name || '')
+  const [errorGuestName, setErrorGuestName] = useState('')
+
+  const [guestEmail, setGuestEmail] = useState(user.email || '')
+  const [errorGuestEmail, setErrorGuestEmail] = useState('')
+
+  const [shouldNavigate, setShouldNavigate] = useState(false)
+  useEffect(() => {
+    if (shouldNavigate && currentSimulation.groups?.includes(group._id)) {
+      setShouldNavigate(false)
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
+    }
+  }, [
+    currentSimulation.groups,
+    group._id,
+    hasCompletedTest,
+    goToEndPage,
+    goToSimulateurPage,
+    shouldNavigate,
+  ])
 
   const handleSubmit = async (event: MouseEvent | FormEvent) => {
     // Avoid reloading page
@@ -38,53 +60,48 @@ export default function InvitationForm({ group }: { group: Group }) {
     }
 
     // Inputs validation
-    if (!user.name) {
-      setErrorPrenom(t('Veuillez renseigner un prénom ou un pseudonyme.'))
+    if (!guestName) {
+      setErrorGuestName(t('Veuillez renseigner un prénom ou un pseudonyme.'))
       return
     }
-    if (
-      user.email &&
-      !user.email.match(
-        /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-      )
-    ) {
-      setErrorEmail(t('Veuillez renseigner un email valide.'))
+    if (!isEmailValid(guestEmail)) {
+      setErrorGuestEmail(t('Veuillez renseigner un email valide.'))
       return
     }
 
+    // Update user info
+    updateName(guestName)
+    updateEmail(guestEmail)
+
     // Update current simulation with group id (to redirect after test completion)
-    await updateCurrentSimulation({
+    currentSimulation.update({
       groupToAdd: group._id,
     })
 
     // Redirect to simulateur page or end page
-    if (hasCompletedTest) {
-      goToEndPage({ allowedToGoToGroupDashboard: true })
-    } else {
-      goToSimulateurPage()
-    }
+    setShouldNavigate(true)
   }
 
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       <PrenomInput
-        prenom={user.name ?? ''}
-        setPrenom={updateName}
-        errorPrenom={errorPrenom}
-        setErrorPrenom={setErrorPrenom}
+        prenom={guestName}
+        setPrenom={setGuestName}
+        errorPrenom={errorGuestName}
+        setErrorPrenom={setErrorGuestName}
         data-cypress-id="member-name"
       />
 
       <div className="my-4">
         <EmailInput
-          email={user.email ?? ''}
-          setEmail={updateEmail}
-          error={errorEmail}
-          setError={setErrorEmail}
+          email={guestEmail}
+          setEmail={setGuestEmail}
+          error={errorGuestEmail}
+          setError={setErrorGuestEmail}
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="text-secondary-700 italic">
+              <span className="italic text-secondary-700">
                 {' '}
                 {t('facultatif')}
               </span>

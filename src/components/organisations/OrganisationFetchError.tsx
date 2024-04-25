@@ -22,8 +22,14 @@ export default function OrganisationFetchError({
           <p>
             <Trans>Oups</Trans>
             <Trans>
-              , vous avez été déconnecté·e de votre espace organisation,
-              reconnectez vous en cliquant sur le bouton ci-dessous.
+              , vous avez été déconnecté·e de votre espace organisation, ou vous
+              cherchez à y accéder depuis un nouveau navigateur.
+            </Trans>
+          </p>
+
+          <p>
+            <Trans>
+              Reconnectez vous en cliquant sur le bouton ci-dessous.
             </Trans>
           </p>
 

@@ -48,7 +48,7 @@ export default function Select({
         className={twMerge(
           `border-gray-300 ${
             helperText || label ? ' mt-3' : ''
-          } max-w-[30rem] rounded-full border border-solid bg-gray-100 p-4 text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700`,
+          } max-w-[30rem] rounded-full border-2 border-solid bg-gray-100 p-4 text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700`,
           `${className} ${
             error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
           }`

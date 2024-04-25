@@ -8,7 +8,8 @@ entries:
   'Actions écartées :': 'Discarded actions:'
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": 'This contribution will be public: do not put sensitive information in it'
   Charger: Load
-  Chargée: In charge
+  Chargée: Loaded
+  Chargée.lock: Loaded
   Choisir l'action: Choose the action
   Choisir le type de tri des actions: Choose the type of stock sorting
   Choisir une autre région: Choose another region
@@ -38,7 +39,7 @@ entries:
   Je ne sais pas: I don't know
   Label: Label
   Le modèle d'empreinte carbone de référence: The reference carbon footprint model
-  Le test: The test
+  Le test: The test
   Le titre bref de votre problème: The short title of your problem
   Mon historique des simulations: My simulation history
   Mon profil: My profile
@@ -122,7 +123,7 @@ entries:
   plus de 100 kg: over 100 kg
   publicodes.ActionTutorial.félicitation: You have completed your simulation
   bravo !: well done!
-  publicodes.ActionTutorial.félicitation.lock: You have completed your simulation
+  publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation
   bravo !.lock: well done!
   publicodes.ActionTutorial.msgEstimation: You now know your footprint, estimated at {{value}} {{unit}}, and you probably already have ideas for reducing it...
   publicodes.ActionTutorial.msgEstimation.lock: Vous connaissez maintenant votre empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des idées pour la réduire...
@@ -151,7 +152,7 @@ entries:
   publicodes.Profil.locationDonnées: <0>Where is my data stored? </0><1>Your data is stored in your browser, so you have complete control over it.</1>
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
   publicodes.Profil.recap: You have completed the test at {{percentFinished}} % ({{answeredQuestionsLength}} questions), selected {{chosenActions}} action(s) and declined {{declinedActions}} action(s).
-  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), selected {{chosenActions}} action(s) and declined {{declinedActions}} action(s).
+  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
   publicodes.Profil.simulations: Every simulation you make is saved in your web browser. Only you have access to it.
   publicodes.Profil.simulations.lock: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
   publicodes.SimulationMissing.personnas: You can also continue with a <2>typical profile</2>.
@@ -430,7 +431,9 @@ entries:
   Entrez votre code de vérification pour continuer: Enter your verification code to continue
   (une fois par mois maximum !): (once a month maximum!)
   Votre prénom: Your first name
-  Accéder à mon espace: Access my space
+  Accéder à mon espace: Go to my dashboard
+  Accéder à mon espace.lock: Go to my dashboard
+  ', votre': your
   Créez votre compte organisation: Create your organisation account
   Explorez, comparez et analysez vos données: Explore, compare and analyse your data
   Vous n'avez pas reçu d'e-mail ?: Didn't you receive an e-mail?
@@ -493,7 +496,6 @@ entries:
   Modifier mes informations: Modify my information
   Vous pouvez modifier vos informations personnelles. Le lien du sondage de votre organisation ne changera pas.: You can change your personal details. Your organisation's survey link will not change.
   Oups, une erreur s'est produite au moment de l'envoi de votre code...: Oops, there was an error sending your code...
-  'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, posters and presentations: find all the tools you need to share Nos Gestes Climat in this kit.'
   Puis-je utiliser le logo Nos Gestes Climat dans mes communications ?: Can I use the Nos Gestes Climat logo in my communications?
   Est-il possible de personnaliser l’affichage du test ?: Is it possible to customise the test display?
   Partagez le test à votre réseau et suivez vos statistiques.: Share the test with your network and track your statistics.
@@ -507,7 +509,6 @@ entries:
   entre: between
   collègues: colleagues
   Apportez votre pierre au simulateur de référence: Make your contribution to the reference simulator
-  Découvrez nos pistes personnalisées pour agir dès aujourd’hui pour le climat.: Find out how you can take action for the climate today.
   L'empreinte climat, qu'est-ce que c'est ?: What is the climate footprint?
   Le: The
   Pour les organisations: For organisations
@@ -528,7 +529,6 @@ entries:
   pour les curieux et les experts.: for the curious and the experts.
   obtenez une estimation de votre empreinte carbone de consommation.: get an estimate of your carbon footprint.
   famille: family
-  Vous souhaitez diffuser Nos Gestes Climat auprès de votre organisation, découvrez-nous outils pour vous simplifier la vie !: If you want to share Nos Gestes Climat with your organisation, find out more about our tools to make your life easier!
   le site est amélioré régulièrement.: the site is regularly improved.
   Par catégorie: By category
   La valeur minimum pour ce champ est de: The minimum value for this field is
@@ -536,11 +536,10 @@ entries:
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: to create an account, and you'll be able to access all our services free of charge!
   votre: your
   Avec: With
-  Créer mon organisation: Create my organisation
   Votre résultat: Your result
   précédent: previous
   Administrateur·ice: Administrator
-  Loupé !: Missed!
+  Loupé !: Woops!
   Valorisez vos données carbone: Add value to your carbon data
   Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.: Your data will be stored securely and anonymously. They will be aggregated for statistical purposes; these statistics will be available on the "Detailed report" page of your survey at the end of the course. This page will remain accessible exclusively to participants and organisers.
   Découvrez vos résultats détaillés: Discover your detailed results
@@ -583,7 +582,6 @@ entries:
   est votre poste le plus important !: is your most important job!
   Partagez le test pour obtenir vos premiers résultats.: Share the test to get your first results.
   Passer la question →: Skip question →
-  ', vous avez été déconnecté·e de votre espace organisation, reconnectez vous en cliquant sur le bouton ci-dessous.': if you have been disconnected from your organisation space, please reconnect by clicking on the button below.
   poste le plus important ?: most important position?
   Vous pouvez reprendre votre test en cours, ou en recommencer un.: You can resume your current test, or start a new one.
   Télécharger le kit, ouvrir dans un nouvel onglet: Download the kit, open in a new tab
@@ -629,16 +627,13 @@ entries:
   Nous pourrons vous contacter en cas de problème lors de votre inscription: We can contact you if there are any problems with your registration
   Vous avez déja participé à ce sondage.: You have already taken part in this survey.
   Découvrir le simulateur: Discover the simulator
-  'Le consensus scientifique est formel, cette augmentation est directement liée aux activités humaines : l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. Il est grand temps de réduire ou remplacer ces activités émettrices de gaz à effet de serre, à toutes les échelles !': "The scientific consensus is clear: this increase is directly linked to human activities: the extraction, consumption and combustion of resources exceed our planet's capacity to absorb them. It's high time we reduced or replaced these greenhouse gas-emitting activities, on every scale!"
   Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: The individual carbon footprint simulator helps you to understand which of our uses contribute most to climate change, and to understand which actions would have the greatest impact in reducing it.
-  'Depuis le siècle dernier, la concentration du carbone dans l’atmosphère augmente tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': "Since the last century, the concentration of carbon in the atmosphere has increased to such an extent that the planet's climate is undergoing upheaval with far-reaching consequences: rising sea levels, destruction of living organisms, and an explosion of climatic disasters."
   'Je ne trouve pas réponse à ma question ': "I can't find the answer to my question "
   Les nouveautés: What's new?
   sélectionnez celles qui vous intéressent: select those that interest you
   Oups ! Une erreur est survenue.: Oops! An error has occurred.
   le poste: the position
   Mes classements: My rankings
-  Mes gestes: My actions
   Empreinte: Footprint
   Gestes: Gestures
   Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: You will receive an email from us shortly, enabling you to find it
@@ -651,7 +646,6 @@ entries:
   à tout moment: at any time
   des conseils pour la réduire: advice on how to reduce it
   Invitez d'autres personnes à rejoindre votre groupe: Invite other people to join your group
-  vous: you
   Vous retrouverez votre résultat d’empreinte, ainsi que: You will find your impression results, as well as
   Invitez vos proches pour comparer vos résultats. Cela prend: Invite friends and family to compare your results. It takes
   l’équipe de nosgestesclimat.fr: the nosgestesclimat.fr team
@@ -664,7 +658,8 @@ entries:
   Les constantes de **services publics et marchands** calculées à partir des travaux du SDES: Public and commercial service constants** calculated on the basis of SDES work
   Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels: The heart of Nos Gestes Climat is **the personal climate footprint** assessment
   Lancer le calcul: Run the calculation
-  Qu'est-ce que ça veut dire: What does this mean?
+  Qu'est-ce que ça veut dire ?: What does this mean?
+  Qu'est-ce que ça veut dire ?.lock: What does this mean?
   Notes: Notes
   Informations relatives à la création d'un contexte spécifique.: Information relating to the creation of a specific context.
   404 - Nos Gestes Climat: 404 - Nos Gestes Climat
@@ -706,7 +701,8 @@ entries:
   Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calculate your carbon footprint as a group and compare it with the footprint of your friends and family using the Nos Gestes Climat personal carbon footprint simulator.
   Les nouveautés - Nos Gestes Climat: What's new - Nos Gestes Climat
   Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.: This guide contains all the information you need about Nos Gestes Climat.
-  Organisations, accéder à mon espace - Nos Gestes Climat: Organisations, access my space - Nos Gestes Climat
+  Organisations, accéder à mon espace - Nos Gestes Climat: Organisations, go to my dashboard - Nos Gestes Climat
+  Organisations, accéder à mon espace - Nos Gestes Climat.lock: Organisations, go to my dashboard - Nos Gestes Climat
   Diffusez Nos Gestes Climat dans votre organisation.: Spread Nos Gestes Climat throughout your organisation.
   Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.: Find out how we use your personal data to offer you a personal carbon footprint simulator.
   Découvrez les nouveautés du site Nos Gestes Climat.: Find out what's new on the Nos Gestes Climat website.
@@ -757,3 +753,42 @@ entries:
   Recevez un email avec un lien pour terminer votre test plus tard: Receive an email with a link to complete your test later
   Mon empreinte: My footprint
   écartez celles qui vous semblent trop ambitieuses ou déplacées.: discard those that seem too ambitious or inappropriate.
+  Pour cela,: To this end,
+  laissez-nous votre email,: leave us your e-mail,
+  comme {{numberSubscribers}} personnes.: like {{numberSubscribers}} people.
+  Vous souhaitez mobiliser votre: You want to mobilise your
+  entreprise: company
+  association: association
+  salle de classe: classroom
+  Votre empreinte carbone: Your carbon footprint
+  Votre empreinte: Your footprint
+  Mes gestes: My gestures
+  Mes gestes: My actions
+  Reconnectez vous en cliquant sur le bouton ci-dessous.: Reconnect by clicking on the button below.
+  ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': you have been logged out of your organisation space, or you are trying to access it from a new browser.
+  'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, posters and presentations: find all the tools you need to share Nos Gestes Climat in this kit.'
+  International: International
+  pistes personnalisées: custom tracks
+  Créer ou accéder à mon organisation: Create or access my organisation
+  Il est grand temps de réduire ou remplacer: It's high time to reduce or replace
+  Mes classements: My rankings
+  Mon empreinte: My footprint
+  Vous souhaitez: You wish to
+  organisation: organisation
+  Découvrez nos: Discover our
+  Diffusion: Broadcast
+  pour agir dès aujourd'hui pour le climat.: to take action for the climate today.
+  ces activités émettrices de gaz à effet de serre, à toutes les échelles !: activities that emit greenhouse gases, at every level!
+  la concentration du carbone dans l’atmosphère augmente: the concentration of carbon in the atmosphere is increasing
+  Le consensus scientifique est formel, cette augmentation est: 'The scientific consensus is clear: this increase is'
+  auprès de votre organisation, découvrez-nous outils pour vous simplifier la vie !: to your organisation, discover our tools to make your life easier!
+  'tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': "so much so that the planet's climate is undergoing upheaval with far-reaching consequences: rising sea levels, destruction of living organisms, and an explosion of climatic disasters."
+  'directement liée aux activités humaines :': 'directly linked to human activities:'
+  diffuser Nos Gestes Climat: distribute Nos Gestes Climat
+  Répondre sur les 3 dernières années: Answer for the last 3 years
+  Depuis le siècle dernier,: Since the last century,
+  l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète.: the extraction, consumption and combustion of resources exceed our planet's capacity to absorb them.
+  Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !: "The scientific consensus is clear: this increase is <2>directly linked to human activities:</2> the extraction, consumption and combustion of resources exceed our planet's capacity to absorb them. It's <6>high time we reduced or replaced</6> these greenhouse gas-emitting activities, on every scale!"
+  'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2> tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': "Since the last century, <2>the concentration of carbon in the atmosphere has increased</2> to such an extent that the planet's climate is undergoing upheaval with far-reaching consequences: rising sea levels, destruction of living organisms, and an explosion of climatic disasters."
+  Créer mon organisation: Create my organisation
+  Une erreur est survenue !: An error has occurred!

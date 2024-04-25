@@ -22,7 +22,7 @@ export const tutorielClickQuestion = (question: string) => [
   'trackEvent',
   'Tutoriel',
   'Click Question',
-  question,
+  `Click ${question}`,
 ]
 
 //

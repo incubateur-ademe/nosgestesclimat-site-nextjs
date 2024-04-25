@@ -1,7 +1,7 @@
 import Footer from '@/components/layout/Footer'
 import Main from '@/design-system/layout/Main'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { t } from 'i18next'
 import Actions from './_components/Actions'
 import Amis from './_components/Amis'
 import Contributions from './_components/Contributions'
@@ -10,6 +10,7 @@ import Heading from './_components/Heading'
 import Organisations from './_components/Organisations'
 
 export async function generateMetadata() {
+  const { t } = await getServerTranslation()
   return getMetadataObject({
     title: t(
       "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat"
@@ -23,7 +24,7 @@ export async function generateMetadata() {
   })
 }
 
-export default function Homepage() {
+export default async function Homepage() {
   return (
     <>
       <Main>

@@ -44,7 +44,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
       captureException(e)
     }
   }
-  const vousWord = t('vous')
+  const vousWord = t('Vous')
 
   return (
     <>

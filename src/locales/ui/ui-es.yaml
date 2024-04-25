@@ -10,7 +10,6 @@ entries:
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": 'Esta contribución será pública: no incluya información sensible'
   Chargée: Director
   Depuis la page: Desde el
-  Le test: La prueba
   Fermer: Cerrar
   Entrez des mots clefs: Introducir palabras clave
   En savoir +: Más información
@@ -84,7 +83,7 @@ entries:
   components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
   components.ScoreExplanation.text.p1: 🧮 ¡Aquí tienes tu puntuación inicial, calculada a partir de las respuestas asignadas de antemano a cada pregunta! Cambiará con cada nueva respuesta.
   components.ScoreExplanation.text.p1.lock: 🧮 Voici votre score de départ, calculé à partir de réponses attribuées à l'avance à chaque question ! Il évoluera à chaque nouvelle réponse.
-  publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
+  publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} pregunta{{pluralSuffix}} restante{{pluralSuffix}}'
   publicodes.ActionVignette.questionsRestantesText.lock: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
   minutes: minutos
   participant: participante
@@ -114,9 +113,9 @@ entries:
   publicodes.Contribution.commentaireAugmenté.lock: '> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).'
   publicodes.AllActions.msgPlusActions: <0>Ya no tenemos acciones cuantificadas de alto impacto que ofrecerte 🤷</0><1>Vea a continuación algunas ideas sobre cómo actuar de otra manera ⏬</1>
   publicodes.AllActions.msgPlusActions.lock: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
-  publicodes.ActionTutorial.félicitation: Has completado tu simulación
+  publicodes.ActionTutorial.félicitation: Ha completado su simulación
+  publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation
   bravo !: ¡bien hecho!
-  publicodes.ActionTutorial.félicitation.lock: Has completado tu simulación
   bravo !.lock: ¡bien hecho!
   model.intro: Detrás de la web nosgestesclimat.fr se esconde el modelo de huella climática individual del consumo de referencia.
   model.intro.lock: Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.
@@ -175,7 +174,7 @@ entries:
   international.ensuite.titre.lock: Vous ne trouvez pas votre pays ?
   👤 Vous utilisez actuellement le persona: estás utilizando la persona
   publicodes.Profil.recap: Ha completado la prueba en {{percentFinished}} % ({{answeredQuestionsLength}} questions), elegido {{chosenActions}} acción(es) y rechazado {{declinedActions}} acción(es).
-  publicodes.Profil.recap.lock: Ha completado la prueba en {{percentFinished}} % ({{answeredQuestionsLength}} questions), elegido {{chosenActions}} acción(es) y rechazado {{declinedActions}} acción(es).
+  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
   À propos: Quiénes somos
   publicodes.planDuSite.title: Mapa del sitio
   publicodes.planDuSite.title.lock: Plan du site
@@ -374,7 +373,6 @@ entries:
   Sauvegarder: Guardar
   Statistiques: Estadísticas
   Plan du site: Mapa del sitio
-  Actions: Acciones
   D'autres questions ?: ¿Alguna otra pregunta?
   Comment est calculée votre empreinte ?: ¿Cómo se calcula su huella?
   Revenir à l'accueil: Volver a la página de inicio
@@ -397,6 +395,8 @@ entries:
   'Vous pouvez nous contacter via notre page de contact : <2>accéder à notre page de contact</2>.': 'Puede ponerse en contacto con nosotros a través de nuestra página de <2>contacto: vaya a nuestra página de contacto</2>.'
   Le calculateur d’empreinte climat international: Calculadora internacional de la huella climática
   Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe: Has abandonado este grupo. Serás redirigido a la página de inicio del modo grupo
+  association: asociación
+  entreprise: empresa
   Demandez une démo: Solicitar una demostración
   Statistiques et exports: Estadísticas y exportaciones
   Renvoyer le code: Reenviar código
@@ -405,6 +405,7 @@ entries:
   Accédez à votre espace organisation: Acceda al área de su organización
   L’adresse e-mail est invalide: La dirección de correo electrónico no es válida
   Votre prénom: Su nombre
+  ', votre': su
   Commencez: Inicio
   "Sur l'espace organisation de ": 'En el '
   Votre adresse e-mail: Su dirección de correo electrónico
@@ -436,6 +437,8 @@ entries:
   Lien personnalisé & iframes: Enlaces personalizados e iframes
   Créez votre compte organisation: Cree la cuenta de su organización
   Plus que quelques petites questions: Algunas preguntas más
+  salle de classe: aula
+  Vous souhaitez mobiliser votre: Quiere movilizar a sus
   Nos Gestes Climat pour les organisations: Nos Gestes Climat pour les organisations
   Retour à la liste des groupes: Volver a la lista de grupos
   Le code est invalide: El código no es válido
@@ -489,7 +492,6 @@ entries:
   Partagez simplement cette page à vos employés, utilisateurs, élèves, et suivez leurs résultats: Sólo tienes que compartir esta página con tus empleados, usuarios y estudiantes y hacer un seguimiento de sus resultados
   Est-il possible de personnaliser l’affichage du test ?: ¿Es posible personalizar la visualización de la prueba?
   Puis-je utiliser le logo Nos Gestes Climat dans mes communications ?: ¿Puedo utilizar el logotipo de Nos Gestes Climat en mis comunicaciones?
-  Découvrez nos pistes personnalisées pour agir dès aujourd’hui pour le climat.: Averigua cómo puedes actuar hoy por el clima.
   Organisations: Organizaciones
   Exporter les données: Exportar datos
   Voir le rapport détaillé: Vea el informe detallado
@@ -509,7 +511,6 @@ entries:
   Comment regrouper les résultats par région, ville, établissement... ?: ¿Cómo puedo agrupar los resultados por región, ciudad, escuela, etc.? ?
   Mes informations: Mi información
   Animez un atelier: Organizar un taller
-  'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logotipos, carteles y presentaciones: en este kit encontrarás todas las herramientas que necesitas para compartir Nos Gestes Climat.'
   le site est amélioré régulièrement.: el sitio se mejora regularmente.
   Calculez votre empreinte en: Calcule su huella mediante
   La valeur minimum pour ce champ est de: El valor mínimo de este campo es
@@ -527,13 +528,10 @@ entries:
   '{{value}} tonnes': '{{value}} toneladas'
   L'intégralité du: Todo el
   entre: entre
-  Créer mon organisation: Crear mi organización
   Une idée ? Une correction ? Une remarque ?: ¿Alguna idea? ¿Una corrección? ¿Un comentario?
   Le: Le
-  Classement: Clasificación
   Pour les organisations: Para las organizaciones
   Une capture du mode Amis Nos Gestes Climat.: Una captura del modo "Friends Our Gestes Climat".
-  ', vous avez été déconnecté·e de votre espace organisation, reconnectez vous en cliquant sur le bouton ci-dessous.': si se ha desconectado del espacio de su organización, vuelva a conectarse haciendo clic en el botón siguiente.
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: para crear una cuenta y podrá acceder gratuitamente a todos nuestros servicios
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{nombre del administrador del grupo} te ha invitado a unirte al grupo <3>{nombre del grupo}</3>'
   D’après vous, quel est: ¿Qué opinas?
@@ -545,7 +543,6 @@ entries:
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Descubrir los talleres ABC, abrir en una nueva pestaña
   Nos Gestes Climat dans votre entreprise, association, école...: Nos Gestes Climat en tu empresa, asociación o escuela...
   obtenez une estimation de votre empreinte carbone de consommation.: obtenga una estimación de su huella de carbono.
-  Vous souhaitez diffuser Nos Gestes Climat auprès de votre organisation, découvrez-nous outils pour vous simplifier la vie !: Si desea compartir Nuestros Gestes Climat con su organización, descubra nuestras herramientas para facilitarle la vida
   'Moyenne :': 'Media :'
   Au total: En total
   Effectivement, avec: De hecho, con
@@ -627,9 +624,7 @@ entries:
   Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: El simulador de la huella de carbono individual te ayuda a comprender cuáles de nuestros usos contribuyen más al cambio climático y a saber qué acciones tendrían mayor impacto para reducirlo.
   (Données consultables à partir de 3 participants, dans un souci d'anonymat): (Pueden consultarse los datos de 3 o más participantes, para garantizar el anonimato)
   Oups, nous n'avons pas trouvé les résultats de cette organisation: No hemos podido encontrar los resultados de esta organización
-  'Depuis le siècle dernier, la concentration du carbone dans l’atmosphère augmente tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': 'Desde el siglo pasado, la concentración de carbono en la atmósfera ha aumentado hasta tal punto que el clima del planeta está sufriendo trastornos con consecuencias de largo alcance: aumento del nivel del mar, destrucción de organismos vivos y explosión de catástrofes climáticas.'
   Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).: Estos son sus resultados para las categorías principales (transporte, alimentación, etc.), pero <em>no</em> los detalles pregunta por pregunta (el kilometraje de su coche, los metros cuadrados de su vivienda, etc.).
-  'Le consensus scientifique est formel, cette augmentation est directement liée aux activités humaines : l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. Il est grand temps de réduire ou remplacer ces activités émettrices de gaz à effet de serre, à toutes les échelles !': 'El consenso científico es claro: este aumento está directamente relacionado con las actividades humanas: la extracción, el consumo y la combustión de recursos superan la capacidad de nuestro planeta para absorberlos. Ya es hora de que reduzcamos o sustituyamos estas actividades emisoras de gases de efecto invernadero, ¡a todas las escalas!'
   Cambiar a español: Change to English
   Voir les résultats: Ver los resultados
   Bravo champion·ne !: ¡Bien hecho, campeón!
@@ -639,7 +634,6 @@ entries:
   Les nouveautés: ¿Qué hay de nuevo?
   Annuler: Cancelar
   Supprimer le groupe: Borrar grupo
-  vous: usted
   à tout moment: en cualquier momento
   1 minute: 1 minuto
   repas: comida
@@ -651,7 +645,6 @@ entries:
   des conseils pour la réduire: consejos para reducirlo
   sélectionnez celles qui vous intéressent: seleccione los que le interesen
   Les nouveautés - Nos Gestes Climat: Novedades - Nos Gestes Climat
-  Qu'est-ce que ça veut dire: ¿Qué significa esto?
   404 - Nos Gestes Climat: 404 - Nos Gestes Climat
   Gestes: Gestos
   Budget - Nos Gestes Climat: Presupuesto - Nos Gestes Climat
@@ -754,5 +747,41 @@ entries:
   Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone..lock: etrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.
   Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Únete a tu grupo para calcular tu huella de carbono y compararla con la de tus amigos y familiares mediante el simulador personal de huella de carbono Nos Gestes Climat.
   Mes classements: Mi clasificación
-  Mes gestes: Mis acciones
   Mon empreinte: Mi huella
+  Votre empreinte carbone: Su huella de carbono
+  comme {{numberSubscribers}} personnes.: como {{numberSubscribers}}.
+  Votre empreinte: Tu huella
+  laissez-nous votre email,: déjanos tu email,
+  Pour cela,: Por eso,
+  Le test: La prueba
+  Mes gestes: Mis acciones
+  Qu'est-ce que ça veut dire ?: ¿Qué significa esto?
+  Mes gestes: Mis acciones
+  Reconnectez vous en cliquant sur le bouton ci-dessous.: Vuelva a conectarse haciendo clic en el botón de abajo.
+  'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logotipos, carteles y presentaciones: en este kit encontrarás todas las herramientas que necesitas para compartir Nos Gestes Climat.'
+  ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': se ha desconectado de su espacio de organización o está intentando acceder desde un nuevo navegador.
+  Diffusion: Difusión
+  organisation: organización
+  Découvrez nos: Descubre nuestra
+  Mon empreinte: Mi huella
+  pistes personnalisées: pistas personalizadas
+  Vous souhaitez: Usted desea
+  Mes classements: Mi clasificación
+  International: Internacional
+  pour agir dès aujourd'hui pour le climat.: actuar hoy por el clima.
+  la concentration du carbone dans l’atmosphère augmente: la concentración de carbono en la atmósfera aumenta
+  ces activités émettrices de gaz à effet de serre, à toutes les échelles !: actividades que emiten gases de efecto invernadero, ¡a todos los niveles!
+  Le consensus scientifique est formel, cette augmentation est: 'El consenso científico es claro: este aumento es'
+  auprès de votre organisation, découvrez-nous outils pour vous simplifier la vie !: a su organización, ¡descubra nuestras herramientas para hacerle la vida más fácil!
+  'directement liée aux activités humaines :': 'directamente relacionadas con las actividades humanas:'
+  Depuis le siècle dernier,: Desde el siglo pasado,
+  Créer ou accéder à mon organisation: Crear o acceder a mi organización
+  Répondre sur les 3 dernières années: Respuesta de los últimos 3 años
+  Il est grand temps de réduire ou remplacer: Ya es hora de reducir o sustituir
+  diffuser Nos Gestes Climat: difundir Nos Gestes Climat
+  l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète.: la extracción, el consumo y la combustión de recursos superan la capacidad de nuestro planeta para absorberlos.
+  'tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': 'tanto es así que el clima del planeta está sufriendo trastornos con consecuencias de largo alcance: aumento del nivel del mar, destrucción de organismos vivos y explosión de catástrofes climáticas.'
+  Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !: 'El consenso científico es claro: este aumento está <2>directamente relacionado con las actividades humanas:</2> la extracción, el consumo y la combustión de recursos superan la capacidad de nuestro planeta para absorberlos. Ya es <6>hora de que reduzcamos o sustituyamos</6> estas actividades emisoras de gases de efecto invernadero, ¡a todas las escalas!'
+  'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2> tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': 'Desde el siglo pasado, <2>la concentración de carbono en la atmósfera ha aumentado</2> hasta tal punto que el clima del planeta está sufriendo trastornos con consecuencias de largo alcance: aumento del nivel del mar, destrucción de organismos vivos y explosión de catástrofes climáticas.'
+  Créer mon organisation: Crear mi organización
+  Une erreur est survenue !: Se ha producido un error

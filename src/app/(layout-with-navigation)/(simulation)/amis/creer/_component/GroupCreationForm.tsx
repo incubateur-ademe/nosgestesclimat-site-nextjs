@@ -17,40 +17,37 @@ import { captureException } from '@sentry/react'
 import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
 
 export default function GroupCreationForm() {
+  const { t } = useClientTranslation()
+
   const locale = useLocale()
 
   const { user, updateName, updateEmail } = useUser()
 
   const currentSimulation = useCurrentSimulation()
-
-  const { name, userId, email } = user
-
-  const [administratorName, setAdministratorName] = useState(name || '')
-  const [errorAdministratorName, setErrorAdministratorName] = useState('')
-
-  const [administratorEmail, setAdministratorEmail] = useState(email || '')
-  const [errorEmail, setErrorEmail] = useState('')
-
-  const { t } = useClientTranslation()
-
-  const hasCompletedTest = currentSimulation?.progression === 1
-
-  const { data: groups } = useFetchGroupsOfUser()
+  const hasCompletedTest = currentSimulation.progression === 1
 
   const { goToSimulateurPage } = useSimulateurPage()
   const { goToEndPage } = useEndPage()
 
+  const [administratorName, setAdministratorName] = useState(user.name || '')
+  const [errorAdministratorName, setErrorAdministratorName] = useState('')
+
+  const [administratorEmail, setAdministratorEmail] = useState(user.email || '')
+  const [errorEmail, setErrorEmail] = useState('')
+
+  const { data: groups } = useFetchGroupsOfUser()
+
   const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
 
-  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] = useState<
-    string | null
-  >(null)
+  const [shouldNavigate, setShouldNavigate] = useState<string | undefined>(
+    undefined
+  )
   useEffect(() => {
-    if (!shouldGoToSimulateurPage) {
-      return
-    }
-
-    if (currentSimulation?.groups?.includes(shouldGoToSimulateurPage)) {
+    if (
+      shouldNavigate &&
+      currentSimulation.groups?.includes(shouldNavigate || '')
+    ) {
+      setShouldNavigate(undefined)
       if (hasCompletedTest) {
         goToEndPage({ allowedToGoToGroupDashboard: true })
       } else {
@@ -58,11 +55,11 @@ export default function GroupCreationForm() {
       }
     }
   }, [
-    goToSimulateurPage,
-    goToEndPage,
-    shouldGoToSimulateurPage,
-    currentSimulation,
+    currentSimulation.groups,
     hasCompletedTest,
+    goToEndPage,
+    goToSimulateurPage,
+    shouldNavigate,
   ])
 
   const handleSubmit = async (event: FormEvent) => {
@@ -90,7 +87,7 @@ export default function GroupCreationForm() {
           emoji,
           administratorEmail,
           administratorName,
-          userId,
+          userId: user.userId,
           simulation: currentSimulation,
         },
       })
@@ -104,8 +101,7 @@ export default function GroupCreationForm() {
         groupToAdd: group._id,
       })
 
-      // We signal that the form has been submitted. When the currentSimulation is updated, we redirect
-      setShouldGoToSimulateurPage(group._id)
+      setShouldNavigate(group._id)
     } catch (e) {
       captureException(e)
     }
@@ -132,7 +128,7 @@ export default function GroupCreationForm() {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="text-secondary-700 italic">
+              <span className="italic text-secondary-700">
                 {' '}
                 {t('facultatif')}
               </span>
