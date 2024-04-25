@@ -43,11 +43,13 @@ async function importPreviewFile({
 }
 
 async function importFile({ fileName }: { fileName: string }) {
-  return axios
-    .get(`/api/model?file=${fileName}`)
-    .then((res) => res.data)
-    .catch((e) => {
-      console.error('importFile error', e)
-      return null
-    })
+  console.log('importing file', fileName)
+  try {
+    return await import(
+      `@incubateur-ademe/nosgestesclimat/public/${fileName}`
+    ).then((module) => module.default)
+  } catch (e) {
+    console.error('importFile error', e)
+    return null
+  }
 }
