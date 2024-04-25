@@ -33,7 +33,7 @@ export default function HeaderDesktop() {
 
   const { user } = useUser()
 
-  const { getLinkToSimulateurPage } = useSimulateurPage()
+  const { linkToSimulateurPage } = useSimulateurPage()
 
   return (
     <header className="sticky top-0 z-[500] hidden h-20 items-center lg:block">
@@ -48,7 +48,7 @@ export default function HeaderDesktop() {
               <ul className="flex h-full flex-1 justify-start gap-4">
                 <li>
                   <NavLink
-                    href={getLinkToSimulateurPage()}
+                    href={linkToSimulateurPage}
                     onClick={() => trackEvent(headerClickTest)}
                     activeMatches={['/tutoriel', '/simulateur', '/fin']}
                     icon={BilanIcon}

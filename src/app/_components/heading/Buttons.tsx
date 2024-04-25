@@ -1,6 +1,5 @@
 'use client'
 
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import {
   homeClickCtaCommencer,
@@ -8,6 +7,7 @@ import {
   homeClickCtaResultats,
   homeClickNewTest,
 } from '@/constants/tracking/pages/home'
+import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useIsClient } from '@/hooks/useIsClient'
@@ -23,7 +23,7 @@ export default function Buttons() {
 
   const {
     goToSimulateurPage,
-    getLinkToSimulateurPage,
+    linkToSimulateurPage,
     linkToSimulateurPageLabel,
   } = useSimulateurPage()
 
@@ -32,10 +32,10 @@ export default function Buttons() {
     <div className="relative">
       <ButtonLink
         size="xl"
-        className={`hover:bg-primary-900 transition-all duration-300 ${
+        className={`transition-all duration-300 hover:bg-primary-900 ${
           isClient ? 'opacity-100' : 'opacity-0'
         }`}
-        href={getLinkToSimulateurPage()}
+        href={linkToSimulateurPage}
         data-cypress-id="do-the-test-link"
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
@@ -64,17 +64,17 @@ export default function Buttons() {
       </ButtonLink>
 
       {progression ? (
-        <Link
-          className={`absolute left-1/2 top-full -translate-x-1/2 translate-y-6 whitespace-nowrap transition-all delay-200 duration-300 md:text-lg ${
+        <Button
+          color="link"
+          className={`absolute left-1/2 top-full -translate-x-1/2 translate-y-4 whitespace-nowrap font-normal transition-all delay-200 duration-300 md:text-lg ${
             isClient ? 'opacity-100' : 'opacity-0'
           }`}
           onClick={() => {
             trackEvent(homeClickNewTest)
-            goToSimulateurPage({ noNavigation: true, newSimulation: {} })
-          }}
-          href={getLinkToSimulateurPage({ newSimulation: true })}>
+            goToSimulateurPage({ newSimulation: {} })
+          }}>
           <Trans>Commencer un nouveau test</Trans>
-        </Link>
+        </Button>
       ) : null}
     </div>
   )

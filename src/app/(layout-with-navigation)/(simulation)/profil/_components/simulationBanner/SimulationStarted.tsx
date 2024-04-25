@@ -7,6 +7,7 @@ import {
   profilClickCtaResultats,
   profilClickRecommencer,
 } from '@/constants/tracking/pages/profil'
+import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
@@ -14,6 +15,7 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useActions, useCurrentSimulation, useForm } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import TutorialLink from './_components/TutorialLink'
 
 export default function SimulationStarted() {
@@ -27,7 +29,7 @@ export default function SimulationStarted() {
 
   const { chosenActions, declinedActions } = useActions()
 
-  const { goToSimulateurPage, getLinkToSimulateurPage } = useSimulateurPage()
+  const { goToSimulateurPage } = useSimulateurPage()
 
   const isFinished = progression === 1
 
@@ -84,18 +86,17 @@ export default function SimulationStarted() {
           </ButtonLink>
         )}
 
-        <ButtonLink
+        <Button
           color="secondary"
           className="my-2 w-full text-center"
-          trackingEvent={profilClickRecommencer}
           onClick={() => {
-            goToSimulateurPage({ noNavigation: true, newSimulation: {} })
-          }}
-          href={getLinkToSimulateurPage({ newSimulation: true })}>
+            trackEvent(profilClickRecommencer)
+            goToSimulateurPage({ newSimulation: {} })
+          }}>
           <RestartIcon className="mr-2 fill-primary-700" />
 
           <Trans>Recommencer</Trans>
-        </ButtonLink>
+        </Button>
 
         <TutorialLink />
       </div>

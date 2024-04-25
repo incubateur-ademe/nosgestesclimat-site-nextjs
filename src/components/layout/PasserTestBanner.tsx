@@ -9,7 +9,7 @@ import Trans from '../translation/Trans'
 export default function PasserTestBanner() {
   const { progression } = useCurrentSimulation()
 
-  const { getLinkToSimulateurPage, linkToSimulateurPageLabel } =
+  const { linkToSimulateurPage, linkToSimulateurPageLabel } =
     useSimulateurPage()
 
   // Do not show the banner if the user has completed his/her test
@@ -25,7 +25,7 @@ export default function PasserTestBanner() {
         <Trans>top chrono.</Trans>
       </p>
 
-      <ButtonLink href={getLinkToSimulateurPage()}>
+      <ButtonLink href={linkToSimulateurPage}>
         {linkToSimulateurPageLabel}
       </ButtonLink>
     </Card>

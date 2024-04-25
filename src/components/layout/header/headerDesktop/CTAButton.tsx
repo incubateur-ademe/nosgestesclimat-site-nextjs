@@ -12,7 +12,7 @@ import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function CTAButton() {
-  const { getLinkToSimulateurPage, linkToSimulateurPageLabel } =
+  const { linkToSimulateurPage, linkToSimulateurPageLabel } =
     useSimulateurPage()
 
   const { progression } = useCurrentSimulation()
@@ -20,7 +20,7 @@ export default function CTAButton() {
   return (
     <ButtonLink
       size="sm"
-      href={getLinkToSimulateurPage()}
+      href={linkToSimulateurPage}
       onClick={() => {
         if (progression === 1) {
           trackEvent(headerClickCtaResultats)
