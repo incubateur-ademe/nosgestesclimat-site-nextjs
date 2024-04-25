@@ -578,7 +578,7 @@
     prompt-sync "^4.2.0"
     yargs "^17.7.2"
 
-"@incubateur-ademe/nosgestesclimat@^2.3.0-rc.3":
+"@incubateur-ademe/nosgestesclimat@2.3.0-rc.3":
   version "2.3.0-rc.3"
   resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-2.3.0-rc.3.tgz#a205d7ac1c519c3d5df67bd51c4bc9c75b1c7744"
   integrity sha512-wXXS+YsoDD29eKJOzkKf5Jyo5T3UO+cqPz89zUexyUDwwV+YhgmaiUhcSVW3S1IhnVOYxfqQzbV7LxLj26HREg==
