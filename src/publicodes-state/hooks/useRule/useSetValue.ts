@@ -1,6 +1,7 @@
 'use client'
 
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
+import getQuestionsOfMosaic from '@/publicodes-state/helpers/getQuestionsOfMosaic'
 import { PublicodesExpression } from 'publicodes'
 import { useCallback } from 'react'
 import getType from '../../helpers/getType'
@@ -22,7 +23,7 @@ type Props = {
   type: string | undefined
   questionsOfMosaic: string[]
   situation: Situation
-  addToEngineSituation: (situationToAdd: Situation) => Promise<void>
+  addToEngineSituation: (situationToAdd: Situation) => void
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
 }
 
@@ -38,11 +39,13 @@ export default function useSetValue({
   updateCurrentSimulation,
 }: Props) {
   const getMosaicReset = useCallback(
-    (childToOmit: string): Situation => {
-      const situationToAdd = questionsOfMosaic.reduce(
+    (mosaic: string): Situation => {
+      const childrenOfMosaic = getQuestionsOfMosaic({
+        dottedName: mosaic,
+        everyMosaicChildren,
+      })
+      const situationToAdd = childrenOfMosaic.reduce(
         (accumulator, currentValue) => {
-          if (childToOmit === currentValue) return accumulator
-
           const isMissing = getIsMissing({
             dottedName: currentValue,
             questionsOfMosaic: [],
@@ -70,7 +73,7 @@ export default function useSetValue({
       )
       return situationToAdd
     },
-    [questionsOfMosaic, situation, safeEvaluate, safeGetRule]
+    [situation, safeEvaluate, safeGetRule]
   )
 
   /**
@@ -85,7 +88,7 @@ export default function useSetValue({
         foldedStep,
         mosaic,
       }: { foldedStep?: DottedName; mosaic?: DottedName } = {}
-    ): Promise<void> => {
+    ) => {
       let situationToAdd = {}
 
       if (typeof value === 'object') {
@@ -104,17 +107,18 @@ export default function useSetValue({
           [dottedName]: checkValueValidity({ value, type }),
         }
       }
-
       if (mosaic) {
+        console.log(getMosaicReset(mosaic))
         situationToAdd = {
           ...situationToAdd,
           ...getMosaicReset(mosaic),
         }
       }
 
-      await addToEngineSituation(situationToAdd)
+      console.log('before', foldedStep)
+      addToEngineSituation(situationToAdd)
 
-      return updateCurrentSimulation({ foldedStepToAdd: foldedStep })
+      updateCurrentSimulation({ foldedStepToAdd: foldedStep })
     },
     [
       dottedName,
@@ -126,7 +130,7 @@ export default function useSetValue({
   )
 
   const setDefaultAsValue = useCallback(
-    async (foldedStep?: string): Promise<void> => {
+    async (foldedStep?: string) => {
       let situationToAdd = {}
       if (type?.includes('mosaic')) {
         situationToAdd = questionsOfMosaic.reduce(
@@ -148,9 +152,10 @@ export default function useSetValue({
           [dottedName]: checkValueValidity({ value, type }),
         }
       }
-      await addToEngineSituation(situationToAdd)
 
-      return updateCurrentSimulation({ foldedStepToAdd: foldedStep })
+      addToEngineSituation(situationToAdd)
+
+      updateCurrentSimulation({ foldedStepToAdd: foldedStep })
     },
     [
       dottedName,

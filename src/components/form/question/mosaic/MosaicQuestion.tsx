@@ -35,10 +35,11 @@ export default function MosaicQuestion({
           icons={icons}
           description={description}
           setValue={async (value) => {
-            await setValue(value < 0 ? 0 : value, {
+            setValue(value < 0 ? 0 : value, {
               foldedStep: parentMosaic,
               mosaic: question,
             })
+
             trackEvent(
               questionTypeAnswer({
                 question: parentMosaic,
