@@ -177,8 +177,8 @@ entries:
   international.ensuite.titre.lock: Vous ne trouvez pas votre pays ?
   👤 Vous utilisez actuellement le persona: estás utilizando la persona
   ✅ sélectionnez celles qui vous intéressent: ✅ selecciona las que te interesan
-  publicodes.Profil.recap: Ha completado la prueba en {{percentFinished}} % ({{answeredQuestionsLength}} questions), elegido {{chosenActions}} acción(es) y rechazado {{declinedActions}} acción(es).
-  publicodes.Profil.recap.lock: Ha completado la prueba en {{percentFinished}} % ({{answeredQuestionsLength}} questions), elegido {{chosenActions}} acción(es) y rechazado {{declinedActions}} acción(es).
+  publicodes.Profil.recap: Ha completado la prueba en {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} acción(es).
+  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
   À propos: Quiénes somos
   publicodes.planDuSite.title: Mapa del sitio
   publicodes.planDuSite.title.lock: Plan du site
@@ -954,3 +954,8 @@ entries:
   Reconnectez vous en cliquant sur le bouton ci-dessous.: Vuelva a conectarse haciendo clic en el botón de abajo.
   'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logotipos, carteles y presentaciones: en este kit encontrarás todas las herramientas que necesitas para compartir Nos Gestes Climat.'
   ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': se ha desconectado de su espacio de organización o está intentando acceder desde un nuevo navegador.
+  Reprendre le test: Reanudar la prueba
+  Utiliser mes données existantes: Utilizar mis datos actuales
+  Découvrez les résultats du groupe: Descubra los resultados del grupo
+  Simulation terminée: Simulación completa
+  Commencer le test: Prueba de inicio

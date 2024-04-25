@@ -65,19 +65,19 @@ export default function StatisticsBlocks({
     maximumFractionDigits: 1,
   })
 
-  const optionalSString = simulationRecaps.length !== 1 ? 's' : ''
-
   return (
     <div className="items grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-      <div className="rounded-lg bg-grey-100 p-8 sm:col-span-2 md:col-span-1">
+      <div className="bg-grey-100 rounded-lg p-8 sm:col-span-2 md:col-span-1">
         <p className="text-4xl font-bold text-primary-500">
           {simulationRecaps.length}
         </p>
 
         <p className="text-xl">
-          <Trans>
-            Simulation{optionalSString} terminée{optionalSString}
-          </Trans>
+          {simulationRecaps.length > 1 ? (
+            <Trans>Simulation terminée</Trans>
+          ) : (
+            <Trans>Simulations terminées</Trans>
+          )}
         </p>
       </div>
 
@@ -87,7 +87,7 @@ export default function StatisticsBlocks({
             hasLessThan3Participants={hasLessThan3Participants}
           />
         )}
-        <div className="col-span-1 rounded-lg bg-grey-100 p-8">
+        <div className="bg-grey-100 col-span-1 rounded-lg p-8">
           <p className="text-4xl font-bold text-primary-500">
             {formattedValue}{' '}
             <span className="text-base font-normal">{unit} CO2 eq</span>
@@ -97,7 +97,7 @@ export default function StatisticsBlocks({
           </p>
         </div>
 
-        <div className="col-span-1 min-h-[212px] rounded-lg bg-grey-100 py-4">
+        <div className="bg-grey-100 col-span-1 min-h-[212px] rounded-lg py-4">
           <VerticalBarChart className={`mt-0 h-[calc(100%-48px)]`}>
             {Object.entries(result)
               .filter(([key]) => key !== 'bilan')
