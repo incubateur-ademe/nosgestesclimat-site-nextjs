@@ -160,7 +160,7 @@ export default function Commencer() {
                     postalCode,
                     birthdate,
                   },
-                  poll: pollSlug || undefined,
+                  polls: [pollSlug ?? ''],
                 },
               })
             }}>
