@@ -88,7 +88,7 @@ export default function Total({ toggleQuestionList }: Props) {
               </span>
             )}{' '}
             {formatCarbonFootprint(carbonFootprintValue).formattedValue}{' '}
-            {formatCarbonFootprint(carbonFootprintValue).unit}
+            <Trans>{formatCarbonFootprint(carbonFootprintValue).unit}</Trans>
           </span>
           <span className="block text-sm md:text-base">
             <Trans i18nKey="Total.unit">

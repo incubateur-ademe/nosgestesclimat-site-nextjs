@@ -48,7 +48,7 @@ export const infosCommencerClickCtaCommencer = [
   'trackEvent',
   'Infos Commencer',
   'Click CTA',
-  'Reprendre mon test',
+  'Click Passer le test',
 ]
 
 // Figma comment #37
@@ -56,7 +56,7 @@ export const infosCommencerClickCtaReprendre = [
   'trackEvent',
   'Infos Commencer',
   'Click CTA',
-  'Reprendre mon test',
+  'Click Reprendre mon test',
 ]
 
 // Figma comment #37
@@ -71,5 +71,6 @@ export const infosCommencerClickCtaResultats = [
 export const infosCommencerClickNewTest = [
   'trackEvent',
   'Infos Commencer',
+  'Click CTA',
   'Click Nouveau test',
 ]
