@@ -47,7 +47,7 @@ export function useSimulateurPage() {
     }: GoToSimulateurPageProps = goToSimulateurPagePropsDefault) => {
       // If there is no current simulation (or we want to force a new one), we init a new simulation
       if (newSimulation) {
-        await initSimulation(newSimulation)
+        initSimulation(newSimulation)
       }
 
       // If we don't want to navigate, we do nothing
@@ -56,7 +56,7 @@ export function useSimulateurPage() {
       }
 
       // If the user has completed the test we redirect him to the results page
-      if (progression === 1) {
+      if (progression === 1 && !newSimulation) {
         goToEndPage()
         return
       }

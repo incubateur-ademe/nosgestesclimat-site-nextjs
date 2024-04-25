@@ -11,42 +11,30 @@ type Props = {
  * Update the engine situation and the simulation situation
  */
 export function useEngineSituation({ engine, everyRules }: Props) {
-  const { situation, updateCurrentSimulation } = useCurrentSimulation()
+  const { situation } = useCurrentSimulation()
 
   const [isInitialized, setIsInitialized] = useState(false)
 
   const addToEngineSituation = useCallback(
-    (situationToAdd: Situation): Promise<void> => {
+    (situationToAdd: Situation): Situation => {
       const safeSituation = safeGetSituation({
         situation: situationToAdd,
         everyRules,
       })
 
-      const newSituations = {
-        ...situation,
-        ...safeSituation,
-      }
+      engine.setSituation({ ...situation, ...safeSituation })
 
-      engine.setSituation(newSituations)
-
-      setIsInitialized(true)
-
-      return updateCurrentSimulation({ situation: newSituations })
+      return safeSituation
     },
-    [situation, engine, everyRules, updateCurrentSimulation]
+    [everyRules, situation, engine]
   )
 
   useEffect(() => {
     if (isInitialized) return
+
+    engine.setSituation(situation)
     setIsInitialized(true)
-
-    const safeSituation = safeGetSituation({
-      situation,
-      everyRules,
-    })
-
-    engine.setSituation(safeSituation)
-  }, [engine, situation, isInitialized, everyRules])
+  }, [engine, situation, isInitialized])
 
   return { isInitialized, addToEngineSituation }
 }
