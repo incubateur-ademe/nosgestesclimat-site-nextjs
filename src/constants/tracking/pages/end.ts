@@ -18,7 +18,7 @@ export const endClickCategory = (category: DottedName) => [
   'trackEvent',
   'Fin',
   'Click Category',
-  category,
+  `Click Category ${category}`,
 ]
 
 // Figma comment #61
@@ -43,7 +43,7 @@ export const endClickAction = (action: DottedName) => [
   'trackEvent',
   'Fin',
   'Click Action',
-  action,
+  `Click Action ${action}`,
 ]
 
 // Figma comment #64
@@ -65,6 +65,6 @@ export const endClickNorthstar = ({ type, value }: NorthstarProps) => [
   'trackEvent',
   'Fin',
   'Click Northstar',
-  type,
+  `Click Northstar ${type}`,
   String(value),
 ]
