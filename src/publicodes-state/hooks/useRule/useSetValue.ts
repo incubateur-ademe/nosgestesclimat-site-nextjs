@@ -1,7 +1,6 @@
 'use client'
 
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
-import getQuestionsOfMosaic from '@/publicodes-state/helpers/getQuestionsOfMosaic'
 import { PublicodesExpression } from 'publicodes'
 import { useCallback } from 'react'
 import getType from '../../helpers/getType'
@@ -23,8 +22,8 @@ type Props = {
   type: string | undefined
   questionsOfMosaic: string[]
   situation: Situation
-  addToEngineSituation: (situationToAdd: Situation) => void
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
+  addToEngineSituation: (situationToAdd: Situation) => Situation
 }
 
 export default function useSetValue({
@@ -35,16 +34,12 @@ export default function useSetValue({
   type,
   questionsOfMosaic,
   situation,
-  addToEngineSituation,
   updateCurrentSimulation,
+  addToEngineSituation,
 }: Props) {
-  const getMosaicReset = useCallback(
-    (mosaic: string): Situation => {
-      const childrenOfMosaic = getQuestionsOfMosaic({
-        dottedName: mosaic,
-        everyMosaicChildren,
-      })
-      const situationToAdd = childrenOfMosaic.reduce(
+  const getMosaicResetSituation = useCallback(
+    (questionsOfParentMosaic: DottedName[]): Situation => {
+      const situationToAdd = questionsOfParentMosaic.reduce(
         (accumulator, currentValue) => {
           const isMissing = getIsMissing({
             dottedName: currentValue,
@@ -71,6 +66,7 @@ export default function useSetValue({
         },
         {}
       )
+
       return situationToAdd
     },
     [situation, safeEvaluate, safeGetRule]
@@ -79,15 +75,18 @@ export default function useSetValue({
   /**
    * @param value - The value to set
    * @param options.foldedStep - The dottedName of the foldedStep
-   * @param options.mosaic - The dottedName of the mosaic to reset
+   * @param options.questionsOfParentMosaic - The questions of the parent mosaic
    */
   const setValue = useCallback(
     async (
       value: NodeValue | { [dottedName: DottedName]: NodeValue },
       {
         foldedStep,
-        mosaic,
-      }: { foldedStep?: DottedName; mosaic?: DottedName } = {}
+        questionsOfParentMosaic,
+      }: {
+        foldedStep?: DottedName
+        questionsOfParentMosaic?: DottedName[]
+      } = {}
     ) => {
       let situationToAdd = {}
 
@@ -107,30 +106,31 @@ export default function useSetValue({
           [dottedName]: checkValueValidity({ value, type }),
         }
       }
-      if (mosaic) {
-        console.log(getMosaicReset(mosaic))
+
+      if (questionsOfParentMosaic) {
         situationToAdd = {
+          ...getMosaicResetSituation(questionsOfParentMosaic),
           ...situationToAdd,
-          ...getMosaicReset(mosaic),
         }
       }
-
-      console.log('before', foldedStep)
-      addToEngineSituation(situationToAdd)
-
-      updateCurrentSimulation({ foldedStepToAdd: foldedStep })
+      console.log('setValue', situationToAdd)
+      const safeSituation = addToEngineSituation(situationToAdd)
+      updateCurrentSimulation({
+        situationToAdd: safeSituation,
+        foldedStepToAdd: foldedStep,
+      })
     },
     [
       dottedName,
       type,
-      addToEngineSituation,
       updateCurrentSimulation,
-      getMosaicReset,
+      getMosaicResetSituation,
+      addToEngineSituation,
     ]
   )
 
   const setDefaultAsValue = useCallback(
-    async (foldedStep?: string) => {
+    async (foldedStep?: DottedName) => {
       let situationToAdd = {}
       if (type?.includes('mosaic')) {
         situationToAdd = questionsOfMosaic.reduce(
@@ -152,10 +152,11 @@ export default function useSetValue({
           [dottedName]: checkValueValidity({ value, type }),
         }
       }
-
-      addToEngineSituation(situationToAdd)
-
-      updateCurrentSimulation({ foldedStepToAdd: foldedStep })
+      const safeSituation = addToEngineSituation(situationToAdd)
+      updateCurrentSimulation({
+        situationToAdd: safeSituation,
+        foldedStepToAdd: foldedStep,
+      })
     },
     [
       dottedName,
@@ -164,8 +165,8 @@ export default function useSetValue({
       questionsOfMosaic,
       safeEvaluate,
       safeGetRule,
-      addToEngineSituation,
       updateCurrentSimulation,
+      addToEngineSituation,
     ]
   )
 
