@@ -1,4 +1,5 @@
 'use client'
+import { NGCRules } from '@incubateur-ademe/nosgestesclimat/types'
 import { PublicodesExpression } from 'publicodes'
 import { createContext } from 'react'
 import {
@@ -6,7 +7,6 @@ import {
   Engine,
   NGCEvaluatedNode,
   NGCRuleNode,
-  NGCRules,
   Situation,
 } from '../../types'
 
