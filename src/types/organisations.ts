@@ -75,7 +75,15 @@ export type PollInfo = {
   organisationInfo: OrganisationInfo
 }
 
-type OrganisationInfo = {
+export type OrganisationInfo = {
   name: string
   slug: string
+}
+
+export type FunFacts = {
+  percentageOfBicycleUsers: number
+  percentageOfVegetarians: number
+  percentageOfCarOwners: number
+  percentageOfPlaneUsers: number
+  percentageOfLongPlaneUsers: number
 }
