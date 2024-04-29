@@ -30,7 +30,7 @@ export default function MesInformations() {
 
   const { t } = useClientTranslation()
 
-  const { user } = useUser()
+  const { user, updateEmail, updateName } = useUser()
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -79,8 +79,17 @@ export default function MesInformations() {
     try {
       await updateUserSettings({
         name: data.name,
+        email: data.email,
         newsletterIds,
       })
+
+      if (data.email) {
+        updateEmail(data.email)
+      }
+
+      if (data.name) {
+        updateName(data.name)
+      }
 
       setIsSubmitted(true)
 
@@ -116,13 +125,26 @@ export default function MesInformations() {
           error={errors.name?.message}
         />
 
-        <TextInputGroup
-          name="email"
-          helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
-          label={t('Votre adresse email')}
-          value={user?.email}
-          readOnly
-        />
+        {
+          // On affiche le champ email en lecture seule si l'utilisateur a un email de défini
+          // sinon on lui permet d'en définir un
+          user?.email ? (
+            <TextInputGroup
+              name="email"
+              helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
+              label={t('Votre adresse email')}
+              value={user?.email}
+              readOnly
+            />
+          ) : (
+            <TextInputGroup
+              // @ts-expect-error - conditionnal rendering of the same input
+              name="email"
+              label={t('Votre adresse email')}
+              {...register('email')}
+            />
+          )
+        }
 
         <h3 className="mb-0 mt-6">
           <Trans>Inscription à nos e-mails</Trans>
