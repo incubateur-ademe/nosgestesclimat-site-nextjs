@@ -32,9 +32,13 @@ export function useEngineSituation({ engine, everyRules }: Props) {
   useEffect(() => {
     if (isInitialized) return
 
-    engine.setSituation(situation)
+    const safeSituation = safeGetSituation({
+      situation: situation,
+      everyRules,
+    })
+    engine.setSituation(safeSituation)
     setIsInitialized(true)
-  }, [engine, situation, isInitialized])
+  }, [engine, situation, isInitialized, everyRules])
 
   return { isInitialized, addToEngineSituation }
 }
