@@ -14,7 +14,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
-import { FormEvent, FormEventHandler, useState } from 'react'
+import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
 
 export default function GroupCreationForm() {
   const { t } = useClientTranslation()
@@ -38,6 +38,29 @@ export default function GroupCreationForm() {
   const { data: groups } = useFetchGroupsOfUser()
 
   const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
+
+  const [shouldNavigate, setShouldNavigate] = useState<string | undefined>(
+    undefined
+  )
+  useEffect(() => {
+    if (
+      shouldNavigate &&
+      currentSimulation.groups?.includes(shouldNavigate || '')
+    ) {
+      setShouldNavigate(undefined)
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
+    }
+  }, [
+    currentSimulation.groups,
+    hasCompletedTest,
+    goToEndPage,
+    goToSimulateurPage,
+    shouldNavigate,
+  ])
 
   const handleSubmit = async (event: FormEvent) => {
     // Avoid reloading page
@@ -78,12 +101,7 @@ export default function GroupCreationForm() {
         groupToAdd: group._id,
       })
 
-      // Redirect to simulateur page or end page
-      if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
-      } else {
-        goToSimulateurPage()
-      }
+      setShouldNavigate(group._id)
     } catch (e) {
       captureException(e)
     }
@@ -110,7 +128,7 @@ export default function GroupCreationForm() {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="text-secondary-700 italic">
+              <span className="italic text-secondary-700">
                 {' '}
                 {t('facultatif')}
               </span>
