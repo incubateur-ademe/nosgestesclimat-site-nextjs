@@ -1,5 +1,5 @@
 'use client'
-import { NGCRules } from '@incubateur-ademe/nosgestesclimat/types'
+import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { createContext } from 'react'
 import {
