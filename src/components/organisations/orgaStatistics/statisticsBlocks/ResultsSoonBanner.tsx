@@ -2,7 +2,7 @@
 
 import HourglassIcon from '@/components/icons/HourglassIcon'
 import Trans from '@/components/translation/Trans'
-import { clickButtonScrollToShareSectionEvent } from '@/constants/matomo/organisations'
+import { organisationsDashboardClickShortcutShare } from '@/constants/tracking/pages/organisationsDashboard'
 import Card from '@/design-system/layout/Card'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { usePathname } from 'next/navigation'
@@ -39,7 +39,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
 
       <Card className="w-full flex-row flex-wrap items-center justify-between gap-4 p-4 md:flex-nowrap">
         <div className="flex max-w-2xl gap-4">
-          <HourglassIcon />
+          <HourglassIcon className="fill-primary-700" width="80" height="60" />
           <div className="flex items-center">
             <p className="mb-0">
               <span>
@@ -61,10 +61,10 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
         </div>
         {!isResultatsDetailles && (
           <button
-            className="whitespace-nowrap font-bold text-primary-500 underline"
+            className="whitespace-nowrap font-bold text-primary-700 underline"
             onClick={() => {
               handleScrollIntoView('orga-partage')
-              trackEvent(clickButtonScrollToShareSectionEvent)
+              trackEvent(organisationsDashboardClickShortcutShare)
             }}>
             Partagez le test
           </button>

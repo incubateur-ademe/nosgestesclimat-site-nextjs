@@ -18,15 +18,15 @@ export type UserOrganisationInfo = {
 export type RegionFromGeolocation = { code: string; name: string }
 
 export type User = {
-  region: {
+  region?: {
     code: string
     name: string
   }
-  initialRegion: RegionFromGeolocation
-  name: string
-  email: string
-  northStarRatings?: any // TODO: should be NorthStartType or something
   userId: string
+  name?: string
+  email?: string
+  initialRegion: RegionFromGeolocation
+  northStarRatings?: any // TODO: should be NorthStartType or something
   loginExpirationDate?: Date
   organisation?: UserOrganisationInfo
   administratorEmail?: string
@@ -71,12 +71,27 @@ export type Simulation = {
   situation: Situation
   foldedSteps: DottedName[]
   actionChoices: ActionChoices
-  persona?: string
+  persona?: DottedName
   computedResults?: ComputedResults
-  progression?: number
+  progression: number
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   polls?: string[] | null
   groups?: string[] | null
+  savedViaEmail?: boolean
+}
+
+type UpdateCurrentSimulationProps = {
+  situation?: Situation
+  situationToAdd?: Situation
+  foldedStepToAdd?: string
+  actionChoices?: ActionChoices
+  defaultAdditionalQuestionsAnswers?: Record<string, string>
+  computedResults?: ComputedResults
+  progression?: number
+  pollToAdd?: string | null
+  pollToDelete?: string | null
+  groupToAdd?: string | null
+  groupToDelete?: string | null
   savedViaEmail?: boolean
 }
 

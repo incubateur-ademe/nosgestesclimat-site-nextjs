@@ -7,20 +7,29 @@ export type AccordionItemType = {
   content: ReactNode
   className?: string
   isReadOnly?: boolean
+  onClick?: () => void
 }
 
 export default function AccordionItem({
   title,
   content,
   isReadOnly = false,
+  onClick,
 }: AccordionItemType) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <li>
       <button
-        onClick={() => !isReadOnly && setIsOpen((prevState) => !prevState)}
-        className={`border-grey-300 relative z-10 flex w-full items-center justify-between bg-white px-2 py-4 ${
+        onClick={() => {
+          if (!isReadOnly) {
+            setIsOpen((prevState) => !prevState)
+          }
+          if (onClick) {
+            onClick()
+          }
+        }}
+        className={`relative z-10 flex w-full items-center justify-between border-gray-300 bg-white px-2 py-4 ${
           isOpen ? '' : 'border-b'
         } ${isReadOnly ? '!cursor-default' : ''}`}
         aria-disabled={isReadOnly}>

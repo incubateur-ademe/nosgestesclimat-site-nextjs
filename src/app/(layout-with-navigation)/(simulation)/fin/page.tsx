@@ -1,13 +1,15 @@
 'use client'
 
 import HowToAct from '@/components/actions/HowToAct'
+import BookClosedIcon from '@/components/icons/BookClosedIcon'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import Trans from '@/components/translation/Trans'
+import { endClickDocumentation } from '@/constants/tracking/pages/end'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
-import Emoji from '@/design-system/utils/Emoji'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import GroupModePromotionBanner from './_components/GroupModePromotionBanner'
@@ -33,10 +35,10 @@ export default function FinPage() {
 
       <Results />
 
-      <div className="flex flex-col items-start gap-4 md:grid md:grid-cols-5 md:flex-row">
-        <GetResultsByEmail className="col-span-3 h-full" />
+      <div className="flex flex-col items-stretch gap-4 lg:grid lg:grid-cols-8">
+        <GetResultsByEmail className="col-span-5 h-full" />
 
-        <GroupModePromotionBanner className="col-span-2" />
+        <GroupModePromotionBanner className="col-span-3" />
       </div>
 
       <Separator />
@@ -58,8 +60,12 @@ export default function FinPage() {
           </Trans>
         </p>
 
-        <InlineLink href="/documentation/bilan">
-          <Emoji className="mr-1 inline-block">🧮</Emoji>
+        <InlineLink
+          href="/documentation/bilan"
+          className="flex items-center"
+          onClick={() => trackEvent(endClickDocumentation)}>
+          <BookClosedIcon className="mr-2 w-4 fill-primary-700" />
+
           <Trans>Comprendre le calcul</Trans>
         </InlineLink>
       </div>

@@ -5,6 +5,7 @@ import GuideFr from '@/locales/guide-mode-groupe/fr/guide.mdx'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
+
   return getMetadataObject({
     title: t('Le guide - Nos Gestes Climat'),
     description: t(

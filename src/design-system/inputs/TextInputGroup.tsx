@@ -1,4 +1,10 @@
-import { ChangeEventHandler, HTMLAttributes, ReactNode } from 'react'
+import {
+  ChangeEventHandler,
+  ForwardedRef,
+  HTMLAttributes,
+  ReactNode,
+  forwardRef,
+} from 'react'
 import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
 
@@ -20,22 +26,25 @@ type Props = {
   readOnly?: boolean
 }
 
-export default function TextInputGroup({
-  name,
-  label,
-  type = 'text',
-  error,
-  helperText,
-  className,
-  placeholder,
-  onChange,
-  value,
-  required = false,
-  disabled,
-  debounceTimeout = 100,
-  readOnly = false,
-  ...props
-}: HTMLAttributes<HTMLInputElement> & Props) {
+export default forwardRef(function TextInputGroup(
+  {
+    name,
+    label,
+    type = 'text',
+    error,
+    helperText,
+    className,
+    placeholder,
+    onChange,
+    value,
+    required = false,
+    disabled,
+    debounceTimeout = 100,
+    readOnly = false,
+    ...props
+  }: HTMLAttributes<HTMLInputElement> & Props,
+  ref: ForwardedRef<HTMLInputElement>
+) {
   return (
     <div className="flex flex-col" aria-live="polite">
       {label ? (
@@ -54,6 +63,7 @@ export default function TextInputGroup({
       ) : null}
 
       <DebounceInput
+        inputRef={ref}
         readOnly={readOnly}
         debounceTimeout={debounceTimeout}
         name={name}
@@ -67,12 +77,12 @@ export default function TextInputGroup({
         {...props}
         className={twMerge(
           helperText || label ? ' !mt-3' : '',
-          `border-grey-300 max-w-[30rem] rounded-md border border-solid bg-grey-100 p-4 text-sm transition-colors read-only:bg-grey-200`,
+          `border-grey-300 max-w-[30rem] rounded-xl border-2 border-solid bg-white p-4 text-sm transition-colors read-only:bg-gray-200`,
           error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : '',
           disabled ? 'cursor-not-allowed opacity-50' : '',
           readOnly
             ? 'cursor-not-allowed'
-            : 'focus:border-primary-500 focus:ring-2 focus:ring-primary-500',
+            : 'focus:border-primary-700 focus:ring-2 focus:ring-primary-700',
           className
         )}
       />
@@ -84,4 +94,4 @@ export default function TextInputGroup({
       )}
     </div>
   )
-}
+})

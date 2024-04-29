@@ -1,8 +1,8 @@
 'use client'
 
 import {
+  useCurrentSimulation,
   useEngine,
-  useForm,
   useSimulation,
   useTempEngine,
   useUser,
@@ -26,21 +26,17 @@ export default function ActionsPage({
 
   const category = searchParams.catégorie
 
-  const { progression } = useForm()
+  const { tutorials } = useUser()
 
-  const { tutorials, getCurrentSimulation } = useUser()
-
-  const currentSimulation = getCurrentSimulation()
+  const { actionChoices, progression } = useCurrentSimulation()
 
   const { rules, getRuleObject } = useTempEngine()
 
   const { safeEvaluate } = useSimulation()
 
-  if (!currentSimulation || !rules) {
+  if (!rules) {
     return null
   }
-
-  const actionChoices = currentSimulation.actionChoices
 
   const actions = getActions({
     rules,

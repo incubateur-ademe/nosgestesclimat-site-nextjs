@@ -9,6 +9,7 @@ const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
 const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
 
 const paths = require('./paths')
+const c = require('ansi-colors')
 
 const { srcLang, destLangs, force } = cli.getArgs(
   'Calls the DeepL API to translate the FAQ Yaml files.',

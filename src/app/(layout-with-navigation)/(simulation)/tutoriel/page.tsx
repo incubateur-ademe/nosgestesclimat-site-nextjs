@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import ButtonStart from './_components/ButtonStart'
 
@@ -8,6 +7,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import AutresQuestions from './_components/AutresQuestions'
 import AvantDeCommencer from './_components/AvantDeCommencer'
+import ButtonBack from './_components/ButtonBack'
 import OrganisationMessage from './_components/OrganisationMessage'
 
 export async function generateMetadata() {
@@ -28,8 +28,6 @@ export async function generateMetadata() {
 }
 
 export default async function Tutoriel() {
-  const { t } = await getServerTranslation()
-
   return (
     <div className="mx-auto flex max-w-3xl flex-col">
       <Title
@@ -37,7 +35,7 @@ export default async function Tutoriel() {
         className="text-lg md:text-2xl"
         title={
           <>
-            <span className="inline text-secondary-500">
+            <span className="text-secondary-700 inline">
               <Trans>10 minutes</Trans>
             </span>{' '}
             <Trans>chrono pour calculer votre empreinte sur le climat</Trans>
@@ -48,9 +46,7 @@ export default async function Tutoriel() {
       <AvantDeCommencer />
 
       <div className="mb-8 flex justify-between border-b border-gray-200 pb-8">
-        <ButtonLink href="/" color="secondary" title={t("revenir à l'accueil")}>
-          ←
-        </ButtonLink>
+        <ButtonBack />
 
         <OrganisationMessage />
 

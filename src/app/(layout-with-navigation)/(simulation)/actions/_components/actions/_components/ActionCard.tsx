@@ -1,23 +1,31 @@
 'use client'
 
 import Link from '@/components/Link'
+import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import CloseIcon from '@/components/icons/Close'
 import {
-  getMatomoEventActionAccepted,
-  getMatomoEventActionRejected,
-} from '@/constants/matomo'
+  actionsClickAdditionalQuestion,
+  actionsClickNo,
+  actionsClickYes,
+  actionsOpenAction,
+} from '@/constants/tracking/pages/actions'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
+import Emoji from '@/design-system/utils/Emoji'
 import {
-  getBackgroundColor,
+  getBackgroundLightColor,
   getBorderColor,
+  getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
-import { useFetchSimulation } from '@/hooks/simulation/useFetchSimulation'
-import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useRule, useTempEngine, useUser } from '@/publicodes-state'
+import {
+  useCurrentSimulation,
+  useRule,
+  useTempEngine,
+  useUser,
+} from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
-import Image from 'next/image'
 import { useCallback } from 'react'
 import { filterRelevantMissingVariables } from '../../../_helpers/filterRelevantMissingVariables'
 import { getIsActionDisabled } from '../../../_helpers/getIsActionDisabled'
@@ -41,10 +49,11 @@ export default function ActionCard({
 
   const { rules, extendedFoldedSteps } = useTempEngine()
 
-  const { getCurrentSimulation, toggleActionChoice, rejectAction } = useUser()
+  const { toggleActionChoice, rejectAction } = useUser()
 
-  const { nodeValue, dottedName, title, missingVariables, traversedVariables } =
-    action
+  const currentSimulation = useCurrentSimulation()
+
+  const { dottedName, title, missingVariables, traversedVariables } = action
 
   const { icônes: icons } = rule
 
@@ -69,8 +78,6 @@ export default function ActionCard({
 
   const { category } = useRule(dottedName)
 
-  const currentSimulation = getCurrentSimulation()
-
   const actionChoices = currentSimulation?.actionChoices
 
   const isSelected = Object.keys(actionChoices || {}).some((key) => {
@@ -88,12 +95,6 @@ export default function ActionCard({
       })) ||
     action.isIrrelevant
 
-  const { simulation: simulationSaved } = useFetchSimulation({
-    simulationId: currentSimulation?.id ?? '',
-  })
-
-  const { saveSimulationNotAsync } = useSaveSimulation()
-
   const handleChooseAction = useCallback(async () => {
     if (isDisabled) return
     if (hasRemainingQuestions) {
@@ -103,32 +104,15 @@ export default function ActionCard({
 
     toggleActionChoice(dottedName)
 
-    if (currentSimulation && !!simulationSaved) {
-      saveSimulationNotAsync({
-        simulation: {
-          ...(currentSimulation ?? {}),
-          actionChoices: {
-            ...currentSimulation?.actionChoices,
-            [dottedName]: true,
-          },
-        },
-        shouldSendSimulationEmail: false,
-      })
-    }
-
     if (!isSelected) {
-      trackEvent(getMatomoEventActionAccepted(dottedName, nodeValue))
+      trackEvent(actionsClickYes(dottedName))
     }
   }, [
-    currentSimulation,
     dottedName,
     hasRemainingQuestions,
     isDisabled,
     isSelected,
-    nodeValue,
-    saveSimulationNotAsync,
     setFocusedAction,
-    simulationSaved,
     toggleActionChoice,
   ])
 
@@ -139,7 +123,7 @@ export default function ActionCard({
   return (
     <div
       id={dottedName}
-      className={`relative flex h-[16rem] w-full flex-col items-center overflow-auto rounded-lg border-4 border-solid ${
+      className={`relative flex h-[18rem] w-full flex-col items-center justify-center overflow-auto rounded-xl border-2 border-solid p-4 ${
         !hasFormula ? 'h-[13rem]' : ''
       } ${
         isSelected
@@ -147,25 +131,25 @@ export default function ActionCard({
           : getBorderColor(category)
       }`}>
       <div
-        className={`flex h-[6rem] w-full items-center ${getBackgroundColor(
+        className={`flex h-[6rem] w-full items-center rounded-xl p-2 ${getBackgroundLightColor(
           category
         )}`}>
         <Link
           className="z-10 w-full no-underline"
+          onClick={() => trackEvent(actionsOpenAction(dottedName))}
           href={'/actions/' + encodeRuleName(dottedName)}>
-          <h2 className="inline-block w-full text-center text-base font-bold text-white">
+          {icons && (
+            <Emoji className="inline-flex justify-center">{icons}</Emoji>
+          )}
+
+          <h2
+            className={`mb-0 inline-block w-full text-center text-sm font-bold ${getTextDarkColor(category)}`}>
             {title}
           </h2>
         </Link>
-
-        {icons && (
-          <span className="absolute left-1/2 top-0 flex -translate-x-1/2 gap-8 whitespace-nowrap text-[4rem] opacity-20 grayscale ">
-            {icons}
-          </span>
-        )}
       </div>
 
-      <div className="mt-2 flex flex-1 flex-col justify-between">
+      <div className="mt-3 flex w-full flex-1 flex-col justify-between">
         <div className="relative">
           <ActionValue
             dottedName={dottedName}
@@ -185,25 +169,26 @@ export default function ActionCard({
 
           {hasRemainingQuestions && (
             <button
-              className="cursor-pointer text-primary-500"
-              onClick={() => setFocusedAction(dottedName)}>
+              className="cursor-pointer text-sm text-primary-700"
+              onClick={() => {
+                trackEvent(actionsClickAdditionalQuestion(dottedName))
+                setFocusedAction(dottedName)
+              }}>
               {remainingQuestionsText}
             </button>
           )}
         </div>
-        <div className="mb-4 flex justify-evenly gap-4">
+        <div className="self-bottom flex w-full justify-between px-2">
           <button
             title={t("Choisir l'action")}
             type="button"
             aria-pressed={actionChoices?.[dottedName]}
             className={hasRemainingQuestions ? 'grayscale' : ''}
             onClick={handleChooseAction}>
-            <Image
-              src="/images/misc/2714.svg"
-              width={100}
-              height={100}
-              className={`w-10 ${isDisabled ? 'grayscale' : ''}`}
-              alt=""
+            <CheckCircleIcon
+              className="fill-green-500"
+              width="40"
+              height="40"
             />
           </button>
 
@@ -215,17 +200,13 @@ export default function ActionCard({
               onClick={(e) => {
                 if (isDisabled) return
                 rejectAction(dottedName)
-                trackEvent(getMatomoEventActionRejected(dottedName, nodeValue))
+                if (!isSelected) {
+                  trackEvent(actionsClickNo(dottedName))
+                }
                 e.stopPropagation()
                 e.preventDefault()
               }}>
-              <Image
-                src="/images/misc/274C.svg"
-                width={100}
-                height={100}
-                className={`w-8 ${isDisabled ? 'grayscale' : ''}`}
-                alt=""
-              />
+              <CloseIcon width="40" height="40" className="fill-gray-600" />
             </button>
           )}
         </div>

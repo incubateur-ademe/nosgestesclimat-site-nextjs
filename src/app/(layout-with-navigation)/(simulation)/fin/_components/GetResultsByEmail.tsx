@@ -1,19 +1,36 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { matomoSaveSimulationByGivingEmail } from '@/constants/matomo'
+import {
+  LIST_MAIN_NEWSLETTER,
+  LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
+} from '@/constants/brevo'
+import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
+import EmailInput from '@/design-system/inputs/EmailInput'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
+import { getSaveSimulationListIds } from '@/helpers/brevo/getSaveSimulationListIds'
+import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useLocale } from '@/hooks/useLocale'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { isEmailValid } from '@/utils/isEmailValid'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { formatValue } from 'publicodes'
+import { useState } from 'react'
+import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './getResultsByEmail/Confirmation'
+
+type Inputs = {
+  name: string
+  email?: string
+  'newsletter-saisonniere': boolean
+  'newsletter-transports': boolean
+}
 
 export default function GetResultsByEmail({
   className,
@@ -21,29 +38,53 @@ export default function GetResultsByEmail({
   className?: string
 }) {
   const { t } = useClientTranslation()
-  const { user, updateEmail, getCurrentSimulation, updateCurrentSimulation } =
-    useUser()
+  const { user, updateEmail } = useUser()
 
-  const currentSimulation = getCurrentSimulation()
+  const locale = useLocale()
+
+  const currentSimulation = useCurrentSimulation()
+
+  const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
+    user?.email ?? ''
+  )
+
+  const isSubscribedMainNewsletter =
+    newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER)
+  const isSubscribedTransportNewsletter = newsletterSubscriptions?.includes(
+    LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
+  )
+
+  const { register, handleSubmit } = useReactHookForm<Inputs>({
+    defaultValues: {
+      name: user?.name,
+    },
+  })
 
   const { saveSimulation, isPending, isSuccess, isError, error } =
     useSaveSimulation()
 
   const { data: numberSubscribers } = useNumberSubscribers()
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const [formEmail, setFormEmail] = useState(user.email || '')
+  const [errorEmail, setErrorEmail] = useState('')
 
-    if (!currentSimulation) {
-      return // TODO: should throw an error
-    }
-
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     // If the mutation is pending, we do nothing
     if (isPending) {
       return
     }
 
-    trackEvent(matomoSaveSimulationByGivingEmail)
+    // Inputs validation
+    if (!formEmail || !isEmailValid(formEmail)) {
+      setErrorEmail(t('Veuillez renseigner un email valide.'))
+      return
+    }
+
+    trackEvent(endClickSaveSimulation)
+
+    const listIds = getSaveSimulationListIds(data)
+
+    updateEmail(formEmail)
 
     // We save the simulation (and signify the backend to send the email)
     await saveSimulation({
@@ -52,10 +93,11 @@ export default function GetResultsByEmail({
         savedViaEmail: true,
       },
       shouldSendSimulationEmail: true,
+      listIds,
     })
 
     // We update the simulation to signify that it has been saved (and not show the form anymore)
-    updateCurrentSimulation({ savedViaEmail: true })
+    currentSimulation.update({ savedViaEmail: true })
   }
 
   // If we successfully saved the simulation, we display the confirmation message
@@ -68,11 +110,14 @@ export default function GetResultsByEmail({
     <Card
       id="email-block"
       className={twMerge(
-        'items-start border-none bg-grey-100 py-4',
+        'rainbow-border items-start rounded-xl p-6 shadow-none',
         className
       )}>
-      <form id="newsletter-form" onSubmit={handleSubmit}>
-        <h3 className="text-base sm:text-lg md:text-lg">
+      <form
+        id="newsletter-form"
+        className="flex h-full flex-col items-start"
+        onSubmit={handleSubmit(onSubmit)}>
+        <h3 className="flex items-center text-base sm:text-lg">
           <Trans>
             Vous souhaitez recevoir vos résultats d’empreinte carbone ?
           </Trans>
@@ -80,59 +125,73 @@ export default function GetResultsByEmail({
           <Emoji>💡</Emoji>
         </h3>
 
-        <p className="text-sm text-gray-600 sm:text-base">
+        <p className="text-sm sm:text-base">
           <Trans>Pour cela,</Trans>{' '}
-          <strong>
+          <strong className="text-primary-700">
             <Trans>laissez-nous votre email,</Trans>{' '}
           </strong>
           {t('comme {{numberSubscribers}} personnes.', {
-            numberSubscribers: formatValue(numberSubscribers) ?? '---',
+            numberSubscribers:
+              numberSubscribers?.toLocaleString(locale, {
+                maximumFractionDigits: 0,
+              }) ?? '---',
           })}
         </p>
 
-        <p className="text-sm text-gray-600 sm:text-base">
-          <Trans>Vous retrouverez votre résultat d’empreinte, ainsi que</Trans>{' '}
-          <strong>
-            <Trans>des conseils pour la réduire</Trans>
-          </strong>{' '}
-          <Trans>(1 fois par mois max.)</Trans>
-        </p>
-
-        <div className="mb-4">
-          <TextInputGroup
-            name="EMAIL"
-            type="email"
+        <div className="mb-4 flex w-full flex-col gap-2">
+          <EmailInput
+            email={formEmail}
+            setEmail={setFormEmail}
             aria-label="Entrez votre adresse email"
-            placeholder="jeanmarc@nosgestesclimat.fr"
-            value={user?.email}
-            onChange={(event) => {
-              updateEmail((event.target as HTMLInputElement).value)
-            }}
-            required
-            className="bg-white"
+            error={errorEmail}
+            setError={setErrorEmail}
+            className="mb-2"
           />
+
+          {newsletterSubscriptions &&
+            (!isSubscribedMainNewsletter ||
+              !isSubscribedTransportNewsletter) && (
+              <p className="mb-0">
+                <Trans>
+                  Recevez des conseils pour réduire votre empreinte :
+                </Trans>
+              </p>
+            )}
+
+          {newsletterSubscriptions && !isSubscribedMainNewsletter && (
+            <CheckboxInputGroup
+              label={
+                <span>
+                  <Emoji>☀️</Emoji>{' '}
+                  <Trans>
+                    <strong>Infolettre saisonnière de Nos Gestes Climat</strong>
+                  </Trans>
+                </span>
+              }
+              {...register('newsletter-saisonniere')}
+            />
+          )}
+
+          {newsletterSubscriptions && !isSubscribedTransportNewsletter && (
+            <CheckboxInputGroup
+              label={
+                <span>
+                  <Emoji>🚗</Emoji>{' '}
+                  <Trans>
+                    <strong>Nos Gestes Transports</strong> : maîtrisez l'impact
+                    carbone de vos transports avec nos 4 infolettres
+                  </Trans>
+                </span>
+              }
+              {...register('newsletter-transports')}
+            />
+          )}
         </div>
 
-        {/*
-        // Commented until further work on the reminder feature
-        <CheckboxInputGroup
-          name="SEND_REMINDER"
-          value={shouldSendReminder}
-          onChange={() => setShouldSendReminder((prevValue) => !prevValue)}
-          required
-          size="lg"
-          label={
-            <span>
-              Recevoir une <strong>alerte</strong> par email{' '}
-              <strong>dans 6 mois</strong> pour comparer mes résultats
-            </span>
-          }
-          className="mb-4"
-        />
-
-        */}
-
-        <Button type="submit" disabled={isPending} className="mt-4">
+        <Button
+          type="submit"
+          disabled={isPending}
+          className="mt-auto items-start">
           <Trans>Envoyer</Trans>
         </Button>
 

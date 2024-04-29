@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useCallback } from 'react'
 import { RegionFromGeolocation, User, UserOrganisationInfo } from '../../types'
 
 type Props = {
+  user: User
   setUser: Dispatch<SetStateAction<User>>
 }
 export default function useUserDetails({ setUser }: Props) {

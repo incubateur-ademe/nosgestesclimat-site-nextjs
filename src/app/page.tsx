@@ -37,7 +37,7 @@ export default async function Homepage() {
         <Explanations />
         <Contributions />
       </Main>
-      <Footer />
+      <Footer className="bg-white" />
     </>
   )
 }

@@ -3,8 +3,13 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
-import { useSimulation, useUser } from '@/publicodes-state'
-import { DottedName, Persona as PersonaType } from '@/publicodes-state/types'
+import {
+  useCurrentSimulation,
+  useSimulation,
+  useUser,
+} from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
+import { Persona as PersonaType } from '@incubateur-ademe/nosgestesclimat'
 import { fixSituationWithPartialMosaic } from '../_helpers/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '../_helpers/getPersonaFoldedSteps'
 
@@ -14,7 +19,9 @@ type Props = {
 }
 
 export default function Persona({ persona, personaDottedName }: Props) {
-  const { initSimulation, getCurrentSimulation, hideTutorial } = useUser()
+  const { initSimulation, hideTutorial } = useUser()
+
+  const currentSimulation = useCurrentSimulation()
 
   const {
     everyMosaic,
@@ -27,14 +34,14 @@ export default function Persona({ persona, personaDottedName }: Props) {
   } = useSimulation()
 
   const isCurrentPersonaSelected =
-    getCurrentSimulation()?.persona === personaDottedName
+    currentSimulation.persona === personaDottedName
 
   return (
     <Card
       className={`${
         isCurrentPersonaSelected
           ? '!border-2 border-green-500 bg-green-200'
-          : ''
+          : 'border-none bg-primary-50'
       } items-center`}>
       <div className="text-lg">{persona['icônes']}</div>
 

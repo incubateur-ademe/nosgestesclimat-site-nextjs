@@ -5,19 +5,19 @@ export default function Baseline() {
     <p>
       <>
         <Trans>Vous souhaitez mobiliser votre</Trans>{' '}
-        <strong className="text-secondary-500">
+        <strong className="text-secondary-700">
           <Trans>entreprise</Trans>
         </strong>{' '}
         <Trans>, votre</Trans>{' '}
-        <strong className="text-secondary-500">
+        <strong className="text-secondary-700">
           <Trans>organisation</Trans>
         </strong>{' '}
         <Trans>, votre</Trans>{' '}
-        <strong className="text-secondary-500">
+        <strong className="text-secondary-700">
           <Trans>association</Trans>
         </strong>{' '}
         <Trans>ou</Trans>{' '}
-        <strong className="text-secondary-500">
+        <strong className="text-secondary-700">
           <Trans>salle de classe</Trans>
         </strong>
       </>

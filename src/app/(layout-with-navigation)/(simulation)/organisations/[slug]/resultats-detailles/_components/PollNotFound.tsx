@@ -1,6 +1,5 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import Emoji from '@/design-system/utils/Emoji'
 
 export default function PollNotFound() {
   return (
@@ -8,8 +7,7 @@ export default function PollNotFound() {
       <h1 className="text-xl">
         <Trans>
           Oups, nous n'avons pas trouvé les résultats de cette organisation
-        </Trans>{' '}
-        <Emoji>😕</Emoji>
+        </Trans>
       </h1>
 
       <p>

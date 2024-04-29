@@ -1,4 +1,8 @@
+'use client'
+
 import Link from '@/components/Link'
+import { breadcrumbClickLink } from '@/constants/tracking/layout'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { Fragment } from 'react'
 
 type Props = {
@@ -12,22 +16,27 @@ type Props = {
 
 export default function Breadcrumbs({ items }: Props) {
   return (
-    <section className="h-[75px] w-full bg-grey-100">
-      <nav className="mx-auto flex h-full max-w-5xl items-center gap-4 px-6 lg:px-0">
+    <section className="h-[75px] w-full bg-gray-100">
+      <nav className="mx-auto flex h-full max-w-5xl items-center gap-4 overflow-x-scroll px-6 lg:px-0">
         {items.map(({ href, label, isActive, isDisabled }, index) => (
           <Fragment key={`breadcrumb-item-${index}`}>
             <Link
-              onClick={isDisabled ? (e) => e.preventDefault() : undefined}
+              onClick={(e) => {
+                if (isDisabled) {
+                  e.preventDefault()
+                }
+                trackEvent(breadcrumbClickLink)
+              }}
               className={`text-default ${
                 isActive ? '' : 'no-underline'
-              } text-sm capitalize hover:text-default hover:underline ${isDisabled ? 'cursor-none' : ''}`}
+              } max-w-full text-ellipsis whitespace-nowrap text-sm capitalize hover:text-default hover:underline ${isDisabled ? 'cursor-none' : ''}`}
               href={href}>
               {label}
             </Link>
 
             {index < items.length - 1 && (
               <svg
-                className="text-grey-500 h-4 w-4 rotate-[-90deg]"
+                className="h-4 w-4 rotate-[-90deg] text-gray-500"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">

@@ -1,5 +1,11 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
-import { getClickCtaToolsEvent } from '@/constants/matomo/organisations'
+import {
+  organisationsDashboardClickAteliers,
+  organisationsDashboardClickImpactCo2,
+  organisationsDashboardDownloadKit,
+} from '@/constants/tracking/pages/organisationsDashboard'
 import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
@@ -16,7 +22,7 @@ export default function OurTools() {
 
       <div className="col-span-1 mt-8 grid  grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         <CTACard
-          className="border border-grey-200 px-8"
+          className="border-2 border-gray-200 px-8"
           overLabel={<Trans>Partagez Nos Gestes Climat</Trans>}
           title={<Trans>Kit de diffusion</Trans>}
           description={
@@ -27,7 +33,7 @@ export default function OurTools() {
           }>
           <ButtonLink
             onClick={() => {
-              trackEvent(getClickCtaToolsEvent('kit_diffusion'))
+              trackEvent(organisationsDashboardDownloadKit)
             }}
             className="mt-auto w-full justify-center align-bottom"
             color="secondary"
@@ -40,7 +46,7 @@ export default function OurTools() {
         </CTACard>
 
         <CTACard
-          className="relative overflow-hidden border border-grey-200 px-8"
+          className="relative overflow-hidden border-2 border-gray-200 px-8"
           overLabel={<Trans>Animez un atelier</Trans>}
           title={<Trans>Les ateliers de l'ABC</Trans>}
           description={
@@ -52,10 +58,8 @@ export default function OurTools() {
           }>
           <ButtonLink
             color="secondary"
-            onClick={() => {
-              trackEvent(getClickCtaToolsEvent('ateliers_abc'))
-            }}
-            className="w-full justify-center"
+            trackingEvent={organisationsDashboardClickAteliers}
+            className="mt-auto w-full justify-center"
             href="https://drive.google.com/drive/folders/1dORmBbDLDG31PLLOblP8Wg5CrrksAfjV"
             target="_blank"
             aria-label={t(
@@ -67,7 +71,7 @@ export default function OurTools() {
         </CTACard>
 
         <CTACard
-          className="border border-grey-200 px-8"
+          className="border-2 border-gray-200 px-8"
           overLabel={<Trans>Valorisez vos données carbone</Trans>}
           title={<Trans>Impact CO2</Trans>}
           description={
@@ -82,9 +86,7 @@ export default function OurTools() {
             color="secondary"
             href="https://impactco2.fr/comparateur?mtm_campaign=ngc-orga"
             target="_blank"
-            onClick={() => {
-              trackEvent(getClickCtaToolsEvent('impactco2'))
-            }}
+            trackingEvent={organisationsDashboardClickImpactCo2}
             aria-label={t(
               'Découvrez le simulateur, ouvrir dans un nouvel onglet'
             )}>

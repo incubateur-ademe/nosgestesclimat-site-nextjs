@@ -3,7 +3,7 @@
 import ExportDataButton from '@/components/organisations/ExportDataButton'
 import OrgaStatistics from '@/components/organisations/OrgaStatistics'
 import Trans from '@/components/translation/Trans'
-import { clickExportDataDetailledResultsPageEvent } from '@/constants/matomo/organisations'
+import { organisationsDashboardExportData } from '@/constants/tracking/pages/organisationsDashboard'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -39,7 +39,7 @@ export default function ResultatsDetaillesPage() {
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4 md:flex-nowrap md:gap-0">
         <h1 className="mb-0">
           <Trans>Résultats détaillés de</Trans>{' '}
-          <span className="text-primary-500">
+          <span className="text-primary-700">
             {pollData?.organisationName ?? ''}
           </span>
         </h1>
@@ -49,7 +49,7 @@ export default function ResultatsDetaillesPage() {
             simulationRecaps={pollData?.simulationRecaps ?? []}
             color="secondary"
             onClick={() => {
-              trackEvent(clickExportDataDetailledResultsPageEvent)
+              trackEvent(organisationsDashboardExportData)
             }}
           />
         )}
