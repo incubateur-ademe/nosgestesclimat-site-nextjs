@@ -20,7 +20,7 @@ import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './getResultsByEmail/Confirmation'
@@ -54,11 +54,24 @@ export default function GetResultsByEmail({
     LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
   )
 
-  const { register, handleSubmit } = useReactHookForm<Inputs>({
+  const { register, handleSubmit, setValue } = useReactHookForm<Inputs>({
     defaultValues: {
       name: user?.name,
     },
   })
+
+  useEffect(() => {
+    if (!newsletterSubscriptions) return
+
+    setValue(
+      'newsletter-saisonniere',
+      newsletterSubscriptions.includes(LIST_MAIN_NEWSLETTER)
+    )
+    setValue(
+      'newsletter-transports',
+      newsletterSubscriptions.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER)
+    )
+  }, [newsletterSubscriptions, setValue])
 
   const { saveSimulation, isPending, isSuccess, isError, error } =
     useSaveSimulation()
@@ -148,17 +161,14 @@ export default function GetResultsByEmail({
             className="mb-2"
           />
 
-          {newsletterSubscriptions &&
-            (!isSubscribedMainNewsletter ||
-              !isSubscribedTransportNewsletter) && (
-              <p className="mb-0">
-                <Trans>
-                  Recevez des conseils pour réduire votre empreinte :
-                </Trans>
-              </p>
-            )}
+          {(!isSubscribedMainNewsletter ||
+            !isSubscribedTransportNewsletter) && (
+            <p className="mb-0">
+              <Trans>Recevez des conseils pour réduire votre empreinte :</Trans>
+            </p>
+          )}
 
-          {newsletterSubscriptions && !isSubscribedMainNewsletter && (
+          {!isSubscribedMainNewsletter && (
             <CheckboxInputGroup
               label={
                 <span>
@@ -172,7 +182,7 @@ export default function GetResultsByEmail({
             />
           )}
 
-          {newsletterSubscriptions && !isSubscribedTransportNewsletter && (
+          {!isSubscribedTransportNewsletter && (
             <CheckboxInputGroup
               label={
                 <span>

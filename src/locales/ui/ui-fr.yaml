@@ -716,3 +716,17 @@ entries:
   'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2> tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': 'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2> tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.'
   Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !: Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !
   Une erreur est survenue !: Une erreur est survenue !
+  '{formatCarbonFootprint(carbonFootprintValue).unit}': '{formatCarbonFootprint(carbonFootprintValue).unit}'
+  <0>Infolettre saisonnière de Nos Gestes Climat</0>: <0>Infolettre saisonnière de Nos Gestes Climat</0>
+  '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés': '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés'
+  "<0>Nos Gestes Transports</0> : maîtrisez l'impact carbone de vos transports avec nos 4 infolettres": "<0>Nos Gestes Transports</0> : maîtrisez l'impact carbone de vos transports avec nos 4 infolettres"
+  "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails": "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails"
+  Ce champ est requis.: Ce champ est requis.
+  Créer mon organisation: Créer mon organisation
+  Inscription à nos e-mails: Inscription à nos e-mails
+  Mettre à jour mes informations: Mettre à jour mes informations
+  'Recevez des conseils pour réduire votre empreinte :': 'Recevez des conseils pour réduire votre empreinte :'
+  Simulations terminées: Simulations terminées
+  Une erreur s'est produite au moment de la sauvegarde de vos paramètres: Une erreur s'est produite au moment de la sauvegarde de vos paramètres
+  Votre nom: Votre nom
+  Vous pouvez vous désincrire à tout moment: Vous pouvez vous désincrire à tout moment
