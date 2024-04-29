@@ -8,7 +8,7 @@ export const simulationCategoryStarted = (category: DottedName) => [
   'trackEvent',
   'Simulation',
   'Category Started',
-  category,
+  `Category started ${category}`,
 ]
 
 // Triggered when we see the last question of the category (so not really completed)
@@ -16,7 +16,7 @@ export const simulationCategoryCompleted = (category: DottedName) => [
   'trackEvent',
   'Simulation',
   'Category Completed',
-  category,
+  `Category completed ${category}`,
 ]
 
 // Triggered when we answer the first question of the simulation

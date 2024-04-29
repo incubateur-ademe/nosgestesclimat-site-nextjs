@@ -6,9 +6,7 @@ import {
 
 type Props = {
   currentSimulation: Simulation
-  updateCurrentSimulation: (
-    simulation: UpdateCurrentSimulationProps
-  ) => Promise<void>
+  updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
 }
 export default function useActions({
   currentSimulation,
