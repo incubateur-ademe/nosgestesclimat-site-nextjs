@@ -113,7 +113,7 @@ export default function useSetValue({
           ...situationToAdd,
         }
       }
-      console.log('setValue', situationToAdd)
+
       const safeSituation = addToEngineSituation(situationToAdd)
       updateCurrentSimulation({
         situationToAdd: safeSituation,

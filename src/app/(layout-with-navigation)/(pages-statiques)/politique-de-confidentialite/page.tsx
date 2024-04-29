@@ -2,6 +2,7 @@ import MDXContent from '@/components/mdx/MDXContent'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import PrivacyEn from '@/locales/pages/en/privacy.mdx'
+import PrivacyEs from '@/locales/pages/es/privacy.mdx'
 import PrivacyFr from '@/locales/pages/fr/privacy.mdx'
 
 export async function generateMetadata() {
@@ -19,5 +20,11 @@ export async function generateMetadata() {
 }
 
 export default function ViePriveePage() {
-  return <MDXContent contentEn={PrivacyEn} contentFr={PrivacyFr} />
+  return (
+    <MDXContent
+      contentEn={PrivacyEn}
+      contentFr={PrivacyFr}
+      contentEs={PrivacyEs}
+    />
+  )
 }

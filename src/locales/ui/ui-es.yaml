@@ -83,7 +83,7 @@ entries:
   components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
   components.ScoreExplanation.text.p1: 🧮 ¡Aquí tienes tu puntuación inicial, calculada a partir de las respuestas asignadas de antemano a cada pregunta! Cambiará con cada nueva respuesta.
   components.ScoreExplanation.text.p1.lock: 🧮 Voici votre score de départ, calculé à partir de réponses attribuées à l'avance à chaque question ! Il évoluera à chaque nouvelle réponse.
-  publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
+  publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} pregunta{{pluralSuffix}} restante{{pluralSuffix}}'
   publicodes.ActionVignette.questionsRestantesText.lock: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
   minutes: minutos
   participant: participante
@@ -760,6 +760,11 @@ entries:
   Reconnectez vous en cliquant sur le bouton ci-dessous.: Vuelva a conectarse haciendo clic en el botón de abajo.
   'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logotipos, carteles y presentaciones: en este kit encontrarás todas las herramientas que necesitas para compartir Nos Gestes Climat.'
   ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': se ha desconectado de su espacio de organización o está intentando acceder desde un nuevo navegador.
+  Reprendre le test: Reanudar la prueba
+  Utiliser mes données existantes: Utilizar mis datos actuales
+  Découvrez les résultats du groupe: Descubra los resultados del grupo
+  Simulation terminée: Simulación completa
+  Commencer le test: Prueba de inicio
   Diffusion: Difusión
   organisation: organización
   Découvrez nos: Descubre nuestra
@@ -784,3 +789,4 @@ entries:
   Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !: 'El consenso científico es claro: este aumento está <2>directamente relacionado con las actividades humanas:</2> la extracción, el consumo y la combustión de recursos superan la capacidad de nuestro planeta para absorberlos. Ya es <6>hora de que reduzcamos o sustituyamos</6> estas actividades emisoras de gases de efecto invernadero, ¡a todas las escalas!'
   'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2> tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': 'Desde el siglo pasado, <2>la concentración de carbono en la atmósfera ha aumentado</2> hasta tal punto que el clima del planeta está sufriendo trastornos con consecuencias de largo alcance: aumento del nivel del mar, destrucción de organismos vivos y explosión de catástrofes climáticas.'
   Créer mon organisation: Crear mi organización
+  Une erreur est survenue !: Se ha producido un error

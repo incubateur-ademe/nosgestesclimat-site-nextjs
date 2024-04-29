@@ -25,7 +25,7 @@ export default function Breadcrumbs({ items }: Props) {
                 if (isDisabled) {
                   e.preventDefault()
                 }
-                trackEvent(breadcrumbClickLink(index))
+                trackEvent(breadcrumbClickLink)
               }}
               className={`text-default ${
                 isActive ? '' : 'no-underline'

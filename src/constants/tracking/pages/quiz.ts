@@ -22,7 +22,7 @@ export const quizValidateCorrectAnswer = (answer: DottedName) => [
   'trackEvent',
   'Quiz',
   'Validate Correct Answer',
-  answer,
+  `Validate Correct Answer ${answer}`,
 ]
 
 // Figma comment #120
@@ -30,7 +30,7 @@ export const quizValidateAlmostCorrectAnswer = (answer: DottedName) => [
   'trackEvent',
   'Quiz',
   'Validate Almost Correct Answer',
-  answer,
+  `Validate Almost Correct Answer ${answer}`,
 ]
 
 // Figma comment #120
@@ -38,5 +38,5 @@ export const quizValidateWrongAnswer = (answer: DottedName) => [
   'trackEvent',
   'Quiz',
   'Validate Wrong Answer',
-  answer,
+  `Validate Wrong Answer ${answer}`,
 ]

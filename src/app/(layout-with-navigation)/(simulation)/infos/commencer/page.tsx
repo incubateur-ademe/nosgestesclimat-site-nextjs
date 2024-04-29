@@ -59,9 +59,9 @@ const texts = {
   ),
 }
 const buttonLabels = {
-  notStarted: 'Commencer le test',
-  started: 'Reprendre le test',
-  finished: 'Utiliser mes données existantes',
+  notStarted: <Trans>Commencer le test</Trans>,
+  started: <Trans>Reprendre le test</Trans>,
+  finished: <Trans>Utiliser mes données existantes</Trans>,
 }
 
 export default function Commencer() {

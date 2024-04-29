@@ -25,7 +25,7 @@ export const headerClickCtaCommencer = [
   'trackEvent',
   'Header',
   'Click CTA',
-  'Passer le test',
+  'Click Passer le test',
 ]
 
 // Figma comment #6
@@ -33,7 +33,7 @@ export const headerClickCtaReprendre = [
   'trackEvent',
   'Header',
   'Click CTA',
-  'Reprendre mon test',
+  'Click Reprendre mon test',
 ]
 
 // Figma comment #6
@@ -41,7 +41,7 @@ export const headerClickCtaResultats = [
   'trackEvent',
   'Header',
   'Click CTA',
-  'Voir les résultats',
+  'Click Voir les résultats',
 ]
 
 // Figma comment #7
@@ -118,14 +118,9 @@ export const footerClickImpactco2 = ['trackEvent', 'Footer', 'Click Impact CO2']
 export const footerClickLanguage = (locale: string) => [
   'trackEvent',
   'Footer',
-  'Click Langage',
-  locale,
+  'Click Language',
+  `Click Language ${locale}`,
 ]
 
 // Figma comment #18
-export const breadcrumbClickLink = (level: number) => [
-  'trackEvent',
-  'Breadcrumb',
-  'Click link',
-  String(level),
-]
+export const breadcrumbClickLink = ['trackEvent', 'Breadcrumb', 'Click link']
