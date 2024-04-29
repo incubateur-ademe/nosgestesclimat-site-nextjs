@@ -35,7 +35,7 @@ export async function getRules({
     return importPreviewFile({ fileName, PRNumber })
   }
 
-  if (regionCodeToProvide === 'FR' && locale !== 'fr' && isOptim) {
+  if (regionCodeToProvide === 'FR' && locale === 'fr' && isOptim) {
     return Promise.resolve(rules as unknown as NGCRules)
   }
 

@@ -2,7 +2,7 @@ import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { Simulation } from '@/publicodes-state/types'
 import { useRouter } from 'next/navigation'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useClientTranslation } from '../useClientTranslation'
 import { useEndPage } from './useEndPage'
 
@@ -25,23 +25,20 @@ export function useSimulateurPage() {
 
   const { progression } = useCurrentSimulation()
 
-  const [shouldNavigateToSimulateur, setShouldNavigateToSimulateur] =
-    useState(false)
-
   const goToSimulateurPage = useCallback(
     async ({
       newSimulation = undefined,
     }: GoToSimulateurPageProps = goToSimulateurPagePropsDefault) => {
+      console.log('goToSimulateurPage', 'before')
+
       // If there is no current simulation (or we want to force a new one), we init a new simulation
       // and wait for it to be initialized before trying again the function
       if (newSimulation) {
         initSimulation(newSimulation)
-        setShouldNavigateToSimulateur(true)
-        return
       }
 
       // If the user has completed the test we redirect him to the results page
-      if (progression === 1) {
+      if (progression === 1 && !newSimulation) {
         goToEndPage()
         return
       }
@@ -55,15 +52,8 @@ export function useSimulateurPage() {
       // else we redirect him to the tutoriel page
       router.replace('/tutoriel')
     },
-    [tutorielSeen, router, initSimulation, progression, goToEndPage]
+    [tutorielSeen, router, progression, goToEndPage, initSimulation]
   )
-
-  useEffect(() => {
-    if (shouldNavigateToSimulateur && progression === 0) {
-      goToSimulateurPage()
-      setShouldNavigateToSimulateur(false)
-    }
-  }, [shouldNavigateToSimulateur, progression, goToSimulateurPage])
 
   const linkToSimulateurPage = useMemo(() => {
     // If the user has completed the test (and we are not initializing a new one) we return the results page link
