@@ -148,17 +148,14 @@ export default function GetResultsByEmail({
             className="mb-2"
           />
 
-          {newsletterSubscriptions &&
-            (!isSubscribedMainNewsletter ||
-              !isSubscribedTransportNewsletter) && (
-              <p className="mb-0">
-                <Trans>
-                  Recevez des conseils pour réduire votre empreinte :
-                </Trans>
-              </p>
-            )}
+          {(!isSubscribedMainNewsletter ||
+            !isSubscribedTransportNewsletter) && (
+            <p className="mb-0">
+              <Trans>Recevez des conseils pour réduire votre empreinte :</Trans>
+            </p>
+          )}
 
-          {newsletterSubscriptions && !isSubscribedMainNewsletter && (
+          {!isSubscribedMainNewsletter && (
             <CheckboxInputGroup
               label={
                 <span>
@@ -172,7 +169,7 @@ export default function GetResultsByEmail({
             />
           )}
 
-          {newsletterSubscriptions && !isSubscribedTransportNewsletter && (
+          {!isSubscribedTransportNewsletter && (
             <CheckboxInputGroup
               label={
                 <span>
