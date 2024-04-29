@@ -34,7 +34,10 @@ export function useSetComputedResults({ categories, safeEvaluate }: Props) {
   )
 
   // Update the simulation with the computed results (only if the computed results have changed)
-  const prevComputedResults = useRef<ComputedResults>(computedResults)
+  const prevComputedResults = useRef<ComputedResults>({
+    bilan: 0,
+    categories: {},
+  })
   useEffect(() => {
     if (prevComputedResults.current === computedResults) return
 
