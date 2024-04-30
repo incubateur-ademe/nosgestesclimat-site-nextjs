@@ -32,7 +32,7 @@ export default function ToggleField({
   return (
     <div
       className={twMerge(
-        'relative flex w-full flex-col items-center overflow-hidden rounded-md border-2 border-gray-200 p-4 transition-colors',
+        'relative flex w-full flex-col items-center overflow-hidden rounded-xl border-2 border-gray-200 p-4 transition-colors',
         `${isEnabled ? 'border-primary-300 bg-primary-100' : ''} ${className}`
       )}>
       <div className="flex w-full justify-between">
