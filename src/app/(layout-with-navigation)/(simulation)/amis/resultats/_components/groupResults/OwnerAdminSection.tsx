@@ -113,7 +113,7 @@ export default function OwnerAdminSection({ group }: Props) {
 
       {isSuccess && (
         <Card className="border-none bg-gray-100">
-          <p className="text-sm md:text-base">
+          <p className="mb-0 text-sm md:text-base">
             <Trans>
               Votre groupe a été supprimé. Vous allez être redirigé vers la page
               d'accueil du mode groupe.

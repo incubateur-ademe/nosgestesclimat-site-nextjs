@@ -73,7 +73,7 @@ export default function StatisticsBlocks({
         </p>
 
         <p className="text-xl">
-          {simulationRecaps.length > 1 ? (
+          {simulationRecaps.length <= 1 ? (
             <Trans>Simulation terminée</Trans>
           ) : (
             <Trans>Simulations terminées</Trans>
