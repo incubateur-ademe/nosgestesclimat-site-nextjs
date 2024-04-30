@@ -122,7 +122,7 @@ export default function InvitationForm({ group }: { group: Group }) {
       <Button
         type="submit"
         onClick={handleSubmit}
-        aria-disabled={!user.name}
+        aria-disabled={!guestName}
         data-cypress-id="button-join-group">
         {hasCompletedTest ? (
           <Trans>Rejoindre</Trans>
