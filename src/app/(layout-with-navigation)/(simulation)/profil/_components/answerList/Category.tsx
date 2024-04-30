@@ -29,7 +29,7 @@ export default function Category({ category }: Props) {
   return (
     <div className="relative mb-4 w-full">
       <button
-        disabled={!subcategories[category].length}
+        disabled={!subcategories?.[category]?.length}
         className="block w-full"
         onClick={() => {
           trackEvent(profilClickCategory(category))

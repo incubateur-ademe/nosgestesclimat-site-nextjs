@@ -6,9 +6,16 @@ type Props = {
   value: boolean
   onChange: (value: boolean) => void
   name: string
+  className?: string
 }
 
-export default function ToggleField({ label, value, onChange, name }: Props) {
+export default function ToggleField({
+  label,
+  value,
+  onChange,
+  name,
+  className,
+}: Props) {
   const [isEnabled, setIsEnabled] = useState<boolean>(value)
 
   const handleMouseEvent = () => {
@@ -25,8 +32,8 @@ export default function ToggleField({ label, value, onChange, name }: Props) {
   return (
     <div
       className={twMerge(
-        'relative flex w-full flex-col items-center overflow-hidden p-4 transition-colors',
-        isEnabled ? 'bg-primary-100' : ''
+        'relative flex w-full flex-col items-center overflow-hidden rounded-xl border-2 border-gray-200 p-4 transition-colors',
+        `${isEnabled ? 'border-primary-300 bg-primary-100' : ''} ${className}`
       )}>
       <div className="flex w-full justify-between">
         <label htmlFor={name} className="cursor-pointer">

@@ -30,20 +30,19 @@ export async function getRules({
   const regionCodeToProvide = supportedRegions[regionCode] ? regionCode : 'FR'
 
   let fileName = ''
-  if (PRNumber) {
-    const fileName = `supportedRegions.json`
-    return importPreviewFile({ fileName, PRNumber })
-  }
-
-  if (regionCodeToProvide === 'FR' && locale !== 'fr' && isOptim) {
-    return Promise.resolve(rules as unknown as NGCRules)
-  }
-
   // We provide optimized version of the model only for the FR region
   if (regionCodeToProvide === 'FR') {
     fileName = `co2-model.FR-lang.${locale}${isOptim ? '-opti' : ''}.json`
   } else {
     fileName = `co2-model.${regionCodeToProvide}-lang.${locale}.json`
+  }
+
+  if (PRNumber) {
+    return importPreviewFile({ fileName, PRNumber })
+  }
+
+  if (regionCodeToProvide === 'FR' && locale === 'fr' && isOptim) {
+    return Promise.resolve(rules as unknown as NGCRules)
   }
 
   return importRulesFromModel({ fileName })
