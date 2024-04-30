@@ -26,15 +26,19 @@ export default function RepartitionChart({
         className
       )}>
       {items.map(({ value, shouldBeHighlighted }, index) => (
-        <BarItem
-          key={`repartition-chart-item-${index}`}
-          value={value}
-          shouldBeHighlighted={shouldBeHighlighted}
-          maxValue={maxValue}
-          id={`tooltip-repartition-chart-${id}`}
-        />
+        <>
+          <BarItem
+            key={`repartition-chart-item-${index}`}
+            value={value}
+            shouldBeHighlighted={shouldBeHighlighted}
+            maxValue={maxValue}
+            id={`tooltip-repartition-chart-${id}`}
+          />
+          {shouldBeHighlighted && (
+            <Tooltip className="z-20" id={`tooltip-repartition-chart-${id}`} />
+          )}
+        </>
       ))}
-      <Tooltip className="z-20" id={`tooltip-repartition-chart-${id}`} />
     </div>
   )
 }

@@ -81,9 +81,9 @@ export default function OrgaStatisticsCharts({
           />
 
           <div className="mt-4 flex items-baseline justify-between">
-            <span>
-              <ActionsIcon className="w-4" />
-              <strong className="text-lg">2</strong>{' '}
+            <span className="flex items-center">
+              <ActionsIcon className="mr-1 w-4" />
+              <strong className="mr-1 text-lg">2</strong>{' '}
               <span>
                 <Trans>tonnes</Trans>
               </span>
