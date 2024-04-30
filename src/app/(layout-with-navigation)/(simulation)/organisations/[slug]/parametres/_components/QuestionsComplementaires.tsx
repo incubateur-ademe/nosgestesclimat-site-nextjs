@@ -4,6 +4,7 @@ import { useUpdateOrganisation } from '@/app/(layout-with-navigation)/(simulatio
 import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
 import { organisationsParametersToggleAdditionnalQuestionsPostCode } from '@/constants/tracking/pages/organisationsParameters'
+import { useUpdateCustomQuestions } from '@/hooks/organisations/useUpdateCustomQuestions'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -30,7 +31,21 @@ export default function QuestionsComplementaires({
     email: user?.organisation?.administratorEmail ?? '',
   })
 
+  const { mutateAsync: updateCustomQuestions } = useUpdateCustomQuestions({
+    pollSlug: organisation?.polls[0].slug ?? '',
+    orgaSlug: organisation?.slug ?? '',
+  })
+
   const timeoutRef = useRef<NodeJS.Timeout>()
+
+  function showAndHideMessage() {
+    setIsConfirmingUpdate(true)
+
+    timeoutRef.current = setTimeout(() => {
+      setIsConfirmingUpdate(false)
+      timeoutRef.current = undefined
+    }, 2000)
+  }
 
   const handleChange = async ({
     questionKey,
@@ -76,12 +91,7 @@ export default function QuestionsComplementaires({
     refetchOrganisation()
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
-    setIsConfirmingUpdate(true)
-
-    timeoutRef.current = setTimeout(() => {
-      setIsConfirmingUpdate(false)
-      timeoutRef.current = undefined
-    }, 2000)
+    showAndHideMessage()
   }
 
   useEffect(() => {
@@ -89,6 +99,23 @@ export default function QuestionsComplementaires({
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
   }, [])
+
+  function handleUpdateCustomQuestions({
+    question,
+    value,
+  }: {
+    question: string
+    value: boolean
+  }) {
+    const customAdditionalQuestions = {
+      ...(poll?.customAdditionalQuestions || {}),
+      [question]: value,
+    }
+    updateCustomQuestions({ customAdditionalQuestions })
+
+    showAndHideMessage()
+  }
+
 
   return (
     <section className="mb-12 mt-8">
@@ -134,10 +161,7 @@ export default function QuestionsComplementaires({
       {poll?.customAdditionalQuestions && (
         <>
           <h3 className="mt-8">
-            <Trans>
-              Questions personnalisées (
-              {Object.keys(poll.customAdditionalQuestions).length})
-            </Trans>
+            <Trans>Questions personnalisées</Trans>
           </h3>
           {Object.entries(poll.customAdditionalQuestions).map(
             ([question, isEnabled]) => (
@@ -146,7 +170,7 @@ export default function QuestionsComplementaires({
                 name={question}
                 value={isEnabled}
                 onChange={(isEnabled: boolean) => {
-                  handleChange({ questionKey: question, value: isEnabled })
+                  handleUpdateCustomQuestions({ question, value: isEnabled })
                 }}
                 label={question}
               />
