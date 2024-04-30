@@ -74,10 +74,9 @@ export default function QuestionsComplementaires({
     })
 
     refetchOrganisation()
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
     setIsConfirmingUpdate(true)
-
-    if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
     timeoutRef.current = setTimeout(() => {
       setIsConfirmingUpdate(false)
@@ -90,7 +89,6 @@ export default function QuestionsComplementaires({
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
   }, [])
-
   return (
     <section className="mb-12 mt-8">
       <h2>
@@ -110,7 +108,7 @@ export default function QuestionsComplementaires({
         </Trans>
       </p>
 
-      <div className="mb-4 rounded-md border border-gray-200">
+      <div className="mb-4 rounded-md border-2 border-gray-200">
         <ToggleField
           name="villeToggle"
           value={
@@ -123,7 +121,7 @@ export default function QuestionsComplementaires({
         />
       </div>
 
-      <div className="rounded-md border border-gray-200">
+      <div className="rounded-md border-2 border-gray-200">
         <ToggleField
           name="birthdateToggle"
           value={

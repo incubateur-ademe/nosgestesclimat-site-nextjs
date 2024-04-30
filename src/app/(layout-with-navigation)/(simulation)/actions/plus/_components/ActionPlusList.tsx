@@ -4,7 +4,9 @@ import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useTempEngine } from '@/publicodes-state'
-import { DottedName, NGCRule, NGCRules } from '@/publicodes-state/types'
+import { DottedName } from '@/publicodes-state/types'
+import { NGCRule, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+
 import { Post } from '@/types/posts'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 
@@ -17,8 +19,9 @@ export default function ActionPlusList({ actions }: Props) {
   const plusListe = Object.entries(rules as NGCRules)
     .map(([dottedName, rule]) => ({ ...rule, dottedName }))
     .map((rule) => {
-      const plus = actions.find((action) => action.slug === rule.dottedName)
-        ?.content
+      const plus = actions.find(
+        (action) => action.slug === rule.dottedName
+      )?.content
       return { ...rule, plus }
     })
     .filter((r) => r.plus)
