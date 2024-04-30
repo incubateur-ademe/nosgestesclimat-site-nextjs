@@ -15,7 +15,7 @@ export default function OrgaStatistics({
 }: {
   title?: string | JSX.Element
   simulationRecaps: SimulationRecap[]
-  funFacts: FunFacts
+  funFacts: FunFacts | undefined
 }) {
   const pathname = usePathname()
 

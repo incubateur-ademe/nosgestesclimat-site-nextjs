@@ -46,7 +46,7 @@ export default function FunFactsBlock({
   funFacts,
   className,
 }: {
-  funFacts: FunFacts
+  funFacts: FunFacts | undefined
   className?: string
 }) {
   if (!funFacts) return null
