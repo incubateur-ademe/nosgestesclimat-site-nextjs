@@ -3,10 +3,12 @@
 import Link from '@/components/Link'
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
+import { profilClickQuestion } from '@/constants/tracking/pages/profil'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import MosaicQuestion from './question/MosaicQuestion'
 
 type Props = {
@@ -28,7 +30,8 @@ export default function Question({ question }: Props) {
   return (
     <Link
       href={getLinkToSimulateur({ question })}
-      className={`mb-2 block rounded-lg bg-white p-4 no-underline hover:underline`}>
+      onClick={() => trackEvent(profilClickQuestion(question))}
+      className={`mb-2 block rounded-xl bg-white p-4 no-underline hover:underline`}>
       <span
         className={`flex w-full items-center justify-between gap-8  text-sm`}>
         <span className="flex-1">{label}</span>

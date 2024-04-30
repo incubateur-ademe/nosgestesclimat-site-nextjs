@@ -1,14 +1,11 @@
 'use client'
 
-import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
-import { Dispatch, SetStateAction, useCallback } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+import { generateSimulation } from '@/helpers/simulation/generateSimulation'
+import { Dispatch, SetStateAction, useCallback, useMemo } from 'react'
 import {
-  ActionChoices,
-  ComputedResults,
   MigrationType,
   Simulation,
-  Situation,
+  UpdateCurrentSimulationProps,
 } from '../../types'
 
 type Props = {
@@ -25,58 +22,71 @@ export default function useSimulations({
   setCurrentSimulationId,
   migrationInstructions,
 }: Props) {
-  const resetAideSaisie = () => {
-    localStorage.removeItem('transport . voiture . km')
-    localStorage.removeItem(
-      'transport . avion . court courrier . heures de vol'
-    )
-    localStorage.removeItem(
-      'transport . avion . moyen courrier . heures de vol'
-    )
-    localStorage.removeItem('transport . avion . long courrier . heures de vol')
-  }
+  const initSimulation = useCallback(
+    ({
+      id,
+      date,
+      situation,
+      foldedSteps,
+      actionChoices,
+      persona,
+      computedResults,
+      progression,
+      defaultAdditionalQuestionsAnswers,
+      polls,
+      groups,
+      savedViaEmail,
+    }: Partial<Simulation> = {}) => {
+      resetAideSaisie()
 
-  const initSimulation = ({
-    situation = {},
-    persona,
-    foldedSteps = [],
-    defaultAdditionalQuestionsAnswers,
-    poll,
-    group,
-  }: {
-    situation?: Situation
-    persona?: string
-    foldedSteps?: string[]
-    defaultAdditionalQuestionsAnswers?: Record<string, string>
-    poll?: string
-    group?: string
-  } = {}) => {
-    const id = uuidv4()
+      let newCurrentId = id
 
-    resetAideSaisie()
+      setSimulations((prevSimulations: Simulation[]) => {
+        if (prevSimulations.find((simulation) => simulation.id === id)) {
+          setCurrentSimulationId(id ?? '')
+          return prevSimulations
+        }
 
-    setSimulations((prevSimulations: Simulation[]) => [
-      ...prevSimulations,
-      {
-        id,
-        date: new Date().toISOString(),
-        situation,
-        foldedSteps,
-        actionChoices: {},
-        persona,
-        defaultAdditionalQuestionsAnswers,
-        poll,
-        group,
-      },
-    ])
+        const migratedSimulation = generateSimulation({
+          id,
+          date,
+          situation,
+          foldedSteps,
+          actionChoices,
+          persona,
+          computedResults,
+          progression,
+          defaultAdditionalQuestionsAnswers,
+          polls,
+          groups,
+          savedViaEmail,
+          migrationInstructions,
+        })
 
-    setCurrentSimulationId(id)
+        newCurrentId = migratedSimulation.id
 
-    return id
-  }
+        return [...prevSimulations, migratedSimulation]
+      })
+
+      setCurrentSimulationId(newCurrentId ?? '')
+    },
+    [migrationInstructions, setSimulations, setCurrentSimulationId]
+  )
+
+  const deleteSimulation = useCallback(
+    (deletedSimulationId: string) => {
+      setSimulations((prevSimulations: Simulation[]) =>
+        [...prevSimulations].filter(
+          (simulation: Simulation) => simulation.id !== deletedSimulationId
+        )
+      )
+    },
+    [setSimulations]
+  )
 
   const updateCurrentSimulation = useCallback(
     ({
+      situation,
       situationToAdd,
       foldedStepToAdd,
       actionChoices,
@@ -88,243 +98,107 @@ export default function useSimulations({
       groupToAdd,
       groupToDelete,
       savedViaEmail,
-    }: {
-      situationToAdd?: Situation
-      foldedStepToAdd?: string
-      defaultAdditionalQuestionsAnswers?: Record<string, string>
-      actionChoices?: ActionChoices
-      computedResults?: ComputedResults
-      progression?: number
-      pollToAdd?: string | null
-      pollToDelete?: string | null
-      groupToAdd?: string | null
-      groupToDelete?: string | null
-      savedViaEmail?: boolean
-    }) => {
-      if (!currentSimulationId) return
+    }: UpdateCurrentSimulationProps) => {
+      setSimulations((prevSimulations: Simulation[]) =>
+        prevSimulations.map((simulation) => {
+          if (simulation.id !== currentSimulationId) return simulation
 
-      const simulationToUpdateFound = simulations.find(
-        (simulation: Simulation) => simulation.id === currentSimulationId
-      )
+          const simulationToUpdate = { ...simulation }
 
-      if (!simulationToUpdateFound) return
+          if (situation !== undefined) {
+            simulationToUpdate.situation = situation
+          }
 
-      const simulationToUpdate = { ...simulationToUpdateFound }
-
-      if (situationToAdd !== undefined) {
-        simulationToUpdate.situation = {
-          ...simulationToUpdate.situation,
-          ...situationToAdd,
-        }
-      }
-
-      if (foldedStepToAdd !== undefined) {
-        simulationToUpdate.foldedSteps = [
-          ...(simulationToUpdate.foldedSteps || []),
-          foldedStepToAdd,
-        ]
-      }
-
-      if (actionChoices !== undefined) {
-        simulationToUpdate.actionChoices = actionChoices
-      }
-
-      if (defaultAdditionalQuestionsAnswers !== undefined) {
-        simulationToUpdate.defaultAdditionalQuestionsAnswers =
-          defaultAdditionalQuestionsAnswers
-      }
-
-      if (computedResults !== undefined) {
-        simulationToUpdate.computedResults = computedResults
-      }
-
-      if (progression !== undefined) {
-        simulationToUpdate.progression = progression
-      }
-
-      if (pollToAdd) {
-        simulationToUpdate.polls = [
-          ...(simulationToUpdate.polls ?? []),
-          pollToAdd,
-        ]
-      }
-
-      if (pollToDelete && simulationToUpdate.polls) {
-        simulationToUpdate.polls = simulationToUpdate.polls.filter(
-          (poll) => poll !== pollToDelete
-        )
-      }
-
-      if (groupToAdd) {
-        simulationToUpdate.groups = [
-          ...(simulationToUpdate.groups ?? []),
-          groupToAdd,
-        ]
-      }
-
-      if (groupToDelete && simulationToUpdate.groups) {
-        simulationToUpdate.groups = simulationToUpdate.groups.filter(
-          (group) => group !== groupToDelete
-        )
-      }
-
-      if (savedViaEmail !== undefined) {
-        simulationToUpdate.savedViaEmail = savedViaEmail
-      }
-
-      setSimulations((prevSimulations: Simulation[]) => [
-        ...prevSimulations.filter(
-          (simulation: Simulation) => simulation.id !== currentSimulationId
-        ),
-        simulationToUpdate,
-      ])
-    },
-    [currentSimulationId, setSimulations, simulations]
-  )
-
-  const updateSituationOfCurrentSimulation = (situationToAdd: Situation) => {
-    if (currentSimulationId) {
-      setSimulations((prevSimulations: Simulation[]) => {
-        const simulationUpdated = prevSimulations.find(
-          (simulation: Simulation) => simulation.id === currentSimulationId
-        )
-
-        if (!simulationUpdated) return prevSimulations // TODO: should throw error
-        return [
-          ...prevSimulations.filter(
-            (simulation: Simulation) => simulation.id !== currentSimulationId
-          ),
-          {
-            ...simulationUpdated,
-            situation: {
-              ...simulationUpdated?.situation,
+          if (situationToAdd !== undefined) {
+            simulationToUpdate.situation = {
+              ...simulationToUpdate.situation,
               ...situationToAdd,
-            },
-          },
-        ]
-      })
-    }
-  }
+            }
+          }
 
-  const updateFoldedStepsOfCurrentSimulation = (foldedStep: string) => {
-    if (currentSimulationId) {
-      setSimulations((prevSimulations: Simulation[]) => {
-        const simulationUpdated = prevSimulations.find(
-          (simulation: Simulation) => simulation.id === currentSimulationId
-        )
+          if (
+            foldedStepToAdd !== undefined &&
+            !simulationToUpdate.foldedSteps.includes(foldedStepToAdd)
+          ) {
+            simulationToUpdate.foldedSteps = [
+              ...(simulationToUpdate.foldedSteps || []),
+              foldedStepToAdd,
+            ]
+          }
 
-        if (!simulationUpdated) return prevSimulations // TODO: should throw error
-        return [
-          ...prevSimulations.filter(
-            (simulation: Simulation) => simulation.id !== currentSimulationId
-          ),
-          {
-            ...simulationUpdated,
-            foldedSteps: [...simulationUpdated.foldedSteps, foldedStep],
-          },
-        ]
-      })
-    }
-  }
+          if (actionChoices !== undefined) {
+            simulationToUpdate.actionChoices = actionChoices
+          }
 
-  const updateCurrentSimulationActionChoices = (
-    actionChoices: ActionChoices
-  ) => {
-    const updatedSimulations = simulations.map((simulation) => {
-      if (simulation.id === currentSimulationId) {
-        return {
-          ...simulation,
-          actionChoices,
-        }
-      }
-      return simulation
-    })
-    setSimulations(updatedSimulations)
-  }
+          if (defaultAdditionalQuestionsAnswers !== undefined) {
+            simulationToUpdate.defaultAdditionalQuestionsAnswers =
+              defaultAdditionalQuestionsAnswers
+          }
 
-  const addSimulation = (simulation: Simulation) => {
-    // Avoid duplicating simulations
-    if (simulations.find((s) => s.id === simulation.id)) {
-      setCurrentSimulationId(simulation.id)
-      return
-    }
+          if (computedResults !== undefined) {
+            simulationToUpdate.computedResults = computedResults
+          }
 
-    const migratedSimulation = migrateSimulation({
-      simulation,
-      migrationInstructions,
-    })
+          if (progression !== undefined) {
+            simulationToUpdate.progression = progression
+          }
 
-    setSimulations((prevSimulations: Simulation[]) => [
-      ...prevSimulations,
-      migratedSimulation,
-    ])
+          if (pollToAdd) {
+            simulationToUpdate.polls = [
+              ...(simulationToUpdate.polls ?? []),
+              pollToAdd,
+            ]
+          }
 
-    setCurrentSimulationId(simulation.id)
-  }
+          if (pollToDelete && simulationToUpdate.polls) {
+            simulationToUpdate.polls = simulationToUpdate.polls.filter(
+              (poll) => poll !== pollToDelete
+            )
+          }
 
-  const deleteSimulation = (deletedSimulationId: string) => {
-    setSimulations((prevSimulations: Simulation[]) =>
-      [...prevSimulations].filter(
-        (simulation: Simulation) => simulation.id !== deletedSimulationId
-      )
-    )
-  }
+          if (groupToAdd) {
+            simulationToUpdate.groups = [
+              ...(simulationToUpdate.groups ?? []),
+              groupToAdd,
+            ]
+          }
 
-  type GetCurrentSimulationProps = {
-    deepCopy: boolean
-  }
-  const getCurrentSimulationPropsDefault = {
-    deepCopy: false,
-  }
-  const getCurrentSimulation = ({
-    deepCopy = false,
-  }: GetCurrentSimulationProps = getCurrentSimulationPropsDefault):
-    | Simulation
-    | undefined => {
-    const simulation = simulations.find(
-      (simulation: Simulation) => simulation.id === currentSimulationId
-    )
-    if (!simulation) return undefined
+          if (groupToDelete && simulationToUpdate.groups) {
+            simulationToUpdate.groups = simulationToUpdate.groups.filter(
+              (group) => group !== groupToDelete
+            )
+          }
 
-    return deepCopy ? JSON.parse(JSON.stringify(simulation)) : { ...simulation }
-  }
-  const updateProgressionOfCurrentSimulation = useCallback(
-    (progression: number) => {
-      if (currentSimulationId) {
-        setSimulations((prevSimulations: Simulation[]) => {
-          const simulationUpdated = prevSimulations.find(
-            (simulation: Simulation) => simulation.id === currentSimulationId
-          )
+          if (savedViaEmail !== undefined) {
+            simulationToUpdate.savedViaEmail = savedViaEmail
+          }
 
-          if (!simulationUpdated) return prevSimulations
-
-          return [
-            ...prevSimulations.filter(
-              (simulation: Simulation) => simulation.id !== currentSimulationId
-            ),
-            {
-              ...simulationUpdated,
-              progression,
-            },
-          ]
+          return simulationToUpdate
         })
-      }
+      )
     },
     [currentSimulationId, setSimulations]
   )
 
+  const currentSimulation = useMemo<Readonly<Simulation>>(
+    () =>
+      simulations.find(
+        (simulation: Simulation) => simulation.id === currentSimulationId
+      ) ?? simulations[0],
+    [currentSimulationId, simulations]
+  )
+
   return {
-    simulations,
-    currentSimulation: getCurrentSimulation(),
-    getCurrentSimulation,
-    currentSimulationId,
-    updateCurrentSimulation,
-    updateSituationOfCurrentSimulation,
-    updateProgressionOfCurrentSimulation,
-    updateFoldedStepsOfCurrentSimulation,
-    updateCurrentSimulationActionChoices,
     initSimulation,
-    addSimulation,
     deleteSimulation,
+    currentSimulation,
+    updateCurrentSimulation,
   }
+}
+
+const resetAideSaisie = () => {
+  localStorage.removeItem('transport . voiture . km')
+  localStorage.removeItem('transport . avion . court courrier . heures de vol')
+  localStorage.removeItem('transport . avion . moyen courrier . heures de vol')
+  localStorage.removeItem('transport . avion . long courrier . heures de vol')
 }

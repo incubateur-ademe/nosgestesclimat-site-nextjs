@@ -1,12 +1,13 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { getMatomoEventActionAccepted } from '@/constants/matomo'
+import { actionsClickYes } from '@/constants/tracking/pages/actions'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
 import {
   FormProvider,
+  useCurrentSimulation,
   useEngine,
   useRule,
   useTempEngine,
@@ -32,10 +33,11 @@ export default function ActionDetail({
     ?.map(decodeURIComponent)
     ?.join(' . ')
 
-  const { getValue } = useEngine()
   const { rules, getRuleObject, extendedFoldedSteps } = useTempEngine()
 
-  const { getCurrentSimulation, toggleActionChoice } = useUser()
+  const { toggleActionChoice } = useUser()
+
+  const { actionChoices } = useCurrentSimulation()
 
   const dottedName = decodeRuleName(formattedDottedName ?? '')
 
@@ -47,13 +49,9 @@ export default function ActionDetail({
   const nbRemainingQuestions = remainingQuestions?.length
   const rule = useRule(dottedName)
 
-  const currentSimulation = getCurrentSimulation()
-
-  if (!currentSimulation || !rules) {
+  if (!rules) {
     return null
   }
-
-  const actionChoices = currentSimulation.actionChoices
 
   const { title } = rule
 
@@ -111,12 +109,7 @@ export default function ActionDetail({
                 toggleActionChoice(dottedName)
 
                 if (!actionChoices[dottedName]) {
-                  trackEvent(
-                    getMatomoEventActionAccepted(
-                      dottedName,
-                      String(getValue(dottedName))
-                    )
-                  )
+                  trackEvent(actionsClickYes(dottedName))
                 }
               }}
             />

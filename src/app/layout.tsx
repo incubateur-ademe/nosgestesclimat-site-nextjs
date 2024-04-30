@@ -70,7 +70,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <link rel="manifest" href="../manifest.webmanifest" />
 
-        <meta name="theme-color" content="#491273" />
+        <meta name="theme-color" content="#4949ba" />
+
         {process.env.NEXT_PUBLIC_MATOMO_ID === '1' && (
           <Script id="matomo">
             {`
@@ -78,7 +79,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
           _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
           _paq.push(["setCookieDomain", "*.nosgestesclimat.fr"]);
-          _paq.push(['trackPageView']);
           _paq.push(['enableLinkTracking']);
           (function() {
             // var u="https://stats.beta.gouv.fr/";
@@ -102,7 +102,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           b.setAttribute('data-useragent', navigator.userAgent);
         `}</Script>
 
-        <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" />
         <ErrorBoundary showDialog fallback={ErrorFallback}>
           <MainLayoutProviders
             region={region}

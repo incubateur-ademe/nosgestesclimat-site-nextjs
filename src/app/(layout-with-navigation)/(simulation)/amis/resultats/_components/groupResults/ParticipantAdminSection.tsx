@@ -65,7 +65,7 @@ export default function ParticipantAdminSection({ group }: Props) {
       </p>
 
       {isConfirming && !isSuccess && (
-        <Card className="border-none bg-grey-100">
+        <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
             <Trans>
               Cette opération est définitive et vous ne pourrez plus accéder aux
@@ -95,7 +95,7 @@ export default function ParticipantAdminSection({ group }: Props) {
       )}
 
       {isSuccess && (
-        <Card className="border-none bg-grey-100">
+        <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
             <Trans>
               Vous avez quitté ce groupe. Vous allez être redirigé vers la page

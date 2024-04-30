@@ -1,8 +1,8 @@
 import Link from '@/components/Link'
+import MailIcon from '@/components/icons/MailIcon'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Script from 'next/script'
@@ -23,10 +23,11 @@ export default function Contact() {
     <div className="pb-4">
       <Title
         title={
-          <>
+          <span className="flex items-center">
             <Trans>Contact</Trans>
-            <Emoji className="ml-2 inline-block">📨</Emoji>
-          </>
+
+            <MailIcon className="ml-3 fill-primary-500" />
+          </span>
         }
       />
 

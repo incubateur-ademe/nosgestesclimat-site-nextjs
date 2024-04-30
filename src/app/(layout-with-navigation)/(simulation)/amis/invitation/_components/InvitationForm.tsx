@@ -1,50 +1,38 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { getMatomoEventJoinedGroupe } from '@/constants/matomo'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
-import { trackEvent } from '@/utils/matomo/trackEvent'
-import { captureException } from '@sentry/react'
+import { isEmailValid } from '@/utils/isEmailValid'
 import { FormEvent, useEffect, useState } from 'react'
 
 export default function InvitationForm({ group }: { group: Group }) {
-  const [errorPrenom, setErrorPrenom] = useState('')
-  const [errorEmail, setErrorEmail] = useState('')
-
   const { t } = useClientTranslation()
 
-  const {
-    user,
-    updateEmail,
-    updateName,
-    updateCurrentSimulation,
-    getCurrentSimulation,
-  } = useUser()
+  const { user, updateName, updateEmail } = useUser()
 
-  const currentSimulation = getCurrentSimulation()
-
-  const { progression } = useForm()
-
-  const hasCompletedTest = progression === 1
+  const currentSimulation = useCurrentSimulation()
+  const hasCompletedTest = currentSimulation.progression === 1
 
   const { goToSimulateurPage } = useSimulateurPage()
   const { goToEndPage } = useEndPage()
 
-  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
-    useState(false)
-  useEffect(() => {
-    if (!shouldGoToSimulateurPage) {
-      return
-    }
+  const [guestName, setGuestName] = useState(user.name || '')
+  const [errorGuestName, setErrorGuestName] = useState('')
 
-    if (currentSimulation?.groups?.includes(group?._id || '')) {
+  const [guestEmail, setGuestEmail] = useState(user.email || '')
+  const [errorGuestEmail, setErrorGuestEmail] = useState('')
+
+  const [shouldNavigate, setShouldNavigate] = useState(false)
+  useEffect(() => {
+    if (shouldNavigate && currentSimulation.groups?.includes(group._id)) {
+      setShouldNavigate(false)
       if (hasCompletedTest) {
         goToEndPage({ allowedToGoToGroupDashboard: true })
       } else {
@@ -52,12 +40,12 @@ export default function InvitationForm({ group }: { group: Group }) {
       }
     }
   }, [
-    goToSimulateurPage,
-    goToEndPage,
-    shouldGoToSimulateurPage,
-    currentSimulation,
-    group,
+    currentSimulation.groups,
+    group._id,
     hasCompletedTest,
+    goToEndPage,
+    goToSimulateurPage,
+    shouldNavigate,
   ])
 
   const handleSubmit = async (event: MouseEvent | FormEvent) => {
@@ -72,55 +60,48 @@ export default function InvitationForm({ group }: { group: Group }) {
     }
 
     // Inputs validation
-    if (!user.name) {
-      setErrorPrenom(t('Veuillez renseigner un prénom ou un pseudonyme.'))
+    if (!guestName) {
+      setErrorGuestName(t('Veuillez renseigner un prénom ou un pseudonyme.'))
       return
     }
-    if (
-      user.email &&
-      !user.email.match(
-        /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-      )
-    ) {
-      setErrorEmail(t('Veuillez renseigner un email valide.'))
+    if (!isEmailValid(guestEmail)) {
+      setErrorGuestEmail(t('Veuillez renseigner un email valide.'))
       return
     }
 
-    try {
-      // Update current simulation with group id (to redirect after test completion)
-      updateCurrentSimulation({
-        groupToAdd: group._id,
-      })
+    // Update user info
+    updateName(guestName)
+    updateEmail(guestEmail)
 
-      trackEvent(getMatomoEventJoinedGroupe(group?._id))
+    // Update current simulation with group id (to redirect after test completion)
+    currentSimulation.update({
+      groupToAdd: group._id,
+    })
 
-      // Redirect to simulateur page or end page
-      setShouldGoToSimulateurPage(true)
-    } catch (error) {
-      captureException(error)
-    }
+    // Redirect to simulateur page or end page
+    setShouldNavigate(true)
   }
 
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       <PrenomInput
-        prenom={user.name ?? ''}
-        setPrenom={updateName}
-        errorPrenom={errorPrenom}
-        setErrorPrenom={setErrorPrenom}
+        prenom={guestName}
+        setPrenom={setGuestName}
+        errorPrenom={errorGuestName}
+        setErrorPrenom={setErrorGuestName}
         data-cypress-id="member-name"
       />
 
       <div className="my-4">
         <EmailInput
-          email={user.email ?? ''}
-          setEmail={updateEmail}
-          error={errorEmail}
-          setError={setErrorEmail}
+          email={guestEmail}
+          setEmail={setGuestEmail}
+          error={errorGuestEmail}
+          setError={setErrorGuestEmail}
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="italic text-secondary-500">
+              <span className="italic text-secondary-700">
                 {' '}
                 {t('facultatif')}
               </span>
@@ -141,7 +122,7 @@ export default function InvitationForm({ group }: { group: Group }) {
       <Button
         type="submit"
         onClick={handleSubmit}
-        aria-disabled={!user.name}
+        aria-disabled={!guestName}
         data-cypress-id="button-join-group">
         {hasCompletedTest ? (
           <Trans>Rejoindre</Trans>

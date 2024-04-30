@@ -1,9 +1,9 @@
 import { Group } from '@/types/groups'
+import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
 import {
   EvaluatedNode,
   Evaluation,
   Engine as PublicodesEngine,
-  Rule,
   RuleNode,
 } from 'publicodes'
 
@@ -18,15 +18,15 @@ export type UserOrganisationInfo = {
 export type RegionFromGeolocation = { code: string; name: string }
 
 export type User = {
-  region: {
+  region?: {
     code: string
     name: string
   }
-  initialRegion: RegionFromGeolocation
-  name: string
-  email: string
-  northStarRatings?: any // TODO: should be NorthStartType or something
   userId: string
+  name?: string
+  email?: string
+  initialRegion: RegionFromGeolocation
+  northStarRatings?: any // TODO: should be NorthStartType or something
   loginExpirationDate?: Date
   organisation?: UserOrganisationInfo
   administratorEmail?: string
@@ -71,12 +71,27 @@ export type Simulation = {
   situation: Situation
   foldedSteps: DottedName[]
   actionChoices: ActionChoices
-  persona?: string
+  persona?: DottedName
   computedResults?: ComputedResults
-  progression?: number
+  progression: number
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   polls?: string[] | null
   groups?: string[] | null
+  savedViaEmail?: boolean
+}
+
+type UpdateCurrentSimulationProps = {
+  situation?: Situation
+  situationToAdd?: Situation
+  foldedStepToAdd?: string
+  actionChoices?: ActionChoices
+  defaultAdditionalQuestionsAnswers?: Record<string, string>
+  computedResults?: ComputedResults
+  progression?: number
+  pollToAdd?: string | null
+  pollToDelete?: string | null
+  groupToAdd?: string | null
+  groupToDelete?: string | null
   savedViaEmail?: boolean
 }
 
@@ -117,28 +132,6 @@ type MosaicInfos = {
 }
 
 type Formule = any
-
-type NGCRule = Rule & {
-  abréviation?: string
-  couleur?: Color
-  mosaique?: MosaiqueNode
-  type?: string
-  sévérité?: string
-  action?: { dépasse: string[] }
-  icônes?: string
-  sévérité?: 'avertissement' | 'information' | 'invalide'
-  dottedName?: DottedName
-  question?: string
-  plus?: boolean
-  formule?: Formule
-  aide?: string
-  inactif?: string
-  résumé?: string
-  plancher?: number
-  avertissement?: string
-}
-
-export type NGCRules = Record<DottedName, NGCRule>
 
 export type MigrationType = {
   keysToMigrate: Record<DottedName, DottedName>

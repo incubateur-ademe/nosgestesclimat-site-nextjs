@@ -18,7 +18,7 @@ export async function generateMetadata({ params: { slug } }: Props) {
     title: `${capitalizeString(decodeURI(slug))?.replaceAll(
       '-',
       ' '
-    )}, article du blog - Nos Gestes Climat`,
+    )}, ${t('article du blog - Nos Gestes Climat')}`,
     description: t('Découvrez les articles de blog du site Nos Gestes Climat.'),
     params: { slug },
     alternates: {

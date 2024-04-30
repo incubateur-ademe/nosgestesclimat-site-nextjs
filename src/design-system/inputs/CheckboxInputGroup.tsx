@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode } from 'react'
+import { ChangeEvent, ForwardedRef, ReactNode, forwardRef } from 'react'
 
 type Props = {
   name: string
@@ -18,26 +18,30 @@ const sizesClassNames = {
   lg: 'w-8 h-8',
 }
 
-export default function CheckboxInputGroup({
-  name,
-  label,
-  error,
-  className,
-  onChange,
-  value,
-  defaultChecked,
-  required = false,
-  size = 'sm',
-  ...props
-}: Props) {
+export default forwardRef(function CheckboxInputGroup(
+  {
+    name,
+    label,
+    error,
+    className,
+    onChange,
+    value,
+    defaultChecked,
+    required = false,
+    size = 'sm',
+    ...props
+  }: Props,
+  ref: ForwardedRef<HTMLInputElement>
+) {
   return (
     <div className={`flex flex-col ${className}`} aria-live="polite">
       <label htmlFor={name} className="flex cursor-pointer items-center gap-2">
         <input
+          ref={ref}
           name={name}
           id={name}
           type="checkbox"
-          className={`mr-2 max-w-[30rem] cursor-pointer rounded-md border-solid border-grey-200 bg-grey-100 !p-4 text-2xl transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500 ${
+          className={`mr-1 max-w-[30rem] cursor-pointer rounded-xl border-2 border-solid border-gray-200 bg-gray-100 !p-4 text-2xl transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700 ${
             sizesClassNames[size]
           } ${error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''}`}
           onChange={onChange}
@@ -60,4 +64,4 @@ export default function CheckboxInputGroup({
       )}
     </div>
   )
-}
+})

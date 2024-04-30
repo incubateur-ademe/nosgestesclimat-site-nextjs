@@ -1,7 +1,5 @@
 const shouldUseDevTracker = process.env.NODE_ENV === 'development'
 
-const groupExclusionRegexp = /\/(sondage|conférence)\//
-
 declare global {
   interface Window {
     _paq: any[]
@@ -9,20 +7,17 @@ declare global {
 }
 
 export const trackEvent = (args: (string | null)[]) => {
-  if (window.location.pathname.match(groupExclusionRegexp)) return
-
   if (shouldUseDevTracker || !window?._paq) {
     console.debug(args.join(' => '))
     return
   }
+
   // Pass a copy of the array to avoid mutation
   window?._paq?.push([...args])
 }
 
 export const trackPageView = (url: string) => {
-  if (window.location.pathname.match(groupExclusionRegexp)) return
-
-  if (shouldUseDevTracker) {
+  if (shouldUseDevTracker || !window?._paq) {
     console.debug('trackPageView => ' + url)
     return
   }

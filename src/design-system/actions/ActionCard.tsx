@@ -12,6 +12,7 @@ type Props = {
   title: string
   tag?: ElementType | string
   href?: string
+  onClick?: () => void
   className?: string
 }
 
@@ -20,18 +21,20 @@ export default function ActionCard({
   footprintAvoided,
   title,
   tag = 'div',
+  onClick = () => {},
   className,
   ...props
 }: Props) {
   return (
     <Card
       tag={tag}
+      onClick={onClick}
       className={twMerge('h-[140px] w-[230px] pr-2 !no-underline', className)}
       {...props}>
       <div className="flex justify-between">
         <Emoji className="flex gap-1">{icons}</Emoji>
 
-        <Badge color="green">
+        <Badge>
           <strong>
             - {formatValue(roundValue(footprintAvoided), { precision: 0 })}
           </strong>{' '}

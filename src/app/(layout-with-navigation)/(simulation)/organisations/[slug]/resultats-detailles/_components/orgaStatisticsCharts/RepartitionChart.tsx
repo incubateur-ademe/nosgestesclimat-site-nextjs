@@ -22,19 +22,23 @@ export default function RepartitionChart({
   return (
     <div
       className={twMerge(
-        'relative h-[48px] overflow-hidden rounded-lg border border-gray-300 bg-white px-2',
+        'relative h-[48px] overflow-hidden rounded-xl border border-gray-300 bg-white px-2',
         className
       )}>
       {items.map(({ value, shouldBeHighlighted }, index) => (
-        <BarItem
-          key={`repartition-chart-item-${index}`}
-          value={value}
-          shouldBeHighlighted={shouldBeHighlighted}
-          maxValue={maxValue}
-          id={`tooltip-repartition-chart-${id}`}
-        />
+        <>
+          <BarItem
+            key={`repartition-chart-item-${index}`}
+            value={value}
+            shouldBeHighlighted={shouldBeHighlighted}
+            maxValue={maxValue}
+            id={`tooltip-repartition-chart-${id}`}
+          />
+          {shouldBeHighlighted && (
+            <Tooltip className="z-20" id={`tooltip-repartition-chart-${id}`} />
+          )}
+        </>
       ))}
-      <Tooltip className="z-20" id={`tooltip-repartition-chart-${id}`} />
     </div>
   )
 }

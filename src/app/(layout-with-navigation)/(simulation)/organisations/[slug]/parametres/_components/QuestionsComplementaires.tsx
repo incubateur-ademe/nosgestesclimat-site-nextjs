@@ -1,7 +1,9 @@
+'use client'
+
 import { useUpdateOrganisation } from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useUpdateOrganisation'
 import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
-import { getClickAdditionalQuestionEvent } from '@/constants/matomo/organisations'
+import { organisationsParametersToggleAdditionnalQuestionsPostCode } from '@/constants/tracking/pages/organisationsParameters'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -36,7 +38,16 @@ export default function QuestionsComplementaires({
     questionKey: string
     value: boolean
   }) => {
-    trackEvent(getClickAdditionalQuestionEvent(questionKey, value))
+    if (questionKey === 'postalCode') {
+      trackEvent(
+        organisationsParametersToggleAdditionnalQuestionsPostCode(value)
+      )
+    }
+    if (questionKey === 'birthdate') {
+      trackEvent(
+        organisationsParametersToggleAdditionnalQuestionsPostCode(value)
+      )
+    }
 
     const defaultAdditionalQuestions =
       poll?.defaultAdditionalQuestions ?? ([] as string[])
@@ -62,10 +73,9 @@ export default function QuestionsComplementaires({
     })
 
     refetchOrganisation()
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
     setIsConfirmingUpdate(true)
-
-    if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
     timeoutRef.current = setTimeout(() => {
       setIsConfirmingUpdate(false)
@@ -78,11 +88,10 @@ export default function QuestionsComplementaires({
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
   }, [])
-
   return (
     <section className="mb-12 mt-8">
       <h2>
-        <Trans>Question complémentaires</Trans>
+        <Trans>Questions complémentaires</Trans>
       </h2>
       <p>
         <Trans>
@@ -98,31 +107,24 @@ export default function QuestionsComplementaires({
         </Trans>
       </p>
 
-      <div className="mb-4 rounded-md border border-grey-200">
-        <ToggleField
-          name="villeToggle"
-          value={
-            poll?.defaultAdditionalQuestions.includes('postalCode') ?? false
-          }
-          onChange={(isEnabled: boolean) => {
-            handleChange({ questionKey: 'postalCode', value: isEnabled })
-          }}
-          label={<Trans>Dans quelle ville habitez-vous ?</Trans>}
-        />
-      </div>
+      <ToggleField
+        name="villeToggle"
+        className="mb-4"
+        value={poll?.defaultAdditionalQuestions.includes('postalCode') ?? false}
+        onChange={(isEnabled: boolean) => {
+          handleChange({ questionKey: 'postalCode', value: isEnabled })
+        }}
+        label={<Trans>Dans quelle ville habitez-vous ?</Trans>}
+      />
 
-      <div className="rounded-md border border-grey-200">
-        <ToggleField
-          name="birthdateToggle"
-          value={
-            poll?.defaultAdditionalQuestions.includes('birthdate') ?? false
-          }
-          onChange={(isEnabled: boolean) => {
-            handleChange({ questionKey: 'birthdate', value: isEnabled })
-          }}
-          label={<Trans>Quelle est votre année de naissance ?</Trans>}
-        />
-      </div>
+      <ToggleField
+        name="birthdateToggle"
+        value={poll?.defaultAdditionalQuestions.includes('birthdate') ?? false}
+        onChange={(isEnabled: boolean) => {
+          handleChange({ questionKey: 'birthdate', value: isEnabled })
+        }}
+        label={<Trans>Quelle est votre année de naissance ?</Trans>}
+      />
 
       <ModificationSaved
         shouldShowMessage={isConfirmingUpdate}

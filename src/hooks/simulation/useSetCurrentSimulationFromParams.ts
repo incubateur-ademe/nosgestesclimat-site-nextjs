@@ -7,7 +7,7 @@ import { useSimulationIdInQueryParams } from './useSimulationIdInQueryParams'
 export function useSetCurrentSimulationFromParams() {
   const pathname = usePathname()
 
-  const { simulations, addSimulation, setCurrentSimulationId } = useUser()
+  const { simulations, initSimulation, setCurrentSimulationId } = useUser()
 
   const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
 
@@ -48,14 +48,14 @@ export function useSetCurrentSimulationFromParams() {
     }
 
     // if the simulation is not in the localStorage, we add it
-    addSimulation(simulation)
+    initSimulation(simulation)
     setIsCorrectSimulationSet(true)
   }, [
     simulations,
     simulation,
     isLoading,
     isCorrectSimulationSet,
-    addSimulation,
+    initSimulation,
     setCurrentSimulationId,
     simulationIdInQueryParams,
     pathname,

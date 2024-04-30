@@ -69,7 +69,7 @@
     @apply items-center;
     @apply space-x-4;
     @apply w-full;
-    @apply rounded-lg;
+    @apply rounded-xl;
     @apply bg-gray-800;
     @apply text-white;
     @apply p-4;
@@ -105,7 +105,7 @@ body {
 }
 
 a {
-  @apply inline-block text-primary-500 underline transition-colors hover:text-primary-400;
+  @apply inline-block text-primary-700 underline transition-colors hover:text-primary-800;
 }
 
 img {
@@ -236,7 +236,7 @@ html[data-useragent*='Trident'] #js {
 }
 @media (max-width: 400px) {
   .region-grid {
-    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
   }
 }
 
@@ -253,7 +253,7 @@ html[data-useragent*='Trident'] #js {
 	Gamecard
 */
 .game-card-1 {
-  @apply fill-primary-500;
+  @apply fill-primary-700;
   fill-opacity: 0.996078;
   fill-rule: 'evenodd';
   @apply stroke-primary-700;
@@ -266,10 +266,10 @@ html[data-useragent*='Trident'] #js {
 }
 
 .game-card-2 {
-  @apply fill-primary-500;
+  @apply fill-primary-700;
   fill-opacity: 0.996078;
   fill-rule: 'evenodd';
-  @apply stroke-primary-500;
+  @apply stroke-primary-700;
   stroke-width: 7.2062;
   stroke-linecap: 'round';
   stroke-linejoin: 'round';
@@ -449,4 +449,51 @@ html[data-useragent*='Trident'] #js {
   @apply border;
   @apply border-gray-200;
   @apply rounded-md;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-rainbow {
+  background: linear-gradient(
+    90deg,
+    #a2d2fd,
+    #cef1d5,
+    #ffefbc,
+    #ffdbbc,
+    #fd69d0,
+    #a2d2fd,
+    #cef1d5,
+    #ffefbc,
+    #ffdbbc,
+    #fd69d0,
+    #a2d2fd
+  );
+  background-size: 200% 200%;
+}
+
+/*
+  Create a rainbow-border class to apply a rainbow border to an element
+*/
+.rainbow-border {
+  background:
+    linear-gradient(#fff 0 0) padding-box,
+    /*this is your grey background*/
+      linear-gradient(145deg, #a2d2fd, #cef1d5, #ffefbc, #ffdbbc, #fd69d0)
+      border-box;
+  border: 6px solid transparent;
+}
+
+.notification blockquote {
+  background-color: #fff;
+  padding: 0;
 }

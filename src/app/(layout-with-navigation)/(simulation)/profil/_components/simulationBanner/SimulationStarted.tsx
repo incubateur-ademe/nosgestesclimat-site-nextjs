@@ -1,14 +1,19 @@
 import Link from '@/components/Link'
+import PlaySignIcon from '@/components/icons/PlaySignIcon'
+import RestartIcon from '@/components/icons/RestartIcon'
 import Trans from '@/components/translation/Trans'
-import Button from '@/design-system/inputs/Button'
+import {
+  profilClickCtaReprendre,
+  profilClickCtaResultats,
+  profilClickRecommencer,
+} from '@/constants/tracking/pages/profil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
-import Emoji from '@/design-system/utils/Emoji'
-import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
+import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useActions, useForm, useUser } from '@/publicodes-state'
+import { useActions, useCurrentSimulation, useForm } from '@/publicodes-state'
 import TutorialLink from './_components/TutorialLink'
 
 export default function SimulationStarted() {
@@ -16,18 +21,20 @@ export default function SimulationStarted() {
 
   const { getLinkToEndPage } = useEndPage()
 
-  const { progression, relevantAnsweredQuestions } = useForm()
+  const { relevantAnsweredQuestions } = useForm()
 
-  const { initSimulation } = useUser()
+  const { progression } = useCurrentSimulation()
 
   const { chosenActions, declinedActions } = useActions()
+
+  const { goToSimulateurPage, getLinkToSimulateurPage } = useSimulateurPage()
 
   const isFinished = progression === 1
 
   return (
     <div className="flex flex-wrap">
       <div className="sm:mt-4 sm:w-[30rem]">
-        <Card className="mr-8">
+        <Card className="mr-8 border-none bg-gray-100">
           <p className="text-base md:text-lg">
             {t('publicodes.Profil.recap', {
               percentFinished: (progression * 100).toFixed(0),
@@ -54,13 +61,13 @@ export default function SimulationStarted() {
         </details>
       </div>
 
-      <div className="my-4 flex w-44 flex-col items-start md:w-auto">
+      <div className="my-4 flex flex-col items-start md:w-auto">
         {isFinished && (
           <ButtonLink
-            className="w-full text-center leading-8"
+            className="w-full justify-center text-center leading-8"
             color="primary"
-            href={getLinkToEndPage()}>
-            <Emoji className="mr-2">👀</Emoji>
+            href={getLinkToEndPage()}
+            trackingEvent={profilClickCtaResultats}>
             <Trans>Voir mon résultat</Trans>
           </ButtonLink>
         )}
@@ -68,29 +75,29 @@ export default function SimulationStarted() {
         {!isFinished && (
           <ButtonLink
             color="primary"
-            className="w-full  text-center"
-            href={getLinkToSimulateur()}>
-            <ProgressCircle white className="mr-2" />
+            className="w-full !justify-center"
+            href={getLinkToSimulateur()}
+            trackingEvent={profilClickCtaReprendre}>
+            <PlaySignIcon className="mr-2 fill-white" />
+
             <Trans>Reprendre mon test</Trans>
           </ButtonLink>
         )}
 
-        <Button
+        <ButtonLink
           color="secondary"
-          className="my-2 w-full text-center !text-base"
+          className="my-2 w-full text-center"
+          trackingEvent={profilClickRecommencer}
           onClick={() => {
-            initSimulation()
-          }}>
-          <span
-            role="img"
-            aria-label="recycle emoji"
-            className="mr-2 inline-block text-xl">
-            ♻️
-          </span>{' '}
-          <Trans>Recommencer</Trans>
-        </Button>
+            goToSimulateurPage({ noNavigation: true, newSimulation: {} })
+          }}
+          href={getLinkToSimulateurPage({ newSimulation: true })}>
+          <RestartIcon className="mr-2 fill-primary-700" />
 
-        <TutorialLink className=" !text-base font-normal" />
+          <Trans>Recommencer</Trans>
+        </ButtonLink>
+
+        <TutorialLink />
       </div>
     </div>
   )

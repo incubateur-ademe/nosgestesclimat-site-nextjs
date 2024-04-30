@@ -1,5 +1,15 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
+'use client'
+
 import Trans from '@/components/translation/Trans'
+import {
+  tutorielClickFaq,
+  tutorielClickQuestion,
+} from '@/constants/tracking/pages/tutoriel'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
 import OrganisationPrivacy from './autresQuestions/OrganisationPrivacy'
 
@@ -13,7 +23,13 @@ export default function AutresQuestions() {
         <OrganisationPrivacy />
         <li className="mb-2" id={'empreinte'}>
           <details>
-            <summary className="cursor-pointer text-sm font-bold text-primary-500 md:text-lg">
+            <summary
+              className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
+              onClick={() =>
+                trackEvent(
+                  tutorielClickQuestion('C’est quoi mon empreinte carbone ?')
+                )
+              }>
               <Trans>C’est quoi mon empreinte carbone ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
@@ -49,7 +65,11 @@ export default function AutresQuestions() {
         </li>
         <li className="mb-2" id={'mesure'}>
           <details>
-            <summary className="cursor-pointer text-sm font-bold text-primary-500 md:text-lg">
+            <summary
+              className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
+              onClick={() =>
+                trackEvent(tutorielClickQuestion('Comment on la mesure ?'))
+              }>
               <Trans>Comment on la mesure ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
@@ -85,7 +105,12 @@ export default function AutresQuestions() {
               </p>
               <blockquote>
                 <details>
-                  <summary>
+                  <summary
+                    onClick={() =>
+                      trackEvent(
+                        tutorielClickQuestion('Mais que veut dire ce petit e ?')
+                      )
+                    }>
                     <Trans i18nKey={'sites.publicodes.Tutorial.questionE'}>
                       💡 Mais que veut dire ce petit <em>e</em> ?
                     </Trans>
@@ -118,7 +143,11 @@ export default function AutresQuestions() {
         </li>
         <li className="mb-4" id={'categories'}>
           <details id={'categories'}>
-            <summary className="cursor-pointer text-sm font-bold text-primary-500 md:text-lg">
+            <summary
+              className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
+              onClick={() =>
+                trackEvent(tutorielClickQuestion('D’où vient mon empreinte ?'))
+              }>
               <Trans>D’où vient mon empreinte ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
@@ -137,7 +166,11 @@ export default function AutresQuestions() {
           </details>
         </li>
       </ul>
-      <ButtonLink href="/questions-frequentes" size="sm" color="secondary">
+      <ButtonLink
+        href="/questions-frequentes"
+        size="sm"
+        color="secondary"
+        trackingEvent={tutorielClickFaq}>
         ☝️ <Trans>Consultez la FAQ</Trans>
       </ButtonLink>
     </div>

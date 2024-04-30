@@ -1,2 +1,2 @@
-export type ButtonSize = 'sm' | 'md' | 'lg' | 'xl'
+export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type QuestionSize = 'sm' | 'md'

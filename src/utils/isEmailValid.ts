@@ -1,3 +1,6 @@
+/**
+ * Return true if the email is valid OR if there is no email
+ */
 export const isEmailValid = (email: string | undefined): boolean => {
   if (
     email &&

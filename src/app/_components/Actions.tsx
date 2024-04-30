@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { homeClickActions } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -21,14 +22,16 @@ export default async function Actions() {
       </Kicker>
       <h2 className="font-medium md:text-3xl">{t('Comment agir\u202f?')}</h2>
       <p className="max-w-xs md:mb-8 md:max-w-sm md:text-lg">
-        <Trans>
-          Découvrez nos pistes personnalisées pour agir dès aujourd’hui pour le
-          climat.
-        </Trans>
+        <Trans>Découvrez nos</Trans>{' '}
+        <strong className="text-primary-700">
+          <Trans>pistes personnalisées</Trans>
+        </strong>{' '}
+        <Trans>pour agir dès aujourd'hui pour le climat.</Trans>
       </p>
       <ButtonLink
         color="secondary"
         href="/actions"
+        trackingEvent={homeClickActions}
         data-cypress-id="actions-link">
         <Trans>Toutes les actions</Trans>
       </ButtonLink>

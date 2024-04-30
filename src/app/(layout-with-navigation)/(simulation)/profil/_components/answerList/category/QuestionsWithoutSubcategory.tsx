@@ -34,7 +34,7 @@ export default function QuestionsWithoutSubcategory({ category }: Props) {
   return answeredQuestionOfCategoryWithoutSubcategory.map((question) => (
     <div
       key={question}
-      className="relative mt-2 w-full overflow-hidden rounded-lg bg-primary-100 ">
+      className="relative mt-2 w-full overflow-hidden rounded-xl bg-primary-100 ">
       <div
         className={`absolute bottom-0 left-0 top-0 w-2 ${getBackgroundColor(
           category

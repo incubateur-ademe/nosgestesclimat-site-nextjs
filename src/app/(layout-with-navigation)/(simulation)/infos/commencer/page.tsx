@@ -2,36 +2,39 @@
 
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import Trans from '@/components/translation/Trans'
-import { getParticipantInscriptionPageVisitedEvent } from '@/constants/matomo/organisations'
+import {
+  infosCommencerClickCtaCommencer,
+  infosCommencerClickNewTest,
+} from '@/constants/tracking/pages/infos'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useContext, useEffect, useState } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
 const titles = {
   notStarted: (
-    <>
+    <span className="flex items-center">
       <Trans>Envie de connaître votre empreinte carbone ?</Trans>{' '}
       <Emoji>🤓</Emoji>
-    </>
+    </span>
   ),
   started: (
-    <>
+    <span className="flex items-center">
       <Trans>Vous avez déjà commencé le test Nos Gestes Climat !</Trans>{' '}
       <Emoji>💪</Emoji>
-    </>
+    </span>
   ),
   finished: (
-    <>
+    <span className="flex items-center">
       <Trans>Vous avez déjà réalisé le test Nos Gestes Climat !</Trans>{' '}
       <Emoji>👏</Emoji>
-    </>
+    </span>
   ),
 }
 const texts = {
@@ -66,11 +69,9 @@ export default function Commencer() {
 
   const { pollSlug } = useOrganisationQueryParams()
 
-  const { getCurrentSimulation, updateCurrentSimulation } = useUser()
-
   const { goToSimulateurPage } = useSimulateurPage()
 
-  const currentSimulation = getCurrentSimulation()
+  const { progression, updateCurrentSimulation, polls } = useCurrentSimulation()
 
   const [status, setStatus] = useState<
     'notStarted' | 'started' | 'finished' | undefined
@@ -80,16 +81,16 @@ export default function Commencer() {
     if (status) {
       return
     }
-    if (!currentSimulation?.progression) {
+    if (!progression) {
       setStatus('notStarted')
       return
     }
-    if (currentSimulation?.progression === 1) {
+    if (progression === 1) {
       setStatus('finished')
       return
     }
     setStatus('started')
-  }, [currentSimulation, status])
+  }, [progression, status])
 
   const { handleUpdateShouldPreventNavigation } = useContext(
     PreventNavigationContext
@@ -98,28 +99,20 @@ export default function Commencer() {
     handleUpdateShouldPreventNavigation(true)
   }, [handleUpdateShouldPreventNavigation])
 
-  const [shouldGoToSimulateurPage, setShouldGoToSimulateurPage] =
-    useState(false)
+  const [shouldNavigate, setShouldNavigate] = useState(false)
   useEffect(() => {
-    if (!shouldGoToSimulateurPage) {
-      return
-    }
-    if (currentSimulation?.polls?.includes(pollSlug || '')) {
+    if (shouldNavigate && polls?.includes(pollSlug || '')) {
+      setShouldNavigate(false)
       goToSimulateurPage()
     }
-  }, [
-    goToSimulateurPage,
-    shouldGoToSimulateurPage,
-    currentSimulation,
-    pollSlug,
-  ])
+  }, [goToSimulateurPage, polls, pollSlug, shouldNavigate])
 
   if (!status) {
     return null
   }
 
   return (
-    <Card className={'bg-grey-100 items-start border-none p-8'}>
+    <Card className={'items-start border-none bg-gray-100 p-8'}>
       <Title
         data-cypress-id="commencer-title"
         className="text-lg md:text-xl"
@@ -131,6 +124,16 @@ export default function Commencer() {
       <div className="flex flex-col items-start gap-6">
         <Button
           onClick={async () => {
+            if (status === 'notStarted') {
+              trackEvent(infosCommencerClickCtaCommencer)
+            }
+            if (status === 'started') {
+              trackEvent(infosCommencerClickCtaCommencer)
+            }
+            if (status === 'finished') {
+              trackEvent(infosCommencerClickCtaCommencer)
+            }
+
             updateCurrentSimulation({
               defaultAdditionalQuestionsAnswers: {
                 postalCode,
@@ -139,10 +142,8 @@ export default function Commencer() {
               pollToAdd: pollSlug || undefined,
             })
 
-            trackEvent(getParticipantInscriptionPageVisitedEvent('commencer'))
-
             // We try to go to the simulateur page. If the test is finished we will save the simulation and then go to the end page
-            setShouldGoToSimulateurPage(true)
+            setShouldNavigate(true)
           }}>
           {buttonLabels[status]}
         </Button>
@@ -151,6 +152,8 @@ export default function Commencer() {
           <Button
             color="secondary"
             onClick={() => {
+              trackEvent(infosCommencerClickNewTest)
+
               goToSimulateurPage({
                 newSimulation: {
                   defaultAdditionalQuestionsAnswers: {

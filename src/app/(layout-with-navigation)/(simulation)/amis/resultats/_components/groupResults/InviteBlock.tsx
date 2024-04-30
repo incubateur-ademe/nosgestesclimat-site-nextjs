@@ -1,9 +1,11 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { amisDashboardCopyLink } from '@/constants/tracking/pages/amisDashboard'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { Group } from '@/types/groups'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
 
 type SubmitButtonProps = {
@@ -21,8 +23,15 @@ const SubmitButton = ({
 }: SubmitButtonProps) => {
   return (
     <Button
-      className="flex w-[8rem] justify-center whitespace-nowrap"
-      onClick={isShareDefined ? handleShare : handleCopy}
+      className="flex justify-center whitespace-nowrap"
+      onClick={() => {
+        trackEvent(amisDashboardCopyLink)
+        if (isShareDefined) {
+          handleShare()
+        } else {
+          handleCopy()
+        }
+      }}
       data-cypress-id="invite-button">
       {isShareDefined && <Trans>Partager</Trans>}
       {!isShareDefined &&
@@ -50,8 +59,6 @@ export default function InviteBlock({ group }: { group: Group }) {
   const sharedURL = `${window.location.origin}/amis/invitation?groupId=${group?._id}&mtm_campaign=challenge-amis`
 
   const handleShare = async () => {
-    // TODO: replace with new tracking event
-    // trackEvent(getMatomoEventShareMobile(score))
     if (navigator.share) {
       await navigator
         .share({
@@ -73,9 +80,9 @@ export default function InviteBlock({ group }: { group: Group }) {
 
   if (hasMoreThanOneMember) {
     return (
-      <div className="mt-4 flex flex-col justify-between gap-4 rounded-md bg-grey-100 p-4 md:flex-row md:items-center">
+      <div className="mt-4 flex flex-col justify-between gap-4 rounded-md bg-gray-100 p-4 md:flex-row md:items-center">
         <p className="mb-0 text-sm md:text-base">
-          Invitez d'autres personnes à rejoindre votre groupe
+          <Trans>Invitez d'autres personnes à rejoindre votre groupe</Trans>
         </p>
         <SubmitButton
           isShareDefined={isShareDefined}
@@ -88,9 +95,10 @@ export default function InviteBlock({ group }: { group: Group }) {
   }
 
   return (
-    <div className="mt-4 rounded-md bg-grey-100 p-4">
-      <h2 className="mt-0 text-base md:text-lg">
-        <Trans>Vous êtes le premier</Trans> <Emoji>🥳</Emoji>
+    <div className="rainbow-border mt-4 rounded-xl p-4">
+      <h2 className="mt-0 flex items-center text-base md:text-lg">
+        <Trans>Vous êtes le premier</Trans> <Emoji>🥳</Emoji> 
+        <Trans>mais vous êtes seul·e…</Trans> <Emoji>🥲</Emoji>
       </h2>
       <p className="mb-4 text-sm md:text-base">
         <Trans>

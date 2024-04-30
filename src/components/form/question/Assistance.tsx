@@ -26,7 +26,7 @@ export default function Assistance({ question, assistance }: Props) {
   const [inputValue, setInputValue] = useState(0)
 
   return (
-    <div className="mb-4 w-[20rem] max-w-full rounded-lg bg-white p-4 sm:w-2/3">
+    <div className="mb-4 w-[20rem] max-w-full rounded-xl bg-white p-4 sm:w-2/3">
       <Label
         question={question}
         size="sm"
@@ -42,7 +42,7 @@ export default function Assistance({ question, assistance }: Props) {
           setValue={(value: number = 0) => {
             setValueOfParent(
               Math.round(12 * (value / Number(constantMultiplier)) * 10) / 10,
-              question
+              { foldedStep: question }
             )
             setInputValue(value)
           }}

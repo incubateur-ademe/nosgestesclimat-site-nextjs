@@ -1,8 +1,10 @@
+import SearchIcon from '@/components/icons/SearchIcon'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { DottedName, NGCRules } from '@/publicodes-state/types'
+import { DottedName } from '@/publicodes-state/types'
+import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Fuse from 'fuse.js'
 import { utils } from 'publicodes'
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -81,15 +83,10 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
 
   return (
     <>
-      <Card className="my-8 !bg-primary-100">
-        <h2 className="text-xl">
-          <span
-            role="img"
-            aria-label="emoji search"
-            aria-hidden
-            className="mr-3 inline-block ">
-            🔍
-          </span>
+      <Card className="my-8 border-none bg-primary-100">
+        <h2 className="flex items-center text-xl">
+          <SearchIcon className="mr-2" />
+
           <Trans>Explorez nos modèles</Trans>
         </h2>
 
@@ -101,7 +98,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
             type="search"
             value={input}
             placeholder={t('Entrez des mots-clefs de recherche')}
-            className="w-full rounded-md border border-solid border-primary-100 p-4"
+            className="w-full rounded-xl border border-solid border-primary-100 p-4"
             onChange={(e) => {
               const input = e.target.value
 
