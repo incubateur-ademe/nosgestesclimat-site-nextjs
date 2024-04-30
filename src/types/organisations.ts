@@ -86,4 +86,18 @@ export type FunFacts = {
   percentageOfCarOwners: number
   percentageOfPlaneUsers: number
   percentageOfLongPlaneUsers: number
+  averageOfCarKilometers: number
+  averageOfTravelers: number
+  percentageOfElectricHeating: number
+  percentageOfGasHeating: number
+  percentageOfFuelHeating: number
+  percentageOfWoodHeating: number
+  averageOfElectricityConsumption: number
+  percentageOfCoolingSystem: number
+  percentageOfVegan: number
+  percentageOfRedMeat: number
+  percentageOfLocalAndSeasonal: number
+  percentageOfBottledWater: number
+  percentageOfZeroWaste: number
+  percentageOfStreaming: number
 }
