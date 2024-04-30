@@ -29,6 +29,7 @@ export default function AddQuestionForm({
 
   const { mutateAsync: updateCustomQuestions } = useUpdateCustomQuestions({
     pollSlug: organisation?.polls[0].slug ?? '',
+    orgaSlug: organisation?.slug ?? '',
   })
 
   const onSubmit: SubmitHandler<Inputs> = async ({ question }) => {

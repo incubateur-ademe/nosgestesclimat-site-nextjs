@@ -139,6 +139,30 @@ export default function QuestionsComplementaires({
         />
       </div>
 
+      {poll?.customAdditionalQuestions && (
+        <>
+          <h3 className="mt-8">
+            <Trans>
+              Questions personnalisées (
+              {Object.keys(poll.customAdditionalQuestions).length})
+            </Trans>
+          </h3>
+          {Object.entries(poll.customAdditionalQuestions).map(
+            ([question, isEnabled]) => (
+              <ToggleField
+                key={question}
+                name={question}
+                value={isEnabled}
+                onChange={(isEnabled: boolean) => {
+                  handleChange({ questionKey: question, value: isEnabled })
+                }}
+                label={question}
+              />
+            )
+          )}
+        </>
+      )}
+
       <div className="mt-6 flex w-full flex-col items-start gap-2">
         <AddQuestionForm
           organisation={organisation}

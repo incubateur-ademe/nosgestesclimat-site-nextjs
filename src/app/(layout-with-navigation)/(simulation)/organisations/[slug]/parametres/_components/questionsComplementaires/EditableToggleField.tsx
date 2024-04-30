@@ -27,7 +27,7 @@ export default forwardRef(function EditableToggleField(
           type="text"
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
-          className="mr-2 w-full border-primary-700 bg-transparent px-1 pb-1 text-base outline-none focus:!border-b-2"
+          className="mr-2 w-full bg-transparent px-1 pb-1 text-base outline-none focus:!border-b-2 focus:border-primary-500"
         />
 
         <div className="relative inline-flex items-center justify-between">
