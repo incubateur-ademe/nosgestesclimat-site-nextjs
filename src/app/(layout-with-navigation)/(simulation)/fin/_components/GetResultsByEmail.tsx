@@ -20,7 +20,7 @@ import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './getResultsByEmail/Confirmation'
@@ -44,8 +44,11 @@ export default function GetResultsByEmail({
 
   const currentSimulation = useCurrentSimulation()
 
+  // Avoid refetching useGetNewsletterSubscriptions when defining an email for the first time
+  const emailRef = useRef<string>(user?.email ?? '')
+
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    user?.email ?? ''
+    emailRef?.current ?? ''
   )
 
   const isSubscribedMainNewsletter =
