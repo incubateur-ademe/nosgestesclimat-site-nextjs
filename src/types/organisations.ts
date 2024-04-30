@@ -99,5 +99,6 @@ export type FunFacts = {
   percentageOfLocalAndSeasonal: number
   percentageOfBottledWater: number
   percentageOfZeroWaste: number
+  amountOfClothing: number
   percentageOfStreaming: number
 }

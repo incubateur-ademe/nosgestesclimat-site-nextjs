@@ -25,6 +25,7 @@ const funFactsRules: { [k in keyof FunFacts]: DottedName } = {
   percentageOfLocalAndSeasonal: 'ui . organisations . local et de saison',
   percentageOfBottledWater: 'ui . organisations . eau en bouteille',
   percentageOfZeroWaste: 'ui . organisations . zéro déchet',
+  amountOfClothing: 'ui . organisations . textile',
   percentageOfStreaming: 'ui . organisations . internet',
 }
 
