@@ -53,11 +53,7 @@ export type SimulationRecap = {
 }
 
 export type PollData = {
-  funFacts: {
-    percentageOfBicycleUsers: number
-    percentageOfVegetarians: number
-    percentageOfCarOwners: number
-  }
+  funFacts: FunFacts
   simulationRecaps: SimulationRecap[]
   organisationName: string
   isAdmin: boolean
