@@ -4,12 +4,12 @@ import { useUpdateOrganisation } from '@/app/(layout-with-navigation)/(simulatio
 import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
 import { organisationsParametersToggleAdditionnalQuestionsPostCode } from '@/constants/tracking/pages/organisationsParameters'
-import { useUpdateCustomQuestions } from '@/hooks/organisations/useUpdateCustomQuestions'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
-import AddQuestionForm from './questionsComplementaires/AddQuestionForm'
+import CustomQuestionForm from './questionsComplementaires/CustomQuestionForm'
+import CustomQuestions from './questionsComplementaires/CustomQuestions'
 import ToggleField from './questionsComplementaires/ToggleField'
 
 type Props = {
@@ -31,14 +31,9 @@ export default function QuestionsComplementaires({
     email: user?.organisation?.administratorEmail ?? '',
   })
 
-  const { mutateAsync: updateCustomQuestions } = useUpdateCustomQuestions({
-    pollSlug: organisation?.polls[0].slug ?? '',
-    orgaSlug: organisation?.slug ?? '',
-  })
-
   const timeoutRef = useRef<NodeJS.Timeout>()
 
-  function showAndHideMessage() {
+  function showAndHideConfirmationMessage() {
     setIsConfirmingUpdate(true)
 
     timeoutRef.current = setTimeout(() => {
@@ -91,7 +86,7 @@ export default function QuestionsComplementaires({
     refetchOrganisation()
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
-    showAndHideMessage()
+    showAndHideConfirmationMessage()
   }
 
   useEffect(() => {
@@ -99,23 +94,6 @@ export default function QuestionsComplementaires({
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
   }, [])
-
-  function handleUpdateCustomQuestions({
-    question,
-    value,
-  }: {
-    question: string
-    value: boolean
-  }) {
-    const customAdditionalQuestions = {
-      ...(poll?.customAdditionalQuestions || {}),
-      [question]: value,
-    }
-    updateCustomQuestions({ customAdditionalQuestions })
-
-    showAndHideMessage()
-  }
-
 
   return (
     <section className="mb-12 mt-8">
@@ -159,28 +137,16 @@ export default function QuestionsComplementaires({
       />
 
       {poll?.customAdditionalQuestions && (
-        <>
-          <h3 className="mt-8">
-            <Trans>Questions personnalisées</Trans>
-          </h3>
-          {Object.entries(poll.customAdditionalQuestions).map(
-            ([question, isEnabled]) => (
-              <ToggleField
-                key={question}
-                name={question}
-                value={isEnabled}
-                onChange={(isEnabled: boolean) => {
-                  handleUpdateCustomQuestions({ question, value: isEnabled })
-                }}
-                label={question}
-              />
-            )
-          )}
-        </>
+        <CustomQuestions
+          organisation={organisation}
+          poll={organisation?.polls?.[0]}
+          showAndHideConfirmationMessage={showAndHideConfirmationMessage}
+          refetchOrganisation={refetchOrganisation}
+        />
       )}
 
       <div className="mt-6 flex w-full flex-col items-start gap-2">
-        <AddQuestionForm
+        <CustomQuestionForm
           organisation={organisation}
           refetchOrganisation={refetchOrganisation}
         />
