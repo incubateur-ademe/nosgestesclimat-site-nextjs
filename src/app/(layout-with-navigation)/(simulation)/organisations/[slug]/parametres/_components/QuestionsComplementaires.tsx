@@ -4,11 +4,11 @@ import { useUpdateOrganisation } from '@/app/(layout-with-navigation)/(simulatio
 import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
 import { organisationsParametersToggleAdditionnalQuestionsPostCode } from '@/constants/tracking/pages/organisationsParameters'
-import Button from '@/design-system/inputs/Button'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
+import AddQuestionForm from './questionsComplementaires/AddQuestionForm'
 import ToggleField from './questionsComplementaires/ToggleField'
 
 type Props = {
@@ -89,6 +89,7 @@ export default function QuestionsComplementaires({
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
   }, [])
+
   return (
     <section className="mb-12 mt-8">
       <h2>
@@ -107,6 +108,10 @@ export default function QuestionsComplementaires({
           facultative.
         </Trans>
       </p>
+
+      <h3>
+        <Trans>Questions par défaut</Trans>
+      </h3>
 
       <div className="mb-4 rounded-md border-2 border-gray-200">
         <ToggleField
@@ -134,10 +139,12 @@ export default function QuestionsComplementaires({
         />
       </div>
 
-      <div className="mt-6 flex gap-2">
-        <Button color="link" size="sm">
-          + <Trans>Ajouter une question personnalisée</Trans>
-        </Button>
+      <div className="mt-6 flex w-full flex-col items-start gap-2">
+        <AddQuestionForm
+          organisation={organisation}
+          refetchOrganisation={refetchOrganisation}
+        />
+
         <ModificationSaved
           shouldShowMessage={isConfirmingUpdate}
           label={<Trans>Modification sauvegardée</Trans>}

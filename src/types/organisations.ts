@@ -26,6 +26,7 @@ export type OrganisationPoll = {
   name: string
   slug: string
   defaultAdditionalQuestions: [string]
+  customAdditionalQuestions?: Record<string, boolean>
   numberOfExpectedParticipants: number
 }
 
