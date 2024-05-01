@@ -22,6 +22,7 @@ export type OrganisationAdministrator = {
 export type CustomAdditionalQuestions = {
   question: string
   isEnabled: boolean
+  _id: string
 }
 
 export type OrganisationPoll = {
@@ -79,6 +80,7 @@ export type PollInfo = {
   numberOfParticipants: number
   expectedNumberOfParticipants: number
   organisationInfo: OrganisationInfo
+  customAdditionalQuestions: CustomAdditionalQuestions[]
 }
 
 type OrganisationInfo = {

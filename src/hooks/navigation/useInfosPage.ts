@@ -23,6 +23,7 @@ type Props = {
     | typeof POSTAL_CODE_PAGE
     | typeof START_PAGE
     | typeof TUTORIEL_PAGE
+    | string // Lol
 }
 export function useInfosPage() {
   const searchParams = useSearchParams()
@@ -32,16 +33,31 @@ export function useInfosPage() {
 
   const { data: poll, isLoading } = usePoll({ pollSlug })
 
-  const urlsInfosPages = useMemo(
-    () => ({
+  const { customAdditionalQuestions } = poll ?? {
+    customAdditionnalQuestions: [],
+  }
+
+  const urlsInfosPages = useMemo(() => {
+    const pagePaths: Record<string, string> = {
       [TUTORIEL_PAGE]: `/tutoriel?${queryParamsString}`,
       [EMAIL_PAGE]: `/infos/email?${queryParamsString}`,
       [POSTAL_CODE_PAGE]: `/infos/codepostal?${queryParamsString}`,
       [BIRTHDATE_PAGE]: `/infos/naissance?${queryParamsString}`,
-      [START_PAGE]: `/infos/commencer?${queryParamsString}`,
-    }),
-    [queryParamsString]
-  )
+    }
+
+    // Add the custom additionnal questions
+    customAdditionalQuestions?.forEach(({ isEnabled }, index) => {
+      if (!isEnabled) return
+
+      pagePaths[`question-personnalisee-${index}`] =
+        `/infos/question-personnalisee-${index}?${queryParamsString}`
+    })
+
+    // Add the last path
+    pagePaths[START_PAGE] = `/infos/commencer?${queryParamsString}`
+
+    return pagePaths
+  }, [queryParamsString, customAdditionalQuestions])
 
   const getLinkToNextInfosPage = useCallback(
     ({ curPage }: Props): string => {
@@ -81,6 +97,25 @@ export function useInfosPage() {
         return urlsInfosPages.birthdate
       }
 
+      if (
+        customAdditionalQuestions &&
+        (curPage === POSTAL_CODE_PAGE ||
+          curPage === EMAIL_PAGE ||
+          curPage === BIRTHDATE_PAGE ||
+          curPage.includes('question-personnalisee')) &&
+        poll.customAdditionalQuestions.length > 0
+      ) {
+        const customQuestionIndex = parseInt(curPage.slice(-1))
+
+        const nextCustomQuestionIndex = customQuestionIndex + 1
+
+        const nextCustomQuestion = `question-personnalisee-${nextCustomQuestionIndex}`
+
+        // We get only the enabled questions on this side
+        if (customAdditionalQuestions.length >= nextCustomQuestionIndex) {
+          return urlsInfosPages[nextCustomQuestion]
+        }
+      }
       // if we are on the start page, we return the test link
       if (curPage === START_PAGE) {
         return getLinkToSimulateur()
@@ -89,7 +124,7 @@ export function useInfosPage() {
       // if there is no additional question, we return the start page link
       return urlsInfosPages.start
     },
-    [pollSlug, poll, isLoading, urlsInfosPages]
+    [pollSlug, poll, isLoading, customAdditionalQuestions, urlsInfosPages]
   )
 
   const getLinkToPrevInfosPage = useCallback(
