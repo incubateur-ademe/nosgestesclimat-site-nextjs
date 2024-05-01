@@ -19,6 +19,11 @@ export type OrganisationAdministrator = {
   hasOptedInForCommunications?: boolean
 }
 
+export type CustomAdditionalQuestions = {
+  question: string
+  isEnabled: boolean
+}
+
 export type OrganisationPoll = {
   simulations: [OrganisationSimulation]
   startDate: Date
@@ -26,7 +31,7 @@ export type OrganisationPoll = {
   name: string
   slug: string
   defaultAdditionalQuestions: [string]
-  customAdditionalQuestions?: Record<string, boolean>
+  customAdditionalQuestions?: CustomAdditionalQuestions[]
   numberOfExpectedParticipants: number
 }
 

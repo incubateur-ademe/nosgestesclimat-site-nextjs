@@ -15,7 +15,8 @@ type Props = {
   }: {
     question: string
     value: boolean
-  }) => void
+  }) => Promise<void>
+  handleDeleteQuestion: (question: string) => Promise<void>
 }
 
 export default function CustomQuestion({
@@ -24,6 +25,7 @@ export default function CustomQuestion({
   question,
   isEnabled,
   handleUpdateCustomQuestions,
+  handleDeleteQuestion,
 }: Props) {
   const [isEditing, setIsEditing] = useState(false)
 
@@ -46,11 +48,11 @@ export default function CustomQuestion({
       name={question}
       value={isEnabled}
       isCustomQuestion
-      onChange={(isEnabled: boolean) => {
-        handleUpdateCustomQuestions({ question, value: isEnabled })
+      onChange={async (isEnabled: boolean) => {
+        await handleUpdateCustomQuestions({ question, value: isEnabled })
       }}
       onEdit={() => setIsEditing(true)}
-      onDelete={() => console.log('Open modal')}
+      onDelete={handleDeleteQuestion}
       label={question}
     />
   )

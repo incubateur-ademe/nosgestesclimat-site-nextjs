@@ -1,4 +1,5 @@
 import { SERVER_URL } from '@/constants/urls'
+import { CustomAdditionalQuestions } from '@/types/organisations'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
@@ -13,7 +14,7 @@ export function useUpdateCustomQuestions({ pollSlug, orgaSlug }: Props) {
     mutationFn: ({
       customAdditionalQuestions,
     }: {
-      customAdditionalQuestions: Record<string, boolean>
+      customAdditionalQuestions: CustomAdditionalQuestions[]
     }) =>
       axios
         .post(`${SERVER_URL}/organisations/update-custom-questions`, {

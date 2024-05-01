@@ -21,22 +21,66 @@ export default function CustomQuestions({
     orgaSlug: organisation?.slug ?? '',
   })
 
-  function handleUpdateCustomQuestions({
+  async function handleUpdateCustomQuestions({
     question,
     value,
   }: {
     question: string
     value: boolean
   }) {
-    const customAdditionalQuestions = {
-      ...(poll?.customAdditionalQuestions || {}),
-      [question]: value,
+    try {
+      const customAdditionalQuestions = [
+        ...(poll?.customAdditionalQuestions || []),
+      ]
+
+      const questionIndex = customAdditionalQuestions.findIndex(
+        ({ question: questionSearched }) => questionSearched === question
+      )
+
+      if (questionIndex === -1) {
+        return
+      }
+
+      customAdditionalQuestions[questionIndex].isEnabled = value
+
+      await updateCustomQuestions({ customAdditionalQuestions })
+
+      showAndHideConfirmationMessage()
+
+      refetchOrganisation()
+    } catch (error) {
+      console.error(error)
     }
-    updateCustomQuestions({ customAdditionalQuestions })
+  }
 
-    showAndHideConfirmationMessage()
+  async function handleDeleteQuestion(question: string) {
+    try {
+      const customAdditionalQuestions = [
+        ...(poll?.customAdditionalQuestions || []),
+      ]
 
-    refetchOrganisation()
+      const questionIndex = customAdditionalQuestions.findIndex(
+        ({ question: questionSearched }) => questionSearched === question
+      )
+
+      if (questionIndex === -1) {
+        return
+      }
+
+      customAdditionalQuestions.splice(questionIndex, 1)
+
+      await updateCustomQuestions({ customAdditionalQuestions })
+
+      showAndHideConfirmationMessage()
+
+      refetchOrganisation()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  if (poll?.customAdditionalQuestions?.length === 0) {
+    return null
   }
 
   return (
@@ -45,8 +89,8 @@ export default function CustomQuestions({
         <Trans>Questions personnalisées</Trans>
       </h3>
       <div className="flex flex-col gap-4">
-        {Object.entries(poll?.customAdditionalQuestions || {}).map(
-          ([question, isEnabled]) => (
+        {(poll?.customAdditionalQuestions || []).map(
+          ({ question, isEnabled }) => (
             <CustomQuestion
               organisation={organisation}
               refetchOrganisation={refetchOrganisation}
@@ -54,6 +98,7 @@ export default function CustomQuestions({
               question={question}
               isEnabled={isEnabled}
               handleUpdateCustomQuestions={handleUpdateCustomQuestions}
+              handleDeleteQuestion={handleDeleteQuestion}
             />
           )
         )}

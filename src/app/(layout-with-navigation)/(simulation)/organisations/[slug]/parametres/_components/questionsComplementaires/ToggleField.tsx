@@ -1,18 +1,18 @@
 import PencilIcon from '@/components/icons/PencilIcon'
 import TrashIcon from '@/components/icons/TrashIcon'
 import Button from '@/design-system/inputs/Button'
-import { KeyboardEvent, ReactNode, useState } from 'react'
+import { KeyboardEvent, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
-  label: string | ReactNode
+  label: string
   value: boolean
   onChange: (value: boolean) => void
   name: string
   className?: string
   isCustomQuestion?: boolean
   onEdit?: () => void
-  onDelete?: () => void
+  onDelete?: (question: string) => Promise<void>
 }
 
 export default function ToggleField({
@@ -26,6 +26,10 @@ export default function ToggleField({
   isCustomQuestion = false,
 }: Props) {
   const [isEnabled, setIsEnabled] = useState<boolean>(value)
+  const [isConfirmingDelete, setIsConfirmingDelete] = useState(false)
+  const [isPreventingDoubleClick, setIsPreventingDoubleClick] = useState(false)
+
+  const timeoutRef = useRef<NodeJS.Timeout>()
 
   const handleMouseEvent = () => {
     setIsEnabled((prev) => !prev)
@@ -37,6 +41,29 @@ export default function ToggleField({
       handleMouseEvent()
     }
   }
+
+  async function handleDelete() {
+    if (onDelete) {
+      await onDelete(label)
+    }
+  }
+
+  function triggerDisplayConfirmDeleteButton() {
+    setIsPreventingDoubleClick(true)
+
+    timeoutRef.current = setTimeout(() => {
+      setIsConfirmingDelete(true)
+      setIsPreventingDoubleClick(false)
+    }, 500)
+  }
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
 
   return (
     <div
@@ -67,13 +94,29 @@ export default function ToggleField({
                   <PencilIcon width="16" />
                 </Button>
 
-                <Button
-                  size="xs"
-                  color="text"
-                  className="h-7 w-7 p-0"
-                  onClick={onDelete}>
-                  <TrashIcon width="16" />
-                </Button>
+                {isConfirmingDelete ? (
+                  <Button
+                    size="xs"
+                    color="secondary"
+                    className="h-7"
+                    onClick={handleDelete}
+                    onBlur={() => setIsConfirmingDelete(false)}>
+                    Supprimer
+                  </Button>
+                ) : (
+                  <Button
+                    size="xs"
+                    color="text"
+                    className="h-7 w-7 p-0"
+                    aria-disabled={isPreventingDoubleClick}
+                    onClick={
+                      !isPreventingDoubleClick
+                        ? triggerDisplayConfirmDeleteButton
+                        : () => {}
+                    }>
+                    <TrashIcon width="16" />
+                  </Button>
+                )}
               </div>
             )}
             <div className="relative">

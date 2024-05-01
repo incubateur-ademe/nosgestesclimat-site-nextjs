@@ -4,6 +4,7 @@ import { useUpdateOrganisation } from '@/app/(layout-with-navigation)/(simulatio
 import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
 import { organisationsParametersToggleAdditionnalQuestionsPostCode } from '@/constants/tracking/pages/organisationsParameters'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -22,6 +23,8 @@ export default function QuestionsComplementaires({
   refetchOrganisation,
 }: Props) {
   const [isConfirmingUpdate, setIsConfirmingUpdate] = useState(false)
+
+  const { t } = useClientTranslation()
 
   const { user } = useUser()
 
@@ -124,7 +127,7 @@ export default function QuestionsComplementaires({
         onChange={(isEnabled: boolean) => {
           handleChange({ questionKey: 'postalCode', value: isEnabled })
         }}
-        label={<Trans>Dans quelle ville habitez-vous ?</Trans>}
+        label={t('Dans quelle ville habitez-vous ?')}
       />
 
       <ToggleField
@@ -133,7 +136,7 @@ export default function QuestionsComplementaires({
         onChange={(isEnabled: boolean) => {
           handleChange({ questionKey: 'birthdate', value: isEnabled })
         }}
-        label={<Trans>Quelle est votre année de naissance ?</Trans>}
+        label={t('Quelle est votre année de naissance ?')}
       />
 
       {poll?.customAdditionalQuestions && (

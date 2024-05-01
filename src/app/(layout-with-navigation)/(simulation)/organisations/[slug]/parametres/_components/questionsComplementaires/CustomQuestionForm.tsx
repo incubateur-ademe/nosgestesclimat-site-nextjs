@@ -36,7 +36,7 @@ export default function CustomQuestionForm({
   const { data: areCustomQuestionsEnabled, isFetched } =
     useAreCustomQuestionsEnabled(organisation)
 
-  const { register, handleSubmit, setValue } = useReactHookForm<Inputs>()
+  const { register, handleSubmit, setValue, reset } = useReactHookForm<Inputs>()
 
   useEffect(() => {
     if (question) {
@@ -53,16 +53,25 @@ export default function CustomQuestionForm({
     question: questionValue,
   }) => {
     try {
-      const customAdditionalQuestions = {
-        ...(organisation?.polls[0].customAdditionalQuestions || {}),
-      }
+      const customAdditionalQuestions = [
+        ...(organisation?.polls[0].customAdditionalQuestions || []),
+      ]
 
       if (isEditMode && question !== questionValue) {
-        customAdditionalQuestions[questionValue] =
-          customAdditionalQuestions[question ?? '']
-        delete customAdditionalQuestions[question ?? '']
+        const questionIndex = customAdditionalQuestions.findIndex(
+          ({ question: questionSearched }) => questionSearched === question
+        )
+
+        if (questionIndex === -1) {
+          return
+        }
+
+        customAdditionalQuestions[questionIndex].question = questionValue
       } else {
-        customAdditionalQuestions[questionValue] = false
+        customAdditionalQuestions.push({
+          question: questionValue,
+          isEnabled: false,
+        })
       }
 
       await updateCustomQuestions({ customAdditionalQuestions })
@@ -86,8 +95,8 @@ export default function CustomQuestionForm({
   }
 
   const hasReachedMaxQuestions =
-    Object.keys(organisation?.polls?.[0]?.customAdditionalQuestions ?? {})
-      .length >= MAX_NUMBER_QUESTIONS
+    (organisation?.polls?.[0]?.customAdditionalQuestions || [])?.length >=
+    MAX_NUMBER_QUESTIONS
 
   if (!isFormDisplayed) {
     return (
@@ -95,16 +104,22 @@ export default function CustomQuestionForm({
         color="link"
         size="sm"
         aria-disabled={hasReachedMaxQuestions}
-        onClick={() =>
-          hasReachedMaxQuestions ? {} : setIsFormDisplayed(true)
+        onClick={
+          hasReachedMaxQuestions
+            ? () => {}
+            : () => {
+                // Reset the form if it was previously used
+                reset()
+                setIsFormDisplayed(true)
+              }
         }>
         + <Trans>Ajouter une question personnalisée</Trans>
       </Button>
     )
   }
-
   return (
     <form
+      id="custom-question-form"
       onSubmit={handleSubmit(onSubmit)}
       className="flex w-full flex-col items-start">
       {!isEditMode && (
