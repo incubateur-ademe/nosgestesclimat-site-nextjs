@@ -1,7 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { EMAIL_PAGE } from '@/constants/infosPages'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
@@ -43,12 +42,12 @@ export default function CustomQuestion() {
     event?.preventDefault()
 
     addCustomAnswer({
-      id: customAdditionalQuestions?.[customQuestionIndex]._id ?? '',
+      id: customAdditionalQuestions?.[customQuestionIndex - 1]._id ?? '',
       answer: customQuestion,
     })
 
     // Go to next page
-    router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
+    router.push(getLinkToNextInfosPage({ curPage: params.question as string }))
   }
 
   if (!customAdditionalQuestions?.length || isLoading) {
@@ -71,14 +70,18 @@ export default function CustomQuestion() {
       />
 
       <TextInputGroup
-        label={customAdditionalQuestions[customQuestionIndex].question}
+        label={customAdditionalQuestions?.[customQuestionIndex - 1]?.question}
         {...register('custom-answer')}
       />
 
       <Navigation
-        linkToPrev={getLinkToPrevInfosPage({ curPage: EMAIL_PAGE })}
-        submitDisabled={!getLinkToNextInfosPage({ curPage: EMAIL_PAGE })}
-        currentPage={EMAIL_PAGE}
+        linkToPrev={getLinkToPrevInfosPage({
+          curPage: params.question as string,
+        })}
+        submitDisabled={
+          !getLinkToNextInfosPage({ curPage: params.question as string })
+        }
+        currentPage={params.question as string}
       />
     </form>
   )

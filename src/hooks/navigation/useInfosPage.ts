@@ -49,8 +49,8 @@ export function useInfosPage() {
     customAdditionalQuestions?.forEach(({ isEnabled }, index) => {
       if (!isEnabled) return
 
-      pagePaths[`question-personnalisee-${index}`] =
-        `/infos/question-personnalisee-${index}?${queryParamsString}`
+      pagePaths[`question-personnalisee-${index + 1}`] =
+        `/infos/question-personnalisee-${index + 1}?${queryParamsString}`
     })
 
     // Add the last path
@@ -86,6 +86,7 @@ export function useInfosPage() {
         curPage === EMAIL_PAGE &&
         poll.defaultAdditionalQuestions.includes(POSTAL_CODE_PAGE)
       ) {
+        console.log(curPage, 'code postal')
         return urlsInfosPages.postalCode
       }
 
@@ -94,16 +95,27 @@ export function useInfosPage() {
         (curPage === POSTAL_CODE_PAGE || curPage === EMAIL_PAGE) &&
         poll.defaultAdditionalQuestions.includes(BIRTHDATE_PAGE)
       ) {
+        console.log(curPage, 'birthdate')
         return urlsInfosPages.birthdate
+      }
+
+      // If the user isn't on a custom question page
+      if (
+        customAdditionalQuestions &&
+        customAdditionalQuestions.length > 0 &&
+        (curPage === POSTAL_CODE_PAGE ||
+          curPage === EMAIL_PAGE ||
+          curPage === BIRTHDATE_PAGE)
+      ) {
+        const nextCustomQuestion = 'question-personnalisee-1'
+        console.log(curPage, 'première custom')
+        return urlsInfosPages[nextCustomQuestion]
       }
 
       if (
         customAdditionalQuestions &&
-        (curPage === POSTAL_CODE_PAGE ||
-          curPage === EMAIL_PAGE ||
-          curPage === BIRTHDATE_PAGE ||
-          curPage.includes('question-personnalisee')) &&
-        poll.customAdditionalQuestions.length > 0
+        customAdditionalQuestions.length > 0 &&
+        curPage.includes('question-personnalisee')
       ) {
         const customQuestionIndex = parseInt(curPage.slice(-1))
 
@@ -113,14 +125,16 @@ export function useInfosPage() {
 
         // We get only the enabled questions on this side
         if (customAdditionalQuestions.length >= nextCustomQuestionIndex) {
+          console.log(curPage, 'next custom')
           return urlsInfosPages[nextCustomQuestion]
         }
       }
       // if we are on the start page, we return the test link
       if (curPage === START_PAGE) {
+        console.log(curPage, 'simulateur')
         return getLinkToSimulateur()
       }
-
+      console.log(curPage, 'start')
       // if there is no additional question, we return the start page link
       return urlsInfosPages.start
     },
