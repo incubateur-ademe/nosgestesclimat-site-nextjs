@@ -2,17 +2,20 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { FunFacts } from '@/types/organisations'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   funFactKey: string
   dottedName: DottedName
   funFacts: FunFacts
+  small?: boolean
 }
 
 export default function FunFactsItem({
   funFactKey,
   dottedName,
   funFacts,
+  small,
 }: Props) {
   const { title, icons } = useRule(dottedName)
 
@@ -25,9 +28,11 @@ export default function FunFactsItem({
   return (
     <div className="text-lg">
       <Emoji className="mr-2 inline-block">{icons}</Emoji>
-      <span className="text-2xl font-medium">{Math.round(itemValue)}</span>{' '}
+      <span className={twMerge('text-2xl font-medium', small ? 'text-lg' : '')}>
+        {Math.round(itemValue)}
+      </span>{' '}
       <span>{funFactKey.includes('percentage') && '%'}</span>{' '}
-      <span>{title}</span>
+      <span className={small ? 'text-base' : ''}>{title}</span>
     </div>
   )
 }

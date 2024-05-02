@@ -1,8 +1,8 @@
 import { DottedName } from '@/publicodes-state/types'
 import { FunFacts } from '@/types/organisations'
 import { twMerge } from 'tailwind-merge'
-import FunFactsItem from './FunFactsItem'
-import FunFactsPlus from './FunFactsPlus'
+import FunFactsItem from './funFacts/FunFactsItem'
+import FunFactsPlus from './funFacts/FunFactsPlus'
 
 const funFactsRules: { [k in keyof FunFacts]: DottedName } = {
   percentageOfBicycleUsers: 'ui . organisations . transport . roule en vélo',
