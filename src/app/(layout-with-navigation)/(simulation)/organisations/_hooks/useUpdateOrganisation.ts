@@ -2,6 +2,17 @@ import { SERVER_URL } from '@/constants/urls'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
+type Props = {
+  name?: string
+  position?: string
+  administratorName?: string
+  hasOptedInForCommunications?: boolean
+  defaultAdditionalQuestions?: string[]
+  telephone?: string
+  expectedNumberOfParticipants?: string
+  organisationType?: string
+}
+
 export function useUpdateOrganisation({ email }: { email: string }) {
   return useMutation({
     mutationFn: ({
@@ -12,15 +23,8 @@ export function useUpdateOrganisation({ email }: { email: string }) {
       defaultAdditionalQuestions,
       telephone,
       expectedNumberOfParticipants,
-    }: {
-      name?: string
-      position?: string
-      administratorName?: string
-      hasOptedInForCommunications?: boolean
-      defaultAdditionalQuestions?: string[]
-      telephone?: string
-      expectedNumberOfParticipants?: string
-    }) =>
+      organisationType,
+    }: Props) =>
       axios
         .post(
           `${SERVER_URL}/organisations/update`,
@@ -33,6 +37,7 @@ export function useUpdateOrganisation({ email }: { email: string }) {
             position,
             telephone,
             expectedNumberOfParticipants,
+            organisationType,
           },
           {
             withCredentials: true,
