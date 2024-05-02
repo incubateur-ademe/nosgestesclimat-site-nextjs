@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
+import ButtonLink from '@/design-system/inputs/ButtonLink'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -41,7 +42,8 @@ export default function CreationForm() {
 
   const router = useRouter()
 
-  const { register, handleSubmit, formState } = useReactHookForm<Inputs>()
+  const { register, handleSubmit, formState, watch } =
+    useReactHookForm<Inputs>()
 
   const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
@@ -57,6 +59,7 @@ export default function CreationForm() {
     hasOptedInForCommunications,
   }: Inputs) {
     try {
+
       const organisationUpdated = await updateOrganisation({
         name,
         administratorName,
@@ -100,23 +103,48 @@ export default function CreationForm() {
           })}
         />
 
-        <Select
-          label={
-            <p className="mb-0 flex justify-between">
-              <Trans>Type d'organisation</Trans>{' '}
-              <span className="font-bold italic text-secondary-700">
-                {' '}
-                <Trans>facultatif</Trans>
-              </span>
-            </p>
-          }
-          {...register('organisationType')}>
-          {ORGANISATION_TYPES.map((type) => (
-            <option className="cursor-pointer" key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </Select>
+        <div>
+          <Select
+            label={
+              <p className="mb-0 flex justify-between">
+                <Trans>Type d'organisation</Trans>{' '}
+                <span className="font-bold italic text-secondary-700">
+                  {' '}
+                  <Trans>facultatif</Trans>
+                </span>
+              </p>
+            }
+            {...register('organisationType')}>
+            {ORGANISATION_TYPES.map((type) => (
+              <option className="cursor-pointer" key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </Select>
+
+          {watch('organisationType') === ORGANISATION_TYPES[5] && (
+            <div className="mt-4 rounded-xl bg-gray-100 p-4 text-sm">
+              <p className="mb-2">
+                <Trans>
+                  Le mode organisation est un mode <strong>100% anonyme</strong>{' '}
+                  pour les participants.
+                </Trans>
+              </p>
+
+              <p className="mb-4">
+                <Trans>
+                  Avez-vous essayé{' '}
+                  <strong>notre fonctionnalité “Groupes d’amis”</strong> ? Elle
+                  vous permettra de vous comparer dans un classement : que celui
+                  ou celle ayant la plus faible empreinte gagne !
+                </Trans>
+              </p>
+              <ButtonLink href="/amis/creer" size="sm">
+                <Trans>Créer un groupe d'amis</Trans>
+              </ButtonLink>
+            </div>
+          )}
+        </div>
 
         <TextInputGroup
           className="col-span-1"
@@ -146,9 +174,13 @@ export default function CreationForm() {
         />
       </div>
 
-      <div>
-        <Button type="submit" className="mt-12 self-start">
+      <div className="mt-12 flex gap-4">
+        <Button color="secondary" type="submit">
           <Trans>Accéder à mon espace</Trans>
+        </Button>
+
+        <Button type="submit">
+          <Trans>Créer ma première campagne</Trans>
         </Button>
       </div>
     </form>
