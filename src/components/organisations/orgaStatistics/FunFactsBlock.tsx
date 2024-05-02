@@ -5,34 +5,39 @@ import FunFactsItem from './FunFactsItem'
 import FunFactsPlus from './FunFactsPlus'
 
 const funFactsRules: { [k in keyof FunFacts]: DottedName } = {
-  percentageOfBicycleUsers: 'ui . organisations . roule en vélo',
-  percentageOfVegetarians: 'ui . organisations . est végétarien',
-  percentageOfCarOwners: 'ui . organisations . roule en voiture',
-  percentageOfPlaneUsers: "ui . organisations . prend l'avion",
+  percentageOfBicycleUsers: 'ui . organisations . transport . roule en vélo',
+  percentageOfVegetarians: 'ui . organisations . alimentation . est végétarien',
+  percentageOfCarOwners: 'ui . organisations . transport . roule en voiture',
+  percentageOfPlaneUsers: "ui . organisations . transport . prend l'avion",
   percentageOfLongPlaneUsers:
-    "ui . organisations . prend l'avion long courrier",
-  averageOfCarKilometers: 'ui . organisations . km',
-  averageOfTravelers: 'ui . organisations . voyageurs',
-  percentageOfElectricHeating: 'ui . organisations . chauffage électricité',
-  percentageOfGasHeating: 'ui . organisations . chauffage gaz',
-  percentageOfFuelHeating: 'ui . organisations . chauffage fioul',
-  percentageOfWoodHeating: 'ui . organisations . chauffage bois',
+    "ui . organisations . transport . prend l'avion long courrier",
+  averageOfCarKilometers: 'ui . organisations . transport . km en voiture',
+  averageOfTravelers: 'ui . organisations . transport . voyageurs en voiture',
+  percentageOfElectricHeating:
+    'ui . organisations . logement . chauffage électricité',
+  percentageOfGasHeating: 'ui . organisations . logement . chauffage gaz',
+  percentageOfFuelHeating: 'ui . organisations . logement . chauffage fioul',
+  percentageOfWoodHeating: 'ui . organisations . logement . chauffage bois',
   averageOfElectricityConsumption:
-    'ui . organisations . consommation électricité',
-  percentageOfCoolingSystem: 'ui . organisations . possède climatisation',
-  percentageOfVegan: 'ui . organisations . est végétalien',
-  percentageOfRedMeat: 'ui . organisations . fréquence viande rouge',
-  percentageOfLocalAndSeasonal: 'ui . organisations . local et de saison',
-  percentageOfBottledWater: 'ui . organisations . eau en bouteille',
-  percentageOfZeroWaste: 'ui . organisations . zéro déchet',
-  amountOfClothing: 'ui . organisations . textile',
-  percentageOfStreaming: 'ui . organisations . internet',
+    'ui . organisations . logement . consommation électricité',
+  percentageOfCoolingSystem:
+    'ui . organisations . logement . possède climatisation',
+  percentageOfVegan: 'ui . organisations . alimentation . est végétalien',
+  percentageOfRedMeat:
+    'ui . organisations . alimentation . fréquence viande rouge',
+  percentageOfLocalAndSeasonal:
+    'ui . organisations . alimentation . local et de saison',
+  percentageOfBottledWater:
+    'ui . organisations . alimentation . eau en bouteille',
+  percentageOfZeroWaste: 'ui . organisations . alimentation . zéro déchet',
+  amountOfClothing: 'ui . organisations . divers . textile',
+  percentageOfStreaming: 'ui . organisations . divers . internet',
 }
 
 const defaultFunFactsRules: { [k in keyof Partial<FunFacts>]: DottedName } = {
-  percentageOfBicycleUsers: 'ui . organisations . roule en vélo',
-  percentageOfVegetarians: 'ui . organisations . est végétarien',
-  percentageOfCarOwners: 'ui . organisations . roule en voiture',
+  percentageOfBicycleUsers: 'ui . organisations . transport . roule en vélo',
+  percentageOfVegetarians: 'ui . organisations . alimentation . est végétarien',
+  percentageOfCarOwners: 'ui . organisations . transport . roule en voiture',
 }
 
 const plusFunFactsRules: { [k in keyof Partial<FunFacts>]: DottedName } =
