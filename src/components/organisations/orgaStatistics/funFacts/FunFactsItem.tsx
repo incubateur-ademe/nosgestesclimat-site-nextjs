@@ -26,13 +26,18 @@ export default function FunFactsItem({
   }
 
   return (
-    <div className="text-lg">
-      <Emoji className="mr-2 inline-block">{icons}</Emoji>
-      <span className={twMerge('text-2xl font-medium', small ? 'text-lg' : '')}>
-        {Math.round(itemValue)}
-      </span>{' '}
-      <span>{funFactKey.includes('percentage') && '%'}</span>{' '}
-      <span className={small ? 'text-base' : ''}>{title}</span>
+    <div className="inline-flex text-lg">
+      <Emoji className="mr-2 flex min-w-6 items-center">{icons}</Emoji>
+      <div className="flex items-center justify-center">
+        <div>
+          <span
+            className={twMerge('text-2xl font-medium', small ? 'text-lg' : '')}>
+            {Math.round(itemValue)}
+          </span>{' '}
+          <span>{funFactKey.includes('percentage') && '%'}</span>{' '}
+          <span className={small ? 'text-base' : ''}>{title}</span>
+        </div>
+      </div>
     </div>
   )
 }
