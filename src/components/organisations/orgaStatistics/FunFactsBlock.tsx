@@ -56,6 +56,15 @@ export default function FunFactsBlock({
 }) {
   if (!funFacts) return null
 
+  const isPlusAvailable = Object.keys(plusFunFactsRules)
+    .map((key) => {
+      if (key in funFacts) {
+        return true
+      }
+      return false
+    })
+    .every((value) => value === true)
+
   return (
     <section className={twMerge('flex flex-col justify-center', className)}>
       <div className="flex flex-row flex-wrap justify-center gap-8 md:gap-16">
@@ -70,7 +79,9 @@ export default function FunFactsBlock({
           )
         )}
       </div>
-      <FunFactsPlus plusFunFactsRules={plusFunFactsRules} funFacts={funFacts} />
+      {isPlusAvailable && (
+        <FunFactsPlus plusFunFactsRules={funFactsRules} funFacts={funFacts} />
+      )}
     </section>
   )
 }
