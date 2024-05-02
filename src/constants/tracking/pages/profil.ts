@@ -8,7 +8,7 @@ export const profilClickCtaCommencer = [
   'trackEvent',
   'Profil',
   'Click CTA',
-  'Passer le test',
+  'Click Passer le test',
 ]
 
 // Figma comment #72
@@ -16,7 +16,7 @@ export const profilClickCtaReprendre = [
   'trackEvent',
   'Profil',
   'Click CTA',
-  'Reprendre mon test',
+  'Click Reprendre mon test',
 ]
 
 // Figma comment #72
@@ -24,14 +24,15 @@ export const profilClickCtaResultats = [
   'trackEvent',
   'Profil',
   'Click CTA',
-  'Voir les résultats',
+  'Click Voir les résultats',
 ]
 
 // Figma comment #73
 export const profilClickRecommencer = [
   'trackEvent',
   'Profil',
-  'Click Recommencer',
+  'Click CTA',
+  'Click Nouveau test',
 ]
 
 // Figma comment #74
@@ -51,7 +52,7 @@ export const profilClickRegion = (region: string) => [
   'trackEvent',
   'Profil',
   'Click Region',
-  region,
+  `Click Region ${region}`,
 ]
 
 // Figma comment #78
@@ -59,7 +60,7 @@ export const profilClickCategory = (category: DottedName) => [
   'trackEvent',
   'Profil',
   'Click Category',
-  category,
+  `Click Category ${category}`,
 ]
 
 // Figma comment #79
@@ -67,7 +68,7 @@ export const profilClickSubCategory = (subcategory: DottedName) => [
   'trackEvent',
   'Profil',
   'Click SubCategory',
-  subcategory,
+  `Click SubCategory ${subcategory}`,
 ]
 
 // Figma comment #80
@@ -75,7 +76,7 @@ export const profilClickQuestion = (question: DottedName) => [
   'trackEvent',
   'Profil',
   'Click Question',
-  question,
+  `Click Question ${question}`,
 ]
 
 // Figma comment #81

@@ -22,7 +22,7 @@ export const organisationsParametersToggleAdditionnalQuestionsPostCode = (
   'trackEvent',
   'Organisations Paramètres',
   isEnabled ? 'Enable Additionnal Questions' : 'Disable Additionnal Questions',
-  'Post Code',
+  'Enable or disable Postal Code',
 ]
 
 // Figma comment #117
@@ -32,5 +32,5 @@ export const organisationsParametersToggleAdditionnalQuestionsBirthdate = (
   'trackEvent',
   'Organisations Paramètres',
   isEnabled ? 'Enable Additionnal Questions' : 'Disable Additionnal Questions',
-  'Birthdate',
+  'Enable or disable Birthdate',
 ]

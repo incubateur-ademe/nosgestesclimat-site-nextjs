@@ -35,19 +35,22 @@ export default function Birthdate() {
         className="text-lg md:text-2xl"
         title={<Trans>Votre date de naissance</Trans>}
         subtitle={
-          <span className="text-secondary-700 font-bold italic">
+          <span className="font-bold italic text-secondary-700">
             <Trans>Facultatif</Trans>
           </span>
         }
       />
+
       <TextInputGroup
         name="birthdate"
         type="date"
+        className="cursor-pointer"
         value={birthdate}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
           setBirthdate(e.target.value)
         }}
       />
+
       <Navigation
         linkToPrev={getLinkToPrevInfosPage({ curPage: BIRTHDATE_PAGE })}
         submitDisabled={!getLinkToNextInfosPage({ curPage: BIRTHDATE_PAGE })}

@@ -26,6 +26,8 @@ export default function MosaicQuestion({
 
   const { title, icons, description } = useRule(parent)
 
+  const { questionsOfMosaic: questionsOfParentMosaic } = useRule(parentMosaic)
+
   return (
     <>
       {type === 'number' && (
@@ -34,11 +36,12 @@ export default function MosaicQuestion({
           title={title}
           icons={icons}
           description={description}
-          setValue={async (value) => {
-            await setValue(value < 0 ? 0 : value, {
+          setValue={(value) => {
+            setValue(value < 0 ? 0 : value, {
               foldedStep: parentMosaic,
-              mosaic: question,
+              questionsOfParentMosaic,
             })
+
             trackEvent(
               questionTypeAnswer({
                 question: parentMosaic,
@@ -58,11 +61,12 @@ export default function MosaicQuestion({
           title={title}
           icons={icons}
           description={description}
-          setValue={async (value) => {
-            await setValue(value, {
+          setValue={(value) => {
+            setValue(value, {
               foldedStep: parentMosaic,
-              mosaic: question,
+              questionsOfParentMosaic,
             })
+
             trackEvent(
               questionChooseAnswer({
                 question: parentMosaic,

@@ -73,10 +73,9 @@ export default function QuestionsComplementaires({
     })
 
     refetchOrganisation()
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
     setIsConfirmingUpdate(true)
-
-    if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
     timeoutRef.current = setTimeout(() => {
       setIsConfirmingUpdate(false)
@@ -89,11 +88,10 @@ export default function QuestionsComplementaires({
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
   }, [])
-
   return (
     <section className="mb-12 mt-8">
       <h2>
-        <Trans>Question complémentaires</Trans>
+        <Trans>Questions complémentaires</Trans>
       </h2>
       <p>
         <Trans>
@@ -109,31 +107,24 @@ export default function QuestionsComplementaires({
         </Trans>
       </p>
 
-      <div className="mb-4 rounded-md border border-gray-200">
-        <ToggleField
-          name="villeToggle"
-          value={
-            poll?.defaultAdditionalQuestions.includes('postalCode') ?? false
-          }
-          onChange={(isEnabled: boolean) => {
-            handleChange({ questionKey: 'postalCode', value: isEnabled })
-          }}
-          label={<Trans>Dans quelle ville habitez-vous ?</Trans>}
-        />
-      </div>
+      <ToggleField
+        name="villeToggle"
+        className="mb-4"
+        value={poll?.defaultAdditionalQuestions.includes('postalCode') ?? false}
+        onChange={(isEnabled: boolean) => {
+          handleChange({ questionKey: 'postalCode', value: isEnabled })
+        }}
+        label={<Trans>Dans quelle ville habitez-vous ?</Trans>}
+      />
 
-      <div className="rounded-md border border-gray-200">
-        <ToggleField
-          name="birthdateToggle"
-          value={
-            poll?.defaultAdditionalQuestions.includes('birthdate') ?? false
-          }
-          onChange={(isEnabled: boolean) => {
-            handleChange({ questionKey: 'birthdate', value: isEnabled })
-          }}
-          label={<Trans>Quelle est votre année de naissance ?</Trans>}
-        />
-      </div>
+      <ToggleField
+        name="birthdateToggle"
+        value={poll?.defaultAdditionalQuestions.includes('birthdate') ?? false}
+        onChange={(isEnabled: boolean) => {
+          handleChange({ questionKey: 'birthdate', value: isEnabled })
+        }}
+        label={<Trans>Quelle est votre année de naissance ?</Trans>}
+      />
 
       <ModificationSaved
         shouldShowMessage={isConfirmingUpdate}

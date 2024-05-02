@@ -3,8 +3,6 @@ const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
 })
 
-const withYaml = require('next-plugin-yaml')
-
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -32,14 +30,22 @@ const nextConfig = {
       })
       config.cache.maxMemoryGenerations = 0
     }
-    // Important: return the modified config
+
+    // Add a rule for YAML files
+    config.module.rules.push({
+      test: /\.ya?ml$/,
+      use: 'yaml-loader',
+    })
+
     return config
   },
   experimental: {
-    mdxRs: true,
-    optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     outputFileTracingExcludes: {
       '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
+      '/blog': ['public/NGC_Kit.diffusion.zip'],
+      '/nouveautes': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
+      '/actions/plus': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
+      '/sitemap.xml': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
     },
     webpackBuildWorker: true,
     turbo: {
@@ -85,6 +91,6 @@ const sentryConfig = [
 ]
 
 module.exports = withSentryConfig(
-  withBundleAnalyzer(withMDX(withYaml(nextConfig))),
+  withBundleAnalyzer(withMDX(nextConfig)),
   ...sentryConfig
 )

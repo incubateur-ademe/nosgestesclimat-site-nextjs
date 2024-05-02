@@ -18,13 +18,7 @@ export default function OrganisationItem({
     <Link
       href={getLinkToPollDashboard({ orgaSlug: organisation?.slug })}
       className="mb-6 rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-primary-100"
-      onClick={() =>
-        trackEvent(
-          classementClickOrganisation({
-            isAdministator: true,
-          })
-        )
-      }>
+      onClick={() => trackEvent(classementClickOrganisation)}>
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center gap-4">
           <div>
@@ -34,7 +28,7 @@ export default function OrganisationItem({
           </div>
 
           <div className="flex gap-1 text-sm text-violet-900">
-            <Badge className="ml-2 inline border-pink-100 bg-pink-200 text-xs font-bold text-secondary-700">
+            <Badge className="text-secondary-700 ml-2 inline border-pink-100 bg-pink-200 text-xs font-bold">
               <Trans>Administrateur·ice</Trans>
             </Badge>
           </div>
