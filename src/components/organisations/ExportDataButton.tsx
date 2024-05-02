@@ -8,7 +8,7 @@ import { useState } from 'react'
 import Trans from '../translation/Trans'
 
 type Props = {
-  poll: PollData
+  poll: PollData | undefined | null
   simulationRecaps: SimulationRecap[]
   color?: 'primary' | 'secondary'
   onClick?: () => void
@@ -44,7 +44,7 @@ export default function ExportDataButton({
           ),
         }
 
-        if (poll.customAdditionalQuestions) {
+        if (poll?.customAdditionalQuestions) {
           poll.customAdditionalQuestions.forEach(({ _id, question }) => {
             data[question as string] =
               simulation.customAdditionalQuestionsAnswers?.[_id] ?? ''
