@@ -45,7 +45,13 @@ export default async function Profil() {
 
       <Separator />
 
-      <UserInformationForm title={<Trans>Mes informations</Trans>} />
+      <UserInformationForm
+        title={
+          <h3>
+            <Trans>Mes informations</Trans>
+          </h3>
+        }
+      />
     </FormProvider>
   )
 }
