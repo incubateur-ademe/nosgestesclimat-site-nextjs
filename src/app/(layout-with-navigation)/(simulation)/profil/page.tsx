@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import UserInformationForm from '@/components/user/UserInformationForm'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -7,7 +8,6 @@ import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions
 import { FormProvider } from '@/publicodes-state'
 import AnswerList from './_components/AnswerList'
 import Localisation from './_components/Localisation'
-import MesInformations from './_components/MesInformations'
 import PersonaWarning from './_components/PersonaWarning'
 import SimulationBanner from './_components/SimulationBanner'
 import SimulationList from './_components/SimulationList'
@@ -45,7 +45,7 @@ export default async function Profil() {
 
       <Separator />
 
-      <MesInformations />
+      <UserInformationForm title={<Trans>Mes informations</Trans>} />
     </FormProvider>
   )
 }
