@@ -172,8 +172,6 @@ export default function UserInformationForm({
                 />
               ) : (
                 <TextInputGroup
-                  // @ts-expect-error - conditionnal rendering of the same input
-                  name="email"
                   label={t('Votre adresse email')}
                   className="w-full"
                   value={user?.email ?? ''}

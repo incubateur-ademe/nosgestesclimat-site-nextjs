@@ -1,9 +1,77 @@
+import { LIST_NOS_GESTES_TRANSPORT_NEWSLETTER } from '@/constants/brevo'
+import Button from '@/design-system/inputs/Button'
+import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
+import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
+import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useUser } from '@/publicodes-state'
+import { useState } from 'react'
+import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import Trans from '../translation/Trans'
 
+type Inputs = {
+  email: string
+}
+
 export default function NosGestesTransportsBanner() {
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const { t } = useClientTranslation()
+  const { user, updateEmail } = useUser()
+  const { register, handleSubmit } = useReactHookForm<Inputs>({
+    defaultValues: {
+      email: user?.email,
+    },
+  })
+
+  const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
+    user?.email ?? ''
+  )
+
+  const { mutateAsync: updateUserSettings, isPending } = useUpdateUserSettings({
+    email: user?.email ?? '',
+    userId: user?.userId,
+  })
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      await updateUserSettings({
+        email: data.email,
+        newsletterIds: {
+          [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: true,
+        },
+      })
+
+      if (data.email && !user?.email) {
+        updateEmail(data.email)
+      }
+
+      setIsSubmitted(true)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  if (newsletterSubscriptions?.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER)) {
+    return null
+  }
+
+  if (isSubmitted) {
+    return (
+      <div className="flex w-full flex-wrap rounded-xl bg-transport-50 p-6 md:flex-nowrap">
+        <p className="text-lg" style={{ marginBottom: '0' }}>
+          <Trans>
+            Votre inscription est validée ! <Emoji>✨</Emoji>
+          </Trans>
+        </p>
+      </div>
+    )
+  }
+
   return (
-    <div className="flex w-full flex-wrap rounded-xl bg-transport-50 p-6 md:flex-nowrap">
+    <div className="flex w-full flex-wrap items-start gap-4 rounded-xl bg-transport-50 p-6 md:flex-nowrap">
       <div>
         <p className="text-lg" style={{ marginBottom: '16px' }}>
           <Emoji
@@ -24,6 +92,32 @@ export default function NosGestesTransportsBanner() {
             <strong className="text-secondary-700">4 mails seulement</strong>.
           </Trans>
         </p>
+      </div>
+
+      <div>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex w-full min-w-80 flex-col items-start gap-4">
+          <div className="relative w-full">
+            <TextInputGroup
+              aria-label={t('Votre e-mail')}
+              className="w-full rounded-full pr-16"
+              value={user?.email ?? ''}
+              placeholder={t('Votre e-mail')}
+              {...register('email', {
+                required: t('Ce champ est requis'),
+              })}
+            />
+
+            <Button
+              disabled={isPending}
+              type="submit"
+              aria-label={t('Valider')}
+              className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full p-0 leading-none">
+              {isPending ? <Loader /> : '→'}
+            </Button>
+          </div>
+        </form>
       </div>
     </div>
   )
