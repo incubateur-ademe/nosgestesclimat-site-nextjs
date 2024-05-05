@@ -19,6 +19,9 @@ export default function Emoji({
         baseUrl: 'https://cdnjs.cloudflare.com/ajax/libs/twemoji/15.1.0/svg',
         ext: '.svg',
         size: '',
+        props: {
+          className: 'border-none',
+        },
       })}
     </span>
   )
