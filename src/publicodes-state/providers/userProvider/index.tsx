@@ -7,7 +7,6 @@ import UserContext from './context'
 import usePersistentSimulations from './usePersistentSimulations'
 import usePersistentTutorials from './usePersistentTutorials'
 import usePersistentUser from './usePersistentUser'
-import useUpdateOldLocalStorage from './useUpdateOldLocalStorage'
 
 type Props = {
   /**
@@ -29,9 +28,10 @@ export default function UserProvider({
   initialRegion,
   migrationInstructions,
 }: PropsWithChildren<Props>) {
-  useUpdateOldLocalStorage({ storageKey, migrationInstructions })
-
-  const { user, setUser } = usePersistentUser({ storageKey, initialRegion })
+  const { user, setUser } = usePersistentUser({
+    storageKey,
+    initialRegion,
+  })
 
   const { tutorials, setTutorials } = usePersistentTutorials({ storageKey })
 
@@ -40,7 +40,7 @@ export default function UserProvider({
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
-  } = usePersistentSimulations({ storageKey })
+  } = usePersistentSimulations({ storageKey, migrationInstructions })
 
   return (
     <UserContext.Provider
