@@ -1,6 +1,7 @@
 'use client'
 
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
+import Trans from '@/components/translation/Trans'
 import { endClickPoll } from '@/constants/tracking/pages/end'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
@@ -40,7 +41,7 @@ export default function Poll() {
   return (
     <Card className="mb-4 w-[24rem] max-w-full flex-row items-center justify-between gap-4 border-none bg-primary-100">
       <p className="m-0 flex-1 ">
-        Découvrez les résultats du groupe{' '}
+        <Trans>Découvrez les résultats du groupe</Trans>{' '}
         <b>{isLoading ? '... ' : poll?.organisationInfo?.name}</b>
       </p>
       <ButtonLink

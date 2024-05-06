@@ -104,9 +104,9 @@ export default function useRule(dottedName: DottedName) {
     value,
     type,
     questionsOfMosaic,
-    addToEngineSituation,
     updateCurrentSimulation,
     situation,
+    addToEngineSituation,
   })
 
   return {
