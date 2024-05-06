@@ -8,13 +8,13 @@ import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useSendOrganisationCreationEmail } from '@/hooks/organisations/useSendOrganisationCreationEmail'
+import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
 import { t } from 'i18next'
 import { useRouter } from 'next/navigation'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import { useUpdateOrganisation } from '../../_hooks/useUpdateOrganisation'
 
 type Inputs = {
   name: string
@@ -59,7 +59,6 @@ export default function CreationForm() {
     hasOptedInForCommunications,
   }: Inputs) {
     try {
-
       const organisationUpdated = await updateOrganisation({
         name,
         administratorName,

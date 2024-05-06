@@ -10,7 +10,7 @@ import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { FormEventHandler, useEffect, useRef, useState } from 'react'
-import { useUpdateOrganisation } from '../../../_hooks/useUpdateOrganisation'
+import { useUpdateOrganisation } from '../../../../../../../hooks/organisations/useUpdateOrganisation'
 
 type Props = {
   organisation: Organisation | undefined

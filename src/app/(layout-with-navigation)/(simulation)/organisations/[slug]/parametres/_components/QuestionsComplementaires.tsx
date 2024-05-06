@@ -1,9 +1,9 @@
 'use client'
 
-import { useUpdateOrganisation } from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useUpdateOrganisation'
 import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
 import { organisationsParametersToggleAdditionnalQuestionsPostCode } from '@/constants/tracking/pages/organisationsParameters'
+import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
