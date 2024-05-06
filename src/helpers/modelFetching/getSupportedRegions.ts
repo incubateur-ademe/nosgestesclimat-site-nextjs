@@ -1,8 +1,6 @@
-import {
-  SupportedRegions,
-  supportedRegions,
-} from '@incubateur-ademe/nosgestesclimat'
-import { getFileFromModel } from './getFileFromModel'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
+import { importPreviewFile } from './importPreviewFile'
 type Props = {
   PRNumber?: string
 }
@@ -14,7 +12,7 @@ export async function getSupportedRegions({
 }: Props = {}): Promise<SupportedRegions> {
   if (PRNumber) {
     const fileName = `supportedRegions.json`
-    return getFileFromModel({ fileName, PRNumber })
+    return importPreviewFile({ fileName, PRNumber })
   }
 
   return Promise.resolve(supportedRegions)

@@ -19,7 +19,7 @@ export function useTrackPageView() {
     // If there is an organisation name in the pathname, we change it to "organisation-name"
     const pathNameSegment = url.split('/')
     if (
-      pathNameSegment[0] === 'organisation' &&
+      pathNameSegment[0] === 'organisations' &&
       !['connexion', 'creation', 'demander-demo'].includes(pathNameSegment[1])
     ) {
       url = url.replace(pathNameSegment[1], 'organisation-name')

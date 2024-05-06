@@ -15,7 +15,12 @@ export default function EmailForm() {
 
   const { t } = useClientTranslation()
 
-  const { updateLoginExpirationDate, updateUserOrganisation, user } = useUser()
+  const {
+    updateLoginExpirationDate,
+    updateUserOrganisation,
+    user,
+    updateEmail,
+  } = useUser()
 
   const { mutateAsync: loginOrganisation } = useLoginOrganisation()
 
@@ -51,8 +56,6 @@ export default function EmailForm() {
 
       // We update the expiration date of the code
       updateLoginExpirationDate(expirationDate)
-
-      updateUserOrganisation({ administratorEmail: email })
     } catch (error: any) {
       // If not possible, create the organisation
       try {
@@ -62,11 +65,15 @@ export default function EmailForm() {
         })
 
         updateLoginExpirationDate(expirationDate)
-
-        updateUserOrganisation({ administratorEmail: email })
       } catch (error: any) {
         setInputError(error.response.data.message)
         return
+      }
+    } finally {
+      updateUserOrganisation({ administratorEmail: email })
+
+      if (!user.email) {
+        updateEmail(email)
       }
     }
   }

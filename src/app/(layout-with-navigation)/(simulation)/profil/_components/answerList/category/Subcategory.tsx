@@ -34,7 +34,7 @@ export default function SubCategory({ subcategory }: Props) {
 
   if (!answeredQuestionOfSubcategory.length) return null
   return (
-    <div className="relative mt-2 w-full overflow-hidden rounded-xl bg-primary-100 ">
+    <div className="relative mt-2 w-full overflow-hidden rounded-xl bg-gray-50">
       <div
         className={`absolute bottom-0 left-0 top-0 w-2 ${getBackgroundColor(
           category

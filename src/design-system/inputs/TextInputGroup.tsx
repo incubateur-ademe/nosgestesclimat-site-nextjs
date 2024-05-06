@@ -1,4 +1,10 @@
-import { ChangeEventHandler, HTMLAttributes, ReactNode } from 'react'
+import {
+  ChangeEventHandler,
+  ForwardedRef,
+  HTMLAttributes,
+  ReactNode,
+  forwardRef,
+} from 'react'
 import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
 
@@ -20,22 +26,25 @@ type Props = {
   readOnly?: boolean
 }
 
-export default function TextInputGroup({
-  name,
-  label,
-  type = 'text',
-  error,
-  helperText,
-  className,
-  placeholder,
-  onChange,
-  value,
-  required = false,
-  disabled,
-  debounceTimeout = 100,
-  readOnly = false,
-  ...props
-}: HTMLAttributes<HTMLInputElement> & Props) {
+export default forwardRef(function TextInputGroup(
+  {
+    name,
+    label,
+    type = 'text',
+    error,
+    helperText,
+    className,
+    placeholder,
+    onChange,
+    value,
+    required = false,
+    disabled,
+    debounceTimeout = 100,
+    readOnly = false,
+    ...props
+  }: HTMLAttributes<HTMLInputElement> & Props,
+  ref: ForwardedRef<HTMLInputElement>
+) {
   return (
     <div className="flex flex-col" aria-live="polite">
       {label ? (
@@ -54,6 +63,7 @@ export default function TextInputGroup({
       ) : null}
 
       <DebounceInput
+        inputRef={ref}
         readOnly={readOnly}
         debounceTimeout={debounceTimeout}
         name={name}
@@ -84,4 +94,4 @@ export default function TextInputGroup({
       )}
     </div>
   )
-}
+})

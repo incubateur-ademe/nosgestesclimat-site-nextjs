@@ -65,7 +65,7 @@ export default function Navigation({
       }
 
       if (isMissing) {
-        await updateCurrentSimulation({ foldedStepToAdd: question })
+        updateCurrentSimulation({ foldedStepToAdd: question })
       }
 
       handleMoveFocus()
