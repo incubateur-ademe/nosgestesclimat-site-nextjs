@@ -1,38 +1,11 @@
 import { DottedName } from '@/publicodes-state/types'
-import { FunFacts } from '@/types/organisations'
+import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
+import importedFunFacts from '@incubateur-ademe/nosgestesclimat/public/funFactsRules.json'
 import { twMerge } from 'tailwind-merge'
 import FunFactsItem from './funFacts/FunFactsItem'
 import FunFactsPlus from './funFacts/FunFactsPlus'
 
-const funFactsRules: { [k in keyof FunFacts]: DottedName } = {
-  percentageOfBicycleUsers: 'ui . organisations . transport . roule en vélo',
-  percentageOfVegetarians: 'ui . organisations . alimentation . est végétarien',
-  percentageOfCarOwners: 'ui . organisations . transport . roule en voiture',
-  percentageOfPlaneUsers: "ui . organisations . transport . prend l'avion",
-  percentageOfLongPlaneUsers:
-    "ui . organisations . transport . prend l'avion long courrier",
-  averageOfCarKilometers: 'ui . organisations . transport . km en voiture',
-  averageOfTravelers: 'ui . organisations . transport . voyageurs en voiture',
-  percentageOfElectricHeating:
-    'ui . organisations . logement . chauffage électricité',
-  percentageOfGasHeating: 'ui . organisations . logement . chauffage gaz',
-  percentageOfFuelHeating: 'ui . organisations . logement . chauffage fioul',
-  percentageOfWoodHeating: 'ui . organisations . logement . chauffage bois',
-  averageOfElectricityConsumption:
-    'ui . organisations . logement . consommation électricité',
-  percentageOfCoolingSystem:
-    'ui . organisations . logement . possède climatisation',
-  percentageOfVegan: 'ui . organisations . alimentation . est végétalien',
-  percentageOfRedMeat:
-    'ui . organisations . alimentation . fréquence viande rouge',
-  percentageOfLocalAndSeasonal:
-    'ui . organisations . alimentation . local et de saison',
-  percentageOfBottledWater:
-    'ui . organisations . alimentation . eau en bouteille',
-  percentageOfZeroWaste: 'ui . organisations . alimentation . zéro déchet',
-  amountOfClothing: 'ui . organisations . divers . textile',
-  percentageOfStreaming: 'ui . organisations . divers . internet',
-}
+const funFactsRules = importedFunFacts as { [k in keyof FunFacts]: DottedName }
 
 const defaultFunFactsRules: { [k in keyof Partial<FunFacts>]: DottedName } = {
   percentageOfBicycleUsers: 'ui . organisations . transport . roule en vélo',

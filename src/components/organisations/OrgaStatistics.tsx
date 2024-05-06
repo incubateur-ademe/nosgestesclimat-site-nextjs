@@ -2,7 +2,8 @@
 
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
-import { FunFacts, SimulationRecap } from '@/types/organisations'
+import { SimulationRecap } from '@/types/organisations'
+import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
 import FunFactsBlock from './orgaStatistics/FunFactsBlock'
 import SeeDetailedReportAndExport from './orgaStatistics/SeeDetailedReportAndExport'

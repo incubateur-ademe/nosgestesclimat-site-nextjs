@@ -1,4 +1,5 @@
 import { Simulation } from '@/publicodes-state/types'
+import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 
 export type OrganisationSimulation = Simulation & {
   bilan: number
@@ -74,27 +75,4 @@ export type PollInfo = {
 export type OrganisationInfo = {
   name: string
   slug: string
-}
-
-export type FunFacts = {
-  percentageOfBicycleUsers: number
-  percentageOfVegetarians: number
-  percentageOfCarOwners: number
-  percentageOfPlaneUsers: number
-  percentageOfLongPlaneUsers: number
-  averageOfCarKilometers: number
-  averageOfTravelers: number
-  percentageOfElectricHeating: number
-  percentageOfGasHeating: number
-  percentageOfFuelHeating: number
-  percentageOfWoodHeating: number
-  averageOfElectricityConsumption: number
-  percentageOfCoolingSystem: number
-  percentageOfVegan: number
-  percentageOfRedMeat: number
-  percentageOfLocalAndSeasonal: number
-  percentageOfBottledWater: number
-  percentageOfZeroWaste: number
-  amountOfClothing: number
-  percentageOfStreaming: number
 }
