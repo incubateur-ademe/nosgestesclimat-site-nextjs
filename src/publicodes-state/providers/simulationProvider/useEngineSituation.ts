@@ -22,11 +22,11 @@ export function useEngineSituation({ engine, everyRules }: Props) {
         everyRules,
       })
 
-      engine.setSituation({ ...situation, ...safeSituation })
+      engine.setSituation(safeSituation, { keepPreviousSituation: true })
 
       return safeSituation
     },
-    [everyRules, situation, engine]
+    [everyRules, engine]
   )
 
   useEffect(() => {

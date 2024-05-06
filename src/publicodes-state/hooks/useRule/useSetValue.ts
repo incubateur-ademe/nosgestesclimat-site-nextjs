@@ -2,7 +2,7 @@
 
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
 import { PublicodesExpression } from 'publicodes'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import getType from '../../helpers/getType'
 import {
   DottedName,
@@ -37,55 +37,51 @@ export default function useSetValue({
   updateCurrentSimulation,
   addToEngineSituation,
 }: Props) {
-  const getMosaicResetSituation = useCallback(
-    (questionsOfParentMosaic: DottedName[]): Situation => {
-      const situationToAdd = questionsOfParentMosaic.reduce(
-        (accumulator, currentValue) => {
-          const isMissing = getIsMissing({
-            dottedName: currentValue,
-            questionsOfMosaic: [],
-            situation,
-          })
-          if (!isMissing) return accumulator
+  const mosaicResetSituation = useMemo(() => {
+    const situationToAdd = questionsOfMosaic.reduce(
+      (accumulator, currentValue) => {
+        const isMissing = getIsMissing({
+          dottedName: currentValue,
+          questionsOfMosaic: [],
+          situation,
+        })
+        if (!isMissing) return accumulator
 
-          const rule = safeGetRule(currentValue)
-          const evaluation = safeEvaluate(currentValue)
-          const resetValue =
-            getType({ rule, evaluation, dottedName: currentValue }) ===
-            'boolean'
-              ? 'non'
-              : 0
+        const rule = safeGetRule(currentValue)
+        const evaluation = safeEvaluate(currentValue)
+        const resetValue =
+          getType({ rule, evaluation, dottedName: currentValue }) === 'boolean'
+            ? 'non'
+            : 0
 
-          return {
-            ...accumulator,
-            [currentValue]: checkValueValidity({
-              value: resetValue,
-              type: getType({ rule, evaluation, dottedName: currentValue }),
-            }),
-          }
-        },
-        {}
-      )
+        return {
+          ...accumulator,
+          [currentValue]: checkValueValidity({
+            value: resetValue,
+            type: getType({ rule, evaluation, dottedName: currentValue }),
+          }),
+        }
+      },
+      {}
+    )
 
-      return situationToAdd
-    },
-    [situation, safeEvaluate, safeGetRule]
-  )
+    return situationToAdd
+  }, [situation, safeEvaluate, safeGetRule, questionsOfMosaic])
 
   /**
    * @param value - The value to set
    * @param options.foldedStep - The dottedName of the foldedStep
-   * @param options.questionsOfParentMosaic - The questions of the parent mosaic
+   * @param options.parentMosaicResetSituation - The situation of the parent mosaic (if values needs to be reset)
    */
   const setValue = useCallback(
     async (
       value: NodeValue | { [dottedName: DottedName]: NodeValue },
       {
         foldedStep,
-        questionsOfParentMosaic,
+        mosaicResetSituation,
       }: {
         foldedStep?: DottedName
-        questionsOfParentMosaic?: DottedName[]
+        mosaicResetSituation?: Situation
       } = {}
     ) => {
       let situationToAdd = {}
@@ -107,9 +103,9 @@ export default function useSetValue({
         }
       }
 
-      if (questionsOfParentMosaic) {
+      if (mosaicResetSituation) {
         situationToAdd = {
-          ...getMosaicResetSituation(questionsOfParentMosaic),
+          ...mosaicResetSituation,
           ...situationToAdd,
         }
       }
@@ -120,13 +116,7 @@ export default function useSetValue({
         foldedStepToAdd: foldedStep,
       })
     },
-    [
-      dottedName,
-      type,
-      updateCurrentSimulation,
-      getMosaicResetSituation,
-      addToEngineSituation,
-    ]
+    [dottedName, type, updateCurrentSimulation, addToEngineSituation]
   )
 
   const setDefaultAsValue = useCallback(
@@ -173,6 +163,7 @@ export default function useSetValue({
   return {
     setValue,
     setDefaultAsValue,
+    mosaicResetSituation,
   }
 }
 

@@ -6,6 +6,7 @@ import { useContext } from 'react'
  */
 export default function useSimulation() {
   const {
+    engine,
     categories,
     subcategories,
     everyQuestions,
@@ -18,6 +19,7 @@ export default function useSimulation() {
   } = useContext(SimulationContext)
 
   return {
+    engine,
     categories: [...categories],
     subcategories,
     everyQuestions,

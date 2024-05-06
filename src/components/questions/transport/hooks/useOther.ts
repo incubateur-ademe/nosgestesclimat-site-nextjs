@@ -4,7 +4,7 @@ import { HookProps } from '../transport'
 
 export function useOther({ answers, isPristine }: HookProps) {
   const { setValue: setOtherValue } = useRule(
-    'transport . mobilité douce . autres véhicules à moteur'
+    'transport . mobilité douce . autres véhicules à moteur . présent'
   )
   useEffect(() => {
     if (isPristine) {

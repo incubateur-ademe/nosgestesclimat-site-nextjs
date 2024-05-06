@@ -5,7 +5,7 @@ import { HookProps } from '../transport'
 export function useVoiture({
   answers,
   isPristine,
-  deleteSituation,
+  updateCurrentSimulation,
 }: HookProps) {
   const { setValue: setVoitureKmValue } = useRule('transport . voiture . km')
   useEffect(() => {
@@ -15,7 +15,9 @@ export function useVoiture({
     if (!answers.voiture) {
       setVoitureKmValue(0)
     } else {
-      deleteSituation(['transport . voiture . km'])
+      updateCurrentSimulation({
+        situationKeysToRemove: ['transport . voiture . km'],
+      })
     }
-  }, [answers, isPristine, setVoitureKmValue, deleteSituation])
+  }, [answers, isPristine, setVoitureKmValue, updateCurrentSimulation])
 }

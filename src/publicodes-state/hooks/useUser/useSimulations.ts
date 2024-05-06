@@ -117,6 +117,12 @@ export default function useSimulations({
             }
           }
 
+          if (situationKeysToRemove !== undefined) {
+            for (let index = 0; index < situationKeysToRemove.length; index++) {
+              delete simulationToUpdate.situation[situationKeysToRemove[index]]
+            }
+          }
+
           if (
             foldedStepToAdd !== undefined &&
             !simulationToUpdate.foldedSteps.includes(foldedStepToAdd)
@@ -198,6 +204,7 @@ export default function useSimulations({
 }
 
 const resetAideSaisie = () => {
+  localStorage.removeItem('transport . liste')
   localStorage.removeItem('transport . voiture . km')
   localStorage.removeItem('transport . avion . court courrier . heures de vol')
   localStorage.removeItem('transport . avion . moyen courrier . heures de vol')

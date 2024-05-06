@@ -50,6 +50,11 @@ export const transports = [
     icons: '🛴',
   },
   {
+    key: 'marche',
+    title: 'Marche',
+    icons: '👟',
+  },
+  {
     key: 'campingCar',
     title: 'Camping car',
     icons: '🚍',

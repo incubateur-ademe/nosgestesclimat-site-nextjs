@@ -96,7 +96,7 @@ export default function useRule(dottedName: DottedName) {
     type,
   })
 
-  const { setValue, setDefaultAsValue } = useSetValue({
+  const { setValue, setDefaultAsValue, mosaicResetSituation } = useSetValue({
     dottedName,
     safeGetRule,
     safeEvaluate,
@@ -214,5 +214,9 @@ export default function useRule(dottedName: DottedName) {
      * Set default value as value, with the possibility to add a dottedName in the foldedSteps and the mosaic parent
      */
     setDefaultAsValue,
+    /**
+     * The reset situation of the mosaic (if the rule is a mosaic)
+     */
+    mosaicResetSituation,
   }
 }

@@ -5,9 +5,11 @@ import { HookProps } from '../transport'
 export function useAvion({ answers, isPristine }: HookProps) {
   const { setValue: setAvionValue } = useRule('transport . avion . usager')
   useEffect(() => {
+    console.log('setAvionValue')
     if (isPristine) {
       return
     }
+
     if (!answers.avion) {
       setAvionValue('non')
     } else {

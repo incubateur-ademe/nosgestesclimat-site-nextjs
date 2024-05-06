@@ -29,7 +29,6 @@ export default function useTempEngine() {
     .flat()
 
   return {
-    deleteSituation,
     getRuleObject,
     rules,
     extendedFoldedSteps,

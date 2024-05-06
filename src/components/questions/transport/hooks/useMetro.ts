@@ -2,7 +2,11 @@ import { useRule } from '@/publicodes-state'
 import { useEffect } from 'react'
 import { HookProps } from '../transport'
 
-export function useMetro({ answers, isPristine, deleteSituation }: HookProps) {
+export function useMetro({
+  answers,
+  isPristine,
+  updateCurrentSimulation,
+}: HookProps) {
   const { setValue: setMetroHoursValue } = useRule(
     'transport . métro ou tram . heures par semaine'
   )
@@ -13,7 +17,11 @@ export function useMetro({ answers, isPristine, deleteSituation }: HookProps) {
     if (!answers.metro) {
       setMetroHoursValue(0)
     } else {
-      deleteSituation(['transport . métro ou tram . heures par semaine'])
+      updateCurrentSimulation({
+        situationKeysToRemove: [
+          'transport . métro ou tram . heures par semaine',
+        ],
+      })
     }
-  }, [answers, isPristine, setMetroHoursValue, deleteSituation])
+  }, [answers, isPristine, setMetroHoursValue, updateCurrentSimulation])
 }
