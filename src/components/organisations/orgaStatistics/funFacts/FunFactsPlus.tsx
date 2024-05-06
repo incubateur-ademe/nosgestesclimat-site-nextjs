@@ -1,9 +1,14 @@
 import SaveIcon from '@/components/icons/SaveIcon'
 import Trans from '@/components/translation/Trans'
+import {
+  organisationsDashboardClickFunFacts,
+  organisationsDashboardClickFunFactsDownload,
+} from '@/constants/tracking/pages/organisationsDashboard'
 import ChevronRight from '@/design-system/icons/ChevronRight'
 import Button from '@/design-system/inputs/Button'
 import { DottedName } from '@/publicodes-state/types'
 import { FunFacts } from '@/types/organisations'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { toPng } from 'html-to-image'
 import { useParams } from 'next/navigation'
 import { utils } from 'publicodes'
@@ -34,7 +39,10 @@ export default function FunFactsPlus({ plusFunFactsRules, funFacts }: Props) {
       <Button
         className="my-4 w-36 self-center !px-4 md:self-end"
         color="link"
-        onClick={() => setIsModalVisible(!isModalVisible)}>
+        onClick={() => {
+          trackEvent(organisationsDashboardClickFunFacts)
+          setIsModalVisible(!isModalVisible)
+        }}>
         <ChevronRight
           className={twMerge('mr-2 rotate-90', isModalVisible && '-rotate-90')}
         />
@@ -74,7 +82,7 @@ export default function FunFactsPlus({ plusFunFactsRules, funFacts }: Props) {
               size="sm"
               color="secondary"
               onClick={() => {
-                // TODO : trackEvent()
+                trackEvent(organisationsDashboardClickFunFactsDownload)
 
                 const funFactsPlus = document.getElementById(
                   'funFactsPlus'
