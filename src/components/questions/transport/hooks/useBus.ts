@@ -28,20 +28,22 @@ export function useBus({
     if (!answers.bus) {
       setBusHoursValue(0)
     } else {
-      updateCurrentSimulation({
-        situationKeysToRemove: ['transport . bus . heures par semaine'],
-      })
       setShouldUpdateEngine(true)
     }
-  }, [answers, isPristine, setBusHoursValue, updateCurrentSimulation, engine])
+  }, [answers, isPristine, setBusHoursValue, engine])
 
   useEffect(() => {
     if (!shouldUpdateEngine) return
 
-    if (situation['transport . bus . heures par semaine'] === 0) return
-    console.log('setBusHoursValue')
-    engine.setSituation(situation)
+    const newSituation = { ...situation }
+    delete newSituation['transport . bus . heures par semaine']
+
+    updateCurrentSimulation({
+      situation: newSituation,
+    })
+
+    engine.setSituation(newSituation)
 
     setShouldUpdateEngine(false)
-  }, [shouldUpdateEngine, engine, situation])
+  }, [shouldUpdateEngine, engine, situation, updateCurrentSimulation])
 }

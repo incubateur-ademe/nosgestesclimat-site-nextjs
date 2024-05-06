@@ -44,7 +44,7 @@ export default function Transport() {
 
   // A state to know if the user has already answered a question
   const [isPristine, setIsPristine] = useState(true)
-  console.log(isPristine, answers)
+
   useEffect(() => {
     if (Object.keys(answers).some((key) => answers[key])) {
       setIsPristine(false)

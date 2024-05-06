@@ -1,5 +1,9 @@
-import { useRule } from '@/publicodes-state'
-import { useEffect } from 'react'
+import {
+  useCurrentSimulation,
+  useRule,
+  useSimulation,
+} from '@/publicodes-state'
+import { useEffect, useState } from 'react'
 import { HookProps } from '../transport'
 
 export function useMetro({
@@ -7,9 +11,16 @@ export function useMetro({
   isPristine,
   updateCurrentSimulation,
 }: HookProps) {
+  const { engine } = useSimulation()
+
+  const { situation } = useCurrentSimulation()
+
   const { setValue: setMetroHoursValue } = useRule(
     'transport . métro ou tram . heures par semaine'
   )
+
+  const [shouldUpdateEngine, setShouldUpdateEngine] = useState(false)
+
   useEffect(() => {
     if (isPristine) {
       return
@@ -17,11 +28,22 @@ export function useMetro({
     if (!answers.metro) {
       setMetroHoursValue(0)
     } else {
-      updateCurrentSimulation({
-        situationKeysToRemove: [
-          'transport . métro ou tram . heures par semaine',
-        ],
-      })
+      setShouldUpdateEngine(true)
     }
-  }, [answers, isPristine, setMetroHoursValue, updateCurrentSimulation])
+  }, [answers, isPristine, setMetroHoursValue, engine])
+
+  useEffect(() => {
+    if (!shouldUpdateEngine) return
+
+    const newSituation = { ...situation }
+    delete newSituation['transport . métro ou tram . heures par semaine']
+
+    updateCurrentSimulation({
+      situation: newSituation,
+    })
+
+    engine.setSituation(newSituation)
+
+    setShouldUpdateEngine(false)
+  }, [shouldUpdateEngine, engine, situation, updateCurrentSimulation])
 }

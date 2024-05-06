@@ -37,20 +37,22 @@ export default function SubcategoriesChart() {
         className={`mb-4 flex h-8 rounded-md md:h-12 md:rounded-xl ${getBackgroundColor(
           currentCategory
         )}`}>
-        {filteredSubcategories.map((subcategory: string, index: number) => (
-          <Subcategory
-            key={subcategory}
-            position={
-              index === 0
-                ? 'first'
-                : index === filteredSubcategories.length - 1
-                  ? 'last'
-                  : 'middle'
-            }
-            total={total}
-            subcategory={subcategory}
-          />
-        ))}
+        {total
+          ? filteredSubcategories.map((subcategory: string, index: number) => (
+              <Subcategory
+                key={subcategory}
+                position={
+                  index === 0
+                    ? 'first'
+                    : index === filteredSubcategories.length - 1
+                      ? 'last'
+                      : 'middle'
+                }
+                total={total}
+                subcategory={subcategory}
+              />
+            ))
+          : null}
       </div>
     </>
   )

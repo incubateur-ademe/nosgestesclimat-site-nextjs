@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import formContext from '../../providers/formProvider/context'
 import useNavigation from './useNavigation'
 
@@ -32,10 +32,6 @@ export default function useForm() {
     currentQuestion,
     setCurrentQuestion,
   })
-
-  useEffect(() => {
-    console.log(remainingQuestions)
-  }, [remainingQuestions])
 
   return {
     /**

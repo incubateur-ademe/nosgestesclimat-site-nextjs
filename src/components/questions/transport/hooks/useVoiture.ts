@@ -1,5 +1,9 @@
-import { useRule } from '@/publicodes-state'
-import { useEffect } from 'react'
+import {
+  useCurrentSimulation,
+  useRule,
+  useSimulation,
+} from '@/publicodes-state'
+import { useEffect, useState } from 'react'
 import { HookProps } from '../transport'
 
 export function useVoiture({
@@ -7,7 +11,14 @@ export function useVoiture({
   isPristine,
   updateCurrentSimulation,
 }: HookProps) {
+  const { engine } = useSimulation()
+
+  const { situation } = useCurrentSimulation()
+
   const { setValue: setVoitureKmValue } = useRule('transport . voiture . km')
+
+  const [shouldUpdateEngine, setShouldUpdateEngine] = useState(false)
+
   useEffect(() => {
     if (isPristine) {
       return
@@ -15,9 +26,22 @@ export function useVoiture({
     if (!answers.voiture) {
       setVoitureKmValue(0)
     } else {
-      updateCurrentSimulation({
-        situationKeysToRemove: ['transport . voiture . km'],
-      })
+      setShouldUpdateEngine(true)
     }
-  }, [answers, isPristine, setVoitureKmValue, updateCurrentSimulation])
+  }, [answers, isPristine, setVoitureKmValue, engine])
+
+  useEffect(() => {
+    if (!shouldUpdateEngine) return
+
+    const newSituation = { ...situation }
+    delete newSituation['transport . voiture . km']
+
+    updateCurrentSimulation({
+      situation: newSituation,
+    })
+
+    engine.setSituation(newSituation)
+
+    setShouldUpdateEngine(false)
+  }, [shouldUpdateEngine, engine, situation, updateCurrentSimulation])
 }
