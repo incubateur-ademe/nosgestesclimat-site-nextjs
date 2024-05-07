@@ -6,11 +6,11 @@ import { organisationsParametersUpdateInformations } from '@/constants/tracking/
 import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { FormEventHandler, useEffect, useRef, useState } from 'react'
-import { useUpdateOrganisation } from '../../../../../../../hooks/organisations/useUpdateOrganisation'
 
 type Props = {
   organisation: Organisation | undefined
