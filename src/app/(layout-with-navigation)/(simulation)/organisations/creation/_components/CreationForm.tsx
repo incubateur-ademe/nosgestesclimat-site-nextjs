@@ -14,6 +14,7 @@ import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
 import { t } from 'i18next'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
@@ -34,6 +35,8 @@ const ORGANISATION_TYPES = [
 ]
 
 export default function CreationForm() {
+  const [error, setError] = useState<string | null>('')
+
   const { user, updateUserOrganisation } = useUser()
 
   const { handleUpdateShouldPreventNavigation } = usePreventNavigation()
@@ -86,6 +89,8 @@ export default function CreationForm() {
 
       router.push(`/organisations/${organisationUpdated?.slug}`)
     } catch (error: any) {
+      setError(t('Une erreur est survenue, veuillez réessayer.'))
+
       captureException(error)
     }
   }
@@ -155,6 +160,12 @@ export default function CreationForm() {
         />
       </div>
 
+      {error && (
+        <div className="mt-4 rounded-xl bg-red-100 p-4 text-red-800">
+          {error}
+        </div>
+      )}
+
       <div className="mt-4 w-full md:w-1/2">
         <CheckboxInputGroup
           size="xl"
@@ -172,6 +183,8 @@ export default function CreationForm() {
           {...register('hasOptedInForCommunications')}
         />
       </div>
+
+      {}
 
       <div className="mt-12 flex gap-4">
         <Button color="secondary" type="submit">
