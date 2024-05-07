@@ -1,25 +1,11 @@
-import {
-  useCurrentSimulation,
-  useRule,
-  useSimulation,
-} from '@/publicodes-state'
-import { useEffect, useState } from 'react'
+import { useRule } from '@/publicodes-state'
+import { useEffect } from 'react'
 import { HookProps } from '../transport'
 
-export function useBus({
-  answers,
-  isPristine,
-  updateCurrentSimulation,
-}: HookProps) {
-  const { engine } = useSimulation()
-
-  const { situation } = useCurrentSimulation()
-
+export function useBus({ answers, isPristine }: HookProps) {
   const { setValue: setBusHoursValue } = useRule(
     'transport . bus . heures par semaine'
   )
-
-  const [shouldUpdateEngine, setShouldUpdateEngine] = useState(false)
 
   useEffect(() => {
     if (isPristine) {
@@ -27,23 +13,6 @@ export function useBus({
     }
     if (!answers.bus) {
       setBusHoursValue(0)
-    } else {
-      setShouldUpdateEngine(true)
     }
-  }, [answers, isPristine, setBusHoursValue, engine])
-
-  useEffect(() => {
-    if (!shouldUpdateEngine) return
-
-    const newSituation = { ...situation }
-    delete newSituation['transport . bus . heures par semaine']
-
-    updateCurrentSimulation({
-      situation: newSituation,
-    })
-
-    engine.setSituation(newSituation)
-
-    setShouldUpdateEngine(false)
-  }, [shouldUpdateEngine, engine, situation, updateCurrentSimulation])
+  }, [answers, isPristine, setBusHoursValue])
 }

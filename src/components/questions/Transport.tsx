@@ -1,5 +1,9 @@
-import { useCurrentSimulation, useRule } from '@/publicodes-state'
-import { useEffect, useState } from 'react'
+import {
+  useCurrentSimulation,
+  useRule,
+  useSimulation,
+} from '@/publicodes-state'
+import { useEffect, useRef, useState } from 'react'
 import Label from '../form/question/Label'
 import MosaicBooleanInput from './transport/MosaicBooleanInput'
 import Navigation from './transport/Navigation'
@@ -18,7 +22,6 @@ import { useVan } from './transport/hooks/useVan'
 import { useVelo } from './transport/hooks/useVelo'
 import { useVoiture } from './transport/hooks/useVoiture'
 import { transports } from './transport/transports'
-
 const QUESTION_DOTTED_NAME = 'transport . liste'
 /**
  * This component displays a mosaic of transport at the beginning of the simulation
@@ -51,25 +54,56 @@ export default function Transport() {
     }
   }, [answers])
 
-  // We use situationKeysToRemove to reset the value of the situation
-  // (for questions that are not booleans like km or hours)
-  const { updateCurrentSimulation } = useCurrentSimulation()
+  const { engine } = useSimulation()
+  const { situation, updateCurrentSimulation } = useCurrentSimulation()
+  const prevAnswers = useRef(answers)
+  useEffect(() => {
+    if (isPristine) {
+      return
+    }
+
+    if (JSON.stringify(prevAnswers.current) === JSON.stringify(answers)) {
+      return
+    }
+    prevAnswers.current = answers
+
+    const newSituation = { ...situation }
+
+    if (answers.train) {
+      delete newSituation['transport . train . km']
+    }
+    if (answers.metro) {
+      delete newSituation['transport . métro ou tram . heures par semaine']
+    }
+    if (answers.bus) {
+      delete newSituation['transport . bus . heures par semaine']
+    }
+    if (answers.voiture) {
+      delete newSituation['transport . voiture . km']
+    }
+
+    updateCurrentSimulation({
+      situation: newSituation,
+    })
+
+    engine.setSituation(newSituation)
+  }, [engine, situation, updateCurrentSimulation, answers, isPristine])
 
   // We use a custom hook for each transport. It will set the value of each based on the answers.
-  useAvion({ answers, isPristine, updateCurrentSimulation })
-  useBus({ answers, isPristine, updateCurrentSimulation })
-  useCampingCar({ answers, isPristine, updateCurrentSimulation })
-  useCaravane({ answers, isPristine, updateCurrentSimulation })
-  useDeuxRoues({ answers, isPristine, updateCurrentSimulation })
-  useFerry({ answers, isPristine, updateCurrentSimulation })
-  useMetro({ answers, isPristine, updateCurrentSimulation })
-  useOther({ answers, isPristine, updateCurrentSimulation })
-  useTrain({ answers, isPristine, updateCurrentSimulation })
-  useMarche({ answers, isPristine, updateCurrentSimulation })
-  useVae({ answers, isPristine, updateCurrentSimulation })
-  useVan({ answers, isPristine, updateCurrentSimulation })
-  useVelo({ answers, isPristine, updateCurrentSimulation })
-  useVoiture({ answers, isPristine, updateCurrentSimulation })
+  useAvion({ answers, isPristine })
+  useBus({ answers, isPristine })
+  useCampingCar({ answers, isPristine })
+  useCaravane({ answers, isPristine })
+  useDeuxRoues({ answers, isPristine })
+  useFerry({ answers, isPristine })
+  useMetro({ answers, isPristine })
+  useOther({ answers, isPristine })
+  useTrain({ answers, isPristine })
+  useMarche({ answers, isPristine })
+  useVae({ answers, isPristine })
+  useVan({ answers, isPristine })
+  useVelo({ answers, isPristine })
+  useVoiture({ answers, isPristine })
 
   return (
     <>
