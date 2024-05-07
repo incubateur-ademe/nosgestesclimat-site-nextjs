@@ -86,7 +86,6 @@ export function useInfosPage() {
         curPage === EMAIL_PAGE &&
         poll.defaultAdditionalQuestions.includes(POSTAL_CODE_PAGE)
       ) {
-        console.log(curPage, 'code postal')
         return urlsInfosPages.postalCode
       }
 
@@ -95,7 +94,6 @@ export function useInfosPage() {
         (curPage === POSTAL_CODE_PAGE || curPage === EMAIL_PAGE) &&
         poll.defaultAdditionalQuestions.includes(BIRTHDATE_PAGE)
       ) {
-        console.log(curPage, 'birthdate')
         return urlsInfosPages.birthdate
       }
 
@@ -108,7 +106,6 @@ export function useInfosPage() {
           curPage === BIRTHDATE_PAGE)
       ) {
         const nextCustomQuestion = 'question-personnalisee-1'
-        console.log(curPage, 'première custom')
         return urlsInfosPages[nextCustomQuestion]
       }
 
@@ -125,16 +122,13 @@ export function useInfosPage() {
 
         // We get only the enabled questions on this side
         if (customAdditionalQuestions.length >= nextCustomQuestionIndex) {
-          console.log(curPage, 'next custom')
           return urlsInfosPages[nextCustomQuestion]
         }
       }
       // if we are on the start page, we return the test link
       if (curPage === START_PAGE) {
-        console.log(curPage, 'simulateur')
         return getLinkToSimulateur()
       }
-      console.log(curPage, 'start')
       // if there is no additional question, we return the start page link
       return urlsInfosPages.start
     },

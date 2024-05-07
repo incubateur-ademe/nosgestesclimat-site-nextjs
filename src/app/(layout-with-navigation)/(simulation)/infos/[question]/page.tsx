@@ -33,14 +33,9 @@ export default function CustomQuestion() {
 
   const { addCustomAnswer } = useContext(InfosContext)
 
-  const { customAdditionalQuestions } = poll ?? {
-    customAdditionnalQuestions: [],
-  }
+  const customAdditionalQuestions = poll?.customAdditionalQuestions ?? []
 
   function onSubmit({ 'custom-answer': customQuestion }: Inputs) {
-    // Avoid reloading page
-    event?.preventDefault()
-
     addCustomAnswer({
       id: customAdditionalQuestions?.[customQuestionIndex - 1]._id ?? '',
       answer: customQuestion,

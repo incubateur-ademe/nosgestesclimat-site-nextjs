@@ -47,7 +47,7 @@ export default function ExportDataButton({
         if (poll?.customAdditionalQuestions) {
           poll.customAdditionalQuestions.forEach(({ _id, question }) => {
             data[question as string] =
-              simulation.customAdditionalQuestionsAnswers?.[_id] ?? ''
+              simulation.customAdditionalQuestionsAnswers?.[_id ?? ''] ?? ''
           })
         }
 
