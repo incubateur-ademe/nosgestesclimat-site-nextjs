@@ -22,7 +22,7 @@ export type OrganisationAdministrator = {
 export type CustomAdditionalQuestions = {
   question: string
   isEnabled: boolean
-  _id: string
+  _id?: string
 }
 
 export type OrganisationPoll = {
