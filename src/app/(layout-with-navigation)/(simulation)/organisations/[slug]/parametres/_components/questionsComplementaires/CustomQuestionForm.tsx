@@ -52,36 +52,32 @@ export default function CustomQuestionForm({
   const onSubmit: SubmitHandler<Inputs> = async ({
     question: questionValue,
   }) => {
-    try {
-      const customAdditionalQuestions = [
-        ...(organisation?.polls[0].customAdditionalQuestions || []),
-      ]
+    const customAdditionalQuestions = [
+      ...(organisation?.polls[0].customAdditionalQuestions || []),
+    ]
 
-      if (isEditMode && question !== questionValue) {
-        const questionIndex = customAdditionalQuestions.findIndex(
-          ({ question: questionSearched }) => questionSearched === question
-        )
+    if (isEditMode && question !== questionValue) {
+      const questionIndex = customAdditionalQuestions.findIndex(
+        ({ question: questionSearched }) => questionSearched === question
+      )
 
-        if (questionIndex === -1) {
-          return
-        }
-
-        customAdditionalQuestions[questionIndex].question = questionValue
-      } else {
-        customAdditionalQuestions.push({
-          question: questionValue,
-          isEnabled: false,
-        })
+      if (questionIndex === -1) {
+        return
       }
 
-      await updateCustomQuestions({ customAdditionalQuestions })
-
-      setIsFormDisplayed(false)
-      refetchOrganisation()
-      onCompleted()
-    } catch (error) {
-      console.error(error)
+      customAdditionalQuestions[questionIndex].question = questionValue
+    } else {
+      customAdditionalQuestions.push({
+        question: questionValue,
+        isEnabled: false,
+      })
     }
+
+    await updateCustomQuestions({ customAdditionalQuestions })
+
+    setIsFormDisplayed(false)
+    refetchOrganisation()
+    onCompleted()
   }
 
   function handleCancel() {

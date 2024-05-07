@@ -1,6 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import { useUpdateCustomQuestions } from '@/hooks/organisations/useUpdateCustomQuestions'
 import { Organisation, OrganisationPoll } from '@/types/organisations'
+import { captureException } from '@sentry/react'
 import CustomQuestion from './customQuestions/CustomQuestion'
 
 type Props = {
@@ -75,7 +76,7 @@ export default function CustomQuestions({
 
       refetchOrganisation()
     } catch (error) {
-      console.error(error)
+      captureException(error)
     }
   }
 
@@ -89,19 +90,17 @@ export default function CustomQuestions({
         <Trans>Questions personnalisées</Trans>
       </h3>
       <div className="flex flex-col gap-4">
-        {(poll?.customAdditionalQuestions || []).map(
-          ({ question, isEnabled }) => (
-            <CustomQuestion
-              organisation={organisation}
-              refetchOrganisation={refetchOrganisation}
-              key={question}
-              question={question}
-              isEnabled={isEnabled}
-              handleUpdateCustomQuestions={handleUpdateCustomQuestions}
-              handleDeleteQuestion={handleDeleteQuestion}
-            />
-          )
-        )}
+        {poll?.customAdditionalQuestions?.map(({ question, isEnabled }) => (
+          <CustomQuestion
+            organisation={organisation}
+            refetchOrganisation={refetchOrganisation}
+            key={question}
+            question={question}
+            isEnabled={isEnabled}
+            handleUpdateCustomQuestions={handleUpdateCustomQuestions}
+            handleDeleteQuestion={handleDeleteQuestion}
+          />
+        ))}
       </div>
     </>
   )
