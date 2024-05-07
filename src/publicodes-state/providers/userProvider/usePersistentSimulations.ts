@@ -1,18 +1,14 @@
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { getIsLocalStorageAvailable } from '@/utils/getIsLocalStorageAvailable'
 import { useEffect, useState } from 'react'
-import { MigrationType, Simulation } from '../../types'
+import { Simulation } from '../../types'
 
 const isLocalStorageAvailable = getIsLocalStorageAvailable()
 
 type Props = {
   storageKey: string
-  migrationInstructions: MigrationType
 }
-export default function usePersistentSimulations({
-  storageKey,
-  migrationInstructions,
-}: Props) {
+export default function usePersistentSimulations({ storageKey }: Props) {
   const [initialized, setInitialized] = useState<boolean>(false)
   const [simulations, setSimulations] = useState<Simulation[]>([
     generateSimulation(),
@@ -31,13 +27,7 @@ export default function usePersistentSimulations({
     }
 
     if (localSimulations && localCurrentSimulationId) {
-      const migratedLocalSimulations = localSimulations.map((simulation) => {
-        return generateSimulation({
-          ...simulation,
-          migrationInstructions,
-        })
-      })
-      setSimulations(migratedLocalSimulations)
+      setSimulations(localSimulations)
       setCurrentSimulationId(localCurrentSimulationId)
     } else {
       const newSimulation = generateSimulation()
@@ -46,7 +36,7 @@ export default function usePersistentSimulations({
     }
 
     setInitialized(true)
-  }, [migrationInstructions, storageKey])
+  }, [storageKey])
 
   useEffect(() => {
     if (initialized) {
