@@ -2,7 +2,6 @@
 
 import Trans from '@/components/translation/Trans'
 import UserInformationForm from '@/components/user/UserInformationForm'
-import { CUSTOM_NGC_ACTIONS } from '@/constants/actions'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
@@ -24,7 +23,7 @@ export default function CustomActionForm({
   const { refetch: refreshNewsletterSubcriptions } =
     useGetNewsletterSubscriptions(user?.email ?? '')
 
-  if (dottedName === CUSTOM_NGC_ACTIONS.nosGestesTransports.dottedName)
+  if (dottedName === 'transport . infolettre')
     return (
       <UserInformationForm
         title={

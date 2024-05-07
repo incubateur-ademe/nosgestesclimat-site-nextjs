@@ -1,6 +1,5 @@
 'use client'
 
-import { useCustomActions } from '@/hooks/actions/useCustomActions'
 import {
   useCurrentSimulation,
   useEngine,
@@ -35,8 +34,6 @@ export default function ActionsPage({
 
   const { safeEvaluate } = useSimulation()
 
-  const customActions = useCustomActions()
-
   if (!rules) {
     return null
   }
@@ -58,11 +55,6 @@ export default function ActionsPage({
   // but is it too restrictive ?
   const isSimulationWellStarted = progression > 0.5
 
-  const actionsIncludingCustomNGCActions = [
-    ...actionsDisplayed,
-    ...customActions,
-  ]
-
   return (
     <div className="mx-auto my-4 pb-4">
       {!isSimulationWellStarted && (
@@ -79,17 +71,17 @@ export default function ActionsPage({
         } text-center`}
         aria-hidden={isSimulationWellStarted ? 'false' : 'true'}>
         <div className="relative">
-          <CategoryFilters actions={actionsIncludingCustomNGCActions} />
+          <CategoryFilters actions={actionsDisplayed} />
 
           <OptionBar
             setRadical={setRadical}
             radical={radical}
-            actions={actionsIncludingCustomNGCActions}
+            actions={actionsDisplayed}
           />
         </div>
 
         <Actions
-          actions={actionsIncludingCustomNGCActions.reverse()}
+          actions={actionsDisplayed.reverse()}
           rules={rules}
           radical={radical}
         />
