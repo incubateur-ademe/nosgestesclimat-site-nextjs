@@ -10,9 +10,9 @@ export function useAreCustomQuestionsEnabled(
     queryKey: ['areCustomQuestionsEnabled', organisation],
     queryFn: () =>
       axios
-        .post(`${SERVER_URL}/organisations/check-custom-questions-enabled`, {
-          slug: organisation?.slug,
-        })
+        .get(
+          `${SERVER_URL}/organisations/check-custom-questions-enabled/${organisation?.slug}`
+        )
         .then((res) => res.data),
     retry: false,
     enabled: !!organisation,
