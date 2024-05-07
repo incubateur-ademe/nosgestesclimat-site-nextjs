@@ -40,7 +40,7 @@ export default function UserProvider({
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
-  } = usePersistentSimulations({ storageKey })
+  } = usePersistentSimulations({ storageKey, migrationInstructions })
 
   return (
     <UserContext.Provider
