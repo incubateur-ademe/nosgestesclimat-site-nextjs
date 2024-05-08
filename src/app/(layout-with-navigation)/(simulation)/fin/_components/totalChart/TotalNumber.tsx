@@ -4,8 +4,23 @@ import { getColorAtPosition } from '@/helpers/getColorOfGradient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
+import { twMerge } from 'tailwind-merge'
 import { CountUp } from 'use-count-up'
 import Arrow from './Arrow'
+
+function getContentAlignement(position: number) {
+  console.log('position', position)
+  if (position < 40) {
+    return 'left-16'
+  }
+  if (position < 50) {
+    return '-left-6'
+  }
+  if (position < 80) {
+    return 'left-1/2 -translate-x-1/2'
+  }
+  return 'right-0'
+}
 
 export default function TotalNumber() {
   const { t } = useClientTranslation()
@@ -17,7 +32,9 @@ export default function TotalNumber() {
     localize: false,
   })
 
-  const position = (numericValue / 1000 / 12) * 100
+  const originPosition = (numericValue / 1000 / 12) * 100
+
+  const position = originPosition <= 100 ? originPosition : 100
 
   const color = getColorAtPosition(position / 100)
   const cssColor = `rgba(${color['r']},${color['g']},${color['b']},${color['a']})`
@@ -25,12 +42,16 @@ export default function TotalNumber() {
   return (
     <motion.div
       initial={{ opacity: 0, x: '-400%' }}
-      animate={{ opacity: 1, x: 0 }}
+      animate={{ opacity: 1, x: '-50%' }}
       transition={{ duration: 1.5 }}
       className="absolute bottom-10 z-10 -translate-x-1/2"
       style={{ left: `${position}%`, color: cssColor }}>
-      <div className="absolute bottom-full left-1/2 mb-1 -translate-x-1/2 whitespace-nowrap text-right font-medium">
-        <strong className="absolute  bottom-6 right-full -translate-x-4 text-6xl font-black leading-none lg:bottom-8 lg:text-9xl">
+      <div
+        className={twMerge(
+          'absolute bottom-full  mb-1 whitespace-nowrap text-right font-medium lg:left-1/2 lg:right-auto lg:-translate-x-1/2',
+          getContentAlignement(position)
+        )}>
+        <strong className="absolute  bottom-7 right-full -translate-x-4 text-6xl font-black leading-none lg:bottom-8 lg:text-9xl">
           <CountUp
             isCounting
             end={Number(formattedValue)}
@@ -45,7 +66,7 @@ export default function TotalNumber() {
           {unit}
         </span>
         <br />
-        <span className="lg:text-2xl lg:tracking-wider ">
+        <span className="text-lg tracking-wider lg:text-2xl ">
           <Trans>de</Trans> CO₂e <Trans>par an</Trans>
         </span>
       </div>
