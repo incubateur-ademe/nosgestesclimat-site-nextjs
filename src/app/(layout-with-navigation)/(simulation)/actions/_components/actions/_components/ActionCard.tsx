@@ -11,6 +11,7 @@ import {
 } from '@/constants/tracking/pages/actions'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import Emoji from '@/design-system/utils/Emoji'
+import { getIsCustomAction } from '@/helpers/actions/getIsCustomAction'
 import {
   getBackgroundLightColor,
   getBorderColor,
@@ -55,7 +56,7 @@ export default function ActionCard({
 
   const { dottedName, title, missingVariables, traversedVariables } = action
 
-  const { icônes: icons } = rule
+  const { icônes: icons } = rule || action
 
   const remainingQuestions = filterRelevantMissingVariables(
     Object.keys(missingVariables || {}),
@@ -95,9 +96,12 @@ export default function ActionCard({
       })) ||
     action.isIrrelevant
 
+  const isCustomAction = getIsCustomAction(dottedName)
+
   const handleChooseAction = useCallback(async () => {
     if (isDisabled) return
-    if (hasRemainingQuestions) {
+
+    if (hasRemainingQuestions || isCustomAction) {
       setFocusedAction(dottedName)
       return null
     }
@@ -114,6 +118,7 @@ export default function ActionCard({
     isSelected,
     setFocusedAction,
     toggleActionChoice,
+    isCustomAction,
   ])
 
   if (!currentSimulation || !rules) {
@@ -134,19 +139,31 @@ export default function ActionCard({
         className={`flex h-[6rem] w-full items-center rounded-xl p-2 ${getBackgroundLightColor(
           category
         )}`}>
-        <Link
-          className="z-10 w-full no-underline"
-          onClick={() => trackEvent(actionsOpenAction(dottedName))}
-          href={'/actions/' + encodeRuleName(dottedName)}>
-          {icons && (
-            <Emoji className="inline-flex justify-center">{icons}</Emoji>
-          )}
+        {isCustomAction ? (
+          <div className="flex flex-col gap-1">
+            {icons && (
+              <Emoji className="inline-flex justify-center">{icons}</Emoji>
+            )}
+            <h2
+              className={`mb-0 inline-block w-full text-center text-sm font-bold ${getTextDarkColor(category)}`}>
+              {title}
+            </h2>
+          </div>
+        ) : (
+          <Link
+            className="z-10 w-full no-underline"
+            onClick={() => trackEvent(actionsOpenAction(dottedName))}
+            href={'/actions/' + encodeRuleName(dottedName)}>
+            {icons && (
+              <Emoji className="inline-flex justify-center">{icons}</Emoji>
+            )}
 
-          <h2
-            className={`mb-0 inline-block w-full text-center text-sm font-bold ${getTextDarkColor(category)}`}>
-            {title}
-          </h2>
-        </Link>
+            <h2
+              className={`mb-0 inline-block w-full text-center text-sm font-bold ${getTextDarkColor(category)}`}>
+              {title}
+            </h2>
+          </Link>
+        )}
       </div>
 
       <div className="mt-3 flex w-full flex-1 flex-col justify-between">
