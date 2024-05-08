@@ -3,8 +3,9 @@
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import { SimulationRecap } from '@/types/organisations'
+import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
-import FunFacts from './orgaStatistics/FunFacts'
+import FunFactsBlock from './orgaStatistics/FunFactsBlock'
 import SeeDetailedReportAndExport from './orgaStatistics/SeeDetailedReportAndExport'
 import StatisticsBlocks from './orgaStatistics/StatisticsBlocks'
 
@@ -15,7 +16,7 @@ export default function OrgaStatistics({
 }: {
   title?: string | JSX.Element
   simulationRecaps: SimulationRecap[]
-  funFacts: any
+  funFacts: FunFacts | undefined
 }) {
   const pathname = usePathname()
 
@@ -32,7 +33,7 @@ export default function OrgaStatistics({
       </section>
 
       {hasAtLeastThreeParticipants && (
-        <FunFacts funFacts={funFacts} className="mb-12" />
+        <FunFactsBlock funFacts={funFacts} className="mb-12" />
       )}
 
       {hasAtLeastThreeParticipants &&
