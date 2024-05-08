@@ -1,20 +1,22 @@
 'use client'
 
-import HowToAct from '@/components/actions/HowToAct'
-import BookClosedIcon from '@/components/icons/BookClosedIcon'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
+import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import Trans from '@/components/translation/Trans'
-import { endClickDocumentation } from '@/constants/tracking/pages/end'
-import InlineLink from '@/design-system/inputs/InlineLink'
-import Separator from '@/design-system/layout/Separator'
+import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import DocumentationBlock from './_components/DocumentationBlock'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
-import GroupModePromotionBanner from './_components/GroupModePromotionBanner'
+import Heading from './_components/Heading'
+import MainSubcategories from './_components/MainSubcategories'
 import Poll from './_components/Poll'
-import Results from './_components/Results'
+import Subcategories from './_components/Subcategories'
+import TargetBlock from './_components/TargetBlock'
+import TotalChart from './_components/TotalChart'
+import TotalSticky from './_components/TotalSticky'
+import TotalStickyMobile from './_components/TotalStickyMobile'
 
 export default function FinPage() {
   // Guarding the route and redirecting if necessary
@@ -33,53 +35,45 @@ export default function FinPage() {
 
       <Poll />
 
-      <Results />
+      <Heading />
 
-      <div className="flex flex-col items-stretch gap-4 lg:grid lg:grid-cols-8">
-        <GetResultsByEmail className="col-span-5 h-full" />
+      <TotalChart />
+      <TotalStickyMobile />
+      <div className="flex flex-col-reverse gap-16 lg:flex-row lg:gap-10">
+        <div className="flex flex-1 flex-col gap-10 lg:mt-32">
+          <MainSubcategories />
 
-        <GroupModePromotionBanner className="col-span-3" />
+          <Subcategories />
+
+          <GetResultsByEmail className="col-span-5 h-full" />
+
+          <div>
+            <Title
+              tag="h2"
+              className="text-lg md:text-2xl"
+              title={<Trans>Le détail de mon empreinte</Trans>}
+            />
+            <CategoriesAccordion />
+          </div>
+
+          <FeedbackBanner
+            className="mb-8 mt-12"
+            text={
+              <Trans i18nKey="publicodes.northstar.learned">
+                Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque
+                chose ?
+              </Trans>
+            }
+            type="learned"
+          />
+
+          <DocumentationBlock />
+        </div>
+        <div className="short:gap-2 top-4 flex w-full flex-col gap-4 self-start lg:sticky lg:z-50 lg:w-[22rem]">
+          <TotalSticky />
+          <TargetBlock />
+        </div>
       </div>
-
-      <Separator />
-
-      <HowToAct shouldLeadToTest={false} />
-
-      <Separator />
-
-      <div>
-        <h2>
-          <Trans>Comment est calculée votre empreinte ?</Trans>
-        </h2>
-
-        <p>
-          <Trans>
-            Notre simulateur repose sur un modèle de données, dont l'intégralité
-            des calculs est documentée ; les données affichées sont directement
-            associées à votre test.
-          </Trans>
-        </p>
-
-        <InlineLink
-          href="/documentation/bilan"
-          className="flex items-center"
-          onClick={() => trackEvent(endClickDocumentation)}>
-          <BookClosedIcon className="mr-2 w-4 fill-primary-700" />
-
-          <Trans>Comprendre le calcul</Trans>
-        </InlineLink>
-      </div>
-
-      <FeedbackBanner
-        className="mb-8 mt-12"
-        text={
-          <Trans i18nKey="publicodes.northstar.learned">
-            Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque
-            chose ?
-          </Trans>
-        }
-        type="learned"
-      />
     </>
   )
 }

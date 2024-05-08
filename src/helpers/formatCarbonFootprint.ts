@@ -21,7 +21,7 @@ export function formatCarbonFootprint(
     shouldUseAbbreviation: false,
   }
 ): {
-  formattedValue: string | number
+  formattedValue: string
   unit: string | null
   negative: boolean
 } {
