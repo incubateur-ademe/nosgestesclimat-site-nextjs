@@ -1,4 +1,6 @@
-import { useActions, useRule } from '@/publicodes-state'
+import Link from '@/components/Link'
+import Trans from '@/components/translation/Trans'
+import { useEngine, useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import Action from './actions/Action'
 
@@ -6,27 +8,45 @@ type Props = {
   subcategory: DottedName
 }
 
-const forbidenActions = ['alimentation . devenir végétalien']
+type ActionObject = {
+  dottedName: DottedName
+  value: number
+}
 
 export default function Actions({ subcategory }: Props) {
-  const { category } = useRule(subcategory)
+  const { getValue } = useEngine()
 
-  const { orderedActions } = useActions()
+  const { title, actions } = useRule(subcategory)
 
-  const filteredActions = orderedActions.filter(
-    (orderedAction) => !forbidenActions.includes(orderedAction)
-  )
+  if (!actions?.length) return null
 
-  const actionsOfCategory = filteredActions.filter((orderedAction) =>
-    orderedAction.includes(category)
-  )
+  const sortedActions = actions
+    .map((action: string) => ({
+      dottedName: action,
+      value: getValue(action) as number,
+    }))
+    .sort((a: ActionObject, b: ActionObject) => (a.value > b.value ? -1 : 1))
+    .map((actionObject: ActionObject) => actionObject.dottedName)
 
-  const firstThreeActions = actionsOfCategory.slice(0, 3)
+  const firstThreeActions = sortedActions.slice(0, 3)
+
   return (
-    <div className="mb-4 flex flex-row-reverse gap-4">
-      {firstThreeActions.map((action, index) => (
-        <Action key={action} action={action} index={index} />
-      ))}
-    </div>
+    <>
+      <p className="mb-6 text-sm">
+        <Trans>
+          Voici quelques idées pour vous aider à réduire son impact :
+        </Trans>
+      </p>
+      <div className="mb-4 flex flex-row-reverse gap-4">
+        {firstThreeActions.map((action, index) => (
+          <Action key={action} action={action} index={index} />
+        ))}
+      </div>
+      <div className="flex justify-center">
+        <Link href="/actions" className="text-center text-xs">
+          <Trans>Voir tous les gestes {title}</Trans>
+        </Link>
+      </div>
+    </>
   )
 }

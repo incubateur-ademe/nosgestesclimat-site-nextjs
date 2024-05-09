@@ -2,12 +2,17 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
 import { useSortedSubcategoriesByFootprint } from '@/hooks/useSortedSubcategoriesByFootprint'
+import { useSortedUiCategoriesByFootprint } from '@/hooks/useSortedUiCategoriesByFootprint'
 import MainSubcategory from './mainSubcategories/MainSubcategory'
 
 export default function MainSubcategories() {
   const { sortedSubcategories } = useSortedSubcategoriesByFootprint()
 
-  const firstThreeSubcategories = sortedSubcategories.slice(0, 3)
+  const { sortedUiCategories } = useSortedUiCategoriesByFootprint()
+
+  const firstThreeSubcategories = (
+    sortedUiCategories.length > 0 ? sortedUiCategories : sortedSubcategories
+  ).slice(0, 3)
 
   return (
     <div>
