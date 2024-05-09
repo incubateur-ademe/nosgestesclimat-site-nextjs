@@ -112,7 +112,7 @@ export default function UserInformationForm({
       newsletterIds,
     })
 
-    if (data.email && !user?.email) {
+    if (data.email && (!user?.email || shouldForceEmailEditable)) {
       updateEmail(data.email)
     }
 

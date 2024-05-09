@@ -7,7 +7,6 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import Trans from '../translation/Trans'
 
@@ -16,8 +15,6 @@ type Inputs = {
 }
 
 export default function NosGestesTransportsBanner() {
-  const [isSubmitted, setIsSubmitted] = useState(false)
-
   const { t } = useClientTranslation()
   const { user, updateEmail } = useUser()
   const { register, handleSubmit } = useReactHookForm<Inputs>({
@@ -30,7 +27,12 @@ export default function NosGestesTransportsBanner() {
     user?.email ?? ''
   )
 
-  const { mutateAsync: updateUserSettings, isPending } = useUpdateUserSettings({
+  const {
+    mutateAsync: updateUserSettings,
+    isPending,
+    isError,
+    isSuccess,
+  } = useUpdateUserSettings({
     email: user?.email ?? '',
     userId: user?.userId,
   })
@@ -46,15 +48,13 @@ export default function NosGestesTransportsBanner() {
     if (data.email && !user?.email) {
       updateEmail(data.email)
     }
-
-    setIsSubmitted(true)
   }
 
   if (newsletterSubscriptions?.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER)) {
     return null
   }
 
-  if (isSubmitted) {
+  if (isSuccess) {
     return (
       <div className="flex w-full flex-wrap rounded-xl bg-transport-50 p-6 md:flex-nowrap">
         <p className="text-lg" style={{ marginBottom: '0' }}>
@@ -100,6 +100,11 @@ export default function NosGestesTransportsBanner() {
               className="w-full rounded-full pr-16"
               value={user?.email ?? ''}
               placeholder={t('Votre e-mail')}
+              error={
+                isError
+                  ? t('Une erreur est survenue. Veuillez réessayer.')
+                  : undefined
+              }
               {...register('email', {
                 required: t('Ce champ est requis'),
               })}
