@@ -17,6 +17,7 @@ type Props = {
     value: boolean
   }) => Promise<void>
   handleDeleteQuestion: (question: string) => Promise<void>
+  isLoadingUpdate: boolean
 }
 
 export default function CustomQuestion({
@@ -26,6 +27,7 @@ export default function CustomQuestion({
   isEnabled,
   handleUpdateCustomQuestions,
   handleDeleteQuestion,
+  isLoadingUpdate,
 }: Props) {
   const [isEditing, setIsEditing] = useState(false)
 
@@ -54,6 +56,7 @@ export default function CustomQuestion({
       onEdit={() => setIsEditing(true)}
       onDelete={handleDeleteQuestion}
       label={question}
+      isLoadingUpdate={isLoadingUpdate}
     />
   )
 }

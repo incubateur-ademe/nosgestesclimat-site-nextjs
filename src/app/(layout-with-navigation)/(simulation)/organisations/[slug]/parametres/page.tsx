@@ -35,7 +35,7 @@ export default function ParametresPage() {
   }
 
   return (
-    <MaxWidthContent className="py-8">
+    <MaxWidthContent className="pb-8">
       <Title title={<Trans>Paramètres</Trans>} />
 
       <QuestionsComplementaires

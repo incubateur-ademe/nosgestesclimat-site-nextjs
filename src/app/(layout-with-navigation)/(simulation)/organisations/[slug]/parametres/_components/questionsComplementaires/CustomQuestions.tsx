@@ -17,10 +17,11 @@ export default function CustomQuestions({
   showAndHideConfirmationMessage,
   refetchOrganisation,
 }: Props) {
-  const { mutateAsync: updateCustomQuestions } = useUpdateCustomQuestions({
-    pollSlug: organisation?.polls[0].slug ?? '',
-    orgaSlug: organisation?.slug ?? '',
-  })
+  const { mutateAsync: updateCustomQuestions, isPending } =
+    useUpdateCustomQuestions({
+      pollSlug: organisation?.polls[0].slug ?? '',
+      orgaSlug: organisation?.slug ?? '',
+    })
 
   async function handleUpdateCustomQuestions({
     question,
@@ -99,6 +100,7 @@ export default function CustomQuestions({
             isEnabled={isEnabled}
             handleUpdateCustomQuestions={handleUpdateCustomQuestions}
             handleDeleteQuestion={handleDeleteQuestion}
+            isLoadingUpdate={isPending}
           />
         ))}
       </div>
