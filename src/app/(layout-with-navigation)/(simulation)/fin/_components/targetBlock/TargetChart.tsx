@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
-  isQuestionOpen: string | null
+  isQuestionOpen: boolean
 }
 
 export default function TargetChart({ isQuestionOpen }: Props) {
