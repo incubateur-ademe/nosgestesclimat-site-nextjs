@@ -96,7 +96,7 @@ export default function ActionList({
               {cardComponent}
 
               <CustomActionForm
-                key={action.dottedName}
+                key={`${action.dottedName}-custom-form`}
                 dottedName={action.dottedName}
                 setFocusedAction={setFocusedAction}
               />
