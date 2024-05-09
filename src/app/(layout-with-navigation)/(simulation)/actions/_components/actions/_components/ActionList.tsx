@@ -90,15 +90,20 @@ export default function ActionList({
           )
         }
 
-        if (focusedAction === action.dottedName && isFocusedActionCustom) {
+        if (isFocusedActionCustom && action.dottedName === focusedAction) {
           return (
-            <CustomActionForm
-              dottedName={action.dottedName}
-              setFocusedAction={setFocusedAction}
-              key={`${action.dottedName}-custom-form`}
-            />
+            <>
+              {cardComponent}
+
+              <CustomActionForm
+                key={`${action.dottedName}-custom-form`}
+                dottedName={action.dottedName}
+                setFocusedAction={setFocusedAction}
+              />
+            </>
           )
         }
+
         return cardComponent
       })}
     </ul>

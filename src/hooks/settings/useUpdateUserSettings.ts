@@ -8,7 +8,7 @@ type Props = {
 }
 
 type FuncProps = {
-  name: string
+  name?: string
   newsletterIds: Record<number, boolean>
   email?: string
 }
