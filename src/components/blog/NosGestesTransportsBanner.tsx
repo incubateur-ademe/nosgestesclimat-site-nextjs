@@ -56,7 +56,7 @@ export default function NosGestesTransportsBanner() {
 
   if (isSuccess) {
     return (
-      <div className="flex w-full flex-wrap rounded-xl bg-transport-50 p-6 md:flex-nowrap">
+      <div className="mt-12 flex w-full flex-wrap rounded-xl bg-transport-50 p-6 md:flex-nowrap">
         <p className="text-lg" style={{ marginBottom: '0' }}>
           <Trans>
             Votre inscription est validée ! <Emoji>✨</Emoji>
@@ -67,7 +67,7 @@ export default function NosGestesTransportsBanner() {
   }
 
   return (
-    <div className="flex w-full flex-wrap items-start gap-4 rounded-xl bg-transport-50 p-6 md:flex-nowrap">
+    <div className="mt-12 flex w-full flex-wrap items-start gap-4 rounded-xl bg-transport-50 p-6 md:flex-nowrap">
       <div>
         <p className="text-lg" style={{ marginBottom: '16px' }}>
           <Emoji
