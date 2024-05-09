@@ -36,22 +36,18 @@ export default function NosGestesTransportsBanner() {
   })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    try {
-      await updateUserSettings({
-        email: data.email,
-        newsletterIds: {
-          [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: true,
-        },
-      })
+    await updateUserSettings({
+      email: data.email,
+      newsletterIds: {
+        [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: true,
+      },
+    })
 
-      if (data.email && !user?.email) {
-        updateEmail(data.email)
-      }
-
-      setIsSubmitted(true)
-    } catch (error) {
-      console.error(error)
+    if (data.email && !user?.email) {
+      updateEmail(data.email)
     }
+
+    setIsSubmitted(true)
   }
 
   if (newsletterSubscriptions?.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER)) {
