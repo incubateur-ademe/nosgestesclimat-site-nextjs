@@ -103,7 +103,8 @@ export default function QuestionsComplementaires({
       <h2>
         <Trans>Questions complémentaires</Trans>
       </h2>
-      <p className="mb-0">
+
+      <p className="mb-8">
         <Trans>
           Vous avez la possibilité d’ajouter des questions complémentaires au
           test pour vos statistiques. Vos questions additionnelles activées
@@ -111,9 +112,7 @@ export default function QuestionsComplementaires({
           Leur réponse sera facultative.
         </Trans>
       </p>
-      <p className="mb-8">
-        <Trans></Trans>
-      </p>
+
       <h3>
         <Trans>Questions par défaut</Trans>
       </h3>
