@@ -103,18 +103,16 @@ export default function QuestionsComplementaires({
       <h2>
         <Trans>Questions complémentaires</Trans>
       </h2>
-      <p>
+      <p className="mb-0">
         <Trans>
           Vous avez la possibilité d’ajouter des questions complémentaires au
-          test pour vos statistiques.
+          test pour vos statistiques. Vos questions additionnelles activées
+          seront posées à chaque participant en amont du test Nos Gestes Climat.
+          Leur réponse sera facultative.
         </Trans>
       </p>
-      <p className="mb-8 text-sm text-gray-500">
-        <Trans>
-          Vos questions additionnelles activées seront posées à chaque
-          participant en amont du test Nos Gestes Climat. Leur réponse sera
-          facultative.
-        </Trans>
+      <p className="mb-8">
+        <Trans></Trans>
       </p>
       <h3>
         <Trans>Questions par défaut</Trans>
