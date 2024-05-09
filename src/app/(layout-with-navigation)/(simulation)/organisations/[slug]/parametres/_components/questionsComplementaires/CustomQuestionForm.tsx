@@ -130,6 +130,7 @@ export default function CustomQuestionForm({
         className={twMerge('mt-2 flex gap-4', `${isEditMode ? 'mt-1' : ''}`)}>
         <Button
           onClick={handleCancel}
+          type="button"
           size={isEditMode ? 'xs' : 'sm'}
           color="secondary"
           className="mt-4">
