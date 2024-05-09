@@ -113,6 +113,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
             {children}
           </MainLayoutProviders>
         </ErrorBoundary>
+
+        <div id="modal" />
       </body>
     </html>
   )
