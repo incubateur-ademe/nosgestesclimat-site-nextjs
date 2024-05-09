@@ -12,6 +12,7 @@ import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
+import CustomActionForm from './actionList/CustomActionForm'
 
 type Props = {
   actions: any[]
@@ -50,7 +51,7 @@ export default function ActionList({
           </li>
         )
 
-        if (focusedAction === action.dottedName) {
+        if (focusedAction === action.dottedName && !isFocusedActionCustom) {
           const convId = 'conv'
 
           return (
@@ -85,6 +86,20 @@ export default function ActionList({
               </li>
 
               {cardComponent}
+            </>
+          )
+        }
+
+        if (isFocusedActionCustom && action.dottedName === focusedAction) {
+          return (
+            <>
+              {cardComponent}
+
+              <CustomActionForm
+                key={action.dottedName}
+                dottedName={action.dottedName}
+                setFocusedAction={setFocusedAction}
+              />
             </>
           )
         }

@@ -101,7 +101,7 @@ export default function ActionCard({
   const handleChooseAction = useCallback(async () => {
     if (isDisabled) return
 
-    if (hasRemainingQuestions) {
+    if (hasRemainingQuestions || isCustomAction) {
       setFocusedAction(dottedName)
       return null
     }
@@ -118,6 +118,7 @@ export default function ActionCard({
     isSelected,
     setFocusedAction,
     toggleActionChoice,
+    isCustomAction,
   ])
 
   if (!currentSimulation || !rules) {
