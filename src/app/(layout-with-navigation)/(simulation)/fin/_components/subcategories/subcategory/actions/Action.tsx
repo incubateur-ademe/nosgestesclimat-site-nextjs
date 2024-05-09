@@ -7,7 +7,7 @@ import {
 } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import { useRule } from '@/publicodes-state'
+import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { twMerge } from 'tailwind-merge'
 import ActionButtons from './action/ActionButtons'
@@ -22,6 +22,10 @@ type Props = {
 export default function Action({ action, index }: Props) {
   const locale = useLocale()
   const { t } = useClientTranslation()
+
+  const { actionChoices } = useCurrentSimulation()
+
+  const isActionChoosen = actionChoices[action] === true
 
   const { numericValue: total } = useRule('bilan')
 
@@ -39,8 +43,13 @@ export default function Action({ action, index }: Props) {
         'flex-1 flex-col justify-between rounded-xl border-2 px-3 py-4 md:flex',
         colorClassName[index],
         getTextDarkColor(category),
-        getBackgroundLightColor(category).replace('100', colorClassName[index]),
-        getBorderColor(category),
+        isActionChoosen
+          ? 'bg-green-100'
+          : getBackgroundLightColor(category).replace(
+              '100',
+              colorClassName[index]
+            ),
+        isActionChoosen ? 'border-green-600' : getBorderColor(category),
         index === 2 ? 'hidden' : 'flex'
       )}>
       <div className="mb-4">
@@ -62,7 +71,7 @@ export default function Action({ action, index }: Props) {
           votre empreinte
         </div>
       </div>
-      <ActionButtons action={action} />
+      {!isActionChoosen ? <ActionButtons action={action} /> : null}
     </div>
   )
 }

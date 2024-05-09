@@ -1,4 +1,4 @@
-import { useActions, useRule } from '@/publicodes-state'
+import { useActions, useCurrentSimulation, useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import Action from './actions/Action'
 
@@ -9,12 +9,17 @@ type Props = {
 const forbidenActions = ['alimentation . devenir végétalien']
 
 export default function Actions({ subcategory }: Props) {
+  const { actionChoices } = useCurrentSimulation()
   const { category } = useRule(subcategory)
 
   const { orderedActions } = useActions()
 
-  const filteredActions = orderedActions.filter(
+  const allowedActions = orderedActions.filter(
     (orderedAction) => !forbidenActions.includes(orderedAction)
+  )
+
+  const filteredActions = allowedActions.filter(
+    (orderedAction) => actionChoices[orderedAction] !== false
   )
 
   const actionsOfCategory = filteredActions.filter((orderedAction) =>
