@@ -67,7 +67,7 @@ export default function Action({ action, index }: Props) {
           {title}
         </div>
         <div className="text-center text-xs">
-          <span className="font-black text-secondary-700">{percent} %</span> de
+          <span className="font-black text-secondary-700">{percent} %</span> de
           votre empreinte
         </div>
       </div>

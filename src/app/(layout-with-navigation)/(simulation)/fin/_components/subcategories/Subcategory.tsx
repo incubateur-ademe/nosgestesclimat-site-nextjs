@@ -33,7 +33,7 @@ export default function Subcategory({ subcategory, index }: Props) {
             {index + 1}. {title}
           </h3>
           <div className="text-xl lg:text-2xl">
-            <span className="font-black text-secondary-700">{percent} %</span>{' '}
+            <span className="font-black text-secondary-700">{percent} %</span>{' '}
             de votre empreinte
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function Subcategory({ subcategory, index }: Props) {
       </div>
       <p className="mb-6 text-sm">
         <Trans>
-          Voici quelques idées pour vous aider à réduire son impact :
+          Voici quelques idées pour vous aider à réduire votre impact :
         </Trans>
       </p>
       <Actions subcategory={subcategory} />

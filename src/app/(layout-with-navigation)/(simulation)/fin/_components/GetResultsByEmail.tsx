@@ -167,7 +167,7 @@ export default function GetResultsByEmail({
           {(!isSubscribedMainNewsletter ||
             !isSubscribedTransportNewsletter) && (
             <p className="mb-0">
-              <Trans>Recevez des conseils pour réduire votre empreinte :</Trans>
+              <Trans>Recevez des conseils pour réduire votre empreinte :</Trans>
             </p>
           )}
 
@@ -191,7 +191,7 @@ export default function GetResultsByEmail({
                 <span>
                   <Emoji>🚗</Emoji>{' '}
                   <Trans>
-                    <strong>Nos Gestes Transports</strong> : maîtrisez l'impact
+                    <strong>Nos Gestes Transports</strong> : maîtrisez l'impact
                     carbone de vos transports avec nos 4 infolettres
                   </Trans>
                 </span>
