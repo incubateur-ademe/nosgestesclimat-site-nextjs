@@ -15,7 +15,7 @@ type Props = {
   isCustomQuestion?: boolean
   onEdit?: () => void
   onDelete?: (question: string) => Promise<void>
-  isLoadingUpdate: boolean
+  isLoadingUpdate?: boolean
 }
 
 export default function ToggleField({
