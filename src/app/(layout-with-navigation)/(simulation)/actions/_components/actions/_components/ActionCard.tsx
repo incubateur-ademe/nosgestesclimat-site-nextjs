@@ -11,6 +11,7 @@ import {
 } from '@/constants/tracking/pages/actions'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import Emoji from '@/design-system/utils/Emoji'
+import { getIsCustomAction } from '@/helpers/actions/getIsCustomAction'
 import {
   getBackgroundLightColor,
   getBorderColor,
@@ -94,6 +95,8 @@ export default function ActionCard({
         return traversedVariables.includes(key)
       })) ||
     action.isIrrelevant
+
+  const isCustomAction = getIsCustomAction(dottedName)
 
   const handleChooseAction = useCallback(async () => {
     if (isDisabled) return

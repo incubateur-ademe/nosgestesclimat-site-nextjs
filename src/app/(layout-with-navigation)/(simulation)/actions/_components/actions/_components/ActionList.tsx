@@ -1,6 +1,7 @@
 'use client'
 
 import { actionsClickYes } from '@/constants/tracking/pages/actions'
+import { getIsCustomAction } from '@/helpers/actions/getIsCustomAction'
 import {
   FormProvider,
   useCurrentSimulation,
@@ -31,6 +32,8 @@ export default function ActionList({
   const { toggleActionChoice } = useUser()
 
   const { actionChoices } = useCurrentSimulation()
+
+  const isFocusedActionCustom = getIsCustomAction(focusedAction)
 
   return (
     <ul className="mt-4 flex list-none flex-wrap items-center justify-center p-0">
