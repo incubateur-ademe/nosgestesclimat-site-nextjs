@@ -128,8 +128,6 @@ export default function UserInformationForm({
     }, 2500)
   }
 
-  useEffect(() => {})
-
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
