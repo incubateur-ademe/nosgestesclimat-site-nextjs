@@ -8,12 +8,14 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
+import { useRule } from '@/publicodes-state'
 import DocumentationBlock from './_components/DocumentationBlock'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import Heading from './_components/Heading'
 import Poll from './_components/Poll'
 import ShareBlock from './_components/ShareBlock'
+import SmallFootprint from './_components/SmallFootprint'
 import Subcategories from './_components/Subcategories'
 import TargetBlock from './_components/TargetBlock'
 import TotalSticky from './_components/TotalSticky'
@@ -25,6 +27,8 @@ export default function FinPage() {
 
   // Set the current simulation from the URL params (if applicable)
   const { isCorrectSimulationSet } = useSetCurrentSimulationFromParams()
+
+  const { numericValue: total } = useRule('bilan')
 
   if (!isGuardInit || isGuardRedirecting) return null
 
@@ -42,9 +46,15 @@ export default function FinPage() {
       <TotalStickyMobile />
       <div className="flex flex-col-reverse gap-16 lg:flex-row lg:gap-10">
         <div className="flex flex-1 flex-col gap-16 lg:mt-32">
-          <MainSubcategories />
+          {total >= 4000 ? (
+            <>
+              <MainSubcategories />
 
-          <Subcategories />
+              <Subcategories />
+            </>
+          ) : (
+            <SmallFootprint />
+          )}
 
           <GetResultsByEmail />
 
