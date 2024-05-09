@@ -14,7 +14,7 @@ import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
 import { t } from 'i18next'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
@@ -36,6 +36,7 @@ const ORGANISATION_TYPES = [
 
 export default function CreationForm() {
   const [error, setError] = useState<string | null>('')
+  const [shouldNavigate, setShouldNavigate] = useState(false)
 
   const { user, updateUserOrganisation } = useUser()
 
@@ -87,13 +88,23 @@ export default function CreationForm() {
         slug: organisationUpdated?.slug,
       })
 
-      router.push(`/organisations/${organisationUpdated?.slug}`)
+      setShouldNavigate(true)
     } catch (error: any) {
       setError(t('Une erreur est survenue, veuillez réessayer.'))
 
       captureException(error)
     }
   }
+
+  const userOrgaSlugRef = useRef(user?.organisation?.slug)
+
+  useEffect(() => {
+    if (!shouldNavigate) return
+
+    if (userOrgaSlugRef.current === user?.organisation?.slug) return
+
+    router.push(`/organisations/${user?.organisation?.slug}`)
+  }, [router, shouldNavigate, user?.organisation?.slug])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
