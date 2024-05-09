@@ -15,14 +15,17 @@ const widthClassName = ['w-full', 'w-11/12 md:w-3/4', 'w-10/12 md:w-1/2']
 type Props = {
   subcategory: DottedName
   index: number
+  value?: number
 }
-export default function MainSubcategory({ subcategory, index }: Props) {
+export default function MainSubcategory({ subcategory, index, value }: Props) {
   const locale = useLocale()
 
   const { t } = useClientTranslation()
   const { title, numericValue, category } = useRule(subcategory)
 
-  const { formattedValue, unit } = formatCarbonFootprint(numericValue, {
+  const usedValue = value ?? numericValue
+
+  const { formattedValue, unit } = formatCarbonFootprint(usedValue, {
     locale,
     t,
   })

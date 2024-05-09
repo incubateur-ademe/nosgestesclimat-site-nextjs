@@ -21,17 +21,23 @@ function getContentAlignement(position: number) {
   return 'right-0'
 }
 
-export default function TotalNumber() {
+type Props = {
+  total?: number
+}
+
+export default function TotalNumber({ total }: Props) {
   const { t } = useClientTranslation()
 
   const { numericValue } = useRule('bilan')
 
-  const { formattedValue, unit } = formatCarbonFootprint(numericValue, {
+  const usedValue = total ?? numericValue
+
+  const { formattedValue, unit } = formatCarbonFootprint(usedValue, {
     t,
     localize: false,
   })
 
-  const originPosition = (numericValue / 1000 / 12) * 100
+  const originPosition = (usedValue / 1000 / 12) * 100
 
   const position = originPosition <= 100 ? originPosition : 100
 

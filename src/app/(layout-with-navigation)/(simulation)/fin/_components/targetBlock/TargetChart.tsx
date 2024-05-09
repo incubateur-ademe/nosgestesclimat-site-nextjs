@@ -22,7 +22,7 @@ export default function TargetChart({ isQuestionOpen }: Props) {
   return (
     <div
       className={twMerge(
-        's relative mx-auto max-w-[300px] transition-opacity duration-700',
+        'relative mx-auto max-w-[300px] transition-opacity duration-700',
         isQuestionOpen
           ? 'invisible h-0 opacity-0'
           : 'short:mb-2 short:mt-12 visible mb-6 mt-14 h-28 opacity-100'

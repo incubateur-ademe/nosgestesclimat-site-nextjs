@@ -1,5 +1,7 @@
 'use client'
 
+import MainSubcategories from '@/components/fin/MainSubcategories'
+import TotalChart from '@/components/fin/TotalChart'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import Trans from '@/components/translation/Trans'
@@ -10,11 +12,10 @@ import DocumentationBlock from './_components/DocumentationBlock'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import Heading from './_components/Heading'
-import MainSubcategories from './_components/MainSubcategories'
 import Poll from './_components/Poll'
+import ShareBlock from './_components/ShareBlock'
 import Subcategories from './_components/Subcategories'
 import TargetBlock from './_components/TargetBlock'
-import TotalChart from './_components/TotalChart'
 import TotalSticky from './_components/TotalSticky'
 import TotalStickyMobile from './_components/TotalStickyMobile'
 
@@ -45,7 +46,9 @@ export default function FinPage() {
 
           <Subcategories />
 
-          <GetResultsByEmail className="col-span-5 h-full" />
+          <GetResultsByEmail />
+
+          <ShareBlock />
 
           <div id="categories-block">
             <Title
