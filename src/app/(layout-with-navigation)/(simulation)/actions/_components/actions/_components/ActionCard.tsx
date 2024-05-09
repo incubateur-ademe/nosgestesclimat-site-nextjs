@@ -95,12 +95,10 @@ export default function ActionCard({
       })) ||
     action.isIrrelevant
 
-  const isCustomAction = dottedName.includes('personnalisée')
-
   const handleChooseAction = useCallback(async () => {
     if (isDisabled) return
 
-    if (hasRemainingQuestions || isCustomAction) {
+    if (hasRemainingQuestions) {
       setFocusedAction(dottedName)
       return null
     }
@@ -117,7 +115,6 @@ export default function ActionCard({
     isSelected,
     setFocusedAction,
     toggleActionChoice,
-    isCustomAction,
   ])
 
   if (!currentSimulation || !rules) {
@@ -138,31 +135,19 @@ export default function ActionCard({
         className={`flex h-[6rem] w-full items-center rounded-xl p-2 ${getBackgroundLightColor(
           category
         )}`}>
-        {isCustomAction ? (
-          <div className="flex flex-col gap-1">
-            {icons && (
-              <Emoji className="inline-flex justify-center">{icons}</Emoji>
-            )}
-            <h2
-              className={`mb-0 inline-block w-full text-center text-sm font-bold ${getTextDarkColor(category)}`}>
-              {title}
-            </h2>
-          </div>
-        ) : (
-          <Link
-            className="z-10 w-full no-underline"
-            onClick={() => trackEvent(actionsOpenAction(dottedName))}
-            href={'/actions/' + encodeRuleName(dottedName)}>
-            {icons && (
-              <Emoji className="inline-flex justify-center">{icons}</Emoji>
-            )}
+        <Link
+          className="z-10 w-full no-underline"
+          onClick={() => trackEvent(actionsOpenAction(dottedName))}
+          href={'/actions/' + encodeRuleName(dottedName)}>
+          {icons && (
+            <Emoji className="inline-flex justify-center">{icons}</Emoji>
+          )}
 
-            <h2
-              className={`mb-0 inline-block w-full text-center text-sm font-bold ${getTextDarkColor(category)}`}>
-              {title}
-            </h2>
-          </Link>
-        )}
+          <h2
+            className={`mb-0 inline-block w-full text-center text-sm font-bold ${getTextDarkColor(category)}`}>
+            {title}
+          </h2>
+        </Link>
       </div>
 
       <div className="mt-3 flex w-full flex-1 flex-col justify-between">

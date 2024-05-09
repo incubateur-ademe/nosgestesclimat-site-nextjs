@@ -7,17 +7,17 @@ import {
   useEngine,
   useUser,
 } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
-import CustomActionForm from './actionList/CustomActionForm'
 
 type Props = {
   actions: any[]
   rules: any
   bilan: any
   focusedAction: string
-  setFocusedAction: (dottedName: string) => void
+  setFocusedAction: (dottedName: DottedName) => void
 }
 
 export default function ActionList({
@@ -31,8 +31,6 @@ export default function ActionList({
   const { toggleActionChoice } = useUser()
 
   const { actionChoices } = useCurrentSimulation()
-
-  const isFocusedActionCustom = focusedAction.includes('personnalisée')
 
   return (
     <ul className="mt-4 flex list-none flex-wrap items-center justify-center p-0">
@@ -49,7 +47,7 @@ export default function ActionList({
           </li>
         )
 
-        if (focusedAction === action.dottedName && !isFocusedActionCustom) {
+        if (focusedAction === action.dottedName) {
           const convId = 'conv'
 
           return (
@@ -88,15 +86,6 @@ export default function ActionList({
           )
         }
 
-        if (focusedAction === action.dottedName && isFocusedActionCustom) {
-          return (
-            <CustomActionForm
-              dottedName={action.dottedName}
-              setFocusedAction={setFocusedAction}
-              key={`${action.dottedName}-custom-form`}
-            />
-          )
-        }
         return cardComponent
       })}
     </ul>

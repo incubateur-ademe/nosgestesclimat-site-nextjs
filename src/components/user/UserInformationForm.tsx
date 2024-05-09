@@ -105,31 +105,30 @@ export default function UserInformationForm({
       [LIST_MAIN_NEWSLETTER]: data['newsletter-saisonniere'],
       [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: data['newsletter-transports'],
     }
-    try {
-      await updateUserSettings({
-        name: data.name,
-        email: data.email,
-        newsletterIds,
-      })
 
-      if (data.email && !user?.email) {
-        updateEmail(data.email)
-      }
+    await updateUserSettings({
+      name: data.name,
+      email: data.email,
+      newsletterIds,
+    })
 
-      if (data.name) {
-        updateName(data.name)
-      }
-
-      setIsSubmitted(true)
-
-      timeoutRef.current = setTimeout(() => {
-        setIsSubmitted(false)
-        onCompleted(data)
-      }, 2500)
-    } catch (error) {
-      console.error(error)
+    if (data.email && !user?.email) {
+      updateEmail(data.email)
     }
+
+    if (data.name) {
+      updateName(data.name)
+    }
+
+    setIsSubmitted(true)
+
+    timeoutRef.current = setTimeout(() => {
+      setIsSubmitted(false)
+      onCompleted(data)
+    }, 2500)
   }
+
+  useEffect(() => {})
 
   useEffect(() => {
     return () => {
