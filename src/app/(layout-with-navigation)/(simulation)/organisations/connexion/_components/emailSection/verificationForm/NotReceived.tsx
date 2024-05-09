@@ -1,7 +1,9 @@
 'use client'
 
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import EyeIcon from '@/components/icons/EyeIcon'
 import LockIcon from '@/components/icons/LockIcon'
+import ReturnIcon from '@/components/icons/ReturnIcon'
 import SendIcon from '@/components/icons/SendIcon'
 import Trans from '@/components/translation/Trans'
 import { organisationsConnexionClickCode } from '@/constants/tracking/pages/organisationsConnexion'
@@ -9,6 +11,7 @@ import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {
@@ -30,9 +33,18 @@ export default function NotReceived({
     useState(false)
   const { t } = useClientTranslation()
 
+  const router = useRouter()
+
   const { updateLoginExpirationDate } = useUser()
 
   const timeoutRef = useRef<NodeJS.Timeout>()
+
+  function handleGoBackToForm() {
+    // Reset the login expiration date
+    updateLoginExpirationDate(undefined)
+
+    router.push('/organisations/connexion')
+  }
 
   async function handleResendVerificationCode() {
     if (isRetryButtonDisabled) {
@@ -61,40 +73,61 @@ export default function NotReceived({
   return (
     <>
       <p className="mt-12">
-        <Trans>Vous n'avez pas reçu d'e-mail ?</Trans>
+        <strong>
+          <Trans>Vous n'avez pas reçu de code ?</Trans>
+        </strong>
+      </p>
+      <p className="mb-1 flex items-center text-sm">
+        <EyeIcon className="mr-2 h-4  w-4" />{' '}
+        <Trans>Avez-vous pensé à vérifier votre outil anti-spams ?</Trans>
+      </p>
+      <p className="mb-0 ml-6 text-xs text-gray-500">
+        <Trans>
+          Certaines organisations sont dotées d’un outil type MailinBlack,
+          Altospam qui bloquent parfois nos emails.
+        </Trans>
       </p>
 
       {!isErrorResend && (
-        <button
-          aria-disabled={isRetryButtonDisabled}
-          aria-label={
-            isRetryButtonDisabled
-              ? t('Renvoyer le code, désactivé pendant 30 secondes')
-              : ''
-          }
-          onClick={handleResendVerificationCode}
-          className="text-primary-700">
+        <div className="flex items-center">
+          <Button
+            color="link"
+            size="sm"
+            aria-disabled={isRetryButtonDisabled}
+            aria-label={
+              isRetryButtonDisabled
+                ? t('Renvoyer le code, désactivé pendant 30 secondes')
+                : ''
+            }
+            className="-ml-2 font-normal"
+            onClick={handleResendVerificationCode}>
+            {isRetryButtonDisabled && timeLeft > 0 && (
+              <span className="mr-2 flex items-center">
+                <LockIcon className="mr-2 h-4 w-4 fill-primary-700" />
+                <Trans>Renvoyer le code</Trans>
+              </span>
+            )}
+
+            {shouldDisplayConfirmation && (
+              <span className="flex items-center text-green-500 no-underline">
+                <CheckCircleIcon className="mr-2 h-4 w-4 fill-green-500" />
+                <Trans>Code renvoyé</Trans>
+              </span>
+            )}
+
+            {!shouldDisplayConfirmation && !isRetryButtonDisabled && (
+              <span className="flex items-center underline">
+                <SendIcon className="mr-2 h-4 w-4 fill-primary-700" />
+                <Trans>Renvoyer le code</Trans>
+              </span>
+            )}
+          </Button>
           {isRetryButtonDisabled && timeLeft > 0 && (
-            <span className="flex items-center no-underline">
-              <LockIcon className="h-4 w-4 fill-primary-700" />
-              &nbsp;<Trans>Renvoyer le code</Trans>
+            <span className="text-xs font-normal text-gray-500 !no-underline">
+              <Trans>(Attendre</Trans> {timeLeft} <Trans>secondes)</Trans>
             </span>
           )}
-
-          {shouldDisplayConfirmation && (
-            <span className="flex items-center text-green-500 no-underline">
-              <CheckCircleIcon className="h-4 w-4 fill-green-500" />
-              &nbsp;<Trans>Code renvoyé</Trans>
-            </span>
-          )}
-
-          {!shouldDisplayConfirmation && !isRetryButtonDisabled && (
-            <span className="flex items-center underline">
-              <SendIcon className="h-4 w-4 fill-primary-700" />
-              &nbsp;<Trans>Renvoyer le code</Trans>
-            </span>
-          )}
-        </button>
+        </div>
       )}
 
       {isErrorResend && (
@@ -120,12 +153,15 @@ export default function NotReceived({
         </div>
       )}
 
-      {timeLeft > 0 && (
-        <p className="mt-2 text-sm text-gray-600">
-          <Trans>Veuillez attendre</Trans> {timeLeft}{' '}
-          <Trans>secondes avant de pouvoir recevoir un nouveau code</Trans>
-        </p>
-      )}
+      <Button
+        onClick={handleGoBackToForm}
+        color="link"
+        size="sm"
+        className="-ml-2 -mt-2 flex items-center font-normal">
+        <ReturnIcon className="mr-2 inline-block w-4 fill-primary-700" />
+
+        <Trans>Revenir au formulaire de connexion</Trans>
+      </Button>
     </>
   )
 }
