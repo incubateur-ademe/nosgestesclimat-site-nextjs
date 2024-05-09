@@ -22,6 +22,7 @@ export type OrganisationAdministrator = {
 export type CustomAdditionalQuestions = {
   question: string
   isEnabled: boolean
+  _id?: string
 }
 
 export type OrganisationPoll = {
@@ -53,6 +54,7 @@ export type SimulationRecap = {
     [key: string]: number
   }
   defaultAdditionalQuestionsAnswers: Record<string, number | string>
+  customAdditionalQuestionsAnswers: Record<string, number | string>
   progression: number
   isCurrentUser?: boolean
   date: string
@@ -68,6 +70,7 @@ export type PollData = {
   organisationName: string
   isAdmin: boolean
   defaultAdditionalQuestions: ('postalCode' | 'birthdate')[]
+  customAdditionalQuestions: CustomAdditionalQuestions[]
 }
 
 export type PollInfo = {
@@ -79,6 +82,7 @@ export type PollInfo = {
   numberOfParticipants: number
   expectedNumberOfParticipants: number
   organisationInfo: OrganisationInfo
+  customAdditionalQuestions: CustomAdditionalQuestions[]
 }
 
 type OrganisationInfo = {

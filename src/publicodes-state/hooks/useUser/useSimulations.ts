@@ -91,6 +91,7 @@ export default function useSimulations({
       foldedStepToAdd,
       actionChoices,
       defaultAdditionalQuestionsAnswers,
+      customAdditionalQuestionsAnswers,
       computedResults,
       progression,
       pollToAdd,
@@ -133,6 +134,11 @@ export default function useSimulations({
           if (defaultAdditionalQuestionsAnswers !== undefined) {
             simulationToUpdate.defaultAdditionalQuestionsAnswers =
               defaultAdditionalQuestionsAnswers
+          }
+
+          if (customAdditionalQuestionsAnswers !== undefined) {
+            simulationToUpdate.customAdditionalQuestionsAnswers =
+              customAdditionalQuestionsAnswers
           }
 
           if (computedResults !== undefined) {

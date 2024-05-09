@@ -75,6 +75,7 @@ export type Simulation = {
   computedResults?: ComputedResults
   progression: number
   defaultAdditionalQuestionsAnswers?: Record<string, string>
+  customAdditionalQuestionsAnswers?: Record<string, string>
   polls?: string[] | null
   groups?: string[] | null
   savedViaEmail?: boolean
@@ -86,6 +87,7 @@ type UpdateCurrentSimulationProps = {
   foldedStepToAdd?: string
   actionChoices?: ActionChoices
   defaultAdditionalQuestionsAnswers?: Record<string, string>
+  customAdditionalQuestionsAnswers?: Record<string, string>
   computedResults?: ComputedResults
   progression?: number
   pollToAdd?: string | null
