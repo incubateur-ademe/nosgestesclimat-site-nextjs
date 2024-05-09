@@ -44,7 +44,7 @@ export default function TotalStickyMobile() {
     <div
       ref={myElementRef}
       className={twMerge(
-        'sticky top-0 z-50 -mx-4 flex items-center justify-between border-b border-gray-200 bg-white px-4 py-3 transition-opacity duration-700 lg:hidden',
+        'sticky top-0 z-50 -mx-4 flex items-center justify-between border-b border-gray-200 bg-white px-4 py-3 transition-opacity duration-300 lg:hidden',
         isVisible ? 'visible opacity-100' : 'invisible opacity-0'
       )}>
       <div>

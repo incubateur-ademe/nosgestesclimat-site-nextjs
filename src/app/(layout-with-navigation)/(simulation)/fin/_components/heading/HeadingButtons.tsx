@@ -33,7 +33,7 @@ export default function HeadingButtons({ size = 'md' }: Props) {
           url: sharedUrl,
           title: 'Découvre mon empreinte carbone !',
         })
-        .catch(handleScroll)
+        .catch(() => handleScroll('share-block'))
     } else {
       handleScroll('share-block')
     }
