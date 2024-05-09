@@ -40,14 +40,14 @@ export default function FinPage() {
       <TotalChart />
       <TotalStickyMobile />
       <div className="flex flex-col-reverse gap-16 lg:flex-row lg:gap-10">
-        <div className="flex flex-1 flex-col gap-10 lg:mt-32">
+        <div className="flex flex-1 flex-col gap-16 lg:mt-32">
           <MainSubcategories />
 
           <Subcategories />
 
           <GetResultsByEmail className="col-span-5 h-full" />
 
-          <div>
+          <div id="categories-block">
             <Title
               tag="h2"
               className="text-lg md:text-2xl"

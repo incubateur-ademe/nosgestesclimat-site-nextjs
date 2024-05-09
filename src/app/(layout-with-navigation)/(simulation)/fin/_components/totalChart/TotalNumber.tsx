@@ -9,7 +9,6 @@ import { CountUp } from 'use-count-up'
 import Arrow from './Arrow'
 
 function getContentAlignement(position: number) {
-  console.log('position', position)
   if (position < 40) {
     return 'left-16'
   }
@@ -51,7 +50,7 @@ export default function TotalNumber() {
           'absolute bottom-full  mb-1 whitespace-nowrap text-right font-medium lg:left-1/2 lg:right-auto lg:-translate-x-1/2',
           getContentAlignement(position)
         )}>
-        <strong className="absolute  bottom-7 right-full -translate-x-4 text-6xl font-black leading-none lg:bottom-8 lg:text-9xl">
+        <strong className="absolute bottom-7 right-full -translate-x-4 text-6xl font-black leading-none lg:bottom-7 lg:text-9xl">
           <CountUp
             isCounting
             end={Number(formattedValue)}
@@ -62,7 +61,7 @@ export default function TotalNumber() {
             thousandsSeparator=" "
           />
         </strong>{' '}
-        <span className="text-5xl leading-[3rem] lg:text-6xl lg:leading-snug">
+        <span className="text-5xl leading-[3rem] lg:text-6xl lg:leading-tight">
           {unit}
         </span>
         <br />

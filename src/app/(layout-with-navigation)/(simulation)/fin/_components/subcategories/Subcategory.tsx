@@ -37,7 +37,7 @@ export default function Subcategory({ subcategory, index }: Props) {
             de votre empreinte
           </div>
         </div>
-        <Emoji className="text-4xl lg:text-5xl">{icons?.slice(0, 2)}</Emoji>
+        <Emoji className="text-4xl lg:text-6xl">{icons?.slice(0, 2)}</Emoji>
       </div>
       <p className="mb-6 text-sm">
         <Trans>
@@ -46,7 +46,7 @@ export default function Subcategory({ subcategory, index }: Props) {
       </p>
       <Actions subcategory={subcategory} />
       <div className="flex justify-center">
-        <Link href="/gestes" className="text-center text-xs">
+        <Link href="/actions" className="text-center text-xs">
           <Trans>Voir tous les gestes {title}</Trans>
         </Link>
       </div>

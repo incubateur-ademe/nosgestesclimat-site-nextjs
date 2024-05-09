@@ -25,7 +25,14 @@ export default function MainSubcategories() {
           />
         ))}
         <Button
-          onClick={() => console.log('show all subcategories')}
+          onClick={() => {
+            // TODO: trackEvent
+            const categoriesBlock = document.getElementById('categories-block')
+            categoriesBlock?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+            })
+          }}
           size="xs"
           color="link">
           <Trans>Voir toutes les catégories</Trans>

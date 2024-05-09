@@ -126,7 +126,7 @@ export default function GetResultsByEmail({
     <Card
       id="email-block"
       className={twMerge(
-        'rainbow-border items-start rounded-xl p-6 shadow-none',
+        'rainbow-border items-start rounded-xl px-4 py-6 shadow-none',
         className
       )}>
       <form
@@ -135,7 +135,7 @@ export default function GetResultsByEmail({
         onSubmit={handleSubmit(onSubmit)}>
         <h3 className="flex items-center text-base sm:text-lg">
           <Trans>
-            Vous souhaitez recevoir vos résultats d’empreinte carbone ?
+            Vous souhaitez recevoir vos résultats d’empreinte carbone ?
           </Trans>
 
           <Emoji>💡</Emoji>

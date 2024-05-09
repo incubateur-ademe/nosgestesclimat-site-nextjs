@@ -40,10 +40,7 @@ export default function HeadingButtons({ size = 'md' }: Props) {
       <Button
         className={twMerge('p-0', sizeClassNames[size])}
         onClick={() => {
-          trackEvent(endClickSaveShortcut)
-
-          const emailBlock = document.getElementById('email-block')
-          emailBlock?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          alert('🐙')
         }}>
         <ShareIcon
           className={twMerge('mr-[1px] fill-white', shareClassNames[size])}

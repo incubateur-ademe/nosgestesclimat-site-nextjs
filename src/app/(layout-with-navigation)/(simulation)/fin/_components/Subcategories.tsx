@@ -7,7 +7,7 @@ export default function Subcategories() {
   const firstThreeSubcategories = sortedSubcategories.slice(0, 3)
 
   return (
-    <div className="flex flex-col items-start gap-10">
+    <>
       {firstThreeSubcategories.map((subcategory, index) => (
         <Subcategory
           key={subcategory}
@@ -15,6 +15,6 @@ export default function Subcategories() {
           index={index}
         />
       ))}
-    </div>
+    </>
   )
 }

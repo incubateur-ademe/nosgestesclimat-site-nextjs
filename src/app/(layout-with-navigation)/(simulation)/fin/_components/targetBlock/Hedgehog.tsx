@@ -15,7 +15,7 @@ export default function Hedgehog({ setIsHedgehog }: Props) {
     let timerHideHedgehog: NodeJS.Timeout
     const showHedgehog = () => {
       setIsVisible(true)
-      timerHideHedgehog = setTimeout(hideHedgehog, 3000)
+      timerHideHedgehog = setTimeout(hideHedgehog, 2000)
     }
     const hideHedgehog = () => {
       setIsVisible(false)

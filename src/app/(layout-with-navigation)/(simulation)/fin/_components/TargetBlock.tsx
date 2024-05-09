@@ -4,11 +4,13 @@ import Link from '@/components/Link'
 import CloseIcon from '@/components/icons/Close'
 import DownArrow from '@/components/icons/DownArrow'
 import Trans from '@/components/translation/Trans'
+import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Hedgehog from './targetBlock/Hedgehog'
+import HedgehogAwareness from './targetBlock/HedgehogAwareness'
 import TargetChart from './targetBlock/TargetChart'
 import TargetQuestions from './targetBlock/TargetQuestions'
 
@@ -16,53 +18,36 @@ export default function TargetBlock() {
   const [isOpen, setIsOpen] = useState(false)
 
   const [isHedgehog, setIsHedgehog] = useState(false)
+
+  const [isQuestionOpen, setIsQuestionOpen] = useState(false)
+
   return (
     <div className="relative">
       <Hedgehog setIsHedgehog={setIsHedgehog} />
       <div className="short:py-2 relative rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-6">
         {isHedgehog ? (
-          <>
-            <Title
-              tag="h2"
-              className="text-lg lg:text-2xl"
-              title={
-                <Trans>
-                  <strong className="font-black text-secondary-700">
-                    Hérissons
-                  </strong>{' '}
-                  en danger ?
-                </Trans>
-              }
-            />
-            <p>
-              <Trans>
-                Les hérissons des campagnes et des jardins de France subissent
-                de plein fouet le réchauffement climatique.
-              </Trans>
-            </p>
-            <p>
-              <Trans>
-                La hausse des températures perturbe leur cycle de reproduction,
-                les oblige à se mettre en danger pour trouver de l'eau et durçit
-                les sols dans lesquels ils trouvent de quoi se nourrir.
-              </Trans>
-            </p>
-            <div className="flex justify-end">
-              <Link
-                className="text-sm"
-                target="_blank"
-                href="https://information.tv5monde.com/international/france-les-herissons-en-danger-dextinction-708196">
-                En savoir plus
-              </Link>
-            </div>
-          </>
+          <HedgehogAwareness />
         ) : (
           <>
-            <div className={isOpen ? '' : '-mb-8'}>
+            <div className={twMerge('lg:hidden', isOpen ? '' : '-mb-8')}>
               <Title
                 tag="h2"
                 className="text-lg lg:text-2xl"
                 hasSeparator={isOpen}
+                title={
+                  <Trans>
+                    <strong className="font-black text-secondary-700">
+                      2 tonnes
+                    </strong>{' '}
+                    en 2050 ?
+                  </Trans>
+                }
+              />
+            </div>
+            <div className="hidden lg:block">
+              <Title
+                tag="h2"
+                className=" text-lg lg:text-2xl"
                 title={
                   <Trans>
                     <strong className="font-black text-secondary-700">
@@ -84,11 +69,15 @@ export default function TargetBlock() {
                   réchauffement climatique à 2 degrés.
                 </Trans>
               </p>
-              <TargetChart />
-              <TargetQuestions />
+              <TargetChart isQuestionOpen={isQuestionOpen} />
+              <TargetQuestions setIsQuestionOpen={setIsQuestionOpen} />
               <div className="flex justify-end">
-                <Link className="text-sm" href="/empreinte-carbone">
-                  En savoir plus
+                <Link
+                  className="text-sm"
+                  href="/empreinte-climat"
+                  target="_blank">
+                  En savoir plus{' '}
+                  <ExternalLinkIcon className="stroke-primary-700" />
                 </Link>
               </div>
             </div>

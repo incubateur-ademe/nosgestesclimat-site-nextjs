@@ -3,8 +3,13 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
+import { twMerge } from 'tailwind-merge'
 
-export default function TargetChart() {
+type Props = {
+  isQuestionOpen: string | null
+}
+
+export default function TargetChart({ isQuestionOpen }: Props) {
   const locale = useLocale()
   const { t } = useClientTranslation()
 
@@ -15,11 +20,17 @@ export default function TargetChart() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <div className="short:mb-2 short:mt-12 relative mx-auto mb-6 mt-14 h-28 max-w-[300px]">
+    <div
+      className={twMerge(
+        's relative mx-auto max-w-[300px] transition-opacity duration-700',
+        isQuestionOpen
+          ? 'invisible h-0 opacity-0'
+          : 'short:mb-2 short:mt-12 visible mb-6 mt-14 h-28 opacity-100'
+      )}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 3 }}
+        transition={{ duration: 0.5, delay: 2.5 }}
         className="absolute bottom-full left-3 translate-y-1">
         <div className="text-xs text-secondary-700">{currentYear}</div>
         <div className="text-xl font-black">
@@ -30,7 +41,7 @@ export default function TargetChart() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 4 }}
+        transition={{ duration: 0.5, delay: 2.9 }}
         className="absolute bottom-10 right-1">
         <div className="text-xs text-secondary-700">2050</div>
         <div className="text-xl font-black">2 tonnes</div>
@@ -40,7 +51,7 @@ export default function TargetChart() {
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.75, delay: 3.5 }}
+          transition={{ duration: 0.75, delay: 2.5 }}
           className=" h-[2px] w-full origin-left bg-secondary-700">
           <svg
             width="16"

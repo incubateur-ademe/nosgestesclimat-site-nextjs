@@ -9,7 +9,7 @@ export default function TargetNumber() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1.5, delay: 1.5 }}
+      transition={{ duration: 1.5, delay: 2 }}
       className="absolute top-10 -translate-x-1/2"
       style={{ left: `${position}%` }}>
       <div className="absolute top-full mt-1 whitespace-nowrap">
