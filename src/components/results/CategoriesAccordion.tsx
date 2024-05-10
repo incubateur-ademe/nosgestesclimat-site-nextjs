@@ -13,7 +13,7 @@ export default function CategoriesAccordion() {
   )
 
   return (
-    <Accordion className="mt-8">
+    <Accordion>
       {sortedCategories.map((categoryDottedName, index) => {
         return (
           <AccordionItemWithRule
