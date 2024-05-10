@@ -29,13 +29,11 @@ export default function AccordionItem({
             onClick()
           }
         }}
-        className={`relative z-10 flex w-full items-center justify-between border-gray-300 bg-white px-2 py-4 ${
-          isOpen ? '' : 'border-b'
-        } ${isReadOnly ? '!cursor-default' : ''}`}
+        className={`relative z-10 flex w-full items-end justify-between border-gray-300 bg-white p-2 ${isReadOnly ? '!cursor-default' : ''}`}
         aria-disabled={isReadOnly}>
         <div className="flex flex-1 items-center gap-4">{title}</div>
 
-        <div className="flex items-center gap-4 ">
+        <div className="flex items-center gap-4">
           <ChevronRight
             className={`${isOpen ? 'rotate-90' : ''} ${
               isReadOnly ? 'opacity-20' : ''

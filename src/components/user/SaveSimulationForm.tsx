@@ -27,7 +27,7 @@ type Inputs = {
 }
 
 type Props = {
-  title: string | ReactNode
+  title?: string | ReactNode
   inputsDisplayed?: Array<
     'name' | 'email' | 'newsletter-saisonniere' | 'newsletter-transports'
   >
@@ -138,8 +138,7 @@ export default function UserInformationForm({
 
   return (
     <div className={twMerge('flex flex-col items-start', className)}>
-      {title}
-
+      {title ? title : null}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-full flex-col items-start gap-4">
@@ -178,14 +177,18 @@ export default function UserInformationForm({
             }
           </>
         )}
+        {inputsDisplayed.includes('newsletter-saisonniere') ||
+          (inputsDisplayed.includes('newsletter-transports') && (
+            <>
+              <h3 className="mb-0 mt-6">
+                <Trans>Inscription à nos e-mails</Trans>
+              </h3>
 
-        <h3 className="mb-0 mt-6">
-          <Trans>Inscription à nos e-mails</Trans>
-        </h3>
-
-        <p className="text-sm text-gray-600">
-          <Trans>Vous pouvez vous désincrire à tout moment</Trans>
-        </p>
+              <p className="text-sm text-gray-600">
+                <Trans>Vous pouvez vous désincrire à tout moment</Trans>
+              </p>
+            </>
+          ))}
         {inputsDisplayed.includes('newsletter-saisonniere') && (
           <CheckboxInputGroup
             size="lg"

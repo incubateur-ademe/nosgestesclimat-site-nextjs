@@ -5,6 +5,8 @@ import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+import ValueChangeDisplay from '../misc/ValueChangeDisplay'
+import Trans from '../translation/Trans'
 
 type Props = {
   endPage?: boolean
@@ -56,12 +58,19 @@ export default function TotalSticky({
         'short:py-2 hidden items-center justify-between rounded-xl border-2 border-primary-50 bg-gray-100 p-4 transition-opacity duration-700 lg:flex',
         isVisible ? 'visible opacity-100' : 'invisible opacity-0'
       )}>
-      <div>
+      <div className="relative flex items-center gap-2">
         <strong className="short:text-3xl text-5xl font-black leading-none">
           {formattedValue}
         </strong>
-        <span className="text-3xl font-medium"> {unit}</span>
+        <div className="font-medium leading-none">
+          <span className="mb-0.5 block text-2xl leading-none">{unit}</span>
+          <span className="leading block text-xs">
+            <Trans>de C0₂e par an</Trans>
+          </span>
+        </div>
+        <ValueChangeDisplay className="absolute bottom-2/3 left-full rounded-xl bg-primary-700 px-4 py-2 text-white" />
       </div>
+
       <HeadingButtons
         size="sm"
         buttons={buttons}

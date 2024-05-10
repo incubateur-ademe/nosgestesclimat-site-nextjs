@@ -3,8 +3,13 @@
 import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { useEffect, useRef, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-export default function ValueChangeDisplay() {
+export default function ValueChangeDisplay({
+  className,
+}: {
+  className?: string
+}) {
   const locale = useLocale()
   const { numericValue } = useRule('bilan')
   const prevValue = useRef(numericValue)
@@ -35,11 +40,11 @@ export default function ValueChangeDisplay() {
 
   if (!shouldDisplay) return
   return (
-    <div className="animate-valuechange" key={numericValue}>
+    <div
+      className={twMerge('animate-valuechange whitespace-nowrap', className)}
+      key={numericValue}>
       <strong className="text-lg">{displayDifference}</strong>{' '}
-      <span className="text-xs font-light">
-        kgCO<sub>2</sub>e
-      </span>
+      <span className="text-xs">kg</span>
     </div>
   )
 }

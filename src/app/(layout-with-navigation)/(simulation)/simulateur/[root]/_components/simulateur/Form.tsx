@@ -107,7 +107,7 @@ export default function Form() {
   const QuestionComponent = questions[currentQuestion] || Question
 
   return (
-    <div className="relative flex min-h-[25.5rem] flex-col justify-between lg:pt-7">
+    <div className="relative flex min-h-[26.5rem] flex-col justify-between">
       <QuestionComponent
         question={currentQuestion}
         key={currentQuestion}

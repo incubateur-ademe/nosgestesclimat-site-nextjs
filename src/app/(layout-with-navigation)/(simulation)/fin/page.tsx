@@ -8,7 +8,6 @@ import TotalSticky from '@/components/total/TotalSticky'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
-import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
 import { useRule } from '@/publicodes-state'
 import DocumentationBlock from './_components/DocumentationBlock'
 import FeedbackBanner from './_components/FeedbackBanner'
@@ -25,14 +24,9 @@ export default function FinPage() {
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useEndGuard()
 
-  // Set the current simulation from the URL params (if applicable)
-  const { isCorrectSimulationSet } = useSetCurrentSimulationFromParams()
-
   const { numericValue: total } = useRule('bilan')
 
   if (!isGuardInit || isGuardRedirecting) return null
-
-  if (!isCorrectSimulationSet) return null
 
   return (
     <>
@@ -44,7 +38,7 @@ export default function FinPage() {
 
       <TotalChart />
       <TotalStickyMobile />
-      <div className="flex flex-col-reverse gap-16 lg:flex-row lg:gap-10">
+      <div className="flex flex-col-reverse gap-16 lg:flex-row lg:gap-20">
         <div className="flex flex-1 flex-col gap-16 lg:mt-32">
           {total >= 4000 ? (
             <>

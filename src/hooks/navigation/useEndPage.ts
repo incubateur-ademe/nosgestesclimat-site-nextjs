@@ -54,7 +54,7 @@ export function useEndPage() {
         isAllowedToSave &&
         (currentSimulation.polls || currentSimulation.groups)
       ) {
-        await saveSimulation({ simulation: currentSimulation })
+        saveSimulation({ simulation: currentSimulation })
       }
 
       // If we should show the quiz, we redirect to the quiz page

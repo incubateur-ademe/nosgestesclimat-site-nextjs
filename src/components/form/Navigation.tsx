@@ -119,7 +119,7 @@ export default function Navigation({
   return (
     <div
       className={twMerge(
-        'mb-8 flex justify-between border-b pb-6',
+        'flex justify-between border-b pb-6',
         getBorderColor(category)
       )}>
       <Button
