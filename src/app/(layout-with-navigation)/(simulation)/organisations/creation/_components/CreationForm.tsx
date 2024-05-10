@@ -35,7 +35,6 @@ const ORGANISATION_TYPES = [
 ]
 
 export default function CreationForm() {
-  const [error, setError] = useState<string | null>('')
   const [shouldNavigate, setShouldNavigate] = useState(false)
 
   const { user, updateUserOrganisation } = useUser()
@@ -49,11 +48,12 @@ export default function CreationForm() {
   const { register, handleSubmit, formState, watch } =
     useReactHookForm<Inputs>()
 
-  const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
-    email: user?.organisation?.administratorEmail ?? '',
-  })
+  const { mutateAsync: updateOrganisation, isError: isErrorUpdateOrga } =
+    useUpdateOrganisation({
+      email: user?.organisation?.administratorEmail ?? '',
+    })
 
-  const { mutate: sendCreationConfirmationEmail } =
+  const { mutate: sendCreationConfirmationEmail, isError: isErrorSendEmail } =
     useSendOrganisationCreationEmail()
 
   async function onSubmit({
@@ -86,8 +86,6 @@ export default function CreationForm() {
 
       setShouldNavigate(true)
     } catch (error: any) {
-      setError(t('Une erreur est survenue, veuillez réessayer.'))
-
       captureException(error)
     }
   }
@@ -167,9 +165,9 @@ export default function CreationForm() {
         />
       </div>
 
-      {error && (
+      {(isErrorUpdateOrga || isErrorSendEmail) && (
         <div className="mt-4 rounded-xl bg-red-100 p-4 text-red-800">
-          {error}
+          <Trans>Une erreur est survenue, veuillez réessayer.</Trans>
         </div>
       )}
 
