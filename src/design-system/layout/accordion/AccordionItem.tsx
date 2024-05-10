@@ -29,7 +29,7 @@ export default function AccordionItem({
             onClick()
           }
         }}
-        className={`relative z-10 flex w-full items-end justify-between border-gray-300 bg-white p-2 ${isReadOnly ? '!cursor-default' : ''}`}
+        className={`relative z-10 flex w-full items-end justify-between py-2 ${isReadOnly ? '!cursor-default' : ''}`}
         aria-disabled={isReadOnly}>
         <div className="flex flex-1 items-center gap-4">{title}</div>
 

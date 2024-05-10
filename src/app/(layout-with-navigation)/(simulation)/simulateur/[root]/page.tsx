@@ -1,6 +1,5 @@
 'use client'
 
-import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import TotalSticky from '@/components/total/TotalSticky'
 import {
   simulateurCloseSommaire,
@@ -51,7 +50,6 @@ export default function SimulateurPage() {
             buttons={['save', 'summary']}
             toggleQuestionList={toggleQuestionList}
           />
-          <CategoriesAccordion />
         </div>
       </div>
       <SaveViaEmail />

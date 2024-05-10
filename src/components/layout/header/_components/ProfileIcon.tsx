@@ -1,30 +1,8 @@
 'use client'
 
-import { useBackgroundSyncSimulation } from '@/hooks/simulation/useBackgroundSyncSimulation'
-import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-const PATH_LENGTH = 70.69577026367188
-
 export default function ProfileIcon({ className }: { className?: string }) {
-  const { isSyncedWithBackend, saveDelay } = useBackgroundSyncSimulation()
-
-  const [initAnimation, setInitAnimation] = useState(isSyncedWithBackend)
-
-  useEffect(() => {
-    if (!isSyncedWithBackend) {
-      setInitAnimation(true)
-    }
-  }, [isSyncedWithBackend])
-
-  useEffect(() => {
-    let timeout: NodeJS.Timeout
-    if (initAnimation) {
-      timeout = setTimeout(() => setInitAnimation(false), 500)
-    }
-    return () => timeout && clearTimeout(timeout)
-  }, [initAnimation])
-
   return (
     <svg
       width="24"
