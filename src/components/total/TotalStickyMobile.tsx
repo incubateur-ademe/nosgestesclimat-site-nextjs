@@ -1,4 +1,6 @@
 import HeadingButtons from '@/components/fin/HeadingButtons'
+import ChevronRight from '@/design-system/icons/ChevronRight'
+import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
@@ -59,11 +61,18 @@ export default function TotalStickyMobile({
         'sticky top-0 z-50 -mx-4 flex items-center justify-between border-b border-gray-200 bg-white px-4 py-3 transition-opacity duration-300 lg:hidden',
         isVisible ? 'visible opacity-100' : 'invisible opacity-0'
       )}>
-      <div>
-        <strong className="text-4xl font-black leading-none">
-          {formattedValue}
-        </strong>{' '}
-        <span className="text-3xl font-medium">{unit}</span>
+      <div className="flex items-center gap-3">
+        {!endPage && (
+          <ButtonLink color="text" href="/" className="p-0">
+            <ChevronRight className="h-6 w-auto rotate-180" />
+          </ButtonLink>
+        )}
+        <div>
+          <strong className="text-4xl font-black leading-none">
+            {formattedValue}
+          </strong>{' '}
+          <span className="text-3xl font-medium">{unit}</span>
+        </div>
       </div>
       <HeadingButtons
         size="sm"

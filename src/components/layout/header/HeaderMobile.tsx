@@ -12,13 +12,20 @@ export default function HeaderMobile({
 }) {
   const { isIframeOnlySimulation } = useIframe()
 
+  if (shouldHideMostOfContent) {
+    return null
+  }
+
   return (
     <header className="flex justify-between bg-white p-4 shadow-sm lg:hidden">
       <Logo size={shouldHideMostOfContent ? 'sm' : 'md'} />
 
-      {!isIframeOnlySimulation && <FoldableMenu />}
-
-      {!shouldHideMostOfContent && <BottomMenu />}
+      {!isIframeOnlySimulation && (
+        <>
+          <FoldableMenu />
+          <BottomMenu />
+        </>
+      )}
     </header>
   )
 }

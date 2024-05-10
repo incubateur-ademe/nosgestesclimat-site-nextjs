@@ -5,6 +5,7 @@ import TotalChart from '@/components/fin/TotalChart'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import TotalSticky from '@/components/total/TotalSticky'
+import TotalStickyMobile from '@/components/total/TotalStickyMobile'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
@@ -18,7 +19,6 @@ import ShareBlock from './_components/ShareBlock'
 import SmallFootprint from './_components/SmallFootprint'
 import Subcategories from './_components/Subcategories'
 import TargetBlock from './_components/TargetBlock'
-import TotalStickyMobile from './_components/TotalStickyMobile'
 
 export default function FinPage() {
   // Guarding the route and redirecting if necessary
@@ -37,7 +37,7 @@ export default function FinPage() {
       <Heading />
 
       <TotalChart />
-      <TotalStickyMobile />
+      <TotalStickyMobile endPage />
       <div className="flex flex-col-reverse gap-16 lg:flex-row lg:gap-16">
         <div className="flex flex-1 flex-col gap-16 lg:mt-32">
           {total >= 4000 ? (

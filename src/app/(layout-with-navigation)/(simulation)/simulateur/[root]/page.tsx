@@ -1,6 +1,7 @@
 'use client'
 
 import TotalSticky from '@/components/total/TotalSticky'
+import TotalStickyMobile from '@/components/total/TotalStickyMobile'
 import {
   simulateurCloseSommaire,
   simulateurOpenSommaire,
@@ -9,7 +10,6 @@ import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
 import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
-import TotalStickyMobile from '../../fin/_components/TotalStickyMobile'
 import SaveViaEmail from './_components/SaveViaEmail'
 import Simulateur from './_components/Simulateur'
 
