@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/Trans'
-import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
 import { useSortedSubcategoriesByFootprint } from '@/hooks/useSortedSubcategoriesByFootprint'
 import MainSubcategory from './mainSubcategories/MainSubcategory'
@@ -24,19 +23,6 @@ export default function MainSubcategories() {
             index={index}
           />
         ))}
-        <Button
-          onClick={() => {
-            // TODO: trackEvent
-            const categoriesBlock = document.getElementById('categories-block')
-            categoriesBlock?.scrollIntoView({
-              behavior: 'smooth',
-              block: 'center',
-            })
-          }}
-          size="xs"
-          color="link">
-          <Trans>Voir toutes les catégories</Trans>
-        </Button>
       </div>
     </div>
   )

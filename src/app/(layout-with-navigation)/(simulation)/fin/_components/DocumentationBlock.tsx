@@ -15,7 +15,7 @@ export default function DocumentationBlock() {
       <p>
         <Trans>
           Notre simulateur repose sur un modèle de données, dont l'intégralité
-          des calculs est documentée ; les données affichées sont directement
+          des calculs est documentée ; les données affichées sont directement
           associées à votre test.
         </Trans>
       </p>
