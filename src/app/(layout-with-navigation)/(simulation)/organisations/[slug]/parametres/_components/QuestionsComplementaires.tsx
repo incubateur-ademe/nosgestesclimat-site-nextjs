@@ -4,10 +4,13 @@ import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
 import { organisationsParametersToggleAdditionnalQuestionsPostCode } from '@/constants/tracking/pages/organisationsParameters'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
+import CustomQuestionForm from './questionsComplementaires/CustomQuestionForm'
+import CustomQuestions from './questionsComplementaires/CustomQuestions'
 import ToggleField from './questionsComplementaires/ToggleField'
 
 type Props = {
@@ -21,6 +24,8 @@ export default function QuestionsComplementaires({
 }: Props) {
   const [isConfirmingUpdate, setIsConfirmingUpdate] = useState(false)
 
+  const { t } = useClientTranslation()
+
   const { user } = useUser()
 
   const poll = organisation?.polls[0]
@@ -30,6 +35,15 @@ export default function QuestionsComplementaires({
   })
 
   const timeoutRef = useRef<NodeJS.Timeout>()
+
+  function showAndHideConfirmationMessage() {
+    setIsConfirmingUpdate(true)
+
+    timeoutRef.current = setTimeout(() => {
+      setIsConfirmingUpdate(false)
+      timeoutRef.current = undefined
+    }, 2000)
+  }
 
   const handleChange = async ({
     questionKey,
@@ -75,12 +89,7 @@ export default function QuestionsComplementaires({
     refetchOrganisation()
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
-    setIsConfirmingUpdate(true)
-
-    timeoutRef.current = setTimeout(() => {
-      setIsConfirmingUpdate(false)
-      timeoutRef.current = undefined
-    }, 2000)
+    showAndHideConfirmationMessage()
   }
 
   useEffect(() => {
@@ -88,24 +97,25 @@ export default function QuestionsComplementaires({
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
   }, [])
+
   return (
     <section className="mb-12 mt-8">
       <h2>
         <Trans>Questions complémentaires</Trans>
       </h2>
-      <p>
+
+      <p className="mb-8">
         <Trans>
           Vous avez la possibilité d’ajouter des questions complémentaires au
-          test pour vos statistiques.
+          test pour vos statistiques. Vos questions additionnelles activées
+          seront posées à chaque participant en amont du test Nos Gestes Climat.
+          Leur réponse sera facultative.
         </Trans>
       </p>
-      <p className="mb-8 text-sm text-gray-500">
-        <Trans>
-          Vos questions additionnelles activées seront posées à chaque
-          participant en amont du test Nos Gestes Climat. Leur réponse sera
-          facultative.
-        </Trans>
-      </p>
+
+      <h3>
+        <Trans>Questions par défaut</Trans>
+      </h3>
 
       <ToggleField
         name="villeToggle"
@@ -114,7 +124,7 @@ export default function QuestionsComplementaires({
         onChange={(isEnabled: boolean) => {
           handleChange({ questionKey: 'postalCode', value: isEnabled })
         }}
-        label={<Trans>Dans quelle ville habitez-vous ?</Trans>}
+        label={t('Dans quelle ville habitez-vous ?')}
       />
 
       <ToggleField
@@ -123,13 +133,29 @@ export default function QuestionsComplementaires({
         onChange={(isEnabled: boolean) => {
           handleChange({ questionKey: 'birthdate', value: isEnabled })
         }}
-        label={<Trans>Quelle est votre année de naissance ?</Trans>}
+        label={t('Quelle est votre année de naissance ?')}
       />
 
-      <ModificationSaved
-        shouldShowMessage={isConfirmingUpdate}
-        label={<Trans>Modification sauvegardée</Trans>}
-      />
+      {poll?.customAdditionalQuestions && (
+        <CustomQuestions
+          organisation={organisation}
+          poll={organisation?.polls?.[0]}
+          showAndHideConfirmationMessage={showAndHideConfirmationMessage}
+          refetchOrganisation={refetchOrganisation}
+        />
+      )}
+
+      <div className="mt-6 flex w-full flex-col items-start gap-2">
+        <CustomQuestionForm
+          organisation={organisation}
+          refetchOrganisation={refetchOrganisation}
+        />
+
+        <ModificationSaved
+          shouldShowMessage={isConfirmingUpdate}
+          label={<Trans>Modification sauvegardée</Trans>}
+        />
+      </div>
     </section>
   )
 }
