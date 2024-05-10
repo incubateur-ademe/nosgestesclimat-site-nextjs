@@ -824,3 +824,10 @@ entries:
   'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !': 'Have you tried <2>our "Groups of friends" feature</2>? It lets you compare yourself in a ranking: may the person with the smallest footprint win!'
   Voir moins: See less
   Voir plus: See more
+  (Attendre: (Wait for
+  Enregistrer: Register
+  Certaines organisations sont dotées d’un outil type MailinBlack, Altospam qui bloquent parfois nos emails.: Some organisations use tools such as MailinBlack or Altospam, which sometimes block our emails.
+  S’abonner à la newsletter Nos Gestes Transport: Subscribe to the Nos Gestes Transport newsletter
+  Avez-vous pensé à vérifier votre outil anti-spams ?: Have you thought about checking your anti-spam tool?
+  secondes): seconds)
+  Vous n'avez pas reçu de code ?: Didn't you receive a code?
