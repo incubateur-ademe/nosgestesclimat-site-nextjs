@@ -36,7 +36,7 @@ export default function SimulateurPage() {
 
   return (
     <>
-      <div className="-mt-10 mb-14 flex flex-col gap-8 lg:mt-0 lg:flex-row lg:gap-20">
+      <div className="-mt-10 mb-14 flex flex-col gap-8 lg:mt-0 lg:flex-row lg:gap-16">
         <TotalStickyMobile
           buttons={['save', 'summary']}
           toggleQuestionList={toggleQuestionList}

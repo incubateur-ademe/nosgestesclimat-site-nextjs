@@ -38,7 +38,7 @@ export default function FinPage() {
 
       <TotalChart />
       <TotalStickyMobile />
-      <div className="flex flex-col-reverse gap-16 lg:flex-row lg:gap-20">
+      <div className="flex flex-col-reverse gap-16 lg:flex-row lg:gap-16">
         <div className="flex flex-1 flex-col gap-16 lg:mt-32">
           {total >= 4000 ? (
             <>
