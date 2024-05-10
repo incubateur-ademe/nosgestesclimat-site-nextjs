@@ -47,6 +47,7 @@ export default function ResultatsDetaillesPage() {
         {pollData?.isAdmin && (
           <ExportDataButton
             simulationRecaps={pollData?.simulationRecaps ?? []}
+            poll={pollData}
             color="secondary"
             onClick={() => {
               trackEvent(organisationsDashboardExportData)

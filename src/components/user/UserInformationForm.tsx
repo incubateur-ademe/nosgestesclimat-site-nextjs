@@ -105,30 +105,27 @@ export default function UserInformationForm({
       [LIST_MAIN_NEWSLETTER]: data['newsletter-saisonniere'],
       [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: data['newsletter-transports'],
     }
-    try {
-      await updateUserSettings({
-        name: data.name,
-        email: data.email,
-        newsletterIds,
-      })
 
-      if (data.email && !user?.email) {
-        updateEmail(data.email)
-      }
+    await updateUserSettings({
+      name: data.name,
+      email: data.email,
+      newsletterIds,
+    })
 
-      if (data.name) {
-        updateName(data.name)
-      }
-
-      setIsSubmitted(true)
-
-      timeoutRef.current = setTimeout(() => {
-        setIsSubmitted(false)
-        onCompleted(data)
-      }, 2500)
-    } catch (error) {
-      console.error(error)
+    if (data.email && (!user?.email || shouldForceEmailEditable)) {
+      updateEmail(data.email)
     }
+
+    if (data.name) {
+      updateName(data.name)
+    }
+
+    setIsSubmitted(true)
+
+    timeoutRef.current = setTimeout(() => {
+      setIsSubmitted(false)
+      onCompleted(data)
+    }, 2500)
   }
 
   useEffect(() => {
@@ -172,8 +169,6 @@ export default function UserInformationForm({
                 />
               ) : (
                 <TextInputGroup
-                  // @ts-expect-error - conditionnal rendering of the same input
-                  name="email"
                   label={t('Votre adresse email')}
                   className="w-full"
                   value={user?.email ?? ''}
