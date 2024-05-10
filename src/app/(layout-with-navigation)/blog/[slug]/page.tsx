@@ -31,7 +31,7 @@ export default async function BlogPost({ params: { slug } }: Props) {
   const content = await getPost('src/locales/blog/fr/', slug)
 
   return (
-    <div>
+    <div className="m-auto max-w-2xl">
       <Link href="/blog" className="mb-8 block text-sm">
         ← <Trans>Retour à la liste des articles</Trans>
       </Link>

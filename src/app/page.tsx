@@ -1,4 +1,3 @@
-import Footer from '@/components/layout/Footer'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -37,7 +36,6 @@ export default async function Homepage() {
         <Explanations />
         <Contributions />
       </Main>
-      <Footer className="bg-white" />
     </>
   )
 }

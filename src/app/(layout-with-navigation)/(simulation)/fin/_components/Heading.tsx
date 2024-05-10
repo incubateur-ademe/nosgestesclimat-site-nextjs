@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import HeadingButtons from './heading/HeadingButtons'
+import HeadingButtons from '../../../../../components/fin/HeadingButtons'
 
 export default function Heading() {
   return (

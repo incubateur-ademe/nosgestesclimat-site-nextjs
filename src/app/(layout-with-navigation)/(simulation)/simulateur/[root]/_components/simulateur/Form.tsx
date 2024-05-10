@@ -11,7 +11,6 @@ import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useCurrentSimulation, useEngine, useForm } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useContext, useEffect, useState } from 'react'
-import ColorIndicator from './form/ColorIndicator'
 
 export default function Form() {
   const isDebug = useDebug()
@@ -108,8 +107,7 @@ export default function Form() {
   const QuestionComponent = questions[currentQuestion] || Question
 
   return (
-    <div className="relative mb-4 overflow-hidden rounded-xl bg-gray-100 p-4 pl-6">
-      <ColorIndicator question={currentQuestion} />
+    <div className="relative flex min-h-[25.5rem] flex-col justify-between lg:pt-7">
       <QuestionComponent
         question={currentQuestion}
         key={currentQuestion}

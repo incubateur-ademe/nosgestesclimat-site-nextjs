@@ -36,6 +36,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
     value,
     numericValue,
     setValue,
+    category,
     isMissing,
     choices,
     assistance,
@@ -61,8 +62,13 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
 
   return (
     <>
-      <div className="mb-4">
-        <Label question={question} label={label} description={description} />
+      <div className="mb-6">
+        <Label
+          question={question}
+          label={label}
+          description={description}
+          category={category}
+        />
 
         <Suggestions
           question={question}

@@ -6,6 +6,7 @@ type Props = {
   title?: string
   icons?: string
   displayValue: ReactNode
+  shouldDisplayValue?: boolean
   percentageOfTotalValue: number
   minTitleWidth?: number
   index?: number
@@ -16,6 +17,7 @@ export default function HorizontalBarChartItem({
   title,
   icons,
   displayValue,
+  shouldDisplayValue = true,
   percentageOfTotalValue,
   minTitleWidth,
   index,
@@ -50,10 +52,11 @@ export default function HorizontalBarChartItem({
           color={barColor}
         />
       </div>
-
-      <div className="mr-4 min-w-20 text-right text-sm text-primary-700">
-        {displayValue}
-      </div>
+      {shouldDisplayValue && (
+        <div className="mr-4 min-w-20 text-right text-sm text-primary-700">
+          {displayValue}
+        </div>
+      )}
     </div>
   )
 }

@@ -4,6 +4,7 @@ import MainSubcategories from '@/components/fin/MainSubcategories'
 import TotalChart from '@/components/fin/TotalChart'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
+import TotalSticky from '@/components/total/TotalSticky'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
@@ -18,7 +19,6 @@ import ShareBlock from './_components/ShareBlock'
 import SmallFootprint from './_components/SmallFootprint'
 import Subcategories from './_components/Subcategories'
 import TargetBlock from './_components/TargetBlock'
-import TotalSticky from './_components/TotalSticky'
 import TotalStickyMobile from './_components/TotalStickyMobile'
 
 export default function FinPage() {
@@ -83,7 +83,7 @@ export default function FinPage() {
           <DocumentationBlock />
         </div>
         <div className="short:gap-2 top-4 flex w-full flex-col gap-4 self-start lg:sticky lg:z-50 lg:w-[22rem]">
-          <TotalSticky />
+          <TotalSticky endPage />
           <TargetBlock />
         </div>
       </div>

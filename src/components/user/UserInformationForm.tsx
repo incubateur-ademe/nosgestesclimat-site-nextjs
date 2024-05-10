@@ -178,14 +178,18 @@ export default function UserInformationForm({
             }
           </>
         )}
+        {inputsDisplayed.includes('newsletter-saisonniere') ||
+          (inputsDisplayed.includes('newsletter-transports') && (
+            <>
+              <h3 className="mb-0 mt-6">
+                <Trans>Inscription à nos e-mails</Trans>
+              </h3>
 
-        <h3 className="mb-0 mt-6">
-          <Trans>Inscription à nos e-mails</Trans>
-        </h3>
-
-        <p className="text-sm text-gray-600">
-          <Trans>Vous pouvez vous désincrire à tout moment</Trans>
-        </p>
+              <p className="text-sm text-gray-600">
+                <Trans>Vous pouvez vous désincrire à tout moment</Trans>
+              </p>
+            </>
+          ))}
         {inputsDisplayed.includes('newsletter-saisonniere') && (
           <CheckboxInputGroup
             size="lg"

@@ -1,12 +1,22 @@
+import HeadingButtons from '@/components/fin/HeadingButtons'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import HeadingButtons from './heading/HeadingButtons'
 
-export default function TotalStickyMobile() {
+type Props = {
+  endPage?: boolean
+  buttons?: ('share' | 'save' | 'summary')[]
+  toggleQuestionList?: () => void
+}
+
+export default function TotalStickyMobile({
+  endPage = false,
+  buttons,
+  toggleQuestionList,
+}: Props) {
   const locale = useLocale()
   const { t } = useClientTranslation()
 
@@ -17,7 +27,7 @@ export default function TotalStickyMobile() {
     locale,
   })
 
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(!endPage)
 
   const myElementRef = useRef<HTMLDivElement>(null)
 
@@ -33,12 +43,14 @@ export default function TotalStickyMobile() {
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    if (endPage) {
+      window.addEventListener('scroll', handleScroll)
+    }
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [endPage])
 
   return (
     <div
@@ -53,7 +65,11 @@ export default function TotalStickyMobile() {
         </strong>{' '}
         <span className="text-3xl font-medium">{unit}</span>
       </div>
-      <HeadingButtons size="sm" />
+      <HeadingButtons
+        size="sm"
+        buttons={buttons}
+        toggleQuestionList={toggleQuestionList}
+      />
     </div>
   )
 }

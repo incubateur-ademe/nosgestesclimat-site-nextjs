@@ -27,7 +27,8 @@ export default function NumberInput({
   const locale = useLocale()
 
   return (
-    <div className={twMerge(`flex items-center justify-end gap-1`, className)}>
+    <div
+      className={twMerge(`flex items-center justify-start gap-1`, className)}>
       <DebounceInput
         debounceTimeout={300}
         className={`focus:ring-primary max-w-[8rem] rounded-xl border-2 border-gray-200 bg-white p-2 text-right transition-colors focus:border-primary-700 focus:ring-2 md:max-w-full`}

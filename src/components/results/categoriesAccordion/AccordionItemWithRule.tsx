@@ -27,7 +27,7 @@ export default function AccordionItemWithRule({
   const { formattedValue, unit } = formatCarbonFootprint(numericValue)
 
   const percentageOfTotalValue = (numericValue / maxValue) * 100
-
+  const shouldDisplayValue = false
   return (
     <AccordionItem
       onClick={() => trackEvent(endClickCategory(dottedName))}
@@ -38,6 +38,7 @@ export default function AccordionItemWithRule({
           title={title}
           icons={icons}
           barColor={getBackgroundColor(dottedName)}
+          shouldDisplayValue={shouldDisplayValue}
           displayValue={
             <span>
               <strong className="font-black">{formattedValue}</strong>{' '}

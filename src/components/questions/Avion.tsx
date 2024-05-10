@@ -13,7 +13,7 @@ export default function Avion({ question, ...props }: Props) {
   return (
     <>
       <Question question={question} {...props} />
-      <div className="mb-4 flex flex-col items-end">
+      <div className="mb-4 flex flex-col items-start">
         <Button
           color="link"
           size="xs"

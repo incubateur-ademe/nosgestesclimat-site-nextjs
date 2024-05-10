@@ -1,7 +1,6 @@
 import Main from '@/design-system/layout/Main'
 import { PropsWithChildren } from 'react'
 
-import Footer from '@/components/layout/Footer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 
@@ -22,12 +21,9 @@ export async function generateMetadata() {
 export default async function PageLayout({ children }: PropsWithChildren) {
   return (
     <>
-      <div className="m-auto flex max-w-7xl justify-start">
-        <Main className="my-8 w-full max-w-5xl overflow-visible px-4 lg:mx-auto">
-          {children}
-        </Main>
-      </div>
-      <Footer />
+      <Main className="my-8 w-full max-w-6xl overflow-visible px-4 lg:mx-auto">
+        {children}
+      </Main>
     </>
   )
 }
