@@ -49,7 +49,7 @@ export default function NotReceived({
       <p className="mb-0 ml-6 text-xs text-gray-500">
         <Trans>
           Certaines organisations sont dotées d’un outil type MailinBlack,
-          Altospam qui bloquent parfois nos emails.
+          Altospam, ect., qui bloque parfois nos emails.
         </Trans>
       </p>
 
