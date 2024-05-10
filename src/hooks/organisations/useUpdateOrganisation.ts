@@ -43,6 +43,12 @@ export function useUpdateOrganisation({ email }: { email: string }) {
             withCredentials: true,
           }
         )
-        .then((response) => response.data),
+        .then((response) => {
+          const organisation = response.data
+          if (!organisation.slug) {
+            throw new Error('Invalid response')
+          }
+          return organisation
+        }),
   })
 }

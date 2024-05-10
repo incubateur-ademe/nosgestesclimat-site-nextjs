@@ -77,10 +77,6 @@ export default function CreationForm() {
         email: user?.organisation?.administratorEmail ?? '',
       })
 
-      if (!organisationUpdated?.slug) {
-        throw new Error('No slug found')
-      }
-
       handleUpdateShouldPreventNavigation(false)
 
       updateUserOrganisation({
@@ -198,13 +194,15 @@ export default function CreationForm() {
       {}
 
       <div className="mt-12 flex gap-4">
-        <Button color="secondary" type="submit">
+        <Button color="primary" type="submit">
           <Trans>Accéder à mon espace</Trans>
         </Button>
-
+        {/*
+        TODO: Uncomment when the feature is ready
         <Button type="submit">
           <Trans>Créer ma première campagne</Trans>
         </Button>
+        */}
       </div>
     </form>
   )
