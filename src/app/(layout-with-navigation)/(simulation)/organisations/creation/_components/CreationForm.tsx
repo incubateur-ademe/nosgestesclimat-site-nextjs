@@ -2,80 +2,178 @@
 
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
+import ButtonLink from '@/design-system/inputs/ButtonLink'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
-import Label from '@/design-system/inputs/Label'
+import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
-import Separator from '@/design-system/layout/Separator'
-import React from 'react'
+import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
+import { useSendOrganisationCreationEmail } from '@/hooks/organisations/useSendOrganisationCreationEmail'
+import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useUser } from '@/publicodes-state'
+import { captureException } from '@sentry/react'
+import { t } from 'i18next'
+import { useRouter } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
+import { useForm as useReactHookForm } from 'react-hook-form'
 
-export default function CreationForm({
-  onSubmit,
-  nameError,
-  setNameError,
-  ownerNameError,
-  setOwnerNameError,
-}: {
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
-  nameError: string | null
-  setNameError: React.Dispatch<React.SetStateAction<string | null>>
-  ownerNameError: string | null
-  setOwnerNameError: React.Dispatch<React.SetStateAction<string | null>>
-}) {
+type Inputs = {
+  name: string
+  organisationType: string
+  administratorName: string
+  hasOptedInForCommunications: boolean
+}
+
+const ORGANISATION_TYPES = [
+  t('Entreprise'),
+  t('Public ou collectivité territoriale'),
+  t('Coopérative'),
+  t('Association'),
+  t('Université ou école'),
+  t("Groupe d'amis"),
+  t('Autre'),
+]
+
+export default function CreationForm() {
+  const [shouldNavigate, setShouldNavigate] = useState(false)
+
+  const { user, updateUserOrganisation } = useUser()
+
+  const { handleUpdateShouldPreventNavigation } = usePreventNavigation()
+
+  const { t } = useClientTranslation()
+
+  const router = useRouter()
+
+  const { register, handleSubmit, formState, watch } =
+    useReactHookForm<Inputs>()
+
+  const { mutateAsync: updateOrganisation, isError: isErrorUpdateOrga } =
+    useUpdateOrganisation({
+      email: user?.organisation?.administratorEmail ?? '',
+    })
+
+  const { mutate: sendCreationConfirmationEmail, isError: isErrorSendEmail } =
+    useSendOrganisationCreationEmail()
+
+  async function onSubmit({
+    name,
+    administratorName,
+    organisationType,
+    hasOptedInForCommunications,
+  }: Inputs) {
+    try {
+      const organisationUpdated = await updateOrganisation({
+        name,
+        administratorName,
+        hasOptedInForCommunications,
+        organisationType,
+      })
+
+      // Send email
+      sendCreationConfirmationEmail({
+        organisation: organisationUpdated,
+        administratorName,
+        email: user?.organisation?.administratorEmail ?? '',
+      })
+
+      handleUpdateShouldPreventNavigation(false)
+
+      updateUserOrganisation({
+        name,
+        slug: organisationUpdated?.slug,
+      })
+
+      setShouldNavigate(true)
+    } catch (error: any) {
+      captureException(error)
+    }
+  }
+
+  const userOrgaSlugRef = useRef(user?.organisation?.slug)
+
+  useEffect(() => {
+    if (!shouldNavigate) return
+
+    if (userOrgaSlugRef.current === user?.organisation?.slug) return
+
+    router.push(`/organisations/${user?.organisation?.slug}`)
+  }, [router, shouldNavigate, user?.organisation?.slug])
+
   return (
-    <form onSubmit={onSubmit} className="items-auto flex flex-col gap-4">
-      <TextInputGroup
-        name="name"
-        label={<Trans>Votre organisation</Trans>}
-        error={nameError ?? ''}
-        onChange={() => setNameError('')}
-      />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <TextInputGroup
+          className="col-span-1"
+          label={<Trans>Votre organisation</Trans>}
+          error={formState.errors.name?.message}
+          {...register('name', {
+            required: t('Vous devez renseigner le nom de votre organisation'),
+          })}
+        />
 
-      <TextInputGroup
-        name="administratorName"
-        label={<Trans>Votre prénom</Trans>}
-        error={ownerNameError ?? ''}
-        onChange={() => setOwnerNameError('')}
-      />
+        <div>
+          <Select
+            label={
+              <p className="mb-0 flex justify-between">
+                <Trans>Type d'organisation</Trans>{' '}
+                <span className="font-bold italic text-secondary-700">
+                  {' '}
+                  <Trans>facultatif</Trans>
+                </span>
+              </p>
+            }
+            {...register('organisationType')}>
+            {ORGANISATION_TYPES.map((type) => (
+              <option className="cursor-pointer" key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </Select>
 
-      <Separator />
+          {watch('organisationType') === ORGANISATION_TYPES[5] && (
+            <div className="mt-4 rounded-xl bg-gray-100 p-4 text-sm">
+              <p className="mb-2">
+                <Trans>
+                  Le mode organisation est un mode <strong>100% anonyme</strong>{' '}
+                  pour les participants.
+                </Trans>
+              </p>
 
-      <TextInputGroup
-        name="position"
-        label={
-          <Label isOptional>
-            <Trans>Rôle</Trans>
-          </Label>
-        }
-        className="mb-4"
-      />
+              <p className="mb-4">
+                <Trans>
+                  Avez-vous essayé{' '}
+                  <strong>notre fonctionnalité “Groupes d’amis”</strong> ? Elle
+                  vous permettra de vous comparer dans un classement : que celui
+                  ou celle ayant la plus faible empreinte gagne !
+                </Trans>
+              </p>
+              <ButtonLink href="/amis/creer" size="sm">
+                <Trans>Créer un groupe d'amis</Trans>
+              </ButtonLink>
+            </div>
+          )}
+        </div>
 
-      <TextInputGroup
-        type="telephone"
-        name="telephone"
-        label={
-          <Label isOptional>
-            <Trans>Téléphone</Trans>
-          </Label>
-        }
-        className="mb-4"
-      />
+        <TextInputGroup
+          className="col-span-1"
+          label={<Trans>Votre nom</Trans>}
+          error={formState.errors.administratorName?.message}
+          {...register('administratorName', {
+            required: t('Vous devez renseigner votre nom'),
+          })}
+        />
+      </div>
 
-      <TextInputGroup
-        name="expectedNumberOfParticipants"
-        type="number"
-        label={
-          <Label isOptional>
-            <Trans>Nombre de participants (estimé)</Trans>
-          </Label>
-        }
-        className="mb-4"
-      />
+      {(isErrorUpdateOrga || isErrorSendEmail) && (
+        <div className="mt-4 rounded-xl bg-red-100 p-4 text-red-800">
+          <Trans>Une erreur est survenue, veuillez réessayer.</Trans>
+        </div>
+      )}
 
-      <Separator />
-
-      <div className="w-[32rem]">
+      <div className="mt-4 w-full md:w-1/2">
         <CheckboxInputGroup
-          name="hasOptedInForCommunications"
+          size="xl"
           label={
             <span>
               <strong>
@@ -87,12 +185,23 @@ export default function CreationForm({
               <Trans>(une fois par mois maximum !)</Trans>
             </span>
           }
+          {...register('hasOptedInForCommunications')}
         />
       </div>
 
-      <Button type="submit" className="mt-12 self-start">
-        <Trans>Accéder à mon espace</Trans>
-      </Button>
+      {}
+
+      <div className="mt-12 flex gap-4">
+        <Button color="primary" type="submit">
+          <Trans>Accéder à mon espace</Trans>
+        </Button>
+        {/*
+        TODO: Uncomment when the feature is ready
+        <Button type="submit">
+          <Trans>Créer ma première campagne</Trans>
+        </Button>
+        */}
+      </div>
     </form>
   )
 }
