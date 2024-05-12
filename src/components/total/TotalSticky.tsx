@@ -8,14 +8,15 @@ import { twMerge } from 'tailwind-merge'
 import ValueChangeDisplay from '../misc/ValueChangeDisplay'
 import CategoriesAccordion from '../results/CategoriesAccordion'
 import Trans from '../translation/Trans'
+import Progress from './_components/Progress'
 
 type Props = {
-  endPage?: boolean
+  isEndPage?: boolean
   buttons?: ('share' | 'save' | 'summary')[]
   toggleQuestionList?: () => void
 }
 export default function TotalSticky({
-  endPage = false,
+  isEndPage = false,
   buttons,
   toggleQuestionList,
 }: Props) {
@@ -29,7 +30,7 @@ export default function TotalSticky({
     locale,
   })
 
-  const [isVisible, setIsVisible] = useState(!endPage)
+  const [isVisible, setIsVisible] = useState(!isEndPage)
   const myElementRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const handleScroll = () => {
@@ -43,14 +44,14 @@ export default function TotalSticky({
       }
     }
 
-    if (endPage) {
+    if (isEndPage) {
       window.addEventListener('scroll', handleScroll)
     }
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [endPage])
+  }, [isEndPage])
 
   return (
     <div
@@ -61,16 +62,18 @@ export default function TotalSticky({
       )}>
       <div className="relative flex items-center justify-between">
         <div className="relative flex items-center gap-2">
-          <strong className="short:text-3xl text-5xl font-black leading-none">
+          <strong className="short:text-4xl text-5xl font-black leading-none">
             {formattedValue}
           </strong>
           <div className="font-medium leading-none">
-            <span className="mb-0.5 block text-2xl leading-none">{unit}</span>
-            <span className="leading block text-xs">
+            <span className="short:text-lg short:mb-0 mb-0.5 block text-2xl leading-none">
+              {unit}
+            </span>
+            <span className="block text-xs leading-none">
               <Trans>de C0₂e par an</Trans>
             </span>
           </div>
-          <ValueChangeDisplay className="absolute bottom-2/3 left-full rounded-xl bg-primary-700 px-4 py-2 text-white" />
+          <ValueChangeDisplay className="absolute bottom-2/3 left-2/3 rounded-xl bg-primary-700 px-5 py-2 text-white" />
         </div>
 
         <HeadingButtons
@@ -79,9 +82,11 @@ export default function TotalSticky({
           toggleQuestionList={toggleQuestionList}
         />
       </div>
-      {!endPage && (
+      {!isEndPage && (
         <>
-          <div className="-mx-4 h-0.5 bg-primary-50" />
+          <div className="relative -mx-4 h-0.5 bg-primary-50">
+            <Progress className="bottom-0 top-auto" />
+          </div>
           <CategoriesAccordion />
         </>
       )}

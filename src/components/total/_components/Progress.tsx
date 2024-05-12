@@ -1,11 +1,18 @@
 import { useCurrentSimulation } from '@/publicodes-state'
+import { twMerge } from 'tailwind-merge'
 
-export default function Progress() {
+type Props = {
+  className?: string
+}
+export default function Progress({ className }: Props) {
   const { progression } = useCurrentSimulation()
 
   return (
     <div
-      className="absolute bottom-0 left-0 right-0 top-0 origin-left bg-primary-700 transition-transform"
+      className={twMerge(
+        'absolute left-0 right-0 top-full h-0.5 origin-left bg-primary-700 transition-transform',
+        className
+      )}
       style={{ transform: `scaleX(${progression})` }}
     />
   )

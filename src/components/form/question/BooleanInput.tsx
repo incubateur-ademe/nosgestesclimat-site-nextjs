@@ -22,7 +22,7 @@ export default function BooleanInput({
   const { t } = useClientTranslation()
 
   return (
-    <fieldset className="align flex flex-col items-start">
+    <fieldset className="flex flex-col gap-2">
       <legend className="sr-only">{label}</legend>
 
       <ChoiceInput

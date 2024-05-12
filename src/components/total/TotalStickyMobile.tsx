@@ -7,15 +7,18 @@ import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+import ValueChangeDisplay from '../misc/ValueChangeDisplay'
+import Trans from '../translation/Trans'
+import Progress from './_components/Progress'
 
 type Props = {
-  endPage?: boolean
+  isEndPage?: boolean
   buttons?: ('share' | 'save' | 'summary')[]
   toggleQuestionList?: () => void
 }
 
 export default function TotalStickyMobile({
-  endPage = false,
+  isEndPage = false,
   buttons,
   toggleQuestionList,
 }: Props) {
@@ -29,7 +32,7 @@ export default function TotalStickyMobile({
     locale,
   })
 
-  const [isVisible, setIsVisible] = useState(!endPage)
+  const [isVisible, setIsVisible] = useState(!isEndPage)
 
   const myElementRef = useRef<HTMLDivElement>(null)
 
@@ -45,33 +48,41 @@ export default function TotalStickyMobile({
       }
     }
 
-    if (endPage) {
+    if (isEndPage) {
       window.addEventListener('scroll', handleScroll)
     }
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [endPage])
+  }, [isEndPage])
 
   return (
     <div
       ref={myElementRef}
       className={twMerge(
-        'sticky top-0 z-50 -mx-4 flex items-center justify-between border-b border-gray-200 bg-white px-4 py-3 transition-opacity duration-300 lg:hidden',
+        'sticky top-0 z-50 -mx-4 flex items-center justify-between border-b-2 border-gray-200 bg-white px-4 py-3 transition-opacity duration-300 lg:hidden',
         isVisible ? 'visible opacity-100' : 'invisible opacity-0'
       )}>
+      {!isEndPage && <Progress />}
       <div className="flex items-center gap-3">
-        {!endPage && (
+        {!isEndPage && (
           <ButtonLink color="text" href="/" className="p-0">
             <ChevronRight className="h-6 w-auto rotate-180" />
           </ButtonLink>
         )}
-        <div>
+
+        <div className="relative flex items-center gap-2">
           <strong className="text-4xl font-black leading-none">
             {formattedValue}
-          </strong>{' '}
-          <span className="text-3xl font-medium">{unit}</span>
+          </strong>
+          <div className="font-medium leading-none">
+            <span className="block text-lg leading-none">{unit}</span>
+            <span className="leading block text-xs">
+              <Trans>de C0₂e par an</Trans>
+            </span>
+          </div>
+          <ValueChangeDisplay className="absolute left-1/2 top-2/3 rounded-xl bg-primary-700 px-5 py-2 text-white" />
         </div>
       </div>
       <HeadingButtons

@@ -37,7 +37,7 @@ export default function FinPage() {
       <Heading />
 
       <TotalChart />
-      <TotalStickyMobile endPage />
+      <TotalStickyMobile isEndPage />
       <div className="flex flex-col-reverse gap-16 lg:flex-row lg:gap-16">
         <div className="flex flex-1 flex-col gap-16 lg:mt-32">
           {total >= 4000 ? (
@@ -77,7 +77,7 @@ export default function FinPage() {
           <DocumentationBlock />
         </div>
         <div className="short:gap-2 top-4 flex w-full flex-col gap-4 self-start lg:sticky lg:z-50 lg:w-[22rem]">
-          <TotalSticky endPage />
+          <TotalSticky isEndPage />
           <TargetBlock />
         </div>
       </div>
