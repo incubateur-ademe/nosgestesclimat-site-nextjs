@@ -14,20 +14,21 @@ type Props = {
 }
 
 const buttonClassNames = {
-  inactive: 'border-gray-200 bg-gray-100 text-gray-400 cursor-default border-2',
+  inactive:
+    'border-primary-200 bg-primary-100 text-primary-400 cursor-default border-2',
   checked: 'border-primary-700 text-primary-700 border-2',
-  unchecked: 'border-gray-200 bg-white hover:bg-primary-50 border-2',
+  unchecked: 'border-primary-200 hover:bg-primary-50 border-2',
 }
 const checkClassNames = {
-  inactive: 'border-gray-200',
+  inactive: 'border-primary-200',
   checked: 'border-primary-700',
-  unchecked: 'border-gray-200',
+  unchecked: 'border-primary-200',
 }
 
 const labelClassNames = {
-  inactive: 'text-gray-500',
+  inactive: 'text-primary-500',
   checked: 'text-primary-700',
-  unchecked: 'text-gray-700',
+  unchecked: 'text-primary-700',
 }
 
 export default function MosaicBooleanInput({

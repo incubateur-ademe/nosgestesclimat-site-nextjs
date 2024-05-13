@@ -10,7 +10,7 @@ export default function Progress({ className }: Props) {
   return (
     <div
       className={twMerge(
-        'absolute left-0 right-0 top-full h-0.5 origin-left bg-primary-700 transition-transform',
+        'absolute left-0 right-0 top-full h-0.5 origin-left bg-primary-200 transition-transform',
         className
       )}
       style={{ transform: `scaleX(${progression})` }}

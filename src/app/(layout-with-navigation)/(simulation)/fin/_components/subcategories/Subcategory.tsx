@@ -2,7 +2,7 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
 import {
-  getBorderColor,
+  getBorderLightColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
@@ -25,7 +25,7 @@ export default function Subcategory({ subcategory, index }: Props) {
       className={twMerge(
         'w-full',
         getTextDarkColor(category),
-        getBorderColor(category).replace('-categories', '') + '-100'
+        getBorderLightColor(category)
       )}>
       <div className="mb-4 flex items-start justify-between">
         <div>

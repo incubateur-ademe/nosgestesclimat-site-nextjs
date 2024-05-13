@@ -87,7 +87,7 @@ export default function SaveViaEmail() {
 
   return (
     <div
-      className="short:py-2 relative max-w-xl rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-6"
+      className="short:py-2 relative max-w-xl rounded-xl border-2 border-primary-50 bg-white px-4 py-6"
       id="email-block">
       <form
         id="newsletter-form"

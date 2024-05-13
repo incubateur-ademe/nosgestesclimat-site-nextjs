@@ -2,7 +2,6 @@
 
 import Assistance from '@/components/form/question/Assistance'
 import BooleanInput from '@/components/form/question/BooleanInput'
-import Category from '@/components/form/question/Category'
 import ChoicesInput from '@/components/form/question/ChoicesInput'
 import Label from '@/components/form/question/Label'
 import Mosaic from '@/components/form/question/Mosaic'
@@ -74,7 +73,6 @@ export default function Question({
   return (
     <>
       <div className="mb-6">
-        <Category category={category} />
         <Label question={question} label={label} description={description} />
 
         <Suggestions

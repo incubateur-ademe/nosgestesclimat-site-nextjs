@@ -28,7 +28,7 @@ export default function NumberInput({
   return (
     <div
       className={
-        'flex items-center justify-between gap-4 rounded-xl border-2 border-gray-200  bg-white p-2 py-3'
+        'flex items-center justify-between gap-4 rounded-xl border-2 border-primary-200 p-2 py-3'
       }>
       <div>
         {title && icons ? (
@@ -55,7 +55,7 @@ export default function NumberInput({
           <span className="mb-[1px] block">-</span>
         </Button>
         <input
-          className="bg-transparent-100  w-8 text-center"
+          className="w-8 bg-transparent text-center"
           type="number"
           value={isMissing ? '' : Number(value)}
           placeholder={'0'}

@@ -3,6 +3,7 @@ import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import {
   getBackgroundLightColor,
   getBorderColor,
+  getBorderLightColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -32,6 +33,9 @@ export default function Category({ category }: Props) {
       remainingQuestionsByCategories[category].length) /
     questionsByCategories[category].length
 
+  const isCompleted = completion === 1
+  const isStarted = completion > 0
+
   const { formattedValue, unit } = formatCarbonFootprint(numericValue, {
     t,
     locale,
@@ -40,17 +44,19 @@ export default function Category({ category }: Props) {
   return (
     <div
       className={twMerge(
-        'relative mb-0 flex w-full items-center justify-between gap-4 border-b-2 px-4 py-3 transition-colors',
-        getTextDarkColor(category),
-        getBackgroundLightColor(category),
+        'relative mb-0 flex w-full items-center justify-between gap-4 overflow-hidden rounded-xl border-2 bg-transparent px-2 py-2 transition-colors',
+        isStarted ? getTextDarkColor(category) : 'text-slate-600',
+
         currentCategory === category
           ? getBorderColor(category)
-          : 'border-primary-50'
+          : getBorderLightColor(category)
       )}>
       <div
         className={twMerge(
-          'absolute bottom-0 left-0 right-0 top-0 origin-left transition-transform duration-100',
-          getBackgroundLightColor(category).replace('-100', '-200')
+          'absolute bottom-0 left-0 right-0 top-0 origin-left transition-transform duration-200',
+          currentCategory === category
+            ? getBackgroundLightColor(category)
+            : getBackgroundLightColor(category)
         )}
         style={{ transform: `scaleX(${completion})` }}
       />
@@ -63,7 +69,7 @@ export default function Category({ category }: Props) {
           'relative block rounded-xl border-2 bg-white px-3 py-1 font-black transition-opacity',
           getBorderColor(category),
           getTextDarkColor(category),
-          completion === 1 ? 'visible opacity-100' : 'invisible opacity-0'
+          isCompleted ? 'visible opacity-100' : 'invisible opacity-0'
         )}>
         {formattedValue} {unit}
       </span>

@@ -40,8 +40,8 @@ export default function ValueChangeDisplay({
     t,
   })
 
-  console.log(numericValue, prevValue.current)
   if (!shouldDisplay) return
+
   return (
     <div
       className={twMerge('animate-valuechange whitespace-nowrap', className)}
