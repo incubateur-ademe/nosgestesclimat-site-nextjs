@@ -44,7 +44,6 @@ export default function Question({
     value,
     numericValue,
     setValue,
-    category,
     isMissing,
     choices,
     assistance,

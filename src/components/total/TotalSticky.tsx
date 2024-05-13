@@ -2,7 +2,7 @@ import HeadingButtons from '@/components/fin/HeadingButtons'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import { useForm, useRule } from '@/publicodes-state'
+import { useRule } from '@/publicodes-state'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import ValueChangeDisplay from '../misc/ValueChangeDisplay'
@@ -53,7 +53,6 @@ export default function TotalSticky({
     }
   }, [isEndPage])
 
-  const { currentCategory } = useForm()
   return (
     <div
       ref={myElementRef}
