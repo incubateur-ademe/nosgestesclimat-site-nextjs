@@ -45,8 +45,13 @@ export default function CreationForm() {
 
   const router = useRouter()
 
-  const { register, handleSubmit, formState, watch } =
-    useReactHookForm<Inputs>()
+  const { register, handleSubmit, formState, watch } = useReactHookForm<Inputs>(
+    {
+      defaultValues: {
+        organisationType: '',
+      },
+    }
+  )
 
   const { mutateAsync: updateOrganisation, isError: isErrorUpdateOrga } =
     useUpdateOrganisation({
@@ -191,7 +196,7 @@ export default function CreationForm() {
 
       {}
 
-      <div className="mt-12 flex gap-4">
+      <div className="fixed bottom-16 left-0 z-[201] mt-12 flex w-full gap-4 border-t border-t-gray-200 bg-white py-3 pl-8 md:static md:border-t-0 md:pl-0">
         <Button color="primary" type="submit">
           <Trans>Accéder à mon espace</Trans>
         </Button>

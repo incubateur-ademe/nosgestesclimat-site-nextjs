@@ -36,17 +36,18 @@ export default forwardRef(function Select(
 ) {
   return (
     <div className={`flex flex-col ${className}`} aria-live="polite">
-      <label htmlFor={name}>
-        <span
-          className={`text-sm font-bold text-slate-900 ${
-            error ? '!text-red-700' : ''
-          }`}>
-          {label}
-        </span>
+      <label
+        htmlFor={name}
+        className={`max-w-[30rem] text-sm font-bold text-slate-900 ${
+          error ? '!text-red-700' : ''
+        }`}>
+        {label}
       </label>
 
       {helperText && (
-        <span className="mt-1 text-xs text-slate-500">{helperText}</span>
+        <span className="mt-1 max-w-[30rem] text-xs text-slate-500">
+          {helperText}
+        </span>
       )}
 
       <select
@@ -57,7 +58,7 @@ export default forwardRef(function Select(
         aria-describedby={`error-${name}`}
         required={required}
         className={twMerge(
-          'max-w-[30rem]  !cursor-pointer rounded-xl border-2 border-solid border-gray-300 bg-gray-100 p-4 text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700',
+          'max-w-[30rem] !cursor-pointer rounded-xl border-2 border-solid border-gray-300 bg-gray-100 p-4 text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700',
           `${className} ${helperText || label ? ' mt-3' : ''} ${
             error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : ''
           }`
