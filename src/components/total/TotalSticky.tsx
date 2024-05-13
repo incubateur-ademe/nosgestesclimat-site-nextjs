@@ -81,7 +81,7 @@ export default function TotalSticky({
               <Trans>de C0₂e par an</Trans>
             </span>
           </div>
-          <ValueChangeDisplay className="absolute bottom-2/3 left-2/3 rounded-xl bg-primary-700 px-5 py-2 text-white" />
+          <ValueChangeDisplay className="absolute bottom-2/3 left-2/3" />
         </div>
 
         <HeadingButtons

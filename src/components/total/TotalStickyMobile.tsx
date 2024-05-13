@@ -82,7 +82,7 @@ export default function TotalStickyMobile({
               <Trans>de C0₂e par an</Trans>
             </span>
           </div>
-          <ValueChangeDisplay className="absolute left-1/2 top-2/3 rounded-xl bg-primary-700 px-5 py-2 text-white" />
+          <ValueChangeDisplay className="absolute left-1/2 top-2/3 " />
         </div>
       </div>
       <HeadingButtons

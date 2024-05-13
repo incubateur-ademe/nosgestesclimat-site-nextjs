@@ -35,6 +35,8 @@ export default function ValueChangeDisplay({
     return () => clearTimeout(timer)
   }, [numericValue, locale])
 
+  const isNegative = displayDifference < 0
+
   const { formattedValue, unit } = formatCarbonFootprint(displayDifference, {
     locale,
     t,
@@ -44,7 +46,11 @@ export default function ValueChangeDisplay({
 
   return (
     <div
-      className={twMerge('animate-valuechange whitespace-nowrap', className)}
+      className={twMerge(
+        'animate-valuechange whitespace-nowrap rounded-xl border-2 border-primary-100 bg-primary-700 px-5 py-1 text-white',
+        isNegative ? 'bg-green-600' : 'bg-red-700',
+        className
+      )}
       key={numericValue}>
       <strong className="text-lg">
         {displayDifference > 0 ? '+' : '-'} {formattedValue}
