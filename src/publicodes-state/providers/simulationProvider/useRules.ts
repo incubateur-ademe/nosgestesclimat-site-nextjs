@@ -55,6 +55,7 @@ export function useRules({ engine, root }: Props) {
     () =>
       parsedRulesEntries
         .filter((rule: any) => rule[0].includes('ui . pédagogie'))
+        .filter((rule: any) => !rule[1].rawNode['cachée'])
         .map((question) => question[0]),
     [parsedRulesEntries]
   )

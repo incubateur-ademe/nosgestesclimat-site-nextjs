@@ -18,9 +18,11 @@ export default function Actions({ subcategory }: Props) {
 
   const { title, actions } = useRule(subcategory)
 
-  if (!actions?.length) return null
+  const filteredActions = actions?.filter((action: string) => getValue(action))
 
-  const sortedActions = actions
+  if (!filteredActions?.length) return null
+
+  const sortedActions = filteredActions
     .map((action: string) => ({
       dottedName: action,
       value: getValue(action) as number,
@@ -37,7 +39,7 @@ export default function Actions({ subcategory }: Props) {
           Voici quelques idées pour vous aider à réduire son impact :
         </Trans>
       </p>
-      <div className="mb-4 flex flex-row-reverse gap-4">
+      <div className="mb-4 flex flex-row-reverse justify-center gap-4">
         {firstThreeActions.map((action, index) => (
           <Action key={action} action={action} index={index} />
         ))}

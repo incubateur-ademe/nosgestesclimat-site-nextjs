@@ -36,7 +36,7 @@ export default function Action({ action, index }: Props) {
   return (
     <div
       className={twMerge(
-        'flex-1 flex-col justify-between rounded-xl border-2 px-3 py-4 md:flex',
+        'max-w-80 flex-1 flex-col justify-between rounded-xl border-2 px-3 py-4 md:flex',
         colorClassName[index],
         getTextDarkColor(category),
         getBackgroundLightColor(category).replace('100', colorClassName[index]),
