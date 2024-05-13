@@ -1,5 +1,7 @@
 'use client'
 
+import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { useEffect, useRef, useState } from 'react'
@@ -10,25 +12,20 @@ export default function ValueChangeDisplay({
 }: {
   className?: string
 }) {
+  const { t } = useClientTranslation()
   const locale = useLocale()
+
   const { numericValue } = useRule('bilan')
   const prevValue = useRef(numericValue)
 
-  const [displayDifference, setDisplayDifference] = useState('')
+  const [displayDifference, setDisplayDifference] = useState(0)
 
   const [shouldDisplay, setShouldDisplay] = useState(false)
 
   useEffect(() => {
     const difference = numericValue - prevValue.current
 
-    setDisplayDifference(
-      `${difference > 0 ? '+' : '-'} ${Math.abs(difference).toLocaleString(
-        locale,
-        {
-          maximumFractionDigits: 1,
-        }
-      )}`
-    )
+    setDisplayDifference(difference)
 
     setShouldDisplay(difference !== 0)
 
@@ -38,13 +35,21 @@ export default function ValueChangeDisplay({
     return () => clearTimeout(timer)
   }, [numericValue, locale])
 
+  const { formattedValue, unit } = formatCarbonFootprint(displayDifference, {
+    locale,
+    t,
+  })
+
+  console.log(numericValue, prevValue.current)
   if (!shouldDisplay) return
   return (
     <div
       className={twMerge('animate-valuechange whitespace-nowrap', className)}
       key={numericValue}>
-      <strong className="text-lg">{displayDifference}</strong>{' '}
-      <span className="text-xs">kg</span>
+      <strong className="text-lg">
+        {displayDifference > 0 ? '+' : '-'} {formattedValue}
+      </strong>{' '}
+      <span className="text-xs">{unit}</span>
     </div>
   )
 }
