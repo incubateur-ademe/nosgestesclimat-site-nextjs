@@ -50,7 +50,7 @@ export default function MosaicBooleanInput({
   return (
     <div className="flex md:block">
       <label
-        className={`relative flex h-full cursor-pointer items-center gap-2 rounded-xl border px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
+        className={`relative flex h-full cursor-pointer items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
         htmlFor={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}>
         <input
           type="checkbox"
