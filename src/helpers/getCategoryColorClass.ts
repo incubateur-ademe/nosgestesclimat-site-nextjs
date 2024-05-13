@@ -118,7 +118,6 @@ export function getFillColor(category?: string | null) {
 
 export function getCategoryColorClasses(category?: string | null) {
   return {
-    text: getTextColor(category),
     textDark: getTextDarkColor(category),
     background: getBackgroundColor(category),
     hoverBackground: getHoverBackgroundColor(category),
