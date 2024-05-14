@@ -194,9 +194,7 @@ export default function CreationForm() {
         />
       </div>
 
-      {}
-
-      <div className="fixed bottom-16 left-0 z-[201] mt-12 flex w-full gap-4 border-t border-t-gray-200 bg-white py-3 pl-8 md:static md:border-t-0 md:pl-0">
+      <div className="mt-12 flex w-full gap-4">
         <Button color="primary" type="submit">
           <Trans>Accéder à mon espace</Trans>
         </Button>
