@@ -1,5 +1,3 @@
-import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
 import {
   getBorderColor,
@@ -39,17 +37,7 @@ export default function Subcategory({ subcategory, index }: Props) {
         </div>
         <Emoji className="text-4xl lg:text-6xl">{icons?.slice(0, 2)}</Emoji>
       </div>
-      <p className="mb-6 text-sm">
-        <Trans>
-          Voici quelques idées pour vous aider à réduire votre impact :
-        </Trans>
-      </p>
       <Actions subcategory={subcategory} />
-      <div className="flex justify-center">
-        <Link href="/actions" className="text-center text-xs">
-          <Trans>Voir tous les gestes {title}</Trans>
-        </Link>
-      </div>
     </div>
   )
 }

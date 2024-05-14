@@ -10,10 +10,13 @@ type Props = {
 }
 
 export default function useContent({ dottedName, rule }: Props) {
-  const category = useMemo<string>(
-    () => getNamespace(dottedName) ?? '',
-    [dottedName]
-  )
+  const category = useMemo<string>(() => {
+    const namespace = getNamespace(dottedName) ?? ''
+    if (namespace === 'ui') {
+      return dottedName.split(' . ')[3]
+    }
+    return namespace
+  }, [dottedName])
 
   const title = useMemo<string | undefined>(() => rule?.title, [rule])
 
@@ -42,6 +45,7 @@ export default function useContent({ dottedName, rule }: Props) {
   )
 
   const plancher = useMemo<number>(() => rule?.rawNode['plancher'] ?? 0, [rule])
+
   const warning = useMemo<string | undefined>(
     () => rule?.rawNode['avertissement'],
     [rule]
@@ -68,6 +72,12 @@ export default function useContent({ dottedName, rule }: Props) {
     [rule]
   )
 
+  // This is only used by "ui . pédagogie" rules
+  const actions = useMemo<string[] | undefined>(
+    () => (rule as any)?.rawNode['actions'],
+    [rule]
+  )
+
   return {
     category,
     title,
@@ -82,5 +92,6 @@ export default function useContent({ dottedName, rule }: Props) {
     excerpt,
     plancher,
     warning,
+    actions,
   }
 }
