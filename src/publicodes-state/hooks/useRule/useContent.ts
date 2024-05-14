@@ -74,7 +74,7 @@ export default function useContent({ dottedName, rule }: Props) {
 
   // This is only used by "ui . pédagogie" rules
   const actions = useMemo<string[] | undefined>(
-    () => rule?.rawNode['actions'],
+    () => (rule as any)?.rawNode['actions'],
     [rule]
   )
 
