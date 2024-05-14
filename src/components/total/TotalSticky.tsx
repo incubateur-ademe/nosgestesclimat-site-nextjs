@@ -69,13 +69,11 @@ export default function TotalSticky({
           isEndPage ? 'text-black' : 'text-slate-600'
         )}>
         <div className="relative flex items-center gap-2">
-          <strong className="short:text-4xl text-5xl font-black leading-none">
+          <strong className="short:text-4xl text-4xl font-black leading-none">
             {formattedValue}
           </strong>
           <div className="font-medium leading-none">
-            <span className="short:text-lg short:mb-0 mb-0.5 block text-2xl leading-none">
-              {unit}
-            </span>
+            <span className="mb-0.5 block text-lg leading-none">{unit}</span>
             <span className="block text-xs leading-none">
               <Trans>de C0₂e par an</Trans>
             </span>

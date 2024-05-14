@@ -10,7 +10,7 @@ import {
   questionClickSuivant,
 } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
-import { getBorderColor } from '@/helpers/getCategoryColorClass'
+import { getBorderLightColor } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
@@ -120,7 +120,7 @@ export default function Navigation({
     <div
       className={twMerge(
         'flex justify-between border-b pb-6',
-        getBorderColor(category)
+        getBorderLightColor(category).replace('-100', '-200')
       )}>
       <Button
         size="md"

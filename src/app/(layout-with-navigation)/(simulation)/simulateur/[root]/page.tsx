@@ -36,7 +36,7 @@ export default function SimulateurPage() {
 
   return (
     <>
-      <div className="-mt-10 mb-14 flex flex-col gap-8 lg:mt-0 lg:flex-row lg:gap-16">
+      <div className="-mt-10 mb-14 flex flex-col gap-8 lg:mt-0 lg:flex-row lg:gap-24">
         <TotalStickyMobile
           buttons={['save', 'summary']}
           toggleQuestionList={toggleQuestionList}
@@ -45,7 +45,7 @@ export default function SimulateurPage() {
           toggleQuestionList={toggleQuestionList}
           isQuestionListOpen={isQuestionListOpen}
         />
-        <div className="short:gap-2 top-4 flex w-full flex-col gap-4 self-start lg:sticky lg:z-50 lg:w-[22rem]">
+        <div className="short:gap-2 top-4 flex w-full flex-col gap-4 self-start lg:sticky lg:z-50 lg:w-[20rem]">
           <TotalSticky
             buttons={['save', 'summary']}
             toggleQuestionList={toggleQuestionList}

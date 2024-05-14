@@ -31,7 +31,7 @@ type Props = {
 
 const sizeClassNames = {
   sm: 'mb-1 text-sm',
-  md: 'mb-6 text-lg md:text-xl',
+  md: 'mb-6 text-lg md:text-2xl',
 }
 
 export default function Label({
