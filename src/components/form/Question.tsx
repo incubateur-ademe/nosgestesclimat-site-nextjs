@@ -20,6 +20,7 @@ import Button from '@/design-system/inputs/Button'
 import { useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/Trans'
 import Warning from './question/Warning'
 
@@ -28,6 +29,7 @@ type Props = {
   tempValue?: number | undefined
   setTempValue?: (value: number | undefined) => void
   showInputsLabel?: React.ReactNode | string
+  className?: string
 }
 
 export default function Question({
@@ -35,6 +37,7 @@ export default function Question({
   tempValue,
   setTempValue,
   showInputsLabel,
+  className,
 }: Props) {
   const {
     type,
@@ -71,7 +74,7 @@ export default function Question({
 
   return (
     <>
-      <div className="mb-6">
+      <div className={twMerge('mb-6', className)}>
         <Label question={question} label={label} description={description} />
 
         <Suggestions

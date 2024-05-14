@@ -134,7 +134,7 @@ export default function Navigation({
           handleMoveFocus()
         }}
         color="text"
-        className={noPrevQuestion ? 'invisible' : 'visible'}>
+        className={twMerge('px-3', noPrevQuestion ? 'invisible' : 'visible')}>
         {'← ' + t('Précédent')}
       </Button>
 

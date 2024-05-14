@@ -65,7 +65,7 @@ export default function ChoiceInput({
         ) : null}
       </div>
       {description && isOpen ? (
-        <div className="mb-4 w-auto rounded-full bg-white p-2 text-sm sm:max-w-[30rem]">
+        <div className="mb-4 w-auto rounded-xl border-2 border-primary-50 bg-white p-3 text-sm sm:max-w-[30rem]">
           <Markdown className="!mb-0 !inline">{description}</Markdown>
         </div>
       ) : null}
