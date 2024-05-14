@@ -16,10 +16,7 @@ export default function Summary({
   const { relevantQuestions } = useForm()
 
   return (
-    <div
-      className={
-        isQuestionListOpen || isDebug ? 'mb-8 block lg:mt-7' : 'hidden'
-      }>
+    <div className={isQuestionListOpen || isDebug ? 'mb-8 block' : 'hidden'}>
       <Title tag="h2" className="mb-4 text-lg md:text-xl">
         Toutes les questions
       </Title>
