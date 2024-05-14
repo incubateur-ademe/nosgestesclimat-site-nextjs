@@ -1,5 +1,7 @@
 'use client'
 
+import { endClickHedgehog } from '@/constants/tracking/pages/end'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -44,7 +46,10 @@ export default function Hedgehog({ setIsHedgehog }: Props) {
         'absolute right-0 top-0 h-6 w-6 -translate-x-full transform cursor-pointer transition-transform duration-1000',
         isVisible ? '-translate-y-3/4' : 'translate-y-0'
       )}
-      onClick={() => setIsHedgehog(true)}>
+      onClick={() => {
+        trackEvent(endClickHedgehog)
+        setIsHedgehog(true)
+      }}>
       <path
         d="M25.5004 18.0551C25.5004 23.304 21.248 27.5555 16 27.5555C10.7528 27.5555 6.49951 23.304 6.49951 18.0551C6.49951 12.808 10.7537 8.55377 16 8.55377C21.248 8.55466 25.5004 12.808 25.5004 18.0551V18.0551Z"
         fill="#6D6E71"

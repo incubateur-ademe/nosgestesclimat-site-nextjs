@@ -12,7 +12,7 @@ export default function Heading() {
           className="text-lg md:text-2xl"
           title={<Trans>Mon empreinte</Trans>}
         />
-        <HeadingButtons />
+        <HeadingButtons endPage />
       </div>
     </>
   )

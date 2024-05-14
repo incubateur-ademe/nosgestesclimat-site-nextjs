@@ -1,7 +1,9 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
+import { endClickActions } from '@/constants/tracking/pages/end'
 import { useEngine, useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import Action from './actions/Action'
 
 type Props = {
@@ -45,7 +47,10 @@ export default function Actions({ subcategory }: Props) {
         ))}
       </div>
       <div className="flex justify-center">
-        <Link href="/actions" className="text-center text-xs">
+        <Link
+          onClick={() => trackEvent(endClickActions)}
+          href="/actions"
+          className="text-center text-xs">
           <Trans>Voir tous les gestes {title}</Trans>
         </Link>
       </div>

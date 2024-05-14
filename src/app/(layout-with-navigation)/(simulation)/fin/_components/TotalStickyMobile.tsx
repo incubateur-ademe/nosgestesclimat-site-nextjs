@@ -53,7 +53,7 @@ export default function TotalStickyMobile() {
         </strong>{' '}
         <span className="text-3xl font-medium">{unit}</span>
       </div>
-      <HeadingButtons size="sm" />
+      <HeadingButtons size="sm" endPage />
     </div>
   )
 }

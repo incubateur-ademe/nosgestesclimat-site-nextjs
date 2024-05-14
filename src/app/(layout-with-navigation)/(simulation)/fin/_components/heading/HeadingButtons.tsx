@@ -1,6 +1,10 @@
 import SaveIcon from '@/components/icons/SaveIcon'
 import ShareIcon from '@/components/icons/ShareIcon'
-import { endClickSaveShortcut } from '@/constants/tracking/pages/end'
+import {
+  endClickSaveShortcut,
+  endClickShareShortcut,
+} from '@/constants/tracking/pages/end'
+import { simulationClickSaveShortcut } from '@/constants/tracking/pages/simulateur'
 import Button from '@/design-system/inputs/Button'
 import { useEndPageSharedUrl } from '@/hooks/useEndPageSharedUrl'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -21,8 +25,9 @@ const shareClassNames = {
 
 type Props = {
   size?: 'sm' | 'md'
+  endPage?: boolean
 }
-export default function HeadingButtons({ size = 'md' }: Props) {
+export default function HeadingButtons({ size = 'md', endPage }: Props) {
   const { sharedUrl } = useEndPageSharedUrl()
 
   const handleShare = async () => {
@@ -50,7 +55,9 @@ export default function HeadingButtons({ size = 'md' }: Props) {
         color="secondary"
         className={twMerge('p-0', sizeClassNames[size])}
         onClick={() => {
-          trackEvent(endClickSaveShortcut)
+          trackEvent(
+            endPage ? endClickSaveShortcut : simulationClickSaveShortcut
+          )
           handleScroll('email-block')
         }}>
         <SaveIcon
@@ -59,7 +66,10 @@ export default function HeadingButtons({ size = 'md' }: Props) {
       </Button>
       <Button
         className={twMerge('p-0', sizeClassNames[size])}
-        onClick={handleShare}>
+        onClick={() => {
+          trackEvent(endClickShareShortcut)
+          handleShare()
+        }}>
         <ShareIcon
           className={twMerge('mr-[1px] fill-white', shareClassNames[size])}
         />

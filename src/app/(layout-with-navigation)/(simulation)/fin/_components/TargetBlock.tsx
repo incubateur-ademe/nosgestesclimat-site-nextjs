@@ -4,9 +4,11 @@ import Link from '@/components/Link'
 import CloseIcon from '@/components/icons/Close'
 import DownArrow from '@/components/icons/DownArrow'
 import Trans from '@/components/translation/Trans'
+import { endToggleTargetBlock } from '@/constants/tracking/pages/end'
 import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Hedgehog from './targetBlock/Hedgehog'
@@ -93,6 +95,7 @@ export default function TargetBlock() {
         onClick={() => {
           setIsOpen((prevIsOpen) => !prevIsOpen)
           setIsHedgehog(false)
+          trackEvent(endToggleTargetBlock)
         }}>
         {isOpen || isHedgehog ? (
           <CloseIcon className="h-7 w-7 fill-primary-700" />
