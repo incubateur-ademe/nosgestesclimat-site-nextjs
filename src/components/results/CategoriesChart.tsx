@@ -13,7 +13,7 @@ export default function CategoriesChart({ className }: Props) {
   const { sortedCategories } = useSortedCategoriesByFootprint()
 
   const { numericValue: firstCategoryValue } = useRule(sortedCategories[0])
-  console.log(sortedCategories)
+
   return (
     <VerticalBarChart className={twMerge('md:hidden', className)}>
       {sortedCategories.map((category, index) => (
