@@ -3,7 +3,7 @@
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import Loader from '@/design-system/layout/Loader'
 import { useRules } from '@/hooks/useRules'
-import { SimulationProvider } from '@/publicodes-state'
+import { SimulationProvider, useCurrentSimulation } from '@/publicodes-state'
 import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
 import { PropsWithChildren } from 'react'
@@ -22,6 +22,8 @@ export default function Providers({
   isOptim = true,
 }: PropsWithChildren<Props>) {
   const pathname = usePathname()
+
+  const { id } = useCurrentSimulation()
 
   const { data: rules, isLoading } = useRules({ isOptim })
 
@@ -46,11 +48,13 @@ export default function Providers({
   }
 
   return (
-    <SimulationProvider
-      rules={rules}
-      shouldAlwaysDisplayChildren={shouldAlwaysDisplayChildren}>
-      <LocalisationBanner supportedRegions={supportedRegions} />
-      {children}
-    </SimulationProvider>
+    <div key={id}>
+      <SimulationProvider
+        rules={rules}
+        shouldAlwaysDisplayChildren={shouldAlwaysDisplayChildren}>
+        <LocalisationBanner supportedRegions={supportedRegions} />
+        {children}
+      </SimulationProvider>
+    </div>
   )
 }
