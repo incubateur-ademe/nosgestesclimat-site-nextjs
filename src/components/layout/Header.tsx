@@ -10,13 +10,21 @@ export default function Header() {
   const shouldHideMostOfContent =
     pathname.includes('/simulateur') || pathname.includes('/tutoriel')
 
+  const shouldHideSomeOfContent = pathname.includes('/fin')
+
   return (
     <>
       {/* Displayed only on mobile (screens < 768px) */}
-      <HeaderMobile shouldHideMostOfContent={shouldHideMostOfContent} />
+      <HeaderMobile
+        shouldHideMostOfContent={shouldHideMostOfContent}
+        shouldHideSomeOfContent={shouldHideSomeOfContent}
+      />
 
       {/* Displayed only on desktop */}
-      <HeaderDesktop />
+      <HeaderDesktop
+        shouldHideMostOfContent={shouldHideMostOfContent}
+        shouldHideSomeOfContent={shouldHideSomeOfContent}
+      />
     </>
   )
 }

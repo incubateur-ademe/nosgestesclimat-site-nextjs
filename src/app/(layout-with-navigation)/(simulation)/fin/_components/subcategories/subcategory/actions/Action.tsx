@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import {
@@ -67,8 +68,8 @@ export default function Action({ action, index }: Props) {
           {title}
         </div>
         <div className="text-center text-xs">
-          <span className="font-black text-secondary-700">{percent} %</span> de
-          votre empreinte
+          <span className="font-black text-secondary-700">{percent} %</span>
+          <Trans> de votre empreinte</Trans>
         </div>
       </div>
       {!isActionChoosen ? <ActionButtons action={action} /> : null}

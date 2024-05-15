@@ -36,7 +36,7 @@ export default function HedgehogAwareness() {
           className="text-sm"
           target="_blank"
           href="https://information.tv5monde.com/international/france-les-herissons-en-danger-dextinction-708196">
-          En savoir plus
+          <Trans>En savoir plus</Trans>
         </Link>
       </div>
     </>

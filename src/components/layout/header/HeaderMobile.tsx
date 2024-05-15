@@ -4,18 +4,27 @@ import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useIframe } from '@/hooks/useIframe'
+import { twMerge } from 'tailwind-merge'
 import BottomMenu from './headerMobile/BottomMenu'
 import FoldableMenu from './headerMobile/FoldableMenu'
 
+type Props = {
+  shouldHideMostOfContent: boolean
+  shouldHideSomeOfContent: boolean
+}
 export default function HeaderMobile({
   shouldHideMostOfContent,
-}: {
-  shouldHideMostOfContent: boolean
-}) {
+  shouldHideSomeOfContent,
+}: Props) {
   const { isIframeOnlySimulation } = useIframe()
 
+  const canBeSticky = !shouldHideMostOfContent && !shouldHideSomeOfContent
   return (
-    <header className="flex justify-between bg-white p-4 shadow-sm lg:hidden">
+    <header
+      className={twMerge(
+        'flex justify-between bg-white p-4 shadow-sm lg:hidden',
+        canBeSticky ? 'sticky top-0 z-50' : ''
+      )}>
       <Logo />
 
       {!shouldHideMostOfContent && <FoldableMenu />}

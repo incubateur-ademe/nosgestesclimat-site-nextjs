@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
@@ -44,7 +45,9 @@ export default function TargetChart({ isQuestionOpen }: Props) {
         transition={{ duration: 0.5, delay: 2.9 }}
         className="absolute bottom-10 right-1">
         <div className="text-xs text-secondary-700">2050</div>
-        <div className="text-xl font-black">2 tonnes</div>
+        <div className="text-xl font-black">
+          <Trans>2 tonnes</Trans>
+        </div>
         <div className="absolute right-full top-full h-3 w-3 -translate-x-1 -translate-y-2/3 rounded-full bg-secondary-700" />
       </motion.div>
       <div className="absolute  w-11/12 origin-top-left rotate-[19deg]">

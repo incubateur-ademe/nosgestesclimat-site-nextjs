@@ -12,6 +12,7 @@ type Props = {
 export default function useContent({ dottedName, rule }: Props) {
   const category = useMemo<string>(() => {
     const namespace = getNamespace(dottedName) ?? ''
+    // This is only used by "ui . pédagogie" rules. For them, we need to extract the category from the dottedName (ui . pedagogie . [category])
     if (namespace === 'ui') {
       return dottedName.split(' . ')[3]
     }
