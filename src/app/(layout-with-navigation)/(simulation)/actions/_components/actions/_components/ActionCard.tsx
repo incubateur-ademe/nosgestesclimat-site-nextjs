@@ -11,6 +11,7 @@ import {
 } from '@/constants/tracking/pages/actions'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import Emoji from '@/design-system/utils/Emoji'
+import { getIsCustomAction } from '@/helpers/actions/getIsCustomAction'
 import {
   getBackgroundLightColor,
   getBorderColor,
@@ -55,7 +56,7 @@ export default function ActionCard({
 
   const { dottedName, title, missingVariables, traversedVariables } = action
 
-  const { icônes: icons } = rule
+  const { icônes: icons } = rule || action
 
   const remainingQuestions = filterRelevantMissingVariables(
     Object.keys(missingVariables || {}),
@@ -95,9 +96,12 @@ export default function ActionCard({
       })) ||
     action.isIrrelevant
 
+  const isCustomAction = getIsCustomAction(dottedName)
+
   const handleChooseAction = useCallback(async () => {
     if (isDisabled) return
-    if (hasRemainingQuestions) {
+
+    if (hasRemainingQuestions || isCustomAction) {
       setFocusedAction(dottedName)
       return null
     }
@@ -114,6 +118,7 @@ export default function ActionCard({
     isSelected,
     setFocusedAction,
     toggleActionChoice,
+    isCustomAction,
   ])
 
   if (!currentSimulation || !rules) {

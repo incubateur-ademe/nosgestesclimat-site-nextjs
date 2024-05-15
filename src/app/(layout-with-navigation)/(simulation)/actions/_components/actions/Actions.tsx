@@ -20,10 +20,9 @@ export default function Actions({
   radical,
   rules,
 }: Props) {
+  const [focusedAction, setFocusedAction] = useState<string>('')
+
   const { t } = useClientTranslation()
-
-  const [focusedAction, setFocusedAction] = useState('')
-
   const { getValue } = useEngine()
 
   const bilan = { nodeValue: getValue('bilan'), dottedName: 'bilan' }

@@ -10,12 +10,13 @@ type Props = {
   value?: boolean
   defaultChecked?: boolean
   required?: boolean
-  size?: 'sm' | 'lg'
+  size?: 'sm' | 'lg' | 'xl'
 }
 
 const sizesClassNames = {
   sm: '',
   lg: 'w-8 h-8',
+  xl: 'w-10 h-10',
 }
 
 export default forwardRef(function CheckboxInputGroup(
