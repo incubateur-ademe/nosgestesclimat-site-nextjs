@@ -47,7 +47,7 @@ export default function RuleDetail({
 }) {
   const isDataObject =
     typeof ruleData !== 'string' && typeof ruleData !== 'number'
-  console.log(ruleData)
+
   const ruleFormatted = isDataObject ? getRuleFormatted(ruleData) : ruleData
 
   const isArray =

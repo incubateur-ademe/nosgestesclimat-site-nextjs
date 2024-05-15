@@ -18,11 +18,11 @@ export function useEngineSituation({ engine, everyRules }: Props) {
   const addToEngineSituation = useCallback(
     (situationToAdd: Situation): Situation => {
       const safeSituation = safeGetSituation({
-        situation: situationToAdd,
+        situation: { ...situation, ...situationToAdd },
         everyRules,
       })
 
-      engine.setSituation({ ...situation, ...safeSituation })
+      engine.setSituation(safeSituation)
 
       return safeSituation
     },

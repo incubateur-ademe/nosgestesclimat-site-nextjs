@@ -1,6 +1,7 @@
 'use client'
 
 import { actionsClickYes } from '@/constants/tracking/pages/actions'
+import { getIsCustomAction } from '@/helpers/actions/getIsCustomAction'
 import {
   FormProvider,
   useCurrentSimulation,
@@ -11,6 +12,7 @@ import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
+import CustomActionForm from './actionList/CustomActionForm'
 
 type Props = {
   actions: any[]
@@ -32,6 +34,8 @@ export default function ActionList({
 
   const { actionChoices } = useCurrentSimulation()
 
+  const isFocusedActionCustom = getIsCustomAction(focusedAction)
+
   return (
     <ul className="mt-4 flex list-none flex-wrap items-center justify-center p-0">
       {actions.map((action) => {
@@ -47,7 +51,7 @@ export default function ActionList({
           </li>
         )
 
-        if (focusedAction === action.dottedName) {
+        if (focusedAction === action.dottedName && !isFocusedActionCustom) {
           const convId = 'conv'
 
           return (
@@ -85,6 +89,21 @@ export default function ActionList({
             </>
           )
         }
+
+        if (isFocusedActionCustom && action.dottedName === focusedAction) {
+          return (
+            <>
+              {cardComponent}
+
+              <CustomActionForm
+                key={`${action.dottedName}-custom-form`}
+                dottedName={action.dottedName}
+                setFocusedAction={setFocusedAction}
+              />
+            </>
+          )
+        }
+
         return cardComponent
       })}
     </ul>

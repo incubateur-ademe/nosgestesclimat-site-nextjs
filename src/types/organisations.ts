@@ -1,4 +1,5 @@
 import { Simulation } from '@/publicodes-state/types'
+import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 
 export type OrganisationSimulation = Simulation & {
   bilan: number
@@ -19,6 +20,12 @@ export type OrganisationAdministrator = {
   hasOptedInForCommunications?: boolean
 }
 
+export type CustomAdditionalQuestions = {
+  question: string
+  isEnabled: boolean
+  _id?: string
+}
+
 export type OrganisationPoll = {
   simulations: [OrganisationSimulation]
   startDate: Date
@@ -26,6 +33,7 @@ export type OrganisationPoll = {
   name: string
   slug: string
   defaultAdditionalQuestions: [string]
+  customAdditionalQuestions?: CustomAdditionalQuestions[]
   numberOfExpectedParticipants: number
 }
 
@@ -47,21 +55,19 @@ export type SimulationRecap = {
     [key: string]: number
   }
   defaultAdditionalQuestionsAnswers: Record<string, number | string>
+  customAdditionalQuestionsAnswers: Record<string, number | string>
   progression: number
   isCurrentUser?: boolean
   date: string
 }
 
 export type PollData = {
-  funFacts: {
-    percentageOfBicycleUsers: number
-    percentageOfVegetarians: number
-    percentageOfCarOwners: number
-  }
+  funFacts: FunFacts
   simulationRecaps: SimulationRecap[]
   organisationName: string
   isAdmin: boolean
   defaultAdditionalQuestions: ('postalCode' | 'birthdate')[]
+  customAdditionalQuestions: CustomAdditionalQuestions[]
 }
 
 export type PollInfo = {
@@ -73,9 +79,10 @@ export type PollInfo = {
   numberOfParticipants: number
   expectedNumberOfParticipants: number
   organisationInfo: OrganisationInfo
+  customAdditionalQuestions: CustomAdditionalQuestions[]
 }
 
-type OrganisationInfo = {
+export type OrganisationInfo = {
   name: string
   slug: string
 }

@@ -1,6 +1,6 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { Situation } from '@/publicodes-state/types'
+import { Simulation } from '@/publicodes-state/types'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
 import { useClientTranslation } from '../useClientTranslation'
@@ -8,14 +8,7 @@ import { useEndPage } from './useEndPage'
 
 type GoToSimulateurPageProps = {
   noNavigation?: boolean
-  newSimulation?: {
-    situation?: Situation
-    persona?: string
-    foldedSteps?: string[]
-    defaultAdditionalQuestionsAnswers?: Record<string, string>
-    poll?: string
-    group?: string
-  }
+  newSimulation?: Partial<Simulation>
 }
 const goToSimulateurPagePropsDefault = {
   noNavigation: false,
