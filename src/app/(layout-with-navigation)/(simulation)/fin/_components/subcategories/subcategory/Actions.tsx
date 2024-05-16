@@ -8,6 +8,7 @@ import Action from './actions/Action'
 
 type Props = {
   subcategory: DottedName
+  shouldHideLink?: boolean
 }
 
 type ActionObject = {
@@ -15,12 +16,14 @@ type ActionObject = {
   value: number
 }
 
-export default function Actions({ subcategory }: Props) {
+export default function Actions({ subcategory, shouldHideLink }: Props) {
   const { getValue } = useEngine()
 
   const { title, actions } = useRule(subcategory)
 
-  const filteredActions = actions?.filter((action: string) => getValue(action))
+  const filteredActions = shouldHideLink
+    ? actions
+    : actions?.filter((action: string) => getValue(action))
 
   if (!filteredActions?.length) return null
 
@@ -46,14 +49,16 @@ export default function Actions({ subcategory }: Props) {
           <Action key={action} action={action} index={index} />
         ))}
       </div>
-      <div className="flex justify-center">
-        <Link
-          onClick={() => trackEvent(endClickActions)}
-          href="/actions"
-          className="text-center text-xs">
-          <Trans>Voir tous les gestes {title}</Trans>
-        </Link>
-      </div>
+      {!shouldHideLink && (
+        <div className="flex justify-center">
+          <Link
+            onClick={() => trackEvent(endClickActions)}
+            href="/actions"
+            className="text-center text-xs">
+            <Trans>Voir tous les gestes {title}</Trans>
+          </Link>
+        </div>
+      )}
     </>
   )
 }

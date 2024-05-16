@@ -32,6 +32,8 @@ export default function Action({ action, index }: Props) {
 
   const { icons, title, numericValue, category } = useRule(action)
 
+  const hasNoValue = numericValue === 0
+
   const { formattedValue, unit } = formatCarbonFootprint(numericValue, {
     locale,
     t,
@@ -56,21 +58,25 @@ export default function Action({ action, index }: Props) {
       <div className="mb-4">
         <div className="mb-4 flex flex-1 items-center justify-between">
           <Emoji className="inline-flex justify-center">{icons}</Emoji>
-          <div
-            className={twMerge(
-              'whitespace-nowrap rounded-xl border-2 bg-white px-3 py-2 text-xs font-black leading-none lg:text-sm',
-              getBorderColor(category)
-            )}>
-            - {formattedValue} {unit}
-          </div>
+          {!hasNoValue && (
+            <div
+              className={twMerge(
+                'whitespace-nowrap rounded-xl border-2 bg-white px-3 py-2 text-xs font-black leading-none lg:text-sm',
+                getBorderColor(category)
+              )}>
+              - {formattedValue} {unit}
+            </div>
+          )}
         </div>
         <div className="mb-3 text-center text-sm font-bold leading-tight lg:text-base">
           {title}
         </div>
-        <div className="text-center text-xs">
-          <span className="font-black text-secondary-700">{percent} %</span>
-          <Trans> de votre empreinte</Trans>
-        </div>
+        {!hasNoValue && (
+          <div className="text-center text-xs">
+            <span className="font-black text-secondary-700">{percent} %</span>
+            <Trans> de votre empreinte</Trans>
+          </div>
+        )}
       </div>
       {!isActionChoosen ? <ActionButtons action={action} /> : null}
     </div>
