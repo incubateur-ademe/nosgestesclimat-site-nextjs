@@ -20,6 +20,7 @@ export default function Subcategory({ subcategory, index }: Props) {
   const percent = Math.round((numericValue / total) * 100)
   return (
     <div
+      id={`category-${index}-block`}
       className={twMerge(
         'w-full',
         getTextDarkColor(category),

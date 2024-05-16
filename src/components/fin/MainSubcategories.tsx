@@ -4,7 +4,10 @@ import { useSortedSubcategoriesByFootprint } from '@/hooks/useSortedSubcategorie
 import { useSortedUiCategoriesByFootprint } from '@/hooks/useSortedUiCategoriesByFootprint'
 import MainSubcategory from './mainSubcategories/MainSubcategory'
 
-export default function MainSubcategories() {
+type Props = {
+  isLink?: boolean
+}
+export default function MainSubcategories({ isLink }: Props) {
   const { sortedSubcategories } = useSortedSubcategoriesByFootprint()
 
   const { sortedUiCategories } = useSortedUiCategoriesByFootprint()
@@ -26,6 +29,7 @@ export default function MainSubcategories() {
             key={subcategory}
             subcategory={subcategory}
             index={index}
+            isLink={isLink}
           />
         ))}
       </div>

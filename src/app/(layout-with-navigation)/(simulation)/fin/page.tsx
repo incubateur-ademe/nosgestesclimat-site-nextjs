@@ -34,20 +34,23 @@ export default function FinPage() {
 
   if (!isCorrectSimulationSet) return null
 
+  const isSmallFootprint = total < 4000
   return (
     <>
       <IframeDataShareModal />
-
       <Poll />
 
       <Heading />
 
       <TotalChart />
+
       <TotalStickyMobile />
+
       <div className="flex flex-col-reverse gap-16 lg:flex-row lg:gap-10">
         <div className="flex flex-1 flex-col gap-16 lg:mt-32">
-          <MainSubcategories />
-          {total >= 4000 ? <Subcategories /> : <SmallFootprint />}
+          <MainSubcategories isLink={!isSmallFootprint} />
+
+          {isSmallFootprint ? <SmallFootprint /> : <Subcategories />}
 
           <GetResultsByEmail />
 

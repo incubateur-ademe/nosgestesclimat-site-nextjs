@@ -16,8 +16,14 @@ type Props = {
   subcategory: DottedName
   index: number
   value?: number
+  isLink?: boolean
 }
-export default function MainSubcategory({ subcategory, index, value }: Props) {
+export default function MainSubcategory({
+  subcategory,
+  index,
+  value,
+  isLink,
+}: Props) {
   const locale = useLocale()
 
   const { t } = useClientTranslation()
@@ -30,16 +36,27 @@ export default function MainSubcategory({ subcategory, index, value }: Props) {
     t,
   })
 
+  const handleScroll = (id: string) => {
+    const block = document.getElementById(id)
+    block?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+
   return (
-    <div
+    <button
+      disabled={!isLink}
+      onClick={() => handleScroll(`category-${index}-block`)}
       className={twMerge(
-        ' flex items-center justify-between gap-4 rounded-xl border-2 px-4 py-3',
+        'flex items-center justify-between gap-4 rounded-xl border-2 px-4 py-3 no-underline',
         widthClassName[index],
-        getTextDarkColor(category),
         getBackgroundLightColor(category),
-        getBorderColor(category)
+        getBorderColor(category),
+        isLink ? 'cursor-pointer' : 'cursor-default'
       )}>
-      <div className="flex items-center gap-2 leading-none">
+      <div
+        className={twMerge(
+          'flex items-center gap-2 leading-none',
+          getTextDarkColor(category)
+        )}>
         <div
           className={twMerge(
             'flex h-9 w-9 items-center justify-center rounded-full border-2 bg-white font-black leading-none',
@@ -52,10 +69,11 @@ export default function MainSubcategory({ subcategory, index, value }: Props) {
       <div
         className={twMerge(
           'whitespace-nowrap rounded-xl border-2 bg-white px-3 py-2 font-black leading-none',
-          getBorderColor(category)
+          getBorderColor(category),
+          getTextDarkColor(category)
         )}>
         {formattedValue} {unit}
       </div>
-    </div>
+    </button>
   )
 }
