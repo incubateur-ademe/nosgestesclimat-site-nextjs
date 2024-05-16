@@ -9,7 +9,7 @@ export function unformatSituation(situation?: Situation) {
         return acc
       }
 
-      const keyUnformatted = key.replaceAll('_', ' . ').replaceAll('-', ' ')
+      let unformattedKey = key.replaceAll('_', ' . ').replaceAll('-', ' ')
 
       const wordsToHardcode = {
         't shirt': 't-shirt',
@@ -20,20 +20,18 @@ export function unformatSituation(situation?: Situation) {
         'éco construit': 'éco-construit',
       }
 
-      let keyUnformattedHandlingHardcodedWords = keyUnformatted
-
       for (const [keyToHardcode, valueToHardcode] of Object.entries(
         wordsToHardcode
       )) {
-        if (keyUnformatted.includes(keyToHardcode)) {
-          keyUnformattedHandlingHardcodedWords = keyUnformatted.replace(
+        if (unformattedKey.includes(keyToHardcode)) {
+          unformattedKey = unformattedKey.replace(
             keyToHardcode,
             valueToHardcode
           )
         }
       }
 
-      acc[keyUnformattedHandlingHardcodedWords] = value
+      acc[unformattedKey] = value
 
       return acc
     },
