@@ -465,7 +465,7 @@ html[data-useragent*='Trident'] #js {
 
 .bg-rainbow {
   background: linear-gradient(
-    90deg,
+    270deg,
     #a2d2fd,
     #cef1d5,
     #ffefbc,
@@ -479,6 +479,10 @@ html[data-useragent*='Trident'] #js {
     #a2d2fd
   );
   background-size: 200% 200%;
+}
+
+.bg-total-chart {
+  background: linear-gradient(270deg, #f96f81, #ffdbbc, #ffefbc, #cef1d5);
 }
 
 /*
