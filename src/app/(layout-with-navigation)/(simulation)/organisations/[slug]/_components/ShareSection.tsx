@@ -30,8 +30,8 @@ export default function ShareSection({
           title={<Trans>Partagez le test</Trans>}
           description={
             <Trans>
-              Partagez simplement cette page à vos employés, utilisateurs,
-              élèves, et suivez leurs résultats
+              Partagez simplement cette page à toutes les personnes que vous
+              souhaitez cibler via cette campagne.
             </Trans>
           }>
           <CopyInput

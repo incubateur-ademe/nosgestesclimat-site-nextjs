@@ -38,15 +38,14 @@ export default function Organisations() {
           </p>
           <ButtonLink
             href="/organisations"
+            data-cypress-id="organisations-link"
             trackingEvent={homeClickOrganisations}
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}>
             <Trans>Découvrir</Trans>
           </ButtonLink>
         </div>
-        <div
-          className="relative hidden flex-1 md:block"
-          data-cypress-id="organisations-link">
+        <div className="relative hidden flex-1 md:block">
           <Image
             className="absolute"
             src="/images/organisations/crowd.png"

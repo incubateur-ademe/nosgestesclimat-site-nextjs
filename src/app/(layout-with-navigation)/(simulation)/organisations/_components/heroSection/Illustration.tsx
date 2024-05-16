@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 
 type Props = {
   isHover: boolean
+  className?: string
 }
 
-export default function Images({ isHover }: Props) {
+export default function Illustration({ isHover, className }: Props) {
   const [isWaving, setIsWaving] = useState(false)
   useEffect(() => {
     let timer: NodeJS.Timeout | undefined = undefined
@@ -21,7 +22,7 @@ export default function Images({ isHover }: Props) {
   }, [])
   return (
     <svg
-      className="absolute"
+      className={className}
       width="603"
       height="332"
       viewBox="0 0 603 332"
