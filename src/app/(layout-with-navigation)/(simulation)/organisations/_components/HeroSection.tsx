@@ -3,11 +3,11 @@
 import Baseline from '@/components/organisations/Baseline'
 import Trans from '@/components/translation/Trans'
 import {
+  organisationsAccueilClickAmbassadeurs,
   organisationsAccueilClickCommencer,
   organisationsAccueilClickDemo,
 } from '@/constants/tracking/pages/organisationsAccueil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import InlineLink from '@/design-system/inputs/InlineLink'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
 
@@ -27,17 +27,25 @@ export default function HeroSection() {
           <ButtonLink
             href="/organisations/connexion"
             trackingEvent={organisationsAccueilClickCommencer}>
-            <Trans>Commencez</Trans>
+            <Trans>Commencer</Trans>
           </ButtonLink>
 
-          <InlineLink
+          <ButtonLink
             className="py-4"
             href="/organisations/demander-demo"
             onClick={() => {
               trackEvent(organisationsAccueilClickDemo)
             }}>
-            <Trans>Demandez une démo</Trans>
-          </InlineLink>
+            <Trans>Demander une démo</Trans>
+          </ButtonLink>
+          <ButtonLink
+            className="py-4"
+            href="/ambassareurs"
+            onClick={() => {
+              trackEvent(organisationsAccueilClickAmbassadeurs)
+            }}>
+            <Trans>Ils ont testé</Trans>
+          </ButtonLink>
         </div>
       </div>
 

@@ -3,25 +3,30 @@ import Trans from '../translation/Trans'
 export default function Baseline() {
   return (
     <p>
-      <>
-        <Trans>Vous souhaitez mobiliser votre</Trans>{' '}
-        <strong className="text-secondary-700">
-          <Trans>entreprise</Trans>
-        </strong>{' '}
-        <Trans>, votre</Trans>{' '}
-        <strong className="text-secondary-700">
-          <Trans>organisation</Trans>
-        </strong>{' '}
-        <Trans>, votre</Trans>{' '}
-        <strong className="text-secondary-700">
-          <Trans>association</Trans>
-        </strong>{' '}
-        <Trans>ou</Trans>{' '}
-        <strong className="text-secondary-700">
-          <Trans>salle de classe</Trans>
-        </strong>
-      </>
-       ? <Trans>Découvrez nos outils pour vous simplifier la vie !</Trans>
+      <strong className="text-secondary-700">
+        <Trans>Entreprises</Trans>
+      </strong>
+      ,{' '}
+      <strong className="text-secondary-700">
+        <Trans>collectivités</Trans>
+      </strong>
+      ,{' '}
+      <strong className="text-secondary-700">
+        <Trans>associations</Trans>
+      </strong>
+      ,{' '}
+      <strong className="text-secondary-700">
+        <Trans>écoles</Trans>
+      </strong>{' '}
+      ou encore{' '}
+      <strong className="text-secondary-700">
+        <Trans>festivals</Trans>
+      </strong>
+       :{' '}
+      <Trans>
+        vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser
+        toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !
+      </Trans>
     </p>
   )
 }
