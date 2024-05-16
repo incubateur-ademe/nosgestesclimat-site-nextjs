@@ -11,7 +11,6 @@ import { useLocale } from '@/hooks/useLocale'
 import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { twMerge } from 'tailwind-merge'
-import ActionButtons from './action/ActionButtons'
 
 const colorClassName = ['200', '100', '50']
 
@@ -71,14 +70,13 @@ export default function Action({ action, index }: Props) {
         <div className="mb-3 text-center text-sm font-bold leading-tight lg:text-base">
           {title}
         </div>
-        {!hasNoValue && (
-          <div className="text-center text-xs">
-            <span className="font-black text-secondary-700">{percent} %</span>
-            <Trans> de votre empreinte</Trans>
-          </div>
-        )}
       </div>
-      {!isActionChoosen ? <ActionButtons action={action} /> : null}
+      {!hasNoValue && (
+        <div className="text-center text-sm">
+          <span className="font-black text-secondary-700">{percent} %</span>
+          <Trans> de votre empreinte</Trans>
+        </div>
+      )}
     </div>
   )
 }
