@@ -121,7 +121,7 @@ export function getMetadataObject({
           url.includes(urlPart)
         ) && !noImage
           ? generateOGImageURL(url)
-          : 'https://nosgestesclimat-git-ngc-577-ademe.vercel.app/images/misc/metadata.png', // TODO change this to the real image
+          : 'https://nosgestesclimat.fr/images/misc/metadata.png',
     },
     alternates: alternatesWithLanguages,
     ...props,
