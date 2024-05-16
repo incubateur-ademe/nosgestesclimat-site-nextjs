@@ -23,7 +23,6 @@ type Props = {
   }
   alternates?: {
     canonical: string
-    languages: Record<string, string>
   }
 }
 

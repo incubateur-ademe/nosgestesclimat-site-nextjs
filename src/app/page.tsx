@@ -20,10 +20,6 @@ export async function generateMetadata() {
     ),
     alternates: {
       canonical: '/',
-      languages: {
-        en: '/en',
-        es: '/es',
-      },
     },
   })
 }
