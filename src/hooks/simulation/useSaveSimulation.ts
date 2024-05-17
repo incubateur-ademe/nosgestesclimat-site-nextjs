@@ -1,7 +1,6 @@
 import { SAVE_SIMULATION_URL } from '@/constants/urls'
 import { useUser } from '@/publicodes-state'
 import { Simulation } from '@/publicodes-state/types'
-import { formatSituation } from '@/utils/formatDataForDB'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useBackgroundSyncSimulation } from './useBackgroundSyncSimulation'
@@ -34,9 +33,6 @@ export function useSaveSimulation() {
 
       // We duplicate the simulation to avoid modifying the original object
       const simulation = { ...originalSimulation }
-
-      // We need to format the situation to be saved in the database
-      simulation.situation = formatSituation(simulation.situation)
 
       return axios
         .post(SAVE_SIMULATION_URL, {
