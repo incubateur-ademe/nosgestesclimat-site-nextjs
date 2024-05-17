@@ -15,7 +15,7 @@ export default function MyPolls({ polls }: Props) {
         <Trans>Mes campagnes</Trans>
       </Title>
 
-      <ul className="grid gap-8 md:grid-cols-3">
+      <ul className="mt-8 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
         {polls.map((poll, index) => (
           <li key={poll._id} className="col-span-1">
             <PollCard poll={poll} index={index} />

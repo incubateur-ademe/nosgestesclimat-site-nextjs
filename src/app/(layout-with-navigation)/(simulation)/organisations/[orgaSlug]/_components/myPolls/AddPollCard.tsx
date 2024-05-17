@@ -11,17 +11,17 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
   return (
     <div
       className={twMerge(
-        'flex flex-col rounded-xl bg-primary-100 p-6',
-        hasNoPollsYet ? 'border-rainbow' : ''
+        'flex min-h-64 flex-col rounded-xl bg-primary-50 p-6',
+        hasNoPollsYet ? 'rainbow-border' : ''
       )}>
       <div className="flex flex-1 items-center justify-center">
         <PlusIcon className="h-16 w-16 fill-primary-700" />
       </div>
       <ButtonLink
-        className="w-full"
+        className="!w-full text-sm"
         color={hasNoPollsYet ? 'primary' : 'secondary'}
         href={`/organisations/nouvelle-campagne`}>
-        <Trans>Créer un nouveau sondage</Trans>
+        <Trans>Créer une campagne</Trans>
       </ButtonLink>
     </div>
   )

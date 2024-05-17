@@ -36,6 +36,7 @@ export type OrganisationPoll = {
   defaultAdditionalQuestions: [string]
   customAdditionalQuestions?: CustomAdditionalQuestions[]
   numberOfExpectedParticipants: number
+  createdAt: Date
 }
 
 export type Organisation = {

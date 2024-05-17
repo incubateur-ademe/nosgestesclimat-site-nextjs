@@ -2,6 +2,7 @@ import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { OrganisationPoll } from '@/types/organisations'
+import dayjs from 'dayjs'
 import { useParams } from 'next/navigation'
 
 type Props = {
@@ -16,18 +17,22 @@ export default function PollCard({ poll, index }: Props) {
 
   if (!poll) return null
 
-  console.log(poll)
-
   return (
-    <div className="rounded-xl bg-primary-100 p-6">
-      <h3 className="mb-10">
+    <div className="rounded-xl bg-primary-50 p-6">
+      <h3 className="mb-2 text-xl">
         {poll.name ?? t('Ma campagne n°{{number}}', { number: index + 1 })}
       </h3>
+
+      <p className="mb-8 text-sm font-light">
+        <Trans>Créée le </Trans>
+        {dayjs(poll.createdAt).format('DD/MM/YYYY')}
+      </p>
 
       <div className="mb-12">
         <p className="mb-0 text-xl font-bold text-primary-700">
           {poll.simulations?.length}{' '}
         </p>
+
         <p className="text-base font-light text-default">
           {poll.simulations?.length > 1 ? (
             <Trans>Simulations terminées</Trans>
