@@ -1,4 +1,4 @@
-import i18nConfig from '@/i18nConfig'
+import { defaultLocale, locales } from '@/i18nConfig'
 import { currentLocale } from 'next-i18n-router'
 import { generateOGImageURL } from '../openGraph/generateOGImageURL'
 
@@ -72,11 +72,40 @@ export function getMetadataObject({
   ...props
 }: Props) {
   const locale = currentLocale()
+
   const url = buildURL({
     params,
     searchParams,
-    locale: locale ?? i18nConfig.defaultLocale,
+    locale: locale ?? defaultLocale,
   })
+
+  let alternatesWithLanguages = null
+
+  if (alternates) {
+    let canonical = alternates.canonical
+
+    // We remove the locale from the url (it should not be here anyway, but just in case)
+    locales.map((locale) => {
+      if (alternates.canonical.startsWith(`/${locale}`)) {
+        canonical = alternates.canonical.slice(3)
+      }
+    })
+
+    // We set the alternates url for each language
+    const languages: Record<string, string> = {}
+    locales.map((locale) => {
+      if (locale === 'fr') return
+
+      languages[locale] =
+        `${BASE_URL}${locale === 'fr' ? '' : `/${locale}`}${canonical}`
+    })
+
+    // We return the alternates object with the canonical url and the languages alternates
+    alternatesWithLanguages = {
+      canonical: BASE_URL + canonical,
+      languages,
+    }
+  }
 
   return {
     title,
@@ -92,9 +121,9 @@ export function getMetadataObject({
           url.includes(urlPart)
         ) && !noImage
           ? generateOGImageURL(url)
-          : 'https://nosgestesclimat-git-ngc-577-ademe.vercel.app/images/misc/metadata.png', // TODO change this to the real image
+          : 'https://nosgestesclimat.fr/images/misc/metadata.png',
     },
-    alternates,
+    alternates: alternatesWithLanguages,
     ...props,
   }
 }
