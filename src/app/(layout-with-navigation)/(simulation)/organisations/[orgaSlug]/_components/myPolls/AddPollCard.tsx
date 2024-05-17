@@ -1,6 +1,9 @@
+'use client'
+
 import PlusIcon from '@/components/icons/PlusIcon'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { useParams } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -8,6 +11,7 @@ type Props = {
 }
 
 export default function AddPollCard({ hasNoPollsYet }: Props) {
+  const { orgaSlug } = useParams()
   return (
     <div
       className={twMerge(
@@ -20,7 +24,7 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
       <ButtonLink
         className="!w-full text-sm"
         color={hasNoPollsYet ? 'primary' : 'secondary'}
-        href={`/organisations/nouvelle-campagne`}>
+        href={`/organisations/${orgaSlug}/creer-campagne`}>
         <Trans>Créer une campagne</Trans>
       </ButtonLink>
     </div>

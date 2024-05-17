@@ -7,10 +7,10 @@ import Loader from '@/design-system/layout/Loader'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { useUser } from '@/publicodes-state'
+import QuestionsComplementaires from '../../../../../../components/organisations/QuestionsComplementaires'
 import useFetchOrganisation from '../../_hooks/useFetchOrganisation'
 import DeconnexionButton from './DeconnexionButton'
 import InformationsForm from './_components/InformationsForm'
-import QuestionsComplementaires from './_components/QuestionsComplementaires'
 
 export default function ParametresPage() {
   const { user } = useUser()

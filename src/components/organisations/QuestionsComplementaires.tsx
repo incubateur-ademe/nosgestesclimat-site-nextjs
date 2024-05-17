@@ -9,9 +9,9 @@ import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
-import CustomQuestionForm from './questionsComplementaires/CustomQuestionForm'
-import CustomQuestions from './questionsComplementaires/CustomQuestions'
-import ToggleField from './questionsComplementaires/ToggleField'
+import CustomQuestionForm from '../../app/(layout-with-navigation)/(simulation)/organisations/[orgaSlug]/parametres/_components/questionsComplementaires/CustomQuestionForm'
+import CustomQuestions from '../../app/(layout-with-navigation)/(simulation)/organisations/[orgaSlug]/parametres/_components/questionsComplementaires/CustomQuestions'
+import ToggleField from '../../app/(layout-with-navigation)/(simulation)/organisations/[orgaSlug]/parametres/_components/questionsComplementaires/ToggleField'
 
 type Props = {
   organisation: Organisation | undefined
