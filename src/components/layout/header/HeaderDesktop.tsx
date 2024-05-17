@@ -20,13 +20,21 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { usePathname } from 'next/navigation'
+import { twMerge } from 'tailwind-merge'
 import NavLink from './NavLink'
 import OrganisationLink from './_components/OrganisationLink'
 import ProfileIcon from './_components/ProfileIcon'
 import CTAButton from './headerDesktop/CTAButton'
 import DebugIndicator from './headerDesktop/DebugIndicator'
 
-export default function HeaderDesktop() {
+type Props = {
+  shouldHideMostOfContent: boolean
+  shouldHideSomeOfContent: boolean
+}
+export default function HeaderDesktop({
+  shouldHideMostOfContent,
+  shouldHideSomeOfContent,
+}: Props) {
   const { t } = useClientTranslation()
 
   const pathname = usePathname()
@@ -35,8 +43,14 @@ export default function HeaderDesktop() {
 
   const { getLinkToSimulateurPage } = useSimulateurPage()
 
+  const canBeSticky = !shouldHideMostOfContent && !shouldHideSomeOfContent
+
   return (
-    <header className="sticky top-0 z-[500] hidden h-20 items-center lg:block">
+    <header
+      className={twMerge(
+        'hidden h-20 items-center lg:block',
+        canBeSticky ? 'sticky top-0 z-50' : ''
+      )}>
       <div className="absolute bottom-0 left-0 right-0 top-0 flex h-20 w-full items-center border-b bg-white shadow-sm">
         <div className="mx-auto flex h-full w-full max-w-6xl justify-between gap-6">
           <div className="flex items-center justify-between gap-20">

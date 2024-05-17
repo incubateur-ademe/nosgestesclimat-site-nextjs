@@ -45,3 +45,9 @@ export const simulateurCloseScoreInfo = [
 
 // Figma comment #121
 export const simulateurClickFaq = ['trackEvent', 'Simulateur', 'Click FAQ']
+
+export const simulationClickSaveShortcut = [
+  'trackEvent',
+  'Simulateur',
+  'Click Save shortcut',
+]

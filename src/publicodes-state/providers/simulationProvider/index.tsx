@@ -29,6 +29,7 @@ export default function SimulationProvider({
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
+    everyUiCategories,
     everyMosaic,
     everyMosaicChildren,
     rawMissingVariables,
@@ -49,6 +50,7 @@ export default function SimulationProvider({
   useSetComputedResults({
     categories,
     safeEvaluate,
+    isInitialized,
   })
 
   return (
@@ -63,6 +65,7 @@ export default function SimulationProvider({
         everyInactiveRules,
         everyQuestions,
         everyNotifications,
+        everyUiCategories,
         everyMosaic,
         everyMosaicChildren,
         rawMissingVariables,

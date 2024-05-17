@@ -5,10 +5,10 @@ import Trans from '@/components/translation/Trans'
 import { endClickCategory } from '@/constants/tracking/pages/end'
 import Card from '@/design-system/layout/Card'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
+import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule, useSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { formatValue } from 'publicodes'
 import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 
 export default function AccordionItemWithRule({
@@ -24,6 +24,8 @@ export default function AccordionItemWithRule({
 
   const { subcategories } = useSimulation()
 
+  const { formattedValue, unit } = formatCarbonFootprint(numericValue)
+
   const percentageOfTotalValue = (numericValue / maxValue) * 100
 
   return (
@@ -38,10 +40,8 @@ export default function AccordionItemWithRule({
           barColor={getBackgroundColor(dottedName)}
           displayValue={
             <span>
-              <strong>
-                {formatValue(numericValue / 1000, { precision: 1 })}
-              </strong>{' '}
-              <Trans>tonnes</Trans>
+              <strong className="font-black">{formattedValue}</strong>{' '}
+              <Trans>{unit}</Trans>
             </span>
           }
         />
