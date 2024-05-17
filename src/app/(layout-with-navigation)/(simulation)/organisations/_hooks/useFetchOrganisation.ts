@@ -10,11 +10,11 @@ export default function useFetchOrganisation({
 }: {
   email: string
 }): UseQueryResult<Organisation> {
-  const { slug } = useParams()
+  const { orgaSlug: orgaSlugParam } = useParams()
 
   const { user } = useUser()
 
-  const orgaSlug = slug ?? user?.organisation?.slug
+  const orgaSlug = orgaSlugParam ?? user?.organisation?.slug
 
   return useQuery({
     queryKey: ['organisation-validate-jwt', email, orgaSlug],
