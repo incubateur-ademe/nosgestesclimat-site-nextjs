@@ -7,6 +7,7 @@ const filteredDottedNames: DottedName[] = [
   'services sociétaux . voter',
   'divers . aider les autres',
   'divers . partage NGC',
+  'transport . infolettre',
 ]
 
 export const filterRelevantMissingVariables = (

@@ -1,6 +1,6 @@
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { useUser } from '@/publicodes-state'
-import { NGCRules } from '@/publicodes-state/types'
+import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import {
   UseQueryResult,
   keepPreviousData,

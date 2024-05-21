@@ -72,21 +72,28 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <meta name="theme-color" content="#4949ba" />
 
-        <Script id="matomo">
-          {`
+        {process.env.NEXT_PUBLIC_MATOMO_ID === '1' && (
+          <Script id="matomo">
+            {`
           var _paq = window._paq = window._paq || [];
           /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-          _paq.push(['trackPageView']);
+          _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+          _paq.push(["setCookieDomain", "*.nosgestesclimat.fr"]);
           _paq.push(['enableLinkTracking']);
           (function() {
-            var u="https://preprod-nosgestesclimat.matomo.cloud/";
+            // var u="https://stats.beta.gouv.fr/";
+            var u="https://stats.data.gouv.fr/";
             _paq.push(['setTrackerUrl', u+'matomo.php']);
-            _paq.push(['setSiteId', '1']);
+            // _paq.push(['setSiteId', '20']);
+            _paq.push(['setSiteId', '153']);
+            // Adds the Matomo V1 tracker for safe measure
+            // _paq.push(['addTracker', 'https://stats.data.gouv.fr/matomo.php', '153'])
             var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.async=true; g.src='https://cdn.matomo.cloud/preprod-nosgestesclimat.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+            g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
           })();
         `}
-        </Script>
+          </Script>
+        )}
       </head>
 
       <body className={`${marianne.className} bg-white text-default`}>
@@ -106,6 +113,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
             {children}
           </MainLayoutProviders>
         </ErrorBoundary>
+
+        <div id="modal" />
       </body>
     </html>
   )

@@ -1,4 +1,6 @@
 import Trans from '@/components/translation/Trans'
+import UserInformationForm from '@/components/user/UserInformationForm'
+import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -40,6 +42,16 @@ export default async function Profil() {
       <AnswerList />
 
       <SimulationList />
+
+      <Separator />
+
+      <UserInformationForm
+        title={
+          <h3>
+            <Trans>Mes informations</Trans>
+          </h3>
+        }
+      />
     </FormProvider>
   )
 }

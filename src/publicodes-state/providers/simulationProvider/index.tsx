@@ -2,7 +2,8 @@
 
 import { PropsWithChildren } from 'react'
 
-import { DottedName, NGCRules } from '../../types'
+import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import { DottedName } from '../../types'
 import { SimulationContext } from './context'
 import { useCategories } from './useCategories'
 import { useEngine } from './useEngine'
@@ -28,6 +29,7 @@ export default function SimulationProvider({
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
+    everyUiCategories,
     everyMosaic,
     everyMosaicChildren,
     rawMissingVariables,
@@ -48,6 +50,7 @@ export default function SimulationProvider({
   useSetComputedResults({
     categories,
     safeEvaluate,
+    isInitialized,
   })
 
   return (
@@ -62,6 +65,7 @@ export default function SimulationProvider({
         everyInactiveRules,
         everyQuestions,
         everyNotifications,
+        everyUiCategories,
         everyMosaic,
         everyMosaicChildren,
         rawMissingVariables,

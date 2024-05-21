@@ -5,8 +5,13 @@ import { ComputedResults, DottedName, NGCEvaluatedNode } from '../../types'
 type Props = {
   categories: string[]
   safeEvaluate: (ruleName: DottedName) => NGCEvaluatedNode | null
+  isInitialized: boolean
 }
-export function useSetComputedResults({ categories, safeEvaluate }: Props) {
+export function useSetComputedResults({
+  categories,
+  safeEvaluate,
+  isInitialized,
+}: Props) {
   const { situation, updateCurrentSimulation } = useCurrentSimulation()
 
   // little helper function to get the numeric value of a dottedName
@@ -18,9 +23,11 @@ export function useSetComputedResults({ categories, safeEvaluate }: Props) {
     [safeEvaluate]
   )
 
-  // Set the computed results object
+  // Set the computed results object (after engine init only)
   const computedResults: ComputedResults = useMemo(
     () => {
+      if (!isInitialized) return { categories: {}, bilan: 0 }
+
       return categories.reduce(
         (acc, category) => {
           acc.categories[category] = getNumericValue(category)
@@ -30,11 +37,14 @@ export function useSetComputedResults({ categories, safeEvaluate }: Props) {
       )
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [categories, getNumericValue, situation]
+    [categories, getNumericValue, situation, isInitialized]
   )
 
   // Update the simulation with the computed results (only if the computed results have changed)
-  const prevComputedResults = useRef<ComputedResults>(computedResults)
+  const prevComputedResults = useRef<ComputedResults>({
+    bilan: 0,
+    categories: {},
+  })
   useEffect(() => {
     if (prevComputedResults.current === computedResults) return
 

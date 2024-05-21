@@ -2,6 +2,7 @@ import MDXContent from '@/components/mdx/MDXContent'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import AboutEn from '@/locales/pages/en/empreinte-climat.mdx'
+import AboutEs from '@/locales/pages/es/empreinte-climat.mdx'
 import AboutFr from '@/locales/pages/fr/empreinte-climat.mdx'
 
 export async function generateMetadata() {
@@ -17,5 +18,7 @@ export async function generateMetadata() {
 }
 
 export default function AProposPage() {
-  return <MDXContent contentEn={AboutEn} contentFr={AboutFr} />
+  return (
+    <MDXContent contentEn={AboutEn} contentFr={AboutFr} contentEs={AboutEs} />
+  )
 }

@@ -59,19 +59,19 @@ const texts = {
   ),
 }
 const buttonLabels = {
-  notStarted: 'Commencer le test',
-  started: 'Reprendre le test',
-  finished: 'Utiliser mes données existantes',
+  notStarted: <Trans>Commencer le test</Trans>,
+  started: <Trans>Reprendre le test</Trans>,
+  finished: <Trans>Utiliser mes données existantes</Trans>,
 }
 
 export default function Commencer() {
-  const { postalCode, birthdate } = useContext(InfosContext)
+  const { postalCode, birthdate, customAnswers } = useContext(InfosContext)
 
   const { pollSlug } = useOrganisationQueryParams()
 
   const { goToSimulateurPage } = useSimulateurPage()
 
-  const { progression, updateCurrentSimulation } = useCurrentSimulation()
+  const { progression, updateCurrentSimulation, polls } = useCurrentSimulation()
 
   const [status, setStatus] = useState<
     'notStarted' | 'started' | 'finished' | undefined
@@ -98,6 +98,14 @@ export default function Commencer() {
   useEffect(() => {
     handleUpdateShouldPreventNavigation(true)
   }, [handleUpdateShouldPreventNavigation])
+
+  const [shouldNavigate, setShouldNavigate] = useState(false)
+  useEffect(() => {
+    if (shouldNavigate && polls?.includes(pollSlug || '')) {
+      setShouldNavigate(false)
+      goToSimulateurPage()
+    }
+  }, [goToSimulateurPage, polls, pollSlug, shouldNavigate])
 
   if (!status) {
     return null
@@ -126,16 +134,17 @@ export default function Commencer() {
               trackEvent(infosCommencerClickCtaCommencer)
             }
 
-            await updateCurrentSimulation({
+            updateCurrentSimulation({
               defaultAdditionalQuestionsAnswers: {
                 postalCode,
                 birthdate,
               },
+              customAdditionalQuestionsAnswers: customAnswers,
               pollToAdd: pollSlug || undefined,
             })
 
             // We try to go to the simulateur page. If the test is finished we will save the simulation and then go to the end page
-            goToSimulateurPage()
+            setShouldNavigate(true)
           }}>
           {buttonLabels[status]}
         </Button>
@@ -152,7 +161,7 @@ export default function Commencer() {
                     postalCode,
                     birthdate,
                   },
-                  poll: pollSlug || undefined,
+                  polls: [pollSlug || ''],
                 },
               })
             }}>

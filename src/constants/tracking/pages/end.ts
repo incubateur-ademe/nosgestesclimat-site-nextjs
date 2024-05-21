@@ -10,6 +10,18 @@ export const endClickPoll = ['trackEvent', 'Fin', 'Click Poll']
 // Figma comment #58
 export const endClickSaveShortcut = ['trackEvent', 'Fin', 'Click Save shortcut']
 
+export const endClickShareShortcut = [
+  'trackEvent',
+  'Fin',
+  'Click Share shortcut',
+]
+
+export const endClickShare = ['trackEvent', 'Fin', 'Click Share']
+
+export const endToggleTargetBlock = ['trackEvent', 'Fin', 'Toggle Target block']
+
+export const endClickHedgehog = ['trackEvent', 'Fin', 'Click Hedgehog']
+
 // Figma comment #59
 export const endClickEmpreinte = ['trackEvent', 'Fin', 'Click Empreinte']
 
@@ -18,7 +30,7 @@ export const endClickCategory = (category: DottedName) => [
   'trackEvent',
   'Fin',
   'Click Category',
-  category,
+  `Click Category ${category}`,
 ]
 
 // Figma comment #61
@@ -43,7 +55,7 @@ export const endClickAction = (action: DottedName) => [
   'trackEvent',
   'Fin',
   'Click Action',
-  action,
+  `Click Action ${action}`,
 ]
 
 // Figma comment #64
@@ -65,6 +77,6 @@ export const endClickNorthstar = ({ type, value }: NorthstarProps) => [
   'trackEvent',
   'Fin',
   'Click Northstar',
-  type,
+  `Click Northstar ${type}`,
   String(value),
 ]

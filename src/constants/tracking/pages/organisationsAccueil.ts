@@ -19,14 +19,12 @@ export const organisationsAccueilClickDemo = [
 export const organisationsAccueilClickCommencerBottom = [
   'trackEvent',
   'Organisations Accueil',
-  'Click Commencer',
-  'Bottom page',
+  'Click Commencer (Bottom)',
 ]
 
 // Figma comment #115
 export const organisationsAccueilClickDemoBottom = [
   'trackEvent',
   'Organisations Accueil',
-  'Click Démo',
-  'Bottom page',
+  'Click Démo (Bottom)',
 ]

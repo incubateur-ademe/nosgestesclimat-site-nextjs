@@ -1,4 +1,5 @@
 'use client'
+import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { createContext } from 'react'
 import {
@@ -6,7 +7,6 @@ import {
   Engine,
   NGCEvaluatedNode,
   NGCRuleNode,
-  NGCRules,
   Situation,
 } from '../../types'
 
@@ -20,12 +20,13 @@ type SimulationContextType = {
   everyInactiveRules: DottedName[]
   everyQuestions: DottedName[]
   everyNotifications: DottedName[]
+  everyUiCategories: DottedName[]
   everyMosaic: DottedName[]
   everyMosaicChildren: DottedName[]
   rawMissingVariables: Record<string, number>
   categories: DottedName[]
   subcategories: Record<DottedName, DottedName[]>
-  addToEngineSituation: (situationToAdd: Situation) => Promise<void>
+  addToEngineSituation: (situationToAdd: Situation) => Situation
 }
 export const SimulationContext = createContext<SimulationContextType>({
   rules: null,
@@ -37,10 +38,11 @@ export const SimulationContext = createContext<SimulationContextType>({
   everyInactiveRules: [],
   everyQuestions: [],
   everyNotifications: [],
+  everyUiCategories: [],
   everyMosaic: [],
   everyMosaicChildren: [],
   rawMissingVariables: {},
   categories: [],
   subcategories: {},
-  addToEngineSituation: () => Promise.resolve(),
+  addToEngineSituation: () => ({}) as Situation,
 })

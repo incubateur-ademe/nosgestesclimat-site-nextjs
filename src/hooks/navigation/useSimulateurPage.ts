@@ -1,6 +1,6 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { Situation } from '@/publicodes-state/types'
+import { Simulation } from '@/publicodes-state/types'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
 import { useClientTranslation } from '../useClientTranslation'
@@ -8,14 +8,7 @@ import { useEndPage } from './useEndPage'
 
 type GoToSimulateurPageProps = {
   noNavigation?: boolean
-  newSimulation?: {
-    situation?: Situation
-    persona?: string
-    foldedSteps?: string[]
-    defaultAdditionalQuestionsAnswers?: Record<string, string>
-    poll?: string
-    group?: string
-  }
+  newSimulation?: Partial<Simulation>
 }
 const goToSimulateurPagePropsDefault = {
   noNavigation: false,
@@ -47,7 +40,7 @@ export function useSimulateurPage() {
     }: GoToSimulateurPageProps = goToSimulateurPagePropsDefault) => {
       // If there is no current simulation (or we want to force a new one), we init a new simulation
       if (newSimulation) {
-        await initSimulation(newSimulation)
+        initSimulation(newSimulation)
       }
 
       // If we don't want to navigate, we do nothing
@@ -56,7 +49,7 @@ export function useSimulateurPage() {
       }
 
       // If the user has completed the test we redirect him to the results page
-      if (progression === 1) {
+      if (progression === 1 && !newSimulation) {
         goToEndPage()
         return
       }

@@ -50,6 +50,16 @@ export function useRules({ engine, root }: Props) {
         .map((question) => question[0]),
     [parsedRulesEntries]
   )
+
+  const everyUiCategories = useMemo<string[]>(
+    () =>
+      parsedRulesEntries
+        .filter((rule: any) => rule[0].includes('ui . pédagogie'))
+        .filter((rule: any) => !rule[1].rawNode['cachée'])
+        .map((question) => question[0]),
+    [parsedRulesEntries]
+  )
+
   const everyMosaicChildren = useMemo<string[]>(
     () =>
       everyMosaic.reduce<string[]>((accumulator, mosaic) => {
@@ -81,6 +91,7 @@ export function useRules({ engine, root }: Props) {
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
+    everyUiCategories,
     everyMosaic,
     everyMosaicChildren,
     rawMissingVariables,

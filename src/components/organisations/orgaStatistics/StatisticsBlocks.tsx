@@ -65,8 +65,6 @@ export default function StatisticsBlocks({
     maximumFractionDigits: 1,
   })
 
-  const optionalSString = simulationRecaps.length !== 1 ? 's' : ''
-
   return (
     <div className="items grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
       <div className="rounded-xl bg-gray-100 p-8 sm:col-span-2 md:col-span-1">
@@ -75,9 +73,11 @@ export default function StatisticsBlocks({
         </p>
 
         <p className="text-xl">
-          <Trans>
-            Simulation{optionalSString} terminée{optionalSString}
-          </Trans>
+          {simulationRecaps.length <= 1 ? (
+            <Trans>Simulation terminée</Trans>
+          ) : (
+            <Trans>Simulations terminées</Trans>
+          )}
         </p>
       </div>
 

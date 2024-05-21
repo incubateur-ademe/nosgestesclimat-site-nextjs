@@ -1,9 +1,9 @@
 import { Group } from '@/types/groups'
+import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
 import {
   EvaluatedNode,
   Evaluation,
   Engine as PublicodesEngine,
-  Rule,
   RuleNode,
 } from 'publicodes'
 
@@ -75,6 +75,7 @@ export type Simulation = {
   computedResults?: ComputedResults
   progression: number
   defaultAdditionalQuestionsAnswers?: Record<string, string>
+  customAdditionalQuestionsAnswers?: Record<string, string>
   polls?: string[] | null
   groups?: string[] | null
   savedViaEmail?: boolean
@@ -86,6 +87,7 @@ type UpdateCurrentSimulationProps = {
   foldedStepToAdd?: string
   actionChoices?: ActionChoices
   defaultAdditionalQuestionsAnswers?: Record<string, string>
+  customAdditionalQuestionsAnswers?: Record<string, string>
   computedResults?: ComputedResults
   progression?: number
   pollToAdd?: string | null
@@ -132,28 +134,6 @@ type MosaicInfos = {
 }
 
 type Formule = any
-
-type NGCRule = Rule & {
-  abréviation?: string
-  couleur?: Color
-  mosaique?: MosaiqueNode
-  type?: string
-  sévérité?: string
-  action?: { dépasse: string[] }
-  icônes?: string
-  sévérité?: 'avertissement' | 'information' | 'invalide'
-  dottedName?: DottedName
-  question?: string
-  plus?: boolean
-  formule?: Formule
-  aide?: string
-  inactif?: string
-  résumé?: string
-  plancher?: number
-  avertissement?: string
-}
-
-export type NGCRules = Record<DottedName, NGCRule>
 
 export type MigrationType = {
   keysToMigrate: Record<DottedName, DottedName>

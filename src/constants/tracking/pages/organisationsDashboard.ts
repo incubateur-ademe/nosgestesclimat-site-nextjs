@@ -63,3 +63,15 @@ export const organisationsDashboardExportData = [
   'Organisations Dashboard',
   'Export Data',
 ]
+
+export const organisationsDashboardClickFunFacts = [
+  'trackEvent',
+  'Organisations Dashboard',
+  'Click Fun Facts Plus',
+]
+
+export const organisationsDashboardClickFunFactsDownload = [
+  'trackEvent',
+  'Organisations Dashboard',
+  'Download Fun Facts Plus',
+]

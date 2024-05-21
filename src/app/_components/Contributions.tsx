@@ -38,7 +38,7 @@ export default function Contributions() {
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             onClick={() => trackEvent(homeClickCodeSource)}
-            className="no-underlin min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-alimentation-400 py-8 text-inherit transition-colors hover:border-alimentation-600 hover:text-default"
+            className="min-h-48 flex-1 flex-col items-center gap-4 rounded-xl border-2 border-alimentation-400 py-8 text-inherit no-underline transition-colors hover:border-alimentation-600 hover:text-default"
             data-cypress-id="nouveautes-link">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-alimentation-100">
               <SearchIcon
@@ -50,7 +50,7 @@ export default function Contributions() {
 
             <p className="mb-0 text-center">
               <Trans>Le</Trans>{' '}
-              <span className="text-primary-700 underline">
+              <span className="text-alimentation-800 underline">
                 <Trans>code source est ouvert</Trans>
               </span>
               , <Trans>le site est amélioré régulièrement.</Trans>
@@ -75,7 +75,7 @@ export default function Contributions() {
 
             <p className="mb-0 text-center">
               <Trans>L'intégralité du</Trans>{' '}
-              <span className="text-primary-700 underline">
+              <span className="text-divers-800 underline">
                 <Trans>calcul est documenté en ligne</Trans>
               </span>{' '}
               <Trans>pour les curieux et les experts.</Trans>
@@ -100,7 +100,7 @@ export default function Contributions() {
 
             <p className="mb-0 text-center">
               {t('Une idée\u202f? Une correction\u202f? Une remarque\u202f?')}{' '}
-              <span className="text-primary-700 underline">
+              <span className="text-logement-800 underline">
                 {t('Toute contribution est la bienvenue\u202f!')}
               </span>
             </p>
