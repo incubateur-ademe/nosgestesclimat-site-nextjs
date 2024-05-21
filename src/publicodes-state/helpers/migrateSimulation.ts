@@ -1,6 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { migrateSituation } from '@publicodes/tools/migration'
 import { MigrationType, Simulation } from '../types'
-import { convertSimulation } from './migration/convertSimulation'
-import filterSimulationSituation from './migration/filterSimulation'
 
 type Props = {
   simulation: Simulation
@@ -12,18 +13,17 @@ export function migrateSimulation({
   simulation: oldSimulation,
   migrationInstructions,
 }: Props): Return {
+  console.log('coucou')
   const simulation = JSON.parse(JSON.stringify(oldSimulation)) as Simulation
 
-  // We migrate rules according to `dottedNamesMigration` table
-  const filteredSimulation = filterSimulationSituation({
-    simulation,
+  const { situationMigrated, foldedStepsMigrated } = migrateSituation({
+    situation: simulation.situation,
+    foldedSteps: simulation.foldedSteps,
     migrationInstructions,
   })
 
-  // If the value inside a situation key is an object {valeur: value}, we want to convert it to value
-  const convertedSimulation = convertSimulation({
-    simulation: filteredSimulation,
-  })
+  simulation.situation = situationMigrated
+  simulation.foldedSteps = foldedStepsMigrated
 
-  return convertedSimulation
+  return simulation
 }
