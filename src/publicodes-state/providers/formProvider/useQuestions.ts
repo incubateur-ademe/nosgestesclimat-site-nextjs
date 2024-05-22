@@ -109,29 +109,7 @@ export default function useQuestions({
             return -1
           }
 
-          // then if there is a km or a proprietaire (this is shit)
-          if (a.includes('km')) {
-            return -1
-          }
-          if (b.includes('km')) {
-            return 1
-          }
-          if (a.includes('propriétaire')) {
-            return -1
-          }
-          if (b.includes('propriétaire')) {
-            return 1
-          }
-
-          // then by length
-          if (bSplittedName.length > aSplittedName.length) {
-            return -1
-          }
-          if (aSplittedName.length > bSplittedName.length) {
-            return 1
-          }
-
-          // then by number of missing variables
+          // then by missing variables score
           return missingVariables[b] - missingVariables[a]
         }),
     [
