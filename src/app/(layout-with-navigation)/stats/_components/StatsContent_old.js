@@ -11,30 +11,20 @@ import {
   useGetSharedSimulationEvents,
   useHomepageVisitors,
   useKeywords,
-  useKmHelp,
   useOldWebsites,
-  usePages,
   usePeriod,
   useReference,
-  useRidesNumber,
   useSimulationsTerminees,
-  useSimulationsfromKmHelp,
   useSocials,
   useTotal,
-  useVisitsAvgDuration,
-  useVisitsDuration,
   useWebsites,
 } from '../_helpers/matomo'
 import Chart from './content/Chart'
-import DurationChart from './content/DurationChart'
-import DurationFigures from './content/DurationFigures'
 import Evolution from './content/Evolution'
 import IframeFigures from './content/IframeFigures'
-import KmFigures from './content/KmFigures'
-import ScoreFromURL from './content/ScoreFromURL'
 import Sources from './content/Sources'
 
-// Do not try [toRenderWithRequestData]  until all [requestResults] are successful.
+// Do not try [toRenderWithRequestData] until all [requestResults] are successful.
 // Otherwise, an informative message in rendered.
 const UseQueryResultHandler = ({ requestResults, toRenderWithRequestData }) => {
   const notSuccessfulRequests = requestResults.filter(
@@ -73,8 +63,6 @@ const UseQueryResultHandler = ({ requestResults, toRenderWithRequestData }) => {
 export default function StatsContent() {
   const total = useTotal()
   const simulations = useSimulationsTerminees()
-  const duration = useVisitsDuration()
-  const avgduration = useVisitsAvgDuration()
   const websites = useWebsites()
   const oldWebsites = useOldWebsites()
   const socials = useSocials()
@@ -83,11 +71,7 @@ export default function StatsContent() {
   const reference = useReference()
   const entryPages = useEntryPages()
   const activeEntryPages = useActiveEntryPages()
-  const pages = usePages()
   const allTime = useAllTime()
-  const kmhelp = useKmHelp()
-  const simulationsfromhelp = useSimulationsfromKmHelp()
-  const ridesnumber = useRidesNumber()
   const homepageVisitorsData = useHomepageVisitors()
   const sharedSimulations = useGetSharedSimulationEvents()
 
@@ -95,10 +79,12 @@ export default function StatsContent() {
 
   return (
     <div>
-      <Title title={<Trans>Statistiques</Trans>} />
+      <Title>
+        <Trans>Statistiques</Trans>
+      </Title>
       <div className="mt-8">
         <h2>
-          <Trans>Générales</Trans>
+          <Trans>Visites et simulations</Trans>
         </h2>
         <UseQueryResultHandler
           requestResults={[period, reference, allTime, simulations]}
@@ -108,15 +94,42 @@ export default function StatsContent() {
             allTimeData,
             simulationsData,
           ]) => (
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-              <Evolution
-                period={periodData.value}
-                reference={referenceData.value}
-                allTime={allTimeData.value}
-                simulations={simulationsData}
-              />
-              <Chart key="visites" elementAnalysedTitle={t('visites')} />
-            </div>
+            <>
+              <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                <Evolution
+                  period={periodData.value}
+                  reference={referenceData.value}
+                  allTime={allTimeData.value}
+                  simulations={simulationsData}
+                />
+                <Chart
+                  key="chart-visites"
+                  dataKey="visites"
+                  elementAnalysedTitle={t('visites')}
+                  target="VisitsSummary.getVisits"
+                  tooltipLabel={t('visites')}
+                  color="#4949ba"
+                />
+              </div>
+              <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                <Evolution
+                  period={periodData.value}
+                  reference={referenceData.value}
+                  allTime={allTimeData.value}
+                  simulations={simulationsData}
+                />
+                <Chart
+                  key="chart-simulation-terminees"
+                  dataKey="simulations-terminées"
+                  elementAnalysedTitle={t('simulations terminées')}
+                  target="Events.getAction&label=A%20termin%C3%A9%20la%20simulation%0A"
+                  tooltipLabel={t('simulations terminées')}
+                  color="#d40d83"
+                  defaultChartDate="7"
+                  defaultChartPeriod="day"
+                />
+              </div>
+            </>
           )}
         />
         <div className="mt-4">
@@ -149,14 +162,6 @@ export default function StatsContent() {
               </p>
             </Card>
           </div>
-          <Chart
-            name="chart-simulation-terminees"
-            elementAnalysedTitle={t('simulations terminées')}
-            target="Events.getAction&label=A%20termin%C3%A9%20la%20simulation%0A"
-            tooltipLabel={t('simulations terminées')}
-            key="chart-simulation-terminees"
-            color="#30C691"
-          />
         </div>
         <UseQueryResultHandler
           requestResults={[total, websites, oldWebsites, socials, keywords]}
@@ -178,9 +183,9 @@ export default function StatsContent() {
         />
       </div>
       <div className="mt-8">
-        <h3>
-          <Trans>Intégrations et Iframes</Trans>
-        </h3>
+        <h2>
+          <Trans>Acquisition</Trans>
+        </h2>
         <details>
           <Trans i18nKey={'components.stats.StatsContent.integrationEtIframes'}>
             <summary className="mb-4">En savoir plus</summary>
@@ -209,101 +214,15 @@ export default function StatsContent() {
         />
       </div>
       <div className="mt-8">
-        <h3>
-          <Trans>Northstar: les statistiques "étoile du nord"</Trans>
-        </h3>
+        <h2>
+          <Trans>Données qualitatives</Trans>
+        </h2>
         <Trans i18nKey={'components.stats.StatsContent.infosNorthstar'}>
           <p>
-            En fin de simulation, une bannière apparaît afin de recueillir le
-            sentiment de nos utilisateurs sur le rôle de Nos Gestes Climat dans
-            leur compréhension des enjeux climat mais également dans
-            l'incitation au passage à l'action via 2 questions en fin de test.
-            Les statistiques, disponibles sur la page dédiée{' '}
-            <a href="./northstar">page dédiée "Northstar"</a>, ont été générées
-            via Metabase.
+            En fin de simulation, pour 10% de nos utilisateurs blabla. Cette
+            section statistique est générées via Metabase.
           </p>
         </Trans>
-      </div>
-      <div className="mt-8">
-        <h3>
-          <Trans>Durée des visites</Trans>
-        </h3>
-        <details>
-          <Trans i18nKey={'components.stats.StatsContent.dureeDesVisites'}>
-            <summary className="mb-4">En savoir plus</summary>
-            <p>
-              Cette section est générée à partir des visites des 60 derniers
-              jours. Les visites dont le temps passé sur le site est inférieur à
-              1 minute ont été écartées. Pour éviter le biais de l'iframe qui
-              peut générer des visiteurs inactifs dans les statistiques, le
-              temps moyen sur le site a été calculé à partir des visites actives
-              (l'utilisateur a cliqué sur "Faire le test").
-            </p>
-          </Trans>
-        </details>
-        <UseQueryResultHandler
-          requestResults={[avgduration]}
-          toRenderWithRequestData={([avgdurationData]) => (
-            <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
-              <DurationFigures avgduration={avgdurationData} />
-              {duration.isSuccess && <DurationChart duration={duration.data} />}
-            </div>
-          )}
-        />
-      </div>
-      <div className="mt-8">
-        <h3>
-          <Trans>Score de nos utilisateurs</Trans>
-        </h3>
-        <details>
-          <Trans i18nKey={'components.stats.StatsContent.scoreUtilisateurs'}>
-            <summary className="mb-4">En savoir plus</summary>
-            <p>
-              Bien sûr, nous ne collectons pas{' '}
-              <a href="/vie-priv%C3%A9e">les données utlisateurs</a>. Néanmoins,
-              le score total ainsi que l'empreinte par catégorie est présente
-              dans l'URL de fin de test. Dans cette section, nous agrégeons cees
-              informations pour avoir une idée de l'empreinte carbone moyenne de
-              nos utilisateurs et de distribution du score afin d'analyser ces
-              résultats dans le contexte des évolutions du modèle.
-            </p>{' '}
-            <p>
-              L'objectif ici n'est pas d'évaluer l'empreinte carbone des
-              Français : à priori, les utilisateurs du tests de sont pas
-              représentatifs des Français. De plus, ces données peuvent être
-              biaisées par des utilisateurs qui reviendraient à plusieurs
-              reprises sur la page de fin, en changeant ses réponses au test (ce
-              qui crée de nouveaux url de fin).
-            </p>
-          </Trans>
-        </details>
-        <UseQueryResultHandler
-          requestResults={[pages]}
-          toRenderWithRequestData={([pagesData]) => (
-            <div>
-              <ScoreFromURL pages={pagesData} />
-            </div>
-          )}
-        />
-      </div>
-      <div className="mt-8">
-        <h3>
-          <Trans>La voiture en chiffres</Trans>
-        </h3>
-        <UseQueryResultHandler
-          requestResults={[kmhelp, simulationsfromhelp, ridesnumber]}
-          toRenderWithRequestData={([
-            kmhelpData,
-            simulationsfromhelpData,
-            ridesnumberData,
-          ]) => (
-            <KmFigures
-              kmhelp={kmhelpData}
-              simulationsfromhelp={simulationsfromhelpData?.nb_visits}
-              ridesnumber={ridesnumberData?.nb_events}
-            />
-          )}
-        />
       </div>
     </div>
   )

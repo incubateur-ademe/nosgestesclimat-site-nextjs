@@ -5,7 +5,6 @@ import { useQuery } from 'react-query'
 
 const idSite = 153
 
-const kmDate = '2022-02-24,today'
 const MESURE_START_DATE = '2021-02-01,today'
 
 export const useX = (queryName, urlQuery, transformResult, keepPreviousData) =>
@@ -22,16 +21,29 @@ export const useX = (queryName, urlQuery, transformResult, keepPreviousData) =>
     { keepPreviousData }
   )
 
-export const useChart = ({
-  chartPeriod,
-  chartDate,
-  target = 'VisitsSummary.getVisits',
-  name = 'chart-visites',
-}) => {
+export const useChart = ({ chartPeriod, chartDate, method, targets, name }) => {
   return useX(
     `${name}, ${chartPeriod}, ${chartDate}`,
-    `module=API&date=last${chartDate}&period=${chartPeriod}&format=json&idSite=${idSite}&method=${target}`,
-    (res) => res.data,
+    `module=API&method=${method}&idSite=${idSite}&date=last${chartDate}&period=${chartPeriod}&format=json`,
+    (res) => {
+      if (targets.length > 0) {
+        const targetedData = Object.fromEntries(
+          Object.entries(res.data).map(([date, evts]) => {
+            return [
+              date,
+              [
+                evts.find((evt) => {
+                  return targets.indexOf(evt.label) > -1
+                }),
+              ],
+            ]
+          })
+        )
+        return targetedData
+      }
+
+      return res.data
+    },
     true
   )
 }
@@ -41,29 +53,12 @@ export const useSimulationsTerminees = () =>
     ['SimulationsTerminees'],
     `module=API&method=Events.getAction&idSite=${idSite}&period=range&date=last6000&format=JSON`,
     (res) =>
-      res.data.find((action) => action.label === 'A terminé la simulation'),
+      res.data.find(
+        (action) =>
+          action.label === 'A terminé la simulation' ||
+          action.label === 'Simulation Completed'
+      ),
     true
-  )
-
-export const useVisitsDuration = () =>
-  useX(
-    'VisitsDuration',
-    `module=API&idSite=${idSite}&method=VisitorInterest.getNumberOfVisitsPerVisitDuration&segment=eventAction%3D%3DClic%252520CTA%252520accueil&period=range&date=last60&format=JSON`,
-    (res) => res.data
-  )
-
-export const useVisitsAvgDuration = () =>
-  useX(
-    'VisitsAvgDuration',
-    `module=API&idSite=${idSite}&method=VisitFrequency.get&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60`,
-    (res) => res.data.avg_time_on_site_new / 60
-  )
-
-export const useSimulationAvgDuration = () =>
-  useX(
-    'SimulationAvgDuration',
-    `module=API&idSite=${idSite}&method=Actions.getPageUrl&pageUrl=simulateur/bilan&period=range&date=last60&format=JSON&segment=eventAction%3D%3DA%252520termin%2525C3%2525A9%252520la%252520simulation;visitDuration>=60`,
-    (res) => res.data[0].sum_time_spent / res.data[0].nb_visits / 60
   )
 
 export const useTotal = () =>
@@ -102,20 +97,6 @@ export const useKeywords = () =>
     (res) => res.data
   )
 
-export const usePeriod = () =>
-  useX(
-    'period',
-    `module=API&date=last30&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
-    (res) => res.data
-  )
-
-export const useReference = () =>
-  useX(
-    'reference',
-    `module=API&date=last60&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
-    (res) => res.data
-  )
-
 export const useEntryPages = () =>
   useX(
     'entryPages',
@@ -130,13 +111,6 @@ export const useActiveEntryPages = () =>
     (res) => res.data
   )
 
-export const usePages = () =>
-  useX(
-    'pages',
-    `module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Actions.getPageUrls&filter_limit=-1`,
-    (res) => res.data
-  )
-
 export const useAllTime = () =>
   useX(
     'allTime',
@@ -146,38 +120,6 @@ export const useAllTime = () =>
       res.data.value += base
       return res.data
     }
-  )
-
-export const useKmHelp = () =>
-  useX(
-    'KmHelp',
-    `module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`,
-    (res) => {
-      const open = res.data.find(
-        (action) => action.label === 'Ouvre aide à la saisie km voiture'
-      ).nb_visits
-      const close = res.data.find(
-        (action) => action.label === 'Ferme aide à la saisie km voiture'
-      ).nb_visits
-      const realUse = open - close
-      return realUse
-    }
-  )
-
-export const useSimulationsfromKmHelp = () =>
-  useX(
-    'SimulationsTermineesfromKmHelp',
-    `module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`,
-    (res) =>
-      res.data.find((action) => action.label === 'A terminé la simulation')
-  )
-
-export const useRidesNumber = () =>
-  useX(
-    'ridesNumber',
-    `module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`,
-    (res) =>
-      res.data.find((action) => action.label === 'Ajout trajet km voiture')
   )
 
 export const useHomepageVisitors = () =>

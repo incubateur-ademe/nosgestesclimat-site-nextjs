@@ -10,50 +10,75 @@ import {
 
 import { useUser } from '@/publicodes-state/index'
 import { useChart } from '../../_helpers/matomo.js'
-import CustomTooltip from './chart/CustomTooltip.js'
-import Search from './chart/Search.js'
 
-export default function Chart(props) {
+import CustomTooltip from './chart/CustomTooltip'
+import Search from './chart/Search'
+
+type Props = {
+  key: string
+  dataKey: string
+  elementAnalysedTitle: string
+  method: string
+  targets?: string[]
+  color: string
+  defaultChartDate?: string
+  defaultChartPeriod?: string
+}
+
+export default function Chart({
+  key,
+  dataKey,
+  elementAnalysedTitle,
+  method,
+  targets = [],
+  color,
+  defaultChartDate = '12',
+  defaultChartPeriod = 'month',
+}: Props) {
   const { user } = useUser()
 
-  const [chartDate, setChartDate] = useState('12')
-  const [chartPeriod, setChartPeriod] = useState('week')
+  const [chartDate, setChartDate] = useState(defaultChartDate)
+  const [chartPeriod, setChartPeriod] = useState(defaultChartPeriod)
 
   const { data: chart } = useChart({
     chartDate: Number(chartDate) + 1,
     chartPeriod,
-    target: props.target,
-    name: props.elementAnalysedTitle,
+    method: method,
+    targets: targets,
+    name: elementAnalysedTitle,
   })
 
-  const [data, setData] = useState(undefined)
+  const [data, setData] = useState<
+    Record<string, string | number>[] | undefined
+  >(undefined)
 
   useEffect(() => {
     if (chart) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       const dates = Object.keys(chart)
       dates.length-- //last period is removed from data
       const dataDots = dates?.map((date) => {
-        const points = { date }
+        const points: Record<string, string | number> = {}
+        points['date'] = date
 
-        points['Visiteurs'] =
+        points[dataKey] =
           typeof chart[date] === 'number'
-            ? chart[date]
-            : chart[date]?.[0]?.nb_visits
+            ? +chart[date]
+            : +chart[date]?.[0]?.nb_visits
         return points
       })
       setData(dataDots)
     }
-  }, [chart])
+  }, [chart, dataKey])
 
   return chart && data ? (
-    <div className="mt-4">
+    <div key={key} className="mt-4">
       <Search
-        elementAnalysedTitle={props.elementAnalysedTitle}
+        elementAnalysedTitle={elementAnalysedTitle}
         period={chartPeriod}
         date={chartDate}
         setPeriod={setChartPeriod}
         setDate={setChartDate}
+        color={color}
       />
       <div className="h-60">
         <ResponsiveContainer>
@@ -63,7 +88,7 @@ export default function Chart(props) {
               tick={{ fontSize: 12 }}
               tickFormatter={(tick) => {
                 const date = new Date(tick.split(',')[0])
-                return props.period === 'month'
+                return chartPeriod === 'month'
                   ? date.toLocaleDateString(user?.region?.code, {
                       month: 'long',
                       year: 'numeric',
@@ -81,19 +106,12 @@ export default function Chart(props) {
                 tick.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')
               }
             />
-            <Tooltip
-              content={
-                <CustomTooltip
-                  period={chartPeriod}
-                  naming={props.tooltipLabel}
-                />
-              }
-            />
+            <Tooltip content={<CustomTooltip period={chartPeriod} />} />
             <Area
               type="monotone"
-              dataKey={'Visiteurs'}
-              stroke={props.color ?? '#32337B'}
-              fill={props.color ?? '#491273'}
+              dataKey={dataKey}
+              stroke={color}
+              fill={color}
               fillOpacity={1}
             />
           </AreaChart>
