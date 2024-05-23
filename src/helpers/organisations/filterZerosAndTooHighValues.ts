@@ -1,6 +1,6 @@
 import { SimulationRecap } from '@/types/organisations'
 
-const MAX_VALUE = 29000
+const MAX_VALUE = 100000
 
 export function filterZerosAndTooHighValues(
   simulationRecaps: SimulationRecap[]
