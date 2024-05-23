@@ -61,7 +61,7 @@ export default function ResultatsDetaillesPage() {
       </div>
 
       <OrgaStatisticsFilters
-        simulationRecaps={simulationsRecapWithoutZeroAndTooHighValues ?? []}
+        simulationRecaps={pollData?.simulationRecaps ?? []}
         filteredSimulationRecaps={filteredSimulationRecaps ?? []}
         defaultAdditionalQuestions={pollData?.defaultAdditionalQuestions ?? []}
       />
@@ -72,7 +72,10 @@ export default function ResultatsDetaillesPage() {
         title={<Trans>Chiffres clés</Trans>}
       />
 
-      <OrgaStatisticsCharts simulationRecaps={filteredSimulationRecaps ?? []} />
+      <OrgaStatisticsCharts
+        simulationRecaps={filteredSimulationRecaps ?? []}
+        isAdmin={pollData?.isAdmin}
+      />
     </div>
   )
 }
