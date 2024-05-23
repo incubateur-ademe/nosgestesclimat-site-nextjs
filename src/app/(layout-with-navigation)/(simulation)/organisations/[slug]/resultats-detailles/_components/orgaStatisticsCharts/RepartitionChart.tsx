@@ -32,11 +32,13 @@ export default function RepartitionChart({
             value={value}
             shouldBeHighlighted={shouldBeHighlighted}
             maxValue={maxValue}
-            id={`tooltip-repartition-chart-${id}`}
+            id={`tooltip-repartition-chart-${id}-${index}`}
           />
-          {shouldBeHighlighted && (
-            <Tooltip className="z-20" id={`tooltip-repartition-chart-${id}`} />
-          )}
+
+          <Tooltip
+            className="z-20"
+            id={`tooltip-repartition-chart-${id}-${index}`}
+          />
         </>
       ))}
     </div>
