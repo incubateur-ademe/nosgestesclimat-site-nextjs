@@ -6,12 +6,13 @@ import axios from 'axios'
 
 type Props = {
   orgaSlug?: string
+  pollSlug?: string
 }
 
-export function useFetchPollData({ orgaSlug }: Props = {}): UseQueryResult<
-  PollData | null,
-  Error
-> {
+export function useFetchPollData({
+  orgaSlug,
+  pollSlug,
+}: Props = {}): UseQueryResult<PollData | null, Error> {
   const { user } = useUser()
 
   return useQuery({
@@ -20,7 +21,7 @@ export function useFetchPollData({ orgaSlug }: Props = {}): UseQueryResult<
       axios
         .post(SERVER_URL + '/organisations/fetch-poll-processed-data', {
           orgaSlug,
-          email: user?.email,
+          pollSlug,
           userId: user?.userId,
         })
         .then((res) => res.data)

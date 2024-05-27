@@ -65,6 +65,7 @@ export type SimulationRecap = {
 }
 
 export type PollData = {
+  name: string
   funFacts: FunFacts
   simulationRecaps: SimulationRecap[]
   organisationName: string

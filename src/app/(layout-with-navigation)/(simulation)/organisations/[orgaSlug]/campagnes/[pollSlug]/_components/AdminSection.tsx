@@ -1,0 +1,68 @@
+import EyeIcon from '@/components/icons/EyeIcon'
+import SettingsIcon from '@/components/icons/SettingsIcon'
+import ExportDataButton from '@/components/organisations/ExportDataButton'
+import Trans from '@/components/translation/Trans'
+import { organisationsDashboardExportData } from '@/constants/tracking/pages/organisationsDashboard'
+import {
+  pollDashboardClickParameters,
+  pollDashboardCopyLink,
+} from '@/constants/tracking/pages/pollDashboard'
+import ButtonLink from '@/design-system/inputs/ButtonLink'
+import CopyInput from '@/design-system/inputs/CopyInput'
+import { PollData } from '@/types/organisations'
+import { trackEvent } from '@/utils/matomo/trackEvent'
+import { useParams } from 'next/navigation'
+
+type Props = {
+  pollData?: PollData | null
+}
+
+export default function AdminSection({ pollData }: Props) {
+  const { orgaSlug, pollSlug } = useParams()
+
+  if (!pollData?.isAdmin) return null
+
+  return (
+    <section className="mt-8 rounded-xl bg-gray-50 p-6">
+      <p className="flex items-center gap-1 text-xs">
+        <EyeIcon className="w-4" /> <Trans>Visible uniquement par vous</Trans>
+      </p>
+
+      <div className="flex flex-wrap gap-8 md:flex-nowrap">
+        <div className="rainbow-border w-full rounded-xl p-4 md:w-2/3">
+          <h2>
+            <Trans>Partagez votre campagne</Trans>
+          </h2>
+          <CopyInput
+            textToDisplay={`${window.location.host}/o/${orgaSlug}/${pollSlug}`}
+            textToCopy={`${window.location.origin}/o/${orgaSlug}/${pollSlug}`}
+            onClick={() => {
+              trackEvent(pollDashboardCopyLink)
+            }}
+          />
+        </div>
+
+        <div className="flex flex-col justify-center gap-4">
+          <ExportDataButton
+            simulationRecaps={pollData?.simulationRecaps ?? []}
+            poll={pollData}
+            color="secondary"
+            onClick={() => {
+              trackEvent(organisationsDashboardExportData)
+            }}
+          />
+
+          <ButtonLink
+            href={`/organisations/${orgaSlug}/campagnes/${pollSlug}/parametres`}
+            trackingEvent={pollDashboardClickParameters}
+            color="text"
+            className="flex items-center self-start">
+            <SettingsIcon className="mr-2 fill-primary-700" />
+
+            <Trans>Voir les paramètres</Trans>
+          </ButtonLink>
+        </div>
+      </div>
+    </section>
+  )
+}
