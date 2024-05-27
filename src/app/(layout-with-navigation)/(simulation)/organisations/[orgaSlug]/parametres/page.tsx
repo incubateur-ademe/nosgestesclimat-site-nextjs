@@ -7,7 +7,6 @@ import Loader from '@/design-system/layout/Loader'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { useUser } from '@/publicodes-state'
-import QuestionsComplementaires from '../../../../../../components/organisations/QuestionsComplementaires'
 import useFetchOrganisation from '../../_hooks/useFetchOrganisation'
 import DeconnexionButton from './DeconnexionButton'
 import InformationsForm from './_components/InformationsForm'
@@ -19,7 +18,6 @@ export default function ParametresPage() {
     data: organisation,
     isError,
     isLoading,
-    refetch,
   } = useFetchOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
   })
@@ -37,11 +35,6 @@ export default function ParametresPage() {
   return (
     <MaxWidthContent className="pb-8">
       <Title title={<Trans>Paramètres</Trans>} />
-
-      <QuestionsComplementaires
-        organisation={organisation}
-        refetchOrganisation={refetch}
-      />
 
       <Separator />
 

@@ -1,20 +1,20 @@
 import { SERVER_URL } from '@/constants/urls'
-import { Organisation } from '@/types/organisations'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
+import { useParams } from 'next/navigation'
 
-export function useAreCustomQuestionsEnabled(
-  organisation: Organisation | undefined
-) {
+export function useAreCustomQuestionsEnabled() {
+  const { orgaSlug } = useParams()
+
   return useQuery({
-    queryKey: ['areCustomQuestionsEnabled', organisation],
+    queryKey: ['areCustomQuestionsEnabled', orgaSlug],
     queryFn: () =>
       axios
         .get(
-          `${SERVER_URL}/organisations/check-custom-questions-enabled/${organisation?.slug}`
+          `${SERVER_URL}/organisations/check-custom-questions-enabled/${orgaSlug}`
         )
         .then((res) => res.data),
     retry: false,
-    enabled: !!organisation,
+    enabled: !!orgaSlug,
   })
 }
