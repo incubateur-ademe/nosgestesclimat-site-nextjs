@@ -30,7 +30,7 @@ export default function AdminSection({ pollData }: Props) {
 
       <div className="flex flex-wrap gap-8 md:flex-nowrap">
         <div className="rainbow-border w-full rounded-xl p-4 md:w-2/3">
-          <h2>
+          <h2 className="text-lg">
             <Trans>Partagez votre campagne</Trans>
           </h2>
           <CopyInput
