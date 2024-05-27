@@ -4,6 +4,7 @@ import Trans from '@/components/translation/Trans'
 import { getUpdatedDefaultAdditionalQuestions } from '@/helpers/polls/getUpdatedDefaultAdditionalQuestions'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { OrganisationPoll } from '@/types/organisations'
+import { ReactNode } from 'react'
 import CustomQuestionForm from './questionsComplementaires/CustomQuestionForm'
 import CustomQuestions from './questionsComplementaires/CustomQuestions'
 import ToggleField from './questionsComplementaires/ToggleField'
@@ -16,9 +17,14 @@ type Props = {
       >
     | undefined
   onChange: (changes: Record<string, unknown>) => void
+  description?: string | ReactNode
 }
 
-export default function QuestionsComplementaires({ poll, onChange }: Props) {
+export default function QuestionsComplementaires({
+  poll,
+  onChange,
+  description,
+}: Props) {
   const { t } = useClientTranslation()
 
   return (
@@ -28,12 +34,14 @@ export default function QuestionsComplementaires({ poll, onChange }: Props) {
       </h2>
 
       <p className="mb-8">
-        <Trans>
-          Vous avez la possibilité d’ajouter des questions complémentaires au
-          test pour vos statistiques. Vos questions additionnelles activées
-          seront posées à chaque participant en amont du test Nos Gestes Climat.
-          Leur réponse sera facultative.
-        </Trans>
+        {description ?? (
+          <Trans>
+            Vous avez la possibilité d’ajouter des questions complémentaires au
+            test pour vos statistiques. Vos questions additionnelles activées
+            seront posées à chaque participant en amont du test Nos Gestes
+            Climat. Leur réponse sera facultative.
+          </Trans>
+        )}
       </p>
 
       <h3>

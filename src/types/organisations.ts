@@ -40,6 +40,7 @@ export type OrganisationPoll = {
 }
 
 export type Organisation = {
+  _id?: string
   administrators: OrganisationAdministrator[]
   polls: OrganisationPoll[]
   name: string

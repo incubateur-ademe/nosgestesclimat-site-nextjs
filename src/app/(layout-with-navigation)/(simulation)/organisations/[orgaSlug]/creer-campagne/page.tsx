@@ -50,7 +50,7 @@ export default function CreerCampagnePage() {
         }
       />
 
-      <PollForm />
+      <PollForm organisation={organisation} />
     </div>
   )
 }
