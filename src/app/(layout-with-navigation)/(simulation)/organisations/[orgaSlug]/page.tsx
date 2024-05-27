@@ -29,7 +29,7 @@ export default function OrganisationPage() {
 
   useEffect(() => {
     if (organisation && !organisation.slug) {
-      router.push('/organisations/creation')
+      router.push('/organisations/creer')
     }
   }, [organisation, router])
 

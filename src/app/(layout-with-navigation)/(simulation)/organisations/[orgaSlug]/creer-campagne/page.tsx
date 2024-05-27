@@ -7,6 +7,7 @@ import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import useFetchOrganisation from '../../_hooks/useFetchOrganisation'
+import PollForm from './_components/PollForm'
 
 export default function CreerCampagnePage() {
   const { user } = useUser()
@@ -23,7 +24,7 @@ export default function CreerCampagnePage() {
 
   useEffect(() => {
     if (organisation && !organisation.slug) {
-      router.push('/organisations/creation')
+      router.push('/organisations/creer')
     }
   }, [organisation, router])
 
@@ -38,7 +39,7 @@ export default function CreerCampagnePage() {
   }
 
   return (
-    <div className="mb-4 flex flex-wrap justify-between md:flex-nowrap">
+    <div className="mb-4 flex flex-col justify-between md:flex-nowrap">
       <Title
         title={<Trans>Créer une campagne</Trans>}
         subtitle={
@@ -48,6 +49,8 @@ export default function CreerCampagnePage() {
           </Trans>
         }
       />
+
+      <PollForm />
     </div>
   )
 }
