@@ -30,6 +30,7 @@ export default function SeeDetailedReportAndExport() {
       </ButtonLink>
 
       <ExportDataButton
+        poll={pollData}
         onClick={() => {
           trackEvent(organisationsDashboardExportData)
         }}

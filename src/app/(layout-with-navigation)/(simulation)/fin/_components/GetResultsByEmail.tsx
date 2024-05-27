@@ -126,7 +126,7 @@ export default function GetResultsByEmail({
     <Card
       id="email-block"
       className={twMerge(
-        'rainbow-border items-start rounded-xl p-6 shadow-none',
+        'rainbow-border items-start rounded-xl px-4 py-6 shadow-none',
         className
       )}>
       <form
@@ -135,7 +135,7 @@ export default function GetResultsByEmail({
         onSubmit={handleSubmit(onSubmit)}>
         <h3 className="flex items-center text-base sm:text-lg">
           <Trans>
-            Vous souhaitez recevoir vos résultats d’empreinte carbone ?
+            Vous souhaitez recevoir vos résultats d’empreinte carbone ?
           </Trans>
 
           <Emoji>💡</Emoji>
@@ -167,7 +167,7 @@ export default function GetResultsByEmail({
           {(!isSubscribedMainNewsletter ||
             !isSubscribedTransportNewsletter) && (
             <p className="mb-0">
-              <Trans>Recevez des conseils pour réduire votre empreinte :</Trans>
+              <Trans>Recevez des conseils pour réduire votre empreinte :</Trans>
             </p>
           )}
 
@@ -191,7 +191,7 @@ export default function GetResultsByEmail({
                 <span>
                   <Emoji>🚗</Emoji>{' '}
                   <Trans>
-                    <strong>Nos Gestes Transports</strong> : maîtrisez l'impact
+                    <strong>Nos Gestes Transports</strong> : maîtrisez l'impact
                     carbone de vos transports avec nos 4 infolettres
                   </Trans>
                 </span>

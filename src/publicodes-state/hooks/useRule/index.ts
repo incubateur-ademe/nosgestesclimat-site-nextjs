@@ -77,6 +77,7 @@ export default function useRule(dottedName: DottedName) {
     isInactive,
     suggestions,
     excerpt,
+    actions,
   } = useContent({
     dottedName,
     rule,
@@ -214,5 +215,9 @@ export default function useRule(dottedName: DottedName) {
      * Set default value as value, with the possibility to add a dottedName in the foldedSteps and the mosaic parent
      */
     setDefaultAsValue,
+    /**
+     * A list of actions linked to the rules (only used by "ui . pédagogie" rules)
+     */
+    actions,
   }
 }

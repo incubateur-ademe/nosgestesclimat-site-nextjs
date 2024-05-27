@@ -20,7 +20,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
   linkToPrev: string
-  handleSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void
+  handleSubmit?: (e: React.MouseEvent<HTMLButtonElement>) => void
   submitDisabled?: boolean
   currentPage: string
 }
@@ -67,8 +67,7 @@ export default function Navigation({
           if (currentPage === BIRTHDATE_PAGE) {
             trackEvent(infosBirthdateClickSuivant)
           }
-
-          handleSubmit(event)
+          if (handleSubmit) handleSubmit(event)
         }}
         disabled={submitDisabled}>
         {t('Suivant') + ' →'}

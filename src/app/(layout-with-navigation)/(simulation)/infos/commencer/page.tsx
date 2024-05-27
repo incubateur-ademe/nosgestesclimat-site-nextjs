@@ -65,7 +65,7 @@ const buttonLabels = {
 }
 
 export default function Commencer() {
-  const { postalCode, birthdate } = useContext(InfosContext)
+  const { postalCode, birthdate, customAnswers } = useContext(InfosContext)
 
   const { pollSlug } = useOrganisationQueryParams()
 
@@ -139,6 +139,7 @@ export default function Commencer() {
                 postalCode,
                 birthdate,
               },
+              customAdditionalQuestionsAnswers: customAnswers,
               pollToAdd: pollSlug || undefined,
             })
 
@@ -160,7 +161,7 @@ export default function Commencer() {
                     postalCode,
                     birthdate,
                   },
-                  poll: pollSlug || undefined,
+                  polls: [pollSlug || ''],
                 },
               })
             }}>
