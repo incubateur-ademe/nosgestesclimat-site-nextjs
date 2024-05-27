@@ -1,6 +1,7 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { PropsWithChildren } from 'react'
+import FiltersProvider from './_components/FiltersProvider'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -17,5 +18,5 @@ export async function generateMetadata() {
 }
 
 export default function Layout({ children }: PropsWithChildren) {
-  return <>{children}</>
+  return <FiltersProvider>{children}</FiltersProvider>
 }

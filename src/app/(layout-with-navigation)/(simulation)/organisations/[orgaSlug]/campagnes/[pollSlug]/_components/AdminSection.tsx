@@ -23,7 +23,7 @@ export default function AdminSection({ pollData }: Props) {
   if (!pollData?.isAdmin) return null
 
   return (
-    <section className="mt-8 rounded-xl bg-gray-50 p-6">
+    <section className="mb-6 rounded-xl bg-gray-50 p-8">
       <p className="flex items-center gap-1 text-xs">
         <EyeIcon className="w-4" /> <Trans>Visible uniquement par vous</Trans>
       </p>
