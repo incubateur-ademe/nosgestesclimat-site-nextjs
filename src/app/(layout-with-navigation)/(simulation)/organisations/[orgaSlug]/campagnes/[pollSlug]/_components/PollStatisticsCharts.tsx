@@ -10,8 +10,10 @@ import RepartitionChart from './pollStatisticsCharts/RepartitionChart'
 
 export default function PollStatisticsCharts({
   simulationRecaps,
+  isAdmin,
 }: {
   simulationRecaps: SimulationRecap[]
+  isAdmin?: boolean
 }) {
   const maxValueOfAllCategories = useMemo(
     () =>
@@ -56,11 +58,23 @@ export default function PollStatisticsCharts({
         <Trans>Résultats du groupe</Trans>
       </h2>
 
-      <p>
+      <p className="mb-1">
         <Trans>
           Chaque participation est représentée par une barre verticale. Votre
-          score est affiché en rose.
+          score est affiché en{' '}
+          <span className="font-bold text-secondary-700">rose</span>.
         </Trans>
+      </p>
+      <p className="text-sm text-gray-600">
+        <Trans>
+          Pour faciliter la lecture, les valeurs supérieures à 100 t sont
+          retirées.
+        </Trans>{' '}
+        {isAdmin && (
+          <Trans>
+            Elle seront toutefois prises en compte lors de l'export de données.
+          </Trans>
+        )}
       </p>
 
       <Separator />
