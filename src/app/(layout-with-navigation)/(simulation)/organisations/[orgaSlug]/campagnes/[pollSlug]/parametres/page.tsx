@@ -28,7 +28,7 @@ export default function ParametresPage() {
     isEnabled: isAdmin,
   })
 
-  const { mutateAsync: updatePoll } = useUpdatePoll(pollSlug as string)
+  const { mutateAsync: updatePoll } = useUpdatePoll()
 
   if (isLoading) {
     return <Loader />
