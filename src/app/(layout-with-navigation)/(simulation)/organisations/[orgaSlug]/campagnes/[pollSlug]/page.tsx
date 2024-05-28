@@ -46,6 +46,15 @@ export default function CampagnePage() {
     return <PollNotFound />
   }
 
+  if (isLoading) {
+    return (
+      <div className="py-12 text-center">
+        <Loader color="dark" className="mb-8" />
+        <p>Nous récupérons les données de la campagne...</p>
+      </div>
+    )
+  }
+
   return (
     <div className="mb-4 flex flex-col justify-between md:flex-nowrap">
       <Title
@@ -62,34 +71,27 @@ export default function CampagnePage() {
         }
       />
 
-      {isLoading ? (
-        <div className="py-12 text-center">
-          <Loader color="dark" className="mb-8" />
-          <p>Nous récupérons les données de la campagne...</p>
-        </div>
-      ) : (
-        <div className="mt-8">
-          <AdminSection pollData={pollData} />
+      <div className="mt-8">
+        <AdminSection pollData={pollData} />
 
-          <PollStatisticsFilters
-            simulationRecaps={pollData?.simulationRecaps ?? []}
-            filteredSimulationRecaps={filteredSimulationRecaps ?? []}
-            defaultAdditionalQuestions={
-              pollData?.defaultAdditionalQuestions ?? []
-            }
-          />
+        <PollStatisticsFilters
+          simulationRecaps={pollData?.simulationRecaps ?? []}
+          filteredSimulationRecaps={filteredSimulationRecaps ?? []}
+          defaultAdditionalQuestions={
+            pollData?.defaultAdditionalQuestions ?? []
+          }
+        />
 
-          <PollStatistics
-            simulationRecaps={filteredSimulationRecaps ?? []}
-            funFacts={pollData?.funFacts}
-            title={<Trans>Résultats de campagne</Trans>}
-          />
+        <PollStatistics
+          simulationRecaps={filteredSimulationRecaps ?? []}
+          funFacts={pollData?.funFacts}
+          title={<Trans>Résultats de campagne</Trans>}
+        />
 
-          <PollStatisticsCharts
-            simulationRecaps={filteredSimulationRecaps ?? []}
-          />
-        </div>
-      )}
+        <PollStatisticsCharts
+          simulationRecaps={filteredSimulationRecaps ?? []}
+        />
+      </div>
     </div>
   )
 }
