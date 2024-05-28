@@ -23,7 +23,8 @@ export default function AdminSection({ pollData }: Props) {
   if (!pollData?.isAdmin) return null
 
   return (
-    <section className="mb-6 rounded-xl bg-gray-50 p-8">
+    <section className="mb-6 rounded-xl bg-gray-50 p-6">
+      <h3 className="mb-0">Section administrateur</h3>
       <p className="flex items-center gap-1 text-xs">
         <EyeIcon className="w-4" /> <Trans>Visible uniquement par vous</Trans>
       </p>
@@ -42,7 +43,7 @@ export default function AdminSection({ pollData }: Props) {
           />
         </div>
 
-        <div className="flex flex-col justify-center gap-4">
+        <div className="flex flex-1 flex-col justify-center gap-4 sm:flex-row md:flex-col">
           <ExportDataButton
             simulationRecaps={pollData?.simulationRecaps ?? []}
             poll={pollData}
@@ -56,7 +57,7 @@ export default function AdminSection({ pollData }: Props) {
             href={`/organisations/${orgaSlug}/campagnes/${pollSlug}/parametres`}
             trackingEvent={pollDashboardClickParameters}
             color="text"
-            className="flex items-center self-start">
+            className="flex items-center">
             <SettingsIcon className="mr-2 fill-primary-700" />
 
             <Trans>Voir les paramètres</Trans>

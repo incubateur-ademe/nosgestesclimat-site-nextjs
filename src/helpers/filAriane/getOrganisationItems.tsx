@@ -32,36 +32,35 @@ function getOrganisationEspaceItems({
   isAdmin: boolean
 }) {
   const items = []
-
-  if (params.slug) {
+  if (params.orgaSlug) {
     if (isAdmin) {
       items.push({
-        href: `/organisations/${params.slug}`,
-        label: <span>{formatSlugToName(params.slug)}</span>,
-        isActive: pathname === `/organisations/${params.slug}`,
+        href: `/organisations/${params.orgaSlug}`,
+        label: <span>{formatSlugToName(params.orgaSlug)}</span>,
+        isActive: pathname === `/organisations/${params.orgaSlug}`,
         isDisabled: !user?.organisation?.administratorEmail,
       })
     }
 
-    if (pathname.includes('resultats-detailles')) {
+    if (pathname.includes('campagnes')) {
       items.push({
-        href: `/organisations/${params.slug}/resultats-detailles`,
+        href: `/organisations/${params.orgaSlug}/campagnes/${params.pollSlug}`,
         label: (
           <>
-            <Trans>Résultats détaillés</Trans>
-            {!isAdmin ? ` -  ${formatSlugToName(params.slug)}` : ''}
+            <Trans>Campagne</Trans> - {formatSlugToName(params.pollSlug)}
           </>
         ),
         isActive:
-          pathname === `/organisations/${params.slug}/resultats-detailles`,
+          pathname ===
+          `/organisations/${params.orgaSlug}/campagnes/${params.pollSlug}`,
       })
     }
 
     if (pathname.includes('parametres')) {
       items.push({
-        href: `/organisations/${params.slug}/parametres`,
+        href: `/organisations/${params.orgaSlug}/parametres`,
         label: <Trans>Paramètres</Trans>,
-        isActive: pathname === `/organisations/${params.slug}/parametres`,
+        isActive: pathname === `/organisations/${params.orgaSlug}/parametres`,
       })
     }
   }
