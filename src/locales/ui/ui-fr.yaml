@@ -800,3 +800,6 @@ entries:
   Votre question à ajouter: Votre question à ajouter
   Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Vous accompagner pour mieux agir en <2>4 mails seulement</2>.
   Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.
+  Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.: Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.
+  Elle seront toutefois prises en compte lors de l'export de données.: Elle seront toutefois prises en compte lors de l'export de données.
+  Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.: Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.
