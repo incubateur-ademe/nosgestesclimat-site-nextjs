@@ -2,6 +2,7 @@
 
 import PollStatistics from '@/components/organisations/PollStatistics'
 import Trans from '@/components/translation/Trans'
+import Loader from '@/design-system/layout/Loader'
 import Title from '@/design-system/layout/Title'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
@@ -50,28 +51,45 @@ export default function CampagnePage() {
       <Title
         title={isLoading ? '...' : pollData?.name ?? <Trans>Ma Campagne</Trans>}
         subtitle={
-          <span>
-            <Trans>Créée le</Trans>{' '}
-            {dayjs(pollData?.createdAt).format('DD/MM/YYYY')}
-          </span>
+          pollData ? (
+            <span>
+              <Trans>Créée le</Trans>{' '}
+              {dayjs(pollData?.createdAt).format('DD/MM/YYYY')}
+            </span>
+          ) : (
+            ''
+          )
         }
       />
 
-      <AdminSection pollData={pollData} />
+      {isLoading ? (
+        <div className="py-12 text-center">
+          <Loader color="dark" className="mb-8" />
+          <p>Nous récupérons les données de la campagne...</p>
+        </div>
+      ) : (
+        <div className="mt-8">
+          <AdminSection pollData={pollData} />
 
-      <PollStatisticsFilters
-        simulationRecaps={pollData?.simulationRecaps ?? []}
-        filteredSimulationRecaps={filteredSimulationRecaps ?? []}
-        defaultAdditionalQuestions={pollData?.defaultAdditionalQuestions ?? []}
-      />
+          <PollStatisticsFilters
+            simulationRecaps={pollData?.simulationRecaps ?? []}
+            filteredSimulationRecaps={filteredSimulationRecaps ?? []}
+            defaultAdditionalQuestions={
+              pollData?.defaultAdditionalQuestions ?? []
+            }
+          />
 
-      <PollStatistics
-        simulationRecaps={filteredSimulationRecaps ?? []}
-        funFacts={pollData?.funFacts}
-        title={<Trans>Résultats de campagne</Trans>}
-      />
+          <PollStatistics
+            simulationRecaps={filteredSimulationRecaps ?? []}
+            funFacts={pollData?.funFacts}
+            title={<Trans>Résultats de campagne</Trans>}
+          />
 
-      <PollStatisticsCharts simulationRecaps={filteredSimulationRecaps ?? []} />
+          <PollStatisticsCharts
+            simulationRecaps={filteredSimulationRecaps ?? []}
+          />
+        </div>
+      )}
     </div>
   )
 }

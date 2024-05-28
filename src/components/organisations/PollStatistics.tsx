@@ -1,7 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import Separator from '@/design-system/layout/Separator'
 import { SimulationRecap } from '@/types/organisations'
 import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import FunFactsBlock from './orgaStatistics/FunFactsBlock'
@@ -21,8 +20,6 @@ export default function PollStatistics({
   return (
     <>
       <h2>{title ?? <Trans>Statistiques</Trans>}</h2>
-
-      <Separator className="mt-1" />
 
       <section className="relative mb-8 flex gap-4">
         <StatisticsBlocks simulationRecaps={simulationRecaps} />

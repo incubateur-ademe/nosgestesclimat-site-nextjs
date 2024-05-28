@@ -42,6 +42,7 @@ export default function CategoryListItem({
 
       <RepartitionChart
         className="min-h-[2.5rem] flex-1 rounded-xl"
+        color={`bg-${category.includes('services') ? 'servicessocietaux' : category}-500`}
         maxValue={maxValue}
         items={simulationsRecap.map((obj) => ({
           value: obj.categories[category],

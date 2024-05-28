@@ -11,6 +11,7 @@ type Props = {
   className?: string
   maxValue: number
   id: string
+  color?: string
 }
 
 export default function RepartitionChart({
@@ -18,6 +19,7 @@ export default function RepartitionChart({
   className,
   maxValue,
   id,
+  color,
 }: Props) {
   return (
     <div
@@ -33,6 +35,7 @@ export default function RepartitionChart({
             shouldBeHighlighted={shouldBeHighlighted}
             maxValue={maxValue}
             id={`tooltip-repartition-chart-${id}`}
+            className={color ?? 'bg-primary-700'}
           />
           {shouldBeHighlighted && (
             <Tooltip className="z-20" id={`tooltip-repartition-chart-${id}`} />
