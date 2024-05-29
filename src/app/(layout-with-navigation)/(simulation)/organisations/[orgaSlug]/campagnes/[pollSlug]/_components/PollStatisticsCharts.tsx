@@ -1,14 +1,13 @@
 'use client'
 
-import ActionsIcon from '@/components/icons/ActionsIcon'
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import { SimulationRecap } from '@/types/organisations'
 import { useMemo } from 'react'
-import CategoryListItem from './orgaStatisticsCharts/CategoryListItem'
-import RepartitionChart from './orgaStatisticsCharts/RepartitionChart'
+import CategoryListItem from './pollStatisticsCharts/CategoryListItem'
+import MainFootprintChart from './pollStatisticsCharts/MainFootprintChart'
 
-export default function OrgaStatisticsCharts({
+export default function PollStatisticsCharts({
   simulationRecaps,
   isAdmin,
 }: {
@@ -24,6 +23,18 @@ export default function OrgaStatisticsCharts({
             acc = roundedValue
           }
         })
+        return acc
+      }, 0) + 1,
+    [simulationRecaps]
+  )
+
+  const maxValueOfAllSimulations = useMemo(
+    () =>
+      simulationRecaps?.reduce((acc, obj) => {
+        const roundedValue = Math.round(obj.bilan / 1000)
+        if (roundedValue > acc) {
+          acc = roundedValue
+        }
         return acc
       }, 0) + 1,
     [simulationRecaps]
@@ -79,48 +90,10 @@ export default function OrgaStatisticsCharts({
 
       <Separator />
 
-      <section className="mb-12">
-        <h3>
-          <Trans>Empreinte carbone</Trans>
-        </h3>
-
-        <div className="flex flex-col">
-          <RepartitionChart
-            maxValue={29}
-            items={simulationRecaps.map(({ bilan, isCurrentUser }) => ({
-              value: bilan,
-              shouldBeHighlighted: isCurrentUser,
-            }))}
-            id="bilan"
-          />
-
-          <div className="mt-4 flex items-baseline justify-between">
-            <span className="flex items-center">
-              <ActionsIcon className="mr-1 w-4" />
-              <strong className="mr-1 text-lg">2</strong>{' '}
-              <span>
-                <Trans>tonnes</Trans>
-              </span>
-            </span>
-
-            {hasCurrentUser && (
-              <div className="flex items-center gap-3">
-                <div className="h-4 w-1 bg-secondary-700" />
-                <p className="mb-0 text-sm text-gray-600">
-                  <Trans>Votre résultat</Trans>
-                </p>
-              </div>
-            )}
-
-            <span>
-              <strong className="text-lg">29</strong>{' '}
-              <span>
-                <Trans>tonnes</Trans>
-              </span>
-            </span>
-          </div>
-        </div>
-      </section>
+      <MainFootprintChart
+        simulationRecaps={simulationRecaps}
+        maxValue={maxValueOfAllSimulations + 1}
+      />
 
       <section>
         <div className="flex items-baseline justify-between md:max-w-[16rem]">

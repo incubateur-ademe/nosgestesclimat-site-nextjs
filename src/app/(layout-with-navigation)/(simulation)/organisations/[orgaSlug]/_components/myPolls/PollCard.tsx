@@ -44,7 +44,7 @@ export default function PollCard({ poll, index }: Props) {
 
       <ButtonLink
         className="w-full"
-        href={`/organisations/${orgaSlug}/${poll?.slug}`}>
+        href={`/organisations/${orgaSlug}/campagnes/${poll?.slug}`}>
         <Trans>Voir le détail</Trans>
       </ButtonLink>
     </div>

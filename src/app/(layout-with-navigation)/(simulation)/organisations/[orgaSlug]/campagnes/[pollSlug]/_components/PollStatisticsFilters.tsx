@@ -1,10 +1,10 @@
 import Trans from '@/components/translation/Trans'
 import { PollData, SimulationRecap } from '@/types/organisations'
-import AgeFilter from './orgaStatisticsFilters/AgeFilter'
-import DepartementFilter from './orgaStatisticsFilters/DepartementFilter'
-import InfoTooltipIcon from './orgaStatisticsFilters/InfoTooltipIcon'
+import AgeFilter from './pollStatisticsFilters/AgeFilter'
+import DepartementFilter from './pollStatisticsFilters/DepartementFilter'
+import InfoTooltipIcon from './pollStatisticsFilters/InfoTooltipIcon'
 
-export default function OrgaStatisticsFilters({
+export default function PollStatisticsFilters({
   simulationRecaps,
   filteredSimulationRecaps,
   defaultAdditionalQuestions,
@@ -32,7 +32,7 @@ export default function OrgaStatisticsFilters({
         <InfoTooltipIcon className="z-10 inline-block md:hidden" />
       </div>
 
-      <div className="flex flex-col gap-2 xs:flex-row xs:items-center md:gap-4">
+      <div className="flex flex-col gap-2 md:gap-4 xs:flex-row xs:items-center">
         {defaultAdditionalQuestions.includes('birthdate') && (
           <AgeFilter filteredSimulationRecaps={filteredSimulationRecaps} />
         )}
