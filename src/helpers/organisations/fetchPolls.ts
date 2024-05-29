@@ -7,7 +7,7 @@ type Props = {
 }
 export const fetchPolls = async ({ pollSlugs }: Props): Promise<PollInfo[]> =>
   axios
-    .post(`${SERVER_URL}/organisations/fetch-polls`, {
+    .post(`${SERVER_URL}/polls/fetch-polls`, {
       polls: pollSlugs,
     })
     .then((res) => res.data)

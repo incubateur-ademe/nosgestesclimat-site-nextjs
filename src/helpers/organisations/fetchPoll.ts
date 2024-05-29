@@ -5,7 +5,9 @@ import axios from 'axios'
 type Props = {
   pollSlug?: string | null
 }
-export const fetchPoll = async ({ pollSlug }: Props): Promise<PollInfo> =>
+export const fetchPublicPollInfo = async ({
+  pollSlug,
+}: Props): Promise<PollInfo> =>
   axios
-    .get(`${SERVER_URL}/organisations/fetch-poll/${pollSlug}`)
+    .get(`${SERVER_URL}/polls/fetch-public-poll/${pollSlug}`)
     .then((res) => res.data)

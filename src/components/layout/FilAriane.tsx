@@ -20,7 +20,7 @@ export default function FilAriane() {
     email: user?.organisation?.administratorEmail ?? '',
   })
 
-  const isAdmin = organisation?.slug === params.slug
+  const isAdmin = organisation?.slug === params.orgaSlug
 
   if (!TARGETED_PATHS.some((path) => pathname.includes(path))) return null
 
