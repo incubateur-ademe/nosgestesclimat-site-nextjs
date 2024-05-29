@@ -28,7 +28,7 @@ export default function QuestionsComplementaires({
   const { t } = useClientTranslation()
 
   return (
-    <section className="mb-12 mt-8">
+    <section className="my-8">
       <h2>
         <Trans>Questions complémentaires</Trans>
       </h2>

@@ -8,15 +8,20 @@ import { useForm as useReactHookForm } from 'react-hook-form'
 type Props = {
   nameValue: string
   updatePoll: ({ name }: { name: string }) => Promise<void>
+  refetchPoll: () => void
 }
 
-export default function NameForm({ nameValue, updatePoll }: Props) {
+export default function NameForm({
+  nameValue,
+  updatePoll,
+  refetchPoll,
+}: Props) {
   const { value, flick } = useAutoFlick()
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
     setError,
   } = useReactHookForm({
     defaultValues: {
@@ -29,6 +34,7 @@ export default function NameForm({ nameValue, updatePoll }: Props) {
       await updatePoll({
         name: data.name,
       })
+      refetchPoll()
       flick()
     } catch (error) {
       setError('name', {
@@ -39,7 +45,15 @@ export default function NameForm({ nameValue, updatePoll }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="">
+    <form
+      onSubmit={
+        isDirty
+          ? handleSubmit(onSubmit)
+          : (e) => {
+              e.preventDefault()
+            }
+      }
+      className="">
       <div className="relative w-full max-w-[30rem] pb-4">
         <TextInputGroup
           containerClassName="max-w-[30rem]"
@@ -53,7 +67,9 @@ export default function NameForm({ nameValue, updatePoll }: Props) {
       </div>
 
       <div>
-        <Button type="submit">Enregistrer</Button>
+        <Button type="submit" aria-disabled={!isDirty}>
+          Enregistrer
+        </Button>
       </div>
     </form>
   )

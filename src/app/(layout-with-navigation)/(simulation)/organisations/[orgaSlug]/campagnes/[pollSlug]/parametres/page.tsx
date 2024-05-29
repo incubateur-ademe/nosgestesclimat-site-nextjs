@@ -74,7 +74,11 @@ export default function ParametresPage() {
         }
       />
 
-      <NameForm nameValue={poll?.name ?? ''} updatePoll={updatePoll as any} />
+      <NameForm
+        nameValue={poll?.name ?? ''}
+        refetchPoll={refetchPoll}
+        updatePoll={updatePoll as any}
+      />
 
       <Separator />
 
