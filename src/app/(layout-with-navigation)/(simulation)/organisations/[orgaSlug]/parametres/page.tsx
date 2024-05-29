@@ -10,7 +10,6 @@ import { useUser } from '@/publicodes-state'
 import useFetchOrganisation from '../../_hooks/useFetchOrganisation'
 import DeconnexionButton from './DeconnexionButton'
 import InformationsForm from './_components/InformationsForm'
-import QuestionsComplementaires from './_components/QuestionsComplementaires'
 
 export default function ParametresPage() {
   const { user } = useUser()
@@ -19,7 +18,6 @@ export default function ParametresPage() {
     data: organisation,
     isError,
     isLoading,
-    refetch,
   } = useFetchOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
   })
@@ -37,11 +35,6 @@ export default function ParametresPage() {
   return (
     <MaxWidthContent className="pb-8">
       <Title title={<Trans>Paramètres</Trans>} />
-
-      <QuestionsComplementaires
-        organisation={organisation}
-        refetchOrganisation={refetch}
-      />
 
       <Separator />
 

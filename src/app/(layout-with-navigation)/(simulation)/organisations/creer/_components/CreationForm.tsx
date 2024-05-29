@@ -22,6 +22,7 @@ type Inputs = {
   organisationType: string
   administratorName: string
   hasOptedInForCommunications: boolean
+  shouldNavigateToPollForm?: boolean
 }
 
 const ORGANISATION_TYPES = [
@@ -35,7 +36,7 @@ const ORGANISATION_TYPES = [
 ]
 
 export default function CreationForm() {
-  const [shouldNavigate, setShouldNavigate] = useState(false)
+  const [pathToNavigateTo, setPathToNavigate] = useState('')
 
   const { user, updateUserOrganisation } = useUser()
 
@@ -62,6 +63,7 @@ export default function CreationForm() {
     useSendOrganisationCreationEmail()
 
   async function onSubmit({
+    shouldNavigateToPollForm = true,
     name,
     administratorName,
     organisationType,
@@ -89,21 +91,35 @@ export default function CreationForm() {
         slug: organisationUpdated?.slug,
       })
 
-      setShouldNavigate(true)
+      if (shouldNavigateToPollForm) {
+        setPathToNavigate(
+          `/organisations/${organisationUpdated?.slug}/creer-campagne`
+        )
+      } else {
+        setPathToNavigate(`/organisations/${organisationUpdated?.slug}`)
+      }
     } catch (error: any) {
       captureException(error)
     }
   }
 
-  const userOrgaSlugRef = useRef(user?.organisation?.slug)
+  const userOrgaSlugRef = useRef('')
 
+  // Redirect to organisation page if user has already an organisation
   useEffect(() => {
-    if (!shouldNavigate) return
+    if (user?.organisation?.slug) {
+      router.push(`/organisations/${user?.organisation?.slug}`)
+    }
+  }, [router, user?.organisation?.slug])
+
+  // Handle redirection after submitting the form
+  useEffect(() => {
+    if (!pathToNavigateTo) return
 
     if (userOrgaSlugRef.current === user?.organisation?.slug) return
 
-    router.push(`/organisations/${user?.organisation?.slug}`)
-  }, [router, shouldNavigate, user?.organisation?.slug])
+    router.push(pathToNavigateTo)
+  }, [router, pathToNavigateTo, user?.organisation?.slug])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -195,15 +211,20 @@ export default function CreationForm() {
       </div>
 
       <div className="mt-12 flex w-full gap-4">
-        <Button color="primary" type="submit">
+        <Button
+          color="secondary"
+          type="button"
+          onClick={() =>
+            handleSubmit((props) =>
+              onSubmit({ ...props, shouldNavigateToPollForm: false })
+            )
+          }>
           <Trans>Accéder à mon espace</Trans>
         </Button>
-        {/*
-        TODO: Uncomment when the feature is ready
+
         <Button type="submit">
           <Trans>Créer ma première campagne</Trans>
         </Button>
-        */}
       </div>
     </form>
   )

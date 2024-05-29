@@ -1,8 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useAreCustomQuestionsEnabled } from '@/hooks/organisations/useAreCustomQuestionsEnabled'
-import { useUpdateCustomQuestions } from '@/hooks/organisations/useUpdateCustomQuestions'
-import { Organisation } from '@/types/organisations'
+import { OrganisationPoll } from '@/types/organisations'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -13,19 +12,22 @@ type Inputs = {
 }
 
 type Props = {
-  organisation: Organisation | undefined
-  refetchOrganisation: () => void
+  poll:
+    | Pick<
+        OrganisationPoll,
+        'customAdditionalQuestions' | 'defaultAdditionalQuestions'
+      >
+    | undefined
   submitLabel?: string | JSX.Element
   isEditMode?: boolean
-  onCompleted?: () => void
+  onCompleted?: (changes: Record<string, unknown>) => void
   question?: string
 }
 
 const MAX_NUMBER_QUESTIONS = 4
 
 export default function CustomQuestionForm({
-  organisation,
-  refetchOrganisation,
+  poll,
   submitLabel,
   question,
   isEditMode,
@@ -34,7 +36,7 @@ export default function CustomQuestionForm({
   const [isFormDisplayed, setIsFormDisplayed] = useState(isEditMode ?? false)
 
   const { data: areCustomQuestionsEnabled, isFetched } =
-    useAreCustomQuestionsEnabled(organisation)
+    useAreCustomQuestionsEnabled()
 
   const { register, handleSubmit, setValue, reset } = useReactHookForm<Inputs>()
 
@@ -44,16 +46,11 @@ export default function CustomQuestionForm({
     }
   }, [question, setValue])
 
-  const { mutateAsync: updateCustomQuestions } = useUpdateCustomQuestions({
-    pollSlug: organisation?.polls[0].slug ?? '',
-    orgaSlug: organisation?.slug ?? '',
-  })
-
   const onSubmit: SubmitHandler<Inputs> = async ({
     question: questionValue,
   }) => {
     const customAdditionalQuestions = [
-      ...(organisation?.polls[0].customAdditionalQuestions || []),
+      ...(poll?.customAdditionalQuestions || []),
     ]
 
     if (isEditMode && question !== questionValue) {
@@ -73,16 +70,13 @@ export default function CustomQuestionForm({
       })
     }
 
-    await updateCustomQuestions({ customAdditionalQuestions })
+    onCompleted({ customAdditionalQuestions })
 
     setIsFormDisplayed(false)
-    refetchOrganisation()
-    onCompleted()
   }
 
   function handleCancel() {
     setIsFormDisplayed(false)
-    onCompleted()
   }
 
   // Show the form only for organisations with access
@@ -91,8 +85,7 @@ export default function CustomQuestionForm({
   }
 
   const hasReachedMaxQuestions =
-    (organisation?.polls?.[0]?.customAdditionalQuestions || [])?.length >=
-    MAX_NUMBER_QUESTIONS
+    (poll?.customAdditionalQuestions || [])?.length >= MAX_NUMBER_QUESTIONS
 
   if (!isFormDisplayed) {
     return (
