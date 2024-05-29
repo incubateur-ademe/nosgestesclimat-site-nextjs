@@ -27,6 +27,7 @@ type Props = {
  */
 export default function useQuestions({
   root,
+  safeGetRule,
   safeEvaluate,
   categories,
   subcategories,
@@ -36,15 +37,39 @@ export default function useQuestions({
   everyMosaicChildren,
   rawMissingVariables,
 }: Props) {
+  const whiteList = safeGetRule('ui . liste blanche')
+    ? Object.values(
+        safeGetRule('ui . liste blanche')?.rawNode as Record<string, string>
+      )
+    : []
+
+  const blackList = safeGetRule('ui . liste noire')
+    ? Object.values(
+        safeGetRule('ui . liste noire')?.rawNode as Record<string, string>
+      )
+    : []
+
   const missingVariables = useMemo<Record<string, number>>(
-    () =>
-      Object.fromEntries(
+    () => {
+      const tempMissingVariables = Object.fromEntries(
         Object.entries(safeEvaluate(root)?.missingVariables || {}).filter(
           (missingVariable) => everyQuestions.includes(missingVariable[0])
         )
-      ),
+      )
+      // We artificially set the missing variables of the whiteList to a high value
+      whiteList.forEach((dottedName) => {
+        tempMissingVariables[dottedName] = 10000
+      })
+
+      // We artificially set the missing variables of the blackList to a low value
+      blackList.forEach((dottedName) => {
+        tempMissingVariables[dottedName] = -1
+      })
+
+      return tempMissingVariables
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [safeEvaluate, root, everyQuestions, situation]
+    [safeEvaluate, root, everyQuestions, situation, whiteList, blackList]
   )
 
   const remainingQuestions = useMemo<string[]>(
