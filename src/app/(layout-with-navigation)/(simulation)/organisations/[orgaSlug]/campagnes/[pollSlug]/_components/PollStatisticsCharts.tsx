@@ -4,8 +4,8 @@ import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import { SimulationRecap } from '@/types/organisations'
 import { useMemo } from 'react'
-import CategoryListItem from './PollStatisticsCharts/CategoryListItem'
-import MainFootprintChart from './PollStatisticsCharts/MainFootprintChart'
+import CategoryListItem from './pollStatisticsCharts/CategoryListItem'
+import MainFootprintChart from './pollStatisticsCharts/MainFootprintChart'
 
 export default function PollStatisticsCharts({
   simulationRecaps,
