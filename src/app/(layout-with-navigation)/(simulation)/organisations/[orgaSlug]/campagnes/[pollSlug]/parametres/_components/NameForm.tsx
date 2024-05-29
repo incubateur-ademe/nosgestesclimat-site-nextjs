@@ -52,8 +52,7 @@ export default function NameForm({
           : (e) => {
               e.preventDefault()
             }
-      }
-      className="">
+      }>
       <div className="relative w-full max-w-[30rem] pb-4">
         <TextInputGroup
           containerClassName="max-w-[30rem]"
