@@ -5,6 +5,7 @@ import OrgaStatistics from '@/components/organisations/OrgaStatistics'
 import Trans from '@/components/translation/Trans'
 import { organisationsDashboardExportData } from '@/constants/tracking/pages/organisationsDashboard'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
+import { filterZerosAndTooHighValues } from '@/helpers/organisations/filterZerosAndTooHighValues'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useParams } from 'next/navigation'
@@ -22,10 +23,13 @@ export default function ResultatsDetaillesPage() {
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
 
+  const simulationsRecapWithoutZeroAndTooHighValues =
+    filterZerosAndTooHighValues(pollData?.simulationRecaps ?? [])
+
   const filteredSimulationRecaps =
     pollData &&
     filterSimulationRecaps({
-      simulationRecaps: pollData?.simulationRecaps,
+      simulationRecaps: simulationsRecapWithoutZeroAndTooHighValues,
       ageFilters,
       postalCodeFilters,
     })
@@ -68,7 +72,10 @@ export default function ResultatsDetaillesPage() {
         title={<Trans>Chiffres clés</Trans>}
       />
 
-      <OrgaStatisticsCharts simulationRecaps={filteredSimulationRecaps ?? []} />
+      <OrgaStatisticsCharts
+        simulationRecaps={filteredSimulationRecaps ?? []}
+        isAdmin={pollData?.isAdmin}
+      />
     </div>
   )
 }
