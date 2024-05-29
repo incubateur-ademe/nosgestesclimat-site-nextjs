@@ -15,7 +15,7 @@ type Props = {
 export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
   const pathname = usePathname()
 
-  const isOrgaAdmin = useIsOrganisationAdmin()
+  const { isAdmin } = useIsOrganisationAdmin()
 
   const isResultatsDetailles = pathname.includes('resultats-detailles')
 
@@ -44,7 +44,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
         <div className="flex max-w-2xl gap-4">
           <HourglassIcon className="fill-primary-700" width="80" height="60" />
           <div className="flex items-center">
-            {isOrgaAdmin ? (
+            {isAdmin ? (
               <p className="mb-0">
                 <span>
                   <Trans>

@@ -9,7 +9,7 @@ import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useSearchParams } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
-import { usePoll } from '../organisations/usePoll'
+import { usePollPublicInfo } from '../organisations/usePollPublicInfo'
 
 /**
  * @returns {getLinkToNextInfosPage} - A function that returns the link to the next infos page
@@ -31,7 +31,7 @@ export function useInfosPage() {
 
   const { pollSlug } = useOrganisationQueryParams()
 
-  const { data: poll, isLoading } = usePoll({ pollSlug })
+  const { data: poll, isLoading } = usePollPublicInfo({ pollSlug })
 
   const { customAdditionalQuestions } = poll ?? {
     customAdditionnalQuestions: [],

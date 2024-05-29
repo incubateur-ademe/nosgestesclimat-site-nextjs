@@ -1,8 +1,8 @@
 'use client'
 
+import PollLoader from '@/components/organisations/PollLoader'
 import PollStatistics from '@/components/organisations/PollStatistics'
 import Trans from '@/components/translation/Trans'
-import Loader from '@/design-system/layout/Loader'
 import Title from '@/design-system/layout/Title'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
@@ -47,12 +47,7 @@ export default function CampagnePage() {
   }
 
   if (isLoading) {
-    return (
-      <div className="py-12 text-center">
-        <Loader color="dark" className="mb-8" />
-        <p>Nous récupérons les données de la campagne...</p>
-      </div>
-    )
+    return <PollLoader />
   }
 
   return (

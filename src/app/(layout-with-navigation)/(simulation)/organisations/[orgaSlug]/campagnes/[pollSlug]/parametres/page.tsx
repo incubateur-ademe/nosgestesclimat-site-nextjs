@@ -1,37 +1,62 @@
 'use client'
 
 import MaxWidthContent from '@/components/layout/MaxWidthContent'
+import ModificationSaved from '@/components/messages/ModificationSaved'
+import PollLoader from '@/components/organisations/PollLoader'
 import QuestionsComplementaires from '@/components/organisations/QuestionsComplementaires'
 import Trans from '@/components/translation/Trans'
-import Loader from '@/design-system/layout/Loader'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { useIsOrganisationAdmin } from '@/hooks/organisations/useIsOrganisationAdmin'
 import { usePoll } from '@/hooks/organisations/usePoll'
+import { useUpdateCustomQuestions } from '@/hooks/organisations/useUpdateCustomQuestions'
 import { useUpdatePoll } from '@/hooks/organisations/useUpdatePoll'
+import { useAutoFlick } from '@/hooks/utils/useAutoFlick'
+import { useUser } from '@/publicodes-state'
+import { CustomAdditionalQuestions } from '@/types/organisations'
 import { useParams } from 'next/navigation'
 import PollNotFound from '../_components/PollNotFound'
 import DeletePollButton from './_components/DeletePollButton'
 import NameForm from './_components/NameForm'
 
 export default function ParametresPage() {
-  const { pollSlug } = useParams()
+  const { pollSlug, orgaSlug } = useParams()
 
-  const isAdmin = useIsOrganisationAdmin()
+  const { user } = useUser()
+
+  const { isAdmin, isLoading: isLoadingOrgaAdmin } = useIsOrganisationAdmin()
 
   const {
     data: poll,
     isError,
     isLoading,
+    refetch: refetchPoll,
   } = usePoll({
     pollSlug: pollSlug as string,
     isEnabled: isAdmin,
+    orgaSlug: orgaSlug as string,
+    email: user?.organisation?.administratorEmail ?? '',
   })
 
   const { mutateAsync: updatePoll } = useUpdatePoll()
 
-  if (isLoading) {
-    return <Loader />
+  const { mutateAsync: updatePollCustomQuestions } = useUpdateCustomQuestions({
+    pollSlug: pollSlug as string,
+    orgaSlug: orgaSlug as string,
+  })
+
+  const { value, flick } = useAutoFlick()
+
+  async function handleUpdatePollCustomQuestions(changes: {
+    customAdditionalQuestions: CustomAdditionalQuestions[]
+  }) {
+    await updatePollCustomQuestions(changes)
+    flick()
+    refetchPoll()
+  }
+
+  if (isLoading || isLoadingOrgaAdmin) {
+    return <PollLoader />
   }
 
   if (isError && !isLoading && !poll) {
@@ -43,7 +68,8 @@ export default function ParametresPage() {
       <Title
         title={
           <span>
-            <Trans>Paramètres de</Trans> {poll?.name}
+            <Trans>Paramètres de</Trans>{' '}
+            <span className="text-secondary-700">{poll?.name}</span>
           </span>
         }
       />
@@ -54,9 +80,16 @@ export default function ParametresPage() {
 
       <QuestionsComplementaires
         description={' '}
-        poll={poll}
-        onChange={updatePoll as any}
+        poll={{
+          defaultAdditionalQuestions: poll?.defaultAdditionalQuestions as [
+            string,
+          ],
+          customAdditionalQuestions: poll?.customAdditionalQuestions,
+        }}
+        onChange={handleUpdatePollCustomQuestions as any}
       />
+
+      <ModificationSaved shouldShowMessage={value} />
 
       <Separator />
 
