@@ -21,12 +21,9 @@ export function useFetchPollData({
     queryKey: ['pollData'],
     queryFn: () =>
       axios
-        .post(SERVER_URL + '/polls/fetch-poll-processed-data', {
-          orgaSlug,
-          pollSlug,
-          userId: user?.userId,
-          forceUseFirstPoll,
-        })
+        .get(
+          `${SERVER_URL}/polls/fetch-poll-processed-data?orgaSlug=${encodeURIComponent(orgaSlug ?? '')}&pollSlug=${encodeURIComponent(pollSlug ?? '')}&userId=${encodeURIComponent(user?.userId)}&forceUseFirstPoll=${forceUseFirstPoll || false}`
+        )
         .then((res) => res.data)
         .catch((err) => {
           console.error(err)
