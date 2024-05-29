@@ -13,7 +13,6 @@ export function migrateSimulation({
   simulation: oldSimulation,
   migrationInstructions,
 }: Props): Return {
-  console.log('coucou')
   const simulation = JSON.parse(JSON.stringify(oldSimulation)) as Simulation
 
   const { situationMigrated, foldedStepsMigrated } = migrateSituation({
