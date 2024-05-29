@@ -55,7 +55,7 @@ export default forwardRef(function TextInputGroup(
       )}
       aria-live="polite">
       {label ? (
-        <label htmlFor={name} className="max-w-[30rem]">
+        <label htmlFor={name} className="w-full max-w-[30rem]">
           <span
             className={` text-sm font-bold text-slate-900 ${
               error ? '!text-red-700' : ''

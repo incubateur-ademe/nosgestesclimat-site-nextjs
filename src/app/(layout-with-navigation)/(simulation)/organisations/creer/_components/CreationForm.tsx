@@ -1,6 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { ORGANISATION_TYPES } from '@/constants/organisations/organisationTypes'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
@@ -12,7 +13,6 @@ import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisati
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
-import { t } from 'i18next'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -24,16 +24,6 @@ type Inputs = {
   hasOptedInForCommunications: boolean
   shouldNavigateToPollForm?: boolean
 }
-
-const ORGANISATION_TYPES = [
-  t('Entreprise'),
-  t('Public ou collectivité territoriale'),
-  t('Coopérative'),
-  t('Association'),
-  t('Université ou école'),
-  t("Groupe d'amis"),
-  t('Autre'),
-]
 
 export default function CreationForm() {
   const [pathToNavigateTo, setPathToNavigate] = useState('')

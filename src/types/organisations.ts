@@ -50,6 +50,8 @@ export type Organisation = {
     code: string
     expirationDate: Date
   }
+  organisationType?: string
+  numberOfCollaborators?: number
 }
 
 export type SimulationRecap = {
