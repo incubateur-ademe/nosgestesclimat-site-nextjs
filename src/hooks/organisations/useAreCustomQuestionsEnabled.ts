@@ -10,9 +10,7 @@ export function useAreCustomQuestionsEnabled() {
     queryKey: ['areCustomQuestionsEnabled', orgaSlug],
     queryFn: () =>
       axios
-        .get(
-          `${SERVER_URL}/organisations/check-custom-questions-enabled/${orgaSlug}`
-        )
+        .get(`${SERVER_URL}/polls/check-custom-questions-enabled/${orgaSlug}`)
         .then((res) => res.data),
     retry: false,
     enabled: !!orgaSlug,

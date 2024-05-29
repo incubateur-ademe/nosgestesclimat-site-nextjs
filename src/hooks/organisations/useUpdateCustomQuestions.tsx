@@ -17,7 +17,7 @@ export function useUpdateCustomQuestions({ pollSlug, orgaSlug }: Props) {
       customAdditionalQuestions: CustomAdditionalQuestions[]
     }) =>
       axios
-        .post(`${SERVER_URL}/organisations/update-custom-questions`, {
+        .post(`${SERVER_URL}/polls/update-custom-questions`, {
           pollSlug,
           orgaSlug,
           customAdditionalQuestions,

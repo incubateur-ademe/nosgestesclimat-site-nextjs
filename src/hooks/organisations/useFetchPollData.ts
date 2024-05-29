@@ -21,7 +21,7 @@ export function useFetchPollData({
     queryKey: ['pollData'],
     queryFn: () =>
       axios
-        .post(SERVER_URL + '/organisations/fetch-poll-processed-data', {
+        .post(SERVER_URL + '/polls/fetch-poll-processed-data', {
           orgaSlug,
           pollSlug,
           userId: user?.userId,
