@@ -872,3 +872,6 @@ entries:
   Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Ayudarle a actuar mejor en <2>sólo 4 correos electrónicos</2>.
   Une erreur est survenue, veuillez réessayer.: Se ha producido un error, inténtelo de nuevo.
   Certaines organisations sont dotées d’un outil type MailinBlack, Altospam, ect., qui bloque parfois nos emails.: Algunas organizaciones disponen de una herramienta como MailinBlack, Altospam, etc., que a veces bloquea nuestros correos electrónicos.
+  Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.: Cada entrada está representada por una barra vertical. Su puntuación se muestra en <2>rosa</2>.
+  Elle seront toutefois prises en compte lors de l'export de données.: No obstante, se tendrán en cuenta al exportar los datos.
+  Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.: Para facilitar la lectura, se eliminan los valores superiores a 100 t.
