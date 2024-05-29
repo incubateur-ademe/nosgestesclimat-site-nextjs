@@ -34,7 +34,7 @@ export default function MainFootprintChart({
                 </strong>
               </p>
               <p className="mb-0 text-sm">
-                <Trans>C'est l’objectif pour 2050,</Trans>{' '}
+                <Trans>c'est l’objectif pour 2050,</Trans>{' '}
                 <InlineLink href="/actions">
                   <Trans>on s'y met ?</Trans>
                 </InlineLink>
