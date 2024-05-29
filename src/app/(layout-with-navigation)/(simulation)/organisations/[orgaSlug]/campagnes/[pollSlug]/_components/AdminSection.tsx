@@ -24,7 +24,9 @@ export default function AdminSection({ pollData }: Props) {
 
   return (
     <section className="mb-10 rounded-xl bg-gray-50 p-6">
-      <h3 className="mb-0">Section administrateur</h3>
+      <h3 className="mb-0">
+        <Trans>Section administrateur</Trans>
+      </h3>
       <p className="flex items-center gap-1 text-xs">
         <EyeIcon className="w-4" /> <Trans>Visible uniquement par vous</Trans>
       </p>
