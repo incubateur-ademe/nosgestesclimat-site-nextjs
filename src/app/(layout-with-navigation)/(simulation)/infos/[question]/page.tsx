@@ -5,7 +5,7 @@ import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
-import { usePoll } from '@/hooks/organisations/usePoll'
+import { usePollPublicInfo } from '@/hooks/organisations/usePollPublicInfo'
 import { useParams, useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -29,7 +29,7 @@ export default function CustomQuestion() {
 
   const { pollSlug } = useOrganisationQueryParams()
 
-  const { data: poll, isLoading } = usePoll({ pollSlug })
+  const { data: poll, isLoading } = usePollPublicInfo({ pollSlug })
 
   const { addCustomAnswer } = useContext(InfosContext)
 

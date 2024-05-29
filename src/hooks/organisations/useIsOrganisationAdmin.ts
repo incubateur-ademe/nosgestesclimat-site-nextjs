@@ -9,9 +9,9 @@ export function useIsOrganisationAdmin() {
 
   const params = useParams()
 
-  const { data: organisation } = useFetchOrganisation({
+  const { data: organisation, isLoading } = useFetchOrganisation({
     email: user?.organisation?.administratorEmail ?? '',
   })
 
-  return organisation?.slug === params.orgaSlug
+  return { isAdmin: organisation?.slug === params.orgaSlug, isLoading }
 }

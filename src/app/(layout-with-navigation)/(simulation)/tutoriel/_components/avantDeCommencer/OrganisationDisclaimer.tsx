@@ -2,12 +2,12 @@
 
 import Trans from '@/components/translation/Trans'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
-import { usePoll } from '@/hooks/organisations/usePoll'
+import { usePollPublicInfo } from '@/hooks/organisations/usePollPublicInfo'
 
 export default function OrganisationDisclaimer() {
   const { pollSlug } = useOrganisationQueryParams()
 
-  const { data: poll, isLoading } = usePoll({ pollSlug })
+  const { data: poll, isLoading } = usePollPublicInfo({ pollSlug })
 
   // If there is no pollSlug, we don't display the disclaimer
   if (!pollSlug) {

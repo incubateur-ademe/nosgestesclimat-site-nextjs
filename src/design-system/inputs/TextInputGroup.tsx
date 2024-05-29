@@ -16,6 +16,7 @@ type Props = {
   error?: string
   helperText?: string | ReactNode
   className?: string
+  containerClassName?: string
   placeholder?: string
   onChange?: ChangeEventHandler<HTMLInputElement>
   value?: string | number
@@ -34,6 +35,7 @@ export default forwardRef(function TextInputGroup(
     error,
     helperText,
     className,
+    containerClassName,
     placeholder,
     onChange,
     value,
@@ -46,7 +48,12 @@ export default forwardRef(function TextInputGroup(
   ref: ForwardedRef<HTMLInputElement>
 ) {
   return (
-    <div className="flex w-full flex-col items-start" aria-live="polite">
+    <div
+      className={twMerge(
+        'flex w-full flex-col items-start',
+        containerClassName
+      )}
+      aria-live="polite">
       {label ? (
         <label htmlFor={name} className="max-w-[30rem]">
           <span
