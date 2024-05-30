@@ -15,7 +15,9 @@ type MutationProps = {
 
 export function useUpdatePoll() {
   const { user } = useUser()
+
   const { orgaSlug, pollSlug } = useParams()
+
   return useMutation({
     mutationKey: ['updatePoll', pollSlug],
     mutationFn: ({
@@ -24,14 +26,20 @@ export function useUpdatePoll() {
       customAdditionalQuestions,
     }: MutationProps) =>
       axios
-        .post(`${SERVER_URL}/polls/update`, {
-          email: user?.organisation?.administratorEmail,
-          orgaSlug,
-          pollSlug,
-          name,
-          defaultAdditionalQuestions,
-          customAdditionalQuestions,
-        })
+        .post(
+          `${SERVER_URL}/polls/update`,
+          {
+            email: user?.organisation?.administratorEmail,
+            orgaSlug,
+            pollSlug,
+            name,
+            defaultAdditionalQuestions,
+            customAdditionalQuestions,
+          },
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => res.data),
   })
 }

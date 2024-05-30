@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import { User } from '@/publicodes-state/types'
+import { PollData } from '@/types/organisations'
 
 function formatSlugToName(slug: string) {
   return decodeURIComponent(slug).replaceAll('-', ' ')
@@ -25,11 +26,13 @@ function getOrganisationEspaceItems({
   params,
   user,
   isAdmin,
+  poll,
 }: {
   pathname: string
   params: any
   user: User
   isAdmin: boolean
+  poll?: PollData | null
 }) {
   const items = []
   if (params.orgaSlug) {
@@ -45,11 +48,7 @@ function getOrganisationEspaceItems({
     if (pathname.includes('campagnes')) {
       items.push({
         href: `/organisations/${params.orgaSlug}/campagnes/${params.pollSlug}`,
-        label: (
-          <>
-            <Trans>Campagne</Trans> - {formatSlugToName(params.pollSlug)}
-          </>
-        ),
+        label: <>{poll?.name ?? <Trans>Sans titre</Trans>}</>,
         isActive:
           pathname ===
           `/organisations/${params.orgaSlug}/campagnes/${params.pollSlug}`,
@@ -60,7 +59,10 @@ function getOrganisationEspaceItems({
       items.push({
         href: `/organisations/${params.orgaSlug}/parametres`,
         label: <Trans>Paramètres</Trans>,
-        isActive: pathname === `/organisations/${params.orgaSlug}/parametres`,
+        isActive:
+          pathname === `/organisations/${params.orgaSlug}/parametres` ||
+          pathname ===
+            `/organisations/${params.orgaSlug}/campagnes/${params.pollSlug}/parametres`,
       })
     }
   }
@@ -72,11 +74,13 @@ export function getOrganisationItems({
   params,
   user,
   isAdmin,
+  poll,
 }: {
   pathname: string
   params: any
   user: User
   isAdmin: boolean
+  poll?: PollData | null
 }): {
   href: string
   label: string | JSX.Element
@@ -99,7 +103,9 @@ export function getOrganisationItems({
   }
 
   // These are the items for the organisation page
-  items.push(...getOrganisationEspaceItems({ pathname, params, user, isAdmin }))
+  items.push(
+    ...getOrganisationEspaceItems({ pathname, params, user, isAdmin, poll })
+  )
 
   return items
 }

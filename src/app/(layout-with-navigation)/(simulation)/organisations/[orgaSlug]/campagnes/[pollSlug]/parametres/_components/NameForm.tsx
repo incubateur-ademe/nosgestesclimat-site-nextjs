@@ -56,7 +56,11 @@ export default function NameForm({
       <div className="relative w-full max-w-[30rem] pb-4">
         <TextInputGroup
           containerClassName="max-w-[30rem]"
-          label={<Trans>Nom de la campagne</Trans>}
+          label={
+            <span className="text-lg font-medium">
+              <Trans>Nom de la campagne</Trans>
+            </span>
+          }
           value={nameValue}
           error={errors.name?.message}
           {...register('name', { required: 'Ce champ est requis' })}

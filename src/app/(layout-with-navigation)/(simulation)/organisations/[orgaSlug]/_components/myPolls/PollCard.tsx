@@ -1,6 +1,5 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { OrganisationPoll } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useParams } from 'next/navigation'
@@ -10,17 +9,21 @@ type Props = {
   index: number
 }
 
-export default function PollCard({ poll, index }: Props) {
+export default function PollCard({ poll }: Props) {
   const { orgaSlug } = useParams()
-
-  const { t } = useClientTranslation()
 
   if (!poll) return null
 
   return (
     <div className="rounded-xl bg-primary-50 p-6">
       <h3 className="mb-2 text-xl">
-        {poll.name ?? t('Ma campagne n°{{number}}', { number: index + 1 })}
+        {poll.name ?? (
+          <>
+            <span className="mr-3 italic text-gray-600">
+              <Trans>Sans titre</Trans>
+            </span>
+          </>
+        )}
       </h3>
 
       <p className="mb-8 text-sm font-light">
