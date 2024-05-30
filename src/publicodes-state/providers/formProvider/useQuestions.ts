@@ -1,13 +1,9 @@
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
 import getQuestionsOfMosaic from '../../helpers/getQuestionsOfMosaic'
-import {
-  DottedName,
-  NGCEvaluatedNode,
-  NGCRuleNode,
-  Situation,
-} from '../../types'
+import { NGCEvaluatedNode, NGCRuleNode, Situation } from '../../types'
 
 type Props = {
   root: string
@@ -27,7 +23,6 @@ type Props = {
  */
 export default function useQuestions({
   root,
-  safeGetRule,
   safeEvaluate,
   categories,
   subcategories,
@@ -37,19 +32,14 @@ export default function useQuestions({
   everyMosaicChildren,
   rawMissingVariables,
 }: Props) {
-  const priorityQuestions = Object.values(
-    (safeGetRule('ui . questions prioritaires')?.rawNode ?? {}) as Record<
-      string,
-      string
-    >
-  )
+  // We use the DottedName type from nosgestesclimat to make sure breaking when using rules that are not in the model.
+  const priorityQuestions: DottedName[] = []
 
-  const nonPriorityQuestions = Object.values(
-    (safeGetRule('ui . questions non prioritaires')?.rawNode ?? {}) as Record<
-      string,
-      string
-    >
-  )
+  // TODO: delete exception when the model is released
+  const nonPriorityQuestions: DottedName[] &
+    ['logement . électricité . réseau . consommation'] = [
+    'logement . électricité . réseau . consommation',
+  ]
 
   const missingVariables = useMemo<Record<string, number>>(
     () => {
@@ -60,12 +50,12 @@ export default function useQuestions({
       )
       // We artificially set the missing variables of the whiteList to a high value
       priorityQuestions.forEach((dottedName) => {
-        tempMissingVariables[dottedName] = 10000
+        tempMissingVariables[dottedName] += 10000
       })
 
       // We artificially set the missing variables of the blackList to a negative value
       nonPriorityQuestions.forEach((dottedName) => {
-        tempMissingVariables[dottedName] = -1
+        tempMissingVariables[dottedName] -= 1000
       })
 
       return tempMissingVariables
