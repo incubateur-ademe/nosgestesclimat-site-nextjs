@@ -129,7 +129,9 @@ export default function ParametresPage() {
           register={register as any}
         />
 
-        <h2 className="mt-8">
+        <Separator className="my-6" />
+
+        <h2 className="mt-6">
           <Trans>Vos informations personnelles</Trans>
         </h2>
         <PersonalInfoFields
@@ -140,7 +142,7 @@ export default function ParametresPage() {
 
       <ModificationSaved shouldShowMessage={value} />
 
-      <Separator />
+      <Separator className="my-4" />
 
       <DeconnexionButton organisation={organisation} />
     </MaxWidthContent>

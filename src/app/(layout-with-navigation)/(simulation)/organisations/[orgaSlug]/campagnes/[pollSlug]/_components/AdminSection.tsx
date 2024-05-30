@@ -59,6 +59,7 @@ export default function AdminSection({ pollData }: Props) {
             onClick={() => {
               trackEvent(organisationsDashboardExportData)
             }}
+            className="h-14"
           />
 
           <ButtonLink

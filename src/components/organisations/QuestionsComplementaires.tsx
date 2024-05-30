@@ -17,18 +17,20 @@ type Props = {
       >
     | undefined
   onChange: (changes: Record<string, unknown>) => void
+  onChangeCustomQuestions: (changes: Record<string, unknown>) => void
   description?: string | ReactNode
 }
 
 export default function QuestionsComplementaires({
   poll,
   onChange,
+  onChangeCustomQuestions,
   description,
 }: Props) {
   const { t } = useClientTranslation()
 
   return (
-    <section className="my-8">
+    <section className="mt-8">
       <h2>
         <Trans>Questions complémentaires</Trans>
       </h2>
@@ -82,11 +84,11 @@ export default function QuestionsComplementaires({
       />
 
       {poll?.customAdditionalQuestions && (
-        <CustomQuestions poll={poll} onChange={onChange} />
+        <CustomQuestions poll={poll} onChange={onChangeCustomQuestions} />
       )}
 
-      <div className="mt-6 flex w-full flex-col items-start gap-2">
-        <CustomQuestionForm poll={poll} onCompleted={onChange} />
+      <div className="my-6 flex w-full flex-col items-start gap-2">
+        <CustomQuestionForm poll={poll} onCompleted={onChangeCustomQuestions} />
       </div>
     </section>
   )

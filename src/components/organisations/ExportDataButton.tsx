@@ -5,6 +5,7 @@ import { createXLSXFileAndDownload } from '@/helpers/export/createXLSXFileAndDow
 import { PollData, SimulationRecap } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useState } from 'react'
+import DownloadIcon from '../icons/DownloadIcon'
 import Trans from '../translation/Trans'
 
 type Props = {
@@ -61,6 +62,7 @@ export default function ExportDataButton({
   }
   return (
     <Button color={color} disabled={isLoading} onClick={handleClick} {...props}>
+      <DownloadIcon className="mr-2 fill-primary-700" />
       <Trans>Exporter les données</Trans>
     </Button>
   )

@@ -50,9 +50,19 @@ export default function ParametresPage() {
   async function handleUpdatePollCustomQuestions(changes: {
     customAdditionalQuestions: CustomAdditionalQuestions[]
   }) {
-    await updatePollCustomQuestions(changes)
-    flick()
-    refetchPoll()
+    console.log(
+      changes,
+      pollSlug,
+      orgaSlug,
+      user?.organisation?.administratorEmail
+    )
+    try {
+      await updatePollCustomQuestions(changes)
+      flick()
+      refetchPoll()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   if (isLoading || isLoadingOrgaAdmin) {
@@ -90,12 +100,13 @@ export default function ParametresPage() {
           ],
           customAdditionalQuestions: poll?.customAdditionalQuestions,
         }}
-        onChange={handleUpdatePollCustomQuestions as any}
+        onChange={updatePoll as any}
+        onChangeCustomQuestions={handleUpdatePollCustomQuestions as any}
       />
 
       <ModificationSaved shouldShowMessage={value} />
 
-      <Separator />
+      <Separator className="my-4" />
 
       <DeletePollButton />
     </MaxWidthContent>
