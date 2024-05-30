@@ -13,7 +13,7 @@ type Props = {
   title: string
   icons: React.ReactNode
   barColor?: string
-  category: string
+  category?: string
 }
 
 export default function VerticalBarChartItem({
