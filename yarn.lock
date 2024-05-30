@@ -813,6 +813,14 @@
     fuse.js "^7.0.0"
     styled-components "^6.1.1"
 
+"@publicodes/tools@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@publicodes/tools/-/tools-1.1.2.tgz#ca3bc707b4be37b63cd1cd1460428d27eeda8368"
+  integrity sha512-MVbleFn2WFzuojygXU2Sjx2W48RK46DVGKRfCSuiKhbMNTYFp1IUoPD+TuC07/nA6R+igKq0HoTrooRm0ORkSQ==
+  dependencies:
+    "@types/node" "^18.11.18"
+    publicodes "^1.1.1"
+
 "@rollup/plugin-commonjs@24.0.0":
   version "24.0.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-24.0.0.tgz#fb7cf4a6029f07ec42b25daa535c75b05a43f75c"
@@ -6234,6 +6242,11 @@ publicodes@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.1.1.tgz#6bd283b3a0e7e41d5d3ab2454d639c27a46400e5"
   integrity sha512-PO5nwianBt3D3xfVgfb6thJ1WT/ZE44dw6PvdyK/yBZSi69kh03tc7TyBrkVZcfsC00kZTfnJFNiVvJSTySYCA==
+
+publicodes@^1.1.1:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.2.0.tgz#2856891da07633315eff419402bb61109045504d"
+  integrity sha512-qit3KsTqwZct5Xt6uyJ83yXNXxxScKuSRvemUgCRWEczP/mPAX/tiDQUgwwOC2fDoiCuQuZ9EiQwU5HfzHFIJQ==
 
 pump@^3.0.0:
   version "3.0.0"

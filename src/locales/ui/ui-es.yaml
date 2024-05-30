@@ -872,3 +872,52 @@ entries:
   Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Ayudarle a actuar mejor en <2>sólo 4 correos electrónicos</2>.
   Une erreur est survenue, veuillez réessayer.: Se ha producido un error, inténtelo de nuevo.
   Certaines organisations sont dotées d’un outil type MailinBlack, Altospam, ect., qui bloque parfois nos emails.: Algunas organizaciones disponen de una herramienta como MailinBlack, Altospam, etc., que a veces bloquea nuestros correos electrónicos.
+  Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.: Cada entrada está representada por una barra vertical. Su puntuación se muestra en <2>rosa</2>.
+  Elle seront toutefois prises en compte lors de l'export de données.: No obstante, se tendrán en cuenta al exportar los datos.
+  Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.: Para facilitar la lectura, se eliminan los valores superiores a 100 t.
+  on s'y met ?: ¿Empezamos?
+  Résultats de campagne: Resultados de la campaña
+  'Paramètres de ': 'Parámetros de '
+  Supprimer cette campagne: Eliminar esta campaña
+  Section administrateur: Sección Administrador
+  Votre rôle: Su papel
+  Campagne: Campaña
+  Lancer ma campagne: Lanzar mi campaña
+  Nom de la campagne: Nombre de la campaña
+  Cette opération est définitive.: Esta operación es definitiva.
+  Supprimer cette campagne ?: ¿Borrar esta campaña?
+  Visible uniquement par vous: Visible sólo para ti
+  Mes campagnes: Mis campañas
+  Ma Campagne: Mi campaña
+  Paramètres de: Parámetros de
+  Ma campagne n°{{number}}: Mi campaña no{{number}}
+  Créer une campagne: Crear una campaña
+  Créée le: Creado el
+  c'est l’objectif pour 2050,: es el objetivo para 2050,
+  Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.: Puede encontrar las respuestas a estas preguntas en la exportación de las respuestas a la campaña.
+  Votre téléphone: Su teléfono
+  Partagez votre campagne: Comparta su campaña
+  Vos informations personnelles: Sus datos personales
+  Voir le détail: Ver detalles
+  'Créée le ': 'Creado el '
+  Nombre de collaborateurs: Número de empleados
+  Lancez une campagne de calcul de l'empreinte carbone de vos collaborateurs, élèves, collègues...: Lance una campaña para calcular la huella de carbono de sus empleados, estudiantes, colegas, etc.
+  Nous récupérons les données de votre organisation...: Recuperamos los datos de su organización...
+  Oups, nous n'avons pas trouvé les résultats de cette campagne: No hemos encontrado los resultados de esta campaña
+  Données consultables à partir de 3 participants, dans un souci d'anonymat.: Los datos pueden consultarse a partir de 3 participantes, para garantizar el anonimato.
+  'ex : Campagne 2024, Classe de 6ème A, etc.': por ejemplo, Campagne 2024, Classe de 6ème A, etc.
+  Nous récupérons les données de la campagne...: Recuperamos los datos de la campaña...
+  Une erreur est survenue lors de la suppression de la campagne.: Se ha producido un error al eliminar la campaña.
+  Retrouvez vos campagnes et suivez leurs statistiques.: Encuentra tus campañas y sigue sus estadísticas.
+  Une erreur s'est produite lors de la création de la campagne. Veuillez réessayer.: Se ha producido un error al crear la campaña. Por favor, inténtelo de nuevo.
+  Empreinte carbone totale: Huella de carbono total
+  Voir toutes les campagnes: Ver todas las campañas
+  Masquer les autres campagnes: Ocultar otras campañas
+  Sans titre: Sin título
+  (définissez un titre dans les paramètres): (defina un título en los parámetros)
+  Date (anciennes > récentes): Fecha (antigua &gt; reciente)
+  Campagne créée par <2>{pollData?.organisationName}</2>, le: Campaña creada por <2>{pollData?.organisationName}</2>, el
+  Répartition des empreintes carbone: Desglose de la huella de carbono
+  Nom (A > Z): Nombre (A &gt; Z)
+  Date (récentes > anciennes): Fecha (reciente &gt; antigua)
+  Nom (Z > A): Nombre (Z &gt; A)

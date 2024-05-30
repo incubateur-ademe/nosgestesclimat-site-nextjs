@@ -800,3 +800,52 @@ entries:
   Votre question à ajouter: Votre question à ajouter
   Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Vous accompagner pour mieux agir en <2>4 mails seulement</2>.
   Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.
+  Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.: Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.
+  Elle seront toutefois prises en compte lors de l'export de données.: Elle seront toutefois prises en compte lors de l'export de données.
+  Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.: Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.
+  c'est l’objectif pour 2050,: c'est l’objectif pour 2050,
+  Campagne: Campagne
+  Cette opération est définitive.: Cette opération est définitive.
+  Créée le: Créée le
+  'Créée le ': 'Créée le '
+  Créer une campagne: Créer une campagne
+  Données consultables à partir de 3 participants, dans un souci d'anonymat.: Données consultables à partir de 3 participants, dans un souci d'anonymat.
+  'ex : Campagne 2024, Classe de 6ème A, etc.': 'ex : Campagne 2024, Classe de 6ème A, etc.'
+  Lancer ma campagne: Lancer ma campagne
+  Lancez une campagne de calcul de l'empreinte carbone de vos collaborateurs, élèves, collègues...: Lancez une campagne de calcul de l'empreinte carbone de vos collaborateurs, élèves, collègues...
+  Ma Campagne: Ma Campagne
+  Ma campagne n°{{number}}: Ma campagne n°{{number}}
+  Mes campagnes: Mes campagnes
+  Nom de la campagne: Nom de la campagne
+  Nombre de collaborateurs: Nombre de collaborateurs
+  Nous récupérons les données de la campagne...: Nous récupérons les données de la campagne...
+  Nous récupérons les données de votre organisation...: Nous récupérons les données de votre organisation...
+  on s'y met ?: on s'y met ?
+  Oups, nous n'avons pas trouvé les résultats de cette campagne: Oups, nous n'avons pas trouvé les résultats de cette campagne
+  Paramètres de: Paramètres de
+  'Paramètres de ': 'Paramètres de '
+  Partagez votre campagne: Partagez votre campagne
+  Résultats de campagne: Résultats de campagne
+  Retrouvez vos campagnes et suivez leurs statistiques.: Retrouvez vos campagnes et suivez leurs statistiques.
+  Section administrateur: Section administrateur
+  Supprimer cette campagne: Supprimer cette campagne
+  Supprimer cette campagne ?: Supprimer cette campagne ?
+  Une erreur est survenue lors de la suppression de la campagne.: Une erreur est survenue lors de la suppression de la campagne.
+  Une erreur s'est produite lors de la création de la campagne. Veuillez réessayer.: Une erreur s'est produite lors de la création de la campagne. Veuillez réessayer.
+  Visible uniquement par vous: Visible uniquement par vous
+  Voir le détail: Voir le détail
+  Vos informations personnelles: Vos informations personnelles
+  Votre rôle: Votre rôle
+  Votre téléphone: Votre téléphone
+  Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.: Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.
+  (définissez un titre dans les paramètres): (définissez un titre dans les paramètres)
+  Campagne créée par <2>{pollData?.organisationName}</2>, le: Campagne créée par <2>{pollData?.organisationName}</2>, le
+  Date (anciennes > récentes): Date (anciennes > récentes)
+  Date (récentes > anciennes): Date (récentes > anciennes)
+  Empreinte carbone totale: Empreinte carbone totale
+  Masquer les autres campagnes: Masquer les autres campagnes
+  Nom (A > Z): Nom (A > Z)
+  Nom (Z > A): Nom (Z > A)
+  Répartition des empreintes carbone: Répartition des empreintes carbone
+  Sans titre: Sans titre
+  Voir toutes les campagnes: Voir toutes les campagnes
