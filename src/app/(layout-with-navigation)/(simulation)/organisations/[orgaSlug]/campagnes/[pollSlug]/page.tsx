@@ -6,6 +6,7 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
+import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
 import dayjs from 'dayjs'
 import { useParams, useSearchParams } from 'next/navigation'
 import { useContext } from 'react'
@@ -22,6 +23,8 @@ export default function CampagnePage() {
 
   const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
 
+  useHandleRedirectFromLegacy()
+
   const {
     data: pollData,
     isLoading,
@@ -29,7 +32,7 @@ export default function CampagnePage() {
   } = useFetchPollData({
     orgaSlug: decodeURIComponent(orgaSlug as string),
     pollSlug: decodeURIComponent(pollSlug as string),
-    forceUseFirstPoll: isRedirectFromLegacy,
+    enabled: !isRedirectFromLegacy,
   })
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)

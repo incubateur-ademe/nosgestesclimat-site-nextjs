@@ -7,13 +7,13 @@ import axios from 'axios'
 type Props = {
   orgaSlug?: string
   pollSlug?: string
-  forceUseFirstPoll?: boolean
+  enabled?: boolean
 }
 
 export function useFetchPollData({
   orgaSlug,
   pollSlug,
-  forceUseFirstPoll,
+  enabled = true,
 }: Props = {}): UseQueryResult<PollData | null, Error> {
   const { user } = useUser()
 
@@ -22,14 +22,14 @@ export function useFetchPollData({
     queryFn: () =>
       axios
         .get(
-          `${SERVER_URL}/polls/fetch-poll-processed-data?orgaSlug=${encodeURIComponent(orgaSlug ?? '')}&pollSlug=${encodeURIComponent(pollSlug ?? '')}&email=${encodeURIComponent(user?.organisation?.administratorEmail ?? '')}&userId=${encodeURIComponent(user?.userId)}&forceUseFirstPoll=${forceUseFirstPoll || false}`
+          `${SERVER_URL}/polls/fetch-poll-processed-data?orgaSlug=${encodeURIComponent(orgaSlug ?? '')}&pollSlug=${encodeURIComponent(pollSlug ?? '')}&email=${encodeURIComponent(user?.organisation?.administratorEmail ?? '')}&userId=${encodeURIComponent(user?.userId)}`
         )
         .then((res) => res.data)
         .catch((err) => {
           console.error(err)
           return null
         }),
-    enabled: !!orgaSlug,
+    enabled: !!orgaSlug && enabled,
     refetchInterval: 30000,
   })
 }
