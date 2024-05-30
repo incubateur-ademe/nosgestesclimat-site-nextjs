@@ -9,8 +9,13 @@ function formatSlugToName(slug: string) {
 function getBaseItems({ pathname }: { pathname: string }) {
   return [
     {
-      href: '/organisations',
+      href: '/',
       label: <Trans>Accueil</Trans>,
+      isActive: pathname === '/',
+    },
+    {
+      href: '/organisations',
+      label: <Trans>Organisations</Trans>,
       isActive: pathname === '/organisations',
     },
   ]

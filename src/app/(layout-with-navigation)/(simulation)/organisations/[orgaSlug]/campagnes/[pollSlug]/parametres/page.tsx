@@ -50,12 +50,6 @@ export default function ParametresPage() {
   async function handleUpdatePollCustomQuestions(changes: {
     customAdditionalQuestions: CustomAdditionalQuestions[]
   }) {
-    console.log(
-      changes,
-      pollSlug,
-      orgaSlug,
-      user?.organisation?.administratorEmail
-    )
     try {
       await updatePollCustomQuestions(changes)
       flick()
