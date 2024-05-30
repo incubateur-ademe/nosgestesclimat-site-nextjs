@@ -52,25 +52,27 @@ export default function MyPolls({ polls }: Props) {
           <Trans>Mes campagnes</Trans>
         </Title>
 
-        <Select
-          onChange={(e) => {
-            setSort(e.target.value)
-          }}
-          className="p-2 text-sm"
-          name="sortOrder">
-          <option value="date-old">
-            <Trans>Date (anciennes &gt; récentes)</Trans>
-          </option>
-          <option value="date-new">
-            <Trans>Date (récentes &gt; anciennes)</Trans>
-          </option>
-          <option value="alphabetical">
-            <Trans>Nom (A &gt; Z)</Trans>
-          </option>
-          <option value="anti-alphabetical">
-            <Trans>Nom (Z &gt; A)</Trans>
-          </option>
-        </Select>
+        {pollsSorted.length > 0 && (
+          <Select
+            onChange={(e) => {
+              setSort(e.target.value)
+            }}
+            className="p-2 text-sm"
+            name="sortOrder">
+            <option value="date-old">
+              <Trans>Date (anciennes &gt; récentes)</Trans>
+            </option>
+            <option value="date-new">
+              <Trans>Date (récentes &gt; anciennes)</Trans>
+            </option>
+            <option value="alphabetical">
+              <Trans>Nom (A &gt; Z)</Trans>
+            </option>
+            <option value="anti-alphabetical">
+              <Trans>Nom (Z &gt; A)</Trans>
+            </option>
+          </Select>
+        )}
       </div>
 
       <ul className="mt-8 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
@@ -85,20 +87,22 @@ export default function MyPolls({ polls }: Props) {
         <AddPollCard hasNoPollsYet={polls.length === 0} />
       </ul>
 
-      <Button
-        className="mt-6"
-        onClick={() => setIsMinified((prevState) => !prevState)}
-        color="link">
-        {isMinified ? (
-          <span>
-            + <Trans>Voir toutes les campagnes</Trans>
-          </span>
-        ) : (
-          <span>
-            - <Trans>Masquer les autres campagnes</Trans>
-          </span>
-        )}
-      </Button>
+      {pollsSorted.length > 2 && (
+        <Button
+          className="mt-6"
+          onClick={() => setIsMinified((prevState) => !prevState)}
+          color="link">
+          {isMinified ? (
+            <span>
+              + <Trans>Voir toutes les campagnes</Trans>
+            </span>
+          ) : (
+            <span>
+              - <Trans>Masquer les autres campagnes</Trans>
+            </span>
+          )}
+        </Button>
+      )}
     </section>
   )
 }
