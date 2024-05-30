@@ -1,5 +1,6 @@
 'use client'
 
+import InformationIconWithTooltip from '@/components/messages/InformationIconWithTooltip'
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import { SimulationRecap } from '@/types/organisations'
@@ -66,27 +67,33 @@ export default function PollStatisticsCharts({
   return (
     <section className="my-12 rounded-xl bg-gray-100 px-8 pb-4 pt-8">
       <h2>
-        <Trans>Résultats du groupe</Trans>
+        <Trans>Répartition des empreintes carbone</Trans>
+        <InformationIconWithTooltip
+          id="resultats-groupe"
+          className="ml-1 inline-block">
+          <>
+            <p className="mb-1 text-sm">
+              <Trans>
+                Chaque participation est représentée par une barre verticale.
+                Votre score est affiché en{' '}
+                <span className="font-bold text-secondary-700">rose</span>.
+              </Trans>
+            </p>
+            <p className="mb-0 text-sm">
+              <Trans>
+                Pour faciliter la lecture, les valeurs supérieures à 100 t sont
+                retirées.
+              </Trans>{' '}
+              {isAdmin && (
+                <Trans>
+                  Elle seront toutefois prises en compte lors de l'export de
+                  données.
+                </Trans>
+              )}
+            </p>
+          </>
+        </InformationIconWithTooltip>
       </h2>
-
-      <p className="mb-1">
-        <Trans>
-          Chaque participation est représentée par une barre verticale. Votre
-          score est affiché en{' '}
-          <span className="font-bold text-secondary-700">rose</span>.
-        </Trans>
-      </p>
-      <p className="text-sm text-gray-600">
-        <Trans>
-          Pour faciliter la lecture, les valeurs supérieures à 100 t sont
-          retirées.
-        </Trans>{' '}
-        {isAdmin && (
-          <Trans>
-            Elle seront toutefois prises en compte lors de l'export de données.
-          </Trans>
-        )}
-      </p>
 
       <Separator />
 

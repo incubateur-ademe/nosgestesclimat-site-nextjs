@@ -60,7 +60,13 @@ export default function CampagnePage() {
         subtitle={
           pollData ? (
             <span>
-              <Trans>Créée le</Trans>{' '}
+              <Trans>
+                Campagne créée par{' '}
+                <strong className="text-primary-700">
+                  {pollData?.organisationName}
+                </strong>
+                , le
+              </Trans>{' '}
               {dayjs(pollData?.createdAt).format('DD/MM/YYYY')}
             </span>
           ) : (
@@ -88,6 +94,7 @@ export default function CampagnePage() {
 
         <PollStatisticsCharts
           simulationRecaps={filteredSimulationRecaps ?? []}
+          isAdmin={pollData?.isAdmin}
         />
       </div>
     </div>

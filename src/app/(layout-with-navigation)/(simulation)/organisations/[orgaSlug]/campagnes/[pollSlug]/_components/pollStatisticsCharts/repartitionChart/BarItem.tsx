@@ -26,7 +26,7 @@ export default function BarItem({
     <div
       data-tooltip-id={id}
       data-tooltip-content={t('{{value}} tonnes', {
-        value: valueToDisplay.toFixed(2),
+        value: valueToDisplay.toFixed(1).replace('.', ','),
       })}
       className={twMerge(
         'absolute h-8 w-2 bg-primary-700 opacity-20 hover:scale-[10%]',

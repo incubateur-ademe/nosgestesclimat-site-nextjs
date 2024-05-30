@@ -29,7 +29,7 @@ export function useFetchPollData({
           console.error(err)
           return null
         }),
-    enabled: !!orgaSlug && enabled,
+    enabled: !!orgaSlug && enabled && !!user,
     refetchInterval: 30000,
   })
 }

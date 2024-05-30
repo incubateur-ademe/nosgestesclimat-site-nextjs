@@ -16,7 +16,7 @@ export default function MainFootprintChart({
   return (
     <section className="mb-12">
       <h3>
-        <Trans>Empreinte carbone</Trans>
+        <Trans>Empreinte carbone totale</Trans>
       </h3>
 
       <div className="flex flex-col">
