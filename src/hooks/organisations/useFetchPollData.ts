@@ -22,7 +22,7 @@ export function useFetchPollData({
     queryFn: () =>
       axios
         .get(
-          `${SERVER_URL}/polls/fetch-poll-processed-data?orgaSlug=${encodeURIComponent(orgaSlug ?? '')}&pollSlug=${encodeURIComponent(pollSlug ?? '')}&userId=${encodeURIComponent(user?.userId)}&forceUseFirstPoll=${forceUseFirstPoll || false}`
+          `${SERVER_URL}/polls/fetch-poll-processed-data?orgaSlug=${encodeURIComponent(orgaSlug ?? '')}&pollSlug=${encodeURIComponent(pollSlug ?? '')}&email=${encodeURIComponent(user?.organisation?.administratorEmail ?? '')}&userId=${encodeURIComponent(user?.userId)}&forceUseFirstPoll=${forceUseFirstPoll || false}`
         )
         .then((res) => res.data)
         .catch((err) => {
