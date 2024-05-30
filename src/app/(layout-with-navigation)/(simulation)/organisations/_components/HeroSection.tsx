@@ -19,9 +19,9 @@ export default function HeroSection() {
           <Trans>Nos Gestes Climat pour les organisations</Trans>
         </h1>
 
-        <p className="mb-12 text-sm md:text-lg">
+        <div className="mb-12 text-sm md:text-lg">
           <Baseline />
-        </p>
+        </div>
 
         <div className="flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-start md:items-baseline md:gap-8 lg:justify-start">
           <ButtonLink
