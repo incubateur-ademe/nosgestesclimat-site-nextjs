@@ -1,9 +1,14 @@
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { DottedName as NGCDottedName } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
 import getQuestionsOfMosaic from '../../helpers/getQuestionsOfMosaic'
-import { NGCEvaluatedNode, NGCRuleNode, Situation } from '../../types'
+import {
+  DottedName,
+  NGCEvaluatedNode,
+  NGCRuleNode,
+  Situation,
+} from '../../types'
 
 type Props = {
   root: string
@@ -33,10 +38,10 @@ export default function useQuestions({
   rawMissingVariables,
 }: Props) {
   // We use the DottedName type from nosgestesclimat to make sure breaking when using rules that are not in the model.
-  const priorityQuestions: DottedName[] = []
+  const priorityQuestions: NGCDottedName[] = []
 
   // TODO: delete exception when the model is released
-  const nonPriorityQuestions: DottedName[] &
+  const nonPriorityQuestions: NGCDottedName[] &
     ['logement . électricité . réseau . consommation'] = [
     'logement . électricité . réseau . consommation',
   ]
