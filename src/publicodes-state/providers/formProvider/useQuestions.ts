@@ -37,12 +37,13 @@ export default function useQuestions({
   everyMosaicChildren,
   rawMissingVariables,
 }: Props) {
-  // We use the DottedName type from nosgestesclimat to make sure breaking when using rules that are not in the model.
+  // We use the DottedName type from nosgestesclimat to make sure the build will break when using rules that are not in the model.
   const priorityQuestions: NGCDottedName[] = []
 
   // TODO: delete exception when the model is released
-  const nonPriorityQuestions: NGCDottedName[] &
-    ['logement . électricité . réseau . consommation'] = [
+  const nonPriorityQuestions:
+    | NGCDottedName[]
+    | ['logement . électricité . réseau . consommation'] = [
     'logement . électricité . réseau . consommation',
   ]
 
