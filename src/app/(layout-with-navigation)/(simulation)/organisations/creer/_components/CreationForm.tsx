@@ -106,7 +106,11 @@ export default function CreationForm() {
   useEffect(() => {
     if (!pathToNavigateTo) return
 
-    if (userOrgaSlugRef.current === user?.organisation?.slug) return
+    if (
+      (userOrgaSlugRef.current || user?.organisation?.slug) &&
+      userOrgaSlugRef.current === user?.organisation?.slug
+    )
+      return
 
     router.push(pathToNavigateTo)
   }, [router, pathToNavigateTo, user?.organisation?.slug])
@@ -204,11 +208,10 @@ export default function CreationForm() {
         <Button
           color="secondary"
           type="button"
-          onClick={() =>
-            handleSubmit((props) =>
-              onSubmit({ ...props, shouldNavigateToPollForm: false })
-            )
-          }>
+          onClick={handleSubmit(
+            async (props) =>
+              await onSubmit({ ...props, shouldNavigateToPollForm: false })
+          )}>
           <Trans>Accéder à mon espace</Trans>
         </Button>
 
