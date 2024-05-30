@@ -48,7 +48,7 @@ function getOrganisationEspaceItems({
     if (pathname.includes('campagnes')) {
       items.push({
         href: `/organisations/${params.orgaSlug}/campagnes/${params.pollSlug}`,
-        label: <>{poll?.name ?? <Trans>Ma campagne</Trans>}</>,
+        label: <>{poll?.name ?? <Trans>Sans titre</Trans>}</>,
         isActive:
           pathname ===
           `/organisations/${params.orgaSlug}/campagnes/${params.pollSlug}`,

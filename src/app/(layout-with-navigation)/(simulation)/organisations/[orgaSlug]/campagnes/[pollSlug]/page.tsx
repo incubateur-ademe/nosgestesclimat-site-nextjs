@@ -56,7 +56,20 @@ export default function CampagnePage() {
   return (
     <div className="mb-4 flex flex-col justify-between md:flex-nowrap">
       <Title
-        title={isLoading ? '...' : pollData?.name ?? <Trans>Ma Campagne</Trans>}
+        title={
+          isLoading
+            ? '...'
+            : pollData?.name ?? (
+                <>
+                  <span className="mr-2 italic text-gray-600">
+                    <Trans>Sans titre</Trans>
+                  </span>{' '}
+                  <span className="text-sm text-gray-600">
+                    <Trans>(définissez un titre dans les paramètres)</Trans>
+                  </span>
+                </>
+              )
+        }
         subtitle={
           pollData ? (
             <span>
