@@ -144,7 +144,11 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
       />
 
       {assistance ? (
-        <Assistance question={question} assistance={assistance} />
+        <Assistance
+          question={question}
+          assistance={assistance}
+          setTempValue={setTempValue}
+        />
       ) : null}
 
       {activeNotifications.map((notification) => (
