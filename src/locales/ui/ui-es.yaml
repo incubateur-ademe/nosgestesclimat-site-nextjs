@@ -910,3 +910,14 @@ entries:
   Une erreur est survenue lors de la suppression de la campagne.: Se ha producido un error al eliminar la campaña.
   Retrouvez vos campagnes et suivez leurs statistiques.: Encuentra tus campañas y sigue sus estadísticas.
   Une erreur s'est produite lors de la création de la campagne. Veuillez réessayer.: Se ha producido un error al crear la campaña. Por favor, inténtelo de nuevo.
+  Empreinte carbone totale: Huella de carbono total
+  Voir toutes les campagnes: Ver todas las campañas
+  Masquer les autres campagnes: Ocultar otras campañas
+  Sans titre: Sin título
+  (définissez un titre dans les paramètres): (defina un título en los parámetros)
+  Date (anciennes > récentes): Fecha (antigua &gt; reciente)
+  Campagne créée par <2>{pollData?.organisationName}</2>, le: Campaña creada por <2>{pollData?.organisationName}</2>, el
+  Répartition des empreintes carbone: Desglose de la huella de carbono
+  Nom (A > Z): Nombre (A &gt; Z)
+  Date (récentes > anciennes): Fecha (reciente &gt; antigua)
+  Nom (Z > A): Nombre (Z &gt; A)

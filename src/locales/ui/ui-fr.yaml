@@ -838,3 +838,14 @@ entries:
   Votre rôle: Votre rôle
   Votre téléphone: Votre téléphone
   Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.: Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.
+  (définissez un titre dans les paramètres): (définissez un titre dans les paramètres)
+  Campagne créée par <2>{pollData?.organisationName}</2>, le: Campagne créée par <2>{pollData?.organisationName}</2>, le
+  Date (anciennes > récentes): Date (anciennes > récentes)
+  Date (récentes > anciennes): Date (récentes > anciennes)
+  Empreinte carbone totale: Empreinte carbone totale
+  Masquer les autres campagnes: Masquer les autres campagnes
+  Nom (A > Z): Nom (A > Z)
+  Nom (Z > A): Nom (Z > A)
+  Répartition des empreintes carbone: Répartition des empreintes carbone
+  Sans titre: Sans titre
+  Voir toutes les campagnes: Voir toutes les campagnes

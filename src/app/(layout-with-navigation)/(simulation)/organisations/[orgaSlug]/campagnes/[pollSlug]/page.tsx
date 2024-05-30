@@ -6,6 +6,7 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
+import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
 import dayjs from 'dayjs'
 import { useParams, useSearchParams } from 'next/navigation'
 import { useContext } from 'react'
@@ -22,6 +23,8 @@ export default function CampagnePage() {
 
   const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
 
+  useHandleRedirectFromLegacy()
+
   const {
     data: pollData,
     isLoading,
@@ -29,7 +32,7 @@ export default function CampagnePage() {
   } = useFetchPollData({
     orgaSlug: decodeURIComponent(orgaSlug as string),
     pollSlug: decodeURIComponent(pollSlug as string),
-    forceUseFirstPoll: isRedirectFromLegacy,
+    enabled: !isRedirectFromLegacy,
   })
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
@@ -53,11 +56,30 @@ export default function CampagnePage() {
   return (
     <div className="mb-4 flex flex-col justify-between md:flex-nowrap">
       <Title
-        title={isLoading ? '...' : pollData?.name ?? <Trans>Ma Campagne</Trans>}
+        title={
+          isLoading
+            ? '...'
+            : pollData?.name ?? (
+                <>
+                  <span className="mr-2 italic text-gray-600">
+                    <Trans>Sans titre</Trans>
+                  </span>{' '}
+                  <span className="text-sm text-gray-600">
+                    <Trans>(définissez un titre dans les paramètres)</Trans>
+                  </span>
+                </>
+              )
+        }
         subtitle={
           pollData ? (
             <span>
-              <Trans>Créée le</Trans>{' '}
+              <Trans>
+                Campagne créée par{' '}
+                <strong className="text-primary-700">
+                  {pollData?.organisationName}
+                </strong>
+                , le
+              </Trans>{' '}
               {dayjs(pollData?.createdAt).format('DD/MM/YYYY')}
             </span>
           ) : (
@@ -85,6 +107,7 @@ export default function CampagnePage() {
 
         <PollStatisticsCharts
           simulationRecaps={filteredSimulationRecaps ?? []}
+          isAdmin={pollData?.isAdmin}
         />
       </div>
     </div>

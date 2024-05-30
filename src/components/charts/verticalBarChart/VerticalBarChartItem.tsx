@@ -13,6 +13,7 @@ type Props = {
   title: string
   icons: React.ReactNode
   barColor?: string
+  category?: string
 }
 
 export default function VerticalBarChartItem({
@@ -23,6 +24,7 @@ export default function VerticalBarChartItem({
   title,
   icons,
   barColor,
+  category,
   ...props
 }: Props) {
   const { formattedValue, unit } = formatCarbonFootprint(
@@ -38,7 +40,7 @@ export default function VerticalBarChartItem({
       className="flex h-full flex-1 flex-col items-center justify-end gap-2"
       aria-label={ariaLabel}
       {...props}>
-      <Badge className="text-xs">
+      <Badge className="text-xs" category={category}>
         <strong>{formattedValue}</strong> {unit}
       </Badge>
       <div className="flex items-end">

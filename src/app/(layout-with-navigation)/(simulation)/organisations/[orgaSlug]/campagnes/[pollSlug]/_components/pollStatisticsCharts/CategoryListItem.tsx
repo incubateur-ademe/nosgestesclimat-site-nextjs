@@ -34,8 +34,8 @@ export default function CategoryListItem({
         </div>
 
         <div className="flex flex-col items-end">
-          <Badge>
-            <strong>{formattedValue}</strong> {unit}
+          <Badge category={category} className="text-xs">
+            {formattedValue} {unit}
           </Badge>
         </div>
       </div>
