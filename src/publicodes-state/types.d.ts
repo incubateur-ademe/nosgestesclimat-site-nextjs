@@ -3,7 +3,7 @@ import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
 import {
   EvaluatedNode,
   Evaluation,
-  Situation as NGCSituation,
+  Situation as PublicodesSituation,
   RuleNode,
 } from 'publicodes'
 
@@ -36,7 +36,7 @@ export type Rules = any
 
 export type Tutorials = Record<string, boolean>
 
-export type Situation = NGCSituation<string>
+export type Situation = PublicodesSituation<DottedName>
 
 export type Suggestion = {
   label: string

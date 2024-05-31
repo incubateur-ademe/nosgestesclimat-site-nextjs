@@ -94,11 +94,12 @@ export default function useSetValue({
         situationToAdd = Object.keys(
           value as { [dottedName: DottedName]: NodeValue }
         ).reduce(
-          (accumulator: Situation, currentValue: DottedName) => ({
-            ...accumulator,
-            [dottedName + ' . ' + currentValue]:
-              value && (value[currentValue] as NodeValue),
-          }),
+          (accumulator: Situation, currentValue: DottedName) =>
+            ({
+              ...accumulator,
+              [dottedName + ' . ' + currentValue]:
+                value && (value[currentValue] as NodeValue),
+            }) as Situation,
           {} as Situation
         )
       } else {
