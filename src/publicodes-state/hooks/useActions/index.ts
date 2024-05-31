@@ -17,6 +17,7 @@ type ActionObject = {
  * Not really used for now but will be essential when we redo the actions page
  */
 export default function useActions() {
+  // Clément: Why don't we use engine from useEngine() ?
   const { engine } = useContext(SimulationContext)
 
   const { getValue } = useEngine()
@@ -24,6 +25,8 @@ export default function useActions() {
   const { actionChoices } = useCurrentSimulation()
 
   const orderedActions = useMemo<string[]>(() => {
+    if (engine === null) return []
+
     const actionsRule = engine.getRule('actions')
     const somme = getSomme(actionsRule.rawNode)
 

@@ -1,7 +1,7 @@
 import { useCurrentSimulation } from '@/publicodes-state'
+import Engine from 'publicodes'
 import { useCallback, useEffect, useState } from 'react'
 import { safeGetSituation } from '../../helpers/safeGetSituation'
-import { DottedName, Engine, Situation } from '../../types'
 
 type Props = {
   engine: Engine
