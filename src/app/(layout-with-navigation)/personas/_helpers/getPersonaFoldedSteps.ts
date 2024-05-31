@@ -7,7 +7,7 @@ import {
   NGCRuleNode,
   Situation,
 } from '@/publicodes-state/types'
-import { PublicodesExpression } from 'publicodes'
+import Engine, { PublicodesExpression } from 'publicodes'
 import { fixSituationWithPartialMosaic } from './fixSituationWithPartialMosaic'
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
   everyMosaicChildren: DottedName[]
   everyQuestions: DottedName[]
   everyRules: DottedName[]
-  pristineEngine: Engine
+  pristineEngine: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
 }
@@ -31,6 +31,8 @@ export const getPersonaFoldedSteps = ({
   safeGetRule,
   safeEvaluate,
 }: Props) => {
+  if (pristineEngine === null) return []
+
   const personaSituation = fixSituationWithPartialMosaic({
     situation,
     everyMosaic,
