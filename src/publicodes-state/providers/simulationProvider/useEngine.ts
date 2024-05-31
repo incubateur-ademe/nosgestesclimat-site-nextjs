@@ -22,8 +22,10 @@ export function useEngine(rules: Rules) {
         log: console.log,
         warn: () => null,
         error: console.error,
+      strict: {
+        situation: false,
+        noOrphanRule: false,
       },
-      allowOrphanRules: true,
     })
     console.timeEnd(`⚙️ Parsing ${nbRules}`)
     return engine
