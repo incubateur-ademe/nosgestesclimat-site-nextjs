@@ -16,14 +16,15 @@ export function useEngineSituation({ engine }: Props) {
 
   const addToEngineSituation = useCallback(
     (situationToAdd: Situation): Situation => {
-      engine.setSituation(situationToAdd, { keepPreviousSituation: true })
+      // TODO : it seems that there is a bug with `keepPreviousSituation` option even if it should be used here.
+      engine.setSituation({ ...situation, ...situationToAdd })
 
       // The current engine situation might have been filtered
       const safeSituation = engine.getSituation()
 
       return safeSituation
     },
-    [engine]
+    [engine, situation]
   )
 
   useEffect(() => {
