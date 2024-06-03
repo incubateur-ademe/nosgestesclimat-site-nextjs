@@ -1,3 +1,4 @@
+import { DottedName as NGCDottedName } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
@@ -36,15 +37,44 @@ export default function useQuestions({
   everyMosaicChildren,
   rawMissingVariables,
 }: Props) {
+  // We use the DottedName type from nosgestesclimat to make sure the build will break when using rules that are not in the model.
+  const priorityQuestions: NGCDottedName[] = []
+
+  // TODO: delete exception when the model is released
+  const nonPriorityQuestions:
+    | NGCDottedName[]
+    | ['logement . électricité . réseau . consommation'] = [
+    'logement . électricité . réseau . consommation',
+  ]
+
   const missingVariables = useMemo<Record<string, number>>(
-    () =>
-      Object.fromEntries(
+    () => {
+      const tempMissingVariables = Object.fromEntries(
         Object.entries(safeEvaluate(root)?.missingVariables || {}).filter(
           (missingVariable) => everyQuestions.includes(missingVariable[0])
         )
-      ),
+      )
+      // We artificially set the missing variables of the whiteList to a high value
+      priorityQuestions.forEach((dottedName) => {
+        tempMissingVariables[dottedName] += 10000
+      })
+
+      // We artificially set the missing variables of the blackList to a negative value
+      nonPriorityQuestions.forEach((dottedName) => {
+        tempMissingVariables[dottedName] -= 1000
+      })
+
+      return tempMissingVariables
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [safeEvaluate, root, everyQuestions, situation]
+    [
+      safeEvaluate,
+      root,
+      everyQuestions,
+      situation,
+      priorityQuestions,
+      nonPriorityQuestions,
+    ]
   )
 
   const remainingQuestions = useMemo<string[]>(
@@ -109,29 +139,7 @@ export default function useQuestions({
             return -1
           }
 
-          // then if there is a km or a proprietaire (this is shit)
-          if (a.includes('km')) {
-            return -1
-          }
-          if (b.includes('km')) {
-            return 1
-          }
-          if (a.includes('propriétaire')) {
-            return -1
-          }
-          if (b.includes('propriétaire')) {
-            return 1
-          }
-
-          // then by length
-          if (bSplittedName.length > aSplittedName.length) {
-            return -1
-          }
-          if (aSplittedName.length > bSplittedName.length) {
-            return 1
-          }
-
-          // then by number of missing variables
+          // then by missing variables score
           return missingVariables[b] - missingVariables[a]
         }),
     [
