@@ -4,6 +4,7 @@ import {
   EvaluatedNode,
   Evaluation,
   Engine as PublicodesEngine,
+  Situation as PublicodesSituation,
   RuleNode,
 } from 'publicodes'
 
@@ -36,7 +37,7 @@ export type Rules = any
 
 export type Tutorials = Record<string, boolean>
 
-export type Situation = Record<DottedName, NodeValue>
+export type Situation = PublicodesSituation<DottedName>
 
 export type Suggestion = {
   label: string

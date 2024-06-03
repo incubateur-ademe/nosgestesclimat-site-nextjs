@@ -11,10 +11,12 @@ export function migrateSimulation(
   )
 
   // NOTE: folded steps (i.e. answered rules) are can be map to a situation,
-  // where the keys are the rule names and the value is null.
+  // where the keys are the rule names and the value is undefined.
   simulation.foldedSteps = Object.keys(
     migrateSituation(
-      Object.fromEntries(simulation.foldedSteps.map((step) => [step, null])),
+      Object.fromEntries(
+        simulation.foldedSteps.map((step) => [step, undefined])
+      ),
       migrationInstructions
     )
   )
