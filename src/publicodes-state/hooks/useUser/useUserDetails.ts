@@ -32,16 +32,16 @@ export default function useUserDetails({ setUser }: Props) {
     (organisation: UserOrganisationInfo) => {
       const organisationModifications: UserOrganisationInfo = {}
 
-      if (organisation.administratorEmail) {
+      if (organisation.administratorEmail !== undefined) {
         organisationModifications.administratorEmail =
           organisation.administratorEmail
       }
 
-      if (organisation.slug) {
+      if (organisation.slug !== undefined) {
         organisationModifications.slug = organisation.slug
       }
 
-      if (organisation.name) {
+      if (organisation.name !== undefined) {
         organisationModifications.name = organisation.name
       }
 

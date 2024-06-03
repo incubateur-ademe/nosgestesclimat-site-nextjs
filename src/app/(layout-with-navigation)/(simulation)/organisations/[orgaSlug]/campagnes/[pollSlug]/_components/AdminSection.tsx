@@ -1,5 +1,6 @@
 import EyeIcon from '@/components/icons/EyeIcon'
 import SettingsIcon from '@/components/icons/SettingsIcon'
+import InformationIconWithTooltip from '@/components/messages/InformationIconWithTooltip'
 import ExportDataButton from '@/components/organisations/ExportDataButton'
 import Trans from '@/components/translation/Trans'
 import { organisationsDashboardExportData } from '@/constants/tracking/pages/organisationsDashboard'
@@ -24,12 +25,17 @@ export default function AdminSection({ pollData }: Props) {
 
   return (
     <section className="mb-10 rounded-xl bg-gray-50 p-6">
-      <h3 className="mb-0">
+      <h3 className="mb-4">
         <Trans>Section administrateur</Trans>
+        <InformationIconWithTooltip
+          id="admin-section"
+          className="ml-1 inline-block">
+          <p className="mb-0 flex items-center gap-1 text-xs">
+            <EyeIcon className="w-4 fill-white" />{' '}
+            <Trans>Visible uniquement par vous</Trans>
+          </p>
+        </InformationIconWithTooltip>
       </h3>
-      <p className="flex items-center gap-1 text-xs">
-        <EyeIcon className="w-4" /> <Trans>Visible uniquement par vous</Trans>
-      </p>
 
       <div className="flex flex-wrap gap-8 md:flex-nowrap">
         <div className="rainbow-border w-full rounded-xl p-4 md:w-2/3">
@@ -53,6 +59,7 @@ export default function AdminSection({ pollData }: Props) {
             onClick={() => {
               trackEvent(organisationsDashboardExportData)
             }}
+            className="h-14"
           />
 
           <ButtonLink

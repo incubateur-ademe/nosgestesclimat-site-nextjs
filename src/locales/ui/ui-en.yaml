@@ -917,3 +917,33 @@ entries:
   'Paramètres de ': 'Parameters of '
   Données consultables à partir de 3 participants, dans un souci d'anonymat.: Data can be consulted from 3 participants onwards, to ensure anonymity.
   'ex : Campagne 2024, Classe de 6ème A, etc.': e.g. Campagne 2024, Classe de 6ème A, etc.
+  Sans titre: Untitled
+  Masquer les autres campagnes: Hide other campaigns
+  Date (récentes > anciennes): Date (recent &gt; old)
+  Date (anciennes > récentes): Date (old &gt; recent)
+  Campagne créée par <2>{pollData?.organisationName}</2>, le: Campaign created by <2>{pollData?.organisationName}</2>, on
+  Nom (A > Z): Name (A &gt; Z)
+  Nom (Z > A): Name (Z &gt; A)
+  Voir toutes les campagnes: See all campaigns
+  (définissez un titre dans les paramètres): (define a title in the parameters)
+  Répartition des empreintes carbone: Breakdown of carbon footprints
+  Empreinte carbone totale: Total carbon footprint
+  Entreprises: Companies
+  collectivités: local authorities
+  associations: associations
+  Campagne personnalisée: Customised campaign
+  écoles: schools
+  festivals: festivals
+  Tableau de bord: Dashboard
+  Les ressources de l'ABC: ABC resources
+  Communiquez sur la campagne: Communicate about the campaign
+  Accéder aux ressources: Access to resources
+  Explorez, analysez et téléchargez des données anonymisées pour faire des choix éclairés et améliorer continuellement votre démarche écologique. Avec nos exports sur mesure, partagez vos réussites et vos challenges avec vos équipes et parties prenantes pour une stratégie de durabilité unifiée.: Explore, analyse and download anonymised data to make informed choices and continually improve your ecological approach. With our tailored exports, share your successes and challenges with your teams and stakeholders for a unified sustainability strategy.
+  Créez une campagne Nos Gestes Climat personnalisée au sein de votre organisation et accédez à un kit clé en main pour sensibiliser vos partenaires au sein de votre organisation.: Create a customised Nos Gestes Climat campaign within your organisation and access a turnkey kit to raise awareness among your partners.
+  Intégrez Nos Gestes Climat directement à vos services: Integrate Nos Gestes Climat directly into your services
+  via votre organisation ? Découvrez nos outils pour vous simplifier la vie !: through your organisation? Discover our tools to make your life easier!
+  Lancez une campagne Nos Gestes Climat personnalisée: Launch a personalised Nos Gestes Climat campaign
+  vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !: would you like to launch an Nos Gestes Climat campaign and raise awareness among all your stakeholders? Discover our 100% free tools!
+  Notre offre dédiée aux entreprises, collectivités, écoles et associations: Our services for businesses, local authorities, schools and associations
+  Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d’autres modes d’intégration prêts à l’emploi.: Allow your target audiences (customers, students, participants, residents, etc.) to calculate and reduce their carbon footprint directly from your web and mobile platforms, using a dedicated link or other ready-to-use integration methods.
+  Ils ont testé: They tested
