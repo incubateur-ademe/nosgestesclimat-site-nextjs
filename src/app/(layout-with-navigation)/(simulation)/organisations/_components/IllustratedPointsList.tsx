@@ -9,19 +9,17 @@ export default function IllustratedPointsList() {
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="max-w-full md:mx-auto md:w-[34rem]">
             <h2 className="mb-2 text-base text-pink-600">
-              <Trans>Sensibilisez votre organisation</Trans>
+              <Trans>Campagne personnalisée</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <Trans>
-                Partagez une version personnalisée de Nos Gestes Climat
-              </Trans>
+              <Trans>Lancez une campagne Nos Gestes Climat personnalisée</Trans>
             </h3>
 
             <p className="text-base md:text-lg">
               <Trans>
                 Créez une campagne Nos Gestes Climat personnalisée au sein de
-                votre organisation et accédez à des services sur mesure pour
+                votre organisation et accédez à un kit clé en main pour
                 sensibiliser vos partenaires au sein de votre organisation.
               </Trans>
             </p>
@@ -44,7 +42,7 @@ export default function IllustratedPointsList() {
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="max-w-full md:mx-auto md:w-[34rem]">
             <h2 className="mb-2 text-base text-pink-600">
-              <Trans>Statistiques et exports</Trans>
+              <Trans>Tableau de bord</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
@@ -53,10 +51,11 @@ export default function IllustratedPointsList() {
 
             <p className="text-base md:text-lg">
               <Trans>
-                Permettez à vos collaborateurs, employés, partenaires ou élèves
-                de calculer et réduire leur empreinte carbone directement depuis
-                vos plateformes web et mobile, avec un lien dédié ou d’autres
-                modes d’intégration prêts à l’emploi.
+                Explorez, analysez et téléchargez des données anonymisées pour
+                faire des choix éclairés et améliorer continuellement votre
+                démarche écologique. Avec nos exports sur mesure, partagez vos
+                réussites et vos challenges avec vos équipes et parties
+                prenantes pour une stratégie de durabilité unifiée.
               </Trans>
             </p>
           </div>
@@ -82,16 +81,17 @@ export default function IllustratedPointsList() {
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <Trans>Intégrez Nos Gestes Climat à vos services</Trans>
+              <Trans>
+                Intégrez Nos Gestes Climat directement à vos services
+              </Trans>
             </h3>
 
             <p className="text-base md:text-lg">
               <Trans>
-                Explorez, analysez et téléchargez des données pour faire des
-                choix éclairés et pour améliorer continuellement votre démarche
-                écologique. Avec nos exports sur mesure, partagez vos réussites
-                et vos challenges avec vos équipes et parties prenantes pour une
-                stratégie de durabilité unifiée.
+                Permettez à vos cibles (clients, étudiants, participants,
+                habitants..) de calculer et réduire leur empreinte carbone
+                directement depuis vos plateformes web et mobile, avec un lien
+                dédié ou d’autres modes d’intégration prêts à l’emploi.
               </Trans>
             </p>
           </div>
