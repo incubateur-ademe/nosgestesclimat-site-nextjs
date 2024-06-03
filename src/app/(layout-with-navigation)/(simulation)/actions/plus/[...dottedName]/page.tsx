@@ -46,7 +46,7 @@ export default async function ActionPlus({
           </ButtonLink>
         ) : null}
       </div>
-      {action ? <Markdown>{action}</Markdown> : <Route404 />}
+      {action ? <Markdown>{action?.content}</Markdown> : <Route404 />}
     </div>
   )
 }
