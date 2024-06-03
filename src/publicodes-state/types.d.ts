@@ -134,8 +134,3 @@ type MosaicInfos = {
 }
 
 type Formule = any
-
-export type MigrationType = {
-  keysToMigrate: Record<DottedName, DottedName>
-  valuesToMigrate: Record<DottedName, Record<string, NodeValue>>
-}
