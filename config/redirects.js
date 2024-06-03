@@ -96,6 +96,12 @@ const redirects = [
     destination: '/tutoriel/?poll=:poll&organisation=:organisation',
     permanent: true,
   },
+  {
+    source: '/organisations/:orgaSlug/resultats-detailles',
+    destination:
+      '/organisations/:orgaSlug/campagnes/campagne-1?isRedirectFromLegacy=true',
+    permanent: true,
+  },
 ]
 
 module.exports = redirects

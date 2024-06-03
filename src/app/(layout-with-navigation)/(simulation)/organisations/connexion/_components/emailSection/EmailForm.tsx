@@ -54,6 +54,13 @@ export default function EmailForm() {
         email,
       })
 
+      // Reset the organisation local state
+      updateUserOrganisation({
+        administratorEmail: email,
+        slug: '',
+        name: '',
+      })
+
       // We update the expiration date of the code
       updateLoginExpirationDate(expirationDate)
     } catch (error: any) {
@@ -62,6 +69,13 @@ export default function EmailForm() {
         const { expirationDate } = await createOrganisation({
           email,
           userId: user.userId,
+        })
+
+        // Always reset the organisation local state
+        updateUserOrganisation({
+          administratorEmail: email,
+          slug: '',
+          name: '',
         })
 
         updateLoginExpirationDate(expirationDate)

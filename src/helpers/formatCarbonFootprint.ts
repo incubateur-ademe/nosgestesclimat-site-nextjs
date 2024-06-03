@@ -21,7 +21,7 @@ export function formatCarbonFootprint(
     shouldUseAbbreviation: false,
   }
 ): {
-  formattedValue: string | number
+  formattedValue: string
   unit: string | null
   negative: boolean
 } {
@@ -48,7 +48,8 @@ export function formatCarbonFootprint(
     tempValue = numberValue / 1000
     unit = shouldUseAbbreviation
       ? 't'
-      : numberValue < 2000
+      : // Doesn't work perfectly. For example 1.950.toFixed(1) = 1.9 but 1.950.toLocaleString('fr-FR', { maximumFractionDigits: 1 }) = 2
+        Number(tempValue.toFixed(maximumFractionDigits)) < 2
         ? t('tonne')
         : t('tonnes')
   }

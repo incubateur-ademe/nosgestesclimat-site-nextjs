@@ -3,6 +3,7 @@
 import useFetchOrganisation from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useFetchOrganisation'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import { getOrganisationItems } from '@/helpers/filAriane/getOrganisationItems'
+import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useUser } from '@/publicodes-state'
 import { useParams, usePathname } from 'next/navigation'
 
@@ -20,7 +21,13 @@ export default function FilAriane() {
     email: user?.organisation?.administratorEmail ?? '',
   })
 
-  const isAdmin = organisation?.slug === params.slug
+  const isAdmin = organisation?.slug === params.orgaSlug
+
+  const { data: pollData } = useFetchPollData({
+    orgaSlug: decodeURIComponent(params.orgaSlug as string),
+    pollSlug: decodeURIComponent(params.pollSlug as string),
+    enabled: !!params.pollSlug,
+  })
 
   if (!TARGETED_PATHS.some((path) => pathname.includes(path))) return null
 
@@ -36,6 +43,7 @@ export default function FilAriane() {
         params,
         user,
         isAdmin,
+        poll: pollData,
       })
     }
 
