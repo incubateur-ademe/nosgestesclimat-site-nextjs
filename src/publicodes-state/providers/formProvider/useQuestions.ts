@@ -54,6 +54,22 @@ export default function useQuestions({
           (missingVariable) => everyQuestions.includes(missingVariable[0])
         )
       )
+
+      // We take every mosaic parent to add it to the missing variables with the max score of its children
+      Object.entries(everyMosaicChildrenWithParent).forEach(
+        ([mosaicParent, mosaicChildren]) => {
+          const maxMissingVariableScoreInMosaic = Math.max(
+            ...mosaicChildren.map((child) => tempMissingVariables[child])
+          )
+          if (!isNaN(maxMissingVariableScoreInMosaic)) {
+            tempMissingVariables[mosaicParent] = maxMissingVariableScoreInMosaic
+            mosaicChildren.forEach((mosaicChild) => {
+              delete tempMissingVariables[mosaicChild]
+            })
+          }
+        }
+      )
+
       // We artificially set the missing variables of the whiteList to a high value
       priorityQuestions.forEach((dottedName) => {
         tempMissingVariables[dottedName] += 10000
