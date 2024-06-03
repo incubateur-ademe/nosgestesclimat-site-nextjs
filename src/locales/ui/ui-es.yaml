@@ -75,13 +75,13 @@ entries:
   derniers: últimos
   Non: No
   Nouveautés: Noticias
-  components.ScoreExplanation.text.p3: '🤔 Si contestas "No lo sé" a una pregunta, la puntuación no cambiará: se asigna un valor por defecto.'
+  components.ScoreExplanation.text.p3: '🤔 Si contestas "No lo sé" a una pregunta, el resultado no cambiará: se asigna un valor por defecto.'
   components.ScoreExplanation.text.p3.lock: '🤔 Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
   components.ScoreExplanation.text.p4: 💡 ¡Mejoramos el cálculo y sus valores por defecto <2>cada mes</2>!
   components.ScoreExplanation.text.p4.lock: 💡 Nous améliorons le calcul et ses valeurs par défaut <2>tous les mois</2>!
   components.localisation.Localisation.warnMessage2: No hemos podido detectar tu país de simulación, por lo que se propone por defecto el modelo francés.
   components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
-  components.ScoreExplanation.text.p1: 🧮 ¡Aquí tienes tu puntuación inicial, calculado con respuestas por defecto para cada pregunta! Cambiará con cada nueva respuesta.
+  components.ScoreExplanation.text.p1: 🧮 ¡Aquí tienes tu huella inicial, calculada con respuestas por defecto para cada pregunta! Cambiará con cada nueva respuesta.
   components.ScoreExplanation.text.p1.lock: 🧮 Voici votre score de départ, calculé à partir de réponses attribuées à l'avance à chaque question ! Il évoluera à chaque nouvelle réponse.
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} pregunta{{pluralSuffix}} restante{{pluralSuffix}}'
   publicodes.ActionVignette.questionsRestantesText.lock: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
@@ -261,7 +261,7 @@ entries:
   C’est quoi mon empreinte carbone ?: ¿Cuál es mi huella de carbono?
   Comment on la mesure ?: ¿Cómo se mide?
   Comment les mettons-nous à jour ?: ¿Cómo se actualizan?
-  Comprendre mon score: Entender mi puntuación
+  Comprendre mon score: Entender mi resultado
   Bientôt disponible: Disponible en breve
   Veuillez renseigner un nom.: Introduce un nombre.
   ' Retour à la liste': ' Volver a la lista'
@@ -539,7 +539,7 @@ entries:
   Faites le test en: Calcula tu huella en
   Classements: Clasificaciones
   Découvrez le simulateur, ouvrir dans un nouvel onglet: Descubrir el simulador, abrir en una nueva pestaña
-  Chaque participation est représentée par une barre verticale. Votre score est affiché en rose.: Cada entrada está representada por una barra vertical. Tu puntuación se muestra en rosa.
+  Chaque participation est représentée par une barre verticale. Votre score est affiché en rose.: Cada entrada está representada por una barra vertical. Tu resultado se muestra en rosa.
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Descubrir los talleres de la asociación ABC, abrir en una nueva pestaña
   Nos Gestes Climat dans votre entreprise, association, école...: Nos Gestes Climat en tu empresa, asociación o escuela...
   obtenez une estimation de votre empreinte carbone de consommation.: así de fácil!
