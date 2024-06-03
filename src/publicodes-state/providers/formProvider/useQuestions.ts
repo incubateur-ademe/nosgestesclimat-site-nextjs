@@ -2,7 +2,7 @@ import { DottedName as NGCDottedName } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
-import getQuestionsOfMosaic from '../../helpers/getQuestionsOfMosaic'
+
 import {
   DottedName,
   NGCEvaluatedNode,
@@ -19,7 +19,7 @@ type Props = {
   situation: Situation
   foldedSteps: string[]
   everyQuestions: string[]
-  everyMosaicChildren: string[]
+  everyMosaicChildrenWithParent: Record<string, string[]>
   rawMissingVariables: Record<string, number>
 }
 
@@ -34,7 +34,7 @@ export default function useQuestions({
   situation,
   foldedSteps,
   everyQuestions,
-  everyMosaicChildren,
+  everyMosaicChildrenWithParent,
   rawMissingVariables,
 }: Props) {
   // We use the DottedName type from nosgestesclimat to make sure the build will break when using rules that are not in the model.
@@ -84,7 +84,9 @@ export default function useQuestions({
         // We remove all that are in mosaics,
         .filter(
           (question) =>
-            !everyMosaicChildren.find((mosaic) => mosaic === question)
+            !Object.values(everyMosaicChildrenWithParent)
+              .flat()
+              .find((mosaic) => mosaic === question)
         )
         // all that are in folded steps
         .filter((question) => foldedSteps.indexOf(question) === -1)
@@ -143,12 +145,12 @@ export default function useQuestions({
           return missingVariables[b] - missingVariables[a]
         }),
     [
+      everyQuestions,
+      everyMosaicChildrenWithParent,
       foldedSteps,
+      missingVariables,
       categories,
       subcategories,
-      missingVariables,
-      everyQuestions,
-      everyMosaicChildren,
     ]
   )
 
@@ -188,12 +190,7 @@ export default function useQuestions({
         getIsMissing({
           dottedName,
           situation,
-          // FIXME: we might want to use `useMosaicQuestions` here but we need
-          // to have access to the corresponding 'options'
-          questionsOfMosaic: getQuestionsOfMosaic({
-            dottedName,
-            everyMosaicChildren,
-          }),
+          questionsOfMosaic: everyMosaicChildrenWithParent[dottedName] || [],
         })
       ),
     ],
@@ -201,7 +198,7 @@ export default function useQuestions({
       relevantAnsweredQuestions,
       remainingQuestions,
       situation,
-      everyMosaicChildren,
+      everyMosaicChildrenWithParent,
     ]
   )
 
