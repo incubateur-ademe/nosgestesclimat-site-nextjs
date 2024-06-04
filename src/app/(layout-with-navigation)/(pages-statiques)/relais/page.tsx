@@ -9,12 +9,12 @@ import Image from 'next/image'
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
   return getMetadataObject({
-    title: t('Ambassadeurs - Nos Gestes Climat'),
+    title: t('Nos relais - Nos Gestes Climat'),
     description: t(
-      'Découvrez les ambassadeurs de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
+      'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
     ),
     alternates: {
-      canonical: '/ambassadeurs',
+      canonical: '/relais',
     },
   })
 }
@@ -26,8 +26,30 @@ export default function page() {
   return (
     <div>
       <Title>
-        <Trans>Ambassadeurs</Trans>
+        <Trans>
+          Ils relaient{' '}
+          <span className="text-primary-700">Nos Gestes Climat</span>
+        </Trans>
       </Title>
+
+      <p>
+        Plus de 40 acteurs relaient ou ont relayé Nos Gestes Climat à travers
+        l’intégration du calculateur sur leur site internet et/ou sa diffusion
+        via des campagnes (mail, réseaux sociaux et/ou affichage). C’est
+        majoritairement grâce à eux que nous sensibilisons près de 2 000
+        nouvelles personnes en moyenne chaque jour et nous les en remercions.
+      </p>
+
+      <p>
+        Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre
+        galerie de relais ? Merci de nous envoyer un message avec notre logo à 
+        <span className="underline">contact@nosgestesclimat.fr</span>.
+      </p>
+
+      <p className="mb-8 italic">
+        NB : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est
+        et restera un service public, indépendant et gratuit de l’ADEME.
+      </p>
 
       {categories.map((category: any) => (
         <div key={category} className="mb-16">
