@@ -22,7 +22,7 @@ export default function FormProvider({
     safeGetRule,
     safeEvaluate,
     everyQuestions,
-    everyMosaicChildren,
+    everyMosaicChildrenWithParent,
     rawMissingVariables,
   } = useContext(SimulationContext)
 
@@ -50,7 +50,7 @@ export default function FormProvider({
     foldedSteps,
     situation,
     everyQuestions,
-    everyMosaicChildren,
+    everyMosaicChildrenWithParent,
     rawMissingVariables,
   })
 

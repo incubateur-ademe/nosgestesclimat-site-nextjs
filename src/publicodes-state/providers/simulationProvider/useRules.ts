@@ -35,14 +35,6 @@ export function useRules({ engine, root }: Props) {
     [parsedRulesEntries]
   )
 
-  const everyMosaic = useMemo<string[]>(
-    () =>
-      parsedRulesEntries
-        .filter((rule: (string | any)[]) => rule[1].rawNode.mosaique)
-        .map((question) => question[0]),
-    [parsedRulesEntries]
-  )
-
   const everyNotifications = useMemo<string[]>(
     () =>
       parsedRulesEntries
@@ -60,9 +52,17 @@ export function useRules({ engine, root }: Props) {
     [parsedRulesEntries]
   )
 
-  const everyMosaicChildren = useMemo<string[]>(
+  const everyMosaic = useMemo<string[]>(
     () =>
-      everyMosaic.reduce<string[]>((accumulator, mosaic) => {
+      parsedRulesEntries
+        .filter((rule: (string | any)[]) => rule[1].rawNode.mosaique)
+        .map((question) => question[0]),
+    [parsedRulesEntries]
+  )
+
+  const everyMosaicChildrenWithParent = useMemo<Record<string, string[]>>(
+    () =>
+      everyMosaic.reduce<Record<string, string[]>>((accumulator, mosaic) => {
         const mosaicRule = engine.getRule(mosaic) as NGCRuleNode
 
         if (!mosaicRule.rawNode.mosaique) {
@@ -73,8 +73,9 @@ export function useRules({ engine, root }: Props) {
             return everyQuestions.find((rule) => rule.endsWith(option)) || ''
           }
         )
-        return [...accumulator, ...mosaicChildren]
-      }, []),
+        accumulator[mosaic] = [...mosaicChildren]
+        return accumulator
+      }, {}),
     [everyMosaic, everyQuestions, engine]
   )
 
@@ -92,8 +93,7 @@ export function useRules({ engine, root }: Props) {
     everyQuestions,
     everyNotifications,
     everyUiCategories,
-    everyMosaic,
-    everyMosaicChildren,
+    everyMosaicChildrenWithParent,
     rawMissingVariables,
   }
 }
