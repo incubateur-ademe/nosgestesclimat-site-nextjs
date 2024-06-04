@@ -40,10 +40,7 @@ export default function useQuestions({
   // We use the DottedName type from nosgestesclimat to make sure the build will break when using rules that are not in the model.
   const priorityQuestions: NGCDottedName[] = ['alimentation . plats']
 
-  // TODO: delete exception when the model is released
-  const nonPriorityQuestions:
-    | NGCDottedName[]
-    | ['logement . électricité . réseau . consommation'] = [
+  const nonPriorityQuestions: NGCDottedName[] = [
     'logement . électricité . réseau . consommation',
   ]
 
