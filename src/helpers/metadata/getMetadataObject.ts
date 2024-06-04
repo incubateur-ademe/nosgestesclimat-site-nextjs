@@ -118,12 +118,11 @@ export function getMetadataObject({
       description,
       url,
       type: 'website',
-      images:
-        image ||
-        (URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE.some((urlPart) =>
-          url.includes(urlPart)
-        ) &&
-          !noImage)
+      images: image
+        ? image
+        : URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE.some((urlPart) =>
+              url.includes(urlPart)
+            ) && !noImage
           ? generateOGImageURL(url)
           : 'https://nosgestesclimat.fr/images/misc/metadata.png',
     },

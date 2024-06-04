@@ -9,7 +9,6 @@ import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { Post } from '@/types/posts'
 import { capitalizeString } from '@/utils/capitalizeString'
-import { GrayMatterFile } from 'gray-matter'
 
 type Props = {
   params: { slug: string }
@@ -18,10 +17,7 @@ type Props = {
 export async function generateMetadata({ params: { slug } }: Props) {
   const { t } = await getServerTranslation()
 
-  const post = (await getPost(
-    'src/locales/blog/fr/',
-    slug
-  )) as GrayMatterFile<string>
+  const post = (await getPost('src/locales/blog/fr/', slug)) as Post
 
   return getMetadataObject({
     title: `${capitalizeString(decodeURI(slug))?.replaceAll(
