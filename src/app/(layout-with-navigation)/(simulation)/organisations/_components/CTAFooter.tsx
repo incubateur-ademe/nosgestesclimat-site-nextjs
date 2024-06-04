@@ -40,7 +40,7 @@ export default function CTAFooter() {
               className="font-normal underline"
               href="/contact?motif=demo"
               trackingEvent={organisationsAccueilClickDemoBottom}>
-              <Trans>Demandez une démo</Trans>
+              <Trans>Demander une démo</Trans>
             </ButtonLink>
           </div>
         </div>
