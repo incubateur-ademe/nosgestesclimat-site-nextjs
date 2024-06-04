@@ -33,7 +33,8 @@ export default function Question({ question, toggleQuestionList }: Props) {
 
   const { updateCurrentSimulation } = useCurrentSimulation()
 
-  const { currentQuestion, setCurrentQuestion, relevantQuestions } = useForm()
+  const { currentQuestion, setCurrentQuestion, relevantOrderedQuestions } =
+    useForm()
 
   const isDebug = useDebug()
 
@@ -48,7 +49,7 @@ export default function Question({ question, toggleQuestionList }: Props) {
         if (isDebug) {
           foldEveryQuestionsUntil({
             question,
-            relevantQuestions,
+            relevantOrderedQuestions,
             updateCurrentSimulation,
           })
         }

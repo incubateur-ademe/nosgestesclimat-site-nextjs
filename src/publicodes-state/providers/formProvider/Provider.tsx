@@ -39,8 +39,7 @@ export default function FormProvider({
   const {
     remainingQuestions,
     relevantAnsweredQuestions,
-    relevantQuestions,
-    questionsByCategories,
+    relevantOrderedQuestions,
   } = useQuestions({
     root,
     safeGetRule,
@@ -57,15 +56,14 @@ export default function FormProvider({
   const { remainingQuestionsByCategories } = useProgression({
     categories,
     remainingQuestions,
-    relevantQuestions,
+    relevantOrderedQuestions,
     updateCurrentSimulation,
   })
 
   return (
     <FormContext.Provider
       value={{
-        relevantQuestions,
-        questionsByCategories,
+        relevantOrderedQuestions,
         remainingQuestions,
         relevantAnsweredQuestions,
         remainingQuestionsByCategories,
