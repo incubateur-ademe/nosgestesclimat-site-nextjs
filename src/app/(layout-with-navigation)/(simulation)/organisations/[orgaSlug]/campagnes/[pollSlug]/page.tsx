@@ -76,7 +76,7 @@ export default function CampagnePage() {
               <Trans>Campagne créée par</Trans>{' '}
               <strong className="text-primary-700">
                 {pollData?.organisationName}
-              </strong>{' '}
+              </strong>
               <Trans>, le</Trans>{' '}
               {dayjs(pollData?.createdAt).format('DD/MM/YYYY')}
             </span>
