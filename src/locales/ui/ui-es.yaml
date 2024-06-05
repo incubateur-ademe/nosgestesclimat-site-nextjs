@@ -9,7 +9,7 @@ entries:
   404.action.lock: Revenir en lieu sûr
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": 'Esta contribución será pública: no incluye información sensible'
   Chargée: Cargada
-  Depuis la page: Desde el
+  Depuis la page: Desde la página
   Fermer: Cerrar
   Entrez des mots clefs: Introducir palabras clave
   En savoir +: Más información
@@ -17,13 +17,13 @@ entries:
   Le modèle d'empreinte carbone de référence: El modelo de referencia de la huella de carbono
   Envie de contribuer à une version pour votre région ?: ¿Te gustaría contribuir a una versión para tu región?
   En savoir plus: Más información
-  Démarrer: Inicio
+  Démarrer: Empezar
   Découvrez les enjeux qui se cachent derrière chaque action.: Descubre lo que hay detrás de cada acción.
   Découvrez la FAQ !: Descubre las FAQ
   Documentation: Documentación
   En développement actif: En desarrollo activo
   Choisir l'action: Elegir esta acción
-  Commencer: Inicio
+  Commencer: Empezar
   Faire le test: Calcular tu huella
   Choisir une autre région: Elije otra región
   Envoyer: Enviar
@@ -92,7 +92,7 @@ entries:
   plus de 10 kg: más de 10 kg
   plus d'1 tonne: más de 1 tonelada
   le + d'impact climat: el + impacto climático
-  publicodes.ActionTutorial.msgPrésentation: 'Para ayudarle, te propondremos <2>una lista de acciones</2>:'
+  publicodes.ActionTutorial.msgPrésentation: 'Para ayudarte, te propondremos <2>una lista de acciones</2>:'
   publicodes.ActionTutorial.msgPrésentation.lock: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
   publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} acciones disponibles,'
   publicodes.ActionsOptionsBar.actionsRecap.lock: '{{numberOfAvailableFinalActions}} actions disponibles,'
@@ -609,8 +609,8 @@ entries:
   Découvrez les conseils de l'ADEME: Más información sobre los consejos del ADEME
   Partage de vos résultats à {{ parent }} ?: 'Comparte tus resultados en {{ parent }} '
   Aller plus loin: Ir más lejos
-  Explorez le détail de nos actions clés: Más información sobre nuestras acciones clave
-  Calculez votre empreinte sur le climat: calcula tu huella climática
+  Explorez le détail de nos actions clés: Más información sobre las acciones clave
+  Calculez votre empreinte sur le climat: Calcula tu huella climática
   voyageurs, soit: pasajeros, es decir
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.: Nosgestesclimat.fr no está afiliado al sitio web {{ parent }}.
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}..lock: Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
@@ -643,7 +643,7 @@ entries:
   Empreinte: Huella
   Contact - Nos Gestes Climat: Contacto - Nos Gestes Climat
   des conseils pour la réduire: consejos para reducirlo
-  sélectionnez celles qui vous intéressent: seleccione los que le interesen
+  sélectionnez celles qui vous intéressent: selecciona las que le interesan
   Les nouveautés - Nos Gestes Climat: Novedades - Nos Gestes Climat
   404 - Nos Gestes Climat: 404 - Nos Gestes Climat
   Gestes: Acciones
