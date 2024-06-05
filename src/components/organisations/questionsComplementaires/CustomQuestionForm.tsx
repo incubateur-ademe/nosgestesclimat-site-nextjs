@@ -109,7 +109,11 @@ export default function CustomQuestionForm({
   return (
     <form
       id="custom-question-form"
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={(event) => {
+        console.log(event)
+        event.preventDefault()
+        handleSubmit(onSubmit)(event)
+      }}
       className="flex w-full flex-col items-start">
       {!isEditMode && (
         <label htmlFor="question" className="mb-2 text-sm">

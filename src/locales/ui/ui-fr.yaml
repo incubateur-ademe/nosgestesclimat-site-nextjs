@@ -870,3 +870,18 @@ entries:
   Ils ont testé: Ils ont testé
   mis à jour le: mis à jour le
   'Un article de ': 'Un article de '
+  ', le': ', le'
+  '{capitalizeString(category)}': '{capitalizeString(category)}'
+  Campagne créée par: Campagne créée par
+  '{CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}': '{CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}'
+  Alimentation: Alimentation
+  Divers: Divers
+  Logement: Logement
+  Services: Services
+  Transport: Transport
+  Voir tous les gestes: Voir tous les gestes
+  '{label}': '{label}'
+  de votre empreinte: de votre empreinte
+  Partager mon résultat: Partager mon résultat
+  ": maîtrisez l'impact carbone de vos transports avec nos 4 infolettres": ": maîtrisez l'impact carbone de vos transports avec nos 4 infolettres"
+  Infolettre saisonnière de: Infolettre saisonnière de

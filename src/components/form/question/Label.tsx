@@ -80,7 +80,7 @@ export default function Label({
             }}
             color="secondary"
             size="sm"
-            className={`mx-2 inline-flex h-8 w-8 items-center justify-center rounded-full p-0 font-mono`}
+            className={`mx-2 inline-block h-8 w-8 min-w-8 items-center justify-center rounded-full p-0 font-mono`}
             title={t("Voir plus d'informations")}>
             i
           </Button>
