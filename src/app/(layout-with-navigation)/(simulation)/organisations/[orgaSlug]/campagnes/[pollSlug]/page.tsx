@@ -90,7 +90,9 @@ export default function CampagnePage() {
         <AdminSection pollData={pollData} />
 
         <PollStatistics
-          simulationRecaps={pollData?.simulationRecaps ?? []}
+          simulationRecaps={
+            pollData?.simulationRecaps?.filter(({ bilan }) => bilan !== 0) ?? []
+          }
           funFacts={pollData?.funFacts}
           title={<Trans>Résultats de campagne</Trans>}
         />
