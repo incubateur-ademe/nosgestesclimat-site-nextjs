@@ -55,7 +55,7 @@ export default function Actions({ subcategory, shouldHideLink }: Props) {
             onClick={() => trackEvent(endClickActions)}
             href="/actions"
             className="text-center text-xs">
-            <Trans>Voir tous les gestes {title}</Trans>
+            <Trans>Voir tous les gestes</Trans> : {title}
           </Link>
         </div>
       )}
