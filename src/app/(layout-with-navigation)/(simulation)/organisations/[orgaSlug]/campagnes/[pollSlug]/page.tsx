@@ -73,13 +73,11 @@ export default function CampagnePage() {
         subtitle={
           pollData ? (
             <span>
-              <Trans>
-                Campagne créée par{' '}
-                <strong className="text-primary-700">
-                  {pollData?.organisationName}
-                </strong>
-                , le
-              </Trans>{' '}
+              <Trans>Campagne créée par</Trans>{' '}
+              <strong className="text-primary-700">
+                {pollData?.organisationName}
+              </strong>
+              <Trans>, le</Trans>{' '}
               {dayjs(pollData?.createdAt).format('DD/MM/YYYY')}
             </span>
           ) : (
@@ -91,18 +89,20 @@ export default function CampagnePage() {
       <div className="mt-8">
         <AdminSection pollData={pollData} />
 
+        <PollStatistics
+          simulationRecaps={
+            pollData?.simulationRecaps?.filter(({ bilan }) => bilan !== 0) ?? []
+          }
+          funFacts={pollData?.funFacts}
+          title={<Trans>Résultats de campagne</Trans>}
+        />
+
         <PollStatisticsFilters
           simulationRecaps={pollData?.simulationRecaps ?? []}
           filteredSimulationRecaps={filteredSimulationRecaps ?? []}
           defaultAdditionalQuestions={
             pollData?.defaultAdditionalQuestions ?? []
           }
-        />
-
-        <PollStatistics
-          simulationRecaps={filteredSimulationRecaps ?? []}
-          funFacts={pollData?.funFacts}
-          title={<Trans>Résultats de campagne</Trans>}
         />
 
         <PollStatisticsCharts
