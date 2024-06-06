@@ -28,6 +28,7 @@ export default function CategoryChartItem({
     <>
       <Tooltip id={`category-${category}`} />
       <VerticalBarChartItem
+        category={category}
         data-tooltip-id={`category-${category}`}
         data-tooltip-content={t('{{category}}', {
           category: capitalizeString(category),
@@ -42,6 +43,7 @@ export default function CategoryChartItem({
         )}
         title={title ?? ''}
         icons={icons}
+        className="h-full"
       />
     </>
   )

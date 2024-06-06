@@ -52,7 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const actionPosts = await getPosts(`src/locales/actions-plus/fr/`)
   const actionUrls = actionPosts.map((post) => ({
-    url: `https://nosgestesclimat.fr/actions/plus/${encodeRuleName(post.slug)}`,
+    url: `https://nosgestesclimat.fr/actions/plus/${encodeRuleName(post?.slug ?? '')}`,
     lastModified: new Date(),
     priority: 0.8,
   }))

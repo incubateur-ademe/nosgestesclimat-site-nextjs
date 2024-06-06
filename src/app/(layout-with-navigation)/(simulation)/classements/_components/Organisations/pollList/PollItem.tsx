@@ -15,14 +15,18 @@ type Props = {
 export default function PollItem({ poll }: Props) {
   return (
     <Link
-      href={getLinkToPollDashboard({ orgaSlug: poll.organisationInfo.slug })}
+      href={getLinkToPollDashboard({
+        orgaSlug: poll.organisationInfo.slug,
+        pollSlug: poll.slug,
+      })}
       className="rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-primary-100"
       onClick={() => trackEvent(classementClickOrganisation)}>
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center">
           <div>
-            <div className="text-md font-bold text-gray-900">
-              {poll.organisationInfo?.name}
+            <div className="text-md text-gray-900">
+              <strong>{poll.organisationInfo?.name}</strong>
+              {poll.name && ` - ${poll.name}`}
             </div>
 
             <div className="flex gap-1 text-sm text-violet-900">

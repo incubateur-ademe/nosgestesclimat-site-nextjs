@@ -27,6 +27,7 @@ export type CustomAdditionalQuestions = {
 }
 
 export type OrganisationPoll = {
+  _id: string
   simulations: [OrganisationSimulation]
   startDate: Date
   endDate: Date
@@ -35,9 +36,11 @@ export type OrganisationPoll = {
   defaultAdditionalQuestions: [string]
   customAdditionalQuestions?: CustomAdditionalQuestions[]
   numberOfExpectedParticipants: number
+  createdAt: Date
 }
 
 export type Organisation = {
+  _id?: string
   administrators: OrganisationAdministrator[]
   polls: OrganisationPoll[]
   name: string
@@ -47,6 +50,8 @@ export type Organisation = {
     code: string
     expirationDate: Date
   }
+  organisationType?: string
+  numberOfCollaborators?: number
 }
 
 export type SimulationRecap = {
@@ -62,6 +67,8 @@ export type SimulationRecap = {
 }
 
 export type PollData = {
+  name: string
+  createdAt: string
   funFacts: FunFacts
   simulationRecaps: SimulationRecap[]
   organisationName: string
@@ -71,6 +78,7 @@ export type PollData = {
 }
 
 export type PollInfo = {
+  _id?: string
   startDate: string
   endDate: string
   name: string
@@ -80,6 +88,7 @@ export type PollInfo = {
   expectedNumberOfParticipants: number
   organisationInfo: OrganisationInfo
   customAdditionalQuestions: CustomAdditionalQuestions[]
+  simulations?: Simulation[]
 }
 
 export type OrganisationInfo = {
