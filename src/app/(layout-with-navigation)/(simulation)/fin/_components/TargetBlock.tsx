@@ -26,7 +26,7 @@ export default function TargetBlock() {
   return (
     <div className="relative">
       <Hedgehog setIsHedgehog={setIsHedgehog} />
-      <div className="short:py-2 relative rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-6">
+      <div className="relative rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-6 short:py-2">
         {isHedgehog ? (
           <HedgehogAwareness />
         ) : (
@@ -78,7 +78,7 @@ export default function TargetBlock() {
                   className="text-sm"
                   href="/empreinte-climat"
                   target="_blank">
-                  En savoir plus{' '}
+                  <Trans>En savoir plus</Trans>{' '}
                   <ExternalLinkIcon className="stroke-primary-700" />
                 </Link>
               </div>

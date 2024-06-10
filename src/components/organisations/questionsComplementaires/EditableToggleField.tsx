@@ -29,10 +29,6 @@ export default forwardRef(function EditableToggleField(
           autoFocus
           className="mr-2 w-full bg-transparent px-1 pb-1 text-base outline-none focus:!border-b-2 focus:border-primary-500"
         />
-
-        <div className="relative inline-flex items-center justify-between">
-          <div className="peer h-6 w-11 rounded-full bg-primary-200  after:absolute  after:left-[2px] after:top-[5px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-primary-700 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-primary-300" />
-        </div>
       </div>
     </div>
   )

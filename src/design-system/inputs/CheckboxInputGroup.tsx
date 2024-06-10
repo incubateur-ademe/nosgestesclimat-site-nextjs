@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { ChangeEvent, ForwardedRef, ReactNode, forwardRef } from 'react'
 
 type Props = {
@@ -54,7 +55,7 @@ export default forwardRef(function CheckboxInputGroup(
         />
 
         <span className={`text-sm ${error ? '!text-red-700' : ''}`}>
-          {label}
+          <Trans>{label}</Trans>
         </span>
       </label>
 

@@ -662,7 +662,7 @@ entries:
   Rejoindre un groupe - Nos Gestes Climat: Rejoindre un groupe - Nos Gestes Climat
   Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.: Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.
   Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.: Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.
-  Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.: etrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.
+  Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.: Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.
   Simulateur d’empreinte climat - Nos Gestes Climat: Simulateur d’empreinte climat - Nos Gestes Climat
   Supprimer mes données de groupe - Nos Gestes Climat: Supprimer mes données de groupe - Nos Gestes Climat
   Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.: Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.
@@ -868,3 +868,20 @@ entries:
   via votre organisation ? Découvrez nos outils pour vous simplifier la vie !: via votre organisation ? Découvrez nos outils pour vous simplifier la vie !
   vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !: vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !
   Ils ont testé: Ils ont testé
+  mis à jour le: mis à jour le
+  'Un article de ': 'Un article de '
+  ', le': ', le'
+  '{capitalizeString(category)}': '{capitalizeString(category)}'
+  Campagne créée par: Campagne créée par
+  '{CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}': '{CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}'
+  Alimentation: Alimentation
+  Divers: Divers
+  Logement: Logement
+  Services: Services
+  Transport: Transport
+  Voir tous les gestes: Voir tous les gestes
+  '{label}': '{label}'
+  de votre empreinte: de votre empreinte
+  Partager mon résultat: Partager mon résultat
+  ": maîtrisez l'impact carbone de vos transports avec nos 4 infolettres": ": maîtrisez l'impact carbone de vos transports avec nos 4 infolettres"
+  Infolettre saisonnière de: Infolettre saisonnière de
