@@ -37,7 +37,7 @@ export default function Email() {
   // We track a page view with the format of the shared link (/o/organisation/poll)
   useEffect(() => {
     if (pollSlug && organisationSlug) {
-      trackPageView(`/o/${organisationSlug}/${pollSlug}/`)
+      trackPageView(`/o/orga_slug/poll_slug/`)
     }
   }, [pollSlug, organisationSlug])
 
@@ -98,7 +98,7 @@ export default function Email() {
               Pour conserver vos résultats et les retrouver à l’avenir
             </Trans>
             {!fixedEmail ? (
-              <span className="text-secondary-700 ml-2 inline-block font-bold italic">
+              <span className="ml-2 inline-block font-bold italic text-secondary-700">
                 <Trans>facultatif</Trans>
               </span>
             ) : null}
