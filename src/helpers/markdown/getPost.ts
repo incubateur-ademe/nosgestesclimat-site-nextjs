@@ -7,7 +7,8 @@ export async function getPost(folderPath: string, slug: string) {
   try {
     const source = fs.readFileSync(filePath, 'utf-8')
     const matterResult = matter(source)
-    return matterResult.content
+
+    return matterResult
   } catch (err) {
     return null
   }

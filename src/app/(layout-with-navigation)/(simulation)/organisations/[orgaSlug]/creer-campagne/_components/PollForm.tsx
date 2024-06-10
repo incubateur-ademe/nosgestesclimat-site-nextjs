@@ -31,14 +31,16 @@ export default function PollForm({ organisation }: Props) {
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
+    getValues,
   } = useReactHookForm<Inputs>()
 
   const { mutateAsync: createPoll } = useCreatePoll()
 
-  async function onSubmit({ name }: Inputs) {
+  async function onSubmit() {
     if (isError) setIsError(false)
+
+    const { name } = getValues()
 
     try {
       const pollCreated = await createPoll({
@@ -60,7 +62,7 @@ export default function PollForm({ organisation }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       <TextInputGroup
         label={<Trans>Nom de la campagne</Trans>}
         placeholder={t('ex : Campagne 2024, Classe de 6ème A, etc.')}
@@ -95,9 +97,9 @@ export default function PollForm({ organisation }: Props) {
         </p>
       )}
 
-      <Button type="submit">
+      <Button onClick={onSubmit} className="self-start">
         <Trans>Lancer ma campagne</Trans>
       </Button>
-    </form>
+    </>
   )
 }
