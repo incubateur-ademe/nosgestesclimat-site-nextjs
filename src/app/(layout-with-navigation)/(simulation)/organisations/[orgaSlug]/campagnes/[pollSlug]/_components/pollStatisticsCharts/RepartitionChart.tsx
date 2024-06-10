@@ -27,26 +27,23 @@ export default function RepartitionChart({
         'relative h-[48px] overflow-hidden rounded-xl border border-gray-300 bg-white px-2',
         className
       )}>
-      {items
-        // Fix to avoid displaying "NaN tonnes" for buggy computedResults
-        .filter(({ value }) => !isNaN(value))
-        .map(({ value, shouldBeHighlighted }, index) => (
-          <>
-            <BarItem
-              key={`repartition-chart-item-${index}`}
-              value={value}
-              shouldBeHighlighted={shouldBeHighlighted}
-              maxValue={maxValue}
-              className={color ?? 'bg-primary-700'}
-              id={`tooltip-repartition-chart-${id}-${index}`}
-            />
+      {items.map(({ value, shouldBeHighlighted }, index) => (
+        <>
+          <BarItem
+            key={`repartition-chart-item-${index}`}
+            value={value}
+            shouldBeHighlighted={shouldBeHighlighted}
+            maxValue={maxValue}
+            className={color ?? 'bg-primary-700'}
+            id={`tooltip-repartition-chart-${id}-${index}`}
+          />
 
-            <Tooltip
-              className="z-20"
-              id={`tooltip-repartition-chart-${id}-${index}`}
-            />
-          </>
-        ))}
+          <Tooltip
+            className="z-20"
+            id={`tooltip-repartition-chart-${id}-${index}`}
+          />
+        </>
+      ))}
     </div>
   )
 }

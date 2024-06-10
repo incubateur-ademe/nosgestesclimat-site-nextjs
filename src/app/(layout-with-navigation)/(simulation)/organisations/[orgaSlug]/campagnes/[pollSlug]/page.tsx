@@ -5,11 +5,16 @@ import PollStatistics from '@/components/organisations/PollStatistics'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
+import { getComputedResults } from '@/helpers/simulation/getComputedResults'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
+import { useRules } from '@/hooks/useRules'
+import { useSimulation } from '@/publicodes-state'
+import { getDisposableEngine } from '@/publicodes-state/helpers/getDisposableEngine'
+import { SimulationRecap } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useParams, useSearchParams } from 'next/navigation'
-import { useContext } from 'react'
+import { useCallback, useContext, useMemo } from 'react'
 import AdminSection from './_components/AdminSection'
 import { FiltersContext } from './_components/FiltersProvider'
 import PollNotFound from './_components/PollNotFound'
@@ -20,6 +25,10 @@ export default function CampagnePage() {
   const { pollSlug, orgaSlug } = useParams()
 
   const searchParams = useSearchParams()
+
+  const { categories } = useSimulation()
+
+  const { data: rules } = useRules()
 
   const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
 
@@ -37,10 +46,38 @@ export default function CampagnePage() {
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
 
+  const handleMissingComputedResults = useCallback(
+    (simulationRecaps: SimulationRecap[]) => {
+      return simulationRecaps.map((simulationRecap: SimulationRecap) => {
+        if (simulationRecap.bilan !== 0) return simulationRecap
+
+        const { safeEvaluate } = getDisposableEngine({
+          rules,
+          situation: simulationRecap.situation,
+        })
+
+        const computedResults = getComputedResults(categories, safeEvaluate)
+
+        return {
+          ...simulationRecap,
+          bilan: computedResults.bilan,
+          categories: computedResults.categories,
+        }
+      })
+    },
+    [categories, rules]
+  )
+
+  const fixedMissingComputedResultsSimulationRecaps = useMemo(() => {
+    if (!pollData?.simulationRecaps || !rules) return []
+
+    return handleMissingComputedResults(pollData?.simulationRecaps ?? [])
+  }, [pollData?.simulationRecaps, handleMissingComputedResults, rules])
+
   const filteredSimulationRecaps =
     pollData &&
     filterSimulationRecaps({
-      simulationRecaps: pollData?.simulationRecaps,
+      simulationRecaps: fixedMissingComputedResultsSimulationRecaps,
       ageFilters,
       postalCodeFilters,
     })

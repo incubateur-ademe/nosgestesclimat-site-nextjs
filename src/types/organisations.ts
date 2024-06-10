@@ -64,6 +64,7 @@ export type SimulationRecap = {
   progression: number
   isCurrentUser?: boolean
   date: string
+  situation: Record<string, string | number | null>
 }
 
 export type PollData = {
