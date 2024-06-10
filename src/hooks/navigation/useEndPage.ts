@@ -1,7 +1,8 @@
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { linkToQuiz } from '@/helpers/navigation/quizPages'
+import { getComputedResults } from '@/helpers/simulation/getComputedResults'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
-import { useCurrentSimulation } from '@/publicodes-state'
+import { useCurrentSimulation, useSimulation } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
@@ -32,6 +33,8 @@ export function useEndPage() {
 
   const progression = currentSimulation?.progression
 
+  const { safeEvaluate, categories } = useSimulation()
+
   const { saveSimulation } = useSaveSimulation()
 
   const [isNavigating, setIsNavigating] = useState(false)
@@ -54,7 +57,16 @@ export function useEndPage() {
         isAllowedToSave &&
         (currentSimulation.polls || currentSimulation.groups)
       ) {
-        await saveSimulation({ simulation: currentSimulation })
+        await saveSimulation({
+          simulation: {
+            ...currentSimulation,
+            // Fix to avoid computedResults bilan === 0 bug
+            computedResults:
+              currentSimulation.computedResults?.bilan === 0
+                ? getComputedResults(categories, safeEvaluate)
+                : currentSimulation.computedResults,
+          },
+        })
       }
 
       // If we should show the quiz, we redirect to the quiz page
@@ -76,7 +88,15 @@ export function useEndPage() {
       // else we redirect to the results page
       router.push('/fin')
     },
-    [currentSimulation, progression, router, saveSimulation, isNavigating]
+    [
+      isNavigating,
+      progression,
+      currentSimulation,
+      router,
+      saveSimulation,
+      categories,
+      safeEvaluate,
+    ]
   )
 
   const getLinkToEndPage = useCallback(

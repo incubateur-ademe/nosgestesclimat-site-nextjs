@@ -1,4 +1,5 @@
 import { useCurrentSimulation } from '@/publicodes-state'
+import { getNumericValue } from '@/publicodes-state/helpers/getNumericValue'
 import { useEffect, useMemo, useRef } from 'react'
 import { ComputedResults, DottedName, NGCEvaluatedNode } from '../../types'
 
@@ -15,13 +16,6 @@ export function useSetComputedResults({
   const { situation, updateCurrentSimulation } = useCurrentSimulation()
 
   // little helper function to get the numeric value of a dottedName
-  const getNumericValue = useMemo(
-    () => (dottedName: DottedName) => {
-      const nodeValue = safeEvaluate(dottedName)?.nodeValue
-      return Number(nodeValue) === nodeValue ? nodeValue : 0
-    },
-    [safeEvaluate]
-  )
 
   // Set the computed results object (after engine init only)
   const computedResults: ComputedResults = useMemo(
@@ -30,10 +24,13 @@ export function useSetComputedResults({
 
       return categories.reduce(
         (acc, category) => {
-          acc.categories[category] = getNumericValue(category)
+          acc.categories[category] = getNumericValue(category, safeEvaluate)
           return acc
         },
-        { categories: {}, bilan: getNumericValue('bilan') } as ComputedResults
+        {
+          categories: {},
+          bilan: getNumericValue('bilan', safeEvaluate),
+        } as ComputedResults
       )
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
