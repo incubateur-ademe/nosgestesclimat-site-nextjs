@@ -32,14 +32,12 @@ export default function Email() {
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
-  const { pollSlug, organisationSlug } = useOrganisationQueryParams()
+  const { pollSlug } = useOrganisationQueryParams()
 
   // We track a page view with the format of the shared link (/o/organisation/poll)
   useEffect(() => {
-    if (pollSlug && organisationSlug) {
-      trackPageView(`/o/orga_slug/poll_slug/`)
-    }
-  }, [pollSlug, organisationSlug])
+    trackPageView('/o/orga_slug/poll_slug/')
+  }, [])
 
   const handleSubmit = useCallback(
     async (event: MouseEvent | FormEvent) => {
