@@ -39,7 +39,7 @@ export default function PollsList({ organisation }: Props) {
       {polls && polls.length > 0 && (
         <>
           <h3 className="mb-0 text-base">
-            <Trans>Mes sondages</Trans>
+            <Trans>Mes campagnes</Trans>
           </h3>
 
           {polls?.map((poll) => <PollItem key={poll.slug} poll={poll} />)}

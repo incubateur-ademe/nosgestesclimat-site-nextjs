@@ -1,6 +1,5 @@
 'use client'
 
-import useQuestionsOfMosaic from '@/publicodes-state/hooks/useRule/useQuestionsOfMosaic'
 import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
@@ -25,7 +24,7 @@ export default function useRule(dottedName: DottedName) {
     safeGetRule,
     safeEvaluate,
     everyNotifications,
-    everyMosaicChildren,
+    everyMosaicChildrenWithParent,
     addToEngineSituation,
   } = useContext(SimulationContext)
 
@@ -56,10 +55,7 @@ export default function useRule(dottedName: DottedName) {
     situation,
   })
 
-  const questionsOfMosaic = useQuestionsOfMosaic({
-    options: rule?.rawNode?.mosaique?.options,
-    everyMosaicChildren,
-  })
+  const questionsOfMosaic = everyMosaicChildrenWithParent[dottedName] || []
 
   const parent = utils.ruleParent(dottedName)
 

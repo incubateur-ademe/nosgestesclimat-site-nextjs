@@ -88,7 +88,7 @@ export default function RegionSelector({
               target="_blank"
               rel="noopener noreferrer"
               className="align-top"
-              href="https://github.com/incubateur-ademe/nosgestesclimat/blob/master/INTERNATIONAL.md">
+              href="https://accelerateur-transition-ecologique-ademe.notion.site/Ajouter-une-nouvelle-r-gion-f7e3a09a975d423f826ae654a788f8ba">
               <Trans>Suivez le guide !</Trans>
               <NewTabSvg className="!-mt-1" />
             </a>
