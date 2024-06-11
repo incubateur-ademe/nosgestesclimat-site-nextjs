@@ -51,11 +51,8 @@ export default function ExportDataButton({
 
           const computedResults = getComputedResults(categories, safeEvaluate)
 
-          return {
-            ...simulationRecap,
-            bilan: computedResults.bilan,
-            categories: computedResults.categories,
-          }
+          simulationRecapToParse.bilan = computedResults.bilan
+          simulationRecapToParse.categories = computedResults.categories
         }
 
         const data: Record<string, unknown> = {
