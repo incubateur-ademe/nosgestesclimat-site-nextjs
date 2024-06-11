@@ -36,13 +36,11 @@ export function generateSimulation({
     savedViaEmail,
   } as Simulation
 
-  if (migrationInstructions) {
-    try {
-      simulation = migrateSimulation(simulation, migrationInstructions)
-    } catch (error) {
-      console.warn('Error trying to migrate LocalStorage:', error)
-      captureException(error)
-    }
+  try {
+    simulation = migrateSimulation(simulation, migrationInstructions)
+  } catch (error) {
+    console.warn('Error trying to migrate LocalStorage:', error)
+    captureException(error)
   }
 
   return simulation
