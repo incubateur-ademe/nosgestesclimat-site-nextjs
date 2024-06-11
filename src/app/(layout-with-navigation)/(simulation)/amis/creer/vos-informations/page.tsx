@@ -27,10 +27,7 @@ export default async function YourInfoPage() {
 
   return (
     <div className="p-4 md:p-8">
-      <GoBackLink
-        href={'/amis/creer/votre-groupe'}
-        className="mb-4 font-bold"
-      />
+      <GoBackLink href={'/classements'} className="mb-4 font-bold" />
 
       <StepsDisplay currentStep={1} />
 
