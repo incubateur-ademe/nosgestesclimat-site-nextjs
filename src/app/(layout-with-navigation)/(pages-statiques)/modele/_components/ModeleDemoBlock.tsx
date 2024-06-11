@@ -2,6 +2,7 @@
 
 import Link from '@/components/Link'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { generateEngine } from '@/helpers/publicodes/generateEngine'
 import { useRules } from '@/hooks/useRules'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
 import { safeGetSituation } from '@/publicodes-state/helpers/safeGetSituation'
@@ -27,7 +28,7 @@ export default function ModeleDemoBlock() {
   const { data: rules } = useRules({ isOptim: false })
 
   const engine = useMemo<Engine | null>(
-    () => (rules ? new Engine(rules as Rules) : null),
+    () => (rules ? generateEngine(rules) : null),
     [rules]
   )
 

@@ -1,3 +1,4 @@
+import { generateEngine } from '@/helpers/publicodes/generateEngine'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
@@ -17,7 +18,7 @@ export function useEngine(rules: Rules) {
   const engine = useMemo<Engine>(() => {
     const nbRules = Object.keys(rules).length
     console.time(`⚙️ Parsing ${nbRules}`)
-    const engine = new Engine(rules, {
+    const engine = generateEngine(rules, {
       logger: {
         log: console.log,
         warn: () => null,
@@ -28,6 +29,8 @@ export function useEngine(rules: Rules) {
     console.timeEnd(`⚙️ Parsing ${nbRules}`)
     return engine
   }, [rules])
+
+  // Surcharge pour utiliser les deux métriques carbone et eau
 
   const pristineEngine = useMemo(() => engine.shallowCopy(), [engine])
 

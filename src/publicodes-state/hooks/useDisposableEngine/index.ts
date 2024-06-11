@@ -1,4 +1,4 @@
-import Engine from 'publicodes'
+import { generateEngine } from '@/helpers/publicodes/generateEngine'
 import { useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
 import { safeGetSituation } from '../../helpers/safeGetSituation'
@@ -15,10 +15,12 @@ type Props = {
  */
 export default function useDisposableEngine({ rules, situation }: Props) {
   const engine = useMemo(() => {
-    return new Engine(rules, { allowOrphanRules: true }).setSituation(
+    return generateEngine(rules, { allowOrphanRules: true })?.setSituation(
       safeGetSituation({ situation, everyRules: Object.keys(rules) })
     )
   }, [rules, situation])
+
+  // Surcharge pour utiliser les deux métriques carbone et eau
 
   const safeEvaluate = useMemo(
     () =>

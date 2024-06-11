@@ -1,4 +1,6 @@
 import { useCurrentSimulation } from '@/publicodes-state'
+import { Situation } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
 import { useCallback, useEffect, useState } from 'react'
 import { safeGetSituation } from '../../helpers/safeGetSituation'
