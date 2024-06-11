@@ -1,10 +1,12 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { amisCreationEtapeVotreGroupeSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -32,6 +34,8 @@ export default function GroupCreationForm() {
 
   function onSubmit({ administratorName, administratorEmail }: Inputs) {
     updateGroup({ administratorName, administratorEmail })
+
+    trackEvent(amisCreationEtapeVotreGroupeSuivant)
 
     router.push('/amis/creer/votre-groupe')
   }

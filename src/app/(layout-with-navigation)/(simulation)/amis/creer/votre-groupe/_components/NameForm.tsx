@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import { GROUP_EMOJIS } from '@/constants/group'
+import { amisCreationEtapeVotreGroupeSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/inputs/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -10,6 +11,7 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { useContext, useEffect, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -88,6 +90,8 @@ export default function NameForm() {
       currentSimulation.update({
         groupToAdd: group._id,
       })
+
+      trackEvent(amisCreationEtapeVotreGroupeSuivant)
 
       setShouldNavigate(group._id)
     } catch (e) {

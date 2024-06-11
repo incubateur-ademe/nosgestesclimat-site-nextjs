@@ -1,9 +1,11 @@
 import StepsDisplay from '@/components/groups/StepsDisplay'
+import { amisCreationVosInformationsRetour } from '@/constants/tracking/pages/amisCreation'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import GroupCreationForm from './_component/GroupCreationForm'
 
 export async function generateMetadata() {
@@ -27,7 +29,13 @@ export default async function YourInfoPage() {
 
   return (
     <div className="p-4 md:p-8">
-      <GoBackLink href={'/classements'} className="mb-4 font-bold" />
+      <GoBackLink
+        href={'/classements'}
+        onClick={() => {
+          trackEvent(amisCreationVosInformationsRetour)
+        }}
+        className="mb-4 font-bold"
+      />
 
       <StepsDisplay currentStep={1} />
 
