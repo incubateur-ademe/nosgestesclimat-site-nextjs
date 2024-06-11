@@ -2,9 +2,7 @@ import { SimulationRecap } from '@/types/organisations'
 
 const MAX_VALUE = 100000
 
-export function filterZerosAndTooHighValues(
-  simulationRecaps: SimulationRecap[]
-) {
+export function filterExtremes(simulationRecaps: SimulationRecap[]) {
   return simulationRecaps.filter((simulationRecap) => {
     // Remove simulations with too high values
     if (

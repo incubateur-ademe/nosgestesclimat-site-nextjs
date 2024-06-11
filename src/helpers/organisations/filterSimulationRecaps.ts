@@ -1,5 +1,4 @@
 import { SimulationRecap } from '@/types/organisations'
-import { filterZerosAndTooHighValues } from './filterZerosAndTooHighValues'
 
 type Props = {
   simulationRecaps: SimulationRecap[]
@@ -38,5 +37,5 @@ export function filterSimulationRecaps({
     }
   )
 
-  return filterZerosAndTooHighValues(filteredSimulationRecapsByQuestions)
+  return filteredSimulationRecapsByQuestions
 }

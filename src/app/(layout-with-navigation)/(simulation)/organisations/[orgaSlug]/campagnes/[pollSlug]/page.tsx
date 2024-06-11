@@ -4,6 +4,7 @@ import PollLoader from '@/components/organisations/PollLoader'
 import PollStatistics from '@/components/organisations/PollStatistics'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
+import { filterExtremes } from '@/helpers/organisations/filterExtremes'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
 import { getComputedResults } from '@/helpers/simulation/getComputedResults'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
@@ -74,10 +75,15 @@ export default function CampagnePage() {
     return handleMissingComputedResults(pollData?.simulationRecaps ?? [])
   }, [pollData?.simulationRecaps, handleMissingComputedResults, rules])
 
+  const simulationRecapsWithoutExtremes = useMemo(
+    () => filterExtremes(fixedMissingComputedResultsSimulationRecaps),
+    [fixedMissingComputedResultsSimulationRecaps]
+  )
+
   const filteredSimulationRecaps =
     pollData &&
     filterSimulationRecaps({
-      simulationRecaps: fixedMissingComputedResultsSimulationRecaps,
+      simulationRecaps: simulationRecapsWithoutExtremes,
       ageFilters,
       postalCodeFilters,
     })
@@ -127,15 +133,14 @@ export default function CampagnePage() {
         <AdminSection pollData={pollData} />
 
         <PollStatistics
-          simulationRecaps={
-            pollData?.simulationRecaps?.filter(({ bilan }) => bilan !== 0) ?? []
-          }
+          simulationRecaps={fixedMissingComputedResultsSimulationRecaps}
+          simulationRecapsWithoutExtremes={simulationRecapsWithoutExtremes}
           funFacts={pollData?.funFacts}
           title={<Trans>Résultats de campagne</Trans>}
         />
 
         <PollStatisticsFilters
-          simulationRecaps={pollData?.simulationRecaps ?? []}
+          simulationRecaps={simulationRecapsWithoutExtremes ?? []}
           filteredSimulationRecaps={filteredSimulationRecaps ?? []}
           defaultAdditionalQuestions={
             pollData?.defaultAdditionalQuestions ?? []
