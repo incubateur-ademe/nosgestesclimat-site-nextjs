@@ -10,7 +10,7 @@ export async function generateMetadata() {
 
   return getMetadataObject({
     title: t(
-      'Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat'
+      'Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat'
     ),
     description: t(
       "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
@@ -21,7 +21,7 @@ export async function generateMetadata() {
   })
 }
 
-export default async function CreerGroupePage() {
+export default async function YourInfoPage() {
   const { t } = await getServerTranslation()
 
   return (

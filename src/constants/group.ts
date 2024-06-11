@@ -60,3 +60,22 @@ export const GROUP_NAMES = [
     name: 'Les bana-nazes',
   },
 ]
+// Create an array of emojis from the array of group names
+
+export const GROUP_EMOJIS = [
+  '🍋',
+  '🍊',
+  '🍉',
+  '🥥',
+  '🥝',
+  '🥦',
+  '🥕',
+  '🍇',
+  '🍎',
+  '🍒',
+  '🍈',
+  '🌽',
+  '🍍',
+  '🍐',
+  '🍌',
+]
