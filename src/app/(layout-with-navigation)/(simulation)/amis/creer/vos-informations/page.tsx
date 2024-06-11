@@ -1,3 +1,4 @@
+import StepsDisplay from '@/components/groups/StepsDisplay'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -26,7 +27,12 @@ export default async function YourInfoPage() {
 
   return (
     <div className="p-4 md:p-8">
-      <GoBackLink className="mb-4 font-bold" />
+      <GoBackLink
+        href={'/amis/creer/votre-groupe'}
+        className="mb-4 font-bold"
+      />
+
+      <StepsDisplay currentStep={2} />
 
       <Title
         title={t("Créer un groupe d'amis")}

@@ -27,7 +27,7 @@ export default function NameForm() {
 
   const router = useRouter()
 
-  const { updateGroup } = useContext(GroupCreationContext)
+  const { updateGroup, groupValues } = useContext(GroupCreationContext)
 
   function onSubmit({ name, emoji }: { name: string; emoji: string }) {
     updateGroup({ name, emoji })
@@ -47,6 +47,7 @@ export default function NameForm() {
           required: t('Ce champ est obligatoire.'),
           maxLength: { value: 50, message: t('Ce champ est trop long') },
         })}
+        value={groupValues?.name}
       />
 
       <GridRadioInputs
@@ -57,6 +58,7 @@ export default function NameForm() {
         items={GROUP_EMOJIS.map((emoji) => ({ value: emoji, label: emoji }))}
         rules={{ required: t('Ce champ est obligatoire.') }}
         error={errors.emoji?.message}
+        value={groupValues?.emoji}
       />
 
       <Button type="submit" className="mt-4 self-start">

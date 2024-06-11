@@ -1,11 +1,10 @@
 'use client'
 
-import { Group } from '@/types/groups'
 import { PropsWithChildren, createContext, useState } from 'react'
 
 type GroupCreationContextType = {
-  groupValues?: Pick<Group, 'name' | 'emoji'>
-  updateGroup: (group: Pick<Group, 'name' | 'emoji'>) => void
+  groupValues?: { name: string; emoji: string }
+  updateGroup: (group: { name: string; emoji: string }) => void
 }
 
 export const GroupCreationContext = createContext<GroupCreationContextType>({
@@ -15,10 +14,10 @@ export const GroupCreationContext = createContext<GroupCreationContextType>({
 
 export function GroupCreationProvider({ children }: PropsWithChildren) {
   const [groupValues, setGroupValues] = useState<
-    Pick<Group, 'name' | 'emoji'> | undefined
+    { name: string; emoji: string } | undefined
   >(undefined)
 
-  function updateGroup(values: Pick<Group, 'name' | 'emoji'>) {
+  function updateGroup(values: { name: string; emoji: string }) {
     setGroupValues({ ...groupValues, ...values })
   }
 

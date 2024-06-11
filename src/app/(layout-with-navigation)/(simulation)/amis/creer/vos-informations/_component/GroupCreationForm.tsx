@@ -4,24 +4,28 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
-import { getGroupName } from '@/helpers/groups/getGroupName'
 import { validateCreationForm } from '@/helpers/groups/validateCreationForm'
 import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
-import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useLocale } from '@/hooks/useLocale'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
-import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
+import {
+  FormEvent,
+  FormEventHandler,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
+import { GroupCreationContext } from '../../_contexts/GroupCreationContext'
 
 export default function GroupCreationForm() {
   const { t } = useClientTranslation()
 
-  const locale = useLocale()
-
   const { user, updateName, updateEmail } = useUser()
+
+  const { groupValues } = useContext(GroupCreationContext)
 
   const currentSimulation = useCurrentSimulation()
   const hasCompletedTest = currentSimulation.progression === 1
@@ -34,8 +38,6 @@ export default function GroupCreationForm() {
 
   const [administratorEmail, setAdministratorEmail] = useState(user.email || '')
   const [errorEmail, setErrorEmail] = useState('')
-
-  const { data: groups } = useFetchGroupsOfUser()
 
   const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
 
@@ -79,12 +81,12 @@ export default function GroupCreationForm() {
     if (!isValid) return
 
     try {
-      const { name, emoji } = getGroupName(groups ?? [], locale ?? 'fr')
+      const { name, emoji } = groupValues ?? {}
 
       const group = await createGroup({
         groupInfo: {
-          name,
-          emoji,
+          name: name ?? '',
+          emoji: emoji ?? '',
           administratorEmail,
           administratorName,
           userId: user.userId,

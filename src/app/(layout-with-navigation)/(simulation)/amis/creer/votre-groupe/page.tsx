@@ -27,7 +27,7 @@ export default async function GroupNamePage() {
 
   return (
     <div className="p-4 md:p-8">
-      <GoBackLink className="mb-4 font-bold" />
+      <GoBackLink className="mb-4 font-bold" href={'/classements'} />
 
       <StepsDisplay currentStep={1} />
 
