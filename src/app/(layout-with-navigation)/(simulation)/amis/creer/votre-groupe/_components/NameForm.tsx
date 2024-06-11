@@ -5,9 +5,13 @@ import { GROUP_EMOJIS } from '@/constants/group'
 import Button from '@/design-system/inputs/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
+import { useEndPage } from '@/hooks/navigation/useEndPage'
+import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useRouter } from 'next/navigation'
-import { useContext } from 'react'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { captureException } from '@sentry/react'
+import { useContext, useEffect, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { GroupCreationContext } from '../../_contexts/GroupCreationContext'
 
@@ -25,14 +29,70 @@ export default function NameForm() {
     formState: { errors },
   } = useReactHookForm<Inputs>()
 
-  const router = useRouter()
+  const { user, updateName, updateEmail } = useUser()
 
-  const { updateGroup, groupValues } = useContext(GroupCreationContext)
+  const { groupValues } = useContext(GroupCreationContext)
 
-  function onSubmit({ name, emoji }: { name: string; emoji: string }) {
-    updateGroup({ name, emoji })
+  const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
 
-    router.push('/amis/creer/vos-informations')
+  const [shouldNavigate, setShouldNavigate] = useState<string | undefined>(
+    undefined
+  )
+
+  const currentSimulation = useCurrentSimulation()
+  const hasCompletedTest = currentSimulation.progression === 1
+
+  const { goToSimulateurPage } = useSimulateurPage()
+  const { goToEndPage } = useEndPage()
+
+  useEffect(() => {
+    if (
+      shouldNavigate &&
+      currentSimulation.groups?.includes(shouldNavigate || '')
+    ) {
+      setShouldNavigate(undefined)
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
+    }
+  }, [
+    currentSimulation.groups,
+    hasCompletedTest,
+    goToEndPage,
+    goToSimulateurPage,
+    shouldNavigate,
+  ])
+
+  async function onSubmit({ name, emoji }: Inputs) {
+    try {
+      const { administratorEmail, administratorName } = groupValues ?? {}
+
+      const group = await createGroup({
+        groupInfo: {
+          name: name ?? '',
+          emoji: emoji ?? '',
+          administratorEmail: administratorEmail ?? '',
+          administratorName: administratorName ?? '',
+          userId: user.userId,
+          simulation: currentSimulation,
+        },
+      })
+
+      // Update user info
+      updateName(administratorName ?? '')
+      updateEmail(administratorEmail ?? '')
+
+      // Update current simulation with group id (to redirect after test completion)
+      currentSimulation.update({
+        groupToAdd: group._id,
+      })
+
+      setShouldNavigate(group._id)
+    } catch (e) {
+      captureException(e)
+    }
   }
 
   return (
@@ -47,7 +107,6 @@ export default function NameForm() {
           required: t('Ce champ est obligatoire.'),
           maxLength: { value: 50, message: t('Ce champ est trop long') },
         })}
-        value={groupValues?.name}
       />
 
       <GridRadioInputs
@@ -58,11 +117,18 @@ export default function NameForm() {
         items={GROUP_EMOJIS.map((emoji) => ({ value: emoji, label: emoji }))}
         rules={{ required: t('Ce champ est obligatoire.') }}
         error={errors.emoji?.message}
-        value={groupValues?.emoji}
       />
 
-      <Button type="submit" className="mt-4 self-start">
-        <Trans>Continuer</Trans>
+      <Button
+        type="submit"
+        data-cypress-id="button-create-group"
+        className="mt-4 self-start"
+        disabled={isPending || isSuccess}>
+        {hasCompletedTest ? (
+          <Trans>Créer le groupe</Trans>
+        ) : (
+          <Trans>Créer et passer mon test</Trans>
+        )}
       </Button>
     </form>
   )

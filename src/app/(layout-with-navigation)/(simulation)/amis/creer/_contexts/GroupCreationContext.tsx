@@ -3,8 +3,11 @@
 import { PropsWithChildren, createContext, useState } from 'react'
 
 type GroupCreationContextType = {
-  groupValues?: { name: string; emoji: string }
-  updateGroup: (group: { name: string; emoji: string }) => void
+  groupValues?: { administratorName: string; administratorEmail: string }
+  updateGroup: (group: {
+    administratorName: string
+    administratorEmail: string
+  }) => void
 }
 
 export const GroupCreationContext = createContext<GroupCreationContextType>({
@@ -14,10 +17,13 @@ export const GroupCreationContext = createContext<GroupCreationContextType>({
 
 export function GroupCreationProvider({ children }: PropsWithChildren) {
   const [groupValues, setGroupValues] = useState<
-    { name: string; emoji: string } | undefined
+    { administratorName: string; administratorEmail: string } | undefined
   >(undefined)
 
-  function updateGroup(values: { name: string; emoji: string }) {
+  function updateGroup(values: {
+    administratorName: string
+    administratorEmail: string
+  }) {
     setGroupValues({ ...groupValues, ...values })
   }
 

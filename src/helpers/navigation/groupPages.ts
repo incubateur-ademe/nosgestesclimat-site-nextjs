@@ -1,6 +1,6 @@
 import { Group } from '@/types/groups'
 
-export const linkToGroupCreation = '/amis/creer'
+export const linkToGroupCreation = '/amis/creer/vos-informations'
 
 type Props = {
   group?: Group

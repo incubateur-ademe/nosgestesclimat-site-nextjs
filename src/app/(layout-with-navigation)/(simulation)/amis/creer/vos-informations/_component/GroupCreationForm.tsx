@@ -4,129 +4,51 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
-import { validateCreationForm } from '@/helpers/groups/validateCreationForm'
-import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
-import { useEndPage } from '@/hooks/navigation/useEndPage'
-import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { captureException } from '@sentry/react'
-import {
-  FormEvent,
-  FormEventHandler,
-  useContext,
-  useEffect,
-  useState,
-} from 'react'
+import { useRouter } from 'next/navigation'
+import { useContext } from 'react'
+import { useForm as useReactHookForm } from 'react-hook-form'
 import { GroupCreationContext } from '../../_contexts/GroupCreationContext'
+
+type Inputs = {
+  administratorName: string
+  administratorEmail: string
+}
 
 export default function GroupCreationForm() {
   const { t } = useClientTranslation()
 
-  const { user, updateName, updateEmail } = useUser()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useReactHookForm<Inputs>({
+    mode: 'onSubmit',
+  })
 
-  const { groupValues } = useContext(GroupCreationContext)
+  const router = useRouter()
 
-  const currentSimulation = useCurrentSimulation()
-  const hasCompletedTest = currentSimulation.progression === 1
+  const { updateGroup } = useContext(GroupCreationContext)
 
-  const { goToSimulateurPage } = useSimulateurPage()
-  const { goToEndPage } = useEndPage()
+  function onSubmit({ administratorName, administratorEmail }: Inputs) {
+    updateGroup({ administratorName, administratorEmail })
 
-  const [administratorName, setAdministratorName] = useState(user.name || '')
-  const [errorAdministratorName, setErrorAdministratorName] = useState('')
-
-  const [administratorEmail, setAdministratorEmail] = useState(user.email || '')
-  const [errorEmail, setErrorEmail] = useState('')
-
-  const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
-
-  const [shouldNavigate, setShouldNavigate] = useState<string | undefined>(
-    undefined
-  )
-  useEffect(() => {
-    if (
-      shouldNavigate &&
-      currentSimulation.groups?.includes(shouldNavigate || '')
-    ) {
-      setShouldNavigate(undefined)
-      if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
-      } else {
-        goToSimulateurPage()
-      }
-    }
-  }, [
-    currentSimulation.groups,
-    hasCompletedTest,
-    goToEndPage,
-    goToSimulateurPage,
-    shouldNavigate,
-  ])
-
-  const handleSubmit = async (event: FormEvent) => {
-    // Avoid reloading page
-    if (event) {
-      event.preventDefault()
-    }
-
-    const isValid = validateCreationForm({
-      administratorName,
-      administratorEmail,
-      setErrorAdministratorName,
-      setErrorEmail,
-      t,
-    })
-
-    if (!isValid) return
-
-    try {
-      const { name, emoji } = groupValues ?? {}
-
-      const group = await createGroup({
-        groupInfo: {
-          name: name ?? '',
-          emoji: emoji ?? '',
-          administratorEmail,
-          administratorName,
-          userId: user.userId,
-          simulation: currentSimulation,
-        },
-      })
-
-      // Update user info
-      updateName(administratorName)
-      updateEmail(administratorEmail)
-
-      // Update current simulation with group id (to redirect after test completion)
-      currentSimulation.update({
-        groupToAdd: group._id,
-      })
-
-      setShouldNavigate(group._id)
-    } catch (e) {
-      captureException(e)
-    }
+    router.push('/amis/creer/votre-groupe')
   }
 
   return (
-    <form
-      onSubmit={handleSubmit as FormEventHandler<HTMLFormElement>}
-      autoComplete="off">
+    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <PrenomInput
-        prenom={administratorName}
-        setPrenom={setAdministratorName}
-        errorPrenom={errorAdministratorName}
-        setErrorPrenom={setErrorAdministratorName}
         data-cypress-id="group-input-owner-name"
+        error={errors.administratorName?.message}
+        {...register('administratorName', {
+          required: t('Ce champ est requis.'),
+        })}
       />
 
       <div className="my-4">
         <EmailInput
-          email={administratorEmail}
-          setEmail={setAdministratorEmail}
-          error={errorEmail}
-          setError={setErrorEmail}
+          error={errors.administratorEmail?.message}
           label={
             <span>
               {t('Votre adresse email')}{' '}
@@ -136,19 +58,19 @@ export default function GroupCreationForm() {
               </span>
             </span>
           }
+          {...register('administratorEmail', {
+            pattern: {
+              value:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'Veuillez entrer une adresse email valide',
+            },
+          })}
         />
       </div>
 
-      <Button
-        type="submit"
-        data-cypress-id="button-create-group"
-        onClick={handleSubmit}
-        disabled={!administratorName || isPending || isSuccess}>
-        {hasCompletedTest ? (
-          <Trans>Créer le groupe</Trans>
-        ) : (
-          <Trans>Créer et passer mon test</Trans>
-        )}
+      <Button type="submit" data-cypress-id="button-create-group">
+        {' '}
+        <Trans>Continuer</Trans>
       </Button>
     </form>
   )

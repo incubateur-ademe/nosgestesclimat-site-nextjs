@@ -29,7 +29,7 @@ export default async function GroupNamePage() {
     <div className="p-4 md:p-8">
       <GoBackLink className="mb-4 font-bold" href={'/classements'} />
 
-      <StepsDisplay currentStep={1} />
+      <StepsDisplay currentStep={2} />
 
       <Title
         title={t("Créer un groupe d'amis")}

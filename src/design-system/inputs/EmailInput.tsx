@@ -1,28 +1,18 @@
-import { ChangeEvent, ReactNode } from 'react'
+import { ReactNode, forwardRef } from 'react'
 import TextInputGroup from './TextInputGroup'
 
 type Props = {
-  email: string
-  setEmail: (email: string) => void
-  error: string
-  setError: (error: string) => void
   label?: ReactNode | string
   helperText?: string
   className?: string
   readOnly?: boolean
+  error?: string
 }
 
-export default function EmailInput({
-  email,
-  setEmail,
-  error,
-  setError,
-  label,
-  helperText,
-  className,
-  readOnly = false,
-  ...props
-}: Props) {
+export default forwardRef(function EmailInput(
+  { label, helperText, className, readOnly = false, error, ...props }: Props,
+  ref
+) {
   return (
     <TextInputGroup
       label={label}
@@ -30,17 +20,11 @@ export default function EmailInput({
       name="email"
       type="email"
       placeholder="jean-marc@nosgestesclimat.fr"
-      onChange={(e: ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value)
-        if (error) {
-          setError('')
-        }
-      }}
-      value={email}
-      error={error}
       className={className}
       readOnly={readOnly}
+      ref={ref as any}
+      error={error}
       {...props}
     />
   )
-}
+})

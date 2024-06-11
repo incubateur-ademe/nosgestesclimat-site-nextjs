@@ -32,7 +32,7 @@ export default async function YourInfoPage() {
         className="mb-4 font-bold"
       />
 
-      <StepsDisplay currentStep={2} />
+      <StepsDisplay currentStep={1} />
 
       <Title
         title={t("Créer un groupe d'amis")}

@@ -1,21 +1,15 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { ChangeEvent } from 'react'
+import { forwardRef } from 'react'
 import TextInputGroup from './TextInputGroup'
 
 type Props = {
-  prenom: string
-  setPrenom: (prenom: string) => void
-  errorPrenom: string
-  setErrorPrenom: (errorPrenom: string) => void
+  error?: string
 }
 
-export default function PrenomInput({
-  prenom,
-  setPrenom,
-  errorPrenom,
-  setErrorPrenom,
-  ...props
-}: Props) {
+export default forwardRef(function PrenomInput(
+  { error, ...props }: Props,
+  ref
+) {
   const { t } = useClientTranslation()
 
   return (
@@ -26,15 +20,9 @@ export default function PrenomInput({
       )}
       name="prenom"
       placeholder="Jean-Marc"
-      onChange={(e: ChangeEvent<HTMLInputElement>) => {
-        setPrenom(e.target.value)
-        if (errorPrenom) {
-          setErrorPrenom('')
-        }
-      }}
-      error={errorPrenom}
-      value={prenom}
+      ref={ref as any}
+      error={error}
       {...props}
     />
   )
-}
+})
