@@ -1,7 +1,6 @@
 'use client'
 
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
-import { useRules } from '@/hooks/useRules'
 import {
   useCurrentSimulation,
   useEngine,
@@ -33,8 +32,6 @@ export default function SimulationSyncProvider({
 }) {
   const { user } = useUser()
 
-  const { data: rules } = useRules()
-
   const {
     id,
     date,
@@ -50,7 +47,7 @@ export default function SimulationSyncProvider({
     savedViaEmail,
   } = useCurrentSimulation()
 
-  const { categories, safeEvaluate } = useSimulation()
+  const { safeEvaluate } = useSimulation()
 
   const { saveSimulation, isPending } = useSaveSimulation()
 
@@ -131,9 +128,7 @@ export default function SimulationSyncProvider({
     saveSimulation,
     shouldSyncWithBackend,
     resetSyncTimer,
-    categories,
     safeEvaluate,
-    rules,
     getComputedResults,
   ])
 
