@@ -12,12 +12,18 @@ import EmailInput from '@/design-system/inputs/EmailInput'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { getSaveSimulationListIds } from '@/helpers/brevo/getSaveSimulationListIds'
+import { getComputedResults } from '@/helpers/simulation/getComputedResults'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { useRules } from '@/hooks/useRules'
+import {
+  useCurrentSimulation,
+  useSimulation,
+  useUser,
+} from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
@@ -43,6 +49,10 @@ export default function GetResultsByEmail({
   const locale = useLocale()
 
   const currentSimulation = useCurrentSimulation()
+
+  const { categories } = useSimulation()
+
+  const { data: rules, isLoading: isLoadingRules } = useRules()
 
   // Avoid refetching useGetNewsletterSubscriptions when defining an email for the first time
   const emailRef = useRef<string>(user?.email ?? '')
@@ -106,6 +116,14 @@ export default function GetResultsByEmail({
     await saveSimulation({
       simulation: {
         ...currentSimulation,
+        computedResults:
+          currentSimulation?.computedResults?.bilan === 0
+            ? getComputedResults({
+                situation: currentSimulation.situation,
+                categories,
+                rules,
+              })
+            : currentSimulation.computedResults,
         savedViaEmail: true,
       },
       shouldSendSimulationEmail: true,
@@ -203,7 +221,7 @@ export default function GetResultsByEmail({
 
         <Button
           type="submit"
-          disabled={isPending}
+          disabled={isPending || isLoadingRules}
           className="mt-auto items-start">
           <Trans>Envoyer</Trans>
         </Button>
