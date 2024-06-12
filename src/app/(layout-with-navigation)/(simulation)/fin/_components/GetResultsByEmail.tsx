@@ -12,20 +12,15 @@ import EmailInput from '@/design-system/inputs/EmailInput'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { getSaveSimulationListIds } from '@/helpers/brevo/getSaveSimulationListIds'
-import { getComputedResults } from '@/helpers/simulation/getComputedResults'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
-import { useRules } from '@/hooks/useRules'
-import {
-  useCurrentSimulation,
-  useSimulation,
-  useUser,
-} from '@/publicodes-state'
+import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { captureException } from '@sentry/react'
 import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -50,9 +45,7 @@ export default function GetResultsByEmail({
 
   const currentSimulation = useCurrentSimulation()
 
-  const { categories } = useSimulation()
-
-  const { data: rules, isLoading: isLoadingRules } = useRules()
+  const { getComputedResults } = useEngine()
 
   // Avoid refetching useGetNewsletterSubscriptions when defining an email for the first time
   const emailRef = useRef<string>(user?.email ?? '')
@@ -112,17 +105,18 @@ export default function GetResultsByEmail({
 
     updateEmail(formEmail)
 
+    if (currentSimulation?.computedResults?.bilan === 0) {
+      // Send an error to Sentry
+      captureException('GetResultsByEmail: computedResults.bilan === 0')
+    }
+
     // We save the simulation (and signify the backend to send the email)
     await saveSimulation({
       simulation: {
         ...currentSimulation,
         computedResults:
           currentSimulation?.computedResults?.bilan === 0
-            ? getComputedResults({
-                situation: currentSimulation.situation,
-                categories,
-                rules,
-              })
+            ? getComputedResults(currentSimulation.situation)
             : currentSimulation.computedResults,
         savedViaEmail: true,
       },
@@ -221,7 +215,7 @@ export default function GetResultsByEmail({
 
         <Button
           type="submit"
-          disabled={isPending || isLoadingRules}
+          disabled={isPending}
           className="mt-auto items-start">
           <Trans>Envoyer</Trans>
         </Button>

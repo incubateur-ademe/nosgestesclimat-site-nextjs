@@ -1,12 +1,9 @@
-import { getComputedResults } from '@/helpers/simulation/getComputedResults'
-import { useSimulation } from '@/publicodes-state'
+import { useEngine } from '@/publicodes-state'
 import { Group } from '@/types/groups'
-import { useRules } from '../useRules'
+import { captureException } from '@sentry/react'
 
 export function useFixComputedResults(group?: Group) {
-  const { data: rules } = useRules()
-
-  const { categories } = useSimulation()
+  const { getComputedResults } = useEngine()
 
   if (!group) return group
 
@@ -16,15 +13,14 @@ export function useFixComputedResults(group?: Group) {
         return participant
       }
 
+      // Send an error to Sentry
+      captureException('useFixComputedResults: computedResults.bilan === 0')
+
       const participantWithFixedComputedResults = {
         ...participant,
         simulation: {
           ...participant.simulation,
-          computedResults: getComputedResults({
-            situation: participant.simulation.situation,
-            categories,
-            rules,
-          }),
+          computedResults: getComputedResults(participant.simulation.situation),
         },
       }
 

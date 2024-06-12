@@ -1,13 +1,14 @@
 'use client'
 
-import { getComputedResults } from '@/helpers/simulation/getComputedResults'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useRules } from '@/hooks/useRules'
 import {
   useCurrentSimulation,
+  useEngine,
   useSimulation,
   useUser,
 } from '@/publicodes-state'
+import { captureException } from '@sentry/react'
 import { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
 
 // The max rate at which we save the simulation (in ms)
@@ -53,6 +54,8 @@ export default function SimulationSyncProvider({
 
   const { saveSimulation, isPending } = useSaveSimulation()
 
+  const { getComputedResults } = useEngine()
+
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // If the simulation is not in a group, poll, or we don't have an email, we do not save it
@@ -85,6 +88,12 @@ export default function SimulationSyncProvider({
 
     timeoutRef.current = setTimeout(() => {
       resetSyncTimer()
+
+      if (computedResults?.bilan === 0) {
+        // Send an error to Sentry
+        captureException('SimulationSyncProvider: computedResults.bilan === 0')
+      }
+
       saveSimulation({
         simulation: {
           id,
@@ -96,11 +105,7 @@ export default function SimulationSyncProvider({
           // Fix to avoid computedResults bilan === 0 bug
           computedResults:
             computedResults?.bilan === 0
-              ? getComputedResults({
-                  situation,
-                  categories,
-                  rules,
-                })
+              ? getComputedResults(situation)
               : computedResults,
           progression,
           defaultAdditionalQuestionsAnswers,
@@ -129,6 +134,7 @@ export default function SimulationSyncProvider({
     categories,
     safeEvaluate,
     rules,
+    getComputedResults,
   ])
 
   useEffect(() => {

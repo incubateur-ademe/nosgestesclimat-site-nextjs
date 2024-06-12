@@ -1,26 +1,25 @@
-import { Rules } from '@/publicodes-state/types'
+import { ComputedResults, Situation } from '@/publicodes-state/types'
 import { SimulationRecap } from '@/types/organisations'
-import { getComputedResults } from '../simulation/getComputedResults'
+import { captureException } from '@sentry/react'
 
 type Props = {
   simulationRecaps: SimulationRecap[]
-  rules: Rules
-  categories: string[]
+  getComputedResults: (situation: Situation) => ComputedResults
 }
 
 export function handleMissingComputedResults({
   simulationRecaps,
-  rules,
-  categories,
+  getComputedResults,
 }: Props) {
   return simulationRecaps.map((simulationRecap: SimulationRecap) => {
     if (simulationRecap.bilan !== 0) return simulationRecap
 
-    const computedResults = getComputedResults({
-      situation: simulationRecap.situation,
-      categories,
-      rules,
-    })
+    // Send an error to Sentry
+    captureException(
+      'handleMissingComputedResults: computedResults.bilan === 0'
+    )
+
+    const computedResults = getComputedResults(simulationRecap.situation)
 
     return {
       ...simulationRecap,

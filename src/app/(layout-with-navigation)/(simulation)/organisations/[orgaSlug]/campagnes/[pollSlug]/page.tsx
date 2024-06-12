@@ -9,8 +9,7 @@ import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulation
 import { handleMissingComputedResults } from '@/helpers/polls/handleMissingComputedResults'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
-import { useRules } from '@/hooks/useRules'
-import { useSimulation } from '@/publicodes-state'
+import { useEngine } from '@/publicodes-state'
 import dayjs from 'dayjs'
 import { useParams, useSearchParams } from 'next/navigation'
 import { useContext, useMemo } from 'react'
@@ -25,9 +24,7 @@ export default function CampagnePage() {
 
   const searchParams = useSearchParams()
 
-  const { categories } = useSimulation()
-
-  const { data: rules } = useRules()
+  const { getComputedResults } = useEngine()
 
   const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
 
@@ -47,14 +44,13 @@ export default function CampagnePage() {
 
   // TODO : Remove this hook when the computed results are fixed
   const fixedMissingComputedResultsSimulationRecaps = useMemo(() => {
-    if (!pollData?.simulationRecaps || !rules) return []
+    if (!pollData?.simulationRecaps) return []
 
     return handleMissingComputedResults({
       simulationRecaps: pollData?.simulationRecaps ?? [],
-      rules,
-      categories,
+      getComputedResults,
     })
-  }, [pollData?.simulationRecaps, rules, categories])
+  }, [pollData?.simulationRecaps, getComputedResults])
 
   // Remove the values that are too high to avoid polluting the statistics
   const simulationRecapsWithoutExtremes = useMemo(

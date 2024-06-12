@@ -2,10 +2,9 @@
 
 import Button, { ButtonProps } from '@/design-system/inputs/Button'
 import { createXLSXFileAndDownload } from '@/helpers/export/createXLSXFileAndDownload'
-import { getComputedResults } from '@/helpers/simulation/getComputedResults'
-import { useRules } from '@/hooks/useRules'
-import { useSimulation } from '@/publicodes-state'
+import { useEngine } from '@/publicodes-state'
 import { PollData, SimulationRecap } from '@/types/organisations'
+import { captureException } from '@sentry/react'
 import dayjs from 'dayjs'
 import { useState } from 'react'
 import DownloadIcon from '../icons/DownloadIcon'
@@ -27,9 +26,7 @@ export default function ExportDataButton({
 }: ButtonProps & Props) {
   const [isLoading, setIsLoading] = useState(false)
 
-  const { categories } = useSimulation()
-
-  const { data: rules, isLoading: isLoadingRules } = useRules()
+  const { getComputedResults } = useEngine()
 
   function handleClick() {
     if (onClick) {
@@ -43,11 +40,12 @@ export default function ExportDataButton({
         const simulationRecapToParse = { ...simulationRecap }
 
         if (simulationRecapToParse.bilan === 0) {
-          const computedResults = getComputedResults({
-            situation: simulationRecapToParse.situation,
-            categories,
-            rules,
-          })
+          // Send an error to Sentry
+          captureException('ExportDataButton: computedResults.bilan === 0')
+
+          const computedResults = getComputedResults(
+            simulationRecapToParse.situation
+          )
 
           simulationRecapToParse.bilan = computedResults.bilan
           simulationRecapToParse.categories = computedResults.categories
@@ -85,11 +83,7 @@ export default function ExportDataButton({
     })
   }
   return (
-    <Button
-      color={color}
-      disabled={isLoading || isLoadingRules}
-      onClick={handleClick}
-      {...props}>
+    <Button color={color} disabled={isLoading} onClick={handleClick} {...props}>
       <DownloadIcon className="mr-2 fill-primary-700" />
       <Trans>Exporter les données</Trans>
     </Button>

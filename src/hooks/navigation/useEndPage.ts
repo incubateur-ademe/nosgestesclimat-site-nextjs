@@ -1,11 +1,10 @@
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { linkToQuiz } from '@/helpers/navigation/quizPages'
-import { getComputedResults } from '@/helpers/simulation/getComputedResults'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
-import { useCurrentSimulation, useSimulation } from '@/publicodes-state'
+import { useCurrentSimulation, useEngine } from '@/publicodes-state'
+import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
-import { useRules } from '../useRules'
 
 type GoToEndPageProps = {
   isAllowedToSave?: boolean
@@ -30,13 +29,11 @@ const GetLinkToEndPagePropsDefault = {
 export function useEndPage() {
   const router = useRouter()
 
-  const { data: rules } = useRules()
+  const { getComputedResults } = useEngine()
 
   const currentSimulation = useCurrentSimulation()
 
   const progression = currentSimulation?.progression
-
-  const { categories } = useSimulation()
 
   const { saveSimulation } = useSaveSimulation()
 
@@ -60,17 +57,18 @@ export function useEndPage() {
         isAllowedToSave &&
         (currentSimulation.polls || currentSimulation.groups)
       ) {
+        if (currentSimulation.computedResults?.bilan === 0) {
+          // Send an error to Sentry
+          captureException('useEndPage: computedResults.bilan === 0')
+        }
+
         await saveSimulation({
           simulation: {
             ...currentSimulation,
             // Fix to avoid computedResults bilan === 0 bug
             computedResults:
               currentSimulation.computedResults?.bilan === 0
-                ? getComputedResults({
-                    situation: currentSimulation.situation,
-                    categories,
-                    rules,
-                  })
+                ? getComputedResults(currentSimulation.situation)
                 : currentSimulation.computedResults,
           },
         })
@@ -101,8 +99,7 @@ export function useEndPage() {
       currentSimulation,
       router,
       saveSimulation,
-      categories,
-      rules,
+      getComputedResults,
     ]
   )
 
