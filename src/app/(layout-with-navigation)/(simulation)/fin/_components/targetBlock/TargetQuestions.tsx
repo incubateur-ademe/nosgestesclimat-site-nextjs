@@ -11,7 +11,7 @@ const questions = [
         Il est quasiment impossible de vivre à moins de 2 tonnes dans notre
         société actuellement.{' '}
         <span className="text-secondary-700">
-          L’État, le secteur privé et les citoyens
+          L’État, les collectivités locales, le secteur privé et les citoyens
         </span>{' '}
         devront tous contribuer pour atteindre cet objectif.
       </Trans>
