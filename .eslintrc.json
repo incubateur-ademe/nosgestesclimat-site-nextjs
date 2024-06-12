@@ -1,5 +1,5 @@
 {
-  "plugins": ["react-hooks", "jsx-a11y"],
+  "plugins": ["jsx-a11y"],
   "extends": [
     "next",
     "next/core-web-vitals",
