@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import {
   LIST_MAIN_NEWSLETTER,
+  LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
 import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
@@ -31,6 +32,7 @@ type Inputs = {
   email?: string
   'newsletter-saisonniere': boolean
   'newsletter-transports': boolean
+  'newsletter-logement': boolean
 }
 
 export default function GetResultsByEmail({
@@ -56,8 +58,13 @@ export default function GetResultsByEmail({
 
   const isSubscribedMainNewsletter =
     newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER)
+
   const isSubscribedTransportNewsletter = newsletterSubscriptions?.includes(
     LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
+  )
+
+  const isSubscribedLogementNewsletter = newsletterSubscriptions?.includes(
+    LIST_NOS_GESTES_LOGEMENT_NEWSLETTER
   )
 
   const { register, handleSubmit, setValue } = useReactHookForm<Inputs>({
@@ -76,6 +83,11 @@ export default function GetResultsByEmail({
     setValue(
       'newsletter-transports',
       newsletterSubscriptions.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER)
+    )
+
+    setValue(
+      'newsletter-logement',
+      newsletterSubscriptions.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER)
     )
   }, [newsletterSubscriptions, setValue])
 
@@ -209,6 +221,21 @@ export default function GetResultsByEmail({
                 </span>
               }
               {...register('newsletter-transports')}
+            />
+          )}
+
+          {!isSubscribedLogementNewsletter && (
+            <CheckboxInputGroup
+              label={
+                <span>
+                  <Emoji>🏡</Emoji>{' '}
+                  <Trans>
+                    <strong>Nos Gestes Logement</strong> : informez-vous sur
+                    l'impact carbone du logement, en quelques e-mails
+                  </Trans>
+                </span>
+              }
+              {...register('newsletter-logement')}
             />
           )}
         </div>
