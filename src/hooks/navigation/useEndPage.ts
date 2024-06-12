@@ -1,7 +1,8 @@
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { linkToQuiz } from '@/helpers/navigation/quizPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
-import { useCurrentSimulation } from '@/publicodes-state'
+import { useCurrentSimulation, useEngine } from '@/publicodes-state'
+import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
@@ -27,6 +28,8 @@ const GetLinkToEndPagePropsDefault = {
 
 export function useEndPage() {
   const router = useRouter()
+
+  const { getComputedResults } = useEngine()
 
   const currentSimulation = useCurrentSimulation()
 
@@ -54,7 +57,21 @@ export function useEndPage() {
         isAllowedToSave &&
         (currentSimulation.polls || currentSimulation.groups)
       ) {
-        await saveSimulation({ simulation: currentSimulation })
+        if (currentSimulation.computedResults?.bilan === 0) {
+          // Send an error to Sentry
+          captureException('useEndPage: computedResults.bilan === 0')
+        }
+
+        await saveSimulation({
+          simulation: {
+            ...currentSimulation,
+            // Fix to avoid computedResults bilan === 0 bug
+            computedResults:
+              currentSimulation.computedResults?.bilan === 0
+                ? getComputedResults(currentSimulation.situation)
+                : currentSimulation.computedResults,
+          },
+        })
       }
 
       // If we should show the quiz, we redirect to the quiz page
@@ -76,7 +93,14 @@ export function useEndPage() {
       // else we redirect to the results page
       router.push('/fin')
     },
-    [currentSimulation, progression, router, saveSimulation, isNavigating]
+    [
+      isNavigating,
+      progression,
+      currentSimulation,
+      router,
+      saveSimulation,
+      getComputedResults,
+    ]
   )
 
   const getLinkToEndPage = useCallback(

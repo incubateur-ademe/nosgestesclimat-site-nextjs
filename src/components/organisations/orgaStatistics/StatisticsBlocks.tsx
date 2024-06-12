@@ -48,8 +48,10 @@ function formatSimulationRecaps(simulationRecaps: SimulationRecap[]) {
 
 export default function StatisticsBlocks({
   simulationRecaps,
+  simulationRecapsWithoutExtremes,
 }: {
   simulationRecaps: SimulationRecap[]
+  simulationRecapsWithoutExtremes: SimulationRecap[]
 }) {
   if (!simulationRecaps) {
     return null
@@ -59,7 +61,7 @@ export default function StatisticsBlocks({
 
   const result = hasLessThan3Participants
     ? mockResults
-    : formatSimulationRecaps(simulationRecaps)
+    : formatSimulationRecaps(simulationRecapsWithoutExtremes)
 
   const { formattedValue, unit } = formatCarbonFootprint(result?.bilan, {
     maximumFractionDigits: 1,

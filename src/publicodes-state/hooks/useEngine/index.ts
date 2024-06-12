@@ -1,7 +1,14 @@
+import { getDisposableEngine } from '@/publicodes-state/helpers/getDisposableEngine'
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { useContext } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
-import { DottedName, NodeValue } from '../../types'
+import {
+  ComputedResults,
+  DottedName,
+  NGCEvaluatedNode,
+  NodeValue,
+  Situation,
+} from '../../types'
 
 /**
  * A hook that make available some basic functions on the engine (and the engine itself).
@@ -9,12 +16,23 @@ import { DottedName, NodeValue } from '../../types'
  * It should only be used when it is needed to compare rules between them. If not, useRule should be used
  */
 export default function useEngine() {
-  const { engine, safeEvaluate, safeGetRule } = useContext(SimulationContext)
+  const {
+    engine,
+    safeEvaluate: mainEngineSafeEvaluate,
+    safeGetRule,
+    rules,
+    categories,
+  } = useContext(SimulationContext)
 
   const getValue = (dottedName: DottedName): NodeValue =>
-    safeEvaluate(dottedName)?.nodeValue
+    mainEngineSafeEvaluate(dottedName)?.nodeValue
 
-  const getNumericValue = (dottedName: DottedName): number => {
+  const getNumericValue = (
+    dottedName: DottedName,
+    safeEvaluate: (
+      rule: string
+    ) => NGCEvaluatedNode | null = mainEngineSafeEvaluate
+  ): number => {
     const nodeValue = safeEvaluate(dottedName)?.nodeValue
     return Number(nodeValue) === nodeValue ? nodeValue : 0
   }
@@ -28,6 +46,24 @@ export default function useEngine() {
   const checkIfValid = (dottedName: DottedName): boolean =>
     safeGetRule(dottedName) ? true : false
 
+  const getComputedResults = (situation: Situation) => {
+    const { safeEvaluate } = getDisposableEngine({
+      rules,
+      situation,
+    })
+
+    return categories.reduce(
+      (acc, category) => {
+        acc.categories[category] = getNumericValue(category, safeEvaluate)
+        return acc
+      },
+      {
+        categories: {},
+        bilan: getNumericValue('bilan'),
+      } as ComputedResults
+    )
+  }
+
   return {
     engine,
     getValue,
@@ -35,7 +71,8 @@ export default function useEngine() {
     getCategory,
     getSubcategories,
     checkIfValid,
-    safeEvaluate,
+    safeEvaluate: mainEngineSafeEvaluate,
     safeGetRule,
+    getComputedResults,
   }
 }
