@@ -29,7 +29,7 @@ export default function ExportDataButton({
 
   const { categories } = useSimulation()
 
-  const { data: rules } = useRules()
+  const { data: rules, isLoading: isLoadingRules } = useRules()
 
   function handleClick() {
     if (onClick) {
@@ -85,7 +85,11 @@ export default function ExportDataButton({
     })
   }
   return (
-    <Button color={color} disabled={isLoading} onClick={handleClick} {...props}>
+    <Button
+      color={color}
+      disabled={isLoading || isLoadingRules}
+      onClick={handleClick}
+      {...props}>
       <DownloadIcon className="mr-2 fill-primary-700" />
       <Trans>Exporter les données</Trans>
     </Button>

@@ -5,6 +5,7 @@ import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation, useSimulation } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
+import { useRules } from '../useRules'
 
 type GoToEndPageProps = {
   isAllowedToSave?: boolean
@@ -29,11 +30,13 @@ const GetLinkToEndPagePropsDefault = {
 export function useEndPage() {
   const router = useRouter()
 
+  const { data: rules } = useRules()
+
   const currentSimulation = useCurrentSimulation()
 
   const progression = currentSimulation?.progression
 
-  const { safeEvaluate, categories } = useSimulation()
+  const { categories } = useSimulation()
 
   const { saveSimulation } = useSaveSimulation()
 
@@ -63,7 +66,11 @@ export function useEndPage() {
             // Fix to avoid computedResults bilan === 0 bug
             computedResults:
               currentSimulation.computedResults?.bilan === 0
-                ? getComputedResults(categories, safeEvaluate)
+                ? getComputedResults({
+                    situation: currentSimulation.situation,
+                    categories,
+                    rules,
+                  })
                 : currentSimulation.computedResults,
           },
         })
@@ -95,7 +102,7 @@ export function useEndPage() {
       router,
       saveSimulation,
       categories,
-      safeEvaluate,
+      rules,
     ]
   )
 

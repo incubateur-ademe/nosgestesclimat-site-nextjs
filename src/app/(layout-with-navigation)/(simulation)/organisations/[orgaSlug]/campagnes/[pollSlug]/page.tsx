@@ -56,6 +56,7 @@ export default function CampagnePage() {
     })
   }, [pollData?.simulationRecaps, rules, categories])
 
+  // Remove the values that are too high to avoid polluting the statistics
   const simulationRecapsWithoutExtremes = useMemo(
     () => filterExtremes(fixedMissingComputedResultsSimulationRecaps),
     [fixedMissingComputedResultsSimulationRecaps]
