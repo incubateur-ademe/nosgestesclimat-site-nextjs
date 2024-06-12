@@ -19,6 +19,7 @@ export default function GroupResultsPage() {
   const { groupIdInQueryParams } = useGroupIdInQueryParams()
   const { data: group, isLoading } = useFetchGroup(groupIdInQueryParams)
 
+  // TODO : Remove this hook when the computed results are fixed
   const groupWithSafeComputedResults = useFixComputedResults(group)
 
   // If we are still fetching the group (or we are redirecting the user), we display a loader

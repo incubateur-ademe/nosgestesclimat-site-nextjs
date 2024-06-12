@@ -69,6 +69,7 @@ export default function CampagnePage() {
     [categories, rules]
   )
 
+  // TODO : Remove this hook when the computed results are fixed
   const fixedMissingComputedResultsSimulationRecaps = useMemo(() => {
     if (!pollData?.simulationRecaps || !rules) return []
 
