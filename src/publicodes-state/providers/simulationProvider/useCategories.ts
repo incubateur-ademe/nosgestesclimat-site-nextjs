@@ -79,6 +79,25 @@ export function useCategories({
             utils.disambiguateReference(parsedRules, currentValue, rule)
           )
         }
+
+        if (rule === 'moyens') {
+          // This is a hack to handle full transport mosaic
+          const transportSubCatToAdd = [
+            'transport . voiture',
+            'transport . avion',
+            'transport . deux roues',
+            'transport . bus',
+            'transport . train',
+            'transport . métro ou tram',
+            'transport . ferry',
+            'transport . vacances . caravane',
+            'transport . vacances . camping car',
+            'transport . vacances . van',
+          ]
+          transportSubCatToAdd.forEach((subCatToAdd) => {
+            subCat.push(subCatToAdd)
+          })
+        }
       }
       return {
         ...accumulator,
