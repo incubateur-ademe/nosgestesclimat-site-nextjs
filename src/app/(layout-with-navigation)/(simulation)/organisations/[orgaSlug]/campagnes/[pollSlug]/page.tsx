@@ -6,16 +6,14 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { filterExtremes } from '@/helpers/organisations/filterExtremes'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
-import { getComputedResults } from '@/helpers/simulation/getComputedResults'
+import { handleMissingComputedResults } from '@/helpers/polls/handleMissingComputedResults'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
 import { useRules } from '@/hooks/useRules'
 import { useSimulation } from '@/publicodes-state'
-import { getDisposableEngine } from '@/publicodes-state/helpers/getDisposableEngine'
-import { SimulationRecap } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useParams, useSearchParams } from 'next/navigation'
-import { useCallback, useContext, useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import AdminSection from './_components/AdminSection'
 import { FiltersContext } from './_components/FiltersProvider'
 import PollNotFound from './_components/PollNotFound'
@@ -47,34 +45,16 @@ export default function CampagnePage() {
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
 
-  const handleMissingComputedResults = useCallback(
-    (simulationRecaps: SimulationRecap[]) => {
-      return simulationRecaps.map((simulationRecap: SimulationRecap) => {
-        if (simulationRecap.bilan !== 0) return simulationRecap
-
-        const { safeEvaluate } = getDisposableEngine({
-          rules,
-          situation: simulationRecap.situation,
-        })
-
-        const computedResults = getComputedResults(categories, safeEvaluate)
-
-        return {
-          ...simulationRecap,
-          bilan: computedResults.bilan,
-          categories: computedResults.categories,
-        }
-      })
-    },
-    [categories, rules]
-  )
-
   // TODO : Remove this hook when the computed results are fixed
   const fixedMissingComputedResultsSimulationRecaps = useMemo(() => {
     if (!pollData?.simulationRecaps || !rules) return []
 
-    return handleMissingComputedResults(pollData?.simulationRecaps ?? [])
-  }, [pollData?.simulationRecaps, handleMissingComputedResults, rules])
+    return handleMissingComputedResults({
+      simulationRecaps: pollData?.simulationRecaps ?? [],
+      rules,
+      categories,
+    })
+  }, [pollData?.simulationRecaps, rules, categories])
 
   const simulationRecapsWithoutExtremes = useMemo(
     () => filterExtremes(fixedMissingComputedResultsSimulationRecaps),

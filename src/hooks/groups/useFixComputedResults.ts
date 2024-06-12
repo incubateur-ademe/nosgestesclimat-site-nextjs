@@ -8,8 +8,10 @@ export function useFixComputedResults(group?: Group) {
 
   const participantsWithFixedComputedResults = group.participants.map(
     (participant) => {
-      if (participant.simulation.computedResults?.bilan !== 0)
+      if (participant.simulation.computedResults?.bilan !== 0) {
         return participant
+      }
+
       const participantWithFixedComputedResults = {
         ...participant,
         simulation: {
