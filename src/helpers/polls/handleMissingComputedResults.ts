@@ -16,7 +16,7 @@ export function handleMissingComputedResults({
 
     // Send an error to Sentry
     captureException(
-      'handleMissingComputedResults: computedResults.bilan === 0'
+      new Error('handleMissingComputedResults: computedResults.bilan === 0')
     )
 
     const computedResults = getComputedResults(simulationRecap.situation)

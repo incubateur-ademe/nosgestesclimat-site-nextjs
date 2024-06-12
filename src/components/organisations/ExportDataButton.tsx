@@ -41,7 +41,9 @@ export default function ExportDataButton({
 
         if (simulationRecapToParse.bilan === 0) {
           // Send an error to Sentry
-          captureException('ExportDataButton: computedResults.bilan === 0')
+          captureException(
+            new Error('ExportDataButton: computedResults.bilan === 0')
+          )
 
           const computedResults = getComputedResults(
             simulationRecapToParse.situation
