@@ -119,7 +119,9 @@ export default function GetResultsByEmail({
 
     if (currentSimulation?.computedResults?.bilan === 0) {
       // Send an error to Sentry
-      captureException('GetResultsByEmail: computedResults.bilan === 0')
+      captureException(
+        new Error('GetResultsByEmail: computedResults.bilan === 0')
+      )
     }
 
     // We save the simulation (and signify the backend to send the email)

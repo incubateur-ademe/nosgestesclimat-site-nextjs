@@ -14,7 +14,9 @@ export function useFixComputedResults(group?: Group) {
       }
 
       // Send an error to Sentry
-      captureException('useFixComputedResults: computedResults.bilan === 0')
+      captureException(
+        new Error('useFixComputedResults: computedResults.bilan === 0')
+      )
 
       const participantWithFixedComputedResults = {
         ...participant,

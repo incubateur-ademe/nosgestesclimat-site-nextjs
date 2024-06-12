@@ -59,7 +59,7 @@ export function useEndPage() {
       ) {
         if (currentSimulation.computedResults?.bilan === 0) {
           // Send an error to Sentry
-          captureException('useEndPage: computedResults.bilan === 0')
+          captureException(new Error('useEndPage: computedResults.bilan === 0'))
         }
 
         await saveSimulation({
