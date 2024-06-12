@@ -12,8 +12,13 @@ import { useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { trackPageView } from '@/utils/matomo/trackEvent'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { FormEvent, useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
+import { useForm as useReactHookForm } from 'react-hook-form'
 import Navigation from '../_components/Navigation'
+
+type Inputs = {
+  email: string
+}
 
 export default function Email() {
   const searchParams = useSearchParams()
@@ -21,10 +26,16 @@ export default function Email() {
 
   const { user, updateEmail } = useUser()
 
-  const [email, setEmail] = useState(
-    user?.email || user?.organisation?.administratorEmail || ''
-  )
-  const [error, setError] = useState('')
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useReactHookForm<Inputs>({
+    defaultValues: {
+      email: user?.email || user?.organisation?.administratorEmail || '',
+    },
+  })
 
   const { t } = useClientTranslation()
 
@@ -41,11 +52,8 @@ export default function Email() {
     }
   }, [pollSlug, organisationSlug])
 
-  const handleSubmit = useCallback(
-    async (event: MouseEvent | FormEvent) => {
-      // Avoid reloading page
-      event?.preventDefault()
-
+  const onSubmit = useCallback(
+    async ({ email }: Inputs) => {
       // Email is not mandatory
       if (!email) {
         router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
@@ -54,7 +62,10 @@ export default function Email() {
 
       // If email is not valid
       if (!isEmailValid(email)) {
-        setError(t('Veuillez renseigner un email valide.'))
+        setError('email', {
+          type: 'validate',
+          message: t('Veuillez saisir une adresse email valide.'),
+        })
         return
       }
 
@@ -65,7 +76,10 @@ export default function Email() {
       })
 
       if (result?.hasUserAlreadyParticipated) {
-        setError(t('Vous avez déjà participé à ce sondage.'))
+        setError('email', {
+          message: t('Vous avez déjà participé à ce sondage.'),
+          type: 'manual',
+        })
         return
       }
 
@@ -76,12 +90,12 @@ export default function Email() {
       router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
     },
     [
-      email,
       pollSlug,
       user?.userId,
       updateEmail,
       router,
       getLinkToNextInfosPage,
+      setError,
       t,
     ]
   )
@@ -98,7 +112,7 @@ export default function Email() {
               Pour conserver vos résultats et les retrouver à l’avenir
             </Trans>
             {!fixedEmail ? (
-              <span className="text-secondary-700 ml-2 inline-block font-bold italic">
+              <span className="ml-2 inline-block font-bold italic text-secondary-700">
                 <Trans>facultatif</Trans>
               </span>
             ) : null}
@@ -107,16 +121,21 @@ export default function Email() {
       />
 
       <EmailInput
-        email={email}
-        setEmail={setEmail}
-        error={error}
-        setError={setError}
         readOnly={fixedEmail}
+        value={user?.email || user?.organisation?.administratorEmail || ''}
+        error={errors?.email?.message}
+        {...register('email', {
+          pattern: {
+            value:
+              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            message: t('Veuillez entrer une adresse email valide'),
+          },
+        })}
       />
 
       <Navigation
         linkToPrev={getLinkToPrevInfosPage({ curPage: EMAIL_PAGE })}
-        handleSubmit={handleSubmit}
+        handleSubmit={handleSubmit(onSubmit)}
         submitDisabled={!getLinkToNextInfosPage({ curPage: EMAIL_PAGE })}
         currentPage={EMAIL_PAGE}
       />

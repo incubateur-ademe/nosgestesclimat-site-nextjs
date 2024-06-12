@@ -6,22 +6,51 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 
 import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { isEmailValid } from '@/utils/isEmailValid'
-import { useState } from 'react'
+import { useForm as useReactHookForm } from 'react-hook-form'
+
+type Inputs = {
+  email: string
+}
 
 export default function SaveViaEmail() {
   const { user, updateEmail } = useUser()
 
-  const [email, setEmail] = useState(user.email ?? '')
+  const { t } = useClientTranslation()
 
-  const [error, setError] = useState('')
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useReactHookForm<Inputs>({
+    defaultValues: {
+      email: user?.email || '',
+    },
+    mode: 'onSubmit',
+  })
 
   const currentSimulation = useCurrentSimulation()
 
   const { saveSimulation, isPending, isSuccess, isError } = useSaveSimulation()
+
+  async function onSubmit({ email }: Inputs) {
+    if (isPending) {
+      return
+    }
+
+    updateEmail(email)
+
+    saveSimulation({
+      simulation: {
+        ...currentSimulation,
+        savedViaEmail: true,
+      },
+      shouldSendSimulationEmail: true,
+    })
+  }
 
   // We do not display the component if we are in an iframeSimulation context
   const { isIframeOnlySimulation } = useIframe()
@@ -39,35 +68,18 @@ export default function SaveViaEmail() {
           <Trans>Bravo champion·ne !</Trans>
         </p>
       ) : (
-        <form
-          onSubmit={async (e) => {
-            e.preventDefault()
-
-            if (isPending) {
-              return
-            }
-
-            if (!isEmailValid(email)) {
-              setError('Adresse email invalide')
-              return
-            }
-
-            updateEmail(email)
-
-            saveSimulation({
-              simulation: {
-                ...currentSimulation,
-                savedViaEmail: true,
-              },
-              shouldSendSimulationEmail: true,
-            })
-          }}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <EmailInput
-            email={email}
-            setEmail={setEmail}
-            error={error}
-            setError={setError}
+            error={errors?.email?.message}
             className="bg-white"
+            {...register('email', {
+              required: t('Ce champ est requis.'),
+              pattern: {
+                value:
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: t('Veuillez entrer une adresse email valide'),
+              },
+            })}
           />
           <Button disabled={isPending}>
             <Trans>Valider</Trans>

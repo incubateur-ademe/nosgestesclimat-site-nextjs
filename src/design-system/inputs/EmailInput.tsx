@@ -7,10 +7,19 @@ type Props = {
   className?: string
   readOnly?: boolean
   error?: string
+  value?: string
 }
 
 export default forwardRef(function EmailInput(
-  { label, helperText, className, readOnly = false, error, ...props }: Props,
+  {
+    label,
+    helperText,
+    className,
+    readOnly = false,
+    error,
+    value,
+    ...props
+  }: Props,
   ref
 ) {
   return (
@@ -24,6 +33,7 @@ export default forwardRef(function EmailInput(
       readOnly={readOnly}
       ref={ref as any}
       error={error}
+      value={value}
       {...props}
     />
   )
