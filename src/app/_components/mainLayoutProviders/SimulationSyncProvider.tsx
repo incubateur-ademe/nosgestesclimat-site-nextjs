@@ -1,12 +1,7 @@
 'use client'
 
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
-import {
-  useCurrentSimulation,
-  useEngine,
-  useSimulation,
-  useUser,
-} from '@/publicodes-state'
+import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
 import { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
 
@@ -46,8 +41,6 @@ export default function SimulationSyncProvider({
     groups,
     savedViaEmail,
   } = useCurrentSimulation()
-
-  const { safeEvaluate } = useSimulation()
 
   const { saveSimulation, isPending } = useSaveSimulation()
 
@@ -130,7 +123,6 @@ export default function SimulationSyncProvider({
     saveSimulation,
     shouldSyncWithBackend,
     resetSyncTimer,
-    safeEvaluate,
     getComputedResults,
   ])
 

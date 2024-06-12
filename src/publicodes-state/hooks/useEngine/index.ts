@@ -1,6 +1,6 @@
 import { getDisposableEngine } from '@/publicodes-state/helpers/getDisposableEngine'
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
 import {
   ComputedResults,
@@ -27,15 +27,18 @@ export default function useEngine() {
   const getValue = (dottedName: DottedName): NodeValue =>
     mainEngineSafeEvaluate(dottedName)?.nodeValue
 
-  const getNumericValue = (
-    dottedName: DottedName,
-    safeEvaluate: (
-      rule: string
-    ) => NGCEvaluatedNode | null = mainEngineSafeEvaluate
-  ): number => {
-    const nodeValue = safeEvaluate(dottedName)?.nodeValue
-    return Number(nodeValue) === nodeValue ? nodeValue : 0
-  }
+  const getNumericValue = useCallback(
+    (
+      dottedName: DottedName,
+      safeEvaluate: (
+        rule: string
+      ) => NGCEvaluatedNode | null = mainEngineSafeEvaluate
+    ): number => {
+      const nodeValue = safeEvaluate(dottedName)?.nodeValue
+      return Number(nodeValue) === nodeValue ? nodeValue : 0
+    },
+    [mainEngineSafeEvaluate]
+  )
 
   const getCategory = (dottedName: DottedName): string =>
     getNamespace(dottedName, 1) ?? ''
@@ -46,23 +49,26 @@ export default function useEngine() {
   const checkIfValid = (dottedName: DottedName): boolean =>
     safeGetRule(dottedName) ? true : false
 
-  const getComputedResults = (situation: Situation) => {
-    const { safeEvaluate } = getDisposableEngine({
-      rules,
-      situation,
-    })
+  const getComputedResults = useCallback(
+    (situation: Situation) => {
+      const { safeEvaluate } = getDisposableEngine({
+        rules,
+        situation,
+      })
 
-    return categories.reduce(
-      (acc, category) => {
-        acc.categories[category] = getNumericValue(category, safeEvaluate)
-        return acc
-      },
-      {
-        categories: {},
-        bilan: getNumericValue('bilan'),
-      } as ComputedResults
-    )
-  }
+      return categories.reduce(
+        (acc, category) => {
+          acc.categories[category] = getNumericValue(category, safeEvaluate)
+          return acc
+        },
+        {
+          categories: {},
+          bilan: getNumericValue('bilan'),
+        } as ComputedResults
+      )
+    },
+    [categories, getNumericValue, rules]
+  )
 
   return {
     engine,
