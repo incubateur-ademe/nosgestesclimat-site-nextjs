@@ -5,7 +5,6 @@ import { createXLSXFileAndDownload } from '@/helpers/export/createXLSXFileAndDow
 import { getComputedResults } from '@/helpers/simulation/getComputedResults'
 import { useRules } from '@/hooks/useRules'
 import { useSimulation } from '@/publicodes-state'
-import { getDisposableEngine } from '@/publicodes-state/helpers/getDisposableEngine'
 import { PollData, SimulationRecap } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useState } from 'react'
@@ -44,12 +43,11 @@ export default function ExportDataButton({
         const simulationRecapToParse = { ...simulationRecap }
 
         if (simulationRecapToParse.bilan === 0) {
-          const { safeEvaluate } = getDisposableEngine({
+          const computedResults = getComputedResults({
+            situation: simulationRecapToParse.situation,
+            categories,
             rules,
-            situation: simulationRecap.situation,
           })
-
-          const computedResults = getComputedResults(categories, safeEvaluate)
 
           simulationRecapToParse.bilan = computedResults.bilan
           simulationRecapToParse.categories = computedResults.categories

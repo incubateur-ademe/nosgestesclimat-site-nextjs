@@ -1,9 +1,13 @@
 import { getComputedResults } from '@/helpers/simulation/getComputedResults'
 import { useSimulation } from '@/publicodes-state'
 import { Group } from '@/types/groups'
+import { useRules } from '../useRules'
 
 export function useFixComputedResults(group?: Group) {
-  const { categories, safeEvaluate } = useSimulation()
+  const { data: rules } = useRules()
+
+  const { categories } = useSimulation()
+
   if (!group) return group
 
   const participantsWithFixedComputedResults = group.participants.map(
@@ -16,7 +20,11 @@ export function useFixComputedResults(group?: Group) {
         ...participant,
         simulation: {
           ...participant.simulation,
-          computedResults: getComputedResults(categories, safeEvaluate),
+          computedResults: getComputedResults({
+            situation: participant.simulation.situation,
+            categories,
+            rules,
+          }),
         },
       }
 

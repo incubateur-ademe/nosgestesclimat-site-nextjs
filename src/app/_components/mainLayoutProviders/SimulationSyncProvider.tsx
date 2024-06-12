@@ -2,6 +2,7 @@
 
 import { getComputedResults } from '@/helpers/simulation/getComputedResults'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useRules } from '@/hooks/useRules'
 import {
   useCurrentSimulation,
   useSimulation,
@@ -30,6 +31,8 @@ export default function SimulationSyncProvider({
   children: React.ReactNode
 }) {
   const { user } = useUser()
+
+  const { data: rules } = useRules()
 
   const {
     id,
@@ -93,7 +96,11 @@ export default function SimulationSyncProvider({
           // Fix to avoid computedResults bilan === 0 bug
           computedResults:
             computedResults?.bilan === 0
-              ? getComputedResults(categories, safeEvaluate)
+              ? getComputedResults({
+                  situation,
+                  categories,
+                  rules,
+                })
               : computedResults,
           progression,
           defaultAdditionalQuestionsAnswers,
@@ -121,6 +128,7 @@ export default function SimulationSyncProvider({
     resetSyncTimer,
     categories,
     safeEvaluate,
+    rules,
   ])
 
   useEffect(() => {

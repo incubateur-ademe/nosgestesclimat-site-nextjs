@@ -1,4 +1,3 @@
-import { getDisposableEngine } from '@/publicodes-state/helpers/getDisposableEngine'
 import { Rules } from '@/publicodes-state/types'
 import { SimulationRecap } from '@/types/organisations'
 import { getComputedResults } from '../simulation/getComputedResults'
@@ -17,12 +16,11 @@ export function handleMissingComputedResults({
   return simulationRecaps.map((simulationRecap: SimulationRecap) => {
     if (simulationRecap.bilan !== 0) return simulationRecap
 
-    const { safeEvaluate } = getDisposableEngine({
-      rules,
+    const computedResults = getComputedResults({
       situation: simulationRecap.situation,
+      categories,
+      rules,
     })
-
-    const computedResults = getComputedResults(categories, safeEvaluate)
 
     return {
       ...simulationRecap,
