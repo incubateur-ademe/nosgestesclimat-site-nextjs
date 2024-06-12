@@ -4,6 +4,7 @@ import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import Trans from '@/components/translation/Trans'
 import {
   LIST_MAIN_NEWSLETTER,
+  LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
 import Button from '@/design-system/inputs/Button'
@@ -24,12 +25,17 @@ type Inputs = {
   email?: string
   'newsletter-saisonniere': boolean
   'newsletter-transports': boolean
+  'newsletter-logement': boolean
 }
 
 type Props = {
   title: string | ReactNode
   inputsDisplayed?: Array<
-    'name' | 'email' | 'newsletter-saisonniere' | 'newsletter-transports'
+    | 'name'
+    | 'email'
+    | 'newsletter-saisonniere'
+    | 'newsletter-transports'
+    | 'newsletter-logement'
   >
   submitLabel?: string | ReactNode
   onCompleted?: (props: Record<string, unknown>) => void
@@ -47,6 +53,7 @@ export default function UserInformationForm({
     'email',
     'newsletter-saisonniere',
     'newsletter-transports',
+    'newsletter-logement',
   ],
   submitLabel,
   onCompleted = () => {},
@@ -89,6 +96,10 @@ export default function UserInformationForm({
       newsletterSubscriptions?.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER) ||
         defaultValues?.['newsletter-transports']
     )
+    setValue(
+      'newsletter-logement',
+      newsletterSubscriptions?.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER)
+    )
   }, [newsletterSubscriptions, setValue, defaultValues])
 
   const {
@@ -104,6 +115,7 @@ export default function UserInformationForm({
     const newsletterIds = {
       [LIST_MAIN_NEWSLETTER]: data['newsletter-saisonniere'],
       [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: data['newsletter-transports'],
+      [LIST_NOS_GESTES_LOGEMENT_NEWSLETTER]: data['newsletter-logement'],
     }
 
     await updateUserSettings({
@@ -214,6 +226,21 @@ export default function UserInformationForm({
               </span>
             }
             {...register('newsletter-transports')}
+          />
+        )}
+        {inputsDisplayed.includes('newsletter-logement') && (
+          <CheckboxInputGroup
+            size="lg"
+            label={
+              <span>
+                <Emoji>🏡</Emoji>{' '}
+                <Trans>
+                  <strong>Nos Gestes Logement</strong> : informez-vous sur
+                  l'impact carbone du logement, en quelques e-mails
+                </Trans>
+              </span>
+            }
+            {...register('newsletter-logement')}
           />
         )}
 
