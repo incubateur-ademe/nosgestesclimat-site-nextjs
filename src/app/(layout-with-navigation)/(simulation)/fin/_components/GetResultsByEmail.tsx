@@ -188,9 +188,9 @@ export default function GetResultsByEmail({
               label={
                 <span>
                   <Emoji>☀️</Emoji>{' '}
-                  <Trans>
-                    <strong>Infolettre saisonnière de Nos Gestes Climat</strong>
-                  </Trans>
+                  <strong>
+                    <Trans>Infolettre saisonnière de</Trans> Nos Gestes Climat
+                  </strong>
                 </span>
               }
               {...register('newsletter-saisonniere')}
@@ -201,10 +201,10 @@ export default function GetResultsByEmail({
             <CheckboxInputGroup
               label={
                 <span>
-                  <Emoji>🚗</Emoji>{' '}
+                  <Emoji>🚗</Emoji> <strong>Nos Gestes Transports</strong>
                   <Trans>
-                    <strong>Nos Gestes Transports</strong> : maîtrisez l'impact
-                    carbone de vos transports avec nos 4 infolettres
+                     : maîtrisez l'impact carbone de vos transports avec nos 4
+                    infolettres
                   </Trans>
                 </span>
               }

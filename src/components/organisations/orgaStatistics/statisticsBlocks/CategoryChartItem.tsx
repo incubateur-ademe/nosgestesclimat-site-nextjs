@@ -43,6 +43,7 @@ export default function CategoryChartItem({
         )}
         title={title ?? ''}
         icons={icons}
+        className="h-full"
       />
     </>
   )

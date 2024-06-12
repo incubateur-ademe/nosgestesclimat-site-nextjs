@@ -8,6 +8,7 @@ type Props = {
   params?: Record<string, string>
   searchParams?: Record<string, string>
   noImage?: boolean
+  image?: string
   robots?: {
     index: boolean
     follow: boolean
@@ -68,6 +69,7 @@ export function getMetadataObject({
   params,
   searchParams,
   noImage = false,
+  image,
   alternates,
   ...props
 }: Props) {
@@ -116,10 +118,11 @@ export function getMetadataObject({
       description,
       url,
       type: 'website',
-      images:
-        URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE.some((urlPart) =>
-          url.includes(urlPart)
-        ) && !noImage
+      images: image
+        ? image
+        : URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE.some((urlPart) =>
+              url.includes(urlPart)
+            ) && !noImage
           ? generateOGImageURL(url)
           : 'https://nosgestesclimat.fr/images/misc/metadata.png',
     },

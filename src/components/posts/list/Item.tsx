@@ -30,7 +30,9 @@ export default function Item({ item, path }: Props) {
         ) : null}
         <p
           className="mb-4 mt-4 text-center text-lg font-bold"
-          dangerouslySetInnerHTML={{ __html: item.data.title || item.slug }}
+          dangerouslySetInnerHTML={{
+            __html: item.data.title || item.slug || '',
+          }}
         />
       </div>
       {item.data.date ? (
