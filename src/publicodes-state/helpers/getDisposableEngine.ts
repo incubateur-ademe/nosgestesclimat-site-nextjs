@@ -1,11 +1,11 @@
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
-import { Situation } from '../types'
+import { Rules, Situation } from '../types'
 import { safeEvaluateHelper } from './safeEvaluateHelper'
 import { safeGetSituation } from './safeGetSituation'
 
 type Props = {
-  rules?: any
+  rules?: Rules
   situation: Situation
 }
 
