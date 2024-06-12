@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import { ReactNode, useEffect } from 'react'
+import { PropsWithChildren, useEffect } from 'react'
 import Modal from 'react-modal'
 import Button from '../inputs/Button'
 import Loader from '../layout/Loader'
@@ -7,7 +7,6 @@ import Loader from '../layout/Loader'
 type Props = {
   onConfirm: () => void
   closeModal: () => void
-  children: ReactNode
   isLoading?: boolean
 }
 
@@ -18,7 +17,7 @@ export default function ConfirmationModal({
   closeModal,
   children,
   isLoading,
-}: Props) {
+}: PropsWithChildren<Props>) {
   const customStyles = {
     content: {
       top: '50%',
@@ -45,7 +44,7 @@ export default function ConfirmationModal({
       style={customStyles}
       className="fixed left-1/2 top-1/2 w-[40rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white p-8"
       overlayClassName="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-[10000] overflow-hidden">
-      {children}
+      <div>{children}</div>
 
       <div className="mt-12 flex flex-wrap justify-center gap-4 md:justify-normal ">
         <Button color="secondary" onClick={!isLoading ? closeModal : () => {}}>
