@@ -1,39 +1,29 @@
 import { safeGetSituation } from '@/publicodes-state/helpers/safeGetSituation'
 import { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import Engine from 'publicodes'
+import Engine, { Evaluation } from 'publicodes'
 
 export function generateEngine(rules: NGCRules, options: any = {}) {
   if (!rules) return null
 
-  const engine = new Engine(rules, options)
+  const engine = new Engine(rules, options) as Engine & {
+    evaluateWithMetric: (dottedName: DottedName) => Evaluation
+  }
 
-  engine.prevEvaluate = engine.evaluate
-
-  engine.evaluate = (dottedName: DottedName) => {
-    const situation = engine.getSituation()
-
+  engine.evaluateWithMetric = (
+    dottedName: DottedName,
+    metric: 'carbone' | 'eau' = 'carbone'
+  ) => {
     engine.setSituation(
       safeGetSituation({
-        situation: { ...situation, métrique: 'carbone' },
+        situation: { métrique: metric },
         everyRules: Object.keys(rules),
-      })
+      }),
+      {
+        keepPreviousSituation: true,
+      }
     )
 
-    const carbonEvaluation = engine.prevEvaluate(dottedName)
-
-    engine.setSituation(
-      safeGetSituation({
-        situation: { ...situation, métrique: 'eau' },
-        everyRules: Object.keys(rules),
-      })
-    )
-
-    const waterEvaluation = engine.prevEvaluate(dottedName)
-
-    return {
-      carbon: carbonEvaluation,
-      water: waterEvaluation,
-    }
+    return engine.evaluate(dottedName)
   }
 
   return engine
