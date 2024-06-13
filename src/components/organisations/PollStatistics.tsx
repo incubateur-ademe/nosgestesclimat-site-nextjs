@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import { SimulationRecap } from '@/types/organisations'
 import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
+import DetailedStatistics from './orgaStatistics/DetailedStatistics'
 import FunFactsBlock from './orgaStatistics/FunFactsBlock'
 import StatisticsBlocks from './orgaStatistics/StatisticsBlocks'
 
@@ -31,7 +32,11 @@ export default function PollStatistics({
       </section>
 
       {hasAtLeastThreeParticipants && (
-        <FunFactsBlock funFacts={funFacts} className="mb-12" />
+        <>
+          <FunFactsBlock funFacts={funFacts} className="mb-12" />
+
+          <DetailedStatistics />
+        </>
       )}
     </>
   )
