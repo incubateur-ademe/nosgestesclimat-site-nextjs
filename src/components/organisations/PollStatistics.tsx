@@ -35,7 +35,7 @@ export default function PollStatistics({
         <>
           <FunFactsBlock funFacts={funFacts} className="mb-12" />
 
-          <DetailedStatistics />
+          <DetailedStatistics funFacts={funFacts} />
         </>
       )}
     </>

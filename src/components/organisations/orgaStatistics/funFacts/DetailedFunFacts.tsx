@@ -9,20 +9,17 @@ import { toPng } from 'html-to-image'
 import { useParams } from 'next/navigation'
 import { utils } from 'publicodes'
 import { useMemo } from 'react'
-import PollLoader from '../../PollLoader'
 import FunFactsItem from './FunFactsItem'
 import FunFactsPlusCategoryTitle from './FunFactsPlusCategoryTitle'
 
 type Props = {
   plusFunFactsRules: { [k in keyof Partial<FunFacts>]: DottedName }
   funFacts: FunFacts
-  isLoading: boolean
 }
 
 export default function DetailedFunFacts({
   plusFunFactsRules,
   funFacts,
-  isLoading,
 }: Props) {
   const params = useParams()
 
@@ -45,13 +42,6 @@ export default function DetailedFunFacts({
       return localFunFactsByCategory
     }, [plusFunFactsRules])
 
-  if (isLoading) {
-    return (
-      <div className="rounded-xl bg-gray-100 p-8">
-        <PollLoader />
-      </div>
-    )
-  }
   return (
     <div className="rounded-xl bg-gray-100">
       <div className="bg-gray-100 p-8 pb-16" id="funFactsPlus">

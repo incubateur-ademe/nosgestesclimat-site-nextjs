@@ -4,12 +4,10 @@ import Trans from '@/components/translation/Trans'
 import { organisationsDashboardClickFunFacts } from '@/constants/tracking/pages/organisationsDashboard'
 import ChevronRight from '@/design-system/icons/ChevronRight'
 import Button from '@/design-system/inputs/Button'
-import { useFetchDetailedPollFunFacts } from '@/hooks/polls/useFetchDetailedPollFunFacts'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import importedFunFacts from '@incubateur-ademe/nosgestesclimat/public/funFactsRules.json'
-import { useParams, useSearchParams } from 'next/navigation'
 import { utils } from 'publicodes'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -30,27 +28,20 @@ const plusFunFactsRules: { [k in keyof Partial<FunFacts>]: DottedName } =
     )
   )
 
-export default function DetailedStatistics() {
+type Props = {
+  funFacts?: FunFacts
+}
+export default function DetailedStatistics({ funFacts }: Props) {
   const [isSectionVisible, setIsSectionVisible] = useState(false)
 
   const funFactsByCategory: Record<DottedName, [string, DottedName][]> = {}
-
-  const { pollSlug, orgaSlug } = useParams()
-
-  const searchParams = useSearchParams()
-
-  const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
-
-  const { data: detailedFunFacts, isLoading } = useFetchDetailedPollFunFacts({
-    orgaSlug: orgaSlug as string,
-    pollSlug: pollSlug as string,
-    enabled: !isRedirectFromLegacy && isSectionVisible,
-  })
 
   Object.entries(plusFunFactsRules).forEach((item) => {
     const parent = utils.ruleParent(item[1]) as keyof typeof funFactsByCategory
     funFactsByCategory[parent] = [...(funFactsByCategory[parent] || []), item]
   })
+
+  if (!funFacts) return null
 
   return (
     <div className="flex flex-col">
@@ -78,8 +69,7 @@ export default function DetailedStatistics() {
 
       {isSectionVisible && (
         <DetailedFunFacts
-          isLoading={isLoading}
-          funFacts={detailedFunFacts}
+          funFacts={funFacts}
           plusFunFactsRules={plusFunFactsRules}
         />
       )}
