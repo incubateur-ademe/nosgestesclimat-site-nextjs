@@ -2,11 +2,13 @@ import SparklesIcon from '@/components/icons/SparklesIcon'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import List from '@/components/posts/List'
 import Trans from '@/components/translation/Trans'
+import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPosts } from '@/helpers/markdown/getPosts'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { currentLocale } from 'next-i18n-router'
+import Image from 'next/image'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -27,27 +29,41 @@ export default async function Releases() {
 
   const releases = await getPosts(`src/locales/nouveautes/${locale}/`)
 
+  const { t } = await getServerTranslation()
+
   return (
     <>
       <PasserTestBanner />
 
-      <Title
-        data-cypress-id="news-title"
-        title={
-          <span className="flex items-center">
-            <Trans>Les nouveautés</Trans>
-            <SparklesIcon className="fill-divers-300 ml-2" />
-          </span>
-        }
-      />
+      <div className="flex flex-wrap gap-8 pb-8 md:flex-nowrap">
+        <div>
+          <Title
+            data-cypress-id="news-title"
+            title={
+              <span className="flex items-center">
+                <Trans>Les nouveautés</Trans>
+                <SparklesIcon className="ml-2 fill-divers-300" />
+              </span>
+            }
+          />
 
-      <p>
-        <Trans i18nKey={'pages.News.premierParagraphe'}>
-          Nous améliorons le site en continu à partir de vos retours. Découvrez
-          ici les dernières nouveautés.
-        </Trans>
-      </p>
+          <p className="mb-0">
+            <Trans>
+              Nous améliorons le site en continu à partir de{' '}
+              <InlineLink href="/contact">vos retours</InlineLink>. Découvrez la
+              tambouille interne de Nos Gestes Climat.
+            </Trans>
+          </p>
+        </div>
 
+        <Image
+          className="self-start"
+          src="/images/illustrations/girl-cooking.svg"
+          width="260"
+          height="400"
+          alt={t('Une femme préparant un bon petit plat.')}
+        />
+      </div>
       <List items={releases} path="/nouveautes" />
     </>
   )
