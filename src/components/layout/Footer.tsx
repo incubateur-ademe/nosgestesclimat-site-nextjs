@@ -120,7 +120,7 @@ export default function Footer({ className = '' }) {
             </InlineLink>
 
             <InlineLink
-              href="/relais"
+              href="/nos-relais"
               onClick={() => trackEvent(footerClickAmbassadeurs)}
               className="text-default no-underline hover:underline">
               <strong>
