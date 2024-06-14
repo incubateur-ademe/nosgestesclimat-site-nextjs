@@ -1,4 +1,4 @@
-import { Simulation } from '@/publicodes-state/types'
+import { Simulation, Situation } from '@/publicodes-state/types'
 import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 
 export type OrganisationSimulation = Simulation & {
@@ -64,6 +64,7 @@ export type SimulationRecap = {
   progression: number
   isCurrentUser?: boolean
   date: string
+  situation: Situation
 }
 
 export type PollData = {

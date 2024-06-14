@@ -2,7 +2,9 @@
 
 import Button, { ButtonProps } from '@/design-system/inputs/Button'
 import { createXLSXFileAndDownload } from '@/helpers/export/createXLSXFileAndDownload'
+import { useEngine } from '@/publicodes-state'
 import { PollData, SimulationRecap } from '@/types/organisations'
+import { captureException } from '@sentry/react'
 import dayjs from 'dayjs'
 import { useState } from 'react'
 import DownloadIcon from '../icons/DownloadIcon'
@@ -24,6 +26,8 @@ export default function ExportDataButton({
 }: ButtonProps & Props) {
   const [isLoading, setIsLoading] = useState(false)
 
+  const { getComputedResults } = useEngine()
+
   function handleClick() {
     if (onClick) {
       onClick()
@@ -32,23 +36,43 @@ export default function ExportDataButton({
     setIsLoading(true)
 
     createXLSXFileAndDownload({
-      data: simulationRecaps.map((simulation) => {
+      data: simulationRecaps.map((simulationRecap) => {
+        const simulationRecapToParse = { ...simulationRecap }
+
+        if (simulationRecapToParse.bilan === 0) {
+          // Send an error to Sentry
+          captureException(
+            new Error('ExportDataButton: computedResults.bilan === 0')
+          )
+
+          const computedResults = getComputedResults(
+            simulationRecapToParse.situation
+          )
+
+          simulationRecapToParse.bilan = computedResults.bilan
+          simulationRecapToParse.categories = computedResults.categories
+        }
+
         const data: Record<string, unknown> = {
-          date: dayjs(simulation.date).format('DD/MM/YYYY'),
-          total: Math.round(simulation.bilan),
-          transport: Math.round(simulation.categories.transport),
-          alimentation: Math.round(simulation.categories.alimentation),
-          logement: Math.round(simulation.categories.logement),
-          divers: Math.round(simulation.categories.divers),
+          date: dayjs(simulationRecapToParse.date).format('DD/MM/YYYY'),
+          total: Math.round(simulationRecapToParse.bilan),
+          transport: Math.round(simulationRecapToParse.categories.transport),
+          alimentation: Math.round(
+            simulationRecapToParse.categories.alimentation
+          ),
+          logement: Math.round(simulationRecapToParse.categories.logement),
+          divers: Math.round(simulationRecapToParse.categories.divers),
           'services sociétaux': Math.round(
-            simulation.categories['services sociétaux']
+            simulationRecapToParse.categories['services sociétaux']
           ),
         }
 
         if (poll?.customAdditionalQuestions) {
           poll.customAdditionalQuestions.forEach(({ _id, question }) => {
             data[question as string] =
-              simulation.customAdditionalQuestionsAnswers?.[_id ?? ''] ?? ''
+              simulationRecapToParse.customAdditionalQuestionsAnswers?.[
+                _id ?? ''
+              ] ?? ''
           })
         }
 

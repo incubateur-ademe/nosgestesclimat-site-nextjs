@@ -645,7 +645,6 @@ entries:
   Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !: Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !
   Une erreur est survenue !: Une erreur est survenue !
   '{formatCarbonFootprint(carbonFootprintValue).unit}': '{formatCarbonFootprint(carbonFootprintValue).unit}'
-  <0>Infolettre saisonnière de Nos Gestes Climat</0>: <0>Infolettre saisonnière de Nos Gestes Climat</0>
   '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés': '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés'
   "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails": "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails"
   Ce champ est requis.: Ce champ est requis.
@@ -680,7 +679,6 @@ entries:
   <0>2 tonnes</0> en 2050 ?: <0>2 tonnes</0> en 2050 ?
   <0>Et vous,</0> quel est votre impact sur le climat ?: <0>Et vous,</0> quel est votre impact sur le climat ?
   <0>Hérissons</0> en danger ?: <0>Hérissons</0> en danger ?
-  "<0>Nos Gestes Transports</0> : maîtrisez l'impact carbone de vos transports avec nos 4 infolettres": "<0>Nos Gestes Transports</0> : maîtrisez l'impact carbone de vos transports avec nos 4 infolettres"
   C’est l’objectif à atteindre pour espérer limiter le réchauffement climatique à 2 degrés.: C’est l’objectif à atteindre pour espérer limiter le réchauffement climatique à 2 degrés.
   Comment est calculée votre empreinte ?: Comment est calculée votre empreinte ?
   De plus, la disparition de leur environnement naturel, due à la déforestation et à l'urbanisation, réduit leurs zones de vie potentielles, augmentant ainsi leur vulnérabilité face aux prédateurs et aux maladies.: De plus, la disparition de leur environnement naturel, due à la déforestation et à l'urbanisation, réduit leurs zones de vie potentielles, augmentant ainsi leur vulnérabilité face aux prédateurs et aux maladies.
@@ -700,7 +698,6 @@ entries:
   Par où commencer ?: Par où commencer ?
   'Recevez des conseils pour réduire votre empreinte :': 'Recevez des conseils pour réduire votre empreinte :'
   'Voici quelques idées pour vous aider à réduire votre impact :': 'Voici quelques idées pour vous aider à réduire votre impact :'
-  Voir tous les gestes {title}: Voir tous les gestes {title}
   Vous êtes très nettement en dessous de la moyenne française.: Vous êtes très nettement en dessous de la moyenne française.
   Vous souhaitez recevoir vos résultats d’empreinte carbone ?: Vous souhaitez recevoir vos résultats d’empreinte carbone ?
   ' de votre empreinte': ' de votre empreinte'
@@ -759,7 +756,6 @@ entries:
   Votre téléphone: Votre téléphone
   Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.: Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.
   (définissez un titre dans les paramètres): (définissez un titre dans les paramètres)
-  Campagne créée par <2>{pollData?.organisationName}</2>, le: Campagne créée par <2>{pollData?.organisationName}</2>, le
   Date (anciennes > récentes): Date (anciennes > récentes)
   Date (récentes > anciennes): Date (récentes > anciennes)
   Empreinte carbone totale: Empreinte carbone totale
@@ -797,3 +793,19 @@ entries:
   'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.': 'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.'
   Plus de 40 acteurs relaient <2>ou</2> ont relayé Nos Gestes Climat à travers <4>l’intégration du calculateur</4> sur leur site internet <7>ou</7> sa diffusion via <11>des campagnes</11> (mail, réseaux sociaux et/ou affichage). C’est majoritairement grâce à eux que nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque jour et nous les en remercions.: Plus de 40 acteurs relaient <2>ou</2> ont relayé Nos Gestes Climat à travers <4>l’intégration du calculateur</4> sur leur site internet <7>ou</7> sa diffusion via <11>des campagnes</11> (mail, réseaux sociaux et/ou affichage). C’est majoritairement grâce à eux que nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque jour et nous les en remercions.
   Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre galerie de relais ? Merci de nous envoyer un message avec <2>votre logo</2> via <5>notre page de contact</5>.: Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre galerie de relais ? Merci de nous envoyer un message avec <2>votre logo</2> via <5>notre page de contact</5>.
+  ', le': ', le'
+  Campagne créée par: Campagne créée par
+  '{CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}': '{CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}'
+  Alimentation: Alimentation
+  Divers: Divers
+  Logement: Logement
+  Services: Services
+  Transport: Transport
+  Voir tous les gestes: Voir tous les gestes
+  '{label}': '{label}'
+  de votre empreinte: de votre empreinte
+  Partager mon résultat: Partager mon résultat
+  ": maîtrisez l'impact carbone de vos transports avec nos 4 infolettres": ": maîtrisez l'impact carbone de vos transports avec nos 4 infolettres"
+  Infolettre saisonnière de: Infolettre saisonnière de
+  Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L’État, les collectivités locales, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.: Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L’État, les collectivités locales, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.
+  "<0>Nos Gestes Logement</0> : informez-vous sur l'impact carbone du logement, en quelques e-mails": "<0>Nos Gestes Logement</0> : informez-vous sur l'impact carbone du logement, en quelques e-mails"

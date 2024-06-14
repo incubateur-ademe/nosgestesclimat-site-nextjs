@@ -4,6 +4,7 @@ import Badge from '@/design-system/layout/Badge'
 import BarChart from '@/design-system/utils/BarChart'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   value: string
@@ -14,6 +15,7 @@ type Props = {
   icons: React.ReactNode
   barColor?: string
   category?: string
+  className?: string
 }
 
 export default function VerticalBarChartItem({
@@ -25,6 +27,7 @@ export default function VerticalBarChartItem({
   icons,
   barColor,
   category,
+  className,
   ...props
 }: Props) {
   const { formattedValue, unit } = formatCarbonFootprint(
@@ -37,7 +40,10 @@ export default function VerticalBarChartItem({
 
   return (
     <li
-      className="flex h-full flex-1 flex-col items-center justify-end gap-2"
+      className={twMerge(
+        'flex h-full flex-1 flex-col items-center justify-end gap-2',
+        className
+      )}
       aria-label={ariaLabel}
       {...props}>
       <Badge className="text-xs" category={category}>
