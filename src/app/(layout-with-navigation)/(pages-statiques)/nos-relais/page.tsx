@@ -34,33 +34,39 @@ export default function page() {
       </Title>
 
       <p>
-        Plus de 40 acteurs relaient{' '}
-        <span className="text-secondary-700">ou</span> ont relayé Nos Gestes
-        Climat à travers 
-        <a
-          href="https://accelerateur-transition-ecologique-ademe.notion.site/Int-grer-Nos-Gestes-Climat-en-iframe-abdeb175baf84143922006964d80348c"
-          target="_blank"
-          rel="noopener noreferrer">
-          l’intégration du calculateur
-        </a>{' '}
-        sur leur site internet <span className="text-secondary-700">ou</span> sa
-        diffusion via{' '}
-        <InlineLink href="/organisations">des campagnes</InlineLink> (mail,
-        réseaux sociaux et/ou affichage). C’est majoritairement grâce à eux que
-        nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque
-        jour et nous les en remercions.
+        <Trans>
+          Plus de 40 acteurs relaient{' '}
+          <span className="text-secondary-700">ou</span> ont relayé Nos Gestes
+          Climat à travers 
+          <a
+            href="https://accelerateur-transition-ecologique-ademe.notion.site/Int-grer-Nos-Gestes-Climat-en-iframe-abdeb175baf84143922006964d80348c"
+            target="_blank"
+            rel="noopener noreferrer">
+            l’intégration du calculateur
+          </a>{' '}
+          sur leur site internet <span className="text-secondary-700">ou</span>{' '}
+          sa diffusion via{' '}
+          <InlineLink href="/organisations">des campagnes</InlineLink> (mail,
+          réseaux sociaux et/ou affichage). C’est majoritairement grâce à eux
+          que nous sensibilisons près de 2 000 nouvelles personnes en moyenne
+          chaque jour et nous les en remercions.
+        </Trans>
       </p>
 
       <p>
-        Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre
-        galerie de relais ? Merci de nous envoyer un message avec{' '}
-        <span className="text-secondary-700">votre logo</span> via{' '}
-        <InlineLink href="/contact">notre page de contact</InlineLink>.
+        <Trans>
+          Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre
+          galerie de relais ? Merci de nous envoyer un message avec{' '}
+          <span className="text-secondary-700">votre logo</span> via{' '}
+          <InlineLink href="/contact">notre page de contact</InlineLink>.
+        </Trans>
       </p>
 
       <p className="mb-8 italic">
-        N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui
-        est et restera un service public, indépendant et gratuit de l’ADEME.
+        <Trans>
+          N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui
+          est et restera un service public, indépendant et gratuit de l’ADEME.
+        </Trans>
       </p>
 
       {categories.map((category: any) => (
