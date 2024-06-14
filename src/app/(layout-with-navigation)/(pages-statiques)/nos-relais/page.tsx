@@ -59,8 +59,8 @@ export default function page() {
       </p>
 
       <p className="mb-8 italic">
-        NB : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est
-        et restera un service public, indépendant et gratuit de l’ADEME.
+        N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui
+        est et restera un service public, indépendant et gratuit de l’ADEME.
       </p>
 
       {categories.map((category: any) => (
