@@ -104,7 +104,7 @@ const redirects = [
   },
   {
     source: '/ambassadeurs',
-    destination: '/relais',
+    destination: '/nos-relais',
     permanent: true,
   },
 ]
