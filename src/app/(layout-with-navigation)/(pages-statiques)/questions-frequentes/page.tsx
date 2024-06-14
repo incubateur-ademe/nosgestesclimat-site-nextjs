@@ -7,7 +7,6 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { getCurrentLangInfos } from '@/locales/translation'
-import Image from 'next/image'
 import FAQListItem from './_components/FAQListItem'
 import Scroller from './_components/Scroller'
 
@@ -52,30 +51,18 @@ export default async function FAQPage() {
 
   return (
     <>
-      <div className="flex flex-wrap gap-8 pb-8 md:flex-nowrap">
-        <div>
-          <Title title={t('Questions fréquentes')} />
+      <Title title={t('Questions fréquentes')} />
 
-          <Scroller />
+      <Scroller />
 
-          <p>
-            <Trans i18nKey={'publicodes.FAQ.description'}>
-              Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les
-              réponses aux questions les plus fréquentes. S’il vous reste des
-              interrogations ou si vous souhaitez nous proposer des
-              améliorations, rendez-vous tout en bas. Bonne lecture !
-            </Trans>
-          </p>
-        </div>
-
-        <Image
-          className="self-start"
-          src="/images/illustrations/children-holding-hand.svg"
-          width="300"
-          height="400"
-          alt={t("Des enfants sortant de l'école en se tenant la main.")}
-        />
-      </div>
+      <p>
+        <Trans i18nKey={'publicodes.FAQ.description'}>
+          Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les
+          réponses aux questions les plus fréquentes. S’il vous reste des
+          interrogations ou si vous souhaitez nous proposer des améliorations,
+          rendez-vous tout en bas. Bonne lecture !
+        </Trans>
+      </p>
 
       {!hasData && (
         <p>
@@ -121,7 +108,7 @@ export default async function FAQPage() {
       </div>
 
       <Card className="bg-gray-100">
-        <h3 className="text-yellow-dark flex items-center">
+        <h3 className="flex items-center text-yellow-dark">
           <Trans>Je ne trouve pas réponse à ma question </Trans>
 
           <Emoji className="ml-2 inline-block">🙋‍♀️</Emoji>

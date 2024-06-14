@@ -6,7 +6,6 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { FormProvider } from '@/publicodes-state'
-import Image from 'next/image'
 import AnswerList from './_components/AnswerList'
 import Localisation from './_components/Localisation'
 import PersonaWarning from './_components/PersonaWarning'
@@ -29,7 +28,6 @@ export async function generateMetadata() {
 
 export default async function Profil() {
   const supportedRegions = await getSupportedRegions()
-  const { t } = await getServerTranslation()
 
   return (
     <FormProvider>
@@ -37,15 +35,7 @@ export default async function Profil() {
 
       <PersonaWarning />
 
-      <div className="flex flex-wrap gap-8 md:flex-nowrap">
-        <SimulationBanner />
-        <Image
-          src="/images/illustrations/girl-thinking.svg"
-          width="360"
-          height="400"
-          alt={t('Une fille réfléchissant à son empreinte carbone.')}
-        />
-      </div>
+      <SimulationBanner />
 
       <Localisation supportedRegions={supportedRegions} />
 
@@ -55,22 +45,13 @@ export default async function Profil() {
 
       <Separator />
 
-      <div className="flex flex-wrap gap-8 md:flex-nowrap">
-        <UserInformationForm
-          title={
-            <h3>
-              <Trans>Mes informations</Trans>
-            </h3>
-          }
-        />
-        <Image
-          className="self-end"
-          src="/images/illustrations/delivering-mail.svg"
-          width="350"
-          height="400"
-          alt={t('Une personne livrant du courrier.')}
-        />
-      </div>
+      <UserInformationForm
+        title={
+          <h3>
+            <Trans>Mes informations</Trans>
+          </h3>
+        }
+      />
     </FormProvider>
   )
 }

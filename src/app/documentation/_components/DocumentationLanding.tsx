@@ -7,7 +7,6 @@ import { useRules } from '@/hooks/useRules'
 import Link from '@/components/Link'
 import LightBulbIcon from '@/components/icons/LightBulbIcon'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import Image from 'next/image'
 import { useRef } from 'react'
 import SearchBar from './SearchBar'
 import DocumentationLandingCard from './documentationLanding/DocumentationLandingCard'
@@ -43,39 +42,20 @@ export default function DocumentationLanding() {
     <div>
       <Title title={<Trans>Documentation</Trans>} />
 
-      <div className="flex flex-wrap justify-center gap-8 md:flex-nowrap">
-        <div>
-          <p>
-            <Trans>
-              Le simulateur Nos Gestes Climat est basé sur le modèle de calcul
-              du même nom, composé d'un ensemble de briques.
-            </Trans>
-          </p>
-          <p className="text-gray-500">
-            <Trans>
-              Sur cette documentation, vous avez accès en toute transparence à
-              l'ensemble des variables du calcul. À lire tranquillement au coin
-              du feu.
-            </Trans>
-          </p>
+      <p>
+        <Trans i18nKey={'meta.publicodes.pages.Documentation.intro'}>
+          Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du
+          même nom, composé d'un ensemble de briques. Sur cette documentation,
+          vous avez accès en toute transparence à l'ensemble des variables du
+          calcul.
+        </Trans>
+      </p>
 
-          <div>
-            <Link href="/modele" className="flex items-center">
-              <LightBulbIcon className="mr-1 h-4 w-4 fill-primary-700" />
-              <Trans> En savoir plus sur notre modèle</Trans>
-            </Link>
-          </div>
-        </div>
-
-        <Image
-          className="self-start"
-          src="/images/illustrations/girl-reading-newspaper.svg"
-          width="400"
-          height="300"
-          alt={t(
-            'Un femme lisant le journal au coin du feu avec un chien assoupi.'
-          )}
-        />
+      <div>
+        <Link href="/modele" className="flex items-center">
+          <LightBulbIcon className="mr-1 h-4 w-4 fill-primary-700" />
+          <Trans> En savoir plus sur notre modèle</Trans>
+        </Link>
       </div>
 
       <SearchBar rules={rules} />

@@ -7,12 +7,13 @@ import {
   organisationsAccueilClickDemo,
 } from '@/constants/tracking/pages/organisationsAccueil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import Image from 'next/image'
+import { useState } from 'react'
+import Illustration from './heroSection/Illustration'
 
 export default function HeroSection() {
-  const { t } = useClientTranslation()
+  const [isHover, setIsHover] = useState(false)
+
   return (
     <div className="flex flex-wrap justify-center gap-12 pt-14 lg:flex-nowrap lg:justify-start lg:gap-16">
       <div className="max-w-full md:w-[34rem]">
@@ -25,6 +26,8 @@ export default function HeroSection() {
         </div>
         <div className="flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-start md:items-baseline md:gap-8 lg:justify-start">
           <ButtonLink
+            onMouseEnter={() => setIsHover(true)}
+            onMouseLeave={() => setIsHover(false)}
             href="/organisations/connexion"
             trackingEvent={organisationsAccueilClickCommencer}>
             <Trans>Commencer</Trans>
@@ -41,14 +44,8 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div>
-        <Image
-          className="self-start"
-          src="/images/illustrations/people-with-paperboard.svg"
-          width="400"
-          height="400"
-          alt={t('Groupe de personnes devant un paperboard')}
-        />
+      <div className="hidden flex-1 lg:block">
+        <Illustration isHover={isHover} className="h-auto w-full" />
       </div>
     </div>
   )

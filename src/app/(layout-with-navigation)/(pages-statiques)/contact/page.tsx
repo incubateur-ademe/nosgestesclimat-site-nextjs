@@ -5,7 +5,6 @@ import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import Image from 'next/image'
 import Script from 'next/script'
 
 export async function generateMetadata() {
@@ -19,49 +18,33 @@ export async function generateMetadata() {
   })
 }
 
-export default async function Contact() {
-  const { t } = await getServerTranslation()
-
+export default function Contact() {
   return (
     <div className="pb-4">
-      <div className="flex flex-wrap gap-8 pb-8 md:flex-nowrap">
-        <div>
-          <Title
-            title={
-              <span className="flex items-center">
-                <Trans>Contact</Trans>
+      <Title
+        title={
+          <span className="flex items-center">
+            <Trans>Contact</Trans>
 
-                <MailIcon className="ml-3 fill-primary-500" />
-              </span>
-            }
-          />
+            <MailIcon className="ml-3 fill-primary-500" />
+          </span>
+        }
+      />
 
-          <p>
-            <Trans>
-              N'hésitez pas à consulter notre{' '}
-              <Link href="/questions-frequentes">FAQ</Link> avant de nous
-              écrire, vous y trouverez sans doute la réponse à votre question !
-            </Trans>
-          </p>
+      <p>
+        <Trans>
+          N'hésitez pas à consulter notre{' '}
+          <Link href="/questions-frequentes">FAQ</Link> avant de nous écrire,
+          vous y trouverez sans doute la réponse à votre question !
+        </Trans>
+      </p>
 
-          <p>
-            <Trans>
-              Pour toute autre remarque ou question, vous pouvez nous envoyer un
-              message via le formulaire de contact ci-dessous.
-            </Trans>
-          </p>
-        </div>
-
-        <Image
-          className="self-start"
-          src="/images/illustrations/delivering-mail.svg"
-          width="300"
-          height="400"
-          alt={t(
-            'Personne sur un vélo récupérant du courrier dans une boîte aux lettres'
-          )}
-        />
-      </div>
+      <p>
+        <Trans>
+          Pour toute autre remarque ou question, vous pouvez nous envoyer un
+          message via le formulaire de contact ci-dessous.
+        </Trans>
+      </p>
       <Card>
         <iframe
           data-tally-src="https://tally.so/embed/w59G1Z?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
