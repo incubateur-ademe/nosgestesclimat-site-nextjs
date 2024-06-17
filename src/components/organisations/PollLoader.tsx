@@ -11,8 +11,8 @@ export default function PollLoader() {
       </p>
       <p className="text-sm text-gray-700">
         <Trans>
-          (Peut durer quelques dizaines de secondes pour les campagnes avec un
-          grand nombre de participants ! Merci pour votre patience)
+          (Cela peut durer quelques dizaines de secondes pour les campagnes avec
+          un grand nombre de participants ! Merci pour votre patience.)
         </Trans>{' '}
         <Emoji>🙏</Emoji>
       </p>
