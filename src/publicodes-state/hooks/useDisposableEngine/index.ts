@@ -15,7 +15,7 @@ type Props = {
  */
 export default function useDisposableEngine({ rules, situation }: Props) {
   const engine = useMemo(() => {
-    return generateEngine(rules, { allowOrphanRules: true })?.setSituation(
+    return generateEngine(rules)?.setSituation(
       safeGetSituation({ situation, everyRules: Object.keys(rules) })
     )
   }, [rules, situation])

@@ -12,13 +12,11 @@ import {
 type SimulationContextType = {
   rules: NGCRules | null
   engine: Engine | null
+  waterEngine: Engine | null
   pristineEngine: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
-  safeEvaluateWithMetric: (
-    rule: PublicodesExpression,
-    metric: 'carbone' | 'eau'
-  ) => NGCEvaluatedNode | null
+  safeEvaluateWater: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   everyRules: DottedName[]
   everyInactiveRules: DottedName[]
   everyQuestions: DottedName[]
@@ -33,10 +31,11 @@ type SimulationContextType = {
 export const SimulationContext = createContext<SimulationContextType>({
   rules: null,
   engine: null,
+  waterEngine: null,
   pristineEngine: null,
   safeGetRule: () => null,
   safeEvaluate: () => null,
-  safeEvaluateWithMetric: () => null,
+  safeEvaluateWater: () => null,
   everyRules: [],
   everyInactiveRules: [],
   everyQuestions: [],

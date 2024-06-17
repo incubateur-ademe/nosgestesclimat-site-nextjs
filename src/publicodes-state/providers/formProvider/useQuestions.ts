@@ -134,20 +134,20 @@ export default function useQuestions({
           const bCategoryAndSubcategory =
             bSplittedName[0] + ' . ' + bSplittedName[1]
           if (
-            subcategories[categoryOfBothQuestions].indexOf(
+            subcategories?.[categoryOfBothQuestions]?.indexOf(
               aCategoryAndSubcategory
             ) >
-            subcategories[categoryOfBothQuestions].indexOf(
+            subcategories?.[categoryOfBothQuestions]?.indexOf(
               bCategoryAndSubcategory
             )
           ) {
             return 1
           }
           if (
-            subcategories[categoryOfBothQuestions].indexOf(
+            subcategories?.[categoryOfBothQuestions]?.indexOf(
               aCategoryAndSubcategory
             ) <
-            subcategories[categoryOfBothQuestions].indexOf(
+            subcategories?.[categoryOfBothQuestions]?.indexOf(
               bCategoryAndSubcategory
             )
           ) {

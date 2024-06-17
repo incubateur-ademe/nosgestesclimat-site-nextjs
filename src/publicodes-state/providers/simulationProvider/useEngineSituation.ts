@@ -1,18 +1,18 @@
 import { useCurrentSimulation } from '@/publicodes-state'
 import { Situation } from '@/publicodes-state/types'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
 import { useCallback, useEffect, useState } from 'react'
 import { safeGetSituation } from '../../helpers/safeGetSituation'
 
 type Props = {
   engine: Engine
-  everyRules: DottedName[]
+  waterEngine: Engine
+  everyRules: string[]
 }
 /**
  * Update the engine situation and the simulation situation
  */
-export function useEngineSituation({ engine, everyRules }: Props) {
+export function useEngineSituation({ engine, waterEngine, everyRules }: Props) {
   const { situation } = useCurrentSimulation()
 
   const [isInitialized, setIsInitialized] = useState(false)
@@ -26,9 +26,11 @@ export function useEngineSituation({ engine, everyRules }: Props) {
 
       engine.setSituation(safeSituation)
 
+      waterEngine.setSituation({ ...safeSituation, métrique: "'eau'" })
+
       return safeSituation
     },
-    [everyRules, situation, engine]
+    [everyRules, situation, engine, waterEngine]
   )
 
   useEffect(() => {
@@ -39,8 +41,11 @@ export function useEngineSituation({ engine, everyRules }: Props) {
       everyRules,
     })
     engine.setSituation(safeSituation)
+
+    waterEngine.setSituation({ ...safeSituation, métrique: "'eau'" })
+
     setIsInitialized(true)
-  }, [engine, situation, isInitialized, everyRules])
+  }, [engine, situation, isInitialized, everyRules, waterEngine])
 
   return { isInitialized, addToEngineSituation }
 }

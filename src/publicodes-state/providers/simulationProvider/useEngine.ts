@@ -1,9 +1,16 @@
 import { generateEngine } from '@/helpers/publicodes/generateEngine'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
-import Engine, { PublicodesExpression } from 'publicodes'
+import { safeGetSituation } from '@/publicodes-state/helpers/safeGetSituation'
+import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
-import { DottedName, NGCEvaluatedNode, NGCRuleNode, Rules } from '../../types'
+import {
+  DottedName,
+  NGCEngine,
+  NGCEvaluatedNode,
+  NGCRuleNode,
+  Rules,
+} from '../../types'
 
 /**
  * Initiate the engine based on the rules we pass
@@ -15,22 +22,40 @@ import { DottedName, NGCEvaluatedNode, NGCRuleNode, Rules } from '../../types'
 export function useEngine(rules: Rules) {
   if (!rules) throw new Error('Missing rules')
 
-  const engine = useMemo<Engine>(() => {
+  const engine = useMemo<NGCEngine>(() => {
     const nbRules = Object.keys(rules).length
+
     console.time(`⚙️ Parsing ${nbRules}`)
-    const engine = generateEngine(rules, {
-      logger: {
-        log: console.log,
-        warn: () => null,
-        error: console.error,
-      },
-      allowOrphanRules: true,
-    })
+
+    const engine = generateEngine(rules)
+
     console.timeEnd(`⚙️ Parsing ${nbRules}`)
+
     return engine
   }, [rules])
 
-  // Surcharge pour utiliser les deux métriques carbone et eau
+  const waterEngine = useMemo<NGCEngine>(() => {
+    const nbRules = Object.keys(rules).length
+
+    console.time(`⚙️ Parsing ${nbRules}`)
+
+    const engine = generateEngine(rules)
+
+    engine.setSituation(
+      safeGetSituation({
+        situation: { métrique: "'eau'" },
+        everyRules: Object.keys(rules),
+      })
+    )
+
+    console.timeEnd(`⚙️ Parsing ${nbRules}`)
+
+    return engine
+  }, [rules])
+
+  const safeEvaluateWater = useMemo<
+    (expr: PublicodesExpression) => NGCEvaluatedNode | null
+  >(() => (expr) => safeEvaluateHelper(expr, waterEngine), [waterEngine])
 
   const pristineEngine = useMemo(() => engine.shallowCopy(), [engine])
 
@@ -43,5 +68,12 @@ export function useEngine(rules: Rules) {
     [engine]
   )
 
-  return { engine, pristineEngine, safeEvaluate, safeGetRule }
+  return {
+    engine,
+    waterEngine,
+    pristineEngine,
+    safeEvaluate,
+    safeGetRule,
+    safeEvaluateWater,
+  }
 }

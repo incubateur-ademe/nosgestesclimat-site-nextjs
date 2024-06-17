@@ -21,8 +21,10 @@ import useValue from './useValue'
 export default function useRule(dottedName: DottedName) {
   const {
     engine,
+    waterEngine,
     safeGetRule,
     safeEvaluate,
+    safeEvaluateWater,
     everyNotifications,
     everyMosaicChildrenWithParent,
     addToEngineSituation,
@@ -37,6 +39,14 @@ export default function useRule(dottedName: DottedName) {
     [dottedName, engine, situation]
   )
 
+  const waterEvaluation = useMemo<NGCEvaluatedNode | null>(
+    () => safeEvaluateWater(dottedName),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [waterEngine, situation, safeEvaluateWater, dottedName]
+  )
+  if (dottedName === 'bilan') {
+    console.log({ evaluation, waterEvaluation })
+  }
   const rule = useMemo<NGCRuleNode | null>(
     () => safeGetRule(dottedName),
     [dottedName, safeGetRule]
@@ -90,6 +100,15 @@ export default function useRule(dottedName: DottedName) {
 
   const { value, displayValue, numericValue } = useValue({
     evaluation,
+    type,
+  })
+
+  const {
+    value: waterValue,
+    displayValue: waterDisplayValue,
+    numericValue: waterNumericValue,
+  } = useValue({
+    evaluation: waterEvaluation,
     type,
   })
 
@@ -195,6 +214,18 @@ export default function useRule(dottedName: DottedName) {
      * The value as a number (0 if the value is not a number)
      */
     numericValue,
+    /**
+     * The value of the rule with the water metric
+     */
+    waterValue,
+    /**
+     * The value formated as string (true => oui) or number,  without the unit, with the water metric
+     */
+    waterDisplayValue,
+    /**
+     * The value as a number (0 if the value is not a number) with the water metric
+     */
+    waterNumericValue,
     /**
      * True if the question is not answered
      */

@@ -45,6 +45,8 @@ export default function ModeleDemoBlock() {
       engine.setSituation(safeSituation as any)
     }
 
+    if (!engine) return
+
     setIndicators(
       Object.fromEntries(
         indicatorsKeys.map((indicator) => [

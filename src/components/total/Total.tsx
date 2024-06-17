@@ -27,7 +27,7 @@ type Props = {
 export default function Total({ toggleQuestionList }: Props) {
   const { t } = useClientTranslation()
 
-  const { numericValue } = useRule('bilan')
+  const { numericValue, waterNumericValue } = useRule('bilan')
 
   const { getNumericValue } = useEngine()
 
@@ -94,6 +94,18 @@ export default function Total({ toggleQuestionList }: Props) {
             <Trans i18nKey="Total.unit">
               de CO<sub className="text-white">2</sub>e / an
             </Trans>
+          </span>
+        </div>
+
+        <div className="h-4 w-[2px] rounded-full bg-white" />
+
+        <div className="z-10">
+          <span className="block text-2xl font-bold md:text-3xl">
+            {(waterNumericValue / 1000).toFixed(1).replace('.', ',')}{' '}
+            <span className="text-lg">litres</span>
+          </span>
+          <span className="block text-sm md:text-base">
+            <Trans>d'eau / an</Trans>
           </span>
         </div>
         <QuestionButton

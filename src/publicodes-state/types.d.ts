@@ -1,8 +1,9 @@
 import { Group } from '@/types/groups'
 import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
-import {
+import Engine, {
   EvaluatedNode,
   Evaluation,
+  PublicodesExpression,
   RuleNode,
 } from 'publicodes'
 
@@ -135,4 +136,11 @@ type Formule = any
 export type MigrationType = {
   keysToMigrate: Record<DottedName, DottedName>
   valuesToMigrate: Record<DottedName, Record<string, NodeValue>>
+}
+
+export type NGCEngine = Engine & {
+  evaluateWithMetric: (
+    dottedName: PublicodesExpression,
+    metric: 'carbone' | 'eau'
+  ) => NGCEvaluatedNode
 }

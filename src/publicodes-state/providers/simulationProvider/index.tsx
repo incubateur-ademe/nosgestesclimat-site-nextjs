@@ -22,7 +22,14 @@ export default function SimulationProvider({
   shouldAlwaysDisplayChildren = false,
   children,
 }: PropsWithChildren<Props>) {
-  const { engine, pristineEngine, safeEvaluate, safeGetRule } = useEngine(rules)
+  const {
+    engine,
+    waterEngine,
+    pristineEngine,
+    safeEvaluate,
+    safeGetRule,
+    safeEvaluateWater,
+  } = useEngine(rules)
 
   const {
     everyRules,
@@ -43,6 +50,7 @@ export default function SimulationProvider({
 
   const { isInitialized, addToEngineSituation } = useEngineSituation({
     engine,
+    waterEngine,
     everyRules,
   })
 
@@ -56,8 +64,10 @@ export default function SimulationProvider({
       value={{
         rules,
         engine,
+        waterEngine,
         pristineEngine,
         safeEvaluate,
+        safeEvaluateWater,
         safeGetRule,
         everyRules,
         everyInactiveRules,
