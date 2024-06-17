@@ -5,9 +5,9 @@ import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { getCurrentLangInfos } from '@/locales/translation'
 import Image from 'next/image'
+import DoTheTest from './_components/DoTheTest'
 import FAQListItem from './_components/FAQListItem'
 import Scroller from './_components/Scroller'
 
@@ -40,8 +40,6 @@ export default async function FAQPage() {
   const FAQContent = getCurrentLangInfos(i18n)
     .faqContent as unknown as FAQType[]
 
-  const { hasData } = { hasData: false }
-
   const categories: string[] = FAQContent.reduce((memo, next) => {
     if (memo.includes(next.catégorie)) {
       return [...memo]
@@ -59,17 +57,22 @@ export default async function FAQPage() {
           <Scroller />
 
           <p>
-            <Trans i18nKey={'publicodes.FAQ.description'}>
-              Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les
-              réponses aux questions les plus fréquentes. S’il vous reste des
-              interrogations ou si vous souhaitez nous proposer des
-              améliorations, rendez-vous tout en bas. Bonne lecture !
+            <Trans>Levez la main, on répond à vos questions !</Trans>
+          </p>
+          <p>
+            <Trans>
+              Vous trouverez ici les réponses aux questions les plus fréquentes.
+              S’il vous reste des interrogations ou si vous souhaitez nous
+              proposer des améliorations, rendez-vous tout en bas. Bonne lecture
+              !
             </Trans>
           </p>
+
+          <DoTheTest />
         </div>
 
         <Image
-          className="self-start"
+          className="-mt-4 ml-auto w-48 self-start md:w-full"
           src="/images/illustrations/children-holding-hand.svg"
           width="300"
           height="400"
@@ -77,18 +80,7 @@ export default async function FAQPage() {
         />
       </div>
 
-      {!hasData && (
-        <p>
-          <Trans i18nKey={'publicodes.FAQ.faireletest'}>
-            Vous n'avez pas encore débuté votre test,{' '}
-            <strong>
-              <a href={getLinkToSimulateur()}>lancez-vous !</a>
-            </strong>
-          </Trans>
-        </p>
-      )}
-
-      <div className="pb-4">
+      <div className="-mt-8 pb-4 md:-mt-16">
         {categories.map((category) => {
           return (
             <li key={category} className="list-none">

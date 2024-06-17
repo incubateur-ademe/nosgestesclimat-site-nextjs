@@ -51,9 +51,9 @@ export default function Groups() {
         </div>
 
         <Image
-          className="self-start"
+          className="-mt-12 self-start"
           src="/images/illustrations/people-playing.svg"
-          width="400"
+          width="380"
           height="400"
           alt={t("Un groupe d'amis jouant à un jeu de société.")}
         />

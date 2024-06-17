@@ -40,10 +40,10 @@ export default function DocumentationLanding() {
   if (!rules) return null
 
   return (
-    <div>
+    <div className="mt-4">
       <Title title={<Trans>Documentation</Trans>} />
 
-      <div className="flex flex-wrap justify-center gap-8 md:flex-nowrap">
+      <div className="flex flex-wrap gap-8 md:flex-nowrap">
         <div>
           <p>
             <Trans>
@@ -51,7 +51,7 @@ export default function DocumentationLanding() {
               du même nom, composé d'un ensemble de briques.
             </Trans>
           </p>
-          <p className="text-gray-500">
+          <p>
             <Trans>
               Sur cette documentation, vous avez accès en toute transparence à
               l'ensemble des variables du calcul. À lire tranquillement au coin
@@ -68,7 +68,7 @@ export default function DocumentationLanding() {
         </div>
 
         <Image
-          className="self-start"
+          className="-mt-8 ml-auto w-48 md:-mt-16 md:w-full"
           src="/images/illustrations/girl-reading-newspaper.svg"
           width="400"
           height="300"

@@ -35,7 +35,7 @@ export default async function Releases() {
     <>
       <PasserTestBanner />
 
-      <div className="flex flex-wrap gap-8 pb-8 md:flex-nowrap">
+      <div className="mt-4 flex flex-wrap gap-0 pb-8 md:flex-nowrap md:gap-16">
         <div>
           <Title
             data-cypress-id="news-title"
@@ -47,7 +47,7 @@ export default async function Releases() {
             }
           />
 
-          <p className="mb-0">
+          <p className="max-w-74 mb-0">
             <Trans>
               Nous améliorons le site en continu à partir de{' '}
               <InlineLink href="/contact">vos retours</InlineLink>. Découvrez la
@@ -57,9 +57,9 @@ export default async function Releases() {
         </div>
 
         <Image
-          className="self-start"
+          className="ml-auto w-32 md:-mt-4 md:w-48"
           src="/images/illustrations/girl-cooking.svg"
-          width="260"
+          width="200"
           height="400"
           alt={t('Une femme préparant un bon petit plat.')}
         />

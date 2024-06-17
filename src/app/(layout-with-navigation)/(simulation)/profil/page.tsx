@@ -37,9 +37,10 @@ export default async function Profil() {
 
       <PersonaWarning />
 
-      <div className="flex flex-wrap gap-8 md:flex-nowrap">
+      <div className="flex flex-wrap gap-20 md:flex-nowrap">
         <SimulationBanner />
         <Image
+          className="-mt-16 ml-auto hidden md:block"
           src="/images/illustrations/girl-thinking.svg"
           width="360"
           height="400"
@@ -64,7 +65,7 @@ export default async function Profil() {
           }
         />
         <Image
-          className="self-end"
+          className="ml-auto w-48 self-end md:w-full"
           src="/images/illustrations/delivering-mail.svg"
           width="350"
           height="400"
