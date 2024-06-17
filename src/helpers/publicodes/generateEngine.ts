@@ -1,9 +1,9 @@
 import { NGCEngine } from '@/publicodes-state/types'
-import { NGCRulesNodes } from '@incubateur-ademe/nosgestesclimat'
+import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
 
 export function generateEngine(
-  rules: NGCRulesNodes,
+  rules: NGCRules,
   options: any = {
     logger: {
       log: console.log,

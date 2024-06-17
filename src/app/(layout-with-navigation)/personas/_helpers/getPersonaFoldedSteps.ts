@@ -1,7 +1,6 @@
 import { safeGetSituation } from '@/publicodes-state/helpers/safeGetSituation'
 import {
   DottedName,
-  Engine,
   NGCEvaluatedNode,
   NGCRuleNode,
   Situation,
