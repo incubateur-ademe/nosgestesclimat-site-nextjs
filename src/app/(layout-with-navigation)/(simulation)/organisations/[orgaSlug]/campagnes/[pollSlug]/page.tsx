@@ -85,9 +85,11 @@ export default function CampagnePage() {
                   <span className="mr-2 italic text-gray-600">
                     <Trans>Sans titre</Trans>
                   </span>{' '}
-                  <span className="text-sm text-gray-600">
-                    <Trans>(définissez un titre dans les paramètres)</Trans>
-                  </span>
+                  {pollData?.isAdmin && (
+                    <span className="text-sm text-gray-600">
+                      <Trans>(définissez un titre dans les paramètres)</Trans>
+                    </span>
+                  )}
                 </>
               )
         }
