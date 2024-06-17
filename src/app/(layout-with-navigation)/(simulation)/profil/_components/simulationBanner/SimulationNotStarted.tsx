@@ -9,17 +9,17 @@ import TutorialLink from './_components/TutorialLink'
 export default function SimulationNotStarted() {
   return (
     <Card className="my-4 flex !w-[35rem] max-w-full flex-1 items-start gap-2 self-start border-none bg-gray-100 md:p-8">
-      <p>
+      <p className="w-full text-center md:text-left">
         <span
           role="img"
           aria-label="hole emoji"
-          className="mb-2 mr-4 block text-center text-3xl md:mb-0 md:inline-block">
+          className="mb-2 block text-center text-3xl md:mb-0 md:mr-4 md:inline-block">
           🕳️
         </span>
         <Trans>Vous n'avez pas encore fait le test.</Trans>
       </p>
 
-      <div className="flex w-full flex-col items-start justify-start gap-4 md:flex-row md:items-center">
+      <div className="flex w-full flex-col items-center justify-start gap-4 md:flex-row md:items-start">
         <ButtonLink
           href={getLinkToSimulateur()}
           trackingEvent={profilClickCtaCommencer}>

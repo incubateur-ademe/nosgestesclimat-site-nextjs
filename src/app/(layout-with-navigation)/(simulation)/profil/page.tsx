@@ -65,7 +65,7 @@ export default async function Profil() {
           }
         />
         <Image
-          className="ml-auto w-48 self-end md:w-auto"
+          className="-mt-12 ml-auto w-48 self-end md:mt-auto md:w-auto"
           src="/images/illustrations/delivering-mail.svg"
           width="350"
           height="400"
