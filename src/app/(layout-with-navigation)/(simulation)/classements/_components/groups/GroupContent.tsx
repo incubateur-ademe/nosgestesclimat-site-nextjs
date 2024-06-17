@@ -13,7 +13,7 @@ export default function GroupContent({ isError, groups }: Props) {
     return <ServerErrorSection />
   }
 
-  if (!groups || groups?.length !== 0) {
+  if (!groups || groups?.length === 0) {
     return <CreateFirstGroupSection />
   }
   return <GroupList groups={groups} />

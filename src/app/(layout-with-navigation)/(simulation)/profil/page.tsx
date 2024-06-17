@@ -56,7 +56,7 @@ export default async function Profil() {
 
       <Separator />
 
-      <div className="flex flex-wrap gap-8 md:flex-nowrap">
+      <div className="flex flex-wrap gap-16 md:flex-nowrap">
         <UserInformationForm
           title={
             <h3>
@@ -65,7 +65,7 @@ export default async function Profil() {
           }
         />
         <Image
-          className="ml-auto w-48 self-end md:w-full"
+          className="ml-auto w-48 self-end md:w-auto"
           src="/images/illustrations/delivering-mail.svg"
           width="350"
           height="400"

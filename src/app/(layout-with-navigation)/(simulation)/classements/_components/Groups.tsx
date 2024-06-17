@@ -45,7 +45,7 @@ export default function Groups() {
         )}
       </div>
 
-      <div className="flex flex-wrap justify-center gap-8 md:flex-nowrap">
+      <div className="flex flex-wrap justify-center gap-16 md:flex-nowrap">
         <div className="flex-1">
           <GroupContent isError={isError} groups={groups} />
         </div>
