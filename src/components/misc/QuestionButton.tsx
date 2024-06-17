@@ -1,7 +1,10 @@
+import { twMerge } from 'tailwind-merge'
+
 type Props = {
   onClick: any
   color?: 'white' | 'primary'
   title?: string
+  className?: string
 }
 
 export const colorClassNames = {
@@ -12,12 +15,17 @@ export default function QuestionButton({
   onClick,
   color = 'primary',
   title,
+  className,
 }: Props) {
   return (
     <button
       onClick={onClick}
       title={title}
-      className={`${colorClassNames[color]} z-10 h-6 w-6 rounded-full border-2 bg-transparent text-sm font-bold leading-none md:h-7 md:w-7 md:text-lg md:leading-none`}>
+      className={twMerge(
+        'z-10 h-6 w-6 min-w-6 rounded-full border-2 bg-transparent text-sm font-bold leading-none md:h-7 md:w-7 md:text-lg md:leading-none',
+        colorClassNames[color],
+        className
+      )}>
       ?
     </button>
   )
