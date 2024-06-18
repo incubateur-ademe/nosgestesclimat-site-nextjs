@@ -28,17 +28,10 @@ export default function LaconicRanking({ group }: Props) {
       return 0
     }
 
-    if (
-      a.simulation.computedResults.bilan < b.simulation.computedResults.bilan
-    ) {
-      return -1
-    }
-    if (
-      a.simulation.computedResults.bilan > b.simulation.computedResults.bilan
-    ) {
-      return 1
-    }
-    return 0
+    return a.simulation.computedResults.bilan <
+      b.simulation.computedResults.bilan
+      ? -1
+      : 1
   })
 
   // Display a list of participants with their rank and an emoji medal for the first three
