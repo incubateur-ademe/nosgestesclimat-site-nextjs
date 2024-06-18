@@ -7,6 +7,7 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import { useAddContactToConnect } from '@/hooks/connect/useAddContactToConnect'
 import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useSendOrganisationCreationEmail } from '@/hooks/organisations/useSendOrganisationCreationEmail'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
@@ -44,6 +45,8 @@ export default function CreationForm() {
     }
   )
 
+  const { mutate: addContactToConnect } = useAddContactToConnect()
+
   const { mutateAsync: updateOrganisation, isError: isErrorUpdateOrga } =
     useUpdateOrganisation({
       email: user?.organisation?.administratorEmail ?? '',
@@ -71,6 +74,11 @@ export default function CreationForm() {
       sendCreationConfirmationEmail({
         organisation: organisationUpdated,
         administratorName,
+        email: user?.organisation?.administratorEmail ?? '',
+      })
+
+      addContactToConnect({
+        name: administratorName,
         email: user?.organisation?.administratorEmail ?? '',
       })
 

@@ -9,6 +9,7 @@ import { organisationsParametersUpdateInformations } from '@/constants/tracking/
 import Form from '@/design-system/form/Form'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
+import { useAddContactToConnect } from '@/hooks/connect/useAddContactToConnect'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useAutoFlick } from '@/hooks/utils/useAutoFlick'
@@ -50,6 +51,8 @@ export default function ParametresPage() {
     email: user?.organisation?.administratorEmail ?? '',
   })
 
+  const { mutate: addContactToConnect } = useAddContactToConnect()
+
   const { value, flick } = useAutoFlick()
 
   const { register, handleSubmit } = useReactHookForm({
@@ -78,6 +81,13 @@ export default function ParametresPage() {
   }) => {
     try {
       trackEvent(organisationsParametersUpdateInformations)
+
+      // Update contact in the ADEME CRM, CONNECT
+      addContactToConnect({
+        name: administratorName,
+        email: user?.organisation?.administratorEmail ?? '',
+        position,
+      })
 
       await updateOrganisation({
         name,
