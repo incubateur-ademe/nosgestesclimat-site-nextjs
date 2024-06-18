@@ -53,7 +53,9 @@ export default function QuestionsComplementaires({
       <ToggleField
         name="villeToggle"
         className="mb-4"
-        value={poll?.defaultAdditionalQuestions.includes('postalCode') ?? false}
+        value={
+          poll?.defaultAdditionalQuestions?.includes('postalCode') ?? false
+        }
         onChange={(isEnabled: boolean) => {
           onChange({
             defaultAdditionalQuestions: getUpdatedDefaultAdditionalQuestions({
@@ -69,7 +71,7 @@ export default function QuestionsComplementaires({
 
       <ToggleField
         name="birthdateToggle"
-        value={poll?.defaultAdditionalQuestions.includes('birthdate') ?? false}
+        value={poll?.defaultAdditionalQuestions?.includes('birthdate') ?? false}
         onChange={(isEnabled: boolean) => {
           onChange({
             defaultAdditionalQuestions: getUpdatedDefaultAdditionalQuestions({

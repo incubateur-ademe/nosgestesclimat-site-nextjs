@@ -1,7 +1,8 @@
+import { DottedName as NGCDottedName } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
-import getQuestionsOfMosaic from '../../helpers/getQuestionsOfMosaic'
+
 import {
   DottedName,
   NGCEvaluatedNode,
@@ -18,7 +19,7 @@ type Props = {
   situation: Situation
   foldedSteps: string[]
   everyQuestions: string[]
-  everyMosaicChildren: string[]
+  everyMosaicChildrenWithParent: Record<string, string[]>
   rawMissingVariables: Record<string, number>
 }
 
@@ -33,18 +34,60 @@ export default function useQuestions({
   situation,
   foldedSteps,
   everyQuestions,
-  everyMosaicChildren,
+  everyMosaicChildrenWithParent,
   rawMissingVariables,
 }: Props) {
+  // We use the DottedName type from nosgestesclimat to make sure the build will break when using rules that are not in the model.
+  const priorityQuestions: NGCDottedName[] = ['alimentation . plats']
+
+  const nonPriorityQuestions: NGCDottedName[] = [
+    'logement . électricité . réseau . consommation',
+  ]
+
   const missingVariables = useMemo<Record<string, number>>(
-    () =>
-      Object.fromEntries(
+    () => {
+      const tempMissingVariables = Object.fromEntries(
         Object.entries(safeEvaluate(root)?.missingVariables || {}).filter(
           (missingVariable) => everyQuestions.includes(missingVariable[0])
         )
-      ),
+      )
+
+      // We take every mosaic parent to add it to the missing variables with the max score of its children
+      Object.entries(everyMosaicChildrenWithParent).forEach(
+        ([mosaicParent, mosaicChildren]) => {
+          const maxMissingVariableScoreInMosaic = Math.max(
+            ...mosaicChildren.map((child) => tempMissingVariables[child])
+          )
+          if (!isNaN(maxMissingVariableScoreInMosaic)) {
+            tempMissingVariables[mosaicParent] = maxMissingVariableScoreInMosaic
+            mosaicChildren.forEach((mosaicChild) => {
+              delete tempMissingVariables[mosaicChild]
+            })
+          }
+        }
+      )
+
+      // We artificially set the missing variables of the whiteList to a high value
+      priorityQuestions.forEach((dottedName) => {
+        tempMissingVariables[dottedName] += 10000
+      })
+
+      // We artificially set the missing variables of the blackList to a negative value
+      nonPriorityQuestions.forEach((dottedName) => {
+        tempMissingVariables[dottedName] -= 1000
+      })
+
+      return tempMissingVariables
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [safeEvaluate, root, everyQuestions, situation]
+    [
+      safeEvaluate,
+      root,
+      everyQuestions,
+      situation,
+      priorityQuestions,
+      nonPriorityQuestions,
+    ]
   )
 
   const remainingQuestions = useMemo<string[]>(
@@ -54,7 +97,9 @@ export default function useQuestions({
         // We remove all that are in mosaics,
         .filter(
           (question) =>
-            !everyMosaicChildren.find((mosaic) => mosaic === question)
+            !Object.values(everyMosaicChildrenWithParent)
+              .flat()
+              .find((mosaic) => mosaic === question)
         )
         // all that are in folded steps
         .filter((question) => foldedSteps.indexOf(question) === -1)
@@ -109,38 +154,16 @@ export default function useQuestions({
             return -1
           }
 
-          // then if there is a km or a proprietaire (this is shit)
-          if (a.includes('km')) {
-            return -1
-          }
-          if (b.includes('km')) {
-            return 1
-          }
-          if (a.includes('propriétaire')) {
-            return -1
-          }
-          if (b.includes('propriétaire')) {
-            return 1
-          }
-
-          // then by length
-          if (bSplittedName.length > aSplittedName.length) {
-            return -1
-          }
-          if (aSplittedName.length > bSplittedName.length) {
-            return 1
-          }
-
-          // then by number of missing variables
+          // then by missing variables score
           return missingVariables[b] - missingVariables[a]
         }),
     [
+      everyQuestions,
+      everyMosaicChildrenWithParent,
       foldedSteps,
+      missingVariables,
       categories,
       subcategories,
-      missingVariables,
-      everyQuestions,
-      everyMosaicChildren,
     ]
   )
 
@@ -180,12 +203,7 @@ export default function useQuestions({
         getIsMissing({
           dottedName,
           situation,
-          // FIXME: we might want to use `useMosaicQuestions` here but we need
-          // to have access to the corresponding 'options'
-          questionsOfMosaic: getQuestionsOfMosaic({
-            dottedName,
-            everyMosaicChildren,
-          }),
+          questionsOfMosaic: everyMosaicChildrenWithParent[dottedName] || [],
         })
       ),
     ],
@@ -193,7 +211,7 @@ export default function useQuestions({
       relevantAnsweredQuestions,
       remainingQuestions,
       situation,
-      everyMosaicChildren,
+      everyMosaicChildrenWithParent,
     ]
   )
 

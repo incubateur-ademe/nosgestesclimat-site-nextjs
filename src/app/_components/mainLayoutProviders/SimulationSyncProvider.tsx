@@ -1,7 +1,13 @@
 'use client'
 
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import {
+  useCurrentSimulation,
+  useEngine,
+  useSimulation,
+  useUser,
+} from '@/publicodes-state'
+import { captureException } from '@sentry/react'
 import { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
 
 // The max rate at which we save the simulation (in ms)
@@ -41,17 +47,22 @@ export default function SimulationSyncProvider({
     savedViaEmail,
   } = useCurrentSimulation()
 
+  const { safeEvaluate } = useSimulation()
+
   const { saveSimulation, isPending } = useSaveSimulation()
+
+  const { getComputedResults } = useEngine()
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // If the simulation is not in a group, poll, or we don't have an email, we do not save it
   const shouldSyncWithBackend = useMemo<boolean>(() => {
     // We do not saved unfinished simulations
-    if (progression !== 1) return false
+    // Fix to avoid computedResults bilan === 0 bug
+    if (progression !== 1 || computedResults?.bilan === 0) return false
 
     return user.email || groups?.length || polls?.length ? true : false
-  }, [progression, user.email, groups, polls])
+  }, [progression, user.email, groups, polls, computedResults?.bilan])
 
   const isSyncedWithBackend = timeoutRef.current || isPending ? false : true
 
@@ -74,6 +85,14 @@ export default function SimulationSyncProvider({
 
     timeoutRef.current = setTimeout(() => {
       resetSyncTimer()
+
+      if (computedResults?.bilan === 0) {
+        // Send an error to Sentry
+        captureException(
+          new Error('SimulationSyncProvider: computedResults.bilan === 0')
+        )
+      }
+
       saveSimulation({
         simulation: {
           id,
@@ -82,7 +101,11 @@ export default function SimulationSyncProvider({
           foldedSteps,
           actionChoices,
           persona,
-          computedResults,
+          // Fix to avoid computedResults bilan === 0 bug
+          computedResults:
+            computedResults?.bilan === 0
+              ? getComputedResults(situation)
+              : computedResults,
           progression,
           defaultAdditionalQuestionsAnswers,
           polls,
@@ -107,6 +130,8 @@ export default function SimulationSyncProvider({
     saveSimulation,
     shouldSyncWithBackend,
     resetSyncTimer,
+    safeEvaluate,
+    getComputedResults,
   ])
 
   useEffect(() => {

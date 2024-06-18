@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { endClickShare } from '@/constants/tracking/pages/end'
 import CopyInput from '@/design-system/inputs/CopyInput'
 import Title from '@/design-system/layout/Title'
@@ -9,7 +10,9 @@ export default function ShareBlock() {
 
   return (
     <div id="share-block" className="">
-      <Title tag="h2">Partager mon résultat</Title>
+      <Title tag="h2">
+        <Trans>Partager mon résultat</Trans>
+      </Title>
 
       <CopyInput
         textToCopy={sharedUrl}

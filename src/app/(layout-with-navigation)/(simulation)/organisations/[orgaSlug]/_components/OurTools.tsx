@@ -23,7 +23,7 @@ export default function OurTools() {
       <div className="col-span-1 mt-8 grid  grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         <CTACard
           className="border-2 border-gray-200 px-8"
-          overLabel={<Trans>Partagez Nos Gestes Climat</Trans>}
+          overLabel={<Trans>Communiquez sur la campagne</Trans>}
           title={<Trans>Kit de diffusion</Trans>}
           description={
             <Trans>
@@ -40,7 +40,7 @@ export default function OurTools() {
             href="https://drive.google.com/drive/folders/1ppvieBBNCSSkvREGIAAK44PmPNy9CRz9?usp=drive_link"
             target="_blank"
             aria-label={t('Télécharger le kit, ouvrir dans un nouvel onglet')}>
-            <Trans>Télécharger le kit</Trans>
+            <Trans>Accéder au kit</Trans>
             <ExternalLinkIcon className="ml-2 stroke-primary-700" />
           </ButtonLink>
         </CTACard>
@@ -48,7 +48,7 @@ export default function OurTools() {
         <CTACard
           className="relative overflow-hidden border-2 border-gray-200 px-8"
           overLabel={<Trans>Animez un atelier</Trans>}
-          title={<Trans>Les ateliers de l'ABC</Trans>}
+          title={<Trans>Les ressources de l'ABC</Trans>}
           description={
             <Trans>
               Organisez des temps d’animation et d’échanges physiques autour de
@@ -65,7 +65,7 @@ export default function OurTools() {
             aria-label={t(
               'Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet'
             )}>
-            <Trans>Accéder au kit</Trans>
+            <Trans>Accéder aux ressources</Trans>
             <ExternalLinkIcon className="ml-2 stroke-primary-700" />
           </ButtonLink>
         </CTACard>

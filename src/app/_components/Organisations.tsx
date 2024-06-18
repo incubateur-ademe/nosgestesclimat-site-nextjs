@@ -18,11 +18,12 @@ export default function Organisations() {
       <div className="relative mx-auto flex w-full max-w-5xl flex-col px-4 md:flex-row md:gap-4 md:px-8">
         <div className="w-full flex-1 basis-1/2 md:max-w-lg">
           <Kicker>
-            <Trans>Pour les organisations</Trans>
+            <Trans>Nos Gestes Climat pour les organisations</Trans>
           </Kicker>
           <h2 className="font-medium md:text-3xl">
             <Trans>
-              Nos Gestes Climat dans votre entreprise, association, école...
+              Notre offre dédiée aux entreprises, collectivités, écoles et
+              associations
             </Trans>
           </h2>
           <p className="max-w-lg md:mb-8 md:max-w-sm md:text-lg">
@@ -31,21 +32,20 @@ export default function Organisations() {
               <Trans>diffuser Nos Gestes Climat</Trans>
             </strong>{' '}
             <Trans>
-              auprès de votre organisation, découvrez-nous outils pour vous
-              simplifier la vie !
+              via votre organisation ? Découvrez nos outils pour vous simplifier
+              la vie !
             </Trans>
           </p>
           <ButtonLink
             href="/organisations"
+            data-cypress-id="organisations-link"
             trackingEvent={homeClickOrganisations}
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}>
             <Trans>Découvrir</Trans>
           </ButtonLink>
         </div>
-        <div
-          className="relative hidden flex-1 md:block"
-          data-cypress-id="organisations-link">
+        <div className="relative hidden flex-1 md:block">
           <Image
             className="absolute"
             src="/images/organisations/crowd.png"

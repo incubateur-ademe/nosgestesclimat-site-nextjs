@@ -9,10 +9,12 @@ import StatisticsBlocks from './orgaStatistics/StatisticsBlocks'
 export default function PollStatistics({
   title,
   simulationRecaps,
+  simulationRecapsWithoutExtremes,
   funFacts,
 }: {
   title?: string | JSX.Element
   simulationRecaps: SimulationRecap[]
+  simulationRecapsWithoutExtremes: SimulationRecap[]
   funFacts: FunFacts | undefined
 }) {
   const hasAtLeastThreeParticipants = simulationRecaps?.length > 2
@@ -22,7 +24,10 @@ export default function PollStatistics({
       <h2>{title ?? <Trans>Statistiques</Trans>}</h2>
 
       <section className="relative mb-8 flex gap-4">
-        <StatisticsBlocks simulationRecaps={simulationRecaps} />
+        <StatisticsBlocks
+          simulationRecaps={simulationRecaps}
+          simulationRecapsWithoutExtremes={simulationRecapsWithoutExtremes}
+        />
       </section>
 
       {hasAtLeastThreeParticipants && (
