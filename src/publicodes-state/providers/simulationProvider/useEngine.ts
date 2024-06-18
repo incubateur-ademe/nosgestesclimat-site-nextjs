@@ -24,7 +24,7 @@ export function useEngine(rules: Rules) {
           console.log(`[publicodes:log] ${msg}`)
         },
         warn() {
-          null
+          return null
         },
         error(msg: string) {
           console.error(`[publicodes:error] ${msg}`)
