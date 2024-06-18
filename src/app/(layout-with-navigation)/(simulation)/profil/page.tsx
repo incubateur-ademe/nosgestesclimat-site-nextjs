@@ -6,6 +6,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { FormProvider } from '@/publicodes-state'
+import Image from 'next/image'
 import AnswerList from './_components/AnswerList'
 import Localisation from './_components/Localisation'
 import PersonaWarning from './_components/PersonaWarning'
@@ -28,6 +29,7 @@ export async function generateMetadata() {
 
 export default async function Profil() {
   const supportedRegions = await getSupportedRegions()
+  const { t } = await getServerTranslation()
 
   return (
     <FormProvider>
@@ -35,7 +37,16 @@ export default async function Profil() {
 
       <PersonaWarning />
 
-      <SimulationBanner />
+      <div className="flex flex-wrap gap-20 md:flex-nowrap">
+        <SimulationBanner />
+        <Image
+          className="-mt-16 ml-auto hidden md:block"
+          src="/images/illustrations/girl-thinking.svg"
+          width="360"
+          height="400"
+          alt={t('Une fille réfléchissant à son empreinte carbone.')}
+        />
+      </div>
 
       <Localisation supportedRegions={supportedRegions} />
 
@@ -45,13 +56,22 @@ export default async function Profil() {
 
       <Separator />
 
-      <UserInformationForm
-        title={
-          <h3>
-            <Trans>Mes informations</Trans>
-          </h3>
-        }
-      />
+      <div className="flex flex-wrap gap-16 md:flex-nowrap">
+        <UserInformationForm
+          title={
+            <h3>
+              <Trans>Mes informations</Trans>
+            </h3>
+          }
+        />
+        <Image
+          className="-mt-12 ml-auto w-48 self-end md:mt-auto md:w-auto"
+          src="/images/illustrations/delivering-mail.svg"
+          width="350"
+          height="400"
+          alt={t('Une personne livrant du courrier.')}
+        />
+      </div>
     </FormProvider>
   )
 }

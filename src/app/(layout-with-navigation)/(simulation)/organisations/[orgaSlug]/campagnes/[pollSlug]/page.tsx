@@ -82,12 +82,17 @@ export default function CampagnePage() {
             ? '...'
             : pollData?.name ?? (
                 <>
-                  <span className="mr-2 italic text-gray-600">
-                    <Trans>Sans titre</Trans>
+                  <span className="mr-2">
+                    <Trans>Campagne de</Trans>{' '}
+                    <span className="text-primary-700">
+                      {pollData?.organisationName}
+                    </span>
                   </span>{' '}
-                  <span className="text-sm text-gray-600">
-                    <Trans>(définissez un titre dans les paramètres)</Trans>
-                  </span>
+                  {pollData?.isAdmin && (
+                    <span className="text-sm text-gray-600">
+                      <Trans>(définissez un titre dans les paramètres)</Trans>
+                    </span>
+                  )}
                 </>
               )
         }
