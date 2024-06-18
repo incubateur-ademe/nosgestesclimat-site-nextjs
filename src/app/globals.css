@@ -501,3 +501,91 @@ html[data-useragent*='Trident'] #js {
   background-color: #fff;
   padding: 0;
 }
+
+/*
+  Waves animation
+*/
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-110%, 0, 0);
+  }
+  100% {
+    transform: translate3d(10%, 0, 0);
+  }
+}
+
+.wave-1 {
+  animation: move-forever 15s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: -3s;
+  animation-duration: 18s;
+}
+.wave-2 {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: -8s;
+  animation-duration: 18s;
+}
+.wave-3 {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: -12s;
+  animation-duration: 18s;
+}
+.wave-4 {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: -15s;
+  animation-duration: 18s;
+}
+.wave-5 {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: -18s;
+  animation-duration: 18s;
+}
+.wave-6 {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: -21s;
+  animation-duration: 18s;
+}
+.wave-7 {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: -24s;
+  animation-duration: 18s;
+}
+.wave-8 {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: -26s;
+  animation-duration: 18s;
+}
+.wave-9 {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: -28s;
+  animation-duration: 18s;
+}
+
+.island {
+  filter: invert(1);
+  mix-blend-mode: difference;
+  @apply text-amber-400;
+  animation: bounce 4s infinite;
+}
+
+.island:nth-child(1) {
+  animation-delay: -0.5s;
+}
+
+.island:nth-child(2) {
+  animation-delay: -1s;
+}
+
+.island:nth-child(3) {
+  animation-delay: -1.5s;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-5%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}

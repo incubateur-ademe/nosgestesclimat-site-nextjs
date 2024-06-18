@@ -17,6 +17,7 @@ export default function GlobalError({ error }: Props) {
     <html lang="fr">
       <body>
         <Error500 />
+
         <NextError statusCode={undefined as any} />
       </body>
     </html>
