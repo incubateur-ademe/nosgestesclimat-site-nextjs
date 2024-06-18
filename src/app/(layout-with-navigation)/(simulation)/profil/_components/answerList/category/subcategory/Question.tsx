@@ -53,7 +53,7 @@ export default function Question({ question }: Props) {
         <div className="mt-2 grid gap-2 md:grid-cols-2">
           {questionsOfMosaicFromParent.map((questionOfMosaic) => (
             <MosaicQuestion
-              key={question}
+              key={questionOfMosaic}
               question={questionOfMosaic}
               isMissing={isMissing}
             />
