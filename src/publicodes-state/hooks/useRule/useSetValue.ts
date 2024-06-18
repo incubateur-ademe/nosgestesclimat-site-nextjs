@@ -20,7 +20,7 @@ type Props = {
   evaluation: NGCEvaluatedNode | null
   value: NodeValue
   type: string | undefined
-  questionsOfMosaic: string[]
+  questionsOfMosaic: DottedName[]
   situation: Situation
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
   addToEngineSituation: (situationToAdd: Situation) => Situation
@@ -43,7 +43,6 @@ export default function useSetValue({
         (accumulator, currentValue) => {
           const isMissing = getIsMissing({
             dottedName: currentValue,
-            questionsOfMosaic: [],
             situation,
           })
           if (!isMissing) return accumulator
@@ -75,17 +74,14 @@ export default function useSetValue({
   /**
    * @param value - The value to set
    * @param options.foldedStep - The dottedName of the foldedStep
-   * @param options.questionsOfParentMosaic - The questions of the parent mosaic
    */
   const setValue = useCallback(
     async (
       value: NodeValue | { [dottedName: DottedName]: NodeValue },
       {
         foldedStep,
-        questionsOfParentMosaic,
       }: {
         foldedStep?: DottedName
-        questionsOfParentMosaic?: DottedName[]
       } = {}
     ) => {
       let situationToAdd = {}
@@ -108,9 +104,9 @@ export default function useSetValue({
         }
       }
 
-      if (questionsOfParentMosaic) {
+      if (questionsOfMosaic) {
         situationToAdd = {
-          ...getMosaicResetSituation(questionsOfParentMosaic),
+          ...getMosaicResetSituation(questionsOfMosaic),
           ...situationToAdd,
         }
       }
@@ -122,11 +118,12 @@ export default function useSetValue({
       })
     },
     [
+      questionsOfMosaic,
+      addToEngineSituation,
+      updateCurrentSimulation,
       dottedName,
       type,
-      updateCurrentSimulation,
       getMosaicResetSituation,
-      addToEngineSituation,
     ]
   )
 
