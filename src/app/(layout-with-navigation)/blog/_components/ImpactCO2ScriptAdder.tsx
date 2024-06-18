@@ -14,7 +14,7 @@ function ImpactCO2ScriptAdder() {
 
   return (
     <Script
-      src="/scripts/detection-async.js"
+      src="https://impactco2.fr/scripts/detection-async.js"
       onLoad={() => {
         // @ts-expect-error: Loaded by script
         window.impactCO2Detection()
