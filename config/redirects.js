@@ -102,6 +102,11 @@ const redirects = [
       '/organisations/:orgaSlug/campagnes/campagne-1?isRedirectFromLegacy=true',
     permanent: true,
   },
+  {
+    source: '/ambassadeurs',
+    destination: '/nos-relais',
+    permanent: true,
+  },
 ]
 
 module.exports = redirects
