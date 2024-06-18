@@ -2,7 +2,8 @@
 
 import { PropsWithChildren } from 'react'
 
-import { MigrationType, RegionFromGeolocation } from '@/publicodes-state/types'
+import { RegionFromGeolocation } from '@/publicodes-state/types'
+import { Migration } from '@publicodes/tools/migration'
 import UserContext from './context'
 import useUpdateOldLocalStorage from './useOldLocalStorage'
 import usePersistentSimulations from './usePersistentSimulations'
@@ -21,7 +22,7 @@ type Props = {
   /**
    * The migration instructions for old localstorage
    */
-  migrationInstructions: MigrationType
+  migrationInstructions: Migration
 }
 export default function UserProvider({
   children,

@@ -1,28 +1,37 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { migrateSituation } from '@publicodes/tools/migration'
-import { MigrationType, Simulation } from '../types'
+import { Migration, migrateSituation } from '@publicodes/tools/migration'
+import { Simulation } from '../types'
 
-type Props = {
-  simulation: Simulation
-  migrationInstructions: MigrationType
-}
-type Return = Simulation
+export function migrateSimulation(
+  simulation: Simulation & { group?: string; poll?: string },
+  migrationInstructions: Migration | undefined
+): Simulation {
+  if (migrationInstructions) {
+    simulation.situation = migrateSituation(
+      simulation.situation,
+      migrationInstructions
+    )
 
-export function migrateSimulation({
-  simulation: oldSimulation,
-  migrationInstructions,
-}: Props): Return {
-  const simulation = JSON.parse(JSON.stringify(oldSimulation)) as Simulation
+    // NOTE: folded steps (i.e. answered rules) are can be map to a situation,
+    // where the keys are the rule names and the value is undefined.
+    simulation.foldedSteps = Object.keys(
+      migrateSituation(
+        Object.fromEntries(
+          simulation.foldedSteps.map((step) => [step, undefined])
+        ),
+        migrationInstructions
+      )
+    )
+  }
+  // If group or poll is defined, we convert it to groups or polls and delete it
+  if (simulation.group) {
+    simulation.groups = [simulation.group]
+    delete simulation.group
+  }
 
-  const { situationMigrated, foldedStepsMigrated } = migrateSituation({
-    situation: simulation.situation,
-    foldedSteps: simulation.foldedSteps,
-    migrationInstructions,
-  })
-
-  simulation.situation = situationMigrated
-  simulation.foldedSteps = foldedStepsMigrated
+  if (simulation.poll) {
+    simulation.polls = [simulation.poll]
+    delete simulation.poll
+  }
 
   return simulation
 }

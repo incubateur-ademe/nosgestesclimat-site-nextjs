@@ -120,11 +120,11 @@ export default function Footer({ className = '' }) {
             </InlineLink>
 
             <InlineLink
-              href="/ambassadeurs"
+              href="/nos-relais"
               onClick={() => trackEvent(footerClickAmbassadeurs)}
               className="text-default no-underline hover:underline">
               <strong>
-                <Trans>Ambassadeurs</Trans>
+                <Trans>Nos relais</Trans>
               </strong>
             </InlineLink>
 
