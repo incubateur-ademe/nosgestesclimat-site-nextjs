@@ -260,7 +260,6 @@ entries:
   du test: du test
   Vous utilisez la version: Vous utilisez la version
   Terminer: Terminer
-  Ambassadeurs: Ambassadeurs
   Voir toutes les actions: Voir toutes les actions
   Total.unit: de CO<1>2</1>e / an
   Comparez vos résultats <2>avec vos proches</2>: Comparez vos résultats <2>avec vos proches</2>
@@ -490,6 +489,7 @@ entries:
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.: Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
   Oups ! Une erreur est survenue: Oups ! Une erreur est survenue
   Partage de vos résultats à {{ parent }} ?: Partage de vos résultats à {{ parent }} ?
+  Mes sondages: Mes sondages
   Aller plus loin: Aller plus loin
   Calculez votre empreinte sur le climat: Calculez votre empreinte sur le climat
   Découvrez les conseils de l'ADEME: Découvrez les conseils de l'ADEME
@@ -541,7 +541,6 @@ entries:
   'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat': 'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat'
   Actions, la liste - Nos Gestes Climat: Actions, la liste - Nos Gestes Climat
   Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat
-  Ambassadeurs - Nos Gestes Climat: Ambassadeurs - Nos Gestes Climat
   article du blog - Nos Gestes Climat: article du blog - Nos Gestes Climat
   Blog - Nos Gestes Climat: Blog - Nos Gestes Climat
   Budget - Nos Gestes Climat: Budget - Nos Gestes Climat
@@ -560,7 +559,6 @@ entries:
   Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.: Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.
   Découvrez le modèle de données de notre simulateur d'empreinte climat: Découvrez le modèle de données de notre simulateur d'empreinte climat
   Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.
-  'Découvrez les ambassadeurs de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.': 'Découvrez les ambassadeurs de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
   Découvrez les articles de blog du site Nos Gestes Climat.: Découvrez les articles de blog du site Nos Gestes Climat.
   Découvrez les nouveautés du site Nos Gestes Climat.: Découvrez les nouveautés du site Nos Gestes Climat.
   Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.: Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.
@@ -615,9 +613,7 @@ entries:
   par semaine, quel appétit de moineau: par semaine, quel appétit de moineau
   repas: repas
   Cambiar a español: Cambiar a español
-  Bravo champion·ne !: Bravo champion·ne !
   Passer le test →: Passer le test →
-  Recevez un email avec un lien pour terminer votre test plus tard: Recevez un email avec un lien pour terminer votre test plus tard
   Reprendre mon test: Reprendre mon test
   Voir mon résultat: Voir mon résultat
   Pour cela,: Pour cela,
@@ -688,6 +684,7 @@ entries:
   Découvre mon empreinte carbone: Découvre mon empreinte carbone
   En 10 minutes, obtenez une estimation de votre empreinte carbone.: En 10 minutes, obtenez une estimation de votre empreinte carbone.
   Est-ce que je peux y arriver tout seul ?: Est-ce que je peux y arriver tout seul ?
+  Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L’État, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.: Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L’État, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.
   l’objectif pour 2050: l’objectif pour 2050
   Le détail de mon empreinte: Le détail de mon empreinte
   Les hérissons sont menacé⋅e⋅s par le changement climatique et la perte de biodiversité. L'augmentation des températures et les conditions climatiques extrêmes perturbent leur habitat naturel, rendant difficile la recherche de nourriture et la reproduction.: Les hérissons sont menacé⋅e⋅s par le changement climatique et la perte de biodiversité. L'augmentation des températures et les conditions climatiques extrêmes perturbent leur habitat naturel, rendant difficile la recherche de nourriture et la reproduction.
@@ -787,6 +784,13 @@ entries:
   Ils ont testé: Ils ont testé
   mis à jour le: mis à jour le
   'Un article de ': 'Un article de '
+  'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.': 'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
+  Ils relaient <2>Nos Gestes Climat</2>: Ils relaient <2>Nos Gestes Climat</2>
+  Nos relais: Nos relais
+  Nos relais - Nos Gestes Climat: Nos relais - Nos Gestes Climat
+  'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.': 'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.'
+  Plus de 40 acteurs relaient <2>ou</2> ont relayé Nos Gestes Climat à travers <4>l’intégration du calculateur</4> sur leur site internet <7>ou</7> sa diffusion via <11>des campagnes</11> (mail, réseaux sociaux et/ou affichage). C’est majoritairement grâce à eux que nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque jour et nous les en remercions.: Plus de 40 acteurs relaient <2>ou</2> ont relayé Nos Gestes Climat à travers <4>l’intégration du calculateur</4> sur leur site internet <7>ou</7> sa diffusion via <11>des campagnes</11> (mail, réseaux sociaux et/ou affichage). C’est majoritairement grâce à eux que nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque jour et nous les en remercions.
+  Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre galerie de relais ? Merci de nous envoyer un message avec <2>votre logo</2> via <5>notre page de contact</5>.: Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre galerie de relais ? Merci de nous envoyer un message avec <2>votre logo</2> via <5>notre page de contact</5>.
   ', le': ', le'
   Campagne créée par: Campagne créée par
   '{CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}': '{CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}'
@@ -803,3 +807,4 @@ entries:
   Infolettre saisonnière de: Infolettre saisonnière de
   Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L’État, les collectivités locales, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.: Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L’État, les collectivités locales, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.
   "<0>Nos Gestes Logement</0> : informez-vous sur l'impact carbone du logement, en quelques e-mails": "<0>Nos Gestes Logement</0> : informez-vous sur l'impact carbone du logement, en quelques e-mails"
+  (Peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience): (Peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience)
