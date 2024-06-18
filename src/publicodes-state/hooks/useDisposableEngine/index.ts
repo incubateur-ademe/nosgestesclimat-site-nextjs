@@ -33,8 +33,7 @@ export default function useDisposableEngine({ rules, situation }: Props) {
     safeEvaluate(dottedName, engine)?.nodeValue
 
   const updateSituation = (newSituation: Situation) => {
-    // TODO : it seems that there is a bug with `keepPreviousSituation` option even if it should be used here.
-    engine.setSituation(newSituation)
+    engine.setSituation(newSituation, { keepPreviousSituation: true })
   }
 
   return {
