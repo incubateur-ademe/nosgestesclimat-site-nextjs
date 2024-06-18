@@ -22,6 +22,13 @@ export default function RepartitionChart({
   id,
   color,
 }: Props) {
+  function getShouldDisplayTooltip(shouldBeHighlighted: boolean) {
+    if (items.length > 100) {
+      return shouldBeHighlighted
+    }
+
+    return true
+  }
   return (
     <div
       className={twMerge(
@@ -38,10 +45,12 @@ export default function RepartitionChart({
             id={`tooltip-repartition-chart-${id}-${index}`}
           />
 
-          <Tooltip
-            className="z-20"
-            id={`tooltip-repartition-chart-${id}-${index}`}
-          />
+          {getShouldDisplayTooltip(shouldBeHighlighted ?? false) && (
+            <Tooltip
+              className="z-20"
+              id={`tooltip-repartition-chart-${id}-${index}`}
+            />
+          )}
         </Fragment>
       ))}
     </div>
