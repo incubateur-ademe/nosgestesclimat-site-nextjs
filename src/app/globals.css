@@ -439,6 +439,23 @@ html[data-useragent*='Trident'] #js {
 
 .markdown blockquote {
   @apply mb-6;
+  @apply p-2;
+  @apply sm:p-4;
+}
+
+.markdown blockquote p {
+  @apply mb-0;
+}
+
+.markdown blockquote code {
+  @apply w-auto;
+  @apply max-w-10;
+  @apply mb-0;
+  @apply px-2;
+  @apply py-1;
+  @apply rounded-md;
+  align-items: flex-end;
+  @apply ml-1;
 }
 
 .markdown code {
