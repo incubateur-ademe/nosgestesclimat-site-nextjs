@@ -5,7 +5,6 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import GroupCreationForm from './_component/GroupCreationForm'
 
 export async function generateMetadata() {
@@ -31,9 +30,7 @@ export default async function YourInfoPage() {
     <div className="p-4 md:p-8">
       <GoBackLink
         href={'/classements'}
-        onClick={() => {
-          trackEvent(amisCreationVosInformationsRetour)
-        }}
+        eventTracked={amisCreationVosInformationsRetour}
         className="mb-4 font-bold"
       />
 

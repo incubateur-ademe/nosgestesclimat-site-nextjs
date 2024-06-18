@@ -13,9 +13,9 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
-import { useContext, useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import { GroupCreationContext } from '../../_contexts/GroupCreationContext'
 
 type Inputs = {
   name: string
@@ -33,7 +33,7 @@ export default function NameForm() {
 
   const { user, updateName, updateEmail } = useUser()
 
-  const { groupValues } = useContext(GroupCreationContext)
+  const searchParams = useSearchParams()
 
   const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
 
@@ -69,7 +69,8 @@ export default function NameForm() {
 
   async function onSubmit({ name, emoji }: Inputs) {
     try {
-      const { administratorEmail, administratorName } = groupValues ?? {}
+      const administratorEmail = searchParams.get('administratorEmail')
+      const administratorName = searchParams.get('administratorName')
 
       const group = await createGroup({
         groupInfo: {

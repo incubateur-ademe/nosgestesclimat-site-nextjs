@@ -5,7 +5,6 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import NameForm from './_components/NameForm'
 
 export async function generateMetadata() {
@@ -32,9 +31,7 @@ export default async function GroupNamePage() {
       <GoBackLink
         className="mb-4 font-bold"
         href={'/amis/creer/vos-informations'}
-        onClick={() => {
-          trackEvent(amisCreationVotreGroupeRetour)
-        }}
+        eventTracked={amisCreationVotreGroupeRetour}
       />
 
       <StepsDisplay currentStep={2} />

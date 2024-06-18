@@ -8,9 +8,7 @@ import PrenomInput from '@/design-system/inputs/PrenomInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
-import { useContext } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import { GroupCreationContext } from '../../_contexts/GroupCreationContext'
 
 type Inputs = {
   administratorName: string
@@ -30,14 +28,12 @@ export default function GroupCreationForm() {
 
   const router = useRouter()
 
-  const { updateGroup } = useContext(GroupCreationContext)
-
   function onSubmit({ administratorName, administratorEmail }: Inputs) {
-    updateGroup({ administratorName, administratorEmail })
-
     trackEvent(amisCreationEtapeVotreGroupeSuivant)
 
-    router.push('/amis/creer/votre-groupe')
+    router.push(
+      `/amis/creer/votre-groupe?administratorName=${administratorName}&administratorEmail=${administratorEmail}`
+    )
   }
 
   return (
