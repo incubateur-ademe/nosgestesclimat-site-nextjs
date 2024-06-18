@@ -9,7 +9,7 @@ import useNavigation from './useNavigation'
  */
 export default function useForm() {
   const {
-    relevantOrderedQuestions,
+    relevantQuestions,
     currentQuestion,
     currentCategory,
     setCurrentQuestion,
@@ -28,7 +28,7 @@ export default function useForm() {
     isLastQuestionOfCategory,
   } = useNavigation({
     remainingQuestions,
-    relevantOrderedQuestions,
+    relevantQuestions,
     currentQuestion,
     setCurrentQuestion,
   })
@@ -37,7 +37,7 @@ export default function useForm() {
     /**
      * Every questions (answered and missing) that should be displayed in the form
      */
-    relevantOrderedQuestions,
+    relevantQuestions,
     /**
      * The question that should currently be displayed in the form
      */
@@ -55,11 +55,11 @@ export default function useForm() {
      */
     setCurrentCategory,
     /**
-     * Go to the previous question as determined by relevantOrderedQuestions (and currentQuestion)
+     * Go to the previous question as determined by relevantQuestions (and currentQuestion)
      */
     gotoPrevQuestion,
     /**
-     * Go to the next question as determined by relevantOrderedQuestions (and currentQuestion)
+     * Go to the next question as determined by relevantQuestions (and currentQuestion)
      */
     gotoNextQuestion,
     /**

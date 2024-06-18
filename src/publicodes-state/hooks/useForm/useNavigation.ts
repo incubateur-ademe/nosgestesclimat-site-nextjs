@@ -3,14 +3,14 @@ import { useMemo } from 'react'
 
 type Props = {
   remainingQuestions: string[]
-  relevantOrderedQuestions: string[]
+  relevantQuestions: string[]
   currentQuestion: string | null
   setCurrentQuestion: (question: string | null) => void
 }
 
 export default function useNavigation({
   remainingQuestions,
-  relevantOrderedQuestions,
+  relevantQuestions,
   currentQuestion,
   setCurrentQuestion,
 }: Props) {
@@ -20,9 +20,8 @@ export default function useNavigation({
   )
 
   const currentQuestionIndex = useMemo<number>(
-    () =>
-      currentQuestion ? relevantOrderedQuestions?.indexOf(currentQuestion) : 0,
-    [relevantOrderedQuestions, currentQuestion]
+    () => (currentQuestion ? relevantQuestions?.indexOf(currentQuestion) : 0),
+    [relevantQuestions, currentQuestion]
   )
 
   const noPrevQuestion = useMemo<boolean>(
@@ -34,23 +33,23 @@ export default function useNavigation({
       remainingQuestions.length === 0 ||
       (remainingQuestions.length === 1 &&
         !remainingQuestions.includes(
-          relevantOrderedQuestions[currentQuestionIndex + 1]
+          relevantQuestions[currentQuestionIndex + 1]
         )),
-    [currentQuestionIndex, relevantOrderedQuestions, remainingQuestions]
+    [currentQuestionIndex, relevantQuestions, remainingQuestions]
   )
 
   const isLastQuestionOfCategory = useMemo<boolean>(
     () =>
-      getNamespace(relevantOrderedQuestions[currentQuestionIndex + 1]) !==
+      getNamespace(relevantQuestions[currentQuestionIndex + 1]) !==
       currentQuestionNamespace,
-    [currentQuestionNamespace, currentQuestionIndex, relevantOrderedQuestions]
+    [currentQuestionNamespace, currentQuestionIndex, relevantQuestions]
   )
 
   const isFirstQuestionOfCategory = useMemo<boolean>(
     () =>
-      getNamespace(relevantOrderedQuestions[currentQuestionIndex - 1]) !==
+      getNamespace(relevantQuestions[currentQuestionIndex - 1]) !==
       currentQuestionNamespace,
-    [currentQuestionNamespace, currentQuestionIndex, relevantOrderedQuestions]
+    [currentQuestionNamespace, currentQuestionIndex, relevantQuestions]
   )
 
   const gotoPrevQuestion = (): string | undefined => {
@@ -58,8 +57,7 @@ export default function useNavigation({
       return undefined
     }
 
-    const newCurrentQuestion =
-      relevantOrderedQuestions[currentQuestionIndex - 1]
+    const newCurrentQuestion = relevantQuestions[currentQuestionIndex - 1]
 
     setCurrentQuestion(newCurrentQuestion)
 
@@ -72,8 +70,7 @@ export default function useNavigation({
     }
 
     const newCurrentQuestion =
-      relevantOrderedQuestions[currentQuestionIndex + 1] ||
-      remainingQuestions[0]
+      relevantQuestions[currentQuestionIndex + 1] || remainingQuestions[0]
 
     setCurrentQuestion(newCurrentQuestion)
 

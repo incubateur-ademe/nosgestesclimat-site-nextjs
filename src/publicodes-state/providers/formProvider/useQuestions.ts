@@ -180,29 +180,22 @@ export default function useQuestions({
    *
    * (yes, this is shit)
    */
-  const relevantQuestions = useMemo<string[]>(
-    () =>
-      tempRelevantQuestions.filter(
-        (question, index) => tempRelevantQuestions.indexOf(question) === index
-      ),
-    [tempRelevantQuestions]
-  )
-
-  const relevantOrderedQuestions = useMemo<string[]>(
-    () =>
-      getSortedQuestionsList({
-        questions: relevantQuestions,
-        categories,
-        subcategories,
-        missingVariables,
-      }),
-    [categories, missingVariables, relevantQuestions, subcategories]
-  )
+  const relevantQuestions = useMemo<string[]>(() => {
+    const questions = tempRelevantQuestions.filter(
+      (question, index) => tempRelevantQuestions.indexOf(question) === index
+    )
+    return getSortedQuestionsList({
+      questions: questions,
+      categories,
+      subcategories,
+      missingVariables,
+    })
+  }, [categories, missingVariables, subcategories, tempRelevantQuestions])
 
   return {
     missingVariables,
     remainingQuestions,
     relevantAnsweredQuestions,
-    relevantOrderedQuestions,
+    relevantQuestions,
   }
 }

@@ -12,11 +12,11 @@ export default function Summary({
 }: Props) {
   const isDebug = useDebug()
 
-  const { relevantOrderedQuestions } = useForm()
+  const { relevantQuestions } = useForm()
 
   return (
     <div className={isQuestionListOpen || isDebug ? 'mb-8 block' : 'hidden'}>
-      {relevantOrderedQuestions.map((question: any) => (
+      {relevantQuestions.map((question: any) => (
         <Question
           key={question}
           question={question}

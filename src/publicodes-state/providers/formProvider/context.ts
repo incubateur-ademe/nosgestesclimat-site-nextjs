@@ -3,7 +3,7 @@
 import { createContext } from 'react'
 
 type FormContextType = {
-  relevantOrderedQuestions: string[]
+  relevantQuestions: string[]
   remainingQuestions: string[]
   relevantAnsweredQuestions: string[]
   remainingQuestionsByCategories: Record<string, string[]>
@@ -13,7 +13,7 @@ type FormContextType = {
   setCurrentCategory: (category: string | null) => void
 }
 export default createContext<FormContextType>({
-  relevantOrderedQuestions: [],
+  relevantQuestions: [],
   remainingQuestions: [],
   relevantAnsweredQuestions: [],
   remainingQuestionsByCategories: {},

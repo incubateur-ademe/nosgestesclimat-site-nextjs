@@ -4,7 +4,7 @@ import { useEffect, useMemo } from 'react'
 type Props = {
   categories: string[]
   remainingQuestions: string[]
-  relevantOrderedQuestions: string[]
+  relevantQuestions: string[]
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
 }
 
@@ -16,16 +16,16 @@ type Props = {
 export default function useProgression({
   categories,
   remainingQuestions,
-  relevantOrderedQuestions,
+  relevantQuestions,
   updateCurrentSimulation,
 }: Props) {
   const progression = useMemo(
     () =>
-      relevantOrderedQuestions.length
-        ? (relevantOrderedQuestions.length - remainingQuestions.length) /
-          relevantOrderedQuestions.length
+      relevantQuestions.length
+        ? (relevantQuestions.length - remainingQuestions.length) /
+          relevantQuestions.length
         : 0,
-    [relevantOrderedQuestions, remainingQuestions]
+    [relevantQuestions, remainingQuestions]
   )
 
   const remainingQuestionsByCategories = useMemo<Record<string, string[]>>(
