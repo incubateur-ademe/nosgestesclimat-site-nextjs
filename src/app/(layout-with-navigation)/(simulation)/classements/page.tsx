@@ -20,7 +20,7 @@ export async function generateMetadata() {
   })
 }
 
-export default async function GroupesPage() {
+export default async function ClassementsPage() {
   return (
     <>
       <Groups />
