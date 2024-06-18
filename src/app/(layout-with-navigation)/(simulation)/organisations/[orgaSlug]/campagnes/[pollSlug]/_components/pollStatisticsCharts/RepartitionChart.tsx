@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { Tooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
 import { twMerge } from 'tailwind-merge'
@@ -28,9 +29,8 @@ export default function RepartitionChart({
         className
       )}>
       {items.map(({ value, shouldBeHighlighted }, index) => (
-        <>
+        <Fragment key={`repartition-chart-item-${index}`}>
           <BarItem
-            key={`repartition-chart-item-${index}`}
             value={value}
             shouldBeHighlighted={shouldBeHighlighted}
             maxValue={maxValue}
@@ -42,7 +42,7 @@ export default function RepartitionChart({
             className="z-20"
             id={`tooltip-repartition-chart-${id}-${index}`}
           />
-        </>
+        </Fragment>
       ))}
     </div>
   )

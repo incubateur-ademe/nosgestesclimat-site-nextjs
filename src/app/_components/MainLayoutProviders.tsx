@@ -2,7 +2,8 @@
 
 import { IframeOptionsProvider } from '@/app/_components/mainLayoutProviders/IframeOptionsContext'
 import { UserProvider } from '@/publicodes-state'
-import { MigrationType, RegionFromGeolocation } from '@/publicodes-state/types'
+import { RegionFromGeolocation } from '@/publicodes-state/types'
+import { Migration } from '@publicodes/tools/migration'
 import { PropsWithChildren } from 'react'
 import MainHooks from './mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from './mainLayoutProviders/PreventNavigationProvider'
@@ -11,7 +12,7 @@ import SimulationSyncProvider from './mainLayoutProviders/SimulationSyncProvider
 
 type Props = {
   region: RegionFromGeolocation
-  migrationInstructions: MigrationType
+  migrationInstructions: Migration
 }
 export default function MainLayoutProviders({
   children,
