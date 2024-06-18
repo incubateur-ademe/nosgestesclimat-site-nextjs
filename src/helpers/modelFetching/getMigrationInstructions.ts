@@ -1,5 +1,5 @@
-import { MigrationType } from '@/publicodes-state/types'
 import migration from '@incubateur-ademe/nosgestesclimat/public/migration.json'
+import { Migration } from '@publicodes/tools/migration'
 import { importPreviewFile } from './importPreviewFile'
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
  */
 export async function getMigrationInstructions({
   PRNumber,
-}: Props = {}): Promise<MigrationType> {
+}: Props = {}): Promise<Migration> {
   if (PRNumber) {
     const fileName = `migration.json`
     return importPreviewFile({ fileName, PRNumber })
