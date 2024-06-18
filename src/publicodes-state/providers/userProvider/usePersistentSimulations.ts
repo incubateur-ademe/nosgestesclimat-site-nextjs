@@ -1,13 +1,14 @@
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { getIsLocalStorageAvailable } from '@/utils/getIsLocalStorageAvailable'
+import { Migration } from '@publicodes/tools/migration'
 import { useEffect, useState } from 'react'
-import { MigrationType, Simulation } from '../../types'
+import { Simulation } from '../../types'
 
 const isLocalStorageAvailable = getIsLocalStorageAvailable()
 
 type Props = {
   storageKey: string
-  migrationInstructions: MigrationType
+  migrationInstructions: Migration
 }
 export default function usePersistentSimulations({
   storageKey,
