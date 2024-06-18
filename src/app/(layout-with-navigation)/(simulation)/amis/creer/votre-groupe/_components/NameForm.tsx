@@ -83,10 +83,6 @@ export default function NameForm() {
         },
       })
 
-      // Update user info
-      updateName(administratorName ?? '')
-      updateEmail(administratorEmail ?? '')
-
       // Update current simulation with group id (to redirect after test completion)
       currentSimulation.update({
         groupToAdd: group._id,
