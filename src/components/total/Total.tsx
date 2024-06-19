@@ -15,8 +15,9 @@ import {
   useRule,
   useUser,
 } from '@/publicodes-state'
+import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
 import Progress from './_components/Progress'
@@ -28,6 +29,12 @@ export default function Total({ toggleQuestionList }: Props) {
   const { t } = useClientTranslation()
 
   const { numericValue } = useRule('bilan')
+
+  const { safeEvaluateWithMetric } = useContext(SimulationContext)
+
+  const evaluation = safeEvaluateWithMetric('bilan eau', 'eau')
+
+  const { numericValue: numericValueEau } = useRule('bilan eau')
 
   const { getNumericValue } = useEngine()
 
@@ -79,22 +86,32 @@ export default function Total({ toggleQuestionList }: Props) {
 
         <Emoji className="z-10 text-4xl md:text-6xl">🌍</Emoji>
 
-        <div className="z-10">
-          <span className="block text-2xl font-bold md:text-3xl">
-            {numericValue !== carbonFootprintValue && (
-              <span className="relative text-xl text-gray-300 md:text-2xl">
-                <span className="absolute right-0 top-1/2 h-[2px] w-full -rotate-45 transform bg-gray-300" />
-                {formatCarbonFootprint(numericValue).formattedValue}
-              </span>
-            )}{' '}
-            {formatCarbonFootprint(carbonFootprintValue).formattedValue}{' '}
-            <Trans>{formatCarbonFootprint(carbonFootprintValue).unit}</Trans>
-          </span>
-          <span className="block text-sm md:text-base">
-            <Trans i18nKey="Total.unit">
-              de CO<sub className="text-white">2</sub>e / an
-            </Trans>
-          </span>
+        <div className="flex gap-4">
+          <div className="z-10">
+            <span className="block text-2xl font-bold md:text-3xl">
+              {numericValue !== carbonFootprintValue && (
+                <span className="relative text-xl text-gray-300 md:text-2xl">
+                  <span className="absolute right-0 top-1/2 h-[2px] w-full -rotate-45 transform bg-gray-300" />
+                  {formatCarbonFootprint(numericValue).formattedValue}
+                </span>
+              )}{' '}
+              {formatCarbonFootprint(carbonFootprintValue).formattedValue}{' '}
+              <Trans>{formatCarbonFootprint(carbonFootprintValue).unit}</Trans>
+            </span>
+            <span className="block text-sm md:text-base">
+              <Trans i18nKey="Total.unit">
+                de CO<sub className="text-white">2</sub>e / an
+              </Trans>
+            </span>
+          </div>
+          <div className="z-10">
+            <p className="block text-sm md:text-base">
+              {(numericValueEau / 1000).toFixed(1)} L / jour
+            </p>
+            <p className="block text-sm md:text-base">
+              {((evaluation?.nodeValue as number) / 1000)?.toFixed(1)} L / jour
+            </p>
+          </div>
         </div>
         <QuestionButton
           onClick={toggleOpen}

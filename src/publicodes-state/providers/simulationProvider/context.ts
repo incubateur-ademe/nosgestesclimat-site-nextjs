@@ -4,6 +4,7 @@ import Engine, { PublicodesExpression } from 'publicodes'
 import { createContext } from 'react'
 import {
   DottedName,
+  Metric,
   NGCEvaluatedNode,
   NGCRuleNode,
   Situation,
@@ -15,6 +16,10 @@ type SimulationContextType = {
   pristineEngine: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
+  safeEvaluateWithMetric: (
+    rule: PublicodesExpression,
+    metric: Metric
+  ) => NGCEvaluatedNode | null
   everyRules: DottedName[]
   everyInactiveRules: DottedName[]
   everyQuestions: DottedName[]
@@ -32,6 +37,7 @@ export const SimulationContext = createContext<SimulationContextType>({
   pristineEngine: null,
   safeGetRule: () => null,
   safeEvaluate: () => null,
+  safeEvaluateWithMetric: () => null,
   everyRules: [],
   everyInactiveRules: [],
   everyQuestions: [],

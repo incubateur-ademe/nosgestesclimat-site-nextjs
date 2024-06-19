@@ -132,3 +132,5 @@ type MosaicInfos = {
 }
 
 type Formule = any
+
+export type Metric = 'carbon' | 'eau'
