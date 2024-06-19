@@ -32,7 +32,7 @@ export default function Total({ toggleQuestionList }: Props) {
 
   const { safeEvaluateWithMetric } = useContext(SimulationContext)
 
-  const evaluation = safeEvaluateWithMetric('bilan eau', 'eau')
+  const evaluation = safeEvaluateWithMetric('bilan', "'eau'")
 
   const { numericValue: numericValueEau } = useRule('bilan eau')
 
