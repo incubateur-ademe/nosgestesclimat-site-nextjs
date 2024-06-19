@@ -503,8 +503,38 @@ html[data-useragent*='Trident'] #js {
 }
 
 /*
-  Waves
-  */
+  Waves animation
+*/
+
+.island {
+  filter: invert(1);
+  mix-blend-mode: difference;
+  @apply text-amber-400;
+  animation: bounce 4s infinite;
+}
+
+.island:nth-child(1) {
+  animation-delay: -0.5s;
+}
+
+.island:nth-child(2) {
+  animation-delay: -1s;
+}
+
+.island:nth-child(3) {
+  animation-delay: -1.5s;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-5%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+
 .path-0 {
   animation: pathAnim-0 2s;
   animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
