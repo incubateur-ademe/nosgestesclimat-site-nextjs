@@ -26,6 +26,6 @@ export const HIDE_CTA_PATHS = [
   '/infos',
   '/organisations/infos',
   '/organisations/connexion',
-  '/organisations/creation',
+  '/organisations/creer',
   '/organisations/demander-demo',
 ]

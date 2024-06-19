@@ -19,7 +19,7 @@ export default function Organisations() {
       <Title
         tag="h2"
         className="mt-8"
-        title={<Trans>Entreprises et collectivités</Trans>}
+        title={<Trans>Organisations et campagnes</Trans>}
       />
 
       <PollsList organisation={organisation} />

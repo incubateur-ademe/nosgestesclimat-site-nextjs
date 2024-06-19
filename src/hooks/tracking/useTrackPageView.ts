@@ -3,9 +3,32 @@ import { trackPageView } from '@/utils/matomo/trackEvent'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
+function handleOrganisationModifications(url: string) {
+  // Replace the organisation slug by the placeholder
+  const pathNameSegment = url.split('/').filter((segment) => segment !== '')
+
+  let urlModified = url
+  if (
+    pathNameSegment[0] === 'organisations' &&
+    !['connexion', 'creer', 'demander-demo', 'creer-campagne'].includes(
+      pathNameSegment[1]
+    )
+  ) {
+    urlModified = urlModified.replace(pathNameSegment[1], 'orga_slug')
+  }
+
+  // Replace the poll slug by the placeholder
+  if (pathNameSegment[2] === 'campagnes') {
+    urlModified = urlModified.replace(pathNameSegment[3], 'poll_slug')
+  }
+
+  return urlModified
+}
+
 export function useTrackPageView() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
+
   useEffect(() => {
     let url = pathname
 
@@ -16,14 +39,8 @@ export function useTrackPageView() {
       }
     })
 
-    // If there is an organisation name in the pathname, we change it to "organisation-name"
-    const pathNameSegment = url.split('/')
-    if (
-      pathNameSegment[0] === 'organisations' &&
-      !['connexion', 'creation', 'demander-demo'].includes(pathNameSegment[1])
-    ) {
-      url = url.replace(pathNameSegment[1], 'organisation-name')
-    }
+    // We don't want to track the slugs of the organisations and theirs polls
+    url = handleOrganisationModifications(url)
 
     // We convert the question searchParams to a real url
     const questionParams = searchParams.get('question')

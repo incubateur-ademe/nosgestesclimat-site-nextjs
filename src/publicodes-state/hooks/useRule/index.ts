@@ -1,6 +1,5 @@
 'use client'
 
-import useQuestionsOfMosaic from '@/publicodes-state/hooks/useRule/useQuestionsOfMosaic'
 import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
@@ -25,7 +24,7 @@ export default function useRule(dottedName: DottedName) {
     safeGetRule,
     safeEvaluate,
     everyNotifications,
-    everyMosaicChildren,
+    everyMosaicChildrenWithParent,
     addToEngineSituation,
   } = useContext(SimulationContext)
 
@@ -56,10 +55,13 @@ export default function useRule(dottedName: DottedName) {
     situation,
   })
 
-  const questionsOfMosaic = useQuestionsOfMosaic({
-    options: rule?.rawNode?.mosaique?.options,
-    everyMosaicChildren,
-  })
+  const questionsOfMosaicFromParent =
+    everyMosaicChildrenWithParent[dottedName] || []
+
+  const questionsOfMosaicFromBrother =
+    Object.values(everyMosaicChildrenWithParent).find(([mosaicChildren]) => {
+      return mosaicChildren.includes(dottedName)
+    }) || []
 
   const parent = utils.ruleParent(dottedName)
 
@@ -87,7 +89,7 @@ export default function useRule(dottedName: DottedName) {
 
   const { isMissing, isFolded } = useMissing({
     dottedName,
-    questionsOfMosaic,
+    questionsOfMosaic: questionsOfMosaicFromBrother,
     situation,
     foldedSteps,
   })
@@ -104,7 +106,7 @@ export default function useRule(dottedName: DottedName) {
     evaluation,
     value,
     type,
-    questionsOfMosaic,
+    questionsOfMosaic: questionsOfMosaicFromParent,
     updateCurrentSimulation,
     situation,
     addToEngineSituation,
@@ -180,9 +182,13 @@ export default function useRule(dottedName: DottedName) {
      */
     activeNotifications,
     /**
-     * A list of questions to display inside the mosaic (if the rule is a mosaic)
+     * A list of questions to display inside the mosaic (if the rule is a mosaic parent)
      */
-    questionsOfMosaic,
+    questionsOfMosaicFromParent,
+    /**
+     * A list of questions to display inside the mosaic (if the rule is a mosaic child)
+     */
+    questionsOfMosaicFromBrother,
     /**
      * The direct parent of the rule
      */

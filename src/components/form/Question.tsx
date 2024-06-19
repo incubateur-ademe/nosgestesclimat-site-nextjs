@@ -39,6 +39,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
     isMissing,
     choices,
     assistance,
+    questionsOfMosaicFromParent,
     activeNotifications,
     plancher,
     warning,
@@ -131,6 +132,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
         {type === 'mosaic' && (
           <Mosaic
             question={question}
+            questionsOfMosaic={questionsOfMosaicFromParent}
             aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
           />
         )}
@@ -144,7 +146,11 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
       />
 
       {assistance ? (
-        <Assistance question={question} assistance={assistance} />
+        <Assistance
+          question={question}
+          assistance={assistance}
+          setTempValue={setTempValue}
+        />
       ) : null}
 
       {activeNotifications.map((notification) => (

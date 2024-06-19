@@ -1,29 +1,37 @@
-import { MigrationType, Simulation } from '../types'
-import { convertSimulation } from './migration/convertSimulation'
-import filterSimulationSituation from './migration/filterSimulation'
+import { Migration, migrateSituation } from '@publicodes/tools/migration'
+import { Simulation } from '../types'
 
-type Props = {
-  simulation: Simulation
-  migrationInstructions: MigrationType
-}
-type Return = Simulation
+export function migrateSimulation(
+  simulation: Simulation & { group?: string; poll?: string },
+  migrationInstructions: Migration | undefined
+): Simulation {
+  if (migrationInstructions) {
+    simulation.situation = migrateSituation(
+      simulation.situation,
+      migrationInstructions
+    )
 
-export function migrateSimulation({
-  simulation: oldSimulation,
-  migrationInstructions,
-}: Props): Return {
-  const simulation = JSON.parse(JSON.stringify(oldSimulation)) as Simulation
+    // NOTE: folded steps (i.e. answered rules) are can be map to a situation,
+    // where the keys are the rule names and the value is undefined.
+    simulation.foldedSteps = Object.keys(
+      migrateSituation(
+        Object.fromEntries(
+          simulation.foldedSteps.map((step) => [step, undefined])
+        ),
+        migrationInstructions
+      )
+    )
+  }
+  // If group or poll is defined, we convert it to groups or polls and delete it
+  if (simulation.group) {
+    simulation.groups = [simulation.group]
+    delete simulation.group
+  }
 
-  // We migrate rules according to `dottedNamesMigration` table
-  const filteredSimulation = filterSimulationSituation({
-    simulation,
-    migrationInstructions,
-  })
+  if (simulation.poll) {
+    simulation.polls = [simulation.poll]
+    delete simulation.poll
+  }
 
-  // If the value inside a situation key is an object {valeur: value}, we want to convert it to value
-  const convertedSimulation = convertSimulation({
-    simulation: filteredSimulation,
-  })
-
-  return convertedSimulation
+  return simulation
 }

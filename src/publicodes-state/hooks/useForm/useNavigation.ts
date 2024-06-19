@@ -9,6 +9,7 @@ type Props = {
 }
 
 export default function useNavigation({
+  remainingQuestions,
   relevantQuestions,
   currentQuestion,
   setCurrentQuestion,
@@ -28,8 +29,13 @@ export default function useNavigation({
     [currentQuestionIndex]
   )
   const noNextQuestion = useMemo<boolean>(
-    () => !relevantQuestions[currentQuestionIndex + 1],
-    [relevantQuestions, currentQuestionIndex]
+    () =>
+      remainingQuestions.length === 0 ||
+      (remainingQuestions.length === 1 &&
+        !remainingQuestions.includes(
+          relevantQuestions[currentQuestionIndex + 1]
+        )),
+    [currentQuestionIndex, relevantQuestions, remainingQuestions]
   )
 
   const isLastQuestionOfCategory = useMemo<boolean>(
@@ -57,12 +63,14 @@ export default function useNavigation({
 
     return newCurrentQuestion
   }
+
   const gotoNextQuestion = (): string | undefined => {
     if (noNextQuestion) {
       return undefined
     }
 
-    const newCurrentQuestion = relevantQuestions[currentQuestionIndex + 1]
+    const newCurrentQuestion =
+      relevantQuestions[currentQuestionIndex + 1] || remainingQuestions[0]
 
     setCurrentQuestion(newCurrentQuestion)
 

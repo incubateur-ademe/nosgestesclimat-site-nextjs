@@ -743,8 +743,6 @@ entries:
   'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat': 'Acciones: ¿cómo puedes reducir tu huella climática? - Nos Gestes Climat'
   Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explore y modifique la información que ha introducido en la vía nosgestesclimat.
   Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas.: Oops, estás en Nos Gestes Climat, pero esta página no existe.
-  Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.: nd todas las páginas del sitio web nosgestesclimat.fr para calcular su huella de carbono.
-  Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone..lock: etrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.
   Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Únete a tu grupo para calcular tu huella de carbono y compararla con la de tus amigos y familiares mediante el simulador personal de huella de carbono Nos Gestes Climat.
   Mes classements: Mi clasificación
   Mon empreinte: Mi huella
@@ -872,3 +870,120 @@ entries:
   Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Ayudarle a actuar mejor en <2>sólo 4 correos electrónicos</2>.
   Une erreur est survenue, veuillez réessayer.: Se ha producido un error, inténtelo de nuevo.
   Certaines organisations sont dotées d’un outil type MailinBlack, Altospam, ect., qui bloque parfois nos emails.: Algunas organizaciones disponen de una herramienta como MailinBlack, Altospam, etc., que a veces bloquea nuestros correos electrónicos.
+  Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.: Cada entrada está representada por una barra vertical. Su puntuación se muestra en <2>rosa</2>.
+  Elle seront toutefois prises en compte lors de l'export de données.: No obstante, se tendrán en cuenta al exportar los datos.
+  Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.: Para facilitar la lectura, se eliminan los valores superiores a 100 t.
+  on s'y met ?: ¿Empezamos?
+  Résultats de campagne: Resultados de la campaña
+  'Paramètres de ': 'Parámetros de '
+  Supprimer cette campagne: Eliminar esta campaña
+  Section administrateur: Sección Administrador
+  Votre rôle: Su papel
+  Campagne: Campaña
+  Lancer ma campagne: Lanzar mi campaña
+  Nom de la campagne: Nombre de la campaña
+  Cette opération est définitive.: Esta operación es definitiva.
+  Supprimer cette campagne ?: ¿Borrar esta campaña?
+  Visible uniquement par vous: Visible sólo para ti
+  Mes campagnes: Mis campañas
+  Ma Campagne: Mi campaña
+  Paramètres de: Parámetros de
+  Ma campagne n°{{number}}: Mi campaña no{{number}}
+  Créer une campagne: Crear una campaña
+  Créée le: Creado el
+  c'est l’objectif pour 2050,: es el objetivo para 2050,
+  Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.: Puede encontrar las respuestas a estas preguntas en la exportación de las respuestas a la campaña.
+  Votre téléphone: Su teléfono
+  Partagez votre campagne: Comparta su campaña
+  Vos informations personnelles: Sus datos personales
+  Voir le détail: Ver detalles
+  'Créée le ': 'Creado el '
+  Nombre de collaborateurs: Número de empleados
+  Lancez une campagne de calcul de l'empreinte carbone de vos collaborateurs, élèves, collègues...: Lance una campaña para calcular la huella de carbono de sus empleados, estudiantes, colegas, etc.
+  Nous récupérons les données de votre organisation...: Recuperamos los datos de su organización...
+  Oups, nous n'avons pas trouvé les résultats de cette campagne: No hemos encontrado los resultados de esta campaña
+  Données consultables à partir de 3 participants, dans un souci d'anonymat.: Los datos pueden consultarse a partir de 3 participantes, para garantizar el anonimato.
+  'ex : Campagne 2024, Classe de 6ème A, etc.': por ejemplo, Campagne 2024, Classe de 6ème A, etc.
+  Nous récupérons les données de la campagne...: Recuperamos los datos de la campaña...
+  Une erreur est survenue lors de la suppression de la campagne.: Se ha producido un error al eliminar la campaña.
+  Retrouvez vos campagnes et suivez leurs statistiques.: Encuentra tus campañas y sigue sus estadísticas.
+  Une erreur s'est produite lors de la création de la campagne. Veuillez réessayer.: Se ha producido un error al crear la campaña. Por favor, inténtelo de nuevo.
+  Empreinte carbone totale: Huella de carbono total
+  Voir toutes les campagnes: Ver todas las campañas
+  Masquer les autres campagnes: Ocultar otras campañas
+  Sans titre: Sin título
+  (définissez un titre dans les paramètres): (defina un título en los parámetros)
+  Date (anciennes > récentes): Fecha (antigua &gt; reciente)
+  Campagne créée par <2>{pollData?.organisationName}</2>, le: Campaña creada por <2>{pollData?.organisationName}</2>, el
+  Répartition des empreintes carbone: Desglose de la huella de carbono
+  Nom (A > Z): Nombre (A &gt; Z)
+  Date (récentes > anciennes): Fecha (reciente &gt; antigua)
+  Nom (Z > A): Nombre (Z &gt; A)
+  Accéder aux ressources: Acceso a los recursos
+  Les ressources de l'ABC: Recursos ABC
+  Tableau de bord: Cuadro de mandos
+  écoles: escuelas
+  Campagne personnalisée: Campaña personalizada
+  Entreprises: Empresas
+  festivals: festivales
+  associations: asociaciones
+  collectivités: autoridades locales
+  Communiquez sur la campagne: Comunicar la campaña
+  Notre offre dédiée aux entreprises, collectivités, écoles et associations: Nuestros servicios para empresas, autoridades locales, escuelas y asociaciones
+  vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !: ¿Quiere lanzar una campaña Nos Gestes Climat y sensibilizar a todas sus partes interesadas? Descubra nuestras herramientas 100% gratuitas
+  via votre organisation ? Découvrez nos outils pour vous simplifier la vie !: a través de su organización? Descubra nuestras herramientas para hacerle la vida más fácil
+  Explorez, analysez et téléchargez des données anonymisées pour faire des choix éclairés et améliorer continuellement votre démarche écologique. Avec nos exports sur mesure, partagez vos réussites et vos challenges avec vos équipes et parties prenantes pour une stratégie de durabilité unifiée.: Explore, analice y descargue datos anónimos para tomar decisiones informadas y mejorar continuamente su enfoque ecológico. Con nuestras exportaciones a medida, comparta sus éxitos y retos con sus equipos y partes interesadas para lograr una estrategia de sostenibilidad unificada.
+  Créez une campagne Nos Gestes Climat personnalisée au sein de votre organisation et accédez à un kit clé en main pour sensibiliser vos partenaires au sein de votre organisation.: Cree una campaña personalizada de Nos Gestes Climat dentro de su organización y acceda a un kit llave en mano para sensibilizar a sus socios.
+  Intégrez Nos Gestes Climat directement à vos services: Integre nuestros Gestes Climat directamente en sus servicios
+  Lancez une campagne Nos Gestes Climat personnalisée: Lanzar una campaña personalizada Nos Gestes Climat
+  Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d’autres modes d’intégration prêts à l’emploi.: Permita a su público objetivo (clientes, estudiantes, participantes, residentes, etc.) calcular y reducir su huella de carbono directamente desde sus plataformas web y móvil, mediante un enlace dedicado u otros métodos de integración listos para usar.
+  Ils ont testé: Probaron
+  mis à jour le: actualizado el
+  'Un article de ': 'Un artículo de '
+  Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.: Visite la web nosgestesclimat.fr para calcular su huella de carbono.
+  Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone..lock: Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.
+  Nos relais: Nuestros relés
+  Ils relaient <2>Nos Gestes Climat</2>: Retransmiten <2>Nuestros Gestos Climat</2>
+  Nos relais - Nos Gestes Climat: Nuestros relevos - Nos Gestes Climat
+  'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.': 'Más información sobre Nos Gestes Climat: organizaciones, autoridades locales, medios de comunicación, personas influyentes, etc.'
+  Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre galerie de relais ? Merci de nous envoyer un message avec <2>votre logo</2> via <5>notre page de contact</5>.: ¿Ha retransmitido Nos Gestes Climat y le gustaría aparecer en nuestra galería de retransmisiones? Envíenos un mensaje con <2>su</2> logotipo a través de <5>nuestra página de contacto</5>.
+  'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.': 'N.B.: Ninguno de los actores mencionados a continuación financia Nos Gestes Climat, que es y seguirá siendo un servicio público gratuito e independiente prestado por la ADEME.'
+  'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME..lock': 'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.'
+  Plus de 40 acteurs relaient <2>ou</2> ont relayé Nos Gestes Climat à travers <4>l’intégration du calculateur</4> sur leur site internet <7>ou</7> sa diffusion via <11>des campagnes</11> (mail, réseaux sociaux et/ou affichage). C’est majoritairement grâce à eux que nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque jour et nous les en remercions.: Más de 40 actores retransmiten <2>o</2> han retransmitido Nos Gestes Climat <4>integrando la calculadora</4> en su sitio web <7>o</7> difundiéndola a través de <11>campañas</11> (correo electrónico, redes sociales y/o carteles). Es sobre todo gracias a ellos que estamos sensibilizando a una media de 2.000 nuevas personas cada día, y nos gustaría darles las gracias.
+  Campagne créée par: Campaña creada por
+  ', le':  el
+  Alimentation: Alimentación
+  Divers: Varios
+  Logement: Vivienda
+  Services: Servicios
+  Transport: Transporte
+  Voir tous les gestes: Ver todos los gestos
+  Partager mon résultat: Compartir mi resultado
+  de votre empreinte: tu huella
+  Infolettre saisonnière de: Boletín de temporada de
+  ": maîtrisez l'impact carbone de vos transports avec nos 4 infolettres": controle el impacto del carbono de su transporte con nuestros 4 boletines informativos
+  Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L’État, les collectivités locales, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.: En nuestra sociedad actual es prácticamente imposible vivir con menos de 2 toneladas. El <2>Estado, las autoridades locales, el sector privado y los ciudadanos a título individual</2> tendrán que contribuir a alcanzar este objetivo.
+  "<0>Nos Gestes Logement</0> : informez-vous sur l'impact carbone du logement, en quelques e-mails": '<0>Nuestros Gestos por la</0> Vivienda: sepa más sobre el impacto de la vivienda en el carbono, en unos pocos e-mails'
+  Campagne de: Campaña para
+  Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.: Un abuelo y su nieta en el cine, comiendo palomitas.
+  Plus de 40 acteurs relaient <2>ou</2> ont relayé Nos Gestes Climat à travers <4>l’intégration du calculateur</4> sur leur site internet <8>ou</8> sa diffusion via <11>des campagnes</11> (mail, réseaux sociaux et/ou affichage). C’est majoritairement grâce à eux que nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque jour et nous les en remercions.: Más de 40 actores retransmiten <2>o</2> han retransmitido Nos Gestes Climat <4>integrando la calculadora</4> en su sitio web <8>o</8> difundiéndola a través de <11>campañas</11> (correo electrónico, redes sociales y/o carteles). Es sobre todo gracias a ellos que estamos sensibilizando a una media de 2.000 nuevas personas cada día, y nos gustaría darles las gracias.
+  Des enfants sortant de l'école en se tenant la main.: Niños saliendo de la escuela cogidos de la mano.
+  Des amis jouant à un jeu de société: Amigos jugando a un juego de mesa
+  Deux personnes se faisant une accolade en levant le bras en signe de victoire.: Dos personas se abrazan y levantan los brazos en señal de victoria.
+  À propos 🦔: Sobre nosotros 🦔
+  Une personne livrant du courrier.: Una persona que reparte el correo.
+  Une femme préparant un bon petit plat.: Una mujer prepara un sabroso plato.
+  Qu'est-ce que c'est ?: ¿De qué se trata?
+  Une jeune femme tenant la terre entre ses mains, un chien la regardant joyeusement.: Una mujer joven sostiene la tierra entre sus manos, un perro la mira feliz.
+  Groupe de personnes discutant devant un paperboard.: Un grupo de personas discute ante un rotafolio.
+  Une jeune fille tenant la terre sous le regard enjoué de son chien.: Una joven sosteniendo la tierra bajo la mirada juguetona de su perro.
+  Personne sur un vélo récupérant du courrier dans une boîte aux lettres: Persona en bicicleta recogiendo correo de un buzón
+  Une fille réfléchissant à son empreinte carbone.: Una chica pensando en su huella de carbono.
+  Un groupe d'amis jouant à un jeu de société.: Un grupo de amigos jugando a un juego de mesa.
+  Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.: Mejoramos constantemente el sitio gracias a <2>sus comentarios</2>. Descubra el funcionamiento interno de Nos Gestes Climat.
+  Un femme lisant le journal au coin du feu avec un chien assoupi.: Una mujer leyendo el periódico junto al fuego con un perro adormilado.
+  Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: El simulador Nos Gestes Climat se basa en el modelo de cálculo del mismo nombre, compuesto por un conjunto de bloques de construcción.
+  Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.: Esta documentación le permite acceder de forma transparente a todas las variables que intervienen en el cálculo. Léala a fuego.
+  Groupe de personnes devant un paperboard: Grupo de personas delante de un rotafolio
+  Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services sociétaux), de la situer par rapport aux objectifs climatiques et surtout de passer à l'action à votre niveau avec des gestes personnalisés en fonction de vos réponses.: Este simulador le permite evaluar su huella de carbono individual total para el año y por categorías principales (alimentación, transporte, vivienda, varios, servicios sociales), situarla en relación con los objetivos climáticos y, sobre todo, actuar a su propio nivel con acciones personalizadas basadas en sus respuestas.
+  (Peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience): (¡Puede tardar unas decenas de segundos en las campañas con un gran número de participantes! Gracias por su paciencia)

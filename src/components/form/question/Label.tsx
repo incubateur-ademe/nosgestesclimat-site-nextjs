@@ -51,7 +51,7 @@ export default function Label({
     <>
       <label
         className={twMerge(
-          `block ${sizeClassNames[size]} font-semibold`,
+          `flex ${sizeClassNames[size]} font-semibold`,
           className
         )}
         aria-label={label}
@@ -60,12 +60,12 @@ export default function Label({
         onClick={(e) => e.preventDefault()}>
         <h1
           className={twMerge(
-            'mb-0 inline text-base md:text-lg',
+            'mb-0 inline text-sm sm:text-base md:text-lg [&_p]:mb-0',
             titleClassName
           )}
           tabIndex={0}
           id={QUESTION_DESCRIPTION_BUTTON_ID}>
-          {label}
+          <Markdown>{label}</Markdown>
         </h1>{' '}
         {description ? (
           <Button
@@ -80,7 +80,7 @@ export default function Label({
             }}
             color="secondary"
             size="sm"
-            className={`inline-flex h-8 w-8 items-center justify-center rounded-full p-0 font-mono`}
+            className={`mx-2 inline-block h-8 w-8 min-w-8 items-center justify-center rounded-full p-0 font-mono`}
             title={t("Voir plus d'informations")}>
             i
           </Button>

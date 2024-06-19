@@ -6,7 +6,6 @@ import axios from 'axios'
 type Params = {
   ADMINISTRATOR_NAME: string
   ORGANISATION_NAME: string
-  SHARE_URL: string
   DASHBOARD_URL: string
 }
 
@@ -36,7 +35,6 @@ export function useSendOrganisationCreationEmail() {
         params: {
           ADMINISTRATOR_NAME: administratorName,
           ORGANISATION_NAME: organisation?.name,
-          SHARE_URL: `${window.location.origin}/o/${organisation?.slug}/${organisation?.polls[0].slug}`,
           DASHBOARD_URL: `${window.location.origin}/organisations/${organisation?.slug}`,
         },
       }

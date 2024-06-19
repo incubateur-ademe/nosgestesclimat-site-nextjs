@@ -73,7 +73,7 @@ export default function VerificationForm() {
         if (!organisation.name) {
           // Reset the login expiration date
           updateLoginExpirationDate(undefined)
-          router.push('/organisations/creation')
+          router.push('/organisations/creer')
           return
         }
 

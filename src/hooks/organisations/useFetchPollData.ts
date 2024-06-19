@@ -6,29 +6,30 @@ import axios from 'axios'
 
 type Props = {
   orgaSlug?: string
+  pollSlug?: string
+  enabled?: boolean
 }
 
-export function useFetchPollData({ orgaSlug }: Props = {}): UseQueryResult<
-  PollData | null,
-  Error
-> {
+export function useFetchPollData({
+  orgaSlug,
+  pollSlug,
+  enabled = true,
+}: Props = {}): UseQueryResult<PollData | null, Error> {
   const { user } = useUser()
 
   return useQuery({
     queryKey: ['pollData'],
     queryFn: () =>
       axios
-        .post(SERVER_URL + '/organisations/fetch-poll-processed-data', {
-          orgaSlug,
-          email: user?.email,
-          userId: user?.userId,
-        })
+        .get(
+          `${SERVER_URL}/polls/fetch-poll-processed-data?orgaSlug=${encodeURIComponent(orgaSlug ?? '')}&pollSlug=${encodeURIComponent(pollSlug ?? '')}&email=${encodeURIComponent(user?.organisation?.administratorEmail ?? '')}&userId=${encodeURIComponent(user?.userId)}`
+        )
         .then((res) => res.data)
         .catch((err) => {
           console.error(err)
           return null
         }),
-    enabled: !!orgaSlug,
+    enabled: !!orgaSlug && enabled && !!user?.userId,
     refetchInterval: 30000,
   })
 }

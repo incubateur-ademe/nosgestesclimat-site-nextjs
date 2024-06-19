@@ -24,8 +24,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
   const currentSimulation = useCurrentSimulation()
 
   const {
-    everyMosaic,
-    everyMosaicChildren,
+    everyMosaicChildrenWithParent,
     everyQuestions,
     everyRules,
     pristineEngine,
@@ -60,16 +59,14 @@ export default function Persona({ persona, personaDottedName }: Props) {
             initSimulation({
               situation: fixSituationWithPartialMosaic({
                 situation: persona.situation,
-                everyMosaic,
-                everyMosaicChildren,
+                everyMosaicChildrenWithParent,
                 safeGetRule,
                 safeEvaluate,
               }),
               persona: personaDottedName,
               foldedSteps: getPersonaFoldedSteps({
                 situation: persona.situation,
-                everyMosaic,
-                everyMosaicChildren,
+                everyMosaicChildrenWithParent,
                 everyQuestions,
                 everyRules,
                 pristineEngine,

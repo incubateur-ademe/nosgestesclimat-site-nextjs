@@ -8,9 +8,10 @@ type Props = {
   administratorName?: string
   hasOptedInForCommunications?: boolean
   defaultAdditionalQuestions?: string[]
-  telephone?: string
+  administratorTelephone?: string
   expectedNumberOfParticipants?: string
   organisationType?: string
+  numberOfCollaborators?: number
 }
 
 export function useUpdateOrganisation({ email }: { email: string }) {
@@ -21,9 +22,10 @@ export function useUpdateOrganisation({ email }: { email: string }) {
       administratorName,
       hasOptedInForCommunications,
       defaultAdditionalQuestions,
-      telephone,
+      administratorTelephone,
       expectedNumberOfParticipants,
       organisationType,
+      numberOfCollaborators,
     }: Props) =>
       axios
         .post(
@@ -35,9 +37,10 @@ export function useUpdateOrganisation({ email }: { email: string }) {
             email,
             defaultAdditionalQuestions,
             position,
-            telephone,
+            administratorTelephone,
             expectedNumberOfParticipants,
             organisationType,
+            numberOfCollaborators,
           },
           {
             withCredentials: true,

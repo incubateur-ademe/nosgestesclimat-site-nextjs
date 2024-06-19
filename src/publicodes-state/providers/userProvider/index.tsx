@@ -2,12 +2,13 @@
 
 import { PropsWithChildren } from 'react'
 
-import { MigrationType, RegionFromGeolocation } from '@/publicodes-state/types'
+import { RegionFromGeolocation } from '@/publicodes-state/types'
+import { Migration } from '@publicodes/tools/migration'
 import UserContext from './context'
+import useUpdateOldLocalStorage from './useOldLocalStorage'
 import usePersistentSimulations from './usePersistentSimulations'
 import usePersistentTutorials from './usePersistentTutorials'
 import usePersistentUser from './usePersistentUser'
-import useUpdateOldLocalStorage from './useUpdateOldLocalStorage'
 
 type Props = {
   /**
@@ -21,7 +22,7 @@ type Props = {
   /**
    * The migration instructions for old localstorage
    */
-  migrationInstructions: MigrationType
+  migrationInstructions: Migration
 }
 export default function UserProvider({
   children,
@@ -29,7 +30,7 @@ export default function UserProvider({
   initialRegion,
   migrationInstructions,
 }: PropsWithChildren<Props>) {
-  useUpdateOldLocalStorage({ storageKey, migrationInstructions })
+  useUpdateOldLocalStorage({ storageKey })
 
   const { user, setUser } = usePersistentUser({ storageKey, initialRegion })
 
@@ -40,7 +41,7 @@ export default function UserProvider({
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
-  } = usePersistentSimulations({ storageKey })
+  } = usePersistentSimulations({ storageKey, migrationInstructions })
 
   return (
     <UserContext.Provider

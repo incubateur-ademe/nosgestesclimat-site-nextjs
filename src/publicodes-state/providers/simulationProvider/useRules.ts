@@ -35,14 +35,6 @@ export function useRules({ engine, root }: Props) {
     [parsedRulesEntries]
   )
 
-  const everyMosaic = useMemo<string[]>(
-    () =>
-      parsedRulesEntries
-        .filter((rule: (string | any)[]) => rule[1].rawNode.mosaique)
-        .map((question) => question[0]),
-    [parsedRulesEntries]
-  )
-
   const everyNotifications = useMemo<string[]>(
     () =>
       parsedRulesEntries
@@ -60,9 +52,17 @@ export function useRules({ engine, root }: Props) {
     [parsedRulesEntries]
   )
 
-  const everyMosaicChildren = useMemo<string[]>(
+  const everyMosaic = useMemo<string[]>(
     () =>
-      everyMosaic.reduce<string[]>((accumulator, mosaic) => {
+      parsedRulesEntries
+        .filter((rule: (string | any)[]) => rule[1].rawNode.mosaique)
+        .map((question) => question[0]),
+    [parsedRulesEntries]
+  )
+
+  const everyMosaicChildrenWithParent = useMemo<Record<string, string[]>>(
+    () =>
+      everyMosaic.reduce<Record<string, string[]>>((accumulator, mosaic) => {
         const mosaicRule = engine.getRule(mosaic) as NGCRuleNode
 
         if (!mosaicRule.rawNode.mosaique) {
@@ -73,18 +73,29 @@ export function useRules({ engine, root }: Props) {
             return everyQuestions.find((rule) => rule.endsWith(option)) || ''
           }
         )
-        return [...accumulator, ...mosaicChildren]
-      }, []),
+        accumulator[mosaic] = [...mosaicChildren]
+        return accumulator
+      }, {}),
     [everyMosaic, everyQuestions, engine]
   )
 
   const rawMissingVariables = useMemo<Record<string, number>>(() => {
     return Object.fromEntries(
       Object.entries(engine.evaluate(root)?.missingVariables || {}).filter(
-        (missingVariable) => everyQuestions.includes(missingVariable[0])
+        (missingVariable) => {
+          return (
+            everyQuestions.includes(missingVariable[0]) &&
+            parsedRules[missingVariable[0]].explanation.valeur.rawNode?.[
+              'applicable si'
+            ] !== undefined &&
+            parsedRules[missingVariable[0]].explanation.valeur.rawNode?.[
+              'non applicable si'
+            ] !== undefined
+          )
+        }
       )
     )
-  }, [engine, everyQuestions, root])
+  }, [engine, everyQuestions, parsedRules, root])
 
   return {
     everyRules,
@@ -92,8 +103,7 @@ export function useRules({ engine, root }: Props) {
     everyQuestions,
     everyNotifications,
     everyUiCategories,
-    everyMosaic,
-    everyMosaicChildren,
+    everyMosaicChildrenWithParent,
     rawMissingVariables,
   }
 }
