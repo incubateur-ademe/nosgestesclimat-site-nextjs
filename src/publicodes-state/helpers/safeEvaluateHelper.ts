@@ -1,6 +1,6 @@
 import { captureException } from '@sentry/react'
-import { PublicodesExpression } from 'publicodes'
-import { Engine, NGCEvaluatedNode } from '../types'
+import Engine, { PublicodesExpression } from 'publicodes'
+import { NGCEvaluatedNode } from '../types'
 
 export const safeEvaluateHelper = (
   expr: PublicodesExpression,

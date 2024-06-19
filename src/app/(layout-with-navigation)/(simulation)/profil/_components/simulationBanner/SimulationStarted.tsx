@@ -32,10 +32,10 @@ export default function SimulationStarted() {
   const isFinished = progression === 1
 
   return (
-    <div className="flex flex-wrap">
+    <div className="flex flex-1 flex-wrap">
       <div className="sm:mt-4 sm:w-[30rem]">
         <Card className="mr-8 border-none bg-gray-100">
-          <p className="text-base md:text-lg">
+          <p>
             {t('publicodes.Profil.recap', {
               percentFinished: (progression * 100).toFixed(0),
               answeredQuestionsLength: relevantAnsweredQuestions.length,

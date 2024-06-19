@@ -23,7 +23,7 @@ export default function Question({ question }: Props) {
     displayValue,
     unit,
     type,
-    questionsOfMosaic,
+    questionsOfMosaicFromParent,
     isMissing,
   } = useRule(question)
 
@@ -49,11 +49,11 @@ export default function Question({ question }: Props) {
           </strong>
         ) : null}
       </span>
-      {questionsOfMosaic.length ? (
+      {questionsOfMosaicFromParent.length ? (
         <div className="mt-2 grid gap-2 md:grid-cols-2">
-          {questionsOfMosaic.map((questionOfMosaic) => (
+          {questionsOfMosaicFromParent.map((questionOfMosaic) => (
             <MosaicQuestion
-              key={question}
+              key={questionOfMosaic}
               question={questionOfMosaic}
               isMissing={isMissing}
             />

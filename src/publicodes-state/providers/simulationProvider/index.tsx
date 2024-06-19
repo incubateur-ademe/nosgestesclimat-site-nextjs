@@ -43,13 +43,12 @@ export default function SimulationProvider({
 
   const { isInitialized, addToEngineSituation } = useEngineSituation({
     engine,
-    everyRules,
   })
 
   useSetComputedResults({
     categories,
-    safeEvaluate,
     isInitialized,
+    safeEvaluate,
   })
 
   return (

@@ -18,7 +18,7 @@ export async function generateMetadata() {
   })
 }
 
-export default function AProposPage() {
+export default async function AProposPage() {
   return (
     <>
       <PasserTestBanner />

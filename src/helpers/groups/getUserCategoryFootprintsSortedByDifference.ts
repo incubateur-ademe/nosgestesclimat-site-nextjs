@@ -5,8 +5,8 @@ const sortByDifference = (a: Points, b: Points) => {
     return 0
   }
 
-  return Math.abs(b?.resultObject?.difference || 0) <
-    Math.abs(a?.resultObject?.difference || 0)
+  return Math.abs(b?.resultObject?.value || 0) <
+    Math.abs(a?.resultObject?.value || 0)
     ? -1
     : 1
 }

@@ -2,14 +2,14 @@ import { DottedName, Situation } from '../types'
 
 type Props = {
   dottedName: DottedName
-  questionsOfMosaic: string[]
   situation: Situation
+  questionsOfMosaic?: string[]
 }
 
 export default function getIsMissing({
   dottedName,
   situation,
-  questionsOfMosaic,
+  questionsOfMosaic = [],
 }: Props): boolean {
   if (situation[dottedName] || situation[dottedName] === 0) {
     return false

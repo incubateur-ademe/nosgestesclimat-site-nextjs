@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import {
   LIST_MAIN_NEWSLETTER,
+  LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
 import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
@@ -17,8 +18,9 @@ import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { captureException } from '@sentry/react'
 import { useEffect, useRef } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -29,6 +31,7 @@ type Inputs = {
   email?: string
   'newsletter-saisonniere': boolean
   'newsletter-transports': boolean
+  'newsletter-logement': boolean
 }
 
 export default function GetResultsByEmail({
@@ -43,6 +46,8 @@ export default function GetResultsByEmail({
 
   const currentSimulation = useCurrentSimulation()
 
+  const { getComputedResults } = useEngine()
+
   // Avoid refetching useGetNewsletterSubscriptions when defining an email for the first time
   const emailRef = useRef<string>(user?.email ?? '')
 
@@ -52,6 +57,7 @@ export default function GetResultsByEmail({
 
   const isSubscribedMainNewsletter =
     newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER)
+
   const isSubscribedTransportNewsletter = newsletterSubscriptions?.includes(
     LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
   )
@@ -68,6 +74,10 @@ export default function GetResultsByEmail({
     mode: 'onSubmit',
   })
 
+  const isSubscribedLogementNewsletter = newsletterSubscriptions?.includes(
+    LIST_NOS_GESTES_LOGEMENT_NEWSLETTER
+  )
+
   useEffect(() => {
     if (!newsletterSubscriptions) return
 
@@ -78,6 +88,11 @@ export default function GetResultsByEmail({
     setValue(
       'newsletter-transports',
       newsletterSubscriptions.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER)
+    )
+
+    setValue(
+      'newsletter-logement',
+      newsletterSubscriptions.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER)
     )
   }, [newsletterSubscriptions, setValue])
 
@@ -98,10 +113,21 @@ export default function GetResultsByEmail({
 
     updateEmail(data.email ?? '')
 
+    if (currentSimulation?.computedResults?.bilan === 0) {
+      // Send an error to Sentry
+      captureException(
+        new Error('GetResultsByEmail: computedResults.bilan === 0')
+      )
+    }
+
     // We save the simulation (and signify the backend to send the email)
     await saveSimulation({
       simulation: {
         ...currentSimulation,
+        computedResults:
+          currentSimulation?.computedResults?.bilan === 0
+            ? getComputedResults(currentSimulation.situation)
+            : currentSimulation.computedResults,
         savedViaEmail: true,
       },
       shouldSendSimulationEmail: true,
@@ -198,6 +224,21 @@ export default function GetResultsByEmail({
                 </span>
               }
               {...register('newsletter-transports')}
+            />
+          )}
+
+          {!isSubscribedLogementNewsletter && (
+            <CheckboxInputGroup
+              label={
+                <span>
+                  <Emoji>🏡</Emoji>{' '}
+                  <Trans>
+                    <strong>Nos Gestes Logement</strong> : informez-vous sur
+                    l'impact carbone du logement, en quelques e-mails
+                  </Trans>
+                </span>
+              }
+              {...register('newsletter-logement')}
             />
           )}
         </div>

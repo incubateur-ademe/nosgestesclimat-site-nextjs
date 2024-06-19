@@ -1,11 +1,11 @@
 import { useCurrentSimulation } from '@/publicodes-state'
-import { useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { ComputedResults, DottedName, NGCEvaluatedNode } from '../../types'
 
 type Props = {
-  categories: string[]
-  safeEvaluate: (ruleName: DottedName) => NGCEvaluatedNode | null
+  categories: DottedName[]
   isInitialized: boolean
+  safeEvaluate: (ruleName: DottedName) => NGCEvaluatedNode | null
 }
 export function useSetComputedResults({
   categories,
@@ -15,8 +15,8 @@ export function useSetComputedResults({
   const { situation, updateCurrentSimulation } = useCurrentSimulation()
 
   // little helper function to get the numeric value of a dottedName
-  const getNumericValue = useMemo(
-    () => (dottedName: DottedName) => {
+  const getNumericValue = useCallback(
+    (dottedName: DottedName) => {
       const nodeValue = safeEvaluate(dottedName)?.nodeValue
       return Number(nodeValue) === nodeValue ? nodeValue : 0
     },
@@ -27,13 +27,15 @@ export function useSetComputedResults({
   const computedResults: ComputedResults = useMemo(
     () => {
       if (!isInitialized) return { categories: {}, bilan: 0 }
-
       return categories.reduce(
         (acc, category) => {
           acc.categories[category] = getNumericValue(category)
           return acc
         },
-        { categories: {}, bilan: getNumericValue('bilan') } as ComputedResults
+        {
+          categories: {},
+          bilan: getNumericValue('bilan'),
+        } as ComputedResults
       )
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps

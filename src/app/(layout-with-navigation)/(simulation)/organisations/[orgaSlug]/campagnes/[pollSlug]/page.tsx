@@ -4,12 +4,15 @@ import PollLoader from '@/components/organisations/PollLoader'
 import PollStatistics from '@/components/organisations/PollStatistics'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
+import { filterExtremes } from '@/helpers/organisations/filterExtremes'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
+import { handleMissingComputedResults } from '@/helpers/polls/handleMissingComputedResults'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
+import { useEngine } from '@/publicodes-state'
 import dayjs from 'dayjs'
 import { useParams, useSearchParams } from 'next/navigation'
-import { useContext } from 'react'
+import { useContext, useMemo } from 'react'
 import AdminSection from './_components/AdminSection'
 import { FiltersContext } from './_components/FiltersProvider'
 import PollNotFound from './_components/PollNotFound'
@@ -20,6 +23,8 @@ export default function CampagnePage() {
   const { pollSlug, orgaSlug } = useParams()
 
   const searchParams = useSearchParams()
+
+  const { getComputedResults } = useEngine()
 
   const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
 
@@ -37,10 +42,26 @@ export default function CampagnePage() {
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
 
+  // TODO : Remove this hook when the computed results are fixed
+  const fixedMissingComputedResultsSimulationRecaps = useMemo(() => {
+    if (!pollData?.simulationRecaps) return []
+
+    return handleMissingComputedResults({
+      simulationRecaps: pollData?.simulationRecaps ?? [],
+      getComputedResults,
+    })
+  }, [pollData?.simulationRecaps, getComputedResults])
+
+  // Remove the values that are too high to avoid polluting the statistics
+  const simulationRecapsWithoutExtremes = useMemo(
+    () => filterExtremes(fixedMissingComputedResultsSimulationRecaps),
+    [fixedMissingComputedResultsSimulationRecaps]
+  )
+
   const filteredSimulationRecaps =
     pollData &&
     filterSimulationRecaps({
-      simulationRecaps: pollData?.simulationRecaps,
+      simulationRecaps: simulationRecapsWithoutExtremes,
       ageFilters,
       postalCodeFilters,
     })
@@ -61,12 +82,17 @@ export default function CampagnePage() {
             ? '...'
             : pollData?.name ?? (
                 <>
-                  <span className="mr-2 italic text-gray-600">
-                    <Trans>Sans titre</Trans>
+                  <span className="mr-2">
+                    <Trans>Campagne de</Trans>{' '}
+                    <span className="text-primary-700">
+                      {pollData?.organisationName}
+                    </span>
                   </span>{' '}
-                  <span className="text-sm text-gray-600">
-                    <Trans>(définissez un titre dans les paramètres)</Trans>
-                  </span>
+                  {pollData?.isAdmin && (
+                    <span className="text-sm text-gray-600">
+                      <Trans>(définissez un titre dans les paramètres)</Trans>
+                    </span>
+                  )}
                 </>
               )
         }
@@ -90,15 +116,14 @@ export default function CampagnePage() {
         <AdminSection pollData={pollData} />
 
         <PollStatistics
-          simulationRecaps={
-            pollData?.simulationRecaps?.filter(({ bilan }) => bilan !== 0) ?? []
-          }
+          simulationRecaps={fixedMissingComputedResultsSimulationRecaps}
+          simulationRecapsWithoutExtremes={simulationRecapsWithoutExtremes}
           funFacts={pollData?.funFacts}
           title={<Trans>Résultats de campagne</Trans>}
         />
 
         <PollStatisticsFilters
-          simulationRecaps={pollData?.simulationRecaps ?? []}
+          simulationRecaps={simulationRecapsWithoutExtremes ?? []}
           filteredSimulationRecaps={filteredSimulationRecaps ?? []}
           defaultAdditionalQuestions={
             pollData?.defaultAdditionalQuestions ?? []

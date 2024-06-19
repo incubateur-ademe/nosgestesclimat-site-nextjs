@@ -11,9 +11,11 @@ export default async function Actions() {
   return (
     <div className="flex-1">
       <Image
-        src="/images/misc/actions-screenshot.svg"
-        alt="Une capture d'écran de l'écran actions de Nos Gestes Climat."
-        width="444"
+        src="/images/illustrations/girl-holding-earth.svg"
+        alt={t(
+          'Une jeune femme tenant la terre entre ses mains, un chien la regardant joyeusement.'
+        )}
+        width="290"
         height="275"
         className="mb-6 block h-auto max-w-full "
       />
