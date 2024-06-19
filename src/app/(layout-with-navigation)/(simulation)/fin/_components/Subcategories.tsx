@@ -1,5 +1,6 @@
 import { useSortedSubcategoriesByFootprint } from '@/hooks/useSortedSubcategoriesByFootprint'
 import { useSortedUiCategoriesByFootprint } from '@/hooks/useSortedUiCategoriesByFootprint'
+import SmallFootprint from './OtherWays'
 import Subcategory from './subcategories/Subcategory'
 
 export default function Subcategories() {
@@ -20,6 +21,7 @@ export default function Subcategories() {
           index={index}
         />
       ))}
+      <SmallFootprint />
     </>
   )
 }

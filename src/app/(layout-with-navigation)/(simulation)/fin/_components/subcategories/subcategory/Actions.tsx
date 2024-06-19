@@ -8,7 +8,7 @@ import Action from './actions/Action'
 
 type Props = {
   subcategory: DottedName
-  shouldHideLink?: boolean
+  noNumberedFootprint?: boolean
 }
 
 type ActionObject = {
@@ -16,40 +16,51 @@ type ActionObject = {
   value: number
 }
 
-export default function Actions({ subcategory, shouldHideLink }: Props) {
+export default function Actions({ subcategory, noNumberedFootprint }: Props) {
   const { getValue } = useEngine()
 
   const { title, actions } = useRule(subcategory)
 
-  const filteredActions = shouldHideLink
+  const filteredActions = noNumberedFootprint
     ? actions
     : actions?.filter((action: string) => getValue(action))
 
   if (!filteredActions?.length) return null
 
-  const sortedActions = filteredActions
-    .map((action: string) => ({
-      dottedName: action,
-      value: getValue(action) as number,
-    }))
-    .sort((a: ActionObject, b: ActionObject) => (a.value > b.value ? -1 : 1))
-    .map((actionObject: ActionObject) => actionObject.dottedName)
+  const sortedActions = noNumberedFootprint
+    ? filteredActions.sort((a: string) => {
+        if (a.includes('voter')) {
+          return -1
+        }
+        return 1
+      })
+    : filteredActions
+        .map((action: string) => ({
+          dottedName: action,
+          value: getValue(action) as number,
+        }))
+        .sort((a: ActionObject, b: ActionObject) =>
+          a.value > b.value ? -1 : 1
+        )
+        .map((actionObject: ActionObject) => actionObject.dottedName)
 
   const firstThreeActions = sortedActions.slice(0, 3)
 
   return (
     <>
-      <p className="mb-6 text-sm">
-        <Trans>
-          Voici quelques idées pour vous aider à réduire votre impact :
-        </Trans>
-      </p>
+      {!noNumberedFootprint && (
+        <p className="mb-6 text-sm">
+          <Trans>
+            Voici quelques idées pour vous aider à réduire votre impact :
+          </Trans>
+        </p>
+      )}
       <div className="mb-4 flex flex-row-reverse justify-center gap-4">
         {firstThreeActions.map((action, index) => (
           <Action key={action} action={action} index={index} />
         ))}
       </div>
-      {!shouldHideLink && (
+      {!noNumberedFootprint && (
         <div className="flex justify-center">
           <Link
             onClick={() => trackEvent(endClickActions)}
