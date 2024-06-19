@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import {
   Area,
   AreaChart,
@@ -8,70 +7,36 @@ import {
   YAxis,
 } from 'recharts'
 
-import { useUser } from '@/publicodes-state/index'
-import { useChart } from '../../_helpers/matomo.js'
-
-import CustomTooltip from './chart/CustomTooltip'
-import Search from './chart/Search'
+import { useUser } from '@/publicodes-state'
+import { Dispatch, SetStateAction } from 'react'
+import CustomTooltip from './CustomTooltip'
+import Search from './Search'
 
 type Props = {
-  key: string
+  data: any // oupsi
   dataKey: string
   elementAnalysedTitle: string
-  method: string
-  targets?: string[]
+  chartPeriod: string
+  chartDate: string
+  setChartPeriod: Dispatch<SetStateAction<string>>
+  setChartDate: Dispatch<SetStateAction<string>>
   color: string
-  defaultChartDate?: string
-  defaultChartPeriod?: string
 }
 
 export default function Chart({
-  key,
+  data,
   dataKey,
   elementAnalysedTitle,
-  method,
-  targets = [],
+  chartPeriod,
+  chartDate,
+  setChartPeriod,
+  setChartDate,
   color,
-  defaultChartDate = '12',
-  defaultChartPeriod = 'month',
 }: Props) {
   const { user } = useUser()
 
-  const [chartDate, setChartDate] = useState(defaultChartDate)
-  const [chartPeriod, setChartPeriod] = useState(defaultChartPeriod)
-
-  const { data: chart } = useChart({
-    chartDate: Number(chartDate) + 1,
-    chartPeriod,
-    method: method,
-    targets: targets,
-    name: elementAnalysedTitle,
-  })
-
-  const [data, setData] = useState<
-    Record<string, string | number>[] | undefined
-  >(undefined)
-
-  useEffect(() => {
-    if (chart) {
-      const dates = Object.keys(chart)
-      dates.length-- //last period is removed from data
-      const dataDots = dates?.map((date) => {
-        const points: Record<string, string | number> = {}
-        points['date'] = date
-
-        points[dataKey] =
-          typeof chart[date] === 'number'
-            ? +chart[date]
-            : +chart[date]?.[0]?.nb_visits
-        return points
-      })
-      setData(dataDots)
-    }
-  }, [chart, dataKey])
-
-  return chart && data ? (
-    <div key={key} className="mt-4">
+  return (
+    <div className="mt-4">
       <Search
         elementAnalysedTitle={elementAnalysedTitle}
         period={chartPeriod}
@@ -118,5 +83,5 @@ export default function Chart({
         </ResponsiveContainer>
       </div>
     </div>
-  ) : null
+  )
 }

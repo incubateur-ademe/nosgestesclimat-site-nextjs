@@ -3,16 +3,17 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import { UseQueryResult } from 'react-query'
+import { UseQueryResult } from '@tanstack/react-query'
 import {
   useActiveEntryPages,
-  useAllTime,
+  useAllSimulationsTerminees,
+  useAllTimeVisits,
+  useCurrentMonthSimulationsTerminees,
+  useCurrentMonthVisits,
   useEntryPages,
   useGetSharedSimulationEvents,
   useHomepageVisitors,
-  useKeywords,
   useOldWebsites,
-  useSimulationsTerminees,
   useSocials,
   useTotal,
   useWebsites,
@@ -65,15 +66,16 @@ const UseQueryResultHandler = ({
 }
 
 export default function StatsContent() {
+  const currentMonthVisits = useCurrentMonthVisits()
+  const allTimeVisits = useAllTimeVisits()
+  const currentMonthSimulations = useCurrentMonthSimulationsTerminees()
+  const allSimulationsTerminees = useAllSimulationsTerminees()
   const total = useTotal()
-  const simulations = useSimulationsTerminees()
   const websites = useWebsites()
   const oldWebsites = useOldWebsites()
   const socials = useSocials()
-  const keywords = useKeywords()
   const entryPages = useEntryPages()
   const activeEntryPages = useActiveEntryPages()
-  const allTime = useAllTime()
   const homepageVisitorsData = useHomepageVisitors()
   const sharedSimulations = useGetSharedSimulationEvents()
 
@@ -87,16 +89,26 @@ export default function StatsContent() {
           <Trans>Visites et simulations</Trans>
         </h2>
         <UseQueryResultHandler
-          requestResults={[allTime, simulations]}
-          toRenderWithRequestData={([allTimeData, simulationsData]) => (
+          requestResults={[
+            allTimeVisits,
+            currentMonthVisits,
+            allSimulationsTerminees,
+            currentMonthSimulations,
+          ]}
+          toRenderWithRequestData={([
+            allTimeVisitsData,
+            currentMonthVisitsData,
+            allSimulationsTermineesData,
+            currentMonthSimulationsData,
+          ]) => (
             <>
               <VisitsBlock
-                allTime={allTimeData.value}
-                simulations={simulationsData}
+                allTimeVisits={allTimeVisitsData}
+                currentMonthVisits={currentMonthVisitsData}
               />
               <SimulationsBlock
-                allTime={allTimeData.value}
-                simulations={simulationsData}
+                allSimulationsTerminees={allSimulationsTermineesData}
+                currentMonthSimulations={currentMonthSimulationsData}
               />
             </>
           )}
@@ -133,20 +145,18 @@ export default function StatsContent() {
           </div>
         </div>
         <UseQueryResultHandler
-          requestResults={[total, websites, oldWebsites, socials, keywords]}
+          requestResults={[total, websites, oldWebsites, socials]}
           toRenderWithRequestData={([
             totalData,
             websitesData,
             oldWebsitesData,
             socialsData,
-            keywordsData,
           ]) => (
             <Sources
               total={totalData.value}
               websites={websitesData}
               oldWebsites={oldWebsitesData}
               socials={socialsData}
-              keywords={keywordsData}
             />
           )}
         />

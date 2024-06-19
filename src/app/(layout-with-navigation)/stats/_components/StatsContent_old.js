@@ -19,10 +19,10 @@ import {
   useTotal,
   useWebsites,
 } from '../_helpers/matomo'
-import Chart from './content/Chart'
 import Evolution from './content/Evolution'
 import IframeFigures from './content/IframeFigures'
 import Sources from './content/Sources'
+import Chart from './content/VisitsChart'
 
 // Do not try [toRenderWithRequestData] until all [requestResults] are successful.
 // Otherwise, an informative message in rendered.

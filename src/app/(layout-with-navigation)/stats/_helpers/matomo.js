@@ -21,46 +21,92 @@ export const useX = (queryName, urlQuery, transformResult, keepPreviousData) =>
     { keepPreviousData }
   )
 
-export const useChart = ({ chartPeriod, chartDate, method, targets, name }) => {
+export const useVisitsChart = ({ chartPeriod, chartDate, name }) => {
   return useX(
     `${name}, ${chartPeriod}, ${chartDate}`,
-    `module=API&method=${method}&idSite=${idSite}&date=last${chartDate}&period=${chartPeriod}&format=json`,
-    (res) => {
-      if (targets.length > 0) {
-        const targetedData = Object.fromEntries(
-          Object.entries(res.data).map(([date, evts]) => {
-            return [
-              date,
-              [
-                evts.find((evt) => {
-                  return targets.indexOf(evt.label) > -1
-                }),
-              ],
-            ]
-          })
-        )
-        return targetedData
-      }
+    `module=API&method=VisitsSummary.getVisits&idSite=${idSite}&date=last${chartDate}&period=${chartPeriod}&format=json`,
+    (res) => res.data,
+    true
+  )
+}
 
-      return res.data
+export const useSimulationsChart = ({ chartPeriod, chartDate, name }) => {
+  return useX(
+    `${name}, ${chartPeriod}, ${chartDate}`,
+    `module=API&method=Events.getAction&idSite=${idSite}&date=last${chartDate}&period=${chartPeriod}&format=json`,
+    (res) => {
+      const targets = ['A terminé la simulation', 'Simulation Completed']
+
+      const targetedData = Object.fromEntries(
+        Object.entries(res.data).map(([date, evts]) => {
+          return [
+            date,
+            [
+              evts.find((evt) => {
+                return targets.indexOf(evt.label) > -1
+              }),
+            ],
+          ]
+        })
+      )
+
+      return targetedData
     },
     true
   )
 }
 
-export const useSimulationsTerminees = () =>
+export const useCurrentMonthVisits = () =>
+  // `date=lastMonth` doesn't seem to work
   useX(
-    ['SimulationsTerminees'],
-    `module=API&method=Events.getAction&idSite=${idSite}&period=range&date=last6000&format=JSON`,
-    (res) =>
-      res.data.find(
-        (action) =>
-          action.label === 'A terminé la simulation' ||
-          action.label === 'Simulation Completed'
-      ),
+    'currentMonthVisits',
+    `module=API&date=last1&period=month&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
+    (res) => {
+      return Object.values(res.data)[0]
+    }
+  )
+
+export const useAllTimeVisits = () =>
+  useX(
+    'allTimeVisits',
+    `module=API&date=last6000&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
+    (res) => {
+      const base = 109689 //base NGC
+      return base + res.data.value
+    }
+  )
+
+export const useCurrentMonthSimulationsTerminees = () =>
+  useX(
+    'currentMonthSimulationsTerminees',
+    `module=API&method=Events.getAction&idSite=${idSite}&period=month&date=last1&format=JSON`,
+    (res) => {
+      return Object.values(res.data)[0].find(
+        (action) => action.label === 'Simulation Completed'
+      ).nb_visits
+    },
     true
   )
 
+export const useAllSimulationsTerminees = () =>
+  useX(
+    'allSimulationsTerminees',
+    `module=API&method=Events.getAction&idSite=${idSite}&period=range&date=last6000&format=JSON`,
+    (res) => {
+      const base = 32015 //base NGC
+      return (
+        base +
+        res.data
+          .filter(
+            (action) =>
+              action.label === 'A terminé la simulation' ||
+              action.label === 'Simulation Completed'
+          )
+          .reduce((acc, action) => (acc += action.nb_visits), 0)
+      )
+    },
+    true
+  )
 export const useTotal = () =>
   useX(
     'total',
@@ -90,13 +136,6 @@ export const useSocials = () =>
     (res) => res.data
   )
 
-export const useKeywords = () =>
-  useX(
-    'keywords',
-    `module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Referrers.getKeywords`,
-    (res) => res.data
-  )
-
 export const useEntryPages = () =>
   useX(
     'entryPages',
@@ -109,17 +148,6 @@ export const useActiveEntryPages = () =>
     'activeEntryPages',
     `module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Actions.getEntryPageUrls&filter_limit=1000&segment=eventAction%3D%3DClic%252520CTA%252520accueil`,
     (res) => res.data
-  )
-
-export const useAllTime = () =>
-  useX(
-    'allTime',
-    `module=API&date=last6000&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
-    (res) => {
-      const base = 109689 //base NGC
-      res.data.value += base
-      return res.data
-    }
   )
 
 export const useHomepageVisitors = () =>

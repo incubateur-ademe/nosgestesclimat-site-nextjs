@@ -1,23 +1,28 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import Chart from './Chart'
-import Figures from './Figures'
+import VisitsChart from './VisitsChart'
+import VisitsFigures from './VisitsFigures'
 
 type Props = {
-  allTime: number
-  simulations: Record<string, any>
+  allTimeVisits: number
+  currentMonthVisits: number
 }
 
-export default function VisitsBlock({ allTime, simulations }: Props) {
+export default function VisitsBlock({
+  allTimeVisits,
+  currentMonthVisits,
+}: Props) {
   const { t } = useClientTranslation()
 
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-      <Figures allTime={allTime} simulations={simulations} />
-      <Chart
+      <VisitsFigures
+        allTimeVisits={allTimeVisits}
+        currentMonthVisits={currentMonthVisits}
+      />
+      <VisitsChart
         key="chart-visites"
         dataKey="chart-visites"
         elementAnalysedTitle={t('visites')}
-        method="VisitsSummary.getVisits"
         color="#4949ba"
       />
     </div>
