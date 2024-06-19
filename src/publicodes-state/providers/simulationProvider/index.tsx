@@ -49,6 +49,7 @@ export default function SimulationProvider({
   useSetComputedResults({
     categories,
     isInitialized,
+    safeEvaluate,
   })
 
   return (
