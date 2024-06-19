@@ -32,7 +32,7 @@ const text = {
 }
 
 type Props = {
-  small: boolean
+  small?: boolean
 }
 export default function OtherWays({ small }: Props) {
   const titleContent = small ? title.small : title.other
