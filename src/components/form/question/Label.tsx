@@ -60,7 +60,7 @@ export default function Label({
         onClick={(e) => e.preventDefault()}>
         <h1
           className={twMerge(
-            'mb-0 inline text-base md:text-lg [&_p]:mb-0',
+            'mb-0 inline text-sm sm:text-base md:text-lg [&_p]:mb-0',
             titleClassName
           )}
           tabIndex={0}

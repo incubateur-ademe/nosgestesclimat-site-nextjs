@@ -24,6 +24,8 @@ export default function useActions() {
   const { actionChoices } = useCurrentSimulation()
 
   const orderedActions = useMemo<string[]>(() => {
+    if (engine === null) return []
+
     const actionsRule = engine.getRule('actions')
     const somme = getSomme(actionsRule.rawNode)
 

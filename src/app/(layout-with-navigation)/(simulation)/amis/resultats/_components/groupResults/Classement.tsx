@@ -109,6 +109,7 @@ export default function Classement({ group }: { group: Group }) {
                     name={member.name}
                     rank={rank}
                     quantity={quantity}
+                    isCurrentMember={member.userId === userId}
                   />
                 )
               })}
