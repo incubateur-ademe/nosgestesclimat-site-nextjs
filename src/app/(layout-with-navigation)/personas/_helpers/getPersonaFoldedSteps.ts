@@ -1,12 +1,10 @@
-import { safeGetSituation } from '@/publicodes-state/helpers/safeGetSituation'
 import {
   DottedName,
-  Engine,
   NGCEvaluatedNode,
   NGCRuleNode,
   Situation,
 } from '@/publicodes-state/types'
-import { PublicodesExpression } from 'publicodes'
+import Engine, { PublicodesExpression } from 'publicodes'
 import { fixSituationWithPartialMosaic } from './fixSituationWithPartialMosaic'
 
 type Props = {
@@ -14,7 +12,7 @@ type Props = {
   everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
   everyQuestions: DottedName[]
   everyRules: DottedName[]
-  pristineEngine: Engine
+  pristineEngine: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
 }
@@ -23,23 +21,23 @@ export const getPersonaFoldedSteps = ({
   situation,
   everyMosaicChildrenWithParent,
   everyQuestions,
-  everyRules,
   pristineEngine,
   safeGetRule,
   safeEvaluate,
-}: Props) => {
+}: Props): string[] => {
+  if (pristineEngine === null) return []
+
   const personaSituation = fixSituationWithPartialMosaic({
     situation,
     everyMosaicChildrenWithParent,
     safeGetRule,
     safeEvaluate,
   })
-  const safeSituation = safeGetSituation({
-    situation: personaSituation,
-    everyRules,
-  })
 
-  pristineEngine.setSituation(safeSituation)
+  pristineEngine.setSituation(personaSituation)
+
+  // The current engine situation might have been filtered
+  const safeSituation = pristineEngine.getSituation()
 
   // The persona folded steps are obtained by getting the missing variables and the situation variables.
   const personaFoldedSteps = [

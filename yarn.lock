@@ -805,10 +805,10 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.25.tgz#f077fdc0b5d0078d30893396ff4827a13f99e817"
   integrity sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==
 
-"@publicodes/react-ui@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@publicodes/react-ui/-/react-ui-1.2.0.tgz#4abd5273a35cb14e37227123ef0ff933a8efc5ba"
-  integrity sha512-0SVIyztnaidp+iOuWYJnK3FICvgYVxxsIQR5chj385mR4xD9SxpI2WSxB+5L+CvQc72PGAt+diXBMSvvdDNS/A==
+"@publicodes/react-ui@^1.3.3":
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@publicodes/react-ui/-/react-ui-1.3.3.tgz#47e2017cff2f95118422808371fcf21f702cfff1"
+  integrity sha512-WcWF9InR/EeQRRFP/MFth1oSwZgfzVlERpoa9UEw1PYrIoF5z/elqWFPbirTE2XfLkw2QFSJzsb90SCurEPCpA==
   dependencies:
     fuse.js "^7.0.0"
     styled-components "^6.1.1"
@@ -6262,10 +6262,10 @@ psl@^1.1.33:
   resolved "https://registry.yarnpkg.com/psl/-/psl-1.9.0.tgz#d0df2a137f00794565fcaf3b2c00cd09f8d5a5a7"
   integrity sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==
 
-publicodes@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.1.1.tgz#6bd283b3a0e7e41d5d3ab2454d639c27a46400e5"
-  integrity sha512-PO5nwianBt3D3xfVgfb6thJ1WT/ZE44dw6PvdyK/yBZSi69kh03tc7TyBrkVZcfsC00kZTfnJFNiVvJSTySYCA==
+publicodes@1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.3.3.tgz#8e9491b282a408e918458dfedabc4512aac05cb1"
+  integrity sha512-bRGB4M2HfgfwSI0ysHptn6pq3iYqos1/z2x7DghzMkK5uaoSMgvaeuIwjiX2SI1kjTh11zdFdwYB8Swyr8oZdA==
 
 publicodes@^1.3.0:
   version "1.3.1"
