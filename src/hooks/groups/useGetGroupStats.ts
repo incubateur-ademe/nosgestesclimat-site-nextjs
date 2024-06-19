@@ -47,7 +47,7 @@ export const useGetGroupStats = ({ groupMembers, userId }: Props) => {
   // and subcategory
   Object.keys(userFootprintByCategoriesAndSubcategories).forEach((key) => {
     results.userFootprintByCategoriesAndSubcategories[key].difference =
-      getDifferenceInPercent({
+      getDifference({
         value: results.userFootprintByCategoriesAndSubcategories[key].value,
         mean:
           results.groupFootprintByCategoriesAndSubcategories[key]?.mean || 0,
@@ -68,12 +68,6 @@ export const useGetGroupStats = ({ groupMembers, userId }: Props) => {
   return results as Results
 }
 
-const getDifferenceInPercent = ({
-  value,
-  mean,
-}: {
-  value: number
-  mean: number
-}) => {
-  return ((value - mean) / mean) * 100
+const getDifference = ({ value, mean }: { value: number; mean: number }) => {
+  return value - mean
 }

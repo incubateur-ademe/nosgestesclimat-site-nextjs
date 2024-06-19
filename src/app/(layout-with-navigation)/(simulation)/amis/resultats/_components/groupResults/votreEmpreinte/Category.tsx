@@ -2,7 +2,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import { ValueObject } from '@/types/groups'
 import { formatValue } from 'publicodes'
-import PercentageDiff from '../pointsFortsFaibles/pointsListItem/PercentageDiff'
+import PercentageDiff from '../pointsFortsFaibles/pointsListItem/ValueDiff'
 
 type Props = {
   category: string

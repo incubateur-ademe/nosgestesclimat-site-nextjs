@@ -2,7 +2,7 @@ import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import { formatValue } from 'publicodes'
-import PercentageDiff from './pointsListItem/PercentageDiff'
+import ValueDiff from './pointsListItem/ValueDiff'
 
 type PointsListItemProps = {
   name: string
@@ -16,15 +16,19 @@ export default function PointsListItem({
   difference,
 }: PointsListItemProps) {
   const rule = useRule(name)
-
   return (
     <li className="mb-3 flex items-center justify-between rounded-md bg-[#F8F8F7] p-3 text-sm last:mb-0">
-      <p className="mb-0 flex items-center">
-        <span className="mr-3 inline-block text-lg">
-          <Emoji>{rule?.icons}</Emoji>
+      <p className="mb-0 flex flex-col flex-wrap sm:gap-2">
+        <span className="flex items-center gap-2">
+          <Emoji className="text-lg">
+            {/* TODO: fix this in the model */}
+            {rule?.icons === '🚘️' ? '🚗' : rule.icons}
+          </Emoji>
+
+          {rule?.title}
         </span>
-        {rule?.title}
-        <PercentageDiff value={difference} />
+
+        <ValueDiff value={difference} />
       </p>
 
       <Badge>
