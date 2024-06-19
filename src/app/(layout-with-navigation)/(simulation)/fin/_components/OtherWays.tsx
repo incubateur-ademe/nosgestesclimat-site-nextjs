@@ -32,12 +32,12 @@ const text = {
 }
 
 type Props = {
-  small?: boolean
+  isSmallFootprint?: boolean
 }
-export default function OtherWays({ small }: Props) {
-  const titleContent = small ? title.small : title.other
-  const subtitleContent = small ? subtitle.small : subtitle.other
-  const textContent = small ? text.small : text.other
+export default function OtherWays({ isSmallFootprint }: Props) {
+  const titleContent = isSmallFootprint ? title.small : title.other
+  const subtitleContent = isSmallFootprint ? subtitle.small : subtitle.other
+  const textContent = isSmallFootprint ? text.small : text.other
 
   return (
     <div>
