@@ -104,12 +104,17 @@ export default function Total({ toggleQuestionList }: Props) {
               </Trans>
             </span>
           </div>
-          <div className="z-10">
+          <div className="z-10 text-left">
             <p className="block text-sm md:text-base">
-              {(numericValueEau / 1000).toFixed(1)} L / jour
+              useRule('bilan eau') :{' '}
+              {(numericValueEau / 1000).toFixed(1).replace('.', ',')} L / jour
             </p>
             <p className="block text-sm md:text-base">
-              {((evaluation?.nodeValue as number) / 1000)?.toFixed(1)} L / jour
+              safeEvaluateWithMetric('bilan', "'eau'") :{' '}
+              {((evaluation?.nodeValue as number) / 1000)
+                ?.toFixed(1)
+                .replace('.', ',')}{' '}
+              L / jour
             </p>
           </div>
         </div>
