@@ -21,10 +21,11 @@ export default function Organisations() {
         className="mt-8"
         title={<Trans>Organisations et campagnes</Trans>}
       />
-
+      <div className="flex flex-wrap justify-center gap-16 md:flex-nowrap">
       <PollsList organisation={organisation} />
 
       <CreateOrganisation organisation={organisation} />
+      </div>
     </>
   )
 }

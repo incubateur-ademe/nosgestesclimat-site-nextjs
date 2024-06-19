@@ -1,21 +1,10 @@
 import { Points, ValueObject } from '@/types/groups'
 
-const sortByDifference = (a: Points, b: Points, isReverse?: boolean) => {
-  if (a?.resultObject?.value === b?.resultObject?.value) {
-    return Math.abs(a?.resultObject?.difference ?? 0) <
-      Math.abs(b?.resultObject?.difference ?? 0)
-      ? 1
-      : -1
-  }
-
-  return Math.abs(b?.resultObject?.value || 0) <
-    Math.abs(a?.resultObject?.value || 0)
-    ? isReverse
-      ? 1
-      : -1
-    : isReverse
-      ? -1
-      : 1
+const sortByDifference = (a: Points, b: Points) => {
+  return Math.abs(b?.resultObject?.difference || 0) <
+    Math.abs(a?.resultObject?.difference || 0)
+    ? -1
+    : 1
 }
 
 export const getUserCategoryFootprintsSortedByDifference = ({
@@ -45,8 +34,6 @@ export const getUserCategoryFootprintsSortedByDifference = ({
       resultObject?.difference && resultObject?.difference < 0
   ) as Points[]
 
-  console.log(positiveDifferenceCategories)
-
   const negativeDifferenceCategories = formattedResult.filter(
     ({ resultObject }) =>
       resultObject?.difference && resultObject?.difference > 0
@@ -54,7 +41,7 @@ export const getUserCategoryFootprintsSortedByDifference = ({
 
   return {
     positiveDifferenceCategoriesSorted: positiveDifferenceCategories.sort(
-      (a, b) => sortByDifference(a, b, true)
+      (a, b) => sortByDifference(a, b)
     ),
     negativeDifferenceCategoriesSorted: negativeDifferenceCategories.sort(
       (a, b) => sortByDifference(a, b)

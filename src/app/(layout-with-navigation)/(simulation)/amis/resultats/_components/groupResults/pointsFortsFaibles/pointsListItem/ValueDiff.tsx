@@ -20,7 +20,7 @@ export default function ValueDiff({ value }: { value: number }) {
       {Math.round(value) !== 0 && (
         <span>
           <strong>
-            {formatValue(Math.abs(value), { precision: 0 })}kg {t('de')}{' '}
+            {formatValue(Math.abs(value), { precision: 0 })} kg {t('de')}{' '}
             {value < 0 ? t('moins') : t('plus')}
           </strong>{' '}
           {t('que la moyenne du groupe')}
