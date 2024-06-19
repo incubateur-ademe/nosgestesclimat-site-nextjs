@@ -7,11 +7,14 @@ export default function CreateFirstGroupSection() {
   return (
     <section className="mt-4">
       <h2 className="mb-2 mt-0 text-lg font-medium">
-        <Trans>Créez votre premier groupe</Trans>
+        <Trans></Trans>
       </h2>
-      <p className="mb-6 text-sm">
+      <p className="mb-6">
+        <strong className="text-secondary-700">
+          <Trans>Créez votre premier groupe</Trans>
+        </strong>{' '}
         <Trans>
-          Invitez vos proches pour comparer vos résultats. Cela prend
+          et invitez vos proches pour comparer vos résultats. Cela prend
         </Trans>{' '}
         <strong className="text-secondary-700">
           <Trans>1 minute</Trans>
