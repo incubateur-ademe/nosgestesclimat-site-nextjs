@@ -32,7 +32,7 @@ export default function Total({ toggleQuestionList }: Props) {
 
   const { safeEvaluateWithMetric } = useContext(SimulationContext)
 
-  const evaluation = safeEvaluateWithMetric('bilan', "'eau'")
+  const evaluationEau = safeEvaluateWithMetric('bilan', "'eau'")
 
   const { numericValue: numericValueEau } = useRule('bilan eau')
 
@@ -111,7 +111,7 @@ export default function Total({ toggleQuestionList }: Props) {
             </p>
             <p className="block text-sm md:text-base">
               safeEvaluateWithMetric('bilan', "'eau'") :{' '}
-              {((evaluation?.nodeValue as number) / 1000)
+              {((evaluationEau?.nodeValue as number) / 1000)
                 ?.toFixed(1)
                 .replace('.', ',')}{' '}
               L / an

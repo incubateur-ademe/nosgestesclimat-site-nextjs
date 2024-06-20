@@ -58,21 +58,14 @@ export function useEngine(rules: Rules) {
 
   const safeEvaluateWithMetric = useCallback(
     (expr: PublicodesExpression, metric: Metric) => {
-      const situation = engine.getSituation()
+      const exprWithContext = {
+        valeur: expr,
+        contexte: {
+          métrique: metric,
+        },
+      }
 
-      // Update situation with metric
-      engine.setSituation({
-        ...situation,
-        métrique: metric,
-      })
-
-      const evaluation = safeEvaluateHelper(expr, engine)
-
-      // Reset situation
-      engine.setSituation({
-        ...situation,
-        métrique: 'carbone',
-      })
+      const evaluation = safeEvaluateHelper(exprWithContext, engine)
 
       return evaluation
     },
