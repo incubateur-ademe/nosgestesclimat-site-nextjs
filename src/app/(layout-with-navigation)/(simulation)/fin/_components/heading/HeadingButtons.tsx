@@ -53,7 +53,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
     <div className="flex gap-4">
       <Button
         color="secondary"
-        className={twMerge('flex !p-0', sizeClassNames[size])}
+        className={twMerge('!p-0', sizeClassNames[size])}
         onClick={() => {
           trackEvent(
             endPage ? endClickSaveShortcut : simulationClickSaveShortcut
