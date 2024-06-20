@@ -1,7 +1,6 @@
 'use client'
 
 import Error500 from '@/components/layout/500'
-import * as Sentry from '@sentry/nextjs'
 import NextError from 'next/error'
 import { useEffect } from 'react'
 
@@ -10,7 +9,7 @@ type Props = {
 }
 export default function GlobalError({ error }: Props) {
   useEffect(() => {
-    Sentry.captureException(error)
+    // Sentry.captureException(error)
   }, [error])
 
   return (

@@ -8,7 +8,6 @@ import { useDeleteGroup } from '@/hooks/groups/useDeleteGroup'
 import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Participant } from '@/types/groups'
-import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 
 export default function SupprimerGroupePage({
@@ -38,7 +37,7 @@ export default function SupprimerGroupePage({
       // Refresh cache
       refetchGroup()
     } catch (error) {
-      captureException(error)
+      // captureException(error)
     }
   }
 

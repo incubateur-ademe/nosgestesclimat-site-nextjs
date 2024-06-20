@@ -13,7 +13,6 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { captureException } from '@sentry/react'
 import { FormEvent, FormEventHandler, useEffect, useState } from 'react'
 
 export default function GroupCreationForm() {
@@ -103,7 +102,7 @@ export default function GroupCreationForm() {
 
       setShouldNavigate(group._id)
     } catch (e) {
-      captureException(e)
+      // captureException(e)
     }
   }
 
