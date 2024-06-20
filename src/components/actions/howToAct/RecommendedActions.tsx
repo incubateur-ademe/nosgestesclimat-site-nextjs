@@ -1,6 +1,6 @@
 'use client'
 
-import RecommendedAction from './RecommendedAction'
+import RecommendedAction from './recommendedActions/RecommendedAction'
 
 export default function RecommendedActions() {
   return (
