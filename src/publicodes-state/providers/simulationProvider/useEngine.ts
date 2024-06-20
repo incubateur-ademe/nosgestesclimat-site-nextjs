@@ -65,9 +65,7 @@ export function useEngine(rules: Rules) {
         },
       }
 
-      const evaluation = safeEvaluateHelper(exprWithContext, engine)
-
-      return evaluation
+      return safeEvaluateHelper(exprWithContext, engine)
     },
     [engine]
   )
