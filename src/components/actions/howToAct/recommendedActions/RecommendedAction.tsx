@@ -25,7 +25,7 @@ export default function RecommendedAction({
         title={title || ''}
         footprintAvoided={numericValue}
         tag={Link}
-        href={`/actions/${encodeURIComponent(actionDottedName)}`}
+        href={`/actions/${actionDottedName}`}
         onClick={() => trackEvent(endClickAction(actionDottedName))}
         className={`border-2 ${getBorderColor(actionDottedName.split(' . ')[0])} ${getBackgroundLightColor(actionDottedName.split(' . ')[0])} transition-opacity hover:opacity-80`}
       />

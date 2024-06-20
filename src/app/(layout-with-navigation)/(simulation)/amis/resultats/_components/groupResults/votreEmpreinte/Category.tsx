@@ -2,7 +2,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import { ValueObject } from '@/types/groups'
 import { formatValue } from 'publicodes'
-import PercentageDiff from '../pointsFortsFaibles/pointsListItem/ValueDiff'
+import ValueDiff from '../pointsFortsFaibles/pointsListItem/ValueDiff'
 
 type Props = {
   category: string
@@ -29,7 +29,7 @@ export default function Category({
           <div className="text-md font-bold text-gray-900">{title}</div>
         </div>
         {membersLength > 1 && (
-          <PercentageDiff value={categoryFootprint.difference || 0} />
+          <ValueDiff value={categoryFootprint.difference || 0} />
         )}
       </div>
       <div className="flex items-center gap-4">

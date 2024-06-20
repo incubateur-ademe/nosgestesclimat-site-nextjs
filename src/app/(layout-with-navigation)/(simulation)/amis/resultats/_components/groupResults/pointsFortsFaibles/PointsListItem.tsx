@@ -20,10 +20,7 @@ export default function PointsListItem({
     <li className="mb-3 flex items-center justify-between rounded-md bg-[#F8F8F7] p-3 text-sm last:mb-0">
       <p className="mb-0 flex flex-col flex-wrap sm:gap-2">
         <span className="flex items-center gap-2">
-          <Emoji className="text-lg">
-            {/* TODO: fix this in the model */}
-            {rule?.icons === '🚘️' ? '🚗' : rule.icons}
-          </Emoji>
+          <Emoji className="text-lg">{rule.icons}</Emoji>
 
           {rule?.title}
         </span>
