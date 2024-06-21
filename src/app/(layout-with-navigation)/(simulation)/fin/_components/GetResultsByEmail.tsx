@@ -19,9 +19,8 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
-import { isEmailValid } from '@/utils/isEmailValid'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './getResultsByEmail/Confirmation'
@@ -62,15 +61,21 @@ export default function GetResultsByEmail({
     LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
   )
 
-  const isSubscribedLogementNewsletter = newsletterSubscriptions?.includes(
-    LIST_NOS_GESTES_LOGEMENT_NEWSLETTER
-  )
-
-  const { register, handleSubmit, setValue } = useReactHookForm<Inputs>({
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useReactHookForm<Inputs>({
     defaultValues: {
       name: user?.name,
     },
+    mode: 'onSubmit',
   })
+
+  const isSubscribedLogementNewsletter = newsletterSubscriptions?.includes(
+    LIST_NOS_GESTES_LOGEMENT_NEWSLETTER
+  )
 
   useEffect(() => {
     if (!newsletterSubscriptions) return
@@ -95,18 +100,9 @@ export default function GetResultsByEmail({
 
   const { data: numberSubscribers } = useNumberSubscribers()
 
-  const [formEmail, setFormEmail] = useState(user.email || '')
-  const [errorEmail, setErrorEmail] = useState('')
-
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     // If the mutation is pending, we do nothing
     if (isPending) {
-      return
-    }
-
-    // Inputs validation
-    if (!formEmail || !isEmailValid(formEmail)) {
-      setErrorEmail(t('Veuillez renseigner un email valide.'))
       return
     }
 
@@ -114,7 +110,7 @@ export default function GetResultsByEmail({
 
     const listIds = getSaveSimulationListIds(data)
 
-    updateEmail(formEmail)
+    updateEmail(data.email ?? '')
 
     if (currentSimulation?.computedResults?.bilan === 0) {
       // Send an error to Sentry
@@ -181,11 +177,16 @@ export default function GetResultsByEmail({
 
         <div className="mb-4 flex w-full flex-col gap-2">
           <EmailInput
-            email={formEmail}
-            setEmail={setFormEmail}
+            {...register('email', {
+              required: 'Veuillez renseigner un email.',
+              pattern: {
+                value:
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: 'Veuillez entrer une adresse email valide',
+              },
+            })}
             aria-label="Entrez votre adresse email"
-            error={errorEmail}
-            setError={setErrorEmail}
+            error={errors.email?.message}
             className="mb-2"
           />
 
