@@ -19,12 +19,18 @@ type Inputs = {
 export default function GroupCreationForm() {
   const { t } = useClientTranslation()
 
+  const { user } = useUser()
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useReactHookForm<Inputs>({
     mode: 'onSubmit',
+    defaultValues: {
+      administratorName: user.name ?? '',
+      administratorEmail: user.email ?? '',
+    },
   })
 
   const { updateName, updateEmail } = useUser()
@@ -48,6 +54,7 @@ export default function GroupCreationForm() {
       <PrenomInput
         data-cypress-id="group-input-owner-name"
         error={errors.administratorName?.message}
+        value={user.name ?? ''}
         {...register('administratorName', {
           required: t('Ce champ est requis.'),
         })}
@@ -56,6 +63,7 @@ export default function GroupCreationForm() {
       <div className="my-4">
         <EmailInput
           error={errors.administratorEmail?.message}
+          value={user.email ?? ''}
           label={
             <span>
               {t('Votre adresse email')}{' '}
