@@ -13,9 +13,9 @@ import DocumentationBlock from './_components/DocumentationBlock'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import Heading from './_components/Heading'
+import OtherWays from './_components/OtherWays'
 import Poll from './_components/Poll'
 import ShareBlock from './_components/ShareBlock'
-import SmallFootprint from './_components/SmallFootprint'
 import Subcategories from './_components/Subcategories'
 import TargetBlock from './_components/TargetBlock'
 import TotalSticky from './_components/TotalSticky'
@@ -50,7 +50,11 @@ export default function FinPage() {
         <div className="flex flex-1 flex-col gap-16 lg:mt-32">
           <MainSubcategories isLink={!isSmallFootprint} />
 
-          {isSmallFootprint ? <SmallFootprint /> : <Subcategories />}
+          {isSmallFootprint ? (
+            <OtherWays isSmallFootprint />
+          ) : (
+            <Subcategories />
+          )}
 
           <GetResultsByEmail />
 
