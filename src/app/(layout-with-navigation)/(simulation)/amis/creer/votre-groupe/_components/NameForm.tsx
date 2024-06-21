@@ -12,7 +12,6 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { captureException } from '@sentry/react'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -31,7 +30,7 @@ export default function NameForm() {
     formState: { errors },
   } = useReactHookForm<Inputs>()
 
-  const { user, updateName, updateEmail } = useUser()
+  const { user } = useUser()
 
   const searchParams = useSearchParams()
 
@@ -92,7 +91,7 @@ export default function NameForm() {
 
       setShouldNavigate(group._id)
     } catch (e) {
-      captureException(e)
+      // captureException(e)
     }
   }
 

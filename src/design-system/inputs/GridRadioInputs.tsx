@@ -86,8 +86,7 @@ export default function GridRadioInputs({
                     <input
                       type="radio"
                       className="sr-only"
-                      onChange={(event) => {
-                        console.log(event)
+                      onChange={() => {
                         onChange(item.value)
                       }}
                       {...props}

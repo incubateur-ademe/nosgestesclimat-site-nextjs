@@ -39,7 +39,7 @@ export default function GroupCreationForm() {
     updateEmail(administratorEmail ?? '')
 
     router.push(
-      `/amis/creer/votre-groupe?administratorName=${administratorName}&administratorEmail=${administratorEmail}`
+      `/amis/creer/votre-groupe?administratorName=${administratorName}&administratorEmail=${administratorEmail ?? ''}`
     )
   }
 
