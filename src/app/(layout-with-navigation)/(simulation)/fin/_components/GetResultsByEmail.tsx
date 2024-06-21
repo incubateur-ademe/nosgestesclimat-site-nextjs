@@ -20,7 +20,6 @@ import { useLocale } from '@/hooks/useLocale'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { captureException } from '@sentry/react'
 import { useEffect, useRef } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -115,9 +114,9 @@ export default function GetResultsByEmail({
 
     if (currentSimulation?.computedResults?.bilan === 0) {
       // Send an error to Sentry
-      captureException(
-        new Error('GetResultsByEmail: computedResults.bilan === 0')
-      )
+      // captureException(
+      //   new Error('GetResultsByEmail: computedResults.bilan === 0')
+      // )
     }
 
     // We save the simulation (and signify the backend to send the email)
