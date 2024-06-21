@@ -34,13 +34,8 @@ export default function usePersistentUser({
       const parsedStorage = JSON.parse(currentStorage || '{}')
       localUser = parsedStorage.user
     }
-
     if (localUser) {
-      setUser({
-        ...localUser,
-        userId:
-          localUser.userId ?? (localUser as User & { id: string }).id ?? uuid(),
-      })
+      setUser(formatUser({ user: localUser }))
     } else {
       setUser({
         region: initialRegion,
@@ -62,4 +57,20 @@ export default function usePersistentUser({
   }, [storageKey, user, initialized])
 
   return { user, setUser }
+}
+
+type NotFormattedUser = Omit<User, 'userId'> & {
+  id?: string
+  userId?: string
+}
+// Handle making sure the user object has a userId
+function formatUser({ user }: { user: NotFormattedUser }): User {
+  const formattedUser = {
+    ...user,
+    userId: user.userId ?? user.id ?? uuid(),
+  }
+
+  delete formattedUser.id
+
+  return formattedUser
 }
