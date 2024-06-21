@@ -41,7 +41,12 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
         href={`/organisations/${orgaSlug}/creer-campagne`}
         className="!w-full text-sm "
         color={hasNoPollsYet ? 'primary' : 'secondary'}>
-        <PlusIcon className="mr-2 stroke-primary-700" />
+        <PlusIcon
+          className={twMerge(
+            'mr-2 ',
+            hasNoPollsYet ? 'stroke-white' : 'stroke-primary-700'
+          )}
+        />
         <Trans>Créer une campagne</Trans>
       </ButtonLink>
     </Link>
