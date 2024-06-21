@@ -7,7 +7,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 type Props = {
   href: string
   className?: string
-  eventTracked: (string | null)[]
+  eventTracked?: (string | null)[]
 }
 
 export default function GoBackLink({ className, href, eventTracked }: Props) {
@@ -15,7 +15,9 @@ export default function GoBackLink({ className, href, eventTracked }: Props) {
     <Link
       href={href}
       onClick={() => {
-        trackEvent(eventTracked)
+        if (eventTracked) {
+          trackEvent(eventTracked)
+        }
       }}
       className={`${className} inline-block px-0 !text-[1rem] text-primary-700 no-underline transition-opacity hover:opacity-80`}>
       ← <Trans>Retour</Trans>
