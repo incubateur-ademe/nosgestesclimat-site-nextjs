@@ -63,13 +63,11 @@ type NotFormattedUser = Omit<User, 'userId'> & {
   id?: string
   userId?: string
 }
-// Convert the user id to userId (and remove id if it exists)
+// Handle making sure the user object has a userId
 function formatUser({ user }: { user: NotFormattedUser }): User {
-  if (!user.id) return user as User
-
   const formattedUser = {
     ...user,
-    userId: user.id,
+    userId: user.userId ?? user.id ?? uuid(),
   }
 
   delete formattedUser.id
