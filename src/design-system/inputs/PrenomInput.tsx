@@ -4,10 +4,11 @@ import TextInputGroup from './TextInputGroup'
 
 type Props = {
   error?: string
+  value?: string
 }
 
 export default forwardRef(function PrenomInput(
-  { error, ...props }: Props,
+  { error, value, ...props }: Props,
   ref
 ) {
   const { t } = useClientTranslation()
@@ -18,6 +19,7 @@ export default forwardRef(function PrenomInput(
       helperText={t(
         'Il sera visible uniquement par les participants du groupe'
       )}
+      value={value}
       name="prenom"
       placeholder="Jean-Marc"
       ref={ref as any}
