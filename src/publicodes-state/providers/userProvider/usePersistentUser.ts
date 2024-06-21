@@ -38,7 +38,8 @@ export default function usePersistentUser({
     if (localUser) {
       setUser({
         ...localUser,
-        userId: localUser.userId ?? uuid(),
+        userId:
+          localUser.userId ?? (localUser as User & { id: string }).id ?? uuid(),
       })
     } else {
       setUser({
