@@ -67,7 +67,7 @@ type NotFormattedUser = Omit<User, 'userId'> & {
 function formatUser({ user }: { user: NotFormattedUser }): User {
   const formattedUser = {
     ...user,
-    userId: user.userId ?? user.id ?? uuid(),
+    userId: user.userId || user.id || uuid(),
   }
 
   delete formattedUser.id
