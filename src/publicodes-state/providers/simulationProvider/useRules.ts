@@ -73,6 +73,7 @@ export function useRules({ engine, root }: Props) {
         }
         const mosaicChildren = mosaicRule.rawNode.mosaique['options']?.map(
           (option: string) => {
+            // Stylax but shoudn't we use `utils.disambiguateReference` here ?
             return everyQuestions.find((rule) => rule.endsWith(option)) || ''
           }
         )

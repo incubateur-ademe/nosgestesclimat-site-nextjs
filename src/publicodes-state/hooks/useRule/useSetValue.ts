@@ -104,6 +104,7 @@ export default function useSetValue({
         }, {} as Situation)
       } else {
         situationToAdd = {
+          // Why do we need to pass value in `checkValueValidity` here ?
           [dottedName]: checkValueValidity({ value, type }),
         }
       }
