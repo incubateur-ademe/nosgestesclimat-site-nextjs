@@ -36,14 +36,18 @@ export default function getSortedQuestionsList({
     const aCategoryAndSubcategory = aSplittedName[0] + ' . ' + aSplittedName[1]
     const bCategoryAndSubcategory = bSplittedName[0] + ' . ' + bSplittedName[1]
     if (
-      subcategories[categoryOfBothQuestions].indexOf(aCategoryAndSubcategory) >
-      subcategories[categoryOfBothQuestions].indexOf(bCategoryAndSubcategory)
+      subcategories?.[categoryOfBothQuestions]?.indexOf(
+        aCategoryAndSubcategory
+      ) >
+      subcategories?.[categoryOfBothQuestions]?.indexOf(bCategoryAndSubcategory)
     ) {
       return 1
     }
     if (
-      subcategories[categoryOfBothQuestions].indexOf(aCategoryAndSubcategory) <
-      subcategories[categoryOfBothQuestions].indexOf(bCategoryAndSubcategory)
+      subcategories?.[categoryOfBothQuestions]?.indexOf(
+        aCategoryAndSubcategory
+      ) <
+      subcategories?.[categoryOfBothQuestions]?.indexOf(bCategoryAndSubcategory)
     ) {
       return -1
     }
