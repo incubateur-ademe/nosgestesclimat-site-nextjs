@@ -3,7 +3,6 @@ import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
 import {
   EvaluatedNode,
   Evaluation,
-  Engine as PublicodesEngine,
   Situation as PublicodesSituation,
   RuleNode,
 } from 'publicodes'
@@ -48,8 +47,6 @@ export type Suggestion = {
   //       [key: string]: NodeValue
   //     }
 }
-
-export type Engine = PublicodesEngine
 
 export type NGCRuleNode = RuleNode & {
   rawNode: NGCRule

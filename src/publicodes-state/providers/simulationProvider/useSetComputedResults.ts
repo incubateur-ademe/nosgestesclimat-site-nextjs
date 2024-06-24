@@ -1,23 +1,32 @@
-import { useCurrentSimulation, useEngine } from '@/publicodes-state'
-import { useEffect, useMemo, useRef } from 'react'
-import { ComputedResults } from '../../types'
+import { useCurrentSimulation } from '@/publicodes-state'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { ComputedResults, DottedName, NGCEvaluatedNode } from '../../types'
 
 type Props = {
-  categories: string[]
+  categories: DottedName[]
   isInitialized: boolean
+  safeEvaluate: (ruleName: DottedName) => NGCEvaluatedNode | null
 }
-export function useSetComputedResults({ categories, isInitialized }: Props) {
+export function useSetComputedResults({
+  categories,
+  safeEvaluate,
+  isInitialized,
+}: Props) {
   const { situation, updateCurrentSimulation } = useCurrentSimulation()
 
-  const { getNumericValue } = useEngine()
-
   // little helper function to get the numeric value of a dottedName
+  const getNumericValue = useCallback(
+    (dottedName: DottedName) => {
+      const nodeValue = safeEvaluate(dottedName)?.nodeValue
+      return Number(nodeValue) === nodeValue ? nodeValue : 0
+    },
+    [safeEvaluate]
+  )
 
   // Set the computed results object (after engine init only)
   const computedResults: ComputedResults = useMemo(
     () => {
       if (!isInitialized) return { categories: {}, bilan: 0 }
-
       return categories.reduce(
         (acc, category) => {
           acc.categories[category] = getNumericValue(category)

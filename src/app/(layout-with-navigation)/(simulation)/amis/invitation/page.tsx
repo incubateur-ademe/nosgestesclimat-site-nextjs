@@ -9,6 +9,7 @@ import { useGroupIdInQueryParams } from '@/hooks/groups/useGroupIdInQueryParams'
 import { useGroupPagesGuard } from '@/hooks/navigation/useGroupPagesGuard'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import InvitationForm from './_components/InvitationForm'
+import LaconicRanking from './_components/LaconicRanking'
 
 export default function RejoindreGroupePage() {
   // Guarding the route and redirecting if necessary
@@ -44,6 +45,8 @@ export default function RejoindreGroupePage() {
       />
 
       <InvitationForm group={group} />
+
+      <LaconicRanking group={group} />
     </div>
   )
 }

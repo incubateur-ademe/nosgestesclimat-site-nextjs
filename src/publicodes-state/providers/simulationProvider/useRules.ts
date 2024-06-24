@@ -82,10 +82,20 @@ export function useRules({ engine, root }: Props) {
   const rawMissingVariables = useMemo<Record<string, number>>(() => {
     return Object.fromEntries(
       Object.entries(engine.evaluate(root)?.missingVariables || {}).filter(
-        (missingVariable) => everyQuestions.includes(missingVariable[0])
+        (missingVariable) => {
+          return (
+            everyQuestions.includes(missingVariable[0]) &&
+            parsedRules[missingVariable[0]].explanation.valeur.rawNode?.[
+              'applicable si'
+            ] === undefined &&
+            parsedRules[missingVariable[0]].explanation.valeur.rawNode?.[
+              'non applicable si'
+            ] === undefined
+          )
+        }
       )
     )
-  }, [engine, everyQuestions, root])
+  }, [engine, everyQuestions, parsedRules, root])
 
   return {
     everyRules,

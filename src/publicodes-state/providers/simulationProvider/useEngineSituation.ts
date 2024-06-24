@@ -1,44 +1,36 @@
 import { useCurrentSimulation } from '@/publicodes-state'
+import Engine from 'publicodes'
 import { useCallback, useEffect, useState } from 'react'
-import { safeGetSituation } from '../../helpers/safeGetSituation'
-import { DottedName, Engine, Situation } from '../../types'
+import { Situation } from '../../types'
 
 type Props = {
   engine: Engine
-  everyRules: DottedName[]
 }
 /**
  * Update the engine situation and the simulation situation
  */
-export function useEngineSituation({ engine, everyRules }: Props) {
+export function useEngineSituation({ engine }: Props) {
   const { situation } = useCurrentSimulation()
 
   const [isInitialized, setIsInitialized] = useState(false)
 
   const addToEngineSituation = useCallback(
     (situationToAdd: Situation): Situation => {
-      const safeSituation = safeGetSituation({
-        situation: { ...situation, ...situationToAdd },
-        everyRules,
-      })
-
-      engine.setSituation(safeSituation)
+      engine.setSituation({ ...situation, ...situationToAdd })
+      // The current engine situation might have been filtered
+      const safeSituation = engine.getSituation()
 
       return safeSituation
     },
-    [everyRules, situation, engine]
+    [engine, situation]
   )
 
   useEffect(() => {
     if (isInitialized) return
 
-    const safeSituation = safeGetSituation({
-      situation: situation,
-      everyRules,
-    })
-    engine.setSituation(safeSituation)
+    engine.setSituation(situation)
     setIsInitialized(true)
-  }, [engine, situation, isInitialized, everyRules])
+  }, [engine, situation, isInitialized])
 
   return { isInitialized, addToEngineSituation }
 }
