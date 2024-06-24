@@ -1,13 +1,14 @@
 'use client'
 
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
-import { PublicodesExpression } from 'publicodes'
+import { PublicodesExpression, utils } from 'publicodes'
 import { useCallback } from 'react'
 import getType from '../../helpers/getType'
 import {
   DottedName,
   NGCEvaluatedNode,
   NGCRuleNode,
+  NGCRulesNodes,
   NodeValue,
   Situation,
   UpdateCurrentSimulationProps,
@@ -15,6 +16,7 @@ import {
 
 type Props = {
   dottedName: DottedName
+  parsedRules: NGCRulesNodes
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   evaluation: NGCEvaluatedNode | null
@@ -28,6 +30,7 @@ type Props = {
 
 export default function useSetValue({
   dottedName,
+  parsedRules,
   safeGetRule,
   safeEvaluate,
   value,
@@ -89,15 +92,16 @@ export default function useSetValue({
       if (typeof value === 'object') {
         situationToAdd = Object.keys(
           value as { [dottedName: DottedName]: NodeValue }
-        ).reduce(
-          (accumulator: Situation, currentValue: DottedName) =>
-            ({
-              ...accumulator,
-              [dottedName + ' . ' + currentValue]:
-                value && (value[currentValue] as NodeValue),
-            }) as Situation,
-          {} as Situation
-        )
+        ).reduce((accumulator: Situation, currentValue: DottedName) => {
+          return {
+            ...accumulator,
+            [utils.disambiguateReference(
+              parsedRules,
+              dottedName,
+              currentValue
+            )]: value && (value[currentValue] as NodeValue),
+          } as Situation
+        }, {} as Situation)
       } else {
         situationToAdd = {
           [dottedName]: checkValueValidity({ value, type }),
@@ -121,6 +125,7 @@ export default function useSetValue({
       questionsOfMosaic,
       addToEngineSituation,
       updateCurrentSimulation,
+      parsedRules,
       dottedName,
       type,
       getMosaicResetSituation,

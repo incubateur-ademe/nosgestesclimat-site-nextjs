@@ -1,4 +1,4 @@
-import { NGCRuleNode } from '@/publicodes-state/types'
+import { NGCRuleNode, NGCRulesNodes } from '@/publicodes-state/types'
 import Engine from 'publicodes'
 import { useMemo } from 'react'
 
@@ -8,7 +8,10 @@ type Props = {
 }
 
 export function useRules({ engine, root }: Props) {
-  const parsedRules = engine.getParsedRules()
+  const parsedRules = useMemo<NGCRulesNodes>(
+    () => engine.getParsedRules(),
+    [engine]
+  )
   const parsedRulesEntries = useMemo<[string, NGCRuleNode][]>(
     () => Object.entries(parsedRules),
     [parsedRules]
@@ -98,6 +101,7 @@ export function useRules({ engine, root }: Props) {
   }, [engine, everyQuestions, parsedRules, root])
 
   return {
+    parsedRules,
     everyRules,
     everyInactiveRules,
     everyQuestions,

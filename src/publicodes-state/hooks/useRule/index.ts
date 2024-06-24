@@ -23,6 +23,7 @@ export default function useRule(dottedName: DottedName) {
     engine,
     safeGetRule,
     safeEvaluate,
+    parsedRules,
     everyNotifications,
     everyMosaicChildrenWithParent,
     addToEngineSituation,
@@ -101,6 +102,7 @@ export default function useRule(dottedName: DottedName) {
 
   const { setValue, setDefaultAsValue } = useSetValue({
     dottedName,
+    parsedRules,
     safeGetRule,
     safeEvaluate,
     evaluation,
