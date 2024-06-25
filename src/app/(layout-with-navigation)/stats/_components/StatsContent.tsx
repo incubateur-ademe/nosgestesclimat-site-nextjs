@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
-import { UseQueryResult } from 'react-query'
+import { UseQueryResult } from '@tanstack/react-query'
 import {
   useAllSimulationsTerminees,
   useAllTimeVisits,
