@@ -20,7 +20,9 @@ export default function PollsList({ organisation }: Props) {
       simulations
         .filter((simulation) => simulation.polls)
         .map((simulation) => simulation.polls)
-        .flat(),
+        .flat()
+        // Remove duplicates
+        .filter((value, index, self) => self.indexOf(value) === index),
     [simulations]
   )
   const { data: polls } = usePolls({ pollSlugs })

@@ -33,7 +33,7 @@ Médias:
     image: ecolucide.png
     link: https://www.instagram.com/ecolucide/
   - title: L'avenir a du bon
-    image: avenir.png
+    image: avenir_bon.png
     link: https://www.laveniradubon.fr/
   - title: 'Empreinte carbone : définition, calcul et bilan'
     image: capital.jpg
@@ -134,7 +134,7 @@ Collectivités et acteurs publics:
     link: https://www.jeveuxaider.gouv.fr/
 Associations:
   - title: 'Avenir Climatique'
-    image: ac.png
+    image: avenir.png
     link: https://avenirclimatique.org/calculer-empreinte-carbone/
   - title: 'Makesense'
     image: mk.png

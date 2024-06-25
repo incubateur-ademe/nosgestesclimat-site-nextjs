@@ -13,7 +13,6 @@ import { useDeleteGroup } from '@/hooks/groups/useDeleteGroup'
 import { useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
@@ -52,7 +51,7 @@ export default function OwnerAdminSection({ group }: Props) {
         router.push(linkToClassement)
       }, 2000)
     } catch (error) {
-      captureException(error)
+      // captureException(error)
     }
   }
 

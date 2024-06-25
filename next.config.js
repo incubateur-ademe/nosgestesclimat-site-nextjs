@@ -7,7 +7,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
-const { withSentryConfig } = require('@sentry/nextjs')
+// const { withSentryConfig } = require('@sentry/nextjs')
 
 const redirects = require('./config/redirects.js')
 
@@ -90,7 +90,9 @@ const sentryConfig = [
   },
 ]
 
-module.exports = withSentryConfig(
-  withBundleAnalyzer(withMDX(nextConfig)),
-  ...sentryConfig
-)
+// module.exports = withSentryConfig(
+//   withBundleAnalyzer(withMDX(nextConfig)),
+//   ...sentryConfig
+// )
+
+module.exports = withBundleAnalyzer(withMDX(nextConfig))

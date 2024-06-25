@@ -87,10 +87,10 @@ export function useRules({ engine, root }: Props) {
             everyQuestions.includes(missingVariable[0]) &&
             parsedRules[missingVariable[0]].explanation.valeur.rawNode?.[
               'applicable si'
-            ] !== undefined &&
+            ] === undefined &&
             parsedRules[missingVariable[0]].explanation.valeur.rawNode?.[
               'non applicable si'
-            ] !== undefined
+            ] === undefined
           )
         }
       )

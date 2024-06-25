@@ -110,7 +110,6 @@ export default function CustomQuestionForm({
     <form
       id="custom-question-form"
       onSubmit={(event) => {
-        console.log(event)
         event.preventDefault()
         handleSubmit(onSubmit)(event)
       }}
