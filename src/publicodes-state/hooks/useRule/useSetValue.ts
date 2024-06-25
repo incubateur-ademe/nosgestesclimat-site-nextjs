@@ -21,7 +21,6 @@ type Props = {
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   evaluation: NGCEvaluatedNode | null
   type: string | undefined
-  questionsOfMosaic: DottedName[]
   situation: Situation
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
   addToEngineSituation: (situationToAdd: Situation) => Situation
@@ -33,14 +32,13 @@ export default function useSetValue({
   safeGetRule,
   safeEvaluate,
   type,
-  questionsOfMosaic,
   situation,
   updateCurrentSimulation,
   addToEngineSituation,
 }: Props) {
   const getMosaicResetSituation = useCallback(
-    (questionsOfParentMosaic: DottedName[]): Situation => {
-      const situationToAdd = questionsOfParentMosaic.reduce(
+    (questionsOfMosaicFromBrother: DottedName[]): Situation => {
+      const situationToAdd = questionsOfMosaicFromBrother.reduce(
         (accumulator, mosaicChildDottedName) => {
           const isMissing = getIsMissing({
             dottedName: mosaicChildDottedName,
@@ -79,14 +77,17 @@ export default function useSetValue({
   /**
    * @param value - The value to set
    * @param options.foldedStep - The dottedName of the foldedStep
+   * @param options.questionsOfMosaicFromBrother - The dottedNames of the questions of the mosaic from the brother (another child)
    */
   const setValue = useCallback(
     async (
       value: NodeValue | { [dottedName: DottedName]: NodeValue },
       {
         foldedStep,
+        questionsOfMosaicFromBrother,
       }: {
         foldedStep?: DottedName
+        questionsOfMosaicFromBrother?: DottedName[]
       } = {}
     ) => {
       let situationToAdd = {}
@@ -122,10 +123,9 @@ export default function useSetValue({
           [dottedName]: checkValueValidity({ value, type }),
         }
       }
-
-      if (questionsOfMosaic) {
+      if (questionsOfMosaicFromBrother) {
         situationToAdd = {
-          ...getMosaicResetSituation(questionsOfMosaic),
+          ...getMosaicResetSituation(questionsOfMosaicFromBrother),
           ...situationToAdd,
         }
       }
@@ -137,7 +137,6 @@ export default function useSetValue({
       })
     },
     [
-      questionsOfMosaic,
       addToEngineSituation,
       updateCurrentSimulation,
       parsedRules,

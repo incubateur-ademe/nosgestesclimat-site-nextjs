@@ -60,7 +60,7 @@ export default function useRule(dottedName: DottedName) {
     everyMosaicChildrenWithParent[dottedName] || []
 
   const questionsOfMosaicFromBrother =
-    Object.values(everyMosaicChildrenWithParent).find(([mosaicChildren]) => {
+    Object.values(everyMosaicChildrenWithParent).find((mosaicChildren) => {
       return mosaicChildren.includes(dottedName)
     }) || []
 
@@ -107,7 +107,6 @@ export default function useRule(dottedName: DottedName) {
     safeEvaluate,
     evaluation,
     type,
-    questionsOfMosaic: questionsOfMosaicFromParent,
     updateCurrentSimulation,
     situation,
     addToEngineSituation,
