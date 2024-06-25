@@ -38,7 +38,7 @@ export default function SimulationsChart({
       dates.length-- //last period is removed from data
       const dataDots = dates?.map((date) => {
         const points: Record<string, string | number> = {}
-        points['date'] = date
+        points['date'] = date as string
 
         points[dataKey] =
           typeof chart[date] === 'number'

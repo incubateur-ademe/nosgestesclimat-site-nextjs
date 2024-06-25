@@ -6,10 +6,10 @@ const idSite = 153
 
 const MESURE_START_DATE = '2021-02-01,today'
 
-export const useX = (queryName, urlQuery, transformResult, keepPreviousData) =>
-  useQuery(
-    queryName,
-    () =>
+export const useX = (queryName, urlQuery, transformResult) =>
+  useQuery({
+    queryKey: queryName,
+    queryFn: () =>
       axios
         .get(
           SERVER_URL +
@@ -17,8 +17,7 @@ export const useX = (queryName, urlQuery, transformResult, keepPreviousData) =>
             encodeURIComponent(urlQuery)
         )
         .then((res) => transformResult(res)),
-    { keepPreviousData }
-  )
+  })
 
 export const useVisitsChart = ({ chartPeriod, chartDate, name }) => {
   return useX(
