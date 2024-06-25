@@ -1,5 +1,5 @@
 import { NGCRuleNode, NGCRulesNodes } from '@/publicodes-state/types'
-import Engine from 'publicodes'
+import Engine, { utils } from 'publicodes'
 import { useMemo } from 'react'
 
 type Props = {
@@ -74,13 +74,13 @@ export function useRules({ engine, root }: Props) {
         const mosaicChildren = mosaicRule.rawNode.mosaique['options']?.map(
           (option: string) => {
             // Stylax but shoudn't we use `utils.disambiguateReference` here ?
-            return everyQuestions.find((rule) => rule.endsWith(option)) || ''
+            return utils.disambiguateReference(parsedRules, mosaic, option)
           }
         )
         accumulator[mosaic] = [...mosaicChildren]
         return accumulator
       }, {}),
-    [everyMosaic, everyQuestions, engine]
+    [everyMosaic, engine, parsedRules]
   )
 
   const rawMissingVariables = useMemo<Record<string, number>>(() => {
