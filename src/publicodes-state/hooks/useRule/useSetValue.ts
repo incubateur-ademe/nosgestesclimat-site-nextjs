@@ -43,26 +43,30 @@ export default function useSetValue({
   const getMosaicResetSituation = useCallback(
     (questionsOfParentMosaic: DottedName[]): Situation => {
       const situationToAdd = questionsOfParentMosaic.reduce(
-        (accumulator, currentValue) => {
+        (accumulator, mosaicChildDottedName) => {
           const isMissing = getIsMissing({
-            dottedName: currentValue,
+            dottedName: mosaicChildDottedName,
             situation,
           })
           if (!isMissing) return accumulator
 
-          const rule = safeGetRule(currentValue)
-          const evaluation = safeEvaluate(currentValue)
+          const rule = safeGetRule(mosaicChildDottedName)
+          const evaluation = safeEvaluate(mosaicChildDottedName)
           const resetValue =
-            getType({ rule, evaluation, dottedName: currentValue }) ===
+            getType({ rule, evaluation, dottedName: mosaicChildDottedName }) ===
             'boolean'
               ? 'non'
               : 0
 
           return {
             ...accumulator,
-            [currentValue]: checkValueValidity({
+            [mosaicChildDottedName]: checkValueValidity({
               value: resetValue,
-              type: getType({ rule, evaluation, dottedName: currentValue }),
+              type: getType({
+                rule,
+                evaluation,
+                dottedName: mosaicChildDottedName,
+              }),
             }),
           }
         },
@@ -92,19 +96,31 @@ export default function useSetValue({
       if (typeof value === 'object') {
         situationToAdd = Object.keys(
           value as { [dottedName: DottedName]: NodeValue }
-        ).reduce((accumulator: Situation, currentValue: DottedName) => {
-          return {
-            ...accumulator,
-            [utils.disambiguateReference(
+        ).reduce(
+          (accumulator: Situation, partialMosaicChildDottedName: string) => {
+            const mosaicChildDottedName = utils.disambiguateReference(
               parsedRules,
               dottedName,
-              currentValue
-            )]: value && (value[currentValue] as NodeValue),
-          } as Situation
-        }, {} as Situation)
+              partialMosaicChildDottedName
+            ) as DottedName
+            const rule = safeGetRule(mosaicChildDottedName)
+            const evaluation = safeEvaluate(mosaicChildDottedName)
+            return {
+              ...accumulator,
+              [mosaicChildDottedName]: checkValueValidity({
+                value: value && value[partialMosaicChildDottedName],
+                type: getType({
+                  rule,
+                  evaluation,
+                  dottedName: mosaicChildDottedName,
+                }),
+              }),
+            } as Situation
+          },
+          {} as Situation
+        )
       } else {
         situationToAdd = {
-          // Why do we need to pass value in `checkValueValidity` here ?
           [dottedName]: checkValueValidity({ value, type }),
         }
       }
@@ -128,6 +144,8 @@ export default function useSetValue({
       updateCurrentSimulation,
       parsedRules,
       dottedName,
+      safeGetRule,
+      safeEvaluate,
       type,
       getMosaicResetSituation,
     ]
@@ -138,14 +156,18 @@ export default function useSetValue({
       let situationToAdd = {}
       if (type?.includes('mosaic')) {
         situationToAdd = questionsOfMosaic.reduce(
-          (accumulator, currentValue) => {
-            const rule = safeGetRule(currentValue)
-            const evaluation = safeEvaluate(currentValue)
+          (accumulator, mosaicChildDottedName) => {
+            const rule = safeGetRule(mosaicChildDottedName)
+            const evaluation = safeEvaluate(mosaicChildDottedName)
             return {
               ...accumulator,
-              [currentValue]: checkValueValidity({
+              [mosaicChildDottedName]: checkValueValidity({
                 value: evaluation?.nodeValue,
-                type: getType({ rule, evaluation, dottedName: currentValue }),
+                type: getType({
+                  rule,
+                  evaluation,
+                  dottedName: mosaicChildDottedName,
+                }),
               }),
             }
           },
