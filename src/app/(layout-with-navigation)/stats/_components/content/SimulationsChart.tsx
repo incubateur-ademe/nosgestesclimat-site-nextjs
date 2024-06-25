@@ -34,7 +34,7 @@ export default function SimulationsChart({
 
   useEffect(() => {
     if (chart) {
-      const dates = Object.keys(chart)
+      const dates = Object.keys(chart) as Array<keyof typeof chart>
       dates.length-- //last period is removed from data
       const dataDots = dates?.map((date) => {
         const points: Record<string, string | number> = {}
@@ -43,7 +43,7 @@ export default function SimulationsChart({
         points[dataKey] =
           typeof chart[date] === 'number'
             ? +chart[date]
-            : +chart[date]?.[0]?.nb_visits
+            : +chart[date]?.[0]?.['nb_visits']
         return points
       })
       setData(dataDots)
