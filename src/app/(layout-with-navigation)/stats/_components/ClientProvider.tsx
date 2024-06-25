@@ -1,6 +1,7 @@
 'use client'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { PropsWithChildren } from 'react'
+// A previous version of react-query is "volontarily" used here
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const queryClient = new QueryClient()
 

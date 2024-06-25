@@ -1,6 +1,7 @@
 import { SERVER_URL } from '@/constants/urls'
-import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
+// A previous version of react-query is used here
+import { useQuery } from 'react-query'
 
 const idSite = 153
 
