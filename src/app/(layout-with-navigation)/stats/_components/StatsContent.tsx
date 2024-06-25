@@ -1,26 +1,19 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import { UseQueryResult } from '@tanstack/react-query'
+import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
+import { UseQueryResult } from 'react-query'
 import {
-  useActiveEntryPages,
   useAllSimulationsTerminees,
   useAllTimeVisits,
   useCurrentMonthSimulationsTerminees,
+  useCurrentMonthSocials,
   useCurrentMonthVisits,
-  useEntryPages,
-  useGetSharedSimulationEvents,
-  useHomepageVisitors,
-  useOldWebsites,
-  useSocials,
-  useTotal,
-  useWebsites,
+  useCurrentMonthWebsites,
 } from '../_helpers/matomo'
-import IframeFigures from './content/IframeFigures'
+import AcquisitionBlock from './content/AcquisitionBlock'
 import SimulationsBlock from './content/SimulationsBlock'
-import Sources from './content/Sources'
 import VisitsBlock from './content/VisitsBlock'
 
 // Do not try [toRenderWithRequestData] until all [requestResults] are successful.
@@ -70,14 +63,9 @@ export default function StatsContent() {
   const allTimeVisits = useAllTimeVisits()
   const currentMonthSimulations = useCurrentMonthSimulationsTerminees()
   const allSimulationsTerminees = useAllSimulationsTerminees()
-  const total = useTotal()
-  const websites = useWebsites()
-  const oldWebsites = useOldWebsites()
-  const socials = useSocials()
-  const entryPages = useEntryPages()
-  const activeEntryPages = useActiveEntryPages()
-  const homepageVisitorsData = useHomepageVisitors()
-  const sharedSimulations = useGetSharedSimulationEvents()
+  const currentMonthWebsites = useCurrentMonthWebsites()
+  const currentMonthSocials = useCurrentMonthSocials()
+  const allSubscribers = useNumberSubscribers()
 
   return (
     <div>
@@ -113,82 +101,28 @@ export default function StatsContent() {
             </>
           )}
         />
-        <div className="mt-4">
-          <div className="flex flex-row gap-4">
-            <Card className="flex-1">
-              <p className="mb-0">
-                <strong className="text-3xl">
-                  {homepageVisitorsData?.data?.[0]?.nb_visits
-                    ?.toString()
-                    ?.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') || (
-                    <span>Chargement...</span>
-                  )}
-                </strong>{' '}
-              </p>
-              <p className="text-sm">
-                <Trans>visites sur la page d'accueil</Trans>
-              </p>
-            </Card>
-
-            <Card className="flex-1">
-              <strong className="text-3xl">
-                {sharedSimulations?.data?.[0]?.nb_events
-                  ?.toString()
-                  ?.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') || (
-                  <span>Chargement...</span>
-                )}
-              </strong>{' '}
-              <p className="mb-0 text-sm">
-                <Trans>partages du site</Trans>
-              </p>
-            </Card>
-          </div>
-        </div>
-        <UseQueryResultHandler
-          requestResults={[total, websites, oldWebsites, socials]}
-          toRenderWithRequestData={([
-            totalData,
-            websitesData,
-            oldWebsitesData,
-            socialsData,
-          ]) => (
-            <Sources
-              total={totalData.value}
-              websites={websitesData}
-              oldWebsites={oldWebsitesData}
-              socials={socialsData}
-            />
-          )}
-        />
       </div>
       <div className="mt-8">
         <h2>
           <Trans>Acquisition</Trans>
         </h2>
-        <details>
-          <Trans i18nKey={'components.stats.StatsContent.integrationEtIframes'}>
-            <summary className="mb-4">En savoir plus</summary>
-            <p className="mb-4">
-              Les intégrations en iframe sont détéctées via le paramètre
-              'iframe' dans l'URL, ceci seulement si l'intégrateur a utilisé le{' '}
-              <a href="/partenaires">script dédié</a>. Ainsi, les visites via
-              les iframes d'intégrateurs qui n'ont pas utilisé ce script sont
-              dispersées dans les visites générales de Nos Gestes Climat. Dans
-              l'attente de chiffres plus précis, ce taux est donc
-              potentiellement sous-estimé par rapport à la réalité.{' '}
-              <i>(Données valables pour les 30 derniers jours)</i>
-            </p>
-          </Trans>
-        </details>
         <UseQueryResultHandler
-          requestResults={[entryPages, activeEntryPages]}
-          toRenderWithRequestData={([entryPagesData, activeEntryPagesData]) => (
-            <div>
-              <IframeFigures
-                pages={entryPagesData}
-                activePages={activeEntryPagesData}
-              />
-            </div>
+          requestResults={[
+            currentMonthWebsites,
+            currentMonthSocials,
+            currentMonthVisits,
+          ]}
+          toRenderWithRequestData={([
+            currentMonthWebsitesData,
+            currentMonthSocialsData,
+            currentMonthVisitsData,
+          ]) => (
+            <AcquisitionBlock
+              allSubscribers={allSubscribers}
+              currentMonthWebsitesData={currentMonthWebsitesData}
+              currentMonthSocialsData={currentMonthSocialsData}
+              currentMonthVisitsData={currentMonthVisitsData}
+            />
           )}
         />
       </div>

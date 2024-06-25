@@ -69,7 +69,7 @@ export const useCurrentMonthVisits = () =>
 export const useAllTimeVisits = () =>
   useX(
     'allTimeVisits',
-    `module=API&date=last6000&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
+    `module=API&&date=${MESURE_START_DATE}&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
     (res) => {
       const base = 109689 //base NGC
       return base + res.data.value
@@ -91,7 +91,7 @@ export const useCurrentMonthSimulationsTerminees = () =>
 export const useAllSimulationsTerminees = () =>
   useX(
     'allSimulationsTerminees',
-    `module=API&method=Events.getAction&idSite=${idSite}&period=range&date=last6000&format=JSON`,
+    `module=API&method=Events.getAction&idSite=${idSite}&period=range&&date=${MESURE_START_DATE}&format=JSON`,
     (res) => {
       const base = 32015 //base NGC
       return (
@@ -107,54 +107,23 @@ export const useAllSimulationsTerminees = () =>
     },
     true
   )
-export const useTotal = () =>
-  useX(
-    'total',
-    `module=API&date=last30&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
-    (res) => res.data
-  )
 
-export const useWebsites = () =>
+export const useCurrentMonthWebsites = () =>
   useX(
     'websites',
-    `module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Referrers.getWebsites&filter_limit=1000`,
-    (res) => res.data
+    `module=API&date=last1&period=month&format=json&idSite=${idSite}&method=Referrers.getWebsites&filter_limit=1000`,
+    (res) => {
+      return Object.values(res.data)[0]
+    }
   )
 
-export const useOldWebsites = () =>
-  useX(
-    'oldwebsites',
-    `module=API&date=lastYear,lastMonth&period=range&format=json&idSite=${idSite}&method=Referrers.getWebsites&filter_limit=1000`,
-    (res) => res.data
-  )
-
-export const useSocials = () =>
+export const useCurrentMonthSocials = () =>
   useX(
     'socials',
-    `module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Referrers.getSocials`,
-
-    (res) => res.data
-  )
-
-export const useEntryPages = () =>
-  useX(
-    'entryPages',
-    `module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Actions.getEntryPageUrls&expanded=1&filter_limit=1000`,
-    (res) => res.data
-  )
-
-export const useActiveEntryPages = () =>
-  useX(
-    'activeEntryPages',
-    `module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Actions.getEntryPageUrls&filter_limit=1000&segment=eventAction%3D%3DClic%252520CTA%252520accueil`,
-    (res) => res.data
-  )
-
-export const useHomepageVisitors = () =>
-  useX(
-    'homepageVisitors',
-    `module=API&method=Actions.getPageUrl&pageUrl=https://nosgestesclimat.fr&idSite=${idSite}&period=range&date=${MESURE_START_DATE}&format=JSON`,
-    (res) => res.data
+    `module=API&date=last1&period=month&format=json&idSite=${idSite}&method=Referrers.getSocials`,
+    (res) => {
+      return Object.values(res.data)[0]
+    }
   )
 
 export const useGetSharedSimulationEvents = () =>
