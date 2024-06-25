@@ -20,7 +20,6 @@ type Props = {
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   evaluation: NGCEvaluatedNode | null
-  value: NodeValue
   type: string | undefined
   questionsOfMosaic: DottedName[]
   situation: Situation
@@ -33,7 +32,6 @@ export default function useSetValue({
   parsedRules,
   safeGetRule,
   safeEvaluate,
-  value,
   type,
   questionsOfMosaic,
   situation,
@@ -151,54 +149,8 @@ export default function useSetValue({
     ]
   )
 
-  const setDefaultAsValue = useCallback(
-    async (foldedStep?: DottedName) => {
-      let situationToAdd = {}
-      if (type?.includes('mosaic')) {
-        situationToAdd = questionsOfMosaic.reduce(
-          (accumulator, mosaicChildDottedName) => {
-            const rule = safeGetRule(mosaicChildDottedName)
-            const evaluation = safeEvaluate(mosaicChildDottedName)
-            return {
-              ...accumulator,
-              [mosaicChildDottedName]: checkValueValidity({
-                value: evaluation?.nodeValue,
-                type: getType({
-                  rule,
-                  evaluation,
-                  dottedName: mosaicChildDottedName,
-                }),
-              }),
-            }
-          },
-          {}
-        )
-      } else {
-        situationToAdd = {
-          [dottedName]: checkValueValidity({ value, type }),
-        }
-      }
-      const safeSituation = addToEngineSituation(situationToAdd)
-      updateCurrentSimulation({
-        situationToAdd: safeSituation,
-        foldedStepToAdd: foldedStep,
-      })
-    },
-    [
-      dottedName,
-      type,
-      value,
-      questionsOfMosaic,
-      safeEvaluate,
-      safeGetRule,
-      updateCurrentSimulation,
-      addToEngineSituation,
-    ]
-  )
-
   return {
     setValue,
-    setDefaultAsValue,
   }
 }
 

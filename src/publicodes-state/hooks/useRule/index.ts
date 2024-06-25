@@ -100,13 +100,12 @@ export default function useRule(dottedName: DottedName) {
     type,
   })
 
-  const { setValue, setDefaultAsValue } = useSetValue({
+  const { setValue } = useSetValue({
     dottedName,
     parsedRules,
     safeGetRule,
     safeEvaluate,
     evaluation,
-    value,
     type,
     questionsOfMosaic: questionsOfMosaicFromParent,
     updateCurrentSimulation,
@@ -219,10 +218,6 @@ export default function useRule(dottedName: DottedName) {
      * Setter for the value of the rule, with the possibility to add a dottedName in the foldedSteps
      */
     setValue,
-    /**
-     * Set default value as value, with the possibility to add a dottedName in the foldedSteps and the mosaic parent
-     */
-    setDefaultAsValue,
     /**
      * A list of actions linked to the rules (only used by "ui . pédagogie" rules)
      */
