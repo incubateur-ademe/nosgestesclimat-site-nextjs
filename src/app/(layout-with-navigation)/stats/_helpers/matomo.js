@@ -130,5 +130,5 @@ export const useGetSharedSimulationEvents = () =>
   useX(
     'sharedSimulation',
     `module=API&method=Events.getCategory&label=partage&idSite=${idSite}&period=range&date=${MESURE_START_DATE}&format=JSON`,
-    (res) => res.data
+    (res) => res.data[0].nb_visits
   )

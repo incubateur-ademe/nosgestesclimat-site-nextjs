@@ -11,8 +11,10 @@ import {
   useCurrentMonthSocials,
   useCurrentMonthVisits,
   useCurrentMonthWebsites,
+  useGetSharedSimulationEvents,
 } from '../_helpers/matomo'
 import AcquisitionBlock from './content/AcquisitionBlock'
+import MetabaseIframe from './content/MetabaseIframe'
 import SimulationsBlock from './content/SimulationsBlock'
 import VisitsBlock from './content/VisitsBlock'
 
@@ -65,6 +67,7 @@ export default function StatsContent() {
   const allSimulationsTerminees = useAllSimulationsTerminees()
   const currentMonthWebsites = useCurrentMonthWebsites()
   const currentMonthSocials = useCurrentMonthSocials()
+  const allSharedSimulationEvents = useGetSharedSimulationEvents()
   const allSubscribers = useNumberSubscribers()
 
   return (
@@ -111,14 +114,17 @@ export default function StatsContent() {
             currentMonthWebsites,
             currentMonthSocials,
             currentMonthVisits,
+            allSharedSimulationEvents,
           ]}
           toRenderWithRequestData={([
             currentMonthWebsitesData,
             currentMonthSocialsData,
             currentMonthVisitsData,
+            allSharedSimulationEventsData,
           ]) => (
             <AcquisitionBlock
               allSubscribers={allSubscribers}
+              allSharedSimulationEventsData={allSharedSimulationEventsData}
               currentMonthWebsitesData={currentMonthWebsitesData}
               currentMonthSocialsData={currentMonthSocialsData}
               currentMonthVisitsData={currentMonthVisitsData}
@@ -130,12 +136,44 @@ export default function StatsContent() {
         <h2>
           <Trans>Données qualitatives</Trans>
         </h2>
-        <Trans i18nKey={'components.stats.StatsContent.infosNorthstar'}>
-          <p>
-            En fin de simulation, pour 10% de nos utilisateurs blabla. Cette
-            section statistique est générées via Metabase.
-          </p>
-        </Trans>
+        <p>
+          <Trans i18nKey={'components.stats.StatsContent.infosNorthstar'}>
+            En fin de simulation, pour 10% de nos utilisateurs, nous proposons à
+            nos utilisateurs de répondre à la question suivante :{' '}
+            <strong>D’après vous, quel est votre le plus important ?</strong>.
+            L'idée est d'évaluer l'effet de nos améliorations pédagogiques.
+            Cette section statistique est générée via Metabase.
+          </Trans>
+        </p>
+        <MetabaseIframe
+          id="test"
+          titre="test"
+          src="http://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/2cb00116-100f-4c22-b72e-a45e86ae3fea?tab=9-qualitatif#titled=false"
+        />{' '}
+      </div>
+      <div className="mt-8">
+        <h2>
+          <Trans>Modes "Groupes"</Trans>
+        </h2>
+        <p>
+          {' '}
+          <Trans i18nKey={'components.stats.StatsContent.infosNorthstar'}>
+            Il est question ici des modes "Organisations" et "Challenge tes
+            amis". Cette section est générée via Metabase.
+          </Trans>{' '}
+        </p>
+        <h3>Mode "Organisations"</h3>
+        {/* <MetabaseIframe
+          id="stats-orga"
+          titre="stats mode orga"
+          src="http://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/2cb00116-100f-4c22-b72e-a45e86ae3fea?tab=7-organisations#titled=false"
+        /> */}
+        <h3 className="mt-4">Mode "Challenge tes amis"</h3>
+        {/* <MetabaseIframe
+          id="test"
+          titre="test"
+          src="http://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/2cb00116-100f-4c22-b72e-a45e86ae3fea?tab=8-groupes-d%27amis#titled=false"
+        />{' '} */}
       </div>
     </div>
   )

@@ -4,9 +4,6 @@ import Table from './sources/Table'
 
 export default function Sources(props) {
   const { t } = useClientTranslation()
-
-  console.log(props.currentMonthVisitsData)
-
   return (
     <section className="mt-8">
       <h3>
