@@ -63,7 +63,5 @@ export default function Fish({ numberOfFish }: Props) {
     }
   }, [numberOfFish, fishes])
 
-  return (
-    <div className="relative h-full border">{fishes.map((fish) => fish)}</div>
-  )
+  return <div className="relative h-full">{fishes.map((fish) => fish)}</div>
 }
