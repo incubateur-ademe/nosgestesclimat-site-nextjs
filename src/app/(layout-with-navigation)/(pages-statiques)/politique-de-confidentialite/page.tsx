@@ -1,9 +1,6 @@
-import MDXContent from '@/components/mdx/MDXContent'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import PrivacyEn from '@/locales/pages/en/privacy.mdx'
-import PrivacyEs from '@/locales/pages/es/privacy.mdx'
-import PrivacyFr from '@/locales/pages/fr/privacy.mdx'
+import { PrivacyPolicy } from '@incubateur-ademe/legal-pages-react/PrivacyPolicy'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -21,10 +18,43 @@ export async function generateMetadata() {
 
 export default function ViePriveePage() {
   return (
-    <MDXContent
-      contentEn={PrivacyEn}
-      contentFr={PrivacyFr}
-      contentEs={PrivacyEs}
-    />
+    <div className="markdown">
+      <PrivacyPolicy
+        includeBetaGouv
+        cookieConsentButton={
+          <iframe
+            title="matomo"
+            src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&backgroundColor=&fontColor=&fontSize=&fontFamily="
+          />
+        }
+        siteName="Nos Gestes Climat"
+        cookies={[
+          {
+            category: 'Mesure d’audience anonymisée',
+            name: 'Matomo',
+            expiration: '13 mois',
+            finalities: 'Mesure d’audience',
+            editor: 'Matomo & ADEME',
+            destination: 'France',
+          },
+        ]}
+        thirdParties={[
+          {
+            name: 'Vercel',
+            country: 'États-Unis',
+            hostingCountry: 'France (AWS cdg1)',
+            serviceType: 'Hébergement',
+            policyUrl: 'https://vercel.com/legal/privacy-policy',
+          },
+          {
+            name: 'Scalingo',
+            country: 'France',
+            hostingCountry: 'France',
+            serviceType: 'Base de données',
+            policyUrl: 'https://scalingo.com/legal-notice',
+          },
+        ]}
+      />
+    </div>
   )
 }

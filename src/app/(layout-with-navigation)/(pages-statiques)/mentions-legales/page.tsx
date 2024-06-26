@@ -1,9 +1,6 @@
-import MDXContent from '@/components/mdx/MDXContent'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import MentionsLegalesEn from '@/locales/pages/en/mentions-legales.mdx'
-import MentionsLegalesEs from '@/locales/pages/es/mentions-legales.mdx'
-import MentionsLegalesFr from '@/locales/pages/fr/mentions-legales.mdx'
+import { LegalNotice } from '@incubateur-ademe/legal-pages-react/LegalNotice'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -17,10 +14,18 @@ export async function generateMetadata() {
 export default function MentionsLegalesPage() {
   return (
     <div className="markdown">
-      <MDXContent
-        contentEn={MentionsLegalesEn}
-        contentFr={MentionsLegalesFr}
-        contentEs={MentionsLegalesEs}
+      <LegalNotice
+        includeBetaGouv
+        siteName="SITE EXEMPLE"
+        siteUrl={process.env.NEXT_PUBLIC_SITE_URL!}
+        licenceUrl="https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/blob/main/LICENSE"
+        privacyPolicyUrl="/politique-de-confidentialite"
+        siteHost={{
+          name: 'Vercel Inc.',
+          address: '440 N Barranca Ave #4133<br/>Covina, CA 91723',
+          country: 'États-Unis',
+          email: 'privacy@vercel.com',
+        }}
       />
     </div>
   )

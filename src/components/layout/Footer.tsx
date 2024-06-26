@@ -153,13 +153,31 @@ export default function Footer({ className = '' }) {
               </div>
 
               <div className="mt-4 text-xs">
-                ▲&nbsp;<Trans>Propulsé par Vercel</Trans>
-                <span className="hidden sm:inline"> | </span>
-                <br className="md:hidden" />
                 <InlineLink
                   href="/accessibilite"
                   className="text-default no-underline hover:underline">
                   <Trans>Accessibilité : partiellement conforme</Trans>
+                </InlineLink>
+                <span className="hidden sm:inline"> | </span>
+                <br className="md:hidden" />
+                <InlineLink
+                  href="/mentions-legales"
+                  className="text-default no-underline hover:underline">
+                  <Trans>Mentions légales</Trans>
+                </InlineLink>
+                <span className="hidden sm:inline"> | </span>
+                <br className="md:hidden" />
+                <InlineLink
+                  href="/politique-de-confidentialite"
+                  className="text-default no-underline hover:underline">
+                  <Trans>Politique de confidentialité</Trans>
+                </InlineLink>
+                <span className="hidden sm:inline"> | </span>
+                <br className="md:hidden" />
+                <InlineLink
+                  href="/politique-des-cookies"
+                  className="text-default no-underline hover:underline">
+                  <Trans>Politique des cookies</Trans>
                 </InlineLink>
               </div>
             </div>
