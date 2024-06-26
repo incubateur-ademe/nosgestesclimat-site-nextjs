@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { PrivacyPolicy } from '@incubateur-ademe/legal-pages-react/PrivacyPolicy'
@@ -19,6 +20,27 @@ export async function generateMetadata() {
 export default function ViePriveePage() {
   return (
     <div className="markdown">
+      <p>
+        <Trans>
+          La simulation et les calculs se font dans votre navigateur Web, donc
+          les réponses aux questions restent chez vous, nous n'en collectons
+          aucune.
+        </Trans>
+      </p>
+      <p>
+        <Trans>
+          Cependant, nous suivons quelques informations sur votre utilisation de
+          ce simulateur, telles que les pages consultées et le temps passé, dans
+          l'unique but de l'améliorer.
+        </Trans>
+      </p>
+      <p>
+        <Trans>
+          En particulier, nous suivons l'adresse de la page de fin de
+          simulation, qui contient le total de votre empreinte et sa répartition
+          en grande catégories (transport, logement, etc.)
+        </Trans>
+      </p>
       <PrivacyPolicy
         includeBetaGouv
         cookieConsentButton={
