@@ -7,7 +7,6 @@ import {
   useSimulation,
   useUser,
 } from '@/publicodes-state'
-import { captureException } from '@sentry/react'
 import { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
 
 // The max rate at which we save the simulation (in ms)
@@ -88,9 +87,9 @@ export default function SimulationSyncProvider({
 
       if (computedResults?.bilan === 0) {
         // Send an error to Sentry
-        captureException(
-          new Error('SimulationSyncProvider: computedResults.bilan === 0')
-        )
+        // captureException(
+        //   new Error('SimulationSyncProvider: computedResults.bilan === 0')
+        // )
       }
 
       saveSimulation({

@@ -105,7 +105,8 @@ body {
 }
 
 a {
-  @apply inline-block text-primary-700 underline transition-colors hover:text-primary-800;
+  @apply inline-block break-words text-primary-700 underline transition-colors hover:text-primary-800;
+  word-break: break-word;
 }
 
 img {

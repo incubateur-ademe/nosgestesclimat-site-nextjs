@@ -6,7 +6,6 @@ import {
   NorthStarType,
   NorthStarValue,
 } from '@/types/northstar'
-import { captureException } from '@sentry/browser'
 import { useEffect, useState } from 'react'
 import EmojiButton from './EmojiButton'
 
@@ -149,6 +148,6 @@ const postData = async (data: any, id: string, ratings: NorthStarRatings) => {
       body: JSON.stringify(body),
     })
   } catch (e) {
-    captureException(e)
+    // captureException(e)
   }
 }

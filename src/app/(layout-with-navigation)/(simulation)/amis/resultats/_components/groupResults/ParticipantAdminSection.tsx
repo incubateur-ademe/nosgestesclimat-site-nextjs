@@ -8,7 +8,6 @@ import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useRemoveParticipant } from '@/hooks/groups/useRemoveParticipant'
 import { useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
-import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
@@ -40,7 +39,7 @@ export default function ParticipantAdminSection({ group }: Props) {
         router.push(linkToClassement)
       }, 1750)
     } catch (error) {
-      captureException(error)
+      // captureException(error)
     }
   }
 

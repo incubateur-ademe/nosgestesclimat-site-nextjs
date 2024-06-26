@@ -79,7 +79,6 @@ entries:
   jours: jours
   le + d'impact climat: le + d'impact climat
   le - d'impact climat: le - d'impact climat
-  meta.publicodes.pages.Documentation.intro: Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.
   minutes: minutes
   model.active.documented: La construction du modèle (pistes de travail, réflexions en cours, feuille de route, etc.) est amplement <2>documentée publiquement</2>.
   model.intro: Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.
@@ -93,7 +92,6 @@ entries:
   mois: mois
   noresults: Aucun résultat ne correspond à cette recherche
   ont utilisé l'aide à la saisie des km: ont utilisé l'aide à la saisie des km
-  pages.News.premierParagraphe: Nous améliorons le site en continu à partir de vos retours. Découvrez ici les dernières nouveautés.
   participant: participant
   plus d'1 kg: plus d'1 kg
   plus d'1 tonne: plus d'1 tonne
@@ -110,7 +108,6 @@ entries:
   publicodes.AllActions.msgPlusActions: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
   publicodes.Contribution.commentaireAugmenté: '> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).'
-  publicodes.FAQ.description: Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
   publicodes.Contribution.descriptionComplète: <0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>
   publicodes.Contribution.liensVersGithub: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
   publicodes.Contribution.remerciements: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <2>ce lien</2>.
@@ -166,7 +163,6 @@ entries:
   Nombre de: Nombre de
   'pour les ': 'pour les '
   Contact: Contact
-  publicodes.FAQ.faireletest: Vous n'avez pas encore débuté votre test, <2><0>lancez-vous !</0></2>
   Comparez vos résultats avec votre famille ou un groupe d'amis.: Comparez vos résultats avec votre famille ou un groupe d'amis.
   Comparez vos résultats avec votre famille ou un groupe d’amis: Comparez vos résultats avec votre famille ou un groupe d’amis
   Copié !: Copié !
@@ -432,7 +428,6 @@ entries:
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet
   Découvrez vos résultats détaillés: Découvrez vos résultats détaillés
   Effectivement, avec: Effectivement, avec
-  Entreprises et collectivités: Entreprises et collectivités
   est votre poste le plus important !: est votre poste le plus important !
   Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.
   Facultatif: Facultatif
@@ -516,7 +511,6 @@ entries:
   à tout moment: à tout moment
   Annuler: Annuler
   Invitez d'autres personnes à rejoindre votre groupe: Invitez d'autres personnes à rejoindre votre groupe
-  Invitez vos proches pour comparer vos résultats. Cela prend: Invitez vos proches pour comparer vos résultats. Cela prend
   l’équipe de nosgestesclimat.fr: l’équipe de nosgestesclimat.fr
   Supprimer le groupe: Supprimer le groupe
   Voir les résultats: Voir les résultats
@@ -787,7 +781,6 @@ entries:
   Nos relais: Nos relais
   Nos relais - Nos Gestes Climat: Nos relais - Nos Gestes Climat
   'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.': 'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.'
-  Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre galerie de relais ? Merci de nous envoyer un message avec <2>votre logo</2> via <5>notre page de contact</5>.: Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre galerie de relais ? Merci de nous envoyer un message avec <2>votre logo</2> via <5>notre page de contact</5>.
   ', le': ', le'
   Campagne créée par: Campagne créée par
   '{CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}': '{CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}'
@@ -805,10 +798,7 @@ entries:
   Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L’État, les collectivités locales, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.: Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L’État, les collectivités locales, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.
   "<0>Nos Gestes Logement</0> : informez-vous sur l'impact carbone du logement, en quelques e-mails": "<0>Nos Gestes Logement</0> : informez-vous sur l'impact carbone du logement, en quelques e-mails"
   Campagne de: Campagne de
-  Plus de 40 acteurs relaient <2>ou</2> ont relayé Nos Gestes Climat à travers <4>l’intégration du calculateur</4> sur leur site internet <8>ou</8> sa diffusion via <11>des campagnes</11> (mail, réseaux sociaux et/ou affichage). C’est majoritairement grâce à eux que nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque jour et nous les en remercions.: Plus de 40 acteurs relaient <2>ou</2> ont relayé Nos Gestes Climat à travers <4>l’intégration du calculateur</4> sur leur site internet <8>ou</8> sa diffusion via <11>des campagnes</11> (mail, réseaux sociaux et/ou affichage). C’est majoritairement grâce à eux que nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque jour et nous les en remercions.
   Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.: Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.
-  À propos 🦔: À propos 🦔
-  Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services sociétaux), de la situer par rapport aux objectifs climatiques et surtout de passer à l'action à votre niveau avec des gestes personnalisés en fonction de vos réponses.: Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services sociétaux), de la situer par rapport aux objectifs climatiques et surtout de passer à l'action à votre niveau avec des gestes personnalisés en fonction de vos réponses.
   Des amis jouant à un jeu de société: Des amis jouant à un jeu de société
   Des enfants sortant de l'école en se tenant la main.: Des enfants sortant de l'école en se tenant la main.
   Deux personnes se faisant une accolade en levant le bras en signe de victoire.: Deux personnes se faisant une accolade en levant le bras en signe de victoire.
@@ -817,13 +807,52 @@ entries:
   Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.
   Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.: Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.
   Personne sur un vélo récupérant du courrier dans une boîte aux lettres: Personne sur un vélo récupérant du courrier dans une boîte aux lettres
-  Qu'est-ce que c'est ?: Qu'est-ce que c'est ?
   Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.: Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.
   Un femme lisant le journal au coin du feu avec un chien assoupi.: Un femme lisant le journal au coin du feu avec un chien assoupi.
   Un groupe d'amis jouant à un jeu de société.: Un groupe d'amis jouant à un jeu de société.
   Une femme préparant un bon petit plat.: Une femme préparant un bon petit plat.
   Une fille réfléchissant à son empreinte carbone.: Une fille réfléchissant à son empreinte carbone.
   Une jeune femme tenant la terre entre ses mains, un chien la regardant joyeusement.: Une jeune femme tenant la terre entre ses mains, un chien la regardant joyeusement.
-  Une jeune fille tenant la terre sous le regard enjoué de son chien.: Une jeune fille tenant la terre sous le regard enjoué de son chien.
   Une personne livrant du courrier.: Une personne livrant du courrier.
-  (Peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience): (Peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience)
+  (Cela peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience.): (Cela peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience.)
+  à la moyenne du groupe: à la moyenne du groupe
+  cliquez ici pour le reprendre !: cliquez ici pour le reprendre !
+  et invitez vos proches pour comparer vos résultats. Cela prend: et invitez vos proches pour comparer vos résultats. Cela prend
+  et vous aura la plus faible empreinte ?: et vous aura la plus faible empreinte ?
+  lancez-vous !: lancez-vous !
+  Levez la main, on répond à vos questions !: Levez la main, on répond à vos questions !
+  moins: moins
+  Organisations et campagnes: Organisations et campagnes
+  plus: plus
+  Plus de 40 acteurs relaient ou ont relayé Nos Gestes Climat à travers <1>l’intégration du calculateur</1> sur leur site internet ou sa diffusion via <5>des campagnes</5> (mail, réseaux sociaux et / ou affichage). C’est majoritairement grâce à eux que nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque jour et nous les en remercions.: Plus de 40 acteurs relaient ou ont relayé Nos Gestes Climat à travers <1>l’intégration du calculateur</1> sur leur site internet ou sa diffusion via <5>des campagnes</5> (mail, réseaux sociaux et / ou affichage). C’est majoritairement grâce à eux que nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque jour et nous les en remercions.
+  que la moyenne du groupe: que la moyenne du groupe
+  'Qui de ': 'Qui de '
+  Un groupe de personnes discutant devant un paperboard.: Un groupe de personnes discutant devant un paperboard.
+  Vous avez commencé votre test,: Vous avez commencé votre test,
+  Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre galerie de relais ? Merci de nous envoyer un message avec votre logo via <2>notre page de contact</2>.: Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre galerie de relais ? Merci de nous envoyer un message avec votre logo via <2>notre page de contact</2>.
+  Vous n'avez pas encore débuté votre test,: Vous n'avez pas encore débuté votre test,
+  Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !: Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
+  Autres actions: Autres actions
+  Bien joué 👏: Bien joué 👏
+  Il n'y a pas que sur votre empreinte que vous pouvez agir !: Il n'y a pas que sur votre empreinte que vous pouvez agir !
+  Même si réduire son empreinte individuelle est l'action la plus directe, il existe <1>d'autres façons d'agir à son niveau</1>. Tous ces modes d'action sont complémentaires !: Même si réduire son empreinte individuelle est l'action la plus directe, il existe <1>d'autres façons d'agir à son niveau</1>. Tous ces modes d'action sont complémentaires !
+  Ce champ est obligatoire.: Ce champ est obligatoire.
+  Ce champ est trop long: Ce champ est trop long
+  Cependant, nous suivons quelques informations sur votre utilisation de ce simulateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.: Cependant, nous suivons quelques informations sur votre utilisation de ce simulateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.
+  Choisissez un nom pour ce groupe: Choisissez un nom pour ce groupe
+  Continuer: Continuer
+  Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat: Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat
+  En particulier, nous suivons l'adresse de la page de fin de simulation, qui contient le total de votre empreinte et sa répartition en grande catégories (transport, logement, etc.): En particulier, nous suivons l'adresse de la page de fin de simulation, qui contient le total de votre empreinte et sa répartition en grande catégories (transport, logement, etc.)
+  Et une illustration: Et une illustration
+  Étape: Étape
+  La simulation et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.: La simulation et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.
+  Mentions légales: Mentions légales
+  Politique de confidentialité: Politique de confidentialité
+  Politique des cookies: Politique des cookies
+  Politique des cookies - Nos Gestes Climat: Politique des cookies - Nos Gestes Climat
+  Pour faire joli et le reconnaitre !: Pour faire joli et le reconnaitre !
+  Pour le retrouver facilement dans votre liste: Pour le retrouver facilement dans votre liste
+  sur: sur
+  Veuillez entrer une adresse email valide: Veuillez entrer une adresse email valide
+  Veuillez entrer une adresse email valide.: Veuillez entrer une adresse email valide.
+  Veuillez saisir une adresse email valide.: Veuillez saisir une adresse email valide.

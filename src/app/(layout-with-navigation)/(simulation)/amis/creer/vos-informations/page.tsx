@@ -1,3 +1,5 @@
+import StepsDisplay from '@/components/groups/StepsDisplay'
+import { amisCreationVosInformationsRetour } from '@/constants/tracking/pages/amisCreation'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -10,7 +12,7 @@ export async function generateMetadata() {
 
   return getMetadataObject({
     title: t(
-      'Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat'
+      'Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat'
     ),
     description: t(
       "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
@@ -21,12 +23,18 @@ export async function generateMetadata() {
   })
 }
 
-export default async function CreerGroupePage() {
+export default async function YourInfoPage() {
   const { t } = await getServerTranslation()
 
   return (
     <div className="p-4 md:p-8">
-      <GoBackLink className="mb-4 font-bold" />
+      <GoBackLink
+        href={'/classements'}
+        eventTracked={amisCreationVosInformationsRetour}
+        className="mb-4 font-bold"
+      />
+
+      <StepsDisplay currentStep={1} />
 
       <Title
         title={t("Créer un groupe d'amis")}
