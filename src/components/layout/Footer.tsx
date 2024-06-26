@@ -35,11 +35,11 @@ export default function Footer({ className = '' }) {
       )}>
       <div className="flex w-full items-start gap-12 md:max-w-5xl">
         <Logo
-          className="hidden scale-75 lg:block"
+          className="hiddenscale-75 lg:block"
           onClick={() => trackEvent(footerClickLogo)}
         />
 
-        <div className="w-full">
+        <div className="w-full flex-1 ">
           <div className="flex flex-col flex-wrap justify-start gap-x-5 gap-y-2 pt-4 sm:flex-row md:items-center">
             <InlineLink
               href="/a-propos"
