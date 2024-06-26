@@ -12,7 +12,7 @@ type Props = {
 export function useEngineSituation({ engine }: Props) {
   const { situation } = useCurrentSimulation()
 
-  const [isInitialized, setIsInitialized] = useState(false)
+  const [isEngineInitialized, setIsEngineInitialized] = useState(false)
 
   const addToEngineSituation = useCallback(
     (situationToAdd: Situation): Situation => {
@@ -26,11 +26,11 @@ export function useEngineSituation({ engine }: Props) {
   )
 
   useEffect(() => {
-    if (isInitialized) return
+    if (isEngineInitialized) return
 
     engine.setSituation(situation)
-    setIsInitialized(true)
-  }, [engine, situation, isInitialized])
+    setIsEngineInitialized(true)
+  }, [engine, situation, isEngineInitialized])
 
-  return { isInitialized, addToEngineSituation }
+  return { isEngineInitialized, addToEngineSituation }
 }
