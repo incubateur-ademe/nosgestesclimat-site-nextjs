@@ -102,8 +102,6 @@ export default function SimulationSyncProvider({
   })
 
   useEffect(() => {
-    console.log('isInitialized', isInitialized, shouldSyncWithBackend)
-
     const hasChanged = compareTwoSimulations(prevSimulation.current, {
       id,
       date,
