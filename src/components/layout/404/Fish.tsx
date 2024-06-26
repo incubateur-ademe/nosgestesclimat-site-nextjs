@@ -1,3 +1,4 @@
+import Emoji from '@/design-system/utils/Emoji'
 import { ReactElement, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -42,17 +43,17 @@ export default function Fish({ numberOfFish }: Props) {
         if (numberOfFish > fishes.length) {
           for (let i = 0; i < numberOfFish - fishes.length; i++) {
             newFishes.push(
-              <div
+              <Emoji
                 key={Math.random()}
                 className={twMerge(
-                  'absolute',
+                  'absolute text-lg',
                   fishAnimations[
                     Math.floor(Math.random() * fishAnimations.length)
                   ]
                 )}
                 style={{ top: generateTopPosition() }}>
                 {fishEmojis[Math.floor(Math.random() * fishEmojis.length)]}
-              </div>
+              </Emoji>
             )
           }
         } else {
