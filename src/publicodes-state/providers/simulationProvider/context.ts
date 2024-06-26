@@ -27,6 +27,7 @@ type SimulationContextType = {
   categories: DottedName[]
   subcategories: Record<DottedName, DottedName[]>
   addToEngineSituation: (situationToAdd: Situation) => Situation
+  isInitialized: boolean
 }
 export const SimulationContext = createContext<SimulationContextType>({
   rules: null,
@@ -45,4 +46,5 @@ export const SimulationContext = createContext<SimulationContextType>({
   categories: [],
   subcategories: {},
   addToEngineSituation: () => ({}) as Situation,
+  isInitialized: false,
 })
