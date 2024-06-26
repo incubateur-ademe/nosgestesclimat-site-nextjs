@@ -25,6 +25,7 @@ export default function SimulationProvider({
   const { engine, pristineEngine, safeEvaluate, safeGetRule } = useEngine(rules)
 
   const {
+    parsedRules,
     everyRules,
     everyInactiveRules,
     everyQuestions,
@@ -59,6 +60,7 @@ export default function SimulationProvider({
         pristineEngine,
         safeEvaluate,
         safeGetRule,
+        parsedRules,
         everyRules,
         everyInactiveRules,
         everyQuestions,
