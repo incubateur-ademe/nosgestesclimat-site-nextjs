@@ -56,6 +56,6 @@ export function useSetComputedResults({
     () => computedResults.bilan !== 0,
     [computedResults]
   )
-  console.log(computedResults.bilan, isInitialized)
+
   return { isInitialized }
 }
