@@ -18,19 +18,21 @@ export async function generateMetadata() {
 
 export default function ViePriveePage() {
   return (
-    <CookiesPolicy
-      analyticTool={{
-        name: 'Matomo',
-        cookieListUrl: 'https://matomo.org/faq/general/faq_146/',
-        policyUrl: 'https://matomo.org/privacy-policy/',
-      }}
-      cookieConsentButton={
-        <iframe
-          title="matomo"
-          src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&backgroundColor=&fontColor=&fontSize=&fontFamily="
-        />
-      }
-      siteName="Nos Gestes Climat"
-    />
+    <div className="markdown">
+      <CookiesPolicy
+        analyticTool={{
+          name: 'Matomo',
+          cookieListUrl: 'https://matomo.org/faq/general/faq_146/',
+          policyUrl: 'https://matomo.org/privacy-policy/',
+        }}
+        cookieConsentButton={
+          <iframe
+            title="matomo"
+            src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&backgroundColor=&fontColor=&fontSize=&fontFamily="
+          />
+        }
+        siteName="Nos Gestes Climat"
+      />
+    </div>
   )
 }
