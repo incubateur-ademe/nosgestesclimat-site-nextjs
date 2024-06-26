@@ -70,7 +70,7 @@ export type Simulation = {
   foldedSteps: DottedName[]
   actionChoices: ActionChoices
   persona?: DottedName
-  computedResults?: ComputedResults
+  computedResults: ComputedResults
   progression: number
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   customAdditionalQuestionsAnswers?: Record<string, string>

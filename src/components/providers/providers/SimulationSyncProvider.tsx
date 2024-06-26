@@ -1,5 +1,6 @@
 'use client'
 
+import { compareTwoSimulations } from '@/helpers/simulation/compareTwoSimulations'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import {
   useCurrentSimulation,
@@ -103,61 +104,20 @@ export default function SimulationSyncProvider({
   useEffect(() => {
     console.log('isInitialized', isInitialized, shouldSyncWithBackend)
 
-    let hasChanged = false
-    if (prevSimulation.current.id !== id) {
-      console.log('id changed')
-      hasChanged = true
-    }
-    if (prevSimulation.current.date !== date) {
-      console.log('date changed')
-      hasChanged = true
-    }
-    if (prevSimulation.current.situation !== situation) {
-      console.log('situation changed')
-      hasChanged = true
-    }
-    if (prevSimulation.current.foldedSteps !== foldedSteps) {
-      console.log('foldedSteps changed')
-      hasChanged = true
-    }
-    if (prevSimulation.current.actionChoices !== actionChoices) {
-      console.log('actionChoices changed')
-      hasChanged = true
-    }
-    if (prevSimulation.current.persona !== persona) {
-      console.log('persona changed')
-      hasChanged = true
-    }
-    if (prevSimulation.current.computedResults !== computedResults) {
-      console.log(prevSimulation.current.computedResults, computedResults)
-      console.log('computedResults changed')
-      hasChanged = true
-    }
-    if (prevSimulation.current.progression !== progression) {
-      console.log('progression changed')
-      hasChanged = true
-    }
-    if (
-      prevSimulation.current.defaultAdditionalQuestionsAnswers !==
-      defaultAdditionalQuestionsAnswers
-    ) {
-      console.log('defaultAdditionalQuestionsAnswers changed')
-      hasChanged = true
-    }
-    if (prevSimulation.current.polls !== polls) {
-      console.log('polls changed')
-      hasChanged = true
-    }
-    if (prevSimulation.current.groups !== groups) {
-      console.log('groups changed')
-      hasChanged = true
-    }
-    if (prevSimulation.current.savedViaEmail !== savedViaEmail) {
-      console.log('savedViaEmail changed')
-      hasChanged = true
-    }
-
-    console.log(hasChanged)
+    const hasChanged = compareTwoSimulations(prevSimulation.current, {
+      id,
+      date,
+      situation,
+      foldedSteps,
+      actionChoices,
+      persona,
+      computedResults,
+      progression,
+      defaultAdditionalQuestionsAnswers,
+      polls,
+      groups,
+      savedViaEmail,
+    })
 
     prevSimulation.current = {
       id,
@@ -174,6 +134,12 @@ export default function SimulationSyncProvider({
       savedViaEmail,
     }
 
+    // If there is no change, we do not start a save
+    if (!hasChanged) {
+      return
+    }
+
+    // If we should not save the simulation, we do not start a save
     if (!shouldSyncWithBackend) {
       return
     }
