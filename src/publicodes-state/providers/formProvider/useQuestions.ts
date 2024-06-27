@@ -161,7 +161,8 @@ export default function useQuestions({
         getIsMissing({
           dottedName,
           situation,
-          questionsOfMosaic: everyMosaicChildrenWithParent[dottedName] || [],
+          questionsOfMosaicFromParent:
+            everyMosaicChildrenWithParent[dottedName] || [],
         })
       ),
     ],

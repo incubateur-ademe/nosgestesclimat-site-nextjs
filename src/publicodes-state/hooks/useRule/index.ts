@@ -9,6 +9,7 @@ import useChoices from './useChoices'
 import useContent from './useContent'
 import useMissing from './useMissing'
 import useNotifications from './useNotifications'
+import useQuestionsOfMosaic from './useQuestionsOfMosaic'
 import useSetValue from './useSetValue'
 import useType from './useType'
 import useValue from './useValue'
@@ -56,15 +57,13 @@ export default function useRule(dottedName: DottedName) {
     situation,
   })
 
-  const questionsOfMosaicFromParent =
-    everyMosaicChildrenWithParent[dottedName] || []
+  const { questionsOfMosaicFromParent, questionsOfMosaicFromSibling } =
+    useQuestionsOfMosaic({
+      everyMosaicChildrenWithParent,
+      dottedName,
+    })
 
-  const questionsOfMosaicFromBrother =
-    Object.values(everyMosaicChildrenWithParent).find((mosaicChildren) => {
-      return mosaicChildren.includes(dottedName)
-    }) || []
-
-  const parent = utils.ruleParent(dottedName)
+  const parent = useMemo(() => utils.ruleParent(dottedName), [dottedName])
 
   const {
     category,
@@ -90,7 +89,7 @@ export default function useRule(dottedName: DottedName) {
 
   const { isMissing, isFolded } = useMissing({
     dottedName,
-    questionsOfMosaic: questionsOfMosaicFromBrother,
+    questionsOfMosaicFromParent,
     situation,
     foldedSteps,
   })
@@ -188,7 +187,7 @@ export default function useRule(dottedName: DottedName) {
     /**
      * A list of questions to display inside the mosaic (if the rule is a mosaic child)
      */
-    questionsOfMosaicFromBrother,
+    questionsOfMosaicFromSibling,
     /**
      * The direct parent of the rule
      */

@@ -37,8 +37,8 @@ export default function useSetValue({
   addToEngineSituation,
 }: Props) {
   const getMosaicResetSituation = useCallback(
-    (questionsOfMosaicFromBrother: DottedName[]): Situation => {
-      const situationToAdd = questionsOfMosaicFromBrother.reduce(
+    (questionsOfMosaicFromSibling: DottedName[]): Situation => {
+      const situationToAdd = questionsOfMosaicFromSibling.reduce(
         (accumulator, mosaicChildDottedName) => {
           const isMissing = getIsMissing({
             dottedName: mosaicChildDottedName,
@@ -77,17 +77,17 @@ export default function useSetValue({
   /**
    * @param value - The value to set
    * @param options.foldedStep - The dottedName of the foldedStep
-   * @param options.questionsOfMosaicFromBrother - The dottedNames of the questions of the mosaic from the brother (another child)
+   * @param options.questionsOfMosaicFromSibling - The dottedNames of the questions of the mosaic from the brother (another child)
    */
   const setValue = useCallback(
     async (
       value: NodeValue | { [dottedName: DottedName]: NodeValue },
       {
         foldedStep,
-        questionsOfMosaicFromBrother,
+        questionsOfMosaicFromSibling,
       }: {
         foldedStep?: DottedName
-        questionsOfMosaicFromBrother?: DottedName[]
+        questionsOfMosaicFromSibling?: DottedName[]
       } = {}
     ) => {
       let situationToAdd = {}
@@ -123,9 +123,9 @@ export default function useSetValue({
           [dottedName]: checkValueValidity({ value, type }),
         }
       }
-      if (questionsOfMosaicFromBrother) {
+      if (questionsOfMosaicFromSibling) {
         situationToAdd = {
-          ...getMosaicResetSituation(questionsOfMosaicFromBrother),
+          ...getMosaicResetSituation(questionsOfMosaicFromSibling),
           ...situationToAdd,
         }
       }
