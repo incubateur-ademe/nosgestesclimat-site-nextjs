@@ -15,7 +15,6 @@ import { useUpdateGroup } from '@/hooks/groups/useUpdateGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { captureException } from '@sentry/react'
 import { useState } from 'react'
 
 export default function EditableGroupTitle({ group }: { group: Group }) {
@@ -41,7 +40,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
       setIsSubmitting(false)
       setIsEditingTitle(false)
     } catch (e) {
-      captureException(e)
+      // captureException(e)
     }
   }
   const vousWord = t('Vous')

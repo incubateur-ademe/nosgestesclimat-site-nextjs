@@ -8,6 +8,7 @@ import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
 import { PropsWithChildren } from 'react'
 import Error500 from '../layout/500'
+import SimulationSyncProvider from './providers/SimulationSyncProvider'
 
 type Props = {
   supportedRegions: SupportedRegions
@@ -53,7 +54,7 @@ export default function Providers({
         rules={rules}
         shouldAlwaysDisplayChildren={shouldAlwaysDisplayChildren}>
         <LocalisationBanner supportedRegions={supportedRegions} />
-        {children}
+        <SimulationSyncProvider>{children}</SimulationSyncProvider>
       </SimulationProvider>
     </div>
   )

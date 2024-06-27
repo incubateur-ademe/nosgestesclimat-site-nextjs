@@ -22,11 +22,10 @@ export default function MosaicQuestion({
   index,
   ...props
 }: Props) {
-  const { type, parent, setValue } = useRule(question)
+  const { type, parent, setValue, questionsOfMosaicFromSibling } =
+    useRule(question)
 
   const { title, icons, description } = useRule(parent)
-
-  const { questionsOfMosaic: questionsOfParentMosaic } = useRule(parentMosaic)
 
   return (
     <>
@@ -39,7 +38,7 @@ export default function MosaicQuestion({
           setValue={(value) => {
             setValue(value < 0 ? 0 : value, {
               foldedStep: parentMosaic,
-              questionsOfParentMosaic,
+              questionsOfMosaicFromSibling,
             })
 
             trackEvent(
@@ -64,7 +63,6 @@ export default function MosaicQuestion({
           setValue={(value) => {
             setValue(value, {
               foldedStep: parentMosaic,
-              questionsOfParentMosaic,
             })
 
             trackEvent(

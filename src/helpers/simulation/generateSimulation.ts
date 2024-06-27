@@ -1,6 +1,6 @@
 import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
-import { MigrationType, Simulation } from '@/publicodes-state/types'
-import { captureException } from '@sentry/react'
+import { Simulation } from '@/publicodes-state/types'
+import { Migration } from '@publicodes/tools/migration'
 import { v4 as uuidv4 } from 'uuid'
 
 export function generateSimulation({
@@ -10,7 +10,10 @@ export function generateSimulation({
   foldedSteps = [],
   actionChoices = {},
   persona,
-  computedResults,
+  computedResults = {
+    bilan: 0,
+    categories: {},
+  },
   progression = 0,
   defaultAdditionalQuestionsAnswers,
   polls,
@@ -18,7 +21,7 @@ export function generateSimulation({
   savedViaEmail,
   migrationInstructions,
 }: Partial<Simulation> & {
-  migrationInstructions?: MigrationType
+  migrationInstructions?: Migration
 } = {}): Simulation {
   let simulation = {
     id,
@@ -35,16 +38,11 @@ export function generateSimulation({
     savedViaEmail,
   } as Simulation
 
-  if (migrationInstructions) {
-    try {
-      simulation = migrateSimulation({
-        simulation,
-        migrationInstructions,
-      })
-    } catch (error) {
-      console.warn('Error trying to migrate LocalStorage:', error)
-      captureException(error)
-    }
+  try {
+    simulation = migrateSimulation(simulation, migrationInstructions)
+  } catch (error) {
+    console.warn('Error trying to migrate LocalStorage:', error)
+    // captureException(error)
   }
 
   return simulation

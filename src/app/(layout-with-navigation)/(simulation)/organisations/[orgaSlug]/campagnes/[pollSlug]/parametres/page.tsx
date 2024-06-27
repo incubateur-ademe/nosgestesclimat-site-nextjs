@@ -13,8 +13,8 @@ import { useUpdateCustomQuestions } from '@/hooks/organisations/useUpdateCustomQ
 import { useUpdatePoll } from '@/hooks/organisations/useUpdatePoll'
 import { useAutoFlick } from '@/hooks/utils/useAutoFlick'
 import { useUser } from '@/publicodes-state'
-import { CustomAdditionalQuestions } from '@/types/organisations'
 import { useParams } from 'next/navigation'
+import { useEffect } from 'react'
 import PollNotFound from '../_components/PollNotFound'
 import DeletePollButton from './_components/DeletePollButton'
 import NameForm from './_components/NameForm'
@@ -38,26 +38,32 @@ export default function ParametresPage() {
     email: user?.organisation?.administratorEmail ?? '',
   })
 
-  const { mutateAsync: updatePoll } = useUpdatePoll()
+  const { mutate: updatePoll, status: updatePollStatus } = useUpdatePoll()
 
-  const { mutateAsync: updatePollCustomQuestions } = useUpdateCustomQuestions({
+  const {
+    mutate: updatePollCustomQuestions,
+    status: updatePollCustomQuestionsStatus,
+  } = useUpdateCustomQuestions({
     pollSlug: pollSlug as string,
     orgaSlug: orgaSlug as string,
   })
 
   const { value, flick } = useAutoFlick()
 
-  async function handleUpdatePollCustomQuestions(changes: {
-    customAdditionalQuestions: CustomAdditionalQuestions[]
-  }) {
-    try {
-      await updatePollCustomQuestions(changes)
+  // If the mutation status (of updatePoll or updatePollCustomQuestions) change to success,
+  // we refetch the poll and display a confirmation message
+  useEffect(() => {
+    if (updatePollStatus === 'success') {
       flick()
       refetchPoll()
-    } catch (error) {
-      console.error(error)
     }
-  }
+  }, [updatePollStatus, flick, refetchPoll])
+  useEffect(() => {
+    if (updatePollCustomQuestionsStatus === 'success') {
+      flick()
+      refetchPoll()
+    }
+  }, [updatePollCustomQuestionsStatus, flick, refetchPoll])
 
   if (isLoading || isLoadingOrgaAdmin) {
     return <PollLoader />
@@ -80,8 +86,8 @@ export default function ParametresPage() {
 
       <NameForm
         nameValue={poll?.name ?? ''}
-        refetchPoll={refetchPoll}
-        updatePoll={updatePoll as any}
+        updatePoll={updatePoll}
+        updatePollStatus={updatePollStatus}
       />
 
       <Separator />
@@ -94,8 +100,8 @@ export default function ParametresPage() {
           ],
           customAdditionalQuestions: poll?.customAdditionalQuestions,
         }}
-        onChange={updatePoll as any}
-        onChangeCustomQuestions={handleUpdatePollCustomQuestions as any}
+        onChange={updatePoll}
+        onChangeCustomQuestions={updatePollCustomQuestions}
       />
 
       <ModificationSaved shouldShowMessage={value} />

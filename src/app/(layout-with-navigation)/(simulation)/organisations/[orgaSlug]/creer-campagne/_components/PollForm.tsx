@@ -5,7 +5,6 @@ import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useCreatePoll } from '@/hooks/polls/useCreatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Organisation } from '@/types/organisations'
-import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -57,7 +56,7 @@ export default function PollForm({ organisation }: Props) {
       }
     } catch (error) {
       setIsError(true)
-      captureException(error)
+      // captureException(error)
     }
   }
 

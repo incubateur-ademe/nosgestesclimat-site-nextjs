@@ -1,10 +1,16 @@
 Médias:
+  - title: France Inter
+    image: france_inter.png
+    link: https://www.radiofrance.fr/franceinter/podcasts/social-lab/social-lab-du-dimanche-14-novembre-2021-8081723
+  - title: France Info TV
+    image: france_info.png
+    link: https://www.francetvinfo.fr/monde/environnement/calculateur-empreinte-carbone.html
+  - title: Bon Pote
+    image: bonpote.png
+    link: https://bonpote.com/comment-calculer-son-empreinte-carbone/
   - title: 'Empreinte carbone : qu’est-ce que c’est et comment calculer la sienne ?'
     image: Voixdunord.jpg
     link: https://www.lavoixdunord.fr/1343379/article/2023-06-21/empreinte-carbone-qu-est-ce-que-c-est-et-comment-calculer-la-sienne
-  - title: 'Comment s’engager pour le climat au quotidien ?'
-    image: neon.png
-    link: https://www.neonmag.fr/planete-environnement/comment-sengager-pour-le-climat-au-quotidien-560944
   - title: 'Réduire sa consommation de viande est-il le geste écologique individuel "le plus efficace" ?'
     image: TF1 info.jpg
     link: https://www.tf1info.fr/environnement-ecologie/environnement-reduire-la-consommation-de-viande-est-il-le-geste-ecologique-individuel-le-plus-efficace-2258749.html
@@ -23,10 +29,16 @@ Médias:
   - title: 'Rendez-vous en environnement inconnu'
     image: chiche.jpg
     link: https://chiche.makesense.org/media/environnement
+  - title: Ecolucide
+    image: ecolucide.png
+    link: https://www.instagram.com/ecolucide/
+  - title: L'avenir a du bon
+    image: avenir_bon.png
+    link: https://www.laveniradubon.fr/
   - title: 'Empreinte carbone : définition, calcul et bilan'
     image: capital.jpg
     link: https://www.capital.fr/conso/empreinte-carbone-definition-calcul-et-bilan-1492273
-  - title: 'AU-DELÀ DES CALCULS : ASTUCES PRATIQUES POUR UN QUOTIDIEN ÉCORESPONSABLE'
+  - title: 'Astuces pratiques pour un quotidien éco-responsable'
     image: challenges.png
     link: https://www.challenges.fr/vie-pratique/au-dela-des-calculs-astuces-pratiques-pour-un-quotidien-ecoresponsable_885743
   - title: 'Super Green me'
@@ -36,6 +48,15 @@ Personnalités et influenceurs:
   - title: 'Cyril Dion'
     image: cyril.jpg
     link: https://www.instagram.com/cyril_dion/?hl=fr
+  - title: Gaetan Gabriele
+    image: gabriele.png
+    link: https://www.instagram.com/gaetangabriele/
+  - title: Thomas Wagner
+    image: wagner.png
+    link: https://www.linkedin.com/posts/thomas-wagner-0807b932_voici-en-toute-transparence-mon-empreinte-activity-7113069048585674753-V_fM?trk=public_profile_like_view&originalSubdomain=fr
+  - title: Le jeune engagé
+    image: jeuneengage.png
+    link: https://www.instagram.com/lejeuneengage
   - title: 'Mango & Salt'
     image: m&s.jpg
     link: https://www.instagram.com/mangoandsalt/?hl=fr
@@ -43,41 +64,59 @@ Personnalités et influenceurs:
     image: sleud.png
     link: https://www.youtube.com/watch?v=nU-PdtTcwTk
 Entreprises:
-  - title: 'BNP Paribas'
-    image: bnpp.jpg
-  - title: 'La Poste'
-    image: La Poste.jpg
-    link: https://www.laposte.fr/entreprise-collectivites/politique-rse
-  - title: 'BPCE'
-    image: bpce.png
-  - title: 'Vendredi'
-    image: vendredi.png
-    link: https://www.vendredi.cc/
-  - title: 'Greenly'
-    image: greenly.png
-    link: https://greenly.earth/fr-fr/blog/guide-entreprise/empreinte-carbone-definition-methode-calcul
+  - title: Leboncoin
+    image: leboncoin.png
+    link: https://www.leboncoin.fr/
+  - title: SNCF Voyageurs
+    image: sncf-voyageurs.png
+    link: https://www.sncf-voyageurs.com/fr/
+  - title: Home Exchange
+    image: he.png
+    link: https://www.homeexchange.fr/
+  - title: Omaj
+    image: omaj.png
+    link: https://omaj.fr/
   - title: 'Citiz'
     image: citiz.png
     link: https://citiz.coop/
+  - title: 'Greenly'
+    image: greenly.png
+    link: https://greenly.earth/fr-fr/blog/guide-entreprise/empreinte-carbone-definition-methode-calcul
+  - title: 'Vendredi'
+    image: vendredi.png
+    link: https://www.vendredi.cc/
+  - title: 'La Poste'
+    image: poste.png
+    link: https://www.laposte.fr/entreprise-collectivites/politique-rse
+  - title: 'BNP Paribas'
+    image: bnp.png
+  - title: 'BPCE'
+    image: bpce.png
+  - title: Covea
+    image: covea.png
+    link: https://www.covea.com/fr
   - title: 'Code Climat'
-    image: code-climat.jfif
+    image: code-climat.png
     link: https://www.code-climat.com/
   - title: 'Ecofrugal'
     image: ecofrugal.png
     link: https://www.monatelier-ecofrugal.fr/survey/calculator/
   - title: 'YAMI'
-    image: yami.jfif
+    image: yami.png
     link: https://youractionmakeimpact.fr/
   - title: 'Steply'
-    image: steply.jfif
+    image: steply.png
     link: https://steply-app.com/
 Collectivités et acteurs publics:
   - title: 'Ville de Grenoble'
     image: Grenoble.png
-    link: https://www.grenoble.fr/2294-nos-gestes-climat.htm
+    link: https://www.grenoble.fr/593-grenoble-climat.htm
   - title: 'Grand Paris Seine-Ouest'
-    image: gpso.png
+    image: paris-ouest.png
     link: https://www.seineouest.fr/nos-gestes-climat
+  - title: Ville de Lyon
+    image: lyon.png
+    link: https://www.lyon.fr/actualite/environnement/carbone-detox-le-defi-pour-reduire-son-impact
   - title: 'La Rochelle'
     image: la rochelle.png
     link: https://www.larochelle-zerocarbone.fr/s-engager/la-boite-a-outils-du-zero-carbone/nos-gestes-climat
@@ -88,14 +127,14 @@ Collectivités et acteurs publics:
     image: Grandpoitiers.png
     link: https://www.grandpoitiers.fr/grands-projets/actions-pour-le-climat/plan-climat
   - title: 'Nantes métropole'
-    image: nantes metropole.jfif
+    image: ville-nantes.png
     link: https://metropole.nantes.fr/participer/agir-pour-le-climat/les-defis-climat
   - title: 'Je Veux Aider'
     image: je veux aider.png
     link: https://www.jeveuxaider.gouv.fr/
 Associations:
   - title: 'Avenir Climatique'
-    image: ac.png
+    image: avenir.png
     link: https://avenirclimatique.org/calculer-empreinte-carbone/
   - title: 'Makesense'
     image: mk.png
@@ -111,14 +150,14 @@ Education:
     image: ucl.png
     link: https://www.ucly.fr/
   - title: 'L’académie du climat'
-    image: acaclimat.png
+    image: academieduclimat.png
     link: https://www.academieduclimat.paris/
   - title: 'CNED'
     image: CNED.png
     link: https://www.cned.fr/transition-ecologique/ba-ba-du-climat-et-de-la-biodiversite
 Lieux et événements:
   - title: 'Silicet'
-    image: silicet.png
+    image: silicetbidule.png
     link: https://scilicet.fr/
   - title: 'SoGood Festival'
     image: sogood.png

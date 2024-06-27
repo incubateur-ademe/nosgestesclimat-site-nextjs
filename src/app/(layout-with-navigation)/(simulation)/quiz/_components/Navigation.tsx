@@ -60,7 +60,9 @@ export default function Navigation({
         </ButtonLink>
       ) : isAnswerValidated ? (
         <ButtonLink
-          href={getLinkToEndPage()}
+          href={getLinkToEndPage({
+            allowedToGoToGroupDashboard: true,
+          })}
           onClick={() =>
             trackEvent(
               simulationSimulationCompleted({ bilan: getNumericValue('bilan') })

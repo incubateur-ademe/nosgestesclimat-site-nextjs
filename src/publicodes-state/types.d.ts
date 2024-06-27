@@ -3,7 +3,7 @@ import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
 import {
   EvaluatedNode,
   Evaluation,
-  Engine as PublicodesEngine,
+  Situation as PublicodesSituation,
   RuleNode,
 } from 'publicodes'
 
@@ -36,7 +36,7 @@ export type Rules = any
 
 export type Tutorials = Record<string, boolean>
 
-export type Situation = Record<DottedName, NodeValue>
+export type Situation = PublicodesSituation<DottedName>
 
 export type Suggestion = {
   label: string
@@ -47,8 +47,6 @@ export type Suggestion = {
   //       [key: string]: NodeValue
   //     }
 }
-
-export type Engine = PublicodesEngine
 
 export type NGCRuleNode = RuleNode & {
   rawNode: NGCRule
@@ -72,7 +70,7 @@ export type Simulation = {
   foldedSteps: DottedName[]
   actionChoices: ActionChoices
   persona?: DottedName
-  computedResults?: ComputedResults
+  computedResults: ComputedResults
   progression: number
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   customAdditionalQuestionsAnswers?: Record<string, string>
@@ -134,8 +132,3 @@ type MosaicInfos = {
 }
 
 type Formule = any
-
-export type MigrationType = {
-  keysToMigrate: Record<DottedName, DottedName>
-  valuesToMigrate: Record<DottedName, Record<string, NodeValue>>
-}

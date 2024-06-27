@@ -1,8 +1,9 @@
 'use client'
 
+import { Migration } from '@publicodes/tools/migration'
 import { Dispatch, SetStateAction, createContext } from 'react'
 import { v4 as uuid } from 'uuid'
-import { MigrationType, Simulation, Tutorials, User } from '../../types'
+import { Simulation, Tutorials, User } from '../../types'
 
 type UserContextType = {
   user: User
@@ -13,7 +14,7 @@ type UserContextType = {
   setSimulations: Dispatch<SetStateAction<Simulation[]>>
   currentSimulationId: string
   setCurrentSimulationId: Dispatch<SetStateAction<string>>
-  migrationInstructions: MigrationType
+  migrationInstructions: Migration
 }
 
 export default createContext<UserContextType>({

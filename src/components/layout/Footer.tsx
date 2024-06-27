@@ -35,11 +35,11 @@ export default function Footer({ className = '' }) {
       )}>
       <div className="flex w-full items-start gap-12 md:max-w-5xl">
         <Logo
-          className="hidden scale-75 lg:block"
+          className="hiddenscale-75 lg:block"
           onClick={() => trackEvent(footerClickLogo)}
         />
 
-        <div className="w-full">
+        <div className="w-full flex-1 ">
           <div className="flex flex-col flex-wrap justify-start gap-x-5 gap-y-2 pt-4 sm:flex-row md:items-center">
             <InlineLink
               href="/a-propos"
@@ -120,11 +120,11 @@ export default function Footer({ className = '' }) {
             </InlineLink>
 
             <InlineLink
-              href="/ambassadeurs"
+              href="/nos-relais"
               onClick={() => trackEvent(footerClickAmbassadeurs)}
               className="text-default no-underline hover:underline">
               <strong>
-                <Trans>Ambassadeurs</Trans>
+                <Trans>Nos relais</Trans>
               </strong>
             </InlineLink>
 
@@ -153,13 +153,31 @@ export default function Footer({ className = '' }) {
               </div>
 
               <div className="mt-4 text-xs">
-                ▲&nbsp;<Trans>Propulsé par Vercel</Trans>
-                <span className="hidden sm:inline"> | </span>
-                <br className="md:hidden" />
                 <InlineLink
                   href="/accessibilite"
                   className="text-default no-underline hover:underline">
                   <Trans>Accessibilité : partiellement conforme</Trans>
+                </InlineLink>
+                <span className="hidden sm:inline"> | </span>
+                <br className="md:hidden" />
+                <InlineLink
+                  href="/mentions-legales"
+                  className="text-default no-underline hover:underline">
+                  <Trans>Mentions légales</Trans>
+                </InlineLink>
+                <span className="hidden sm:inline"> | </span>
+                <br className="md:hidden" />
+                <InlineLink
+                  href="/politique-de-confidentialite"
+                  className="text-default no-underline hover:underline">
+                  <Trans>Politique de confidentialité</Trans>
+                </InlineLink>
+                <span className="hidden sm:inline"> | </span>
+                <br className="md:hidden" />
+                <InlineLink
+                  href="/politique-des-cookies"
+                  className="text-default no-underline hover:underline">
+                  <Trans>Politique des cookies</Trans>
                 </InlineLink>
               </div>
             </div>

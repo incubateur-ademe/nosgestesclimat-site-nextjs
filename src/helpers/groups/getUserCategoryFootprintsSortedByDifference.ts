@@ -1,10 +1,6 @@
 import { Points, ValueObject } from '@/types/groups'
 
 const sortByDifference = (a: Points, b: Points) => {
-  if (a?.resultObject?.value === b?.resultObject?.value) {
-    return 0
-  }
-
   return Math.abs(b?.resultObject?.difference || 0) <
     Math.abs(a?.resultObject?.difference || 0)
     ? -1
@@ -44,9 +40,11 @@ export const getUserCategoryFootprintsSortedByDifference = ({
   ) as Points[]
 
   return {
-    positiveDifferenceCategoriesSorted:
-      positiveDifferenceCategories.sort(sortByDifference),
-    negativeDifferenceCategoriesSorted:
-      negativeDifferenceCategories.sort(sortByDifference),
+    positiveDifferenceCategoriesSorted: positiveDifferenceCategories.sort(
+      (a, b) => sortByDifference(a, b)
+    ),
+    negativeDifferenceCategoriesSorted: negativeDifferenceCategories.sort(
+      (a, b) => sortByDifference(a, b)
+    ),
   }
 }

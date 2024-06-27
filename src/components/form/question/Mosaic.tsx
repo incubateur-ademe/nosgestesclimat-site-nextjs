@@ -1,13 +1,15 @@
-import { useRule } from '@/publicodes-state'
 import MosaicQuestion from './mosaic/MosaicQuestion'
 
 type Props = {
   question: string
+  questionsOfMosaic: string[]
 }
 
-export default function Mosaic({ question, ...props }: Props) {
-  const { questionsOfMosaic } = useRule(question)
-
+export default function Mosaic({
+  question,
+  questionsOfMosaic,
+  ...props
+}: Props) {
   return (
     <fieldset className="grid gap-4 md:grid-cols-2">
       {questionsOfMosaic
