@@ -32,10 +32,8 @@ export default function useNavigation({
     () =>
       remainingQuestions.length === 0 ||
       (remainingQuestions.length === 1 &&
-        !remainingQuestions.includes(
-          relevantQuestions[currentQuestionIndex + 1]
-        )),
-    [currentQuestionIndex, relevantQuestions, remainingQuestions]
+        remainingQuestions[0] === currentQuestion),
+    [currentQuestion, remainingQuestions]
   )
 
   const isLastQuestionOfCategory = useMemo<boolean>(
