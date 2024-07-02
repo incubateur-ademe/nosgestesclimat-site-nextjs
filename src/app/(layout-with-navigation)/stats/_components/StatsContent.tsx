@@ -148,7 +148,7 @@ export default function StatsContent() {
         <MetabaseIframe
           id="test"
           titre="test"
-          src="https://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/2cb00116-100f-4c22-b72e-a45e86ae3fea?tab=9-qualitatif#titled=false"
+          src="https://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/f36c5cc4-abb9-4ac6-98b5-13bed7318e7d#titled=false"
         />{' '}
       </div>
       <div className="mt-8">
@@ -163,17 +163,17 @@ export default function StatsContent() {
           </Trans>{' '}
         </p>
         <h3>Mode "Organisations"</h3>
-        {/* <MetabaseIframe
+        <MetabaseIframe
           id="stats-orga"
           titre="stats mode orga"
-          src="https://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/2cb00116-100f-4c22-b72e-a45e86ae3fea?tab=7-organisations#titled=false"
-        /> */}
+          src="https://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/f64f2de4-fc94-431e-a6c0-01f9c0095267#titled=false"
+        />
         <h3 className="mt-4">Mode "Challenge tes amis"</h3>
-        {/* <MetabaseIframe
+        <MetabaseIframe
           id="test"
           titre="test"
-          src="https://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/2cb00116-100f-4c22-b72e-a45e86ae3fea?tab=8-groupes-d%27amis#titled=false"
-        />{' '} */}
+          src="https://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/8a32d8a6-3716-40a7-9ce0-f9991c54acf4#titled=false"
+        />{' '}
       </div>
     </div>
   )
