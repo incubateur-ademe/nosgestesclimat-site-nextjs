@@ -49,7 +49,7 @@ export default function AcquisitionBlock({
         currentMonthWebsitesData={currentMonthWebsitesData}
         currentMonthSocialsData={currentMonthSocialsData}
       />
-      <h3>Utilisation de l'Iframe</h3>
+      {/* <h3>Utilisation de l'Iframe</h3> */}
       <div className="mt-4">
         <div className="flex flex-row gap-4">
           <Card className="flex-1">
