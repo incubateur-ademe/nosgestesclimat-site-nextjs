@@ -64,10 +64,20 @@ export const useCurrentMonthVisits = () =>
     }
   )
 
+export const useCurrentMonthIframeVisits = () =>
+  // `date=lastMonth` doesn't seem to work
+  useX(
+    'currentMonthIframeVisits',
+    `module=API&date=last1&period=month&format=json&idSite=${idSite}&method=API.get&segment=eventAction%3D%3Dvisites%252520via%252520iframe,eventCategory%3D%3Diframe,eventName%3D%40Iframe%252520visit%252520from`,
+    (res) => {
+      return Object.values(res.data)[0].nb_visits
+    }
+  )
+
 export const useAllTimeVisits = () =>
   useX(
     'allTimeVisits',
-    `module=API&&date=${MESURE_START_DATE}&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
+    `module=API&date=${MESURE_START_DATE}&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
     (res) => {
       const base = 109689 //base NGC
       return base + res.data.value
@@ -89,7 +99,7 @@ export const useCurrentMonthSimulationsTerminees = () =>
 export const useAllSimulationsTerminees = () =>
   useX(
     'allSimulationsTerminees',
-    `module=API&method=Events.getAction&idSite=${idSite}&period=range&&date=${MESURE_START_DATE}&format=JSON`,
+    `module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${MESURE_START_DATE}&format=JSON`,
     (res) => {
       const base = 32015 //base NGC
       return (

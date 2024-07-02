@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
-import { formatFigure } from '../utils/formatFigure'
+import { formatFigure, formatPercentage } from '../utils/formatFigure'
 import Sources from './Sources'
 
 type Props = {
@@ -9,6 +9,7 @@ type Props = {
   currentMonthWebsitesData: any
   currentMonthSocialsData: any
   currentMonthVisitsData: any
+  currentMonthIframeVisitsData: any
 }
 
 export default function AcquisitionBlock({
@@ -17,6 +18,7 @@ export default function AcquisitionBlock({
   currentMonthWebsitesData,
   currentMonthSocialsData,
   currentMonthVisitsData,
+  currentMonthIframeVisitsData,
 }: Props) {
   return (
     <div>
@@ -49,9 +51,18 @@ export default function AcquisitionBlock({
         currentMonthWebsitesData={currentMonthWebsitesData}
         currentMonthSocialsData={currentMonthSocialsData}
       />
-      {/* <h3>Utilisation de l'Iframe</h3> */}
       <div className="mt-4">
         <div className="flex flex-row gap-4">
+          <Card className="flex-1">
+            <strong className="text-3xl">
+              {formatPercentage(
+                currentMonthIframeVisitsData / currentMonthVisitsData
+              )}
+            </strong>{' '}
+            <p className="mb-0 text-sm">
+              <Trans>de visites via iframe ce mois-ci</Trans>
+            </p>
+          </Card>
           <Card className="flex-1">
             <strong className="text-3xl">
               {formatFigure(allSubscribers?.data) || '...'}
