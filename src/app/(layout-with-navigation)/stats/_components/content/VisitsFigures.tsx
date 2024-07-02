@@ -12,9 +12,9 @@ export default function VisitsFigures({
   currentMonthVisits,
 }: Props) {
   return (
-    <div className="flex flex-row gap-4 md:!flex-col">
-      <Card className="flex-1 gap-4">
-        <div className="m-0">
+    <div>
+      <Card className="flex- flex-row justify-around gap-4 lg:h-60 lg:!flex-col">
+        <div>
           <p className="mb-0 text-4xl font-bold">
             {formatFigure(allTimeVisits)}
           </p>{' '}

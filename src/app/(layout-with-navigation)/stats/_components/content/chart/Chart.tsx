@@ -69,6 +69,7 @@ export default function Chart({
               tickFormatter={(tick) =>
                 tick.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')
               }
+              width={70}
             />
             <Tooltip content={<CustomTooltip period={chartPeriod} />} />
             <Area

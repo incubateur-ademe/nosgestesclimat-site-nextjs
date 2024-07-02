@@ -9,13 +9,13 @@ export default function CustomTooltip(props: Props) {
 
   const date =
     props.period === 'week'
-      ? `Semaine du ${new Date(props.label.split(',')[0]).toLocaleDateString(
+      ? `Semaine du ${new Date(props.label?.split(',')[0]).toLocaleDateString(
           user?.region?.code,
           {
             day: '2-digit',
             month: '2-digit',
           }
-        )} au ${new Date(props.label.split(',')[1]).toLocaleDateString(
+        )} au ${new Date(props.label?.split(',')[1]).toLocaleDateString(
           user?.region?.code,
           {
             day: '2-digit',
