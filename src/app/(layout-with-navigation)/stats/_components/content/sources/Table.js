@@ -7,20 +7,7 @@ export default function Table(props) {
         <table className="statistics-table">
           <tbody>
             <tr>
-              <th>
-                {props.title}{' '}
-                {props.setNewWebsites && (
-                  <button
-                    className="m-0 inline cursor-pointer border-none bg-none p-0 text-sm text-primary-700"
-                    onClick={() =>
-                      props.setNewWebsites(
-                        (prevNewWebsites) => !prevNewWebsites
-                      )
-                    }>
-                    ({props.newWebsites ? 'Voir tous' : 'Voir les nouveaux'})
-                  </button>
-                )}
-              </th>
+              <th>{props.title} </th>
               <th>Visites</th>
               <th>%</th>
             </tr>
@@ -48,7 +35,7 @@ export default function Table(props) {
           </tbody>
         </table>
         <p className="text-right text-sm font-light">
-          <Trans>Données valables pour les 30 derniers jours</Trans>
+          <Trans>Données valables pour le mois en cours</Trans>
         </p>
       </div>
     </div>

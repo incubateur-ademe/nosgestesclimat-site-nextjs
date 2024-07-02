@@ -74,7 +74,7 @@ export default function IframeFigures(props) {
         </tbody>
       </table>
       <p className="text-right text-sm font-light">
-        <Trans>Données valables pour les 30 derniers jours</Trans>
+        <Trans>Données valables pour le mois en cours</Trans>
       </p>
     </div>
   )

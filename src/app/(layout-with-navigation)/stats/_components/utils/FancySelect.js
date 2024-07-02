@@ -1,6 +1,6 @@
 export default function FancySelect(props) {
   return (
-    <div className="relative inline-block text-primary-700">
+    <div className="relative inline-block text-secondary-700">
       <span
         dangerouslySetInnerHTML={{
           __html: props.options.find((option) => option.value === props.value)
@@ -19,7 +19,7 @@ export default function FancySelect(props) {
         }}>
         {props.options.map((option, index) => (
           <option
-            className="text-primary-700"
+            className="text-secondary-700"
             key={option.value + '-' + index}
             value={option.value}
             disabled={option.disabled}>
