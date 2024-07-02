@@ -43,7 +43,6 @@ export default function Chart({
         date={chartDate}
         setPeriod={setChartPeriod}
         setDate={setChartDate}
-        color={color}
       />
       <div className="h-60">
         <ResponsiveContainer>

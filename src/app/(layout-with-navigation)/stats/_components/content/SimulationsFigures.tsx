@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
+import { formatFigure } from '../utils/formatFigure'
 
 type Props = {
   currentMonthSimulations: number
@@ -15,9 +16,7 @@ export default function SimulationsFigures({
       <Card className="flex-1 gap-4">
         <div>
           <p className="mb-0 text-3xl font-bold">
-            {allSimulationsTerminees
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
+            {formatFigure(allSimulationsTerminees)}
           </p>{' '}
           <p className="mb-0 text-sm">
             <Trans>simulations terminées depuis le lancement</Trans>
@@ -25,9 +24,7 @@ export default function SimulationsFigures({
         </div>
         <div className="text-sm">
           <p className="mb-0 text-3xl font-bold">
-            {currentMonthSimulations
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
+            {formatFigure(currentMonthSimulations)}
           </p>{' '}
           <p>
             <Trans>visites ce mois-ci (en cours)</Trans>

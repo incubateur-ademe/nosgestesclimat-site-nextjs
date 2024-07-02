@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
+import { formatFigure } from '../utils/formatFigure'
 import Sources from './Sources'
 
 type Props = {
@@ -53,9 +54,7 @@ export default function AcquisitionBlock({
         <div className="flex flex-row gap-4">
           <Card className="flex-1">
             <strong className="text-3xl">
-              {allSubscribers?.data
-                ?.toString()
-                ?.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') || '...'}
+              {formatFigure(allSubscribers?.data) || '...'}
             </strong>{' '}
             <p className="mb-0 text-sm">
               <Trans>inscrits à l'infolettre</Trans>
@@ -63,9 +62,7 @@ export default function AcquisitionBlock({
           </Card>
           <Card className="flex-1">
             <strong className="text-3xl">
-              {allSharedSimulationEventsData
-                ?.toString()
-                ?.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') || '...'}
+              {formatFigure(allSharedSimulationEventsData) || '...'}
             </strong>{' '}
             <p className="mb-0 text-sm">
               <Trans>partages du simulateur</Trans>

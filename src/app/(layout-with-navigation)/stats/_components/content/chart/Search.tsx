@@ -13,7 +13,6 @@ type Props = {
   period: string
   setPeriod: (period: string) => void
   elementAnalysedTitle: string
-  color: string
 }
 
 export default function Search({
@@ -22,7 +21,6 @@ export default function Search({
   period,
   setPeriod,
   elementAnalysedTitle,
-  color,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -30,7 +28,7 @@ export default function Search({
     <div className="mb-2 text-left text-sm">
       {t('Nombre de')} {elementAnalysedTitle} {t('pour les ')}
       <FancySelect
-        fancy
+        name="select-date"
         value={date}
         onChange={(e: string) => {
           setDate(e)
@@ -39,11 +37,10 @@ export default function Search({
           value: String(elt),
           label: String(elt),
         }))}
-        color={color}
       />{' '}
       {period === 'week' ? t('dernières') : t('derniers')}{' '}
       <FancySelect
-        fancy
+        name="select-period"
         value={period}
         onChange={setPeriod}
         options={[
@@ -51,7 +48,6 @@ export default function Search({
           { value: 'week', label: t('semaines') },
           { value: 'month', label: t('mois') },
         ]}
-        color={color}
       />
     </div>
   )

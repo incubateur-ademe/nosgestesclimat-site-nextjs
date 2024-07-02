@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
+import { formatFigure } from '../utils/formatFigure'
 
 type Props = {
   allTimeVisits: number
@@ -15,9 +16,7 @@ export default function VisitsFigures({
       <Card className="flex-1 gap-4">
         <div className="m-0">
           <p className="mb-0 text-4xl font-bold">
-            {allTimeVisits
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
+            {formatFigure(allTimeVisits)}
           </p>{' '}
           <p className="mb-0 text-sm">
             <Trans>visites depuis le lancement</Trans>
@@ -25,9 +24,7 @@ export default function VisitsFigures({
         </div>
         <div className="text-sm">
           <p className="mb-0 text-3xl font-bold">
-            {currentMonthVisits
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
+            {formatFigure(currentMonthVisits)}
           </p>{' '}
           <p>
             <Trans>visites ce mois-ci (en cours)</Trans>
