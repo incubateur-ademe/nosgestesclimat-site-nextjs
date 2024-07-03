@@ -151,9 +151,10 @@ export default function StatsContent() {
           </Trans>
         </p>
         <MetabaseIframe
-          id="test"
-          titre="test"
+          id="stats-quali"
+          titre="stats-quali"
           src="https://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/f36c5cc4-abb9-4ac6-98b5-13bed7318e7d#titled=false"
+          height="800px"
         />{' '}
       </div>
       <div className="mt-8">
@@ -175,8 +176,8 @@ export default function StatsContent() {
         />
         <h3 className="mt-4">Mode "Challenge tes amis"</h3>
         <MetabaseIframe
-          id="test"
-          titre="test"
+          id="stats-amis"
+          titre="stats-amis"
           src="https://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/8a32d8a6-3716-40a7-9ce0-f9991c54acf4#titled=false"
         />{' '}
       </div>

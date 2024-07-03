@@ -6,9 +6,15 @@ type Props = {
   id: string
   titre: string
   src: string
+  height?: string
 }
 
-export default function MetabaseIframe({ id, titre, src }: Props) {
+export default function MetabaseIframe({
+  id,
+  titre,
+  src,
+  height = '450px',
+}: Props) {
   const [isIFrameLoaded, setIsIFrameLoaded] = useState(false)
 
   return (
@@ -21,7 +27,7 @@ export default function MetabaseIframe({ id, titre, src }: Props) {
         src={src}
         width="100%"
         // Fix it for mobile
-        height="450px"
+        height={height}
         className="border-none"
         onLoad={() => setIsIFrameLoaded(true)}></iframe>
     </>
