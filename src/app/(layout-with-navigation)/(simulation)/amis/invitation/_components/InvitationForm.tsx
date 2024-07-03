@@ -20,7 +20,7 @@ type Inputs = {
 export default function InvitationForm({ group }: { group: Group }) {
   const { t } = useClientTranslation()
 
-  const { updateName, updateEmail } = useUser()
+  const { user, updateName, updateEmail } = useUser()
 
   const {
     register,
@@ -76,6 +76,7 @@ export default function InvitationForm({ group }: { group: Group }) {
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <PrenomInput
         data-cypress-id="member-name"
+        value={user.name ?? ''}
         error={errors.guestName?.message}
         {...register('guestName', {
           required: t('Ce champ est requis.'),
@@ -84,6 +85,7 @@ export default function InvitationForm({ group }: { group: Group }) {
 
       <div className="my-4">
         <EmailInput
+          value={user.email ?? ''}
           label={
             <span>
               {t('Votre adresse email')}{' '}

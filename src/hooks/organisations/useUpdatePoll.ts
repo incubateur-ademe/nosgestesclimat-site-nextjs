@@ -2,16 +2,10 @@
 
 import { SERVER_URL } from '@/constants/urls'
 import { useUser } from '@/publicodes-state'
+import { UpdatePollProps } from '@/types/organisations'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useParams } from 'next/navigation'
-import { CustomAdditionalQuestions } from './../../types/organisations'
-
-type MutationProps = {
-  name: string
-  defaultAdditionalQuestions: string[]
-  customAdditionalQuestions: CustomAdditionalQuestions
-}
 
 export function useUpdatePoll() {
   const { user } = useUser()
@@ -20,11 +14,7 @@ export function useUpdatePoll() {
 
   return useMutation({
     mutationKey: ['updatePoll', pollSlug],
-    mutationFn: ({
-      name,
-      defaultAdditionalQuestions,
-      customAdditionalQuestions,
-    }: MutationProps) =>
+    mutationFn: ({ name, defaultAdditionalQuestions }: UpdatePollProps) =>
       axios
         .post(
           `${SERVER_URL}/polls/update`,
@@ -34,7 +24,6 @@ export function useUpdatePoll() {
             pollSlug,
             name,
             defaultAdditionalQuestions,
-            customAdditionalQuestions,
           },
           {
             withCredentials: true,

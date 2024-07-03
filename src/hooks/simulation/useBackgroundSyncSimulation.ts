@@ -1,4 +1,4 @@
-import { SimulationSyncContext } from '@/app/_components/mainLayoutProviders/SimulationSyncProvider'
+import { SimulationSyncContext } from '@/components/providers/providers/SimulationSyncProvider'
 import { useContext } from 'react'
 
 export const useBackgroundSyncSimulation = () =>

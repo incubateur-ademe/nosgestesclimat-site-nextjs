@@ -25,6 +25,7 @@ export default function SimulationProvider({
   const { engine, pristineEngine, safeEvaluate, safeGetRule } = useEngine(rules)
 
   const {
+    parsedRules,
     everyRules,
     everyInactiveRules,
     everyQuestions,
@@ -41,13 +42,13 @@ export default function SimulationProvider({
     safeGetRule,
   })
 
-  const { isInitialized, addToEngineSituation } = useEngineSituation({
+  const { isEngineInitialized, addToEngineSituation } = useEngineSituation({
     engine,
   })
 
-  useSetComputedResults({
+  const { isInitialized } = useSetComputedResults({
     categories,
-    isInitialized,
+    isEngineInitialized,
     safeEvaluate,
   })
 
@@ -59,6 +60,7 @@ export default function SimulationProvider({
         pristineEngine,
         safeEvaluate,
         safeGetRule,
+        parsedRules,
         everyRules,
         everyInactiveRules,
         everyQuestions,
@@ -69,6 +71,7 @@ export default function SimulationProvider({
         categories,
         subcategories,
         addToEngineSituation,
+        isInitialized,
       }}>
       {isInitialized || shouldAlwaysDisplayChildren ? children : null}
     </SimulationContext.Provider>

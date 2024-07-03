@@ -8,7 +8,6 @@ import { PropsWithChildren } from 'react'
 import MainHooks from './mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from './mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProviderWrapper'
-import SimulationSyncProvider from './mainLayoutProviders/SimulationSyncProvider'
 
 type Props = {
   region: RegionFromGeolocation
@@ -27,9 +26,7 @@ export default function MainLayoutProviders({
           storageKey="nosgestesclimat::v3"
           migrationInstructions={migrationInstructions}>
           <PreventNavigationProvider>
-            <SimulationSyncProvider>
-              <MainHooks>{children}</MainHooks>
-            </SimulationSyncProvider>
+            <MainHooks>{children}</MainHooks>
           </PreventNavigationProvider>
         </UserProvider>
       </QueryClientProviderWrapper>
