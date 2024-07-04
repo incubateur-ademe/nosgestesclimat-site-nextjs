@@ -15,9 +15,7 @@ export default function usePersistentSimulations({
   migrationInstructions,
 }: Props) {
   const [initialized, setInitialized] = useState<boolean>(false)
-  const [simulations, setSimulations] = useState<Simulation[]>([
-    generateSimulation(),
-  ])
+  const [simulations, setSimulations] = useState<Simulation[]>([])
   const [currentSimulationId, setCurrentSimulationId] = useState<string>('')
 
   useEffect(() => {
