@@ -7,7 +7,7 @@ import {
   YAxis,
 } from 'recharts'
 
-import { useUser } from '@/publicodes-state'
+import { useLocale } from '@/hooks/useLocale'
 import { Dispatch, SetStateAction } from 'react'
 import CustomTooltip from './CustomTooltip'
 import Search from './Search'
@@ -33,7 +33,7 @@ export default function Chart({
   setChartDate,
   color,
 }: Props) {
-  const { user } = useUser()
+  const locale = useLocale()
 
   return (
     <div className="mt-4">
@@ -53,11 +53,11 @@ export default function Chart({
               tickFormatter={(tick) => {
                 const date = new Date(tick.split(',')[0])
                 return chartPeriod === 'month'
-                  ? date.toLocaleDateString(user?.region?.code, {
+                  ? date.toLocaleDateString(locale, {
                       month: 'long',
                       year: 'numeric',
                     })
-                  : date.toLocaleDateString(user?.region?.code, {
+                  : date.toLocaleDateString(locale, {
                       day: '2-digit',
                       month: '2-digit',
                     })
