@@ -42,7 +42,7 @@ export function generateSimulation({
   try {
     simulation = migrateSimulation(simulation, migrationInstructions)
   } catch (error) {
-    console.warn('Error trying to migrate LocalStorage:', error)
+    console.warn('Error trying to migrate Simulation:', error)
     captureException(error)
   }
 
