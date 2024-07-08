@@ -1031,3 +1031,17 @@ entries:
   Pour le retrouver facilement dans votre liste: Para encontrarlo fácilmente en su lista
   Un bonhomme se demandant où il est: Un hombre preguntándose dónde está
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Nada en el horizonte <1></1>La página que busca no existe.
+  Données qualitatives: Datos cualitativos
+  Modes "Groupes": Modos de grupo
+  partages du simulateur: compartir el simulador
+  Acquisition: Adquisición
+  Récupération des données: Recuperación de datos
+  visites depuis le lancement: visitas desde el lanzamiento
+  de visites via iframe ce mois-ci: visitas a través de iframe este mes
+  Visites et simulations: Visitas y simulaciones
+  visites ce mois-ci (en cours): visitas este mes (en curso)
+  simulations terminées depuis le lancement: simulaciones realizadas desde el lanzamiento
+  inscrits à l'infolettre: suscriptores del boletín
+  Une erreur est survenue lors de la récupération des données: Se ha producido un error durante la recuperación de datos
+  components.stats.StatsContent.infosNorthstar: Nos referimos a los modos "Organizaciones" y "Desafía a tus amigos". Esta sección se genera a través de Metabase.
+  components.stats.StatsContent.infosNorthstar.lock: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
