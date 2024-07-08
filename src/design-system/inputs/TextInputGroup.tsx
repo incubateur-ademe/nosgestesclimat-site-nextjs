@@ -25,6 +25,7 @@ type Props = {
   disabled?: boolean
   debounceTimeout?: number
   readOnly?: boolean
+  'data-cypress-id'?: string
 }
 
 export default forwardRef(function TextInputGroup(
@@ -81,6 +82,7 @@ export default forwardRef(function TextInputGroup(
         value={value}
         required={required}
         aria-disabled={disabled}
+        data-cypress-id={`${props['data-cypress-id']}`}
         {...props}
         className={twMerge(
           helperText || label ? ' !mt-3' : '',

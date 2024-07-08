@@ -83,7 +83,7 @@ export default function GroupCreationForm() {
         />
       </div>
 
-      <Button type="submit" data-cypress-id="button-create-group">
+      <Button type="submit" data-cypress-id="button-continue-create-group">
         {' '}
         <Trans>Continuer</Trans>
       </Button>
