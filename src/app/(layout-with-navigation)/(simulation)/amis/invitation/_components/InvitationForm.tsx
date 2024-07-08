@@ -9,25 +9,30 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
-import { isEmailValid } from '@/utils/isEmailValid'
-import { FormEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useForm as useReactHookForm } from 'react-hook-form'
+
+type Inputs = {
+  guestName: string
+  guestEmail: string
+}
 
 export default function InvitationForm({ group }: { group: Group }) {
   const { t } = useClientTranslation()
 
   const { user, updateName, updateEmail } = useUser()
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useReactHookForm<Inputs>()
+
   const currentSimulation = useCurrentSimulation()
   const hasCompletedTest = currentSimulation.progression === 1
 
   const { goToSimulateurPage } = useSimulateurPage()
   const { goToEndPage } = useEndPage()
-
-  const [guestName, setGuestName] = useState(user.name || '')
-  const [errorGuestName, setErrorGuestName] = useState('')
-
-  const [guestEmail, setGuestEmail] = useState(user.email || '')
-  const [errorGuestEmail, setErrorGuestEmail] = useState('')
 
   const [shouldNavigate, setShouldNavigate] = useState(false)
   useEffect(() => {
@@ -48,24 +53,9 @@ export default function InvitationForm({ group }: { group: Group }) {
     shouldNavigate,
   ])
 
-  const handleSubmit = async (event: MouseEvent | FormEvent) => {
-    // Avoid reloading page
-    if (event) {
-      event.preventDefault()
-    }
-
+  async function onSubmit({ guestName, guestEmail }: Inputs) {
     // Shouldn't happen but in any case, avoid group joining
     if (!group) {
-      return
-    }
-
-    // Inputs validation
-    if (!guestName) {
-      setErrorGuestName(t('Veuillez renseigner un prénom ou un pseudonyme.'))
-      return
-    }
-    if (!isEmailValid(guestEmail)) {
-      setErrorGuestEmail(t('Veuillez renseigner un email valide.'))
       return
     }
 
@@ -83,21 +73,19 @@ export default function InvitationForm({ group }: { group: Group }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
+    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <PrenomInput
-        prenom={guestName}
-        setPrenom={setGuestName}
-        errorPrenom={errorGuestName}
-        setErrorPrenom={setErrorGuestName}
         data-cypress-id="member-name"
+        value={user.name ?? ''}
+        error={errors.guestName?.message}
+        {...register('guestName', {
+          required: t('Ce champ est requis.'),
+        })}
       />
 
       <div className="my-4">
         <EmailInput
-          email={guestEmail}
-          setEmail={setGuestEmail}
-          error={errorGuestEmail}
-          setError={setErrorGuestEmail}
+          value={user.email ?? ''}
           label={
             <span>
               {t('Votre adresse email')}{' '}
@@ -110,6 +98,13 @@ export default function InvitationForm({ group }: { group: Group }) {
           helperText={t(
             'Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données'
           )}
+          {...register('guestEmail', {
+            pattern: {
+              value:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: t('Veuillez entrer une adresse email valide.'),
+            },
+          })}
         />
       </div>
 
@@ -119,11 +114,7 @@ export default function InvitationForm({ group }: { group: Group }) {
         </p>
       )}
 
-      <Button
-        type="submit"
-        onClick={handleSubmit}
-        aria-disabled={!guestName}
-        data-cypress-id="button-join-group">
+      <Button type="submit" data-cypress-id="button-join-group">
         {hasCompletedTest ? (
           <Trans>Rejoindre</Trans>
         ) : (

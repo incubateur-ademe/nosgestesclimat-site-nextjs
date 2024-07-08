@@ -1,4 +1,5 @@
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
+import { captureException } from '@sentry/react'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
@@ -19,11 +20,25 @@ export function useEngine(rules: Rules) {
     console.time(`⚙️ Parsing ${nbRules}`)
     const engine = new Engine(rules, {
       logger: {
-        log: console.log,
-        warn: () => null,
-        error: console.error,
+        log(msg: string) {
+          console.log(`[publicodes:log] ${msg}`)
+        },
+        warn() {
+          return null
+        },
+        error(msg: string) {
+          console.error(`[publicodes:error] ${msg}`)
+
+          // If it's a situation error, we throw it to sentry
+          if (msg.match(/[ Erreur lors de la mise à jour de la situation ]/)) {
+            captureException(new Error(msg))
+          }
+        },
       },
-      allowOrphanRules: true,
+      strict: {
+        situation: false,
+        noOrphanRule: false,
+      },
     })
     console.timeEnd(`⚙️ Parsing ${nbRules}`)
     return engine

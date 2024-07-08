@@ -4,7 +4,6 @@ import Link from '@/components/Link'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
 import { useRules } from '@/hooks/useRules'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
-import { safeGetSituation } from '@/publicodes-state/helpers/safeGetSituation'
 import { DottedName, Rules, Situation } from '@/publicodes-state/types'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Engine, { Evaluation } from 'publicodes'
@@ -27,22 +26,23 @@ export default function ModeleDemoBlock() {
   const { data: rules } = useRules({ isOptim: false })
 
   const engine = useMemo<Engine | null>(
-    () => (rules ? new Engine(rules as Rules) : null),
+    () =>
+      rules
+        ? new Engine(rules as Rules, {
+            strict: {
+              situation: false,
+              noOrphanRule: false,
+            },
+          })
+        : null,
     [rules]
   )
 
   //TODO: this is shit
   useEffect(() => {
-    if (engine && situation) {
-      const rules = Object.keys(engine.getParsedRules())
+    if (engine === null) return
 
-      const safeSituation: Situation = safeGetSituation({
-        situation,
-        everyRules: rules,
-      })
-
-      engine.setSituation(safeSituation as any)
-    }
+    engine.setSituation(situation)
 
     setIndicators(
       Object.fromEntries(

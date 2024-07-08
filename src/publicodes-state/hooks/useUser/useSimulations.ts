@@ -37,11 +37,9 @@ export default function useSimulations({
     }: Partial<Simulation> = {}) => {
       resetAideSaisie()
 
-      let newCurrentId = id
-
       setSimulations((prevSimulations: Simulation[]) => {
-        if (prevSimulations.find((simulation) => simulation.id === id)) {
-          setCurrentSimulationId(id ?? '')
+        if (id && prevSimulations.find((simulation) => simulation.id === id)) {
+          setCurrentSimulationId(id)
           return prevSimulations
         }
 
@@ -61,12 +59,10 @@ export default function useSimulations({
           migrationInstructions,
         })
 
-        newCurrentId = migratedSimulation.id
+        setCurrentSimulationId(migratedSimulation.id)
 
         return [...prevSimulations, migratedSimulation]
       })
-
-      setCurrentSimulationId(newCurrentId ?? '')
     },
     [migrationInstructions, setSimulations, setCurrentSimulationId]
   )

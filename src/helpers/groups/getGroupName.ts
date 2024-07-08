@@ -1,4 +1,4 @@
-import { GROUP_NAMES } from '@/constants/groupNames'
+import { GROUP_NAMES } from '@/constants/group'
 import { Group } from '@/types/groups'
 
 export function getGroupName(groups: Group[], locale: string) {

@@ -6,7 +6,7 @@ import { DottedName, Situation } from '../../types'
 
 type Props = {
   dottedName: DottedName
-  questionsOfMosaic?: string[]
+  questionsOfMosaicFromParent?: string[]
   situation: Situation
   foldedSteps: string[]
 }
@@ -14,7 +14,7 @@ type Props = {
 export default function useMissing({
   dottedName,
   situation,
-  questionsOfMosaic = [],
+  questionsOfMosaicFromParent = [],
   foldedSteps,
 }: Props) {
   const isMissing = useMemo(
@@ -22,9 +22,9 @@ export default function useMissing({
       getIsMissing({
         dottedName,
         situation,
-        questionsOfMosaic,
+        questionsOfMosaicFromParent,
       }),
-    [dottedName, situation, questionsOfMosaic]
+    [dottedName, situation, questionsOfMosaicFromParent]
   )
 
   const isFolded = useMemo(

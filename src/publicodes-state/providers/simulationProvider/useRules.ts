@@ -1,5 +1,5 @@
-import { NGCRuleNode } from '@/publicodes-state/types'
-import Engine from 'publicodes'
+import { NGCRuleNode, NGCRulesNodes } from '@/publicodes-state/types'
+import Engine, { utils } from 'publicodes'
 import { useMemo } from 'react'
 
 type Props = {
@@ -8,7 +8,10 @@ type Props = {
 }
 
 export function useRules({ engine, root }: Props) {
-  const parsedRules = engine.getParsedRules()
+  const parsedRules = useMemo<NGCRulesNodes>(
+    () => engine.getParsedRules(),
+    [engine]
+  )
   const parsedRulesEntries = useMemo<[string, NGCRuleNode][]>(
     () => Object.entries(parsedRules),
     [parsedRules]
@@ -70,13 +73,14 @@ export function useRules({ engine, root }: Props) {
         }
         const mosaicChildren = mosaicRule.rawNode.mosaique['options']?.map(
           (option: string) => {
-            return everyQuestions.find((rule) => rule.endsWith(option)) || ''
+            // Stylax but shoudn't we use `utils.disambiguateReference` here ?
+            return utils.disambiguateReference(parsedRules, mosaic, option)
           }
         )
         accumulator[mosaic] = [...mosaicChildren]
         return accumulator
       }, {}),
-    [everyMosaic, everyQuestions, engine]
+    [everyMosaic, engine, parsedRules]
   )
 
   const rawMissingVariables = useMemo<Record<string, number>>(() => {
@@ -87,10 +91,10 @@ export function useRules({ engine, root }: Props) {
             everyQuestions.includes(missingVariable[0]) &&
             parsedRules[missingVariable[0]].explanation.valeur.rawNode?.[
               'applicable si'
-            ] !== undefined &&
+            ] === undefined &&
             parsedRules[missingVariable[0]].explanation.valeur.rawNode?.[
               'non applicable si'
-            ] !== undefined
+            ] === undefined
           )
         }
       )
@@ -98,6 +102,7 @@ export function useRules({ engine, root }: Props) {
   }, [engine, everyQuestions, parsedRules, root])
 
   return {
+    parsedRules,
     everyRules,
     everyInactiveRules,
     everyQuestions,

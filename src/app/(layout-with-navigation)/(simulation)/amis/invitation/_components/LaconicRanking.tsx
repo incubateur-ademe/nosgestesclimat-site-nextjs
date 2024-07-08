@@ -8,7 +8,7 @@ type Props = {
 
 export default function LaconicRanking({ group }: Props) {
   // If only one participant
-  if (group.participants.length !== 1) {
+  if (group.participants.length === 1) {
     return (
       <section className="mt-6 rounded-xl bg-primary-50 p-4">
         <p className="mb-0">

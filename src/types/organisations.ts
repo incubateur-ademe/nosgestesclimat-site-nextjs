@@ -96,3 +96,9 @@ export type OrganisationInfo = {
   name: string
   slug: string
 }
+
+export type UpdatePollProps = {
+  name?: string
+  defaultAdditionalQuestions?: string[]
+  customAdditionalQuestions?: CustomAdditionalQuestions
+}

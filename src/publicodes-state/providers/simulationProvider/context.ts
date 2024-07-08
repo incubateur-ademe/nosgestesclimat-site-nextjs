@@ -1,21 +1,22 @@
 'use client'
 import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import { PublicodesExpression } from 'publicodes'
+import Engine, { PublicodesExpression } from 'publicodes'
 import { createContext } from 'react'
 import {
   DottedName,
-  Engine,
   NGCEvaluatedNode,
   NGCRuleNode,
+  NGCRulesNodes,
   Situation,
 } from '../../types'
 
 type SimulationContextType = {
   rules: NGCRules | null
-  engine: Engine
-  pristineEngine: Engine
+  engine: Engine | null
+  pristineEngine: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
+  parsedRules: NGCRulesNodes
   everyRules: DottedName[]
   everyInactiveRules: DottedName[]
   everyQuestions: DottedName[]
@@ -26,6 +27,7 @@ type SimulationContextType = {
   categories: DottedName[]
   subcategories: Record<DottedName, DottedName[]>
   addToEngineSituation: (situationToAdd: Situation) => Situation
+  isInitialized: boolean
 }
 export const SimulationContext = createContext<SimulationContextType>({
   rules: null,
@@ -33,6 +35,7 @@ export const SimulationContext = createContext<SimulationContextType>({
   pristineEngine: null,
   safeGetRule: () => null,
   safeEvaluate: () => null,
+  parsedRules: {},
   everyRules: [],
   everyInactiveRules: [],
   everyQuestions: [],
@@ -43,4 +46,5 @@ export const SimulationContext = createContext<SimulationContextType>({
   categories: [],
   subcategories: {},
   addToEngineSituation: () => ({}) as Situation,
+  isInitialized: false,
 })

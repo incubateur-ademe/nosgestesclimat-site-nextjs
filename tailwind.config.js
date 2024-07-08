@@ -141,12 +141,58 @@ module.exports = {
             'background-position': '0% 50%',
           },
         },
+        jump: {
+          'from, 20%, 53%, to': {
+            'animation-timing-function': 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+            transform: 'translate3d(0, 0, 0)',
+          },
+          '40%, 43%': {
+            'animation-timing-function':
+              'cubic-bezier(0.755, 0.05, 0.855, 0.06)',
+            transform: 'translate3d(0, -30px, 0) scaleY(1.1)',
+          },
+          '70%': {
+            'animation-timing-function':
+              'cubic-bezier(0.755, 0.05, 0.855, 0.06)',
+            transform: 'translate3d(0, -15px, 0) scaleY(1.05)',
+          },
+          '80%': {
+            'transition-timing-function': 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+            transform: 'translate3d(0, 0, 0) scaleY(0.95)',
+          },
+          '90%': {
+            transform: 'translate3d(0, -4px, 0) scaleY(1.02)',
+          },
+        },
+        swim: {
+          from: {
+            transform: 'translateX(-10vw)',
+          },
+          to: {
+            transform: 'translateX(110vw)',
+          },
+        },
+        swimBackwards: {
+          from: {
+            transform: 'translateX(110vw)',
+          },
+          to: {
+            transform: 'translateX(-10vw)',
+          },
+        },
       },
       animation: {
         valuechange: 'valuechange 3s ease-out infinite',
         iconsRotation: 'iconsRotation 1s ease-in-out',
         'rainbow-slow': 'rainbow 30s linear infinite',
         'rainbow-fast': 'rainbow 5s linear infinite',
+        jump: 'jump 1s infinite',
+        swim: 'swim 10s linear infinite',
+        'swim-fast': 'swim 5s linear infinite',
+        'swim-slow': 'swim 15s linear infinite',
+        'swim-backwards': 'swimBackwards 10s linear infinite',
+        'swim-backwards-fast': 'swimBackwards 5s linear infinite',
+        'swim-backwards-slow': 'swimBackwards 15s linear infinite',
       },
       backgroundImage: {
         'icons-mobile': "url('/images/misc/mobileIcons.svg')",

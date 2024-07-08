@@ -1,9 +1,9 @@
 'use client'
 
+import { compareTwoSimulations } from '@/helpers/simulation/compareTwoSimulations'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import {
   useCurrentSimulation,
-  useEngine,
   useSimulation,
   useUser,
 } from '@/publicodes-state'
@@ -47,22 +47,35 @@ export default function SimulationSyncProvider({
     savedViaEmail,
   } = useCurrentSimulation()
 
-  const { safeEvaluate } = useSimulation()
+  const { isInitialized } = useSimulation()
 
   const { saveSimulation, isPending } = useSaveSimulation()
 
-  const { getComputedResults } = useEngine()
-
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  // If the simulation is not in a group, poll, or we don't have an email, we do not save it
+  // If the simulation is unfinished, is not in a group, poll, or is not already saved via email, we do not save it
   const shouldSyncWithBackend = useMemo<boolean>(() => {
-    // We do not saved unfinished simulations
     // Fix to avoid computedResults bilan === 0 bug
-    if (progression !== 1 || computedResults?.bilan === 0) return false
+    if (progression !== 1) return false
 
-    return user.email || groups?.length || polls?.length ? true : false
-  }, [progression, user.email, groups, polls, computedResults?.bilan])
+    if (computedResults?.bilan === 0) {
+      // Send an error to Sentry
+      captureException(
+        new Error('SimulationSyncProvider: computedResults.bilan === 0')
+      )
+      return false
+    }
+
+    if (groups?.length || polls?.length) {
+      return true
+    }
+
+    if (user.email && savedViaEmail) {
+      return true
+    }
+
+    return false
+  }, [progression, user.email, groups, polls, savedViaEmail, computedResults])
 
   const isSyncedWithBackend = timeoutRef.current || isPending ? false : true
 
@@ -73,7 +86,58 @@ export default function SimulationSyncProvider({
     }
   }, [timeoutRef])
 
+  const prevSimulation = useRef({
+    id,
+    date,
+    situation,
+    foldedSteps,
+    actionChoices,
+    persona,
+    computedResults,
+    progression,
+    defaultAdditionalQuestionsAnswers,
+    polls,
+    groups,
+    savedViaEmail,
+  })
+
   useEffect(() => {
+    const hasChanged = compareTwoSimulations(prevSimulation.current, {
+      id,
+      date,
+      situation,
+      foldedSteps,
+      actionChoices,
+      persona,
+      computedResults,
+      progression,
+      defaultAdditionalQuestionsAnswers,
+      polls,
+      groups,
+      savedViaEmail,
+    })
+
+    prevSimulation.current = {
+      id,
+      date,
+      situation,
+      foldedSteps,
+      actionChoices,
+      persona,
+      computedResults,
+      progression,
+      defaultAdditionalQuestionsAnswers,
+      polls,
+      groups,
+      savedViaEmail,
+    }
+
+    // If there is no change, we do not start a save
+    if (!hasChanged) {
+      return
+    }
+
+    // If we should not save the simulation, we do not start a save
     if (!shouldSyncWithBackend) {
       return
     }
@@ -86,13 +150,6 @@ export default function SimulationSyncProvider({
     timeoutRef.current = setTimeout(() => {
       resetSyncTimer()
 
-      if (computedResults?.bilan === 0) {
-        // Send an error to Sentry
-        captureException(
-          new Error('SimulationSyncProvider: computedResults.bilan === 0')
-        )
-      }
-
       saveSimulation({
         simulation: {
           id,
@@ -101,11 +158,7 @@ export default function SimulationSyncProvider({
           foldedSteps,
           actionChoices,
           persona,
-          // Fix to avoid computedResults bilan === 0 bug
-          computedResults:
-            computedResults?.bilan === 0
-              ? getComputedResults(situation)
-              : computedResults,
+          computedResults,
           progression,
           defaultAdditionalQuestionsAnswers,
           polls,
@@ -130,8 +183,7 @@ export default function SimulationSyncProvider({
     saveSimulation,
     shouldSyncWithBackend,
     resetSyncTimer,
-    safeEvaluate,
-    getComputedResults,
+    isInitialized,
   ])
 
   useEffect(() => {

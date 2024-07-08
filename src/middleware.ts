@@ -7,6 +7,7 @@ export const middlewares = [splitTestingMiddleware, i18nMiddleware]
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next()
+
   for await (const middlewareFunction of middlewares) {
     const middlewareResponse = await middlewareFunction(request)
 

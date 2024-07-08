@@ -3,7 +3,6 @@ import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
 import {
   EvaluatedNode,
   Evaluation,
-  Engine as PublicodesEngine,
   Situation as PublicodesSituation,
   RuleNode,
 } from 'publicodes'
@@ -49,8 +48,6 @@ export type Suggestion = {
   //     }
 }
 
-export type Engine = PublicodesEngine
-
 export type NGCRuleNode = RuleNode & {
   rawNode: NGCRule
 }
@@ -73,7 +70,7 @@ export type Simulation = {
   foldedSteps: DottedName[]
   actionChoices: ActionChoices
   persona?: DottedName
-  computedResults?: ComputedResults
+  computedResults: ComputedResults
   progression: number
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   customAdditionalQuestionsAnswers?: Record<string, string>

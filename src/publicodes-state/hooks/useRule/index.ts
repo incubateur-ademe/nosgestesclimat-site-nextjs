@@ -9,6 +9,7 @@ import useChoices from './useChoices'
 import useContent from './useContent'
 import useMissing from './useMissing'
 import useNotifications from './useNotifications'
+import useQuestionsOfMosaic from './useQuestionsOfMosaic'
 import useSetValue from './useSetValue'
 import useType from './useType'
 import useValue from './useValue'
@@ -23,6 +24,7 @@ export default function useRule(dottedName: DottedName) {
     engine,
     safeGetRule,
     safeEvaluate,
+    parsedRules,
     everyNotifications,
     everyMosaicChildrenWithParent,
     addToEngineSituation,
@@ -55,15 +57,13 @@ export default function useRule(dottedName: DottedName) {
     situation,
   })
 
-  const questionsOfMosaicFromParent =
-    everyMosaicChildrenWithParent[dottedName] || []
+  const { questionsOfMosaicFromParent, questionsOfMosaicFromSibling } =
+    useQuestionsOfMosaic({
+      everyMosaicChildrenWithParent,
+      dottedName,
+    })
 
-  const questionsOfMosaicFromBrother =
-    Object.values(everyMosaicChildrenWithParent).find(([mosaicChildren]) => {
-      return mosaicChildren.includes(dottedName)
-    }) || []
-
-  const parent = utils.ruleParent(dottedName)
+  const parent = useMemo(() => utils.ruleParent(dottedName), [dottedName])
 
   const {
     category,
@@ -89,7 +89,7 @@ export default function useRule(dottedName: DottedName) {
 
   const { isMissing, isFolded } = useMissing({
     dottedName,
-    questionsOfMosaic: questionsOfMosaicFromBrother,
+    questionsOfMosaicFromParent,
     situation,
     foldedSteps,
   })
@@ -99,14 +99,13 @@ export default function useRule(dottedName: DottedName) {
     type,
   })
 
-  const { setValue, setDefaultAsValue } = useSetValue({
+  const { setValue } = useSetValue({
     dottedName,
+    parsedRules,
     safeGetRule,
     safeEvaluate,
     evaluation,
-    value,
     type,
-    questionsOfMosaic: questionsOfMosaicFromParent,
     updateCurrentSimulation,
     situation,
     addToEngineSituation,
@@ -188,7 +187,7 @@ export default function useRule(dottedName: DottedName) {
     /**
      * A list of questions to display inside the mosaic (if the rule is a mosaic child)
      */
-    questionsOfMosaicFromBrother,
+    questionsOfMosaicFromSibling,
     /**
      * The direct parent of the rule
      */
@@ -217,10 +216,6 @@ export default function useRule(dottedName: DottedName) {
      * Setter for the value of the rule, with the possibility to add a dottedName in the foldedSteps
      */
     setValue,
-    /**
-     * Set default value as value, with the possibility to add a dottedName in the foldedSteps and the mosaic parent
-     */
-    setDefaultAsValue,
     /**
      * A list of actions linked to the rules (only used by "ui . pédagogie" rules)
      */
