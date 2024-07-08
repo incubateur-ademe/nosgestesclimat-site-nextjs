@@ -1,5 +1,5 @@
 import { SERVER_URL } from '@/constants/urls'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 const idSite = 153
@@ -17,6 +17,7 @@ export const useX = (queryName, urlQuery, transformResult) =>
             encodeURIComponent(urlQuery)
         )
         .then((res) => transformResult(res)),
+    placeholderData: keepPreviousData,
   })
 
 export const useVisitsChart = ({ chartPeriod, chartDate, name }) => {
