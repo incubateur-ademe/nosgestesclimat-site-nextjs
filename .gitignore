@@ -57,3 +57,9 @@ dist
 
 # Build analysis
 /analyze
+
+# Sentry Config File
+.env.sentry-build-plugin
+
+# Sentry Config File
+.env.sentry-build-plugin
