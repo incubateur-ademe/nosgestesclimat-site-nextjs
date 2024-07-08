@@ -29,10 +29,10 @@ export default async function NosRelais() {
   return (
     <div>
       <Title>
-        <Trans>
-          Ils relaient{' '}
-          <span className="text-primary-700">Nos Gestes Climat</span>
-        </Trans>
+        <Trans>Ils relaient </Trans>
+        <span className="text-primary-700">
+          <Trans>Nos Gestes Climat</Trans>
+        </span>
       </Title>
 
       <div className="flex flex-wrap items-center md:flex-nowrap md:gap-16">
