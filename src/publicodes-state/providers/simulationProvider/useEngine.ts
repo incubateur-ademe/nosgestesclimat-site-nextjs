@@ -1,4 +1,5 @@
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
+import { captureException } from '@sentry/react'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
@@ -30,7 +31,7 @@ export function useEngine(rules: Rules) {
 
           // If it's a situation error, we throw it to sentry
           if (msg.match(/[ Erreur lors de la mise à jour de la situation ]/)) {
-            // captureException(new Error(msg))
+            captureException(new Error(msg))
           }
         },
       },

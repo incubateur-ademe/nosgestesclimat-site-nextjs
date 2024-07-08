@@ -57,6 +57,7 @@ export default function NumberInput({
         <input
           className="bg-transparent-100  w-10 text-center"
           type="number"
+          inputMode="numeric"
           value={isMissing ? '' : Number(value)}
           placeholder={'0'}
           onChange={(event) => setValue(Number(event.target.value))}
