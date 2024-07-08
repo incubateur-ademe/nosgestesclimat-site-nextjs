@@ -53,8 +53,6 @@ dist
 # Sentry Config File
 .sentryclirc
 
-.vscode
-
 # Build analysis
 /analyze
 
