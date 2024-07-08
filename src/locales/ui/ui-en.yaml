@@ -1038,3 +1038,17 @@ entries:
   La simulation et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.: The simulation and calculations are done in your web browser, so the answers to the questions stay with you, we don't collect any of them.
   Un bonhomme se demandant où il est: A man wondering where he is
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Nothing on the horizon! <1></1>The page you are looking for does not exist.
+  Récupération des données: Data recovery
+  Acquisition: Acquisition
+  visites depuis le lancement: visits since launch
+  simulations terminées depuis le lancement: simulations completed since launch
+  Visites et simulations: Visits and simulations
+  Modes "Groupes": Group modes
+  Données qualitatives: Qualitative data
+  de visites via iframe ce mois-ci: visits via iframe this month
+  inscrits à l'infolettre: newsletter subscribers
+  partages du simulateur: sharing the simulator
+  visites ce mois-ci (en cours): visits this month (in progress)
+  Une erreur est survenue lors de la récupération des données: An error has occurred during data recovery
+  components.stats.StatsContent.infosNorthstar: We are talking here about the "Organisations" and "Challenge your friends" modes. This section is generated via Metabase.
+  components.stats.StatsContent.infosNorthstar.lock: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
