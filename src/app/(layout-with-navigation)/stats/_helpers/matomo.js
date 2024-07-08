@@ -69,9 +69,9 @@ export const useCurrentMonthIframeVisits = () =>
   // `date=lastMonth` doesn't seem to work
   useX(
     'currentMonthIframeVisits',
-    `module=API&date=last1&period=month&format=json&idSite=${idSite}&method=API.get&segment=eventAction%3D%3Dvisites%252520via%252520iframe,eventCategory%3D%3Diframe,eventName%3D%40Iframe%252520visit%252520from`,
+    `module=API&date=last1&period=month&format=json&idSite=${idSite}&method=VisitsSummary.getVisits&segment=eventAction%3D%3Dvisites%252520via%252520iframe,eventCategory%3D%3Diframe,eventName%3D%40Iframe%252520visit%252520from`,
     (res) => {
-      return Object.values(res.data)[0].nb_visits
+      return Object.values(res.data)[0]
     }
   )
 
