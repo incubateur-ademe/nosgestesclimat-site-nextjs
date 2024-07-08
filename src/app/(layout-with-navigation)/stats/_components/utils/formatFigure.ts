@@ -1,5 +1,5 @@
-export function formatFigure(number: number): string {
-  return number?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')
+export function formatValue(value: number, locale: Intl.LocalesArgument) {
+  return value ? value.toLocaleString(locale) : '-'
 }
 
 export function formatPercentage(number: number): string {

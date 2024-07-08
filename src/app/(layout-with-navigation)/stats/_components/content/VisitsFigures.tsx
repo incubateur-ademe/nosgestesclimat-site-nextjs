@@ -1,6 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
-import { formatFigure } from '../utils/formatFigure'
+import { useLocale } from '@/hooks/useLocale'
+import { formatValue } from '../utils/formatFigure'
 
 type Props = {
   allTimeVisits: number
@@ -11,12 +12,13 @@ export default function VisitsFigures({
   allTimeVisits,
   currentMonthVisits,
 }: Props) {
+  const locale = useLocale()
   return (
     <div>
       <Card className="flex- flex-row justify-around gap-4 lg:h-60 lg:!flex-col">
         <div>
           <p className="mb-0 text-4xl font-bold">
-            {formatFigure(allTimeVisits)}
+            {formatValue(allTimeVisits, locale)}
           </p>{' '}
           <p className="mb-0 text-sm">
             <Trans>visites depuis le lancement</Trans>
@@ -24,7 +26,7 @@ export default function VisitsFigures({
         </div>
         <div className="text-sm">
           <p className="mb-0 text-3xl font-bold">
-            {formatFigure(currentMonthVisits)}
+            {formatValue(currentMonthVisits, locale)}
           </p>{' '}
           <p>
             <Trans>visites ce mois-ci (en cours)</Trans>
