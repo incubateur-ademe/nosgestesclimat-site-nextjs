@@ -1,5 +1,6 @@
 import { ComputedResults, Situation } from '@/publicodes-state/types'
 import { SimulationRecap } from '@/types/organisations'
+import { captureException } from '@sentry/react'
 
 type Props = {
   simulationRecaps: SimulationRecap[]
@@ -14,9 +15,9 @@ export function handleMissingComputedResults({
     if (simulationRecap.bilan !== 0) return simulationRecap
 
     // Send an error to Sentry
-    // captureException(
-    //   new Error('handleMissingComputedResults: computedResults.bilan === 0')
-    // )
+    captureException(
+      new Error('handleMissingComputedResults: computedResults.bilan === 0')
+    )
 
     const computedResults = getComputedResults(simulationRecap.situation)
 
