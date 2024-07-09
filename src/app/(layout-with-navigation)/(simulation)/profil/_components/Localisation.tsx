@@ -38,13 +38,13 @@ export default function Localisation({ supportedRegions }: Props) {
         <FlagIcon className="mr-3 fill-primary-700" aria-hidden />
 
         <span>
-          <Trans>Ma région de simulation</Trans>
+          <Trans>Ma région</Trans>
         </span>
       </h2>
       {region?.code && (
         <div className="my-4">
           <span>
-            <Trans>Vous faites cette simulation depuis :</Trans>{' '}
+            <Trans>Vous faites ce test depuis :</Trans>{' '}
             <strong>{region.name}</strong>
             <CountryFlag code={region.code} className="ml-2 inline-block" />.
           </span>
@@ -90,8 +90,8 @@ export default function Localisation({ supportedRegions }: Props) {
       {!region && (
         <p>
           <Trans i18nKey="components.localisation.Localisation.warnMessage2">
-            Nous n'avons pas pu détecter votre pays de simulation, le modèle
-            Français vous est proposé par défaut.
+            Nous n'avons pas pu détecter votre pays, le modèle Français vous est
+            proposé par défaut.
           </Trans>
         </p>
       )}

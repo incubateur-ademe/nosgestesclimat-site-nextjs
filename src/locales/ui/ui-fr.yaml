@@ -41,7 +41,6 @@ entries:
   Non: Non
   Non applicable: Non applicable
   Nos explications complètes: Nos explications complètes
-  Nous avons détecté que vous faites cette simulation depuis: Nous avons détecté que vous faites cette simulation depuis
   Nouveautés: Nouveautés
   Oui: Oui
   Ouvert, documenté et contributif: Ouvert, documenté et contributif
@@ -70,7 +69,7 @@ entries:
   components.ScoreExplanation.text.p3: '🤔 Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
   components.ScoreExplanation.text.p4: 💡 Nous améliorons le calcul et ses valeurs par défaut <2>tous les mois</2>!
   components.localisation.Localisation.warnMessage: Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français vous est proposé par défaut.
-  components.localisation.Localisation.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
+  components.localisation.Localisation.warnMessage2: Nous n'avons pas pu détecter votre pays, le modèle Français vous est proposé par défaut.
   components.localisation.LocalisationMessage.betaMsg: Elle est actuellement en version <1>bêta</1>.
   components.localisation.LocalisationMessage.warnMessage: Votre région n'est pas encore supportée, le modèle Français vous est proposé par défaut
   derniers: derniers
@@ -98,7 +97,7 @@ entries:
   plus de 10 kg: plus de 10 kg
   plus de 10 tonnes: plus de 10 tonnes
   plus de 100 kg: plus de 100 kg
-  publicodes.ActionTutorial.félicitation: Vous avez terminé votre simulation
+  publicodes.ActionTutorial.félicitation: Vous avez terminé votre test
   bravo !: bravo !
   publicodes.ActionTutorial.msgEstimation: Vous connaissez maintenant votre empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des idées pour la réduire...
   publicodes.ActionTutorial.msgPrécision: Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.
@@ -139,7 +138,7 @@ entries:
   👎 Refuser: 👎 Refuser
   👤 Vous utilisez actuellement le persona: 👤 Vous utilisez actuellement le persona
   🧮 Voir le geste climat correspondant: 🧮 Voir le geste climat correspondant
-  components.localisation.LocalisationMessage.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
+  components.localisation.LocalisationMessage.warnMessage2: Nous n'avons pas pu détecter votre pays, le modèle Français vous est proposé par défaut
   À venir !: À venir !
   international.comment.1: Pour proposer un modèle pour chaque pays, il nous faut forcément une base. Nos Gestes Climat s'est construit sur le cas de la France. À partir de là, chaque pays décrit ses différences par rapport à la base.
   international.comment.titre: Comment ça marche ?
@@ -251,7 +250,6 @@ entries:
   Voir la liste des questions: Voir la liste des questions
   Voir plus d'informations: Voir plus d'informations
   Vous: Vous
-  'Vous faites cette simulation depuis :': 'Vous faites cette simulation depuis :'
   du test: du test
   Vous utilisez la version: Vous utilisez la version
   Terminer: Terminer
@@ -307,7 +305,6 @@ entries:
   Découvrez nos pistes pour agir dès aujourd’hui pour le climat.: Découvrez nos pistes pour agir dès aujourd’hui pour le climat.
   D'autres questions ?: D'autres questions ?
   de: de
-  Ma région de simulation: Ma région de simulation
   Quitter: Quitter
   Votre groupe a été supprimé. Vous allez être redirigé vers la page d'accueil du mode groupe.: Votre groupe a été supprimé. Vous allez être redirigé vers la page d'accueil du mode groupe.
   Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe: Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe
@@ -512,8 +509,6 @@ entries:
   l’équipe de nosgestesclimat.fr: l’équipe de nosgestesclimat.fr
   Supprimer le groupe: Supprimer le groupe
   Voir les résultats: Voir les résultats
-  Votre simulation est sauvegardée !: Votre simulation est sauvegardée !
-  Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver
   '**6 repas** représentatifs de notre consommation': '**6 repas** représentatifs de notre consommation'
   Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels: Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels
   Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**: Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**
@@ -839,10 +834,8 @@ entries:
   Choisissez un nom pour ce groupe: Choisissez un nom pour ce groupe
   Continuer: Continuer
   Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat: Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat
-  En particulier, nous suivons l'adresse de la page de fin de simulation, qui contient le total de votre empreinte et sa répartition en grande catégories (transport, logement, etc.): En particulier, nous suivons l'adresse de la page de fin de simulation, qui contient le total de votre empreinte et sa répartition en grande catégories (transport, logement, etc.)
   Et une illustration: Et une illustration
   Étape: Étape
-  La simulation et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.: La simulation et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.
   Mentions légales: Mentions légales
   Politique de confidentialité: Politique de confidentialité
   Politique des cookies: Politique des cookies
@@ -855,3 +848,10 @@ entries:
   Veuillez saisir une adresse email valide.: Veuillez saisir une adresse email valide.
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Rien à l'horizon ! <1></1>La page recherchée n'existe pas.
   Un bonhomme se demandant où il est: Un bonhomme se demandant où il est
+  En particulier, nous suivons l'adresse de la page de fin de test, qui contient le total de votre empreinte et sa répartition en grande catégories (transport, logement, etc.): En particulier, nous suivons l'adresse de la page de fin de test, qui contient le total de votre empreinte et sa répartition en grande catégories (transport, logement, etc.)
+  Le test et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.: Le test et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.
+  Ma région: Ma région
+  Nous avons détecté que vous faites ce test depuis: Nous avons détecté que vous faites ce test depuis
+  Votre test est sauvegardé !: Votre test est sauvegardé !
+  Vous allez recevoir un email de notre part sous peu, qui vous permettra de le retrouver: Vous allez recevoir un email de notre part sous peu, qui vous permettra de le retrouver
+  'Vous faites ce test depuis :': 'Vous faites ce test depuis :'

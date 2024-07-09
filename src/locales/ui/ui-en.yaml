@@ -121,9 +121,9 @@ entries:
   plus de 10 kg: more than 10 kg
   plus de 10 tonnes: more than 10 tonnes
   plus de 100 kg: over 100 kg
-  publicodes.ActionTutorial.félicitation: You have completed your simulation
+  publicodes.ActionTutorial.félicitation: You have completed your test
   bravo !: well done!
-  publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation
+  publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre test
   bravo !.lock: well done!
   publicodes.ActionTutorial.msgEstimation: You now know your footprint, estimated at {{value}} {{unit}}, and you probably already have ideas for reducing it...
   publicodes.ActionTutorial.msgEstimation.lock: Vous connaissez maintenant votre empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des idées pour la réduire...
@@ -175,8 +175,8 @@ entries:
   👎 Refuser: 👎 Refuse
   👤 Vous utilisez actuellement le persona: 👤 You are currently using the persona
   🧮 Voir le geste climat correspondant: 🧮 See the corresponding climate action
-  components.localisation.LocalisationMessage.warnMessage2: We could not detect your country of simulation, the French model is proposed by default
-  components.localisation.LocalisationMessage.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
+  components.localisation.LocalisationMessage.warnMessage2: We were unable to detect your country, so the French model is proposed by default
+  components.localisation.LocalisationMessage.warnMessage2.lock: Nous n'avons pas pu détecter votre pays, le modèle Français vous est proposé par défaut
   international.comment.titre: How does it work?
   international.comment.titre.lock: Comment ça marche ?
   À venir !: Coming soon !
@@ -397,8 +397,8 @@ entries:
   Retour à la liste des groupes: Back to the list of groups
   Ce groupe n'existe pas ou a été supprimé.: This group does not exist or has been deleted.
   Oups ! Nous n'avons pas trouvé votre groupe: Oops! We couldn't find your group
-  components.localisation.Localisation.warnMessage2: We were unable to detect your simulation country, so the French model is proposed by default.
-  components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
+  components.localisation.Localisation.warnMessage2: We were unable to detect your country, so the French model is proposed by default.
+  components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays, le modèle Français vous est proposé par défaut.
   publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} shares available,'
   publicodes.ActionsOptionsBar.actionsRecap.lock: '{{numberOfAvailableFinalActions}} actions disponibles,'
   components.localisation.Localisation.warnMessage: For the moment, there is no calculation model for {{countryName}}, the French model is proposed by default.
@@ -1038,3 +1038,10 @@ entries:
   La simulation et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.: The simulation and calculations are done in your web browser, so the answers to the questions stay with you, we don't collect any of them.
   Un bonhomme se demandant où il est: A man wondering where he is
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Nothing on the horizon! <1></1>The page you are looking for does not exist.
+  Ma région: My region
+  Votre test est sauvegardé !: Your test is saved!
+  Vous allez recevoir un email de notre part sous peu, qui vous permettra de le retrouver: You will receive an email from us shortly to help you find it
+  Nous avons détecté que vous faites ce test depuis: We have detected that you have been doing this test since
+  'Vous faites ce test depuis :': "You've been doing this test since :"
+  Le test et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.: The test and calculations are carried out in your web browser, so the answers to the questions remain with you, and we do not collect any of them.
+  En particulier, nous suivons l'adresse de la page de fin de test, qui contient le total de votre empreinte et sa répartition en grande catégories (transport, logement, etc.): In particular, we track the address of the end-of-test page, which contains your total footprint and its breakdown into broad categories (transport, accommodation, etc.)

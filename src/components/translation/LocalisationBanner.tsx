@@ -70,9 +70,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
           {!regionParams && code && (
             <section>
               <p>
-                <Trans>
-                  Nous avons détecté que vous faites cette simulation depuis
-                </Trans>{' '}
+                <Trans>Nous avons détecté que vous faites ce test depuis</Trans>{' '}
                 {countryName} <CountryFlag code={code} className="inline" />.
               </p>
 
@@ -92,8 +90,8 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
           {!regionParams && !code && (
             <p className="mb-0">
               <Trans i18nKey="components.localisation.LocalisationMessage.warnMessage2">
-                Nous n'avons pas pu détecter votre pays de simulation, le modèle
-                Français vous est proposé par défaut
+                Nous n'avons pas pu détecter votre pays, le modèle Français vous
+                est proposé par défaut
               </Trans>{' '}
               <CountryFlag code={defaultModelRegionCode} className="inline" />.
             </p>

@@ -29,7 +29,7 @@ export default function ActionsTutorial() {
 
       <p>
         <Trans i18nKey={'publicodes.ActionTutorial.félicitation'}>
-          Vous avez terminé votre simulation
+          Vous avez terminé votre test
         </Trans>
         , <Emoji>👏</Emoji> <Trans>bravo !</Trans>
       </p>

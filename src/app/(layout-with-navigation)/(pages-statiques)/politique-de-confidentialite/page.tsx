@@ -22,9 +22,8 @@ export default function ViePriveePage() {
     <div className="markdown">
       <p>
         <Trans>
-          La simulation et les calculs se font dans votre navigateur Web, donc
-          les réponses aux questions restent chez vous, nous n'en collectons
-          aucune.
+          Le test et les calculs se font dans votre navigateur Web, donc les
+          réponses aux questions restent chez vous, nous n'en collectons aucune.
         </Trans>
       </p>
       <p>
@@ -36,9 +35,9 @@ export default function ViePriveePage() {
       </p>
       <p>
         <Trans>
-          En particulier, nous suivons l'adresse de la page de fin de
-          simulation, qui contient le total de votre empreinte et sa répartition
-          en grande catégories (transport, logement, etc.)
+          En particulier, nous suivons l'adresse de la page de fin de test, qui
+          contient le total de votre empreinte et sa répartition en grande
+          catégories (transport, logement, etc.)
         </Trans>
       </p>
       <PrivacyPolicy

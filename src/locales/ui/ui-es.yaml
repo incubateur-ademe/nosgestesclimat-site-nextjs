@@ -79,8 +79,8 @@ entries:
   components.ScoreExplanation.text.p3.lock: '🤔 Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
   components.ScoreExplanation.text.p4: 💡 ¡Mejoramos el cálculo y sus valores por defecto <2>cada mes</2>!
   components.ScoreExplanation.text.p4.lock: 💡 Nous améliorons le calcul et ses valeurs par défaut <2>tous les mois</2>!
-  components.localisation.Localisation.warnMessage2: No hemos podido detectar su país de simulación, por lo que se propone por defecto el modelo francés.
-  components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
+  components.localisation.Localisation.warnMessage2: No hemos podido detectar su país, por lo que se propone por defecto el modelo francés.
+  components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays, le modèle Français vous est proposé par défaut.
   components.ScoreExplanation.text.p1: 🧮 ¡Aquí tienes tu puntuación inicial, calculada a partir de las respuestas asignadas de antemano a cada pregunta! Cambiará con cada nueva respuesta.
   components.ScoreExplanation.text.p1.lock: 🧮 Voici votre score de départ, calculé à partir de réponses attribuées à l'avance à chaque question ! Il évoluera à chaque nouvelle réponse.
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} pregunta{{pluralSuffix}} restante{{pluralSuffix}}'
@@ -113,8 +113,8 @@ entries:
   publicodes.Contribution.commentaireAugmenté.lock: '> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).'
   publicodes.AllActions.msgPlusActions: <0>Ya no tenemos acciones cuantificadas de alto impacto que ofrecerte 🤷</0><1>Vea a continuación algunas ideas sobre cómo actuar de otra manera ⏬</1>
   publicodes.AllActions.msgPlusActions.lock: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
-  publicodes.ActionTutorial.félicitation: Ha completado su simulación
-  publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation
+  publicodes.ActionTutorial.félicitation: Ha completado su prueba
+  publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre test
   bravo !: ¡bien hecho!
   bravo !.lock: ¡bien hecho!
   model.intro: Detrás de la web nosgestesclimat.fr se esconde el modelo de huella climática individual del consumo de referencia.
@@ -189,8 +189,8 @@ entries:
   international.pourquoi.titre.lock: Adapté à votre pays
   international.comment.1: Para proponer un modelo para cada país, necesitamos necesariamente una base. Nos Gestes Climat se basa en el caso de Francia. A partir de ahí, cada país describe sus diferencias con respecto a la base.
   international.comment.1.lock: Pour proposer un modèle pour chaque pays, il nous faut forcément une base. Nos Gestes Climat s'est construit sur le cas de la France. À partir de là, chaque pays décrit ses différences par rapport à la base.
-  components.localisation.LocalisationMessage.warnMessage2: No hemos podido detectar su país de simulación, por lo que se propone por defecto el modelo francés
-  components.localisation.LocalisationMessage.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
+  components.localisation.LocalisationMessage.warnMessage2: No hemos podido detectar su país, por lo que se propone por defecto el modelo francés
+  components.localisation.LocalisationMessage.warnMessage2.lock: Nous n'avons pas pu détecter votre pays, le modèle Français vous est proposé par défaut
   international.pourquoi.1: Los estilos de vida difieren según el país en el que se viva. Algunos países tienen una red ferroviaria muy desarrollada, mientras que otros son islas y, por tanto, dependen más de transbordadores y aviones.
   international.pourquoi.1.lock: Les modes de vies ne sont pas les mêmes en fonction du pays dans lequel on vit. Certains pays ont un réseau ferré très développé, d'autres sont insulaires et donc reposent davantage sur le ferry et l'avion.
   publicodes.northstar.action: ¿Nos Gestes Climat le da ganas de actuar para reducir su huella de carbono?
@@ -1031,3 +1031,10 @@ entries:
   Pour le retrouver facilement dans votre liste: Para encontrarlo fácilmente en su lista
   Un bonhomme se demandant où il est: Un hombre preguntándose dónde está
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Nada en el horizonte <1></1>La página que busca no existe.
+  Ma région: Mi región
+  Votre test est sauvegardé !: Tu examen está guardado
+  'Vous faites ce test depuis :': 'Llevas haciendo esta prueba desde :'
+  Nous avons détecté que vous faites ce test depuis: Hemos detectado que lleva haciendo esta prueba desde
+  Vous allez recevoir un email de notre part sous peu, qui vous permettra de le retrouver: En breve recibirá un correo electrónico nuestro para ayudarle a encontrarlo
+  Le test et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.: La prueba y los cálculos se realizan en su navegador web, por lo que las respuestas a las preguntas permanecen con usted, y no recogemos ninguna de ellas.
+  En particulier, nous suivons l'adresse de la page de fin de test, qui contient le total de votre empreinte et sa répartition en grande catégories (transport, logement, etc.): En concreto, rastreamos la dirección de la página de final de la prueba, que contiene su huella total y su desglose en grandes categorías (transporte, alojamiento, etc.)
