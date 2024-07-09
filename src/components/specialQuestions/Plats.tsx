@@ -1,6 +1,5 @@
 import Question from '@/components/form/Question'
 import { useRule } from '@/publicodes-state'
-import DishesNumber from './plats/DishesNumber'
 import DishesNumberInfo from './plats/DishesNumberInfo'
 
 export default function Plats() {
@@ -9,10 +8,8 @@ export default function Plats() {
 
   return (
     <>
-      <Question question={questionRuleName}>
-        {!isMissing ? <DishesNumberInfo /> : null}
-      </Question>
-      <DishesNumber />
+      <Question question={questionRuleName} />
+      {!isMissing ? <DishesNumberInfo /> : null}
     </>
   )
 }

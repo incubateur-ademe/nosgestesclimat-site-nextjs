@@ -25,15 +25,9 @@ type Props = {
   question: string
   tempValue?: number | undefined
   setTempValue?: (value: number | undefined) => void
-  children?: React.ReactNode
 }
 
-export default function Question({
-  question,
-  tempValue,
-  setTempValue,
-  children,
-}: Props) {
+export default function Question({ question, tempValue, setTempValue }: Props) {
   const {
     type,
     label,
@@ -80,9 +74,6 @@ export default function Question({
             setValue(value, { foldedStep: question })
           }}
         />
-
-        {/* This is a temporary hack to show `alimentation . plats` question info inside Question component */}
-        {children}
 
         {type === 'number' && (
           <NumberInput
