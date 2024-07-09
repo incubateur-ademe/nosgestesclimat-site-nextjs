@@ -22,15 +22,29 @@ export default function LanguageSwitchButton() {
 
   const currentLocale = useCurrentLocale(i18nConfig)
 
+  function updateCookie(locale: string) {
+    const days = 30
+    const date = new Date()
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+    const expires = '; expires=' + date.toUTCString()
+    document.cookie = `NEXT_LOCALE=${locale};expires=${expires}; path=/; SameSite=None; Secure`
+  }
+
+  useEffect(() => {
+    // If the current locale is different than the NEXT_LOCALE cookie, we update it
+    if (
+      currentLocale &&
+      document.cookie.indexOf(`NEXT_LOCALE=${currentLocale}`) === -1
+    ) {
+      updateCookie(currentLocale)
+    }
+  }, [currentLocale, currentPathname])
+
   const handleChange = useCallback(
     (newLocale: string) => {
       trackEvent(footerClickLanguage(newLocale))
       // set cookie for next-i18n-router
-      const days = 30
-      const date = new Date()
-      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
-      const expires = '; expires=' + date.toUTCString()
-      document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires}; path=/; SameSite=None; Secure`
+      updateCookie(newLocale)
 
       if (currentLocale === i18nConfig.defaultLocale) {
         router.push(
