@@ -33,7 +33,7 @@ export type Inputs = {
 }
 
 export default function ParametresPage() {
-  const { user } = useUser()
+  const { user, updateUserOrganisation } = useUser()
   const [error, setError] = useState<string>('')
 
   const { t } = useClientTranslation()
@@ -68,6 +68,7 @@ export default function ParametresPage() {
   })
 
   const handleUpdateOrganisation: SubmitHandler<Inputs> = async ({
+    email,
     name,
     organisationType,
     numberOfCollaborators,
@@ -80,6 +81,7 @@ export default function ParametresPage() {
       trackEvent(organisationsParametersUpdateInformations)
 
       await updateOrganisation({
+        email,
         name,
         organisationType,
         numberOfCollaborators,
@@ -88,6 +90,13 @@ export default function ParametresPage() {
         hasOptedInForCommunications,
         administratorTelephone,
       })
+
+      // Update locally saved organisation email
+      if (email && email !== user?.organisation?.administratorEmail) {
+        updateUserOrganisation({
+          administratorEmail: email,
+        })
+      }
 
       flick()
     } catch (error) {
@@ -134,6 +143,7 @@ export default function ParametresPage() {
         <h2 className="mt-6">
           <Trans>Vos informations personnelles</Trans>
         </h2>
+
         <PersonalInfoFields
           organisation={organisation}
           register={register as any}
