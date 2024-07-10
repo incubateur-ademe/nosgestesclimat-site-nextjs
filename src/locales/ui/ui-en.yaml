@@ -1045,3 +1045,5 @@ entries:
   'Vous faites ce test depuis :': "You've been doing this test since :"
   Le test et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.: The test and calculations are carried out in your web browser, so the answers to the questions remain with you, and we do not collect any of them.
   En particulier, nous suivons l'adresse de la page de fin de test, qui contient le total de votre empreinte et sa répartition en grande catégories (transport, logement, etc.): In particular, we track the address of the end-of-test page, which contains your total footprint and its breakdown into broad categories (transport, accommodation, etc.)
+  Vous avez sélectionné: You have selected
+  sur les 14 habituels: out of the usual 14
