@@ -50,6 +50,7 @@ export default function Navigation({
           href={getLinkToEndPage({
             allowedToGoToGroupDashboard: true,
           })}
+          data-cypress-id="button-skip-quiz"
           onClick={() => {
             trackEvent(
               simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
