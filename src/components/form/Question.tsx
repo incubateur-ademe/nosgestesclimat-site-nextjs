@@ -74,6 +74,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             setValue(value, { foldedStep: question })
           }}
         />
+
         {type === 'number' && (
           <NumberInput
             unit={unit}

@@ -1,5 +1,6 @@
 import { orderedCategories } from '@/constants/orderedCategories'
 import getSomme from '@/publicodes-state/helpers/getSomme'
+import * as Sentry from '@sentry/react'
 import { utils } from 'publicodes'
 import { useMemo } from 'react'
 import { DottedName, NGCRuleNode, NGCRulesNodes } from '../../types'
@@ -22,18 +23,18 @@ export function useCategories({
     if (!rootRule) {
       console.error(`[useCategories] No rule found for ${root}`)
 
-      // Sentry.captureMessage(
-      //   `[useCategories:categories] No rule found for ${root}`
-      // )
+      Sentry.captureMessage(
+        `[useCategories:categories] No rule found for ${root}`
+      )
       return []
     }
     const sum = getSomme(rootRule.rawNode)
     if (!sum) {
       console.error(`[useCategories] No [somme] found for ${root}`)
 
-      // Sentry.captureMessage(
-      //   `[useCategories:categories] No [somme] found for ${root}`
-      // )
+      Sentry.captureMessage(
+        `[useCategories:categories] No [somme] found for ${root}`
+      )
       return []
     }
 
@@ -52,9 +53,9 @@ export function useCategories({
         console.error(
           `[useCategories:subcategories] No rule found for ${currentValue}`
         )
-        // Sentry.captureMessage(
-        //   `[useCategories:subcategories] No rule found for ${currentValue}`
-        // )
+        Sentry.captureMessage(
+          `[useCategories:subcategories] No rule found for ${currentValue}`
+        )
         return accumulator
       }
 
@@ -63,9 +64,9 @@ export function useCategories({
         console.error(
           `[useCategories:subcategories] No [somme] found for ${currentValue}`
         )
-        // Sentry.captureMessage(
-        //   `[useCategories:subcategories] No [somme] found for ${currentValue}`
-        // )
+        Sentry.captureMessage(
+          `[useCategories:subcategories] No [somme] found for ${currentValue}`
+        )
         return accumulator
       }
 

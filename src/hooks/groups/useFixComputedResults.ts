@@ -1,5 +1,6 @@
 import { useEngine } from '@/publicodes-state'
 import { Group } from '@/types/groups'
+import { captureException } from '@sentry/react'
 
 export function useFixComputedResults(group?: Group) {
   const { getComputedResults } = useEngine()
@@ -13,9 +14,9 @@ export function useFixComputedResults(group?: Group) {
       }
 
       // Send an error to Sentry
-      // captureException(
-      //   new Error('useFixComputedResults: computedResults.bilan === 0')
-      // )
+      captureException(
+        new Error('useFixComputedResults: computedResults.bilan === 0')
+      )
 
       const participantWithFixedComputedResults = {
         ...participant,
