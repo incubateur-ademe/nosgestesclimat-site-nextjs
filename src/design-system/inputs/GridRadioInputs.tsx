@@ -21,6 +21,7 @@ type Props = {
   disabled?: boolean
   control: any
   rules?: Record<string, any>
+  'data-cypress-id'?: string
 }
 
 export default function GridRadioInputs({
@@ -33,6 +34,7 @@ export default function GridRadioInputs({
   value,
   control,
   rules,
+  'data-cypress-id': dataCypressId,
 }: HTMLAttributes<HTMLInputElement> & Props) {
   return (
     <div
@@ -72,6 +74,7 @@ export default function GridRadioInputs({
                 return (
                   <label
                     key={item.value}
+                    data-cypress-id={dataCypressId + '-' + item.value}
                     className={twMerge(
                       'relative flex cursor-pointer items-center justify-center rounded-xl border-2 border-gray-200 p-6 text-xl transition-colors',
                       'hover:border-gray-300 hover:bg-primary-50 focus:border-slate-300',

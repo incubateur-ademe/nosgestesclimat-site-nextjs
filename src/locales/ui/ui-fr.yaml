@@ -21,9 +21,7 @@ entries:
   Découvrez les enjeux qui se cachent derrière chaque action.: Découvrez les enjeux qui se cachent derrière chaque action.
   Démarrer: Démarrer
   En développement actif: En développement actif
-  En savoir +: En savoir +
   En savoir plus: En savoir plus
-  Entre: Entre
   Entrez des mots clefs: Entrez des mots clefs
   Envie de contribuer à une version pour votre région ?: Envie de contribuer à une version pour votre région ?
   Envoyer: Envoyer
@@ -79,7 +77,6 @@ entries:
   jours: jours
   le + d'impact climat: le + d'impact climat
   le - d'impact climat: le - d'impact climat
-  minutes: minutes
   model.active.documented: La construction du modèle (pistes de travail, réflexions en cours, feuille de route, etc.) est amplement <2>documentée publiquement</2>.
   model.intro: Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.
   model.intro2: Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>.
@@ -91,7 +88,6 @@ entries:
   model.stats2: Il est constitué d'une combinaison de centaines de modèles micro "bottom-up" pour les consommations carbonées de notre vie quotidienne, et d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte par personne des services dits sociétaux (services publics et services de base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
   mois: mois
   noresults: Aucun résultat ne correspond à cette recherche
-  ont utilisé l'aide à la saisie des km: ont utilisé l'aide à la saisie des km
   participant: participant
   plus d'1 kg: plus d'1 kg
   plus d'1 tonne: plus d'1 tonne
@@ -130,7 +126,6 @@ entries:
   sélectionnées: sélectionnées
   tonne: tonne
   tonnes: tonnes
-  trajets saisis en moyenne: trajets saisis en moyenne
   visites: visites
   '{unit}': '{unit}'
   À propos: À propos
@@ -772,7 +767,6 @@ entries:
   mis à jour le: mis à jour le
   'Un article de ': 'Un article de '
   'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.': 'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
-  Ils relaient <2>Nos Gestes Climat</2>: Ils relaient <2>Nos Gestes Climat</2>
   Nos relais: Nos relais
   Nos relais - Nos Gestes Climat: Nos relais - Nos Gestes Climat
   'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.': 'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.'
@@ -853,5 +847,20 @@ entries:
   Veuillez saisir une adresse email valide.: Veuillez saisir une adresse email valide.
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Rien à l'horizon ! <1></1>La page recherchée n'existe pas.
   Un bonhomme se demandant où il est: Un bonhomme se demandant où il est
+  Acquisition: Acquisition
+  components.stats.StatsContent.infosNorthstar: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
+  de visites via iframe ce mois-ci: de visites via iframe ce mois-ci
+  Données qualitatives: Données qualitatives
+  inscrits à l'infolettre: inscrits à l'infolettre
+  Modes "Groupes": Modes "Groupes"
+  partages du simulateur: partages du simulateur
+  Récupération des données: Récupération des données
+  simulations terminées depuis le lancement: simulations terminées depuis le lancement
+  Une erreur est survenue lors de la récupération des données: Une erreur est survenue lors de la récupération des données
+  visites ce mois-ci (en cours): visites ce mois-ci (en cours)
+  visites depuis le lancement: visites depuis le lancement
+  Visites et simulations: Visites et simulations
+  'Ils relaient ': 'Ils relaient '
+  Nos Gestes Climat: Nos Gestes Climat
   sur les 14 habituels: sur les 14 habituels
   Vous avez sélectionné: Vous avez sélectionné
