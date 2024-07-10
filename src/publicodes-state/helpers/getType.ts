@@ -5,6 +5,9 @@ type Props = {
   rule: NGCRuleNode | null | any // Model shenanigans: question alimentation . local . consommation is missing "formule"
   evaluation: NGCEvaluatedNode | null
 }
+
+const booleanSecureTypes = ['présent', 'propriétaire']
+
 export default function getType({
   dottedName,
   rule,
@@ -16,7 +19,7 @@ export default function getType({
   | 'boolean'
   | 'number'
   | undefined {
-  if (!rule || !evaluation) return
+  if (!rule || !evaluation) return undefined
 
   if (!rule.rawNode.question) {
     return 'notQuestion'
@@ -29,8 +32,7 @@ export default function getType({
   if (
     (rule.rawNode['unité'] === undefined &&
       typeof evaluation.nodeValue !== 'number') ||
-    dottedName.includes('présent') ||
-    dottedName.includes('propriétaire')
+    booleanSecureTypes.some((key) => dottedName.includes(key))
   ) {
     const unePossibilite: any = rule.rawNode.formule
       ? rule.rawNode.formule['une possibilité']

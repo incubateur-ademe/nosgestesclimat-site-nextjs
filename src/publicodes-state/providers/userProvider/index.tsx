@@ -43,6 +43,7 @@ export default function UserProvider({
     setCurrentSimulationId,
   } = usePersistentSimulations({ storageKey, migrationInstructions })
 
+  // We don't display the app while the simulations are not loaded from the localstorage (or generated)
   return (
     <UserContext.Provider
       value={{
@@ -56,7 +57,7 @@ export default function UserProvider({
         setCurrentSimulationId,
         migrationInstructions,
       }}>
-      {children}
+      {simulations.length > 0 ? children : null}
     </UserContext.Provider>
   )
 }

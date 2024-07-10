@@ -4,6 +4,7 @@ import Button, { ButtonProps } from '@/design-system/inputs/Button'
 import { createXLSXFileAndDownload } from '@/helpers/export/createXLSXFileAndDownload'
 import { useEngine } from '@/publicodes-state'
 import { PollData, SimulationRecap } from '@/types/organisations'
+import { captureException } from '@sentry/react'
 import dayjs from 'dayjs'
 import { useState } from 'react'
 import DownloadIcon from '../icons/DownloadIcon'
@@ -40,9 +41,9 @@ export default function ExportDataButton({
 
         if (simulationRecapToParse.bilan === 0) {
           // Send an error to Sentry
-          // captureException(
-          //   new Error('ExportDataButton: computedResults.bilan === 0')
-          // )
+          captureException(
+            new Error('ExportDataButton: computedResults.bilan === 0')
+          )
 
           const computedResults = getComputedResults(
             simulationRecapToParse.situation

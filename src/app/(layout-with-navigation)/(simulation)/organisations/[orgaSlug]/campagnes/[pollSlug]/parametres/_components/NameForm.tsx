@@ -1,23 +1,21 @@
-import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
-import { useAutoFlick } from '@/hooks/utils/useAutoFlick'
+import { UpdatePollProps } from '@/types/organisations'
+import { useEffect } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Props = {
   nameValue: string
-  updatePoll: ({ name }: { name: string }) => Promise<void>
-  refetchPoll: () => void
+  updatePoll: ({ name }: UpdatePollProps) => void
+  updatePollStatus: string
 }
 
 export default function NameForm({
   nameValue,
   updatePoll,
-  refetchPoll,
+  updatePollStatus,
 }: Props) {
-  const { value, flick } = useAutoFlick()
-
   const {
     register,
     handleSubmit,
@@ -30,19 +28,24 @@ export default function NameForm({
   })
 
   async function onSubmit(data: { name: string }) {
-    try {
-      await updatePoll({
-        name: data.name,
-      })
-      refetchPoll()
-      flick()
-    } catch (error) {
+    updatePoll({
+      name: data.name,
+    })
+  }
+
+  useEffect(() => {
+    if (updatePollStatus === 'error') {
       setError('name', {
         type: 'manual',
         message: 'Une erreur est survenue',
       })
+    } else {
+      setError('name', {
+        type: 'manual',
+        message: '',
+      })
     }
-  }
+  }, [updatePollStatus, setError])
 
   return (
     <form
@@ -65,8 +68,6 @@ export default function NameForm({
           error={errors.name?.message}
           {...register('name', { required: 'Ce champ est requis' })}
         />
-
-        <ModificationSaved shouldShowMessage={value} />
       </div>
 
       <div>

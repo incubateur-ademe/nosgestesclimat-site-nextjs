@@ -7,6 +7,7 @@ import {
   Metric,
   NGCEvaluatedNode,
   NGCRuleNode,
+  NGCRulesNodes,
   Situation,
 } from '../../types'
 
@@ -20,6 +21,7 @@ type SimulationContextType = {
     rule: PublicodesExpression,
     metric: Metric
   ) => NGCEvaluatedNode | null
+  parsedRules: NGCRulesNodes
   everyRules: DottedName[]
   everyInactiveRules: DottedName[]
   everyQuestions: DottedName[]
@@ -30,6 +32,7 @@ type SimulationContextType = {
   categories: DottedName[]
   subcategories: Record<DottedName, DottedName[]>
   addToEngineSituation: (situationToAdd: Situation) => Situation
+  isInitialized: boolean
 }
 export const SimulationContext = createContext<SimulationContextType>({
   rules: null,
@@ -38,6 +41,7 @@ export const SimulationContext = createContext<SimulationContextType>({
   safeGetRule: () => null,
   safeEvaluate: () => null,
   safeEvaluateWithMetric: () => null,
+  parsedRules: {},
   everyRules: [],
   everyInactiveRules: [],
   everyQuestions: [],
@@ -48,4 +52,5 @@ export const SimulationContext = createContext<SimulationContextType>({
   categories: [],
   subcategories: {},
   addToEngineSituation: () => ({}) as Situation,
+  isInitialized: false,
 })
