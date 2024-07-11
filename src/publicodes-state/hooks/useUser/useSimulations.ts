@@ -55,12 +55,11 @@ export default function useSimulations({
 
       setSimulations((prevSimulations: Simulation[]) => {
         if (id && prevSimulations.find((simulation) => simulation.id === id)) {
-          setCurrentSimulationId(id)
           return prevSimulations
         }
-
         return [...prevSimulations, migratedSimulation]
       })
+
       setCurrentSimulationId(migratedSimulation.id)
     },
     [migrationInstructions, setSimulations, setCurrentSimulationId]
