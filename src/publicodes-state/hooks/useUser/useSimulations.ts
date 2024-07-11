@@ -37,32 +37,31 @@ export default function useSimulations({
     }: Partial<Simulation> = {}) => {
       resetAideSaisie()
 
+      const migratedSimulation = generateSimulation({
+        id,
+        date,
+        situation,
+        foldedSteps,
+        actionChoices,
+        persona,
+        computedResults,
+        progression,
+        defaultAdditionalQuestionsAnswers,
+        polls,
+        groups,
+        savedViaEmail,
+        migrationInstructions,
+      })
+
       setSimulations((prevSimulations: Simulation[]) => {
         if (id && prevSimulations.find((simulation) => simulation.id === id)) {
           setCurrentSimulationId(id)
           return prevSimulations
         }
 
-        const migratedSimulation = generateSimulation({
-          id,
-          date,
-          situation,
-          foldedSteps,
-          actionChoices,
-          persona,
-          computedResults,
-          progression,
-          defaultAdditionalQuestionsAnswers,
-          polls,
-          groups,
-          savedViaEmail,
-          migrationInstructions,
-        })
-
-        setCurrentSimulationId(migratedSimulation.id)
-
         return [...prevSimulations, migratedSimulation]
       })
+      setCurrentSimulationId(migratedSimulation.id)
     },
     [migrationInstructions, setSimulations, setCurrentSimulationId]
   )
