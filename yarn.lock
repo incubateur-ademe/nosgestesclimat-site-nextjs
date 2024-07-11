@@ -6614,6 +6614,11 @@ nth-check@^2.0.1:
   dependencies:
     boolbase "^1.0.0"
 
+nuka-carousel@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/nuka-carousel/-/nuka-carousel-8.0.1.tgz#57e35f3b1507e3d746ed8afd897ff479e6c028fe"
+  integrity sha512-dnJBBU6psWT590GQwXApJlZQ5yReVwav4c+LImLaUwgzSZhDT6f1l/bGGOTzU9HqC70wZaHiZ/pWk0BJ+4VGZQ==
+
 object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"

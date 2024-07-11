@@ -8,6 +8,7 @@ import {
 } from '@/constants/tracking/pages/simulateur'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatWaterFootprint } from '@/helpers/formatWaterFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
   useCurrentSimulation,
@@ -15,9 +16,8 @@ import {
   useRule,
   useUser,
 } from '@/publicodes-state'
-import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Explanation from './_components/Explanation'
 import ListToggle from './_components/ListToggle'
 import Progress from './_components/Progress'
@@ -30,11 +30,12 @@ export default function Total({ toggleQuestionList }: Props) {
 
   const { numericValue } = useRule('bilan')
 
-  const { safeEvaluateWithMetric } = useContext(SimulationContext)
+  const { numericValue: waterNumericValue } = useRule('bilan . par jour', 'eau')
 
-  const evaluationEau = safeEvaluateWithMetric('bilan', "'eau'")
-
-  const { numericValue: numericValueEau } = useRule('bilan eau')
+  const { numericValue: directWaterNumericValue } = useRule(
+    'logement . eau directe . par jour',
+    'eau'
+  )
 
   const { getNumericValue } = useEngine()
 
@@ -106,15 +107,18 @@ export default function Total({ toggleQuestionList }: Props) {
           </div>
           <div className="z-10 text-left">
             <p className="block text-sm md:text-base">
-              useRule('bilan eau') :{' '}
-              {(numericValueEau / 1000).toFixed(1).replace('.', ',')} L / an
+              Eau indirecte :{' '}
+              {formatWaterFootprint(waterNumericValue).formattedValue}{' '}
+              <Trans>
+                {formatWaterFootprint(waterNumericValue).unit} par jour
+              </Trans>
             </p>
             <p className="block text-sm md:text-base">
-              safeEvaluateWithMetric('bilan', "'eau'") :{' '}
-              {((evaluationEau?.nodeValue as number) / 1000)
-                ?.toFixed(1)
-                .replace('.', ',')}{' '}
-              L / an
+              Eeau directe :{' '}
+              {formatWaterFootprint(directWaterNumericValue).formattedValue}{' '}
+              <Trans>
+                {formatWaterFootprint(waterNumericValue).unit} par jour
+              </Trans>
             </p>
           </div>
         </div>

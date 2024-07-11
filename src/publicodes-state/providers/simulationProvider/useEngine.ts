@@ -3,13 +3,7 @@ import { captureException } from '@sentry/react'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { useCallback, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
-import {
-  DottedName,
-  Metric,
-  NGCEvaluatedNode,
-  NGCRuleNode,
-  Rules,
-} from '../../types'
+import { DottedName, Metric, NGCRuleNode, Rules } from '../../types'
 
 /**
  * Initiate the engine based on the rules we pass
@@ -52,16 +46,12 @@ export function useEngine(rules: Rules) {
 
   const pristineEngine = useMemo(() => engine.shallowCopy(), [engine])
 
-  const safeEvaluate = useMemo<
-    (expr: PublicodesExpression) => NGCEvaluatedNode | null
-  >(() => (expr) => safeEvaluateHelper(expr, engine), [engine])
-
-  const safeEvaluateWithMetric = useCallback(
-    (expr: PublicodesExpression, metric: Metric) => {
+  const safeEvaluate = useCallback(
+    (expr: PublicodesExpression, metric: Metric = 'carbone') => {
       const exprWithContext = {
         valeur: expr,
         contexte: {
-          métrique: metric,
+          métrique: `'${metric}'`,
         },
       }
 
@@ -79,7 +69,6 @@ export function useEngine(rules: Rules) {
     engine,
     pristineEngine,
     safeEvaluate,
-    safeEvaluateWithMetric,
     safeGetRule,
   }
 }

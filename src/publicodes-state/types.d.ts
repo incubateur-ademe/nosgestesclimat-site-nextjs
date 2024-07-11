@@ -133,4 +133,4 @@ type MosaicInfos = {
 
 type Formule = any
 
-export type Metric = "'carbone'" | "'eau'"
+export type Metric = 'carbone' | 'eau'

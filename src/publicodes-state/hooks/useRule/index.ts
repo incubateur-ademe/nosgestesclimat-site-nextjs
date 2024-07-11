@@ -3,7 +3,7 @@
 import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
-import { DottedName, NGCEvaluatedNode, NGCRuleNode } from '../../types'
+import { DottedName, Metric, NGCEvaluatedNode, NGCRuleNode } from '../../types'
 import useCurrentSimulation from '../useCurrentSimulation'
 import useChoices from './useChoices'
 import useContent from './useContent'
@@ -19,7 +19,10 @@ import useValue from './useValue'
  *
  * It should ALWAYS be used to access a rule (unless we need to compare mutliples rules with useEngine)
  */
-export default function useRule(dottedName: DottedName) {
+export default function useRule(
+  dottedName: DottedName,
+  metric: Metric = 'carbone'
+) {
   const {
     engine,
     safeGetRule,
@@ -34,9 +37,9 @@ export default function useRule(dottedName: DottedName) {
     useCurrentSimulation()
 
   const evaluation = useMemo<NGCEvaluatedNode | null>(
-    () => safeEvaluate(dottedName),
+    () => safeEvaluate(dottedName, metric),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [dottedName, engine, situation]
+    [dottedName, engine, situation, metric]
   )
 
   const rule = useMemo<NGCRuleNode | null>(

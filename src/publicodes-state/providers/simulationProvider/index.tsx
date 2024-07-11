@@ -22,13 +22,7 @@ export default function SimulationProvider({
   shouldAlwaysDisplayChildren = false,
   children,
 }: PropsWithChildren<Props>) {
-  const {
-    engine,
-    pristineEngine,
-    safeEvaluate,
-    safeEvaluateWithMetric,
-    safeGetRule,
-  } = useEngine(rules)
+  const { engine, pristineEngine, safeEvaluate, safeGetRule } = useEngine(rules)
 
   const {
     parsedRules,
@@ -65,7 +59,6 @@ export default function SimulationProvider({
         engine,
         pristineEngine,
         safeEvaluate,
-        safeEvaluateWithMetric,
         safeGetRule,
         parsedRules,
         everyRules,

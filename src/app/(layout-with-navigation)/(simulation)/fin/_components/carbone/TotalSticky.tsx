@@ -4,7 +4,7 @@ import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import HeadingButtons from './heading/HeadingButtons'
+import HeadingButtons from '../heading/HeadingButtons'
 
 export default function TotalSticky() {
   const locale = useLocale()
@@ -44,11 +44,11 @@ export default function TotalSticky() {
     <div
       ref={myElementRef}
       className={twMerge(
-        'short:py-2 hidden items-center justify-between rounded-xl border-2 border-primary-50 bg-gray-100 p-4 transition-opacity duration-700 lg:flex',
+        'hidden items-center justify-between rounded-xl border-2 border-primary-50 bg-gray-100 p-4 transition-opacity duration-700 lg:flex short:py-2',
         isVisible ? 'visible opacity-100' : 'invisible opacity-0'
       )}>
       <div>
-        <strong className="short:text-3xl text-5xl font-black leading-none">
+        <strong className="text-5xl font-black leading-none short:text-3xl">
           {formattedValue}
         </strong>
         <span className="text-3xl font-medium"> {unit}</span>
