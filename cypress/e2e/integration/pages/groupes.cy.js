@@ -35,6 +35,22 @@ describe('The Group creation page /amis/creer', () => {
 
     recursivelyFillSimulation(null, 'group')
 
+    cy.wait(2000)
+
+    cy.get('h1').then(($el) => {
+      if (
+        $el
+          .text()
+          .includes(
+            Cypress.env('testLangURL') === 'en'
+              ? "Let's finish with a riddle!"
+              : 'Une devinette pour finir !'
+          )
+      ) {
+        cy.get('[data-cypress-id="button-skip-quiz"]').click()
+      }
+    })
+
     cy.wait(4000)
 
     cy.get('[data-cypress-id="group-name"]')
@@ -94,7 +110,23 @@ describe('The Group creation page /amis/creer', () => {
     clickSkipTutorialButton()
     recursivelyFillSimulation(null, 'group')
 
-    cy.wait(3000)
+    cy.wait(2000)
+
+    cy.get('h1').then(($el) => {
+      if (
+        $el
+          .text()
+          .includes(
+            Cypress.env('testLangURL') === 'en'
+              ? "Let's finish with a riddle!"
+              : 'Une devinette pour finir !'
+          )
+      ) {
+        cy.get('[data-cypress-id="button-skip-quiz"]').click()
+      }
+    })
+
+    cy.wait(4000)
 
     cy.get('[data-cypress-id="group-name"]')
 
