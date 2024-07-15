@@ -56,7 +56,7 @@ export default function TotalNumber({ total }: Props) {
           'absolute bottom-full  mb-1 whitespace-nowrap text-right font-medium lg:left-1/2 lg:right-auto lg:-translate-x-1/2',
           getContentAlignement(position)
         )}>
-        <strong className="absolute bottom-7 right-full -translate-x-4 text-6xl font-black leading-none lg:bottom-7 lg:text-9xl">
+        <strong className="absolute bottom-7 right-full -translate-x-4 text-6xl font-black leading-none lg:bottom-7 lg:text-8xl">
           <CountUp
             isCounting
             end={Number(formattedValue)}
@@ -71,7 +71,7 @@ export default function TotalNumber({ total }: Props) {
           {unit}
         </span>
         <br />
-        <span className="text-lg tracking-wider lg:text-2xl ">
+        <span className="text-lg tracking-wider lg:text-xl ">
           <Trans>de</Trans> CO₂e <Trans>par an</Trans>
         </span>
       </div>
