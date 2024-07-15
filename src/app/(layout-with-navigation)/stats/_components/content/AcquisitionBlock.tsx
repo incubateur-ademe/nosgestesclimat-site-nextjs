@@ -42,15 +42,6 @@ export default function AcquisitionBlock({
               <Trans>partages du simulateur</Trans>
             </p>
           </Card>
-        </div>
-      </div>
-      <Sources
-        currentMonthVisitsData={currentMonthVisitsData}
-        currentMonthWebsitesData={currentMonthWebsitesData}
-        currentMonthSocialsData={currentMonthSocialsData}
-      />
-      <div className="mt-4">
-        <div className="flex flex-row gap-4">
           <Card className="flex-1">
             <strong className="text-3xl">
               {formatPercentage(
@@ -61,24 +52,13 @@ export default function AcquisitionBlock({
               <Trans>de visites via iframe ce mois-ci</Trans>
             </p>
           </Card>
-          <Card className="flex-1">
-            <strong className="text-3xl">
-              {formatValue(allSubscribers?.data, locale)}
-            </strong>{' '}
-            <p className="mb-0 text-sm">
-              <Trans>inscrits à l'infolettre</Trans>
-            </p>
-          </Card>
-          <Card className="flex-1">
-            <strong className="text-3xl">
-              {formatValue(allSharedSimulationEventsData, locale)}
-            </strong>{' '}
-            <p className="mb-0 text-sm">
-              <Trans>partages du simulateur</Trans>
-            </p>
-          </Card>
         </div>
       </div>
+      <Sources
+        currentMonthVisitsData={currentMonthVisitsData}
+        currentMonthWebsitesData={currentMonthWebsitesData}
+        currentMonthSocialsData={currentMonthSocialsData}
+      />
     </div>
   )
 }
