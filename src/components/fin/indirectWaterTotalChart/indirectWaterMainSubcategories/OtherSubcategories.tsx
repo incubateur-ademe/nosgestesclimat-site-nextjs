@@ -12,6 +12,9 @@ export default function OtherSubcategories({
   // We adjust the height to make up for the droplet shape (see Subcategory component for more details)
   const adjustedPercentage = percentage - percentage / 3
 
+  if (adjustedPercentage < 5) {
+    return
+  }
   return (
     <div
       style={{ height: adjustedPercentage + '%' }}

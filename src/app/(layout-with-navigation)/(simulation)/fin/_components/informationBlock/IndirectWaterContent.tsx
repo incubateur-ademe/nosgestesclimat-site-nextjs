@@ -45,12 +45,12 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           isOpen || isHedgehog ? 'block' : 'hidden'
         )}>
         <p className="mb-1">
-          <Trans>L’eau indirecte est liée à vos usages :</Trans>
+          <Trans>L’eau indirecte est liée à vos usages :</Trans>
         </p>
         <p className="mb-1">
           <Trans>
             c’est celle qui a fait pousser les fruits, légumes et céréales que
-            vous mangez, ou le coton que vous portez ;
+            vous mangez, ou le coton que vous portez ;
           </Trans>
         </p>
         <EmojiChain emojis={['💧', '🥑']} />
@@ -58,12 +58,12 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
         <p className="mb-1">
           <Trans>
             celle aussi qui a aidé à faire grandir les animaux que vous
-            consommez ;
+            consommez ;
           </Trans>
         </p>
         <EmojiChain emojis={['💧', '🌽', '🐮']} />
         <p className="mb-1">
-          <Trans>celle évaporée par les centrales ;</Trans>
+          <Trans>celle évaporée par les centrales ;</Trans>
         </p>
         <EmojiChain emojis={['💧', '⚡️']} />
         <p className="mb-1">

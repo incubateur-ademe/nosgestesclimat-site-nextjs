@@ -40,9 +40,9 @@ export default function SubcategoryTitle({
         'flex items-end justify-end border-b-2 pb-1 font-medium',
         getBorderColor(category),
         getTextDarkColor(category),
-        percentage > 15 ? 'text-2xl' : 'text-lg'
+        percentage > 15 ? 'text-lg lg:text-2xl' : 'text-sm lg:text-lg'
       )}>
-      <span className="flex items-center gap-2">
+      <span className="flex items-center gap-1 lg:gap-2">
         <span>
           <Emoji>{icons}</Emoji>
         </span>

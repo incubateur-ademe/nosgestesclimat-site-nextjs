@@ -556,6 +556,10 @@ html[data-useragent*='Trident'] #js {
   }
 }
 
+.slick-track {
+  display: flex !important;
+}
+
 .slick-slide {
   height: inherit !important;
   @apply px-1 lg:px-2;

@@ -80,7 +80,7 @@ export default function TotalNumber({ total }: Props) {
           {unit}
         </span>
         <br />
-        <span className="text-lg tracking-wider lg:text-xl">
+        <span className="text-lg lg:text-xl">
           <Trans>de</Trans> CO₂e <Trans>par an</Trans>
         </span>
       </div>

@@ -10,11 +10,11 @@ export default function IndirectWaterTotalNumber() {
   return (
     <div className="absolute right-0 top-0">
       <div className="mx-auto whitespace-nowrap text-right font-medium">
-        <strong className="font-black leading-none lg:text-9xl">
+        <strong className="text-7xl font-black leading-none  lg:text-9xl">
           {formattedValue}
         </strong>{' '}
         <br />
-        <span className="lg:text-2xl ">
+        <span className="text-sm lg:text-2xl ">
           <Trans>
             {unit} d'eau{' '}
             <strong className="font-black text-secondary-700">indirecte</strong>{' '}

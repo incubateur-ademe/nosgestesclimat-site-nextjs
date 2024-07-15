@@ -17,7 +17,7 @@ export default function IndirectWaterMainSubcategories() {
   const filteredSubcategories = sortedUiCategories.filter((subcategory) => {
     const numericValue = getNumericValue(subcategory)
     const percentage = (numericValue / total) * 100
-    return percentage >= 5
+    return percentage >= 8
   })
 
   const totalOfFilteredSubcategories = filteredSubcategories.reduce(
@@ -27,8 +27,8 @@ export default function IndirectWaterMainSubcategories() {
 
   return (
     <div className="relative mt-16">
-      <div className="relative h-[500px] w-[300px]">
-        <div className="drop-content h-full w-full">
+      <div className="relative h-80 w-48 lg:h-[500px] lg:w-[300px]">
+        <div className="drop-content h-full w-full  bg-gray-100">
           {filteredSubcategories.map((subcategory, index) => (
             <Subcategory
               key={subcategory}
