@@ -1,10 +1,13 @@
 import { useEngine, useSimulation } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName, Metric } from '@/publicodes-state/types'
 import { useMemo } from 'react'
 
-export function useSortedUiCategoriesByFootprint() {
+type Props = {
+  metric?: Metric
+}
+export function useSortedUiCategoriesByFootprint({ metric }: Props = {}) {
   const { everyUiCategories } = useSimulation()
-  const { getNumericValue } = useEngine()
+  const { getNumericValue } = useEngine({ metric })
 
   const sortedUiCategories = useMemo<DottedName[]>(() => {
     return everyUiCategories.sort(

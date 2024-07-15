@@ -1,14 +1,26 @@
+import { useQueryParams } from '@/hooks/useQueryParams'
 import { Metric } from '@/publicodes-state/types'
-import { useSearchParams } from 'next/navigation'
+import { useCallback } from 'react'
 
-export function useCurrentMetric(): Metric {
-  const searchParams = useSearchParams()
+const metricParamsName = 'theme'
 
-  const metric = searchParams.get('m')
+export function useCurrentMetric() {
+  const { queryParams, setQueryParams } = useQueryParams()
 
-  if (!metric || !['eau', 'carbone'].includes(metric)) {
-    return 'carbone'
+  const queryParamsMetric = queryParams.get(metricParamsName)
+
+  const setCurrentMetric = useCallback(
+    (metric: Metric) => {
+      setQueryParams({ [metricParamsName]: metric })
+    },
+    [setQueryParams]
+  )
+
+  let currentMetric = queryParamsMetric as Metric
+
+  if (!queryParamsMetric || !['eau', 'carbone'].includes(queryParamsMetric)) {
+    currentMetric = 'carbone' as Metric
   }
 
-  return metric as Metric
+  return { currentMetric, setCurrentMetric }
 }

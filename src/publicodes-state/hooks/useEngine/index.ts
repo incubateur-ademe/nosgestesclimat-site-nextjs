@@ -5,6 +5,7 @@ import { SimulationContext } from '../../providers/simulationProvider/context'
 import {
   ComputedResults,
   DottedName,
+  Metric,
   NGCEvaluatedNode,
   NodeValue,
   Situation,
@@ -15,7 +16,10 @@ import {
  *
  * It should only be used when it is needed to compare rules between them. If not, useRule should be used
  */
-export default function useEngine() {
+type Props = {
+  metric?: Metric
+}
+export default function useEngine({ metric }: Props = {}) {
   const {
     engine,
     safeEvaluate: mainEngineSafeEvaluate,
@@ -31,13 +35,14 @@ export default function useEngine() {
     (
       dottedName: DottedName,
       safeEvaluate: (
-        rule: string
+        dottedName: DottedName,
+        metric?: Metric
       ) => NGCEvaluatedNode | null = mainEngineSafeEvaluate
     ): number => {
-      const nodeValue = safeEvaluate(dottedName)?.nodeValue
+      const nodeValue = safeEvaluate(dottedName, metric)?.nodeValue
       return Number(nodeValue) === nodeValue ? nodeValue : 0
     },
-    [mainEngineSafeEvaluate]
+    [mainEngineSafeEvaluate, metric]
   )
 
   const getCategory = (dottedName: DottedName): string =>

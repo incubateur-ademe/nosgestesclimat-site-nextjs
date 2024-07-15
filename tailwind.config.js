@@ -102,6 +102,7 @@ module.exports = {
           900: '#422290',
           950: '#281461',
         },
+        water: '#5152D0',
         default: '#1A1A1A',
         gray: {
           100: '#F7FBFF',

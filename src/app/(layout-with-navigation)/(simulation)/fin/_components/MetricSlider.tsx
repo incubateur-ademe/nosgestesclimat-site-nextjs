@@ -1,21 +1,30 @@
-import TotalChart from '@/components/fin/TotalChart'
+import CarboneTotalChart from '@/components/fin/CarboneTotalChart'
+import DirectWaterTotalChart from '@/components/fin/DirectWaterTotalChart'
+import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { Metric } from '@/publicodes-state/types'
-import { Carousel } from 'nuka-carousel'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
 
-type Props = {
-  currentMetric: Metric
-}
+const metrics: Metric[] = ['eau', 'carbone']
 
-export default function MetricSlider({ currentMetric }: Props) {
-  console.log(currentMetric)
+export default function MetricSlider() {
+  const { currentMetric, setCurrentMetric } = useCurrentMetric()
+
   return (
-    <Carousel showDots className=" mx-auto md:w-[672px]">
-      <div className="w-full rounded-xl border-2 border-green-500 p-4">
-        <TotalChart />
-      </div>
-      <div className="w-full rounded-xl border-2 border-red-500 p-24">
-        <TotalChart />
-      </div>
-    </Carousel>
+    <div>
+      <Slider
+        initialSlide={metrics.indexOf(currentMetric)}
+        dots={true}
+        infinite={true}
+        className="mx-auto w-[672px]"
+        beforeChange={(_, nextSlide) => setCurrentMetric(metrics[nextSlide])}>
+        <div className="h-full w-full overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pt-20">
+          <DirectWaterTotalChart />
+        </div>
+        <div className="h-full w-full overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-24">
+          <CarboneTotalChart />
+        </div>
+      </Slider>
+    </div>
   )
 }

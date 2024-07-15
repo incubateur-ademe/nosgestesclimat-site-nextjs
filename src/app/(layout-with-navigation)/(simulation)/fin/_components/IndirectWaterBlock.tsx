@@ -11,12 +11,12 @@ import Title from '@/design-system/layout/Title'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import Hedgehog from './targetBlock/Hedgehog'
-import HedgehogAwareness from './targetBlock/HedgehogAwareness'
-import TargetChart from './targetBlock/TargetChart'
-import TargetQuestions from './targetBlock/TargetQuestions'
+import Hedgehog from './informationBlock/Hedgehog'
+import HedgehogAwareness from './informationBlock/HedgehogAwareness'
+import TargetChart from './informationBlock/carboneTargetContent/TargetChart'
+import TargetQuestions from './informationBlock/carboneTargetContent/TargetQuestions'
 
-export default function TargetBlock() {
+export default function IndirectWaterBlock() {
   const [isOpen, setIsOpen] = useState(false)
 
   const [isHedgehog, setIsHedgehog] = useState(false)

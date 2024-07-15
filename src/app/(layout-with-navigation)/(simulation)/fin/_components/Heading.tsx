@@ -10,7 +10,7 @@ const titles = {
   eau: <Trans>eau</Trans>,
 }
 export default function Heading() {
-  const currentMetric = useCurrentMetric()
+  const { currentMetric } = useCurrentMetric()
 
   return (
     <>

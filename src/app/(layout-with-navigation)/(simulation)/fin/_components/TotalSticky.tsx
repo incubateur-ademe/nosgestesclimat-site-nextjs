@@ -4,7 +4,7 @@ import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import HeadingButtons from '../heading/HeadingButtons'
+import HeadingButtons from './heading/HeadingButtons'
 
 export default function TotalSticky() {
   const locale = useLocale()

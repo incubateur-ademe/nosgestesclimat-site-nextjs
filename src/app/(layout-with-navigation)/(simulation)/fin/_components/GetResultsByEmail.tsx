@@ -24,7 +24,7 @@ import { captureException } from '@sentry/react'
 import { useEffect, useRef } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import Confirmation from './getResultsByEmail/Confirmation'
+import Confirmation from './carbone/getResultsByEmail/Confirmation'
 
 type Inputs = {
   name: string
