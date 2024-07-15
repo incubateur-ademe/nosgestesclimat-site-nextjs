@@ -102,6 +102,7 @@ export default function NameForm() {
         helperText={
           <Trans>Pour le retrouver facilement dans votre liste</Trans>
         }
+        data-cypress-id="group-name"
         error={errors.name?.message}
         {...register('name', {
           required: t('Ce champ est obligatoire.'),
@@ -114,6 +115,7 @@ export default function NameForm() {
         label={<Trans>Et une illustration</Trans>}
         helperText={<Trans>Pour faire joli et le reconnaitre !</Trans>}
         name="emoji"
+        data-cypress-id="group-select-emoji"
         items={GROUP_EMOJIS.map((emoji) => ({ value: emoji, label: emoji }))}
         rules={{ required: t('Ce champ est obligatoire.') }}
         error={errors.emoji?.message}
@@ -121,7 +123,7 @@ export default function NameForm() {
 
       <Button
         type="submit"
-        data-cypress-id="button-create-group"
+        data-cypress-id="button-validate-create-group"
         className="mt-4 self-start"
         disabled={isPending || isSuccess}>
         {hasCompletedTest ? (

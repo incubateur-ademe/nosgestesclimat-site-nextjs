@@ -7,7 +7,7 @@ type Props = {
   tempValue?: number
 }
 
-const questions: Record<string, any> = {
+const specialQuestions: Record<string, any> = {
   'alimentation . plats': (props: Props) => (
     <Plats key="alimentation . plats" {...props} />
   ),
@@ -41,4 +41,4 @@ const questions: Record<string, any> = {
   ),
 }
 
-export default questions
+export default specialQuestions

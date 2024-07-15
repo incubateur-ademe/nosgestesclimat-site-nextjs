@@ -53,7 +53,7 @@ export default forwardRef(function Select(
       <select
         name={name}
         ref={ref}
-        value={value}
+        defaultValue={value}
         onChange={onChange ?? (() => {})}
         aria-describedby={`error-${name}`}
         required={required}
