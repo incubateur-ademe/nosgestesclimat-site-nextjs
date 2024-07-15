@@ -544,12 +544,21 @@ html[data-useragent*='Trident'] #js {
   -webkit-mask-size: cover;
 }
 
-.slick-track {
-  @apply !flex gap-2;
+.slider-mask {
+  @media (min-width: 768px) {
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      #000 13%,
+      #000 87%,
+      transparent 100%
+    );
+  }
 }
 
 .slick-slide {
   height: inherit !important;
+  @apply px-1 lg:px-2;
 }
 .slick-slide > div {
   height: 100%;
