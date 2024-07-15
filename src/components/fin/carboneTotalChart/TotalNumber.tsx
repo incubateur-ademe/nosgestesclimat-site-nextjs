@@ -4,6 +4,7 @@ import { getColorAtPosition } from '@/helpers/getColorOfGradient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
+import { useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { CountUp } from 'use-count-up'
 import Arrow from './Arrow'
@@ -39,9 +40,17 @@ export default function TotalNumber({ total }: Props) {
 
   const originPosition = (usedValue / 1000 / 12) * 100
 
-  const position = originPosition <= 100 ? originPosition : 100
+  const position = useMemo(() => {
+    if (originPosition <= 0) {
+      return 0
+    }
+    if (originPosition >= 100) {
+      return 100
+    }
+    return originPosition
+  }, [originPosition])
 
-  const color = getColorAtPosition(position / 100)
+  const color = getColorAtPosition(originPosition / 100)
   const cssColor = `rgba(${color['r']},${color['g']},${color['b']},${color['a']})`
 
   return (
@@ -53,7 +62,7 @@ export default function TotalNumber({ total }: Props) {
       style={{ left: `${position}%`, color: cssColor }}>
       <div
         className={twMerge(
-          'absolute bottom-full  mb-1 whitespace-nowrap text-right font-medium lg:left-1/2 lg:right-auto lg:-translate-x-1/2',
+          'absolute bottom-full mb-1 whitespace-nowrap text-right font-medium',
           getContentAlignement(position)
         )}>
         <strong className="absolute bottom-7 right-full -translate-x-4 text-6xl font-black leading-none lg:bottom-7 lg:text-8xl">
@@ -71,7 +80,7 @@ export default function TotalNumber({ total }: Props) {
           {unit}
         </span>
         <br />
-        <span className="text-lg tracking-wider lg:text-xl ">
+        <span className="text-lg tracking-wider lg:text-xl">
           <Trans>de</Trans> CO₂e <Trans>par an</Trans>
         </span>
       </div>
