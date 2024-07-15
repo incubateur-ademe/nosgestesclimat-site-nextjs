@@ -38,7 +38,6 @@ export default async function ModelePage() {
         <Trans i18nKey="model.intro2">
           Entièrement ouvert (open source) et contributif, chacun peut l'
           <Link href="/documentation">explorer</Link>,{' '}
-          <Link href="/contribuer">donner son avis</Link>,{' '}
           <Link href="https://github.com/incubateur-ademe/nosgestesclimat">
             l'améliorer
           </Link>
