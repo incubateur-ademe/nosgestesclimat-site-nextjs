@@ -17,16 +17,16 @@ export default function MetricSwitchButton({ metric, setMetric }: Props) {
     <div className="mb-2 flex justify-center gap-2 lg:justify-end">
       <Button
         lang="fr"
-        color={metric === "'carbone'" ? 'primary' : 'secondary'}
-        onClick={() => setMetric("'carbone'")}
+        color={metric === 'carbone' ? 'primary' : 'secondary'}
+        onClick={() => setMetric('carbone')}
         size="sm"
         aria-label={t('Evaluer la métrique carbone')}
         className="flex items-center gap-2 px-4 py-3">
         <span>Carbone</span> <Emoji>⚫️</Emoji>
       </Button>
       <Button
-        color={metric === "'eau'" ? 'primary' : 'secondary'}
-        onClick={() => setMetric("'eau'")}
+        color={metric === 'eau' ? 'primary' : 'secondary'}
+        onClick={() => setMetric('eau')}
         size="sm"
         aria-label={t('Evaluer la métrique eau')}
         className="flex items-center gap-2 px-4 py-3">

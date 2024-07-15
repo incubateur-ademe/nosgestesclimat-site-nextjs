@@ -1,11 +1,9 @@
 import CarboneTotalChart from '@/components/fin/CarboneTotalChart'
 import DirectWaterTotalChart from '@/components/fin/DirectWaterTotalChart'
+import { metrics } from '@/constants/metric'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
-import { Metric } from '@/publicodes-state/types'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
-
-const metrics: Metric[] = ['eau', 'carbone']
 
 export default function MetricSlider() {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
