@@ -38,7 +38,7 @@ export default function WaveContent() {
           onClick={() =>
             setIsVigieEauOpen((prevIsVigieEauOpen) => !prevIsVigieEauOpen)
           }
-          className="border-none !p-0 font-normal italic text-white hover:text-white">
+          className="text-wrap border-none !p-0 text-left text-xs font-normal italic !leading-normal text-white hover:text-white lg:text-base">
           Découvrez les restrictions en ce moment en France.
         </Button>
       </p>

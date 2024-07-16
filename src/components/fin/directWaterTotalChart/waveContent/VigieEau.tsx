@@ -15,8 +15,8 @@ export default function VigieEau() {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className=" relative mt-4 flex origin-top rounded-xl border-2 border-primary-50 bg-gray-100">
-      <div className="relative w-1/2">
+      className=" relative mt-4 flex origin-top flex-col-reverse rounded-xl border-2 border-primary-50 bg-gray-100 lg:flex-row">
+      <div className="relative lg:w-1/2">
         <France
           className="w-1/2"
           departements={departementsCodes}
@@ -24,7 +24,7 @@ export default function VigieEau() {
           highlightColor="#d40d83"
         />
       </div>
-      <div className="flex-1 p-4">
+      <div className="flex-1 p-4 text-sm lg:text-base">
         <p>
           <Trans>
             Voici la carte des départements qui subissent (ou sont proche de
