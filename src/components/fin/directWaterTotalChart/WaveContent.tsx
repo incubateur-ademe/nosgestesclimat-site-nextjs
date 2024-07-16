@@ -1,4 +1,5 @@
 import Wave from 'react-wavify'
+import InseeCodeInput from './waveContent/InseeCodeInput'
 import Octopus from './waveContent/Octopus'
 
 export default function WaveContent() {
@@ -23,6 +24,7 @@ export default function WaveContent() {
         Son impact n’est pas le même selon la saison et votre localisation.
         Entrez votre code postal pour saisir les enjeux de votre territoire.
       </p>
+      <InseeCodeInput />
     </div>
   )
 }

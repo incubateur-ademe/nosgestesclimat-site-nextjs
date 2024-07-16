@@ -173,6 +173,23 @@ module.exports = {
             transform: 'translateX(110vw)',
           },
         },
+        swimDelay: {
+          from: {
+            transform: 'translateX(-10vw)',
+          },
+          '48%': {
+            transform: 'translateX(-10vw)',
+          },
+          '50%': {
+            transform: 'translateX(110vw)',
+          },
+          '98%': {
+            transform: 'translateX(110vw)',
+          },
+          to: {
+            transform: 'translateX(-10vw)',
+          },
+        },
         swimBackwards: {
           from: {
             transform: 'translateX(110vw)',
@@ -189,7 +206,7 @@ module.exports = {
         'rainbow-fast': 'rainbow 5s linear infinite',
         jump: 'jump 1s infinite',
         swim: 'swim 10s linear infinite',
-        'swim-delay': 'swim 7s 100s linear infinite',
+        'swim-delay': 'swimDelay 240s linear infinite',
         'swim-fast': 'swim 5s linear infinite',
         'swim-slow': 'swim 15s linear infinite',
         'swim-backwards': 'swimBackwards 10s linear infinite',
