@@ -1,6 +1,7 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { useVigieEau } from '@/hooks/useVigieEau'
+// @ts-expect-error There is no types for this package
 import France from '@socialgouv/react-departements'
 import { motion } from 'framer-motion'
 
