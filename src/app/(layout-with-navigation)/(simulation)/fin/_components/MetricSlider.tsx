@@ -20,14 +20,14 @@ export default function MetricSlider() {
           beforeChange={(_, nextSlide) => setCurrentMetric(metrics[nextSlide])}>
           <div
             className={twMerge(
-              'slick-current:opacity-100 flex h-full w-full flex-col rounded-xl border-2 border-primary-50 bg-gray-100 px-4 pt-2 transition-opacity duration-500 lg:pt-20',
+              'slick-current:opacity-100 flex h-full w-full flex-col overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 px-4 pt-2 transition-opacity duration-500 lg:pt-20',
               currentMetric === 'carbone' ? 'opacity-100' : 'lg:opacity-60'
             )}>
             <CarboneTotalChart />
           </div>
           <div
             className={twMerge(
-              'slick-current:opacity-100 flex h-full w-full flex-col rounded-xl border-2 border-primary-50 bg-gray-100 pt-10 transition-opacity duration-500 lg:pt-20',
+              'slick-current:opacity-100 flex h-full w-full flex-col overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pt-10 transition-opacity duration-500 lg:pt-20',
               currentMetric === 'eau' ? 'opacity-100' : 'lg:opacity-60'
             )}>
             <DirectWaterTotalChart />

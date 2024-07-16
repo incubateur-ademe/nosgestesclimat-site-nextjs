@@ -585,3 +585,8 @@ html[data-useragent*='Trident'] #js {
 .slick-active > button {
   @apply !w-12 bg-primary-700;
 }
+
+.injected-svg {
+  max-width: 100%;
+  height: auto;
+}
