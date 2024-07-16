@@ -14,7 +14,7 @@ export default function InseeCodeInput() {
   }, [inseeCode, setInseeCode])
 
   return (
-    <div className="hidden">
+    <div>
       <PostalCodeInput postalCode={postalCode} setPostalCode={setPostalCode} />
     </div>
   )
