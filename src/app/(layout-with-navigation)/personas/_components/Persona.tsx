@@ -3,11 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
-import {
-  useCurrentSimulation,
-  useSimulation,
-  useUser,
-} from '@/publicodes-state'
+import { useSimulation, useUser } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { Persona as PersonaType } from '@incubateur-ademe/nosgestesclimat'
 import { fixSituationWithPartialMosaic } from '../_helpers/fixSituationWithPartialMosaic'
@@ -19,9 +15,7 @@ type Props = {
 }
 
 export default function Persona({ persona, personaDottedName }: Props) {
-  const { initSimulation, hideTutorial } = useUser()
-
-  const currentSimulation = useCurrentSimulation()
+  const { initSimulation, hideTutorial, currentSimulation } = useUser()
 
   const {
     everyMosaicChildrenWithParent,
@@ -30,6 +24,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
     pristineEngine,
     safeEvaluate,
     safeGetRule,
+    addToEngineSituation,
   } = useSimulation()
 
   const isCurrentPersonaSelected =
@@ -56,13 +51,14 @@ export default function Persona({ persona, personaDottedName }: Props) {
           className="align-self-end mt-auto"
           disabled={isCurrentPersonaSelected}
           onClick={() => {
+            const fixedSituation = fixSituationWithPartialMosaic({
+              situation: persona.situation,
+              everyMosaicChildrenWithParent,
+              safeGetRule,
+              safeEvaluate,
+            })
             initSimulation({
-              situation: fixSituationWithPartialMosaic({
-                situation: persona.situation,
-                everyMosaicChildrenWithParent,
-                safeGetRule,
-                safeEvaluate,
-              }),
+              situation: fixedSituation,
               persona: personaDottedName,
               foldedSteps: getPersonaFoldedSteps({
                 situation: persona.situation,
@@ -73,8 +69,10 @@ export default function Persona({ persona, personaDottedName }: Props) {
                 safeGetRule,
                 safeEvaluate,
               }),
+              progression: 1,
             })
             hideTutorial('testIntro')
+            addToEngineSituation(fixedSituation)
           }}>
           <Trans>Sélectionner</Trans>
         </Button>
