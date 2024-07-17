@@ -2,7 +2,7 @@
 
 import { profilClickCategory } from '@/constants/tracking/pages/profil'
 import Emoji from '@/design-system/utils/Emoji'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import {
   getBackgroundLightColor,
   getBorderColor,

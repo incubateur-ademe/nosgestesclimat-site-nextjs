@@ -2,27 +2,30 @@
 
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { useCurrentMetric } from '@/hooks/useCurrentMetric'
+import { Metric } from '@/publicodes-state/types'
 import HeadingButtons from './heading/HeadingButtons'
+
+type Props = {
+  metric: Metric
+}
 
 const titles = {
   carbone: <Trans>carbone</Trans>,
   eau: <Trans>eau</Trans>,
 }
-export default function Heading() {
-  const { currentMetric } = useCurrentMetric()
-
+export default function Heading({ metric }: Props) {
   return (
     <>
-      <div className="mb-4 flex flex-wrap items-start justify-between">
+      <div className="flex w-full flex-wrap items-start justify-between p-4">
         <Title
           className="text-lg md:text-2xl"
+          hasSeparator={false}
           title={
             <>
               <Trans>Mon empreinte</Trans>{' '}
-              <span className="text-secondary-700">
-                {titles[currentMetric]}
-              </span>
+              <strong className="font-black text-secondary-700">
+                {titles[metric]}
+              </strong>
             </>
           }
         />

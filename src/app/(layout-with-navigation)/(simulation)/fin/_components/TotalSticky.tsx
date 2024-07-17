@@ -1,21 +1,12 @@
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useLocale } from '@/hooks/useLocale'
-import { useRule } from '@/publicodes-state'
+import { metrics } from '@/constants/metric'
+import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useEffect, useRef, useState } from 'react'
+import Slider from 'react-slick'
 import { twMerge } from 'tailwind-merge'
-import HeadingButtons from './heading/HeadingButtons'
+import TotalStickySlide from './totalSticky/TotalStickySlide'
 
 export default function TotalSticky() {
-  const locale = useLocale()
-  const { t } = useClientTranslation()
-
-  const { numericValue } = useRule('bilan')
-
-  const { formattedValue, unit } = formatCarbonFootprint(numericValue, {
-    t,
-    locale,
-  })
+  const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   const [isVisible, setIsVisible] = useState(false)
 
@@ -44,16 +35,19 @@ export default function TotalSticky() {
     <div
       ref={myElementRef}
       className={twMerge(
-        'hidden items-center justify-between rounded-xl border-2 border-primary-50 bg-gray-100 p-4 transition-opacity duration-700 lg:flex short:py-2',
+        'slider-small hidden overflow-hidden transition-opacity duration-700 lg:block',
         isVisible ? 'visible opacity-100' : 'invisible opacity-0'
       )}>
-      <div>
-        <strong className="text-5xl font-black leading-none short:text-3xl">
-          {formattedValue}
-        </strong>
-        <span className="text-3xl font-medium"> {unit}</span>
-      </div>
-      <HeadingButtons size="sm" endPage />
+      <Slider
+        initialSlide={metrics.indexOf(currentMetric)}
+        dots={true}
+        infinite={false}
+        className="mx-auto w-full lg:max-w-3xl"
+        beforeChange={(_, nextSlide) => setCurrentMetric(metrics[nextSlide])}>
+        {metrics.map((metric) => (
+          <TotalStickySlide key={metric} metric={metric} />
+        ))}
+      </Slider>
     </div>
   )
 }

@@ -1,10 +1,11 @@
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import {
   getBackgroundLightColor,
   getBorderColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
@@ -25,15 +26,17 @@ export default function MainSubcategory({
   isLink,
 }: Props) {
   const locale = useLocale()
-
   const { t } = useClientTranslation()
+
+  const { currentMetric } = useCurrentMetric()
   const { title, numericValue, category } = useRule(subcategory)
 
   const usedValue = value ?? numericValue
 
-  const { formattedValue, unit } = formatCarbonFootprint(usedValue, {
+  const { formattedValue, unit } = formatFootprint(usedValue, {
     locale,
     t,
+    metric: currentMetric,
   })
 
   const handleScroll = (id: string) => {

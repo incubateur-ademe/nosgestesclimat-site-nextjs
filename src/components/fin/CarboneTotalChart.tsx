@@ -9,7 +9,7 @@ type Props = {
 }
 export default function CarboneTotalChart({ total }: Props) {
   return (
-    <div className="relative mx-auto mb-14 mt-36 w-full md:w-[640px] lg:mb-2">
+    <div className="relative mx-auto mb-14 mt-36 w-full md:w-[640px]">
       <TotalNumber total={total} />
       <Gauge />
       {!total ? <TargetNumber /> : null}

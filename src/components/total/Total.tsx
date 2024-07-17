@@ -7,8 +7,8 @@ import {
   simulateurOpenScoreInfo,
 } from '@/constants/tracking/pages/simulateur'
 import Emoji from '@/design-system/utils/Emoji'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
-import { formatWaterFootprint } from '@/helpers/formatWaterFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatWaterFootprint } from '@/helpers/formatters/formatWaterFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
   useCurrentSimulation,

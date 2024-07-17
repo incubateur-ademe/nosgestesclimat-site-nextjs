@@ -572,18 +572,28 @@ html[data-useragent*='Trident'] #js {
   display: none !important;
 }
 
-.slick-dots {
-  @apply !flex items-center justify-center gap-4;
-}
-
 .slick-list {
   @apply !overflow-visible;
+}
+
+.slick-dots {
+  @apply mt-4 !flex items-center justify-center gap-4;
 }
 .slick-dots > li > button {
   @apply h-6 w-6 rounded-full border-2 border-primary-700 text-[0px] transition-all duration-500;
 }
 .slick-active > button {
   @apply !w-12 bg-primary-700;
+}
+
+.slider-small .slick-dots {
+  @apply mt-0;
+}
+.slider-small .slick-dots > li > button {
+  @apply h-3 w-3 rounded-full border-2 border-primary-700 text-[0px] leading-[0] transition-all duration-500;
+}
+.slider-small .slick-active > button {
+  @apply !w-6 bg-primary-700;
 }
 
 .injected-svg {

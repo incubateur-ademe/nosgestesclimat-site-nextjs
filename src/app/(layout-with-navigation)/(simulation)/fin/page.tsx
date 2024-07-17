@@ -12,7 +12,6 @@ import DocumentationBlock from './_components/DocumentationBlock'
 import Eau from './_components/Eau'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
-import Heading from './_components/Heading'
 import InformationBlock from './_components/InformationBlock'
 import MetricSlider from './_components/MetricSlider'
 import Poll from './_components/Poll'
@@ -38,7 +37,6 @@ export default function FinPage() {
       <IframeDataShareModal />
       <Poll />
 
-      <Heading />
       <MetricSlider />
 
       <TotalStickyMobile />

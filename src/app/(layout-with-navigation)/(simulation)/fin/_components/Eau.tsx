@@ -1,6 +1,7 @@
-import IndirectWaterTotalChart from '@/components/fin/IndirectWaterTotalChart'
+import MainSubcategories from '@/components/fin/MainSubcategories'
 import { motion } from 'framer-motion'
-import DirectWaterWarning from './eau/DirectWaterWarning'
+import ClimateAndWater from './eau/ClimateAndWater'
+import DomesticWater from './eau/DomesticWater'
 
 export default function Eau() {
   return (
@@ -9,8 +10,9 @@ export default function Eau() {
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
       className="flex flex-1 flex-col gap-8">
-      <DirectWaterWarning />
-      <IndirectWaterTotalChart />
+      <MainSubcategories isLink={false} />
+      <ClimateAndWater />
+      <DomesticWater />
     </motion.div>
   )
 }

@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge'
 import CarboneTargetContent from './informationBlock/CarboneTargetContent'
 import Hedgehog from './informationBlock/Hedgehog'
 import HedgehogAwareness from './informationBlock/HedgehogAwareness'
-import IndirectWaterContent from './informationBlock/IndirectWaterContent'
+import WaterFootprintContent from './informationBlock/WaterFootprintContent'
 
 export default function InformationBlock() {
   const [isOpen, setIsOpen] = useState(false)
@@ -28,7 +28,7 @@ export default function InformationBlock() {
         ) : currentMetric === 'carbone' ? (
           <CarboneTargetContent isOpen={isOpen} isHedgehog={isHedgehog} />
         ) : (
-          <IndirectWaterContent isOpen={isOpen} isHedgehog={isHedgehog} />
+          <WaterFootprintContent isOpen={isOpen} isHedgehog={isHedgehog} />
         )}
       </div>
       <Button

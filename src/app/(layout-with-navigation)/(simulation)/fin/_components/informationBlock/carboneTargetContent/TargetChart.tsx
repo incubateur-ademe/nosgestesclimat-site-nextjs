@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
@@ -26,7 +26,7 @@ export default function TargetChart({ isQuestionOpen }: Props) {
         'relative mx-auto max-w-[300px] transition-opacity duration-700',
         isQuestionOpen
           ? 'invisible h-0 opacity-0'
-          : 'short:mb-2 short:mt-12 visible mb-6 mt-14 h-28 opacity-100'
+          : 'visible mb-6 mt-14 h-28 opacity-100 short:mb-2 short:mt-12'
       )}>
       <motion.div
         initial={{ opacity: 0 }}

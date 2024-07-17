@@ -1,9 +1,9 @@
 import Trans from '@/components/translation/Trans'
-import { formatWaterFootprint } from '@/helpers/formatWaterFootprint'
+import { formatWaterFootprint } from '@/helpers/formatters/formatWaterFootprint'
 import { useRule } from '@/publicodes-state'
 
-export default function DirectWaterTotalNumber() {
-  const { numericValue } = useRule('logement . eau directe . par jour', 'eau')
+export default function WaterTotalNumber() {
+  const { numericValue } = useRule('bilan . par jour', 'eau')
 
   const { formattedValue, unit } = formatWaterFootprint(numericValue)
 
@@ -18,9 +18,7 @@ export default function DirectWaterTotalNumber() {
         </span>
         <br />
         <span className="text-lg lg:text-xl">
-          <Trans>
-            d'eau <strong className="font-black">directe</strong> par jour
-          </Trans>
+          <Trans>d'eau par jour</Trans>
         </span>
       </div>
     </div>

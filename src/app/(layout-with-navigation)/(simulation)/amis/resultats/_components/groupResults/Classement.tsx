@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
 import { useUser } from '@/publicodes-state'
 import ClassementMember from './classement/ClassementMember'

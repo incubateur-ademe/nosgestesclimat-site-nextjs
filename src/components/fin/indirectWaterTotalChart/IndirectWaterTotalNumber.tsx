@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import { formatWaterFootprint } from '@/helpers/formatWaterFootprint'
+import { formatWaterFootprint } from '@/helpers/formatters/formatWaterFootprint'
 import { useRule } from '@/publicodes-state'
 
 export default function IndirectWaterTotalNumber() {

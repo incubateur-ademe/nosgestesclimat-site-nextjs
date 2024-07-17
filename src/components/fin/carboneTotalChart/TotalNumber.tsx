@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { getColorAtPosition } from '@/helpers/getColorOfGradient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
