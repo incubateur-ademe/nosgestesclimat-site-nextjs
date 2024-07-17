@@ -28,25 +28,19 @@ export default function Action({ action, index, metric = 'carbone' }: Props) {
 
   const isActionChoosen = actionChoices[action] === true
 
-  const { numericValue: total } = useRule(
-    metric === 'eau' ? 'bilan . par jour' : 'bilan',
-    metric
-  )
+  const { numericValue: total } = useRule('bilan', metric)
 
   const { icons, title, numericValue, category } = useRule(action, metric)
 
-  const valueAdjustedForTimeline =
-    metric === 'eau' ? numericValue / 365 : numericValue
+  const hasNoValue = numericValue === 0
 
-  const hasNoValue = valueAdjustedForTimeline === 0
-
-  const { formattedValue, unit } = formatFootprint(valueAdjustedForTimeline, {
+  const { formattedValue, unit } = formatFootprint(numericValue, {
     locale,
     t,
     metric,
   })
 
-  const percent = Math.round((valueAdjustedForTimeline / total) * 100)
+  const percent = Math.round((numericValue / total) * 100)
   return (
     <div
       className={twMerge(

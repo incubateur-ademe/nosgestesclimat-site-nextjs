@@ -14,10 +14,8 @@ export default function TotalStickyMobile() {
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log('scroll')
       if (myElementRef.current) {
         const { top } = myElementRef.current.getBoundingClientRect()
-        console.log(top)
         if (top <= 0) {
           setIsVisible(true)
         } else {
@@ -33,7 +31,7 @@ export default function TotalStickyMobile() {
     }
   }, [])
 
-  const sliderRef = useRef<any>(null)
+  const sliderRef = useRef<Slider>(null)
   useEffect(() => {
     sliderRef?.current?.slickGoTo(metrics.indexOf(currentMetric))
   }, [currentMetric])

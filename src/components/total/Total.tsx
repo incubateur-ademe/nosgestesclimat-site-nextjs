@@ -30,10 +30,10 @@ export default function Total({ toggleQuestionList }: Props) {
 
   const { numericValue } = useRule('bilan')
 
-  const { numericValue: waterNumericValue } = useRule('bilan . par jour', 'eau')
+  const { numericValue: waterNumericValue } = useRule('bilan', 'eau')
 
   const { numericValue: directWaterNumericValue } = useRule(
-    'logement . eau directe . par jour',
+    'logement . eau directe',
     'eau'
   )
 

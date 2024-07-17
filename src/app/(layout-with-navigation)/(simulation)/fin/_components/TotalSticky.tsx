@@ -30,7 +30,7 @@ export default function TotalSticky() {
     }
   }, [])
 
-  const sliderRef = useRef<any>(null)
+  const sliderRef = useRef<Slider>(null)
   useEffect(() => {
     sliderRef?.current?.slickGoTo(metrics.indexOf(currentMetric))
   }, [currentMetric])

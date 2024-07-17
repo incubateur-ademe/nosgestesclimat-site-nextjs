@@ -31,10 +31,7 @@ export default function MainSubcategory({
   const { currentMetric } = useCurrentMetric()
   const { title, numericValue, category } = useRule(subcategory, currentMetric)
 
-  const usedValue =
-    value ?? currentMetric === 'eau' ? numericValue / 365 : numericValue
-
-  const { formattedValue, unit } = formatFootprint(usedValue, {
+  const { formattedValue, unit } = formatFootprint(numericValue, {
     locale,
     t,
     metric: currentMetric,
@@ -63,12 +60,12 @@ export default function MainSubcategory({
         )}>
         <div
           className={twMerge(
-            'flex h-9 w-9 items-center justify-center rounded-full border-2 bg-white font-black leading-none',
+            'flex h-9 w-9  items-center justify-center rounded-full border-2 bg-white font-black leading-none',
             getBorderColor(category)
           )}>
           {index + 1}
         </div>
-        {title}
+        <span className="flex-1 text-left">{title}</span>
       </div>
       <div
         className={twMerge(

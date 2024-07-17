@@ -19,6 +19,10 @@ import ShareBlock from './_components/ShareBlock'
 import TotalSticky from './_components/TotalSticky'
 import TotalStickyMobile from './_components/TotalStickyMobile'
 
+const titles = {
+  carbone: <Trans>carbone</Trans>,
+  eau: <Trans>eau</Trans>,
+}
 export default function FinPage() {
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useEndGuard()
@@ -52,12 +56,13 @@ export default function FinPage() {
           <ShareBlock />
 
           <div id="categories-block">
-            <Title
-              tag="h2"
-              className="text-lg md:text-2xl"
-              title={<Trans>Le détail de mon empreinte</Trans>}
-            />
-            <CategoriesAccordion />
+            <Title tag="h2" className="text-lg md:text-2xl">
+              <Trans>Le détail de mon empreinte</Trans>{' '}
+              <strong className="text-secondary-700">
+                {titles[currentMetric]}
+              </strong>
+            </Title>
+            <CategoriesAccordion metric={currentMetric} />
           </div>
 
           <FeedbackBanner

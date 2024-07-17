@@ -11,7 +11,7 @@ import Heading from './metricSlider/Heading'
 export default function MetricSlider() {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
-  const sliderRef = useRef<any>(null)
+  const sliderRef = useRef<Slider>(null)
   useEffect(() => {
     sliderRef?.current?.slickGoTo(metrics.indexOf(currentMetric))
   }, [currentMetric])

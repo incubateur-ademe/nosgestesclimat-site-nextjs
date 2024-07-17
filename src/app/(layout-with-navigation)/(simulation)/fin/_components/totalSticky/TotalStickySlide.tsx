@@ -18,10 +18,7 @@ export default function TotalStickySlide({ metric }: Props) {
   const locale = useLocale()
   const { t } = useClientTranslation()
 
-  const { numericValue } = useRule(
-    metric === 'eau' ? 'bilan . par jour' : 'bilan',
-    metric
-  )
+  const { numericValue } = useRule('bilan', metric)
 
   const { formattedValue, unit } = formatFootprint(numericValue, {
     t,

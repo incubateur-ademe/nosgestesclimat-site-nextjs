@@ -6,7 +6,7 @@ import { useRule } from '@/publicodes-state'
 import VigieEau from './domesticWater/VigieEau'
 
 export default function DomesticWater() {
-  const { numericValue } = useRule('logement . eau directe . par jour', 'eau')
+  const { numericValue } = useRule('logement . eau directe', 'eau')
 
   const { formattedValue, unit } = formatFootprint(numericValue, {
     metric: 'eau',
@@ -65,8 +65,8 @@ export default function DomesticWater() {
         <VigieEau />
       </div>
       <p>
-        <Link href="https://vigieau.gouv.fr/">
-          <Trans>Rendez-vous sur Vigie Eau pour en savoir plus.</Trans>
+        <Link href="https://vigieau.gouv.fr/" target="_blank">
+          <Trans>Rendez-vous sur VigiEau pour en savoir plus.</Trans>
         </Link>
       </p>
     </div>

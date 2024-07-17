@@ -3,6 +3,7 @@ type Options = {
   locale?: string
   maximumFractionDigits?: number
   shouldUseAbbreviation?: boolean
+  shouldDivideBy365?: boolean
 }
 
 export function formatWaterFootprint(
@@ -12,18 +13,20 @@ export function formatWaterFootprint(
     locale = 'fr-FR',
     maximumFractionDigits = 0,
     shouldUseAbbreviation = false,
+    shouldDivideBy365 = true,
   }: Options = {
     localize: true,
     locale: 'fr-FR',
     maximumFractionDigits: 0,
     shouldUseAbbreviation: false,
+    shouldDivideBy365: true,
   }
 ): {
   formattedValue: string
   unit: string | null
   negative: boolean
 } {
-  const numberValue = Number(value)
+  const numberValue = shouldDivideBy365 ? Number(value) / 365 : Number(value)
 
   const negative = numberValue < 0
 

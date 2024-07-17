@@ -9,6 +9,7 @@ type Options = {
   shouldUseAbbreviation?: boolean
   t?: (key: string) => string
   metric?: Metric
+  shouldDivideBy365?: boolean
 }
 
 export function formatFootprint(
@@ -20,6 +21,7 @@ export function formatFootprint(
     shouldUseAbbreviation,
     t,
     metric,
+    shouldDivideBy365,
   }: Options = {}
 ): {
   formattedValue: string
@@ -41,6 +43,7 @@ export function formatFootprint(
       locale,
       maximumFractionDigits,
       shouldUseAbbreviation,
+      shouldDivideBy365,
     })
   }
 

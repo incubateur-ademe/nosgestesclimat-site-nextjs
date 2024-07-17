@@ -1,11 +1,15 @@
 import Trans from '@/components/translation/Trans'
-import { formatWaterFootprint } from '@/helpers/formatters/formatWaterFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
 
 export default function WaterTotalNumber() {
-  const { numericValue } = useRule('bilan . par jour', 'eau')
+  const { numericValue } = useRule('bilan', 'eau')
 
-  const { formattedValue, unit } = formatWaterFootprint(numericValue)
+  const { formattedValue, unit } = formatFootprint(numericValue, {
+    metric: 'eau',
+  })
+
+  console.log('formattedValue', formattedValue, numericValue)
 
   return (
     <div className="flex items-center justify-center">
