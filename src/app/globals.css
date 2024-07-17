@@ -564,6 +564,10 @@ html[data-useragent*='Trident'] #js {
   height: inherit !important;
   @apply px-1 lg:px-2;
 }
+.slider-small .slick-slide {
+  @apply px-0;
+}
+
 .slick-slide > div {
   height: 100%;
 }
@@ -579,6 +583,9 @@ html[data-useragent*='Trident'] #js {
 .slick-dots {
   @apply mt-4 !flex items-center justify-center gap-4;
 }
+.slick-dots li {
+  @apply !flex;
+}
 .slick-dots > li > button {
   @apply h-6 w-6 rounded-full border-2 border-primary-700 text-[0px] transition-all duration-500;
 }
@@ -587,7 +594,7 @@ html[data-useragent*='Trident'] #js {
 }
 
 .slider-small .slick-dots {
-  @apply mt-0;
+  @apply mt-1;
 }
 .slider-small .slick-dots > li > button {
   @apply h-3 w-3 rounded-full border-2 border-primary-700 text-[0px] leading-[0] transition-all duration-500;

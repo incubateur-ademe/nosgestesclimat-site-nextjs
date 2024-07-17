@@ -9,7 +9,7 @@ export default function Eau() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
-      className="flex flex-1 flex-col gap-8">
+      className="flex flex-1 flex-col gap-16">
       <MainSubcategories isLink={false} />
       <ClimateAndWater />
       <DomesticWater />
