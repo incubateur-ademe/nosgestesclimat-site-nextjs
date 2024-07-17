@@ -12,15 +12,15 @@ import { twMerge } from 'tailwind-merge'
 
 const sizeClassNames = {
   sm: 'h-10 w-10',
-  md: 'h-12 w-12',
+  md: 'h-10 w-10 lg:h-12 lg:w-12',
 }
 const saveClassNames = {
   sm: 'h-6 w-6',
-  md: 'h-7 w-7',
+  md: 'h-6 w-6 lg:h-7 lg:w-7',
 }
 const shareClassNames = {
   sm: 'h-[22px] w-[22px]',
-  md: 'h-[26px] w-[26px]',
+  md: 'h-[22px] w-[22px] lg:h-[26px] lg:w-[26px]',
 }
 
 type Props = {
@@ -50,7 +50,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
   }
 
   return (
-    <div className="flex gap-2">
+    <div className="flex lg:gap-2">
       <Button
         color="text"
         className={twMerge('!p-0', sizeClassNames[size])}

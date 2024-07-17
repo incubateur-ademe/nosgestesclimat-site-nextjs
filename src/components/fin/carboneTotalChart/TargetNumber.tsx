@@ -10,7 +10,7 @@ export default function TargetNumber() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5, delay: 2 }}
-      className="absolute top-10 -translate-x-1/2"
+      className="absolute top-8 -translate-x-1/2 lg:top-10"
       style={{ left: `${position}%` }}>
       <div className="absolute top-full mt-1 whitespace-nowrap">
         <strong className="font-black text-secondary-700">2 tonnes,</strong>

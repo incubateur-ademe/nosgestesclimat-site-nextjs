@@ -7,9 +7,9 @@ export default function Gauge() {
   const isOutOfRange = numericValue > 12000
 
   return (
-    <div className="h12 relative w-full">
+    <div className="relative h-8 w-full lg:h-12">
       <div
-        className="relative h-12 w-full overflow-hidden rounded-full border-2 border-primary-100"
+        className="relative h-8 w-full overflow-hidden rounded-full border-2 border-primary-100 lg:h-12"
         style={{ backgroundColor: '#f96f81' }}>
         <motion.div
           initial={{ scaleX: 1 }}
