@@ -1,6 +1,5 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import ClientProvider from './_components/ClientProvider'
 import StatsContent from './_components/StatsContent'
 
 export async function generateMetadata() {
@@ -18,9 +17,5 @@ export async function generateMetadata() {
 }
 
 export default function Dashboard() {
-  return (
-    <ClientProvider>
-      <StatsContent />
-    </ClientProvider>
-  )
+  return <StatsContent />
 }

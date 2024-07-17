@@ -10,26 +10,17 @@ export default function DishesNumberInfo() {
   return (
     <>
       <div aria-live="polite" className="mb-2 text-center text-sm">
-        {totalNumberOfPlats < 12 ? (
+        {totalNumberOfPlats !== 14 ? (
           <span className="text-red-700">
+            <Trans>Vous avez sélectionné</Trans>{' '}
             <strong>{totalNumberOfPlats}</strong>{' '}
             <strong>
               <Trans>repas</Trans>
             </strong>{' '}
-            <Trans>par semaine, quel appétit de moineau</Trans>
-            <Emoji>🐦</Emoji>
+            <Trans>sur les 14 habituels</Trans> <Emoji>🍽️</Emoji>
           </span>
         ) : null}
-        {totalNumberOfPlats > 16 ? (
-          <span className="text-red-700">
-            <strong>{totalNumberOfPlats}</strong>{' '}
-            <strong>
-              <Trans>repas</Trans>
-            </strong>{' '}
-            <Trans>par semaine, quel appétit !</Trans> <Emoji>💪</Emoji>
-          </span>
-        ) : null}
-        {totalNumberOfPlats >= 12 && totalNumberOfPlats <= 16 ? (
+        {totalNumberOfPlats === 14 ? (
           <span>
             <strong>{totalNumberOfPlats}</strong>{' '}
             <strong>
