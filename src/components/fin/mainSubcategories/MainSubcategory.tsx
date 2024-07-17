@@ -31,7 +31,9 @@ export default function MainSubcategory({
   const { currentMetric } = useCurrentMetric()
   const { title, numericValue, category } = useRule(subcategory, currentMetric)
 
-  const { formattedValue, unit } = formatFootprint(numericValue, {
+  const usedValue = value ?? numericValue
+
+  const { formattedValue, unit } = formatFootprint(usedValue, {
     locale,
     t,
     metric: currentMetric,
