@@ -25,7 +25,7 @@ export default function MetricSlider() {
           beforeChange={(_, nextSlide) => setCurrentMetric(metrics[nextSlide])}>
           <button
             className={twMerge(
-              'h-full overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 text-left duration-500',
+              '!flex h-full flex-col overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 text-left duration-500',
               currentMetric === 'carbone' && ' cursor-default'
             )}
             onClick={() => {

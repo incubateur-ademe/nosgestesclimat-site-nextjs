@@ -50,9 +50,9 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
   }
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-2">
       <Button
-        color="secondary"
+        color="text"
         className={twMerge('!p-0', sizeClassNames[size])}
         onClick={() => {
           trackEvent(
@@ -65,13 +65,17 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         />
       </Button>
       <Button
+        color="text"
         className={twMerge('!p-0', sizeClassNames[size])}
         onClick={() => {
           trackEvent(endClickShareShortcut)
           handleShare()
         }}>
         <ShareIcon
-          className={twMerge('mr-[1px] fill-white', shareClassNames[size])}
+          className={twMerge(
+            'mr-[1px] fill-primary-700',
+            shareClassNames[size]
+          )}
         />
       </Button>
     </div>

@@ -42,7 +42,7 @@ export default function FinPage() {
       <TotalStickyMobile />
 
       <div className="flex flex-col-reverse gap-16 lg:flex-row lg:gap-10">
-        <div className="flex flex-1 flex-col gap-16 lg:mt-32">
+        <div className="flex flex-1 flex-col gap-16 lg:mt-14">
           {currentMetric === 'carbone' && <Carbone />}
 
           {currentMetric === 'eau' && <Eau />}
