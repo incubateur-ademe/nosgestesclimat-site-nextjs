@@ -8,7 +8,6 @@ import {
 } from '@/constants/tracking/pages/simulateur'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
-import { formatWaterFootprint } from '@/helpers/formatters/formatWaterFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
   useCurrentSimulation,
@@ -29,13 +28,6 @@ export default function Total({ toggleQuestionList }: Props) {
   const { t } = useClientTranslation()
 
   const { numericValue } = useRule('bilan')
-
-  const { numericValue: waterNumericValue } = useRule('bilan', 'eau')
-
-  const { numericValue: directWaterNumericValue } = useRule(
-    'logement . eau directe',
-    'eau'
-  )
 
   const { getNumericValue } = useEngine()
 
@@ -104,22 +96,6 @@ export default function Total({ toggleQuestionList }: Props) {
                 de CO<sub className="text-white">2</sub>e / an
               </Trans>
             </span>
-          </div>
-          <div className="z-10 text-left">
-            <p className="block text-sm md:text-base">
-              Eau indirecte :{' '}
-              {formatWaterFootprint(waterNumericValue).formattedValue}{' '}
-              <Trans>
-                {formatWaterFootprint(waterNumericValue).unit} par jour
-              </Trans>
-            </p>
-            <p className="block text-sm md:text-base">
-              Eeau directe :{' '}
-              {formatWaterFootprint(directWaterNumericValue).formattedValue}{' '}
-              <Trans>
-                {formatWaterFootprint(waterNumericValue).unit} par jour
-              </Trans>
-            </p>
           </div>
         </div>
         <QuestionButton
