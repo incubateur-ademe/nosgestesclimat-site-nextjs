@@ -2,7 +2,6 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useSortedUiCategoriesByFootprint } from '@/hooks/useSortedUiCategoriesByFootprint'
-import { useEngine } from '@/publicodes-state'
 import MainSubcategory from './mainSubcategories/MainSubcategory'
 
 type Props = {
@@ -16,15 +15,10 @@ const titles = {
 export default function MainSubcategories({ isLink }: Props) {
   const { currentMetric } = useCurrentMetric()
 
-  const { getNumericValue } = useEngine({ metric: currentMetric })
   const { sortedUiCategories } = useSortedUiCategoriesByFootprint({
     metric: currentMetric,
   })
 
-  const uiCategoriesValues = sortedUiCategories.map((subcategory) => {
-    return { [subcategory]: getNumericValue(subcategory) }
-  })
-  console.log(uiCategoriesValues)
   const firstThreeSubcategories = sortedUiCategories.slice(0, 3)
 
   return (

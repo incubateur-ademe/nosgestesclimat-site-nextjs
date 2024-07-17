@@ -29,7 +29,7 @@ export default function TotalStickySlide({ metric }: Props) {
     metric,
   })
   return (
-    <div className="items-center justify-between rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-2 lg:flex">
+    <div className="flex items-center justify-between rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-2">
       <div>
         <strong className="block text-4xl font-black leading-none short:text-3xl">
           {formattedValue}

@@ -37,7 +37,6 @@ export default function Action({ action, index, metric = 'carbone' }: Props) {
 
   const valueAdjustedForTimeline =
     metric === 'eau' ? numericValue / 365 : numericValue
-  console.log(action, valueAdjustedForTimeline)
 
   const hasNoValue = valueAdjustedForTimeline === 0
 

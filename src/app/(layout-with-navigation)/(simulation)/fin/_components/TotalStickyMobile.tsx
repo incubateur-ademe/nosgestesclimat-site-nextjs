@@ -1,21 +1,12 @@
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useLocale } from '@/hooks/useLocale'
-import { useRule } from '@/publicodes-state'
+import { metrics } from '@/constants/metric'
+import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useEffect, useRef, useState } from 'react'
+import Slider from 'react-slick'
 import { twMerge } from 'tailwind-merge'
-import HeadingButtons from './metricSlider/heading/HeadingButtons'
+import TotalStickySlide from './totalSticky/TotalStickySlide'
 
 export default function TotalStickyMobile() {
-  const locale = useLocale()
-  const { t } = useClientTranslation()
-
-  const { numericValue } = useRule('bilan')
-
-  const { formattedValue, unit } = formatCarbonFootprint(numericValue, {
-    t,
-    locale,
-  })
+  const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   const [isVisible, setIsVisible] = useState(false)
 
@@ -23,8 +14,10 @@ export default function TotalStickyMobile() {
 
   useEffect(() => {
     const handleScroll = () => {
+      console.log('scroll')
       if (myElementRef.current) {
         const { top } = myElementRef.current.getBoundingClientRect()
+        console.log(top)
         if (top <= 0) {
           setIsVisible(true)
         } else {
@@ -40,20 +33,35 @@ export default function TotalStickyMobile() {
     }
   }, [])
 
+  const sliderRef = useRef<any>(null)
+  useEffect(() => {
+    sliderRef?.current?.slickGoTo(metrics.indexOf(currentMetric))
+  }, [currentMetric])
+
   return (
     <div
       ref={myElementRef}
       className={twMerge(
-        'sticky top-0 z-50 -mx-4 flex items-center justify-between border-b border-gray-200 bg-white px-4 py-3 transition-opacity duration-300 lg:hidden',
+        'slider-small sticky top-0 z-50 -mx-2 flex items-center justify-between overflow-hidden bg-white bg-opacity-25 pt-2 transition-opacity duration-300 lg:hidden',
         isVisible ? 'visible opacity-100' : 'invisible opacity-0'
       )}>
-      <div>
-        <strong className="text-4xl font-black leading-none">
-          {formattedValue}
-        </strong>{' '}
-        <span className="text-3xl font-medium">{unit}</span>
+      <div
+        className={twMerge(
+          'relative w-full transition-transform duration-500',
+          isVisible ? 'translate-y-0' : '-translate-y-full'
+        )}>
+        <Slider
+          ref={sliderRef}
+          initialSlide={metrics.indexOf(currentMetric)}
+          dots={true}
+          infinite={false}
+          className="w-full"
+          beforeChange={(_, nextSlide) => setCurrentMetric(metrics[nextSlide])}>
+          {metrics.map((metric) => (
+            <TotalStickySlide key={metric} metric={metric} />
+          ))}
+        </Slider>
       </div>
-      <HeadingButtons size="sm" endPage />
     </div>
   )
 }
