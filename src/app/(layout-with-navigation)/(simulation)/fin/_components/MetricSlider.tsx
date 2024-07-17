@@ -2,7 +2,7 @@ import CarboneTotalChart from '@/components/fin/CarboneTotalChart'
 import WaterTotalChart from '@/components/fin/WaterTotalChart'
 import { metrics } from '@/constants/metric'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import { twMerge } from 'tailwind-merge'
@@ -12,6 +12,9 @@ export default function MetricSlider() {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   const sliderRef = useRef<any>(null)
+  useEffect(() => {
+    sliderRef?.current?.slickGoTo(metrics.indexOf(currentMetric))
+  }, [currentMetric])
 
   return (
     <div className="slider-mask -mx-4 w-screen overflow-hidden lg:mx-0 lg:w-full">

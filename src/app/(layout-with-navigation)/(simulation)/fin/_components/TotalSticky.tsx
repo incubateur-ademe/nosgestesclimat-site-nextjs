@@ -11,7 +11,6 @@ export default function TotalSticky() {
   const [isVisible, setIsVisible] = useState(false)
 
   const myElementRef = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
     const handleScroll = () => {
       if (myElementRef.current) {
@@ -31,6 +30,11 @@ export default function TotalSticky() {
     }
   }, [])
 
+  const sliderRef = useRef<any>(null)
+  useEffect(() => {
+    sliderRef?.current?.slickGoTo(metrics.indexOf(currentMetric))
+  }, [currentMetric])
+
   return (
     <div
       ref={myElementRef}
@@ -39,6 +43,7 @@ export default function TotalSticky() {
         isVisible ? 'visible opacity-100' : 'invisible opacity-0'
       )}>
       <Slider
+        ref={sliderRef}
         initialSlide={metrics.indexOf(currentMetric)}
         dots={true}
         infinite={false}
