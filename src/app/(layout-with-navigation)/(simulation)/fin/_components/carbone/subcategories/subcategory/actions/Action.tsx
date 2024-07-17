@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import {
   getBackgroundLightColor,
   getBorderColor,
@@ -9,7 +9,7 @@ import {
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useCurrentSimulation, useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName, Metric } from '@/publicodes-state/types'
 import { twMerge } from 'tailwind-merge'
 
 const colorClassName = ['200', '100', '50']
@@ -17,9 +17,10 @@ const colorClassName = ['200', '100', '50']
 type Props = {
   action: DottedName
   index: number
+  metric?: Metric
 }
 
-export default function Action({ action, index }: Props) {
+export default function Action({ action, index, metric = 'carbone' }: Props) {
   const locale = useLocale()
   const { t } = useClientTranslation()
 
@@ -27,18 +28,26 @@ export default function Action({ action, index }: Props) {
 
   const isActionChoosen = actionChoices[action] === true
 
-  const { numericValue: total } = useRule('bilan')
+  const { numericValue: total } = useRule(
+    metric === 'eau' ? 'bilan . par jour' : 'bilan',
+    metric
+  )
 
-  const { icons, title, numericValue, category } = useRule(action)
+  const { icons, title, numericValue, category } = useRule(action, metric)
 
-  const hasNoValue = numericValue === 0
+  const valueAdjustedForTimeline =
+    metric === 'eau' ? numericValue / 365 : numericValue
+  console.log(action, valueAdjustedForTimeline)
 
-  const { formattedValue, unit } = formatCarbonFootprint(numericValue, {
+  const hasNoValue = valueAdjustedForTimeline === 0
+
+  const { formattedValue, unit } = formatFootprint(valueAdjustedForTimeline, {
     locale,
     t,
+    metric,
   })
 
-  const percent = Math.round((numericValue / total) * 100)
+  const percent = Math.round((valueAdjustedForTimeline / total) * 100)
   return (
     <div
       className={twMerge(

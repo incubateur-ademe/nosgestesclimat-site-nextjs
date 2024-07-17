@@ -29,9 +29,10 @@ export default function MainSubcategory({
   const { t } = useClientTranslation()
 
   const { currentMetric } = useCurrentMetric()
-  const { title, numericValue, category } = useRule(subcategory)
+  const { title, numericValue, category } = useRule(subcategory, currentMetric)
 
-  const usedValue = value ?? numericValue
+  const usedValue =
+    value ?? currentMetric === 'eau' ? numericValue / 365 : numericValue
 
   const { formattedValue, unit } = formatFootprint(usedValue, {
     locale,

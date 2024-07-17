@@ -12,7 +12,7 @@ export default function DomesticWater() {
     metric: 'eau',
   })
   return (
-    <div>
+    <div className="flex flex-col items-start">
       <Title tag="h2">
         <Trans>
           Qu’est-ce que{' '}
@@ -25,9 +25,9 @@ export default function DomesticWater() {
           travers de votre facture d’eau.
         </Trans>
       </p>
-      <div className="mb-4 flex gap-4 rounded-xl border-2 border-primary-50 bg-gray-100 p-4">
+      <div className="mb-4 flex gap-4 rounded-xl border-2 border-primary-50 bg-gray-100 p-4 lg:pr-8">
         <svg
-          className="h-auto fill-secondary-700 lg:w-14"
+          className="h-auto fill-water lg:w-14"
           width="48"
           height="48"
           viewBox="0 0 48 48"
@@ -36,8 +36,8 @@ export default function DomesticWater() {
           <path d="M37.7916 23.6907L24.197 1.45337L11.5996 23.5387C8.66632 28.2187 8.41032 34.304 11.4916 39.344C15.8716 46.508 25.309 48.808 32.573 44.4867C39.8343 40.1667 42.1716 30.86 37.7916 23.6907Z" />
         </svg>
         <p className="mb-0 lg:text-xl">
-          <Trans>Vous consommez</Trans> <br className="hiddden lg:inline" />
-          <strong className="font-black text-secondary-700">
+          <Trans>Vous consommez</Trans> <br className="hidden lg:inline" />
+          <strong className="font-black text-water">
             {formattedValue} <Trans>{unit}</Trans>
           </strong>{' '}
           <Trans>d’eau domestique par jour</Trans>
@@ -58,7 +58,7 @@ export default function DomesticWater() {
       <p>
         <Trans>
           Voici la carte des départements qui subissent (ou sont proche de
-          subir) des restrictions d'eau aujourd'hui :
+          subir) des restrictions d'eau aujourd'hui :
         </Trans>
       </p>
       <div className="mx-auto mb-8 max-w-96">
