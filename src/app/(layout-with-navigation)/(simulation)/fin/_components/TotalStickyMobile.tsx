@@ -40,13 +40,13 @@ export default function TotalStickyMobile() {
     <div
       ref={myElementRef}
       className={twMerge(
-        'slider-small sticky top-0 z-50 -mx-2 flex items-center justify-between overflow-hidden bg-white bg-opacity-25 pt-2 transition-opacity duration-300 lg:hidden',
+        'slider-small sticky top-0 z-50 -mx-2 flex items-center justify-between overflow-hidden bg-white bg-opacity-25 pt-2 transition-opacity duration-200 lg:hidden',
         isVisible ? 'visible opacity-100' : 'invisible opacity-0'
       )}>
       <div
         className={twMerge(
           'relative w-full transition-transform duration-500',
-          isVisible ? 'translate-y-0' : '-translate-y-full'
+          isVisible ? 'translate-y-0' : '-translate-y-2/3'
         )}>
         <Slider
           ref={sliderRef}

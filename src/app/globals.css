@@ -550,7 +550,7 @@ html[data-useragent*='Trident'] #js {
 
 .slick-slide {
   height: inherit !important;
-  @apply px-1 lg:px-2;
+  @apply px-1 lg:px-0;
 }
 .slider-small .slick-slide {
   @apply px-0;

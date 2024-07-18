@@ -9,8 +9,6 @@ export default function WaterTotalNumber() {
     metric: 'eau',
   })
 
-  console.log('formattedValue', formattedValue, numericValue)
-
   return (
     <div className="flex items-center justify-center">
       <div className="mx-auto whitespace-nowrap text-right font-medium text-water">

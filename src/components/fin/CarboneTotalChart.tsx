@@ -9,10 +9,12 @@ type Props = {
 }
 export default function CarboneTotalChart({ total }: Props) {
   return (
-    <div className="relative mx-auto mb-20 mt-32 w-full md:w-[640px] lg:mt-36">
-      <TotalNumber total={total} />
-      <Gauge />
-      {!total ? <TargetNumber /> : null}
+    <div className="lg:py-8">
+      <div className="relative mx-auto mb-16 mt-32 w-full md:w-[640px] lg:mt-36">
+        <TotalNumber total={total} />
+        <Gauge />
+        {!total ? <TargetNumber /> : null}
+      </div>
     </div>
   )
 }
