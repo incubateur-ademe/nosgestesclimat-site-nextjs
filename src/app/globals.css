@@ -575,7 +575,7 @@ html[data-useragent*='Trident'] #js {
   @apply !flex;
 }
 .slick-dots > li > button {
-  @apply h-6 w-6 rounded-full border-2 border-primary-700 text-[0px] transition-all duration-500;
+  @apply h-4 w-4 rounded-full border-2 border-primary-700 text-[0px] transition-all duration-500;
 }
 .slick-active > button {
   @apply !w-12 bg-primary-700;
