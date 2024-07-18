@@ -13,7 +13,7 @@ import { twMerge } from 'tailwind-merge'
 
 const sizeClassNames = {
   sm: '!p-0 h-10 w-10',
-  md: '!p-0 h-10 w-10 lg:gap-2 lg:!px-4 lg:!py-2 lg:w-auto',
+  md: '!p-0 h-10 w-10 lg:gap-2 lg:!px-4 lg:!py-2 lg:w-auto font-medium',
 }
 const saveClassNames = {
   sm: 'h-6 w-6',
