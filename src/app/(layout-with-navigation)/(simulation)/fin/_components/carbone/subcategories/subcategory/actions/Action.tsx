@@ -55,7 +55,7 @@ export default function Action({ action, index, metric = 'carbone' }: Props) {
       {!hasNoValue && (
         <div className="text-center text-base leading-tight">
           <span className="block text-2xl font-black text-secondary-700">
-            {percent} %
+            {percent || 1} %
           </span>
           <Trans> de votre empreinte</Trans>
         </div>
