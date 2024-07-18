@@ -1,7 +1,7 @@
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
-import questions from '@/components/questions'
+import questions from '@/components/specialQuestions'
 import { simulationSimulationCompleted } from '@/constants/tracking/simulation'
 import { uuidToNumber } from '@/helpers/uuidToNumber'
 import { useEndPage } from '@/hooks/navigation/useEndPage'

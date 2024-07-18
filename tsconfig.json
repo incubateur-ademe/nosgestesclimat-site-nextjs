@@ -34,9 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "netlify/functions/**/*.ts",
-    "src/app/(layout-with-navigation)/statistiques/_components/StatsContent.js",
-    "src/app/(layout-with-navigation)/statistiques/_components/content/Chart.js"
+    "netlify/functions/**/*.ts"
   ],
   "exclude": [
     "node_modules",

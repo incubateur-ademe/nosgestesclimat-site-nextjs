@@ -21,9 +21,7 @@ entries:
   Découvrez les enjeux qui se cachent derrière chaque action.: Découvrez les enjeux qui se cachent derrière chaque action.
   Démarrer: Démarrer
   En développement actif: En développement actif
-  En savoir +: En savoir +
   En savoir plus: En savoir plus
-  Entre: Entre
   Entrez des mots clefs: Entrez des mots clefs
   Envie de contribuer à une version pour votre région ?: Envie de contribuer à une version pour votre région ?
   Envoyer: Envoyer
@@ -79,10 +77,9 @@ entries:
   jours: jours
   le + d'impact climat: le + d'impact climat
   le - d'impact climat: le - d'impact climat
-  minutes: minutes
   model.active.documented: La construction du modèle (pistes de travail, réflexions en cours, feuille de route, etc.) est amplement <2>documentée publiquement</2>.
   model.intro: Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.
-  model.intro2: Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>.
+  model.intro2: Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>l'améliorer</4>.
   model.modern: Le modèle est basé sur <2>publicodes</2>, un langage conçu par l'État pour exprimer des algorithmes d'intérêt public.
   model.modern2: Entièrement paramétrable, depuis les questions posées à l'utilisateur jusqu'aux hypothèses du modèle de calcul, il peut être réutilisé <2>librement</2> par tout type d'acteur.
   model.modern3: ⬇️ Ci-dessous, vous pouvez voir l'influence de 3 paramètres de calcul sur les résultats finaux.
@@ -91,7 +88,6 @@ entries:
   model.stats2: Il est constitué d'une combinaison de centaines de modèles micro "bottom-up" pour les consommations carbonées de notre vie quotidienne, et d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte par personne des services dits sociétaux (services publics et services de base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
   mois: mois
   noresults: Aucun résultat ne correspond à cette recherche
-  ont utilisé l'aide à la saisie des km: ont utilisé l'aide à la saisie des km
   participant: participant
   plus d'1 kg: plus d'1 kg
   plus d'1 tonne: plus d'1 tonne
@@ -130,7 +126,6 @@ entries:
   sélectionnées: sélectionnées
   tonne: tonne
   tonnes: tonnes
-  trajets saisis en moyenne: trajets saisis en moyenne
   visites: visites
   '{unit}': '{unit}'
   À propos: À propos
@@ -231,7 +226,6 @@ entries:
   Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.
   Logo de l'Association pour la transition Bas Carbone: Logo de l'Association pour la transition Bas Carbone
   Mes réponses: Mes réponses
-  Oups! Cette page n'existe pas ou n'existe plus: Oups! Cette page n'existe pas ou n'existe plus
   Passer en français: Passer en français
   Plus d'information à ce sujet: Plus d'information à ce sujet
   publicodes.Tutoriel.slide1.p1: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
@@ -472,7 +466,6 @@ entries:
   Envie de connaître votre empreinte carbone ?: Envie de connaître votre empreinte carbone ?
   Vous avez déjà commencé le test Nos Gestes Climat !: Vous avez déjà commencé le test Nos Gestes Climat !
   Vous avez déjà réalisé le test Nos Gestes Climat !: Vous avez déjà réalisé le test Nos Gestes Climat !
-  Propulsé par Vercel: Propulsé par Vercel
   Au total: Au total
   C’est bien cette distance qui sera comptabilisée en fin de test.: C’est bien cette distance qui sera comptabilisée en fin de test.
   km sont parcourus par an, avec en moyenne: km sont parcourus par an, avec en moyenne
@@ -548,7 +541,6 @@ entries:
   Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.: Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.
   Contact - Nos Gestes Climat: Contact - Nos Gestes Climat
   Contactez l'équipe de Nos Gestes Climat.: Contactez l'équipe de Nos Gestes Climat.
-  Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat: Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat
   Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.: Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.
   Découvrez le modèle de données de notre simulateur d'empreinte climat: Découvrez le modèle de données de notre simulateur d'empreinte climat
   Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.
@@ -602,8 +594,6 @@ entries:
   Ce test vous est proposé par: Ce test vous est proposé par
   En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.: En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.
   par semaine, miam: par semaine, miam
-  par semaine, quel appétit !: par semaine, quel appétit !
-  par semaine, quel appétit de moineau: par semaine, quel appétit de moineau
   repas: repas
   Cambiar a español: Cambiar a español
   Passer le test →: Passer le test →
@@ -777,7 +767,6 @@ entries:
   mis à jour le: mis à jour le
   'Un article de ': 'Un article de '
   'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.': 'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
-  Ils relaient <2>Nos Gestes Climat</2>: Ils relaient <2>Nos Gestes Climat</2>
   Nos relais: Nos relais
   Nos relais - Nos Gestes Climat: Nos relais - Nos Gestes Climat
   'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.': 'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.'
@@ -858,3 +847,20 @@ entries:
   Veuillez saisir une adresse email valide.: Veuillez saisir une adresse email valide.
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Rien à l'horizon ! <1></1>La page recherchée n'existe pas.
   Un bonhomme se demandant où il est: Un bonhomme se demandant où il est
+  Acquisition: Acquisition
+  components.stats.StatsContent.infosNorthstar: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
+  de visites via iframe ce mois-ci: de visites via iframe ce mois-ci
+  Données qualitatives: Données qualitatives
+  inscrits à l'infolettre: inscrits à l'infolettre
+  Modes "Groupes": Modes "Groupes"
+  partages du simulateur: partages du simulateur
+  Récupération des données: Récupération des données
+  simulations terminées depuis le lancement: simulations terminées depuis le lancement
+  Une erreur est survenue lors de la récupération des données: Une erreur est survenue lors de la récupération des données
+  visites ce mois-ci (en cours): visites ce mois-ci (en cours)
+  visites depuis le lancement: visites depuis le lancement
+  Visites et simulations: Visites et simulations
+  'Ils relaient ': 'Ils relaient '
+  Nos Gestes Climat: Nos Gestes Climat
+  sur les 14 habituels: sur les 14 habituels
+  Vous avez sélectionné: Vous avez sélectionné

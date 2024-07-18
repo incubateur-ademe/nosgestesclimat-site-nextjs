@@ -1,34 +1,48 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import FancySelect from '../../utils/FancySelect'
 
-export function range(start, end) {
+export function range(start: number, end: number) {
   return Array(end - start + 1)
     .fill(0)
     .map((_, idx) => start + idx)
 }
 
-export default function Search(props) {
+type Props = {
+  date: string
+  setDate: (date: string) => void
+  period: string
+  setPeriod: (period: string) => void
+  elementAnalysedTitle: string
+}
+
+export default function Search({
+  date,
+  setDate,
+  period,
+  setPeriod,
+  elementAnalysedTitle,
+}: Props) {
   const { t } = useClientTranslation()
 
   return (
     <div className="mb-2 text-left text-sm">
-      {t('Nombre de')} {props.elementAnalysedTitle} {t('pour les ')}
+      {t('Nombre de')} {elementAnalysedTitle} {t('pour les ')}
       <FancySelect
-        fancy
-        value={props.date}
-        onChange={(e) => {
-          props.setDate(e)
+        name="select-date"
+        value={date}
+        onChange={(e: string) => {
+          setDate(e)
         }}
         options={range(4, 31).map((elt) => ({
           value: String(elt),
           label: String(elt),
         }))}
       />{' '}
-      {props.period === 'week' ? t('dernières') : t('derniers')}{' '}
+      {period === 'week' ? t('dernières') : t('derniers')}{' '}
       <FancySelect
-        fancy
-        value={props.period}
-        onChange={props.setPeriod}
+        name="select-period"
+        value={period}
+        onChange={setPeriod}
         options={[
           { value: 'day', label: t('jours') },
           { value: 'week', label: t('semaines') },
