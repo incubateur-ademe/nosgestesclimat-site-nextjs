@@ -44,7 +44,6 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
             <strong className="text-secondary-700">
               consommation domestique
             </strong>
-             ;
           </li>
           <li className="mb-1">
             mais c’est celle aussi qui a fait pousser les{' '}
@@ -53,21 +52,22 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
             </strong>{' '}
             que vous mangez, ou le{' '}
             <strong className="text-secondary-700">coton</strong> que vous
-            portez ;
+            portez
           </li>
           <li className="mb-1">
             celle qui a aidé à faire grandir les{' '}
             <strong className="text-secondary-700">animaux</strong> que vous
-            consommez ;
+            consommez
           </li>
           <li className="mb-1">
             celle évaporée par les{' '}
-            <strong className="text-secondary-700">centrales</strong> ;
+            <strong className="text-secondary-700">
+              centrales électriques
+            </strong>
           </li>
           <li className="mb-1">
             ou encore celle qui a servi à extraire les matériaux de vos{' '}
             <strong className="text-secondary-700">appareils numériques</strong>
-            .
           </li>
         </ul>
         <div className="flex justify-end">
