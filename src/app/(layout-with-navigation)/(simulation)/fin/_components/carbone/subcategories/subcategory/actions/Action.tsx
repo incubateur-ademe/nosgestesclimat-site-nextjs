@@ -1,13 +1,10 @@
 import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
-import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import {
   getBackgroundLightColor,
   getBorderColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useLocale } from '@/hooks/useLocale'
 import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import { DottedName, Metric } from '@/publicodes-state/types'
 import { twMerge } from 'tailwind-merge'
@@ -21,9 +18,6 @@ type Props = {
 }
 
 export default function Action({ action, index, metric = 'carbone' }: Props) {
-  const locale = useLocale()
-  const { t } = useClientTranslation()
-
   const { actionChoices } = useCurrentSimulation()
 
   const isActionChoosen = actionChoices[action] === true
@@ -33,12 +27,6 @@ export default function Action({ action, index, metric = 'carbone' }: Props) {
   const { icons, title, numericValue, category } = useRule(action, metric)
 
   const hasNoValue = numericValue === 0
-
-  const { formattedValue, unit } = formatFootprint(numericValue, {
-    locale,
-    t,
-    metric,
-  })
 
   const percent = Math.round((numericValue / total) * 100)
   return (
