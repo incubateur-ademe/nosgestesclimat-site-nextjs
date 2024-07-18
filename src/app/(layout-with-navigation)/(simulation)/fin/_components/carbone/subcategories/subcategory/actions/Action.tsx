@@ -44,7 +44,7 @@ export default function Action({ action, index, metric = 'carbone' }: Props) {
   return (
     <div
       className={twMerge(
-        'max-w-80 flex-1 flex-col justify-between rounded-xl border-2 px-3 py-4 md:flex',
+        'max-w-80 flex-1 flex-col justify-between rounded-xl border-2 px-3 pb-4 pt-6 md:flex',
         colorClassName[index],
         getTextDarkColor(category),
         isActionChoosen
@@ -57,25 +57,18 @@ export default function Action({ action, index, metric = 'carbone' }: Props) {
         index === 2 ? 'hidden' : 'flex'
       )}>
       <div className="mb-4">
-        <div className="mb-4 flex flex-1 items-center justify-between">
+        <div className="mb-2 flex flex-1 items-center justify-center">
           <Emoji className="inline-flex justify-center">{icons}</Emoji>
-          {!hasNoValue && (
-            <div
-              className={twMerge(
-                'whitespace-nowrap rounded-xl border-2 bg-white px-3 py-2 text-xs font-black leading-none lg:text-sm',
-                getBorderColor(category)
-              )}>
-              - {formattedValue} {unit}
-            </div>
-          )}
         </div>
-        <div className="mb-3 text-center text-sm font-bold leading-tight lg:text-base">
+        <div className="text-center text-sm font-bold leading-tight lg:text-base">
           {title}
         </div>
       </div>
       {!hasNoValue && (
-        <div className="text-center text-sm">
-          <span className="font-black text-secondary-700">{percent} %</span>
+        <div className="text-center text-base leading-tight">
+          <span className="block text-2xl font-black text-secondary-700">
+            {percent} %
+          </span>
           <Trans> de votre empreinte</Trans>
         </div>
       )}

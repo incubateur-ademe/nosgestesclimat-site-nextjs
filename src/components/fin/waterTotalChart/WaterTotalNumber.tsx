@@ -20,7 +20,9 @@ export default function WaterTotalNumber() {
         </span>
         <br />
         <span className="text-lg lg:text-xl">
-          <Trans>d'eau par jour</Trans>
+          <Trans>
+            d'eau <span className="text-secondary-700">par jour</span>
+          </Trans>
         </span>
       </div>
     </div>
