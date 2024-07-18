@@ -6,7 +6,7 @@ import { useRule } from '@/publicodes-state'
 import VigieEau from './domesticWater/VigieEau'
 
 export default function DomesticWater() {
-  const { numericValue } = useRule('logement . eau directe', 'eau')
+  const { numericValue } = useRule('logement . eau domestique', 'eau')
 
   const { formattedValue, unit } = formatFootprint(numericValue, {
     metric: 'eau',

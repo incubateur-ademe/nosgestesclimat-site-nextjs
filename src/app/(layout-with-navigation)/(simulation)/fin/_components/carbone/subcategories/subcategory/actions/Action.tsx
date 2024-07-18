@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { defaultMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import {
   getBackgroundLightColor,
@@ -17,7 +18,11 @@ type Props = {
   metric?: Metric
 }
 
-export default function Action({ action, index, metric = 'carbone' }: Props) {
+export default function Action({
+  action,
+  index,
+  metric = defaultMetric,
+}: Props) {
   const { actionChoices } = useCurrentSimulation()
 
   const isActionChoosen = actionChoices[action] === true

@@ -12,8 +12,10 @@ type Props = {
 const title = (
   <span className="lg:tracking-tight	">
     <Trans>
-      <strong className="font-black text-secondary-700">L’empreinte eau</strong>
-      , c’est quoi ?
+      <strong className="font-black text-secondary-700">
+        L’empreinte eau,
+      </strong>{' '}
+      c’est quoi ?
     </Trans>
   </span>
 )
