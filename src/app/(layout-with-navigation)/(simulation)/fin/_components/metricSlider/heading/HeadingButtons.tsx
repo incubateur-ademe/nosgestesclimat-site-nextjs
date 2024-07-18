@@ -1,5 +1,6 @@
 import SaveIcon from '@/components/icons/SaveIcon'
 import ShareIcon from '@/components/icons/ShareIcon'
+import Trans from '@/components/translation/Trans'
 import {
   endClickSaveShortcut,
   endClickShareShortcut,
@@ -11,16 +12,16 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { twMerge } from 'tailwind-merge'
 
 const sizeClassNames = {
-  sm: 'h-10 w-10',
-  md: 'h-10 w-10 lg:h-12 lg:w-12',
+  sm: '!p-0 h-10 w-10',
+  md: '!p-0 h-10 w-10 lg:gap-2 lg:!px-4 lg:!py-2 lg:w-auto',
 }
 const saveClassNames = {
   sm: 'h-6 w-6',
-  md: 'h-6 w-6 lg:h-7 lg:w-7',
+  md: 'h-6 w-6',
 }
 const shareClassNames = {
   sm: 'h-[22px] w-[22px]',
-  md: 'h-[22px] w-[22px] lg:h-[26px] lg:w-[26px]',
+  md: 'h-[22px] w-[22px]',
 }
 
 type Props = {
@@ -50,10 +51,11 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
   }
 
   return (
-    <div className="flex lg:gap-2">
+    <div className="flex">
       <Button
         color="text"
-        className={twMerge('!p-0', sizeClassNames[size])}
+        size="sm"
+        className={sizeClassNames[size]}
         onClick={() => {
           trackEvent(
             endPage ? endClickSaveShortcut : simulationClickSaveShortcut
@@ -63,10 +65,16 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         <SaveIcon
           className={twMerge('fill-primary-700', saveClassNames[size])}
         />
+        {size === 'md' && (
+          <span className="hidden lg:inline">
+            <Trans>Sauvegarder</Trans>
+          </span>
+        )}
       </Button>
       <Button
         color="text"
-        className={twMerge('!p-0', sizeClassNames[size])}
+        size="sm"
+        className={sizeClassNames[size]}
         onClick={() => {
           trackEvent(endClickShareShortcut)
           handleShare()
@@ -77,6 +85,11 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
             shareClassNames[size]
           )}
         />
+        {size === 'md' && (
+          <span className="hidden lg:inline">
+            <Trans>Partager</Trans>
+          </span>
+        )}
       </Button>
     </div>
   )
