@@ -17,14 +17,14 @@ export default function MetricSlider() {
   }, [currentMetric])
 
   return (
-    <div className="slider-mask -mx-4 w-screen overflow-hidden lg:mx-0 lg:w-full">
+    <div className="-mx-4 w-screen overflow-hidden lg:mx-0 lg:w-full">
       <div className="px-4 lg:px-0">
         <Slider
           ref={sliderRef}
           initialSlide={metrics.indexOf(currentMetric)}
           dots={true}
           infinite={false}
-          className="mx-auto w-full lg:max-w-3xl"
+          className="mx-auto w-full"
           beforeChange={(_, nextSlide) => setCurrentMetric(metrics[nextSlide])}>
           <button
             className={twMerge(
