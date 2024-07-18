@@ -18,6 +18,7 @@ import { useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import useFetchOrganisation from '../../_hooks/useFetchOrganisation'
 import DeconnexionButton from './DeconnexionButton'
+import EmailVerificationModal from './_components/EmailVerificationModal'
 import OrganisationFields from './_components/OrganisationFields'
 import PersonalInfoFields from './_components/PersonalInfoFields'
 
@@ -33,8 +34,11 @@ export type Inputs = {
 }
 
 export default function ParametresPage() {
-  const { user, updateUserOrganisation } = useUser()
+  const { user } = useUser()
   const [error, setError] = useState<string>('')
+  const [dataForVerification, setDataForVerification] = useState<
+    Inputs | undefined
+  >()
 
   const { t } = useClientTranslation()
 
@@ -50,7 +54,7 @@ export default function ParametresPage() {
     email: user?.organisation?.administratorEmail ?? '',
   })
 
-  const { value, flick } = useAutoFlick()
+  const { value, flick: flickSuccessMessage } = useAutoFlick()
 
   const { register, handleSubmit } = useReactHookForm({
     defaultValues: {
@@ -67,6 +71,10 @@ export default function ParametresPage() {
     },
   })
 
+  function handleSaveDataForVerification(data: Inputs) {
+    setDataForVerification(data)
+  }
+
   const handleUpdateOrganisation: SubmitHandler<Inputs> = async ({
     email,
     name,
@@ -77,6 +85,21 @@ export default function ParametresPage() {
     administratorTelephone,
     hasOptedInForCommunications,
   }) => {
+    // Switch to the update email user flow
+    if (email !== user?.organisation?.administratorEmail) {
+      handleSaveDataForVerification({
+        email,
+        name,
+        organisationType,
+        numberOfCollaborators,
+        position,
+        administratorName,
+        hasOptedInForCommunications,
+        administratorTelephone,
+      })
+      return
+    }
+
     try {
       trackEvent(organisationsParametersUpdateInformations)
 
@@ -91,14 +114,7 @@ export default function ParametresPage() {
         administratorTelephone,
       })
 
-      // Update locally saved organisation email
-      if (email && email !== user?.organisation?.administratorEmail) {
-        updateUserOrganisation({
-          administratorEmail: email,
-        })
-      }
-
-      flick()
+      flickSuccessMessage()
     } catch (error) {
       setError(t('Une erreur est survenue. Veuillez réessayer.'))
     }
@@ -149,6 +165,14 @@ export default function ParametresPage() {
           register={register as any}
         />
       </Form>
+
+      {!!dataForVerification && (
+        <EmailVerificationModal
+          data={dataForVerification}
+          closeModal={() => setDataForVerification(undefined)}
+          onSuccess={flickSuccessMessage}
+        />
+      )}
 
       <ModificationSaved shouldShowMessage={value} />
 

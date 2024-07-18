@@ -1,9 +1,8 @@
 import useTimeLeft from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useTimeleft'
 import useValidateVerificationCode from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useValidateVerificationCode'
-import { SERVER_URL } from '@/constants/urls'
+import { useSendVerificationCode } from '@/hooks/organisations/useSendVerificationCode'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
@@ -14,6 +13,8 @@ export default function VerificationForm() {
   const [inputError, setInputError] = useState<string | undefined>()
 
   const { timeLeft, setTimeLeft } = useTimeLeft()
+
+  const { t } = useClientTranslation()
 
   const router = useRouter()
 
@@ -42,16 +43,9 @@ export default function VerificationForm() {
 
   const {
     mutateAsync: sendVerificationCode,
-    isPending: isPendingResend,
     isError: isErrorResend,
-  } = useMutation({
-    mutationFn: () =>
-      axios
-        .post(`${SERVER_URL}/organisations/send-verification-code`, {
-          email: user?.organisation?.administratorEmail ?? '',
-        })
-        .then((response) => response.data),
-  })
+    isPending: isPendingResend,
+  } = useSendVerificationCode(user?.organisation?.administratorEmail ?? '')
 
   async function handleValidateVerificationCode(verificationCode: string) {
     setInputError(undefined)
@@ -88,7 +82,7 @@ export default function VerificationForm() {
         updateLoginExpirationDate(undefined)
       }, 1000)
     } catch (err) {
-      setInputError('Le code est invalide')
+      setInputError(t('Le code est invalide'))
       return
     }
   }
