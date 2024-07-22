@@ -3,7 +3,6 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
 type Props = {
-  email: string
   name?: string
   position?: string
   administratorName?: string
@@ -18,7 +17,6 @@ type Props = {
 export function useUpdateOrganisation({ email }: { email: string }) {
   return useMutation({
     mutationFn: ({
-      email: emailModified,
       name,
       position,
       administratorName,
@@ -37,7 +35,6 @@ export function useUpdateOrganisation({ email }: { email: string }) {
             administratorName,
             hasOptedInForCommunications,
             email,
-            emailModified,
             defaultAdditionalQuestions,
             position,
             administratorTelephone,

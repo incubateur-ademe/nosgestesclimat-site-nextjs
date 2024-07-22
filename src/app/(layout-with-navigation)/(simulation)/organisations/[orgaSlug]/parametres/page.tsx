@@ -104,7 +104,6 @@ export default function ParametresPage() {
       trackEvent(organisationsParametersUpdateInformations)
 
       await updateOrganisation({
-        email,
         name,
         organisationType,
         numberOfCollaborators,

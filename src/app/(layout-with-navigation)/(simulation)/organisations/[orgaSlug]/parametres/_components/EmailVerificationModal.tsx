@@ -7,7 +7,7 @@ import { useSendVerificationCodeWhenModifyingEmail } from '@/hooks/organisations
 import { useVerifyCodeAndUpdate } from '@/hooks/organisations/useVerifyCodeAndUpdate'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import VerificationCodeInput from '../../../connexion/_components/emailSection/verificationForm/VerificationCodeInput'
 
 type Props = {
@@ -30,6 +30,7 @@ export default function EmailVerificationModal({
   closeModal,
   onSuccess,
 }: Props) {
+  const [shouldSendEmail, setShouldSendEmail] = useState(false)
   const {
     mutateAsync: verifyCodeAndUpdateOrganisation,
     error,
@@ -41,11 +42,23 @@ export default function EmailVerificationModal({
 
   const {
     mutateAsync: sendVerificationCode,
+    isSuccess: isSuccessSend,
     isError: isErrorSendCode,
-    isPending: isPendingSend,
   } = useSendVerificationCodeWhenModifyingEmail(data?.email ?? '')
 
   const { user, updateUserOrganisation } = useUser()
+
+  useEffect(() => {
+    if (!data || !user?.organisation?.administratorEmail || shouldSendEmail)
+      return
+
+    setShouldSendEmail(true)
+  }, [
+    data,
+    sendVerificationCode,
+    shouldSendEmail,
+    user?.organisation?.administratorEmail,
+  ])
 
   useEffect(() => {
     async function send() {
@@ -55,15 +68,18 @@ export default function EmailVerificationModal({
       })
     }
 
-    if (!data || isPendingSend) return
-
-    try {
+    if (shouldSendEmail && !isSuccessSend && !isErrorSendCode) {
+      console.log('SENDING EMAIL')
       send()
-    } catch (error) {
-      console.log(error)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, user?.organisation?.administratorEmail, isPendingSend])
+  }, [
+    data,
+    isErrorSendCode,
+    isSuccessSend,
+    sendVerificationCode,
+    shouldSendEmail,
+    user?.organisation?.administratorEmail,
+  ])
 
   if (!data) return ''
 
@@ -84,6 +100,7 @@ export default function EmailVerificationModal({
     })
 
     onSuccess()
+    closeModal()
   }
 
   return (
