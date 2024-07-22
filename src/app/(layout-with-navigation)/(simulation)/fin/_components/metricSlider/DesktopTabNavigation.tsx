@@ -12,7 +12,7 @@ export default function DesktopTabNavigation({ sticky }: Props) {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   return (
-    <div className="relative z-10 hidden w-full items-end justify-between pt-1 lg:flex">
+    <div className="relative z-10 hidden w-full items-end justify-between pt-0.5 lg:flex">
       <div className="flex">
         <button
           onClick={() => setCurrentMetric('carbone')}
