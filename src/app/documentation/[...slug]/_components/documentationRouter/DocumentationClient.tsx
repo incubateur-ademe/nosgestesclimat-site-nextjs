@@ -39,7 +39,7 @@ export default function DocumentationClient({ slugs }: Props) {
         setMetric={(metric) => {
           setMetric(metric)
           engine.setSituation(
-            { métrique: metric },
+            { métrique: `'${metric}'` },
             { keepPreviousSituation: true }
           )
         }}
