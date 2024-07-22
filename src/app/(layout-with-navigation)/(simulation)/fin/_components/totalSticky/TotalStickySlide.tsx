@@ -26,12 +26,12 @@ export default function TotalStickySlide({ metric }: Props) {
     metric,
   })
   return (
-    <div className="flex items-center justify-between rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-2">
+    <div className="flex items-center justify-between rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-2 lg:rounded-tl-none">
       <div>
-        <strong className="block text-4xl font-black leading-none short:text-3xl">
+        <strong className="block text-4xl font-black leading-none lg:inline short:text-3xl">
           {formattedValue}
         </strong>
-        <span className="block text-base font-medium">
+        <span className="block text-base font-medium lg:inline">
           {' '}
           <Trans>{unit}</Trans> {duration[metric]}
         </span>

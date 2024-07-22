@@ -3,6 +3,7 @@ import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useEffect, useRef, useState } from 'react'
 import Slider from 'react-slick'
 import { twMerge } from 'tailwind-merge'
+import DesktopTabNavigation from './metricSlider/DesktopTabNavigation'
 import TotalStickySlide from './totalSticky/TotalStickySlide'
 
 export default function TotalSticky() {
@@ -11,11 +12,12 @@ export default function TotalSticky() {
   const [isVisible, setIsVisible] = useState(false)
 
   const myElementRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     const handleScroll = () => {
       if (myElementRef.current) {
         const { top } = myElementRef.current.getBoundingClientRect()
-        if (top <= 16) {
+        if (top <= 0) {
           setIsVisible(true)
         } else {
           setIsVisible(false)
@@ -39,20 +41,36 @@ export default function TotalSticky() {
     <div
       ref={myElementRef}
       className={twMerge(
-        'slider-small hidden overflow-hidden transition-opacity duration-700 lg:block',
+        'slider-small sticky top-0 z-50 -mx-2 flex items-center justify-between overflow-hidden bg-white bg-opacity-25 pt-2 transition-opacity duration-200 lg:pt-1',
         isVisible ? 'visible opacity-100' : 'invisible opacity-0'
       )}>
-      <Slider
-        ref={sliderRef}
-        initialSlide={metrics.indexOf(currentMetric)}
-        dots={true}
-        infinite={false}
-        className="mx-auto w-full lg:max-w-3xl"
-        beforeChange={(_, nextSlide) => setCurrentMetric(metrics[nextSlide])}>
-        {metrics.map((metric) => (
-          <TotalStickySlide key={metric} metric={metric} />
-        ))}
-      </Slider>
+      <div
+        className={twMerge(
+          'relative w-full transition-transform duration-500',
+          isVisible ? 'translate-y-0' : '-translate-y-2/3'
+        )}>
+        <DesktopTabNavigation sticky />
+        <Slider
+          ref={sliderRef}
+          className="w-full lg:-mt-0.5"
+          initialSlide={metrics.indexOf(currentMetric)}
+          fade={true}
+          infinite={false}
+          responsive={[
+            {
+              breakpoint: 1024,
+              settings: {
+                fade: false,
+                dots: true,
+              },
+            },
+          ]}
+          beforeChange={(_, nextSlide) => setCurrentMetric(metrics[nextSlide])}>
+          {metrics.map((metric) => (
+            <TotalStickySlide key={metric} metric={metric} />
+          ))}
+        </Slider>
+      </div>
     </div>
   )
 }

@@ -50,7 +50,7 @@ export default function TotalNumber({ total }: Props) {
     return originPosition
   }, [originPosition])
 
-  const color = getColorAtPosition(originPosition / 100)
+  const color = getColorAtPosition(position / 100)
   const cssColor = `rgba(${color['r']},${color['g']},${color['b']},${color['a']})`
 
   return (

@@ -17,7 +17,6 @@ import MetricSlider from './_components/MetricSlider'
 import Poll from './_components/Poll'
 import ShareBlock from './_components/ShareBlock'
 import TotalSticky from './_components/TotalSticky'
-import TotalStickyMobile from './_components/TotalStickyMobile'
 
 const titles = {
   carbone: <Trans>carbone</Trans>,
@@ -43,10 +42,10 @@ export default function FinPage() {
 
       <MetricSlider />
 
-      <TotalStickyMobile />
+      <TotalSticky />
 
-      <div className="flex flex-col-reverse gap-16 lg:flex-row lg:gap-10">
-        <div className="flex flex-1 flex-col gap-16 lg:mt-14">
+      <div className="relative -mt-6 flex flex-col-reverse gap-16 lg:-mt-16 lg:flex-row lg:gap-10">
+        <div className="flex flex-1 flex-col gap-16 lg:mt-7">
           {currentMetric === 'carbone' && <Carbone />}
 
           {currentMetric === 'eau' && <Eau />}
@@ -78,8 +77,7 @@ export default function FinPage() {
 
           <DocumentationBlock />
         </div>
-        <div className="top-4 flex w-full flex-col gap-4 self-start lg:sticky lg:z-50 lg:w-[22rem] short:gap-2">
-          <TotalSticky />
+        <div className="top-28 flex w-full flex-col gap-4 self-start lg:sticky lg:z-50 lg:w-[22rem] short:gap-2">
           <InformationBlock />
         </div>
       </div>

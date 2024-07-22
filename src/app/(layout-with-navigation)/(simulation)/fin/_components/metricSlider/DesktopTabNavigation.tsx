@@ -5,7 +5,10 @@ import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { twMerge } from 'tailwind-merge'
 import HeadingButtons from './heading/HeadingButtons'
 
-export default function DesktopTabNavigation() {
+type Props = {
+  sticky?: boolean
+}
+export default function DesktopTabNavigation({ sticky }: Props) {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   return (
@@ -14,12 +17,19 @@ export default function DesktopTabNavigation() {
         <button
           onClick={() => setCurrentMetric('carbone')}
           className={twMerge(
-            'mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-500',
+            'mb-0 rounded-t-xl border-2 px-4 font-medium transition-all duration-500',
             currentMetric !== 'carbone'
               ? 'border-transparent border-b-primary-50 text-primary-700'
-              : 'border-x-primary-50 border-b-transparent border-t-primary-50 bg-gray-100'
+              : 'border-x-primary-50 !border-b-transparent border-t-primary-50 bg-gray-100',
+            sticky
+              ? 'border-primary-50 bg-gray-100 pb-0 pt-1 text-sm'
+              : 'pb-1 pt-2 text-lg'
           )}>
-          <Trans>Mon empreinte</Trans>{' '}
+          {!sticky && (
+            <>
+              <Trans>Mon empreinte</Trans>{' '}
+            </>
+          )}
           <strong
             className={twMerge(
               currentMetric !== 'carbone'
@@ -32,12 +42,20 @@ export default function DesktopTabNavigation() {
         <button
           onClick={() => setCurrentMetric('eau')}
           className={twMerge(
-            'mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-500',
+            'mb-0 rounded-t-xl border-2 px-4 font-medium transition-all duration-500',
+
             currentMetric !== 'eau'
               ? 'border-transparent border-b-primary-50 text-primary-700'
-              : 'border-x-primary-50 border-b-transparent border-t-primary-50 bg-gray-100'
+              : 'border-x-primary-50 !border-b-transparent border-t-primary-50 bg-gray-100',
+            sticky
+              ? 'border-primary-50 bg-gray-100 pb-0 pt-1 text-sm'
+              : 'pb-1 pt-2 text-lg'
           )}>
-          <Trans>Mon empreinte</Trans>{' '}
+          {!sticky && (
+            <>
+              <Trans>Mon empreinte</Trans>{' '}
+            </>
+          )}
           <strong
             className={twMerge(
               currentMetric !== 'eau'
@@ -48,7 +66,7 @@ export default function DesktopTabNavigation() {
           </strong>
         </button>
       </div>
-      <HeadingButtons endPage />
+      {!sticky && <HeadingButtons endPage />}
     </div>
   )
 }
