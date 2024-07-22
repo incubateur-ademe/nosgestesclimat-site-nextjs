@@ -1,3 +1,4 @@
+import Emoji from '@/design-system/utils/Emoji'
 import Wave from 'react-wavify'
 import Octopus from './waveContent/Octopus'
 
@@ -16,8 +17,11 @@ export default function WaveContent() {
       />
       <Octopus />
       <p className="relative mb-0 text-xs italic text-white lg:text-base">
-        L'empreinte eau comprend votre consommation domestique ainsi que l'eau
-        qui se cache dans vos usages et objets du quotidien.
+        Ce chiffre vous semble impressionnant ? Ce n'est pas un bug !
+        L'empreinte eau comprend toute l'eau qui se cache dans vos usages et
+        objets du quotidien. C'est le volume d'eau douce consommée pour produire
+        un bien ou un service. <br className="hidden lg:inline" />
+        On vous explique dans cette page ! <Emoji>👇</Emoji>
       </p>
     </div>
   )

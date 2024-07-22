@@ -13,8 +13,8 @@ import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Hedgehog from './informationBlock/Hedgehog'
 import HedgehogAwareness from './informationBlock/HedgehogAwareness'
+import TargetQuestions from './informationBlock/carboneTargetContent/AdditionalQuestions'
 import TargetChart from './informationBlock/carboneTargetContent/TargetChart'
-import TargetQuestions from './informationBlock/carboneTargetContent/TargetQuestions'
 
 export default function IndirectWaterBlock() {
   const [isOpen, setIsOpen] = useState(false)
