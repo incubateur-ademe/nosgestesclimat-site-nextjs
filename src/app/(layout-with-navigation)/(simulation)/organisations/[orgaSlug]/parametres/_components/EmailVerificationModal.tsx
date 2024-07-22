@@ -31,12 +31,15 @@ export default function EmailVerificationModal({
   onSuccess,
 }: Props) {
   const [shouldSendEmail, setShouldSendEmail] = useState(false)
+
+  const { user, updateUserOrganisation } = useUser()
+
   const {
     mutateAsync: verifyCodeAndUpdateOrganisation,
     error,
     isSuccess,
     isPending,
-  } = useVerifyCodeAndUpdate()
+  } = useVerifyCodeAndUpdate(user?.organisation?.administratorEmail ?? '')
 
   const { t } = useClientTranslation()
 
@@ -45,8 +48,6 @@ export default function EmailVerificationModal({
     isSuccess: isSuccessSend,
     isError: isErrorSendCode,
   } = useSendVerificationCodeWhenModifyingEmail(data?.email ?? '')
-
-  const { user, updateUserOrganisation } = useUser()
 
   useEffect(() => {
     if (!data || !user?.organisation?.administratorEmail || shouldSendEmail)
@@ -69,7 +70,6 @@ export default function EmailVerificationModal({
     }
 
     if (shouldSendEmail && !isSuccessSend && !isErrorSendCode) {
-      console.log('SENDING EMAIL')
       send()
     }
   }, [

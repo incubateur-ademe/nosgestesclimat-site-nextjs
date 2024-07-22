@@ -1,7 +1,6 @@
 'use client'
 
 import MaxWidthContent from '@/components/layout/MaxWidthContent'
-import ModificationSaved from '@/components/messages/ModificationSaved'
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import OrganisationLoader from '@/components/organisations/OrganisationLoader'
 import Trans from '@/components/translation/Trans'
@@ -11,11 +10,12 @@ import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useAutoFlick } from '@/hooks/utils/useAutoFlick'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import useFetchOrganisation from '../../_hooks/useFetchOrganisation'
 import DeconnexionButton from './DeconnexionButton'
 import EmailVerificationModal from './_components/EmailVerificationModal'
@@ -54,8 +54,6 @@ export default function ParametresPage() {
     email: user?.organisation?.administratorEmail ?? '',
   })
 
-  const { value, flick: flickSuccessMessage } = useAutoFlick()
-
   const { register, handleSubmit } = useReactHookForm({
     defaultValues: {
       name: organisation?.name ?? '',
@@ -73,6 +71,14 @@ export default function ParametresPage() {
 
   function handleSaveDataForVerification(data: Inputs) {
     setDataForVerification(data)
+  }
+
+  function displaySuccessToast() {
+    toast.success(t('Les modifications ont bien été enregistrées'), {
+      style: {
+        color: 'rgb(34 197 94)',
+      },
+    })
   }
 
   const handleUpdateOrganisation: SubmitHandler<Inputs> = async ({
@@ -113,7 +119,7 @@ export default function ParametresPage() {
         administratorTelephone,
       })
 
-      flickSuccessMessage()
+      displaySuccessToast()
     } catch (error) {
       setError(t('Une erreur est survenue. Veuillez réessayer.'))
     }
@@ -169,15 +175,15 @@ export default function ParametresPage() {
         <EmailVerificationModal
           data={dataForVerification}
           closeModal={() => setDataForVerification(undefined)}
-          onSuccess={flickSuccessMessage}
+          onSuccess={displaySuccessToast}
         />
       )}
-
-      <ModificationSaved shouldShowMessage={value} />
 
       <Separator className="my-4" />
 
       <DeconnexionButton organisation={organisation} />
+
+      <ToastContainer />
     </MaxWidthContent>
   )
 }

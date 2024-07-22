@@ -20,9 +20,9 @@ type Props = {
 /**
  * This hook is used to modify the email of an organisation administrator
  */
-export function useVerifyCodeAndUpdate() {
+export function useVerifyCodeAndUpdate(email: string) {
   return useMutation({
-    mutationKey: ['verify-and-update'],
+    mutationKey: ['verify-and-update', email],
     mutationFn: ({
       email,
       emailModified,
