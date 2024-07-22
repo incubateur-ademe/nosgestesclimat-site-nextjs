@@ -22,7 +22,7 @@ export default function DesktopTabNavigation({ sticky }: Props) {
               ? 'border-transparent border-b-primary-50 text-primary-700'
               : 'border-x-primary-50 !border-b-transparent border-t-primary-50 bg-gray-100',
             sticky
-              ? 'border-primary-50 bg-gray-100 pb-0 pt-1 text-sm'
+              ? 'border-primary-50 bg-gray-100 px-6 pb-0 pt-1 text-sm '
               : 'pb-1 pt-2 text-lg'
           )}>
           {!sticky && (
@@ -43,12 +43,11 @@ export default function DesktopTabNavigation({ sticky }: Props) {
           onClick={() => setCurrentMetric('eau')}
           className={twMerge(
             'mb-0 rounded-t-xl border-2 px-4 font-medium transition-all duration-500',
-
             currentMetric !== 'eau'
               ? 'border-transparent border-b-primary-50 text-primary-700'
               : 'border-x-primary-50 !border-b-transparent border-t-primary-50 bg-gray-100',
             sticky
-              ? 'border-primary-50 bg-gray-100 pb-0 pt-1 text-sm'
+              ? 'border-primary-50 bg-gray-100 px-6 pb-0 pt-1 text-sm'
               : 'pb-1 pt-2 text-lg'
           )}>
           {!sticky && (
