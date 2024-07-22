@@ -1,5 +1,10 @@
+import { metrics } from '@/constants/metric'
 import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
-import { Simulation } from '@/publicodes-state/types'
+import {
+  ComputedResults,
+  ComputedResultsFootprint,
+  Simulation,
+} from '@/publicodes-state/types'
 import { Migration } from '@publicodes/tools/migration'
 import { captureException } from '@sentry/react'
 import { v4 as uuidv4 } from 'uuid'
@@ -11,10 +16,13 @@ export function generateSimulation({
   foldedSteps = [],
   actionChoices = {},
   persona,
-  computedResults = {
-    bilan: 0,
-    categories: {},
-  },
+  computedResults = metrics.reduce((acc, metric) => {
+    acc[metric] = {
+      bilan: 0,
+      categories: {},
+    } as ComputedResultsFootprint
+    return acc
+  }, {} as ComputedResults),
   progression = 0,
   defaultAdditionalQuestionsAnswers,
   polls,
