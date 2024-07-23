@@ -14,9 +14,9 @@ export function usePersonas(): UseQueryResult<Personas, Error> {
   const { PRNumber } = usePRNumber()
 
   return useQuery({
-    queryKey: ['rules', locale, PRNumber],
+    queryKey: ['personas', locale, PRNumber],
     queryFn: () => getPersonas({ locale, PRNumber }),
     placeholderData: keepPreviousData,
-    staleTime: 5000000000, // We don't want to import the rule multiple times
+    staleTime: 5000000000, // We don't want to import the personas multiple times
   })
 }
