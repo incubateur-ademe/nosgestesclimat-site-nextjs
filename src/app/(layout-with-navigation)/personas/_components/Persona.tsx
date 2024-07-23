@@ -6,6 +6,7 @@ import Card from '@/design-system/layout/Card'
 import { useSimulation, useUser } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { Persona as PersonaType } from '@incubateur-ademe/nosgestesclimat'
+import { useRouter } from 'next/navigation'
 import { fixSituationWithPartialMosaic } from '../_helpers/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '../_helpers/getPersonaFoldedSteps'
 
@@ -15,6 +16,8 @@ type Props = {
 }
 
 export default function Persona({ persona, personaDottedName }: Props) {
+  const router = useRouter()
+
   const { initSimulation, hideTutorial, currentSimulation } = useUser()
 
   const {
@@ -72,7 +75,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
               progression: 1,
             })
             hideTutorial('testIntro')
-            addToEngineSituation(fixedSituation)
+            router.refresh()
           }}>
           <Trans>Sélectionner</Trans>
         </Button>
