@@ -104,7 +104,7 @@ export default function EmailVerificationModal({
   }
 
   return (
-    <Modal closeModal={closeModal}>
+    <Modal isOpen closeModal={closeModal}>
       <form>
         <h3>
           <Trans>Vous devez valider votre changement d'adresse e-mail.</Trans>

@@ -118,7 +118,7 @@ export default function ParametresPage() {
     }
   }
 
-  if (isLoading || !organisation) {
+  if (isLoading || (!organisation && !isError)) {
     return <OrganisationLoader />
   }
 
