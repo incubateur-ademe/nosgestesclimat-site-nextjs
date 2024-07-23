@@ -7,6 +7,7 @@ import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
+import { twMerge } from 'tailwind-merge'
 import Carbone from './_components/Carbone'
 import DocumentationBlock from './_components/DocumentationBlock'
 import Eau from './_components/Eau'
@@ -45,10 +46,25 @@ export default function FinPage() {
       <TotalSticky />
 
       <div className="relative -mt-6 flex flex-col-reverse gap-16 lg:-mt-16 lg:flex-row lg:gap-10">
-        <div className="flex flex-1 flex-col gap-16 lg:mt-7">
-          {currentMetric === 'carbone' && <Carbone />}
-
-          {currentMetric === 'eau' && <Eau />}
+        <div className="relative flex flex-1 flex-col gap-16 lg:mt-7">
+          <div
+            className={twMerge(
+              'transition-opacity duration-500',
+              currentMetric === 'carbone'
+                ? 'relative opacity-100'
+                : 'pointer-events-none absolute top-0 opacity-0'
+            )}>
+            <Carbone />
+          </div>
+          <div
+            className={twMerge(
+              'transition-opacity duration-500',
+              currentMetric === 'eau'
+                ? 'relative opacity-100'
+                : 'pointer-events-none absolute top-0 opacity-0'
+            )}>
+            <Eau />
+          </div>
 
           <GetResultsByEmail />
 
