@@ -7,13 +7,18 @@ export default function WaterTotalNumber() {
 
   const { formattedValue, unit } = formatFootprint(numericValue, {
     metric: 'eau',
+    localize: false,
   })
+
+  const realFormattedValue = (
+    Math.round(Number(formattedValue) / 100) * 100
+  ).toLocaleString('fr-FR')
 
   return (
     <div className="flex items-center justify-center">
       <div className="mx-auto whitespace-nowrap text-right font-medium text-water">
         <strong className="text-6xl font-black leading-none lg:text-8xl">
-          {formattedValue}
+          {realFormattedValue}
         </strong>{' '}
         <span className="text-5xl leading-[3rem] lg:text-6xl lg:leading-tight">
           {unit}
