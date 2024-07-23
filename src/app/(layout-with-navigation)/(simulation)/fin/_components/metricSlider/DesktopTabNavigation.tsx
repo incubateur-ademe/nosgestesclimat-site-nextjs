@@ -22,8 +22,9 @@ export default function DesktopTabNavigation({ sticky }: Props) {
               ? 'border-transparent border-b-primary-50 text-primary-700'
               : 'border-x-primary-50 !border-b-transparent border-t-primary-50 bg-gray-100',
             sticky
-              ? 'border-primary-50 bg-gray-100 px-6 pb-0 pt-1 text-sm '
-              : 'pb-1 pt-2 text-lg'
+              ? 'border-x-primary-100 border-t-primary-100 bg-white px-6 pb-0 pt-1 text-sm '
+              : 'pb-1 pt-2 text-lg',
+            currentMetric !== 'carbone' && sticky && 'border-b-primary-100'
           )}>
           {!sticky && (
             <>
@@ -47,8 +48,9 @@ export default function DesktopTabNavigation({ sticky }: Props) {
               ? 'border-transparent border-b-primary-50 text-primary-700'
               : 'border-x-primary-50 !border-b-transparent border-t-primary-50 bg-gray-100',
             sticky
-              ? 'border-primary-50 bg-gray-100 px-6 pb-0 pt-1 text-sm'
-              : 'pb-1 pt-2 text-lg'
+              ? 'border-x-primary-100 border-t-primary-100 bg-white px-6 pb-0 pt-1 text-sm '
+              : 'pb-1 pt-2 text-lg',
+            currentMetric !== 'eau' && sticky && 'border-b-primary-100'
           )}>
           {!sticky && (
             <>

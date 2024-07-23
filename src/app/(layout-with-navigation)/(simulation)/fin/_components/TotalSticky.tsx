@@ -52,7 +52,7 @@ export default function TotalSticky() {
         <DesktopTabNavigation sticky />
         <Slider
           ref={sliderRef}
-          className="w-full lg:-mt-0.5"
+          className="w-full lg:-mt-0.5 lg:rounded-b-xl lg:rounded-tr-xl lg:border-2 lg:border-primary-100 lg:bg-white"
           initialSlide={metrics.indexOf(currentMetric)}
           fade={true}
           infinite={false}

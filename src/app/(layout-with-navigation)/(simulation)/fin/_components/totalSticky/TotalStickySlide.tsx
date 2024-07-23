@@ -46,7 +46,7 @@ export default function TotalStickySlide({ metric }: Props) {
   return (
     <div
       className={twMerge(
-        'flex items-center justify-between rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-2 lg:rounded-tl-none',
+        'flex items-center justify-between rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-2 lg:rounded-none lg:border-none lg:bg-transparent',
         metric === 'eau' && '!text-water'
       )}
       style={{ color: cssColor }}>

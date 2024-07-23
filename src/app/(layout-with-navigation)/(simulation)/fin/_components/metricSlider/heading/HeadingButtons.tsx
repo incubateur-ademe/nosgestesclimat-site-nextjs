@@ -13,7 +13,7 @@ import { twMerge } from 'tailwind-merge'
 
 const sizeClassNames = {
   sm: '!p-0 h-10 w-10',
-  md: '!p-0 h-10 w-10 lg:gap-2 lg:!px-4 lg:!py-2 lg:w-auto font-medium',
+  md: '!p-0 h-10 w-10',
 }
 const saveClassNames = {
   sm: 'h-6 w-6',
@@ -55,7 +55,10 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
       <Button
         color="text"
         size="sm"
-        className={sizeClassNames[size]}
+        className={twMerge(
+          sizeClassNames[size],
+          'font-medium lg:w-auto lg:gap-2 lg:!px-4 lg:!py-2'
+        )}
         onClick={() => {
           trackEvent(
             endPage ? endClickSaveShortcut : simulationClickSaveShortcut
@@ -65,16 +68,17 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         <SaveIcon
           className={twMerge('fill-primary-700', saveClassNames[size])}
         />
-        {size === 'md' && (
-          <span className="hidden lg:inline">
-            <Trans>Sauvegarder</Trans>
-          </span>
-        )}
+        <span className="hidden lg:inline">
+          <Trans>Sauvegarder</Trans>
+        </span>
       </Button>
       <Button
         color="text"
         size="sm"
-        className={sizeClassNames[size]}
+        className={twMerge(
+          sizeClassNames[size],
+          'font-medium lg:w-auto lg:gap-2 lg:!px-4 lg:!py-2'
+        )}
         onClick={() => {
           trackEvent(endClickShareShortcut)
           handleShare()
@@ -85,11 +89,9 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
             shareClassNames[size]
           )}
         />
-        {size === 'md' && (
-          <span className="hidden lg:inline">
-            <Trans>Partager</Trans>
-          </span>
-        )}
+        <span className="hidden lg:inline">
+          <Trans>Partager</Trans>
+        </span>
       </Button>
     </div>
   )
