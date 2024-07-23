@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
-import { useSimulation, useUser } from '@/publicodes-state'
+import { useDisposableEngine, useSimulation, useUser } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { Persona as PersonaType } from '@incubateur-ademe/nosgestesclimat'
 import { fixSituationWithPartialMosaic } from '../_helpers/fixSituationWithPartialMosaic'
@@ -17,11 +17,12 @@ type Props = {
 export default function Persona({ persona, personaDottedName }: Props) {
   const { initSimulation, hideTutorial, currentSimulation } = useUser()
 
+  const { engine } = useDisposableEngine({ situation: {} })
+
   const {
     everyMosaicChildrenWithParent,
     everyQuestions,
     everyRules,
-    pristineEngine,
     safeEvaluate,
     safeGetRule,
     addToEngineSituation,
@@ -65,7 +66,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
                 everyMosaicChildrenWithParent,
                 everyQuestions,
                 everyRules,
-                pristineEngine,
+                engine,
                 safeGetRule,
                 safeEvaluate,
               }),
