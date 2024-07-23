@@ -17,8 +17,9 @@ export default function DomesticWater() {
           <Title tag="h2" hasSeparator={isOpen} className="text-lg lg:text-2xl">
             <Trans>
               Et l'eau de{' '}
-              <strong className="text-secondary-700">ma douche</strong> dans
-              tout ça ?
+              <strong className="text-secondary-700">ma douche</strong>{' '}
+              <br className="lg:hidden" />
+              dans tout ça ?
             </Trans>
           </Title>
         </div>
