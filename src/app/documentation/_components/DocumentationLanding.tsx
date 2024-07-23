@@ -20,7 +20,7 @@ export default function DocumentationLanding() {
   // We want to be able to define an order for the cards and their summary here
   const fixedCardSummaries = useRef({
     bilan: t(
-      `Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personels`
+      `Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personelle`
     ),
     'services sociétaux': t(
       `Les constantes de **services publics et marchands** calculées à partir des travaux du SDES`
