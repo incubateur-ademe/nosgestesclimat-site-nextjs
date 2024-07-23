@@ -8,13 +8,14 @@ import { organisationsParametersUpdateInformations } from '@/constants/tracking/
 import Form from '@/design-system/form/Form'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
+import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import useFetchOrganisation from '../../_hooks/useFetchOrganisation'
 import DeconnexionButton from './DeconnexionButton'
@@ -73,14 +74,6 @@ export default function ParametresPage() {
     setDataForVerification(data)
   }
 
-  function displaySuccessToast() {
-    toast.success(t('Les modifications ont bien été enregistrées'), {
-      style: {
-        color: 'rgb(34 197 94)',
-      },
-    })
-  }
-
   const handleUpdateOrganisation: SubmitHandler<Inputs> = async ({
     email,
     name,
@@ -119,13 +112,13 @@ export default function ParametresPage() {
         administratorTelephone,
       })
 
-      displaySuccessToast()
+      displaySuccessToast(t('Vos informations ont bien été mises à jour.'))
     } catch (error) {
       setError(t('Une erreur est survenue. Veuillez réessayer.'))
     }
   }
 
-  if (isLoading) {
+  if (isLoading || !organisation) {
     return <OrganisationLoader />
   }
 
@@ -175,7 +168,11 @@ export default function ParametresPage() {
         <EmailVerificationModal
           data={dataForVerification}
           closeModal={() => setDataForVerification(undefined)}
-          onSuccess={displaySuccessToast}
+          onSuccess={() =>
+            displaySuccessToast(
+              t('Vos informations ont bien été mises à jour.')
+            )
+          }
         />
       )}
 
