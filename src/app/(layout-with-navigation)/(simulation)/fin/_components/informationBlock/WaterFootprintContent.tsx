@@ -3,9 +3,7 @@ import Trans from '@/components/translation/Trans'
 import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
-import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import TargetQuestions from './carboneTargetContent/AdditionalQuestions'
 
 type Props = {
   isOpen: boolean
@@ -22,55 +20,8 @@ const title = (
     </Trans>
   </span>
 )
-const questions = [
-  {
-    slug: 'eau-consommee-prelevee',
-    question: <Trans>Qu'est-ce que de l'eau consommée ?</Trans>,
-    answer: (
-      <p>
-        <Trans>
-          L'eau consommée est la partie de l'eau prélevée évaporée lors de son
-          utilisation. Elle n'est donc plus disponible pour son ecosystème.
-        </Trans>
-      </p>
-    ),
-  },
-  {
-    slug: 'bleue-verte-grise',
-    question: <Trans>Eau bleue, verte ou grise ?</Trans>,
-    answer: (
-      <>
-        <p>
-          <Trans>L’empreinte eau a trois composantes :</Trans>
-        </p>
-        <ul className="list-disc pl-4">
-          <li>
-            <Trans>
-              L'eau bleue : c’est la consommation des eaux de surface et des
-              eaux souterraines
-            </Trans>
-          </li>
-          <li>
-            <Trans>
-              L'eau verte : c’est la consommation des eaux de pluie, notamment
-              par évaporation dans les cultures agricoles
-            </Trans>
-          </li>
-          <li>
-            <Trans>
-              L'eau grise : c’est le volume d’eau douce requis pour diluer les
-              polluants dans des proportions suffisantes pour que la qualité de
-              l’eau corresponde aux normes en vigueur
-            </Trans>
-          </li>
-        </ul>
-      </>
-    ),
-  },
-]
-export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
-  const [isQuestionOpen, setIsQuestionOpen] = useState(false)
 
+export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
   return (
     <>
       <div className={twMerge('lg:hidden', isOpen ? '' : '-mb-8')}>
@@ -91,17 +42,14 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
         )}>
         <p>
           L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et
-          distribuer les biens et services de votre quotidien.
-          <span className={isQuestionOpen ? 'hidden' : 'inline'}>
-            {' '}
-            C'est par exemple :
-          </span>
+          distribuer les biens et services de votre quotidien. Par exemple il
+          faut de l’eau :
         </p>
-        <ul className={twMerge('mb-4', isQuestionOpen ? 'hidden' : 'block')}>
+        <ul className="mb-4">
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">🍅</Emoji>
             <span className="flex-1">
-              L'eau qui fait pousser les{' '}
+              pour les{' '}
               <strong className="text-secondary-700">
                 fruits, légumes et céréales
               </strong>{' '}
@@ -111,7 +59,7 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">👕</Emoji>
             <span className="flex-1">
-              L'eau qui sert à la culture du{' '}
+              pour la culture du{' '}
               <strong className="text-secondary-700">coton</strong> que vous
               portez
             </span>
@@ -119,25 +67,28 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">🐮</Emoji>
             <span className="flex-1">
-              L'eau qui sert à produire l'alimentation des{' '}
+              pour l’alimentation des{' '}
               <strong className="text-secondary-700">animaux</strong> que vous
               consommez
             </span>
           </li>
           <li className="mb-1 flex items-start gap-3">
+            <Emoji className="mt-1 text-2xl">⚡️</Emoji>
+            <span className="flex-1">
+              pour la production de votre{' '}
+              <strong className="text-secondary-700">électricité</strong>
+            </span>
+          </li>
+          <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">📱</Emoji>
             <span className="flex-1">
-              L'eau qui sert à extraire les matériaux de vos{' '}
+              pour l’extraction des matériaux de vos{' '}
               <strong className="text-secondary-700">
                 appareils numériques
               </strong>
             </span>
           </li>
         </ul>
-        <TargetQuestions
-          setIsQuestionOpen={setIsQuestionOpen}
-          questions={questions}
-        />
         <div className="flex justify-end">
           <Link className="text-sm" href="/empreinte-eau" target="_blank">
             <Trans>En savoir plus</Trans>{' '}
