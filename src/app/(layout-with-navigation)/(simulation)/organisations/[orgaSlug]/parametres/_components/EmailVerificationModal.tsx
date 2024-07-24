@@ -1,5 +1,6 @@
 'use client'
 
+import VerificationCodeInput from '@/components/organisations/VerificationCodeInput'
 import Trans from '@/components/translation/Trans'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
@@ -7,7 +8,6 @@ import { useSendVerificationCodeWhenModifyingEmail } from '@/hooks/organisations
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { useEffect, useState } from 'react'
-import VerificationCodeInput from '../../../connexion/_components/emailSection/verificationForm/VerificationCodeInput'
 
 type Props = {
   data: {
