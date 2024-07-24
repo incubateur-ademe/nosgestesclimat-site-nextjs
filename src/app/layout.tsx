@@ -4,6 +4,8 @@ import { getGeolocation } from '@/helpers/getGeolocation'
 import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
 import Footer from '@/components/layout/Footer'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import { ErrorBoundary } from '@sentry/nextjs'
@@ -15,6 +17,20 @@ import { PropsWithChildren } from 'react'
 import { ErrorFallback } from './_components/ErrorFallback'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
+
+export async function generateMetadata() {
+  const { t } = await getServerTranslation()
+
+  return getMetadataObject({
+    title: t('Simulateur d’empreinte climat - Nos Gestes Climat'),
+    description: t(
+      'Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.'
+    ),
+    alternates: {
+      canonical: '/',
+    },
+  })
+}
 
 export const marianne = localFont({
   src: [

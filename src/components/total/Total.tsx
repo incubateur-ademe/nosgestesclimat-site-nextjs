@@ -7,7 +7,7 @@ import {
   simulateurOpenScoreInfo,
 } from '@/constants/tracking/pages/simulateur'
 import Emoji from '@/design-system/utils/Emoji'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
   useCurrentSimulation,
@@ -17,9 +17,9 @@ import {
 } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useState } from 'react'
-import Explanation from './_components/Explanation'
-import ListToggle from './_components/ListToggle'
-import Progress from './_components/Progress'
+import Explanation from './total/Explanation'
+import ListToggle from './total/ListToggle'
+import Progress from './total/Progress'
 
 type Props = {
   toggleQuestionList?: () => void
@@ -85,11 +85,11 @@ export default function Total({ toggleQuestionList }: Props) {
               {numericValue !== carbonFootprintValue && (
                 <span className="relative text-xl text-gray-300 md:text-2xl">
                   <span className="absolute right-0 top-1/2 h-[2px] w-full -rotate-45 transform bg-gray-300" />
-                  {formatCarbonFootprint(numericValue).formattedValue}
+                  {formatFootprint(numericValue).formattedValue}
                 </span>
               )}{' '}
-              {formatCarbonFootprint(carbonFootprintValue).formattedValue}{' '}
-              <Trans>{formatCarbonFootprint(carbonFootprintValue).unit}</Trans>
+              {formatFootprint(carbonFootprintValue).formattedValue}{' '}
+              <Trans>{formatFootprint(carbonFootprintValue).unit}</Trans>
             </span>
             <span className="block text-sm md:text-base">
               <Trans i18nKey="Total.unit">

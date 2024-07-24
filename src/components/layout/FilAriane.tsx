@@ -1,8 +1,8 @@
 'use client'
 
-import useFetchOrganisation from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useFetchOrganisation'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import { getOrganisationItems } from '@/helpers/filAriane/getOrganisationItems'
+import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useUser } from '@/publicodes-state'
 import { useParams, usePathname } from 'next/navigation'

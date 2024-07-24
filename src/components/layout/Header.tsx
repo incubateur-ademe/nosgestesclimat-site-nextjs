@@ -7,24 +7,20 @@ import HeaderMobile from './header/HeaderMobile'
 export default function Header() {
   const pathname = usePathname()
 
-  const shouldHideMostOfContent =
+  const shouldHide =
     pathname.includes('/simulateur') || pathname.includes('/tutoriel')
 
-  const shouldHideSomeOfContent = pathname.includes('/fin')
+  const shouldBeSticky = pathname.includes('/fin')
+
+  if (shouldHide) return null
 
   return (
     <>
       {/* Displayed only on mobile (screens < 768px) */}
-      <HeaderMobile
-        shouldHideMostOfContent={shouldHideMostOfContent}
-        shouldHideSomeOfContent={shouldHideSomeOfContent}
-      />
+      <HeaderMobile shouldBeSticky={shouldBeSticky} />
 
       {/* Displayed only on desktop */}
-      <HeaderDesktop
-        shouldHideMostOfContent={shouldHideMostOfContent}
-        shouldHideSomeOfContent={shouldHideSomeOfContent}
-      />
+      <HeaderDesktop shouldBeSticky={shouldBeSticky} />
     </>
   )
 }

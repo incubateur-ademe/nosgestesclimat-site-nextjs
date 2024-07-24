@@ -157,12 +157,14 @@ export default function Question({
               />
             )}
 
-        {type === 'mosaic' && (
-          <Mosaic
-            question={question}
-            questionsOfMosaic={questionsOfMosaicFromParent}
-            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
-          />
+            {type === 'mosaic' && (
+              <Mosaic
+                question={question}
+                questionsOfMosaic={questionsOfMosaicFromParent}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+              />
+            )}
+          </>
         )}
       </div>
 

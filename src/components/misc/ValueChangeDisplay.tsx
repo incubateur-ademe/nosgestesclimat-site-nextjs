@@ -1,6 +1,6 @@
 'use client'
 
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
@@ -37,7 +37,7 @@ export default function ValueChangeDisplay({
 
   const isNegative = displayDifference < 0
 
-  const { formattedValue, unit } = formatCarbonFootprint(displayDifference, {
+  const { formattedValue, unit } = formatFootprint(displayDifference, {
     locale,
     t,
   })

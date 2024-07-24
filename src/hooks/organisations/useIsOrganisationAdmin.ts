@@ -1,6 +1,6 @@
 'use client'
 
-import useFetchOrganisation from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useFetchOrganisation'
+import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useUser } from '@/publicodes-state'
 import { useParams } from 'next/navigation'
 
