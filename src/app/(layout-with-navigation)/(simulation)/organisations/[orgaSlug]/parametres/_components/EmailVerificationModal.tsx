@@ -4,7 +4,6 @@ import Trans from '@/components/translation/Trans'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
 import { useSendVerificationCodeWhenModifyingEmail } from '@/hooks/organisations/useSendVerificationCodeWhenModifyingEmail'
-import { useVerifyCodeAndUpdate } from '@/hooks/organisations/useVerifyCodeAndUpdate'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { useEffect, useState } from 'react'
@@ -22,24 +21,23 @@ type Props = {
     numberOfCollaborators: number
   }
   closeModal: () => void
-  onSuccess: () => void
+  onSubmit: (verificationCode: string) => void
+  error: Error | null
+  isSuccess: boolean
+  isPending: boolean
 }
 
 export default function EmailVerificationModal({
   data,
   closeModal,
-  onSuccess,
+  onSubmit,
+  error,
+  isSuccess,
+  isPending,
 }: Props) {
   const [shouldSendEmail, setShouldSendEmail] = useState(false)
 
-  const { user, updateUserOrganisation } = useUser()
-
-  const {
-    mutateAsync: verifyCodeAndUpdateOrganisation,
-    error,
-    isSuccess,
-    isPending,
-  } = useVerifyCodeAndUpdate(user?.organisation?.administratorEmail ?? '')
+  const { user } = useUser()
 
   const { t } = useClientTranslation()
 
@@ -83,26 +81,6 @@ export default function EmailVerificationModal({
 
   if (!data) return ''
 
-  async function handleVerifyCodeAndSaveModifications(
-    verificationCode: string
-  ) {
-    if (verificationCode?.length < 6) return
-
-    await verifyCodeAndUpdateOrganisation({
-      ...data,
-      email: user?.organisation?.administratorEmail ?? '',
-      emailModified: data.email,
-      verificationCode,
-    })
-
-    updateUserOrganisation({
-      administratorEmail: data.email,
-    })
-
-    onSuccess()
-    closeModal()
-  }
-
   return (
     <Modal isOpen closeModal={closeModal}>
       <form>
@@ -128,7 +106,7 @@ export default function EmailVerificationModal({
           inputError={error ? t("Le code n'est pas valide.") : undefined}
           isSuccessValidate={isSuccess}
           isPendingValidate={isPending}
-          handleValidateVerificationCode={handleVerifyCodeAndSaveModifications}
+          handleValidateVerificationCode={onSubmit}
         />
 
         {isErrorSendCode && (

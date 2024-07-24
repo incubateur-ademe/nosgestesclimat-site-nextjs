@@ -10,12 +10,12 @@ import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
+import { useVerifyCodeAndUpdate } from '@/hooks/organisations/useVerifyCodeAndUpdate'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
-import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import useFetchOrganisation from '../../_hooks/useFetchOrganisation'
 import DeconnexionButton from './DeconnexionButton'
@@ -35,7 +35,7 @@ export type Inputs = {
 }
 
 export default function ParametresPage() {
-  const { user } = useUser()
+  const { user, updateUserOrganisation } = useUser()
   const [error, setError] = useState<string>('')
   const [dataForVerification, setDataForVerification] = useState<
     Inputs | undefined
@@ -69,6 +69,13 @@ export default function ParametresPage() {
         organisation?.administrators?.[0]?.telephone ?? '',
     },
   })
+
+  const {
+    mutateAsync: verifyCodeAndUpdateOrganisation,
+    error: errorVeridyAndUpdate,
+    isSuccess: isSuccessVerifyAndUpdate,
+    isPending: isPendingVerifyAndUpdate,
+  } = useVerifyCodeAndUpdate(user?.organisation?.administratorEmail ?? '')
 
   function handleSaveDataForVerification(data: Inputs) {
     setDataForVerification(data)
@@ -116,6 +123,42 @@ export default function ParametresPage() {
     } catch (error) {
       setError(t('Une erreur est survenue. Veuillez réessayer.'))
     }
+  }
+
+  function closeModal() {
+    setDataForVerification(undefined)
+  }
+
+  const timeoutRef = useRef<NodeJS.Timeout>()
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
+  }, [])
+
+  async function handleVerifyCodeAndSaveModifications(
+    verificationCode: string
+  ) {
+    if (verificationCode?.length < 6 || !dataForVerification) return
+
+    await verifyCodeAndUpdateOrganisation({
+      ...dataForVerification,
+      email: user?.organisation?.administratorEmail ?? '',
+      emailModified: dataForVerification.email,
+      verificationCode,
+    })
+
+    displaySuccessToast(t('Vos informations ont bien été mises à jour.'))
+
+    // BUG : without a timeout, the organisation is not modified (weird I know)
+    timeoutRef.current = setTimeout(() => {
+      updateUserOrganisation({
+        administratorEmail: dataForVerification.email,
+      })
+
+      closeModal()
+    }, 100)
   }
 
   if (isLoading || (!organisation && !isError)) {
@@ -167,20 +210,17 @@ export default function ParametresPage() {
       {!!dataForVerification && (
         <EmailVerificationModal
           data={dataForVerification}
-          closeModal={() => setDataForVerification(undefined)}
-          onSuccess={() =>
-            displaySuccessToast(
-              t('Vos informations ont bien été mises à jour.')
-            )
-          }
+          closeModal={closeModal}
+          onSubmit={handleVerifyCodeAndSaveModifications}
+          error={errorVeridyAndUpdate}
+          isSuccess={isSuccessVerifyAndUpdate}
+          isPending={isPendingVerifyAndUpdate}
         />
       )}
 
       <Separator className="my-4" />
 
       <DeconnexionButton organisation={organisation} />
-
-      <ToastContainer />
     </MaxWidthContent>
   )
 }
