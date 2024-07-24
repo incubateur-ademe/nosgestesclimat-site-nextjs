@@ -28,7 +28,6 @@ export default function Persona({ persona, personaDottedName }: Props) {
     everyRules,
     safeEvaluate,
     safeGetRule,
-    addToEngineSituation,
   } = useSimulation()
 
   const isCurrentPersonaSelected =
