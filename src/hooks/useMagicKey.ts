@@ -7,7 +7,7 @@ export function useMagicKey({
 }) {
   useEffect(() => {
     const handleMagicKey = async (e: KeyboardEvent) => {
-      if (e.altKey && e.key === 'Escape') {
+      if (e.altKey && (e.key === 'Escape' || e.key === 'Enter')) {
         await gotToNextQuestion(e)
       }
     }
