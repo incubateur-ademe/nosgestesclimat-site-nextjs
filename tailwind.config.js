@@ -122,10 +122,10 @@ module.exports = {
       },
       keyframes: {
         valuechange: {
-          '0%': { opacity: 0, transform: 'translateX(-10%)' },
+          '0%': { opacity: 0, transform: 'translateX(-5%)' },
           '20%': { opacity: 1 },
           '80%': { opacity: 1 },
-          '100%': { opacity: 0, transform: 'translateX(10%)' },
+          '100%': { opacity: 0, transform: 'translateX(5%)' },
         },
         iconsRotation: {
           '0%': { transform: 'rotate(0deg)' },

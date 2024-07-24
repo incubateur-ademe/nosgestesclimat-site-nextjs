@@ -3,6 +3,7 @@ import Header from '@/components/layout/Header'
 import { getGeolocation } from '@/helpers/getGeolocation'
 import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
+import Footer from '@/components/layout/Footer'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import { ErrorBoundary } from '@sentry/nextjs'
@@ -96,7 +97,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         )}
       </head>
 
-      <body className={`${marianne.className} bg-white text-default`}>
+      <body
+        className={`${marianne.className} bg-white text-default transition-colors duration-700`}>
         <Script id="script-user-agent">{`
           const b = document.documentElement;
           b.setAttribute('data-useragent', navigator.userAgent);
@@ -111,6 +113,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
             <FilAriane />
 
             {children}
+            <Footer />
           </MainLayoutProviders>
         </ErrorBoundary>
 

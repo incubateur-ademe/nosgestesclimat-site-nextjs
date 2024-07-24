@@ -48,8 +48,8 @@ export default async function BlogPost({ params: { slug } }: Props) {
   const data = post.data
 
   return (
-    <div>
-      <Link href="/blog" className="mb-6 block text-sm">
+    <div className="m-auto max-w-2xl">
+      <Link href="/blog" className="mb-8 block text-sm">
         ← <Trans>Retour à la liste des articles</Trans>
       </Link>
 

@@ -50,6 +50,8 @@ export function useSetCurrentSimulationFromParams() {
     // if the simulation is not in the localStorage, we add it
     initSimulation(simulation)
     setIsCorrectSimulationSet(true)
+
+    window.location.href = pathname
   }, [
     simulations,
     simulation,

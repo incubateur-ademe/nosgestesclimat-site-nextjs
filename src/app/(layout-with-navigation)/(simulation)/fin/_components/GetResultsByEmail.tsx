@@ -123,7 +123,7 @@ export default function GetResultsByEmail({
     }
 
     // We save the simulation (and signify the backend to send the email)
-    await saveSimulation({
+    saveSimulation({
       simulation: {
         ...currentSimulation,
         savedViaEmail: true,
@@ -131,10 +131,14 @@ export default function GetResultsByEmail({
       shouldSendSimulationEmail: true,
       listIds,
     })
-
-    // We update the simulation to signify that it has been saved (and not show the form anymore)
-    currentSimulation.update({ savedViaEmail: true })
   }
+
+  useEffect(() => {
+    if (isSuccess && !currentSimulation.savedViaEmail) {
+      // We update the simulation to signify that it has been saved (and not show the form anymore)
+      currentSimulation.update({ savedViaEmail: true })
+    }
+  }, [isSuccess, currentSimulation])
 
   // If we successfully saved the simulation, we display the confirmation message
   // or if the simulation is already saved

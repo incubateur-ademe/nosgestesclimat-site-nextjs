@@ -10,12 +10,14 @@ import {
   questionClickSuivant,
 } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
+import { getBorderLightColor } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { MouseEvent, useCallback, useMemo } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   question: DottedName
@@ -33,7 +35,7 @@ export default function Navigation({
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
 
-  const { isMissing, plancher, value } = useRule(question)
+  const { isMissing, plancher, value, category } = useRule(question)
 
   const { updateCurrentSimulation } = useCurrentSimulation()
 
@@ -115,23 +117,27 @@ export default function Navigation({
   }
 
   return (
-    <div className="flex justify-end md:gap-4">
-      {!noPrevQuestion ? (
-        <Button
-          size="md"
-          onClick={() => {
-            trackEvent(questionClickPrevious({ question }))
+    <div
+      className={twMerge(
+        'flex justify-between border-b pb-6',
+        getBorderLightColor(category).replace('-100', '-200')
+      )}>
+      <Button
+        size="md"
+        onClick={() => {
+          trackEvent(questionClickPrevious({ question }))
 
-            if (!noPrevQuestion) {
-              gotoPrevQuestion()
-            }
+          if (!noPrevQuestion) {
+            gotoPrevQuestion()
+          }
 
-            handleMoveFocus()
-          }}
-          color="text">
-          {'← ' + t('Précédent')}
-        </Button>
-      ) : null}
+          handleMoveFocus()
+        }}
+        color="text"
+        className={twMerge('px-3', noPrevQuestion ? 'invisible' : 'visible')}>
+        {'← ' + t('Précédent')}
+      </Button>
+
       <Button
         color={isMissing ? 'secondary' : 'primary'}
         disabled={isNextDisabled}

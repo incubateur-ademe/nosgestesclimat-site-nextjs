@@ -24,7 +24,7 @@ export default function ChoicesInput(props: Props) {
   } = props
 
   return (
-    <fieldset className="align flex flex-col items-end">
+    <fieldset className="flex flex-col gap-2">
       <legend className="sr-only">{label}</legend>
 
       {choices &&

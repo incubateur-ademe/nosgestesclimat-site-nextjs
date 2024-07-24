@@ -31,7 +31,7 @@ type Props = {
 
 const sizeClassNames = {
   sm: 'mb-1 text-sm',
-  md: 'mb-3 text-lg md:text-xl',
+  md: 'mb-6 text-lg md:text-2xl',
 }
 
 export default function Label({
@@ -59,10 +59,7 @@ export default function Label({
         // of triggering the first input (here the button) it
         onClick={(e) => e.preventDefault()}>
         <h1
-          className={twMerge(
-            'mb-0 inline text-sm sm:text-base md:text-lg [&_p]:mb-0',
-            titleClassName
-          )}
+          className={twMerge('mb-0 inline text-lg md:text-xl', titleClassName)}
           tabIndex={0}
           id={QUESTION_DESCRIPTION_BUTTON_ID}>
           <Markdown>{label}</Markdown>
@@ -79,8 +76,8 @@ export default function Label({
               setIsOpen((previsOpen) => !previsOpen)
             }}
             color="secondary"
-            size="sm"
-            className={`mx-2 inline-block h-8 w-8 min-w-8 items-center justify-center rounded-full p-0 font-mono`}
+            size="xs"
+            className={`inline-flex h-6 w-6 items-center justify-center rounded-full p-0 align-text-bottom font-mono`}
             title={t("Voir plus d'informations")}>
             i
           </Button>
@@ -92,10 +89,11 @@ export default function Label({
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2 }}
-          className="mb-3 origin-top rounded-md bg-white p-2 text-sm">
+          className="mb-3 origin-top rounded-xl border-2 border-primary-50 bg-white px-4 py-6 text-sm">
           <Markdown>{description}</Markdown>{' '}
           <Button
             size="sm"
+            color={'secondary'}
             onClick={() => {
               trackEvent(questionCloseInfo({ question }))
               setIsOpen(false)

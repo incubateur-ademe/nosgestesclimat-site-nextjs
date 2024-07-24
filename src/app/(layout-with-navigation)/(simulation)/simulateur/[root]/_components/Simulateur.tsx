@@ -1,43 +1,63 @@
 'use client'
 
-import Total from '@/components/total/Total'
-import {
-  simulateurCloseSommaire,
-  simulateurOpenSommaire,
-} from '@/constants/tracking/pages/simulateur'
+import { getBackgroundLightColor } from '@/helpers/getCategoryColorClass'
 import { useDebug } from '@/hooks/useDebug'
-import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useState } from 'react'
-import Charts from './simulateur/Charts'
+import { useForm } from '@/publicodes-state'
+import { useEffect, useRef } from 'react'
 import Form from './simulateur/Form'
 import Summary from './simulateur/Summary'
 
-export default function Simulateur() {
+type Props = {
+  toggleQuestionList: () => void
+  isQuestionListOpen: boolean
+}
+export default function Simulateur({
+  toggleQuestionList,
+  isQuestionListOpen,
+}: Props) {
   const isDebug = useDebug()
 
-  const [isQuestionListOpen, setIsQuestionListOpen] = useState(false)
-  const toggleQuestionList = () => {
-    setIsQuestionListOpen((prevIsQuestionListOpen) => {
-      trackEvent(
-        prevIsQuestionListOpen
-          ? simulateurCloseSommaire
-          : simulateurOpenSommaire
+  const { currentCategory } = useForm()
+  const prevCurrentCategory = useRef<null | string>(null)
+  useEffect(() => {
+    if (currentCategory !== prevCurrentCategory.current) {
+      prevCurrentCategory.current = currentCategory
+      console.log('currentCategory', currentCategory)
+      document.body.classList.remove(
+        `bg-transport-50`,
+        `bg-alimentation-50`,
+        `bg-logement-50`,
+        `bg-divers-50`,
+        `bg-servicessocietaux-50`,
+        'bg-primary-50',
+        'bg-white'
       )
-      return !prevIsQuestionListOpen
-    })
-  }
-
+      document.body.classList.add(
+        getBackgroundLightColor(currentCategory).replace('-100', '-50')
+      )
+    }
+    return () => {
+      document.body.classList.remove(
+        `bg-transport-50`,
+        `bg-alimentation-50`,
+        `bg-logement-50`,
+        `bg-divers-50`,
+        `bg-servicessocietaux-50`,
+        'bg-primary-50',
+        'bg-white'
+      )
+      document.body.classList.add('bg-white')
+    }
+  }, [currentCategory])
   return (
-    <>
-      <Total toggleQuestionList={toggleQuestionList} />
+    <div className="flex-1 lg:mt-3">
       <div className={isQuestionListOpen && !isDebug ? 'hidden' : 'block'}>
         <Form />
-        <Charts />
       </div>
       <Summary
         toggleQuestionList={toggleQuestionList}
         isQuestionListOpen={isQuestionListOpen}
       />
-    </>
+    </div>
   )
 }

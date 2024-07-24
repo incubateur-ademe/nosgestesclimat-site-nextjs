@@ -53,7 +53,7 @@ export default function Assistance({
   ])
 
   return (
-    <div className="mb-4 w-[20rem] max-w-full rounded-xl bg-white p-4 sm:w-2/3">
+    <div className="mb-4 w-[20rem] max-w-full rounded-xl border-2 border-primary-50 bg-white p-4 sm:w-2/3">
       <Label
         question={question}
         size="sm"

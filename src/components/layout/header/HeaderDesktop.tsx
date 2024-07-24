@@ -52,7 +52,7 @@ export default function HeaderDesktop({
         canBeSticky ? 'sticky top-0 z-50' : ''
       )}>
       <div className="absolute bottom-0 left-0 right-0 top-0 flex h-20 w-full items-center border-b bg-white shadow-sm">
-        <div className="mx-auto flex h-full w-full max-w-6xl justify-between gap-6">
+        <div className="mx-auto flex h-full w-full max-w-6xl justify-between gap-6 px-4">
           <div className="flex items-center justify-between gap-20">
             <div className="flex origin-left items-center justify-center">
               <Logo onClick={() => trackEvent(headerClickLogo)} />

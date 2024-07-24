@@ -1,3 +1,4 @@
+import Title from '@/design-system/layout/Title'
 import { useDebug } from '@/hooks/useDebug'
 import { useForm } from '@/publicodes-state'
 import Question from './summary/Question'
@@ -16,6 +17,9 @@ export default function Summary({
 
   return (
     <div className={isQuestionListOpen || isDebug ? 'mb-8 block' : 'hidden'}>
+      <Title tag="h2" className="mb-4 text-lg md:text-xl">
+        Toutes les questions
+      </Title>
       {relevantQuestions.map((question: any) => (
         <Question
           key={question}
