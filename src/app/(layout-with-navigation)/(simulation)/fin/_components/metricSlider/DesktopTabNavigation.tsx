@@ -21,11 +21,8 @@ export default function DesktopTabNavigation({ sticky }: Props) {
             currentMetric !== 'carbone'
               ? 'border-transparent border-b-primary-50 text-primary-700'
               : 'border-x-primary-50 border-b-transparent border-t-primary-50 bg-gray-100',
-            sticky ? 'bg-white px-6 pb-0 pt-1 text-sm ' : 'pb-1 pt-2 text-lg',
-            sticky &&
-              (currentMetric !== 'carbone'
-                ? 'border-x-gray-100 border-b-primary-100 border-t-gray-100'
-                : 'border-x-primary-100 border-t-primary-100')
+            sticky ? 'px-6 pb-0 pt-1 text-sm' : 'pb-1 pt-2 text-lg',
+            sticky && currentMetric !== 'carbone' && 'border-primary-50'
           )}>
           {!sticky && (
             <>
@@ -48,11 +45,8 @@ export default function DesktopTabNavigation({ sticky }: Props) {
             currentMetric !== 'eau'
               ? 'border-transparent border-b-primary-50 text-primary-700'
               : 'border-x-primary-50 !border-b-transparent border-t-primary-50 bg-gray-100',
-            sticky ? 'bg-white px-6 pb-0 pt-1 text-sm ' : 'pb-1 pt-2 text-lg',
-            sticky &&
-              (currentMetric !== 'eau'
-                ? 'border-x-gray-100 border-b-primary-100 border-t-gray-100'
-                : 'border-x-primary-100 border-t-primary-100')
+            sticky ? 'px-6 pb-0 pt-1 text-sm' : 'pb-1 pt-2 text-lg',
+            sticky && currentMetric !== 'eau' && 'border-primary-50'
           )}>
           {!sticky && (
             <>

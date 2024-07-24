@@ -41,7 +41,7 @@ export default function TotalSticky() {
     <div
       ref={myElementRef}
       className={twMerge(
-        'slider-small sticky top-0 z-50 -mx-2 flex items-center justify-between overflow-hidden bg-white bg-opacity-25 pt-2 transition-opacity duration-200 lg:pt-0.5',
+        'slider-small sticky top-0 z-50 -mx-2 flex items-center justify-between overflow-hidden bg-white bg-opacity-25 pt-2 transition-opacity duration-200 lg:bg-opacity-100 lg:pt-0.5',
         isVisible ? 'visible opacity-100' : 'invisible opacity-0'
       )}>
       <div
@@ -52,7 +52,7 @@ export default function TotalSticky() {
         <DesktopTabNavigation sticky />
         <Slider
           ref={sliderRef}
-          className="w-full lg:-mt-0.5 lg:rounded-b-xl lg:rounded-tr-xl lg:border-2 lg:border-primary-100 lg:bg-white"
+          className="w-full lg:-mt-0.5 lg:rounded-b-xl lg:rounded-tr-xl lg:border-2 lg:border-primary-50 lg:bg-gray-100"
           initialSlide={metrics.indexOf(currentMetric)}
           fade={true}
           infinite={false}
