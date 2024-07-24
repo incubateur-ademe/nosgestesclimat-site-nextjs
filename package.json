@@ -54,7 +54,7 @@
     "i18next-parser": "^8.13.0",
     "i18next-resources-to-backend": "^1.2.0",
     "markdown-to-jsx": "^7.3.2",
-    "next": "^14.2.3",
+    "next": "^14.2.4",
     "next-i18n-router": "^4.1.1",
     "nuka-carousel": "^8.0.1",
     "postcss": "8.4.36",
