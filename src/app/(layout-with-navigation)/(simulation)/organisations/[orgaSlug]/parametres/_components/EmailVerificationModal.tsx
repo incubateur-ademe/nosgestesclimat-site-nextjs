@@ -52,15 +52,11 @@ export default function EmailVerificationModal({
   ])
 
   useEffect(() => {
-    async function send() {
+    if (shouldSendEmail && !isSuccessSend && !isErrorSendCode) {
       sendVerificationCode({
         email: data?.email ?? '',
         previousEmail: user?.organisation?.administratorEmail ?? '',
       })
-    }
-
-    if (shouldSendEmail && !isSuccessSend && !isErrorSendCode) {
-      send()
     }
   }, [
     data,
@@ -70,8 +66,6 @@ export default function EmailVerificationModal({
     shouldSendEmail,
     user?.organisation?.administratorEmail,
   ])
-
-  if (!data) return ''
 
   return (
     <Modal isOpen closeModal={closeModal}>
