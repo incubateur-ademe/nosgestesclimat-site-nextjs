@@ -1,13 +1,11 @@
 import { defaultLocale, locales } from '@/i18nConfig'
 import { currentLocale } from 'next-i18n-router'
-import { generateOGImageURL } from '../openGraph/generateOGImageURL'
 
 type Props = {
   title: string
   description: string
   params?: Record<string, string>
   searchParams?: Record<string, string>
-  noImage?: boolean
   image?: string
   robots?: {
     index: boolean
@@ -31,12 +29,6 @@ const BASE_URL =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
     : 'https://nosgestesclimat.fr'
-
-const URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE = [
-  'diapo=bilan',
-  'diapo=categories',
-  'diapo=actions',
-]
 
 const buildURL = ({
   params,
@@ -68,7 +60,6 @@ export function getMetadataObject({
   description,
   params,
   searchParams,
-  noImage = false,
   image,
   alternates,
   ...props
@@ -120,11 +111,7 @@ export function getMetadataObject({
       type: 'website',
       images: image
         ? image
-        : URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE.some((urlPart) =>
-              url.includes(urlPart)
-            ) && !noImage
-          ? generateOGImageURL(url)
-          : 'https://nosgestesclimat.fr/images/misc/metadata.png',
+        : 'https://nosgestesclimat.fr/images/misc/metadata.png',
     },
     alternates: alternatesWithLanguages,
     ...props,
