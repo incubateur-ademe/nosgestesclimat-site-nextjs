@@ -1,26 +1,28 @@
 'use client'
 
-import MainSubcategories from '@/components/fin/MainSubcategories'
-import TotalChart from '@/components/fin/TotalChart'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
-import { useRule } from '@/publicodes-state'
+import { useCurrentMetric } from '@/hooks/useCurrentMetric'
+import { twMerge } from 'tailwind-merge'
+import Carbone from './_components/Carbone'
 import DocumentationBlock from './_components/DocumentationBlock'
+import Eau from './_components/Eau'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
-import Heading from './_components/Heading'
-import OtherWays from './_components/OtherWays'
+import InformationBlock from './_components/InformationBlock'
+import MetricSlider from './_components/MetricSlider'
 import Poll from './_components/Poll'
 import ShareBlock from './_components/ShareBlock'
-import Subcategories from './_components/Subcategories'
-import TargetBlock from './_components/TargetBlock'
 import TotalSticky from './_components/TotalSticky'
-import TotalStickyMobile from './_components/TotalStickyMobile'
 
+const titles = {
+  carbone: <Trans>carbone</Trans>,
+  eau: <Trans>eau</Trans>,
+}
 export default function FinPage() {
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useEndGuard()
@@ -28,45 +30,54 @@ export default function FinPage() {
   // Set the current simulation from the URL params (if applicable)
   const { isCorrectSimulationSet } = useSetCurrentSimulationFromParams()
 
-  const { numericValue: total } = useRule('bilan')
+  const { currentMetric } = useCurrentMetric()
 
   if (!isGuardInit || isGuardRedirecting) return null
 
   if (!isCorrectSimulationSet) return null
 
-  const isSmallFootprint = total < 4000
   return (
     <>
       <IframeDataShareModal />
       <Poll />
 
-      <Heading />
+      <MetricSlider />
 
-      <TotalChart />
+      <TotalSticky />
 
-      <TotalStickyMobile />
-
-      <div className="flex flex-col-reverse gap-16 lg:flex-row lg:gap-10">
-        <div className="flex flex-1 flex-col gap-16 lg:mt-32">
-          <MainSubcategories isLink={!isSmallFootprint} />
-
-          {isSmallFootprint ? (
-            <OtherWays isSmallFootprint />
-          ) : (
-            <Subcategories />
-          )}
+      <div className="relative -mt-6 flex flex-col-reverse gap-16 lg:-mt-16 lg:flex-row lg:gap-10">
+        <div className="relative flex flex-1 flex-col gap-16 lg:mt-7">
+          <div
+            className={twMerge(
+              'transition-opacity duration-500',
+              currentMetric === 'carbone'
+                ? 'relative opacity-100'
+                : 'pointer-events-none absolute top-0 opacity-0'
+            )}>
+            <Carbone />
+          </div>
+          <div
+            className={twMerge(
+              'transition-opacity duration-500',
+              currentMetric === 'eau'
+                ? 'relative opacity-100'
+                : 'pointer-events-none absolute top-0 opacity-0'
+            )}>
+            <Eau />
+          </div>
 
           <GetResultsByEmail />
 
           <ShareBlock />
 
           <div id="categories-block">
-            <Title
-              tag="h2"
-              className="text-lg md:text-2xl"
-              title={<Trans>Le détail de mon empreinte</Trans>}
-            />
-            <CategoriesAccordion />
+            <Title tag="h2" className="text-lg md:text-2xl">
+              <Trans>Le détail de mon empreinte</Trans>{' '}
+              <strong className="text-secondary-700">
+                {titles[currentMetric]}
+              </strong>
+            </Title>
+            <CategoriesAccordion metric={currentMetric} />
           </div>
 
           <FeedbackBanner
@@ -82,9 +93,8 @@ export default function FinPage() {
 
           <DocumentationBlock />
         </div>
-        <div className="top-4 flex w-full flex-col gap-4 self-start lg:sticky lg:z-50 lg:w-[22rem] short:gap-2">
-          <TotalSticky />
-          <TargetBlock />
+        <div className="top-28 flex w-full flex-col gap-4 self-start lg:sticky lg:z-30 lg:w-[22rem] short:gap-2">
+          <InformationBlock />
         </div>
       </div>
     </>

@@ -1,12 +1,15 @@
 'use client'
 
 import getSomme from '@/publicodes-state/helpers/getSomme'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName, Metric } from '@/publicodes-state/types'
 import { useContext, useMemo } from 'react'
 import { useEngine } from '../..'
 import { SimulationContext } from '../../providers/simulationProvider/context'
 import useCurrentSimulation from '../useCurrentSimulation'
 
+type Props = {
+  metric: Metric
+}
 type ActionObject = {
   dottedName: DottedName
   value: number
@@ -16,14 +19,14 @@ type ActionObject = {
  *
  * Not really used for now but will be essential when we redo the actions page
  */
-export default function useActions() {
+export default function useActions({ metric }: Props = { metric: 'carbone' }) {
   const { engine } = useContext(SimulationContext)
 
-  const { getValue } = useEngine()
+  const { getNumericValue } = useEngine({ metric })
 
   const { actionChoices } = useCurrentSimulation()
 
-  const orderedActions = useMemo<string[]>(() => {
+  const actions = useMemo(() => {
     if (engine === null) return []
 
     const actionsRule = engine.getRule('actions')
@@ -35,13 +38,17 @@ export default function useActions() {
     }
 
     return somme
+  }, [engine])
+
+  const orderedActions = useMemo<string[]>(() => {
+    return actions
       .map((action: string) => ({
         dottedName: action,
-        value: getValue(action) as number,
+        value: getNumericValue(action),
       }))
       .sort((a: ActionObject, b: ActionObject) => (a.value > b.value ? -1 : 1))
       .map((actionObject: ActionObject) => actionObject.dottedName)
-  }, [engine, getValue])
+  }, [actions, getNumericValue])
 
   const { chosenActions, declinedActions } =
     Object.keys(actionChoices ?? {})?.reduce(
@@ -71,9 +78,7 @@ export default function useActions() {
     ) || 0
 
   return {
-    /**
-     * Every relevant actions, ordered by value
-     */
+    actions,
     orderedActions,
     chosenActions,
     declinedActions,

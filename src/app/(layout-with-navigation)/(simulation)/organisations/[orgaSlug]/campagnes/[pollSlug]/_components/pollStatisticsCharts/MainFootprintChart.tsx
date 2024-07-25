@@ -1,4 +1,4 @@
-import Arrow from '@/components/fin/totalChart/Arrow'
+import Arrow from '@/components/fin/carboneTotalChart/Arrow'
 import Trans from '@/components/translation/Trans'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { SimulationRecap } from '@/types/organisations'

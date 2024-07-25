@@ -3,7 +3,7 @@
 import Badge from '@/design-system/layout/Badge'
 import BarChart from '@/design-system/utils/BarChart'
 import Emoji from '@/design-system/utils/Emoji'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {

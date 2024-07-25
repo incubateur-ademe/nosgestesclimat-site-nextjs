@@ -1,21 +1,24 @@
+import Trans from '@/components/translation/Trans'
+import { defaultMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
-import { roundValue } from '@/utils/roundValue'
-import { formatValue } from 'publicodes'
+import { Metric } from '@/publicodes-state/types'
 
 type Props = {
   subcategory: string
   categoryValue: number
+  metric?: Metric
 }
 
 export default function SubcategoryListItem({
   subcategory,
   categoryValue,
+  metric = defaultMetric,
 }: Props) {
-  const { numericValue, title, icons } = useRule(subcategory)
+  const { numericValue, title, icons } = useRule(subcategory, metric)
 
-  const formattedValue = formatValue(numericValue, { precision: 0 })
-
+  const { formattedValue, unit } = formatFootprint(numericValue, { metric })
   if (formattedValue === '0') return null
 
   const percentageOfCategoryValue =
@@ -32,10 +35,7 @@ export default function SubcategoryListItem({
             <p className="mb-0">{title}</p>
 
             <div className="text-primary-700">
-              <strong>
-                {formatValue(roundValue(numericValue), { precision: 0 })}
-              </strong>{' '}
-              kg
+              <strong>{formattedValue}</strong> <Trans>{unit}</Trans>
             </div>
           </div>
           <div className="mt-2">

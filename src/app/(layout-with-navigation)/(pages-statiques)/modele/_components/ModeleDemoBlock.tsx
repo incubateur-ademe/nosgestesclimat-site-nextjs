@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRules } from '@/hooks/useRules'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
 import { DottedName, Rules, Situation } from '@/publicodes-state/types'

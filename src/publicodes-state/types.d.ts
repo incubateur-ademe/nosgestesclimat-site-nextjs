@@ -59,10 +59,12 @@ export type ActionChoices = Record<string, boolean>
 
 export type NodeValue = Evaluation
 
-export type ComputedResults = {
+export type ComputedResultsFootprint = {
   bilan: number
-  categories: Record<string, number>
+  categories: Record<DottedName, number>
 }
+export type ComputedResults = Record<Metric, ComputedResultsFootprint>
+
 export type Simulation = {
   id: string
   date: Date | string
@@ -132,3 +134,5 @@ type MosaicInfos = {
 }
 
 type Formule = any
+
+export type Metric = 'carbone' | 'eau'

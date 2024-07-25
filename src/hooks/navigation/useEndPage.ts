@@ -1,7 +1,8 @@
+import { defaultMetric } from '@/constants/metric'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { linkToQuiz } from '@/helpers/navigation/quizPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
-import { useCurrentSimulation, useEngine } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
@@ -29,8 +30,6 @@ const GetLinkToEndPagePropsDefault = {
 export function useEndPage() {
   const router = useRouter()
 
-  const { getComputedResults } = useEngine()
-
   const currentSimulation = useCurrentSimulation()
 
   const progression = currentSimulation?.progression
@@ -57,20 +56,15 @@ export function useEndPage() {
         isAllowedToSave &&
         (currentSimulation.polls || currentSimulation.groups)
       ) {
-        if (currentSimulation.computedResults?.bilan === 0) {
+        if (currentSimulation.computedResults[defaultMetric].bilan === 0) {
           // Send an error to Sentry
-          captureException(new Error('useEndPage: computedResults.bilan === 0'))
+          captureException(
+            new Error('useEndPage: computedResults[defaultMetric].bilan === 0')
+          )
         }
 
         await saveSimulation({
-          simulation: {
-            ...currentSimulation,
-            // Fix to avoid computedResults bilan === 0 bug
-            computedResults:
-              currentSimulation.computedResults?.bilan === 0
-                ? getComputedResults(currentSimulation.situation)
-                : currentSimulation.computedResults,
-          },
+          simulation: currentSimulation,
         })
       }
 
@@ -93,14 +87,7 @@ export function useEndPage() {
       // else we redirect to the results page
       router.push('/fin')
     },
-    [
-      isNavigating,
-      progression,
-      currentSimulation,
-      router,
-      saveSimulation,
-      getComputedResults,
-    ]
+    [isNavigating, progression, currentSimulation, router, saveSimulation]
   )
 
   const getLinkToEndPage = useCallback(

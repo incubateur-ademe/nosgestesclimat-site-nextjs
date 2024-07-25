@@ -1,6 +1,6 @@
 'use client'
 
-import TotalChart from '@/components/fin/TotalChart'
+import CarboneTotalChart from '@/components/fin/CarboneTotalChart'
 import MainSubcategory from '@/components/fin/mainSubcategories/MainSubcategory'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
@@ -21,7 +21,7 @@ export default function PartagePage() {
           <Trans>Découvre mon empreinte carbone</Trans>
         </Title>
       </div>
-      <TotalChart total={total} />
+      <CarboneTotalChart total={total} />
 
       <div className="mb-8 flex flex-col items-start gap-4 lg:mb-14 lg:mt-10">
         <Title

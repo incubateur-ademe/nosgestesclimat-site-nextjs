@@ -23,7 +23,7 @@ export function useQueryParams<T>() {
     const search = urlSearchParams.toString()
     const query = search ? `?${search}` : ''
     // replace since we don't want to build a history
-    router.replace(`${pathname}${query}`)
+    router.replace(`${pathname}${query}`, { scroll: false })
   }
 
   return { queryParams: searchParams, setQueryParams }

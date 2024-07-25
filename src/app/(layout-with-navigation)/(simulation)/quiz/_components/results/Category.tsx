@@ -1,6 +1,6 @@
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
 import Trans from '@/components/translation/Trans'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
 import { twMerge } from 'tailwind-merge'
 

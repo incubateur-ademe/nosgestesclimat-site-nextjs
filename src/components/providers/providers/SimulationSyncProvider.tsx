@@ -1,5 +1,6 @@
 'use client'
 
+import { defaultMetric } from '@/constants/metric'
 import { compareTwoSimulations } from '@/helpers/simulation/compareTwoSimulations'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import {
@@ -58,10 +59,12 @@ export default function SimulationSyncProvider({
     // Fix to avoid computedResults bilan === 0 bug
     if (progression !== 1) return false
 
-    if (computedResults?.bilan === 0) {
+    if (computedResults[defaultMetric].bilan === 0) {
       // Send an error to Sentry
       captureException(
-        new Error('SimulationSyncProvider: computedResults.bilan === 0')
+        new Error(
+          'SimulationSyncProvider: computedResults[defaultMetric].bilan === 0'
+        )
       )
       return false
     }

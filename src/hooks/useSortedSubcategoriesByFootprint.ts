@@ -1,25 +1,27 @@
 import { useEngine, useSimulation } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName, Metric } from '@/publicodes-state/types'
 import { useMemo } from 'react'
 
 type Props = {
-  noServiceSocietaux: boolean
+  metric?: Metric
+  withServiceSocietaux?: boolean
 }
-export function useSortedSubcategoriesByFootprint(
-  { noServiceSocietaux }: Props = { noServiceSocietaux: true }
-) {
+export function useSortedSubcategoriesByFootprint({
+  metric,
+  withServiceSocietaux,
+}: Props = {}) {
   const { subcategories } = useSimulation()
-  const { getNumericValue } = useEngine()
+  const { getNumericValue } = useEngine({ metric })
 
   const everySubcategories = useMemo(
     () =>
       Object.keys(subcategories).reduce((acc, category) => {
-        if (noServiceSocietaux && category === 'services sociétaux') {
+        if (!withServiceSocietaux && category === 'services sociétaux') {
           return acc
         }
         return acc.concat(subcategories[category])
       }, [] as DottedName[]),
-    [subcategories, noServiceSocietaux]
+    [subcategories, withServiceSocietaux]
   )
 
   const sortedSubcategories = useMemo<DottedName[]>(() => {

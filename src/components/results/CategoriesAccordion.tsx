@@ -1,15 +1,21 @@
 'use client'
 
+import { defaultMetric } from '@/constants/metric'
 import Accordion from '@/design-system/layout/Accordion'
 import { useSortedCategoriesByFootprint } from '@/hooks/useSortedCategoriesByFootprint'
 import { useRule } from '@/publicodes-state'
+import { Metric } from '@/publicodes-state/types'
 import AccordionItemWithRule from './categoriesAccordion/AccordionItemWithRule'
 
-export default function CategoriesAccordion() {
-  const { sortedCategories } = useSortedCategoriesByFootprint()
+type Props = {
+  metric?: Metric
+}
+export default function CategoriesAccordion({ metric = defaultMetric }: Props) {
+  const { sortedCategories } = useSortedCategoriesByFootprint({ metric })
 
   const { numericValue: maxCategoryValue } = useRule(
-    sortedCategories?.[0] ?? ''
+    sortedCategories?.[0] ?? '',
+    metric
   )
 
   return (
@@ -21,6 +27,7 @@ export default function CategoriesAccordion() {
             dottedName={categoryDottedName}
             maxValue={maxCategoryValue}
             index={index}
+            metric={metric}
           />
         )
       })}

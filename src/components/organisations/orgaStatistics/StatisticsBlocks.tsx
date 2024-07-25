@@ -1,6 +1,6 @@
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/Trans'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { SimulationRecap } from '@/types/organisations'
 import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
 import ResultsSoonBanner from './statisticsBlocks/ResultsSoonBanner'

@@ -3,7 +3,7 @@
 import Link from '@/components/Link'
 import SafeImage from '@/components/images/SafeImage'
 import { DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'

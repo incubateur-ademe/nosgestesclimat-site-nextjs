@@ -1,7 +1,7 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'

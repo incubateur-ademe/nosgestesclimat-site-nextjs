@@ -1,7 +1,7 @@
 'use client'
 
 import { profilClickSubCategory } from '@/constants/tracking/pages/profil'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import {
   getBackgroundColor,
   getBorderColor,

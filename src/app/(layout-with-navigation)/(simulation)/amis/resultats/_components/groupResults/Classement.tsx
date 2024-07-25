@@ -4,8 +4,9 @@ import { Group, Participant } from '@/types/groups'
 import { useState } from 'react'
 
 import Trans from '@/components/translation/Trans'
+import { defaultMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
 import { useUser } from '@/publicodes-state'
 import ClassementMember from './classement/ClassementMember'
@@ -54,10 +55,12 @@ export default function Classement({ group }: { group: Group }) {
           }
 
           const { formattedValue, unit } = formatCarbonFootprint(
-            participant?.simulation?.computedResults?.bilan ?? ''
+            participant?.simulation?.computedResults[defaultMetric].bilan ?? ''
           )
 
-          const quantity = participant?.simulation?.computedResults?.bilan ? (
+          const quantity = participant?.simulation?.computedResults[
+            defaultMetric
+          ].bilan ? (
             <span className="m-none leading-[160%]">
               <strong>{formattedValue}</strong>{' '}
               <span className="text-sm font-light">{unit}</span>
@@ -91,10 +94,12 @@ export default function Classement({ group }: { group: Group }) {
                 const rank = `${index + 1 + topThreeMembers?.length}.`
 
                 const { formattedValue, unit } = formatCarbonFootprint(
-                  member?.simulation?.computedResults?.bilan ?? ''
+                  member?.simulation?.computedResults[defaultMetric].bilan ?? ''
                 )
 
-                const quantity = member?.simulation?.computedResults?.bilan ? (
+                const quantity = member?.simulation?.computedResults[
+                  defaultMetric
+                ].bilan ? (
                   <span className="leading-[160%]">
                     <strong>{formattedValue}</strong>{' '}
                     <span className="text-sm font-light">{unit}</span>
