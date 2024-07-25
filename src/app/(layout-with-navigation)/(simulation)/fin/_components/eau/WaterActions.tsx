@@ -29,16 +29,16 @@ export default function WaterActions() {
         <Link
           href={'/blog/empreinte-eau-alimentation'}
           target="_blank"
-          className="relative flex flex-col justify-between rounded-xl border-2 border-primary-50 bg-gray-100 p-4 no-underline hover:bg-primary-100">
+          className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
             <Image
               src="/images/blog/erda-estremera-demenagement.jpg"
               width="400"
               height="200"
-              className="mx-auto mb-3 h-36 w-full object-cover"
+              className="mx-auto mb-3 h-24 w-full object-cover lg:h-36"
               alt={`Les 4 gestes pour réduire l’empreinte eau de mon alimentation`}
             />
-            <p className="mb-3 text-center leading-tight text-black">
+            <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
               Les 4 gestes pour réduire l’empreinte eau de mon alimentation
             </p>
           </div>
@@ -49,17 +49,17 @@ export default function WaterActions() {
         <Link
           href={'/blog/empreinte-eau-textile'}
           target="_blank"
-          className="relative flex flex-col justify-between rounded-xl border-2 border-primary-50 bg-gray-100 p-4 no-underline hover:bg-primary-100">
+          className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
             {' '}
             <Image
               src="/images/blog/campus.jpg"
               width="400"
               height="200"
-              className="mx-auto mb-3 h-36 w-full object-cover"
+              className="mx-auto mb-3 h-24 w-full object-cover lg:h-36"
               alt={`Les 4 gestes pour réduire l’empreinte eau de mon alimentation`}
             />
-            <p className="mb-3 text-center leading-tight text-black">
+            <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
               Les 3 réflexes à adopter pour une garde-robe économe en eau
             </p>
           </div>
