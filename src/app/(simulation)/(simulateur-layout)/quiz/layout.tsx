@@ -1,7 +1,6 @@
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { FormProvider } from '@/publicodes-state'
 import { PropsWithChildren } from 'react'
 
 export async function generateMetadata() {
@@ -20,5 +19,5 @@ export async function generateMetadata() {
 }
 
 export default function Layout({ children }: PropsWithChildren) {
-  return <FormProvider>{children}</FormProvider>
+  return <>{children}</>
 }

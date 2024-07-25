@@ -1,5 +1,4 @@
 import FilAriane from '@/components/layout/FilAriane'
-import Header from '@/components/layout/Header'
 import { getGeolocation } from '@/helpers/getGeolocation'
 import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
@@ -35,32 +34,32 @@ export async function generateMetadata() {
 export const marianne = localFont({
   src: [
     {
-      path: '_fonts/Marianne-Thin.woff2',
+      path: '../../public/fonts/Marianne-Thin.woff2',
       weight: '100',
       style: 'normal',
     },
     {
-      path: '_fonts/Marianne-Light.woff2',
+      path: '../../public/fonts/Marianne-Light.woff2',
       weight: '300',
       style: 'normal',
     },
     {
-      path: '_fonts/Marianne-Regular.woff2',
+      path: '../../public/fonts/Marianne-Regular.woff2',
       weight: 'normal',
       style: 'normal',
     },
     {
-      path: '_fonts/Marianne-Medium.woff2',
+      path: '../../public/fonts/Marianne-Medium.woff2',
       weight: '500',
       style: 'normal',
     },
     {
-      path: '_fonts/Marianne-Bold.woff2',
+      path: '../../public/fonts/Marianne-Bold.woff2',
       weight: 'bold',
       style: 'normal',
     },
     {
-      path: '_fonts/Marianne-ExtraBold.woff2',
+      path: '../../public/fonts/Marianne-ExtraBold.woff2',
       weight: '800',
       style: 'normal',
     },
@@ -124,8 +123,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           <MainLayoutProviders
             region={region}
             migrationInstructions={migrationInstructions}>
-            <Header />
-
             <FilAriane />
 
             {children}

@@ -1,6 +1,5 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { FormProvider } from '@/publicodes-state'
 import { PropsWithChildren } from 'react'
 
 export async function generateMetadata() {
@@ -20,5 +19,5 @@ export async function generateMetadata() {
 export default async function SimulateurLayout({
   children,
 }: PropsWithChildren) {
-  return <FormProvider>{children}</FormProvider>
+  return <>{children}</>
 }

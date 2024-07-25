@@ -7,16 +7,16 @@ import BottomMenu from './headerMobile/BottomMenu'
 import FoldableMenu from './headerMobile/FoldableMenu'
 
 type Props = {
-  shouldBeSticky: boolean
+  isSticky: boolean
 }
-export default function HeaderMobile({ shouldBeSticky }: Props) {
+export default function HeaderMobile({ isSticky }: Props) {
   const { isIframeOnlySimulation } = useIframe()
 
   return (
     <header
       className={twMerge(
         'flex justify-between bg-white p-4 shadow-sm lg:hidden',
-        shouldBeSticky ? 'sticky top-0 z-50' : ''
+        isSticky ? 'sticky top-0 z-50' : ''
       )}>
       <Logo />
 
