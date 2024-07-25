@@ -7,19 +7,11 @@ import Modal from '@/design-system/modals/Modal'
 import { useSendVerificationCodeWhenModifyingEmail } from '@/hooks/organisations/useSendVerificationCodeWhenModifyingEmail'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
+import { OrgaSettingsInputsType } from '@/types/organisations'
 import { useEffect, useState } from 'react'
 
 type Props = {
-  data: {
-    name: string
-    administratorName: string
-    administratorTelephone: string
-    hasOptedInForCommunications: boolean
-    email: string
-    organisationType: string
-    position: string
-    numberOfCollaborators: number
-  }
+  data: OrgaSettingsInputsType | undefined
   closeModal: () => void
   onSubmit: (verificationCode: string) => void
   error: Error | null
@@ -42,7 +34,7 @@ export default function EmailVerificationModal({
   const { t } = useClientTranslation()
 
   const {
-    mutateAsync: sendVerificationCode,
+    mutate: sendVerificationCode,
     isSuccess: isSuccessSend,
     isError: isErrorSendCode,
   } = useSendVerificationCodeWhenModifyingEmail(data?.email ?? '')
@@ -61,8 +53,8 @@ export default function EmailVerificationModal({
 
   useEffect(() => {
     async function send() {
-      await sendVerificationCode({
-        email: data?.email,
+      sendVerificationCode({
+        email: data?.email ?? '',
         previousEmail: user?.organisation?.administratorEmail ?? '',
       })
     }
@@ -91,9 +83,7 @@ export default function EmailVerificationModal({
         <p>
           <Trans>
             Vous allez recevoir sous peu un e-mail de notre part contenant un{' '}
-            <span className="font-bold text-secondary-700">
-              code de vérification
-            </span>{' '}
+            <strong className="text-secondary-700">code de vérification</strong>{' '}
             à entrer dans cette fenêtre.
           </Trans>
         </p>

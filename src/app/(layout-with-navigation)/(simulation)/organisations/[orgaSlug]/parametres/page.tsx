@@ -13,6 +13,8 @@ import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisati
 import { useVerifyCodeAndUpdate } from '@/hooks/organisations/useVerifyCodeAndUpdate'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
+import { OrgaSettingsInputsType } from '@/types/organisations'
+import { formatEmail } from '@/utils/format/formatEmail'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
@@ -23,22 +25,11 @@ import EmailVerificationModal from './_components/EmailVerificationModal'
 import OrganisationFields from './_components/OrganisationFields'
 import PersonalInfoFields from './_components/PersonalInfoFields'
 
-export type Inputs = {
-  name: string
-  administratorName: string
-  administratorTelephone: string
-  hasOptedInForCommunications: boolean
-  email: string
-  organisationType: string
-  position: string
-  numberOfCollaborators: number
-}
-
 export default function ParametresPage() {
   const { user, updateUserOrganisation } = useUser()
   const [error, setError] = useState<string>('')
   const [dataForVerification, setDataForVerification] = useState<
-    Inputs | undefined
+    OrgaSettingsInputsType | undefined
   >()
 
   const { t } = useClientTranslation()
@@ -77,11 +68,13 @@ export default function ParametresPage() {
     isPending: isPendingVerifyAndUpdate,
   } = useVerifyCodeAndUpdate(user?.organisation?.administratorEmail ?? '')
 
-  function handleSaveDataForVerification(data: Inputs) {
+  function handleSaveDataForVerification(data: OrgaSettingsInputsType) {
     setDataForVerification(data)
   }
 
-  const handleUpdateOrganisation: SubmitHandler<Inputs> = async ({
+  const handleUpdateOrganisation: SubmitHandler<
+    OrgaSettingsInputsType
+  > = async ({
     email,
     name,
     organisationType,
@@ -91,10 +84,11 @@ export default function ParametresPage() {
     administratorTelephone,
     hasOptedInForCommunications,
   }) => {
+    const formattedEmail = formatEmail(email)
     // Switch to the update email user flow
-    if (email !== user?.organisation?.administratorEmail) {
+    if (formattedEmail !== user?.organisation?.administratorEmail) {
       handleSaveDataForVerification({
-        email,
+        email: formattedEmail,
         name,
         organisationType,
         numberOfCollaborators,

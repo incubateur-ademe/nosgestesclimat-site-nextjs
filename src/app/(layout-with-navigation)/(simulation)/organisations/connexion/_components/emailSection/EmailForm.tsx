@@ -7,6 +7,7 @@ import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisati
 import { useLoginOrganisation } from '@/hooks/organisations/useLoginOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
+import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
 import React from 'react'
 
@@ -34,7 +35,7 @@ export default function EmailForm() {
       'email'
     ) as HTMLInputElement
 
-    const email = input.value
+    const email = formatEmail(input.value)
 
     // Validation
     if (!email || !isEmailValid(email)) {

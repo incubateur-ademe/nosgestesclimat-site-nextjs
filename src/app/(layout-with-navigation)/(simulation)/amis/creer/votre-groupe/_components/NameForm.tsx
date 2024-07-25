@@ -11,6 +11,7 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { formatEmail } from '@/utils/format/formatEmail'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -68,7 +69,9 @@ export default function NameForm() {
 
   async function onSubmit({ name, emoji }: Inputs) {
     try {
-      const administratorEmail = searchParams.get('administratorEmail')
+      const administratorEmail = formatEmail(
+        searchParams.get('administratorEmail')
+      )
       const administratorName = searchParams.get('administratorName')
 
       const group = await createGroup({

@@ -15,6 +15,7 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
+import { formatEmail } from '@/utils/format/formatEmail'
 import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 
@@ -77,14 +78,15 @@ export default function MesInformations() {
       [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: data['newsletter-transports'],
     }
     try {
+      const formattedEmail = formatEmail(data.email ?? '')
       await updateUserSettings({
         name: data.name,
-        email: data.email,
+        email: formattedEmail,
         newsletterIds,
       })
 
-      if (data.email) {
-        updateEmail(data.email)
+      if (formattedEmail) {
+        updateEmail(formattedEmail)
       }
 
       if (data.name) {
