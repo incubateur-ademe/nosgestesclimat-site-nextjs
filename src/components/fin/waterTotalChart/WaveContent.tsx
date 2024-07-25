@@ -16,12 +16,10 @@ export default function WaveContent() {
       />
       <Octopus />
       <p className="relative mb-0 text-xs italic text-white lg:text-base">
-        Ce chiffre vous semble impressionnant ?
-        <br className="hidden lg:inline" />
+        Ce chiffre vous semble impressionnant ? <br />
         C'est pourtant bien l'eau qui sert à produire ce que vous consommez :
-        <br className="hidden lg:inline" />
-        votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles
-        naturels de l'eau.
+        <br className="hidden lg:inline" /> votre empreinte eau, c'est l'impact
+        de votre mode de vie sur les cycles naturels de l'eau.
       </p>
     </div>
   )
