@@ -9,6 +9,7 @@ import Form from '@/design-system/form/Form'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
+import { useSendVerificationCodeWhenModifyingEmail } from '@/hooks/organisations/useSendVerificationCodeWhenModifyingEmail'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
 import { useVerifyCodeAndUpdate } from '@/hooks/organisations/useVerifyCodeAndUpdate'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -28,9 +29,9 @@ import PersonalInfoFields from './_components/PersonalInfoFields'
 export default function ParametresPage() {
   const { user, updateUserOrganisation } = useUser()
   const [error, setError] = useState<string>('')
-  const [dataForVerification, setDataForVerification] = useState<
-    OrgaSettingsInputsType | undefined
-  >()
+  const [shouldDisplayModal, setShouldDisplayModal] = useState<boolean>(false)
+  const [dataTemporarySaved, setDataTemporarySaved] =
+    useState<OrgaSettingsInputsType>()
 
   const { t } = useClientTranslation()
 
@@ -68,8 +69,18 @@ export default function ParametresPage() {
     isPending: isPendingVerifyAndUpdate,
   } = useVerifyCodeAndUpdate(user?.organisation?.administratorEmail ?? '')
 
+  const { mutate: sendVerificationCode, isError: isErrorSendCode } =
+    useSendVerificationCodeWhenModifyingEmail(
+      user?.organisation?.administratorEmail ?? ''
+    )
+
   function handleSaveDataForVerification(data: OrgaSettingsInputsType) {
-    setDataForVerification(data)
+    setDataTemporarySaved(data)
+    setShouldDisplayModal(true)
+    sendVerificationCode({
+      email: data?.email ?? '',
+      previousEmail: user?.organisation?.administratorEmail ?? '',
+    })
   }
 
   const handleUpdateOrganisation: SubmitHandler<
@@ -120,7 +131,7 @@ export default function ParametresPage() {
   }
 
   function closeModal() {
-    setDataForVerification(undefined)
+    setShouldDisplayModal(false)
   }
 
   const timeoutRef = useRef<NodeJS.Timeout>()
@@ -134,12 +145,12 @@ export default function ParametresPage() {
   async function handleVerifyCodeAndSaveModifications(
     verificationCode: string
   ) {
-    if (verificationCode?.length < 6 || !dataForVerification) return
+    if (verificationCode?.length < 6) return
 
     await verifyCodeAndUpdateOrganisation({
-      ...dataForVerification,
+      ...dataTemporarySaved,
       email: user?.organisation?.administratorEmail ?? '',
-      emailModified: dataForVerification.email,
+      emailModified: dataTemporarySaved?.email ?? '',
       verificationCode,
     })
 
@@ -148,7 +159,7 @@ export default function ParametresPage() {
     // BUG : without a timeout, the organisation is not modified (weird I know)
     timeoutRef.current = setTimeout(() => {
       updateUserOrganisation({
-        administratorEmail: dataForVerification.email,
+        administratorEmail: dataTemporarySaved?.email ?? '',
       })
 
       closeModal()
@@ -201,14 +212,14 @@ export default function ParametresPage() {
         />
       </Form>
 
-      {!!dataForVerification && (
+      {shouldDisplayModal && (
         <EmailVerificationModal
-          data={dataForVerification}
           closeModal={closeModal}
           onSubmit={handleVerifyCodeAndSaveModifications}
           error={errorVeridyAndUpdate}
           isSuccess={isSuccessVerifyAndUpdate}
           isPending={isPendingVerifyAndUpdate}
+          isErrorSendCode={isErrorSendCode}
         />
       )}
 

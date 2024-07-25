@@ -4,68 +4,26 @@ import VerificationCodeInput from '@/components/organisations/VerificationCodeIn
 import Trans from '@/components/translation/Trans'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
-import { useSendVerificationCodeWhenModifyingEmail } from '@/hooks/organisations/useSendVerificationCodeWhenModifyingEmail'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
-import { OrgaSettingsInputsType } from '@/types/organisations'
-import { useEffect, useState } from 'react'
 
 type Props = {
-  data: OrgaSettingsInputsType | undefined
   closeModal: () => void
   onSubmit: (verificationCode: string) => void
   error: Error | null
   isSuccess: boolean
   isPending: boolean
+  isErrorSendCode: boolean
 }
 
 export default function EmailVerificationModal({
-  data,
   closeModal,
   onSubmit,
   error,
   isSuccess,
   isPending,
+  isErrorSendCode,
 }: Props) {
-  const [shouldSendEmail, setShouldSendEmail] = useState(false)
-
-  const { user } = useUser()
-
   const { t } = useClientTranslation()
-
-  const {
-    mutate: sendVerificationCode,
-    isSuccess: isSuccessSend,
-    isError: isErrorSendCode,
-  } = useSendVerificationCodeWhenModifyingEmail(data?.email ?? '')
-
-  useEffect(() => {
-    if (!data || !user?.organisation?.administratorEmail || shouldSendEmail)
-      return
-
-    setShouldSendEmail(true)
-  }, [
-    data,
-    sendVerificationCode,
-    shouldSendEmail,
-    user?.organisation?.administratorEmail,
-  ])
-
-  useEffect(() => {
-    if (shouldSendEmail && !isSuccessSend && !isErrorSendCode) {
-      sendVerificationCode({
-        email: data?.email ?? '',
-        previousEmail: user?.organisation?.administratorEmail ?? '',
-      })
-    }
-  }, [
-    data,
-    isErrorSendCode,
-    isSuccessSend,
-    sendVerificationCode,
-    shouldSendEmail,
-    user?.organisation?.administratorEmail,
-  ])
 
   return (
     <Modal isOpen closeModal={closeModal}>
