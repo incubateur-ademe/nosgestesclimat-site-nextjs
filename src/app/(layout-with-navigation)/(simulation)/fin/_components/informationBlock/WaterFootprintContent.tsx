@@ -73,19 +73,19 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
             </span>
           </li>
           <li className="mb-1 flex items-start gap-3">
-            <Emoji className="mt-1 text-2xl">⚡️</Emoji>
-            <span className="flex-1">
-              pour la production de votre{' '}
-              <strong className="text-secondary-700">électricité</strong>
-            </span>
-          </li>
-          <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">📱</Emoji>
             <span className="flex-1">
               pour l’extraction des matériaux de vos{' '}
               <strong className="text-secondary-700">
                 appareils numériques
               </strong>
+            </span>
+          </li>
+          <li className="mb-1 flex items-start gap-3">
+            <Emoji className="mt-1 text-2xl">⚡️</Emoji>
+            <span className="flex-1">
+              pour la production de votre{' '}
+              <strong className="text-secondary-700">électricité</strong>
             </span>
           </li>
         </ul>

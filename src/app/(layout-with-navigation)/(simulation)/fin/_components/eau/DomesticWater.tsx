@@ -12,7 +12,7 @@ export default function DomesticWater() {
 
   return (
     <div className="relative">
-      <div className="relative rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-6 ">
+      <div className="relative rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-6">
         <div className={isOpen ? '' : '-mb-8'}>
           <Title tag="h2" hasSeparator={isOpen} className="text-lg lg:text-2xl">
             <Trans>
