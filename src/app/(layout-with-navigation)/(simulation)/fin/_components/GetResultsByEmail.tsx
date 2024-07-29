@@ -112,7 +112,7 @@ export default function GetResultsByEmail({
 
     const listIds = getSaveSimulationListIds(data)
 
-    const formattedEmail = formatEmail(data.email ?? '')
+    const formattedEmail = formatEmail(data.email)
 
     updateEmail(formattedEmail)
 
