@@ -4,6 +4,6 @@ import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supported
 /**
  * This function is used to get the supported regions. It can be called directly from a server component.
  */
-export async function getSupportedRegions(): Promise<SupportedRegions> {
-  return Promise.resolve(supportedRegions)
+export function getSupportedRegions(): SupportedRegions {
+  return supportedRegions
 }

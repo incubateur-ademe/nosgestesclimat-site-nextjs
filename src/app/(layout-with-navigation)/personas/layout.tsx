@@ -18,8 +18,8 @@ export async function generateMetadata() {
   })
 }
 
-export default async function PersonasLayout({ children }: PropsWithChildren) {
-  const supportedRegions = await getSupportedRegions()
+export default function PersonasLayout({ children }: PropsWithChildren) {
+  const supportedRegions = getSupportedRegions()
 
   return <Providers supportedRegions={supportedRegions}>{children}</Providers>
 }
