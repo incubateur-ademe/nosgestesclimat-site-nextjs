@@ -16,6 +16,7 @@ export default function useSimulation() {
     safeEvaluate,
     safeGetRule,
     isInitialized,
+    addToEngineSituation,
   } = useContext(SimulationContext)
 
   return {
@@ -29,5 +30,6 @@ export default function useSimulation() {
     safeEvaluate,
     safeGetRule,
     isInitialized,
+    addToEngineSituation,
   }
 }

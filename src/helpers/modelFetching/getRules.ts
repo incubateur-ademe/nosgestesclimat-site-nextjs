@@ -24,7 +24,7 @@ export async function getRules({
   locale = 'fr',
   PRNumber,
 }: Props = defaultProps): Promise<NGCRules> {
-  const supportedRegions = await getSupportedRegions()
+  const supportedRegions = getSupportedRegions()
 
   // We provide the FR version of the model if the region is not supported
   const regionCodeToProvide = supportedRegions[regionCode] ? regionCode : 'FR'

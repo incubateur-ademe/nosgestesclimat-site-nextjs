@@ -1,5 +1,6 @@
+import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
 import Engine from 'publicodes'
-import { useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
 import { DottedName, Situation } from '../../types'
 
@@ -13,14 +14,17 @@ type Props = {
  * Very ressource intensive. Use with caution
  */
 export default function useDisposableEngine({ rules, situation }: Props) {
+  const { rules: contextRules } = useContext(SimulationContext)
+
   const engine = useMemo(() => {
-    return new Engine(rules, {
+    return new Engine(rules ?? contextRules, {
+      logger: { warn: () => {}, error: () => {}, log: () => {} },
       strict: {
         situation: false,
         noOrphanRule: false,
       },
     }).setSituation(situation)
-  }, [rules, situation])
+  }, [contextRules, rules, situation])
 
   const safeEvaluate = useMemo(
     () =>
@@ -37,6 +41,7 @@ export default function useDisposableEngine({ rules, situation }: Props) {
   }
 
   return {
+    engine,
     getValue,
     updateSituation,
   }

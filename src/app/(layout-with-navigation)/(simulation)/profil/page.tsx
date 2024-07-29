@@ -28,7 +28,7 @@ export async function generateMetadata() {
 }
 
 export default async function Profil() {
-  const supportedRegions = await getSupportedRegions()
+  const supportedRegions = getSupportedRegions()
   const { t } = await getServerTranslation()
 
   return (
