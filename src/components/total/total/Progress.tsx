@@ -1,5 +1,5 @@
 import {
-  getBackgroundDarkColor,
+  getBackgroundColor,
   getBackgroundLightColor,
 } from '@/helpers/getCategoryColorClass'
 import { useCurrentSimulation, useForm } from '@/publicodes-state'
@@ -21,7 +21,7 @@ export default function Progress() {
       <div
         className={twMerge(
           'absolute bottom-0 left-0 right-0 h-2 origin-left transition-transform',
-          getBackgroundDarkColor(currentCategory)
+          getBackgroundColor(currentCategory)
         )}
         style={{ transform: `scaleX(${progression})` }}
       />
