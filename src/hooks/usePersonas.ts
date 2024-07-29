@@ -17,6 +17,6 @@ export function usePersonas(): UseQueryResult<Personas, Error> {
     queryKey: ['personas', locale, PRNumber],
     queryFn: () => getPersonas({ locale, PRNumber }),
     placeholderData: keepPreviousData,
-    staleTime: 5000000000, // We don't want to import the personas multiple times
+    staleTime: Infinity, // We don't want to import the personas multiple times
   })
 }
