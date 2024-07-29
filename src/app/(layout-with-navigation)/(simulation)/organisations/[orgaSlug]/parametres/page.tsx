@@ -64,7 +64,7 @@ export default function ParametresPage() {
 
   const {
     mutateAsync: verifyCodeAndUpdateOrganisation,
-    error: errorVeridyAndUpdate,
+    error: errorVerifyAndUpdate,
     isSuccess: isSuccessVerifyAndUpdate,
     isPending: isPendingVerifyAndUpdate,
   } = useVerifyCodeAndUpdate(user?.organisation?.administratorEmail ?? '')
@@ -216,7 +216,7 @@ export default function ParametresPage() {
         <EmailVerificationModal
           closeModal={closeModal}
           onSubmit={handleVerifyCodeAndSaveModifications}
-          error={errorVeridyAndUpdate}
+          error={errorVerifyAndUpdate}
           isSuccess={isSuccessVerifyAndUpdate}
           isPending={isPendingVerifyAndUpdate}
           isErrorSendCode={isErrorSendCode}
