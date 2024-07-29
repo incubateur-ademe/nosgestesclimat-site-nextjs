@@ -1,6 +1,14 @@
-import { FormProvider } from '@/publicodes-state'
+import ContentLarge from '@/components/layout/ContentLarge'
+import Header from '@/components/layout/Header'
 import { PropsWithChildren } from 'react'
 
-export default function Layout({ children }: PropsWithChildren) {
-  return <FormProvider>{children}</FormProvider>
+export default async function LargeLayoutNoSticky({
+  children,
+}: PropsWithChildren) {
+  return (
+    <>
+      <Header isSticky={false} />
+      <ContentLarge>{children}</ContentLarge>
+    </>
+  )
 }

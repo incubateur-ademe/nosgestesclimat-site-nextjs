@@ -66,6 +66,23 @@ export function getBackgroundLightColor(category?: string | null) {
   }
 }
 
+export function getBackgroundDarkColor(category?: string | null) {
+  switch (category) {
+    case 'transport':
+      return `bg-transport-700`
+    case 'alimentation':
+      return `bg-alimentation-700`
+    case 'logement':
+      return `bg-logement-700`
+    case 'divers':
+      return `bg-divers-700`
+    case 'services sociétaux':
+      return `bg-servicessocietaux-700`
+    default:
+      return 'bg-primary-700'
+  }
+}
+
 export function getBorderColor(category?: string | null) {
   switch (category) {
     case 'transport':

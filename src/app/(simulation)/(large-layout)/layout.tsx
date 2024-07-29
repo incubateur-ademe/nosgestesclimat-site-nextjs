@@ -1,4 +1,4 @@
-import ContentLarge from '@/components/layout/ContentNarrow'
+import ContentLarge from '@/components/layout/ContentLarge'
 import Header from '@/components/layout/Header'
 import { PropsWithChildren } from 'react'
 

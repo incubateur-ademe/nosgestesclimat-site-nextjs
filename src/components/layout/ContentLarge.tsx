@@ -1,9 +1,20 @@
 import Main from '@/design-system/layout/Main'
 import { PropsWithChildren } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-export default function ContentLarge({ children }: PropsWithChildren) {
+type Props = {
+  className?: string
+}
+export default function ContentLarge({
+  children,
+  className,
+}: PropsWithChildren<Props>) {
   return (
-    <Main className="mb-8 w-full max-w-6xl overflow-visible px-4 lg:mx-auto">
+    <Main
+      className={twMerge(
+        'mb-8 w-full max-w-6xl overflow-visible px-4 lg:mx-auto',
+        className
+      )}>
       {children}
     </Main>
   )

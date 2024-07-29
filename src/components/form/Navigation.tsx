@@ -10,7 +10,6 @@ import {
   questionClickSuivant,
 } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
-import { getBorderLightColor } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
@@ -35,7 +34,7 @@ export default function Navigation({
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
 
-  const { isMissing, plancher, value, category } = useRule(question)
+  const { isMissing, plancher, value } = useRule(question)
 
   const { updateCurrentSimulation } = useCurrentSimulation()
 
@@ -119,37 +118,38 @@ export default function Navigation({
   return (
     <div
       className={twMerge(
-        'flex justify-between border-b pb-6',
-        getBorderLightColor(category).replace('-100', '-200')
+        'fixed bottom-0 left-0 right-0 z-50 border-t-2 border-primary-100 bg-white py-3'
       )}>
-      <Button
-        size="md"
-        onClick={() => {
-          trackEvent(questionClickPrevious({ question }))
+      <div className="mx-auto flex w-full max-w-6xl justify-end gap-4 px-4">
+        <Button
+          size="md"
+          onClick={() => {
+            trackEvent(questionClickPrevious({ question }))
 
-          if (!noPrevQuestion) {
-            gotoPrevQuestion()
-          }
+            if (!noPrevQuestion) {
+              gotoPrevQuestion()
+            }
 
-          handleMoveFocus()
-        }}
-        color="text"
-        className={twMerge('px-3', noPrevQuestion ? 'invisible' : 'visible')}>
-        {'← ' + t('Précédent')}
-      </Button>
+            handleMoveFocus()
+          }}
+          color="text"
+          className={twMerge('px-3', noPrevQuestion ? 'invisible' : 'visible')}>
+          {'← ' + t('Précédent')}
+        </Button>
 
-      <Button
-        color={isMissing ? 'secondary' : 'primary'}
-        disabled={isNextDisabled}
-        size="md"
-        data-cypress-id="next-question-button"
-        onClick={handleGoToNextQuestion}>
-        {noNextQuestion
-          ? t('Terminer')
-          : isMissing
-            ? t('Je ne sais pas') + ' →'
-            : t('Suivant') + ' →'}
-      </Button>
+        <Button
+          color={isMissing ? 'secondary' : 'primary'}
+          disabled={isNextDisabled}
+          size="md"
+          data-cypress-id="next-question-button"
+          onClick={handleGoToNextQuestion}>
+          {noNextQuestion
+            ? t('Terminer')
+            : isMissing
+              ? t('Passer la question') + ' →'
+              : t('Suivant') + ' →'}
+        </Button>
+      </div>
     </div>
   )
 }

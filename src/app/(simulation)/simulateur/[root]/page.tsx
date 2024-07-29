@@ -9,7 +9,6 @@ import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
 import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
-import CategoriesSummary from './_components/CategoriesSummary'
 import Simulateur from './_components/Simulateur'
 
 export default function SimulateurPage() {
@@ -36,15 +35,10 @@ export default function SimulateurPage() {
   return (
     <>
       <Total toggleQuestionList={toggleQuestionList} />
-      <div className="-mt-10 mb-14 flex flex-col gap-8 lg:mt-0 lg:flex-row lg:gap-24">
-        <Simulateur
-          toggleQuestionList={toggleQuestionList}
-          isQuestionListOpen={isQuestionListOpen}
-        />
-        <div className="top-4 flex w-full flex-col gap-4 self-start lg:sticky lg:z-50 lg:w-[20rem] short:gap-2">
-          <CategoriesSummary />
-        </div>
-      </div>
+      <Simulateur
+        toggleQuestionList={toggleQuestionList}
+        isQuestionListOpen={isQuestionListOpen}
+      />
     </>
   )
 }

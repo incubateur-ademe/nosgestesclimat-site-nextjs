@@ -51,7 +51,7 @@ export default function Label({
     <>
       <label
         className={twMerge(
-          `flex ${sizeClassNames[size]} font-semibold`,
+          `flex ${sizeClassNames[size]} gap-2 font-semibold`,
           className
         )}
         aria-label={label}
@@ -59,7 +59,10 @@ export default function Label({
         // of triggering the first input (here the button) it
         onClick={(e) => e.preventDefault()}>
         <h1
-          className={twMerge('mb-0 inline text-lg md:text-xl', titleClassName)}
+          className={twMerge(
+            'mb-0 inline text-lg md:text-xl [&_p]:mb-0',
+            titleClassName
+          )}
           tabIndex={0}
           id={QUESTION_DESCRIPTION_BUTTON_ID}>
           <Markdown>{label}</Markdown>

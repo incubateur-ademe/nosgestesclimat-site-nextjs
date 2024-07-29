@@ -1,6 +1,7 @@
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
+import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
 import { simulationSimulationCompleted } from '@/constants/tracking/simulation'
 import { uuidToNumber } from '@/helpers/uuidToNumber'
@@ -11,6 +12,7 @@ import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useCurrentSimulation, useEngine, useForm } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useContext, useEffect, useState } from 'react'
+import CategoriesSummary from './form/CategoriesSummary'
 
 export default function Form() {
   const isDebug = useDebug()
@@ -107,15 +109,24 @@ export default function Form() {
   const QuestionComponent = questions[currentQuestion] || Question
 
   return (
-    <div className="relative flex min-h-[33rem] flex-col justify-between lg:min-h-[24rem]">
-      <div>
-        <QuestionComponent
-          question={currentQuestion}
-          key={currentQuestion}
-          tempValue={tempValue}
-          setTempValue={setTempValue}
-        />
-      </div>
+    <>
+      <ContentLarge>
+        <div className="-mt-10 mb-14 flex flex-col gap-8 lg:mt-0 lg:flex-row lg:gap-24">
+          <div className="flex-1">
+            <QuestionComponent
+              question={currentQuestion}
+              key={currentQuestion}
+              tempValue={tempValue}
+              setTempValue={setTempValue}
+            />
+          </div>
+
+          <div className="top-4 flex w-full flex-col gap-4 self-start lg:sticky lg:z-50 lg:w-[20rem] short:gap-2">
+            <CategoriesSummary />
+          </div>
+        </div>
+      </ContentLarge>
+
       <Navigation
         question={currentQuestion}
         tempValue={tempValue}
@@ -127,6 +138,6 @@ export default function Form() {
           setShouldGoToEndPage(true)
         }}
       />
-    </div>
+    </>
   )
 }
