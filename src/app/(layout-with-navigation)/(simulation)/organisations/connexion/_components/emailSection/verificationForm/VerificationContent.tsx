@@ -1,6 +1,6 @@
 import MailIcon from '@/components/icons/MailIcon'
+import VerificationCodeInput from '@/components/organisations/VerificationCodeInput'
 import Trans from '@/components/translation/Trans'
-import VerificationCodeInput from './VerificationCodeInput'
 
 type Props = {
   email: string

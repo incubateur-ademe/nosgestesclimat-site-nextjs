@@ -11,7 +11,9 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { formatEmail } from '@/utils/format/formatEmail'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { captureException } from '@sentry/react'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -68,7 +70,9 @@ export default function NameForm() {
 
   async function onSubmit({ name, emoji }: Inputs) {
     try {
-      const administratorEmail = searchParams.get('administratorEmail')
+      const administratorEmail = formatEmail(
+        searchParams.get('administratorEmail')
+      )
       const administratorName = searchParams.get('administratorName')
 
       const group = await createGroup({
@@ -91,7 +95,7 @@ export default function NameForm() {
 
       setShouldNavigate(group._id)
     } catch (e) {
-      // captureException(e)
+      captureException(e)
     }
   }
 

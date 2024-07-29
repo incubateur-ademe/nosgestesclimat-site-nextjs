@@ -9,6 +9,7 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
+import { formatEmail } from '@/utils/format/formatEmail'
 import { useEffect, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
@@ -59,9 +60,11 @@ export default function InvitationForm({ group }: { group: Group }) {
       return
     }
 
+    const formattedQuestEmail = formatEmail(guestEmail)
+
     // Update user info
     updateName(guestName)
-    updateEmail(guestEmail)
+    updateEmail(formattedQuestEmail)
 
     // Update current simulation with group id (to redirect after test completion)
     currentSimulation.update({
