@@ -105,11 +105,11 @@ export type UpdatePollProps = {
 
 export type OrgaSettingsInputsType = {
   name: string
-  administratorName: string
-  administratorTelephone: string
-  hasOptedInForCommunications: boolean
+  administratorName?: string
+  administratorTelephone?: string
+  hasOptedInForCommunications?: boolean
   email: string
-  organisationType: string
-  position: string
-  numberOfCollaborators: number
+  organisationType?: string
+  position?: string
+  numberOfCollaborators?: number
 }
