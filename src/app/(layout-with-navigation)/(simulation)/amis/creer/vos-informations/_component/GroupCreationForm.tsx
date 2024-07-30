@@ -67,16 +67,9 @@ export default function GroupCreationForm() {
         <EmailInput
           error={errors.administratorEmail?.message}
           value={user.email ?? ''}
-          label={
-            <span>
-              {t('Votre adresse email')}{' '}
-              <span className="italic text-secondary-700">
-                {' '}
-                {t('facultatif')}
-              </span>
-            </span>
-          }
+          label={<span>{t('Votre adresse email')}</span>}
           {...register('administratorEmail', {
+            required: t('Ce champ est requis.'),
             pattern: {
               value:
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
