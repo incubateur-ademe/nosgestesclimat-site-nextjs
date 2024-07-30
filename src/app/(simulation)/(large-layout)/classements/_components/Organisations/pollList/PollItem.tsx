@@ -1,9 +1,9 @@
 'use client'
 
 import Link from '@/components/Link'
+import ChevronRight from '@/components/icons/ChevronRight'
 import Trans from '@/components/translation/Trans'
 import { classementClickOrganisation } from '@/constants/tracking/pages/classements'
-import ChevronRight from '@/design-system/icons/ChevronRight'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
 import { PollInfo } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'

@@ -17,6 +17,7 @@ import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { MouseEvent, useCallback, useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
+import ValueChangeDisplay from '../misc/ValueChangeDisplay'
 
 type Props = {
   question: DottedName
@@ -120,7 +121,7 @@ export default function Navigation({
       className={twMerge(
         'fixed bottom-0 left-0 right-0 z-50 border-t-2 border-primary-100 bg-white py-3'
       )}>
-      <div className="mx-auto flex w-full max-w-6xl justify-end gap-4 px-4">
+      <div className="relative mx-auto flex w-full max-w-6xl justify-end gap-4 px-4">
         <Button
           size="md"
           onClick={() => {
@@ -149,6 +150,9 @@ export default function Navigation({
               ? t('Passer la question') + ' →'
               : t('Suivant') + ' →'}
         </Button>
+        <div className="absolute bottom-full right-8 -translate-y-4">
+          <ValueChangeDisplay />
+        </div>
       </div>
     </div>
   )

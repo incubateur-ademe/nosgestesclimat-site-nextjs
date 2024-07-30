@@ -9,6 +9,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useState } from 'react'
+import ButtonBack from './total/ButtonBack'
 import Explanation from './total/Explanation'
 import Progress from './total/Progress'
 import TotalButtons from './total/TotalButtons'
@@ -58,7 +59,8 @@ export default function Total({ toggleQuestionList }: Props) {
       <div className="relative mb-10 flex items-center gap-4 overflow-hidden pb-6 pt-4">
         <Progress />
         <div className="mb-0 flex w-full max-w-6xl justify-between overflow-visible px-4 lg:mx-auto">
-          <div className="flex gap-4">
+          <div className="relative flex gap-4">
+            <ButtonBack />
             <TotalFootprintNumber />
             <QuestionButton
               onClick={toggleOpen}

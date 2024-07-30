@@ -1,4 +1,4 @@
-import ChevronRight from '@/design-system/icons/ChevronRight'
+import ChevronRight from '@/components/icons/ChevronRight'
 import { motion } from 'framer-motion'
 import { ReactNode, useState } from 'react'
 

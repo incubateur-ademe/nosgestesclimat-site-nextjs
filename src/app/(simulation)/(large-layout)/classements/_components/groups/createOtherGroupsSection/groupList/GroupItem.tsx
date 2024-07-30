@@ -1,9 +1,9 @@
 'use client'
 
 import Link from '@/components/Link'
+import ChevronRight from '@/components/icons/ChevronRight'
 import Trans from '@/components/translation/Trans'
 import { classementClickGroup } from '@/constants/tracking/pages/classements'
-import ChevronRight from '@/design-system/icons/ChevronRight'
 import Emoji from '@/design-system/utils/Emoji'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useUser } from '@/publicodes-state'

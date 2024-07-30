@@ -6,6 +6,7 @@ import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+import Trans from '../translation/Trans'
 
 export default function ValueChangeDisplay({
   className,
@@ -47,15 +48,17 @@ export default function ValueChangeDisplay({
   return (
     <div
       className={twMerge(
-        'animate-valuechange whitespace-nowrap rounded-xl border-2 border-primary-100 bg-primary-700 px-5 py-1 text-white',
-        isNegative ? 'bg-green-600' : 'bg-red-700',
+        'animate-valuechange whitespace-nowrap ',
+        isNegative ? 'text-green-700' : 'text-red-700',
         className
       )}
       key={numericValue}>
-      <strong className="text-lg">
+      <strong className="text-xl font-black">
         {displayDifference > 0 ? '+' : '-'} {formattedValue}
       </strong>{' '}
-      <span className="text-xs">{unit}</span>
+      <span className="text-xs">
+        {unit} <Trans>sur votre empreinte</Trans>
+      </span>
     </div>
   )
 }

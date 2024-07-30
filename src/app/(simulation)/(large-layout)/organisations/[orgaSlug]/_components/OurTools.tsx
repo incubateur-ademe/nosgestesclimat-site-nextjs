@@ -1,12 +1,12 @@
 'use client'
 
+import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
 import Trans from '@/components/translation/Trans'
 import {
   organisationsDashboardClickAteliers,
   organisationsDashboardClickImpactCo2,
   organisationsDashboardDownloadKit,
 } from '@/constants/tracking/pages/organisationsDashboard'
-import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'

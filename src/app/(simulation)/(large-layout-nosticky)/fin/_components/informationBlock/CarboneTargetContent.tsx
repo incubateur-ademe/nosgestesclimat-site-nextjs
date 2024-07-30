@@ -1,6 +1,6 @@
 import Link from '@/components/Link'
+import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
 import Trans from '@/components/translation/Trans'
-import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Title from '@/design-system/layout/Title'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
