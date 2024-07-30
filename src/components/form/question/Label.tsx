@@ -31,7 +31,7 @@ type Props = {
 
 const sizeClassNames = {
   sm: 'mb-1 text-sm',
-  md: 'mb-6 text-lg md:text-2xl',
+  md: 'mb-3 text-lg md:text-2xl',
 }
 
 export default function Label({
@@ -52,7 +52,8 @@ export default function Label({
       <label
         className={twMerge(
           `flex ${sizeClassNames[size]} gap-2 font-semibold`,
-          className
+          className,
+          question === 'logement . âge' ? 'mb-1' : ''
         )}
         aria-label={label}
         // This is a hack to avoid the default <label> element behavior
@@ -86,7 +87,12 @@ export default function Label({
           </Button>
         ) : null}
       </label>
-
+      {question === 'logement . âge' && (
+        <div className="mb-4 text-xs italic md:text-sm">
+          Un petit doute ? L’info sera sûrement dans votre contrat d’assurance
+          logement.
+        </div>
+      )}
       {isOpen && description ? (
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
