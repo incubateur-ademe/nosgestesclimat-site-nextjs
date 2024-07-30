@@ -28,7 +28,7 @@ export async function generateMetadata() {
 export default async function International() {
   const { t } = await getServerTranslation()
 
-  const supportedRegions = await getSupportedRegions()
+  const supportedRegions = getSupportedRegions()
 
   // TODO: add back full width somehow
   return (
