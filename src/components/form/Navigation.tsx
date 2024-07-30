@@ -119,9 +119,9 @@ export default function Navigation({
   return (
     <div
       className={twMerge(
-        'fixed bottom-0 left-0 right-0 z-50 border-t-2 border-primary-100 bg-white py-3'
+        'fixed bottom-0 left-0 right-0 z-50 border-t-2 border-primary-50 bg-gray-100 py-3'
       )}>
-      <div className="relative mx-auto flex w-full max-w-6xl justify-end gap-4 px-4">
+      <div className="relative mx-auto flex w-full max-w-6xl justify-between gap-4 px-4 lg:justify-end">
         <Button
           size="md"
           onClick={() => {

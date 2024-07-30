@@ -49,9 +49,15 @@ export default function Logo({
             'origin-left font-extrabold uppercase !leading-[0.85] text-default transition-all duration-500 lg:block',
             textClassSize[size]
           )}>
-          <span className="block w-full !leading-[0.85]">Nos</span>
-          <span className="block w-full !leading-[0.85]">Gestes</span>
-          <span className="block w-full !leading-[0.85]">Climat</span>
+          <span className="block w-full whitespace-normal !leading-[0.85]">
+            Nos
+          </span>
+          <span className="block w-full whitespace-normal !leading-[0.85]">
+            Gestes
+          </span>
+          <span className="block w-full whitespace-normal !leading-[0.85]">
+            Climat
+          </span>
         </div>
       </Link>
     </div>

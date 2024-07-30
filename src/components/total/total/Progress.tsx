@@ -14,13 +14,13 @@ export default function Progress() {
     <>
       <div
         className={twMerge(
-          'absolute bottom-0 left-0 right-0 h-2 transition-transform',
+          'absolute bottom-0 left-0 right-0 h-1 transition-transform',
           getBackgroundLightColor(currentCategory)
         )}
       />
       <div
         className={twMerge(
-          'absolute bottom-0 left-0 right-0 h-2 origin-left transition-transform',
+          'absolute bottom-0 left-0 right-0 h-1 origin-left transition-transform',
           getBackgroundColor(currentCategory)
         )}
         style={{ transform: `scaleX(${progression})` }}

@@ -111,7 +111,7 @@ export default function Form() {
   return (
     <>
       <ContentLarge>
-        <div className="-mt-10 mb-14 flex flex-col gap-8 lg:mt-0 lg:flex-row lg:gap-24">
+        <div className="flex flex-col gap-8 lg:mt-0 lg:flex-row lg:gap-24">
           <div className="flex-1">
             <QuestionComponent
               question={currentQuestion}
@@ -121,7 +121,7 @@ export default function Form() {
             />
           </div>
 
-          <div className="top-4 flex w-full flex-col gap-4 self-start lg:sticky lg:z-50 lg:w-[20rem] short:gap-2">
+          <div className="sticky top-4 z-50 hidden w-[20rem] flex-col gap-4 self-start lg:flex short:gap-2">
             <CategoriesSummary />
           </div>
         </div>

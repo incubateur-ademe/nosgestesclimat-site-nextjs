@@ -49,20 +49,19 @@ export default function TotalFootprintNumber({
     totalFootprintValue !== totalFootprintValueMinusActions
 
   return (
-    <div>
+    <div className="flex items-center gap-2 lg:block">
       {shouldDisplayTotalWithoutActions && (
-        <>
-          <strong className="mr-4 block text-4xl font-black leading-none text-slate-500 line-through lg:inline short:text-3xl">
-            {formatedTotalFootprintValue}
-          </strong>
-        </>
+        <strong className="mr-4 block font-black leading-none text-slate-500 line-through lg:inline lg:text-4xl short:text-3xl">
+          {formatedTotalFootprintValue}
+        </strong>
       )}
-      <strong className="block text-4xl font-black leading-none lg:inline short:text-3xl">
+      <strong className="block text-3xl font-black leading-none lg:inline lg:text-4xl short:text-3xl">
         {formattedValue}
       </strong>
-      <span className="block text-base font-medium lg:inline">
+      <span className="block text-xs font-medium leading-none lg:inline lg:text-base">
         {' '}
-        <Trans>{unit}</Trans> {duration[metric]}
+        <Trans>{unit}</Trans> <br className="lg:hidden" />
+        {duration[metric]}
       </span>
     </div>
   )

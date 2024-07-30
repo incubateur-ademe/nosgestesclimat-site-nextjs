@@ -56,10 +56,10 @@ export default function Total({ toggleQuestionList }: Props) {
 
   return (
     <header>
-      <div className="relative mb-10 flex items-center gap-4 overflow-hidden pb-6 pt-4">
+      <div className="relative mb-6 flex items-center gap-4 overflow-hidden pb-3 pt-2 lg:mb-10 lg:pb-5 lg:pt-4">
         <Progress />
-        <div className="mb-0 flex w-full max-w-6xl justify-between overflow-visible px-4 lg:mx-auto">
-          <div className="relative flex gap-4">
+        <div className="mb-0 flex w-full max-w-6xl justify-between overflow-visible pl-1 pr-4 lg:mx-auto lg:px-4">
+          <div className="relative flex items-center gap-1 lg:gap-4">
             <ButtonBack />
             <TotalFootprintNumber />
             <QuestionButton

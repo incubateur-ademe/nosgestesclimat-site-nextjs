@@ -74,7 +74,7 @@ export default function LanguageSwitchButton() {
   }, [iframeLang, currentLocale, handleChange])
 
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-wrap gap-2">
       <Button
         lang="fr"
         color={currentLocale === 'fr' ? 'primary' : 'secondary'}
