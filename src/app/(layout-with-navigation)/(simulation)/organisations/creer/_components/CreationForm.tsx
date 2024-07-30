@@ -8,7 +8,6 @@ import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
-import { useSendOrganisationCreationEmail } from '@/hooks/organisations/useSendOrganisationCreationEmail'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
@@ -49,9 +48,6 @@ export default function CreationForm() {
       email: user?.organisation?.administratorEmail ?? '',
     })
 
-  const { mutate: sendCreationConfirmationEmail, isError: isErrorSendEmail } =
-    useSendOrganisationCreationEmail()
-
   async function onSubmit({
     shouldNavigateToPollForm = true,
     name,
@@ -65,13 +61,7 @@ export default function CreationForm() {
         administratorName,
         hasOptedInForCommunications,
         organisationType,
-      })
-
-      // Send email
-      sendCreationConfirmationEmail({
-        organisation: organisationUpdated,
-        administratorName,
-        email: user?.organisation?.administratorEmail ?? '',
+        sendCreationEmail: true,
       })
 
       handleUpdateShouldPreventNavigation(false)
@@ -180,7 +170,7 @@ export default function CreationForm() {
         />
       </div>
 
-      {(isErrorUpdateOrga || isErrorSendEmail) && (
+      {isErrorUpdateOrga && (
         <div className="mt-4 rounded-xl bg-red-100 p-4 text-red-800">
           <Trans>Une erreur est survenue, veuillez réessayer.</Trans>
         </div>
