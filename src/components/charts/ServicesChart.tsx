@@ -1,4 +1,5 @@
 import { useEngine } from '@/publicodes-state'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat/dottedNames'
 import RavijenChart from './RavijenChart'
 
 export default function ServicesChart() {
@@ -7,11 +8,11 @@ export default function ServicesChart() {
   const serviceCategories = getSubcategories('services sociétaux')
 
   const serviceSubcategories = serviceCategories.reduce(
-    (acc: { [key: string]: string[] }, category: string) => {
+    (acc, category) => {
       acc[category] = getSubcategories(category)
       return acc
     },
-    {}
+    {} as Record<DottedName, DottedName[]>
   )
 
   return (

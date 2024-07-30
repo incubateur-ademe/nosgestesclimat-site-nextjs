@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
-import { Rules } from '@/publicodes-state/types'
+import { DottedName, Rules } from '@/publicodes-state/types'
 import { Rule } from 'publicodes'
 import RuleDetail from './calculDetail/RuleDetail'
 
@@ -10,7 +10,7 @@ export default function CalculDetail({
   rules,
 }: {
   rule: Rule
-  ruleName: string
+  ruleName: DottedName
   rules: Rules
 }) {
   return (

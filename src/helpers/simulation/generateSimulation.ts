@@ -1,6 +1,7 @@
 import { metrics } from '@/constants/metric'
 import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
 import {
+  ActionChoices,
   ComputedResults,
   ComputedResultsFootprint,
   Simulation,
@@ -14,7 +15,7 @@ export function generateSimulation({
   date = new Date().toISOString(),
   situation = {},
   foldedSteps = [],
-  actionChoices = {},
+  actionChoices = {} as ActionChoices,
   persona,
   computedResults = metrics.reduce((acc, metric) => {
     acc[metric] = {

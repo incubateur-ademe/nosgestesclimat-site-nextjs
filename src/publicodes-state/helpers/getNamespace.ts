@@ -18,7 +18,7 @@ import { DottedName } from '@/publicodes-state/types'
 export default function getNamespace(
   rule: DottedName | undefined | null,
   level: number = 1
-): string | undefined {
+): DottedName | undefined {
   if (rule === undefined || rule === null) {
     return undefined
   }
@@ -28,9 +28,9 @@ export default function getNamespace(
     return rule
   }
   if (level === 1) {
-    return splittedRule[0]
+    return splittedRule[0] as DottedName
   }
   if (level > 1) {
-    return splittedRule.slice(0, level).join(' . ')
+    return splittedRule.slice(0, level).join(' . ') as DottedName
   }
 }

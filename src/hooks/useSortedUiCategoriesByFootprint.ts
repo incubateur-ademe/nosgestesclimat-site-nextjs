@@ -13,7 +13,7 @@ export function useSortedUiCategoriesByFootprint({ metric }: Props = {}) {
   const everyUiCategoriesWithRepasAjusted = useMemo(
     () =>
       metric === 'eau'
-        ? [
+        ? ([
             ...everyUiCategories.filter(
               (category) =>
                 !['viande', 'végé', 'poisson'].some((repasDottedName) =>
@@ -21,12 +21,12 @@ export function useSortedUiCategoriesByFootprint({ metric }: Props = {}) {
                 )
             ),
             'alimentation . déjeuner et dîner',
-          ]
-        : (everyUiCategories as DottedName[]),
+          ] as DottedName[])
+        : everyUiCategories,
     [everyUiCategories, metric]
   )
 
-  const sortedUiCategories = useMemo<DottedName[]>(() => {
+  const sortedUiCategories = useMemo(() => {
     return everyUiCategoriesWithRepasAjusted.sort(
       (categoryA: DottedName, categoryB: DottedName) => {
         const valueA = getNumericValue(categoryA) ?? 0
@@ -34,7 +34,7 @@ export function useSortedUiCategoriesByFootprint({ metric }: Props = {}) {
 
         return valueB - valueA
       }
-    )
+    ) as DottedName[]
   }, [everyUiCategoriesWithRepasAjusted, getNumericValue])
 
   return {

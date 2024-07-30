@@ -18,7 +18,7 @@ const getMosaicChildrenGroup = (
   situation: Situation,
   expectedMosaicGroup: DottedName[]
 ) => {
-  return Object.keys(situation).filter(([key]) =>
+  return (Object.keys(situation) as DottedName[]).filter((key) =>
     expectedMosaicGroup.includes(key)
   )
 }

@@ -8,15 +8,15 @@ export const useGetShareInfosParams = () => {
 
   const subcategories: { dottedName: DottedName; value: number }[] = [
     {
-      dottedName: searchParams.get('c1name') ?? '',
+      dottedName: (searchParams.get('c1name') ?? '') as DottedName,
       value: Number(searchParams.get('c1value')),
     },
     {
-      dottedName: searchParams.get('c2name') ?? '',
+      dottedName: (searchParams.get('c2name') ?? '') as DottedName,
       value: Number(searchParams.get('c2value')),
     },
     {
-      dottedName: searchParams.get('c3name') ?? '',
+      dottedName: (searchParams.get('c3name') ?? '') as DottedName,
       value: Number(searchParams.get('c3value')),
     },
   ].filter(({ dottedName }) => dottedName.length)

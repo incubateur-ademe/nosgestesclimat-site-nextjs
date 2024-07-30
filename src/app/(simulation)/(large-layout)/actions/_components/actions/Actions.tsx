@@ -4,6 +4,7 @@ import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useEngine } from '@/publicodes-state'
+import { Rules } from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -11,7 +12,7 @@ import ActionList from './_components/ActionList'
 
 type Props = {
   actions: any
-  rules: any
+  rules: Rules
   radical: boolean
 }
 

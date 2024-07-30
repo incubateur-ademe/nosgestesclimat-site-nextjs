@@ -1,4 +1,4 @@
-import { Simulation } from '@/publicodes-state/types'
+import { DottedName, Simulation } from '@/publicodes-state/types'
 
 export type Participant = {
   _id: string
@@ -22,7 +22,7 @@ export type Group = {
 }
 
 export type ValueObject = {
-  name: string
+  name: DottedName
   value: number
   mean?: number
   difference?: number

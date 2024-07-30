@@ -2,8 +2,9 @@ import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 type Props = {
-  question: string
+  question: DottedName
   title?: string
   icons?: string
   description?: string

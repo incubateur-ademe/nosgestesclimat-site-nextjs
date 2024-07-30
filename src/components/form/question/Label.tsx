@@ -13,6 +13,7 @@ import {
 import Button from '@/design-system/inputs/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { DottedName } from '@/publicodes-state/types'
 import { QuestionSize } from '@/types/values'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { motion } from 'framer-motion'
@@ -21,7 +22,7 @@ import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
-  question: string
+  question: DottedName
   label?: string
   description?: string
   size?: QuestionSize

@@ -3,6 +3,7 @@
 import InformationIconWithTooltip from '@/components/messages/InformationIconWithTooltip'
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
+import { DottedName } from '@/publicodes-state/types'
 import { SimulationRecap } from '@/types/organisations'
 import { useMemo } from 'react'
 import CategoryListItem from './pollStatisticsCharts/CategoryListItem'
@@ -18,7 +19,8 @@ export default function PollStatisticsCharts({
   const maxValueOfAllCategories = useMemo(
     () =>
       simulationRecaps?.reduce((acc, obj) => {
-        Object.keys(obj.categories ?? {}).forEach((category) => {
+        const categoryKeys = Object.keys(obj.categories ?? {}) as DottedName[]
+        categoryKeys.forEach((category) => {
           const roundedValue = Math.round(obj.categories[category] / 1000)
           if (roundedValue > acc) {
             acc = roundedValue
@@ -44,7 +46,10 @@ export default function PollStatisticsCharts({
   // Calculate the mean for each category
   const meanCategories = useMemo(
     () =>
-      Object.keys(simulationRecaps?.[0]?.categories ?? {}).map((category) => {
+      // Why do we need to get [0] here?
+      (
+        Object.keys(simulationRecaps?.[0]?.categories ?? {}) as DottedName[]
+      ).map((category) => {
         const mean = simulationRecaps?.reduce(
           (acc, obj) => acc + obj.categories[category],
           0
@@ -113,7 +118,7 @@ export default function PollStatisticsCharts({
         </div>
         <ul>
           {simulationRecaps?.length > 0 &&
-            Object.keys(simulationRecaps[0].categories).map(
+            (Object.keys(simulationRecaps[0].categories) as DottedName[]).map(
               (category, index) => (
                 <CategoryListItem
                   key={index}

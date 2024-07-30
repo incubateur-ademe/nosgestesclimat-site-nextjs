@@ -6,7 +6,7 @@ import { DottedName, Situation } from '../../types'
 
 type Props = {
   dottedName: DottedName
-  questionsOfMosaicFromParent?: string[]
+  questionsOfMosaicFromParent?: DottedName[]
   situation: Situation
   foldedSteps: string[]
 }

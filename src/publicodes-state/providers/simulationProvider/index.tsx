@@ -2,8 +2,7 @@
 
 import { PropsWithChildren } from 'react'
 
-import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import { DottedName } from '../../types'
+import { DottedName, Rules } from '../../types'
 import { SimulationContext } from './context'
 import { useCategories } from './useCategories'
 import { useEngine } from './useEngine'
@@ -12,7 +11,7 @@ import { useRules } from './useRules'
 import { useSetComputedResults } from './useSetComputedResults'
 
 type Props = {
-  rules: NGCRules
+  rules: Rules
   root?: DottedName
   shouldAlwaysDisplayChildren?: boolean
 }

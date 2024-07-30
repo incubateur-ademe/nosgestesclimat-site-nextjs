@@ -3,8 +3,7 @@ import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { DottedName } from '@/publicodes-state/types'
-import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import { DottedName, Rules } from '@/publicodes-state/types'
 import Fuse from 'fuse.js'
 import { utils } from 'publicodes'
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -33,7 +32,7 @@ const searchWeights = [
   },
 ]
 
-export default function SearchBar({ rules }: { rules: NGCRules }) {
+export default function SearchBar({ rules }: { rules: Rules }) {
   const [input, setInput] = useState('')
   const [results, setResults] = useState<Fuse.FuseResult<SearchItem>[]>([])
 

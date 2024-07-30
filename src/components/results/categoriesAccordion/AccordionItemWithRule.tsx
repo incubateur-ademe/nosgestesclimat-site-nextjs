@@ -9,12 +9,12 @@ import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule, useSimulation } from '@/publicodes-state'
-import { Metric } from '@/publicodes-state/types'
+import { DottedName, Metric } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 
 type Props = {
-  dottedName: string
+  dottedName: DottedName
   maxValue: number
   index?: number
   metric?: Metric

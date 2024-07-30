@@ -8,5 +8,6 @@ export function getRuleSumRules(rule: NGCRuleNode): DottedName[] | undefined {
     return undefined
   }
 
-  return somme.map((name: string) => `${rule.dottedName} . ${name}`)
+  // TODO : use `utils.disambiguateReference` here
+  return somme.map((name) => `${rule.dottedName} . ${name}`) as DottedName[]
 }

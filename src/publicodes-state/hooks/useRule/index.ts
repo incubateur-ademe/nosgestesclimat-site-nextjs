@@ -66,7 +66,10 @@ export default function useRule(
       dottedName,
     })
 
-  const parent = useMemo(() => utils.ruleParent(dottedName), [dottedName])
+  const parent = useMemo(
+    () => utils.ruleParent(dottedName),
+    [dottedName]
+  ) as DottedName
 
   const {
     category,

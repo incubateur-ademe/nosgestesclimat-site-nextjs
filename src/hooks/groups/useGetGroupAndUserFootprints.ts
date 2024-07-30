@@ -1,7 +1,11 @@
 import { orderedCategories } from '@/constants/orderedCategories'
 import { getRuleSumRules } from '@/helpers/publicodes/getRuleSumRules'
 import { useDisposableEngine, useTempEngine } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
+import {
+  DottedName,
+  NGCEvaluatedNode,
+  NGCRuleNode,
+} from '@/publicodes-state/types'
 import { Participant } from '@/types/groups'
 
 type Props = {
@@ -11,19 +15,21 @@ type Props = {
 
 export function getSubcategories({
   category,
-  getRuleObject,
+  getSpecialRuleObject,
 }: {
-  category: string
-  getRuleObject: (dottedName: DottedName) => any
+  category: DottedName
+  getSpecialRuleObject: (
+    dottedName: DottedName
+  ) => NGCEvaluatedNode & NGCRuleNode
 }): DottedName[] | undefined {
-  const rule = getRuleObject(category)
+  const rule = getSpecialRuleObject(category)
   return getRuleSumRules(rule)
 }
 export const useGetGroupAndUserFootprints = ({
   groupMembers,
   userId,
 }: Props) => {
-  const { rules, getRuleObject } = useTempEngine()
+  const { rules, getSpecialRuleObject } = useTempEngine()
 
   const { getValue, updateSituation } = useDisposableEngine({
     rules,
@@ -77,9 +83,9 @@ export const useGetGroupAndUserFootprints = ({
         }
 
         const currentCategorySubcategories =
-          getSubcategories({ category, getRuleObject }) || []
+          getSubcategories({ category, getSpecialRuleObject }) || []
 
-        currentCategorySubcategories.forEach((subCategory: string) => {
+        currentCategorySubcategories.forEach((subCategory) => {
           const subCategoryValue = getValue(subCategory)
 
           // Same here if the property doesn't exist in the accumulator, we add it

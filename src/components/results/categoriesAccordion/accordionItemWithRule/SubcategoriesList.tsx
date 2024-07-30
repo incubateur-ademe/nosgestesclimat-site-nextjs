@@ -16,8 +16,8 @@ export default function SubcategoriesList({
   const { getNumericValue, checkIfValid } = useEngine({ metric })
 
   const sortedSubcategories = subcategories[category]
-    ?.filter((subcategory: string) => checkIfValid(subcategory))
-    .sort((categoryA: string, categoryB: string) => {
+    ?.filter((subcategory) => checkIfValid(subcategory))
+    .sort((categoryA, categoryB) => {
       const valueA = getNumericValue(categoryA) ?? 0
       const valueB = getNumericValue(categoryB) ?? 0
 
@@ -28,7 +28,7 @@ export default function SubcategoriesList({
 
   return (
     <ul>
-      {sortedSubcategories.map((name: string) => (
+      {sortedSubcategories.map((name) => (
         <SubcategoryListItem
           key={name}
           subcategory={name}

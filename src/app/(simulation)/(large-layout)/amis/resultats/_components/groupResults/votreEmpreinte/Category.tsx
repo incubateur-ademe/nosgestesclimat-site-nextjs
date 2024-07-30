@@ -1,11 +1,12 @@
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { ValueObject } from '@/types/groups'
 import { formatValue } from 'publicodes'
 import ValueDiff from '../pointsFortsFaibles/pointsListItem/ValueDiff'
 
 type Props = {
-  category: string
+  category: DottedName
   categoryFootprint?: ValueObject
   membersLength: number
 }

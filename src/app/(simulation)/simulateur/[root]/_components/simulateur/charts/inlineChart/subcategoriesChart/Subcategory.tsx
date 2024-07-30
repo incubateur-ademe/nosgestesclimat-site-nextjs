@@ -1,8 +1,9 @@
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat/dottedNames'
 
 type Props = {
-  subcategory: string
+  subcategory: DottedName
   total: number
   position: 'first' | 'middle' | 'last'
 }

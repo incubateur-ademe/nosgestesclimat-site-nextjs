@@ -9,10 +9,9 @@ import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Engine, { Evaluation } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 
-const demoDottedNames = [
+const demoDottedNames: DottedName[] = [
   'commun . intensité électricité',
   'transport . voiture . thermique . empreinte au litre',
-  "logement . construction . durée d'amortissement",
 ]
 
 const indicatorsKeys = ['bilan', 'transport', 'logement']
@@ -25,10 +24,10 @@ export default function ModeleDemoBlock() {
 
   const { data: rules } = useRules({ isOptim: false })
 
-  const engine = useMemo<Engine | null>(
+  const engine = useMemo(
     () =>
       rules
-        ? new Engine(rules as Rules, {
+        ? new Engine<DottedName>(rules as Rules, {
             strict: {
               situation: false,
               noOrphanRule: false,
@@ -65,7 +64,7 @@ export default function ModeleDemoBlock() {
 
       return obj
     },
-    {} as { [key: (typeof demoDottedNames)[number]]: Evaluation }
+    {} as Record<(typeof demoDottedNames)[number], Evaluation>
   )
 
   return (

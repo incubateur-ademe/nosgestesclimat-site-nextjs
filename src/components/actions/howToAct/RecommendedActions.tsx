@@ -13,7 +13,7 @@ export default function RecommendedActions() {
     () =>
       orderedActionDottedNames
         .reduce(
-          (accumulator: string[], currentActionDottedName: DottedName) => {
+          (accumulator: DottedName[], currentActionDottedName: DottedName) => {
             // We don't want to display the "services sociétaux" category
             if (currentActionDottedName.includes('services sociétaux')) {
               return accumulator

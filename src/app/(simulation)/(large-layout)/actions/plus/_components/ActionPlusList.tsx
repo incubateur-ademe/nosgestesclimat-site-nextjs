@@ -4,8 +4,7 @@ import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useTempEngine } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
-import { NGCRule, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import { DottedName, Rule, Rules } from '@/publicodes-state/types'
 
 import { Post } from '@/types/posts'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
@@ -16,7 +15,7 @@ type Props = {
 export default function ActionPlusList({ actions }: Props) {
   const { rules } = useTempEngine()
 
-  const plusListe = Object.entries(rules as NGCRules)
+  const plusListe = Object.entries(rules as Rules)
     .map(([dottedName, rule]) => ({ ...rule, dottedName }))
     .map((rule) => {
       const plus = actions.find(
@@ -37,7 +36,7 @@ export default function ActionPlusList({ actions }: Props) {
             <div className="mb-8 text-2xl">{rule.icônes || '🎯'}</div>
             <div className="text-center">
               {getRuleTitle(
-                rule as NGCRule & { dottedName: DottedName; titre: string }
+                rule as Rule & { dottedName: DottedName; titre: string }
               )}
             </div>
           </Card>

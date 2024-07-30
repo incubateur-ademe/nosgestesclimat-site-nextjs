@@ -1,4 +1,4 @@
-import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import { SupportedRegions } from '@/publicodes-state/types'
 import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
 import { importPreviewFile } from './importPreviewFile'
 type Props = {

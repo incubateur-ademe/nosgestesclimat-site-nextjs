@@ -3,11 +3,12 @@ import NumberInput from '@/components/form/question/NumberInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { motion } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 type Props = {
-  question: string
+  question: DottedName
   setTempValue?: (value: number | undefined) => void
 }
 

@@ -7,6 +7,7 @@ import { useRules } from '@/hooks/useRules'
 import Link from '@/components/Link'
 import LightBulbIcon from '@/components/icons/LightBulbIcon'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { DottedName } from '@/publicodes-state/types'
 import Image from 'next/image'
 import { useRef } from 'react'
 import SearchBar from './SearchBar'
@@ -35,7 +36,7 @@ export default function DocumentationLanding() {
     'transport . voiture': t(
       `Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**`
     ),
-  } as Record<string, string>)
+  } as Record<DottedName, string>)
 
   if (!rules) return null
 
@@ -85,17 +86,19 @@ export default function DocumentationLanding() {
       </h2>
 
       <ul className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3">
-        {Object.keys(fixedCardSummaries.current).map((dottedName) => {
-          return (
-            <li key={dottedName}>
-              <DocumentationLandingCard
-                dottedName={dottedName}
-                summary={fixedCardSummaries.current[dottedName]}
-                rule={rules[dottedName]}
-              />
-            </li>
-          )
-        })}
+        {(Object.keys(fixedCardSummaries.current) as DottedName[]).map(
+          (dottedName) => {
+            return (
+              <li key={dottedName}>
+                <DocumentationLandingCard
+                  dottedName={dottedName}
+                  summary={fixedCardSummaries.current[dottedName]}
+                  rule={rules[dottedName]}
+                />
+              </li>
+            )
+          }
+        )}
       </ul>
     </div>
   )

@@ -10,15 +10,14 @@ import {
   useSimulation,
   useUser,
 } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
-import { Persona as PersonaType } from '@incubateur-ademe/nosgestesclimat'
+import { Persona as PersonaType } from '@/publicodes-state/types'
 
 type Props = {
   persona: PersonaType
-  personaDottedName: DottedName
+  personaName: string
 }
 
-export default function Persona({ persona, personaDottedName }: Props) {
+export default function Persona({ persona, personaName }: Props) {
   const { initSimulation, hideTutorial } = useUser()
 
   const currentSimulation = useCurrentSimulation()
@@ -32,8 +31,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
     safeGetRule,
   } = useSimulation()
 
-  const isCurrentPersonaSelected =
-    currentSimulation.persona === personaDottedName
+  const isCurrentPersonaSelected = currentSimulation.persona === personaName
 
   return (
     <Card
@@ -63,7 +61,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
                 safeGetRule,
                 safeEvaluate,
               }),
-              persona: personaDottedName,
+              persona: personaName,
               foldedSteps: getPersonaFoldedSteps({
                 situation: persona.situation,
                 everyMosaicChildrenWithParent,
