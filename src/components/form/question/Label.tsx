@@ -98,7 +98,7 @@ export default function Label({
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2 }}
-          className="mb-3 origin-top rounded-xl border-2 border-primary-50 bg-white px-4 py-6 text-sm">
+          className="mb-3 origin-top rounded-xl border-2 border-primary-50 bg-gray-100 px-4  py-6 text-sm">
           <Markdown>{description}</Markdown>{' '}
           <Button
             size="sm"
