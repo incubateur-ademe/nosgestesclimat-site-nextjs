@@ -12,6 +12,7 @@ type Props = {
   expectedNumberOfParticipants?: string
   organisationType?: string
   numberOfCollaborators?: number
+  sendCreationEmail?: true
 }
 
 export function useUpdateOrganisation({ email }: { email: string }) {
@@ -26,6 +27,7 @@ export function useUpdateOrganisation({ email }: { email: string }) {
       expectedNumberOfParticipants,
       organisationType,
       numberOfCollaborators,
+      sendCreationEmail
     }: Props) =>
       axios
         .post(
@@ -41,6 +43,7 @@ export function useUpdateOrganisation({ email }: { email: string }) {
             expectedNumberOfParticipants,
             organisationType,
             numberOfCollaborators,
+            sendCreationEmail,
           },
           {
             withCredentials: true,
