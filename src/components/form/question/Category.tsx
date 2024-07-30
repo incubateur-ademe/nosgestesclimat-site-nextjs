@@ -15,7 +15,7 @@ export default function Category({ question }: Props) {
     <div className="flex">
       <div
         className={twMerge(
-          'mb-2 text-xs font-bold leading-none lg:text-sm',
+          'mb-1 text-xs font-bold leading-none lg:mb-2 lg:text-sm',
           getTextDarkColor(category)
         )}>
         <Emoji>{icons}</Emoji> {title}

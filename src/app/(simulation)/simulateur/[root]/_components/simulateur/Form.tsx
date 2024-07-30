@@ -13,6 +13,7 @@ import { useCurrentSimulation, useEngine, useForm } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useContext, useEffect, useState } from 'react'
 import CategoriesSummary from './form/CategoriesSummary'
+import FunFact from './form/FunFact'
 
 export default function Form() {
   const isDebug = useDebug()
@@ -121,8 +122,9 @@ export default function Form() {
             />
           </div>
 
-          <div className="sticky top-4 z-50 hidden w-[20rem] flex-col gap-4 self-start lg:flex short:gap-2">
+          <div className="flex flex-col gap-8 self-start lg:w-[20rem] short:gap-2">
             <CategoriesSummary />
+            <FunFact question={currentQuestion} />
           </div>
         </div>
       </ContentLarge>
@@ -138,17 +140,6 @@ export default function Form() {
           setShouldGoToEndPage(true)
         }}
       />
-      {currentQuestion === 'logement . âge' && (
-        <div className="my-4 rounded-xl bg-white p-4 text-sm">
-          <h3>Le saviez vous ?</h3>
-          <strong>
-            La taille des logements français a très fortement augmenté
-          </strong>{' '}
-          sur ces 50 dernirèes années, passant de 23 à 40,4 m² par habitant,
-          soit{' '}
-          <strong>90,9 m² en moyenne pour un foyer de 2,2 personnes.</strong>
-        </div>
-      )}
-    </div>
+    </>
   )
 }

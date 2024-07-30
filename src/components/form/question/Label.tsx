@@ -53,7 +53,7 @@ export default function Label({
         className={twMerge(
           `flex ${sizeClassNames[size]} gap-2 font-semibold`,
           className,
-          question === 'logement . âge' ? 'mb-1' : ''
+          question === 'logement . âge' ? 'mb-2' : ''
         )}
         aria-label={label}
         // This is a hack to avoid the default <label> element behavior
@@ -88,7 +88,7 @@ export default function Label({
         ) : null}
       </label>
       {question === 'logement . âge' && (
-        <div className="mb-4 text-xs italic md:text-sm">
+        <div className="mb-6 text-xs italic md:text-sm">
           Un petit doute ? L’info sera sûrement dans votre contrat d’assurance
           logement.
         </div>
