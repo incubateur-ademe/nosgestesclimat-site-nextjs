@@ -26,12 +26,12 @@ export async function generateMetadata({
 
 // The page content is in layout.tsx in order to persist the state
 // between the server and the client
-export default async function DocumentationPage({
+export default function DocumentationPage({
   params: { slug },
 }: {
   params: { slug: string[] }
 }) {
-  const supportedRegions = await getSupportedRegions()
+  const supportedRegions = getSupportedRegions()
 
   return (
     <DocumentationRouter

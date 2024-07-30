@@ -33,8 +33,6 @@ export default function PersonalInfoFields({ organisation, register }: Props) {
       />
 
       <TextInputGroup
-        disabled
-        helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
         label={<Trans>Votre e-mail</Trans>}
         value={organisation?.administrators?.[0]?.email}
         {...register('email')}

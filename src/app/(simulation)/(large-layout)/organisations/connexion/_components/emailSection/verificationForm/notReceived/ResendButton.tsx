@@ -7,12 +7,14 @@ import Trans from '@/components/translation/Trans'
 import { organisationsConnexionClickCode } from '@/constants/tracking/pages/organisationsConnexion'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { UseMutateAsyncFunction } from '@tanstack/react-query'
 import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {
   isRetryButtonDisabled: boolean
-  sendVerificationCode: () => Promise<void>
+  sendVerificationCode: UseMutateAsyncFunction<any, Error, string, unknown>
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>
   timeLeft: number
 }
@@ -28,6 +30,8 @@ export default function ResendButton({
 
   const { t } = useClientTranslation()
 
+  const { user } = useUser()
+
   const timeoutRef = useRef<NodeJS.Timeout>()
 
   async function handleResendVerificationCode() {
@@ -37,7 +41,7 @@ export default function ResendButton({
 
     trackEvent(organisationsConnexionClickCode)
 
-    await sendVerificationCode()
+    await sendVerificationCode(user?.organisation?.administratorEmail ?? '')
     setShouldDisplayConfirmation(true)
 
     timeoutRef.current = setTimeout(() => {
