@@ -1056,3 +1056,8 @@ entries:
   'Ils relaient ': 'They relay '
   Vous avez sélectionné: You have selected
   sur les 14 habituels: out of the usual 14
+  Le code n'est pas valide.: The code is invalid.
+  Vos informations ont bien été mises à jour.: Your information has been updated.
+  Vous devez valider votre changement d'adresse e-mail.: You must confirm your change of e-mail address.
+  Oups ! Une erreur s'est produite au moment d'envoyer votre code de vérification par email. Vérifiez si votre nouvel e-mail est bien valide et si le problème persiste, n'hésitez pas à <2>nous contacter</2>: Oops! An error occurred when you sent your verification code by email. Please check that your new e-mail is valid and if the problem persists, please <2>contact us</2>
+  Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.: You will shortly receive an e-mail from us containing a <2>verification code</2> to enter in this window.
