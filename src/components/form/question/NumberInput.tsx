@@ -28,11 +28,49 @@ export default function NumberInput({
 
   const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value
+
     if (inputValue === '') {
       setValue(undefined)
     } else {
-      setValue(Number(inputValue))
+      setValue(unformatNumber(inputValue.replace(/[^0-9.-]+/g, '')))
     }
+  }
+
+  function formatNumber(number: number) {
+    // Créer un formateur de nombre pour la locale de l'utilisateur
+    const formatter = new Intl.NumberFormat(locale, {
+      style: 'decimal',
+      useGrouping: true, // Activer les séparateurs de milliers
+      maximumFractionDigits: 2,
+    })
+
+    // Formater la valeur numérique
+    return formatter.format(number)
+  }
+
+  function unformatNumber(number: string) {
+    // Supprimer les séparateurs de milliers
+    return Number(number.replace(/[^0-9.-]+/g, ''))
+  }
+
+  function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
+    if (!event.target) return
+
+    // Prevent the user from typing non-numeric characters
+    // with a regex match
+    const match = (event.target as HTMLInputElement).value.match(/[^0-9.-]+/g)
+    if (match && (event.target as HTMLInputElement).value.match(/[^0-9.-]+/g)) {
+      event.target.value = event.target.value.replace(match[0], '')
+      return
+    }
+
+    // Format the number as the user types
+    const inputValue = (event.target as HTMLInputElement).value
+    const formattedValue = formatNumber(Number(inputValue))
+
+    // Update the input value
+    event.target.value = formattedValue
+    handleValueChange(event)
   }
 
   return (
@@ -41,10 +79,9 @@ export default function NumberInput({
       <DebounceInput
         debounceTimeout={300}
         className={`focus:ring-primary max-w-[8rem] rounded-xl border-2 border-primary-200 bg-white p-2 text-right transition-colors focus:border-primary-700 focus:ring-2 md:max-w-full`}
-        type="number"
         inputMode="numeric"
         min={min}
-        value={isMissing ? '' : value}
+        value={isMissing ? '' : formatNumber(Number(value))}
         placeholder={
           isMissing
             ? value?.toLocaleString(locale, {
@@ -53,7 +90,7 @@ export default function NumberInput({
             : '0'
         }
         onChange={handleValueChange}
-        onInput={handleValueChange}
+        onInput={handleInput}
         id={id}
         {...props}
       />
