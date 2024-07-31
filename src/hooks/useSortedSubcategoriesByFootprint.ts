@@ -19,12 +19,12 @@ export function useSortedSubcategoriesByFootprint({
         if (!withServiceSocietaux && category === 'services sociétaux') {
           return acc
         }
-        return acc.concat(subcategories[category])
+        return acc.concat(subcategories[category as DottedName])
       }, [] as DottedName[]),
     [subcategories, withServiceSocietaux]
   )
 
-  const sortedSubcategories = useMemo<DottedName[]>(() => {
+  const sortedSubcategories = useMemo(() => {
     return everySubcategories.sort(
       (categoryA: DottedName, categoryB: DottedName) => {
         const valueA = getNumericValue(categoryA) ?? 0

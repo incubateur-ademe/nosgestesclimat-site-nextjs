@@ -15,10 +15,10 @@ import { DottedName, Metric, NGCRuleNode, Rules } from '../../types'
 export function useEngine(rules: Rules) {
   if (!rules) throw new Error('Missing rules')
 
-  const engine = useMemo<Engine>(() => {
+  const engine = useMemo(() => {
     const nbRules = Object.keys(rules).length
     console.time(`⚙️ Parsing ${nbRules}`)
-    const engine = new Engine(rules, {
+    const engine = new Engine<DottedName>(rules, {
       logger: {
         log(msg: string) {
           console.log(`[publicodes:log] ${msg}`)

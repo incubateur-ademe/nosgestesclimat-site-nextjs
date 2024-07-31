@@ -1,7 +1,7 @@
 import { DottedName } from '@/publicodes-state/types'
 
 type Props = {
-  everyMosaicChildrenWithParent: Record<string, string[]>
+  everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
   dottedName: DottedName
 }
 export default function useQuestionsOfMosaic({

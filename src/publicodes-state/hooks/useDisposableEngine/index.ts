@@ -17,7 +17,7 @@ export default function useDisposableEngine({ rules, situation }: Props) {
   const { rules: contextRules } = useContext(SimulationContext)
 
   const engine = useMemo(() => {
-    return new Engine(rules ?? contextRules, {
+    return new Engine<DottedName>(rules ?? contextRules, {
       strict: {
         situation: false,
         noOrphanRule: false,

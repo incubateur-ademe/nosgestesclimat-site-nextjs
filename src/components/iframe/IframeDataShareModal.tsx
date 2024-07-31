@@ -24,7 +24,9 @@ export default function IframeDataShareModal() {
   const data = Object.keys(categories).reduce(
     (accumulator, categoryName) => ({
       ...accumulator,
-      [categoryName.charAt(0)]: Math.round(categories[categoryName]),
+      [categoryName.charAt(0)]: Math.round(
+        categories[categoryName as keyof typeof categories]
+      ),
     }),
     {}
   )

@@ -1,7 +1,8 @@
+import { DottedName } from '@/publicodes-state/types'
 import Choice from './choicesInput/Choice'
 
 type Props = {
-  question: string
+  question: DottedName
   value: string
   isMissing: boolean
   choices: any[]

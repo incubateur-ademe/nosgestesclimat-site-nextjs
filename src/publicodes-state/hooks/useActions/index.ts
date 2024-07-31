@@ -40,9 +40,9 @@ export default function useActions({ metric }: Props = { metric: 'carbone' }) {
     return somme
   }, [engine])
 
-  const orderedActions = useMemo<string[]>(() => {
+  const orderedActions = useMemo(() => {
     return actions
-      .map((action: string) => ({
+      .map((action) => ({
         dottedName: action,
         value: getNumericValue(action),
       }))
@@ -51,7 +51,7 @@ export default function useActions({ metric }: Props = { metric: 'carbone' }) {
   }, [actions, getNumericValue])
 
   const { chosenActions, declinedActions } =
-    Object.keys(actionChoices ?? {})?.reduce(
+    Object.keys(actionChoices ?? {}).reduce(
       (accActions, currentAction) => {
         const actionChoice = actionChoices[currentAction]
 
@@ -79,7 +79,10 @@ export default function useActions({ metric }: Props = { metric: 'carbone' }) {
 
   const totalChosenActionsValue: number = useMemo(
     () =>
-      chosenActions.reduce((acc, action) => acc + getNumericValue(action), 0),
+      chosenActions.reduce(
+        (acc, action) => acc + getNumericValue(action as DottedName),
+        0
+      ),
     [chosenActions, getNumericValue]
   )
 

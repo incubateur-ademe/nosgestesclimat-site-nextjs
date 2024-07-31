@@ -3,11 +3,12 @@ import { Journey } from '@/types/journey'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 
+import { DottedName } from '@/publicodes-state/types'
 import { JourneysInputDesktop } from './journeysInput/JourneysInputDesktop'
 import JourneysInputMobile from './journeysInput/JourneysInputMobile'
 
 type Props = {
-  question: string
+  question: DottedName
   setTempValue?: (value: number | undefined) => void
 }
 

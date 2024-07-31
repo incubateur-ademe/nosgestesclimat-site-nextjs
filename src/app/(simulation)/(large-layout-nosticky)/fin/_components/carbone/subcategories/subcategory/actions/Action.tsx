@@ -13,7 +13,7 @@ import { twMerge } from 'tailwind-merge'
 const colorClassName = ['200', '100', '50']
 
 type Props = {
-  action: DottedName
+  action: string
   index: number
   metric?: Metric
 }
@@ -29,7 +29,10 @@ export default function Action({
 
   const { numericValue: total } = useRule('bilan', metric)
 
-  const { icons, title, numericValue, category } = useRule(action, metric)
+  const { icons, title, numericValue, category } = useRule(
+    action as DottedName,
+    metric
+  )
 
   const hasNoValue = numericValue === 0
 

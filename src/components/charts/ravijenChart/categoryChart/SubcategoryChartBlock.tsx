@@ -6,13 +6,14 @@ import { DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { removePercentageFromString } from '@/utils/removePercentageFromString'
 import EnigmaticMoreChartBlock from './subcategoryChartBlock/EnigmaticMoreChartBlock'
 
 type Props = {
-  category: string
-  subcategory: string
+  category: DottedName
+  subcategory: DottedName
   maxValue: number
   index: number
   squashLimitPercentage?: number

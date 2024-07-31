@@ -30,11 +30,14 @@ export function useTrackSimulateur() {
   }, [progression])
 
   useEffect(() => {
+    if (!currentCategory) return
+
     if (isFirstQuestionOfCategory) {
-      trackEvent(simulationCategoryStarted(currentCategory || ''))
+      trackEvent(simulationCategoryStarted(currentCategory))
     }
+
     if (isLastQuestionOfCategory) {
-      trackEvent(simulationCategoryCompleted(currentCategory || ''))
+      trackEvent(simulationCategoryCompleted(currentCategory))
     }
   }, [currentCategory, isFirstQuestionOfCategory, isLastQuestionOfCategory])
 }

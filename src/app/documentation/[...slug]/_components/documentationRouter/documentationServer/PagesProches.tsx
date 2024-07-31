@@ -1,6 +1,6 @@
 import Link from '@/components/Link'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
-import { Rules } from '@/publicodes-state/types'
+import { DottedName, Rules } from '@/publicodes-state/types'
 import { utils } from 'publicodes'
 
 export default function PagesProches({
@@ -8,11 +8,12 @@ export default function PagesProches({
   ruleName,
 }: {
   rules: Rules
-  ruleName: string
+  ruleName: DottedName
 }) {
   const namespaceRules = Object.keys(rules).filter(
     (key) => key.includes(ruleName) && key !== ruleName
-  )
+  ) as DottedName[]
+
   if (!namespaceRules.length) return null
   return (
     <section className="mt-8">

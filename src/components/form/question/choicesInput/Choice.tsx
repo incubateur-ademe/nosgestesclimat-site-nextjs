@@ -1,9 +1,10 @@
 import ChoiceInput from '@/components/misc/ChoiceInput'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 
 type Props = {
-  question: string
+  question: DottedName
   choice: string
   active: boolean
   setValue: any
@@ -18,7 +19,9 @@ export default function Choice({
   id,
   ...props
 }: Props) {
-  const { title, description, icons } = useRule(question + ' . ' + choice)
+  const { title, description, icons } = useRule(
+    (question + ' . ' + choice) as DottedName
+  )
 
   return (
     <ChoiceInput

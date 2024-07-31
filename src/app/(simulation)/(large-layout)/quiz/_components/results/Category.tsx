@@ -2,11 +2,12 @@ import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
 import Trans from '@/components/translation/Trans'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
   index: number
-  choice: string
+  choice: DottedName
   isHeaviest: boolean
   maxValue: number
 }

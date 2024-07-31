@@ -7,23 +7,23 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import Action from './actions/Action'
 
 type Props = {
-  subcategory: DottedName
+  subcategory: string
   noNumberedFootprint?: boolean
 }
 
 type ActionObject = {
-  dottedName: DottedName
+  dottedName: string
   value: number
 }
 
 export default function Actions({ subcategory, noNumberedFootprint }: Props) {
   const { getValue } = useEngine()
 
-  const { title, actions } = useRule(subcategory)
+  const { title, actions } = useRule(subcategory as DottedName)
 
   const filteredActions = noNumberedFootprint
     ? actions
-    : actions?.filter((action: string) => getValue(action))
+    : actions?.filter((action: string) => getValue(action as DottedName))
 
   if (!filteredActions?.length) return null
 
@@ -37,7 +37,7 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
     : filteredActions
         .map((action: string) => ({
           dottedName: action,
-          value: getValue(action) as number,
+          value: getValue(action as DottedName) as number,
         }))
         .sort((a: ActionObject, b: ActionObject) =>
           a.value > b.value ? -1 : 1

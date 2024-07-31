@@ -60,7 +60,8 @@ export default function RuleDetail({
       if (!context) return <span>{capitalizeString(ruleFormatted)}</span>
 
       const ruleString = utils.disambiguateReference(
-        context.rules,
+        // Should be ParsedRules but not available from server side.
+        context.rules as any,
         context.dottedName,
         ruleFormatted
       )

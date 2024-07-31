@@ -3,9 +3,14 @@
 import Link from '@/components/Link'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat/dottedNames'
 import Image from 'next/image'
 
-export default function TotalCategoryBlock({ category }: { category: string }) {
+export default function TotalCategoryBlock({
+  category,
+}: {
+  category: DottedName
+}) {
   const { numericValue: totalNumericValue } = useRule('bilan')
 
   const { title, numericValue } = useRule(category)

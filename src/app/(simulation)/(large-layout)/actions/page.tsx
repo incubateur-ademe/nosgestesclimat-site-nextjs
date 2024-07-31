@@ -30,7 +30,7 @@ export default function ActionsPage({
 
   const { actionChoices, progression } = useCurrentSimulation()
 
-  const { rules, getRuleObject } = useTempEngine()
+  const { rules, getSpecialRuleObject } = useTempEngine()
 
   const { safeEvaluate } = useSimulation()
 
@@ -42,7 +42,7 @@ export default function ActionsPage({
     rules,
     radical,
     safeEvaluate,
-    getRuleObject,
+    getSpecialRuleObject,
     actionChoices,
   })
 

@@ -1,4 +1,5 @@
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
+import { utils } from 'publicodes'
 import { useCallback, useContext } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
 import { DottedName, Metric, NodeValue } from '../../types'
@@ -16,6 +17,7 @@ export default function useEngine({ metric }: Props = {}) {
     engine,
     safeEvaluate: safeEvaluate,
     safeGetRule,
+    parsedRules,
   } = useContext(SimulationContext)
 
   const getValue = (dottedName: DottedName): NodeValue =>
@@ -29,11 +31,29 @@ export default function useEngine({ metric }: Props = {}) {
     [safeEvaluate, metric]
   )
 
-  const getCategory = (dottedName: DottedName): string =>
-    getNamespace(dottedName, 1) ?? ''
+  const getCategory = (dottedName: DottedName): DottedName =>
+    getNamespace(dottedName, 1) ?? ('' as DottedName)
 
-  const getSubcategories = (dottedName: DottedName): string[] =>
-    safeGetRule(dottedName)?.rawNode?.formule?.somme
+  const getSubcategories = (dottedName: DottedName): DottedName[] => {
+    // TO FIX: The `somme` cannot be in a formula.
+    const dottedNameFormula = safeGetRule(dottedName)?.rawNode?.formule
+
+    if (
+      !dottedNameFormula ||
+      typeof dottedNameFormula === 'string' ||
+      !Array.isArray(dottedNameFormula.somme)
+    ) {
+      return []
+    }
+
+    return dottedNameFormula.somme.map((potentialPartialRuleName) =>
+      utils.disambiguateReference(
+        parsedRules,
+        dottedName,
+        potentialPartialRuleName
+      )
+    )
+  }
 
   const checkIfValid = (dottedName: DottedName): boolean =>
     safeGetRule(dottedName) ? true : false

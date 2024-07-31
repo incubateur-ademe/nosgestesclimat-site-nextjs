@@ -2,7 +2,12 @@
 
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { useMemo } from 'react'
-import { DottedName, NGCRuleNode, Suggestion } from '../../types'
+import {
+  DottedName,
+  FormattedSuggestion,
+  NGCRuleNode,
+  Suggestions,
+} from '../../types'
 
 type Props = {
   dottedName: DottedName
@@ -10,13 +15,13 @@ type Props = {
 }
 
 export default function useContent({ dottedName, rule }: Props) {
-  const category = useMemo<string>(() => {
+  const category = useMemo(() => {
     const namespace = getNamespace(dottedName) ?? ''
     // This is only used by "ui . pédagogie" rules. For them, we need to extract the category from the dottedName (ui . pedagogie . [category])
     if (namespace === 'ui') {
-      return dottedName.split(' . ')[3]
+      return dottedName.split(' . ')[3] as DottedName
     }
-    return namespace
+    return namespace as DottedName
   }, [dottedName])
 
   const title = useMemo<string | undefined>(() => rule?.title, [rule])
@@ -40,8 +45,8 @@ export default function useContent({ dottedName, rule }: Props) {
   )
   const unit = useMemo<string | undefined>(() => rule?.rawNode['unité'], [rule])
 
-  const assistance = useMemo<string | undefined>(
-    () => rule?.rawNode['aide'],
+  const assistance = useMemo<DottedName | undefined>(
+    () => rule?.rawNode['aide'] as DottedName,
     [rule]
   )
 
@@ -57,15 +62,20 @@ export default function useContent({ dottedName, rule }: Props) {
     [rule]
   )
 
-  const suggestions = useMemo<Suggestion[] | undefined>(() => {
-    const suggestionsFolder =
-      rule?.rawNode.mosaique?.suggestions || rule?.rawNode.suggestions
-    return suggestionsFolder
-      ? Object.keys(suggestionsFolder).map((key: string) => ({
-          label: key,
-          value: suggestionsFolder[key],
-        }))
+  const suggestions = useMemo(() => {
+    const suggestionsFolder = (rule?.rawNode.mosaique?.suggestions ||
+      rule?.rawNode.suggestions) as Suggestions
+    const suggestions = suggestionsFolder
+      ? Object.keys(suggestionsFolder).map(
+          (key) =>
+            ({
+              label: key,
+              value: suggestionsFolder[key as keyof typeof suggestionsFolder],
+            }) as FormattedSuggestion
+        )
       : []
+
+    return suggestions
   }, [rule])
 
   const excerpt = useMemo<string | undefined>(

@@ -15,11 +15,11 @@ type FormContextType = {
   setCurrentCategory: (category: DottedName | null) => void
 }
 export default createContext<FormContextType>({
-  questionsByCategories: {},
+  questionsByCategories: {} as Record<DottedName, DottedName[]>,
   relevantQuestions: [],
   remainingQuestions: [],
   relevantAnsweredQuestions: [],
-  remainingQuestionsByCategories: {},
+  remainingQuestionsByCategories: {} as Record<DottedName, DottedName[]>,
   currentQuestion: null,
   currentCategory: null,
   setCurrentQuestion: () => '',

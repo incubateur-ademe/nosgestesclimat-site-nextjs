@@ -3,6 +3,7 @@ import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { SimulationRecap } from '@/types/organisations'
 import { t } from 'i18next'
 import RepartitionChart from './RepartitionChart'
@@ -10,7 +11,7 @@ import RepartitionChart from './RepartitionChart'
 type Props = {
   simulationsRecap: SimulationRecap[]
   value: number
-  category: string
+  category: DottedName
   maxValue: number
 }
 

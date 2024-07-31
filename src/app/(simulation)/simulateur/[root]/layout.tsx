@@ -1,9 +1,10 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { PropsWithChildren } from 'react'
 
-type Props = { params: { root: string } }
+type Props = { params: { root: DottedName } }
 
 export async function generateMetadata({ params }: Props) {
   const { t } = await getServerTranslation()

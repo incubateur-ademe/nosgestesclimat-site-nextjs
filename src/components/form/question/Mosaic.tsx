@@ -1,8 +1,9 @@
+import { DottedName } from '@/publicodes-state/types'
 import MosaicQuestion from './mosaic/MosaicQuestion'
 
 type Props = {
-  question: string
-  questionsOfMosaic: string[]
+  question: DottedName
+  questionsOfMosaic: DottedName[]
 }
 
 export default function Mosaic({

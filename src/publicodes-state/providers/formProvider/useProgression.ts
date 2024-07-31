@@ -1,10 +1,13 @@
-import { UpdateCurrentSimulationProps } from '@/publicodes-state/types'
+import {
+  DottedName,
+  UpdateCurrentSimulationProps,
+} from '@/publicodes-state/types'
 import { useEffect, useMemo } from 'react'
 
 type Props = {
-  categories: string[]
-  remainingQuestions: string[]
-  relevantQuestions: string[]
+  categories: DottedName[]
+  remainingQuestions: DottedName[]
+  relevantQuestions: DottedName[]
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
 }
 
@@ -28,16 +31,16 @@ export default function useProgression({
     [relevantQuestions, remainingQuestions]
   )
 
-  const remainingQuestionsByCategories = useMemo<Record<string, string[]>>(
+  const remainingQuestionsByCategories = useMemo(
     () =>
       categories.reduce(
-        (accumulator: Record<string, string[]>, currentValue: string) => ({
+        (accumulator, currentValue) => ({
           ...accumulator,
           [currentValue]: remainingQuestions.filter((question) =>
             question.includes(currentValue)
           ),
         }),
-        {}
+        {} as Record<DottedName, DottedName[]>
       ),
     [remainingQuestions, categories]
   )

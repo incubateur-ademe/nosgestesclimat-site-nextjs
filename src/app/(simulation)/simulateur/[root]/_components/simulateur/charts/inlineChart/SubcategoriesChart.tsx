@@ -1,6 +1,7 @@
 import ValueChangeDisplay from '@/components/misc/ValueChangeDisplay'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useEngine, useForm, useRule, useSimulation } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { useMemo } from 'react'
 import Subcategory from './subcategoriesChart/Subcategory'
 
@@ -9,14 +10,16 @@ export default function SubcategoriesChart() {
 
   const { currentCategory } = useForm()
 
-  const { title, numericValue: total } = useRule(currentCategory || '')
+  const { title, numericValue: total } = useRule(
+    currentCategory || ('' as DottedName)
+  )
 
   const { checkIfValid } = useEngine()
 
   const filteredSubcategories = useMemo(
     () =>
       (currentCategory &&
-        subcategories[currentCategory]?.filter((subcategory: string) =>
+        subcategories[currentCategory]?.filter((subcategory) =>
           checkIfValid(subcategory)
         )) ||
       [],
@@ -37,7 +40,7 @@ export default function SubcategoriesChart() {
         className={`mb-4 flex h-8 rounded-md md:h-12 md:rounded-xl ${getBackgroundColor(
           currentCategory
         )}`}>
-        {filteredSubcategories.map((subcategory: string, index: number) => (
+        {filteredSubcategories.map((subcategory, index: number) => (
           <Subcategory
             key={subcategory}
             position={

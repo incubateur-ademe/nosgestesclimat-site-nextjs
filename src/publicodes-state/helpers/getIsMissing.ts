@@ -3,7 +3,7 @@ import { DottedName, Situation } from '../types'
 type Props = {
   dottedName: DottedName
   situation: Situation
-  questionsOfMosaicFromParent?: string[]
+  questionsOfMosaicFromParent?: DottedName[]
 }
 
 export default function getIsMissing({

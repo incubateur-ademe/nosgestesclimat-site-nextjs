@@ -4,13 +4,14 @@ import Trans from '@/components/translation/Trans'
 import { trackingDownloadRavijenChart } from '@/constants/tracking/misc'
 import Button from '@/design-system/inputs/Button'
 import { useEngine } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { toPng } from 'html-to-image'
 import CategoryChart from './ravijenChart/CategoryChart'
 
 type Props = {
-  categories: string[]
-  subcategories: { [key: string]: string[] }
+  categories: DottedName[]
+  subcategories: Record<DottedName, DottedName[]>
   squashLimitPercentage?: number
   isInverted?: boolean
   shouldAlwaysDisplayValue?: boolean

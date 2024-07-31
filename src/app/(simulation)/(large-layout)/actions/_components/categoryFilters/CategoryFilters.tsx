@@ -20,7 +20,7 @@ export default function CategoryFilters({ actions }: Props) {
 
   return (
     <ul className="flex list-none flex-wrap justify-center gap-1 pl-0">
-      {categories?.map((category: string) => {
+      {categories?.map((category) => {
         return (
           <Filter
             key={category}

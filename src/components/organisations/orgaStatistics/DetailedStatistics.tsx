@@ -4,9 +4,8 @@ import ChevronRight from '@/components/icons/ChevronRight'
 import Trans from '@/components/translation/Trans'
 import { organisationsDashboardClickFunFacts } from '@/constants/tracking/pages/organisationsDashboard'
 import Button from '@/design-system/inputs/Button'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName, Entries, FunFacts } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import importedFunFacts from '@incubateur-ademe/nosgestesclimat/public/funFactsRules.json'
 import { utils } from 'publicodes'
 import { useState } from 'react'
@@ -34,10 +33,18 @@ type Props = {
 export default function DetailedStatistics({ funFacts }: Props) {
   const [isSectionVisible, setIsSectionVisible] = useState(false)
 
-  const funFactsByCategory: Record<DottedName, [string, DottedName][]> = {}
+  const funFactsByCategory = {} as Record<
+    DottedName,
+    [keyof Partial<FunFacts>, DottedName | undefined][]
+  >
 
-  Object.entries(plusFunFactsRules).forEach((item) => {
-    const parent = utils.ruleParent(item[1]) as keyof typeof funFactsByCategory
+  const plusFunFactsRulesEntries = Object.entries(plusFunFactsRules) as Entries<
+    typeof plusFunFactsRules
+  >
+
+  plusFunFactsRulesEntries.forEach((item) => {
+    if (!item[1]) return
+    const parent = utils.ruleParent(item[1]) as DottedName
     funFactsByCategory[parent] = [...(funFactsByCategory[parent] || []), item]
   })
 

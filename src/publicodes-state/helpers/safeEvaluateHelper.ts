@@ -1,12 +1,12 @@
+import { Engine, NGCEvaluatedNode } from '@/publicodes-state/types'
 import { captureException } from '@sentry/react'
-import Engine, { PublicodesExpression } from 'publicodes'
-import { NGCEvaluatedNode } from '../types'
+import { PublicodesExpression } from 'publicodes'
 
 export const safeEvaluateHelper = (
   expr: PublicodesExpression,
   engineUsed: Engine
 ): NGCEvaluatedNode | null => {
-  let evaluation = null
+  let evaluation: NGCEvaluatedNode | null = null
   try {
     evaluation = engineUsed.evaluate(expr)
   } catch (error) {

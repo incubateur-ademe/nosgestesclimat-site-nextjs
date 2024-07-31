@@ -7,7 +7,7 @@ import { DottedName, NGCEvaluatedNode, Situation } from '../../types'
 
 type Props = {
   dottedName: DottedName
-  everyNotifications: string[]
+  everyNotifications: DottedName[]
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   situation: Situation
 }
@@ -18,7 +18,7 @@ export default function useNotifications({
   safeEvaluate,
   situation,
 }: Props) {
-  const notifications = useMemo<string[]>(
+  const notifications = useMemo(
     () =>
       everyNotifications.filter(
         (notification) => {
@@ -35,7 +35,7 @@ export default function useNotifications({
     [dottedName, everyNotifications]
   )
 
-  const activeNotifications = useMemo<string[]>(
+  const activeNotifications = useMemo(
     () =>
       notifications.filter(
         (notification) => safeEvaluate(notification)?.nodeValue

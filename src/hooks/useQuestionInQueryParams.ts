@@ -1,4 +1,5 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
+import { DottedName } from '@/publicodes-state/types'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 
@@ -9,10 +10,10 @@ export const useQuestionInQueryParams = () => {
 
   const questionInQueryParams = decodeURI(searchParams.get('question') || '')
     ?.replaceAll('.', ' . ')
-    .replaceAll('_', ' ')
+    .replaceAll('_', ' ') as DottedName
 
   const setQuestionInQueryParams = useCallback(
-    (question: string) =>
+    (question: DottedName) =>
       router.replace(
         getLinkToSimulateur({ question }),
 

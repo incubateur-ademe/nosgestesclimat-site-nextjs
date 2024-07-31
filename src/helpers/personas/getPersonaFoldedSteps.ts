@@ -1,10 +1,12 @@
 import {
   DottedName,
+  Engine,
+  Entries,
   NGCEvaluatedNode,
   NGCRuleNode,
   Situation,
 } from '@/publicodes-state/types'
-import Engine, { PublicodesExpression } from 'publicodes'
+import { PublicodesExpression } from 'publicodes'
 import { fixSituationWithPartialMosaic } from './fixSituationWithPartialMosaic'
 
 type Props = {
@@ -24,7 +26,7 @@ export const getPersonaFoldedSteps = ({
   pristineEngine,
   safeGetRule,
   safeEvaluate,
-}: Props): string[] => {
+}: Props): DottedName[] => {
   if (pristineEngine === null) return []
 
   const personaSituation = fixSituationWithPartialMosaic({
@@ -41,32 +43,36 @@ export const getPersonaFoldedSteps = ({
 
   // The persona folded steps are obtained by getting the missing variables and the situation variables.
   const personaFoldedSteps = [
-    ...Object.keys(
-      pristineEngine.evaluate('bilan')?.missingVariables || {}
+    ...(
+      Object.keys(
+        pristineEngine.evaluate('bilan')?.missingVariables || {}
+      ) as DottedName[]
     ).filter((missingVariable) => everyQuestions.includes(missingVariable)),
     ...Object.keys(safeSituation),
-  ]
+  ] as DottedName[]
 
   // Then, for each mosaic in the model, we remove all mosaic children and replace it with the rule mosaic itself
   // as we need the parent rule in the folded steps and not the children.
   // If we don't find any mosaic children for a given mosaic, we don't do anything.
-  Object.entries(everyMosaicChildrenWithParent).forEach(
-    ([mosaicParent, expectedMosaicGroup]) => {
-      let isMosaicInSituation = false
+  ;(
+    Object.entries(everyMosaicChildrenWithParent) as Entries<
+      typeof everyMosaicChildrenWithParent
+    >
+  ).forEach(([mosaicParent, expectedMosaicGroup]) => {
+    let isMosaicInSituation = false
 
-      expectedMosaicGroup.forEach((dottedName) => {
-        const index = personaFoldedSteps.indexOf(dottedName)
-        if (index > -1) {
-          personaFoldedSteps.splice(index, 1)
-          isMosaicInSituation = true
-        }
-      })
-
-      if (isMosaicInSituation) {
-        personaFoldedSteps.push(mosaicParent)
+    expectedMosaicGroup.forEach((dottedName) => {
+      const index = personaFoldedSteps.indexOf(dottedName)
+      if (index > -1) {
+        personaFoldedSteps.splice(index, 1)
+        isMosaicInSituation = true
       }
+    })
+
+    if (isMosaicInSituation) {
+      personaFoldedSteps.push(mosaicParent)
     }
-  )
+  })
 
   return personaFoldedSteps
 }

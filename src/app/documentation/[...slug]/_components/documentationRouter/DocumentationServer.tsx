@@ -6,10 +6,9 @@ import Markdown from '@/design-system/utils/Markdown'
 import { getGeolocation } from '@/helpers/getGeolocation'
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
-import { Rules } from '@/publicodes-state/types'
+import { DottedName, Rules, SupportedRegions } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
-import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { currentLocale } from 'next-i18n-router'
 import { redirect } from 'next/navigation'
 import ButtonLaunch from './documentationServer/ButtonLaunch'
@@ -23,7 +22,7 @@ type Props = {
   locale?: string
 }
 export default async function DocumentationServer({ slugs }: Props) {
-  const ruleName = decodeRuleNameFromPath(slugs.join('/'))
+  const ruleName = decodeRuleNameFromPath(slugs.join('/')) as DottedName
 
   const region = await getGeolocation()
 

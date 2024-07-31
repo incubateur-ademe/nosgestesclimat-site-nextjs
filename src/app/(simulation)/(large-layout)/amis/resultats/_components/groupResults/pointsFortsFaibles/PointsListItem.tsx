@@ -1,11 +1,12 @@
 import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { formatValue } from 'publicodes'
 import ValueDiff from './pointsListItem/ValueDiff'
 
 type PointsListItemProps = {
-  name: string
+  name: DottedName
   value: number
   difference: number
 }

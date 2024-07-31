@@ -1,6 +1,7 @@
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/Trans'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { Entries } from '@/publicodes-state/types'
 import { SimulationRecap } from '@/types/organisations'
 import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
 import ResultsSoonBanner from './statisticsBlocks/ResultsSoonBanner'
@@ -38,7 +39,7 @@ function formatSimulationRecaps(simulationRecaps: SimulationRecap[]) {
       'services sociétaux': 0,
     }
   )
-  Object.keys(result).forEach((key: string) => {
+  Object.keys(result).forEach((key) => {
     result[key as keyof typeof result] =
       result[key as keyof typeof result] / simulationRecaps.length
   })
@@ -103,7 +104,7 @@ export default function StatisticsBlocks({
 
         <div className="col-span-1 min-h-[212px] rounded-xl bg-gray-100 py-4">
           <VerticalBarChart className={`mt-0 h-[calc(100%-48px)]`}>
-            {Object.entries(result)
+            {(Object.entries(result) as Entries<typeof result>)
               .filter(([key]) => key !== 'bilan')
               .map(([key, value], index) => (
                 <CategoryChartItem

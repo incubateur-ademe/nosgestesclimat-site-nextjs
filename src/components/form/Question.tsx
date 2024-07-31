@@ -18,6 +18,7 @@ import {
 } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -26,7 +27,7 @@ import Category from './question/Category'
 import Warning from './question/Warning'
 
 type Props = {
-  question: string
+  question: DottedName
   tempValue?: number | undefined
   setTempValue?: (value: number | undefined) => void
   showInputsLabel?: React.ReactNode | string
@@ -84,7 +85,7 @@ export default function Question({
           question={question}
           setValue={(value) => {
             if (type === 'number') {
-              if (setTempValue) setTempValue(value)
+              if (setTempValue) setTempValue(value as number)
             }
             setValue(value, { foldedStep: question })
           }}

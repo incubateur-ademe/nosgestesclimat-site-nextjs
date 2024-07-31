@@ -59,7 +59,7 @@ export default function ActionCard({
   const { icônes: icons } = rule || action
 
   const remainingQuestions = filterRelevantMissingVariables(
-    Object.keys(missingVariables || {}),
+    Object.keys(missingVariables || {}) as DottedName[],
     extendedFoldedSteps
   )
 
@@ -85,7 +85,7 @@ export default function ActionCard({
     return key === dottedName && actionChoices?.[key]
   })
 
-  const flatRule = rules?.[dottedName]
+  const flatRule = (rules as any)?.[dottedName]
 
   const hasFormula = flatRule?.formule
   const isDisabled =

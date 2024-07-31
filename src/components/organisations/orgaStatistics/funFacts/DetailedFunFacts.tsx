@@ -2,9 +2,8 @@ import SaveIcon from '@/components/icons/SaveIcon'
 import Trans from '@/components/translation/Trans'
 import { organisationsDashboardClickFunFactsDownload } from '@/constants/tracking/pages/organisationsDashboard'
 import Button from '@/design-system/inputs/Button'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName, Entries, FunFacts } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import { toPng } from 'html-to-image'
 import { useParams } from 'next/navigation'
 import { utils } from 'publicodes'
@@ -23,47 +22,52 @@ export default function DetailedFunFacts({
 }: Props) {
   const params = useParams()
 
-  const funFactsByCategory: Record<DottedName, [string, DottedName][]> =
-    useMemo(() => {
-      const localFunFactsByCategory: Record<
-        DottedName,
-        [string, DottedName][]
-      > = {}
-      Object.entries(plusFunFactsRules).forEach((item) => {
-        const parent = utils.ruleParent(
-          item[1]
-        ) as keyof typeof localFunFactsByCategory
-        localFunFactsByCategory[parent] = [
-          ...(localFunFactsByCategory[parent] || []),
-          item,
-        ]
-      })
+  const funFactsByCategory = useMemo(() => {
+    const localFunFactsByCategory = {} as Record<
+      DottedName,
+      [keyof Partial<FunFacts>, DottedName | undefined][]
+    >
 
-      return localFunFactsByCategory
-    }, [plusFunFactsRules])
+    const plusFunFactsRulesEntries = Object.entries(
+      plusFunFactsRules
+    ) as Entries<typeof plusFunFactsRules>
+
+    plusFunFactsRulesEntries.forEach((item) => {
+      if (!item[1]) return
+      const parent = utils.ruleParent(item[1]) as DottedName
+      localFunFactsByCategory[parent] = [
+        ...(localFunFactsByCategory[parent] || []),
+        item,
+      ]
+    })
+
+    return localFunFactsByCategory
+  }, [plusFunFactsRules])
 
   return (
     <div className="rounded-xl bg-gray-100">
       <div className="bg-gray-100 p-8 pb-16" id="funFactsPlus">
         <h2>Chiffres clés</h2>
-        {Object.entries(funFactsByCategory).map(
-          ([category, funFactsEntries]) => (
-            <div key={category} className="mt-12">
-              <FunFactsPlusCategoryTitle category={category} />
-              <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {funFactsEntries.map(([funFactKey, dottedName]) => (
-                  <FunFactsItem
-                    key={funFactKey}
-                    funFactKey={funFactKey}
-                    dottedName={dottedName}
-                    funFacts={funFacts}
-                    small={true}
-                  />
-                ))}
-              </div>
+        {(
+          Object.entries(funFactsByCategory) as Entries<
+            typeof funFactsByCategory
+          >
+        ).map(([category, funFactsEntries]) => (
+          <div key={category} className="mt-12">
+            <FunFactsPlusCategoryTitle category={category} />
+            <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {funFactsEntries.map(([funFactKey, dottedName]) => (
+                <FunFactsItem
+                  key={funFactKey}
+                  funFactKey={funFactKey}
+                  dottedName={dottedName as DottedName}
+                  funFacts={funFacts}
+                  small={true}
+                />
+              ))}
             </div>
-          )
-        )}
+          </div>
+        ))}
       </div>
 
       <div className="mb-8 px-8">

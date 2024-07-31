@@ -8,8 +8,10 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
-import { RegionFromGeolocation } from '@/publicodes-state/types'
-import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import {
+  RegionFromGeolocation,
+  SupportedRegions,
+} from '@/publicodes-state/types'
 import RegionModelAuthors from './localisation/RegionModelAuthors'
 import RegionSelector from './localisation/RegionSelector'
 

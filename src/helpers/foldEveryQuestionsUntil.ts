@@ -1,8 +1,11 @@
-import { UpdateCurrentSimulationProps } from '@/publicodes-state/types'
+import {
+  DottedName,
+  UpdateCurrentSimulationProps,
+} from '@/publicodes-state/types'
 
 type Props = {
-  question: string
-  relevantQuestions: string[]
+  question: DottedName
+  relevantQuestions: DottedName[]
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
 }
 

@@ -4,13 +4,13 @@ import { questionClickSuggestion } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName, NodeValue } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
   question: DottedName
-  setValue: (value: number) => void
+  setValue: (value: NodeValue | Record<string, NodeValue>) => void
 }
 
 export default function Suggestions({ question, setValue }: Props) {

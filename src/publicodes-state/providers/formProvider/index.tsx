@@ -1,11 +1,12 @@
 'use client'
 
+import { DottedName } from '@/publicodes-state/types'
 import { PropsWithChildren, useContext, useMemo } from 'react'
 import { SimulationContext } from '../simulationProvider/context'
 import Provider from './Provider'
 
 type Props = {
-  root?: string
+  root?: DottedName
 }
 
 /**
