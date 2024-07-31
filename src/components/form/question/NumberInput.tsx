@@ -58,14 +58,14 @@ export default function NumberInput({
 
     // Prevent the user from typing non-numeric characters
     // with a regex match
-    const match = (event.target as HTMLInputElement).value.match(/[^0-9.-]+/g)
-    if (match && (event.target as HTMLInputElement).value.match(/[^0-9.-]+/g)) {
+    const match = event.target.value.match(/[^0-9.-]+/g)
+    if (match && event.target.value.match(/[^0-9.-]+/g)) {
       event.target.value = event.target.value.replace(match[0], '')
       return
     }
 
     // Format the number as the user types
-    const inputValue = (event.target as HTMLInputElement).value
+    const inputValue = event.target.value
     const formattedValue = formatNumber(Number(inputValue))
 
     // Update the input value
