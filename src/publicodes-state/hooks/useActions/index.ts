@@ -72,14 +72,17 @@ export default function useActions({ metric }: Props = { metric: 'carbone' }) {
         return accActions
       },
       { chosenActions: [], declinedActions: [] } as {
-        chosenActions: DottedName[]
-        declinedActions: DottedName[]
+        chosenActions: string[]
+        declinedActions: string[]
       }
     ) || 0
 
   const totalChosenActionsValue: number = useMemo(
     () =>
-      chosenActions.reduce((acc, action) => acc + getNumericValue(action), 0),
+      chosenActions.reduce(
+        (acc, action) => acc + getNumericValue(action as DottedName),
+        0
+      ),
     [chosenActions, getNumericValue]
   )
 

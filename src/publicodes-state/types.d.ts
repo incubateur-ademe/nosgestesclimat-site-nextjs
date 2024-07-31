@@ -58,7 +58,7 @@ export type UpdateCurrentSimulationProps = {
   situation?: Situation
   situationToAdd?: Situation
   foldedStepToAdd?: DottedName
-  actionChoices?: ActionChoices
+  actionChoices?: any
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   customAdditionalQuestionsAnswers?: Record<string, string>
   computedResults?: ComputedResults
@@ -75,7 +75,7 @@ export type Simulation = {
   date: Date | string
   situation: Situation
   foldedSteps: DottedName[]
-  actionChoices: ActionChoices
+  actionChoices: any
   persona?: string
   computedResults: ComputedResults
   progression: number
@@ -94,6 +94,7 @@ export type LocalStorage = {
   groupToRedirectToAfterTest?: Group
 }
 
+// Not used for now
 export type ActionChoices = Record<DottedName, boolean>
 
 // Model types
