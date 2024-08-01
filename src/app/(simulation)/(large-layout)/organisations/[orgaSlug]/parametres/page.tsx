@@ -46,7 +46,11 @@ export default function ParametresPage() {
     email: user?.organisation?.administratorEmail ?? '',
   })
 
-  const { register, handleSubmit } = useReactHookForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useReactHookForm({
     defaultValues: {
       name: organisation?.name ?? '',
       administratorName: organisation?.administrators?.[0]?.name ?? '',
@@ -196,7 +200,8 @@ export default function ParametresPage() {
 
         <OrganisationFields
           organisation={organisation}
-          register={register as any}
+          register={register}
+          errors={errors}
         />
 
         <Separator className="my-6" />
