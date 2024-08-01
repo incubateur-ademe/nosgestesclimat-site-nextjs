@@ -1,5 +1,6 @@
 import getSomme from '@/publicodes-state/helpers/getSomme'
-import { DottedName, NGCRuleNode } from '@/publicodes-state/types'
+import { NGCRuleNode } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 export function getRuleSumRules(rule: NGCRuleNode): DottedName[] | undefined {
   const somme = getSomme(rule.rawNode)
@@ -8,5 +9,7 @@ export function getRuleSumRules(rule: NGCRuleNode): DottedName[] | undefined {
     return undefined
   }
 
-  return somme.map((name: string) => `${rule.dottedName} . ${name}`)
+  return somme.map(
+    (name) => `${rule.dottedName as DottedName} . ${name}`
+  ) as DottedName[]
 }

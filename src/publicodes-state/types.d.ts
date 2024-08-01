@@ -62,6 +62,7 @@ export type NodeValue = Evaluation
 export type ComputedResultsFootprint = {
   bilan: number
   categories: Record<DottedName, number>
+  subcategories: Record<DottedName, Record<DottedName, number>>
 }
 export type ComputedResults = Record<Metric, ComputedResultsFootprint>
 
