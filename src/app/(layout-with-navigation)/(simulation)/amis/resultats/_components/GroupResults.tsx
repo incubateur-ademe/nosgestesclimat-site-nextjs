@@ -23,7 +23,7 @@ export default function GroupResults({ group }: Props) {
 
   const { isGroupOwner } = useIsGroupOwner({ group })
 
-  const results: Results | null = useGetGroupStats({
+  const results: Results = useGetGroupStats({
     groupMembers: group.participants,
     userId: user.userId,
   })
