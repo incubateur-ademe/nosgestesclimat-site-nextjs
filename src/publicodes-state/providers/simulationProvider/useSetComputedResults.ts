@@ -1,4 +1,5 @@
 import { defaultMetric, metrics } from '@/constants/metric'
+import { getSubcategories } from '@/helpers/publicodes/getSubcategories'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
@@ -43,10 +44,29 @@ export function useSetComputedResults({
         acc[metric] = categories.reduce(
           (acc, category) => {
             acc.categories[category] = getNumericValue(category, metric)
+
+            const subcategories = getSubcategories({
+              category,
+              getRuleObject: ((dottedName: DottedName) =>
+                safeEvaluate(dottedName, metric)?.nodeValue) as any,
+            })
+
+            if (!subcategories) return acc
+
+            acc.subcategories[category] = subcategories.reduce(
+              (subAcc, subcategory) => {
+                subAcc[subcategory] = getNumericValue(subcategory, metric)
+
+                return subAcc
+              },
+              {} as { [key in DottedName]: number }
+            )
+
             return acc
           },
           {
             categories: {},
+            subcategories: {},
             bilan: getNumericValue('bilan', metric),
           } as ComputedResultsFootprint
         )
