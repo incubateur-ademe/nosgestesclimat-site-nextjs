@@ -4,15 +4,34 @@ import Trans from '@/components/translation/Trans'
 import { ORGANISATION_TYPES } from '@/constants/organisations/organisationTypes'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Organisation } from '@/types/organisations'
-import { FieldValues, UseFormRegister } from 'react-hook-form'
+import { FieldErrors, UseFormRegister } from 'react-hook-form'
+
+type Values = {
+  name: string
+  administratorName: string
+  hasOptedInForCommunications: boolean
+  organisationType: string
+  email: string
+  position: string
+  numberOfCollaborators: number
+  administratorTelephone: string
+}
 
 type Props = {
   organisation: Organisation | undefined
-  register: UseFormRegister<FieldValues>
+  register: UseFormRegister<Values>
+  errors: FieldErrors
 }
 
-export default function OrganisationFields({ organisation, register }: Props) {
+export default function OrganisationFields({
+  organisation,
+  register,
+  errors,
+}: Props) {
+  const { t } = useClientTranslation()
+
   if (!organisation) return null
 
   return (
@@ -52,7 +71,13 @@ export default function OrganisationFields({ organisation, register }: Props) {
           </p>
         }
         value={organisation?.numberOfCollaborators}
-        {...register('numberOfCollaborators')}
+        {...register('numberOfCollaborators', {
+          min: {
+            value: 0,
+            message: t('Veuillez entrer un nombre positif.'),
+          },
+        })}
+        error={(errors.numberOfCollaborators?.message as string) || ''}
       />
       <TextInputGroup
         label={
