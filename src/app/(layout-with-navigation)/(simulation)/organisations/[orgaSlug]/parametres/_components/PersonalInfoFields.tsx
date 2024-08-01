@@ -10,6 +10,8 @@ type Props = {
 }
 
 export default function PersonalInfoFields({ organisation, register }: Props) {
+  if (!organisation) return null
+
   return (
     <div className="flex flex-col gap-4">
       <TextInputGroup
