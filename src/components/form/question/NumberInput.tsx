@@ -27,15 +27,9 @@ export default function NumberInput({
   const locale = useLocale()
 
   function formatNumber(number: number) {
-    // Créer un formateur de nombre pour la locale de l'utilisateur
-    const formatter = new Intl.NumberFormat(locale, {
-      style: 'decimal',
-      useGrouping: true, // Activer les séparateurs de milliers
-      maximumFractionDigits: 2,
+    return number.toLocaleString(locale, {
+      maximumFractionDigits: 1,
     })
-
-    // Formater la valeur numérique
-    return formatter.format(number)
   }
 
   function unformatNumber(number: string) {
@@ -46,11 +40,14 @@ export default function NumberInput({
   function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
     if (!event.target) return
 
+    const { value } = event.target
+
     // Prevent the user from typing non-numeric characters
     // with a regex match
-    const match = event.target.value.match(/[^0-9.-]+/g)
-    if (match && event.target.value.match(/[^0-9.-]+/g)) {
-      event.target.value = event.target.value.replace(match[0], '')
+    const match = value.match(/[^0-9.-]+/g)
+
+    if (match) {
+      event.target.value = value.replace(match[0], '')
       return
     }
 
@@ -62,6 +59,8 @@ export default function NumberInput({
     event.target.value = formattedValue
   }
 
+  const formattedValue = formatNumber(Number(value))
+
   return (
     <div className={twMerge(`flex items-center justify-end gap-1`, className)}>
       <DebounceInput
@@ -69,14 +68,8 @@ export default function NumberInput({
         className={`focus:ring-primary max-w-[8rem] rounded-xl border-2 border-gray-200 bg-white p-2 text-right transition-colors focus:border-primary-700 focus:ring-2 md:max-w-full`}
         inputMode="numeric"
         min={min}
-        value={isMissing ? '' : formatNumber(Number(value))}
-        placeholder={
-          isMissing
-            ? value?.toLocaleString(locale, {
-                maximumFractionDigits: 1,
-              }) ?? '0'
-            : '0'
-        }
+        value={isMissing ? '' : formattedValue}
+        placeholder={isMissing ? formattedValue ?? '0' : '0'}
         onInput={handleInput}
         onChange={(event) => {
           const inputValue = (event.target as HTMLInputElement).value
@@ -84,7 +77,7 @@ export default function NumberInput({
           if (inputValue === '') {
             setValue(undefined)
           } else {
-            setValue(unformatNumber(inputValue.replace(/[^0-9.-]+/g, '')))
+            setValue(unformatNumber(inputValue))
           }
         }}
         id={id}
