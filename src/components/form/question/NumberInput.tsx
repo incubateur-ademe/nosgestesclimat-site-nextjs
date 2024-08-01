@@ -26,28 +26,58 @@ export default function NumberInput({
 }: HTMLAttributes<HTMLInputElement> & Props) {
   const locale = useLocale()
 
+  function formatNumber(number: number) {
+    return number.toLocaleString(locale, {
+      maximumFractionDigits: 1,
+    })
+  }
+
+  function unformatNumber(number: string) {
+    // Supprimer les séparateurs de milliers
+    return Number(number.replace(/[^0-9.-]+/g, ''))
+  }
+
+  function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
+    if (!event.target) return
+
+    const { value } = event.target
+
+    // Prevent the user from typing non-numeric characters
+    // with a regex match
+    const match = value.match(/[^0-9.-]+/g)
+
+    if (match) {
+      event.target.value = value.replace(match[0], '')
+      return
+    }
+
+    // Format the number as the user types
+    const inputValue = event.target.value
+    const formattedValue = formatNumber(Number(inputValue))
+
+    // Update the input value
+    event.target.value = formattedValue
+  }
+
+  const formattedValue = formatNumber(Number(value))
+
   return (
     <div className={twMerge(`flex items-center justify-end gap-1`, className)}>
       <DebounceInput
         debounceTimeout={300}
         className={`focus:ring-primary max-w-[8rem] rounded-xl border-2 border-gray-200 bg-white p-2 text-right transition-colors focus:border-primary-700 focus:ring-2 md:max-w-full`}
-        type="number"
         inputMode="numeric"
         min={min}
-        value={isMissing ? '' : value}
-        placeholder={
-          isMissing
-            ? value?.toLocaleString(locale, {
-                maximumFractionDigits: 1,
-              }) ?? '0'
-            : '0'
-        }
+        value={isMissing ? '' : formattedValue}
+        placeholder={isMissing ? formattedValue ?? '0' : '0'}
+        onInput={handleInput}
         onChange={(event) => {
           const inputValue = (event.target as HTMLInputElement).value
+
           if (inputValue === '') {
             setValue(undefined)
           } else {
-            setValue(Number(inputValue))
+            setValue(unformatNumber(inputValue))
           }
         }}
         id={id}
