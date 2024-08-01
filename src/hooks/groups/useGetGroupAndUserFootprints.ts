@@ -9,7 +9,7 @@ type Props = {
   userId: string | null
 }
 
-export function getSubcategories({
+function getSubcategories({
   category,
   getRuleObject,
 }: {
