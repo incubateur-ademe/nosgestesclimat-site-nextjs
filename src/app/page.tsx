@@ -19,7 +19,7 @@ export async function generateMetadata() {
       'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.'
     ),
     alternates: {
-      canonical: 'https://nosgestesclimat.fr',
+      canonical: '/',
     },
   })
 }
