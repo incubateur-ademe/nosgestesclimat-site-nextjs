@@ -3,12 +3,12 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
+import { fixSituationWithPartialMosaic } from '@/helpers/personas/fixSituationWithPartialMosaic'
+import { getPersonaFoldedSteps } from '@/helpers/personas/getPersonaFoldedSteps'
 import { useDisposableEngine, useSimulation, useUser } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { Persona as PersonaType } from '@incubateur-ademe/nosgestesclimat'
 import { useRouter } from 'next/navigation'
-import { fixSituationWithPartialMosaic } from '../_helpers/fixSituationWithPartialMosaic'
-import { getPersonaFoldedSteps } from '../_helpers/getPersonaFoldedSteps'
 
 type Props = {
   persona: PersonaType

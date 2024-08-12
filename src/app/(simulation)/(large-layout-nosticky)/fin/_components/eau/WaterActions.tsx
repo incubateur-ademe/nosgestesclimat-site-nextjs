@@ -1,6 +1,6 @@
+import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Title from '@/design-system/layout/Title'
 import Image from 'next/image'
 

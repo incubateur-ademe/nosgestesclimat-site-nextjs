@@ -7387,6 +7387,22 @@ react-smooth@^4.0.0:
     prop-types "^15.8.1"
     react-transition-group "^4.4.5"
 
+react-svgmt@^1.1.9:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-svgmt/-/react-svgmt-1.2.0.tgz#000b985a863f0c711f2837ae2ebd719c31243f6a"
+  integrity sha512-V+yGwHWAA/fC0OCY1DMGZAjNVRQmQC4g4fpD8nrVTUmKUkhjL3xqorc8B0Z0Vnnx0MRnxenbJ0gfyw1GDdnzdw==
+  dependencies:
+    d3-ease "^1.0.3"
+    react-motion "^0.5.2"
+    react-move "^2.7.0"
+
+react-toastify@^10.0.5:
+  version "10.0.5"
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-10.0.5.tgz#6b8f8386060c5c856239f3036d1e76874ce3bd1e"
+  integrity sha512-mNKt2jBXJg4O7pSdbNUfDdTsK9FIdikfsIE/yUCxbAEXl4HMyJaivrVFcn3Elvt5xvCQYhUZm+hqTIu1UXM3Pw==
+  dependencies:
+    clsx "^2.1.0"
+
 react-tooltip@^5.26.3:
   version "5.26.4"
   resolved "https://registry.yarnpkg.com/react-tooltip/-/react-tooltip-5.26.4.tgz#9e350f2a1c859201ccdc3b15d17e0a01e88c0a0f"
