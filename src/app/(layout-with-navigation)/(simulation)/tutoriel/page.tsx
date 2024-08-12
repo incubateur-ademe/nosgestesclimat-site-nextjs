@@ -39,8 +39,7 @@ export default async function Tutoriel() {
               <Trans>10 minutes</Trans>
             </span>{' '}
             <Trans>
-              chrono pour calculer votre empreinte sur le climat et le cycle de
-              l’eau
+              chrono pour calculer votre empreinte empreinte carbone et eau
             </Trans>
           </>
         }
