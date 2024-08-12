@@ -65,6 +65,7 @@ export default function GroupCreationForm() {
 
       <div className="my-4">
         <EmailInput
+          data-cypress-id="group-input-owner-email"
           error={errors.administratorEmail?.message}
           value={user.email ?? ''}
           label={
