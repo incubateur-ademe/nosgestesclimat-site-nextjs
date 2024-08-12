@@ -49,6 +49,7 @@ export default function SimulationProvider({
     categories,
     isEngineInitialized,
     safeEvaluate,
+    safeGetRule,
   })
 
   return (
