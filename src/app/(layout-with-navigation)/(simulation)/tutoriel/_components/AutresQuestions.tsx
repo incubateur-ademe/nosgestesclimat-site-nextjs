@@ -30,7 +30,7 @@ export default function AutresQuestions() {
                   tutorielClickQuestion('C’est quoi mon empreinte carbone ?')
                 )
               }>
-              <Trans>C’est quoi mon empreinte carbone ?</Trans>
+              <Trans>C’est quoi mon empreinte carbone ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
               <p>
@@ -42,7 +42,7 @@ export default function AutresQuestions() {
                   ou du service. Ainsi, toutes nos activités participent à
                   émettre des gaz à effet de serre. Certaines énormément,
                   d'autres très peu. Mais quel est notre impact, à notre échelle
-                  de citoyen ?
+                  de citoyen ?
                 </Trans>
               </p>
               <Image
@@ -70,12 +70,12 @@ export default function AutresQuestions() {
               onClick={() =>
                 trackEvent(tutorielClickQuestion('Comment on la mesure ?'))
               }>
-              <Trans>Comment on la mesure ?</Trans>
+              <Trans>Comment on la mesure ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
               <p>
                 <Trans i18nKey={'publicodes.Tutoriel.slide2.p1'}>
-                  Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde
+                  Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde
                   de carbone{' '}
                   <Image
                     src="/images/tutoriel/co2.svg"
@@ -84,7 +84,7 @@ export default function AutresQuestions() {
                     width={100}
                     height={100}
                   />
-                  , vous le connaissez : on l'expire toute la journée, mais sans
+                  , vous le connaissez : on l'expire toute la journée, mais sans
                   influence sur le climat.
                 </Trans>
               </p>
@@ -100,7 +100,7 @@ export default function AutresQuestions() {
                   Ce sont les machines qui font notre confort moderne qui en
                   rejettent massivement, à tel point qu'on le compte en milliers
                   de kilos par an et par personne, donc en{' '}
-                  <strong>tonnes</strong> de CO₂e !
+                  <strong>tonnes</strong> de CO₂e !
                 </Trans>
               </p>
               <blockquote>
@@ -112,7 +112,7 @@ export default function AutresQuestions() {
                       )
                     }>
                     <Trans i18nKey={'sites.publicodes.Tutorial.questionE'}>
-                      💡 Mais que veut dire ce petit <em>e</em> ?
+                      💡 Mais que veut dire ce petit <em>e</em> ?
                     </Trans>
                   </summary>{' '}
                   <Trans i18nKey={'publicodes.Tutoriel.slide2.blockquote'}>
@@ -132,7 +132,7 @@ export default function AutresQuestions() {
                       width={100}
                       height={100}
                     />{' '}
-                    réchauffent aussi la planète : on convertit leur potentiel
+                    réchauffent aussi la planète : on convertit leur potentiel
                     de réchauffement en équivalent CO₂ pour simplifier la
                     mesure.{' '}
                   </Trans>
@@ -148,7 +148,7 @@ export default function AutresQuestions() {
               onClick={() =>
                 trackEvent(tutorielClickQuestion('D’où vient mon empreinte ?'))
               }>
-              <Trans>D’où vient mon empreinte ?</Trans>
+              <Trans>D’où vient mon empreinte ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
               <Trans i18nKey={'publicodes.Tutoriel.slide6'}>
@@ -159,9 +159,34 @@ export default function AutresQuestions() {
 
                 <p>
                   L'empreinte de notre consommation individuelle, c'est la somme
-                  de toutes ces activités qui font notre vie moderne.{' '}
+                  de toutes ces activités qui font notre vie moderne.
                 </p>
               </Trans>
+            </div>
+          </details>
+        </li>
+        <li className="mb-4" id={'categories'}>
+          <details id={'categories'}>
+            <summary
+              className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
+              onClick={() =>
+                trackEvent(tutorielClickQuestion('D’où vient mon empreinte ?'))
+              }>
+              <Trans>Pourquoi avons-nous ajouté l’empreinte eau ?</Trans>
+            </summary>
+            <div className="my-2 ml-3.5">
+              <p>
+                <Trans>
+                  L’eau est une ressource planétaire précieuse. Comme le climat,{' '}
+                  <strong className="text-secondary-700">
+                    le cycle de l’eau est fortement impacté par les activités
+                    humaines.
+                  </strong>{' '}
+                  Nous avons fait le choix d’ajouter l'empreinte eau à notre
+                  modèle de calcul afin de vous apporter des éléments de
+                  compréhension de cet impact.
+                </Trans>
+              </p>
             </div>
           </details>
         </li>
