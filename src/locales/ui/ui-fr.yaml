@@ -30,7 +30,6 @@ entries:
   Fermer: Fermer
   Fermer les options de tri: Fermer les options de tri
   J'ai compris: J'ai compris
-  Je ne sais pas: Je ne sais pas
   Le modèle d'empreinte carbone de référence: Le modèle d'empreinte carbone de référence
   Le test: Le test
   Le titre bref de votre problème: Le titre bref de votre problème
@@ -243,7 +242,6 @@ entries:
   Sélectionner: Sélectionner
   Supprimer: Supprimer
   Switch to english: Switch to english
-  Voir la liste des questions: Voir la liste des questions
   Voir plus d'informations: Voir plus d'informations
   Vous: Vous
   'Vous faites cette simulation depuis :': 'Vous faites cette simulation depuis :'
@@ -251,9 +249,6 @@ entries:
   Vous utilisez la version: Vous utilisez la version
   Terminer: Terminer
   Voir toutes les actions: Voir toutes les actions
-  Total.unit: de CO<1>2</1>e / an
-  Comparez vos résultats <2>avec vos proches</2>: Comparez vos résultats <2>avec vos proches</2>
-  Créer un groupe: Créer un groupe
   Distance: Distance
   Fréquence: Fréquence
   La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.: La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.
@@ -261,7 +256,6 @@ entries:
   Passagers: Passagers
   Télécharger l'image: Télécharger l'image
   'Total par an :': 'Total par an :'
-  Une capture du mode Groupe Nos Gestes Climat.: Une capture du mode Groupe Nos Gestes Climat.
   Merci pour votre retour !: Merci pour votre retour !
   'Total :': 'Total :'
   ou: ou
@@ -625,7 +619,6 @@ entries:
   'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2> tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': 'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2> tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.'
   Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !: Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !
   Une erreur est survenue !: Une erreur est survenue !
-  '{formatCarbonFootprint(carbonFootprintValue).unit}': '{formatCarbonFootprint(carbonFootprintValue).unit}'
   '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés': '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés'
   "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails": "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails"
   Ce champ est requis.: Ce champ est requis.
@@ -933,6 +926,7 @@ entries:
   Et l'eau de <2>ma douche</2> dans tout ça ?: Et l'eau de <2>ma douche</2> dans tout ça ?
   Mon empreinte carbone: Mon empreinte carbone
   Mon empreinte eau: Mon empreinte eau
+  <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombres de nos vêtements.: <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombres de nos vêtements.
   d'eau par jour: d'eau par jour
   de CO₂e par an: de CO₂e par an
   Liste des questions: Liste des questions
@@ -941,8 +935,8 @@ entries:
   Reprendre plus tard: Reprendre plus tard
   Sauvegarder <2>ma progression</2>: Sauvegarder <2>ma progression</2>
   sur votre empreinte: sur votre empreinte
-  Une erreur s'est produite au moment de la sauvegarde.: Une erreur s'est produite au moment de la sauvegarde.
   Votre région a bien été mise à jour.: Votre région a bien été mise à jour.
+  Sauvegarder ma progression: Sauvegarder ma progression
   Vous pouvez la reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: Vous pouvez la reprendre plus tard en cliquant sur le lien que vous avez reçu par email.
   Veuillez entrer un nombre positif.: Veuillez entrer un nombre positif.
   '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} sur votre empreinte'
