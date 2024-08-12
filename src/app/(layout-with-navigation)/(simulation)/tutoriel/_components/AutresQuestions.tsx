@@ -141,7 +141,7 @@ export default function AutresQuestions() {
             </div>
           </details>
         </li>
-        <li className="mb-4" id={'categories'}>
+        <li className="mb-2" id={'categories'}>
           <details id={'categories'}>
             <summary
               className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
@@ -165,8 +165,8 @@ export default function AutresQuestions() {
             </div>
           </details>
         </li>
-        <li className="mb-4" id={'categories'}>
-          <details id={'categories'}>
+        <li className="mb-4" id={'eau'}>
+          <details id={'eau'}>
             <summary
               className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
               onClick={() =>
