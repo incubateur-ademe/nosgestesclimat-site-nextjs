@@ -1,6 +1,5 @@
 import { defaultMetric, metrics } from '@/constants/metric'
-import { getSubcategories } from '@/helpers/publicodes/getSubcategories'
-import { useCurrentSimulation } from '@/publicodes-state'
+import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import {
@@ -23,6 +22,7 @@ export function useSetComputedResults({
   safeEvaluate,
   isEngineInitialized,
 }: Props) {
+  const { getSubcategories } = useEngine()
   const { situation, updateCurrentSimulation } = useCurrentSimulation()
 
   // little helper function to get the numeric value of a dottedName (it is a copy of the one in useEngine)
@@ -45,11 +45,7 @@ export function useSetComputedResults({
           (acc, category) => {
             acc.categories[category] = getNumericValue(category, metric)
 
-            const subcategories = getSubcategories({
-              category,
-              getRuleObject: ((dottedName: DottedName) =>
-                safeEvaluate(dottedName, metric)?.nodeValue) as any,
-            })
+            const subcategories = getSubcategories(category)
 
             if (!subcategories) return acc
 

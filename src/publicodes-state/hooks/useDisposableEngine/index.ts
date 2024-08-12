@@ -15,7 +15,7 @@ type Props = {
  * Very ressource intensive. Use with caution
  */
 export default function useDisposableEngine({ rules, situation }: Props) {
-  const { rules: contextRules } = useContext(SimulationContext)
+  const { rules: contextRules, safeGetRule } = useContext(SimulationContext)
 
   const engine = useMemo(() => {
     return new Engine<DottedName>(rules ?? contextRules, {
@@ -41,9 +41,13 @@ export default function useDisposableEngine({ rules, situation }: Props) {
     engine.setSituation(newSituation, { keepPreviousSituation: true })
   }
 
+  const getSubcategories = (dottedName: DottedName): DottedName[] =>
+    safeGetRule(dottedName)?.rawNode?.formule?.somme
+
   return {
     engine,
     getValue,
     updateSituation,
+    getSubcategories,
   }
 }
