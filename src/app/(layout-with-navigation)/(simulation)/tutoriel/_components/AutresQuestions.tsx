@@ -196,7 +196,7 @@ export default function AutresQuestions() {
         size="sm"
         color="secondary"
         trackingEvent={tutorielClickFaq}>
-        ☝️ <Trans>Consultez la FAQ</Trans>
+        <Trans>Consultez la FAQ</Trans>
       </ButtonLink>
     </div>
   )
