@@ -38,9 +38,7 @@ export default async function Tutoriel() {
             <span className="inline text-secondary-700">
               <Trans>10 minutes</Trans>
             </span>{' '}
-            <Trans>
-              chrono pour calculer votre empreinte empreinte carbone et eau
-            </Trans>
+            <Trans>chrono pour calculer votre empreinte carbone et eau</Trans>
           </>
         }
       />
