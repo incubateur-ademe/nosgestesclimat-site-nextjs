@@ -63,10 +63,11 @@ export default function ActionDetail({
   const flatActions = rules['actions'] as { formule: { somme: DottedName[] } }
 
   const relatedActions: NGCRuleNode[] = flatActions?.formule?.somme
-    .filter(
-      (action: DottedName) =>
+    .filter((action: DottedName) => {
+      return (
         action !== dottedName && getCategory(dottedName) === getCategory(action)
-    )
+      )
+    })
     .map((name: DottedName) => getSpecialRuleObject(name))
 
   return (

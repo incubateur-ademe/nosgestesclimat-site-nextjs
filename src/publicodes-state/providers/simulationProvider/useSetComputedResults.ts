@@ -7,13 +7,14 @@ import {
   ComputedResultsFootprint,
   Metric,
   NGCEvaluatedNode,
+  DottedName as OldDottedName,
 } from '../../types'
 
 type Props = {
-  categories: DottedName[]
+  categories: OldDottedName[]
   isEngineInitialized: boolean
   safeEvaluate: (
-    ruleName: DottedName,
+    ruleName: OldDottedName,
     metric: Metric
   ) => NGCEvaluatedNode | null
 }
@@ -27,7 +28,7 @@ export function useSetComputedResults({
 
   // little helper function to get the numeric value of a dottedName (it is a copy of the one in useEngine)
   const getNumericValue = useCallback(
-    (dottedName: DottedName, metric: Metric): number => {
+    (dottedName: OldDottedName, metric: Metric): number => {
       // If the engine is not initialized, we return 0
       if (!isEngineInitialized) return 0
 
@@ -45,7 +46,7 @@ export function useSetComputedResults({
           (acc, category) => {
             acc.categories[category] = getNumericValue(category, metric)
 
-            const subcategories = getSubcategories(category)
+            const subcategories = getSubcategories(category as DottedName)
 
             if (!subcategories) return acc
 
@@ -55,7 +56,7 @@ export function useSetComputedResults({
 
                 return subAcc
               },
-              {} as { [key in DottedName]: number }
+              {} as { [key in OldDottedName]: number }
             )
 
             return acc
