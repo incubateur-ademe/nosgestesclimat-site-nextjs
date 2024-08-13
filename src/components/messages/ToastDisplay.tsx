@@ -26,6 +26,7 @@ export default function ToastDisplay(props: Props) {
     <ToastContainer
       className={twMerge(props?.className ?? '', marianne.className)}
       aria-live="polite"
+      position="bottom-right"
       {...props}
     />
   )
