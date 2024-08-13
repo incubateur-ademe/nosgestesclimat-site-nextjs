@@ -6,6 +6,7 @@ import GoBackLink from '@/design-system/inputs/GoBackLink'
 import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
 import { useGroupIdInQueryParams } from '@/hooks/groups/useGroupIdInQueryParams'
 import { useGroupPagesGuard } from '@/hooks/navigation/useGroupPagesGuard'
+import { ToastContainer } from 'react-toastify'
 import EditableGroupTitle from './_components/EditableGroupTitle'
 import GroupResults from './_components/GroupResults'
 
@@ -35,6 +36,8 @@ export default function GroupResultsPage() {
       <EditableGroupTitle group={group} />
 
       <GroupResults group={group} />
+
+      <ToastContainer />
     </div>
   )
 }

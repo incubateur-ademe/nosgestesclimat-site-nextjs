@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
-import { defaultMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
+import { temp_getComputedResults } from '@/helpers/simulation/temp_getComputedResults'
 import { Group } from '@/types/groups'
 
 type Props = {
@@ -25,14 +25,13 @@ export default function LaconicRanking({ group }: Props) {
   }
 
   const particpantsOrdered = group.participants.sort((a, b) => {
-    if (!a.simulation.computedResults || !b.simulation.computedResults) {
+    const computedResultsA = temp_getComputedResults(a.simulation)
+    const computedResultsB = temp_getComputedResults(b.simulation)
+    if (!computedResultsA || !computedResultsB) {
       return 0
     }
 
-    return a.simulation.computedResults[defaultMetric].bilan <
-      b.simulation.computedResults[defaultMetric].bilan
-      ? -1
-      : 1
+    return computedResultsA < computedResultsB ? -1 : 1
   })
 
   // Display a list of participants with their rank and an emoji medal for the first three
