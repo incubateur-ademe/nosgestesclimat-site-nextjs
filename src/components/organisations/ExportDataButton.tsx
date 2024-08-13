@@ -25,7 +25,13 @@ export default function ExportDataButton({
 }: ButtonProps & Props) {
   const [isLoading, setIsLoading] = useState(false)
 
+  const isDisabled = simulationRecaps?.length < 3
+
   function handleClick() {
+    if (isDisabled) {
+      return
+    }
+
     if (onClick) {
       onClick()
     }
@@ -82,7 +88,12 @@ export default function ExportDataButton({
     })
   }
   return (
-    <Button color={color} disabled={isLoading} onClick={handleClick} {...props}>
+    <Button
+      aria-disabled={isDisabled}
+      color={color}
+      disabled={isLoading}
+      onClick={handleClick}
+      {...props}>
       <DownloadIcon className="mr-2 fill-primary-700" />
       <Trans>Exporter les données</Trans>
     </Button>
