@@ -24,9 +24,10 @@ function getContentAlignement(position: number) {
 
 type Props = {
   total?: number
+  isSmall?: boolean
 }
 
-export default function TotalNumber({ total }: Props) {
+export default function TotalNumber({ total, isSmall }: Props) {
   const { t } = useClientTranslation()
 
   const { numericValue } = useRule('bilan')
@@ -58,12 +59,13 @@ export default function TotalNumber({ total }: Props) {
       initial={{ opacity: 0, x: '-400%' }}
       animate={{ opacity: 1, x: '-50%' }}
       transition={{ duration: 1.5 }}
-      className="absolute bottom-10 z-10 -translate-x-1/2"
+      className={twMerge('absolute bottom-10 z-10 -translate-x-1/2')}
       style={{ left: `${position}%`, color: cssColor }}>
       <div
         className={twMerge(
           'absolute bottom-full mb-1 whitespace-nowrap text-right font-medium',
-          getContentAlignement(position)
+          getContentAlignement(position),
+          isSmall && 'pointer-events-none !opacity-0 duration-500'
         )}>
         <strong className="absolute bottom-7 right-full -translate-x-4 text-6xl font-black leading-none lg:bottom-7 lg:text-8xl">
           <CountUp
@@ -84,7 +86,10 @@ export default function TotalNumber({ total }: Props) {
           <Trans>de</Trans> CO₂e <Trans>par an</Trans>
         </span>
       </div>
-      <Arrow style={{ fill: cssColor }} />
+      <Arrow
+        style={{ fill: cssColor }}
+        className={isSmall ? 'pointer-events-none !opacity-0 duration-500' : ''}
+      />
     </motion.div>
   )
 }

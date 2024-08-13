@@ -1,8 +1,12 @@
 import Trans from '@/components/translation/Trans'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
+import { twMerge } from 'tailwind-merge'
 
-export default function WaterTotalNumber() {
+type Props = {
+  isSmall?: boolean
+}
+export default function WaterTotalNumber({ isSmall }: Props) {
   const { numericValue } = useRule('bilan', 'eau')
 
   const { formattedValue, unit } = formatFootprint(numericValue, {
@@ -15,7 +19,11 @@ export default function WaterTotalNumber() {
   ).toLocaleString('fr-FR')
 
   return (
-    <div className="flex items-center justify-center">
+    <div
+      className={twMerge(
+        'flex items-center justify-center transition-opacity duration-500',
+        isSmall && 'opacity-0'
+      )}>
       <div className="mx-auto whitespace-nowrap text-right font-medium text-water">
         <strong className="text-6xl font-black leading-none lg:text-8xl">
           {realFormattedValue}

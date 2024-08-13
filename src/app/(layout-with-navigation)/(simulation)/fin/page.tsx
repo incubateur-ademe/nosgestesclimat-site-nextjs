@@ -17,7 +17,6 @@ import InformationBlock from './_components/InformationBlock'
 import MetricSlider from './_components/MetricSlider'
 import Poll from './_components/Poll'
 import ShareBlock from './_components/ShareBlock'
-import TotalSticky from './_components/TotalSticky'
 
 const titles = {
   carbone: <Trans>carbone</Trans>,
@@ -37,15 +36,13 @@ export default function FinPage() {
   if (!isCorrectSimulationSet) return null
 
   return (
-    <>
+    <div className="relative">
       <IframeDataShareModal />
       <Poll />
 
       <MetricSlider />
 
-      <TotalSticky />
-
-      <div className="relative -mt-6 flex flex-col-reverse gap-16 lg:-mt-16 lg:flex-row lg:gap-10">
+      <div className="relative flex flex-col-reverse gap-16 lg:flex-row lg:gap-10">
         <div className="relative flex flex-1 flex-col gap-16 lg:mt-7">
           <div
             className={twMerge(
@@ -97,6 +94,6 @@ export default function FinPage() {
           <InformationBlock />
         </div>
       </div>
-    </>
+    </div>
   )
 }

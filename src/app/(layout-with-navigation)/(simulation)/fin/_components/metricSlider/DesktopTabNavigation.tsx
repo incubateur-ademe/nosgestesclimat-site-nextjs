@@ -12,23 +12,19 @@ export default function DesktopTabNavigation({ sticky }: Props) {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   return (
-    <div className="relative z-10 hidden w-full items-end justify-between pt-0.5 lg:flex">
+    <div className="relative flex w-full items-end justify-between bg-white pt-0.5">
       <div className={twMerge('flex', sticky && 'gap-2')}>
         <button
           onClick={() => setCurrentMetric('carbone')}
           className={twMerge(
-            'mb-0 rounded-t-xl border-2 px-4 font-medium transition-all duration-500',
+            'z-50 mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-500',
             currentMetric !== 'carbone'
-              ? 'border-transparent border-b-primary-50 text-primary-700'
-              : 'border-x-primary-50 border-b-transparent border-t-primary-50 bg-gray-100',
-            sticky ? 'px-6 pb-0 pt-1 text-sm' : 'pb-1 pt-2 text-lg',
-            sticky && currentMetric !== 'carbone' && 'border-primary-50'
+              ? ' border-transparent border-b-primary-50 text-primary-700'
+              : 'border-x-primary-50 border-b-transparent border-t-primary-50 bg-gray-100'
           )}>
-          {!sticky && (
-            <>
-              <Trans>Mon empreinte</Trans>{' '}
-            </>
-          )}
+          <span className="hidden lg:inline">
+            <Trans>Mon empreinte</Trans>{' '}
+          </span>
           <strong
             className={twMerge(
               currentMetric !== 'carbone'
@@ -41,18 +37,14 @@ export default function DesktopTabNavigation({ sticky }: Props) {
         <button
           onClick={() => setCurrentMetric('eau')}
           className={twMerge(
-            'mb-0 rounded-t-xl border-2 px-4 font-medium transition-all duration-500',
+            'z-50 mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-500',
             currentMetric !== 'eau'
-              ? 'border-transparent border-b-primary-50 text-primary-700'
-              : 'border-x-primary-50 !border-b-transparent border-t-primary-50 bg-gray-100',
-            sticky ? 'px-6 pb-0 pt-1 text-sm' : 'pb-1 pt-2 text-lg',
-            sticky && currentMetric !== 'eau' && 'border-primary-50'
+              ? 'z-50 border-transparent border-b-primary-50 text-primary-700'
+              : 'border-x-primary-50 !border-b-transparent border-t-primary-50 bg-gray-100 '
           )}>
-          {!sticky && (
-            <>
-              <Trans>Mon empreinte</Trans>{' '}
-            </>
-          )}
+          <span className="hidden lg:inline">
+            <Trans>Mon empreinte</Trans>{' '}
+          </span>
           <strong
             className={twMerge(
               currentMetric !== 'eau'
