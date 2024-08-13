@@ -40,6 +40,10 @@ export default function FinPage() {
       <IframeDataShareModal />
       <Poll />
 
+      <Title tag="h1" className="lg:hidden">
+        <Trans>Mes empreintes</Trans>
+      </Title>
+
       <MetricSlider />
 
       <div className="relative flex flex-col-reverse gap-16 lg:flex-row lg:gap-10">
