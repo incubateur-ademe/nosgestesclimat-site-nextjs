@@ -597,6 +597,10 @@ html[data-useragent*='Trident'] #js {
   --toastify-text-color-light: #1a1a1a !important;
   --toastify-toast-bd-radius: 0.5rem !important;
 }
+
+.Toastify__toast--error {
+  @apply bg-red-50 text-red-700 !important;
+}
 .Toastify__close-button--light {
   opacity: 1 !important;
   @apply text-gray-700 !important;
