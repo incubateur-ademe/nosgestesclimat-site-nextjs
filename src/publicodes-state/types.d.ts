@@ -2,18 +2,12 @@ import { Group } from '@/types/groups'
 import {
   DottedName,
   Metrics,
-  Persona as NGCPersona,
-  Personas as NGCPersonas,
-  NGCRule,
-  NGCRules,
   SuggestionValue,
 } from '@incubateur-ademe/nosgestesclimat'
 import PublicodesEngine, {
   EvaluatedNode,
-  Evaluation,
   ParsedRules as PublicodesParsedRules,
   Situation as PublicodesSituation,
-  RuleNode,
 } from 'publicodes'
 
 // Utils
@@ -97,21 +91,7 @@ export type LocalStorage = {
 // Not used for now
 export type ActionChoices = Record<DottedName, boolean>
 
-// Model types
-
-export type {
-  DottedName,
-  FunFacts,
-  Suggestions,
-  SupportedRegion,
-  SupportedRegions,
-} from '@incubateur-ademe/nosgestesclimat'
-
 export type Metric = Metrics
-
-export type Rules = NGCRules
-
-export type Rule = NGCRule
 
 export type Situation = PublicodesSituation<DottedName>
 
@@ -121,17 +101,7 @@ export type Engine = PublicodesEngine<DottedName>
 
 export type MissingVariables = Record<DottedName, number>
 
-export type NGCRuleNode = RuleNode<DottedName> & {
-  rawNode: NGCRule
-}
-
 export type NGCEvaluatedNode = EvaluatedNode
-
-export type NodeValue = Evaluation
-
-export type Persona = NGCPersona
-
-export type Personas = NGCPersonas
 
 export type FormattedSuggestion = {
   label: string

@@ -1,4 +1,7 @@
-import { SupportedRegion, SupportedRegions } from '@/publicodes-state/types'
+import {
+  SupportedRegions,
+  SupportedRegionType,
+} from '@incubateur-ademe/nosgestesclimat'
 
 export const sortSupportedRegions = ({
   supportedRegions,
@@ -14,11 +17,11 @@ export const sortSupportedRegions = ({
   return Object.fromEntries(
     Object.entries(supportedRegions).sort(
       (supportedRegionA, supportedRegionB) => {
-        const nameA = (supportedRegionA[1] as SupportedRegion)[
+        const nameA = (supportedRegionA[1] as SupportedRegionType)[
           currentLocale
         ]?.nom.toUpperCase() // ignore upper and lowercase
 
-        const nameB = (supportedRegionB[1] as SupportedRegion)[
+        const nameB = (supportedRegionB[1] as SupportedRegionType)[
           currentLocale
         ]?.nom.toUpperCase() // ignore upper and lowercase
 

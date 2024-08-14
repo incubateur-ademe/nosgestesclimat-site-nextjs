@@ -1,4 +1,4 @@
-import { SupportedRegions } from '@/publicodes-state/types'
+import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
 
 /**

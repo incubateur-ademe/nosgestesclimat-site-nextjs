@@ -1,8 +1,8 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { FunFacts } from '@/publicodes-state/types'
 import { SimulationRecap } from '@/types/organisations'
+import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import DetailedStatistics from './orgaStatistics/DetailedStatistics'
 import FunFactsBlock from './orgaStatistics/FunFactsBlock'
 import StatisticsBlocks from './orgaStatistics/StatisticsBlocks'

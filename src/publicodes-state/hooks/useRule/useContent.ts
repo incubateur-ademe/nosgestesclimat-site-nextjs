@@ -1,9 +1,13 @@
 'use client'
 
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
-import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import {
+  DottedName,
+  NGCRuleNode,
+  SuggestionsNode,
+} from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
-import { FormattedSuggestion, Suggestions } from '../../types'
+import { FormattedSuggestion } from '../../types'
 
 type Props = {
   dottedName: DottedName
@@ -60,7 +64,7 @@ export default function useContent({ dottedName, rule }: Props) {
 
   const suggestions = useMemo(() => {
     const suggestionsFolder = (rule?.rawNode.mosaique?.suggestions ||
-      rule?.rawNode.suggestions) as Suggestions
+      rule?.rawNode.suggestions) as SuggestionsNode
     const suggestions = suggestionsFolder
       ? Object.keys(suggestionsFolder).map(
           (key) =>
