@@ -6,9 +6,9 @@ import Markdown from '@/design-system/utils/Markdown'
 import { getGeolocation } from '@/helpers/getGeolocation'
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
-import { DottedName, Rules, SupportedRegions } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
+import { DottedName, SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { currentLocale } from 'next-i18n-router'
 import { redirect } from 'next/navigation'
 import ButtonLaunch from './documentationServer/ButtonLaunch'
@@ -33,7 +33,7 @@ export default async function DocumentationServer({ slugs }: Props) {
   }
 
   // We load the default rules to render the server side documentation
-  const rules: Rules = await getRules({
+  const rules = await getRules({
     isOptim: false,
     locale,
     regionCode: region?.code,

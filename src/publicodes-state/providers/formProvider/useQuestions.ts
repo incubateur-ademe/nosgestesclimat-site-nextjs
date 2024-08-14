@@ -1,14 +1,13 @@
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
 
 import getSortedQuestionsList from '@/publicodes-state/helpers/getSortedQuestionsList'
 import {
-  DottedName,
   Entries,
   MissingVariables,
   NGCEvaluatedNode,
-  NGCRuleNode,
   Situation,
 } from '../../types'
 

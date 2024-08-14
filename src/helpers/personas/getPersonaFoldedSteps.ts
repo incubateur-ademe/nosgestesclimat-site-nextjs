@@ -1,11 +1,10 @@
 import {
-  DottedName,
   Engine,
   Entries,
   NGCEvaluatedNode,
-  NGCRuleNode,
   Situation,
 } from '@/publicodes-state/types'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { fixSituationWithPartialMosaic } from './fixSituationWithPartialMosaic'
 

@@ -1,5 +1,6 @@
 import { defaultMetric } from '@/constants/metric'
-import { DottedName, Simulation } from '@/publicodes-state/types'
+import { Simulation } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 export function areComputedResultsDifferent(
   simulation1?: Simulation,

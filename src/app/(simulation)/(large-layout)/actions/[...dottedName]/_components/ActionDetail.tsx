@@ -14,8 +14,8 @@ import {
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
-import { DottedName, NGCRuleNode } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import ActionForm from '../../_components/actions/_components/ActionForm'
 

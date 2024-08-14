@@ -6,7 +6,10 @@ import Card from '@/design-system/layout/Card'
 import { fixSituationWithPartialMosaic } from '@/helpers/personas/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '@/helpers/personas/getPersonaFoldedSteps'
 import { useDisposableEngine, useSimulation, useUser } from '@/publicodes-state'
-import { Persona as PersonaType } from '@incubateur-ademe/nosgestesclimat'
+import {
+  DottedName,
+  Persona as PersonaType,
+} from '@incubateur-ademe/nosgestesclimat'
 import { useRouter } from 'next/navigation'
 
 type Props = {
@@ -70,7 +73,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
                 engine,
                 safeGetRule,
                 safeEvaluate,
-              }),
+              }) as DottedName[],
               progression: 1,
             })
             hideTutorial('testIntro')

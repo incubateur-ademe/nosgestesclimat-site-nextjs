@@ -1,7 +1,10 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
-import { DottedName, Rules } from '@/publicodes-state/types'
-import { Rule } from 'publicodes'
+import {
+  DottedName,
+  NGCRule,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
 import RuleDetail from './calculDetail/RuleDetail'
 
 export default function CalculDetail({
@@ -9,9 +12,9 @@ export default function CalculDetail({
   ruleName,
   rules,
 }: {
-  rule: Rule
+  rule: NGCRule
   ruleName: DottedName
-  rules: Rules
+  rules: NGCRules
 }) {
   return (
     <>

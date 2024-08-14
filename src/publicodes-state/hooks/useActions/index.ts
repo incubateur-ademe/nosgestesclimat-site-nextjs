@@ -1,7 +1,8 @@
-'use client'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+;('use client')
 
 import getSomme from '@/publicodes-state/helpers/getSomme'
-import { DottedName, Metric } from '@/publicodes-state/types'
+import { Metric } from '@/publicodes-state/types'
 import { useContext, useMemo } from 'react'
 import { useEngine } from '../..'
 import { SimulationContext } from '../../providers/simulationProvider/context'

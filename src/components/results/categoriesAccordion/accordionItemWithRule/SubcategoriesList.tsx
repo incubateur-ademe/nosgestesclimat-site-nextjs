@@ -1,6 +1,7 @@
 import { defaultMetric } from '@/constants/metric'
 import { useEngine, useRule } from '@/publicodes-state'
-import { DottedName, Metric } from '@/publicodes-state/types'
+import { Metric } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoryListItem from './subcategoriesList/SubcategoryListItem'
 
 type Props = {

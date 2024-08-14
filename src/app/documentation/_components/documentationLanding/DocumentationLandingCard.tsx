@@ -9,14 +9,14 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useEngine } from '@/publicodes-state'
-import { DottedName, Rule } from '@/publicodes-state/types'
+import { DottedName, NGCRule } from '@incubateur-ademe/nosgestesclimat'
 import Markdown from 'markdown-to-jsx'
 import { utils } from 'publicodes'
 
 type Props = {
   dottedName: DottedName
   summary: string
-  rule: Rule
+  rule: NGCRule
 }
 
 export default function DocumentationLandingCard({

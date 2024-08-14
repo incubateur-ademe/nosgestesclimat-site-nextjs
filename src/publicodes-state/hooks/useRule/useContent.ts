@@ -1,13 +1,9 @@
 'use client'
 
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
-import {
-  DottedName,
-  FormattedSuggestion,
-  NGCRuleNode,
-  Suggestions,
-} from '../../types'
+import { FormattedSuggestion, Suggestions } from '../../types'
 
 type Props = {
   dottedName: DottedName
@@ -84,7 +80,7 @@ export default function useContent({ dottedName, rule }: Props) {
   )
 
   // This is only used by "ui . pédagogie" rules
-  const actions = useMemo<string[] | undefined>(
+  const actions = useMemo<DottedName[] | undefined>(
     () => (rule as any)?.rawNode['actions'],
     [rule]
   )

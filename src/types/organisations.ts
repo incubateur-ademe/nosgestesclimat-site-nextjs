@@ -1,9 +1,5 @@
-import {
-  DottedName,
-  FunFacts,
-  Simulation,
-  Situation,
-} from '@/publicodes-state/types'
+import { Simulation, Situation } from '@/publicodes-state/types'
+import { DottedName, FunFacts } from '@incubateur-ademe/nosgestesclimat'
 
 export type OrganisationAdministrator = {
   name?: string

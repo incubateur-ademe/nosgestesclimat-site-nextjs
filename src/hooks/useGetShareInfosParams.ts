@@ -1,4 +1,4 @@
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useSearchParams } from 'next/navigation'
 
 export const useGetShareInfosParams = () => {

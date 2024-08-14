@@ -1,13 +1,13 @@
 import Link from '@/components/Link'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
-import { DottedName, Rules } from '@/publicodes-state/types'
+import { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 
 export default function PagesProches({
   rules,
   ruleName,
 }: {
-  rules: Rules
+  rules: NGCRules
   ruleName: DottedName
 }) {
   const namespaceRules = Object.keys(rules).filter(

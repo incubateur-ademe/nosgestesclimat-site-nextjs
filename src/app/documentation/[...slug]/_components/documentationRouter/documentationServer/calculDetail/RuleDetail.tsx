@@ -1,7 +1,7 @@
 import Link from '@/components/Link'
-import { DottedName, Rules } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
+import { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { Rule, utils } from 'publicodes'
 
 const KEYS_TO_OMIT = [
@@ -42,7 +42,7 @@ export default function RuleDetail({
   ruleData: Rule | string | number
   context: {
     dottedName: DottedName
-    rules: Rules
+    rules: NGCRules
   }
 }) {
   const isDataObject =

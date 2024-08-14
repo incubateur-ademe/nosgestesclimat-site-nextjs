@@ -1,4 +1,5 @@
-import { DottedName, Simulation } from '@/publicodes-state/types'
+import { Simulation } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 export type Participant = {
   _id: string

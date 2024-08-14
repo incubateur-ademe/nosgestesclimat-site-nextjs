@@ -7,13 +7,14 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useCurrentSimulation, useRule } from '@/publicodes-state'
-import { DottedName, Metric } from '@/publicodes-state/types'
+import { Metric } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
 const colorClassName = ['200', '100', '50']
 
 type Props = {
-  action: string
+  action: DottedName
   index: number
   metric?: Metric
 }
@@ -29,10 +30,7 @@ export default function Action({
 
   const { numericValue: total } = useRule('bilan', metric)
 
-  const { icons, title, numericValue, category } = useRule(
-    action as DottedName,
-    metric
-  )
+  const { icons, title, numericValue, category } = useRule(action, metric)
 
   const hasNoValue = numericValue === 0
 

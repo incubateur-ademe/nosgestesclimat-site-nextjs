@@ -1,5 +1,4 @@
-import { DottedName } from '@/publicodes-state/types'
-
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 /**
  * Returns the namespace of a rule. A level can be specified to get a specific
  * part of the namespace.

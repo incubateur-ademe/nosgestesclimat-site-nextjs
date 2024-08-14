@@ -1,6 +1,6 @@
 'use client'
 
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { createContext } from 'react'
 
 type FormContextType = {

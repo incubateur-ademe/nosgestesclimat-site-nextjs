@@ -1,6 +1,6 @@
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { useUser } from '@/publicodes-state'
-import { Rules } from '@/publicodes-state/types'
+import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import {
   UseQueryResult,
   keepPreviousData,
@@ -16,7 +16,7 @@ type Props = {
 
 export function useRules(
   { isOptim = true, region = 'FR' }: Props = { isOptim: true, region: 'FR' }
-): UseQueryResult<Rules, Error> {
+): UseQueryResult<NGCRules, Error> {
   const locale = useLocale()
   const { user } = useUser()
 

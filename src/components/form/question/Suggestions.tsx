@@ -4,9 +4,9 @@ import { questionClickSuggestion } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
-import { DottedName, NodeValue } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   question: DottedName

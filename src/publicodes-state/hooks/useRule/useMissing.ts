@@ -1,8 +1,9 @@
 'use client'
 
+import { Situation } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
-import { DottedName, Situation } from '../../types'
 
 type Props = {
   dottedName: DottedName

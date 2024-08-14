@@ -1,10 +1,5 @@
-import {
-  DottedName,
-  Engine,
-  Entries,
-  NGCRuleNode,
-  ParsedRules,
-} from '@/publicodes-state/types'
+import { Engine, Entries, ParsedRules } from '@/publicodes-state/types'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import { useMemo } from 'react'
 import { MissingVariables } from './../../types.d'

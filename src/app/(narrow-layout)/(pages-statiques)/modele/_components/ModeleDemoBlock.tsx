@@ -4,7 +4,7 @@ import Link from '@/components/Link'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRules } from '@/hooks/useRules'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
-import { DottedName, Rules, Situation } from '@/publicodes-state/types'
+import { DottedName, Situation } from '@/publicodes-state/types'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import Engine, { Evaluation } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
@@ -27,7 +27,7 @@ export default function ModeleDemoBlock() {
   const engine = useMemo(
     () =>
       rules
-        ? new Engine<DottedName>(rules as Rules, {
+        ? new Engine<DottedName>(rules, {
             strict: {
               situation: false,
               noOrphanRule: false,
@@ -84,7 +84,7 @@ export default function ModeleDemoBlock() {
                     onChange(el, e.target.value === '' ? '' : e.target.value)
                   }
                 />
-                &nbsp;{(rules as Rules)?.[el]?.unité}
+                &nbsp;{rules?.[el]?.unité}
               </span>
             </label>
           </li>

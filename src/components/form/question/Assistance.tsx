@@ -2,7 +2,7 @@ import { useRule } from '@/publicodes-state'
 
 import Label from '@/components/form/question/Label'
 import NumberInput from '@/components/form/question/NumberInput'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef } from 'react'
 
 type Props = {

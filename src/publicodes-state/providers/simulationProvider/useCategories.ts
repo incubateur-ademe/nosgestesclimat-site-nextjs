@@ -1,9 +1,10 @@
 import { orderedCategories } from '@/constants/orderedCategories'
 import getSomme from '@/publicodes-state/helpers/getSomme'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import * as Sentry from '@sentry/react'
 import { utils } from 'publicodes'
 import { useMemo } from 'react'
-import { DottedName, NGCRuleNode, ParsedRules } from '../../types'
+import { ParsedRules } from '../../types'
 
 type Props = {
   parsedRules: ParsedRules

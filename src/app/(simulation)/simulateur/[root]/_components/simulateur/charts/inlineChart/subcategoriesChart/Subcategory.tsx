@@ -1,6 +1,6 @@
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat/dottedNames'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   subcategory: DottedName

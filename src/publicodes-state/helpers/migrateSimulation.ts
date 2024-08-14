@@ -1,5 +1,6 @@
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { Migration, migrateSituation } from '@publicodes/tools/migration'
-import { ComputedResults, DottedName, Simulation } from '../types'
+import { ComputedResults, Simulation } from '../types'
 
 export function migrateSimulation(
   simulation: Simulation & { group?: string; poll?: string },

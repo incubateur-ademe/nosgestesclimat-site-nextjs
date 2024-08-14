@@ -1,14 +1,16 @@
-'use client'
+import {
+  DottedName,
+  NGCRuleNode,
+  NodeValue,
+} from '@incubateur-ademe/nosgestesclimat'
+;('use client')
 
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
 import { PublicodesExpression, utils } from 'publicodes'
 import { useCallback } from 'react'
 import getType from '../../helpers/getType'
 import {
-  DottedName,
   NGCEvaluatedNode,
-  NGCRuleNode,
-  NodeValue,
   ParsedRules,
   Situation,
   UpdateCurrentSimulationProps,

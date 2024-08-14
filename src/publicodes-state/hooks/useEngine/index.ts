@@ -1,8 +1,9 @@
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
+import { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import { useCallback, useContext } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
-import { DottedName, Metric, NodeValue } from '../../types'
+import { Metric } from '../../types'
 
 /**
  * A hook that make available some basic functions on the engine (and the engine itself).
@@ -46,7 +47,7 @@ export default function useEngine({ metric }: Props = {}) {
       return []
     }
 
-    return dottedNameFormula.somme.map((potentialPartialRuleName) =>
+    return dottedNameFormula.somme.map((potentialPartialRuleName: DottedName) =>
       utils.disambiguateReference(
         parsedRules,
         dottedName,

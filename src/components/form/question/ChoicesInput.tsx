@@ -1,4 +1,4 @@
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Choice from './choicesInput/Choice'
 
 type Props = {

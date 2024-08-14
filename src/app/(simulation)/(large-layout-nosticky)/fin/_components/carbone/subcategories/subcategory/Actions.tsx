@@ -2,28 +2,28 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { endClickActions } from '@/constants/tracking/pages/end'
 import { useEngine, useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Action from './actions/Action'
 
 type Props = {
-  subcategory: string
+  subcategory: DottedName
   noNumberedFootprint?: boolean
 }
 
 type ActionObject = {
-  dottedName: string
+  dottedName: DottedName
   value: number
 }
 
 export default function Actions({ subcategory, noNumberedFootprint }: Props) {
   const { getValue } = useEngine()
 
-  const { title, actions } = useRule(subcategory as DottedName)
+  const { title, actions } = useRule(subcategory)
 
   const filteredActions = noNumberedFootprint
     ? actions
-    : actions?.filter((action: string) => getValue(action as DottedName))
+    : actions?.filter((action) => getValue(action))
 
   if (!filteredActions?.length) return null
 
@@ -35,9 +35,9 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
         return 1
       })
     : filteredActions
-        .map((action: string) => ({
+        .map((action) => ({
           dottedName: action,
-          value: getValue(action as DottedName) as number,
+          value: getValue(action) as number,
         }))
         .sort((a: ActionObject, b: ActionObject) =>
           a.value > b.value ? -1 : 1

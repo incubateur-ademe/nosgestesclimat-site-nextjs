@@ -1,7 +1,7 @@
 import Question from '@/components/form/Question'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 import PencilIcon from '../icons/PencilIcon'
 import ThreeYearsInput from './avion/ThreeYearsInput'

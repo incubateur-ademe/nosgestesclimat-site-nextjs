@@ -2,7 +2,7 @@
 
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useForm, useSimulation } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Question from './subcategory/Question'
 
 type Props = {

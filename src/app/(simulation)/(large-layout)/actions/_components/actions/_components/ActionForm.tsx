@@ -3,7 +3,7 @@
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import { useForm } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useEffect } from 'react'
 

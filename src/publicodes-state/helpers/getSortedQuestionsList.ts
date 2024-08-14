@@ -1,4 +1,4 @@
-import { DottedName } from '../types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   questions: DottedName[]

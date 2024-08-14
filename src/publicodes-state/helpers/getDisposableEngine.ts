@@ -1,9 +1,10 @@
+import { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
-import { DottedName, Rules, Situation } from '../types'
+import { Situation } from '../types'
 import { safeEvaluateHelper } from './safeEvaluateHelper'
 
 type Props = {
-  rules?: Rules
+  rules?: NGCRules
   situation: Situation
 }
 

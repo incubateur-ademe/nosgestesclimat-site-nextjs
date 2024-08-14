@@ -1,20 +1,22 @@
 'use client'
+import {
+  DottedName,
+  NGCRuleNode,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { createContext } from 'react'
 import {
-  DottedName,
   Engine,
   Metric,
   MissingVariables,
   NGCEvaluatedNode,
-  NGCRuleNode,
   ParsedRules,
-  Rules,
   Situation,
 } from '../../types'
 
 type SimulationContextType = {
-  rules: Rules | null
+  rules: NGCRules | null
   engine: Engine | null
   pristineEngine: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | null

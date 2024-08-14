@@ -1,8 +1,8 @@
-import { DottedName, Rule } from '@/publicodes-state/types'
+import { DottedName, NGCRule } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 
 export const getRuleTitle = (
-  rule: Rule & { dottedName: DottedName; titre?: string }
+  rule: NGCRule & { dottedName: DottedName; titre?: string }
 ) => {
   return rule?.titre ?? utils.nameLeaf(rule.dottedName)
 }

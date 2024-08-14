@@ -26,9 +26,9 @@ import {
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback } from 'react'
 import ActionValue from './ActionValue'
 

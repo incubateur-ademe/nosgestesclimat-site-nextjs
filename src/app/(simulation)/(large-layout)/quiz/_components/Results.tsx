@@ -1,5 +1,5 @@
 import { useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Category from './results/Category'
 
 type Props = {

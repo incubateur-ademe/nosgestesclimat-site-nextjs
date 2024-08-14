@@ -1,12 +1,9 @@
 import { orderedCategories } from '@/constants/orderedCategories'
 import { getRuleSumRules } from '@/helpers/publicodes/getRuleSumRules'
 import { useDisposableEngine, useTempEngine } from '@/publicodes-state'
-import {
-  DottedName,
-  NGCEvaluatedNode,
-  NGCRuleNode,
-} from '@/publicodes-state/types'
+import { NGCEvaluatedNode } from '@/publicodes-state/types'
 import { Participant } from '@/types/groups'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   groupMembers: Participant[]

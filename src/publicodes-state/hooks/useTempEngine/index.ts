@@ -1,8 +1,5 @@
-import {
-  DottedName,
-  NGCEvaluatedNode,
-  NGCRuleNode,
-} from '@/publicodes-state/types'
+import { NGCEvaluatedNode } from '@/publicodes-state/types'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useContext } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
 import useCurrentSimulation from '../useCurrentSimulation'
