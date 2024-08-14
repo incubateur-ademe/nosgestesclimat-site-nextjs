@@ -7,7 +7,7 @@ import { twMerge } from 'tailwind-merge'
 
 type Props = {
   color?: 'primary' | 'secondary' | 'green' | 'red'
-  size?: 'sm' | 'md'
+  size?: 'xs' | 'sm' | 'md'
   className?: string
   category?: string
 }
@@ -19,6 +19,7 @@ const colorClassNames = {
   red: 'border-red-300 text-red-700',
 }
 const sizeClassNames = {
+  xs: 'text-xs py-0.5',
   sm: 'text-sm py-0.5',
   md: 'text-base py-1 ',
 }

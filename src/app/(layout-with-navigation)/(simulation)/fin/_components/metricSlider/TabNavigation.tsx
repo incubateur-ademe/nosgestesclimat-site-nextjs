@@ -4,6 +4,7 @@ import Trans from '@/components/translation/Trans'
 import Badge from '@/design-system/layout/Badge'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { twMerge } from 'tailwind-merge'
+import HeadingButtons from './heading/HeadingButtons'
 
 type Props = {
   isSticky?: boolean
@@ -54,16 +55,17 @@ export default function TabNavigation({ isSticky }: Props) {
             eau
           </strong>
           <Badge
-            size="sm"
+            size="xs"
             color="secondary"
             className={twMerge(
-              'absolute bottom-2/3 left-full -translate-x-4 transition-opacity',
+              'absolute bottom-full left-full -translate-x-4 translate-y-5 transition-opacity',
               isSticky ? 'opacity-0' : 'opacity-100'
             )}>
             BETA
           </Badge>
         </button>
       </div>
+      <HeadingButtons endPage />
     </div>
   )
 }
