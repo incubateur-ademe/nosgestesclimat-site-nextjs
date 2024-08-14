@@ -23,6 +23,7 @@ type Props = {
   isCurrentMember?: boolean
   group: Group
   userId: string
+  numberOfParticipants?: number
 }
 
 export default function ClassementMember({
@@ -33,6 +34,7 @@ export default function ClassementMember({
   group,
   name,
   userId,
+  numberOfParticipants,
 }: Props) {
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false)
 
@@ -40,7 +42,7 @@ export default function ClassementMember({
 
   const { isGroupOwner } = useIsGroupOwner({ group })
 
-  const { refetchQueries } = useQueryClient()
+  const { invalidateQueries } = useQueryClient()
 
   const { mutateAsync: removePartipant } = useRemoveParticipant()
 
@@ -53,7 +55,7 @@ export default function ClassementMember({
         userId: userId || '',
       })
 
-      refetchQueries({
+      await invalidateQueries({
         queryKey: ['group', group?._id],
       })
 
@@ -94,7 +96,14 @@ export default function ClassementMember({
 
       {isGroupOwner &&
         (isCurrentMember ? (
-          <div className="w-6" />
+          // Add a gap to keep the layout consistent
+          <div
+            className={
+              numberOfParticipants === undefined || numberOfParticipants > 1
+                ? 'w-6'
+                : ''
+            }
+          />
         ) : (
           <>
             <button

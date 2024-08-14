@@ -25,7 +25,7 @@ export default function Classement({ group }: { group: Group }) {
 
   const { topThreeMembers, restOfMembers } =
     getTopThreeAndRestMembers(group.participants) || {}
-  console.log(topThreeMembers, restOfMembers)
+
   const withS = group.participants.length - 5 > 1 ? 's' : ''
 
   const hasOneParticipant = group.participants.length === 1
@@ -81,6 +81,7 @@ export default function Classement({ group }: { group: Group }) {
               isCurrentMember={participant.userId === userId}
               group={group}
               userId={participant.userId}
+              numberOfParticipants={group.participants.length}
             />
           )
         })}
