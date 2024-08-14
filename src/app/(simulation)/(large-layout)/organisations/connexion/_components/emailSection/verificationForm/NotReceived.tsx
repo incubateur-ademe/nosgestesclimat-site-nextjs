@@ -5,6 +5,7 @@ import ReturnIcon from '@/components/icons/ReturnIcon'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useUser } from '@/publicodes-state'
+import { UseMutateAsyncFunction } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import ResendButton from './notReceived/ResendButton'
@@ -12,7 +13,7 @@ import ResendButton from './notReceived/ResendButton'
 type Props = {
   isRetryButtonDisabled: boolean
   isErrorResend: boolean
-  sendVerificationCode: () => Promise<void>
+  sendVerificationCode: UseMutateAsyncFunction<any, Error, string, unknown>
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>
   timeLeft: number
 }

@@ -1,4 +1,4 @@
-import { Rules } from '@/publicodes-state/types'
+import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 import { getSupportedRegions } from './getSupportedRegions'
 import { importPreviewFile } from './importPreviewFile'
@@ -23,8 +23,8 @@ export async function getRules({
   regionCode = 'FR',
   locale = 'fr',
   PRNumber,
-}: Props = defaultProps): Promise<Rules> {
-  const supportedRegions = await getSupportedRegions()
+}: Props = defaultProps): Promise<NGCRules> {
+  const supportedRegions = getSupportedRegions()
 
   // We provide the FR version of the model if the region is not supported
   const regionCodeToProvide = supportedRegions[regionCode] ? regionCode : 'FR'
@@ -42,7 +42,7 @@ export async function getRules({
   }
 
   if (regionCodeToProvide === 'FR' && locale === 'fr' && isOptim) {
-    return Promise.resolve(rules as unknown as Rules)
+    return Promise.resolve(rules as unknown as NGCRules)
   }
 
   return importRulesFromModel({ fileName })

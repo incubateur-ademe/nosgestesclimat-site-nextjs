@@ -14,7 +14,7 @@ type Props = {
   everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
   everyQuestions: DottedName[]
   everyRules: DottedName[]
-  pristineEngine: Engine | null
+  engine: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
 }
@@ -23,11 +23,11 @@ export const getPersonaFoldedSteps = ({
   situation,
   everyMosaicChildrenWithParent,
   everyQuestions,
-  pristineEngine,
+  engine,
   safeGetRule,
   safeEvaluate,
-}: Props): DottedName[] => {
-  if (pristineEngine === null) return []
+}: Props): string[] => {
+  if (engine === null) return []
 
   const personaSituation = fixSituationWithPartialMosaic({
     situation,
@@ -36,18 +36,17 @@ export const getPersonaFoldedSteps = ({
     safeEvaluate,
   })
 
-  pristineEngine.setSituation(personaSituation)
+  engine.setSituation(personaSituation)
 
   // The current engine situation might have been filtered
-  const safeSituation = pristineEngine.getSituation()
+  const safeSituation = engine.getSituation()
 
   // The persona folded steps are obtained by getting the missing variables and the situation variables.
   const personaFoldedSteps = [
-    ...(
-      Object.keys(
-        pristineEngine.evaluate('bilan')?.missingVariables || {}
-      ) as DottedName[]
-    ).filter((missingVariable) => everyQuestions.includes(missingVariable)),
+    ...Object.keys(engine.evaluate('bilan')?.missingVariables || {}).filter(
+      (missingVariable) =>
+        everyQuestions.includes(missingVariable as DottedName)
+    ),
     ...Object.keys(safeSituation),
   ] as DottedName[]
 

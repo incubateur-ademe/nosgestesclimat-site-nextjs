@@ -15,6 +15,7 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
+import { formatEmail } from '@/utils/format/formatEmail'
 import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 
@@ -77,14 +78,15 @@ export default function MesInformations() {
       [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: data['newsletter-transports'],
     }
     try {
+      const formattedEmail = formatEmail(data.email)
       await updateUserSettings({
         name: data.name,
-        email: data.email,
+        email: formattedEmail,
         newsletterIds,
       })
 
-      if (data.email) {
-        updateEmail(data.email)
+      if (formattedEmail) {
+        updateEmail(formattedEmail)
       }
 
       if (data.name) {
@@ -125,26 +127,16 @@ export default function MesInformations() {
           error={errors.name?.message}
         />
 
-        {
-          // On affiche le champ email en lecture seule si l'utilisateur a un email de défini
-          // sinon on lui permet d'en définir un
-          user?.email ? (
-            <TextInputGroup
-              name="email"
-              helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
-              label={t('Votre adresse email')}
-              value={user?.email}
-              readOnly
-            />
-          ) : (
-            <TextInputGroup
-              // @ts-expect-error - conditionnal rendering of the same input
-              name="email"
-              label={t('Votre adresse email')}
-              {...register('email')}
-            />
-          )
-        }
+        <TextInputGroup
+          type="email"
+          helperText={
+            user?.email ? <Trans>Ce champ n'est pas modifiable</Trans> : null
+          }
+          label={t('Votre adresse email')}
+          value={user?.email}
+          {...register('email')}
+          readOnly={user?.email ? true : false}
+        />
 
         <h3 className="mb-0 mt-6">
           <Trans>Inscription à nos e-mails</Trans>

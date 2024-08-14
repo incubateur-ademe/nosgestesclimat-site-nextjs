@@ -5,33 +5,32 @@ import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { fixSituationWithPartialMosaic } from '@/helpers/personas/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '@/helpers/personas/getPersonaFoldedSteps'
-import {
-  useCurrentSimulation,
-  useSimulation,
-  useUser,
-} from '@/publicodes-state'
-import { Persona as PersonaType } from '@/publicodes-state/types'
+import { useDisposableEngine, useSimulation, useUser } from '@/publicodes-state'
+import { Persona as PersonaType } from '@incubateur-ademe/nosgestesclimat'
+import { useRouter } from 'next/navigation'
 
 type Props = {
   persona: PersonaType
-  personaName: string
+  personaDottedName: string
 }
 
-export default function Persona({ persona, personaName }: Props) {
-  const { initSimulation, hideTutorial } = useUser()
+export default function Persona({ persona, personaDottedName }: Props) {
+  const router = useRouter()
 
-  const currentSimulation = useCurrentSimulation()
+  const { initSimulation, hideTutorial, currentSimulation } = useUser()
+
+  const { engine } = useDisposableEngine({ situation: {} })
 
   const {
     everyMosaicChildrenWithParent,
     everyQuestions,
     everyRules,
-    pristineEngine,
     safeEvaluate,
     safeGetRule,
   } = useSimulation()
 
-  const isCurrentPersonaSelected = currentSimulation.persona === personaName
+  const isCurrentPersonaSelected =
+    currentSimulation.persona === personaDottedName
 
   return (
     <Card
@@ -54,25 +53,28 @@ export default function Persona({ persona, personaName }: Props) {
           className="align-self-end mt-auto"
           disabled={isCurrentPersonaSelected}
           onClick={() => {
+            const fixedSituation = fixSituationWithPartialMosaic({
+              situation: persona.situation,
+              everyMosaicChildrenWithParent,
+              safeGetRule,
+              safeEvaluate,
+            })
             initSimulation({
-              situation: fixSituationWithPartialMosaic({
-                situation: persona.situation,
-                everyMosaicChildrenWithParent,
-                safeGetRule,
-                safeEvaluate,
-              }),
-              persona: personaName,
+              situation: fixedSituation,
+              persona: personaDottedName,
               foldedSteps: getPersonaFoldedSteps({
                 situation: persona.situation,
                 everyMosaicChildrenWithParent,
                 everyQuestions,
                 everyRules,
-                pristineEngine,
+                engine,
                 safeGetRule,
                 safeEvaluate,
               }),
+              progression: 1,
             })
             hideTutorial('testIntro')
+            router.refresh()
           }}>
           <Trans>Sélectionner</Trans>
         </Button>

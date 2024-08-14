@@ -596,3 +596,12 @@ html[data-useragent*='Trident'] #js {
   max-width: 100%;
   height: auto;
 }
+
+/*
+  Toast styles
+*/
+:root {
+  --toastify-color-success: #15803d !important;
+  --toastify-icon-color-success: #15803d !important;
+  --toastify-text-color-success: #15803d !important;
+}
