@@ -1,6 +1,6 @@
-import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-;('use client')
+'use client'
 
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
