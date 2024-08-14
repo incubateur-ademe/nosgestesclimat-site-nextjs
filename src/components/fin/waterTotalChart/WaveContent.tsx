@@ -2,15 +2,11 @@ import Wave from 'react-wavify'
 import { twMerge } from 'tailwind-merge'
 import Octopus from './waveContent/Octopus'
 
-type Props = {
-  isSmall?: boolean
-}
-export default function WaveContent({ isSmall }: Props) {
+export default function WaveContent() {
   return (
     <div
       className={twMerge(
-        'relative overflow-hidden rounded-b-xl px-4 pb-6 pt-12 transition-opacity lg:px-36 lg:pb-8 lg:pt-14',
-        isSmall && 'opacity-100'
+        'relative overflow-hidden rounded-b-xl px-4 pb-6 pt-12 transition-opacity lg:px-36 lg:pb-8 lg:pt-14'
       )}>
       <Wave
         fill="#5152D0"

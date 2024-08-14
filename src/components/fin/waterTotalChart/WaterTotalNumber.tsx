@@ -21,8 +21,8 @@ export default function WaterTotalNumber({ isSmall }: Props) {
   return (
     <div
       className={twMerge(
-        'flex items-center justify-center transition-opacity duration-500',
-        isSmall && 'opacity-0'
+        'flex origin-top items-center justify-center transition-transform duration-300',
+        isSmall ? 'scale-75 lg:translate-y-2 lg:scale-50' : 'scale-100'
       )}>
       <div className="mx-auto whitespace-nowrap text-right font-medium text-water">
         <strong className="text-6xl font-black leading-none lg:text-8xl">

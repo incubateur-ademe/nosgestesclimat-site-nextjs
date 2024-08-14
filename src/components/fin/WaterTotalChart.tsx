@@ -13,11 +13,11 @@ export default function WaterTotalChart({ isSmall }: Props) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className={twMerge(
-        'relative mt-7 flex h-full w-full flex-1 flex-col justify-between lg:mt-8',
-        !isSmall && 'pointer-events-none'
+        'relative mt-7 flex h-full w-full flex-1 flex-col justify-between transition-all duration-300 lg:mt-8',
+        isSmall && 'mt-0.5 lg:mt-0.5'
       )}>
-      <WaterTotalNumber isSmall={isSmall} />
-      <WaveContent isSmall={isSmall} />
+      <WaterTotalNumber isSmall={isSmall}/>
+      <WaveContent />
     </motion.div>
   )
 }

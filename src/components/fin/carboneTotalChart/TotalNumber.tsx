@@ -59,13 +59,17 @@ export default function TotalNumber({ total, isSmall }: Props) {
       initial={{ opacity: 0, x: '-400%' }}
       animate={{ opacity: 1, x: '-50%' }}
       transition={{ duration: 1.5 }}
-      className={twMerge('absolute bottom-10 z-10 -translate-x-1/2')}
+      className={twMerge(
+        'absolute bottom-10 z-10 -translate-x-1/2 transition-transform duration-300'
+      )}
       style={{ left: `${position}%`, color: cssColor }}>
       <div
         className={twMerge(
-          'absolute bottom-full mb-1 whitespace-nowrap text-right font-medium',
+          'absolute bottom-full mb-1 origin-top whitespace-nowrap text-right font-medium transition-all duration-300',
           getContentAlignement(position),
-          isSmall && 'pointer-events-none !opacity-0 duration-500'
+          isSmall
+            ? 'translate-y-2 scale-75 lg:translate-y-3 lg:scale-50'
+            : 'scale-100'
         )}>
         <strong className="absolute bottom-7 right-full -translate-x-4 text-6xl font-black leading-none lg:bottom-7 lg:text-8xl">
           <CountUp
@@ -88,7 +92,7 @@ export default function TotalNumber({ total, isSmall }: Props) {
       </div>
       <Arrow
         style={{ fill: cssColor }}
-        className={isSmall ? 'pointer-events-none !opacity-0 duration-500' : ''}
+        className={isSmall ? 'pointer-events-none !opacity-0 duration-300' : ''}
       />
     </motion.div>
   )

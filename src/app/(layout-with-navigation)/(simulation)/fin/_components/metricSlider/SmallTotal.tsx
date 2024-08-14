@@ -48,7 +48,7 @@ export default function SmallTotal({ metric, isVisible }: Props) {
       className={twMerge(
         'absolute left-0 top-2 flex w-full items-end justify-center gap-1.5 transition-opacity delay-150 duration-700',
         isVisible
-          ? 'opacity-100 delay-200 duration-500'
+          ? 'opacity-100 delay-200 duration-300'
           : 'opacity-0 delay-0 duration-300',
         metric === 'eau' && '!text-water'
       )}
