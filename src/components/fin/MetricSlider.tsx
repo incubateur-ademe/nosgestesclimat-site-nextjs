@@ -1,11 +1,20 @@
-import CarboneTotalChart from '@/components/fin/CarboneTotalChart'
-import WaterTotalChart from '@/components/fin/WaterTotalChart'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+import CarboneTotalChart from './metricSlider/CarboneTotalChart'
 import TabNavigation from './metricSlider/TabNavigation'
+import WaterTotalChart from './metricSlider/WaterTotalChart'
 
-export default function MetricSlider() {
+type Props = {
+  carboneTotal?: number
+  waterTotal?: number
+  isStatic?: boolean
+}
+export default function MetricSlider({
+  carboneTotal,
+  waterTotal,
+  isStatic,
+}: Props) {
   const { currentMetric } = useCurrentMetric()
 
   const [isSticky, setIsSticky] = useState(false)
@@ -13,6 +22,10 @@ export default function MetricSlider() {
   const myElementRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (isStatic) {
+      return
+    }
+
     const handleScroll = () => {
       if (myElementRef.current) {
         const { top } = myElementRef.current.getBoundingClientRect()
@@ -29,11 +42,11 @@ export default function MetricSlider() {
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [isStatic])
 
   return (
     <div
-      className="pointer-events-none sticky top-0 z-50 h-96"
+      className={isStatic ? '' : 'pointer-events-none sticky top-0 z-40 h-96'}
       ref={myElementRef}>
       <TabNavigation isSticky={isSticky} />
       <div
@@ -44,13 +57,13 @@ export default function MetricSlider() {
         {currentMetric === 'carbone' && (
           <div className={twMerge('relative !flex h-full flex-col')}>
             <div className="h-full w-full px-4">
-              <CarboneTotalChart isSmall={isSticky} />
+              <CarboneTotalChart isSmall={isSticky} total={carboneTotal} />
             </div>
           </div>
         )}
         {currentMetric === 'eau' && (
           <div className={twMerge('relative !flex h-full flex-col')}>
-            <WaterTotalChart isSmall={isSticky} />
+            <WaterTotalChart isSmall={isSticky} total={waterTotal} />
           </div>
         )}
       </div>

@@ -18,7 +18,7 @@ export default function TabNavigation({ isSticky }: Props) {
         <button
           onClick={() => setCurrentMetric('carbone')}
           className={twMerge(
-            'z-50 mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-300',
+            'z-40 mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-300',
             currentMetric !== 'carbone'
               ? ' border-transparent border-b-primary-50 text-primary-700'
               : 'border-x-primary-50 border-b-transparent border-t-primary-50 bg-gray-100'
@@ -38,9 +38,9 @@ export default function TabNavigation({ isSticky }: Props) {
         <button
           onClick={() => setCurrentMetric('eau')}
           className={twMerge(
-            'relative z-50 mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-300',
+            'relative z-40 mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-300',
             currentMetric !== 'eau'
-              ? 'z-50 border-transparent border-b-primary-50 text-primary-700'
+              ? 'z-40 border-transparent border-b-primary-50 text-primary-700'
               : 'border-x-primary-50 !border-b-transparent border-t-primary-50 bg-gray-100 '
           )}>
           <span className="hidden lg:inline">

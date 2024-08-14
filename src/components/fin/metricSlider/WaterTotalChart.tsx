@@ -4,9 +4,10 @@ import WaterTotalNumber from './waterTotalChart/WaterTotalNumber'
 import WaveContent from './waterTotalChart/WaveContent'
 
 type Props = {
+  total?: number
   isSmall?: boolean
 }
-export default function WaterTotalChart({ isSmall }: Props) {
+export default function WaterTotalChart({ total, isSmall }: Props) {
   return (
     <motion.div
       exit={{ opacity: 0 }}
@@ -16,7 +17,7 @@ export default function WaterTotalChart({ isSmall }: Props) {
         'relative mt-7 flex h-full w-full flex-1 flex-col justify-between transition-all duration-300 lg:mt-8',
         isSmall && 'mt-0.5 lg:mt-0.5'
       )}>
-      <WaterTotalNumber isSmall={isSmall}/>
+      <WaterTotalNumber total={total} isSmall={isSmall} />
       <WaveContent />
     </motion.div>
   )

@@ -4,16 +4,20 @@ import { useRule } from '@/publicodes-state'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
+  total?: number
   isSmall?: boolean
 }
-export default function WaterTotalNumber({ isSmall }: Props) {
+export default function WaterTotalNumber({ total, isSmall }: Props) {
   const { numericValue } = useRule('bilan', 'eau')
 
-  const { formattedValue, unit } = formatFootprint(numericValue, {
+  const usedValue = total ?? numericValue
+
+  const { formattedValue, unit } = formatFootprint(usedValue, {
     metric: 'eau',
     localize: false,
   })
 
+  // We round the value to the nearest hundred
   const realFormattedValue = (
     Math.round(Number(formattedValue) / 100) * 100
   ).toLocaleString('fr-FR')
