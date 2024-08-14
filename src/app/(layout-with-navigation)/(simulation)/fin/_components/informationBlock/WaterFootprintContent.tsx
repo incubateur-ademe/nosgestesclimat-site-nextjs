@@ -88,6 +88,13 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
               <strong className="text-secondary-700">électricité</strong>
             </span>
           </li>
+          <li className="mb-1 flex items-start gap-3">
+            <Emoji className="mt-1 text-2xl">🚫</Emoji>
+            <span className="flex-1">
+              attention : l'eau domestique (par exemple l’eau de vos douches) ne
+              fait pas partie de l'empreinte eau
+            </span>
+          </li>
         </ul>
         <div className="flex justify-end">
           <Link className="text-sm" href="/empreinte-eau" target="_blank">
