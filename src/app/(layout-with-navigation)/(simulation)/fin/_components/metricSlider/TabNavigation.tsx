@@ -1,19 +1,19 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import Badge from '@/design-system/layout/Badge'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { twMerge } from 'tailwind-merge'
-import HeadingButtons from './heading/HeadingButtons'
 
 type Props = {
-  sticky?: boolean
+  isSticky?: boolean
 }
-export default function TabNavigation({ sticky }: Props) {
+export default function TabNavigation({ isSticky }: Props) {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   return (
     <div className="pointer-events-auto relative flex w-full items-end justify-between bg-white pt-0.5">
-      <div className={twMerge('flex', sticky && 'gap-2')}>
+      <div className="flex">
         <button
           onClick={() => setCurrentMetric('carbone')}
           className={twMerge(
@@ -37,7 +37,7 @@ export default function TabNavigation({ sticky }: Props) {
         <button
           onClick={() => setCurrentMetric('eau')}
           className={twMerge(
-            'z-50 mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-300',
+            'relative z-50 mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-300',
             currentMetric !== 'eau'
               ? 'z-50 border-transparent border-b-primary-50 text-primary-700'
               : 'border-x-primary-50 !border-b-transparent border-t-primary-50 bg-gray-100 '
@@ -53,9 +53,17 @@ export default function TabNavigation({ sticky }: Props) {
             )}>
             eau
           </strong>
+          <Badge
+            size="sm"
+            color="secondary"
+            className={twMerge(
+              'absolute bottom-2/3 left-full -translate-x-4 transition-opacity',
+              isSticky ? 'opacity-0' : 'opacity-100'
+            )}>
+            BETA
+          </Badge>
         </button>
       </div>
-      {!sticky && <HeadingButtons endPage />}
     </div>
   )
 }
