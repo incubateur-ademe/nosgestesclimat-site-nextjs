@@ -1,5 +1,6 @@
 import Link from '@/components/Link'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
+import Redirect404 from '@/components/navigation/Redirect404'
 import Trans from '@/components/translation/Trans'
 import Badge from '@/design-system/layout/Badge'
 import Title from '@/design-system/layout/Title'
@@ -26,7 +27,7 @@ export async function generateMetadata({ params: { slug } }: Props) {
     )}, ${t('article du blog - Nos Gestes Climat')}`,
     description: t('Découvrez les articles de blog du site Nos Gestes Climat.'),
     params: { slug },
-    image: post.data.image,
+    image: post?.data?.image,
     alternates: {
       canonical: `/blog/${slug}`,
     },
@@ -44,8 +45,11 @@ export default async function BlogPost({ params: { slug } }: Props) {
       return json[0]?.commit?.committer?.date
     })
 
-  const content = post.content
-  const data = post.data
+  if (!post) {
+    return <Redirect404 />
+  }
+
+  const { content, data } = post
 
   return (
     <div className="m-auto max-w-2xl">
@@ -54,6 +58,7 @@ export default async function BlogPost({ params: { slug } }: Props) {
       </Link>
 
       <PasserTestBanner />
+
       <Title title={data.title} />
 
       {content ? (
