@@ -1,6 +1,8 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import { useLocale } from '@/hooks/useLocale'
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes, useCallback, useEffect, useState } from 'react'
 import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
 
@@ -24,7 +26,23 @@ export default function NumberInput({
   id,
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
+  const [formattedValue, setFormattedValue] = useState('')
+
   const locale = useLocale()
+
+  const formatNumberWithSpaces = useCallback(
+    (number: number) => {
+      return new Intl.NumberFormat(locale, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
+      }).format(number)
+    },
+    [locale]
+  )
+
+  const unformatNumber = (formattedNumber: string) => {
+    return Number(formattedNumber.replace(/\s+/g, '').replace(/,/g, '.'))
+  }
 
   const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value
@@ -36,41 +54,21 @@ export default function NumberInput({
     }
   }
 
-  function formatNumber(number: number) {
-    return number.toLocaleString(locale, {
-      maximumFractionDigits: 1,
-    })
-  }
+  useEffect(() => {
+    setFormattedValue(
+      formatNumberWithSpaces(Number(`${value}`.replace(/\s+/g, '')))
+    )
+  }, [value, formatNumberWithSpaces])
 
-  function unformatNumber(number: string) {
-    // Supprimer les séparateurs de milliers
-    return Number(number.replace(/[^0-9.-]+/g, ''))
-  }
+  const handleInput = (event: React.FormEvent<HTMLInputElement>) => {
+    const inputValue = (event.target as HTMLInputElement).value
 
-  function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
-    if (!event.target) return
-
-    const { value } = event.target
-
-    // Prevent the user from typing non-numeric characters
-    // with a regex match
-    const match = value.match(/[^0-9.-]+/g)
-
-    if (match) {
-      event.target.value = value.replace(match[0], '')
-      return
+    if (inputValue === '') {
+      setValue(undefined)
+    } else {
+      setValue(unformatNumber(inputValue))
     }
-
-    // Format the number as the user types
-    const inputValue = event.target.value
-    const formattedValue = formatNumber(Number(inputValue))
-
-    // Update the input value
-    event.target.value = formattedValue
-    handleValueChange(event)
   }
-
-  const formattedValue = formatNumber(Number(value))
 
   return (
     <div
