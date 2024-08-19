@@ -7,7 +7,6 @@ import Markdown from '@/design-system/utils/Markdown'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { Post } from '@/types/posts'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { notFound } from 'next/navigation'
 
@@ -18,7 +17,7 @@ type Props = {
 export async function generateMetadata({ params: { slug } }: Props) {
   const { t } = await getServerTranslation()
 
-  const post = (await getPost('src/locales/blog/fr/', slug)) as Post
+  const post = await getPost('src/locales/blog/fr/', slug)
 
   return getMetadataObject({
     title: `${capitalizeString(decodeURI(slug))?.replaceAll(
@@ -35,7 +34,7 @@ export async function generateMetadata({ params: { slug } }: Props) {
 }
 
 export default async function BlogPost({ params: { slug } }: Props) {
-  const post = (await getPost('src/locales/blog/fr/', slug)) as Post
+  const post = await getPost('src/locales/blog/fr/', slug)
 
   const lastEditDate = await fetch(
     `https://api.github.com/repos/incubateur-ademe/nosgestesclimat-site-nextjs/commits?path=src%2Flocales%2Fblog%2Ffr%2F${slug}.mdx&page=1&per_page=1`
