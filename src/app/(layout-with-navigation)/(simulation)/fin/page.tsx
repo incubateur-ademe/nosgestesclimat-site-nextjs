@@ -39,10 +39,11 @@ export default function FinPage() {
     <div className="relative">
       <IframeDataShareModal />
       <Poll />
-
-      <Title tag="h1" className="lg:hidden">
-        <Trans>Mes empreintes</Trans>
-      </Title>
+      <div className="lg:hidden">
+        <Title tag="h1">
+          <Trans>Mes empreintes</Trans>
+        </Title>
+      </div>
 
       <MetricSlider />
 
@@ -94,7 +95,7 @@ export default function FinPage() {
 
           <DocumentationBlock />
         </div>
-        <div className="top-36 flex w-full flex-col gap-4 self-start lg:sticky lg:z-30 lg:w-[22rem] short:gap-2">
+        <div className="top-40 flex w-full flex-col gap-4 self-start lg:sticky lg:z-30 lg:w-[22rem] short:gap-2">
           <InformationBlock />
         </div>
       </div>

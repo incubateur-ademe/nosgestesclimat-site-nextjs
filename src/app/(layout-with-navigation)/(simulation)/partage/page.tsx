@@ -17,7 +17,7 @@ export default function PartagePage() {
     <div className="relative">
       <div>
         <Title className="text-lg md:text-2xl">
-          <Trans>Découvre mes empreintes carbone et eau</Trans>
+          <Trans>Découvre mes empreintes</Trans>
         </Title>
       </div>
       <MetricSlider

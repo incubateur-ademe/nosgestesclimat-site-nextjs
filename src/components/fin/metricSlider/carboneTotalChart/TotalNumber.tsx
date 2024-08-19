@@ -56,13 +56,13 @@ export default function TotalNumber({ total, isSmall }: Props) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: '-400%' }}
-      animate={{ opacity: 1, x: '-50%' }}
+      initial={{ opacity: 0, x: isSmall ? '1rem' : '-400%' }}
+      animate={{ opacity: 1, x: isSmall ? '1rem' : '-50%' }}
       transition={{ duration: 1.5 }}
       className={twMerge(
-        'absolute bottom-10 z-10 -translate-x-1/2 transition-transform duration-300'
+        'absolute bottom-10 z-10 transition-transform duration-300'
       )}
-      style={{ left: `${position}%`, color: cssColor }}>
+      style={{ left: isSmall ? '50%' : `${position}%`, color: cssColor }}>
       <div
         className={twMerge(
           'absolute bottom-full mb-1 origin-top whitespace-nowrap text-right font-medium transition-all duration-300',

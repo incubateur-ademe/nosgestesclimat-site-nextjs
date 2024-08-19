@@ -18,7 +18,7 @@ export default function WaterActions() {
             végétaux,
           </strong>{' '}
           que ce soit pour nous alimenter, pour nourrir le bétail, ou pour
-          obtenir la matière première de nombres de nos vêtements.
+          obtenir la matière première de nombre de nos vêtements.
         </Trans>
       </p>
       <p className="mb-6">

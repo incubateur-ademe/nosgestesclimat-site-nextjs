@@ -43,13 +43,13 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
         <p>
           L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et
           distribuer les biens et services de votre quotidien. Par exemple il
-          faut de l’eau :
+          faut de l’eau pour :
         </p>
         <ul className="mb-4">
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">🍅</Emoji>
             <span className="flex-1">
-              pour les{' '}
+              les{' '}
               <strong className="text-secondary-700">
                 fruits, légumes et céréales
               </strong>{' '}
@@ -59,7 +59,7 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">👕</Emoji>
             <span className="flex-1">
-              pour la culture du{' '}
+              la culture du{' '}
               <strong className="text-secondary-700">coton</strong> que vous
               portez
             </span>
@@ -67,7 +67,7 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">🐮</Emoji>
             <span className="flex-1">
-              pour l’alimentation des{' '}
+              l’alimentation des{' '}
               <strong className="text-secondary-700">animaux</strong> que vous
               consommez
             </span>
@@ -75,7 +75,7 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">📱</Emoji>
             <span className="flex-1">
-              pour l’extraction des matériaux de vos{' '}
+              l’extraction des matériaux de vos{' '}
               <strong className="text-secondary-700">
                 appareils numériques
               </strong>
@@ -84,7 +84,7 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">⚡️</Emoji>
             <span className="flex-1">
-              pour la production de votre{' '}
+              la production de votre{' '}
               <strong className="text-secondary-700">électricité</strong>
             </span>
           </li>

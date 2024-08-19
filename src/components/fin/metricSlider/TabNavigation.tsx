@@ -8,12 +8,17 @@ import HeadingButtons from './heading/HeadingButtons'
 
 type Props = {
   isSticky?: boolean
+  isStatic?: boolean
 }
-export default function TabNavigation({ isSticky }: Props) {
+export default function TabNavigation({ isSticky, isStatic }: Props) {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   return (
-    <div className="pointer-events-auto relative flex w-full items-end justify-between bg-white pt-0.5">
+    <div
+      className={twMerge(
+        'pointer-events-auto relative flex w-full items-end justify-between bg-white transition-all',
+        isSticky ? 'pt-3' : 'pt-0.5'
+      )}>
       <div className="flex">
         <button
           onClick={() => setCurrentMetric('carbone')}
@@ -59,15 +64,12 @@ export default function TabNavigation({ isSticky }: Props) {
           <Badge
             size="xs"
             color="secondary"
-            className={twMerge(
-              'absolute bottom-full left-full -translate-x-6 translate-y-3 transition-opacity',
-              isSticky ? 'opacity-0' : 'opacity-100'
-            )}>
+            className="absolute bottom-full left-full -translate-x-6 translate-y-3 ">
             BETA
           </Badge>
         </button>
       </div>
-      <HeadingButtons endPage />
+      {!isStatic && <HeadingButtons endPage />}
     </div>
   )
 }

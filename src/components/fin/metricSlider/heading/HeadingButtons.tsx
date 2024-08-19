@@ -51,7 +51,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
   }
 
   return (
-    <div className="flex">
+    <div className="mb-1 flex gap-0.5">
       <Button
         color="text"
         size="sm"

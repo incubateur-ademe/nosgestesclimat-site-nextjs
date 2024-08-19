@@ -2,7 +2,7 @@ import Trans from '@/components/translation/Trans'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
 
-const average = 145
+const average = 149
 
 export default function DomesticWaterChart() {
   const { numericValue } = useRule('logement . eau domestique', 'eau')
