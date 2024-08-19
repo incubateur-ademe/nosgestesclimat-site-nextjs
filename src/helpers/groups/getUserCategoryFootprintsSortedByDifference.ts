@@ -32,20 +32,22 @@ export const getUserCategoryFootprintsSortedByDifference = ({
       key !== 'services publics'
   )
 
-  const formattedResult = filteredResult.map(([key, resultObject]) => ({
-    key,
-    resultObject,
-  }))
+  const formattedResult: PointsFortsFaiblesType[] = filteredResult.map(
+    ([key, resultObject]) => ({
+      key,
+      resultObject,
+    })
+  )
 
   const positiveDifferenceCategories = formattedResult.filter(
     ({ resultObject }) =>
-      resultObject?.difference !== undefined && resultObject?.difference < 0
-  ) as PointsFortsFaiblesType[]
+      !!resultObject?.difference && resultObject?.difference < 0
+  )
 
   const negativeDifferenceCategories = formattedResult.filter(
     ({ resultObject }) =>
-      resultObject?.difference !== undefined && resultObject?.difference > 0
-  ) as PointsFortsFaiblesType[]
+      !!resultObject?.difference && resultObject?.difference > 0
+  )
 
   return {
     positiveDifferenceCategoriesSorted: positiveDifferenceCategories.sort(

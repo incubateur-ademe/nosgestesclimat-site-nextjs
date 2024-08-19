@@ -9,7 +9,5 @@ export function getRuleSumRules(rule: NGCRuleNode): DottedName[] | undefined {
     return undefined
   }
 
-  return somme.map(
-    (name) => `${rule.dottedName as DottedName} . ${name}`
-  ) as DottedName[]
+  return somme.map((name) => `${rule.dottedName} . ${name}` as DottedName)
 }

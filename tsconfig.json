@@ -39,6 +39,7 @@
   "exclude": [
     "node_modules",
     "cypress/**/*",
-    "scripts/**/*"
+    "scripts/**/*",
+    "**/__tests__/**/*",
   ]
 }
