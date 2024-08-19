@@ -1,8 +1,12 @@
 import { Migration, migrateSituation } from '@publicodes/tools/migration'
-import { Simulation } from '../types'
+import { ComputedResults, Simulation } from '../types'
 
 export function migrateSimulation(
-  simulation: Simulation & { group?: string; poll?: string },
+  simulation: Simulation & {
+    group?: string
+    poll?: string
+    computedResults: any
+  },
   migrationInstructions: Migration | undefined
 ): Simulation {
   if (migrationInstructions) {
@@ -22,6 +26,7 @@ export function migrateSimulation(
       )
     )
   }
+
   // If group or poll is defined, we convert it to groups or polls and delete it
   if (simulation.group) {
     simulation.groups = [simulation.group]
@@ -33,5 +38,11 @@ export function migrateSimulation(
     delete simulation.poll
   }
 
+  // TODO: THIS SHOULD BE REMOVED WHEN WE LAUNCH THE EMPREINTE EAU
+  // If the computedResults is of format { carbone: ..., eau: ...}, we revert it back to { bilan: ..., categories: ... }
+  if ('carbone' in simulation.computedResults) {
+    simulation.computedResults = simulation.computedResults
+      .carbone as ComputedResults
+  }
   return simulation
 }
