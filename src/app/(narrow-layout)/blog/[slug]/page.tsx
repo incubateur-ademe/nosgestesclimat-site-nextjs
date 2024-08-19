@@ -1,6 +1,5 @@
 import Link from '@/components/Link'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
-import Redirect404 from '@/components/navigation/Redirect404'
 import Trans from '@/components/translation/Trans'
 import Badge from '@/design-system/layout/Badge'
 import Title from '@/design-system/layout/Title'
@@ -10,6 +9,7 @@ import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { Post } from '@/types/posts'
 import { capitalizeString } from '@/utils/capitalizeString'
+import { notFound } from 'next/navigation'
 
 type Props = {
   params: { slug: string }
@@ -46,7 +46,7 @@ export default async function BlogPost({ params: { slug } }: Props) {
     })
 
   if (!post) {
-    return <Redirect404 />
+    return notFound()
   }
 
   const { content, data } = post
