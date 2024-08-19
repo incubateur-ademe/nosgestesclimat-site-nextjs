@@ -12,9 +12,6 @@ const config: Config = {
   // Stop running tests after `n` failures
   // bail: 0,
 
-  // The directory where Jest should store its cached dependency information
-  // cacheDirectory: "/private/var/folders/68/zd1hgv2542g5ryw9zqmylq680000gn/T/jest_dx",
-
   // Automatically clear mock calls, instances, contexts and results before every test
   clearMocks: true,
 
@@ -148,7 +145,7 @@ const config: Config = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -192,7 +189,6 @@ const config: Config = {
 
   // Indicates whether each individual test should be reported during the run
   // verbose: undefined,
-  // setupFilesAfterEnv: ['./jest.setup.ts'],
 
   // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
   // watchPathIgnorePatterns: [],
