@@ -154,9 +154,7 @@ export default function GetResultsByEmail({
         className="flex h-full flex-col items-start"
         onSubmit={handleSubmit(onSubmit)}>
         <h3 className="flex items-center text-base sm:text-lg">
-          <Trans>
-            Vous souhaitez recevoir vos résultats d’empreinte carbone ?
-          </Trans>
+          <Trans>Vous souhaitez recevoir vos résultats ?</Trans>
 
           <Emoji>💡</Emoji>
         </h3>

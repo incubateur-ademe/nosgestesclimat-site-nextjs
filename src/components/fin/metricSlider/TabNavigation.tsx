@@ -28,6 +28,7 @@ export default function TabNavigation({ isSticky }: Props) {
           </span>
           <strong
             className={twMerge(
+              'capitalize lg:normal-case',
               currentMetric !== 'carbone'
                 ? 'font-medium'
                 : ' font-black text-secondary-700'
@@ -48,6 +49,7 @@ export default function TabNavigation({ isSticky }: Props) {
           </span>
           <strong
             className={twMerge(
+              'capitalize lg:normal-case',
               currentMetric !== 'eau'
                 ? 'font-medium'
                 : ' font-black text-secondary-700'
@@ -58,7 +60,7 @@ export default function TabNavigation({ isSticky }: Props) {
             size="xs"
             color="secondary"
             className={twMerge(
-              'absolute bottom-full left-full -translate-x-4 translate-y-5 transition-opacity',
+              'absolute bottom-full left-full -translate-x-6 translate-y-3 transition-opacity',
               isSticky ? 'opacity-0' : 'opacity-100'
             )}>
             BETA

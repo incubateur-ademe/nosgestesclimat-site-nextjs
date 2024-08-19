@@ -18,7 +18,7 @@ export default function DomesticWater() {
             <Trans>
               Et l'eau de{' '}
               <strong className="text-secondary-700">ma douche</strong>{' '}
-              <br className="lg:hidden" />
+              <br className="md:hidden" />
               dans tout ça ?
             </Trans>
           </Title>
