@@ -1,6 +1,5 @@
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
+import Badge from '@/design-system/layout/Badge'
 import Title from '@/design-system/layout/Title'
 import Image from 'next/image'
 
@@ -26,10 +25,7 @@ export default function WaterActions() {
         <Trans>Retrouvez nos conseils dans ces articles :</Trans>
       </p>
       <div className="mb-4 flex justify-center gap-4">
-        <Link
-          href={'/blog/empreinte-eau-alimentation'}
-          target="_blank"
-          className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
+        <div className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
             <Image
               src="/images/blog/erda-estremera-demenagement.jpg"
@@ -42,14 +38,11 @@ export default function WaterActions() {
               Les 4 gestes pour réduire l’empreinte eau de mon alimentation
             </p>
           </div>
-          <div className="text-center text-sm text-primary-700 underline">
-            Lire l'article <ExternalLinkIcon className="stroke-primary-700" />
+          <div className="flex justify-center">
+            <Badge size="sm">Bientôt disponible !</Badge>
           </div>
-        </Link>
-        <Link
-          href={'/blog/empreinte-eau-textile'}
-          target="_blank"
-          className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
+        </div>
+        <div className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
             {' '}
             <Image
@@ -63,10 +56,10 @@ export default function WaterActions() {
               Les 3 réflexes à adopter pour une garde-robe économe en eau
             </p>
           </div>
-          <div className="text-center text-sm text-primary-700 underline">
-            Lire l'article <ExternalLinkIcon className="stroke-primary-700" />
+          <div className="flex justify-center">
+            <Badge size="sm">Bientôt disponible !</Badge>
           </div>
-        </Link>
+        </div>
       </div>
     </div>
   )
