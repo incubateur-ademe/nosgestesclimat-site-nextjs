@@ -28,6 +28,11 @@ export const useGetGroupStats = ({ groupMembers, userId }: Props) => {
     userId,
   })
 
+  console.log(
+    'groupCategoriesAndSubcategoriesFootprints',
+    currentUserCategoriesAndSubcategoriesFootprints
+  )
+
   const results: ResultsType = {
     currentUserCategoriesAndSubcategoriesFootprints: {
       ...currentUserCategoriesAndSubcategoriesFootprints,
