@@ -2,7 +2,10 @@ import Wave from 'react-wavify'
 import { twMerge } from 'tailwind-merge'
 import Octopus from './waveContent/Octopus'
 
-export default function WaveContent() {
+type Props = {
+  isStatic?: boolean
+}
+export default function WaveContent({ isStatic }: Props) {
   return (
     <div
       className={twMerge(
@@ -20,10 +23,20 @@ export default function WaveContent() {
       />
       <Octopus />
       <p className="relative mb-0 text-xs italic text-white lg:text-base">
-        Ce chiffre vous semble impressionnant ? <br />
-        C'est pourtant bien l'eau qui sert à produire ce que vous consommez :
-        <br className="hidden lg:inline" /> votre empreinte eau, c'est l'impact
-        de votre mode de vie sur les cycles naturels de l'eau.
+        {isStatic ? (
+          <>
+            L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire
+            et distribuer les biens et services de votre quotidien.
+          </>
+        ) : (
+          <>
+            Ce chiffre vous semble impressionnant ? <br />
+            C'est pourtant bien l'eau qui sert à produire ce que vous
+            consommez :
+            <br className="hidden lg:inline" /> votre empreinte eau, c'est
+            l'impact de votre mode de vie sur les cycles naturels de l'eau.
+          </>
+        )}
       </p>
     </div>
   )

@@ -9,8 +9,13 @@ import HeadingButtons from './heading/HeadingButtons'
 type Props = {
   isSticky?: boolean
   isStatic?: boolean
+  shouldShowWater?: boolean
 }
-export default function TabNavigation({ isSticky, isStatic }: Props) {
+export default function TabNavigation({
+  isSticky,
+  isStatic,
+  shouldShowWater,
+}: Props) {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   return (
@@ -41,33 +46,35 @@ export default function TabNavigation({ isSticky, isStatic }: Props) {
             carbone
           </strong>
         </button>
-        <button
-          onClick={() => setCurrentMetric('eau')}
-          className={twMerge(
-            'relative z-40 mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-300',
-            currentMetric !== 'eau'
-              ? 'z-40 border-transparent border-b-primary-50 text-primary-700'
-              : 'border-x-primary-50 !border-b-transparent border-t-primary-50 bg-gray-100 '
-          )}>
-          <span className="hidden lg:inline">
-            <Trans>Mon empreinte</Trans>{' '}
-          </span>
-          <strong
+        {shouldShowWater && (
+          <button
+            onClick={() => setCurrentMetric('eau')}
             className={twMerge(
-              'capitalize lg:normal-case',
+              'relative z-40 mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-300',
               currentMetric !== 'eau'
-                ? 'font-medium'
-                : ' font-black text-secondary-700'
+                ? 'z-40 border-transparent border-b-primary-50 text-primary-700'
+                : 'border-x-primary-50 !border-b-transparent border-t-primary-50 bg-gray-100 '
             )}>
-            eau
-          </strong>
-          <Badge
-            size="xs"
-            color="secondary"
-            className="absolute bottom-full left-full -translate-x-6 translate-y-3 ">
-            BETA
-          </Badge>
-        </button>
+            <span className="hidden lg:inline">
+              <Trans>Mon empreinte</Trans>{' '}
+            </span>
+            <strong
+              className={twMerge(
+                'capitalize lg:normal-case',
+                currentMetric !== 'eau'
+                  ? 'font-medium'
+                  : ' font-black text-secondary-700'
+              )}>
+              eau
+            </strong>
+            <Badge
+              size="xs"
+              color="secondary"
+              className="absolute bottom-full left-full -translate-x-6 translate-y-3 ">
+              BETA
+            </Badge>
+          </button>
+        )}
       </div>
       {!isStatic && <HeadingButtons endPage />}
     </div>
