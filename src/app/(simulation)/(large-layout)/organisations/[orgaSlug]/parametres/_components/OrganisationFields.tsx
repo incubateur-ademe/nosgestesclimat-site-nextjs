@@ -38,7 +38,7 @@ export default function OrganisationFields({
     <div className="flex flex-col gap-4">
       <TextInputGroup
         label={<Trans>Votre organisation</Trans>}
-        value={organisation?.name}
+        value={organisation.name}
         {...register('name')}
       />
       <Select
@@ -51,7 +51,7 @@ export default function OrganisationFields({
             </span>
           </p>
         }
-        value={organisation?.organisationType}
+        value={organisation.organisationType}
         {...register('organisationType')}>
         {ORGANISATION_TYPES.map((type) => (
           <option className="cursor-pointer" key={type} value={type}>
@@ -70,7 +70,7 @@ export default function OrganisationFields({
             </span>
           </p>
         }
-        value={organisation?.numberOfCollaborators}
+        value={organisation.numberOfCollaborators}
         {...register('numberOfCollaborators', {
           min: {
             value: 0,
@@ -89,7 +89,7 @@ export default function OrganisationFields({
             </span>
           </p>
         }
-        value={organisation?.administrators?.[0]?.position}
+        value={organisation.administrators?.[0]?.position}
         {...register('position')}
       />{' '}
     </div>
