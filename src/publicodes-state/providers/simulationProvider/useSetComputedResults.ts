@@ -55,8 +55,6 @@ export function useSetComputedResults({
                 safeGetRule(dottedName)) as any,
             })
 
-            console.log(subcategories)
-
             if (!subcategories) return acc
 
             acc.subcategories[category] = subcategories.reduce(
