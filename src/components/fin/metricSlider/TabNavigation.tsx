@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import Badge from '@/design-system/layout/Badge'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { twMerge } from 'tailwind-merge'
 import HeadingButtons from './heading/HeadingButtons'
@@ -16,6 +17,8 @@ export default function TabNavigation({
   isStatic,
   shouldShowWater,
 }: Props) {
+  const { t } = useClientTranslation()
+
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   return (
@@ -26,6 +29,7 @@ export default function TabNavigation({
       )}>
       <div className="flex">
         <button
+          aria-label={t('Mon empreinte carbone')}
           onClick={() => setCurrentMetric('carbone')}
           className={twMerge(
             'z-40 mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-300',
@@ -48,6 +52,7 @@ export default function TabNavigation({
         </button>
         {shouldShowWater && (
           <button
+            aria-label={t('Mon empreinte eau')}
             onClick={() => setCurrentMetric('eau')}
             className={twMerge(
               'relative z-40 mb-0 rounded-t-xl border-2 px-4 pb-1 pt-2 text-lg font-medium transition-all duration-300',
