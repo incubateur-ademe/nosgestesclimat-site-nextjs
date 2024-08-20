@@ -35,11 +35,15 @@ export default function WaterActions() {
               alt={`Les 4 gestes pour réduire l’empreinte eau de mon alimentation`}
             />
             <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
-              Les 4 gestes pour réduire l’empreinte eau de mon alimentation
+              <Trans>
+                Les 4 gestes pour réduire l’empreinte eau de mon alimentation
+              </Trans>
             </p>
           </div>
           <div className="flex justify-center">
-            <Badge size="sm">Bientôt disponible !</Badge>
+            <Badge size="sm">
+              <Trans>Bientôt disponible !</Trans>
+            </Badge>
           </div>
         </div>
         <div className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
@@ -53,11 +57,15 @@ export default function WaterActions() {
               alt={`Les 4 gestes pour réduire l’empreinte eau de mon alimentation`}
             />
             <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
-              Les 3 réflexes à adopter pour une garde-robe économe en eau
+              <Trans>
+                Les 3 réflexes à adopter pour une garde-robe économe en eau
+              </Trans>
             </p>
           </div>
           <div className="flex justify-center">
-            <Badge size="sm">Bientôt disponible !</Badge>
+            <Badge size="sm">
+              <Trans>Bientôt disponible !</Trans>
+            </Badge>
           </div>
         </div>
       </div>

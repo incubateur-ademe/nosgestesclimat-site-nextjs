@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/Trans'
 import Wave from 'react-wavify'
 import { twMerge } from 'tailwind-merge'
 import Octopus from './waveContent/Octopus'
@@ -24,17 +25,20 @@ export default function WaveContent({ isStatic }: Props) {
       <Octopus />
       <p className="relative mb-0 text-xs italic text-white lg:text-base">
         {isStatic ? (
-          <>
+          <Trans>
             L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire
             et distribuer les biens et services de votre quotidien.
-          </>
+          </Trans>
         ) : (
           <>
-            Ce chiffre vous semble impressionnant ? <br />
-            C'est pourtant bien l'eau qui sert à produire ce que vous
-            consommez :
-            <br className="hidden lg:inline" /> votre empreinte eau, c'est
-            l'impact de votre mode de vie sur les cycles naturels de l'eau.
+            <Trans>Ce chiffre vous semble impressionnant ?</Trans>
+            <br />
+            <Trans>
+              C'est pourtant bien l'eau qui sert à produire ce que vous
+              consommez :
+              <br className="hidden lg:inline" /> votre empreinte eau, c'est
+              l'impact de votre mode de vie sur les cycles naturels de l'eau.
+            </Trans>
           </>
         )}
       </p>

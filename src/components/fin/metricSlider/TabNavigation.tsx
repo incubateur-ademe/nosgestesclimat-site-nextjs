@@ -43,7 +43,7 @@ export default function TabNavigation({
                 ? 'font-medium'
                 : ' font-black text-secondary-700'
             )}>
-            carbone
+            <Trans>carbone</Trans>
           </strong>
         </button>
         {shouldShowWater && (
@@ -65,7 +65,7 @@ export default function TabNavigation({
                   ? 'font-medium'
                   : ' font-black text-secondary-700'
               )}>
-              eau
+              <Trans>eau</Trans>
             </strong>
             <Badge
               size="xs"
