@@ -32,7 +32,8 @@ export default function DomesticWaterChart() {
         </p>
       </div>
       <p className="mb-0 w-full text-center text-sm italic">
-        <Trans>*La moyenne française est de {average} litres par jour</Trans>
+        <Trans>*La moyenne française est de</Trans> {average}{' '}
+        <Trans>litres par jour</Trans>
       </p>
     </div>
   )

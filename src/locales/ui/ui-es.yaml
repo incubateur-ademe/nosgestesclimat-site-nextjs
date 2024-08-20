@@ -1111,3 +1111,6 @@ entries:
   Ce chiffre vous semble impressionnant ?: ¿Le parece impresionante esta cifra?
   C'est pourtant bien l'eau qui sert à produire ce que vous consommez :<1></1> votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.: '<1></1> Sin embargo, es agua lo que se utiliza para producir lo que consumes: tu huella hídrica es el impacto de tu estilo de vida en los ciclos naturales del agua.'
   '*La moyenne française est de {average} litres par jour': '*La media francesa es de {media} litros al día'
+  litres par jour: litros al día
+  '*La moyenne française est de': '*La media francesa es de'
+  'L’empreinte eau : pourquoi et comment avons-nous travaillé…': 'La huella hídrica: por qué y cómo trabajamos..'

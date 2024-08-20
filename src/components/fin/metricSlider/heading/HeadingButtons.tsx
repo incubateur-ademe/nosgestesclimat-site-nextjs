@@ -35,7 +35,6 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
     if (navigator?.share) {
       await navigator
         .share({
-          text: sharedUrl,
           url: sharedUrl,
           title: 'Découvre mon empreinte carbone !',
         })
