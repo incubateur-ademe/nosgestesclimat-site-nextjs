@@ -1,6 +1,4 @@
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import ExternalLinkIcon from '@/design-system/icons/ExternalLinkIcon'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { twMerge } from 'tailwind-merge'
@@ -96,12 +94,6 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
             </span>
           </li>
         </ul>
-        <div className="flex justify-end">
-          <Link className="text-sm" href="/empreinte-eau" target="_blank">
-            <Trans>En savoir plus</Trans>{' '}
-            <ExternalLinkIcon className="stroke-primary-700" />
-          </Link>
-        </div>
       </div>
     </>
   )
