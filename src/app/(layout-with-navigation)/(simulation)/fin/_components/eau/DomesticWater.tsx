@@ -1,8 +1,10 @@
 import CloseIcon from '@/components/icons/Close'
 import DownArrow from '@/components/icons/DownArrow'
 import Trans from '@/components/translation/Trans'
+import { endClickDomesticWater } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import DomesticWaterContent from './domesticWater/DomesticWaterContent'
@@ -35,6 +37,7 @@ export default function DomesticWater() {
         color={isOpen ? 'text' : 'primary'}
         className="absolute right-4 top-4 h-12 w-12 !p-0"
         onClick={() => {
+          trackEvent(endClickDomesticWater)
           setIsOpen((prevIsOpen) => !prevIsOpen)
         }}>
         {isOpen ? (
