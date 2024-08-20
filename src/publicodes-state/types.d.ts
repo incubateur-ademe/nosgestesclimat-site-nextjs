@@ -59,9 +59,18 @@ export type ActionChoices = Record<string, boolean>
 
 export type NodeValue = Evaluation
 
+export type ComputedResultsSubcategories = {
+  transport: Record<DottedName, number>
+  logement: Record<DottedName, number>
+  alimentation: Record<DottedName, number>
+  divers: Record<DottedName, number>
+  'services sociétaux': Record<DottedName, number>
+}
+
 export type ComputedResultsFootprint = {
   bilan: number
   categories: Record<DottedName, number>
+  subcategories?: ComputedResultsSubcategories
 }
 export type ComputedResults = Record<Metric, ComputedResultsFootprint>
 

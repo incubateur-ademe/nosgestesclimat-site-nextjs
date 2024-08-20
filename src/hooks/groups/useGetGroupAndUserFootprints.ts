@@ -1,8 +1,8 @@
 import { orderedCategories } from '@/constants/orderedCategories'
 import { getRuleSumRules } from '@/helpers/publicodes/getRuleSumRules'
-import { useDisposableEngine, useTempEngine } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { Participant } from '@/types/groups'
+import { ComputedResultsSubcategories } from './../../publicodes-state/types.d'
 
 type Props = {
   groupMembers: Participant[]
@@ -23,13 +23,6 @@ export const useGetGroupAndUserFootprints = ({
   groupMembers,
   userId,
 }: Props) => {
-  const { rules, getRuleObject } = useTempEngine()
-
-  const { getValue, updateSituation } = useDisposableEngine({
-    rules,
-    situation: {},
-  })
-
   return groupMembers.reduce(
     (
       {
@@ -40,8 +33,6 @@ export const useGetGroupAndUserFootprints = ({
     ) => {
       const isCurrentMember = groupMember.userId === userId
 
-      updateSituation(groupMember?.simulation?.situation || {})
-
       // Create a copy of the accumulator
       const updatedGroupFootprintByCategoriesAndSubcategories = {
         ...groupFootprintByCategoriesAndSubcategories,
@@ -51,59 +42,71 @@ export const useGetGroupAndUserFootprints = ({
         ...userFootprintByCategoriesAndSubcategories,
       } as any
 
-      orderedCategories.forEach((category: any) => {
-        const categoryValue = getValue(category)
+      ;(orderedCategories as [keyof ComputedResultsSubcategories]).forEach(
+        (category) => {
+          const categoryValue =
+            groupMember?.simulation?.computedResults?.carbone?.categories[
+              category
+            ] || 0
 
-        const defaultCategoryObject = {
-          name: category,
-          value: categoryValue,
-          isCategory: true,
-        }
+          const defaultCategoryObject = {
+            name: category,
+            value: categoryValue,
+            isCategory: true,
+          }
 
-        // If the category is not in the accumulator, we add its name as a new key in the object along with its value
-        // otherwise we add the value to the existing sum
-        if (!updatedGroupFootprintByCategoriesAndSubcategories[category]) {
-          updatedGroupFootprintByCategoriesAndSubcategories[category] =
-            defaultCategoryObject
-        } else {
-          updatedGroupFootprintByCategoriesAndSubcategories[category].value +=
-            categoryValue
-        }
-
-        // Add each category footprint for the current member
-        if (isCurrentMember) {
-          updatedUserFootprintByCategoriesAndSubcategories[category] =
-            defaultCategoryObject
-        }
-
-        const currentCategorySubcategories =
-          getSubcategories({ category, getRuleObject }) || []
-
-        currentCategorySubcategories.forEach((subCategory: string) => {
-          const subCategoryValue = getValue(subCategory)
-
-          // Same here if the property doesn't exist in the accumulator, we add it
+          // If the category is not in the accumulator, we add its name as a new key in the object along with its value
           // otherwise we add the value to the existing sum
-          if (!updatedGroupFootprintByCategoriesAndSubcategories[subCategory]) {
-            updatedGroupFootprintByCategoriesAndSubcategories[subCategory] = {
-              name: subCategory,
-              value: subCategoryValue,
-            }
+          if (!updatedGroupFootprintByCategoriesAndSubcategories[category]) {
+            updatedGroupFootprintByCategoriesAndSubcategories[category] =
+              defaultCategoryObject
           } else {
-            updatedGroupFootprintByCategoriesAndSubcategories[
-              subCategory
-            ].value += subCategoryValue
+            updatedGroupFootprintByCategoriesAndSubcategories[category].value +=
+              categoryValue
           }
 
+          // Add each category footprint for the current member
           if (isCurrentMember) {
-            // Add each category footprint for the current member
-            updatedUserFootprintByCategoriesAndSubcategories[subCategory] = {
-              name: subCategory,
-              value: subCategoryValue,
-            }
+            updatedUserFootprintByCategoriesAndSubcategories[category] =
+              defaultCategoryObject
           }
-        })
-      })
+
+          const currentCategorySubcategories =
+            Object.keys(
+              groupMember?.simulation?.computedResults?.carbone
+                ?.subcategories?.[category] ?? {}
+            ) || []
+
+          currentCategorySubcategories.forEach((subCategory: string) => {
+            const subCategoryValue =
+              groupMember?.simulation?.computedResults?.carbone
+                ?.subcategories?.[category]?.[subCategory] || 0
+
+            // Same here if the property doesn't exist in the accumulator, we add it
+            // otherwise we add the value to the existing sum
+            if (
+              !updatedGroupFootprintByCategoriesAndSubcategories[subCategory]
+            ) {
+              updatedGroupFootprintByCategoriesAndSubcategories[subCategory] = {
+                name: subCategory,
+                value: subCategoryValue,
+              }
+            } else {
+              updatedGroupFootprintByCategoriesAndSubcategories[
+                subCategory
+              ].value += subCategoryValue
+            }
+
+            if (isCurrentMember) {
+              // Add each category footprint for the current member
+              updatedUserFootprintByCategoriesAndSubcategories[subCategory] = {
+                name: subCategory,
+                value: subCategoryValue,
+              }
+            }
+          })
+        }
+      )
 
       return {
         groupFootprintByCategoriesAndSubcategories:
