@@ -1117,3 +1117,4 @@ entries:
   'Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.': 'Like the climate, <2>the water cycle is having a major impact throughout the world</2>: access to drinking water, disappearance and migration of species (animal and plant), displacement of populations.'
   C'est pourtant bien l'eau qui sert à produire ce que vous consommez :<1></1> votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.: Yet it is water that is used to produce what you consume:<1></1> your water footprint is the impact of your lifestyle on natural water cycles.
   Ce chiffre vous semble impressionnant ?: Does this figure seem impressive to you?
+  '*La moyenne française est de {average} litres par jour': '*The French average is {average} litres per day'
