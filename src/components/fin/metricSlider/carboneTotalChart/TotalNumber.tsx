@@ -9,7 +9,10 @@ import { twMerge } from 'tailwind-merge'
 import { CountUp } from 'use-count-up'
 import Arrow from './Arrow'
 
-function getContentAlignement(position: number) {
+function getContentAlignement(position: number, isSmall?: boolean) {
+  if (isSmall) {
+    return 'left-1/2 -translate-x-1/2'
+  }
   if (position < 40) {
     return 'left-16'
   }
@@ -66,7 +69,7 @@ export default function TotalNumber({ total, isSmall }: Props) {
       <div
         className={twMerge(
           'absolute bottom-full mb-1 origin-top whitespace-nowrap text-right font-medium transition-all duration-300',
-          getContentAlignement(position),
+          getContentAlignement(position, isSmall),
           isSmall
             ? 'translate-y-2 scale-75 lg:translate-y-3 lg:scale-50'
             : 'scale-100'
