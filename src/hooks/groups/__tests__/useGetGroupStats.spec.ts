@@ -1,11 +1,12 @@
 jest.mock('@/publicodes-state')
 
 import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
+import type { PointsFortsFaiblesType } from '@/types/groups'
 import { faker } from '@faker-js/faker'
 import { createGroup } from './fixtures/createGroup'
 
 describe('useGetGroupStats', () => {
-  describe('given a group with 2 participants', () => {
+  describe('given a group with 2 participants that have different carbon footprint', () => {
     let group: any
     const currentUserId = faker.string.uuid()
 
@@ -13,10 +14,10 @@ describe('useGetGroupStats', () => {
       group = createGroup(
         [
           {
-            name: 'yoram',
+            name: 'nolan',
           },
           {
-            name: 'mehdi',
+            name: 'corentin',
           },
         ],
         currentUserId
@@ -59,6 +60,53 @@ describe('useGetGroupStats', () => {
         //       ],
         //     })
         //   )
+      })
+    })
+  })
+
+  describe('given a group with 3 participants that have different carbon footprints', () => {
+    let group: any
+    const currentUserId = faker.string.uuid()
+
+    beforeEach(() => {
+      group = createGroup(
+        [
+          {
+            name: 'nolan',
+          },
+          {
+            name: 'corentin',
+          },
+          {
+            name: 'sandy',
+          },
+        ],
+        currentUserId
+      )
+    })
+
+    describe('when the points forts and points faibles are compared', () => {
+      let result: any
+
+      beforeEach(() => {
+        result = useGetGroupStats({
+          groupMembers: group.participants,
+          userId: currentUserId,
+        })
+      })
+
+      it('then it should return pointsForts and pointFaibles that have a difference value !== 0', () => {
+        console.log(result)
+        expect(
+          result.pointsForts.every(
+            (p: PointsFortsFaiblesType) => p.resultObject.difference !== 0
+          )
+        ).toBeTruthy()
+        expect(
+          result.pointsFaibles.every(
+            (p: PointsFortsFaiblesType) => p.resultObject.difference !== 0
+          )
+        ).toBeTruthy()
       })
     })
   })
