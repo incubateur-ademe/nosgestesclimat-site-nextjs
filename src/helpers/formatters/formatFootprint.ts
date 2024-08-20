@@ -28,31 +28,23 @@ export function formatFootprint(
   unit: string | null
   negative: boolean
 } {
-  if (metric === 'carbone') {
-    return formatCarbonFootprint(value, {
-      localize,
-      locale,
-      maximumFractionDigits,
-      shouldUseAbbreviation,
-      t,
-    })
+  switch (metric) {
+    case 'eau':
+      return formatWaterFootprint(value, {
+        localize,
+        locale,
+        maximumFractionDigits,
+        shouldUseAbbreviation,
+        shouldDivideBy365,
+      })
+    case 'carbone':
+    default:
+      return formatCarbonFootprint(value, {
+        localize,
+        locale,
+        maximumFractionDigits,
+        shouldUseAbbreviation,
+        t,
+      })
   }
-  if (metric === 'eau') {
-    return formatWaterFootprint(value, {
-      localize,
-      locale,
-      maximumFractionDigits,
-      shouldUseAbbreviation,
-      shouldDivideBy365,
-    })
-  }
-
-  // If the metric is not recognized, we default to carbon
-  return formatCarbonFootprint(value, {
-    localize,
-    locale,
-    maximumFractionDigits,
-    shouldUseAbbreviation,
-    t,
-  })
 }
