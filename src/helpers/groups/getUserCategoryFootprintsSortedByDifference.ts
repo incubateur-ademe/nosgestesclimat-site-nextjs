@@ -1,4 +1,4 @@
-import {
+import type {
   CategoriesAndSubcategoriesFootprintsType,
   PointsFortsFaiblesType,
 } from '@/types/groups'

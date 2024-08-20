@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { PointsFortsFaiblesType } from '@/types/groups'
+import type { PointsFortsFaiblesType } from '@/types/groups'
 import PointsListItem from './pointsFortsFaibles/PointsListItem'
 
 export default function PointsFortsFaibles({
