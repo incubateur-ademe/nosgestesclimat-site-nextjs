@@ -45,7 +45,9 @@ export default function BlogArticles() {
               alt={`Les 4 gestes pour réduire l’empreinte eau de mon alimentation`}
             />
             <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
-              L’empreinte eau : pourquoi et comment avons-nous travaillé…
+              <Trans>
+                L’empreinte eau : pourquoi et comment avons-nous travaillé…
+              </Trans>
             </p>
           </div>
           <div className="flex justify-center">

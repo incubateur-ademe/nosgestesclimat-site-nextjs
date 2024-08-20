@@ -43,7 +43,7 @@ export default function MetricSlider({
       window.removeEventListener('scroll', handleScroll)
     }
   }, [isStatic])
-  console.log('waterTotal', waterTotal)
+
   return (
     <div
       className={isStatic ? '' : 'sticky top-0 z-40 h-96'}
