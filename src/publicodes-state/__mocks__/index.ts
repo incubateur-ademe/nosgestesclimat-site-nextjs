@@ -13,16 +13,19 @@ export const useTempEngine = jest.fn(() => {
 })
 
 export const useDisposableEngine = jest.fn(() => {
+  const engineEvaluate = engine.evaluate.bind(engine)
+  const engineSetSituation = engine.setSituation.bind(engine)
+
   return {
     getValue: (dottedName: DottedName) => {
       try {
-        return engine.evaluate.bind(engine)(dottedName).nodeValue
+        return engineEvaluate(dottedName).nodeValue
       } catch (e) {
         return null
       }
     },
     updateSituation: (newSituation: Situation) =>
-      engine.setSituation.bind(engine)(newSituation, {
+      engineSetSituation(newSituation, {
         keepPreviousSituation: true,
       }),
   }

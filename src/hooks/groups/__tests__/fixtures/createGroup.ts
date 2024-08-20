@@ -28,7 +28,7 @@ export function createGroup({
           personas[`personas . ${p.name}` as keyof typeof personas].situation,
       },
       name: p.name || faker.name.firstName(),
-      _id: faker.string.uuid(),
+      _id: faker.database.mongodbObjectId(),
     })),
   }
 }
