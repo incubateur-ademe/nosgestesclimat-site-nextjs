@@ -16,12 +16,14 @@ export default function DomesticWater() {
     <div className="relative">
       <div className="relative rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-6">
         <div className={isOpen ? '' : '-mb-8'}>
-          <Title tag="h2" hasSeparator={isOpen} className="text-lg lg:text-2xl">
+          <Title
+            tag="h2"
+            hasSeparator={isOpen}
+            className="pr-16 text-lg md:pr-0 lg:text-2xl">
             <Trans>
               Et l'eau de{' '}
-              <strong className="text-secondary-700">ma douche</strong>{' '}
-              <br className="md:hidden" />
-              dans tout ça ?
+              <strong className="text-secondary-700">ma douche</strong> dans
+              tout ça ?
             </Trans>
           </Title>
         </div>

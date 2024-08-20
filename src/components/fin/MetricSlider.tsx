@@ -46,7 +46,10 @@ export default function MetricSlider({
 
   return (
     <div
-      className={isStatic ? '' : 'sticky top-0 z-40 h-96'}
+      className={twMerge(
+        isStatic ? '' : 'sticky top-0 z-40 h-96',
+        isSticky && 'pointer-events-none'
+      )}
       ref={myElementRef}>
       <TabNavigation
         isSticky={isSticky}

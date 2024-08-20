@@ -9,7 +9,7 @@ type Props = {
 }
 
 const title = (
-  <span className="lg:tracking-tight	">
+  <span className="pr-16	md:pr-0 lg:tracking-tight">
     <Trans>
       <strong className="font-black text-secondary-700">
         L’empreinte eau,
