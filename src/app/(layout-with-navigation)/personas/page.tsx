@@ -1,38 +1,16 @@
-import Providers from '@/components/providers/Providers'
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { getPersonas } from '@/helpers/modelFetching/getPersonas'
-import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
+import { usePersonas } from '@/hooks/usePersonas'
 import PersonaExplanations from './_components/PersonaExplanations'
 import PersonaList from './_components/PersonaList'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
-
-  return getMetadataObject({
-    title: t("Nos personas d'utilisateurs types - Nos Gestes Climat"),
-    description: t(
-      "Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures."
-    ),
-    alternates: {
-      canonical: '/personas',
-    },
-  })
-}
-
-type Props = {
-  params: {
-    locale: string
-  }
-}
-export default async function Personas({ params: { locale } }: Props) {
-  const supportedRegions = await getSupportedRegions()
-  const personas = await getPersonas({ locale })
+export default function Personas() {
+  const { data: personas, isFetched } = usePersonas()
 
   return (
-    <Providers supportedRegions={supportedRegions}>
+    <>
       <Title title={<Trans>Personas</Trans>} data-cypress-id="personas-title" />
       <p>
         <Trans>
@@ -50,8 +28,8 @@ export default async function Personas({ params: { locale } }: Props) {
           comme si vous étiez l'un des profils types que nous avons listés.
         </Trans>
       </p>
-      <PersonaList personas={personas} />
+      {isFetched && personas ? <PersonaList personas={personas} /> : null}
       <PersonaExplanations />
-    </Providers>
+    </>
   )
 }

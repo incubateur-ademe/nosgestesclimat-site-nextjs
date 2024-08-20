@@ -20,6 +20,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { formatEmail } from '@/utils/format/formatEmail'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { useEffect, useRef } from 'react'
@@ -110,7 +111,9 @@ export default function GetResultsByEmail({
 
     const listIds = getSaveSimulationListIds(data)
 
-    updateEmail(data.email ?? '')
+    const formattedEmail = formatEmail(data.email)
+
+    updateEmail(formattedEmail)
 
     if (currentSimulation?.computedResults[defaultMetric].bilan === 0) {
       // Send an error to Sentry

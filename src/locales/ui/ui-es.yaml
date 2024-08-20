@@ -131,8 +131,8 @@ entries:
   model.modern4.lock: Le modèle de calcul est directement embarqué chez le client, le calcul a lieu là dans votre navigateur, pas sur nos serveurs. Les données collectées sont si descriptives de la vie des utilisateurs, donc sensibles en termes de vie privée, que faire les calculs côté serveur <2>et les stocker</2> poserait un risque trop élevé.
   model.modern2: Totalmente configurable, desde las preguntas formuladas al usuario hasta las hipótesis del modelo de cálculo, puede ser reutilizado <2>libremente</2> por cualquier tipo de jugador.
   model.modern2.lock: Entièrement paramétrable, depuis les questions posées à l'utilisateur jusqu'aux hypothèses du modèle de calcul, il peut être réutilisé <2>librement</2> par tout type d'acteur.
-  model.intro2: Totalmente de código abierto y contributivo, cualquiera puede<1>explorarlo</1>, <4>dar su opinión</4> y <7>mejorarlo</7>.
-  model.intro2.lock: Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>.
+  model.intro2: Totalmente de código abierto y contributivo, cualquiera puede<1>explorarlo</1> y <4>mejorarlo</4>.
+  model.intro2.lock: Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>l'améliorer</4>.
   publicodes.Contribution.liensVersGithub: Si tiene algún comentario o pregunta, <2>abra un ticket directamente en GitHub</2>.
   publicodes.Contribution.liensVersGithub.lock: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
   publicodes.Contribution.descriptionComplète: <0>Una descripción completa de tu problema</0><1><0>Indicando el navegador que utiliza (por ejemplo, Firefox versión 93, Chrome versión 95, Safari, etc.), y la plataforma (iPhone, Android, ordenador con Windows, etc.), nos ayudará a resolver el fallo más rápidamente.</0></1>
@@ -1049,3 +1049,9 @@ entries:
   'Ils relaient ': 'Transmiten '
   sur les 14 habituels: de los 14 habituales
   Vous avez sélectionné: Ha seleccionado
+  Vos informations ont bien été mises à jour.: Su información ha sido actualizada.
+  Le code n'est pas valide.: El código no es válido.
+  Vous devez valider votre changement d'adresse e-mail.: Debe confirmar su cambio de dirección de correo electrónico.
+  Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.: En breve recibirá un correo electrónico con un <2>código de verificación</2> que deberá introducir en esta ventana.
+  Oups ! Une erreur s'est produite au moment d'envoyer votre code de vérification par email. Vérifiez si votre nouvel e-mail est bien valide et si le problème persiste, n'hésitez pas à <2>nous contacter</2>: ¡Uy! Se ha producido un error al enviar su código de verificación por correo electrónico. Por favor, compruebe que su nuevo correo electrónico es válido y si el problema persiste, <2>póngase en contacto con nosotros</2>
+  Recevoir nos actualités sur les nouveaux services dédiés aux organisation (une fois par mois maximum !): Reciba nuestras últimas noticias sobre nuevos servicios para organizaciones (¡una vez al mes como máximo!)

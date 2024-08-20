@@ -33,8 +33,6 @@ export default function PersonalInfoFields({ organisation, register }: Props) {
       />
 
       <TextInputGroup
-        disabled
-        helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
         label={<Trans>Votre e-mail</Trans>}
         value={organisation?.administrators?.[0]?.email}
         {...register('email')}
@@ -50,8 +48,8 @@ export default function PersonalInfoFields({ organisation, register }: Props) {
             <span>
               <strong>
                 <Trans>
-                  Recevoir ponctuellement par email les nouveaux services Nos
-                  Gestes Climat aux organisations
+                  Recevoir nos actualités sur les nouveaux services dédiés aux
+                  organisation (une fois par mois maximum !)
                 </Trans>
               </strong>{' '}
               <Trans>(une fois par mois maximum !)</Trans>

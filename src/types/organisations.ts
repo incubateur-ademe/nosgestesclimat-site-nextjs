@@ -102,3 +102,14 @@ export type UpdatePollProps = {
   defaultAdditionalQuestions?: string[]
   customAdditionalQuestions?: CustomAdditionalQuestions
 }
+
+export type OrgaSettingsInputsType = {
+  name: string
+  administratorName?: string
+  administratorTelephone?: string
+  hasOptedInForCommunications?: boolean
+  email: string
+  organisationType?: string
+  position?: string
+  numberOfCollaborators?: number
+}

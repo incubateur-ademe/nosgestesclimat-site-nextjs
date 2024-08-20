@@ -79,7 +79,7 @@ entries:
   le - d'impact climat: le - d'impact climat
   model.active.documented: La construction du modèle (pistes de travail, réflexions en cours, feuille de route, etc.) est amplement <2>documentée publiquement</2>.
   model.intro: Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.
-  model.intro2: Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>.
+  model.intro2: Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>l'améliorer</4>.
   model.modern: Le modèle est basé sur <2>publicodes</2>, un langage conçu par l'État pour exprimer des algorithmes d'intérêt public.
   model.modern2: Entièrement paramétrable, depuis les questions posées à l'utilisateur jusqu'aux hypothèses du modèle de calcul, il peut être réutilisé <2>librement</2> par tout type d'acteur.
   model.modern3: ⬇️ Ci-dessous, vous pouvez voir l'influence de 3 paramètres de calcul sur les résultats finaux.
@@ -864,3 +864,9 @@ entries:
   Nos Gestes Climat: Nos Gestes Climat
   sur les 14 habituels: sur les 14 habituels
   Vous avez sélectionné: Vous avez sélectionné
+  Le code n'est pas valide.: Le code n'est pas valide.
+  Oups ! Une erreur s'est produite au moment d'envoyer votre code de vérification par email. Vérifiez si votre nouvel e-mail est bien valide et si le problème persiste, n'hésitez pas à <2>nous contacter</2>: Oups ! Une erreur s'est produite au moment d'envoyer votre code de vérification par email. Vérifiez si votre nouvel e-mail est bien valide et si le problème persiste, n'hésitez pas à <2>nous contacter</2>
+  Vos informations ont bien été mises à jour.: Vos informations ont bien été mises à jour.
+  Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.: Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.
+  Vous devez valider votre changement d'adresse e-mail.: Vous devez valider votre changement d'adresse e-mail.
+  Recevoir nos actualités sur les nouveaux services dédiés aux organisation (une fois par mois maximum !): Recevoir nos actualités sur les nouveaux services dédiés aux organisation (une fois par mois maximum !)

@@ -3,13 +3,10 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
-import {
-  useCurrentSimulation,
-  useSimulation,
-  useUser,
-} from '@/publicodes-state'
+import { useDisposableEngine, useSimulation, useUser } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { Persona as PersonaType } from '@incubateur-ademe/nosgestesclimat'
+import { useRouter } from 'next/navigation'
 import { fixSituationWithPartialMosaic } from '../_helpers/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '../_helpers/getPersonaFoldedSteps'
 
@@ -19,15 +16,16 @@ type Props = {
 }
 
 export default function Persona({ persona, personaDottedName }: Props) {
-  const { initSimulation, hideTutorial } = useUser()
+  const router = useRouter()
 
-  const currentSimulation = useCurrentSimulation()
+  const { initSimulation, hideTutorial, currentSimulation } = useUser()
+
+  const { engine } = useDisposableEngine({ situation: {} })
 
   const {
     everyMosaicChildrenWithParent,
     everyQuestions,
     everyRules,
-    pristineEngine,
     safeEvaluate,
     safeGetRule,
   } = useSimulation()
@@ -56,25 +54,28 @@ export default function Persona({ persona, personaDottedName }: Props) {
           className="align-self-end mt-auto"
           disabled={isCurrentPersonaSelected}
           onClick={() => {
+            const fixedSituation = fixSituationWithPartialMosaic({
+              situation: persona.situation,
+              everyMosaicChildrenWithParent,
+              safeGetRule,
+              safeEvaluate,
+            })
             initSimulation({
-              situation: fixSituationWithPartialMosaic({
-                situation: persona.situation,
-                everyMosaicChildrenWithParent,
-                safeGetRule,
-                safeEvaluate,
-              }),
+              situation: fixedSituation,
               persona: personaDottedName,
               foldedSteps: getPersonaFoldedSteps({
                 situation: persona.situation,
                 everyMosaicChildrenWithParent,
                 everyQuestions,
                 everyRules,
-                pristineEngine,
+                engine,
                 safeGetRule,
                 safeEvaluate,
               }),
+              progression: 1,
             })
             hideTutorial('testIntro')
+            router.refresh()
           }}>
           <Trans>Sélectionner</Trans>
         </Button>

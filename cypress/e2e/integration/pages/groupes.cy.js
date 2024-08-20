@@ -12,6 +12,9 @@ describe('The Group creation page /amis/creer', () => {
     // Check that we can create our first group
     cy.get('[data-cypress-id="button-create-first-group"]').click()
     cy.get('input[data-cypress-id="group-input-owner-name"]').type('Jean-Marc')
+    cy.get('input[data-cypress-id="group-input-owner-name"]').type(
+      'jean@marc.com'
+    )
 
     cy.wait(2000)
 

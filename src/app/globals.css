@@ -451,6 +451,7 @@ html[data-useragent*='Trident'] #js {
 .markdown blockquote code {
   @apply w-auto;
   @apply max-w-10;
+  @apply lg:max-w-none;
   @apply mb-0;
   @apply px-2;
   @apply py-1;
@@ -538,4 +539,13 @@ html[data-useragent*='Trident'] #js {
 .injected-svg {
   max-width: 100%;
   height: auto;
+}
+
+/*
+  Toast styles
+*/
+:root {
+  --toastify-color-success: #15803d !important;
+  --toastify-icon-color-success: #15803d !important;
+  --toastify-text-color-success: #15803d !important;
 }

@@ -96,8 +96,8 @@ entries:
   model.active.documented.lock: La construction du modèle (pistes de travail, réflexions en cours, feuille de route, etc.) est amplement <2>documentée publiquement</2>.
   model.intro: Behind the nosgestesclimat.fr website, lies the individual climate footprint model of reference consumption.
   model.intro.lock: Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.
-  model.intro2: Entirely open source and contributive, everyone can<1>explore</1> it, <4>give their opinion</4>, <7>improve it</7>.
-  model.intro2.lock: Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>.
+  model.intro2: Fully open source and contributory, anyone can<1>explore</1> and <4>improve</4> it.
+  model.intro2.lock: Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>l'améliorer</4>.
   model.modern: The model is based on <2>publicodes</2>, a language designed by the State to express algorithms in the public interest.
   model.modern.lock: Le modèle est basé sur <2>publicodes</2>, un langage conçu par l'État pour exprimer des algorithmes d'intérêt public.
   model.modern2: Fully customizable, from the questions asked to the user to the assumptions of the calculation model, it can be <2>freely</2> reused by any type of actor.
@@ -1056,3 +1056,9 @@ entries:
   'Ils relaient ': 'They relay '
   Vous avez sélectionné: You have selected
   sur les 14 habituels: out of the usual 14
+  Le code n'est pas valide.: The code is invalid.
+  Vos informations ont bien été mises à jour.: Your information has been updated.
+  Vous devez valider votre changement d'adresse e-mail.: You must confirm your change of e-mail address.
+  Oups ! Une erreur s'est produite au moment d'envoyer votre code de vérification par email. Vérifiez si votre nouvel e-mail est bien valide et si le problème persiste, n'hésitez pas à <2>nous contacter</2>: Oops! An error occurred when you sent your verification code by email. Please check that your new e-mail is valid and if the problem persists, please <2>contact us</2>
+  Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.: You will shortly receive an e-mail from us containing a <2>verification code</2> to enter in this window.
+  Recevoir nos actualités sur les nouveaux services dédiés aux organisation (une fois par mois maximum !): Receive our latest news on new services for organisations (once a month maximum!)
