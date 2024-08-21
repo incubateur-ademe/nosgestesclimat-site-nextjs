@@ -17,9 +17,9 @@ export function useCurrentMetric() {
     [setQueryParams]
   )
 
-  let currentMetric = queryParamsMetric
+  let currentMetric = queryParamsMetric || defaultMetric
 
-  if (!queryParamsMetric || !metrics.includes(queryParamsMetric)) {
+  if (!metrics.includes(currentMetric)) {
     currentMetric = defaultMetric
   }
 
