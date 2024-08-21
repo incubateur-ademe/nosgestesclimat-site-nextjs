@@ -1,5 +1,6 @@
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/Trans'
+import { carboneMetric } from '@/constants/metric'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { SimulationRecap } from '@/types/organisations'
 import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
@@ -19,14 +20,16 @@ function formatSimulationRecaps(simulationRecaps: SimulationRecap[]) {
   const result = simulationRecaps.reduce(
     (acc, simulation) => {
       return {
-        bilan: acc.bilan + simulation.bilan,
-        transport: acc.transport + simulation?.categories?.transport,
-        logement: acc.logement + simulation?.categories?.logement,
-        alimentation: acc.alimentation + simulation?.categories?.alimentation,
-        divers: acc.divers + simulation?.categories?.divers,
+        bilan: acc.bilan + simulation[carboneMetric].bilan,
+        transport:
+          acc.transport + simulation[carboneMetric].categories?.transport,
+        logement: acc.logement + simulation[carboneMetric].categories?.logement,
+        alimentation:
+          acc.alimentation + simulation[carboneMetric].categories?.alimentation,
+        divers: acc.divers + simulation[carboneMetric].categories?.divers,
         'services sociétaux':
           acc['services sociétaux'] +
-          simulation?.categories?.['services sociétaux'],
+          simulation[carboneMetric].categories?.['services sociétaux'],
       }
     },
     {

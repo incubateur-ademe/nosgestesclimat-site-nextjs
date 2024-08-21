@@ -2,6 +2,7 @@
 
 import InformationIconWithTooltip from '@/components/messages/InformationIconWithTooltip'
 import Trans from '@/components/translation/Trans'
+import { carboneMetric } from '@/constants/metric'
 import Separator from '@/design-system/layout/Separator'
 import { SimulationRecap } from '@/types/organisations'
 import { useMemo } from 'react'
@@ -18,8 +19,10 @@ export default function PollStatisticsCharts({
   const maxValueOfAllCategories = useMemo(
     () =>
       simulationRecaps?.reduce((acc, obj) => {
-        Object.keys(obj.categories ?? {}).forEach((category) => {
-          const roundedValue = Math.round(obj.categories[category] / 1000)
+        Object.keys(obj[carboneMetric].categories ?? {}).forEach((category) => {
+          const roundedValue = Math.round(
+            obj[carboneMetric].categories[category] / 1000
+          )
           if (roundedValue > acc) {
             acc = roundedValue
           }
@@ -32,7 +35,7 @@ export default function PollStatisticsCharts({
   const maxValueOfAllSimulations = useMemo(
     () =>
       simulationRecaps?.reduce((acc, obj) => {
-        const roundedValue = Math.round(obj.bilan / 1000)
+        const roundedValue = Math.round(obj[carboneMetric].bilan / 1000)
         if (roundedValue > acc) {
           acc = roundedValue
         }
@@ -44,16 +47,18 @@ export default function PollStatisticsCharts({
   // Calculate the mean for each category
   const meanCategories = useMemo(
     () =>
-      Object.keys(simulationRecaps?.[0]?.categories ?? {}).map((category) => {
-        const mean = simulationRecaps?.reduce(
-          (acc, obj) => acc + obj.categories[category],
-          0
-        )
-        return {
-          category,
-          value: mean / simulationRecaps?.length,
+      Object.keys(simulationRecaps?.[0]?.[carboneMetric].categories ?? {}).map(
+        (category) => {
+          const mean = simulationRecaps?.reduce(
+            (acc, obj) => acc + obj[carboneMetric].categories[category],
+            0
+          )
+          return {
+            category,
+            value: mean / simulationRecaps?.length,
+          }
         }
-      }),
+      ),
     [simulationRecaps]
   )
 
@@ -113,7 +118,7 @@ export default function PollStatisticsCharts({
         </div>
         <ul>
           {simulationRecaps?.length > 0 &&
-            Object.keys(simulationRecaps[0].categories).map(
+            Object.keys(simulationRecaps[0][carboneMetric].categories).map(
               (category, index) => (
                 <CategoryListItem
                   key={index}

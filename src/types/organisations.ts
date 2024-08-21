@@ -55,9 +55,17 @@ export type Organisation = {
 }
 
 export type SimulationRecap = {
-  bilan: number
-  categories: {
-    [key: string]: number
+  carbone: {
+    bilan: number
+    categories: {
+      [key: string]: number
+    }
+  }
+  eau?: {
+    bilan: number
+    categories: {
+      [key: string]: number
+    }
   }
   defaultAdditionalQuestionsAnswers: Record<string, number | string>
   customAdditionalQuestionsAnswers: Record<string, number | string>

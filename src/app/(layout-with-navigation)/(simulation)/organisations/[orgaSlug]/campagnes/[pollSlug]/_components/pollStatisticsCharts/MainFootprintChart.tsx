@@ -47,8 +47,8 @@ export default function MainFootprintChart({
 
         <RepartitionChart
           maxValue={maxValue}
-          items={simulationRecaps.map(({ bilan, isCurrentUser }) => ({
-            value: bilan,
+          items={simulationRecaps.map(({ carbone, isCurrentUser }) => ({
+            value: carbone.bilan,
             shouldBeHighlighted: isCurrentUser,
           }))}
           id="bilan"
