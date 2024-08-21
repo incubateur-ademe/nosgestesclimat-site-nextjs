@@ -46,7 +46,6 @@ export default function MetricSlider({
     }
   }, [isStatic])
 
-  console.log('carboneMetric', carboneMetric, currentMetric)
   return (
     <div
       className={twMerge(
