@@ -3,10 +3,13 @@
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import Trans from '@/components/translation/Trans'
+import { carboneMetric, eauMetric } from '@/constants/metric'
 import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
+import { Metric } from '@/publicodes-state/types'
+import { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 import MetricSlider from '../../../../components/fin/MetricSlider'
 import Carbone from './_components/Carbone'
@@ -18,10 +21,11 @@ import InformationBlock from './_components/InformationBlock'
 import Poll from './_components/Poll'
 import ShareBlock from './_components/ShareBlock'
 
-const titles = {
-  carbone: <Trans>carbone</Trans>,
-  eau: <Trans>eau</Trans>,
+const titles: Record<Metric, ReactElement> = {
+  [carboneMetric]: <Trans>carbone</Trans>,
+  [eauMetric]: <Trans>eau</Trans>,
 }
+
 export default function FinPage() {
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useEndGuard()
@@ -52,7 +56,7 @@ export default function FinPage() {
           <div
             className={twMerge(
               'transition-opacity duration-500',
-              currentMetric === 'carbone'
+              currentMetric === carboneMetric
                 ? 'relative opacity-100'
                 : 'pointer-events-none absolute top-0 opacity-0'
             )}>
@@ -61,7 +65,7 @@ export default function FinPage() {
           <div
             className={twMerge(
               'transition-opacity duration-500',
-              currentMetric === 'eau'
+              currentMetric === eauMetric
                 ? 'relative opacity-100'
                 : 'pointer-events-none absolute top-0 opacity-0'
             )}>

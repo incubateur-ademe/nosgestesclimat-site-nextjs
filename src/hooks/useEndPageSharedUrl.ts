@@ -1,9 +1,10 @@
+import { eauMetric } from '@/constants/metric'
 import { useRule } from '@/publicodes-state'
 
 export const useEndPageSharedUrl = () => {
   const { numericValue } = useRule('bilan')
 
-  const { numericValue: waterNumericValue } = useRule('bilan', 'eau')
+  const { numericValue: waterNumericValue } = useRule('bilan', eauMetric)
 
   const params = `?total=${Math.round(numericValue)}&watertotal=${Math.round(waterNumericValue)}`
 

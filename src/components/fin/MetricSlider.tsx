@@ -1,3 +1,4 @@
+import { carboneMetric, eauMetric } from '@/constants/metric'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -61,14 +62,14 @@ export default function MetricSlider({
           'relative mx-auto -mt-0.5 w-full overflow-hidden rounded-b-xl rounded-tr-xl border-2 border-primary-50 bg-gray-100 px-0 transition-all duration-300',
           isSticky ? 'h-20 lg:h-[5.5rem]' : 'h-72 lg:h-80'
         )}>
-        {currentMetric === 'carbone' && (
+        {currentMetric === carboneMetric && (
           <div className={twMerge('relative !flex h-full flex-col')}>
             <div className="h-full w-full px-4">
               <CarboneTotalChart isSmall={isSticky} total={carboneTotal} />
             </div>
           </div>
         )}
-        {currentMetric === 'eau' && (
+        {currentMetric === eauMetric && (
           <div className={twMerge('relative !flex h-full flex-col')}>
             <WaterTotalChart
               isSmall={isSticky}

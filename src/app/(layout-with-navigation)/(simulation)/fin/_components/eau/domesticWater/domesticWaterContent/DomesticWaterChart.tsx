@@ -1,14 +1,15 @@
 import Trans from '@/components/translation/Trans'
+import { eauMetric } from '@/constants/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
 
 const average = 149
 
 export default function DomesticWaterChart() {
-  const { numericValue } = useRule('logement . eau domestique', 'eau')
+  const { numericValue } = useRule('logement . eau domestique', eauMetric)
 
   const { formattedValue, unit } = formatFootprint(numericValue, {
-    metric: 'eau',
+    metric: eauMetric,
   })
 
   return (

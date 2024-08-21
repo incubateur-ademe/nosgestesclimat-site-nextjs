@@ -1,6 +1,5 @@
 import Trans from '@/components/translation/Trans'
 import Wave from 'react-wavify'
-import { twMerge } from 'tailwind-merge'
 import Octopus from './waveContent/Octopus'
 
 type Props = {
@@ -8,10 +7,7 @@ type Props = {
 }
 export default function WaveContent({ isStatic }: Props) {
   return (
-    <div
-      className={twMerge(
-        'relative overflow-hidden rounded-b-xl px-4 pb-6 pt-12 transition-opacity lg:px-36 lg:pb-8 lg:pt-14'
-      )}>
+    <div className="relative overflow-hidden rounded-b-xl px-4 pb-6 pt-12 transition-opacity lg:px-36 lg:pb-8 lg:pt-14">
       <Wave
         fill="#5152D0"
         className="pointer-events-none absolute bottom-0 left-0 right-0 h-full w-full"

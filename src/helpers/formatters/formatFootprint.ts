@@ -1,3 +1,4 @@
+import { carboneMetric, eauMetric } from '@/constants/metric'
 import { Metric } from '@/publicodes-state/types'
 import { formatCarbonFootprint } from './formatCarbonFootprint'
 import { formatWaterFootprint } from './formatWaterFootprint'
@@ -29,7 +30,7 @@ export function formatFootprint(
   negative: boolean
 } {
   switch (metric) {
-    case 'eau':
+    case eauMetric:
       return formatWaterFootprint(value, {
         localize,
         locale,
@@ -37,7 +38,7 @@ export function formatFootprint(
         shouldUseAbbreviation,
         shouldDivideBy365,
       })
-    case 'carbone':
+    case carboneMetric:
     default:
       return formatCarbonFootprint(value, {
         localize,

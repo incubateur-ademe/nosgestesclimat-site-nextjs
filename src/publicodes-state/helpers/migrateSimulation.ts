@@ -36,7 +36,7 @@ export function migrateSimulation(
   // If the computedResults object does not take multiple metrics into account, we add them
   if ((simulation.computedResults as any)?.bilan !== undefined) {
     const newComputedResults = {
-      carbone: JSON.parse(JSON.stringify(simulation.computedResults)),
+      carbone: simulation.computedResults as any,
       eau: {
         bilan: 0,
         categories: {},

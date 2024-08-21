@@ -1,3 +1,4 @@
+import { carboneMetric } from '@/constants/metric'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
 import { captureException } from '@sentry/react'
 import Engine, { PublicodesExpression } from 'publicodes'
@@ -47,7 +48,7 @@ export function useEngine(rules: Rules) {
   const pristineEngine = useMemo(() => engine.shallowCopy(), [engine])
 
   const safeEvaluate = useCallback(
-    (expr: PublicodesExpression, metric: Metric = 'carbone') => {
+    (expr: PublicodesExpression, metric: Metric = carboneMetric) => {
       const exprWithContext = {
         valeur: expr,
         contexte: {
