@@ -24,11 +24,11 @@ const eauTabClasses: Record<Metric, string> = {
 
 const carboneLabelClasses: Record<Metric, string> = {
   [carboneMetric]: 'font-black text-secondary-700',
-  [eauMetric]: 'font-black text-secondary-700',
+  [eauMetric]: 'font-medium',
 }
 const eauLabelClasses: Record<Metric, string> = {
   [carboneMetric]: 'font-medium',
-  [eauMetric]: 'text-primary-700',
+  [eauMetric]: 'font-black text-secondary-700',
 }
 
 type Props = {
