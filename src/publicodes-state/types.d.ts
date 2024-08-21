@@ -1,4 +1,3 @@
-import { carboneMetric, eauMetric } from '@/constants/metric'
 import { Group } from '@/types/groups'
 import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
 import {
@@ -136,4 +135,4 @@ type MosaicInfos = {
 
 type Formule = any
 
-export type Metric = carboneMetric | eauMetric
+export type Metric = 'carbone' | 'eau'
