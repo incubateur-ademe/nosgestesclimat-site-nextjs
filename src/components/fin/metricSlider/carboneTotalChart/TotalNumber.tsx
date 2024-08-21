@@ -61,10 +61,8 @@ export default function TotalNumber({ total, isSmall }: Props) {
     <motion.div
       initial={{ opacity: 0, x: isSmall ? '1rem' : '-400%' }}
       animate={{ opacity: 1, x: isSmall ? '1rem' : '-50%' }}
-      transition={{ duration: 1.5 }}
-      className={twMerge(
-        'absolute bottom-10 z-10 transition-transform duration-300'
-      )}
+      transition={{ duration: 1 }}
+      className={twMerge('absolute bottom-10 z-10')}
       style={{ left: isSmall ? '50%' : `${position}%`, color: cssColor }}>
       <div
         className={twMerge(
@@ -78,7 +76,7 @@ export default function TotalNumber({ total, isSmall }: Props) {
           <CountUp
             isCounting
             end={Number(formattedValue)}
-            duration={1.5}
+            duration={1}
             updateInterval={0.033}
             easing="linear"
             decimalSeparator=","
