@@ -14,12 +14,12 @@ const tabSelectedClasses =
 const tabNotSelectedClasses =
   'border-transparent border-b-primary-50 text-primary-700'
 const carboneTabClasses: Record<Metric, string> = {
-  [carboneMetric]: tabNotSelectedClasses,
-  [eauMetric]: tabSelectedClasses,
-}
-const eauTabClasses: Record<Metric, string> = {
   [carboneMetric]: tabSelectedClasses,
   [eauMetric]: tabNotSelectedClasses,
+}
+const eauTabClasses: Record<Metric, string> = {
+  [carboneMetric]: tabNotSelectedClasses,
+  [eauMetric]: tabSelectedClasses,
 }
 
 const carboneLabelClasses: Record<Metric, string> = {

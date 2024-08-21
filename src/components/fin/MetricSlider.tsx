@@ -30,7 +30,7 @@ export default function MetricSlider({
     const handleScroll = () => {
       if (myElementRef.current) {
         const { top } = myElementRef.current.getBoundingClientRect()
-        console.log(top)
+        // We need a value > 0 because of an iOS issue
         if (top <= 10) {
           setIsSticky(true)
         } else {
@@ -46,6 +46,7 @@ export default function MetricSlider({
     }
   }, [isStatic])
 
+  console.log('carboneMetric', carboneMetric, currentMetric)
   return (
     <div
       className={twMerge(
