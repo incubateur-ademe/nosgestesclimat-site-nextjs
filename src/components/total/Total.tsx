@@ -7,7 +7,7 @@ import {
   simulateurOpenScoreInfo,
 } from '@/constants/tracking/pages/simulateur'
 import Emoji from '@/design-system/utils/Emoji'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
   useCurrentSimulation,
@@ -79,22 +79,24 @@ export default function Total({ toggleQuestionList }: Props) {
 
         <Emoji className="z-10 text-4xl md:text-6xl">🌍</Emoji>
 
-        <div className="z-10">
-          <span className="block text-2xl font-bold md:text-3xl">
-            {numericValue !== carbonFootprintValue && (
-              <span className="relative text-xl text-gray-300 md:text-2xl">
-                <span className="absolute right-0 top-1/2 h-[2px] w-full -rotate-45 transform bg-gray-300" />
-                {formatCarbonFootprint(numericValue).formattedValue}
-              </span>
-            )}{' '}
-            {formatCarbonFootprint(carbonFootprintValue).formattedValue}{' '}
-            <Trans>{formatCarbonFootprint(carbonFootprintValue).unit}</Trans>
-          </span>
-          <span className="block text-sm md:text-base">
-            <Trans i18nKey="Total.unit">
-              de CO<sub className="text-white">2</sub>e / an
-            </Trans>
-          </span>
+        <div className="flex gap-4">
+          <div className="z-10">
+            <span className="block text-2xl font-bold md:text-3xl">
+              {numericValue !== carbonFootprintValue && (
+                <span className="relative text-xl text-gray-300 md:text-2xl">
+                  <span className="absolute right-0 top-1/2 h-[2px] w-full -rotate-45 transform bg-gray-300" />
+                  {formatCarbonFootprint(numericValue).formattedValue}
+                </span>
+              )}{' '}
+              {formatCarbonFootprint(carbonFootprintValue).formattedValue}{' '}
+              <Trans>{formatCarbonFootprint(carbonFootprintValue).unit}</Trans>
+            </span>
+            <span className="block text-sm md:text-base">
+              <Trans i18nKey="Total.unit">
+                de CO<sub className="text-white">2</sub>e / an
+              </Trans>
+            </span>
+          </div>
         </div>
         <QuestionButton
           onClick={toggleOpen}

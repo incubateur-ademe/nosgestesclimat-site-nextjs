@@ -6,10 +6,8 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { filterExtremes } from '@/helpers/organisations/filterExtremes'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
-import { handleMissingComputedResults } from '@/helpers/polls/handleMissingComputedResults'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
-import { useEngine } from '@/publicodes-state'
 import dayjs from 'dayjs'
 import { useParams, useSearchParams } from 'next/navigation'
 import { useContext, useMemo } from 'react'
@@ -23,8 +21,6 @@ export default function CampagnePage() {
   const { pollSlug, orgaSlug } = useParams()
 
   const searchParams = useSearchParams()
-
-  const { getComputedResults } = useEngine()
 
   const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
 
@@ -42,20 +38,10 @@ export default function CampagnePage() {
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
 
-  // TODO : Remove this hook when the computed results are fixed
-  const fixedMissingComputedResultsSimulationRecaps = useMemo(() => {
-    if (!pollData?.simulationRecaps) return []
-
-    return handleMissingComputedResults({
-      simulationRecaps: pollData?.simulationRecaps ?? [],
-      getComputedResults,
-    })
-  }, [pollData?.simulationRecaps, getComputedResults])
-
   // Remove the values that are too high to avoid polluting the statistics
   const simulationRecapsWithoutExtremes = useMemo(
-    () => filterExtremes(fixedMissingComputedResultsSimulationRecaps),
-    [fixedMissingComputedResultsSimulationRecaps]
+    () => filterExtremes(pollData?.simulationRecaps ?? []),
+    [pollData?.simulationRecaps]
   )
 
   const filteredSimulationRecaps =
@@ -116,7 +102,7 @@ export default function CampagnePage() {
         <AdminSection pollData={pollData} />
 
         <PollStatistics
-          simulationRecaps={fixedMissingComputedResultsSimulationRecaps}
+          simulationRecaps={pollData?.simulationRecaps ?? []}
           simulationRecapsWithoutExtremes={simulationRecapsWithoutExtremes}
           funFacts={pollData?.funFacts}
           title={<Trans>Résultats de campagne</Trans>}

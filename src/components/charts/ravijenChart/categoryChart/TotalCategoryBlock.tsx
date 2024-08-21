@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
 import Image from 'next/image'
 
