@@ -37,7 +37,6 @@ export default function CopyInput({
     if (navigator.share) {
       await navigator
         .share({
-          text: textToCopy,
           url: textToCopy,
           title: 'Découvre mon empreinte carbone !',
         })

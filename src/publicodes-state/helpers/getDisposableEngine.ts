@@ -17,11 +17,10 @@ export function getDisposableEngine({ rules, situation }: Props) {
     },
   }).setSituation(situation)
 
-  const safeEvaluate = (rule: string, engineUsed = engine) =>
-    safeEvaluateHelper(rule, engineUsed)
+  const safeEvaluate = (rule: string) => safeEvaluateHelper(rule, engine)
 
   const getValue = (dottedName: DottedName) =>
-    safeEvaluate(dottedName, engine)?.nodeValue
+    safeEvaluate(dottedName)?.nodeValue
 
   return { engine, getValue, safeEvaluate }
 }

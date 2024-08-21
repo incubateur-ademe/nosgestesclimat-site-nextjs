@@ -1,10 +1,11 @@
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import {
   getBackgroundLightColor,
   getBorderColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
@@ -25,15 +26,17 @@ export default function MainSubcategory({
   isLink,
 }: Props) {
   const locale = useLocale()
-
   const { t } = useClientTranslation()
-  const { title, numericValue, category } = useRule(subcategory)
+
+  const { currentMetric } = useCurrentMetric()
+  const { title, numericValue, category } = useRule(subcategory, currentMetric)
 
   const usedValue = value ?? numericValue
 
-  const { formattedValue, unit } = formatCarbonFootprint(usedValue, {
+  const { formattedValue, unit } = formatFootprint(usedValue, {
     locale,
     t,
+    metric: currentMetric,
   })
 
   const handleScroll = (id: string) => {
@@ -59,12 +62,12 @@ export default function MainSubcategory({
         )}>
         <div
           className={twMerge(
-            'flex h-9 w-9 items-center justify-center rounded-full border-2 bg-white font-black leading-none',
+            'flex h-9 w-9  items-center justify-center rounded-full border-2 bg-white font-black leading-none',
             getBorderColor(category)
           )}>
           {index + 1}
         </div>
-        {title}
+        <span className="flex-1 text-left">{title}</span>
       </div>
       <div
         className={twMerge(
