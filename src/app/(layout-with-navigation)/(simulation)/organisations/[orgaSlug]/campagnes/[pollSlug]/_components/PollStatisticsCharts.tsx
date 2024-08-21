@@ -19,9 +19,11 @@ export default function PollStatisticsCharts({
   const maxValueOfAllCategories = useMemo(
     () =>
       simulationRecaps?.reduce((acc, obj) => {
-        Object.keys(obj[carboneMetric].categories ?? {}).forEach((category) => {
+        Object.keys(
+          obj.computedResults[carboneMetric].categories ?? {}
+        ).forEach((category) => {
           const roundedValue = Math.round(
-            obj[carboneMetric].categories[category] / 1000
+            obj.computedResults[carboneMetric].categories[category] / 1000
           )
           if (roundedValue > acc) {
             acc = roundedValue
@@ -35,7 +37,9 @@ export default function PollStatisticsCharts({
   const maxValueOfAllSimulations = useMemo(
     () =>
       simulationRecaps?.reduce((acc, obj) => {
-        const roundedValue = Math.round(obj[carboneMetric].bilan / 1000)
+        const roundedValue = Math.round(
+          obj.computedResults[carboneMetric].bilan / 1000
+        )
         if (roundedValue > acc) {
           acc = roundedValue
         }
@@ -47,18 +51,19 @@ export default function PollStatisticsCharts({
   // Calculate the mean for each category
   const meanCategories = useMemo(
     () =>
-      Object.keys(simulationRecaps?.[0]?.[carboneMetric].categories ?? {}).map(
-        (category) => {
-          const mean = simulationRecaps?.reduce(
-            (acc, obj) => acc + obj[carboneMetric].categories[category],
-            0
-          )
-          return {
-            category,
-            value: mean / simulationRecaps?.length,
-          }
+      Object.keys(
+        simulationRecaps?.[0]?.computedResults[carboneMetric].categories ?? {}
+      ).map((category) => {
+        const mean = simulationRecaps?.reduce(
+          (acc, obj) =>
+            acc + obj.computedResults[carboneMetric].categories[category],
+          0
+        )
+        return {
+          category,
+          value: mean / simulationRecaps?.length,
         }
-      ),
+      }),
     [simulationRecaps]
   )
 
@@ -118,17 +123,17 @@ export default function PollStatisticsCharts({
         </div>
         <ul>
           {simulationRecaps?.length > 0 &&
-            Object.keys(simulationRecaps[0][carboneMetric].categories).map(
-              (category, index) => (
-                <CategoryListItem
-                  key={index}
-                  category={category}
-                  value={meanCategories ? meanCategories[index].value : 0}
-                  simulationsRecap={simulationRecaps}
-                  maxValue={maxValueOfAllCategories}
-                />
-              )
-            )}
+            Object.keys(
+              simulationRecaps[0].computedResults[carboneMetric].categories
+            ).map((category, index) => (
+              <CategoryListItem
+                key={index}
+                category={category}
+                value={meanCategories ? meanCategories[index].value : 0}
+                simulationsRecap={simulationRecaps}
+                maxValue={maxValueOfAllCategories}
+              />
+            ))}
         </ul>
         <div className="flex justify-between py-2">
           <div className="sm:mr-10 sm:w-64" />

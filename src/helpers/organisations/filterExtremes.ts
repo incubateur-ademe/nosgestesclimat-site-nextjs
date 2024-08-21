@@ -8,8 +8,10 @@ export function filterExtremes(simulationRecaps: SimulationRecap[]) {
     // Remove simulations with too high values
     if (
       [
-        simulationRecap[carboneMetric].bilan,
-        Object.values(simulationRecap[carboneMetric].categories),
+        simulationRecap.computedResults[carboneMetric].bilan,
+        Object.values(
+          simulationRecap.computedResults[carboneMetric].categories
+        ),
       ].some((value) => (value as number) > MAX_VALUE)
     ) {
       return false

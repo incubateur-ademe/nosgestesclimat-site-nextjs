@@ -38,21 +38,27 @@ export default function ExportDataButton({
 
         const data: Record<string, unknown> = {
           date: dayjs(simulationRecapToParse.date).format('DD/MM/YYYY'),
-          total: Math.round(simulationRecapToParse[carboneMetric].bilan),
+          total: Math.round(
+            simulationRecapToParse.computedResults[carboneMetric].bilan
+          ),
           transport: Math.round(
-            simulationRecapToParse[carboneMetric].categories.transport
+            simulationRecapToParse.computedResults[carboneMetric].categories
+              .transport
           ),
           alimentation: Math.round(
-            simulationRecapToParse[carboneMetric].categories.alimentation
+            simulationRecapToParse.computedResults[carboneMetric].categories
+              .alimentation
           ),
           logement: Math.round(
-            simulationRecapToParse[carboneMetric].categories.logement
+            simulationRecapToParse.computedResults[carboneMetric].categories
+              .logement
           ),
           divers: Math.round(
-            simulationRecapToParse[carboneMetric].categories.divers
+            simulationRecapToParse.computedResults[carboneMetric].categories
+              .divers
           ),
           'services sociétaux': Math.round(
-            simulationRecapToParse[carboneMetric].categories[
+            simulationRecapToParse.computedResults[carboneMetric].categories[
               'services sociétaux'
             ]
           ),

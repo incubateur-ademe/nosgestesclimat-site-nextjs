@@ -59,7 +59,7 @@ export default function CategoryListItem({
         color={`bg-${category.includes('services') ? 'servicessocietaux' : category}-500`}
         maxValue={maxValue}
         items={simulationsRecap.map((obj) => ({
-          value: obj[carboneMetric].categories[category],
+          value: obj.computedResults[carboneMetric].categories[category],
           shouldBeHighlighted: obj.isCurrentUser,
         }))}
         id={category}
