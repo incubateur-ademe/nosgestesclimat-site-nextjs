@@ -29,12 +29,10 @@ export default function MetricSlider({
 
     const handleScroll = () => {
       if (myElementRef.current) {
-        const { top } = myElementRef.current.getBoundingClientRect()
-        if (top <= 0) {
-          setIsSticky(true)
-        } else {
-          setIsSticky(false)
-        }
+        const elementTop = myElementRef.current.offsetTop
+        const scrollPosition =
+          window.scrollY || document.documentElement.scrollTop
+        setIsSticky(scrollPosition >= elementTop)
       }
     }
 
