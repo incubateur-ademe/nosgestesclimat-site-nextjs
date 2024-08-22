@@ -1,11 +1,11 @@
 # `useCurrent`
 
-Le hook `useCurrent` permet de gérer l'état de la question et de la catégorie courantes dans l'application. Il offre des fonctions pour mettre à jour ces états, tout en inférant automatiquement la catégorie à partir de la question courante.
+The `useCurrent` hook manages the state of the current question and category in the application. It provides state values and functions to update these states, with automatic inference of the category based on the current question.
 
-## Utilisation
+## Usage
 
 ```typescript
-import useCurrent from '@/publicodes-state/providers/formProvider/useCurrent'
+import useCurrent from '@/publicodes-state/hooks/formProvider/useCurrent'
 
 function MyComponent() {
   const {
@@ -15,22 +15,24 @@ function MyComponent() {
     setCurrentCategory,
   } = useCurrent()
 
-  // Exemple d'utilisation
-  setCurrentQuestion('Nouvelle question')
-  console.log(currentCategory) // Affiche la catégorie inférée
+  // Example usage
+  setCurrentQuestion('New question')
+  console.log(currentCategory) // Logs the inferred category
 }
 ```
 
 ## API
 
-### États retournés
+### Returned States
 
-- **`currentQuestion`** : La question courante (de type `string | null`).
-- **`currentCategory`** : La catégorie courante (de type `string | null`).
+- **`currentQuestion`**: The current question (`string | null`).
+- **`currentCategory`**: The current category (`string | null`).
 
-### Fonctions retournées
+### Returned Functions
 
-- **`setCurrentQuestion(newCurrentQuestion: string | null)`** : Met à jour la question courante et infère automatiquement la catégorie correspondante.
-- **`setCurrentCategory(newCurrentCategory: string | null)`** : Met à jour manuellement la catégorie courante.
+- **`setCurrentQuestion(newCurrentQuestion: string | null)`**: Updates the current question and automatically infers the corresponding category.
+- **`setCurrentCategory(newCurrentCategory: string | null)`**: Updates the current category.
 
-Ce hook est utile pour gérer la navigation dans des formulaires ou des questionnaires dynamiques, où la question et la catégorie sont liées.
+## Implementation
+
+The hook is implemented in `src/publicodes-state/hooks/formProvider/useCurrent.ts`.

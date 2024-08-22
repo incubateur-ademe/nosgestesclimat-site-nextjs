@@ -1,0 +1,52 @@
+# `useEngine`
+
+The `useEngine` hook provides access to the engine and several utility functions for evaluating rules and retrieving their values. It is designed to be used when comparing rules or when direct access to the engine is necessary.
+
+## Usage
+
+```typescript
+import useEngine from '@/publicodes-state/hooks/useEngine'
+
+const { engine, getValue, getNumericValue, getCategory, getSubcategories, checkIfValid } = useEngine({ metric })
+```
+
+### Parameters
+
+- `metric` (optional): A metric to be used in evaluations.
+
+### Returns
+
+- `engine`: The engine instance.
+- `getValue(dottedName: DottedName): NodeValue`: Retrieves the value of a rule.
+- `getNumericValue(dottedName: DottedName): number`: Retrieves the numeric value of a rule.
+- `getCategory(dottedName: DottedName): string`: Retrieves the category of a rule.
+- `getSubcategories(dottedName: DottedName): string[]`: Retrieves the subcategories of a rule.
+- `checkIfValid(dottedName: DottedName): boolean`: Checks if a rule is valid.
+
+### Example
+
+```typescript
+import useEngine from '@/publicodes-state/hooks/useEngine'
+
+const MyComponent = () => {
+  const { getValue, getNumericValue, getCategory, getSubcategories, checkIfValid } = useEngine()
+
+  const value = getValue('some . dotted . name')
+  const numericValue = getNumericValue('some . dotted . name')
+  const category = getCategory('some . dotted . name')
+  const subcategories = getSubcategories('some . dotted . name')
+  const isValid = checkIfValid('some . dotted . name')
+
+  return (
+    <div>
+      <p>Value: {value}</p>
+      <p>Numeric Value: {numericValue}</p>
+      <p>Category: {category}</p>
+      <p>Subcategories: {subcategories.join(', ')}</p>
+      <p>Is Valid: {isValid ? 'Yes' : 'No'}</p>
+    </div>
+  )
+}
+```
+
+This hook should be used when it is necessary to compare rules or when direct access to the engine is required. For other cases, consider using `useRule`.

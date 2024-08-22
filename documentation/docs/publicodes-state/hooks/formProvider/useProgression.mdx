@@ -1,11 +1,29 @@
-# `useProgression`
+# `useProgression` Hook
 
-Le hook `useProgression` calcule la progression d'une simulation en triant les questions restantes par catégorie. Il permet également de mettre à jour la progression stockée dans l'objet utilisateur ou un autre hook, afin de maintenir l'état de la simulation à jour.
+The `useProgression` hook is designed to manage the state and progression of a simulation by categorizing remaining questions and updating the current simulation state.
 
-## Utilisation
+## Parameters
+
+- **`categories`** (`string[]`): An array of categories for the questions.
+- **`remainingQuestions`** (`string[]`): An array of questions that are yet to be answered.
+- **`relevantQuestions`** (`string[]`): An array of all relevant questions for the current simulation.
+- **`updateCurrentSimulation`** (`function`): A function to update the current simulation with the new progression.
+
+## Return Value
+
+- **`remainingQuestionsByCategories`** (`{ [key: string]: string[] }`): An object mapping each category to a list of remaining questions in that category.
+
+## Example
 
 ```typescript
 import useProgression from '@/publicodes-state/providers/formProvider/useProgression'
+
+const categories = ['cat1', 'cat2']
+const remainingQuestions = ['q1', 'q2', 'q3']
+const relevantQuestions = ['q1', 'q2', 'q3', 'q4']
+const updateCurrentSimulation = (simulation) => {
+  // Logic to update the simulation
+}
 
 const { remainingQuestionsByCategories } = useProgression({
   categories,
@@ -15,17 +33,6 @@ const { remainingQuestionsByCategories } = useProgression({
 })
 ```
 
-## Paramètres
+## Explanation
 
-- **`categories`** (`string[]`): Une liste de catégories de questions disponibles dans la simulation.
-- **`remainingQuestions`** (`string[]`): Une liste de questions restantes qui n'ont pas encore été répondues dans la simulation.
-- **`relevantQuestions`** (`string[]`): Une liste de questions pertinentes qui doivent encore être posées, basées sur l'état actuel de la simulation.
-- **`updateCurrentSimulation`** (`function`): Une fonction qui met à jour la simulation actuelle avec les nouvelles informations ou l'état mis à jour.
-
-## Retour
-
-Le hook retourne un objet contenant :
-
-- **`remainingQuestionsByCategories`** (`{ [key: string]: string[] }`): Un objet qui associe chaque catégorie à une liste de questions restantes appartenant à cette catégorie.
-
-Ce hook est essentiel pour gérer l'état et l'avancement d'une simulation en organisant les questions à poser de manière efficace et en gardant la progression de l'utilisateur à jour.
+The `useProgression` hook calculates the progression of the simulation by organizing remaining questions by category and updating the current simulation state based on the number of relevant and remaining questions.

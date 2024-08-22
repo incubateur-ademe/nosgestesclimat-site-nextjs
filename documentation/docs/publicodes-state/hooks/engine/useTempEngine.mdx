@@ -1,0 +1,62 @@
+# `useTempEngine`
+
+`useTempEngine` is a temporary React hook designed to access specific functionalities within a simulation context. It is intended to be replaced with a more permanent solution in the near future.
+
+#### Role
+
+This hook provides:
+- Access to the simulation `rules`.
+- A method to get a rule object by its dotted name.
+- An extended list of folded steps, including any mosaic questions if available.
+
+#### Usage
+
+```typescript
+import useTempEngine from '@/publicodes-state/hooks/engine/useTempEngine'
+
+function MyComponent() {
+  const { getRuleObject, rules, extendedFoldedSteps } = useTempEngine()
+
+  // Example usage
+  const rule = getRuleObject('some.dotted.name')
+  console.log(rules)
+  console.log(extendedFoldedSteps)
+
+  return <div>{/* Your component JSX */}</div>
+}
+```
+
+#### API
+
+- **`getRuleObject(dottedName: DottedName): any`**
+  - Retrieves a rule object by its dotted name, combining the results of `safeEvaluate` and `safeGetRule`.
+
+- **`rules`**
+  - Provides access to the rules from the simulation context.
+
+- **`extendedFoldedSteps`**
+  - Returns an extended list of folded steps, including mosaic questions if available.
+
+#### Dependencies
+
+- **`SimulationContext`**: Provides the simulation context.
+- **`useCurrentSimulation`**: Retrieves the current simulation state.
+
+#### Example
+
+```typescript
+import useTempEngine from '@/publicodes-state/hooks/engine/useTempEngine'
+
+function ExampleComponent() {
+  const { getRuleObject, rules, extendedFoldedSteps } = useTempEngine()
+
+  const rule = getRuleObject('example.rule')
+  console.log(rule)
+  console.log(rules)
+  console.log(extendedFoldedSteps)
+
+  return <div>{/* Your component JSX */}</div>
+}
+```
+
+This hook is intended for temporary use and should be replaced with a more permanent solution in the future.

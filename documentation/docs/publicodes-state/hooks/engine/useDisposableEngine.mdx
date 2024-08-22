@@ -1,0 +1,58 @@
+# `useDisposableEngine`
+
+The `useDisposableEngine` hook creates an isolated engine instance for rule-based calculations. This is useful for scenarios where you need to perform evaluations or comparisons without interfering with the primary engine.
+
+## Purpose
+
+The hook provides a dedicated engine to handle calculations based on supplied rules and an initial situation. It ensures that evaluations are performed in isolation, preventing any impact on the main engine's state.
+
+## Usage
+
+### Importing the Hook
+
+```typescript
+import useDisposableEngine from '@/publicodes-state/hooks/useDisposableEngine'
+```
+
+### Parameters
+
+- **`rules`** (optional): Custom rules to initialize the engine.
+- **`situation`**: The initial situation for the engine.
+
+### Example
+
+```typescript
+import React from 'react'
+import useDisposableEngine from '@/publicodes-state/hooks/useDisposableEngine'
+
+const MyComponent = () => {
+  const { engine, getValue, updateSituation } = useDisposableEngine({
+    rules: myRules,
+    situation: mySituation,
+  })
+
+  const value = getValue('some.dotted.name')
+
+  return (
+    <div>
+      <p>Value: {value}</p>
+      <button onClick={() => updateSituation(newSituation)}>Update Situation</button>
+    </div>
+  )
+}
+```
+
+### Returned Values
+
+- **`engine`**: The initialized engine instance.
+- **`getValue(dottedName: DottedName)`**: Function to retrieve the value of a specific rule.
+- **`updateSituation(newSituation: Situation)`**: Function to update the engine's situation.
+
+## Notes
+
+- The hook uses `useMemo` to optimize the engine and evaluation functions.
+- The internal `safeEvaluate` function ensures secure evaluation of rules.
+
+## Source
+
+The implementation can be found in [`src/publicodes-state/hooks/useDisposableEngine/index.ts`](src/publicodes-state/hooks/useDisposableEngine/index.ts).
