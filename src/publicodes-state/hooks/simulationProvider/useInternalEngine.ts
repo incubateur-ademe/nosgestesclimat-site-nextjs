@@ -13,7 +13,7 @@ import { DottedName, Metric, NGCRuleNode, Rules } from '../../types'
  *
  * And a pristine engine wich can be used to assess rules without any situation (for exemple, we can reliably sort the subcategories this way)
  */
-export function useEngine(rules: Rules) {
+export function useInternalEngine(rules: Rules) {
   if (!rules) throw new Error('Missing rules')
 
   const engine = useMemo<Engine>(() => {

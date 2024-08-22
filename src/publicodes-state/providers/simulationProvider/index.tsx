@@ -2,14 +2,14 @@
 
 import { PropsWithChildren } from 'react'
 
+import { useCategories } from '@/publicodes-state/hooks/simulationProvider/useCategories'
+import { useEngineSituation } from '@/publicodes-state/hooks/simulationProvider/useEngineSituation'
+import { useInternalEngine } from '@/publicodes-state/hooks/simulationProvider/useInternalEngine'
+import { useRules } from '@/publicodes-state/hooks/simulationProvider/useRules'
+import { useSetComputedResults } from '@/publicodes-state/hooks/simulationProvider/useSetComputedResults'
 import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { DottedName } from '../../types'
 import { SimulationContext } from './context'
-import { useCategories } from './useCategories'
-import { useEngine } from './useEngine'
-import { useEngineSituation } from './useEngineSituation'
-import { useRules } from './useRules'
-import { useSetComputedResults } from './useSetComputedResults'
 
 type Props = {
   rules: NGCRules
@@ -22,7 +22,8 @@ export default function SimulationProvider({
   shouldAlwaysDisplayChildren = false,
   children,
 }: PropsWithChildren<Props>) {
-  const { engine, pristineEngine, safeEvaluate, safeGetRule } = useEngine(rules)
+  const { engine, pristineEngine, safeEvaluate, safeGetRule } =
+    useInternalEngine(rules)
 
   const {
     parsedRules,

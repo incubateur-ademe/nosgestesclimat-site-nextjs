@@ -1,0 +1,28 @@
+# `useInternalEngine` Hook
+
+The `useInternalEngine` hook is designed to initialize and manage an instance of the `Engine` based on a given set of rules. It also provides utility functions for evaluating rules and retrieving rule data safely.
+
+## Usage
+
+```typescript
+import { useInternalEngine } from '@/publicodes-state/hooks/simulationProvider/useInternalEngine'
+import { Rules } from '@/publicodes-state/types'
+
+const rules: Rules = { /* your rules here */ }
+const { engine, pristineEngine, safeEvaluate, safeGetRule } = useInternalEngine(rules)
+```
+
+## Parameters
+
+- **`rules`** (`Rules`): An object containing the rules to initialize the engine with.
+
+## Returns
+
+- **`engine`**: The initialized instance of the `Engine` for evaluating and working with the rules.
+- **`pristineEngine`**: A fresh instance of the `Engine`, unmodified by any interactions.
+- **`safeEvaluate`**: A utility function to safely evaluate rules.
+- **`safeGetRule`**: A utility function to safely retrieve a specific rule.
+
+## Description
+
+The `useInternalEngine` hook creates an `Engine` instance using the provided rules and exposes methods for rule evaluation and retrieval. This setup is ideal for scenarios where you need to work with a rule engine while ensuring safe operations and easy access to rule data.

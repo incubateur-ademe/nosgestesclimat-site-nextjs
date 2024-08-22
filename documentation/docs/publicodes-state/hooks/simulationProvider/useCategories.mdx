@@ -1,0 +1,31 @@
+## `useCategories` Hook
+
+The `useCategories` hook is designed to extract and organize categories and subcategories from a set of rules. It uses memoization to enhance performance by caching the results of complex computations.
+
+### Import
+
+```typescript
+import { useCategories } from '@/publicodes-state/hooks/simulationProvider/useCategories'
+```
+
+### Parameters
+
+- **`parsedRules`** (`NGCRulesNodes`): The parsed rules from the publicodes engine.
+- **`everyRules`** (`DottedName[]`): An array of all rule names.
+- **`root`** (`string`): The root rule name to start the category extraction.
+- **`safeGetRule`** (`(rule: DottedName) => NGCRuleNode | null`): Function to safely retrieve a rule by its name.
+
+### Returns
+
+- **`categories`** (`DottedName[]`): An array of category names organized based on the rules.
+
+### Usage
+
+```typescript
+const { categories } = useCategories(parsedRules, everyRules, root, safeGetRule);
+
+// Use categories in your component logic
+console.log(categories);
+```
+
+The hook processes the rules to generate a structured list of categories, making it easier to manage and display them in your application.

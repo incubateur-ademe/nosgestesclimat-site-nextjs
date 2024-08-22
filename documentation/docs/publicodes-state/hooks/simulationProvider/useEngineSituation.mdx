@@ -1,0 +1,50 @@
+# `useEngineSituation` Hook Documentation
+
+The `useEngineSituation` hook is designed for managing the interaction between an `Engine` instance and the simulation situation. It provides utilities to initialize the engine with a given situation and to update the situation as needed.
+
+## Role
+
+This hook ensures:
+- The engine is initialized with the current simulation state.
+- You can modify the simulation state by adding new data.
+
+## Usage
+
+```typescript
+import { useEngineSituation } from '@/publicodes-state/hooks/simulationProvider/useEngineSituation';
+import Engine from 'publicodes';
+
+const MyComponent = () => {
+  const engine = new Engine();
+  const { isEngineInitialized, addToEngineSituation } = useEngineSituation({ engine });
+
+  const handleAddSituation = () => {
+    const newSituation = { /* new situation data */ };
+    const updatedSituation = addToEngineSituation(newSituation);
+    console.log(updatedSituation);
+  };
+
+  return (
+    <div>
+      <p>Engine Initialized: {isEngineInitialized.toString()}</p>
+      <button onClick={handleAddSituation}>Add to Situation</button>
+    </div>
+  );
+};
+```
+
+## Parameters
+
+- `engine` (`Engine`): An instance of the `Engine` class from `publicodes`. This is used to initialize and manage the simulation state.
+
+## Return Values
+
+- `isEngineInitialized` (`boolean`): Indicates whether the engine has been successfully initialized with the simulation situation.
+- `addToEngineSituation` (`function`): A function to update the current simulation state with new data. It takes the new situation data as an argument and returns the updated situation.
+
+## Notes
+
+- Ensure that the `engine` parameter is correctly instantiated before passing it to the hook.
+- The hook should be used within a React functional component.
+
+This hook is part of the `publicodes-state` library and is intended to simplify the management of simulation states in a React environment.
