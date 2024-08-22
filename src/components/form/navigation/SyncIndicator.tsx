@@ -23,7 +23,6 @@ export default function SyncIndicator() {
     return () => timeout && clearTimeout(timeout)
   }, [initAnimation])
 
-  console.log('isSyncedWithBackend', isSyncedWithBackend)
   return (
     <div className="absolute left-0 right-0 top-0">
       {isSyncedWithBackend ? (
