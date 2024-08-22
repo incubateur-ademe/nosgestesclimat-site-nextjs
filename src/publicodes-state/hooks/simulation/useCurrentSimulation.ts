@@ -1,6 +1,6 @@
 'use client'
 
-import useUser from '../useUser/useUser'
+import useUser from '../user/useUser'
 
 /**
  * A hook to get the current simulation and update it (via simulation.update() or updateCurrentSimulation())

@@ -2,7 +2,7 @@
 
 import { useContext } from 'react'
 import formContext from '../../providers/formProvider/context'
-import useNavigation from './useNavigation'
+import useNavigation from './useForm/useNavigation'
 
 /**
  * A hook to help display a form inside the simulation
