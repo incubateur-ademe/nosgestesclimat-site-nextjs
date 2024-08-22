@@ -35,23 +35,25 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
     if (navigator?.share) {
       await navigator
         .share({
-          text: sharedUrl,
           url: sharedUrl,
           title: 'Découvre mon empreinte carbone !',
         })
         .catch((e) => console.log(e))
     } else {
-      handleScroll('share-block')
+      handleScroll('share-block', 'center')
     }
   }
 
-  const handleScroll = (id: string) => {
+  const handleScroll = (id: string, block: ScrollLogicalPosition) => {
     const emailBlock = document.getElementById(id)
-    emailBlock?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    emailBlock?.scrollIntoView({
+      behavior: 'smooth',
+      block,
+    })
   }
 
   return (
-    <div className="flex">
+    <div className="mb-1 flex gap-0.5">
       <Button
         color="text"
         size="sm"
@@ -63,7 +65,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
           trackEvent(
             endPage ? endClickSaveShortcut : simulationClickSaveShortcut
           )
-          handleScroll('email-block')
+          handleScroll('email-block', 'start')
         }}>
         <SaveIcon
           className={twMerge('fill-primary-700', saveClassNames[size])}

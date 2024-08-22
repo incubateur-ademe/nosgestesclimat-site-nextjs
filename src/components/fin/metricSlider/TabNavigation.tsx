@@ -97,7 +97,7 @@ export default function TabNavigation({
           </button>
         )}
       </div>
-      {!isStatic && <HeadingButtons endPage />}
+      {!isStatic && <HeadingButtons />}
     </div>
   )
 }
