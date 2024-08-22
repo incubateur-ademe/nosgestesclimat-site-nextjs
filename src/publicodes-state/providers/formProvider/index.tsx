@@ -28,3 +28,5 @@ export default function FailSafeFormProvider({
   }
   return <Provider root={root}>{children}</Provider>
 }
+
+FailSafeFormProvider.displayName = 'FormProvider'

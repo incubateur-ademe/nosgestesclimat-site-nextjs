@@ -1,0 +1,65 @@
+# `useActions` Hook
+
+The `useActions` hook provides functionalities for managing and displaying actions within a simulation context. It enables you to access and sort actions based on their numeric values and categorize them into chosen and declined actions.
+
+## Usage
+
+```typescript
+import useActions from '@/publicodes-state/hooks/actions/useActions';
+
+const { actions, orderedActions, chosenActions, declinedActions } = useActions({ metric });
+```
+
+### Parameters
+
+- **`metric`** (optional): An object of type `Metric` used to configure the engine.
+
+### Returns
+
+- **`actions`**: An array of action names.
+- **`orderedActions`**: An array of action names ordered by their numeric values in descending order.
+- **`chosenActions`**: An array of action names that have been chosen.
+- **`declinedActions`**: An array of action names that have been declined.
+
+## Example
+
+```typescript
+import React from 'react';
+import useActions from '@/publicodes-state/hooks/actions/useActions';
+import { carboneMetric } from '@/constants/metric';
+
+const ActionsComponent = () => {
+  const { actions, orderedActions, chosenActions, declinedActions } = useActions({ metric: carboneMetric });
+
+  return (
+    <div>
+      <h2>Ordered Actions</h2>
+      <ul>
+        {orderedActions.map(action => (
+          <li key={action}>{action}</li>
+        ))}
+      </ul>
+      <h2>Chosen Actions</h2>
+      <ul>
+        {chosenActions.map(action => (
+          <li key={action}>{action}</li>
+        ))}
+      </ul>
+      <h2>Declined Actions</h2>
+      <ul>
+        {declinedActions.map(action => (
+          <li key={action}>{action}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default ActionsComponent;
+```
+
+## Implementation Details
+
+The hook depends on the following:
+- `useContext` to access the `SimulationContext`.
+- `useEngine` to get the numeric value of actions.

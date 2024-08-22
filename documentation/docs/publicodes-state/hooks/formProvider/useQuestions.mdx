@@ -1,0 +1,75 @@
+
+# `useQuestions`
+
+## Description
+
+The `useQuestions` hook is designed to retrieve all the questions of a form, in the correct order, based on the user's current situation. It is primarily used in complex forms where the questions to be asked may vary depending on previous answers or other dynamic conditions.
+
+```typescript
+import useQuestions from 'path/to/useQuestions';
+```
+
+## Parameters
+
+The `useQuestions` hook accepts an object containing the following parameters:
+
+- **`root` (string)**: The root of the form or model from which the questions should be extracted.
+  
+- **`safeGetRule` (function)**: A function that securely retrieves a rule based on a `DottedName`. Returns an `NGCRuleNode` or `null`.
+  
+- **`safeEvaluate` (function)**: A function that evaluates a Publicodes expression and returns an `NGCEvaluatedNode` or `null`.
+  
+- **`categories` (string[])**: A list of categories to which the questions belong.
+  
+- **`subcategories` (`Record<string, string[]>`)**: An object associating subcategories with their parent category.
+  
+- **`situation` (Situation)**: The current state or situation from which the questions will be generated.
+  
+- **`foldedSteps` (string[])**: A list of steps or questions that have been "folded" or ignored.
+  
+- **`everyQuestions` (string[])**: A list containing all the possible questions of the form.
+  
+- **`everyMosaicChildrenWithParent` (`Record<string, string[]>`)**: An object containing the children of each mosaic with their parent.
+  
+- **`rawMissingVariables` (`Record<string, number`>`)**: A set of variables missing in the current situation.
+
+## Return
+
+The hook returns a list of questions sorted according to the provided rules and situation.
+
+## Usage Example
+
+Here is an example of how you can use `useQuestions` in a React component:
+
+```typescript
+import React from 'react';
+import useQuestions from 'path/to/useQuestions';
+
+const MyFormComponent = () => {
+  const { 
+    questions, 
+    // other variables returned by the hook
+  } = useQuestions({
+    root: 'myFormRoot',
+    safeGetRule: mySafeGetRuleFunction,
+    safeEvaluate: mySafeEvaluateFunction,
+    categories: ['category1', 'category2'],
+    subcategories: { 'category1': ['subcat1', 'subcat2'] },
+    situation: currentSituation,
+    foldedSteps: ['step1'],
+    everyQuestions: ['question1', 'question2'],
+    everyMosaicChildrenWithParent: { 'parent1': ['child1', 'child2'] },
+    rawMissingVariables: { 'variable1': 0 }
+  });
+
+  return (
+    <div>
+      {questions.map((question) => (
+        <div key={question.id}>{question.text}</div>
+      ))}
+    </div>
+  );
+};
+
+export default MyFormComponent;
+```

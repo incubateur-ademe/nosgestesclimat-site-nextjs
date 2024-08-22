@@ -2,11 +2,11 @@
 
 import { useCurrentSimulation } from '@/publicodes-state'
 import { PropsWithChildren, useContext } from 'react'
+import useCurrent from '../../hooks/formProvider/useCurrent'
+import useProgression from '../../hooks/formProvider/useProgression'
+import useQuestions from '../../hooks/formProvider/useQuestions'
 import { SimulationContext } from '../simulationProvider/context'
 import FormContext from './context'
-import useCurrent from './useCurrent'
-import useProgression from './useProgression'
-import useQuestions from './useQuestions'
 
 type Props = {
   root?: string

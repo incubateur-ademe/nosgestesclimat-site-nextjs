@@ -1,0 +1,49 @@
+# `FormProvider`
+
+Ce dossier contient les composants et contextes nécessaires pour gérer les formulaires dans le cadre des simulations. Les fichiers présents dans ce dossier permettent de créer et de gérer l'état des formulaires de manière sécurisée et efficace.
+
+## Fichiers
+
+### `index.tsx`
+
+Ce fichier exporte le composant principal `FormProvider`, utilisé pour encapsuler les formulaires dans les simulations. Ce composant vérifie si la racine (`root`) est valide avant de rendre le formulaire. Si la racine n'est pas valide, l'utilisateur est redirigé vers une page 404.
+
+#### Utilisation
+
+```tsx
+import FailSafeFormProvider from '@/publicodes-state/providers/formProvider';
+
+function App() {
+  return (
+    <FailSafeFormProvider root="bilan">
+      {/* Contenu du formulaire */}
+    </FailSafeFormProvider>
+  );
+}
+```
+
+### `context.ts`
+
+Ce fichier définit le contexte `formContext` qui est utilisé pour partager l'état du formulaire entre différents composants. Ce contexte est essentiel pour permettre une gestion centralisée et cohérente des données du formulaire au sein de l'application.
+
+#### Utilisation
+
+Le contexte `formContext` est principalement utilisé en interne par le hook `useForm` pour accéder aux données du formulaire de manière fluide et réactive. Voici un exemple d'utilisation du hook `useForm` dans un composant :
+
+```tsx
+import { useForm } from '@/publicodes-state/hooks/useForm';
+
+function MyFormComponent() {
+  const { formData, updateForm } = useForm();
+
+  return (
+    <form>
+      {/* Utilisation de formData et updateForm */}
+    </form>
+  );
+}
+```
+
+---
+
+Ces fichiers sont cruciaux pour gérer l'état des formulaires dans les simulations, en garantissant que les formulaires sont correctement rendus et en permettant un partage efficace de l'état à travers différents composants.

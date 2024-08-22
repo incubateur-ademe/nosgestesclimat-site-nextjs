@@ -1,0 +1,31 @@
+# `useProgression`
+
+Le hook `useProgression` calcule la progression d'une simulation en triant les questions restantes par catégorie. Il permet également de mettre à jour la progression stockée dans l'objet utilisateur ou un autre hook, afin de maintenir l'état de la simulation à jour.
+
+## Utilisation
+
+```typescript
+import useProgression from '@/publicodes-state/providers/formProvider/useProgression'
+
+const { remainingQuestionsByCategories } = useProgression({
+  categories,
+  remainingQuestions,
+  relevantQuestions,
+  updateCurrentSimulation,
+})
+```
+
+## Paramètres
+
+- **`categories`** (`string[]`): Une liste de catégories de questions disponibles dans la simulation.
+- **`remainingQuestions`** (`string[]`): Une liste de questions restantes qui n'ont pas encore été répondues dans la simulation.
+- **`relevantQuestions`** (`string[]`): Une liste de questions pertinentes qui doivent encore être posées, basées sur l'état actuel de la simulation.
+- **`updateCurrentSimulation`** (`function`): Une fonction qui met à jour la simulation actuelle avec les nouvelles informations ou l'état mis à jour.
+
+## Retour
+
+Le hook retourne un objet contenant :
+
+- **`remainingQuestionsByCategories`** (`{ [key: string]: string[] }`): Un objet qui associe chaque catégorie à une liste de questions restantes appartenant à cette catégorie.
+
+Ce hook est essentiel pour gérer l'état et l'avancement d'une simulation en organisant les questions à poser de manière efficace et en gardant la progression de l'utilisateur à jour.

@@ -28,7 +28,8 @@
     "faq:translate": "node scripts/i18n/translate-faq.js",
     "faq:check": "node scripts/i18n/check-faq.js",
     "pages:translate": "node scripts/i18n/translate-pages.cjs",
-    "nouveautes:translate": "node scripts/i18n/translate-nouveautes.cjs"
+    "nouveautes:translate": "node scripts/i18n/translate-nouveautes.cjs",
+    "doc:start": "cd ./documentation && npm start"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1",

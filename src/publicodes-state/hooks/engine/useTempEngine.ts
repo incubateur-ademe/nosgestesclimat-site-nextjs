@@ -1,7 +1,7 @@
 import { DottedName } from '@/publicodes-state/types'
 import { useContext } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
-import useCurrentSimulation from '../useCurrentSimulation'
+import useCurrentSimulation from '../simulation/useCurrentSimulation'
 
 /**
  * This is temporary and should be put to death as soon as possible
@@ -17,7 +17,7 @@ export default function useTempEngine() {
   }
 
   const extendedFoldedSteps = foldedSteps
-    .map((foldedStep) => {
+    .map((foldedStep: any) => {
       const questionsOfMosaic = everyMosaicChildrenWithParent[foldedStep] || []
       return questionsOfMosaic.length > 0 ? questionsOfMosaic : foldedStep
     })

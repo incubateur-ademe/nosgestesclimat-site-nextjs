@@ -1,0 +1,36 @@
+# `useCurrent`
+
+Le hook `useCurrent` permet de gérer l'état de la question et de la catégorie courantes dans l'application. Il offre des fonctions pour mettre à jour ces états, tout en inférant automatiquement la catégorie à partir de la question courante.
+
+## Utilisation
+
+```typescript
+import useCurrent from '@/publicodes-state/providers/formProvider/useCurrent'
+
+function MyComponent() {
+  const {
+    currentQuestion,
+    currentCategory,
+    setCurrentQuestion,
+    setCurrentCategory,
+  } = useCurrent()
+
+  // Exemple d'utilisation
+  setCurrentQuestion('Nouvelle question')
+  console.log(currentCategory) // Affiche la catégorie inférée
+}
+```
+
+## API
+
+### États retournés
+
+- **`currentQuestion`** : La question courante (de type `string | null`).
+- **`currentCategory`** : La catégorie courante (de type `string | null`).
+
+### Fonctions retournées
+
+- **`setCurrentQuestion(newCurrentQuestion: string | null)`** : Met à jour la question courante et infère automatiquement la catégorie correspondante.
+- **`setCurrentCategory(newCurrentCategory: string | null)`** : Met à jour manuellement la catégorie courante.
+
+Ce hook est utile pour gérer la navigation dans des formulaires ou des questionnaires dynamiques, où la question et la catégorie sont liées.

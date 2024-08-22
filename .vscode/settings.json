@@ -15,5 +15,12 @@
     "activityBar.background": "#296c36",
     "titleBar.activeBackground": "#296c36",
     "titleBar.activeForeground": "#FAF9FD"
-  }
+  },
+  "spellright.language": [
+    "fr"
+  ],
+  "spellright.documentTypes": [
+    "latex",
+    "plaintext"
+  ]
 }
