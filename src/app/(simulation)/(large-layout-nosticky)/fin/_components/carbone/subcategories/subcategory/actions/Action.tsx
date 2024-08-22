@@ -37,7 +37,7 @@ export default function Action({
   return (
     <div
       className={twMerge(
-        'max-w-80 flex-1 flex-col justify-between rounded-xl border-2 px-3 pb-4 pt-6 md:flex',
+        'max-w-80 flex-1 flex-col justify-between rounded-xl border-2 px-3 pb-4 pt-6 lg:flex',
         colorClassName[index],
         getTextDarkColor(category),
         isActionChoosen

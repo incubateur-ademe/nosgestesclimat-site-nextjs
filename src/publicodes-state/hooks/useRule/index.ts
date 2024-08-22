@@ -1,5 +1,6 @@
 'use client'
 
+import { carboneMetric } from '@/constants/metric'
 import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
@@ -21,7 +22,7 @@ import useValue from './useValue'
  */
 export default function useRule(
   dottedName: DottedName,
-  metric: Metric = 'carbone'
+  metric: Metric = carboneMetric
 ) {
   const {
     engine,

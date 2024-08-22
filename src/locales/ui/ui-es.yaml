@@ -198,7 +198,7 @@ entries:
   Tout à fait, envoyer cette réponse: Por supuesto, envíe esta respuesta
   Moyennement, envoyer cette réponse: Enviar esta respuesta
   sites.publicodes.Tutorial.questionE: 💡 Pero, ¿qué significa esa pequeña <1>e</1>?
-  sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
+  sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
   🧮 Voir le geste climat correspondant: nos Gestes Climat
   publicodes.Profil.simulations: Cada simulación que ejecutas se guarda en tu navegador. Sólo tú tienes acceso a ella.
   publicodes.Profil.simulations.lock: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
@@ -333,16 +333,16 @@ entries:
   Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet.: ¿Qué significa esto? Esta página se abrirá en una pestaña nueva.
   Vous utilisez la version: Está utilizando el
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Por supuesto, algunas cosas son compartidas (en mi casa con mi familia, el coche con mis compañeros de viaje): esto se tendrá en cuenta a la hora de calcular tu huella de carbono, ¡así que no te preocupes!'
-  publicodes.Tutoriel.slide2.blockquote: 'Otros gases, especialmente el metano <2></2> y el óxido nitroso <6></6> también calientan el planeta: convertimos su potencial de calentamiento en equivalente de CO₂ para simplificar la medición. '
-  publicodes.Tutoriel.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
-  publicodes.Tutoriel.slide2.p2: Son las máquinas que fabrican nuestras comodidades y conveniencias modernas las que emiten cantidades masivas de él, tanto que lo contamos en miles de kilos al año y por persona, ¡y por tanto en <2>toneladas</2> de CO₂e!
-  publicodes.Tutoriel.slide2.p2.lock: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
+  publicodes.Tutoriel.slide2.blockquote: '<2></2> <6></6> Otros gases, especialmente el metano y el óxido nitroso, también calientan el planeta: su potencial de calentamiento se convierte en equivalente de CO₂ para simplificar la medición.'
+  publicodes.Tutoriel.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
+  publicodes.Tutoriel.slide2.p2: Son las máquinas que fabrican nuestras comodidades y conveniencias modernas las que emiten cantidades masivas de él, tanto que lo contamos en miles de kilos al año y por persona, ¡y por tanto en <2>toneladas de</2> CO₂e!
+  publicodes.Tutoriel.slide2.p2.lock: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
   publicodes.Tutoriel.slide1.p1: Es un hecho que el clima se está calentando debido a la actividad humana. Todo lo que consumimos, usamos y luego tiramos requiere materiales y energía. Ya sea durante la producción, el uso o la fase de fin de vida del bien o servicio. Así que todas nuestras actividades contribuyen a las emisiones de gases de efecto invernadero. Algunas mucho, otras muy poco. Pero ¿cuál es nuestro impacto, como ciudadanos individuales?
-  publicodes.Tutoriel.slide1.p1.lock: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
-  publicodes.Tutoriel.slide6: <0>Conducir un coche, comer un filete, calentar la casa, recibir tratamiento médico, comprar un televisor...</0><1>Nuestra huella de consumo individual es la suma total de todas las actividades que conforman nuestra vida moderna. </1>
-  publicodes.Tutoriel.slide6.lock: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne. </1>
-  publicodes.Tutoriel.slide2.p1: 'Con una unidad de nombre bárbaro: el equivalente en CO₂. Dióxido de carbono <2></2>, lo conoces: lo exhalamos todo el día, pero no influye en el clima.'
-  publicodes.Tutoriel.slide2.p1.lock: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone <2></2>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
+  publicodes.Tutoriel.slide1.p1.lock: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
+  publicodes.Tutoriel.slide6: <0>Conducir un coche, comer un filete, calentar la casa, recibir tratamiento médico, comprar un televisor...</0><1>Nuestra huella de consumo individual es la suma total de todas las actividades que conforman nuestra vida moderna.</1>
+  publicodes.Tutoriel.slide6.lock: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne.</1>
+  publicodes.Tutoriel.slide2.p1: 'Con una unidad de nombre bárbaro: el equivalente en CO₂. <2></2> Dióxido de carbono , ya lo conoces: lo exhalamos todo el día, pero no influye en el clima.'
+  publicodes.Tutoriel.slide2.p1.lock: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone <2></2>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
   Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Los personajes nos permiten probar el simulador desde todos los ángulos y comprobar que se adapta a todas las situaciones de la vida de los habitantes de la Francia metropolitana. Su presencia nos obliga a reflexionar sobre todos los casos de uso, a proyectarnos en realidades diferentes y a incluir estas realidades en nuestros rediseños del recorrido de prueba y de las acciones propuestas al final del mismo.
   Terminer: Acabado
   Vous avez terminé le test !: Has completado la prueba
@@ -1054,3 +1054,66 @@ entries:
   Vous devez valider votre changement d'adresse e-mail.: Debe confirmar su cambio de dirección de correo electrónico.
   Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.: En breve recibirá un correo electrónico con un <2>código de verificación</2> que deberá introducir en esta ventana.
   Oups ! Une erreur s'est produite au moment d'envoyer votre code de vérification par email. Vérifiez si votre nouvel e-mail est bien valide et si le problème persiste, n'hésitez pas à <2>nous contacter</2>: ¡Uy! Se ha producido un error al enviar su código de verificación por correo electrónico. Por favor, compruebe que su nuevo correo electrónico es válido y si el problema persiste, <2>póngase en contacto con nosotros</2>
+  Recevoir nos actualités sur les nouveaux services dédiés aux organisation (une fois par mois maximum !): Reciba nuestras últimas noticias sobre nuevos servicios para organizaciones (¡una vez al mes como máximo!)
+  Découvre mes empreintes: Descubra mis grabados
+  D’où vient mon empreinte ?: ¿De dónde viene mi huella?
+  d'eau <1>par jour</1>: de agua <1>al día</1>
+  Est-ce que c'est <2>beaucoup ?</2>: ¿Es <2>mucho?</2>
+  Bientôt disponible !: Pronto disponible
+  Evaluer la métrique eau: Evaluar la métrica del agua
+  C’est quoi mon empreinte carbone ?: ¿Cuál es mi huella de carbono?
+  <0>L’empreinte eau,</0> c’est quoi ?: ¿Qué es <0>la huella hídrica</0>?
+  'Retrouvez nos conseils dans ces articles :': 'Lee nuestros consejos en estos artículos:'
+  l’alimentation des <2>animaux</2> que vous consommez: la alimentación de los <2>animales</2> que come
+  <0>Et vous,</0> quel est votre impact sur notre planète ?: <0>Y tú,</0> ¿cuál es tu impacto en nuestro planeta?
+  chrono pour calculer votre empreinte carbone et eau: chrono para calcular tu huella de carbono e hídrica
+  Et l'eau de <2>ma douche</2> <4></4>dans tout ça ?: <4></4>¿Qué pasa con el agua de <2>mi ducha</2>?
+  carbone: carbono
+  "Voici la carte des départements qui subissent des restrictions d'eau en ce moment :": 'Aquí tiene un mapa de los departamentos sujetos actualmente a restricciones de agua:'
+  Comment <1>agir</1> ?: ¿Qué podemos <1>hacer</1>?
+  eau: agua
+  Vous utilisez: Está utilizando
+  Mes empreintes: Mis huellas
+  Les 4 gestes pour réduire l’empreinte eau de mon alimentation: 4 pasos para reducir la huella hídrica de mis alimentos
+  d’eau domestique par jour: de agua doméstica al día
+  Mes principaux postes d'usage: Mis principales ámbitos de uso
+  En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.: Obtén una estimación de tu huella de carbono e hídrica en sólo 10 minutos.
+  L’eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>: El agua doméstica puede tener un <2>impacto muy fuerte</2> dependiendo de la <6>estación y la ubicación.</6>
+  Comment on la mesure ?: ¿Cómo se mide?
+  la production de votre <2>électricité</2>: la producción de su <2>electricidad</2>
+  'Nos articles sur le sujet :': 'Nuestros artículos sobre el tema :'
+  l’extraction des matériaux de vos <2>appareils numériques</2>: extracción de materiales de sus <2>dispositivos digitales</2>
+  la culture du <2>coton</2> que vous portez: el <2>algodón</2> que llevas
+  Evaluer la métrique carbone: Evaluar las métricas del carbono
+  Vous souhaitez recevoir vos résultats ?: ¿Desea recibir sus resultados?
+  <0>Eau, climat,</0> même combat ?: <0>Agua, clima, ¿</0> la misma batalla?
+  Pourquoi avons-nous ajouté l’empreinte eau ?: ¿Por qué hemos añadido la huella hídrica?
+  Les 3 réflexes à adopter pour une garde-robe économe en eau: 3 consejos para ahorrar agua en el armario
+  Petit lexique pour tout comprendre à l’empreinte eau: Un glosario para entender la huella hídrica
+  Retrouvez aussi le résultat de votre empreinte eau à la fin du test !: También puedes comprobar tu huella hídrica al final de la prueba
+  obtenez une estimation<1></1>de votre <3>empreinte carbone</3>.: <1></1>obtenga una estimación de su<3>huella de carbono</3>.
+  Rendez-vous sur VigiEau pour en savoir plus.: Visite VigiEau para saber más.
+  les <2>fruits, légumes et céréales</2> que vous mangez: la <2>fruta, la verdura y los cereales</2> que consume
+  Découvrez votre <1>empreinte eau</1> à la fin du test !: Averigua tu <1>huella hídrica</1> al final de la prueba
+  L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien.: La huella hídrica es la cantidad total de agua consumida para producir y distribuir los bienes y servicios que utilizas cada día.
+  <0>En règle générale, les valeurs d'empreinte eau varient <2>entre 9000 et 15000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.</0><1>Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.</1>: <0>Por regla general, los valores de la huella hídrica <2>oscilan entre 9.000 y 15.000 litros al día</2>. A diferencia de la huella de carbono, no existe un objetivo cuantificado para la huella hídrica.</0><1>No mostramos el valor por defecto al inicio de la prueba. Como nuestro modelo del agua es el primero de este tipo en Francia, no queremos que se perciba como la media nacional.</1>
+  L’eau est une ressource planétaire précieuse. Comme le climat, <2>le cycle de l’eau est fortement impacté par les activités humaines.</2> Nous avons fait le choix d’ajouter l'empreinte eau à notre modèle de calcul afin de vous apporter des éléments de compréhension de cet impact.: El agua es un recurso mundial precioso. Al igual que el clima, <2>el ciclo del agua se ve muy afectado por las actividades humanas.</2> Hemos decidido añadir la huella hídrica a nuestro modelo de cálculo para ayudarte a comprender este impacto.
+  "attention : l'eau domestique (par exemple l’eau de vos douches) ne fait pas partie de l'empreinte eau": 'nota: el agua doméstica (por ejemplo, el agua de las duchas) no se incluye en la huella hídrica'
+  "L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien. Par exemple il faut de l’eau pour :": 'La huella hídrica es la cantidad total de agua consumida para producir y distribuir los bienes y servicios que utilizas cada día. Por ejemplo, se necesita agua para :'
+  'Les activités humaines menacent les équilibres naturels de notre planète. Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.': Las actividades humanas amenazan el equilibrio natural de nuestro planeta. Al igual que el clima, <2>el ciclo del agua está teniendo un gran impacto en todo el mundo</2>, en términos de acceso al agua potable, desaparición y migración de especies (animales y vegetales) y desplazamiento de poblaciones.
+  L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.: El agua doméstica, es decir, la que sale de los grifos, no se incluye en la huella hídrica, ya que se devuelve al medio ambiente. Por ejemplo, una vez tratada, el agua de la ducha se devuelve a los cursos de agua de la zona.
+  Ce chiffre vous semble impressionnant ? <1></1>C'est pourtant bien l'eau qui sert à produire ce que vous consommez :<3></3> votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.: '¿Te parece impresionante esta cifra? <1></1><3></3> Pero en realidad es agua la que se utiliza para producir lo que consumes: tu huella hídrica es el impacto de tu estilo de vida en los ciclos naturales del agua.'
+  <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.: <0>La mayor parte de nuestra huella hídrica la genera el cultivo de plantas,</0> ya sea para alimentarnos a nosotros mismos o a nuestro ganado, o para proporcionar la materia prima de muchas de nuestras prendas de vestir.
+  En règle générale, les valeurs d'empreinte eau varient <2>entre 9000 et 15000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: Por regla general, los valores de la huella hídrica varían <2>entre 9.000 y 15.000 litros al día</2>. A diferencia del carbono, no existe un objetivo cuantificado para la huella hídrica.
+  Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.: No mostramos el valor por defecto al inicio de la prueba. Como nuestro modelo del agua es el primero de este tipo en Francia, no queremos que se perciba como la media nacional.
+  Les activités humaines menacent les équilibres naturels de notre planète.: Las actividades humanas amenazan el equilibrio natural de nuestro planeta.
+  'Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.': 'Al igual que el clima, <2>el ciclo del agua tiene importantes repercusiones en todo el mundo</2>: acceso al agua potable, desaparición y migración de especies (animales y vegetales), desplazamiento de poblaciones.'
+  Ce chiffre vous semble impressionnant ?: ¿Le parece impresionante esta cifra?
+  C'est pourtant bien l'eau qui sert à produire ce que vous consommez :<1></1> votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.: '<1></1> Sin embargo, es agua lo que se utiliza para producir lo que consumes: tu huella hídrica es el impacto de tu estilo de vida en los ciclos naturales del agua.'
+  '*La moyenne française est de {average} litres par jour': '*La media francesa es de {media} litros al día'
+  litres par jour: litros al día
+  '*La moyenne française est de': '*La media francesa es de'
+  'L’empreinte eau : pourquoi et comment avons-nous travaillé…': 'La huella hídrica: por qué y cómo trabajamos..'
+  Et l'eau de <2>ma douche</2> dans tout ça ?: ¿Qué pasa con el agua de <2>mi ducha</2>?
+  Mon empreinte carbone: Mi huella de carbono
+  Mon empreinte eau: Mi huella hídrica

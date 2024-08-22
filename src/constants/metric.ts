@@ -1,5 +1,9 @@
 import { Metric } from '@/publicodes-state/types'
 
-export const metrics: Metric[] = ['carbone', 'eau']
+export const carboneMetric = 'carbone' as const
 
-export const defaultMetric: Metric = 'carbone'
+export const eauMetric = 'eau' as const
+
+export const metrics: Metric[] = [carboneMetric, eauMetric]
+
+export const defaultMetric: Metric = carboneMetric

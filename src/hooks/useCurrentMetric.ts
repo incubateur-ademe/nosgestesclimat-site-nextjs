@@ -1,4 +1,4 @@
-import { defaultMetric } from '@/constants/metric'
+import { defaultMetric, metrics } from '@/constants/metric'
 import { useQueryParams } from '@/hooks/useQueryParams'
 import { Metric } from '@/publicodes-state/types'
 import { useCallback } from 'react'
@@ -8,7 +8,7 @@ const metricParamsName = 'theme'
 export function useCurrentMetric() {
   const { queryParams, setQueryParams } = useQueryParams()
 
-  const queryParamsMetric = queryParams.get(metricParamsName)
+  const queryParamsMetric = queryParams.get(metricParamsName) as Metric | null
 
   const setCurrentMetric = useCallback(
     (metric: Metric) => {
@@ -17,9 +17,9 @@ export function useCurrentMetric() {
     [setQueryParams]
   )
 
-  let currentMetric = queryParamsMetric as Metric
+  let currentMetric = queryParamsMetric || defaultMetric
 
-  if (!queryParamsMetric || !['eau', 'carbone'].includes(queryParamsMetric)) {
+  if (!metrics.includes(currentMetric)) {
     currentMetric = defaultMetric
   }
 

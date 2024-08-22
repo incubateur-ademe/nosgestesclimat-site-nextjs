@@ -1,15 +1,15 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { Points } from '@/types/groups'
+import type { PointsFortsFaiblesType } from '@/types/groups'
 import PointsListItem from './pointsFortsFaibles/PointsListItem'
 
 export default function PointsFortsFaibles({
   pointsForts,
   pointsFaibles,
 }: {
-  pointsForts?: Points[]
-  pointsFaibles?: Points[]
+  pointsForts?: PointsFortsFaiblesType[]
+  pointsFaibles?: PointsFortsFaiblesType[]
 }) {
   return (
     <div>

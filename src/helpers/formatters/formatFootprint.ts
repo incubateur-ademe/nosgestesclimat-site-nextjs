@@ -1,3 +1,4 @@
+import { carboneMetric, eauMetric } from '@/constants/metric'
 import { Metric } from '@/publicodes-state/types'
 import { formatCarbonFootprint } from './formatCarbonFootprint'
 import { formatWaterFootprint } from './formatWaterFootprint'
@@ -28,31 +29,23 @@ export function formatFootprint(
   unit: string | null
   negative: boolean
 } {
-  if (metric === 'carbone') {
-    return formatCarbonFootprint(value, {
-      localize,
-      locale,
-      maximumFractionDigits,
-      shouldUseAbbreviation,
-      t,
-    })
+  switch (metric) {
+    case eauMetric:
+      return formatWaterFootprint(value, {
+        localize,
+        locale,
+        maximumFractionDigits,
+        shouldUseAbbreviation,
+        shouldDivideBy365,
+      })
+    case carboneMetric:
+    default:
+      return formatCarbonFootprint(value, {
+        localize,
+        locale,
+        maximumFractionDigits,
+        shouldUseAbbreviation,
+        t,
+      })
   }
-  if (metric === 'eau') {
-    return formatWaterFootprint(value, {
-      localize,
-      locale,
-      maximumFractionDigits,
-      shouldUseAbbreviation,
-      shouldDivideBy365,
-    })
-  }
-
-  // If the metric is not recognized, we default to carbon
-  return formatCarbonFootprint(value, {
-    localize,
-    locale,
-    maximumFractionDigits,
-    shouldUseAbbreviation,
-    t,
-  })
 }

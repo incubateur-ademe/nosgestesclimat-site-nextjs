@@ -80,3 +80,9 @@ export const endClickNorthstar = ({ type, value }: NorthstarProps) => [
   `Click Northstar ${type}`,
   String(value),
 ]
+
+export const endClickDomesticWater = [
+  'trackEvent',
+  'Fin',
+  'Click Eau domestique',
+]
