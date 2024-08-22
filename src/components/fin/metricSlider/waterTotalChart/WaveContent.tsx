@@ -7,7 +7,7 @@ type Props = {
 }
 export default function WaveContent({ isStatic }: Props) {
   return (
-    <div className="relative overflow-hidden rounded-b-xl px-4 pb-6 pt-12 transition-opacity lg:px-36 lg:pb-8 lg:pt-14">
+    <div className="relative overflow-hidden rounded-b-xl px-4 pb-6 pt-12 transition-opacity lg:pb-8 lg:pt-14">
       <Wave
         fill="#5152D0"
         className="pointer-events-none absolute bottom-0 left-0 right-0 h-full w-full"
@@ -19,7 +19,7 @@ export default function WaveContent({ isStatic }: Props) {
         }}
       />
       <Octopus />
-      <p className="relative mb-0 text-xs italic text-white lg:text-base">
+      <p className="relative mx-auto mb-0 max-w-[44rem] text-xs italic text-white lg:text-base">
         {isStatic ? (
           <Trans>
             L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire
