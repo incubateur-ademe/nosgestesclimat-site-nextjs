@@ -1,5 +1,6 @@
 import { orderedCategories } from '@/constants/orderedCategories'
 import getSomme from '@/publicodes-state/helpers/getSomme'
+import { DottedName as ModelDottedName } from '@incubateur-ademe/nosgestesclimat'
 import * as Sentry from '@sentry/react'
 import { utils } from 'publicodes'
 import { useMemo } from 'react'
@@ -38,7 +39,7 @@ export function useCategories({
       return []
     }
 
-    return sum.sort((a: DottedName, b: DottedName) =>
+    return sum.sort((a: ModelDottedName, b: ModelDottedName) =>
       !orderedCategories
         ? 0
         : orderedCategories.indexOf(a) - orderedCategories.indexOf(b)

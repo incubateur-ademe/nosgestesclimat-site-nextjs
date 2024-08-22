@@ -1,6 +1,16 @@
-import { Points, ValueObject } from '@/types/groups'
+import type {
+  CategoriesAndSubcategoriesFootprintsType,
+  PointsFortsFaiblesType,
+} from '@/types/groups'
 
-const sortByDifference = (a: Points, b: Points) => {
+type Props = {
+  currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+}
+
+const sortByDifference = (
+  a: PointsFortsFaiblesType,
+  b: PointsFortsFaiblesType
+) => {
   return Math.abs(b?.resultObject?.difference || 0) <
     Math.abs(a?.resultObject?.difference || 0)
     ? -1
@@ -8,12 +18,10 @@ const sortByDifference = (a: Points, b: Points) => {
 }
 
 export const getUserCategoryFootprintsSortedByDifference = ({
-  userFootprintByCategoriesAndSubcategories,
-}: {
-  userFootprintByCategoriesAndSubcategories: Record<string, ValueObject>
-}) => {
+  currentUserCategoriesAndSubcategoriesFootprints,
+}: Props) => {
   const filteredResult = Object.entries(
-    userFootprintByCategoriesAndSubcategories
+    currentUserCategoriesAndSubcategoriesFootprints
   ).filter(
     ([key, resultObject]) =>
       !resultObject?.isCategory &&
@@ -24,20 +32,22 @@ export const getUserCategoryFootprintsSortedByDifference = ({
       key !== 'services publics'
   )
 
-  const formattedResult = filteredResult.map(([key, resultObject]) => ({
-    key,
-    resultObject,
-  }))
+  const formattedResult: PointsFortsFaiblesType[] = filteredResult.map(
+    ([key, resultObject]) => ({
+      key,
+      resultObject,
+    })
+  )
 
   const positiveDifferenceCategories = formattedResult.filter(
     ({ resultObject }) =>
-      resultObject?.difference && resultObject?.difference < 0
-  ) as Points[]
+      !!resultObject?.difference && resultObject?.difference < 0
+  )
 
   const negativeDifferenceCategories = formattedResult.filter(
     ({ resultObject }) =>
-      resultObject?.difference && resultObject?.difference > 0
-  ) as Points[]
+      !!resultObject?.difference && resultObject?.difference > 0
+  )
 
   return {
     positiveDifferenceCategoriesSorted: positiveDifferenceCategories.sort(
