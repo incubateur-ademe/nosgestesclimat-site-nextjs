@@ -11,6 +11,7 @@ export type ButtonProps = {
   disabled?: boolean
   id?: string
   title?: string
+  form?: string
 } & PropsWithChildren
 
 export const colorClassNames = {
@@ -45,6 +46,7 @@ export default function Button({
   disabled,
   id,
   title,
+  form,
   ...props
 }: PropsWithChildren<ButtonProps & HtmlHTMLAttributes<HTMLButtonElement>>) {
   return (
@@ -59,6 +61,7 @@ export default function Button({
       type={type}
       aria-disabled={disabled}
       title={title}
+      form={form}
       id={id}
       className={twMerge(
         baseClassNames,

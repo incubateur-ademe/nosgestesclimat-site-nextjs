@@ -17,8 +17,9 @@ import TotalFootprintNumber from './total/TotalFootprintNumber'
 
 type Props = {
   toggleQuestionList?: () => void
+  toggleSaveModal?: () => void
 }
-export default function Total({ toggleQuestionList }: Props) {
+export default function Total({ toggleQuestionList, toggleSaveModal }: Props) {
   const { t } = useClientTranslation()
 
   const { tutorials, hideTutorial, showTutorial } = useUser()
@@ -68,7 +69,10 @@ export default function Total({ toggleQuestionList }: Props) {
             />
           </div>
           {toggleQuestionList ? (
-            <TotalButtons toggleQuestionList={toggleQuestionList} />
+            <TotalButtons
+              toggleQuestionList={toggleQuestionList}
+              toggleSaveModal={toggleSaveModal}
+            />
           ) : null}
         </div>
       </div>

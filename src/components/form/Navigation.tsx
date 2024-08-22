@@ -18,6 +18,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { MouseEvent, useCallback, useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
 import ValueChangeDisplay from '../misc/ValueChangeDisplay'
+import SyncIndicator from './navigation/SyncIndicator'
 
 type Props = {
   question: DottedName
@@ -119,8 +120,10 @@ export default function Navigation({
   return (
     <div
       className={twMerge(
-        'fixed bottom-0 left-0 right-0 z-50 border-t-2 border-primary-200 bg-gray-100 py-3'
+        'fixed bottom-0 left-0 right-0 z-50 bg-gray-100 py-3'
       )}>
+      <SyncIndicator />
+
       <div className="relative mx-auto flex w-full max-w-6xl justify-between gap-4 px-4 lg:justify-end">
         <Button
           size="md"
