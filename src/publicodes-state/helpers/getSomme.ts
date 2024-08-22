@@ -6,9 +6,56 @@ import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
  * This is needed because in optimized rules, the syntaxic-sugar mechanism
  * [formule] is unfolded (i.e. replaced by its content). The [somme] is then
  * at the root of the rule and not in a [formule] mechanism (both syntaxes are valid).
+ *
+ * With the new `eau` metric, for some categories, the `somme` is not in the `formule` only but in a `variations` mechanism like:
+ * 
+[
+    {
+        "si": "métrique = 'carbone'",
+        "alors": {
+            "somme": [
+                "repas",
+                "boisson",
+                "déchets"
+            ]
+        }
+    },
+    {
+        "si": "métrique = 'eau'",
+        "alors": {
+            "somme": [
+                "repas",
+                "boisson"
+            ]
+        }
+    }
+]
  */
+
+type subCatWithVariations = Array<{
+  si: string
+  alors: {
+    somme: string[]
+  }
+}>
+
 export default function getSomme(rawNode?: NGCRule): string[] | undefined {
-  return rawNode && 'formule' in rawNode
-    ? rawNode.formule?.somme
-    : rawNode?.somme
+  if (!rawNode) return undefined
+
+  if ('formule' in rawNode) {
+    return rawNode.formule?.variations
+      ? (rawNode.formule?.variations as subCatWithVariations)[0]?.alors?.somme
+      : (rawNode.formule?.somme as string[])
+  }
+
+  if ('somme' in rawNode) {
+    return rawNode.somme as string[]
+  }
+
+  if ('variations' in rawNode) {
+    const variations = rawNode.variations as subCatWithVariations
+    return variations[0].alors.somme
+  }
+
+  return undefined
 }

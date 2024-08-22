@@ -1,15 +1,19 @@
+import { defaultMetric } from '@/constants/metric'
 import { useEngine, useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName, Metric } from '@/publicodes-state/types'
 import SubcategoryListItem from './subcategoriesList/SubcategoryListItem'
 
+type Props = {
+  category: DottedName
+  subcategories: Record<DottedName, DottedName[]>
+  metric?: Metric
+}
 export default function SubcategoriesList({
   category,
   subcategories,
-}: {
-  category: DottedName
-  subcategories: Record<DottedName, DottedName[]>
-}) {
-  const { getNumericValue, checkIfValid } = useEngine()
+  metric = defaultMetric,
+}: Props) {
+  const { getNumericValue, checkIfValid } = useEngine({ metric })
 
   const sortedSubcategories = subcategories[category]
     ?.filter((subcategory: string) => checkIfValid(subcategory))
@@ -20,7 +24,7 @@ export default function SubcategoriesList({
       return valueB - valueA
     })
 
-  const { numericValue: categoryValue } = useRule(category)
+  const { numericValue: categoryValue } = useRule(category, metric)
 
   return (
     <ul>
@@ -29,6 +33,7 @@ export default function SubcategoriesList({
           key={name}
           subcategory={name}
           categoryValue={categoryValue}
+          metric={metric}
         />
       ))}
     </ul>

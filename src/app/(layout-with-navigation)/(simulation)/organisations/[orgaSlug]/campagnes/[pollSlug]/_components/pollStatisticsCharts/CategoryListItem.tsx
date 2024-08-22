@@ -1,7 +1,8 @@
 import Trans from '@/components/translation/Trans'
+import { carboneMetric } from '@/constants/metric'
 import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
 import { SimulationRecap } from '@/types/organisations'
 import { t } from 'i18next'
@@ -58,7 +59,7 @@ export default function CategoryListItem({
         color={`bg-${category.includes('services') ? 'servicessocietaux' : category}-500`}
         maxValue={maxValue}
         items={simulationsRecap.map((obj) => ({
-          value: obj.categories[category],
+          value: obj.computedResults[carboneMetric].categories[category],
           shouldBeHighlighted: obj.isCurrentUser,
         }))}
         id={category}

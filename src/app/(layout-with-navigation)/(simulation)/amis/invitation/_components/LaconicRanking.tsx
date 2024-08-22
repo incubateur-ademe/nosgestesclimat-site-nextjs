@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { defaultMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { Group } from '@/types/groups'
 
@@ -28,8 +29,8 @@ export default function LaconicRanking({ group }: Props) {
       return 0
     }
 
-    return a.simulation.computedResults.bilan <
-      b.simulation.computedResults.bilan
+    return a.simulation.computedResults[defaultMetric].bilan <
+      b.simulation.computedResults[defaultMetric].bilan
       ? -1
       : 1
   })

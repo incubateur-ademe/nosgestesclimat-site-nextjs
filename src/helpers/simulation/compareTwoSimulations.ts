@@ -1,3 +1,4 @@
+import { defaultMetric } from '@/constants/metric'
 import { Simulation } from '@/publicodes-state/types'
 
 /**
@@ -41,13 +42,16 @@ export function compareTwoSimulations(
   if (simulation1.persona !== simulation2.persona) {
     hasChanged = true
   }
-  if (simulation1.computedResults.bilan !== simulation2.computedResults.bilan) {
+  if (
+    simulation1.computedResults[defaultMetric].bilan !==
+    simulation2.computedResults[defaultMetric].bilan
+  ) {
     hasChanged = true
   }
-  for (const key in simulation1.computedResults.categories) {
+  for (const key in simulation1.computedResults[defaultMetric].categories) {
     if (
-      simulation1.computedResults.categories[key] !==
-      simulation2.computedResults.categories[key]
+      simulation1.computedResults[defaultMetric].categories[key] !==
+      simulation2.computedResults[defaultMetric].categories[key]
     ) {
       hasChanged = true
       break

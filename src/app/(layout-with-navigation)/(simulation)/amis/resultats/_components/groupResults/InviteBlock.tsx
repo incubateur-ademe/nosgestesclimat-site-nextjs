@@ -62,7 +62,6 @@ export default function InviteBlock({ group }: { group: Group }) {
     if (navigator.share) {
       await navigator
         .share({
-          text: sharedURL,
           url: sharedURL,
           title: 'Rejoindre mon groupe',
         })

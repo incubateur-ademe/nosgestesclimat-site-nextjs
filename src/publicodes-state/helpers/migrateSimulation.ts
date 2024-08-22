@@ -1,5 +1,5 @@
 import { Migration, migrateSituation } from '@publicodes/tools/migration'
-import { ComputedResults, Simulation } from '../types'
+import { Simulation } from '../types'
 
 export function migrateSimulation(
   simulation: Simulation & {
@@ -38,11 +38,17 @@ export function migrateSimulation(
     delete simulation.poll
   }
 
-  // TODO: THIS SHOULD BE REMOVED WHEN WE LAUNCH THE EMPREINTE EAU
-  // If the computedResults is of format { carbone: ..., eau: ...}, we revert it back to { bilan: ..., categories: ... }
-  if ('carbone' in simulation.computedResults) {
-    simulation.computedResults = simulation.computedResults
-      .carbone as ComputedResults
+  // If the computedResults object does not take multiple metrics into account, we add them
+  if ((simulation.computedResults as any)?.bilan !== undefined) {
+    const newComputedResults = {
+      carbone: simulation.computedResults as any,
+      eau: {
+        bilan: 0,
+        categories: {},
+      },
+    }
+    simulation.computedResults = newComputedResults
   }
+
   return simulation
 }
