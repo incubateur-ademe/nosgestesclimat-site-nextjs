@@ -1,5 +1,6 @@
 'use client'
 
+import { carboneMetric } from '@/constants/metric'
 import Button, { ButtonProps } from '@/design-system/inputs/Button'
 import { createXLSXFileAndDownload } from '@/helpers/export/createXLSXFileAndDownload'
 import { PollData, SimulationRecap } from '@/types/organisations'
@@ -37,15 +38,29 @@ export default function ExportDataButton({
 
         const data: Record<string, unknown> = {
           date: dayjs(simulationRecapToParse.date).format('DD/MM/YYYY'),
-          total: Math.round(simulationRecapToParse.bilan),
-          transport: Math.round(simulationRecapToParse.categories.transport),
-          alimentation: Math.round(
-            simulationRecapToParse.categories.alimentation
+          total: Math.round(
+            simulationRecapToParse.computedResults[carboneMetric].bilan
           ),
-          logement: Math.round(simulationRecapToParse.categories.logement),
-          divers: Math.round(simulationRecapToParse.categories.divers),
+          transport: Math.round(
+            simulationRecapToParse.computedResults[carboneMetric].categories
+              .transport
+          ),
+          alimentation: Math.round(
+            simulationRecapToParse.computedResults[carboneMetric].categories
+              .alimentation
+          ),
+          logement: Math.round(
+            simulationRecapToParse.computedResults[carboneMetric].categories
+              .logement
+          ),
+          divers: Math.round(
+            simulationRecapToParse.computedResults[carboneMetric].categories
+              .divers
+          ),
           'services sociétaux': Math.round(
-            simulationRecapToParse.categories['services sociétaux']
+            simulationRecapToParse.computedResults[carboneMetric].categories[
+              'services sociétaux'
+            ]
           ),
         }
 

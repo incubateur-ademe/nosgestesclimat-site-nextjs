@@ -1,5 +1,6 @@
 import Arrow from '@/components/fin/metricSlider/carboneTotalChart/Arrow'
 import Trans from '@/components/translation/Trans'
+import { carboneMetric } from '@/constants/metric'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { SimulationRecap } from '@/types/organisations'
 import RepartitionChart from './RepartitionChart'
@@ -47,8 +48,8 @@ export default function MainFootprintChart({
 
         <RepartitionChart
           maxValue={maxValue}
-          items={simulationRecaps.map(({ bilan, isCurrentUser }) => ({
-            value: bilan,
+          items={simulationRecaps.map(({ computedResults, isCurrentUser }) => ({
+            value: computedResults[carboneMetric].bilan,
             shouldBeHighlighted: isCurrentUser,
           }))}
           id="bilan"

@@ -2,7 +2,11 @@ import { Migration, migrateSituation } from '@publicodes/tools/migration'
 import { Simulation } from '../types'
 
 export function migrateSimulation(
-  simulation: Simulation & { group?: string; poll?: string },
+  simulation: Simulation & {
+    group?: string
+    poll?: string
+    computedResults: any
+  },
   migrationInstructions: Migration | undefined
 ): Simulation {
   if (migrationInstructions) {
@@ -22,6 +26,7 @@ export function migrateSimulation(
       )
     )
   }
+
   // If group or poll is defined, we convert it to groups or polls and delete it
   if (simulation.group) {
     simulation.groups = [simulation.group]
