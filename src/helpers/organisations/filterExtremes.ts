@@ -9,7 +9,7 @@ export function filterExtremes(simulationRecaps: SimulationRecap[]) {
     if (
       [
         simulationRecap.computedResults[carboneMetric].bilan,
-        Object.values(
+        ...Object.values(
           simulationRecap.computedResults[carboneMetric].categories
         ),
       ].some((value) => (value as number) > MAX_VALUE)
