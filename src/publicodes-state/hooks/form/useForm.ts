@@ -9,6 +9,7 @@ import useNavigation from './useForm/useNavigation'
  */
 export default function useForm() {
   const {
+    questionsByCategories,
     relevantQuestions,
     currentQuestion,
     currentCategory,
@@ -34,6 +35,10 @@ export default function useForm() {
   })
 
   return {
+    /**
+     * Every questions sorted by category
+     */
+    questionsByCategories,
     /**
      * Every questions (answered and missing) that should be displayed in the form
      */

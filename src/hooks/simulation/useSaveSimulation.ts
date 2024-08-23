@@ -16,8 +16,7 @@ export function useSaveSimulation() {
   const { resetSyncTimer } = useBackgroundSyncSimulation()
 
   const {
-    mutateAsync: saveSimulation,
-    mutate: saveSimulationNotAsync,
+    mutate: saveSimulation,
     isPending,
     isSuccess,
     isError,
@@ -44,12 +43,10 @@ export function useSaveSimulation() {
           listIds,
         })
         .then((response) => response.data)
-        .catch(() => console.error('Failed to save simulation'))
     },
   })
   return {
     saveSimulation,
-    saveSimulationNotAsync,
     isPending,
     isSuccess,
     isError,

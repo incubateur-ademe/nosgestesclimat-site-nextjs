@@ -1,20 +1,3 @@
-export function getTextColor(category?: string | null) {
-  switch (category) {
-    case 'transport':
-      return `text-categories-text-transport`
-    case 'alimentation':
-      return `text-categories-text-alimentation`
-    case 'logement':
-      return `text-categories-text-logement`
-    case 'divers':
-      return `text-categories-text-divers`
-    case 'services sociétaux':
-      return `text-categories-text-servicessocietaux`
-    default:
-      return 'text-default'
-  }
-}
-
 export function getTextDarkColor(category?: string | null) {
   switch (category) {
     case 'transport':
@@ -83,6 +66,23 @@ export function getBackgroundLightColor(category?: string | null) {
   }
 }
 
+export function getBackgroundDarkColor(category?: string | null) {
+  switch (category) {
+    case 'transport':
+      return `bg-transport-700`
+    case 'alimentation':
+      return `bg-alimentation-700`
+    case 'logement':
+      return `bg-logement-700`
+    case 'divers':
+      return `bg-divers-700`
+    case 'services sociétaux':
+      return `bg-servicessocietaux-700`
+    default:
+      return 'bg-primary-700'
+  }
+}
+
 export function getBorderColor(category?: string | null) {
   switch (category) {
     case 'transport':
@@ -99,6 +99,23 @@ export function getBorderColor(category?: string | null) {
       return 'border-primary-700'
   }
 }
+export function getBorderLightColor(category?: string | null) {
+  switch (category) {
+    case 'transport':
+      return `border-transport-100`
+    case 'alimentation':
+      return `border-alimentation-100`
+    case 'logement':
+      return `border-logement-100`
+    case 'divers':
+      return `border-divers-100`
+    case 'services sociétaux':
+      return `border-servicessocietaux-100`
+    default:
+      return 'border-primary-100'
+  }
+}
+
 export function getFillColor(category?: string | null) {
   switch (category) {
     case 'transport':
@@ -118,7 +135,6 @@ export function getFillColor(category?: string | null) {
 
 export function getCategoryColorClasses(category?: string | null) {
   return {
-    text: getTextColor(category),
     textDark: getTextDarkColor(category),
     background: getBackgroundColor(category),
     hoverBackground: getHoverBackgroundColor(category),

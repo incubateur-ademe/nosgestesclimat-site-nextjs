@@ -12,8 +12,8 @@ export default function Avion({ question, ...props }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Question question={question} {...props} />
-      <div className="mb-4 flex flex-col items-end">
+      <Question question={question} className="mb-4" {...props} />
+      <div className="mb-4 flex flex-col items-start">
         <Button
           color="link"
           size="xs"

@@ -23,10 +23,15 @@ export default function Choice({
   return (
     <ChoiceInput
       label={
-        <Emoji className="inline-flex items-center">
-          <span className="mr-2">{title}</span>
-          {icons}
-        </Emoji>
+        <>
+          <Emoji className="inline-flex">{title}</Emoji>
+          {icons ? (
+            <>
+              {' '}
+              <Emoji className="inline-flex items-center">{icons}</Emoji>
+            </>
+          ) : null}
+        </>
       }
       description={description}
       active={active}

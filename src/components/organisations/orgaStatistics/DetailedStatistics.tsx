@@ -1,8 +1,8 @@
 'use client'
 
+import ChevronRight from '@/components/icons/ChevronRight'
 import Trans from '@/components/translation/Trans'
 import { organisationsDashboardClickFunFacts } from '@/constants/tracking/pages/organisationsDashboard'
-import ChevronRight from '@/design-system/icons/ChevronRight'
 import Button from '@/design-system/inputs/Button'
 import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'

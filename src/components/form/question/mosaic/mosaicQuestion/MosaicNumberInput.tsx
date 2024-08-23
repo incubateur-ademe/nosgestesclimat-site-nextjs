@@ -28,19 +28,19 @@ export default function NumberInput({
   return (
     <div
       className={
-        'flex items-center justify-between gap-4 rounded-xl border-2 border-gray-200  bg-white px-2 py-2 md:py-4'
+        'flex items-center justify-between gap-4 rounded-xl border-2 border-primary-200 bg-white p-2 py-3'
       }>
       <div>
         {title && icons ? (
-          <span className="text-sm font-semibold md:text-xl">
-            <Emoji className="inline-flex items-center">
+          <span className="mb-1 block text-sm font-medium md:text-xl">
+            <Emoji className="inline-flex items-center leading-tight">
               {title}&nbsp;{icons}
             </Emoji>
           </span>
         ) : null}
         {description ? (
           <>
-            <p className="mb-0 text-xs italic md:text-sm">
+            <p className="mb-0 text-xs italic md:text-xs">
               {description.split('\n')[0]}
             </p>
           </>
@@ -51,11 +51,11 @@ export default function NumberInput({
           disabled={value === 0 || isMissing}
           onClick={() => setValue(Number(value) - 1)}
           size="sm"
-          className="z-10 h-8 w-8 items-center justify-center p-0  md:h-10 md:w-10">
+          className="z-10 h-8 w-8 items-center justify-center p-0  md:h-8 md:w-8">
           <span className="mb-[1px] block">-</span>
         </Button>
         <input
-          className="bg-transparent-100  w-10 text-center"
+          className="w-8 text-center"
           type="number"
           inputMode="numeric"
           value={isMissing ? '' : Number(value)}
@@ -68,7 +68,7 @@ export default function NumberInput({
         <Button
           onClick={() => setValue(isMissing ? 1 : Number(value) + 1)}
           size="sm"
-          className="z-10 h-8 w-8 items-center justify-center p-0 md:h-10 md:w-10">
+          className="z-10 h-8 w-8 items-center justify-center p-0 md:h-8 md:w-8">
           <span className="mb-[1px] block">+</span>
         </Button>
       </div>

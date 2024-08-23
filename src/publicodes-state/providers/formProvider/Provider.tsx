@@ -36,19 +36,23 @@ export default function FormProvider({
     setCurrentCategory,
   } = useCurrent()
 
-  const { remainingQuestions, relevantAnsweredQuestions, relevantQuestions } =
-    useQuestions({
-      root,
-      safeGetRule,
-      safeEvaluate,
-      categories,
-      subcategories,
-      foldedSteps,
-      situation,
-      everyQuestions,
-      everyMosaicChildrenWithParent,
-      rawMissingVariables,
-    })
+  const {
+    remainingQuestions,
+    relevantAnsweredQuestions,
+    relevantQuestions,
+    questionsByCategories,
+  } = useQuestions({
+    root,
+    safeGetRule,
+    safeEvaluate,
+    categories,
+    subcategories,
+    foldedSteps,
+    situation,
+    everyQuestions,
+    everyMosaicChildrenWithParent,
+    rawMissingVariables,
+  })
 
   const { remainingQuestionsByCategories } = useProgression({
     categories,
@@ -60,6 +64,7 @@ export default function FormProvider({
   return (
     <FormContext.Provider
       value={{
+        questionsByCategories,
         relevantQuestions,
         remainingQuestions,
         relevantAnsweredQuestions,

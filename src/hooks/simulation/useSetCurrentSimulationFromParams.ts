@@ -50,6 +50,9 @@ export function useSetCurrentSimulationFromParams() {
     // if the simulation is not in the localStorage, we add it
     initSimulation(simulation)
     setIsCorrectSimulationSet(true)
+
+    // We delete the query params and reload the page
+    window.location.href = pathname
   }, [
     simulations,
     simulation,
