@@ -5,7 +5,7 @@ import { PropsWithChildren, useContext } from 'react'
 import useCurrent from '../../hooks/formProvider/useCurrent'
 import useProgression from '../../hooks/formProvider/useProgression'
 import useQuestions from '../../hooks/formProvider/useQuestions'
-import { SimulationContext } from '../simulationProvider/context'
+import { SimulationContext } from '../simulationContext/context'
 import FormContext from './context'
 
 type Props = {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useContext } from 'react'
-import formContext from '../../providers/formProvider/context'
+import formContext from '../../contexts/formContext/context'
 import useNavigation from './useForm/useNavigation'
 
 /**

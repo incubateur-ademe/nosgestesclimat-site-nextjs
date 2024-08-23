@@ -3,7 +3,7 @@
 import { carboneMetric } from '@/constants/metric'
 import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
-import { SimulationContext } from '../../providers/simulationProvider/context'
+import { SimulationContext } from '../../contexts/simulationContext/context'
 import { DottedName, Metric, NGCEvaluatedNode, NGCRuleNode } from '../../types'
 import useCurrentSimulation from '../simulation/useCurrentSimulation'
 import useChoices from './useRule/useChoices'

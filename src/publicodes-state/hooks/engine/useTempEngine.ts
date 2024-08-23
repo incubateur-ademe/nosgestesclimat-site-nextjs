@@ -1,6 +1,6 @@
 import { DottedName } from '@/publicodes-state/types'
 import { useContext } from 'react'
-import { SimulationContext } from '../../providers/simulationProvider/context'
+import { SimulationContext } from '../../contexts/simulationContext/context'
 import useCurrentSimulation from '../simulation/useCurrentSimulation'
 
 /**

@@ -1,6 +1,6 @@
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { useCallback, useContext } from 'react'
-import { SimulationContext } from '../../providers/simulationProvider/context'
+import { SimulationContext } from '../../contexts/simulationContext/context'
 import { DottedName, Metric, NodeValue } from '../../types'
 
 /**

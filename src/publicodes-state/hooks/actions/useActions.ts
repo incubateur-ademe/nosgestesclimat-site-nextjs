@@ -5,7 +5,7 @@ import getSomme from '@/publicodes-state/helpers/getSomme'
 import { DottedName, Metric } from '@/publicodes-state/types'
 import { useContext, useMemo } from 'react'
 import { useEngine } from '../..'
-import { SimulationContext } from '../../providers/simulationProvider/context'
+import { SimulationContext } from '../../contexts/simulationContext/context'
 import useCurrentSimulation from '../simulation/useCurrentSimulation'
 
 type Props = {

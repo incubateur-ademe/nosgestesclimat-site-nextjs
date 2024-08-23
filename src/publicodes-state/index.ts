@@ -1,6 +1,6 @@
-export { default as FormProvider } from './providers/formProvider'
-export { default as SimulationProvider } from './providers/simulationProvider'
-export { default as UserProvider } from './providers/userProvider'
+export { default as FormProvider } from './contexts/formContext'
+export { default as SimulationProvider } from './contexts/simulationContext'
+export { default as UserProvider } from './contexts/userContext'
 
 export { default as useActions } from './hooks/actions/useActions'
 export { default as useDisposableEngine } from './hooks/engine/useDisposableEngine'

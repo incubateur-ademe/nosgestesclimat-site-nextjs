@@ -1,4 +1,4 @@
-import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
+import { SimulationContext } from '@/publicodes-state/contexts/simulationContext/context'
 import { useContext } from 'react'
 
 /**

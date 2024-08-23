@@ -1,7 +1,7 @@
 'use client'
 
 import { PropsWithChildren, useContext, useMemo } from 'react'
-import { SimulationContext } from '../simulationProvider/context'
+import { SimulationContext } from '../simulationContext/context'
 import Provider from './Provider'
 
 type Props = {

@@ -2,7 +2,7 @@
 
 import { useContext } from 'react'
 
-import userContext from '../../providers/userProvider/context'
+import userContext from '../../contexts/userContext/context'
 import useActions from './useUser/useActions'
 import useNorthStar from './useUser/useNorthStar'
 import useSimulations from './useUser/useSimulations'
