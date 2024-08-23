@@ -12,7 +12,7 @@ export default function ContentLarge({
   return (
     <Main
       className={twMerge(
-        'mb-8 w-full max-w-6xl overflow-visible px-4 lg:mx-auto',
+        'mb-8 w-full max-w-6xl overflow-visible px-4 pt-4 lg:mx-auto',
         className
       )}>
       {children}

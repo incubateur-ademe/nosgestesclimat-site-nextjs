@@ -124,7 +124,7 @@ export default function Navigation({
       )}>
       <SyncIndicator />
 
-      <div className="relative mx-auto flex w-full max-w-6xl justify-between gap-4 px-4 lg:justify-end">
+      <div className="relative mx-auto flex w-full max-w-6xl justify-between gap-4 px-4 lg:justify-start">
         <Button
           size="md"
           onClick={() => {
@@ -136,8 +136,9 @@ export default function Navigation({
 
             handleMoveFocus()
           }}
+          disabled={noPrevQuestion}
           color="text"
-          className={twMerge('px-3', noPrevQuestion ? 'invisible' : 'visible')}>
+          className={twMerge('px-3')}>
           {'← ' + t('Précédent')}
         </Button>
 
