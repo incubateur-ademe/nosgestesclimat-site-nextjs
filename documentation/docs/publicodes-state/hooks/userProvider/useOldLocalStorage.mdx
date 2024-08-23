@@ -1,0 +1,35 @@
+Here's the documentation in markdown format for the `useUpdateOldLocalStorage` React hook:
+
+# `useUpdateOldLocalStorage`
+
+This hook is used to migrate data from an old local storage key to a new one. It ensures that the new local storage key is populated only if it is currently empty and the old storage does not contain a "persona".
+
+## Usage
+
+### Parameters
+
+- **`storageKey`**: (string) The key for the new local storage where the data should be migrated.
+
+### Example
+
+```typescript
+import useUpdateOldLocalStorage from '@/publicodes-state/hooks/userProvider/useOldLocalStorage';
+
+function MyComponent() {
+  useUpdateOldLocalStorage({ storageKey: 'new-storage-key' });
+
+  return <div>My Component</div>;
+}
+```
+
+### Behavior
+
+1. Retrieves data from the old local storage key `'ecolab-climat::persisted-simulation::v2'`.
+2. Checks if the new local storage specified by `storageKey` is empty.
+3. If the old local storage does not contain a "persona" and the new local storage is empty, it migrates the data to the new storage key.
+4. Removes the old local storage key after migration.
+
+### Notes
+
+- The hook uses the `useEffect` hook to perform the migration on component mount.
+- Ensure that the `storageKey` provided is unique and does not conflict with other keys in local storage.

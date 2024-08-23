@@ -1,0 +1,84 @@
+# `useUser` Hook Documentation
+
+The `useUser` React hook provides a set of tools for managing and interacting with user data within the application. This hook is particularly useful for accessing and updating user information, handling user simulations, managing tutorials, and interacting with North Star ratings.
+
+## Usage
+
+To use the `useUser` hook, simply import it into your component and destructure the functions and data you need.
+
+```typescript
+import useUser from '@/publicodes-state/hooks/user/useUser'
+
+function MyComponent() {
+  const {
+    user,
+    updateName,
+    updateEmail,
+    updateUserOrganisation,
+    updateRegion,
+    updateLoginExpirationDate,
+    tutorials,
+    showTutorial,
+    hideTutorial,
+    updateNorthStarRatings,
+    simulations,
+    deleteSimulation,
+    currentSimulationId,
+    setCurrentSimulationId,
+    initSimulation,
+    currentSimulation,
+    updateCurrentSimulation,
+    toggleActionChoice,
+    rejectAction,
+  } = useUser()
+
+  // Use the returned values and functions as needed
+}
+```
+
+## Returned Values and Functions
+
+- **`user`**: Contains the current user's data.
+- **`updateName(name: string)`**: Updates the user's name.
+- **`updateEmail(email: string)`**: Updates the user's email address.
+- **`updateUserOrganisation(organisation: string)`**: Updates the user's organization.
+- **`updateRegion(region: string)`**: Updates the user's region.
+- **`updateLoginExpirationDate(date: Date)`**: Updates the login expiration date.
+- **`tutorials`**: Contains a list of available tutorials.
+- **`showTutorial(id: string)`**: Marks a tutorial as shown.
+- **`hideTutorial(id: string)`**: Marks a tutorial as hidden.
+- **`updateNorthStarRatings(ratings: object)`**: Updates the user's North Star ratings.
+- **`simulations`**: Contains the user's simulations.
+- **`deleteSimulation(id: string)`**: Deletes a simulation by its ID.
+- **`currentSimulationId`**: The ID of the current simulation.
+- **`setCurrentSimulationId(id: string)`**: Sets the current simulation ID.
+- **`initSimulation(data: object)`**: Initializes a new simulation.
+- **`currentSimulation`**: Contains the current simulation's data.
+- **`updateCurrentSimulation(data: object)`**: Updates the current simulation.
+- **`toggleActionChoice(actionId: string)`**: Toggles an action choice in the current simulation.
+- **`rejectAction(actionId: string)`**: Rejects an action in the current simulation.
+
+## Example
+
+```typescript
+function Profile() {
+  const { user, updateName, updateEmail } = useUser()
+
+  const handleNameChange = (e) => {
+    updateName(e.target.value)
+  }
+
+  const handleEmailChange = (e) => {
+    updateEmail(e.target.value)
+  }
+
+  return (
+    <div>
+      <input value={user.name} onChange={handleNameChange} placeholder="Name" />
+      <input value={user.email} onChange={handleEmailChange} placeholder="Email" />
+    </div>
+  )
+}
+```
+
+In this example, the `Profile` component uses `useUser` to access and update the user's name and email address.

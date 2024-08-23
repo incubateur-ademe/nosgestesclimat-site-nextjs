@@ -1,0 +1,121 @@
+bjlaa: @workspace Can you write a documentation in markdown for this React context, explaining its role and how to use it ? Be succinct.
+
+Workspace: ### SimulationContext
+
+The [`SimulationContext`](command:_github.copilot.openSymbolFromReferences?%5B%22SimulationContext%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A2%2C%22character%22%3A9%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A9%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Fcontext.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Fcontext.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Fcontext.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A35%2C%22character%22%3A13%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A11%2C%22character%22%3A9%7D%7D%5D%5D "Go to definition") is a React context that provides access to the simulation state and related functionalities within the application. It is used to share simulation data and methods across different components.
+
+#### Context Definition
+
+The context is defined in [`src/publicodes-state/providers/simulationProvider/context.ts`](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Fcontext.ts%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D "/Users/benjaminarias/Documents/GitHub/nosgestesclimat-site-nextjs/src/publicodes-state/providers/simulationProvider/context.ts"):
+
+```ts
+import { createContext } from 'react'
+import { NGCRules, Engine, PublicodesExpression } from 'publicodes'
+import { DottedName, Metric, NGCEvaluatedNode, NGCRuleNode, NGCRulesNodes, Situation } from '../../types'
+
+type SimulationContextType = {
+  rules: NGCRules | null
+  engine: Engine | null
+  pristineEngine: Engine | null
+  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeEvaluate: (rule: PublicodesExpression, metric?: Metric) => NGCEvaluatedNode | null
+  parsedRules: NGCRulesNodes
+  everyRules: DottedName[]
+  everyInactiveRules: DottedName[]
+  everyQuestions: DottedName[]
+  everyNotifications: DottedName[]
+  everyUiCategories: DottedName[]
+  everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
+  rawMissingVariables: Record<string, number>
+  categories: DottedName[]
+  subcategories: Record<DottedName, DottedName[]>
+  addToEngineSituation: (situationToAdd: Situation) => Situation
+  isInitialized: boolean
+}
+
+export const SimulationContext = createContext<SimulationContextType>({
+  rules: null,
+  engine: null,
+  pristineEngine: null,
+  safeGetRule: () => null,
+  safeEvaluate: () => null,
+  parsedRules: {},
+  everyRules: [],
+  everyInactiveRules: [],
+  everyQuestions: [],
+  everyNotifications: [],
+  everyUiCategories: [],
+  everyMosaicChildrenWithParent: {},
+  rawMissingVariables: {},
+  categories: [],
+  subcategories: {},
+  addToEngineSituation: () => ({}) as Situation,
+  isInitialized: false,
+})
+```
+
+#### Usage
+
+To use the [`SimulationContext`](command:_github.copilot.openSymbolFromReferences?%5B%22SimulationContext%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A2%2C%22character%22%3A9%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A9%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Fcontext.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Fcontext.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Fcontext.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A35%2C%22character%22%3A13%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A11%2C%22character%22%3A9%7D%7D%5D%5D "Go to definition"), wrap your component tree with the [`SimulationProvider`](command:_github.copilot.openSymbolFromReferences?%5B%22SimulationProvider%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A18%2C%22character%22%3A24%7D%7D%5D%5D "Go to definition") and use the [`useContext`](command:_github.copilot.openSymbolFromReferences?%5B%22useContext%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A9%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A9%7D%7D%5D%5D "Go to definition") hook to access the context values.
+
+##### Wrapping with [`SimulationProvider`](command:_github.copilot.openSymbolFromReferences?%5B%22SimulationProvider%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A18%2C%22character%22%3A24%7D%7D%5D%5D "Go to definition")
+
+The [`SimulationProvider`](command:_github.copilot.openSymbolFromReferences?%5B%22SimulationProvider%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A18%2C%22character%22%3A24%7D%7D%5D%5D "Go to definition") is defined in [`src/publicodes-state/providers/simulationProvider/index.tsx`](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D "/Users/benjaminarias/Documents/GitHub/nosgestesclimat-site-nextjs/src/publicodes-state/providers/simulationProvider/index.tsx"):
+
+```tsx
+import { PropsWithChildren } from 'react'
+import { SimulationContext } from './context'
+import { useInternalEngine, useRules, useCategories, useEngineSituation, useSetComputedResults } from '@/publicodes-state/hooks/simulationProvider'
+
+type Props = {
+  rules: NGCRules
+  root?: DottedName
+  shouldAlwaysDisplayChildren?: boolean
+}
+
+export default function SimulationProvider({
+  rules,
+  root = 'bilan',
+  shouldAlwaysDisplayChildren = false,
+  children,
+}: PropsWithChildren<Props>) {
+  const { engine, pristineEngine, safeEvaluate, safeGetRule } = useInternalEngine(rules)
+  const { parsedRules, everyRules, everyInactiveRules, everyQuestions, everyNotifications, everyUiCategories, everyMosaicChildrenWithParent, rawMissingVariables } = useRules({ engine: pristineEngine, root })
+  const { categories, subcategories } = useCategories({ parsedRules: engine.getParsedRules(), everyRules, root, safeGetRule })
+  const { isEngineInitialized, addToEngineSituation } = useEngineSituation({ engine })
+  const { isInitialized } = useSetComputedResults({ categories, isEngineInitialized, safeEvaluate })
+
+  return (
+    <SimulationContext.Provider value={{ rules, engine, pristineEngine, safeEvaluate, safeGetRule, parsedRules, everyRules, everyInactiveRules, everyQuestions, everyNotifications, everyUiCategories, everyMosaicChildrenWithParent, rawMissingVariables, categories, subcategories, addToEngineSituation, isInitialized }}>
+      {isInitialized || shouldAlwaysDisplayChildren ? children : null}
+    </SimulationContext.Provider>
+  )
+}
+```
+
+##### Accessing Context Values
+
+Use the [`useContext`](command:_github.copilot.openSymbolFromReferences?%5B%22useContext%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A9%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A9%7D%7D%5D%5D "Go to definition") hook to access the context values in your components:
+
+```tsx
+import { useContext } from 'react'
+import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
+
+function MyComponent() {
+  const { engine, categories, isInitialized } = useContext(SimulationContext)
+
+  if (!isInitialized) {
+    return <div>Loading...</div>
+  }
+
+  return (
+    <div>
+      {/* Use the context values */}
+    </div>
+  )
+}
+```
+
+### Summary
+
+The [`SimulationContext`](command:_github.copilot.openSymbolFromReferences?%5B%22SimulationContext%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fengine%2FuseTempEngine.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A2%2C%22character%22%3A9%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fsimulation%2FuseSimulation.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A9%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Fcontext.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Fcontext.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Fcontext.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A35%2C%22character%22%3A13%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A11%2C%22character%22%3A9%7D%7D%5D%5D "Go to definition") provides a centralized way to manage and access the simulation state and related functionalities. By wrapping your component tree with the [`SimulationProvider`](command:_github.copilot.openSymbolFromReferences?%5B%22SimulationProvider%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A18%2C%22character%22%3A24%7D%7D%5D%5D "Go to definition"), you can easily share simulation data across your application.

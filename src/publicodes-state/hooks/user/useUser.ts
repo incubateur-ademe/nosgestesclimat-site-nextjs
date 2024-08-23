@@ -3,11 +3,11 @@
 import { useContext } from 'react'
 
 import userContext from '../../providers/userProvider/context'
-import useActions from '../useUser/useActions'
-import useNorthStar from '../useUser/useNorthStar'
-import useSimulations from '../useUser/useSimulations'
-import useTutorials from '../useUser/useTutorials'
-import useUserDetails from '../useUser/useUserDetails'
+import useActions from './useUser/useActions'
+import useNorthStar from './useUser/useNorthStar'
+import useSimulations from './useUser/useSimulations'
+import useTutorials from './useUser/useTutorials'
+import useUserDetails from './useUser/useUserDetails'
 
 /**
  * A hook to get and set every info about a user

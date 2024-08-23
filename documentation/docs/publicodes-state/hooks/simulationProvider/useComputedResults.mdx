@@ -1,0 +1,55 @@
+# `useSetComputedResults` React Hook Documentation
+
+## Purpose
+`useSetComputedResults` is a custom React hook designed to compute and update the results of a simulation based on specific categories and metrics. This hook optimizes performance by ensuring that results are recalculated only when necessary, and it provides a status indicator for initialization.
+
+## Usage
+
+### Importing the Hook
+To use `useSetComputedResults` in your component, first import it:
+```typescript
+import { useSetComputedResults } from '@/publicodes-state/hooks/simulationProvider/useSetComputedResults';
+```
+
+### Using the Hook
+Invoke `useSetComputedResults` within your functional component to compute and update simulation results:
+```typescript
+function MyComponent() {
+  const { isInitialized } = useSetComputedResults({
+    categories: ['category1', 'category2'],
+    isEngineInitialized: true,
+    safeEvaluate: (ruleName, metric) => {/* evaluation logic */}
+  });
+
+  // Use the initialization status as needed
+}
+```
+
+### Parameters
+- **`categories`**: An array of category names for which results need to be computed.
+- **`isEngineInitialized`**: A boolean indicating if the simulation engine is initialized.
+- **`safeEvaluate`**: A function that takes a `ruleName` and a `metric` as arguments and returns the computed result. 
+
+### Return Value
+- **`isInitialized`**: A boolean that indicates whether the hook has successfully initialized and computed the results.
+
+## Example
+```typescript
+function SimulationComponent() {
+  const { isInitialized } = useSetComputedResults({
+    categories: ['energy', 'transport'],
+    isEngineInitialized: true,
+    safeEvaluate: (ruleName, metric) => {
+      // Custom evaluation logic
+      return computedValue;
+    },
+  });
+
+  if (!isInitialized) {
+    return <div>Loading...</div>;
+  }
+
+  return <div>Simulation results are ready.</div>;
+}
+```
+This hook helps manage the complexity of updating simulation data efficiently within your React components.
