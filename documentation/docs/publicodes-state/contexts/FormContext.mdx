@@ -1,14 +1,14 @@
 # `FormContext`
 
-Ce dossier contient les composants et contextes nécessaires pour gérer les formulaires dans le cadre des simulations. Les fichiers présents dans ce dossier permettent de créer et de gérer l'état des formulaires de manière sécurisée et efficace.
+This folder contains the components and contexts necessary to manage forms within the scope of simulations. The files in this folder allow for the creation and management of form state in a secure and efficient manner.
 
-## Fichiers
+## Files
 
 ### `index.tsx`
 
-Ce fichier exporte le composant principal `FormProvider`, utilisé pour encapsuler les formulaires dans les simulations. Ce composant vérifie si la racine (`root`) est valide avant de rendre le formulaire. Si la racine n'est pas valide, l'utilisateur est redirigé vers une page 404.
+This file exports the main component `FormProvider`, used to encapsulate forms in simulations. This component checks if the root is valid before rendering the form. If the root is not valid, the user is redirected to a 404 page.
 
-#### Utilisation
+#### Usage
 
 ```tsx
 import FailSafeFormProvider from '@/publicodes-state/providers/formProvider';
@@ -16,19 +16,19 @@ import FailSafeFormProvider from '@/publicodes-state/providers/formProvider';
 function App() {
   return (
     <FailSafeFormProvider root="bilan">
-      {/* Contenu du formulaire */}
+      {/* Form content */}
     </FailSafeFormProvider>
   );
 }
 ```
 
-### `context.ts`
+### [`context.ts`](command:_github.copilot.openSymbolFromReferences?%5B%22context.ts%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A24%2C%22character%22%3A5%7D%7D%5D%5D "Go to definition")
 
-Ce fichier définit le contexte `formContext` qui est utilisé pour partager l'état du formulaire entre différents composants. Ce contexte est essentiel pour permettre une gestion centralisée et cohérente des données du formulaire au sein de l'application.
+This file defines the [`FormContext`](command:_github.copilot.openSymbolFromReferences?%5B%22formContext%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A26%2C%22character%22%3A32%7D%7D%5D%5D "Go to definition") context which is used to share the form state between different components. This context is essential for enabling centralized and coherent management of form data within the application.
 
-#### Utilisation
+#### Usage
 
-Le contexte `formContext` est principalement utilisé en interne par le hook `useForm` pour accéder aux données du formulaire de manière fluide et réactive. Voici un exemple d'utilisation du hook `useForm` dans un composant :
+The [`FormContext`](command:_github.copilot.openSymbolFromReferences?%5B%22formContext%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A26%2C%22character%22%3A32%7D%7D%5D%5D "Go to definition") is mainly used internally by the [`useForm`](command:_github.copilot.openSymbolFromReferences?%5B%22useForm%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A30%2C%22character%22%3A77%7D%7D%5D%5D "Go to definition") hook to access form data in a smooth and reactive manner. Here is an example of using the [`useForm`](command:_github.copilot.openSymbolFromReferences?%5B%22useForm%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fdocumentation%2Fdocs%2Fpublicodes-state%2Fcontexts%2FFormContext.mdx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A30%2C%22character%22%3A77%7D%7D%5D%5D "Go to definition") hook in a component:
 
 ```tsx
 import { useForm } from '@/publicodes-state/hooks/useForm';
@@ -38,7 +38,7 @@ function MyFormComponent() {
 
   return (
     <form>
-      {/* Utilisation de formData et updateForm */}
+      {/* Usage of formData and updateForm */}
     </form>
   );
 }
@@ -46,4 +46,4 @@ function MyFormComponent() {
 
 ---
 
-Ces fichiers sont cruciaux pour gérer l'état des formulaires dans les simulations, en garantissant que les formulaires sont correctement rendus et en permettant un partage efficace de l'état à travers différents composants.
+These files are crucial for managing the state of forms in simulations, ensuring that forms are correctly rendered and allowing for efficient sharing of state across different components.
