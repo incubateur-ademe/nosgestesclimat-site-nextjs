@@ -43,6 +43,7 @@ export default function AccordionItemWithRule({
           title={title}
           icons={icons}
           barColor={getBackgroundColor(dottedName)}
+          shouldDisplayValue={false}
           displayValue={
             <span>
               <strong className="font-black">{formattedValue}</strong>{' '}

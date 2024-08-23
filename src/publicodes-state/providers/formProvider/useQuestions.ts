@@ -193,10 +193,25 @@ export default function useQuestions({
     })
   }, [categories, missingVariables, subcategories, tempRelevantQuestions])
 
+  const questionsByCategories = useMemo<Record<string, string[]>>(
+    () =>
+      categories.reduce(
+        (accumulator: Record<string, string[]>, currentValue: string) => ({
+          ...accumulator,
+          [currentValue]: relevantQuestions.filter((question) =>
+            question.includes(currentValue)
+          ),
+        }),
+        {}
+      ),
+    [relevantQuestions, categories]
+  )
+
   return {
     missingVariables,
     remainingQuestions,
     relevantAnsweredQuestions,
     relevantQuestions,
+    questionsByCategories,
   }
 }

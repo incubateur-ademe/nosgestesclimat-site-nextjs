@@ -80,10 +80,17 @@ export default function useActions(
       }
     ) || 0
 
+  const totalChosenActionsValue: number = useMemo(
+    () =>
+      chosenActions.reduce((acc, action) => acc + getNumericValue(action), 0),
+    [chosenActions, getNumericValue]
+  )
+
   return {
     actions,
     orderedActions,
     chosenActions,
     declinedActions,
+    totalChosenActionsValue,
   }
 }
