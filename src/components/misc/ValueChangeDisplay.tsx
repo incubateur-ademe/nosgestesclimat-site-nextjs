@@ -21,19 +21,12 @@ export default function ValueChangeDisplay({
 
   const [displayDifference, setDisplayDifference] = useState(0)
 
-  const [shouldDisplay, setShouldDisplay] = useState(false)
-
   useEffect(() => {
     const difference = numericValue - prevValue.current
 
     setDisplayDifference(difference)
 
-    setShouldDisplay(difference !== 0)
-
     prevValue.current = numericValue
-
-    const timer = setTimeout(() => setShouldDisplay(false), 3000)
-    return () => clearTimeout(timer)
   }, [numericValue, locale])
 
   const isNegative = displayDifference < 0
@@ -43,18 +36,26 @@ export default function ValueChangeDisplay({
     t,
   })
 
-  if (!shouldDisplay) return
+  if (displayDifference === 0) {
+    return null
+  }
 
   return (
     <div
       className={twMerge(
-        'animate-valuechange whitespace-nowrap ',
+        'animation-once animate-valuechange whitespace-nowrap',
         isNegative ? 'text-green-700' : 'text-red-700',
         className
       )}
-      key={numericValue}>
+      key={numericValue}
+      aria-label={t('{{signe}} {{value}} {{unit}} sur votre empreinte', {
+        signe: isNegative ? t('moins') : t('plus'),
+        value: formattedValue,
+        unit,
+      })}>
       <strong className="text-xl font-black">
-        {displayDifference > 0 ? '+' : '-'} {formattedValue}
+        {displayDifference > 0 ? '+' : '-'}
+        {formattedValue}
       </strong>{' '}
       <span className="text-xs">
         {unit} <Trans>sur votre empreinte</Trans>

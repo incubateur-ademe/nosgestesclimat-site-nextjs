@@ -154,7 +154,9 @@ export default function Navigation({
               ? t('Passer la question') + ' →'
               : t('Suivant') + ' →'}
         </Button>
-        <div className="absolute bottom-full right-8 -translate-y-4">
+        <div
+          className="absolute bottom-full left-8 -translate-y-4"
+          aria-live="polite">
           <ValueChangeDisplay />
         </div>
       </div>
