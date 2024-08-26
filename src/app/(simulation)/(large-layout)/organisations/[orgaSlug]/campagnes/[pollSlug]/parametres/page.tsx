@@ -1,17 +1,18 @@
 'use client'
 
 import MaxWidthContent from '@/components/layout/MaxWidthContent'
-import ModificationSaved from '@/components/messages/ModificationSaved'
+import ToastDisplay from '@/components/messages/ToastDisplay'
 import PollLoader from '@/components/organisations/PollLoader'
 import QuestionsComplementaires from '@/components/organisations/QuestionsComplementaires'
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
+import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import { useIsOrganisationAdmin } from '@/hooks/organisations/useIsOrganisationAdmin'
 import { usePoll } from '@/hooks/organisations/usePoll'
 import { useUpdateCustomQuestions } from '@/hooks/organisations/useUpdateCustomQuestions'
 import { useUpdatePoll } from '@/hooks/organisations/useUpdatePoll'
-import { useAutoFlick } from '@/hooks/utils/useAutoFlick'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { useParams } from 'next/navigation'
 import { useEffect } from 'react'
@@ -23,6 +24,8 @@ export default function ParametresPage() {
   const { pollSlug, orgaSlug } = useParams()
 
   const { user } = useUser()
+
+  const { t } = useClientTranslation()
 
   const { isAdmin, isLoading: isLoadingOrgaAdmin } = useIsOrganisationAdmin()
 
@@ -48,22 +51,22 @@ export default function ParametresPage() {
     orgaSlug: orgaSlug as string,
   })
 
-  const { value, flick } = useAutoFlick()
-
   // If the mutation status (of updatePoll or updatePollCustomQuestions) change to success,
   // we refetch the poll and display a confirmation message
   useEffect(() => {
     if (updatePollStatus === 'success') {
-      flick()
+      displaySuccessToast(t('Vos informations ont bien été mises à jour.'))
+
       refetchPoll()
     }
-  }, [updatePollStatus, flick, refetchPoll])
+  }, [updatePollStatus, refetchPoll, t])
   useEffect(() => {
     if (updatePollCustomQuestionsStatus === 'success') {
-      flick()
+      displaySuccessToast(t('Vos informations ont bien été mises à jour.'))
+
       refetchPoll()
     }
-  }, [updatePollCustomQuestionsStatus, flick, refetchPoll])
+  }, [updatePollCustomQuestionsStatus, refetchPoll, t])
 
   if (isLoading || isLoadingOrgaAdmin) {
     return <PollLoader />
@@ -104,11 +107,11 @@ export default function ParametresPage() {
         onChangeCustomQuestions={updatePollCustomQuestions}
       />
 
-      <ModificationSaved shouldShowMessage={value} />
-
       <Separator className="my-4" />
 
       <DeletePollButton />
+
+      <ToastDisplay />
     </MaxWidthContent>
   )
 }
