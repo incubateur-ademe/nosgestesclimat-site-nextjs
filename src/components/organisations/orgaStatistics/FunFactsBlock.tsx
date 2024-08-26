@@ -1,7 +1,6 @@
 'use client'
 
-import { DottedName } from '@/publicodes-state/types'
-import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
+import { DottedName, FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 import FunFactsItem from './funFacts/FunFactsItem'
 

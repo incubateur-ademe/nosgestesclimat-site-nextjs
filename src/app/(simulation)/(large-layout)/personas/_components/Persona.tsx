@@ -6,13 +6,15 @@ import Card from '@/design-system/layout/Card'
 import { fixSituationWithPartialMosaic } from '@/helpers/personas/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '@/helpers/personas/getPersonaFoldedSteps'
 import { useDisposableEngine, useSimulation, useUser } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
-import { Persona as PersonaType } from '@incubateur-ademe/nosgestesclimat'
+import {
+  DottedName,
+  Persona as PersonaType,
+} from '@incubateur-ademe/nosgestesclimat'
 import { useRouter } from 'next/navigation'
 
 type Props = {
   persona: PersonaType
-  personaDottedName: DottedName
+  personaDottedName: string
 }
 
 export default function Persona({ persona, personaDottedName }: Props) {
@@ -71,7 +73,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
                 engine,
                 safeGetRule,
                 safeEvaluate,
-              }),
+              }) as DottedName[],
               progression: 1,
             })
             hideTutorial('testIntro')

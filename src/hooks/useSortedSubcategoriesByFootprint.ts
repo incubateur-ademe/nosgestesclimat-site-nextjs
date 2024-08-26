@@ -1,5 +1,6 @@
 import { useEngine, useSimulation } from '@/publicodes-state'
-import { DottedName, Metric } from '@/publicodes-state/types'
+import { Metric } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 
 type Props = {
@@ -19,12 +20,12 @@ export function useSortedSubcategoriesByFootprint({
         if (!withServiceSocietaux && category === 'services sociétaux') {
           return acc
         }
-        return acc.concat(subcategories[category])
+        return acc.concat(subcategories[category as DottedName])
       }, [] as DottedName[]),
     [subcategories, withServiceSocietaux]
   )
 
-  const sortedSubcategories = useMemo<DottedName[]>(() => {
+  const sortedSubcategories = useMemo(() => {
     return everySubcategories.sort(
       (categoryA: DottedName, categoryB: DottedName) => {
         const valueA = getNumericValue(categoryA) ?? 0

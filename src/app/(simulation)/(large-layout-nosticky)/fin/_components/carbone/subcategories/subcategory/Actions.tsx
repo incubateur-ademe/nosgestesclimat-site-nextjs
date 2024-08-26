@@ -2,8 +2,8 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { endClickActions } from '@/constants/tracking/pages/end'
 import { useEngine, useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Action from './actions/Action'
 
 type Props = {
@@ -23,7 +23,7 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
 
   const filteredActions = noNumberedFootprint
     ? actions
-    : actions?.filter((action: string) => getValue(action))
+    : actions?.filter((action) => getValue(action))
 
   if (!filteredActions?.length) return null
 
@@ -35,7 +35,7 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
         return 1
       })
     : filteredActions
-        .map((action: string) => ({
+        .map((action) => ({
           dottedName: action,
           value: getValue(action) as number,
         }))

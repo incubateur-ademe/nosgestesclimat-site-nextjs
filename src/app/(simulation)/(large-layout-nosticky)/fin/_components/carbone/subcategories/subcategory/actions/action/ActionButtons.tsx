@@ -3,8 +3,8 @@ import CloseIcon from '@/components/icons/Close'
 import { endClickAction } from '@/constants/tracking/pages/end'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useUser } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   action: DottedName

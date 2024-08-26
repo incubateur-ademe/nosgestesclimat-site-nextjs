@@ -9,7 +9,7 @@ import {
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useForm, useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {

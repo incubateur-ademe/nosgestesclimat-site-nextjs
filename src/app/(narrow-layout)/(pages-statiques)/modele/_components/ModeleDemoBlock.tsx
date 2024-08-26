@@ -4,15 +4,15 @@ import Link from '@/components/Link'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRules } from '@/hooks/useRules'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
-import { DottedName, Rules, Situation } from '@/publicodes-state/types'
+import { Situation } from '@/publicodes-state/types'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Engine, { Evaluation } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 
-const demoDottedNames = [
+const demoDottedNames: DottedName[] = [
   'commun . intensité électricité',
   'transport . voiture . thermique . empreinte au litre',
-  "logement . construction . durée d'amortissement",
 ]
 
 const indicatorsKeys = ['bilan', 'transport', 'logement']
@@ -25,10 +25,10 @@ export default function ModeleDemoBlock() {
 
   const { data: rules } = useRules({ isOptim: false })
 
-  const engine = useMemo<Engine | null>(
+  const engine = useMemo(
     () =>
       rules
-        ? new Engine(rules as Rules, {
+        ? new Engine<DottedName>(rules, {
             strict: {
               situation: false,
               noOrphanRule: false,
@@ -65,7 +65,7 @@ export default function ModeleDemoBlock() {
 
       return obj
     },
-    {} as { [key: (typeof demoDottedNames)[number]]: Evaluation }
+    {} as Record<(typeof demoDottedNames)[number], Evaluation>
   )
 
   return (
@@ -85,7 +85,7 @@ export default function ModeleDemoBlock() {
                     onChange(el, e.target.value === '' ? '' : e.target.value)
                   }
                 />
-                &nbsp;{(rules as Rules)?.[el]?.unité}
+                &nbsp;{rules?.[el]?.unité}
               </span>
             </label>
           </li>

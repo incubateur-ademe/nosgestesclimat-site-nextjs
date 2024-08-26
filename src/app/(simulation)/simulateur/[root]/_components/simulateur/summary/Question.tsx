@@ -13,10 +13,11 @@ import {
 import { useDebug } from '@/hooks/useDebug'
 import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
-  question: string
+  question: DottedName
   toggleQuestionList: () => void
 }
 

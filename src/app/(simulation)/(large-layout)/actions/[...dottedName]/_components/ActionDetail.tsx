@@ -14,8 +14,8 @@ import {
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
-import { DottedName, NGCRuleNode } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import ActionForm from '../../_components/actions/_components/ActionForm'
 
@@ -33,16 +33,18 @@ export default function ActionDetail({
     ?.map(decodeURIComponent)
     ?.join(' . ')
 
-  const { rules, getRuleObject, extendedFoldedSteps } = useTempEngine()
+  const { rules, getSpecialRuleObject, extendedFoldedSteps } = useTempEngine()
 
   const { toggleActionChoice } = useUser()
 
   const { actionChoices } = useCurrentSimulation()
 
-  const dottedName = decodeRuleName(formattedDottedName ?? '')
+  const dottedName = decodeRuleName(formattedDottedName ?? '') as DottedName
 
   const remainingQuestions = filterRelevantMissingVariables(
-    Object.keys(getRuleObject(dottedName).missingVariables || {}),
+    Object.keys(
+      getSpecialRuleObject(dottedName).missingVariables || {}
+    ) as DottedName[],
     extendedFoldedSteps
   )
 
@@ -57,14 +59,15 @@ export default function ActionDetail({
 
   const { description, icônes: icons } = rules[dottedName]
 
-  const flatActions = rules['actions']
+  // Typing is shit here but it's the `actions` rule from model.
+  const flatActions = rules['actions'] as { formule: { somme: DottedName[] } }
 
   const relatedActions: NGCRuleNode[] = flatActions?.formule?.somme
     .filter(
       (action: DottedName) =>
         action !== dottedName && getCategory(dottedName) === getCategory(action)
     )
-    .map((name: string) => getRuleObject(name))
+    .map((name: DottedName) => getSpecialRuleObject(name))
 
   return (
     <>
