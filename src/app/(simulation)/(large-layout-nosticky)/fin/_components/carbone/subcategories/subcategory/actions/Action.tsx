@@ -7,7 +7,8 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useCurrentSimulation, useRule } from '@/publicodes-state'
-import { DottedName, Metric } from '@/publicodes-state/types'
+import { Metric } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
 const colorClassName = ['200', '100', '50']

@@ -1,6 +1,6 @@
 import {
-  SupportedRegionType,
   SupportedRegions,
+  SupportedRegionType,
 } from '@incubateur-ademe/nosgestesclimat'
 
 export const sortSupportedRegions = ({

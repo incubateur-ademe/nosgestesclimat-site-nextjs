@@ -32,7 +32,7 @@ export type CustomAdditionalQuestions = {
 
 export type OrganisationPoll = {
   _id: string
-  simulations: [OrganisationSimulation]
+  simulations: [Simulation]
   startDate: Date
   endDate: Date
   name: string

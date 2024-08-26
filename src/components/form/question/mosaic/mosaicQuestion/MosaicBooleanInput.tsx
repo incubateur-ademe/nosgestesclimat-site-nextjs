@@ -2,10 +2,11 @@ import Trans from '@/components/translation/Trans'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 
 type Props = {
-  question: string
+  question: DottedName
   title?: string
   icons?: string
   description?: string

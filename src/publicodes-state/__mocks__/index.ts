@@ -8,7 +8,7 @@ const engine = new Engine(rules)
 export const useTempEngine = jest.fn(() => {
   return {
     rules,
-    getRuleObject: engine.getRule.bind(engine),
+    getSpecialRuleObject: engine.getRule.bind(engine),
   }
 })
 

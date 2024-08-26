@@ -1,4 +1,5 @@
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useState } from 'react'
 
 /**
@@ -7,12 +8,16 @@ import { useCallback, useState } from 'react'
  * currentCategory could be inferred from current question. It is not deleted for now because it is used in the actions page
  */
 export default function useCurrent() {
-  const [currentQuestion, setCurrentQuestion] = useState<null | string>(null)
+  const [currentQuestion, setCurrentQuestion] = useState<null | DottedName>(
+    null
+  )
 
-  const [currentCategory, setCurrentCategory] = useState<null | string>(null)
+  const [currentCategory, setCurrentCategory] = useState<null | DottedName>(
+    null
+  )
 
   const exportedSetCurrentQuestion = useCallback(
-    (newCurrentQuestion: string | null) => {
+    (newCurrentQuestion: DottedName | null) => {
       setCurrentQuestion(newCurrentQuestion)
       const newCurrentQuestionNamespace = getNamespace(newCurrentQuestion)
       if (newCurrentQuestion && newCurrentQuestionNamespace) {

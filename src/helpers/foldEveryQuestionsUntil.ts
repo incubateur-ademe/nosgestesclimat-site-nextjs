@@ -1,8 +1,9 @@
 import { UpdateCurrentSimulationProps } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
-  question: string
-  relevantQuestions: string[]
+  question: DottedName
+  relevantQuestions: DottedName[]
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
 }
 

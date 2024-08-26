@@ -4,8 +4,8 @@ import ChoiceInput from '@/components/misc/ChoiceInput'
 import { quizClickAnswer } from '@/constants/tracking/pages/quiz'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   answer: DottedName | null

@@ -1,9 +1,10 @@
-import { DottedName, Situation } from '../types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { Situation } from '../types'
 
 type Props = {
   dottedName: DottedName
   situation: Situation
-  questionsOfMosaicFromParent?: string[]
+  questionsOfMosaicFromParent?: DottedName[]
 }
 
 export default function getIsMissing({

@@ -1,6 +1,6 @@
 import { getCurrentLangInfos } from '@/locales/translation'
-import { NodeValue } from '@/publicodes-state/types'
 import { TranslationFunctionType } from '@/types/translation'
+import { NodeValue } from '@incubateur-ademe/nosgestesclimat'
 
 const getRawUnitDigitsArray = ({
   value,
@@ -24,8 +24,8 @@ const getRawUnitDigitsArray = ({
         isConcise
           ? 't'
           : value > 2000
-          ? (t('tonnes') as string)
-          : (t('tonne') as string),
+            ? (t('tonnes') as string)
+            : (t('tonne') as string),
         1,
       ]
   }

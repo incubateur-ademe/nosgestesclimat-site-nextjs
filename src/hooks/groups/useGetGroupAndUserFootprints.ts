@@ -14,12 +14,12 @@ type Props = {
 
 export function getSubcategories({
   category,
-  getRuleObject,
+  getSpecialRuleObject,
 }: {
   category: DottedName
-  getRuleObject: (dottedName: DottedName) => NGCRuleNode
+  getSpecialRuleObject: (dottedName: DottedName) => NGCRuleNode
 }): DottedName[] | undefined {
-  const rule = getRuleObject(category)
+  const rule = getSpecialRuleObject(category)
 
   return getRuleSumRules(rule)
 }
@@ -31,7 +31,7 @@ export const useGetGroupAndUserFootprints = ({
   currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
   groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
 } => {
-  const { rules, getRuleObject } = useTempEngine()
+  const { rules, getSpecialRuleObject } = useTempEngine()
 
   const { getValue, updateSituation } = useDisposableEngine({
     rules,
@@ -89,7 +89,7 @@ export const useGetGroupAndUserFootprints = ({
         }
 
         const currentCategorySubcategories =
-          getSubcategories({ category, getRuleObject }) || []
+          getSubcategories({ category, getSpecialRuleObject }) || []
 
         currentCategorySubcategories.forEach((subCategory) => {
           const subCategoryRawValue = getValue(subCategory)
