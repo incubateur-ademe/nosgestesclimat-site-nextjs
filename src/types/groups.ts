@@ -30,14 +30,18 @@ export type ValueObject = {
   isCategory?: boolean
 }
 
-export type Points = {
+export type CategoriesAndSubcategoriesFootprintsType = {
+  [key in DottedName]: ValueObject
+}
+
+export type PointsFortsFaiblesType = {
   key: string
   resultObject: ValueObject
 }
 
 export type Results = {
-  userFootprintByCategoriesAndSubcategories: Record<string, ValueObject>
-  groupFootprintByCategoriesAndSubcategories: Record<string, ValueObject>
-  pointsForts: Points[]
-  pointsFaibles: Points[]
+  currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+  groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+  pointsForts: PointsFortsFaiblesType[]
+  pointsFaibles: PointsFortsFaiblesType[]
 }

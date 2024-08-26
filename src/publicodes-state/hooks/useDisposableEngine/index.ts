@@ -19,6 +19,7 @@ export default function useDisposableEngine({ rules, situation }: Props) {
 
   const engine = useMemo(() => {
     return new Engine<DottedName>(rules ?? contextRules, {
+      logger: { warn: () => {}, error: () => {}, log: () => {} },
       strict: {
         situation: false,
         noOrphanRule: false,

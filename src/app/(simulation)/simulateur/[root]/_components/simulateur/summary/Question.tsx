@@ -52,7 +52,6 @@ export default function Question({ question, toggleQuestionList }: Props) {
           ? getBackgroundColor(category)
           : getBackgroundLightColor(category),
         getTextDarkColor(category)
-        // statusClassNames[status]
       )}
       onClick={() => {
         if (isDebug) {

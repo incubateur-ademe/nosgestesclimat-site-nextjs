@@ -51,6 +51,7 @@ export function useSetCurrentSimulationFromParams() {
     initSimulation(simulation)
     setIsCorrectSimulationSet(true)
 
+    // We delete the query params and reload the page
     window.location.href = pathname
   }, [
     simulations,

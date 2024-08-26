@@ -1,4 +1,3 @@
-import FilAriane from '@/components/layout/FilAriane'
 import { getGeolocation } from '@/helpers/getGeolocation'
 import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
@@ -107,8 +106,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           <MainLayoutProviders
             region={region}
             migrationInstructions={migrationInstructions}>
-            <FilAriane />
-
             {children}
             <Footer />
           </MainLayoutProviders>

@@ -1,5 +1,6 @@
 'use client'
 
+import { carboneMetric } from '@/constants/metric'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import { Metric } from '@/publicodes-state/types'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -20,7 +21,9 @@ type ActionObject = {
  *
  * Not really used for now but will be essential when we redo the actions page
  */
-export default function useActions({ metric }: Props = { metric: 'carbone' }) {
+export default function useActions(
+  { metric }: Props = { metric: carboneMetric }
+) {
   const { engine } = useContext(SimulationContext)
 
   const { getNumericValue } = useEngine({ metric })

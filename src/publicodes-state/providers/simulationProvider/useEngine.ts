@@ -1,3 +1,4 @@
+import { carboneMetric } from '@/constants/metric'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
 import {
   DottedName,
@@ -52,7 +53,7 @@ export function useEngine(rules: NGCRules) {
   const pristineEngine = useMemo(() => engine.shallowCopy(), [engine])
 
   const safeEvaluate = useCallback(
-    (expr: PublicodesExpression, metric: Metric = 'carbone') => {
+    (expr: PublicodesExpression, metric: Metric = carboneMetric) => {
       const exprWithContext = {
         valeur: expr,
         contexte: {

@@ -4,19 +4,23 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
+import Modal from '@/design-system/modals/Modal'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useEffect } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
-import SyncIndicator from './saveViaEmail/SyncIndicator'
 
+type Props = {
+  isOpen: boolean
+  closeModal: () => void
+}
 type Inputs = {
   email?: string
 }
 
-export default function SaveViaEmail() {
+export default function SaveModal({ isOpen, closeModal }: Props) {
   const currentSimulation = useCurrentSimulation()
 
   const { user, updateEmail } = useUser()
@@ -64,13 +68,29 @@ export default function SaveViaEmail() {
   const { isIframeOnlySimulation } = useIframe()
   if (isIframeOnlySimulation) return null
 
-  if (currentSimulation.savedViaEmail) {
-    return (
-      <div
-        className="short:py-2 relative max-w-xl rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-6"
-        id="email-block">
+  return (
+    <Modal
+      isOpen={isOpen}
+      closeModal={closeModal}
+      buttons={
+        currentSimulation.savedViaEmail ? (
+          <Button onClick={closeModal}>Continuer mon test</Button>
+        ) : (
+          <Button
+            type="submit"
+            form={'save-form'}
+            disabled={isPending}
+            className="inline">
+            <Trans>
+              Sauvegarder{' '}
+              <span className="hidden lg:inline">ma progression</span>
+            </Trans>
+          </Button>
+        )
+      }>
+      {currentSimulation.savedViaEmail ? (
         <Title
-          tag="h3"
+          tag="h2"
           hasSeparator={false}
           subtitle={
             <Trans>
@@ -80,53 +100,39 @@ export default function SaveViaEmail() {
           }>
           <Trans>Votre simulation est sauvegardée !</Trans>
         </Title>
-        <SyncIndicator />
-      </div>
-    )
-  }
-
-  return (
-    <div
-      className="short:py-2 relative max-w-xl rounded-xl border-2 border-primary-50 bg-white px-4 py-6"
-      id="email-block">
-      <form
-        id="newsletter-form"
-        className="flex h-full flex-col items-start"
-        onSubmit={handleSubmit(onSubmit)}>
-        <Title
-          tag="h3"
-          subtitle={
-            <Trans>
-              Recevez par email un lien pour reprendre votre test plus tard.
-            </Trans>
-          }>
-          <Trans>Sauvegarder ma progression</Trans>
-        </Title>
-
-        <div className="flex w-full flex-col items-start gap-4">
-          <TextInputGroup
-            required
-            type="email"
-            aria-label="Entrez votre adresse email"
-            {...register('email')}
-          />
-
-          <Button
-            type="submit"
-            disabled={isPending}
-            className="mt-auto items-start">
-            <Trans>Sauvegarder</Trans>
-          </Button>
-
-          {isError && (
-            <p className="mt-4 text-sm text-red-700">
+      ) : (
+        <form
+          id="save-form"
+          className="flex h-full flex-col items-start"
+          onSubmit={handleSubmit(onSubmit)}>
+          <Title
+            tag="h2"
+            subtitle={
               <Trans>
-                Une erreur s'est produite au moment de la sauvegarde.
+                Recevez par email un lien pour reprendre votre test plus tard.
               </Trans>
-            </p>
-          )}
-        </div>
-      </form>
-    </div>
+            }>
+            <Trans>Reprendre plus tard</Trans>
+          </Title>
+
+          <div className="flex w-full flex-col items-start gap-4">
+            <TextInputGroup
+              required
+              type="email"
+              aria-label="Entrez votre adresse email"
+              {...register('email')}
+            />
+
+            {isError && (
+              <p className="mt-4 text-sm text-red-700">
+                <Trans>
+                  Une erreur s'est produite au moment de la sauvegarde.
+                </Trans>
+              </p>
+            )}
+          </div>
+        </form>
+      )}
+    </Modal>
   )
 }

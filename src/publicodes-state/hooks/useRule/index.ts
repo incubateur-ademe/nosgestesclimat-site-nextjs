@@ -1,5 +1,6 @@
 'use client'
 
+import { carboneMetric } from '@/constants/metric'
 import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
@@ -22,7 +23,7 @@ import useValue from './useValue'
  */
 export default function useRule(
   dottedName: DottedName,
-  metric: Metric = 'carbone'
+  metric: Metric = carboneMetric
 ) {
   const {
     engine,

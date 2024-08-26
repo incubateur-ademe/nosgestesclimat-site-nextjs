@@ -1,13 +1,16 @@
 import { orderedCategories } from '@/constants/orderedCategories'
 import getSomme from '@/publicodes-state/helpers/getSomme'
-import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import {
+  DottedName,
+  NGCRuleNode,
+  NGCRulesNodes,
+} from '@incubateur-ademe/nosgestesclimat'
 import * as Sentry from '@sentry/react'
 import { utils } from 'publicodes'
 import { useMemo } from 'react'
-import { ParsedRules } from '../../types'
 
 type Props = {
-  parsedRules: ParsedRules
+  parsedRules: NGCRulesNodes
   everyRules: DottedName[]
   root: DottedName
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
@@ -48,7 +51,7 @@ export function useCategories({
 
   const subcategories = useMemo<Record<DottedName, DottedName[]>>(() => {
     return categories.reduce(
-      (accumulator, currentValue) => {
+      (accumulator, currentValue: DottedName) => {
         const subCat = []
         const rule = safeGetRule(currentValue)
         if (!rule) {

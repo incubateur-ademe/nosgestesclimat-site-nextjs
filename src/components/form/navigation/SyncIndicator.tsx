@@ -24,15 +24,15 @@ export default function SyncIndicator() {
   }, [initAnimation])
 
   return (
-    <div className="absolute bottom-10">
+    <div className="absolute left-0 right-0 top-0">
       {isSyncedWithBackend ? (
-        <div className="h-[3px] w-12 rounded-full bg-secondary-700" />
+        <div className="h-0.5 w-full rounded-full bg-primary-200" />
       ) : (
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: saveDelay / 1000 }}
-          className="h-[3px] w-12 origin-left rounded-full bg-secondary-700"
+          className="h-0.5 w-full origin-left rounded-full bg-primary-200"
         />
       )}
     </div>

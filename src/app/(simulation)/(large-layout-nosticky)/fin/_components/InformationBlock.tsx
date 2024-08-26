@@ -2,6 +2,7 @@
 
 import CloseIcon from '@/components/icons/Close'
 import DownArrow from '@/components/icons/DownArrow'
+import { carboneMetric } from '@/constants/metric'
 import { endToggleTargetBlock } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
@@ -25,7 +26,7 @@ export default function InformationBlock() {
       <div className="relative rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-6 short:py-2">
         {isHedgehog ? (
           <HedgehogAwareness />
-        ) : currentMetric === 'carbone' ? (
+        ) : currentMetric === carboneMetric ? (
           <CarboneTargetContent isOpen={isOpen} isHedgehog={isHedgehog} />
         ) : (
           <WaterFootprintContent isOpen={isOpen} isHedgehog={isHedgehog} />
@@ -34,7 +35,7 @@ export default function InformationBlock() {
       <Button
         color={isOpen || isHedgehog ? 'text' : 'primary'}
         className={twMerge(
-          'absolute right-4 top-4 h-12 w-12 p-0 lg:hidden',
+          'absolute right-4 top-4 h-12 w-12 !p-0 lg:hidden',
           isHedgehog ? '!block' : ''
         )}
         onClick={() => {

@@ -1,6 +1,5 @@
-import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
+import Badge from '@/design-system/layout/Badge'
 import Title from '@/design-system/layout/Title'
 import Image from 'next/image'
 
@@ -19,17 +18,14 @@ export default function WaterActions() {
             végétaux,
           </strong>{' '}
           que ce soit pour nous alimenter, pour nourrir le bétail, ou pour
-          obtenir la matière première de nombres de nos vêtements.
+          obtenir la matière première de nombre de nos vêtements.
         </Trans>
       </p>
       <p className="mb-6">
         <Trans>Retrouvez nos conseils dans ces articles :</Trans>
       </p>
       <div className="mb-4 flex justify-center gap-4">
-        <Link
-          href={'/blog/empreinte-eau-alimentation'}
-          target="_blank"
-          className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
+        <div className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
             <Image
               src="/images/blog/erda-estremera-demenagement.jpg"
@@ -39,17 +35,18 @@ export default function WaterActions() {
               alt={`Les 4 gestes pour réduire l’empreinte eau de mon alimentation`}
             />
             <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
-              Les 4 gestes pour réduire l’empreinte eau de mon alimentation
+              <Trans>
+                Les 4 gestes pour réduire l’empreinte eau de mon alimentation
+              </Trans>
             </p>
           </div>
-          <div className="text-center text-sm text-primary-700 underline">
-            Lire l'article <ExternalLinkIcon className="stroke-primary-700" />
+          <div className="flex justify-center">
+            <Badge size="sm">
+              <Trans>Bientôt disponible !</Trans>
+            </Badge>
           </div>
-        </Link>
-        <Link
-          href={'/blog/empreinte-eau-textile'}
-          target="_blank"
-          className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
+        </div>
+        <div className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
             {' '}
             <Image
@@ -60,13 +57,17 @@ export default function WaterActions() {
               alt={`Les 4 gestes pour réduire l’empreinte eau de mon alimentation`}
             />
             <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
-              Les 3 réflexes à adopter pour une garde-robe économe en eau
+              <Trans>
+                Les 3 réflexes à adopter pour une garde-robe économe en eau
+              </Trans>
             </p>
           </div>
-          <div className="text-center text-sm text-primary-700 underline">
-            Lire l'article <ExternalLinkIcon className="stroke-primary-700" />
+          <div className="flex justify-center">
+            <Badge size="sm">
+              <Trans>Bientôt disponible !</Trans>
+            </Badge>
           </div>
-        </Link>
+        </div>
       </div>
     </div>
   )

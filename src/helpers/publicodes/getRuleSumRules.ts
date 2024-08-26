@@ -5,9 +5,8 @@ export function getRuleSumRules(rule: NGCRuleNode): DottedName[] | undefined {
   const somme = getSomme(rule.rawNode)
 
   if (!somme) {
-    return undefined
+    return
   }
 
-  // TODO : use `utils.disambiguateReference` here
-  return somme.map((name) => `${rule.dottedName} . ${name}`) as DottedName[]
+  return somme.map((name) => `${rule.dottedName} . ${name}` as DottedName)
 }

@@ -1,5 +1,6 @@
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/Trans'
+import { carboneMetric } from '@/constants/metric'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { Entries } from '@/publicodes-state/types'
 import { SimulationRecap } from '@/types/organisations'
@@ -20,14 +21,24 @@ function formatSimulationRecaps(simulationRecaps: SimulationRecap[]) {
   const result = simulationRecaps.reduce(
     (acc, simulation) => {
       return {
-        bilan: acc.bilan + simulation.bilan,
-        transport: acc.transport + simulation?.categories?.transport,
-        logement: acc.logement + simulation?.categories?.logement,
-        alimentation: acc.alimentation + simulation?.categories?.alimentation,
-        divers: acc.divers + simulation?.categories?.divers,
+        bilan: acc.bilan + simulation.computedResults[carboneMetric].bilan,
+        transport:
+          acc.transport +
+          simulation.computedResults[carboneMetric].categories?.transport,
+        logement:
+          acc.logement +
+          simulation.computedResults[carboneMetric].categories?.logement,
+        alimentation:
+          acc.alimentation +
+          simulation.computedResults[carboneMetric].categories?.alimentation,
+        divers:
+          acc.divers +
+          simulation.computedResults[carboneMetric].categories?.divers,
         'services sociétaux':
           acc['services sociétaux'] +
-          simulation?.categories?.['services sociétaux'],
+          simulation.computedResults[carboneMetric].categories?.[
+            'services sociétaux'
+          ],
       }
     },
     {

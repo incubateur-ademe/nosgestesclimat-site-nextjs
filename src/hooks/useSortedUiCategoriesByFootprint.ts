@@ -1,3 +1,4 @@
+import { eauMetric } from '@/constants/metric'
 import { useEngine, useSimulation } from '@/publicodes-state'
 import { Metric } from '@/publicodes-state/types'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -13,7 +14,7 @@ export function useSortedUiCategoriesByFootprint({ metric }: Props = {}) {
   // This is temporary until we decide if we want to show the repas categories in the water footprint
   const everyUiCategoriesWithRepasAjusted = useMemo(
     () =>
-      metric === 'eau'
+      metric === eauMetric
         ? ([
             ...everyUiCategories.filter(
               (category) =>

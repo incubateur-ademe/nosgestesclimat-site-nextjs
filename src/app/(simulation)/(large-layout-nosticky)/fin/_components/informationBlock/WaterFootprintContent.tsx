@@ -1,5 +1,3 @@
-import Link from '@/components/Link'
-import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
@@ -11,7 +9,7 @@ type Props = {
 }
 
 const title = (
-  <span className="lg:tracking-tight	">
+  <span className="pr-16	md:pr-0 lg:tracking-tight">
     <Trans>
       <strong className="font-black text-secondary-700">
         L’empreinte eau,
@@ -41,60 +39,75 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           isOpen || isHedgehog ? 'block' : 'hidden'
         )}>
         <p>
-          L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et
-          distribuer les biens et services de votre quotidien. Par exemple il
-          faut de l’eau :
+          <Trans>
+            L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire
+            et distribuer les biens et services de votre quotidien. Par exemple
+            il faut de l’eau pour :
+          </Trans>
         </p>
         <ul className="mb-4">
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">🍅</Emoji>
             <span className="flex-1">
-              pour les{' '}
-              <strong className="text-secondary-700">
-                fruits, légumes et céréales
-              </strong>{' '}
-              que vous mangez
+              <Trans>
+                les{' '}
+                <strong className="text-secondary-700">
+                  fruits, légumes et céréales
+                </strong>{' '}
+                que vous mangez
+              </Trans>
             </span>
           </li>
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">👕</Emoji>
             <span className="flex-1">
-              pour la culture du{' '}
-              <strong className="text-secondary-700">coton</strong> que vous
-              portez
+              <Trans>
+                la culture du{' '}
+                <strong className="text-secondary-700">coton</strong> que vous
+                portez
+              </Trans>
             </span>
           </li>
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">🐮</Emoji>
             <span className="flex-1">
-              pour l’alimentation des{' '}
-              <strong className="text-secondary-700">animaux</strong> que vous
-              consommez
+              <Trans>
+                l’alimentation des{' '}
+                <strong className="text-secondary-700">animaux</strong> que vous
+                consommez
+              </Trans>
             </span>
           </li>
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">📱</Emoji>
             <span className="flex-1">
-              pour l’extraction des matériaux de vos{' '}
-              <strong className="text-secondary-700">
-                appareils numériques
-              </strong>
+              <Trans>
+                l’extraction des matériaux de vos{' '}
+                <strong className="text-secondary-700">
+                  appareils numériques
+                </strong>
+              </Trans>
             </span>
           </li>
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">⚡️</Emoji>
             <span className="flex-1">
-              pour la production de votre{' '}
-              <strong className="text-secondary-700">électricité</strong>
+              <Trans>
+                la production de votre{' '}
+                <strong className="text-secondary-700">électricité</strong>
+              </Trans>
+            </span>
+          </li>
+          <li className="mb-1 flex items-start gap-3">
+            <Emoji className="mt-1 text-2xl">🚫</Emoji>
+            <span className="flex-1">
+              <Trans>
+                attention : l'eau domestique (par exemple l’eau de vos douches)
+                ne fait pas partie de l'empreinte eau
+              </Trans>
             </span>
           </li>
         </ul>
-        <div className="flex justify-end">
-          <Link className="text-sm" href="/empreinte-eau" target="_blank">
-            <Trans>En savoir plus</Trans>{' '}
-            <ExternalLinkIcon className="stroke-primary-700" />
-          </Link>
-        </div>
       </div>
     </>
   )

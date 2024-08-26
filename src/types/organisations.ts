@@ -1,5 +1,20 @@
-import { Simulation, Situation } from '@/publicodes-state/types'
-import { DottedName, FunFacts } from '@incubateur-ademe/nosgestesclimat'
+import {
+  ComputedResults,
+  Simulation,
+  Situation,
+} from '@/publicodes-state/types'
+import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
+
+export type OrganisationSimulation = Simulation & {
+  bilan: number
+  categories: {
+    transports: number
+    logement: number
+    alimentation: number
+    divers: number
+    services: number
+  }
+}
 
 export type OrganisationAdministrator = {
   name?: string
@@ -44,8 +59,7 @@ export type Organisation = {
 }
 
 export type SimulationRecap = {
-  bilan: number
-  categories: Record<DottedName, number>
+  computedResults: ComputedResults
   defaultAdditionalQuestionsAnswers: Record<string, number | string>
   customAdditionalQuestionsAnswers: Record<string, number | string>
   progression: number
