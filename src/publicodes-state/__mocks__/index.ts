@@ -1,6 +1,7 @@
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr.json'
 import Engine from 'publicodes'
+import { getSubcategories } from '../helpers/getSubcategories'
 import { Situation } from '../types'
 
 const engine = new Engine(rules)
@@ -13,8 +14,10 @@ export const useTempEngine = jest.fn(() => {
 })
 
 export const useDisposableEngine = jest.fn(() => {
+  const parsedRules = engine.getParsedRules()
   const engineEvaluate = engine.evaluate.bind(engine)
   const engineSetSituation = engine.setSituation.bind(engine)
+  const engineGetRule = engine.getRule.bind(engine)
 
   return {
     getValue: (dottedName: DottedName) => {
@@ -27,6 +30,12 @@ export const useDisposableEngine = jest.fn(() => {
     updateSituation: (newSituation: Situation) =>
       engineSetSituation(newSituation, {
         keepPreviousSituation: true,
+      }),
+    getSubcategories: (dottedName: DottedName) =>
+      getSubcategories({
+        dottedName,
+        getRule: engineGetRule,
+        parsedRules,
       }),
   }
 })

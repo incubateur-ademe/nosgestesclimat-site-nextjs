@@ -1,3 +1,4 @@
+import { getSubcategories } from '@/publicodes-state/helpers/getSubcategories'
 import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
@@ -15,7 +16,11 @@ type Props = {
  * Very ressource intensive. Use with caution
  */
 export default function useDisposableEngine({ rules, situation }: Props) {
-  const { rules: contextRules, safeGetRule } = useContext(SimulationContext)
+  const {
+    rules: contextRules,
+    safeGetRule,
+    parsedRules,
+  } = useContext(SimulationContext)
 
   const engine = useMemo(() => {
     return new Engine<DottedName>(rules ?? contextRules, {
@@ -41,13 +46,15 @@ export default function useDisposableEngine({ rules, situation }: Props) {
     engine.setSituation(newSituation, { keepPreviousSituation: true })
   }
 
-  const getSubcategories = (dottedName: DottedName): DottedName[] =>
-    safeGetRule(dottedName)?.rawNode?.formule?.somme
-
   return {
     engine,
     getValue,
     updateSituation,
-    getSubcategories,
+    getSubcategories: (dottedName: DottedName) =>
+      getSubcategories({
+        dottedName,
+        getRule: safeGetRule,
+        parsedRules,
+      }),
   }
 }

@@ -1,22 +1,19 @@
 import { defaultMetric, metrics } from '@/constants/metric'
-import { getSubcategoriesFromRule } from '@/helpers/publicodes/getSubcategoriesFromRule'
-import { useCurrentSimulation } from '@/publicodes-state'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { useCurrentSimulation, useEngine } from '@/publicodes-state'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import {
   ComputedResults,
   ComputedResultsFootprint,
   Metric,
   NGCEvaluatedNode,
-  NGCRuleNode,
-  DottedName as OldDottedName,
 } from '../../types'
 
 type Props = {
-  categories: OldDottedName[]
+  categories: DottedName[]
   isEngineInitialized: boolean
   safeEvaluate: (
-    ruleName: OldDottedName,
+    ruleName: DottedName,
     metric: Metric
   ) => NGCEvaluatedNode | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
@@ -25,13 +22,14 @@ export function useSetComputedResults({
   categories,
   safeEvaluate,
   isEngineInitialized,
-  safeGetRule,
 }: Props) {
   const { situation, updateCurrentSimulation } = useCurrentSimulation()
 
+  const { getSubcategories } = useEngine()
+
   // little helper function to get the numeric value of a dottedName (it is a copy of the one in useEngine)
   const getNumericValue = useCallback(
-    (dottedName: OldDottedName, metric: Metric): number => {
+    (dottedName: DottedName, metric: Metric): number => {
       // If the engine is not initialized, we return 0
       if (!isEngineInitialized) return 0
 
@@ -49,11 +47,7 @@ export function useSetComputedResults({
           (acc, category) => {
             acc.categories[category] = getNumericValue(category, metric)
 
-            const subcategories = getSubcategoriesFromRule({
-              category,
-              getRule: ((dottedName: DottedName) =>
-                safeGetRule(dottedName)) as any,
-            })
+            const subcategories = getSubcategories(category)
 
             if (!subcategories) return acc
 
@@ -63,7 +57,7 @@ export function useSetComputedResults({
 
                 return subAcc
               },
-              {} as { [key in OldDottedName]: number }
+              {} as { [key in DottedName]: number }
             )
 
             return acc
