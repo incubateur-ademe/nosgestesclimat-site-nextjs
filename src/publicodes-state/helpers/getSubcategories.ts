@@ -10,21 +10,33 @@ export function getSubcategories({
   getRule: (dottedName: DottedName) => NGCRuleNode | null
   parsedRules: Record<string, NGCRuleNode>
 }): DottedName[] | undefined {
-  // TO FIX: The `somme` cannot be in a formula.
-  const dottedNameFormula = getRule(dottedName)?.rawNode?.formule
+  const ruleNode = getRule(dottedName)
+
+  if (!ruleNode || !ruleNode.rawNode) {
+    return []
+  }
+
+  const dottedNameSomme = ruleNode.rawNode.somme
+
+  const dottedNameFormula = ruleNode.rawNode.formule
+
+  // TO FIX: Sometimes the `somme` isn't in the formula.
   if (
-    !dottedNameFormula ||
-    typeof dottedNameFormula === 'string' ||
-    !Array.isArray(dottedNameFormula.somme)
+    !dottedNameSomme && // No `somme` directly in the rule
+    (!dottedNameFormula ||
+      typeof dottedNameFormula === 'string' ||
+      !Array.isArray(dottedNameFormula.somme)) // No `somme` in the formula or invalid format
   ) {
     return []
   }
 
-  return dottedNameFormula.somme.map((potentialPartialRuleName: DottedName) =>
-    utils.disambiguateReference(
-      parsedRules,
-      dottedName,
-      potentialPartialRuleName
-    )
+  // TODO: Remove this check when the `somme` is always in the formula
+  return (dottedNameSomme || dottedNameFormula.somme).map(
+    (potentialPartialRuleName: DottedName) =>
+      utils.disambiguateReference(
+        parsedRules,
+        dottedName,
+        potentialPartialRuleName
+      )
   )
 }
