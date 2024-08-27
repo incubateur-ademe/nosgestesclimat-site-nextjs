@@ -2,7 +2,6 @@ import { defaultMetric } from '@/constants/metric'
 import { Participant } from '@/types/groups'
 
 export const getTopThreeAndRestMembers = (members: Participant[] = []) => {
-  console.log(members)
   const sortedMembers = members.sort((memberA, memberB) => {
     const totalA = memberA?.simulation?.computedResults?.[defaultMetric]?.bilan
     const totalB = memberB?.simulation?.computedResults?.[defaultMetric]?.bilan
