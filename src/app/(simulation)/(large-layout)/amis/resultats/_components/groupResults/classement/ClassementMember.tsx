@@ -9,22 +9,11 @@ import { useRemoveParticipant } from '@/hooks/groups/useRemoveParticipant'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Group } from '@/types/groups'
 import { captureException } from '@sentry/nextjs'
-import { useQueryClient } from '@tanstack/react-query'
+import { QueryObserverResult } from '@tanstack/react-query'
 import { JSX, useState } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { twMerge } from 'tailwind-merge'
-
-type Props = {
-  rank: JSX.Element | string
-  name: string
-  quantity: JSX.Element | string
-  isTopThree?: boolean
-  isCurrentMember?: boolean
-  group: Group
-  userId: string
-  numberOfParticipants?: number
-}
 
 export default function ClassementMember({
   rank,
@@ -35,14 +24,23 @@ export default function ClassementMember({
   name,
   userId,
   numberOfParticipants,
-}: Props) {
+  refetchGroup,
+}: {
+  rank: JSX.Element | string
+  name: string
+  quantity: JSX.Element | string
+  isTopThree?: boolean
+  isCurrentMember?: boolean
+  group: Group
+  userId: string
+  numberOfParticipants?: number
+  refetchGroup: () => Promise<QueryObserverResult<Group, Error>>
+}) {
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false)
 
   const { t } = useClientTranslation()
 
   const { isGroupOwner } = useIsGroupOwner({ group })
-
-  const { invalidateQueries } = useQueryClient()
 
   const { mutateAsync: removePartipant } = useRemoveParticipant()
 
@@ -55,9 +53,7 @@ export default function ClassementMember({
         userId: userId || '',
       })
 
-      await invalidateQueries({
-        queryKey: ['group', group?._id],
-      })
+      await refetchGroup()
 
       setIsConfirmationModalOpen(false)
 
@@ -66,7 +62,6 @@ export default function ClassementMember({
       toast.error(t('Une erreur est survenue'), {
         autoClose: false,
       })
-      console.log(error)
       captureException(error)
     }
   }

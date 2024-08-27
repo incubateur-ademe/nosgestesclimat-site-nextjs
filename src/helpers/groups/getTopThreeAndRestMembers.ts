@@ -4,7 +4,6 @@ import { temp_getComputedResults } from '../simulation/temp_getComputedResults'
 export const getTopThreeAndRestMembers = (members: Participant[] = []) => {
   console.log(members)
   const sortedMembers = members.sort((memberA, memberB) => {
-    console.log(temp_getComputedResults(memberA?.simulation))
     const totalA = temp_getComputedResults(memberA?.simulation)?.bilan
     const totalB = temp_getComputedResults(memberB?.simulation)?.bilan
 

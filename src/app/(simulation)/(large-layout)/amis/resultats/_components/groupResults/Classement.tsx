@@ -10,9 +10,16 @@ import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprin
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
 import { temp_getComputedResults } from '@/helpers/simulation/temp_getComputedResults'
 import { useUser } from '@/publicodes-state'
+import { QueryObserverResult } from '@tanstack/react-query'
 import ClassementMember from './classement/ClassementMember'
 
-export default function Classement({ group }: { group: Group }) {
+export default function Classement({
+  group,
+  refetchGroup,
+}: {
+  group: Group
+  refetchGroup: () => Promise<QueryObserverResult<Group, Error>>
+}) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   const {
@@ -59,8 +66,6 @@ export default function Classement({ group }: { group: Group }) {
             temp_getComputedResults(participant?.simulation)?.bilan ?? ''
           )
 
-          console.log(temp_getComputedResults(participant?.simulation))
-
           const quantity = temp_getComputedResults(participant?.simulation)
             ?.bilan ? (
             <span className="m-none leading-[160%]">
@@ -82,6 +87,7 @@ export default function Classement({ group }: { group: Group }) {
               group={group}
               userId={participant.userId}
               numberOfParticipants={group.participants.length}
+              refetchGroup={refetchGroup}
             />
           )
         })}
@@ -122,6 +128,7 @@ export default function Classement({ group }: { group: Group }) {
                     isCurrentMember={participant.userId === userId}
                     group={group}
                     userId={participant.userId}
+                    refetchGroup={refetchGroup}
                   />
                 )
               })}
