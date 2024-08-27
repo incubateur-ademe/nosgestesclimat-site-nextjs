@@ -57,11 +57,10 @@ export default function ActionCard({
   const { dottedName, title, missingVariables, traversedVariables } = action
 
   const { icônes: icons } = rule || action
-
-  const remainingQuestions = filterRelevantMissingVariables(
-    Object.keys(missingVariables || {}) as DottedName[],
-    extendedFoldedSteps
-  )
+  const remainingQuestions = filterRelevantMissingVariables({
+    missingVariables: Object.keys(missingVariables || {}) as DottedName[],
+    extendedFoldedSteps,
+  })
 
   const nbRemainingQuestions = remainingQuestions?.length
 

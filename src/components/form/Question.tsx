@@ -77,7 +77,7 @@ export default function Question({
 
   return (
     <>
-      <div className={twMerge('mb-6', className)}>
+      <div className={twMerge('mb-6 flex flex-col items-start', className)}>
         <Category question={question} />
         <Label question={question} label={label} description={description} />
 
