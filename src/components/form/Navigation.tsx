@@ -24,13 +24,11 @@ export default function Navigation({
   question,
   tempValue,
   onComplete = () => '',
-  className,
   isEmbedded,
 }: {
   question: DottedName
   tempValue?: number
   onComplete?: () => void
-  className?: string
   isEmbedded?: boolean
 }) {
   const { t } = useClientTranslation()
@@ -123,8 +121,7 @@ export default function Navigation({
     <div
       className={twMerge(
         'fixed bottom-0 left-0 right-0 z-50 bg-gray-100 py-3',
-        isEmbedded && 'static bg-primary-100 p-0',
-        className
+        isEmbedded && 'static bg-primary-100 p-0'
       )}>
       <SyncIndicator />
 
