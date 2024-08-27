@@ -25,16 +25,17 @@ export default function LaconicRanking({ group }: Props) {
   }
 
   const particpantsOrdered = group.participants.sort((a, b) => {
-    const computedResultsA =
-      a.simulation?.computedResults?.[defaultMetric]?.bilan
-    const computedResultsB =
-      b.simulation?.computedResults?.[defaultMetric]?.bilan
+    const computedResultsA = a.simulation?.computedResults
+    const computedResultsB = b.simulation?.computedResults
 
     if (!computedResultsA || !computedResultsB) {
       return 0
     }
 
-    return computedResultsA < computedResultsB ? -1 : 1
+    return computedResultsA?.[defaultMetric]?.bilan <
+      computedResultsB?.[defaultMetric]?.bilan
+      ? -1
+      : 1
   })
 
   // Display a list of participants with their rank and an emoji medal for the first three
