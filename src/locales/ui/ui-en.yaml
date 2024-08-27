@@ -1136,3 +1136,4 @@ entries:
   Passer la question: Skip the question
   Une erreur s'est produite au moment de la sauvegarde.: An error has occurred during backup.
   Veuillez entrer un nombre positif.: Please enter a positive number.
+  '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} on your footprint'

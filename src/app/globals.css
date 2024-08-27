@@ -631,3 +631,8 @@ html[data-useragent*='Trident'] #js {
   @apply bg-gray-100 !important;
   opacity: 1 !important;
 }
+
+.animation-once {
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
