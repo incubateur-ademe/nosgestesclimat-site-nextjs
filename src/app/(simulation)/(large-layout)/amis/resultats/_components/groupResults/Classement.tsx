@@ -6,9 +6,9 @@ import { useState } from 'react'
 import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
 
+import { defaultMetric } from '@/constants/metric'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
-import { temp_getComputedResults } from '@/helpers/simulation/temp_getComputedResults'
 import { useUser } from '@/publicodes-state'
 import { QueryObserverResult } from '@tanstack/react-query'
 import ClassementMember from './classement/ClassementMember'
@@ -63,11 +63,13 @@ export default function Classement({
           }
 
           const { formattedValue, unit } = formatCarbonFootprint(
-            temp_getComputedResults(participant?.simulation)?.bilan ?? ''
+            participant?.simulation?.computedResults?.[defaultMetric]?.bilan ??
+              ''
           )
 
-          const quantity = temp_getComputedResults(participant?.simulation)
-            ?.bilan ? (
+          const quantity = participant?.simulation?.computedResults?.[
+            defaultMetric
+          ]?.bilan ? (
             <span className="m-none leading-[160%]">
               <strong>{formattedValue}</strong>{' '}
               <span className="text-sm font-light">{unit}</span>
@@ -105,12 +107,13 @@ export default function Classement({
                 const rank = `${index + 1 + topThreeMembers?.length}.`
 
                 const { formattedValue, unit } = formatCarbonFootprint(
-                  temp_getComputedResults(participant?.simulation)?.bilan ?? ''
+                  participant?.simulation?.computedResults?.[defaultMetric]
+                    ?.bilan ?? ''
                 )
 
-                const quantity = temp_getComputedResults(
-                  participant?.simulation
-                )?.bilan ? (
+                const quantity = participant?.simulation?.computedResults?.[
+                  defaultMetric
+                ]?.bilan ? (
                   <span className="leading-[160%]">
                     <strong>{formattedValue}</strong>{' '}
                     <span className="text-sm font-light">{unit}</span>

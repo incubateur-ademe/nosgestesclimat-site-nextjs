@@ -1,11 +1,11 @@
+import { defaultMetric } from '@/constants/metric'
 import { Participant } from '@/types/groups'
-import { temp_getComputedResults } from '../simulation/temp_getComputedResults'
 
 export const getTopThreeAndRestMembers = (members: Participant[] = []) => {
   console.log(members)
   const sortedMembers = members.sort((memberA, memberB) => {
-    const totalA = temp_getComputedResults(memberA?.simulation)?.bilan
-    const totalB = temp_getComputedResults(memberB?.simulation)?.bilan
+    const totalA = memberA?.simulation?.computedResults?.[defaultMetric]?.bilan
+    const totalB = memberB?.simulation?.computedResults?.[defaultMetric]?.bilan
 
     return totalA !== undefined && totalB !== undefined ? totalA - totalB : -1
   })
@@ -14,7 +14,8 @@ export const getTopThreeAndRestMembers = (members: Participant[] = []) => {
     (acc, member, index) => {
       if (
         index < 3 &&
-        temp_getComputedResults(member?.simulation)?.bilan !== undefined
+        member?.simulation?.computedResults?.[defaultMetric]?.bilan !==
+          undefined
       ) {
         acc.topThreeMembers.push(member)
       } else {
