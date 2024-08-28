@@ -49,7 +49,7 @@ export default function TotalFootprintNumber({
     totalFootprintValue !== totalFootprintValueMinusActions
 
   return (
-    <div className="flex items-center gap-2 lg:block">
+    <div className="flex items-center gap-2 lg:block" aria-live="polite">
       {shouldDisplayTotalWithoutActions && (
         <strong className="mr-4 block font-black leading-none text-slate-500 line-through lg:inline lg:text-4xl short:text-3xl">
           {formatedTotalFootprintValue}

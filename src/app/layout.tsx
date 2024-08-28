@@ -4,13 +4,11 @@ import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationIn
 import Footer from '@/components/layout/Footer'
 import '@/locales/initClient'
 import '@/locales/initServer'
-import { ErrorBoundary } from '@sentry/nextjs'
 import { dir } from 'i18next'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { PropsWithChildren } from 'react'
-import { ErrorFallback } from './_components/ErrorFallback'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 
@@ -102,14 +100,12 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           b.setAttribute('data-useragent', navigator.userAgent);
         `}</Script>
 
-        <ErrorBoundary showDialog fallback={ErrorFallback}>
-          <MainLayoutProviders
-            region={region}
-            migrationInstructions={migrationInstructions}>
-            {children}
-            <Footer />
-          </MainLayoutProviders>
-        </ErrorBoundary>
+        <MainLayoutProviders
+          region={region}
+          migrationInstructions={migrationInstructions}>
+          {children}
+          <Footer />
+        </MainLayoutProviders>
 
         <div id="modal" />
       </body>
