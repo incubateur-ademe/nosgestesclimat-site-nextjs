@@ -1,8 +1,9 @@
-import withBundleAnalyzer from '@next/bundle-analyzer'
-import withMDX from '@next/mdx'
-import { withSentryConfig } from '@sentry/nextjs'
-import redirects from './config/redirects.js'
-import remoteImagesPatterns from './config/remoteImagesPatterns.js'
+/* eslint-disable @typescript-eslint/no-var-requires */
+const withBundleAnalyzer = require('@next/bundle-analyzer')
+const withMDX = require('@next/mdx')
+const { withSentryConfig } = require('@sentry/nextjs')
+const redirects = require('./config/redirects.js')
+const remoteImagesPatterns = require('./config/remoteImagesPatterns.js')
 
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
