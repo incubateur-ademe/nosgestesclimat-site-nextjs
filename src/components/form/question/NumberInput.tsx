@@ -26,6 +26,15 @@ export default function NumberInput({
 }: HTMLAttributes<HTMLInputElement> & Props) {
   const locale = useLocale()
 
+  const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.target.value
+    if (inputValue === '') {
+      setValue(undefined)
+    } else {
+      setValue(Number(inputValue))
+    }
+  }
+
   return (
     <div
       className={twMerge(`flex items-center justify-start gap-1`, className)}>
@@ -43,14 +52,8 @@ export default function NumberInput({
               }) ?? '0'
             : '0'
         }
-        onChange={(event) => {
-          const inputValue = (event.target as HTMLInputElement).value
-          if (inputValue === '') {
-            setValue(undefined)
-          } else {
-            setValue(Number(inputValue))
-          }
-        }}
+        onChange={handleValueChange}
+        onInput={handleValueChange}
         id={id}
         {...props}
       />
