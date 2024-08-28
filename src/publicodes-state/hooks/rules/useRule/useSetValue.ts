@@ -1,6 +1,13 @@
 'use client'
 
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
+import getType from '@/publicodes-state/helpers/getType'
+import {
+  NGCEvaluatedNode,
+  ParsedRules,
+  Situation,
+  UpdateCurrentSimulationProps,
+} from '@/publicodes-state/types'
 import {
   DottedName,
   NGCRuleNode,
@@ -8,13 +15,6 @@ import {
 } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression, utils } from 'publicodes'
 import { useCallback } from 'react'
-import getType from '../../helpers/getType'
-import {
-  NGCEvaluatedNode,
-  ParsedRules,
-  Situation,
-  UpdateCurrentSimulationProps,
-} from '../../types'
 
 type Props = {
   dottedName: DottedName

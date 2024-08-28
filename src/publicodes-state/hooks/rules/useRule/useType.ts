@@ -1,9 +1,9 @@
 'use client'
 
+import getType from '@/publicodes-state/helpers/getType'
+import { NGCEvaluatedNode } from '@/publicodes-state/types'
 import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
-import getType from '../../helpers/getType'
-import { NGCEvaluatedNode } from '../../types'
 
 type Props = {
   dottedName: DottedName

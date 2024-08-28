@@ -41,7 +41,12 @@ const nextConfig = {
   },
   experimental: {
     outputFileTracingExcludes: {
-      '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
+      '*': [
+        '.next/cache/webpack',
+        '.git/**/*',
+        'cypress/**/*',
+        'documentation/**/*',
+      ],
       '/blog': ['public/NGC_Kit.diffusion.zip'],
       '/nouveautes': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
       '/actions/plus': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
