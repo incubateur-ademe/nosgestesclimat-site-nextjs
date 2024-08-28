@@ -7,13 +7,7 @@ export function useVigieEau(): { departements: Record<string, string>[] } {
     queryFn: () =>
       axios
         .get(`https://api.vigieau.beta.gouv.fr/api/departements`)
-        .then((res) => res.data)
-        .then((departements) =>
-          departements.filter(
-            (departement: Record<string, string>) =>
-              departement.niveauGraviteMax
-          )
-        ),
+        .then((res) => res.data),
     initialData: [],
   })
 

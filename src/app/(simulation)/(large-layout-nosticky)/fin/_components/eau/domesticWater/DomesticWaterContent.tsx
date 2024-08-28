@@ -10,7 +10,11 @@ export default function DomesticWaterContent() {
 
   // We remove the departements with the maximum level of vigilance (there is no restriction yet)
   const departementsCodes = departements
-    .filter((departement) => departement.niveauGraviteMax !== 'vigilance')
+    .filter(
+      (departement) =>
+        !!departement.niveauGraviteMax &&
+        departement.niveauGraviteMax !== 'vigilance'
+    )
     .map((departement) => departement.code)
 
   return (
