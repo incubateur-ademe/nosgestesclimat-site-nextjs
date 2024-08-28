@@ -1,5 +1,5 @@
 import Emoji from '@/design-system/utils/Emoji'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   question: DottedName

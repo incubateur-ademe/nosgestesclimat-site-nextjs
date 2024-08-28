@@ -11,10 +11,11 @@ import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule, useSimulation } from '@/publicodes-state'
 import { Metric } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 
 type Props = {
-  dottedName: string
+  dottedName: DottedName
   maxValue: number
   index?: number
   metric?: Metric

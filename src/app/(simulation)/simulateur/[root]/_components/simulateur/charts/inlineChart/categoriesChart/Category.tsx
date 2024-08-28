@@ -4,9 +4,10 @@ import {
   getFillColor,
 } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
-  category: string
+  category: DottedName
   total: number
   position: 'first' | 'middle' | 'last'
   current: boolean

@@ -1,8 +1,8 @@
 'use client'
 
 import { quizClickAnswer } from '@/constants/tracking/pages/quiz'
-import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 import Choice from './choices/Choice'
 

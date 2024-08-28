@@ -1,5 +1,6 @@
 import { Participant } from '@/types/groups'
 import { faker } from '@faker-js/faker'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import personas from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json'
 
 export function createGroup({
@@ -19,8 +20,14 @@ export function createGroup({
         foldedSteps: [],
         actionChoices: {},
         computedResults: {
-          bilan: faker.number.float(),
-          categories: {},
+          carbone: {
+            bilan: faker.number.float(),
+            categories: {} as Record<DottedName, number>,
+          },
+          eau: {
+            bilan: faker.number.float(),
+            categories: {} as Record<DottedName, number>,
+          },
         },
 
         progression: 1,

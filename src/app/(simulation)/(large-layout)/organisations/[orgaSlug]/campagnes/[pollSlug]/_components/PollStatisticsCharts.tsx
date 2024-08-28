@@ -5,6 +5,7 @@ import Trans from '@/components/translation/Trans'
 import { carboneMetric } from '@/constants/metric'
 import Separator from '@/design-system/layout/Separator'
 import { SimulationRecap } from '@/types/organisations'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 import CategoryListItem from './pollStatisticsCharts/CategoryListItem'
 import MainFootprintChart from './pollStatisticsCharts/MainFootprintChart'
@@ -19,8 +20,10 @@ export default function PollStatisticsCharts({
   const maxValueOfAllCategories = useMemo(
     () =>
       simulationRecaps?.reduce((acc, obj) => {
-        Object.keys(
-          obj.computedResults[carboneMetric].categories ?? {}
+        ;(
+          Object.keys(
+            obj.computedResults[carboneMetric].categories ?? {}
+          ) as DottedName[]
         ).forEach((category) => {
           const roundedValue = Math.round(
             obj.computedResults[carboneMetric].categories[category] / 1000
@@ -51,8 +54,10 @@ export default function PollStatisticsCharts({
   // Calculate the mean for each category
   const meanCategories = useMemo(
     () =>
-      Object.keys(
-        simulationRecaps?.[0]?.computedResults[carboneMetric].categories ?? {}
+      (
+        Object.keys(
+          simulationRecaps?.[0]?.computedResults[carboneMetric].categories ?? {}
+        ) as DottedName[]
       ).map((category) => {
         const mean = simulationRecaps?.reduce(
           (acc, obj) =>
@@ -123,8 +128,10 @@ export default function PollStatisticsCharts({
         </div>
         <ul>
           {simulationRecaps?.length > 0 &&
-            Object.keys(
-              simulationRecaps[0].computedResults[carboneMetric].categories
+            (
+              Object.keys(
+                simulationRecaps[0].computedResults[carboneMetric].categories
+              ) as DottedName[]
             ).map((category, index) => (
               <CategoryListItem
                 key={index}

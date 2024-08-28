@@ -5,13 +5,14 @@ import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
 import { SimulationRecap } from '@/types/organisations'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { t } from 'i18next'
 import RepartitionChart from './RepartitionChart'
 
 type Props = {
   simulationsRecap: SimulationRecap[]
   value: number
-  category: string
+  category: DottedName
   maxValue: number
 }
 

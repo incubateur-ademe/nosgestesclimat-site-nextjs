@@ -1,6 +1,5 @@
 'use client'
 
-import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import Trans from '@/components/translation/Trans'
 import {
   LIST_MAIN_NEWSLETTER,
@@ -12,11 +11,13 @@ import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
+import { displayErrorToast } from '@/helpers/toasts/displayErrorToast'
+import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 
@@ -61,8 +62,6 @@ export default function UserInformationForm({
   shouldForceEmailEditable = false,
   defaultValues,
 }: Props) {
-  const [isSubmitted, setIsSubmitted] = useState(false)
-
   const { t } = useClientTranslation()
 
   const { user, updateEmail, updateName } = useUser()
@@ -102,11 +101,7 @@ export default function UserInformationForm({
     )
   }, [newsletterSubscriptions, setValue, defaultValues])
 
-  const {
-    mutateAsync: updateUserSettings,
-    isPending,
-    isError,
-  } = useUpdateUserSettings({
+  const { mutateAsync: updateUserSettings, isPending } = useUpdateUserSettings({
     email: user?.email ?? '',
     userId: user?.userId,
   })
@@ -118,26 +113,29 @@ export default function UserInformationForm({
       [LIST_NOS_GESTES_LOGEMENT_NEWSLETTER]: data['newsletter-logement'],
     }
 
-    await updateUserSettings({
-      name: data.name,
-      email: data.email,
-      newsletterIds,
-    })
+    try {
+      await updateUserSettings({
+        name: data.name,
+        email: data.email,
+        newsletterIds,
+      })
 
-    if (data.email && (!user?.email || shouldForceEmailEditable)) {
-      updateEmail(data.email)
+      if (data.email && (!user?.email || shouldForceEmailEditable)) {
+        updateEmail(data.email)
+      }
+
+      if (data.name) {
+        updateName(data.name)
+      }
+
+      displaySuccessToast(t('Vos informations ont bien été mises à jour.'))
+
+      timeoutRef.current = setTimeout(() => {
+        onCompleted(data)
+      }, 2500)
+    } catch (error) {
+      displayErrorToast(t('Une erreur est survenue. Veuillez réessayer.'))
     }
-
-    if (data.name) {
-      updateName(data.name)
-    }
-
-    setIsSubmitted(true)
-
-    timeoutRef.current = setTimeout(() => {
-      setIsSubmitted(false)
-      onCompleted(data)
-    }, 2500)
   }
 
   useEffect(() => {
@@ -248,27 +246,11 @@ export default function UserInformationForm({
           <Button
             type="submit"
             className="mt-6 gap-2 self-start"
-            disabled={isPending || isSubmitted}>
+            disabled={isPending}>
             {isPending && <Loader size="sm" color="light" />}
 
             {submitLabel ?? <Trans>Mettre à jour mes informations</Trans>}
           </Button>
-
-          {isSubmitted && (
-            <p className="mt-4 flex items-center text-sm text-green-700">
-              <CheckCircleIcon className="mr-2 fill-green-700" />
-              <Trans>Modifications sauvegardées</Trans>
-            </p>
-          )}
-
-          {isError && (
-            <p className="mt-4 text-sm text-red-700">
-              <Trans>
-                Une erreur s'est produite au moment de la sauvegarde de vos
-                paramètres
-              </Trans>
-            </p>
-          )}
         </div>
       </form>
     </div>

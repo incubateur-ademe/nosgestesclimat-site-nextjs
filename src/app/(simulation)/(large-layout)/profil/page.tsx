@@ -1,3 +1,4 @@
+import ToastDisplay from '@/components/messages/ToastDisplay'
 import Trans from '@/components/translation/Trans'
 import UserInformationForm from '@/components/user/UserInformationForm'
 import Separator from '@/design-system/layout/Separator'
@@ -72,6 +73,8 @@ export default async function Profil() {
           alt={t('Une personne livrant du courrier.')}
         />
       </div>
+
+      <ToastDisplay />
     </FormProvider>
   )
 }

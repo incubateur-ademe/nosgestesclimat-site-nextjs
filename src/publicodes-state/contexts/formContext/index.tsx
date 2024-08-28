@@ -1,11 +1,12 @@
 'use client'
 
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { PropsWithChildren, useContext, useMemo } from 'react'
 import { SimulationContext } from '../simulationContext/context'
 import Provider from './Provider'
 
 type Props = {
-  root?: string
+  root?: DottedName
 }
 
 /**

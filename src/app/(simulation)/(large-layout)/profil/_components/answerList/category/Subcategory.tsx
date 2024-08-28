@@ -8,8 +8,8 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useForm, useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 import Question from './subcategory/Question'
 

@@ -1,5 +1,6 @@
 import { defaultMetric } from '@/constants/metric'
 import { Simulation } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 /**
  * Takes two Simulations and returns true if they are different, false otherwise.
@@ -18,7 +19,10 @@ export function compareTwoSimulations(
     hasChanged = true
   }
   for (const key in simulation1.situation) {
-    if (simulation1.situation[key] !== simulation2.situation[key]) {
+    if (
+      simulation1.situation[key as DottedName] !==
+      simulation2.situation[key as DottedName]
+    ) {
       hasChanged = true
       break
     }
@@ -34,7 +38,10 @@ export function compareTwoSimulations(
     }
   }
   for (const key in simulation1.actionChoices) {
-    if (simulation1.actionChoices[key] !== simulation2.actionChoices[key]) {
+    if (
+      simulation1.actionChoices[key as DottedName] !==
+      simulation2.actionChoices[key as DottedName]
+    ) {
       hasChanged = true
       break
     }
@@ -50,8 +57,10 @@ export function compareTwoSimulations(
   }
   for (const key in simulation1.computedResults[defaultMetric].categories) {
     if (
-      simulation1.computedResults[defaultMetric].categories[key] !==
-      simulation2.computedResults[defaultMetric].categories[key]
+      simulation1.computedResults[defaultMetric].categories[
+        key as DottedName
+      ] !==
+      simulation2.computedResults[defaultMetric].categories[key as DottedName]
     ) {
       hasChanged = true
       break

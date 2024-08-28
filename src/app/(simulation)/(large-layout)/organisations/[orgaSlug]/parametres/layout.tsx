@@ -1,7 +1,7 @@
+import ToastDisplay from '@/components/messages/ToastDisplay'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { PropsWithChildren } from 'react'
-import { ToastContainer } from 'react-toastify'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -21,7 +21,7 @@ export default function Layout({ children }: PropsWithChildren) {
   return (
     <>
       {children}
-      <ToastContainer />
+      <ToastDisplay />
     </>
   )
 }

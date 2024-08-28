@@ -7,8 +7,7 @@ import { useEngineSituation } from '@/publicodes-state/hooks/simulationProvider/
 import { useInternalEngine } from '@/publicodes-state/hooks/simulationProvider/useInternalEngine'
 import { useRules } from '@/publicodes-state/hooks/simulationProvider/useRules'
 import { useSetComputedResults } from '@/publicodes-state/hooks/simulationProvider/useSetComputedResults'
-import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import { DottedName } from '../../types'
+import { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { SimulationContext } from './context'
 
 type Props = {

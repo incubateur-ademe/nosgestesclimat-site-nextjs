@@ -20,7 +20,6 @@ import { formatEmail } from '@/utils/format/formatEmail'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
-import 'react-toastify/dist/ReactToastify.css'
 import DeconnexionButton from './DeconnexionButton'
 import EmailVerificationModal from './_components/EmailVerificationModal'
 import OrganisationFields from './_components/OrganisationFields'
@@ -47,7 +46,11 @@ export default function ParametresPage() {
     email: user?.organisation?.administratorEmail ?? '',
   })
 
-  const { register, handleSubmit } = useReactHookForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useReactHookForm({
     defaultValues: {
       name: organisation?.name ?? '',
       administratorName: organisation?.administrators?.[0]?.name ?? '',
@@ -197,7 +200,8 @@ export default function ParametresPage() {
 
         <OrganisationFields
           organisation={organisation}
-          register={register as any}
+          register={register}
+          errors={errors}
         />
 
         <Separator className="my-6" />

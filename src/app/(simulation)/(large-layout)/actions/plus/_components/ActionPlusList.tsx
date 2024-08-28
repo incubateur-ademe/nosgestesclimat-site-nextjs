@@ -4,11 +4,14 @@ import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useTempEngine } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
-import { NGCRule, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 
 import { Post } from '@/types/posts'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
+import {
+  DottedName,
+  NGCRule,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   actions: Post[]

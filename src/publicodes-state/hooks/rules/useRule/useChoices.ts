@@ -1,7 +1,7 @@
 'use client'
 
+import { NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
-import { NGCRuleNode } from '../../types'
 
 type Props = {
   rule: NGCRuleNode | null | any // Model shenanigans: question alimentation . local . consommation is missing "formule"

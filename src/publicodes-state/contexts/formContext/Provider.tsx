@@ -1,6 +1,8 @@
 'use client'
 
 import { useCurrentSimulation } from '@/publicodes-state'
+
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { PropsWithChildren, useContext } from 'react'
 import useCurrent from '../../hooks/formProvider/useCurrent'
 import useProgression from '../../hooks/formProvider/useProgression'
@@ -9,7 +11,7 @@ import { SimulationContext } from '../simulationContext/context'
 import FormContext from './context'
 
 type Props = {
-  root?: string
+  root?: DottedName
 }
 
 export default function FormProvider({

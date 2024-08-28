@@ -1,8 +1,9 @@
 'use client'
 
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 import getType from '../../helpers/getType'
-import { DottedName, NGCEvaluatedNode, NGCRuleNode } from '../../types'
+import { NGCEvaluatedNode } from '../../types'
 
 type Props = {
   dottedName: DottedName

@@ -13,8 +13,8 @@ import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { MouseEvent, useCallback, useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
 import ValueChangeDisplay from '../misc/ValueChangeDisplay'
@@ -154,7 +154,9 @@ export default function Navigation({
               ? t('Passer la question') + ' →'
               : t('Suivant') + ' →'}
         </Button>
-        <div className="absolute bottom-full right-8 -translate-y-4">
+        <div
+          className="absolute bottom-full left-8 -translate-y-4"
+          aria-live="polite">
           <ValueChangeDisplay />
         </div>
       </div>

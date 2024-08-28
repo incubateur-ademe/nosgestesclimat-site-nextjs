@@ -2,11 +2,12 @@ import { useRule } from '@/publicodes-state'
 
 import Label from '@/components/form/question/Label'
 import NumberInput from '@/components/form/question/NumberInput'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef } from 'react'
 
 type Props = {
-  question: string
-  assistance: string
+  question: DottedName
+  assistance: DottedName
   setTempValue?: (value: number | undefined) => void
 }
 

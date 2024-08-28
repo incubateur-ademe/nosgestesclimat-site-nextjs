@@ -125,7 +125,7 @@ module.exports = {
           '0%': { opacity: 0, transform: 'translateX(-10%)' },
           '20%': { opacity: 1 },
           '80%': { opacity: 1 },
-          '100%': { opacity: 0, transform: 'translateX(10%)' },
+          '100%': { opacity: 1, transform: 'translateX(10%)' },
         },
         iconsRotation: {
           '0%': { transform: 'rotate(0deg)' },

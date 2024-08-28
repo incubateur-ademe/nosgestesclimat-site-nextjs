@@ -1,10 +1,11 @@
 'use client'
 
 import { carboneMetric } from '@/constants/metric'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { SimulationContext } from '../../contexts/simulationContext/context'
-import { DottedName, Metric, NGCEvaluatedNode, NGCRuleNode } from '../../types'
+import { Metric, NGCEvaluatedNode } from '../../types'
 import useCurrentSimulation from '../simulation/useCurrentSimulation'
 import useChoices from './useRule/useChoices'
 import useContent from './useRule/useContent'
@@ -67,7 +68,10 @@ export default function useRule(
       dottedName,
     })
 
-  const parent = useMemo(() => utils.ruleParent(dottedName), [dottedName])
+  const parent = useMemo(
+    () => utils.ruleParent(dottedName),
+    [dottedName]
+  ) as DottedName
 
   const {
     category,

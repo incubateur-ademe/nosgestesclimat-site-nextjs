@@ -1,7 +1,7 @@
 'use client'
 
 import { useActions, useEngine } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 import RecommendedAction from './recommendedActions/RecommendedAction'
 
@@ -13,7 +13,7 @@ export default function RecommendedActions() {
     () =>
       orderedActionDottedNames
         .reduce(
-          (accumulator: string[], currentActionDottedName: DottedName) => {
+          (accumulator: DottedName[], currentActionDottedName: DottedName) => {
             // We don't want to display the "services sociétaux" category
             if (currentActionDottedName.includes('services sociétaux')) {
               return accumulator

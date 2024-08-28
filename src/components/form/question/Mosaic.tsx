@@ -1,8 +1,9 @@
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import MosaicQuestion from './mosaic/MosaicQuestion'
 
 type Props = {
-  question: string
-  questionsOfMosaic: string[]
+  question: DottedName
+  questionsOfMosaic: DottedName[]
 }
 
 export default function Mosaic({
