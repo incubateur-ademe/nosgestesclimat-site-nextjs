@@ -51,18 +51,21 @@ export default function ParametresPage() {
     handleSubmit,
     formState: { errors },
   } = useReactHookForm({
-    defaultValues: {
-      name: organisation?.name ?? '',
-      administratorName: organisation?.administrators?.[0]?.name ?? '',
-      hasOptedInForCommunications:
-        organisation?.administrators?.[0]?.hasOptedInForCommunications ?? false,
-      organisationType: organisation?.organisationType ?? '',
-      email: organisation?.administrators?.[0]?.email ?? '',
-      position: organisation?.administrators?.[0]?.position ?? '',
-      numberOfCollaborators: organisation?.numberOfCollaborators ?? 0,
-      administratorTelephone:
-        organisation?.administrators?.[0]?.telephone ?? '',
-    },
+    defaultValues: organisation
+      ? {
+          name: organisation?.name ?? '',
+          administratorName: organisation?.administrators?.[0]?.name ?? '',
+          hasOptedInForCommunications:
+            organisation?.administrators?.[0]?.hasOptedInForCommunications ??
+            false,
+          organisationType: organisation?.organisationType ?? '',
+          email: organisation?.administrators?.[0]?.email ?? '',
+          position: organisation?.administrators?.[0]?.position ?? '',
+          numberOfCollaborators: organisation?.numberOfCollaborators ?? 0,
+          administratorTelephone:
+            organisation?.administrators?.[0]?.telephone ?? '',
+        }
+      : undefined,
   })
 
   const {
