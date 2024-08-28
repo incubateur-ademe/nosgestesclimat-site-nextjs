@@ -92,13 +92,3 @@ The hook relies on the following utilities:
 
 - `generateSimulation`: Creates a new simulation object.
 - `getIsLocalStorageAvailable`: Checks if localStorage is available in the current environment.
-
-## Performance Considerations
-
-- The hook uses `localStorage` for persistence, which may have performance implications for large datasets.
-- Migrations are applied when initializing simulations, which could affect load times if there are many or complex migrations.
-
-## Related Documentation
-
-- For more information on how this hook integrates with the broader state management system, refer to the [UserContext documentation](http://localhost:4000/docs/publicodes-state/contexts/UserContext).
-- To understand how simulations are used in the application, check the [FormContext documentation](http://localhost:4000/docs/publicodes-state/contexts/FormContext).

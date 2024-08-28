@@ -56,14 +56,3 @@ const rule = safeGetRule('ruleName')
 ## Error Handling
 
 The hook includes error handling to prevent crashes due to rule evaluation or retrieval issues. If an error occurs during evaluation or rule retrieval, the utility functions will return `undefined` instead of throwing an error.
-
-## Performance Considerations
-
-- The hook uses memoization to optimize performance, especially when dealing with large sets of rules.
-- The `pristineEngine` is created only once and remains unmodified, serving as a reference point for resetting the main engine if needed.
-
-## Integration with Publicodes
-
-This hook is designed to work seamlessly with the Publicodes engine, leveraging its capabilities for rule evaluation and management within the application.
-
-For more information on how this hook integrates with the broader Publicodes state management system, refer to the [FormContext documentation](http://localhost:4000/docs/publicodes-state/contexts/FormContext).
