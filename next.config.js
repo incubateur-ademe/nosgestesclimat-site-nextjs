@@ -1,19 +1,9 @@
-//@ts-check
-const withMDX = require('@next/mdx')({
-  extension: /\.mdx$/,
-})
+import withBundleAnalyzer from '@next/bundle-analyzer'
+import withMDX from '@next/mdx'
+import { withSentryConfig } from '@sentry/nextjs'
+import redirects from './config/redirects.js'
+import remoteImagesPatterns from './config/remoteImagesPatterns.js'
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
-const { withSentryConfig } = require('@sentry/nextjs')
-
-const redirects = require('./config/redirects.js')
-
-const remoteImagesPatterns = require('./config/remoteImagesPatterns.js')
-
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
@@ -45,7 +35,7 @@ const nextConfig = {
         '.next/cache/webpack',
         '.git/**/*',
         'cypress/**/*',
-        'documentation/**/*',
+        'documentation/**/*', // This line is already present
       ],
       '/blog': ['public/NGC_Kit.diffusion.zip'],
       '/nouveautes': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
