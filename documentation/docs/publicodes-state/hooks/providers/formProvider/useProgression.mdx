@@ -1,38 +1,71 @@
 # `useProgression`
 
-The `useProgression` hook is designed to manage the state and progression of a simulation by categorizing remaining questions and updating the current simulation state.
+The `useProgression` hook manages the state and progression of a simulation by categorizing remaining questions and updating the current simulation state. It's particularly useful for tracking progress in multi-step forms or questionnaires.
+
+## Usage
+
+```typescript
+import useProgression from '@/publicodes-state/providers/formProvider/useProgression'
+
+const { remainingQuestionsByCategories } = useProgression(options)
+```
 
 ## Parameters
 
-- **`categories`** (`string[]`): An array of categories for the questions.
-- **`remainingQuestions`** (`string[]`): An array of questions that are yet to be answered.
-- **`relevantQuestions`** (`string[]`): An array of all relevant questions for the current simulation.
-- **`updateCurrentSimulation`** (`function`): A function to update the current simulation with the new progression.
+The hook accepts an object with the following properties:
+
+- **`categories`** (`string[]`): An array of category names for the questions.
+- **`remainingQuestions`** (`string[]`): An array of question IDs that are yet to be answered.
+- **`relevantQuestions`** (`string[]`): An array of all relevant question IDs for the current simulation.
+- **`updateCurrentSimulation`** (`(simulation: SimulationState) => void`): A function to update the current simulation with the new progression.
 
 ## Return Value
 
-- **`remainingQuestionsByCategories`** (`{ [key: string]: string[] }`): An object mapping each category to a list of remaining questions in that category.
+- **`remainingQuestionsByCategories`** (`{ [key: string]: string[] }`): An object mapping each category to a list of remaining question IDs in that category.
+
+## Functionality
+
+1. Categorizes remaining questions based on the provided categories.
+2. Calculates the progression percentage based on answered and total relevant questions.
+3. Updates the current simulation state with the new progression information.
 
 ## Example
 
 ```typescript
 import useProgression from '@/publicodes-state/providers/formProvider/useProgression'
 
-const categories = ['cat1', 'cat2']
-const remainingQuestions = ['q1', 'q2', 'q3']
-const relevantQuestions = ['q1', 'q2', 'q3', 'q4']
-const updateCurrentSimulation = (simulation) => {
-  // Logic to update the simulation
-}
+function SimulationForm() {
+  const categories = ['Personal', 'Financial', 'Professional']
+  const remainingQuestions = ['age', 'income', 'occupation']
+  const relevantQuestions = ['age', 'income', 'occupation', 'education']
+  
+  const updateCurrentSimulation = (simulation) => {
+    // Logic to update the simulation
+    console.log('Updated simulation:', simulation)
+  }
 
-const { remainingQuestionsByCategories } = useProgression({
-  categories,
-  remainingQuestions,
-  relevantQuestions,
-  updateCurrentSimulation,
-})
+  const { remainingQuestionsByCategories } = useProgression({
+    categories,
+    remainingQuestions,
+    relevantQuestions,
+    updateCurrentSimulation,
+  })
+
+  console.log(remainingQuestionsByCategories)
+  // Output: { Personal: ['age'], Financial: ['income'], Professional: ['occupation'] }
+
+  // Render your form using the remainingQuestionsByCategories
+  // ...
+}
 ```
 
-## Explanation
+## Notes
 
-The `useProgression` hook calculates the progression of the simulation by organizing remaining questions by category and updating the current simulation state based on the number of relevant and remaining questions.
+- The hook automatically calculates the progression percentage: `(relevantQuestions.length - remainingQuestions.length) / relevantQuestions.length`.
+- It's important to keep the `relevantQuestions` array up-to-date as it affects the progression calculation.
+- The `updateCurrentSimulation` function should handle storing or processing the updated simulation state.
+
+## See Also
+
+- [`useForm`](./useForm.mdx) - For managing form state
+- [`useSimulation`](./useSimulation.mdx) - For handling overall simulation logic

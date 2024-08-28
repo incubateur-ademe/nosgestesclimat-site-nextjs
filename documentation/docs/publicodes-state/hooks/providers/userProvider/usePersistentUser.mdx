@@ -1,5 +1,81 @@
 # `usePersistentUser`
 
+## Overview
+
+The `usePersistentUser` hook manages the persistence of user data in local storage. It ensures that user data is loaded from local storage when the component mounts and saved back to local storage whenever it is updated.
+
+## Usage
+
+Import the hook in your React component:
+
+```typescript
+import { usePersistentUser } from '@/publicodes-state/hooks/userProvider/usePersistentUser';
+```
+
+## API
+
+### Parameters
+
+The hook accepts an object with the following properties:
+
+- `storageKey` (string): The key for the local storage where the user data should be stored.
+- `initialRegion` (RegionFromGeolocation): The initial region data for the user.
+
+### Return Value
+
+The hook returns an object with the following properties:
+
+- `user` (User): The current user data.
+- `setUser` (function): Function to update the user data.
+
+### Example
+
+```typescript
+function MyComponent() {
+  const { user, setUser } = usePersistentUser({
+    storageKey: 'user-key',
+    initialRegion: { code: 'US', name: 'United States' }
+  });
+
+  return (
+    <div>
+      {/* Render user information */}
+    </div>
+  );
+}
+```
+
+## Behavior
+
+1. On mount, the hook checks if local storage is available.
+2. If user data is found in local storage, it is loaded and formatted.
+3. If no user data is found, a new user is created with the initial region and a generated user ID.
+4. User data is saved back to local storage whenever it is updated.
+
+## Performance Considerations
+
+- The hook uses memoization to optimize performance, especially when dealing with large sets of user data.
+- Local storage operations are performed efficiently to ensure smooth user experience.
+
+## Error Handling
+
+- If local storage is not available, the hook gracefully falls back to using in-memory storage.
+- Any errors during local storage operations are caught and logged, preventing the application from crashing.
+
+## Dependencies
+
+- `getIsLocalStorageAvailable` from `@/utils/getIsLocalStorageAvailable`
+- `uuid` for generating unique user IDs
+- `RegionFromGeolocation` and `User` types from `../../types`
+
+## Integration with User Context
+
+This hook is designed to work seamlessly with the `UserContext` provided by the application. For more information on how this hook integrates with the broader user state management system, refer to the [UserContext documentation](http://localhost:4000/docs/publicodes-state/contexts/UserContext).
+
+
+```1:47:documentation/docs/publicodes-state/hooks/providers/userProvider/usePersistentUser.mdx
+# `usePersistentUser`
+
 This hook manages the persistence of user data in local storage. It ensures that user data is loaded from local storage when the component mounts and saved back to local storage whenever it is updated.
 
 ## Usage
@@ -36,11 +112,3 @@ function MyComponent() {
 2. If user data is found in local storage, it is loaded and formatted.
 3. If no user data is found, a new user is created with the initial region and a generated user ID.
 4. User data is saved back to local storage whenever it is updated.
-
-### Dependencies
-
-- [`getIsLocalStorageAvailable`](command:_github.copilot.openSymbolFromReferences?%5B%22getIsLocalStorageAvailable%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentTutorials.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentTutorials.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentTutorials.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A9%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A9%7D%7D%5D%5D "Go to definition") from `@/utils/getIsLocalStorageAvailable`
-- [`uuid`](command:_github.copilot.openSymbolFromReferences?%5B%22uuid%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A2%2C%22character%22%3A15%7D%7D%5D%5D "Go to definition") for generating unique user IDs
-- [`RegionFromGeolocation`](command:_github.copilot.openSymbolFromReferences?%5B%22RegionFromGeolocation%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A3%2C%22character%22%3A9%7D%7D%5D%5D "Go to definition") and [`User`](command:_github.copilot.openSymbolFromReferences?%5B%22User%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fuser%2FuseUser.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fuser%2FuseUser.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2Fuser%2FuseUser.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A5%2C%22character%22%3A29%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A3%2C%22character%22%3A32%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FuserProvider%2Findex.tsx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FuserProvider%2Findex.tsx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FuserProvider%2Findex.tsx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A26%2C%22character%22%3A24%7D%7D%5D%5D "Go to definition") types from `../../types`
-
-This documentation provides a clear and concise explanation of the [`usePersistentUser`](command:_github.copilot.openSymbolFromReferences?%5B%22usePersistentUser%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fhooks%2FuserProvider%2FusePersistentUser.ts%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A11%2C%22character%22%3A24%7D%7D%2C%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FuserProvider%2Findex.tsx%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FuserProvider%2Findex.tsx%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FuserProvider%2Findex.tsx%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A34%2C%22character%22%3A28%7D%7D%5D%5D "Go to definition") hook, its parameters, return values, and behavior.

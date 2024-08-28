@@ -1,50 +1,55 @@
 # `useEngineSituation`
 
-The `useEngineSituation` hook is designed for managing the interaction between an `Engine` instance and the simulation situation. It provides utilities to initialize the engine with a given situation and to update the situation as needed.
+## Overview
 
-## Role
+The `useEngineSituation` hook is designed to manage the interaction between a Publicodes `Engine` instance and the simulation situation. It provides utilities to initialize the engine with a given situation and update it as needed.
 
-This hook ensures:
-- The engine is initialized with the current simulation state.
-- You can modify the simulation state by adding new data.
+## Key Features
+
+- Initializes the engine with the current simulation state
+- Allows modification of the simulation state by adding new data
+- Provides a way to check if the engine has been initialized
 
 ## Usage
 
 ```typescript
-import { useEngineSituation } from '@/publicodes-state/hooks/simulationProvider/useEngineSituation';
-import Engine from 'publicodes';
-
-const MyComponent = () => {
-  const engine = new Engine();
-  const { isEngineInitialized, addToEngineSituation } = useEngineSituation({ engine });
-
-  const handleAddSituation = () => {
-    const newSituation = { /* new situation data */ };
-    const updatedSituation = addToEngineSituation(newSituation);
-    console.log(updatedSituation);
-  };
-
-  return (
-    <div>
-      <p>Engine Initialized: {isEngineInitialized.toString()}</p>
-      <button onClick={handleAddSituation}>Add to Situation</button>
-    </div>
-  );
-};
+startLine: 13
+endLine: 33
 ```
 
 ## Parameters
 
-- `engine` (`Engine`): An instance of the `Engine` class from `publicodes`. This is used to initialize and manage the simulation state.
+- `engine` (Engine): An instance of the Publicodes `Engine` class.
 
 ## Return Values
 
-- `isEngineInitialized` (`boolean`): Indicates whether the engine has been successfully initialized with the simulation situation.
-- `addToEngineSituation` (`function`): A function to update the current simulation state with new data. It takes the new situation data as an argument and returns the updated situation.
+- `isEngineInitialized` (boolean): Indicates whether the engine has been successfully initialized with the simulation situation.
+- `addToEngineSituation` (function): A function to update the current simulation state with new data. It takes the new situation data as an argument and returns the updated situation.
+
+## Best Practices
+
+1. Ensure that the `engine` parameter is correctly instantiated before passing it to the hook.
+2. Use the `isEngineInitialized` flag to conditionally render components or perform actions that depend on the engine's initialization.
+3. When adding new data to the situation, use the `addToEngineSituation` function to ensure proper state updates and engine synchronization.
+
+## Error Handling
+
+The hook doesn't explicitly handle errors, so it's recommended to implement error boundaries or try-catch blocks in the parent component when using this hook, especially when dealing with engine initialization or situation updates.
+
+## Performance Considerations
+
+- The hook uses memoization internally to optimize performance, especially when dealing with large sets of situation data.
+- Avoid unnecessary calls to `addToEngineSituation` to prevent excessive re-renders.
+
+## Integration with Publicodes
+
+This hook is designed to work seamlessly with the Publicodes engine, leveraging its capabilities for rule-based calculations within the Nos Gestes Climat application.
+
+For more information on how this hook integrates with the broader Publicodes state management system, refer to the [FormContext documentation](http://localhost:4000/docs/publicodes-state/contexts/FormContext).
 
 ## Notes
 
-- Ensure that the `engine` parameter is correctly instantiated before passing it to the hook.
+- This hook is part of the `publicodes-state` library and is intended to simplify the management of simulation states in a React environment.
 - The hook should be used within a React functional component.
 
-This hook is part of the `publicodes-state` library and is intended to simplify the management of simulation states in a React environment.
+By following this documentation, developers can effectively utilize the `useEngineSituation` hook to manage Publicodes engine interactions within their Nos Gestes Climat components.

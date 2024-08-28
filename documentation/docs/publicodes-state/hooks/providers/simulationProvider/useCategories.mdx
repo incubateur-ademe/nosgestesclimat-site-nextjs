@@ -1,25 +1,25 @@
-## `useCategories`
+# `useCategories`
 
-The `useCategories` hook is designed to extract and organize categories and subcategories from a set of rules. It uses memoization to enhance performance by caching the results of complex computations.
+The `useCategories` hook is designed to extract and organize categories and subcategories from a set of rules. It utilizes memoization to optimize performance by caching the results of complex computations.
 
-### Import
+## Import
 
 ```typescript
 import { useCategories } from '@/publicodes-state/hooks/simulationProvider/useCategories'
 ```
 
-### Parameters
+## Parameters
 
-- **`parsedRules`** (`NGCRulesNodes`): The parsed rules from the publicodes engine.
-- **`everyRules`** (`DottedName[]`): An array of all rule names.
-- **`root`** (`string`): The root rule name to start the category extraction.
-- **`safeGetRule`** (`(rule: DottedName) => NGCRuleNode | null`): Function to safely retrieve a rule by its name.
+- `parsedRules` (`NGCRulesNodes`): The parsed rules from the publicodes engine.
+- `everyRules` (`DottedName[]`): An array of all rule names.
+- `root` (`string`): The root rule name to start the category extraction.
+- `safeGetRule` (`(rule: DottedName) => NGCRuleNode | null`): A function to safely retrieve a rule by its name.
 
-### Returns
+## Returns
 
-- **`categories`** (`DottedName[]`): An array of category names organized based on the rules.
+- `categories` (`DottedName[]`): An array of category names organized based on the rules.
 
-### Usage
+## Usage Example
 
 ```typescript
 const { categories } = useCategories(parsedRules, everyRules, root, safeGetRule);
@@ -28,4 +28,22 @@ const { categories } = useCategories(parsedRules, everyRules, root, safeGetRule)
 console.log(categories);
 ```
 
-The hook processes the rules to generate a structured list of categories, making it easier to manage and display them in your application.
+## Description
+
+The `useCategories` hook processes the rules to generate a structured list of categories, making it easier to manage and display them in your application. It's particularly useful for organizing complex rule sets into a more manageable hierarchy.
+
+## Performance Considerations
+
+This hook uses memoization to improve performance. It will only recalculate the categories when its input parameters change, reducing unnecessary computations in subsequent renders.
+
+## Related Components
+
+- `CategoryList`: A component that renders the categories returned by this hook.
+- `RuleExplorer`: A component that uses these categories to display a navigable rule structure.
+
+## Notes
+
+- Ensure that the `root` parameter corresponds to a valid rule in your rule set.
+- The `safeGetRule` function should handle cases where a rule might not exist, returning `null` in such instances.
+
+For more detailed information about the calculation methodologies and integration guides, refer to our [comprehensive documentation](https://nosgestesclimat.fr/documentation/).

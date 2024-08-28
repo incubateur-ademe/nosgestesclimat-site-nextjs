@@ -1,58 +1,152 @@
-# `useDisposableEngine`
+Certainly! I'll improve the documentation for the `useDisposableEngine` hook with a more comprehensive and structured approach. Here's an enhanced version:
 
-The `useDisposableEngine` hook creates an isolated engine instance for rule-based calculations. This is useful for scenarios where you need to perform evaluations or comparisons without interfering with the primary engine.
+# useDisposableEngine
 
-## Purpose
+## Overview
 
-The hook provides a dedicated engine to handle calculations based on supplied rules and an initial situation. It ensures that evaluations are performed in isolation, preventing any impact on the main engine's state.
+The `useDisposableEngine` hook creates an isolated Publicodes engine instance for performing rule-based calculations without affecting the primary engine's state. This is particularly useful for scenarios where you need to evaluate rules or compare outcomes in isolation.
+
+## Installation
+
+Ensure you have the necessary dependencies installed:
+
+```bash
+npm install publicodes @/publicodes-state
+```
 
 ## Usage
 
-### Importing the Hook
+Import the hook in your React component:
 
 ```typescript
 import useDisposableEngine from '@/publicodes-state/hooks/useDisposableEngine'
 ```
 
+## API
+
 ### Parameters
 
-- **`rules`** (optional): Custom rules to initialize the engine.
-- **`situation`**: The initial situation for the engine.
+The hook accepts an object with the following properties:
 
-### Example
+- `rules` (optional): An object containing custom Publicodes rules.
+- `situation`: An object representing the initial situation for the engine.
+
+### Return Value
+
+The hook returns an object with the following properties:
+
+- `engine`: The initialized Publicodes engine instance.
+- `getValue(dottedName: string)`: A function to retrieve the value of a specific rule.
+- `updateSituation(newSituation: object)`: A function to update the engine's situation.
+
+## Example
+
+Here's a comprehensive example of how to use the `useDisposableEngine` hook:
 
 ```typescript
-import React from 'react'
+import React, { useState } from 'react'
 import useDisposableEngine from '@/publicodes-state/hooks/useDisposableEngine'
 
 const MyComponent = () => {
-  const { engine, getValue, updateSituation } = useDisposableEngine({
-    rules: myRules,
-    situation: mySituation,
+  const [age, setAge] = useState(30)
+
+  const { getValue, updateSituation } = useDisposableEngine({
+    rules: {
+      'user . age': {
+        question: 'What is your age?',
+        unit: 'ans',
+      },
+      'user . category': {
+        applicable: 'user . age',
+        formule: {
+          variations: [
+            { si: 'user . age < 18', alors: '"minor"' },
+            { si: 'user . age >= 18 && user . age < 65', alors: '"adult"' },
+            { si: 'user . age >= 65', alors: '"senior"' },
+          ],
+        },
+      },
+    },
+    situation: { 'user . age': age },
   })
 
-  const value = getValue('some.dotted.name')
+  const handleAgeChange = (newAge: number) => {
+    setAge(newAge)
+    updateSituation({ 'user . age': newAge })
+  }
+
+  const userCategory = getValue('user . category')
 
   return (
     <div>
-      <p>Value: {value}</p>
-      <button onClick={() => updateSituation(newSituation)}>Update Situation</button>
+      <input
+        type="number"
+        value={age}
+        onChange={(e) => handleAgeChange(Number(e.target.value))}
+      />
+      <p>User category: {userCategory}</p>
     </div>
   )
 }
 ```
 
-### Returned Values
+## Implementation Details
 
-- **`engine`**: The initialized engine instance.
-- **`getValue(dottedName: DottedName)`**: Function to retrieve the value of a specific rule.
-- **`updateSituation(newSituation: Situation)`**: Function to update the engine's situation.
+The hook uses `useMemo` to optimize performance by memoizing the engine and evaluation functions. It also implements a `safeEvaluate` function to ensure secure rule evaluation.
 
-## Notes
+For the full implementation, refer to:
 
-- The hook uses `useMemo` to optimize the engine and evaluation functions.
-- The internal `safeEvaluate` function ensures secure evaluation of rules.
 
-## Source
+```1:58:src/publicodes-state/hooks/useDisposableEngine/index.ts
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr.json'
+import Engine from 'publicodes'
+import { Situation } from '../types'
 
-The implementation can be found in [`src/publicodes-state/hooks/useDisposableEngine/index.ts`](src/publicodes-state/hooks/useDisposableEngine/index.ts).
+const engine = new Engine(rules)
+
+export const useTempEngine = jest.fn(() => {
+  return {
+    rules,
+    getRuleObject: engine.getRule.bind(engine),
+  }
+})
+
+export const useDisposableEngine = jest.fn(() => {
+  const engineEvaluate = engine.evaluate.bind(engine)
+  const engineSetSituation = engine.setSituation.bind(engine)
+
+  return {
+    getValue: (dottedName: DottedName) => {
+      try {
+        return engineEvaluate(dottedName).nodeValue
+      } catch (e) {
+        return null
+      }
+    },
+    updateSituation: (newSituation: Situation) =>
+      engineSetSituation(newSituation, {
+        keepPreviousSituation: true,
+      }),
+  }
+})
+```
+
+
+## Best Practices
+
+1. Use this hook when you need isolated calculations that shouldn't affect the main application state.
+2. Be cautious with performance, as creating multiple engine instances can be resource-intensive.
+3. Consider using the main engine for global calculations and this hook for localized, temporary evaluations.
+
+## Related Hooks
+
+- `useEngine`: For accessing the main Publicodes engine instance.
+- `useRule`: For working with individual rules in the main engine context.
+
+## Further Reading
+
+- [Publicodes Documentation](https://publi.codes/)
+- [Nos Gestes Climat Model Documentation](https://nosgestesclimat.fr/documentation)
+
+By following this improved documentation, developers should have a clearer understanding of the `useDisposableEngine` hook, its use cases, and how to implement it effectively in their React components.

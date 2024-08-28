@@ -1,14 +1,10 @@
 # `useUpdateOldLocalStorage`
 
-This hook is used to migrate data from an old local storage key to a new one. It ensures that the new local storage key is populated only if it is currently empty and the old storage does not contain a "persona".
+## Overview
+
+This hook is designed to migrate data from an old local storage key to a new one. It ensures a smooth transition of user data while maintaining data integrity and preventing unnecessary overwrites.
 
 ## Usage
-
-### Parameters
-
-- **`storageKey`**: (string) The key for the new local storage where the data should be migrated.
-
-### Example
 
 ```typescript
 import useUpdateOldLocalStorage from '@/publicodes-state/hooks/userProvider/useOldLocalStorage';
@@ -20,14 +16,51 @@ function MyComponent() {
 }
 ```
 
-### Behavior
+## Parameters
+
+- `storageKey` (string): The key for the new local storage where the data should be migrated.
+
+## Behavior
 
 1. Retrieves data from the old local storage key `'ecolab-climat::persisted-simulation::v2'`.
 2. Checks if the new local storage specified by `storageKey` is empty.
 3. If the old local storage does not contain a "persona" and the new local storage is empty, it migrates the data to the new storage key.
-4. Removes the old local storage key after migration.
+4. Removes the old local storage key after successful migration.
 
-### Notes
+## Implementation Details
 
-- The hook uses the `useEffect` hook to perform the migration on component mount.
-- Ensure that the `storageKey` provided is unique and does not conflict with other keys in local storage.
+The hook uses React's `useEffect` hook to perform the migration on component mount. This ensures that the migration process runs once when the component is first rendered.
+
+```typescript
+startLine: 13
+endLine: 20
+```
+
+## Best Practices
+
+1. Use a unique `storageKey` to avoid conflicts with other storage keys.
+2. Implement this hook at a high level in your component tree to ensure it runs early in the application lifecycle.
+3. Consider adding error handling and logging for production environments.
+
+## Related Components
+
+This hook is part of the user management system. It works in conjunction with other hooks and contexts such as:
+
+- `useUser`
+- `usePersistentUser`
+- `usePersistentSimulations`
+- `usePersistentTutorials`
+
+For more information on these related components, refer to the `UserContext` documentation.
+
+## Notes
+
+- The hook is designed to be non-destructive, only migrating data if the new storage is empty.
+- Ensure that your application's state management is set up to work with the new storage key after migration.
+- For large-scale applications, consider implementing a more robust migration strategy that can handle multiple versions and complex data structures.
+
+## Further Reading
+
+- [Local Storage MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+- [React useEffect Hook](https://reactjs.org/docs/hooks-effect.html)
+- [State Management in React](https://reactjs.org/docs/state-and-lifecycle.html)

@@ -31,17 +31,57 @@ function MyComponent() {
 
 ## Returned Values
 
-- **`relevantQuestions`**: Array of all questions (answered and unanswered) to be displayed in the form.
-- **`currentQuestion`**: The question currently being displayed.
-- **`currentCategory`**: The category of the current question.
-- **`setCurrentQuestion`**: Function to set the current question.
-- **`setCurrentCategory`**: Function to set the current category.
-- **`gotoPrevQuestion`**: Function to navigate to the previous question.
-- **`gotoNextQuestion`**: Function to navigate to the next question.
-- **`noPrevQuestion`**: Boolean indicating if there is no previous question.
-- **`noNextQuestion`**: Boolean indicating if there is no next question.
-- **`isFirstQuestionOfCategory`**: Boolean indicating if the current question is the first in its category.
-- **`isLastQuestionOfCategory`**: Boolean indicating if the current question is the last in its category.
-- **`remainingQuestions`**: Array of questions that have not yet been answered.
-- **`relevantAnsweredQuestions`**: Array of questions that have been answered and are relevant.
-- **`remainingQuestionsByCategories`**: Object with categories as keys and arrays of remaining questions as values.
+### Navigation
+
+- `currentQuestion`: The question currently being displayed.
+- `currentCategory`: The category of the current question.
+- `setCurrentQuestion`: Function to set the current question.
+- `setCurrentCategory`: Function to set the current category.
+- `gotoPrevQuestion`: Function to navigate to the previous question.
+- `gotoNextQuestion`: Function to navigate to the next question.
+
+### State Indicators
+
+- `noPrevQuestion`: Boolean indicating if there is no previous question.
+- `noNextQuestion`: Boolean indicating if there is no next question.
+- `isFirstQuestionOfCategory`: Boolean indicating if the current question is the first in its category.
+- `isLastQuestionOfCategory`: Boolean indicating if the current question is the last in its category.
+
+### Question Collections
+
+- `relevantQuestions`: Array of all questions (answered and unanswered) to be displayed in the form.
+- `remainingQuestions`: Array of questions that have not yet been answered.
+- `relevantAnsweredQuestions`: Array of questions that have been answered and are relevant.
+- `remainingQuestionsByCategories`: Object with categories as keys and arrays of remaining questions as values.
+
+## Example
+
+Here's a simple example of how to use the `useForm` hook to create a basic form navigation:
+
+```typescript
+import useForm from 'path/to/useForm';
+
+function FormNavigation() {
+  const {
+    currentQuestion,
+    gotoPrevQuestion,
+    gotoNextQuestion,
+    noPrevQuestion,
+    noNextQuestion,
+  } = useForm();
+
+  return (
+    <div>
+      <h2>{currentQuestion.title}</h2>
+      {/* Render question content here */}
+      <div>
+        <button onClick={gotoPrevQuestion} disabled={noPrevQuestion}>
+          Previous
+        </button>
+        <button onClick={gotoNextQuestion} disabled={noNextQuestion}>
+          Next
+        </button>
+      </div>
+    </div>
+  );
+}

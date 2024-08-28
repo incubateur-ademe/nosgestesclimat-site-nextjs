@@ -1,6 +1,6 @@
 # `useEngine`
 
-The `useEngine` hook provides access to the engine and several utility functions for evaluating rules and retrieving their values. It is designed to be used when comparing rules or when direct access to the engine is necessary.
+The `useEngine` hook provides access to the Publicodes engine and several utility functions for evaluating rules and retrieving their values. It is designed to be used when comparing rules or when direct access to the engine is necessary.
 
 ## Usage
 
@@ -12,11 +12,11 @@ const { engine, getValue, getNumericValue, getCategory, getSubcategories, checkI
 
 ### Parameters
 
-- `metric` (optional): A metric to be used in evaluations.
+- `metric` (optional): A metric to be used in evaluations. Defaults to the current metric if not provided.
 
 ### Returns
 
-- `engine`: The engine instance.
+- `engine`: The Publicodes engine instance.
 - `getValue(dottedName: DottedName): NodeValue`: Retrieves the value of a rule.
 - `getNumericValue(dottedName: DottedName): number`: Retrieves the numeric value of a rule.
 - `getCategory(dottedName: DottedName): string`: Retrieves the category of a rule.
@@ -49,4 +49,13 @@ const MyComponent = () => {
 }
 ```
 
-This hook should be used when it is necessary to compare rules or when direct access to the engine is required. For other cases, consider using `useRule`.
+## Notes
+
+- This hook should be used when it is necessary to compare rules or when direct access to the Publicodes engine is required.
+- For simpler use cases, consider using the `useRule` hook instead.
+- The `engine` instance provided by this hook allows for advanced operations and custom evaluations.
+
+## Related Documentation
+
+- For more information on the Publicodes engine, refer to the [Publicodes documentation](https://publi.codes/).
+- To understand how rules are structured in Nos Gestes Climat, see the [NGC Model Documentation](https://nosgestesclimat.fr/documentation).

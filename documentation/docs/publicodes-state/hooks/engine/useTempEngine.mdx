@@ -1,15 +1,15 @@
 # `useTempEngine`
 
-`useTempEngine` is a temporary React hook designed to access specific functionalities within a simulation context. It is intended to be replaced with a more permanent solution in the near future.
+`useTempEngine` is a React hook that provides access to core simulation functionalities within a temporary context. It's designed as an interim solution and is expected to be replaced with a more robust implementation in the future.
 
-#### Role
+## Overview
 
-This hook provides:
-- Access to the simulation `rules`.
-- A method to get a rule object by its dotted name.
-- An extended list of folded steps, including any mosaic questions if available.
+This hook offers access to:
+- Simulation rules
+- A method to retrieve rule objects by their dotted names
+- An extended list of folded steps, including mosaic questions when available
 
-#### Usage
+## Usage
 
 ```typescript
 import useTempEngine from '@/publicodes-state/hooks/engine/useTempEngine'
@@ -26,23 +26,26 @@ function MyComponent() {
 }
 ```
 
-#### API
+## API
 
-- **`getRuleObject(dottedName: DottedName): any`**
-  - Retrieves a rule object by its dotted name, combining the results of `safeEvaluate` and `safeGetRule`.
+### `getRuleObject(dottedName: DottedName): RuleObject`
 
-- **`rules`**
-  - Provides access to the rules from the simulation context.
+Retrieves a rule object by its dotted name. This method combines the results of `safeEvaluate` and `safeGetRule` for comprehensive rule information.
 
-- **`extendedFoldedSteps`**
-  - Returns an extended list of folded steps, including mosaic questions if available.
+### `rules: Rules`
 
-#### Dependencies
+Provides access to the complete set of rules from the current simulation context.
 
-- **`SimulationContext`**: Provides the simulation context.
-- **`useCurrentSimulation`**: Retrieves the current simulation state.
+### `extendedFoldedSteps: FoldedStep[]`
 
-#### Example
+Returns an extended list of folded steps, including any mosaic questions if available in the current simulation.
+
+## Dependencies
+
+- `SimulationContext`: Provides the overall simulation context.
+- `useCurrentSimulation`: Hook to retrieve the current simulation state.
+
+## Example
 
 ```typescript
 import useTempEngine from '@/publicodes-state/hooks/engine/useTempEngine'
@@ -51,12 +54,19 @@ function ExampleComponent() {
   const { getRuleObject, rules, extendedFoldedSteps } = useTempEngine()
 
   const rule = getRuleObject('example.rule')
-  console.log(rule)
-  console.log(rules)
-  console.log(extendedFoldedSteps)
-
-  return <div>{/* Your component JSX */}</div>
+  
+  return (
+    <div>
+      <h2>{rule.title}</h2>
+      <p>Total rules: {Object.keys(rules).length}</p>
+      <p>Folded steps: {extendedFoldedSteps.length}</p>
+    </div>
+  )
 }
 ```
 
-This hook is intended for temporary use and should be replaced with a more permanent solution in the future.
+## Notes
+
+- This hook is intended for temporary use and will be replaced in future updates.
+- Use caution when relying on this hook for critical functionality, as its API may change.
+- For production-ready features, consider using more stable alternatives or consult with the development team.

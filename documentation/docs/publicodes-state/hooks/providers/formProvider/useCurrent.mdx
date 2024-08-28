@@ -1,11 +1,11 @@
 # `useCurrent`
 
-The `useCurrent` hook manages the state of the current question and category in the application. It provides state values and functions to update these states, with automatic inference of the category based on the current question.
+The `useCurrent` hook is a powerful tool for managing the current question and category state in your application. It provides an intuitive API for updating and accessing these states, with automatic category inference based on the current question.
 
 ## Usage
 
 ```typescript
-import useCurrent from '@/publicodes-state/hooks/formProvider/useCurrent'
+import { useCurrent } from '@/publicodes-state/hooks/formProvider/useCurrent'
 
 function MyComponent() {
   const {
@@ -16,23 +16,44 @@ function MyComponent() {
   } = useCurrent()
 
   // Example usage
-  setCurrentQuestion('New question')
-  console.log(currentCategory) // Logs the inferred category
+  setCurrentQuestion('What is your annual income?')
+  console.log(currentCategory) // Logs the inferred category, e.g., 'Income'
+
+  // Manual category setting
+  setCurrentCategory('Expenses')
 }
 ```
 
 ## API
 
-### Returned States
+### Returned Values
 
-- **`currentQuestion`**: The current question (`string | null`).
-- **`currentCategory`**: The current category (`string | null`).
+| Name | Type | Description |
+|------|------|-------------|
+| `currentQuestion` | `string \| null` | The current active question |
+| `currentCategory` | `string \| null` | The current active category |
+| `setCurrentQuestion` | `(newQuestion: string \| null) => void` | Updates the current question and infers the category |
+| `setCurrentCategory` | `(newCategory: string \| null) => void` | Manually updates the current category |
 
-### Returned Functions
+## Key Features
 
-- **`setCurrentQuestion(newCurrentQuestion: string | null)`**: Updates the current question and automatically infers the corresponding category.
-- **`setCurrentCategory(newCurrentCategory: string | null)`**: Updates the current category.
+1. **Automatic Category Inference**: When setting a new question, the category is automatically inferred.
+2. **Null Handling**: Both question and category can be set to `null`, useful for resetting states.
+3. **Type Safety**: Fully typed for TypeScript projects, ensuring type consistency.
 
-## Implementation
+## Best Practices
 
-The hook is implemented in `src/publicodes-state/hooks/formProvider/useCurrent.ts`.
+- Use `setCurrentQuestion` when navigating through a questionnaire flow.
+- Use `setCurrentCategory` when you need to manually override the inferred category.
+- Access `currentQuestion` and `currentCategory` to conditionally render UI elements or make logic decisions.
+
+## Implementation Details
+
+The hook is implemented in `src/publicodes-state/hooks/formProvider/useCurrent.ts`. It likely uses React's Context API or a state management library to maintain and share state across components.
+
+## Related Hooks
+
+- `useForm`: Manages the overall form state
+- `useNavigation`: Handles navigation between questions
+
+For more information on the form provider and related hooks, see the [Form Provider documentation](./formProvider.mdx).

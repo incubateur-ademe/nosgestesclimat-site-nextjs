@@ -1,9 +1,10 @@
-
 # `useQuestions`
 
 ## Description
 
-The `useQuestions` hook is designed to retrieve all the questions of a form, in the correct order, based on the user's current situation. It is primarily used in complex forms where the questions to be asked may vary depending on previous answers or other dynamic conditions.
+The `useQuestions` hook is designed to retrieve and order all questions for a form based on the user's current situation. It's particularly useful for complex forms where the questions may vary depending on previous answers or other dynamic conditions.
+
+## Import
 
 ```typescript
 import useQuestions from 'path/to/useQuestions';
@@ -11,35 +12,26 @@ import useQuestions from 'path/to/useQuestions';
 
 ## Parameters
 
-The `useQuestions` hook accepts an object containing the following parameters:
+The `useQuestions` hook accepts an object with the following properties:
 
-- **`root` (string)**: The root of the form or model from which the questions should be extracted.
-  
-- **`safeGetRule` (function)**: A function that securely retrieves a rule based on a `DottedName`. Returns an `NGCRuleNode` or `null`.
-  
-- **`safeEvaluate` (function)**: A function that evaluates a Publicodes expression and returns an `NGCEvaluatedNode` or `null`.
-  
-- **`categories` (string[])**: A list of categories to which the questions belong.
-  
-- **`subcategories` (`Record<string, string[]>`)**: An object associating subcategories with their parent category.
-  
-- **`situation` (Situation)**: The current state or situation from which the questions will be generated.
-  
-- **`foldedSteps` (string[])**: A list of steps or questions that have been "folded" or ignored.
-  
-- **`everyQuestions` (string[])**: A list containing all the possible questions of the form.
-  
-- **`everyMosaicChildrenWithParent` (`Record<string, string[]>`)**: An object containing the children of each mosaic with their parent.
-  
-- **`rawMissingVariables` (`Record<string, number`>`)**: A set of variables missing in the current situation.
+- `root` (string): The root of the form or model from which to extract questions.
+- `safeGetRule` (function): A function that safely retrieves a rule based on a `DottedName`. Returns an `NGCRuleNode` or `null`.
+- `safeEvaluate` (function): A function that evaluates a Publicodes expression and returns an `NGCEvaluatedNode` or `null`.
+- `categories` (string[]): A list of categories to which the questions belong.
+- `subcategories` (`Record<string, string[]>`): An object associating subcategories with their parent category.
+- `situation` (Situation): The current state or situation from which to generate questions.
+- `foldedSteps` (string[]): A list of steps or questions that have been "folded" or ignored.
+- `everyQuestions` (`string[]`): A list containing all possible questions for the form.
+- `everyMosaicChildrenWithParent` (`Record<string, string[]>`): An object containing the children of each mosaic with their parent.
+- `rawMissingVariables` (`Record<string, number>`): A set of variables missing in the current situation.
 
-## Return
+## Return Value
 
-The hook returns a list of questions sorted according to the provided rules and situation.
+The hook returns an array of questions sorted according to the provided rules and situation.
 
 ## Usage Example
 
-Here is an example of how you can use `useQuestions` in a React component:
+Here's an example of how to use `useQuestions` in a React component:
 
 ```typescript
 import React from 'react';
@@ -47,7 +39,7 @@ import useQuestions from 'path/to/useQuestions';
 
 const MyFormComponent = () => {
   const { 
-    questions, 
+    questions,
     // other variables returned by the hook
   } = useQuestions({
     root: 'myFormRoot',
@@ -73,3 +65,16 @@ const MyFormComponent = () => {
 
 export default MyFormComponent;
 ```
+
+## Notes
+
+- Ensure that all required functions (`safeGetRule`, `safeEvaluate`) are properly implemented and passed to the hook.
+- The `situation` object should accurately reflect the current state of the form.
+- The `foldedSteps` array can be used to exclude certain questions from being returned.
+- The hook's return value may include additional properties besides `questions`. Refer to the hook's implementation for a complete list of returned values.
+
+## See Also
+
+- [Publicodes Documentation](https://publi.codes/)
+- [NGC Rule Node Documentation](link-to-ngc-rule-node-docs)
+- [Form Context Documentation](link-to-form-context-docs)

@@ -60,6 +60,28 @@ export default ActionsComponent;
 
 ## Implementation Details
 
-The hook depends on the following:
+The hook relies on the following:
 - `useContext` to access the `SimulationContext`.
-- `useEngine` to get the numeric value of actions.
+- `useEngine` to retrieve the numeric values of actions.
+
+### Action Sorting
+
+The `orderedActions` are sorted based on their numeric values, which are obtained using the `useEngine` hook. This allows for prioritizing actions based on their potential impact.
+
+### Action Categories
+
+Actions are categorized into `chosenActions` and `declinedActions` based on user interactions within the simulation. This categorization helps in tracking user decisions and preferences.
+
+## Performance Considerations
+
+- The hook uses memoization to optimize performance, especially when dealing with large sets of actions.
+- Action sorting and categorization are performed efficiently to ensure smooth user experience, even with complex simulations.
+
+## Integration with Publicodes
+
+This hook is designed to work seamlessly with the Publicodes engine, leveraging its capabilities for action evaluation and management within the Nos Gestes Climat application.
+
+For more information on how this hook integrates with the broader Publicodes state management system, refer to the [FormContext documentation](http://localhost:4000/docs/publicodes-state/contexts/FormContext).
+```
+
+This improved documentation provides more context about the implementation details, performance considerations, and integration with the Publicodes engine. It also adds a reference to the related FormContext documentation for a more comprehensive understanding of the state management system.

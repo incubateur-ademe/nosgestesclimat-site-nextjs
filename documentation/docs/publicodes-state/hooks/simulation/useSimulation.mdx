@@ -2,11 +2,11 @@
 
 ## Overview
 
-The `useSimulation` hook provides access to various pieces of information and functions related to the current simulation instance. It allows components to interact with simulation data and perform operations without directly accessing the `SimulationContext`.
+The `useSimulation` hook is a crucial part of the Nos Gestes Climat application, providing access to various pieces of information and functions related to the current simulation instance. It allows components to interact with simulation data and perform operations without directly accessing the `SimulationContext`.
 
 ## Purpose
 
-This hook simplifies the process of retrieving simulation-related data and functions, which include categories, rules, and evaluation methods. It is designed to be used within React functional components.
+This hook simplifies the process of retrieving simulation-related data and functions, including categories, rules, and evaluation methods. It is designed to be used within React functional components to enhance code readability and maintainability.
 
 ## Usage
 
@@ -15,39 +15,22 @@ To use the `useSimulation` hook, import it into your component and call it to ge
 ### Example
 
 ```typescript
-import useSimulation from '@/publicodes-state/hooks/useSimulation';
-
-function MyComponent() {
-  const {
-    categories,
-    subcategories,
-    everyQuestions,
-    everyMosaicChildrenWithParent,
-    everyRules,
-    everyUiCategories,
-    pristineEngine,
-    safeEvaluate,
-    safeGetRule,
-    isInitialized,
-    addToEngineSituation,
-  } = useSimulation();
-
-  // Use the simulation data and methods as needed
-  console.log(categories);
-  // ...
-}
+startLine: 17
+endLine: 39
 ```
 
 ## Returned Values
 
-- **`categories`**: An array of categories in the simulation.
-- **`subcategories`**: An array of subcategories in the simulation.
-- **`everyQuestions`**: An array of all questions in the simulation.
-- **`everyMosaicChildrenWithParent`**: An array of all mosaic children with their parent.
-- **`everyRules`**: An array of all rules in the simulation.
-- **`everyUiCategories`**: An array of all UI categories in the simulation.
-- **`pristineEngine`**: The original engine instance used for simulation.
-- **`safeEvaluate`**: A method for safely evaluating rules.
-- **`safeGetRule`**: A method for safely retrieving a specific rule.
-- **`isInitialized`**: A boolean indicating if the simulation is fully initialized.
-- **`addToEngineSituation`**: A method for adding data to the engine's situation.
+The `useSimulation` hook returns an object with the following properties:
+
+- `categories`: An array of top-level categories in the simulation.
+- `subcategories`: An array of subcategories in the simulation.
+- `everyQuestions`: An array of all questions in the simulation.
+- `everyMosaicChildrenWithParent`: An array of all mosaic children with their parent.
+- `everyRules`: An array of all rules in the simulation.
+- `everyUiCategories`: An array of all UI categories in the simulation.
+- `pristineEngine`: The original engine instance used for simulation.
+- `safeEvaluate`: A method for safely evaluating rules.
+- `safeGetRule`: A method for safely retrieving a specific rule.
+- `isInitialized`: A boolean indicating if the simulation is fully initialized.
+- `addToEngineSituation`: A method for adding data to the engine's situation.
