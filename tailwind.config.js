@@ -122,10 +122,10 @@ module.exports = {
       },
       keyframes: {
         valuechange: {
-          '0%': { opacity: 0, transform: 'translateX(-10%)' },
-          '20%': { opacity: 1 },
+          '0%': { opacity: 0, transform: 'translateY(20px)' },
+          '20%': { opacity: 0.3 },
           '80%': { opacity: 1 },
-          '100%': { opacity: 0, transform: 'translateX(10%)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' },
         },
         iconsRotation: {
           '0%': { transform: 'rotate(0deg)' },
@@ -200,7 +200,7 @@ module.exports = {
         },
       },
       animation: {
-        valuechange: 'valuechange 3s ease-out infinite',
+        valuechange: 'valuechange 0.7s ease-out forwards',
         iconsRotation: 'iconsRotation 1s ease-in-out',
         'rainbow-slow': 'rainbow 30s linear infinite',
         'rainbow-fast': 'rainbow 5s linear infinite',

@@ -17,7 +17,6 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { MouseEvent, useCallback, useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
-import ValueChangeDisplay from '../misc/ValueChangeDisplay'
 import SyncIndicator from './navigation/SyncIndicator'
 
 type Props = {
@@ -154,9 +153,6 @@ export default function Navigation({
               ? t('Passer la question') + ' →'
               : t('Suivant') + ' →'}
         </Button>
-        <div className="absolute bottom-full right-8 -translate-y-4">
-          <ValueChangeDisplay />
-        </div>
       </div>
     </div>
   )
