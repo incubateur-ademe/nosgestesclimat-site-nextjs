@@ -41,12 +41,12 @@ export default function ActionDetail({
 
   const dottedName = decodeRuleName(formattedDottedName ?? '') as DottedName
 
-  const remainingQuestions = filterRelevantMissingVariables(
-    Object.keys(
+  const remainingQuestions = filterRelevantMissingVariables({
+    missingVariables: Object.keys(
       getSpecialRuleObject(dottedName).missingVariables || {}
     ) as DottedName[],
-    extendedFoldedSteps
-  )
+    extendedFoldedSteps,
+  })
 
   const nbRemainingQuestions = remainingQuestions?.length
   const rule = useRule(dottedName)

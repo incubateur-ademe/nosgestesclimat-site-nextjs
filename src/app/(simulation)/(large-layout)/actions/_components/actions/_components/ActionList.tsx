@@ -9,6 +9,7 @@ import {
   useUser,
 } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { Fragment } from 'react'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
 import CustomActionForm from './actionList/CustomActionForm'
@@ -49,13 +50,12 @@ export default function ActionList({
             />
           </li>
         )
-
         if (focusedAction === action.dottedName && !isFocusedActionCustom) {
           const convId = 'conv'
 
           return (
-            <>
-              <li className="m-4 h-auto w-full" key={convId}>
+            <Fragment key={`${convId}-${focusedAction}`}>
+              <li className="m-4 h-auto w-full">
                 <FormProvider root={action.dottedName}>
                   <ActionForm
                     key={action.dottedName}
@@ -85,13 +85,13 @@ export default function ActionList({
               </li>
 
               {cardComponent}
-            </>
+            </Fragment>
           )
         }
 
         if (isFocusedActionCustom && action.dottedName === focusedAction) {
           return (
-            <>
+            <Fragment key={`custom-${focusedAction}`}>
               {cardComponent}
 
               <CustomActionForm
@@ -99,7 +99,7 @@ export default function ActionList({
                 dottedName={action.dottedName}
                 setFocusedAction={setFocusedAction}
               />
-            </>
+            </Fragment>
           )
         }
 
