@@ -108,7 +108,7 @@ export default function Classement({
 
                 const { formattedValue, unit } = formatCarbonFootprint(
                   participant?.simulation?.computedResults?.[defaultMetric]
-                    ?.bilan ?? ''
+                    ?.bilan
                 )
 
                 const quantity = participant?.simulation?.computedResults?.[

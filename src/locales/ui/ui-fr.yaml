@@ -946,3 +946,7 @@ entries:
   Vous pouvez la reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: Vous pouvez la reprendre plus tard en cliquant sur le lien que vous avez reçu par email.
   Veuillez entrer un nombre positif.: Veuillez entrer un nombre positif.
   '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} sur votre empreinte'
+  '{{name}}, supprimer cette participation': '{{name}}, supprimer cette participation'
+  Participant supprimé avec succès: Participant supprimé avec succès
+  Supprimer ce participant ? Cette opération est définitive.: Supprimer ce participant ? Cette opération est définitive.
+  Une erreur est survenue: Une erreur est survenue
