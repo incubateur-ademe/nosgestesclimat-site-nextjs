@@ -164,22 +164,21 @@ export default function ActionCard({
           />
 
           {hasRemainingQuestions && (
-            <NotificationBubble
-              onClick={() => setFocusedAction(dottedName)}
-              title={remainingQuestionsText}
-              number={nbRemainingQuestions}
-            />
-          )}
-
-          {hasRemainingQuestions && (
-            <button
-              className="cursor-pointer text-sm text-primary-700"
-              onClick={() => {
-                trackEvent(actionsClickAdditionalQuestion(dottedName))
-                setFocusedAction(dottedName)
-              }}>
-              {remainingQuestionsText}
-            </button>
+            <>
+              <NotificationBubble
+                onClick={() => setFocusedAction(dottedName)}
+                title={remainingQuestionsText}
+                number={nbRemainingQuestions}
+              />
+              <button
+                className="cursor-pointer text-sm text-primary-700"
+                onClick={() => {
+                  trackEvent(actionsClickAdditionalQuestion(dottedName))
+                  setFocusedAction(dottedName)
+                }}>
+                {remainingQuestionsText}
+              </button>
+            </>
           )}
         </div>
         <div className="self-bottom flex w-full justify-between px-2">
