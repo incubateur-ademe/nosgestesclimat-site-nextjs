@@ -1,3 +1,5 @@
+'use client'
+
 import ContentLarge from '@/components/layout/ContentLarge'
 import Title from '@/design-system/layout/Title'
 import { useDebug } from '@/hooks/useDebug'
