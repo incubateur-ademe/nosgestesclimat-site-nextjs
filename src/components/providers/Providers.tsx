@@ -32,6 +32,7 @@ export default function Providers({
   // or the landing page for organisations
   const shouldAlwaysDisplayChildren =
     NO_MODEL_PATHNAME_EXCEPTIONS.includes(pathname)
+
   if (shouldAlwaysDisplayChildren && isLoading) {
     return children
   }

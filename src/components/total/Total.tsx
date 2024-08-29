@@ -9,6 +9,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 import ValueChangeDisplay from '../misc/ValueChangeDisplay'
 import ButtonBack from './total/ButtonBack'
 import Explanation from './total/Explanation'
@@ -16,11 +17,15 @@ import Progress from './total/Progress'
 import TotalButtons from './total/TotalButtons'
 import TotalFootprintNumber from './total/TotalFootprintNumber'
 
-type Props = {
+export default function Total({
+  toggleQuestionList,
+  toggleSaveModal,
+  simulationMode = true,
+}: {
   toggleQuestionList?: () => void
   toggleSaveModal?: () => void
-}
-export default function Total({ toggleQuestionList, toggleSaveModal }: Props) {
+  simulationMode?: boolean
+}) {
   const { t } = useClientTranslation()
 
   const { tutorials, hideTutorial, showTutorial } = useUser()
@@ -58,12 +63,19 @@ export default function Total({ toggleQuestionList, toggleSaveModal }: Props) {
 
   return (
     <header>
-      <div className="relative mb-6 flex items-center gap-4 overflow-visible pb-3 pt-2 lg:mb-10 lg:pb-5 lg:pt-4">
-        <Progress />
+      <div
+        className={twMerge(
+          'relative mb-6 flex items-center gap-4 overflow-visible pb-3 pt-2 lg:mb-10 lg:pb-5 lg:pt-4',
+          !simulationMode && 'border-b border-primary-100'
+        )}>
+        {simulationMode && <Progress />}
+
         <div className="mb-0 flex w-full max-w-6xl justify-between overflow-visible pl-1 pr-4 lg:mx-auto lg:px-4">
           <div className="relative flex items-center gap-1 lg:gap-4">
-            <ButtonBack />
+            {simulationMode && <ButtonBack />}
+
             <TotalFootprintNumber />
+
             <QuestionButton
               onClick={toggleOpen}
               title={t('Comprendre mon score')}
