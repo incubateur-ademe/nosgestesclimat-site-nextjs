@@ -46,7 +46,7 @@ export default function SimulateurPage() {
   }
 
   return (
-    <>
+    <div className="flex h-screen flex-1 flex-col overflow-scroll">
       <Total
         toggleQuestionList={toggleQuestionList}
         toggleSaveModal={toggleSaveModal}
@@ -56,6 +56,6 @@ export default function SimulateurPage() {
         isQuestionListOpen={isQuestionListOpen}
       />
       <SaveModal isOpen={isSaveModalOpen} closeModal={toggleSaveModal} />
-    </>
+    </div>
   )
 }

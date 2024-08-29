@@ -32,7 +32,7 @@ export default function AutresQuestions() {
               }>
               <Trans>C’est quoi mon empreinte carbone ?</Trans>
             </summary>
-            <div className="my-2 ml-3.5">
+            <div className="my-2 ml-3.5 text-sm">
               <p>
                 <Trans i18nKey={'publicodes.Tutoriel.slide1.p1'}>
                   Le climat se réchauffe à cause des activités humaines, c'est
@@ -52,7 +52,7 @@ export default function AutresQuestions() {
                 width={100}
                 height={100}
               />
-              <p>
+              <p className="text-sm">
                 <Trans i18nKey={'publicodes.Tutoriel.slide1.p2'}>
                   Pour estimer sa propre contribution au réchauffement de la
                   planète (son "impact climat"), il est d'usage de calculer ce
@@ -72,7 +72,7 @@ export default function AutresQuestions() {
               }>
               <Trans>Comment on la mesure ?</Trans>
             </summary>
-            <div className="my-2 ml-3.5">
+            <div className="my-2 ml-3.5 text-sm">
               <p>
                 <Trans i18nKey={'publicodes.Tutoriel.slide2.p1'}>
                   Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde
@@ -104,7 +104,7 @@ export default function AutresQuestions() {
                 </Trans>
               </p>
               <blockquote>
-                <details>
+                <details className="text-sm">
                   <summary
                     onClick={() =>
                       trackEvent(
@@ -142,7 +142,7 @@ export default function AutresQuestions() {
           </details>
         </li>
         <li className="mb-2" id={'categories'}>
-          <details id={'categories'}>
+          <details id={'categories'} className="text-sm">
             <summary
               className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
               onClick={() =>
@@ -166,7 +166,7 @@ export default function AutresQuestions() {
           </details>
         </li>
         <li className="mb-4" id={'eau'}>
-          <details id={'eau'}>
+          <details id={'eau'} className="text-sm">
             <summary
               className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
               onClick={() =>

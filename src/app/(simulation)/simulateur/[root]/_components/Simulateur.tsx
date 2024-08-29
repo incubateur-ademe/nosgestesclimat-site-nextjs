@@ -15,7 +15,7 @@ export default function Simulateur({
   const isDebug = useDebug()
 
   return (
-    <div className="flex-1">
+    <div className="flex-1 pb-12 pt-20 md:pt-24">
       <div className={isQuestionListOpen && !isDebug ? 'hidden' : 'block'}>
         <Form />
       </div>

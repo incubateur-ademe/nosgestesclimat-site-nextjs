@@ -62,10 +62,10 @@ export default function Total({
   ])
 
   return (
-    <header>
+    <header className="fixed top-0 z-50 w-full bg-white">
       <div
         className={twMerge(
-          'relative mb-6 flex items-center gap-4 overflow-visible pb-3 pt-2 lg:mb-10 lg:pb-5 lg:pt-4',
+          'relative flex items-center gap-4 overflow-visible pb-3 pt-2 lg:pb-5 lg:pt-4',
           !simulationMode && 'border-b border-primary-100'
         )}>
         {simulationMode && <Progress />}
