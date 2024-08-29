@@ -9,6 +9,7 @@ import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
+import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 
@@ -24,6 +25,8 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
   const currentSimulation = useCurrentSimulation()
 
   const { user, updateEmail } = useUser()
+
+  const router = useRouter()
 
   const { register, handleSubmit } = useReactHookForm<Inputs>({
     defaultValues: {
@@ -72,21 +75,38 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
     <Modal
       isOpen={isOpen}
       closeModal={closeModal}
+      hasAbortButton={false}
       buttons={
-        currentSimulation.savedViaEmail ? (
-          <Button onClick={closeModal}>Continuer mon test</Button>
-        ) : (
+        <>
           <Button
-            type="submit"
-            form={'save-form'}
-            disabled={isPending}
-            className="inline">
-            <Trans>
-              Sauvegarder{' '}
-              <span className="hidden lg:inline">ma progression</span>
-            </Trans>
+            color="secondary"
+            onClick={
+              currentSimulation.savedViaEmail
+                ? () => router.push('/')
+                : closeModal
+            }>
+            {currentSimulation.savedViaEmail ? (
+              <Trans>Revenir à l'accueil</Trans>
+            ) : (
+              <Trans>Annuler</Trans>
+            )}
           </Button>
-        )
+
+          {currentSimulation.savedViaEmail ? (
+            <Button onClick={closeModal}>Continuer mon test</Button>
+          ) : (
+            <Button
+              type="submit"
+              form={'save-form'}
+              disabled={isPending}
+              className="inline">
+              <Trans>
+                Sauvegarder{' '}
+                <span className="hidden lg:inline">ma progression</span>
+              </Trans>
+            </Button>
+          )}
+        </>
       }>
       {currentSimulation.savedViaEmail ? (
         <Title
