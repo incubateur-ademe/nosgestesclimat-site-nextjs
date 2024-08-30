@@ -53,8 +53,10 @@ export default function ValueChangeDisplay({
   return (
     <div
       className={twMerge(
-        'animate-valuechange whitespace-nowrap',
-        isNegative ? 'text-green-700' : 'text-red-700',
+        '-z-0 whitespace-nowrap',
+        isNegative
+          ? 'animate-valuechange-reverse text-green-700'
+          : 'animate-valuechange text-red-700',
         className
       )}
       key={numericValue}

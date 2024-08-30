@@ -2,7 +2,6 @@
 
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
 import Modal from '@/design-system/modals/Modal'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
@@ -10,8 +9,9 @@ import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
+import SaveSimulationForm from './saveModal/SaveSimulationForm'
 
 type Props = {
   isOpen: boolean
@@ -22,6 +22,9 @@ type Inputs = {
 }
 
 export default function SaveModal({ isOpen, closeModal }: Props) {
+  const [isAlreadySavedSimulationUpdated, setIsAlreadySavedSimulationUpdated] =
+    useState(false)
+
   const currentSimulation = useCurrentSimulation()
 
   const { user, updateEmail } = useUser()
@@ -67,6 +70,29 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
     }
   }, [isSuccess, currentSimulation])
 
+  // Handles the cases where the user has already saved the simulation in a useEffect
+  // by updating the simulation saved
+  useEffect(() => {
+    if (
+      currentSimulation.savedViaEmail &&
+      !isAlreadySavedSimulationUpdated &&
+      !isSuccess &&
+      !isError
+    ) {
+      saveSimulation({
+        simulation: currentSimulation,
+      })
+      setIsAlreadySavedSimulationUpdated(true)
+    }
+  }, [
+    currentSimulation,
+    currentSimulation.savedViaEmail,
+    isAlreadySavedSimulationUpdated,
+    isError,
+    isSuccess,
+    saveSimulation,
+  ])
+
   // We do not display the component if we are in an iframeSimulation context
   const { isIframeOnlySimulation } = useIframe()
   if (isIframeOnlySimulation) return null
@@ -102,50 +128,52 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
           )}
         </>
       }>
-      {currentSimulation.savedViaEmail ? (
+      {currentSimulation.savedViaEmail && (
         <Title
           tag="h2"
           hasSeparator={false}
+          className="flex items-center gap-1"
           subtitle={
             <Trans>
-              Vous pouvez la reprendre plus tard en cliquant sur le lien que
+              Vous pouvez le reprendre plus tard en cliquant sur le lien que
               vous avez reçu par email.
             </Trans>
           }>
-          <Trans>Votre simulation est sauvegardée !</Trans>
+          <Trans>Votre test est sauvegardé !</Trans>
+          <svg
+            className="inline-block h-8 w-8"
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill="none"
+              stroke="rgb(22, 163, 74)"
+              strokeWidth="8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeDasharray="200"
+              strokeDashoffset="200"
+              d="M20 50 L40 70 L80 30">
+              <animate
+                attributeName="stroke-dashoffset"
+                from="200"
+                to="0"
+                dur="1s"
+                begin="0s"
+                fill="freeze"
+                calcMode="linear"
+              />
+            </path>
+          </svg>
         </Title>
-      ) : (
-        <form
-          id="save-form"
-          className="flex h-full flex-col items-start"
-          onSubmit={handleSubmit(onSubmit)}>
-          <Title
-            tag="h2"
-            subtitle={
-              <Trans>
-                Recevez par email un lien pour reprendre votre test plus tard.
-              </Trans>
-            }>
-            <Trans>Reprendre plus tard</Trans>
-          </Title>
+      )}
 
-          <div className="flex w-full flex-col items-start gap-4">
-            <TextInputGroup
-              required
-              type="email"
-              aria-label="Entrez votre adresse email"
-              {...register('email')}
-            />
-
-            {isError && (
-              <p className="mt-4 text-sm text-red-700">
-                <Trans>
-                  Une erreur s'est produite au moment de la sauvegarde.
-                </Trans>
-              </p>
-            )}
-          </div>
-        </form>
+      {!currentSimulation.savedViaEmail && (
+        <SaveSimulationForm
+          handleSubmit={handleSubmit}
+          onSubmit={onSubmit}
+          register={register}
+          isError={isError}
+        />
       )}
     </Modal>
   )
