@@ -1137,3 +1137,7 @@ entries:
   Une erreur s'est produite au moment de la sauvegarde.: An error has occurred during backup.
   Veuillez entrer un nombre positif.: Please enter a positive number.
   '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} on your footprint'
+  '{{name}}, supprimer cette participation': '{{name}}cancel this shareholding'
+  Supprimer ce participant ? Cette opération est définitive.: Delete this participant? This operation is definitive.
+  Participant supprimé avec succès: Participant successfully deleted
+  Une erreur est survenue: An error has occurred

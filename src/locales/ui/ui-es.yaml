@@ -1130,3 +1130,7 @@ entries:
   Reprendre plus tard: Reanudar más tarde
   Veuillez entrer un nombre positif.: Introduzca un número positivo.
   '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} sobre su huella'
+  Une erreur est survenue: Se ha producido un error
+  '{{name}}, supprimer cette participation': '{{name}}cancelar esta participación'
+  Participant supprimé avec succès: Participante eliminado con éxito
+  Supprimer ce participant ? Cette opération est définitive.: ¿Borrar a este participante? Esta operación es definitiva.
