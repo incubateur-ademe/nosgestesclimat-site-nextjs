@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import { forwardRef, HTMLAttributes } from 'react'
+import { HTMLAttributes } from 'react'
 import { DebounceInput } from 'react-debounce-input'
 import { NumericFormat } from 'react-number-format'
 import { twMerge } from 'tailwind-merge'
@@ -15,12 +15,10 @@ type Props = {
   defaultValue?: string | number | null | undefined
 }
 
-forwardRef(function DebouncedInputWithForwardRef(
-  props: React.ComponentProps<typeof DebounceInput>,
-  ref: React.ForwardedRef<HTMLInputElement>
-) {
-  return <DebounceInput type="number" {...props} inputRef={ref} />
-})
+function unformatNumber(number: string) {
+  // Supprimer les séparateurs de milliers
+  return Number(number.replace(/[^0-9.-]+/g, ''))
+}
 
 export default function NumberInput({
   unit,
@@ -39,11 +37,6 @@ export default function NumberInput({
     } else {
       setValue(unformatNumber(inputValue))
     }
-  }
-
-  function unformatNumber(number: string) {
-    // Supprimer les séparateurs de milliers
-    return Number(number.replace(/[^0-9.-]+/g, ''))
   }
 
   return (
