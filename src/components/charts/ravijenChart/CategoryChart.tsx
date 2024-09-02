@@ -8,7 +8,7 @@ import TotalCategoryBlock from './categoryChart/TotalCategoryBlock'
 
 type Props = {
   category: DottedName
-  subcategories: DottedName[] | undefined
+  subcategories?: DottedName[] | undefined
   maxValue: number
   squashLimitPercentage?: number
   isInverted?: boolean

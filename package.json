@@ -19,7 +19,7 @@
     "build:debug-memory": "next build --experimental-debug-memory-usage",
     "start": "next start",
     "lint": "next lint",
-    "lint:types": "npx tsc --noEmit",
+    "lint:types": "tsc --noEmit",
     "e2e": "cypress open --e2e",
     "e2e:generate": "node cypress/scripts/generateSpecsFromPersonas.mjs",
     "ui:parse": "node scripts/i18n/generate-ui.js",

@@ -41,7 +41,13 @@ export const getUserCategoryFootprintsSortedByDifference = ({
 
   const { positiveDifferenceCategories, negativeDifferenceCategories } =
     formattedResult.reduce(
-      (acc, item) => {
+      (
+        acc: {
+          positiveDifferenceCategories: PointsFortsFaiblesType[]
+          negativeDifferenceCategories: PointsFortsFaiblesType[]
+        },
+        item: PointsFortsFaiblesType
+      ) => {
         const { resultObject } = item
         if (!!resultObject?.difference && resultObject?.difference < 0) {
           acc.positiveDifferenceCategories.push(item)
@@ -54,9 +60,6 @@ export const getUserCategoryFootprintsSortedByDifference = ({
       {
         positiveDifferenceCategories: [],
         negativeDifferenceCategories: [],
-      } as {
-        positiveDifferenceCategories: PointsFortsFaiblesType[]
-        negativeDifferenceCategories: PointsFortsFaiblesType[]
       }
     )
 

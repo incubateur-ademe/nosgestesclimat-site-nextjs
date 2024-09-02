@@ -42,25 +42,27 @@ export function useSetComputedResults({
   // Set the computed results object (after engine init only)
   const computedResults: ComputedResults = useMemo(
     () =>
-      metrics.reduce((acc, metric) => {
-        acc[metric] = categories.reduce(
-          (acc, category) => {
-            acc.categories[category] = getNumericValue(category, metric)
+      metrics.reduce((metricsAcc: ComputedResults, metric: Metric) => {
+        metricsAcc[metric] = categories.reduce(
+          (categoriesAcc: ComputedResultsFootprint, category: DottedName) => {
+            categoriesAcc.categories[category] = getNumericValue(
+              category,
+              metric
+            )
 
             const subcategories = getSubcategories(category)
 
-            if (!subcategories) return acc
+            if (!subcategories) return categoriesAcc
 
-            acc.subcategories[category] = subcategories.reduce(
-              (subAcc, subcategory) => {
-                subAcc[subcategory] = getNumericValue(subcategory, metric)
-
+            categoriesAcc.subcategories[category] = subcategories.reduce(
+              (subAcc: Record<DottedName, number>, subcategory: DottedName) => {
+                subAcc[subcategory] = getNumericValue(subcategory, metric) || 0
                 return subAcc
               },
-              {} as { [key in DottedName]: number }
+              {} as Record<DottedName, number>
             )
 
-            return acc
+            return categoriesAcc
           },
           {
             categories: {},
@@ -68,7 +70,7 @@ export function useSetComputedResults({
             bilan: getNumericValue('bilan', metric),
           } as ComputedResultsFootprint
         )
-        return acc
+        return metricsAcc
       }, {} as ComputedResults),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [categories, getNumericValue, situation]

@@ -11,7 +11,7 @@ import CategoryChart from './ravijenChart/CategoryChart'
 
 type Props = {
   categories: DottedName[]
-  subcategories: Record<DottedName, DottedName[]> | undefined
+  subcategories?: Record<DottedName, DottedName[]> | undefined
   squashLimitPercentage?: number
   isInverted?: boolean
   shouldAlwaysDisplayValue?: boolean

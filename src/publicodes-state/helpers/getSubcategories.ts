@@ -9,7 +9,7 @@ export function getSubcategories({
   dottedName: DottedName
   getRule: (dottedName: DottedName) => NGCRuleNode | null
   parsedRules: Record<string, NGCRuleNode>
-}): DottedName[] | undefined {
+}): DottedName[] {
   const ruleNode = getRule(dottedName)
 
   if (!ruleNode || !ruleNode.rawNode) {
