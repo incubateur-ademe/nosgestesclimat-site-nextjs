@@ -8735,6 +8735,11 @@ react-move@^2.7.0:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
+react-number-format@^5.4.1:
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-5.4.1.tgz#ca191af06c4618a823874efa486df50a1abbfc18"
+  integrity sha512-NICOjo/70dcAiwVmH6zMWoZrTQDlBrEXV/f7S0t/ewlpzp4z00pasg5G1yBX6NHLafwOF3QZ+VvK/XApwSKxdA==
+
 react-select@^5.8.0:
   version "5.8.0"
   resolved "https://registry.yarnpkg.com/react-select/-/react-select-5.8.0.tgz#bd5c467a4df223f079dd720be9498076a3f085b5"
