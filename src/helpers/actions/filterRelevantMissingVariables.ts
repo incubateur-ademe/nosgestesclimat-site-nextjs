@@ -11,6 +11,14 @@ const filteredDottedNames: DottedName[] = [
   'métrique',
   'déforestation',
   'logement . électricité verte',
+  'logement . chauffage . électricité',
+  'futureco-data . transport . ferry . distance aller . orthodromique',
+  'futureco-data . transport . ferry . durée du voyage',
+  'futureco-data . transport . ferry . vitesse en kmh',
+  'futureco-data . transport . ferry . cabine',
+  'futureco-data . transport . ferry . groupe',
+  'futureco-data . transport . ferry . consommation de services',
+  'futureco-data . transport . ferry . voiture',
 ]
 
 export const filterRelevantMissingVariables = ({
