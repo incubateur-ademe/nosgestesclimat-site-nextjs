@@ -9,6 +9,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useState } from 'react'
+import ValueChangeDisplay from '../misc/ValueChangeDisplay'
 import ButtonBack from './total/ButtonBack'
 import Explanation from './total/Explanation'
 import Progress from './total/Progress'
@@ -57,7 +58,7 @@ export default function Total({ toggleQuestionList, toggleSaveModal }: Props) {
 
   return (
     <header>
-      <div className="relative mb-6 flex items-center gap-4 overflow-hidden pb-3 pt-2 lg:mb-10 lg:pb-5 lg:pt-4">
+      <div className="relative mb-6 flex items-center gap-4 overflow-visible pb-3 pt-2 lg:mb-10 lg:pb-5 lg:pt-4">
         <Progress />
         <div className="mb-0 flex w-full max-w-6xl justify-between overflow-visible pl-1 pr-4 lg:mx-auto lg:px-4">
           <div className="relative flex items-center gap-1 lg:gap-4">
@@ -74,6 +75,14 @@ export default function Total({ toggleQuestionList, toggleSaveModal }: Props) {
               toggleSaveModal={toggleSaveModal}
             />
           ) : null}
+        </div>
+
+        <div
+          className="absolute -bottom-7 left-10 w-full md:left-4"
+          aria-live="polite">
+          <div className="w-full max-w-6xl md:mx-auto">
+            <ValueChangeDisplay />
+          </div>
         </div>
       </div>
       {!tutorials.scoreExplanation ? (

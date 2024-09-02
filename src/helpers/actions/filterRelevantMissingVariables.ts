@@ -8,13 +8,27 @@ const filteredDottedNames: DottedName[] = [
   'divers . aider les autres',
   'divers . partage NGC',
   'transport . infolettre',
+  'métrique',
+  'déforestation',
+  'logement . électricité verte',
+  'logement . chauffage . électricité',
+  'futureco-data . transport . ferry . distance aller . orthodromique',
+  'futureco-data . transport . ferry . durée du voyage',
+  'futureco-data . transport . ferry . vitesse en kmh',
+  'futureco-data . transport . ferry . cabine',
+  'futureco-data . transport . ferry . groupe',
+  'futureco-data . transport . ferry . consommation de services',
+  'futureco-data . transport . ferry . voiture',
 ]
 
-export const filterRelevantMissingVariables = (
-  missingVariablesKeys: DottedName[],
+export const filterRelevantMissingVariables = ({
+  missingVariables,
+  extendedFoldedSteps,
+}: {
+  missingVariables: DottedName[]
   extendedFoldedSteps: DottedName[]
-) => {
-  return missingVariablesKeys.filter((dottedName: DottedName) => {
+}) => {
+  return missingVariables.filter((dottedName: DottedName) => {
     const isFolded = extendedFoldedSteps.indexOf(dottedName) >= 0
     const isManuallyExcluded = !filteredDottedNames?.includes(dottedName)
     return isManuallyExcluded && !isFolded
