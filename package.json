@@ -73,6 +73,7 @@
     "react-hook-form": "^7.51.2",
     "react-i18next": "^14.0.5",
     "react-modal": "^3.16.1",
+    "react-number-format": "^5.4.1",
     "react-select": "^5.8.0",
     "react-toastify": "^10.0.5",
     "react-tooltip": "^5.26.3",
