@@ -67,7 +67,8 @@ export default function Total({
   return (
     <header
       className={twMerge(
-        `fixed top-0 z-50 h-16 w-full ${getBgCategoryColor(currentCategory, '50')} md:bg-white`,
+        'fixed top-0 z-50 h-16 w-full md:bg-white',
+        getBgCategoryColor(currentCategory, '50'),
         !simulationMode && 'static'
       )}>
       <div
@@ -79,9 +80,7 @@ export default function Total({
 
         <div className="mb-0 flex w-full max-w-6xl justify-between overflow-visible pl-1 pr-4 lg:mx-auto lg:px-4">
           <div className="relative flex items-center gap-1 lg:gap-4">
-            {simulationMode && (
-              <ButtonBack onClick={toggleSaveModal ?? (() => {})} />
-            )}
+            {simulationMode && <ButtonBack onClick={toggleSaveModal} />}
 
             <TotalFootprintNumber />
 

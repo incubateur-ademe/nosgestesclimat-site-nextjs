@@ -1,17 +1,13 @@
 //@ts-check
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
 const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
 })
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { withSentryConfig } = require('@sentry/nextjs')
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const redirects = require('./config/redirects.js')
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const remoteImagesPatterns = require('./config/remoteImagesPatterns.js')
 
 /** @type {import('next').NextConfig} */
