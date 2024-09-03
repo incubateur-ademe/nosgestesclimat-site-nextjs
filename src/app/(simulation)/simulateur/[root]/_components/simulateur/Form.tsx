@@ -133,7 +133,7 @@ export default function Form() {
 
             <FunFact question={currentQuestion} />
 
-            <div className="mb-8 mt-auto">
+            <div className="mb-8 mt-auto pb-16 md:pb-0">
               <CategoryIllustration category={currentCategory ?? 'transport'} />
             </div>
           </div>

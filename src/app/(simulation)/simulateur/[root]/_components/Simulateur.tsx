@@ -19,7 +19,7 @@ export default function Simulateur({
     <div className="flex flex-1 flex-col pb-16 pt-16 md:pt-20">
       <div
         className={twMerge(
-          'flex flex-1 flex-col',
+          'flex flex-1 flex-col pt-6',
           isQuestionListOpen && !isDebug ? 'hidden' : 'flex'
         )}>
         <Form />
