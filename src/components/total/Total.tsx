@@ -5,8 +5,9 @@ import {
   simulateurCloseScoreInfo,
   simulateurOpenScoreInfo,
 } from '@/constants/tracking/pages/simulateur'
+import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -31,6 +32,8 @@ export default function Total({
   const { tutorials, hideTutorial, showTutorial } = useUser()
 
   const { progression } = useCurrentSimulation()
+
+  const { currentCategory } = useForm()
 
   const [hasManuallyOpenedTutorial, setHasManuallyOpenedTutorial] =
     useState(false)
@@ -62,10 +65,14 @@ export default function Total({
   ])
 
   return (
-    <header className="fixed top-0 z-50 w-full bg-white">
+    <header
+      className={twMerge(
+        `fixed top-0 z-50 h-16 w-full ${getBgCategoryColor(currentCategory, '50')} md:bg-white`,
+        !simulationMode && 'static'
+      )}>
       <div
         className={twMerge(
-          'relative flex items-center gap-4 overflow-visible pb-3 pt-2 lg:pb-5 lg:pt-4',
+          'relative flex h-full items-center gap-4 overflow-visible pb-3 pt-2 lg:pb-5 lg:pt-4',
           !simulationMode && 'border-b border-primary-100'
         )}>
         {simulationMode && <Progress />}

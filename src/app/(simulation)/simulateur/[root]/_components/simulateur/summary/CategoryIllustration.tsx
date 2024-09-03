@@ -8,8 +8,10 @@ import { twMerge } from 'tailwind-merge'
 
 export default function CategoryIllustration({
   category,
+  shouldHideIllustration,
 }: {
   category: DottedName
+  shouldHideIllustration?: boolean
 }) {
   const { t } = useClientTranslation()
 
@@ -19,40 +21,38 @@ export default function CategoryIllustration({
         return {
           src: '/images/illustrations/mother-and-son-on-bike.svg',
           alt: t('Une mère et son enfant sur un vélo'),
-          className: 'min-w-[500px] md:min-w-0 left-0 md:right-0',
+          className: '',
         }
       case 'alimentation':
         return {
           src: '/images/illustrations/girl-cooking.svg',
           alt: t('Une fille qui cuisine'),
-          className: 'min-w-[400px] md:min-w-0 left-0 md:-right-10',
+          className: '',
         }
       case 'logement':
         return {
           src: '/images/illustrations/girl-reading-newspaper.svg',
           alt: t('Une fille qui lit un journal'),
-          className:
-            'min-w-[600px] md:min-w-0 -left-10 md:-right-10 md:max-w-[300px]',
+          className: 'min-w-[200px]',
         }
       case 'divers':
         return {
           src: '/images/illustrations/at-the-cinema.svg',
           alt: t('Un grand-père et sa petite fille qui regardent un film'),
-          className: 'min-w-[400px] md:min-w-0 left-0 md:-right-10',
+          className: '',
         }
       case 'services sociétaux':
         return {
           src: '/images/illustrations/children-holding-hand.svg',
           alt: t('Des enfants qui se tiennent la main'),
-          className:
-            'min-w-[400px] -left-6 md:min-w-0 md:-right-10 md:top-auto',
+          className: '',
         }
       default:
         return null
     }
   }, [category, t])
 
-  if (!categoryProps) {
+  if (!categoryProps || shouldHideIllustration) {
     return null
   }
 
@@ -63,7 +63,7 @@ export default function CategoryIllustration({
       width={300}
       height={500}
       className={twMerge(
-        'absolute -left-20 top-20 -z-10 block opacity-10 md:static md:left-auto md:top-auto md:mx-auto md:max-w-[240px] md:opacity-100',
+        'bottom-0 ml-auto block max-w-[140px] md:static md:left-auto md:top-auto md:mx-auto md:max-w-[240px] md:max-w-none md:opacity-100',
         categoryProps.className ?? ''
       )}
     />

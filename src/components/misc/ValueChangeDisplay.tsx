@@ -4,6 +4,7 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useForm, useRule } from '@/publicodes-state'
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/Trans'
@@ -15,6 +16,8 @@ export default function ValueChangeDisplay({
 }) {
   const { t } = useClientTranslation()
   const locale = useLocale()
+
+  const pathname = usePathname()
 
   const { currentQuestion } = useForm()
 
@@ -46,7 +49,7 @@ export default function ValueChangeDisplay({
     t,
   })
 
-  if (displayDifference === 0) {
+  if (displayDifference === 0 || !pathname.includes('simulateur/bilan')) {
     return null
   }
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useDebug } from '@/hooks/useDebug'
+import { twMerge } from 'tailwind-merge'
 import Form from './simulateur/Form'
 import Summary from './simulateur/Summary'
 
@@ -15,8 +16,12 @@ export default function Simulateur({
   const isDebug = useDebug()
 
   return (
-    <div className={`flex-1 pb-12 pt-20`}>
-      <div className={isQuestionListOpen && !isDebug ? 'hidden' : 'block'}>
+    <div className="flex flex-1 flex-col pb-16 pt-16 md:pt-20">
+      <div
+        className={twMerge(
+          'flex flex-1 flex-col',
+          isQuestionListOpen && !isDebug ? 'hidden' : 'flex'
+        )}>
         <Form />
       </div>
       <Summary

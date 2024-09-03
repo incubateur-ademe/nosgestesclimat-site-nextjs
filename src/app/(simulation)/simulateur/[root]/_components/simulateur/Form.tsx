@@ -118,28 +118,24 @@ export default function Form() {
     <>
       <ContentLarge>
         <div className="relative flex flex-1 flex-col gap-2 md:gap-8 lg:mt-0 lg:flex-row lg:gap-24">
-          <div className="relative h-full flex-1">
+          <div className="relative flex flex-1 flex-col">
             <QuestionComponent
               question={currentQuestion}
               key={currentQuestion}
               tempValue={tempValue}
               setTempValue={setTempValue}
             />
-
-            <div className="block md:hidden">
-              <CategoryIllustration category={currentCategory ?? 'transport'} />
-            </div>
           </div>
 
           <div
             className={`flex flex-col gap-8 md:self-start lg:w-[20rem] short:gap-2 md:${getBgCategoryColor(currentCategory ?? 'transport', '500')}`}>
             <CategoriesSummary />
 
-            <div className="hidden md:block">
+            <FunFact question={currentQuestion} />
+
+            <div className="mb-8 mt-auto">
               <CategoryIllustration category={currentCategory ?? 'transport'} />
             </div>
-
-            <FunFact question={currentQuestion} />
           </div>
         </div>
       </ContentLarge>
