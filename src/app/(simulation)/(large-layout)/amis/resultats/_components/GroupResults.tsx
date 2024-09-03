@@ -9,16 +9,20 @@ import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
 import { useIsGroupOwner } from '@/hooks/groups/useIsGroupOwner'
 import { useUser } from '@/publicodes-state'
 import { Group, Results } from '@/types/groups'
+import { QueryObserverResult } from '@tanstack/react-query'
 import Classement from './groupResults/Classement'
 import InviteBlock from './groupResults/InviteBlock'
 import OwnerAdminSection from './groupResults/OwnerAdminSection'
 import ParticipantAdminSection from './groupResults/ParticipantAdminSection'
 import PointsFortsFaibles from './groupResults/PointsFortsFaibles'
 
-type Props = {
+export default function GroupResults({
+  group,
+  refetchGroup,
+}: {
   group: Group
-}
-export default function GroupResults({ group }: Props) {
+  refetchGroup: () => Promise<QueryObserverResult<Group, Error>>
+}) {
   const { user } = useUser()
 
   const { isGroupOwner } = useIsGroupOwner({ group })
@@ -30,7 +34,7 @@ export default function GroupResults({ group }: Props) {
 
   return (
     <>
-      <Classement group={group} />
+      <Classement group={group} refetchGroup={refetchGroup} />
 
       <InviteBlock group={group} />
 
