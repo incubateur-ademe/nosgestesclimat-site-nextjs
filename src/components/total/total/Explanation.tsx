@@ -8,19 +8,23 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { motion } from 'framer-motion'
 
-type Props = { toggleOpen: any }
-
-export default function Explanation({ toggleOpen }: Props) {
+export default function Explanation({
+  toggleOpen,
+  isFirstToggle,
+}: {
+  toggleOpen: () => void
+  isFirstToggle: boolean
+}) {
   const { progression } = useCurrentSimulation()
 
   const { t } = useClientTranslation()
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.1 }}
-      className="absolute -top-2 left-8 z-50 mx-4 mb-2 w-full max-w-[calc(100%-2rem)] rounded-xl border-2 border-primary-200 bg-gray-100 p-3 pt-2 text-sm !opacity-95 lg:-top-8 lg:w-2/3">
+      initial={{ opacity: 0, translateY: '-10px' }}
+      animate={{ opacity: 1, translateY: 0 }}
+      transition={{ duration: 0.3, delay: isFirstToggle ? 2 : 0 }}
+      className="absolute left-2 top-0 z-50 mx-4 mb-2 w-full max-w-[calc(100%-2rem)] rounded-xl border-2 border-primary-200 bg-gray-100 p-3 pt-2 text-sm md:left-8 md:top-4 lg:w-2/3">
       <svg
         width="28"
         height="24"

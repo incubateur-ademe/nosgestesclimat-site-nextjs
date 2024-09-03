@@ -194,7 +194,8 @@ export default function AutresQuestions() {
       <ButtonLink
         href="/questions-frequentes"
         size="sm"
-        color="secondary"
+        color="text"
+        className="px-0 underline"
         trackingEvent={tutorielClickFaq}>
         <Trans>Consultez la FAQ</Trans>
       </ButtonLink>

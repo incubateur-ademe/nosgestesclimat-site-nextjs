@@ -108,7 +108,12 @@ export default function Total({
       </div>
       {!tutorials.scoreExplanation ? (
         <div className="relative mx-auto max-w-6xl">
-          <Explanation toggleOpen={toggleOpen} />
+          <Explanation
+            toggleOpen={toggleOpen}
+            isFirstToggle={
+              !tutorials.scoreExplanation && !hasManuallyOpenedTutorial
+            }
+          />
         </div>
       ) : null}
     </header>
