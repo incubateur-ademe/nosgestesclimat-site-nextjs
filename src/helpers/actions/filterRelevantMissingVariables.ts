@@ -19,6 +19,7 @@ const filteredDottedNames: DottedName[] = [
   'futureco-data . transport . ferry . groupe',
   'futureco-data . transport . ferry . consommation de services',
   'futureco-data . transport . ferry . voiture',
+  'services sociétaux . devenir producteur photovoltaique',
 ]
 
 export const filterRelevantMissingVariables = ({
