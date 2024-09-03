@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/Trans'
-import { HTMLAttributes } from 'react'
-import { DebounceInput } from 'react-debounce-input'
-import { NumericFormat } from 'react-number-format'
+import { debounce } from '@/utils/debounce'
+import { HTMLAttributes, useState } from 'react'
+import { NumberFormatValues, NumericFormat } from 'react-number-format'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -15,11 +15,6 @@ type Props = {
   defaultValue?: string | number | null | undefined
 }
 
-function unformatNumber(number: string) {
-  // Supprimer les séparateurs de milliers
-  return Number(number.replace(/[^0-9.-]+/g, ''))
-}
-
 export default function NumberInput({
   unit,
   value = '',
@@ -29,27 +24,28 @@ export default function NumberInput({
   id,
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
-  const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value
+  const [localValue, setLocalValue] = useState(value)
 
-    if (inputValue === '') {
+  const handleValueChange = debounce((values: NumberFormatValues) => {
+    setLocalValue(values.value)
+
+    if (values.value === '') {
       setValue(undefined)
     } else {
-      setValue(unformatNumber(inputValue))
+      setValue(Number(values.value))
     }
-  }
+  }, 300)
 
   return (
     <div
       className={twMerge(`flex items-center justify-start gap-1`, className)}>
       <NumericFormat
-        value={isMissing ? '' : value}
+        value={isMissing ? '' : localValue}
         placeholder={isMissing ? '0' : ''}
         className={`focus:ring-primary max-w-[8rem] rounded-xl border-2 border-primary-200 bg-white p-2 text-right transition-colors focus:border-primary-700 focus:ring-2 md:max-w-full`}
-        customInput={DebounceInput}
         thousandSeparator={' '}
         allowNegative={false}
-        onChange={handleValueChange}
+        onValueChange={handleValueChange}
         id={id}
         {...props}
       />
