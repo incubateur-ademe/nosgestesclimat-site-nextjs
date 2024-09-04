@@ -63,7 +63,7 @@ export default function CategoryIllustration({
       width={300}
       height={500}
       className={twMerge(
-        'bottom-0 ml-auto block max-w-[140px] md:static md:left-auto md:top-auto md:mx-auto md:max-w-[240px] md:max-w-none md:opacity-100',
+        'bottom-0 ml-auto block max-w-[140px] md:static md:left-auto md:top-auto md:mx-auto md:max-w-[240px] md:opacity-100',
         categoryProps.className ?? ''
       )}
     />
