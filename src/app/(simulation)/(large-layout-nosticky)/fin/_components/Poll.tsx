@@ -50,7 +50,7 @@ export default function Poll() {
           pollSlug: lastPollSlug || '',
         })}
         trackingEvent={endClickPoll}
-        className="flex h-10 w-10 items-center justify-center rounded-full p-0 leading-none">
+        className="flex !h-10 max-h-10 !w-10 max-w-10 items-center justify-center rounded-full p-0 leading-none">
         →
       </ButtonLink>
     </Card>
