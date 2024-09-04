@@ -7,6 +7,7 @@ import Badge from '@/design-system/layout/Badge'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 export default function Explanation({
   toggleOpen,
@@ -19,11 +20,27 @@ export default function Explanation({
 
   const { t } = useClientTranslation()
 
+  const [shouldRender, setShouldRender] = useState(!isFirstToggle)
+
+  useEffect(() => {
+    if (isFirstToggle) {
+      const timer = setTimeout(() => {
+        setShouldRender(true)
+      }, 2000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [isFirstToggle])
+
+  if (!shouldRender) {
+    return null
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, translateY: '-10px' }}
       animate={{ opacity: 1, translateY: 0 }}
-      transition={{ duration: 0.3, delay: isFirstToggle ? 2 : 0 }}
+      transition={{ duration: 0.3 }}
       className="absolute left-2 top-0 z-50 mx-4 mb-2 w-full max-w-[calc(100%-2rem)] rounded-xl border-2 border-primary-200 bg-gray-100 p-3 pt-2 text-sm md:left-8 md:top-4 lg:w-2/3">
       <svg
         width="28"
