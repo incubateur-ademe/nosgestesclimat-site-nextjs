@@ -1,9 +1,14 @@
-import { useRule } from '@/publicodes-state'
+import { useForm, useRule } from '@/publicodes-state'
 
 import Label from '@/components/form/question/Label'
 import NumberInput from '@/components/form/question/NumberInput'
+import {
+  getBgCategoryColor,
+  getBorderCategoryColor,
+} from '@/helpers/getCategoryColorClass'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   question: DottedName
@@ -18,6 +23,8 @@ export default function Assistance({
 }: Props) {
   const { setValue: setValueOfQuestion, value: valueOfQuestion } =
     useRule(question)
+
+  const { currentCategory } = useForm()
 
   const {
     type,
@@ -54,7 +61,12 @@ export default function Assistance({
   ])
 
   return (
-    <div className="mb-4 w-[20rem] max-w-full rounded-xl border-2 border-primary-50 bg-white p-4 sm:w-2/3">
+    <div
+      className={twMerge(
+        'mb-4 w-[20rem] max-w-full rounded-xl border-2 p-4 sm:w-2/3',
+        getBgCategoryColor(currentCategory, '50'),
+        getBorderCategoryColor(currentCategory, '200')
+      )}>
       <Label
         question={question}
         size="sm"

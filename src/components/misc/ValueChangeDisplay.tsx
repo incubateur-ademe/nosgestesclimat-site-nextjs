@@ -4,6 +4,7 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useForm, useRule } from '@/publicodes-state'
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/Trans'
@@ -15,6 +16,8 @@ export default function ValueChangeDisplay({
 }) {
   const { t } = useClientTranslation()
   const locale = useLocale()
+
+  const pathname = usePathname()
 
   const { currentQuestion } = useForm()
 
@@ -46,15 +49,17 @@ export default function ValueChangeDisplay({
     t,
   })
 
-  if (displayDifference === 0) {
+  if (displayDifference === 0 || !pathname.includes('simulateur/bilan')) {
     return null
   }
 
   return (
     <div
       className={twMerge(
-        'animate-valuechange whitespace-nowrap',
-        isNegative ? 'text-green-700' : 'text-red-700',
+        '-z-0 whitespace-nowrap',
+        isNegative
+          ? 'animate-valuechange-reverse text-green-700'
+          : 'animate-valuechange text-red-700',
         className
       )}
       key={numericValue}

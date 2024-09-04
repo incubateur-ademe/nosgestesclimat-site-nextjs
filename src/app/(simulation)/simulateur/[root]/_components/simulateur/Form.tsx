@@ -6,6 +6,7 @@ import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
 import { simulationSimulationCompleted } from '@/constants/tracking/simulation'
+import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { uuidToNumber } from '@/helpers/uuidToNumber'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
@@ -16,6 +17,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useContext, useEffect, useState } from 'react'
 import CategoriesSummary from './form/CategoriesSummary'
 import FunFact from './form/FunFact'
+import CategoryIllustration from './summary/CategoryIllustration'
 
 export default function Form() {
   const isDebug = useDebug()
@@ -27,6 +29,7 @@ export default function Form() {
     relevantAnsweredQuestions,
     currentQuestion,
     setCurrentQuestion,
+    currentCategory,
   } = useForm()
 
   const { questionInQueryParams, setQuestionInQueryParams } =
@@ -114,8 +117,8 @@ export default function Form() {
   return (
     <>
       <ContentLarge>
-        <div className="flex flex-col gap-8 lg:mt-0 lg:flex-row lg:gap-24">
-          <div className="flex-1">
+        <div className="relative flex flex-1 flex-col gap-2 md:gap-8 lg:mt-0 lg:flex-row lg:gap-24">
+          <div className="relative flex flex-1 flex-col">
             <QuestionComponent
               question={currentQuestion}
               key={currentQuestion}
@@ -124,9 +127,15 @@ export default function Form() {
             />
           </div>
 
-          <div className="flex flex-col gap-8 self-start lg:w-[20rem] short:gap-2">
+          <div
+            className={`flex flex-col gap-8 md:self-start lg:w-[20rem] short:gap-2 md:${getBgCategoryColor(currentCategory ?? 'transport', '500')}`}>
             <CategoriesSummary />
+
             <FunFact question={currentQuestion} />
+
+            <div className="mb-8 mt-auto pb-16 md:pb-0">
+              <CategoryIllustration category={currentCategory ?? 'transport'} />
+            </div>
           </div>
         </div>
       </ContentLarge>

@@ -40,7 +40,7 @@ export default function Page() {
 
   return (
     <section className="w-full bg-[#fff]">
-      <div className="mx-auto max-w-5xl px-6 lg:px-0">
+      <div className="max-w-5xl lg:px-0">
         <h1>
           <Trans>Accédez à votre espace organisation</Trans>
         </h1>

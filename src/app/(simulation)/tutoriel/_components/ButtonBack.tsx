@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import { tutorielClickPrecedent } from '@/constants/tracking/pages/tutoriel'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -13,9 +14,8 @@ export default function ButtonBack() {
       href="/"
       color="secondary"
       title={t("revenir à l'accueil")}
-      onClick={() => trackEvent(tutorielClickPrecedent)}
-      className="h-12 w-12">
-      ←
+      onClick={() => trackEvent(tutorielClickPrecedent)}>
+      ← <Trans>Précédent</Trans>
     </ButtonLink>
   )
 }
