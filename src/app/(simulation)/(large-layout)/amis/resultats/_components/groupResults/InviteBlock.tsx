@@ -8,29 +8,22 @@ import { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
 
-type SubmitButtonProps = {
-  isShareDefined: boolean
-  handleShare: () => void
-  handleCopy: () => void
-  isCopied: boolean
-}
-
 const SubmitButton = ({
   isShareDefined,
   handleShare,
-  handleCopy,
   isCopied,
-}: SubmitButtonProps) => {
+}: {
+  isShareDefined: boolean
+  handleShare: () => void
+  isCopied: boolean
+}) => {
   return (
     <Button
       className="flex justify-center whitespace-nowrap"
       onClick={() => {
         trackEvent(amisDashboardCopyLink)
-        if (isShareDefined) {
-          handleShare()
-        } else {
-          handleCopy()
-        }
+
+        handleShare()
       }}
       data-cypress-id="invite-button">
       {isShareDefined && <Trans>Partager</Trans>}
@@ -54,18 +47,22 @@ export default function InviteBlock({ group }: { group: Group }) {
   }, [])
 
   const isShareDefined =
-    typeof navigator !== 'undefined' && navigator.share !== undefined
+    typeof navigator !== 'undefined' &&
+    navigator.share !== undefined &&
+    window.innerWidth <= 768
 
   const sharedURL = `${window.location.origin}/amis/invitation?groupId=${group?._id}&mtm_campaign=challenge-amis`
 
   const handleShare = async () => {
-    if (navigator.share) {
+    if (isShareDefined) {
       await navigator
         .share({
           url: sharedURL,
           title: 'Rejoindre mon groupe',
         })
         .catch(handleCopy)
+    } else {
+      handleCopy()
     }
   }
 
@@ -86,7 +83,6 @@ export default function InviteBlock({ group }: { group: Group }) {
         <SubmitButton
           isShareDefined={isShareDefined}
           isCopied={isCopied}
-          handleCopy={handleCopy}
           handleShare={handleShare}
         />
       </div>
@@ -108,7 +104,6 @@ export default function InviteBlock({ group }: { group: Group }) {
       <SubmitButton
         isShareDefined={isShareDefined}
         isCopied={isCopied}
-        handleCopy={handleCopy}
         handleShare={handleShare}
       />
     </div>
