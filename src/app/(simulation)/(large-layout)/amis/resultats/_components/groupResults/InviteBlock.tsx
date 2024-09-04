@@ -46,7 +46,7 @@ export default function InviteBlock({ group }: { group: Group }) {
     }
   }, [])
 
-  const isShareDefined =
+  const shouldUseShareAPI =
     typeof navigator !== 'undefined' &&
     navigator.share !== undefined &&
     window.innerWidth <= 768
@@ -54,7 +54,7 @@ export default function InviteBlock({ group }: { group: Group }) {
   const sharedURL = `${window.location.origin}/amis/invitation?groupId=${group?._id}&mtm_campaign=challenge-amis`
 
   const handleShare = async () => {
-    if (isShareDefined) {
+    if (shouldUseShareAPI) {
       await navigator
         .share({
           url: sharedURL,
@@ -81,7 +81,7 @@ export default function InviteBlock({ group }: { group: Group }) {
           <Trans>Invitez d'autres personnes à rejoindre votre groupe</Trans>
         </p>
         <SubmitButton
-          isShareDefined={isShareDefined}
+          isShareDefined={shouldUseShareAPI}
           isCopied={isCopied}
           handleShare={handleShare}
         />
@@ -102,7 +102,7 @@ export default function InviteBlock({ group }: { group: Group }) {
         </Trans>
       </p>
       <SubmitButton
-        isShareDefined={isShareDefined}
+        isShareDefined={shouldUseShareAPI}
         isCopied={isCopied}
         handleShare={handleShare}
       />
