@@ -19,9 +19,7 @@ export default function Summary({
   const { relevantQuestions } = useForm()
 
   return (
-    <div
-      id="question-list"
-      className={isQuestionListOpen || isDebug ? 'block' : 'hidden'}>
+    <div className={isQuestionListOpen || isDebug ? 'block' : 'hidden'}>
       <ContentLarge>
         <Title tag="h2" className="mb-4 text-lg md:text-xl">
           Toutes les questions
