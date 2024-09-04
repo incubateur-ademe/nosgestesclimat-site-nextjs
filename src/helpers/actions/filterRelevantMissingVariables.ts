@@ -19,9 +19,7 @@ const filteredDottedNames: DottedName[] = [
   'futureco-data . transport . ferry . groupe',
   'futureco-data . transport . ferry . consommation de services',
   'futureco-data . transport . ferry . voiture',
-  // @ts-expect-error Remove after the new model version is deployed
   'services sociétaux . devenir producteur photovoltaique',
-  // @ts-expect-error Remove after the new model version is deployed
   'services sociétaux . bien placer argent',
 ]
 
