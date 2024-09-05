@@ -34,7 +34,7 @@ export default function GroupResultsPage() {
   }
 
   return (
-    <div>
+    <div className="pb-8">
       <GoBackLink href={'/classements'} className="mb-4 font-bold" />
 
       <EditableGroupTitle group={group} />

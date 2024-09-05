@@ -1,4 +1,3 @@
-import Footer from '@/components/layout/Footer'
 import Main from '@/design-system/layout/Main'
 import { PropsWithChildren } from 'react'
 import { IsDocumentationClientProvider } from './_contexts/DocumentationStateContext'
@@ -11,8 +10,6 @@ export default function Layout({ children }: PropsWithChildren) {
           {children}
         </div>
       </Main>
-
-      <Footer />
     </IsDocumentationClientProvider>
   )
 }

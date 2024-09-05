@@ -558,8 +558,14 @@ html[data-useragent*='Trident'] #js {
 }
 
 .notification blockquote {
-  background-color: #fff;
+  background-color: inherit;
+  color: inherit;
   padding: 0;
+  margin: 0;
+}
+
+.notification blockquote > p {
+  @apply mb-2;
 }
 
 .island {

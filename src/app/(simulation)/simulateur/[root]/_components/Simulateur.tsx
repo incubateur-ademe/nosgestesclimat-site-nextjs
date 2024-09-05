@@ -17,6 +17,12 @@ export default function Simulateur({
 
   return (
     <div className="flex flex-1 flex-col pb-16 pt-16 md:pt-20">
+      {isQuestionListOpen && (
+        <Summary
+          toggleQuestionList={toggleQuestionList}
+          isQuestionListOpen={isQuestionListOpen}
+        />
+      )}
       <div
         className={twMerge(
           'flex flex-1 flex-col pt-6',
@@ -24,10 +30,6 @@ export default function Simulateur({
         )}>
         <Form />
       </div>
-      <Summary
-        toggleQuestionList={toggleQuestionList}
-        isQuestionListOpen={isQuestionListOpen}
-      />
     </div>
   )
 }

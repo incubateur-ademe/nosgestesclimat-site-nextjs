@@ -98,7 +98,7 @@ export default function Total({
         </div>
 
         <div
-          className="absolute -bottom-7 left-10 w-full md:left-4"
+          className="absolute -bottom-7 left-10 w-full lg:left-4"
           aria-live="polite">
           <div className="w-full max-w-6xl md:mx-auto">
             <ValueChangeDisplay />
