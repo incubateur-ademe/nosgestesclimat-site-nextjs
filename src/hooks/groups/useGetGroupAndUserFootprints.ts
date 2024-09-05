@@ -31,12 +31,10 @@ export const useGetGroupAndUserFootprints = ({
   currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
   groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
 } => {
-  // @ts-expect-error TODO: fix this
   return groupMembers.reduce<{
     currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
     groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
   }>(
-    // @ts-expect-error TODO: fix this
     (acc, groupMember: Participant) => {
       const {
         currentUserCategoriesAndSubcategoriesFootprints,
@@ -46,18 +44,16 @@ export const useGetGroupAndUserFootprints = ({
       const isCurrentMember = groupMember.userId === userId
 
       // Create a copy of the accumulator
-      const updatedGroupCategoriesAndSubcategoriesFootprints: Partial<CategoriesAndSubcategoriesFootprintsType> =
-        {
-          ...groupCategoriesAndSubcategoriesFootprints,
-        }
+      const updatedGroupCategoriesAndSubcategoriesFootprints = {
+        ...groupCategoriesAndSubcategoriesFootprints,
+      }
 
-      const updatedCurrentUserCategoriesAndSubcategoriesFootprints: Partial<CategoriesAndSubcategoriesFootprintsType> =
-        {
-          ...currentUserCategoriesAndSubcategoriesFootprints,
-        }
+      const updatedCurrentUserCategoriesAndSubcategoriesFootprints = {
+        ...currentUserCategoriesAndSubcategoriesFootprints,
+      }
 
-      ;(orderedCategories as [keyof ComputedResultsSubcategories]).forEach(
-        (category: keyof ComputedResultsSubcategories) => {
+      orderedCategories.forEach(
+        (category: DottedName) => {
           const categoryRawValue =
             groupMember?.simulation?.computedResults?.carbone?.categories[
               category
@@ -122,7 +118,6 @@ export const useGetGroupAndUserFootprints = ({
                   value: subCategoryValue,
                 }
               } else {
-                // @ts-expect-error TODO: fix this
                 updatedGroupCategoriesAndSubcategoriesFootprints[
                   subCategory as keyof ComputedResultsSubcategories
                 ].value += subCategoryValue
