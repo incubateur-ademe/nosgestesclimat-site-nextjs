@@ -1,17 +1,14 @@
-import FilAriane from '@/components/layout/FilAriane'
 import { getGeolocation } from '@/helpers/getGeolocation'
 import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
 import Footer from '@/components/layout/Footer'
 import '@/locales/initClient'
 import '@/locales/initServer'
-import { ErrorBoundary } from '@sentry/nextjs'
 import { dir } from 'i18next'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { PropsWithChildren } from 'react'
-import { ErrorFallback } from './_components/ErrorFallback'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 
@@ -59,7 +56,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
       <head>
-        <link rel="icon" href="/images/misc/favicon.png" />
+        <link rel="icon" href="/favicon.png" />
 
         <meta
           name="google-site-verification"
@@ -103,16 +100,12 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           b.setAttribute('data-useragent', navigator.userAgent);
         `}</Script>
 
-        <ErrorBoundary showDialog fallback={ErrorFallback}>
-          <MainLayoutProviders
-            region={region}
-            migrationInstructions={migrationInstructions}>
-            <FilAriane />
-
-            {children}
-            <Footer />
-          </MainLayoutProviders>
-        </ErrorBoundary>
+        <MainLayoutProviders
+          region={region}
+          migrationInstructions={migrationInstructions}>
+          {children}
+          <Footer />
+        </MainLayoutProviders>
 
         <div id="modal" />
       </body>

@@ -20,7 +20,6 @@ import { formatEmail } from '@/utils/format/formatEmail'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
-import 'react-toastify/dist/ReactToastify.css'
 import DeconnexionButton from './DeconnexionButton'
 import EmailVerificationModal from './_components/EmailVerificationModal'
 import OrganisationFields from './_components/OrganisationFields'
@@ -47,19 +46,26 @@ export default function ParametresPage() {
     email: user?.organisation?.administratorEmail ?? '',
   })
 
-  const { register, handleSubmit } = useReactHookForm({
-    defaultValues: {
-      name: organisation?.name ?? '',
-      administratorName: organisation?.administrators?.[0]?.name ?? '',
-      hasOptedInForCommunications:
-        organisation?.administrators?.[0]?.hasOptedInForCommunications ?? false,
-      organisationType: organisation?.organisationType ?? '',
-      email: organisation?.administrators?.[0]?.email ?? '',
-      position: organisation?.administrators?.[0]?.position ?? '',
-      numberOfCollaborators: organisation?.numberOfCollaborators ?? 0,
-      administratorTelephone:
-        organisation?.administrators?.[0]?.telephone ?? '',
-    },
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useReactHookForm({
+    defaultValues: organisation
+      ? {
+          name: organisation?.name ?? '',
+          administratorName: organisation?.administrators?.[0]?.name ?? '',
+          hasOptedInForCommunications:
+            organisation?.administrators?.[0]?.hasOptedInForCommunications ??
+            false,
+          organisationType: organisation?.organisationType ?? '',
+          email: organisation?.administrators?.[0]?.email ?? '',
+          position: organisation?.administrators?.[0]?.position ?? '',
+          numberOfCollaborators: organisation?.numberOfCollaborators ?? 0,
+          administratorTelephone:
+            organisation?.administrators?.[0]?.telephone ?? '',
+        }
+      : undefined,
   })
 
   const {
@@ -197,7 +203,8 @@ export default function ParametresPage() {
 
         <OrganisationFields
           organisation={organisation}
-          register={register as any}
+          register={register}
+          errors={errors}
         />
 
         <Separator className="my-6" />

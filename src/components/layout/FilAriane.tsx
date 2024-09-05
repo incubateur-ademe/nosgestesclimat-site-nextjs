@@ -9,7 +9,7 @@ import { useParams, usePathname } from 'next/navigation'
 
 const TARGETED_PATHS = ['/organisations']
 
-export default function FilAriane() {
+export default function FilAriane({ className }: { className?: string }) {
   const pathname = usePathname()
 
   const params = useParams()
@@ -50,5 +50,5 @@ export default function FilAriane() {
     return []
   }
 
-  return <Breadcrumbs items={getBreadcrumbsItems()} />
+  return <Breadcrumbs className={className} items={getBreadcrumbsItems()} />
 }

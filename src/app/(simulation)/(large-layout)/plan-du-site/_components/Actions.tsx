@@ -9,7 +9,7 @@ import { utils } from 'publicodes'
 export default function Actions() {
   const { safeEvaluate } = useSimulation()
 
-  const { rules, getRuleObject } = useTempEngine()
+  const { rules, getSpecialRuleObject } = useTempEngine()
 
   if (!rules) {
     return null
@@ -19,7 +19,7 @@ export default function Actions() {
     rules,
     radical: true,
     safeEvaluate,
-    getRuleObject,
+    getSpecialRuleObject,
     actionChoices: [] as any[],
   })
 

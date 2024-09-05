@@ -11,10 +11,11 @@ import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule, useSimulation } from '@/publicodes-state'
 import { Metric } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 
 type Props = {
-  dottedName: string
+  dottedName: DottedName
   maxValue: number
   index?: number
   metric?: Metric
@@ -32,7 +33,7 @@ export default function AccordionItemWithRule({
   const { formattedValue, unit } = formatFootprint(numericValue, { metric })
 
   const percentageOfTotalValue = (numericValue / maxValue) * 100
-  const shouldDisplayValue = false
+
   return (
     <AccordionItem
       onClick={() => trackEvent(endClickCategory(dottedName))}
@@ -43,7 +44,7 @@ export default function AccordionItemWithRule({
           title={title}
           icons={icons}
           barColor={getBackgroundColor(dottedName)}
-          shouldDisplayValue={shouldDisplayValue}
+          shouldDisplayValue={false}
           displayValue={
             <span>
               <strong className="font-black">{formattedValue}</strong>{' '}

@@ -1,13 +1,22 @@
 import { Group } from '@/types/groups'
-import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
 import {
+  DottedName,
+  Metrics,
+  SuggestionValue,
+} from '@incubateur-ademe/nosgestesclimat'
+import PublicodesEngine, {
   EvaluatedNode,
   Evaluation,
+  ParsedRules as PublicodesParsedRules,
   Situation as PublicodesSituation,
-  RuleNode,
 } from 'publicodes'
 
-export type DottedName = string
+// Utils
+
+// Could be in index.d.ts as ambiant type
+export type Entries<T> = [keyof T, T[keyof T]][]
+
+// User and simulation types
 
 export type UserOrganisationInfo = {
   administratorEmail?: string
@@ -32,11 +41,7 @@ export type User = {
   administratorEmail?: string
 }
 
-export type Rules = any
-
 export type Tutorials = Record<string, boolean>
-
-export type Situation = PublicodesSituation<DottedName>
 
 export type Suggestion = {
   label: string
@@ -47,12 +52,6 @@ export type Suggestion = {
   //       [key: string]: NodeValue
   //     }
 }
-
-export type NGCRuleNode = RuleNode & {
-  rawNode: NGCRule
-}
-
-export type NGCRulesNodes = Record<DottedName, NGCRuleNode>
 
 export type NGCEvaluatedNode = EvaluatedNode
 export type ActionChoices = Record<string, boolean>
@@ -74,27 +73,11 @@ export type ComputedResultsFootprint = {
 }
 export type ComputedResults = Record<Metric, ComputedResultsFootprint>
 
-export type Simulation = {
-  id: string
-  date: Date | string
-  situation: Situation
-  foldedSteps: DottedName[]
-  actionChoices: ActionChoices
-  persona?: DottedName
-  computedResults: ComputedResults
-  progression: number
-  defaultAdditionalQuestionsAnswers?: Record<string, string>
-  customAdditionalQuestionsAnswers?: Record<string, string>
-  polls?: string[] | null
-  groups?: string[] | null
-  savedViaEmail?: boolean
-}
-
-type UpdateCurrentSimulationProps = {
+export type UpdateCurrentSimulationProps = {
   situation?: Situation
   situationToAdd?: Situation
-  foldedStepToAdd?: string
-  actionChoices?: ActionChoices
+  foldedStepToAdd?: DottedName
+  actionChoices?: any
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   customAdditionalQuestionsAnswers?: Record<string, string>
   computedResults?: ComputedResults
@@ -106,12 +89,20 @@ type UpdateCurrentSimulationProps = {
   savedViaEmail?: boolean
 }
 
-export type Persona = {
-  nom: string
-  icônes: string
+export type Simulation = {
+  id: string
+  date: Date | string
   situation: Situation
-  description?: string
-  résumé: string
+  foldedSteps: DottedName[]
+  actionChoices: any
+  persona?: string
+  computedResults: ComputedResults
+  progression: number
+  defaultAdditionalQuestionsAnswers?: Record<string, string>
+  customAdditionalQuestionsAnswers?: Record<string, string>
+  polls?: string[] | null
+  groups?: string[] | null
+  savedViaEmail?: boolean
 }
 
 export type LocalStorage = {
@@ -122,26 +113,17 @@ export type LocalStorage = {
   groupToRedirectToAfterTest?: Group
 }
 
-type Color = `#${string}`
+export type Metric = Metrics
 
-type SuggestionsNode = Record<
-  string,
-  string | number | Record<string, string | number>
->
+export type Situation = PublicodesSituation<DottedName>
 
-type MosaiqueNode = {
-  type: 'selection' | 'nombre'
-  options: DottedName[]
-  total?: number
-  suggestions?: SuggestionsNode
+export type ParsedRules = PublicodesParsedRules<DottedName>
+
+export type Engine = PublicodesEngine<DottedName>
+
+export type MissingVariables = Record<DottedName, number>
+
+export type FormattedSuggestion = {
+  label: string
+  value: SuggestionValue | Record<string, SuggestionValue>
 }
-
-type MosaicInfos = {
-  mosaicRule: RuleNode
-  mosaicParams: MosaiqueNode
-  mosaicDottedNames: [DottedName, NGCRuleNode][]
-}
-
-type Formule = any
-
-export type Metric = 'carbone' | 'eau'

@@ -3,23 +3,45 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
+import Badge from '@/design-system/layout/Badge'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
-type Props = { toggleOpen: any }
-
-export default function Explanation({ toggleOpen }: Props) {
+export default function Explanation({
+  toggleOpen,
+  isFirstToggle,
+}: {
+  toggleOpen: () => void
+  isFirstToggle: boolean
+}) {
   const { progression } = useCurrentSimulation()
 
   const { t } = useClientTranslation()
 
+  const [shouldRender, setShouldRender] = useState(!isFirstToggle)
+
+  useEffect(() => {
+    if (isFirstToggle) {
+      const timer = setTimeout(() => {
+        setShouldRender(true)
+      }, 2000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [isFirstToggle])
+
+  if (!shouldRender) {
+    return null
+  }
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.1 }}
-      className="absolute -top-8 z-50 mb-2 w-full origin-top-left rounded-xl border-2 border-primary-200 bg-gray-100 p-4 px-4 py-2 pt-2 lg:w-2/3">
+      initial={{ opacity: 0, translateY: '-10px' }}
+      animate={{ opacity: 1, translateY: 0 }}
+      transition={{ duration: 0.3 }}
+      className="absolute left-2 top-0 z-50 mx-4 mb-2 w-full max-w-[calc(100%-2rem)] rounded-xl border-2 border-primary-200 bg-gray-100 p-3 pt-2 text-sm md:left-8 md:top-4 lg:w-2/3">
       <svg
         width="28"
         height="24"
@@ -35,11 +57,12 @@ export default function Explanation({ toggleOpen }: Props) {
       <div className="flex justify-end">
         <button
           onClick={toggleOpen}
-          className="text-3xl leading-none"
+          className="h-3 w-3 bg-gray-100 text-xl leading-none"
           title={t('Fermer')}>
           ×
         </button>
       </div>
+
       {progression === 0 ? (
         <p className="mb-2">
           <Trans i18nKey={'components.ScoreExplanation.text.p1'}>
@@ -68,9 +91,17 @@ export default function Explanation({ toggleOpen }: Props) {
           <Link href="/nouveautes">tous les mois</Link>!
         </Trans>
       </p>
+      <p className="mb-2 md:mb-4">
+        <Badge color="secondary" size="xs">
+          BETA
+        </Badge>{' '}
+        <Trans>
+          Retrouvez aussi le résultat de votre empreinte eau à la fin du test !
+        </Trans>
+      </p>
       <div className="flex justify-end">
         <Button
-          size="sm"
+          size="xs"
           data-cypress-id="understood-explanation-button"
           onClick={toggleOpen}>
           <Trans>J'ai compris</Trans>

@@ -7,7 +7,8 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useCurrentSimulation, useRule } from '@/publicodes-state'
-import { DottedName, Metric } from '@/publicodes-state/types'
+import { Metric } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
 const colorClassName = ['200', '100', '50']
@@ -37,7 +38,7 @@ export default function Action({
   return (
     <div
       className={twMerge(
-        'max-w-80 flex-1 flex-col justify-between rounded-xl border-2 px-3 pb-4 pt-6 md:flex',
+        'max-w-80 flex-1 flex-col justify-between rounded-xl border-2 px-3 pb-4 pt-6 lg:flex',
         colorClassName[index],
         getTextDarkColor(category),
         isActionChoosen

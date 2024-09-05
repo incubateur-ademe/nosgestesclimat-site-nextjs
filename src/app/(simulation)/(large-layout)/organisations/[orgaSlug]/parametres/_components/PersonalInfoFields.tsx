@@ -10,11 +10,13 @@ type Props = {
 }
 
 export default function PersonalInfoFields({ organisation, register }: Props) {
+  if (!organisation) return null
+
   return (
     <div className="flex flex-col gap-4">
       <TextInputGroup
         label={<Trans>Votre prénom</Trans>}
-        value={organisation?.administrators?.[0]?.name}
+        value={organisation.administrators?.[0]?.name}
         {...register('administratorName')}
       />
 
@@ -28,13 +30,13 @@ export default function PersonalInfoFields({ organisation, register }: Props) {
             </span>
           </p>
         }
-        value={organisation?.administrators?.[0]?.telephone}
+        value={organisation.administrators?.[0]?.telephone}
         {...register('administratorTelephone')}
       />
 
       <TextInputGroup
         label={<Trans>Votre e-mail</Trans>}
-        value={organisation?.administrators?.[0]?.email}
+        value={organisation.administrators?.[0]?.email}
         {...register('email')}
       />
 
@@ -42,14 +44,14 @@ export default function PersonalInfoFields({ organisation, register }: Props) {
         <CheckboxInputGroup
           size="xl"
           defaultChecked={
-            organisation?.administrators?.[0]?.hasOptedInForCommunications
+            organisation.administrators?.[0]?.hasOptedInForCommunications
           }
           label={
             <span>
               <strong>
                 <Trans>
-                  Recevoir ponctuellement par email les nouveaux services Nos
-                  Gestes Climat aux organisations
+                  Recevoir nos actualités sur les nouveaux services dédiés aux
+                  organisation (une fois par mois maximum !)
                 </Trans>
               </strong>{' '}
               <Trans>(une fois par mois maximum !)</Trans>

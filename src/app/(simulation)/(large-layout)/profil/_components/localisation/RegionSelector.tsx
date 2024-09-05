@@ -14,6 +14,8 @@ import Card from '@/design-system/layout/Card'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { sortSupportedRegions } from '@/helpers/localisation/sortSupportedRegions'
+import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
@@ -30,6 +32,8 @@ export default function RegionSelector({
   supportedRegions,
 }: Props) {
   const locale = useLocale()
+
+  const { t } = useClientTranslation()
 
   const orderedSupportedRegions = sortSupportedRegions({
     supportedRegions,
@@ -72,6 +76,9 @@ export default function RegionSelector({
               code,
               name: supportedRegions[code][locale]?.nom as unknown as string,
             })
+
+            displaySuccessToast(t('Votre région a bien été mise à jour.'))
+
             if (tutorials.localisationBanner) {
               showTutorial('localisationBanner')
             }

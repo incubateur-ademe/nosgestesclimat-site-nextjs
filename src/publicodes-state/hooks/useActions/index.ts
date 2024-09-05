@@ -1,7 +1,9 @@
 'use client'
 
+import { carboneMetric } from '@/constants/metric'
 import getSomme from '@/publicodes-state/helpers/getSomme'
-import { DottedName, Metric } from '@/publicodes-state/types'
+import { Metric } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useContext, useMemo } from 'react'
 import { useEngine } from '../..'
 import { SimulationContext } from '../../providers/simulationProvider/context'
@@ -19,7 +21,9 @@ type ActionObject = {
  *
  * Not really used for now but will be essential when we redo the actions page
  */
-export default function useActions({ metric }: Props = { metric: 'carbone' }) {
+export default function useActions(
+  { metric }: Props = { metric: carboneMetric }
+) {
   const { engine } = useContext(SimulationContext)
 
   const { getNumericValue } = useEngine({ metric })
@@ -40,9 +44,9 @@ export default function useActions({ metric }: Props = { metric: 'carbone' }) {
     return somme
   }, [engine])
 
-  const orderedActions = useMemo<string[]>(() => {
+  const orderedActions = useMemo(() => {
     return actions
-      .map((action: string) => ({
+      .map((action) => ({
         dottedName: action,
         value: getNumericValue(action),
       }))
@@ -51,7 +55,7 @@ export default function useActions({ metric }: Props = { metric: 'carbone' }) {
   }, [actions, getNumericValue])
 
   const { chosenActions, declinedActions } =
-    Object.keys(actionChoices ?? {})?.reduce(
+    Object.keys(actionChoices ?? {}).reduce(
       (accActions, currentAction) => {
         const actionChoice = actionChoices[currentAction]
 
@@ -79,7 +83,10 @@ export default function useActions({ metric }: Props = { metric: 'carbone' }) {
 
   const totalChosenActionsValue: number = useMemo(
     () =>
-      chosenActions.reduce((acc, action) => acc + getNumericValue(action), 0),
+      chosenActions.reduce(
+        (acc, action) => acc + getNumericValue(action as DottedName),
+        0
+      ),
     [chosenActions, getNumericValue]
   )
 

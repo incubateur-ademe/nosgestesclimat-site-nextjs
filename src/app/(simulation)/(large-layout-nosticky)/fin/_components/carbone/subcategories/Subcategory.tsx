@@ -5,7 +5,7 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 import Actions from './subcategory/Actions'
 

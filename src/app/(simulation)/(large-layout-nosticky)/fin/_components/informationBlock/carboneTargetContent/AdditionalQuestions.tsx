@@ -16,11 +16,7 @@ export default function AdditionalQuestions({
   const [questionsOpen, setQuestionsOpen] = useState<string[]>([])
 
   useEffect(() => {
-    if (questionsOpen.length === 0) {
-      setIsQuestionOpen(false)
-    } else {
-      setIsQuestionOpen(true)
-    }
+    setIsQuestionOpen(questionsOpen.length !== 0)
   }, [questionsOpen, setIsQuestionOpen])
 
   return (

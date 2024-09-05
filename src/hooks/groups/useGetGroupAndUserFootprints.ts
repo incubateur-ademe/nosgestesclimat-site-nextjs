@@ -1,7 +1,10 @@
 import { orderedCategories } from '@/constants/orderedCategories'
 import { getRuleSumRules } from '@/helpers/publicodes/getRuleSumRules'
-import { DottedName } from '@/publicodes-state/types'
-import { Participant } from '@/types/groups'
+import {
+  CategoriesAndSubcategoriesFootprintsType,
+  Participant,
+} from '@/types/groups'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { ComputedResultsSubcategories } from './../../publicodes-state/types.d'
 
 type Props = {
@@ -11,113 +14,160 @@ type Props = {
 
 export function getSubcategories({
   category,
-  getRuleObject,
+  getSpecialRuleObject,
 }: {
-  category: string
-  getRuleObject: (dottedName: DottedName) => any
+  category: DottedName
+  getSpecialRuleObject: (dottedName: DottedName) => NGCRuleNode
 }): DottedName[] | undefined {
-  const rule = getRuleObject(category)
+  const rule = getSpecialRuleObject(category)
+
   return getRuleSumRules(rule)
 }
+
 export const useGetGroupAndUserFootprints = ({
   groupMembers,
   userId,
-}: Props) => {
-  return groupMembers.reduce(
-    (
-      {
-        groupFootprintByCategoriesAndSubcategories,
-        userFootprintByCategoriesAndSubcategories,
-      },
-      groupMember: Participant
-    ) => {
+}: Props): {
+  currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+  groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+} => {
+  // @ts-expect-error TODO: fix this
+  return groupMembers.reduce<{
+    currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+    groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+  }>(
+    // @ts-expect-error TODO: fix this
+    (acc, groupMember: Participant) => {
+      const {
+        currentUserCategoriesAndSubcategoriesFootprints,
+        groupCategoriesAndSubcategoriesFootprints,
+      } = acc
+
       const isCurrentMember = groupMember.userId === userId
 
       // Create a copy of the accumulator
-      const updatedGroupFootprintByCategoriesAndSubcategories = {
-        ...groupFootprintByCategoriesAndSubcategories,
-      } as any
+      const updatedGroupCategoriesAndSubcategoriesFootprints: Partial<CategoriesAndSubcategoriesFootprintsType> =
+        {
+          ...groupCategoriesAndSubcategoriesFootprints,
+        }
 
-      const updatedUserFootprintByCategoriesAndSubcategories = {
-        ...userFootprintByCategoriesAndSubcategories,
-      } as any
+      const updatedCurrentUserCategoriesAndSubcategoriesFootprints: Partial<CategoriesAndSubcategoriesFootprintsType> =
+        {
+          ...currentUserCategoriesAndSubcategoriesFootprints,
+        }
 
       ;(orderedCategories as [keyof ComputedResultsSubcategories]).forEach(
-        (category) => {
-          const categoryValue =
+        (category: keyof ComputedResultsSubcategories) => {
+          const categoryRawValue =
             groupMember?.simulation?.computedResults?.carbone?.categories[
               category
             ] || 0
 
-          const defaultCategoryObject = {
-            name: category,
-            value: categoryValue,
-            isCategory: true,
-          }
+          orderedCategories.forEach((category) => {
+            const categoryValue =
+              typeof categoryRawValue === 'number' ? categoryRawValue : 0
 
-          // If the category is not in the accumulator, we add its name as a new key in the object along with its value
-          // otherwise we add the value to the existing sum
-          if (!updatedGroupFootprintByCategoriesAndSubcategories[category]) {
-            updatedGroupFootprintByCategoriesAndSubcategories[category] =
-              defaultCategoryObject
-          } else {
-            updatedGroupFootprintByCategoriesAndSubcategories[category].value +=
-              categoryValue
-          }
+            const defaultCategoryObject = {
+              name: category,
+              value: categoryValue,
+              isCategory: true,
+            }
 
-          // Add each category footprint for the current member
-          if (isCurrentMember) {
-            updatedUserFootprintByCategoriesAndSubcategories[category] =
-              defaultCategoryObject
-          }
+            // If the category is not in the accumulator, we add its name
+            // as a new key in the object along with its value otherwise we
+            // add the value to the existing sum
+            if (!updatedGroupCategoriesAndSubcategoriesFootprints[category]) {
+              updatedGroupCategoriesAndSubcategoriesFootprints[category] =
+                defaultCategoryObject
+            } else {
+              updatedGroupCategoriesAndSubcategoriesFootprints[
+                category
+              ].value += typeof categoryValue === 'number' ? categoryValue : 0
+            }
 
-          const currentCategorySubcategories =
+            // Add each category footprint for the current member
+            if (isCurrentMember) {
+              updatedCurrentUserCategoriesAndSubcategoriesFootprints[category] =
+                defaultCategoryObject
+            }
+
             Object.keys(
               groupMember?.simulation?.computedResults?.carbone
-                ?.subcategories?.[category] ?? {}
-            ) || []
+                ?.subcategories?.[
+                category as keyof ComputedResultsSubcategories
+              ] || {}
+            ).forEach((subCategory: string) => {
+              const subCategoryRawValue =
+                groupMember?.simulation?.computedResults?.carbone
+                  ?.subcategories?.[
+                  category as keyof ComputedResultsSubcategories
+                ]?.[subCategory as keyof ComputedResultsSubcategories] || 0
 
-          currentCategorySubcategories.forEach((subCategory: string) => {
-            const subCategoryValue =
-              groupMember?.simulation?.computedResults?.carbone
-                ?.subcategories?.[category]?.[subCategory] || 0
+              const subCategoryValue =
+                typeof subCategoryRawValue === 'number'
+                  ? subCategoryRawValue
+                  : 0
 
-            // Same here if the property doesn't exist in the accumulator, we add it
-            // otherwise we add the value to the existing sum
-            if (
-              !updatedGroupFootprintByCategoriesAndSubcategories[subCategory]
-            ) {
-              updatedGroupFootprintByCategoriesAndSubcategories[subCategory] = {
-                name: subCategory,
-                value: subCategoryValue,
+              // Same here if the property doesn't exist in the accumulator, we add it
+              // otherwise we add the value to the existing sum
+              if (
+                !updatedGroupCategoriesAndSubcategoriesFootprints[
+                  subCategory as keyof ComputedResultsSubcategories
+                ]
+              ) {
+                updatedGroupCategoriesAndSubcategoriesFootprints[
+                  subCategory as keyof ComputedResultsSubcategories
+                ] = {
+                  name: subCategory as DottedName,
+                  value: subCategoryValue,
+                }
+              } else {
+                // @ts-expect-error TODO: fix this
+                updatedGroupCategoriesAndSubcategoriesFootprints[
+                  subCategory as keyof ComputedResultsSubcategories
+                ].value += subCategoryValue
               }
-            } else {
-              updatedGroupFootprintByCategoriesAndSubcategories[
-                subCategory
-              ].value += subCategoryValue
-            }
 
-            if (isCurrentMember) {
-              // Add each category footprint for the current member
-              updatedUserFootprintByCategoriesAndSubcategories[subCategory] = {
-                name: subCategory,
-                value: subCategoryValue,
+              if (isCurrentMember) {
+                // Add each category footprint for the current member
+                updatedCurrentUserCategoriesAndSubcategoriesFootprints[
+                  subCategory as keyof ComputedResultsSubcategories
+                ] = {
+                  name: subCategory as DottedName,
+                  value: subCategoryValue,
+                }
               }
-            }
+            })
           })
+
+          return {
+            groupCategoriesAndSubcategoriesFootprints:
+              updatedGroupCategoriesAndSubcategoriesFootprints,
+            currentUserCategoriesAndSubcategoriesFootprints:
+              updatedCurrentUserCategoriesAndSubcategoriesFootprints,
+          }
+        },
+        {
+          groupCategoriesAndSubcategoriesFootprints: {},
+          currentUserCategoriesAndSubcategoriesFootprints: {},
+        } as {
+          groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+          currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
         }
       )
 
       return {
-        groupFootprintByCategoriesAndSubcategories:
-          updatedGroupFootprintByCategoriesAndSubcategories,
-        userFootprintByCategoriesAndSubcategories:
-          updatedUserFootprintByCategoriesAndSubcategories,
+        currentUserCategoriesAndSubcategoriesFootprints:
+          updatedCurrentUserCategoriesAndSubcategoriesFootprints,
+        groupCategoriesAndSubcategoriesFootprints:
+          updatedGroupCategoriesAndSubcategoriesFootprints,
       }
     },
     {
-      groupFootprintByCategoriesAndSubcategories: {},
-      userFootprintByCategoriesAndSubcategories: {},
+      currentUserCategoriesAndSubcategoriesFootprints:
+        {} as CategoriesAndSubcategoriesFootprintsType,
+      groupCategoriesAndSubcategoriesFootprints:
+        {} as CategoriesAndSubcategoriesFootprintsType,
     }
   )
 }

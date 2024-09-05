@@ -1,9 +1,9 @@
 import { getCarbonFootprint } from '@/helpers/actions/getCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
-import { DottedName, NodeValue } from '@/publicodes-state/types'
 import { TranslationFunctionType } from '@/types/translation'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
+import { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 
 const getFormattedActionValue = (
   { t, i18n }: { t: TranslationFunctionType; i18n: any },

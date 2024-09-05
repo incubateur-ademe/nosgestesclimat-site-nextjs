@@ -2,8 +2,10 @@
 
 import InformationIconWithTooltip from '@/components/messages/InformationIconWithTooltip'
 import Trans from '@/components/translation/Trans'
+import { carboneMetric } from '@/constants/metric'
 import Separator from '@/design-system/layout/Separator'
 import { SimulationRecap } from '@/types/organisations'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 import CategoryListItem from './pollStatisticsCharts/CategoryListItem'
 import MainFootprintChart from './pollStatisticsCharts/MainFootprintChart'
@@ -18,8 +20,14 @@ export default function PollStatisticsCharts({
   const maxValueOfAllCategories = useMemo(
     () =>
       simulationRecaps?.reduce((acc, obj) => {
-        Object.keys(obj.categories ?? {}).forEach((category) => {
-          const roundedValue = Math.round(obj.categories[category] / 1000)
+        ;(
+          Object.keys(
+            obj.computedResults[carboneMetric].categories ?? {}
+          ) as DottedName[]
+        ).forEach((category) => {
+          const roundedValue = Math.round(
+            obj.computedResults[carboneMetric].categories[category] / 1000
+          )
           if (roundedValue > acc) {
             acc = roundedValue
           }
@@ -32,7 +40,9 @@ export default function PollStatisticsCharts({
   const maxValueOfAllSimulations = useMemo(
     () =>
       simulationRecaps?.reduce((acc, obj) => {
-        const roundedValue = Math.round(obj.bilan / 1000)
+        const roundedValue = Math.round(
+          obj.computedResults[carboneMetric].bilan / 1000
+        )
         if (roundedValue > acc) {
           acc = roundedValue
         }
@@ -44,9 +54,14 @@ export default function PollStatisticsCharts({
   // Calculate the mean for each category
   const meanCategories = useMemo(
     () =>
-      Object.keys(simulationRecaps?.[0]?.categories ?? {}).map((category) => {
+      (
+        Object.keys(
+          simulationRecaps?.[0]?.computedResults[carboneMetric].categories ?? {}
+        ) as DottedName[]
+      ).map((category) => {
         const mean = simulationRecaps?.reduce(
-          (acc, obj) => acc + obj.categories[category],
+          (acc, obj) =>
+            acc + obj.computedResults[carboneMetric].categories[category],
           0
         )
         return {
@@ -113,17 +128,19 @@ export default function PollStatisticsCharts({
         </div>
         <ul>
           {simulationRecaps?.length > 0 &&
-            Object.keys(simulationRecaps[0].categories).map(
-              (category, index) => (
-                <CategoryListItem
-                  key={index}
-                  category={category}
-                  value={meanCategories ? meanCategories[index].value : 0}
-                  simulationsRecap={simulationRecaps}
-                  maxValue={maxValueOfAllCategories}
-                />
-              )
-            )}
+            (
+              Object.keys(
+                simulationRecaps[0].computedResults[carboneMetric].categories
+              ) as DottedName[]
+            ).map((category, index) => (
+              <CategoryListItem
+                key={index}
+                category={category}
+                value={meanCategories ? meanCategories[index].value : 0}
+                simulationsRecap={simulationRecaps}
+                maxValue={maxValueOfAllCategories}
+              />
+            ))}
         </ul>
         <div className="flex justify-between py-2">
           <div className="sm:mr-10 sm:w-64" />

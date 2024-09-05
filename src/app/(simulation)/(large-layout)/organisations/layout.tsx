@@ -1,3 +1,4 @@
+import FilAriane from '@/components/layout/FilAriane'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { PropsWithChildren } from 'react'
@@ -19,5 +20,10 @@ export async function generateMetadata() {
 }
 
 export default function Layout({ children }: PropsWithChildren) {
-  return <div className="bg-white">{children}</div>
+  return (
+    <div className="bg-white md:-mt-8">
+      <FilAriane className="-mt-4 mb-4" />
+      {children}
+    </div>
+  )
 }

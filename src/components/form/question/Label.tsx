@@ -15,13 +15,14 @@ import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { QuestionSize } from '@/types/values'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
-  question: string
+  question: DottedName
   label?: string
   description?: string
   size?: QuestionSize
@@ -52,8 +53,7 @@ export default function Label({
       <label
         className={twMerge(
           `flex ${sizeClassNames[size]} gap-2 font-semibold`,
-          className,
-          question === 'logement . âge' ? 'mb-2' : ''
+          className
         )}
         aria-label={label}
         // This is a hack to avoid the default <label> element behavior
@@ -88,7 +88,7 @@ export default function Label({
         ) : null}
       </label>
       {question === 'logement . âge' && (
-        <div className="mb-6 text-xs italic md:text-sm">
+        <div className="mb-6 mt-2 text-xs italic md:text-sm">
           Un petit doute ? L’info sera sûrement dans votre contrat d’assurance
           logement.
         </div>
@@ -98,10 +98,12 @@ export default function Label({
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2 }}
-          className="mb-3 origin-top rounded-xl border-2 border-primary-50 bg-gray-100 px-4  py-6 text-sm">
-          <Markdown>{description}</Markdown>{' '}
+          className="mb-3 origin-top rounded-xl border-2 border-primary-50 bg-gray-100 p-3 text-sm">
+          <Markdown className="[&>blockquote]:mb-2 [&>blockquote]:mt-0 [&>blockquote]:p-0 [&>blockquote]:text-default [&>p]:mb-2">
+            {description}
+          </Markdown>{' '}
           <Button
-            size="sm"
+            size="xs"
             color={'secondary'}
             onClick={() => {
               trackEvent(questionCloseInfo({ question }))

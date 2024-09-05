@@ -1,6 +1,8 @@
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/Trans'
+import { carboneMetric } from '@/constants/metric'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { Entries } from '@/publicodes-state/types'
 import { SimulationRecap } from '@/types/organisations'
 import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
 import ResultsSoonBanner from './statisticsBlocks/ResultsSoonBanner'
@@ -19,14 +21,24 @@ function formatSimulationRecaps(simulationRecaps: SimulationRecap[]) {
   const result = simulationRecaps.reduce(
     (acc, simulation) => {
       return {
-        bilan: acc.bilan + simulation.bilan,
-        transport: acc.transport + simulation?.categories?.transport,
-        logement: acc.logement + simulation?.categories?.logement,
-        alimentation: acc.alimentation + simulation?.categories?.alimentation,
-        divers: acc.divers + simulation?.categories?.divers,
+        bilan: acc.bilan + simulation.computedResults[carboneMetric].bilan,
+        transport:
+          acc.transport +
+          simulation.computedResults[carboneMetric].categories?.transport,
+        logement:
+          acc.logement +
+          simulation.computedResults[carboneMetric].categories?.logement,
+        alimentation:
+          acc.alimentation +
+          simulation.computedResults[carboneMetric].categories?.alimentation,
+        divers:
+          acc.divers +
+          simulation.computedResults[carboneMetric].categories?.divers,
         'services sociétaux':
           acc['services sociétaux'] +
-          simulation?.categories?.['services sociétaux'],
+          simulation.computedResults[carboneMetric].categories?.[
+            'services sociétaux'
+          ],
       }
     },
     {
@@ -38,7 +50,7 @@ function formatSimulationRecaps(simulationRecaps: SimulationRecap[]) {
       'services sociétaux': 0,
     }
   )
-  Object.keys(result).forEach((key: string) => {
+  Object.keys(result).forEach((key) => {
     result[key as keyof typeof result] =
       result[key as keyof typeof result] / simulationRecaps.length
   })
@@ -103,7 +115,7 @@ export default function StatisticsBlocks({
 
         <div className="col-span-1 min-h-[212px] rounded-xl bg-gray-100 py-4">
           <VerticalBarChart className={`mt-0 h-[calc(100%-48px)]`}>
-            {Object.entries(result)
+            {(Object.entries(result) as Entries<typeof result>)
               .filter(([key]) => key !== 'bilan')
               .map(([key, value], index) => (
                 <CategoryChartItem

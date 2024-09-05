@@ -13,14 +13,18 @@ import {
 import { useDebug } from '@/hooks/useDebug'
 import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
-  question: string
+export default function Question({
+  question,
+  toggleQuestionList,
+  index,
+}: {
+  question: DottedName
   toggleQuestionList: () => void
-}
-
-export default function Question({ question, toggleQuestionList }: Props) {
+  index: number
+}) {
   const {
     label,
     isMissing,
@@ -32,7 +36,7 @@ export default function Question({ question, toggleQuestionList }: Props) {
     category,
   } = useRule(question)
 
-  const { updateCurrentSimulation } = useCurrentSimulation()
+  const { updateCurrentSimulation, foldedSteps } = useCurrentSimulation()
 
   const { currentQuestion, setCurrentQuestion, relevantQuestions } = useForm()
 
@@ -41,9 +45,12 @@ export default function Question({ question, toggleQuestionList }: Props) {
   const status =
     currentQuestion === question ? 'current' : isFolded ? 'default' : 'missing'
 
+  const isFirstQuestionWithPristineForm =
+    foldedSteps?.length === 0 && index === 0
+
   return (
     <button
-      disabled={!isDebug && !isFolded}
+      disabled={!isDebug && !isFirstQuestionWithPristineForm && !isFolded}
       className={twMerge(
         'relative mb-2 flex w-full flex-col items-start justify-between gap-2 rounded-xl border-2 p-4 text-left font-medium md:flex-row md:items-center md:gap-4',
         status === 'missing' ? 'border-none' : getBorderColor(category),
@@ -51,7 +58,6 @@ export default function Question({ question, toggleQuestionList }: Props) {
           ? getBackgroundColor(category)
           : getBackgroundLightColor(category),
         getTextDarkColor(category)
-        // statusClassNames[status]
       )}
       onClick={() => {
         if (isDebug) {
@@ -62,6 +68,9 @@ export default function Question({ question, toggleQuestionList }: Props) {
           })
         }
         setCurrentQuestion(question)
+
+        // Reset the scroll position to the top of the page
+        window.scrollTo({ top: 0, behavior: 'instant' })
 
         trackEvent(simulateurClickSommaireQuestion)
 

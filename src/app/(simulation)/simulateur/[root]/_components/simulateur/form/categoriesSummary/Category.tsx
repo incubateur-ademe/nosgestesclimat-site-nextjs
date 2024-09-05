@@ -9,7 +9,7 @@ import {
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useForm, useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -45,7 +45,7 @@ export default function Category({ category }: Props) {
   return (
     <div
       className={twMerge(
-        'relative mb-0 flex w-full items-center justify-between gap-4 overflow-hidden rounded-xl border-2 bg-transparent px-2 py-2 transition-colors',
+        'relative mb-0 flex w-full items-center justify-between gap-4 overflow-hidden rounded-xl border-2 bg-white px-2 py-2 transition-colors',
         isStarted || isCurrent ? getTextDarkColor(category) : 'text-slate-600',
 
         isCurrent

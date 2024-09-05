@@ -56,8 +56,7 @@ export default function SimulationSyncProvider({
 
   // If the simulation is unfinished, is not in a group, poll, or is not already saved via email, we do not save it
   const shouldSyncWithBackend = useMemo<boolean>(() => {
-    // Fix to avoid computedResults bilan === 0 bug
-    if (progression !== 1) return false
+    if (!isInitialized) return false
 
     if (computedResults[defaultMetric].bilan === 0) {
       // Send an error to Sentry
@@ -69,7 +68,7 @@ export default function SimulationSyncProvider({
       return false
     }
 
-    if (groups?.length || polls?.length) {
+    if ((groups?.length || polls?.length) && progression === 1) {
       return true
     }
 
@@ -78,7 +77,15 @@ export default function SimulationSyncProvider({
     }
 
     return false
-  }, [progression, user.email, groups, polls, savedViaEmail, computedResults])
+  }, [
+    progression,
+    user.email,
+    groups,
+    polls,
+    savedViaEmail,
+    computedResults,
+    isInitialized,
+  ])
 
   const isSyncedWithBackend = timeoutRef.current || isPending ? false : true
 

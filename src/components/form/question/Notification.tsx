@@ -1,13 +1,19 @@
-import Trans from '@/components/translation/Trans'
-import Button from '@/design-system/inputs/Button'
 import Markdown from '@/design-system/utils/Markdown'
-import { useRule } from '@/publicodes-state'
+import {
+  getBgCategoryColor,
+  getBorderCategoryColor,
+  getTextCategoryColor,
+} from '@/helpers/getCategoryColorClass'
+import { useForm, useRule } from '@/publicodes-state'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 type Props = {
-  notification: string
+  notification: DottedName
 }
 export default function Notification({ notification }: Props) {
-  const { description, setValue } = useRule(notification)
+  const { description } = useRule(notification)
+
+  const { currentCategory } = useForm()
 
   if (!description) return
 
@@ -16,11 +22,8 @@ export default function Notification({ notification }: Props) {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="mb-4 flex flex-col items-end rounded-xl border-2 border-primary-50 bg-white p-4 text-sm">
-      <Markdown className="notification">{description}</Markdown>
-      <Button size="sm" color={'secondary'} onClick={() => setValue(false)}>
-        <Trans>J'ai compris</Trans>
-      </Button>
+      className={`mb-4 flex flex-col items-end rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} !${getTextCategoryColor(currentCategory, '700')} p-4 pb-0 text-sm`}>
+      <Markdown className="notification pb-0">{description}</Markdown>
     </motion.div>
   )
 }

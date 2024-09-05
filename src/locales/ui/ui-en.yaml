@@ -161,7 +161,7 @@ entries:
   publicodes.SimulationMissing.simulationManquante.lock: Pour débloquer ce parcours, vous devez d'abord terminer le test.
   semaines: weeks
   sites.publicodes.Tutorial.questionE: 💡 But what does that little <1>e</1> mean?
-  sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
+  sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
   sélectionnées: selected
   tonne: tonne
   tonne.lock: ton
@@ -296,15 +296,15 @@ entries:
   Vous: You
   Switch to english: Switch to english
   Supprimer: Delete
-  publicodes.Tutoriel.slide6: <0>Driving a car, eating a steak, heating your home, getting medical treatment, buying a TV...</0><1>Our individual consumption footprint is the sum total of all the activities that make up our modern lives. </1>
-  publicodes.Tutoriel.slide6.lock: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne. </1>
+  publicodes.Tutoriel.slide6: <0>Driving a car, eating a steak, heating your home, getting medical treatment, buying a TV...</0><1>Our individual consumption footprint is the sum total of all the activities that make up our modern lives.</1>
+  publicodes.Tutoriel.slide6.lock: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne.</1>
   publicodes.Tutoriel.slide2.p1: 'With a unit with a barbaric name: the CO₂ equivalent. Carbon dioxide <2></2>, you know it: we breathe it out all day long, but it has no influence on the climate.'
-  publicodes.Tutoriel.slide2.p1.lock: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone <2></2>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
+  publicodes.Tutoriel.slide2.p1.lock: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone <2></2>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
   Logo de l'Association pour la transition Bas Carbone: Logo of the Low Carbon Transition Association
   Il concerne votre vie personnelle, et non pas votre boulot.: It's about your personal life, not your job.
   Comparez vos résultats avec votre famille ou un groupe d’ami·e·s: Compare your results with your family or a group of friends
   publicodes.Tutoriel.slide1.p1: It's a fact that the climate is warming because of human activity. Everything we consume, use and then throw away requires materials and energy. Whether it's during the production, use or end-of-life phase of the good or service. So all our activities contribute to greenhouse gas emissions. Some a great deal, others very little. But what is our impact, as individual citizens?
-  publicodes.Tutoriel.slide1.p1.lock: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
+  publicodes.Tutoriel.slide1.p1.lock: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
   Voir plus d'informations: See more information
   revenir à l'accueil: return to home page
   'Revenir à ma région par défaut ': 'Return to my default region '
@@ -312,9 +312,9 @@ entries:
   'Vous faites cette simulation depuis :': 'You can run this simulation from :'
   Sélectionné·e: Selected
   publicodes.Tutoriel.slide2.blockquote: 'Other gases, especially methane <2></2> and nitrous oxide <6></6> also warm the planet: their warming potential is converted into CO₂ equivalent to simplify measurement. '
-  publicodes.Tutoriel.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
-  publicodes.Tutoriel.slide2.p2: It's the machines that make our modern comforts and conveniences that emit massive amounts of it, so much so that we count it in thousands of kilos per year and per person, and therefore in <2>tonnes</2> of CO₂e!
-  publicodes.Tutoriel.slide2.p2.lock: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
+  publicodes.Tutoriel.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
+  publicodes.Tutoriel.slide2.p2: It's the machines that make our modern comforts and conveniences that emit massive amounts of it, so much so that we count it in thousands of kilos per year and per person, and therefore in <2>tonnes of</2> CO₂e!
+  publicodes.Tutoriel.slide2.p2.lock: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
   publicodes.Tutoriel.slide1.p2: To estimate our own contribution to global warming (our "climate impact"), we usually calculate the carbon footprint of our individual consumption.
   publicodes.Tutoriel.slide1.p2.lock: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
   Répondez aux questions en votre nom, pas pour votre foyer.: Answer the questions on your behalf, not for your household.
@@ -1061,3 +1061,92 @@ entries:
   Vous devez valider votre changement d'adresse e-mail.: You must confirm your change of e-mail address.
   Oups ! Une erreur s'est produite au moment d'envoyer votre code de vérification par email. Vérifiez si votre nouvel e-mail est bien valide et si le problème persiste, n'hésitez pas à <2>nous contacter</2>: Oops! An error occurred when you sent your verification code by email. Please check that your new e-mail is valid and if the problem persists, please <2>contact us</2>
   Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.: You will shortly receive an e-mail from us containing a <2>verification code</2> to enter in this window.
+  Recevoir nos actualités sur les nouveaux services dédiés aux organisation (une fois par mois maximum !): Receive our latest news on new services for organisations (once a month maximum!)
+  la culture du <2>coton</2> que vous portez: the <2>cotton</2> you wear
+  carbone: carbon
+  'Nos articles sur le sujet :': 'Our articles on the subject :'
+  d'eau <1>par jour</1>: of water <1>per day</1>
+  Est-ce que c'est <2>beaucoup ?</2>: Is it <2>a lot?</2>
+  Bientôt disponible !: Available soon!
+  D’où vient mon empreinte ?: Where does my footprint come from?
+  Comment on la mesure ?: How is it measured?
+  <0>Eau, climat,</0> même combat ?: <0>Water, climate,</0> same battle?
+  Evaluer la métrique eau: Assessing the water metric
+  Découvre mes empreintes: Discover my footprints
+  Evaluer la métrique carbone: Assessing carbon metrics
+  Et l'eau de <2>ma douche</2> <4></4>dans tout ça ?: What about the water in <2>my shower</2> <4></4>?
+  C’est quoi mon empreinte carbone ?: What's my carbon footprint?
+  l’alimentation des <2>animaux</2> que vous consommez: the feed of the <2>animals</2> you eat
+  chrono pour calculer votre empreinte carbone et eau: chrono to calculate your carbon and water footprint
+  L’eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>: Domestic water can have a <2>very strong impact</2> depending on the <6>season and location.</6>
+  Retrouvez aussi le résultat de votre empreinte eau à la fin du test !: You can also check your water footprint at the end of the test!
+  Les 3 réflexes à adopter pour une garde-robe économe en eau: 3 tips for a water-efficient wardrobe
+  <0>Et vous,</0> quel est votre impact sur notre planète ?: <0>What about you,</0> what's your impact on our planet?
+  Mes principaux postes d'usage: My main areas of use
+  d’eau domestique par jour: of domestic water per day
+  Vous souhaitez recevoir vos résultats ?: Would you like to receive your results?
+  la production de votre <2>électricité</2>: the production of your <2>electricity</2>
+  En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.: Get an estimate of your carbon and water footprints in just 10 minutes.
+  Découvrez votre <1>empreinte eau</1> à la fin du test !: Find out your <1>water footprint</1> at the end of the test!
+  "Voici la carte des départements qui subissent des restrictions d'eau en ce moment :": 'Here is a map of the départements currently subject to water restrictions:'
+  l’extraction des matériaux de vos <2>appareils numériques</2>: extracting materials from your <2>digital devices</2>
+  <0>L’empreinte eau,</0> c’est quoi ?: What is <0>the water footprint</0>?
+  Petit lexique pour tout comprendre à l’empreinte eau: A glossary to help you understand the water footprint
+  les <2>fruits, légumes et céréales</2> que vous mangez: the <2>fruit, vegetables and cereals</2> you eat
+  Rendez-vous sur VigiEau pour en savoir plus.: Visit VigiEau to find out more.
+  Les 4 gestes pour réduire l’empreinte eau de mon alimentation: 4 steps to reduce the water footprint of my food
+  L’eau est une ressource planétaire précieuse. Comme le climat, <2>le cycle de l’eau est fortement impacté par les activités humaines.</2> Nous avons fait le choix d’ajouter l'empreinte eau à notre modèle de calcul afin de vous apporter des éléments de compréhension de cet impact.: Water is a precious global resource. Like the climate, <2>the water cycle is heavily impacted by human activities.</2> We have decided to add the water footprint to our calculation model to help you understand this impact.
+  "L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien. Par exemple il faut de l’eau pour :": 'The water footprint is the total amount of water consumed to produce and distribute the goods and services you use every day. For example, it takes water to :'
+  Pourquoi avons-nous ajouté l’empreinte eau ?: Why have we added the water footprint?
+  'Retrouvez nos conseils dans ces articles :': 'Read our advice in these articles:'
+  obtenez une estimation<1></1>de votre <3>empreinte carbone</3>.: get an estimate<1></1>of your <3>carbon footprint</3>.
+  Mes empreintes: My prints
+  Vous utilisez: You are using
+  eau: water
+  Comment <1>agir</1> ?: What can we <1>do</1>?
+  L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien.: The water footprint is the total amount of water consumed to produce and distribute the goods and services you use every day.
+  "attention : l'eau domestique (par exemple l’eau de vos douches) ne fait pas partie de l'empreinte eau": 'please note: domestic water (e.g. water from your showers) is not included in the water footprint'
+  <0>En règle générale, les valeurs d'empreinte eau varient <2>entre 9000 et 15000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.</0><1>Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.</1>: <0>As a general rule, water footprint values vary <2>between 9,000 and 15,000 litres per day</2>. Unlike the carbon footprint, there is no quantified target for the water footprint.</0><1>We do not display the default value at the start of the test. As our water model is the first of its kind in France, we don't want it to be perceived as the national average.</1>
+  L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.: Domestic water, i.e. the water that comes out of your taps, is not included in your water footprint, as it is returned to the environment. For example, the water from your shower, once it has been treated, is returned to the watercourses in your area.
+  <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.: <0>Most of our water footprint is generated by growing plants,</0> whether to feed ourselves or our livestock, or to provide the raw material for many of our clothes.
+  Ce chiffre vous semble impressionnant ? <1></1>C'est pourtant bien l'eau qui sert à produire ce que vous consommez :<3></3> votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.: Does this figure sound impressive? <1></1>But it's actually water that is used to produce what you consume:<3></3> your water footprint is the impact of your lifestyle on natural water cycles.
+  'Les activités humaines menacent les équilibres naturels de notre planète. Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.': Human activities are threatening the natural balance of our planet. Like the climate, <2>the water cycle is having a major impact around the world</2>, in terms of access to drinking water, the disappearance and migration of species (animal and plant) and the displacement of populations.
+  Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.: We do not display the default value at the start of the test. As our water model is the first of its kind in France, we don't want it to be perceived as the national average.
+  En règle générale, les valeurs d'empreinte eau varient <2>entre 9000 et 15000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: As a general rule, water footprint values vary <2>between 9,000 and 15,000 litres per day</2>. Unlike carbon, there is no quantified target for the water footprint.
+  Les activités humaines menacent les équilibres naturels de notre planète.: Human activities are threatening the natural balance of our planet.
+  'Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.': 'Like the climate, <2>the water cycle is having a major impact throughout the world</2>: access to drinking water, disappearance and migration of species (animal and plant), displacement of populations.'
+  C'est pourtant bien l'eau qui sert à produire ce que vous consommez :<1></1> votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.: Yet it is water that is used to produce what you consume:<1></1> your water footprint is the impact of your lifestyle on natural water cycles.
+  Ce chiffre vous semble impressionnant ?: Does this figure seem impressive to you?
+  '*La moyenne française est de {average} litres par jour': '*The French average is {average} litres per day'
+  '*La moyenne française est de': '*The French average is'
+  'L’empreinte eau : pourquoi et comment avons-nous travaillé…': 'The water footprint: why and how we worked..'
+  litres par jour: litres per day
+  Mon empreinte carbone: My carbon footprint
+  Mon empreinte eau: My water footprint
+  Et l'eau de <2>ma douche</2> dans tout ça ?: What about the water in <2>my shower</2>?
+  sur votre empreinte: on your footprint
+  Reprendre plus tard: Resume later
+  Sauvegarder <2>ma progression</2>: Save <2>my progress</2>
+  d'eau par jour: of water per day
+  Votre région a bien été mise à jour.: Your region has been updated.
+  Vous pouvez la reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: You can resume it later by clicking on the link you received by email.
+  de CO₂e par an: of CO₂e per year
+  Recevez par email un lien pour reprendre votre test plus tard.: Receive an email with a link to take your test again later.
+  Liste des questions: List of questions
+  Passer la question: Skip the question
+  Une erreur s'est produite au moment de la sauvegarde.: An error has occurred during backup.
+  Veuillez entrer un nombre positif.: Please enter a positive number.
+  '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} on your footprint'
+  '{{name}}, supprimer cette participation': '{{name}}cancel this shareholding'
+  Supprimer ce participant ? Cette opération est définitive.: Delete this participant? This operation is definitive.
+  Participant supprimé avec succès: Participant successfully deleted
+  Une erreur est survenue: An error has occurred
+  Des enfants qui se tiennent la main: Children holding hands
+  Une fille qui cuisine: A girl who cooks
+  Une mère et son enfant sur un vélo: A mother and child on a bicycle
+  Une fille qui lit un journal: A girl reading a newspaper
+  Non, merci: No, thank you
+  Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: You can resume it later by clicking on the link you received by email.
+  Un grand-père et sa petite fille qui regardent un film: A grandfather and his granddaughter watching a film
+  Votre test est sauvegardé !: Your test is saved!
+  <0>La taille des logements français a très fortement augmenté</0> sur ces 50 dernirèes années, passant de 23 à 40,4 m² par habitant, soit <4>90,9 m² en moyenne pour un foyer de 2,2 personnes.</4>: <0>The size of French homes has risen sharply</0> over the last 50 years, from 23 to 40.4 m² per inhabitant, or <4>90.9 m² on average for a household of 2.2 people.</4>

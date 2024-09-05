@@ -1,7 +1,7 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-import { DottedName, NodeValue } from '@/publicodes-state/types'
+import { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   question: DottedName

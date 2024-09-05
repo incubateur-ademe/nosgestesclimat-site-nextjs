@@ -1,4 +1,5 @@
-import { DottedName, NGCEvaluatedNode, NGCRuleNode } from '../types'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import { NGCEvaluatedNode } from '../types'
 
 type Props = {
   dottedName: DottedName

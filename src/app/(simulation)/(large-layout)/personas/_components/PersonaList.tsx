@@ -1,10 +1,10 @@
 'use client'
 
-import { Persona as PersonaType } from '@incubateur-ademe/nosgestesclimat'
+import { Personas } from '@incubateur-ademe/nosgestesclimat'
 import Persona from './Persona'
 
 type Props = {
-  personas: Record<string, PersonaType>
+  personas: Personas
 }
 
 export default function PersonaList({ personas }: Props) {

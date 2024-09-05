@@ -26,9 +26,9 @@ import {
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback } from 'react'
 import ActionValue from './ActionValue'
 
@@ -57,11 +57,10 @@ export default function ActionCard({
   const { dottedName, title, missingVariables, traversedVariables } = action
 
   const { icônes: icons } = rule || action
-
-  const remainingQuestions = filterRelevantMissingVariables(
-    Object.keys(missingVariables || {}),
-    extendedFoldedSteps
-  )
+  const remainingQuestions = filterRelevantMissingVariables({
+    missingVariables: Object.keys(missingVariables || {}) as DottedName[],
+    extendedFoldedSteps,
+  })
 
   const nbRemainingQuestions = remainingQuestions?.length
 
@@ -85,7 +84,7 @@ export default function ActionCard({
     return key === dottedName && actionChoices?.[key]
   })
 
-  const flatRule = rules?.[dottedName]
+  const flatRule = (rules as any)?.[dottedName]
 
   const hasFormula = flatRule?.formule
   const isDisabled =
@@ -165,22 +164,21 @@ export default function ActionCard({
           />
 
           {hasRemainingQuestions && (
-            <NotificationBubble
-              onClick={() => setFocusedAction(dottedName)}
-              title={remainingQuestionsText}
-              number={nbRemainingQuestions}
-            />
-          )}
-
-          {hasRemainingQuestions && (
-            <button
-              className="cursor-pointer text-sm text-primary-700"
-              onClick={() => {
-                trackEvent(actionsClickAdditionalQuestion(dottedName))
-                setFocusedAction(dottedName)
-              }}>
-              {remainingQuestionsText}
-            </button>
+            <>
+              <NotificationBubble
+                onClick={() => setFocusedAction(dottedName)}
+                title={remainingQuestionsText}
+                number={nbRemainingQuestions}
+              />
+              <button
+                className="cursor-pointer text-sm text-primary-700"
+                onClick={() => {
+                  trackEvent(actionsClickAdditionalQuestion(dottedName))
+                  setFocusedAction(dottedName)
+                }}>
+                {remainingQuestionsText}
+              </button>
+            </>
           )}
         </div>
         <div className="self-bottom flex w-full justify-between px-2">

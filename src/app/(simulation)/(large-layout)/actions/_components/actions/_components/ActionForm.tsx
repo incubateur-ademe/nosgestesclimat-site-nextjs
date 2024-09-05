@@ -3,11 +3,12 @@
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import { useForm } from '@/publicodes-state'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useEffect } from 'react'
 
 type Props = {
-  category: string
+  category: DottedName
   onComplete: () => void
 }
 
@@ -46,7 +47,11 @@ export default function ActionForm({ category, onComplete }: Props) {
       transition={{ duration: 0.3 }}
       className="mb-4 rounded-xl bg-primary-100 p-4 text-left">
       <Question question={currentQuestion} key={currentQuestion} />
-      <Navigation question={currentQuestion} onComplete={onComplete} />
+      <Navigation
+        question={currentQuestion}
+        onComplete={onComplete}
+        isEmbedded
+      />
     </motion.div>
   )
 }

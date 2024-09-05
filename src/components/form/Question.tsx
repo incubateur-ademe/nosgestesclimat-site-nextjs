@@ -19,6 +19,7 @@ import {
 import Button from '@/design-system/inputs/Button'
 import { useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/Trans'
@@ -26,7 +27,7 @@ import Category from './question/Category'
 import Warning from './question/Warning'
 
 type Props = {
-  question: string
+  question: DottedName
   tempValue?: number | undefined
   setTempValue?: (value: number | undefined) => void
   showInputsLabel?: React.ReactNode | string
@@ -76,7 +77,7 @@ export default function Question({
 
   return (
     <>
-      <div className={twMerge('mb-6', className)}>
+      <div className={twMerge('mb-6 flex flex-col items-start', className)}>
         <Category question={question} />
         <Label question={question} label={label} description={description} />
 
@@ -84,7 +85,7 @@ export default function Question({
           question={question}
           setValue={(value) => {
             if (type === 'number') {
-              if (setTempValue) setTempValue(value)
+              if (setTempValue) setTempValue(value as number)
             }
             setValue(value, { foldedStep: question })
           }}

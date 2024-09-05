@@ -1,10 +1,6 @@
 import getType from '@/publicodes-state/helpers/getType'
-import {
-  DottedName,
-  NGCEvaluatedNode,
-  NGCRuleNode,
-  Situation,
-} from '@/publicodes-state/types'
+import { NGCEvaluatedNode, Situation } from '@/publicodes-state/types'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 
 type Props = {
@@ -18,7 +14,7 @@ const getMosaicChildrenGroup = (
   situation: Situation,
   expectedMosaicGroup: DottedName[]
 ) => {
-  return Object.keys(situation).filter(([key]) =>
+  return (Object.keys(situation) as DottedName[]).filter((key) =>
     expectedMosaicGroup.includes(key)
   )
 }

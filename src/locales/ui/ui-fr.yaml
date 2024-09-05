@@ -30,7 +30,6 @@ entries:
   Fermer: Fermer
   Fermer les options de tri: Fermer les options de tri
   J'ai compris: J'ai compris
-  Je ne sais pas: Je ne sais pas
   Le modèle d'empreinte carbone de référence: Le modèle d'empreinte carbone de référence
   Le test: Le test
   Le titre bref de votre problème: Le titre bref de votre problème
@@ -122,7 +121,7 @@ entries:
   publicodes.planDuSite.title: Plan du site
   publicodes.planDuSite.actionsPlus: Les actions
   semaines: semaines
-  sites.publicodes.Tutorial.questionE: 💡 Mais que veut dire ce petit <1>e</1> ?
+  sites.publicodes.Tutorial.questionE: 💡 Mais que veut dire ce petit <1>e</1> ?
   sélectionnées: sélectionnées
   tonne: tonne
   tonnes: tonnes
@@ -206,14 +205,10 @@ entries:
   Bientôt disponible: Bientôt disponible
   C'est parti ! →: C'est parti ! →
   C'est un test individuel !: C'est un test individuel !
-  C’est quoi mon empreinte carbone ?: C’est quoi mon empreinte carbone ?
   Calcul d'empreinte carbone manquant: Calcul d'empreinte carbone manquant
-  chrono pour calculer votre empreinte sur le climat: chrono pour calculer votre empreinte sur le climat
-  Comment on la mesure ?: Comment on la mesure ?
   Comparez vos résultats avec votre famille ou un groupe d’ami·e·s: Comparez vos résultats avec votre famille ou un groupe d’ami·e·s
   Comprendre mon score: Comprendre mon score
   Consultez la FAQ: Consultez la FAQ
-  D’où vient mon empreinte ?: D’où vient mon empreinte ?
   'Date complète :': 'Date complète :'
   'Découvrez nos articles de blog :': 'Découvrez nos articles de blog :'
   disponibles: disponibles
@@ -228,12 +223,12 @@ entries:
   Mes réponses: Mes réponses
   Passer en français: Passer en français
   Plus d'information à ce sujet: Plus d'information à ce sujet
-  publicodes.Tutoriel.slide1.p1: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
+  publicodes.Tutoriel.slide1.p1: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
   publicodes.Tutoriel.slide1.p2: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
-  publicodes.Tutoriel.slide2.blockquote: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
-  publicodes.Tutoriel.slide2.p1: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone <2></2>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
-  publicodes.Tutoriel.slide2.p2: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
-  publicodes.Tutoriel.slide6: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne. </1>
+  publicodes.Tutoriel.slide2.blockquote: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
+  publicodes.Tutoriel.slide2.p1: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone <2></2>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
+  publicodes.Tutoriel.slide2.p2: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
+  publicodes.Tutoriel.slide6: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne.</1>
   Recommencer: Recommencer
   Répondez aux questions en votre nom, pas pour votre foyer.: Répondez aux questions en votre nom, pas pour votre foyer.
   revenir à l'accueil: revenir à l'accueil
@@ -243,7 +238,6 @@ entries:
   Sélectionner: Sélectionner
   Supprimer: Supprimer
   Switch to english: Switch to english
-  Voir la liste des questions: Voir la liste des questions
   Voir plus d'informations: Voir plus d'informations
   Vous: Vous
   'Vous faites cette simulation depuis :': 'Vous faites cette simulation depuis :'
@@ -251,9 +245,6 @@ entries:
   Vous utilisez la version: Vous utilisez la version
   Terminer: Terminer
   Voir toutes les actions: Voir toutes les actions
-  Total.unit: de CO<1>2</1>e / an
-  Comparez vos résultats <2>avec vos proches</2>: Comparez vos résultats <2>avec vos proches</2>
-  Créer un groupe: Créer un groupe
   Distance: Distance
   Fréquence: Fréquence
   La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.: La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.
@@ -261,7 +252,6 @@ entries:
   Passagers: Passagers
   Télécharger l'image: Télécharger l'image
   'Total par an :': 'Total par an :'
-  Une capture du mode Groupe Nos Gestes Climat.: Une capture du mode Groupe Nos Gestes Climat.
   Merci pour votre retour !: Merci pour votre retour !
   'Total :': 'Total :'
   ou: ou
@@ -398,7 +388,6 @@ entries:
   L'empreinte climat, qu'est-ce que c'est ?: L'empreinte climat, qu'est-ce que c'est ?
   L'intégralité du: L'intégralité du
   Le: Le
-  obtenez une estimation de votre empreinte carbone de consommation.: obtenez une estimation de votre empreinte carbone de consommation.
   pour les curieux et les experts.: pour les curieux et les experts.
   Toute contribution est la bienvenue !: Toute contribution est la bienvenue !
   Une capture du mode Amis Nos Gestes Climat.: Une capture du mode Amis Nos Gestes Climat.
@@ -625,7 +614,6 @@ entries:
   'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2> tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': 'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2> tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.'
   Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !: Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !
   Une erreur est survenue !: Une erreur est survenue !
-  '{formatCarbonFootprint(carbonFootprintValue).unit}': '{formatCarbonFootprint(carbonFootprintValue).unit}'
   '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés': '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés'
   "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails": "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails"
   Ce champ est requis.: Ce champ est requis.
@@ -658,14 +646,11 @@ entries:
   secondes): secondes)
   Vous n'avez pas reçu de code ?: Vous n'avez pas reçu de code ?
   <0>2 tonnes</0> en 2050 ?: <0>2 tonnes</0> en 2050 ?
-  <0>Et vous,</0> quel est votre impact sur le climat ?: <0>Et vous,</0> quel est votre impact sur le climat ?
   <0>Hérissons</0> en danger ?: <0>Hérissons</0> en danger ?
   C’est l’objectif à atteindre pour espérer limiter le réchauffement climatique à 2 degrés.: C’est l’objectif à atteindre pour espérer limiter le réchauffement climatique à 2 degrés.
   Comment est calculée votre empreinte ?: Comment est calculée votre empreinte ?
   De plus, la disparition de leur environnement naturel, due à la déforestation et à l'urbanisation, réduit leurs zones de vie potentielles, augmentant ainsi leur vulnérabilité face aux prédateurs et aux maladies.: De plus, la disparition de leur environnement naturel, due à la déforestation et à l'urbanisation, réduit leurs zones de vie potentielles, augmentant ainsi leur vulnérabilité face aux prédateurs et aux maladies.
   Découvre mon bilan carbone sur Nos Gestes Climat.: Découvre mon bilan carbone sur Nos Gestes Climat.
-  Découvre mon empreinte carbone: Découvre mon empreinte carbone
-  En 10 minutes, obtenez une estimation de votre empreinte carbone.: En 10 minutes, obtenez une estimation de votre empreinte carbone.
   Est-ce que je peux y arriver tout seul ?: Est-ce que je peux y arriver tout seul ?
   l’objectif pour 2050: l’objectif pour 2050
   Le détail de mon empreinte: Le détail de mon empreinte
@@ -679,7 +664,6 @@ entries:
   'Recevez des conseils pour réduire votre empreinte :': 'Recevez des conseils pour réduire votre empreinte :'
   'Voici quelques idées pour vous aider à réduire votre impact :': 'Voici quelques idées pour vous aider à réduire votre impact :'
   Vous êtes très nettement en dessous de la moyenne française.: Vous êtes très nettement en dessous de la moyenne française.
-  Vous souhaitez recevoir vos résultats d’empreinte carbone ?: Vous souhaitez recevoir vos résultats d’empreinte carbone ?
   ' de votre empreinte': ' de votre empreinte'
   2 tonnes: 2 tonnes
   Ajouter la question: Ajouter la question
@@ -869,3 +853,87 @@ entries:
   Vos informations ont bien été mises à jour.: Vos informations ont bien été mises à jour.
   Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.: Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.
   Vous devez valider votre changement d'adresse e-mail.: Vous devez valider votre changement d'adresse e-mail.
+  Recevoir nos actualités sur les nouveaux services dédiés aux organisation (une fois par mois maximum !): Recevoir nos actualités sur les nouveaux services dédiés aux organisation (une fois par mois maximum !)
+  <0>Eau, climat,</0> même combat ?: <0>Eau, climat,</0> même combat ?
+  <0>Et vous,</0> quel est votre impact sur notre planète ?: <0>Et vous,</0> quel est votre impact sur notre planète ?
+  <0>L’empreinte eau,</0> c’est quoi ?: <0>L’empreinte eau,</0> c’est quoi ?
+  <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.: <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.
+  "attention : l'eau domestique (par exemple l’eau de vos douches) ne fait pas partie de l'empreinte eau": "attention : l'eau domestique (par exemple l’eau de vos douches) ne fait pas partie de l'empreinte eau"
+  Bientôt disponible !: Bientôt disponible !
+  C’est quoi mon empreinte carbone ?: C’est quoi mon empreinte carbone ?
+  carbone: carbone
+  chrono pour calculer votre empreinte carbone et eau: chrono pour calculer votre empreinte carbone et eau
+  Comment <1>agir</1> ?: Comment <1>agir</1> ?
+  Comment on la mesure ?: Comment on la mesure ?
+  d'eau <1>par jour</1>: d'eau <1>par jour</1>
+  d’eau domestique par jour: d’eau domestique par jour
+  D’où vient mon empreinte ?: D’où vient mon empreinte ?
+  Découvre mes empreintes: Découvre mes empreintes
+  Découvrez votre <1>empreinte eau</1> à la fin du test !: Découvrez votre <1>empreinte eau</1> à la fin du test !
+  eau: eau
+  En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.: En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.
+  Est-ce que c'est <2>beaucoup ?</2>: Est-ce que c'est <2>beaucoup ?</2>
+  Evaluer la métrique carbone: Evaluer la métrique carbone
+  Evaluer la métrique eau: Evaluer la métrique eau
+  l’alimentation des <2>animaux</2> que vous consommez: l’alimentation des <2>animaux</2> que vous consommez
+  L’eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>: L’eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>
+  L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.: L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.
+  L’eau est une ressource planétaire précieuse. Comme le climat, <2>le cycle de l’eau est fortement impacté par les activités humaines.</2> Nous avons fait le choix d’ajouter l'empreinte eau à notre modèle de calcul afin de vous apporter des éléments de compréhension de cet impact.: L’eau est une ressource planétaire précieuse. Comme le climat, <2>le cycle de l’eau est fortement impacté par les activités humaines.</2> Nous avons fait le choix d’ajouter l'empreinte eau à notre modèle de calcul afin de vous apporter des éléments de compréhension de cet impact.
+  L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien.: L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien.
+  "L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien. Par exemple il faut de l’eau pour :": "L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien. Par exemple il faut de l’eau pour :"
+  l’extraction des matériaux de vos <2>appareils numériques</2>: l’extraction des matériaux de vos <2>appareils numériques</2>
+  la culture du <2>coton</2> que vous portez: la culture du <2>coton</2> que vous portez
+  la production de votre <2>électricité</2>: la production de votre <2>électricité</2>
+  les <2>fruits, légumes et céréales</2> que vous mangez: les <2>fruits, légumes et céréales</2> que vous mangez
+  Les 3 réflexes à adopter pour une garde-robe économe en eau: Les 3 réflexes à adopter pour une garde-robe économe en eau
+  Les 4 gestes pour réduire l’empreinte eau de mon alimentation: Les 4 gestes pour réduire l’empreinte eau de mon alimentation
+  Mes empreintes: Mes empreintes
+  Mes principaux postes d'usage: Mes principaux postes d'usage
+  'Nos articles sur le sujet :': 'Nos articles sur le sujet :'
+  obtenez une estimation<1></1>de votre <3>empreinte carbone</3>.: obtenez une estimation<1></1>de votre <3>empreinte carbone</3>.
+  Petit lexique pour tout comprendre à l’empreinte eau: Petit lexique pour tout comprendre à l’empreinte eau
+  Pourquoi avons-nous ajouté l’empreinte eau ?: Pourquoi avons-nous ajouté l’empreinte eau ?
+  Rendez-vous sur VigiEau pour en savoir plus.: Rendez-vous sur VigiEau pour en savoir plus.
+  Retrouvez aussi le résultat de votre empreinte eau à la fin du test !: Retrouvez aussi le résultat de votre empreinte eau à la fin du test !
+  'Retrouvez nos conseils dans ces articles :': 'Retrouvez nos conseils dans ces articles :'
+  Sauvegarder: Sauvegarder
+  "Voici la carte des départements qui subissent des restrictions d'eau en ce moment :": "Voici la carte des départements qui subissent des restrictions d'eau en ce moment :"
+  Vous souhaitez recevoir vos résultats ?: Vous souhaitez recevoir vos résultats ?
+  Vous utilisez: Vous utilisez
+  En règle générale, les valeurs d'empreinte eau varient <2>entre 9000 et 15000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: En règle générale, les valeurs d'empreinte eau varient <2>entre 9000 et 15000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.
+  Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.: Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.
+  'Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.': 'Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.'
+  Les activités humaines menacent les équilibres naturels de notre planète.: Les activités humaines menacent les équilibres naturels de notre planète.
+  C'est pourtant bien l'eau qui sert à produire ce que vous consommez :<1></1> votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.: C'est pourtant bien l'eau qui sert à produire ce que vous consommez :<1></1> votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.
+  Ce chiffre vous semble impressionnant ?: Ce chiffre vous semble impressionnant ?
+  '*La moyenne française est de': '*La moyenne française est de'
+  'L’empreinte eau : pourquoi et comment avons-nous travaillé…': 'L’empreinte eau : pourquoi et comment avons-nous travaillé…'
+  litres par jour: litres par jour
+  Et l'eau de <2>ma douche</2> dans tout ça ?: Et l'eau de <2>ma douche</2> dans tout ça ?
+  Mon empreinte carbone: Mon empreinte carbone
+  Mon empreinte eau: Mon empreinte eau
+  d'eau par jour: d'eau par jour
+  de CO₂e par an: de CO₂e par an
+  Liste des questions: Liste des questions
+  Passer la question: Passer la question
+  Recevez par email un lien pour reprendre votre test plus tard.: Recevez par email un lien pour reprendre votre test plus tard.
+  Reprendre plus tard: Reprendre plus tard
+  Sauvegarder <2>ma progression</2>: Sauvegarder <2>ma progression</2>
+  sur votre empreinte: sur votre empreinte
+  Une erreur s'est produite au moment de la sauvegarde.: Une erreur s'est produite au moment de la sauvegarde.
+  Votre région a bien été mise à jour.: Votre région a bien été mise à jour.
+  Veuillez entrer un nombre positif.: Veuillez entrer un nombre positif.
+  '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} sur votre empreinte'
+  '{{name}}, supprimer cette participation': '{{name}}, supprimer cette participation'
+  Participant supprimé avec succès: Participant supprimé avec succès
+  Supprimer ce participant ? Cette opération est définitive.: Supprimer ce participant ? Cette opération est définitive.
+  Une erreur est survenue: Une erreur est survenue
+  <0>La taille des logements français a très fortement augmenté</0> sur ces 50 dernirèes années, passant de 23 à 40,4 m² par habitant, soit <4>90,9 m² en moyenne pour un foyer de 2,2 personnes.</4>: <0>La taille des logements français a très fortement augmenté</0> sur ces 50 dernirèes années, passant de 23 à 40,4 m² par habitant, soit <4>90,9 m² en moyenne pour un foyer de 2,2 personnes.</4>
+  Des enfants qui se tiennent la main: Des enfants qui se tiennent la main
+  Non, merci: Non, merci
+  Un grand-père et sa petite fille qui regardent un film: Un grand-père et sa petite fille qui regardent un film
+  Une fille qui cuisine: Une fille qui cuisine
+  Une fille qui lit un journal: Une fille qui lit un journal
+  Une mère et son enfant sur un vélo: Une mère et son enfant sur un vélo
+  Votre test est sauvegardé !: Votre test est sauvegardé !
+  Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.

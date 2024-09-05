@@ -1,12 +1,13 @@
 import Question from '@/components/form/Question'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 import PencilIcon from '../icons/PencilIcon'
 import ThreeYearsInput from './avion/ThreeYearsInput'
 
 type Props = {
-  question: string
+  question: DottedName
 }
 export default function Avion({ question, ...props }: Props) {
   const [isOpen, setIsOpen] = useState(false)

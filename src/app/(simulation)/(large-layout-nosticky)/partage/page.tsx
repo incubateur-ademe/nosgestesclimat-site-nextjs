@@ -1,7 +1,6 @@
 'use client'
 
-import CarboneTotalChart from '@/components/fin/CarboneTotalChart'
-import MainSubcategory from '@/components/fin/mainSubcategories/MainSubcategory'
+import MetricSlider from '@/components/fin/MetricSlider'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
@@ -9,49 +8,37 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useGetShareInfosParams } from '@/hooks/useGetShareInfosParams'
 
 export default function PartagePage() {
-  const { total, subcategories } = useGetShareInfosParams()
+  const { carboneTotal, waterTotal } = useGetShareInfosParams()
 
   const { getLinkToSimulateurPage, linkToSimulateurPageLabel } =
     useSimulateurPage()
 
   return (
-    <div className="mx-auto max-w-2xl">
-      <div className="lg:mb-44">
+    <div className="relative">
+      <div>
         <Title className="text-lg md:text-2xl">
-          <Trans>Découvre mon empreinte carbone</Trans>
+          <Trans>Découvre mes empreintes</Trans>
         </Title>
       </div>
-      <CarboneTotalChart total={total} />
-
-      <div className="mb-8 flex flex-col items-start gap-4 lg:mb-14 lg:mt-10">
-        <Title
-          tag="h2"
-          className="text-lg md:text-2xl"
-          title={<Trans>Mes principaux postes d’émissions</Trans>}
-        />
-        {subcategories.map((subcategory, index) => (
-          <MainSubcategory
-            key={subcategory.dottedName}
-            subcategory={subcategory.dottedName}
-            value={subcategory.value}
-            index={index}
-          />
-        ))}
-      </div>
-
-      <div className="rainbow-border items-start rounded-xl px-4 py-6 ">
+      <MetricSlider
+        carboneTotal={carboneTotal}
+        waterTotal={waterTotal}
+        isStatic
+      />
+      <div className="rainbow-border mt-10 items-start rounded-xl px-4 py-6">
         <Title
           tag="h2"
           className="text-lg lg:text-2xl"
           hasSeparator={false}
           subtitle={
             <Trans>
-              En 10 minutes, obtenez une estimation de votre empreinte carbone.
+              En 10 minutes, obtenez une estimation de vos empreintes carbone et
+              eau.
             </Trans>
           }>
           <Trans>
             <span className="text-secondary-700">Et vous,</span> quel est votre
-            impact sur le climat ?
+            impact sur notre planète ?
           </Trans>
         </Title>
 

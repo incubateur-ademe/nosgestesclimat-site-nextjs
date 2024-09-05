@@ -1,8 +1,13 @@
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { Migration, migrateSituation } from '@publicodes/tools/migration'
 import { Simulation } from '../types'
 
 export function migrateSimulation(
-  simulation: Simulation & { group?: string; poll?: string },
+  simulation: Simulation & {
+    group?: string
+    poll?: string
+    computedResults: any
+  },
   migrationInstructions: Migration | undefined
 ): Simulation {
   if (migrationInstructions) {
@@ -20,8 +25,9 @@ export function migrateSimulation(
         ),
         migrationInstructions
       )
-    )
+    ) as DottedName[]
   }
+
   // If group or poll is defined, we convert it to groups or polls and delete it
   if (simulation.group) {
     simulation.groups = [simulation.group]
@@ -35,12 +41,11 @@ export function migrateSimulation(
 
   // If the computedResults object does not take multiple metrics into account, we add them
   if ((simulation.computedResults as any)?.bilan !== undefined) {
-    console.log('migrate computedResults')
     const newComputedResults = {
-      carbone: JSON.parse(JSON.stringify(simulation.computedResults)),
+      carbone: simulation.computedResults as any,
       eau: {
         bilan: 0,
-        categories: {},
+        categories: {} as Record<DottedName, number>,
       },
     }
     simulation.computedResults = newComputedResults
