@@ -53,86 +53,85 @@ export const useGetGroupAndUserFootprints = ({
       }
 
       orderedCategories.forEach(
-        (category: DottedName) => {
+        (category) => {
           const categoryRawValue =
             groupMember?.simulation?.computedResults?.carbone?.categories[
               category
             ] || 0
 
-          orderedCategories.forEach((category) => {
-            const categoryValue =
-              typeof categoryRawValue === 'number' ? categoryRawValue : 0
+          const categoryValue =
+            typeof categoryRawValue === 'number' ? categoryRawValue : 0
 
-            const defaultCategoryObject = {
-              name: category,
-              value: categoryValue,
-              isCategory: true,
-            }
+          const defaultCategoryObject = {
+            name: category,
+            value: categoryValue,
+            isCategory: true,
+          }
 
-            // If the category is not in the accumulator, we add its name
-            // as a new key in the object along with its value otherwise we
-            // add the value to the existing sum
-            if (!updatedGroupCategoriesAndSubcategoriesFootprints[category]) {
-              updatedGroupCategoriesAndSubcategoriesFootprints[category] =
-                defaultCategoryObject
+          // If the category is not in the accumulator, we add its name
+          // as a new key in the object along with its value otherwise we
+          // add the value to the existing sum
+          if (!updatedGroupCategoriesAndSubcategoriesFootprints[category]) {
+            updatedGroupCategoriesAndSubcategoriesFootprints[category] =
+              defaultCategoryObject
+          } else {
+            updatedGroupCategoriesAndSubcategoriesFootprints[category].value +=
+              typeof categoryValue === 'number' ? categoryValue : 0
+          }
+
+          // Add each category footprint for the current member
+          if (isCurrentMember) {
+            updatedCurrentUserCategoriesAndSubcategoriesFootprints[category] =
+              defaultCategoryObject
+          }
+
+          // Handle subcategories
+          const subCategories =
+            groupMember?.simulation?.computedResults?.carbone?.subcategories?.[
+              category as keyof ComputedResultsSubcategories
+            ]
+
+          if (!subCategories) {
+            return
+          }
+
+          Object.keys(subCategories).forEach((subCategory) => {
+            const subCategoryRawValue =
+              subCategories?.[
+                subCategory as keyof ComputedResultsSubcategories
+              ] || 0
+
+            const subCategoryValue =
+              typeof subCategoryRawValue === 'number' ? subCategoryRawValue : 0
+
+            // Same here if the property doesn't exist in the accumulator, we add it
+            // otherwise we add the value to the existing sum
+            if (
+              !updatedGroupCategoriesAndSubcategoriesFootprints[
+                subCategory as keyof ComputedResultsSubcategories
+              ]
+            ) {
+              updatedGroupCategoriesAndSubcategoriesFootprints[
+                subCategory as keyof ComputedResultsSubcategories
+              ] = {
+                name: subCategory as DottedName,
+                value: subCategoryValue,
+              }
             } else {
               updatedGroupCategoriesAndSubcategoriesFootprints[
-                category
-              ].value += typeof categoryValue === 'number' ? categoryValue : 0
+                subCategory as keyof ComputedResultsSubcategories
+              ].value += subCategoryValue
             }
 
-            // Add each category footprint for the current member
             if (isCurrentMember) {
-              updatedCurrentUserCategoriesAndSubcategoriesFootprints[category] =
-                defaultCategoryObject
+              // Add each category footprint for the current member
+              updatedCurrentUserCategoriesAndSubcategoriesFootprints[
+                subCategory as keyof ComputedResultsSubcategories
+              ] = {
+                name: subCategory as DottedName,
+                value: subCategoryValue,
+              }
             }
-
-            Object.keys(
-              groupMember?.simulation?.computedResults?.carbone
-                ?.subcategories?.[
-                category as keyof ComputedResultsSubcategories
-              ] || {}
-            ).forEach((subCategory: string) => {
-              const subCategoryRawValue =
-                groupMember?.simulation?.computedResults?.carbone
-                  ?.subcategories?.[
-                  category as keyof ComputedResultsSubcategories
-                ]?.[subCategory as keyof ComputedResultsSubcategories] || 0
-
-              const subCategoryValue =
-                typeof subCategoryRawValue === 'number'
-                  ? subCategoryRawValue
-                  : 0
-
-              // Same here if the property doesn't exist in the accumulator, we add it
-              // otherwise we add the value to the existing sum
-              if (
-                !updatedGroupCategoriesAndSubcategoriesFootprints[
-                  subCategory as keyof ComputedResultsSubcategories
-                ]
-              ) {
-                updatedGroupCategoriesAndSubcategoriesFootprints[
-                  subCategory as keyof ComputedResultsSubcategories
-                ] = {
-                  name: subCategory as DottedName,
-                  value: subCategoryValue,
-                }
-              } else {
-                updatedGroupCategoriesAndSubcategoriesFootprints[
-                  subCategory as keyof ComputedResultsSubcategories
-                ].value += subCategoryValue
-              }
-
-              if (isCurrentMember) {
-                // Add each category footprint for the current member
-                updatedCurrentUserCategoriesAndSubcategoriesFootprints[
-                  subCategory as keyof ComputedResultsSubcategories
-                ] = {
-                  name: subCategory as DottedName,
-                  value: subCategoryValue,
-                }
-              }
-            })
           })
 
           return {
