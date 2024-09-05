@@ -32,13 +32,14 @@ export default function Providers({
   // or the landing page for organisations
   const shouldAlwaysDisplayChildren =
     NO_MODEL_PATHNAME_EXCEPTIONS.includes(pathname)
+
   if (shouldAlwaysDisplayChildren && isLoading) {
     return children
   }
 
   if (isLoading) {
     return (
-      <div className="flex flex-1 items-center justify-center">
+      <div className="flex h-screen flex-1 items-center justify-center">
         <Loader color="dark" />
       </div>
     )

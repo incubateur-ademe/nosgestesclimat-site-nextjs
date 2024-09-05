@@ -1,6 +1,7 @@
 import { eauMetric } from '@/constants/metric'
 import { useEngine, useSimulation } from '@/publicodes-state'
-import { DottedName, Metric } from '@/publicodes-state/types'
+import { Metric } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 
 type Props = {
@@ -14,7 +15,7 @@ export function useSortedUiCategoriesByFootprint({ metric }: Props = {}) {
   const everyUiCategoriesWithRepasAjusted = useMemo(
     () =>
       metric === eauMetric
-        ? [
+        ? ([
             ...everyUiCategories.filter(
               (category) =>
                 !['viande', 'végé', 'poisson'].some((repasDottedName) =>
@@ -22,12 +23,12 @@ export function useSortedUiCategoriesByFootprint({ metric }: Props = {}) {
                 )
             ),
             'alimentation . déjeuner et dîner',
-          ]
-        : (everyUiCategories as DottedName[]),
+          ] as DottedName[])
+        : everyUiCategories,
     [everyUiCategories, metric]
   )
 
-  const sortedUiCategories = useMemo<DottedName[]>(() => {
+  const sortedUiCategories = useMemo(() => {
     return everyUiCategoriesWithRepasAjusted.sort(
       (categoryA: DottedName, categoryB: DottedName) => {
         const valueA = getNumericValue(categoryA) ?? 0
@@ -35,7 +36,7 @@ export function useSortedUiCategoriesByFootprint({ metric }: Props = {}) {
 
         return valueB - valueA
       }
-    )
+    ) as DottedName[]
   }, [everyUiCategoriesWithRepasAjusted, getNumericValue])
 
   return {

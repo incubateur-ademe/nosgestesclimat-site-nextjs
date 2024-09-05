@@ -1,13 +1,17 @@
 'use client'
-import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import Engine, { PublicodesExpression } from 'publicodes'
-import { createContext } from 'react'
 import {
   DottedName,
-  Metric,
-  NGCEvaluatedNode,
   NGCRuleNode,
-  NGCRulesNodes,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
+import { PublicodesExpression } from 'publicodes'
+import { createContext } from 'react'
+import {
+  Engine,
+  Metric,
+  MissingVariables,
+  NGCEvaluatedNode,
+  ParsedRules,
   Situation,
 } from '../../types'
 
@@ -20,14 +24,14 @@ type SimulationContextType = {
     rule: PublicodesExpression,
     metric?: Metric
   ) => NGCEvaluatedNode | null
-  parsedRules: NGCRulesNodes
+  parsedRules: ParsedRules
   everyRules: DottedName[]
   everyInactiveRules: DottedName[]
   everyQuestions: DottedName[]
   everyNotifications: DottedName[]
   everyUiCategories: DottedName[]
   everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
-  rawMissingVariables: Record<string, number>
+  rawMissingVariables: MissingVariables
   categories: DottedName[]
   subcategories: Record<DottedName, DottedName[]>
   addToEngineSituation: (situationToAdd: Situation) => Situation
@@ -39,16 +43,16 @@ export const SimulationContext = createContext<SimulationContextType>({
   pristineEngine: null,
   safeGetRule: () => null,
   safeEvaluate: () => null,
-  parsedRules: {},
+  parsedRules: {} as ParsedRules,
   everyRules: [],
   everyInactiveRules: [],
   everyQuestions: [],
   everyNotifications: [],
   everyUiCategories: [],
-  everyMosaicChildrenWithParent: {},
-  rawMissingVariables: {},
+  everyMosaicChildrenWithParent: {} as Record<DottedName, DottedName[]>,
+  rawMissingVariables: {} as MissingVariables,
   categories: [],
-  subcategories: {},
+  subcategories: {} as Record<DottedName, DottedName[]>,
   addToEngineSituation: () => ({}) as Situation,
   isInitialized: false,
 })

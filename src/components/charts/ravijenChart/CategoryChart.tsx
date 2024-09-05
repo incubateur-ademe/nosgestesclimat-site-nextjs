@@ -2,12 +2,13 @@
 
 import { DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
 import { useEngine } from '@/publicodes-state'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoryChartBlock from './categoryChart/SubcategoryChartBlock'
 import TotalCategoryBlock from './categoryChart/TotalCategoryBlock'
 
 type Props = {
-  category: string
-  subcategories: string[]
+  category: DottedName
+  subcategories: DottedName[]
   maxValue: number
   squashLimitPercentage?: number
   isInverted?: boolean
@@ -27,7 +28,7 @@ export default function CategoryChart({
   let sumSquashedSubcategoriesPercentage = 0
 
   const sortedSubcategories = subcategories
-    ?.filter((subcategory: string) => checkIfValid(subcategory))
+    ?.filter((subcategory) => checkIfValid(subcategory))
     // Get the value to display in the EnigmaticMoreChartBlock
     .map((subcategory) => {
       const categoryValue = getNumericValue(category) ?? 0
@@ -44,7 +45,7 @@ export default function CategoryChart({
       }
       return subcategory
     })
-    .sort((categoryA: string, categoryB: string) => {
+    .sort((categoryA, categoryB) => {
       const valueA = getNumericValue(categoryA) ?? 0
       const valueB = getNumericValue(categoryB) ?? 0
 
@@ -60,7 +61,7 @@ export default function CategoryChart({
         className={`flex h-[calc(100%-7rem)] ${
           isInverted ? 'flex-col-reverse' : 'flex-col'
         } justify-end gap-[1px]`}>
-        {sortedSubcategories?.map((subcategory: string, index: number) => {
+        {sortedSubcategories?.map((subcategory, index: number) => {
           return (
             <SubcategoryChartBlock
               key={subcategory}

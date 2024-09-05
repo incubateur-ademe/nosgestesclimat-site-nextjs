@@ -11,6 +11,19 @@ type Props = {
   'data-cypress-id'?: string
 }
 
+const buttonClassNames = {
+  checked: 'border-primary-700 text-primary-700',
+  unchecked: 'border-primary-200 hover:bg-primary-50',
+}
+const checkClassNames = {
+  checked: 'border-primary-700 before:bg-primary-700',
+  unchecked: 'border-primary-300',
+}
+const labelClassNames = {
+  checked: 'text-primary-700',
+  unchecked: 'text-gray-700',
+}
+
 export default function ChoiceInput({
   label,
   description,
@@ -21,15 +34,14 @@ export default function ChoiceInput({
   ...props
 }: HTMLAttributes<HTMLInputElement> & PropsWithChildren<Props>) {
   const [isOpen, setIsOpen] = useState(false)
+
+  const status = active ? 'checked' : 'unchecked'
+
   return (
     <>
-      <div className="mb-2 flex flex-1 items-center gap-1 sm:gap-2">
+      <div className="flex items-center gap-2">
         <label
-          className={`flex cursor-pointer items-center gap-[2px] rounded-xl border-2 border-gray-200 px-1 py-2 text-right text-xs sm:gap-2 sm:px-4 sm:text-sm md:text-xl ${
-            active
-              ? 'border-2 border-primary-700 bg-white'
-              : 'bg-white text-default hover:bg-primary-50'
-          } transition-colors`}
+          className={`relative flex cursor-pointer items-center gap-2 rounded-xl border-2 bg-white px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
           data-cypress-id={`${props['data-cypress-id']}-label`}>
           <input
             type="radio"
@@ -39,13 +51,12 @@ export default function ChoiceInput({
             {...props}
           />
           <span
-            className={`${
-              active
-                ? 'border-primary-700 before:bg-primary-700 '
-                : 'border-gray-300 before:bg-white'
-            } relative flex h-4 w-4 min-w-4 items-center justify-center rounded-full border-2 text-sm before:absolute before:left-0.5 before:top-0.5 before:h-2 before:w-2 before:rounded-full before:p-1 md:h-5 md:w-5 md:text-base md:before:h-3 md:before:w-3`}
+            className={`${checkClassNames[status]} relative flex h-5 w-5 items-center justify-center rounded-full border-2 text-sm before:absolute before:left-0.5 before:top-0.5 before:h-3 before:w-3 before:rounded-full before:p-1 md:h-5 md:w-5 md:text-base md:before:h-3 md:before:w-3`}
           />
-          {label ?? children}
+          <span
+            className={`inline flex-1 align-middle text-sm md:text-lg ${labelClassNames[status]}`}>
+            {label ?? children}
+          </span>
         </label>
         {description ? (
           <QuestionButton
@@ -54,7 +65,7 @@ export default function ChoiceInput({
         ) : null}
       </div>
       {description && isOpen ? (
-        <div className="mb-4 w-auto rounded-lg bg-white p-2 text-xs sm:max-w-[30rem] sm:text-right sm:text-sm md:rounded-full">
+        <div className="mb-4 w-auto rounded-xl border-2 border-primary-50 bg-white p-3 text-sm sm:max-w-[30rem]">
           <Markdown className="!mb-0 !inline">{description}</Markdown>
         </div>
       ) : null}

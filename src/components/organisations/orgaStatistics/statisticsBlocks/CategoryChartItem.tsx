@@ -5,6 +5,7 @@ import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { Tooltip } from 'react-tooltip'
 
 export default function CategoryChartItem({
@@ -13,7 +14,7 @@ export default function CategoryChartItem({
   value,
   index,
 }: {
-  category: string
+  category: DottedName
   value: number
   maxValue: number
   index: number

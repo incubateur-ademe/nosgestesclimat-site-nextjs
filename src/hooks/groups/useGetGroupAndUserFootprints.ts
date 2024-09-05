@@ -1,8 +1,11 @@
 import { orderedCategories } from '@/constants/orderedCategories'
 import { getRuleSumRules } from '@/helpers/publicodes/getRuleSumRules'
 import { useDisposableEngine, useTempEngine } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
-import { Participant } from '@/types/groups'
+import {
+  CategoriesAndSubcategoriesFootprintsType,
+  Participant,
+} from '@/types/groups'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   groupMembers: Participant[]
@@ -11,19 +14,24 @@ type Props = {
 
 export function getSubcategories({
   category,
-  getRuleObject,
+  getSpecialRuleObject,
 }: {
-  category: string
-  getRuleObject: (dottedName: DottedName) => any
+  category: DottedName
+  getSpecialRuleObject: (dottedName: DottedName) => NGCRuleNode
 }): DottedName[] | undefined {
-  const rule = getRuleObject(category)
+  const rule = getSpecialRuleObject(category)
+
   return getRuleSumRules(rule)
 }
+
 export const useGetGroupAndUserFootprints = ({
   groupMembers,
   userId,
-}: Props) => {
-  const { rules, getRuleObject } = useTempEngine()
+}: Props): {
+  currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+  groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+} => {
+  const { rules, getSpecialRuleObject } = useTempEngine()
 
   const { getValue, updateSituation } = useDisposableEngine({
     rules,
@@ -33,8 +41,8 @@ export const useGetGroupAndUserFootprints = ({
   return groupMembers.reduce(
     (
       {
-        groupFootprintByCategoriesAndSubcategories,
-        userFootprintByCategoriesAndSubcategories,
+        groupCategoriesAndSubcategoriesFootprints,
+        currentUserCategoriesAndSubcategoriesFootprints,
       },
       groupMember: Participant
     ) => {
@@ -43,61 +51,70 @@ export const useGetGroupAndUserFootprints = ({
       updateSituation(groupMember?.simulation?.situation || {})
 
       // Create a copy of the accumulator
-      const updatedGroupFootprintByCategoriesAndSubcategories = {
-        ...groupFootprintByCategoriesAndSubcategories,
-      } as any
+      const updatedGroupCategoriesAndSubcategoriesFootprints = {
+        ...groupCategoriesAndSubcategoriesFootprints,
+      }
 
-      const updatedUserFootprintByCategoriesAndSubcategories = {
-        ...userFootprintByCategoriesAndSubcategories,
-      } as any
+      const updatedCurrentUserCategoriesAndSubcategoriesFootprints = {
+        ...currentUserCategoriesAndSubcategoriesFootprints,
+      }
 
-      orderedCategories.forEach((category: any) => {
-        const categoryValue = getValue(category)
+      orderedCategories.forEach((category) => {
+        const categoryRawValue = getValue(category)
+
+        const categoryValue =
+          typeof categoryRawValue === 'number' ? categoryRawValue : 0
 
         const defaultCategoryObject = {
           name: category,
-          value: categoryValue,
+          value: categoryValue ?? 0,
           isCategory: true,
         }
 
-        // If the category is not in the accumulator, we add its name as a new key in the object along with its value
-        // otherwise we add the value to the existing sum
-        if (!updatedGroupFootprintByCategoriesAndSubcategories[category]) {
-          updatedGroupFootprintByCategoriesAndSubcategories[category] =
+        // If the category is not in the accumulator, we add its name
+        // as a new key in the object along with its value otherwise we
+        // add the value to the existing sum
+        if (!updatedGroupCategoriesAndSubcategoriesFootprints[category]) {
+          updatedGroupCategoriesAndSubcategoriesFootprints[category] =
             defaultCategoryObject
         } else {
-          updatedGroupFootprintByCategoriesAndSubcategories[category].value +=
-            categoryValue
+          updatedGroupCategoriesAndSubcategoriesFootprints[category].value +=
+            typeof categoryValue === 'number' ? categoryValue : 0
         }
 
         // Add each category footprint for the current member
         if (isCurrentMember) {
-          updatedUserFootprintByCategoriesAndSubcategories[category] =
+          updatedCurrentUserCategoriesAndSubcategoriesFootprints[category] =
             defaultCategoryObject
         }
 
         const currentCategorySubcategories =
-          getSubcategories({ category, getRuleObject }) || []
+          getSubcategories({ category, getSpecialRuleObject }) || []
 
-        currentCategorySubcategories.forEach((subCategory: string) => {
-          const subCategoryValue = getValue(subCategory)
+        currentCategorySubcategories.forEach((subCategory) => {
+          const subCategoryRawValue = getValue(subCategory)
+
+          const subCategoryValue =
+            typeof subCategoryRawValue === 'number' ? subCategoryRawValue : 0
 
           // Same here if the property doesn't exist in the accumulator, we add it
           // otherwise we add the value to the existing sum
-          if (!updatedGroupFootprintByCategoriesAndSubcategories[subCategory]) {
-            updatedGroupFootprintByCategoriesAndSubcategories[subCategory] = {
+          if (!updatedGroupCategoriesAndSubcategoriesFootprints[subCategory]) {
+            updatedGroupCategoriesAndSubcategoriesFootprints[subCategory] = {
               name: subCategory,
               value: subCategoryValue,
             }
           } else {
-            updatedGroupFootprintByCategoriesAndSubcategories[
+            updatedGroupCategoriesAndSubcategoriesFootprints[
               subCategory
             ].value += subCategoryValue
           }
 
           if (isCurrentMember) {
             // Add each category footprint for the current member
-            updatedUserFootprintByCategoriesAndSubcategories[subCategory] = {
+            updatedCurrentUserCategoriesAndSubcategoriesFootprints[
+              subCategory
+            ] = {
               name: subCategory,
               value: subCategoryValue,
             }
@@ -106,15 +123,18 @@ export const useGetGroupAndUserFootprints = ({
       })
 
       return {
-        groupFootprintByCategoriesAndSubcategories:
-          updatedGroupFootprintByCategoriesAndSubcategories,
-        userFootprintByCategoriesAndSubcategories:
-          updatedUserFootprintByCategoriesAndSubcategories,
+        groupCategoriesAndSubcategoriesFootprints:
+          updatedGroupCategoriesAndSubcategoriesFootprints,
+        currentUserCategoriesAndSubcategoriesFootprints:
+          updatedCurrentUserCategoriesAndSubcategoriesFootprints,
       }
     },
     {
-      groupFootprintByCategoriesAndSubcategories: {},
-      userFootprintByCategoriesAndSubcategories: {},
+      groupCategoriesAndSubcategoriesFootprints: {},
+      currentUserCategoriesAndSubcategoriesFootprints: {},
+    } as {
+      groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+      currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
     }
   )
 }

@@ -1,8 +1,5 @@
-import {
-  DottedName,
-  Simulation,
-  UpdateCurrentSimulationProps,
-} from '../../types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { Simulation, UpdateCurrentSimulationProps } from '../../types'
 
 type Props = {
   currentSimulation: Simulation

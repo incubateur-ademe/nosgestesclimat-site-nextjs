@@ -1,4 +1,4 @@
-import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
+import { DottedName, NGCRule } from '@incubateur-ademe/nosgestesclimat'
 
 /**
  * We use this hook to get the content of the [somme] of a rule.
@@ -8,7 +8,7 @@ import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
  * at the root of the rule and not in a [formule] mechanism (both syntaxes are valid).
  *
  * With the new `eau` metric, for some categories, the `somme` is not in the `formule` only but in a `variations` mechanism like:
- * 
+ *
 [
     {
         "si": "métrique = 'carbone'",
@@ -35,21 +35,22 @@ import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
 type subCatWithVariations = Array<{
   si: string
   alors: {
-    somme: string[]
+    somme: DottedName[]
   }
 }>
 
-export default function getSomme(rawNode?: NGCRule): string[] | undefined {
+export default function getSomme(rawNode?: NGCRule): DottedName[] | undefined {
   if (!rawNode) return undefined
 
   if ('formule' in rawNode) {
-    return rawNode.formule?.variations
-      ? (rawNode.formule?.variations as subCatWithVariations)[0]?.alors?.somme
-      : (rawNode.formule?.somme as string[])
+    const formule = rawNode.formule as Record<string, unknown>
+    return 'variations' in formule
+      ? (formule.variations as subCatWithVariations)[0]?.alors?.somme
+      : (formule.somme as DottedName[])
   }
 
   if ('somme' in rawNode) {
-    return rawNode.somme as string[]
+    return rawNode.somme as DottedName[]
   }
 
   if ('variations' in rawNode) {

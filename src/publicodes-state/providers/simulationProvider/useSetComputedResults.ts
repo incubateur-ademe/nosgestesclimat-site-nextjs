@@ -1,10 +1,10 @@
 import { defaultMetric, metrics } from '@/constants/metric'
 import { useCurrentSimulation } from '@/publicodes-state'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import {
   ComputedResults,
   ComputedResultsFootprint,
-  DottedName,
   Metric,
   NGCEvaluatedNode,
 } from '../../types'
