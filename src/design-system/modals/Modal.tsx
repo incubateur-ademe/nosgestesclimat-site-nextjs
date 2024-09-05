@@ -32,7 +32,7 @@ export default function Modal({
   return (
     <ReactModal
       isOpen={isOpen}
-      className="fixed left-1/2 w-[40rem] max-w-full -translate-x-1/2 bg-white p-8 pt-16 md:top-1/2 md:-translate-y-1/2 md:rounded-xl md:pt-8"
+      className="fixed left-1/2 top-1/2 w-[40rem] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white p-8 pt-16 md:pt-8"
       overlayClassName="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-[10000] overflow-hidden">
       {children}
 

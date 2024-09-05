@@ -1,10 +1,7 @@
 //@ts-check
+/* eslint-disable @typescript-eslint/no-var-requires */
 const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
-})
-
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
 })
 
 const { withSentryConfig } = require('@sentry/nextjs')
@@ -18,13 +15,14 @@ const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   images: {
+    // @ts-expect-error remotePatterns is not typed
     remotePatterns: remoteImagesPatterns,
   },
   async redirects() {
     return redirects
   },
-  webpack: (config, { dev }) => {
-    if (config.cache && !dev) {
+  webpack: (config) => {
+    if (config.cache) {
       config.cache = Object.freeze({
         type: 'memory',
       })
@@ -47,6 +45,7 @@ const nextConfig = {
       '/actions/plus': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
       '/sitemap.xml': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
     },
+    optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
     turbo: {
       rules: {
@@ -90,7 +89,7 @@ const sentryConfig = [
   },
 ]
 
-module.exports = withSentryConfig(
-  withBundleAnalyzer(withMDX(nextConfig)),
-  ...sentryConfig
-)
+module.exports =
+  process.env.NODE_ENV !== 'development'
+    ? withSentryConfig(withMDX(nextConfig), ...sentryConfig)
+    : nextConfig

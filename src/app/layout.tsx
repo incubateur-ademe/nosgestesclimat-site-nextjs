@@ -56,7 +56,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
       <head>
-        <link rel="icon" href="/images/misc/favicon.png" />
+        <link rel="icon" href="/favicon.png" />
 
         <meta
           name="google-site-verification"
