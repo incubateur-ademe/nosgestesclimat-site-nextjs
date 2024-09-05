@@ -43,17 +43,20 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const handleShare = async () => {
+    const shareText = t(
+      'Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}',
+      { sharedUrl }
+    )
+
     if (navigator?.share && window.innerWidth < 768) {
       await navigator
         .share({
-          url: sharedUrl,
-          title: 'Nos Gestes Climat : estimation empreinte carbone',
-          text: 'Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min',
+          url: shareText,
         })
         .catch((e) => console.log(e))
     } else {
       try {
-        await navigator.clipboard.writeText(sharedUrl)
+        await navigator.clipboard.writeText(shareText)
 
         displaySuccessToast('Lien de partage copié dans le presse-papier !')
         setShouldDisplayConfirmMessage(true)
