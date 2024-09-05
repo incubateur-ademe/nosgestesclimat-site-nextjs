@@ -12,7 +12,7 @@ import { useRules } from './useRules'
 import { useSetComputedResults } from './useSetComputedResults'
 
 type Props = {
-  rules: NGCRules
+  rules?: NGCRules
   root?: DottedName
   shouldAlwaysDisplayChildren?: boolean
 }
@@ -33,24 +33,26 @@ export default function SimulationProvider({
     everyUiCategories,
     everyMosaicChildrenWithParent,
     rawMissingVariables,
-  } = useRules({ engine: pristineEngine, root })
+  } = useRules({ engine: pristineEngine ?? undefined, root })
 
   const { categories, subcategories } = useCategories({
-    parsedRules: engine.getParsedRules(),
+    parsedRules: engine?.getParsedRules(),
     everyRules,
     root,
-    safeGetRule,
+    safeGetRule: safeGetRule ?? undefined,
   })
 
   const { isEngineInitialized, addToEngineSituation } = useEngineSituation({
-    engine,
+    engine: engine ?? undefined,
   })
 
   const { isInitialized } = useSetComputedResults({
     categories,
     isEngineInitialized,
-    safeEvaluate,
+    safeEvaluate: safeEvaluate ?? undefined,
   })
+
+  if (!rules || !engine || !isInitialized) return children
 
   if (!isInitialized) {
     return (

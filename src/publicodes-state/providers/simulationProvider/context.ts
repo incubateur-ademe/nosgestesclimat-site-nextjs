@@ -18,13 +18,13 @@ import {
 type SimulationContextType = {
   rules: NGCRules | null
   engine: Engine | null
-  pristineEngine: Engine | null
+  pristineEngine?: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (
     rule: PublicodesExpression,
     metric?: Metric
   ) => NGCEvaluatedNode | null
-  parsedRules: ParsedRules
+  parsedRules?: ParsedRules
   everyRules: DottedName[]
   everyInactiveRules: DottedName[]
   everyQuestions: DottedName[]

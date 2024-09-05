@@ -1,7 +1,6 @@
 'use client'
 
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
-import Loader from '@/design-system/layout/Loader'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useCurrentSimulation } from '@/publicodes-state'
 import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
@@ -26,7 +25,7 @@ export default function Providers({
 
   const { id } = useCurrentSimulation()
 
-  const { data: rules, isLoading } = useRules({ isOptim })
+  const { data: rules, isLoading, isFetched } = useRules({ isOptim })
 
   // We don't want to display the loader when the user is on the tutorial page
   // or the landing page for organisations
@@ -37,22 +36,22 @@ export default function Providers({
     return children
   }
 
-  if (isLoading) {
-    return (
-      <div className="flex h-screen flex-1 items-center justify-center">
-        <Loader color="dark" />
-      </div>
-    )
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="flex h-screen flex-1 items-center justify-center">
+  //       <Loader color="dark" />
+  //     </div>
+  //   )
+  // }
 
-  if (!rules) {
+  if (!rules && isFetched) {
     return <Error500 />
   }
 
   return (
     <div key={id}>
       <SimulationProvider
-        rules={rules}
+        rules={rules ?? undefined}
         shouldAlwaysDisplayChildren={shouldAlwaysDisplayChildren}>
         <LocalisationBanner supportedRegions={supportedRegions} />
         <SimulationSyncProvider>{children}</SimulationSyncProvider>
