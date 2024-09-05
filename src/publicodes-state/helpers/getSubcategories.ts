@@ -31,12 +31,23 @@ export function getSubcategories({
   }
 
   // TODO: Remove this check when the `somme` is always in the formula
-  return (dottedNameSomme || dottedNameFormula.somme).map(
-    (potentialPartialRuleName: DottedName) =>
-      utils.disambiguateReference(
-        parsedRules,
-        dottedName,
-        potentialPartialRuleName
-      )
+  const sommeArray = (
+    Array.isArray(dottedNameSomme)
+      ? dottedNameSomme
+      : typeof dottedNameFormula === 'object' &&
+          Array.isArray(dottedNameFormula.somme)
+        ? dottedNameFormula.somme
+        : []
+  ) as DottedName[]
+
+  return (
+    sommeArray.map(
+      (potentialPartialRuleName: DottedName) =>
+        utils.disambiguateReference(
+          parsedRules,
+          dottedName,
+          potentialPartialRuleName
+        ) as DottedName
+    ) || []
   )
 }
