@@ -2,6 +2,7 @@
 
 import { useIsClient } from '@/hooks/useIsClient'
 import { getIsIframe } from '@/utils/getIsIframe'
+import { usePathname } from 'next/navigation'
 import { PropsWithChildren } from 'react'
 
 export default function Main({
@@ -15,10 +16,14 @@ export default function Main({
 
   const isIframe = isClient && getIsIframe()
 
+  const pathname = usePathname()
+
   return (
     <main
       className={`flex flex-col overflow-hidden ${maxWidthClass} ${className} ${
-        isIframe ? '' : 'min-h-[calc(100vh-2rem)]'
+        isIframe || pathname.includes('/simulateur/bilan')
+          ? ''
+          : 'min-h-[calc(100vh-2rem)]'
       }`}>
       {children}
     </main>

@@ -9,8 +9,7 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useEngine } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
-import { NGCRule } from '@incubateur-ademe/nosgestesclimat'
+import { DottedName, NGCRule } from '@incubateur-ademe/nosgestesclimat'
 import Markdown from 'markdown-to-jsx'
 import { utils } from 'publicodes'
 

@@ -1,8 +1,9 @@
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import MosaicQuestion from './mosaic/MosaicQuestion'
 
 type Props = {
-  question: string
-  questionsOfMosaic: string[]
+  question: DottedName
+  questionsOfMosaic: DottedName[]
 }
 
 export default function Mosaic({
@@ -11,7 +12,7 @@ export default function Mosaic({
   ...props
 }: Props) {
   return (
-    <fieldset className="grid gap-4 md:grid-cols-2">
+    <fieldset className="grid gap-2 md:grid-cols-2 md:gap-4">
       {questionsOfMosaic
         ? questionsOfMosaic.map((questionOfMosaic, index) => (
             <MosaicQuestion

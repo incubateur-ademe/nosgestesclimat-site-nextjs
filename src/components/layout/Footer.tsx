@@ -19,7 +19,9 @@ import {
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
+import { useLocale } from '@/hooks/useLocale'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 import Link from '../Link'
 import Logo from '../misc/Logo'
@@ -27,19 +29,21 @@ import LanguageSwitchButton from '../translation/LanguageSwitchButton'
 import Trans from '../translation/Trans'
 
 export default function Footer({ className = '' }) {
+  const pathname = usePathname()
+  const locale = useLocale()
+
+  const isHomePage = pathname === '/' || pathname === `/${locale}`
   return (
     <footer
       className={twMerge(
         'relative flex flex-col items-center gap-4 bg-gray-100 p-4 !pb-32 sm:p-8 md:mb-0',
-        className
+        className,
+        isHomePage ? 'bg-white' : ''
       )}>
       <div className="flex w-full items-start gap-12 md:max-w-5xl">
-        <Logo
-          className="hiddenscale-75 lg:block"
-          onClick={() => trackEvent(footerClickLogo)}
-        />
+        <Logo onClick={() => trackEvent(footerClickLogo)} />
 
-        <div className="w-full flex-1 ">
+        <div className="flex-1">
           <div className="flex flex-col flex-wrap justify-start gap-x-5 gap-y-2 pt-4 sm:flex-row md:items-center">
             <InlineLink
               href="/a-propos"

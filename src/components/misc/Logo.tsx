@@ -5,11 +5,24 @@ import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 import Link from '../Link'
 
+const imageClassSize = {
+  sm: 'w-[38px]',
+  md: 'w-[50px]',
+}
+const textClassSize = {
+  sm: 'ml-1 text-sm',
+  md: 'ml-2 text-lg',
+}
 type Props = {
   onClick?: () => void
   className?: string
+  size?: 'sm' | 'md'
 }
-export default function Logo({ onClick = () => null, className }: Props) {
+export default function Logo({
+  onClick = () => null,
+  className,
+  size = 'md',
+}: Props) {
   const { isIframeOnlySimulation } = useIframe()
 
   return (
@@ -28,16 +41,23 @@ export default function Logo({ onClick = () => null, className }: Props) {
           alt="Logo Nos Gestes Climat"
           width="200"
           height="200"
-          className={'h-auto w-[50px]'}
+          className={twMerge('h-auto', imageClassSize[size])}
         />
 
         <div
-          className={
-            'ml-2 origin-left text-lg font-extrabold uppercase !leading-[0.85] text-default transition-all duration-500 lg:block'
-          }>
-          <span className="block w-full !leading-[0.85]">Nos</span>
-          <span className="block w-full !leading-[0.85]">Gestes</span>
-          <span className="block w-full !leading-[0.85]">Climat</span>
+          className={twMerge(
+            'origin-left font-extrabold uppercase !leading-[0.85] text-default transition-all duration-500 lg:block',
+            textClassSize[size]
+          )}>
+          <span className="block w-full whitespace-normal !leading-[0.85]">
+            Nos
+          </span>
+          <span className="block w-full whitespace-normal !leading-[0.85]">
+            Gestes
+          </span>
+          <span className="block w-full whitespace-normal !leading-[0.85]">
+            Climat
+          </span>
         </div>
       </Link>
     </div>

@@ -1,6 +1,8 @@
 'use client'
 
 import { useCurrentSimulation } from '@/publicodes-state'
+
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { PropsWithChildren, useContext } from 'react'
 import { SimulationContext } from '../simulationProvider/context'
 import FormContext from './context'
@@ -9,7 +11,7 @@ import useProgression from './useProgression'
 import useQuestions from './useQuestions'
 
 type Props = {
-  root?: string
+  root?: DottedName
 }
 
 export default function FormProvider({
@@ -36,19 +38,23 @@ export default function FormProvider({
     setCurrentCategory,
   } = useCurrent()
 
-  const { remainingQuestions, relevantAnsweredQuestions, relevantQuestions } =
-    useQuestions({
-      root,
-      safeGetRule,
-      safeEvaluate,
-      categories,
-      subcategories,
-      foldedSteps,
-      situation,
-      everyQuestions,
-      everyMosaicChildrenWithParent,
-      rawMissingVariables,
-    })
+  const {
+    remainingQuestions,
+    relevantAnsweredQuestions,
+    relevantQuestions,
+    questionsByCategories,
+  } = useQuestions({
+    root,
+    safeGetRule,
+    safeEvaluate,
+    categories,
+    subcategories,
+    foldedSteps,
+    situation,
+    everyQuestions,
+    everyMosaicChildrenWithParent,
+    rawMissingVariables,
+  })
 
   const { remainingQuestionsByCategories } = useProgression({
     categories,
@@ -60,6 +66,7 @@ export default function FormProvider({
   return (
     <FormContext.Provider
       value={{
+        questionsByCategories,
         relevantQuestions,
         remainingQuestions,
         relevantAnsweredQuestions,

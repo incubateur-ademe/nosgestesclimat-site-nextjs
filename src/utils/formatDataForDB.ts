@@ -1,11 +1,15 @@
 import { Situation } from '@/publicodes-state/types'
+import { Situation as PublicodesSituation } from 'publicodes'
 
-export function unformatSituation(situation?: Situation) {
+// It shoudnlt be a situation type as it is a formatted situation from DB.
+export function unformatSituation(
+  situation?: PublicodesSituation<string>
+): Situation {
   return Object.entries({ ...situation }).reduce(
-    (acc: Situation, [key, value]: [string, any]) => {
+    (acc: Situation, [key, value]) => {
       // Key is not formatted
       if (!key.includes('_')) {
-        acc[key] = value
+        acc[key as keyof Situation] = value
         return acc
       }
 
@@ -31,10 +35,10 @@ export function unformatSituation(situation?: Situation) {
         }
       }
 
-      acc[unformattedKey] = value
+      acc[unformattedKey as keyof Situation] = value
 
       return acc
     },
-    {}
+    {} as Situation
   )
 }

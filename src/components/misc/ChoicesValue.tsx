@@ -1,12 +1,12 @@
 import { useRule } from '@/publicodes-state'
-import { NodeValue } from '@/publicodes-state/types'
+import { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   value: NodeValue
-  question: string
+  question: DottedName
 }
 export default function ChoicesValue({ value, question }: Props) {
-  const { title, icons } = useRule(question + ' . ' + value)
+  const { title, icons } = useRule((question + ' . ' + value) as DottedName)
 
   return (
     <>

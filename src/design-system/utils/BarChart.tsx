@@ -7,21 +7,20 @@ type Props = {
   color?: string
 }
 
-export default function BarChart({ type, value, color, index = 0 }: Props) {
+export default function BarChart({ type, value, color }: Props) {
   const propertyAffected = type === 'vertical' ? 'height' : 'width'
 
   return (
     <motion.div
-      className={`min-w-[2px] max-w-full ${
-        propertyAffected === 'width' ? 'h-[12px]' : 'w-[12px]'
+      className={`min-w-0.5 max-w-full ${
+        propertyAffected === 'width' ? 'h-4' : 'w-4'
       } ${color ?? 'bg-secondary-700'} rotate-180 rounded-xl`}
       initial={{ [propertyAffected]: 0 }}
       animate={{
         [propertyAffected]: value,
       }}
       transition={{
-        delay: 0.3 + index * 0.1,
-        duration: 0.5,
+        duration: 0.2,
         ease: 'easeOut',
       }}
     />

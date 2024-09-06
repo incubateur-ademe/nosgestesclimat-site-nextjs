@@ -15,13 +15,14 @@ import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { QuestionSize } from '@/types/values'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
-  question: string
+  question: DottedName
   label?: string
   description?: string
   size?: QuestionSize
@@ -31,7 +32,7 @@ type Props = {
 
 const sizeClassNames = {
   sm: 'mb-1 text-sm',
-  md: 'mb-3 text-lg md:text-xl',
+  md: 'mb-3 text-lg md:text-2xl',
 }
 
 export default function Label({
@@ -51,7 +52,7 @@ export default function Label({
     <>
       <label
         className={twMerge(
-          `flex ${sizeClassNames[size]} font-semibold`,
+          `flex ${sizeClassNames[size]} gap-2 font-semibold`,
           className
         )}
         aria-label={label}
@@ -60,7 +61,7 @@ export default function Label({
         onClick={(e) => e.preventDefault()}>
         <h1
           className={twMerge(
-            'mb-0 inline text-sm sm:text-base md:text-lg [&_p]:mb-0',
+            'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
             titleClassName
           )}
           tabIndex={0}
@@ -79,23 +80,31 @@ export default function Label({
               setIsOpen((previsOpen) => !previsOpen)
             }}
             color="secondary"
-            size="sm"
-            className={`mx-2 inline-block h-8 w-8 min-w-8 items-center justify-center rounded-full p-0 font-mono`}
+            size="xs"
+            className={`inline-flex h-6 w-6 items-center justify-center rounded-full p-0 align-text-bottom font-mono`}
             title={t("Voir plus d'informations")}>
             i
           </Button>
         ) : null}
       </label>
-
+      {question === 'logement . âge' && (
+        <div className="mb-6 mt-2 text-xs italic md:text-sm">
+          Un petit doute ? L’info sera sûrement dans votre contrat d’assurance
+          logement.
+        </div>
+      )}
       {isOpen && description ? (
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2 }}
-          className="mb-3 origin-top rounded-md bg-white p-2 text-sm">
-          <Markdown>{description}</Markdown>{' '}
+          className="mb-3 origin-top rounded-xl border-2 border-primary-50 bg-gray-100 p-3 text-sm">
+          <Markdown className="[&>blockquote]:mb-2 [&>blockquote]:mt-0 [&>blockquote]:p-0 [&>blockquote]:text-default [&>p]:mb-2">
+            {description}
+          </Markdown>{' '}
           <Button
-            size="sm"
+            size="xs"
+            color={'secondary'}
             onClick={() => {
               trackEvent(questionCloseInfo({ question }))
               setIsOpen(false)

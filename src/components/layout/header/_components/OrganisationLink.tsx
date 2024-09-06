@@ -1,9 +1,9 @@
 'use client'
 
-import useFetchOrganisation from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useFetchOrganisation'
 import OrganisationIcon from '@/components/icons/OrganisationIcon'
 import Trans from '@/components/translation/Trans'
 import { headerClickOrganisation } from '@/constants/tracking/layout'
+import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'

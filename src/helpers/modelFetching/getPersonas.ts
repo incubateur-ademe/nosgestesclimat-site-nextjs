@@ -1,8 +1,7 @@
+import { Personas } from '@incubateur-ademe/nosgestesclimat'
 import personasEN from '@incubateur-ademe/nosgestesclimat/public/personas-en.json'
 import personasES from '@incubateur-ademe/nosgestesclimat/public/personas-es.json'
 import personasFR from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json'
-
-import { Personas } from '@incubateur-ademe/nosgestesclimat'
 import { importPreviewFile } from './importPreviewFile'
 
 const personasByLocale: Record<string, Personas> = {

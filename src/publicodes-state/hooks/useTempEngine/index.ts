@@ -1,4 +1,5 @@
-import { DottedName } from '@/publicodes-state/types'
+import { NGCEvaluatedNode } from '@/publicodes-state/types'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useContext } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
 import useCurrentSimulation from '../useCurrentSimulation'
@@ -12,8 +13,15 @@ export default function useTempEngine() {
 
   const { foldedSteps } = useCurrentSimulation()
 
-  const getRuleObject = (dottedName: DottedName): any => {
-    return { ...safeEvaluate(dottedName), ...safeGetRule(dottedName) }
+  const getSpecialRuleObject = (
+    dottedName: DottedName
+  ): NGCEvaluatedNode & NGCRuleNode => {
+    const evaluation = safeEvaluate(dottedName) as NGCEvaluatedNode
+    const rule = safeGetRule(dottedName) as NGCRuleNode
+    return {
+      ...evaluation,
+      ...rule,
+    }
   }
 
   const extendedFoldedSteps = foldedSteps
@@ -24,7 +32,7 @@ export default function useTempEngine() {
     .flat()
 
   return {
-    getRuleObject,
+    getSpecialRuleObject,
     rules,
     extendedFoldedSteps,
   }
