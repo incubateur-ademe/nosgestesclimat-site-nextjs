@@ -19,9 +19,10 @@
     "exclude": ["node_modules", "cypress/**/*"]
   },
   "globals": {
-    "React": "writable",
-    "NodeJS": "writable",
-    "JSX": "writable"
+    "React": "readonly",
+    "NodeJS": "readonly",
+    "JSX": "readonly",
+    "jest": "readonly"
   },
   "rules": {
     "react/no-unescaped-entities": "off",

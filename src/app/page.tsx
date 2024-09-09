@@ -1,4 +1,4 @@
-import Footer from '@/components/layout/Footer'
+import Header from '@/components/layout/Header'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -27,7 +27,8 @@ export async function generateMetadata() {
 export default async function Homepage() {
   return (
     <>
-      <Main>
+      <Header />
+      <Main className="lg:-mt-8">
         <Heading />
         <div className="mx-auto mb-12 flex w-full max-w-5xl flex-col flex-wrap items-center gap-12 px-4 md:mb-20 md:flex-row md:items-start md:px-8 lg:gap-28">
           <Amis />
@@ -37,7 +38,6 @@ export default async function Homepage() {
         <Explanations />
         <Contributions />
       </Main>
-      <Footer className="bg-white" />
     </>
   )
 }

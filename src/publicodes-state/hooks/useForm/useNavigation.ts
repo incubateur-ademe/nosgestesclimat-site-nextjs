@@ -1,11 +1,12 @@
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 
 type Props = {
-  remainingQuestions: string[]
-  relevantQuestions: string[]
-  currentQuestion: string | null
-  setCurrentQuestion: (question: string | null) => void
+  remainingQuestions: DottedName[]
+  relevantQuestions: DottedName[]
+  currentQuestion: DottedName | null
+  setCurrentQuestion: (question: DottedName | null) => void
 }
 
 export default function useNavigation({
@@ -14,7 +15,7 @@ export default function useNavigation({
   currentQuestion,
   setCurrentQuestion,
 }: Props) {
-  const currentQuestionNamespace = useMemo<string | undefined>(
+  const currentQuestionNamespace = useMemo(
     () => getNamespace(currentQuestion),
     [currentQuestion]
   )
@@ -50,7 +51,7 @@ export default function useNavigation({
     [currentQuestionNamespace, currentQuestionIndex, relevantQuestions]
   )
 
-  const gotoPrevQuestion = (): string | undefined => {
+  const gotoPrevQuestion = () => {
     if (noPrevQuestion) {
       return undefined
     }
@@ -62,7 +63,7 @@ export default function useNavigation({
     return newCurrentQuestion
   }
 
-  const gotoNextQuestion = (): string | undefined => {
+  const gotoNextQuestion = () => {
     if (noNextQuestion) {
       return undefined
     }

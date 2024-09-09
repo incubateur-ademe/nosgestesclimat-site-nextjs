@@ -25,6 +25,8 @@ export default function ExportDataButton({
 }: ButtonProps & Props) {
   const [isLoading, setIsLoading] = useState(false)
 
+  if (simulationRecaps?.length < 3) return null
+
   function handleClick() {
     if (onClick) {
       onClick()

@@ -1,3 +1,4 @@
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { Migration, migrateSituation } from '@publicodes/tools/migration'
 import { Simulation } from '../types'
 
@@ -24,7 +25,7 @@ export function migrateSimulation(
         ),
         migrationInstructions
       )
-    )
+    ) as DottedName[]
   }
 
   // If group or poll is defined, we convert it to groups or polls and delete it
@@ -44,7 +45,7 @@ export function migrateSimulation(
       carbone: simulation.computedResults as any,
       eau: {
         bilan: 0,
-        categories: {},
+        categories: {} as Record<DottedName, number>,
       },
     }
     simulation.computedResults = newComputedResults
