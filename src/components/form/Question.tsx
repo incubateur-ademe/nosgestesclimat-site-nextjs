@@ -83,12 +83,14 @@ export default function Question({
 
         <Suggestions
           question={question}
+          value={value}
           setValue={(value) => {
             if (type === 'number') {
               if (setTempValue) setTempValue(value as number)
             }
             setValue(value, { foldedStep: question })
           }}
+          type={question.includes('avion') ? 'checkbox' : 'radio'}
         />
         {showInputsLabel ? (
           <Button
@@ -109,6 +111,7 @@ export default function Question({
                   if (setTempValue) {
                     setTempValue(value)
                   }
+                  console.log('set value via numberInput')
                   setValue(value, { foldedStep: question })
                   trackEvent(questionTypeAnswer({ question, answer: value }))
                 }}
