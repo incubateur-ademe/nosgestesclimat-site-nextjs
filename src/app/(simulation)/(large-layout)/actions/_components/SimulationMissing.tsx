@@ -14,7 +14,8 @@ export default function SimulationMissing() {
   // we'd better check if the test is finished
   // but is it too restrictive ?
   const isSimulationWellStarted = progression > 0.5
-  if (!isSimulationWellStarted) {
+
+  if (isSimulationWellStarted) {
     return null
   }
 

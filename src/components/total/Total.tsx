@@ -69,7 +69,7 @@ export default function Total({
       className={twMerge(
         'fixed top-0 z-50 h-16 w-full md:bg-white',
         getBgCategoryColor(currentCategory, '50'),
-        !simulationMode && 'static'
+        !simulationMode && 'static z-0 bg-white'
       )}>
       <div
         className={twMerge(
@@ -105,7 +105,7 @@ export default function Total({
           </div>
         </div>
       </div>
-      {!tutorials.scoreExplanation ? (
+      {!tutorials.scoreExplanation && simulationMode ? (
         <div className="relative mx-auto max-w-6xl">
           <Explanation
             toggleOpen={toggleOpen}

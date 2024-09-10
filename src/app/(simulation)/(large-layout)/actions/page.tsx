@@ -27,15 +27,13 @@ export default function ActionsPage() {
 function ActionsPageSkeleton() {
   return (
     <div className="mx-auto my-4 animate-pulse pb-4">
-      <div className="mb-8 h-24 w-full rounded-md bg-primary-100"></div>
+      <div className="mb-8 h-36 w-full rounded-md bg-primary-100"></div>
 
-      <div className="mb-8 h-48 w-full rounded-md bg-primary-100"></div>
-
-      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="mx-auto grid grid-cols-1 gap-8 sm:max-w-none sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {[...Array(10)].map((_, index) => (
           <div
             key={index}
-            className="h-56 w-36 rounded-md bg-primary-100"></div>
+            className="mx-auto h-56 w-48 rounded-md bg-primary-100"></div>
         ))}
       </div>
     </div>
