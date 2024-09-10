@@ -7,7 +7,7 @@ import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import Image from 'next/image'
 import { useState } from 'react'
-import ActionList from './_components/ActionList'
+import ActionList from './actions/ActionList'
 
 type Props = {
   actions: any
@@ -39,10 +39,7 @@ export default function Actions({
 
   const actions = rawActions.map((a: any) => ({
     ...a,
-    value: getCorrectedValue({
-      nodeValue: a.nodeValue,
-      unit: a.unit,
-    }),
+    value: getCorrectedValue(a),
   }))
 
   const rejected = actions.filter(

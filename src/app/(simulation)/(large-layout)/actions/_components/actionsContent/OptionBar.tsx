@@ -5,7 +5,7 @@ import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useState } from 'react'
-import ActionsChosenIndicator from './ActionsChosenIndicator'
+import ActionsChosenIndicator from '../ActionsChosenIndicator'
 
 type Props = {
   actions: any

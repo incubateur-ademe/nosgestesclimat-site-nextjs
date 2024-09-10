@@ -16,7 +16,7 @@ import {
 } from '../../types'
 
 type SimulationContextType = {
-  rules: NGCRules | null
+  rules: NGCRules | undefined
   engine: Engine | null
   pristineEngine?: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
@@ -38,7 +38,7 @@ type SimulationContextType = {
   isInitialized: boolean
 }
 export const SimulationContext = createContext<SimulationContextType>({
-  rules: null,
+  rules: undefined,
   engine: null,
   pristineEngine: null,
   safeGetRule: () => null,

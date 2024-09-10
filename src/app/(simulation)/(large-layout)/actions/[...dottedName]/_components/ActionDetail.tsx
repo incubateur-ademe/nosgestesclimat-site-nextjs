@@ -17,7 +17,7 @@ import {
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
-import ActionForm from '../../_components/actions/_components/ActionForm'
+import ActionForm from '../../_components/actionsContent/actions/_components/ActionForm'
 
 const { decodeRuleName, encodeRuleName } = utils
 
