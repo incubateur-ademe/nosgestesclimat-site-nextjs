@@ -32,7 +32,8 @@ export default function BlogArticles() {
             </p>
           </div>
           <div className="text-center text-sm text-primary-700 underline">
-            Lire l'article <ExternalLinkIcon className="stroke-primary-700" />
+            <Trans>Lire l'article</Trans>{' '}
+            <ExternalLinkIcon className="stroke-primary-700" />
           </div>
         </Link>
         <div className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
