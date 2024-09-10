@@ -29,10 +29,10 @@ export default function Subcategory({ subcategory, index }: Props) {
       )}>
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <h3 className="mb-1 text-2xl lg:text-3xl">
+          <h3 className="mb-1 text-2xl">
             {index + 1}. {title}
           </h3>
-          <div className="text-xl lg:text-2xl">
+          <div className="text-base">
             <span className="font-black text-secondary-700">{percent} %</span>{' '}
             <Trans>de votre empreinte</Trans>
           </div>
