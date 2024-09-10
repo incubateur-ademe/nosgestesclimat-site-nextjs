@@ -5,7 +5,6 @@
  */
 'use client'
 
-import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
 import { useTrackLocale } from '@/hooks/tracking/useTrackLocale'
 import { useTrackPageView } from '@/hooks/tracking/useTrackPageView'
 import { useTrackRegion } from '@/hooks/tracking/useTrackRegion'
@@ -23,16 +22,6 @@ export default function MainHooks({ children }: PropsWithChildren) {
   useFixedRegion()
   useUserInfosParams()
   useInitSimulationParam()
-
-  // Set the current simulation from the URL params (if applicable)
-  const { isCorrectSimulationSet } = useSetCurrentSimulationFromParams()
-
-  // if (!isCorrectSimulationSet)
-  //   return (
-  //     <div className="flex h-screen flex-1 items-center justify-center">
-  //       <Loader color="dark" />
-  //     </div>
-  //   )
 
   return children
 }

@@ -36,14 +36,6 @@ export default function Providers({
     return children
   }
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="flex h-screen flex-1 items-center justify-center">
-  //       <Loader color="dark" />
-  //     </div>
-  //   )
-  // }
-
   if (!rules && isFetched) {
     return <Error500 />
   }

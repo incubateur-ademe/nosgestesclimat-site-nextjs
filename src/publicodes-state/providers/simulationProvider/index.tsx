@@ -2,7 +2,6 @@
 
 import { PropsWithChildren } from 'react'
 
-import Loader from '@/design-system/layout/Loader'
 import { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { SimulationContext } from './context'
 import { useCategories } from './useCategories'
@@ -53,14 +52,6 @@ export default function SimulationProvider({
   })
 
   if (!rules || !engine || !isInitialized) return children
-
-  if (!isInitialized) {
-    return (
-      <div className="flex h-screen flex-1 items-center justify-center">
-        <Loader color="dark" />
-      </div>
-    )
-  }
 
   return (
     <SimulationContext.Provider
