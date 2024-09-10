@@ -7,15 +7,15 @@ import {
   getTextCategoryColor,
 } from '@/helpers/getCategoryColorClass'
 import { useForm } from '@/publicodes-state'
-import { Suggestion } from '@/publicodes-state/types'
+import { FormattedSuggestion } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
-  suggestion: Suggestion
+  suggestion: FormattedSuggestion
   type: 'radio' | 'checkbox'
-  handleSuggestionClick: (suggestion: Suggestion) => void
-  handleSuggestionDelete: (suggestion: Suggestion) => void
+  handleSuggestionClick: (suggestion: FormattedSuggestion) => void
+  handleSuggestionDelete: (suggestion: FormattedSuggestion) => void
   numberOfSelections: number
 }
 

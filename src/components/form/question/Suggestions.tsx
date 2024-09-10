@@ -2,7 +2,7 @@
 
 import { questionClickSuggestion } from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
-import { Suggestion } from '@/publicodes-state/types'
+import { FormattedSuggestion } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -23,12 +23,12 @@ export default function Suggestions({
 }: Props) {
   const { suggestions } = useRule(question)
 
-  const [selectedSuggestions, setSelectedSuggestions] = useState<Suggestion[]>(
-    []
-  )
+  const [selectedSuggestions, setSelectedSuggestions] = useState<
+    FormattedSuggestion[]
+  >([])
 
   const handleSuggestionClick = useCallback(
-    (suggestion: Suggestion) => {
+    (suggestion: FormattedSuggestion) => {
       trackEvent(
         questionClickSuggestion({ question, answer: suggestion.label })
       )
@@ -54,22 +54,25 @@ export default function Suggestions({
           break
       }
     },
-    [question, setValue, type]
+    [question, type]
   )
 
-  const handleSuggestionDelete = useCallback((suggestion: Suggestion) => {
-    setSelectedSuggestions((prevSelectedSuggestions) =>
-      prevSelectedSuggestions.filter(
-        (prevSelectedSuggestion) =>
-          prevSelectedSuggestion.label !== suggestion.label
+  const handleSuggestionDelete = useCallback(
+    (suggestion: FormattedSuggestion) => {
+      setSelectedSuggestions((prevSelectedSuggestions) =>
+        prevSelectedSuggestions.filter(
+          (prevSelectedSuggestion) =>
+            prevSelectedSuggestion.label !== suggestion.label
+        )
       )
-    )
-  }, [])
+    },
+    []
+  )
 
   const valueOfSelectedSuggestions = useMemo(
     () =>
       selectedSuggestions.reduce(
-        (acc, suggestion) => acc + suggestion.value,
+        (acc, suggestion) => acc + Number(suggestion.value),
         0
       ),
     [selectedSuggestions]

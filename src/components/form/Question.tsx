@@ -111,7 +111,6 @@ export default function Question({
                   if (setTempValue) {
                     setTempValue(value)
                   }
-                  console.log('set value via numberInput')
                   setValue(value, { foldedStep: question })
                   trackEvent(questionTypeAnswer({ question, answer: value }))
                 }}
