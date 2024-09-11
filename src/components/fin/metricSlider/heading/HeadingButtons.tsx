@@ -33,6 +33,9 @@ type Props = {
   size?: 'sm' | 'md'
   endPage?: boolean
 }
+
+const MAX_WIDTH_DESKTOP = 768
+
 export default function HeadingButtons({ size = 'md', endPage }: Props) {
   const { sharedUrl } = useEndPageSharedUrl()
   const [shouldDisplayConfirmMessage, setShouldDisplayConfirmMessage] =
@@ -43,12 +46,11 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const handleShare = async () => {
-    if (navigator?.share && window.innerWidth < 768) {
+    if (navigator?.share && window.innerWidth < MAX_WIDTH_DESKTOP) {
       await navigator
         .share({
           url: sharedUrl,
           title: 'Nos Gestes Climat : estimation empreinte carbone',
-          text: 'Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min',
         })
         .catch((e) => console.log(e))
     } else {
