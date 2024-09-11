@@ -36,6 +36,8 @@ export default function FinPage() {
 
   const { currentMetric } = useCurrentMetric()
 
+  console.log({ isGuardInit, isGuardRedirecting, isCorrectSimulationSet })
+
   if (!isGuardInit || isGuardRedirecting || !isCorrectSimulationSet)
     return <FinPageSkeleton />
 
@@ -99,7 +101,7 @@ export default function FinPage() {
 
           <DocumentationBlock />
         </div>
-        <div className="top-40 flex w-full flex-col gap-4 self-start lg:sticky lg:z-30 lg:w-[22rem] short:gap-2">
+        <div className="top-40 mb-8 flex w-full flex-col gap-4 self-start lg:sticky lg:z-30 lg:w-[22rem] short:gap-2">
           <InformationBlock />
         </div>
       </div>
