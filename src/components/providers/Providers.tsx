@@ -32,7 +32,7 @@ export default function Providers({
   const shouldAlwaysDisplayChildren =
     NO_MODEL_PATHNAME_EXCEPTIONS.includes(pathname)
 
-  if (shouldAlwaysDisplayChildren && isLoading) {
+  if (shouldAlwaysDisplayChildren || isLoading) {
     return children
   }
 
@@ -43,7 +43,7 @@ export default function Providers({
   return (
     <div key={id}>
       <SimulationProvider
-        rules={rules ?? undefined}
+        rules={rules}
         shouldAlwaysDisplayChildren={shouldAlwaysDisplayChildren}>
         <LocalisationBanner supportedRegions={supportedRegions} />
         <SimulationSyncProvider>{children}</SimulationSyncProvider>
