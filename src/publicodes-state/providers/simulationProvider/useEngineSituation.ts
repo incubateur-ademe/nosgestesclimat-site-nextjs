@@ -8,7 +8,7 @@ type Props = {
 /**
  * Update the engine situation and the simulation situation
  */
-export function useEngineSituation({ engine = undefined }: Props) {
+export function useEngineSituation({ engine }: Props) {
   const { situation } = useCurrentSimulation()
 
   const [isEngineInitialized, setIsEngineInitialized] = useState(false)

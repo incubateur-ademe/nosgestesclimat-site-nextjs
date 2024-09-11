@@ -18,7 +18,6 @@ type Props = {
 export default function SimulationProvider({
   rules,
   root = 'bilan',
-  shouldAlwaysDisplayChildren = false,
   children,
 }: PropsWithChildren<Props>) {
   const { engine, pristineEngine, safeEvaluate, safeGetRule } = useEngine(rules)
@@ -42,7 +41,7 @@ export default function SimulationProvider({
   })
 
   const { isEngineInitialized, addToEngineSituation } = useEngineSituation({
-    engine: engine ?? undefined,
+    engine,
   })
 
   const { isInitialized } = useSetComputedResults({
@@ -74,7 +73,7 @@ export default function SimulationProvider({
         addToEngineSituation,
         isInitialized,
       }}>
-      {isInitialized || shouldAlwaysDisplayChildren ? children : null}
+      {isInitialized ? children : null}
     </SimulationContext.Provider>
   )
 }

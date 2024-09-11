@@ -20,7 +20,7 @@ import { Metric } from '../../types'
  */
 export function useEngine(rules?: NGCRules) {
   const engine = useMemo(() => {
-    if (!rules) return null
+    if (!rules) return undefined
 
     const nbRules = Object.keys(rules).length
     console.time(`⚙️ Parsing ${nbRules}`)
