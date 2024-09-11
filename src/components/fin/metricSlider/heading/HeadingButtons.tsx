@@ -50,7 +50,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
       await navigator
         .share({
           url: sharedUrl,
-          title: 'Nos Gestes Climat : estimation empreinte carbone',
+          title: 'Nos Gestes Climat : votre empreinte carbone en 10 min',
         })
         .catch((e) => console.log(e))
     } else {
