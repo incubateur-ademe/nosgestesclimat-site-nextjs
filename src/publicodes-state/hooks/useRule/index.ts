@@ -62,11 +62,17 @@ export default function useRule(
     situation,
   })
 
-  const { questionsOfMosaicFromParent, questionsOfMosaicFromSibling } =
-    useQuestionsOfMosaic({
-      everyMosaicChildrenWithParent,
-      dottedName,
-    })
+  const {
+    questionsOfMosaicFromParent,
+    questionsOfMosaicFromSibling,
+    mosaicResetSituation,
+  } = useQuestionsOfMosaic({
+    everyMosaicChildrenWithParent,
+    dottedName,
+    situation,
+    safeGetRule,
+    safeEvaluate,
+  })
 
   const parent = useMemo(
     () => utils.ruleParent(dottedName),
@@ -115,7 +121,6 @@ export default function useRule(
     evaluation,
     type,
     updateCurrentSimulation,
-    situation,
     addToEngineSituation,
   })
 
@@ -196,6 +201,10 @@ export default function useRule(
      * A list of questions to display inside the mosaic (if the rule is a mosaic child)
      */
     questionsOfMosaicFromSibling,
+    /**
+     * The situation to reset when a mosaic child is updated
+     */
+    mosaicResetSituation,
     /**
      * The direct parent of the rule
      */

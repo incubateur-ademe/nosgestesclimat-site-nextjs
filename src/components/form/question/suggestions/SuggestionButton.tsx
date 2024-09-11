@@ -7,13 +7,13 @@ import {
   getTextCategoryColor,
 } from '@/helpers/getCategoryColorClass'
 import { useForm } from '@/publicodes-state'
-import { FormattedSuggestion } from '@/publicodes-state/types'
+import { FormattedSuggestion, SuggestionType } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
   suggestion: FormattedSuggestion
-  type: 'radio' | 'checkbox'
+  type: SuggestionType
   handleSuggestionClick: (suggestion: FormattedSuggestion) => void
   handleSuggestionDelete: (suggestion: FormattedSuggestion) => void
   numberOfSelections: number
@@ -45,24 +45,26 @@ export default function SuggestionButton({
           getHoverBgCategoryColor(currentCategory, isSelected ? '700' : '300')
         )}
         onClick={() => {
+          if (type === 'checkbox' && isSelected) {
+            handleSuggestionDelete(suggestion)
+            return
+          }
           handleSuggestionClick(suggestion)
         }}>
         <Emoji className="flex items-center gap-1 leading-none">
           {capitalizeString(suggestion.label)}
         </Emoji>
       </button>
-      {isSelected && suggestion.value !== 0 && type === 'checkbox' && (
+      {isSelected && suggestion.value !== 0 && type === 'multiple' && (
         <>
-          {numberOfSelections > 1 && (
-            <div
-              className={twMerge(
-                'absolute -bottom-2 -left-1 flex h-6 min-w-6 items-center justify-center rounded-full border-2 bg-white text-xs',
-                getBorderCategoryColor(currentCategory, '700'),
-                getTextCategoryColor(currentCategory, '700')
-              )}>
-              {numberOfSelections}
-            </div>
-          )}
+          <div
+            className={twMerge(
+              'absolute -bottom-2 -left-1 flex h-6 min-w-6 items-center justify-center rounded-full border-2 bg-white text-xs',
+              getBorderCategoryColor(currentCategory, '700'),
+              getTextCategoryColor(currentCategory, '700')
+            )}>
+            {numberOfSelections}
+          </div>
           <button
             className={twMerge(
               'absolute -right-2 -top-2 flex h-6 min-w-6 items-center justify-center rounded-full text-xs',

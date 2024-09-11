@@ -2,7 +2,7 @@
 
 import { questionClickSuggestion } from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
-import { FormattedSuggestion } from '@/publicodes-state/types'
+import { FormattedSuggestion, SuggestionType } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -12,7 +12,7 @@ type Props = {
   question: DottedName
   value: NodeValue
   setValue: (value: NodeValue | Record<string, NodeValue>) => void
-  type?: 'radio' | 'checkbox'
+  type?: SuggestionType
 }
 
 export default function Suggestions({
@@ -23,10 +23,16 @@ export default function Suggestions({
 }: Props) {
   const { suggestions } = useRule(question)
 
+  // This is an array containing every selected suggestion.
+  // If a suggestion is selected multiple times, it will appear multiple times in this array
   const [selectedSuggestions, setSelectedSuggestions] = useState<
     FormattedSuggestion[]
   >([])
 
+  /**
+   * Handles the click event for a suggestion.
+   * Behave differently depending on the type (and value) of the suggestions.
+   */
   const handleSuggestionClick = useCallback(
     (suggestion: FormattedSuggestion) => {
       trackEvent(
@@ -41,6 +47,8 @@ export default function Suggestions({
 
       switch (type) {
         case 'checkbox':
+        case 'multiple':
+          // For checkbox and multiple type, add the suggestion to the selected suggestions
           setSelectedSuggestions((prevSelectedSuggestions) => [
             ...prevSelectedSuggestions.filter(
               (prevSelectedSuggestion) => prevSelectedSuggestion.value
@@ -50,6 +58,7 @@ export default function Suggestions({
           break
         case 'radio':
         default:
+          // For radio type, replace the selected suggestion with the current suggestion
           setSelectedSuggestions([suggestion])
           break
       }
@@ -57,6 +66,12 @@ export default function Suggestions({
     [question, type]
   )
 
+  /**
+   * Handles the deletion of a selected suggestion.
+   * It removes every instance of the suggestion from the selected suggestions.
+   *
+   * @param suggestion - The suggestion to be deleted.
+   */
   const handleSuggestionDelete = useCallback(
     (suggestion: FormattedSuggestion) => {
       setSelectedSuggestions((prevSelectedSuggestions) =>
@@ -69,15 +84,27 @@ export default function Suggestions({
     []
   )
 
-  const valueOfSelectedSuggestions = useMemo(
-    () =>
-      selectedSuggestions.reduce(
-        (acc, suggestion) => acc + Number(suggestion.value),
-        0
-      ),
-    [selectedSuggestions]
-  )
+  /**
+   * The value of the selected suggestions.
+   * If it is a radio type, it will return the value of the selected suggestion.
+   * If it is a checkbox or multiple type, it will return the sum of the values of the selected suggestions.
+   * So checkbox and multiple suggestions should only be used with question type === 'number'.
+   */
+  const valueOfSelectedSuggestions = useMemo(() => {
+    if (type === 'radio') {
+      return selectedSuggestions.length
+        ? selectedSuggestions[0].value
+        : undefined
+    }
+    selectedSuggestions.reduce(
+      (acc, suggestion) => acc + (suggestion.value as number),
+      0
+    )
+  }, [selectedSuggestions, type])
 
+  /**
+   * When the selected suggestions value change, we update the value (and tempValue if necessary) of the question.
+   */
   useEffect(() => {
     if (selectedSuggestions.length) {
       valueOfSelectedSuggestionsRef.current = valueOfSelectedSuggestions
@@ -85,6 +112,9 @@ export default function Suggestions({
     }
   }, [setValue, valueOfSelectedSuggestions, selectedSuggestions])
 
+  /**
+   * When the value of the question change, we reset the selected suggestions.
+   */
   const valueOfSelectedSuggestionsRef = useRef(valueOfSelectedSuggestions)
   useEffect(() => {
     if (value && value !== valueOfSelectedSuggestionsRef.current) {

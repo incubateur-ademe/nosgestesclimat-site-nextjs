@@ -15,13 +15,16 @@ export function useEngineSituation({ engine }: Props) {
 
   const addToEngineSituation = useCallback(
     (situationToAdd: Situation): Situation => {
-      engine.setSituation({ ...situation, ...situationToAdd })
+      const currentSituation = engine.getSituation()
+
+      engine.setSituation({ ...currentSituation, ...situationToAdd })
+
       // The current engine situation might have been filtered
       const safeSituation = engine.getSituation()
 
       return safeSituation
     },
-    [engine, situation]
+    [engine]
   )
 
   useEffect(() => {

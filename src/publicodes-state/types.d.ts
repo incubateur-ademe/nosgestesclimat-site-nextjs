@@ -107,3 +107,5 @@ export type FormattedSuggestion = {
   label: string
   value: SuggestionValue | Record<string, SuggestionValue>
 }
+
+export type SuggestionType = 'radio' | 'checkbox' | 'multiple'

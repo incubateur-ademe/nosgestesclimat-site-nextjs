@@ -19,8 +19,8 @@ import {
 import Button from '@/design-system/inputs/Button'
 import { useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useEffect, useRef, useState } from 'react'
+import { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/Trans'
 import Category from './question/Category'
@@ -75,6 +75,16 @@ export default function Question({
 
   const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
 
+  const setValueFromSuggestions = useCallback(
+    (value: NodeValue) => {
+      if (type === 'number') {
+        if (setTempValue) setTempValue(value as number)
+      }
+      setValue(value, { foldedStep: question })
+    },
+    [setTempValue, setValue, question, type]
+  )
+
   return (
     <>
       <div className={twMerge('mb-6 flex flex-col items-start', className)}>
@@ -84,12 +94,7 @@ export default function Question({
         <Suggestions
           question={question}
           value={value}
-          setValue={(value) => {
-            if (type === 'number') {
-              if (setTempValue) setTempValue(value as number)
-            }
-            setValue(value, { foldedStep: question })
-          }}
+          setValue={setValueFromSuggestions}
           type={question.includes('avion') ? 'checkbox' : 'radio'}
         />
         {showInputsLabel ? (
