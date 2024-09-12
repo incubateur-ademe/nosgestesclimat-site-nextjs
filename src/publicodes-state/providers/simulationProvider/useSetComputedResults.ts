@@ -17,7 +17,7 @@ type Props = {
     ruleName: DottedName,
     metric: Metric
   ) => NGCEvaluatedNode | null
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
 }
 export function useSetComputedResults({
   categories,

@@ -13,7 +13,7 @@ type Props = {
   parsedRules?: NGCRulesNodes
   everyRules: DottedName[]
   root: DottedName
-  safeGetRule?: (rule: DottedName) => NGCRuleNode | null
+  safeGetRule?: (rule: DottedName) => NGCRuleNode | undefined
 }
 
 export function useCategories({

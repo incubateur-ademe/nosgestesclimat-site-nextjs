@@ -19,7 +19,7 @@ type SimulationContextType = {
   rules: NGCRules | undefined
   engine: Engine | undefined
   pristineEngine?: Engine | null
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
   safeEvaluate: (
     rule: PublicodesExpression,
     metric?: Metric
@@ -41,7 +41,7 @@ export const SimulationContext = createContext<SimulationContextType>({
   rules: undefined,
   engine: undefined,
   pristineEngine: null,
-  safeGetRule: () => null,
+  safeGetRule: () => undefined,
   safeEvaluate: () => null,
   parsedRules: {} as ParsedRules,
   everyRules: [],
