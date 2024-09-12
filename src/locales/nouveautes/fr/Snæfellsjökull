@@ -10,20 +10,19 @@ Les nouveautés des mois de juin 2024
 
 <img style="width: 400px;" alt-text="Pasterze-dernier-glacier-autrichien" src="https://github.com/incubateur-ademe/nosgestesclimat/assets/144152881/f53f2521-269e-4d45-81bb-8e0418e04e35" />
 
-> 🇦🇹 La fin des glaciers autrichiens ? La symbolique est grande : le Pasterze, dernier glacier autrichien a été métaphoriquement enterré  par l’organisation environnementale Protect Our Winters (POW) pour sensibiliser au recul des glaciers. 
-> - écouter 🎧 [est-il trop tard pour arrêter la disparition des glaciers autrichiens ? (France Culture)](https://www.radiofrance.fr/franceculture/podcasts/le-biais-d-heidi-sevestre/le-biais-d-heidi-sevestre-chronique-du-jeudi-18-avril-2024-7495331)
-> - lire 🤓 [le plus grand glacier européen a été enterré (HuffPost)](https://www.huffingtonpost.fr/environnement/article/en-autriche-le-plus-grand-glacier-d-europe-centrale-le-pasterze-a-ete-enterre-symboliquement_222736.html)
+<aside>
+🇮🇸 Pour être candidat aux élections présidentielles islandaises, il faut avoir au moins 35 ans et ne pas avoir de casier judiciaire. Pourquoi pas alors le glacier Snæfellsjökull ? Un groupe d’activistes islandais a tenté pendant plusieurs mois de lancer ce nouveau candidat sur la piste présidentielle, pour assurer une plus grande visibilité des sujets d’écologie dans la campagne.
+🤓 Plus d’infos sur cette histoire loufoque et militante [dans cet article](https://www.positive.news/society/snow-joke-icelandic-glacier-makes-presidential-bid/) (en anglais, navrés!)
 
-### En bref ces deux derniers mois : 
+</aside>
 
-- 🍭 De nouvelles couleurs partout pour une expérience plus pétillante !
-- 🎯 Une nouvelle page de fin pédagogique et complète
-- 👔 Toujours plus d’accompagnement pour les organisations et entreprises partenaires
-- 🌎 Nos Gestes Climat, citoyens du monde : plus d’international !
-- 🚗 Notre cycle d’infolettres sur l’impact carbone du transport a été lancé !
-- ✍️ Du nouveau contenu de qualité pour vous informer au mieux
-- 🌾 Des améliorations dans le modèle carbone
-- 🤖 Et comme toujours… des améliorations techniques variées
+### Ce qu'on a fait en juin : 
+
+🎳 De nouvelles fonctionnalités sur le parcours Organisations
+🧮 Un modèle carbone plus complet
+❄️ Un coup de frais sur le mode Groupe d’Amis
+🙌 Des améliorations un peu partout
+🔧 Des réparations de bug
 
 
 ### 🍭 De nouvelles couleurs partout pour une expérience plus pétillante ! 
@@ -51,98 +50,64 @@ Vous en pensez quoi ? On est très preneurs de vos avis [via notre page contact]
 <img style="width: 600px;" alt="nouvelle page de fin " src="https://github.com/incubateur-ademe/nosgestesclimat/assets/144152881/23c49ae4-9ac3-407d-9f9b-eae1860ddf3c" />
 <br/>  
 
-### 👔 Toujours plus d’accompagnement pour les organisations et entreprises partenaires
 
-Il était déjà possible d’ajouter à votre campagne Nos Gestes Climat pour organisation 2 questions “par défaut” (ville d’habitation et année de naissance); mais suite à de nombreuses demandes nous avons ouvert la possibilité d’ajouter de nouvelles questions. Cette possibilité n’est active que sur demande, [contactez-nous](https://nosgestesclimat.fr/contact) en nous transmettant l’adresse mail du compte administrateur concerné et nous activerons l’option !
+### 🎳 Des améliorations notables sur le parcours Organisations
 
-<img style="width:600px;" alt="orga questions compl" src="https://github.com/incubateur-ademe/nosgestesclimat/assets/144152881/8b28bb0a-09ff-4c8d-a782-d1518c63d224" />
-<br/>
+#####Pour tout le monde : 
+    - Une meilleure hiérarchisation des informations : on a retiré des lien inutiles
+    - Des améliorations de performance : les campagnes avaient tendance à charger très lentement (notamment celles avec plusieurs milliers de personnes), c’est maintenant plus rapide, et l’expérience de chargement est meilleure
+#####Pour les administrateurs : 
+    - One organisation to rule them all : une seule organisation peut désormais abriter plusieurs campagnes Nos Gestes Climat. Vous pourrez ainsi créer une campagne par service de votre organisation, ou une campagne chaque année pour suivre l’évolution.. c’est à votre guise !
+    </br>
+<img width="600" alt="plusieurs campagnes" src="https://github.com/user-attachments/assets/3b2f47e8-35be-433c-a176-53953ef8843b">
+</br>
+    - Vous pouvez maintenant changer de mail administrateur facilement : RDV dans les paramètres de l’organisation, saisissez le nouveau mail puis il suffit de s’authentifier avec un code reçu sur le nouveau mail, et le tour est joué ! 
+    </br>
+<img width="600" alt="orga changement mail" src="https://github.com/user-attachments/assets/5f2549b4-7973-4215-9345-508e235afb6f">
+</br>
+#####Les prochaines étapes pour le parcours organisations (on a hâte !) : 
+    - Vous permettre de générer un QR code unique par campagne
+    - Pouvoir avoir plusieurs administrateurs sur une seule organisation
+    - Agréger les résultats des différentes campagnes sur le compte administrateur
 
-Dans une organisation, l’avantage c’est qu’on se rend mieux compte de notre impact à grande échelle :  pour vous faciliter la tâche dans cette prise de conscience, nous avons ajouté un graphique avec de nouvelles données et détails sur la communauté de testeurs qui appartiennent à votre organisation ! Disponible dans la section “Résultats détaillés”
+### 🧮 Un modèle carbone plus complet
+
+- Vous la demandez depuis des mois, elle est arrivée. La demande qui détenait le record d’occurrences : plus de 40 personnes nous l’ont demandée au cours de l’année. Vous pouvez maintenant déclarer vos panneaux photovoltaïques dans la production de votre électricité. Youhou !
+    - Prochaine étape : ajouter les panneaux solaires (eau chaude solaire)
+- L’ordre des questions manquait un peu de logique, notamment sur la fin du questionnaire, alors on a changé tout ça en ~~forçant~~ contournant un peu la logique publi.codes
+- Les mosaïques ont maintenant un fonctionnement un peu plus logique : si on choisit une suggestion, on peut modifier ses réponses sans souci
+- Lancement du cycle d’infolettres logement
+</br>
+<button href="https://856c23af.sibforms.com/serve/MUIFAND6CuHpNyAbMQUr7hi8BD1cvaqBIyAk9_EWDXXrFy5K2LaoeAwjePg-k8Tc0EBSNaaF7Uq8wYenBxECXaeRJWFsHd34IXSfoq36CiZMvAE3R6IjAdK82PAbdVM8oS_KmhhTdrqyzxwdQeWg9Br79Vmxz54r_9liA5IHVpf4WlX0ZB_K-LqsJifyOSsa1o0v1Zo6KyGvB8GR">Je m'inscris aux cycles d'infolettres</button>
+</br>
+
+### ❄️ Un coup de frais sur le mode groupe d’amis
+
+- Le calcul des “points forts & faibles” dans le comparatif au sein du groupe d’amis a été revu : vos points forts, ce sont les sous-catégories dans lequelles votre émission de carbone a le plus gros écart (en nombre de tonnes) à la moyenne du groupe. Et inversement !  
+</br>
+<img width="600" alt="classement amis" src="https://github.com/user-attachments/assets/a41ab3f7-ee01-4c73-b74c-fb10c10b0e11">
+</br>
+- On peut maintenant supprimer un participant d'un groupe d'amis si besoin de faire du tri (seulement disponible pour le créateur du groupe)
+- La mention de l’administrateur et de “vous” n’était pas toujours claire, ou bien affichée : maintenant, c’est bon !
+
+### 🙌  Des améliorations un peu partout
+
+- Le blog a été enrichi de nouveau articles, mais propose aussi maintenant plus d’informations sur le rédacteur de l’article, et son thème.. pour bientôt pouvoir filtrer les classer
+- Une nouvelle page 404 trop mignonne non? 
+</br>
+<img width="600" alt="404" src="https://github.com/user-attachments/assets/d0202939-fbde-48d7-bf56-8ab9e1ddd20f">
+</br>
+- Et des illustrations partouuuut partout ! Trop belles non ?
+</br>
+<img width="600" alt="illustrations" src="https://github.com/user-attachments/assets/481d6e9a-3349-4961-b34e-8bd3e579c0d4">
+</br>
     
-<img style="width: 600px;" alt="chiffres clefs" src="https://github.com/incubateur-ademe/nosgestesclimat/assets/144152881/dee79160-b1a8-4d18-9d71-0da7aa5522e1" />
-<br/>
 
-Nous avons créé des paramètres d’URL qui vous permettent, lors du partage de Nos Gestes Climat à vos parties prenantes, de personnaliser le comportement du simulateur : par exemple pour éviter aux gens d’avoir à ressaisir leur email ! Toutes les infos sont dans la page dédié de notre wiki : [Paramètres d’URL spécifiques](https://accelerateur-transition-ecologique-ademe.notion.site/Param-tres-d-URL-sp-cifiques-8becc3afbc2543d9a6f3febde9bb4b66)
-Enfin, nous avons aussi revu la fonctionnalité de création de compte organisation; notamment pour eviter que les mails d’authentification (code) aillent se ficher dans vos boites mail anti-spam (MailInBlack notamment) et tombent dans le vide ! 
+### 🔧 Des réparations de bug
 
-### 🌎 Nos Gestes Climat, citoyens du monde : plus d’international !
-
-Depuis quelques semaines, vous pouvez faire votre simulation carbone avec un modele de carbone adapté : aux Etats-Unis, ou à l’Union Européenne en général, si votre pays n’est pas représenté dans nos pays. Ces évolutions prennent en compte des facteurs d’émissions spécifiques par pays (la carbonation du mix électrique notamment), et propose le pré-remplissage de certains contenus en fonction du pays ou de la région.
-Voici la liste des régions de calcul disponibles à ce jour : 
-
-<br/>
-
-<img style="width: 400px;" alt="regions" src="https://github.com/incubateur-ademe/nosgestesclimat/assets/144152881/0ef890fa-22d4-4eae-bb3c-460400ba3d3b" />
-    
-<br/>
-
-Des traductions revues et ajoutées :
-
-- l’amélioration de la traduction en anglais
-- et une nouvelle traduction en espagnol disponible dans votre pied de page
-
-<img style="width: 400px;" alt="footer" src="https://github.com/incubateur-ademe/nosgestesclimat/assets/144152881/edcb98e8-34c2-4ce3-802a-ee462c8dd777" />        
-
-
-### 🚗 Notre cycle d’infolettres sur l’impact carbone du transport a été lancé !
-
-Notre équipe modèle a travaillé à vous créer un contenu ultra-qualitatif (grâce aux ressources notamment d'Aurélien Bigo, le meilleur en la matière) pour vous accompagner dans la compréhension des enjeux de carbonation des transports.
-Plus de 3000 personnes se sont déjà inscrites et ont commencé à recevoir notre cycle de 4 emails d’information sur le transport : et vous  ? 
-Rendez-vous [en page profil](https://nosgestesclimat.fr/profil), en bas de page, saisissez votre mail et cochez “Nos Gestes Transport”
-    
-<img style="width: 400px;" alt="nos gestes transport" src="https://github.com/incubateur-ademe/nosgestesclimat/assets/144152881/ed22cd15-2d58-42bd-a66c-c608ca8668cf" />
-    
-
-### ✍️ Du nouveau contenu de qualité pour vous informer au mieux
-
-- Un nouvel article sur le déménagement, et les éléments à considérer pour limiter l’impact carbone de son logement et de ses transports dans ce moment crucial de vie
-  
-  <br/>
-  
-  <div className="text-center">
-    <button href="https://nosgestesclimat.fr/blog/demenagement-decarbonation">Voir l'article</button>
-  </div>
-  
-  <br/>
-
-- Un autre pour faire un rappel des moyens de transport les plus sympa avec le climat… et les autres. Cela peut être intéressant avant les grandes vacances 😊
-  
-  <br/>
-  
-  <div className="text-center">
-    <button href="https://nosgestesclimat.fr/blog/transports-fuir-transports-cherir">Voir l'article</button>
-  </div>
-
-  <br/>
-
-- Dans tout notre blog, vous trouverez maintenant sur chaque quantité de CO2 écrite un petit équivalent ludique et visuel, développé par nos cousins d’impactco2 (un autre projet de l’ADEME)
-
-  <br/>
-
-  <img style="width: 100%;" alt="script impact co2" src="https://github.com/incubateur-ademe/nosgestesclimat/assets/144152881/3a366923-76f9-48c0-8861-dd198168f0ea" />
-
-  <br/>
-
-  <div className="text-center">
-    <button href="https://impactco2.fr/">Plus d’informations sur impact CO2</button>
-  </div>
-
-### 🌾 Des améliorations dans le modèle carbone
-
-Le calcul des facteurs d’émissions associés à la voiture a été revu à énormément d’endroit suite à de longs échanges de nos experts carbone :
-
-- ajout de la notion de propriétaire de voiture
-- revue du calcul pour la voiture électrique, en fonction du type de batterie
-
-De même, nous avons amélioré les calculs de l’impact de l’alimentation pour etre raccord avec les dernières données disponibles, et nous avons aussi renommé certains éléments pour plus de clarté : notamment les poissons qui n’étaient pas très clair selon pas mal de retours que nous avons eus
-
-Enfin, grâce à l’aide de l’ADEME, nous avons aussi procédé à la réécriture des actions et la mise à jour des ressources dans les [Actions](https://nosgestesclimat.fr/actions) de fin de parcours.
-
-### 🤖 Et comme toujours… des améliorations techniques variées
-
-- Un nouveau plan de suivi des usages du site pour améliorer les fonctionnalités et éviter les erreurs
-- Des ameliorations techniques pour coder plus rapidement
+- Des problemes d’accès aux organisations s’était présentés : c’est réparé
+- Un certain nombre de personnes voyaient leur résultat de simulation à 0T de carbone (le rêve… mais pas la réalité !), c’était un souci de calcul d’historique qui s’était glissé par là…
+- Un bug dans la saisie de votre facture d’électricité est réparé
 
 <br/><div className="text-center">
 <button href="https://nosgestesclimat.fr/">Revenir à l'accueil</button>
