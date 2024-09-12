@@ -14,7 +14,7 @@ export default function WaterDisclaimer() {
         <Trans>
           En règle générale, les valeurs d'empreinte eau varient{' '}
           <strong className="text-secondary-700">
-            entre 9000 et 15000 litres par jour
+            entre 3 000 et 9 000 litres par jour
           </strong>
           . Contrairement au carbone, il n'existe pas d'objectif chiffré pour
           l'empreinte eau.

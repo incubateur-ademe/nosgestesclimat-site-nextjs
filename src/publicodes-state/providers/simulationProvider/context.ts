@@ -16,15 +16,15 @@ import {
 } from '../../types'
 
 type SimulationContextType = {
-  rules: NGCRules | null
-  engine: Engine | null
-  pristineEngine: Engine | null
+  rules: NGCRules | undefined
+  engine: Engine | undefined
+  pristineEngine?: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (
     rule: PublicodesExpression,
     metric?: Metric
   ) => NGCEvaluatedNode | null
-  parsedRules: ParsedRules
+  parsedRules?: ParsedRules
   everyRules: DottedName[]
   everyInactiveRules: DottedName[]
   everyQuestions: DottedName[]
@@ -38,8 +38,8 @@ type SimulationContextType = {
   isInitialized: boolean
 }
 export const SimulationContext = createContext<SimulationContextType>({
-  rules: null,
-  engine: null,
+  rules: undefined,
+  engine: undefined,
   pristineEngine: null,
   safeGetRule: () => null,
   safeEvaluate: () => null,

@@ -18,7 +18,7 @@ export default function Choices({ answer, choices, setAnswer }: Props) {
   }, [choices])
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 flex flex-col gap-4">
       {shuffledChoices.map((choice) => (
         <Choice
           key={choice}

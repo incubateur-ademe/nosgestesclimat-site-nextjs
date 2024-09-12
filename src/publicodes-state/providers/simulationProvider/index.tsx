@@ -2,7 +2,6 @@
 
 import { PropsWithChildren } from 'react'
 
-import Loader from '@/design-system/layout/Loader'
 import { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { SimulationContext } from './context'
 import { useCategories } from './useCategories'
@@ -12,14 +11,13 @@ import { useRules } from './useRules'
 import { useSetComputedResults } from './useSetComputedResults'
 
 type Props = {
-  rules: NGCRules
+  rules?: NGCRules
   root?: DottedName
   shouldAlwaysDisplayChildren?: boolean
 }
 export default function SimulationProvider({
   rules,
   root = 'bilan',
-  shouldAlwaysDisplayChildren = false,
   children,
 }: PropsWithChildren<Props>) {
   const { engine, pristineEngine, safeEvaluate, safeGetRule } = useEngine(rules)
@@ -33,13 +31,13 @@ export default function SimulationProvider({
     everyUiCategories,
     everyMosaicChildrenWithParent,
     rawMissingVariables,
-  } = useRules({ engine: pristineEngine, root })
+  } = useRules({ engine: pristineEngine ?? undefined, root })
 
   const { categories, subcategories } = useCategories({
-    parsedRules: engine.getParsedRules(),
+    parsedRules: engine?.getParsedRules(),
     everyRules,
     root,
-    safeGetRule,
+    safeGetRule: safeGetRule ?? undefined,
   })
 
   const { isEngineInitialized, addToEngineSituation } = useEngineSituation({
@@ -50,17 +48,11 @@ export default function SimulationProvider({
     categories,
     subcategories,
     isEngineInitialized,
-    safeEvaluate,
     safeGetRule,
+    safeEvaluate: safeEvaluate ?? undefined,
   })
 
-  if (!isInitialized) {
-    return (
-      <div className="flex h-screen flex-1 items-center justify-center">
-        <Loader color="dark" />
-      </div>
-    )
-  }
+  if (!rules || !engine || !isInitialized) return children
 
   return (
     <SimulationContext.Provider
@@ -69,7 +61,7 @@ export default function SimulationProvider({
         engine,
         pristineEngine,
         safeEvaluate,
-        safeGetRule,
+        safeGetRule: safeGetRule ?? undefined,
         parsedRules,
         everyRules,
         everyInactiveRules,
@@ -83,7 +75,7 @@ export default function SimulationProvider({
         addToEngineSituation,
         isInitialized,
       }}>
-      {isInitialized || shouldAlwaysDisplayChildren ? children : null}
+      {children}
     </SimulationContext.Provider>
   )
 }
