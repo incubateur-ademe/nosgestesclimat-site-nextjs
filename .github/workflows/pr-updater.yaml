@@ -11,6 +11,10 @@ on:
     workflows: ['Generate PR artifact']
     types: [completed]
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   pr_comment:
     runs-on: ubuntu-latest
