@@ -81,7 +81,10 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
           />
           <div className="relative z-10">
             <p className="text-3xl font-bold text-white">
-              10 000 <span className="text-base font-normal">litres</span>
+              10 000{' '}
+              <span className="text-base font-normal">
+                <Trans>litres</Trans>
+              </span>
             </p>
 
             <p className="text-xl text-white">
