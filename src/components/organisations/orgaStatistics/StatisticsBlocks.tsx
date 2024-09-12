@@ -2,8 +2,7 @@
 
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/Trans'
-import { eauMetric } from '@/constants/metric'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { carboneMetric, eauMetric } from '@/constants/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getSimulationRecapAggregatedResult } from '@/helpers/organisations/getSimulationRecapAggregatedResult'
 import { useLocale } from '@/hooks/useLocale'
@@ -51,17 +50,16 @@ export default function StatisticsBlocks({
     ? mockResults
     : getSimulationRecapAggregatedResult(simulationRecapsWithoutExtremes)
 
-  const { formattedValue, unit } = formatCarbonFootprint(
-    result?.carbone?.bilan,
-    {
-      maximumFractionDigits: 1,
-    }
-  )
+  const { formattedValue, unit } = formatFootprint(result?.carbone?.bilan, {
+    metric: carboneMetric,
+    maximumFractionDigits: 1,
+    localize: true,
+  })
 
   const { formattedValue: formattedWaterValue, unit: waterUnit } =
     formatFootprint(result.eau.bilan, {
       metric: eauMetric,
-      localize: false,
+      localize: true,
     })
 
   return (
@@ -111,9 +109,7 @@ export default function StatisticsBlocks({
               />
               <div className="relative z-10">
                 <p className="text-3xl font-bold text-white">
-                  {parseInt(formattedWaterValue ?? 0).toLocaleString(locale, {
-                    maximumFractionDigits: 1,
-                  })}{' '}
+                  {formattedWaterValue ?? 0}
                   <span className="text-base font-normal">{waterUnit}</span>
                 </p>
 
