@@ -31,7 +31,7 @@ export default function useUpdateOldLocalStorage({ storageKey }: Props) {
           ...objectOldLocalStorage,
           user: {
             ...objectOldLocalStorage.user,
-            id: objectOldLocalStorage.user.userId,
+            userId: objectOldLocalStorage.user.userId,
           },
         })
       )

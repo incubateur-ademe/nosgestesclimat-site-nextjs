@@ -1,4 +1,6 @@
 import Route404 from '@/components/layout/404'
+import Footer from '@/components/layout/Footer'
+import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export async function generateMetadata() {
@@ -16,5 +18,12 @@ export async function generateMetadata() {
 }
 
 export default function NotFound() {
-  return <Route404 />
+  return (
+    <>
+      <Main>
+        <Route404 />
+      </Main>
+      <Footer className="bg-white" />
+    </>
+  )
 }

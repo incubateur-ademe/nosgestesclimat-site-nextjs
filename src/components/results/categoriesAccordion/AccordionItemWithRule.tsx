@@ -2,29 +2,35 @@
 
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
 import Trans from '@/components/translation/Trans'
+import { defaultMetric } from '@/constants/metric'
 import { endClickCategory } from '@/constants/tracking/pages/end'
 import Card from '@/design-system/layout/Card'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
-import { formatCarbonFootprint } from '@/helpers/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule, useSimulation } from '@/publicodes-state'
+import { Metric } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 
+type Props = {
+  dottedName: DottedName
+  maxValue: number
+  index?: number
+  metric?: Metric
+}
 export default function AccordionItemWithRule({
   dottedName,
   maxValue,
   index,
-}: {
-  dottedName: string
-  maxValue: number
-  index?: number
-}) {
-  const { title, icons, numericValue } = useRule(dottedName)
+  metric = defaultMetric,
+}: Props) {
+  const { title, icons, numericValue } = useRule(dottedName, metric)
 
   const { subcategories } = useSimulation()
 
-  const { formattedValue, unit } = formatCarbonFootprint(numericValue)
+  const { formattedValue, unit } = formatFootprint(numericValue, { metric })
 
   const percentageOfTotalValue = (numericValue / maxValue) * 100
 
@@ -38,6 +44,7 @@ export default function AccordionItemWithRule({
           title={title}
           icons={icons}
           barColor={getBackgroundColor(dottedName)}
+          shouldDisplayValue={false}
           displayValue={
             <span>
               <strong className="font-black">{formattedValue}</strong>{' '}
@@ -55,6 +62,7 @@ export default function AccordionItemWithRule({
           <SubcategoriesList
             category={dottedName}
             subcategories={subcategories}
+            metric={metric}
           />
         </Card>
       }

@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import { getUpdatedDefaultAdditionalQuestions } from '@/helpers/polls/getUpdatedDefaultAdditionalQuestions'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { OrganisationPoll } from '@/types/organisations'
+import { OrganisationPoll, UpdatePollProps } from '@/types/organisations'
 import { ReactNode } from 'react'
 import CustomQuestionForm from './questionsComplementaires/CustomQuestionForm'
 import CustomQuestions from './questionsComplementaires/CustomQuestions'
@@ -16,8 +16,8 @@ type Props = {
         'customAdditionalQuestions' | 'defaultAdditionalQuestions'
       >
     | undefined
-  onChange: (changes: Record<string, unknown>) => void
-  onChangeCustomQuestions: (changes: Record<string, unknown>) => void
+  onChange: (changes: UpdatePollProps) => void
+  onChangeCustomQuestions: (changes: UpdatePollProps) => void
   description?: string | ReactNode
 }
 

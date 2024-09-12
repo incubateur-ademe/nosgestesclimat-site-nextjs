@@ -1,26 +1,28 @@
 'use client'
 
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
-import { PublicodesExpression } from 'publicodes'
+import {
+  DottedName,
+  NGCRuleNode,
+  NodeValue,
+} from '@incubateur-ademe/nosgestesclimat'
+import { PublicodesExpression, utils } from 'publicodes'
 import { useCallback } from 'react'
 import getType from '../../helpers/getType'
 import {
-  DottedName,
   NGCEvaluatedNode,
-  NGCRuleNode,
-  NodeValue,
+  ParsedRules,
   Situation,
   UpdateCurrentSimulationProps,
 } from '../../types'
 
 type Props = {
   dottedName: DottedName
+  parsedRules: ParsedRules
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   evaluation: NGCEvaluatedNode | null
-  value: NodeValue
   type: string | undefined
-  questionsOfMosaic: string[]
   situation: Situation
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
   addToEngineSituation: (situationToAdd: Situation) => Situation
@@ -28,39 +30,41 @@ type Props = {
 
 export default function useSetValue({
   dottedName,
+  parsedRules,
   safeGetRule,
   safeEvaluate,
-  value,
   type,
-  questionsOfMosaic,
   situation,
   updateCurrentSimulation,
   addToEngineSituation,
 }: Props) {
   const getMosaicResetSituation = useCallback(
-    (questionsOfParentMosaic: DottedName[]): Situation => {
-      const situationToAdd = questionsOfParentMosaic.reduce(
-        (accumulator, currentValue) => {
+    (questionsOfMosaicFromSibling: DottedName[]): Situation => {
+      const situationToAdd = questionsOfMosaicFromSibling.reduce(
+        (accumulator, mosaicChildDottedName) => {
           const isMissing = getIsMissing({
-            dottedName: currentValue,
-            questionsOfMosaic: [],
+            dottedName: mosaicChildDottedName,
             situation,
           })
           if (!isMissing) return accumulator
 
-          const rule = safeGetRule(currentValue)
-          const evaluation = safeEvaluate(currentValue)
+          const rule = safeGetRule(mosaicChildDottedName)
+          const evaluation = safeEvaluate(mosaicChildDottedName)
           const resetValue =
-            getType({ rule, evaluation, dottedName: currentValue }) ===
+            getType({ rule, evaluation, dottedName: mosaicChildDottedName }) ===
             'boolean'
               ? 'non'
               : 0
 
           return {
             ...accumulator,
-            [currentValue]: checkValueValidity({
+            [mosaicChildDottedName]: checkValueValidity({
               value: resetValue,
-              type: getType({ rule, evaluation, dottedName: currentValue }),
+              type: getType({
+                rule,
+                evaluation,
+                dottedName: mosaicChildDottedName,
+              }),
             }),
           }
         },
@@ -75,30 +79,43 @@ export default function useSetValue({
   /**
    * @param value - The value to set
    * @param options.foldedStep - The dottedName of the foldedStep
-   * @param options.questionsOfParentMosaic - The questions of the parent mosaic
+   * @param options.questionsOfMosaicFromSibling - The dottedNames of the questions of the mosaic from the brother (another child)
    */
   const setValue = useCallback(
     async (
-      value: NodeValue | { [dottedName: DottedName]: NodeValue },
+      value: NodeValue | Record<string, NodeValue>,
       {
         foldedStep,
-        questionsOfParentMosaic,
+        questionsOfMosaicFromSibling,
       }: {
         foldedStep?: DottedName
-        questionsOfParentMosaic?: DottedName[]
+        questionsOfMosaicFromSibling?: DottedName[]
       } = {}
     ) => {
       let situationToAdd = {}
 
       if (typeof value === 'object') {
-        situationToAdd = Object.keys(
-          value as { [dottedName: DottedName]: NodeValue }
-        ).reduce(
-          (accumulator: Situation, currentValue: DottedName) => ({
-            ...accumulator,
-            [dottedName + ' . ' + currentValue]:
-              value && (value[currentValue] as NodeValue),
-          }),
+        situationToAdd = Object.keys(value || {}).reduce(
+          (accumulator: Situation, partialMosaicChildDottedName: string) => {
+            const mosaicChildDottedName = utils.disambiguateReference(
+              parsedRules,
+              dottedName,
+              partialMosaicChildDottedName
+            ) as DottedName
+            const rule = safeGetRule(mosaicChildDottedName)
+            const evaluation = safeEvaluate(mosaicChildDottedName)
+            return {
+              ...accumulator,
+              [mosaicChildDottedName]: checkValueValidity({
+                value: value && value[partialMosaicChildDottedName],
+                type: getType({
+                  rule,
+                  evaluation,
+                  dottedName: mosaicChildDottedName,
+                }),
+              }),
+            } as Situation
+          },
           {} as Situation
         )
       } else {
@@ -106,10 +123,9 @@ export default function useSetValue({
           [dottedName]: checkValueValidity({ value, type }),
         }
       }
-
-      if (questionsOfParentMosaic) {
+      if (questionsOfMosaicFromSibling) {
         situationToAdd = {
-          ...getMosaicResetSituation(questionsOfParentMosaic),
+          ...getMosaicResetSituation(questionsOfMosaicFromSibling),
           ...situationToAdd,
         }
       }
@@ -121,58 +137,19 @@ export default function useSetValue({
       })
     },
     [
-      dottedName,
-      type,
-      updateCurrentSimulation,
-      getMosaicResetSituation,
       addToEngineSituation,
-    ]
-  )
-
-  const setDefaultAsValue = useCallback(
-    async (foldedStep?: DottedName) => {
-      let situationToAdd = {}
-      if (type?.includes('mosaic')) {
-        situationToAdd = questionsOfMosaic.reduce(
-          (accumulator, currentValue) => {
-            const rule = safeGetRule(currentValue)
-            const evaluation = safeEvaluate(currentValue)
-            return {
-              ...accumulator,
-              [currentValue]: checkValueValidity({
-                value: evaluation?.nodeValue,
-                type: getType({ rule, evaluation, dottedName: currentValue }),
-              }),
-            }
-          },
-          {}
-        )
-      } else {
-        situationToAdd = {
-          [dottedName]: checkValueValidity({ value, type }),
-        }
-      }
-      const safeSituation = addToEngineSituation(situationToAdd)
-      updateCurrentSimulation({
-        situationToAdd: safeSituation,
-        foldedStepToAdd: foldedStep,
-      })
-    },
-    [
+      updateCurrentSimulation,
+      parsedRules,
       dottedName,
-      type,
-      value,
-      questionsOfMosaic,
-      safeEvaluate,
       safeGetRule,
-      updateCurrentSimulation,
-      addToEngineSituation,
+      safeEvaluate,
+      type,
+      getMosaicResetSituation,
     ]
   )
 
   return {
     setValue,
-    setDefaultAsValue,
   }
 }
 

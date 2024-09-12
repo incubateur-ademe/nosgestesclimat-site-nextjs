@@ -1,7 +1,8 @@
 'use client'
 
+import { NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
-import { NGCEvaluatedNode, NodeValue } from '../../types'
+import { NGCEvaluatedNode } from '../../types'
 
 type Props = {
   evaluation: NGCEvaluatedNode | null

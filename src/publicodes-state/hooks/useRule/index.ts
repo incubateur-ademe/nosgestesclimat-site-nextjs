@@ -1,14 +1,17 @@
 'use client'
 
+import { carboneMetric } from '@/constants/metric'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
-import { DottedName, NGCEvaluatedNode, NGCRuleNode } from '../../types'
+import { Metric, NGCEvaluatedNode } from '../../types'
 import useCurrentSimulation from '../useCurrentSimulation'
 import useChoices from './useChoices'
 import useContent from './useContent'
 import useMissing from './useMissing'
 import useNotifications from './useNotifications'
+import useQuestionsOfMosaic from './useQuestionsOfMosaic'
 import useSetValue from './useSetValue'
 import useType from './useType'
 import useValue from './useValue'
@@ -18,11 +21,15 @@ import useValue from './useValue'
  *
  * It should ALWAYS be used to access a rule (unless we need to compare mutliples rules with useEngine)
  */
-export default function useRule(dottedName: DottedName) {
+export default function useRule(
+  dottedName: DottedName,
+  metric: Metric = carboneMetric
+) {
   const {
     engine,
     safeGetRule,
     safeEvaluate,
+    parsedRules,
     everyNotifications,
     everyMosaicChildrenWithParent,
     addToEngineSituation,
@@ -32,9 +39,9 @@ export default function useRule(dottedName: DottedName) {
     useCurrentSimulation()
 
   const evaluation = useMemo<NGCEvaluatedNode | null>(
-    () => safeEvaluate(dottedName),
+    () => safeEvaluate(dottedName, metric),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [dottedName, engine, situation]
+    [dottedName, engine, situation, metric]
   )
 
   const rule = useMemo<NGCRuleNode | null>(
@@ -55,9 +62,16 @@ export default function useRule(dottedName: DottedName) {
     situation,
   })
 
-  const questionsOfMosaic = everyMosaicChildrenWithParent[dottedName] || []
+  const { questionsOfMosaicFromParent, questionsOfMosaicFromSibling } =
+    useQuestionsOfMosaic({
+      everyMosaicChildrenWithParent,
+      dottedName,
+    })
 
-  const parent = utils.ruleParent(dottedName)
+  const parent = useMemo(
+    () => utils.ruleParent(dottedName),
+    [dottedName]
+  ) as DottedName
 
   const {
     category,
@@ -83,7 +97,7 @@ export default function useRule(dottedName: DottedName) {
 
   const { isMissing, isFolded } = useMissing({
     dottedName,
-    questionsOfMosaic,
+    questionsOfMosaicFromParent,
     situation,
     foldedSteps,
   })
@@ -93,14 +107,13 @@ export default function useRule(dottedName: DottedName) {
     type,
   })
 
-  const { setValue, setDefaultAsValue } = useSetValue({
+  const { setValue } = useSetValue({
     dottedName,
+    parsedRules,
     safeGetRule,
     safeEvaluate,
     evaluation,
-    value,
     type,
-    questionsOfMosaic,
     updateCurrentSimulation,
     situation,
     addToEngineSituation,
@@ -176,9 +189,13 @@ export default function useRule(dottedName: DottedName) {
      */
     activeNotifications,
     /**
-     * A list of questions to display inside the mosaic (if the rule is a mosaic)
+     * A list of questions to display inside the mosaic (if the rule is a mosaic parent)
      */
-    questionsOfMosaic,
+    questionsOfMosaicFromParent,
+    /**
+     * A list of questions to display inside the mosaic (if the rule is a mosaic child)
+     */
+    questionsOfMosaicFromSibling,
     /**
      * The direct parent of the rule
      */
@@ -207,10 +224,6 @@ export default function useRule(dottedName: DottedName) {
      * Setter for the value of the rule, with the possibility to add a dottedName in the foldedSteps
      */
     setValue,
-    /**
-     * Set default value as value, with the possibility to add a dottedName in the foldedSteps and the mosaic parent
-     */
-    setDefaultAsValue,
     /**
      * A list of actions linked to the rules (only used by "ui . pédagogie" rules)
      */

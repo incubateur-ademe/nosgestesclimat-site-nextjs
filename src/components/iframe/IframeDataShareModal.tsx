@@ -1,5 +1,6 @@
 'use client'
 
+import { defaultMetric } from '@/constants/metric'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -18,12 +19,14 @@ export default function IframeDataShareModal() {
 
   const { computedResults } = useCurrentSimulation()
 
-  const categories = computedResults?.categories ?? {}
+  const categories = computedResults[defaultMetric].categories ?? {}
 
   const data = Object.keys(categories).reduce(
     (accumulator, categoryName) => ({
       ...accumulator,
-      [categoryName.charAt(0)]: Math.round(categories[categoryName]),
+      [categoryName.charAt(0)]: Math.round(
+        categories[categoryName as keyof typeof categories]
+      ),
     }),
     {}
   )

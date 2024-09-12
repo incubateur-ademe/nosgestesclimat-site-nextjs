@@ -12,19 +12,47 @@ describe('The Group creation page /amis/creer', () => {
     // Check that we can create our first group
     cy.get('[data-cypress-id="button-create-first-group"]').click()
     cy.get('input[data-cypress-id="group-input-owner-name"]').type('Jean-Marc')
+    cy.get('input[data-cypress-id="group-input-owner-name"]').type(
+      'jean@marc.com'
+    )
 
     cy.wait(2000)
 
-    cy.get('[data-cypress-id="button-create-group"]').click()
+    cy.get('[data-cypress-id="button-continue-create-group"]').click()
 
     cy.wait(2000)
 
+    // Continue and choose group name and emoji
+    cy.get('input[data-cypress-id="group-name"]').type('Jean-Marc groupe')
+    cy.get(`label[data-cypress-id="group-select-emoji-🍋"]`).click()
+
+    cy.wait(2000)
+
+    cy.get('[data-cypress-id="button-validate-create-group"]').click()
+
+    cy.wait(2000)
     // Fill simulation
     clickSkipTutorialButton()
 
     cy.wait(2000)
 
     recursivelyFillSimulation(null, 'group')
+
+    cy.wait(2000)
+
+    cy.get('h1').then(($el) => {
+      if (
+        $el
+          .text()
+          .includes(
+            Cypress.env('testLangURL') === 'en'
+              ? "Let's finish with a riddle!"
+              : 'Une devinette pour finir !'
+          )
+      ) {
+        cy.get('[data-cypress-id="button-skip-quiz"]').click()
+      }
+    })
 
     cy.wait(4000)
 
@@ -41,11 +69,17 @@ describe('The Group creation page /amis/creer', () => {
 
     cy.get('input[data-cypress-id="group-input-owner-name"]').clear()
 
-    cy.get('input[data-cypress-id="group-input-owner-name"]').type(
-      'Jean-Marc groupe 2'
-    )
-    cy.get('[data-cypress-id="button-create-group"]').click()
+    cy.get('input[data-cypress-id="group-input-owner-name"]').type('Jean-Marc')
+    cy.get('[data-cypress-id="button-continue-create-group"]').click()
     cy.get('[data-cypress-id="group-name"]')
+
+    // Continue and choose group name and emoji
+    cy.get('input[data-cypress-id="group-name"]').type('Jean-Marc groupe 2')
+    cy.get(`label[data-cypress-id="group-select-emoji-🍋"]`).click()
+
+    cy.wait(2000)
+
+    cy.get('[data-cypress-id="button-validate-create-group"]').click()
 
     // And that we can update its name
     cy.get('[data-cypress-id="group-name-edit-button"]').click()
@@ -79,7 +113,23 @@ describe('The Group creation page /amis/creer', () => {
     clickSkipTutorialButton()
     recursivelyFillSimulation(null, 'group')
 
-    cy.wait(3000)
+    cy.wait(2000)
+
+    cy.get('h1').then(($el) => {
+      if (
+        $el
+          .text()
+          .includes(
+            Cypress.env('testLangURL') === 'en'
+              ? "Let's finish with a riddle!"
+              : 'Une devinette pour finir !'
+          )
+      ) {
+        cy.get('[data-cypress-id="button-skip-quiz"]').click()
+      }
+    })
+
+    cy.wait(4000)
 
     cy.get('[data-cypress-id="group-name"]')
 

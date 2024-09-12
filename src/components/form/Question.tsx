@@ -16,18 +16,31 @@ import {
   questionChooseAnswer,
   questionTypeAnswer,
 } from '@/constants/tracking/question'
+import Button from '@/design-system/inputs/Button'
 import { useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useEffect, useRef } from 'react'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { useEffect, useRef, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
+import Trans from '../translation/Trans'
+import Category from './question/Category'
 import Warning from './question/Warning'
 
 type Props = {
-  question: string
+  question: DottedName
   tempValue?: number | undefined
   setTempValue?: (value: number | undefined) => void
+  showInputsLabel?: React.ReactNode | string
+  className?: string
 }
 
-export default function Question({ question, tempValue, setTempValue }: Props) {
+export default function Question({
+  question,
+  tempValue,
+  setTempValue,
+  showInputsLabel,
+  className,
+}: Props) {
   const {
     type,
     label,
@@ -39,6 +52,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
     isMissing,
     choices,
     assistance,
+    questionsOfMosaicFromParent,
     activeNotifications,
     plancher,
     warning,
@@ -59,80 +73,101 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
     }
   }, [type, numericValue, setTempValue, question])
 
+  const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
+
   return (
     <>
-      <div className="mb-4">
+      <div className={twMerge('mb-6 flex flex-col items-start', className)}>
+        <Category question={question} />
         <Label question={question} label={label} description={description} />
 
         <Suggestions
           question={question}
           setValue={(value) => {
             if (type === 'number') {
-              if (setTempValue) setTempValue(value)
+              if (setTempValue) setTempValue(value as number)
             }
             setValue(value, { foldedStep: question })
           }}
         />
-        {type === 'number' && (
-          <NumberInput
-            unit={unit}
-            value={setTempValue ? tempValue : numericValue}
-            setValue={(value) => {
-              if (setTempValue) {
-                setTempValue(value)
-              }
-              setValue(value, { foldedStep: question })
-              trackEvent(questionTypeAnswer({ question, answer: value }))
-            }}
-            isMissing={isMissing}
-            min={0}
-            data-cypress-id={question}
-            id={DEFAULT_FOCUS_ELEMENT_ID}
-            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
-          />
-        )}
+        {showInputsLabel ? (
+          <Button
+            color="link"
+            size="xs"
+            onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
+            className="mb-2">
+            {isOpen ? <Trans>Fermer</Trans> : showInputsLabel}
+          </Button>
+        ) : null}
+        {isOpen && (
+          <>
+            {type === 'number' && (
+              <NumberInput
+                unit={unit}
+                value={setTempValue ? tempValue : numericValue}
+                setValue={(value) => {
+                  if (setTempValue) {
+                    setTempValue(value)
+                  }
+                  setValue(value, { foldedStep: question })
+                  trackEvent(questionTypeAnswer({ question, answer: value }))
+                }}
+                isMissing={isMissing}
+                min={0}
+                data-cypress-id={question}
+                id={DEFAULT_FOCUS_ELEMENT_ID}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+              />
+            )}
 
-        {type === 'boolean' && (
-          <BooleanInput
-            value={value}
-            setValue={(value) => {
-              {
-                setValue(value, { foldedStep: question })
-                trackEvent(questionChooseAnswer({ question, answer: value }))
-              }
-            }}
-            isMissing={isMissing}
-            data-cypress-id={question}
-            label={label || ''}
-            id={DEFAULT_FOCUS_ELEMENT_ID}
-            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
-          />
-        )}
+            {type === 'boolean' && (
+              <BooleanInput
+                value={value}
+                setValue={(value) => {
+                  {
+                    setValue(value, { foldedStep: question })
+                    trackEvent(
+                      questionChooseAnswer({ question, answer: value })
+                    )
+                  }
+                }}
+                isMissing={isMissing}
+                data-cypress-id={question}
+                label={label || ''}
+                id={DEFAULT_FOCUS_ELEMENT_ID}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+              />
+            )}
 
-        {type === 'choices' && (
-          <ChoicesInput
-            question={question}
-            choices={choices}
-            value={String(value)}
-            setValue={(value) => {
-              {
-                setValue(value, { foldedStep: question })
-                trackEvent(questionChooseAnswer({ question, answer: value }))
-              }
-            }}
-            isMissing={isMissing}
-            data-cypress-id={question}
-            label={label || ''}
-            id={DEFAULT_FOCUS_ELEMENT_ID}
-            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
-          />
-        )}
+            {type === 'choices' && (
+              <ChoicesInput
+                question={question}
+                choices={choices}
+                value={String(value)}
+                setValue={(value) => {
+                  {
+                    setValue(value, { foldedStep: question })
+                    trackEvent(
+                      questionChooseAnswer({ question, answer: value })
+                    )
+                  }
+                }}
+                isMissing={isMissing}
+                data-cypress-id={question}
+                label={label || ''}
+                id={DEFAULT_FOCUS_ELEMENT_ID}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+              />
+            )}
 
-        {type === 'mosaic' && (
-          <Mosaic
-            question={question}
-            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
-          />
+            {type === 'mosaic' && (
+              <Mosaic
+                question={question}
+                questionsOfMosaic={questionsOfMosaicFromParent}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+              />
+            )}
+          </>
         )}
       </div>
 

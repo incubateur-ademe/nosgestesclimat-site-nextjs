@@ -5,12 +5,13 @@ import { trackingDownloadRavijenChart } from '@/constants/tracking/misc'
 import Button from '@/design-system/inputs/Button'
 import { useEngine } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { toPng } from 'html-to-image'
 import CategoryChart from './ravijenChart/CategoryChart'
 
 type Props = {
-  categories: string[]
-  subcategories: { [key: string]: string[] }
+  categories: DottedName[]
+  subcategories: Record<DottedName, DottedName[]>
   squashLimitPercentage?: number
   isInverted?: boolean
   shouldAlwaysDisplayValue?: boolean

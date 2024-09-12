@@ -1,12 +1,17 @@
 'use client'
 
+import { carboneMetric } from '@/constants/metric'
 import getSomme from '@/publicodes-state/helpers/getSomme'
-import { DottedName } from '@/publicodes-state/types'
+import { Metric } from '@/publicodes-state/types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useContext, useMemo } from 'react'
 import { useEngine } from '../..'
 import { SimulationContext } from '../../providers/simulationProvider/context'
 import useCurrentSimulation from '../useCurrentSimulation'
 
+type Props = {
+  metric: Metric
+}
 type ActionObject = {
   dottedName: DottedName
   value: number
@@ -16,14 +21,18 @@ type ActionObject = {
  *
  * Not really used for now but will be essential when we redo the actions page
  */
-export default function useActions() {
+export default function useActions(
+  { metric }: Props = { metric: carboneMetric }
+) {
   const { engine } = useContext(SimulationContext)
 
-  const { getValue } = useEngine()
+  const { getNumericValue } = useEngine({ metric })
 
   const { actionChoices } = useCurrentSimulation()
 
-  const orderedActions = useMemo<string[]>(() => {
+  const actions = useMemo(() => {
+    if (engine === null) return []
+
     const actionsRule = engine.getRule('actions')
     const somme = getSomme(actionsRule.rawNode)
 
@@ -33,16 +42,20 @@ export default function useActions() {
     }
 
     return somme
-      .map((action: string) => ({
+  }, [engine])
+
+  const orderedActions = useMemo(() => {
+    return actions
+      .map((action) => ({
         dottedName: action,
-        value: getValue(action) as number,
+        value: getNumericValue(action),
       }))
       .sort((a: ActionObject, b: ActionObject) => (a.value > b.value ? -1 : 1))
       .map((actionObject: ActionObject) => actionObject.dottedName)
-  }, [engine, getValue])
+  }, [actions, getNumericValue])
 
   const { chosenActions, declinedActions } =
-    Object.keys(actionChoices ?? {})?.reduce(
+    Object.keys(actionChoices ?? {}).reduce(
       (accActions, currentAction) => {
         const actionChoice = actionChoices[currentAction]
 
@@ -68,12 +81,20 @@ export default function useActions() {
       }
     ) || 0
 
+  const totalChosenActionsValue: number = useMemo(
+    () =>
+      chosenActions.reduce(
+        (acc, action) => acc + getNumericValue(action as DottedName),
+        0
+      ),
+    [chosenActions, getNumericValue]
+  )
+
   return {
-    /**
-     * Every relevant actions, ordered by value
-     */
+    actions,
     orderedActions,
     chosenActions,
     declinedActions,
+    totalChosenActionsValue,
   }
 }

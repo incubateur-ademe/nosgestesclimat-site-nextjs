@@ -1,8 +1,9 @@
+import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
-import { useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
-import { safeGetSituation } from '../../helpers/safeGetSituation'
-import { DottedName, Situation } from '../../types'
+import { Situation } from '../../types'
 
 type Props = {
   rules?: any
@@ -14,11 +15,17 @@ type Props = {
  * Very ressource intensive. Use with caution
  */
 export default function useDisposableEngine({ rules, situation }: Props) {
+  const { rules: contextRules } = useContext(SimulationContext)
+
   const engine = useMemo(() => {
-    return new Engine(rules, { allowOrphanRules: true }).setSituation(
-      safeGetSituation({ situation, everyRules: Object.keys(rules) })
-    )
-  }, [rules, situation])
+    return new Engine<DottedName>(rules ?? contextRules, {
+      logger: { warn: () => {}, error: () => {}, log: () => {} },
+      strict: {
+        situation: false,
+        noOrphanRule: false,
+      },
+    }).setSituation(situation)
+  }, [contextRules, rules, situation])
 
   const safeEvaluate = useMemo(
     () =>
@@ -30,16 +37,12 @@ export default function useDisposableEngine({ rules, situation }: Props) {
   const getValue = (dottedName: DottedName) =>
     safeEvaluate(dottedName, engine)?.nodeValue
 
-  const updateSituation = (newSituation: any) => {
-    engine.setSituation(
-      safeGetSituation({
-        situation: newSituation,
-        everyRules: Object.keys(rules),
-      })
-    )
+  const updateSituation = (newSituation: Situation) => {
+    engine.setSituation(newSituation, { keepPreviousSituation: true })
   }
 
   return {
+    engine,
     getValue,
     updateSituation,
   }

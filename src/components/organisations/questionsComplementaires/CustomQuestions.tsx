@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import { OrganisationPoll } from '@/types/organisations'
+import { OrganisationPoll, UpdatePollProps } from '@/types/organisations'
 import CustomQuestion from './customQuestions/CustomQuestion'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
         'customAdditionalQuestions' | 'defaultAdditionalQuestions'
       >
     | undefined
-  onChange: (changes: Record<string, unknown>) => void
+  onChange: (changes: UpdatePollProps) => void
 }
 
 export default function CustomQuestions({ poll, onChange }: Props) {

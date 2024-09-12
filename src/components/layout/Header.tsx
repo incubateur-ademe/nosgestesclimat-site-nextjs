@@ -1,30 +1,19 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
 import HeaderDesktop from './header/HeaderDesktop'
 import HeaderMobile from './header/HeaderMobile'
 
-export default function Header() {
-  const pathname = usePathname()
-
-  const shouldHideMostOfContent =
-    pathname.includes('/simulateur') || pathname.includes('/tutoriel')
-
-  const shouldHideSomeOfContent = pathname.includes('/fin')
-
+type Props = {
+  isSticky?: boolean
+}
+export default function Header({ isSticky = true }: Props) {
   return (
     <>
       {/* Displayed only on mobile (screens < 768px) */}
-      <HeaderMobile
-        shouldHideMostOfContent={shouldHideMostOfContent}
-        shouldHideSomeOfContent={shouldHideSomeOfContent}
-      />
+      <HeaderMobile isSticky={isSticky} />
 
       {/* Displayed only on desktop */}
-      <HeaderDesktop
-        shouldHideMostOfContent={shouldHideMostOfContent}
-        shouldHideSomeOfContent={shouldHideSomeOfContent}
-      />
+      <HeaderDesktop isSticky={isSticky} />
     </>
   )
 }

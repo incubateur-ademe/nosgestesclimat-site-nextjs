@@ -13,21 +13,23 @@ import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
-import { DottedName } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { MouseEvent, useCallback, useMemo } from 'react'
-
-type Props = {
-  question: DottedName
-  tempValue?: number
-  onComplete?: () => void
-}
+import { twMerge } from 'tailwind-merge'
+import SyncIndicator from './navigation/SyncIndicator'
 
 export default function Navigation({
   question,
   tempValue,
   onComplete = () => '',
-}: Props) {
+  isEmbedded,
+}: {
+  question: DottedName
+  tempValue?: number
+  onComplete?: () => void
+  isEmbedded?: boolean
+}) {
   const { t } = useClientTranslation()
 
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
@@ -115,8 +117,18 @@ export default function Navigation({
   }
 
   return (
-    <div className="flex justify-end  gap-4">
-      {!noPrevQuestion ? (
+    <div
+      className={twMerge(
+        'fixed bottom-0 left-0 right-0 z-50 bg-gray-100 py-3',
+        isEmbedded && 'static bg-primary-100 p-0'
+      )}>
+      <SyncIndicator />
+
+      <div
+        className={twMerge(
+          'relative mx-auto flex w-full max-w-6xl justify-between gap-4 px-4 lg:justify-start',
+          isEmbedded && 'justify-start'
+        )}>
         <Button
           size="md"
           onClick={() => {
@@ -128,22 +140,25 @@ export default function Navigation({
 
             handleMoveFocus()
           }}
-          color="text">
+          disabled={noPrevQuestion}
+          color="text"
+          className={twMerge('px-3')}>
           {'← ' + t('Précédent')}
         </Button>
-      ) : null}
-      <Button
-        color={isMissing ? 'secondary' : 'primary'}
-        disabled={isNextDisabled}
-        size="md"
-        data-cypress-id="next-question-button"
-        onClick={handleGoToNextQuestion}>
-        {noNextQuestion
-          ? t('Terminer')
-          : isMissing
-            ? t('Je ne sais pas') + ' →'
-            : t('Suivant') + ' →'}
-      </Button>
+
+        <Button
+          color={isMissing ? 'secondary' : 'primary'}
+          disabled={isNextDisabled}
+          size="md"
+          data-cypress-id="next-question-button"
+          onClick={handleGoToNextQuestion}>
+          {noNextQuestion
+            ? t('Terminer')
+            : isMissing
+              ? t('Passer la question') + ' →'
+              : t('Suivant') + ' →'}
+        </Button>
+      </div>
     </div>
   )
 }

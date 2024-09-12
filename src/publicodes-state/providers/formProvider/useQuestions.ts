@@ -1,26 +1,27 @@
-import { DottedName as NGCDottedName } from '@incubateur-ademe/nosgestesclimat'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
 
+import getSortedQuestionsList from '@/publicodes-state/helpers/getSortedQuestionsList'
 import {
-  DottedName,
+  Entries,
+  MissingVariables,
   NGCEvaluatedNode,
-  NGCRuleNode,
   Situation,
 } from '../../types'
 
 type Props = {
-  root: string
+  root: DottedName
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
-  categories: string[]
-  subcategories: Record<string, string[]>
+  categories: DottedName[]
+  subcategories: Record<DottedName, DottedName[]>
   situation: Situation
-  foldedSteps: string[]
-  everyQuestions: string[]
-  everyMosaicChildrenWithParent: Record<string, string[]>
-  rawMissingVariables: Record<string, number>
+  foldedSteps: DottedName[]
+  everyQuestions: DottedName[]
+  everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
+  rawMissingVariables: MissingVariables
 }
 
 /**
@@ -38,34 +39,41 @@ export default function useQuestions({
   rawMissingVariables,
 }: Props) {
   // We use the DottedName type from nosgestesclimat to make sure the build will break when using rules that are not in the model.
-  const priorityQuestions: NGCDottedName[] = ['alimentation . plats']
+  const priorityQuestions: DottedName[] = ['alimentation . plats']
 
-  const nonPriorityQuestions: NGCDottedName[] = [
+  const nonPriorityQuestions: DottedName[] = [
     'logement . électricité . réseau . consommation',
   ]
 
-  const missingVariables = useMemo<Record<string, number>>(
+  const missingVariables = useMemo(
     () => {
       const tempMissingVariables = Object.fromEntries(
-        Object.entries(safeEvaluate(root)?.missingVariables || {}).filter(
-          (missingVariable) => everyQuestions.includes(missingVariable[0])
+        (
+          Object.entries(
+            safeEvaluate(root)?.missingVariables || {}
+          ) as Entries<MissingVariables>
+        ).filter((missingVariable) =>
+          everyQuestions.includes(missingVariable[0])
         )
-      )
+      ) as MissingVariables
 
       // We take every mosaic parent to add it to the missing variables with the max score of its children
-      Object.entries(everyMosaicChildrenWithParent).forEach(
-        ([mosaicParent, mosaicChildren]) => {
-          const maxMissingVariableScoreInMosaic = Math.max(
-            ...mosaicChildren.map((child) => tempMissingVariables[child])
-          )
-          if (!isNaN(maxMissingVariableScoreInMosaic)) {
-            tempMissingVariables[mosaicParent] = maxMissingVariableScoreInMosaic
-            mosaicChildren.forEach((mosaicChild) => {
-              delete tempMissingVariables[mosaicChild]
-            })
-          }
+      ;(
+        Object.entries(everyMosaicChildrenWithParent) as [
+          DottedName,
+          DottedName[],
+        ][]
+      ).forEach(([mosaicParent, mosaicChildren]) => {
+        const maxMissingVariableScoreInMosaic = Math.max(
+          ...mosaicChildren.map((child) => tempMissingVariables[child])
+        )
+        if (!isNaN(maxMissingVariableScoreInMosaic)) {
+          tempMissingVariables[mosaicParent] = maxMissingVariableScoreInMosaic
+          mosaicChildren.forEach((mosaicChild) => {
+            delete tempMissingVariables[mosaicChild]
+          })
         }
-      )
+      })
 
       // We artificially set the missing variables of the whiteList to a high value
       priorityQuestions.forEach((dottedName) => {
@@ -90,84 +98,42 @@ export default function useQuestions({
     ]
   )
 
-  const remainingQuestions = useMemo<string[]>(
-    () =>
-      // We take every questions
-      everyQuestions
-        // We remove all that are in mosaics,
-        .filter(
-          (question) =>
-            !Object.values(everyMosaicChildrenWithParent)
-              .flat()
-              .find((mosaic) => mosaic === question)
+  const remainingQuestions = useMemo(() => {
+    // We take every questions
+    const questionsToSort = everyQuestions
+      // We remove all that are in mosaics,
+      .filter(
+        (question) =>
+          !Object.values(everyMosaicChildrenWithParent)
+            .flat()
+            .find((mosaic) => mosaic === question)
+      )
+      // all that are in folded steps
+      .filter((question) => foldedSteps.indexOf(question) === -1)
+      // and all that are not missing
+      .filter((question) =>
+        Object.keys(missingVariables).find((missingVariable) =>
+          missingVariable.includes(question)
         )
-        // all that are in folded steps
-        .filter((question) => foldedSteps.indexOf(question) === -1)
-        // and all that are not missing
-        .filter((question) =>
-          Object.keys(missingVariables).find((missingVariable) =>
-            missingVariable.includes(question)
-          )
-        )
-        .sort((a, b) => {
-          const aSplittedName = a.split(' . ')
-          const bSplittedName = b.split(' . ')
+      )
 
-          // We first sort by category
-          if (
-            categories.indexOf(aSplittedName[0]) >
-            categories.indexOf(bSplittedName[0])
-          ) {
-            return 1
-          }
-          if (
-            categories.indexOf(aSplittedName[0]) <
-            categories.indexOf(bSplittedName[0])
-          ) {
-            return -1
-          }
-
-          // then by subcategory
-          const categoryOfBothQuestions = aSplittedName[0]
-          const aCategoryAndSubcategory =
-            aSplittedName[0] + ' . ' + aSplittedName[1]
-          const bCategoryAndSubcategory =
-            bSplittedName[0] + ' . ' + bSplittedName[1]
-          if (
-            subcategories[categoryOfBothQuestions].indexOf(
-              aCategoryAndSubcategory
-            ) >
-            subcategories[categoryOfBothQuestions].indexOf(
-              bCategoryAndSubcategory
-            )
-          ) {
-            return 1
-          }
-          if (
-            subcategories[categoryOfBothQuestions].indexOf(
-              aCategoryAndSubcategory
-            ) <
-            subcategories[categoryOfBothQuestions].indexOf(
-              bCategoryAndSubcategory
-            )
-          ) {
-            return -1
-          }
-
-          // then by missing variables score
-          return missingVariables[b] - missingVariables[a]
-        }),
-    [
-      everyQuestions,
-      everyMosaicChildrenWithParent,
-      foldedSteps,
-      missingVariables,
+    // then we sort them by category, subcategory and missing variables
+    return getSortedQuestionsList({
+      questions: questionsToSort,
       categories,
       subcategories,
-    ]
-  )
+      missingVariables,
+    })
+  }, [
+    everyQuestions,
+    everyMosaicChildrenWithParent,
+    foldedSteps,
+    missingVariables,
+    categories,
+    subcategories,
+  ])
 
-  const relevantAnsweredQuestions = useMemo<string[]>(
+  const relevantAnsweredQuestions = useMemo(
     () =>
       foldedSteps.filter((foldedStep) => {
         // checks that there is still a question associated to the folded step
@@ -180,7 +146,6 @@ export default function useQuestions({
 
         const isInMissingVariables =
           Object.keys(rawMissingVariables).includes(foldedStep)
-
         // even if the question is disabled, we want to display it if it's a missing variable
         // (this is the case for boolean question whose value is a condition for the parent).
         return isInMissingVariables || isApplicable
@@ -190,7 +155,7 @@ export default function useQuestions({
     [situation, foldedSteps, safeEvaluate, everyQuestions, rawMissingVariables]
   )
 
-  const tempRelevantQuestions = useMemo<string[]>(
+  const tempRelevantQuestions = useMemo(
     () => [
       /**
        * We add every answered questions to display and every not answered
@@ -203,7 +168,8 @@ export default function useQuestions({
         getIsMissing({
           dottedName,
           situation,
-          questionsOfMosaic: everyMosaicChildrenWithParent[dottedName] || [],
+          questionsOfMosaicFromParent:
+            everyMosaicChildrenWithParent[dottedName] || [],
         })
       ),
     ],
@@ -222,24 +188,28 @@ export default function useQuestions({
    *
    * (yes, this is shit)
    */
-  const relevantQuestions = useMemo<string[]>(
-    () =>
-      tempRelevantQuestions.filter(
-        (question, index) => tempRelevantQuestions.indexOf(question) === index
-      ),
-    [tempRelevantQuestions]
-  )
+  const relevantQuestions = useMemo(() => {
+    const questions = tempRelevantQuestions.filter(
+      (question, index) => tempRelevantQuestions.indexOf(question) === index
+    )
+    return getSortedQuestionsList({
+      questions: questions,
+      categories,
+      subcategories,
+      missingVariables,
+    })
+  }, [categories, missingVariables, subcategories, tempRelevantQuestions])
 
-  const questionsByCategories = useMemo<Record<string, string[]>>(
+  const questionsByCategories = useMemo(
     () =>
       categories.reduce(
-        (accumulator: Record<string, string[]>, currentValue: string) => ({
+        (accumulator, currentValue) => ({
           ...accumulator,
           [currentValue]: relevantQuestions.filter((question) =>
             question.includes(currentValue)
           ),
         }),
-        {}
+        {} as Record<DottedName, DottedName[]>
       ),
     [relevantQuestions, categories]
   )

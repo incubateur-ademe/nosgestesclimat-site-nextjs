@@ -1,8 +1,8 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-import { DottedName } from '@/publicodes-state/types'
 import { NorthStarType, NorthStarValue } from '@/types/northstar'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 // Figma comment #57
 export const endClickPoll = ['trackEvent', 'Fin', 'Click Poll']
@@ -79,4 +79,10 @@ export const endClickNorthstar = ({ type, value }: NorthstarProps) => [
   'Click Northstar',
   `Click Northstar ${type}`,
   String(value),
+]
+
+export const endClickDomesticWater = [
+  'trackEvent',
+  'Fin',
+  'Click Eau domestique',
 ]

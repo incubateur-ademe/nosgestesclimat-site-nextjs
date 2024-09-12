@@ -8,13 +8,11 @@ import { useIframe } from '@/hooks/useIframe'
 import i18nConfig from '@/i18nConfig'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
 
 export default function LanguageSwitchButton() {
   const { t } = useClientTranslation()
-
-  const router = useRouter()
 
   const currentPathname = usePathname()
 
@@ -22,33 +20,43 @@ export default function LanguageSwitchButton() {
 
   const currentLocale = useCurrentLocale(i18nConfig)
 
+  function updateCookie(locale: string) {
+    const days = 30
+    const date = new Date()
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+    const expires = '; expires=' + date.toUTCString()
+    document.cookie = `NEXT_LOCALE=${locale};expires=${expires}; path=/; SameSite=None; Secure`
+  }
+
+  useEffect(() => {
+    // If the current locale is different than the NEXT_LOCALE cookie, we update it
+    if (
+      currentLocale &&
+      document.cookie.indexOf(`NEXT_LOCALE=${currentLocale}`) === -1
+    ) {
+      updateCookie(currentLocale)
+    }
+  }, [currentLocale, currentPathname])
+
   const handleChange = useCallback(
     (newLocale: string) => {
       trackEvent(footerClickLanguage(newLocale))
       // set cookie for next-i18n-router
-      const days = 30
-      const date = new Date()
-      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
-      const expires = '; expires=' + date.toUTCString()
-      document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires}; path=/; SameSite=None; Secure`
+      updateCookie(newLocale)
 
       if (currentLocale === i18nConfig.defaultLocale) {
-        router.push(
+        window.location.href =
           '/' +
-            newLocale +
-            currentPathname +
-            (searchParams.length > 0 ? `?${searchParams}` : '')
-        )
+          newLocale +
+          currentPathname +
+          (searchParams.length > 0 ? `?${searchParams}` : '')
       } else {
-        router.push(
+        window.location.href =
           currentPathname.replace(`/${currentLocale}`, `/${newLocale}`) +
-            (searchParams.length > 0 ? `?${searchParams}` : '')
-        )
+          (searchParams.length > 0 ? `?${searchParams}` : '')
       }
-
-      router.refresh()
     },
-    [currentLocale, currentPathname, router, searchParams]
+    [currentLocale, currentPathname, searchParams]
   )
 
   // If the lang is fixed by the iframe and is not the same as the current locale, we change it here
@@ -60,7 +68,7 @@ export default function LanguageSwitchButton() {
   }, [iframeLang, currentLocale, handleChange])
 
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-wrap gap-2">
       <Button
         lang="fr"
         color={currentLocale === 'fr' ? 'primary' : 'secondary'}

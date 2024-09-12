@@ -4,12 +4,15 @@ import Trans from '@/components/translation/Trans'
 import { homeClickOrganisations } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import { useState } from 'react'
 import Background from './organisations/Background'
 
 export default function Organisations() {
   const [isHover, setIsHover] = useState(false)
+
+  const { t } = useClientTranslation()
 
   return (
     <div className="relative mb-16 py-12 md:py-24">
@@ -48,10 +51,10 @@ export default function Organisations() {
         <div className="relative hidden flex-1 md:block">
           <Image
             className="absolute"
-            src="/images/organisations/crowd.png"
+            src="/images/illustrations/people-with-paperboard.svg"
             width="603"
             height="332"
-            alt=""
+            alt={t('Groupe de personnes discutant devant un paperboard.')}
           />
         </div>
       </div>

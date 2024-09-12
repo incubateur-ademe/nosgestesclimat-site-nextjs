@@ -1,79 +1,89 @@
 import { getUserCategoryFootprintsSortedByDifference } from '@/helpers/groups/getUserCategoryFootprintsSortedByDifference'
-import { Participant, Points, Results, ValueObject } from '@/types/groups'
+import {
+  CategoriesAndSubcategoriesFootprintsType,
+  Participant,
+  PointsFortsFaiblesType,
+} from '@/types/groups'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useGetGroupAndUserFootprints } from './useGetGroupAndUserFootprints'
 
 type Props = {
   groupMembers: Participant[]
   userId: string
 }
+
+type ResultsType = {
+  currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+  groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+  pointsForts: PointsFortsFaiblesType[]
+  pointsFaibles: PointsFortsFaiblesType[]
+}
+
 export const useGetGroupStats = ({ groupMembers, userId }: Props) => {
   const {
-    groupFootprintByCategoriesAndSubcategories,
-    userFootprintByCategoriesAndSubcategories,
+    groupCategoriesAndSubcategoriesFootprints,
+    currentUserCategoriesAndSubcategoriesFootprints,
   } = useGetGroupAndUserFootprints({
     groupMembers,
     userId,
   })
 
-  const results = {
-    userFootprintByCategoriesAndSubcategories: {} as Record<
-      string,
-      ValueObject
-    >,
-    groupFootprintByCategoriesAndSubcategories: {} as Record<
-      string,
-      ValueObject
-    >,
-    pointsForts: {} as Points[],
-    pointsFaibles: {} as Points[],
-  }
-
-  results.groupFootprintByCategoriesAndSubcategories = {
-    ...groupFootprintByCategoriesAndSubcategories,
-  }
-  results.userFootprintByCategoriesAndSubcategories = {
-    ...userFootprintByCategoriesAndSubcategories,
+  const results: ResultsType = {
+    currentUserCategoriesAndSubcategoriesFootprints: {
+      ...currentUserCategoriesAndSubcategoriesFootprints,
+    },
+    groupCategoriesAndSubcategoriesFootprints: {
+      ...groupCategoriesAndSubcategoriesFootprints,
+    },
+    pointsForts: [],
+    pointsFaibles: [],
   }
 
   // Calculate the mean for the group for each category
-  Object.keys(groupFootprintByCategoriesAndSubcategories).forEach((key) => {
-    // Calculate mean for the group for each category
-    results.groupFootprintByCategoriesAndSubcategories[key].mean =
-      results.groupFootprintByCategoriesAndSubcategories[key].value /
-      groupMembers.length
-  })
+  Object.keys(results.groupCategoriesAndSubcategoriesFootprints).forEach(
+    (key) => {
+      const typedKey = key as DottedName
+
+      // Calculate mean for the group for each category
+      results.groupCategoriesAndSubcategoriesFootprints[typedKey].mean =
+        results.groupCategoriesAndSubcategoriesFootprints[typedKey].value /
+        groupMembers.length
+    }
+  )
 
   // Calculate the current user variation between its value and the group mean for each category
   // and subcategory
-  Object.keys(userFootprintByCategoriesAndSubcategories).forEach((key) => {
-    results.userFootprintByCategoriesAndSubcategories[key].difference =
-      getDifferenceInPercent({
-        value: results.userFootprintByCategoriesAndSubcategories[key].value,
+  Object.keys(results.currentUserCategoriesAndSubcategoriesFootprints).forEach(
+    (key) => {
+      const typedKey = key as DottedName
+
+      results.currentUserCategoriesAndSubcategoriesFootprints[
+        typedKey
+      ].difference = getDifference({
+        value:
+          results.currentUserCategoriesAndSubcategoriesFootprints[typedKey]
+            .value,
         mean:
-          results.groupFootprintByCategoriesAndSubcategories[key]?.mean || 0,
+          results.groupCategoriesAndSubcategoriesFootprints[typedKey]?.mean ??
+          0,
       })
-  })
+    }
+  )
 
   const {
     positiveDifferenceCategoriesSorted,
     negativeDifferenceCategoriesSorted,
   } = getUserCategoryFootprintsSortedByDifference({
-    userFootprintByCategoriesAndSubcategories:
-      results.userFootprintByCategoriesAndSubcategories,
+    currentUserCategoriesAndSubcategoriesFootprints:
+      results.currentUserCategoriesAndSubcategoriesFootprints,
   })
 
   results.pointsForts = positiveDifferenceCategoriesSorted.slice(0, 2)
   results.pointsFaibles = negativeDifferenceCategoriesSorted.slice(0, 3)
 
-  return results as Results
+  return results
 }
 
-const getDifferenceInPercent = ({
-  value,
-  mean,
-}: {
-  value: number
-  mean: number
-}) => {
-  return ((value - mean) / mean) * 100
+const getDifference = ({ value, mean }: { value: number; mean: number }) => {
+  return value - mean
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import { carboneMetric } from '@/constants/metric'
 import Button, { ButtonProps } from '@/design-system/inputs/Button'
 import { createXLSXFileAndDownload } from '@/helpers/export/createXLSXFileAndDownload'
 import { PollData, SimulationRecap } from '@/types/organisations'
@@ -24,6 +25,8 @@ export default function ExportDataButton({
 }: ButtonProps & Props) {
   const [isLoading, setIsLoading] = useState(false)
 
+  if (simulationRecaps?.length < 3) return null
+
   function handleClick() {
     if (onClick) {
       onClick()
@@ -32,23 +35,43 @@ export default function ExportDataButton({
     setIsLoading(true)
 
     createXLSXFileAndDownload({
-      data: simulationRecaps.map((simulation) => {
+      data: simulationRecaps.map((simulationRecap) => {
+        const simulationRecapToParse = { ...simulationRecap }
+
         const data: Record<string, unknown> = {
-          date: dayjs(simulation.date).format('DD/MM/YYYY'),
-          total: Math.round(simulation.bilan),
-          transport: Math.round(simulation.categories.transport),
-          alimentation: Math.round(simulation.categories.alimentation),
-          logement: Math.round(simulation.categories.logement),
-          divers: Math.round(simulation.categories.divers),
+          date: dayjs(simulationRecapToParse.date).format('DD/MM/YYYY'),
+          total: Math.round(
+            simulationRecapToParse.computedResults[carboneMetric].bilan
+          ),
+          transport: Math.round(
+            simulationRecapToParse.computedResults[carboneMetric].categories
+              .transport
+          ),
+          alimentation: Math.round(
+            simulationRecapToParse.computedResults[carboneMetric].categories
+              .alimentation
+          ),
+          logement: Math.round(
+            simulationRecapToParse.computedResults[carboneMetric].categories
+              .logement
+          ),
+          divers: Math.round(
+            simulationRecapToParse.computedResults[carboneMetric].categories
+              .divers
+          ),
           'services sociétaux': Math.round(
-            simulation.categories['services sociétaux']
+            simulationRecapToParse.computedResults[carboneMetric].categories[
+              'services sociétaux'
+            ]
           ),
         }
 
         if (poll?.customAdditionalQuestions) {
           poll.customAdditionalQuestions.forEach(({ _id, question }) => {
             data[question as string] =
-              simulation.customAdditionalQuestionsAnswers?.[_id ?? ''] ?? ''
+              simulationRecapToParse.customAdditionalQuestionsAnswers?.[
+                _id ?? ''
+              ] ?? ''
           })
         }
 

@@ -19,7 +19,9 @@ import {
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
+import { useLocale } from '@/hooks/useLocale'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 import Link from '../Link'
 import Logo from '../misc/Logo'
@@ -27,19 +29,21 @@ import LanguageSwitchButton from '../translation/LanguageSwitchButton'
 import Trans from '../translation/Trans'
 
 export default function Footer({ className = '' }) {
+  const pathname = usePathname()
+  const locale = useLocale()
+
+  const isHomePage = pathname === '/' || pathname === `/${locale}`
   return (
     <footer
       className={twMerge(
         'relative flex flex-col items-center gap-4 bg-gray-100 p-4 !pb-32 sm:p-8 md:mb-0',
-        className
+        className,
+        isHomePage ? 'bg-white' : ''
       )}>
       <div className="flex w-full items-start gap-12 md:max-w-5xl">
-        <Logo
-          className="hidden scale-75 lg:block"
-          onClick={() => trackEvent(footerClickLogo)}
-        />
+        <Logo onClick={() => trackEvent(footerClickLogo)} />
 
-        <div className="w-full">
+        <div className="flex-1">
           <div className="flex flex-col flex-wrap justify-start gap-x-5 gap-y-2 pt-4 sm:flex-row md:items-center">
             <InlineLink
               href="/a-propos"
@@ -120,11 +124,11 @@ export default function Footer({ className = '' }) {
             </InlineLink>
 
             <InlineLink
-              href="/ambassadeurs"
+              href="/nos-relais"
               onClick={() => trackEvent(footerClickAmbassadeurs)}
               className="text-default no-underline hover:underline">
               <strong>
-                <Trans>Ambassadeurs</Trans>
+                <Trans>Nos relais</Trans>
               </strong>
             </InlineLink>
 
@@ -153,13 +157,31 @@ export default function Footer({ className = '' }) {
               </div>
 
               <div className="mt-4 text-xs">
-                ▲&nbsp;<Trans>Propulsé par Vercel</Trans>
-                <span className="hidden sm:inline"> | </span>
-                <br className="md:hidden" />
                 <InlineLink
                   href="/accessibilite"
                   className="text-default no-underline hover:underline">
                   <Trans>Accessibilité : partiellement conforme</Trans>
+                </InlineLink>
+                <span className="hidden sm:inline"> | </span>
+                <br className="md:hidden" />
+                <InlineLink
+                  href="/mentions-legales"
+                  className="text-default no-underline hover:underline">
+                  <Trans>Mentions légales</Trans>
+                </InlineLink>
+                <span className="hidden sm:inline"> | </span>
+                <br className="md:hidden" />
+                <InlineLink
+                  href="/politique-de-confidentialite"
+                  className="text-default no-underline hover:underline">
+                  <Trans>Politique de confidentialité</Trans>
+                </InlineLink>
+                <span className="hidden sm:inline"> | </span>
+                <br className="md:hidden" />
+                <InlineLink
+                  href="/politique-des-cookies"
+                  className="text-default no-underline hover:underline">
+                  <Trans>Politique des cookies</Trans>
                 </InlineLink>
               </div>
             </div>

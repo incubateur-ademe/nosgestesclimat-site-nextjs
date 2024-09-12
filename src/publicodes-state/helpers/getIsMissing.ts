@@ -1,21 +1,22 @@
-import { DottedName, Situation } from '../types'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { Situation } from '../types'
 
 type Props = {
   dottedName: DottedName
-  questionsOfMosaic: string[]
   situation: Situation
+  questionsOfMosaicFromParent?: DottedName[]
 }
 
 export default function getIsMissing({
   dottedName,
   situation,
-  questionsOfMosaic,
+  questionsOfMosaicFromParent = [],
 }: Props): boolean {
   if (situation[dottedName] || situation[dottedName] === 0) {
     return false
   }
   if (
-    questionsOfMosaic.find(
+    questionsOfMosaicFromParent.find(
       (question) => situation[question] || situation[question] === 0
     )
   ) {

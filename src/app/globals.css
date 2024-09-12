@@ -2,6 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+}
+
 @layer base {
   input[type='number']::-webkit-outer-spin-button,
   input[type='number']::-webkit-inner-spin-button,
@@ -105,7 +147,8 @@ body {
 }
 
 a {
-  @apply inline-block text-primary-700 underline transition-colors hover:text-primary-800;
+  @apply break-words text-primary-700 underline transition-colors hover:text-primary-800;
+  word-break: break-word;
 }
 
 img {
@@ -439,6 +482,24 @@ html[data-useragent*='Trident'] #js {
 
 .markdown blockquote {
   @apply mb-6;
+  @apply p-2;
+  @apply sm:p-4;
+}
+
+.markdown blockquote p {
+  @apply mb-0;
+}
+
+.markdown blockquote code {
+  @apply w-auto;
+  @apply max-w-10;
+  @apply lg:max-w-none;
+  @apply mb-0;
+  @apply px-2;
+  @apply py-1;
+  @apply rounded-md;
+  align-items: flex-end;
+  @apply ml-1;
 }
 
 .markdown code {
@@ -491,13 +552,93 @@ html[data-useragent*='Trident'] #js {
 .rainbow-border {
   background:
     linear-gradient(#fff 0 0) padding-box,
-    /*this is your grey background*/
-      linear-gradient(145deg, #a2d2fd, #cef1d5, #ffefbc, #ffdbbc, #fd69d0)
+    linear-gradient(145deg, #a2d2fd, #cef1d5, #ffefbc, #ffdbbc, #fd69d0)
       border-box;
   border: 6px solid transparent;
 }
 
 .notification blockquote {
-  background-color: #fff;
+  background-color: inherit;
+  color: inherit;
   padding: 0;
+  margin: 0;
+}
+
+.notification blockquote > p {
+  @apply mb-2;
+}
+
+.island {
+  animation: bounce 5s infinite;
+}
+
+.island:nth-child(1) {
+  animation-delay: -0.5s;
+}
+
+.island:nth-child(2) {
+  animation-delay: -1s;
+}
+
+.island:nth-child(3) {
+  animation-delay: -1.5s;
+}
+
+.injected-svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/*
+  Toast styles
+*/
+:root {
+  --toastify-color-success: #15803d !important;
+  --toastify-icon-color-success: #15803d !important;
+  --toastify-text-color-success: #15803d !important;
+  --toastify-color-error: rgb(185 28 28) !important;
+  --toastify-icon-color-error: rgb(185 28 28) !important;
+  --toastify-text-color-error: rgb(185 28 28) !important;
+  --toastify-font-family: 'Marianne', sans-serif !important;
+  --toastify-text-color-light: #1a1a1a !important;
+  --toastify-toast-bd-radius: 0.5rem !important;
+}
+
+.Toastify__toast--error {
+  @apply bg-red-50 text-red-700 !important;
+}
+.Toastify__close-button--light {
+  opacity: 1 !important;
+  @apply text-gray-700 !important;
+}
+.Toastify__progress-bar {
+  background: linear-gradient(
+    270deg,
+    #a2d2fd,
+    #cef1d5,
+    #ffefbc,
+    #ffdbbc,
+    #fd69d0,
+    #a2d2fd,
+    #cef1d5,
+    #ffefbc,
+    #ffdbbc,
+    #fd69d0,
+    #a2d2fd
+  ) !important;
+  background-size: 200% 200% !important;
+}
+
+.Toastify__toast-icon {
+  display: none !important;
+}
+
+.Toastify__progress-bar--bg {
+  @apply bg-gray-100 !important;
+  opacity: 1 !important;
+}
+
+.animation-once {
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }

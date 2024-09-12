@@ -1,24 +1,25 @@
 'use client'
 
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { createContext } from 'react'
 
 type FormContextType = {
-  relevantQuestions: string[]
-  questionsByCategories: Record<string, string[]>
-  remainingQuestions: string[]
-  relevantAnsweredQuestions: string[]
-  remainingQuestionsByCategories: Record<string, string[]>
-  currentQuestion: string | null
-  currentCategory: string | null
-  setCurrentQuestion: (question: string | null) => void
-  setCurrentCategory: (category: string | null) => void
+  questionsByCategories: Record<DottedName, DottedName[]>
+  relevantQuestions: DottedName[]
+  remainingQuestions: DottedName[]
+  relevantAnsweredQuestions: DottedName[]
+  remainingQuestionsByCategories: Record<DottedName, DottedName[]>
+  currentQuestion: DottedName | null
+  currentCategory: DottedName | null
+  setCurrentQuestion: (question: DottedName | null) => void
+  setCurrentCategory: (category: DottedName | null) => void
 }
 export default createContext<FormContextType>({
+  questionsByCategories: {} as Record<DottedName, DottedName[]>,
   relevantQuestions: [],
-  questionsByCategories: {},
   remainingQuestions: [],
   relevantAnsweredQuestions: [],
-  remainingQuestionsByCategories: {},
+  remainingQuestionsByCategories: {} as Record<DottedName, DottedName[]>,
   currentQuestion: null,
   currentCategory: null,
   setCurrentQuestion: () => '',

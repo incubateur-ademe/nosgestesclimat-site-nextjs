@@ -2,8 +2,8 @@
 
 import { PropsWithChildren } from 'react'
 
-import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import { DottedName } from '../../types'
+import Loader from '@/design-system/layout/Loader'
+import { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { SimulationContext } from './context'
 import { useCategories } from './useCategories'
 import { useEngine } from './useEngine'
@@ -25,6 +25,7 @@ export default function SimulationProvider({
   const { engine, pristineEngine, safeEvaluate, safeGetRule } = useEngine(rules)
 
   const {
+    parsedRules,
     everyRules,
     everyInactiveRules,
     everyQuestions,
@@ -41,16 +42,23 @@ export default function SimulationProvider({
     safeGetRule,
   })
 
-  const { isInitialized, addToEngineSituation } = useEngineSituation({
+  const { isEngineInitialized, addToEngineSituation } = useEngineSituation({
     engine,
-    everyRules,
   })
 
-  useSetComputedResults({
+  const { isInitialized } = useSetComputedResults({
     categories,
+    isEngineInitialized,
     safeEvaluate,
-    isInitialized,
   })
+
+  if (!isInitialized) {
+    return (
+      <div className="flex h-screen flex-1 items-center justify-center">
+        <Loader color="dark" />
+      </div>
+    )
+  }
 
   return (
     <SimulationContext.Provider
@@ -60,6 +68,7 @@ export default function SimulationProvider({
         pristineEngine,
         safeEvaluate,
         safeGetRule,
+        parsedRules,
         everyRules,
         everyInactiveRules,
         everyQuestions,
@@ -70,6 +79,7 @@ export default function SimulationProvider({
         categories,
         subcategories,
         addToEngineSituation,
+        isInitialized,
       }}>
       {isInitialized || shouldAlwaysDisplayChildren ? children : null}
     </SimulationContext.Provider>

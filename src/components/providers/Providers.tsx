@@ -8,6 +8,7 @@ import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
 import { PropsWithChildren } from 'react'
 import Error500 from '../layout/500'
+import SimulationSyncProvider from './providers/SimulationSyncProvider'
 
 type Props = {
   supportedRegions: SupportedRegions
@@ -31,13 +32,14 @@ export default function Providers({
   // or the landing page for organisations
   const shouldAlwaysDisplayChildren =
     NO_MODEL_PATHNAME_EXCEPTIONS.includes(pathname)
+
   if (shouldAlwaysDisplayChildren && isLoading) {
     return children
   }
 
   if (isLoading) {
     return (
-      <div className="flex flex-1 items-center justify-center">
+      <div className="flex h-screen flex-1 items-center justify-center">
         <Loader color="dark" />
       </div>
     )
@@ -53,7 +55,7 @@ export default function Providers({
         rules={rules}
         shouldAlwaysDisplayChildren={shouldAlwaysDisplayChildren}>
         <LocalisationBanner supportedRegions={supportedRegions} />
-        {children}
+        <SimulationSyncProvider>{children}</SimulationSyncProvider>
       </SimulationProvider>
     </div>
   )

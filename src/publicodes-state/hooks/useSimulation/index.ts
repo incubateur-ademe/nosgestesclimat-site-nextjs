@@ -15,6 +15,8 @@ export default function useSimulation() {
     pristineEngine,
     safeEvaluate,
     safeGetRule,
+    isInitialized,
+    addToEngineSituation,
   } = useContext(SimulationContext)
 
   return {
@@ -27,5 +29,7 @@ export default function useSimulation() {
     pristineEngine,
     safeEvaluate,
     safeGetRule,
+    isInitialized,
+    addToEngineSituation,
   }
 }

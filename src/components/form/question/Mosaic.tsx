@@ -1,15 +1,18 @@
-import { useRule } from '@/publicodes-state'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import MosaicQuestion from './mosaic/MosaicQuestion'
 
 type Props = {
-  question: string
+  question: DottedName
+  questionsOfMosaic: DottedName[]
 }
 
-export default function Mosaic({ question, ...props }: Props) {
-  const { questionsOfMosaic } = useRule(question)
-
+export default function Mosaic({
+  question,
+  questionsOfMosaic,
+  ...props
+}: Props) {
   return (
-    <fieldset className="grid gap-4 md:grid-cols-2">
+    <fieldset className="grid gap-2 md:grid-cols-2 md:gap-4">
       {questionsOfMosaic
         ? questionsOfMosaic.map((questionOfMosaic, index) => (
             <MosaicQuestion

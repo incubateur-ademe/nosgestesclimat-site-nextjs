@@ -1,8 +1,15 @@
+import { carboneMetric } from '@/constants/metric'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
+import {
+  DottedName,
+  NGCRuleNode,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
+import { captureException } from '@sentry/react'
 import Engine, { PublicodesExpression } from 'publicodes'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
-import { DottedName, NGCEvaluatedNode, NGCRuleNode, Rules } from '../../types'
+import { Metric } from '../../types'
 
 /**
  * Initiate the engine based on the rules we pass
@@ -11,19 +18,33 @@ import { DottedName, NGCEvaluatedNode, NGCRuleNode, Rules } from '../../types'
  *
  * And a pristine engine wich can be used to assess rules without any situation (for exemple, we can reliably sort the subcategories this way)
  */
-export function useEngine(rules: Rules) {
+export function useEngine(rules: NGCRules) {
   if (!rules) throw new Error('Missing rules')
 
-  const engine = useMemo<Engine>(() => {
+  const engine = useMemo(() => {
     const nbRules = Object.keys(rules).length
     console.time(`⚙️ Parsing ${nbRules}`)
-    const engine = new Engine(rules, {
+    const engine = new Engine<DottedName>(rules, {
       logger: {
-        log: console.log,
-        warn: () => null,
-        error: console.error,
+        log(msg: string) {
+          console.log(`[publicodes:log] ${msg}`)
+        },
+        warn() {
+          return null
+        },
+        error(msg: string) {
+          console.error(`[publicodes:error] ${msg}`)
+
+          // If it's a situation error, we throw it to sentry
+          if (msg.match(/[ Erreur lors de la mise à jour de la situation ]/)) {
+            captureException(new Error(msg))
+          }
+        },
       },
-      allowOrphanRules: true,
+      strict: {
+        situation: false,
+        noOrphanRule: false,
+      },
     })
     console.timeEnd(`⚙️ Parsing ${nbRules}`)
     return engine
@@ -31,14 +52,29 @@ export function useEngine(rules: Rules) {
 
   const pristineEngine = useMemo(() => engine.shallowCopy(), [engine])
 
-  const safeEvaluate = useMemo<
-    (expr: PublicodesExpression) => NGCEvaluatedNode | null
-  >(() => (expr) => safeEvaluateHelper(expr, engine), [engine])
+  const safeEvaluate = useCallback(
+    (expr: PublicodesExpression, metric: Metric = carboneMetric) => {
+      const exprWithContext = {
+        valeur: expr,
+        contexte: {
+          métrique: `'${metric}'`,
+        },
+      }
+
+      return safeEvaluateHelper(exprWithContext, engine)
+    },
+    [engine]
+  )
 
   const safeGetRule = useMemo<(ruleName: DottedName) => NGCRuleNode | null>(
     () => (ruleName: DottedName) => safeGetRuleHelper(ruleName, engine),
     [engine]
   )
 
-  return { engine, pristineEngine, safeEvaluate, safeGetRule }
+  return {
+    engine,
+    pristineEngine,
+    safeEvaluate,
+    safeGetRule,
+  }
 }

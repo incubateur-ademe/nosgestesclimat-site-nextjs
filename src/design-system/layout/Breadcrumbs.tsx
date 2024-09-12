@@ -4,20 +4,23 @@ import Link from '@/components/Link'
 import { breadcrumbClickLink } from '@/constants/tracking/layout'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { Fragment } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-type Props = {
+export default function Breadcrumbs({
+  items,
+  className,
+}: {
   items: {
     href: string
     label: string | JSX.Element
     isActive?: boolean
     isDisabled?: boolean
   }[]
-}
-
-export default function Breadcrumbs({ items }: Props) {
+  className?: string
+}) {
   return (
-    <section className="h-[75px] w-full bg-gray-100">
-      <nav className="mx-auto flex h-full max-w-5xl items-center gap-4 overflow-x-scroll px-6 lg:px-0">
+    <section className={twMerge('h-[75px] w-full', className)}>
+      <nav className="mx-auto flex h-full w-full items-center gap-4 overflow-x-scroll">
         {items.map(({ href, label, isActive, isDisabled }, index) => (
           <Fragment key={`breadcrumb-item-${index}`}>
             <Link

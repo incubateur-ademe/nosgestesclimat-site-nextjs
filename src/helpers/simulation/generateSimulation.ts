@@ -1,5 +1,11 @@
+import { metrics } from '@/constants/metric'
 import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
-import { MigrationType, Simulation } from '@/publicodes-state/types'
+import {
+  ComputedResults,
+  ComputedResultsFootprint,
+  Simulation,
+} from '@/publicodes-state/types'
+import { Migration } from '@publicodes/tools/migration'
 import { captureException } from '@sentry/react'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -10,7 +16,13 @@ export function generateSimulation({
   foldedSteps = [],
   actionChoices = {},
   persona,
-  computedResults,
+  computedResults = metrics.reduce((acc, metric) => {
+    acc[metric] = {
+      bilan: 0,
+      categories: {},
+    } as ComputedResultsFootprint
+    return acc
+  }, {} as ComputedResults),
   progression = 0,
   defaultAdditionalQuestionsAnswers,
   polls,
@@ -18,7 +30,7 @@ export function generateSimulation({
   savedViaEmail,
   migrationInstructions,
 }: Partial<Simulation> & {
-  migrationInstructions?: MigrationType
+  migrationInstructions?: Migration
 } = {}): Simulation {
   let simulation = {
     id,
@@ -35,16 +47,11 @@ export function generateSimulation({
     savedViaEmail,
   } as Simulation
 
-  if (migrationInstructions) {
-    try {
-      simulation = migrateSimulation({
-        simulation,
-        migrationInstructions,
-      })
-    } catch (error) {
-      console.warn('Error trying to migrate LocalStorage:', error)
-      captureException(error)
-    }
+  try {
+    simulation = migrateSimulation(simulation, migrationInstructions)
+  } catch (error) {
+    console.warn('Error trying to migrate Simulation:', error)
+    captureException(error)
   }
 
   return simulation

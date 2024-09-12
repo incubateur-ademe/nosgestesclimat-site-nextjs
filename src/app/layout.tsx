@@ -1,49 +1,46 @@
-import FilAriane from '@/components/layout/FilAriane'
-import Header from '@/components/layout/Header'
 import { getGeolocation } from '@/helpers/getGeolocation'
 import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
+import Footer from '@/components/layout/Footer'
 import '@/locales/initClient'
 import '@/locales/initServer'
-import { ErrorBoundary } from '@sentry/nextjs'
 import { dir } from 'i18next'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { PropsWithChildren } from 'react'
-import { ErrorFallback } from './_components/ErrorFallback'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 
 export const marianne = localFont({
   src: [
     {
-      path: '_fonts/Marianne-Thin.woff2',
+      path: '../../public/fonts/Marianne-Thin.woff2',
       weight: '100',
       style: 'normal',
     },
     {
-      path: '_fonts/Marianne-Light.woff2',
+      path: '../../public/fonts/Marianne-Light.woff2',
       weight: '300',
       style: 'normal',
     },
     {
-      path: '_fonts/Marianne-Regular.woff2',
+      path: '../../public/fonts/Marianne-Regular.woff2',
       weight: 'normal',
       style: 'normal',
     },
     {
-      path: '_fonts/Marianne-Medium.woff2',
+      path: '../../public/fonts/Marianne-Medium.woff2',
       weight: '500',
       style: 'normal',
     },
     {
-      path: '_fonts/Marianne-Bold.woff2',
+      path: '../../public/fonts/Marianne-Bold.woff2',
       weight: 'bold',
       style: 'normal',
     },
     {
-      path: '_fonts/Marianne-ExtraBold.woff2',
+      path: '../../public/fonts/Marianne-ExtraBold.woff2',
       weight: '800',
       style: 'normal',
     },
@@ -59,7 +56,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
       <head>
-        <link rel="icon" href="/images/misc/favicon.png" />
+        <link rel="icon" href="/favicon.png" />
 
         <meta
           name="google-site-verification"
@@ -96,23 +93,19 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         )}
       </head>
 
-      <body className={`${marianne.className} bg-white text-default`}>
+      <body
+        className={`${marianne.className} bg-white text-default transition-colors duration-700`}>
         <Script id="script-user-agent">{`
           const b = document.documentElement;
           b.setAttribute('data-useragent', navigator.userAgent);
         `}</Script>
 
-        <ErrorBoundary showDialog fallback={ErrorFallback}>
-          <MainLayoutProviders
-            region={region}
-            migrationInstructions={migrationInstructions}>
-            <Header />
-
-            <FilAriane />
-
-            {children}
-          </MainLayoutProviders>
-        </ErrorBoundary>
+        <MainLayoutProviders
+          region={region}
+          migrationInstructions={migrationInstructions}>
+          {children}
+          <Footer />
+        </MainLayoutProviders>
 
         <div id="modal" />
       </body>

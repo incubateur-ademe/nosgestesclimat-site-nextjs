@@ -1,20 +1,18 @@
 'use client'
 
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
+import { Migration } from '@publicodes/tools/migration'
 import { Dispatch, SetStateAction, useCallback, useMemo } from 'react'
-import {
-  MigrationType,
-  Simulation,
-  UpdateCurrentSimulationProps,
-} from '../../types'
+import { Simulation, UpdateCurrentSimulationProps } from '../../types'
 
 type Props = {
   simulations: Simulation[]
   setSimulations: Dispatch<SetStateAction<Simulation[]>>
   currentSimulationId: string
   setCurrentSimulationId: Dispatch<SetStateAction<string>>
-  migrationInstructions: MigrationType
+  migrationInstructions: Migration
 }
+
 export default function useSimulations({
   simulations,
   setSimulations,
@@ -39,36 +37,30 @@ export default function useSimulations({
     }: Partial<Simulation> = {}) => {
       resetAideSaisie()
 
-      let newCurrentId = id
+      const migratedSimulation = generateSimulation({
+        id,
+        date,
+        situation,
+        foldedSteps,
+        actionChoices,
+        persona,
+        computedResults,
+        progression,
+        defaultAdditionalQuestionsAnswers,
+        polls,
+        groups,
+        savedViaEmail,
+        migrationInstructions,
+      })
 
       setSimulations((prevSimulations: Simulation[]) => {
-        if (prevSimulations.find((simulation) => simulation.id === id)) {
-          setCurrentSimulationId(id ?? '')
+        if (id && prevSimulations.find((simulation) => simulation.id === id)) {
           return prevSimulations
         }
-
-        const migratedSimulation = generateSimulation({
-          id,
-          date,
-          situation,
-          foldedSteps,
-          actionChoices,
-          persona,
-          computedResults,
-          progression,
-          defaultAdditionalQuestionsAnswers,
-          polls,
-          groups,
-          savedViaEmail,
-          migrationInstructions,
-        })
-
-        newCurrentId = migratedSimulation.id
-
         return [...prevSimulations, migratedSimulation]
       })
 
-      setCurrentSimulationId(newCurrentId ?? '')
+      setCurrentSimulationId(migratedSimulation.id)
     },
     [migrationInstructions, setSimulations, setCurrentSimulationId]
   )
