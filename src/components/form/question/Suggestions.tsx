@@ -30,10 +30,10 @@ export default function Suggestions({
   >([])
 
   /**
-   * Handles the click event for a suggestion.
+   * Handles the selection (or addition) of a suggestion.
    * Behave differently depending on the type (and value) of the suggestions.
    */
-  const handleSuggestionClick = useCallback(
+  const handleSuggestionAdd = useCallback(
     (suggestion: FormattedSuggestion) => {
       trackEvent(
         questionClickSuggestion({ question, answer: suggestion.label })
@@ -68,11 +68,11 @@ export default function Suggestions({
 
   /**
    * Handles the deletion of a selected suggestion.
-   * It removes every instance of the suggestion from the selected suggestions.
+   * It removes one instance of the suggestion from the selected suggestions.
    *
    * @param suggestion - The suggestion to be deleted.
    */
-  const handleSuggestionDelete = useCallback(
+  const handleSuggestionRemove = useCallback(
     (suggestion: FormattedSuggestion) => {
       setSelectedSuggestions((prevSelectedSuggestions) =>
         prevSelectedSuggestions.filter(
@@ -138,8 +138,8 @@ export default function Suggestions({
                 selectedSuggestion.label === suggestion.label
             ).length
           }
-          handleSuggestionClick={handleSuggestionClick}
-          handleSuggestionDelete={handleSuggestionDelete}
+          handleSuggestionAdd={handleSuggestionAdd}
+          handleSuggestionRemove={handleSuggestionRemove}
         />
       ))}
     </div>
