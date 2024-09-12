@@ -73,7 +73,7 @@ export default function SimulationProvider({
         addToEngineSituation,
         isInitialized,
       }}>
-      {isInitialized ? children : null}
+      {children}
     </SimulationContext.Provider>
   )
 }
