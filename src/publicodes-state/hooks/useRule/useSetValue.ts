@@ -1,6 +1,6 @@
 'use client'
 
-import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
+import { checkValueValidity } from '@/publicodes-state/helpers/getValueValidity'
 import {
   DottedName,
   NGCRuleNode,
@@ -23,7 +23,6 @@ type Props = {
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   evaluation: NGCEvaluatedNode | null
   type: string | undefined
-  situation: Situation
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
   addToEngineSituation: (situationToAdd: Situation) => Situation
 }
@@ -34,62 +33,23 @@ export default function useSetValue({
   safeGetRule,
   safeEvaluate,
   type,
-  situation,
   updateCurrentSimulation,
   addToEngineSituation,
 }: Props) {
-  const getMosaicResetSituation = useCallback(
-    (questionsOfMosaicFromSibling: DottedName[]): Situation => {
-      const situationToAdd = questionsOfMosaicFromSibling.reduce(
-        (accumulator, mosaicChildDottedName) => {
-          const isMissing = getIsMissing({
-            dottedName: mosaicChildDottedName,
-            situation,
-          })
-          if (!isMissing) return accumulator
-
-          const rule = safeGetRule(mosaicChildDottedName)
-          const evaluation = safeEvaluate(mosaicChildDottedName)
-          const resetValue =
-            getType({ rule, evaluation, dottedName: mosaicChildDottedName }) ===
-            'boolean'
-              ? 'non'
-              : 0
-
-          return {
-            ...accumulator,
-            [mosaicChildDottedName]: checkValueValidity({
-              value: resetValue,
-              type: getType({
-                rule,
-                evaluation,
-                dottedName: mosaicChildDottedName,
-              }),
-            }),
-          }
-        },
-        {}
-      )
-
-      return situationToAdd
-    },
-    [situation, safeEvaluate, safeGetRule]
-  )
-
   /**
    * @param value - The value to set
    * @param options.foldedStep - The dottedName of the foldedStep
-   * @param options.questionsOfMosaicFromSibling - The dottedNames of the questions of the mosaic from the brother (another child)
+   * @param options.questionsOfMosaicFromSibling - The reset value of the sibling questions
    */
   const setValue = useCallback(
     async (
       value: NodeValue | Record<string, NodeValue>,
       {
         foldedStep,
-        questionsOfMosaicFromSibling,
+        mosaicResetSituation,
       }: {
         foldedStep?: DottedName
-        questionsOfMosaicFromSibling?: DottedName[]
+        mosaicResetSituation?: Situation
       } = {}
     ) => {
       let situationToAdd = {}
@@ -123,9 +83,9 @@ export default function useSetValue({
           [dottedName]: checkValueValidity({ value, type }),
         }
       }
-      if (questionsOfMosaicFromSibling) {
+      if (mosaicResetSituation) {
         situationToAdd = {
-          ...getMosaicResetSituation(questionsOfMosaicFromSibling),
+          ...mosaicResetSituation,
           ...situationToAdd,
         }
       }
@@ -144,39 +104,10 @@ export default function useSetValue({
       safeGetRule,
       safeEvaluate,
       type,
-      getMosaicResetSituation,
     ]
   )
 
   return {
     setValue,
-  }
-}
-
-const checkValueValidity = ({
-  value,
-  type,
-}: {
-  value: any
-  type: string | undefined
-}): NodeValue => {
-  switch (type) {
-    case 'choices':
-      if (!value) {
-        return null
-      }
-      return value.startsWith("'") ? value : `'${value}'`
-    case 'boolean':
-      if (value === 'oui') {
-        return 'oui'
-      }
-      if (value === 'non' || value === null) {
-        return 'non'
-      }
-      return undefined
-    case 'mosaic':
-      return 'mosaic'
-    default:
-      return !value ? 0 : value
   }
 }
