@@ -38,7 +38,6 @@ export default function BlogArticles() {
         </Link>
         <div className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
-            {' '}
             <Image
               src="/images/blog/william-bossen-fonte-glaces.jpg"
               width="400"
