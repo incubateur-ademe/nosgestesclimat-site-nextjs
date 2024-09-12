@@ -14,16 +14,16 @@ import { twMerge } from 'tailwind-merge'
 type Props = {
   suggestion: FormattedSuggestion
   type: SuggestionType
-  handleSuggestionClick: (suggestion: FormattedSuggestion) => void
-  handleSuggestionDelete: (suggestion: FormattedSuggestion) => void
+  handleSuggestionAdd: (suggestion: FormattedSuggestion) => void
+  handleSuggestionRemove: (suggestion: FormattedSuggestion) => void
   numberOfSelections: number
 }
 
 export default function SuggestionButton({
   suggestion,
   type,
-  handleSuggestionClick,
-  handleSuggestionDelete,
+  handleSuggestionAdd,
+  handleSuggestionRemove,
   numberOfSelections,
 }: Props) {
   const { currentCategory } = useForm()
@@ -46,11 +46,13 @@ export default function SuggestionButton({
         )}
         onClick={() => {
           if (type === 'checkbox' && isSelected) {
-            handleSuggestionDelete(suggestion)
+            handleSuggestionRemove(suggestion)
             return
           }
-          handleSuggestionClick(suggestion)
+          handleSuggestionAdd(suggestion)
         }}>
+        {type === 'radio' && '()'}
+        {type === 'checkbox' && '[]'}
         <Emoji className="flex items-center gap-1 leading-none">
           {capitalizeString(suggestion.label)}
         </Emoji>
@@ -72,7 +74,7 @@ export default function SuggestionButton({
               getTextCategoryColor(currentCategory, '900'),
               getHoverBgCategoryColor(currentCategory, '300')
             )}
-            onClick={() => handleSuggestionDelete(suggestion)}>
+            onClick={() => handleSuggestionRemove(suggestion)}>
             x
           </button>
         </>

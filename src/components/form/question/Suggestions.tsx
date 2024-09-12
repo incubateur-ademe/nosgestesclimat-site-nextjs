@@ -22,7 +22,7 @@ export default function Suggestions({
   type = 'radio',
 }: Props) {
   const { suggestions } = useRule(question)
-
+  console.log('suggestions', type)
   // This is an array containing every selected suggestion.
   // If a suggestion is selected multiple times, it will appear multiple times in this array
   const [selectedSuggestions, setSelectedSuggestions] = useState<
@@ -96,7 +96,7 @@ export default function Suggestions({
         ? selectedSuggestions[0].value
         : undefined
     }
-    selectedSuggestions.reduce(
+    return selectedSuggestions.reduce(
       (acc, suggestion) => acc + (suggestion.value as number),
       0
     )
@@ -112,6 +112,7 @@ export default function Suggestions({
     }
   }, [setValue, valueOfSelectedSuggestions, selectedSuggestions])
 
+  console.log('valueOfSelectedSuggestions', valueOfSelectedSuggestions)
   /**
    * When the value of the question change, we reset the selected suggestions.
    */
