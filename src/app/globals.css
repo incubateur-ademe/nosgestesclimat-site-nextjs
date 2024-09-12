@@ -542,20 +542,24 @@ html[data-useragent*='Trident'] #js {
   background-size: 200% 200%;
 }
 
+.bg-total-chart {
+  background: linear-gradient(270deg, #f96f81, #ffdbbc, #ffefbc, #cef1d5);
+}
+
 .bg-rainbow-rotation {
   background: linear-gradient(
     200deg,
-    #a2d2fd,
-    #cef1d5,
-    #ffefbc,
+    #f96f81,
     #ffdbbc,
-    #fd69d0,
-    #a2d2fd,
-    #cef1d5,
     #ffefbc,
+    #cef1d5,
+    #f96f81,
     #ffdbbc,
-    #fd69d0,
-    #a2d2fd
+    #ffefbc,
+    #cef1d5,
+    #f96f81,
+    #ffdbbc,
+    #ffefbc
   );
   background-size: 300% 300%;
   animation: rainbow-glow 15s ease infinite;
