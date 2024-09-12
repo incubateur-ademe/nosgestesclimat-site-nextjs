@@ -48,6 +48,7 @@ export default function SimulationProvider({
 
   const { isInitialized } = useSetComputedResults({
     categories,
+    subcategories,
     isEngineInitialized,
     safeEvaluate,
     safeGetRule,

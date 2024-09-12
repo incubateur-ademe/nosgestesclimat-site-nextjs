@@ -1,8 +1,8 @@
 import { defaultMetric, metrics } from '@/constants/metric'
-import { useCurrentSimulation, useEngine } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
-import {
+import type {
   ComputedResults,
   ComputedResultsFootprint,
   Metric,
@@ -11,6 +11,7 @@ import {
 
 type Props = {
   categories: DottedName[]
+  subcategories: Record<DottedName, DottedName[]>
   isEngineInitialized: boolean
   safeEvaluate: (
     ruleName: DottedName,
@@ -20,12 +21,11 @@ type Props = {
 }
 export function useSetComputedResults({
   categories,
+  subcategories,
   safeEvaluate,
   isEngineInitialized,
 }: Props) {
   const { situation, updateCurrentSimulation } = useCurrentSimulation()
-
-  const { getSubcategories } = useEngine()
 
   // little helper function to get the numeric value of a dottedName (it is a copy of the one in useEngine)
   const getNumericValue = useCallback(
@@ -50,17 +50,21 @@ export function useSetComputedResults({
               metric
             )
 
-            const subcategories = getSubcategories(category)
-
             if (!subcategories) return categoriesAcc
 
-            categoriesAcc.subcategories[category] = subcategories.reduce(
-              (subAcc: Record<DottedName, number>, subcategory: DottedName) => {
-                subAcc[subcategory] = getNumericValue(subcategory, metric) || 0
-                return subAcc
-              },
-              {} as Record<DottedName, number>
-            )
+            categoriesAcc.subcategories[category] = subcategories[category]
+              // Get the numeric value of each subcategory
+              .reduce(
+                (
+                  subAcc: Record<DottedName, number>,
+                  subcategory: DottedName
+                ) => {
+                  subAcc[subcategory] =
+                    getNumericValue(subcategory, metric) || 0
+                  return subAcc
+                },
+                {} as Record<DottedName, number>
+              )
 
             return categoriesAcc
           },
