@@ -66,7 +66,7 @@ export default function StatisticsBlocks({
 
   return (
     <div className="grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      <div className="rounded-xl bg-gray-100 p-8">
+      <div className="rounded-xl bg-primary-100 p-8">
         <p className="text-4xl font-bold text-primary-700">
           {simulationRecaps?.length?.toLocaleString(locale) ?? 0}
         </p>
@@ -86,19 +86,21 @@ export default function StatisticsBlocks({
         />
       ) : (
         <>
-          <div className="bg-rainbow-rotation overflow-hidden rounded-xl bg-gray-100 p-8">
+          <div className="bg-rainbow-rotation overflow-hidden rounded-xl p-8">
             <p className="text-4xl font-bold text-primary-700">
               {formattedValue}{' '}
               <span className="text-base font-normal">{unit} CO2 eq</span>
             </p>
 
             <p className="text-xl">
-              <Trans>Empreinte moyenne</Trans>
+              <Trans>
+                <strong>Empreinte carbone</strong> moyenne
+              </Trans>
             </p>
           </div>
 
           {result.eau.bilan > 0 && (
-            <div className="relative overflow-hidden rounded-xl bg-gray-100 p-8">
+            <div className="relative overflow-hidden rounded-xl bg-primary-100 p-8">
               <Wave
                 fill="#5152D0"
                 className="pointer-events-none absolute bottom-0 left-0 right-0 h-full w-full rounded-b-xl"
@@ -124,8 +126,8 @@ export default function StatisticsBlocks({
             </div>
           )}
 
-          <div className="rounded-xl bg-gray-100 py-4">
-            <VerticalBarChart className="mt-0 h-[calc(100%-48px)]">
+          <div className="rounded-xl bg-primary-100/40 py-4">
+            <VerticalBarChart className="h-[calc(100%-48px) bg-white] mt-0 px-1">
               {(
                 Object.entries(result.carbone) as Entries<typeof result.carbone>
               )
