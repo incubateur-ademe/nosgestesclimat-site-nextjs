@@ -102,7 +102,7 @@ export default function StatisticsBlocks({
           />
         )}
 
-        <div className="col-span-1 rounded-xl bg-gray-100 p-8">
+        <div className="bg-rainbow-rotation col-span-1 rounded-xl bg-gray-100 p-8">
           <p className="text-4xl font-bold text-primary-700">
             {formattedValue}{' '}
             <span className="text-base font-normal">{unit} CO2 eq</span>
