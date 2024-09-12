@@ -1,6 +1,6 @@
 'use client'
 import { useEngine, useSimulation } from '@/publicodes-state'
-import Filter from './_components/Filter'
+import Filter from './categoryFilters/Filter'
 
 type Props = {
   actions: any

@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Engine, Situation } from '../../types'
 
 type Props = {
-  engine: Engine
+  engine?: Engine
 }
 /**
  * Update the engine situation and the simulation situation
@@ -15,6 +15,8 @@ export function useEngineSituation({ engine }: Props) {
 
   const addToEngineSituation = useCallback(
     (situationToAdd: Situation): Situation => {
+      if (!engine) return situation
+
       engine.setSituation({ ...situation, ...situationToAdd })
       // The current engine situation might have been filtered
       const safeSituation = engine.getSituation()
@@ -25,7 +27,7 @@ export function useEngineSituation({ engine }: Props) {
   )
 
   useEffect(() => {
-    if (isEngineInitialized) return
+    if (isEngineInitialized || !engine) return
 
     engine.setSituation(situation)
     setIsEngineInitialized(true)

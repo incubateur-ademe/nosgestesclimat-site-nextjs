@@ -12,7 +12,7 @@ import {
 type Props = {
   categories: DottedName[]
   isEngineInitialized: boolean
-  safeEvaluate: (
+  safeEvaluate?: (
     ruleName: DottedName,
     metric: Metric
   ) => NGCEvaluatedNode | null
@@ -30,7 +30,7 @@ export function useSetComputedResults({
       // If the engine is not initialized, we return 0
       if (!isEngineInitialized) return 0
 
-      const nodeValue = safeEvaluate(dottedName, metric)?.nodeValue
+      const nodeValue = safeEvaluate?.(dottedName, metric)?.nodeValue
       return Number(nodeValue) === nodeValue ? nodeValue : 0
     },
     [safeEvaluate, isEngineInitialized]
