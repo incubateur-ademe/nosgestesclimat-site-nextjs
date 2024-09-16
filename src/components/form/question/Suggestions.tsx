@@ -7,6 +7,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import SuggestionButton from './suggestions/SuggestionButton'
+import SuggestionInput from './suggestions/SuggestionInput'
 
 type Props = {
   question: DottedName
@@ -74,12 +75,20 @@ export default function Suggestions({
    */
   const handleSuggestionRemove = useCallback(
     (suggestion: FormattedSuggestion) => {
-      setSelectedSuggestions((prevSelectedSuggestions) =>
-        prevSelectedSuggestions.filter(
-          (prevSelectedSuggestion) =>
-            prevSelectedSuggestion.label !== suggestion.label
-        )
-      )
+      setSelectedSuggestions((prevSelectedSuggestions) => {
+        let isRemoved = false
+
+        return prevSelectedSuggestions.filter((prevSelectedSuggestion) => {
+          if (isRemoved) return true
+
+          if (prevSelectedSuggestion.value === suggestion.value) {
+            isRemoved = true
+            return false
+          }
+
+          return true
+        })
+      })
     },
     []
   )
@@ -127,21 +136,38 @@ export default function Suggestions({
 
   return (
     <div className="mb-6 flex flex-wrap justify-start gap-x-3.5 gap-y-4 text-sm">
-      {suggestions.map((suggestion) => (
-        <SuggestionButton
-          key={suggestion.label}
-          suggestion={suggestion}
-          type={type}
-          numberOfSelections={
-            selectedSuggestions.filter(
-              (selectedSuggestion) =>
-                selectedSuggestion.label === suggestion.label
-            ).length
-          }
-          handleSuggestionAdd={handleSuggestionAdd}
-          handleSuggestionRemove={handleSuggestionRemove}
-        />
-      ))}
+      {suggestions.map((suggestion) =>
+        type === 'multiple' ? (
+          <SuggestionInput
+            key={suggestion.label}
+            suggestion={suggestion}
+            numberOfSelections={
+              selectedSuggestions.filter(
+                (selectedSuggestion) =>
+                  selectedSuggestion.label === suggestion.label
+              ).length
+            }
+            handleSuggestionAdd={handleSuggestionAdd}
+            handleSuggestionRemove={handleSuggestionRemove}
+          />
+        ) : (
+          <SuggestionButton
+            key={suggestion.label}
+            suggestion={suggestion}
+            type={type}
+            isSelected={
+              selectedSuggestions.filter(
+                (selectedSuggestion) =>
+                  selectedSuggestion.label === suggestion.label
+              ).length
+                ? true
+                : false
+            }
+            handleSuggestionAdd={handleSuggestionAdd}
+            handleSuggestionRemove={handleSuggestionRemove}
+          />
+        )
+      )}
     </div>
   )
 }

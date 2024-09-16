@@ -2,44 +2,34 @@ import { baseClassNames, sizeClassNames } from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import {
   getBgCategoryColor,
+  getBorderCategoryColor,
   getHoverBgCategoryColor,
   getTextCategoryColor,
 } from '@/helpers/getCategoryColorClass'
 import { useForm } from '@/publicodes-state'
-import { FormattedSuggestion, SuggestionType } from '@/publicodes-state/types'
+import { FormattedSuggestion } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { twMerge } from 'tailwind-merge'
 
-const boxClassName = {
-  radio: 'rounded-full before:rounded-full',
-  checkbox: 'rounded before: rounded',
-}
-const checkClassNames = {
-  checked: 'border-white before:bg-white',
-  unchecked: 'border-primary-700',
-}
-
 type Props = {
   suggestion: FormattedSuggestion
-  type: Exclude<SuggestionType, 'multiple'>
   handleSuggestionAdd: (suggestion: FormattedSuggestion) => void
   handleSuggestionRemove: (suggestion: FormattedSuggestion) => void
-  isSelected: boolean
+  numberOfSelections: number
 }
 
 export default function SuggestionButton({
   suggestion,
-  type,
   handleSuggestionAdd,
   handleSuggestionRemove,
-  isSelected,
+  numberOfSelections,
 }: Props) {
   const { currentCategory } = useForm()
 
-  const status = isSelected ? 'checked' : 'unchecked'
+  const isSelected = numberOfSelections > 0
 
   return (
-    <button
+    <div
       data-cypress-id="suggestion"
       className={twMerge(
         baseClassNames,
@@ -50,24 +40,23 @@ export default function SuggestionButton({
           ? 'text-white'
           : getTextCategoryColor(currentCategory, '900'),
         getHoverBgCategoryColor(currentCategory, isSelected ? '700' : '300')
-      )}
-      onClick={() => {
-        if (type === 'checkbox' && isSelected) {
-          handleSuggestionRemove(suggestion)
-          return
-        }
-        handleSuggestionAdd(suggestion)
-      }}>
-      <span
-        className={twMerge(
-          'relative flex h-4 w-4 items-center justify-center border-2 text-sm before:absolute before:left-0.5 before:top-0.5 before:h-2 before:w-2 before:p-1 md:text-base',
-          boxClassName[type],
-          checkClassNames[status]
-        )}
-      />
+      )}>
+      <button onClick={() => handleSuggestionRemove(suggestion)}>-</button>
+
       <Emoji className="flex items-center gap-1 leading-none">
         {capitalizeString(suggestion.label)}
       </Emoji>
-    </button>
+      <button onClick={() => handleSuggestionAdd(suggestion)}>+</button>
+      {isSelected && suggestion.value !== 0 && (
+        <div
+          className={twMerge(
+            'absolute -right-1 -top-2 flex h-6 min-w-6 items-center justify-center rounded-full border-2 bg-white text-xs',
+            getBorderCategoryColor(currentCategory, '700'),
+            getTextCategoryColor(currentCategory, '700')
+          )}>
+          {numberOfSelections}
+        </div>
+      )}
+    </div>
   )
 }
