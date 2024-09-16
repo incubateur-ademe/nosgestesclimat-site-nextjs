@@ -1,4 +1,7 @@
-import { baseClassNames, sizeClassNames } from '@/design-system/inputs/Button'
+import Button, {
+  baseClassNames,
+  sizeClassNames,
+} from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import {
   getBgCategoryColor,
@@ -35,22 +38,30 @@ export default function SuggestionButton({
         baseClassNames,
         sizeClassNames.sm,
         'relative flex gap-2 px-4 text-xs font-medium transition-colors md:text-sm',
-        getBgCategoryColor(currentCategory, isSelected ? '900' : '200'),
-        isSelected
-          ? 'text-white'
-          : getTextCategoryColor(currentCategory, '900'),
-        getHoverBgCategoryColor(currentCategory, isSelected ? '700' : '300')
+        getBgCategoryColor(currentCategory, '200'),
+        getTextCategoryColor(currentCategory, '900'),
+        getHoverBgCategoryColor(currentCategory, '200')
       )}>
-      <button onClick={() => handleSuggestionRemove(suggestion)}>-</button>
+      <Button
+        onClick={() => handleSuggestionRemove(suggestion)}
+        size="xs"
+        className="h-5 w-5 items-center justify-center p-0">
+        <span className="mb-[1px] block">-</span>
+      </Button>
 
       <Emoji className="flex items-center gap-1 leading-none">
         {capitalizeString(suggestion.label)}
       </Emoji>
-      <button onClick={() => handleSuggestionAdd(suggestion)}>+</button>
+      <Button
+        onClick={() => handleSuggestionAdd(suggestion)}
+        size="xs"
+        className="h-5 w-5 items-center justify-center p-0">
+        <span className="mb-[1px] block">+</span>
+      </Button>
       {isSelected && suggestion.value !== 0 && (
         <div
           className={twMerge(
-            'absolute -right-1 -top-2 flex h-6 min-w-6 items-center justify-center rounded-full border-2 bg-white text-xs',
+            'absolute -right-2 -top-2 flex h-6 min-w-6 items-center justify-center rounded-full border-2 bg-white text-xs',
             getBorderCategoryColor(currentCategory, '700'),
             getTextCategoryColor(currentCategory, '700')
           )}>
