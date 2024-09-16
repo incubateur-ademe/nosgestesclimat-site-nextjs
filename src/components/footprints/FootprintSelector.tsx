@@ -1,6 +1,8 @@
 'use client'
+import { carboneMetric, eauMetric } from '@/constants/metric'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { ReactNode, useState } from 'react'
+import { Metrics } from '@incubateur-ademe/nosgestesclimat'
+import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/Trans'
 
@@ -10,17 +12,19 @@ interface OptionType {
   icon: ReactNode
 }
 
-export default function FootprintSelector() {
+export default function FootprintSelector({
+  footprintSelected,
+  onChange,
+}: {
+  footprintSelected: Metrics
+  onChange: (footprint: Metrics) => void
+}) {
   const { t } = useClientTranslation()
 
   const options: OptionType[] = [
-    { value: 'carbon', label: t('Carbone'), icon: '🌡️' },
-    { value: 'water', label: t('Eau'), icon: '💧' },
+    { value: carboneMetric, label: t('Carbone'), icon: '🌡️' },
+    { value: eauMetric, label: t('Eau'), icon: '💧' },
   ]
-
-  const [selectedOption, setSelectedOption] = useState<OptionType | null>(
-    options[0]
-  )
 
   return (
     <div className="relative rounded-lg">
@@ -31,12 +35,14 @@ export default function FootprintSelector() {
 
         <select
           id="footprint-select"
-          value={selectedOption?.value}
+          defaultValue={
+            options.find((option) => option.value === footprintSelected)?.value
+          }
           onChange={(e) => {
             const selected = options.find(
               (option) => option.value === e.target.value
             )
-            setSelectedOption(selected || null)
+            onChange((selected?.value as Metrics) || '')
           }}
           className={twMerge(
             'focus:ring-offset-3 inline-flex items-center justify-start whitespace-nowrap rounded-lg font-bold !leading-none no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary-700 aria-disabled:opacity-50',

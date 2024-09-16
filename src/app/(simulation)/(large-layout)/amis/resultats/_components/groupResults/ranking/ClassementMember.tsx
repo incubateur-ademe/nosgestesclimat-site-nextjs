@@ -25,16 +25,19 @@ export default function ClassementMember({
   userId,
   numberOfParticipants,
   refetchGroup,
+  textColor,
 }: {
   rank: JSX.Element | string
   name: string
   quantity: JSX.Element | string
+  unit?: string
   isTopThree?: boolean
   isCurrentMember?: boolean
   group: Group
   userId: string
   numberOfParticipants?: number
   refetchGroup: () => Promise<QueryObserverResult<Group, Error>>
+  textColor?: string
 }) {
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false)
 
@@ -71,9 +74,11 @@ export default function ClassementMember({
       <div className="flex flex-1 items-center justify-between">
         <div className="mb-0 flex items-center text-sm md:text-base">
           <span
-            className={`mr-2 ${
-              isTopThree ? 'text-lg md:text-2xl' : 'ml-1 text-base md:text-lg'
-            }`}>
+            className={twMerge(
+              'mr-2',
+              isTopThree ? 'text-lg md:text-2xl' : 'ml-1 text-base md:text-lg',
+              textColor ?? ''
+            )}>
             {rank}
           </span>
 
@@ -86,7 +91,7 @@ export default function ClassementMember({
           )}
         </div>
 
-        <div>{quantity}</div>
+        <div className={textColor}>{quantity}</div>
       </div>
 
       {isGroupOwner &&
@@ -103,14 +108,18 @@ export default function ClassementMember({
           <>
             <button
               onClick={() => setIsConfirmationModalOpen(true)}
-              className="inline-flex h-6 w-6 items-center justify-center !p-0 transition-colors"
+              className={twMerge(
+                'inline-flex h-6 w-6 items-center justify-center !p-0 transition-colors',
+                textColor
+              )}
               aria-label={t('{{name}}, supprimer cette participation', {
                 name,
               })}>
               <TrashIcon
                 className={twMerge(
                   'w-4 fill-default',
-                  isTopThree ? 'fill-white hover:fill-primary-200' : ''
+                  isTopThree ? 'fill-white hover:fill-primary-200' : '',
+                  textColor === 'text-white' ? 'fill-white' : ''
                 )}
               />
             </button>

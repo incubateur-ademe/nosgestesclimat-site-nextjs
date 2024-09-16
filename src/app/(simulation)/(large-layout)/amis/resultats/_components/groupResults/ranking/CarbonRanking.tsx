@@ -1,20 +1,18 @@
 'use client'
 
-import { Group, Participant } from '@/types/groups'
-import { useState } from 'react'
-
 import Trans from '@/components/translation/Trans'
-import Emoji from '@/design-system/utils/Emoji'
-
-import FootprintSelector from '@/components/footprints/FootprintSelector'
 import { defaultMetric } from '@/constants/metric'
+import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
 import { useUser } from '@/publicodes-state'
+import { Group, Participant } from '@/types/groups'
 import { QueryObserverResult } from '@tanstack/react-query'
-import ClassementMember from './classement/ClassementMember'
+import { useState } from 'react'
+import ClassementMember from './ClassementMember'
 
-export default function Classement({
+export default function CarbonRanking({
   group,
   refetchGroup,
 }: {
@@ -27,10 +25,6 @@ export default function Classement({
     user: { userId },
   } = useUser()
 
-  if (!group) {
-    return null
-  }
-
   const { topThreeMembers, restOfMembers } =
     getTopThreeAndRestMembers(group.participants) || {}
 
@@ -40,14 +34,6 @@ export default function Classement({
 
   return (
     <>
-      <div className="mt-4 flex items-center justify-between">
-        <h2 className="m-0 text-sm font-bold md:text-lg">
-          <Trans>Le classement</Trans>
-        </h2>
-
-        <FootprintSelector />
-      </div>
-
       <ul
         className={`mt-2 rounded-xl  px-3 py-4  ${hasOneParticipant ? 'bg-primary-50 text-primary-700' : 'bg-primary-700 text-white'}`}>
         {topThreeMembers.map((participant: Participant, index: number) => {
@@ -65,7 +51,7 @@ export default function Classement({
             default:
           }
 
-          const { formattedValue, unit } = formatCarbonFootprint(
+          const { formattedValue, unit } = formatFootprint(
             participant?.simulation?.computedResults?.[defaultMetric]?.bilan ??
               ''
           )
