@@ -6,6 +6,7 @@ import { useState } from 'react'
 import Trans from '@/components/translation/Trans'
 import Emoji from '@/design-system/utils/Emoji'
 
+import FootprintSelector from '@/components/footprints/FootprintSelector'
 import { defaultMetric } from '@/constants/metric'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
@@ -39,10 +40,12 @@ export default function Classement({
 
   return (
     <>
-      <div className="mt-4">
-        <h2 className="m-0 text-lg font-bold">
+      <div className="mt-4 flex items-center justify-between">
+        <h2 className="m-0 text-sm font-bold md:text-lg">
           <Trans>Le classement</Trans>
         </h2>
+
+        <FootprintSelector />
       </div>
 
       <ul
