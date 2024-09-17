@@ -4,34 +4,28 @@
 #
 # TODO: to factorize with the model's CI.
 
-name: Update PR comments
+name: Update PR comments prout
 
 on:
   workflow_run:
     workflows: ['Generate PR artifact']
     types: [completed]
 
-permissions:
-  contents: read
-  pull-requests: write
-
 jobs:
-  pr_comment:
+  pr_comment_2:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
 
       - name: Downloading Artifacts from Previous Workflow...
-        uses: synergy-au/download-workflow-artifacts-action@v1
+        uses: dawidd6/action-download-artifact@v6
         with:
-          auth-token: ${{ secrets.GITHUB_TOKEN }}
-          workflow-run-id: ${{ github.event.workflow_run.id }}
-
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
       - name: Updating the PR
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
 
@@ -52,14 +46,15 @@ jobs:
               }
             }
             if (!triggered_pr) {
-              return core.error('The corresponding PR could not be found.');
+              return core.error('The corresponding RP could not be found.');
+
             }
             core.info('Found the corresponding PR: #' + triggered_pr.number);
 
             const marker = 'yarn-compile-result';
 
             if (!fs.existsSync('result.md')) {
-              return core.error("Cannot find 'result.md', skipping");
+              return core.info("Cannot find 'result.md', skipping")
             }
             var body = '<!-- bot: ' + marker + ' -->\n' + fs.readFileSync('result.md', 'utf8');
 
@@ -71,13 +66,19 @@ jobs:
                 const last = existing[existing.length - 1];
                 core.info('Updating the comment ' + last.id);
                 await github.rest.issues.updateComment({
-                  owner, repo,
+                  owner,
+                  repo,
                   body,
                   comment_id: last.id,
                 });
               } else {
                 core.info('Creating a comment in the PR #' + issue_number);
-                await github.rest.issues.createComment({issue_number, body, owner, repo});
+                await github.rest.issues.createComment({
+                  issue_number,
+                  body,
+                  owner,
+                  repo
+                });
               }
               core.info('PR comment updated/created successfully');
             } catch (error) {
