@@ -12,7 +12,7 @@ on:
     types: [completed]
 
 jobs:
-  pr_comment:
+  pr_comment_2:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
