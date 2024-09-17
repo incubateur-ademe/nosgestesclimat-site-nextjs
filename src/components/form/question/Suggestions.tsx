@@ -105,9 +105,14 @@ export default function Suggestions({
         ? selectedSuggestions[0].value
         : undefined
     }
-    return selectedSuggestions.reduce(
-      (acc, suggestion) => acc + (suggestion.value as number),
-      0
+
+    return (
+      Math.round(
+        selectedSuggestions.reduce(
+          (acc, suggestion) => acc + (suggestion.value as number),
+          0
+        ) * 100
+      ) / 100
     )
   }, [selectedSuggestions, type])
 
@@ -127,6 +132,7 @@ export default function Suggestions({
    */
   const valueOfSelectedSuggestionsRef = useRef(valueOfSelectedSuggestions)
   useEffect(() => {
+    console.log('value', value, valueOfSelectedSuggestionsRef.current)
     if (value && value !== valueOfSelectedSuggestionsRef.current) {
       setSelectedSuggestions([])
     }

@@ -77,6 +77,7 @@ export default function Question({
 
   const setValueFromSuggestions = useCallback(
     (value: NodeValue) => {
+      console.log('value', value)
       if (type === 'number') {
         if (setTempValue) setTempValue(value as number)
       }
@@ -95,7 +96,7 @@ export default function Question({
           question={question}
           value={value}
           setValue={setValueFromSuggestions}
-          type={question.includes('avion') ? 'multiple' : 'radio'}
+          type={question.includes('avion') ? 'multiple' : 'checkbox'}
         />
         {showInputsLabel ? (
           <Button
