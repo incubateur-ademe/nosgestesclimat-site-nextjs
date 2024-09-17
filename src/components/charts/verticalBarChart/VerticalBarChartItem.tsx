@@ -46,7 +46,7 @@ export default function VerticalBarChartItem({
       )}
       aria-label={ariaLabel}
       {...props}>
-      <Badge className="text-xs" category={category}>
+      <Badge className="bg-white text-xs" category={category}>
         <strong>{formattedValue}</strong> {unit}
       </Badge>
       <div className="flex items-end">
