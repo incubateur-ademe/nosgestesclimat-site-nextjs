@@ -75,23 +75,26 @@ export default function GroupResults({
 
       <Separator />
 
-      {isCarbonFootprintSelected && (
-        <>
-          <h2 data-cypress-id="votre-empreinte-title" className="mt-8">
-            <Trans>Votre empreinte</Trans>
-          </h2>
+      {
+        // Hide this content when displaying the water footprint for now
+        isCarbonFootprintSelected && (
+          <>
+            <h2 data-cypress-id="votre-empreinte-title" className="mt-8">
+              <Trans>Votre empreinte</Trans>
+            </h2>
 
-          <CategoriesChart />
+            <CategoriesChart />
 
-          <CategoriesAccordion />
+            <CategoriesAccordion />
 
-          <Separator className="my-6" />
+            <Separator className="my-6" />
 
-          <HowToAct />
+            <HowToAct />
 
-          <Separator className="my-6" />
-        </>
-      )}
+            <Separator className="my-6" />
+          </>
+        )
+      }
 
       {isGroupOwner ? (
         <OwnerAdminSection group={group} />
