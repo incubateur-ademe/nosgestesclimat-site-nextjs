@@ -31,6 +31,7 @@ jobs:
       - name: Updating the PR
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
 
