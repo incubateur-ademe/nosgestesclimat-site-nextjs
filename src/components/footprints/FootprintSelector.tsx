@@ -3,7 +3,7 @@ import { carboneMetric, eauMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Metrics } from '@incubateur-ademe/nosgestesclimat'
-import Select from 'react-select'
+import Select, { Options, components } from 'react-select'
 import Trans from '../translation/Trans'
 
 interface OptionType {
@@ -21,7 +21,7 @@ export default function FootprintSelector({
 }) {
   const { t } = useClientTranslation()
 
-  const options: OptionType[] = [
+  const options: Options<OptionType> = [
     { value: carboneMetric, label: t('Carbone'), icon: '🌡️' },
     { value: eauMetric, label: t('Eau'), icon: '💧' },
   ]
@@ -34,7 +34,7 @@ export default function FootprintSelector({
       borderColor: '#4949ba',
       backgroundColor: '#e3ebfc',
       minWidth: '7rem',
-      paddingTop: '0.7rem',
+      paddingTop: '0',
       paddingBottom: '0',
       color: '#373978',
       cursor: 'pointer',
@@ -81,27 +81,37 @@ export default function FootprintSelector({
     }),
   }
 
+  const customComponents = {
+    SingleValue: ({ children, ...props }: any) => (
+      <components.SingleValue {...props}>
+        <div className="flex flex-col">
+          <div
+            id="footprint-select-label"
+            className="-mb-1 cursor-pointer select-none text-[0.6rem] font-normal text-default">
+            <Trans>Empreinte</Trans>
+          </div>
+          <div className="flex items-center">{children}</div>
+        </div>
+      </components.SingleValue>
+    ),
+  }
+
   return (
     <div className="relative rounded-lg">
       <div className="relative block h-full">
-        <span
-          id="footprint-select-label"
-          className="absolute left-3 top-2 z-10 m-0 select-none text-[0.6rem]">
-          <Trans>Empreinte</Trans>
-        </span>
-
         <Select
           aria-labelledby="footprint-select-label"
-          id="footprint-select"
+          inputId="footprint-select-input"
           options={options}
           isClearable={false}
           isSearchable={false}
           value={options.find((option) => option.value === footprintSelected)}
           onChange={(selected) => onChange((selected?.value as Metrics) || '')}
           styles={customStyles}
+          components={customComponents}
           formatOptionLabel={({ label, icon }) => (
             <div className="flex items-center">
-              {label}  <Emoji>{icon}</Emoji>
+              {label} <Emoji>{icon}</Emoji>
             </div>
           )}
         />

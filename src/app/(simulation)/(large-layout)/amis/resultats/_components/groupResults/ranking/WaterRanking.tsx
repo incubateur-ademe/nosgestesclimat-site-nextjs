@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import { eauMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
@@ -51,7 +53,7 @@ export default function WaterRanking({ group, refetchGroup }: Props) {
                 <span className="m-none leading-[160%]">
                   <strong>{formattedValue}</strong>{' '}
                   <span className="text-sm font-light">
-                    {unit} / <Trans>jour</Trans>
+                    {unit} / <Trans i18nKey="friends.day">jour</Trans>
                   </span>
                 </span>
               }
