@@ -4,7 +4,7 @@
 #
 # TODO: to factorize with the model's CI.
 
-name: Update PR comments
+name: Update PR comments prout
 
 on:
   workflow_run:
