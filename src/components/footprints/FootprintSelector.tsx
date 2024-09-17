@@ -32,10 +32,10 @@ export default function FootprintSelector({
       borderRadius: '0.5rem',
       borderWidth: '2px',
       borderColor: '#4949ba',
-      backgroundColor: 'transparent',
-      minWidth: '9rem',
-      paddingTop: '1rem',
-      paddingBottom: '0.2rem',
+      backgroundColor: '#e3ebfc',
+      minWidth: '7rem',
+      paddingTop: '0.7rem',
+      paddingBottom: '0',
       color: '#373978',
       cursor: 'pointer',
       fontSize: '0.875rem',
@@ -47,10 +47,19 @@ export default function FootprintSelector({
     indicatorSeparator: () => ({
       display: 'none',
     }),
+    indicatorsContainer: (provided: any) => ({
+      ...provided,
+      margin: '-0.2rem',
+    }),
     singleValue: (provided: any) => ({
       ...provided,
       color: '#3d3f96',
       fontWeight: 'bold',
+    }),
+    valueContainer: (provided: any) => ({
+      ...provided,
+      padding: '0',
+      paddingLeft: '0.5rem',
     }),
     option: (provided: any, state: any) => ({
       ...provided,
@@ -62,6 +71,10 @@ export default function FootprintSelector({
       backgroundColor: state.isSelected ? '#737de1' : provided.backgroundColor,
       color: state.isSelected ? 'white' : provided.color,
     }),
+    menu: (provided: any) => ({
+      ...provided,
+      borderRadius: '0.5rem',
+    }),
   }
 
   return (
@@ -69,7 +82,7 @@ export default function FootprintSelector({
       <div className="relative block h-full">
         <span
           id="footprint-select-label"
-          className="absolute left-3 top-2 z-10 m-0 text-[0.6rem]">
+          className="absolute left-3 top-2 z-10 m-0 select-none text-[0.6rem]">
           <Trans>Empreinte</Trans>
         </span>
 
