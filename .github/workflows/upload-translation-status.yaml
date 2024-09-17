@@ -49,6 +49,8 @@ jobs:
   upload-artifact:
     runs-on: ubuntu-22.04
     needs: compile
+    permissions:
+      actions: write
     steps:
       - name: Create artifact
         run: |
