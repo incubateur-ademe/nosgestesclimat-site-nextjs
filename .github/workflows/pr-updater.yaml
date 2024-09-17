@@ -4,7 +4,7 @@
 #
 # TODO: to factorize with the model's CI.
 
-name: Update PR comments prout
+name: Update PR comments
 
 on:
   workflow_run:
@@ -12,7 +12,7 @@ on:
     types: [completed]
 
 jobs:
-  pr_comment_2:
+  pr_comment:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
