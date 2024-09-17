@@ -90,6 +90,7 @@ export default function FootprintSelector({
             className="-mb-1 cursor-pointer select-none text-[0.6rem] font-normal text-default">
             <Trans>Empreinte</Trans>
           </div>
+
           <div className="flex items-center">{children}</div>
         </div>
       </components.SingleValue>
