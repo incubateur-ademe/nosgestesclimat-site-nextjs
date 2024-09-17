@@ -34,7 +34,7 @@ export function useSetCurrentSimulationFromParams() {
 
     // If there is no simulation found with the id in the query params, we delete the query params and reload the page
     if (!simulation) {
-      window.location.href = pathname
+      window.location.href = pathname ?? ''
       return
     }
 
@@ -54,7 +54,7 @@ export function useSetCurrentSimulationFromParams() {
     setIsCorrectSimulationSet(true)
 
     // We delete the query params and reload the page
-    router.replace(pathname)
+    router.replace(pathname ?? '')
   }, [
     simulations,
     simulation,

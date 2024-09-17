@@ -19,7 +19,7 @@ export const useInitSimulationParam = () => {
     }
     setIsInit(true)
 
-    const shouldInitSimulation = searchParams.get('newsimulation')
+    const shouldInitSimulation = searchParams?.get('newsimulation')
       ? true
       : false
 

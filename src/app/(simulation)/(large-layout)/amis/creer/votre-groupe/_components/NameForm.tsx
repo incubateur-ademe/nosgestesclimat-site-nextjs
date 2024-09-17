@@ -71,9 +71,9 @@ export default function NameForm() {
   async function onSubmit({ name, emoji }: Inputs) {
     try {
       const administratorEmail = formatEmail(
-        searchParams.get('administratorEmail')
+        searchParams?.get('administratorEmail')
       )
-      const administratorName = searchParams.get('administratorName')
+      const administratorName = searchParams?.get('administratorName')
 
       const group = await createGroup({
         groupInfo: {

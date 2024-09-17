@@ -49,7 +49,7 @@ export default function ValueChangeDisplay({
     t,
   })
 
-  if (displayDifference === 0 || !pathname.includes('simulateur/bilan')) {
+  if (displayDifference === 0 || !pathname?.includes('simulateur/bilan')) {
     return null
   }
 

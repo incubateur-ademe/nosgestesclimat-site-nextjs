@@ -77,7 +77,7 @@ export const useGetGroupAndUserFootprints = ({
 
         const currentCategorySubcategories = getSubcategories(category)
 
-        currentCategorySubcategories.forEach((subCategory) => {
+        currentCategorySubcategories?.forEach((subCategory) => {
           const subCategoryRawValue = getValue(subCategory)
 
           const subCategoryValue =

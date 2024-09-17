@@ -24,7 +24,7 @@ export function usePRNumber(): {
     }
   }
 
-  const PRNumberFromURL = searchParams.get('PR')
+  const PRNumberFromURL = searchParams?.get('PR')
 
   const savedPRNumber = isClient && getPRNumberFromStorage()
   // Use the PR number from sessionStorage if it exists and there is no PR number in the URL

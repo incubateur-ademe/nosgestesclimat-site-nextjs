@@ -10,7 +10,10 @@ import { useParams } from 'next/navigation'
 export function useUpdatePoll() {
   const { user } = useUser()
 
-  const { orgaSlug, pollSlug } = useParams()
+  const { orgaSlug, pollSlug } = useParams() as {
+    orgaSlug: string
+    pollSlug: string
+  }
 
   return useMutation({
     mutationKey: ['updatePoll', pollSlug],

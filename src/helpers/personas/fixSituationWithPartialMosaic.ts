@@ -6,7 +6,7 @@ import { PublicodesExpression } from 'publicodes'
 type Props = {
   situation: Situation
   everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
 }
 

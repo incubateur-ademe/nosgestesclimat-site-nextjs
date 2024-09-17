@@ -84,7 +84,7 @@ export default function DetailedFunFacts({
 
             toPng(funFactsPlus).then(function (dataUrl) {
               const link = document.createElement('a')
-              link.download = `vos-chiffres-cles-${params.slug}.png`
+              link.download = `vos-chiffres-cles-${params?.slug}.png`
               link.href = dataUrl
               link.click()
               link.remove()

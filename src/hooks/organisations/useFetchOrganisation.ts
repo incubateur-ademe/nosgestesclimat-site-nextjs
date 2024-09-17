@@ -10,7 +10,8 @@ export default function useFetchOrganisation({
 }: {
   email: string
 }): UseQueryResult<Organisation> {
-  const { orgaSlug: orgaSlugParam } = useParams()
+  const params = useParams()
+  const orgaSlugParam = params?.orgaSlug as string
 
   const { user } = useUser()
 

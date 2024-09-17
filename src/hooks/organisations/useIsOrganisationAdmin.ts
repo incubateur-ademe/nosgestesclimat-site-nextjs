@@ -13,5 +13,5 @@ export function useIsOrganisationAdmin() {
     email: user?.organisation?.administratorEmail ?? '',
   })
 
-  return { isAdmin: organisation?.slug === params.orgaSlug, isLoading }
+  return { isAdmin: organisation?.slug === params?.orgaSlug, isLoading }
 }

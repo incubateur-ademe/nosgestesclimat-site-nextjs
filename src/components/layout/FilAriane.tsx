@@ -21,15 +21,15 @@ export default function FilAriane({ className }: { className?: string }) {
     email: user?.organisation?.administratorEmail ?? '',
   })
 
-  const isAdmin = organisation?.slug === params.orgaSlug
+  const isAdmin = organisation?.slug === params?.orgaSlug
 
   const { data: pollData } = useFetchPollData({
-    orgaSlug: decodeURIComponent(params.orgaSlug as string),
-    pollSlug: decodeURIComponent(params.pollSlug as string),
-    enabled: !!params.pollSlug,
+    orgaSlug: decodeURIComponent(params?.orgaSlug as string),
+    pollSlug: decodeURIComponent(params?.pollSlug as string),
+    enabled: !!params?.pollSlug,
   })
 
-  if (!TARGETED_PATHS.some((path) => pathname.includes(path))) return null
+  if (!TARGETED_PATHS.some((path) => pathname?.includes(path))) return null
 
   const getBreadcrumbsItems = (): {
     href: string
@@ -37,9 +37,9 @@ export default function FilAriane({ className }: { className?: string }) {
     isActive: boolean
   }[] => {
     // Organisation path
-    if (pathname.includes('/organisations')) {
+    if (pathname?.includes('/organisations')) {
       return getOrganisationItems({
-        pathname,
+        pathname: pathname ?? '',
         params,
         user,
         isAdmin,
