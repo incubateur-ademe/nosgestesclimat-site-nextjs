@@ -44,7 +44,7 @@ export default function GroupResults({
   return (
     <>
       <div className="mt-4 flex items-center justify-between">
-        <h2 className="m-0 text-sm font-bold md:text-lg">
+        <h2 className="m-0 text-base font-bold md:text-lg">
           <Trans>Le classement</Trans>
         </h2>
 

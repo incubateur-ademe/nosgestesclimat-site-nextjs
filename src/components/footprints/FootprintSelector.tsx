@@ -1,15 +1,15 @@
 'use client'
 import { carboneMetric, eauMetric } from '@/constants/metric'
+import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Metrics } from '@incubateur-ademe/nosgestesclimat'
-import { ReactNode } from 'react'
-import { twMerge } from 'tailwind-merge'
+import Select from 'react-select'
 import Trans from '../translation/Trans'
 
 interface OptionType {
   value: string
   label: string
-  icon: ReactNode
+  icon: string
 }
 
 export default function FootprintSelector({
@@ -26,48 +26,69 @@ export default function FootprintSelector({
     { value: eauMetric, label: t('Eau'), icon: '💧' },
   ]
 
+  const customStyles = {
+    control: (provided: any) => ({
+      ...provided,
+      borderRadius: '0.5rem',
+      borderWidth: '2px',
+      borderColor: '#4949ba',
+      backgroundColor: 'transparent',
+      minWidth: '9rem',
+      paddingTop: '1rem',
+      paddingBottom: '0.2rem',
+      color: '#373978',
+      cursor: 'pointer',
+      fontSize: '0.875rem',
+      '&:hover': {
+        borderColor: '#3d3f96',
+        backgroundColor: '#e3ebfc',
+      },
+    }),
+    indicatorSeparator: () => ({
+      display: 'none',
+    }),
+    singleValue: (provided: any) => ({
+      ...provided,
+      color: '#3d3f96',
+      fontWeight: 'bold',
+    }),
+    option: (provided: any, state: any) => ({
+      ...provided,
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      cursor: 'pointer',
+      fontSize: '0.875rem',
+      backgroundColor: state.isSelected ? '#737de1' : provided.backgroundColor,
+      color: state.isSelected ? 'white' : provided.color,
+    }),
+  }
+
   return (
     <div className="relative rounded-lg">
-      <label htmlFor="footprint-select" className="relative block h-full">
-        <p className="absolute left-2 top-2 m-0 text-[0.6rem]">
+      <div className="relative block h-full">
+        <span
+          id="footprint-select-label"
+          className="absolute left-3 top-2 z-10 m-0 text-[0.6rem]">
           <Trans>Empreinte</Trans>
-        </p>
+        </span>
 
-        <select
+        <Select
+          aria-labelledby="footprint-select-label"
           id="footprint-select"
-          defaultValue={
-            options.find((option) => option.value === footprintSelected)?.value
-          }
-          onChange={(e) => {
-            const selected = options.find(
-              (option) => option.value === e.target.value
-            )
-            onChange((selected?.value as Metrics) || '')
-          }}
-          className={twMerge(
-            'focus:ring-offset-3 inline-flex items-center justify-start whitespace-nowrap rounded-lg font-bold !leading-none no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary-700 aria-disabled:opacity-50',
-            'pb-2 pl-2 pr-4 pt-6 text-sm sm:pr-7',
-            'border-2 border-solid border-primary-700 bg-transparent text-primary-800 shadow-sm hover:border-primary-700 hover:bg-primary-100 hover:text-primary-700',
-            'min-w-36 cursor-pointer appearance-none pr-8'
-          )}>
-          {options.map((option) => (
-            <option
-              key={option.value}
-              value={option.value}
-              className="flex items-center text-sm">
-              {option.label}  {option.icon}
-            </option>
-          ))}
-        </select>
-        <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-          <svg
-            className="h-4 w-4 fill-primary-700"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20">
-            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-          </svg>
-        </div>
-      </label>
+          options={options}
+          isClearable={false}
+          isSearchable={false}
+          value={options.find((option) => option.value === footprintSelected)}
+          onChange={(selected) => onChange((selected?.value as Metrics) || '')}
+          styles={customStyles}
+          formatOptionLabel={({ label, icon }) => (
+            <div className="flex items-center">
+              {label}  <Emoji>{icon}</Emoji>
+            </div>
+          )}
+        />
+      </div>
     </div>
   )
 }
