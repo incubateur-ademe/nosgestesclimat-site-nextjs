@@ -19,8 +19,8 @@ export default function WaterRanking({ group, refetchGroup }: Props) {
   const sortedMembers = useMemo(() => {
     return [...group.participants].sort(
       (a, b) =>
-        (b.simulation?.computedResults?.eau?.bilan ?? 0) -
-        (a.simulation?.computedResults?.eau?.bilan ?? 0)
+        (a.simulation?.computedResults?.eau?.bilan ?? 0) -
+        (b.simulation?.computedResults?.eau?.bilan ?? 0)
     )
   }, [group.participants])
 
