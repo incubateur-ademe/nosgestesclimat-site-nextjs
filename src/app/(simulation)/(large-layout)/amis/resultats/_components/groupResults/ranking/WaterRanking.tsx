@@ -50,7 +50,9 @@ export default function WaterRanking({ group, refetchGroup }: Props) {
               quantity={
                 <span className="m-none leading-[160%]">
                   <strong>{formattedValue}</strong>{' '}
-                  <span className="text-sm font-light">{unit}</span>
+                  <span className="text-sm font-light">
+                    {unit} / <Trans>jour</Trans>
+                  </span>
                 </span>
               }
               isCurrentMember={
