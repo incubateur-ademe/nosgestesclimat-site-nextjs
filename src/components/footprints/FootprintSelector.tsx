@@ -51,6 +51,10 @@ export default function FootprintSelector({
       ...provided,
       margin: '-0.2rem',
     }),
+    dropdownIndicator: (provided: any) => ({
+      ...provided,
+      color: '#3d3f96',
+    }),
     singleValue: (provided: any) => ({
       ...provided,
       color: '#3d3f96',
