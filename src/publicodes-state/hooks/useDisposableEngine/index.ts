@@ -1,6 +1,6 @@
-import getSomme from '@/publicodes-state/helpers/getSomme'
+import { getSubcategories } from '@/helpers/publicodes/getSubcategories'
 import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
-import { DottedName, NGCRule } from '@incubateur-ademe/nosgestesclimat'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
@@ -47,6 +47,10 @@ export default function useDisposableEngine({ rules, situation }: Props) {
     getValue,
     updateSituation,
     getSubcategories: (dottedName: DottedName) =>
-      getSomme(safeGetRule(dottedName) as NGCRule),
+      getSubcategories({
+        dottedName,
+        getRule: safeGetRule,
+        parsedRules: rules ?? contextRules,
+      }),
   }
 }
