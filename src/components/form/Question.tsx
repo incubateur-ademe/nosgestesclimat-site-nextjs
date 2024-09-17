@@ -96,7 +96,7 @@ export default function Question({
           question={question}
           value={value}
           setValue={setValueFromSuggestions}
-          type={question.includes('avion') ? 'multiple' : 'checkbox'}
+          type={question.includes('avion') ? 'multiple' : 'radio'}
         />
         {showInputsLabel ? (
           <Button

@@ -143,7 +143,7 @@ export default function Suggestions({
   return (
     <div className="mb-6 flex flex-wrap justify-start gap-x-3.5 gap-y-4 text-sm">
       {suggestions.map((suggestion) =>
-        type === 'multiple' ? (
+        type === 'multiple' && suggestion.value !== 0 ? (
           <SuggestionInput
             key={suggestion.label}
             suggestion={suggestion}
@@ -160,7 +160,7 @@ export default function Suggestions({
           <SuggestionButton
             key={suggestion.label}
             suggestion={suggestion}
-            type={type}
+            type={type === 'multiple' ? 'radio' : type}
             isSelected={
               selectedSuggestions.filter(
                 (selectedSuggestion) =>

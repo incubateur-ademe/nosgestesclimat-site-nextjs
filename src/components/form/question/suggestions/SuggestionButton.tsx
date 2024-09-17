@@ -10,10 +10,6 @@ import { FormattedSuggestion, SuggestionType } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { twMerge } from 'tailwind-merge'
 
-const boxClassName = {
-  radio: 'rounded-full before:rounded-full',
-  checkbox: 'rounded before: rounded',
-}
 const checkClassNames = {
   checked: 'border-white before:bg-white',
   unchecked: 'border-primary-700',
@@ -58,13 +54,14 @@ export default function SuggestionButton({
         }
         handleSuggestionAdd(suggestion)
       }}>
-      <span
-        className={twMerge(
-          'relative flex h-4 w-4 items-center justify-center border-2 text-sm before:absolute before:left-0.5 before:top-0.5 before:h-2 before:w-2 before:p-1 md:text-base',
-          boxClassName[type],
-          checkClassNames[status]
-        )}
-      />
+      {type === 'checkbox' && (
+        <span
+          className={twMerge(
+            'relative flex h-4 w-4 items-center justify-center rounded border-2 text-sm before:absolute before:left-0.5 before:top-0.5 before:h-2 before:w-2 before:rounded before:p-1 md:text-base',
+            checkClassNames[status]
+          )}
+        />
+      )}
       <Emoji className="flex items-center gap-1 leading-none">
         {capitalizeString(suggestion.label)}
       </Emoji>
