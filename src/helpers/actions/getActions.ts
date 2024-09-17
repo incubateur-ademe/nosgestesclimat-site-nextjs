@@ -2,13 +2,18 @@ import getSomme from '@/publicodes-state/helpers/getSomme'
 import { NGCEvaluatedNode } from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import { sortBy } from '@/utils/sortBy'
-import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import {
+  DottedName,
+  NGCRule,
+  NGCRuleNode,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { filterIrrelevantActions } from './filterIrrelevantActions'
 import { getIsActionDisabled } from './getIsActionDisabled'
 
 type Props = {
-  rules: any
+  rules?: NGCRules
   radical: boolean
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   getSpecialRuleObject: (
@@ -24,6 +29,8 @@ export default function getActions({
   getSpecialRuleObject,
   actionChoices,
 }: Props) {
+  if (!rules) return []
+
   const actionsObject = rules.actions
   const somme = getSomme(actionsObject) ?? []
 
@@ -38,20 +45,23 @@ export default function getActions({
         ...ruleContent,
         dottedName: actionRuleName,
       }
-    })
+    }) as NGCEvaluatedNode[]
 
   const relevantActions = filterIrrelevantActions({
     actions,
     actionChoices,
-  })
+  }) as NGCRule[]
 
   const sortedActionsByImpact = sortBy(
-    (value) => (radical ? 1 : -1) * (getCorrectedValue(value as any) || 1)
+    (value: unknown) =>
+      (radical ? 1 : -1) * (getCorrectedValue(value as NGCEvaluatedNode) || 1)
   )(relevantActions)
 
   // Filter disabled actions
   return sortedActionsByImpact.filter((action: any) => {
-    const flatRule = rules[action.dottedName] as { formule: string }
+    const flatRule = rules[action.dottedName as DottedName] as {
+      formule: string
+    }
 
     return !getIsActionDisabled(flatRule, action.nodeValue)
   })
