@@ -1,3 +1,5 @@
+'use client'
+
 import Button from '@/design-system/inputs/Button'
 import Modal from '@/design-system/modals/Modal'
 import React from 'react'
