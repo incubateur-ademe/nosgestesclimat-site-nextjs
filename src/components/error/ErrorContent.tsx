@@ -1,18 +1,12 @@
-'use client'
+import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { headers } from 'next/headers'
+import Link from '../Link'
+import Trans from '../translation/Trans'
 
-import Button from '@/design-system/inputs/Button'
-import Modal from '@/design-system/modals/Modal'
-import React from 'react'
-import Link from './Link'
-import Trans from './translation/Trans'
-
-interface ErrorModalProps {
-  error: Error | null
-}
-
-const ErrorModal: React.FC<ErrorModalProps> = () => {
+export default function ErrorContent() {
+  const pathname = headers().get('next-url') ?? '/'
   return (
-    <Modal isOpen={true} closeModal={() => {}} hasAbortButton={false}>
+    <>
       <h2>
         <Trans>Oups ! Une erreur est survenue</Trans> 🐛
       </h2>
@@ -32,12 +26,10 @@ const ErrorModal: React.FC<ErrorModalProps> = () => {
       </p>
 
       <div className="mt-10 flex w-full justify-center">
-        <Button onClick={() => window.location.reload()}>
+        <ButtonLink href={pathname}>
           <Trans>Recharger la page</Trans>
-        </Button>
+        </ButtonLink>
       </div>
-    </Modal>
+    </>
   )
 }
-
-export default ErrorModal

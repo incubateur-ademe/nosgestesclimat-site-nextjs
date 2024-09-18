@@ -1,7 +1,7 @@
 import { getGeolocation } from '@/helpers/getGeolocation'
 import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
-import ErrorModal from '@/components/ErrorModal'
+import ErrorContent from '@/components/error/ErrorContent'
 import Footer from '@/components/layout/Footer'
 import '@/locales/initClient'
 import '@/locales/initServer'
@@ -114,6 +114,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
       </html>
     )
   } catch (error) {
-    return <ErrorModal error={error as Error} />
+    return <ErrorContent />
   }
 }
