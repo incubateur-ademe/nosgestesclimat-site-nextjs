@@ -1,16 +1,12 @@
+'use client'
+
 import Button from '@/design-system/inputs/Button'
-import Modal from '@/design-system/modals/Modal'
-import React from 'react'
-import Link from './Link'
-import Trans from './translation/Trans'
+import Link from '../Link'
+import Trans from '../translation/Trans'
 
-interface ErrorModalProps {
-  error: Error | null
-}
-
-const ErrorModal: React.FC<ErrorModalProps> = () => {
+export default function ErrorContent() {
   return (
-    <Modal isOpen={true} closeModal={() => {}} hasAbortButton={false}>
+    <>
       <h2>
         <Trans>Oups ! Une erreur est survenue</Trans> 🐛
       </h2>
@@ -34,8 +30,6 @@ const ErrorModal: React.FC<ErrorModalProps> = () => {
           <Trans>Recharger la page</Trans>
         </Button>
       </div>
-    </Modal>
+    </>
   )
 }
-
-export default ErrorModal
