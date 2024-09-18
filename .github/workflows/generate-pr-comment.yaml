@@ -84,10 +84,12 @@ jobs:
             }
             core.info('Found ' + pull_requests.data.length + ' PR');
 
-            const triggered_pr = pull_requests.data.find(pr => pr.head.sha === context.sha);
+            const triggered_pr = context.payload.pull_request;
+
             if (!triggered_pr) {
               return core.error('The corresponding PR could not be found.');
             }
+
             core.info('Found the corresponding PR: #' + triggered_pr.number);
 
             const marker = 'yarn-compile-result';
