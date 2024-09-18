@@ -1,17 +1,22 @@
 import { getGeolocation } from '@/helpers/getGeolocation'
 import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
-import ErrorContent from '@/components/error/ErrorContent'
 import Footer from '@/components/layout/Footer'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import { dir } from 'i18next'
 import { currentLocale } from 'next-i18n-router'
+import dynamic from 'next/dynamic'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { PropsWithChildren } from 'react'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
+
+const ClientErrorModal = dynamic(
+  () => import('@/components/error/ErrorModal'),
+  { ssr: false }
+)
 
 export const marianne = localFont({
   src: [
@@ -114,6 +119,12 @@ export default async function RootLayout({ children }: PropsWithChildren) {
       </html>
     )
   } catch (error) {
-    return <ErrorContent />
+    return (
+      <html lang="fr">
+        <body>
+          <ClientErrorModal error={error as Error} />
+        </body>
+      </html>
+    )
   }
 }

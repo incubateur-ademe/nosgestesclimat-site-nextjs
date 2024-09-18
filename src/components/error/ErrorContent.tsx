@@ -1,10 +1,10 @@
-import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { headers } from 'next/headers'
+'use client'
+
+import Button from '@/design-system/inputs/Button'
 import Link from '../Link'
 import Trans from '../translation/Trans'
 
 export default function ErrorContent() {
-  const pathname = headers().get('next-url') ?? '/'
   return (
     <>
       <h2>
@@ -26,9 +26,9 @@ export default function ErrorContent() {
       </p>
 
       <div className="mt-10 flex w-full justify-center">
-        <ButtonLink href={pathname}>
+        <Button onClick={() => window.location.reload()}>
           <Trans>Recharger la page</Trans>
-        </ButtonLink>
+        </Button>
       </div>
     </>
   )
