@@ -1,6 +1,7 @@
 'use client'
 
 import { IframeOptionsProvider } from '@/app/_components/mainLayoutProviders/IframeOptionsContext'
+import ErrorBoundary from '@/components/ErrorBoundary'
 import { UserProvider } from '@/publicodes-state'
 import { RegionFromGeolocation } from '@/publicodes-state/types'
 import { Migration } from '@publicodes/tools/migration'
@@ -19,17 +20,19 @@ export default function MainLayoutProviders({
   migrationInstructions,
 }: PropsWithChildren<Props>) {
   return (
-    <IframeOptionsProvider>
-      <QueryClientProviderWrapper>
-        <UserProvider
-          initialRegion={region}
-          storageKey="nosgestesclimat::v3"
-          migrationInstructions={migrationInstructions}>
-          <PreventNavigationProvider>
-            <MainHooks>{children}</MainHooks>
-          </PreventNavigationProvider>
-        </UserProvider>
-      </QueryClientProviderWrapper>
-    </IframeOptionsProvider>
+    <ErrorBoundary>
+      <IframeOptionsProvider>
+        <QueryClientProviderWrapper>
+          <UserProvider
+            initialRegion={region}
+            storageKey="nosgestesclimat::v3"
+            migrationInstructions={migrationInstructions}>
+            <PreventNavigationProvider>
+              <MainHooks>{children}</MainHooks>
+            </PreventNavigationProvider>
+          </UserProvider>
+        </QueryClientProviderWrapper>
+      </IframeOptionsProvider>
+    </ErrorBoundary>
   )
 }
