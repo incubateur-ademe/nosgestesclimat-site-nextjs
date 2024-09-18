@@ -77,8 +77,6 @@ jobs:
             const fs = require('fs');
 
             const {owner, repo} = context.repo;
-            const run_id = process.env.GITHUB_RUN_ID;
-            core.info('Triggered workflow run:', run_id);
 
             const pull_requests = await github.rest.pulls.list(context.repo);
             if (!pull_requests.data.length) {
@@ -86,15 +84,9 @@ jobs:
             }
             core.info('Found ' + pull_requests.data.length + ' PR');
 
-            var triggered_pr;
-            for (const pr of pull_requests.data) {
-              if (pr.head.sha == context.payload.workflow_run.head_sha) {
-                triggered_pr = pr;
-              }
-            }
+            const triggered_pr = pull_requests.data.find(pr => pr.head.sha === context.sha);
             if (!triggered_pr) {
-              return core.error('The corresponding RP could not be found.');
-
+              return core.error('The corresponding PR could not be found.');
             }
             core.info('Found the corresponding PR: #' + triggered_pr.number);
 
