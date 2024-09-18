@@ -46,7 +46,7 @@ jobs:
           body="${body//$'\r'/'%0D'}"
           echo "::set-output name=result::${body}"
 
-  upload-artifact:
+  generate-pr-comment:
     runs-on: ubuntu-22.04
     needs: compile
     steps:
@@ -77,7 +77,7 @@ jobs:
             const fs = require('fs');
 
             const {owner, repo} = context.repo;
-            const run_id = context.payload.workflow_run.id;
+            const run_id = process.env.GITHUB_RUN_ID;
             core.info('Triggered workflow run:', run_id);
 
             const pull_requests = await github.rest.pulls.list(context.repo);
