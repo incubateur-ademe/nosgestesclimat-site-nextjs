@@ -116,27 +116,45 @@ export default function Suggestions({
     )
   }, [selectedSuggestions, type])
 
+  const delayTimerRef = useRef<NodeJS.Timeout>()
+  const [canResetSuggestions, setCanResetSuggestions] = useState(true)
   /**
    * When the selected suggestions value change, we update the value (and tempValue if necessary) of the question.
    */
   useEffect(() => {
     if (selectedSuggestions.length) {
-      valueOfSelectedSuggestionsRef.current = valueOfSelectedSuggestions
       setValue(valueOfSelectedSuggestions)
+
+      if (delayTimerRef.current) {
+        clearTimeout(delayTimerRef.current)
+      }
+      delayTimerRef.current = setTimeout(
+        () => setCanResetSuggestions(true),
+        100
+      )
+      setCanResetSuggestions(false)
     }
   }, [setValue, valueOfSelectedSuggestions, selectedSuggestions])
 
-  console.log('valueOfSelectedSuggestions', valueOfSelectedSuggestions)
+  useEffect(() => {
+    return () => {
+      if (delayTimerRef.current) {
+        clearTimeout(delayTimerRef.current)
+      }
+    }
+  }, [])
+
   /**
    * When the value of the question change, we reset the selected suggestions.
+   * We need to add a small delay to avoid reseting the suggestions ritgh after they have been selected.
    */
-  const valueOfSelectedSuggestionsRef = useRef(valueOfSelectedSuggestions)
+  const valueRef = useRef(value)
   useEffect(() => {
-    console.log('value', value, valueOfSelectedSuggestionsRef.current)
-    if (value && value !== valueOfSelectedSuggestionsRef.current) {
+    if (canResetSuggestions && value !== valueRef.current) {
       setSelectedSuggestions([])
     }
-  }, [value])
+    valueRef.current = value
+  }, [value, canResetSuggestions])
 
   if (!suggestions?.length) return
 

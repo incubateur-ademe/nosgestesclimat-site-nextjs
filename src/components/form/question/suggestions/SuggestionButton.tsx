@@ -57,7 +57,7 @@ export default function SuggestionButton({
       {type === 'checkbox' && (
         <span
           className={twMerge(
-            'relative flex h-4 w-4 items-center justify-center rounded border-2 text-sm before:absolute before:left-0.5 before:top-0.5 before:h-2 before:w-2 before:rounded before:p-1 md:text-base',
+            'relative flex h-4 w-4 items-center justify-center rounded border-2 text-sm before:absolute before:left-0.5 before:top-0.5 before:h-2 before:w-2 before:rounded-sm before:p-1 md:text-base',
             checkClassNames[status]
           )}
         />
