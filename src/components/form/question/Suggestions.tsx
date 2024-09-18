@@ -23,7 +23,7 @@ export default function Suggestions({
   type = 'radio',
 }: Props) {
   const { suggestions } = useRule(question)
-  console.log('suggestions', type)
+
   // This is an array containing every selected suggestion.
   // If a suggestion is selected multiple times, it will appear multiple times in this array
   const [selectedSuggestions, setSelectedSuggestions] = useState<

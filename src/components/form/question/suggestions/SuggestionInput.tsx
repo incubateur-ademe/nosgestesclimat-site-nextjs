@@ -37,21 +37,20 @@ export default function SuggestionButton({
       className={twMerge(
         baseClassNames,
         sizeClassNames.sm,
-        'relative flex gap-2 px-4 text-xs font-medium transition-colors md:text-sm',
+        'relative flex gap-3 px-4 text-xs font-medium transition-colors md:text-sm lg:gap-2',
         getBgCategoryColor(currentCategory, '200'),
         getTextCategoryColor(currentCategory, '900'),
         getHoverBgCategoryColor(currentCategory, '200')
       )}>
+      <Emoji className="flex items-center gap-1 leading-none">
+        {capitalizeString(suggestion.label)}
+      </Emoji>
       <Button
         onClick={() => handleSuggestionRemove(suggestion)}
         size="xs"
         className="h-5 w-5 items-center justify-center p-0">
         <span className="mb-[1px] block">-</span>
       </Button>
-
-      <Emoji className="flex items-center gap-1 leading-none">
-        {capitalizeString(suggestion.label)}
-      </Emoji>
       <Button
         onClick={() => handleSuggestionAdd(suggestion)}
         size="xs"
