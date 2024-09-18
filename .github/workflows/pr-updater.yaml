@@ -27,7 +27,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
-          name: results.md
+          name: result.md
           path: ./artifacts
 
       - name: Updating the PR
