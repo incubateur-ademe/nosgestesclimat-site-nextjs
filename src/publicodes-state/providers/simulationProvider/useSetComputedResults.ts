@@ -50,8 +50,6 @@ export function useSetComputedResults({
               metric
             )
 
-            if (!subcategories) return categoriesAcc
-
             categoriesAcc.subcategories[category] = subcategories[category]
               // Get the numeric value of each subcategory
               .reduce(
