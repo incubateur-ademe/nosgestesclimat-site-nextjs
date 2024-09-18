@@ -13,8 +13,8 @@ import { PropsWithChildren } from 'react'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 
-const ClientErrorModal = dynamic(
-  () => import('@/components/error/ErrorModal'),
+const ClientErrorContent = dynamic(
+  () => import('@/components/error/ErrorContent'),
   { ssr: false }
 )
 
@@ -122,7 +122,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     return (
       <html lang="fr">
         <body>
-          <ClientErrorModal error={error as Error} />
+          <ClientErrorContent />
         </body>
       </html>
     )
