@@ -19,10 +19,7 @@ type Props = {
 }
 
 export default function AdminSection({ pollData }: Props) {
-  const { orgaSlug, pollSlug } = useParams() as {
-    pollSlug: string
-    orgaSlug: string
-  }
+  const { orgaSlug, pollSlug } = useParams()
 
   if (!pollData?.isAdmin) return null
 

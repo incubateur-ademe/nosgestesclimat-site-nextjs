@@ -59,7 +59,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
             const fixedSituation = fixSituationWithPartialMosaic({
               situation: persona.situation,
               everyMosaicChildrenWithParent,
-              safeGetRule: safeGetRule ?? (() => null),
+              safeGetRule,
               safeEvaluate,
             })
             initSimulation({

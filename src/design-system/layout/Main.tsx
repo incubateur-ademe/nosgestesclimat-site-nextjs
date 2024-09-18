@@ -21,7 +21,7 @@ export default function Main({
   return (
     <main
       className={`flex flex-col overflow-hidden ${maxWidthClass} ${className} ${
-        isIframe || pathname?.includes('/simulateur/bilan')
+        isIframe || pathname.includes('/simulateur/bilan')
           ? ''
           : 'min-h-[calc(100vh-2rem)]'
       }`}>

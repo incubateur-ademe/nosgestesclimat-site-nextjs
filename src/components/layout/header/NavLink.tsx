@@ -31,8 +31,8 @@ export default function NavLink({
   const pathName = usePathname()
 
   const isActive =
-    activeMatches?.some((matchString) => pathName?.includes(matchString)) ||
-    pathName?.includes(href)
+    activeMatches?.some((matchString) => pathName.includes(matchString)) ||
+    pathName.includes(href)
 
   const Tag = shouldUseDefaultLink ? DefaultLink : Link
 

@@ -20,7 +20,7 @@ export default function SeeDetailedReportAndExport() {
   return (
     <section className="flex flex-wrap justify-center gap-4 pb-8 md:justify-start">
       <ButtonLink
-        href={`/organisations/${params?.slug}/resultats-detailles`}
+        href={`/organisations/${params.slug}/resultats-detailles`}
         onClick={() => {
           trackEvent(organisationsDashboardClickRapportDetaille)
         }}>

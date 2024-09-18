@@ -5,7 +5,7 @@ export function useGroupIdInQueryParams(): {
 } {
   const searchParams = useSearchParams()
 
-  const groupIdInQueryParams = searchParams?.get('groupId')
+  const groupIdInQueryParams = searchParams.get('groupId')
 
-  return { groupIdInQueryParams: groupIdInQueryParams ?? null }
+  return { groupIdInQueryParams }
 }

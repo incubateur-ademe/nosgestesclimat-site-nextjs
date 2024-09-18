@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
 export function useFixedRegion() {
-  const fixedRegionCode = useSearchParams()?.get('region')
+  const fixedRegionCode = useSearchParams().get('region')
 
   const { user, updateRegion } = useUser()
 

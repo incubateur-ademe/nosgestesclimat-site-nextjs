@@ -18,16 +18,11 @@ import PollStatisticsCharts from './_components/PollStatisticsCharts'
 import PollStatisticsFilters from './_components/PollStatisticsFilters'
 
 export default function CampagnePage() {
-  const { pollSlug, orgaSlug } = useParams() as {
-    pollSlug: string
-    orgaSlug: string
-  }
+  const { pollSlug, orgaSlug } = useParams()
 
   const searchParams = useSearchParams()
 
-  const isRedirectFromLegacy = Boolean(
-    searchParams?.get('isRedirectFromLegacy')
-  )
+  const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
 
   useHandleRedirectFromLegacy()
 

@@ -21,7 +21,7 @@ export default function CustomQuestion() {
 
   const params = useParams()
 
-  const customQuestionIndex = parseInt((params?.question as string).slice(-1))
+  const customQuestionIndex = parseInt((params.question as string).slice(-1))
 
   const router = useRouter()
 
@@ -42,7 +42,7 @@ export default function CustomQuestion() {
     })
 
     // Go to next page
-    router.push(getLinkToNextInfosPage({ curPage: params?.question as string }))
+    router.push(getLinkToNextInfosPage({ curPage: params.question as string }))
   }
 
   if (!customAdditionalQuestions?.length || isLoading) {
@@ -71,12 +71,12 @@ export default function CustomQuestion() {
 
       <Navigation
         linkToPrev={getLinkToPrevInfosPage({
-          curPage: params?.question as string,
+          curPage: params.question as string,
         })}
         submitDisabled={
-          !getLinkToNextInfosPage({ curPage: params?.question as string })
+          !getLinkToNextInfosPage({ curPage: params.question as string })
         }
-        currentPage={params?.question as string}
+        currentPage={params.question as string}
       />
     </form>
   )

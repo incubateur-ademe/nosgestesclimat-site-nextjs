@@ -5,14 +5,11 @@ import { useGetOrgaPollSlugs } from './useGetOrgaPollSlugs'
 // Handles managing the redirection from the previous implementation of the parcours orga
 // /organisations/:orgaSlug/resultats-detailles => /organisations/:orgaSlug/campagnes/:pollSlug
 export function useHandleRedirectFromLegacy() {
-  const params = useParams()
-  const orgaSlug = params?.orgaSlug as string
+  const { orgaSlug } = useParams()
 
   const searchParams = useSearchParams()
 
-  const isRedirectFromLegacy = Boolean(
-    searchParams?.get('isRedirectFromLegacy')
-  )
+  const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
 
   const { data: pollSlugs } = useGetOrgaPollSlugs(
     orgaSlug as string,

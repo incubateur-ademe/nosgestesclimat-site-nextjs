@@ -110,7 +110,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
 
                 <OrganisationLink />
               </>
-            ) : !HIDE_CTA_PATHS.find((path) => pathname?.includes(path)) ? (
+            ) : !HIDE_CTA_PATHS.find((path) => pathname.includes(path)) ? (
               <CTAButton />
             ) : null}
           </div>

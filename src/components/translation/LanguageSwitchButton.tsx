@@ -16,7 +16,7 @@ export default function LanguageSwitchButton() {
 
   const currentPathname = usePathname()
 
-  const searchParams = useSearchParams()?.toString()
+  const searchParams = useSearchParams().toString()
 
   const currentLocale = useCurrentLocale(i18nConfig)
 
@@ -49,11 +49,11 @@ export default function LanguageSwitchButton() {
           '/' +
           newLocale +
           currentPathname +
-          (searchParams?.length ?? 0 > 0 ? `?${searchParams}` : '')
+          (searchParams.length > 0 ? `?${searchParams}` : '')
       } else {
         window.location.href =
-          currentPathname?.replace(`/${currentLocale}`, `/${newLocale}`) +
-          (searchParams?.length ?? 0 > 0 ? `?${searchParams}` : '')
+          currentPathname.replace(`/${currentLocale}`, `/${newLocale}`) +
+          (searchParams.length > 0 ? `?${searchParams}` : '')
       }
     },
     [currentLocale, currentPathname, searchParams]

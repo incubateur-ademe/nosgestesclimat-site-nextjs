@@ -52,7 +52,7 @@ export const createIssue = ({
 
 export default function GithubContributionForm() {
   const searchParams = useSearchParams()
-  const fromLocation = searchParams?.get('fromLocation')
+  const fromLocation = searchParams.get('fromLocation')
 
   const [sujet, setSujet] = useState('')
   const [comment, setComment] = useState('')

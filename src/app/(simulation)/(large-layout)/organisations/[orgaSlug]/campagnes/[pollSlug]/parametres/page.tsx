@@ -21,10 +21,7 @@ import DeletePollButton from './_components/DeletePollButton'
 import NameForm from './_components/NameForm'
 
 export default function ParametresPage() {
-  const { pollSlug, orgaSlug } = useParams() as {
-    pollSlug: string
-    orgaSlug: string
-  }
+  const { pollSlug, orgaSlug } = useParams()
 
   const { user } = useUser()
 

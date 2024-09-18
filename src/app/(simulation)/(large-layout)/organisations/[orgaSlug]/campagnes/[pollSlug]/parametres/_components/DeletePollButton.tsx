@@ -12,10 +12,7 @@ import { useState } from 'react'
 export default function DeletePollButton() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const { pollSlug, orgaSlug } = useParams() as {
-    pollSlug: string
-    orgaSlug: string
-  }
+  const { pollSlug, orgaSlug } = useParams()
 
   const { user } = useUser()
 

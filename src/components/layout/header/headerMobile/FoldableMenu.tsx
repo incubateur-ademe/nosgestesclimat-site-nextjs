@@ -79,7 +79,7 @@ export default function FoldableMenu() {
             </NavLink>
           </li>
 
-          {!HIDE_CTA_PATHS.find((path) => pathname?.includes(path)) &&
+          {!HIDE_CTA_PATHS.find((path) => pathname.includes(path)) &&
           !user?.organisation?.administratorEmail ? (
             <li>
               <CTAButton />

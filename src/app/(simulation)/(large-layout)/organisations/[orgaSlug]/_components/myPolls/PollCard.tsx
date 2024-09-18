@@ -10,9 +10,7 @@ type Props = {
 }
 
 export default function PollCard({ poll }: Props) {
-  const { orgaSlug } = useParams() as {
-    orgaSlug: string
-  }
+  const { orgaSlug } = useParams()
 
   if (!poll) return null
 

@@ -13,8 +13,8 @@ export const useUserInfosParams = () => {
     if (!isUserInitialized) {
       return
     }
-    const emailInQueryParams = searchParams?.get('email')
-    const nameInQueryParams = searchParams?.get('name')
+    const emailInQueryParams = searchParams.get('email')
+    const nameInQueryParams = searchParams.get('name')
 
     if (emailInQueryParams) {
       updateEmail(emailInQueryParams)

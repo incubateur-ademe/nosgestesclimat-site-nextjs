@@ -4,8 +4,7 @@ import axios from 'axios'
 import { useParams } from 'next/navigation'
 
 export function useAreCustomQuestionsEnabled() {
-  const params = useParams()
-  const orgaSlug = params?.orgaSlug as string
+  const { orgaSlug } = useParams()
 
   return useQuery({
     queryKey: ['areCustomQuestionsEnabled', orgaSlug],

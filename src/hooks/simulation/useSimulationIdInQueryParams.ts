@@ -5,7 +5,7 @@ export function useSimulationIdInQueryParams(): {
 } {
   const searchParams = useSearchParams()
 
-  const encodedSimulationIdInQueryParams = searchParams?.get('sid')
+  const encodedSimulationIdInQueryParams = searchParams.get('sid')
 
   const simulationIdInQueryParams = encodedSimulationIdInQueryParams
     ? decodeURIComponent(encodedSimulationIdInQueryParams)
