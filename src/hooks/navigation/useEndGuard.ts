@@ -15,6 +15,8 @@ export function useEndGuard() {
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
 
+  console.log('Mounting useEndGuard')
+
   useEffect(() => {
     // we only run the guard at mount
     if (isGuardInit) return
@@ -22,16 +24,19 @@ export function useEndGuard() {
 
     // if there is a simulation id in the query params we do nothing
     if (simulationIdInQueryParams) {
+      console.log('simulationIdInQueryParams', simulationIdInQueryParams)
       return
     }
 
     // if the simulation is finished we do nothing
     if (progression === 1) {
+      console.log('simulation is finished')
       return
     }
 
     // if the user didn't see the tutoriel we redirect him to the tutorial page
     if (!tutorials.testIntro) {
+      console.log('redirecting to tutorial')
       router.replace('/tutoriel')
       setIsGuardRedirecting(true)
       return
