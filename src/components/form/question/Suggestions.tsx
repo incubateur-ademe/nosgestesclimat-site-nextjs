@@ -34,7 +34,7 @@ export default function Suggestions({ question, value, setValue }: Props) {
         questionClickSuggestion({ question, answer: suggestion.label })
       )
 
-      // If the suggestion is zero, we want to select it and unselect all the others
+      // If the suggestion is "None", we want to select it and unselect all the others
       if (!suggestion.value) {
         setSelectedSuggestions([suggestion])
         return
@@ -138,7 +138,7 @@ export default function Suggestions({ question, value, setValue }: Props) {
 
   /**
    * When the value of the question change, we reset the selected suggestions.
-   * We need to add a small delay to avoid reseting the suggestions ritgh after they have been selected.
+   * We need to add a small delay to avoid resetting the suggestions right after they have been selected.
    */
   const valueRef = useRef(value)
   useEffect(() => {
