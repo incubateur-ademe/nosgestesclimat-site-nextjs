@@ -1160,3 +1160,13 @@ entries:
   Oups ! Une erreur est survenue: Oops! An error has occurred
   En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: As a general rule, water footprint values vary <2>between 3,000 and 9,000 litres per day</2>. Unlike carbon, there is no quantified target for the water footprint.
   litres: litres
+  obtenez une estimation: get an estimate
+  "Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}":
+    |-
+    Nos Gestes Climat: an estimate of your carbon footprint in 10 minutes
+    {{sharedUrl}}
+  empreinte eau: water footprint
+  de votre: of your
+  Découvrez votre: Discover your
+  à la fin du test !: at the end of the test!
+  empreinte carbone: carbon footprint
