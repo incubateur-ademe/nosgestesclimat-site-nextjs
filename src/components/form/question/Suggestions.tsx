@@ -64,8 +64,6 @@ export default function Suggestions({ question, value, setValue }: Props) {
   /**
    * Handles the deletion of a selected suggestion.
    * It removes one instance of the suggestion from the selected suggestions.
-   *
-   * @param suggestion - The suggestion to be deleted.
    */
   const handleSuggestionRemove = useCallback(
     (suggestion: FormattedSuggestion) => {
