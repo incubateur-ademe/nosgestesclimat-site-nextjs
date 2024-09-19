@@ -4,7 +4,7 @@ import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
-import { NGCEvaluatedNode, Situation } from '../../types'
+import { NGCEvaluatedNode, Situation } from '../../../types'
 
 type Props = {
   dottedName: DottedName

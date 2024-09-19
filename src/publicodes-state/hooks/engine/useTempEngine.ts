@@ -35,7 +35,7 @@ export default function useTempEngine(): {
   }
 
   const extendedFoldedSteps = foldedSteps
-    .map((foldedStep: any) => {
+    .map((foldedStep: DottedName) => {
       const questionsOfMosaic = everyMosaicChildrenWithParent[foldedStep] || []
       return questionsOfMosaic.length > 0 ? questionsOfMosaic : foldedStep
     })

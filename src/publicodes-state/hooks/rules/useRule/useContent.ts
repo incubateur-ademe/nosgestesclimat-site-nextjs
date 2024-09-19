@@ -7,7 +7,7 @@ import {
   Suggestions,
 } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
-import { FormattedSuggestion } from '../../types'
+import { FormattedSuggestion } from '../../../types'
 
 type Props = {
   dottedName: DottedName

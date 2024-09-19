@@ -1,6 +1,6 @@
 'use client'
 
-import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
+import { SimulationContext } from '@/publicodes-state/contexts/simulationContext/context'
 import { useContext } from 'react'
 import ActionsContent from './_components/ActionsContent'
 import ActionsTutorial from './_components/ActionsTutorial'

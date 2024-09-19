@@ -3,7 +3,7 @@
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { Migration } from '@publicodes/tools/migration'
 import { Dispatch, SetStateAction, useCallback, useMemo } from 'react'
-import { Simulation, UpdateCurrentSimulationProps } from '../../types'
+import { Simulation, UpdateCurrentSimulationProps } from '../../../types'
 
 type Props = {
   simulations: Simulation[]
