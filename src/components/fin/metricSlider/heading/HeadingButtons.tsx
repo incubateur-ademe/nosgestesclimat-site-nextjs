@@ -55,7 +55,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         )
         await navigator.clipboard.writeText(shareText)
 
-        displaySuccessToast('Lien de partage copié dans le presse-papier !')
+        displaySuccessToast(t('Lien de partage copié dans le presse-papier !'))
         setShouldDisplayConfirmMessage(true)
 
         timeoutRef.current = setTimeout(() => {
@@ -63,7 +63,9 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         }, 2000)
       } catch (err) {
         displayErrorToast(
-          'Oups, une erreur s’est produite lors de la copie du lien de partage.'
+          t(
+            'Oups, une erreur s’est produite lors de la copie du lien de partage.'
+          )
         )
       }
 
@@ -75,7 +77,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
       await navigator
         .share({
           url: sharedUrl,
-          title: 'Nos Gestes Climat : votre empreinte carbone en 10 min',
+          title: t('Nos Gestes Climat : votre empreinte carbone en 10 min'),
         })
         .catch((e) => console.log(e))
     } else {
@@ -86,7 +88,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         )
         await navigator.clipboard.writeText(shareText)
 
-        displaySuccessToast('Lien de partage copié dans le presse-papier !')
+        displaySuccessToast(t('Lien de partage copié dans le presse-papier !'))
         setShouldDisplayConfirmMessage(true)
 
         timeoutRef.current = setTimeout(() => {
@@ -94,7 +96,9 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         }, 2000)
       } catch (err) {
         displayErrorToast(
-          'Oups, une erreur s’est produite lors de la copie du lien de partage.'
+          t(
+            'Oups, une erreur s’est produite lors de la copie du lien de partage.'
+          )
         )
       }
     }
