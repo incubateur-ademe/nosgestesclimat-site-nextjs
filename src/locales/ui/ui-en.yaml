@@ -1162,8 +1162,14 @@ entries:
   litres: litres
   Oups, une erreur s’est produite lors de la copie du lien de partage.: Oops, there was an error copying the share link.
   'Nos Gestes Climat : votre empreinte carbone en 10 min': 'Nos Gestes Climat: your carbon footprint in 10 minutes'
+  obtenez une estimation: get an estimate
   "Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}":
     |-
     Nos Gestes Climat: an estimate of your carbon footprint in 10 minutes
     {{sharedUrl}}
   Lien de partage copié dans le presse-papier !: Share link copied to clipboard!
+  empreinte eau: water footprint
+  de votre: of your
+  Découvrez votre: Discover your
+  à la fin du test !: at the end of the test!
+  empreinte carbone: carbon footprint

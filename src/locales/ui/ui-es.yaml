@@ -1155,8 +1155,14 @@ entries:
   litres: litros
   Lien de partage copié dans le presse-papier !: Enlace compartido copiado en el portapapeles
   Oups, une erreur s’est produite lors de la copie du lien de partage.: Oops, hubo un error al copiar el enlace para compartir.
+  obtenez une estimation: solicitar estimación
   "Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}":
     |-
     Nos Gestes Climat: una estimación de su huella de carbono en 10 minutos
     {{sharedUrl}}
   'Nos Gestes Climat : votre empreinte carbone en 10 min': 'Nos Gestes Climat: su huella de carbono en 10 minutos'
+  empreinte eau: huella hídrica
+  Découvrez votre: Descubre tu
+  empreinte carbone: huella de carbono
+  de votre: de su
+  à la fin du test !: al final de la prueba

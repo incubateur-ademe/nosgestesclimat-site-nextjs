@@ -4,6 +4,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   question: DottedName
@@ -15,19 +16,18 @@ type Props = {
 }
 
 const buttonClassNames = {
-  inactive:
-    'border-primary-200 bg-primary-100 text-primary-400 cursor-default border-2',
-  checked: 'border-primary-700 text-primary-700 border-2',
-  unchecked: 'border-primary-200 hover:bg-primary-50 border-2',
+  inactive: 'border-gray-200 bg-gray-100 text-gray-400 cursor-default border-2',
+  checked: 'border-primary-700 text-primary-700 border-2 cursor-pointer ',
+  unchecked: 'border-primary-200 hover:bg-primary-50 border-2 cursor-pointer ',
 }
 const checkClassNames = {
-  inactive: 'border-primary-200',
+  inactive: 'border-gray-200',
   checked: 'border-primary-700',
   unchecked: 'border-primary-200',
 }
 
 const labelClassNames = {
-  inactive: 'text-primary-500',
+  inactive: 'text-gray-400',
   checked: 'text-primary-700',
   unchecked: 'text-primary-700',
 }
@@ -51,7 +51,10 @@ export default function MosaicBooleanInput({
   return (
     <div className="flex md:block">
       <label
-        className={`relative flex h-full cursor-pointer items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
+        className={twMerge(
+          `relative flex h-full items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors`,
+          buttonClassNames[status]
+        )}
         htmlFor={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}>
         <input
           type="checkbox"
