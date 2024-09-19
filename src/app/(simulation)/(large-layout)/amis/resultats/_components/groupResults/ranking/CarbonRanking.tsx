@@ -10,7 +10,7 @@ import { useUser } from '@/publicodes-state'
 import { Group, Participant } from '@/types/groups'
 import { QueryObserverResult } from '@tanstack/react-query'
 import { useState } from 'react'
-import ClassementMember from './ClassementMember'
+import ClassementMember from './RankingMember'
 
 export default function CarbonRanking({
   group,
@@ -61,7 +61,9 @@ export default function CarbonRanking({
           ]?.bilan ? (
             <span className="m-none leading-[160%]">
               <strong>{formattedValue}</strong>{' '}
-              <span className="text-sm font-light">{unit}</span>
+              <span className="text-sm font-light">
+                {unit} <Trans>de CO₂e</Trans>
+              </span>
             </span>
           ) : (
             '...'

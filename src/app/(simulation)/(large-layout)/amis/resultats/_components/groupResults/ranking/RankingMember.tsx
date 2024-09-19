@@ -15,7 +15,7 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { twMerge } from 'tailwind-merge'
 
-export default function ClassementMember({
+export default function RankingMember({
   rank,
   quantity,
   isTopThree,

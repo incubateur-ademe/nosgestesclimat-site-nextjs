@@ -1157,3 +1157,10 @@ entries:
   Oups ! Une erreur est survenue: ¡Uy! Se ha producido un error
   Si le problème persiste, merci de <2>contacter le support</2>.: Si el problema persiste, <2>póngase en contacto con el servicio de asistencia.</2>
   litres: litros
+  friends.day: día
+  friends.day.lock: jour
+  de CO₂e: de CO₂e
+  "Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}":
+    |-
+    Nos Gestes Climat: una estimación de su huella de carbono en 10 minutos
+    {{sharedUrl}}

@@ -8,7 +8,7 @@ import { useRule } from '@/publicodes-state'
 import { Group } from '@/types/groups'
 import { QueryObserverResult } from '@tanstack/react-query'
 import { useMemo } from 'react'
-import ClassementMember from './ClassementMember'
+import ClassementMember from './RankingMember'
 
 type Props = {
   group: Group

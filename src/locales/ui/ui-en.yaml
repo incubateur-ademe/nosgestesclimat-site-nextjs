@@ -1164,3 +1164,10 @@ entries:
   Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: An error has occurred; please reload the page or try again later.
   Oups ! Une erreur est survenue: Oops! An error has occurred
   litres: litres
+  de CO₂e: of CO₂e
+  friends.day: day
+  friends.day.lock: jour
+  "Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}":
+    |-
+    Nos Gestes Climat: an estimate of your carbon footprint in 10 minutes
+    {{sharedUrl}}
