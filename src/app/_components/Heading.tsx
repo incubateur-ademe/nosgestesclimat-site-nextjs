@@ -21,9 +21,9 @@ export default async function Heading() {
             <span className="text-secondary-700">
               <Trans>10 minutes</Trans>
             </span>
-            ,{' '}
+            , <Trans>obtenez une estimation</Trans>{' '}
+            <br className="hidden lg:inline" />
             <Trans>
-              obtenez une estimation <br className="hidden lg:inline" />
               de votre <strong>empreinte carbone</strong>.
             </Trans>
           </p>
