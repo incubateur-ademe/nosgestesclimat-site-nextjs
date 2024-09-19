@@ -53,7 +53,10 @@ export default function CarbonRanking({
 
           const { formattedValue, unit } = formatFootprint(
             participant?.simulation?.computedResults?.[defaultMetric]?.bilan ??
-              ''
+              '',
+            {
+              shouldUseAbbreviation: true,
+            }
           )
 
           const quantity = participant?.simulation?.computedResults?.[
@@ -62,7 +65,7 @@ export default function CarbonRanking({
             <span className="m-none leading-[160%]">
               <strong>{formattedValue}</strong>{' '}
               <span className="text-sm font-light">
-                {unit} <Trans>de CO₂e</Trans>
+                {unit} <Trans>CO₂e</Trans>
               </span>
             </span>
           ) : (

@@ -32,7 +32,7 @@ export default function FootprintSelector({
       borderRadius: '0.5rem',
       borderWidth: '2px',
       borderColor: '#4949ba',
-      backgroundColor: '#e3ebfc',
+      // backgroundColor: '#e3ebfc',
       minWidth: '7rem',
       paddingTop: '0',
       paddingBottom: '0',
@@ -43,6 +43,7 @@ export default function FootprintSelector({
         borderColor: '#3d3f96',
         backgroundColor: '#e3ebfc',
       },
+      transition: 'all 0.2s ease-in-out',
     }),
     indicatorSeparator: () => ({
       display: 'none',
@@ -54,6 +55,9 @@ export default function FootprintSelector({
     dropdownIndicator: (provided: any) => ({
       ...provided,
       color: '#3d3f96',
+      '&:hover': {
+        color: '#3d3f96',
+      },
     }),
     singleValue: (provided: any) => ({
       ...provided,
