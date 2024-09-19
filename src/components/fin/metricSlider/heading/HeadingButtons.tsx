@@ -66,6 +66,8 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
           'Oups, une erreur s’est produite lors de la copie du lien de partage.'
         )
       }
+
+      return
     }
 
     // Mobile : share the url
