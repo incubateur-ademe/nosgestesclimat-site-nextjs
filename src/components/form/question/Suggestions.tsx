@@ -138,7 +138,7 @@ export default function Suggestions({ question, value, setValue }: Props) {
 
   /**
    * When the value of the question change, we reset the selected suggestions.
-   * We need to add a small delay to avoid reseting the suggestions ritgh after they have been selected.
+   * We need to add a small delay to avoid resetting the suggestions right after they have been selected.
    */
   const valueRef = useRef(value)
   useEffect(() => {
