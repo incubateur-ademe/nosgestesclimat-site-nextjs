@@ -49,11 +49,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
     // Desktop : only copy the url
     if (!navigator?.share || window.innerWidth > MAX_WIDTH_MOBILE) {
       try {
-        const shareText = t(
-          'Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}',
-          { sharedUrl }
-        )
-        await navigator.clipboard.writeText(shareText)
+        await navigator.clipboard.writeText(sharedUrl)
 
         displaySuccessToast(t('Lien de partage copié dans le presse-papier !'))
         setShouldDisplayConfirmMessage(true)
