@@ -6,8 +6,9 @@ import {
   getTextCategoryColor,
 } from '@/helpers/getCategoryColorClass'
 import { useForm } from '@/publicodes-state'
-import { FormattedSuggestion, SuggestionType } from '@/publicodes-state/types'
+import { FormattedSuggestion } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
+import { SuggestionType } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
 const checkClassNames = {

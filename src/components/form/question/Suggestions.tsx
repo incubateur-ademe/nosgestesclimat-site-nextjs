@@ -2,7 +2,7 @@
 
 import { questionClickSuggestion } from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
-import { FormattedSuggestion, SuggestionType } from '@/publicodes-state/types'
+import { FormattedSuggestion } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -13,16 +13,10 @@ type Props = {
   question: DottedName
   value: NodeValue
   setValue: (value: NodeValue | Record<string, NodeValue>) => void
-  type?: SuggestionType
 }
 
-export default function Suggestions({
-  question,
-  value,
-  setValue,
-  type = 'radio',
-}: Props) {
-  const { suggestions } = useRule(question)
+export default function Suggestions({ question, value, setValue }: Props) {
+  const { suggestions, suggestionsType } = useRule(question)
 
   // This is an array containing every selected suggestion.
   // If a suggestion is selected multiple times, it will appear multiple times in this array
@@ -46,7 +40,7 @@ export default function Suggestions({
         return
       }
 
-      switch (type) {
+      switch (suggestionsType) {
         case 'checkbox':
         case 'multiple':
           // For checkbox and multiple type, add the suggestion to the selected suggestions
@@ -64,7 +58,7 @@ export default function Suggestions({
           break
       }
     },
-    [question, type]
+    [question, suggestionsType]
   )
 
   /**
@@ -100,7 +94,7 @@ export default function Suggestions({
    * So checkbox and multiple suggestions should only be used with question type === 'number'.
    */
   const valueOfSelectedSuggestions = useMemo(() => {
-    if (type === 'radio') {
+    if (suggestionsType === 'radio') {
       return selectedSuggestions.length
         ? selectedSuggestions[0].value
         : undefined
@@ -114,7 +108,7 @@ export default function Suggestions({
         ) * 100
       ) / 100
     )
-  }, [selectedSuggestions, type])
+  }, [selectedSuggestions, suggestionsType])
 
   const delayTimerRef = useRef<NodeJS.Timeout>()
   const [canResetSuggestions, setCanResetSuggestions] = useState(true)
@@ -161,7 +155,7 @@ export default function Suggestions({
   return (
     <div className="mb-6 flex flex-wrap justify-start gap-x-3.5 gap-y-4 text-sm">
       {suggestions.map((suggestion) =>
-        type === 'multiple' && suggestion.value !== 0 ? (
+        suggestionsType === 'multiple' && suggestion.value !== 0 ? (
           <SuggestionInput
             key={suggestion.label}
             suggestion={suggestion}
@@ -178,7 +172,7 @@ export default function Suggestions({
           <SuggestionButton
             key={suggestion.label}
             suggestion={suggestion}
-            type={type === 'multiple' ? 'radio' : type}
+            type={suggestionsType === 'multiple' ? 'radio' : suggestionsType}
             isSelected={
               selectedSuggestions.filter(
                 (selectedSuggestion) =>

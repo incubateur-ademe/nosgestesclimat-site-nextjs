@@ -92,6 +92,7 @@ export default function useRule(
     warning,
     isInactive,
     suggestions,
+    suggestionsType,
     excerpt,
     actions,
   } = useContent({
@@ -181,6 +182,10 @@ export default function useRule(
      * A list of suggestions to display as {label: value}
      */
     suggestions,
+    /**
+     * The type of suggestions (radio, checkbox, multiple)
+     */
+    suggestionsType,
     /**
      * A list of choices to display as partial dottedNames
      */

@@ -5,6 +5,7 @@ import {
   DottedName,
   NGCRuleNode,
   Suggestions,
+  SuggestionType,
 } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 import { FormattedSuggestion } from '../../types'
@@ -78,6 +79,11 @@ export default function useContent({ dottedName, rule }: Props) {
     return suggestions
   }, [rule])
 
+  const suggestionsType = useMemo<SuggestionType>(
+    () => (rule?.rawNode['type suggestions'] || 'radio') as SuggestionType,
+    [rule]
+  )
+
   const excerpt = useMemo<string | undefined>(
     () => rule?.rawNode['résumé'],
     [rule]
@@ -100,6 +106,7 @@ export default function useContent({ dottedName, rule }: Props) {
     assistance,
     isInactive,
     suggestions,
+    suggestionsType,
     excerpt,
     plancher,
     warning,
