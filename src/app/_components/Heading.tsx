@@ -23,8 +23,7 @@ export default async function Heading() {
             </span>
             ,{' '}
             <Trans>
-              obtenez une estimation
-              <br className="hidden lg:inline" />
+              obtenez une estimation <br className="hidden lg:inline" />
               de votre <strong>empreinte carbone</strong>.
             </Trans>
           </p>
