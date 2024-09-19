@@ -1,7 +1,7 @@
 'use client'
 
 import { IframeOptionsProvider } from '@/app/_components/mainLayoutProviders/IframeOptionsContext'
-import ErrorBoundary from '@/components/ErrorBoundary'
+import ErrorBoundary from '@/components/error/ErrorBoundary'
 import { UserProvider } from '@/publicodes-state'
 import { RegionFromGeolocation } from '@/publicodes-state/types'
 import { Migration } from '@publicodes/tools/migration'
