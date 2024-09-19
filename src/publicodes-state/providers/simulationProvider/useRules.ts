@@ -5,15 +5,15 @@ import { useMemo } from 'react'
 import { MissingVariables } from './../../types.d'
 
 type Props = {
-  engine: Engine
+  engine?: Engine
   root: DottedName
 }
 
 export function useRules({ engine, root }: Props) {
-  const parsedRules = useMemo(() => engine.getParsedRules(), [engine])
+  const parsedRules = useMemo(() => engine?.getParsedRules(), [engine])
 
   const parsedRulesEntries = useMemo(
-    () => Object.entries(parsedRules) as Entries<ParsedRules>,
+    () => Object.entries(parsedRules || {}) as Entries<ParsedRules>,
     [parsedRules]
   )
 
@@ -67,14 +67,18 @@ export function useRules({ engine, root }: Props) {
     () =>
       everyMosaic.reduce<Record<DottedName, DottedName[]>>(
         (accumulator, mosaic) => {
-          const mosaicRule = engine.getRule(mosaic) as NGCRuleNode
+          const mosaicRule = engine?.getRule(mosaic) as NGCRuleNode
 
           if (!mosaicRule.rawNode.mosaique) {
             return accumulator
           }
           const mosaicChildren = mosaicRule.rawNode.mosaique['options']?.map(
             (option: string) => {
-              return utils.disambiguateReference(parsedRules, mosaic, option)
+              return utils.disambiguateReference(
+                parsedRules || {},
+                mosaic,
+                option
+              )
             }
           )
           accumulator[mosaic] = [...mosaicChildren]
@@ -87,7 +91,7 @@ export function useRules({ engine, root }: Props) {
 
   const rawMissingVariables = useMemo(() => {
     const MissingVariablesEntries = Object.entries(
-      engine.evaluate(root)?.missingVariables || {}
+      engine?.evaluate(root)?.missingVariables || {}
     ) as Entries<MissingVariables>
 
     // We only keep missing variables that are questions and have no condition
@@ -95,10 +99,10 @@ export function useRules({ engine, root }: Props) {
       ([missingVariableKey]) => {
         return (
           everyQuestions.includes(missingVariableKey) &&
-          parsedRules[missingVariableKey].explanation.valeur.rawNode?.[
+          parsedRules?.[missingVariableKey].explanation.valeur.rawNode?.[
             'applicable si'
           ] === undefined &&
-          parsedRules[missingVariableKey].explanation.valeur.rawNode?.[
+          parsedRules?.[missingVariableKey].explanation.valeur.rawNode?.[
             'non applicable si'
           ] === undefined
         )

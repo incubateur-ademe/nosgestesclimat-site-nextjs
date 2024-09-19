@@ -5,11 +5,20 @@ import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
+import { useCurrentSimulation } from '@/publicodes-state'
 
-type Props = {
-  progression: number
-}
-export default function SimulationMissing({ progression }: Props) {
+export default function SimulationMissing() {
+  const { progression } = useCurrentSimulation()
+
+  // TODO this is quite a bad design
+  // we'd better check if the test is finished
+  // but is it too restrictive ?
+  const isSimulationWellStarted = progression > 0.5
+
+  if (isSimulationWellStarted) {
+    return null
+  }
+
   return (
     <div className="mb-8">
       <Card className="border-none !bg-gray-100">

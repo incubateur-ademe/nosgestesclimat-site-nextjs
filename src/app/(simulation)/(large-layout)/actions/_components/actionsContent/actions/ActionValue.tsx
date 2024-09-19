@@ -1,13 +1,14 @@
 import { getCarbonFootprint } from '@/helpers/actions/getCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
+import { NGCEvaluatedNode } from '@/publicodes-state/types'
 import { TranslationFunctionType } from '@/types/translation'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
-import { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 const getFormattedActionValue = (
   { t, i18n }: { t: TranslationFunctionType; i18n: any },
-  actionValue: { nodeValue: NodeValue; unit: { numerators: string } }
+  actionValue: NGCEvaluatedNode
 ) => {
   const correctedValue = getCorrectedValue(actionValue)
 
@@ -48,8 +49,9 @@ export default function ActionValue({
     { t, i18n },
     {
       nodeValue: numericValue,
-      unit: { numerators: 'kgCO2' },
-    }
+      unit: { numerators: ['kgCO2'], denominators: [] },
+      missingVariables: {},
+    } as unknown as NGCEvaluatedNode
   )
 
   if (correctedValue == undefined) {
