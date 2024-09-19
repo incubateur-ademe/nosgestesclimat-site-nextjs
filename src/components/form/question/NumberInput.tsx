@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import { useLocale } from '@/hooks/useLocale'
-import { HTMLAttributes, SyntheticEvent, useRef } from 'react'
+import { HTMLAttributes, SyntheticEvent, useEffect, useRef } from 'react'
 import { NumberFormatValues, NumericFormat } from 'react-number-format'
 import { twMerge } from 'tailwind-merge'
 
@@ -49,6 +49,8 @@ export default function NumberInput({
     // If not, we set it right away
     setCorrectValue(values.value)
   }
+
+  useEffect(() => clearTimeout(timeoutRef.current), [])
 
   const setCorrectValue = (value: number | string) => {
     if (value === '') {
