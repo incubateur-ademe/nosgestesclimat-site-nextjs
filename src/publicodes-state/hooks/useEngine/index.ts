@@ -1,5 +1,5 @@
-import { getSubcategories } from '@/helpers/publicodes/getSubcategories'
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
+import getSomme from '@/publicodes-state/helpers/getSomme'
 import { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useContext } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
@@ -18,7 +18,6 @@ export default function useEngine({ metric }: Props = {}) {
     engine,
     safeEvaluate: safeEvaluate,
     safeGetRule,
-    parsedRules,
   } = useContext(SimulationContext)
 
   const getValue = (dottedName: DottedName): NodeValue =>
@@ -38,17 +37,21 @@ export default function useEngine({ metric }: Props = {}) {
   const checkIfValid = (dottedName: DottedName): boolean =>
     safeGetRule(dottedName) ? true : false
 
+  const getSubcategories = useCallback(
+    (dottedName: DottedName) =>
+      (getSomme(safeGetRule(dottedName)?.rawNode) || []).map(
+        (subCategory) =>
+          `${dottedName as string} . ${subCategory as string}` as DottedName
+      ),
+    [safeGetRule]
+  )
+
   return {
     engine,
     getValue,
     getNumericValue,
     getCategory,
-    getSubcategories: (dottedName: DottedName) =>
-      getSubcategories({
-        dottedName,
-        getRule: safeGetRule,
-        parsedRules: parsedRules ?? {},
-      }),
+    getSubcategories,
     checkIfValid,
     safeEvaluate: safeEvaluate,
     safeGetRule,

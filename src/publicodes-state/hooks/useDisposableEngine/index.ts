@@ -1,8 +1,8 @@
-import { getSubcategories } from '@/helpers/publicodes/getSubcategories'
+import getSomme from '@/publicodes-state/helpers/getSomme'
 import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
-import { useContext, useMemo } from 'react'
+import { useCallback, useContext, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
 import { Situation } from '../../types'
 
@@ -42,15 +42,19 @@ export default function useDisposableEngine({ rules, situation }: Props) {
     engine.setSituation(newSituation, { keepPreviousSituation: true })
   }
 
+  const getSubcategories = useCallback(
+    (dottedName: DottedName) =>
+      (getSomme(safeGetRule(dottedName)?.rawNode) || []).map(
+        (subCategory) =>
+          `${dottedName as string} . ${subCategory as string}` as DottedName
+      ),
+    [safeGetRule]
+  )
+
   return {
     engine,
     getValue,
     updateSituation,
-    getSubcategories: (dottedName: DottedName) =>
-      getSubcategories({
-        dottedName,
-        getRule: safeGetRule,
-        parsedRules: rules ?? contextRules,
-      }),
+    getSubcategories,
   }
 }

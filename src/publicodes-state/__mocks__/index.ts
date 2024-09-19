@@ -1,7 +1,7 @@
-import { getSubcategories } from '@/helpers/publicodes/getSubcategories'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr.json'
 import Engine from 'publicodes'
+import getSomme from '../helpers/getSomme'
 import { Situation } from '../types'
 
 const engine = new Engine(rules)
@@ -17,7 +17,6 @@ export const useDisposableEngine = jest.fn(() => {
   const engineEvaluate = engine.evaluate.bind(engine)
   const engineSetSituation = engine.setSituation.bind(engine)
   const engineGetRule = engine.getRule.bind(engine)
-  const parsedRules = engine?.getParsedRules()
 
   return {
     getValue: (dottedName: DottedName) => {
@@ -32,10 +31,8 @@ export const useDisposableEngine = jest.fn(() => {
         keepPreviousSituation: true,
       }),
     getSubcategories: (dottedName: DottedName) =>
-      getSubcategories({
-        dottedName,
-        getRule: engineGetRule,
-        parsedRules: parsedRules ?? {},
-      }),
+      getSomme(engineGetRule(dottedName)?.rawNode)?.map(
+        (subCategory) => `${dottedName} . ${subCategory}`
+      ),
   }
 })
