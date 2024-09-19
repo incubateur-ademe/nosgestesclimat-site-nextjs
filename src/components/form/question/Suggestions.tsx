@@ -34,7 +34,7 @@ export default function Suggestions({ question, value, setValue }: Props) {
         questionClickSuggestion({ question, answer: suggestion.label })
       )
 
-      // If the suggestion is zero, we want to select it and unselect all the others
+      // If the suggestion is "None", we want to select it and unselect all the others
       if (!suggestion.value) {
         setSelectedSuggestions([suggestion])
         return
