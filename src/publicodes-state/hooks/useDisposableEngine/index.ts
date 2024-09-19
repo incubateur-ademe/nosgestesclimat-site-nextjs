@@ -1,9 +1,11 @@
+import { carboneMetric } from '@/constants/metric'
+import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
 import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import Engine from 'publicodes'
-import { useContext, useMemo } from 'react'
+import Engine, { PublicodesExpression } from 'publicodes'
+import { useCallback, useContext, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
-import { Situation } from '../../types'
+import { Metric, Situation } from '../../types'
 
 type Props = {
   rules?: any
@@ -27,23 +29,42 @@ export default function useDisposableEngine({ rules, situation }: Props) {
     }).setSituation(situation)
   }, [contextRules, rules, situation])
 
-  const safeEvaluate = useMemo(
+  const safeEvaluate = useCallback(
+    (expr: PublicodesExpression, metric: Metric = carboneMetric) => {
+      const exprWithContext = {
+        valeur: expr,
+        contexte: {
+          métrique: `'${metric}'`,
+        },
+      }
+
+      return safeEvaluateHelper(exprWithContext, engine ?? new Engine())
+    },
+    [engine]
+  )
+
+  const safeGetRule = useMemo(
     () =>
       (rule: DottedName, engineUsed = engine) =>
-        safeEvaluateHelper(rule, engineUsed),
+        safeGetRuleHelper(rule, engineUsed),
     [engine]
   )
 
   const getValue = (dottedName: DottedName) =>
-    safeEvaluate(dottedName, engine)?.nodeValue
+    safeEvaluate(dottedName)?.nodeValue
 
-  const updateSituation = (newSituation: Situation) => {
-    engine.setSituation(newSituation, { keepPreviousSituation: true })
+  const updateSituation = (
+    newSituation: Situation,
+    keepPreviousSituation = true
+  ) => {
+    engine.setSituation(newSituation, { keepPreviousSituation })
   }
 
   return {
     engine,
     getValue,
     updateSituation,
+    safeEvaluate,
+    safeGetRule,
   }
 }

@@ -31,15 +31,15 @@ export default function GroupResults({
 
   const { isGroupOwner } = useIsGroupOwner({ group })
 
-  const results: Results = useGetGroupStats({
-    groupMembers: group.participants,
-    userId: user.userId,
-  })
-
   const [footprintSelected, setFootprintSelected] =
     useState<Metrics>(defaultMetric)
 
   const isCarbonFootprintSelected = footprintSelected === 'carbone'
+
+  const results: Results = useGetGroupStats({
+    groupMembers: group.participants,
+    userId: user.userId,
+  })
 
   return (
     <>
