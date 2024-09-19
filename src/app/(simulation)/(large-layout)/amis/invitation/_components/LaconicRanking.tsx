@@ -25,12 +25,15 @@ export default function LaconicRanking({ group }: Props) {
   }
 
   const particpantsOrdered = group.participants.sort((a, b) => {
-    if (!a.simulation.computedResults || !b.simulation.computedResults) {
+    const computedResultsA = a.simulation.computedResults
+    const computedResultsB = b.simulation.computedResults
+
+    if (!computedResultsA || !computedResultsB) {
       return 0
     }
 
-    return a.simulation.computedResults[defaultMetric].bilan <
-      b.simulation.computedResults[defaultMetric].bilan
+    return computedResultsA?.[defaultMetric]?.bilan <
+      computedResultsB?.[defaultMetric]?.bilan
       ? -1
       : 1
   })

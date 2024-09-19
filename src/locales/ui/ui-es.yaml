@@ -1130,3 +1130,36 @@ entries:
   Reprendre plus tard: Reanudar más tarde
   Veuillez entrer un nombre positif.: Introduzca un número positivo.
   '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} sobre su huella'
+  Une erreur est survenue: Se ha producido un error
+  '{{name}}, supprimer cette participation': '{{name}}cancelar esta participación'
+  Participant supprimé avec succès: Participante eliminado con éxito
+  Supprimer ce participant ? Cette opération est définitive.: ¿Borrar a este participante? Esta operación es definitiva.
+  Non, merci: No, gracias
+  Une fille qui cuisine: Una chica que cocina
+  Une fille qui lit un journal: Una chica leyendo el periódico
+  Votre test est sauvegardé !: Tu examen está guardado
+  Des enfants qui se tiennent la main: Niños cogidos de la mano
+  Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: Puede reanudarla más tarde haciendo clic en el enlace que recibió por correo electrónico.
+  Une mère et son enfant sur un vélo: Una madre y su hijo en bicicleta
+  Un grand-père et sa petite fille qui regardent un film: Un abuelo y su nieta viendo una película
+  <0>La taille des logements français a très fortement augmenté</0> sur ces 50 dernirèes années, passant de 23 à 40,4 m² par habitant, soit <4>90,9 m² en moyenne pour un foyer de 2,2 personnes.</4>: <0>El tamaño de las viviendas francesas ha aumentado mucho</0> en los últimos 50 años, pasando de 23 a 40,4 m² por habitante, es decir, <4>90,9 m² de media para un hogar de 2,2 personas.</4>
+  <0>Empreinte carbone</0> moyenne: <0>Huella de carbono</0> media
+  <0>Empreinte eau</0> moyenne: <0>Huella hídrica</0> media
+  Le lexique pour tout comprendre à l’empreinte eau: Un glosario para entender la huella hídrica
+  Lire l'article: Leer el artículo
+  Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: Se ha producido un error; por favor, vuelva a cargar la página o inténtelo más tarde.
+  Oups ! Une erreur est survenue: ¡Uy! Se ha producido un error
+  Si le problème persiste, merci de <2>contacter le support</2>.: Si el problema persiste, <2>póngase en contacto con el servicio de asistencia.</2>
+  obtenez une estimation <1></1>de votre <3>empreinte carbone</3>.: <1></1>obtenga una estimación de su<3>huella de carbono</3>.
+  En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: Por regla general, los valores de la huella hídrica varían <2>entre 3.000 y 9.000 litros al día</2>. A diferencia del carbono, no existe un objetivo cuantificado para la huella hídrica.
+  litres: litros
+  obtenez une estimation: solicitar estimación
+  "Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}":
+    |-
+    Nos Gestes Climat: una estimación de su huella de carbono en 10 minutos
+    {{sharedUrl}}
+  empreinte eau: huella hídrica
+  Découvrez votre: Descubre tu
+  empreinte carbone: huella de carbono
+  de votre: de su
+  à la fin du test !: al final de la prueba

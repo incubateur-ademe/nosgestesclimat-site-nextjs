@@ -25,7 +25,7 @@ export default function NorthStarIframe() {
         ref={iFrameRef}
         id="iframe-metabase-northstar"
         title="Statistiques Northstar Metabase"
-        src="https://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/0f6974c5-1254-47b4-b6d9-6e6f22a6faf7"
+        src="https://metabase.nosgestesclimat.fr/public/dashboard/0f6974c5-1254-47b4-b6d9-6e6f22a6faf7"
         width="100%"
         height="1800px"
         className="border-none"></iframe>

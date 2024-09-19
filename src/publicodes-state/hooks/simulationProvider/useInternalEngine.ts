@@ -18,10 +18,12 @@ import { Metric } from '../../types'
  *
  * And a pristine engine wich can be used to assess rules without any situation (for exemple, we can reliably sort the subcategories this way)
  */
-export function useInternalEngine(rules: NGCRules) {
+export function useInternalEngine(rules?: NGCRules) {
   if (!rules) throw new Error('Missing rules')
 
   const engine = useMemo(() => {
+    if (!rules) return undefined
+
     const nbRules = Object.keys(rules).length
     console.time(`⚙️ Parsing ${nbRules}`)
     const engine = new Engine<DottedName>(rules, {
@@ -50,7 +52,7 @@ export function useInternalEngine(rules: NGCRules) {
     return engine
   }, [rules])
 
-  const pristineEngine = useMemo(() => engine.shallowCopy(), [engine])
+  const pristineEngine = useMemo(() => engine?.shallowCopy(), [engine])
 
   const safeEvaluate = useCallback(
     (expr: PublicodesExpression, metric: Metric = carboneMetric) => {
@@ -61,13 +63,14 @@ export function useInternalEngine(rules: NGCRules) {
         },
       }
 
-      return safeEvaluateHelper(exprWithContext, engine)
+      return safeEvaluateHelper(exprWithContext, engine ?? new Engine())
     },
     [engine]
   )
 
   const safeGetRule = useMemo<(ruleName: DottedName) => NGCRuleNode | null>(
-    () => (ruleName: DottedName) => safeGetRuleHelper(ruleName, engine),
+    () => (ruleName: DottedName) =>
+      safeGetRuleHelper(ruleName, engine ?? new Engine()),
     [engine]
   )
 

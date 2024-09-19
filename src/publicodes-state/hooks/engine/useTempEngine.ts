@@ -1,5 +1,9 @@
 import { NGCEvaluatedNode } from '@/publicodes-state/types'
-import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import {
+  DottedName,
+  NGCRuleNode,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
 import { useContext } from 'react'
 import { SimulationContext } from '../../contexts/simulationContext/context'
 import useCurrentSimulation from '../simulation/useCurrentSimulation'
@@ -7,7 +11,13 @@ import useCurrentSimulation from '../simulation/useCurrentSimulation'
 /**
  * This is temporary and should be put to death as soon as possible
  */
-export default function useTempEngine() {
+export default function useTempEngine(): {
+  getSpecialRuleObject: (
+    dottedName: DottedName
+  ) => NGCEvaluatedNode & NGCRuleNode
+  rules: NGCRules | undefined
+  extendedFoldedSteps: DottedName[]
+} {
   const { safeEvaluate, rules, safeGetRule, everyMosaicChildrenWithParent } =
     useContext(SimulationContext)
 

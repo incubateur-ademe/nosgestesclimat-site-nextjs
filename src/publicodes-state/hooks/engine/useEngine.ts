@@ -47,12 +47,13 @@ export default function useEngine({ metric }: Props = {}) {
       return []
     }
 
-    return dottedNameFormula.somme.map((potentialPartialRuleName: DottedName) =>
-      utils.disambiguateReference(
-        parsedRules,
-        dottedName,
-        potentialPartialRuleName
-      )
+    return (dottedNameFormula.somme as DottedName[]).map(
+      (potentialPartialRuleName: DottedName) =>
+        utils.disambiguateReference(
+          parsedRules ?? {},
+          dottedName,
+          potentialPartialRuleName
+        ) as DottedName
     )
   }
 

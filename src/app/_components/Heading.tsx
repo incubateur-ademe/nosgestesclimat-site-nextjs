@@ -21,20 +21,23 @@ export default async function Heading() {
             <span className="text-secondary-700">
               <Trans>10 minutes</Trans>
             </span>
-            ,{' '}
-            <Trans>
-              obtenez une estimation
-              <br className="hidden lg:inline" />
-              de votre <strong>empreinte carbone</strong>.
-            </Trans>
+            , <Trans>obtenez une estimation</Trans>{' '}
+            <br className="hidden lg:inline" />
+            <Trans>de votre</Trans>{' '}
+            <strong>
+              <Trans>empreinte carbone</Trans>
+            </strong>
+            .
           </p>
           <p className="mb-6 md:mb-8 md:text-2xl">
             <Badge color="secondary" size="sm" className="align-text-bottom">
               BETA
             </Badge>{' '}
-            <Trans>
-              Découvrez votre <strong>empreinte eau</strong> à la fin du test !
-            </Trans>
+            <Trans>Découvrez votre</Trans>{' '}
+            <strong>
+              <Trans>empreinte eau</Trans>
+            </strong>{' '}
+            <Trans>à la fin du test !</Trans>
           </p>
           <Buttons />
         </div>

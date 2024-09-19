@@ -5,26 +5,35 @@ import {
   simulateurCloseScoreInfo,
   simulateurOpenScoreInfo,
 } from '@/constants/tracking/pages/simulateur'
+import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
+import ValueChangeDisplay from '../misc/ValueChangeDisplay'
 import ButtonBack from './total/ButtonBack'
 import Explanation from './total/Explanation'
 import Progress from './total/Progress'
 import TotalButtons from './total/TotalButtons'
 import TotalFootprintNumber from './total/TotalFootprintNumber'
 
-type Props = {
+export default function Total({
+  toggleQuestionList,
+  toggleSaveModal,
+  simulationMode = true,
+}: {
   toggleQuestionList?: () => void
   toggleSaveModal?: () => void
-}
-export default function Total({ toggleQuestionList, toggleSaveModal }: Props) {
+  simulationMode?: boolean
+}) {
   const { t } = useClientTranslation()
 
   const { tutorials, hideTutorial, showTutorial } = useUser()
 
   const { progression } = useCurrentSimulation()
+
+  const { currentCategory } = useForm()
 
   const [hasManuallyOpenedTutorial, setHasManuallyOpenedTutorial] =
     useState(false)
@@ -56,13 +65,25 @@ export default function Total({ toggleQuestionList, toggleSaveModal }: Props) {
   ])
 
   return (
-    <header>
-      <div className="relative mb-6 flex items-center gap-4 overflow-hidden pb-3 pt-2 lg:mb-10 lg:pb-5 lg:pt-4">
-        <Progress />
+    <header
+      className={twMerge(
+        'fixed top-0 z-50 h-16 w-full md:bg-white',
+        getBgCategoryColor(currentCategory, '50'),
+        !simulationMode && 'static z-0 bg-white'
+      )}>
+      <div
+        className={twMerge(
+          'relative flex h-full items-center gap-4 overflow-visible pb-3 pt-2 lg:pb-5 lg:pt-4',
+          !simulationMode && 'border-b border-primary-100'
+        )}>
+        {simulationMode && <Progress />}
+
         <div className="mb-0 flex w-full max-w-6xl justify-between overflow-visible pl-1 pr-4 lg:mx-auto lg:px-4">
           <div className="relative flex items-center gap-1 lg:gap-4">
-            <ButtonBack />
+            {simulationMode && <ButtonBack onClick={toggleSaveModal} />}
+
             <TotalFootprintNumber />
+
             <QuestionButton
               onClick={toggleOpen}
               title={t('Comprendre mon score')}
@@ -75,10 +96,23 @@ export default function Total({ toggleQuestionList, toggleSaveModal }: Props) {
             />
           ) : null}
         </div>
+
+        <div
+          className="absolute -bottom-7 left-10 w-full lg:left-4"
+          aria-live="polite">
+          <div className="w-full max-w-6xl md:mx-auto">
+            <ValueChangeDisplay />
+          </div>
+        </div>
       </div>
-      {!tutorials.scoreExplanation ? (
+      {!tutorials.scoreExplanation && simulationMode ? (
         <div className="relative mx-auto max-w-6xl">
-          <Explanation toggleOpen={toggleOpen} />
+          <Explanation
+            toggleOpen={toggleOpen}
+            isFirstToggle={
+              !tutorials.scoreExplanation && !hasManuallyOpenedTutorial
+            }
+          />
         </div>
       ) : null}
     </header>

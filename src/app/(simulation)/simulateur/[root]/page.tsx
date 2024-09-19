@@ -36,19 +36,20 @@ export default function SimulateurPage() {
     setIsSaveModalOpen((prevIsSaveModalOpen) => !prevIsSaveModalOpen)
   }, [])
 
-  if (!isGuardInit || isGuardRedirecting) return null
-
   return (
-    <>
+    <div className="flex h-screen flex-1 flex-col overflow-scroll">
       <Total
         toggleQuestionList={toggleQuestionList}
         toggleSaveModal={toggleSaveModal}
       />
+
       <Simulateur
         toggleQuestionList={toggleQuestionList}
         isQuestionListOpen={isQuestionListOpen}
+        isLoading={!isGuardInit || isGuardRedirecting}
       />
+
       <SaveModal isOpen={isSaveModalOpen} closeModal={toggleSaveModal} />
-    </>
+    </div>
   )
 }

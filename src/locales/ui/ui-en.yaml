@@ -1137,3 +1137,36 @@ entries:
   Une erreur s'est produite au moment de la sauvegarde.: An error has occurred during backup.
   Veuillez entrer un nombre positif.: Please enter a positive number.
   '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} on your footprint'
+  '{{name}}, supprimer cette participation': '{{name}}cancel this shareholding'
+  Supprimer ce participant ? Cette opération est définitive.: Delete this participant? This operation is definitive.
+  Participant supprimé avec succès: Participant successfully deleted
+  Une erreur est survenue: An error has occurred
+  Des enfants qui se tiennent la main: Children holding hands
+  Une fille qui cuisine: A girl who cooks
+  Une mère et son enfant sur un vélo: A mother and child on a bicycle
+  Une fille qui lit un journal: A girl reading a newspaper
+  Non, merci: No, thank you
+  Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: You can resume it later by clicking on the link you received by email.
+  Un grand-père et sa petite fille qui regardent un film: A grandfather and his granddaughter watching a film
+  Votre test est sauvegardé !: Your test is saved!
+  <0>La taille des logements français a très fortement augmenté</0> sur ces 50 dernirèes années, passant de 23 à 40,4 m² par habitant, soit <4>90,9 m² en moyenne pour un foyer de 2,2 personnes.</4>: <0>The size of French homes has risen sharply</0> over the last 50 years, from 23 to 40.4 m² per inhabitant, or <4>90.9 m² on average for a household of 2.2 people.</4>
+  <0>Empreinte eau</0> moyenne: 'Average <0>water footprint</0> '
+  <0>Empreinte carbone</0> moyenne: 'Average <0>carbon footprint</0> '
+  Le lexique pour tout comprendre à l’empreinte eau: A glossary to help you understand the water footprint
+  Lire l'article: Read the article
+  Si le problème persiste, merci de <2>contacter le support</2>.: If the problem persists, please <2>contact support.</2>
+  obtenez une estimation <1></1>de votre <3>empreinte carbone</3>.: get an estimate <1></1>of your <3>carbon footprint</3>.
+  Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: An error has occurred; please reload the page or try again later.
+  Oups ! Une erreur est survenue: Oops! An error has occurred
+  En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: As a general rule, water footprint values vary <2>between 3,000 and 9,000 litres per day</2>. Unlike carbon, there is no quantified target for the water footprint.
+  litres: litres
+  obtenez une estimation: get an estimate
+  "Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}":
+    |-
+    Nos Gestes Climat: an estimate of your carbon footprint in 10 minutes
+    {{sharedUrl}}
+  empreinte eau: water footprint
+  de votre: of your
+  Découvrez votre: Discover your
+  à la fin du test !: at the end of the test!
+  empreinte carbone: carbon footprint

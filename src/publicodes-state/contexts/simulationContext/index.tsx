@@ -11,14 +11,13 @@ import { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { SimulationContext } from './context'
 
 type Props = {
-  rules: NGCRules
+  rules?: NGCRules
   root?: DottedName
   shouldAlwaysDisplayChildren?: boolean
 }
 export default function SimulationProvider({
   rules,
   root = 'bilan',
-  shouldAlwaysDisplayChildren = false,
   children,
 }: PropsWithChildren<Props>) {
   const { engine, pristineEngine, safeEvaluate, safeGetRule } =
@@ -33,13 +32,13 @@ export default function SimulationProvider({
     everyUiCategories,
     everyMosaicChildrenWithParent,
     rawMissingVariables,
-  } = useRules({ engine: pristineEngine, root })
+  } = useRules({ engine: pristineEngine ?? undefined, root })
 
   const { categories, subcategories } = useCategories({
-    parsedRules: engine.getParsedRules(),
+    parsedRules: engine?.getParsedRules(),
     everyRules,
     root,
-    safeGetRule,
+    safeGetRule: safeGetRule ?? undefined,
   })
 
   const { isEngineInitialized, addToEngineSituation } = useEngineSituation({
@@ -49,8 +48,10 @@ export default function SimulationProvider({
   const { isInitialized } = useSetComputedResults({
     categories,
     isEngineInitialized,
-    safeEvaluate,
+    safeEvaluate: safeEvaluate ?? undefined,
   })
+
+  if (!rules || !engine || !isInitialized) return children
 
   return (
     <SimulationContext.Provider
@@ -73,7 +74,7 @@ export default function SimulationProvider({
         addToEngineSituation,
         isInitialized,
       }}>
-      {isInitialized || shouldAlwaysDisplayChildren ? children : null}
+      {children}
     </SimulationContext.Provider>
   )
 }

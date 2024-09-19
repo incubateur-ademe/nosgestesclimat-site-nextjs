@@ -16,12 +16,13 @@ export default function FailSafeFormProvider({
   root = 'bilan',
   children,
 }: PropsWithChildren<Props>) {
-  const { safeEvaluate } = useContext(SimulationContext)
+  const { safeEvaluate, rules } = useContext(SimulationContext)
 
-  const isRootSafe = useMemo<boolean>(
-    () => (safeEvaluate(root) ? true : false),
-    [safeEvaluate, root]
-  )
+  const isRootSafe = useMemo<boolean>(() => {
+    if (!rules) return true
+
+    return safeEvaluate(root) ? true : false
+  }, [safeEvaluate, root, rules])
 
   if (!isRootSafe) {
     window.location = '/404' as unknown as Location

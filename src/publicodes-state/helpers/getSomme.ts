@@ -43,9 +43,10 @@ export default function getSomme(rawNode?: NGCRule): DottedName[] | undefined {
   if (!rawNode) return undefined
 
   if ('formule' in rawNode) {
-    return rawNode.formule?.variations
-      ? (rawNode.formule?.variations as subCatWithVariations)[0]?.alors?.somme
-      : (rawNode.formule?.somme as DottedName[])
+    const formule = rawNode.formule as Record<string, unknown>
+    return 'variations' in formule
+      ? (formule.variations as subCatWithVariations)[0]?.alors?.somme
+      : (formule.somme as DottedName[])
   }
 
   if ('somme' in rawNode) {

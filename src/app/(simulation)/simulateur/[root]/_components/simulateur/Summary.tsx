@@ -1,3 +1,5 @@
+'use client'
+
 import ContentLarge from '@/components/layout/ContentLarge'
 import Title from '@/design-system/layout/Title'
 import { useDebug } from '@/hooks/useDebug'
@@ -22,11 +24,12 @@ export default function Summary({
         <Title tag="h2" className="mb-4 text-lg md:text-xl">
           Toutes les questions
         </Title>
-        {relevantQuestions.map((question: any) => (
+        {relevantQuestions.map((question: any, index: number) => (
           <Question
             key={question}
             question={question}
             toggleQuestionList={toggleQuestionList}
+            index={index}
           />
         ))}
       </ContentLarge>

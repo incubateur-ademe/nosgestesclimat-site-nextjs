@@ -98,10 +98,12 @@ export default function Label({
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2 }}
-          className="mb-3 origin-top rounded-xl border-2 border-primary-50 bg-gray-100 px-4  py-6 text-sm">
-          <Markdown>{description}</Markdown>{' '}
+          className="mb-3 origin-top rounded-xl border-2 border-primary-50 bg-gray-100 p-3 text-sm">
+          <Markdown className="[&>blockquote]:mb-2 [&>blockquote]:mt-0 [&>blockquote]:p-0 [&>blockquote]:text-default [&>p]:mb-2">
+            {description}
+          </Markdown>{' '}
           <Button
-            size="sm"
+            size="xs"
             color={'secondary'}
             onClick={() => {
               trackEvent(questionCloseInfo({ question }))

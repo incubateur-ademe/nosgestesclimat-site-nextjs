@@ -4,7 +4,7 @@ import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import {
   DottedName,
   NGCRuleNode,
-  SuggestionsNode,
+  Suggestions,
 } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 import { FormattedSuggestion } from '../../types'
@@ -64,7 +64,7 @@ export default function useContent({ dottedName, rule }: Props) {
 
   const suggestions = useMemo(() => {
     const suggestionsFolder = (rule?.rawNode.mosaique?.suggestions ||
-      rule?.rawNode.suggestions) as SuggestionsNode
+      rule?.rawNode.suggestions) as Suggestions
     const suggestions = suggestionsFolder
       ? Object.keys(suggestionsFolder).map(
           (key) =>

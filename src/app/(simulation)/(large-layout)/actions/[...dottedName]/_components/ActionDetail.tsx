@@ -17,7 +17,7 @@ import {
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
-import ActionForm from '../../_components/actions/_components/ActionForm'
+import ActionForm from '../../_components/actionsContent/actions/ActionForm'
 
 const { decodeRuleName, encodeRuleName } = utils
 
@@ -41,12 +41,12 @@ export default function ActionDetail({
 
   const dottedName = decodeRuleName(formattedDottedName ?? '') as DottedName
 
-  const remainingQuestions = filterRelevantMissingVariables(
-    Object.keys(
+  const remainingQuestions = filterRelevantMissingVariables({
+    missingVariables: Object.keys(
       getSpecialRuleObject(dottedName).missingVariables || {}
     ) as DottedName[],
-    extendedFoldedSteps
-  )
+    extendedFoldedSteps,
+  })
 
   const nbRemainingQuestions = remainingQuestions?.length
   const rule = useRule(dottedName)

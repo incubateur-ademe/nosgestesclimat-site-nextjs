@@ -28,7 +28,7 @@ export default function ActionsLayout({ children }: PropsWithChildren) {
     <FormProvider>
       <Title title={<Trans>Mes&#160;gestes</Trans>} />
 
-      <Total />
+      <Total simulationMode={false} />
 
       <NorthStarBanner type="action" />
 

@@ -6,6 +6,7 @@ import GoBackLink from '@/design-system/inputs/GoBackLink'
 import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
 import { useGroupIdInQueryParams } from '@/hooks/groups/useGroupIdInQueryParams'
 import { useGroupPagesGuard } from '@/hooks/navigation/useGroupPagesGuard'
+import { ToastContainer } from 'react-toastify'
 import EditableGroupTitle from './_components/EditableGroupTitle'
 import GroupResults from './_components/GroupResults'
 
@@ -16,7 +17,11 @@ export default function GroupResultsPage() {
   })
 
   const { groupIdInQueryParams } = useGroupIdInQueryParams()
-  const { data: group, isLoading } = useFetchGroup(groupIdInQueryParams)
+  const {
+    data: group,
+    isLoading,
+    refetch: refetchGroup,
+  } = useFetchGroup(groupIdInQueryParams)
 
   // If we are still fetching the group (or we are redirecting the user), we display a loader
   if (!isGuardInit || isGuardRedirecting || isLoading) {
@@ -29,12 +34,14 @@ export default function GroupResultsPage() {
   }
 
   return (
-    <div>
+    <div className="pb-8">
       <GoBackLink href={'/classements'} className="mb-4 font-bold" />
 
       <EditableGroupTitle group={group} />
 
-      <GroupResults group={group} />
+      <GroupResults group={group} refetchGroup={refetchGroup} />
+
+      <ToastContainer />
     </div>
   )
 }
