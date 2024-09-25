@@ -12,7 +12,7 @@ export default function ServicesChart() {
       acc.push(...(getSubcategories(category) ?? []))
       return acc
     },
-    [] as DottedName[]
+    []
   )
 
   return (
