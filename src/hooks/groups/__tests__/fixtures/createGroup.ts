@@ -23,18 +23,12 @@ export function createGroup({
           carbone: {
             bilan: faker.number.float(),
             categories: {} as Record<DottedName, number>,
-            subcategories: {} as Record<
-              DottedName,
-              Record<DottedName, number | undefined>
-            >,
+            subcategories: {} as Record<DottedName, number>,
           },
           eau: {
             bilan: faker.number.float(),
             categories: {} as Record<DottedName, number>,
-            subcategories: {} as Record<
-              DottedName,
-              Record<DottedName, number | undefined>
-            >,
+            subcategories: {} as Record<DottedName, number>,
           },
         },
 
