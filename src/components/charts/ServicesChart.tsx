@@ -7,17 +7,17 @@ export default function ServicesChart() {
 
   const serviceCategories = getSubcategories('services sociétaux')
 
-  const serviceSubcategories = serviceCategories.reduce(
-    (acc, category) => {
-      acc[category] = getSubcategories(category)
+  const serviceSubcategories = serviceCategories?.reduce(
+    (acc: DottedName[], category) => {
+      acc.push(...(getSubcategories(category) ?? []))
       return acc
     },
-    {} as Record<DottedName, DottedName[]>
+    []
   )
 
   return (
     <RavijenChart
-      categories={serviceCategories}
+      categories={serviceCategories ?? []}
       subcategories={serviceSubcategories}
       squashLimitPercentage={1.4}
       isInverted={true}

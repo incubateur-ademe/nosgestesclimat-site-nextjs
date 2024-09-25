@@ -1,6 +1,6 @@
 import { metrics } from '@/constants/metric'
 import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
-import {
+import type {
   ComputedResults,
   ComputedResultsFootprint,
   Simulation,

@@ -69,7 +69,7 @@ export type ComputedResultsSubcategories = {
 export type ComputedResultsFootprint = {
   bilan: number
   categories: Record<DottedName, number>
-  subcategories?: ComputedResultsSubcategories
+  subcategories?: Record<DottedName, number>
 }
 export type ComputedResults = Record<Metric, ComputedResultsFootprint>
 

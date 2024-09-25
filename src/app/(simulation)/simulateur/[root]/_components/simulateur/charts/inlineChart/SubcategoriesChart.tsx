@@ -19,8 +19,9 @@ export default function SubcategoriesChart() {
   const filteredSubcategories = useMemo(
     () =>
       (currentCategory &&
-        subcategories[currentCategory]?.filter((subcategory) =>
-          checkIfValid(subcategory)
+        subcategories?.filter(
+          (subcategory) =>
+            subcategory.startsWith(currentCategory) && checkIfValid(subcategory)
         )) ||
       [],
     [subcategories, currentCategory, checkIfValid]

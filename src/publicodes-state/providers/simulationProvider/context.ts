@@ -19,7 +19,7 @@ type SimulationContextType = {
   rules: NGCRules | undefined
   engine: Engine | undefined
   pristineEngine?: Engine | null
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
   safeEvaluate: (
     rule: PublicodesExpression,
     metric?: Metric
@@ -33,7 +33,7 @@ type SimulationContextType = {
   everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
   rawMissingVariables: MissingVariables
   categories: DottedName[]
-  subcategories: Record<DottedName, DottedName[]>
+  subcategories: DottedName[]
   addToEngineSituation: (situationToAdd: Situation) => Situation
   isInitialized: boolean
 }
@@ -41,7 +41,7 @@ export const SimulationContext = createContext<SimulationContextType>({
   rules: undefined,
   engine: undefined,
   pristineEngine: null,
-  safeGetRule: () => null,
+  safeGetRule: () => undefined,
   safeEvaluate: () => null,
   parsedRules: {} as ParsedRules,
   everyRules: [],
@@ -52,7 +52,7 @@ export const SimulationContext = createContext<SimulationContextType>({
   everyMosaicChildrenWithParent: {} as Record<DottedName, DottedName[]>,
   rawMissingVariables: {} as MissingVariables,
   categories: [],
-  subcategories: {} as Record<DottedName, DottedName[]>,
+  subcategories: [],
   addToEngineSituation: () => ({}) as Situation,
   isInitialized: false,
 })
