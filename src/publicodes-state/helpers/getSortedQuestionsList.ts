@@ -3,7 +3,7 @@ import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 type Props = {
   questions: DottedName[]
   categories: string[]
-  subcategories: Record<string, string[]>
+  subcategories: string[]
   missingVariables: Record<string, number>
 }
 
@@ -35,19 +35,20 @@ export default function getSortedQuestionsList({
     const categoryOfBothQuestions = aSplittedName[0]
     const aCategoryAndSubcategory = aSplittedName[0] + ' . ' + aSplittedName[1]
     const bCategoryAndSubcategory = bSplittedName[0] + ' . ' + bSplittedName[1]
+
+    const subcategoriesOfBothQuestions = subcategories.filter((subcategory) =>
+      subcategory.startsWith(categoryOfBothQuestions)
+    )
+
     if (
-      subcategories?.[categoryOfBothQuestions]?.indexOf(
-        aCategoryAndSubcategory
-      ) >
-      subcategories?.[categoryOfBothQuestions]?.indexOf(bCategoryAndSubcategory)
+      subcategoriesOfBothQuestions.indexOf(aCategoryAndSubcategory) >
+      subcategoriesOfBothQuestions.indexOf(bCategoryAndSubcategory)
     ) {
       return 1
     }
     if (
-      subcategories?.[categoryOfBothQuestions]?.indexOf(
-        aCategoryAndSubcategory
-      ) <
-      subcategories?.[categoryOfBothQuestions]?.indexOf(bCategoryAndSubcategory)
+      subcategoriesOfBothQuestions.indexOf(aCategoryAndSubcategory) <
+      subcategoriesOfBothQuestions.indexOf(bCategoryAndSubcategory)
     ) {
       return -1
     }

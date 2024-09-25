@@ -11,7 +11,7 @@ import CategoryChart from './ravijenChart/CategoryChart'
 
 type Props = {
   categories: DottedName[]
-  subcategories?: Record<DottedName, DottedName[]> | undefined
+  subcategories?: DottedName[] | undefined
   squashLimitPercentage?: number
   isInverted?: boolean
   shouldAlwaysDisplayValue?: boolean
@@ -41,7 +41,9 @@ export default function RavijenChart({
           <li key={category} className="h-full flex-1">
             <CategoryChart
               category={category}
-              subcategories={subcategories?.[category]}
+              subcategories={subcategories?.filter((subcategory) =>
+                subcategory.startsWith(category)
+              )}
               maxValue={worstFootprintCategoryValue}
               squashLimitPercentage={squashLimitPercentage}
               isInverted={isInverted}

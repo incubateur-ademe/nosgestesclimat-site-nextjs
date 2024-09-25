@@ -29,7 +29,11 @@ export default function Category({ category }: Props) {
   return (
     <div className="relative mb-4 w-full">
       <button
-        disabled={!subcategories?.[category]?.length}
+        disabled={
+          !subcategories?.filter((subcategory) =>
+            subcategory.startsWith(category)
+          ).length
+        }
         className="block w-full"
         onClick={() => {
           trackEvent(profilClickCategory(category))
@@ -54,9 +58,11 @@ export default function Category({ category }: Props) {
 
       {isOpen ? (
         <>
-          {subcategories[category].map((subcategory) => (
-            <Subcategory key={subcategory} subcategory={subcategory} />
-          ))}
+          {subcategories
+            .filter((subcategory) => subcategory.startsWith(category))
+            .map((subcategory) => (
+              <Subcategory key={subcategory} subcategory={subcategory} />
+            ))}
           <QuestionsWithoutSubcategory category={category} />
         </>
       ) : null}

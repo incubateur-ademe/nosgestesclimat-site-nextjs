@@ -20,7 +20,11 @@ export function useSortedSubcategoriesByFootprint({
         if (!withServiceSocietaux && category === 'services sociétaux') {
           return acc
         }
-        return acc.concat(subcategories[category as DottedName])
+        return acc.concat(
+          subcategories.filter((subcategory) =>
+            subcategory.startsWith(category)
+          )
+        )
       }, [] as DottedName[]),
     [subcategories, withServiceSocietaux]
   )

@@ -45,7 +45,7 @@ export type Tutorials = Record<string, boolean>
 export type ComputedResultsFootprint = {
   bilan: number
   categories: Record<DottedName, number>
-  subcategories: Record<DottedName, Record<DottedName, number>>
+  subcategories: Record<DottedName, number>
 }
 export type ComputedResults = Record<Metric, ComputedResultsFootprint>
 

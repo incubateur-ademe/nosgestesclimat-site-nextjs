@@ -15,7 +15,7 @@ type Props = {
   root: DottedName
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   categories: DottedName[]
-  subcategories: Record<DottedName, DottedName[]>
+  subcategories: DottedName[]
   situation: Situation
   foldedSteps: DottedName[]
   everyQuestions: DottedName[]

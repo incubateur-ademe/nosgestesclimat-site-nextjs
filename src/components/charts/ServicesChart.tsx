@@ -8,11 +8,11 @@ export default function ServicesChart() {
   const serviceCategories = getSubcategories('services sociétaux')
 
   const serviceSubcategories = serviceCategories?.reduce(
-    (acc: Record<DottedName, DottedName[]>, category: DottedName) => {
-      acc[category] = getSubcategories(category) ?? []
+    (acc: DottedName[], category: DottedName) => {
+      acc.push(...(getSubcategories(category) ?? []))
       return acc
     },
-    {} as Record<DottedName, DottedName[]>
+    [] as DottedName[]
   )
 
   return (

@@ -49,10 +49,11 @@ export function useCategories({
     )
   }, [root, safeGetRule])
 
-  const subcategories = useMemo<Record<DottedName, DottedName[]>>(() => {
+  const subcategories = useMemo<DottedName[]>(() => {
     return categories.reduce(
-      (accumulator, currentValue: DottedName) => {
-        const subCat = []
+      (accumulator: DottedName[], currentValue: DottedName) => {
+        const subCat: DottedName[] = []
+
         const rule = safeGetRule?.(currentValue)
         if (!rule) {
           console.error(
@@ -85,14 +86,11 @@ export function useCategories({
             )
           }
         }
-        return {
-          ...accumulator,
-          [currentValue]: subCat,
-        }
+        return [...accumulator, ...subCat]
       },
-      {} as Record<DottedName, DottedName[]>
+      [] as DottedName[]
     )
-  }, [parsedRules, categories, safeGetRule, everyRules])
+  }, [categories, safeGetRule, everyRules, parsedRules])
 
   return { categories, subcategories }
 }

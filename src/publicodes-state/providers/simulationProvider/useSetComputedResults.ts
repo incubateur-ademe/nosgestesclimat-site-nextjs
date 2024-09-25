@@ -11,7 +11,7 @@ import type {
 
 type Props = {
   categories: DottedName[]
-  subcategories: Record<DottedName, DottedName[]>
+  subcategories: DottedName[]
   isEngineInitialized: boolean
   safeEvaluate?: (
     ruleName: DottedName,
@@ -43,26 +43,13 @@ export function useSetComputedResults({
   const computedResults: ComputedResults = useMemo(
     () =>
       metrics.reduce((metricsAcc: ComputedResults, metric: Metric) => {
+        // Get the footprint of the categories
         metricsAcc[metric] = categories.reduce(
           (categoriesAcc: ComputedResultsFootprint, category: DottedName) => {
             categoriesAcc.categories[category] = getNumericValue(
               category,
               metric
             )
-
-            categoriesAcc.subcategories[category] = subcategories[category]
-              // Get the numeric value of each subcategory
-              .reduce(
-                (
-                  subAcc: Record<DottedName, number>,
-                  subcategory: DottedName
-                ) => {
-                  subAcc[subcategory] =
-                    getNumericValue(subcategory, metric) || 0
-                  return subAcc
-                },
-                {} as Record<DottedName, number>
-              )
 
             return categoriesAcc
           },
@@ -72,10 +59,19 @@ export function useSetComputedResults({
             bilan: getNumericValue('bilan', metric),
           } as ComputedResultsFootprint
         )
+
+        // Get the footprint of the subcategories
+        metricsAcc[metric].subcategories = subcategories.reduce(
+          (acc, subcategory) => {
+            acc[subcategory] = getNumericValue(subcategory, metric)
+            return acc
+          },
+          {} as Record<DottedName, number>
+        )
         return metricsAcc
       }, {} as ComputedResults),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [categories, getNumericValue, situation]
+    [categories, getNumericValue, situation, subcategories]
   )
 
   // Update the simulation with the computed results (only if the computed results have changed)

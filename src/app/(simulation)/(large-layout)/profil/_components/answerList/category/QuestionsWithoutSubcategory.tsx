@@ -13,7 +13,9 @@ export default function QuestionsWithoutSubcategory({ category }: Props) {
   const { subcategories } = useSimulation()
   const { relevantAnsweredQuestions } = useForm()
 
-  const subCategoriesOfCategory = subcategories[category]
+  const subCategoriesOfCategory = subcategories.filter((subcategory) =>
+    subcategory.startsWith(category)
+  )
 
   const answeredQuestionOfCategoryWithoutSubcategory =
     relevantAnsweredQuestions.filter((question) => {
