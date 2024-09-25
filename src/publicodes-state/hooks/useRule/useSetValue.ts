@@ -18,7 +18,7 @@ import {
 
 type Props = {
   dottedName: DottedName
-  parsedRules: ParsedRules
+  parsedRules: ParsedRules | undefined
   safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   evaluation: NGCEvaluatedNode | null
@@ -98,7 +98,7 @@ export default function useSetValue({
         situationToAdd = Object.keys(value || {}).reduce(
           (accumulator: Situation, partialMosaicChildDottedName: string) => {
             const mosaicChildDottedName = utils.disambiguateReference(
-              parsedRules,
+              parsedRules ?? {},
               dottedName,
               partialMosaicChildDottedName
             ) as DottedName

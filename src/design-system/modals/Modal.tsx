@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import { ReactNode, useEffect } from 'react'
 import ReactModal from 'react-modal'

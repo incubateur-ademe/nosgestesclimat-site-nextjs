@@ -7,7 +7,7 @@ import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { getCarbonFootprint } from '@/helpers/actions/getCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function ActionsTutorial() {
@@ -20,6 +20,13 @@ export default function ActionsTutorial() {
   const bilan = { nodeValue: getValue('bilan'), dottedName: 'bilan' }
 
   const [value, unit] = getCarbonFootprint({ t, i18n }, bilan.nodeValue)
+
+  const { progression } = useCurrentSimulation()
+  const { tutorials } = useUser()
+
+  if (progression < 0.5 || tutorials.actions) {
+    return null
+  }
 
   return (
     <Card className="my-6 items-start border-none bg-gray-100">

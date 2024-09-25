@@ -5,7 +5,6 @@ import {
   simulateurCloseSommaire,
   simulateurOpenSommaire,
 } from '@/constants/tracking/pages/simulateur'
-import Loader from '@/design-system/layout/Loader'
 import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
 import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -37,24 +36,19 @@ export default function SimulateurPage() {
     setIsSaveModalOpen((prevIsSaveModalOpen) => !prevIsSaveModalOpen)
   }, [])
 
-  if (!isGuardInit || isGuardRedirecting) {
-    return (
-      <div className="flex h-screen flex-1 items-center justify-center">
-        <Loader color="dark" />
-      </div>
-    )
-  }
-
   return (
     <div className="flex h-screen flex-1 flex-col overflow-scroll">
       <Total
         toggleQuestionList={toggleQuestionList}
         toggleSaveModal={toggleSaveModal}
       />
+
       <Simulateur
         toggleQuestionList={toggleQuestionList}
         isQuestionListOpen={isQuestionListOpen}
+        isLoading={!isGuardInit || isGuardRedirecting}
       />
+
       <SaveModal isOpen={isSaveModalOpen} closeModal={toggleSaveModal} />
     </div>
   )

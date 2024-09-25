@@ -49,7 +49,7 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
   return (
     <>
       {!noNumberedFootprint && (
-        <p className="mb-6 text-sm">
+        <p className="mb-6">
           <Trans>
             Voici quelques idées pour vous aider à réduire votre impact :
           </Trans>

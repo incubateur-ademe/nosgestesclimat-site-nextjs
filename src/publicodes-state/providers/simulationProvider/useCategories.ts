@@ -10,10 +10,10 @@ import { utils } from 'publicodes'
 import { useMemo } from 'react'
 
 type Props = {
-  parsedRules: NGCRulesNodes
+  parsedRules?: NGCRulesNodes
   everyRules: DottedName[]
   root: DottedName
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeGetRule?: (rule: DottedName) => NGCRuleNode | null
 }
 
 export function useCategories({
@@ -23,7 +23,7 @@ export function useCategories({
   safeGetRule,
 }: Props) {
   const categories = useMemo<DottedName[]>(() => {
-    const rootRule = safeGetRule(root)
+    const rootRule = safeGetRule?.(root)
     if (!rootRule) {
       console.error(`[useCategories] No rule found for ${root}`)
 
@@ -53,7 +53,7 @@ export function useCategories({
     return categories.reduce(
       (accumulator, currentValue: DottedName) => {
         const subCat = []
-        const rule = safeGetRule(currentValue)
+        const rule = safeGetRule?.(currentValue)
         if (!rule) {
           console.error(
             `[useCategories:subcategories] No rule found for ${currentValue}`
@@ -81,7 +81,7 @@ export function useCategories({
             subCat.push(rule)
           } else {
             subCat.push(
-              utils.disambiguateReference(parsedRules, currentValue, rule)
+              utils.disambiguateReference(parsedRules || {}, currentValue, rule)
             )
           }
         }
