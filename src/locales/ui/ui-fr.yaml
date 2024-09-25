@@ -144,9 +144,7 @@ entries:
   international.pourquoi.titre: Adapté à votre pays
   international.pourquoi.3: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.
   Ce modèle a été conçu par: Ce modèle a été conçu par
-  Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.: Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.
   Recharger la page: Recharger la page
-  Une erreur s'est produite: Une erreur s'est produite
   model.questions: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
   Oups, nous n'avons pas d'article correspondant: Oups, nous n'avons pas d'article correspondant
   Retour à la liste des articles: Retour à la liste des articles
@@ -869,7 +867,6 @@ entries:
   d’eau domestique par jour: d’eau domestique par jour
   D’où vient mon empreinte ?: D’où vient mon empreinte ?
   Découvre mes empreintes: Découvre mes empreintes
-  Découvrez votre <1>empreinte eau</1> à la fin du test !: Découvrez votre <1>empreinte eau</1> à la fin du test !
   eau: eau
   En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.: En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.
   Est-ce que c'est <2>beaucoup ?</2>: Est-ce que c'est <2>beaucoup ?</2>
@@ -955,3 +952,16 @@ entries:
     {{sharedUrl}}
   de CO₂e: de CO₂e
   CO₂e: CO₂e
+  Lien de partage copié dans le presse-papier !: Lien de partage copié dans le presse-papier !
+  Oups, une erreur s’est produite lors de la copie du lien de partage.: Oups, une erreur s’est produite lors de la copie du lien de partage.
+  obtenez une estimation: obtenez une estimation
+  à la fin du test !: à la fin du test !
+  de votre: de votre
+  Découvrez votre: Découvrez votre
+  empreinte carbone: empreinte carbone
+  empreinte eau: empreinte eau
+  'Nos Gestes Climat : vos empreintes carbone et eau en 10 min': 'Nos Gestes Climat : vos empreintes carbone et eau en 10 min'
+  "Nos Gestes Climat : vos empreintes carbone et eau en 10 min\n{{sharedUrl}}":
+    |-
+    Nos Gestes Climat : vos empreintes carbone et eau en 10 min
+    {{sharedUrl}}
