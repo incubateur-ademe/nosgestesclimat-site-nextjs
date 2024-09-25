@@ -14,7 +14,7 @@ type Props = {
   everyQuestions: DottedName[]
   everyRules: DottedName[]
   engine: Engine | null
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
 }
 
