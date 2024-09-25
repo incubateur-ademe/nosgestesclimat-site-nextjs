@@ -45,7 +45,8 @@ export default function useDisposableEngine({ rules, situation }: Props) {
   const getSubcategories = useCallback(
     (dottedName: DottedName) =>
       (getSomme(safeGetRule(dottedName)?.rawNode) || []).map(
-        (subCategory) => `${dottedName} . ${subCategory}`
+        (subCategory) =>
+          `${dottedName as string} . ${subCategory as string}` as DottedName
       ),
     [safeGetRule]
   )
