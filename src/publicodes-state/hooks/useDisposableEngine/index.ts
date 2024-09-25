@@ -46,7 +46,7 @@ export default function useDisposableEngine({ rules, situation }: Props) {
     (dottedName: DottedName) =>
       (getSomme(safeGetRule(dottedName)?.rawNode) || []).map(
         (subCategory) =>
-          `${dottedName as string} . ${subCategory as string}` as DottedName
+          `${dottedName} . ${subCategory}` as unknown as DottedName
       ),
     [safeGetRule]
   )

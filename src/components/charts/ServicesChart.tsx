@@ -8,7 +8,7 @@ export default function ServicesChart() {
   const serviceCategories = getSubcategories('services sociétaux')
 
   const serviceSubcategories = serviceCategories?.reduce(
-    (acc: DottedName[], category: DottedName) => {
+    (acc: DottedName[], category) => {
       acc.push(...(getSubcategories(category) ?? []))
       return acc
     },
