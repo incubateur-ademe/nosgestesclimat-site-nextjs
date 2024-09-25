@@ -1173,3 +1173,8 @@ entries:
   Découvrez votre: Discover your
   à la fin du test !: at the end of the test!
   empreinte carbone: carbon footprint
+  "Nos Gestes Climat : vos empreintes carbone et eau en 10 min\n{{sharedUrl}}":
+    |-
+    Nos Gestes Climat: your carbon and water footprints in 10 minutes
+    {{sharedUrl}}
+  'Nos Gestes Climat : vos empreintes carbone et eau en 10 min': 'Nos Gestes Climat: your carbon and water footprints in 10 minutes'

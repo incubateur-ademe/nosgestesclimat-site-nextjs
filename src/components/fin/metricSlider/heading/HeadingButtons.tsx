@@ -73,13 +73,15 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
       await navigator
         .share({
           url: sharedUrl,
-          title: t('Nos Gestes Climat : votre empreinte carbone en 10 min'),
+          title: t(
+            'Nos Gestes Climat : vos empreintes carbone et eau en 10 min'
+          ),
         })
         .catch((e) => console.log(e))
     } else {
       try {
         const shareText = t(
-          'Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}',
+          'Nos Gestes Climat : vos empreintes carbone et eau en 10 min\n{{sharedUrl}}',
           { sharedUrl }
         )
         await navigator.clipboard.writeText(shareText)
