@@ -34,7 +34,7 @@ type Props = {
   endPage?: boolean
 }
 
-const MAX_WIDTH_DESKTOP = 768
+const MAX_WIDTH_MOBILE = 768
 
 export default function HeadingButtons({ size = 'md', endPage }: Props) {
   const { sharedUrl } = useEndPageSharedUrl()
@@ -46,22 +46,12 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const handleShare = async () => {
-    if (navigator?.share && window.innerWidth < MAX_WIDTH_DESKTOP) {
-      await navigator
-        .share({
-          url: sharedUrl,
-          title: 'Nos Gestes Climat : votre empreinte carbone en 10 min',
-        })
-        .catch((e) => console.log(e))
-    } else {
+    // Desktop : only copy the url
+    if (!navigator?.share || window.innerWidth > MAX_WIDTH_MOBILE) {
       try {
-        const shareText = t(
-          'Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}',
-          { sharedUrl }
-        )
-        await navigator.clipboard.writeText(shareText)
+        await navigator.clipboard.writeText(sharedUrl)
 
-        displaySuccessToast('Lien de partage copié dans le presse-papier !')
+        displaySuccessToast(t('Lien de partage copié dans le presse-papier !'))
         setShouldDisplayConfirmMessage(true)
 
         timeoutRef.current = setTimeout(() => {
@@ -69,7 +59,44 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         }, 2000)
       } catch (err) {
         displayErrorToast(
-          'Oups, une erreur s’est produite lors de la copie du lien de partage.'
+          t(
+            'Oups, une erreur s’est produite lors de la copie du lien de partage.'
+          )
+        )
+      }
+
+      return
+    }
+
+    // Mobile : share the url
+    if (navigator?.share && window.innerWidth < MAX_WIDTH_MOBILE) {
+      await navigator
+        .share({
+          url: sharedUrl,
+          title: t(
+            'Nos Gestes Climat : vos empreintes carbone et eau en 10 min'
+          ),
+        })
+        .catch((e) => console.log(e))
+    } else {
+      try {
+        const shareText = t(
+          'Nos Gestes Climat : vos empreintes carbone et eau en 10 min\n{{sharedUrl}}',
+          { sharedUrl }
+        )
+        await navigator.clipboard.writeText(shareText)
+
+        displaySuccessToast(t('Lien de partage copié dans le presse-papier !'))
+        setShouldDisplayConfirmMessage(true)
+
+        timeoutRef.current = setTimeout(() => {
+          setShouldDisplayConfirmMessage(false)
+        }, 2000)
+      } catch (err) {
+        displayErrorToast(
+          t(
+            'Oups, une erreur s’est produite lors de la copie du lien de partage.'
+          )
         )
       }
     }
