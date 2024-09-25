@@ -1,3 +1,4 @@
+import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
@@ -36,19 +37,28 @@ export default function getSortedQuestionsList({
     const aCategoryAndSubcategory = aSplittedName[0] + ' . ' + aSplittedName[1]
     const bCategoryAndSubcategory = bSplittedName[0] + ' . ' + bSplittedName[1]
 
-    const subcategoriesOfBothQuestions = subcategories.filter((subcategory) =>
-      subcategory.startsWith(categoryOfBothQuestions)
+    const subcategoriesOfBothQuestions = getSubcatsOfCategory(
+      categoryOfBothQuestions as DottedName,
+      subcategories as DottedName[]
     )
 
     if (
-      subcategoriesOfBothQuestions.indexOf(aCategoryAndSubcategory) >
-      subcategoriesOfBothQuestions.indexOf(bCategoryAndSubcategory)
+      subcategoriesOfBothQuestions.indexOf(
+        aCategoryAndSubcategory as DottedName
+      ) >
+      subcategoriesOfBothQuestions.indexOf(
+        bCategoryAndSubcategory as DottedName
+      )
     ) {
       return 1
     }
     if (
-      subcategoriesOfBothQuestions.indexOf(aCategoryAndSubcategory) <
-      subcategoriesOfBothQuestions.indexOf(bCategoryAndSubcategory)
+      subcategoriesOfBothQuestions.indexOf(
+        aCategoryAndSubcategory as DottedName
+      ) <
+      subcategoriesOfBothQuestions.indexOf(
+        bCategoryAndSubcategory as DottedName
+      )
     ) {
       return -1
     }

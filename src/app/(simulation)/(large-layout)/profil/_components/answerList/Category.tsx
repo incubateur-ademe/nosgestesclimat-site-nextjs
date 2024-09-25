@@ -8,6 +8,7 @@ import {
   getBorderColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
+import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
 import { useRule, useSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -26,14 +27,12 @@ export default function Category({ category }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const formattedCarbonFootprint = formatCarbonFootprint(numericValue)
 
+  const subcategoriesOfCategory = getSubcatsOfCategory(category, subcategories)
+
   return (
     <div className="relative mb-4 w-full">
       <button
-        disabled={
-          !subcategories?.filter((subcategory) =>
-            subcategory.startsWith(category)
-          ).length
-        }
+        disabled={!subcategoriesOfCategory?.length}
         className="block w-full"
         onClick={() => {
           trackEvent(profilClickCategory(category))
@@ -58,11 +57,9 @@ export default function Category({ category }: Props) {
 
       {isOpen ? (
         <>
-          {subcategories
-            .filter((subcategory) => subcategory.startsWith(category))
-            .map((subcategory) => (
-              <Subcategory key={subcategory} subcategory={subcategory} />
-            ))}
+          {subcategoriesOfCategory?.map((subcategory) => (
+            <Subcategory key={subcategory} subcategory={subcategory} />
+          ))}
           <QuestionsWithoutSubcategory category={category} />
         </>
       ) : null}

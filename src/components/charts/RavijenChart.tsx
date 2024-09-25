@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import { trackingDownloadRavijenChart } from '@/constants/tracking/misc'
 import Button from '@/design-system/inputs/Button'
+import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
 import { useEngine } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -41,9 +42,7 @@ export default function RavijenChart({
           <li key={category} className="h-full flex-1">
             <CategoryChart
               category={category}
-              subcategories={subcategories?.filter((subcategory) =>
-                subcategory.startsWith(category)
-              )}
+              subcategories={getSubcatsOfCategory(category, subcategories)}
               maxValue={worstFootprintCategoryValue}
               squashLimitPercentage={squashLimitPercentage}
               isInverted={isInverted}

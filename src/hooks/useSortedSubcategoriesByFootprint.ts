@@ -1,3 +1,4 @@
+import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
 import { useEngine, useSimulation } from '@/publicodes-state'
 import { Metric } from '@/publicodes-state/types'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -21,9 +22,7 @@ export function useSortedSubcategoriesByFootprint({
           return acc
         }
         return acc.concat(
-          subcategories.filter((subcategory) =>
-            subcategory.startsWith(category)
-          )
+          getSubcatsOfCategory(category as DottedName, subcategories)
         )
       }, [] as DottedName[]),
     [subcategories, withServiceSocietaux]
