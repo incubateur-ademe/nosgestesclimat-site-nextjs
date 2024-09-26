@@ -32,20 +32,30 @@ export default async function PlanDuSitePage() {
         title: t('Votre profil'),
         href: '/profil',
       },
-      personas: {
-        title: t('Nos utilisateurs types'),
-        href: '/personas',
-      },
       actions: {
         title: t('Nos actions pour réduire votre empreinte'),
         href: '/actions',
       },
       actionsPlus: {
         title: t('Les actions phares'),
-        href: '/actions-plus',
+        href: '/actions/plus',
+      },
+    },
+    'Comparez votre empreinte': {
+      organisation: {
+        title: t('Au sein de votre organisation'),
+        href: '/organisations',
+      },
+      amis: {
+        title: t(`Dans un groupe d'amis`),
+        href: '/amis/creer/vos-informations',
       },
     },
     Informations: {
+      Blog: {
+        title: t('Blog'),
+        href: '/blog',
+      },
       nouveautes: {
         title: t('Nouveautés'),
         href: '/nouveautes',
@@ -68,25 +78,17 @@ export default async function PlanDuSitePage() {
       },
       faq: {
         title: t('FAQ'),
-        href: '/faq',
+        href: '/questions-frequentes',
       },
       stats: {
         title: t('Statistiques'),
         href: '/stats',
       },
-      Blog: {
-        title: t('Blog'),
-        href: '/blog',
-      },
     },
     Documentations: {
-      guide: {
-        title: t('Nos guides thématiques'),
-        href: '/documentation/guide',
-      },
       modele: {
         title: t('Le modèle Nos Gestes Climat'),
-        href: '/documentation/modele',
+        href: '/modele',
       },
       documentation: {
         title: t('Documentation'),
