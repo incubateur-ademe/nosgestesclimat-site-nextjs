@@ -34,8 +34,6 @@ type Props = {
   endPage?: boolean
 }
 
-const MAX_WIDTH_MOBILE = 768
-
 export default function HeadingButtons({ size = 'md', endPage }: Props) {
   const { sharedUrl } = useEndPageSharedUrl()
   const [shouldDisplayConfirmMessage, setShouldDisplayConfirmMessage] =
@@ -45,12 +43,15 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
+  // Detect with userAgent
+  const isMobile =
+    /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Android|iP(ad|od|hone)/i.test(
+      navigator.userAgent
+    )
+
   const handleShare = async () => {
     // Desktop : only copy the url
-    if (!navigator?.share || window.innerWidth > MAX_WIDTH_MOBILE) {
-      console.log(
-        '!navigator?.share || window.innerWidth > MAX_WIDTH_MOBILE true'
-      )
+    if (!navigator?.share || !isMobile) {
       try {
         await navigator.clipboard.writeText(sharedUrl)
 
@@ -72,10 +73,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
     }
 
     // Mobile : share the url
-    if (navigator?.share && window.innerWidth < MAX_WIDTH_MOBILE) {
-      console.log(
-        'navigator?.share && window.innerWidth < MAX_WIDTH_MOBILE true'
-      )
+    if (navigator?.share && isMobile) {
       await navigator
         .share({
           url: sharedUrl,
@@ -85,7 +83,6 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         })
         .catch((e) => console.log(e))
     } else {
-      console.log('else')
       try {
         const shareText = t(
           'Nos Gestes Climat : vos empreintes carbone et eau en 10 min\n{{sharedUrl}}',
