@@ -36,15 +36,15 @@ export default function FinPage() {
 
   const { currentMetric } = useCurrentMetric()
 
-  console.log({ isGuardInit, isGuardRedirecting, isCorrectSimulationSet })
-
   if (!isGuardInit || isGuardRedirecting || !isCorrectSimulationSet)
     return <FinPageSkeleton />
 
   return (
     <div className="relative">
       <IframeDataShareModal />
+
       <Poll />
+
       <div className="lg:hidden">
         <Title tag="h1">
           <Trans>Mes empreintes</Trans>
