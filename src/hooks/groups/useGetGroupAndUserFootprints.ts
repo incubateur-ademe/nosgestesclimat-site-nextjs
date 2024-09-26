@@ -21,7 +21,7 @@ export const useGetGroupAndUserFootprints = ({
   currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
   groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
 } => {
-  const { rules, subcategories } = useContext(SimulationContext)
+  const { rules } = useContext(SimulationContext)
 
   const { getValue, updateSituation, getSubcategories } = useDisposableEngine({
     rules,
