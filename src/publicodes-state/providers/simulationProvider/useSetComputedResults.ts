@@ -1,8 +1,8 @@
 import { defaultMetric, metrics } from '@/constants/metric'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
-import {
+import type {
   ComputedResults,
   ComputedResultsFootprint,
   Metric,
@@ -11,14 +11,17 @@ import {
 
 type Props = {
   categories: DottedName[]
+  subcategories: DottedName[]
   isEngineInitialized: boolean
   safeEvaluate?: (
     ruleName: DottedName,
     metric: Metric
   ) => NGCEvaluatedNode | null
+  safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
 }
 export function useSetComputedResults({
   categories,
+  subcategories,
   safeEvaluate,
   isEngineInitialized,
 }: Props) {
@@ -39,21 +42,36 @@ export function useSetComputedResults({
   // Set the computed results object (after engine init only)
   const computedResults: ComputedResults = useMemo(
     () =>
-      metrics.reduce((acc, metric) => {
-        acc[metric] = categories.reduce(
-          (acc, category) => {
-            acc.categories[category] = getNumericValue(category, metric)
-            return acc
+      metrics.reduce((metricsAcc: ComputedResults, metric: Metric) => {
+        // Get the footprint of the categories
+        metricsAcc[metric] = categories.reduce(
+          (categoriesAcc: ComputedResultsFootprint, category: DottedName) => {
+            categoriesAcc.categories[category] = getNumericValue(
+              category,
+              metric
+            )
+
+            return categoriesAcc
           },
           {
             categories: {},
+            subcategories: {},
             bilan: getNumericValue('bilan', metric),
           } as ComputedResultsFootprint
         )
-        return acc
+
+        // Get the footprint of the subcategories
+        metricsAcc[metric].subcategories = subcategories.reduce(
+          (acc, subcategory) => {
+            acc[subcategory] = getNumericValue(subcategory, metric)
+            return acc
+          },
+          {} as Record<DottedName, number>
+        )
+        return metricsAcc
       }, {} as ComputedResults),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [categories, getNumericValue, situation]
+    [categories, getNumericValue, situation, subcategories]
   )
 
   // Update the simulation with the computed results (only if the computed results have changed)

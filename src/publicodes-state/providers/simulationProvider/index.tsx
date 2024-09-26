@@ -34,7 +34,7 @@ export default function SimulationProvider({
   } = useRules({ engine: pristineEngine ?? undefined, root })
 
   const { categories, subcategories } = useCategories({
-    parsedRules: engine?.getParsedRules(),
+    parsedRules,
     everyRules,
     root,
     safeGetRule: safeGetRule ?? undefined,
@@ -46,7 +46,9 @@ export default function SimulationProvider({
 
   const { isInitialized } = useSetComputedResults({
     categories,
+    subcategories,
     isEngineInitialized,
+    safeGetRule,
     safeEvaluate: safeEvaluate ?? undefined,
   })
 
@@ -59,8 +61,7 @@ export default function SimulationProvider({
         engine,
         pristineEngine,
         safeEvaluate,
-        safeGetRule,
-        parsedRules,
+        safeGetRule: safeGetRule ?? undefined,
         everyRules,
         everyInactiveRules,
         everyQuestions,
