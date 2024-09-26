@@ -114,6 +114,13 @@ export default async function PlanDuSitePage() {
 
       <section className="mb-2">
         <h2>
+          <Trans>Comparez votre empreinte</Trans>
+        </h2>
+        <LinkList entries={links['Comparez votre empreinte']} />
+      </section>
+
+      <section className="mb-2">
+        <h2>
           <Trans>Informations</Trans>
         </h2>
         <LinkList entries={links['Informations']} />
