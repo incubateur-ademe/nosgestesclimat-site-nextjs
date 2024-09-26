@@ -917,10 +917,10 @@ entries:
   'ex : Campagne 2024, Classe de 6ème A, etc.': e.g. Campagne 2024, Classe de 6ème A, etc.
   Sans titre: Untitled
   Masquer les autres campagnes: Hide other campaigns
-  Date (récentes > anciennes): Date (recent &gt; old)
-  Date (anciennes > récentes): Date (old &gt; recent)
+  Date (récentes > anciennes): Date (recent > old)
+  Date (anciennes > récentes): Date (old > recent)
   Campagne créée par <2>{pollData?.organisationName}</2>, le: Campaign created by <2>{pollData?.organisationName}</2>, on
-  Nom (A > Z): Name (A &gt; Z)
+  Nom (A > Z): Name (A > Z)
   Nom (Z > A): Name (Z &gt; A)
   Voir toutes les campagnes: See all campaigns
   (définissez un titre dans les paramètres): (define a title in the parameters)
@@ -1180,3 +1180,9 @@ entries:
     Nos Gestes Climat: your carbon and water footprints in 10 minutes
     {{sharedUrl}}
   'Nos Gestes Climat : vos empreintes carbone et eau en 10 min': 'Nos Gestes Climat: your carbon and water footprints in 10 minutes'
+  Accepter: Accept
+  Refuser: Refuse
+  Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).: These are your results for the main categories (transport, food, etc.), but not the details question by question (your car mileage, the square metres of your home, etc.).
+  Comparez votre empreinte: Compare your footprint
+  Au sein de votre organisation: Within your organisation
+  Dans un groupe d'amis: In a group of friends
