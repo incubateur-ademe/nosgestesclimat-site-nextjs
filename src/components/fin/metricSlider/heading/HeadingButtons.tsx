@@ -77,7 +77,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
       await navigator
         .share({
           url: sharedUrl,
-          title: t(
+          text: t(
             'Nos Gestes Climat : vos empreintes carbone et eau en 10 min'
           ),
         })
