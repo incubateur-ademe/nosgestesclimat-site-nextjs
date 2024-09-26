@@ -19,11 +19,16 @@ export default function WaterRanking({ group, refetchGroup }: Props) {
   const { numericValue: userWaterFootprint } = useRule('bilan', eauMetric)
 
   const sortedMembers = useMemo(() => {
-    return [...group.participants].sort(
-      (a, b) =>
-        (a.simulation?.computedResults?.eau?.bilan ?? 0) -
-        (b.simulation?.computedResults?.eau?.bilan ?? 0)
-    )
+    return [...group.participants].sort((a, b) => {
+      const aValue = a.simulation?.computedResults?.eau?.bilan ?? 0
+      const bValue = b.simulation?.computedResults?.eau?.bilan ?? 0
+
+      if (aValue === 0 && bValue === 0) return 0
+      if (aValue === 0) return 1
+      if (bValue === 0) return -1
+
+      return aValue - bValue
+    })
   }, [group.participants])
 
   return (

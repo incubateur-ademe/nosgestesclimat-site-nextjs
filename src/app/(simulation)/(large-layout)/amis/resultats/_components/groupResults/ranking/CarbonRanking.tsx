@@ -25,7 +25,7 @@ export default function CarbonRanking({
     user: { userId },
   } = useUser()
 
-  const { topThreeMembers, restOfMembers } =
+  const { topThreeMembers, restOfMembers, membersWithUncompletedSimulations } =
     getTopThreeAndRestMembers(group.participants) || {}
 
   const withS = group.participants.length - 5 > 1 ? 's' : ''
@@ -92,29 +92,34 @@ export default function CarbonRanking({
       {restOfMembers.length > 0 && (
         <ul className="px-3 py-4">
           {restOfMembers.length > 0 &&
-            restOfMembers
+            [...restOfMembers, ...membersWithUncompletedSimulations]
               .filter(
                 (participant: Participant, index: number) =>
                   isExpanded || index + topThreeMembers?.length < 5
               )
               .map((participant: Participant, index: number) => {
-                const rank = `${index + 1 + topThreeMembers?.length}.`
+                const rank =
+                  participant.simulation.progression !== 1
+                    ? '...'
+                    : `${index + 1 + topThreeMembers?.length}.`
 
                 const { formattedValue, unit } = formatCarbonFootprint(
                   participant?.simulation?.computedResults?.[defaultMetric]
                     ?.bilan
                 )
 
-                const quantity = participant?.simulation?.computedResults?.[
-                  defaultMetric
-                ]?.bilan ? (
-                  <span className="leading-[160%]">
-                    <strong>{formattedValue}</strong>{' '}
-                    <span className="text-sm font-light">{unit}</span>
-                  </span>
-                ) : (
-                  '...'
-                )
+                const quantity =
+                  participant.simulation.progression !== 1 ? (
+                    '...'
+                  ) : participant?.simulation?.computedResults?.[defaultMetric]
+                      ?.bilan ? (
+                    <span className="leading-[160%]">
+                      <strong>{formattedValue}</strong>{' '}
+                      <span className="text-sm font-light">{unit}</span>
+                    </span>
+                  ) : (
+                    '...'
+                  )
 
                 return (
                   <ClassementMember
