@@ -77,32 +77,34 @@ export default function IframeDataShareModal() {
   if (!isOpen) return null
 
   return (
-    <Card className="absolute z-10 bg-white">
-      <h2>{t(`Partage de vos résultats à {{ parent }} ?`, { parent })}</h2>
-      <div>
-        <p>
-          {t(
-            `En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.`,
-            { parent }
-          )}
-        </p>
-        <p>
-          {t(
-            `Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).`
-          )}
-        </p>
-        <p>
-          {t(`Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.`, {
-            parent,
-          })}
-        </p>
-      </div>
-      <div className="flex gap-4">
-        <Button color="secondary" onClick={onReject}>
-          {t('👎 Refuser')}
-        </Button>
-        <Button onClick={onAccept}>{t('👍 Accepter')}</Button>
-      </div>
-    </Card>
+    <div className="fixed bottom-0 left-0 right-0 top-0 z-[1000] bg-black bg-opacity-50">
+      <Card className="absolute left-1/2 top-1/2 z-[1000] -translate-x-1/2 -translate-y-1/2 bg-white">
+        <h2>{t(`Partage de vos résultats à {{ parent }} ?`, { parent })}</h2>
+        <div>
+          <p>
+            {t(
+              `En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.`,
+              { parent }
+            )}
+          </p>
+          <p>
+            {t(
+              `Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).`
+            )}
+          </p>
+          <p>
+            {t(`Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.`, {
+              parent,
+            })}
+          </p>
+        </div>
+        <div className="flex gap-4">
+          <Button color="secondary" onClick={onReject}>
+            {t('Refuser')}
+          </Button>
+          <Button onClick={onAccept}>{t('Accepter')}</Button>
+        </div>
+      </Card>
+    </div>
   )
 }

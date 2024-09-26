@@ -129,8 +129,6 @@ entries:
   '{unit}': '{unit}'
   À propos: À propos
   ◀ Retour à la liste des fiches: ◀ Retour à la liste des fiches
-  👍 Accepter: 👍 Accepter
-  👎 Refuser: 👎 Refuser
   👤 Vous utilisez actuellement le persona: 👤 Vous utilisez actuellement le persona
   🧮 Voir le geste climat correspondant: 🧮 Voir le geste climat correspondant
   components.localisation.LocalisationMessage.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
@@ -460,7 +458,6 @@ entries:
   voyageurs, soit: voyageurs, soit
   (Données consultables à partir de 3 participants, dans un souci d'anonymat): (Données consultables à partir de 3 participants, dans un souci d'anonymat)
   En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.: En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.
-  Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.: Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
   Oups ! Une erreur est survenue: Oups ! Une erreur est survenue
   Partage de vos résultats à {{ parent }} ?: Partage de vos résultats à {{ parent }} ?
@@ -906,7 +903,6 @@ entries:
   Et l'eau de <2>ma douche</2> dans tout ça ?: Et l'eau de <2>ma douche</2> dans tout ça ?
   Mon empreinte carbone: Mon empreinte carbone
   Mon empreinte eau: Mon empreinte eau
-  <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombres de nos vêtements.: <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombres de nos vêtements.
   d'eau par jour: d'eau par jour
   de CO₂e par an: de CO₂e par an
   Liste des questions: Liste des questions
@@ -916,8 +912,6 @@ entries:
   Sauvegarder <2>ma progression</2>: Sauvegarder <2>ma progression</2>
   sur votre empreinte: sur votre empreinte
   Votre région a bien été mise à jour.: Votre région a bien été mise à jour.
-  Sauvegarder ma progression: Sauvegarder ma progression
-  Vous pouvez la reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: Vous pouvez la reprendre plus tard en cliquant sur le lien que vous avez reçu par email.
   Veuillez entrer un nombre positif.: Veuillez entrer un nombre positif.
   '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} sur votre empreinte'
   '{{name}}, supprimer cette participation': '{{name}}, supprimer cette participation'
@@ -955,6 +949,9 @@ entries:
     |-
     Nos Gestes Climat : vos empreintes carbone et eau en 10 min
     {{sharedUrl}}
+  Accepter: Accepter
+  Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).
+  Refuser: Refuser
   Au sein de votre organisation: Au sein de votre organisation
   Comparez votre empreinte: Comparez votre empreinte
   Dans un groupe d'amis: Dans un groupe d'amis
