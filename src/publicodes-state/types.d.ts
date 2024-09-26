@@ -43,16 +43,6 @@ export type User = {
 
 export type Tutorials = Record<string, boolean>
 
-export type Suggestion = {
-  label: string
-  value: any // TODO: sorry...
-  // value:
-  //   | NodeValue
-  //   | {
-  //       [key: string]: NodeValue
-  //     }
-}
-
 export type NGCEvaluatedNode = EvaluatedNode
 export type ActionChoices = Record<string, boolean>
 
