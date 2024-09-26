@@ -917,10 +917,10 @@ entries:
   'ex : Campagne 2024, Classe de 6ème A, etc.': e.g. Campagne 2024, Classe de 6ème A, etc.
   Sans titre: Untitled
   Masquer les autres campagnes: Hide other campaigns
-  Date (récentes > anciennes): Date (recent &gt; old)
-  Date (anciennes > récentes): Date (old &gt; recent)
+  Date (récentes > anciennes): Date (recent > old)
+  Date (anciennes > récentes): Date (old > recent)
   Campagne créée par <2>{pollData?.organisationName}</2>, le: Campaign created by <2>{pollData?.organisationName}</2>, on
-  Nom (A > Z): Name (A &gt; Z)
+  Nom (A > Z): Name (A > Z)
   Nom (Z > A): Name (Z &gt; A)
   Voir toutes les campagnes: See all campaigns
   (définissez un titre dans les paramètres): (define a title in the parameters)
