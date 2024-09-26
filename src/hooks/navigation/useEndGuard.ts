@@ -15,8 +15,6 @@ export function useEndGuard() {
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
 
-  console.log('Mounting useEndGuard')
-
   useEffect(() => {
     // we only run the guard at mount
     if (isGuardInit) return
