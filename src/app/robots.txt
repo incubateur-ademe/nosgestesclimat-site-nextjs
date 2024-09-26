@@ -1,0 +1,10 @@
+User-Agent: *
+Allow: /
+Disallow: /fin/*
+Disallow: /actions/*
+Disallow: /infos/*
+Disallow: /quiz/*
+Disallow: /partage/*
+Disallow: /tutoriel/*
+
+Sitemap: https://nosgestesclimat.fr/sitemap.xml
