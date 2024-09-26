@@ -42,6 +42,7 @@ export const useGetGroupAndUserFootprints = ({
         {
           simulation: groupMember.simulation,
           isCurrentMember,
+          groupAccumulator: accGroupCategoriesAndSubcategoriesFootprints,
         }
       )
 
@@ -49,6 +50,7 @@ export const useGetGroupAndUserFootprints = ({
         getSubcategoriesObject({
           simulation: groupMember.simulation,
           isCurrentMember,
+          groupAccumulator: accGroupCategoriesAndSubcategoriesFootprints,
         })
 
       return {

@@ -8,22 +8,24 @@ import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 export function getCategoriesObject({
   simulation,
   isCurrentMember,
+  groupAccumulator,
 }: {
   simulation: Simulation
   isCurrentMember: boolean
+  groupAccumulator: CategoriesAndSubcategoriesFootprintsType
 }): {
   groupCategoriesToAdd: CategoriesAndSubcategoriesFootprintsType
   userCategoriesToAdd: CategoriesAndSubcategoriesFootprintsType
 } {
-  const groupCategoriesToAdd = {} as CategoriesAndSubcategoriesFootprintsType
+  const groupCategoriesToAdd = { ...groupAccumulator }
   const userCategoriesToAdd = {} as CategoriesAndSubcategoriesFootprintsType
 
   const categories = simulation?.computedResults?.carbone?.categories
 
   if (!categories) {
     return {
-      groupCategoriesToAdd: {} as CategoriesAndSubcategoriesFootprintsType,
-      userCategoriesToAdd: {} as CategoriesAndSubcategoriesFootprintsType,
+      groupCategoriesToAdd,
+      userCategoriesToAdd,
     }
   }
 

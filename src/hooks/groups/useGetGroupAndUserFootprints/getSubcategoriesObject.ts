@@ -8,22 +8,24 @@ import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 export function getSubcategoriesObject({
   simulation,
   isCurrentMember,
+  groupAccumulator,
 }: {
   simulation: Simulation
   isCurrentMember: boolean
+  groupAccumulator: Record<DottedName, ValueObject>
 }): {
   groupSubcategoriesToAdd: Record<DottedName, ValueObject>
   userSubcategoriesToAdd: Record<DottedName, ValueObject>
 } {
-  const groupSubcategoriesToAdd = {} as Record<DottedName, ValueObject>
+  const groupSubcategoriesToAdd = { ...groupAccumulator }
   const userSubcategoriesToAdd = {} as Record<DottedName, ValueObject>
 
   const subcategories = simulation?.computedResults?.carbone?.subcategories
 
   if (!subcategories) {
     return {
-      groupSubcategoriesToAdd: {} as Record<DottedName, ValueObject>,
-      userSubcategoriesToAdd: {} as Record<DottedName, ValueObject>,
+      groupSubcategoriesToAdd,
+      userSubcategoriesToAdd,
     }
   }
 
