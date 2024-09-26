@@ -48,6 +48,9 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
   const handleShare = async () => {
     // Desktop : only copy the url
     if (!navigator?.share || window.innerWidth > MAX_WIDTH_MOBILE) {
+      console.log(
+        '!navigator?.share || window.innerWidth > MAX_WIDTH_MOBILE true'
+      )
       try {
         await navigator.clipboard.writeText(sharedUrl)
 
@@ -70,6 +73,9 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
 
     // Mobile : share the url
     if (navigator?.share && window.innerWidth < MAX_WIDTH_MOBILE) {
+      console.log(
+        'navigator?.share && window.innerWidth < MAX_WIDTH_MOBILE true'
+      )
       await navigator
         .share({
           url: sharedUrl,
@@ -79,6 +85,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         })
         .catch((e) => console.log(e))
     } else {
+      console.log('else')
       try {
         const shareText = t(
           'Nos Gestes Climat : vos empreintes carbone et eau en 10 min\n{{sharedUrl}}',
