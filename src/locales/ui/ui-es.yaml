@@ -1130,6 +1130,8 @@ entries:
   Reprendre plus tard: Reanudar más tarde
   Veuillez entrer un nombre positif.: Introduzca un número positivo.
   '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} sobre su huella'
+  Sauvegarder ma progression: Guardar mis progresos
+  <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombres de nos vêtements.: <0>La mayor parte de nuestra huella hídrica la genera el cultivo de plantas,</0> ya sea para alimentarnos a nosotros mismos o a nuestro ganado, o para obtener la materia prima de muchas de nuestras prendas de vestir.
   Une erreur est survenue: Se ha producido un error
   '{{name}}, supprimer cette participation': '{{name}}cancelar esta participación'
   Participant supprimé avec succès: Participante eliminado con éxito
@@ -1153,13 +1155,21 @@ entries:
   obtenez une estimation <1></1>de votre <3>empreinte carbone</3>.: <1></1>obtenga una estimación de su<3>huella de carbono</3>.
   En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: Por regla general, los valores de la huella hídrica varían <2>entre 3.000 y 9.000 litros al día</2>. A diferencia del carbono, no existe un objetivo cuantificado para la huella hídrica.
   litres: litros
+  Lien de partage copié dans le presse-papier !: Enlace compartido copiado en el portapapeles
+  Oups, une erreur s’est produite lors de la copie du lien de partage.: Oops, hubo un error al copiar el enlace para compartir.
   obtenez une estimation: solicitar estimación
   "Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}":
     |-
     Nos Gestes Climat: una estimación de su huella de carbono en 10 minutos
     {{sharedUrl}}
+  'Nos Gestes Climat : votre empreinte carbone en 10 min': 'Nos Gestes Climat: su huella de carbono en 10 minutos'
   empreinte eau: huella hídrica
   Découvrez votre: Descubre tu
   empreinte carbone: huella de carbono
   de votre: de su
   à la fin du test !: al final de la prueba
+  "Nos Gestes Climat : vos empreintes carbone et eau en 10 min\n{{sharedUrl}}":
+    |-
+    Nos Gestes Climat: su huella de carbono y de agua en 10 minutos
+    {{sharedUrl}}
+  'Nos Gestes Climat : vos empreintes carbone et eau en 10 min': 'Nos Gestes Climat: su huella de carbono y de agua en 10 minutos'

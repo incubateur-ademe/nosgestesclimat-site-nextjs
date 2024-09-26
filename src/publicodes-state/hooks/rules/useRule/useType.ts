@@ -7,7 +7,7 @@ import { useMemo } from 'react'
 
 type Props = {
   dottedName: DottedName
-  rule: NGCRuleNode | null
+  rule: NGCRuleNode | undefined
   evaluation: NGCEvaluatedNode | null
 }
 

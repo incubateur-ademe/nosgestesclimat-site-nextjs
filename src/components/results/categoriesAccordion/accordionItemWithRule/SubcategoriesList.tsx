@@ -6,7 +6,7 @@ import SubcategoryListItem from './subcategoriesList/SubcategoryListItem'
 
 type Props = {
   category: DottedName
-  subcategories: Record<DottedName, DottedName[]>
+  subcategories: DottedName[]
   metric?: Metric
 }
 export default function SubcategoriesList({
@@ -16,8 +16,11 @@ export default function SubcategoriesList({
 }: Props) {
   const { getNumericValue, checkIfValid } = useEngine({ metric })
 
-  const sortedSubcategories = subcategories[category]
-    ?.filter((subcategory) => checkIfValid(subcategory))
+  const sortedSubcategories = subcategories
+    ?.filter(
+      (subcategory) =>
+        subcategory.startsWith(category) && checkIfValid(subcategory)
+    )
     .sort((categoryA, categoryB) => {
       const valueA = getNumericValue(categoryA) ?? 0
       const valueB = getNumericValue(categoryB) ?? 0

@@ -11,7 +11,7 @@ import { FormattedSuggestion } from '../../../types'
 
 type Props = {
   dottedName: DottedName
-  rule: NGCRuleNode | null
+  rule: NGCRuleNode | undefined
 }
 
 export default function useContent({ dottedName, rule }: Props) {

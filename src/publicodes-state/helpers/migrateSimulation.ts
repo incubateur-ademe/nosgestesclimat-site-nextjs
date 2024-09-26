@@ -45,7 +45,8 @@ export function migrateSimulation(
       carbone: simulation.computedResults as any,
       eau: {
         bilan: 0,
-        categories: {} as Record<DottedName, number>,
+        categories: {},
+        subcategories: {},
       },
     }
     simulation.computedResults = newComputedResults

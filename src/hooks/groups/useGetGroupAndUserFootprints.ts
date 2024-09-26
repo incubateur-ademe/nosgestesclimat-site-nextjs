@@ -1,27 +1,14 @@
 import { orderedCategories } from '@/constants/orderedCategories'
-import { getRuleSumRules } from '@/helpers/publicodes/getRuleSumRules'
 import { useDisposableEngine, useTempEngine } from '@/publicodes-state'
+
 import {
   CategoriesAndSubcategoriesFootprintsType,
   Participant,
 } from '@/types/groups'
-import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   groupMembers: Participant[]
   userId: string | null
-}
-
-export function getSubcategories({
-  category,
-  getSpecialRuleObject,
-}: {
-  category: DottedName
-  getSpecialRuleObject: (dottedName: DottedName) => NGCRuleNode
-}): DottedName[] | undefined {
-  const rule = getSpecialRuleObject(category)
-
-  return getRuleSumRules(rule)
 }
 
 export const useGetGroupAndUserFootprints = ({
@@ -31,9 +18,9 @@ export const useGetGroupAndUserFootprints = ({
   currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
   groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
 } => {
-  const { rules, getSpecialRuleObject } = useTempEngine()
+  const { rules } = useTempEngine()
 
-  const { getValue, updateSituation } = useDisposableEngine({
+  const { getValue, updateSituation, getSubcategories } = useDisposableEngine({
     rules,
     situation: {},
   })
@@ -67,7 +54,7 @@ export const useGetGroupAndUserFootprints = ({
 
         const defaultCategoryObject = {
           name: category,
-          value: categoryValue ?? 0,
+          value: categoryValue,
           isCategory: true,
         }
 
@@ -79,7 +66,7 @@ export const useGetGroupAndUserFootprints = ({
             defaultCategoryObject
         } else {
           updatedGroupCategoriesAndSubcategoriesFootprints[category].value +=
-            typeof categoryValue === 'number' ? categoryValue : 0
+            categoryValue
         }
 
         // Add each category footprint for the current member
@@ -88,8 +75,7 @@ export const useGetGroupAndUserFootprints = ({
             defaultCategoryObject
         }
 
-        const currentCategorySubcategories =
-          getSubcategories({ category, getSpecialRuleObject }) || []
+        const currentCategorySubcategories = getSubcategories(category)
 
         currentCategorySubcategories.forEach((subCategory) => {
           const subCategoryRawValue = getValue(subCategory)

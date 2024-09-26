@@ -44,7 +44,7 @@ export default function useRule(
     [dottedName, engine, situation, metric]
   )
 
-  const rule = useMemo<NGCRuleNode | null>(
+  const rule = useMemo<NGCRuleNode | undefined>(
     () => safeGetRule(dottedName),
     [dottedName, safeGetRule]
   )
