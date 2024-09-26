@@ -19,7 +19,7 @@ import {
 type Props = {
   dottedName: DottedName
   parsedRules: ParsedRules | undefined
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   evaluation: NGCEvaluatedNode | null
   type: string | undefined

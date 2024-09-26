@@ -13,7 +13,7 @@ export default function PointsFortsFaibles({
 }) {
   return (
     <div>
-      {pointsForts?.length > 0 && (
+      {!!pointsForts && pointsForts.length > 0 && (
         <>
           <h2
             className="mt-0 text-lg"
@@ -40,7 +40,7 @@ export default function PointsFortsFaibles({
         </>
       )}
 
-      {pointsFaibles?.length > 0 && (
+      {!!pointsFaibles && pointsFaibles.length > 0 && (
         <>
           <h2 className="mt-6 text-lg">
             <Trans>Vos points faibles</Trans>

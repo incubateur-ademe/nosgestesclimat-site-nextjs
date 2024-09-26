@@ -66,9 +66,11 @@ export function useEngine(rules?: NGCRules) {
     [engine]
   )
 
-  const safeGetRule = useMemo<(ruleName: DottedName) => NGCRuleNode | null>(
+  const safeGetRule = useMemo<
+    (ruleName: DottedName) => NGCRuleNode | undefined
+  >(
     () => (ruleName: DottedName) =>
-      safeGetRuleHelper(ruleName, engine ?? new Engine()),
+      safeGetRuleHelper(ruleName, engine ?? new Engine()) ?? undefined,
     [engine]
   )
 

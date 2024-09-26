@@ -1,6 +1,8 @@
 import { orderedCategories } from '@/constants/orderedCategories'
+
 import { useDisposableEngine } from '@/publicodes-state'
 import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
+
 import {
   CategoriesAndSubcategoriesFootprintsType,
   Participant,
@@ -21,7 +23,7 @@ export const useGetGroupAndUserFootprints = ({
 } => {
   const { rules, subcategories } = useContext(SimulationContext)
 
-  const { getValue, updateSituation } = useDisposableEngine({
+  const { getValue, updateSituation, getSubcategories } = useDisposableEngine({
     rules,
     situation: {},
   })
@@ -55,7 +57,7 @@ export const useGetGroupAndUserFootprints = ({
 
         const defaultCategoryObject = {
           name: category,
-          value: categoryValue ?? 0,
+          value: categoryValue,
           isCategory: true,
         }
 
@@ -67,7 +69,7 @@ export const useGetGroupAndUserFootprints = ({
             defaultCategoryObject
         } else {
           updatedGroupCategoriesAndSubcategoriesFootprints[category].value +=
-            typeof categoryValue === 'number' ? categoryValue : 0
+            categoryValue
         }
 
         // Add each category footprint for the current member
@@ -76,7 +78,7 @@ export const useGetGroupAndUserFootprints = ({
             defaultCategoryObject
         }
 
-        const currentCategorySubcategories = subcategories[category] || []
+        const currentCategorySubcategories = getSubcategories(category)
 
         currentCategorySubcategories.forEach((subCategory) => {
           const subCategoryRawValue = getValue(subCategory)

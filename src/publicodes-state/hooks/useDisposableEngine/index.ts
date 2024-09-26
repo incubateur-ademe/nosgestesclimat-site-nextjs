@@ -1,4 +1,5 @@
 import { carboneMetric } from '@/constants/metric'
+import getSomme from '@/publicodes-state/helpers/getSomme'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
 import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -60,11 +61,21 @@ export default function useDisposableEngine({ rules, situation }: Props) {
     engine.setSituation(newSituation, { keepPreviousSituation })
   }
 
+  const getSubcategories = useCallback(
+    (dottedName: DottedName) =>
+      (getSomme(safeGetRule(dottedName)?.rawNode) || []).map(
+        (subCategory) =>
+          `${dottedName} . ${subCategory}` as unknown as DottedName
+      ),
+    [safeGetRule]
+  )
+
   return {
     engine,
     getValue,
     updateSituation,
     safeEvaluate,
     safeGetRule,
+    getSubcategories,
   }
 }

@@ -1,4 +1,4 @@
-import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
@@ -13,10 +13,9 @@ import {
 
 type Props = {
   root: DottedName
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   categories: DottedName[]
-  subcategories: Record<DottedName, DottedName[]>
+  subcategories: DottedName[]
   situation: Situation
   foldedSteps: DottedName[]
   everyQuestions: DottedName[]

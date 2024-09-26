@@ -906,6 +906,7 @@ entries:
   Et l'eau de <2>ma douche</2> dans tout ça ?: Et l'eau de <2>ma douche</2> dans tout ça ?
   Mon empreinte carbone: Mon empreinte carbone
   Mon empreinte eau: Mon empreinte eau
+  <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombres de nos vêtements.: <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombres de nos vêtements.
   d'eau par jour: d'eau par jour
   de CO₂e par an: de CO₂e par an
   Liste des questions: Liste des questions
@@ -914,8 +915,9 @@ entries:
   Reprendre plus tard: Reprendre plus tard
   Sauvegarder <2>ma progression</2>: Sauvegarder <2>ma progression</2>
   sur votre empreinte: sur votre empreinte
-  Une erreur s'est produite au moment de la sauvegarde.: Une erreur s'est produite au moment de la sauvegarde.
   Votre région a bien été mise à jour.: Votre région a bien été mise à jour.
+  Sauvegarder ma progression: Sauvegarder ma progression
+  Vous pouvez la reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: Vous pouvez la reprendre plus tard en cliquant sur le lien que vous avez reçu par email.
   Veuillez entrer un nombre positif.: Veuillez entrer un nombre positif.
   '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} sur votre empreinte'
   '{{name}}, supprimer cette participation': '{{name}}, supprimer cette participation'
