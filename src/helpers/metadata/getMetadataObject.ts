@@ -75,27 +75,20 @@ export function getMetadataObject({
   let alternatesWithLanguages = null
 
   if (alternates) {
-    let canonical = alternates.canonical
-
-    // We remove the locale from the url (it should not be here anyway, but just in case)
-    locales.map((locale) => {
-      if (alternates.canonical.startsWith(`/${locale}`)) {
-        canonical = alternates.canonical.slice(3)
-      }
-    })
+    const canonical = alternates.canonical
 
     // We set the alternates url for each language
     const languages: Record<string, string> = {}
-    locales.map((locale) => {
-      if (locale === 'fr') return
 
+    locales.map((locale) => {
       languages[locale] =
         `${BASE_URL}${locale === 'fr' ? '' : `/${locale}`}${canonical}`
     })
 
     // We return the alternates object with the canonical url and the languages alternates
     alternatesWithLanguages = {
-      canonical: BASE_URL + canonical,
+      canonical:
+        BASE_URL + (locale === 'fr' ? canonical : `/${locale}${canonical}`),
       languages,
     }
   }
