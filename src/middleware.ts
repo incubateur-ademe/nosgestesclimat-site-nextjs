@@ -1,3 +1,4 @@
+import { captureException } from '@sentry/nextjs'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import i18nMiddleware from './middlewares/i18nMiddleware'
@@ -6,23 +7,31 @@ import splitTestingMiddleware from './middlewares/splitTestingMiddleware'
 export const middlewares = [splitTestingMiddleware, i18nMiddleware]
 
 export async function middleware(request: NextRequest) {
-  const response = NextResponse.next()
+  try {
+    const response = NextResponse.next()
 
-  for await (const middlewareFunction of middlewares) {
-    const middlewareResponse = await middlewareFunction(request)
+    for await (const middlewareFunction of middlewares) {
+      const middlewareResponse = await middlewareFunction(request)
 
-    if (isRedirecting(middlewareResponse)) {
-      return middlewareResponse
+      if (isRedirecting(middlewareResponse)) {
+        return middlewareResponse
+      }
+      if (isRewriting(middlewareResponse)) {
+        return middlewareResponse
+      }
+      if (isI18n(middlewareResponse)) {
+        return middlewareResponse
+      }
     }
-    if (isRewriting(middlewareResponse)) {
-      return middlewareResponse
-    }
-    if (isI18n(middlewareResponse)) {
-      return middlewareResponse
-    }
+    return response
+  } catch (error) {
+    console.error('Middleware error:', error)
+    // You can add Sentry logging here if needed
+    captureException(error)
+    return NextResponse.next()
   }
-  return response
 }
+
 function isRedirecting(response: NextResponse): boolean {
   return response.status === 307 || response.status === 308
 }

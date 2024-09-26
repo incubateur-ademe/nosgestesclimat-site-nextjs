@@ -7,24 +7,29 @@ import ue_country_codes from './ue_country_codes.json'
 export const runtime = 'edge'
 
 export async function GET(request: NextRequest) {
-  const detectedCountryCode = request.geo?.country
+  try {
+    const detectedCountryCode = request.geo?.country
 
-  if (!detectedCountryCode) {
-    return NextResponse.json({ undefined })
+    if (!detectedCountryCode) {
+      return NextResponse.json({ undefined })
+    }
+
+    const isNotSupportedUECountry =
+      getIsNotSupportedUECountry(detectedCountryCode)
+
+    if (isNotSupportedUECountry) {
+      return NextResponse.json({ country: { name: 'Europe', code: 'EU' } })
+    }
+
+    const country = countries.find(
+      (country) => country.code === detectedCountryCode
+    )
+
+    return NextResponse.json({ country })
+  } catch (error) {
+    console.error('Error in geolocation API:', error)
+    return NextResponse.json({ error: 'An error occurred' }, { status: 500 })
   }
-
-  const isNotSupportedUECountry =
-    getIsNotSupportedUECountry(detectedCountryCode)
-
-  if (isNotSupportedUECountry) {
-    return NextResponse.json({ country: { name: 'Europe', code: 'EU' } })
-  }
-
-  const country = countries.find(
-    (country) => country.code === detectedCountryCode
-  )
-
-  return NextResponse.json({ country })
 }
 
 const nonSupportedUECountryCodes = ue_country_codes.filter(
@@ -32,5 +37,5 @@ const nonSupportedUECountryCodes = ue_country_codes.filter(
 )
 
 function getIsNotSupportedUECountry(countryCode: string): boolean {
-  return nonSupportedUECountryCodes.includes(countryCode)
+  return nonSupportedUECountryCodes?.includes(countryCode)
 }
