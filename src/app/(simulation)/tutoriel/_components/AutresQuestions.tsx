@@ -133,8 +133,7 @@ export default function AutresQuestions() {
                       height={100}
                     />{' '}
                     réchauffent aussi la planète : on convertit leur potentiel
-                    de réchauffement en équivalent CO₂ pour simplifier la
-                    mesure.{' '}
+                    de réchauffement en CO₂e pour simplifier la mesure.{' '}
                   </Trans>
                 </details>
               </blockquote>
