@@ -1,3 +1,4 @@
+import Header from '@/components/layout/Header'
 import Main from '@/design-system/layout/Main'
 import { PropsWithChildren } from 'react'
 import { IsDocumentationClientProvider } from './_contexts/DocumentationStateContext'
@@ -5,6 +6,7 @@ import { IsDocumentationClientProvider } from './_contexts/DocumentationStateCon
 export default function Layout({ children }: PropsWithChildren) {
   return (
     <IsDocumentationClientProvider>
+      <Header />
       <Main>
         <div className="mx-auto flex max-w-full flex-col items-center justify-center gap-4 px-4 pb-8 md:items-start md:px-8 md:pb-10 md:text-left">
           {children}
