@@ -79,7 +79,7 @@ export default function AutresQuestions() {
                   de carbone{' '}
                   <Image
                     src="/images/tutoriel/co2.svg"
-                    alt="CO2"
+                    alt="CO₂"
                     className="inline-block w-8"
                     width={100}
                     height={100}
@@ -90,7 +90,7 @@ export default function AutresQuestions() {
               </p>
               <Image
                 src="/images/tutoriel/co2e.svg"
-                alt="CO2E"
+                alt="CO₂e"
                 className="mx-auto mb-2 w-24"
                 width={100}
                 height={100}
