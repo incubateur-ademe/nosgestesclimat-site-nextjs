@@ -10,8 +10,8 @@ Sentry.init({
   // Enable tracing for more detailed performance monitoring
   enableTracing: true,
 
-  // Increase debug level for more verbose logging during development
-  debug: true,
+  // Only for development and previews including preprod
+  debug: process.env.NODE_ENV !== 'production',
 
   // In production keep a 10% sample rate to avoid high costs
   sampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1,

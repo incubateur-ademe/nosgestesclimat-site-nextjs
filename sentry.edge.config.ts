@@ -10,8 +10,8 @@ Sentry.init({
 
   enableTracing: true,
 
-  // Setting this option to true will print useful information to the console while you're setting up Sentry.
-  debug: true,
+  // Only for development and previews including preprod
+  debug: process.env.NODE_ENV !== 'production',
 
   sampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1,
 
