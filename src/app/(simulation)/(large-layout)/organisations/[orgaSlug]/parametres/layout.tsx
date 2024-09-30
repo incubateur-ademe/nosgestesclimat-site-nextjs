@@ -3,7 +3,11 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { PropsWithChildren } from 'react'
 
-export async function generateMetadata() {
+export async function generateMetadata({
+  params,
+}: {
+  params: { orgaSlug: string }
+}) {
   const { t } = await getServerTranslation()
 
   return getMetadataObject({
@@ -12,7 +16,7 @@ export async function generateMetadata() {
       'Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.'
     ),
     alternates: {
-      canonical: '/',
+      canonical: `/organisations/${params.orgaSlug}/parametres`,
     },
   })
 }

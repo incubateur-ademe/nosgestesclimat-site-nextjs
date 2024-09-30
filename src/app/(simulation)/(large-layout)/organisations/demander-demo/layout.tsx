@@ -12,7 +12,7 @@ export async function generateMetadata() {
       'Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.'
     ),
     alternates: {
-      canonical: '/',
+      canonical: '/organisations/demander-demo',
     },
     robots: noIndexObject,
   })

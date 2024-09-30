@@ -510,6 +510,7 @@ html[data-useragent*='Trident'] #js {
   @apply border;
   @apply border-gray-200;
   @apply rounded-md;
+  @apply mb-6;
 }
 
 @keyframes rainbow {

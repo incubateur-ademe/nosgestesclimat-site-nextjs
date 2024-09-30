@@ -15,7 +15,7 @@ export async function generateMetadata() {
       'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
     ),
     alternates: {
-      canonical: '/relais',
+      canonical: '/nos-relais',
     },
   })
 }

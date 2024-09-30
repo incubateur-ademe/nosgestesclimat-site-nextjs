@@ -14,7 +14,7 @@ export async function generateMetadata() {
       'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.'
     ),
     alternates: {
-      canonical: '/infos',
+      canonical: '/organisations',
     },
   })
 }
