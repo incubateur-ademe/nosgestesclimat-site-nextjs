@@ -311,8 +311,8 @@ entries:
   Revoir le tutoriel: Review the tutorial
   'Vous faites cette simulation depuis :': 'You can run this simulation from :'
   Sélectionné·e: Selected
-  publicodes.Tutoriel.slide2.blockquote: 'Other gases, especially methane <2></2> and nitrous oxide <6></6> also warm the planet: their warming potential is converted into CO₂ equivalent to simplify measurement. '
-  publicodes.Tutoriel.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
+  publicodes.Tutoriel.slide2.blockquote: 'Other gases, especially methane <2></2> and nitrous oxide <6></6> also warm the planet: we convert their warming potential into CO₂e to simplify measurement. '
+  publicodes.Tutoriel.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en CO₂e pour simplifier la mesure. "
   publicodes.Tutoriel.slide2.p2: It's the machines that make our modern comforts and conveniences that emit massive amounts of it, so much so that we count it in thousands of kilos per year and per person, and therefore in <2>tonnes of</2> CO₂e!
   publicodes.Tutoriel.slide2.p2.lock: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
   publicodes.Tutoriel.slide1.p2: To estimate our own contribution to global warming (our "climate impact"), we usually calculate the carbon footprint of our individual consumption.
@@ -1186,3 +1186,6 @@ entries:
   Comparez votre empreinte: Compare your footprint
   Au sein de votre organisation: Within your organisation
   Dans un groupe d'amis: In a group of friends
+  La catégorie {{title}} représente {{formattedValue}} tonnes de CO₂e.: The category {{title}} représente {{formattedValue}} tonnes of CO₂e.
+  La catégorie {{title}} représente {{value}} tonnes de CO₂e.: The category {{title}} représente {{value}} tonnes of CO₂e.
+  Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: Would you like to illustrate a quantity of CO₂e and disseminate the right orders of magnitude to your community? ADEME's Carbon Comparator is the tool for you!

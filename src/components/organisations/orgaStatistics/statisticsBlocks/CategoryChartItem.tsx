@@ -39,7 +39,7 @@ export default function CategoryChartItem({
         percentage={percentageOfMaxValue}
         barColor={getBackgroundColor(category)}
         ariaLabel={t(
-          'La catégorie {{title}} représente {{value}} tonnes de CO2 equivalent.',
+          'La catégorie {{title}} représente {{value}} tonnes de CO₂e.',
           { value, title }
         )}
         title={title ?? ''}
