@@ -1,22 +1,8 @@
-import { getGeolocation } from '@/helpers/getGeolocation'
-import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
-import Footer from '@/components/layout/Footer'
-import '@/locales/initClient'
-import '@/locales/initServer'
-import { dir } from 'i18next'
-import { currentLocale } from 'next-i18n-router'
-import dynamic from 'next/dynamic'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { PropsWithChildren } from 'react'
-import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
-
-const ClientErrorContent = dynamic(
-  () => import('@/components/error/ErrorContent'),
-  { ssr: false }
-)
 
 export const marianne = localFont({
   src: [
@@ -55,30 +41,27 @@ export const marianne = localFont({
 })
 
 export default async function RootLayout({ children }: PropsWithChildren) {
-  try {
-    const lang = currentLocale()
-    const region = await getGeolocation()
-    const migrationInstructions = await getMigrationInstructions()
+  const lang = 'fr'
 
-    return (
-      <html lang={lang ?? ''} dir={dir(lang ?? '')}>
-        <head>
-          <link rel="icon" href="/favicon.png" />
+  return (
+    <html lang={lang ?? ''}>
+      <head>
+        <link rel="icon" href="/favicon.png" />
 
-          <meta
-            name="google-site-verification"
-            content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"
-          />
+        <meta
+          name="google-site-verification"
+          content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"
+        />
 
-          <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:card" content="summary_large_image" />
 
-          <link rel="manifest" href="../manifest.webmanifest" />
+        <link rel="manifest" href="../manifest.webmanifest" />
 
-          <meta name="theme-color" content="#4949ba" />
+        <meta name="theme-color" content="#4949ba" />
 
-          {process.env.NEXT_PUBLIC_MATOMO_ID === '1' && (
-            <Script id="matomo">
-              {`
+        {process.env.NEXT_PUBLIC_MATOMO_ID === '1' && (
+          <Script id="matomo">
+            {`
             var _paq = window._paq = window._paq || [];
             /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
             _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
@@ -96,35 +79,21 @@ export default async function RootLayout({ children }: PropsWithChildren) {
               g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
             })();
           `}
-            </Script>
-          )}
-        </head>
+          </Script>
+        )}
+      </head>
 
-        <body
-          className={`${marianne.className} bg-white text-default transition-colors duration-700`}>
-          <Script id="script-user-agent">{`
+      <body
+        className={`${marianne.className} bg-white text-default transition-colors duration-700`}>
+        <Script id="script-user-agent">{`
             const b = document.documentElement;
             b.setAttribute('data-useragent', navigator.userAgent);
           `}</Script>
 
-          <MainLayoutProviders
-            region={region}
-            migrationInstructions={migrationInstructions}>
-            {children}
-            <Footer />
-          </MainLayoutProviders>
+        {children}
 
-          <div id="modal" />
-        </body>
-      </html>
-    )
-  } catch (error) {
-    return (
-      <html lang="fr">
-        <body>
-          <ClientErrorContent />
-        </body>
-      </html>
-    )
-  }
+        <div id="modal" />
+      </body>
+    </html>
+  )
 }

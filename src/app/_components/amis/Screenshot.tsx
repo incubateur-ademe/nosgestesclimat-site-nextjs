@@ -1,7 +1,4 @@
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-
 export default async function Screenshot() {
-  const { t } = await getServerTranslation()
   return (
     <svg
       className="mb-6 block h-auto max-w-full "
@@ -10,7 +7,7 @@ export default async function Screenshot() {
       viewBox="0 0 444 275"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
-      <title>{t('Une capture du mode Amis Nos Gestes Climat.')}</title>
+      <title>Une capture du mode Amis Nos Gestes Climat.</title>
       <path
         d="M0 16.6163C0 7.43938 8.95431 0 20 0H424C435.046 0 444 7.43938 444 16.6163V258.384C444 267.561 435.046 275 424 275H20C8.95429 275 0 267.561 0 258.384V16.6163Z"
         fill="#F7F8F8"
