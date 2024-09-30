@@ -10,7 +10,7 @@ Sentry.init({
 
   enableTracing: true,
 
-  // Only for development and previews including preprod
+  // Only for previews including preprod
   debug: process.env.NODE_ENV !== 'production',
 
   sampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1,
