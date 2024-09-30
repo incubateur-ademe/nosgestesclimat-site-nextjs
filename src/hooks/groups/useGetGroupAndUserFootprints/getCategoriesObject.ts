@@ -15,10 +15,12 @@ export function getCategoriesObject({
   groupAccumulator: CategoriesAndSubcategoriesFootprintsType
 }): {
   groupCategoriesToAdd: CategoriesAndSubcategoriesFootprintsType
-  userCategoriesToAdd: CategoriesAndSubcategoriesFootprintsType
+  userCategoriesToAdd?: CategoriesAndSubcategoriesFootprintsType
 } {
   const groupCategoriesToAdd = { ...groupAccumulator }
-  const userCategoriesToAdd = {} as CategoriesAndSubcategoriesFootprintsType
+  const userCategoriesToAdd = isCurrentMember
+    ? ({} as CategoriesAndSubcategoriesFootprintsType)
+    : undefined
 
   const categories = simulation?.computedResults?.carbone?.categories
 
@@ -58,7 +60,7 @@ export function getCategoriesObject({
       }
 
       // Add each category footprint for the current member
-      if (isCurrentMember) {
+      if (isCurrentMember && userCategoriesToAdd) {
         userCategoriesToAdd[
           category as keyof CategoriesAndSubcategoriesFootprintsType
         ] = defaultCategoryObject

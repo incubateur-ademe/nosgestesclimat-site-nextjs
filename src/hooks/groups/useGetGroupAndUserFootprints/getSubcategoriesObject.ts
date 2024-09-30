@@ -15,10 +15,12 @@ export function getSubcategoriesObject({
   groupAccumulator: Record<DottedName, ValueObject>
 }): {
   groupSubcategoriesToAdd: Record<DottedName, ValueObject>
-  userSubcategoriesToAdd: Record<DottedName, ValueObject>
+  userSubcategoriesToAdd?: Record<DottedName, ValueObject>
 } {
   const groupSubcategoriesToAdd = { ...groupAccumulator }
-  const userSubcategoriesToAdd = {} as Record<DottedName, ValueObject>
+  const userSubcategoriesToAdd = isCurrentMember
+    ? ({} as Record<DottedName, ValueObject>)
+    : undefined
 
   const subcategories = simulation?.computedResults?.carbone?.subcategories
 
@@ -53,7 +55,7 @@ export function getSubcategoriesObject({
         ].value += subCategoryValue
       }
 
-      if (isCurrentMember) {
+      if (isCurrentMember && userSubcategoriesToAdd) {
         // Add each category footprint for the current member
         userSubcategoriesToAdd[
           subCategory as keyof ComputedResultsSubcategories
