@@ -23,7 +23,7 @@ const nextConfig = {
   async redirects() {
     return redirects
   },
-  webpack: (config, { dev }) => {
+  webpack: (config, { dev, isServer }) => {
     if (config.cache) {
       if (dev) {
         // Development configuration
@@ -46,17 +46,19 @@ const nextConfig = {
     })
 
     // Enable source maps
-    config.devtool = !dev ? 'source-map' : 'eval-source-map'
-
-    if (process.env.SENTRY_AUTH_TOKEN) {
-      config.plugins.push(
-        sentryWebpackPlugin({
-          authToken: process.env.SENTRY_AUTH_TOKEN_SOURCEMAPS,
-          org: 'betagouv',
-          project: 'nosgestesclimat-nextjs',
-        })
-      )
+    if (!dev && !isServer) {
+      config.devtool = 'source-map'
     }
+
+    // if (process.env.SENTRY_AUTH_TOKEN) {
+    //   config.plugins.push(
+    //     sentryWebpackPlugin({
+    //       authToken: process.env.SENTRY_AUTH_TOKEN_SOURCEMAPS,
+    //       org: 'betagouv',
+    //       project: 'nosgestesclimat-nextjs',
+    //     })
+    //   )
+    // }
 
     return config
   },
