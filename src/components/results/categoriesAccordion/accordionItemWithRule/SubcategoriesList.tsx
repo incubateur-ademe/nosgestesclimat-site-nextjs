@@ -19,7 +19,7 @@ export default function SubcategoriesList({
   const sortedSubcategories = subcategories
     ?.filter(
       (subcategory) =>
-        subcategory.startsWith(category) && checkIfValid(subcategory)
+        subcategory?.startsWith(category) && checkIfValid(subcategory)
     )
     .sort((categoryA, categoryB) => {
       const valueA = getNumericValue(categoryA) ?? 0
