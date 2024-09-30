@@ -13,6 +13,7 @@ import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEndPageSharedUrl } from '@/hooks/useEndPageSharedUrl'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import isMobile from 'is-mobile'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -43,15 +44,9 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  // Detect with userAgent
-  const isMobile =
-    /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Android|iP(ad|od|hone)/i.test(
-      navigator.userAgent
-    )
-
   const handleShare = async () => {
     // Desktop : only copy the url
-    if (!navigator?.share || !isMobile) {
+    if (!navigator?.share || !isMobile()) {
       try {
         await navigator.clipboard.writeText(sharedUrl)
 
@@ -73,7 +68,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
     }
 
     // Mobile : share the url
-    if (navigator?.share && isMobile) {
+    if (navigator?.share && isMobile()) {
       await navigator
         .share({
           url: sharedUrl,
