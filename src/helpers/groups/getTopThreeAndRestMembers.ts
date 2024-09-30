@@ -11,6 +11,12 @@ export const getTopThreeAndRestMembers = (members: Participant[] = []) => {
 
   return sortedMembers.reduce(
     (acc, member, index) => {
+      // We store apart the members with uncompleted simulations
+      if (member.simulation.progression !== 1) {
+        acc.membersWithUncompletedSimulations.push(member)
+        return acc
+      }
+
       if (
         index < 3 &&
         member?.simulation?.computedResults?.[defaultMetric]?.bilan !==
@@ -22,9 +28,14 @@ export const getTopThreeAndRestMembers = (members: Participant[] = []) => {
       }
       return acc
     },
-    { topThreeMembers: [], restOfMembers: [] } as {
+    {
+      topThreeMembers: [],
+      restOfMembers: [],
+      membersWithUncompletedSimulations: [],
+    } as {
       topThreeMembers: Participant[]
       restOfMembers: Participant[]
+      membersWithUncompletedSimulations: Participant[]
     }
   )
 }

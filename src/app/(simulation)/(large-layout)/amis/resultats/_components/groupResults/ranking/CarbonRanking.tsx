@@ -1,19 +1,18 @@
 'use client'
 
-import { Group, Participant } from '@/types/groups'
-import { useState } from 'react'
-
 import Trans from '@/components/translation/Trans'
-import Emoji from '@/design-system/utils/Emoji'
-
 import { defaultMetric } from '@/constants/metric'
+import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
 import { useUser } from '@/publicodes-state'
+import { Group, Participant } from '@/types/groups'
 import { QueryObserverResult } from '@tanstack/react-query'
-import ClassementMember from './classement/ClassementMember'
+import { useState } from 'react'
+import ClassementMember from './RankingMember'
 
-export default function Classement({
+export default function CarbonRanking({
   group,
   refetchGroup,
 }: {
@@ -26,11 +25,7 @@ export default function Classement({
     user: { userId },
   } = useUser()
 
-  if (!group) {
-    return null
-  }
-
-  const { topThreeMembers, restOfMembers } =
+  const { topThreeMembers, restOfMembers, membersWithUncompletedSimulations } =
     getTopThreeAndRestMembers(group.participants) || {}
 
   const withS = group.participants.length - 5 > 1 ? 's' : ''
@@ -39,12 +34,6 @@ export default function Classement({
 
   return (
     <>
-      <div className="mt-4">
-        <h2 className="m-0 text-lg font-bold">
-          <Trans>Le classement</Trans>
-        </h2>
-      </div>
-
       <ul
         className={`mt-2 rounded-xl  px-3 py-4  ${hasOneParticipant ? 'bg-primary-50 text-primary-700' : 'bg-primary-700 text-white'}`}>
         {topThreeMembers.map((participant: Participant, index: number) => {
@@ -62,9 +51,12 @@ export default function Classement({
             default:
           }
 
-          const { formattedValue, unit } = formatCarbonFootprint(
+          const { formattedValue, unit } = formatFootprint(
             participant?.simulation?.computedResults?.[defaultMetric]?.bilan ??
-              ''
+              '',
+            {
+              shouldUseAbbreviation: true,
+            }
           )
 
           const quantity = participant?.simulation?.computedResults?.[
@@ -72,7 +64,9 @@ export default function Classement({
           ]?.bilan ? (
             <span className="m-none leading-[160%]">
               <strong>{formattedValue}</strong>{' '}
-              <span className="text-sm font-light">{unit}</span>
+              <span className="text-sm font-light">
+                {unit} <Trans>CO₂e</Trans>
+              </span>
             </span>
           ) : (
             '...'
@@ -98,29 +92,34 @@ export default function Classement({
       {restOfMembers.length > 0 && (
         <ul className="px-3 py-4">
           {restOfMembers.length > 0 &&
-            restOfMembers
+            [...restOfMembers, ...membersWithUncompletedSimulations]
               .filter(
                 (participant: Participant, index: number) =>
                   isExpanded || index + topThreeMembers?.length < 5
               )
               .map((participant: Participant, index: number) => {
-                const rank = `${index + 1 + topThreeMembers?.length}.`
+                const rank =
+                  participant.simulation.progression !== 1
+                    ? '...'
+                    : `${index + 1 + topThreeMembers?.length}.`
 
                 const { formattedValue, unit } = formatCarbonFootprint(
                   participant?.simulation?.computedResults?.[defaultMetric]
                     ?.bilan
                 )
 
-                const quantity = participant?.simulation?.computedResults?.[
-                  defaultMetric
-                ]?.bilan ? (
-                  <span className="leading-[160%]">
-                    <strong>{formattedValue}</strong>{' '}
-                    <span className="text-sm font-light">{unit}</span>
-                  </span>
-                ) : (
-                  '...'
-                )
+                const quantity =
+                  participant.simulation.progression !== 1 ? (
+                    '...'
+                  ) : participant?.simulation?.computedResults?.[defaultMetric]
+                      ?.bilan ? (
+                    <span className="leading-[160%]">
+                      <strong>{formattedValue}</strong>{' '}
+                      <span className="text-sm font-light">{unit}</span>
+                    </span>
+                  ) : (
+                    '...'
+                  )
 
                 return (
                   <ClassementMember
