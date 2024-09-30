@@ -333,8 +333,8 @@ entries:
   Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet.: ¿Qué significa esto? Esta página se abrirá en una pestaña nueva.
   Vous utilisez la version: Está utilizando el
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Por supuesto, algunas cosas son compartidas (en mi casa con mi familia, el coche con mis compañeros de viaje): esto se tendrá en cuenta a la hora de calcular tu huella de carbono, ¡así que no te preocupes!'
-  publicodes.Tutoriel.slide2.blockquote: '<2></2> <6></6> Otros gases, especialmente el metano y el óxido nitroso, también calientan el planeta: su potencial de calentamiento se convierte en equivalente de CO₂ para simplificar la medición.'
-  publicodes.Tutoriel.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
+  publicodes.Tutoriel.slide2.blockquote: '<2></2> <6></6> Otros gases, especialmente el metano y el óxido nitroso, también calientan el planeta: convertimos su potencial de calentamiento en CO₂e para simplificar la medición.'
+  publicodes.Tutoriel.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en CO₂e pour simplifier la mesure. "
   publicodes.Tutoriel.slide2.p2: Son las máquinas que fabrican nuestras comodidades y conveniencias modernas las que emiten cantidades masivas de él, tanto que lo contamos en miles de kilos al año y por persona, ¡y por tanto en <2>toneladas de</2> CO₂e!
   publicodes.Tutoriel.slide2.p2.lock: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
   publicodes.Tutoriel.slide1.p1: Es un hecho que el clima se está calentando debido a la actividad humana. Todo lo que consumimos, usamos y luego tiramos requiere materiales y energía. Ya sea durante la producción, el uso o la fase de fin de vida del bien o servicio. Así que todas nuestras actividades contribuyen a las emisiones de gases de efecto invernadero. Algunas mucho, otras muy poco. Pero ¿cuál es nuestro impacto, como ciudadanos individuales?
@@ -1179,3 +1179,6 @@ entries:
   Comparez votre empreinte: Compare su huella
   Dans un groupe d'amis: En un grupo de amigos
   Au sein de votre organisation: Dentro de su organización
+  La catégorie {{title}} représente {{formattedValue}} tonnes de CO₂e.: '{{title}} représente {{formattedValue}} La categoría toneladas de CO₂e.'
+  La catégorie {{title}} représente {{value}} tonnes de CO₂e.: '{{title}} représente {{value}} La categoría toneladas de CO₂e.'
+  Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: ¿Le gustaría ilustrar una cantidad de CO₂e y difundir los órdenes de magnitud adecuados a su comunidad? El comparador de carbono de ADEME es la herramienta que necesita

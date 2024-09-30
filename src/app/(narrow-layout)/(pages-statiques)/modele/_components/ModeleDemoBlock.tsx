@@ -102,8 +102,8 @@ export default function ModeleDemoBlock() {
         </span>
 
         <small className="mx-auto block text-center">
-          Dont {Math.round(indicators['transport'] as number)} kgCO2e de
-          transport et {Math.round(indicators.logement as number)} kgCO2e de
+          Dont {Math.round(indicators['transport'] as number)} kg CO₂e de
+          transport et {Math.round(indicators.logement as number)} kg CO₂e de
           logement.
         </small>
       </div>
