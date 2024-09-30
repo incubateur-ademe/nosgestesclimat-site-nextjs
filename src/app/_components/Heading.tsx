@@ -29,16 +29,18 @@ export default async function Heading() {
             </strong>
             .
           </p>
-          <p className="mb-6 md:mb-8 md:text-2xl">
+          <div>
             <Badge color="secondary" size="sm" className="align-text-bottom">
               BETA
-            </Badge>{' '}
-            <Trans>Découvrez votre</Trans>{' '}
-            <strong>
-              <Trans>empreinte eau</Trans>
-            </strong>{' '}
-            <Trans>à la fin du test !</Trans>
-          </p>
+            </Badge>
+            <p className="mb-6 md:mb-8 md:text-2xl">
+              <Trans>Découvrez votre</Trans>{' '}
+              <strong>
+                <Trans>empreinte eau</Trans>
+              </strong>{' '}
+              <Trans>à la fin du test !</Trans>
+            </p>
+          </div>
           <Buttons />
         </div>
       </div>

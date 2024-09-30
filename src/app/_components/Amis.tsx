@@ -14,7 +14,8 @@ export default async function Amis() {
         alt={t('Des amis jouant à un jeu de société')}
         width="444"
         height="275"
-        className="mb-6 block h-auto max-w-full "
+        className="mb-6 block h-auto max-w-full"
+        loading="eager"
       />
       <Kicker>
         <Trans>Entre amis</Trans>
