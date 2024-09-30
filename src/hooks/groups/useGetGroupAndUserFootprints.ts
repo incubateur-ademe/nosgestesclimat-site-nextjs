@@ -1,13 +1,11 @@
 import { orderedCategories } from '@/constants/orderedCategories'
 
-import { useDisposableEngine } from '@/publicodes-state'
-import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
+import { useDisposableEngine, useTempEngine } from '@/publicodes-state'
 
 import {
   CategoriesAndSubcategoriesFootprintsType,
   Participant,
 } from '@/types/groups'
-import { useContext } from 'react'
 
 type Props = {
   groupMembers: Participant[]
@@ -21,7 +19,7 @@ export const useGetGroupAndUserFootprints = ({
   currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
   groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
 } => {
-  const { rules } = useContext(SimulationContext)
+  const { rules } = useTempEngine()
 
   const { getValue, updateSituation, getSubcategories } = useDisposableEngine({
     rules,
@@ -38,7 +36,7 @@ export const useGetGroupAndUserFootprints = ({
     ) => {
       const isCurrentMember = groupMember.userId === userId
 
-      updateSituation(groupMember?.simulation?.situation || {}, false)
+      updateSituation(groupMember?.simulation?.situation || {})
 
       // Create a copy of the accumulator
       const updatedGroupCategoriesAndSubcategoriesFootprints = {
