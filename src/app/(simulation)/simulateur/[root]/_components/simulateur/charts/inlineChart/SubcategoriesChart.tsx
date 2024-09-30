@@ -21,7 +21,8 @@ export default function SubcategoriesChart() {
       (currentCategory &&
         subcategories?.filter(
           (subcategory) =>
-            subcategory.startsWith(currentCategory) && checkIfValid(subcategory)
+            subcategory?.startsWith(currentCategory) &&
+            checkIfValid(subcategory)
         )) ||
       [],
     [subcategories, currentCategory, checkIfValid]
