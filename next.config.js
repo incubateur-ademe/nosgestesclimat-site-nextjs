@@ -51,7 +51,7 @@ const nextConfig = {
     if (process.env.SENTRY_AUTH_TOKEN) {
       config.plugins.push(
         sentryWebpackPlugin({
-          authToken: process.env.SENTRY_AUTH_TOKEN,
+          authToken: process.env.SENTRY_AUTH_TOKEN_SOURCEMAPS,
           org: 'betagouv',
           project: 'nosgestesclimat-nextjs',
         })
