@@ -10,7 +10,7 @@ const redirects = require('./config/redirects.js')
 
 const remoteImagesPatterns = require('./config/remoteImagesPatterns.js')
 
-const { sentryWebpackPlugin } = require('@sentry/webpack-plugin')
+// const { sentryWebpackPlugin } = require('@sentry/webpack-plugin')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
