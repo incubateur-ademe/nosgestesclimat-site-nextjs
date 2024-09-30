@@ -15,7 +15,7 @@ export default function useValue({ evaluation, type }: Props) {
   const displayValue = useMemo<string>(() => {
     if (type === 'choices') {
       const stringValue = String(value)
-      return stringValue.startsWith("'")
+      return stringValue?.startsWith("'")
         ? stringValue.substring(1, stringValue.length - 1)
         : stringValue
     }
