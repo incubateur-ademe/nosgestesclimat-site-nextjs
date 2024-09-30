@@ -60,6 +60,7 @@ const nextConfig = {
 
     return config
   },
+  productionBrowserSourceMaps: true,
   experimental: {
     outputFileTracingExcludes: {
       '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
