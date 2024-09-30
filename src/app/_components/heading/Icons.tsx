@@ -1,12 +1,12 @@
 import { Suspense } from 'react'
-import DesktopCircles from './icons/DesktopCircles'
 import MobileCircles from './icons/MobileCircles'
+import TempCircles from './icons/TempCircles'
 
 export default async function Icons() {
   return (
     <>
       <Suspense fallback={null}>
-        <DesktopCircles />
+        <TempCircles />
       </Suspense>
       <MobileCircles />
     </>
