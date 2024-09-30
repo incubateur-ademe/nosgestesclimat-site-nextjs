@@ -1,29 +1,33 @@
 'use client'
 
+const circles = [
+  generateCircleOfSvg({ numPieces: 30, radius: 450, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 35, radius: 535, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 40, radius: 620, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 45, radius: 705, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 50, radius: 790, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 55, radius: 875, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 60, radius: 960, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 65, radius: 1045, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 70, radius: 1130, boundary: [-332, 300] }),
+  generateCircleOfSvg({ numPieces: 75, radius: 1215, boundary: [-332, 300] }),
+]
+
 import {
   homeClickEmoji,
   homeMemorySuccess,
 } from '@/constants/tracking/pages/home'
+import { generateCircleOfSvg } from '@/helpers/generateCircleOfSvg'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useState } from 'react'
 import DesktopIcon from './desktopCircles/DesktopIcon'
-
-type Props = {
-  circles: {
-    iconIndex: number
-    x: number
-    y: number
-    rotation: number
-    delay: number
-  }[][]
-}
 
 type Icon = {
   iconIndex: number
   x: number
   y: number
 }
-export default function DesktopCircles({ circles }: Props) {
+export default function DesktopCircles() {
   const [firstSelected, setFirstSelected] = useState<Icon | null>(null)
   const [secondSelected, setSecondSelected] = useState<Icon | null>(null)
 
@@ -34,7 +38,7 @@ export default function DesktopCircles({ circles }: Props) {
   useEffect(() => {
     setFirstSelected(null)
     setSecondSelected(null)
-  }, [circles])
+  }, [])
 
   useEffect(() => {
     let timer: NodeJS.Timeout | undefined = undefined
