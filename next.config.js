@@ -10,6 +10,8 @@ const redirects = require('./config/redirects.js')
 
 const remoteImagesPatterns = require('./config/remoteImagesPatterns.js')
 
+const { sentryWebpackPlugin } = require('@sentry/webpack-plugin')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
@@ -21,12 +23,20 @@ const nextConfig = {
   async redirects() {
     return redirects
   },
-  webpack: (config) => {
+  webpack: (config, { dev }) => {
     if (config.cache) {
-      config.cache = Object.freeze({
-        type: 'memory',
-      })
-      config.cache.maxMemoryGenerations = 0
+      if (dev) {
+        // Development configuration
+        config.cache = {
+          type: 'filesystem',
+        }
+      } else {
+        // Use cache in production
+        config.cache = Object.freeze({
+          type: 'memory',
+        })
+        config.cache.maxMemoryGenerations = 0
+      }
     }
 
     // Add a rule for YAML files
@@ -34,6 +44,19 @@ const nextConfig = {
       test: /\.ya?ml$/,
       use: 'yaml-loader',
     })
+
+    // Enable source maps
+    config.devtool = !dev ? 'source-map' : 'eval-source-map'
+
+    if (process.env.SENTRY_AUTH_TOKEN) {
+      config.plugins.push(
+        sentryWebpackPlugin({
+          authToken: process.env.SENTRY_AUTH_TOKEN,
+          org: 'betagouv',
+          project: 'nosgestesclimat-nextjs',
+        })
+      )
+    }
 
     return config
   },

@@ -7,13 +7,15 @@ import * as Sentry from '@sentry/nextjs'
 Sentry.init({
   dsn: 'https://75dcf9dfe74c4439977a517be2805122@sentry.incubateur.net/118',
 
-  enableTracing: false,
+  // Enable tracing for more detailed performance monitoring
+  enableTracing: true,
 
-  // Setting this option to true will print useful information to the console while you're setting up Sentry.
-  debug: false,
+  // Increase debug level for more verbose logging during development
+  debug: true,
 
-  sampleRate: 0.1,
+  // In production keep a 10% sample rate to avoid high costs
+  sampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1,
 
-  // Disable sentry for development based on local data
-  enabled: !process.env.NEXT_PUBLIC_LOCAL_DATA,
+  // Enable Sentry in all environments for debugging
+  enabled: process.env.NODE_ENV !== 'development',
 })
