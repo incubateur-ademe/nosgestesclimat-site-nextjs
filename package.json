@@ -81,6 +81,7 @@
     "react-verification-input": "^4.1.0",
     "react-wavify": "^1.11.0",
     "recharts": "^2.13.0-alpha.4",
+    "sharp": "^0.33.5",
     "tailwind-merge": "^2.2.2",
     "tailwindcss": "3.4.1",
     "use-count-up": "^3.0.1",

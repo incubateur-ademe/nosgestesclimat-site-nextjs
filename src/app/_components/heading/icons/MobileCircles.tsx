@@ -9,6 +9,7 @@ export default function MobileCircles() {
       height="588"
       className="absolute left-1/2 top-1/2 h-[588px] w-[768px] max-w-none -translate-x-1/2 -translate-y-1/2 md:hidden"
       loading="eager"
+      priority
     />
   )
 }

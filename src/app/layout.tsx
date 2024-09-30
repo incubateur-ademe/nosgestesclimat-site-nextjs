@@ -2,6 +2,7 @@
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { PropsWithChildren } from 'react'
+import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 
 export const marianne = localFont({
@@ -89,9 +90,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
             const b = document.documentElement;
             b.setAttribute('data-useragent', navigator.userAgent);
           `}</Script>
-
-        {children}
-
+        <MainLayoutProviders>{children}</MainLayoutProviders>
         <div id="modal" />
       </body>
     </html>

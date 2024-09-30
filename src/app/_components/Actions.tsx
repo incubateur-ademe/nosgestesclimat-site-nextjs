@@ -9,13 +9,11 @@ export default async function Actions() {
     <div className="flex-1">
       <Image
         src="/images/illustrations/girl-holding-earth.svg"
-        alt={
-          'Une jeune femme tenant la terre entre ses mains, un chien la regardant joyeusement.'
-        }
+        alt="Une jeune femme tenant la terre entre ses mains, un chien la regardant joyeusement."
         width="290"
         height="275"
         className="mb-6 block h-auto max-w-full"
-        loading="eager"
+        loading="lazy"
       />
       <Kicker>
         <Trans>Agir pour le climat</Trans>

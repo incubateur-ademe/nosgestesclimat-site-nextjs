@@ -13,7 +13,7 @@ export default async function Amis() {
         width="444"
         height="275"
         className="mb-6 block h-auto max-w-full"
-        loading="eager"
+        loading="lazy"
       />
       <Kicker>
         <Trans>Entre amis</Trans>
