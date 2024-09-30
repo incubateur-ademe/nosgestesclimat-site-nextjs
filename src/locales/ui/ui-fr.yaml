@@ -129,8 +129,6 @@ entries:
   '{unit}': '{unit}'
   À propos: À propos
   ◀ Retour à la liste des fiches: ◀ Retour à la liste des fiches
-  👍 Accepter: 👍 Accepter
-  👎 Refuser: 👎 Refuser
   👤 Vous utilisez actuellement le persona: 👤 Vous utilisez actuellement le persona
   🧮 Voir le geste climat correspondant: 🧮 Voir le geste climat correspondant
   components.localisation.LocalisationMessage.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
@@ -144,9 +142,7 @@ entries:
   international.pourquoi.titre: Adapté à votre pays
   international.pourquoi.3: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.
   Ce modèle a été conçu par: Ce modèle a été conçu par
-  Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.: Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.
   Recharger la page: Recharger la page
-  Une erreur s'est produite: Une erreur s'est produite
   model.questions: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
   Oups, nous n'avons pas d'article correspondant: Oups, nous n'avons pas d'article correspondant
   Retour à la liste des articles: Retour à la liste des articles
@@ -462,7 +458,6 @@ entries:
   voyageurs, soit: voyageurs, soit
   (Données consultables à partir de 3 participants, dans un souci d'anonymat): (Données consultables à partir de 3 participants, dans un souci d'anonymat)
   En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.: En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.
-  Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.: Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
   Oups ! Une erreur est survenue: Oups ! Une erreur est survenue
   Partage de vos résultats à {{ parent }} ?: Partage de vos résultats à {{ parent }} ?
@@ -869,7 +864,6 @@ entries:
   d’eau domestique par jour: d’eau domestique par jour
   D’où vient mon empreinte ?: D’où vient mon empreinte ?
   Découvre mes empreintes: Découvre mes empreintes
-  Découvrez votre <1>empreinte eau</1> à la fin du test !: Découvrez votre <1>empreinte eau</1> à la fin du test !
   eau: eau
   En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.: En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.
   Est-ce que c'est <2>beaucoup ?</2>: Est-ce que c'est <2>beaucoup ?</2>
@@ -890,8 +884,6 @@ entries:
   Mes empreintes: Mes empreintes
   Mes principaux postes d'usage: Mes principaux postes d'usage
   'Nos articles sur le sujet :': 'Nos articles sur le sujet :'
-  obtenez une estimation<1></1>de votre <3>empreinte carbone</3>.: obtenez une estimation<1></1>de votre <3>empreinte carbone</3>.
-  Petit lexique pour tout comprendre à l’empreinte eau: Petit lexique pour tout comprendre à l’empreinte eau
   Pourquoi avons-nous ajouté l’empreinte eau ?: Pourquoi avons-nous ajouté l’empreinte eau ?
   Rendez-vous sur VigiEau pour en savoir plus.: Rendez-vous sur VigiEau pour en savoir plus.
   Retrouvez aussi le résultat de votre empreinte eau à la fin du test !: Retrouvez aussi le résultat de votre empreinte eau à la fin du test !
@@ -900,7 +892,6 @@ entries:
   "Voici la carte des départements qui subissent des restrictions d'eau en ce moment :": "Voici la carte des départements qui subissent des restrictions d'eau en ce moment :"
   Vous souhaitez recevoir vos résultats ?: Vous souhaitez recevoir vos résultats ?
   Vous utilisez: Vous utilisez
-  En règle générale, les valeurs d'empreinte eau varient <2>entre 9000 et 15000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: En règle générale, les valeurs d'empreinte eau varient <2>entre 9000 et 15000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.
   Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.: Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.
   'Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.': 'Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.'
   Les activités humaines menacent les équilibres naturels de notre planète.: Les activités humaines menacent les équilibres naturels de notre planète.
@@ -920,7 +911,6 @@ entries:
   Reprendre plus tard: Reprendre plus tard
   Sauvegarder <2>ma progression</2>: Sauvegarder <2>ma progression</2>
   sur votre empreinte: sur votre empreinte
-  Une erreur s'est produite au moment de la sauvegarde.: Une erreur s'est produite au moment de la sauvegarde.
   Votre région a bien été mise à jour.: Votre région a bien été mise à jour.
   Veuillez entrer un nombre positif.: Veuillez entrer un nombre positif.
   '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} sur votre empreinte'
@@ -942,8 +932,27 @@ entries:
   Le lexique pour tout comprendre à l’empreinte eau: Le lexique pour tout comprendre à l’empreinte eau
   Lire l'article: Lire l'article
   En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.
-  obtenez une estimation <1></1>de votre <3>empreinte carbone</3>.: obtenez une estimation <1></1>de votre <3>empreinte carbone</3>.
   Oups ! Une erreur est survenue: Oups ! Une erreur est survenue
   Si le problème persiste, merci de <2>contacter le support</2>.: Si le problème persiste, merci de <2>contacter le support</2>.
   Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.
   litres: litres
+  Lien de partage copié dans le presse-papier !: Lien de partage copié dans le presse-papier !
+  Oups, une erreur s’est produite lors de la copie du lien de partage.: Oups, une erreur s’est produite lors de la copie du lien de partage.
+  obtenez une estimation: obtenez une estimation
+  à la fin du test !: à la fin du test !
+  de votre: de votre
+  Découvrez votre: Découvrez votre
+  empreinte carbone: empreinte carbone
+  empreinte eau: empreinte eau
+  'Nos Gestes Climat : vos empreintes carbone et eau en 10 min': 'Nos Gestes Climat : vos empreintes carbone et eau en 10 min'
+  "Nos Gestes Climat : vos empreintes carbone et eau en 10 min\n{{sharedUrl}}":
+    |-
+    Nos Gestes Climat : vos empreintes carbone et eau en 10 min
+    {{sharedUrl}}
+  Accepter: Accepter
+  Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).
+  Refuser: Refuser
+  Au sein de votre organisation: Au sein de votre organisation
+  Comparez votre empreinte: Comparez votre empreinte
+  Dans un groupe d'amis: Dans un groupe d'amis
+  Une erreur s'est produite au moment de la sauvegarde.: Une erreur s'est produite au moment de la sauvegarde.

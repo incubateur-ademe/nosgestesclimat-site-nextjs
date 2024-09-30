@@ -36,23 +36,23 @@ function isI18n(response: NextResponse): boolean {
 /**
  * Evite que le middleware soit appliqué à certaines routes
  */
-// export const config = {
-//   matcher: [
-//     /*
-//      * Match all request paths except for the ones starting with:
-//      * - api (API routes)
-//      * - _next/static (static files)
-//      * - images (image optimization files)
-//      * - favicon.ico (favicon file)
-//      * - manifest.webmanifest (manifest file)
-//      */
-//     {
-//       source:
-//         '/((?!api|_next/static|favicon.ico|images|manifest.webmanifest).*)',
-//       missing: [
-//         { type: 'header', key: 'next-router-prefetch' },
-//         { type: 'header', key: 'purpose', value: 'prefetch' },
-//       ],
-//     },
-//   ],
-// }
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - images (image optimization files)
+     * - favicon.ico (favicon file)
+     * - manifest.webmanifest (manifest file)
+     */
+    {
+      source:
+        '/((?!api|_next/static|favicon.ico|images|manifest.webmanifest).*)',
+      missing: [
+        { type: 'header', key: 'next-router-prefetch' },
+        { type: 'header', key: 'purpose', value: 'prefetch' },
+      ],
+    },
+  ],
+}

@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import { trackingDownloadRavijenChart } from '@/constants/tracking/misc'
 import Button from '@/design-system/inputs/Button'
+import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
 import { useEngine } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -11,7 +12,7 @@ import CategoryChart from './ravijenChart/CategoryChart'
 
 type Props = {
   categories: DottedName[]
-  subcategories: Record<DottedName, DottedName[]>
+  subcategories?: DottedName[] | undefined
   squashLimitPercentage?: number
   isInverted?: boolean
   shouldAlwaysDisplayValue?: boolean
@@ -41,7 +42,7 @@ export default function RavijenChart({
           <li key={category} className="h-full flex-1">
             <CategoryChart
               category={category}
-              subcategories={subcategories[category]}
+              subcategories={getSubcatsOfCategory(category, subcategories)}
               maxValue={worstFootprintCategoryValue}
               squashLimitPercentage={squashLimitPercentage}
               isInverted={isInverted}
