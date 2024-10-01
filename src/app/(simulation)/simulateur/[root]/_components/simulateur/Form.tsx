@@ -7,7 +7,6 @@ import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
 import { simulationSimulationCompleted } from '@/constants/tracking/simulation'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
-import { uuidToNumber } from '@/helpers/uuidToNumber'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
 import { useDebug } from '@/hooks/useDebug'
@@ -48,7 +47,7 @@ export default function Form() {
 
   useEffect(() => {
     // We show the quiz for 10% of our users
-    const shouldShowQuiz = uuidToNumber(id ?? '') === 0
+    const shouldShowQuiz = true
 
     if (shouldGoToEndPage && progression === 1) {
       trackTimeOnSimulation()

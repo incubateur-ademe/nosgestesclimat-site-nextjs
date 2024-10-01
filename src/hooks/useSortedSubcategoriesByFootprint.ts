@@ -1,4 +1,3 @@
-import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
 import { useEngine, useSimulation } from '@/publicodes-state'
 import { Metric } from '@/publicodes-state/types'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -17,14 +16,12 @@ export function useSortedSubcategoriesByFootprint({
 
   const everySubcategories = useMemo(
     () =>
-      Object.keys(subcategories).reduce((acc, category) => {
-        if (!withServiceSocietaux && category === 'services sociétaux') {
-          return acc
-        }
-        return acc.concat(
-          getSubcatsOfCategory(category as DottedName, subcategories)
-        )
-      }, [] as DottedName[]),
+      withServiceSocietaux
+        ? subcategories
+        : subcategories.filter(
+            (subcat) => !subcat.includes('services sociétaux')
+          ),
+
     [subcategories, withServiceSocietaux]
   )
 
