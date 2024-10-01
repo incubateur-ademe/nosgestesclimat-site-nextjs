@@ -36,7 +36,7 @@ export const useGetGroupAndUserFootprints = ({
     ) => {
       const isCurrentMember = groupMember.userId === userId
 
-      updateSituation(groupMember?.simulation?.situation || {})
+      updateSituation(groupMember?.simulation?.situation || {}, false)
 
       // Create a copy of the accumulator
       const updatedGroupCategoriesAndSubcategoriesFootprints = {
