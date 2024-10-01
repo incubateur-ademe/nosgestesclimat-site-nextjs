@@ -65,7 +65,7 @@ export default function CarbonRanking({
             <span className="m-none leading-[160%]">
               <strong>{formattedValue}</strong>{' '}
               <span className="text-sm font-light">
-                {unit} <Trans>CO₂e</Trans>
+                {unit} <Trans>CO₂e / an</Trans>
               </span>
             </span>
           ) : (
@@ -100,22 +100,29 @@ export default function CarbonRanking({
               .map((participant: Participant, index: number) => {
                 const rank =
                   participant.simulation.progression !== 1
-                    ? '...'
+                    ? '--'
                     : `${index + 1 + topThreeMembers?.length}.`
 
                 const { formattedValue, unit } = formatCarbonFootprint(
                   participant?.simulation?.computedResults?.[defaultMetric]
-                    ?.bilan
+                    ?.bilan,
+                  {
+                    shouldUseAbbreviation: true,
+                  }
                 )
 
                 const quantity =
                   participant.simulation.progression !== 1 ? (
-                    '...'
+                    <span className="text-sm text-gray-600">
+                      <Trans>En cours</Trans>
+                    </span>
                   ) : participant?.simulation?.computedResults?.[defaultMetric]
                       ?.bilan ? (
                     <span className="leading-[160%]">
                       <strong>{formattedValue}</strong>{' '}
-                      <span className="text-sm font-light">{unit}</span>
+                      <span className="text-sm font-light">
+                        {unit} <Trans>CO₂e / an</Trans>
+                      </span>
                     </span>
                   ) : (
                     '...'
