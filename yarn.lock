@@ -2436,6 +2436,11 @@
   dependencies:
     "@types/ms" "*"
 
+"@types/detect-inapp@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@types/detect-inapp/-/detect-inapp-1.4.3.tgz#a8350dda59a787f6a3611905b56395bb352acfc4"
+  integrity sha512-SpFFpti/uALW08Q/8v7sqe8s9vk1+tJqc2wVIYlGMetTHeAywiPfw4wtjrbNO9IPFIGeZjBzfJn+VXXmRyhYJw==
+
 "@types/eslint-scope@^3.7.3":
   version "3.7.7"
   resolved "https://registry.yarnpkg.com/@types/eslint-scope/-/eslint-scope-3.7.7.tgz#3108bd5f18b0cdb277c867b3dd449c9ed7079ac5"
@@ -4556,6 +4561,13 @@ dequal@^2.0.0, dequal@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/dequal/-/dequal-2.0.3.tgz#2644214f1997d39ed0ee0ece72335490a7ac67be"
   integrity sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==
+
+detect-inapp@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/detect-inapp/-/detect-inapp-1.4.0.tgz#9cc42c837495aeba98b57914cf88e266b9dab944"
+  integrity sha512-2S29Udznzsno138s33j/yR/9uzFU25rt/1DWecnpoj5oCmjvsCt4tFe+6go6drTyuLodz7ZNQSGbl17cDDx/+Q==
+  dependencies:
+    lodash "^4.17.5"
 
 detect-newline@^3.0.0:
   version "3.1.0"
@@ -7296,7 +7308,7 @@ lodash.once@^4.1.1:
   resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
   integrity sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg==
 
-lodash@^4.17.21, lodash@^4.17.4:
+lodash@^4.17.21, lodash@^4.17.4, lodash@^4.17.5:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
