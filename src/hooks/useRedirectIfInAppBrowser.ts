@@ -11,7 +11,7 @@ export const useRedirectIfInAppBrowser = () => {
 
   useEffect(() => {
     if (isInApp) {
-      window.location.href = 'intent:https://www.nosgestesclimat.fr/#Intent;end'
+      window.location.href = `intent:${window.location.href}/#Intent;end`
     }
   }, [isInApp])
 
