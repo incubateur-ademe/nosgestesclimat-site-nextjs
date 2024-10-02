@@ -1,7 +1,6 @@
 'use client'
 
 import Button from '@/design-system/inputs/Button'
-import Link from '../Link'
 import Trans from '../translation/Trans'
 
 export default function ErrorContent() {
@@ -21,7 +20,12 @@ export default function ErrorContent() {
       <p>
         <Trans>
           Si le problème persiste, merci de{' '}
-          <Link href="/contact">contacter le support</Link>.
+          <Button
+            color="link"
+            onClick={() => window.location.replace('/contact')}>
+            contacter le support
+          </Button>
+          .
         </Trans>
       </p>
 
