@@ -40,7 +40,7 @@ type subCatWithVariations = Array<{
 }>
 
 export default function getSomme(rawNode?: NGCRule): DottedName[] | undefined {
-  if (!rawNode || typeof rawNode !== 'object') return undefined
+  if (!rawNode) return undefined
 
   if ('formule' in rawNode) {
     const formule = rawNode.formule as Record<string, unknown>
