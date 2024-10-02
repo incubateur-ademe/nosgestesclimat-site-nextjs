@@ -28,7 +28,7 @@ export default function MainHooks({ children }: PropsWithChildren) {
 
   return (
     <>
-      {true && (
+      {isInApp && (
         <div>
           In App Browser detected{' '}
           <ul>
