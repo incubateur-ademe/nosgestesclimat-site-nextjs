@@ -13,7 +13,7 @@ import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEndPageSharedUrl } from '@/hooks/useEndPageSharedUrl'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import isMobile from 'is-mobile'
+import InApp from 'detect-inapp'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -46,7 +46,8 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
 
   const handleShare = async () => {
     // Desktop : only copy the url
-    if (!navigator?.share || !isMobile()) {
+    const inapp = new InApp(navigator.userAgent)
+    if (!navigator.share || inapp.isDesktop) {
       try {
         await navigator.clipboard.writeText(sharedUrl)
 
@@ -68,7 +69,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
     }
 
     // Mobile : share the url
-    if (navigator?.share && isMobile()) {
+    if (navigator.share) {
       await navigator
         .share({
           url: sharedUrl,
