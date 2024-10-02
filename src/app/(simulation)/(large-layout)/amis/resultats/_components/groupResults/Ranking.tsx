@@ -3,29 +3,15 @@
 import { Group, Participant } from '@/types/groups'
 
 import Trans from '@/components/translation/Trans'
-import { carboneMetric, eauMetric } from '@/constants/metric'
+import { eauMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
-import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import { QueryObserverResult } from '@tanstack/react-query'
-import isMobile from 'is-mobile'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RankingMember from './ranking/RankingMember'
-
-const getMedal = (index: number) => {
-  switch (index) {
-    case 0:
-      return '🥇'
-    case 1:
-      return '🥈'
-    case 2:
-      return '🥉'
-  }
-}
 
 export default function Ranking({
   group,
@@ -38,10 +24,6 @@ export default function Ranking({
 }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const shouldUseAbbreviation = isMobile()
-
-  const { t } = useClientTranslation()
-
   const {
     user: { userId },
   } = useUser()
@@ -52,8 +34,6 @@ export default function Ranking({
   const withS = group.participants.length - 5 > 1 ? 's' : ''
 
   const hasOneParticipant = group.participants.length === 1
-
-  const suffix = metric === carboneMetric ? t('CO₂e / an') : t('/ jour')
 
   return (
     <>
@@ -77,36 +57,15 @@ export default function Ranking({
           metric === eauMetric ? 'bg-primary-300' : ''
         )}>
         {topThreeMembers.map((participant: Participant, index: number) => {
-          const { formattedValue, unit } = formatFootprint(
-            participant?.simulation?.computedResults?.[metric]?.bilan ?? '',
-            {
-              metric,
-              shouldUseAbbreviation,
-            }
-          )
-
-          const quantity = participant?.simulation?.computedResults?.[metric]
-            ?.bilan ? (
-            <span className="m-none leading-[160%]">
-              <strong>{formattedValue}</strong>{' '}
-              <span className="text-sm font-light">
-                {unit} {suffix}
-              </span>
-            </span>
-          ) : (
-            '...'
-          )
-
           return (
             <RankingMember
+              metric={metric}
               key={participant._id}
-              name={participant.name}
-              rank={getMedal(index) ?? ''}
-              quantity={quantity}
+              index={index}
+              participant={participant}
               isTopThree
               isCurrentMember={participant.userId === userId}
               group={group}
-              userId={participant.userId}
               numberOfParticipants={group.participants.length}
               refetchGroup={refetchGroup}
               textColor={
@@ -126,47 +85,16 @@ export default function Ranking({
                   isExpanded || index + topThreeMembers?.length < 5
               )
               .map((participant: Participant, index: number) => {
-                const { formattedValue, unit } = formatFootprint(
-                  participant?.simulation?.computedResults?.[metric]?.bilan,
-                  {
-                    metric,
-                    shouldUseAbbreviation,
-                  }
-                )
-
-                const quantity =
-                  participant.simulation.progression !== 1 ? (
-                    <span className="text-sm text-gray-600">
-                      <Trans>En cours</Trans>
-                    </span>
-                  ) : participant?.simulation?.computedResults?.[metric]
-                      ?.bilan ? (
-                    <span className="leading-[160%]">
-                      <strong>{formattedValue}</strong>{' '}
-                      <span className="text-sm font-light">
-                        {unit} {suffix}
-                      </span>
-                    </span>
-                  ) : (
-                    '...'
-                  )
-
                 return (
                   <RankingMember
                     key={participant._id}
-                    name={participant.name}
-                    rank={
-                      participant.simulation.progression !== 1
-                        ? // Display a placeholder
-                          '--'
-                        : // Display the rank after the top three members
-                          `${index + 1 + topThreeMembers?.length}.`
-                    }
-                    quantity={quantity}
                     isCurrentMember={participant.userId === userId}
                     group={group}
-                    userId={participant.userId}
+                    // Add 3 to the index to account for the top three members
+                    index={index + 3}
                     refetchGroup={refetchGroup}
+                    metric={metric}
+                    participant={participant}
                   />
                 )
               })}
