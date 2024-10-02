@@ -9,6 +9,7 @@ import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMe
 import { useUser } from '@/publicodes-state'
 import { Group, Participant } from '@/types/groups'
 import { QueryObserverResult } from '@tanstack/react-query'
+import isMobile from 'is-mobile'
 import { useState } from 'react'
 import ClassementMember from './RankingMember'
 
@@ -20,6 +21,8 @@ export default function CarbonRanking({
   refetchGroup: () => Promise<QueryObserverResult<Group, Error>>
 }) {
   const [isExpanded, setIsExpanded] = useState(false)
+
+  const shouldUseAbbreviation = isMobile()
 
   const {
     user: { userId },
@@ -55,7 +58,7 @@ export default function CarbonRanking({
             participant?.simulation?.computedResults?.[defaultMetric]?.bilan ??
               '',
             {
-              shouldUseAbbreviation: true,
+              shouldUseAbbreviation,
             }
           )
 
@@ -107,7 +110,7 @@ export default function CarbonRanking({
                   participant?.simulation?.computedResults?.[defaultMetric]
                     ?.bilan,
                   {
-                    shouldUseAbbreviation: true,
+                    shouldUseAbbreviation,
                   }
                 )
 

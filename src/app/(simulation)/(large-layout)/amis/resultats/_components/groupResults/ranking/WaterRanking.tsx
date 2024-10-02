@@ -7,6 +7,7 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
 import { Group } from '@/types/groups'
 import { QueryObserverResult } from '@tanstack/react-query'
+import isMobile from 'is-mobile'
 import { useMemo } from 'react'
 import ClassementMember from './RankingMember'
 
@@ -31,6 +32,8 @@ export default function WaterRanking({ group, refetchGroup }: Props) {
     })
   }, [group.participants])
 
+  const shouldUseAbbreviation = isMobile()
+
   return (
     <div className="mt-4">
       <p className="mb-4 rounded-lg border-2 border-primary-200 p-2 text-sm md:max-w-[60%]">
@@ -46,7 +49,10 @@ export default function WaterRanking({ group, refetchGroup }: Props) {
         {sortedMembers.map((member, index) => {
           const { formattedValue, unit } = formatFootprint(
             member.simulation?.computedResults?.eau?.bilan ?? 0,
-            { metric: eauMetric }
+            {
+              metric: eauMetric,
+              shouldUseAbbreviation,
+            }
           )
 
           return (
