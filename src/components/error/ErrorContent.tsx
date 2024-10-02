@@ -26,8 +26,8 @@ export default function ErrorContent() {
       </p>
 
       <div className="mt-10 flex w-full justify-center">
-        <Button onClick={() => window.location.reload()}>
-          <Trans>Recharger la page</Trans>
+        <Button onClick={() => window.location.replace('/')}>
+          <Trans>Revenir à l'accueil</Trans>
         </Button>
       </div>
     </>

@@ -1156,12 +1156,19 @@ entries:
   <0>Empreinte carbone</0> moyenne: 'Average <0>carbon footprint</0> '
   Le lexique pour tout comprendre à l’empreinte eau: A glossary to help you understand the water footprint
   Lire l'article: Read the article
-  Si le problème persiste, merci de <2>contacter le support</2>.: If the problem persists, please <2>contact support.</2>
+  Carbone: Carbon
+  jour: day
+  Voici un aperçu du classement des participants en fonction de leur empreinte eau. Cette fonctionnalité est encore en cours de développement.: Here's an overview of the ranking of participants according to their water footprint. This feature is still under development.
+  En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: As a general rule, water footprint values vary <2>between 3,000 and 9,000 litres per day</2>. Unlike carbon, there is no quantified target for the water footprint.
   obtenez une estimation <1></1>de votre <3>empreinte carbone</3>.: get an estimate <1></1>of your <3>carbon footprint</3>.
+  Eau: Water
+  Si le problème persiste, merci de <2>contacter le support</2>.: If the problem persists, please <2>contact support.</2>
   Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: An error has occurred; please reload the page or try again later.
   Oups ! Une erreur est survenue: Oops! An error has occurred
-  En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: As a general rule, water footprint values vary <2>between 3,000 and 9,000 litres per day</2>. Unlike carbon, there is no quantified target for the water footprint.
   litres: litres
+  de CO₂e: of CO₂e
+  friends.day: day
+  friends.day.lock: jour
   Oups, une erreur s’est produite lors de la copie du lien de partage.: Oops, there was an error copying the share link.
   'Nos Gestes Climat : votre empreinte carbone en 10 min': 'Nos Gestes Climat: your carbon footprint in 10 minutes'
   obtenez une estimation: get an estimate
@@ -1169,6 +1176,7 @@ entries:
     |-
     Nos Gestes Climat: an estimate of your carbon footprint in 10 minutes
     {{sharedUrl}}
+  CO₂e: CO₂e
   Lien de partage copié dans le presse-papier !: Share link copied to clipboard!
   empreinte eau: water footprint
   de votre: of your
@@ -1189,3 +1197,5 @@ entries:
   La catégorie {{title}} représente {{formattedValue}} tonnes de CO₂e.: The category {{title}} représente {{formattedValue}} tonnes of CO₂e.
   La catégorie {{title}} représente {{value}} tonnes de CO₂e.: The category {{title}} représente {{value}} tonnes of CO₂e.
   Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: Would you like to illustrate a quantity of CO₂e and disseminate the right orders of magnitude to your community? ADEME's Carbon Comparator is the tool for you!
+  En cours: In progress
+  CO₂e / an: CO₂e / year
