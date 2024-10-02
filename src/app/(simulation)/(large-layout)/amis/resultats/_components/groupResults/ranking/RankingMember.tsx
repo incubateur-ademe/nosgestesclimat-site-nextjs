@@ -82,7 +82,7 @@ export default function RankingMember({
             {rank}
           </span>
 
-          {name}
+          <span className={textColor}>{name}</span>
 
           {isCurrentMember && (
             <Badge className="ml-2 inline rounded-xl border-pink-100 bg-pink-200 text-xs font-bold text-secondary-700">
@@ -118,8 +118,7 @@ export default function RankingMember({
               <TrashIcon
                 className={twMerge(
                   'w-4 fill-default',
-                  isTopThree ? 'fill-white hover:fill-primary-200' : '',
-                  textColor === 'text-white' ? 'fill-white' : ''
+                  textColor === 'text-white' ? 'fill-white' : 'fill-default'
                 )}
               />
             </button>

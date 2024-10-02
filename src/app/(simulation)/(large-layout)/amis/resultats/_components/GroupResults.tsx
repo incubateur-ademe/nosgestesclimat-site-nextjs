@@ -57,7 +57,7 @@ export default function GroupResults({
       <Ranking
         group={group}
         refetchGroup={refetchGroup}
-        footprintSelected={footprintSelected}
+        metric={footprintSelected}
       />
 
       <InviteBlock group={group} />
