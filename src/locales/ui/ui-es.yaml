@@ -1149,12 +1149,19 @@ entries:
   <0>Empreinte eau</0> moyenne: <0>Huella hídrica</0> media
   Le lexique pour tout comprendre à l’empreinte eau: Un glosario para entender la huella hídrica
   Lire l'article: Leer el artículo
+  Carbone: Carbono
+  obtenez une estimation <1></1>de votre <3>empreinte carbone</3>.: <1></1>obtenga una estimación de su<3>huella de carbono</3>.
+  jour: día
+  Voici un aperçu du classement des participants en fonction de leur empreinte eau. Cette fonctionnalité est encore en cours de développement.: He aquí un resumen de la clasificación de los participantes según su huella hídrica. Esta función aún está en fase de desarrollo.
+  Eau: Agua
+  En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: Por regla general, los valores de la huella hídrica varían <2>entre 3.000 y 9.000 litros al día</2>. A diferencia del carbono, no existe un objetivo cuantificado para la huella hídrica.
   Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: Se ha producido un error; por favor, vuelva a cargar la página o inténtelo más tarde.
   Oups ! Une erreur est survenue: ¡Uy! Se ha producido un error
   Si le problème persiste, merci de <2>contacter le support</2>.: Si el problema persiste, <2>póngase en contacto con el servicio de asistencia.</2>
-  obtenez une estimation <1></1>de votre <3>empreinte carbone</3>.: <1></1>obtenga una estimación de su<3>huella de carbono</3>.
-  En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: Por regla general, los valores de la huella hídrica varían <2>entre 3.000 y 9.000 litros al día</2>. A diferencia del carbono, no existe un objetivo cuantificado para la huella hídrica.
   litres: litros
+  friends.day: día
+  friends.day.lock: jour
+  de CO₂e: de CO₂e
   Lien de partage copié dans le presse-papier !: Enlace compartido copiado en el portapapeles
   Oups, une erreur s’est produite lors de la copie du lien de partage.: Oops, hubo un error al copiar el enlace para compartir.
   obtenez une estimation: solicitar estimación
@@ -1162,6 +1169,7 @@ entries:
     |-
     Nos Gestes Climat: una estimación de su huella de carbono en 10 minutos
     {{sharedUrl}}
+  CO₂e: CO₂e
   'Nos Gestes Climat : votre empreinte carbone en 10 min': 'Nos Gestes Climat: su huella de carbono en 10 minutos'
   empreinte eau: huella hídrica
   Découvrez votre: Descubre tu
@@ -1182,3 +1190,5 @@ entries:
   La catégorie {{title}} représente {{formattedValue}} tonnes de CO₂e.: '{{title}} représente {{formattedValue}} La categoría toneladas de CO₂e.'
   La catégorie {{title}} représente {{value}} tonnes de CO₂e.: '{{title}} représente {{value}} La categoría toneladas de CO₂e.'
   Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: ¿Le gustaría ilustrar una cantidad de CO₂e y difundir los órdenes de magnitud adecuados a su comunidad? El comparador de carbono de ADEME es la herramienta que necesita
+  En cours: En curso
+  CO₂e / an: CO₂e / año

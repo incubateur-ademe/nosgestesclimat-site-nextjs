@@ -142,7 +142,6 @@ entries:
   international.pourquoi.titre: Adapté à votre pays
   international.pourquoi.3: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.
   Ce modèle a été conçu par: Ce modèle a été conçu par
-  Recharger la page: Recharger la page
   model.questions: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
   Oups, nous n'avons pas d'article correspondant: Oups, nous n'avons pas d'article correspondant
   Retour à la liste des articles: Retour à la liste des articles
@@ -243,7 +242,6 @@ entries:
   Voir toutes les actions: Voir toutes les actions
   Distance: Distance
   Fréquence: Fréquence
-  La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.: La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.
   Label: Label
   Passagers: Passagers
   Télécharger l'image: Télécharger l'image
@@ -274,8 +272,6 @@ entries:
   Le modèle Nos Gestes Climat: Le modèle Nos Gestes Climat
   Les actions phares: Les actions phares
   Nos actions pour réduire votre empreinte: Nos actions pour réduire votre empreinte
-  Nos guides thématiques: Nos guides thématiques
-  Nos utilisateurs types: Nos utilisateurs types
   Partenaires: Partenaires
   Statistiques: Statistiques
   Vie privée: Vie privée
@@ -349,7 +345,6 @@ entries:
   Exporter les données: Exporter les données
   Filtrer par: Filtrer par
   Kit de diffusion: Kit de diffusion
-  La catégorie {{title}} représente {{value}} tonnes de CO2 equivalent.: La catégorie {{title}} représente {{value}} tonnes de CO2 equivalent.
   Les résultats du test sont-ils anonymes ?: Les résultats du test sont-ils anonymes ?
   Mes informations: Mes informations
   Organisations: Organisations
@@ -447,7 +442,6 @@ entries:
   Votre résultat: Votre résultat
   Vous pouvez reprendre votre test en cours, ou en recommencer un.: Vous pouvez reprendre votre test en cours, ou en recommencer un.
   Vous pouvez utiliser vos données existantes, ou recommencer le test.: Vous pouvez utiliser vos données existantes, ou recommencer le test.
-  Vous souhaitez illustrer une quantité de CO2e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: Vous souhaitez illustrer une quantité de CO2e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !
   Envie de connaître votre empreinte carbone ?: Envie de connaître votre empreinte carbone ?
   Vous avez déjà commencé le test Nos Gestes Climat !: Vous avez déjà commencé le test Nos Gestes Climat !
   Vous avez déjà réalisé le test Nos Gestes Climat !: Vous avez déjà réalisé le test Nos Gestes Climat !
@@ -931,11 +925,15 @@ entries:
   <0>Empreinte eau</0> moyenne: <0>Empreinte eau</0> moyenne
   Le lexique pour tout comprendre à l’empreinte eau: Le lexique pour tout comprendre à l’empreinte eau
   Lire l'article: Lire l'article
+  Carbone: Carbone
+  Eau: Eau
   En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.
+  Voici un aperçu du classement des participants en fonction de leur empreinte eau. Cette fonctionnalité est encore en cours de développement.: Voici un aperçu du classement des participants en fonction de leur empreinte eau. Cette fonctionnalité est encore en cours de développement.
   Oups ! Une erreur est survenue: Oups ! Une erreur est survenue
   Si le problème persiste, merci de <2>contacter le support</2>.: Si le problème persiste, merci de <2>contacter le support</2>.
   Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.
   litres: litres
+  friends.day: jour
   Lien de partage copié dans le presse-papier !: Lien de partage copié dans le presse-papier !
   Oups, une erreur s’est produite lors de la copie du lien de partage.: Oups, une erreur s’est produite lors de la copie du lien de partage.
   obtenez une estimation: obtenez une estimation
@@ -959,3 +957,5 @@ entries:
   La catégorie {{title}} représente {{formattedValue}} tonnes de CO₂e.: La catégorie {{title}} représente {{formattedValue}} tonnes de CO₂e.
   La catégorie {{title}} représente {{value}} tonnes de CO₂e.: La catégorie {{title}} représente {{value}} tonnes de CO₂e.
   Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !
+  CO₂e / an: CO₂e / an
+  En cours: En cours
