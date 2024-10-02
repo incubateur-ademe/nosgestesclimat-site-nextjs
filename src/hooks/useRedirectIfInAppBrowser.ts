@@ -9,11 +9,11 @@ export const useRedirectIfInAppBrowser = () => {
     setIsInApp(inapp.isInApp)
   }, [])
 
-  // useEffect(() => {
-  //   if (isInApp) {
-  //     window.location.href = 'intent:https://www.nosgestesclimat.fr/#Intent;end'
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (isInApp) {
+      window.location.href = 'intent:https://www.nosgestesclimat.fr/#Intent;end'
+    }
+  }, [isInApp])
 
   return { isInApp }
 }
