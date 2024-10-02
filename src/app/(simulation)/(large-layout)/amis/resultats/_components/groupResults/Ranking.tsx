@@ -16,6 +16,17 @@ import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RankingMember from './ranking/RankingMember'
 
+const getMedal = (index: number) => {
+  switch (index) {
+    case 0:
+      return '🥇'
+    case 1:
+      return '🥈'
+    case 2:
+      return '🥉'
+  }
+}
+
 export default function Ranking({
   group,
   refetchGroup,
@@ -66,20 +77,6 @@ export default function Ranking({
           metric === eauMetric ? 'bg-primary-300' : ''
         )}>
         {topThreeMembers.map((participant: Participant, index: number) => {
-          let rank
-          switch (index) {
-            case 0:
-              rank = <Emoji>🥇</Emoji>
-              break
-            case 1:
-              rank = <Emoji>🥈</Emoji>
-              break
-            case 2:
-              rank = <Emoji>🥉</Emoji>
-              break
-            default:
-          }
-
           const { formattedValue, unit } = formatFootprint(
             participant?.simulation?.computedResults?.[metric]?.bilan ?? '',
             {
@@ -104,7 +101,7 @@ export default function Ranking({
             <RankingMember
               key={participant._id}
               name={participant.name}
-              rank={rank || ''}
+              rank={getMedal(index) ?? ''}
               quantity={quantity}
               isTopThree
               isCurrentMember={participant.userId === userId}
@@ -129,11 +126,6 @@ export default function Ranking({
                   isExpanded || index + topThreeMembers?.length < 5
               )
               .map((participant: Participant, index: number) => {
-                const rank =
-                  participant.simulation.progression !== 1
-                    ? '--'
-                    : `${index + 1 + topThreeMembers?.length}.`
-
                 const { formattedValue, unit } = formatFootprint(
                   participant?.simulation?.computedResults?.[metric]?.bilan,
                   {
@@ -163,7 +155,13 @@ export default function Ranking({
                   <RankingMember
                     key={participant._id}
                     name={participant.name}
-                    rank={rank}
+                    rank={
+                      participant.simulation.progression !== 1
+                        ? // Display a placeholder
+                          '--'
+                        : // Display the rank after the top three members
+                          `${index + 1 + topThreeMembers?.length}.`
+                    }
                     quantity={quantity}
                     isCurrentMember={participant.userId === userId}
                     group={group}
