@@ -6,6 +6,15 @@ on:
       - main
 
 jobs:
+  # Add a job without dependencies to make the workflow valid
+  dummy_job:
+    name: Dummy job
+    runs-on: ubuntu-latest
+    outputs:
+      dummy_output: 'dummy'
+    steps:
+      - run: echo "dummy" >> $GITHUB_OUTPUT
+
   create_github_release:
     name: Create GitHub release
     runs-on: ubuntu-latest
