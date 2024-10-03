@@ -5,7 +5,9 @@ export const useRedirectIfInAppBrowser = () => {
   const [isInApp, setIsInApp] = useState(false)
 
   useEffect(() => {
-    const inapp = new InApp(navigator.userAgent)
+    const inapp = new InApp(
+      navigator.userAgent || navigator.vendor || (window as any).opera
+    )
     setIsInApp(inapp.isInApp)
   }, [])
 
