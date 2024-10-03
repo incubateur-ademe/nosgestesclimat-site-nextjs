@@ -64,4 +64,4 @@ dist
 
 coverage
 
-.huskyrc.json
+.husky/pre-commit-custom
