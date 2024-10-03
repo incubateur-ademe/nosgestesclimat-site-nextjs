@@ -109,7 +109,7 @@ export default function StatisticsBlocks({
               />
               <div className="relative z-10">
                 <p className="text-3xl font-bold text-white">
-                  {formattedWaterValue ?? 0}
+                  {formattedWaterValue ?? 0}{' '}
                   <span className="text-base font-normal">{waterUnit}</span>
                 </p>
 

@@ -182,8 +182,8 @@ entries:
   Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.: Nuestro equipo ha sido avisado y resolveremos el problema lo antes posible.
   publicodes.SimulationMissing.simulationManquante: Para desbloquear esta ruta, primero debes completar la prueba.
   publicodes.SimulationMissing.simulationManquante.lock: Pour débloquer ce parcours, vous devez d'abord terminer le test.
-  international.pourquoi.3: Cuando está disponible, utilizamos la huella de la mezcla de electricidad proporcionada por <2><0></0></2>.
-  international.pourquoi.3.lock: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.
+  international.pourquoi.3: Cuando está disponible, utilizamos la huella de la mezcla de electricidad proporcionada por
+  international.pourquoi.3.lock: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par
   👎 Refuser: 👎 Rechazar
   international.pourquoi.titre: Adaptado a su país
   international.pourquoi.titre.lock: Adapté à votre pays
@@ -1194,4 +1194,6 @@ entries:
   CO₂e / an: CO₂e / año
   contacter le support.: contacte con soporte.
   Si le problème persiste, merci de: Si el problema persiste, por favor
+  organisations.accueil.titre: Nos Gestes Climat para las organizaciones
+  organisations.accueil.titre.lock: Nos Gestes Climat para las organizaciones
   / jour: / día
