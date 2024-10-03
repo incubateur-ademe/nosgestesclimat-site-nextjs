@@ -38,6 +38,7 @@ const nextConfig = {
     return config
   },
   experimental: {
+    missingSuspenseWithCSRBailout: false,
     outputFileTracingExcludes: {
       '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
       '/blog': ['public/NGC_Kit.diffusion.zip'],
