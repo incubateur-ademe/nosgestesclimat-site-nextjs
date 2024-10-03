@@ -61,7 +61,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <div className="bg-rainbow-rotation overflow-hidden rounded-xl bg-gray-100 p-8">
           <p className="text-4xl font-bold text-primary-700">
-            8.0 <span className="text-base font-normal">t CO2 eq</span>
+            8,0 <span className="text-base font-normal">t CO₂e</span>
           </p>
           <p className="text-xl">
             <Trans>Empreinte moyenne</Trans>

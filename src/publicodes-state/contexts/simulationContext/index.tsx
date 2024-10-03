@@ -63,6 +63,7 @@ export default function SimulationProvider({
         pristineEngine,
         safeEvaluate,
         safeGetRule: safeGetRule ?? undefined,
+        parsedRules,
         everyRules,
         everyInactiveRules,
         everyQuestions,

@@ -165,7 +165,7 @@ const checkValueValidity = ({
       if (!value) {
         return null
       }
-      return value.startsWith("'") ? value : `'${value}'`
+      return value?.startsWith("'") ? value : `'${value}'`
     case 'boolean':
       if (value === 'oui') {
         return 'oui'

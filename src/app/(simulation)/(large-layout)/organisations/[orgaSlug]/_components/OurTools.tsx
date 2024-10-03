@@ -76,7 +76,7 @@ export default function OurTools() {
           title={<Trans>Impact CO2</Trans>}
           description={
             <Trans>
-              Vous souhaitez illustrer une quantité de CO2e et diffuser les bons
+              Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons
               ordres de grandeur à votre communauté ? Le Comparateur carbone de
               l’ADEME est l’outil qu’il vous faut !
             </Trans>
