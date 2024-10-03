@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+# Run lint
+yarn lint
+
+# Lint types
+yarn lint:types
+
+# Run tests
+yarn test
