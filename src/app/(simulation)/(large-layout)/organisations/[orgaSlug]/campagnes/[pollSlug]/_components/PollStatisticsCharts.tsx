@@ -6,6 +6,7 @@ import { carboneMetric } from '@/constants/metric'
 import Separator from '@/design-system/layout/Separator'
 import { SimulationRecap } from '@/types/organisations'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import isMobile from 'is-mobile'
 import { useMemo } from 'react'
 import CategoryListItem from './pollStatisticsCharts/CategoryListItem'
 import MainFootprintChart from './pollStatisticsCharts/MainFootprintChart'
@@ -76,6 +77,8 @@ export default function PollStatisticsCharts({
     () => simulationRecaps.some((simulation) => simulation.isCurrentUser),
     [simulationRecaps]
   )
+
+  const shouldUseAbbreviation = isMobile()
 
   if (!simulationRecaps || simulationRecaps?.length < 3) return null
 
@@ -148,9 +151,11 @@ export default function PollStatisticsCharts({
           <div className="flex flex-1 justify-between">
             <div>
               <strong className="text-lg">0</strong>{' '}
-              <span>
-                <Trans>tonnes</Trans>
-              </span>
+              {shouldUseAbbreviation ? (
+                <Trans>t CO₂e / an</Trans>
+              ) : (
+                <Trans>tonnes CO₂e / an</Trans>
+              )}
             </div>
 
             {hasCurrentUser && (
@@ -164,9 +169,11 @@ export default function PollStatisticsCharts({
 
             <div>
               <strong className="text-lg">{maxValueOfAllCategories}</strong>{' '}
-              <span>
-                <Trans>tonnes</Trans>
-              </span>
+              {shouldUseAbbreviation ? (
+                <Trans>t CO₂e / an</Trans>
+              ) : (
+                <Trans>tonnes CO₂e / an</Trans>
+              )}
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import Trans from '@/components/translation/Trans'
 import { carboneMetric } from '@/constants/metric'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { SimulationRecap } from '@/types/organisations'
+import isMobile from 'is-mobile'
 import RepartitionChart from './RepartitionChart'
 
 type Props = {
@@ -14,6 +15,7 @@ export default function MainFootprintChart({
   simulationRecaps,
   maxValue,
 }: Props) {
+  const shouldUseAbbreviation = isMobile()
   return (
     <section className="mb-12">
       <h3>
@@ -63,7 +65,11 @@ export default function MainFootprintChart({
           <span>
             <strong className="text-lg">{maxValue}</strong>{' '}
             <span>
-              <Trans>tonnes</Trans>
+              {shouldUseAbbreviation ? (
+                <Trans>t CO₂e / an</Trans>
+              ) : (
+                <Trans>tonnes CO₂e / an</Trans>
+              )}
             </span>
           </span>
         </div>
