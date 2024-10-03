@@ -1,0 +1,114 @@
+# `usePersistentUser`
+
+## Overview
+
+The `usePersistentUser` hook manages the persistence of user data in local storage. It ensures that user data is loaded from local storage when the component mounts and saved back to local storage whenever it is updated.
+
+## Usage
+
+Import the hook in your React component:
+
+```typescript
+import { usePersistentUser } from '@/publicodes-state/hooks/userProvider/usePersistentUser';
+```
+
+## API
+
+### Parameters
+
+The hook accepts an object with the following properties:
+
+- `storageKey` (string): The key for the local storage where the user data should be stored.
+- `initialRegion` (RegionFromGeolocation): The initial region data for the user.
+
+### Return Value
+
+The hook returns an object with the following properties:
+
+- `user` (User): The current user data.
+- `setUser` (function): Function to update the user data.
+
+### Example
+
+```typescript
+function MyComponent() {
+  const { user, setUser } = usePersistentUser({
+    storageKey: 'user-key',
+    initialRegion: { code: 'US', name: 'United States' }
+  });
+
+  return (
+    <div>
+      {/* Render user information */}
+    </div>
+  );
+}
+```
+
+## Behavior
+
+1. On mount, the hook checks if local storage is available.
+2. If user data is found in local storage, it is loaded and formatted.
+3. If no user data is found, a new user is created with the initial region and a generated user ID.
+4. User data is saved back to local storage whenever it is updated.
+
+## Performance Considerations
+
+- The hook uses memoization to optimize performance, especially when dealing with large sets of user data.
+- Local storage operations are performed efficiently to ensure smooth user experience.
+
+## Error Handling
+
+- If local storage is not available, the hook gracefully falls back to using in-memory storage.
+- Any errors during local storage operations are caught and logged, preventing the application from crashing.
+
+## Dependencies
+
+- `getIsLocalStorageAvailable` from `@/utils/getIsLocalStorageAvailable`
+- `uuid` for generating unique user IDs
+- `RegionFromGeolocation` and `User` types from `../../types`
+
+## Integration with User Context
+
+This hook is designed to work seamlessly with the `UserContext` provided by the application. For more information on how this hook integrates with the broader user state management system, refer to the [UserContext documentation](http://localhost:4000/docs/publicodes-state/contexts/UserContext).
+
+
+```1:47:documentation/docs/publicodes-state/hooks/providers/userProvider/usePersistentUser.mdx
+# `usePersistentUser`
+
+This hook manages the persistence of user data in local storage. It ensures that user data is loaded from local storage when the component mounts and saved back to local storage whenever it is updated.
+
+## Usage
+
+### Parameters
+
+- **`storageKey`**: (string) The key for the local storage where the user data should be stored.
+- **`initialRegion`**: (RegionFromGeolocation) The initial region data for the user.
+
+### Returns
+
+- **`user`**: (User) The current user data.
+- **`setUser`**: (function) Function to update the user data.
+
+### Example
+
+```typescript
+import usePersistentUser from '@/publicodes-state/hooks/userProvider/usePersistentUser';
+
+function MyComponent() {
+  const { user, setUser } = usePersistentUser({ storageKey: 'user-key', initialRegion: { code: 'US', name: 'United States' } });
+
+  return (
+    <div>
+      {/* Render user information */}
+    </div>
+  );
+}
+```
+
+### Behavior
+
+1. On mount, the hook checks if local storage is available.
+2. If user data is found in local storage, it is loaded and formatted.
+3. If no user data is found, a new user is created with the initial region and a generated user ID.
+4. User data is saved back to local storage whenever it is updated.

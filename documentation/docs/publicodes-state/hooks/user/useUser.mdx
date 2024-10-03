@@ -1,0 +1,87 @@
+# `useUser`
+
+## Overview
+
+The `useUser` hook provides a comprehensive set of tools for managing user data within the application. It's particularly useful for handling user information, simulations, tutorials, and North Star ratings.
+
+## Usage
+
+Import the hook into your React component:
+
+```typescript
+import useUser from '@/publicodes-state/hooks/user/useUser'
+```
+
+Then, use it in your component:
+
+```typescript
+function MyComponent() {
+  const {
+    user,
+    updateName,
+    updateEmail,
+    // ... other functions
+  } = useUser()
+
+  // Use the returned values and functions as needed
+}
+```
+
+## API
+
+### Returned Values
+
+- `user`: Object containing the current user's data.
+- `tutorials`: Array of available tutorials.
+- `simulations`: Object containing the user's simulations.
+- `currentSimulationId`: String representing the ID of the current simulation.
+- `currentSimulation`: Object containing the current simulation's data.
+
+### Functions
+
+#### User Information
+- `updateName(name: string)`: Updates the user's name.
+- `updateEmail(email: string)`: Updates the user's email address.
+- `updateUserOrganisation(organisation: string)`: Updates the user's organization.
+- `updateRegion(region: string)`: Updates the user's region.
+- `updateLoginExpirationDate(date: Date)`: Updates the login expiration date.
+
+#### Tutorials
+- `showTutorial(id: string)`: Marks a tutorial as shown.
+- `hideTutorial(id: string)`: Marks a tutorial as hidden.
+
+#### North Star Ratings
+- `updateNorthStarRatings(ratings: object)`: Updates the user's North Star ratings.
+
+#### Simulations
+- `deleteSimulation(id: string)`: Deletes a simulation by its ID.
+- `setCurrentSimulationId(id: string)`: Sets the current simulation ID.
+- `initSimulation(data: object)`: Initializes a new simulation.
+- `updateCurrentSimulation(data: object)`: Updates the current simulation.
+- `toggleActionChoice(actionId: string)`: Toggles an action choice in the current simulation.
+- `rejectAction(actionId: string)`: Rejects an action in the current simulation.
+
+## Example
+
+Here's an example of how to use the `useUser` hook to manage a user's profile:
+
+```typescript
+function Profile() {
+  const { user, updateName, updateEmail } = useUser()
+
+  const handleNameChange = (e) => {
+    updateName(e.target.value)
+  }
+
+  const handleEmailChange = (e) => {
+    updateEmail(e.target.value)
+  }
+
+  return (
+    <div>
+      <input value={user.name} onChange={handleNameChange} placeholder="Name" />
+      <input value={user.email} onChange={handleEmailChange} placeholder="Email" />
+    </div>
+  )
+}
+```

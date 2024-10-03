@@ -1,0 +1,100 @@
+# `usePersistentTutorials`
+
+## Overview
+
+The `usePersistentTutorials` hook manages the persistence of tutorials in local storage. It ensures that tutorials are loaded from local storage when the component mounts and saved back to local storage whenever they are updated.
+
+## Installation
+
+No additional installation is required if you're already using the project's dependencies.
+
+## Usage
+
+```typescript
+import usePersistentTutorials from '@/publicodes-state/hooks/userProvider/usePersistentTutorials';
+
+function MyComponent() {
+  const { tutorials, setTutorials } = usePersistentTutorials({ storageKey: 'tutorials-key' });
+
+  // Use tutorials and setTutorials in your component
+}
+```
+
+## API
+
+### Parameters
+
+- `storageKey`: (string) The key for the local storage where the tutorials data should be stored.
+
+### Returns
+
+- `tutorials`: (Tutorials) The current state of tutorials.
+- `setTutorials`: (function) A function to update the tutorials state.
+
+## Behavior
+
+1. On mount, the hook checks if local storage is available using the `getIsLocalStorageAvailable` utility.
+2. If available, it retrieves the tutorials data from local storage using the specified `storageKey`.
+3. If not available or no data is found, it initializes the tutorials state to an empty object.
+4. Whenever the `tutorials` state is updated, it saves the updated tutorials back to local storage.
+
+## Implementation Details
+
+The hook uses React's `useState` and `useEffect` hooks internally to manage the state and side effects. It also utilizes the `useCallback` hook to memoize the `setTutorials` function for performance optimization.
+
+## Error Handling
+
+The hook includes basic error handling for cases where local storage might be unavailable or throws an error during read/write operations.
+
+## Performance Considerations
+
+- The hook uses local storage, which has limited capacity. Be mindful of the amount of data stored.
+- Reading from and writing to local storage are synchronous operations, which could impact performance if done frequently with large amounts of data.
+
+## Browser Compatibility
+
+This hook should work in all modern browsers that support local storage. However, it includes a check for local storage availability to prevent errors in environments where it might not be supported.
+
+## Related Components
+
+This hook is often used in conjunction with the `UserProvider` component, which manages the overall user state in the application.
+
+## Example
+
+```typescript
+function TutorialManager() {
+  const { tutorials, setTutorials } = usePersistentTutorials({ storageKey: 'user-tutorials' });
+
+  const markTutorialAsCompleted = (tutorialId) => {
+    setTutorials(prevTutorials => ({
+      ...prevTutorials,
+      [tutorialId]: { ...prevTutorials[tutorialId], completed: true }
+    }));
+  };
+
+  return (
+    <div>
+      {Object.entries(tutorials).map(([id, tutorial]) => (
+        <TutorialItem 
+          key={id} 
+          tutorial={tutorial} 
+          onComplete={() => markTutorialAsCompleted(id)} 
+        />
+      ))}
+    </div>
+  );
+}
+```
+
+## Notes
+
+- Ensure that `storageKey` is unique to avoid conflicts with other data stored in local storage.
+- Consider implementing a mechanism to clear or reset tutorials if needed.
+- For more complex state management or if you need to share tutorial state across multiple components, consider using a global state management solution like Redux or Context API.
+
+You can find the implementation of this hook in:
+
+```typescript:src/publicodes-state/hooks/userProvider/usePersistentTutorials.ts
+startLine: 1
+endLine: 41
+```

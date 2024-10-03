@@ -1,0 +1,75 @@
+# `useQuestions`
+
+## Description
+
+The `useQuestions` hook is designed to retrieve and order all questions for a form based on the user's current situation. It's particularly useful for complex forms where the questions may vary depending on previous answers or other dynamic conditions.
+
+## Import
+
+```typescript
+import useQuestions from 'path/to/useQuestions';
+```
+
+## Parameters
+
+The `useQuestions` hook accepts an object with the following properties:
+
+- `root` (string): The root of the form or model from which to extract questions.
+- `safeGetRule` (function): A function that safely retrieves a rule based on a `DottedName`. Returns an `NGCRuleNode` or `null`.
+- `safeEvaluate` (function): A function that evaluates a Publicodes expression and returns an `NGCEvaluatedNode` or `null`.
+- `categories` (string[]): A list of categories to which the questions belong.
+- `subcategories` (`Record<string, string[]>`): An object associating subcategories with their parent category.
+- `situation` (Situation): The current state or situation from which to generate questions.
+- `foldedSteps` (string[]): A list of steps or questions that have been "folded" or ignored.
+- `everyQuestions` (`string[]`): A list containing all possible questions for the form.
+- `everyMosaicChildrenWithParent` (`Record<string, string[]>`): An object containing the children of each mosaic with their parent.
+- `rawMissingVariables` (`Record<string, number>`): A set of variables missing in the current situation.
+
+## Return Value
+
+The hook returns an array of questions sorted according to the provided rules and situation.
+
+## Usage Example
+
+Here's an example of how to use `useQuestions` in a React component:
+
+```typescript
+import React from 'react';
+import useQuestions from 'path/to/useQuestions';
+
+const MyFormComponent = () => {
+  const { 
+    questions,
+    // other variables returned by the hook
+  } = useQuestions({
+    root: 'myFormRoot',
+    safeGetRule: mySafeGetRuleFunction,
+    safeEvaluate: mySafeEvaluateFunction,
+    categories: ['category1', 'category2'],
+    subcategories: { 'category1': ['subcat1', 'subcat2'] },
+    situation: currentSituation,
+    foldedSteps: ['step1'],
+    everyQuestions: ['question1', 'question2'],
+    everyMosaicChildrenWithParent: { 'parent1': ['child1', 'child2'] },
+    rawMissingVariables: { 'variable1': 0 }
+  });
+
+  return (
+    <div>
+      {questions.map((question) => (
+        <div key={question.id}>{question.text}</div>
+      ))}
+    </div>
+  );
+};
+
+export default MyFormComponent;
+```
+
+## Notes
+
+- Ensure that all required functions (`safeGetRule`, `safeEvaluate`) are properly implemented and passed to the hook.
+- The `situation` object should accurately reflect the current state of the form.
+- The `foldedSteps` array can be used to exclude certain questions from being returned.
+- The hook's return value may include additional properties besides `questions`. Refer to the hook's implementation for a complete list of returned values.
+

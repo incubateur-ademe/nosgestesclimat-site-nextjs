@@ -1,0 +1,58 @@
+# `useInternalEngine`
+
+## Overview
+
+The `useInternalEngine` hook initializes and manages an instance of the `Engine` based on a given set of rules. It provides utility functions for evaluating rules and retrieving rule data safely.
+
+## Installation
+
+Ensure you have the necessary dependencies installed:
+
+```bash
+npm install @/publicodes-state
+```
+
+## Usage
+
+```typescript
+import { useInternalEngine } from '@/publicodes-state/hooks/simulationProvider/useInternalEngine'
+import { Rules } from '@/publicodes-state/types'
+
+const rules: Rules = { /* your rules here */ }
+const { engine, pristineEngine, safeEvaluate, safeGetRule } = useInternalEngine(rules)
+```
+
+## API
+
+### Parameters
+
+- `rules` (Rules): An object containing the rules to initialize the engine with.
+
+### Returns
+
+- `engine` (Engine): The initialized instance of the `Engine` for evaluating and working with the rules.
+- `pristineEngine` (Engine): A fresh instance of the `Engine`, unmodified by any interactions.
+- `safeEvaluate` (Function): A utility function to safely evaluate rules.
+- `safeGetRule` (Function): A utility function to safely retrieve a specific rule.
+
+## Utility Functions
+
+### safeEvaluate
+
+Safely evaluates a rule, returning `undefined` if an error occurs.
+
+```typescript
+const result = safeEvaluate('ruleName')
+```
+
+### safeGetRule
+
+Safely retrieves a rule, returning `undefined` if the rule doesn't exist.
+
+```typescript
+const rule = safeGetRule('ruleName')
+```
+
+## Error Handling
+
+The hook includes error handling to prevent crashes due to rule evaluation or retrieval issues. If an error occurs during evaluation or rule retrieval, the utility functions will return `undefined` instead of throwing an error.

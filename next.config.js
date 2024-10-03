@@ -1,13 +1,10 @@
-//@ts-check
 /* eslint-disable @typescript-eslint/no-var-requires */
 const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
 })
 
 const { withSentryConfig } = require('@sentry/nextjs')
-
 const redirects = require('./config/redirects.js')
-
 const remoteImagesPatterns = require('./config/remoteImagesPatterns.js')
 
 // const { sentryWebpackPlugin } = require('@sentry/webpack-plugin')
@@ -65,7 +62,12 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
   experimental: {
     outputFileTracingExcludes: {
-      '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
+      '*': [
+        '.next/cache/webpack',
+        '.git/**/*',
+        'cypress/**/*',
+        'documentation/**/*', // This line is already present
+      ],
       '/blog': ['public/NGC_Kit.diffusion.zip'],
       '/nouveautes': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
       '/actions/plus': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],

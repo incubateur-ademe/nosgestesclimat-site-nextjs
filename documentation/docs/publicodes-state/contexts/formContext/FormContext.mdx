@@ -1,0 +1,68 @@
+# `FormContext`
+
+This folder contains the context and provider used to manage forms within the scope of simulations. These components enable secure and efficient form state management across the application.
+
+## Overview
+
+The `FormContext` system consists of two main files:
+1. `index.tsx`: Exports the `FormProvider` component
+2. `context.ts`: Defines the `FormContext` and related types
+
+## Components and Usage
+
+### `FormProvider` (`index.tsx`)
+
+The `FormProvider` is a wrapper component that encapsulates forms in simulations. It performs a root validity check before rendering the form content.
+
+#### Features
+- Validates the form root
+- Redirects to a 404 page if the root is invalid
+- Provides form state to child components
+
+#### Usage
+```tsx
+import FormProvider from '@/publicodes-state/providers/formProvider';
+
+function App() {
+  return (
+    <FormProvider root="bilan">
+      {/* Form content */}
+    </FormProvider>
+  );
+}
+```
+
+### `FormContext` (`context.ts`)
+
+The `FormContext` is a React context that shares form state between components. It's primarily used internally by the `useForm` hook.
+
+#### Key Exports
+- `FormContext`: The React context object
+- `FormContextType`: TypeScript type definition for the context value
+
+#### Usage with `useForm` Hook
+
+The `useForm` hook provides access to form data and update functions:
+
+```tsx
+import { useForm } from '@/publicodes-state/hooks/useForm';
+
+function MyFormComponent() {
+  const { formData, updateForm } = useForm();
+
+  const handleInputChange = (e) => {
+    updateForm(e.target.name, e.target.value);
+  };
+
+  return (
+    <form>
+      <input
+        name="username"
+        value={formData.username || ''}
+        onChange={handleInputChange}
+      />
+      {/* Other form fields */}
+    </form>
+  );
+}
+```

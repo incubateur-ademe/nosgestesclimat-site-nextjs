@@ -1,0 +1,94 @@
+# `usePersistentSimulations`
+
+## Overview
+
+The `usePersistentSimulations` hook manages the state of simulations, persisting them in `localStorage` and handling migrations. It's a crucial part of the user state management in the Nos Gestes Climat application.
+
+## Purpose
+
+This hook:
+- Initializes simulations from `localStorage` or generates a new one if none exist.
+- Persists simulations and the current simulation ID to `localStorage`.
+- Applies migration instructions to existing simulations.
+
+## Installation
+
+Ensure you have the necessary dependencies installed:
+
+```bash
+npm install @/publicodes-state
+```
+
+## Usage
+
+### Import
+
+```typescript
+import { usePersistentSimulations } from '@/publicodes-state/hooks/userProvider'
+```
+
+### Hook Signature
+
+```typescript
+function usePersistentSimulations({
+  storageKey,
+  migrationInstructions
+}: {
+  storageKey: string,
+  migrationInstructions: Migration[]
+}): {
+  simulations: Simulation[],
+  setSimulations: Dispatch<SetStateAction<Simulation[]>>,
+  currentSimulationId: string,
+  setCurrentSimulationId: Dispatch<SetStateAction<string>>
+}
+```
+
+### Parameters
+
+- `storageKey` (string): The key used to store simulations in `localStorage`.
+- `migrationInstructions` (Migration[]): An array of migration instructions to apply to existing simulations.
+
+### Return Value
+
+The hook returns an object with the following properties:
+
+- `simulations` (`Simulation[]`): The list of simulations.
+- `setSimulations` (`Dispatch<SetStateAction<Simulation[]>>`): Function to update the simulations.
+- `currentSimulationId` (`string`): The ID of the current simulation.
+- `setCurrentSimulationId` (`Dispatch<SetStateAction<string>>`): Function to update the current simulation ID.
+
+## Example Usage
+
+```typescript
+import React from 'react'
+import { usePersistentSimulations } from '@/publicodes-state/hooks/userProvider'
+import { migrationInstructions } from '@/config/migrations'
+
+const MyComponent = () => {
+  const { 
+    simulations, 
+    setSimulations, 
+    currentSimulationId, 
+    setCurrentSimulationId 
+  } = usePersistentSimulations({
+    storageKey: 'mySimulations',
+    migrationInstructions,
+  })
+
+  // Use the simulations and related functions in your component logic
+
+  return (
+    <div>
+      {/* Render simulations or use the data in your UI */}
+    </div>
+  )
+}
+```
+
+## Dependencies
+
+The hook relies on the following utilities:
+
+- `generateSimulation`: Creates a new simulation object.
+- `getIsLocalStorageAvailable`: Checks if localStorage is available in the current environment.

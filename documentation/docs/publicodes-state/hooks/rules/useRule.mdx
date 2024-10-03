@@ -1,0 +1,66 @@
+# `useRule`
+
+## Overview
+
+The `useRule` hook is a powerful tool for accessing and manipulating rule-specific information within the Publicodes state management system. It provides a comprehensive interface to interact with a single rule, including its evaluation, content retrieval, and value setting.
+
+## Installation
+
+Ensure you have the necessary dependencies installed:
+
+```bash
+npm install @/publicodes-state
+```
+
+## Usage
+
+```typescript
+import useRule from '@/publicodes-state/hooks/rules/useRule'
+import { DottedName } from '@/publicodes-state/types'
+
+const MyComponent = ({ dottedName }: { dottedName: DottedName }) => {
+  const { 
+    evaluation, 
+    rule, 
+    value, 
+    setValue,
+    // ... other properties
+  } = useRule(dottedName)
+
+  return (
+    <div>
+      <h1>{rule?.title}</h1>
+      <p>Value: {value}</p>
+      <button onClick={() => setValue(42)}>Set Value</button>
+    </div>
+  )
+}
+```
+
+## API
+
+### Parameters
+
+- `dottedName` (DottedName): The unique identifier for the rule.
+- `metric` (Metric, optional): The metric to be used for evaluation. Defaults to `carboneMetric`.
+
+### Return Value
+
+The hook returns an object with the following properties:
+
+- `evaluation`: The evaluated node for the rule.
+- `rule`: The rule node.
+- `type`: The type of the rule.
+- `notifications`: Notifications related to the rule.
+- `activeNotifications`: Active notifications for the rule.
+- `questionsOfMosaicFromParent`: Questions of mosaic from the parent rule.
+- `questionsOfMosaicFromSibling`: Questions of mosaic from sibling rules.
+- `parent`: The parent rule.
+- `content`: Content details of the rule.
+- `choices`: Choices available for the rule.
+- `isMissing`: Whether the rule is missing.
+- `isFolded`: Whether the rule is folded.
+- `value`: The current value of the rule.
+- `displayValue`: The formatted display value of the rule.
+- `numericValue`: The numeric value of the rule.
+- `setValue`: Function to set the value of the rule.

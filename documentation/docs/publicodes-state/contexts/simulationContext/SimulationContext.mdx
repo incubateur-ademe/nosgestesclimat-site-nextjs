@@ -1,0 +1,169 @@
+# `SimulationContext`
+
+
+`SimulationContext` is a React context that provides access to the simulation state and related functionalities within the application. It is used to share simulation data and methods across different components, enabling efficient state management and access to the Publicodes engine.
+
+## Context Definition
+
+The context is defined in `src/publicodes-state/contexts/simulationContext/context.ts`:
+
+    ```ts
+    import { createContext } from 'react'
+    import { NGCRules, Engine, PublicodesExpression } from 'publicodes'
+    import { DottedName, Metric, NGCEvaluatedNode, NGCRuleNode, NGCRulesNodes, Situation } from '../../types'
+    type SimulationContextType = {
+        rules: NGCRules | null
+        engine: Engine | null
+        pristineEngine: Engine | null
+        safeGetRule: (rule: DottedName) => NGCRuleNode | null
+        safeEvaluate: (rule: PublicodesExpression, metric?: Metric) => NGCEvaluatedNode | null
+        parsedRules: NGCRulesNodes
+        everyRules: DottedName[]
+        everyInactiveRules: DottedName[]
+        everyQuestions: DottedName[]
+        everyNotifications: DottedName[]
+        everyUiCategories: DottedName[]
+        everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
+        rawMissingVariables: Record<string, number>
+        categories: DottedName[]
+        subcategories: Record<DottedName, DottedName[]>
+        addToEngineSituation: (situationToAdd: Situation) => Situation
+        isInitialized: boolean
+    }
+    export const SimulationContext = createContext<SimulationContextType>({
+        // ... default values
+    })
+    ```
+
+## Usage
+
+To use the `SimulationContext`, follow these steps:
+
+1. Wrap your component tree with the `SimulationProvider`.
+2. Use the `useContext` hook to access the context values in your components.
+
+### Wrapping with `SimulationProvider`
+
+The `SimulationProvider` is defined in [`src/publicodes-state/providers/simulationProvider/index.tsx`](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2FUsers%2Fbenjaminarias%2FDocuments%2FGitHub%2Fnosgestesclimat-site-nextjs%2Fsrc%2Fpublicodes-state%2Fproviders%2FsimulationProvider%2Findex.tsx%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D "/Users/benjaminarias/Documents/GitHub/nosgestesclimat-site-nextjs/src/publicodes-state/providers/simulationProvider/index.tsx"):
+
+    ```tsx
+    import { PropsWithChildren } from 'react'
+    import { SimulationContext } from './context'
+    import { useInternalEngine, useRules, useCategories, useEngineSituation, useSetComputedResults } from '@/publicodes-state/hooks/simulationProvider'
+    type Props = {
+        rules: NGCRules
+        root?: DottedName
+        shouldAlwaysDisplayChildren?: boolean
+    }
+    export default function SimulationProvider({
+        rules,
+        root = 'bilan',
+        shouldAlwaysDisplayChildren = false,
+        children,
+    }: PropsWithChildren<Props>) {
+        // ... implementation details
+        return (
+            <SimulationContext.Provider value={{ / context values / }}>
+                {isInitialized || shouldAlwaysDisplayChildren ? children : null}
+            </SimulationContext.Provider>
+        )
+    }
+    ```
+
+To use the `SimulationProvider`, wrap your main component or the part of your application that needs access to the simulation context:
+
+    ```tsx
+    import SimulationProvider from '@/publicodes-state/providers/simulationProvider'
+    import rules from '@/config/rules'
+
+    function App() {
+        return (
+            <SimulationProvider rules={rules}>
+                {/* Your application components */}
+            </SimulationProvider>
+        )
+    }
+    ```
+
+### Accessing Context Values
+
+Use the `useContext` hook to access the context values in your components:
+
+    ```tsx
+    import { useContext } from 'react'
+    import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
+
+    function MyComponent() {
+        const { engine, categories, isInitialized, safeEvaluate } = useContext(SimulationContext)
+
+        if (!isInitialized) {
+            return <div>Loading simulation...</div>
+        }
+
+        // Example: Evaluate a rule
+        const evaluatedRule = safeEvaluate('some.rule')
+
+        return (
+            <div>
+                <h2>Categories:</h2>
+                <ul>
+                    {categories.map(category => (
+                        <li key={category}>{category}</li>
+                    ))}
+                </ul>
+                <p>Evaluated rule value: {evaluatedRule?.nodeValue}</p>
+            </div>
+        )
+    }
+    ```
+
+## Key Context Values
+
+- `rules`: The Publicodes rules used in the simulation.
+- `engine`: The main Publicodes engine instance.
+- `pristineEngine`: A clean instance of the Publicodes engine without any modifications.
+- `safeGetRule`: A function to safely retrieve a rule by its dotted name.
+- `safeEvaluate`: A function to safely evaluate a Publicodes expression.
+- `categories` and `subcategories`: Hierarchical structure of simulation categories.
+- `isInitialized`: A boolean indicating whether the simulation is fully initialized.
+
+## Advanced Usage
+
+### Modifying the Engine Situation
+
+The `addToEngineSituation` function allows you to update the engine's situation:
+
+    ```tsx
+    function UpdateSituation() {
+        const { addToEngineSituation } = useContext(SimulationContext)
+
+        const handleUpdate = () => {
+            addToEngineSituation({ 'user.age': 30 })
+        }
+
+        return <button onClick={handleUpdate}>Update Age</button>
+    }
+    ```
+
+### Working with Rules and Categories
+
+You can use the context to work with rules and categories efficiently:
+
+    ```tsx
+    function RuleExplorer() {
+        const { everyRules, safeGetRule } = useContext(SimulationContext)
+
+        return (
+            <ul>
+                {everyRules.map(ruleName => {
+                    const rule = safeGetRule(ruleName)
+                    return <li key={ruleName}>{rule?.title || ruleName}</li>
+                })}
+            </ul>
+        )
+    }
+    ```
+
+## Summary
+
+The `SimulationContext` provides a centralized way to manage and access the simulation state and related functionalities. By wrapping your component tree with the `SimulationProvider`, you can easily share simulation data across your application, evaluate rules, and interact with the Publicodes engine in a type-safe and efficient manner.

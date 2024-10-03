@@ -1,0 +1,87 @@
+# UserContext
+
+The `UserContext` is a React context that manages user-related state and actions throughout the application. It centralizes user information, tutorials, simulations, and migration instructions.
+
+## Key Features
+
+- Manages user details (name, email, region, organization)
+- Handles tutorial visibility
+- Stores and manages user simulations
+- Provides migration instructions for legacy data
+
+## Usage
+
+### Provider
+
+Wrap your application or specific components with the `UserProvider`:
+
+```tsx
+import UserProvider from '@/publicodes-state/providers/userProvider'
+
+function App() {
+  return (
+    <UserProvider
+      storageKey="yourStorageKey"
+      initialRegion={{ code: 'regionCode', name: 'regionName' }}
+      migrationInstructions={{ keysToMigrate: {}, valuesToMigrate: {} }}
+    >
+      <YourComponent />
+    </UserProvider>
+  )
+}
+```
+
+### Consumer
+
+Use the `useUser` hook to access and manipulate the context values:
+
+```tsx
+import useUser from '@/publicodes-state/hooks/user/useUser'
+
+function YourComponent() {
+  const {
+    user,
+    updateName,
+    updateEmail,
+    updateRegion,
+    updateUserOrganisation,
+    tutorials,
+    showTutorial,
+    hideTutorial,
+    simulations,
+    deleteSimulation,
+  } = useUser()
+
+  // Example usage
+  const handleNameChange = (e) => {
+    updateName(e.target.value)
+  }
+
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      <input type="text" value={user.name} onChange={handleNameChange} />
+    </div>
+  )
+}
+```
+
+## Context Values
+
+- `user`: Current user information
+- `setUser`: Function to update the user state
+- `tutorials`: List of tutorials seen by the user
+- `setTutorials`: Function to update the tutorials state
+- `simulations`: List of user simulations
+- `setSimulations`: Function to update the simulations state
+- `currentSimulationId`: ID of the current simulation
+- `setCurrentSimulationId`: Function to update the current simulation ID
+- `migrationInstructions`: Instructions for migrating old local storage data
+
+## Related Hooks
+
+- `useUser`: Provides access to user-related state and actions
+- `usePersistentUser`: Manages persistent user data in local storage
+- `usePersistentSimulations`: Manages persistent simulations data in local storage
+- `usePersistentTutorials`: Manages persistent tutorials data in local storage
+- `useUpdateOldLocalStorage`: Handles updating old local storage data

@@ -1,0 +1,78 @@
+# `useCurrentSimulation`
+
+## Purpose
+
+The `useCurrentSimulation` hook is a crucial part of the Nos Gestes Climat application. It manages and provides access to the current simulation state, offering functionality to both retrieve and update simulation data.
+
+## Usage
+
+### Importing the Hook
+
+```typescript
+import { useCurrentSimulation } from '@/publicodes-state'
+```
+
+### Basic Usage
+
+```typescript
+function MyComponent() {
+  const { situation, update } = useCurrentSimulation()
+
+  // Use situation data or update function as needed
+}
+```
+
+## API
+
+### Returned Values
+
+The hook returns an object with the following key properties:
+
+1. **Simulation Data**:
+  - `id`: Unique identifier for the simulation
+  - `date`: Timestamp of the simulation
+  - `situation`: Current state of the simulation
+  - `foldedSteps`: Steps that are collapsed in the UI
+  - `actionChoices`: User's selected actions
+  - `persona`: Selected persona, if any
+  - `computedResults`: Calculated results of the simulation
+  - `progression`: Progress through the simulation
+  - `defaultAdditionalQuestionsAnswers`: Default answers for additional questions
+  - `polls`: Information about polls associated with the simulation
+  - `groups`: Group-related data
+  - `savedViaEmail`: Boolean indicating if the simulation was saved via email
+
+2. **Update Functions**:
+  - `update`: Function to update the current simulation
+  - `updateCurrentSimulation`: A more granular function for updating specific aspects of the simulation
+
+### Example
+
+Here's a more detailed example of how to use the hook:
+
+```typescript
+function SimulationComponent() {
+  const {
+    situation,
+    actionChoices,
+    update,
+    updateCurrentSimulation
+  } = useCurrentSimulation()
+
+  const handleSituationUpdate = () => {
+    update({ situation: { newKey: 'newValue' } })
+  }
+
+  const handleActionUpdate = () => {
+    updateCurrentSimulation('actionChoices', { actionId: 'selected' })
+  }
+
+  return (
+    <div>
+      <pre>{JSON.stringify(situation, null, 2)}</pre>
+      <button onClick={handleSituationUpdate}>Update Situation</button>
+      <button onClick={handleActionUpdate}>Update Action</button>
+    </div>
+  )
+}
+```

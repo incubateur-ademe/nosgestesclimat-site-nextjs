@@ -1,0 +1,72 @@
+# `useTempEngine`
+
+`useTempEngine` is a React hook that provides access to core simulation functionalities within a temporary context. It's designed as an interim solution and is expected to be replaced with a more robust implementation in the future.
+
+## Overview
+
+This hook offers access to:
+- Simulation rules
+- A method to retrieve rule objects by their dotted names
+- An extended list of folded steps, including mosaic questions when available
+
+## Usage
+
+```typescript
+import useTempEngine from '@/publicodes-state/hooks/engine/useTempEngine'
+
+function MyComponent() {
+  const { getRuleObject, rules, extendedFoldedSteps } = useTempEngine()
+
+  // Example usage
+  const rule = getRuleObject('some.dotted.name')
+  console.log(rules)
+  console.log(extendedFoldedSteps)
+
+  return <div>{/* Your component JSX */}</div>
+}
+```
+
+## API
+
+### `getRuleObject(dottedName: DottedName): RuleObject`
+
+Retrieves a rule object by its dotted name. This method combines the results of `safeEvaluate` and `safeGetRule` for comprehensive rule information.
+
+### `rules: Rules`
+
+Provides access to the complete set of rules from the current simulation context.
+
+### `extendedFoldedSteps: FoldedStep[]`
+
+Returns an extended list of folded steps, including any mosaic questions if available in the current simulation.
+
+## Dependencies
+
+- `SimulationContext`: Provides the overall simulation context.
+- `useCurrentSimulation`: Hook to retrieve the current simulation state.
+
+## Example
+
+```typescript
+import useTempEngine from '@/publicodes-state/hooks/engine/useTempEngine'
+
+function ExampleComponent() {
+  const { getRuleObject, rules, extendedFoldedSteps } = useTempEngine()
+
+  const rule = getRuleObject('example.rule')
+  
+  return (
+    <div>
+      <h2>{rule.title}</h2>
+      <p>Total rules: {Object.keys(rules).length}</p>
+      <p>Folded steps: {extendedFoldedSteps.length}</p>
+    </div>
+  )
+}
+```
+
+## Notes
+
+- This hook is intended for temporary use and will be replaced in future updates.
+- Use caution when relying on this hook for critical functionality, as its API may change.
+- For production-ready features, consider using more stable alternatives or consult with the development team.
