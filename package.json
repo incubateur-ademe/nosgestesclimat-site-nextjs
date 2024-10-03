@@ -144,10 +144,5 @@
   "resolutions": {
     "jackspeak": "2.1.1"
   },
-  "packageManager": "yarn@1.22.19",
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn run lint && yarn run test && yarn run ui:check"
-    }
-  }
+  "packageManager": "yarn@1.22.19"
 }
