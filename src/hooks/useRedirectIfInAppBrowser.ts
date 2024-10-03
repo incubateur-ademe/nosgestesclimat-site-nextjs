@@ -1,14 +1,13 @@
-import InApp from 'detect-inapp'
 import { useEffect, useState } from 'react'
+
+const rules = ['WebView', '(iPhone|iPod|iPad)(?!.*Safari/)', 'Android.*(wv)']
+const regex = new RegExp(`(${rules.join('|')})`, 'ig')
 
 export const useRedirectIfInAppBrowser = () => {
   const [isInApp, setIsInApp] = useState(false)
 
   useEffect(() => {
-    const inapp = new InApp(
-      navigator.userAgent || navigator.vendor || (window as any).opera
-    )
-    setIsInApp(inapp.isInApp)
+    setIsInApp(Boolean(navigator.userAgent.match(regex)))
   }, [])
 
   useEffect(() => {
