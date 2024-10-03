@@ -4,11 +4,11 @@ import { useCurrentSimulation } from '@/publicodes-state'
 
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { PropsWithChildren, useContext } from 'react'
-import useCurrent from '../../hooks/formProvider/useCurrent'
-import useProgression from '../../hooks/formProvider/useProgression'
-import useQuestions from '../../hooks/formProvider/useQuestions'
 import { SimulationContext } from '../simulationContext/context'
 import FormContext from './context'
+import useCurrent from './hooks/useCurrent'
+import useProgression from './hooks/useProgression'
+import useQuestions from './hooks/useQuestions'
 
 type Props = {
   root?: DottedName

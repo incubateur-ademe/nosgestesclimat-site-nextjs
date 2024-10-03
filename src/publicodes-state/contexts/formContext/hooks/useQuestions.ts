@@ -1,7 +1,7 @@
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
-import getIsMissing from '../../helpers/getIsMissing'
+import getIsMissing from '../../../helpers/getIsMissing'
 
 import getSortedQuestionsList from '@/publicodes-state/helpers/getSortedQuestionsList'
 import {
@@ -9,7 +9,7 @@ import {
   MissingVariables,
   NGCEvaluatedNode,
   Situation,
-} from '../../types'
+} from '../../../types'
 
 type Props = {
   root: DottedName

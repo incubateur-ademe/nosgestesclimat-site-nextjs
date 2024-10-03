@@ -2,11 +2,11 @@
 
 import { PropsWithChildren } from 'react'
 
-import { useCategories } from '@/publicodes-state/hooks/simulationProvider/useCategories'
-import { useEngineSituation } from '@/publicodes-state/hooks/simulationProvider/useEngineSituation'
-import { useInternalEngine } from '@/publicodes-state/hooks/simulationProvider/useInternalEngine'
-import { useRules } from '@/publicodes-state/hooks/simulationProvider/useRules'
-import { useSetComputedResults } from '@/publicodes-state/hooks/simulationProvider/useSetComputedResults'
+import { useCategories } from '@/publicodes-state/contexts/simulationContext/hooks/useCategories'
+import { useEngineSituation } from '@/publicodes-state/contexts/simulationContext/hooks/useEngineSituation'
+import { useInternalEngine } from '@/publicodes-state/contexts/simulationContext/hooks/useInternalEngine'
+import { useRules } from '@/publicodes-state/contexts/simulationContext/hooks/useRules'
+import { useSetComputedResults } from '@/publicodes-state/contexts/simulationContext/hooks/useSetComputedResults'
 import { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { SimulationContext } from './context'
 

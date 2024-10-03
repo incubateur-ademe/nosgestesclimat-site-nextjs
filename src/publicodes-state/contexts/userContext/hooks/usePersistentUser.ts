@@ -1,7 +1,7 @@
 import { getIsLocalStorageAvailable } from '@/utils/getIsLocalStorageAvailable'
 import { useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
-import { RegionFromGeolocation, User } from '../../types'
+import { RegionFromGeolocation, User } from '../../../types'
 
 const isLocalStorageAvailable = getIsLocalStorageAvailable()
 

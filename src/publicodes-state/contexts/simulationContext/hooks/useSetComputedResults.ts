@@ -7,7 +7,7 @@ import type {
   ComputedResultsFootprint,
   Metric,
   NGCEvaluatedNode,
-} from '../../types'
+} from '../../../types'
 
 type Props = {
   categories: DottedName[]

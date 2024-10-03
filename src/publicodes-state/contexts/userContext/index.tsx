@@ -4,11 +4,11 @@ import { PropsWithChildren } from 'react'
 
 import { RegionFromGeolocation } from '@/publicodes-state/types'
 import { Migration } from '@publicodes/tools/migration'
-import useUpdateOldLocalStorage from '../../hooks/userProvider/useOldLocalStorage'
-import usePersistentSimulations from '../../hooks/userProvider/usePersistentSimulations'
-import usePersistentTutorials from '../../hooks/userProvider/usePersistentTutorials'
-import usePersistentUser from '../../hooks/userProvider/usePersistentUser'
 import UserContext from './context'
+import useUpdateOldLocalStorage from './hooks/useOldLocalStorage'
+import usePersistentSimulations from './hooks/usePersistentSimulations'
+import usePersistentTutorials from './hooks/usePersistentTutorials'
+import usePersistentUser from './hooks/usePersistentUser'
 
 type Props = {
   /**

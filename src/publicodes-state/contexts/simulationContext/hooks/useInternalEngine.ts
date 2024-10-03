@@ -8,8 +8,8 @@ import {
 import { captureException } from '@sentry/react'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { useCallback, useMemo } from 'react'
-import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
-import { Metric } from '../../types'
+import { safeEvaluateHelper } from '../../../helpers/safeEvaluateHelper'
+import { Metric } from '../../../types'
 
 /**
  * Initiate the engine based on the rules we pass
