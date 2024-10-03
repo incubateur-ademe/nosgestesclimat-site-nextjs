@@ -1,6 +1,6 @@
 'use client'
 
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, useEffect, useMemo } from 'react'
 
 import { RegionFromGeolocation } from '@/publicodes-state/types'
 import { Migration } from '@publicodes/tools/migration'
@@ -18,7 +18,7 @@ type Props = {
   /**
    * The inital region of the user
    */
-  initialRegion: RegionFromGeolocation
+  initialRegion?: RegionFromGeolocation
   /**
    * The migration instructions for old localstorage
    */
@@ -27,10 +27,17 @@ type Props = {
 export default function UserProvider({
   children,
   storageKey = 'ngc',
-  initialRegion,
+  initialRegion = {
+    code: 'FR',
+    name: 'France',
+  },
   migrationInstructions,
 }: PropsWithChildren<Props>) {
   useUpdateOldLocalStorage({ storageKey })
+
+  useEffect(() => {
+    console.log('update initialRegion', initialRegion)
+  }, [initialRegion])
 
   const { user, setUser } = usePersistentUser({ storageKey, initialRegion })
 
@@ -43,7 +50,11 @@ export default function UserProvider({
     setCurrentSimulationId,
   } = usePersistentSimulations({ storageKey, migrationInstructions })
 
-  // We don't display the app while the simulations are not loaded from the localstorage (or generated)
+  const isInitialized = useMemo(
+    () => user && simulations.length > 0,
+    [user, simulations]
+  )
+
   return (
     <UserContext.Provider
       value={{
@@ -56,8 +67,9 @@ export default function UserProvider({
         currentSimulationId,
         setCurrentSimulationId,
         migrationInstructions,
+        isInitialized,
       }}>
-      {simulations.length > 0 ? children : null}
+      {children}
     </UserContext.Provider>
   )
 }

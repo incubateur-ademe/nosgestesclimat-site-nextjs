@@ -28,6 +28,7 @@ export default function usePersistentUser({
   })
 
   useEffect(() => {
+    console.log('usePersistentUser')
     let localUser: User | undefined
     if (isLocalStorageAvailable) {
       const currentStorage = localStorage.getItem(storageKey)
@@ -47,6 +48,7 @@ export default function usePersistentUser({
   }, [storageKey, initialRegion])
 
   useEffect(() => {
+    console.log('usePersistentUser 2')
     if (initialized) {
       const currentStorage = JSON.parse(
         localStorage.getItem(storageKey) || '{}'
@@ -55,6 +57,14 @@ export default function usePersistentUser({
       localStorage.setItem(storageKey, JSON.stringify(updatedStorage))
     }
   }, [storageKey, user, initialized])
+
+  useEffect(() => {
+    console.log('update storageKey')
+  }, [storageKey])
+
+  useEffect(() => {
+    console.log('update initialRegion')
+  }, [initialRegion])
 
   return { user, setUser }
 }
