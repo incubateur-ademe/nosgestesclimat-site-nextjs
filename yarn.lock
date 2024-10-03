@@ -6062,6 +6062,11 @@ humanize-duration@^3.27.3:
   resolved "https://registry.yarnpkg.com/humanize-duration/-/humanize-duration-3.32.0.tgz#b25f64ef55d723b049b197b6b4aa3c96c202b6c9"
   integrity sha512-6WsXYTHJr7hXKqoqf5zoWza/lANRAqGlbnZnm0cjDykbXuez1JVXOQGmq0EPB45pXYAJyueRA3S3hfhmMbrMEQ==
 
+husky@^9.1.6:
+  version "9.1.6"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-9.1.6.tgz#e23aa996b6203ab33534bdc82306b0cf2cb07d6c"
+  integrity sha512-sqbjZKK7kf44hfdE94EoX8MZNk0n7HeW37O4YrVGCF4wzgQjp+akPAkfUK5LZ6KuR/6sqeAVuXHji+RzQgOn5A==
+
 i18next-browser-languagedetector@^7.2.0:
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-7.2.1.tgz#1968196d437b4c8db847410c7c33554f6c448f6f"
