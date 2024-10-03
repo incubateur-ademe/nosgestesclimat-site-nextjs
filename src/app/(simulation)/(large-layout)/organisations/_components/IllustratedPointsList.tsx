@@ -7,7 +7,7 @@ export default function IllustratedPointsList() {
     <ul className="flex flex-col gap-28">
       <li>
         <section className="flex flex-wrap items-center justify-between gap-8">
-          <div className="max-w-full md:mx-auto md:w-[34rem]">
+          <div className="mx-auto max-w-full md:w-[34rem] lg:ml-0">
             <h2 className="mb-2 text-base text-pink-600">
               <Trans>Campagne personnalisée</Trans>
             </h2>
@@ -40,7 +40,7 @@ export default function IllustratedPointsList() {
 
       <li>
         <section className="flex flex-wrap items-center justify-between gap-8">
-          <div className="max-w-full md:mx-auto md:w-[34rem]">
+          <div className="mx-auto max-w-full md:w-[34rem] lg:ml-0">
             <h2 className="mb-2 text-base text-pink-600">
               <Trans>Tableau de bord</Trans>
             </h2>
@@ -75,7 +75,7 @@ export default function IllustratedPointsList() {
 
       <li>
         <section className="flex flex-wrap items-center justify-between gap-8">
-          <div className="max-w-full md:mx-auto md:w-[34rem]">
+          <div className="mx-auto max-w-full md:w-[34rem] lg:ml-0">
             <h2 className="mb-2 text-base text-pink-600">
               <Trans>Lien personnalisé & iframes</Trans>
             </h2>

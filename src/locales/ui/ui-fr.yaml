@@ -140,7 +140,7 @@ entries:
   international.pourquoi.1: Les modes de vies ne sont pas les mêmes en fonction du pays dans lequel on vit. Certains pays ont un réseau ferré très développé, d'autres sont insulaires et donc reposent davantage sur le ferry et l'avion.
   international.pourquoi.2: Au fur et à mesure que l'électricité prend une place très importante grâce à la transition énergétique, l'empreinte carbone du mix électrique influence fortement le calcul d'empreinte climat.
   international.pourquoi.titre: Adapté à votre pays
-  international.pourquoi.3: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.
+  international.pourquoi.3: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par
   Ce modèle a été conçu par: Ce modèle a été conçu par
   model.questions: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
   Oups, nous n'avons pas d'article correspondant: Oups, nous n'avons pas d'article correspondant
@@ -959,4 +959,5 @@ entries:
   Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !
   CO₂e / an: CO₂e / an
   En cours: En cours
+  organisations.accueil.titre: Nos Gestes Climat pour les organisations
   / jour: / jour
