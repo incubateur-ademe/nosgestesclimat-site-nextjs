@@ -63,3 +63,5 @@ dist
 .env.sentry-build-plugin
 
 coverage
+
+.huskyrc.json

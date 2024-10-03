@@ -29,7 +29,8 @@
     "faq:translate": "node scripts/i18n/translate-faq.js",
     "faq:check": "node scripts/i18n/check-faq.js",
     "pages:translate": "node scripts/i18n/translate-pages.cjs",
-    "nouveautes:translate": "node scripts/i18n/translate-nouveautes.cjs"
+    "nouveautes:translate": "node scripts/i18n/translate-nouveautes.cjs",
+    "prepare": "husky"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1",
@@ -128,6 +129,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "glob": "^10.4.1",
+    "husky": "^9.1.6",
     "jest-environment-jsdom": "^29.7.0",
     "json-stable-stringify": "^1.1.0",
     "postcss-loader": "^8.1.0",
@@ -142,5 +144,10 @@
   "resolutions": {
     "jackspeak": "2.1.1"
   },
-  "packageManager": "yarn@1.22.19"
+  "packageManager": "yarn@1.22.19",
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn run lint && yarn run test && yarn run ui:check"
+    }
+  }
 }

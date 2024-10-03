@@ -1,0 +1,11 @@
+echo "Have you reviewed your code? (y/n)"
+read -r REPLY
+if [ "$REPLY" != "y" ] && [ "$REPLY" != "Y" ]; then
+  exit 1
+fi
+
+echo "Have you tested in the browser that everything works as intended? (y/n)"
+read -r REPLY
+if [ "$REPLY" != "y" ] && [ "$REPLY" != "Y" ]; then
+  exit 1
+fi
