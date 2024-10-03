@@ -7,7 +7,7 @@ import { NGCEvaluatedNode } from '../../types'
 
 type Props = {
   dottedName: DottedName
-  rule: NGCRuleNode | null
+  rule: NGCRuleNode | undefined
   evaluation: NGCEvaluatedNode | null
 }
 

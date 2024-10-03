@@ -21,7 +21,6 @@ export default function FormProvider({
   const {
     categories,
     subcategories,
-    safeGetRule,
     safeEvaluate,
     everyQuestions,
     everyMosaicChildrenWithParent,
@@ -45,7 +44,6 @@ export default function FormProvider({
     questionsByCategories,
   } = useQuestions({
     root,
-    safeGetRule,
     safeEvaluate,
     categories,
     subcategories,

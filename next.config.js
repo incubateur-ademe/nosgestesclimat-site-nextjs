@@ -10,6 +10,8 @@ const redirects = require('./config/redirects.js')
 
 const remoteImagesPatterns = require('./config/remoteImagesPatterns.js')
 
+// const { sentryWebpackPlugin } = require('@sentry/webpack-plugin')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
@@ -21,12 +23,20 @@ const nextConfig = {
   async redirects() {
     return redirects
   },
-  webpack: (config) => {
+  webpack: (config, { dev, isServer }) => {
     if (config.cache) {
-      config.cache = Object.freeze({
-        type: 'memory',
-      })
-      config.cache.maxMemoryGenerations = 0
+      if (dev) {
+        // Development configuration
+        config.cache = {
+          type: 'filesystem',
+        }
+      } else {
+        // Use cache in production
+        config.cache = Object.freeze({
+          type: 'memory',
+        })
+        config.cache.maxMemoryGenerations = 0
+      }
     }
 
     // Add a rule for YAML files
@@ -35,8 +45,24 @@ const nextConfig = {
       use: 'yaml-loader',
     })
 
+    // Enable source maps
+    if (!dev && !isServer) {
+      config.devtool = 'source-map'
+    }
+
+    // if (process.env.SENTRY_AUTH_TOKEN) {
+    //   config.plugins.push(
+    //     sentryWebpackPlugin({
+    //       authToken: process.env.SENTRY_AUTH_TOKEN_SOURCEMAPS,
+    //       org: 'betagouv',
+    //       project: 'nosgestesclimat-nextjs',
+    //     })
+    //   )
+    // }
+
     return config
   },
+  productionBrowserSourceMaps: true,
   experimental: {
     outputFileTracingExcludes: {
       '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
@@ -82,7 +108,7 @@ const sentryConfig = [
     tunnelRoute: '/monitoring',
 
     // Hides source maps from generated client bundles
-    hideSourceMaps: true,
+    hideSourceMaps: false,
 
     // Automatically tree-shake Sentry logger statements to reduce bundle size
     disableLogger: true,

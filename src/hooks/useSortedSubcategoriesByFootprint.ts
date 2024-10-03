@@ -16,12 +16,12 @@ export function useSortedSubcategoriesByFootprint({
 
   const everySubcategories = useMemo(
     () =>
-      Object.keys(subcategories).reduce((acc, category) => {
-        if (!withServiceSocietaux && category === 'services sociétaux') {
-          return acc
-        }
-        return acc.concat(subcategories[category as DottedName])
-      }, [] as DottedName[]),
+      withServiceSocietaux
+        ? subcategories
+        : subcategories.filter(
+            (subcat) => !subcat.includes('services sociétaux')
+          ),
+
     [subcategories, withServiceSocietaux]
   )
 

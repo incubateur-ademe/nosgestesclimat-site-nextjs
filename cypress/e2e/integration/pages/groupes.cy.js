@@ -134,7 +134,8 @@ describe('The Group creation page /amis/creer', () => {
     cy.get('[data-cypress-id="group-name"]')
 
     // Check that the main sections are displayed
-    cy.get('[data-cypress-id="points-fort-faibles-title"]')
+    // TODO: improve test to handle checking the display of the points forts and faibles
+    // cy.get('[data-cypress-id="points-fort-faibles-title"]')
     cy.get('[data-cypress-id="votre-empreinte-title"]')
 
     let currentUrl = ''

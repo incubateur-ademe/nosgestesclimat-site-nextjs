@@ -129,8 +129,6 @@ entries:
   '{unit}': '{unit}'
   À propos: À propos
   ◀ Retour à la liste des fiches: ◀ Retour à la liste des fiches
-  👍 Accepter: 👍 Accepter
-  👎 Refuser: 👎 Refuser
   👤 Vous utilisez actuellement le persona: 👤 Vous utilisez actuellement le persona
   🧮 Voir le geste climat correspondant: 🧮 Voir le geste climat correspondant
   components.localisation.LocalisationMessage.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
@@ -142,11 +140,8 @@ entries:
   international.pourquoi.1: Les modes de vies ne sont pas les mêmes en fonction du pays dans lequel on vit. Certains pays ont un réseau ferré très développé, d'autres sont insulaires et donc reposent davantage sur le ferry et l'avion.
   international.pourquoi.2: Au fur et à mesure que l'électricité prend une place très importante grâce à la transition énergétique, l'empreinte carbone du mix électrique influence fortement le calcul d'empreinte climat.
   international.pourquoi.titre: Adapté à votre pays
-  international.pourquoi.3: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.
+  international.pourquoi.3: "Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par :"
   Ce modèle a été conçu par: Ce modèle a été conçu par
-  Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.: Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.
-  Recharger la page: Recharger la page
-  Une erreur s'est produite: Une erreur s'est produite
   model.questions: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
   Oups, nous n'avons pas d'article correspondant: Oups, nous n'avons pas d'article correspondant
   Retour à la liste des articles: Retour à la liste des articles
@@ -225,7 +220,7 @@ entries:
   Plus d'information à ce sujet: Plus d'information à ce sujet
   publicodes.Tutoriel.slide1.p1: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
   publicodes.Tutoriel.slide1.p2: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
-  publicodes.Tutoriel.slide2.blockquote: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
+  publicodes.Tutoriel.slide2.blockquote: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en CO₂e pour simplifier la mesure. "
   publicodes.Tutoriel.slide2.p1: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone <2></2>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
   publicodes.Tutoriel.slide2.p2: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
   publicodes.Tutoriel.slide6: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne.</1>
@@ -247,7 +242,6 @@ entries:
   Voir toutes les actions: Voir toutes les actions
   Distance: Distance
   Fréquence: Fréquence
-  La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.: La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.
   Label: Label
   Passagers: Passagers
   Télécharger l'image: Télécharger l'image
@@ -278,8 +272,6 @@ entries:
   Le modèle Nos Gestes Climat: Le modèle Nos Gestes Climat
   Les actions phares: Les actions phares
   Nos actions pour réduire votre empreinte: Nos actions pour réduire votre empreinte
-  Nos guides thématiques: Nos guides thématiques
-  Nos utilisateurs types: Nos utilisateurs types
   Partenaires: Partenaires
   Statistiques: Statistiques
   Vie privée: Vie privée
@@ -353,7 +345,6 @@ entries:
   Exporter les données: Exporter les données
   Filtrer par: Filtrer par
   Kit de diffusion: Kit de diffusion
-  La catégorie {{title}} représente {{value}} tonnes de CO2 equivalent.: La catégorie {{title}} représente {{value}} tonnes de CO2 equivalent.
   Les résultats du test sont-ils anonymes ?: Les résultats du test sont-ils anonymes ?
   Mes informations: Mes informations
   Organisations: Organisations
@@ -451,7 +442,6 @@ entries:
   Votre résultat: Votre résultat
   Vous pouvez reprendre votre test en cours, ou en recommencer un.: Vous pouvez reprendre votre test en cours, ou en recommencer un.
   Vous pouvez utiliser vos données existantes, ou recommencer le test.: Vous pouvez utiliser vos données existantes, ou recommencer le test.
-  Vous souhaitez illustrer une quantité de CO2e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: Vous souhaitez illustrer une quantité de CO2e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !
   Envie de connaître votre empreinte carbone ?: Envie de connaître votre empreinte carbone ?
   Vous avez déjà commencé le test Nos Gestes Climat !: Vous avez déjà commencé le test Nos Gestes Climat !
   Vous avez déjà réalisé le test Nos Gestes Climat !: Vous avez déjà réalisé le test Nos Gestes Climat !
@@ -462,7 +452,6 @@ entries:
   voyageurs, soit: voyageurs, soit
   (Données consultables à partir de 3 participants, dans un souci d'anonymat): (Données consultables à partir de 3 participants, dans un souci d'anonymat)
   En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.: En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.
-  Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.: Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
   Oups ! Une erreur est survenue: Oups ! Une erreur est survenue
   Partage de vos résultats à {{ parent }} ?: Partage de vos résultats à {{ parent }} ?
@@ -869,7 +858,6 @@ entries:
   d’eau domestique par jour: d’eau domestique par jour
   D’où vient mon empreinte ?: D’où vient mon empreinte ?
   Découvre mes empreintes: Découvre mes empreintes
-  Découvrez votre <1>empreinte eau</1> à la fin du test !: Découvrez votre <1>empreinte eau</1> à la fin du test !
   eau: eau
   En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.: En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.
   Est-ce que c'est <2>beaucoup ?</2>: Est-ce que c'est <2>beaucoup ?</2>
@@ -890,8 +878,6 @@ entries:
   Mes empreintes: Mes empreintes
   Mes principaux postes d'usage: Mes principaux postes d'usage
   'Nos articles sur le sujet :': 'Nos articles sur le sujet :'
-  obtenez une estimation<1></1>de votre <3>empreinte carbone</3>.: obtenez une estimation<1></1>de votre <3>empreinte carbone</3>.
-  Petit lexique pour tout comprendre à l’empreinte eau: Petit lexique pour tout comprendre à l’empreinte eau
   Pourquoi avons-nous ajouté l’empreinte eau ?: Pourquoi avons-nous ajouté l’empreinte eau ?
   Rendez-vous sur VigiEau pour en savoir plus.: Rendez-vous sur VigiEau pour en savoir plus.
   Retrouvez aussi le résultat de votre empreinte eau à la fin du test !: Retrouvez aussi le résultat de votre empreinte eau à la fin du test !
@@ -900,7 +886,6 @@ entries:
   "Voici la carte des départements qui subissent des restrictions d'eau en ce moment :": "Voici la carte des départements qui subissent des restrictions d'eau en ce moment :"
   Vous souhaitez recevoir vos résultats ?: Vous souhaitez recevoir vos résultats ?
   Vous utilisez: Vous utilisez
-  En règle générale, les valeurs d'empreinte eau varient <2>entre 9000 et 15000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: En règle générale, les valeurs d'empreinte eau varient <2>entre 9000 et 15000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.
   Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.: Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.
   'Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.': 'Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.'
   Les activités humaines menacent les équilibres naturels de notre planète.: Les activités humaines menacent les équilibres naturels de notre planète.
@@ -920,7 +905,6 @@ entries:
   Reprendre plus tard: Reprendre plus tard
   Sauvegarder <2>ma progression</2>: Sauvegarder <2>ma progression</2>
   sur votre empreinte: sur votre empreinte
-  Une erreur s'est produite au moment de la sauvegarde.: Une erreur s'est produite au moment de la sauvegarde.
   Votre région a bien été mise à jour.: Votre région a bien été mise à jour.
   Veuillez entrer un nombre positif.: Veuillez entrer un nombre positif.
   '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} sur votre empreinte'
@@ -941,3 +925,41 @@ entries:
   <0>Empreinte eau</0> moyenne: <0>Empreinte eau</0> moyenne
   Le lexique pour tout comprendre à l’empreinte eau: Le lexique pour tout comprendre à l’empreinte eau
   Lire l'article: Lire l'article
+  Carbone: Carbone
+  Eau: Eau
+  En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.
+  Voici un aperçu du classement des participants en fonction de leur empreinte eau. Cette fonctionnalité est encore en cours de développement.: Voici un aperçu du classement des participants en fonction de leur empreinte eau. Cette fonctionnalité est encore en cours de développement.
+  Oups ! Une erreur est survenue: Oups ! Une erreur est survenue
+  Si le problème persiste, merci de <2>contacter le support</2>.: Si le problème persiste, merci de <2>contacter le support</2>.
+  Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.
+  litres: litres
+  friends.day: jour
+  Lien de partage copié dans le presse-papier !: Lien de partage copié dans le presse-papier !
+  Oups, une erreur s’est produite lors de la copie du lien de partage.: Oups, une erreur s’est produite lors de la copie du lien de partage.
+  obtenez une estimation: obtenez une estimation
+  à la fin du test !: à la fin du test !
+  de votre: de votre
+  Découvrez votre: Découvrez votre
+  empreinte carbone: empreinte carbone
+  empreinte eau: empreinte eau
+  'Nos Gestes Climat : vos empreintes carbone et eau en 10 min': 'Nos Gestes Climat : vos empreintes carbone et eau en 10 min'
+  "Nos Gestes Climat : vos empreintes carbone et eau en 10 min\n{{sharedUrl}}":
+    |-
+    Nos Gestes Climat : vos empreintes carbone et eau en 10 min
+    {{sharedUrl}}
+  Une erreur s'est produite au moment de la sauvegarde.: Une erreur s'est produite au moment de la sauvegarde.
+  Accepter: Accepter
+  Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).
+  Refuser: Refuser
+  Au sein de votre organisation: Au sein de votre organisation
+  Comparez votre empreinte: Comparez votre empreinte
+  Dans un groupe d'amis: Dans un groupe d'amis
+  La catégorie {{title}} représente {{formattedValue}} tonnes de CO₂e.: La catégorie {{title}} représente {{formattedValue}} tonnes de CO₂e.
+  La catégorie {{title}} représente {{value}} tonnes de CO₂e.: La catégorie {{title}} représente {{value}} tonnes de CO₂e.
+  Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !
+  CO₂e / an: CO₂e / an
+  En cours: En cours
+  contacter le support.: contacter le support.
+  Si le problème persiste, merci de: Si le problème persiste, merci de
+  organisations.accueil.titre: Nos Gestes Climat pour les organisations
+  / jour: / jour

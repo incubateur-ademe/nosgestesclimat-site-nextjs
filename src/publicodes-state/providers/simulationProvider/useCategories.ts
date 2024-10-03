@@ -10,10 +10,10 @@ import { utils } from 'publicodes'
 import { useMemo } from 'react'
 
 type Props = {
-  parsedRules: NGCRulesNodes
+  parsedRules?: NGCRulesNodes
   everyRules: DottedName[]
   root: DottedName
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  safeGetRule?: (rule: DottedName) => NGCRuleNode | undefined
 }
 
 export function useCategories({
@@ -23,7 +23,7 @@ export function useCategories({
   safeGetRule,
 }: Props) {
   const categories = useMemo<DottedName[]>(() => {
-    const rootRule = safeGetRule(root)
+    const rootRule = safeGetRule?.(root)
     if (!rootRule) {
       console.error(`[useCategories] No rule found for ${root}`)
 
@@ -49,11 +49,12 @@ export function useCategories({
     )
   }, [root, safeGetRule])
 
-  const subcategories = useMemo<Record<DottedName, DottedName[]>>(() => {
+  const subcategories = useMemo<DottedName[]>(() => {
     return categories.reduce(
-      (accumulator, currentValue: DottedName) => {
-        const subCat = []
-        const rule = safeGetRule(currentValue)
+      (accumulator: DottedName[], currentValue: DottedName) => {
+        const subCat: DottedName[] = []
+
+        const rule = safeGetRule?.(currentValue)
         if (!rule) {
           console.error(
             `[useCategories:subcategories] No rule found for ${currentValue}`
@@ -81,18 +82,15 @@ export function useCategories({
             subCat.push(rule)
           } else {
             subCat.push(
-              utils.disambiguateReference(parsedRules, currentValue, rule)
+              utils.disambiguateReference(parsedRules || {}, currentValue, rule)
             )
           }
         }
-        return {
-          ...accumulator,
-          [currentValue]: subCat,
-        }
+        return [...accumulator, ...subCat]
       },
-      {} as Record<DottedName, DottedName[]>
+      [] as DottedName[]
     )
-  }, [parsedRules, categories, safeGetRule, everyRules])
+  }, [categories, safeGetRule, everyRules, parsedRules])
 
   return { categories, subcategories }
 }

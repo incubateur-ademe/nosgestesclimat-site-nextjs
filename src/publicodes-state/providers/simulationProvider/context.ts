@@ -16,15 +16,15 @@ import {
 } from '../../types'
 
 type SimulationContextType = {
-  rules: NGCRules | null
-  engine: Engine | null
-  pristineEngine: Engine | null
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  rules: NGCRules | undefined
+  engine: Engine | undefined
+  pristineEngine?: Engine | null
+  safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
   safeEvaluate: (
     rule: PublicodesExpression,
     metric?: Metric
   ) => NGCEvaluatedNode | null
-  parsedRules: ParsedRules
+  parsedRules?: ParsedRules
   everyRules: DottedName[]
   everyInactiveRules: DottedName[]
   everyQuestions: DottedName[]
@@ -33,15 +33,15 @@ type SimulationContextType = {
   everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
   rawMissingVariables: MissingVariables
   categories: DottedName[]
-  subcategories: Record<DottedName, DottedName[]>
+  subcategories: DottedName[]
   addToEngineSituation: (situationToAdd: Situation) => Situation
   isInitialized: boolean
 }
 export const SimulationContext = createContext<SimulationContextType>({
-  rules: null,
-  engine: null,
+  rules: undefined,
+  engine: undefined,
   pristineEngine: null,
-  safeGetRule: () => null,
+  safeGetRule: () => undefined,
   safeEvaluate: () => null,
   parsedRules: {} as ParsedRules,
   everyRules: [],
@@ -52,7 +52,7 @@ export const SimulationContext = createContext<SimulationContextType>({
   everyMosaicChildrenWithParent: {} as Record<DottedName, DottedName[]>,
   rawMissingVariables: {} as MissingVariables,
   categories: [],
-  subcategories: {} as Record<DottedName, DottedName[]>,
+  subcategories: [],
   addToEngineSituation: () => ({}) as Situation,
   isInitialized: false,
 })

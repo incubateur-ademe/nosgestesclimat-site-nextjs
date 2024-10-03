@@ -18,8 +18,8 @@ import {
 
 type Props = {
   dottedName: DottedName
-  parsedRules: ParsedRules
-  safeGetRule: (rule: DottedName) => NGCRuleNode | null
+  parsedRules: ParsedRules | undefined
+  safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
   safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
   evaluation: NGCEvaluatedNode | null
   type: string | undefined
@@ -98,7 +98,7 @@ export default function useSetValue({
         situationToAdd = Object.keys(value || {}).reduce(
           (accumulator: Situation, partialMosaicChildDottedName: string) => {
             const mosaicChildDottedName = utils.disambiguateReference(
-              parsedRules,
+              parsedRules ?? {},
               dottedName,
               partialMosaicChildDottedName
             ) as DottedName
@@ -165,7 +165,7 @@ const checkValueValidity = ({
       if (!value) {
         return null
       }
-      return value.startsWith("'") ? value : `'${value}'`
+      return value?.startsWith("'") ? value : `'${value}'`
     case 'boolean':
       if (value === 'oui') {
         return 'oui'

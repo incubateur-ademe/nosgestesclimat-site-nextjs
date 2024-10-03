@@ -39,15 +39,29 @@ export const getUserCategoryFootprintsSortedByDifference = ({
     })
   )
 
-  const positiveDifferenceCategories = formattedResult.filter(
-    ({ resultObject }) =>
-      !!resultObject?.difference && resultObject?.difference < 0
-  )
+  const { positiveDifferenceCategories, negativeDifferenceCategories } =
+    formattedResult.reduce(
+      (
+        acc: {
+          positiveDifferenceCategories: PointsFortsFaiblesType[]
+          negativeDifferenceCategories: PointsFortsFaiblesType[]
+        },
+        item: PointsFortsFaiblesType
+      ) => {
+        const { resultObject } = item
+        if (!!resultObject?.difference && resultObject?.difference < 0) {
+          acc.positiveDifferenceCategories.push(item)
+        } else if (!!resultObject?.difference && resultObject?.difference > 0) {
+          acc.negativeDifferenceCategories.push(item)
+        }
 
-  const negativeDifferenceCategories = formattedResult.filter(
-    ({ resultObject }) =>
-      !!resultObject?.difference && resultObject?.difference > 0
-  )
+        return acc
+      },
+      {
+        positiveDifferenceCategories: [],
+        negativeDifferenceCategories: [],
+      }
+    )
 
   return {
     positiveDifferenceCategoriesSorted: positiveDifferenceCategories.sort(

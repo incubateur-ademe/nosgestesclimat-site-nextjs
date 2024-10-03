@@ -1,11 +1,13 @@
 import { useUser } from '@/publicodes-state'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useFetchSimulation } from './useFetchSimulation'
 import { useSimulationIdInQueryParams } from './useSimulationIdInQueryParams'
 
 export function useSetCurrentSimulationFromParams() {
   const pathname = usePathname()
+
+  const router = useRouter()
 
   const { simulations, initSimulation, setCurrentSimulationId } = useUser()
 
@@ -52,7 +54,7 @@ export function useSetCurrentSimulationFromParams() {
     setIsCorrectSimulationSet(true)
 
     // We delete the query params and reload the page
-    window.location.href = pathname
+    router.replace(pathname)
   }, [
     simulations,
     simulation,
@@ -62,6 +64,7 @@ export function useSetCurrentSimulationFromParams() {
     setCurrentSimulationId,
     simulationIdInQueryParams,
     pathname,
+    router,
   ])
 
   return { isCorrectSimulationSet }

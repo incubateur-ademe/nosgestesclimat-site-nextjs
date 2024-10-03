@@ -7,7 +7,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function DocumentationBlock() {
   return (
-    <div>
+    <div className="mb-8">
       <Title tag="h2">
         <Trans>Comment est calculée votre empreinte ?</Trans>
       </Title>

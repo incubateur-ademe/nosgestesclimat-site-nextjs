@@ -49,7 +49,7 @@ export default function MetricSlider({
   return (
     <div
       className={twMerge(
-        isStatic ? '' : 'sticky top-0 z-40 h-96',
+        isStatic ? '' : 'sticky top-0 z-40 mb-4 h-96',
         isSticky && 'pointer-events-none'
       )}
       ref={myElementRef}>

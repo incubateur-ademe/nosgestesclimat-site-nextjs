@@ -1,0 +1,28 @@
+name: Create Release Notes
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create_github_release:
+    name: Create GitHub release
+    runs-on: ubuntu-latest
+    # We create release only if the version in the package.json have been upgraded and this CI is running against the main branch.
+    # We allow branches with a PR open on main to publish pre-release (x.y.z-rc.u) but not actual releases.
+    if: |
+      needs.check_if_version_upgraded.outputs.from_version != needs.check_if_version_upgraded.outputs.to_version
+    needs:
+      - check_if_version_upgraded
+    steps:
+      - uses: softprops/action-gh-release@v1
+        with:
+          name: Release v${{ needs.check_if_version_upgraded.outputs.to_version }}
+          tag_name: v${{ needs.check_if_version_upgraded.outputs.to_version }}
+          target_commitish: ${{ github.head_ref || github.ref }}
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ needs.check_if_version_upgraded.outputs.is_pre_release == 'true' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

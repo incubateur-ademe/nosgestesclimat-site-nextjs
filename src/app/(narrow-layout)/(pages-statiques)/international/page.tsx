@@ -101,18 +101,21 @@ export default async function International() {
           <p>
             <Trans i18nKey="international.pourquoi.3">
               Nous utilisons, quand disponible, l'empreinte du mix électrique
-              fournie par{' '}
-              <Link href="https://app.electricitymaps.com/map" target="_blank">
-                <Image
-                  alt="Electricity Maps"
-                  src="/images/misc/electricitymaps.svg"
-                  className="ml-2 h-4"
-                  width="100"
-                  height="100"
-                />
-              </Link>
-              .
+              fournie par :
             </Trans>
+             
+            <Link
+              className="inline"
+              href="https://app.electricitymaps.com/map"
+              target="_blank">
+              <Image
+                alt="Electricity Maps"
+                src="/images/misc/electricitymaps.svg"
+                className="ml-2 h-4"
+                width="100"
+                height="100"
+              />
+            </Link>
           </p>
         </Container>
       </div>

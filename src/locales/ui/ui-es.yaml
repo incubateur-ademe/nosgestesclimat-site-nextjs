@@ -182,8 +182,8 @@ entries:
   Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.: Nuestro equipo ha sido avisado y resolveremos el problema lo antes posible.
   publicodes.SimulationMissing.simulationManquante: Para desbloquear esta ruta, primero debes completar la prueba.
   publicodes.SimulationMissing.simulationManquante.lock: Pour débloquer ce parcours, vous devez d'abord terminer le test.
-  international.pourquoi.3: Cuando está disponible, utilizamos la huella de la mezcla de electricidad proporcionada por <2><0></0></2>.
-  international.pourquoi.3.lock: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.
+  international.pourquoi.3: 'Cuando está disponible, utilizamos la huella del mix eléctrico facilitada por :'
+  international.pourquoi.3.lock: "Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par :"
   👎 Refuser: 👎 Rechazar
   international.pourquoi.titre: Adaptado a su país
   international.pourquoi.titre.lock: Adapté à votre pays
@@ -333,8 +333,8 @@ entries:
   Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet.: ¿Qué significa esto? Esta página se abrirá en una pestaña nueva.
   Vous utilisez la version: Está utilizando el
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Por supuesto, algunas cosas son compartidas (en mi casa con mi familia, el coche con mis compañeros de viaje): esto se tendrá en cuenta a la hora de calcular tu huella de carbono, ¡así que no te preocupes!'
-  publicodes.Tutoriel.slide2.blockquote: '<2></2> <6></6> Otros gases, especialmente el metano y el óxido nitroso, también calientan el planeta: su potencial de calentamiento se convierte en equivalente de CO₂ para simplificar la medición.'
-  publicodes.Tutoriel.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
+  publicodes.Tutoriel.slide2.blockquote: '<2></2> <6></6> Otros gases, especialmente el metano y el óxido nitroso, también calientan el planeta: convertimos su potencial de calentamiento en CO₂e para simplificar la medición.'
+  publicodes.Tutoriel.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en CO₂e pour simplifier la mesure. "
   publicodes.Tutoriel.slide2.p2: Son las máquinas que fabrican nuestras comodidades y conveniencias modernas las que emiten cantidades masivas de él, tanto que lo contamos en miles de kilos al año y por persona, ¡y por tanto en <2>toneladas de</2> CO₂e!
   publicodes.Tutoriel.slide2.p2.lock: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
   publicodes.Tutoriel.slide1.p1: Es un hecho que el clima se está calentando debido a la actividad humana. Todo lo que consumimos, usamos y luego tiramos requiere materiales y energía. Ya sea durante la producción, el uso o la fase de fin de vida del bien o servicio. Así que todas nuestras actividades contribuyen a las emisiones de gases de efecto invernadero. Algunas mucho, otras muy poco. Pero ¿cuál es nuestro impacto, como ciudadanos individuales?
@@ -913,12 +913,12 @@ entries:
   Masquer les autres campagnes: Ocultar otras campañas
   Sans titre: Sin título
   (définissez un titre dans les paramètres): (defina un título en los parámetros)
-  Date (anciennes > récentes): Fecha (antigua &gt; reciente)
+  Date (anciennes > récentes): Fecha (antigua > reciente)
   Campagne créée par <2>{pollData?.organisationName}</2>, le: Campaña creada por <2>{pollData?.organisationName}</2>, el
   Répartition des empreintes carbone: Desglose de la huella de carbono
-  Nom (A > Z): Nombre (A &gt; Z)
-  Date (récentes > anciennes): Fecha (reciente &gt; antigua)
-  Nom (Z > A): Nombre (Z &gt; A)
+  Nom (A > Z): Nombre (A > Z)
+  Date (récentes > anciennes): Fecha (reciente > antigua)
+  Nom (Z > A): Nombre (Z > A)
   Accéder aux ressources: Acceso a los recursos
   Les ressources de l'ABC: Recursos ABC
   Tableau de bord: Cuadro de mandos
@@ -1130,6 +1130,8 @@ entries:
   Reprendre plus tard: Reanudar más tarde
   Veuillez entrer un nombre positif.: Introduzca un número positivo.
   '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} sobre su huella'
+  Sauvegarder ma progression: Guardar mis progresos
+  <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombres de nos vêtements.: <0>La mayor parte de nuestra huella hídrica la genera el cultivo de plantas,</0> ya sea para alimentarnos a nosotros mismos o a nuestro ganado, o para obtener la materia prima de muchas de nuestras prendas de vestir.
   Une erreur est survenue: Se ha producido un error
   '{{name}}, supprimer cette participation': '{{name}}cancelar esta participación'
   Participant supprimé avec succès: Participante eliminado con éxito
@@ -1147,3 +1149,51 @@ entries:
   <0>Empreinte eau</0> moyenne: <0>Huella hídrica</0> media
   Le lexique pour tout comprendre à l’empreinte eau: Un glosario para entender la huella hídrica
   Lire l'article: Leer el artículo
+  Carbone: Carbono
+  obtenez une estimation <1></1>de votre <3>empreinte carbone</3>.: <1></1>obtenga una estimación de su<3>huella de carbono</3>.
+  jour: día
+  Voici un aperçu du classement des participants en fonction de leur empreinte eau. Cette fonctionnalité est encore en cours de développement.: He aquí un resumen de la clasificación de los participantes según su huella hídrica. Esta función aún está en fase de desarrollo.
+  Eau: Agua
+  En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: Por regla general, los valores de la huella hídrica varían <2>entre 3.000 y 9.000 litros al día</2>. A diferencia del carbono, no existe un objetivo cuantificado para la huella hídrica.
+  Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: Se ha producido un error; por favor, vuelva a cargar la página o inténtelo más tarde.
+  Oups ! Une erreur est survenue: ¡Uy! Se ha producido un error
+  Si le problème persiste, merci de <2>contacter le support</2>.: Si el problema persiste, <2>póngase en contacto con el servicio de asistencia.</2>
+  litres: litros
+  friends.day: día
+  friends.day.lock: jour
+  de CO₂e: de CO₂e
+  Lien de partage copié dans le presse-papier !: Enlace compartido copiado en el portapapeles
+  Oups, une erreur s’est produite lors de la copie du lien de partage.: Oops, hubo un error al copiar el enlace para compartir.
+  obtenez une estimation: solicitar estimación
+  "Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}":
+    |-
+    Nos Gestes Climat: una estimación de su huella de carbono en 10 minutos
+    {{sharedUrl}}
+  CO₂e: CO₂e
+  'Nos Gestes Climat : votre empreinte carbone en 10 min': 'Nos Gestes Climat: su huella de carbono en 10 minutos'
+  empreinte eau: huella hídrica
+  Découvrez votre: Descubre tu
+  empreinte carbone: huella de carbono
+  de votre: de su
+  à la fin du test !: al final de la prueba
+  "Nos Gestes Climat : vos empreintes carbone et eau en 10 min\n{{sharedUrl}}":
+    |-
+    Nos Gestes Climat: su huella de carbono y de agua en 10 minutos
+    {{sharedUrl}}
+  'Nos Gestes Climat : vos empreintes carbone et eau en 10 min': 'Nos Gestes Climat: su huella de carbono y de agua en 10 minutos'
+  Refuser: Desechos
+  Accepter: Acepte
+  Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).: Estos son sus resultados para las categorías principales (transporte, alimentación, etc.), pero no los detalles pregunta por pregunta (el kilometraje de su coche, los metros cuadrados de su vivienda, etc.).
+  Comparez votre empreinte: Compare su huella
+  Dans un groupe d'amis: En un grupo de amigos
+  Au sein de votre organisation: Dentro de su organización
+  La catégorie {{title}} représente {{formattedValue}} tonnes de CO₂e.: '{{title}} représente {{formattedValue}} La categoría toneladas de CO₂e.'
+  La catégorie {{title}} représente {{value}} tonnes de CO₂e.: '{{title}} représente {{value}} La categoría toneladas de CO₂e.'
+  Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: ¿Le gustaría ilustrar una cantidad de CO₂e y difundir los órdenes de magnitud adecuados a su comunidad? El comparador de carbono de ADEME es la herramienta que necesita
+  En cours: En curso
+  CO₂e / an: CO₂e / año
+  contacter le support.: contacte con soporte.
+  Si le problème persiste, merci de: Si el problema persiste, por favor
+  organisations.accueil.titre: Nos Gestes Climat pour les organisations
+  organisations.accueil.titre.lock: Nos Gestes Climat pour les organisations
+  / jour: / día
