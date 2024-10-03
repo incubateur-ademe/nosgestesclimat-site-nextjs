@@ -2,10 +2,10 @@
 
 import { carboneMetric } from '@/constants/metric'
 import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import { utils } from 'publicodes'
+import { EvaluatedNode, utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
-import { Metric, NGCEvaluatedNode } from '../../types'
+import { Metric } from '../../types'
 import useCurrentSimulation from '../useCurrentSimulation'
 import useChoices from './useChoices'
 import useContent from './useContent'
@@ -38,7 +38,7 @@ export default function useRule(
   const { situation, foldedSteps, updateCurrentSimulation } =
     useCurrentSimulation()
 
-  const evaluation = useMemo<NGCEvaluatedNode | null>(
+  const evaluation = useMemo<EvaluatedNode | null>(
     () => safeEvaluate(dottedName, metric),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [dottedName, engine, situation, metric]

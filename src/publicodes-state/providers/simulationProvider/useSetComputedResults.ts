@@ -1,22 +1,19 @@
 import { defaultMetric, metrics } from '@/constants/metric'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import { EvaluatedNode } from 'publicodes'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import type {
   ComputedResults,
   ComputedResultsFootprint,
   Metric,
-  NGCEvaluatedNode,
 } from '../../types'
 
 type Props = {
   categories: DottedName[]
   subcategories: DottedName[]
   isEngineInitialized: boolean
-  safeEvaluate?: (
-    ruleName: DottedName,
-    metric: Metric
-  ) => NGCEvaluatedNode | null
+  safeEvaluate?: (ruleName: DottedName, metric: Metric) => EvaluatedNode | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
 }
 export function useSetComputedResults({

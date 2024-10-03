@@ -1,11 +1,11 @@
 'use client'
 
 import { NodeValue } from '@incubateur-ademe/nosgestesclimat'
+import { EvaluatedNode } from 'publicodes'
 import { useMemo } from 'react'
-import { NGCEvaluatedNode } from '../../types'
 
 type Props = {
-  evaluation: NGCEvaluatedNode | null
+  evaluation: EvaluatedNode | null
   type: string | undefined
 }
 

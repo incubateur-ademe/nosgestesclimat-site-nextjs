@@ -5,8 +5,6 @@ import {
   SuggestionValue,
 } from '@incubateur-ademe/nosgestesclimat'
 import PublicodesEngine, {
-  EvaluatedNode,
-  Evaluation,
   ParsedRules as PublicodesParsedRules,
   Situation as PublicodesSituation,
 } from 'publicodes'
@@ -42,11 +40,6 @@ export type User = {
 }
 
 export type Tutorials = Record<string, boolean>
-
-export type NGCEvaluatedNode = EvaluatedNode
-export type ActionChoices = Record<string, boolean>
-
-export type NodeValue = Evaluation
 
 export type ComputedResultsSubcategories = {
   transport: Record<DottedName, number>
