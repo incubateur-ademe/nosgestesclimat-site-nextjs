@@ -34,7 +34,7 @@ export function useTrackPageView() {
 
     // We remove the lang prefix from the pathname
     locales.map((locale) => {
-      if (pathname.startsWith(`/${locale}`)) {
+      if (pathname?.startsWith(`/${locale}`)) {
         url = pathname.slice(3)
       }
     })

@@ -9,7 +9,7 @@ import Markdown from '@/design-system/utils/Markdown'
 import { useLocale } from '@/hooks/useLocale'
 import { useCurrentSimulation, useDisposableEngine } from '@/publicodes-state'
 import { Metric } from '@/publicodes-state/types'
-import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { RulePage } from '@publicodes/react-ui'
 import Head from 'next/head'
 import Engine from 'publicodes'
@@ -17,22 +17,22 @@ import { useState } from 'react'
 import MetricSwitchButton from './documentationClient/MetricSwitchButton'
 
 type Props = {
-  supportedRegions: SupportedRegions
+  rules: NGCRules
   slugs: string[]
 }
-export default function DocumentationClient({ slugs }: Props) {
+export default function DocumentationClient({ slugs, rules }: Props) {
   const locale = useLocale()
 
   const path = decodeURI(slugs.join('/'))
   const documentationPath = '/documentation'
 
   const { situation } = useCurrentSimulation()
-  const { engine } = useDisposableEngine({ situation })
+  const { engine } = useDisposableEngine({ rules, situation })
 
   const [metric, setMetric] = useState<Metric>(defaultMetric)
 
   return (
-    <div className="p-8 pt-4">
+    <>
       <PasserTestBanner />
       <MetricSwitchButton
         metric={metric}
@@ -64,6 +64,6 @@ export default function DocumentationClient({ slugs }: Props) {
           ),
         }}
       />
-    </div>
+    </>
   )
 }
