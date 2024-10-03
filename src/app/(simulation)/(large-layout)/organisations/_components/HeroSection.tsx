@@ -13,11 +13,14 @@ import Image from 'next/image'
 
 export default function HeroSection() {
   const { t } = useClientTranslation()
+
   return (
     <div className="flex flex-wrap justify-center gap-12 pt-14 lg:flex-nowrap lg:justify-start lg:gap-16">
       <div className="max-w-full md:w-[34rem]">
         <h1>
-          <Trans>Nos Gestes Climat pour les organisations</Trans>
+          <Trans i18nKey="organisations.accueil.titre">
+            Nos Gestes Climat pour les organisations
+          </Trans>
         </h1>
 
         <div className="mb-12 text-sm md:text-lg">

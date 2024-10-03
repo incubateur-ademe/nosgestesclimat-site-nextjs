@@ -18,15 +18,12 @@ export default function ErrorContent() {
       </p>
 
       <p>
-        <Trans>
-          Si le problème persiste, merci de{' '}
-          <Button
-            color="link"
-            onClick={() => window.location.replace('/contact')}>
-            contacter le support
-          </Button>
-          .
-        </Trans>
+        <Trans>Si le problème persiste, merci de</Trans>{' '}
+        <Button
+          color="link"
+          onClick={() => window.location.replace('/contact')}>
+          <Trans>contacter le support.</Trans>
+        </Button>
       </p>
 
       <div className="mt-10 flex w-full justify-center">

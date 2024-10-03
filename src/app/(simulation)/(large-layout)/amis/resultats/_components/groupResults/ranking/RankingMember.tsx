@@ -2,50 +2,93 @@
 
 import TrashIcon from '@/components/icons/TrashIcon'
 import Trans from '@/components/translation/Trans'
+import { carboneMetric } from '@/constants/metric'
 import Badge from '@/design-system/layout/Badge'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
+import Emoji from '@/design-system/utils/Emoji'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useIsGroupOwner } from '@/hooks/groups/useIsGroupOwner'
 import { useRemoveParticipant } from '@/hooks/groups/useRemoveParticipant'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { Group } from '@/types/groups'
+import { Group, Participant } from '@/types/groups'
+import { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import { captureException } from '@sentry/nextjs'
 import { QueryObserverResult } from '@tanstack/react-query'
-import { JSX, useState } from 'react'
+import isMobile from 'is-mobile'
+import { useState } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { twMerge } from 'tailwind-merge'
 
+const getRank = (index: number) => {
+  switch (index) {
+    case 0:
+      return <Emoji>🥇</Emoji>
+    case 1:
+      return <Emoji>🥈</Emoji>
+    case 2:
+      return <Emoji>🥉</Emoji>
+    default:
+      return `${index + 1}.`
+  }
+}
+
 export default function RankingMember({
-  rank,
-  quantity,
+  participant,
+  index,
   isTopThree,
   isCurrentMember,
   group,
-  name,
-  userId,
   numberOfParticipants,
   refetchGroup,
   textColor,
+  metric,
 }: {
-  rank: JSX.Element | string
-  name: string
-  quantity: JSX.Element | string
-  unit?: string
   isTopThree?: boolean
+  index: number
   isCurrentMember?: boolean
   group: Group
-  userId: string
   numberOfParticipants?: number
   refetchGroup: () => Promise<QueryObserverResult<Group, Error>>
   textColor?: string
+  participant: Participant
+  metric: Metrics
 }) {
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false)
 
   const { t } = useClientTranslation()
 
+  const shouldUseAbbreviation = isMobile()
+
   const { isGroupOwner } = useIsGroupOwner({ group })
 
   const { mutateAsync: removePartipant } = useRemoveParticipant()
+
+  const { formattedValue, unit } = formatFootprint(
+    participant?.simulation?.computedResults?.[metric]?.bilan ?? '',
+    {
+      metric,
+      shouldUseAbbreviation,
+    }
+  )
+
+  const suffix = metric === carboneMetric ? t('CO₂e / an') : t('/ jour')
+
+  const quantity =
+    participant.simulation.progression !== 1 ? (
+      <span className="text-sm text-gray-600">
+        <Trans>En cours</Trans>
+      </span>
+    ) : participant?.simulation?.computedResults?.[metric]?.bilan ? (
+      <span className="m-none leading-[160%]">
+        <strong>{formattedValue}</strong>{' '}
+        <span className="text-sm font-light">
+          {unit} {suffix}
+        </span>
+      </span>
+    ) : (
+      '...'
+    )
 
   async function handleDelete() {
     if (!group) return
@@ -53,7 +96,7 @@ export default function RankingMember({
     try {
       await removePartipant({
         groupId: group?._id,
-        userId: userId || '',
+        userId: participant.userId || '',
       })
 
       await refetchGroup()
@@ -79,10 +122,13 @@ export default function RankingMember({
               isTopThree ? 'text-lg md:text-2xl' : 'ml-1 text-base md:text-lg',
               textColor ?? ''
             )}>
-            {rank}
+            {participant.simulation.progression !== 1
+              ? // Display a placeholder
+                '--'
+              : getRank(index)}
           </span>
 
-          {name}
+          <span className={textColor}>{participant.name}</span>
 
           {isCurrentMember && (
             <Badge className="ml-2 inline rounded-xl border-pink-100 bg-pink-200 text-xs font-bold text-secondary-700">
@@ -118,8 +164,7 @@ export default function RankingMember({
               <TrashIcon
                 className={twMerge(
                   'w-4 fill-default',
-                  isTopThree ? 'fill-white hover:fill-primary-200' : '',
-                  textColor === 'text-white' ? 'fill-white' : ''
+                  textColor === 'text-white' ? 'fill-white' : 'fill-default'
                 )}
               />
             </button>

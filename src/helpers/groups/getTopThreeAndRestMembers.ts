@@ -1,10 +1,13 @@
-import { defaultMetric } from '@/constants/metric'
 import { Participant } from '@/types/groups'
+import { Metrics } from '@incubateur-ademe/nosgestesclimat'
 
-export const getTopThreeAndRestMembers = (members: Participant[] = []) => {
+export const getTopThreeAndRestMembers = (
+  members: Participant[] = [],
+  metric: Metrics
+) => {
   const sortedMembers = members.sort((memberA, memberB) => {
-    const totalA = memberA?.simulation?.computedResults?.[defaultMetric]?.bilan
-    const totalB = memberB?.simulation?.computedResults?.[defaultMetric]?.bilan
+    const totalA = memberA?.simulation?.computedResults?.[metric]?.bilan
+    const totalB = memberB?.simulation?.computedResults?.[metric]?.bilan
 
     return totalA !== undefined && totalB !== undefined ? totalA - totalB : -1
   })
@@ -19,8 +22,7 @@ export const getTopThreeAndRestMembers = (members: Participant[] = []) => {
 
       if (
         index < 3 &&
-        member?.simulation?.computedResults?.[defaultMetric]?.bilan !==
-          undefined
+        member?.simulation?.computedResults?.[metric]?.bilan !== undefined
       ) {
         acc.topThreeMembers.push(member)
       } else {
