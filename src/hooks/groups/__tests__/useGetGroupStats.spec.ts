@@ -12,16 +12,7 @@ describe('useGetGroupStats', () => {
 
     beforeEach(() => {
       group = createGroup({
-        participants: [
-          {
-            name: 'nolan',
-            footprintSize: 'medium',
-          } as Participant & { footprintSize: 'medium' },
-          {
-            name: 'corentin',
-            footprintSize: 'medium',
-          } as Participant & { footprintSize: 'medium' },
-        ],
+        participants: ['nolan', 'corentin'],
         currentUserId,
       })
     })
@@ -49,20 +40,7 @@ describe('useGetGroupStats', () => {
 
     beforeEach(() => {
       group = createGroup({
-        participants: [
-          {
-            name: 'nolan',
-            footprintSize: 'small',
-          } as Participant & { footprintSize: 'small' },
-          {
-            name: 'corentin',
-            footprintSize: 'medium',
-          } as Participant & { footprintSize: 'medium' },
-          {
-            name: 'sandy',
-            footprintSize: 'large',
-          } as Participant & { footprintSize: 'large' },
-        ],
+        participants: ['nolan', 'corentin', 'sandy'],
         currentUserId,
       })
     })
