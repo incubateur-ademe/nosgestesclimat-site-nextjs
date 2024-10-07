@@ -87,7 +87,9 @@ export default function StatisticsBlocks({
           <div className="bg-rainbow-rotation overflow-hidden rounded-xl p-8">
             <p className="text-4xl font-bold text-primary-700">
               {formattedValue}{' '}
-              <span className="text-base font-normal">{unit} CO₂e</span>
+              <span className="text-base font-normal">
+                {unit} CO₂e <Trans>/ an</Trans>
+              </span>
             </p>
 
             <p className="text-xl">
@@ -110,7 +112,9 @@ export default function StatisticsBlocks({
               <div className="relative z-10">
                 <p className="text-3xl font-bold text-white">
                   {formattedWaterValue ?? 0}{' '}
-                  <span className="text-base font-normal">{waterUnit}</span>
+                  <span className="text-base font-normal">
+                    {waterUnit} <Trans>/ jour</Trans>
+                  </span>
                 </p>
 
                 <p className="text-xl text-white">
