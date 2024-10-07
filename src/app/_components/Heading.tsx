@@ -30,7 +30,11 @@ export default async function Heading() {
             .
           </p>
           <p className="mb-6 md:mb-8 md:text-2xl">
-            <Badge color="secondary" size="sm" className="align-text-bottom">
+            <Badge
+              tag="span"
+              color="secondary"
+              size="sm"
+              className="align-text-bottom">
               BETA
             </Badge>{' '}
             <Trans>Découvrez votre</Trans>{' '}
