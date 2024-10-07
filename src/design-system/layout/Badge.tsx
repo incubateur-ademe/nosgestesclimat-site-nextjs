@@ -5,13 +5,6 @@ import {
 import { PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
-  color?: 'primary' | 'secondary' | 'green' | 'red'
-  size?: 'xs' | 'sm' | 'md'
-  className?: string
-  category?: string
-}
-
 const colorClassNames = {
   primary: 'border-primary-300 text-primary-700 bg-primary-50',
   secondary: 'border-secondary-700 text-secondary-700 bg-secondary-50',
@@ -29,9 +22,17 @@ export default function Badge({
   size = 'md',
   className,
   category,
-}: PropsWithChildren<Props>) {
+  tag = 'div',
+}: PropsWithChildren<{
+  color?: 'primary' | 'secondary' | 'green' | 'red'
+  size?: 'xs' | 'sm' | 'md'
+  className?: string
+  category?: string
+  tag?: 'div' | 'span' | 'p'
+}>) {
+  const Tag = tag
   return (
-    <div
+    <Tag
       className={twMerge(
         'inline-block whitespace-nowrap rounded-xl border-2 px-2 font-black leading-none',
         sizeClassNames[size],
@@ -41,6 +42,6 @@ export default function Badge({
         className
       )}>
       {children}{' '}
-    </div>
+    </Tag>
   )
 }
