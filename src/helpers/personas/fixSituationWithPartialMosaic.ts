@@ -1,13 +1,13 @@
 import getType from '@/publicodes-state/helpers/getType'
-import { NGCEvaluatedNode, Situation } from '@/publicodes-state/types'
+import { Situation } from '@/publicodes-state/types'
 import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import { PublicodesExpression } from 'publicodes'
+import { EvaluatedNode, PublicodesExpression } from 'publicodes'
 
 type Props = {
   situation: Situation
   everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
   safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
-  safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
+  safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
 }
 
 const getMosaicChildrenGroup = (
