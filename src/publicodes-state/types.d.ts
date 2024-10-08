@@ -5,7 +5,6 @@ import {
   SuggestionValue,
 } from '@incubateur-ademe/nosgestesclimat'
 import PublicodesEngine, {
-  EvaluatedNode,
   ParsedRules as PublicodesParsedRules,
   Situation as PublicodesSituation,
 } from 'publicodes'
@@ -41,6 +40,14 @@ export type User = {
 }
 
 export type Tutorials = Record<string, boolean>
+
+export type ComputedResultsSubcategories = {
+  transport: Record<DottedName, number>
+  logement: Record<DottedName, number>
+  alimentation: Record<DottedName, number>
+  divers: Record<DottedName, number>
+  'services sociétaux': Record<DottedName, number>
+}
 
 export type ComputedResultsFootprint = {
   bilan: number
@@ -89,9 +96,6 @@ export type LocalStorage = {
   groupToRedirectToAfterTest?: Group
 }
 
-// Not used for now
-export type ActionChoices = Record<DottedName, boolean>
-
 export type Metric = Metrics
 
 export type Situation = PublicodesSituation<DottedName>
@@ -101,8 +105,6 @@ export type ParsedRules = PublicodesParsedRules<DottedName>
 export type Engine = PublicodesEngine<DottedName>
 
 export type MissingVariables = Record<DottedName, number>
-
-export type NGCEvaluatedNode = EvaluatedNode
 
 export type FormattedSuggestion = {
   label: string
