@@ -3,18 +3,9 @@ name: Create Release Notes
 on:
   push:
     branches:
-      - main
+      - fix-workflow
 
 jobs:
-  # Add a job without dependencies to make the workflow valid
-  dummy_job:
-    name: Dummy job
-    runs-on: ubuntu-latest
-    outputs:
-      dummy_output: 'dummy'
-    steps:
-      - run: echo "dummy" >> $GITHUB_OUTPUT
-
   check_if_version_upgraded:
     name: Check if version upgrade
     # When someone forks the repo and opens a PR we want to enables the tests to be run (the previous jobs)
@@ -56,5 +47,6 @@ jobs:
           generate_release_notes: true
           draft: false
           prerelease: ${{ needs.check_if_version_upgraded.outputs.is_pre_release == 'true' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Uncomment to use the token from the secrets, this is temporary to avoid creating a new release
+        # env:
+        # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
