@@ -6,6 +6,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import {
   getBgCategoryColor,
   getBorderCategoryColor,
+  getCategoryFocusRingClassName,
   getHoverBgCategoryColor,
   getHoverBorderCategoryColor,
   getTextCategoryColor,
@@ -19,23 +20,6 @@ import { twMerge } from 'tailwind-merge'
 type Props = {
   question: DottedName
   setValue: (value: NodeValue | Record<string, NodeValue>) => void
-}
-
-function getCategoryFocusRingClassName(category: string) {
-  switch (category) {
-    case 'transport':
-      return 'focus:!ring-transport-800 focus:!ring-offset-2'
-    case 'alimentation':
-      return 'focus:!ring-alimentation-800 focus:!ring-offset-2'
-    case 'logement':
-      return 'focus:!ring-logement-800 focus:!ring-offset-2'
-    case 'divers':
-      return 'focus:!ring-divers-800 focus:!ring-offset-2'
-    case 'servicessocietaux':
-      return 'focus:!ring-servicessocietaux-800 focus:!ring-offset-2'
-    default:
-      return ''
-  }
 }
 
 export default function Suggestions({ question, setValue }: Props) {
