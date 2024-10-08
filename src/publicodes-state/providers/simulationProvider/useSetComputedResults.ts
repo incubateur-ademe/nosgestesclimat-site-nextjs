@@ -1,22 +1,16 @@
 import { defaultMetric, metrics } from '@/constants/metric'
 import { useCurrentSimulation } from '@/publicodes-state'
+import { getComputedResults } from '@/publicodes-state/helpers/getComputedResults'
 import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import { EvaluatedNode } from 'publicodes'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
-import type {
-  ComputedResults,
-  ComputedResultsFootprint,
-  Metric,
-  NGCEvaluatedNode,
-} from '../../types'
+import type { ComputedResults, Metric } from '../../types'
 
 type Props = {
   categories: DottedName[]
   subcategories: DottedName[]
   isEngineInitialized: boolean
-  safeEvaluate?: (
-    ruleName: DottedName,
-    metric: Metric
-  ) => NGCEvaluatedNode | null
+  safeEvaluate?: (ruleName: DottedName, metric: Metric) => EvaluatedNode | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
 }
 export function useSetComputedResults({
@@ -42,34 +36,12 @@ export function useSetComputedResults({
   // Set the computed results object (after engine init only)
   const computedResults: ComputedResults = useMemo(
     () =>
-      metrics.reduce((metricsAcc: ComputedResults, metric: Metric) => {
-        // Get the footprint of the categories
-        metricsAcc[metric] = categories.reduce(
-          (categoriesAcc: ComputedResultsFootprint, category: DottedName) => {
-            categoriesAcc.categories[category] = getNumericValue(
-              category,
-              metric
-            )
-
-            return categoriesAcc
-          },
-          {
-            categories: {},
-            subcategories: {},
-            bilan: getNumericValue('bilan', metric),
-          } as ComputedResultsFootprint
-        )
-
-        // Get the footprint of the subcategories
-        metricsAcc[metric].subcategories = subcategories.reduce(
-          (acc, subcategory) => {
-            acc[subcategory] = getNumericValue(subcategory, metric)
-            return acc
-          },
-          {} as Record<DottedName, number>
-        )
-        return metricsAcc
-      }, {} as ComputedResults),
+      getComputedResults({
+        metrics,
+        categories,
+        subcategories,
+        getNumericValue,
+      }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [categories, getNumericValue, situation, subcategories]
   )

@@ -2,14 +2,14 @@
 
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { PublicodesExpression } from 'publicodes'
+import { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
-import { NGCEvaluatedNode, Situation } from '../../types'
+import { Situation } from '../../types'
 
 type Props = {
   dottedName: DottedName
   everyNotifications: DottedName[]
-  safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
+  safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
   situation: Situation
 }
 

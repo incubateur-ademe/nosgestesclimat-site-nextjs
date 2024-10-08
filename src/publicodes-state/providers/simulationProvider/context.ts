@@ -4,13 +4,12 @@ import {
   NGCRuleNode,
   NGCRules,
 } from '@incubateur-ademe/nosgestesclimat'
-import { PublicodesExpression } from 'publicodes'
+import { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { createContext } from 'react'
 import {
   Engine,
   Metric,
   MissingVariables,
-  NGCEvaluatedNode,
   ParsedRules,
   Situation,
 } from '../../types'
@@ -23,7 +22,7 @@ type SimulationContextType = {
   safeEvaluate: (
     rule: PublicodesExpression,
     metric?: Metric
-  ) => NGCEvaluatedNode | null
+  ) => EvaluatedNode | null
   parsedRules?: ParsedRules
   everyRules: DottedName[]
   everyInactiveRules: DottedName[]
