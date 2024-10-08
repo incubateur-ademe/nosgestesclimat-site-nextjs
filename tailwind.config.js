@@ -664,7 +664,7 @@ module.exports = {
     'focus:ring-logement-800',
     'focus:ring-divers-800',
     'focus:ring-servicessocietaux-800',
-    'focus:ring-offset-4',
+    'focus:ring-offset-2',
   ],
   plugins: [],
 }
