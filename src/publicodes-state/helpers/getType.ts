@@ -1,10 +1,10 @@
 import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import { NGCEvaluatedNode } from '../types'
+import { EvaluatedNode } from 'publicodes'
 
 type Props = {
   dottedName: DottedName
   rule: NGCRuleNode | null | any // Model shenanigans: question alimentation . local . consommation is missing "formule"
-  evaluation: NGCEvaluatedNode | null
+  evaluation: EvaluatedNode | null
 }
 
 const booleanSecureTypes = ['présent', 'propriétaire']
