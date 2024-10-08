@@ -21,12 +21,31 @@ type Props = {
   setValue: (value: NodeValue | Record<string, NodeValue>) => void
 }
 
+function getCategoryFocusRingClassName(category: string) {
+  switch (category) {
+    case 'transport':
+      return 'focus:!ring-transport-800 focus:!ring-offset-2'
+    case 'alimentation':
+      return 'focus:!ring-alimentation-800 focus:!ring-offset-2'
+    case 'logement':
+      return 'focus:!ring-logement-800 focus:!ring-offset-2'
+    case 'divers':
+      return 'focus:!ring-divers-800 focus:!ring-offset-2'
+    case 'servicessocietaux':
+      return 'focus:!ring-servicessocietaux-800 focus:!ring-offset-2'
+    default:
+      return ''
+  }
+}
+
 export default function Suggestions({ question, setValue }: Props) {
   const { suggestions } = useRule(question)
 
   const { currentCategory } = useForm()
 
   if (!suggestions?.length) return
+
+  const focusClassName = getCategoryFocusRingClassName(currentCategory ?? '')
 
   return (
     <div className="mb-6 flex flex-wrap justify-start gap-x-2 gap-y-2.5 text-sm">
@@ -42,7 +61,8 @@ export default function Suggestions({ question, setValue }: Props) {
             getBorderCategoryColor(currentCategory, '200'),
             getTextCategoryColor(currentCategory, '900'),
             getHoverBgCategoryColor(currentCategory, '300'),
-            getHoverBorderCategoryColor(currentCategory, '300')
+            getHoverBorderCategoryColor(currentCategory, '300'),
+            focusClassName
           )}
           onClick={() => {
             trackEvent(
