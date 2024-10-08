@@ -3,7 +3,7 @@ name: Create Release Notes
 on:
   push:
     branches:
-      - fix-workflow
+      - main
 
 jobs:
   check_if_version_upgraded:
@@ -47,6 +47,5 @@ jobs:
           generate_release_notes: true
           draft: false
           prerelease: ${{ needs.check_if_version_upgraded.outputs.is_pre_release == 'true' }}
-        # Uncomment to use the token from the secrets, this is temporary to avoid creating a new release
-        # env:
-        # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
