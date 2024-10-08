@@ -64,4 +64,4 @@ dist
 
 coverage
 
-.husky/pre-commit-custom
+.husky/pre-push-custom
