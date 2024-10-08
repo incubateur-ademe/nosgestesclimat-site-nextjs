@@ -1,11 +1,6 @@
-import {
-  Engine,
-  Entries,
-  NGCEvaluatedNode,
-  Situation,
-} from '@/publicodes-state/types'
+import { Engine, Entries, Situation } from '@/publicodes-state/types'
 import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import { PublicodesExpression } from 'publicodes'
+import { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { fixSituationWithPartialMosaic } from './fixSituationWithPartialMosaic'
 
 type Props = {
@@ -15,7 +10,7 @@ type Props = {
   everyRules: DottedName[]
   engine: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
-  safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
+  safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
 }
 
 export const getPersonaFoldedSteps = ({
