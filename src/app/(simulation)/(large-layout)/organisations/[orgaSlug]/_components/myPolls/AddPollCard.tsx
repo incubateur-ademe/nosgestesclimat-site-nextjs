@@ -28,7 +28,7 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
       <div className="flex flex-1 items-center justify-center">
         <Image
           className="self-start"
-          src="/images/illustrations/people-raising-arm.svg"
+          src="/images/illustrations/people-raising-arm.png"
           width="200"
           height="400"
           alt={t(

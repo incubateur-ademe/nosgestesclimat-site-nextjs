@@ -70,7 +70,7 @@ export default function DocumentationLanding() {
 
         <Image
           className="-mt-8 ml-auto w-48 md:-mt-16 md:w-full"
-          src="/images/illustrations/girl-reading-newspaper.svg"
+          src="/images/illustrations/girl-reading-newspaper.png"
           width="400"
           height="300"
           alt={t(

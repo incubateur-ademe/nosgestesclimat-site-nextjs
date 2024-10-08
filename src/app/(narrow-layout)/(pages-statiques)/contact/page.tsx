@@ -54,7 +54,7 @@ export default async function Contact() {
 
         <Image
           className="self-start"
-          src="/images/illustrations/delivering-mail.svg"
+          src="/images/illustrations/delivering-mail.png"
           width="300"
           height="400"
           alt={t(
