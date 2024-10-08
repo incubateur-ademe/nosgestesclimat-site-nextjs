@@ -33,7 +33,7 @@ export default function Organisations() {
         </div>
         <Image
           className="-mt-12 mb-12 w-60 self-start md:w-80"
-          src="/images/illustrations/people-with-paperboard.svg"
+          src="/images/illustrations/people-with-paperboard.png"
           width="380"
           height="400"
           alt={t('Un groupe de personnes discutant devant un paperboard.')}

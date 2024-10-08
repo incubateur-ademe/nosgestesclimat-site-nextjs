@@ -42,7 +42,7 @@ export default async function Profil() {
         <SimulationBanner />
         <Image
           className="-mt-16 ml-auto hidden md:block"
-          src="/images/illustrations/girl-thinking.svg"
+          src="/images/illustrations/girl-thinking.png"
           width="360"
           height="400"
           alt={t('Une fille réfléchissant à son empreinte carbone.')}
@@ -67,7 +67,7 @@ export default async function Profil() {
         />
         <Image
           className="-mt-12 ml-auto w-48 self-end md:mt-auto md:w-auto"
-          src="/images/illustrations/delivering-mail.svg"
+          src="/images/illustrations/delivering-mail.png"
           width="350"
           height="400"
           alt={t('Une personne livrant du courrier.')}
