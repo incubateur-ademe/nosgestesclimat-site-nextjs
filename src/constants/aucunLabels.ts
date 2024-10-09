@@ -1,4 +1,4 @@
-export const aucunLabels = [
+export const aucunLabels = new Set([
   'aucun',
   'pas de chauffage',
   'aucun animal',
@@ -7,4 +7,4 @@ export const aucunLabels = [
   'pas de chauffage 🙅‍♂️',
   'aucun animal 🙅‍♂️',
   'aucun sport 🙅‍♂️',
-]
+])

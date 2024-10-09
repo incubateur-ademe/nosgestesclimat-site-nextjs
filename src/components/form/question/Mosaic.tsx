@@ -17,7 +17,7 @@ export default function Mosaic({
   ...props
 }: Props) {
   const aucunOption = suggestions.find((suggestion) =>
-    aucunLabels.includes(suggestion.label)
+    aucunLabels.has(suggestion.label)
   )
 
   return (
