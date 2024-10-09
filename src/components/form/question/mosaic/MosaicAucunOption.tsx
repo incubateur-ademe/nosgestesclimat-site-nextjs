@@ -50,7 +50,7 @@ export default function MosaicAucunOption({
       return
     }
     setIsSelected(!isMosaicChildrenSelected)
-  }, [isMosaicChildrenSelected])
+  }, [isMosaicChildrenSelected, isMissing])
 
   return (
     <button
