@@ -51,7 +51,7 @@ export default function Organisations() {
         <div className="relative hidden flex-1 md:block">
           <Image
             className="absolute"
-            src="/images/illustrations/people-with-paperboard.svg"
+            src="/images/illustrations/people-with-paperboard.png"
             width="603"
             height="332"
             alt={t('Groupe de personnes discutant devant un paperboard.')}

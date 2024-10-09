@@ -19,31 +19,31 @@ export default function CategoryIllustration({
     switch (category) {
       case 'transport':
         return {
-          src: '/images/illustrations/mother-and-son-on-bike.svg',
+          src: '/images/illustrations/mother-and-son-on-bike.png',
           alt: t('Une mère et son enfant sur un vélo'),
           className: '',
         }
       case 'alimentation':
         return {
-          src: '/images/illustrations/girl-cooking.svg',
+          src: '/images/illustrations/girl-cooking.png',
           alt: t('Une fille qui cuisine'),
           className: '',
         }
       case 'logement':
         return {
-          src: '/images/illustrations/girl-reading-newspaper.svg',
+          src: '/images/illustrations/girl-reading-newspaper.png',
           alt: t('Une fille qui lit un journal'),
           className: 'min-w-[200px]',
         }
       case 'divers':
         return {
-          src: '/images/illustrations/at-the-cinema.svg',
+          src: '/images/illustrations/at-the-cinema.png',
           alt: t('Un grand-père et sa petite fille qui regardent un film'),
           className: '',
         }
       case 'services sociétaux':
         return {
-          src: '/images/illustrations/children-holding-hand.svg',
+          src: '/images/illustrations/children-holding-hand.png',
           alt: t('Des enfants qui se tiennent la main'),
           className: '',
         }

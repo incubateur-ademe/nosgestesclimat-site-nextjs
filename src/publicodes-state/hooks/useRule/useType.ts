@@ -1,14 +1,14 @@
 'use client'
 
 import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import { EvaluatedNode } from 'publicodes'
 import { useMemo } from 'react'
 import getType from '../../helpers/getType'
-import { NGCEvaluatedNode } from '../../types'
 
 type Props = {
   dottedName: DottedName
   rule: NGCRuleNode | undefined
-  evaluation: NGCEvaluatedNode | null
+  evaluation: EvaluatedNode | null
 }
 
 export default function useType({ dottedName, rule, evaluation }: Props) {
