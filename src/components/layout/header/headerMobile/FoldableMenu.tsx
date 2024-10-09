@@ -4,11 +4,10 @@ import {
   footerClickDocumentation,
   headerClickProfil,
 } from '@/constants/tracking/layout'
-import { HIDE_CTA_PATHS } from '@/constants/urls'
 import BurgerMenu from '@/design-system/layout/BurgerMenu'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { usePathname } from 'next/navigation'
+import { Suspense } from 'react'
 import NavLink from '../NavLink'
 import OrganisationLink from '../_components/OrganisationLink'
 import ProfileIcon from '../_components/ProfileIcon'
@@ -16,8 +15,6 @@ import CTAButton from '../headerDesktop/CTAButton'
 
 export default function FoldableMenu() {
   const { user } = useUser()
-
-  const pathname = usePathname()
 
   return (
     <BurgerMenu>
@@ -79,10 +76,11 @@ export default function FoldableMenu() {
             </NavLink>
           </li>
 
-          {!HIDE_CTA_PATHS.find((path) => pathname.includes(path)) &&
-          !user?.organisation?.administratorEmail ? (
+          {!user?.organisation?.administratorEmail ? (
             <li>
-              <CTAButton />
+              <Suspense fallback={null}>
+                <CTAButton />
+              </Suspense>
             </li>
           ) : null}
         </ul>

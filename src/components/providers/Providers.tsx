@@ -4,7 +4,7 @@ import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider, useCurrentSimulation } from '@/publicodes-state'
 import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, Suspense } from 'react'
 import Error500 from '../layout/500'
 import SimulationSyncProvider from './providers/SimulationSyncProvider'
 
@@ -33,7 +33,9 @@ export default function Providers({
   return (
     <div key={id}>
       <SimulationProvider rules={rules}>
-        <LocalisationBanner supportedRegions={supportedRegions} />
+        <Suspense fallback={null}>
+          <LocalisationBanner supportedRegions={supportedRegions} />
+        </Suspense>
         <SimulationSyncProvider>{children}</SimulationSyncProvider>
       </SimulationProvider>
     </div>

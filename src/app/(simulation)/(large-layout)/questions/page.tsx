@@ -2,7 +2,6 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import Questions from './_components/Questions'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -24,7 +23,6 @@ export default function QuestionsPage() {
       <Title>
         <Trans>Questions</Trans>
       </Title>
-      <Questions />
     </>
   )
 }
