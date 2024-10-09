@@ -22,14 +22,6 @@ export default function Mosaic({
 
   return (
     <fieldset className="grid gap-2 md:grid-cols-2 md:gap-4">
-      {aucunOption ? (
-        <MosaicAucunOption
-          question={question}
-          aucunOption={aucunOption}
-          questionsOfMosaic={questionsOfMosaic}
-          {...props}
-        />
-      ) : null}
       {questionsOfMosaic
         ? questionsOfMosaic.map((questionOfMosaic, index) => (
             <MosaicQuestion
@@ -41,6 +33,14 @@ export default function Mosaic({
             />
           ))
         : 'Cette mosaique n a pas d enfants.'}
+      {aucunOption ? (
+        <MosaicAucunOption
+          question={question}
+          aucunOption={aucunOption}
+          questionsOfMosaic={questionsOfMosaic}
+          {...props}
+        />
+      ) : null}
     </fieldset>
   )
 }
