@@ -1,6 +1,7 @@
+import { LoadSimulationContext } from '@/app/_components/mainLayoutProviders/LoadSimulationContext'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useDebug } from '../useDebug'
 import { useQuestionInQueryParams } from '../useQuestionInQueryParams'
 import { useEndPage } from './useEndPage'
@@ -20,6 +21,8 @@ export function useSimulateurGuard() {
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
 
+  const isCorrectSimulationSet = useContext(LoadSimulationContext)
+
   useEffect(() => {
     // we only run the guard at mount
     if (isGuardInit) return
@@ -27,6 +30,11 @@ export function useSimulateurGuard() {
 
     // if we are in debug mode we do nothing
     if (isDebug) {
+      return
+    }
+
+    // We wait for the simulation to be set
+    if (!isCorrectSimulationSet) {
       return
     }
 
@@ -50,6 +58,7 @@ export function useSimulateurGuard() {
     goToEndPage,
     isDebug,
     questionInQueryParams,
+    isCorrectSimulationSet,
   ])
 
   return { isGuardInit, isGuardRedirecting }
