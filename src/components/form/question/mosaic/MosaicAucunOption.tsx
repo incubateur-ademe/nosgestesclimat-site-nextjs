@@ -1,4 +1,5 @@
 import { questionClickSuggestion } from '@/constants/tracking/question'
+import Emoji from '@/design-system/utils/Emoji'
 import { useEngine, useRule } from '@/publicodes-state'
 import { FormattedSuggestion } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
@@ -79,7 +80,7 @@ export default function MosaicAucunOption({
       </span>
       <span
         className={`inline-block align-middle text-sm md:text-lg ${labelClassNames[status]}`}>
-        {capitalizeString(aucunOption.label)}
+        <Emoji>{capitalizeString(aucunOption.label)}</Emoji>
       </span>
     </button>
   )
