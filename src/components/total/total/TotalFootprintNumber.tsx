@@ -52,7 +52,10 @@ export default function TotalFootprintNumber({
     totalFootprintValue !== totalFootprintValueMinusActions
 
   return (
-    <div className="flex items-end gap-2" aria-live="polite">
+    <div
+      className="flex items-end gap-2"
+      aria-live="polite"
+      data-cypress-id="total-footprint-number">
       {shouldDisplayTotalWithoutActions && (
         <strong className="mr-4 block font-black leading-none text-slate-500 line-through lg:inline lg:text-4xl short:text-3xl">
           {!isInitialized ? '--' : formatedTotalFootprintValue}
