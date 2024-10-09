@@ -34,7 +34,7 @@ export default function MosaicAucunOption({
   aucunOption,
   questionsOfMosaic,
 }: Props) {
-  const { setValue } = useRule(question)
+  const { setValue, isMissing } = useRule(question)
 
   const { getValue } = useEngine()
 
@@ -46,9 +46,10 @@ export default function MosaicAucunOption({
   const status = isSelected ? 'checked' : 'unchecked'
 
   useEffect(() => {
-    if (isMosaicChildrenSelected) {
-      setIsSelected(false)
+    if (isMissing) {
+      return
     }
+    setIsSelected(!isMosaicChildrenSelected)
   }, [isMosaicChildrenSelected])
 
   return (
@@ -61,7 +62,6 @@ export default function MosaicAucunOption({
         trackEvent(
           questionClickSuggestion({ question, answer: aucunOption.label })
         )
-        setIsSelected(true)
         setValue(aucunOption.value, { foldedStep: question })
       }}>
       <span
