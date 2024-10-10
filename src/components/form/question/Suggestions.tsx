@@ -29,8 +29,6 @@ export default function Suggestions({ question, setValue }: Props) {
 
   if (!suggestions?.length) return
 
-  const focusClassName = getCategoryFocusRingClassName(currentCategory ?? '')
-
   return (
     <div className="mb-6 flex flex-wrap justify-start gap-x-2 gap-y-2.5 text-sm">
       {suggestions.map((suggestion) => (
@@ -46,7 +44,7 @@ export default function Suggestions({ question, setValue }: Props) {
             getTextCategoryColor(currentCategory, '900'),
             getHoverBgCategoryColor(currentCategory, '300'),
             getHoverBorderCategoryColor(currentCategory, '300'),
-            focusClassName
+            getCategoryFocusRingClassName(currentCategory ?? '')
           )}
           onClick={() => {
             trackEvent(
