@@ -658,6 +658,13 @@ module.exports = {
     'border-servicessocietaux-950',
     'fill-servicessocietaux-950',
     'bg-servicessocietaux-950',
+    // Add these new focus ring classes
+    'focus:ring-transport-800',
+    'focus:ring-alimentation-800',
+    'focus:ring-logement-800',
+    'focus:ring-divers-800',
+    'focus:ring-servicessocietaux-800',
+    'focus:ring-offset-2',
   ],
   plugins: [],
 }
