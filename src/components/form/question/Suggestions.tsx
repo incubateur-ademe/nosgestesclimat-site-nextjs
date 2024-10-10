@@ -32,7 +32,7 @@ export default function Suggestions({
   const { currentCategory } = useForm()
 
   const filteredSuggestions = suggestions.filter(
-    (suggestion) => !aucunLabels.includes(suggestion.label)
+    (suggestion) => !aucunLabels.has(suggestion.label)
   )
 
   if (filteredSuggestions.length === 0) {
