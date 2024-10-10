@@ -9,7 +9,11 @@ import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import NavLink from '../NavLink'
 
-export default function OrganisationLink() {
+export default function OrganisationLink({
+  onClick = () => {},
+}: {
+  onClick?: () => void
+}) {
   const { t } = useClientTranslation()
 
   const { user } = useUser()
@@ -34,7 +38,10 @@ export default function OrganisationLink() {
           ? `/organisations/${organisation?.slug}`
           : '/organisations/connexion'
       }
-      onClick={() => trackEvent(headerClickOrganisation)}
+      onClick={() => {
+        trackEvent(headerClickOrganisation)
+        onClick()
+      }}
       icon={OrganisationIcon}
       title={t('Organisation')}>
       {isOrganisationFullyCreated ? (
