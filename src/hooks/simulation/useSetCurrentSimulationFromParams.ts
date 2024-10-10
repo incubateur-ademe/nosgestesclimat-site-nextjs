@@ -9,7 +9,8 @@ export function useSetCurrentSimulationFromParams() {
 
   const router = useRouter()
 
-  const { simulations, initSimulation, setCurrentSimulationId } = useUser()
+  const { simulations, initSimulation, setCurrentSimulationId, hideTutorial } =
+    useUser()
 
   const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
 
@@ -38,6 +39,10 @@ export function useSetCurrentSimulationFromParams() {
       return
     }
 
+    // From here we know that the simulation is loaded and that the id is correct
+    // We can disable the tutorial
+    hideTutorial('testIntro')
+
     const storedSimulation = simulations.find(
       (storedSimulation) => storedSimulation.id === simulation.id
     )
@@ -65,6 +70,7 @@ export function useSetCurrentSimulationFromParams() {
     simulationIdInQueryParams,
     pathname,
     router,
+    hideTutorial,
   ])
 
   return { isCorrectSimulationSet }
