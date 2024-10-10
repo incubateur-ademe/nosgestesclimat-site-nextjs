@@ -1,6 +1,7 @@
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQueryParams'
 import { useDebug } from '../useDebug'
 import { useQuestionInQueryParams } from '../useQuestionInQueryParams'
 import { useEndPage } from './useEndPage'
@@ -20,6 +21,8 @@ export function useSimulateurGuard() {
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
 
+  const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
+
   useEffect(() => {
     // we only run the guard at mount
     if (isGuardInit) return
@@ -27,6 +30,11 @@ export function useSimulateurGuard() {
 
     // if we are in debug mode we do nothing
     if (isDebug) {
+      return
+    }
+
+    // If the simulationIdInQueryParams is set, it means that the simulation is not loaded yet
+    if (simulationIdInQueryParams) {
       return
     }
 
@@ -50,6 +58,7 @@ export function useSimulateurGuard() {
     goToEndPage,
     isDebug,
     questionInQueryParams,
+    simulationIdInQueryParams,
   ])
 
   return { isGuardInit, isGuardRedirecting }
