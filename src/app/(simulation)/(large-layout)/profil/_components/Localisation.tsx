@@ -56,7 +56,7 @@ export default function Localisation({ supportedRegions }: Props) {
             </>
           )}
 
-          <div className="flex items-baseline gap-2">
+          <div className="flex flex-wrap items-baseline gap-2 sm:flex-nowrap">
             {initialRegion && region.code !== initialRegion.code && (
               <div className="mt-2">
                 <Button

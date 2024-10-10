@@ -7,18 +7,6 @@ import {
 } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
-  name: string
-  label?: string | ReactNode
-  error?: string
-  helperText?: string
-  className?: string
-  onChange?: (e: ChangeEvent<HTMLSelectElement>) => void
-  value?: string | number
-  required?: boolean
-}
-
-// TODO: This is a bit light
 export default forwardRef(function Select(
   {
     children,
@@ -27,15 +15,28 @@ export default forwardRef(function Select(
     error,
     helperText,
     className,
+    containerClassName,
     onChange,
     value,
     required = false,
     ...props
-  }: PropsWithChildren<Props>,
+  }: PropsWithChildren<{
+    name: string
+    label?: string | ReactNode
+    error?: string
+    helperText?: string
+    className?: string
+    containerClassName?: string
+    onChange?: (e: ChangeEvent<HTMLSelectElement>) => void
+    value?: string | number
+    required?: boolean
+  }>,
   ref: ForwardedRef<HTMLSelectElement>
 ) {
   return (
-    <div className={`flex flex-col ${className}`} aria-live="polite">
+    <div
+      className={twMerge('flex flex-col', containerClassName)}
+      aria-live="polite">
       <label
         htmlFor={name}
         className={`max-w-[30rem] text-sm font-bold text-slate-900 ${

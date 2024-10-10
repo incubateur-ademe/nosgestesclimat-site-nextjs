@@ -40,7 +40,7 @@ export default function Footer({ className = '' }) {
         className,
         isHomePage ? 'bg-white' : ''
       )}>
-      <div className="flex w-full items-start gap-12 md:max-w-5xl">
+      <div className="flex w-full flex-col items-start gap-2 md:max-w-5xl md:flex-row md:gap-12">
         <Logo onClick={() => trackEvent(footerClickLogo)} />
 
         <div className="flex-1">

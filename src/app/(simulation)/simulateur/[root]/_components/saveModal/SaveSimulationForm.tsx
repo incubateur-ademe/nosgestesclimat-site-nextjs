@@ -42,6 +42,7 @@ export default function SaveSimulationForm({
           required
           type="email"
           aria-label="Entrez votre adresse email"
+          data-cypress-id="save-modal-email-input"
           {...register('email')}
         />
 

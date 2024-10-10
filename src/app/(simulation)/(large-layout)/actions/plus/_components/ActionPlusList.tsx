@@ -19,6 +19,8 @@ type Props = {
 export default function ActionPlusList({ actions }: Props) {
   const { rules } = useTempEngine()
 
+  if (!rules) return null
+
   const plusListe = Object.entries(rules as NGCRules)
     .map(([dottedName, rule]) => ({ ...rule, dottedName }))
     .map((rule) => {
