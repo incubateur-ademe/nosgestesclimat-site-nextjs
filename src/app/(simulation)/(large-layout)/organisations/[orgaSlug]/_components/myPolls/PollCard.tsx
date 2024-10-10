@@ -36,7 +36,7 @@ export default function PollCard({ poll }: Props) {
 
       <div className="mb-12">
         <p className="mb-0 text-xl font-bold text-primary-700">
-          {poll.simulations?.length}{' '}
+          {simulationsWithoutExtremes?.length}{' '}
         </p>
 
         <p className="text-base font-light text-default">
