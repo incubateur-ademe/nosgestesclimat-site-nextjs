@@ -1,6 +1,5 @@
 'use client'
 
-import { LoadSimulationContext } from '@/app/_components/mainLayoutProviders/LoadSimulationContext'
 import MetricSlider from '@/components/fin/MetricSlider'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
@@ -8,9 +7,10 @@ import Trans from '@/components/translation/Trans'
 import { carboneMetric, eauMetric } from '@/constants/metric'
 import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
+import { useSimulationIdInQueryParams } from '@/hooks/simulation/useSimulationIdInQueryParams'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { Metric } from '@/publicodes-state/types'
-import { ReactElement, useContext } from 'react'
+import { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Carbone from './_components/Carbone'
 import DocumentationBlock from './_components/DocumentationBlock'
@@ -31,12 +31,12 @@ export default function FinPage() {
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useEndGuard()
 
-  // Set the current simulation from the URL params (if applicable)
-  const isCorrectSimulationSet = useContext(LoadSimulationContext)
+  const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
 
   const { currentMetric } = useCurrentMetric()
 
-  if (!isGuardInit || isGuardRedirecting || !isCorrectSimulationSet)
+  // If the simulationIdInQueryParams is set, it means that the simulation is not loaded yet
+  if (!isGuardInit || isGuardRedirecting || !!simulationIdInQueryParams)
     return <FinPageSkeleton />
 
   return (

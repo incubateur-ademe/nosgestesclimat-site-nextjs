@@ -6,7 +6,6 @@ import { UserProvider } from '@/publicodes-state'
 import { RegionFromGeolocation } from '@/publicodes-state/types'
 import { Migration } from '@publicodes/tools/migration'
 import { PropsWithChildren } from 'react'
-import { LoadSimulationProvider } from './mainLayoutProviders/LoadSimulationContext'
 import MainHooks from './mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from './mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProviderWrapper'
@@ -28,11 +27,9 @@ export default function MainLayoutProviders({
             initialRegion={region}
             storageKey="nosgestesclimat::v3"
             migrationInstructions={migrationInstructions}>
-            <LoadSimulationProvider>
-              <PreventNavigationProvider>
-                <MainHooks>{children}</MainHooks>
-              </PreventNavigationProvider>
-            </LoadSimulationProvider>
+            <PreventNavigationProvider>
+              <MainHooks>{children}</MainHooks>
+            </PreventNavigationProvider>
           </UserProvider>
         </QueryClientProviderWrapper>
       </IframeOptionsProvider>
