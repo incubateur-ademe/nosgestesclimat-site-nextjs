@@ -38,10 +38,10 @@ export default async function Profil() {
 
       <PersonaWarning />
 
-      <div className="flex flex-wrap gap-20 md:flex-nowrap">
+      <div className="flex flex-wrap items-start gap-20 md:flex-nowrap">
         <SimulationBanner />
         <Image
-          className="-mt-16 ml-auto hidden md:block"
+          className="ml-auto hidden md:block"
           src="/images/illustrations/girl-thinking.png"
           width="360"
           height="400"
