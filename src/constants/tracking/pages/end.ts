@@ -86,3 +86,15 @@ export const endClickDomesticWater = [
   'Fin',
   'Click Eau domestique',
 ]
+
+export const endClickJagisFirstBlock = [
+  'trackEvent',
+  'Fin',
+  'Click Jagis premier bloc',
+]
+
+export const endClickJagisSecondBlock = [
+  'trackEvent',
+  'Fin',
+  'Click Jagis second bloc',
+]

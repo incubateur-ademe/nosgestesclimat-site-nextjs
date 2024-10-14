@@ -1,4 +1,6 @@
 import MainSubcategories from '@/components/fin/MainSubcategories'
+import AgirMainBlock from './AgirMainBlock'
+import AgirSecondaryBlock from './AgirSecondaryBlock'
 import BlogArticles from './eau/BlogArticles'
 import ClimateAndWater from './eau/ClimateAndWater'
 import DomesticWater from './eau/DomesticWater'
@@ -11,8 +13,10 @@ export default function Eau() {
       <WaterDisclaimer />
       <ClimateAndWater />
       <MainSubcategories isLink={false} />
+      <AgirMainBlock />
       <WaterActions />
       <DomesticWater />
+      <AgirSecondaryBlock />
       <BlogArticles />
     </div>
   )
