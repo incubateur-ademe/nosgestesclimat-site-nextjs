@@ -1,0 +1,80 @@
+---
+título: Tré-la-Tête
+fecha: 2022-09-26T17:15:37Z
+imagen: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Glacier_de_Tré-la-Tête.jpg/640px-Glacier_de_Tré-la-Tête.jpg
+---
+
+glaciar de Tré-la-Tête](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Glacier_de_Tré-la-Tête.jpg/640px-Glacier_de_Tré-la-Tête.jpg)
+
+> El <a href="https://fr.wikipedia.org/wiki/Glacier_de_Tré-la-Tête">glaciar</a> de Tré-la-Tête es el 4º glaciar más grande de Francia. Un <a href="https://www.francetvinfo.fr/meteo/canicule/video-un-glaciologue-repond-a-cinq-questions-sur-les-glaciers_5283679.html">interesante vídeo</a>de 📽️ <a href="https://www.francetvinfo.fr/meteo/canicule/video-un-glaciologue-repond-a-cinq-questions-sur-les-glaciers_5283679.html">sobre él tras el extraordinario verano de 2022 (29/07/2022)</a>
+
+> En resumen** :
+&gt
+> - nuevo logotipo, nueva iconografía, nueva página de inicio
+> - una serie de pequeñas mejoras en el sitio y en el modelo de cálculo
+
+## 🎨 Un nuevo logotipo, una nueva página de inicio y nuevos iconos
+
+No te lo habrás perdido, Nos Gestes Climat tiene un nuevo logotipo 🥳.
+
+![](https://nosgestesclimat.fr/images/petit-logo.png)
+
+Mencionado con frecuencia en la prensa, pasará aún menos desapercibido.
+
+<details><summary>He aquí algunos extractos sólo de las dos últimas semanas ⬇️ : </summary>
+
+Artículo en <a href="https://www.ouest-france.fr/bretagne/carhaix-plouguer-29270/a-carhaix-ces-specialistes-de-l-energie-donnent-leurs-conseils-pour-consommer-moins-bc1250aa-3346-11ed-8dd8-fdb9fa809eb1">Ouest-France</a>: En Carhaix, estos especialistas en energía dan sus consejos para consumir menos
+
+> También puede calcular su huella de carbono en nosgestesclimat.fr
+
+Artículo en <a href="https://www.radiofrance.fr/franceinter/un-champion-de-trail-nous-explique-pourquoi-il-renonce-a-une-course-en-raison-de-son-bilan-carbone-7787049">France</a> Inter: Un corredor de alto nivel explica por qué renuncia a los Mundiales a causa de su huella de carbono
+
+> Andy Symonds ha calculado, a través de la página web "Nos gestes climat", que volar a Tailandia dispararía su huella de carbono.
+
+Le Dauphiné Libéré ha <a href="https://www.ledauphine.com/environnement/2022/09/21/les-citoyens-attendent-que-l-etat-les-accompagne-dans-leurs-efforts">lanzado una encuesta y cita a NGC</a> Descubra los resultados de nuestra encuesta "Los franceses y su huella de carbono"
+
+> El francés medio emite 11,2 toneladas de CO2e al año. Los expertos consideran que esta cifra debería limitarse a 2 toneladas anuales para frenar el cambio climático y cumplir los objetivos del Acuerdo de París. Para conocer su huella de carbono, Ademe ha lanzado una herramienta en línea llamada "Nos gestes climat" ("Nuestras acciones climáticas").
+
+Visite quoutside<a href="https://www.outside.fr/comment-evaluer-votre-empreinte-carbone-les-3-meilleurs-calculateurs">.fr</a>.
+
+</details>
+
+La página de inicio sigue esta evolución gráfica con unos párrafos para introducir el tema (y sus límites).
+
+### Antes
+
+![image](https://user-images.githubusercontent.com/1177762/191323489-088461c2-b1b9-46fe-bce2-c1e459104569.png)
+
+### After
+
+![image](https://user-images.githubusercontent.com/1177762/191323550-993c5109-ae91-4baa-8853-af240bf4c279.png)
+
+![image](https://user-images.githubusercontent.com/1177762/191323669-952493a1-7b17-4d38-a48b-313f2a592863.png)
+
+Del mismo modo, hemos trabajado en <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/570">el estilo y la legibilidad de los iconos de</a> empresa en todo el sitio.
+
+![image](https://user-images.githubusercontent.com/1177762/192312016-67af3382-6e02-49db-b791-8ba1702eb0ce.png)
+
+## 🐎 Rendimiento (diseño ecológico)
+
+Hemos completado la fase 2 de nuestro trabajo para reducir el peso del sitio, con una <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/602">ganancia significativa</a>. Todo es relativo, ¡pero un poco de sobriedad por nuestra parte es lo menos que podemos hacer!
+
+## 👆️ Otras mejoras de la interfaz
+
+- El <a href="https://nosgestesclimat.fr/groupe">modo encuesta</a> ya no está en fase beta, pero ya ha sido utilizado por cientos de organizaciones
+- aparece una notificación cuando tu casa está depreciada (= construida hace mucho tiempo): en este caso, no te preguntamos por su superficie en particular (porque no la necesitamos para el cálculo), lo que sorprendió a algunos usuarios
+- las entradas de números en el cuestionario son ahora más restringidas (ya no se puede introducir cero pasajeros en el coche, por ejemplo) para reducir los errores que podrían causar valores inesperados (valores infinitos o cero)
+- se ha añadido el botón "No lo sé" a los mosaicos (https://github.com/incubateur-ademe/nosgestesclimat-site/pull/604)
+- ya está en línea el certificado de accesibilidad (https://github.com/incubateur-ademe/nosgestesclimat-site/pull/621), testimonio de nuestro trabajo en este importante aspecto de los sitios web
+
+En general, se ha realizado un gran trabajo de clasificación y cierre de cientos de entradas de comentarios, tanto del lado del <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues">modelo</a> como del <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/issues">lado del sitio</a>, siendo siempre nuestra prioridad la contribución del mayor número posible de personas.
+
+## 🧮 Lado del modelo de cálculo
+
+- actualización de los <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1489">factores de emisión de los aviones</a>
+- la parte "consumo" del té <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1494">ya está incluido en su factura de</a> electricidad, este fue un error detectado gracias a nuestro trabajo paralelo en <a href="https://monconvertisseurco2.fr/empreinte-carbone/boisson">monconvertisseurco2.fr</a>
+- se <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1484">ha actualizado</a>el factor de emisión del mix eléctrico francés para 2021
+
+## Próximamente...
+
+Actualmente estamos trabajando en la regionalización (en el extranjero) y la internacionalización del sitio 😎. Hasta pronto

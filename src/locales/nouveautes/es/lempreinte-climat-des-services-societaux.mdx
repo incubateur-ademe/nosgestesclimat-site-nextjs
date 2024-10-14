@@ -1,0 +1,88 @@
+---
+title: La huella climática de los "servicios sociales
+fecha: 2022-12-14T10:49:38Z
+image: https://user-images.githubusercontent.com/1177762/205978955-88a0ad61-244c-4afb-89a9-600eef3a5f1c.jpg
+---
+
+es en la Asamblea Nacional, en el distrito 7 de París, donde se vota cada año el presupuesto del Estado](https://user-images.githubusercontent.com/1177762/205978955-88a0ad61-244c-4afb-89a9-600eef3a5f1c.jpg)
+
+Si alguna vez ha hecho la prueba de la huella de carbono, habrá observado una categoría bastante sorprendente: los servicios públicos. Alrededor de 1 tonelada de las 10 toneladas de CO₂ₑ de media en Francia puede no parecer mucho... Sólo que, para quienes adoptan un estilo de vida más bien bajo en carbono, y más en general en relación con el objetivo de 2 toneladas de huella individual (recuerde que lo importante no es el objetivo, sino el <a href="https://nosgestesclimat.fr/blog/budget">escenario de transición</a>, ¡1 tonelada puede parecer legítimamente un elefante en la habitación!
+
+En este artículo, te contamos todo sobre esta famosa partida de "servicios públicos" o ahora "servicios sociales" de NGC: cómo se calcula, de qué se compone, y cómo acabamos de utilizar estas cifras para hacer una **✨ nueva versión del modelo de cálculo de nosgestesclimat.fr**.
+
+## El francés medio emite 8,9 toneladas (noviembre de 2022)
+
+Francia, como muchos otros países, se ha fijado compromisos para reducir su huella climática y ha definido <a href="https://www.ecologie.gouv.fr/strategie-nationale-bas-carbone-snbc">una estrategia</a> para lograrlo.
+
+Para lograrlo, evidentemente hay que saber _dónde estamos_ hoy y cómo evolucionan las cosas cada año.
+
+De ello se encarga la <a href="https://www.statistiques.developpement-durable.gouv.fr/">Dirección de Datos y Estudios Estadísticos</a> del Ministerio francés de Ecología, que <a href="https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021?rubrique=27&dossier=1286">la estima en 8,9 toneladas por persona en 2021</a>.
+
+¿Cómo se calcula esta cifra? El método de cálculo es <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/files/9980633/methodologie_empreinte_carbone_octobre2021_0.pdf">inteligente y transparente, pero relativamente difícil de entender</a>, por lo que intentaremos explicarlo aquí de forma más sencilla.
+
+Básicamente, para calcular la huella climática hay que partir de una realidad física. Tenemos que calcular las emisiones reales de gases de efecto invernadero (o al menos estimarlas) de una acción concreta: por ejemplo, sabemos que quemar 1 litro de gasolina en un coche emite unos <a href="https://nosgestesclimat.fr/documentation/transport/voiture/thermique/empreinte-au-litre">2,7 kg de CO₂ₑ.</a> Luego podemos contar los litros de gasóleo que queman los semirremolques franceses, las barcazas en los ríos, los barcos, los aviones, etc.
+
+El problema, entonces, es derivar la huella de otros sectores, que no queman directamente estos combustibles fósiles. Por ejemplo, un hospital compra muebles de madera, pero no los fabrica ni los transporta. Los muebles se cortan en una fábrica, que los ha comprado. Un camión entrega tablones de madera. Esta madera ha sido tratada por la industria química, y producida por el sector forestal (la gestión de la madera de los bosques), que utiliza motosierras diesel, etc.
+
+La Administración no dispone de una descripción precisa de todas estas transacciones (kg de madera, volumen de aceite y pintura, etc.), pero sí de los intercambios en euros entre todos estos sectores, a un nivel agregado a lo largo del año, denominado nivel macro. Gracias a estos intercambios monetarios, se puede utilizar un cálculo matricial para asignar a cada sector la huella de carbono de su valor añadido
+
+En pocas palabras: obtenemos una estimación de las emisiones de gases de efecto invernadero en función de qué sector compró a qué otro sector. Volviendo a nuestro ejemplo del hospital, podemos por tanto estimar la huella de carbono del sector sanitario, aunque no se conozcan los detalles exactos del consumo de cada hospital.
+
+Estos cálculos se realizan periódicamente. La última versión exacta corresponde a 2017, y la última estimación (menos exacta), a 2021.
+
+## Definir el perímetro de una base asignada a cada francés
+
+Sumando la huella de todos estos sectores, dividida por la población del país, se obtiene <a href="https://nosgestesclimat.fr/documentation/empreinte-SDES">la</a> llamada "macro" <a href="https://nosgestesclimat.fr/documentation/empreinte-SDES">huella</a> por persona.
+
+Al mismo tiempo, el modelo de cálculo nosgestesclimat es una compilación de los llamados modelos "micro": se le hacen multitud de preguntas para reconstruir su huella de carbono a partir de los datos de consumo físico.
+
+> Se trata de dos perspectivas sobre una misma realidad física, dos métodos muy diferentes que producen dos cifras, que afortunadamente convergen en torno a las 9 toneladas de CO₂ₑ.
+
+Estos dos métodos son muy diferentes, pero no por ello dejan de ser complementarios: de hecho, el análisis por consumo no puede captar todas las emisiones de un francés. Mientras que el micrométodo nosgestesclimat permite calcular fácilmente la huella del kilometraje de su coche, es bastante incapaz de estimar la huella de los servicios públicos que utiliza de forma difusa durante todo el año, así como los servicios comerciales como la red de fibra y de internet móvil de los que se beneficia la mayoría de la población (aunque en distintos grados) de forma latente. Por tanto, debemos adoptar un modelo híbrido que mezcle lo micro y lo macro.
+
+> La foto que encabeza este artículo ilustra el problema: es fácil calcular la huella climática de un camión, un coche o una moto. Pero, ¿qué hay de la huella de esta carretera, que se repavimenta con regularidad? ¿El mantenimiento de las señales de tráfico? ¿La huella operativa de la propia Asamblea Nacional?
+
+Se trata entonces de definir el perímetro de estos mundos complementarios para evitar en la medida de lo posible la doble contabilización, y obtener así el valor final de los servicios sociales constantes, suma de servicios públicos y servicios comerciales, atribuidos a cada francés.
+
+![Grabación 2022-12-15 a las 14 02 25](https://user-images.githubusercontent.com/1177762/207865812-a37bbe96-2acd-4f0b-b9b5-ed64e93597da.gif)
+
+## Un primer cálculo
+
+Así pues, hemos analizado los datos de la macrohuella <a href="https://www.statistiques.developpement-durable.gouv.fr/la-decomposition-de-lempreinte-carbone-de-la-demande-finale-de-la-france-par-postes-de-consommation">compartidos por el SDES</a>, sector por sector, línea por línea, para incluir una parte, de 0 a 100%, de la huella de los servicios sociales.
+
+> Conviene recordar que el objetivo es siempre **obtener órdenes de magnitud**: no se trata de reclamar un resultado con una precisión de diez kg de CO2. A este respecto, conviene recordar que nuestros objetivos climáticos apuntan a una reducción del 90% de nuestra huella.
+
+La línea "Administración pública y defensa" incluye obviamente el 100% de los servicios públicos: la única forma en que los ciudadanos pueden influir en estos departamentos gubernamentales es a través de su voto y su compromiso público. Lo mismo ocurre con la línea "Educación".
+
+En cambio, las cosas son más complicadas para la partida "🏗️ construcción", por ejemplo: incluye muchas actividades diferentes que benefician a la sociedad en su conjunto, pero no tenemos detalles de su huella de carbono. Por lo tanto, se hace una asignación en función del volumen de negocios de las subramas y subramas <a href="https://www.insee.fr/fr/statistiques/4226067?sommaire=4226092">publicado por el INSEE</a>, y esas son las cifras en % que puede ver en nuestra documentación.
+
+<details>
+
+<summary>
+ <i>
+    Más información sobre el desglose de los datos de carbono por volumen de negocio
+    del SDES
+ </i>
+</summary>
+
+> Los datos proporcionados por el SDES dan una huella de carbono correspondiente a lo que se consume en el territorio francés por rama económica (por ejemplo, E36 = red de distribución de agua = 677 kTCO₂ₑ) o por grupo de ramas económicas (por ejemplo, F41_43 = Construcción = 54116 kTCO₂ₑ). Para estos datos, existe un primer nivel de agregación que hemos optado por desagregar en función de <a href="https://www.insee.fr/fr/statistiques/4226067?sommaire=4226092">la</a> cuota de facturación de la rama en la agrupación propuesta por el SDES (por ejemplo, para F41_43, tenemos F41=25%, F42=13,5%, F43=61,5%)
+&gt
+> Algunos de los datos son secretos y hemos supuesto que también lo son para el cálculo de la huella de carbono nacional. A falta de información adicional, hemos optado por no tenerlos en cuenta en estos cálculos de descomposición.
+&gt
+> Para ir aún más lejos, a veces hemos necesitado un mayor nivel de precisión examinando las subramas económicas. En efecto, si tomamos el ejemplo de la E38 relativa a la recogida de residuos, sólo las subramas E3812 y E3822, relativas a los residuos peligrosos, debían incluirse en los servicios públicos. Por lo tanto, también hemos utilizado el desglose por volumen de negocios para obtener la intensidad de carbono asociada a las subramas en cuestión dentro de E38.
+
+</details>
+
+En cuanto a los servicios de mercado, hemos intentado incluir en la huella básica consumos que son relativamente universales (por ejemplo, todo el mundo tiene que contratar un seguro de hogar) o que todavía no se tienen en cuenta en nuestros modelos micro (por ejemplo, el consumo de servicios de telecomunicaciones), pero que podrían llegar a serlo algún día.
+
+Si le interesa, puede explorar nuestra documentación explicativa y justificativa de esta asignación en las páginas de <a href="https://nosgestesclimat.fr/documentation/services-publics">servicios públicos</a> y <a href="https://nosgestesclimat.netlify.app/documentation/services-marchands">servicios de mercado</a>. Hemos hecho todo lo posible para una primera versión, pero sus comentarios serán inestimables.
+
+## El resultado
+
+He aquí una fotografía de nuestro modelo híbrido.
+
+![image](https://user-images.githubusercontent.com/1177762/207576758-03cfbc96-a6a2-4817-a4cb-4c4562342783.png)
+
+⚠️ Tenga en cuenta que este gráfico no representa un valor medio fiable de la huella climática de un francés, <a href="https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021?rubrique=27&dossier=1286">contrariamente a la cifra de 8,9t del SDES</a>, sino simplemente la anatomía de nuestro modelo de cálculo híbrido. Es probable que los valores cambien regularmente, con total transparencia.
+
+El objetivo de Nos Gestes Climat sigue siendo estimar la huella asociada al estilo de vida de una persona real. En este sentido, el objetivo de futuras versiones es cubrir muchos elementos que por el momento han quedado fuera 🐕️⛴️🛵⚡️🏡. Hasta pronto

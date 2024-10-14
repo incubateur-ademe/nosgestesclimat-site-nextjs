@@ -1,0 +1,148 @@
+---
+título: Aletsch
+fecha: 2023-03-01T17:21:37Z
+imagen: https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Aletschgletscher-Eggishorn.jpg/800px-Aletschgletscher-Eggishorn.jpg
+---
+
+glaciar Aletsch](https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Aletschgletscher-Eggishorn.jpg/800px-Aletschgletscher-Eggishorn.jpg)
+
+> El <a href="https://fr.wikipedia.org/wiki/Glacier_d%27Aletsch">glaciar</a> Aletsch es el mayor glaciar de los Alpes, situado en el sur de Suiza, en el cantón de Valais. ➡️ <a href="https://www.francetvinfo.fr/meteo/climat/climat-la-fonte-du-glacier-d-aletsch-revele-ses-secrets-enfouis_5393890.html">Report France Info</a>.
+> Un guiño a Suiza, que motivó los trabajos de regionalización del cálculo de Nos Gestes Climat.
+
+**En resumen** :
+
+- 👥 Se ha mejorado el curso en modo grupo (conferencia y encuesta)
+- 🪶 Mejoras de rendimiento: nos preocupa la ligereza de la página
+- 👤 La página de perfil está mejorando poco a poco
+- 🇨🇭 Nueva versión de la internacionalización de modelos, incluida Suiza
+- 🧮 Mejorado el modelo de cálculo
+- 🐞 Corrección de errores
+
+## Mejoras en el modo de grupo
+
+¡El modo grupo de Nos Gestes Climat se utiliza cada vez más! Si lo has probado, habrás notado algunos errores e inconvenientes. Afortunadamente, aquí tienes la primera tanda de mejoras para el nuevo año.
+
+### Visualización del número de participantes _y_ del número de pruebas realizadas
+
+En modo grupo, sólo mostrábamos un indicador del número de participantes. Pero, ¿qué pasa con los participantes que están conectados pero no han terminado o ni siquiera empezado su prueba?
+
+Ahora presentamos dos indicadores:
+
+- el número de personas conectadas (conferencia) o que se han inscrito para participar en la encuesta (encuesta)
+- el número de personas que han completado su prueba, lo que significa que han respondido al menos al 90% de las preguntas
+
+![image](https://user-images.githubusercontent.com/1177762/217204345-6c657130-7177-4229-bae3-b71e4dbebe97.png)
+
+Este cambio debería facilitar la acogida de los participantes en una sesión de grupo. Te toca a ti decírnoslo ;-)
+
+### Bienvenida simplificada en el enlace de la encuesta
+
+Se ha simplificado la bienvenida del usuario en un enlace de encuesta: el botón "Realizar la prueba" ya no aparece en la misma página que el botón "Participar", que debe pulsarse para participar en una encuesta.
+
+### Mejor explicación de los gráficos y las medias
+
+Normalmente, durante una conferencia o encuesta, hay un moderador que explica la página de visualización a los usuarios. Si no es el caso, aquí tienes una mínima explicación.
+
+![image](https://user-images.githubusercontent.com/1177762/217012881-e9e7a66b-1792-4073-8d50-f5aee5c6aadf.png)
+
+### 🔡 Nombres de encuestas simplificados
+
+Ya no permitimos espacios en los nombres de las encuestas para evitar errores tipográficos.
+
+También hemos añadido una pantalla para guiar a un usuario que intenta acceder a una encuesta inexistente.
+
+> Antes, lo único que había que hacer para lanzar una encuesta era conectarse a una dirección. Ahora, el organizador debe crear primero una encuesta en la <a href="https://nosgestesclimat.fr/groupe">página del grupo</a>.
+
+![image](https://user-images.githubusercontent.com/1177762/217201362-b12fd578-1ea5-40e0-b749-2081e3ba2bce.png)
+
+## Optimización y rendimiento
+
+### Reducir el tamaño del modelo cargado desde el sitio
+
+Hemos reducido considerablemente el tamaño del modelo de cálculo cargado desde el sitio: ahora es **2 veces más ligero** 🪶.
+
+<!-- Concrètement, pour calculer l<a href="https://nosgestesclimat.fr/documentation/alimentation/déchets/niveau-moyen">empreinte carbone de vos déchets</a>, nous disposons d'un modèle de calcul sophistiqué d'un millier de lignes, entièrement expliqué. Auparavant, il était téléchargé intégralement par votre navigateur. Aujourd'hui, seul le résultat final du calcul le sera !
+-->
+
+> <details> <summary>Más información técnica sobre esta reducción aquí</summary>
+&gt
+> Hemos desarrollado una <a href="https://github.com/incubateur-ademe/publiopti">nueva herramienta</a> de compresión para nuestro modelo de cálculo.
+&gt
+> En aras de la transparencia y la explicabilidad, intentamos ser lo más precisos y completos posible al redactar nuevos modelos, lo que significa descomponerlos en subreglas y crear un árbol (muy grueso). Es el caso, por ejemplo, del cálculo de<a href="https://nosgestesclimat.fr/documentation/alimentation/déchets/niveau-moyen">la huella de los residuos</a>. Aunque esta complejidad es necesaria para comprender el cálculo, no lo es para ejecutarlo.
+&gt
+> Así pues, esta nueva herramienta permite transformar todas las subramas de un cálculo en un único valor cuando éste no depende de las respuestas del usuario. Es el caso de los residuos, pero también de los servicios sociales cuya huella es la misma para todos los franceses.
+&gt
+&gt </details>
+
+Pero, ¿por qué descargar el cálculo en su navegador en lugar de hacerlo en nuestros servidores como los demás sitios? Hay dos razones principales:
+
+- nosgestesclimat.fr respeta al máximo su privacidad: no **recopilamos** sus datos más preciados (kilómetros recorridos en coche, dieta, m², etc.) ;
+- una vez cargado el test, lo utilizas como una aplicación móvil: no necesitas conexión a Internet para responder a las decenas de preguntas del test.
+
+### Páginas de documentación más rápidas y varias mejoras del sitio
+
+En la misma línea de reducir el peso del modelo de cálculo, hemos reducido el tiempo de carga inicial de <a href="https://nosgestesclimat.fr/documentation">las páginas de documentación del modelo</a>, que permiten a cualquiera explorar el cálculo completo de la huella de carbono individual. El cálculo se carga ahora de forma "perezosa", con sólo pulsar un botón, para mostrar la información básica más rápidamente. <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/778">Más información aquí</a>.
+
+Al mismo tiempo, hemos reducido el peso de las demás páginas y añadido un indicador de carga que evoca el nuevo logotipo de Nos Gestes Climat.
+
+![Nouvelle animation de chargement](https://user-images.githubusercontent.com/1177762/216140755-3c81d0e7-6cc2-4d56-82e3-9b851e9615ba.gif)
+
+Un pie de página le permite ahora consultar las páginas `Acerca de`, `Documentación` e incluso esta sección `Noticias` desde el resto del sitio en su escritorio.
+
+![image](https://user-images.githubusercontent.com/1177762/220296173-d8b2a9a7-320e-4437-9e00-ff7d5e31caed.png)
+
+## 👤 Página /perfil mejorada
+
+Aunque no ofrecemos una cuenta de usuario conectado, tu página de <a href="https://nosgestesclimat.fr/profil">perfil</a> almacena tus datos de simulación hasta que eliminas "tus cookies".
+
+La hemos mejorado, con un botón para desplegar todas las respuestas de las pruebas. Esto también permite a los usuarios de nuestro modelo de cálculo hacer una lista de las preguntas formuladas por Nos Gestes Climat.
+
+grabación 2023-02-21 a las 09 51 35](https://user-images.githubusercontent.com/1177762/220295631-3fe9a9d9-81f1-45cd-a2fa-a19c8584d7f0.gif)
+
+> 💡 Consejo: aún no hemos hecho pública nuestra <a href="https://nosgestesclimat.fr/personas">página de personas</a>, que permite ver el sitio como uno de los 9 usuarios típicos, desde una puntuación de 3 toneladas hasta 16 toneladas. Sin embargo, puedes utilizarla para explorar nuestro modelo de cálculo. Pronto tendremos más noticias al respecto ;)
+
+## 🏳️ Internacionalización
+
+Acabamos de lanzar una versión más potente de nuestra plataforma de internacionalización. Nos permite lanzar una versión beta de un modelo de cálculo suizo, pero sobre todo ¡facilitar la acogida de nuevos países!
+
+En la medida de lo posible, los títulos de las preguntas ya no son específicos de Francia, en particular para <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1665">las preguntas "Aire"</a>. Esto nos permite que el test sea comprensible para personas de todo el mundo. En cambio, las sugerencias ("un vuelo metropolitano") siguen vinculadas a la región del test para una mayor personalización.
+
+Hay que señalar que estos cambios son simplemente textuales y no afectan a los factores de emisión.
+
+## Traducción
+
+Se han mejorado los scripts de traducción para gestionar mejor las contribuciones externas que modificarían las traducciones automáticas <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1676">para las traducciones modelo</a> por el momento).
+
+Esto pronto nos permitirá escalar para **traducir Nuestros Gestos Climáticos a muchos idiomas**.
+
+## 🧮 Mejoras en el modelo de cálculo
+
+### 🏛️ Más claridad sobre el método de los servicios sociales
+
+Se han mejorado<a href="https://github.com/incubateur-ademe/nosgestesclimat/tree/master/scripts/services-societaux">los scripts de</a> cálculo que nos han permitido publicar <a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/l'empreinte-climat%20des%20%22services%20soci%C3%A9taux%22">la última</a> versión y se ha añadido una <a href="https://github.com/incubateur-ademe/nosgestesclimat/wiki/Guide-technique-services-soci%C3%A9taux">guía metodológica</a> en la <a href="https://github.com/incubateur-ademe/nosgestesclimat/wiki">wiki</a>. Se han <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1638">corregido</a> varios errores.
+
+### Actualización del precio del gas
+
+La ayuda para pasar de euros a kWh en la pregunta sobre el consumo anual de gas <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1733">ya está actualizada con las últimas tarifas</a> 
+
+### 🚗 Corrección del modelo "Coche
+
+Hemos ajustado el alcance <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1704">del factor de emisión vinculado a la fabricación de automóviles</a>. En la primera versión de este modelo, optamos por restar los "créditos de reciclaje" correspondientes a las emisiones evitadas mediante el uso de materiales reciclados procedentes del desguace de un coche, para la producción de nuevos productos manufacturados. Pensándolo bien, suponemos que la reducción de la huella beneficia a la persona que compra el producto reciclado y no a la que compra un producto que será reciclado. Es una suposición que ya hemos aplicado a todos los modelos de NGC
+
+## Corrección de errores
+
+Los gráficos de la simulación se congelaban accidentalmente durante la prueba. Ya se ha <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/828">corregido</a>.
+
+También hemos añadido un botón que abre el gráfico detallado al hacer clic.
+
+grabación 2023-02-21 a las 10 09 31](https://user-images.githubusercontent.com/1177762/220299822-c7eb9679-ca52-4bf9-a26c-bc1a4392f0c8.gif)
+
+## 🥳 Contribuciones externas
+
+Estamos encantados con el aumento del número de contribuciones externas de gran relevancia. Entre ellas:
+
+- un <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/835">error corregido</a> por <a href="https://github.com/mlbiche">@mlbiche</a>,
+- muchas preguntas pertinentes de <a href="https://github.com/marc-marc-marc">@marc-marc-marc</a> y el resto de la comunidad 🙏,
+- una <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/issues/583">versión del</a> sitio <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/issues/583">en portugués</a> gracias a <a href="https://github.com/micaelbatista">@micaelbatista</a>.
+
+¡Hasta pronto!

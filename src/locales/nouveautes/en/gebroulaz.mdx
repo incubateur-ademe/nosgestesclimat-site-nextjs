@@ -1,0 +1,76 @@
+---
+title: Gébroulaz
+date: 2022-06-08T16:30:50Z
+---
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Glacier_de_Gébroulaz2.jpg/640px-Glacier_de_Gébroulaz2.jpg)
+
+> In brief :
+> - Arrival of survey mode
+> A new metric: oil
+> - Calculation model improvements: caravan, camping car, car fuel, digital ...
+> - Improvements to actions: buying an electric car, subsidizing the purchase of a bicycle, etc
+> - New teaching resources
+
+## Survey mode now available! 💾
+* **What is it?
+The "survey" mode in Nos Gestes Climat allows several people to take part in the test, while saving the data permanently (total carbon footprint and by category). This mode can be particularly useful in the context of a workshop or event, and a <a href="https://nosgestesclimat.fr/groupe/guide">moderator's guide</a> is available to help you!
+
+![image](https://user-images.githubusercontent.com/55186402/171632300-dba6d437-a9bd-44b3-afc3-874c1e7307d6.png)
+
+* **Survey customization
+The arrival of this new mode is accompanied by an additional feature that lets you add a few questions to gather additional information as an introduction to the test. By way of example, this can be useful for organizing an organisation-wide survey while allowing results to be filtered by respondent type (status...), age, location (taking care, of course, not to compromise RGPD standards). We have also been working on survey security to prevent the introduction of vulnerabilities into our database via this feature. You'll find all the details in our <a href="https://nosgestesclimat.fr/groupe/documentation-contexte">documentation</a>!
+
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/55186402/171632420-ada9f5c5-b1ab-45a5-b0f7-05d95df2b3bc.png">
+
+* **Better filtering of the group mode view page
+In the previous version, any user who logged in to the survey appeared in the visualization graph. This meant that some people counted as 1 participant without even having taken the test (with a score corresponding to the default values), and ghost visits distorted the results (especially the mean value!). This is no longer the case in this version, since the data displayed is filtered to exclude users who have completed less than 10% of the test questions. If the survey is customized (see above), an additional filter is applied to display only those participants who have completed the context questions.
+
+## A new metric: oil! 🛢
+To better visualize the amount of oil we consume in our lives, we've decided to add to Nos Gestes Climat the corresponding number of full tanks, in addition to CO₂e. For the moment, this metric relates only to direct oil-related emissions (travel, oil heating ...). 
+The way both to highlight our dependence on these fossil fuels and to better visualize the impact of the actions we can put in place: the number of trips to the pump speaks louder than tons of CO₂e, so swipe on the end screen to see your oil impact!
+
+<img width="577" alt="image" src="https://user-images.githubusercontent.com/55186402/171646402-b2d769d1-0626-4a0d-8903-90b7727383e0.png">
+
+## Calculation model improvements 🧮
+* **Caravan & motorhome added**
+There's now more choice in Nos Gestes Climat for your vacations! Caravans and motorhomes have found their place. Please note that for caravans, the number of kilometers traveled must be included in the kilometers traveled by car. More on methodology in issue #1317.
+![image](https://user-images.githubusercontent.com/1177762/160854704-aa5b1010-e8f9-43cb-966b-ba80e6a8f731.png)
+
+* **Change in passenger ratio
+With the arrival of the km entry aid in <a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/las-n%C3%A9ous">the latest release</a>, a question remained as to the choice of vehicle fill rate applied to attribute depreciation to the various car users. The details are available in issue #1337 and in the <a href="https://github.com/incubateur-ademe/nosgestesclimat/blob/8fe4b633502fe52dda7eccdc0e9db01b9f677e57/data/transport/transport%20.%20voiture.yaml#L53">note on the "passenger ratio" variable</a>. 
+
+* **More choice of fuels
+Diesel (B7 or B10), gasoline (E5 or E10) or E85 gasoline (biofuels), you can choose! Beware, however, of the message sent to users when they select biofuels. The carbon impact is certainly lower, but the emission factor is particularly uncertain: land-use issues in particular are not taken into account! A notice is therefore displayed to explain this issue! All the info and discussions are in the corresponding issue #1396!
+
+* **Digital mosaic enhancement
+New objects have been added to the digital object mosaic #1359:
+  - 🎵 bluetooth speaker
+  -  🔊 voice speaker
+  - ⌚️ connected watch
+  - 🕹 home console
+  - 🎮 portable console
+ 
+* **New heating modes**
+It's now possible to choose the heat pump (#1360)! Plans are underway to add heat networks as well.
+
+## Improvements in actions 💪
+* **A "Buy an electric car" action has been added** 
+Offered if you already own a car, this action allows users to see the impact (positive or negative) of buying a new or used electric car based on the kilometers driven per year.
+<img width="601" alt="image" src="https://user-images.githubusercontent.com/55186402/171641150-ec39e53c-2565-43ae-8379-1b97691c8f03.png">
+
+* **Addition of mesaidesvelo.fr to the action list** Add a link to mesaidesvelo.fr to the action list
+Addition of a link to <a href="https://mesaidesvelo.fr/">mesaidesvelo.fr</a> in relevant actions. The tool is developed by @mquandalle, who is a developer on mon-entreprise.fr, and mesaidesvelo.fr is already integrated on the official website <a href="https://www.1jeune1solution.gouv.fr/">https://www.1jeune1solution.gouv.fr/.</a>
+<img width="789" alt="image" src="https://user-images.githubusercontent.com/55186402/171675160-9cd5c968-d2ba-473a-8ca1-8e316ec041f2.png">
+
+## A new way to contribute 👥
+
+Contribution made easy for non-dev contributors! Repositories have been configured to let you modify or add new features in real time via a development environment directly in your browser. We explain it all in the <a href="https://github.com/incubateur-ademe/nosgestesclimat/blob/master/CONTRIBUTING.md#vous-voulez-contribuer-comme-un-pro">Gitpod tutorial</a>! 
+
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/55186402/171634543-25c6a773-849c-4931-9aef-a96df5506334.png">
+
+## New resources 📚
+
+To help you with your events, but also to enable you to question your own results, <a href="https://nosgestesclimat.fr/groupe/guide">guide sheets are online</a>! 
+
+**Full Changelog**: https://github.com/incubateur-ademe/nosgestesclimat/compare/1.5.0...1.6.0

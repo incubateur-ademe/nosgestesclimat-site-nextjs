@@ -1,0 +1,87 @@
+---
+title: L'empreinte climat des "services sociétaux"
+date: 2022-12-14T10:49:38Z
+---
+
+![it's at the National Assembly in the 7th arrondissement of Paris that the State budget is voted each year](https://user-images.githubusercontent.com/1177762/205978955-88a0ad61-244c-4afb-89a9-600eef3a5f1c.jpg)
+
+If you've ever done a carbon footprint test, you may have noticed a rather surprising category: public services. Approximately 1 tonne out of the French average 10 tonnes of CO₂ₑ in order of magnitude, this may not seem like much.... Only, for those who adopt a rather low-carbon lifestyle, and more generally in relation to the 2-tonne individual footprint target (remember that the important thing is not the target but the <a href="https://nosgestesclimat.fr/blog/budget/">transition scenario</a>), 1 tonne can legitimately look like an elephant in the room! 
+
+In this article, we tell you all about this famous "public services" or now "societal services" item in NGC: how it's calculated, what it's made up of, and how we've just used these figures to make a **✨ new version of the nosgestesclimat.fr** calculation model. 
+
+## The average French person emits 8.9 tons (November 2022)
+
+France, like many other countries, has set commitments to reduce its climate footprint and has defined <a href="https://www.ecologie.gouv.fr/strategie-nationale-bas-carbone-snbc">a strategy</a> to achieve this.  
+
+To get there, we obviously need to know *where we are* today and how things are evolving each year. 
+
+This is the task of the French Ministry of Ecology's <a href="https://www.statistiques.developpement-durable.gouv.fr/">Service des données et études statistiques</a>, which <a href="https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021?rubrique=27&dossier=1286">estimates that our climate footprint will be 8.9 tonnes per person in 2021</a>. 
+
+How is this figure calculated? The calculation method is <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/files/9980633/methodologie_empreinte_carbone_octobre2021_0.pdf">clever and transparent, but relatively difficult to understand</a>, so we'll try to explain it more simply here.
+
+Basically, to calculate a climate footprint, you need to start from a physical reality. We have to calculate the actual greenhouse gas emissions (well, estimate it) of a concrete action: for example we know that burning 1 liter of gasoline in a car emits around <a href="https://nosgestesclimat.fr/documentation/transport/voiture/thermique/empreinte-au-litre">2.7 kg of CO₂ₑ</a>. Then we can count the liters of diesel burned by French semi-trailers, by barges on rivers, by boats, planes and so on. 
+
+The problem, then, is to derive the footprint of other sectors, which don't burn these fossil fuels directly. For example, a hospital buys wooden furniture but does not manufacture or transport it itself. The furniture is cut in a factory, which purchased it. To do this, a truck delivered planks of wood. This wood has been treated by the chemical industry, and produced by the forestry sector (wood management), which uses diesel chainsaws, etc. 
+
+The administration doesn't have a precise description of all these transactions (kg of wood, volume of oil and paint, etc.), but it does have the exchanges in € between all these sectors, at an aggregated level over the year, which we call macro. Thanks to these monetary exchanges, a matrix calculation can be used to assign each sector the carbon footprint of its added value!
+
+In simple terms: we obtain an estimate of greenhouse gas emissions according to which sector bought from which other sector. Returning to our hospital example, we can therefore estimate the carbon footprint of the healthcare sector, even if the exact details of each hospital's consumption are not known.
+
+These calculations are made periodically. The latest accurate version is for 2017, and the latest (less accurate) estimate is for 2021. 
+
+## Define the perimeter of a base allocated to each French person
+
+Summing up the footprint of all these sectors, divided by the country's population, gives <a href="https://nosgestesclimat.fr/documentation/empreinte-SDES">the</a> so-called "macro" <a href="https://nosgestesclimat.fr/documentation/empreinte-SDES">footprint</a> per person. 
+
+In parallel, the nosgestesclimat calculation model is a compilation of so-called "micro" models: you are asked a multitude of questions to reconstruct *your carbon footprint* from physical consumption data.
+
+> These are two perspectives on the same physical reality, two very different methods producing two figures, which fortunately converge around 9 tonnes of CO₂ₑ. 
+
+The two methods are very different, but complementary for all that: indeed, analysis by consumption cannot capture all the emissions of a French person. While the nosgestesclimat micro method can easily calculate the footprint of your car mileage, it is incapable of estimating the footprint of the public services you use on a diffuse basis all year round, as well as commercial services such as the fiber and mobile internet network, which most of the population enjoy (albeit to varying degrees) on a latent basis. We therefore need to adopt a hybrid model, mixing micro and macro.
+
+> It's easy to estimate the climate footprint of a truck, car or motorcycle. But what about the footprint of this regularly repaved road? The maintenance of road signs? The footprint of the National Assembly itself? 
+
+The aim is to define the perimeter of these complementary worlds to avoid double counting, and thus obtain the final value of the constant societal services, the sum of public services and commercial services, attributed to each French citizen.
+
+![Recording 2022-12-15 at 14 02 25](https://user-images.githubusercontent.com/1177762/207865812-a37bbe96-2acd-4f0b-b9b5-ed64e93597da.gif)
+
+
+
+## A first calculation
+
+We therefore analyzed the macro footprint data <a href="https://www.statistiques.developpement-durable.gouv.fr/la-decomposition-de-lempreinte-carbone-de-la-demande-finale-de-la-france-par-postes-de-consommation">shared by SDES</a>, sector by sector, line by line, to include a share, from 0 to 100%, of the societal services footprint. 
+
+> It should be remembered that the aim is always to **obtain orders of magnitude**: it is not a question of claiming a result to the nearest ten kg of CO2. In this respect, it should be remembered that our climate objectives target a 90% reduction in our footprint. 
+
+The "Public administration and defense" line obviously includes 100% of public services as a matter of course: citizens have no influence on these sovereign positions other than through their vote and public commitment. The same applies to the "Education" line. 
+
+On the other hand, things are more complicated for the "🏗️ construction" line: it includes many different activities that benefit society as a whole, but we don't have details of their carbon footprint. An allocation is therefore made on the basis of the sales of the sub-branches and sub-sub-branches <a href="https://www.insee.fr/fr/statistiques/4226067?sommaire=4226092">published by INSEE</a>, and these are the % figures you can see in our documentation. 
+
+<details>
+
+
+<summary><i>Find out more about the breakdown by sales of SDES carbon data</i></summary>
+
+> The data provided by SDES gives a carbon footprint corresponding to what is consumed on French territory by economic branch (e.g.: E36 = water distribution network = 677 kTCO₂ₑ) or by group of economic branches (e.g.: F41_43 = Construction = 54116 kTCO₂ₑ). For this data, there is therefore a first level of aggregation, which we have chosen to disaggregate according to the <a href="https://www.insee.fr/fr/statistiques/4226067?sommaire=4226092">branch's</a> share of sales in the grouping proposed by SDES (e.g. for F41_43, we have F41=25%, F42=13.5%, F43=61.5%)
+&gt
+> As some data are secret, we have assumed that they are also secret for the calculation of the national carbon footprint. In the absence of further information, we have chosen not to consider them in these decomposition calculations.
+&gt
+> To go even further, we sometimes needed a higher level of precision by looking at economic sub-branches. Indeed, if we take the example of E38 relating to waste collection, only sub-branches E3812 and E3822, concerning hazardous waste, were to be included in public services. We have therefore also used the breakdown by sales to highlight the carbon intensity associated with the sub-branches in question within E38.
+
+</details>
+
+
+As far as market services are concerned, we have tried to include in the basic footprint consumption that is relatively universal (e.g., everyone has to take out home insurance) or that is not yet taken into account by our micro models (e.g., consumption of telecommunications services), but which may be one day. 
+
+If you're interested, you can explore our documentation explaining and justifying this allocation via the <a href="https://nosgestesclimat.fr/documentation/services-publics">public services</a> and <a href="https://nosgestesclimat.netlify.app/documentation/services-marchands">market services</a> pages. It's quite "expert", but we've done our best for a first version, and your feedback will be invaluable.
+
+## The result
+
+Here's a photograph of our hybrid model. 
+
+![image](https://user-images.githubusercontent.com/1177762/207576758-03cfbc96-a6a2-4817-a4cb-4c4562342783.png)
+
+
+⚠️ Please note that this graph does not represent a reliable average value for the climate footprint of a French person, <a href="https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021?rubrique=27&dossier=1286">contrary to the SDES figure of 8.9t</a>, but simply the anatomy of our hybrid calculation model. Values are subject to regular change, in full transparency. 
+
+The aim of Nos Gestes Climat remains to estimate the footprint associated with a real person's lifestyle. In this respect, the aim of future versions is precisely to cover many items currently left out 🐕️⛴️🛵⚡️🏡. See you soon!

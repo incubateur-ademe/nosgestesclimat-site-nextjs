@@ -1,0 +1,85 @@
+---
+title: Tré-la-Tête
+date: 2022-09-26T17:15:37Z
+---
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Glacier_de_Tré-la-Tête.jpg/640px-Glacier_de_Tré-la-Tête.jpg)
+
+> The <a href="https://fr.wikipedia.org/wiki/Glacier_de_Tré-la-Tête">Tré-la-Tête glacier</a> is the 4th largest glacier in France. An <a href="https://www.francetvinfo.fr/meteo/canicule/video-un-glaciologue-repond-a-cinq-questions-sur-les-glaciers_5283679.html">interesting</a>📽️ <a href="https://www.francetvinfo.fr/meteo/canicule/video-un-glaciologue-repond-a-cinq-questions-sur-les-glaciers_5283679.html">Brut video about it following the extraordinary summer of 2022 (29/07/2022</a>)
+
+> **In brief** : 
+> - new logo, new iconography, new home page 
+> - many small improvements to the site and calculation model
+
+## 🎨 A new logo, a new home page, and new icons
+
+You won't have missed it, Nos Gestes Climat has a new logo 🥳. 
+
+![](https://nosgestesclimat.fr/images/petit-logo.png)
+
+Frequently mentioned in the press, it will go even less unnoticed. 
+
+<details><summary>Here are a few extracts from the last two weeks alone ⬇️ : </summary>
+
+ <a href="https://www.ouest-france.fr/bretagne/carhaix-plouguer-29270/a-carhaix-ces-specialistes-de-l-energie-donnent-leurs-conseils-pour-consommer-moins-bc1250aa-3346-11ed-8dd8-fdb9fa809eb1">Ouest-France</a> article: In Carhaix, these energy specialists give their advice on how to consume less
+
+> You can also calculate your carbon footprint at nosgestesclimat.fr
+
+ <a href="https://www.radiofrance.fr/franceinter/un-champion-de-trail-nous-explique-pourquoi-il-renonce-a-une-course-en-raison-de-son-bilan-carbone-7787049">France Inter</a> article: A top-level runner explains why he's giving up the Worlds because of his carbon footprint 
+
+> Andy Symonds has calculated, via the "Nos Gestes Climat" website, that flying to Thailand would explode his carbon footprint.
+
+ Le Dauphiné Libéré <a href="https://www.ledauphine.com/environnement/2022/09/21/les-citoyens-attendent-que-l-etat-les-accompagne-dans-leurs-efforts">has launched a survey and quotes NGC</a> Find out the results of our survey "The French and their carbon footprint" 
+
+> The average French person emits 11.2 tons of CO2e per year. Experts believe that this figure should be limited to 2 tonnes per year to curb climate change and meet the targets of the Paris Agreement. To find out more about your carbon footprint, Ademe has launched an online tool called "Nos Gestes Climat".
+
+Visit quoutside<a href="https://www.outside.fr/comment-evaluer-votre-empreinte-carbone-les-3-meilleurs-calculateurs">.fr</a>.
+
+</details>
+
+The home page follows this graphic evolution, with a few paragraphs to introduce the subject (and its limits). 
+
+
+
+### Before 
+
+![image](https://user-images.githubusercontent.com/1177762/191323489-088461c2-b1b9-46fe-bce2-c1e459104569.png)
+
+### After
+
+![image](https://user-images.githubusercontent.com/1177762/191323550-993c5109-ae91-4baa-8853-af240bf4c279.png)
+
+
+![image](https://user-images.githubusercontent.com/1177762/191323669-952493a1-7b17-4d38-a48b-313f2a592863.png)
+
+
+
+In the same way, we've worked on <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/570">the style and legibility of the</a> business <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/570">icons</a> throughout the site.
+
+![image](https://user-images.githubusercontent.com/1177762/192312016-67af3382-6e02-49db-b791-8ba1702eb0ce.png)
+
+
+## 🐎 Performance (eco-design)
+
+We have completed phase 2 of our sobriety work, in terms of site weight, with a <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/602">significant gain</a>. It's all relative, but a little sobriety on our side is the least we can do!
+
+## 👆️ Other interface improvements
+
+- The <a href="https://nosgestesclimat.fr/groupe">survey mode</a> is no longer in beta, but has already been used by hundreds of organisations
+- a notification appears when your home is depreciated (= built a long time ago): in this case, we don't ask you for its surface area (because we don't need it for the calculation), which surprised some users
+- number entries in the questionnaire are now more restricted (you can no longer enter zero passengers in the car, for example), to reduce errors that could be caused by unexpected values (infinite or zero values)
+- the "I don't know" button appears in mosaics (https://github.com/incubateur-ademe/nosgestesclimat-site/pull/604)
+- the accessibility certificate (https://github.com/incubateur-ademe/nosgestesclimat-site/pull/621) is online, testifying to our work on this important aspect of websites
+
+Overall, a great deal of work has gone into sorting and closing hundreds of feedback tickets, both <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues">on the model side</a> and <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/issues">on the site side</a>, with the contribution of as many people as possible always our priority.
+
+## 🧮 Calculation model side
+
+- <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1489">aircraft emission factors</a>updated
+- the "consumption" part of the tea <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1494">is already included in your electricity bill</a>, this was a bug identified thanks to our parallel work on <a href="https://monconvertisseurco2.fr/empreinte-carbone/boisson">monconvertisseurco2.fr</a>
+- the emission factor of the French electricity mix for 2021 <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1484">has been updated</a>
+
+## 🌅 Coming soon...
+
+We're currently working on regionalizing (overseas) and internationalizing the site 😎. See you soon!
+

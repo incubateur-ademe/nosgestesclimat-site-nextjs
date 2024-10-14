@@ -1,0 +1,35 @@
+---
+title: Bossons
+date: 2020-09-01T15:10:55Z
+---
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Absolute_MtBlanc_01.jpg/400px-Absolute_MtBlanc_01.jpg)
+
+> In brief: Power supply, average footprint and a few bugs
+
+For this 2nd version of Nos Gestes Climat, we've listened to the already numerous feedbacks and made these main changes.
+
+## Food item
+
+We've introduced the choice of breakfast type: 
+
+![image](https://user-images.githubusercontent.com/1177762/91868807-6ea72d00-ec75-11ea-81bb-982cac0ea55a.png)
+
+As well as a new diet selector, much less rigid than a single diet.
+
+![image](https://user-images.githubusercontent.com/1177762/91868962-9c8c7180-ec75-11ea-86fc-2f12f26baf35.png)
+
+## More representative default values
+
+The simulator now defaults to 11.7 tons, a figure closer to the average footprint of a French person (we were previously at 10). 
+
+## "Finance" item removed
+
+As explained in #24, assigning a footprint to money in the bank was double counting. We've removed it.
+
+## 🐛 shared car bug
+
+In short, we were greatly overestimating the footprint of car-sharing.
+
+We now attribute a share of the vehicle's construction to each person who rents a car to get around. We used to make the mistake of attributing *all* the construction to him. 
+

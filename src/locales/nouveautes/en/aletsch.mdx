@@ -1,0 +1,146 @@
+---
+title: Aletsch
+date: 2023-03-01T17:21:37Z
+---
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Aletschgletscher-Eggishorn.jpg/800px-Aletschgletscher-Eggishorn.jpg)
+
+> The <a href="https://fr.wikipedia.org/wiki/Glacier_d%27Aletsch">Aletsch Glacier</a> is the largest glacier in the Alps, located in southern Switzerland in the canton of Valais. ➡️ <a href="https://www.francetvinfo.fr/meteo/climat/climat-la-fonte-du-glacier-d-aletsch-revele-ses-secrets-enfouis_5393890.html">France Info report</a>. 
+A nod to Switzerland, which motivated the regionalization of Nos Gestes Climat's calculations. 
+
+**In brief** : 
+- 👥 The course of the group mode (conference and survey) has been improved 
+- 🪶 Performance improvements: we're concerned about the site's lightness 
+- 👤 The profile page is slowly improving  
+- 🇨🇭 New version of model internationalization, including Switzerland
+-  🧮 Improved calculation model
+- 🐞 Bug fixes 
+
+## Group mode improvements
+
+Nos Gestes Climat's group mode is being used more and more! If you've tried it out, you'll have noticed a few bugs and inconveniences. Fortunately, here's a first salvo of improvements for the new year. 
+
+### Display of number of participants *and* number of completed tests
+
+In group mode, we only displayed an indicator for the number of participants. But what about participants who are logged in but haven't finished or even started their test? 
+
+We now present two indicators: 
+- the number of people connected (conference) or having registered their participation in the survey (survey)
+- the number of people who have completed their test, meaning they have answered at least 90% of the questions
+
+![image](https://user-images.githubusercontent.com/1177762/217204345-6c657130-7177-4229-bae3-b71e4dbebe97.png)
+
+This change should make it much easier to welcome participants to a group session. It's up to you to tell us ;-)
+
+### Simplified welcome on the survey link
+
+The user's welcome on a survey link has been simplified: the "Take the test" button is no longer displayed on the same page as the "Participate" button, which must be clicked to take part in a survey. 
+
+### 🧮 Better explanation of graphs and averages
+
+Usually during a conference or survey, a moderator is there to explain the visualization page to users. If this isn't the case, here's a minimum explanation.
+
+![image](https://user-images.githubusercontent.com/1177762/217012881-e9e7a66b-1792-4073-8d50-f5aee5c6aadf.png)
+
+### 🔡 Simplified survey names
+
+We no longer allow spaces in survey names to avoid typos. 
+
+We've also added a screen to guide the user trying to access a non-existent survey. 
+
+> In the past, to launch a survey, all you had to do was connect to an address. Now, the organizer must first create a poll on the <a href="https://nosgestesclimat.fr/groupe">group page</a>.
+
+![image](https://user-images.githubusercontent.com/1177762/217201362-b12fd578-1ea5-40e0-b749-2081e3ba2bce.png)
+
+## Optimization & performance
+
+### Reduced size of template loaded from site
+
+We've greatly reduced the size of the calculation model loaded from the site: it's now **2 times lighter** 🪶. 
+
+<!-- Concrètement, pour calculer l<a href="https://nosgestesclimat.fr/documentation/alimentation/déchets/niveau-moyen">empreinte carbone de vos déchets</a>, nous disposons d'un modèle de calcul sophistiqué d'un millier de lignes, entièrement expliqué. Auparavant, il était téléchargé intégralement par votre navigateur. Aujourd'hui, seul le résultat final du calcul le sera ! 
+-->
+
+> <details> <summary>More technical info on this reduction here</summary>
+&gt 
+> We have developed a <a href="https://github.com/incubateur-ademe/publiopti">new</a> compression <a href="https://github.com/incubateur-ademe/publiopti">tool</a> for our calculation model. 
+&gt 
+> Indeed, in the interests of transparency and explicability, we try to be as precise and complete as possible when writing new models: this requires a breakdown into sub-rules and the creation of a (very thick) tree. This is the case for calculating<a href="https://nosgestesclimat.fr/documentation/alimentation/déchets/niveau-moyen">the footprint of waste</a>, for example. While this complexity is necessary to understand the calculation, it is not necessary to execute it. 
+&gt 
+> This new tool therefore makes it possible to transform all the sub-branches of a calculation into a single value when this does not depend on the user's answers. This is the case for waste, but also for societal services, whose footprint is the same for every French person.
+&gt 
+&gt </details>
+
+But why download the calculation to your browser rather than to our servers like other sites? There are two main reasons: 
+- nosgestesclimat.fr respects your privacy as much as possible: we don't **collect** your precious information (car kilometers, diet, m², etc...) ;
+- once the test is loaded, you use it like a mobile application: no need for an internet connection to answer the dozens of test questions.
+
+### Faster documentation pages & various site improvements
+
+In the same vein as reducing the weight of the calculation model, we've reduced the initial loading time of the <a href="https://nosgestesclimat.fr/documentation">model's documentation pages</a>, which allow anyone to explore the entire individual carbon footprint calculation. The calculation is now loaded in a "lazy" way, only at the click of a button, to display basic information more quickly. <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/778">More info here</a>.
+
+
+At the same time, we've reduced the weight of other pages, and added a loading indicator that evokes the new Nos Gestes Climat logo.
+
+![Nouvelle animation de chargement](https://user-images.githubusercontent.com/1177762/216140755-3c81d0e7-6cc2-4d56-82e3-9b851e9615ba.gif)
+
+A footer now allows you to consult the `About`, `Documentation` pages and even this `News` section from the rest of the site on desktop. 
+
+![image](https://user-images.githubusercontent.com/1177762/220296173-d8b2a9a7-320e-4437-9e00-ff7d5e31caed.png)
+
+
+## 👤 Improved /profile page
+
+Although we don't offer a logged-in user account, your <a href="https://nosgestesclimat.fr/profil">profile page</a> stores your simulation data until you delete "your cookies". 
+
+We've improved it, with a button to unfold all test responses. This also enables reusers of our calculation model to list the questions asked by Nos Gestes Climat. 
+
+![Recording 2023-02-21 at 09 51 35](https://user-images.githubusercontent.com/1177762/220295631-3fe9a9d9-81f1-45cd-a2fa-a19c8584d7f0.gif)
+
+> 💡 Tip: we haven't yet publicly released our <a href="https://nosgestesclimat.fr/personas">personas page</a>, which allows you to view the site as one of 9 typical users, from a 3-tonne score to a 16-tonne score. However, you can use it to explore our calculation model. More on this soon ;) 
+
+## 🏳️ Internationalization
+
+We've just released a more powerful version of our internationalization platform. It allows us to launch a beta version of a Swiss calculation model, but above all to facilitate the welcoming of new countries!
+
+As far as possible, the question titles are no longer specific to France, particularly for <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1665">the "Airplane" questions</a>. This allows us to make the test comprehensible to people from all over the world. On the other hand, the suggestions ("a metropolitan flight") remain linked to the test region for greater personalization. 
+
+Please note that these changes are only textual and do not affect emission factors.
+
+## 🔠 Translation
+
+Translation scripts have been improved to better handle external contributions that would modify automatic translations <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1676">for model translations</a> for the time being). 
+
+This will soon enable us to scale up to **translate Nos Gestes Climat into many languages**. 
+
+## 🧮 Calculation model improvements
+
+### 🏛️ More clarity on the societal services method
+
+<a href="https://github.com/incubateur-ademe/nosgestesclimat/tree/master/scripts/services-societaux">The calculation scripts</a> that enabled us to release <a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/l'empreinte-climat%20des%20%22services%20soci%C3%A9taux%22">the latest version</a> have been improved, and a <a href="https://github.com/incubateur-ademe/nosgestesclimat/wiki/Guide-technique-services-soci%C3%A9taux">methodological guide</a> has been added to the <a href="https://github.com/incubateur-ademe/nosgestesclimat/wiki">wiki</a>. Bugs have been <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1638">corrected</a>.
+
+### 📈€ Gas price update
+
+The input help for switching from € to kWh for the annual gas consumption question <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1733">is now up to date with the latest rates</a>! 
+
+### 🚗 Correction of "Car" model
+
+We have adjusted the scope of <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1704">the emission factor linked to car manufacturing</a>. Indeed, in the first version of this model, we had chosen to subtract "recycling credits" corresponding to emissions avoided via the use of recycled materials from the dismantling of a car, for the production of new manufactured products. On reflection, we assume that the reduced footprint benefits the purchaser of the recycled product, and not the purchaser of a product destined for recycling. It's an assumption we've already applied to all NGC models!
+
+## Bug corrections
+
+Simulation graphics were mistakenly frozen during testing; this has now been <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/828">corrected</a>. 
+
+We've also added a button that opens the detailed graph on click. 
+
+![Recording 2023-02-21 at 10 09 31](https://user-images.githubusercontent.com/1177762/220299822-c7eb9679-ca52-4bf9-a26c-bc1a4392f0c8.gif)
+ 
+ ## 🥳 External contributions
+
+We're delighted with the increase in relevant external contributions. These include:
+- a <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/835">bug fixed</a> by <a href="https://github.com/mlbiche">@mlbiche</a>,
+- many pertinent questions from <a href="https://github.com/marc-marc-marc">@marc-marc-marc</a> and the rest of the community 🙏,
+- a <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/issues/583">Portuguese-language version of</a> the site thanks to <a href="https://github.com/micaelbatista">@micaelbatista</a>. 
+
+See you soon! 
+

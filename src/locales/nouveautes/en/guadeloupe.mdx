@@ -1,0 +1,58 @@
+---
+title: Guadeloupe
+date: 2022-10-04T08:17:41Z
+---
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Guadeloupe_from_ISS.jpg/640px-Guadeloupe_from_ISS.jpg?uselang=fr)
+
+> The island of <a href="https://fr.wikipedia.org/wiki/Guadeloupe">Guadeloupe</a>
+
+> In brief : 
+> - the first regional version to extend beyond mainland France
+> A contributory internationalization platform
+> - ongoing improvements to the model: default values for heating, air conditioning and biogas
+
+## NGC international 🗺️
+We're launching internationalization and regionalization with our <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/pull/626">first new territory: Guadeloupe</a>!
+
+This essential work, which had been put aside for the time being, was prompted by the initiative of <a href="https://molokoi.com/">MOLOKOÏ</a>, a company committed to fighting climate change in its region, and <a href="https://gp.linkedin.com/in/samuel-charvet-830773223">Samuel Charvet</a>, a student at the University of the West Indies in Point-à-Pitre. 
+
+<p align="center">
+<img width="800" alt="screenshot" src="https://user-images.githubusercontent.com/55186402/193768356-bfd5da7b-7883-4d5e-8b89-bd252b704565.png">
+</p>
+
+
+The customization of the electricity mix factor, localized suggestions for air travel and the addition of inter-island ferries are the main features of the Guadeloupe version, which will obviously undergo further development.
+
+This is just the first building block, our aim being to create a community of contributors first in France, then in Europe and the rest of the world. 
+
+## Air conditioning added ❄️
+
+Differentiating the model for Guadeloupe has enabled us to realize the importance of air conditioning, and the relative importance of heating (for hot water) in this tropical region where no month is significantly colder than another. 
+
+Initially reserved for Guadeloupe, we have extended <a href="https://nosgestesclimat.fr/documentation/logement/climatisation">this air-conditioning model</a> to mainland France (in fact, the standard model at this stage, as it is historical), given the scale of air-conditioning equipment in 2020: 25% of households will be equipped. 
+
+Its footprint is twofold: its electricity consumption (particularly carbon-intensive in Guadeloupe) *and* its greenhouse gas leakage, which is significant (several hundred kg of CO2e per air conditioner per year) even in a France with a decarbonized electricity mix.
+
+The subject is complex (as it often is), so this model is just a <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1488">first iteration</a> to be refined. 
+
+## Biogas 🔥🌱
+
+It's an oft-asked question: what about "green gas", also known as biogas and, more precisely, biomethane? 
+
+We investigated<a href="https://nosgestesclimat.fr/documentation/logement/gaz/biogaz">the impact of biogas</a> and validated the possibility of adding it to our calculation, and now it's done. 
+
+> ⚠️ Please note, however, that this is by no means a perfect solution, and should not replace a more sustainable reduction in gas consumption through electrification, sobriety and energy efficiency.
+
+
+## Heating: average values 🌡️
+
+A <a href="https://github.com/incubateur-ademe/nosgestesclimat/pull/1433">study of average heating simulation values</a> was carried out by carefully analyzing <a href="https://nosgestesclimat.fr/documentation/parc-français">French housing</a> statistics.
+
+ ## Tech ⚙️
+ 
+As you may know, the special feature of ourgestesclimat is that it is a form generated from an <a href="nosgestesclimat.fr/documentation">open calculation model</a>. This makes it particularly robust to changes, because we don't painstakingly order questions by hand, and we don't recode entanglements like "if the user said he lived in an apartment, then don't ask him about the lawnmower": everything is managed for us. 
+
+The management of "mosaic" questions (such as the "heating" checkboxes or the choice of lunch and dinner menus) has been improved, and now resides directly in <a href="https://github.com/incubateur-ademe/nosgestesclimat-site/blob/master/docs/mosaic.md">the model,</a> alongside the other questions! 
+
+What's in it for us? It allows contributors who don't want to bother with Javascript (and other coding considerations) to modify the questions in an easy-to-use language. 

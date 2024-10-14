@@ -1,0 +1,99 @@
+---
+título: The Svalbard
+fecha: 2024-02-19T16:50:31Z
+image: https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/assets/144152881/db0bec84-5cc2-4123-b990-d434f1234545
+---
+
+#Las Svalbard
+
+Novedades de enero y febrero de 2024
+
+![Le Svalbard](https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/assets/144152881/db0bec84-5cc2-4123-b990-d434f1234545)
+
+> Svalbard, archipiélago noruego próximo a Groenlandia, en pleno Océano Ártico, es un destino especialmente popular entre los glaciólogos, entre ellos el glaciólogo francés Heïdi Sevestre.
+> En <a href="https://www.radiofrance.fr/franceculture/podcasts/le-biais-d-heidi-sevestre/voyage-a-l-interieur-d-un-glacier-4570455">este episodio</a> de su columna semanal en France Culture, Heïdi Sevestre describe sus expediciones al corazón de uno de los glaciares del archipiélago: a la vez soberbias y aterradoras, como testigos directos del cambio climático, del que los glaciares son unas de las primeras víctimas.
+> - Columna semanal de Heidi Sevestre en <a href="https://www.radiofrance.fr/franceculture/podcasts/le-biais-d-heidi-sevestre">la web de France Culture</a>
+
+
+### Los últimos cambios en breve
+
+- ✨ Nueva página de inicio
+- 🤓 Nuevas entradas en el blog
+- 🧱 Mejoras técnicas
+- 🧮 Adiciones al modelo de cálculo
+- ✊ Una revisión de las acciones propuestas al final de la prueba
+- 🪲 Y siempre: errores corregidos
+
+### ✨ Una nueva página de inicio
+
+Nos encantaba nuestro pequeño paisaje urbano, pero ya es hora de algo nuevo: un mensaje más claro y sencillo, y tan didáctica como siempre, ¡aquí tienes nuestra nueva página de inicio! 
+
+Además, hemos añadido algunas funciones interactivas: 
+
+- acceda siempre a la simulación (nueva o en curso) desde la barra de menús, gracias al nuevo botón del menú
+- los iconos del menú ahora están en negrita cuando los seleccionas - nos gusta la uniformidad visual aquí 😀
+- y, como en Nos Gestes Climat nos gusta divertirnos mientras aprendemos... un pequeño huevo de pascua se ha colado en nuestra página de inicio para los más juguetones entre vosotros
+
+<img width="1288" alt="page d'accueil v2 - easter egg" src="https://github.com/incubateur-ademe/nosgestesclimat-site/assets/144152881/71316ff6-4b90-4bab-a7f0-ab26a5d64694">
+
+### 🤓 Te mantendremos informado sobre el clima
+
+En las últimas semanas han aparecido dos entradas en el blog, así que no dudes en echarles un vistazo: 
+
+- <a href="https://nosgestesclimat.fr/blog/alternatives-voiture-individuelle">Alternativas al coche privado</a>
+- <a href="https://nosgestesclimat.fr/blog/challenge-tes-amis">Reta a tus amigos sobre su huella de carbono</a>
+
+Ah, y también hemos actualizado la lista de nuestros embajadores en la <a href="https://nosgestesclimat.fr/ambassadeurs">página dedicada</a>.
+
+### 🧱 Estamos solidificando la tecnología
+
+- Sin entrar en demasiados detalles técnicos, antes utilizábamos una API para cargar la plantilla en numerosos lugares del sitio. Lo hemos sustituido por un mecanismo más adecuado, capaz de aguantar la carga y evitar que el sitio *se cuelgue* 💥 cuando se producen picos de tráfico (como experimentamos en diciembre durante el Día del Carbono de France Inter).
+- Hemos mejorado la forma en que gestionamos las migraciones de modelos
+- Y también hemos mejorado nuestras pruebas E2E
+
+### 🧮 El modelo se ha completado y perfeccionado aún más
+
+En las últimas semanas se han realizado las siguientes adiciones al cálculo del carbono: 
+
+- combustible GLP (a raíz de las numerosas peticiones a través de nuestra <a href="https://nosgestesclimat.fr/contact">página de contacto</a>)
+- sus accesorios de jardín para los afortunados habitantes de la casa
+- adiciones para las bebidas: achicoria para las bebidas calientes en particular
+- se han añadido cálculos más detallados para los factores de emisión relacionados con las piscinas y la calefacción con pellets
+
+También hemos mejorado un comportamiento: las entradas son limitadas: ya no se pueden introducir valores extravagantes en los campos de entrada
+
+### Hemos revisado todas las acciones propuestas
+
+En primer lugar, la página de acciones vuelve a funcionar, y en particular la función de "preguntas adicionales", que daba problemas
+
+En segundo lugar, hemos completado las acciones propuestas tras la <a href="https://nosgestesclimat.fr/simulateur/bilan?mtm_campaign=nouveautes-simu">prueba</a> en todas las categorías 
+
+- alimentación :
+    - se han añadido nuevas acciones
+    - y dentro de esta categoría, hemos principalmente
+        - revisado las condiciones de visualización de cada acción de alimentación
+        - renombrado correctamente las acciones
+        - corregido un error que hacía que la acción "hacerse vegetariano" fuera negativa
+        - añadido algunos detalles sobre el incentivo de la dieta vegana, matizando sus beneficios: excelente para el impacto del carbono, puede ser peligrosa para la salud sin un control suficiente, y dependiendo de tu situación
+- vivienda, las adiciones incluyen: termostato, cambiar a madera, calentador de agua solar, vivienda compartida, bomba de calor, etc
+- transporte, las adiciones contienen: compartir coche, hacer que tu coche dure más, elegir un coche más pequeño, etc
+- varios: comprar la mitad de ropa, reducir el consumo de productos de higiene, comprar de segunda mano en vez de nuevo, etc
+
+### 🪲 Hemos corregido *NO ALGUNOS* de los bugs que tienen la mala costumbre de colarse
+
+- en el simulador:
+    - si cambias tu respuesta a una pregunta previamente contestada, las preguntas siguientes se adaptarán correctamente
+    - se ha reducido la zona de clic para responder a las preguntas, ya que generaba errores
+    - se ha corregido el cálculo del número medio de pasajeros de un coche
+- en el sitio en general:
+    - las páginas, en particular el tutorial, ya no se cargan dos veces: ¡se acabaron los parpadeos!
+    - hemos arreglado el acceso de nuestros socios suizos a determinadas funciones (para su sitio https://geneve.nosgestesclimat.ch/)
+
+
+<div className="text-center">
+  <a
+    href="https://nosgestesclimat.fr/simulateur/bilan?mtm_campaign=nouveautes-simu"
+    className="focus:ring-offset-3 transition-color mx-auto inline-flex items-center whitespace-nowrap rounded-md border-2 border-primary-500 bg-primary-500 !p-4 font-bold !text-white no-underline shadow-sm transition-colors transition-colors hover:bg-primary-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-700 aria-disabled:opacity-50">
+    ¿Cuál es su huella? 
+  </a>
+</div>
