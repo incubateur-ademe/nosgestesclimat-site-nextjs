@@ -16,7 +16,7 @@ Le code utilise NextJS / Typescript / React / TailwindCSS, entre autres.
 
 ### Installation
 
-> Ce dépôt ne contient pas la logique de calcul du calculateur. Le site importe, depuis le [paquet npm `@incubateur-ademe/nosgestesclimat`](https://www.npmjs.com/package/@incubateur-ademe/nosgestesclimat), les règles compilées issues [des fichiers Publi.codes du modèle](https://github.com/incubateur-ademe/nosgestesclimat/tree/master/data).
+> Ce dépôt ne contient pas les règles de calcul. Le site importe, depuis le [paquet npm `@incubateur-ademe/nosgestesclimat`](https://www.npmjs.com/package/@incubateur-ademe/nosgestesclimat), les règles compilées issues [des fichiers Publi.codes du modèle](https://github.com/incubateur-ademe/nosgestesclimat/tree/master/data).
 
 Pour lancer le site, utilisant le dernier modèle de calcul publié, il suffit de lancer :
 

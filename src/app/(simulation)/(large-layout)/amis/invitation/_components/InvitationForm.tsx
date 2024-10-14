@@ -71,7 +71,7 @@ export default function InvitationForm({ group }: { group: Group }) {
       groupToAdd: group._id,
     })
 
-    // Redirect to calculateur page or end page
+    // Redirect to calculator page or end page
     setShouldNavigate(true)
   }
 

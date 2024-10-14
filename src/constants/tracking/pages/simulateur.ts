@@ -4,50 +4,50 @@
 // Figma comment #39
 export const simulateurOpenSommaire = [
   'trackEvent',
-  'Calculateur',
+  'Simulateur',
   'Open Sommaire',
 ]
 
 // Figma comment #39
 export const simulateurCloseSommaire = [
   'trackEvent',
-  'Calculateur',
+  'Simulateur',
   'Close Sommaire',
 ]
 
 // Figma comment #44
 export const simulateurClickSommaireQuestion = [
   'trackEvent',
-  'Calculateur',
+  'Simulateur',
   'Click Sommaire question',
 ]
 
 // Figma comment #44
 export const simulateurClickDisabledSommaireQuestion = [
   'trackEvent',
-  'Calculateur',
+  'Simulateur',
   'Click Sommaire question',
 ]
 
 // Figma comment #42
 export const simulateurOpenScoreInfo = [
   'trackEvent',
-  'Calculateur',
+  'Simulateur',
   'Open Score Info',
 ]
 
 // Figma comment #40 & #41
 export const simulateurCloseScoreInfo = [
   'trackEvent',
-  'Calculateur',
+  'Simulateur',
   'Close Score Info',
 ]
 
 // Figma comment #121
-export const simulateurClickFaq = ['trackEvent', 'Calculateur', 'Click FAQ']
+export const simulateurClickFaq = ['trackEvent', 'Simulateur', 'Click FAQ']
 
 export const simulationClickSaveShortcut = [
   'trackEvent',
-  'Calculateur',
+  'Simulateur',
   'Click Save shortcut',
 ]
