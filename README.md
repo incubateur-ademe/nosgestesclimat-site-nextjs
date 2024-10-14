@@ -2,7 +2,7 @@
 
 ## C'est quoi ?
 
-Un simulateur d'empreinte climat individuelle de consommation à l'année, utilisant le modèle [nosgestesclimat](https://github.com/incubateur-ademe/nosgestesclimat).
+Un calculateur d'empreinte climat individuelle de consommation à l'année, utilisant le modèle [nosgestesclimat](https://github.com/incubateur-ademe/nosgestesclimat).
 
 Pour contribuer au modèle, données sous-jacentes et textes du questionnaire (calculs, facteurs d'émission, infos, questions, réponses, suggestions de saisie), [suivez le guide de contribution](https://github.com/incubateur-ademe/nosgestesclimat/blob/master/CONTRIBUTING.md).
 
@@ -16,7 +16,7 @@ Le code utilise NextJS / Typescript / React / TailwindCSS, entre autres.
 
 ### Installation
 
-> Ce dépôt ne contient pas la logique de calcul du simulateur. Le site importe, depuis le [paquet npm `@incubateur-ademe/nosgestesclimat`](https://www.npmjs.com/package/@incubateur-ademe/nosgestesclimat), les règles compilées issues [des fichiers Publi.codes du modèle](https://github.com/incubateur-ademe/nosgestesclimat/tree/master/data).
+> Ce dépôt ne contient pas la logique de calcul du calculateur. Le site importe, depuis le [paquet npm `@incubateur-ademe/nosgestesclimat`](https://www.npmjs.com/package/@incubateur-ademe/nosgestesclimat), les règles compilées issues [des fichiers Publi.codes du modèle](https://github.com/incubateur-ademe/nosgestesclimat/tree/master/data).
 
 Pour lancer le site, utilisant le dernier modèle de calcul publié, il suffit de lancer :
 

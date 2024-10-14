@@ -90,7 +90,7 @@ entries:
   le + d'impact climat: the + of climate impact
   le - d'impact climat: the - climate impact
   meta.publicodes.pages.Documentation.intro: The Nos Gestes Climat simulator is based on the calculation model of the same name, composed of a set of bricks. On this documentation, you have transparent access to all the variables of the calculation.
-  meta.publicodes.pages.Documentation.intro.lock: Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.
+  meta.publicodes.pages.Documentation.intro.lock: Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.
   minutes: minutes
   model.active.documented: The construction of the model (tracks of work, ongoing reflections, roadmap, etc.) is amply <2>documented publicly</2>.
   model.active.documented.lock: La construction du modèle (pistes de travail, réflexions en cours, feuille de route, etc.) est amplement <2>documentée publiquement</2>.
@@ -148,7 +148,7 @@ entries:
   publicodes.Contribution.remerciements: Thank you 😍! Follow the progress of your suggestion by clicking on <2>this link</2>.
   publicodes.Contribution.remerciements.lock: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <2>ce lien</2>.
   publicodes.Personas.description: "We have defined them so that they represent the diversity of the simulator's use cases<1>- any resemblance to an existing or former person would be purely coincidental!</1>In no way can we say that they are representative of the distribution of the French population: it is not a question of sticking to population statistics, but of finding among our ten personas at least one that represents each major and differentiating use for the simulator. We therefore varied the following for each persona:<3><0>Their gender: although this has no influence on the footprint, it would be surprising to have only 'female' personas</0><1>Their age and personal / professional situation: at least one student, one retired person, one adult at home, one working person</1><2>The size of their household: from 1 person to a large family</2><3>Where they live: urban, rural and suburban, in the north, south, plains, mountains and on an island</3><4>Where they live: from flats to houses, from new to old buildings</4><5>Means of transport: from walking to driving, from ferries to planes</5><6>Their diet: at least one vegan, one vegetarian, one person who eats only fish, and one red meat lover</6><7>Their buying habits: from second-hand to brand new, from compulsive buyers to people who buy almost nothing at all</7><8>The way they go on holiday: mode of transport, accommodation, there's something for everyone</8><9>Their hobbies: culture, sport, well-being..</9></3>"
-  publicodes.Personas.description.lock: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du simulateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le simulateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
+  publicodes.Personas.description.lock: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du calculateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le calculateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
   publicodes.Profil.locationDonnées: <0>Where is my data stored? </0><1>Your data is stored in your browser, so you have complete control over it.</1>
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
   publicodes.Profil.recap: You have completed the test at {{percentFinished}} % ({{answeredQuestionsLength}} questions), selected {{chosenActions}} action(s) and declined {{declinedActions}} action(s).
@@ -263,7 +263,7 @@ entries:
   Qui sont-ils ?: Who are they?
   Comment les mettons-nous à jour ?: How do we update them?
   publicodes.Personas.maj: To ensure that they continue to represent the diversity of the carbon footprint simulator's use cases, we edit them each time the simulator is added or modified, in accordance with the following rules:<1><0>Each possible answer is assigned to at least one persona</0><1>At least one persona does not answer the question (it is therefore assigned the default value given in the simulator).</1></1>
-  publicodes.Personas.maj.lock: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du simulateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le simulateur).</1></1>
+  publicodes.Personas.maj.lock: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du calculateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le calculateur).</1></1>
   Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.: This page lets you navigate through the Nos Gestes Climat paths as if you were one of the profiles we've listed.
   Créer un groupe: Create a group
   Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.: Our teams have been notified; please try to access this page again later.
@@ -319,7 +319,7 @@ entries:
   publicodes.Tutoriel.slide1.p2.lock: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
   Répondez aux questions en votre nom, pas pour votre foyer.: Answer the questions on your behalf, not for your household.
   Recommencer: Start again
-  Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: The personas allow us to test the simulator from every angle, and to check that it can be adapted to all the life situations of metropolitan citizens. Their presence forces us to think about all the use cases, to project ourselves into different realities, and to include these realities in our redesigns of the test path and the actions proposed at the end of it.
+  Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: The personas allow us to test the simulator from every angle, and to check that it can be adapted to all the life situations of metropolitan citizens. Their presence forces us to think about all the use cases, to project ourselves into different realities, and to include these realities in our redesigns of the test path and the actions proposed at the end of it.
   Plus d'information à ce sujet: More information
   Oups! Cette page n'existe pas ou n'existe plus: Oops! this page does not exist or no longer exists
   Vous utilisez la version: You are using the version
@@ -390,7 +390,7 @@ entries:
   'Vos trajets :': 'Your routes :'
   passager(s): passenger(s)
   Période: Period
-  Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Our simulator is based on a data model, with all the calculations documented; the data displayed is directly associated with your test.
+  Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Our simulator is based on a data model, with all the calculations documented; the data displayed is directly associated with your test.
   Créé par {{name}}: Created by {{name}}
   Vous êtes le premier: You're the first
   mais vous êtes seul·e…: but you are alone…
@@ -508,7 +508,7 @@ entries:
   Découvrir: Discover
   entre: between
   collègues: colleagues
-  Apportez votre pierre au simulateur de référence: Make your contribution to the reference simulator
+  Apportez votre pierre au calculateur de référence: Make your contribution to the reference simulator
   L'empreinte climat, qu'est-ce que c'est ?: What is the climate footprint?
   Le: The
   Pour les organisations: For organisations
@@ -586,7 +586,7 @@ entries:
   Vous pouvez reprendre votre test en cours, ou en recommencer un.: You can resume your current test, or start a new one.
   Télécharger le kit, ouvrir dans un nouvel onglet: Download the kit, open in a new tab
   Me connecter: Connect me
-  Découvrez le simulateur, ouvrir dans un nouvel onglet: Discover the simulator, open in a new tab
+  Découvrez le calculateur, ouvrir dans un nouvel onglet: Discover the simulator, open in a new tab
   Vous pouvez utiliser vos données existantes, ou recommencer le test.: You can use your existing data, or start the test again.
   Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques.: You can add additional questions to the test for your statistics.
   Vous souhaitez illustrer une quantité de CO2e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: Would you like to illustrate a quantity of CO2e and disseminate the right orders of magnitude to your community? ADEME's Carbon Comparator is the tool for you!
@@ -626,8 +626,8 @@ entries:
   Explorez le détail de nos actions clés: Find out more about our key actions
   Nous pourrons vous contacter en cas de problème lors de votre inscription: We can contact you if there are any problems with your registration
   Vous avez déja participé à ce sondage.: You have already taken part in this survey.
-  Découvrir le simulateur: Discover the simulator
-  Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: The individual carbon footprint simulator helps you to understand which of our uses contribute most to climate change, and to understand which actions would have the greatest impact in reducing it.
+  Découvrir le calculateur: Discover the simulator
+  Le calculateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: The individual carbon footprint simulator helps you to understand which of our uses contribute most to climate change, and to understand which actions would have the greatest impact in reducing it.
   'Je ne trouve pas réponse à ma question ': "I can't find the answer to my question "
   Les nouveautés: What's new?
   sélectionnez celles qui vous intéressent: select those that interest you
@@ -673,22 +673,22 @@ entries:
   Liste des questions - Nos Gestes Climat: List of questions - Nos Gestes Climat
   Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat: Create a group and calculate our carbon footprint - Nos Gestes Climat
   Nos Statistiques d'utilisation - Nos Gestes Climat: Our usage statistics - Nos Gestes Climat
-  Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat: Documentation, your carbon footprint simulator - Nos Gestes Climat
+  Documentation, votre calculateur d'empreinte carbone - Nos Gestes Climat: Documentation, your carbon footprint simulator - Nos Gestes Climat
   Quelles sont les actions les plus efficaces ?: What are the most effective actions?
   Rejoindre un groupe - Nos Gestes Climat: Join a group - Nos Gestes Climat
   CGU - Nos Gestes Climat: Terms and conditions - Nos Gestes Climat
-  Vos résultats de tests de notre simulateur d'empreinte carbone.: Your test results for our carbon footprint simulator.
-  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Join your group to calculate your carbon footprint and compare it with the footprint of others using the Nos Gestes Climat personal carbon footprint simulator.
-  Simulateur d’empreinte climat - Nos Gestes Climat: Climate footprint simulator - Nos Gestes Climat
-  Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat: Your results, climate footprint simulator - Nos Gestes Climat
-  Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.: Delete your group data saved in the Nos Gestes Climat simulator.
+  Vos résultats de tests de notre calculateur d'empreinte carbone.: Your test results for our carbon footprint simulator.
+  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.: Join your group to calculate your carbon footprint and compare it with the footprint of others using the Nos Gestes Climat personal carbon footprint simulator.
+  Calculateur d’empreinte climat - Nos Gestes Climat: Climate footprint simulator - Nos Gestes Climat
+  Vos résultats, calculateur d'empreinte climat - Nos Gestes Climat: Your results, climate footprint simulator - Nos Gestes Climat
+  Supprimez vos données de groupe enregistrées dans le calculateur Nos Gestes Climat.: Delete your group data saved in the Nos Gestes Climat simulator.
   Le guide - Nos Gestes Climat: The guide - Nos Gestes Climat
   Mentions légales - Nos Gestes Climat: Legal information - Nos Gestes Climat
   Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.: Find the answers to the most frequently asked questions about Nos Gestes Climat.
-  Découvrez le modèle de données de notre simulateur d'empreinte climat: Discover the data model of our climate footprint simulator
+  Découvrez le modèle de données de notre calculateur d'empreinte climat: Discover the data model of our climate footprint simulator
   Calculer votre empreinte carbone individuelle - Nos Gestes Climat: Calculate your individual carbon footprint - Nos Gestes Climat
   Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas.: Oops, you are on Nos Gestes Climat, but this page does not exist.
-  Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.: Discover the typical user personas we use to test the simulator from every angle.
+  Découvrez les personas d'utilisateurs types qui nous servent à tester le calculateur sous toutes ses coutures.: Discover the typical user personas we use to test the simulator from every angle.
   Observez l'évolution de l'impact de Nos Gestes Climat en mesures chiffrées.: See the evolution of the impact of Nos Gestes Climat in figures.
   'Découvrez les ambassadeurs de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.': 'Discover the ambassadors of Nos Gestes Climat: organisations, local authorities, media, influencers, etc.'
   Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explore and modify the information you have entered in the nosgestesclimat pathway.
@@ -698,13 +698,13 @@ entries:
   Contact - Nos Gestes Climat: Contact - Nos Gestes Climat
   Blog - Nos Gestes Climat: Blog - Nos Gestes Climat
   nouveautés - Nos Gestes Climat: news - Nos Gestes Climat
-  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calculate your carbon footprint as a group and compare it with the footprint of your friends and family using the Nos Gestes Climat personal carbon footprint simulator.
+  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.: Calculate your carbon footprint as a group and compare it with the footprint of your friends and family using the Nos Gestes Climat personal carbon footprint simulator.
   Les nouveautés - Nos Gestes Climat: What's new - Nos Gestes Climat
   Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.: This guide contains all the information you need about Nos Gestes Climat.
   Organisations, accéder à mon espace - Nos Gestes Climat: Organisations, go to my dashboard - Nos Gestes Climat
   Organisations, accéder à mon espace - Nos Gestes Climat.lock: Organisations, go to my dashboard - Nos Gestes Climat
   Diffusez Nos Gestes Climat dans votre organisation.: Spread Nos Gestes Climat throughout your organisation.
-  Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.: Find out how we use your personal data to offer you a personal carbon footprint simulator.
+  Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.: Find out how we use your personal data to offer you a personal carbon footprint simulator.
   Découvrez les nouveautés du site Nos Gestes Climat.: Find out what's new on the Nos Gestes Climat website.
   Contactez l'équipe de Nos Gestes Climat.: Contact the Nos Gestes Climat team.
   Actions, la liste - Nos Gestes Climat: Actions, the list - Nos Gestes Climat
@@ -713,7 +713,7 @@ entries:
   Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Access tailor-made services to raise awareness among your partners within your organisation.
   Informations relatives à l'accessibilité de Nos Gestes Climat.: Information on the accessibility of Nos Gestes Climat.
   Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Find out what you can do to reduce your carbon footprint.
-  Diffuser notre simulateur d'empreinte climat - Nos Gestes Climat: Distribute our climate footprint simulator - Nos Gestes Climat
+  Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat: Distribute our climate footprint simulator - Nos Gestes Climat
   Politique de confidentialité - Nos Gestes Climat: Privacy policy - Nos Gestes Climat
   Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat: Frequently asked questions about our climate footprint calculation - Nos Gestes Climat
   Mentions légales du site Nos Gestes Climat.: Legal information about Nos Gestes Climat.
@@ -831,7 +831,7 @@ entries:
   C’est l’objectif à atteindre pour espérer limiter le réchauffement climatique à 2 degrés.: This is the target we need to reach if we hope to limit global warming to 2 degrees.
   "<0>Nos Gestes Transports</0> : maîtrisez l'impact carbone de vos transports avec nos 4 infolettres": '<0>Our transport initiatives</0>: control the carbon impact of your transport with our 4 newsletters'
   Les hérissons sont menacé⋅e⋅s par le changement climatique et la perte de biodiversité. L'augmentation des températures et les conditions climatiques extrêmes perturbent leur habitat naturel, rendant difficile la recherche de nourriture et la reproduction.: Hedgehogs are under threats from climate change and biodiversity loss. Rising temperatures and extreme weather conditions are disrupting their natural habitat, making it difficult for them to find food and reproduce.
-  Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Our simulator is based on a data model, with all the calculations documented; the data displayed is directly associated with your test.
+  Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Our simulator is based on a data model, with all the calculations documented; the data displayed is directly associated with your test.
   De plus, la disparition de leur environnement naturel, due à la déforestation et à l'urbanisation, réduit leurs zones de vie potentielles, augmentant ainsi leur vulnérabilité face aux prédateurs et aux maladies.: In addition, the disappearance of their natural environment due to deforestation and urbanisation is reducing their potential living areas, increasing their vulnerability to predators and disease.
   Il y a de grandes chances que votre temps soit plus efficace à convaincre et aider les autres qu'à chercher à gagner vos "tonnes en trop" (même s'il faudra le faire un jour).: Chances are that your time will be better spent convincing and helping others than trying to earn your "extra tons" (although you'll have to do that one day).
   Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l’ensemble des gestes</2> qui vous permettront d’atteindre progressivement l’objectif de 2 tonnes.: Now that you've done your carbon footprint and are aware of your carbon footprint, you can find out about the <2>steps</2> you can take to gradually reach the 2 tonne target.
@@ -987,12 +987,12 @@ entries:
   Une femme préparant un bon petit plat.: A woman preparing a tasty dish.
   Un femme lisant le journal au coin du feu avec un chien assoupi.: A woman reading the newspaper by the fire with a dozing dog.
   Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.: We're constantly improving the site based on <2>your feedback</2>. Find out more about Nos Gestes Climat.
-  Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: The Nos Gestes Climat simulator is based on the calculation model of the same name, made up of a set of building blocks.
+  Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: The Nos Gestes Climat simulator is based on the calculation model of the same name, made up of a set of building blocks.
   Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.: This documentation gives you transparent access to all the variables involved in the calculation. Read it by the fire.
   Une fille réfléchissant à son empreinte carbone.: A girl thinking about her carbon footprint.
   Personne sur un vélo récupérant du courrier dans une boîte aux lettres: Person on a bicycle collecting mail from a letterbox
   Deux personnes se faisant une accolade en levant le bras en signe de victoire.: Two people hugging and raising their arms in victory.
-  Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services sociétaux), de la situer par rapport aux objectifs climatiques et surtout de passer à l'action à votre niveau avec des gestes personnalisés en fonction de vos réponses.: This simulator enables you to assess your individual carbon footprint for the year as a whole and by major category (food, transport, housing, miscellaneous, societal services), to compare it with climate targets and, above all, to take action at your own level with personalised actions based on your answers.
+  Ce calculateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services sociétaux), de la situer par rapport aux objectifs climatiques et surtout de passer à l'action à votre niveau avec des gestes personnalisés en fonction de vos réponses.: This simulator enables you to assess your individual carbon footprint for the year as a whole and by major category (food, transport, housing, miscellaneous, societal services), to compare it with climate targets and, above all, to take action at your own level with personalised actions based on your answers.
   (Peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience): (May take a few tens of seconds for campaigns with a large number of participants! Thank you for your patience)
   plus: more
   et vous aura la plus faible empreinte ?: and you will have the smallest footprint?
@@ -1034,7 +1034,7 @@ entries:
   Pour faire joli et le reconnaitre !: To make it look pretty and recognisable!
   Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat: Create a group and calculate your carbon footprint - Nos Gestes Climat
   En particulier, nous suivons l'adresse de la page de fin de simulation, qui contient le total de votre empreinte et sa répartition en grande catégories (transport, logement, etc.): In particular, we track the address of the page at the end of the simulation, which contains your total footprint and its breakdown into the main categories (transport, housing, etc.)
-  Cependant, nous suivons quelques informations sur votre utilisation de ce simulateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.: However, we do track some information about your use of this simulator, such as the pages consulted and the time spent, with the sole aim of improving it.
+  Cependant, nous suivons quelques informations sur votre utilisation de ce calculateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.: However, we do track some information about your use of this simulator, such as the pages consulted and the time spent, with the sole aim of improving it.
   La simulation et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.: The simulation and calculations are done in your web browser, so the answers to the questions stay with you, we don't collect any of them.
   Un bonhomme se demandant où il est: A man wondering where he is
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Nothing on the horizon! <1></1>The page you are looking for does not exist.
@@ -1047,7 +1047,7 @@ entries:
   Données qualitatives: Qualitative data
   de visites via iframe ce mois-ci: visits via iframe this month
   inscrits à l'infolettre: newsletter subscribers
-  partages du simulateur: sharing the simulator
+  partages du calculateur: sharing the simulator
   visites ce mois-ci (en cours): visits this month (in progress)
   Une erreur est survenue lors de la récupération des données: An error has occurred during data recovery
   components.stats.StatsContent.infosNorthstar: We are talking here about the "Organisations" and "Challenge your friends" modes. This section is generated via Metabase.

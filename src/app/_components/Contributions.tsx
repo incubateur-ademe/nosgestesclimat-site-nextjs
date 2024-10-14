@@ -29,7 +29,7 @@ export default function Contributions() {
           <Trans>Ouvert, documenté et contributif</Trans>
         </Kicker>
         <h2 className="mb-8 font-medium md:text-3xl">
-          <Trans>Apportez votre pierre au simulateur de référence</Trans>
+          <Trans>Apportez votre pierre au calculateur de référence</Trans>
         </h2>
         <div className="flex flex-col gap-4 md:flex-row md:gap-7">
           <Card

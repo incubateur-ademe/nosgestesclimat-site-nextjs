@@ -8,7 +8,7 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
+import { getLinkToSimulateur } from '@/helpers/navigation/calculateurPages'
 import Image from 'next/image'
 
 export async function generateMetadata() {

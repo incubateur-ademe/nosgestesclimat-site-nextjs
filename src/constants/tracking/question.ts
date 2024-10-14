@@ -12,7 +12,7 @@ type Props = {
 // Figma comment #45
 export const questionOpenInfo = ({ question }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Open Info',
   question,
 ]
@@ -20,7 +20,7 @@ export const questionOpenInfo = ({ question }: Props) => [
 // Figma comment #45
 export const questionCloseInfo = ({ question }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Close Info',
   question,
 ]
@@ -31,7 +31,7 @@ export const questionClickSuivant = ({
   timeSpentOnQuestion,
 }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Click Suivant',
   question,
   String(timeSpentOnQuestion),
@@ -40,7 +40,7 @@ export const questionClickSuivant = ({
 // Figma comment #49
 export const questionClickPass = ({ question, timeSpentOnQuestion }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Click Je ne sais pas',
   question,
   String(timeSpentOnQuestion),
@@ -49,7 +49,7 @@ export const questionClickPass = ({ question, timeSpentOnQuestion }: Props) => [
 // Figma comment #48
 export const questionClickPrevious = ({ question }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Click Précédent',
   question,
 ]
@@ -57,7 +57,7 @@ export const questionClickPrevious = ({ question }: Props) => [
 // Figma comment #47
 export const questionToggleAnswerInfo = ({ question }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Toggle Answer info',
   question,
 ]
@@ -65,7 +65,7 @@ export const questionToggleAnswerInfo = ({ question }: Props) => [
 // Figma comment #46
 export const questionChooseAnswer = ({ question, mosaicValue }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Choose Answer',
   question,
   String(mosaicValue),
@@ -74,7 +74,7 @@ export const questionChooseAnswer = ({ question, mosaicValue }: Props) => [
 // Figma comment #51
 export const questionTypeAnswer = ({ question, mosaicValue }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Type Answer',
   question,
   String(mosaicValue),
@@ -83,7 +83,7 @@ export const questionTypeAnswer = ({ question, mosaicValue }: Props) => [
 // Figma comment #50
 export const questionClickSuggestion = ({ question }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Click Suggestion',
   question,
 ]
@@ -91,7 +91,7 @@ export const questionClickSuggestion = ({ question }: Props) => [
 // Figma comment #52
 export const questionOpenHelp = ({ question }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Open Help',
   question,
 ]
@@ -99,7 +99,7 @@ export const questionOpenHelp = ({ question }: Props) => [
 // Figma comment #52
 export const questionCloseHelp = ({ question }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Close Help',
   question,
 ]
@@ -107,7 +107,7 @@ export const questionCloseHelp = ({ question }: Props) => [
 // Figma comment #53
 export const questionAddHelp = ({ question }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Add Help',
   question,
 ]
@@ -115,7 +115,7 @@ export const questionAddHelp = ({ question }: Props) => [
 // Figma comment #54
 export const questionDeleteHelp = ({ question }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Delete Help',
   question,
 ]
@@ -123,7 +123,7 @@ export const questionDeleteHelp = ({ question }: Props) => [
 // Figma comment #55
 export const questionTypeHelp = ({ question }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Type Help',
   question,
 ]
@@ -131,7 +131,7 @@ export const questionTypeHelp = ({ question }: Props) => [
 // Figma comment #56
 export const questionUpdateAltQuestion = ({ question }: Props) => [
   'trackEvent',
-  'Simulateur',
+  'Calculateur',
   'Update Alt Question',
   question,
 ]

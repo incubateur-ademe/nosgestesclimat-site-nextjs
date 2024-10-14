@@ -13,7 +13,7 @@ export default function PersonaExplanations() {
         <div className="mt-4">
           <Trans i18nKey={'publicodes.Personas.description'}>
             Nous les avons définis pour qu’ils représentent la diversité des cas
-            d’usage du simulateur.
+            d’usage du calculateur.
             <i>
               Toute ressemblance avec une personne existant ou ayant existé
               serait purement fortuite !
@@ -22,8 +22,8 @@ export default function PersonaExplanations() {
             distribution de la population française : il ne s’agit pas de coller
             aux statistiques de la population, mais de retrouver parmi nos dix
             personas au moins un qui représente chaque usage majeur et
-            différenciant pour le simulateur. Ainsi, nous avons fait varier pour
-            chacun d’entre eux :
+            différenciant pour le calculateur. Ainsi, nous avons fait varier
+            pour chacun d’entre eux :
             <ul className="list-disc pl-4">
               <li>
                 Leur genre : même s’il n’influe pas sur l’empreinte, il serait
@@ -85,8 +85,8 @@ export default function PersonaExplanations() {
         <div className="mt-4">
           <Trans i18nKey={'publicodes.Personas.maj'}>
             Pour qu’ils ou elles continuent de représenter la diversité des cas
-            d’usage du simulateur d’empreinte carbone, nous les éditons à chaque
-            ajout ou modification de ce dernier, en respectant les règles
+            d’usage du calculateur d’empreinte carbone, nous les éditons à
+            chaque ajout ou modification de ce dernier, en respectant les règles
             suivantes :
             <ul className="list-disc pl-4">
               <li>
@@ -95,7 +95,7 @@ export default function PersonaExplanations() {
 
               <li>
                 Au moins un persona ne répond rien à la question (il lui est
-                donc attribué la valeur par défaut donnée dans le simulateur).
+                donc attribué la valeur par défaut donnée dans le calculateur).
               </li>
             </ul>
           </Trans>

@@ -43,8 +43,8 @@ export default async function Explanations() {
 
       <p className="md:mb-8 md:text-lg">
         <Trans>
-          Le simulateur d’empreinte carbone individuelle permet de comprendre
-          quels sont nos usages qui contribuent le plus au changement
+          Notre calculateur d’empreinte carbone individuelle permet de
+          comprendre quels sont nos usages qui contribuent le plus au changement
           climatique, et de saisir les actions qui auraient le plus d’impact
           pour le réduire.
         </Trans>

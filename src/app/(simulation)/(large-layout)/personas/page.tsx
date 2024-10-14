@@ -14,7 +14,7 @@ export default function Personas() {
       <Title title={<Trans>Personas</Trans>} data-cypress-id="personas-title" />
       <p>
         <Trans>
-          Les personas nous servent à tester le simulateur sous toutes ses
+          Les personas nous servent à tester le calculateur sous toutes ses
           coutures, et à vérifier qu’il s’adapte bien à toutes les situations de
           vie des citoyens métropolitains. De par leur présence, ils nous
           forcent à penser à tous les cas d’usage, pour nous projeter dans
