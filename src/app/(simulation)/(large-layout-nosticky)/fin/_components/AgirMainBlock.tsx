@@ -7,18 +7,20 @@ import { useExportSituationToAgir } from '@/hooks/simulation/useExportSituationT
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function AgirMainBlock() {
   const { t } = useClientTranslation()
+
+  const [couldOpen, setCouldOpen] = useState(false)
 
   const { exportSimulation, data, isPending, isSuccess, isError, error } =
     useExportSituationToAgir()
 
   useEffect(() => {
     if (data?.redirectUrl && isSuccess) {
-      window.open(data.redirectUrl, '_blank')
-      return
+      const isOpen = window.open(data.redirectUrl, '_blank')
+      setCouldOpen(isOpen ? true : false)
     }
   }, [data, isSuccess])
 
@@ -37,6 +39,16 @@ export default function AgirMainBlock() {
         {!data?.redirectUrl && isSuccess && (
           <div className="text-red-600">
             <Trans>Une erreur est survenue</Trans>
+          </div>
+        )}
+        {!couldOpen && isSuccess && (
+          <div className="text-red-600">
+            <Trans>
+              Une erreur est survenue.{' '}
+              <a href={data?.redirectUrl} target="_blank">
+                Cliquez sur ce lien pour naviguer vers J'agis.
+              </a>
+            </Trans>
           </div>
         )}
         <div className="flex items-center gap-4">
