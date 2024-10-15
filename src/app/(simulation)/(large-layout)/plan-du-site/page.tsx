@@ -1,26 +1,10 @@
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Actions from './_components/Actions'
 import LinkList from './_components/LinkList'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
-
-  return getMetadataObject({
-    title: t('Plan du site - Nos Gestes Climat'),
-    description: t(
-      'Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.'
-    ),
-    alternates: {
-      canonical: '/plan-du-site',
-    },
-  })
-}
-
 export default async function PlanDuSitePage() {
-  const { t } = await getServerTranslation()
+  const { t } = { t: (text: any) => text }
 
   const links = {
     'Nos outils': {
