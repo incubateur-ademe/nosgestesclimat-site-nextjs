@@ -26,7 +26,7 @@ const targetEntryIsUpToDate = (src, target) =>
 cli.printChecksResultTableHeader(markdown)
 
 destLangs.forEach((targetLang) => {
-  const targetEntries = utils.readYAML(paths.FAQ[targetLang].withLock)
+  const targetEntries = utils.readYAML(paths.FAQ[targetLang].withLock) ?? []
 
   const missingTranslations = srcYAML.reduce((acc, refEntry) => {
     const isUpToDate = targetEntryIsUpToDate(

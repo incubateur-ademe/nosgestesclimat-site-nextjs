@@ -9,7 +9,7 @@ export async function generateMetadata() {
   return getMetadataObject({
     title: t('Politique de confidentialité - Nos Gestes Climat'),
     description: t(
-      'Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.'
+      'Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.'
     ),
     alternates: {
       canonical: '/politique-de-confidentialite',
@@ -30,8 +30,8 @@ export default function ViePriveePage() {
       <p>
         <Trans>
           Cependant, nous suivons quelques informations sur votre utilisation de
-          ce simulateur, telles que les pages consultées et le temps passé, dans
-          l'unique but de l'améliorer.
+          ce calculateur, telles que les pages consultées et le temps passé,
+          dans l'unique but de l'améliorer.
         </Trans>
       </p>
       <p>
