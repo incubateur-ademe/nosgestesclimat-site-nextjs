@@ -53,8 +53,8 @@ export default async function Contact() {
         </div>
 
         <Image
-          className="self-start"
-          src="/images/illustrations/delivering-mail.svg"
+          className="max-w-[50vw] self-start"
+          src="/images/illustrations/delivering-mail.png"
           width="300"
           height="400"
           alt={t(

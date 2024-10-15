@@ -69,7 +69,9 @@ export default function Ranking({
               numberOfParticipants={group.participants.length}
               refetchGroup={refetchGroup}
               textColor={
-                metric === eauMetric ? 'text-primary-950' : 'text-white'
+                metric === eauMetric || hasOneParticipant
+                  ? 'text-primary-950'
+                  : 'text-white'
               }
             />
           )

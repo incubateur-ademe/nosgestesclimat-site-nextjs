@@ -47,7 +47,7 @@ export default function MyPolls({ polls }: Props) {
 
   return (
     <section className="mb-12">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between sm:flex-nowrap">
         <Title tag="h2">
           <Trans>Mes campagnes</Trans>
         </Title>
