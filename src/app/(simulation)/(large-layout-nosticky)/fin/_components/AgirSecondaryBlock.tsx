@@ -3,6 +3,7 @@ import Trans from '@/components/translation/Trans'
 import { endClickJagisSecondBlock } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
 import Badge from '@/design-system/layout/Badge'
+import Loader from '@/design-system/layout/Loader'
 import { useExportSituationToAgir } from '@/hooks/simulation/useExportSituationToAgir'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -52,7 +53,9 @@ export default function AgirSecondaryBlock() {
             trackEvent(endClickJagisSecondBlock)
             exportSimulation()
           }}>
-          <Trans>Créer mon compte</Trans>
+          <Trans>
+            Créer mon compte {isPending && <Loader className="ml-2" />}
+          </Trans>
         </Button>
         {isError && <div className="text-red-600">{error?.toString()}</div>}
         {!data?.redirectUrl && isSuccess && (

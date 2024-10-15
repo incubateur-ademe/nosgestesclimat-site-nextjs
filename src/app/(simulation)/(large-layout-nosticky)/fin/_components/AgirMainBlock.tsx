@@ -2,6 +2,7 @@ import Marianne from '@/components/images/partners/Marianne'
 import Trans from '@/components/translation/Trans'
 import { endClickJagisFirstBlock } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
+import Loader from '@/design-system/layout/Loader'
 import { useExportSituationToAgir } from '@/hooks/simulation/useExportSituationToAgir'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -55,7 +56,7 @@ export default function AgirMainBlock() {
           exportSimulation()
         }}
         className="flex !h-11 max-h-11 !w-11 max-w-11 items-center justify-center rounded-full !p-0 !text-2xl leading-none">
-        →
+        {isPending ? <Loader /> : '→'}
       </Button>
     </div>
   )
