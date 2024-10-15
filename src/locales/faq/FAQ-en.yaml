@@ -230,11 +230,11 @@
   catégorie: various
   réponse: |
 
-    Assessing the impact of digital technology, and more specifically of 'dematerialised' content (streaming, videoconferencing, cloud storage, emailing, etc.) is **still a subject of work** among technical and institutional players.
+    Assessing the impact of digital technology, and more specifically of "dematerialised" content (streaming, videoconferencing, cloud storage, emailing, etc.) is **still a subject of work** among technical and institutional players.
 
     Our best estimate of the digital footprint is based on data from the <a href="https://www.bilans-ges.ademe.fr/">Base Carbone®</a>, but some information or questions may be missing.
 
-    > 🕹️ To find out more, try out <a href="https://impactco2.fr/usagenumerique">the interactive impactco2.fr calculator</a>.
+    > 🕹️ To find out more, try out <a href="https://impactco2.fr/usagenumerique">the impactco2.fr interactive simulator</a>.
   question.lock: L'impact du numérique n'est-il pas plus élevé que cela ?
   catégorie.lock: divers
   réponse.lock: |
@@ -243,7 +243,7 @@
 
     Nous estimons au mieux l’empreinte numérique en nous basant sur les données de la [Base Carbone®](https://www.bilans-ges.ademe.fr/) mais certaines informations ou questionnements peuvent s’avérer manquant.
 
-    > 🕹️ Pour aller plus loin, n'hésitez pas à tester [le calculateur interactif d'impactco2.fr](https://impactco2.fr/usagenumerique).
+    > 🕹️ Pour aller plus loin, n'hésitez pas à tester [le simulateur interactif d'impactco2.fr](https://impactco2.fr/usagenumerique).
 - id: bio
   question: Why don't you ask about organic produce?
   catégorie: power supply

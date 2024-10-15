@@ -528,7 +528,7 @@
 
     Nuestra mejor estimación de la huella digital se basa en los datos de la <a href="https://www.bilans-ges.ademe.fr/">Base Carbone®</a>, pero es posible que falten algunos datos o cuestiones.
 
-    > 🕹️ Para saber más, pruebe <a href="https://impactco2.fr/usagenumerique">la calculadora interactiva impactco2.fr</a>.
+    > 🕹️ Para saber más, pruebe <a href="https://impactco2.fr/usagenumerique">el simulador interactivo impactco2.fr</a>.
   question.lock: L'impact du numérique n'est-il pas plus élevé que cela ?
   catégorie.lock: divers
   réponse.lock: |
@@ -537,7 +537,7 @@
 
     Nous estimons au mieux l’empreinte numérique en nous basant sur les données de la [Base Carbone®](https://www.bilans-ges.ademe.fr/) mais certaines informations ou questionnements peuvent s’avérer manquant.
 
-    > 🕹️ Pour aller plus loin, n'hésitez pas à tester [le calculateur interactif d'impactco2.fr](https://impactco2.fr/usagenumerique).
+    > 🕹️ Pour aller plus loin, n'hésitez pas à tester [le simulateur interactif d'impactco2.fr](https://impactco2.fr/usagenumerique).
 - id: différences-motorisations
   question: ¿Qué diferencias hay entre los coches de combustión interna, los híbridos y los eléctricos?
   catégorie: transporte
