@@ -3,7 +3,7 @@ import Trans from '@/components/translation/Trans'
 import { endClickJagisSecondBlock } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
 import Badge from '@/design-system/layout/Badge'
-import { useSendSimulationToAgir } from '@/hooks/simulation/useSendSimulationToAgir'
+import { useExportSituationToAgir } from '@/hooks/simulation/useExportSituationToAgir'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
@@ -12,8 +12,8 @@ import { useEffect } from 'react'
 export default function AgirSecondaryBlock() {
   const { t } = useClientTranslation()
 
-  const { sendSimulation, data, isPending, isSuccess, isError, error } =
-    useSendSimulationToAgir()
+  const { exportSimulation, data, isPending, isSuccess, isError, error } =
+    useExportSituationToAgir()
 
   useEffect(() => {
     if (data?.redirectUrl && isSuccess) {
@@ -50,7 +50,7 @@ export default function AgirSecondaryBlock() {
           className="mb-4"
           onClick={() => {
             trackEvent(endClickJagisSecondBlock)
-            sendSimulation()
+            exportSimulation()
           }}>
           <Trans>Créer mon compte</Trans>
         </Button>

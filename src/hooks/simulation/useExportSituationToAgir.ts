@@ -3,11 +3,11 @@ import { useCurrentSimulation } from '@/publicodes-state'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
-export function useSendSimulationToAgir() {
+export function useExportSituationToAgir() {
   const currentSimulation = useCurrentSimulation()
 
   const {
-    mutate: sendSimulation,
+    mutate: exportSimulation,
     isPending,
     isSuccess,
     isError,
@@ -24,7 +24,7 @@ export function useSendSimulationToAgir() {
     },
   })
   return {
-    sendSimulation,
+    exportSimulation,
     isPending,
     isSuccess,
     isError,
