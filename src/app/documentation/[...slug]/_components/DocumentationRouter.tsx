@@ -2,7 +2,7 @@
 
 import Providers from '@/components/providers/Providers'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { JSX, useContext, useEffect } from 'react'
+import { JSX, Suspense, useContext, useEffect } from 'react'
 import { IsDocumentationClientContext } from '../../_contexts/DocumentationStateContext'
 import DocumentationClient from './documentationRouter/DocumentationClient'
 
@@ -34,9 +34,14 @@ export default function DocumentationRouter({
 
   if (isDocumentationClient)
     return (
-      <Providers supportedRegions={supportedRegions} isOptim={false}>
-        <DocumentationClient supportedRegions={supportedRegions} slugs={slug} />
-      </Providers>
+      <Suspense fallback={null}>
+        <Providers supportedRegions={supportedRegions} isOptim={false}>
+          <DocumentationClient
+            supportedRegions={supportedRegions}
+            slugs={slug}
+          />
+        </Providers>
+      </Suspense>
     )
 
   return serverComponent
