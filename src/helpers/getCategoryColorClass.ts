@@ -585,3 +585,20 @@ export function getTextCategoryColor(
       return `text-primary-${variation}`
   }
 }
+
+export function getCategoryFocusRingClassName(category: string) {
+  switch (category) {
+    case 'transport':
+      return 'focus:!ring-transport-800 focus:!ring-offset-2'
+    case 'alimentation':
+      return 'focus:!ring-alimentation-800 focus:!ring-offset-2'
+    case 'logement':
+      return 'focus:!ring-logement-800 focus:!ring-offset-2'
+    case 'divers':
+      return 'focus:!ring-divers-800 focus:!ring-offset-2'
+    case 'servicessocietaux':
+      return 'focus:!ring-servicessocietaux-800 focus:!ring-offset-2'
+    default:
+      return ''
+  }
+}
