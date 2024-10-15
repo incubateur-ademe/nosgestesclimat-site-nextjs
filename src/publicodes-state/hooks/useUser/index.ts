@@ -23,6 +23,7 @@ export default function useUser() {
     currentSimulationId,
     setCurrentSimulationId,
     migrationInstructions,
+    isInitialized,
   } = useContext(userContext)
 
   const {
@@ -56,6 +57,10 @@ export default function useUser() {
   const { updateNorthStarRatings } = useNorthStar({ setUser })
 
   return {
+    /**
+     * A boolean indicating if the user and their simulations have been initialized
+     */
+    isInitialized,
     /**
      * All the information about the user (for now: name, email, region and north star rating)
      */

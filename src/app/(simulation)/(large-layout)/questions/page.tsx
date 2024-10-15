@@ -23,8 +23,8 @@ export default function QuestionsPage() {
     <>
       <Title>
         <Trans>Questions</Trans>
-        <Questions />
       </Title>
+      <Questions />
     </>
   )
 }
