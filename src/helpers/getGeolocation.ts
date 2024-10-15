@@ -1,6 +1,4 @@
-import { RegionFromGeolocation } from '@/publicodes-state/types'
-
-export async function getGeolocation(): Promise<RegionFromGeolocation> {
+export async function getGeolocation(): Promise<string> {
   const region = await fetch(
     `${
       process.env.VERCEL_ENV === 'preview' ||
@@ -10,14 +8,7 @@ export async function getGeolocation(): Promise<RegionFromGeolocation> {
     }://${process.env.VERCEL_URL || 'localhost:3000'}/api/geolocation`
   )
     .then((res) => res.json())
-    .then(
-      (res: {
-        country: {
-          code: string
-          name: string
-        }
-      }) => res.country
-    )
+    .then((res) => res.country.code)
 
   return region
 }

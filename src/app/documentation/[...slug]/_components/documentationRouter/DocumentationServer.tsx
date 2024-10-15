@@ -24,7 +24,7 @@ type Props = {
 export default async function DocumentationServer({ slugs }: Props) {
   const ruleName = decodeRuleNameFromPath(slugs.join('/')) as DottedName
 
-  const region = await getGeolocation()
+  const regionCode = await getGeolocation()
 
   const locale = currentLocale()
 
@@ -36,7 +36,7 @@ export default async function DocumentationServer({ slugs }: Props) {
   const rules = await getRules({
     isOptim: false,
     locale,
-    regionCode: region?.code,
+    regionCode,
   })
 
   const rule = rules?.[ruleName]
