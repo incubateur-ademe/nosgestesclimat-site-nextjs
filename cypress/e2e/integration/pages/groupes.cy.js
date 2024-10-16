@@ -1,5 +1,6 @@
 import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
+import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
 
 describe('The Group creation page /amis/creer', () => {
   let ownerUserId = ''
@@ -38,21 +39,7 @@ describe('The Group creation page /amis/creer', () => {
 
     recursivelyFillSimulation(null, 'group')
 
-    cy.wait(2000)
-
-    cy.get('h1').then(($el) => {
-      if (
-        $el
-          .text()
-          .includes(
-            Cypress.env('testLangURL') === 'en'
-              ? "Let's finish with a riddle!"
-              : 'Une devinette pour finir !'
-          )
-      ) {
-        cy.get('[data-cypress-id="button-skip-quiz"]').click()
-      }
-    })
+    skipRiddle()
 
     cy.wait(4000)
 
