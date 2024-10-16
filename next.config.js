@@ -35,6 +35,9 @@ const nextConfig = {
       use: 'yaml-loader',
     })
 
+    // We do not want to split the chunks too much
+    config.optimization.splitChunks.minSize = 300000
+
     return config
   },
   experimental: {
