@@ -2,14 +2,19 @@ import Trans from '@/components/translation/Trans'
 import { homeClickActions } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Kicker from '@/design-system/layout/Kicker'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
 export default async function Actions() {
+  const { t } = await getServerTranslation()
+
   return (
     <div className="flex-1">
       <Image
         src="/images/illustrations/girl-holding-earth.svg"
-        alt="Une jeune femme tenant la terre entre ses mains, un chien la regardant joyeusement."
+        alt={t(
+          'Une jeune femme tenant la terre entre ses mains, un chien la regardant joyeusement.'
+        )}
         width="290"
         height="275"
         className="mb-6 block h-auto max-w-full"
