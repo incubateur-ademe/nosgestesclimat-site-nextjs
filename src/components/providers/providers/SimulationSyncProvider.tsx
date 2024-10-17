@@ -112,7 +112,12 @@ export default function SimulationSyncProvider({
   })
 
   useEffect(() => {
-    const hasChanged = compareTwoSimulations(prevSimulation.current, {
+    const simulationToCompare = {
+      ...prevSimulation.current,
+      savedViaEmail: undefined,
+    }
+
+    const hasChanged = compareTwoSimulations(simulationToCompare, {
       id,
       date,
       situation,
@@ -124,7 +129,6 @@ export default function SimulationSyncProvider({
       defaultAdditionalQuestionsAnswers,
       polls,
       groups,
-      savedViaEmail,
     })
 
     prevSimulation.current = {
