@@ -21,7 +21,11 @@ type Props = {
 export default async function DocumentationServer({ slugs, rules }: Props) {
   const ruleName = decodeRuleNameFromPath(slugs.join('/')) as DottedName
 
-  const rule = rules[ruleName]
+  if (!ruleName) {
+    redirect('/404')
+  }
+
+  const rule = rules?.[ruleName]
 
   if (!rule) {
     redirect('/404')
