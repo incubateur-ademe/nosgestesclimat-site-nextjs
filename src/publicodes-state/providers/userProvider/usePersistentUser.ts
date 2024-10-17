@@ -1,4 +1,4 @@
-import countries from '@/app/api/geolocation/countries.json'
+import { defaultInitialRegion } from '@/constants/defaultRegion'
 import { getIsLocalStorageAvailable } from '@/utils/getIsLocalStorageAvailable'
 import { useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
@@ -6,26 +6,18 @@ import { User } from '../../types'
 
 const isLocalStorageAvailable = getIsLocalStorageAvailable()
 
+// We initialize the user with France as a default region. We then update it with the user's geolocation
+
 type Props = {
   storageKey: string
-  initialRegionCode: string
 }
-export default function usePersistentUser({
-  storageKey,
-  initialRegionCode,
-}: Props) {
+export default function usePersistentUser({ storageKey }: Props) {
   const [initialized, setInitialized] = useState<boolean>(false)
 
   const [user, setUser] = useState<User>({
-    region: {
-      code: '',
-      name: '',
-    },
-    initialRegion: {
-      code: '',
-      name: '',
-    },
-    userId: '',
+    region: defaultInitialRegion,
+    initialRegion: defaultInitialRegion,
+    userId: uuid(),
   })
 
   useEffect(() => {
@@ -37,24 +29,11 @@ export default function usePersistentUser({
     }
     if (localUser) {
       setUser(formatUser({ user: localUser }))
-    } else {
-      const initialRegion = countries.find(
-        (country) => country.code === initialRegionCode
-      ) ?? {
-        code: 'FR',
-        name: 'France',
-      }
-      setUser({
-        region: initialRegion,
-        initialRegion,
-        userId: uuid(),
-      })
     }
     setInitialized(true)
-  }, [storageKey, initialRegionCode])
+  }, [storageKey])
 
   useEffect(() => {
-    console.log('usePersistentUser 2')
     if (initialized) {
       const currentStorage = JSON.parse(
         localStorage.getItem(storageKey) || '{}'

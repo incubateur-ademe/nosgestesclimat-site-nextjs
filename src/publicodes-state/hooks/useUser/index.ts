@@ -30,6 +30,7 @@ export default function useUser() {
     updateName,
     updateEmail,
     updateRegion,
+    updateInitialRegion,
     updateLoginExpirationDate,
     updateUserOrganisation,
   } = useUserDetails({ user, setUser })
@@ -81,6 +82,11 @@ export default function useUser() {
      * A setter for updating the user current region
      */
     updateRegion,
+    /**
+    /**
+     * A setter for updating the user initial region (via the geolocation)
+     */
+    updateInitialRegion,
     /**
      * A setter for updating the user login expiration date
      */

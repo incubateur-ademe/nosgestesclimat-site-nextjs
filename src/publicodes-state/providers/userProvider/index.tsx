@@ -15,10 +15,6 @@ type Props = {
    */
   storageKey?: string
   /**
-   * The inital region of the user
-   */
-  initialRegionCode?: string
-  /**
    * The migration instructions for old localstorage
    */
   migrationInstructions: Migration
@@ -26,12 +22,11 @@ type Props = {
 export default function UserProvider({
   children,
   storageKey = 'ngc',
-  initialRegionCode = 'FR',
   migrationInstructions,
 }: PropsWithChildren<Props>) {
   useUpdateOldLocalStorage({ storageKey })
 
-  const { user, setUser } = usePersistentUser({ storageKey, initialRegionCode })
+  const { user, setUser } = usePersistentUser({ storageKey })
 
   const { tutorials, setTutorials } = usePersistentTutorials({ storageKey })
 

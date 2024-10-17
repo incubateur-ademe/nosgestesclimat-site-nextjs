@@ -8,7 +8,7 @@ import {
   useUser,
 } from '@/publicodes-state'
 import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
-import { PropsWithChildren, Suspense } from 'react'
+import { PropsWithChildren } from 'react'
 import Error500 from '../layout/500'
 import SimulationSyncProvider from './providers/SimulationSyncProvider'
 
@@ -43,9 +43,7 @@ export default function Providers({
   return (
     <div key={id}>
       <SimulationProvider rules={rules}>
-        <Suspense fallback={null}>
-          <LocalisationBanner supportedRegions={supportedRegions} />
-        </Suspense>
+        <LocalisationBanner supportedRegions={supportedRegions} />
         <SimulationSyncProvider>{children}</SimulationSyncProvider>
       </SimulationProvider>
     </div>

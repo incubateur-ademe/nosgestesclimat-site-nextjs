@@ -1,5 +1,4 @@
 import Footer from '@/components/layout/Footer'
-import { getGeolocation } from '@/helpers/getGeolocation'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import { dir } from 'i18next'
@@ -56,8 +55,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   try {
     const lang = currentLocale()
 
-    const regionCode = await getGeolocation()
-
     return (
       <html lang={lang ?? ''} dir={dir(lang ?? '')}>
         <head>
@@ -105,7 +102,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
             b.setAttribute('data-useragent', navigator.userAgent);
           `}</Script>
 
-          <MainLayoutProviders regionCode={regionCode}>
+          <MainLayoutProviders>
             {children}
             <Footer />
           </MainLayoutProviders>

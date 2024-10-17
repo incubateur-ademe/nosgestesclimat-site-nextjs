@@ -1,3 +1,5 @@
+import { defaultInitialRegion } from '@/constants/defaultRegion'
+import { RegionFromGeolocation } from '@/publicodes-state/types'
 import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
 import { NextRequest, NextResponse } from 'next/server'
@@ -20,9 +22,9 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ country: { name: 'Europe', code: 'EU' } })
   }
 
-  const country = countries.find(
-    (country) => country.code === detectedCountryCode
-  )
+  const country: RegionFromGeolocation =
+    countries.find((country) => country.code === detectedCountryCode) ??
+    defaultInitialRegion
 
   return NextResponse.json({ country })
 }
