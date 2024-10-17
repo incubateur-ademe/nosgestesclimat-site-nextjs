@@ -20,7 +20,7 @@ export const useSetInitialRegion = () => {
     // If the initial region is not fetched or if it is the same as the one we already have, we don't do anything
     if (
       !initialRegionFromGeoloc ||
-      initialRegionFromGeoloc.code === initialRegion.code
+      initialRegionFromGeoloc.code === initialRegion?.code
     ) {
       return
     }
@@ -28,7 +28,7 @@ export const useSetInitialRegion = () => {
     updateInitialRegion(initialRegionFromGeoloc)
 
     // If the region is the same as the initial region, we update the region too
-    if (initialRegion.code === region?.code) {
+    if (initialRegion?.code === region?.code) {
       updateRegion(initialRegionFromGeoloc)
     }
   }, [

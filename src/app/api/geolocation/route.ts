@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
   const detectedCountryCode = request.geo?.country
 
   if (!detectedCountryCode) {
-    return NextResponse.json({ undefined })
+    return NextResponse.json(defaultInitialRegion)
   }
 
   const isNotSupportedUECountry =
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
     countries.find((country) => country.code === detectedCountryCode) ??
     defaultInitialRegion
 
-  return NextResponse.json({ country })
+  return NextResponse.json(country)
 }
 
 const nonSupportedUECountryCodes = ue_country_codes.filter(
