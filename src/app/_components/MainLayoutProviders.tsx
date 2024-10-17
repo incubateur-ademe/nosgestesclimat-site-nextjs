@@ -1,35 +1,29 @@
 'use client'
 
-import { IframeOptionsProvider } from '@/app/_components/mainLayoutProviders/IframeOptionsContext'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import { UserProvider } from '@/publicodes-state'
-import { RegionFromGeolocation } from '@/publicodes-state/types'
-import { Migration } from '@publicodes/tools/migration'
+import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import { PropsWithChildren } from 'react'
-import MainHooks from './mainLayoutProviders/MainHooks'
+import { IframeOptionsProvider } from './mainLayoutProviders/IframeOptionsContext'
 import { PreventNavigationProvider } from './mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProviderWrapper'
 
 type Props = {
-  region: RegionFromGeolocation
-  migrationInstructions: Migration
+  regionCode: string
 }
 export default function MainLayoutProviders({
   children,
-  region,
-  migrationInstructions,
+  regionCode,
 }: PropsWithChildren<Props>) {
   return (
     <ErrorBoundary>
       <IframeOptionsProvider>
         <QueryClientProviderWrapper>
           <UserProvider
-            initialRegion={region}
             storageKey="nosgestesclimat::v3"
-            migrationInstructions={migrationInstructions}>
-            <PreventNavigationProvider>
-              <MainHooks>{children}</MainHooks>
-            </PreventNavigationProvider>
+            migrationInstructions={migrationInstructions}
+            initialRegionCode={regionCode}>
+            <PreventNavigationProvider>{children}</PreventNavigationProvider>
           </UserProvider>
         </QueryClientProviderWrapper>
       </IframeOptionsProvider>
