@@ -3,7 +3,7 @@
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import { UserProvider } from '@/publicodes-state'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
-import { PropsWithChildren, Suspense } from 'react'
+import { PropsWithChildren } from 'react'
 import { IframeOptionsProvider } from './mainLayoutProviders/IframeOptionsContext'
 import MainHooks from './mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from './mainLayoutProviders/PreventNavigationProvider'
@@ -18,9 +18,7 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
             storageKey="nosgestesclimat::v3"
             migrationInstructions={migrationInstructions}>
             <PreventNavigationProvider>
-              <Suspense fallback={null}>
-                <MainHooks />
-              </Suspense>
+              <MainHooks />
               {children}
             </PreventNavigationProvider>
           </UserProvider>
