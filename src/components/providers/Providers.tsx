@@ -1,5 +1,6 @@
 'use client'
 
+import SimulateurSkeleton from '@/app/(simulation)/simulateur/[root]/skeleton'
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import { useRules } from '@/hooks/useRules'
 import {
@@ -8,8 +9,9 @@ import {
   useUser,
 } from '@/publicodes-state'
 import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
-import { PropsWithChildren, Suspense } from 'react'
+import { PropsWithChildren, Suspense, useState } from 'react'
 import Error500 from '../layout/500'
+import PRNumberHook from './providers/PRNumberHook'
 import SimulationSyncProvider from './providers/SimulationSyncProvider'
 
 type Props = {
@@ -26,10 +28,12 @@ export default function Providers({
 
   const { isInitialized } = useUser()
 
-  const { data: rules, isLoading, isFetched } = useRules({ isOptim })
+  const [PRNumber, setPRNumber] = useState<string | undefined>(undefined)
+
+  const { data: rules, isLoading, isFetched } = useRules({ isOptim, PRNumber })
 
   if (!isInitialized) {
-    return null
+    return <SimulateurSkeleton />
   }
 
   if (isLoading) {
@@ -44,8 +48,9 @@ export default function Providers({
     <div key={id}>
       <SimulationProvider rules={rules}>
         <Suspense fallback={null}>
-          <LocalisationBanner supportedRegions={supportedRegions} />
+          <PRNumberHook setPRNumber={setPRNumber} />
         </Suspense>
+        <LocalisationBanner supportedRegions={supportedRegions} />
         <SimulationSyncProvider>{children}</SimulationSyncProvider>
       </SimulationProvider>
     </div>

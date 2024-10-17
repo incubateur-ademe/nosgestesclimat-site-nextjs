@@ -13,10 +13,10 @@ import { useTrackSplitTesting } from '@/hooks/tracking/useTrackSplitTesting'
 import { useFixedRegion } from '@/hooks/useFixedRegion'
 import { useInitSimulationParam } from '@/hooks/useInitSimulationParam'
 import { useRedirectIfInAppBrowser } from '@/hooks/useRedirectIfInAppBrowser'
+import { useSetInitialRegion } from '@/hooks/useSetInitialRegion'
 import { useUserInfosParams } from '@/hooks/useUserInfosParams'
-import { PropsWithChildren } from 'react'
 
-export default function MainHooks({ children }: PropsWithChildren) {
+export default function MainHooks() {
   useSetCurrentSimulationFromParams()
   useTrackSplitTesting()
   useTrackPageView()
@@ -26,6 +26,7 @@ export default function MainHooks({ children }: PropsWithChildren) {
   useUserInfosParams()
   useInitSimulationParam()
   useRedirectIfInAppBrowser()
+  useSetInitialRegion()
 
-  return children
+  return null
 }

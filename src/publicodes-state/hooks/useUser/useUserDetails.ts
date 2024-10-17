@@ -22,6 +22,12 @@ export default function useUserDetails({ setUser }: Props) {
     [setUser]
   )
 
+  const updateInitialRegion = useCallback(
+    (initialRegion: RegionFromGeolocation) =>
+      setUser((prevUser: User) => ({ ...prevUser, initialRegion })),
+    [setUser]
+  )
+
   const updateLoginExpirationDate = useCallback(
     (loginExpirationDate: Date | undefined) =>
       setUser((prevUser: User) => ({ ...prevUser, loginExpirationDate })),
@@ -60,6 +66,7 @@ export default function useUserDetails({ setUser }: Props) {
     updateName,
     updateEmail,
     updateRegion,
+    updateInitialRegion,
     updateLoginExpirationDate,
     updateUserOrganisation,
   }
