@@ -66,11 +66,11 @@ export default function StatisticsBlocks({
     <div className="grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <div className="rounded-xl bg-primary-100 p-8">
         <p className="text-4xl font-bold text-primary-700">
-          {simulationRecaps?.length?.toLocaleString(locale) ?? 0}
+          {simulationRecapsWithoutExtremes?.length?.toLocaleString(locale) ?? 0}
         </p>
 
         <p className="text-xl">
-          {simulationRecaps.length <= 1 ? (
+          {simulationRecapsWithoutExtremes.length <= 1 ? (
             <Trans>Simulation terminée</Trans>
           ) : (
             <Trans>Simulations terminées</Trans>
@@ -87,7 +87,9 @@ export default function StatisticsBlocks({
           <div className="bg-rainbow-rotation overflow-hidden rounded-xl p-8">
             <p className="text-4xl font-bold text-primary-700">
               {formattedValue}{' '}
-              <span className="text-base font-normal">{unit} CO₂e</span>
+              <span className="text-base font-normal">
+                {unit} CO₂e <Trans>/ an</Trans>
+              </span>
             </p>
 
             <p className="text-xl">
@@ -109,8 +111,10 @@ export default function StatisticsBlocks({
               />
               <div className="relative z-10">
                 <p className="text-3xl font-bold text-white">
-                  {formattedWaterValue ?? 0}
-                  <span className="text-base font-normal">{waterUnit}</span>
+                  {formattedWaterValue ?? 0}{' '}
+                  <span className="text-base font-normal">
+                    {waterUnit} <Trans>/ jour</Trans>
+                  </span>
                 </p>
 
                 <p className="text-xl text-white">

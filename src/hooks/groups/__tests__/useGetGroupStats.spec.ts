@@ -1,6 +1,7 @@
 jest.mock('@/publicodes-state')
 
 import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
+import { Participant } from '@/types/groups'
 import { faker } from '@faker-js/faker'
 import { createGroup } from './fixtures/createGroup'
 
@@ -11,14 +12,7 @@ describe('useGetGroupStats', () => {
 
     beforeEach(() => {
       group = createGroup({
-        participants: [
-          {
-            name: 'nolan',
-          },
-          {
-            name: 'corentin',
-          },
-        ],
+        participants: ['nolan', 'corentin'],
         currentUserId,
       })
     })
@@ -28,7 +22,7 @@ describe('useGetGroupStats', () => {
 
       beforeEach(() => {
         result = useGetGroupStats({
-          groupMembers: group.participants,
+          groupMembers: group.participants as unknown as Participant[],
           userId: currentUserId,
         })
       })
@@ -46,17 +40,7 @@ describe('useGetGroupStats', () => {
 
     beforeEach(() => {
       group = createGroup({
-        participants: [
-          {
-            name: 'nolan',
-          },
-          {
-            name: 'corentin',
-          },
-          {
-            name: 'sandy',
-          },
-        ],
+        participants: ['nolan', 'corentin', 'sandy'],
         currentUserId,
       })
     })
@@ -66,7 +50,7 @@ describe('useGetGroupStats', () => {
 
       beforeEach(() => {
         result = useGetGroupStats({
-          groupMembers: group.participants,
+          groupMembers: group.participants as unknown as Participant[],
           userId: currentUserId,
         })
       })

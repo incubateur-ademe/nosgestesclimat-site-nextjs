@@ -5,16 +5,19 @@
  */
 'use client'
 
+import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
 import { useTrackLocale } from '@/hooks/tracking/useTrackLocale'
 import { useTrackPageView } from '@/hooks/tracking/useTrackPageView'
 import { useTrackRegion } from '@/hooks/tracking/useTrackRegion'
 import { useTrackSplitTesting } from '@/hooks/tracking/useTrackSplitTesting'
 import { useFixedRegion } from '@/hooks/useFixedRegion'
 import { useInitSimulationParam } from '@/hooks/useInitSimulationParam'
+import { useRedirectIfInAppBrowser } from '@/hooks/useRedirectIfInAppBrowser'
 import { useUserInfosParams } from '@/hooks/useUserInfosParams'
 import { PropsWithChildren } from 'react'
 
 export default function MainHooks({ children }: PropsWithChildren) {
+  useSetCurrentSimulationFromParams()
   useTrackSplitTesting()
   useTrackPageView()
   useTrackLocale()
@@ -22,6 +25,7 @@ export default function MainHooks({ children }: PropsWithChildren) {
   useFixedRegion()
   useUserInfosParams()
   useInitSimulationParam()
+  useRedirectIfInAppBrowser()
 
   return children
 }

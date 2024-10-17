@@ -10,7 +10,7 @@ export default async function Amis() {
   return (
     <div className="flex-1">
       <Image
-        src="/images/illustrations/people-playing.svg"
+        src="/images/illustrations/people-playing.png"
         alt={t('Des amis jouant à un jeu de société')}
         width="444"
         height="275"

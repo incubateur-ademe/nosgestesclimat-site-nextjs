@@ -76,7 +76,7 @@ export function useEndPage() {
       }
 
       // if the simulation is in a group and we are allowed to, we redirect to the group results page
-      if (currentSimulation.groups && allowedToGoToGroupDashboard) {
+      if (currentSimulation.groups?.length && allowedToGoToGroupDashboard) {
         const lastGroupId =
           currentSimulation.groups[currentSimulation.groups.length - 1]
 

@@ -13,6 +13,7 @@ import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEndPageSharedUrl } from '@/hooks/useEndPageSharedUrl'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import isMobile from 'is-mobile'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -34,8 +35,6 @@ type Props = {
   endPage?: boolean
 }
 
-const MAX_WIDTH_MOBILE = 768
-
 export default function HeadingButtons({ size = 'md', endPage }: Props) {
   const { sharedUrl } = useEndPageSharedUrl()
   const [shouldDisplayConfirmMessage, setShouldDisplayConfirmMessage] =
@@ -47,7 +46,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
 
   const handleShare = async () => {
     // Desktop : only copy the url
-    if (!navigator?.share || window.innerWidth > MAX_WIDTH_MOBILE) {
+    if (!navigator?.share || !isMobile()) {
       try {
         await navigator.clipboard.writeText(sharedUrl)
 
@@ -69,11 +68,11 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
     }
 
     // Mobile : share the url
-    if (navigator?.share && window.innerWidth < MAX_WIDTH_MOBILE) {
+    if (navigator?.share && isMobile()) {
       await navigator
         .share({
           url: sharedUrl,
-          title: t(
+          text: t(
             'Nos Gestes Climat : vos empreintes carbone et eau en 10 min'
           ),
         })

@@ -5,7 +5,7 @@ export function getSubcatsOfCategory(
   subcategories: DottedName[] | undefined
 ): DottedName[] {
   return (
-    subcategories?.filter((subcategory) => subcategory.startsWith(category)) ??
+    subcategories?.filter((subcategory) => subcategory?.startsWith(category)) ??
     []
   )
 }

@@ -1,11 +1,11 @@
 'use client'
 
 import { NodeValue } from '@incubateur-ademe/nosgestesclimat'
+import { EvaluatedNode } from 'publicodes'
 import { useMemo } from 'react'
-import { NGCEvaluatedNode } from '../../types'
 
 type Props = {
-  evaluation: NGCEvaluatedNode | null
+  evaluation: EvaluatedNode | null
   type: string | undefined
 }
 
@@ -15,7 +15,7 @@ export default function useValue({ evaluation, type }: Props) {
   const displayValue = useMemo<string>(() => {
     if (type === 'choices') {
       const stringValue = String(value)
-      return stringValue.startsWith("'")
+      return stringValue?.startsWith("'")
         ? stringValue.substring(1, stringValue.length - 1)
         : stringValue
     }

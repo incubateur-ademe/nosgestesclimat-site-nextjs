@@ -92,7 +92,7 @@ export default function Explanation({
         </Trans>
       </p>
       <p className="mb-2 md:mb-4">
-        <Badge color="secondary" size="xs">
+        <Badge tag="span" color="secondary" size="xs">
           BETA
         </Badge>{' '}
         <Trans>

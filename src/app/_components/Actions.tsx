@@ -11,7 +11,7 @@ export default async function Actions() {
   return (
     <div className="flex-1">
       <Image
-        src="/images/illustrations/girl-holding-earth.svg"
+        src="/images/illustrations/girl-holding-earth.png"
         alt={t(
           'Une jeune femme tenant la terre entre ses mains, un chien la regardant joyeusement.'
         )}

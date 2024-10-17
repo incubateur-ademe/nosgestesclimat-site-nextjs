@@ -6,6 +6,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import {
   getBgCategoryColor,
   getBorderCategoryColor,
+  getCategoryFocusRingClassName,
   getHoverBgCategoryColor,
   getHoverBorderCategoryColor,
   getTextCategoryColor,
@@ -33,7 +34,7 @@ export default function Suggestions({ question, setValue }: Props) {
       {suggestions.map((suggestion) => (
         <button
           key={suggestion.label}
-          data-cypress-id="suggestion"
+          data-cypress-id={`suggestion-${suggestion.value}`}
           className={twMerge(
             'text-xs font-medium transition-colors md:text-sm',
             baseClassNames,
@@ -42,7 +43,8 @@ export default function Suggestions({ question, setValue }: Props) {
             getBorderCategoryColor(currentCategory, '200'),
             getTextCategoryColor(currentCategory, '900'),
             getHoverBgCategoryColor(currentCategory, '300'),
-            getHoverBorderCategoryColor(currentCategory, '300')
+            getHoverBorderCategoryColor(currentCategory, '300'),
+            getCategoryFocusRingClassName(currentCategory ?? '')
           )}
           onClick={() => {
             trackEvent(

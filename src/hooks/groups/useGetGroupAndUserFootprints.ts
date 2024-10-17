@@ -1,10 +1,9 @@
-import { orderedCategories } from '@/constants/orderedCategories'
-import { useDisposableEngine, useTempEngine } from '@/publicodes-state'
-
 import {
   CategoriesAndSubcategoriesFootprintsType,
   Participant,
 } from '@/types/groups'
+import { getCategoriesObject } from './useGetGroupAndUserFootprints/getCategoriesObject'
+import { getSubcategoriesObject } from './useGetGroupAndUserFootprints/getSubcategoriesObject'
 
 type Props = {
   groupMembers: Participant[]
@@ -18,109 +17,68 @@ export const useGetGroupAndUserFootprints = ({
   currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
   groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
 } => {
-  const { rules } = useTempEngine()
-
-  const { getValue, updateSituation, getSubcategories } = useDisposableEngine({
-    rules,
-    situation: {},
-  })
-
-  return groupMembers.reduce(
-    (
-      {
-        groupCategoriesAndSubcategoriesFootprints,
+  // Go through all group members and calculate the footprints for the group (sum of all members) and the current user
+  return groupMembers.reduce<{
+    currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+    groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+  }>(
+    (acc, groupMember: Participant) => {
+      const {
         currentUserCategoriesAndSubcategoriesFootprints,
-      },
-      groupMember: Participant
-    ) => {
+        groupCategoriesAndSubcategoriesFootprints,
+      } = acc
+
       const isCurrentMember = groupMember.userId === userId
 
-      updateSituation(groupMember?.simulation?.situation || {})
-
-      // Create a copy of the accumulator
-      const updatedGroupCategoriesAndSubcategoriesFootprints = {
+      // Create a copy of the accumulators
+      const accGroupCategoriesAndSubcategoriesFootprints = {
         ...groupCategoriesAndSubcategoriesFootprints,
       }
 
-      const updatedCurrentUserCategoriesAndSubcategoriesFootprints = {
+      const accCurrentUserCategoriesAndSubcategoriesFootprints = {
         ...currentUserCategoriesAndSubcategoriesFootprints,
       }
 
-      orderedCategories.forEach((category) => {
-        const categoryRawValue = getValue(category)
-
-        const categoryValue =
-          typeof categoryRawValue === 'number' ? categoryRawValue : 0
-
-        const defaultCategoryObject = {
-          name: category,
-          value: categoryValue,
-          isCategory: true,
+      // We create an object containing the sum of the categories and subcategories
+      // values for the group and the values for the current user
+      const { groupCategoriesToAdd, userCategoriesToAdd } = getCategoriesObject(
+        {
+          simulation: groupMember.simulation,
+          isCurrentMember,
+          // This allows use to add the current group member's footprints to
+          // the group's already summed footprints
+          groupAccumulator: accGroupCategoriesAndSubcategoriesFootprints,
         }
+      )
 
-        // If the category is not in the accumulator, we add its name
-        // as a new key in the object along with its value otherwise we
-        // add the value to the existing sum
-        if (!updatedGroupCategoriesAndSubcategoriesFootprints[category]) {
-          updatedGroupCategoriesAndSubcategoriesFootprints[category] =
-            defaultCategoryObject
-        } else {
-          updatedGroupCategoriesAndSubcategoriesFootprints[category].value +=
-            categoryValue
-        }
-
-        // Add each category footprint for the current member
-        if (isCurrentMember) {
-          updatedCurrentUserCategoriesAndSubcategoriesFootprints[category] =
-            defaultCategoryObject
-        }
-
-        const currentCategorySubcategories = getSubcategories(category)
-
-        currentCategorySubcategories.forEach((subCategory) => {
-          const subCategoryRawValue = getValue(subCategory)
-
-          const subCategoryValue =
-            typeof subCategoryRawValue === 'number' ? subCategoryRawValue : 0
-
-          // Same here if the property doesn't exist in the accumulator, we add it
-          // otherwise we add the value to the existing sum
-          if (!updatedGroupCategoriesAndSubcategoriesFootprints[subCategory]) {
-            updatedGroupCategoriesAndSubcategoriesFootprints[subCategory] = {
-              name: subCategory,
-              value: subCategoryValue,
-            }
-          } else {
-            updatedGroupCategoriesAndSubcategoriesFootprints[
-              subCategory
-            ].value += subCategoryValue
-          }
-
-          if (isCurrentMember) {
-            // Add each category footprint for the current member
-            updatedCurrentUserCategoriesAndSubcategoriesFootprints[
-              subCategory
-            ] = {
-              name: subCategory,
-              value: subCategoryValue,
-            }
-          }
+      const { groupSubcategoriesToAdd, userSubcategoriesToAdd } =
+        getSubcategoriesObject({
+          simulation: groupMember.simulation,
+          isCurrentMember,
+          // This allows use to add the current group member's footprints to
+          // the group's already summed footprints
+          groupAccumulator: accGroupCategoriesAndSubcategoriesFootprints,
         })
-      })
 
       return {
-        groupCategoriesAndSubcategoriesFootprints:
-          updatedGroupCategoriesAndSubcategoriesFootprints,
-        currentUserCategoriesAndSubcategoriesFootprints:
-          updatedCurrentUserCategoriesAndSubcategoriesFootprints,
+        currentUserCategoriesAndSubcategoriesFootprints: {
+          ...accCurrentUserCategoriesAndSubcategoriesFootprints,
+          // We add the user's categories and subcategories if the current member is the user
+          ...(userCategoriesToAdd || {}),
+          ...(userSubcategoriesToAdd || {}),
+        },
+        groupCategoriesAndSubcategoriesFootprints: {
+          ...accGroupCategoriesAndSubcategoriesFootprints,
+          ...groupCategoriesToAdd,
+          ...groupSubcategoriesToAdd,
+        },
       }
     },
     {
-      groupCategoriesAndSubcategoriesFootprints: {},
-      currentUserCategoriesAndSubcategoriesFootprints: {},
-    } as {
-      groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
-      currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
+      currentUserCategoriesAndSubcategoriesFootprints:
+        {} as CategoriesAndSubcategoriesFootprintsType,
+      groupCategoriesAndSubcategoriesFootprints:
+        {} as CategoriesAndSubcategoriesFootprintsType,
     }
   )
 }

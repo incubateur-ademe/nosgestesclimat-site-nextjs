@@ -33,7 +33,7 @@ export function formatWaterFootprint(
   const absolutenumberValue = Math.abs(numberValue)
 
   const unit = shouldUseAbbreviation
-    ? 't'
+    ? 'l'
     : // Doesn't work perfectly. For example 1.950.toFixed(1) = 1.9 but 1.950.toLocaleString('fr-FR', { maximumFractionDigits: 1 }) = 2
       Number(absolutenumberValue.toFixed(maximumFractionDigits)) < 2
       ? 'litre'

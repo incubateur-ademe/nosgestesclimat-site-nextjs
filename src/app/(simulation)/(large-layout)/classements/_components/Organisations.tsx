@@ -22,18 +22,18 @@ export default function Organisations() {
     <>
       <Title
         tag="h2"
-        className="mt-8"
+        className="mt-16"
         title={<Trans>Organisations et campagnes</Trans>}
       />
-      <div className="flex flex-wrap gap-16 md:flex-nowrap">
+      <div className="flex flex-wrap justify-center gap-16 md:flex-nowrap">
         <div className="flex-1">
           <PollsList organisation={organisation} />
 
           <CreateOrganisation organisation={organisation} />
         </div>
         <Image
-          className="mx-auto -mt-12 self-start md:mx-0"
-          src="/images/illustrations/people-with-paperboard.svg"
+          className="-mt-12 mb-12 w-60 self-start md:w-80"
+          src="/images/illustrations/people-with-paperboard.png"
           width="380"
           height="400"
           alt={t('Un groupe de personnes discutant devant un paperboard.')}

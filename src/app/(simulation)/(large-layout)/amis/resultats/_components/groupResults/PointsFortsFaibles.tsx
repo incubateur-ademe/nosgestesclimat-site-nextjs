@@ -8,8 +8,8 @@ export default function PointsFortsFaibles({
   pointsForts,
   pointsFaibles,
 }: {
-  pointsForts?: PointsFortsFaiblesType[]
-  pointsFaibles?: PointsFortsFaiblesType[]
+  pointsForts: PointsFortsFaiblesType[]
+  pointsFaibles: PointsFortsFaiblesType[]
 }) {
   return (
     <div>

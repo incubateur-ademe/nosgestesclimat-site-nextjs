@@ -28,6 +28,10 @@ export default function ValueChangeDisplay({
 
   const prevQuestion = useRef(currentQuestion)
 
+  // We need this value to force the component to re-render when the numericValue changes
+  // We don't use numericValue directly because it update before the displayDifference
+  const [keyFromNumericValue, setKeyFromNumericValue] = useState(numericValue)
+
   useEffect(() => {
     if (prevQuestion.current !== currentQuestion) {
       setDisplayDifference(0)
@@ -38,6 +42,7 @@ export default function ValueChangeDisplay({
     const difference = numericValue - prevValue.current
 
     setDisplayDifference(difference)
+    setKeyFromNumericValue(numericValue)
 
     prevValue.current = numericValue
   }, [numericValue, locale])
@@ -62,7 +67,7 @@ export default function ValueChangeDisplay({
           : 'animate-valuechange text-red-700',
         className
       )}
-      key={numericValue}
+      key={keyFromNumericValue}
       aria-label={t('{{signe}} {{value}} {{unit}} sur votre empreinte', {
         signe: isNegative ? t('moins') : t('plus'),
         value: formattedValue,

@@ -79,7 +79,7 @@ export default function PostalCodeInput({ postalCode, setPostalCode }: Props) {
               (suggestionsAccumulator: Suggestion[], city: City) => {
                 // Filter postal codes that start with the search string (some cities have multiple postal codes)
                 const filteredPostalCodes = city.codesPostaux.filter(
-                  (cp: string) => cp.startsWith(search)
+                  (cp: string) => cp?.startsWith(search)
                 )
                 return [
                   ...suggestionsAccumulator,

@@ -1,20 +1,28 @@
-import { defaultMetric } from '@/constants/metric'
 import { Participant } from '@/types/groups'
+import { Metrics } from '@incubateur-ademe/nosgestesclimat'
 
-export const getTopThreeAndRestMembers = (members: Participant[] = []) => {
+export const getTopThreeAndRestMembers = (
+  members: Participant[] = [],
+  metric: Metrics
+) => {
   const sortedMembers = members.sort((memberA, memberB) => {
-    const totalA = memberA?.simulation?.computedResults?.[defaultMetric]?.bilan
-    const totalB = memberB?.simulation?.computedResults?.[defaultMetric]?.bilan
+    const totalA = memberA?.simulation?.computedResults?.[metric]?.bilan
+    const totalB = memberB?.simulation?.computedResults?.[metric]?.bilan
 
     return totalA !== undefined && totalB !== undefined ? totalA - totalB : -1
   })
 
   return sortedMembers.reduce(
     (acc, member, index) => {
+      // We store apart the members with uncompleted simulations
+      if (member.simulation.progression !== 1) {
+        acc.membersWithUncompletedSimulations.push(member)
+        return acc
+      }
+
       if (
         index < 3 &&
-        member?.simulation?.computedResults?.[defaultMetric]?.bilan !==
-          undefined
+        member?.simulation?.computedResults?.[metric]?.bilan !== undefined
       ) {
         acc.topThreeMembers.push(member)
       } else {
@@ -22,9 +30,14 @@ export const getTopThreeAndRestMembers = (members: Participant[] = []) => {
       }
       return acc
     },
-    { topThreeMembers: [], restOfMembers: [] } as {
+    {
+      topThreeMembers: [],
+      restOfMembers: [],
+      membersWithUncompletedSimulations: [],
+    } as {
       topThreeMembers: Participant[]
       restOfMembers: Participant[]
+      membersWithUncompletedSimulations: Participant[]
     }
   )
 }

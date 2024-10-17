@@ -6,11 +6,10 @@ import {
   NGCRuleNode,
   NodeValue,
 } from '@incubateur-ademe/nosgestesclimat'
-import { PublicodesExpression, utils } from 'publicodes'
+import { EvaluatedNode, PublicodesExpression, utils } from 'publicodes'
 import { useCallback } from 'react'
 import getType from '../../helpers/getType'
 import {
-  NGCEvaluatedNode,
   ParsedRules,
   Situation,
   UpdateCurrentSimulationProps,
@@ -20,8 +19,8 @@ type Props = {
   dottedName: DottedName
   parsedRules: ParsedRules | undefined
   safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
-  safeEvaluate: (rule: PublicodesExpression) => NGCEvaluatedNode | null
-  evaluation: NGCEvaluatedNode | null
+  safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
+  evaluation: EvaluatedNode | null
   type: string | undefined
   situation: Situation
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
@@ -165,7 +164,7 @@ const checkValueValidity = ({
       if (!value) {
         return null
       }
-      return value.startsWith("'") ? value : `'${value}'`
+      return value?.startsWith("'") ? value : `'${value}'`
     case 'boolean':
       if (value === 'oui') {
         return 'oui'
