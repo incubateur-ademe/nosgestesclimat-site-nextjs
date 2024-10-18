@@ -2,15 +2,12 @@ import Trans from '@/components/translation/Trans'
 import { homeClickEnSavoirPlus } from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function Explanations() {
-  const { t } = await getServerTranslation()
-
   return (
     <div className="mx-auto mb-12 w-full max-w-3xl px-4 md:mb-24">
       <Title tag="h2" className="font-medium md:text-3xl">
-        {t(`L'empreinte climat, qu'est-ce que c'est\u202f?`)}
+        <Trans>L'empreinte climat, qu'est-ce que c'est ?</Trans>
       </Title>
 
       <p className="md:text-lg">

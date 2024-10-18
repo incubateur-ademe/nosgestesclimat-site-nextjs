@@ -1,7 +1,5 @@
-import { getGeolocation } from '@/helpers/getGeolocation'
-import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
-// Initialise react-i18next
 import Footer from '@/components/layout/Footer'
+import { getGeolocation } from '@/helpers/getGeolocation'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import { dir } from 'i18next'
@@ -57,8 +55,8 @@ export const marianne = localFont({
 export default async function RootLayout({ children }: PropsWithChildren) {
   try {
     const lang = currentLocale()
-    const region = await getGeolocation()
-    const migrationInstructions = await getMigrationInstructions()
+
+    const regionCode = await getGeolocation()
 
     return (
       <html lang={lang ?? ''} dir={dir(lang ?? '')}>
@@ -107,9 +105,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
             b.setAttribute('data-useragent', navigator.userAgent);
           `}</Script>
 
-          <MainLayoutProviders
-            region={region}
-            migrationInstructions={migrationInstructions}>
+          <MainLayoutProviders regionCode={regionCode}>
             {children}
             <Footer />
           </MainLayoutProviders>
