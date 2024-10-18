@@ -8,7 +8,7 @@ export async function generateMetadata() {
   return getMetadataObject({
     title: t('Politique des cookies - Nos Gestes Climat'),
     description: t(
-      'Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.'
+      'Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.'
     ),
     alternates: {
       canonical: '/politique-des-cookies',

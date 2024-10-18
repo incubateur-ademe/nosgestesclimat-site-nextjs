@@ -42,7 +42,7 @@ export default function SubcategoriesChart() {
         className={`mb-4 flex h-8 rounded-md md:h-12 md:rounded-xl ${getBackgroundColor(
           currentCategory
         )}`}>
-        {filteredSubcategories.map((subcategory, index: number) => (
+        {filteredSubcategories.map((subcategory: DottedName, index: number) => (
           <Subcategory
             key={subcategory}
             position={

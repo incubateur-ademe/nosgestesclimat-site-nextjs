@@ -10,7 +10,7 @@ export async function generateMetadata() {
   return getMetadataObject({
     title: t("Nos personas d'utilisateurs types - Nos Gestes Climat"),
     description: t(
-      "Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures."
+      "Découvrez les personas d'utilisateurs types qui nous servent à tester le calculateur sous toutes ses coutures."
     ),
     alternates: {
       canonical: '/personas',

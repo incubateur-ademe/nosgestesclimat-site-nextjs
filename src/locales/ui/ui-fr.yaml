@@ -106,7 +106,7 @@ entries:
   publicodes.Contribution.descriptionComplète: <0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>
   publicodes.Contribution.liensVersGithub: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
   publicodes.Contribution.remerciements: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <2>ce lien</2>.
-  publicodes.Personas.description: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du simulateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le simulateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
+  publicodes.Personas.description: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du calculateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le calculateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
   publicodes.Profil.locationDonnées: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
   publicodes.Profil.recap: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
   publicodes.Profil.simulations: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
@@ -189,7 +189,7 @@ entries:
   Personas: Personas
   Qui sont-ils ?: Qui sont-ils ?
   Comment les mettons-nous à jour ?: Comment les mettons-nous à jour ?
-  publicodes.Personas.maj: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du simulateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le simulateur).</1></1>
+  publicodes.Personas.maj: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du calculateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le calculateur).</1></1>
   Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.: Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.
   Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.: Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.
   ' Retour à la liste': ' Retour à la liste'
@@ -213,7 +213,7 @@ entries:
   Il concerne votre vie personnelle, et non pas votre boulot.: Il concerne votre vie personnelle, et non pas votre boulot.
   international.comment.2: Explorez en détail les spécificités de chaque pays.
   Le Blog: Le Blog
-  Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.
+  Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.
   Logo de l'Association pour la transition Bas Carbone: Logo de l'Association pour la transition Bas Carbone
   Mes réponses: Mes réponses
   Passer en français: Passer en français
@@ -361,7 +361,7 @@ entries:
   Voir mes résultats: Voir mes résultats
   Agir pour le climat: Agir pour le climat
   amis: amis
-  Apportez votre pierre au simulateur de référence: Apportez votre pierre au simulateur de référence
+  Apportez votre pierre au calculateur de référence: Apportez votre pierre au calculateur de référence
   calcul est documenté en ligne: calcul est documenté en ligne
   code source est ouvert: code source est ouvert
   collègues: collègues
@@ -398,7 +398,7 @@ entries:
   Calculez votre empreinte en: Calculez votre empreinte en
   Classements: Classements
   D’après vous, quel est: D’après vous, quel est
-  Découvrez le simulateur, ouvrir dans un nouvel onglet: Découvrez le simulateur, ouvrir dans un nouvel onglet
+  Découvrez le calculateur, ouvrir dans un nouvel onglet: Découvrez le calculateur, ouvrir dans un nouvel onglet
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet
   Découvrez vos résultats détaillés: Découvrez vos résultats détaillés
   Effectivement, avec: Effectivement, avec
@@ -465,8 +465,8 @@ entries:
   top chrono.: top chrono.
   Vous avez déja participé à ce sondage.: Vous avez déja participé à ce sondage.
   Vous avez déjà participé à ce sondage.: Vous avez déjà participé à ce sondage.
-  Découvrir le simulateur: Découvrir le simulateur
-  Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.
+  Découvrir le calculateur: Découvrir le calculateur
+  Le calculateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: Le calculateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.
   écartez celles qui vous semblent trop ambitieuses ou déplacées.: écartez celles qui vous semblent trop ambitieuses ou déplacées.
   Empreinte: Empreinte
   Gestes: Gestes
@@ -510,7 +510,7 @@ entries:
   Budget - Nos Gestes Climat: Budget - Nos Gestes Climat
   Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat: Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat
   Calculer votre empreinte carbone individuelle - Nos Gestes Climat: Calculer votre empreinte carbone individuelle - Nos Gestes Climat
-  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.
+  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.: Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.
   Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.: Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.
   CGU - Nos Gestes Climat: CGU - Nos Gestes Climat
   Comparez vos résultats avec votre famille ou un groupe d’amis.: Comparez vos résultats avec votre famille ou un groupe d’amis.
@@ -519,16 +519,16 @@ entries:
   Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.: Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.
   Contact - Nos Gestes Climat: Contact - Nos Gestes Climat
   Contactez l'équipe de Nos Gestes Climat.: Contactez l'équipe de Nos Gestes Climat.
-  Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.: Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.
-  Découvrez le modèle de données de notre simulateur d'empreinte climat: Découvrez le modèle de données de notre simulateur d'empreinte climat
+  Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.: Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.
+  Découvrez le modèle de données de notre calculateur d'empreinte climat: Découvrez le modèle de données de notre calculateur d'empreinte climat
   Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.
   Découvrez les articles de blog du site Nos Gestes Climat.: Découvrez les articles de blog du site Nos Gestes Climat.
   Découvrez les nouveautés du site Nos Gestes Climat.: Découvrez les nouveautés du site Nos Gestes Climat.
-  Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.: Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.
-  Diffuser notre simulateur d'empreinte climat - Nos Gestes Climat: Diffuser notre simulateur d'empreinte climat - Nos Gestes Climat
+  Découvrez les personas d'utilisateurs types qui nous servent à tester le calculateur sous toutes ses coutures.: Découvrez les personas d'utilisateurs types qui nous servent à tester le calculateur sous toutes ses coutures.
+  Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat: Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat
   Diffusez Nos Gestes Climat dans votre organisation.: Diffusez Nos Gestes Climat dans votre organisation.
   Documentation Contexte Sondage - Nos Gestes Climat: Documentation Contexte Sondage - Nos Gestes Climat
-  Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat: Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat
+  Documentation, votre calculateur d'empreinte carbone - Nos Gestes Climat: Documentation, votre calculateur d'empreinte carbone - Nos Gestes Climat
   Empreinte Climat - Nos Gestes Climat: Empreinte Climat - Nos Gestes Climat
   Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.
   Informations relatives à l'accessibilité de Nos Gestes Climat.: Informations relatives à l'accessibilité de Nos Gestes Climat.
@@ -559,16 +559,16 @@ entries:
   Politique de confidentialité - Nos Gestes Climat: Politique de confidentialité - Nos Gestes Climat
   Quelles sont les actions les plus efficaces ?: Quelles sont les actions les plus efficaces ?
   Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat: Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat
-  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.
+  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.: Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.
   Rejoindre un groupe - Nos Gestes Climat: Rejoindre un groupe - Nos Gestes Climat
   Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.: Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.
   Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.: Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.
   Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.: Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.
-  Simulateur d’empreinte climat - Nos Gestes Climat: Simulateur d’empreinte climat - Nos Gestes Climat
+  Calculateur d’empreinte climat - Nos Gestes Climat: Calculateur d’empreinte climat - Nos Gestes Climat
   Supprimer mes données de groupe - Nos Gestes Climat: Supprimer mes données de groupe - Nos Gestes Climat
-  Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.: Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.
-  Vos résultats de tests de notre simulateur d'empreinte carbone.: Vos résultats de tests de notre simulateur d'empreinte carbone.
-  Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat: Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat
+  Supprimez vos données de groupe enregistrées dans le calculateur Nos Gestes Climat.: Supprimez vos données de groupe enregistrées dans le calculateur Nos Gestes Climat.
+  Vos résultats de tests de notre calculateur d'empreinte carbone.: Vos résultats de tests de notre calculateur d'empreinte carbone.
+  Vos résultats, calculateur d'empreinte climat - Nos Gestes Climat: Vos résultats, calculateur d'empreinte climat - Nos Gestes Climat
   Ce test vous est proposé par: Ce test vous est proposé par
   En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.: En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.
   par semaine, miam: par semaine, miam
@@ -647,7 +647,7 @@ entries:
   Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l’ensemble des gestes</2> qui vous permettront d’atteindre progressivement l’objectif de 2 tonnes.: Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l’ensemble des gestes</2> qui vous permettront d’atteindre progressivement l’objectif de 2 tonnes.
   Mes principaux postes d’émissions: Mes principaux postes d’émissions
   Mon Empreinte Carbone - Nos Gestes Climat: Mon Empreinte Carbone - Nos Gestes Climat
-  Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.
+  Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.
   par an: par an
   Par où commencer ?: Par où commencer ?
   'Recevez des conseils pour réduire votre empreinte :': 'Recevez des conseils pour réduire votre empreinte :'
@@ -766,7 +766,7 @@ entries:
   Deux personnes se faisant une accolade en levant le bras en signe de victoire.: Deux personnes se faisant une accolade en levant le bras en signe de victoire.
   Groupe de personnes devant un paperboard: Groupe de personnes devant un paperboard
   Groupe de personnes discutant devant un paperboard.: Groupe de personnes discutant devant un paperboard.
-  Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.
+  Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.
   Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.: Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.
   Personne sur un vélo récupérant du courrier dans une boîte aux lettres: Personne sur un vélo récupérant du courrier dans une boîte aux lettres
   Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.: Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.
@@ -800,7 +800,7 @@ entries:
   Même si réduire son empreinte individuelle est l'action la plus directe, il existe <1>d'autres façons d'agir à son niveau</1>. Tous ces modes d'action sont complémentaires !: Même si réduire son empreinte individuelle est l'action la plus directe, il existe <1>d'autres façons d'agir à son niveau</1>. Tous ces modes d'action sont complémentaires !
   Ce champ est obligatoire.: Ce champ est obligatoire.
   Ce champ est trop long: Ce champ est trop long
-  Cependant, nous suivons quelques informations sur votre utilisation de ce simulateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.: Cependant, nous suivons quelques informations sur votre utilisation de ce simulateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.
+  Cependant, nous suivons quelques informations sur votre utilisation de ce calculateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.: Cependant, nous suivons quelques informations sur votre utilisation de ce calculateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.
   Choisissez un nom pour ce groupe: Choisissez un nom pour ce groupe
   Continuer: Continuer
   Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat: Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat
@@ -826,7 +826,7 @@ entries:
   Données qualitatives: Données qualitatives
   inscrits à l'infolettre: inscrits à l'infolettre
   Modes "Groupes": Modes "Groupes"
-  partages du simulateur: partages du simulateur
+  partages du calculateur: partages du calculateur
   Récupération des données: Récupération des données
   simulations terminées depuis le lancement: simulations terminées depuis le lancement
   Une erreur est survenue lors de la récupération des données: Une erreur est survenue lors de la récupération des données
@@ -966,6 +966,7 @@ entries:
   t CO₂e / an: t CO₂e / an
   tonnes CO₂e / an: tonnes CO₂e / an
   / an: / an
+  Notre calculateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: Notre calculateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.
   Comment agir ?: Comment agir ?
   Connaissez-vous votre empreinte sur le climat ?: Connaissez-vous votre empreinte sur le climat ?
   L'empreinte climat, qu'est-ce que c'est ?: L'empreinte climat, qu'est-ce que c'est ?
