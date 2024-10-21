@@ -76,7 +76,6 @@ const nextConfig = {
     },
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
-    ppr: true,
     turbo: {
       rules: {
         '*.yaml': {
