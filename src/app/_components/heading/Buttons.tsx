@@ -29,10 +29,10 @@ export default function Buttons() {
 
   const [isHover, setIsHover] = useState(false)
   return (
-    <div className="relative">
+    <div className="relative mb-6">
       <ButtonLink
         size="xl"
-        className={`hover:bg-primary-900 transition-all duration-300 ${
+        className={`transition-all duration-300 hover:bg-primary-900 ${
           isClient ? 'opacity-100' : 'opacity-0'
         }`}
         href={getLinkToSimulateurPage()}
