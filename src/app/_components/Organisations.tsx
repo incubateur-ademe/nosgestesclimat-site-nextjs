@@ -7,7 +7,7 @@ import Kicker from '@/design-system/layout/Kicker'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import { useState } from 'react'
-import Background from './organisations/Background'
+import Background from './ambassadeurs/Background'
 
 export default function Organisations() {
   const [isHover, setIsHover] = useState(false)

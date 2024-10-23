@@ -12,14 +12,14 @@ export default function Background({
 }: Props) {
   return (
     <div
-      className="absolute -left-1/2 top-0 h-full w-[200%] bg-gray-100 transition-transform"
+      className="absolute -left-1/2 top-0 h-full w-[200%] bg-primary-50 transition-transform"
       style={{
         transform: `perspective(20rem) rotateY(${
           direction === 'right' ? -2 : 2
         }deg)`,
       }}>
       {withColorLine && (
-        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[5px] w-[100%] transition-all" />
+        <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[5px] w-[100%] animate-rainbow-slow transition-all" />
       )}
     </div>
   )

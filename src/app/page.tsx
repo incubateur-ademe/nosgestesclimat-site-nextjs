@@ -1,13 +1,16 @@
 import Header from '@/components/layout/Header'
+import Trans from '@/components/translation/Trans'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import Actions from './_components/Actions'
+import Ambassadeurs from './_components/Ambassadeurs'
 import Amis from './_components/Amis'
-import Contributions from './_components/Contributions'
-import Explanations from './_components/Explanations'
+import Blog from './_components/Blog'
+import CollectiveAction from './_components/CollectiveAction'
 import Heading from './_components/Heading'
-import Organisations from './_components/Organisations'
+import Modele from './_components/Modele'
+import MultiFootprint from './_components/MultiFootprint'
+import Organisation from './_components/Organisation'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -30,13 +33,16 @@ export default async function Homepage() {
       <Header />
       <Main className="lg:-mt-8">
         <Heading />
-        <div className="mx-auto mb-12 flex w-full max-w-5xl flex-col flex-wrap items-center gap-12 px-4 md:mb-20 md:flex-row md:items-start md:px-8 lg:gap-28">
-          <Amis />
-          <Actions />
-        </div>
-        <Organisations />
-        <Explanations />
-        <Contributions />
+        <MultiFootprint />
+        <h2 className="mx-auto mb-10 max-w-md text-center text-3xl">
+          <Trans>Mobilisez votre entourage pour la planète !</Trans>
+        </h2>
+        <Amis />
+        <Organisation />
+        <Blog />
+        <CollectiveAction />
+        <Modele />
+        <Ambassadeurs />
       </Main>
     </>
   )

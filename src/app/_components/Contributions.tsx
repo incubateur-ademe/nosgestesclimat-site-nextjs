@@ -14,7 +14,7 @@ import Card from '@/design-system/layout/Card'
 import Kicker from '@/design-system/layout/Kicker'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
-import Background from './organisations/Background'
+import Background from './ambassadeurs/Background'
 
 export default function Contributions() {
   const [isHover, setIsHover] = useState(false)

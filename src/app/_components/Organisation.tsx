@@ -7,7 +7,7 @@ import Image from 'next/image'
 export default async function Amis() {
   const { t } = await getServerTranslation()
   return (
-    <div className="mx-auto flex max-w-5xl flex-row-reverse items-center justify-between gap-24">
+    <div className="mx-auto flex max-w-5xl flex-row items-center justify-between gap-24">
       <Image
         src="/images/illustrations/people-playing.png"
         alt={t('Des amis jouant à un jeu de société')}
@@ -18,24 +18,27 @@ export default async function Amis() {
       />
       <div className="flex-1">
         <h3 className="text-2xl">
-          <Trans>Challengez votre entourage</Trans>
+          <Trans>Lancez une campagne dans votre organisation</Trans>
         </h3>
         <p className="text-lg">
           <Trans>
-            Créez un groupe avec vos proches et{' '}
+            Entreprises, collectivités, associations, écoles ou festivals :{' '}
             <strong className="text-primary-700">
-              lancez-vous dans un défi collectif
+              engagez votre organisation dans une démarche durable
             </strong>{' '}
-            pour réduire votre empreinte. Comparez vos résultats, suivez vos
-            progrès et voyez qui parvient à réduire le plus ses émissions de
-            carbone ou sa consommation d’eau.
+            avec une campagne Nos Gestes Climat. Sensibilisez vos parties
+            prenantes à l’empreinte carbone et à l’empreinte eau{' '}
+            <strong className="text-primary-700">
+              grâce à nos outils clés en main.
+            </strong>
           </Trans>
         </p>
         <ButtonLink
+          color="secondary"
           href="/classements"
           data-cypress-id="classements-link"
           trackingEvent={homeClickClassements}>
-          <Trans>Créer un groupe</Trans>
+          <Trans>Créer une campagne</Trans>
         </ButtonLink>
       </div>
     </div>
