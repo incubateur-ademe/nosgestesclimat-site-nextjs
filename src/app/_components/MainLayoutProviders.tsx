@@ -26,8 +26,7 @@ export default function MainLayoutProviders({
             migrationInstructions={migrationInstructions}
             initialRegion={initialRegion}>
             <PreventNavigationProvider>
-              <MainHooks />
-              {children}
+              <MainHooks>{children}</MainHooks>
             </PreventNavigationProvider>
           </UserProvider>
         </QueryClientProviderWrapper>

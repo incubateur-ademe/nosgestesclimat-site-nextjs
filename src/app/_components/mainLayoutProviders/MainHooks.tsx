@@ -14,8 +14,9 @@ import { useFixedRegion } from '@/hooks/useFixedRegion'
 import { useInitSimulationParam } from '@/hooks/useInitSimulationParam'
 import { useRedirectIfInAppBrowser } from '@/hooks/useRedirectIfInAppBrowser'
 import { useUserInfosParams } from '@/hooks/useUserInfosParams'
+import { PropsWithChildren } from 'react'
 
-export default function MainHooks() {
+export default function MainHooks({ children }: PropsWithChildren) {
   useSetCurrentSimulationFromParams()
   useTrackSplitTesting()
   useTrackPageView()
@@ -26,5 +27,5 @@ export default function MainHooks() {
   useInitSimulationParam()
   useRedirectIfInAppBrowser()
 
-  return null
+  return children
 }
