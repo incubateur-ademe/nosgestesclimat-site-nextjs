@@ -4,6 +4,7 @@ import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
+import Image from 'next/image'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 
@@ -64,9 +65,11 @@ export default function DidYouKnowSlider() {
           fade
           className="max-w-[594px]">
           {slides.map((slide) => (
-            <div className="!flex w-full items-center gap-10">
+            <div
+              className="!flex w-full items-center gap-10"
+              key={String(slide.highlight)}>
               <div className="flex h-40 w-40 items-center justify-center rounded-full bg-white">
-                <img src={slide.illustration} alt="" width="80" height="80" />
+                <Image src={slide.illustration} alt="" width="80" height="80" />
               </div>
               <div className="flex-1">
                 <Title tag="h3">Le saviez vous ?</Title>
