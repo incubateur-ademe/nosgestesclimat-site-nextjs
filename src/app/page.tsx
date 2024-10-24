@@ -7,6 +7,7 @@ import Ambassadeurs from './_components/Ambassadeurs'
 import Amis from './_components/Amis'
 import Blog from './_components/Blog'
 import CollectiveAction from './_components/CollectiveAction'
+import DidYouKnowSlider from './_components/DidYouKnowSlider'
 import Heading from './_components/Heading'
 import Modele from './_components/Modele'
 import MultiFootprint from './_components/MultiFootprint'
@@ -34,6 +35,7 @@ export default async function Homepage() {
       <Main className="lg:-mt-8">
         <Heading />
         <MultiFootprint />
+        <DidYouKnowSlider />
         <h2 className="mx-auto mb-10 max-w-md text-center text-3xl">
           <Trans>Mobilisez votre entourage pour la planète !</Trans>
         </h2>

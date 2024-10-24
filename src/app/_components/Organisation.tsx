@@ -9,8 +9,8 @@ export default async function Amis() {
   return (
     <div className="mx-auto flex max-w-5xl flex-row items-center justify-between gap-24">
       <Image
-        src="/images/illustrations/people-playing.png"
-        alt={t('Des amis jouant à un jeu de société')}
+        src="/images/misc/home-organisation.svg"
+        alt={t('Des gens devant un tableau blanc')}
         width="444"
         height="275"
         className="mb-6 block h-auto max-w-full"

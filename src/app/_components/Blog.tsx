@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function Blog() {
   return (
-    <div className="relative bg-primary-50 py-20 pt-16">
+    <div className="relative bg-primary-50 pb-20 pt-16">
       <h2 className="mb-12 text-center text-3xl">
         <Trans>Décryptez les défis environnementaux</Trans>
       </h2>
