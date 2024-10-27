@@ -7,6 +7,7 @@ import { headers } from 'next/headers'
 export async function getGeolocation(): Promise<RegionFromGeolocation> {
   const headersList = headers()
 
+  // This function is called by the server, so we need a specific way to get the current URL
   let currentUrl = headersList.get('x-url') || ''
 
   if (!currentUrl) {
