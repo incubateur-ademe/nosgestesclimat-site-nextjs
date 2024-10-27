@@ -122,7 +122,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           <div className="flex h-screen flex-col items-center justify-center">
             <ClientErrorContent />
           </div>
-          <div id="modal" />
         </body>
       </html>
     )
