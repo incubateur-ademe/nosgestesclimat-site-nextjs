@@ -42,7 +42,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
   return (
     <header
       className={twMerge(
-        'mb-8 hidden h-20 items-center lg:block',
+        'hidden h-20 items-center lg:block',
         isSticky ? 'sticky top-0 z-50' : ''
       )}>
       <div className="absolute bottom-0 left-0 right-0 top-0 flex h-20 w-full items-center border-b bg-white shadow-sm">
