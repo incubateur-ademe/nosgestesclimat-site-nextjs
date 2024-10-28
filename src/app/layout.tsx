@@ -117,8 +117,10 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   } catch (error) {
     return (
       <html lang="fr">
-        <body>
-          <ClientErrorContent />
+        <body className={`${marianne.className} bg-white text-default`}>
+          <div className="flex h-screen flex-col items-center justify-center">
+            <ClientErrorContent />
+          </div>
         </body>
       </html>
     )
