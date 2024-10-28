@@ -32,7 +32,10 @@ export default function Footer({ className = '' }) {
   const pathname = usePathname()
   const locale = useLocale()
 
-  const isHomePage = pathname === '/' || pathname === `/${locale}`
+  const isHomePage =
+    pathname === '/' ||
+    pathname === `/${locale}` ||
+    pathname === '/empreinte-eau'
   return (
     <footer
       className={twMerge(

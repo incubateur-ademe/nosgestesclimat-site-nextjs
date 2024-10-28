@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import Image from 'next/image'
@@ -67,7 +68,7 @@ export default function DidYouKnowSlider({
       : [slidesList[0], slidesList[3]]
 
   return (
-    <div className="bg-heroLightBackground relative py-20">
+    <div className="relative bg-heroLightBackground py-20">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 md:flex-row md:gap-0">
         <Slider
           dots={true}
@@ -101,6 +102,8 @@ export default function DidYouKnowSlider({
           </ButtonLink>
         </div>
       </div>
+
+      <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[5px] w-[100%] animate-rainbow-slow transition-all" />
     </div>
   )
 }

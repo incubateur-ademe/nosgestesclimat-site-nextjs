@@ -1,4 +1,5 @@
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
+import ColorLine from '@/design-system/layout/ColorLine'
 import { LandingPagePostType } from '@/types/landing-page'
 import { ReactNode } from 'react'
 import Trans from '../translation/Trans'
@@ -11,7 +12,7 @@ export default function UnderstandToAct({
   posts: LandingPagePostType[]
 }) {
   return (
-    <div className="w-full bg-heroLightBackground py-24">
+    <div className="relative w-full bg-heroLightBackground py-24">
       <div className="mx-auto flex max-w-full flex-col gap-6 px-8 md:max-w-5xl md:px-0">
         <h2 className="mb-0 text-center text-2xl md:text-3xl">
           <Trans>Comprendre pour agir</Trans>
@@ -27,6 +28,8 @@ export default function UnderstandToAct({
           ))}
         </ul>
       </div>
+
+      <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[5px] w-[100%] animate-rainbow-slow transition-all" />
     </div>
   )
 }
