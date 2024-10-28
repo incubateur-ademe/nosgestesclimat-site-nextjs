@@ -36,7 +36,7 @@ export default function GestureSelector({
 
       <ul className="flex min-w-[360px] flex-col gap-6">
         {gestures[selectedCategory].map((gesture, index) => (
-          <li key={`gesture-${index}`}>
+          <li key={`gesture-${index}`} className="flex items-baseline gap-1">
             <span className="mr-2">
               <Emoji>💡</Emoji>
             </span>
