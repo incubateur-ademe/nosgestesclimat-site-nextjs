@@ -1,3 +1,4 @@
+import DidYouKnowSlider from '@/components/landing-pages/DidYouKnowSlider'
 import WhatDoWeMeasure from '@/components/landing-pages/WhatDoWeMeasure'
 import WhatItIs from '@/components/landing-pages/WhatItIs'
 import Trans from '@/components/translation/Trans'
@@ -194,6 +195,8 @@ export default async function WaterFootprintLandingPage() {
           </>
         }
       />
+
+      <DidYouKnowSlider mode="empreinte-eau" />
     </LandingPage>
   )
 }

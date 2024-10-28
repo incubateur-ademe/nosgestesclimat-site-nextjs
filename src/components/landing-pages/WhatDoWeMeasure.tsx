@@ -18,7 +18,7 @@ export default function WhatDoWeMeasure({
         {listItems.map(({ icon, title }, index) => (
           <li
             key={`list-item-${title}-${index}`}
-            className="flex flex-col items-center gap-4 rounded-lg bg-primary-50 p-4">
+            className="bg-heroLightBackground flex flex-col items-center gap-4 rounded-lg p-4">
             {icon}
             <span className="text-center">{title}</span>
           </li>

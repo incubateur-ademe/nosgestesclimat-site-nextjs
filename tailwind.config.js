@@ -115,6 +115,7 @@ module.exports = {
           divers: '#F9CD49',
           servicessocietaux: '#9E8EF5',
         },
+        heroLightBackground: '#F0F8FF',
       },
       fontSize: {
         '3xl': '2rem',
