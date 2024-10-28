@@ -21,7 +21,9 @@ export default function MotivationSection({
 
         <Separator className="mx-auto my-0" />
 
-        {description}
+        <div className="text-center md:mx-auto md:max-w-[800px]">
+          {description}
+        </div>
 
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {motivationItems.map((item, index) => (
