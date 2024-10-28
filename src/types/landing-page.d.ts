@@ -8,3 +8,10 @@ export type WhatDoWeMeasureListItem = {
 export type GesturesType = {
   [category: string]: ReactNode[]
 }
+
+export type LandingPagePostType = {
+  category: string
+  title: string
+  imageSrc: string
+  href: string
+}
