@@ -7,10 +7,12 @@ export default function LandingPage({
   heroContent,
   heroIllustration,
   heroPartners,
+  children,
 }: {
   heroContent: ReactNode
   heroIllustration: ReactNode
   heroPartners: ReactNode
+  children: ReactNode
 }) {
   return (
     <>
@@ -22,6 +24,8 @@ export default function LandingPage({
           content={heroContent}
           partners={heroPartners}
         />
+
+        {children}
       </Main>
     </>
   )

@@ -12,8 +12,8 @@ export default async function Hero({
   return (
     <>
       <div className="flex min-h-[588px] items-center bg-primary-50 px-4 py-20 md:min-h-full">
-        <div className="relative mx-auto flex max-w-6xl items-center justify-center gap-20">
-          <div className="max-w-96">{content}</div>
+        <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center justify-between px-8 md:flex-row md:px-0">
+          <div className="max-w-[540px]">{content}</div>
 
           {illustration}
         </div>
