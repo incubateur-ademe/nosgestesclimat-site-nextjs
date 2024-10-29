@@ -6,8 +6,7 @@ export default async function DailyGestureWaterFootprint() {
     <DailyGestures
       title={
         <Trans>
-          Les gestes du quotidien pour préserver nos ressources en eau Les
-          gestes du quotidien pour préserver nos ressources en eau{' '}
+          Les gestes du quotidien pour préserver nos ressources en eau
         </Trans>
       }
       description={
