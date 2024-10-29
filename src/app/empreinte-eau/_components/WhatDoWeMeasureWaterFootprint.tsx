@@ -80,8 +80,8 @@ export default async function WhatDoWeMeasureWaterFootprint() {
               , tient compte de{' '}
               <strong className="text-primary-600">l’eau nécessaire</strong> à
               la production, la distribution et au traitement des biens et
-              services consommés. Ce calcul prend également en considération
-              <strong className="text-primary-600">le stress hydrique</strong>
+              services consommés. Ce calcul prend également en considération{' '}
+              <strong className="text-primary-600">le stress hydrique</strong>{' '}
               et pondère les consommations d’eau en fonction de{' '}
               <strong className="text-primary-600">
                 la rareté de la ressource
