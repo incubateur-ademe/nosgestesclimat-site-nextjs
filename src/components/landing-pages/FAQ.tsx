@@ -24,19 +24,21 @@ export default function FAQ({
           <p className="text-xl font-bold">{subTitle}</p>
         </div>
 
-        <div className="flex flex-1 flex-col gap-4">
+        <ul className="flex flex-1 flex-col gap-4">
           {questions.map(({ question, answer }, index) => (
-            <details key={`question-${index}`} className="group">
-              <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg bg-white p-4">
-                <p className="mb-0 text-lg font-bold">{question}</p>
+            <li key={`question-${index}`}>
+              <details className="group">
+                <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg bg-white p-4">
+                  <p className="mb-0 text-lg font-bold">{question}</p>
 
-                <PlusIcon className="h-6 w-6" />
-              </summary>
+                  <PlusIcon className="h-6 w-6" />
+                </summary>
 
-              <p className="mt-8 px-4">{answer}</p>
-            </details>
+                <div className="mt-8 px-4">{answer}</div>
+              </details>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   )

@@ -1,4 +1,3 @@
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Image from 'next/image'
 import Badge from '../layout/Badge'
@@ -32,10 +31,8 @@ export default function PostThumbnail({
         {title}
       </h3>
 
-      <div className="p-4 pt-0 text-right">
-        <Link href={href}>
-          <Trans>Lire la suite</Trans>
-        </Link>
+      <div className="cursor-pointer p-4 pt-0 text-right text-primary-700 underline">
+        <Trans>Lire la suite</Trans>
       </div>
     </a>
   )

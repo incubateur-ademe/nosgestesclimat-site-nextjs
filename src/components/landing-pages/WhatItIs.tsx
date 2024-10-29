@@ -14,7 +14,7 @@ export default function WhatItIs({
       <h2 className="mb-0 text-center text-2xl md:text-3xl">{title}</h2>
 
       <div className="flex flex-col items-center gap-16 md:flex-row">
-        <p>{description}</p>
+        {description}
 
         {illustration}
       </div>
