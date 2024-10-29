@@ -15,7 +15,7 @@ export default function MotivationSection({
   }[]
 }) {
   return (
-    <section className="w-full py-24">
+    <section className="w-full pb-10 pt-20">
       <div className="mx-auto flex max-w-full flex-col gap-6 px-8 md:max-w-5xl md:px-0">
         <h2 className="!mb-0 text-center text-2xl md:text-3xl">{title}</h2>
 
@@ -25,7 +25,7 @@ export default function MotivationSection({
           {description}
         </div>
 
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
           {motivationItems.map((item, index) => (
             <li
               key={`motivation-item-${index}`}

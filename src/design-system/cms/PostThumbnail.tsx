@@ -15,10 +15,8 @@ export default function PostThumbnail({
   href: string
 }) {
   return (
-    <a
-      href={href}
-      className="flex flex-col gap-4 rounded-xl bg-white !no-underline">
-      <div className="relative">
+    <a href={href} className="flex flex-col rounded-xl bg-white !no-underline">
+      <div className="relative mb-4">
         <Image
           src={imageSrc}
           alt=""
@@ -30,9 +28,11 @@ export default function PostThumbnail({
           <Badge className="inline-block text-xs">{category}</Badge>
         </div>
       </div>
-      <h3 className="px-4 text-base text-default !no-underline">{title}</h3>
+      <h3 className="mb-2 px-4 text-base text-default !no-underline">
+        {title}
+      </h3>
 
-      <div className="p-4 text-right">
+      <div className="p-4 pt-0 text-right">
         <Link href={href}>
           <Trans>Lire la suite</Trans>
         </Link>

@@ -50,8 +50,8 @@ export default async function WaterFootprintLandingPage() {
       }
       heroIllustration={
         <Image
-          width={500}
-          height={500}
+          width={480}
+          height={480}
           src="/images/illustrations/hero-banner-LP-eau.svg"
           alt=""
         />

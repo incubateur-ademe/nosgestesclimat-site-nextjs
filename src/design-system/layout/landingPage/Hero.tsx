@@ -11,8 +11,8 @@ export default async function Hero({
 }) {
   return (
     <>
-      <div className="bg-heroLightBackground flex min-h-[588px] items-center px-4 py-20 md:min-h-full">
-        <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center justify-between px-8 md:flex-row md:px-0">
+      <div className="flex min-h-[588px] items-center bg-heroLightBackground px-4 py-20 md:min-h-full">
+        <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-8 px-8 md:flex-row md:px-0">
           <div className="max-w-[540px]">{content}</div>
 
           {illustration}

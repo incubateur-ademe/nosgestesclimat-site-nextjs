@@ -23,7 +23,7 @@ export default function DailyGestures({
     useSimulateurPage()
 
   return (
-    <div className="mx-auto mb-20 mt-24 w-full max-w-full px-8 text-center md:max-w-[800px] md:px-0">
+    <div className="mx-auto my-20 w-full max-w-full px-8 text-center md:max-w-[800px] md:px-0">
       <h2 className="text-2xl md:text-3xl">{title}</h2>
 
       <Separator className="mx-auto" />

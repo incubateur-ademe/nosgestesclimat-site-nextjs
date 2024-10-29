@@ -8,7 +8,7 @@ export default async function UnderstandToActWaterFootprint() {
   return (
     <UnderstandToAct
       description={
-        <p>
+        <p className="mb-0">
           <Trans>
             Mieux comprendre{' '}
             <strong className="text-primary-600">

@@ -7,7 +7,7 @@ export default async function MotivationSectionWaterFootprint() {
     <MotivationSection
       title={<Trans>Économiser l’eau, un enjeu de développement durable</Trans>}
       description={
-        <p>
+        <p className="mb-0">
           <Trans>
             Avec les pressions croissantes exercées par les activités humaines
             et le changement climatique, la gestion durable de l’eau est devenue{' '}
