@@ -1295,3 +1295,15 @@ entries:
   L’empreinte eau, <2>calculée en milliers de litres par jour</2>, tient compte de <5>l’eau nécessaire</5> à la production, la distribution et au traitement des biens et services consommés. Ce calcul prend également en considération <8>le stress hydrique</8> et pondère les consommations d’eau en fonction de <12>la rareté de la ressource</12> dans les territoires concernés. Ainsi, un litre d’eau utilisé en France n’aura pas la même valeur qu’un litre d’eau utilisé au Maroc.: La huella hídrica, <2>calculada en miles de litros diarios</2>, tiene en cuenta el <5>agua necesaria</5> para producir, distribuir y procesar los bienes y servicios consumidos. El cálculo también tiene en cuenta <8>el estrés hídrico</8> y pondera el consumo de agua en función de <12>la escasez de recursos hídricos</12> en las regiones afectadas. Así, un litro de agua consumido en Francia no tendrá el mismo valor que un litro de agua consumido en Marruecos.
   Qu'est-ce que l'empreinte eau ?: ¿Qué es la huella hídrica?
   Calculez votre <2>empreinte eau</2> et découvrez <5>les litres qui se cachent</5> dans votre consommation du quotidien.: Calcula tu <2>huella hídrica</2> y descubre <5>los litros que esconde</5> tu consumo diario.
+  '<0>Une tablette de chocolat (150g)</0> : 235 litres d’eau ;': '<0>Una tableta de chocolate (150 g)</0>: 235 litros de agua ;'
+  '<0>Une tasse de café</0> : 64 litres d’eau, de la culture à la transformation ;': '<0>Una taza de café</0>: 64 litros de agua, desde el cultivo hasta la elaboración ;'
+  '<0>Un hamburger de bœuf</0> : environ 380 litres d’eau ;': '<0>Una hamburguesa de ternera</0>: aproximadamente 380 litros de agua ;'
+  <0>Eau bleue</0> : eau de surface et souterraine prélevée pour l’irrigation, la production industrielle ou l'énergie ;: '<0>Aguas azules</0>: aguas superficiales y subterráneas extraídas para el riego, la producción industrial o la energía;'
+  <0>Eau grise</0> : quantité d’eau nécessaire pour diluer les polluants générés par la production d’un bien ou service.: '<0>Aguas grises</0>: cantidad de agua necesaria para diluir los contaminantes generados por la producción de un bien o servicio.'
+  '<0>Un kilo de pommes de terre</0> : 330 litres d’eau ;': '<0>Un kilo de patatas</0>: 330 litros de agua;'
+  '<0>Un litre de lait</0> : environ 330 litres d’eau ;': '<0>Un litro de leche</0>: unos 330 litros de agua;'
+  '<0>Un kilo de riz</0> : 14 000 litres d’eau ;': '<0>Un kilo de arroz</0>: 14.000 litros de agua;'
+  '<0>Un jean</0> : environ 30 000 litres d’eau, principalement pour la culture du coton ;': <0>Un par de vaqueros</0> consume unos 30.000 litros de agua, principalmente para el cultivo del algodón;
+  <0>Eau verte</0> : eau de pluie absorbée par les sols, utilisée pour les cultures sans irrigation artificielle ;: '<0>Agua verde</0>: agua de lluvia absorbida por el suelo y utilizada para cultivar sin riego artificial;'
+  '<0>Une baguette de pain</0> : 40 litres d’eau.': '<0>Una barra de pan</0>: 40 litros de agua.'
+  '<0>Un œuf</0> : 75 litres d’eau ;': '<0>Un huevo</0>: 75 litros de agua ;'

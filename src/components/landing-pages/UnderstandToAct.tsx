@@ -18,7 +18,7 @@ export default function UnderstandToAct({
           <Trans>Comprendre pour agir</Trans>
         </h2>
 
-        <section className="mb-8 text-center md:mx-auto md:max-w-[850px]">
+        <section className="mb-8 text-center text-sm md:mx-auto md:max-w-[850px] md:text-lg">
           {description}
         </section>
 

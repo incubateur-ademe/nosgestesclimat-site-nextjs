@@ -14,7 +14,7 @@ export default function WhatDoWeMeasure({
   description: ReactNode
 }) {
   return (
-    <div className="mb-20 flex max-w-full flex-col gap-12 md:mx-auto md:max-w-5xl md:px-0">
+    <div className="mb-20 flex max-w-full flex-col gap-11 md:mx-auto md:max-w-5xl md:px-0">
       <h2 className="px-4 text-center text-2xl md:px-0 md:text-3xl">{title}</h2>
 
       <ul className="hidden grid-cols-1 gap-5 md:grid md:grid-cols-2 lg:grid-cols-5">
@@ -23,7 +23,7 @@ export default function WhatDoWeMeasure({
             key={`list-item-${title}-${index}`}
             className="flex flex-col items-center gap-2 rounded-xl bg-heroLightBackground p-4">
             {icon}
-            <span className="text-center text-base">{title}</span>
+            <span className="text-center">{title}</span>
           </li>
         ))}
       </ul>
@@ -42,7 +42,7 @@ export default function WhatDoWeMeasure({
           ))}
         </div>
       </div>
-      <section className="mx-auto w-[800px] max-w-full px-4 md:px-0">
+      <section className="mx-auto w-[800px] max-w-full px-4 text-sm md:px-0 md:text-lg">
         {description}
       </section>
     </div>

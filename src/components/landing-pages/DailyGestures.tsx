@@ -26,7 +26,7 @@ export default function DailyGestures({
 
       <Separator className="mx-auto my-4 md:my-8" />
 
-      <section>{description}</section>
+      <section className="text-sm md:text-lg">{description}</section>
 
       <div className="mt-10 flex w-full flex-col justify-between gap-10 md:flex-row">
         <GestureSelector gestures={gestures} />

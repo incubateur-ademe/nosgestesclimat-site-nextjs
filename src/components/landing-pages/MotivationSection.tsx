@@ -21,7 +21,7 @@ export default function MotivationSection({
 
         <Separator className="mx-auto my-0" />
 
-        <div className="text-center md:mx-auto md:max-w-[850px]">
+        <div className="text-center text-sm md:mx-auto md:max-w-[850px] md:text-lg">
           {description}
         </div>
 
@@ -32,9 +32,11 @@ export default function MotivationSection({
               className="flex flex-col gap-2 text-center">
               <div className="flex justify-center">{item.icon}</div>
 
-              <h3 className="text-lg font-bold">{item.title}</h3>
+              <h3 className="mb-0 text-base font-bold md:text-lg">
+                {item.title}
+              </h3>
 
-              {item.description}
+              <div className="text-xs md:text-base">{item.description}</div>
             </li>
           ))}
         </ul>

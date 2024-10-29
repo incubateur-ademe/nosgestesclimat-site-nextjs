@@ -32,13 +32,13 @@ export default async function WaterFootprintLandingPage() {
   return (
     <LandingPage
       heroTitle={
-        <h1 className="text-2xl leading-8 md:text-5xl md:leading-10">
+        <h1 className="mb-0 text-2xl leading-8 md:text-5xl md:leading-[3rem]">
           <Trans>L’empreinte eau, ces litres qu’on ne voit pas !</Trans>
         </h1>
       }
       heroDescription={
-        <div className="flex flex-col items-start gap-4">
-          <p>
+        <div className="flex flex-col items-start gap-6">
+          <p className="mb-0">
             <Trans>
               Calculez votre{' '}
               <strong className="text-primary-600">empreinte eau</strong> et
@@ -58,8 +58,8 @@ export default async function WaterFootprintLandingPage() {
       }
       heroIllustration={
         <Image
-          width={480}
-          height={480}
+          width={560}
+          height={560}
           src="/images/illustrations/hero-banner-LP-eau.svg"
           alt=""
         />

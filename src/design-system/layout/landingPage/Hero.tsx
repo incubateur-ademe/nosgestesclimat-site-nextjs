@@ -15,14 +15,14 @@ export default async function Hero({
     <>
       <div className="flex min-h-[588px] items-center bg-heroLightBackground px-4 py-20 md:min-h-full">
         <div className="relative mx-auto flex max-w-5xl flex-row items-center justify-between gap-8 md:px-0">
-          <div className="flex flex-col gap-8">
-            <div className="max-w-[540px] text-center md:text-left">
+          <div className="flex flex-col gap-10">
+            <div className="max-w-[600px] text-center md:text-left">
               {title}
             </div>
 
             <div className="md:hidden">{illustration}</div>
 
-            <div className="max-w-[540px] text-center text-sm md:order-2 md:text-left md:text-base">
+            <div className="max-w-[600px] text-center text-sm md:order-2 md:text-left md:text-lg">
               {description}
             </div>
           </div>

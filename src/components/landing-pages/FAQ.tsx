@@ -21,7 +21,7 @@ export default function FAQ({
         <div className="flex flex-col gap-4 text-center md:w-[240px] md:max-w-[240px] md:text-left">
           <h2 className="mb-0 text-2xl md:mb-8 md:text-3xl">FAQ</h2>
           <Separator className="mx-auto my-0 md:mx-0" />
-          <p className="text-base font-bold md:text-xl">{subTitle}</p>
+          <p className="text-sm font-bold md:text-xl">{subTitle}</p>
         </div>
 
         <ul className="flex flex-1 flex-col gap-4">
@@ -29,14 +29,14 @@ export default function FAQ({
             <li key={`question-${index}`}>
               <details className="group">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg bg-white p-4">
-                  <p className="mb-0 text-sm font-bold md:text-lg">
+                  <p className="mb-0 text-sm font-bold md:text-base">
                     {question}
                   </p>
 
-                  <PlusIcon className="block h-6 min-w-6" />
+                  <PlusIcon className="block h-4 min-w-4" />
                 </summary>
 
-                <div className="mt-8 px-4">{answer}</div>
+                <div className="mt-8 px-4 text-sm md:text-base">{answer}</div>
               </details>
             </li>
           ))}

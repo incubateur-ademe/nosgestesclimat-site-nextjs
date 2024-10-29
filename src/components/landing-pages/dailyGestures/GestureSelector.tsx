@@ -1,7 +1,6 @@
 'use client'
 
 import { baseClassNames, sizeClassNames } from '@/design-system/inputs/Button'
-import Emoji from '@/design-system/utils/Emoji'
 import type { GesturesType } from '@/types/landing-page'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -25,9 +24,9 @@ export default function GestureSelector({
                 className={twMerge(
                   baseClassNames,
                   sizeClassNames.xs,
-                  'border-2 border-primary-100 bg-primary-100 text-primary-700',
+                  'border-2 border-primary-100 bg-primary-50 text-primary-800 transition-colors hover:bg-primary-100',
                   selectedCategory === categoryName &&
-                    'border-primary-700 bg-primary-200 text-primary-900'
+                    'border-primary-500 bg-primary-100 text-primary-800'
                 )}
                 onClick={() => setSelectedCategory(categoryName)}>
                 {categoryName}
@@ -36,12 +35,11 @@ export default function GestureSelector({
           ))}
         </ul>
 
-        <ul className="flex flex-1 flex-col gap-4">
+        <ul className="flex flex-1 flex-col gap-6">
           {gestures[selectedCategory].gestureList.map((gesture, index) => (
-            <li key={`gesture-${index}`} className="flex items-baseline gap-1">
-              <span className="mr-2 h-4 w-4">
-                <Emoji className="block w-4">💡</Emoji>
-              </span>
+            <li
+              key={`gesture-${index}`}
+              className="flex items-baseline gap-1 text-sm font-bold text-primary-600 md:text-lg">
               {gesture}
             </li>
           ))}

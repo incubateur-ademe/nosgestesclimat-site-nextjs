@@ -126,23 +126,26 @@ export default async function FAQWaterFootprint() {
                   de l’eau. La couleur de l’eau en est une majeure :
                 </Trans>
               </p>
-              <ul>
+              <ul className="mb-4 flex list-disc flex-col gap-2 pl-3">
                 <li>
                   <Trans>
-                    Eau bleue : eau de surface et souterraine prélevée pour
-                    l’irrigation, la production industrielle ou l'énergie.
+                    <strong>Eau bleue</strong> : eau de surface et souterraine
+                    prélevée pour l’irrigation, la production industrielle ou
+                    l'énergie ;
                   </Trans>
                 </li>
                 <li>
                   <Trans>
-                    Eau verte : eau de pluie absorbée par les sols, utilisée
-                    pour les cultures sans irrigation artificielle.
+                    <strong>Eau verte</strong> : eau de pluie absorbée par les
+                    sols, utilisée pour les cultures sans irrigation
+                    artificielle ;
                   </Trans>
                 </li>
                 <li>
                   <Trans>
-                    Eau grise : quantité d’eau nécessaire pour diluer les
-                    polluants générés par la production d’un bien ou service.
+                    <strong>Eau grise</strong> : quantité d’eau nécessaire pour
+                    diluer les polluants générés par la production d’un bien ou
+                    service.
                   </Trans>
                 </li>
               </ul>
@@ -187,43 +190,57 @@ export default async function FAQWaterFootprint() {
                 </Trans>
               </p>
 
-              <ul>
+              <ul className="mb-4 flex list-disc flex-col gap-2 pl-3">
                 <li>
                   <Trans>
-                    Un jean : environ 30 000 litres d’eau, principalement pour
-                    la culture du coton.
+                    <strong>Un jean</strong> : environ 30 000 litres d’eau,
+                    principalement pour la culture du coton ;
                   </Trans>
                 </li>
                 <li>
                   <Trans>
-                    Un hamburger de bœuf : environ 380 litres d’eau.
+                    <strong>Un hamburger de bœuf</strong> : environ 380 litres
+                    d’eau ;
                   </Trans>
                 </li>
                 <li>
                   <Trans>
-                    Une tasse de café : 64 litres d’eau, de la culture à la
-                    transformation.
+                    <strong>Une tasse de café</strong> : 64 litres d’eau, de la
+                    culture à la transformation ;
                   </Trans>
-                </li>
-                <li>
-                  <Trans>Un kilo de riz : 14 000 litres d’eau.</Trans>
-                </li>
-                <li>
-                  <Trans>Un kilo de pommes de terre : 330 litres d’eau.</Trans>
                 </li>
                 <li>
                   <Trans>
-                    Une tablette de chocolat (150g) : 235 litres d’eau.
+                    <strong>Un kilo de riz</strong> : 14 000 litres d’eau ;
                   </Trans>
                 </li>
                 <li>
-                  <Trans>Un litre de lait : environ 330 litres d’eau.</Trans>
+                  <Trans>
+                    <strong>Un kilo de pommes de terre</strong> : 330 litres
+                    d’eau ;
+                  </Trans>
                 </li>
                 <li>
-                  <Trans>Un œuf : 75 litres d’eau.</Trans>
+                  <Trans>
+                    <strong>Une tablette de chocolat (150g)</strong> : 235
+                    litres d’eau ;
+                  </Trans>
                 </li>
                 <li>
-                  <Trans>Une baguette de pain : 40 litres d’eau.</Trans>
+                  <Trans>
+                    <strong>Un litre de lait</strong> : environ 330 litres d’eau
+                    ;
+                  </Trans>
+                </li>
+                <li>
+                  <Trans>
+                    <strong>Un œuf</strong> : 75 litres d’eau ;
+                  </Trans>
+                </li>
+                <li>
+                  <Trans>
+                    <strong>Une baguette de pain</strong> : 40 litres d’eau.
+                  </Trans>
                 </li>
               </ul>
 
