@@ -6,66 +6,21 @@ import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import Image from 'next/image'
+import { ReactNode } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 
-const slidesList = [
-  {
-    illustration: '/images/misc/home-slide-1.svg',
-    content: (
-      <Trans>
-        L’empreinte carbone moyenne d’un Français est de{' '}
-        <strong className="text-primary-700">9,1 tonnes de CO₂e</strong> par an.
-      </Trans>
-    ),
-    highlight: <Trans>Et la vôtre ?</Trans>,
-  },
-  {
-    illustration: '/images/icons/tee-shirt.svg',
-    content: (
-      <Trans>
-        La production d'un jean nécessite près de{' '}
-        <strong className="text-primary-700">30 000</strong> litres d'eau.
-      </Trans>
-    ),
-    highlight: <Trans>Considérable, non ?</Trans>,
-  },
-  {
-    illustration: '/images/icons/apple.svg',
-    content: (
-      <Trans>
-        L'empreinte eau moyenne d'un français se compte en{' '}
-        <strong className="text-primary-700">milliers de litres</strong> par
-        jour.
-      </Trans>
-    ),
-    highlight: <Trans>Et la vôtre ?</Trans>,
-  },
-  {
-    illustration: '/images/misc/home-slide-1.svg',
-    content: (
-      <Trans>
-        Un aller-retour Paris-Athènes en avion représente{' '}
-        <strong className="text-primary-700">800 kg de CO₂e.</strong>
-      </Trans>
-    ),
-    highlight: <Trans>Impressionnant, non ?</Trans>,
-  },
-]
 export default function DidYouKnowSlider({
-  mode,
+  slides,
 }: {
-  mode?: 'empreinte-carbone' | 'empreinte-eau'
+  slides: {
+    illustration: string
+    content: ReactNode
+    highlight: ReactNode
+  }[]
 }) {
   const { getLinkToSimulateurPage, linkToSimulateurPageLabel } =
     useSimulateurPage()
-
-  // Exchange position of the first and the second slide if mode is 'empreinte-eau'
-  const slides = !mode
-    ? slidesList
-    : mode === 'empreinte-eau'
-      ? [slidesList[1], slidesList[2]]
-      : [slidesList[0], slidesList[3]]
 
   return (
     <div className="relative bg-heroLightBackground py-20">
