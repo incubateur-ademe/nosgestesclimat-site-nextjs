@@ -39,8 +39,8 @@ export default function GestureSelector({
         <ul className="flex flex-1 flex-col gap-4">
           {gestures[selectedCategory].gestureList.map((gesture, index) => (
             <li key={`gesture-${index}`} className="flex items-baseline gap-1">
-              <span className="mr-2">
-                <Emoji>💡</Emoji>
+              <span className="mr-2 h-4 w-4">
+                <Emoji className="block w-4">💡</Emoji>
               </span>
               {gesture}
             </li>
@@ -48,12 +48,15 @@ export default function GestureSelector({
         </ul>
       </div>
 
-      <Image
-        src={gestures[selectedCategory].imageSrc}
-        alt=""
-        width="300"
-        height="300"
-      />
+      <div className="flex justify-center md:justify-start">
+        <Image
+          src={gestures[selectedCategory].imageSrc}
+          alt=""
+          width="300"
+          height="300"
+          className="max-h-64 w-auto object-cover"
+        />
+      </div>
     </>
   )
 }

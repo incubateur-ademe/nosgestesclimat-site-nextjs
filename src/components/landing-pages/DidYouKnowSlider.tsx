@@ -28,27 +28,42 @@ export default function DidYouKnowSlider({
         <Slider
           dots={true}
           arrows={false}
-          infinite={false}
+          infinite={true}
+          autoplay={true}
+          autoplaySpeed={5000}
           fade
+          easing="ease-in-out"
           className="max-w-[594px]">
           {slides.map((slide) => (
-            <div
-              className="!flex w-full flex-col items-start gap-10 md:flex-row"
+            <li
+              className="mx-auto !flex w-full max-w-[90vw] flex-col items-start gap-10 md:flex-row"
               key={String(slide.highlight)}>
-              <div className="mx-auto flex h-40 w-40 items-center justify-center rounded-full bg-white md:mx-0">
-                <Image src={slide.illustration} alt="" width="80" height="80" />
+              <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white md:mx-0 md:h-40 md:w-40">
+                <Image
+                  src={slide.illustration}
+                  className="w-12 md:w-20"
+                  alt=""
+                  width="80"
+                  height="80"
+                />
               </div>
 
-              <div className="flex-1">
-                <h3 className="text-xl md:text-3xl">Le saviez vous ?</h3>
+              <div className="w-full flex-1">
+                <h3 className="text-center text-xl md:text-left md:text-3xl">
+                  Le saviez vous ?
+                </h3>
 
-                <Separator />
+                <Separator className="mx-auto my-4 md:mx-0 md:my-8" />
 
-                <p className="text-lg">{slide.content}</p>
+                <p className="text-center text-lg md:text-left">
+                  {slide.content}
+                </p>
 
-                <p className="text-lg text-secondary-700">{slide.highlight}</p>
+                <p className="text-center text-lg text-secondary-700 md:text-left">
+                  {slide.highlight}
+                </p>
               </div>
-            </div>
+            </li>
           ))}
         </Slider>
         <div>

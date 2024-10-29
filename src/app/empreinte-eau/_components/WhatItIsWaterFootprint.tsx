@@ -5,7 +5,7 @@ import Image from 'next/image'
 export default async function WhatItIsWaterFootprint() {
   return (
     <WhatItIs
-      title={<Trans>Qu'est-ce que l'empreinte eau ?</Trans>}
+      title={<Trans>Qu'est-ce que l'empreinte eau ?</Trans>}
       description={
         <section>
           <p>
@@ -40,7 +40,7 @@ export default async function WhatItIsWaterFootprint() {
         <Image
           width={500}
           height={500}
-          src="/images/illustrations/hero-banner-LP-eau.svg"
+          src="/images/illustrations/people-with-paperboard.png"
           alt=""
         />
       }

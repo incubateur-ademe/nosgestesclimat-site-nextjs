@@ -1,15 +1,17 @@
 import Header from '@/components/layout/Header'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import Main from './Main'
 import Hero from './landingPage/Hero'
 
 export default function LandingPage({
-  heroContent,
+  heroTitle,
+  heroDescription,
   heroIllustration,
   heroPartners,
   children,
 }: {
-  heroContent: ReactNode
+  heroTitle: ReactNode
+  heroDescription: ReactNode
   heroIllustration: ReactNode
   heroPartners: ReactNode
   children: ReactNode
@@ -21,7 +23,8 @@ export default function LandingPage({
       <Main>
         <Hero
           illustration={heroIllustration}
-          content={heroContent}
+          title={heroTitle}
+          description={heroDescription}
           partners={heroPartners}
         />
 

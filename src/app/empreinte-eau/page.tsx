@@ -31,21 +31,29 @@ export async function generateMetadata() {
 export default async function WaterFootprintLandingPage() {
   return (
     <LandingPage
-      heroContent={
+      heroTitle={
+        <h1 className="text-2xl leading-8 md:text-5xl md:leading-10">
+          <Trans>L’empreinte eau, ces litres qu’on ne voit pas !</Trans>
+        </h1>
+      }
+      heroDescription={
         <div className="flex flex-col items-start gap-4">
-          <h1 className="text-3xl md:text-5xl">
-            <Trans>L’empreinte eau, ces litres qu’on ne voit pas !</Trans>
-          </h1>
           <p>
             <Trans>
-              Calculez votre empreinte eau et découvrez les litres qui se
-              cachent dans votre consommation du quotidien.
+              Calculez votre{' '}
+              <strong className="text-primary-600">empreinte eau</strong> et
+              découvrez{' '}
+              <strong className="text-primary-600">
+                les litres qui se cachent
+              </strong>{' '}
+              dans votre consommation du quotidien.
             </Trans>
           </p>
-
-          <ButtonLink href={getLinkToSimulateur()}>
-            <Trans>Passer le test</Trans>
-          </ButtonLink>
+          <div className="flex w-full justify-center md:justify-start">
+            <ButtonLink size="lg" href={getLinkToSimulateur()}>
+              <Trans>Passer le test</Trans>
+            </ButtonLink>
+          </div>
         </div>
       }
       heroIllustration={
