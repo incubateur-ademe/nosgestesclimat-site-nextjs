@@ -1,7 +1,7 @@
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
 import ColorLine from '@/design-system/layout/ColorLine'
-import { LandingPagePostType } from '@/types/landing-page'
-import { ReactNode } from 'react'
+import type { LandingPagePostType } from '@/types/landing-page'
+import type { ReactNode } from 'react'
 import Trans from '../translation/Trans'
 
 export default function UnderstandToAct({
@@ -18,7 +18,7 @@ export default function UnderstandToAct({
           <Trans>Comprendre pour agir</Trans>
         </h2>
 
-        <section className="mb-8 text-center md:mx-auto md:max-w-[800px]">
+        <section className="mb-8 text-center md:mx-auto md:max-w-[850px]">
           {description}
         </section>
 

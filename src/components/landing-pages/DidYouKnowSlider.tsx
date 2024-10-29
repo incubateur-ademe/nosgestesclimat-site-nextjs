@@ -6,7 +6,7 @@ import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import Image from 'next/image'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 

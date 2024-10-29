@@ -1,5 +1,5 @@
 import Separator from '@/design-system/layout/Separator'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 export default function MotivationSection({
   title,
@@ -21,7 +21,7 @@ export default function MotivationSection({
 
         <Separator className="mx-auto my-0" />
 
-        <div className="text-center md:mx-auto md:max-w-[800px]">
+        <div className="text-center md:mx-auto md:max-w-[850px]">
           {description}
         </div>
 

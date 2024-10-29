@@ -1,5 +1,5 @@
-import { WhatDoWeMeasureListItem } from '@/types/landing-page'
-import { ReactNode } from 'react'
+import type { WhatDoWeMeasureListItem } from '@/types/landing-page'
+import type { ReactNode } from 'react'
 
 export default function WhatDoWeMeasure({
   title,

@@ -1,6 +1,5 @@
 import DailyGestures from '@/components/landing-pages/DailyGestures'
 import Trans from '@/components/translation/Trans'
-import Image from 'next/image'
 
 export default async function DailyGestureWaterFootprint() {
   return (
@@ -36,32 +35,32 @@ export default async function DailyGestureWaterFootprint() {
         </>
       }
       gestures={{
-        Alimentation: [
-          <Trans key="cuisiner">
-            Cuisiner avec des produits locaux et de saison
-          </Trans>,
-          <Trans key="viande">Réduire la consommation de viande</Trans>,
-          <Trans key="eau-du-robinet">Préférer l'eau du robinet</Trans>,
-        ],
-        Vêtements: [
-          <Trans key="textile-durables">
-            Opter pour des vêtements durables
-          </Trans>,
-          <Trans key="fabric">
-            Privilégier les matériaux durables (lin, chanvre, laine, et si coton
-            : recyclé)
-          </Trans>,
-          <Trans key="second-hand">Privilégier les produits d'occasion</Trans>,
-        ],
+        Alimentation: {
+          imageSrc: '/images/illustrations/girl-cooking.png',
+          gestureList: [
+            <Trans key="cuisiner">
+              Cuisiner avec des produits locaux et de saison
+            </Trans>,
+            <Trans key="viande">Réduire la consommation de viande</Trans>,
+            <Trans key="eau-du-robinet">Préférer l'eau du robinet</Trans>,
+          ],
+        },
+        Vêtements: {
+          imageSrc: '/images/illustrations/people-raising-arm.png',
+          gestureList: [
+            <Trans key="textile-durables">
+              Opter pour des vêtements durables
+            </Trans>,
+            <Trans key="fabric">
+              Privilégier les matériaux durables (lin, chanvre, laine, et si
+              coton : recyclé)
+            </Trans>,
+            <Trans key="second-hand">
+              Privilégier les produits d'occasion
+            </Trans>,
+          ],
+        },
       }}
-      illustration={
-        <Image
-          width={300}
-          height={300}
-          src="/images/illustrations/girl-cooking.png"
-          alt=""
-        />
-      }
     />
   )
 }

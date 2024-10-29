@@ -6,7 +6,10 @@ export type WhatDoWeMeasureListItem = {
 }
 
 export type GesturesType = {
-  [category: string]: ReactNode[]
+  [category: string]: {
+    imageSrc: string
+    gestureList: ReactNode[]
+  }
 }
 
 export type LandingPagePostType = {
