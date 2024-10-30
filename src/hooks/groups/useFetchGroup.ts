@@ -1,4 +1,5 @@
 import { GROUP_URL } from '@/constants/urls'
+import { useUser } from '@/publicodes-state'
 import type { Group, Participant } from '@/types/groups'
 import { unformatSituation } from '@/utils/formatDataForDB'
 import type { UseQueryResult } from '@tanstack/react-query'
@@ -8,16 +9,16 @@ import axios from 'axios'
 export function useFetchGroup(
   groupId?: string | null
 ): UseQueryResult<Group, Error> {
+  const {
+    user: { userId },
+  } = useUser()
+
   return useQuery({
-    queryKey: ['group', groupId],
+    queryKey: ['groups', userId, groupId],
     queryFn: () =>
       axios
-        .post(`${GROUP_URL}/fetch`, {
-          groupId,
-        })
-        .then((response) => {
-          return response.data
-        })
+        .get(`${GROUP_URL}/${userId}/${groupId}`)
+        .then((response) => response.data)
         .then((data) => {
           return {
             ...data,

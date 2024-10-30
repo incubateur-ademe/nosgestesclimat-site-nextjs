@@ -21,19 +21,24 @@ export default function ParticipantAdminSection({ group }: Props) {
 
   const { mutateAsync: removePartipant, isSuccess } = useRemoveParticipant()
 
-  const { user } = useUser()
+  const {
+    user: { userId },
+  } = useUser()
 
   const router = useRouter()
 
   const timeoutRef = useRef<NodeJS.Timeout>()
 
   async function handleDelete() {
-    if (!group) return
+    const participant = group.participants.find((p) => p.userId === userId)
+
+    if (!participant) return
 
     try {
       await removePartipant({
-        groupId: group?._id,
-        userId: user?.userId || '',
+        participantId: participant.id,
+        groupId: group.id,
+        userId,
       })
 
       timeoutRef.current = setTimeout(() => {

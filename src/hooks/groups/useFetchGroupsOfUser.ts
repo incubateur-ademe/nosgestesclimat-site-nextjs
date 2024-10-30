@@ -1,21 +1,20 @@
 import { GROUP_URL } from '@/constants/urls'
 import { useUser } from '@/publicodes-state'
+import type { Group } from '@/types/groups'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 export function useFetchGroupsOfUser() {
-  const { user } = useUser()
+  const {
+    user: { userId },
+  } = useUser()
 
   return useQuery({
-    queryKey: ['groups', user.userId],
+    queryKey: ['groups', userId],
     queryFn: () =>
       axios
-        .post(`${GROUP_URL}/fetch-groups`, {
-          userId: user.userId,
-        })
-        .then((response) => {
-          return response.data
-        }),
+        .get<Group[]>(`${GROUP_URL}/${userId}`)
+        .then((response) => response.data),
     initialData: [],
   })
 }

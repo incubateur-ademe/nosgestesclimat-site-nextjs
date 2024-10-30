@@ -6,7 +6,7 @@ export const SERVER_URL =
 
 export const SIMULATION_URL = SERVER_URL + '/simulation/'
 
-export const GROUP_URL = SERVER_URL + '/group'
+export const GROUP_URL = SERVER_URL + '/groups/v1'
 
 export const NORTHSTAR_RATING_URL = SERVER_URL + '/northstar-ratings/v1'
 
