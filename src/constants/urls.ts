@@ -8,6 +8,8 @@ export const SIMULATION_URL = SERVER_URL + '/simulation/'
 
 export const GROUP_URL = SERVER_URL + '/group'
 
+export const NORTHSTAR_RATING_URL = SERVER_URL + '/northstar-ratings/v1'
+
 export const QUIZZ_ANSWER_URL = SERVER_URL + '/quizz-answers/v1'
 
 export const SAVE_SIMULATION_URL = SERVER_URL + '/simulations/create'

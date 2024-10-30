@@ -1,4 +1,4 @@
-import { SERVER_URL } from '@/constants/urls'
+import { NORTHSTAR_RATING_URL } from '@/constants/urls'
 import { useCurrentSimulation } from '@/publicodes-state'
 import type { NorthStarValue } from '@/types/northstar'
 import { useMutation } from '@tanstack/react-query'
@@ -14,7 +14,7 @@ export function useSaveNorthstarRating() {
   const northStarMutation = useMutation({
     mutationFn: ({ value, type }: Props) => {
       return axios
-        .post(SERVER_URL + '/northstar/ratings/create', {
+        .post(NORTHSTAR_RATING_URL, {
           value,
           type,
           simulationId: id,
