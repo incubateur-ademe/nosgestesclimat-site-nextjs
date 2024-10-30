@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs'
 
-import personas from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json' assert { type: 'json' }
+import personas from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json'
 
 /**
  * @param {string} name
