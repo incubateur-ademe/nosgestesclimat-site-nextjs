@@ -976,3 +976,5 @@ entries:
   Logo de J'agis: Logo de J'agis
   Que faire pour réduire mon empreinte ?: Que faire pour réduire mon empreinte ?
   Un coup de pouce pour agir ?: Un coup de pouce pour agir ?
+  Créer mon compte {isPending && <Loader className="ml-2" />}: Créer mon compte {isPending && <Loader className="ml-2" />}
+  Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>: Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>
