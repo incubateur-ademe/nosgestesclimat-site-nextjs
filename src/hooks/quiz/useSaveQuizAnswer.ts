@@ -1,4 +1,4 @@
-import { SERVER_URL } from '@/constants/urls'
+import { QUIZZ_ANSWER_URL } from '@/constants/urls'
 import { useCurrentSimulation } from '@/publicodes-state'
 import type { AnswerType } from '@/types/quiz'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -15,7 +15,7 @@ export function useSaveQuizAnswer() {
   const { mutateAsync: saveQuizAnswer } = useMutation({
     mutationFn: ({ answer, isAnswerCorrect }: Props) => {
       return axios
-        .post(SERVER_URL + '/quiz/answers/create', {
+        .post(QUIZZ_ANSWER_URL, {
           answer,
           isAnswerCorrect,
           simulationId: id,
