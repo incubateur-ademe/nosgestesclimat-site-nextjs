@@ -9,10 +9,10 @@ import OrganisationItem from './pollList/OrganisationItem'
 import PollItem from './pollList/PollItem'
 
 type Props = {
-  organisation?: Organisation
+  organisations?: Organisation[]
 }
 
-export default function PollsList({ organisation }: Props) {
+export default function PollsList({ organisations }: Props) {
   const { simulations } = useUser()
 
   const pollSlugs = useMemo(
@@ -26,6 +26,8 @@ export default function PollsList({ organisation }: Props) {
     [simulations]
   )
   const { data: polls } = usePolls({ pollSlugs })
+
+  const [organisation] = organisations || []
 
   return (
     <div className="mb-8 flex flex-col gap-3">

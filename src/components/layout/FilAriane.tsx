@@ -17,9 +17,7 @@ export default function FilAriane({ className }: { className?: string }) {
   const { user } = useUser()
 
   // Handles fetching the organisation data if the user is an administrator
-  const { data: organisation } = useFetchOrganisation({
-    email: user?.organisation?.administratorEmail ?? '',
-  })
+  const { data: organisation } = useFetchOrganisation()
 
   const isAdmin = organisation?.slug === params.orgaSlug
 

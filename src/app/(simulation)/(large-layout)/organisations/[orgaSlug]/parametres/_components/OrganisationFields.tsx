@@ -5,40 +5,29 @@ import { ORGANISATION_TYPES } from '@/constants/organisations/organisationTypes'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import type { Organisation } from '@/types/organisations'
+import type { OrgaSettingsInputsType } from '@/types/organisations'
 import type { FieldErrors, UseFormRegister } from 'react-hook-form'
 
-type Values = {
-  name: string
-  administratorName: string
-  hasOptedInForCommunications: boolean
-  organisationType: string
-  email: string
-  position: string
-  numberOfCollaborators: number
-  administratorTelephone: string
-}
-
 type Props = {
-  organisation: Organisation | undefined
-  register: UseFormRegister<Values>
+  defaultValues?: OrgaSettingsInputsType
+  register: UseFormRegister<OrgaSettingsInputsType>
   errors: FieldErrors
 }
 
 export default function OrganisationFields({
-  organisation,
+  defaultValues,
   register,
   errors,
 }: Props) {
   const { t } = useClientTranslation()
 
-  if (!organisation) return null
+  if (!defaultValues) return null
 
   return (
     <div className="flex flex-col gap-4">
       <TextInputGroup
         label={<Trans>Votre organisation</Trans>}
-        value={organisation.name}
+        value={defaultValues.name}
         {...register('name')}
       />
       <Select
@@ -51,11 +40,12 @@ export default function OrganisationFields({
             </span>
           </p>
         }
-        value={organisation.organisationType}
+        value={defaultValues.organisationType}
         {...register('organisationType')}>
-        {ORGANISATION_TYPES.map((type) => (
-          <option className="cursor-pointer" key={type} value={type}>
-            {type}
+        <option className="cursor-pointer"></option>
+        {Object.entries(ORGANISATION_TYPES).map(([key, value]) => (
+          <option className="cursor-pointer" key={key} value={key}>
+            {value}
           </option>
         ))}
       </Select>
@@ -70,7 +60,7 @@ export default function OrganisationFields({
             </span>
           </p>
         }
-        value={organisation.numberOfCollaborators}
+        value={defaultValues.numberOfCollaborators}
         {...register('numberOfCollaborators', {
           min: {
             value: 0,
@@ -89,7 +79,7 @@ export default function OrganisationFields({
             </span>
           </p>
         }
-        value={organisation.administrators?.[0]?.position}
+        value={defaultValues.position}
         {...register('position')}
       />{' '}
     </div>

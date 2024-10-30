@@ -1,60 +1,84 @@
-import { SERVER_URL } from '@/constants/urls'
-import { useMutation } from '@tanstack/react-query'
+import type { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
+import { ORGANISATION_URL } from '@/constants/urls'
+import type {
+  OrgaSettingsInputsType,
+  Organisation,
+} from '@/types/organisations'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 
-type Props = {
+type OrganisationUpdateDto = {
   name?: string
-  position?: string
-  administratorName?: string
-  hasOptedInForCommunications?: boolean
-  defaultAdditionalQuestions?: string[]
-  administratorTelephone?: string
-  expectedNumberOfParticipants?: string
-  organisationType?: string
-  numberOfCollaborators?: number
-  sendCreationEmail?: true
+  type?: OrganisationTypeEnum | null
+  numberOfCollaborators?: number | null
+  administrators?: [
+    {
+      name?: string | null
+      telephone?: string | null
+      position?: string | null
+      email?: string
+      optedInForCommunications?: boolean
+    },
+  ]
 }
 
-export function useUpdateOrganisation({ email }: { email: string }) {
+export function useUpdateOrganisation() {
+  const queryClient = useQueryClient()
+
   return useMutation({
     mutationFn: ({
-      name,
-      position,
-      administratorName,
-      hasOptedInForCommunications,
-      defaultAdditionalQuestions,
-      administratorTelephone,
-      expectedNumberOfParticipants,
-      organisationType,
-      numberOfCollaborators,
-      sendCreationEmail,
-    }: Props) =>
-      axios
-        .post(
-          `${SERVER_URL}/organisations/update`,
+      organisationIdOrSlug,
+      formData,
+      code,
+    }: {
+      organisationIdOrSlug: string
+      formData: OrgaSettingsInputsType
+      email?: string
+      code?: string
+    }) => {
+      const dto: OrganisationUpdateDto = {
+        ...(formData.name ? { name: formData.name } : {}),
+        ...(formData.organisationType
+          ? { type: formData.organisationType }
+          : { type: null }),
+        ...(formData.numberOfCollaborators && +formData.numberOfCollaborators
+          ? { numberOfCollaborators: +formData.numberOfCollaborators }
+          : { numberOfCollaborators: null }),
+        administrators: [
           {
-            name,
-            administratorName,
-            hasOptedInForCommunications,
-            email,
-            defaultAdditionalQuestions,
-            position,
-            administratorTelephone,
-            expectedNumberOfParticipants,
-            organisationType,
-            numberOfCollaborators,
-            sendCreationEmail,
+            ...(formData.administratorName
+              ? { name: formData.administratorName }
+              : { name: null }),
+            ...(formData.administratorTelephone
+              ? { telephone: formData.administratorTelephone }
+              : { telephone: null }),
+            ...(formData.position
+              ? { position: formData.position }
+              : { position: null }),
+            ...(formData.hasOptedInForCommunications
+              ? {
+                  optedInForCommunications:
+                    formData.hasOptedInForCommunications,
+                }
+              : {}),
+            ...(formData.email ? { email: formData.email } : {}),
           },
-          {
-            withCredentials: true,
-          }
-        )
-        .then((response) => {
-          const organisation = response.data
-          if (!organisation.slug) {
-            throw new Error('Invalid response')
-          }
-          return organisation
-        }),
+        ],
+      }
+
+      return axios
+        .put<Organisation>(`${ORGANISATION_URL}/${organisationIdOrSlug}`, dto, {
+          withCredentials: true,
+          params: {
+            code,
+          },
+        })
+        .then((response) => response.data)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['organisations'],
+      })
+    },
   })
 }
