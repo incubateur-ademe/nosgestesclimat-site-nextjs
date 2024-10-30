@@ -86,9 +86,7 @@ export default async function WhatDoWeMeasureWaterFootprint() {
               <strong className="text-primary-600">
                 la rareté de la ressource
               </strong>{' '}
-              dans les territoires concernés. Ainsi, un litre d’eau utilisé en
-              France n’aura pas la même valeur qu’un litre d’eau utilisé au
-              Maroc.
+              dans les territoires concernés.
             </Trans>
           </p>
 

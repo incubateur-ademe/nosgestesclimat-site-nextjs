@@ -17,7 +17,7 @@ export default async function DailyGestureWaterFootprint() {
               <strong className="text-primary-600">au cœur de nos vies</strong>{' '}
               et de notre consommation quotidienne, bien{' '}
               <strong className="text-primary-600">
-                au-delà de ce que nous voyons à la maison
+                au-delà de ce que nous observons à la maison
               </strong>
               . Chaque jour, des milliers de litres d’eau sont utilisés pour
               produire les aliments que nous mangeons, les vêtements que nous
