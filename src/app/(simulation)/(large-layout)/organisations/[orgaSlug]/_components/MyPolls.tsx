@@ -10,7 +10,7 @@ import AddPollCard from './myPolls/AddPollCard'
 import PollCard from './myPolls/PollCard'
 
 type Props = {
-  polls: OrganisationPoll[]
+  polls?: OrganisationPoll[]
 }
 
 export default function MyPolls({ polls }: Props) {
@@ -19,7 +19,7 @@ export default function MyPolls({ polls }: Props) {
 
   const pollsSorted = useMemo(
     () =>
-      polls.sort((a, b) => {
+      (polls || []).sort((a, b) => {
         if (sort === 'date-new') {
           return (
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -44,6 +44,10 @@ export default function MyPolls({ polls }: Props) {
       }),
     [polls, sort]
   )
+
+  if (!polls) {
+    return null
+  }
 
   return (
     <section className="mb-12">
@@ -78,7 +82,7 @@ export default function MyPolls({ polls }: Props) {
       <ul className="mt-8 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
         {(isMinified ? pollsSorted.slice(0, 2) : pollsSorted).map(
           (poll, index) => (
-            <li key={poll._id} className="col-span-1">
+            <li key={poll.id} className="col-span-1">
               <PollCard poll={poll} index={index} />
             </li>
           )

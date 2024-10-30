@@ -44,7 +44,7 @@ export default function PollForm({ organisation }: Props) {
 
     try {
       const pollCreated = await createPoll({
-        organisationId: organisation?._id ?? '',
+        organisationId: organisation?.id ?? '',
         name,
         defaultAdditionalQuestions: pollInfo.defaultAdditionalQuestions,
         customAdditionalQuestions: pollInfo.customAdditionalQuestions,

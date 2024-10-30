@@ -1,3 +1,4 @@
+import type { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
 import type {
   ComputedResults,
   Simulation,
@@ -17,11 +18,11 @@ export type OrganisationSimulation = Simulation & {
 }
 
 export type OrganisationAdministrator = {
-  name?: string
+  name?: string | null
   email: string
-  position?: string
-  telephone?: string
-  hasOptedInForCommunications?: boolean
+  position?: string | null
+  telephone?: string | null
+  optedInForCommunications?: boolean | null
 }
 
 export type CustomAdditionalQuestions = {
@@ -31,7 +32,7 @@ export type CustomAdditionalQuestions = {
 }
 
 export type OrganisationPoll = {
-  _id: string
+  id: string
   simulations: [Simulation]
   startDate: Date
   endDate: Date
@@ -44,18 +45,13 @@ export type OrganisationPoll = {
 }
 
 export type Organisation = {
-  _id?: string
-  administrators: OrganisationAdministrator[]
+  id: string
+  administrators: [OrganisationAdministrator]
   polls: OrganisationPoll[]
   name: string
   slug: string
-  lastModifiedDate: Date
-  verificationCode: {
-    code: string
-    expirationDate: Date
-  }
-  organisationType?: string
-  numberOfCollaborators?: number
+  type?: OrganisationTypeEnum | null
+  numberOfCollaborators?: number | null
 }
 
 export type SimulationRecap = {
@@ -106,11 +102,11 @@ export type UpdatePollProps = {
 
 export type OrgaSettingsInputsType = {
   name: string
+  email: string
+  position?: string
   administratorName?: string
+  numberOfCollaborators?: number
   administratorTelephone?: string
   hasOptedInForCommunications?: boolean
-  email: string
-  organisationType?: string
-  position?: string
-  numberOfCollaborators?: number
+  organisationType?: OrganisationTypeEnum
 }

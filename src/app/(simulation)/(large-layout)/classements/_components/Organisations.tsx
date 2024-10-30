@@ -2,21 +2,18 @@
 
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
-import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
+import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
 import Image from 'next/image'
 import CreateOrganisation from './Organisations/CreateOrganisation'
 import PollsList from './Organisations/PollsList'
 
 export default function Organisations() {
-  const { user } = useUser()
-
   const { t } = useClientTranslation()
 
-  const { data: organisation } = useFetchOrganisation({
-    email: user?.organisation?.administratorEmail ?? '',
-  })
+  const {
+    data: organisations,
+  } = useFetchOrganisations()
 
   return (
     <>
@@ -27,9 +24,9 @@ export default function Organisations() {
       />
       <div className="flex flex-wrap justify-center gap-16 md:flex-nowrap">
         <div className="flex-1">
-          <PollsList organisation={organisation} />
+          <PollsList organisations={organisations} />
 
-          <CreateOrganisation organisation={organisation} />
+          <CreateOrganisation organisations={organisations} />
         </div>
         <Image
           className="-mt-12 mb-12 w-60 self-start md:w-80"

@@ -4,23 +4,14 @@ import OrganisationFetchError from '@/components/organisations/OrganisationFetch
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
-import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import PollForm from './_components/PollForm'
 
 export default function CreerCampagnePage() {
-  const { user } = useUser()
-
   const router = useRouter()
 
-  const {
-    data: organisation,
-    isError,
-    isLoading,
-  } = useFetchOrganisation({
-    email: user?.organisation?.administratorEmail ?? '',
-  })
+  const { data: organisation, isError, isLoading } = useFetchOrganisation()
 
   useEffect(() => {
     if (organisation && !organisation.slug) {

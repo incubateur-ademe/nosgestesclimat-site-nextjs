@@ -1,14 +1,17 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { ORGANISATION_TYPES } from '@/constants/organisations/organisationTypes'
+import {
+  ORGANISATION_TYPES,
+  OrganisationTypeEnum,
+} from '@/constants/organisations/organisationTypes'
 import Button from '@/design-system/inputs/Button'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
-import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
+import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/react'
@@ -18,7 +21,7 @@ import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
   name: string
-  organisationType: string
+  organisationType?: OrganisationTypeEnum
   administratorName: string
   hasOptedInForCommunications: boolean
   shouldNavigateToPollForm?: boolean
@@ -37,16 +40,12 @@ export default function CreationForm() {
 
   const { register, handleSubmit, formState, watch } = useReactHookForm<Inputs>(
     {
-      defaultValues: {
-        organisationType: '',
-      },
+      defaultValues: {},
     }
   )
 
-  const { mutateAsync: updateOrganisation, isError: isErrorUpdateOrga } =
-    useUpdateOrganisation({
-      email: user?.organisation?.administratorEmail ?? '',
-    })
+  const { mutateAsync: createOrganisation, isError: isErrorUpdateOrga } =
+    useCreateOrganisation()
 
   async function onSubmit({
     shouldNavigateToPollForm = true,
@@ -56,12 +55,15 @@ export default function CreationForm() {
     hasOptedInForCommunications,
   }: Inputs) {
     try {
-      const organisationUpdated = await updateOrganisation({
+      const organisationUpdated = await createOrganisation({
         name,
-        administratorName,
-        hasOptedInForCommunications,
-        organisationType,
-        sendCreationEmail: true,
+        type: organisationType || null,
+        administrators: [
+          {
+            name: administratorName,
+            optedInForCommunications: hasOptedInForCommunications,
+          },
+        ],
       })
 
       handleUpdateShouldPreventNavigation(false)
@@ -129,14 +131,16 @@ export default function CreationForm() {
               </p>
             }
             {...register('organisationType')}>
-            {ORGANISATION_TYPES.map((type) => (
-              <option className="cursor-pointer" key={type} value={type}>
-                {type}
+            <option className="cursor-pointer"></option>
+            {Object.entries(ORGANISATION_TYPES).map(([key, value]) => (
+              <option className="cursor-pointer" key={key} value={key}>
+                {value}
               </option>
             ))}
           </Select>
 
-          {watch('organisationType') === ORGANISATION_TYPES[5] && (
+          {watch('organisationType') ===
+            OrganisationTypeEnum.groupOfFriends && (
             <div className="mt-4 rounded-xl bg-gray-100 p-4 text-sm">
               <p className="mb-2">
                 <Trans>
