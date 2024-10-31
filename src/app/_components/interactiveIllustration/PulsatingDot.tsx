@@ -61,6 +61,7 @@ export default function PulsatingDot({
           waterScore={waterScore}
           orientation={floatingInfoOrientation}
           className="left-0 top-0"
+          key={`${itemKey}-floating-info`}
         />
       )}
 

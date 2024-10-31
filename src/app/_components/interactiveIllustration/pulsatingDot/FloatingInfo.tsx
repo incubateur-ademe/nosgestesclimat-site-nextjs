@@ -39,7 +39,7 @@ export default function FloatingInfo({
                 key={index}
                 className={twMerge(
                   'h-4 w-4',
-                  index > (waterScore ?? 0) ? 'fill-gray-300' : ''
+                  index + 1 > (waterScore ?? 0) ? 'fill-gray-300' : ''
                 )}
               />
             ))}
@@ -58,7 +58,7 @@ export default function FloatingInfo({
                 key={index}
                 className={twMerge(
                   'h-4 w-4',
-                  index > (carbonScore ?? 0) ? 'fill-gray-300' : ''
+                  index + 1 > (carbonScore ?? 0) ? 'fill-gray-300' : ''
                 )}
               />
             ))}
