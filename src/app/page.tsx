@@ -4,11 +4,10 @@ import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
-import Actions from './_components/Actions'
-import Amis from './_components/Amis'
 import Contributions from './_components/Contributions'
 import Explanations from './_components/Explanations'
 import Organisations from './_components/Organisations'
+import TwoFootprints from './_components/TwoFootprints'
 import Partners from './_components/heading/Partners'
 
 export async function generateMetadata() {
@@ -77,10 +76,7 @@ export default async function Homepage() {
         </div>
       }
       heroPartners={<Partners />}>
-      <div className="mx-auto mb-12 flex w-full max-w-5xl flex-col flex-wrap items-center gap-12 px-4 md:mb-20 md:flex-row md:items-start md:px-8 lg:gap-28">
-        <Amis />
-        <Actions />
-      </div>
+      <TwoFootprints />
       <Organisations />
       <Explanations />
       <Contributions />
