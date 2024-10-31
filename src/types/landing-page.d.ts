@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 export type WhatDoWeMeasureListItem = {
   icon: ReactNode
@@ -13,8 +13,8 @@ export type GesturesType = {
 }
 
 export type LandingPagePostType = {
-  category: string
-  title: string
+  category: ReactNode
+  title: ReactNode
   imageSrc: string
   href: string
 }

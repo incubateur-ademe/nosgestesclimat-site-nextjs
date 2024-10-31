@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import type { LandingPagePostType } from '@/types/landing-page'
 import Image from 'next/image'
 import Badge from '../layout/Badge'
 
@@ -7,12 +8,7 @@ export default function PostThumbnail({
   category,
   imageSrc,
   href,
-}: {
-  title: string
-  category: string
-  imageSrc: string
-  href: string
-}) {
+}: LandingPagePostType) {
   return (
     <a
       href={href}
