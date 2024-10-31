@@ -7,8 +7,9 @@ import Image from 'next/image'
 import Contributions from './_components/Contributions'
 import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
 import Explanations from './_components/Explanations'
+import Mobilise from './_components/Mobilise'
+import Partners from './_components/Partners'
 import TwoFootprints from './_components/TwoFootprints'
-import Partners from './_components/heading/Partners'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -79,6 +80,8 @@ export default async function Homepage() {
       <TwoFootprints />
 
       <DidYouKnowMainLanding />
+
+      <Mobilise />
 
       <Explanations />
       <Contributions />

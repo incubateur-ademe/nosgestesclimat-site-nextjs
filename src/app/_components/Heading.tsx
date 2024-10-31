@@ -1,8 +1,8 @@
 import Trans from '@/components/translation/Trans'
 import Badge from '@/design-system/layout/Badge'
+import Partners from './Partners'
 import Buttons from './heading/Buttons'
 import Icons from './heading/Icons'
-import Partners from './heading/Partners'
 
 export default async function Heading() {
   return (
