@@ -5,8 +5,8 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 import Contributions from './_components/Contributions'
+import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
 import Explanations from './_components/Explanations'
-import Organisations from './_components/Organisations'
 import TwoFootprints from './_components/TwoFootprints'
 import Partners from './_components/heading/Partners'
 
@@ -77,7 +77,9 @@ export default async function Homepage() {
       }
       heroPartners={<Partners />}>
       <TwoFootprints />
-      <Organisations />
+
+      <DidYouKnowMainLanding />
+
       <Explanations />
       <Contributions />
     </LandingPage>
