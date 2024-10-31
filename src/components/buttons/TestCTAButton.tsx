@@ -6,14 +6,19 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 
 export default function TestCTAButton({
   size = 'xl',
+  className,
 }: {
   size?: 'sm' | 'lg' | 'xl'
+  className?: string
 }) {
   const { getLinkToSimulateurPage, linkToSimulateurPageLabel } =
     useSimulateurPage()
 
   return (
-    <ButtonLink size={size} href={getLinkToSimulateurPage()}>
+    <ButtonLink
+      size={size}
+      href={getLinkToSimulateurPage()}
+      className={className}>
       <Trans>{linkToSimulateurPageLabel}</Trans>
     </ButtonLink>
   )

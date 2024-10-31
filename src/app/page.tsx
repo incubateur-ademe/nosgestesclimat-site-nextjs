@@ -30,17 +30,28 @@ export default async function Homepage() {
   return (
     <LandingPage
       heroIllustration={
-        <Image
-          src="/images/illustrations/girl-typing.svg"
-          alt=""
-          width={580}
-          height={580}
-        />
+        <div className="flex flex-col gap-10">
+          <p className="text-center text-sm md:hidden">
+            <Trans>
+              <strong className="text-primary-700">
+                2 millions de personnes
+              </strong>{' '}
+              ont déjà passé calculé leur empreinte !
+            </Trans>
+          </p>
+
+          <Image
+            src="/images/illustrations/girl-typing.svg"
+            alt=""
+            width={580}
+            height={580}
+          />
+        </div>
       }
       heroTitle={<Trans>Connaissez-vous votre empreinte écologique ?</Trans>}
       heroDescription={
-        <div className="flex flex-col items-start gap-10">
-          <p className="mb-0">
+        <div className="flex flex-col items-center gap-10 md:items-start">
+          <p className="mb-0 text-lg md:text-2xl">
             <Trans>
               Calculez votre <strong>empreinte carbone</strong> et votre{' '}
               <strong>empreinte eau</strong> en{' '}
@@ -51,15 +62,15 @@ export default async function Homepage() {
             </Trans>
           </p>
 
-          <div className="flex flex-col items-start gap-6">
-            <TestCTAButton />
+          <div className="flex flex-col items-center gap-6 md:max-w-[300px] md:items-start">
+            <TestCTAButton className="md:w-full" />
 
-            <p>
+            <p className="hidden md:block ">
               <Trans>
                 <strong className="text-primary-700">
                   2 millions de personnes
                 </strong>{' '}
-                ont déjà passé calculé leur empreinte !
+                ont déjà calculé leur empreinte !
               </Trans>
             </p>
           </div>
