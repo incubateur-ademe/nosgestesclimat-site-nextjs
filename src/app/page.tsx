@@ -4,6 +4,7 @@ import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
+import CollectivelyCommit from './_components/CollectivelyCommit'
 import DecryptChallenges from './_components/DecryptChallenges'
 import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
 import Mobilise from './_components/Mobilise'
@@ -83,6 +84,8 @@ export default async function Homepage() {
       <Mobilise />
 
       <DecryptChallenges />
+
+      <CollectivelyCommit />
     </LandingPage>
   )
 }
