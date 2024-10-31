@@ -8,6 +8,7 @@ import CollectivelyCommit from './_components/CollectivelyCommit'
 import DecryptChallenges from './_components/DecryptChallenges'
 import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
 import Mobilise from './_components/Mobilise'
+import ModelInfo from './_components/ModelInfo'
 import Partners from './_components/Partners'
 import TwoFootprints from './_components/TwoFootprints'
 
@@ -86,6 +87,8 @@ export default async function Homepage() {
       <DecryptChallenges />
 
       <CollectivelyCommit />
+
+      <ModelInfo />
     </LandingPage>
   )
 }

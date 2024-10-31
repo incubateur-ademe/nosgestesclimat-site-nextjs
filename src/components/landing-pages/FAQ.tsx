@@ -1,7 +1,7 @@
-import Background from '@/app/_components/organisations/Background'
 import Separator from '@/design-system/layout/Separator'
 import type { ReactNode } from 'react'
 import PlusIcon from '../icons/PlusIcon'
+import Background from './Background'
 
 export default function FAQ({
   subTitle,
