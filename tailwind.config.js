@@ -206,6 +206,29 @@ module.exports = {
             transform: 'translateX(-10vw)',
           },
         },
+        'pulse-bg': {
+          '0%': {
+            backgroundColor: '#fff',
+            transform: 'scale(1)',
+          },
+          '80%': {
+            backgroundColor: '#fff',
+            transform: 'scale(1)',
+          },
+          '90%': {
+            backgroundColor: '#fde6f7',
+            transform: 'scale(1.1)',
+          },
+          '100%': {
+            backgroundColor: '#fff',
+            transform: 'scale(1)',
+          },
+        },
+        levitate: {
+          '0%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-5px)' },
+          '100%': { transform: 'translateY(0px)' },
+        },
       },
       animation: {
         valuechange: 'valuechange 0.5s ease-out forwards',
@@ -221,6 +244,7 @@ module.exports = {
         'swim-backwards': 'swimBackwards 10s linear infinite',
         'swim-backwards-fast': 'swimBackwards 5s linear infinite',
         'swim-backwards-slow': 'swimBackwards 15s linear infinite',
+        'pulse-bg': 'pulse-bg 4000ms ease-in-out infinite',
       },
       backgroundImage: {
         'icons-mobile': "url('/images/misc/mobileIcons.svg')",
