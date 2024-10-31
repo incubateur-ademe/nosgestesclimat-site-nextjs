@@ -27,7 +27,7 @@ export default function InteractiveIllustration() {
 
         {/* Shirt */}
         <PulsatingDot
-          className="right-[30%] top-[40%]"
+          className="right-[35%] top-[40%]"
           itemTitle={<Trans>Chemisier</Trans>}
           itemKey="shirt"
           carbonScore={3}
@@ -37,7 +37,7 @@ export default function InteractiveIllustration() {
 
         {/* Coffee */}
         <PulsatingDot
-          className="bottom-[35%] left-[12%]"
+          className="bottom-[41%] left-[12%]"
           itemTitle={<Trans>Café</Trans>}
           itemKey="coffee"
           carbonScore={4}
@@ -46,7 +46,7 @@ export default function InteractiveIllustration() {
 
         {/* Car */}
         <PulsatingDot
-          className="bottom-[10%] left-[10%]"
+          className="bottom-[15%] left-[10%]"
           itemTitle={<Trans>Voiture</Trans>}
           carbonScore={5}
           itemKey="car"

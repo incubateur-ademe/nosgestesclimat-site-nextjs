@@ -1,5 +1,4 @@
 'use client'
-import isMobile from 'is-mobile'
 import type { ReactNode } from 'react'
 import { useContext, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -31,7 +30,7 @@ export default function PulsatingDot({
 
   // Default open the floating info if the user is on mobile and the shouldDefaultDisplayFloatingInfo is true
   useEffect(() => {
-    if (isMobile() && shouldDefaultDisplayFloatingInfo) {
+    if (/* isMobile() && */ shouldDefaultDisplayFloatingInfo) {
       setFloatingElementDisplayed(itemKey)
       setIsHovered(true)
     }
@@ -87,7 +86,12 @@ export default function PulsatingDot({
         // Handle touch events
         onTouchStart={handleEnter}
         aria-label="Toggle information">
-        <div className="absolute inset-0 scale-[0.15] rounded-full bg-secondary-600 transition-all duration-300 group-hover:scale-[0.7]" />
+        <div
+          className={twMerge(
+            'absolute inset-0 scale-[0.15] rounded-full bg-secondary-600 transition-all duration-300 group-hover:scale-[0.7]',
+            isHovered ? 'scale-[0.7]' : ''
+          )}
+        />
       </div>
     </div>
   )

@@ -13,7 +13,7 @@ export default async function Hero({
 }) {
   return (
     <>
-      <div className="bg-heroLightBackground flex min-h-[588px] items-center px-4 py-20 md:min-h-full">
+      <div className="flex min-h-[588px] items-center bg-heroLightBackground px-4 py-10 md:min-h-full md:py-20">
         <div className="relative mx-auto flex max-w-5xl flex-row items-center justify-between gap-8 md:px-0">
           <div className="flex flex-col gap-10">
             <div className="max-w-[600px] text-center md:text-left">
