@@ -31,11 +31,7 @@ export async function generateMetadata() {
 export default async function WaterFootprintLandingPage() {
   return (
     <LandingPage
-      heroTitle={
-        <h1 className="mb-0 text-2xl leading-8 md:text-5xl md:leading-[3rem]">
-          <Trans>L’empreinte eau, ces litres qu’on ne voit pas !</Trans>
-        </h1>
-      }
+      heroTitle={<Trans>L’empreinte eau, ces litres qu’on ne voit pas !</Trans>}
       heroDescription={
         <div className="flex flex-col items-start gap-6">
           <p className="mb-0">
