@@ -3,7 +3,7 @@ import Trans from '@/components/translation/Trans'
 
 export default function ModelInfo() {
   return (
-    <div className="bg-heroLightBackground px-4 py-20">
+    <div className="bg-heroLightBackground px-4 py-12 md:py-20">
       <div className="flex flex-col items-center gap-10  md:mx-auto md:max-w-5xl">
         <h2 className="text-center text-lg md:text-3xl">
           <Trans>Un modèle de calcul fiable</Trans>

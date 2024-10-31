@@ -10,6 +10,7 @@ import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
 import Mobilise from './_components/Mobilise'
 import ModelInfo from './_components/ModelInfo'
 import Partners from './_components/Partners'
+import TheySpeakAboutUs from './_components/TheySpeakAboutUs'
 import TwoFootprints from './_components/TwoFootprints'
 
 export async function generateMetadata() {
@@ -89,6 +90,8 @@ export default async function Homepage() {
       <CollectivelyCommit />
 
       <ModelInfo />
+
+      <TheySpeakAboutUs />
     </LandingPage>
   )
 }
