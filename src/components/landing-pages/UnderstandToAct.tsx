@@ -10,7 +10,7 @@ export default function UnderstandToAct({
   description,
   posts,
 }: {
-  title: ReactNode
+  title?: ReactNode
   description?: ReactNode
   posts: LandingPagePostType[]
 }) {
