@@ -5,7 +5,7 @@ import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/Trans'
 
-export default function UnderstandToAct({
+export default async function UnderstandToAct({
   title,
   description,
   posts,
@@ -15,7 +15,7 @@ export default function UnderstandToAct({
   posts: LandingPagePostType[]
 }) {
   return (
-    <div className="relative w-full bg-heroLightBackground py-20">
+    <div className="bg-heroLightBackground relative w-full py-20">
       <div className="mx-auto flex max-w-full flex-col gap-6 px-4 md:max-w-5xl md:px-0">
         <h2
           className={twMerge(

@@ -1,7 +1,11 @@
 import DailyGestures from '@/components/landing-pages/DailyGestures'
 import Trans from '@/components/translation/Trans'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function DailyGestureWaterFootprint() {
+  const { t } = await getServerTranslation()
+  const gesturesKeysForTranslation = [t('Alimentation'), t('Vêtements')]
+
   return (
     <DailyGestures
       title={
@@ -34,29 +38,22 @@ export default async function DailyGestureWaterFootprint() {
         </>
       }
       gestures={{
-        Alimentation: {
+        [gesturesKeysForTranslation[0]]: {
           imageSrc: '/images/illustrations/girl-cooking.png',
           gestureList: [
-            <Trans key="cuisiner">
-              Cuisiner avec des produits locaux et de saison
-            </Trans>,
-            <Trans key="viande">Réduire la consommation de viande</Trans>,
-            <Trans key="eau-du-robinet">Préférer l'eau du robinet</Trans>,
+            t('Cuisiner avec des produits locaux et de saison'),
+            t('Réduire la consommation de viande'),
+            t("Préférer l'eau du robinet"),
           ],
         },
-        Vêtements: {
+        [gesturesKeysForTranslation[1]]: {
           imageSrc: '/images/illustrations/people-raising-arm.png',
           gestureList: [
-            <Trans key="textile-durables">
-              Opter pour des vêtements durables
-            </Trans>,
-            <Trans key="fabric">
-              Privilégier les matériaux durables (lin, chanvre, laine, et si
-              coton : recyclé)
-            </Trans>,
-            <Trans key="second-hand">
-              Privilégier les produits d'occasion
-            </Trans>,
+            t('Opter pour des vêtements durables'),
+            t(
+              'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé'
+            ),
+            t("Privilégier les produits d'occasion"),
           ],
         },
       }}

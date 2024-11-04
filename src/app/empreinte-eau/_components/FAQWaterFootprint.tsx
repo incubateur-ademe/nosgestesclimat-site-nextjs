@@ -100,7 +100,7 @@ export default async function FAQWaterFootprint() {
                   <a
                     href="/blog/lexique-eau-tout-comprendre"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener"
                     aria-label={t(
                       "Lire l'article sur le lexique pour tout comprendre à l'empreinte eau, nouvelle page"
                     )}>
@@ -164,7 +164,7 @@ export default async function FAQWaterFootprint() {
                   <a
                     href="/blog/lexique-eau-tout-comprendre"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener"
                     aria-label={t(
                       "Lire l'article sur le lexique pour tout comprendre à l'empreinte eau, nouvelle page"
                     )}>
