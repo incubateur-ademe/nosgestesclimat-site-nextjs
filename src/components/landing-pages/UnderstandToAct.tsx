@@ -4,7 +4,7 @@ import type { LandingPagePostType } from '@/types/landing-page'
 import type { ReactNode } from 'react'
 import Trans from '../translation/Trans'
 
-export default function UnderstandToAct({
+export default async function UnderstandToAct({
   description,
   posts,
 }: {

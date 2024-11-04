@@ -1,9 +1,8 @@
+import DynamicCTAButton from '@/components/cta/DynamicCTAButton'
 import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import Image from 'next/image'
 import DailyGestureWaterFootprint from './_components/DailyGestureWaterFootprint'
 import DidYouKnowWaterFootprint from './_components/DidYouKnowWaterFootprint'
@@ -50,9 +49,7 @@ export default async function WaterFootprintLandingPage() {
             </Trans>
           </p>
           <div className="flex w-full justify-center md:justify-start">
-            <ButtonLink size="lg" href={getLinkToSimulateur()}>
-              <Trans>Passer le test</Trans>
-            </ButtonLink>
+            <DynamicCTAButton />
           </div>
         </div>
       }

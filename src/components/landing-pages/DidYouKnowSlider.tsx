@@ -1,14 +1,12 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
-import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import Image from 'next/image'
 import type { ReactNode } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
+import DynamicCTAButton from '../cta/DynamicCTAButton'
 
 export default function DidYouKnowSlider({
   slides,
@@ -19,9 +17,6 @@ export default function DidYouKnowSlider({
     highlight: ReactNode
   }[]
 }) {
-  const { getLinkToSimulateurPage, linkToSimulateurPageLabel } =
-    useSimulateurPage()
-
   return (
     <div className="relative bg-heroLightBackground py-20">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 md:flex-row md:gap-0">
@@ -67,9 +62,7 @@ export default function DidYouKnowSlider({
           ))}
         </Slider>
         <div>
-          <ButtonLink size="xl" href={getLinkToSimulateurPage()}>
-            <Trans>{linkToSimulateurPageLabel}</Trans>
-          </ButtonLink>
+          <DynamicCTAButton />
         </div>
       </div>
 

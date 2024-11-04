@@ -3,7 +3,7 @@ import Separator from '@/design-system/layout/Separator'
 import type { ReactNode } from 'react'
 import PlusIcon from '../icons/PlusIcon'
 
-export default function FAQ({
+export default async function FAQ({
   subTitle,
   questions,
 }: {

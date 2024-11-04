@@ -26,13 +26,13 @@ export default async function UnderstandToActWaterFootprint() {
       }
       posts={[
         {
-          category: 'Empreinte eau',
+          category: t('Empreinte eau'),
           title: t("Le lexique pour tout comprendre à l'empreinte eau"),
           href: '/blog/lexique-eau-tout-comprendre',
           imageSrc: '/images/blog/philip-junior-mail-arroser-champ.jpg',
         },
         {
-          category: 'Empreinte eau',
+          category: t('Empreinte eau'),
           title: t(
             'Les 3 réflexes à adopter pour une garde-robe économe en eau'
           ),
@@ -40,7 +40,7 @@ export default async function UnderstandToActWaterFootprint() {
           imageSrc: '/images/blog/priscilla-du-preez-garde-robe.jpg',
         },
         {
-          category: 'Empreinte eau',
+          category: t('Empreinte eau'),
           title: t(
             "L'empreinte eau : pourquoi et comment avons-nous travaillé"
           ),
