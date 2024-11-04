@@ -58,7 +58,7 @@ export default async function Releases() {
 
         <Image
           className="ml-auto w-32 md:-mt-4 md:w-48"
-          src="/images/illustrations/girl-cooking.svg"
+          src="/images/illustrations/girl-cooking.png"
           width="200"
           height="400"
           alt={t('Une femme préparant un bon petit plat.')}

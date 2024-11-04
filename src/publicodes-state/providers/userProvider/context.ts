@@ -15,6 +15,7 @@ type UserContextType = {
   currentSimulationId: string
   setCurrentSimulationId: Dispatch<SetStateAction<string>>
   migrationInstructions: Migration
+  isInitialized: boolean
 }
 
 export default createContext<UserContextType>({
@@ -43,4 +44,5 @@ export default createContext<UserContextType>({
     keysToMigrate: {},
     valuesToMigrate: {},
   },
+  isInitialized: false,
 })

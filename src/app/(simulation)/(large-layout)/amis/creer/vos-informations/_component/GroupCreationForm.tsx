@@ -41,7 +41,9 @@ export default function GroupCreationForm() {
   function onSubmit({ administratorName, administratorEmail }: Inputs) {
     trackEvent(amisCreationEtapeVotreGroupeSuivant)
 
-    const formattedAdministratorEmail = formatEmail(administratorEmail)
+    const formattedAdministratorEmail = formatEmail(
+      encodeURIComponent(administratorEmail)
+    )
 
     // Update user info
     updateName(administratorName ?? '')

@@ -10,11 +10,12 @@ export default async function Amis() {
   return (
     <div className="flex-1">
       <Image
-        src="/images/illustrations/people-playing.svg"
+        src="/images/illustrations/people-playing.png"
         alt={t('Des amis jouant à un jeu de société')}
         width="444"
         height="275"
-        className="mb-6 block h-auto max-w-full "
+        className="mb-6 block h-auto max-w-full"
+        loading="lazy"
       />
       <Kicker>
         <Trans>Entre amis</Trans>
@@ -25,7 +26,6 @@ export default async function Amis() {
       <p className="max-w-sm md:mb-8 md:text-lg">
         <Trans>Faites le test en</Trans>{' '}
         <strong className="text-primary-700">
-          {' '}
           <Trans>famille</Trans>
         </strong>
         , <Trans>entre</Trans>{' '}

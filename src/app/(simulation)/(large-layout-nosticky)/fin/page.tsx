@@ -7,7 +7,7 @@ import Trans from '@/components/translation/Trans'
 import { carboneMetric, eauMetric } from '@/constants/metric'
 import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
-import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
+import { useSimulationIdInQueryParams } from '@/hooks/simulation/useSimulationIdInQueryParams'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { Metric } from '@/publicodes-state/types'
 import { ReactElement } from 'react'
@@ -31,12 +31,12 @@ export default function FinPage() {
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useEndGuard()
 
-  // Set the current simulation from the URL params (if applicable)
-  const { isCorrectSimulationSet } = useSetCurrentSimulationFromParams()
+  const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
 
   const { currentMetric } = useCurrentMetric()
 
-  if (!isGuardInit || isGuardRedirecting || !isCorrectSimulationSet)
+  // If the simulationIdInQueryParams is set, it means that the simulation is not loaded yet
+  if (!isGuardInit || isGuardRedirecting || !!simulationIdInQueryParams)
     return <FinPageSkeleton />
 
   return (

@@ -7,20 +7,21 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 import { useLocale } from './useLocale'
-import { usePRNumber } from './usePRNumber'
 
 type Props = {
   isOptim?: boolean
   region?: string
+  PRNumber?: string
 }
 
 export function useRules(
-  { isOptim = true, region = 'FR' }: Props = { isOptim: true, region: 'FR' }
+  { isOptim = true, region = 'FR', PRNumber }: Props = {
+    isOptim: true,
+    region: 'FR',
+  }
 ): UseQueryResult<NGCRules, Error> {
   const locale = useLocale()
   const { user } = useUser()
-
-  const { PRNumber } = usePRNumber()
 
   const regionCode =
     user?.region?.code != undefined && user?.region?.code !== ''

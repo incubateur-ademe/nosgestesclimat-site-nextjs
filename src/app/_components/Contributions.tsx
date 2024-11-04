@@ -12,14 +12,11 @@ import {
 } from '@/constants/tracking/pages/home'
 import Card from '@/design-system/layout/Card'
 import Kicker from '@/design-system/layout/Kicker'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
 import Background from './organisations/Background'
 
 export default function Contributions() {
-  const { t } = useClientTranslation()
-
   const [isHover, setIsHover] = useState(false)
   return (
     <div className="relative mb-16 py-12 md:py-24">
@@ -99,9 +96,9 @@ export default function Contributions() {
             </div>
 
             <p className="mb-0 text-center">
-              {t('Une idée\u202f? Une correction\u202f? Une remarque\u202f?')}{' '}
+              <Trans>Une idée ? Une correction ? Une remarque ?</Trans>{' '}
               <span className="text-logement-800 underline">
-                {t('Toute contribution est la bienvenue\u202f!')}
+                <Trans>Toute contribution est la bienvenue !</Trans>
               </span>
             </p>
           </Card>

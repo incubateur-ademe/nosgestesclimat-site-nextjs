@@ -192,6 +192,7 @@ export default function GetResultsByEmail({
               })}
               aria-label="Entrez votre adresse email"
               error={errors.email?.message}
+              data-cypress-id="fin-email-input"
               className="mb-2"
             />
 
@@ -252,7 +253,8 @@ export default function GetResultsByEmail({
           <Button
             type="submit"
             disabled={isPending}
-            className="mt-auto items-start">
+            className="mt-auto items-start"
+            data-cypress-id="fin-email-submit-button">
             <Trans>Envoyer</Trans>
           </Button>
 

@@ -47,7 +47,7 @@ export default function HeroSection() {
       <div>
         <Image
           className="self-start"
-          src="/images/illustrations/people-with-paperboard.svg"
+          src="/images/illustrations/people-with-paperboard.png"
           width="400"
           height="400"
           alt={t('Groupe de personnes devant un paperboard')}

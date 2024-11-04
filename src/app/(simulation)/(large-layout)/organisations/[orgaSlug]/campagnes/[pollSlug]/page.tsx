@@ -8,6 +8,7 @@ import { filterExtremes } from '@/helpers/organisations/filterExtremes'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
+import { SimulationRecap } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useParams, useSearchParams } from 'next/navigation'
 import { useContext, useMemo } from 'react'
@@ -47,7 +48,7 @@ export default function CampagnePage() {
   const filteredSimulationRecaps =
     pollData &&
     filterSimulationRecaps({
-      simulationRecaps: simulationRecapsWithoutExtremes,
+      simulationRecaps: simulationRecapsWithoutExtremes as SimulationRecap[],
       ageFilters,
       postalCodeFilters,
     })
@@ -103,13 +104,17 @@ export default function CampagnePage() {
 
         <PollStatistics
           simulationRecaps={pollData?.simulationRecaps ?? []}
-          simulationRecapsWithoutExtremes={simulationRecapsWithoutExtremes}
+          simulationRecapsWithoutExtremes={
+            simulationRecapsWithoutExtremes as SimulationRecap[]
+          }
           funFacts={pollData?.funFacts}
           title={<Trans>Résultats de campagne</Trans>}
         />
 
         <PollStatisticsFilters
-          simulationRecaps={simulationRecapsWithoutExtremes ?? []}
+          simulationRecaps={
+            simulationRecapsWithoutExtremes as SimulationRecap[]
+          }
           filteredSimulationRecaps={filteredSimulationRecaps ?? []}
           defaultAdditionalQuestions={
             pollData?.defaultAdditionalQuestions ?? []
