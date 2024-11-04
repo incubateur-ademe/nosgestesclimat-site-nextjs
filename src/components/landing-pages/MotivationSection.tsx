@@ -1,7 +1,7 @@
 import Separator from '@/design-system/layout/Separator'
 import type { ReactNode } from 'react'
 
-export default async function MotivationSection({
+export default function MotivationSection({
   title,
   description,
   motivationItems,

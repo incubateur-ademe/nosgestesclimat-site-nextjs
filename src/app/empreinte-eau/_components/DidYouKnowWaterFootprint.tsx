@@ -1,7 +1,7 @@
 import DidYouKnowSlider from '@/components/landing-pages/DidYouKnowSlider'
 import Trans from '@/components/translation/Trans'
 
-export default async function DidYouKnowWaterFootprint() {
+export default function DidYouKnowWaterFootprint() {
   return (
     <DidYouKnowSlider
       slides={[

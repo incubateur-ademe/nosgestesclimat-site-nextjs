@@ -4,7 +4,11 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function DailyGestureWaterFootprint() {
   const { t } = await getServerTranslation()
-  const gesturesKeysForTranslation = [t('Alimentation'), t('Vêtements')]
+
+  const gesturesKeysForTranslation = {
+    alimentation: t('Alimentation'),
+    clothing: t('Vêtements'),
+  }
 
   return (
     <DailyGestures
@@ -38,7 +42,7 @@ export default async function DailyGestureWaterFootprint() {
         </>
       }
       gestures={{
-        [gesturesKeysForTranslation[0]]: {
+        [gesturesKeysForTranslation.alimentation]: {
           imageSrc: '/images/illustrations/girl-cooking.png',
           gestureList: [
             t('Cuisiner avec des produits locaux et de saison'),
@@ -46,7 +50,7 @@ export default async function DailyGestureWaterFootprint() {
             t("Préférer l'eau du robinet"),
           ],
         },
-        [gesturesKeysForTranslation[1]]: {
+        [gesturesKeysForTranslation.clothing]: {
           imageSrc: '/images/illustrations/people-raising-arm.png',
           gestureList: [
             t('Opter pour des vêtements durables'),

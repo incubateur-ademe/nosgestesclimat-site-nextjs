@@ -2,7 +2,7 @@ import WhatDoWeMeasure from '@/components/landing-pages/WhatDoWeMeasure'
 import Trans from '@/components/translation/Trans'
 import Image from 'next/image'
 
-export default async function WhatDoWeMeasureWaterFootprint() {
+export default function WhatDoWeMeasureWaterFootprint() {
   return (
     <WhatDoWeMeasure
       title={<Trans>Que calcule-t-on dans l’empreinte eau ?</Trans>}
