@@ -67,6 +67,16 @@ export default async function DailyGestureCarbonFootprint() {
             t("Privilégier les produits d'occasion"),
           ],
         },
+        [gesturesKeysForTranslation[3]]: {
+          imageSrc: '/images/illustrations/girl-reading-newspaper.svg',
+          gestureList: [
+            t('Opter pour des vêtements durables'),
+            t(
+              'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé'
+            ),
+            t("Privilégier les produits d'occasion"),
+          ],
+        },
       }}
     />
   )
