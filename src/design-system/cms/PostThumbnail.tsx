@@ -14,13 +14,16 @@ export default function PostThumbnail({
       href={href}
       className="flex rounded-xl bg-white !no-underline md:flex-col">
       <div className="relative w-1/3 min-w-28 md:mb-4 md:w-auto">
-        <Image
-          src={imageSrc}
-          alt=""
-          width={300}
-          height={300}
-          className="h-full w-full rounded-xl object-cover"
-        />
+        <div className="h-[200px]">
+          <Image
+            src={imageSrc}
+            alt=""
+            width={300}
+            height={320}
+            className="h-full w-full rounded-xl object-cover"
+          />
+        </div>
+
         {/* Hidden on mobile */}
         <div className="absolute left-2 top-2 hidden md:block ">
           <Badge className="inline-block text-xs">{category}</Badge>
