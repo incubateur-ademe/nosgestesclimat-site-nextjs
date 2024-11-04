@@ -1,4 +1,4 @@
-import TestCTAButton from '@/components/buttons/TestCTAButton'
+import DynamicCTAButton from '@/components/cta/DynamicCTAButton'
 import Trans from '@/components/translation/Trans'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -76,7 +76,7 @@ export default async function Homepage() {
           </p>
 
           <div className="flex flex-col items-center gap-6 md:max-w-[300px] md:items-start">
-            <TestCTAButton className="md:w-full" />
+            <DynamicCTAButton className="md:w-full" />
 
             <p className="hidden md:block ">
               <Trans>
