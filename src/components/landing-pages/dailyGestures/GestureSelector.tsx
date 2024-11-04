@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/Trans'
 import { baseClassNames, sizeClassNames } from '@/design-system/inputs/Button'
 import type { GesturesType } from '@/types/landing-page'
 import Image from 'next/image'
@@ -29,7 +30,7 @@ export default function GestureSelector({
                     'border-primary-500 bg-primary-100 text-primary-800'
                 )}
                 onClick={() => setSelectedCategory(categoryName)}>
-                {categoryName}
+                <Trans>{categoryName}</Trans>
               </button>
             </li>
           ))}
@@ -40,7 +41,7 @@ export default function GestureSelector({
             <li
               key={`gesture-${index}`}
               className="flex items-baseline gap-1 text-sm font-bold text-primary-600 md:text-lg">
-              {gesture}
+              <Trans>{gesture}</Trans>
             </li>
           ))}
         </ul>
