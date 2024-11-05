@@ -2,7 +2,7 @@ import MotivationSection from '@/components/landing-pages/MotivationSection'
 import Trans from '@/components/translation/Trans'
 import Image from 'next/image'
 
-export default async function MotivationSectionWaterFootprint() {
+export default function MotivationSectionWaterFootprint() {
   return (
     <MotivationSection
       title={<Trans>Économiser l’eau, un enjeu de développement durable</Trans>}

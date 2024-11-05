@@ -3,7 +3,7 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Image from 'next/image'
 
-export default async function WhatItIsWaterFootprint() {
+export default function WhatItIsWaterFootprint() {
   return (
     <WhatItIs
       title={<Trans>Qu'est-ce que l'empreinte eau ?</Trans>}
@@ -45,7 +45,7 @@ export default async function WhatItIsWaterFootprint() {
         <Image
           width={500}
           height={500}
-          src="/images/illustrations/people-with-paperboard.png"
+          src="/images/illustrations/water-footprint.svg"
           alt=""
         />
       }
