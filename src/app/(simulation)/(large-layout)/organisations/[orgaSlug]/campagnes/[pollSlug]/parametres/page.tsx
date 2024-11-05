@@ -8,48 +8,27 @@ import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
-import { useIsOrganisationAdmin } from '@/hooks/organisations/useIsOrganisationAdmin'
-import { usePoll } from '@/hooks/organisations/usePoll'
-import { useUpdateCustomQuestions } from '@/hooks/organisations/useUpdateCustomQuestions'
-import { useUpdatePoll } from '@/hooks/organisations/useUpdatePoll'
+import { useFetchPoll } from '@/hooks/organisations/polls/useFetchPoll'
+import { useUpdatePoll } from '@/hooks/organisations/polls/useUpdatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
-import { useParams } from 'next/navigation'
 import { useEffect } from 'react'
+import useFetchOrganisation from '../../../../../../../../hooks/organisations/useFetchOrganisation'
 import PollNotFound from '../_components/PollNotFound'
 import DeletePollButton from './_components/DeletePollButton'
 import NameForm from './_components/NameForm'
 
 export default function ParametresPage() {
-  const { pollSlug, orgaSlug } = useParams()
-
-  const { user } = useUser()
-
   const { t } = useClientTranslation()
 
-  const { isAdmin, isLoading: isLoadingOrgaAdmin } = useIsOrganisationAdmin()
+  const { data: organisation } = useFetchOrganisation()
 
   const {
     data: poll,
     isError,
-    isLoading,
     refetch: refetchPoll,
-  } = usePoll({
-    pollSlug: pollSlug as string,
-    isEnabled: isAdmin,
-    orgaSlug: orgaSlug as string,
-    email: user?.organisation?.administratorEmail ?? '',
-  })
+  } = useFetchPoll(organisation)
 
   const { mutate: updatePoll, status: updatePollStatus } = useUpdatePoll()
-
-  const {
-    mutate: updatePollCustomQuestions,
-    status: updatePollCustomQuestionsStatus,
-  } = useUpdateCustomQuestions({
-    pollSlug: pollSlug as string,
-    orgaSlug: orgaSlug as string,
-  })
 
   // If the mutation status (of updatePoll or updatePollCustomQuestions) change to success,
   // we refetch the poll and display a confirmation message
@@ -60,20 +39,13 @@ export default function ParametresPage() {
       refetchPoll()
     }
   }, [updatePollStatus, refetchPoll, t])
-  useEffect(() => {
-    if (updatePollCustomQuestionsStatus === 'success') {
-      displaySuccessToast(t('Vos informations ont bien été mises à jour.'))
 
-      refetchPoll()
-    }
-  }, [updatePollCustomQuestionsStatus, refetchPoll, t])
-
-  if (isLoading || isLoadingOrgaAdmin) {
-    return <PollLoader />
+  if (isError) {
+    return <PollNotFound />
   }
 
-  if (isError && !isLoading && !poll) {
-    return <PollNotFound />
+  if (!organisation || !poll) {
+    return <PollLoader />
   }
 
   return (
@@ -96,15 +68,11 @@ export default function ParametresPage() {
       <Separator />
 
       <QuestionsComplementaires
-        description={' '}
-        poll={{
-          defaultAdditionalQuestions: poll?.defaultAdditionalQuestions as [
-            string,
-          ],
-          customAdditionalQuestions: poll?.customAdditionalQuestions,
-        }}
+        onChangeCustomQuestions={updatePoll}
+        organisation={organisation}
         onChange={updatePoll}
-        onChangeCustomQuestions={updatePollCustomQuestions}
+        description={' '}
+        poll={poll}
       />
 
       <Separator className="my-4" />

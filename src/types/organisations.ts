@@ -1,21 +1,11 @@
 import type { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
+import type { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import type {
   ComputedResults,
   Simulation,
   Situation,
 } from '@/publicodes-state/types'
 import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
-
-export type OrganisationSimulation = Simulation & {
-  bilan: number
-  categories: {
-    transports: number
-    logement: number
-    alimentation: number
-    divers: number
-    services: number
-  }
-}
 
 export type OrganisationAdministrator = {
   name?: string | null
@@ -28,32 +18,33 @@ export type OrganisationAdministrator = {
 export type CustomAdditionalQuestions = {
   question: string
   isEnabled: boolean
-  _id?: string
 }
 
 export type OrganisationPoll = {
   id: string
-  simulations: [Simulation]
-  startDate: Date
-  endDate: Date
   name: string
   slug: string
-  defaultAdditionalQuestions: [string]
+  // TO DEPRECATE
+  simulations: Simulation[]
+  expectedNumberOfParticipants?: number
+  defaultAdditionalQuestions?: PollDefaultAdditionalQuestion[]
   customAdditionalQuestions?: CustomAdditionalQuestions[]
-  numberOfExpectedParticipants: number
-  createdAt: Date
+  createdAt: string
+  updatedAt: string
 }
 
 export type Organisation = {
   id: string
   administrators: [OrganisationAdministrator]
-  polls: OrganisationPoll[]
+  polls?: Omit<OrganisationPoll, 'simulations'>[]
   name: string
   slug: string
   type?: OrganisationTypeEnum | null
   numberOfCollaborators?: number | null
+  hasCustomQuestionEnabled: boolean
 }
 
+// TO DEPRECATE
 export type SimulationRecap = {
   computedResults: ComputedResults
   defaultAdditionalQuestionsAnswers: Record<string, number | string>
@@ -71,33 +62,23 @@ export type PollData = {
   simulationRecaps: SimulationRecap[]
   organisationName: string
   isAdmin: boolean
-  defaultAdditionalQuestions: ('postalCode' | 'birthdate')[]
+  defaultAdditionalQuestions: PollDefaultAdditionalQuestion[]
   customAdditionalQuestions: CustomAdditionalQuestions[]
 }
 
 export type PollInfo = {
   _id?: string
-  startDate: string
-  endDate: string
   name: string
   slug: string
   defaultAdditionalQuestions: ('postalCode' | 'birthdate')[]
   numberOfParticipants: number
   expectedNumberOfParticipants: number
-  organisationInfo: OrganisationInfo
+  organisationInfo: {
+    name: string
+    slug: string
+  }
   customAdditionalQuestions: CustomAdditionalQuestions[]
   simulations?: Simulation[]
-}
-
-export type OrganisationInfo = {
-  name: string
-  slug: string
-}
-
-export type UpdatePollProps = {
-  name?: string
-  defaultAdditionalQuestions?: string[]
-  customAdditionalQuestions?: CustomAdditionalQuestions
 }
 
 export type OrgaSettingsInputsType = {

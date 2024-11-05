@@ -9,6 +9,7 @@ import { usePollPublicInfo } from '@/hooks/organisations/usePollPublicInfo'
 import { useParams, useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
+import { v4 } from 'uuid'
 import { InfosContext } from '../_components/InfosProvider'
 import Navigation from '../_components/Navigation'
 
@@ -37,7 +38,7 @@ export default function CustomQuestion() {
 
   function onSubmit({ 'custom-answer': customQuestion }: Inputs) {
     addCustomAnswer({
-      id: customAdditionalQuestions?.[customQuestionIndex - 1]._id ?? '',
+      id: v4(),
       answer: customQuestion,
     })
 

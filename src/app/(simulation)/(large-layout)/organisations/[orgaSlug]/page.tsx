@@ -5,6 +5,7 @@ import OrganisationFetchError from '@/components/organisations/OrganisationFetch
 import Trans from '@/components/translation/Trans'
 import { organisationsDashboardClickParameters } from '@/constants/tracking/pages/organisationsDashboard'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { useFetchPolls } from '@/hooks/organisations/polls/useFetchPolls'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { useRouter } from 'next/navigation'
@@ -17,6 +18,7 @@ export default function OrganisationPage() {
   const router = useRouter()
 
   const { data: organisation, isError, isLoading } = useFetchOrganisation()
+  const { data: polls } = useFetchPolls({ enabled: !!organisation })
 
   useEffect(() => {
     if (organisation && !organisation.slug) {
@@ -66,7 +68,7 @@ export default function OrganisationPage() {
         </ButtonLink>
       </div>
 
-      <MyPolls polls={organisation.polls} />
+      <MyPolls polls={polls} />
 
       <OurTools />
 

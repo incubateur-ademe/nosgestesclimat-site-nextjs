@@ -5,6 +5,7 @@ import {
   START_PAGE,
   TUTORIEL_PAGE,
 } from '@/constants/infosPages'
+import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useSearchParams } from 'next/navigation'
@@ -84,7 +85,9 @@ export function useInfosPage() {
       // if we are on the email page and the poll has the postalCode question, we return the postalCode page link
       if (
         curPage === EMAIL_PAGE &&
-        poll.defaultAdditionalQuestions.includes(POSTAL_CODE_PAGE)
+        poll.defaultAdditionalQuestions?.includes(
+          PollDefaultAdditionalQuestion.postalCode
+        )
       ) {
         return urlsInfosPages.postalCode
       }
@@ -92,7 +95,9 @@ export function useInfosPage() {
       // if we are on the email or postalCode page and the poll has the birthdate question, we return the birthdate page link
       if (
         (curPage === POSTAL_CODE_PAGE || curPage === EMAIL_PAGE) &&
-        poll.defaultAdditionalQuestions.includes(BIRTHDATE_PAGE)
+        poll.defaultAdditionalQuestions?.includes(
+          PollDefaultAdditionalQuestion.birthdate
+        )
       ) {
         return urlsInfosPages.birthdate
       }
@@ -170,7 +175,9 @@ export function useInfosPage() {
       // if we are on the start page and the poll has the birthdate question, we return the birthdate page link
       if (
         curPage === START_PAGE &&
-        poll.defaultAdditionalQuestions.includes(BIRTHDATE_PAGE)
+        poll.defaultAdditionalQuestions?.includes(
+          PollDefaultAdditionalQuestion.birthdate
+        )
       ) {
         return urlsInfosPages.birthdate
       }
@@ -178,7 +185,9 @@ export function useInfosPage() {
       // if we are on the start page or the birthdate page and the poll has the postalCode question, we return the postalCode page link
       if (
         (curPage === BIRTHDATE_PAGE || curPage === START_PAGE) &&
-        poll.defaultAdditionalQuestions.includes(POSTAL_CODE_PAGE)
+        poll.defaultAdditionalQuestions?.includes(
+          PollDefaultAdditionalQuestion.postalCode
+        )
       ) {
         return urlsInfosPages.postalCode
       }

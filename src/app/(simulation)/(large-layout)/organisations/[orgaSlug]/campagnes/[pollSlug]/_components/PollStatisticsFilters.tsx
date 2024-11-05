@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import type { PollData, SimulationRecap } from '@/types/organisations'
 import AgeFilter from './pollStatisticsFilters/AgeFilter'
 import DepartementFilter from './pollStatisticsFilters/DepartementFilter'
@@ -33,11 +34,13 @@ export default function PollStatisticsFilters({
       </div>
 
       <div className="flex flex-col gap-2 md:gap-4 xs:flex-row xs:items-center">
-        {defaultAdditionalQuestions.includes('birthdate') && (
-          <AgeFilter filteredSimulationRecaps={filteredSimulationRecaps} />
-        )}
+        {defaultAdditionalQuestions.includes(
+          PollDefaultAdditionalQuestion.birthdate
+        ) && <AgeFilter filteredSimulationRecaps={filteredSimulationRecaps} />}
 
-        {defaultAdditionalQuestions.includes('postalCode') && (
+        {defaultAdditionalQuestions.includes(
+          PollDefaultAdditionalQuestion.postalCode
+        ) && (
           <DepartementFilter
             simulationRecaps={simulationRecaps}
             filteredSimulationRecaps={filteredSimulationRecaps}
