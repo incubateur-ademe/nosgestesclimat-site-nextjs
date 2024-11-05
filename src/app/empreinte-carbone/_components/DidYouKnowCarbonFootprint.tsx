@@ -19,7 +19,7 @@ export default function DidYouKnowCarbon() {
           highlight: <Trans>Et la vôtre ?</Trans>,
         },
         {
-          illustration: '/images/icons/electricity.svg',
+          illustration: '/images/icons/plane.svg',
           content: (
             <Trans>
               Un aller-retour Paris-Athènes en avion représente{' '}
