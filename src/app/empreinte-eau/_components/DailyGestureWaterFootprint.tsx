@@ -43,7 +43,7 @@ export default async function DailyGestureWaterFootprint() {
       }
       gestures={{
         [gesturesKeysForTranslation.alimentation]: {
-          imageSrc: '/images/illustrations/girl-cooking.png',
+          imageSrc: '/images/illustrations/corn-and-avocado.svg',
           gestureList: [
             t('Cuisiner avec des produits locaux et de saison'),
             t('Réduire la consommation de viande'),

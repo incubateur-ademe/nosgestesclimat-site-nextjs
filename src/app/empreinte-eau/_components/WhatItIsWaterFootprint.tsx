@@ -45,7 +45,7 @@ export default function WhatItIsWaterFootprint() {
         <Image
           width={500}
           height={500}
-          src="/images/illustrations/people-with-paperboard.png"
+          src="/images/illustrations/water-footprint.svg"
           alt=""
         />
       }
