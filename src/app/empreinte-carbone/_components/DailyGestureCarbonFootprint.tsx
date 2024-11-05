@@ -4,12 +4,12 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function DailyGestureCarbonFootprint() {
   const { t } = await getServerTranslation()
-  const gesturesKeysForTranslation = [
-    t('Transport'),
-    t('Alimentation'),
-    t('Logement'),
-    t('Consommation'),
-  ]
+  const gesturesKeysForTranslation = {
+    transport: t('Transport'),
+    alimentation: t('Alimentation'),
+    logement: t('Logement'),
+    consommation: t('Consommation'),
+  }
 
   return (
     <DailyGestures
@@ -37,7 +37,7 @@ export default async function DailyGestureCarbonFootprint() {
         </>
       }
       gestures={{
-        [gesturesKeysForTranslation[0]]: {
+        [gesturesKeysForTranslation.transport]: {
           imageSrc: '/images/illustrations/mother-and-son-on-bike.svg',
           gestureList: [
             t('Privilégier les transports en commun, si possible'),
@@ -45,7 +45,7 @@ export default async function DailyGestureCarbonFootprint() {
             t('Privilégier les mobilités douces'),
           ],
         },
-        [gesturesKeysForTranslation[1]]: {
+        [gesturesKeysForTranslation.alimentation]: {
           imageSrc: '/images/illustrations/girl-cooking.svg',
           gestureList: [
             t('Cuisiner avec des produits locaux et de saison'),
@@ -53,7 +53,7 @@ export default async function DailyGestureCarbonFootprint() {
             t("Préférer l'eau du robinet"),
           ],
         },
-        [gesturesKeysForTranslation[2]]: {
+        [gesturesKeysForTranslation.logement]: {
           imageSrc: '/images/illustrations/girl-reading-newspaper.svg',
           gestureList: [
             t(
@@ -64,7 +64,7 @@ export default async function DailyGestureCarbonFootprint() {
             ),
           ],
         },
-        [gesturesKeysForTranslation[3]]: {
+        [gesturesKeysForTranslation.consommation]: {
           imageSrc: '/images/illustrations/girl-thinking.svg',
           gestureList: [
             t("Privilégier les produits d'occasion"),
