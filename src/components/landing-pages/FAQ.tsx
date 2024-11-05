@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import PlusIcon from '../icons/PlusIcon'
 import Background from './Background'
 
-export default async function FAQ({
+export default function FAQ({
   subTitle,
   questions,
 }: {

@@ -1,7 +1,7 @@
 import DidYouKnowSlider from '@/components/landing-pages/DidYouKnowSlider'
 import Trans from '@/components/translation/Trans'
 
-export default async function DidYouKnowWaterFootprint() {
+export default function DidYouKnowWaterFootprint() {
   return (
     <DidYouKnowSlider
       slides={[
@@ -15,14 +15,14 @@ export default async function DidYouKnowWaterFootprint() {
           highlight: <Trans>Considérable, non ?</Trans>,
         },
         {
-          illustration: '/images/icons/tee-shirt.svg',
+          illustration: '/images/icons/jeans.svg',
           content: (
             <Trans>L’empreinte eau d'un jean est de 30 000 litres d'eau.</Trans>
           ),
           highlight: <Trans>Impressionnant, non ?</Trans>,
         },
         {
-          illustration: '/images/icons/apple.svg',
+          illustration: '/images/icons/egg.svg',
           content: (
             <Trans>Il faut 75 litres d’eau pour produire un oeuf.</Trans>
           ),

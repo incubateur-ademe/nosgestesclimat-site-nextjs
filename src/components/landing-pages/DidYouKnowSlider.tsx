@@ -25,7 +25,7 @@ export default function DidYouKnowSlider({
           arrows={false}
           infinite={true}
           autoplay={true}
-          autoplaySpeed={5000}
+          autoplaySpeed={4000}
           fade
           easing="ease-in-out"
           className="max-w-[594px]">

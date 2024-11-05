@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-export default async function WhatItIs({
+export default function WhatItIs({
   title,
   description,
   illustration,
