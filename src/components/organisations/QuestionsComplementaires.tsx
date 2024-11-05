@@ -2,22 +2,23 @@
 
 import Trans from '@/components/translation/Trans'
 import { getUpdatedDefaultAdditionalQuestions } from '@/helpers/polls/getUpdatedDefaultAdditionalQuestions'
+import type { PollUpdateDto } from '@/hooks/organisations/polls/useUpdatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import type { OrganisationPoll, UpdatePollProps } from '@/types/organisations'
+import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import type { ReactNode } from 'react'
+import { PollDefaultAdditionalQuestion } from '../../constants/organisations/pollDefaultAdditionalQuestion'
 import CustomQuestionForm from './questionsComplementaires/CustomQuestionForm'
 import CustomQuestions from './questionsComplementaires/CustomQuestions'
 import ToggleField from './questionsComplementaires/ToggleField'
 
 type Props = {
-  poll:
-    | Pick<
-        OrganisationPoll,
-        'customAdditionalQuestions' | 'defaultAdditionalQuestions'
-      >
-    | undefined
-  onChange: (changes: UpdatePollProps) => void
-  onChangeCustomQuestions: (changes: UpdatePollProps) => void
+  organisation: Organisation
+  poll: Pick<
+    OrganisationPoll,
+    'customAdditionalQuestions' | 'defaultAdditionalQuestions'
+  >
+  onChange: (dto: PollUpdateDto) => void
+  onChangeCustomQuestions: (changes: PollUpdateDto) => void
   description?: string | ReactNode
 }
 
@@ -26,6 +27,7 @@ export default function QuestionsComplementaires({
   onChange,
   onChangeCustomQuestions,
   description,
+  organisation,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -54,14 +56,15 @@ export default function QuestionsComplementaires({
         name="villeToggle"
         className="mb-4"
         value={
-          poll?.defaultAdditionalQuestions?.includes('postalCode') ?? false
+          poll.defaultAdditionalQuestions?.includes(
+            PollDefaultAdditionalQuestion.postalCode
+          ) ?? false
         }
         onChange={(isEnabled: boolean) => {
           onChange({
             defaultAdditionalQuestions: getUpdatedDefaultAdditionalQuestions({
-              defaultAdditionalQuestions:
-                poll?.defaultAdditionalQuestions ?? [],
-              questionKey: 'postalCode',
+              defaultAdditionalQuestions: poll.defaultAdditionalQuestions ?? [],
+              questionKey: PollDefaultAdditionalQuestion.postalCode,
               value: isEnabled,
             }),
           })
@@ -71,13 +74,16 @@ export default function QuestionsComplementaires({
 
       <ToggleField
         name="birthdateToggle"
-        value={poll?.defaultAdditionalQuestions?.includes('birthdate') ?? false}
+        value={
+          poll.defaultAdditionalQuestions?.includes(
+            PollDefaultAdditionalQuestion.birthdate
+          ) ?? false
+        }
         onChange={(isEnabled: boolean) => {
           onChange({
             defaultAdditionalQuestions: getUpdatedDefaultAdditionalQuestions({
-              defaultAdditionalQuestions:
-                poll?.defaultAdditionalQuestions ?? [],
-              questionKey: 'birthdate',
+              defaultAdditionalQuestions: poll.defaultAdditionalQuestions ?? [],
+              questionKey: PollDefaultAdditionalQuestion.birthdate,
               value: isEnabled,
             }),
           })
@@ -85,12 +91,20 @@ export default function QuestionsComplementaires({
         label={t('Quelle est votre année de naissance ?')}
       />
 
-      {poll?.customAdditionalQuestions && (
-        <CustomQuestions poll={poll} onChange={onChangeCustomQuestions} />
+      {!!poll && (
+        <CustomQuestions
+          organisation={organisation}
+          poll={poll}
+          onChange={onChangeCustomQuestions}
+        />
       )}
 
       <div className="my-6 flex w-full flex-col items-start gap-2">
-        <CustomQuestionForm poll={poll} onCompleted={onChangeCustomQuestions} />
+        <CustomQuestionForm
+          organisation={organisation}
+          poll={poll}
+          onCompleted={onChangeCustomQuestions}
+        />
       </div>
     </section>
   )

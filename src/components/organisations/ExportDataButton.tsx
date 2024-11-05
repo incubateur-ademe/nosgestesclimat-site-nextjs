@@ -68,10 +68,10 @@ export default function ExportDataButton({
         }
 
         if (poll?.customAdditionalQuestions) {
-          poll.customAdditionalQuestions.forEach(({ _id, question }) => {
-            data[question as string] =
+          poll.customAdditionalQuestions.forEach(({ question }) => {
+            data[question] =
               simulationRecapToParse.customAdditionalQuestionsAnswers?.[
-                _id ?? ''
+                question
               ] ?? ''
           })
         }
