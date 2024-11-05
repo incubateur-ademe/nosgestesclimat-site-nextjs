@@ -69,7 +69,7 @@ export default async function FAQCarbonFootprint() {
                   Ces émissions proviennent de diverses activités humaines dont
                   les moyens de transport, l’alimentation, le logement, la
                   consommation courante de produits et de services, la
-                  production industrielle ainsi que le service publique.
+                  production industrielle ainsi que le service public.
                 </Trans>
               </p>
 
