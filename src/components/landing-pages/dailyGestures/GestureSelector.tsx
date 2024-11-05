@@ -18,7 +18,7 @@ export default function GestureSelector({
   return (
     <>
       <div className="text-left">
-        <ul className="mb-8 flex gap-1">
+        <ul className="mb-8 flex gap-1 overflow-x-auto overflow-y-visible py-2 md:overflow-x-hidden md:py-0">
           {Object.keys(gestures).map((categoryName: string) => (
             <li key={categoryName}>
               <button

@@ -14,7 +14,7 @@ export default function PostThumbnail({
       href={href}
       className="flex rounded-xl bg-white !no-underline md:flex-col">
       <div className="relative w-1/3 min-w-28 md:mb-4 md:w-auto">
-        <div className="h-[200px]">
+        <div className="h-full md:h-[200px]">
           <Image
             src={imageSrc}
             alt=""
