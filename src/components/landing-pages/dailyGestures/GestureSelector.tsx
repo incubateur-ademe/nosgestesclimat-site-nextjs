@@ -51,9 +51,9 @@ export default function GestureSelector({
         <Image
           src={gestures[selectedCategory].imageSrc}
           alt=""
-          width="320"
+          width="420"
           height="300"
-          className="w-auto object-cover"
+          className="h-64 w-auto"
         />
       </div>
     </>
