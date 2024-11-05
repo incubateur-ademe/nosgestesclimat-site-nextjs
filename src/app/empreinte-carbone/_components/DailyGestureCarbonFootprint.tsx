@@ -40,8 +40,9 @@ export default async function DailyGestureCarbonFootprint() {
         [gesturesKeysForTranslation[0]]: {
           imageSrc: '/images/illustrations/mother-and-son-on-bike.svg',
           gestureList: [
-            t('Privilégier les mobilités douces'),
+            t('Privilégier les transports en commun, si possible'),
             t('Éviter les trajets en avion'),
+            t('Privilégier les mobilités douces'),
           ],
         },
         [gesturesKeysForTranslation[1]]: {
