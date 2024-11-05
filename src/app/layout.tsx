@@ -56,7 +56,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   try {
     const lang = currentLocale()
 
-    const regionCode = await getGeolocation()
+    const initialRegion = await getGeolocation()
 
     return (
       <html lang={lang ?? ''} dir={dir(lang ?? '')}>
@@ -105,7 +105,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
             b.setAttribute('data-useragent', navigator.userAgent);
           `}</Script>
 
-          <MainLayoutProviders regionCode={regionCode}>
+          <MainLayoutProviders initialRegion={initialRegion}>
             {children}
             <Footer />
           </MainLayoutProviders>
@@ -117,8 +117,10 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   } catch (error) {
     return (
       <html lang="fr">
-        <body>
-          <ClientErrorContent />
+        <body className={`${marianne.className} bg-white text-default`}>
+          <div className="flex h-screen flex-col items-center justify-center">
+            <ClientErrorContent />
+          </div>
         </body>
       </html>
     )

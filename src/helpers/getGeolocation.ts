@@ -1,14 +1,17 @@
-export async function getGeolocation(): Promise<string> {
-  const regionCode = await fetch(
-    `${
-      process.env.VERCEL_ENV === 'preview' ||
-      process.env.VERCEL_ENV === 'production'
-        ? 'https'
-        : 'http'
-    }://${process.env.VERCEL_URL || 'localhost:3000'}/api/geolocation`
-  )
-    .then((res) => res.json())
-    .then((res) => res.country?.code ?? 'FR')
+'use server'
 
-  return regionCode
+import { RegionFromGeolocation } from '@/publicodes-state/types'
+import axios from 'axios'
+
+export async function getGeolocation(): Promise<RegionFromGeolocation> {
+  return await axios
+    .get(
+      `${
+        process.env.VERCEL_ENV === 'preview' ||
+        process.env.VERCEL_ENV === 'production'
+          ? 'https'
+          : 'http'
+      }://${process.env.VERCEL_URL || 'localhost:3000'}/api/geolocation`
+    )
+    .then((res) => res.data)
 }

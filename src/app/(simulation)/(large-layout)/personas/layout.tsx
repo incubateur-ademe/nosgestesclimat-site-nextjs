@@ -2,7 +2,7 @@ import Providers from '@/components/providers/Providers'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
-import { PropsWithChildren, Suspense } from 'react'
+import { PropsWithChildren } from 'react'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -21,9 +21,5 @@ export async function generateMetadata() {
 export default function PersonasLayout({ children }: PropsWithChildren) {
   const supportedRegions = getSupportedRegions()
 
-  return (
-    <Suspense fallback={null}>
-      <Providers supportedRegions={supportedRegions}>{children}</Providers>
-    </Suspense>
-  )
+  return <Providers supportedRegions={supportedRegions}>{children}</Providers>
 }
