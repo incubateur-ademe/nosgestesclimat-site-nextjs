@@ -51,7 +51,7 @@ export default async function DailyGestureWaterFootprint() {
           ],
         },
         [gesturesKeysForTranslation.clothing]: {
-          imageSrc: '/images/illustrations/people-raising-arm.png',
+          imageSrc: '/images/illustrations/girl-with-clothes.svg',
           gestureList: [
             t('Opter pour des vêtements durables'),
             t(

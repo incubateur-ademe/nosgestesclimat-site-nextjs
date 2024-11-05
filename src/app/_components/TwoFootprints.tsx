@@ -11,7 +11,7 @@ export default function TwoFootprints() {
         <h2 className="mb-0 text-center text-2xl md:text-3xl">
           <Trans>Un calculateur, deux empreintes</Trans>
         </h2>
-        <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[3px] w-[100%] animate-rainbow-slow transition-all" />
+        <ColorLine className="bg-rainbow absolute bottom-0 left-[15%] h-[3px] w-[70%] animate-rainbow-slow transition-all md:left-0 md:w-full" />
       </div>
 
       <Image

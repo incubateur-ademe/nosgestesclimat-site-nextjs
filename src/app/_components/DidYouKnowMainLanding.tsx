@@ -19,7 +19,7 @@ export default function DidYouKnowMainLanding() {
           highlight: <Trans>Et la vôtre ?</Trans>,
         },
         {
-          illustration: '/images/icons/tee-shirt.svg',
+          illustration: '/images/icons/jeans.svg',
           content: (
             <Trans>
               La production d'un jean nécessite près de{' '}
@@ -29,7 +29,7 @@ export default function DidYouKnowMainLanding() {
           highlight: <Trans>Considérable, non ?</Trans>,
         },
         {
-          illustration: '/images/icons/tee-shirt.svg',
+          illustration: '/images/icons/water-drop.svg',
           content: (
             <Trans>
               L'empreinte eau moyenne d'un français se compte{' '}
@@ -42,7 +42,7 @@ export default function DidYouKnowMainLanding() {
           highlight: <Trans>Et la vôtre ?</Trans>,
         },
         {
-          illustration: '/images/icons/electricity.svg',
+          illustration: '/images/icons/plane.svg',
           content: (
             <Trans>
               Un aller-retour Paris-Athènes en avion représente{' '}

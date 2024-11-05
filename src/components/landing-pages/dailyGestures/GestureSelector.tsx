@@ -53,7 +53,7 @@ export default function GestureSelector({
           alt=""
           width="320"
           height="300"
-          className="h-64 w-auto"
+          className="w-auto object-cover"
         />
       </div>
     </>

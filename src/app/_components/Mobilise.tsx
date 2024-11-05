@@ -34,7 +34,7 @@ export default function Mobilise() {
 
         <div className="order-first md:order-last">
           <Image
-            src="/images/illustrations/people-playing.png"
+            src="/images/illustrations/people-playing.svg"
             alt=""
             width={500}
             height={500}
@@ -45,7 +45,7 @@ export default function Mobilise() {
       <div className="flex flex-col justify-between gap-6 md:flex-row md:gap-24">
         <div>
           <Image
-            src="/images/illustrations/people-with-paperboard.png"
+            src="/images/illustrations/people-with-paperboard.svg"
             alt=""
             width={500}
             height={500}
