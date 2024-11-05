@@ -47,13 +47,13 @@ export default function GestureSelector({
         </ul>
       </div>
 
-      <div className="flex justify-center md:justify-start">
+      <div className="flex w-80 max-w-full justify-center md:justify-start">
         <Image
           src={gestures[selectedCategory].imageSrc}
           alt=""
           width="300"
           height="300"
-          className="max-h-64 w-auto object-cover"
+          className="w-auto object-cover"
         />
       </div>
     </>
