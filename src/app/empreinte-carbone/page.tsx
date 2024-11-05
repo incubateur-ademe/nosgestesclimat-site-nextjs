@@ -7,6 +7,7 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 import DailyGestureCarbonFootprint from './_components/DailyGestureCarbonFootprint'
 import DidYouKnowCarbon from './_components/DidYouKnowCarbonFootprint'
+import FAQCarbonFootprint from './_components/FAQCarbonFootprint'
 import MotivationSectionCarbonFootprint from './_components/MotivationSectionCarbonFootprint'
 import UnderstandToActCarbonFootprint from './_components/UnderstandToActCarbonFootprint'
 import WhatDoWeMeasureCarbon from './_components/WhatDoWeMeasureCarbonFootprint'
@@ -74,6 +75,8 @@ export default async function WaterFootprintLandingPage() {
       <UnderstandToActCarbonFootprint />
 
       <MotivationSectionCarbonFootprint />
+
+      <FAQCarbonFootprint />
     </LandingPage>
   )
 }
