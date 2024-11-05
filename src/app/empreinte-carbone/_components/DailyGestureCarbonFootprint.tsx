@@ -13,11 +13,7 @@ export default async function DailyGestureCarbonFootprint() {
 
   return (
     <DailyGestures
-      title={
-        <Trans>
-          Les gestes du quotidien pour préserver nos ressources en eau
-        </Trans>
-      }
+      title={<Trans>Les actions pour réduire son empreinte carbone </Trans>}
       description={
         <>
           <p>
@@ -29,7 +25,7 @@ export default async function DailyGestureCarbonFootprint() {
               . En intégrant ces gestes dans votre quotidien, vous pouvez
               fortement{' '}
               <strong className="text-primary-600">
-                réduire vos émissions de CO2
+                réduire vos émissions de Co2
               </strong>
               .
             </Trans>
@@ -44,9 +40,8 @@ export default async function DailyGestureCarbonFootprint() {
         [gesturesKeysForTranslation[0]]: {
           imageSrc: '/images/illustrations/mother-and-son-on-bike.svg',
           gestureList: [
-            t('Cuisiner avec des produits locaux et de saison'),
-            t('Réduire la consommation de viande'),
-            t("Préférer l'eau du robinet"),
+            t('Privilégier les mobilités douces'),
+            t('Éviter les trajets en avion'),
           ],
         },
         [gesturesKeysForTranslation[1]]: {
@@ -60,21 +55,20 @@ export default async function DailyGestureCarbonFootprint() {
         [gesturesKeysForTranslation[2]]: {
           imageSrc: '/images/illustrations/girl-reading-newspaper.svg',
           gestureList: [
-            t('Opter pour des vêtements durables'),
             t(
-              'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé'
+              'Réaliser des travaux d’isolation de son logement (pour les propriétaires)'
             ),
-            t("Privilégier les produits d'occasion"),
+            t(
+              'Privilégier les modes de chauffage peu émetteurs de Co2 (électricité, bois, biomasse)'
+            ),
           ],
         },
         [gesturesKeysForTranslation[3]]: {
-          imageSrc: '/images/illustrations/girl-reading-newspaper.svg',
+          imageSrc: '/images/illustrations/girl-thinking.svg',
           gestureList: [
-            t('Opter pour des vêtements durables'),
-            t(
-              'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé'
-            ),
             t("Privilégier les produits d'occasion"),
+            t('Opter pour des vêtements durables'),
+            t('Allonger la vie de ses appareils et des meubles'),
           ],
         },
       }}
