@@ -27,7 +27,7 @@ export async function generateMetadata() {
   })
 }
 
-export default async function WaterFootprintLandingPage() {
+export default function CarbonFootprintLandingPage() {
   return (
     <LandingPage
       heroTitle={
