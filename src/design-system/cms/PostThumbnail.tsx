@@ -17,12 +17,12 @@ export default function PostThumbnail({
     <a
       href={href}
       className="flex rounded-xl bg-white !no-underline md:flex-col">
-      <div className="relative w-1/3 min-w-28 md:mb-4 md:w-auto">
+      <div className="relative w-1/3 min-w-28 md:mb-4 md:min-h-[240px] md:w-auto">
         <Image
           src={imageSrc}
           alt=""
-          width={300}
-          height={300}
+          width={320}
+          height={240}
           className="h-full w-full rounded-xl object-cover"
         />
         {/* Hidden on mobile */}

@@ -98,7 +98,7 @@ export function useSimulateurPage() {
     }
 
     // else we return the tutoriel page label
-    return t('Passer le test →')
+    return t('Passer le test')
   }, [progression, t])
 
   return {

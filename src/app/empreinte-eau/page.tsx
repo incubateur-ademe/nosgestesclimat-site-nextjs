@@ -32,7 +32,7 @@ export default async function WaterFootprintLandingPage() {
     <LandingPage
       heroTitle={
         <h1 className="mb-0 text-2xl leading-8 md:text-5xl md:leading-[3rem]">
-          <Trans>L’empreinte eau, ces litres qu’on ne voit pas !</Trans>
+          <Trans>Chaque goutte compte : découvrez votre empreinte eau !</Trans>
         </h1>
       }
       heroDescription={

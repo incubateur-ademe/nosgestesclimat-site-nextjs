@@ -18,7 +18,7 @@ export default function DidYouKnowSlider({
   }[]
 }) {
   return (
-    <div className="relative bg-heroLightBackground py-20">
+    <div className="relative bg-heroLightBackground pb-20 pt-16">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 md:flex-row md:gap-0">
         <Slider
           dots={true}
@@ -48,13 +48,13 @@ export default function DidYouKnowSlider({
                   Le saviez vous ?
                 </h3>
 
-                <Separator className="mx-auto my-4 md:mx-0 md:my-8" />
+                <Separator className="mx-auto my-4 md:mx-0" />
 
-                <p className="text-center text-sm md:text-left md:text-lg">
+                <p className="mb-1 text-center text-sm md:text-left md:text-lg">
                   {slide.content}
                 </p>
 
-                <p className="text-center text-sm md:text-left md:text-lg">
+                <p className="mb-0 text-center text-sm font-bold text-secondary-700 md:text-left md:text-lg">
                   {slide.highlight}
                 </p>
               </div>
@@ -66,7 +66,7 @@ export default function DidYouKnowSlider({
         </div>
       </div>
 
-      <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[5px] w-[100%] animate-rainbow-slow transition-all" />
+      <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[4px] w-[100%] animate-rainbow-slow transition-all" />
     </div>
   )
 }
