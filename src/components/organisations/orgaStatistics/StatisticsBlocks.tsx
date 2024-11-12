@@ -4,10 +4,10 @@ import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/Trans'
 import { carboneMetric, eauMetric } from '@/constants/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
-import { getSimulationRecapAggregatedResult } from '@/helpers/organisations/getSimulationRecapAggregatedResult'
+import { getSimulationsAggregatedResult } from '@/helpers/organisations/getSimulationsAggregatedResult'
 import { useLocale } from '@/hooks/useLocale'
 import type { Entries } from '@/publicodes-state/types'
-import type { SimulationRecap } from '@/types/organisations'
+import type { Simulation } from '@/types/organisations'
 import Wave from 'react-wavify'
 import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
 import ResultsSoonBanner from './statisticsBlocks/ResultsSoonBanner'
@@ -32,23 +32,23 @@ const mockResults = {
 }
 
 export default function StatisticsBlocks({
-  simulationRecaps,
-  simulationRecapsWithoutExtremes,
+  simulations,
+  simulationsWithoutExtremes,
 }: {
-  simulationRecaps: SimulationRecap[]
-  simulationRecapsWithoutExtremes: SimulationRecap[]
+  simulations: Simulation[]
+  simulationsWithoutExtremes: Simulation[]
 }) {
   const locale = useLocale()
 
-  if (!simulationRecaps) {
+  if (!simulations) {
     return null
   }
 
-  const hasLessThan3Participants = simulationRecaps.length < 3
+  const hasLessThan3Participants = simulations.length < 3
 
   const result = hasLessThan3Participants
     ? mockResults
-    : getSimulationRecapAggregatedResult(simulationRecapsWithoutExtremes)
+    : getSimulationsAggregatedResult(simulationsWithoutExtremes)
 
   const { formattedValue, unit } = formatFootprint(result?.carbone?.bilan, {
     metric: carboneMetric,
@@ -66,11 +66,11 @@ export default function StatisticsBlocks({
     <div className="grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <div className="rounded-xl bg-primary-100 p-8">
         <p className="text-4xl font-bold text-primary-700">
-          {simulationRecapsWithoutExtremes?.length?.toLocaleString(locale) ?? 0}
+          {simulationsWithoutExtremes?.length?.toLocaleString(locale) ?? 0}
         </p>
 
         <p className="text-xl">
-          {simulationRecapsWithoutExtremes.length <= 1 ? (
+          {simulationsWithoutExtremes.length <= 1 ? (
             <Trans>Simulation terminée</Trans>
           ) : (
             <Trans>Simulations terminées</Trans>

@@ -1,34 +1,37 @@
 'use client'
 
 import { carboneMetric } from '@/constants/metric'
-import type { ButtonProps } from '@/design-system/inputs/Button';
+import type { ButtonProps } from '@/design-system/inputs/Button'
 import Button from '@/design-system/inputs/Button'
 import { createXLSXFileAndDownload } from '@/helpers/export/createXLSXFileAndDownload'
-import type { PollData, SimulationRecap } from '@/types/organisations'
+import { useFetchPublicPollSimulations } from '@/hooks/organisations/polls/useFetchPublicPollSimulations'
+import type { PublicOrganisationPoll } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useState } from 'react'
 import DownloadIcon from '../icons/DownloadIcon'
 import Trans from '../translation/Trans'
 
 type Props = {
-  poll: PollData | undefined | null
-  simulationRecaps: SimulationRecap[]
+  poll?: PublicOrganisationPoll | null
   color?: 'primary' | 'secondary'
   onClick?: () => void
 }
 
 export default function ExportDataButton({
   poll,
-  simulationRecaps,
   color = 'secondary',
   onClick,
   ...props
 }: ButtonProps & Props) {
   const [isLoading, setIsLoading] = useState(false)
 
-  if (simulationRecaps?.length < 3) return null
+  const { data: simulations } = useFetchPublicPollSimulations()
 
-  function handleClick() {
+  if (!simulations || simulations.length < 3) return null
+
+  const pollSimulations = simulations
+
+  const handleClick = () => {
     if (onClick) {
       onClick()
     }
@@ -36,32 +39,30 @@ export default function ExportDataButton({
     setIsLoading(true)
 
     createXLSXFileAndDownload({
-      data: simulationRecaps.map((simulationRecap) => {
-        const simulationRecapToParse = { ...simulationRecap }
+      data: pollSimulations.map((simulation) => {
+        const simulationToParse = { ...simulation }
 
         const data: Record<string, unknown> = {
-          date: dayjs(simulationRecapToParse.date).format('DD/MM/YYYY'),
+          date: dayjs(simulationToParse.date).format('DD/MM/YYYY'),
           total: Math.round(
-            simulationRecapToParse.computedResults[carboneMetric].bilan
+            simulationToParse.computedResults[carboneMetric].bilan
           ),
           transport: Math.round(
-            simulationRecapToParse.computedResults[carboneMetric].categories
+            simulationToParse.computedResults[carboneMetric].categories
               .transport
           ),
           alimentation: Math.round(
-            simulationRecapToParse.computedResults[carboneMetric].categories
+            simulationToParse.computedResults[carboneMetric].categories
               .alimentation
           ),
           logement: Math.round(
-            simulationRecapToParse.computedResults[carboneMetric].categories
-              .logement
+            simulationToParse.computedResults[carboneMetric].categories.logement
           ),
           divers: Math.round(
-            simulationRecapToParse.computedResults[carboneMetric].categories
-              .divers
+            simulationToParse.computedResults[carboneMetric].categories.divers
           ),
           'services sociétaux': Math.round(
-            simulationRecapToParse.computedResults[carboneMetric].categories[
+            simulationToParse.computedResults[carboneMetric].categories[
               'services sociétaux'
             ]
           ),
@@ -70,9 +71,9 @@ export default function ExportDataButton({
         if (poll?.customAdditionalQuestions) {
           poll.customAdditionalQuestions.forEach(({ question }) => {
             data[question] =
-              simulationRecapToParse.customAdditionalQuestionsAnswers?.[
-                question
-              ] ?? ''
+              simulationToParse.additionalQuestionsAnswers.find(
+                ({ key }) => key === question
+              )?.answer ?? ''
           })
         }
 

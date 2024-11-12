@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import type { SimulationRecap } from '@/types/organisations'
+import type { Simulation } from '@/types/organisations'
 import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import DetailedStatistics from './orgaStatistics/DetailedStatistics'
 import FunFactsBlock from './orgaStatistics/FunFactsBlock'
@@ -9,16 +9,16 @@ import StatisticsBlocks from './orgaStatistics/StatisticsBlocks'
 
 export default function PollStatistics({
   title,
-  simulationRecaps,
-  simulationRecapsWithoutExtremes,
+  simulations,
+  simulationsWithoutExtremes,
   funFacts,
 }: {
   title?: string | JSX.Element
-  simulationRecaps: SimulationRecap[]
-  simulationRecapsWithoutExtremes: SimulationRecap[]
+  simulations: Simulation[]
+  simulationsWithoutExtremes: Simulation[]
   funFacts: FunFacts | undefined
 }) {
-  const hasAtLeastThreeParticipants = simulationRecaps?.length > 2
+  const hasAtLeastThreeParticipants = simulations?.length > 2
 
   return (
     <>
@@ -26,8 +26,8 @@ export default function PollStatistics({
 
       <section className="relative mb-8 flex gap-4">
         <StatisticsBlocks
-          simulationRecaps={simulationRecaps}
-          simulationRecapsWithoutExtremes={simulationRecapsWithoutExtremes}
+          simulations={simulations}
+          simulationsWithoutExtremes={simulationsWithoutExtremes}
         />
       </section>
 
