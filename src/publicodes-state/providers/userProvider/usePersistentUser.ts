@@ -16,15 +16,9 @@ export default function usePersistentUser({
   const [initialized, setInitialized] = useState<boolean>(false)
 
   const [user, setUser] = useState<User>({
-    region: {
-      code: '',
-      name: '',
-    },
-    initialRegion: {
-      code: '',
-      name: '',
-    },
-    userId: '',
+    region: initialRegion,
+    initialRegion: initialRegion,
+    userId: uuid(),
   })
 
   useEffect(() => {
@@ -36,15 +30,9 @@ export default function usePersistentUser({
     }
     if (localUser) {
       setUser(formatUser({ user: localUser }))
-    } else {
-      setUser({
-        region: initialRegion,
-        initialRegion,
-        userId: uuid(),
-      })
     }
     setInitialized(true)
-  }, [storageKey, initialRegion])
+  }, [storageKey])
 
   useEffect(() => {
     if (initialized) {

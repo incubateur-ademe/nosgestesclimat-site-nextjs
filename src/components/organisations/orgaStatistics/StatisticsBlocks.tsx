@@ -66,11 +66,11 @@ export default function StatisticsBlocks({
     <div className="grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <div className="rounded-xl bg-primary-100 p-8">
         <p className="text-4xl font-bold text-primary-700">
-          {simulationRecaps?.length?.toLocaleString(locale) ?? 0}
+          {simulationRecapsWithoutExtremes?.length?.toLocaleString(locale) ?? 0}
         </p>
 
         <p className="text-xl">
-          {simulationRecaps.length <= 1 ? (
+          {simulationRecapsWithoutExtremes.length <= 1 ? (
             <Trans>Simulation terminée</Trans>
           ) : (
             <Trans>Simulations terminées</Trans>

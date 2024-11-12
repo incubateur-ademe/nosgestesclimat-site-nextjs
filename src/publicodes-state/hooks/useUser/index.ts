@@ -23,12 +23,14 @@ export default function useUser() {
     currentSimulationId,
     setCurrentSimulationId,
     migrationInstructions,
+    isInitialized,
   } = useContext(userContext)
 
   const {
     updateName,
     updateEmail,
     updateRegion,
+    updateInitialRegion,
     updateLoginExpirationDate,
     updateUserOrganisation,
   } = useUserDetails({ user, setUser })
@@ -57,6 +59,10 @@ export default function useUser() {
 
   return {
     /**
+     * A boolean indicating if the user and their simulations have been initialized
+     */
+    isInitialized,
+    /**
      * All the information about the user (for now: name, email, region and north star rating)
      */
     user,
@@ -76,6 +82,11 @@ export default function useUser() {
      * A setter for updating the user current region
      */
     updateRegion,
+    /**
+    /**
+     * A setter for updating the user initial region (via the geolocation)
+     */
+    updateInitialRegion,
     /**
      * A setter for updating the user login expiration date
      */

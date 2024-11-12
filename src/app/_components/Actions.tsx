@@ -17,12 +17,15 @@ export default async function Actions() {
         )}
         width="290"
         height="275"
-        className="mb-6 block h-auto max-w-full "
+        className="mb-6 block h-auto max-w-full"
+        loading="lazy"
       />
       <Kicker>
         <Trans>Agir pour le climat</Trans>
       </Kicker>
-      <h2 className="font-medium md:text-3xl">{t('Comment agir\u202f?')}</h2>
+      <h2 className="font-medium md:text-3xl">
+        <Trans>Comment agir ?</Trans>
+      </h2>
       <p className="max-w-xs md:mb-8 md:max-w-sm md:text-lg">
         <Trans>Découvrez nos</Trans>{' '}
         <strong className="text-primary-700">
