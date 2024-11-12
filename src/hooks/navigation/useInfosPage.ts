@@ -7,10 +7,10 @@ import {
 } from '@/constants/infosPages'
 import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
-import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
+import { usePollQueryParams } from '@/hooks/organisations/usePollQueryParams'
 import { useSearchParams } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
-import { usePollPublicInfo } from '../organisations/usePollPublicInfo'
+import { useFetchPublicPoll } from '../organisations/polls/useFetchPublicPoll'
 
 /**
  * @returns {getLinkToNextInfosPage} - A function that returns the link to the next infos page
@@ -30,9 +30,9 @@ export function useInfosPage() {
   const searchParams = useSearchParams()
   const queryParamsString = searchParams.toString()
 
-  const { pollSlug } = useOrganisationQueryParams()
+  const { pollSlug } = usePollQueryParams()
 
-  const { data: poll, isLoading } = usePollPublicInfo({ pollSlug })
+  const { data: poll, isLoading } = useFetchPublicPoll()
 
   const { customAdditionalQuestions } = poll ?? {
     customAdditionnalQuestions: [],

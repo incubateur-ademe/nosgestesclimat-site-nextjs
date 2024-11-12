@@ -5,12 +5,12 @@
 
 import Trans from '@/components/translation/Trans'
 import { tutorielClickQuestion } from '@/constants/tracking/pages/tutoriel'
-import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
+import { usePollQueryParams } from '@/hooks/organisations/usePollQueryParams'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function OrganisationPrivacy() {
-  const { pollSlug } = useOrganisationQueryParams()
+  const { pollSlug } = usePollQueryParams()
 
   const { t } = useClientTranslation()
 

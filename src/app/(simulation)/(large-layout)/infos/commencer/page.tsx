@@ -11,7 +11,7 @@ import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
-import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
+import { usePollQueryParams } from '@/hooks/organisations/usePollQueryParams'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useContext, useEffect, useState } from 'react'
@@ -67,7 +67,7 @@ const buttonLabels = {
 export default function Commencer() {
   const { postalCode, birthdate, customAnswers } = useContext(InfosContext)
 
-  const { pollSlug } = useOrganisationQueryParams()
+  const { pollSlug } = usePollQueryParams()
 
   const { goToSimulateurPage } = useSimulateurPage()
 
