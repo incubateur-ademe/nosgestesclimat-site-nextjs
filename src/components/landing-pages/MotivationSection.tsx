@@ -15,8 +15,8 @@ export default function MotivationSection({
   }[]
 }) {
   return (
-    <section className="w-full pb-10 pt-20 md:pb-20">
-      <div className="mx-auto flex max-w-full flex-col gap-6 px-4 md:max-w-5xl md:px-0">
+    <section className="w-full pb-10 pt-16 md:py-20">
+      <div className="mx-auto flex max-w-full flex-col gap-4 px-4 md:max-w-5xl md:px-0">
         <h2 className="!mb-0 text-center text-2xl md:text-3xl">{title}</h2>
 
         <Separator className="mx-auto my-0" />

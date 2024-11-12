@@ -1360,3 +1360,14 @@ entries:
   Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de<5>sensibiliser</5> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <8>identifier les gestes</8> pour la réduire et <12>entraîner leur entourage</12> dans ce mouvement.: En Nos Gestes Climat creemos en el poder de la <2>acción colectiva</2> para hacer frente a los retos medioambientales. Nuestra misión es<5>sensibilizar</5> y ayudar a todos -ciudadanos, empresas y autoridades locales- a comprender mejor su huella ecológica, de carbono o de agua, a <8>identificar las medidas</8> que pueden tomar para reducirla y a <12>implicar a quienes les rodean</12> en este movimiento.
   L'empreinte eau: Huella hídrica
   Lancez une campagne dans votre organisation: Lance una campaña en su organización
+  Un coup de pouce pour agir ?: ¿Una ayuda para pasar a la acción?
+  Aides financières: Ayuda financiera
+  Créer mon compte: Crear mi cuenta
+  Bons plans: Buenos planes
+  Logo de J'agis: Logotipo de J'agis
+  Que faire pour réduire mon empreinte ?: ¿Qué puedo hacer para reducir mi huella?
+  Découvrez toutes les aides financières auxquelles vous avez droit: Infórmese de todas las ayudas económicas a las que tiene derecho
+  Idées: Ideas
+  À partir de votre bilan, <1>J’agis</1> vous propose des actions concrètes et adaptées à vos envies et à vos moyens: Basándose en su evaluación, <1>J'agis</1> le propondrá acciones prácticas adaptadas a sus necesidades y recursos
+  Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>: Se ha producido un error. <2>Haga clic en este enlace para navegar a Estoy tomando medidas.</2>
+  Créer mon compte {isPending && <Loader className="ml-2" />}: <Loader className="ml-2" />Crear mi cuenta {isPending && }

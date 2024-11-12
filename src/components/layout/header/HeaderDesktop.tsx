@@ -82,7 +82,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                   activeMatches={['/classement', '/amis']}
                   title={t('Mes classements')}
                   data-cypress-id="amis-link">
-                  <Trans>Mes classements</Trans>
+                  <Trans>Mes groupes</Trans>
                 </NavLink>
               </li>
             </ul>

@@ -1367,3 +1367,14 @@ entries:
   Et la vôtre ?: What about yours?
   'Entreprises, collectivités, associations, écoles ou festivals : <2>engagez votre organisation dans une démarche durable</2> avec une campagne Nos Gestes Climat. Sensibilisez vos parties prenantes à l’empreinte carbone et à l’empreinte eau <6>grâce à nos outils clés en main</6>.': "Businesses, local authorities, associations, schools or festivals: <2>get your organisation involved in a sustainable approach</2> with an Nos Gestes Climat campaign. Raise your stakeholders' awareness of your carbon and water footprints <6>using our turnkey tools</6>."
   Voiture: Car
+  Un coup de pouce pour agir ?: A helping hand to take action?
+  Découvrez toutes les aides financières auxquelles vous avez droit: Find out about all the financial assistance to which you are entitled
+  Aides financières: Financial aid
+  Créer mon compte: Create my account
+  Bons plans: Good plans
+  Idées: Ideas
+  Que faire pour réduire mon empreinte ?: What can I do to reduce my footprint?
+  Logo de J'agis: J'agis logo
+  À partir de votre bilan, <1>J’agis</1> vous propose des actions concrètes et adaptées à vos envies et à vos moyens: Based on your assessment, <1>J'agis</1> will suggest practical actions tailored to your needs and resources
+  Créer mon compte {isPending && <Loader className="ml-2" />}: Create my account {isPending && <Loader className="ml-2" />}
+  Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>: An error has occurred. <2>Click on this link to navigate to I'm taking action.</2>
