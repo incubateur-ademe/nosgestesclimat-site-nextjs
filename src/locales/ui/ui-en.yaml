@@ -1325,3 +1325,14 @@ entries:
   Réduire la consommation de viande: Reducing meat consumption
   Privilégier les produits d'occasion: Favour second-hand products
   Empreinte eau: Water footprint
+  Un coup de pouce pour agir ?: A helping hand to take action?
+  Découvrez toutes les aides financières auxquelles vous avez droit: Find out about all the financial assistance to which you are entitled
+  Aides financières: Financial aid
+  Créer mon compte: Create my account
+  Bons plans: Good plans
+  Idées: Ideas
+  Que faire pour réduire mon empreinte ?: What can I do to reduce my footprint?
+  Logo de J'agis: J'agis logo
+  À partir de votre bilan, <1>J’agis</1> vous propose des actions concrètes et adaptées à vos envies et à vos moyens: Based on your assessment, <1>J'agis</1> will suggest practical actions tailored to your needs and resources
+  Créer mon compte {isPending && <Loader className="ml-2" />}: Create my account {isPending && <Loader className="ml-2" />}
+  Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>: An error has occurred. <2>Click on this link to navigate to I'm taking action.</2>

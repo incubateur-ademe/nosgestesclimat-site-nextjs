@@ -1318,3 +1318,14 @@ entries:
   Opter pour des vêtements durables: Opta por ropa sostenible
   'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé': 'Privilegiar los materiales sostenibles (lino, cáñamo, lana, y si es algodón: reciclado)'
   Empreinte eau: Huella hídrica
+  Un coup de pouce pour agir ?: ¿Una ayuda para pasar a la acción?
+  Aides financières: Ayuda financiera
+  Créer mon compte: Crear mi cuenta
+  Bons plans: Buenos planes
+  Logo de J'agis: Logotipo de J'agis
+  Que faire pour réduire mon empreinte ?: ¿Qué puedo hacer para reducir mi huella?
+  Découvrez toutes les aides financières auxquelles vous avez droit: Infórmese de todas las ayudas económicas a las que tiene derecho
+  Idées: Ideas
+  À partir de votre bilan, <1>J’agis</1> vous propose des actions concrètes et adaptées à vos envies et à vos moyens: Basándose en su evaluación, <1>J'agis</1> le propondrá acciones prácticas adaptadas a sus necesidades y recursos
+  Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>: Se ha producido un error. <2>Haga clic en este enlace para navegar a Estoy tomando medidas.</2>
+  Créer mon compte {isPending && <Loader className="ml-2" />}: <Loader className="ml-2" />Crear mi cuenta {isPending && }
