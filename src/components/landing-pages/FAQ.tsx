@@ -14,7 +14,7 @@ export default function FAQ({
   }[]
 }) {
   return (
-    <div className="relative mb-16 w-full bg-[#F6F6F5] py-20">
+    <div className="relative mb-16 w-full bg-[#F6F6F5] py-16 md:py-20">
       <Background
         direction="left"
         className="mt-6 bg-[#F6F6F5]"
@@ -33,11 +33,11 @@ export default function FAQ({
             <li key={`question-${index}`}>
               <details className="group rounded-lg bg-white px-4 py-4 transition-all duration-200">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-2">
-                  <p className="mb-0 text-sm font-bold md:text-base">
+                  <p className="mb-0 text-[13px] font-bold md:text-base">
                     {question}
                   </p>
 
-                  <PlusIcon className="inline-block h-8 w-8 origin-center transform transition-transform duration-300 group-open:rotate-45 group-open:fill-primary-700" />
+                  <PlusIcon className="inline-block h-8 w-8 min-w-8 origin-center transform transition-transform duration-300 group-open:rotate-45 group-open:fill-primary-700" />
                 </summary>
 
                 <div className="grid grid-rows-[0fr] transition-all duration-200 group-open:grid-rows-[1fr]">

@@ -71,7 +71,7 @@ export default function WhatDoWeMeasureWaterFootprint() {
       ]}
       description={
         <>
-          <p className="mb-8 text-center">
+          <p className="mb-10 text-center">
             <Trans>
               L’empreinte eau,{' '}
               <strong className="text-primary-600">
@@ -90,7 +90,7 @@ export default function WhatDoWeMeasureWaterFootprint() {
             </Trans>
           </p>
 
-          <p className="text-center font-bold text-secondary-700">
+          <p className="mb-0 text-center font-bold text-secondary-700">
             <Trans>
               Attention : l’empreinte eau ne tient pas compte de la consommation
               d’eau domestique (douche, toilettes, cuisine, arrosage) !

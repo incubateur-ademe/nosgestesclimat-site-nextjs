@@ -50,7 +50,7 @@ export default function DidYouKnowSlider({
 
                 <Separator className="mx-auto my-4 md:mx-0" />
 
-                <p className="mb-1 text-center text-sm md:text-left md:text-lg">
+                <p className="mb-2 text-center text-sm md:text-left md:text-lg">
                   {slide.content}
                 </p>
 

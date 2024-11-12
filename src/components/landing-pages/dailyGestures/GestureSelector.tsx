@@ -37,13 +37,13 @@ export default function GestureSelector({
           ))}
         </ul>
 
-        <div className="relative h-[300px]">
+        <div className="relative h-[120px] md:h-[300px]">
           <AnimatePresence mode="wait">
             <motion.ul
               key={selectedCategory}
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
+              exit={{ opacity: 0, y: -5 }}
               transition={{ duration: 0.2 }}
               className="absolute flex w-full flex-1 flex-col gap-6">
               {gestures[selectedCategory].gestureList.map((gesture, index) => (
@@ -64,14 +64,14 @@ export default function GestureSelector({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.4 }}
           className="flex w-[400px] max-w-full justify-center md:justify-end">
           <Image
             src={gestures[selectedCategory].imageSrc}
             alt=""
             width="400"
             height="400"
-            className="w-auto object-contain"
+            className="w-auto object-contain px-4"
           />
         </motion.div>
       </AnimatePresence>

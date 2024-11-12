@@ -45,6 +45,7 @@ export default function WhatItIsWaterFootprint() {
         <Image
           width={500}
           height={500}
+          className="px-5 md:px-0"
           src="/images/illustrations/water-footprint.svg"
           alt=""
         />
