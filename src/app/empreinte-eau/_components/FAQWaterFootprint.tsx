@@ -1,4 +1,5 @@
 import FAQ from '@/components/landing-pages/FAQ'
+import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
@@ -21,20 +22,27 @@ export default async function FAQWaterFootprint() {
               </p>
               <p>
                 <Trans>
-                  Au travers du calculateur Nos Gestes Climat, nous calculons la
-                  quantité d’eau consommée par chacun de vos usages (achat d’un
-                  produit ou aliment, utilisation d’un service, consommations
-                  d’énergies).
+                  Au travers{' '}
+                  <Link href="/">du calculateur Nos Gestes Climat</Link>, nous
+                  calculons{' '}
+                  <strong className="text-primary-700">
+                    la quantité d’eau consommée par chacun de vos usages
+                  </strong>{' '}
+                  (achat d’un produit ou aliment, utilisation d’un service,
+                  consommations d’énergies).
                 </Trans>
               </p>
               <p>
                 <Trans>
                   Ainsi, en calculant votre empreinte carbone, vous obtenez
-                  également une estimation de votre empreinte eau pour une
-                  vision complète de votre impact.
+                  également{' '}
+                  <strong className="text-primary-700">
+                    une estimation de votre empreinte eau
+                  </strong>{' '}
+                  pour une vision complète de votre impact.
                 </Trans>
               </p>
-              <p>
+              <p className="mb-0">
                 <Trans>
                   Il existe plusieurs méthodes pour calculer une empreinte eau.
                   Chacune présente des avantages, et aucune à ce stade ne permet
@@ -69,16 +77,22 @@ export default async function FAQWaterFootprint() {
             <>
               <p>
                 <Trans>
-                  L’eau domestique, celle qui sort de vos robinets pour la
-                  douche, la cuisine, le ménage... n'est pas incluse dans
-                  l'empreinte eau car elle est en grande majorité restituée dans
-                  le même bassin versant après traitement.
+                  <strong className="text-primary-700">L’eau domestique</strong>
+                  , celle qui sort de vos robinets pour la douche, la cuisine,
+                  le ménage... n'est pas incluse dans l'empreinte eau car elle
+                  est en grande majorité{' '}
+                  <strong className="text-primary-700">
+                    restituée dans le même bassin versant
+                  </strong>{' '}
+                  après traitement.
                 </Trans>
               </p>
 
               <p>
                 <Trans>
-                  Une fois utilisée, cette eau est dépolluée puis renvoyée dans
+                  Une fois utilisée, cette eau est{' '}
+                  <strong className="text-primary-700">dépolluée</strong> puis{' '}
+                  <strong className="text-primary-700">renvoyée</strong> dans
                   les cours d'eau locaux.
                 </Trans>
               </p>
@@ -87,14 +101,18 @@ export default async function FAQWaterFootprint() {
                 <Trans>
                   Ce n’est pas parce qu’elle n’est pas incluse qu’elle n’est pas
                   importante ! Régulièrement, de nombreux territoires français
-                  sont soumis à des restrictions d’eau liées à des périodes de
-                  sécheresse. Il est important de réduire sa consommation d'eau
-                  domestique pour mieux partager cette ressource vitale et
-                  limiter les pressions sur les réserves locales.{' '}
+                  sont soumis à{' '}
+                  <strong className="text-primary-700">
+                    des restrictions d’eau liées à des périodes de sécheresse
+                  </strong>
+                  . Il est important de réduire sa consommation d'eau domestique
+                  pour mieux partager cette{' '}
+                  <strong className="text-primary-700">ressource vitale</strong>{' '}
+                  et limiter les pressions sur les réserves locales.
                 </Trans>
               </p>
 
-              <p>
+              <p className="mb-0">
                 <Trans>
                   Pour aller plus loin :{' '}
                   <a
@@ -129,23 +147,23 @@ export default async function FAQWaterFootprint() {
               <ul className="mb-4 flex list-disc flex-col gap-2 pl-3">
                 <li>
                   <Trans>
-                    <strong>Eau bleue</strong> : eau de surface et souterraine
-                    prélevée pour l’irrigation, la production industrielle ou
-                    l'énergie ;
+                    <strong className="text-primary-700">Eau bleue</strong> :{' '}
+                    eau de surface et souterraine prélevée pour l’irrigation, la
+                    production industrielle ou l'énergie ;
                   </Trans>
                 </li>
                 <li>
                   <Trans>
-                    <strong>Eau verte</strong> : eau de pluie absorbée par les
-                    sols, utilisée pour les cultures sans irrigation
-                    artificielle ;
+                    <strong className="text-primary-700">Eau verte</strong> :{' '}
+                    eau de pluie absorbée par les sols, utilisée pour les
+                    cultures sans irrigation artificielle ;
                   </Trans>
                 </li>
                 <li>
                   <Trans>
-                    <strong>Eau grise</strong> : quantité d’eau nécessaire pour
-                    diluer les polluants générés par la production d’un bien ou
-                    service.
+                    <strong className="text-primary-700">Eau grise</strong> :{' '}
+                    quantité d’eau nécessaire pour diluer les polluants générés
+                    par la production d’un bien ou service.
                   </Trans>
                 </li>
               </ul>
@@ -154,11 +172,13 @@ export default async function FAQWaterFootprint() {
                 <Trans>
                   La méthodologie AWARE que nous utilisons pour calculer
                   l’empreinte eau se concentre sur les prélèvements d’eau, à
-                  savoir l’eau bleue. Elle ne tient pas compte de l’eau grise.
+                  savoir{' '}
+                  <strong className="text-primary-700">l’eau bleue</strong>.
+                  Elle ne tient pas compte de l’eau grise.
                 </Trans>
               </p>
 
-              <p>
+              <p className="mb-0">
                 <Trans>
                   Pour aller plus loin :{' '}
                   <a
@@ -185,66 +205,85 @@ export default async function FAQWaterFootprint() {
             <>
               <p>
                 <Trans>
-                  Voici quelques exemples d’empreinte eau pour des produits
-                  courants :
+                  Voici quelques exemples d’empreinte eau pour des{' '}
+                  <strong className="text-primary-700">
+                    produits courants
+                  </strong>
+                  :
                 </Trans>
               </p>
 
               <ul className="mb-4 flex list-disc flex-col gap-2 pl-3">
                 <li>
                   <Trans>
-                    <strong>Un jean</strong> : environ 30 000 litres d’eau,
-                    principalement pour la culture du coton ;
+                    <strong className="text-primary-700">Un jean</strong> :{' '}
+                    environ 30 000 litres d’eau, principalement pour la culture
+                    du coton ;
                   </Trans>
                 </li>
                 <li>
                   <Trans>
-                    <strong>Un hamburger de bœuf</strong> : environ 380 litres
-                    d’eau ;
+                    <strong className="text-primary-700">
+                      Un hamburger de bœuf
+                    </strong>{' '}
+                    : environ 380 litres d’eau ;
                   </Trans>
                 </li>
                 <li>
                   <Trans>
-                    <strong>Une tasse de café</strong> : 64 litres d’eau, de la
-                    culture à la transformation ;
+                    <strong className="text-primary-700">
+                      Une tasse de café
+                    </strong>{' '}
+                    : 64 litres d’eau, de la culture à la transformation ;
                   </Trans>
                 </li>
                 <li>
                   <Trans>
-                    <strong>Un kilo de riz</strong> : 14 000 litres d’eau ;
+                    <strong className="text-primary-700">Un kilo de riz</strong>{' '}
+                    : 14 000 litres d’eau ;
                   </Trans>
                 </li>
                 <li>
                   <Trans>
-                    <strong>Un kilo de pommes de terre</strong> : 330 litres
-                    d’eau ;
+                    <strong className="text-primary-700">
+                      Un kilo de pommes de terre
+                    </strong>{' '}
+                    : 330 litres d’eau ;
                   </Trans>
                 </li>
                 <li>
                   <Trans>
-                    <strong>Une tablette de chocolat (150g)</strong> : 235
+                    <strong className="text-primary-700">
+                      Une tablette de chocolat (150g)
+                    </strong>{' '}
+                    : 235 litres d’eau ;
+                  </Trans>
+                </li>
+                <li>
+                  <Trans>
+                    <strong className="text-primary-700">
+                      Un litre de lait
+                    </strong>{' '}
+                    : environ 330 litres d’eau ;
+                  </Trans>
+                </li>
+                <li>
+                  <Trans>
+                    <strong className="text-primary-700">Un œuf</strong> : 75
                     litres d’eau ;
                   </Trans>
                 </li>
                 <li>
                   <Trans>
-                    <strong>Un litre de lait</strong> : environ 330 litres d’eau
-                    ;
-                  </Trans>
-                </li>
-                <li>
-                  <Trans>
-                    <strong>Un œuf</strong> : 75 litres d’eau ;
-                  </Trans>
-                </li>
-                <li>
-                  <Trans>
-                    <strong>Une baguette de pain</strong> : 40 litres d’eau.
+                    <strong className="text-primary-700">
+                      Une baguette de pain
+                    </strong>{' '}
+                    : 40 litres d’eau.
                   </Trans>
                 </li>
               </ul>
 
-              <p>
+              <p className="mb-0">
                 <Trans>
                   De l’eau se cache derrière toutes nos consommations, dans des
                   proportions que nous ne soupçonnons pas toujours !
@@ -264,18 +303,24 @@ export default async function FAQWaterFootprint() {
               <p>
                 <Trans>
                   L’empreinte eau d’un français est de plusieurs milliers de
-                  litres par jour : entre 4 et 8000, en moyenne.
+                  litres par jour :{' '}
+                  <strong className="text-primary-700">entre 4 et 8000</strong>,
+                  en moyenne.
                 </Trans>
               </p>
 
-              <p>
+              <p className="mb-0">
                 <Trans>
                   À la différence de l’empreinte carbone, nous ne disposons pas
                   encore de données consolidées à l’échelle de la France, ni
                   d’objectifs à atteindre. Mais nous avons déjà une vision assez
                   juste des conséquences de notre accaparement de cette
-                  précieuse ressource pour l’ensemble du vivant. Nous pouvons
-                  agir collectivement pour réduire notre empreinte eau.
+                  précieuse ressource{' '}
+                  <strong className="text-primary-700">
+                    pour l’ensemble du vivant
+                  </strong>
+                  . Nous pouvons agir collectivement pour réduire notre
+                  empreinte eau.
                 </Trans>
               </p>
             </>
@@ -285,7 +330,7 @@ export default async function FAQWaterFootprint() {
           question: (
             <Trans>
               L’empreinte eau aboutit-elle aux mêmes conclusions que l’empreinte
-              carbone ?
+              carbone ?
             </Trans>
           ),
           answer: (
@@ -296,17 +341,24 @@ export default async function FAQWaterFootprint() {
 
               <p>
                 <Trans>
-                  Une hausse de 1 degré de la température du globe entraîne une
-                  hausse de 7% du taux d’humidité dans l’atmosphère. L’eau
-                  s’évapore plus, plus vite, et les phénomènes climatiques
-                  violents s’intensifient. Des régions s’assèchent, quand
-                  d’autres sont inondées.{' '}
+                  Une hausse de 1 degré de la température du globe entraîne{' '}
+                  <strong className="text-primary-700">
+                    une hausse de 7% du taux d’humidité
+                  </strong>{' '}
+                  dans l’atmosphère. L’eau s’évapore plus, plus vite, et les
+                  phénomènes climatiques violents s’intensifient.{' '}
+                  <strong className="text-primary-700">
+                    Des régions s’assèchent, quand d’autres sont inondées.
+                  </strong>
                 </Trans>
               </p>
 
               <p>
                 <Trans>
-                  Par ailleurs, l’empreinte humaine sur les sols
+                  Par ailleurs,{' '}
+                  <strong className="text-primary-700">
+                    l’empreinte humaine sur les sols
+                  </strong>{' '}
                   (artificialisation, cultures intensives, déforestation) a
                   réduit fortement leur capacité à absorber et retenir les eaux
                   pluviales. Elle s’évapore trop vite, et n’alimente plus autant
@@ -317,26 +369,42 @@ export default async function FAQWaterFootprint() {
 
               <p>
                 <Trans>
-                  Chaque geste compte pour garantir un accès durable à l'eau
-                  pour tous.{' '}
+                  <strong className="text-primary-700">
+                    Chaque geste compte
+                  </strong>{' '}
+                  pour garantir un accès durable à l'eau pour tous.
                 </Trans>
               </p>
 
               <p>
                 <Trans>
-                  Pour réduire son empreinte eau, il est nécessaire de changer
-                  nos habitudes quotidiennes.
+                  Pour réduire son empreinte eau, il est nécessaire de{' '}
+                  <strong className="text-primary-700">
+                    changer nos habitudes quotidiennes
+                  </strong>
+                  .
                 </Trans>
               </p>
 
-              <p>
+              <p className="mb-0">
                 <Trans>
-                  Adopter une alimentation moins gourmande en eau, en consommant
-                  moins de viande et en privilégiant les produits locaux et de
-                  saison, a également un impact significatif. Enfin, en évitant
-                  le gaspillage et en achetant des produits fabriqués de manière
-                  durable, on peut contribuer à la préservation des ressources
-                  hydriques tout en limitant notre empreinte environnementale.
+                  Adopter{' '}
+                  <strong className="text-primary-700">
+                    une alimentation moins gourmande en eau
+                  </strong>
+                  , en consommant moins de viande et en privilégiant{' '}
+                  <strong className="text-primary-700">
+                    les produits locaux et de saison
+                  </strong>
+                  , a également un impact significatif. Enfin, en évitant{' '}
+                  <strong className="text-primary-700">le gaspillage</strong> et
+                  en achetant des produits fabriqués de manière durable, on peut
+                  contribuer à la préservation des ressources hydriques tout en
+                  limitant{' '}
+                  <strong className="text-primary-700">
+                    notre empreinte environnementale
+                  </strong>
+                  .
                 </Trans>
               </p>
             </>

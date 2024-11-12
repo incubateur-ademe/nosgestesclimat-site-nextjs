@@ -54,7 +54,7 @@ export default async function Homepage() {
               <strong className="text-primary-700">
                 2 millions de personnes
               </strong>{' '}
-              ont déjà passé calculé leur empreinte !
+              ont déjà calculé leur empreinte !
             </Trans>
           </p>
 

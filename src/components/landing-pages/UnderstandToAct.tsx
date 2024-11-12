@@ -16,7 +16,7 @@ export default function UnderstandToAct({
 }) {
   return (
     <div className="relative w-full bg-heroLightBackground py-20">
-      <div className="mx-auto flex max-w-full flex-col gap-6 px-4 md:max-w-5xl md:px-0">
+      <div className="mx-auto flex max-w-full flex-col gap-4 px-4 md:max-w-5xl md:px-0">
         <h2
           className={twMerge(
             'mb-0 text-center text-2xl md:text-3xl',
@@ -26,19 +26,19 @@ export default function UnderstandToAct({
         </h2>
 
         {description && (
-          <section className="mb-8 text-center text-sm md:mx-auto md:max-w-[850px] md:text-lg">
+          <section className="mb-10 text-center text-sm md:mx-auto md:max-w-[850px] md:text-lg">
             {description}
           </section>
         )}
 
-        <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
           {posts.map((post, index) => (
             <PostThumbnail key={`${index}-post-thumbnail`} {...post} />
           ))}
         </ul>
       </div>
 
-      <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[5px] w-[100%] animate-rainbow-slow transition-all" />
+      <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[4px] w-[100%] animate-rainbow-slow transition-all" />
     </div>
   )
 }

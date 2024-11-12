@@ -19,8 +19,10 @@ export default function WhatDoWeMeasure({
   shouldUseDescriptionMaxWidth?: boolean
 }) {
   return (
-    <div className="mb-20 flex max-w-full flex-col gap-11 md:mx-auto md:max-w-5xl md:px-0">
-      <h2 className="px-4 text-center text-2xl md:px-0 md:text-3xl">{title}</h2>
+    <div className="mb-16 flex max-w-full flex-col gap-10 md:mx-auto md:mb-20 md:max-w-5xl md:px-0">
+      <h2 className="mb-0 px-4 text-center text-2xl md:px-0 md:text-3xl">
+        {title}
+      </h2>
 
       <section
         className={twMerge(
@@ -46,7 +48,7 @@ export default function WhatDoWeMeasure({
       </ul>
 
       <div className="flex overflow-x-auto md:hidden">
-        <div className="flex gap-4 px-[calc(50vw-6.5rem)]">
+        <div className="flex gap-5 px-[calc(50vw-6.5rem)]">
           {listItems.map(({ icon, title }, index) => (
             <li
               key={`list-item-${title}-${index}`}

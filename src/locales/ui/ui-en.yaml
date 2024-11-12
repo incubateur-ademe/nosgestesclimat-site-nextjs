@@ -1435,3 +1435,14 @@ entries:
   Pour un mode de vie plus durable, certaines actions <2>ont un impact plus fort que d’autres</2>. En intégrant ces gestes dans votre quotidien, vous pouvez fortement <5>réduire vos émissions de Co2</5>.: For a more sustainable lifestyle, some actions <2>have a greater impact than others</2>. By making these actions part of your daily routine, you can significantly <5>reduce your Co2 emissions</5>.
   Réaliser des travaux d’isolation de son logement (pour les propriétaires): Insulating your home (for homeowners)
   Ces émissions proviennent de diverses activités humaines dont les moyens de transport, l’alimentation, le logement, la consommation courante de produits et de services, la production industrielle ainsi que le service public.: These emissions come from a variety of human activities, including transport, food, housing, everyday consumption of goods and services, industrial production and public services.
+  Un coup de pouce pour agir ?: A helping hand to take action?
+  Découvrez toutes les aides financières auxquelles vous avez droit: Find out about all the financial assistance to which you are entitled
+  Aides financières: Financial aid
+  Créer mon compte: Create my account
+  Bons plans: Good plans
+  Idées: Ideas
+  Que faire pour réduire mon empreinte ?: What can I do to reduce my footprint?
+  Logo de J'agis: J'agis logo
+  À partir de votre bilan, <1>J’agis</1> vous propose des actions concrètes et adaptées à vos envies et à vos moyens: Based on your assessment, <1>J'agis</1> will suggest practical actions tailored to your needs and resources
+  Créer mon compte {isPending && <Loader className="ml-2" />}: Create my account {isPending && <Loader className="ml-2" />}
+  Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>: An error has occurred. <2>Click on this link to navigate to I'm taking action.</2>

@@ -13,17 +13,14 @@ export default function PostThumbnail({
     <a
       href={href}
       className="flex rounded-xl bg-white !no-underline md:flex-col">
-      <div className="relative w-1/3 min-w-28 md:mb-4 md:w-auto">
-        <div className="h-full md:h-[200px]">
-          <Image
-            src={imageSrc}
-            alt=""
-            width={300}
-            height={320}
-            className="h-full w-full rounded-xl object-cover"
-          />
-        </div>
-
+      <div className="relative min-h-[134px] w-1/3 min-w-28 md:mb-4 md:min-h-[240px] md:w-auto">
+        <Image
+          src={imageSrc}
+          alt=""
+          width={320}
+          height={240}
+          className="h-full w-full rounded-xl object-cover"
+        />
         {/* Hidden on mobile */}
         <div className="absolute left-2 top-2 hidden md:block ">
           <Badge className="inline-block text-xs">{category}</Badge>
@@ -32,7 +29,7 @@ export default function PostThumbnail({
 
       <div className="flex flex-col">
         {/* Hidden on desktop */}
-        <p className="mb-2 px-4 pt-4 text-[13px] font-bold text-primary-700 md:hidden">
+        <p className="mb-2 px-4 pt-4 text-xs font-bold text-primary-700 md:hidden md:text-[13px]">
           {category}
         </p>
 

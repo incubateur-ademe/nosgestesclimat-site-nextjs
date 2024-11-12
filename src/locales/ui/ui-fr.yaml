@@ -961,7 +961,6 @@ entries:
   Lire la suite: Lire la suite
   Mieux comprendre <2>notre impact sur les ressources en eau</2> est essentiel pour pouvoir agir efficacement. À travers une série d’articles, nous vous proposons des conseils pratiques, des idées inspirantes et des informations clés pour <6>réduire votre empreinte eau</6>.: Mieux comprendre <2>notre impact sur les ressources en eau</2> est essentiel pour pouvoir agir efficacement. À travers une série d’articles, nous vous proposons des conseils pratiques, des idées inspirantes et des informations clés pour <6>réduire votre empreinte eau</6>.
   Par ailleurs, l’empreinte humaine sur les sols (artificialisation, cultures intensives, déforestation) a réduit fortement leur capacité à absorber et retenir les eaux pluviales. Elle s’évapore trop vite, et n’alimente plus autant les cours d’eau, lacs et nappes phréatiques, qui progressivement s’épuisent.: Par ailleurs, l’empreinte humaine sur les sols (artificialisation, cultures intensives, déforestation) a réduit fortement leur capacité à absorber et retenir les eaux pluviales. Elle s’évapore trop vite, et n’alimente plus autant les cours d’eau, lacs et nappes phréatiques, qui progressivement s’épuisent.
-  Passer le test: Passer le test
   Pollution des eaux: Pollution des eaux
   'Pour aller plus loin : <2>Le lexique pour tout comprendre à l’empreinte eau</2>': 'Pour aller plus loin : <2>Le lexique pour tout comprendre à l’empreinte eau</2>'
   Pour réduire son empreinte eau, il est nécessaire de changer nos habitudes quotidiennes.: Pour réduire son empreinte eau, il est nécessaire de changer nos habitudes quotidiennes.
@@ -1006,7 +1005,6 @@ entries:
   Réduire la consommation de viande: Réduire la consommation de viande
   Empreinte eau: Empreinte eau
   <0>2 millions de personnes</0> ont déjà calculé leur empreinte !: <0>2 millions de personnes</0> ont déjà calculé leur empreinte !
-  <0>2 millions de personnes</0> ont déjà passé calculé leur empreinte !: <0>2 millions de personnes</0> ont déjà passé calculé leur empreinte !
   <0>L’empreinte carbone</0> représente la quantité de gaz à effet de serre émise par les activités humaines. Le calculateur d’empreinte carbone aide à <4>repérer les usages</4> qui contribuent le plus au changement climatique et à <8>choisir les actions</8> les plus efficaces pour réduire son impact.: <0>L’empreinte carbone</0> représente la quantité de gaz à effet de serre émise par les activités humaines. Le calculateur d’empreinte carbone aide à <4>repérer les usages</4> qui contribuent le plus au changement climatique et à <8>choisir les actions</8> les plus efficaces pour réduire son impact.
   <0>L’empreinte eau</0> mesure la quantité totale d’eau utilisée pour produire les biens et services que nous consommons. Contrairement à l’eau domestique, <4>elle inclut l’eau invisible</4> nécessaire pour cultiver nos aliments, fabriquer nos vêtements et produire de l’énergie.: <0>L’empreinte eau</0> mesure la quantité totale d’eau utilisée pour produire les biens et services que nous consommons. Contrairement à l’eau domestique, <4>elle inclut l’eau invisible</4> nécessaire pour cultiver nos aliments, fabriquer nos vêtements et produire de l’énergie.
   Accélérons l’impact collectif avec Nos Gestes Climat !: Accélérons l’impact collectif avec Nos Gestes Climat !
@@ -1116,3 +1114,14 @@ entries:
   Privilégier les modes de chauffage peu émetteurs de Co2 (électricité, bois, biomasse): Privilégier les modes de chauffage peu émetteurs de Co2 (électricité, bois, biomasse)
   Privilégier les transports en commun, si possible: Privilégier les transports en commun, si possible
   Réaliser des travaux d’isolation de son logement (pour les propriétaires): Réaliser des travaux d’isolation de son logement (pour les propriétaires)
+  À partir de votre bilan, <1>J’agis</1> vous propose des actions concrètes et adaptées à vos envies et à vos moyens: À partir de votre bilan, <1>J’agis</1> vous propose des actions concrètes et adaptées à vos envies et à vos moyens
+  Aides financières: Aides financières
+  Bons plans: Bons plans
+  Créer mon compte: Créer mon compte
+  Découvrez toutes les aides financières auxquelles vous avez droit: Découvrez toutes les aides financières auxquelles vous avez droit
+  Idées: Idées
+  Logo de J'agis: Logo de J'agis
+  Que faire pour réduire mon empreinte ?: Que faire pour réduire mon empreinte ?
+  Un coup de pouce pour agir ?: Un coup de pouce pour agir ?
+  Créer mon compte {isPending && <Loader className="ml-2" />}: Créer mon compte {isPending && <Loader className="ml-2" />}
+  Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>: Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>
