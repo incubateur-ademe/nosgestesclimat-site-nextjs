@@ -6,10 +6,14 @@ export default function TheySpeakAboutUs() {
   return (
     <div className="relative mb-10 px-4 py-16 md:py-28">
       {/* Helps cover the triangles of white shown because of the perspective change in Background */}
-      <div className="bg-heroLightBackground absolute left-0 top-0 h-1/2 w-[200%]" />
+      <div className="absolute left-0 top-0 h-1/2 w-[200%] bg-heroLightBackground" />
 
       {/* Add the background along with the tilted colorline */}
-      <Background className="bg-heroLightBackground" withColorLine />
+      <Background
+        className="bg-heroLightBackground"
+        withColorLine
+        direction="left"
+      />
 
       <div className="relative flex flex-col items-center gap-10  md:mx-auto md:max-w-5xl">
         <h2 className="text-center text-2xl md:text-3xl">

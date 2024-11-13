@@ -15,7 +15,7 @@ export default function TitleDescLinkBlock({
   }
 }) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-1 flex-col">
       <h3 className="mb-0 text-xl md:text-2xl">{title}</h3>
 
       <Separator className="my-4" />

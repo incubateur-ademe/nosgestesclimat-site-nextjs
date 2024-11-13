@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 export default function TwoFootprints() {
   return (
-    <div className="mb-20 flex flex-col items-center px-4 md:mx-auto md:max-w-5xl">
+    <div className="my-16 flex flex-col items-center px-4 md:mx-auto md:my-20 md:max-w-5xl">
       <div className="relative mb-16 pb-4 md:mb-20">
         <h2 className="mb-0 text-center text-2xl md:text-3xl">
           <Trans>Un calculateur, deux empreintes</Trans>
@@ -14,6 +14,7 @@ export default function TwoFootprints() {
         <ColorLine className="bg-rainbow absolute bottom-0 left-[15%] h-[3px] w-[70%] animate-rainbow-slow transition-all md:left-0 md:w-full" />
       </div>
 
+      {/* Displayed on desktop only */}
       <Image
         src="/images/misc/two-footprints.svg"
         className="hidden md:block"
@@ -25,6 +26,7 @@ export default function TwoFootprints() {
       <div className="flex flex-col gap-16 md:flex-row md:gap-8">
         <div className="flex flex-col">
           <div className="flex flex-col">
+            {/* Displayed on mobile only */}
             <div className="-mb-10 flex justify-center md:hidden">
               <Image
                 src="/images/misc/carbon-footprint.svg"
@@ -60,6 +62,7 @@ export default function TwoFootprints() {
 
         <div className="flex flex-col">
           <div className="flex flex-col">
+            {/* Displayed on mobile only */}
             <div className="-mb-10 flex justify-center md:hidden">
               <Image
                 src="/images/misc/water-footprint.svg"
