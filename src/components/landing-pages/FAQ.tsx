@@ -33,9 +33,9 @@ export default function FAQ({
             <li key={`question-${index}`}>
               <details className="group rounded-lg bg-white px-4 py-4 transition-all duration-200">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-2">
-                  <p className="mb-0 text-[13px] font-bold md:text-base">
+                  <h3 className="mb-0 text-[13px] font-bold md:text-base">
                     {question}
-                  </p>
+                  </h3>
 
                   <PlusIcon className="inline-block h-8 w-8 min-w-8 origin-center transform transition-transform duration-300 group-open:rotate-45 group-open:fill-primary-700" />
                 </summary>
