@@ -31,7 +31,7 @@ export default async function DailyGestureCarbonFootprint() {
             </Trans>
           </p>
 
-          <p className="font-bold text-secondary-700">
+          <p className="mb-0 font-bold text-secondary-700">
             <Trans>Voici quelques idées :</Trans>
           </p>
         </>

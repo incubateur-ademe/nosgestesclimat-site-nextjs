@@ -33,7 +33,7 @@ export default async function FAQCarbonFootprint() {
                   C’est pourquoi on parle “d’équivalent carbone”.
                 </Trans>
               </p>
-              <p>
+              <p className="mb-0">
                 <Trans>
                   Ces émissions bouleversent le climat, contribuant au
                   réchauffement global et à ses conséquences dévastatrices :
@@ -73,7 +73,7 @@ export default async function FAQCarbonFootprint() {
                 </Trans>
               </p>
 
-              <p>
+              <p className="mb-0">
                 <Trans>
                   En quantifiant l’ensemble de ces émissions, l’empreinte
                   carbone permet de mesurer l’impact sur le climat et de mettre
@@ -134,7 +134,7 @@ export default async function FAQCarbonFootprint() {
                 </Trans>
               </p>
 
-              <p>
+              <p className="mb-0">
                 <Trans>
                   La méthodologie du bilan carbone a été développée
                   par l’ADEME (Agence de la transition écologique).
@@ -251,7 +251,7 @@ export default async function FAQCarbonFootprint() {
                 </Trans>
               </p>
 
-              <p>
+              <p className="mb-0">
                 <Trans>
                   À l’échelle nationale, la France s’est fixée pour objectif
                   d’atteindre la neutralité carbone d’ici 2050, ce qui implique
@@ -292,7 +292,7 @@ export default async function FAQCarbonFootprint() {
                 </Trans>
               </p>
 
-              <p>
+              <p className="mb-0">
                 <Trans>
                   La France représente environ 1% des émissions globales mais
                   une partie majeure de son impact est indirecte et liée aux

@@ -36,7 +36,7 @@ export default function CarbonFootprintLandingPage() {
         </Trans>
       }
       heroDescription={
-        <div className="flex flex-col items-start gap-6">
+        <div className="flex flex-col items-start gap-4 md:gap-6">
           <p className="mb-0">
             <Trans>
               Calculez votre{' '}

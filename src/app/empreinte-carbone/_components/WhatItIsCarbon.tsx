@@ -26,7 +26,7 @@ export default function WhatItIsCarbon() {
               etc.
             </Trans>
           </p>
-          <p>
+          <p className="mb-0">
             <Trans>
               Le consensus scientifique est formel,{' '}
               <strong className="text-primary-600">

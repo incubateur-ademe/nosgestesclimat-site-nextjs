@@ -7,7 +7,7 @@ export default function WhatDoWeMeasureCarbon() {
     <WhatDoWeMeasure
       title={<Trans>Calculer son empreinte carbone</Trans>}
       description={
-        <p className="text-center">
+        <p className="mb-0 text-center">
           <Trans>
             Le calculateur carbone permet de comprendre quels sont nos usages
             qui contribuent le plus au changement climatique et de saisir{' '}
