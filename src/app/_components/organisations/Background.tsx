@@ -21,7 +21,7 @@ export default function Background({
       )}
       style={{
         transform: `perspective(20rem) rotateY(${
-          direction === 'right' ? -2 : 2
+          direction === 'right' ? -3 : 3
         }deg)`,
       }}>
       {withColorLine && (
