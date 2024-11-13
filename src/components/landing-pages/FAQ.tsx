@@ -17,7 +17,7 @@ export default function FAQ({
     <div className="relative mb-16 w-full bg-[#F6F6F5] py-16 md:py-20">
       <Background
         direction="left"
-        className="mt-6 bg-[#F6F6F5]"
+        className="-bottom-10 top-auto mt-6 h-[200px] rotate-12 bg-[#F6F6F5]"
         withColorLine
       />
 
@@ -33,14 +33,14 @@ export default function FAQ({
             <li key={`question-${index}`}>
               <details className="group rounded-lg bg-white px-4 py-4 transition-all duration-200">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-2">
-                  <p className="mb-0 text-[13px] font-bold md:text-base">
+                  <h3 className="mb-0 text-[13px] font-bold md:text-base">
                     {question}
-                  </p>
+                  </h3>
 
                   <PlusIcon className="inline-block h-8 w-8 min-w-8 origin-center transform transition-transform duration-300 group-open:rotate-45 group-open:fill-primary-700" />
                 </summary>
 
-                <div className="grid grid-rows-[0fr] transition-all duration-200 group-open:grid-rows-[1fr]">
+                <div className="grid grid-rows-[0fr] transition-all duration-200 ease-in-out group-open:grid-rows-[1fr]">
                   <div className="overflow-hidden">
                     <div className="pt-4 text-sm last:mb-0 md:text-base">
                       {answer}

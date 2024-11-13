@@ -229,6 +229,10 @@ module.exports = {
           '50%': { transform: 'translateY(-5px)' },
           '100%': { transform: 'translateY(0px)' },
         },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
       },
       animation: {
         valuechange: 'valuechange 0.5s ease-out forwards',
@@ -245,6 +249,7 @@ module.exports = {
         'swim-backwards-fast': 'swimBackwards 5s linear infinite',
         'swim-backwards-slow': 'swimBackwards 15s linear infinite',
         'pulse-bg': 'pulse-bg 4000ms ease-in-out infinite',
+        'fade-in': 'fade-in 0.2s ease-out',
       },
       backgroundImage: {
         'icons-mobile': "url('/images/misc/mobileIcons.svg')",
