@@ -17,9 +17,9 @@ export async function generateMetadata() {
   const { t } = await getServerTranslation()
 
   return getMetadataObject({
-    title: t("Calculateur d'empreinte eau personnelle - Nos Gestes Climat"),
+    title: t('Empreinte eau : comprendre, évaluer, économiser l’eau'),
     description: t(
-      'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte eau.'
+      'Découvrez les litres d’eau cachés derrière chacun de vos repas, vêtements, appareils… Adoptez des actions concrètes pour réduire votre empreinte eau'
     ),
     alternates: {
       canonical: '/empreinte-eau',

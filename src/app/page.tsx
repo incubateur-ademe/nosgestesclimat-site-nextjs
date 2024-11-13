@@ -32,11 +32,9 @@ const InteractiveIllustration = dynamic(
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
   return getMetadataObject({
-    title: t(
-      "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat"
-    ),
+    title: t('Calculez votre empreinte carbone et eau en 10 minutes !'),
     description: t(
-      'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.'
+      "2 millions de personnes ont déjà calculé leur empreinte sur le climat avec le calculateur Nos Gestes Climat ! Et vous, qu'attendez-vous pour faire le test ?"
     ),
     alternates: {
       canonical: '',

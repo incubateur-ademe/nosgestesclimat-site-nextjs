@@ -17,9 +17,9 @@ export async function generateMetadata() {
   const { t } = await getServerTranslation()
 
   return getMetadataObject({
-    title: t("Calculateur d'empreinte carbone personnelle - Nos Gestes Climat"),
+    title: t('Empreinte carbone : comprendre, mesurer, réduire son impact'),
     description: t(
-      'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone.'
+      'Informez-vous sur l’empreinte carbone, de sa définition aux actions les plus impactantes pour réduire ses émissions et enclencher sa transition écologique'
     ),
     alternates: {
       canonical: '/empreinte-carbone',
