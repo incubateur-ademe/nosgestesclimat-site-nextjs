@@ -2,8 +2,14 @@
 
 import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
+import {
+  getLandingDidYouKnowSlider,
+  getLandingDidYouKnowSliderValue,
+} from '@/helpers/tracking/landings'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
+import { useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import DynamicCTAButton from '../cta/DynamicCTAButton'
@@ -17,6 +23,10 @@ export default function DidYouKnowSlider({
     highlight: ReactNode
   }[]
 }) {
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const pathname = usePathname()
+
   return (
     <div className="relative bg-heroLightBackground pb-20 pt-16">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 md:flex-row md:gap-0">
@@ -28,6 +38,7 @@ export default function DidYouKnowSlider({
           autoplaySpeed={4000}
           fade
           easing="ease-in-out"
+          afterChange={(index) => setCurrentSlide(index)}
           className="max-w-[594px]">
           {slides.map((slide) => (
             <li
@@ -62,7 +73,22 @@ export default function DidYouKnowSlider({
           ))}
         </Slider>
         <div>
-          <DynamicCTAButton />
+          <DynamicCTAButton
+            trackingEvents={{
+              start: getLandingDidYouKnowSlider(
+                pathname,
+                getLandingDidYouKnowSliderValue(currentSlide + 1)
+              ),
+              resume: getLandingDidYouKnowSlider(
+                pathname,
+                getLandingDidYouKnowSliderValue(currentSlide + 1)
+              ),
+              results: getLandingDidYouKnowSlider(
+                pathname,
+                getLandingDidYouKnowSliderValue(currentSlide + 1)
+              ),
+            }}
+          />
         </div>
       </div>
 

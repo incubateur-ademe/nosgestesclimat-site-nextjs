@@ -1,7 +1,13 @@
 import TitleDescLinkBlock from '@/components/landing-pages/TitleDescLinkBlock'
 import Trans from '@/components/translation/Trans'
+import {
+  getLandingClickModelDocumentation,
+  getLandingClickNouveautes,
+} from '@/helpers/tracking/landings'
+import { headers } from 'next/headers'
 
 export default function ModelInfo() {
+  const pathname = headers().get('x-pathname') || '/'
   return (
     <div className="bg-heroLightBackground px-4 py-12 md:py-20">
       <div className="flex flex-col items-center gap-10  md:mx-auto md:max-w-5xl">
@@ -26,6 +32,7 @@ export default function ModelInfo() {
               href: '/documentation',
               text: <Trans>Découvrir la documentation</Trans>,
             }}
+            trackingEvent={getLandingClickModelDocumentation(pathname)}
           />
 
           <TitleDescLinkBlock
@@ -46,6 +53,7 @@ export default function ModelInfo() {
               href: '/nouveautes',
               text: <Trans>Voir les nouveautés</Trans>,
             }}
+            trackingEvent={getLandingClickNouveautes(pathname)}
           />
         </div>
       </div>

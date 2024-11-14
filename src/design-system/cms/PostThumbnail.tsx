@@ -1,5 +1,8 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import type { LandingPagePostType } from '@/types/landing-page'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
 import Badge from '../layout/Badge'
 
@@ -8,11 +11,13 @@ export default function PostThumbnail({
   category,
   imageSrc,
   href,
+  trackingEvent,
 }: LandingPagePostType) {
   return (
     <a
       href={href}
-      className="flex rounded-xl bg-white !no-underline md:flex-col">
+      className="flex rounded-xl bg-white !no-underline md:flex-col"
+      onClick={() => trackEvent(trackingEvent)}>
       <div className="relative min-h-[134px] w-1/3 min-w-28 md:mb-4 md:min-h-[240px] md:w-auto">
         <Image
           src={imageSrc}

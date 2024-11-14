@@ -1,6 +1,7 @@
 import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Image from 'next/image'
+import CreateGroupLink from './mobilise/CreateGroupLink'
+import CreateOrganisation from './mobilise/CreateOrganisation'
 
 export default function Mobilise() {
   return (
@@ -27,9 +28,7 @@ export default function Mobilise() {
             </Trans>
           </p>
 
-          <ButtonLink href="/amis">
-            <Trans>Créer un groupe</Trans>
-          </ButtonLink>
+          <CreateGroupLink />
         </div>
 
         <div className="order-first md:order-last">
@@ -71,9 +70,7 @@ export default function Mobilise() {
             </Trans>
           </p>
 
-          <ButtonLink color="secondary" href="/organisations">
-            <Trans>Créer une campagne</Trans>
-          </ButtonLink>
+          <CreateOrganisation />
         </div>
       </div>
     </div>
