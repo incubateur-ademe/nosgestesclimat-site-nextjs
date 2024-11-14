@@ -6,7 +6,7 @@ export default function DidYouKnowCarbon() {
     <DidYouKnowSlider
       slides={[
         {
-          illustration: '/images/icons/computer.svg',
+          illustration: '/images/icons/trophee.svg',
           content: (
             <Trans>
               L'empreinte carbone moyenne d'un français est de{' '}

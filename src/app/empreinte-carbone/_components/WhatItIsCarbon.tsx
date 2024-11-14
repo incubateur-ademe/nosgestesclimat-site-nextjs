@@ -40,9 +40,9 @@ export default function WhatItIsCarbon() {
       }
       illustration={
         <Image
-          width={500}
-          height={500}
-          src="/images/illustrations/girl-thinking.svg"
+          width={450}
+          height={450}
+          src="/images/illustrations/people-raising-arm.svg"
           alt=""
         />
       }

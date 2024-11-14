@@ -22,7 +22,14 @@ export default async function MotivationSectionCarbonFootprint() {
         {
           title: <Trans>Passer le test</Trans>,
           icon: (
-            <Image width={50} height={50} src="/images/icons/pipe.svg" alt="" />
+            <div className="flex h-12 w-12 items-center justify-center">
+              <Image
+                width={32}
+                height={32}
+                src="/images/icons/calculator.svg"
+                alt=""
+              />
+            </div>
           ),
           description: (
             <Trans>
@@ -34,12 +41,14 @@ export default async function MotivationSectionCarbonFootprint() {
         {
           title: <Trans>Agir au quotidien</Trans>,
           icon: (
-            <Image
-              width={50}
-              height={50}
-              src="/images/icons/waves.svg"
-              alt=""
-            />
+            <div className="flex h-12 w-12 items-center justify-center">
+              <Image
+                width={32}
+                height={32}
+                src="/images/icons/bicep.svg"
+                alt=""
+              />
+            </div>
           ),
           description: (
             <Trans>
@@ -51,7 +60,14 @@ export default async function MotivationSectionCarbonFootprint() {
         {
           title: <Trans>S'engager collectivement</Trans>,
           icon: (
-            <Image width={50} height={50} src="/images/icons/tap.svg" alt="" />
+            <div className="flex h-12 w-12 items-center justify-center">
+              <Image
+                width={48}
+                height={48}
+                src="/images/icons/handshake.svg"
+                alt=""
+              />
+            </div>
           ),
           description: (
             <Trans>

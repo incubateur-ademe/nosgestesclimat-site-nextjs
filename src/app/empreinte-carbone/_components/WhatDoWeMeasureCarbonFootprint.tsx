@@ -23,12 +23,14 @@ export default function WhatDoWeMeasureCarbon() {
       listItems={[
         {
           icon: (
-            <Image
-              width={50}
-              height={50}
-              src="/images/icons/electricity.svg"
-              alt=""
-            />
+            <div className="flex h-12 w-12 items-center justify-center">
+              <Image
+                width={48}
+                height={48}
+                src="/images/icons/bike.svg"
+                alt=""
+              />
+            </div>
           ),
           title: (
             <Trans>
@@ -38,12 +40,14 @@ export default function WhatDoWeMeasureCarbon() {
         },
         {
           icon: (
-            <Image
-              width={50}
-              height={50}
-              src="/images/icons/sheep.svg"
-              alt=""
-            />
+            <div className="flex h-12 w-12 items-center justify-center">
+              <Image
+                width={48}
+                height={48}
+                src="/images/icons/meat.svg"
+                alt=""
+              />
+            </div>
           ),
           title: (
             <Trans>
@@ -53,12 +57,14 @@ export default function WhatDoWeMeasureCarbon() {
         },
         {
           icon: (
-            <Image
-              width={50}
-              height={50}
-              src="/images/icons/electricity.svg"
-              alt=""
-            />
+            <div className="flex h-12 w-12 items-center justify-center">
+              <Image
+                width={48}
+                height={48}
+                src="/images/icons/wood.svg"
+                alt=""
+              />
+            </div>
           ),
           title: (
             <Trans>
@@ -69,12 +75,14 @@ export default function WhatDoWeMeasureCarbon() {
 
         {
           icon: (
-            <Image
-              width={50}
-              height={50}
-              src="/images/icons/computer.svg"
-              alt=""
-            />
+            <div className="flex h-12 w-12 items-center justify-center">
+              <Image
+                width={48}
+                height={48}
+                src="/images/icons/computer.svg"
+                alt=""
+              />
+            </div>
           ),
           title: <Trans>Vos achats (équipements, vêtements, loisirs).</Trans>,
         },
