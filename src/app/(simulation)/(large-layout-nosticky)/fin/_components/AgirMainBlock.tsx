@@ -45,7 +45,7 @@ export default function AgirMainBlock() {
           <div className="text-red-600">
             <Trans>
               Une erreur est survenue.{' '}
-              <a href={data?.redirectUrl} target="_blank">
+              <a href={data?.redirectUrl} rel="noreferrer" target="_blank">
                 Cliquez sur ce lien pour naviguer vers J'agis.
               </a>
             </Trans>
