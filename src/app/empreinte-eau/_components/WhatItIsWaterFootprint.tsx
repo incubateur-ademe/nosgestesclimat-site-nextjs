@@ -1,8 +1,10 @@
 import WhatItIs from '@/components/landing-pages/WhatItIs'
 import Trans from '@/components/translation/Trans'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default function WhatItIsWaterFootprint() {
+export default async function WhatItIsWaterFootprint() {
+  const { t } = await getServerTranslation()
   return (
     <WhatItIs
       title={<Trans>Qu'est-ce que l'empreinte eau ?</Trans>}
@@ -42,7 +44,9 @@ export default function WhatItIsWaterFootprint() {
           height={500}
           className="px-5 md:px-0"
           src="/images/illustrations/water-footprint.svg"
-          alt=""
+          alt={t(
+            "Une balance indiquant la quantité d'eau nécessaire pour produire un ordinateur"
+          )}
         />
       }
     />
