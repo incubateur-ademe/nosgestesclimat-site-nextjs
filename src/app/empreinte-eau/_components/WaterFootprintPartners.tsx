@@ -12,8 +12,8 @@ export default function WaterFootprintPartners() {
       <Image
         src="/images/misc/logo-agences-eau.svg"
         alt="Logo des agences de l'eau"
-        width="90"
-        height="30"
+        width="200"
+        height="200"
         className="h-auto w-20"
       />
     </>

@@ -54,7 +54,7 @@ export default function DidYouKnowSlider({
                   {slide.content}
                 </p>
 
-                <p className="mb-0 text-center text-sm font-bold text-secondary-700 md:text-left md:text-lg">
+                <p className="mb-0 mt-4 pb-4 text-center text-sm font-bold text-secondary-700 md:text-left md:text-lg">
                   {slide.highlight}
                 </p>
               </div>

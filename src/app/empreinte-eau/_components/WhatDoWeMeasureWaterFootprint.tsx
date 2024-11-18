@@ -1,8 +1,11 @@
 import WhatDoWeMeasure from '@/components/landing-pages/WhatDoWeMeasure'
 import Trans from '@/components/translation/Trans'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default function WhatDoWeMeasureWaterFootprint() {
+export default async function WhatDoWeMeasureWaterFootprint() {
+  const { t } = await getServerTranslation()
+
   return (
     <WhatDoWeMeasure
       title={<Trans>Que calcule-t-on dans l’empreinte eau ?</Trans>}
@@ -13,7 +16,7 @@ export default function WhatDoWeMeasureWaterFootprint() {
               width={50}
               height={50}
               src="/images/icons/apple.svg"
-              alt=""
+              alt={t('Une pomme, symbolisant le lien entre eau et agriculture')}
             />
           ),
           title: (
@@ -28,7 +31,9 @@ export default function WhatDoWeMeasureWaterFootprint() {
               width={50}
               height={50}
               src="/images/icons/tee-shirt.svg"
-              alt=""
+              alt={t(
+                "Un tee-shirt, symbolisant la consommation d'eau pour l'industrie textile"
+              )}
             />
           ),
           title: <Trans>La culture du coton de nos vêtements</Trans>,
@@ -39,7 +44,7 @@ export default function WhatDoWeMeasureWaterFootprint() {
               width={50}
               height={50}
               src="/images/icons/sheep.svg"
-              alt=""
+              alt={t('Un mouton, liant empreinte eau et élevage')}
             />
           ),
           title: (
@@ -52,7 +57,9 @@ export default function WhatDoWeMeasureWaterFootprint() {
               width={50}
               height={50}
               src="/images/icons/computer.svg"
-              alt=""
+              alt={t(
+                "Un ordinateur, illustrant la consommation d'eau par le numérique"
+              )}
             />
           ),
           title: <Trans>L'extraction des matériaux pour le numérique</Trans>,
@@ -63,7 +70,7 @@ export default function WhatDoWeMeasureWaterFootprint() {
               width={50}
               height={50}
               src="/images/icons/electricity.svg"
-              alt=""
+              alt={t("Un éclair, symbolisant la production d'électricité")}
             />
           ),
           title: <Trans>La production d’électricité</Trans>,

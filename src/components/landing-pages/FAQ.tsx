@@ -28,11 +28,11 @@ export default function FAQ({
           <p className="text-sm font-bold md:text-xl">{subTitle}</p>
         </div>
 
-        <ul className="flex flex-1 flex-col gap-3">
+        <ul className="flex flex-1 list-none flex-col gap-3">
           {questions.map(({ question, answer }, index) => (
             <li key={`question-${index}`}>
               <details className="group rounded-lg bg-white px-4 py-4 transition-all duration-200">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-2">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-2 [&::-webkit-details-marker]:hidden [&::marker]:hidden">
                   <h3 className="mb-0 text-[13px] font-bold md:text-base">
                     {question}
                   </h3>
