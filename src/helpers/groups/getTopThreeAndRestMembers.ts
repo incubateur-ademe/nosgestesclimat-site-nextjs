@@ -6,8 +6,8 @@ export const getTopThreeAndRestMembers = (
   metric: Metrics
 ) => {
   const sortedMembers = members.sort((memberA, memberB) => {
-    const totalA = memberA?.simulation?.computedResults?.[metric]?.bilan
-    const totalB = memberB?.simulation?.computedResults?.[metric]?.bilan
+    const totalA = memberA.simulation.computedResults[metric].bilan
+    const totalB = memberB.simulation.computedResults[metric].bilan
 
     return totalA !== undefined && totalB !== undefined ? totalA - totalB : -1
   })
