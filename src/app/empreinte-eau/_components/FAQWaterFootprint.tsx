@@ -47,20 +47,11 @@ export default async function FAQWaterFootprint() {
                   Il existe plusieurs méthodes pour calculer une empreinte eau.
                   Chacune présente des avantages, et aucune à ce stade ne permet
                   de saisir toute la complexité de la question des impacts de
-                  l’humain sur le cycle de l’eau. Notre choix s’est porté sur{' '}
-                  <a
-                    href="https://nosgestesclimat.fr/blog/lexique-eau-tout-comprendre"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={t(
-                      "Lire l'article sur la méthode AWARE, nouvelle page"
-                    )}>
-                    la méthode AWARE
-                  </a>
-                  , qui permet de valoriser à sa juste mesure le stress hydrique
-                  des régions concernées par les consommations d’eau. C’est la
-                  méthode recommandée par la convention européenne, et
-                  plébiscitée par l’ADEME pour ses calculs d’ACV.
+                  l’humain sur le cycle de l’eau. Notre choix s’est porté sur la
+                  méthode AWARE , qui permet de valoriser à sa juste mesure le
+                  stress hydrique des régions concernées par les consommations
+                  d’eau. C’est la méthode recommandée par la convention
+                  européenne, et plébiscitée par l’ADEME pour ses calculs d’ACV.
                 </Trans>
               </p>
             </>

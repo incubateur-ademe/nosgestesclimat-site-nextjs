@@ -16,7 +16,7 @@ export default function PostThumbnail({
   return (
     <a
       href={href}
-      className="flex rounded-xl bg-white !no-underline md:flex-col">
+      className="flex rounded-xl bg-white !no-underline !duration-500 md:flex-col md:transition-transform md:hover:translate-y-[-6px]">
       <div className="relative min-h-[134px] w-1/3 min-w-28 md:mb-4 md:min-h-[240px] md:w-auto">
         <Image
           src={imageSrc}

@@ -41,12 +41,7 @@ export default function MotivationSectionWaterFootprint() {
         {
           title: <Trans>Pollution des eaux</Trans>,
           icon: (
-            <Image
-              width={50}
-              height={50}
-              src="/images/icons/waves.svg"
-              alt=""
-            />
+            <Image width={50} height={50} src="/images/icons/tap.svg" alt="" />
           ),
           description: (
             <Trans>
@@ -59,7 +54,12 @@ export default function MotivationSectionWaterFootprint() {
         {
           title: <Trans>Accès à l'eau</Trans>,
           icon: (
-            <Image width={50} height={50} src="/images/icons/tap.svg" alt="" />
+            <Image
+              width={50}
+              height={50}
+              src="/images/icons/waves.svg"
+              alt=""
+            />
           ),
           description: (
             <Trans>

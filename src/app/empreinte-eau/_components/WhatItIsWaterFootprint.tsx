@@ -1,5 +1,4 @@
 import WhatItIs from '@/components/landing-pages/WhatItIs'
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Image from 'next/image'
 
@@ -27,12 +26,8 @@ export default function WhatItIsWaterFootprint() {
           </p>
           <p>
             <Trans>
-              Empreinte eau et{' '}
-              <Link className="font-bold" href="/empreinte-carbone">
-                empreinte carbone
-              </Link>{' '}
-              sont complémentaires, et les comprendre permet d’agir en faveur
-              d’une gestion{' '}
+              Empreinte eau et empreinte carbone sont complémentaires, et les
+              comprendre permet d’agir en faveur d’une gestion{' '}
               <strong className="text-primary-600">
                 plus durable des ressources naturelles
               </strong>{' '}
