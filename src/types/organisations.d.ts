@@ -76,7 +76,7 @@ export type PublicOrganisationPoll = BaseOrganisationPoll & {
   organisation: PublicOrganisation
 }
 
-type AdditionalQuestionsAnswer =
+export type AdditionalQuestionsAnswer =
   | {
       type: SimulationAdditionalQuestionAnswerType.default
       key: PollDefaultAdditionalQuestion
@@ -97,8 +97,9 @@ export type Simulation = {
   computedResults: ComputedResults
   progression: number
   additionalQuestionsAnswers: AdditionalQuestionsAnswer[]
-  savedViaEmail: boolean
+  savedViaEmail?: boolean
   user?: User
+  polls?: Array<{ id: string; slug: string }>
 }
 
 export type OrgaSettingsInputsType = {
