@@ -1,15 +1,16 @@
 import { carboneMetric } from '@/constants/metric'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
-import {
+import type {
   DottedName,
   NGCRuleNode,
   NGCRules,
 } from '@incubateur-ademe/nosgestesclimat'
 import { captureException } from '@sentry/react'
-import Engine, { PublicodesExpression } from 'publicodes'
+import type { PublicodesExpression } from 'publicodes';
+import Engine from 'publicodes'
 import { useCallback, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
-import { Metric } from '../../types'
+import type { Metric } from '../../types'
 
 /**
  * Initiate the engine based on the rules we pass

@@ -1,4 +1,4 @@
-import {
+import type {
   SupportedRegion,
   SupportedRegions,
 } from '@incubateur-ademe/nosgestesclimat'

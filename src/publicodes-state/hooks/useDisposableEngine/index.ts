@@ -2,11 +2,12 @@ import { carboneMetric } from '@/constants/metric'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
 import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import Engine, { PublicodesExpression } from 'publicodes'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { PublicodesExpression } from 'publicodes';
+import Engine from 'publicodes'
 import { useCallback, useContext, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
-import { Metric, Situation } from '../../types'
+import type { Metric, Situation } from '../../types'
 
 type Props = {
   rules?: any

@@ -1,6 +1,7 @@
+import type {
+  PreventNavigationContextType} from '@/app/_components/mainLayoutProviders/PreventNavigationProvider';
 import {
-  PreventNavigationContext,
-  PreventNavigationContextType,
+  PreventNavigationContext
 } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import { useContext } from 'react'
 

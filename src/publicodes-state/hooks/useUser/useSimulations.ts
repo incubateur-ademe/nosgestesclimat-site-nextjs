@@ -1,9 +1,10 @@
 'use client'
 
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
-import { Migration } from '@publicodes/tools/migration'
-import { Dispatch, SetStateAction, useCallback, useMemo } from 'react'
-import { Simulation, UpdateCurrentSimulationProps } from '../../types'
+import type { Migration } from '@publicodes/tools/migration'
+import type { Dispatch, SetStateAction} from 'react';
+import { useCallback, useMemo } from 'react'
+import type { Simulation, UpdateCurrentSimulationProps } from '../../types'
 
 type Props = {
   simulations: Simulation[]

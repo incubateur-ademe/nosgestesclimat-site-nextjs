@@ -4,7 +4,7 @@ import Link from '@/components/Link'
 import ColorLine from '@/design-system/layout/ColorLine'
 import DefaultLink from 'next/link'
 import { usePathname } from 'next/navigation'
-import { HTMLAttributes, JSX, PropsWithChildren } from 'react'
+import type { HTMLAttributes, JSX, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {

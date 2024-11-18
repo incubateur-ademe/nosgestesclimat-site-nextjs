@@ -10,7 +10,7 @@ import {
 } from '@/constants/tracking/pages/pollDashboard'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import CopyInput from '@/design-system/inputs/CopyInput'
-import { PollData } from '@/types/organisations'
+import type { PollData } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useParams } from 'next/navigation'
 

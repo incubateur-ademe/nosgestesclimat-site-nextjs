@@ -4,10 +4,11 @@ import Link from '@/components/Link'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRules } from '@/hooks/useRules'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
-import { Situation } from '@/publicodes-state/types'
+import type { Situation } from '@/publicodes-state/types'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import Engine, { Evaluation } from 'publicodes'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { Evaluation } from 'publicodes';
+import Engine from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 
 const demoDottedNames: DottedName[] = [

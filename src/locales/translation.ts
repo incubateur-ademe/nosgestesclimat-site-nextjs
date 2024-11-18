@@ -2,8 +2,9 @@
 	This module contains all types and functions related to the translation.
 */
 
-import { Lang, LangInfos, YamlEntry } from '@/types/translation'
-import { i18n } from 'i18next'
+import type { LangInfos, YamlEntry } from '@/types/translation';
+import { Lang } from '@/types/translation'
+import type { i18n } from 'i18next'
 import faqEnYaml from './faq/FAQ-en.yaml'
 import faqEsYaml from './faq/FAQ-es.yaml'
 import faqFrYaml from './faq/FAQ-fr.yaml'

@@ -1,11 +1,12 @@
 'use client'
 
 import { carboneMetric } from '@/constants/metric'
-import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import { EvaluatedNode, utils } from 'publicodes'
+import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import type { EvaluatedNode} from 'publicodes';
+import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
-import { Metric } from '../../types'
+import type { Metric } from '../../types'
 import useCurrentSimulation from '../useCurrentSimulation'
 import useChoices from './useChoices'
 import useContent from './useContent'

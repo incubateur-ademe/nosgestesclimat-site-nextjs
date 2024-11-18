@@ -1,6 +1,6 @@
 'use client'
 
-import { NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import type { NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 
 type Props = {

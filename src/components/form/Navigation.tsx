@@ -14,8 +14,9 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { MouseEvent, useCallback, useMemo } from 'react'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { MouseEvent} from 'react';
+import { useCallback, useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
 import SyncIndicator from './navigation/SyncIndicator'
 

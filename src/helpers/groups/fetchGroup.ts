@@ -1,5 +1,5 @@
 import { GROUP_URL } from '@/constants/urls'
-import { Group } from '@/types/groups'
+import type { Group } from '@/types/groups'
 
 export const fetchGroup = async (groupId: string) => {
 	const response = await fetch(`${GROUP_URL}/${groupId}`)

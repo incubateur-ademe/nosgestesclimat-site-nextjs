@@ -1,6 +1,6 @@
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
-import { Organisation } from '@/types/organisations'
+import type { Organisation } from '@/types/organisations'
 import MaxWidthContent from '../layout/MaxWidthContent'
 import Trans from '../translation/Trans'
 

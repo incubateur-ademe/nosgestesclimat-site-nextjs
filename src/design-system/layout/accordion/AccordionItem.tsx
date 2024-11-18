@@ -1,6 +1,7 @@
 import ChevronRight from '@/components/icons/ChevronRight'
 import { motion } from 'framer-motion'
-import { ReactNode, useState } from 'react'
+import type { ReactNode} from 'react';
+import { useState } from 'react'
 
 export type AccordionItemType = {
   title: ReactNode

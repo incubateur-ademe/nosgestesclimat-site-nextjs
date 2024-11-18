@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import CheckCircleIcon from '../icons/CheckCircleIcon'
 import Trans from '../translation/Trans'
 

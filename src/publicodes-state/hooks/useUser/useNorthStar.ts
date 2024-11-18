@@ -1,6 +1,6 @@
-import { NorthStarType, NorthStarValue } from '@/types/northstar'
-import { Dispatch, SetStateAction } from 'react'
-import { User } from '../../types'
+import type { NorthStarType, NorthStarValue } from '@/types/northstar'
+import type { Dispatch, SetStateAction } from 'react'
+import type { User } from '../../types'
 
 type Props = {
   setUser: Dispatch<SetStateAction<User>>

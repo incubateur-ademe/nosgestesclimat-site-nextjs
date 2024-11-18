@@ -1,6 +1,6 @@
 'use client'
 
-import { Personas } from '@incubateur-ademe/nosgestesclimat'
+import type { Personas } from '@incubateur-ademe/nosgestesclimat'
 import Persona from './Persona'
 
 type Props = {

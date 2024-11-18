@@ -1,8 +1,9 @@
 import Link from '@/components/Link'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
-import { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import { Rule, utils } from 'publicodes'
+import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type { Rule} from 'publicodes';
+import { utils } from 'publicodes'
 
 const KEYS_TO_OMIT = [
   'titre',

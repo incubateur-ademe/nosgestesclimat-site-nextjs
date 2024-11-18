@@ -6,7 +6,7 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()

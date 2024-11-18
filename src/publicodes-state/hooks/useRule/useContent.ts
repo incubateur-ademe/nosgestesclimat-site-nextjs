@@ -1,13 +1,13 @@
 'use client'
 
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
-import {
+import type {
   DottedName,
   NGCRuleNode,
   Suggestions,
 } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
-import { FormattedSuggestion } from '../../types'
+import type { FormattedSuggestion } from '../../types'
 
 type Props = {
   dottedName: DottedName

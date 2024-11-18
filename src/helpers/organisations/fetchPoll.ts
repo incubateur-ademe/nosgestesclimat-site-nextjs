@@ -1,5 +1,5 @@
 import { SERVER_URL } from '@/constants/urls'
-import { PollInfo } from '@/types/organisations'
+import type { PollInfo } from '@/types/organisations'
 import axios from 'axios'
 
 type Props = {

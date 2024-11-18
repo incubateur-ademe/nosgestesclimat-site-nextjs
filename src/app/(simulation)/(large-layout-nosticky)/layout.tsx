@@ -1,6 +1,6 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import Header from '@/components/layout/Header'
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 
 export default async function LargeLayoutNoSticky({
   children,

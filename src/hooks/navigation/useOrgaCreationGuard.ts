@@ -1,4 +1,4 @@
-import { Organisation } from '@/types/organisations'
+import type { Organisation } from '@/types/organisations'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { usePreventNavigation } from './usePreventNavigation'

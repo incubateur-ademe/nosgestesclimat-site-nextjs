@@ -1,4 +1,4 @@
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 // Gathered from nosgestesclimat-site
 const filteredDottedNames: DottedName[] = [
