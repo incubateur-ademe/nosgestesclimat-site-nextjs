@@ -1,5 +1,5 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { Migration} from '@publicodes/tools/migration';
+import type { Migration } from '@publicodes/tools/migration'
 import { migrateSituation } from '@publicodes/tools/migration'
 import type { Simulation } from '../types'
 

@@ -1,7 +1,7 @@
 import { SERVER_URL } from '@/constants/urls'
 import { useUser } from '@/publicodes-state'
 import type { PollData } from '@/types/organisations'
-import type { UseQueryResult} from '@tanstack/react-query';
+import type { UseQueryResult } from '@tanstack/react-query'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 

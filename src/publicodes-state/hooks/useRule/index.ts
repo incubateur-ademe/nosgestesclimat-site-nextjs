@@ -2,7 +2,7 @@
 
 import { carboneMetric } from '@/constants/metric'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode} from 'publicodes';
+import type { EvaluatedNode } from 'publicodes'
 import { utils } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'

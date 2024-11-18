@@ -1,5 +1,9 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { ComputedResults, ComputedResultsFootprint, Metric } from '../types'
+import type {
+  ComputedResults,
+  ComputedResultsFootprint,
+  Metric,
+} from '../types'
 
 export function getComputedResults({
   metrics,

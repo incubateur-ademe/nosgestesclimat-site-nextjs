@@ -2,7 +2,7 @@
 
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import type { Migration } from '@publicodes/tools/migration'
-import type { Dispatch, SetStateAction} from 'react';
+import type { Dispatch, SetStateAction } from 'react'
 import { useCallback, useMemo } from 'react'
 import type { Simulation, UpdateCurrentSimulationProps } from '../../types'
 

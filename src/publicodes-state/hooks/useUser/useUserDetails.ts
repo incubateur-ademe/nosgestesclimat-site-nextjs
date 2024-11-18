@@ -1,6 +1,10 @@
-import type { Dispatch, SetStateAction} from 'react';
+import type { Dispatch, SetStateAction } from 'react'
 import { useCallback } from 'react'
-import type { RegionFromGeolocation, User, UserOrganisationInfo } from '../../types'
+import type {
+  RegionFromGeolocation,
+  User,
+  UserOrganisationInfo,
+} from '../../types'
 
 type Props = {
   user: User

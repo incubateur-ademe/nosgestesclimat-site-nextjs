@@ -3,7 +3,7 @@ import getSomme from '@/publicodes-state/helpers/getSomme'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
 import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { PublicodesExpression } from 'publicodes';
+import type { PublicodesExpression } from 'publicodes'
 import Engine from 'publicodes'
 import { useCallback, useContext, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'

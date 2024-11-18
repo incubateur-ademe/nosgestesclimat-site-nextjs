@@ -6,7 +6,7 @@ import type {
   NGCRuleNode,
   NodeValue,
 } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode, PublicodesExpression} from 'publicodes';
+import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { utils } from 'publicodes'
 import { useCallback } from 'react'
 import getType from '../../helpers/getType'

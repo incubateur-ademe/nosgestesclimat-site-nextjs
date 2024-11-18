@@ -4,11 +4,11 @@ import type {
   Metrics,
   SuggestionValue,
 } from '@incubateur-ademe/nosgestesclimat'
+import type PublicodesEngine from 'publicodes'
 import type {
   ParsedRules as PublicodesParsedRules,
   Situation as PublicodesSituation,
-} from 'publicodes';
-import type PublicodesEngine from 'publicodes'
+} from 'publicodes'
 
 // Utils
 

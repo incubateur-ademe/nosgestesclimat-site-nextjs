@@ -1,7 +1,7 @@
 'use client'
 
 import type { Migration } from '@publicodes/tools/migration'
-import type { Dispatch, SetStateAction} from 'react';
+import type { Dispatch, SetStateAction } from 'react'
 import { createContext } from 'react'
 import { v4 as uuid } from 'uuid'
 import type { Simulation, Tutorials, User } from '../../types'

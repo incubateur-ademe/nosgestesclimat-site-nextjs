@@ -6,7 +6,7 @@ import type {
   NGCRules,
 } from '@incubateur-ademe/nosgestesclimat'
 import { captureException } from '@sentry/react'
-import type { PublicodesExpression } from 'publicodes';
+import type { PublicodesExpression } from 'publicodes'
 import Engine from 'publicodes'
 import { useCallback, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
