@@ -25,6 +25,7 @@ export default function TheySpeakAboutUs() {
             <Image
               src="/images/ambassadeurs/france_info.png"
               alt="France Info"
+              className="h-auto w-24 md:w-36"
               width={150}
               height={150}
             />
@@ -34,6 +35,7 @@ export default function TheySpeakAboutUs() {
             <Image
               src="/images/ambassadeurs/france_inter.png"
               alt="France Inter"
+              className="h-auto w-16 md:w-24"
               width={100}
               height={100}
             />
@@ -41,9 +43,10 @@ export default function TheySpeakAboutUs() {
 
           <li>
             <Image
-              src="/images/ambassadeurs/bonpote.png"
+              src="/images/ambassadeurs/bon-pote-no-background.svg"
               alt="Bon Pote"
-              width={100}
+              className="h-auto w-24 md:w-36"
+              width={140}
               height={100}
             />
           </li>
@@ -52,16 +55,18 @@ export default function TheySpeakAboutUs() {
             <Image
               src="/images/ambassadeurs/bfntv.png"
               alt="BFM TV"
-              width={100}
+              className="h-auto w-12 md:w-20"
+              width={80}
               height={100}
             />
           </li>
 
           <li>
             <Image
-              src="/images/ambassadeurs/vert.jpg"
+              src="/images/ambassadeurs/vert_rectangulaire.png"
               alt="Vert Media"
-              width={100}
+              className="h-auto w-20 md:w-32"
+              width={120}
               height={100}
             />
           </li>
@@ -70,7 +75,8 @@ export default function TheySpeakAboutUs() {
             <Image
               src="/images/ambassadeurs/challenges.png"
               alt="Challenges"
-              width={100}
+              className="h-auto w-28 md:w-40"
+              width={160}
               height={100}
             />
           </li>

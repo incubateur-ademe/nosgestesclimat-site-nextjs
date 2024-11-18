@@ -16,10 +16,10 @@ export default function TwoFootprints() {
 
       {/* Displayed on desktop only */}
       <Image
-        src="/images/misc/two-footprints.svg"
+        src="/images/misc/two-footprint.png"
         className="hidden md:block"
         alt=""
-        width={800}
+        width={600}
         height={800}
       />
 
@@ -29,7 +29,7 @@ export default function TwoFootprints() {
             {/* Displayed on mobile only */}
             <div className="-mb-10 flex justify-center md:hidden">
               <Image
-                src="/images/misc/carbon-footprint.svg"
+                src="/images/misc/carbon-footprint.png"
                 alt=""
                 width={300}
                 height={300}
@@ -65,7 +65,7 @@ export default function TwoFootprints() {
             {/* Displayed on mobile only */}
             <div className="-mb-10 flex justify-center md:hidden">
               <Image
-                src="/images/misc/water-footprint.svg"
+                src="/images/misc/water-footprint.png"
                 alt=""
                 width={300}
                 height={300}

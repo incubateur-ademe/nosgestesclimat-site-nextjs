@@ -32,12 +32,11 @@ const InteractiveIllustration = dynamic(
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
   return getMetadataObject({
-    title: t(
-      "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat"
-    ),
+    title: t('Calculez votre empreinte carbone et eau en 10 minutes !'),
     description: t(
-      'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.'
+      "2 millions de personnes ont déjà calculé leur empreinte sur le climat avec le calculateur Nos Gestes Climat ! Et vous, qu'attendez-vous pour faire le test ?"
     ),
+    image: '/images/misc/calculer-empreinte-carbone-et-eau.png',
     alternates: {
       canonical: '',
     },
@@ -55,7 +54,8 @@ export default async function Homepage() {
               <strong className="text-primary-700">
                 2 millions de personnes
               </strong>{' '}
-              ont déjà calculé leur empreinte !
+              ont déjà <br />
+              calculé leur empreinte !
             </Trans>
           </p>
 
@@ -67,8 +67,10 @@ export default async function Homepage() {
         <div className="flex flex-col items-center gap-6 md:items-start md:gap-10">
           <p className="order-2 mb-0 text-lg md:order-1 md:text-2xl">
             <Trans>
-              Calculez votre <strong>empreinte carbone</strong> et votre{' '}
-              <strong>empreinte eau</strong> en{' '}
+              Calculez votre{' '}
+              <strong className="text-primary-700">empreinte carbone</strong> et
+              votre <strong className="text-primary-700">empreinte eau</strong>{' '}
+              en{' '}
               <strong className="text-secondary-700">
                 seulement 10 minutes
               </strong>
