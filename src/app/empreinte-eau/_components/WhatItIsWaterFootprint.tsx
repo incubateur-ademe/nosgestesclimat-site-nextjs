@@ -43,7 +43,7 @@ export default async function WhatItIsWaterFootprint() {
           width={500}
           height={500}
           className="px-5 md:px-0"
-          src="/images/illustrations/water-footprint.svg"
+          src="/images/illustrations/definition-empreinte-eau.svg"
           alt={t(
             "Une balance indiquant la quantité d'eau nécessaire pour produire un ordinateur"
           )}
