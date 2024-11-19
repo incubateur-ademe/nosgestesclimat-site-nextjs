@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
-import { UpdatePollProps } from '@/types/organisations'
+import type { UpdatePollProps } from '@/types/organisations'
 import { useEffect } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 

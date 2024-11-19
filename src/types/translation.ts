@@ -1,6 +1,6 @@
-import { TOptions } from 'i18next'
-import { JSX } from 'react'
-import { TransProps } from 'react-i18next'
+import type { TOptions } from 'i18next'
+import type { JSX } from 'react'
+import type { TransProps } from 'react-i18next'
 
 export enum Lang {
   Default = 'Fr',

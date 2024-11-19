@@ -27,7 +27,7 @@ export function useUpdateOrganisation({ email }: { email: string }) {
       expectedNumberOfParticipants,
       organisationType,
       numberOfCollaborators,
-      sendCreationEmail
+      sendCreationEmail,
     }: Props) =>
       axios
         .post(

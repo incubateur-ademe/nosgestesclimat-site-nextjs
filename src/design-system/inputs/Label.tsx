@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 
 export default function Label({
   children,

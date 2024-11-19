@@ -1,14 +1,14 @@
 'use client'
 
-import { Group, Participant } from '@/types/groups'
+import type { Group, Participant } from '@/types/groups'
 
 import Trans from '@/components/translation/Trans'
 import { eauMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
 import { useUser } from '@/publicodes-state'
-import { Metrics } from '@incubateur-ademe/nosgestesclimat'
-import { QueryObserverResult } from '@tanstack/react-query'
+import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
+import type { QueryObserverResult } from '@tanstack/react-query'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RankingMember from './ranking/RankingMember'

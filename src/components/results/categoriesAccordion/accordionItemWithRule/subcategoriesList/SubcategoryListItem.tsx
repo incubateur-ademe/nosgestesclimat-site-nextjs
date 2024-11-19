@@ -3,8 +3,8 @@ import { defaultMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
-import { Metric } from '@/publicodes-state/types'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { Metric } from '@/publicodes-state/types'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   subcategory: DottedName

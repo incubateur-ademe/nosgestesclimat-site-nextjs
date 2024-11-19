@@ -1,5 +1,5 @@
-import { Situation } from '@/publicodes-state/types'
-import { Situation as PublicodesSituation } from 'publicodes'
+import type { Situation } from '@/publicodes-state/types'
+import type { Situation as PublicodesSituation } from 'publicodes'
 
 // It shoudnlt be a situation type as it is a formatted situation from DB.
 export function unformatSituation(

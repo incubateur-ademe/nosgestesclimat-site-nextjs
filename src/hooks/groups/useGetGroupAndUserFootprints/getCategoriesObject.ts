@@ -1,9 +1,9 @@
-import { Simulation } from '@/publicodes-state/types'
-import {
+import type { Simulation } from '@/publicodes-state/types'
+import type {
   CategoriesAndSubcategoriesFootprintsType,
   ValueObject,
 } from '@/types/groups'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 export function getCategoriesObject({
   simulation,

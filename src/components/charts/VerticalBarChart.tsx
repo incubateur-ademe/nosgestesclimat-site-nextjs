@@ -1,7 +1,7 @@
 'use client'
 
 import Card from '@/design-system/layout/Card'
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {

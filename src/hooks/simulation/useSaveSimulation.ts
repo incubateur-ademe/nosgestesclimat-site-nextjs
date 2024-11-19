@@ -1,6 +1,6 @@
 import { SAVE_SIMULATION_URL } from '@/constants/urls'
 import { useUser } from '@/publicodes-state'
-import { Simulation } from '@/publicodes-state/types'
+import type { Simulation } from '@/publicodes-state/types'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useBackgroundSyncSimulation } from './useBackgroundSyncSimulation'

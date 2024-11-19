@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import { usePolls } from '@/hooks/organisations/usePolls'
 import { useUser } from '@/publicodes-state'
-import { Organisation } from '@/types/organisations'
+import type { Organisation } from '@/types/organisations'
 import { useMemo } from 'react'
 import OrganisationItem from './pollList/OrganisationItem'
 import PollItem from './pollList/PollItem'

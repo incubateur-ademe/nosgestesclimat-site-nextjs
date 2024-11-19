@@ -7,7 +7,7 @@ import {
   getTextCategoryColor,
 } from '@/helpers/getCategoryColorClass'
 import { useForm, useRule } from '@/publicodes-state'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 type Props = {
   notification: DottedName

@@ -3,7 +3,8 @@ import TrashIcon from '@/components/icons/TrashIcon'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
-import { KeyboardEvent, useState } from 'react'
+import type { KeyboardEvent} from 'react';
+import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {

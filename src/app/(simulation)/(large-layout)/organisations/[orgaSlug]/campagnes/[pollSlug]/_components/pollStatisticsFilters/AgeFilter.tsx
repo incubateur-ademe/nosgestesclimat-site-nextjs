@@ -1,9 +1,10 @@
 import Trans from '@/components/translation/Trans'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { getAgeFilterOptions } from '@/helpers/organisations/getAgeFilterOptions'
-import { SimulationRecap } from '@/types/organisations'
-import { SetStateAction, useContext } from 'react'
-import { MultiValue, SingleValue } from 'react-select'
+import type { SimulationRecap } from '@/types/organisations'
+import type { SetStateAction} from 'react';
+import { useContext } from 'react'
+import type { MultiValue, SingleValue } from 'react-select'
 import { FiltersContext } from '../FiltersProvider'
 
 export default function AgeFilter({

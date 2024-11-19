@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
-import {
+import type {
   SubmitHandler,
   UseFormHandleSubmit,
   UseFormRegister,

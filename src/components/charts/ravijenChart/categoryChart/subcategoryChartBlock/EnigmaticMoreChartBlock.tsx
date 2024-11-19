@@ -1,7 +1,7 @@
 'use client'
 
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = { category: DottedName; percentageSquashed: number }
 

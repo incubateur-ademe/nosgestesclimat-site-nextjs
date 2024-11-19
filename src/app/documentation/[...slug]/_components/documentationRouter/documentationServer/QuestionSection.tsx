@@ -2,7 +2,7 @@ import MessageIcon from '@/components/icons/MessageIcon'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
-import { Rule } from 'publicodes'
+import type { Rule } from 'publicodes'
 
 export default function QuestionSection({ rule }: { rule: Rule }) {
   if (!rule.question) return null

@@ -1,9 +1,9 @@
 import { useRule } from '@/publicodes-state'
-import { Journey } from '@/types/journey'
+import type { Journey } from '@/types/journey'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { JourneysInputDesktop } from './journeysInput/JourneysInputDesktop'
 import JourneysInputMobile from './journeysInput/JourneysInputMobile'
 

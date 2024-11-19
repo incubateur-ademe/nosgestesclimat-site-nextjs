@@ -24,7 +24,8 @@ import { formatEmail } from '@/utils/format/formatEmail'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { useEffect, useRef } from 'react'
-import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
+import type { SubmitHandler} from 'react-hook-form';
+import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './carbone/getResultsByEmail/Confirmation'
 

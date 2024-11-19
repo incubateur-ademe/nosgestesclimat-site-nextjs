@@ -5,7 +5,7 @@ import type {
   ComputedResultsFootprint,
   Simulation,
 } from '@/publicodes-state/types'
-import { Migration } from '@publicodes/tools/migration'
+import type { Migration } from '@publicodes/tools/migration'
 import { captureException } from '@sentry/react'
 import { v4 as uuidv4 } from 'uuid'
 

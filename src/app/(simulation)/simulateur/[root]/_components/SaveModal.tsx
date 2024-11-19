@@ -10,7 +10,8 @@ import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
+import type { SubmitHandler} from 'react-hook-form';
+import { useForm as useReactHookForm } from 'react-hook-form'
 import SaveSimulationForm from './saveModal/SaveSimulationForm'
 
 type Props = {

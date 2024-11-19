@@ -8,8 +8,9 @@ import {
   useCurrentSimulation,
   useUser,
 } from '@/publicodes-state'
-import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
-import { PropsWithChildren, Suspense, useState } from 'react'
+import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import type { PropsWithChildren} from 'react';
+import { Suspense, useState } from 'react'
 import Error500 from '../layout/500'
 import PRNumberHook from './providers/PRNumberHook'
 import SimulationSyncProvider from './providers/SimulationSyncProvider'

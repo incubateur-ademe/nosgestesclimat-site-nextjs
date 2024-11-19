@@ -1,7 +1,7 @@
 import { getPosts } from '@/helpers/markdown/getPosts'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
 import { utils } from 'publicodes'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

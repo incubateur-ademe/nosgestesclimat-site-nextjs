@@ -1,5 +1,6 @@
 import Markdown from '@/design-system/utils/Markdown'
-import { HTMLAttributes, JSX, PropsWithChildren, useState } from 'react'
+import type { HTMLAttributes, JSX, PropsWithChildren} from 'react';
+import { useState } from 'react'
 import QuestionButton from './QuestionButton'
 
 type Props = {

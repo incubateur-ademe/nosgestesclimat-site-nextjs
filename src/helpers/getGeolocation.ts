@@ -1,6 +1,6 @@
 'use server'
 
-import { RegionFromGeolocation } from '@/publicodes-state/types'
+import type { RegionFromGeolocation } from '@/publicodes-state/types'
 import axios from 'axios'
 
 export async function getGeolocation(): Promise<RegionFromGeolocation> {

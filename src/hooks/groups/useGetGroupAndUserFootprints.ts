@@ -1,4 +1,4 @@
-import {
+import type {
   CategoriesAndSubcategoriesFootprintsType,
   Participant,
 } from '@/types/groups'

@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
-import {
+import type {
   DottedName,
   NGCRule,
   NGCRules,

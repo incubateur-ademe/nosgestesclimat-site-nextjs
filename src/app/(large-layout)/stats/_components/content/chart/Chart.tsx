@@ -8,7 +8,7 @@ import {
 } from 'recharts'
 
 import { useLocale } from '@/hooks/useLocale'
-import { Dispatch, SetStateAction } from 'react'
+import type { Dispatch, SetStateAction } from 'react'
 import CustomTooltip from './CustomTooltip'
 import Search from './Search'
 

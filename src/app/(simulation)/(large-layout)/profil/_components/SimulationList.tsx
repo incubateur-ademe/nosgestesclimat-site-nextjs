@@ -9,7 +9,7 @@ import {
 } from '@/constants/tracking/pages/profil'
 import Button from '@/design-system/inputs/Button'
 import { useUser } from '@/publicodes-state'
-import { Simulation } from '@/publicodes-state/types'
+import type { Simulation } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function SimulationList() {

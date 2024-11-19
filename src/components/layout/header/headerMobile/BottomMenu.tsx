@@ -50,7 +50,7 @@ export default function BottomMenu() {
           onClick={() => trackEvent(headerClickClassements)}
           icon={AmisIcon}
           data-cypress-id="amis-link">
-          <Trans>Classements</Trans>
+          <Trans>Groupes</Trans>
         </NavLink>
       </li>
     </ul>

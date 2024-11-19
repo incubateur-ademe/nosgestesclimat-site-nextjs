@@ -1,5 +1,5 @@
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
-import { ChangeEventHandler, HTMLAttributes, ReactNode } from 'react'
+import type { ChangeEventHandler, HTMLAttributes, ReactNode } from 'react'
 import { Controller } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 
