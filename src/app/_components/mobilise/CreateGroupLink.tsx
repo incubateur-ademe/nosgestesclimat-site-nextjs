@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import { createGroupLink } from '@/constants/tracking/pages/mainLanding'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
