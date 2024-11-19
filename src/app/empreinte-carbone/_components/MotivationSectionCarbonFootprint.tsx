@@ -26,7 +26,7 @@ export default async function MotivationSectionCarbonFootprint() {
               <Image
                 width={32}
                 height={32}
-                src="/images/icons/calculator.svg"
+                src="/images/icons/icone-calculatrice.svg"
                 alt=""
               />
             </div>
@@ -45,7 +45,7 @@ export default async function MotivationSectionCarbonFootprint() {
               <Image
                 width={32}
                 height={32}
-                src="/images/icons/bicep.svg"
+                src="/images/icons/icone-biceps.svg"
                 alt=""
               />
             </div>
@@ -64,7 +64,7 @@ export default async function MotivationSectionCarbonFootprint() {
               <Image
                 width={48}
                 height={48}
-                src="/images/icons/handshake.svg"
+                src="/images/icons/icone-poignee-de-main.svg"
                 alt=""
               />
             </div>
