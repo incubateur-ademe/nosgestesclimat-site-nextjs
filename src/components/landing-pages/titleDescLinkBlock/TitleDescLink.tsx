@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 export default function TitleDescLink({
   href,
