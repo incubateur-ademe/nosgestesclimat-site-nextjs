@@ -68,7 +68,7 @@ export default function GestureSelector({
           className="flex w-[400px] max-w-full justify-center md:justify-end">
           <Image
             src={gestures[selectedCategory].imageSrc}
-            alt=""
+            alt={gestures[selectedCategory].imageAlt}
             width="400"
             height="400"
             className="w-auto object-contain px-4"

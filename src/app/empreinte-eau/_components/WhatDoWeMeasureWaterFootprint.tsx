@@ -15,7 +15,7 @@ export default async function WhatDoWeMeasureWaterFootprint() {
             <Image
               width={50}
               height={50}
-              src="/images/icons/apple.svg"
+              src="/images/icons/icone-alimentation.svg"
               alt={t('Une pomme, symbolisant le lien entre eau et agriculture')}
             />
           ),
@@ -30,7 +30,7 @@ export default async function WhatDoWeMeasureWaterFootprint() {
             <Image
               width={50}
               height={50}
-              src="/images/icons/tee-shirt.svg"
+              src="/images/icons/icone-textile.svg"
               alt={t(
                 "Un tee-shirt, symbolisant la consommation d'eau pour l'industrie textile"
               )}
@@ -43,7 +43,7 @@ export default async function WhatDoWeMeasureWaterFootprint() {
             <Image
               width={50}
               height={50}
-              src="/images/icons/sheep.svg"
+              src="/images/icons/icone-agriculture.svg"
               alt={t('Un mouton, liant empreinte eau et élevage')}
             />
           ),
@@ -56,7 +56,7 @@ export default async function WhatDoWeMeasureWaterFootprint() {
             <Image
               width={50}
               height={50}
-              src="/images/icons/computer.svg"
+              src="/images/icons/icone-numerique.svg"
               alt={t(
                 "Un ordinateur, illustrant la consommation d'eau par le numérique"
               )}
@@ -69,7 +69,7 @@ export default async function WhatDoWeMeasureWaterFootprint() {
             <Image
               width={50}
               height={50}
-              src="/images/icons/electricity.svg"
+              src="/images/icons/icone-electricite.svg"
               alt={t("Un éclair, symbolisant la production d'électricité")}
             />
           ),

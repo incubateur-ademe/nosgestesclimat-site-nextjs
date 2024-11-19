@@ -6,7 +6,7 @@ export default function DidYouKnowWaterFootprint() {
     <DidYouKnowSlider
       slides={[
         {
-          illustration: '/images/icons/computer.svg',
+          illustration: '/images/icons/icone-ordinateur.svg',
           content: (
             <Trans>
               La production d’un ordinateur nécessite 195 000 litres d’eau.
@@ -15,14 +15,14 @@ export default function DidYouKnowWaterFootprint() {
           highlight: <Trans>Considérable, non ?</Trans>,
         },
         {
-          illustration: '/images/icons/jeans.svg',
+          illustration: '/images/icons/icone-jeans.svg',
           content: (
             <Trans>L’empreinte eau d'un jean est de 30 000 litres d'eau.</Trans>
           ),
           highlight: <Trans>Impressionnant, non ?</Trans>,
         },
         {
-          illustration: '/images/icons/egg.svg',
+          illustration: '/images/icons/icone-oeuf.svg',
           content: (
             <Trans>Il faut 75 litres d’eau pour produire un oeuf.</Trans>
           ),

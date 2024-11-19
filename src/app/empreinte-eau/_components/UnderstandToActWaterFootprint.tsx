@@ -29,7 +29,10 @@ export default async function UnderstandToActWaterFootprint() {
           category: t('Empreinte eau'),
           title: t("Le lexique pour tout comprendre à l'empreinte eau"),
           href: '/blog/lexique-eau-tout-comprendre',
-          imageSrc: '/images/blog/philip-junior-mail-arroser-champ.jpg',
+          imageSrc: '/images/blog/seo/lexique-eau.jpg',
+          imageAlt: t(
+            "Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau"
+          ),
         },
         {
           category: t('Empreinte eau'),
@@ -37,7 +40,8 @@ export default async function UnderstandToActWaterFootprint() {
             'Les 3 réflexes à adopter pour une garde-robe économe en eau'
           ),
           href: '/blog/reflexes-textile-econome-empreinte-eau',
-          imageSrc: '/images/blog/priscilla-du-preez-garde-robe.jpg',
+          imageSrc: '/images/blog/textile-econome-eau.jpg',
+          imageAlt: t('Une garde-robe économe en eau'),
         },
         {
           category: t('Empreinte eau'),
@@ -45,7 +49,10 @@ export default async function UnderstandToActWaterFootprint() {
             "L'empreinte eau : pourquoi et comment avons-nous travaillé"
           ),
           href: '/blog/empreinte-eau-pourquoi-comment',
-          imageSrc: '/images/blog/trisha-downing-champ-coton.jpg',
+          imageSrc: '/images/blog/seo/textile-econome-eau.jpg',
+          imageAlt: t(
+            "Un champ de coton, illustrant le calcul de l'empreinte eau"
+          ),
         },
       ]}
     />

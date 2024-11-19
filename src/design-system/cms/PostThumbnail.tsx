@@ -6,11 +6,13 @@ export default function PostThumbnail({
   title,
   category,
   imageSrc,
+  imageAlt,
   href,
 }: {
   title: string
   category: string
   imageSrc: string
+  imageAlt: string
   href: string
 }) {
   return (
@@ -20,7 +22,7 @@ export default function PostThumbnail({
       <div className="relative min-h-[134px] w-1/3 min-w-28 md:mb-4 md:min-h-[240px] md:w-auto">
         <Image
           src={imageSrc}
-          alt=""
+          alt={imageAlt}
           width={320}
           height={240}
           className="h-full w-full rounded-xl object-cover"

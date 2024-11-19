@@ -89,9 +89,9 @@ export default async function WaterFootprintLandingPage() {
           <Image
             width={560}
             height={560}
-            src="/images/illustrations/hero-banner-LP-eau.svg"
+            src="/images/illustrations/mon-empreinte-eau.svg"
             alt={t(
-              "Un homme réfléchissant à l'empreinte eau du tee-shirt qu'il tient"
+              "Un homme dans un magasin réfléchissant à l'empreinte eau du tee-shirt qu'il tient"
             )}
           />
         }
