@@ -1,7 +1,7 @@
 {
   "name": "nosgestesclimat-site-nextjs",
   "license": "MIT",
-  "version": "2.4.0",
+  "version": "2.5.3",
   "description": "The leading open source climate footprint calculator",
   "repository": {
     "type": "git",
@@ -17,8 +17,9 @@
     "build": "next build",
     "build:analyze": "ANALYZE=true next build",
     "build:debug-memory": "next build --experimental-debug-memory-usage",
+    "format": "prettier --write \"**/*.{js,ts,md,json}\" && next lint --fix",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "prettier --check \"**/*.{js,ts,md,json}\" && next lint",
     "lint:types": "tsc --noEmit",
     "e2e": "cypress open --e2e",
     "e2e:generate": "node cypress/scripts/generateSpecsFromPersonas.mjs",
@@ -123,7 +124,7 @@
     "deepl-node": "^1.10.2",
     "dotenv": "^16.3.1",
     "eslint": "^8.52.0",
-    "eslint-config-next": "14.1.3",
+    "eslint-config-next": "15.0.3",
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-cypress": "^2.15.1",

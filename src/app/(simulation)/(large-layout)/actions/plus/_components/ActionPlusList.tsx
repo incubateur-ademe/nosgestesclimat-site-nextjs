@@ -5,9 +5,9 @@ import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useTempEngine } from '@/publicodes-state'
 
-import { Post } from '@/types/posts'
+import type { Post } from '@/types/posts'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
-import {
+import type {
   DottedName,
   NGCRule,
   NGCRules,

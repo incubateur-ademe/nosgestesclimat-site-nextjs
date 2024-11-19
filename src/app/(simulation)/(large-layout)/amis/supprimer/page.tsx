@@ -7,7 +7,7 @@ import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useDeleteGroup } from '@/hooks/groups/useDeleteGroup'
 import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { Participant } from '@/types/groups'
+import type { Participant } from '@/types/groups'
 import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 

@@ -5,7 +5,7 @@ import ChevronRight from '@/components/icons/ChevronRight'
 import Trans from '@/components/translation/Trans'
 import { classementClickOrganisation } from '@/constants/tracking/pages/classements'
 import Badge from '@/design-system/layout/Badge'
-import { Organisation } from '@/types/organisations'
+import type { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function OrganisationItem({

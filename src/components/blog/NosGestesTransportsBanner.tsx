@@ -7,7 +7,8 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
+import type { SubmitHandler} from 'react-hook-form';
+import { useForm as useReactHookForm } from 'react-hook-form'
 import Trans from '../translation/Trans'
 
 type Inputs = {

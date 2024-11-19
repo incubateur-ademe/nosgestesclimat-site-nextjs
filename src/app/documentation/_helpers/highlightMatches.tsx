@@ -1,4 +1,4 @@
-import { Matches } from '../_components/SearchBar'
+import type { Matches } from '../_components/SearchBar'
 
 export default function highlightMatches(str: string, matches: Matches) {
   if (!matches?.length) {

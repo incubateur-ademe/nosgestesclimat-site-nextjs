@@ -1,10 +1,10 @@
 import { getUserCategoryFootprintsSortedByDifference } from '@/helpers/groups/getUserCategoryFootprintsSortedByDifference'
-import {
+import type {
   CategoriesAndSubcategoriesFootprintsType,
   Participant,
   PointsFortsFaiblesType,
 } from '@/types/groups'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useGetGroupAndUserFootprints } from './useGetGroupAndUserFootprints'
 
 type Props = {

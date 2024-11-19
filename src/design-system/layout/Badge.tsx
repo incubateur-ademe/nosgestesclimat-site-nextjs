@@ -2,7 +2,7 @@ import {
   getBorderColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const colorClassNames = {

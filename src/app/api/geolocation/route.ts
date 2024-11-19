@@ -1,8 +1,9 @@
 import { defaultInitialRegion } from '@/constants/defaultRegion'
-import { RegionFromGeolocation } from '@/publicodes-state/types'
-import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import type { RegionFromGeolocation } from '@/publicodes-state/types'
+import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
-import { NextRequest, NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 import countries from './countries.json'
 import ue_country_codes from './ue_country_codes.json'
 

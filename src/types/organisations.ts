@@ -1,9 +1,9 @@
-import {
+import type {
   ComputedResults,
   Simulation,
   Situation,
 } from '@/publicodes-state/types'
-import { FunFacts } from '@incubateur-ademe/nosgestesclimat'
+import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 
 export type OrganisationSimulation = Simulation & {
   bilan: number

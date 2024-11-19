@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import { OrganisationPoll, UpdatePollProps } from '@/types/organisations'
+import type { OrganisationPoll, UpdatePollProps } from '@/types/organisations'
 import CustomQuestion from './customQuestions/CustomQuestion'
 
 type Props = {

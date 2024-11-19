@@ -1,7 +1,7 @@
 import Link from '@/components/Link'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
-import { HTMLProps } from 'react'
+import type { HTMLProps } from 'react'
 
 type Props = {
   href: string

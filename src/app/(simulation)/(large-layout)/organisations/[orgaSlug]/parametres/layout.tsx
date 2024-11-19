@@ -1,7 +1,7 @@
 import ToastDisplay from '@/components/messages/ToastDisplay'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 
 export async function generateMetadata({
   params,

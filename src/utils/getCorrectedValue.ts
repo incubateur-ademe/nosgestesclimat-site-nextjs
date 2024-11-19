@@ -1,7 +1,7 @@
 // Publicodes's % unit is strangely handlded
 // the nodeValue is * 100 to account for the unit
 
-import { EvaluatedNode } from 'publicodes'
+import type { EvaluatedNode } from 'publicodes'
 
 // hence we divide it by 100 and drop the unit
 export function getCorrectedValue({

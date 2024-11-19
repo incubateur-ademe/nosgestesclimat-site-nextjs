@@ -1,4 +1,5 @@
-import { ChangeEventHandler, ForwardedRef, forwardRef } from 'react'
+import type { ChangeEventHandler, ForwardedRef} from 'react';
+import { forwardRef } from 'react'
 import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
 

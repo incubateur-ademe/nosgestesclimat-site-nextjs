@@ -1,5 +1,6 @@
 import { captureException } from '@sentry/nextjs'
-import React, { ErrorInfo, ReactNode } from 'react'
+import type { ErrorInfo, ReactNode } from 'react';
+import React from 'react'
 import ErrorModal from './ErrorModal'
 
 interface ErrorBoundaryProps {

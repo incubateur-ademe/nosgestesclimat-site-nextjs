@@ -29,7 +29,12 @@ export default function MotivationSectionWaterFootprint() {
         {
           title: <Trans>Ressources en eau douce limitées</Trans>,
           icon: (
-            <Image width={50} height={50} src="/images/icons/pipe.svg" alt="" />
+            <Image
+              width={50}
+              height={50}
+              src="/images/icons/icone-eau.svg"
+              alt=""
+            />
           ),
           description: (
             <Trans>
@@ -41,7 +46,12 @@ export default function MotivationSectionWaterFootprint() {
         {
           title: <Trans>Pollution des eaux</Trans>,
           icon: (
-            <Image width={50} height={50} src="/images/icons/tap.svg" alt="" />
+            <Image
+              width={50}
+              height={50}
+              src="/images/icons/icone-pollution.svg"
+              alt=""
+            />
           ),
           description: (
             <Trans>
@@ -57,7 +67,7 @@ export default function MotivationSectionWaterFootprint() {
             <Image
               width={50}
               height={50}
-              src="/images/icons/waves.svg"
+              src="/images/icons/icone-robinet.svg"
               alt=""
             />
           ),

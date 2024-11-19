@@ -1,6 +1,6 @@
 import { carboneMetric } from '@/constants/metric'
-import { Simulation } from '@/publicodes-state/types'
-import { SimulationRecap } from '@/types/organisations'
+import type { Simulation } from '@/publicodes-state/types'
+import type { SimulationRecap } from '@/types/organisations'
 
 const MAX_VALUE = 100000
 

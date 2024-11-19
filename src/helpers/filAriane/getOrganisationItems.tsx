@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
-import { User } from '@/publicodes-state/types'
-import { PollData } from '@/types/organisations'
+import type { User } from '@/publicodes-state/types'
+import type { PollData } from '@/types/organisations'
 
 function formatSlugToName(slug: string) {
   return decodeURIComponent(slug).replaceAll('-', ' ')

@@ -1,7 +1,7 @@
 jest.mock('@/publicodes-state')
 
 import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
-import { Participant } from '@/types/groups'
+import type { Participant } from '@/types/groups'
 import { faker } from '@faker-js/faker'
 import { createGroup } from './fixtures/createGroup'
 

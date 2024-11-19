@@ -1,7 +1,7 @@
 import { SIMULATION_URL } from '@/constants/urls'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import {
+import type {
   NorthStarRatings,
   NorthStarType,
   NorthStarValue,

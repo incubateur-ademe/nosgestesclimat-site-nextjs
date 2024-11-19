@@ -1,5 +1,5 @@
 import { carboneMetric, eauMetric } from '@/constants/metric'
-import { Metric } from '@/publicodes-state/types'
+import type { Metric } from '@/publicodes-state/types'
 import { formatCarbonFootprint } from './formatCarbonFootprint'
 import { formatWaterFootprint } from './formatWaterFootprint'
 
