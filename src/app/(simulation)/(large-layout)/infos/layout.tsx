@@ -1,7 +1,7 @@
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 import InfosProvider from './_components/InfosProvider'
 
 export async function generateMetadata() {

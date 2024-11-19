@@ -7,8 +7,9 @@ import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { Journey } from '@/types/journey'
-import { Dispatch, SetStateAction, useState } from 'react'
+import type { Journey } from '@/types/journey'
+import type { Dispatch, SetStateAction} from 'react';
+import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { v4 as uuid } from 'uuid'
 

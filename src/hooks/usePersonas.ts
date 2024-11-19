@@ -1,10 +1,7 @@
 import { getPersonas } from '@/helpers/modelFetching/getPersonas'
-import { Personas } from '@incubateur-ademe/nosgestesclimat'
-import {
-  UseQueryResult,
-  keepPreviousData,
-  useQuery,
-} from '@tanstack/react-query'
+import type { Personas } from '@incubateur-ademe/nosgestesclimat'
+import type { UseQueryResult } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useLocale } from './useLocale'
 import { usePRNumber } from './usePRNumber'
 

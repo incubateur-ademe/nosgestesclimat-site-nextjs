@@ -1,5 +1,5 @@
 import Main from '@/design-system/layout/Main'
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 
 export default function ContentNarrow({ children }: PropsWithChildren) {
   return (

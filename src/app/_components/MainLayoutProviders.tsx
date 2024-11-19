@@ -2,9 +2,9 @@
 
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import { UserProvider } from '@/publicodes-state'
-import { RegionFromGeolocation } from '@/publicodes-state/types'
+import type { RegionFromGeolocation } from '@/publicodes-state/types'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 import { IframeOptionsProvider } from './mainLayoutProviders/IframeOptionsContext'
 import MainHooks from './mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from './mainLayoutProviders/PreventNavigationProvider'

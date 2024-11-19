@@ -1,4 +1,4 @@
-import { Personas } from '@incubateur-ademe/nosgestesclimat'
+import type { Personas } from '@incubateur-ademe/nosgestesclimat'
 import personasEN from '@incubateur-ademe/nosgestesclimat/public/personas-en.json'
 import personasES from '@incubateur-ademe/nosgestesclimat/public/personas-es.json'
 import personasFR from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json'

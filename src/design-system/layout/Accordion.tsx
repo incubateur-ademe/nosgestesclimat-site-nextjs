@@ -1,5 +1,5 @@
-import { ReactElement } from 'react'
-import { AccordionItemType } from './accordion/AccordionItem'
+import type { ReactElement } from 'react'
+import type { AccordionItemType } from './accordion/AccordionItem'
 
 export default function Accordion({
   className = '',

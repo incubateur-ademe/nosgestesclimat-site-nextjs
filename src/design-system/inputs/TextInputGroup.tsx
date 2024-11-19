@@ -1,8 +1,9 @@
-import {
+import type {
   ChangeEventHandler,
   ForwardedRef,
   HTMLAttributes,
-  ReactNode,
+  ReactNode} from 'react';
+import {
   forwardRef,
 } from 'react'
 import { DebounceInput } from 'react-debounce-input'

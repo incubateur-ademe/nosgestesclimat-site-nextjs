@@ -1,5 +1,5 @@
-import { MDXProps } from 'mdx/types'
-import React from 'react'
+import type { MDXProps } from 'mdx/types'
+import type React from 'react'
 
 type Props = {
   dictionnaries: {

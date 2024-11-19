@@ -1,4 +1,4 @@
-import { Release } from '@/types/translation'
+import type { Release } from '@/types/translation'
 
 export const sortReleases = (releases: Release[]) =>
   releases

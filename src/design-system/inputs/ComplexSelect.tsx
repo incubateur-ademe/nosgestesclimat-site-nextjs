@@ -1,10 +1,11 @@
-import { PropsWithChildren } from 'react'
-import Select, {
+import type { PropsWithChildren } from 'react'
+import type {
   ActionMeta,
   GroupBase,
   MultiValue,
   SingleValue,
-} from 'react-select'
+} from 'react-select';
+import Select from 'react-select'
 import AsyncSelect from 'react-select/async'
 
 type Props = {

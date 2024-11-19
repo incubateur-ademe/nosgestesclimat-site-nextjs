@@ -1,10 +1,11 @@
-import { Group } from '@/types/groups'
-import {
+import type { Group } from '@/types/groups'
+import type {
   DottedName,
   Metrics,
   SuggestionValue,
 } from '@incubateur-ademe/nosgestesclimat'
-import PublicodesEngine, {
+import type PublicodesEngine from 'publicodes'
+import type {
   ParsedRules as PublicodesParsedRules,
   Situation as PublicodesSituation,
 } from 'publicodes'

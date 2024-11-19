@@ -1,5 +1,5 @@
 import { useUser } from '@/publicodes-state'
-import { Group } from '@/types/groups'
+import type { Group } from '@/types/groups'
 
 type Props = {
   group: Group

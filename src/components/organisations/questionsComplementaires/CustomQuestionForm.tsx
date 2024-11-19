@@ -1,9 +1,10 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useAreCustomQuestionsEnabled } from '@/hooks/organisations/useAreCustomQuestionsEnabled'
-import { OrganisationPoll } from '@/types/organisations'
+import type { OrganisationPoll } from '@/types/organisations'
 import { useEffect, useState } from 'react'
-import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
+import type { SubmitHandler} from 'react-hook-form';
+import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import EditableToggleField from './EditableToggleField'
 

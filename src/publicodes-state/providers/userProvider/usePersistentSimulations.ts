@@ -1,8 +1,8 @@
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { getIsLocalStorageAvailable } from '@/utils/getIsLocalStorageAvailable'
-import { Migration } from '@publicodes/tools/migration'
+import type { Migration } from '@publicodes/tools/migration'
 import { useEffect, useState } from 'react'
-import { Simulation } from '../../types'
+import type { Simulation } from '../../types'
 
 const isLocalStorageAvailable = getIsLocalStorageAvailable()
 

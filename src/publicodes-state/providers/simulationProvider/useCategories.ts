@@ -1,7 +1,7 @@
 import { orderedCategories } from '@/constants/orderedCategories'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import { getSubcategories } from '@/publicodes-state/helpers/getSubcategories'
-import {
+import type {
   DottedName,
   NGCRuleNode,
   NGCRulesNodes,

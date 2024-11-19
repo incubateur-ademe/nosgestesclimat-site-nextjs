@@ -1,9 +1,10 @@
 'use client'
 
 import { carboneMetric } from '@/constants/metric'
-import Button, { ButtonProps } from '@/design-system/inputs/Button'
+import type { ButtonProps } from '@/design-system/inputs/Button';
+import Button from '@/design-system/inputs/Button'
 import { createXLSXFileAndDownload } from '@/helpers/export/createXLSXFileAndDownload'
-import { PollData, SimulationRecap } from '@/types/organisations'
+import type { PollData, SimulationRecap } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useState } from 'react'
 import DownloadIcon from '../icons/DownloadIcon'
