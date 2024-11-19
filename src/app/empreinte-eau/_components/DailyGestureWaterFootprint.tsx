@@ -61,7 +61,7 @@ export default async function DailyGestureWaterFootprint() {
           gestureList: [
             t('Opter pour des vêtements durables'),
             t(
-              'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé'
+              'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé)'
             ),
             t("Privilégier les produits d'occasion"),
           ],
