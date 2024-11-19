@@ -719,7 +719,7 @@ html[data-useragent*='Trident'] #js {
 }
 
 .slick-dots {
-  @apply mt-4 !flex items-center justify-center gap-2 md:mr-32;
+  @apply !flex items-center justify-center gap-2 md:ml-[200px] md:justify-start;
 }
 .slick-dots li {
   @apply !flex;

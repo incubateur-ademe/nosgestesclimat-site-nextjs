@@ -1,9 +1,10 @@
 import WhatItIs from '@/components/landing-pages/WhatItIs'
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default function WhatItIsWaterFootprint() {
+export default async function WhatItIsWaterFootprint() {
+  const { t } = await getServerTranslation()
   return (
     <WhatItIs
       title={<Trans>Qu'est-ce que l'empreinte eau ?</Trans>}
@@ -27,12 +28,8 @@ export default function WhatItIsWaterFootprint() {
           </p>
           <p>
             <Trans>
-              Empreinte eau et{' '}
-              <Link className="font-bold" href="/empreinte-carbone">
-                empreinte carbone
-              </Link>{' '}
-              sont complémentaires, et les comprendre permet d’agir en faveur
-              d’une gestion{' '}
+              Empreinte eau et empreinte carbone sont complémentaires, et les
+              comprendre permet d’agir en faveur d’une gestion{' '}
               <strong className="text-primary-600">
                 plus durable des ressources naturelles
               </strong>{' '}
@@ -46,8 +43,10 @@ export default function WhatItIsWaterFootprint() {
           width={500}
           height={500}
           className="px-5 md:px-0"
-          src="/images/illustrations/water-footprint.svg"
-          alt=""
+          src="/images/illustrations/definition-empreinte-eau.svg"
+          alt={t(
+            "Une balance indiquant la quantité d'eau nécessaire pour produire un ordinateur"
+          )}
         />
       }
     />

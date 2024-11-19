@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import { PollData, SimulationRecap } from '@/types/organisations'
+import type { PollData, SimulationRecap } from '@/types/organisations'
 import AgeFilter from './pollStatisticsFilters/AgeFilter'
 import DepartementFilter from './pollStatisticsFilters/DepartementFilter'
 import InfoTooltipIcon from './pollStatisticsFilters/InfoTooltipIcon'

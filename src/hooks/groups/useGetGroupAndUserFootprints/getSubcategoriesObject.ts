@@ -1,9 +1,9 @@
-import {
+import type {
   ComputedResultsSubcategories,
   Simulation,
 } from '@/publicodes-state/types'
-import { ValueObject } from '@/types/groups'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { ValueObject } from '@/types/groups'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 export function getSubcategoriesObject({
   simulation,

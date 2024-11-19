@@ -233,6 +233,13 @@ module.exports = {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        'pulse-scale': {
+          '0%': { transform: 'scale(0.15)' },
+          '10%': { transform: 'scale(0.7)' },
+          '50%': { transform: 'scale(0.7)' },
+          '60%': { transform: 'scale(0.15)' },
+          '100%': { transform: 'scale(0.15)' },
+        },
       },
       animation: {
         valuechange: 'valuechange 0.5s ease-out forwards',
@@ -248,8 +255,8 @@ module.exports = {
         'swim-backwards': 'swimBackwards 10s linear infinite',
         'swim-backwards-fast': 'swimBackwards 5s linear infinite',
         'swim-backwards-slow': 'swimBackwards 15s linear infinite',
-        'pulse-bg': 'pulse-bg 4000ms ease-in-out infinite',
         'fade-in': 'fade-in 0.2s ease-out',
+        'pulse-scale': 'pulse-scale 2s ease-in-out infinite',
       },
       backgroundImage: {
         'icons-mobile': "url('/images/misc/mobileIcons.svg')",

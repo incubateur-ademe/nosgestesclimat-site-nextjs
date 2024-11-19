@@ -1,4 +1,4 @@
-import { HTMLAttributes, PropsWithChildren } from 'react'
+import type { HTMLAttributes, PropsWithChildren } from 'react'
 import emoji from 'react-easy-emoji'
 import { twMerge } from 'tailwind-merge'
 

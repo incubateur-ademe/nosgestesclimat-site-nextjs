@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
-import { ReactNode, useEffect } from 'react'
+import type { ReactNode} from 'react';
+import { useEffect } from 'react'
 import Modal from 'react-modal'
 import Button from '../inputs/Button'
 import Loader from '../layout/Loader'

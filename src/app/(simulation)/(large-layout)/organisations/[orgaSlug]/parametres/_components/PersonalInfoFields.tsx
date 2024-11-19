@@ -1,8 +1,8 @@
 import Trans from '@/components/translation/Trans'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
-import { Organisation } from '@/types/organisations'
-import { FieldValues, UseFormRegister } from 'react-hook-form'
+import type { Organisation } from '@/types/organisations'
+import type { FieldValues, UseFormRegister } from 'react-hook-form'
 
 type Props = {
   organisation?: Organisation

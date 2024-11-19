@@ -29,7 +29,7 @@ export default function ModelInfo() {
           />
 
           <TitleDescLinkBlock
-            title={<Trans>Un calculateur libre et documenté</Trans>}
+            title={<Trans>Libre et documenté</Trans>}
             description={
               <Trans>
                 Les lignes de code, les données et même une grande partie des

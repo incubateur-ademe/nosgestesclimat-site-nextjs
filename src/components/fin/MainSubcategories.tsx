@@ -2,8 +2,8 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useSortedUiCategoriesByFootprint } from '@/hooks/useSortedUiCategoriesByFootprint'
-import { Metric } from '@/publicodes-state/types'
-import { ReactElement } from 'react'
+import type { Metric } from '@/publicodes-state/types'
+import type { ReactElement } from 'react'
 import MainSubcategory from './mainSubcategories/MainSubcategory'
 
 type Props = {

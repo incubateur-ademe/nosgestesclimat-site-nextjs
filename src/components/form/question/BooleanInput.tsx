@@ -1,6 +1,6 @@
 import ChoiceInput from '@/components/misc/ChoiceInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { NodeValue } from '@incubateur-ademe/nosgestesclimat'
+import type { NodeValue } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   value: NodeValue

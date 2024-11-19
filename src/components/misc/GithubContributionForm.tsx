@@ -6,7 +6,8 @@ import TextAreaInputGroup from '@/design-system/inputs/TextAreaInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useSearchParams } from 'next/navigation'
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
+import type { ChangeEvent, Dispatch, SetStateAction} from 'react';
+import { useState } from 'react'
 import Link from '../Link'
 
 type CreateIssueProps = {

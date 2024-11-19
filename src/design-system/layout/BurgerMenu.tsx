@@ -1,7 +1,8 @@
 'use client'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { KeyboardEvent, ReactNode, useEffect, useState } from 'react'
+import type { KeyboardEvent, ReactNode} from 'react';
+import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Button from '../inputs/Button'
 

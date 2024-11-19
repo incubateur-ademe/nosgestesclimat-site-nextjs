@@ -1,5 +1,5 @@
 import { GROUP_NAMES } from '@/constants/group'
-import { Group } from '@/types/groups'
+import type { Group } from '@/types/groups'
 
 export function getGroupName(groups: Group[], locale: string) {
   const groupObject =

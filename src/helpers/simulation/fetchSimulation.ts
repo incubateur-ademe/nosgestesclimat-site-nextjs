@@ -1,5 +1,5 @@
 import { SERVER_URL } from '@/constants/urls'
-import { Simulation } from '@/publicodes-state/types'
+import type { Simulation } from '@/publicodes-state/types'
 import { unformatSituation } from '@/utils/formatDataForDB'
 import axios from 'axios'
 

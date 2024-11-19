@@ -1,16 +1,21 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import { FloatingElementDisplayedProvider } from './interactiveIllustration/FloatingElementDisplayedProvider'
 import PulsatingDot from './interactiveIllustration/PulsatingDot'
 
 export default function InteractiveIllustration() {
+  const { t } = useClientTranslation()
+
   return (
     <div className="relative">
       <Image
-        src="/images/illustrations/girl-typing.svg"
-        alt=""
+        src="/images/illustrations/empreinte-carbone-eau-objets-du-quotidien.svg"
+        alt={t(
+          "Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées."
+        )}
         width={580}
         height={580}
       />

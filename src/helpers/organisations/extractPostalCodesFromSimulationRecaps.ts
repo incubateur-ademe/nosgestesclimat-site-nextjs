@@ -1,4 +1,4 @@
-import { SimulationRecap } from '@/types/organisations'
+import type { SimulationRecap } from '@/types/organisations'
 
 export function extractPostalCodesFromSimulationRecaps({
   simulationRecaps,

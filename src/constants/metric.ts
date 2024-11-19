@@ -1,4 +1,4 @@
-import { Metric } from '@/publicodes-state/types'
+import type { Metric } from '@/publicodes-state/types'
 
 export const carboneMetric = 'carbone' as const
 

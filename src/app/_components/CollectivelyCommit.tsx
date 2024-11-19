@@ -1,8 +1,11 @@
 import MotivationSection from '@/components/landing-pages/MotivationSection'
 import Trans from '@/components/translation/Trans'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default function CollectivelyCommit() {
+export default async function CollectivelyCommit() {
+  const { t } = await getServerTranslation()
+
   return (
     <MotivationSection
       title={
@@ -35,8 +38,10 @@ export default function CollectivelyCommit() {
           </p>
 
           <Image
-            src="/images/illustrations/conference.svg"
-            alt=""
+            src="/images/illustrations/engagement-collectif-pour-le-climat.svg"
+            alt={t(
+              "Un groupe de personnes en conférence, illustrant l'engagement collectif pour le climat"
+            )}
             width={600}
             height={600}
           />

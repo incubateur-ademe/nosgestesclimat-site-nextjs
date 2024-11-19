@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { filterExtremes } from '@/helpers/organisations/filterExtremes'
-import { OrganisationPoll } from '@/types/organisations'
+import type { OrganisationPoll } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useParams } from 'next/navigation'
 

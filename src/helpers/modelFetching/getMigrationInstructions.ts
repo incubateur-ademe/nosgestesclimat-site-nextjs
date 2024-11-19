@@ -1,5 +1,5 @@
 import migration from '@incubateur-ademe/nosgestesclimat/public/migration.json'
-import { Migration } from '@publicodes/tools/migration'
+import type { Migration } from '@publicodes/tools/migration'
 import { importPreviewFile } from './importPreviewFile'
 
 type Props = {

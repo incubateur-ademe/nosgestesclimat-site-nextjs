@@ -1,22 +1,29 @@
 import Trans from '@/components/translation/Trans'
-import type { LandingPagePostType } from '@/types/landing-page'
 import Image from 'next/image'
+import type { ReactNode } from 'react'
 import Badge from '../layout/Badge'
 
 export default function PostThumbnail({
   title,
   category,
   imageSrc,
+  imageAlt,
   href,
-}: LandingPagePostType) {
+}: {
+  title: ReactNode
+  category: ReactNode
+  imageSrc: string
+  imageAlt: string
+  href: string
+}) {
   return (
     <a
       href={href}
-      className="flex rounded-xl bg-white !no-underline md:flex-col">
+      className="flex rounded-xl bg-white !no-underline !duration-500 md:flex-col md:transition-transform md:hover:translate-y-[-6px]">
       <div className="relative min-h-[134px] w-1/3 min-w-28 md:mb-4 md:min-h-[240px] md:w-auto">
         <Image
           src={imageSrc}
-          alt=""
+          alt={imageAlt}
           width={320}
           height={240}
           className="h-full w-full rounded-xl object-cover"
