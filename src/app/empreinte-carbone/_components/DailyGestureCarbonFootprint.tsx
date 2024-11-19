@@ -28,17 +28,17 @@ export default async function DailyGestureCarbonFootprint() {
                 réduire vos émissions de Co2
               </strong>
               .
-            </Trans>
-          </p>
-
-          <p className="mb-0 font-bold text-secondary-700">
+            </Trans>{' '}
             <Trans>Voici quelques idées :</Trans>
           </p>
         </>
       }
       gestures={{
         [gesturesKeysForTranslation.transport]: {
-          imageSrc: '/images/illustrations/mother-and-son-on-bike.svg',
+          imageSrc: '/images/illustrations/empreinte-carbone-velo.svg',
+          imageAlt: t(
+            'Une mère et son fils sur un vélo, illustrant la possibilité de réduire son empreinte carbone en privilégiant les transports doux'
+          ),
           gestureList: [
             t('Privilégier les transports en commun, si possible'),
             t('Éviter les trajets en avion'),
@@ -46,7 +46,11 @@ export default async function DailyGestureCarbonFootprint() {
           ],
         },
         [gesturesKeysForTranslation.alimentation]: {
-          imageSrc: '/images/illustrations/girl-cooking.svg',
+          imageSrc:
+            '/images/illustrations/empreinte-carbone-cuisine-alimentation.svg',
+          imageAlt: t(
+            "Une jeune femme cuisinant, illustrant l'importance de ses choix d'alimentation dans le calcul de son empreinte carbone"
+          ),
           gestureList: [
             t('Cuisiner avec des produits locaux et de saison'),
             t('Réduire la consommation de viande'),
@@ -54,7 +58,10 @@ export default async function DailyGestureCarbonFootprint() {
           ],
         },
         [gesturesKeysForTranslation.logement]: {
-          imageSrc: '/images/illustrations/girl-reading-newspaper.svg',
+          imageSrc: '/images/illustrations/empreinte-carbone-logement.svg',
+          imageAlt: t(
+            "Une jeune femme lisant un journal, illustrant l'empreinte carbone liée à son logement"
+          ),
           gestureList: [
             t(
               'Réaliser des travaux d’isolation de son logement (pour les propriétaires)'
@@ -65,7 +72,10 @@ export default async function DailyGestureCarbonFootprint() {
           ],
         },
         [gesturesKeysForTranslation.consommation]: {
-          imageSrc: '/images/illustrations/girl-thinking.svg',
+          imageSrc: '/images/illustrations/empreinte-carbone-achats.svg',
+          imageAlt: t(
+            "Une jeune femme réfléchissant à ses choix de consommation, illustrant l'importance de ses achats dans le calcul de son empreinte carbone"
+          ),
           gestureList: [
             t("Privilégier les produits d'occasion"),
             t('Opter pour des vêtements durables'),

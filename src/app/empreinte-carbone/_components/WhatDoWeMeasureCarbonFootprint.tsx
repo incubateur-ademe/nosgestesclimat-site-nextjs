@@ -27,16 +27,12 @@ export default function WhatDoWeMeasureCarbon() {
               <Image
                 width={48}
                 height={48}
-                src="/images/icons/bike.svg"
+                src="/images/icons/icone-velo.svg"
                 alt=""
               />
             </div>
           ),
-          title: (
-            <Trans>
-              Vos modes de déplacement (voiture, vélo, train, ferry, avion...).
-            </Trans>
-          ),
+          title: <Trans>Vos modes de déplacement</Trans>,
         },
         {
           icon: (
@@ -44,16 +40,12 @@ export default function WhatDoWeMeasureCarbon() {
               <Image
                 width={48}
                 height={48}
-                src="/images/icons/meat.svg"
+                src="/images/icons/icone-viande.svg"
                 alt=""
               />
             </div>
           ),
-          title: (
-            <Trans>
-              Votre régime alimentaire (viande rouge, volaille, poisson...)
-            </Trans>
-          ),
+          title: <Trans>Votre régime alimentaire</Trans>,
         },
         {
           icon: (
@@ -61,16 +53,12 @@ export default function WhatDoWeMeasureCarbon() {
               <Image
                 width={48}
                 height={48}
-                src="/images/icons/wood.svg"
+                src="/images/icons/icone-bois.svg"
                 alt=""
               />
             </div>
           ),
-          title: (
-            <Trans>
-              Vos consommations énergétiques (chauffage, électricité).
-            </Trans>
-          ),
+          title: <Trans>Vos consommations énergétiques</Trans>,
         },
 
         {
@@ -79,12 +67,12 @@ export default function WhatDoWeMeasureCarbon() {
               <Image
                 width={48}
                 height={48}
-                src="/images/icons/computer.svg"
+                src="/images/icons/icone-ordinateur.svg"
                 alt=""
               />
             </div>
           ),
-          title: <Trans>Vos achats (équipements, vêtements, loisirs).</Trans>,
+          title: <Trans>Vos achats</Trans>,
         },
       ]}
     />
