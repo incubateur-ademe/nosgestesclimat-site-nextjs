@@ -6,7 +6,7 @@ export default function DidYouKnowCarbon() {
     <DidYouKnowSlider
       slides={[
         {
-          illustration: '/images/icons/trophee.svg',
+          illustration: '/images/icons/icone-trophee.svg',
           content: (
             <Trans>
               L'empreinte carbone moyenne d'un français est de{' '}
@@ -19,7 +19,7 @@ export default function DidYouKnowCarbon() {
           highlight: <Trans>Et la vôtre ?</Trans>,
         },
         {
-          illustration: '/images/icons/plane.svg',
+          illustration: '/images/icons/icone-avion.svg',
           content: (
             <Trans>
               Un aller-retour Paris-Athènes en avion représente{' '}
