@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import { defaultMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
-import { Group } from '@/types/groups'
+import type { Group } from '@/types/groups'
 
 type Props = {
   group: Group

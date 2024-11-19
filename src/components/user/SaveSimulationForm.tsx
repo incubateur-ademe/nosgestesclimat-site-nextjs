@@ -15,8 +15,10 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { ReactNode, useEffect, useRef, useState } from 'react'
-import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
+import type { ReactNode} from 'react';
+import { useEffect, useRef, useState } from 'react'
+import type { SubmitHandler} from 'react-hook-form';
+import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 
 type Inputs = {

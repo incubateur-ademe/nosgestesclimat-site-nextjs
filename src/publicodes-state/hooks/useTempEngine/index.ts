@@ -1,4 +1,4 @@
-import {
+import type {
   DottedName,
   NGCRuleNode,
   NGCRules,
@@ -7,7 +7,7 @@ import { useContext } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
 import useCurrentSimulation from '../useCurrentSimulation'
 
-import { EvaluatedNode } from 'publicodes'
+import type { EvaluatedNode } from 'publicodes'
 /**
  * This is temporary and should be put to death as soon as possible
  */

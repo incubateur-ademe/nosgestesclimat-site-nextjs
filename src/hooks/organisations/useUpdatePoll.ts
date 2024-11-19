@@ -2,7 +2,7 @@
 
 import { SERVER_URL } from '@/constants/urls'
 import { useUser } from '@/publicodes-state'
-import { UpdatePollProps } from '@/types/organisations'
+import type { UpdatePollProps } from '@/types/organisations'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useParams } from 'next/navigation'

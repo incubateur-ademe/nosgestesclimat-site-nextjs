@@ -1,9 +1,9 @@
 import Link from '@/components/Link'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
-import { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import Fuse from 'fuse.js'
+import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type Fuse from 'fuse.js'
 import highlightMatches from '../_helpers/highlightMatches'
-import { Matches, SearchItem } from './SearchBar'
+import type { Matches, SearchItem } from './SearchBar'
 
 export default function RuleListItem({
   rules,

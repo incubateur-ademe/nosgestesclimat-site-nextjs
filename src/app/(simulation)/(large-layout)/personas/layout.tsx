@@ -2,7 +2,7 @@ import Providers from '@/components/providers/Providers'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()

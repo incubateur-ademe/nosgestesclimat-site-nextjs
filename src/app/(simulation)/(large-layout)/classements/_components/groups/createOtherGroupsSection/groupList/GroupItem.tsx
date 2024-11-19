@@ -7,7 +7,7 @@ import { classementClickGroup } from '@/constants/tracking/pages/classements'
 import Emoji from '@/design-system/utils/Emoji'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useUser } from '@/publicodes-state'
-import { Group } from '@/types/groups'
+import type { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {

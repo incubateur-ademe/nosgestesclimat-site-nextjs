@@ -13,7 +13,7 @@ import {
   useGetSharedSimulationEvents,
 } from '@/helpers/matomo'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
-import { UseQueryResult } from '@tanstack/react-query'
+import type { UseQueryResult } from '@tanstack/react-query'
 import AcquisitionBlock from './content/AcquisitionBlock'
 import MetabaseIframe from './content/MetabaseIframe'
 import SimulationsBlock from './content/SimulationsBlock'

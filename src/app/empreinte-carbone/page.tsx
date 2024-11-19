@@ -1,5 +1,6 @@
 import DynamicCTAButton from '@/components/cta/DynamicCTAButton'
 import Partners from '@/components/landing-pages/Partners'
+import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -12,6 +13,7 @@ import MotivationSectionCarbonFootprint from './_components/MotivationSectionCar
 import UnderstandToActCarbonFootprint from './_components/UnderstandToActCarbonFootprint'
 import WhatDoWeMeasureCarbon from './_components/WhatDoWeMeasureCarbonFootprint'
 import WhatItIsCarbon from './_components/WhatItIsCarbon'
+import { carbonFAQJsonLd } from './_constants/carbonFAQJsonLd'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -29,54 +31,80 @@ export async function generateMetadata() {
 
 export default function CarbonFootprintLandingPage() {
   return (
-    <LandingPage
-      heroTitle={
-        <Trans>
-          L'empreinte carbone, une première étape pour passer à l’action
-        </Trans>
-      }
-      heroDescription={
-        <div className="flex flex-col items-start gap-4 md:gap-6">
-          <p className="mb-0">
-            <Trans>
-              Calculez votre{' '}
-              <strong className="text-primary-600">empreinte carbone</strong> en
-              quelques minutes et découvrez les{' '}
-              <strong className="text-primary-600">actions</strong> les plus
-              efficaces pour{' '}
-              <strong className="text-primary-600">
-                réduire vos émissions
-              </strong>{' '}
-              de gaz à effet de serre.
-            </Trans>
-          </p>
-          <div className="flex w-full justify-center md:justify-start">
-            <DynamicCTAButton />
+    <>
+      <JSONLD
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            url: 'https://nosgestesclimat.fr/',
+            name: 'Nos Gestes Climat',
+            logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: carbonFAQJsonLd.map((faq) => ({
+              '@type': 'Question',
+              name: faq.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.answer,
+              },
+            })),
+          },
+        ]}
+      />
+
+      <LandingPage
+        heroTitle={
+          <Trans>
+            L'empreinte carbone, une première étape pour passer à l’action
+          </Trans>
+        }
+        heroDescription={
+          <div className="flex flex-col items-start gap-4 md:gap-6">
+            <p className="mb-0">
+              <Trans>
+                Calculez votre{' '}
+                <strong className="text-primary-600">empreinte carbone</strong>{' '}
+                en quelques minutes et découvrez les{' '}
+                <strong className="text-primary-600">actions</strong> les plus
+                efficaces pour{' '}
+                <strong className="text-primary-600">
+                  réduire vos émissions
+                </strong>{' '}
+                de gaz à effet de serre.
+              </Trans>
+            </p>
+            <div className="flex w-full justify-center md:justify-start">
+              <DynamicCTAButton />
+            </div>
           </div>
-        </div>
-      }
-      heroIllustration={
-        <Image
-          width={560}
-          height={560}
-          src="/images/illustrations/girl-holding-earth.svg"
-          alt=""
-        />
-      }
-      heroPartners={<Partners />}>
-      <WhatItIsCarbon />
+        }
+        heroIllustration={
+          <Image
+            width={400}
+            height={400}
+            src="/images/illustrations/girl-holding-earth.svg"
+            alt=""
+          />
+        }
+        heroPartners={<Partners />}>
+        <WhatItIsCarbon />
 
-      <WhatDoWeMeasureCarbon />
+        <WhatDoWeMeasureCarbon />
 
-      <DidYouKnowCarbon />
+        <DidYouKnowCarbon />
 
-      <DailyGestureCarbonFootprint />
+        <DailyGestureCarbonFootprint />
 
-      <UnderstandToActCarbonFootprint />
+        <UnderstandToActCarbonFootprint />
 
-      <MotivationSectionCarbonFootprint />
+        <MotivationSectionCarbonFootprint />
 
-      <FAQCarbonFootprint />
-    </LandingPage>
+        <FAQCarbonFootprint />
+      </LandingPage>
+    </>
   )
 }

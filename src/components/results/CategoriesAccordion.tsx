@@ -4,7 +4,7 @@ import { defaultMetric } from '@/constants/metric'
 import Accordion from '@/design-system/layout/Accordion'
 import { useSortedCategoriesByFootprint } from '@/hooks/useSortedCategoriesByFootprint'
 import { useRule } from '@/publicodes-state'
-import { Metric } from '@/publicodes-state/types'
+import type { Metric } from '@/publicodes-state/types'
 import AccordionItemWithRule from './categoriesAccordion/AccordionItemWithRule'
 
 type Props = {

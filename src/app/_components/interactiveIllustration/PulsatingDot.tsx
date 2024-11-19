@@ -67,8 +67,7 @@ export default function PulsatingDot({
 
       <div
         className={twMerge(
-          'group absolute h-6 w-6 cursor-pointer rounded-full shadow-lg',
-          'animate-pulse-bg'
+          'group absolute h-6 w-6 cursor-pointer rounded-full bg-white shadow-lg'
         )}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
@@ -89,8 +88,10 @@ export default function PulsatingDot({
         aria-label="Toggle information">
         <div
           className={twMerge(
-            'absolute inset-0 scale-[0.15] rounded-full bg-secondary-600 transition-all duration-300 group-hover:scale-[0.7]',
-            isHovered ? 'scale-[0.7]' : ''
+            'absolute inset-0 scale-[0.15] rounded-full bg-secondary-600 transition-all duration-500',
+            isHovered
+              ? 'scale-[0.7]'
+              : 'scale-[0.15] animate-[pulse-scale_3s_ease-in-out_infinite]'
           )}
         />
       </div>

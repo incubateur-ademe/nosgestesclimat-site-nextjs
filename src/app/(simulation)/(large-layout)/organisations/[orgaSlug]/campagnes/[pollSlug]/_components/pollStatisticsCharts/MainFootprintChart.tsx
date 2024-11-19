@@ -2,7 +2,7 @@ import Arrow from '@/components/fin/metricSlider/carboneTotalChart/Arrow'
 import Trans from '@/components/translation/Trans'
 import { carboneMetric } from '@/constants/metric'
 import InlineLink from '@/design-system/inputs/InlineLink'
-import { SimulationRecap } from '@/types/organisations'
+import type { SimulationRecap } from '@/types/organisations'
 import isMobile from 'is-mobile'
 import RepartitionChart from './RepartitionChart'
 

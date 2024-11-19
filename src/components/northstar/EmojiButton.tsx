@@ -1,4 +1,4 @@
-import { HTMLAttributes, PropsWithChildren } from 'react'
+import type { HTMLAttributes, PropsWithChildren } from 'react'
 
 export default function EmojiButton(
   props: PropsWithChildren<HTMLAttributes<HTMLButtonElement>>

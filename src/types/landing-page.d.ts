@@ -8,6 +8,7 @@ export type WhatDoWeMeasureListItem = {
 export type GesturesType = {
   [category: string]: {
     imageSrc: string
+    imageAlt: string
     gestureList: ReactNode[]
   }
 }
@@ -16,6 +17,7 @@ export type LandingPagePostType = {
   category: ReactNode
   title: ReactNode
   imageSrc: string
+  imageAlt: string
   href: string
   trackingEvent: string[]
 }

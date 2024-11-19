@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
-import { ChangeEvent, ForwardedRef, ReactNode, forwardRef } from 'react'
+import type { ChangeEvent, ForwardedRef, ReactNode} from 'react';
+import { forwardRef } from 'react'
 
 type Props = {
   name: string

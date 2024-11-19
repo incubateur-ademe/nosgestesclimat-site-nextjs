@@ -5,7 +5,7 @@ import { quizClickAnswer } from '@/constants/tracking/pages/quiz'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   answer: DottedName | null

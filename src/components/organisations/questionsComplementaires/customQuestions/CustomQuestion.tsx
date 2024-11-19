@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import { OrganisationPoll } from '@/types/organisations'
+import type { OrganisationPoll } from '@/types/organisations'
 import { useState } from 'react'
 import CustomQuestionForm from '../CustomQuestionForm'
 import ToggleField from '../ToggleField'

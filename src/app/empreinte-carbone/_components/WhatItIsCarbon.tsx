@@ -1,8 +1,11 @@
 import WhatItIs from '@/components/landing-pages/WhatItIs'
 import Trans from '@/components/translation/Trans'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default function WhatItIsCarbon() {
+export default async function WhatItIsCarbon() {
+  const { t } = await getServerTranslation()
+
   return (
     <WhatItIs
       title={<Trans>Qu’est-ce que l’empreinte carbone ?</Trans>}
@@ -42,8 +45,11 @@ export default function WhatItIsCarbon() {
         <Image
           width={450}
           height={450}
-          src="/images/illustrations/people-raising-arm.svg"
-          alt=""
+          src="/images/illustrations/expliquer-empreinte-carbone.svg"
+          className="py-6 md:py-10"
+          alt={t(
+            "Deux personnes accolées levant le bras en signe de succès, illustrant l'importance du collectif dans la réduction de nos empreintes carbone"
+          )}
         />
       }
     />

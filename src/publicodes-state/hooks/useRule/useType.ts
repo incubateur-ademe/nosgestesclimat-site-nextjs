@@ -1,7 +1,7 @@
 'use client'
 
-import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import { EvaluatedNode } from 'publicodes'
+import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import type { EvaluatedNode } from 'publicodes'
 import { useMemo } from 'react'
 import getType from '../../helpers/getType'
 

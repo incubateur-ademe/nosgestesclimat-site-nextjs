@@ -1,16 +1,19 @@
 import Trans from '@/components/translation/Trans'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 import CreateGroupLink from './mobilise/CreateGroupLink'
 import CreateOrganisation from './mobilise/CreateOrganisation'
 
-export default function Mobilise() {
+export default async function Mobilise() {
+  const { t } = await getServerTranslation()
+
   return (
-    <div className="flex flex-col items-center gap-10 px-4 py-20 md:mx-auto md:max-w-5xl">
-      <h2 className="text-center text-2xl md:max-w-[430px] md:text-3xl">
+    <div className="flex flex-col items-center px-4 py-20 md:mx-auto md:max-w-5xl">
+      <h2 className="mb-10 text-center text-2xl md:max-w-[430px] md:text-3xl">
         <Trans>Mobilisez votre entourage pour la planète !</Trans>
       </h2>
 
-      <div className="flex flex-col justify-between gap-6 md:flex-row md:gap-24">
+      <div className="mb-16 flex flex-col items-center justify-between gap-6 md:mb-20 md:flex-row md:gap-24">
         <div className="md:max-w-[500px]">
           <h3 className="mb-4 text-xl md:text-2xl">
             <Trans>Défiez votre entourage</Trans>
@@ -31,21 +34,25 @@ export default function Mobilise() {
           <CreateGroupLink />
         </div>
 
-        <div className="order-first md:order-last">
+        <div className="order-first py-8 md:order-last">
           <Image
-            src="/images/illustrations/people-playing.svg"
-            alt=""
+            src="/images/illustrations/comparer-empreinte-carbone-et-eau-entre-amis.svg"
+            alt={t(
+              "Un groupe d'amis comparant leurs empreintes carbone et eau"
+            )}
             width={500}
             height={500}
           />
         </div>
       </div>
 
-      <div className="flex flex-col justify-between gap-6 md:flex-row md:gap-24">
-        <div>
+      <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-24">
+        <div className="py-14">
           <Image
-            src="/images/illustrations/people-with-paperboard.svg"
-            alt=""
+            src="/images/illustrations/reflechir-impacts-de-son-empreinte.svg"
+            alt={t(
+              'Un groupe de personnes en train de réfléchir aux impacts de leur empreinte carbone et eau'
+            )}
             width={500}
             height={500}
           />

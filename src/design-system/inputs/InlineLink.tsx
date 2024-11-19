@@ -1,5 +1,5 @@
 import Link from '@/components/Link'
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
